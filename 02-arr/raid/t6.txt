@@ -1,0 +1,128 @@
+# Turn 6
+# -ii 798 7A5 7A4 79F 870 7A7 7A1 7A6 83A -p 797:7.5 79D:204 79E:403 87A:1003
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+### Phase 1
+0.0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 00:0839::Scar's Edge will be sealed off/ window 10,10
+7.5 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/ window 8,8
+11.5 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+18.5 "Briary Growth" sync / 1[56]:[^:]*:Rafflesia:884:/ window 20,20
+20.6 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
+28.6 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+35.3 "Floral Trap" sync / 1[56]:[^:]*:Rafflesia:799:/
+37.4 "Devour" sync / 1[56]:[^:]*:Rafflesia:79A:/
+42.5 "Spit" sync / 1[56]:[^:]*:Rafflesia:79B:/
+46.6 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
+55.6 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+58.7 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
+63.6 "Briary Growth" sync / 1[56]:[^:]*:Rafflesia:884:/ window 20,20
+70.8 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
+73.7 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+80.5 "Floral Trap" sync / 1[56]:[^:]*:Rafflesia:799:/
+82.5 "Devour" sync / 1[56]:[^:]*:Rafflesia:79A:/
+87.6 "Spit" sync / 1[56]:[^:]*:Rafflesia:79B:/
+
+96.9 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
+100.9 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+107.9 "Briary Growth" sync / 1[56]:[^:]*:Rafflesia:884:/ window 20,20 jump 18.5
+110.0 "Bloody Caress"
+118.0 "Thorn Whip"
+124.7 "Floral Trap"
+126.8 "Devour"
+131.9 "Spit"
+136.0 "Bloody Caress"
+
+### Phase 2
+# There is a Bloody Caress (often?) right at the start of this phase before blighted.
+# But it's hard to sync to it properly, sorry.
+200.0 "--sync--" sync / 14:[^:]*:Rafflesia:79D:/ window 200,0
+204.0 "Blighted Bouquet" sync / 1[56]:[^:]*:Rafflesia:79D:/
+209.0 "Briary Growth" sync / 1[56]:[^:]*:Rafflesia:884:/ window 20,20
+214.1 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
+219.0 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+225.8 "Floral Trap" sync / 1[56]:[^:]*:Rafflesia:799:/
+227.8 "Devour" sync / 1[56]:[^:]*:Rafflesia:79A:/
+232.8 "Spit" sync / 1[56]:[^:]*:Rafflesia:79B:/
+235.8 "Viscid Emission" sync / 1[56]:[^:]*:Rafflesia:79C:/
+240.9 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
+244.9 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+254.0 "Blighted Bouquet" sync / 1[56]:[^:]*:Rafflesia:79D:/
+258.2 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
+260.1 "Briary Growth" sync / 1[56]:[^:]*:Rafflesia:884:/ window 20,20
+269.2 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+275.5 "Floral Trap" sync / 1[56]:[^:]*:Rafflesia:799:/
+277.5 "Devour" sync / 1[56]:[^:]*:Rafflesia:79A:/
+282.5 "Spit" sync / 1[56]:[^:]*:Rafflesia:79B:/
+285.3 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
+294.2 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+297.5 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
+
+304.4 "Blighted Bouquet" sync / 1[56]:[^:]*:Rafflesia:79D:/ window 30,30 jump 204
+309.4 "Briary Growth"
+314.5 "Bloody Caress"
+319.4 "Thorn Whip"
+326.2 "Floral Trap"
+328.2 "Devour"
+333.2 "Spit"
+336.2 "Viscid Emission"
+
+### Phase 3
+# This ignores dinky leafstorms that do like 200 damage.
+
+400.0 "--sync--" sync / 14:[^:]*:Rafflesia:79E:/ window 400,0
+403.0 "Leafstorm" sync / 1[56]:[^:]*:Rafflesia:79E:/
+413.1 "Acid Rain" sync / 1[56]:[^:]*:Rafflesia:86C:/
+420.3 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+432.4 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
+445.5 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+450.3 "Rotten Stench" sync / 1[56]:[^:]*:Rafflesia:7A2:/
+465.5 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
+478.5 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+490.7 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
+495.6 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+500.1 "Rotten Stench" sync / 1[56]:[^:]*:Rafflesia:7A2:/
+
+# looping leafstorm (the first one has swarm later)
+523.2 "Leafstorm" sync / 1[56]:[^:]*:Rafflesia:79E:/ window 100,300
+528.4 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
+537.3 "Acid Rain" sync / 1[56]:[^:]*:Rafflesia:86C:/
+544.4 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+556.7 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
+569.6 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+574.4 "Rotten Stench" sync / 1[56]:[^:]*:Rafflesia:7A2:/
+589.7 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
+602.7 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+614.8 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
+619.7 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
+624.5 "Rotten Stench" sync / 1[56]:[^:]*:Rafflesia:7A2:/
+
+647.6 "Leafstorm"
+652.8 "Swarm"
+661.7 "Acid Rain"
+668.8 "Thorn Whip"
+681.1 "Swarm"
+694.0 "Thorn Whip"
+698.8 "Rotten Stench"
+714.1 "Swarm"
+727.1 "Thorn Whip"
+739.2 "Swarm"
+744.1 "Thorn Whip"
+748.9 "Rotten Stench"
+
+### Enrage
+# This does like 60k damage so probably will kill you
+# if you are so slow to see it, but just for completeness
+# it repeats every five seconds.
+1000.0 "--sync--" sync / 14:[^:]*:Rafflesia:87A:/ window 1000,1000
+1003.0 "Leafstorm" sync / 1[56]:[^:]*:Rafflesia:87A:/
+1008.0 "Leafstorm"
+1013.0 "Leafstorm"
+1018.0 "Leafstorm"
+1023.0 "Leafstorm"
+1028.0 "Leafstorm"

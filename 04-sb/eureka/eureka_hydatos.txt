@@ -1,0 +1,412 @@
+# Eureka Hydatos - Baldesion Armory
+# http://elysium.gg/guides/baldesion-arsenal-primer/
+# http://elysium.gg/guides/baldesion-arsenal-raid-guide/
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+0.0 "--Reset--" sync / 04:........:Proto Ozma:/ window 100000 jump 0
+
+
+#####################
+# WEST BRANCH / ART #
+#####################
+# -ic Owain -ii 3956 392D -p 3934:1014.5
+
+# Note: This checks that Art's auto hits a target close enough for you to see.
+# You can see Owain's auto abilities, but the target is listed as empty.
+1002.5 "--sync--" sync / 1[56]:[^:]*:Art:3956:[^:]*:[^:]*:[^:]+:/ window 1500,0
+1014.5 "Thricecull" sync / 1[56]:[^:]*:Art:3934:/
+1023.1 "Legendcarver" sync / 1[56]:[^:]*:Art:3928:/
+1030.7 "Legendspinner" sync / 1[56]:[^:]*:Art:3929:/
+1038.8 "Acallam Na Senorach" sync / 1[56]:[^:]*:Art:3935:/
+1047.5 "Mythcall" sync / 1[56]:[^:]*:Art:3927:/
+1058.1 "Carver/Spinner" sync / 1[56]:[^:]*:Art:392[89]:/
+1061.1 "Spear Copy" sync / 1[56]:[^:]*:Orlasrach:392[AB]:/
+1068.2 "Acallam Na Senorach" sync / 1[56]:[^:]*:Art:3935:/
+1075.3 "Thricecull" sync / 1[56]:[^:]*:Art:3934:/
+1081.7 "Mythcall" sync / 1[56]:[^:]*:Art:3927:/
+1092.3 "Carver/Spinner" sync / 1[56]:[^:]*:Art:392[89]:/
+1095.3 "Spear Copy" sync / 1[56]:[^:]*:Orlasrach:392B:/
+1102.4 "Legendary Geas" sync / 1[56]:[^:]*:Art:3932:/
+1109.2 "--sync--" sync / 1[56]:[^:]*:Art:3933:/
+1113.7 "Acallam Na Senorach" sync / 1[56]:[^:]*:Art:3935:/
+1116.7 "--untargetable--"
+1123.3 "Orb x5" sync / 1[56]:[^:]*:Art:392C:/ duration 6
+1125.8 "Pitfall" sync / 1[56]:[^:]*:Art:392F:/
+1126.8 "--targetable--"
+1138.3 "Thricecull" sync / 1[56]:[^:]*:Art:3934:/
+1145.4 "Acallam Na Senorach" sync / 1[56]:[^:]*:Art:3935:/
+1155.1 "Mythcall" sync / 1[56]:[^:]*:Art:3927:/
+1155.1 "(Legendary Geas)"
+1165.6 "Carver/Spinner" sync / 1[56]:[^:]*:Art:392[89]:/
+1168.7 "Spear Copy" sync / 1[56]:[^:]*:Orlasrach:392[AB]:/
+1175.7 "Thricecull" sync / 1[56]:[^:]*:Art:3934:/
+1182.8 "Acallam Na Senorach" sync / 1[56]:[^:]*:Art:3935:/
+1189.2 "Mythcall" sync / 1[56]:[^:]*:Art:3927:/
+1197.8 "Piercing Dark" sync / 1[56]:[^:]*:Art:3930:/ duration 6.5
+# FIXME: is this one always spinner because piercing dark?
+1203.9 "Carver/Spinner" sync / 1[56]:[^:]*:Art:392[89]:/
+1204.3 "--sync--" sync / 1[56]:[^:]*:Art:3931:/
+1206.9 "Spear Shade" sync / 1[56]:[^:]*:Orlasrach:392[AB]:/
+1218.0 "Legendary Geas" sync / 1[56]:[^:]*:Art:3932:/
+# FIXME: spiritcall somewhere in here, and then a loop?
+
+
+
+#######################
+# EAST BRANCH / OWAIN #
+#######################
+# -ic Orlasrach Art -ii 3957 3941 3939 393C 393D 3938 -p 3945:2016.0
+2002.5 "--sync--" sync / 1[56]:[^:]*:Owain:3957:[^:]*:[^:]*:[^:]+:/ window 2500,0
+2016.0 "Thricecull" sync / 1[56]:[^:]*:Owain:3945:/
+2028.1 "Acallam Na Senorach" sync / 1[56]:[^:]*:Owain:3946:/ #3:29
+2037.7 "Mythcall" sync / 1[56]:[^:]*:Owain:3936:/ #3:39
+2041.7 "Elemental Shift" sync / 1[56]:[^:]*:Owain:3937:/
+2052.8 "Elemental Magicks" sync / 1[56]:[^:]*:Owain:393[AB]:/
+2067.8 "Thricecull" sync / 1[56]:[^:]*:Owain:3945:/
+2079.9 "Acallam Na Senorach" sync / 1[56]:[^:]*:Owain:3946:/
+2089.3 "Elemental Shift" sync / 1[56]:[^:]*:Owain:3937:/
+2100.4 "Elemental Magicks" sync / 1[56]:[^:]*:Owain:393[AB]:/
+2116.4 "Thricecull" sync / 1[56]:[^:]*:Owain:3945:/
+2127.5 "Spiritcull" sync / 1[56]:[^:]*:Owain:393E:/
+2132.5 "Legendary Imbas" sync / 1[56]:[^:]*:Owain:3940:/
+2132.5 "Piercing Light" sync / 1[56]:[^:]*:Owain:393F:/
+2142.5 "Thricecull" sync / 1[56]:[^:]*:Owain:3945:/
+2153.6 "Acallam Na Senorach" sync / 1[56]:[^:]*:Owain:3946:/
+2157.7 "--untargetable--"
+2164.7 "Piercing Light" sync / 1[56]:[^:]*:Owain:3944:/
+2165.7 "Pitfall" sync / 1[56]:[^:]*:Owain:394D:/
+2166.0 "--targetable--"
+2180.3 "Acallam Na Senorach" sync / 1[56]:[^:]*:Owain:3946:/
+2190.3 "Acallam Na Senorach" sync / 1[56]:[^:]*:Owain:3946:/
+2199.9 "Elemental Shift" sync / 1[56]:[^:]*:Owain:3937:/
+2209.0 "Spiritcull" sync / 1[56]:[^:]*:Owain:393E:/
+2214.0 "Legendary Imbas" sync / 1[56]:[^:]*:Owain:3940:/
+2214.0 "Piercing Light" sync / 1[56]:[^:]*:Owain:393F:/
+2216.0 "Elemental Magicks" sync / 1[56]:[^:]*:Owain:393[AB]:/
+2230.0 "Thricecull" sync / 1[56]:[^:]*:Owain:3945:/
+2252.1 "Acallam Na Senorach" sync / 1[56]:[^:]*:Owain:3946:/
+2261.4 "Elemental Shift" sync / 1[56]:[^:]*:Owain:3937:/
+2267.5 "Ivory Palm Adds" # sync / 1[56]:[^:]*:Ivory Palm:3941:/
+2272.5 "Elemental Magicks" sync / 1[56]:[^:]*:Owain:393[AB]:/
+2290.5 "(Explosion Enrage)"
+2283.5 "Thricecull" sync / 1[56]:[^:]*:Owain:3945:/
+2291.6 "Spiritcull" sync / 1[56]:[^:]*:Owain:393E:/
+2296.6 "Legendary Imbas" sync / 1[56]:[^:]*:Owain:3940:/
+2296.6 "Piercing Light" sync / 1[56]:[^:]*:Owain:393F:/
+2306.6 "Thricecull" sync / 1[56]:[^:]*:Owain:3945:/
+2317.6 "Acallam Na Senorach" sync / 1[56]:[^:]*:Owain:3946:/
+2328.6 "Piercing Light" sync / 1[56]:[^:]*:Owain:3944:/
+2329.6 "Pitfall" sync / 1[56]:[^:]*:Owain:394D:/
+2344.2 "Acallam Na Senorach" sync / 1[56]:[^:]*:Owain:3946:/
+
+
+
+##########
+# Raiden #
+##########
+# -ii 39B9 3994 3996 3995 3997 3872 3871 3873 -p 387A:3013 386D:3091
+3000.0 "--sync--" sync / 00:0839::The Shin-Zantetsuken Containment Unit will be sealed off/ window 3000,0
+3013.0 "Spirits of the Fallen" sync / 1[56]:[^:]*:Raiden:387A:/ # drift -0.041
+3023.0 "Shingan" sync / 1[56]:[^:]*:Raiden:387B:/ # drift 0.05
+3034.1 "Thundercall" sync / 1[56]:[^:]*:Raiden:387F:/
+3044.2 "--sync--" sync / 14:[^:]*:Raiden:3868:/ window 10,10
+3048.7 "Ame-no-Sakahoko" sync / 1[56]:[^:]*:Raiden:3868:/
+3051.7 "--sync--" sync / 1[56]:[^:]*:Raiden:3869:/
+3058.3 "Whirling Zantetsuken" sync / 1[56]:[^:]*:Raiden:386A:/
+3065.4 "--sync--" sync / 14:[^:]*:Raiden:3868:/ window 10,10
+3069.9 "Ame-no-Sakahoko" sync / 1[56]:[^:]*:Raiden:3868:/
+3072.9 "--sync--" sync / 1[56]:[^:]*:Raiden:3869:/
+3079.5 "Whirling Zantetsuken" sync / 1[56]:[^:]*:Raiden:386A:/
+# FIXME: does this loop doing Ame forever or does it naturally go into Lateral?
+# FIXME: Are these always Whirling?
+
+# Adds Phase at 60%
+3095.0 "--sync--" sync / 1[56]:[^:]*:Ball Lightning:386D:/ window 100,10
+3099.1 "Lateral Zantetsuken" sync / 1[56]:[^:]*:Raiden:386[BC]:/
+3109.8 "Spirits of the Fallen" sync / 1[56]:[^:]*:Raiden:387A:/
+3118.9 "Lancing Bolt" sync / 1[56]:[^:]*:Raiden:3876:/
+3124.4 "Streak Lightning" #sync / 1[56]:[^:]*:Streak Lightning:3877:/
+3134.9 "Ultimate Zantetsuken" sync / 14:[^:]*:Raiden:3878:/ duration 20
+
+3154.9 "--sync--" sync / 17:[^:]:Raiden:3878:/ window 40,0
+3164.9 "Spirits of the Fallen" sync / 1[56]:[^:]*:Raiden:387A:/ window 40,5
+3171.2 "Booming Lament" sync / 1[56]:[^:]*:Raiden:387D:/
+3177.3 "Cloud to Ground" sync / 1[56]:[^:]*:Raiden:3870:/
+3193.4 "Bitter Barbs" sync / 1[56]:[^:]*:Raiden:3874:/
+3210.5 "Whirling Zantetsuken" sync / 1[56]:[^:]*:Raiden:386A:/
+3220.5 "Spirits of the Fallen" sync / 1[56]:[^:]*:Raiden:387A:/
+
+3233.6 "Cloud to Ground" sync / 1[56]:[^:]*:Raiden:3870:/
+3247.7 "Levinwhorl" sync / 1[56]:[^:]*:Raiden:386E:/
+3247.7 "--sync--" sync / 1[56]:[^:]*:Raiden:386F:/
+3266.3 "Ame-no-Sakahoko" sync / 1[56]:[^:]*:Raiden:3868:/
+3269.3 "--sync--" sync / 1[56]:[^:]*:Raiden:3869:/
+3275.9 "Whirling Zantetsuken" sync / 1[56]:[^:]*:Raiden:386A:/
+3283.1 "Booming Lament" sync / 1[56]:[^:]*:Raiden:387D:/
+3293.2 "Spirits of the Fallen" sync / 1[56]:[^:]*:Raiden:387A:/
+
+3308.5 "--sync--" sync / 1[56]:[^:]*:Ball Lightning:386D:/ window 100,10
+3310.7 "Streak Lightning" sync / 1[56]:[^:]*:Streak Lightning:3877:/ # drift 0.043
+3316.0 "Lateral Zantetsuken" sync / 1[56]:[^:]*:Raiden:386[BC]:/
+3321.7 "Ultimate Zantetsuken" sync / 14:[^:]*:Raiden:3878:/ duration 20
+
+3341.7 "--sync--" sync / 17:[^:]:Raiden:3878:/ window 40,0
+3347.7 "Spirits of the Fallen" sync / 1[56]:[^:]*:Raiden:387A:/ window 40,5
+3353.8 "Shingan" sync / 1[56]:[^:]*:Raiden:387B:/
+3365.4 "Ame-no-Sakahoko" sync / 1[56]:[^:]*:Raiden:3868:/
+3368.4 "--sync--" sync / 1[56]:[^:]*:Raiden:3869:/
+3373.9 "For Honor" sync / 1[56]:[^:]*:Raiden:387C:/
+3381.5 "Whirling Zantetsuken" sync / 1[56]:[^:]*:Raiden:386A:/ # drift -0.048
+3390.7 "Booming Lament" sync / 1[56]:[^:]*:Raiden:387D:/
+
+
+
+###################
+# Absolute Virtue #
+###################
+# -p 3799:4016 -ii 38C4 378F 3791 3792 3954 378C
+4000.0 "--sync--" sync / 00:0839::The Lance of Virtue Containment Unit will be sealed off/ window 4000,0
+4016.0 "Meteor" sync / 1[56]:[^:]*:Absolute Virtue:3799:/
+4022.0 "Eidos" sync / 1[56]:[^:]*:Absolute Virtue:378[67]:/
+4033.6 "Hostile Aspect" sync / 1[56]:[^:]*:Absolute Virtue:378B:/
+4039.8 "Medusa Javelin" sync / 1[56]:[^:]*:Absolute Virtue:379B:/
+4046.8 "Eidos" sync / 1[56]:[^:]*:Absolute Virtue:378[67]:/
+4053.6 "Impact Stream" sync / 1[56]:[^:]*:Absolute Virtue:3788:/
+4064.6 "Auroral Wind" sync / 1[56]:[^:]*:Absolute Virtue:379A:/
+4078.7 "Eidos" sync / 1[56]:[^:]*:Absolute Virtue:378[67]:/
+4090.5 "Hostile Aspect" sync / 1[56]:[^:]*:Absolute Virtue:378B:/
+4108.5 "Meteor" sync / 1[56]:[^:]*:Absolute Virtue:3799:/
+4118.6 "Turbulent Aether" sync / 1[56]:[^:]*:Absolute Virtue:3790:/
+4126.9 "Medusa Javelin" sync / 1[56]:[^:]*:Absolute Virtue:379B:/
+4134.9 "Auroral Wind" sync / 1[56]:[^:]*:Absolute Virtue:379A:/
+4142.9 "Meteor" sync / 1[56]:[^:]*:Absolute Virtue:3799:/
+4151.9 "Meteor" sync / 1[56]:[^:]*:Absolute Virtue:3799:/
+
+# Triple Stream
+4161.0 "--untargetable--"
+4166.5 "Explosive Impulse" sync / 1[56]:[^:]*:Relative Virtue:3793:/
+4174.5 "Impact Stream"
+4175.5 "Impact Stream"
+4184.5 "Impact Stream"
+4190.5 "Explosive Impulse" sync / 1[56]:[^:]*:Absolute Virtue:3794:/
+4191.0 "--targetable--"
+4196.5 "Medusa Javelin" sync / 1[56]:[^:]*:Absolute Virtue:379B:/
+4208.5 "Auroral Wind" sync / 1[56]:[^:]*:Absolute Virtue:379A:/
+4216.5 "Meteor" sync / 1[56]:[^:]*:Absolute Virtue:3799:/
+
+# Wyvern Pair 1
+4225.6 "Call Wyvern" sync / 1[56]:[^:]*:Absolute Virtue:3798:/
+4231.6 "Turbulent Aether" sync / 1[56]:[^:]*:Absolute Virtue:3790:/
+4239.8 "Medusa Javelin" sync / 1[56]:[^:]*:Absolute Virtue:379B:/
+4241.6 "(Wyvern Explosion)"
+4247.8 "Auroral Wind" sync / 1[56]:[^:]*:Absolute Virtue:379A:/
+4264.8 "Meteor" sync / 1[56]:[^:]*:Absolute Virtue:3799:/
+4270.8 "Eidos" sync / 1[56]:[^:]*:Absolute Virtue:378[67]:/
+4283.0 "Hostile Aspect" sync / 1[56]:[^:]*:Absolute Virtue:378B:/
+
+# Double Stream 1
+4286.9 "Explosive Impulse" sync / 1[56]:[^:]*:Relative Virtue:3793:/
+4294.1 "Eidos" sync / 1[56]:[^:]*:Absolute Virtue:378[67]:/
+4296.1 "Impact Stream" sync / 1[56]:[^:]*:Absolute Virtue:3797:/
+4300.8 "Impact Stream" sync / 1[56]:[^:]*:Absolute Virtue:3788:/
+4311.8 "Medusa Javelin" sync / 1[56]:[^:]*:Absolute Virtue:379B:/
+4318.8 "Meteor" sync / 1[56]:[^:]*:Absolute Virtue:3799:/
+
+# Wyvern Pair 2
+4333.8 "Call Wyvern" sync / 1[56]:[^:]*:Absolute Virtue:3798:/
+4339.8 "Turbulent Aether" sync / 1[56]:[^:]*:Absolute Virtue:3790:/
+4348.1 "Medusa Javelin" sync / 1[56]:[^:]*:Absolute Virtue:379B:/
+4349.8 "(Wyvern Explosion)"
+4356.1 "Auroral Wind" sync / 1[56]:[^:]*:Absolute Virtue:379A:/
+4373.1 "Meteor" sync / 1[56]:[^:]*:Absolute Virtue:3799:/
+4379.1 "Eidos" sync / 1[56]:[^:]*:Absolute Virtue:378[67]:/
+4391.2 "Hostile Aspect" sync / 1[56]:[^:]*:Absolute Virtue:378B:/
+
+# Double Stream 2
+4395.1 "Explosive Impulse" sync / 1[56]:[^:]*:Relative Virtue:3793:/
+4402.3 "Eidos" sync / 1[56]:[^:]*:Absolute Virtue:378[67]:/
+4404.3 "Impact Stream" sync / 1[56]:[^:]*:Absolute Virtue:3797:/
+4408.4 "Impact Stream" sync / 1[56]:[^:]*:Absolute Virtue:3788:/
+4419.6 "Medusa Javelin" sync / 1[56]:[^:]*:Absolute Virtue:379B:/
+4426.6 "Meteor" sync / 1[56]:[^:]*:Absolute Virtue:3799:/
+
+4443.4 "Meteor Enrage" sync / 1[56]:[^:]*:Absolute Virtue:396C:/
+4446.4 "Meteor Enrage" sync / 1[56]:[^:]*:Absolute Virtue:396F:/
+4451.4 "Meteor Enrage" sync / 1[56]:[^:]*:Absolute Virtue:396F:/
+
+
+
+##############
+# Proto Ozma #
+##############
+# -ii 37AB 37B8 37A2 37AC 396E 397B 397C -p 37B2:5021.5
+5000.0 "--sync--" sync / 00:0839::The Proto Ozma Containment Unit will be sealed off/ window 5000,0
+
+### Initial Star Form (no meteor)
+5021.5 "Star Form" sync / 1[56]:[^:]*:Proto Ozma:37B2:/
+5028.5 "--sync--" sync / 1[56]:[^:]*:Proto Ozma:37B4:/
+5029.5 "Mourning Star" sync / 1[56]:[^:]*:Ozma:37B5:/
+
+5032.5 "Soak Attack" sync / 1[56]:[^:]*:Ozma:37B6:/
+5038.5 "Soak Attack" sync / 1[56]:[^:]*:Ozma:37B6:/
+5044.5 "Soak Attack" sync / 1[56]:[^:]*:Ozma:37B6:/
+
+5051.5 "Shooting Star" sync / 1[56]:[^:]*:Proto Ozma:37B7:/
+
+5056.5 "Soak Attack" sync / 1[56]:[^:]*:Ozma:37B6:/
+5062.5 "Soak Attack" sync / 1[56]:[^:]*:Ozma:37B6:/
+5068.5 "Soak Attack" sync / 1[56]:[^:]*:Ozma:37B6:/
+
+5070.5 "Sphere Form" sync / 1[56]:[^:]*:Proto Ozma:(37B3|37A5|379F):/
+5079.5 "Black Hole" sync / 1[56]:[^:]*:Proto Ozma:379D:/
+
+5092.5 "Random Shade" sync / 1[56]:[^:]*:Ozmashade:(37A4|37B2|379E):/
+5099.5 "--sync--" sync / 1[56]:[^:]*:Ozmashade:(37A6|37B4|37A0):/
+5101.0 "Shade Ability" # sync / 1[56]:[^:]*:Shadow:(37A7|37B5|37A1):/
+
+5121.5 "Random Shade" sync / 1[56]:[^:]*:Ozmashade:(37A4|37B2|379E):/
+
+# fake loop
+5125.5 "Random Form"
+5130.0 "Shade Ability"
+5134.2 "Ozma Ability"
+5136.5 "Soak Attack?"
+5136.5 "Acceleration Bomb?"
+5138.5 "Bleed Attack?"
+5144.5 "Bleed Attack?"
+5144.5 "Meteor (Stack)?"
+5147.5 "Holy?"
+5151.5 "Meteor (Adds)?"
+5154.5 "Shooting Star?"
+5157.5 "Meteor (Adds)?"
+
+
+### Pyramid Phase
+5300.0 "Pyramid Form" sync / 1[56]:[^:]*:Proto Ozma:37A4:/ window 800,800
+5303.0  "--sync--" sync / 1[56]:[^:]*:Ozmashade:(37A6|37B4|37A0):/
+5304.5 "Shade Ability" # sync / 1[56]:[^:]*:Shadow:(37A7|37B5|37A1):/
+
+5307.0 "--sync--" sync / 1[56]:[^:]*:Proto Ozma:37A6:/
+5308.7 "Execration" sync / 1[56]:[^:]*:Ozma:37A7:/
+
+5311.0 "Acceleration Bomb" sync / 1[56]:[^:]*:Proto Ozma:37AA:/
+5313.0 "Bleed Attack" sync / 1[56]:[^:]*:Ozma:37AD:/
+5319.0 "Bleed Attack" sync / 1[56]:[^:]*:Ozma:37AD:/
+
+5332.0 "Meteor (Adds)" sync / 1[56]:[^:]*:Arsenal urolith:37B0:/
+5337.0 "Bleed Attack" sync / 1[56]:[^:]*:Ozma:37AD:/
+5343.0 "Bleed Attack" sync / 1[56]:[^:]*:Ozma:37AD:/
+
+5346.0 "Random Shade" sync / 1[56]:[^:]*:Ozmashade:(37A4|37B2|379E):/
+5349.0 "Acceleration Bomb" sync / 1[56]:[^:]*:Proto Ozma:37AA:/
+5353.0 "--sync--" sync / 1[56]:[^:]*:Ozmashade:(37A6|37B4|37A0):/
+5354.5 "Shade Ability" # sync / 1[56]:[^:]*:Shadow:(37A7|37B5|37A1):/
+
+5364.0 "Meteor (Stack)" sync / 1[56]:[^:]*:Ozma:37A8:/
+5370.0 "Bleed Attack" sync / 1[56]:[^:]*:Ozma:37AD:/
+
+5373.0 "Sphere Form" sync / 1[56]:[^:]*:Proto Ozma:(37B3|37A5|379F):/
+5382.0 "Black Hole" sync / 1[56]:[^:]*:Proto Ozma:379D:/
+
+5395.0 "Random Shade" sync / 1[56]:[^:]*:Ozmashade:(37A4|37B2|379E):/
+
+# fake loop
+5399.0 "Random Form"
+5403.5 "Shade Ability"
+5407.7 "Ozma Ability"
+5410.0 "Soak Attack?"
+5410.0 "Acceleration Bomb?"
+5412.0 "Bleed Attack?"
+5418.0 "Bleed Attack?"
+5418.0 "Meteor (Stack)?"
+5421.0 "Holy?"
+5425.0 "Meteor (Adds)?"
+5428.0 "Shooting Star?"
+5431.0 "Meteor (Adds)?"
+
+
+### Cube Phase
+5600.0 "Cube Form" sync / 1[56]:[^:]*:Proto Ozma:379E:/ window 800,800
+
+5603.0 "--sync--" sync / 1[56]:[^:]*:Ozmashade:(37A6|37B4|37A0):/
+5604.5 "Shade Ability" # sync / 1[56]:[^:]*:Shadow:(37A7|37B5|37A1):/
+
+5607.0 "--sync--" sync / 1[56]:[^:]*:Proto Ozma:37A0:/
+5608.5 "Flare Star" sync / 1[56]:[^:]*:Ozma:37A1:/
+
+5619.0 "Meteor (Stack)" sync / 1[56]:[^:]*:Ozma:37A8:/
+5622.0 "Holy" sync / 1[56]:[^:]*:Proto Ozma:37A9:/
+
+5649.0 "Random Shade" sync / 1[56]:[^:]*:Ozmashade:(37A4|37B2|379E):/
+5655.0 "Meteor (Stack)" sync / 1[56]:[^:]*:Ozma:37A8:/
+5656.0 "Holy" sync / 1[56]:[^:]*:Proto Ozma:37A9:/
+5656.0 "--sync--" sync / 1[56]:[^:]*:Ozmashade:(37A6|37B4|37A0):/
+5657.5 "Shade Ability" # sync / 1[56]:[^:]*:Shadow:(37A7|37B5|37A1):/
+
+5673.0 "Sphere Form" sync / 1[56]:[^:]*:Proto Ozma:(37B3|37A5|379F):/
+5682.0 "Black Hole" sync / 1[56]:[^:]*:Proto Ozma:379D:/
+
+5695.0 "Random Shade" sync / 1[56]:[^:]*:Ozmashade:(37A4|37B2|379E):/
+
+# fake loop
+5699.0 "Random Form"
+5703.5 "Shade Ability"
+5707.7 "Ozma Ability"
+5710.0 "Soak Attack?"
+5710.0 "Acceleration Bomb?"
+5712.0 "Bleed Attack?"
+5718.0 "Bleed Attack?"
+5718.0 "Meteor (Stack)?"
+5721.0 "Holy?"
+5725.0 "Meteor (Adds)?"
+5728.0 "Shooting Star?"
+5731.0 "Meteor (Adds)?"
+
+
+### Star Phase
+5900.0 "Star Form" sync / 1[56]:[^:]*:Proto Ozma:37B2:/ window 800,800
+5903.0 "--sync--" sync / 1[56]:[^:]*:Ozmashade:(37A6|37B4|37A0):/
+5904.5 "Shade Ability" # sync / 1[56]:[^:]*:Shadow:(37A7|37B5|37A1):/
+5907.0 "--sync--" sync / 1[56]:[^:]*:Proto Ozma:37B4:/
+5908.0 "Mourning Star" sync / 1[56]:[^:]*:Ozma:37B5:/
+5911.0 "Soak Attack" sync / 1[56]:[^:]*:Ozma:37B6:/
+#5917.1 "Shooting Star Enrage" (if this is the enrage)
+5926.0 "Meteor (Adds)" sync / 1[56]:[^:]*:Arsenal urolith:37B0:/
+5929.0 "Shooting Star" sync / 1[56]:[^:]*:Proto Ozma:37B7:/
+5938.0 "Soak Attack" sync / 1[56]:[^:]*:Ozma:37B6:/
+5944.0 "Soak Attack" sync / 1[56]:[^:]*:Ozma:37B6:/
+
+5949.0 "Random Shade" sync / 1[56]:[^:]*:Ozmashade:(37A4|37B2|379E):/
+5954.0 "Shooting Star" sync / 1[56]:[^:]*:Proto Ozma:37B7:/
+5956.0 "--sync--" sync / 1[56]:[^:]*:Ozmashade:(37A6|37B4|37A0):/
+5957.5 "Shade Ability" # sync / 1[56]:[^:]*:Shadow:(37A7|37B5|37A1):/
+5959.0 "Soak Attack" sync / 1[56]:[^:]*:Ozma:37B6:/
+5959.0 "Soak Attack" sync / 1[56]:[^:]*:Ozma:37B6:/
+5965.0 "Soak Attack" sync / 1[56]:[^:]*:Ozma:37B6:/
+
+5973.0 "Sphere Form" sync / 1[56]:[^:]*:Proto Ozma:(37B3|37A5|379F):/
+5982.0 "Black Hole" sync / 1[56]:[^:]*:Proto Ozma:379D:/
+
+5995.0 "Random Shade" sync / 1[56]:[^:]*:Ozmashade:(37A4|37B2|379E):/
+
+# fake loop
+5999.0 "Random Form"
+6003.5 "Shade Ability"
+6007.7 "Ozma Ability"
+6010.0 "Soak Attack?"
+6010.0 "Acceleration Bomb?"
+6012.0 "Bleed Attack?"
+6018.0 "Bleed Attack?"
+6018.0 "Meteor (Stack)?"
+6021.0 "Holy?"
+6025.0 "Meteor (Adds)?"
+6028.0 "Shooting Star?"
+6031.0 "Meteor (Adds)?"
+
+
+### Star Form Enrage
+6200.0 "--sync--"  sync / 14:[^:]*:Proto Ozma:396D:/ window 300,0
+6210.0 "Shooting Star Enrage" sync / 1[56]:[^:]*:Proto Ozma:396D:/

@@ -1,0 +1,137 @@
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+# Coeurl Twins
+# -ii 1FD2 1FD8
+
+0.0 "--sync--" sync / 00:0839::Tourmaline Pond will be sealed off/
+3.3 "--sync--" sync / 1[56]:[^:]*:Coeurl Sruti:366:/ window 3,1
+6.4 "Pounce" sync / 1[56]:[^:]*:Coeurl Sruti:1FD1:/
+17.8 "Radial Blaster" sync / 1[56]:[^:]*:Coeurl Sruti:1FD3:/
+22.0 "Pounce" sync / 1[56]:[^:]*:Coeurl Sruti:1FD1:/
+
+38.5 "--Smriti Appears--" sync / 03:........:Coeurl Smriti:/  window 10,10
+46.5 "Wide Blaster" sync / 1[56]:[^:]*:Coeurl Smriti:1FD4:/ window 15,15
+46.5 "Radial Blaster" sync / 1[56]:[^:]*:Coeurl Sruti:1FD3:/
+52.6 "Pounce x2" sync / 1[56]:[^:]*:Coeurl Smriti:1FD1:/
+60.7 "Pounce x2" sync / 1[56]:[^:]*:Coeurl Smriti:1FD1:/
+
+72.3 "Wide Blaster" sync / 1[56]:[^:]*:Coeurl Smriti:1FD4:/ window 15,15
+72.3 "Radial Blaster" sync / 1[56]:[^:]*:Coeurl Sruti:1FD3:/
+78.4 "Pounce x2" sync / 1[56]:[^:]*:Coeurl Smriti:1FD1:/
+86.5 "Pounce x2" sync / 1[56]:[^:]*:Coeurl Smriti:1FD1:/ jump 60.7
+
+98.1 "Wide Blaster"
+98.1 "Radial Blaster"
+104.2 "Pounce"
+112.3 "Pounce"
+123.9 "Wide Blaster"
+123.9 "Radial Blaster"
+
+# Phase change after one dies
+150.0 "Basic Instinct" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD5:/ window 150,10
+
+156.2 "Electric Burst" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD6:/
+160.3 "Pounce" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD1:/
+167.8 "Heat Lightning" sync / 1[56]:[^:]*:Coeurl Sruti:1FD7:/
+175.2 "Radial/Wide Blaster" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD[34]:/
+180.4 "Pounce" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD1:/
+
+191.6 "Electric Burst" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD6:/ window 20,20
+195.7 "Pounce" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD1:/
+203.2 "Heat Lightning" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD7:/
+210.6 "Radial/Wide Blaster" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD[34]:/
+215.8 "Pounce" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD1:/ jump 180.4
+
+227.0 "Electric Burst"
+231.1 "Pounce"
+238.6 "Heat Lightning"
+246.0 "Radial/Wide Blaster"
+251.2 "Pounce"
+
+
+# Arbuda
+
+1000.0 "--sync--" sync / 00:0839::Harmony will be sealed off/ window 1000,10
+1001.5 "--sync--" sync / 1[56]:[^:]*:Arbuda:366:/ window 2,1
+1006.5 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
+1014.6 "Fourfold Shear" sync / 1[56]:[^:]*:Arbuda:1FD9:/
+1022.6 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
+1026.7 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
+1033.8 "Killer Instinct" sync / 1[56]:[^:]*:Arbuda:1FDE:/
+1046.8 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
+1055.0 "Fourfold Shear" sync / 1[56]:[^:]*:Arbuda:1FD9:/
+1064.9 "Hellseal" sync / 1[56]:[^:]*:Arbuda:1FE1:/
+1071.5 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
+1075.6 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
+1079.7 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
+1088.9 "Tapas" sync / 1[56]:[^:]*:Arbuda:1FE3:/
+
+1094.9 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
+1099.0 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
+1107.2 "Fourfold Shear" sync / 1[56]:[^:]*:Arbuda:1FD9:/
+1115.2 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
+1119.3 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
+1126.4 "Killer Instinct" sync / 1[56]:[^:]*:Arbuda:1FDE:/
+1139.4 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
+1147.7 "Fourfold Shear" sync / 1[56]:[^:]*:Arbuda:1FD9:/
+1157.4 "Hellseal" sync / 1[56]:[^:]*:Arbuda:1FE1:/
+1163.5 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
+1167.6 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
+1171.7 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
+1180.9 "Tapas" sync / 1[56]:[^:]*:Arbuda:1FE3:/
+
+1186.9 "Front/Back?Sides?"
+1191.0 "Cardinal Shift"
+1199.2 "Fourfold Shear"
+1207.2 "Front/Back?Sides?"
+1211.3 "Cardinal Shift"
+1218.4 "Killer Instinct"
+
+# Ivon Coeurlfist
+# -ii 1FF0 1FE8 1FEC
+
+2000.0 "--sync--" sync / 00:0839::Guidance will be sealed off/ window 2000,10
+2010.9 "Spirit Wave" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE7:/
+2018.6 "Hurricane Kick" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE5:/
+2026.7 "Touch of Slaughter" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE6:/
+2030.9 "Coeurl Whisper" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE9:/
+2042.0 "Silent Roar" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEB:/
+2062.0 "Rhalgr's Piece" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FED:/
+2069.1 "The Rose Of Destruction" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEE:/ window 20,20
+2073.7 "Hurricane Kick" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE5:/
+
+# Intermission happens here naturally, or at HP < 50%
+2086.1 "--sync--" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEC:/ window 80,5
+2106.2 "Furious Fists" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEF:/
+2114.6 "Impact" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FF1:/ window 120,20
+
+2125.3 "Spirit Wave" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE7:/
+2127.5 "Coeurl Whisper" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE9:/
+2137.4 "Rhalgr's Piece" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FED:/
+2142.8 "Silent Roar" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEB:/
+2156.9 "Touch of Slaughter" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE6:/ window 30,30
+2161.6 "Hurricane Kick" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE5:/
+2175.8 "Spirit Wave" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE7:/
+2178.0 "Coeurl Whisper" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE9:/
+2187.2 "The Rose Of Destruction" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEE:/
+2192.3 "Silent Roar" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEB:/
+
+2210.5 "Spirit Wave" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE7:/ window 30,30
+2212.7 "Coeurl Whisper" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE9:/
+2222.6 "Rhalgr's Piece" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FED:/
+2228.0 "Silent Roar" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEB:/
+2242.1 "Touch of Slaughter" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE6:/ window 30,30
+2246.8 "Hurricane Kick" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE5:/
+2261.0 "Spirit Wave" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE7:/
+2263.2 "Coeurl Whisper" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE9:/
+2272.4 "The Rose Of Destruction" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEE:/
+2277.5 "Silent Roar" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEB:/ jump 2192.3
+
+2295.7 "Spirit Wave"
+2297.9 "Coeurl Whisper"
+2307.8 "Rhalgr's Piece"
+2313.2 "Silent Roar"
+2327.3 "Touch of Slaughter"

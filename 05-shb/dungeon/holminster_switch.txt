@@ -1,0 +1,121 @@
+### Holminster Switch (71 dungeon)
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+
+### Forgiven Dissonance
+# -p 3DC5:112
+100.0 "--sync--" sync / 00:0839::The Wound will be sealed off/ window 100,0
+112.0 "The Path Of Light" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC5:/ window 112,0
+120.4 "Brazen Bull" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC9:/
+126.5 "Gibbet Cage" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC8:/
+134.4 "Thumbscrew" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC6:/
+134.6 "Heretic's Fork" sync / 1[56]:[^:]*:Forgiven Dissonance:3DCE:/
+139.7 "Light Shot" sync / 1[56]:[^:]*:Forgiven Dissonance:3DCB:/
+142.0 "Wooden Horse" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC7:/
+
+154.2 "The Path Of Light" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC5:/
+162.5 "Pillory" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC4:/
+173.0 "Brazen Bull" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC9:/
+182.3 "Gibbet Cage" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC8:/
+187.2 "Heretic's Fork" sync / 1[56]:[^:]*:Forgiven Dissonance:3DCE:/
+190.3 "Thumbscrew" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC6:/
+192.3 "Light Shot" sync / 1[56]:[^:]*:Forgiven Dissonance:3DCB:/
+
+202.8 "The Path Of Light" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC5:/
+211.1 "Pillory" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC4:/
+218.9 "Brazen Bull" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC9:/
+226.8 "Thumbscrew" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC6:/
+233.0 "Heretic's Fork" sync / 1[56]:[^:]*:Forgiven Dissonance:3DCE:/
+234.5 "Wooden Horse" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC7:/
+238.2 "Light Shot" sync / 1[56]:[^:]*:Forgiven Dissonance:3DCB:/
+241.4 "Thumbscrew" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC6:/
+243.2 "Heretic's Fork" sync / 1[56]:[^:]*:Forgiven Dissonance:3DCE:/
+248.4 "Light Shot" sync / 1[56]:[^:]*:Forgiven Dissonance:3DCB:/
+249.0 "Wooden Horse" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC7:/
+
+261.3 "The Path Of Light" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC5:/ window 30,30 jump 154.2
+269.6 "Pillory"
+280.1 "Brazen Bull"
+289.4 "Gibbet Cage"
+294.3 "Heretic's Fork"
+297.4 "Thumbscrew"
+299.4 "Light Shot"
+309.9 "The Path Of Light"
+
+
+### Tesleen, the Forgiven
+# -ii 3DD6 3DD3 -p 3DCF:513.5
+500.0 "--sync--" sync / 00:0839::The Auction will be sealed off/ window 500,0
+513.5 "The Tickler" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DCF:/ window 514,5
+523.6 "Scold's Bridle" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD0:/
+533.8 "Fevered Flagellation" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD5:/
+548.3 "Scold's Bridle" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD0:/
+558.6 "Exorcise" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD2:/
+560.4 "Holy Water" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD4:/
+573.8 "Fevered Flagellation" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD5:/
+
+578.7 "--sync--" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD1:/
+594.8 "Scold's Bridle" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD0:/ window 3,3
+602.0 "Scold's Bridle" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD0:/ window 3,3
+612.1 "The Tickler" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DCF:/
+619.2 "Scold's Bridle" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD0:/
+636.4 "Exorcise" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD2:/
+638.3 "Holy Water" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD4:/
+651.6 "Fevered Flagellation" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD5:/
+
+656.7 "--sync--" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD1:/ window 30,30 jump 578.7
+672.8 "Scold's Bridle"
+680.0 "Scold's Bridle"
+690.1 "The Tickler"
+697.2 "Scold's Bridle"
+714.4 "Exorcise"
+716.3 "Holy Water"
+729.6 "Fevered Flagellation"
+
+
+### Philia
+# -ii 3DDD 3DDF 3DDE 3DDC 3DDB 3DE1 3DE0 3DE9 4196 3DE5 4181 -p 3DD8:1012.5
+1000.0 "--sync--" sync / 00:0839::The manor house courtyard will be sealed off/ window 1000,0
+1012.5 "Scavenger's Daughter" sync / 1[56]:[^:]*:Philia:3DD8:/
+1022.8 "Head Crusher" sync / 1[56]:[^:]*:Philia:3DD7:/
+1032.9 "Pendulum Tank" sync / 1[56]:[^:]*:Philia:4189:/
+1035.0 "Pendulum Center" sync / 1[56]:[^:]*:Philia:3DD9:/
+
+1035.5 "--sync--" sync / 1[56]:[^:]*:Philia:418A:/
+1042.1 "Chain Down" sync / 1[56]:[^:]*:Philia:429C:/
+1059.5 "Aethersup" sync / 1[56]:[^:]*:Philia:3DE8:/ duration 3.5
+
+1070.1 "Left/Right Knout" sync / 1[56]:[^:]*:Philia:3DE[67]:/
+1077.1 "Right/Left Knout" sync / 1[56]:[^:]*:Philia:3DE[67]:/
+1088.4 "Head Crusher" sync / 1[56]:[^:]*:Philia:3DD7:/
+1095.0 "Taphephobia" sync / 1[56]:[^:]*:Philia:3DE2:/
+
+1097.2 "--sync--" sync / 1[56]:[^:]*:Philia:3DE4:/
+1102.1 "Into The Light" sync / 1[56]:[^:]*:Philia:4350:/
+1122.8 "Pendulum Tank" sync / 1[56]:[^:]*:Philia:4189:/
+1125.0 "Pendulum Center" sync / 1[56]:[^:]*:Philia:3DD9:/
+
+1125.4 "--sync--" sync / 1[56]:[^:]*:Philia:418A:/
+1132.3 "Fierce Beating" sync / 1[56]:[^:]*:Philia:3DDA:/ duration 42
+
+1165.8 "--sync--" sync / 1[56]:[^:]*:Philia:3DE4:/
+1170.8 "Into The Light" sync / 1[56]:[^:]*:Philia:4350:/
+1178.5 "Left/Right Knout" sync / 1[56]:[^:]*:Philia:3DE[67]:/
+1185.7 "Right/Left Knout" sync / 1[56]:[^:]*:Philia:3DE[67]:/
+1192.9 "Chain Down" sync / 1[56]:[^:]*:Philia:429C:/
+1210.3 "Aethersup" sync / 1[56]:[^:]*:Philia:3DE8:/ duration 3.5
+1225.6 "Scavenger's Daughter" sync / 1[56]:[^:]*:Philia:3DD8:/
+1244.9 "Head Crusher" sync / 1[56]:[^:]*:Philia:3DD7:/
+1251.6 "Taphephobia" sync / 1[56]:[^:]*:Philia:3DE2:/
+
+1253.8 "--sync--" sync / 1[56]:[^:]*:Philia:3DE4:/ window 30,30 jump 1097.2
+1258.7 "Into The Light"
+1279.4 "Pendulum Tank"
+1281.6 "Pendulum Center"
+
+1282.0 "--sync--"
+1288.9 "Fierce Beating"

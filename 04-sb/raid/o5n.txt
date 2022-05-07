@@ -1,0 +1,72 @@
+# Omega - Sigmascape V1.0 - O5N
+
+hideall "--Reset--"
+hideall "--sync--"
+
+# Saintly Beam: 0 light appears, 5 target, 12 hit
+# Diabolic Light: 0 target appears, 8 target, 13 hit
+
+##############################################################
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /:Engage!/ window 0,1
+8 "--sync--" sync / 14:[^:]*:Wroth Ghost:28AE:/ window 8,3
+13 "Encumber" sync / 1[56]:[^:]*:Wroth Ghost:28AE:/ 
+27 "Head On" sync / 1[56]:[^:]*:Phantom Train:28AF:/
+38 "Ghost Beams" sync / 1[56]:[^:]*:Phantom Train:28AA:/
+47 "Saintly Beam" duration 12
+63 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B0:/ window 5,5
+73 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+80 "Saintly Beam" duration 12
+102 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28A3:/
+116 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28B9:/
+119 "Crossing Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+139 "Diabolic Light" duration 13
+162 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28AB:/
+
+# add phase start
+163 "--untargetable--" sync / 1[56]:[^:]*:Phantom Train:28A7:/
+178 "Add Wave"
+193 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28B9:/
+250 "Diabolic Chimney" sync / 1[56]:[^:]*:Phantom Train:28A9:/ window 100,100
+260 "Ghosts"
+
+# add phase end
+320 "--sync--" sync / 1[56]:[^:]*:Phantom Train:28A8:/ window 320,320 # boss reappears
+324 "--targetable--"
+338 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+342 "Saintly Beam" duration 12
+346 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28AB:/
+366 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28A3:/
+376 "Crossing Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+386 "Head On" sync / 1[56]:[^:]*:Phantom Train:28AF:/
+391 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28AB:/
+398 "Diabolic Light" duration 13
+403 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B0:/
+425 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28A3:/
+
+# Loop starts here
+433 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+437 "Saintly Beam" duration 12
+441 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28AB:/
+463 "Head On" sync / 1[56]:[^:]*:Phantom Train:28AF:/
+465 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28B9:/
+470 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28AB:/
+477 "Crossing Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+483 "Encumber" sync / 1[56]:[^:]*:Wroth Ghost:28AE:/
+491 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28B9:/
+498 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B0:/
+504 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28AB:/
+509 "Diabolic Light" duration 13
+513 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28A3:/
+527 "Saintly Beam" duration 12
+528 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28AB:/
+544 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28B9:/
+559 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28A3:/
+
+567 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/ jump 433 # repeats after this?
+
+# Visual continuity
+571 "Saintly Beam" duration 12
+575 "Acid Rain"
+597 "Head On"

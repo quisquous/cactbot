@@ -1,0 +1,100 @@
+### Eden 3 (Savage)
+# Eden's Gate: Inundation (Savage)
+# -p 3FDC:12.8 -ii 42D9 3FDD 3FE1 3FF0 3FF1 3FFB 40E3 3FDF 400A 400C 4000 4002 3FFF 4008 4004 4005
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.0 "--sync--" sync / 1[56]:[^:]*:Leviathan:42D9:/ window 1,0
+12.8 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FDC:/
+23.9 "Rip Current" sync / 1[56]:[^:]*:Leviathan:3FE0:/
+43.3 "Undersea Quake" sync / 1[56]:[^:]*:Leviathan:3FEF:/
+46.1 "Tidal Wave" sync / 1[56]:[^:]*:Leviathan:3FF2:/
+52.4 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEB|3FEA):/
+61.6 "Drenching Pulse" sync / 1[56]:[^:]*:Leviathan:3FE2:/
+65.7 "Monster Wave" sync / 1[56]:[^:]*:Leviathan:3FE5:/
+69.7 "Freak Wave" sync / 1[56]:[^:]*:Leviathan:3FE6:/
+73.7 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEB|3FEA):/
+87.9 "Maelstrom" sync / 1[56]:[^:]*:Leviathan:3FFA:/
+90.0 "--untargetable--"
+99.3 "Spinning Dive 1" #sync / 1[56]:[^:]*:Leviathan:3FFD:/
+101.3 "Spinning Dive 2" #sync / 1[56]:[^:]*:Leviathan:3FFD:/
+106.0 "--targetable--"
+111.5 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FDC:/
+127.8 "Tsunami" sync / 1[56]:[^:]*:Leviathan:3FF3:/
+132.8 "Tsunami" sync / 1[56]:[^:]*:Leviathan:441C:/
+141.4 "Sundering Tsunami" sync / 1[56]:[^:]*:Leviathan:3FF6:/
+146.1 "Undersea Quake" sync / 1[56]:[^:]*:Leviathan:3FEE:/
+158.4 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEB|3FEA):/
+158.4 "Smothering Tsunami" sync / 1[56]:[^:]*:Leviathan:3FF7:/
+158.4 "Swirling Tsunami" sync / 1[56]:[^:]*:Leviathan:3FF4:/
+168.7 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FDC:/
+175.9 "Rip Current" sync / 1[56]:[^:]*:Leviathan:3FE0:/
+186.1 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEB|3FEA):/
+197.3 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FDC:/
+210.4 "Refreshing Shower" sync / 1[56]:[^:]*:Leviathan:400F:/
+223.6 "Tidal Rage" sync / 1[56]:[^:]*:Leviathan:3FDE:/
+235.9 "Undersea Quake" sync / 1[56]:[^:]*:Leviathan:3FEF:/
+238.9 "Tidal Wave" sync / 1[56]:[^:]*:Leviathan:3FF2:/
+246.0 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEB|3FEA):/
+250.1 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEC|3FED):/
+256.2 "Drenching Pulse" sync / 1[56]:[^:]*:Leviathan:3FE2:/
+260.3 "Monster Wave" sync / 1[56]:[^:]*:Leviathan:3FE9:/
+264.3 "Freak Wave" sync / 1[56]:[^:]*:Leviathan:3FE6:/
+269.4 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEB|3FEA):/
+273.5 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEC|3FED):/
+287.8 "Maelstrom" sync / 1[56]:[^:]*:Leviathan:3FFA:/
+290.0 "--untargetable--"
+301.2 "Spinning Dive 1" #sync / 1[56]:[^:]*:Leviathan:3FFD:/
+303.1 "Spinning Dive 2" #sync / 1[56]:[^:]*:Leviathan:3FFD:/
+305.1 "Spinning Dive 3" #sync / 1[56]:[^:]*:Leviathan:3FFD:/
+310.0 "--targetable--"
+316.4 "Tidal Rage" sync / 1[56]:[^:]*:Leviathan:3FDE:/
+323.5 "Rip Current" sync / 1[56]:[^:]*:Leviathan:3FE0:/
+339.7 "Stormy Horizon" sync / 1[56]:[^:]*:Leviathan:3FFE:/
+346.8 "Monster Wave x4" duration 6 #sync / 1[56]:[^:]*:Leviathan:3FE9:/
+352.8 "Backbreaking Wave" sync / 1[56]:[^:]*:Leviathan:4001:/
+353.9 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEB|3FEA):/
+358.1 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEC|3FED):/
+363.0 "Plunging Wave x5" duration 4.4 #sync / 1[56]:[^:]*:Leviathan:4003:/
+373.2 "Tidal Rage" sync / 1[56]:[^:]*:Leviathan:3FDE:/
+383.5 "Tidal Rage" sync / 1[56]:[^:]*:Leviathan:3FDE:/
+402.3 "Drenching Pulse" sync / 1[56]:[^:]*:Leviathan:3FE2:/
+406.4 "Monster Wave" sync / 1[56]:[^:]*:Leviathan:3FE9:/
+410.4 "Freak Wave" sync / 1[56]:[^:]*:Leviathan:3FE6:/
+413.4 "Undersea Quake" sync / 1[56]:[^:]*:Leviathan:3FEF:/
+422.6 "Tsunami" sync / 1[56]:[^:]*:Leviathan:3FF3:/
+427.6 "Tsunami" sync / 1[56]:[^:]*:Leviathan:441C:/
+436.1 "Surging Tsunami" sync / 1[56]:[^:]*:Leviathan:3FF8:/
+441.1 "Smothering Tsunami" sync / 1[56]:[^:]*:Leviathan:3FF7:/
+443.1 "Sweeping Tsunami" sync / 1[56]:[^:]*:Leviathan:3FF5:/
+449.2 "Sundering Tsunami" #sync / 1[56]:[^:]*:Leviathan:3FF6:/
+453.2 "Sundering Tsunami" #sync / 1[56]:[^:]*:Leviathan:3FF6:/
+457.1 "Scouring Tsunami" sync / 1[56]:[^:]*:Leviathan:3CE0:/
+466.8 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEB|3FEA):/
+470.9 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEC|3FED):/
+483.1 "Tidal Rage" sync / 1[56]:[^:]*:Leviathan:3FDE:/
+493.2 "Tidal Rage" sync / 1[56]:[^:]*:Leviathan:3FDE:/
+500.3 "Rip Current" sync / 1[56]:[^:]*:Leviathan:3FE0:/
+516.5 "Roiling Pulse" sync / 1[56]:[^:]*:Leviathan:3FE4:/
+520.6 "Monster Wave" sync / 1[56]:[^:]*:Leviathan:3FE9:/
+524.6 "Breaking Wave" sync / 1[56]:[^:]*:Leviathan:3FE8:/
+524.6 "Killer Wave" sync / 1[56]:[^:]*:Leviathan:3FE7:/
+525.7 "Undersea Quake" sync / 1[56]:[^:]*:Leviathan:3FEE:/
+534.9 "Black Smokers" sync / 1[56]:[^:]*:Leviathan:4007:/
+536.9 "Spilling Wave x12" duration 15 #sync / 1[56]:[^:]*:Leviathan:4008:/
+540.9 "Hydrothermal Vent x4" duration 9 #sync / 1[56]:[^:]*:Leviathan:4004:/
+544.4 "Hot Water x5" duration 9 #sync / 1[56]:[^:]*:Leviathan:4005:/
+561.9 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEB|3FEA):/
+565.9 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:(3FEC|3FED):/
+576.9 "Tidal Rage" sync / 1[56]:[^:]*:Leviathan:3FDE:/
+587.9 "Tidal Rage" sync / 1[56]:[^:]*:Leviathan:3FDE:/
+604.9 "The Calm" sync / 1[56]:[^:]*:Leviathan:4009:/
+617.9 "Tidal Rage" sync / 1[56]:[^:]*:Leviathan:400B:/
+625.9 "Tidal Rage" sync / 1[56]:[^:]*:Leviathan:400B:/
+633.9 "Tidal Rage" sync / 1[56]:[^:]*:Leviathan:400B:/
+654.9 "The Storm" sync / 1[56]:[^:]*:Leviathan:400D:/

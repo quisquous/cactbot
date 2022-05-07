@@ -1,0 +1,103 @@
+### Diamond Weapon
+# -p 5FA7:11
+# -ii 5FDF 5FD9 5FDA 5FE8 5FBA 5FB8 615A 5FFA 5FE3 5FF9 612F 5FB3 5FB2 5FB4 5FB0 5FB6 5FE0 5FE1 5FE2 5FEC 5FAA 5FFD 5779 5FDB
+# -it "The Diamond Weapon"
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# Phase 1
+0.0 "--sync--" sync /:Engage!/ window 0,1
+6.0 "--sync--" sync / 14:[^:]*:The Diamond Weapon:5FA7:/ window 10,10
+11.0 "Diamond Rain" sync / 1[56]:[^:]*:The Diamond Weapon:5FA7:/
+40.3 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5F9B:/
+50.5 "Claw Swipe" sync / 1[56]:[^:]*:The Diamond Weapon:5F9F:/
+63.7 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5F9A:/
+73.9 "Claw Swipe" sync / 1[56]:[^:]*:The Diamond Weapon:5F9E:/
+91.2 "Diamond Rain" sync / 1[56]:[^:]*:The Diamond Weapon:5FA7:/
+102.4 "Photon Burst" sync / 1[56]:[^:]*:The Diamond Weapon:5FA8:/
+115.6 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5F9D:/
+118.8 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:5779:/
+127.2 "Diamond Flash" sync / 1[56]:[^:]*:The Diamond Weapon:5FD4:/
+144.1 "Code Chi-Xi-Stigma" sync / 1[56]:[^:]*:The Diamond Weapon:5FAD:/
+
+# Intermission
+144.1 "--untargetable--"
+147.1 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:5FEB:/
+149.0 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:5FBE:/
+159.6 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:5FB9:/ # Auri Cyclone castbar
+160.6 "Auri Cyclone 1" sync / 1[56]:[^:]*:The Diamond Weapon:5FE6:/
+162.1 "Auri Cyclone 2" sync / 1[56]:[^:]*:The Diamond Weapon:5FE7:/
+169.1 "Airship's Bane" sync / 1[56]:[^:]*:The Diamond Weapon:5FFE:/
+169.9 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:5FBB:/
+
+# Phase 2
+174.1 "--targetable--"
+186.3 "Outrage" sync / 1[56]:[^:]*:The Diamond Weapon:5FD7:/
+193.5 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:6055:/
+201.5 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:61A0:/
+
+201.9 "Auri Arts (Z)" sync / 1[56]:[^:]*:The Diamond Weapon:5FF8:/
+201.9 "--untargetable--"
+210.2 "Auri Arts (Jump)" sync / 1[56]:[^:]*:The Diamond Weapon:5FE4:/
+213.6 "--targetable--"
+
+220.7 "Auri Doomstead" sync / 1[56]:[^:]*:The Diamond Weapon:5FD8:/
+
+226.8 "--untargetable--"
+232.9 "Auri Arts (Cleave)" sync / 1[56]:[^:]*:The Diamond Weapon:6151:/
+234.6 "--targetable--"
+234.9 "Auri Arts (Jump)" sync / 1[56]:[^:]*:The Diamond Weapon:6152:/
+
+245.0 "Outrage" sync / 1[56]:[^:]*:The Diamond Weapon:5FD7:/
+255.2 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:5FD6:/ # Vertical Cleave castbar
+256.9 "Vertical Cleave" sync / 1[56]:[^:]*:The Diamond Weapon:5FE5:/
+266.4 "Auri Doomstead" sync / 1[56]:[^:]*:The Diamond Weapon:5FD8:/
+
+269.6 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:6055:/
+277.6 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:61A0:/
+278.0 "Auri Arts (Z)" sync / 1[56]:[^:]*:The Diamond Weapon:5FF8:/
+278.0 "--untargetable--"
+281.8 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:6130:/
+286.3 "Auri Arts (Jump)" sync / 1[56]:[^:]*:The Diamond Weapon:5FE4:/
+289.7 "--targetable--"
+
+# Intermission
+299.8 "--untargetable--"
+302.2 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:5FBF:/
+303.0 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:5FEB:/
+304.6 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:5FAE:/
+309.7 "--targetable--"
+
+# Phase 3
+335.0 "Diamond Shrapnel" sync / 1[56]:[^:]*:The Diamond Weapon:5FAC:/ duration 8
+342.1 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5F9B:/
+352.3 "Claw Swipe" sync / 1[56]:[^:]*:The Diamond Weapon:5F9[EF]:/
+368.6 "Articulated Bits" sync / 1[56]:[^:]*:The Diamond Weapon:5FA9:/
+375.7 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5F9A:/
+376.2 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FD5:/
+385.9 "Claw Swipe" sync / 1[56]:[^:]*:The Diamond Weapon:5F9[EF]:/
+387.8 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FD5:/
+
+400.2 "Photon Burst" sync / 1[56]:[^:]*:The Diamond Weapon:5FA8:/
+410.4 "Adamant Sphere" sync / 1[56]:[^:]*:The Diamond Weapon:6144:/
+420.5 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5F9D:/
+421.2 "Burst" sync / 1[56]:[^:]*:The Diamond Weapon:5FDC:/
+
+432.1 "Diamond Flash" sync / 1[56]:[^:]*:The Diamond Weapon:5FD4:/
+446.8 "Diamond Rain" sync / 1[56]:[^:]*:The Diamond Weapon:5FA7:/
+460.0 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5F9C:/
+470.2 "Homing Laser" sync / 1[56]:[^:]*:The Diamond Weapon:5FA0:/
+484.4 "Photon Burst" sync / 1[56]:[^:]*:The Diamond Weapon:5FA8:/
+
+# loop
+497.6 "Diamond Shrapnel" sync / 1[56]:[^:]*:The Diamond Weapon:5FAC:/ window 100,100 jump 335
+504.7 "Adamant Purge" #sync / 1[56]:[^:]*:The Diamond Weapon:5F9B:/
+514.9 "Claw Swipe" #sync / 1[56]:[^:]*:The Diamond Weapon:5F9[EF]:/
+531.2 "Articulated Bits" #sync / 1[56]:[^:]*:The Diamond Weapon:5FA9:/
+538.3 "Adamant Purge" #sync / 1[56]:[^:]*:The Diamond Weapon:5F9A:/
+538.8 "Aetherial Bullet" #sync / 1[56]:[^:]*:Articulated Bit:5FD5:/
+548.5 "Claw Swipe" #sync / 1[56]:[^:]*:The Diamond Weapon:5F9[EF]:/
+550.4 "Aetherial Bullet" #sync / 1[56]:[^:]*:Articulated Bit:5FD5:/

@@ -1,0 +1,136 @@
+# Omega - Deltascape V3.0 (Savage) - O3S
+# Halicarnassus
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# -ii 22EA 22FE 2309 230C 230F 2315
+
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.7 "--sync--" sync / 1[56]:[^:]*:Halicarnassus:22EA:/ window 1.7,2
+10.7 "Critical Hit" sync / 1[56]:[^:]*:Halicarnassus:22EB:/ window 10.7,5
+19.7 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
+25.4 "Pole Shift" # sync / 1[56]:[^:]*:Halicarnassus:22F[23]:/
+28.4 "Holy Blur/Holy Edge" sync / 1[56]:[^:]*:Halicarnassus:22F[01]:/
+37.4 "The Queen's Waltz (Clock)" sync / 1[56]:[^:]*:Halicarnassus:2306:/ window 37.4,5
+37.9 "Sword Dance" sync / 1[56]:[^:]*:Halicarnassus:2307:/
+41.4 "Haste" sync / 1[56]:[^:]*:Halicarnassus:22F4:/
+44.8 "Spellblade Thunder III" sync / 1[56]:[^:]*:Halicarnassus:22EE:/
+50.3 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+59.3 "The Playing Field" sync / 1[56]:[^:]*:Halicarnassus:2300:/
+65.3 "Oink" sync / 1[56]:[^:]*:Halicarnassus:22F9:/
+72.3 "The Game" sync / 1[56]:[^:]*:Halicarnassus:2301:/ window 72.3,10
+
+81.2 "Panel Swap (Thorns)" sync / 1[56]:[^:]*:Halicarnassus:2304:/
+83.2 "--center--" sync / 1[56]:[^:]*:Halicarnassus:2305:/
+89.5 "The Queen's Waltz (Tethers)" sync / 1[56]:[^:]*:Halicarnassus:2308:/
+94.2 "Spellblade Fire III" sync / 1[56]:[^:]*:Halicarnassus:22EC:/
+98.2 "Haste" sync / 1[56]:[^:]*:Halicarnassus:22F4:/
+101.5 "Spellblade Thunder III" sync / 1[56]:[^:]*:Halicarnassus:22EE:/
+107.0 "Critical Hit" sync / 1[56]:[^:]*:Halicarnassus:22EB:/
+113.0 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:22F6:/ window 30,30
+119.0 "Place Token (White Flame)" sync / 1[56]:[^:]*:Halicarnassus:22FB:/
+124.9 "Ray of White" # sync / 1[56]:[^:]*:White Flame:2310:/
+129.9 "White Wind" # sync / 1[56]:[^:]*:White Flame:2311:/
+130.0 "Haste" sync / 1[56]:[^:]*:Halicarnassus:22F4:/
+131.9 "Ray of White" # sync / 1[56]:[^:]*:White Flame:2310:/
+133.5 "Spellblade Blizzard III" sync / 1[56]:[^:]*:Halicarnassus:22ED:/
+135.9 "Ray of White" # sync / 1[56]:[^:]*:White Flame:2310:/
+140.5 "Mindjack" sync / 1[56]:[^:]*:Halicarnassus:22FA:/ window 140,10
+146.0 "--center--" sync / 1[56]:[^:]*:Halicarnassus:2305:/
+152.6 "The Queen's Waltz (Tethers)" sync / 1[56]:[^:]*:Halicarnassus:2308:/
+157.6 "Spellblade Fire III" sync / 1[56]:[^:]*:Halicarnassus:22EC:/
+163.6 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+
+171.1 "Panel Swap (Cave)" sync / 1[56]:[^:]*:Halicarnassus:2304:/ window 85,10
+176.1 "Place Token (Great Dragon)" sync / 1[56]:[^:]*:Halicarnassus:22FB:/
+187.1 "The Queen's Waltz (Crystals)" sync / 1[56]:[^:]*:Halicarnassus:230A:/
+187.9 "Frost Breath" # sync / 1[56]:[^:]*:Great Dragon:2312:/
+188.0 "--sync--" sync / 1[56]:[^:]*:Halicarnassus:230B:/
+188.4 "Uplift" sync / 1[56]:[^:]*:Halicarnassus:230D:/
+193.3 "Ribbit" sync / 1[56]:[^:]*:Halicarnassus:22F7:/ window 193.3,10
+197.9 "Frost Breath" # sync / 1[56]:[^:]*:Great Dragon:2312:/
+199.3 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+212.3 "Critical Hit" sync / 1[56]:[^:]*:Halicarnassus:22EB:/
+223.3 "Place Dark Token (Soul Reapers)" sync / 1[56]:[^:]*:Halicarnassus:22FC:/
+235.3 "The Queen's Waltz (Crystals)" sync / 1[56]:[^:]*:Halicarnassus:230A:/
+236.2 "--sync--" sync / 1[56]:[^:]*:Halicarnassus:230B:/
+236.6 "Uplift" sync / 1[56]:[^:]*:Halicarnassus:230D:/
+236.6 "Cross Reaper/Gusting Gouge" sync / 1[56]:[^:]*:Soul Reaper:22F[DF]:/
+239.3 "Haste" sync / 1[56]:[^:]*:Halicarnassus:22F4:/
+242.9 "Spellblade Blizzard/Fire/Thunder" sync / 1[56]:[^:]*:Halicarnassus:22E[CDE]:/
+248.3 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:22F6:/ window 30,30
+
+254.3 "Panel Swap (library)" sync / 1[56]:[^:]*:Halicarnassus:2304:/
+261.3 "The Queen's Waltz (Books)" sync / 1[56]:[^:]*:Halicarnassus:230E:/ window 261.3,10
+268.3 "Oink" sync / 1[56]:[^:]*:Halicarnassus:22F9:/
+273.3 "Place Token (Apanda)" sync / 1[56]:[^:]*:Halicarnassus:22FB:/
+281.2 "Pummel" # sync / 1[56]:[^:]*:Apanda:2313:/
+286.4 "The Queen's Waltz (Books)" sync / 1[56]:[^:]*:Halicarnassus:230E:/
+288.7 "Magic Hammer" sync / 1[56]:[^:]*:Apanda:2314:/
+292.4 "Squelch" sync / 1[56]:[^:]*:Halicarnassus:22F8:/ window 292.4,10
+294.8 "Pummel" # sync / 1[56]:[^:]*:Apanda:2313:/
+298.5 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+302.9 "Pummel" # sync / 1[56]:[^:]*:Apanda:2313:/
+304.6 "Critical Hit" sync / 1[56]:[^:]*:Halicarnassus:22EB:/
+316.6 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+321.6 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
+329.6 "The Queen's Waltz (Spellblade Books)" sync / 1[56]:[^:]*:Halicarnassus:230E:/ window 30,30
+330.5 "Holy Blur/Holy Edge" sync / 1[56]:[^:]*:Halicarnassus:22F[01]:/
+339.5 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+
+347.5 "Panel Swap (thorns)" sync / 1[56]:[^:]*:Halicarnassus:2304:/
+352.5 "The Playing Field" sync / 1[56]:[^:]*:Halicarnassus:2300:/ window 250,20
+362.5 "Oink/Ribbit/Squelch 1" sync / 1[56]:[^:]*:Halicarnassus:22F[789]:/
+368.7 "Oink/Ribbit/Squelch 2" sync / 1[56]:[^:]*:Halicarnassus:22F[789]:/
+374.7 "Oink/Ribbit/Squelch 3" sync / 1[56]:[^:]*:Halicarnassus:22F[789]:/
+381.7 "The Game" sync / 1[56]:[^:]*:Halicarnassus:2301:/
+388.0 "--teleport--" sync / 1[56]:[^:]*:Halicarnassus:2305:/
+394.5 "The Queen's Waltz (Random)" sync / 1[56]:[^:]*:Halicarnassus:230[68AE]:/
+403.8 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
+409.9 "Pole Shift" # sync / 1[56]:[^:]*:Halicarnassus:22F[23]:/
+412.9 "Holy Blur/Holy Edge" sync / 1[56]:[^:]*:Halicarnassus:22F[01]:/
+420.1 "Critical Hit" sync / 1[56]:[^:]*:Halicarnassus:22EB:/
+429.3 "Mindjack" sync / 1[56]:[^:]*:Halicarnassus:22FA:/
+434.5 "Place Dark Token (Soul Reapers)" sync / 1[56]:[^:]*:Halicarnassus:22FC:/
+448.1 "Cross Reaper/Gusting Gouge" sync / 1[56]:[^:]*:Soul Reaper:22F[DF]:/
+449.7 "--teleport--" sync / 1[56]:[^:]*:Halicarnassus:2305:/
+456.0 "The Queen's Waltz (Random)" sync / 1[56]:[^:]*:Halicarnassus:230[68AE]:/
+469.0 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+477.1 "Haste" sync / 1[56]:[^:]*:Halicarnassus:22F4:/ window 30,30
+480.8 "Spellblade Blizzard/Fire/Thunder 1" sync / 1[56]:[^:]*:Halicarnassus:22E[CDE]:/
+485.4 "Spellblade Blizzard/Fire/Thunder 2" sync / 1[56]:[^:]*:Halicarnassus:22E[CDE]:/
+491.5 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+501.7 "Place Token (Ninjas/Giant)" sync / 1[56]:[^:]*:Halicarnassus:22FB:/
+512.0 "Haste III" sync / 1[56]:[^:]*:Halicarnassus:22F5:/
+512.7 "Grand Sword" # sync / 1[56]:[^:]*:Iron Giant:2316:/
+516.5 "Dimensional Wave 1" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+518.7 "Grand Sword" # sync / 1[56]:[^:]*:Iron Giant:2316:/
+522.1 "Dimensional Wave 2" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+527.7 "Dimensional Wave 3" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+533.3 "Dimensional Wave 4" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+535.5 "--teleport--" sync / 1[56]:[^:]*:Halicarnassus:2305:/
+540.9 "The Queen's Waltz (Random)" sync / 1[56]:[^:]*:Halicarnassus:230[68AE]:/
+545.5 "Spellblade Blizzard/Fire/Thunder" sync / 1[56]:[^:]*:Halicarnassus:22E[CDE]:/
+555.6 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+561.7 "Critical Hit" sync / 1[56]:[^:]*:Halicarnassus:22EB:/ window 30,15
+567.0 "--teleport--" sync / 1[56]:[^:]*:Halicarnassus:2305:/
+573.3 "The Queen's Waltz (Random)" sync / 1[56]:[^:]*:Halicarnassus:230[68AE]:/
+582.6 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
+588.6 "Pole Shift" # sync / 1[56]:[^:]*:Halicarnassus:22F[23]:/
+591.6 "Holy Blur/Holy Edge" sync / 1[56]:[^:]*:Halicarnassus:22F[01]:/
+598.8 "Critical Hit" sync / 1[56]:[^:]*:Halicarnassus:22EB:/
+608.0 "Mindjack" sync / 1[56]:[^:]*:Halicarnassus:22FA:/
+613.2 "Place Dark Token (Soul Reapers)" sync / 1[56]:[^:]*:Halicarnassus:22FC:/
+626.7 "Cross Reaper/Gusting Gouge" sync / 1[56]:[^:]*:Soul Reaper:22F[DF]:/
+628.5 "--teleport--" sync / 1[56]:[^:]*:Halicarnassus:2305:/
+635.2 "The Queen's Waltz (Random)" sync / 1[56]:[^:]*:Halicarnassus:230[68AE]:/
+648.4 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:22F6:/ window 30,15
+656.5 "Haste" sync / 1[56]:[^:]*:Halicarnassus:22F4:/
+660.1 "Spellblade Blizzard/Fire/Thunder 1" sync / 1[56]:[^:]*:Halicarnassus:22E[CDE]:/
+665.0 "Spellblade Blizzard/Fire/Thunder 2" sync / 1[56]:[^:]*:Halicarnassus:22E[CDE]:/
+671.1 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:22F6:/
+681.2 "The Playing Field" sync / 1[56]:[^:]*:Halicarnassus:2300:/
+688.3 "The Game (Enrage)" sync / 1[56]:[^:]*:Halicarnassus:2301:/

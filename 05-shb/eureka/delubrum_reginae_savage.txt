@@ -1,0 +1,1506 @@
+### Delubrum Reginae (Savage)
+# https://docs.google.com/document/d/1gIVcGtFXgwd-7IwyVLP8ybGOXfbdz1jfgNCPW1G2hMM/edit
+# https://docs.google.com/document/d/e/2PACX-1vTatqkLm8ybALnifyPd8qKsqUDSNppLSjJsbexfLrZq3aMusnI1b_MeYO1FZMIP2ISAgMdO3WE3GS2n/pub
+
+hideall "--Reset--"
+hideall "--sync--"
+
+# Note: The various "is no longer sealed" messages are localized to each
+# boss, as the Stygimoloch Warrior and Dahu areas can be seen from one
+# another, and so a generic "is no longer sealed" from one would stop
+# any timeline running for those in the other.
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+
+### Slimes (The Barracks, left side)
+1000.0 "--sync--" sync / 03:........:Viscous Clot:/  window 1000,0
+1000.0 "--Reset--" sync / 03:........:Trinity Seeker:/  window 0,1000 jump 0
+1000.0 "Viscous Clot x3" sync / 03:........:Viscous Clot:/  window 1000,0
+1005.3 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
+1012.1 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
+1024.1 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
+1025.4 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
+1027.5 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
+1036.1 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
+1044.9 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
+1048.2 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
+1060.2 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
+1065.1 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
+1072.4 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
+1077.1 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
+1084.3 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
+1085.0 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
+1096.1 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
+1105.2 "Sanguine Clot x3" sync / 03:........:Sanguine Clot:/
+1108.3 "Viscous Clot x2" sync / 03:........:Viscous Clot:/
+1120.0 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
+1125.2 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
+1127.4 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
+1132.2 "Viscous Clot" sync / 03:........:Viscous Clot:/
+1144.2 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
+1156.2 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
+1162.1 "Viscous Clot" sync / 03:........:Viscous Clot:/
+1165.4 "Sanguine Clot x2" sync / 03:........:Sanguine Clot:/
+1168.2 "Viscous Clot x2" sync / 03:........:Viscous Clot:/
+1172.7 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
+1177.4 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
+1192.2 "Viscous Clot" sync / 03:........:Viscous Clot:/
+1204.2 "Viscous Clot x2" sync / 03:........:Viscous Clot:/
+1225.1 "Sanguine Clot" sync / 03:........:Sanguine Clot:/
+1227.2 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
+1233.1 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
+1277.3 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
+1297.3 "Grim Reaper Enrage" sync / 03:........:Grim Reaper:/  window 300,10
+1302.3 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1305.3 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1308.3 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1311.3 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1314.4 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1317.4 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1320.4 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1323.5 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1326.5 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1327.3 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
+1329.5 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1332.6 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1335.6 "Death Scythe" sync / 1[56]:[^:]*:Grim Reaper:5747:/ window 5,10
+1338.6 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1341.7 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/ window 10,10
+1341.7 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1344.7 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1347.7 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1350.8 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1353.8 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1356.8 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+1359.8 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+
+
+### Golems (The Granary, right side)
+2000.0 "--sync--" sync / 22:........:Bicolor Golem:........:Bicolor Golem:01/ window 2000,0
+2000.0 "--Reset--" sync / 03:........:Trinity Seeker:/  window 0,1000 jump 0
+2025.2 "Core Combustion" sync / 1[56]:[^:]*:Bicolor Golem:5745:/ window 2030,10
+2026.1 "--bleed--" # from blue golem
+2029.9 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2032.1 "--sync--" sync / 14:[^:]*:Bicolor Golem:5558:/ window 20,10
+2037.1 "Metamorphose" sync / 1[56]:[^:]*:Bicolor Golem:5558:/
+2069.9 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2071.3 "--sync--" sync / 14:[^:]*:Bicolor Golem:5558:/ window 20,10
+2076.3 "Metamorphose" sync / 1[56]:[^:]*:Bicolor Golem:5558:/
+2109.7 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2140.1 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2160.2 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2170.3 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2180.3 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2189.9 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2199.9 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2209.9 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2220.0 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2230.0 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2240.0 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2250.1 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2260.0 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2270.0 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2280.1 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2290.1 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2299.7 "Grim Reaper Enrage" sync / 03:........:Grim Reaper:/
+2300.2 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2305.0 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+2308.0 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+2310.1 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2311.1 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+2314.1 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+2317.1 "Death Scythe" sync / 1[56]:[^:]*:Grim Reaper:5747:/ window 5,10
+2320.1 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+2323.1 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+2326.1 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+2329.1 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+2332.1 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+2335.1 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+2338.1 "Death Scythe" #sync / 1[56]:[^:]*:Grim Reaper:5747:/
+
+
+### Trinity Seeker
+# -p 5AD3:4011.4 5A98:4079.5 5A99:4171.7 5A97:4265.8
+# -ii 1961 1963 5B33 5AB8 5AB9 5ABA 5ABB 5ABC 5AD1 5B2A 5B2B 5AC1 5AC2 5AC3 5AC4 5AC5 5AC6 5ACB 5BBC 5ACD
+4000.0 "--sync--" sync / 00:0839::The Theater of One will be sealed off/ window 20000,0
+4000.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 0,2000 jump 0
+
+# Note: it is likely that there are additional hp pushes on later Verdant Paths.
+# It is known that the first one is 80%, but I have seen 0-10 second variations
+# on when the other Verdant Paths occur.  This timeline has the slowest versions,
+# but with lots of extra syncs to future proof possible hp pushes.
+
+# Initial Merciful Air
+4006.4 "--sync--" sync / 14:[^:]*:Trinity Seeker:5AD3:/ window 20,20
+4011.4 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5AD3:/
+4015.6 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4020.0 "Manifest Avatar" sync / 1[56]:[^:]*:Trinity Seeker:5ADA:/
+4028.2 "First Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B61:/
+4031.4 "Second Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B62:/
+4034.6 "Third Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B63:/
+4037.8 "Fourth Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B64:/
+4040.2 "Mercy Fourfold 1" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4042.1 "Mercy Fourfold 2" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4042.8 "Seasons Of Mercy" sync / 1[56]:[^:]*:Seeker Avatar:5AC7:/
+4044.0 "Mercy Fourfold 3" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4045.9 "Mercy Fourfold 4" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4047.3 "Merciful Breeze" sync / 1[56]:[^:]*:Trinity Seeker:5AC8:/
+4048.8 "Merciful Moon" sync / 1[56]:[^:]*:Aetherial Orb:5AC9:/
+4051.3 "Merciful Breeze" sync / 1[56]:[^:]*:Trinity Seeker:5AC8:/
+4054.7 "Merciful Blooms" sync / 1[56]:[^:]*:Trinity Seeker:5ACA:/
+4062.0 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5AD3:/
+4074.2 "Merciful Arc" sync / 1[56]:[^:]*:Trinity Seeker:5AD4:/
+
+# Initial Baleful Air (80% or time push)
+4076.5 "--sync--" sync / 14:[^:]*:Trinity Seeker:5A98:/ window 80,20
+4079.5 "Verdant Path" sync / 1[56]:[^:]*:Trinity Seeker:5A98:/
+4084.1 "Baleful Swathe" sync / 1[56]:[^:]*:Trinity Seeker:5AD0:/
+4092.2 "Baleful Onslaught" sync / 1[56]:[^:]*:Trinity Seeker:5AD5:/
+4099.3 "Phantom Edge" sync / 1[56]:[^:]*:Trinity Seeker:5ABD:/
+4105.5 "Baleful Onslaught" sync / 1[56]:[^:]*:Trinity Seeker:5AD6:/
+4115.6 "Phantom Edge?" sync / 1[56]:[^:]*:Trinity Seeker:5ABD:/
+4117.8 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4118.4 "--chains--" duration 3.1 # sync / 00:0000:0080:/
+4126.9 "Baleful Blade" sync / 1[56]:[^:]*:Trinity Seeker:5AB[EF]:/
+4132.1 "Manifest Avatar" sync / 1[56]:[^:]*:Trinity Seeker:5ADA:/
+4138.8 "Baleful Comet 1" #sync / 1[56]:[^:]*:Seeker Avatar:5AD7:/
+4139.8 "Baleful Comet 2" #sync / 1[56]:[^:]*:Seeker Avatar:5AD7:/
+4140.8 "Baleful Comet 3" #sync / 1[56]:[^:]*:Seeker Avatar:5AD7:/
+4141.8 "Baleful Comet 4" #sync / 1[56]:[^:]*:Seeker Avatar:5AD7:/
+4142.2 "Phantom Edge?" sync / 1[56]:[^:]*:Trinity Seeker:5ABD:/
+4144.4 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4146.4 "Baleful Firestorm 1" #sync / 1[56]:[^:]*:Seeker Avatar:5AD8:/
+4148.4 "Baleful Firestorm 2" #sync / 1[56]:[^:]*:Seeker Avatar:5AD8:/
+4150.4 "Baleful Firestorm 3" #sync / 1[56]:[^:]*:Seeker Avatar:5AD8:/
+4152.4 "Baleful Firestorm 4" #sync / 1[56]:[^:]*:Seeker Avatar:5AD8:/
+4153.5 "Baleful Blade" sync / 1[56]:[^:]*:Trinity Seeker:5AB[EF]:/
+4162.6 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5AD3:/
+
+# Initial Iron Air
+4168.7 "--sync--" sync / 14:[^:]*:Trinity Seeker:5A99:/ window 200,20
+4171.7 "Verdant Path" sync / 1[56]:[^:]*:Trinity Seeker:5A99:/
+4176.6 "Iron Impact" sync / 1[56]:[^:]*:Trinity Seeker:5AD2:/
+4180.7 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4184.9 "Manifest Avatar" sync / 1[56]:[^:]*:Trinity Seeker:5ADA:/
+4196.6 "--jump--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4197.7 "Iron Rose" sync / 1[56]:[^:]*:Seeker Avatar:5AD9:/
+4203.5 "Iron Splitter" sync / 1[56]:[^:]*:Trinity Seeker:5AC0:/
+4207.7 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4211.9 "Manifest Avatar" sync / 1[56]:[^:]*:Trinity Seeker:5ADA:/
+4216.1 "--jump--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4223.0 "Iron Splitter" sync / 1[56]:[^:]*:Trinity Seeker:5AC0:/
+4225.2 "Dead Iron" sync / 1[56]:[^:]*:Seeker Avatar:5ACC:/
+4228.3 "--jump--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4232.5 "Dead Iron" sync / 1[56]:[^:]*:Seeker Avatar:5B44:/
+4235.1 "Iron Splitter" sync / 1[56]:[^:]*:Trinity Seeker:5AC0:/
+4239.9 "Iron Rose" sync / 1[56]:[^:]*:Seeker Avatar:5AD9:/
+4251.3 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5AD3:/
+
+# Merciful Air v2
+4262.8 "--sync--" sync / 14:[^:]*:Trinity Seeker:5A97:/ window 300,10
+4265.8 "Verdant Path" sync / 1[56]:[^:]*:Trinity Seeker:5A97:/
+4270.4 "Act Of Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5ACF:/
+4276.5 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4280.8 "Manifest Avatar" sync / 1[56]:[^:]*:Trinity Seeker:5ADA:/
+4286.9 "Baleful Comet 1" #sync / 1[56]:[^:]*:Seeker Avatar:5AD7:/
+4287.9 "Baleful Comet 2" #sync / 1[56]:[^:]*:Seeker Avatar:5AD7:/
+4288.9 "Baleful Comet 3" #sync / 1[56]:[^:]*: Seeker Avatar:5AD7:/
+4289.9 "Baleful Comet 4" #sync / 1[56]:[^:]*:Seeker Avatar:5AD7:/
+4290.9 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4294.5 "Baleful Firestorm" #sync / 1[56]:[^:]*:Seeker Avatar:5AD8:/
+4295.1 "First Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B61:/
+4296.5 "Baleful Firestorm" #sync / 1[56]:[^:]*:Seeker Avatar:5AD8:/
+4298.3 "Second Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B62:/
+4298.5 "Baleful Firestorm" #sync / 1[56]:[^:]*:Seeker Avatar:5AD8:/
+4300.5 "Baleful Firestorm" #sync / 1[56]:[^:]*:Seeker Avatar:5AD8:/
+4301.5 "Third Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B63:/
+4304.7 "Fourth Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B64:/
+4307.1 "Mercy Fourfold 1" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4309.0 "Mercy Fourfold 2" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4309.7 "Seasons Of Mercy" sync / 1[56]:[^:]*:Seeker Avatar:5AC7:/
+4311.0 "Mercy Fourfold 3" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4312.9 "Mercy Fourfold 4" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4314.3 "Merciful Breeze" sync / 1[56]:[^:]*:Trinity Seeker:5AC8:/
+4315.8 "Merciful Moon" sync / 1[56]:[^:]*:Aetherial Orb:5AC9:/
+4318.4 "Merciful Breeze" sync / 1[56]:[^:]*:Trinity Seeker:5AC8:/
+4321.8 "Merciful Blooms" sync / 1[56]:[^:]*:Trinity Seeker:5ACA:/
+4325.1 "--chains--" duration 3.1 # sync / 23:0000:0000:0080:/
+4335.2 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5AD3:/
+4346.5 "Merciful Arc" sync / 1[56]:[^:]*:Trinity Seeker:5AD4:/
+4349.7 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4354.0 "Manifest Avatar" sync / 1[56]:[^:]*:Trinity Seeker:5ADA:/
+4361.2 "First Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B61:/
+4364.4 "Second Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B62:/
+4365.4 "--jump--" sync / 1[56]:[^:]*:Seeker Avatar:5A9A:/
+4367.6 "Third Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B63:/
+4370.8 "Fourth Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B64:/
+4371.6 "Iron Splitter" sync / 1[56]:[^:]*:Seeker Avatar:5AC0:/
+4373.2 "Mercy Fourfold 1" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4375.1 "Mercy Fourfold 2" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4377.0 "Mercy Fourfold 3" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4378.9 "Mercy Fourfold 4" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4380.6 "Iron Splitter" sync / 1[56]:[^:]*:Seeker Avatar:5AC0:/
+4382.8 "--jump--" sync / 1[56]:[^:]*:Seeker Avatar:5A9A:/
+4389.5 "Iron Splitter" sync / 1[56]:[^:]*:Seeker Avatar:5AC0:/
+4390.3 "Seasons Of Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5AC7:/
+4394.8 "Merciful Breeze" sync / 1[56]:[^:]*:Trinity Seeker:5AC8:/
+4396.3 "Merciful Moon" sync / 1[56]:[^:]*:Aetherial Orb:5AC9:/
+4398.9 "Merciful Breeze" sync / 1[56]:[^:]*:Trinity Seeker:5AC8:/
+4400.9 "Iron Rose" sync / 1[56]:[^:]*:Seeker Avatar:5AD9:/
+4402.2 "Merciful Blooms" sync / 1[56]:[^:]*:Trinity Seeker:5ACA:/
+4412.3 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5AD3:/
+
+# Baleful Air v2
+4422.5 "--sync--" sync / 14:[^:]*:Trinity Seeker:5A98:/ window 300,10
+4425.5 "Verdant Path" sync / 1[56]:[^:]*:Trinity Seeker:5A98:/
+4430.2 "Baleful Swathe" sync / 1[56]:[^:]*:Trinity Seeker:5AD0:/
+4433.4 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4437.8 "Manifest Avatar" sync / 1[56]:[^:]*:Trinity Seeker:5ADA:/
+4448.0 "Phantom Edge" sync / 1[56]:[^:]*:Trinity Seeker:5ABD:/
+4450.2 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4451.1 "First Mercy" sync / 1[56]:[^:]*:Seeker Avatar:5B61:/
+4454.3 "Second Mercy" sync / 1[56]:[^:]*:Seeker Avatar:5B62:/
+4457.5 "Third Mercy" sync / 1[56]:[^:]*:Seeker Avatar:5B63:/
+4459.2 "Baleful Blade" sync / 1[56]:[^:]*:Trinity Seeker:5ABF:/
+4460.7 "Fourth Mercy" sync / 1[56]:[^:]*:Seeker Avatar:5B64:/
+4463.1 "Mercy Fourfold 1" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4465.0 "Mercy Fourfold 2" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4466.9 "Mercy Fourfold 3" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4468.8 "Mercy Fourfold 4" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4472.2 "--chains--" duration 3.1 # sync / 00:0000:0080:/
+4482.4 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5AD3:/
+4484.6 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4488.8 "Manifest Avatar" sync / 1[56]:[^:]*:Trinity Seeker:5ADA:/
+4498.4 "Phantom Edge?" sync / 1[56]:[^:]*:Trinity Seeker:5ABD:/
+4500.1 "--jump--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4504.9 "Iron Splitter" sync / 1[56]:[^:]*:Seeker Avatar:5AC0:/
+4509.2 "Baleful Blade" sync / 1[56]:[^:]*:Trinity Seeker:5AB[EF]:/
+4514.5 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4518.7 "Manifest Avatar" sync / 1[56]:[^:]*:Trinity Seeker:5ADA:/
+4530.9 "First Mercy" sync / 1[56]:[^:]*:Seeker Avatar:5B61:/
+4534.1 "Second Mercy" sync / 1[56]:[^:]*:Seeker Avatar:5B62:/
+4534.7 "--chains--" duration 3.1 # sync / 00:0000:0080:/
+4537.3 "Third Mercy" sync / 1[56]:[^:]*:Seeker Avatar:5B63:/
+4540.5 "Fourth Mercy" sync / 1[56]:[^:]*:Seeker Avatar:5B64:/
+4541.8 "Phantom Edge?" sync / 1[56]:[^:]*:Trinity Seeker:5ABD:/
+4543.0 "Mercy Fourfold 1" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4544.0 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
+4544.9 "Mercy Fourfold 2" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4546.8 "Mercy Fourfold 3" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4548.7 "Mercy Fourfold 4" #sync / 1[56]:[^:]*:Trinity Seeker:5B94:/
+4553.1 "Baleful Blade" sync / 1[56]:[^:]*:Trinity Seeker:5AB[EF]:/
+4562.3 "Phantom Edge?" sync / 1[56]:[^:]*:Trinity Seeker:5ABD:/
+4568.4 "Baleful Onslaught" sync / 1[56]:[^:]*:Trinity Seeker:5AD[56]:/
+
+# Enrage
+4580.9 "--sync--" sync / 14:[^:]*:Trinity Seeker:5BBA:/ window 1000,10
+4590.9 "Verdant Tempest Enrage" sync / 1[56]:[^:]*:Trinity Seeker:5BBA:/
+4593.0 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5BBB:/ window 10,10 # x infinity
+4595.0 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5BBB:/
+4597.0 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5BBB:/
+
+
+### Dahu
+# -p 576D:6008.4
+# -ii 576C 1961 576E
+# Can't use a "is no longer sealed" message here, as the Stygimoloch Warrior and Dahu can
+# see each other's zone sealing messages and 00:0044 messages, but not abilities.
+# Dahu will only start if you are not in the Duel, and if Dahu starts first, the Duel will
+# override it.  Dahu will only end when Dahu is killed, which can only be seen if you
+# are in the Dahu fight.
+6000.0 "--sync--" sync / 00:0839::The Hall of Supplication will be sealed off/ window 6000,0
+6000.0 "--Reset--" sync / 19:[^:]*:Dahu:/ window 0,2000 jump 0
+6008.4 "Reverberating Roar" sync / 1[56]:[^:]*:Dahu:576D:/ window 10,2.5
+6014.5 "Reverberating Roar" sync / 1[56]:[^:]*:Dahu:576D:/
+6022.7 "Hot Charge 1" sync / 1[56]:[^:]*:Dahu:5773:/
+6027.5 "Hot Charge 2" sync / 1[56]:[^:]*:Dahu:5773:/
+6034.3 "Firebreathe" sync / 1[56]:[^:]*:Dahu:5774:/
+6046.5 "--sync--" sync / 1[56]:[^:]*:Marchosias:576A:/
+6051.8 "Head Down" sync / 1[56]:[^:]*:Marchosias:5768:/
+6057.5 "Head Down" sync / 1[56]:[^:]*:Marchosias:5768:/
+
+6061.4 "Spit Flame" sync / 1[56]:[^:]*:Dahu:5776:/
+6061.6 "Spit Flame 1" #sync / 1[56]:[^:]*:Dahu:5777:/
+6062.7 "Spit Flame 2" #sync / 1[56]:[^:]*:Dahu:5777:/
+6063.8 "Spit Flame 3" #sync / 1[56]:[^:]*:Dahu:5777:/
+6065.0 "Spit Flame 4" #sync / 1[56]:[^:]*:Dahu:5777:/
+6069.1 "Head Down" sync / 1[56]:[^:]*:Marchosias:5768:/
+6071.1 "Right-Sided Shockwave/Left-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:57(70|6F):/
+6073.7 "Left-Sided Shockwave/Right-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:577[12]:/
+6074.8 "Head Down" sync / 1[56]:[^:]*:Marchosias:5768:/
+6081.4 "Feral Howl" sync / 1[56]:[^:]*:Dahu:5767:/
+6083.5 "--knockback--" sync / 1[56]:[^:]*:Dahu:5B35:/
+6084.9 "Hunter's Claw" sync / 1[56]:[^:]*:Marchosias:5769:/
+6091.5 "Firebreathe x5" sync / 1[56]:[^:]*:Dahu:576B:/ duration 8.7
+6112.5 "--sync--" sync / 1[56]:[^:]*:Crowned Marchosias:576A:/
+6117.5 "--sync--" sync / 1[56]:[^:]*:Crowned Marchosias:576A:/
+6122.5 "--sync--" sync / 1[56]:[^:]*:Crowned Marchosias:576A:/
+6142.5 "--sync--" sync / 1[56]:[^:]*:Marchosias:576A:/
+6142.5 "Reverberating Roar" sync / 1[56]:[^:]*:Dahu:576D:/
+6147.6 "Falling Rock x6" duration 10 #sync / 1[56]:[^:]*:Dahu:576E:/
+6147.7 "Head Down" sync / 1[56]:[^:]*:Marchosias:5768:/
+6151.6 "Right-Sided Shockwave/Left-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:57(70|6F):/
+6153.4 "Head Down" sync / 1[56]:[^:]*:Marchosias:5768:/
+6154.1 "Left-Sided Shockwave/Right-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:577[12]:/
+6159.1 "Head Down" sync / 1[56]:[^:]*:Marchosias:5768:/
+
+6164.7 "Spit Flame" sync / 1[56]:[^:]*:Dahu:5776:/
+6165.0 "Spit Flame 1" #sync / 1[56]:[^:]*:Dahu:5777:/
+6166.1 "Spit Flame 2" #sync / 1[56]:[^:]*:Dahu:5777:/
+6167.3 "Spit Flame 3" #sync / 1[56]:[^:]*:Dahu:5777:/
+6168.4 "Spit Flame 4" #sync / 1[56]:[^:]*:Dahu:5777:/
+6174.6 "Hysteric Assault" sync / 1[56]:[^:]*:Dahu:5778:/
+6175.5 "--knockback--" sync / 1[56]:[^:]*:Dahu:5B43:/
+6177.7 "Burn x2" sync / 1[56]:[^:]*:Dahu:5463:/
+6178.1 "Hunter's Claw" sync / 1[56]:[^:]*:Marchosias:5769:/
+6187.6 "Head Down" sync / 1[56]:[^:]*:Marchosias:5768:/
+6188.9 "Firebreathe x5" sync / 1[56]:[^:]*:Dahu:576B:/ duration 8.7
+6209.9 "Right-Sided Shockwave/Left-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:57(70|6F):/
+6212.5 "Left-Sided Shockwave/Right-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:577[12]:/
+
+# This is a single or a double hot charge.
+6221.4 "Hot Charge 1" sync / 1[56]:[^:]*:Dahu:5773:/
+6226.2 "Hot Charge 2?" sync / 1[56]:[^:]*:Dahu:5773:/
+6228.0 "--sync--" sync / 14:[^:]*:Dahu:5774:/ window 20,20
+6233.0 "Firebreathe" sync / 1[56]:[^:]*:Dahu:5774:/
+6246.3 "--sync--" sync / 1[56]:[^:]*:Crowned Marchosias:576A:/
+6251.3 "--sync--" sync / 1[56]:[^:]*:Crowned Marchosias:576A:/
+6252.2 "Reverberating Roar" sync / 1[56]:[^:]*:Dahu:576D:/
+6256.3 "--sync--" sync / 1[56]:[^:]*:Crowned Marchosias:576A:/
+6261.3 "Reverberating Roar" sync / 1[56]:[^:]*:Dahu:576D:/
+6289.5 "Reverberating Roar" sync / 1[56]:[^:]*:Dahu:576D:/
+6289.5 "--sync--" sync / 1[56]:[^:]*:Marchosias:576A:/
+6289.5 "--sync--" sync / 1[56]:[^:]*:Marchosias:576A:/
+6294.7 "Head Down" sync / 1[56]:[^:]*:Marchosias:5768:/
+6298.6 "Right-Sided Shockwave/Left-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:57(70|6F):/
+6300.4 "Head Down" sync / 1[56]:[^:]*:Marchosias:5768:/
+6301.1 "Left-Sided Shockwave/Right-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:577[12]:/
+6306.0 "Head Down" sync / 1[56]:[^:]*:Marchosias:5768:/
+6306.0 "Head Down" sync / 1[56]:[^:]*:Marchosias:5768:/
+
+6311.7 "Spit Flame 1" sync / 1[56]:[^:]*:Dahu:5776:/
+6312.1 "Spit Flame 2" sync / 1[56]:[^:]*:Dahu:5777:/
+6313.3 "Spit Flame 3" sync / 1[56]:[^:]*:Dahu:5777:/
+6314.4 "Spit Flame 4" sync / 1[56]:[^:]*:Dahu:5777:/
+6320.6 "Hysteric Assault" sync / 1[56]:[^:]*:Dahu:5778:/
+6321.5 "--knockback--" sync / 1[56]:[^:]*:Dahu:5B43:/
+6323.7 "Burn x2" sync / 1[56]:[^:]*:Dahu:5463:/
+6324.1 "Hunter's Claw" sync / 1[56]:[^:]*:Marchosias:5769:/
+6334.4 "Head Down" sync / 1[56]:[^:]*:Marchosias:5768:/
+6335.2 "Firebreathe" sync / 1[56]:[^:]*:Dahu:576B:/
+6356.2 "Right-Sided Shockwave/Left-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:57(70|6F):/
+6358.8 "Left-Sided Shockwave/Right-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:577[12]:/
+
+# Probably a loop, but you shouldn't see this charge, let alone the previous one.
+6367.8 "Hot Charge 1" sync / 1[56]:[^:]*:Dahu:5773:/
+6372.6 "Hot Charge 2?" sync / 1[56]:[^:]*:Dahu:5773:/
+6374.4 "--sync--" sync / 14:[^:]*:Dahu:5774:/ window 100,100 jump 6228.0
+6379.4 "Firebreathe" sync / 1[56]:[^:]*:Dahu:5774:/
+6398.6 "Reverberating Roar" #sync / 1[56]:[^:]*:Dahu:576D:/
+6407.7 "Reverberating Roar" #sync / 1[56]:[^:]*:Dahu:576D:/
+6435.9 "Reverberating Roar" #sync / 1[56]:[^:]*:Dahu:576D:/
+
+
+### Stygimoloch Warrior
+# -p 5796:8012.1
+# -ii 579E 579A 5790 578B 5787 5788 5782 5786 5784 578D 5791 1961 57A0 57A1 579F 57AB 57AE
+# https://www.youtube.com/watch?v=5Q0m1F0MKQQ
+
+# This is the zone, but can't use this sync as it can be seen by Dahu.  Sync to autos instead.
+#8000.0 "--sync--" sync / 00:0839::Pride of the Lioness will be sealed off/ window 20000,0
+8000.0 "--Reset--" sync / 00:0044:Stygimoloch Warrior:Why\.\.\.won't\.\.\.you\.\.\./ window 0,2000 jump 0
+# TODO: is there a reset dialog line for losing?
+# Alternatively, we could always insert " 19:${data.me} was defeated by" from script.
+
+8002.1 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Warrior:1961:/ window 20000,0
+8009.1 "--sync--" sync / 14:[^:]*:Stygimoloch Warrior:5796:/ window 20,20
+8012.1 "Surge of Vigor" sync / 1[56]:[^:]*:Stygimoloch Warrior:5796:/
+8024.3 "Unrelenting Charge x3" sync / 1[56]:[^:]*:Stygimoloch Warrior:5799:/
+8035.4 "--north--" sync / 1[56]:[^:]*:Stygimoloch Warrior:577C:/
+8039.7 "Entrapment" sync / 1[56]:[^:]*:Stygimoloch Warrior:577D:/
+8040.5 "--knockback--" sync / 1[56]:[^:]*:Stygimoloch Warrior:577E:/
+8061.8 "Lethal Blow" sync / 1[56]:[^:]*:Stygimoloch Warrior:577F:/
+8067.9 "Vicious Swipe" sync / 1[56]:[^:]*:Stygimoloch Warrior:5797:/
+8069.9 "--knockback--"
+8069.9 "Crazed Rampage" sync / 1[56]:[^:]*:Stygimoloch Warrior:5798:/
+8081.0 "Focused Tremor" sync / 1[56]:[^:]*:Stygimoloch Warrior:578E:/
+8083.2 "--corner--" sync / 1[56]:[^:]*:Stygimoloch Warrior:577C:/
+8089.8 "Focused Tremor 1" #sync / 1[56]:[^:]*:Stygimoloch Warrior:578F:/
+8091.8 "Focused Tremor 2" #sync / 1[56]:[^:]*:Stygimoloch Warrior:578F:/
+8093.8 "Focused Tremor 3" #sync / 1[56]:[^:]*:Stygimoloch Warrior:578F:/
+8095.8 "Focused Tremor 4" #sync / 1[56]:[^:]*:Stygimoloch Warrior:578F:/
+8099.4 "Forceful Strike" sync / 1[56]:[^:]*:Stygimoloch Warrior:5792:/
+8109.5 "--middle--" sync / 1[56]:[^:]*:Stygimoloch Warrior:577C:/
+8113.7 "Inescapable Entrapment" sync / 1[56]:[^:]*:Stygimoloch Warrior:5780:/
+
+# Single Trap
+8120.8 "--sync--" sync / 14:[^:]*:Stygimoloch Warrior:578[15]:/ window 20,20
+8133.8 "Surging Flames/Withering Curse?" sync / 1[56]:[^:]*:Stygimoloch Warrior:578[15]:/
+8133.8 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Warrior:5781:/ jump 8137.3 # if Surging Flames, skip +3.5s ahead
+8136.4 "Devour?" sync / 1[56]:[^:]*:Stygimoloch Warrior:5789:/ # only if Withering Curse
+
+# Round 2
+8146.6 "--sync--" sync / 14:[^:]*:Stygimoloch Warrior:5796:/ window 20,20
+8149.6 "Surge of Vigor" sync / 1[56]:[^:]*:Stygimoloch Warrior:5796:/
+8163.7 "Focused Tremor x16" sync / 1[56]:[^:]*:Stygimoloch Warrior:578E:/ duration 30.7
+8167.8 "--middle--" sync / 1[56]:[^:]*:Stygimoloch Warrior:577C:/
+8178.2 "Flailing Strike x7" sync / 1[56]:[^:]*:Stygimoloch Warrior:578C:/ duration 8.7
+8191.7 "Vicious Swipe" sync / 1[56]:[^:]*:Stygimoloch Warrior:5797:/
+8193.7 "--knockback--"
+8193.7 "Crazed Rampage" sync / 1[56]:[^:]*:Stygimoloch Warrior:5798:/
+8202.9 "--middle--" sync / 1[56]:[^:]*:Stygimoloch Warrior:577C:/
+8207.2 "Inescapable Entrapment" sync / 1[56]:[^:]*:Stygimoloch Warrior:5780:/
+
+# Triple Trap
+8210.4 "--sync--" sync / 14:[^:]*:Stygimoloch Warrior:578[15]:/ window 20,20
+8223.4 "Surging Flames/Withering Curse?" sync / 1[56]:[^:]*:Stygimoloch Warrior:578[15]:/
+8223.4 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Warrior:5781:/ jump 8223.9 # if Surging Flames, skip +3.5s ahead
+8225.8 "Devour?" sync / 1[56]:[^:]*:Stygimoloch Warrior:5789:/ # only if Withering Curse
+8229.9 "--sync--" sync / 14:[^:]*:Stygimoloch Warrior:5783:/ window 20,20
+8239.9 "Surging Flood" sync / 1[56]:[^:]*:Stygimoloch Warrior:5783:/
+8248.1 "Leaping Spark x3" sync / 1[56]:[^:]*:Stygimoloch Warrior:578A:/
+
+# From here on is without log
+# Unsure which ID Coerce is: 5795, 5794, 5793
+8263.1 "Coerce" sync / 1[56]:[^:]*:Stygimoloch Warrior:579[345]:/ window 20,20
+
+# Round 3
+8269.1 "Surge of Vigor" sync / 1[56]:[^:]*:Stygimoloch Warrior:5796:/ window 20,20
+8284.0 "Focused Tremor" sync / 1[56]:[^:]*:Stygimoloch Warrior:578E:/
+8286.3 "--corner--" sync / 1[56]:[^:]*:Stygimoloch Warrior:577C:/
+8292.8 "Focused Tremor 1" sync / 1[56]:[^:]*:Stygimoloch Warrior:578F:/
+8294.8 "Focused Tremor 2" #sync / 1[56]:[^:]*:Stygimoloch Warrior:578F:/
+8296.8 "Focused Tremor 3" #sync / 1[56]:[^:]*:Stygimoloch Warrior:578F:/
+8298.8 "Focused Tremor 4" #sync / 1[56]:[^:]*:Stygimoloch Warrior:578F:/
+8302.4 "Forceful Strike" sync / 1[56]:[^:]*:Stygimoloch Warrior:5792:/
+
+# Round 4
+8315.1 "Surge of Vigor" sync / 1[56]:[^:]*:Stygimoloch Warrior:5796:/ window 20,20
+8327.3 "Unrelenting Charge x3" sync / 1[56]:[^:]*:Stygimoloch Warrior:5799:/
+8336.3 "Vicious Swipe" sync / 1[56]:[^:]*:Stygimoloch Warrior:5797:/
+8338.3 "--knockback--"
+8338.3 "Crazed Rampage" sync / 1[56]:[^:]*:Stygimoloch Warrior:5798:/
+8348.3 "--middle--" sync / 1[56]:[^:]*:Stygimoloch Warrior:577C:/
+
+8359.1 "Sun's Ire (Enrage)" sync / 1[56]:[^:]*:Stygimoloch Warrior:577A:/ window 20,20
+
+
+### Queen's Guard
+# -p 5831:10016.6 5825:10056.1 5844:10617 581E:11005
+# -ii 1961 5858 4B33 4B34 4B35 4B36 5821 5854 5813 5834 584D 5718 581B 581C 5B72 5822 5A94 583E 5856 5851 5B70 5838 584D 583A 5847 5849 58F5 5830 581F 590A 590B 590C 59BE
+
+# Note: there are number of pairs of abilities that go together (but are both going off).
+# - 5831 (5821)
+# - 5841 (5854)
+# - 5825 (5813)
+# - 5844 (5834)
+# - 5832 (5822)
+# - 5843 (5856)
+# - 5B9F (5BA0)
+# - 5820 (581F)
+# - 5823 (59BE)
+
+10000.0 "--sync--" sync / 00:0839::The Hall of Hieromancy will be sealed off/ window 20000,0
+10000.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 0,2000 jump 0
+# ranged auto should be reasonably timed
+10002.5 "--sync--" sync / 1[56]:[^:]*:Queen's Gunner:5858:/ window 3,1
+
+# Phase 1: aoes (to 80%)
+10011.5 "--sync--" sync / 14:[^:]*:Queen's Warrior:5831:/ window 20,20
+10016.6 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Warrior:5831:/
+10025.6 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Soldier:5841:/
+10030.6 "--untargetable--"
+
+
+# Phase 2: Warrior + Knight section
+10033.9 "--targetable--" sync / 22:........:Queen's Knight:........:Queen's Knight:01/ window 25,0
+10051.1 "--sync--" sync / 14:[^:]*:Queen's Warrior:5825:/ window 60,20
+10056.1 "Relentless Battery" sync / 1[56]:[^:]*:Queen's Warrior:5825:/
+10062.2 "Shield Omen/Sword Omen" sync / 1[56]:[^:]*:Queen's Knight:581[45]:/
+
+10063.2 "Bombslinger" sync / 1[56]:[^:]*:Queen's Warrior:5AFE:/
+10066.3 "--tethers--"
+10069.3 "--untargetable--" # knight
+10070.3 "Reversal Of Forces" sync / 1[56]:[^:]*:Queen's Warrior:5829:/
+10070.3 "--sync--" sync / 1[56]:[^:]*:Queen's Warrior:5A94:/
+10079.5 "Optimal Offensive" sync / 1[56]:[^:]*:Queen's Knight:581[9A]:/
+10081.1 "Unlucky Lot" #sync / 1[56]:[^:]*:Aetherial Sphere:581D:/
+10081.4 "Above Board" sync / 1[56]:[^:]*:Queen's Warrior:5826:/
+10082.4 "--stunned--" # 3 or 7 second stun
+10084.5 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Bolt:5828:/
+#10085.8 "--targetable--" # knight, everybody stunned, so not listed
+10087.5 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Burst:5827:/
+10088.7 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Burst:5BB7:/
+10089.4 "--unstunned--"
+
+10097.6 "Boost" sync / 1[56]:[^:]*:Queen's Warrior:582D:/
+10105.8 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Warrior:5831:/
+10121.0 "Relentless Battery" sync / 1[56]:[^:]*:Queen's Warrior:5825:/
+10124.1 "--tethers--"
+10128.1 "Reversal Of Forces" sync / 1[56]:[^:]*:Queen's Warrior:5829:/
+10136.2 "Shield Omen/Sword Omen" sync / 1[56]:[^:]*:Queen's Knight:581[45]:/
+10137.3 "Winds Of Weight" sync / 1[56]:[^:]*:Queen's Warrior:582A:/
+10137.3 "Winds Of Fate" sync / 1[56]:[^:]*:Queen's Warrior:582C:/
+10137.3 "Weight Of Fortune" sync / 1[56]:[^:]*:Queen's Warrior:582B:/
+10144.4 "Optimal Play" sync / 1[56]:[^:]*:Queen's Knight:581[67]:/
+10146.4 "Boost" sync / 1[56]:[^:]*:Queen's Warrior:582D:/
+10154.6 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Warrior:5831:/
+10163.7 "Rapid Sever" sync / 1[56]:[^:]*:Queen's Warrior:5832:/
+
+# loop, unrolled so there can be an explicit enrage
+10185.9 "Relentless Battery" sync / 1[56]:[^:]*:Queen's Warrior:5825:/
+10192.1 "Shield Omen/Sword Omen" sync / 1[56]:[^:]*:Queen's Knight:581[45]:/
+
+10193.0 "Bombslinger" sync / 1[56]:[^:]*:Queen's Warrior:5AFE:/
+10196.1 "--tethers--"
+10199.1 "--untargetable--" # knight
+10200.1 "Reversal Of Forces" sync / 1[56]:[^:]*:Queen's Warrior:5829:/
+10209.4 "Optimal Offensive" sync / 1[56]:[^:]*:Queen's Knight:581[9A]:/
+10211.0 "Unlucky Lot" #sync / 1[56]:[^:]*:Aetherial Sphere:581D:/
+10211.2 "Above Board" sync / 1[56]:[^:]*:Queen's Warrior:5826:/
+10212.2 "--stunned--" # 3 or 7 second stun
+10211.2 "--sync--" sync / 1[56]:[^:]*:Queen's Warrior:5B72:/
+10214.2 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Burst:5B6D:/
+#10215.5 "--targetable--" # knight, everybody stunned, so not listed
+10217.2 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Bolt:5B6C:/
+10218.4 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Bolt:5BB7:/
+10219.2 "--unstunned--"
+
+10227.3 "Boost" sync / 1[56]:[^:]*:Queen's Warrior:582D:/
+10235.5 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Warrior:5831:/
+10250.7 "Relentless Battery" sync / 1[56]:[^:]*:Queen's Warrior:5825:/
+10253.8 "--tethers--"
+10257.8 "Reversal Of Forces" sync / 1[56]:[^:]*:Queen's Warrior:5829:/
+10265.9 "Shield Omen/Sword Omen" sync / 1[56]:[^:]*:Queen's Knight:581[45]:/
+10267.0 "Winds Of Weight" sync / 1[56]:[^:]*:Queen's Warrior:582A:/
+10267.0 "Winds Of Fate" sync / 1[56]:[^:]*:Queen's Warrior:582C:/
+10267.0 "Winds Of Fate" sync / 1[56]:[^:]*:Queen's Warrior:582C:/
+10267.0 "Weight Of Fortune" sync / 1[56]:[^:]*:Queen's Warrior:582B:/
+10274.1 "Optimal Play" sync / 1[56]:[^:]*:Queen's Knight:581[67]:/
+10276.1 "Boost" sync / 1[56]:[^:]*:Queen's Warrior:582D:/
+10284.3 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Warrior:5831:/
+10293.4 "Rapid Sever" sync / 1[56]:[^:]*:Queen's Warrior:5832:/
+
+# If either die, they will start casting enrage.
+10302.9 "--sync--" sync / 14:[^:]*:Queen's Knight:5823:/ window 300,10
+10302.9 "--sync--" sync / 14:[^:]*:Queen's Warrior:5833:/ window 300,10
+10312.9 "Blood and Bone Enrage" sync / 1[56]:[^:]*:Queen's Warrior:5833:/
+10316.0 "Blood and Bone Enrage" sync / 1[56]:[^:]*:Queen's Knight:5B9D:/ window 10,10 # x infinity
+10319.1 "Blood and Bone Enrage" sync / 1[56]:[^:]*:Queen's Knight:5B9D:/
+10322.2 "Blood and Bone Enrage" sync / 1[56]:[^:]*:Queen's Knight:5B9D:/
+
+# Phase 3: Soldier + Gunner section
+10600.0 "--sync--" sync / 22:........:Queen's Gunner::........::Queen's Gunner:01/ window 600,0
+10612.0 "--sync--" sync / 14:[^:]*:Queen's Gunner:5844:/ window 600,0
+10617.0 "Relentless Battery" sync / 1[56]:[^:]*:Queen's Gunner:5844:/
+10623.2 "Great Ball Of Fire" sync / 1[56]:[^:]*:Queen's Soldier:583B:/
+10632.3 "Fool's Gambit" sync / 1[56]:[^:]*:Queen's Soldier:583C:/
+10635.2 "Automatic Turret" sync / 1[56]:[^:]*:Queen's Gunner:584A:/
+10641.3 "Reading" sync / 1[56]:[^:]*:Queen's Gunner:584B:/
+10647.9 "Burn" sync / 1[56]:[^:]*:Immolating Flame:583E:/
+10651.5 "Queen's Shot" sync / 1[56]:[^:]*:Queen's Gunner:584C:/
+10655.0 "Turret's Tour" sync / 1[56]:[^:]*:Automatic Turret:584E:/
+10665.6 "Rapid Sever" sync / 1[56]:[^:]*:Queen's Soldier:5842:/
+10665.6 "Shot In The Dark" sync / 1[56]:[^:]*:Queen's Gunner:5855:/
+10674.7 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Soldier:5841:/
+10689.9 "Relentless Battery" sync / 1[56]:[^:]*:Queen's Gunner:5844:/
+10696.0 "Gun Turret" sync / 1[56]:[^:]*:Queen's Gunner:584F:/
+10696.8 "--targetable--" # gun turret
+10703.1 "Higher Power" sync / 1[56]:[^:]*:Queen's Gunner:5853:/
+10710.1 "Sniper Shot" sync / 1[56]:[^:]*:Gun Turret:5850:/
+10715.0 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Soldier:5841:/
+10728.4 "--gun turret enrage--"
+10732.2 "Icy Portent/Fiery Portent" sync / 1[56]:[^:]*:Queen's Soldier:(583F|5840):/
+10747.4 "Relentless Battery" sync / 1[56]:[^:]*:Queen's Gunner:5844:/
+10753.5 "Double Gambit" sync / 1[56]:[^:]*:Queen's Soldier:5837:/
+10761.5 "Automatic Turret" sync / 1[56]:[^:]*:Queen's Gunner:584A:/
+10761.7 "Secrets Revealed" sync / 1[56]:[^:]*:Queen's Soldier:5B6F:/
+10767.7 "Reading" sync / 1[56]:[^:]*:Queen's Gunner:584B:/
+10777.9 "Queen's Shot" sync / 1[56]:[^:]*:Queen's Gunner:584C:/
+10778.3 "Pawn Off" sync / 1[56]:[^:]*:Soldier Avatar:5839:/
+10781.4 "Turret's Tour" sync / 1[56]:[^:]*:Automatic Turret:584E:/
+10792.1 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Soldier:5841:/
+10801.3 "Shot In The Dark" sync / 1[56]:[^:]*:Queen's Gunner:5855:/
+10801.3 "Rapid Sever" sync / 1[56]:[^:]*:Queen's Soldier:5842:/
+10816.5 "Relentless Battery" sync / 1[56]:[^:]*:Queen's Gunner:5844:/
+10822.6 "Automatic Turret" sync / 1[56]:[^:]*:Queen's Gunner:5845:/
+10830.8 "Turret's Tour 1" sync / 1[56]:[^:]*:Queen's Gunner:5846:/
+10831.4 "Turret's Tour 2" sync / 1[56]:[^:]*:Automatic Turret:5848:/
+10837.6 "Fiery Portent/Icy Portent" sync / 1[56]:[^:]*:Queen's Soldier:(583F|5840):/
+10847.8 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Soldier:5841:/
+10856.9 "Rapid Sever" sync / 1[56]:[^:]*:Queen's Soldier:5842:/
+10856.9 "Shot In The Dark" sync / 1[56]:[^:]*:Queen's Gunner:5855:/
+
+# If either die, they will start casting enrage.
+10865.7 "--sync--" sync / 14:[^:]*:Queen's Soldier:5843:/ window 300,10
+10865.7 "--sync--" sync / 14:[^:]*:Queen's Gunner:5856:/ window 300,10
+10875.7 "Blood And Bone Enrage" sync / 1[56]:[^:]*:Queen's Soldier:5843:/
+10878.8 "Blood And Bone Enrage" sync / 1[56]:[^:]*:Queen's Soldier:5B9F:/ window 10,10 # x infinity
+10881.9 "Blood And Bone Enrage" sync / 1[56]:[^:]*:Queen's Soldier:5B9F:/
+10885.0 "Blood And Bone Enrage" sync / 1[56]:[^:]*:Queen's Soldier:5B9F:/
+10888.1 "Blood And Bone Enrage" sync / 1[56]:[^:]*:Queen's Soldier:5B9F:/
+
+
+# Phase 4: Aetherial Wards
+11000.0 "--sync--" sync / 14:[^:]*:Queen's Knight:581E:/ window 1000,0
+11005.0 "Strongpoint Defense" sync / 1[56]:[^:]*:Queen's Knight:581E:/
+11005.0 "Spiteful Spirit" sync / 1[56]:[^:]*:Queen's Warrior:582E:/
+11006.0 "--2x Aura Sphere--"
+11007.9 "--12x Spiritual Sphere--"
+11014.8 "Coat Of Arms" sync / 1[56]:[^:]*:Aetherial Ward:5820:/
+11016.0 "Fracture 1" sync / 1[56]:[^:]*:Spiritual Sphere:5B95:/
+11020.0 "Fracture 2" sync / 1[56]:[^:]*:Spiritual Sphere:5B95:/
+11020.0 "--Spite Check--"
+11032.0 "Coat Of Arms" sync / 1[56]:[^:]*:Aetherial Ward:5820:/
+11037.9 "--12x Spiritual Sphere--"
+11039.9 "--2x Aura Sphere--"
+11046.0 "Fracture 1" sync / 1[56]:[^:]*:Spiritual Sphere:5B95:/
+11049.0 "Coat Of Arms" sync / 1[56]:[^:]*:Aetherial Ward:5820:/
+11050.0 "Fracture 2" sync / 1[56]:[^:]*:Spiritual Sphere:5B95:/
+11054.1 "--Spite Check--"
+11066.1 "Coat Of Arms" sync / 1[56]:[^:]*:Aetherial Ward:5820:/
+# 70s enrage cast, started 3 seconds after Strongpoint Defense.
+11078.0 "Blood And Bone Enrage" sync / 1[56]:[^:]*:Queen's Knight:5909:/
+
+
+### Bozjan Phantom
+# -p 57BD:12011.1
+# -ii 5B36 1963 57C1
+#
+# 8:27 encounter https://www.fflogs.com/reports/zGbK1PZy8WLTk96V#fight=10
+# Swirling = Donut
+# Creeping = Long
+# Lingering = Circle
+#
+# Phases:
+# Manipulate -> Invert -> Adds -> then loop Manipulate+Buster OR Invert+Buster
+
+12000.0 "--sync--" sync / 00:0839::Pride of the Lion will be sealed off/ window 20000,0
+12000.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 0,2000 jump 0
+12007.1 "--sync--" sync / 14:[^:]*:Bozjan Phantom:57BD:/ window 20000,0
+12011.1 "Malediction of Agony" sync / 1[56]:[^:]*:Bozjan Phantom:57BD:/
+12019.2 "Weave Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57B2:/
+
+# Manipulate Miasma Phase (go Swirling -> Creeping lanes)
+12035.4 "Manipulate Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57B3:/
+12036.4 "Swirling Miasma 1" sync / 1[56]:[^:]*:Bozjan Phantom:57B8:/
+12038.0 "Swirling Miasma 2" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12039.6 "Swirling Miasma 3" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12041.2 "Swirling Miasma 4" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12042.8 "Swirling Miasma 5" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12044.4 "Swirling Miasma 6" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12046.0 "Swirling Miasma 7" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12046.4 "Creeping Miasma 1" sync / 1[56]:[^:]*:Bozjan Phantom:57B4:/
+12047.6 "Swirling Miasma 8" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12047.9 "Creeping Miasma 2" #sync / 1[56]:[^:]*:Bozjan Phantom:57B5:/
+12049.5 "Creeping Miasma 3" #sync / 1[56]:[^:]*:Bozjan Phantom:57B5:/
+12051.1 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12052.7 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12054.3 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12055.9 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12057.5 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12063.5 "Weave Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57B2:/
+
+# Invert Miasma Phase (go Lingering -> Creeping -> Creeping lanes)
+12079.6 "Invert Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:59EE:/
+12080.6 "Creeping Miasma 1" sync / 1[56]:[^:]*:Bozjan Phantom:57B4:/
+12082.2 "Creeping Miasma 2" #sync / 1[56]:[^:]*:Bozjan Phantom:57B5:/
+12083.8 "Creeping Miasma 3" #sync / 1[56]:[^:]*:Bozjan Phantom:57B5:/
+12085.4 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12087.0 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12088.6 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12090.2 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12090.6 "Creeping Miasma 1" sync / 1[56]:[^:]*:Bozjan Phantom:57B4:/
+12091.8 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12092.0 "Creeping Miasma 2" #sync / 1[56]:[^:]*:Bozjan Phantom:57B5:/
+12093.6 "Creeping Miasma 3" #sync / 1[56]:[^:]*:Bozjan Phantom:57B5:/
+12095.2 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12096.8 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12098.4 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12100.0 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12100.7 "--middle--" sync / 1[56]:[^:]*:Bozjan Phantom:57AD:/
+12101.6 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+
+# Add phase
+# TODO: unclear if these adds are on a timer (~3 logs were +/- 1 second) or if
+# they just pop when previous set is done.  Include here for clarity, but
+# don't bother syncing so that the enrage is correct, regardless.
+12105.1 "Summon Adds" sync / 1[56]:[^:]*:Bozjan Phantom:57C0:/
+12105.8 "1x Misty Wraith"
+12105.8 "2x Bloody Wraith"
+12106.1 "--untargetable--"
+12115.8 "2x Misty Wraith"
+12115.8 "2x Bloody Wraith"
+12128.0 "3x Misty Wraith"
+12128.0 "3x Bloody Wraith"
+12155.2 "Malediction of Ruin Enrage" sync / 1[56]:[^:]*:Bozjan Phantom:57C1:/
+12157.2 "--targetable--"
+
+# Start of loop block
+12162.3 "--sync--" sync / 14:[^:]*:Bozjan Phantom:57B2:/ window 100,50
+12165.3 "Weave Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57B2:/
+12171.5 "Summon" sync / 1[56]:[^:]*:Bozjan Phantom:57BA:/
+12187.6 "Undying Hatred" sync / 1[56]:[^:]*:Stuffy Wraith:57C2:/
+
+12191.5 "Manipulate Miasma?" sync / 1[56]:[^:]*:Bozjan Phantom:57B3:/ jump 12300
+12191.5 "Invert Miasma?" sync / 1[56]:[^:]*:Bozjan Phantom:59EE:/ jump 12500
+
+# Manipulate Miasma Phase (go Swirling -> Creeping lanes)
+12300.0 "Manipulate Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57B3:/
+12301.0 "Swirling Miasma 1" #sync / 1[56]:[^:]*:Bozjan Phantom:57B8:/
+12302.7 "Swirling Miasma 2" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12304.3 "Swirling Miasma 3" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12305.9 "Swirling Miasma 4" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12307.5 "Swirling Miasma 5" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12309.1 "Swirling Miasma 6" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12310.7 "Swirling Miasma 7" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12311.0 "Creeping Miasma 1" sync / 1[56]:[^:]*:Bozjan Phantom:57B4:/
+12312.2 "Swirling Miasma 8" #sync / 1[56]:[^:]*:Bozjan Phantom:57B9:/
+12312.4 "Creeping Miasma 2" #sync / 1[56]:[^:]*:Bozjan Phantom:57B5:/
+12314.0 "Creeping Miasma 3" #sync / 1[56]:[^:]*:Bozjan Phantom:57B5:/
+12314.0 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12315.6 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12317.0 "--middle--" sync / 1[56]:[^:]*:Bozjan Phantom:57AD:/ # "Transference"
+12317.2 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12318.8 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12320.4 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12322.0 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+
+# Tank buster and AoE Intermediary Loop
+12324.3 "Vile Wave" sync / 1[56]:[^:]*:Bozjan Phantom:57BF:/
+12340.4 "Ice Spikes" sync / 1[56]:[^:]*:Bozjan Phantom:57BC:/
+12351.5 "Excruciation" sync / 1[56]:[^:]*:Bozjan Phantom:57BE:/
+12357.6 "Malediction of Agony" sync / 1[56]:[^:]*:Bozjan Phantom:57BD:/
+12368.9 "Weave Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57B2:/ window 100,100 jump 12165.3
+12375.0 "Summon" #sync / 1[56]:[^:]*:Bozjan Phantom:57BA:/
+12391.1 "Undying Hatred" #sync / 1[56]:[^:]*:Stuffy Wraith:57C2:/
+12395.0 "Manipulate Miasma?" #sync / 1[56]:[^:]*:Bozjan Phantom:57B3:/
+12395.0 "Invert Miasma?" #sync / 1[56]:[^:]*:Bozjan Phantom:59EE:/
+
+# Invert Miasma Phase (go Lingering -> Creeping -> Creeping lanes)
+12500.0 "Invert Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:59EE:/
+12501.0 "Creeping Miasma 1" sync / 1[56]:[^:]*:Bozjan Phantom:57B4:/
+12502.6 "Creeping Miasma 2" #sync / 1[56]:[^:]*:Bozjan Phantom:57B5:/
+12504.2 "Creeping Miasma 3" #sync / 1[56]:[^:]*:Bozjan Phantom:57B5:/
+12505.8 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12507.4 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12509.0 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12510.6 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12511.0 "Creeping Miasma 1" sync / 1[56]:[^:]*:Bozjan Phantom:57B4:/
+12512.5 "Creeping Miasma 2" #sync / 1[56]:[^:]*:Bozjan Phantom:57B5:/
+12514.1 "Creeping Miasma 3" #sync / 1[56]:[^:]*:Bozjan Phantom:57B5:/
+12515.7 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12517.1 "--middle--" sync / 1[56]:[^:]*:Bozjan Phantom:57AD:/ # "Transference"
+12517.3 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12518.9 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12520.5 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+12522.1 "Lingering Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57B7:/
+
+# Invert Miasma Loop
+12524.4 "Vile Wave" sync / 1[56]:[^:]*:Bozjan Phantom:57BF:/
+12540.5 "Ice Spikes" sync / 1[56]:[^:]*:Bozjan Phantom:57BC:/
+12551.6 "Excruciation" sync / 1[56]:[^:]*:Bozjan Phantom:57BE:/
+12557.7 "Malediction of Agony" sync / 1[56]:[^:]*:Bozjan Phantom:57BD:/
+12568.9 "Weave Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57B2:/ window 100,100 jump 12165.3
+12575.1 "Summon" #sync / 1[56]:[^:]*:Bozjan Phantom:57BA:/
+12591.2 "Undying Hatred" #sync / 1[56]:[^:]*:Stuffy Wraith:57C2:/
+12395.1 "Manipulate Miasma?" #sync / 1[56]:[^:]*:Bozjan Phantom:57B3:/
+12395.1 "Invert Miasma?" #sync / 1[56]:[^:]*:Bozjan Phantom:59EE:/
+
+
+### Trinity Avowed
+# -p 594E:14011.8
+# -ii 5B32 593B 593C 593D 593E 593F 5940 5941 4E5C 4F53 4F54 5929 592B 592D 592F 5930 5931 5932 5933 5934 5935 5936 5937 5938 5B3B 593C 5955 5B24
+# -it "Trinity Avowed"
+
+# This fight has three weapons (sword, bow staff) each of which has two different versions (v1, v2).
+# The phase are: initial -> (all v1s in any order) -> (all v2s in any order) -> enrage.
+# An example phase ordering:
+#    initial -> sword v1 -> staff v1 -> bow v1 -> staff v2 -> sword v2 -> bow v2 -> enrage
+# Unfortunately, the "sword v1" transition is the same as "sword v2" in terms of abilities, and so
+# if you are at the end of a "bow v1" block, it is unclear from pure ability ids whether :5985:
+# means "sword v1" or "sword v2".  Timelines don't have any state (yet?) so things get repeated.
+#
+# Thus, the example block above would go through the following blocks (ctrl+f names to see below):
+# - Initial Phase
+# - Sword v1 (initial)
+# - Staff v1 (seen sword)
+# - roll into Bow v1 (final), [the "staff v1 (seen sword)" block has "Bow v1 (final)" included]
+# - Staff v2
+# - Sword v2
+# - Bow v2
+# - Enrage
+#
+# The "Staff v1 (seen sword)" block can then know that any future sword abilities are "Sword v2",
+# at the cost of duplicating a lot of timelines and making this very hard to follow, sorry.
+
+# Note: it is possible to transition directly from bow v1 -> bow v2.
+
+# Note: various "Blast" are renamed "Elemental Blast" and various "Arrow" are renamed
+# to be "Elemental Arrow" to avoid having too many skills on the timeline.
+
+# Note: Blade of Entropy is `sync / 1[56]:[^:]*:(Trinity Avowed|Avowed Avatar):594[23456789]|595[6789ABCD]:/``
+
+14000.0 "--sync--" sync / 00:0839::The Vault of Singing Crystal will be sealed off/ window 20000,0
+14000.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 0,2000 jump 0
+14006.7 "--sync--" sync / 14:[^:]*:Trinity Avowed:594E:/ window 10,10
+14011.8 "Wrath Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594E:/
+14019.9 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+
+# Initial Phase
+14029.2 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:598[567]:/
+14034.4 "Flashvane/Fury Of Bozja/Infernal Slash" sync / 1[56]:[^:]*:Trinity Avowed:(594B|594C|594A):/
+14037.5 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5983:/
+14042.6 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:598[567]:/
+14047.8 "Flashvane/Fury Of Bozja/Infernal Slash" sync / 1[56]:[^:]*:Trinity Avowed:(594B|594C|594A):/
+14050.9 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5984:/
+14056.0 "Allegiant Arsenal" # -> random jump to initial weapon phase
+
+# -> Sword v1 (initial)?
+14053.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 10,10 jump 14100
+14061.2 "Infernal Slash?" #sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+# -> Bow v1 (initial)?
+14053.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 10,10 jump 14700
+14061.2 "Flashvane?" #sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+# -> Staff v1 (initial)?
+14053.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 10,10 jump 15300
+14061.2 "Fury Of Bozja?" #sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+
+
+# Sword v1 (initial)
+14100.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/
+14103.0 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5985:/
+14108.2 "Infernal Slash" sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+14115.6 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BAF:/
+14122.7 "Unwavering Apparition" sync / 1[56]:[^:]*:Trinity Avowed:5B3A:/
+14128.7 "--untargetable--"
+14138.8 "Blade Of Entropy 1" #sync / 1[56]:[^:]*:Trinity Avowed:5959:/
+14152.5 "Blade Of Entropy 2" #sync / 1[56]:[^:]*:Trinity Avowed:5959:/
+14155.6 "--targetable--"
+14160.3 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5982:/
+14167.4 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+
+# -> Bow v1 (seen sword)?
+14175.3 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 70,10 jump 14900
+14183.5 "Flashvane?" #sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+# -> Staff v1 (seen sword)?
+14175.3 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 70,10 jump 15500
+14183.5 "Fury Of Bozja?" #sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+
+
+# Sword v1 (seen bow)
+14300.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/
+14303.0 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5985:/
+14308.2 "Infernal Slash" sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+14315.6 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BAF:/
+14322.7 "Unwavering Apparition" sync / 1[56]:[^:]*:Trinity Avowed:5B3A:/
+14328.7 "--untargetable--"
+14338.8 "Blade Of Entropy 1" #sync / 1[56]:[^:]*:Trinity Avowed:5959:/
+14352.5 "Blade Of Entropy 2" #sync / 1[56]:[^:]*:Trinity Avowed:5959:/
+14355.6 "--targetable--"
+14360.3 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5982:/
+14367.4 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+# -> roll into Staff v1 (final)
+14375.3 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 70,10
+14378.3 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5987:/
+14383.5 "Fury Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+14389.6 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:597B:/
+14396.7 "Quick March" sync / 1[56]:[^:]*:Trinity Avowed:5981:/
+14402.9 "Freedom Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597C:/
+14410.3 "Elemental Impact" sync / 1[56]:[^:]*:Tempestuous Orb:4F52:/
+14420.1 "Elemental Blast" sync / 1[56]:[^:]*:Tempestuous Orb:592E:/
+14425.9 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5984:/
+14433.0 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+14444.5 "Allegiant Arsenal"
+
+# -> Sword v2?
+14441.5 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 40,10 jump 15900
+14449.7 "Infernal Slash?" #sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+# -> Bow v2?
+14441.5 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 40,10 jump 16100
+14449.7 "Flashvane?" #sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+# -> Staff v2?
+14441.5 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 40,10 jump 16300
+14449.7 "Fury Of Bozja?" #sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+
+
+# Sword v1 (seen staff)
+14500.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/
+14503.0 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5985:/
+14508.2 "Infernal Slash" sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+14515.6 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BAF:/
+14522.7 "Unwavering Apparition" sync / 1[56]:[^:]*:Trinity Avowed:5B3A:/
+14528.7 "--untargetable--"
+14538.8 "Blade Of Entropy 1" #sync / 1[56]:[^:]*:Trinity Avowed:5959:/
+14552.5 "Blade Of Entropy 2" #sync / 1[56]:[^:]*:Trinity Avowed:5959:/
+14555.6 "--targetable--"
+14560.3 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5982:/
+14567.4 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+# -> roll into Bow v1 (final)
+14575.3 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 70,10
+14578.3 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5986:/
+14583.5 "Flashvane" sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+14589.6 "Quick March" sync / 1[56]:[^:]*:Trinity Avowed:5BB3:/
+14597.9 "Wrath Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5BB5:/
+14604.0 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597E:/
+14614.1 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5B3D:/
+14614.1 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5939:/
+14617.3 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BB0:/
+14625.1 "Shimmering Shot" sync / 1[56]:[^:]*:Trinity Avowed:597F:/
+14641.4 "Elemental Arrow" sync / 1[56]:[^:]*:Spark Arrow:593A:/
+14646.7 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5983:/ window 10,10 # some variance here
+14653.8 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+14664.2 "Allegiant Arsenal"
+
+# -> Sword v2?
+14661.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 40,10 jump 15900
+14669.4 "Infernal Slash?" #sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+# -> Bow v2?
+14661.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 40,10 jump 16100
+14669.4 "Flashvane?" #sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+# -> Staff v2?
+14661.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 40,10 jump 16300
+14669.4 "Fury Of Bozja?" #sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+
+
+# Bow v1 (initial)
+14700.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/
+14703.0 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5986:/
+14708.2 "Flashvane" sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+14714.3 "Quick March" sync / 1[56]:[^:]*:Trinity Avowed:5BB3:/
+14722.6 "Wrath Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5BB5:/
+14728.7 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597E:/
+14738.8 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5B3D:/
+14738.8 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5939:/
+14742.0 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BB0:/
+14749.8 "Shimmering Shot" sync / 1[56]:[^:]*:Trinity Avowed:597F:/
+14766.1 "Elemental Arrow" sync / 1[56]:[^:]*:Spark Arrow:593A:/
+14771.4 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5983:/ window 10,10 # some variance here
+14778.5 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+14788.9 "Allegiant Arsenal"
+
+# -> Sword v1 (seen bow)?
+14785.9 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 70,10 jump 14300
+14794.1 "Infernal Slash?" #sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+# -> Staff v1 (seen bow)?
+14785.9 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 70,10 jump 15700
+14794.1 "Fury Of Bozja?" #sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+
+
+# Bow v1 (seen sword)
+14900.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/
+14903.0 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5986:/
+14908.2 "Flashvane" sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+14914.3 "Quick March" sync / 1[56]:[^:]*:Trinity Avowed:5BB3:/
+14922.6 "Wrath Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5BB5:/
+14928.7 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597E:/
+14938.8 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5B3D:/
+14938.8 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5939:/
+14942.0 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BB0:/
+14949.8 "Shimmering Shot" sync / 1[56]:[^:]*:Trinity Avowed:597F:/
+14966.1 "Elemental Arrow" sync / 1[56]:[^:]*:Spark Arrow:593A:/
+14971.4 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5983:/ window 10,10 # some variance here
+14978.5 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+# -> roll into Staff v1 (final)
+14985.9 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 70,10
+14988.9 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5987:/
+14994.1 "Fury Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+15000.2 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:597B:/
+15007.3 "Quick March" sync / 1[56]:[^:]*:Trinity Avowed:5981:/
+15013.5 "Freedom Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597C:/
+15020.9 "Elemental Impact" sync / 1[56]:[^:]*:Tempestuous Orb:4F52:/
+15030.7 "Elemental Blast" sync / 1[56]:[^:]*:Tempestuous Orb:592E:/
+15036.5 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5984:/
+15043.6 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+15055.1 "Allegiant Arsenal"
+
+# -> Sword v2?
+15052.1 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 40,10 jump 15900
+15060.3 "Infernal Slash?" #sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+# -> Bow v2?
+15052.1 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 40,10 jump 16100
+15060.3 "Flashvane?" #sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+# -> Staff v2?
+15052.1 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 40,10 jump 16300
+15060.3 "Fury Of Bozja?" #sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+
+
+# Bow v1 (seen staff)
+15100.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/
+15103.0 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5986:/
+15108.2 "Flashvane" sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+15114.3 "Quick March" sync / 1[56]:[^:]*:Trinity Avowed:5BB3:/
+15122.6 "Wrath Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5BB5:/
+15128.7 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597E:/
+15138.8 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5B3D:/
+15138.8 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5939:/
+15142.0 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BB0:/
+15149.8 "Shimmering Shot" sync / 1[56]:[^:]*:Trinity Avowed:597F:/
+15166.1 "Elemental Arrow" sync / 1[56]:[^:]*:Spark Arrow:593A:/
+15171.4 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5983:/ window 10,10 # some variance here
+15178.5 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+# -> roll into Sword v1 (final)
+15185.9 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 70,10
+15188.9 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5985:/
+15194.1 "Infernal Slash" sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+15201.5 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BAF:/
+15208.6 "Unwavering Apparition" sync / 1[56]:[^:]*:Trinity Avowed:5B3A:/
+15214.6 "--untargetable--"
+15224.7 "Blade Of Entropy 1" #sync / 1[56]:[^:]*:Trinity Avowed:5959:/
+15238.4 "Blade Of Entropy 2" #sync / 1[56]:[^:]*:Trinity Avowed:5959:/
+15241.5 "--targetable--"
+15246.2 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5982:/
+15253.3 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+
+# -> Sword v2?
+15261.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 40,10 jump 15900
+15269.4 "Infernal Slash?" #sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+# -> Bow v2?
+15261.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 40,10 jump 16100
+15269.4 "Flashvane?" #sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+# -> Staff v2?
+15261.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 40,10 jump 16300
+15269.4 "Fury Of Bozja?" #sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+
+
+# Staff v1 (initial)
+15300.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/
+15303.0 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5987:/
+15308.2 "Fury Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+15314.3 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:597B:/
+15321.4 "Quick March" sync / 1[56]:[^:]*:Trinity Avowed:5981:/
+15327.6 "Freedom Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597C:/
+15335.0 "Elemental Impact" sync / 1[56]:[^:]*:Tempestuous Orb:4F52:/
+15344.8 "Elemental Blast" sync / 1[56]:[^:]*:Tempestuous Orb:592E:/
+15350.6 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5984:/
+15357.7 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+15369.2 "Allegiant Arsenal"
+
+# -> Sword v1 (seen staff)
+15366.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 70,10 jump 14500
+15374.4 "Infernal Slash?" #sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+# -> Bow v1 (seen staff)
+15366.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 70,10 jump 15100
+15374.4 "Flashvane?" #sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+
+
+# Staff v1 (seen sword)
+15500.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/
+15503.0 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5987:/
+15508.2 "Fury Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+15514.3 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:597B:/
+15521.4 "Quick March" sync / 1[56]:[^:]*:Trinity Avowed:5981:/
+15527.6 "Freedom Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597C:/
+15535.0 "Elemental Impact" sync / 1[56]:[^:]*:Tempestuous Orb:4F52:/
+15544.8 "Elemental Blast" sync / 1[56]:[^:]*:Tempestuous Orb:592E:/
+15550.6 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5984:/
+15557.7 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+# -> roll into Bow v1 (final)
+15566.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 70,10
+15569.2 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5986:/
+15574.4 "Flashvane" sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+15580.5 "Quick March" sync / 1[56]:[^:]*:Trinity Avowed:5BB3:/
+15588.8 "Wrath Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5BB5:/
+15594.9 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597E:/
+15605.0 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5B3D:/
+15605.0 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5939:/
+15608.2 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BB0:/
+15616.0 "Shimmering Shot" sync / 1[56]:[^:]*:Trinity Avowed:597F:/
+15632.3 "Elemental Arrow" sync / 1[56]:[^:]*:Spark Arrow:593A:/
+15637.6 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5983:/ window 10,10 # some variance here
+15644.7 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+15655.1 "Allegiant Arsenal"
+
+# -> Sword v2?
+15652.1 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 40,10 jump 15900
+15660.3 "Infernal Slash?" #sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+# -> Bow v2?
+15652.1 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 40,10 jump 16100
+15660.3 "Flashvane?" #sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+# -> Staff v2?
+15652.1 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 40,10 jump 16300
+15660.3 "Fury Of Bozja?" #sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+
+
+# Staff v1 (seen bow)
+15700.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/
+15703.0 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5987:/
+15708.2 "Fury Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+15714.3 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:597B:/
+15721.4 "Quick March" sync / 1[56]:[^:]*:Trinity Avowed:5981:/
+15727.6 "Freedom Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597C:/
+15735.0 "Elemental Impact" sync / 1[56]:[^:]*:Tempestuous Orb:4F52:/
+15744.8 "Elemental Blast" sync / 1[56]:[^:]*:Tempestuous Orb:592E:/
+15750.6 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5984:/
+15757.7 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+# -> roll into Sword v1 (final)
+15766.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 70,10
+15769.2 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5985:/
+15774.4 "Infernal Slash" sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+15781.8 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BAF:/
+15788.9 "Unwavering Apparition" sync / 1[56]:[^:]*:Trinity Avowed:5B3A:/
+15794.9 "--untargetable--"
+15805.0 "Blade Of Entropy 1" #sync / 1[56]:[^:]*:Trinity Avowed:5959:/
+15818.7 "Blade Of Entropy 2" #sync / 1[56]:[^:]*:Trinity Avowed:5959:/
+15821.8 "--targetable--"
+15826.5 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5982:/
+15833.6 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+15844.5 "Allegiant Arsenal"
+
+# -> Sword v2?
+15841.5 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 40,10 jump 15900
+15849.7 "Infernal Slash?" #sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+# -> Bow v2?
+15841.5 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 40,10 jump 16100
+15849.7 "Flashvane?" #sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+# -> Staff v2?
+15841.5 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 40,10 jump 16300
+15849.7 "Fury Of Bozja?" #sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+
+
+# Sword v2
+15900.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/
+15903.0 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5985:/
+15908.2 "Infernal Slash" sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+15915.4 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BAF:/
+15922.5 "Elemental Brand" sync / 1[56]:[^:]*:Trinity Avowed:5BB1:/
+15928.6 "Unwavering Apparition" sync / 1[56]:[^:]*:Trinity Avowed:5B3A:/
+15934.6 "--untargetable--"
+15944.7 "Blade Of Entropy 1" #sync / 1[56]:[^:]*:Trinity Avowed:5959:/
+15958.7 "Blade Of Entropy 2" #sync / 1[56]:[^:]*:Trinity Avowed:5959:/
+15961.8 "--targetable--"
+15966.2 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5982:/
+15973.3 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+15984.6 "Allegiant Arsenal"
+
+# -> Bow v2?
+15981.6 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 70,10 jump 16100
+15989.8 "Flashvane?" #sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+# -> Staff v2?
+15981.6 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 70,10 jump 16300
+15989.8 "Fury Of Bozja?" #sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+
+
+# Bow v2
+16100.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/
+16103.0 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5986:/
+16108.2 "Flashvane" sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+16114.3 "Unseen Eye" sync / 1[56]:[^:]*:Trinity Avowed:5BB4:/
+16120.5 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597E:/
+16125.6 "Gleaming Arrow" sync / 1[56]:[^:]*:Avowed Avatar:594D:/
+16130.6 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5B3D:/
+16130.6 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5939:/
+16133.9 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BB0:/
+16141.0 "Elemental Brand" sync / 1[56]:[^:]*:Trinity Avowed:5BB2:/
+16147.2 "Quick March" sync / 1[56]:[^:]*:Trinity Avowed:5BB3:/
+16154.0 "Shimmering Shot" sync / 1[56]:[^:]*:Trinity Avowed:597F:/
+16171.3 "Elemental Arrow" sync / 1[56]:[^:]*:Spark Arrow:593A:/
+16176.7 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5983:/ window 10,10 # some variance here
+16183.8 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+16192.3 "Wrath Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594E:/
+16203.0 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5987:/
+
+# -> Sword v2?
+16200.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 70,10 jump 15900
+16208.2 "Infernal Slash?" #sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+# -> Staff v2?
+16200.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 70,10 jump 16300
+16208.2 "Fury Of Bozja?" #sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+
+
+
+# Staff v2
+16300.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/
+16303.0 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5987:/
+16308.2 "Fury Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594C:/
+16314.3 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:597B:/
+16321.4 "Elemental Brand" sync / 1[56]:[^:]*:Trinity Avowed:597D:/
+16327.6 "Freedom Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597C:/
+16333.7 "Unseen Eye" sync / 1[56]:[^:]*:Trinity Avowed:5980:/
+16335.0 "Elemental Impact" sync / 1[56]:[^:]*:Tempestuous Orb:4F52:/
+16344.8 "Elemental Blast" sync / 1[56]:[^:]*:Tempestuous Orb:592E:/
+16345.0 "Gleaming Arrow" sync / 1[56]:[^:]*:Avowed Avatar:594D:/
+16350.5 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5984:/
+16357.6 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:594F:/
+16369.4 "Allegiant Arsenal"
+
+# -> Sword v2?
+16366.4 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 70,10 jump 15900
+16374.6 "Infernal Slash?" #sync / 1[56]:[^:]*:Trinity Avowed:594A:/
+# -> Bow v2?
+16366.4 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 70,10 jump 16100
+16374.6 "Flashvane?" #sync / 1[56]:[^:]*:Trinity Avowed:594B:/
+
+
+# Enrage
+# This happens ~10 seconds after when the allegiant arsenal would have cast.
+# We could...technically...break up phase 2 into the same blocks like phase 1, but no.
+# TODO: Alternatively we could add this in as "Enrage?" to each block?
+16500.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5954:/ window 2500,0
+16512.0 "Glory Of Bozja Enrage" sync / 1[56]:[^:]*:Trinity Avowed:5954:/
+16512.0 "--untargetable--"
+
+
+### Stygimoloch Lord
+# -p 57D7:18015.3 57C3:18204.5 57D2:19013.2
+# -ii 1961 55A6 57D0 57CE 57DD 57DC 57C8 57CA 57C6 57CC 5B38 57D3 57D6 57E2 501B 57DF 501A
+# -it "Stygimoloch Lord"
+18000.0 "--sync--" sync / 00:0839::The Path of Divine Clarity will be sealed off/ window 20000,0
+18000.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 0,2000 jump 0
+
+# Note: 57CF is the cast for Whack but 57D1 is the instant damage.
+# Similarly, 57C4 is the cast for Devastating Bolt, but 57C5/57C6 is the delayed damage.
+# Both of these casts are renamed as --sync-- to clean up the timeline.
+
+# Phase 1
+18008.3 "--sync--" sync / 14:[^:]*:Stygimoloch Lord:57D7:/ window 15,15
+18015.3 "Foe Splitter" sync / 1[56]:[^:]*:Stygimoloch Lord:57D7:/
+18023.4 "Vicious Swipe" sync / 1[56]:[^:]*:Stygimoloch Lord:5552:/
+18028.5 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Lord:57CF:/
+18028.5 "Whack 1" #sync / 1[56]:[^:]*:Stygimoloch Lord:57D1:/
+18030.5 "Whack 2" #sync / 1[56]:[^:]*:Stygimoloch Lord:57D1:/
+18032.5 "Whack 3" #sync / 1[56]:[^:]*:Stygimoloch Lord:57D1:/
+18042.8 "1111-Tonze Swing" sync / 1[56]:[^:]*:Stygimoloch Lord:57D8:/
+18056.0 "Rapid Bolts" sync / 1[56]:[^:]*:Stygimoloch Lord:57CD:/ duration 12.8
+18063.1 "Rapid Bolts" sync / 1[56]:[^:]*:Stygimoloch Lord:57CD:/ duration 12.8
+18070.4 "Rush" sync / 1[56]:[^:]*:Stygimoloch Lord:57D9:/
+18074.7 "Rush" sync / 1[56]:[^:]*:Stygimoloch Lord:57D9:/
+# ??? does this loop? is there a natural push here?
+
+# Phase 2: Adds (70%)
+# This phase is awkward to have a timeline for, as the Stygimoloch Lord repeats
+# in a loop, but the adds are on an 18s timer which doesn't line up with the
+# loop.  Therefore, we'll just unroll this loop a few times and drop the
+# Mana Flame after a while.  Most logs don't even see the 2nd Fateful Words.
+18200.0 "--untargetable--" sync / 1[56]:[^:]*:Stygimoloch Lord:57DA:/
+18201.5 "--sync--" sync / 14:[^:]*:Stygimoloch Lord:57C3:/ window 210,0
+18204.5 "Memory of the Labyrinth" sync / 1[56]:[^:]*:Stygimoloch Lord:57C3:/
+18205.1 "--adds--"
+18215.4 "Mana Flame" sync / 1[56]:[^:]*:Ball Of Fire:57DE:/
+18223.2 "Entrapment" sync / 1[56]:[^:]*:Stygimoloch Monk:57DB:/
+18232.8 "Labyrinthine Fate" sync / 1[56]:[^:]*:Stygimoloch Lord:57C7:/
+18233.4 "Mana Flame" sync / 1[56]:[^:]*:Ball Of Fire:57DE:/
+
+18241.1 "Fateful Words" sync / 1[56]:[^:]*:Stygimoloch Lord:57C9:/
+18247.2 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Lord:57C4:/
+18251.3 "Mana Flame" sync / 1[56]:[^:]*:Ball Of Fire:57DE:/
+18251.7 "Devastating Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57C5:/
+18257.5 "Rending Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57CB:/
+18269.3 "Mana Flame" sync / 1[56]:[^:]*:Ball Of Fire:57DE:/
+18271.7 "Labyrinthine Fate" sync / 1[56]:[^:]*:Stygimoloch Lord:57C7:/
+18277.9 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Lord:57C4:/
+18282.4 "Devastating Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57C5:/
+18287.2 "Mana Flame" sync / 1[56]:[^:]*:Ball Of Fire:57DE:/
+18288.3 "Rending Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57CB:/
+18296.4 "Mana Flame" sync / 1[56]:[^:]*:Ball Of Fire:57DE:/
+
+18296.6 "Fateful Words" sync / 1[56]:[^:]*:Stygimoloch Lord:57C9:/
+18304.7 "Rending Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57CB:/
+18305.2 "Mana Flame" sync / 1[56]:[^:]*:Ball Of Fire:57DE:/
+18309.1 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Lord:57C4:/
+18313.6 "Devastating Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57C5:/
+18323.3 "Mana Flame" sync / 1[56]:[^:]*:Ball Of Fire:57DE:/
+18327.4 "Labyrinthine Fate" sync / 1[56]:[^:]*:Stygimoloch Lord:57C7:/
+18333.7 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Lord:57C4:/
+18338.2 "Devastating Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57C5:/
+18341.3 "Mana Flame" sync / 1[56]:[^:]*:Ball Of Fire:57DE:/
+18344.0 "Rending Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57CB:/
+
+18352.3 "Fateful Words" sync / 1[56]:[^:]*:Stygimoloch Lord:57C9:/
+18359.3 "Mana Flame" sync / 1[56]:[^:]*:Ball Of Fire:57DE:/
+18360.5 "Rending Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57CB:/
+18364.8 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Lord:57C4:/
+18369.3 "Devastating Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57C5:/
+18377.4 "Mana Flame" sync / 1[56]:[^:]*:Ball Of Fire:57DE:/
+18383.1 "Labyrinthine Fate" sync / 1[56]:[^:]*:Stygimoloch Lord:57C7:/
+18389.4 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Lord:57C4:/
+18393.9 "Devastating Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57C5:/
+18395.4 "Mana Flame" sync / 1[56]:[^:]*:Ball Of Fire:57DE:/
+18399.7 "Rending Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57CB:/
+
+# Drop Mana Flame callouts in order to make a loop.
+18408.0 "Fateful Words" sync / 1[56]:[^:]*:Stygimoloch Lord:57C9:/
+18416.2 "Rending Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57CB:/
+18420.5 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Lord:57C4:/
+18425.0 "Devastating Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57C5:/
+18438.8 "Labyrinthine Fate" sync / 1[56]:[^:]*:Stygimoloch Lord:57C7:/
+18445.1 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Lord:57C4:/
+18449.6 "Devastating Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57C5:/
+18455.4 "Rending Bolt" sync / 1[56]:[^:]*:Stygimoloch Lord:57CB:/
+
+18463.7 "Fateful Words" sync / 1[56]:[^:]*:Stygimoloch Lord:57C9:/ window 50,50 jump 18408
+18471.9 "Rending Bolt" #sync / 1[56]:[^:]*:Stygimoloch Lord:57CB:/
+18476.2 "--sync--" #sync / 1[56]:[^:]*:Stygimoloch Lord:57C4:/
+18480.7 "Devastating Bolt" #sync / 1[56]:[^:]*:Stygimoloch Lord:57C5:/
+18494.5 "Labyrinthine Fate" #sync / 1[56]:[^:]*:Stygimoloch Lord:57C7:/
+18500.8 "--sync--" #sync / 1[56]:[^:]*:Stygimoloch Lord:57C4:/
+18505.3 "Devastating Bolt" #sync / 1[56]:[^:]*:Stygimoloch Lord:57C5:/
+18511.1 "Rending Bolt" #sync / 1[56]:[^:]*:Stygimoloch Lord:57CB:/
+
+
+# Phase 3: Victory Lap (once adds are dead)
+19000.0 "--targetable--" sync / 22:........:Stygimoloch Lord:........:Stygimoloch Lord/ window 800,0
+19008.2 "--sync--" sync / 14:[^:]*:Stygimoloch Lord:57D2:/ window 1010,0
+19013.2 "Thunderous Discharge" sync / 1[56]:[^:]*:Stygimoloch Lord:57D2:/
+19028.4 "Rapid Bolts 1" sync / 1[56]:[^:]*:Stygimoloch Lord:57CD:/ duration 12.8
+19040.5 "1111-Tonze Swing" sync / 1[56]:[^:]*:Stygimoloch Lord:57D8:/
+19051.6 "Rapid Bolts 2" sync / 1[56]:[^:]*:Stygimoloch Lord:57CD:/ duration 12.8
+19058.7 "Rapid Bolts 3" sync / 1[56]:[^:]*:Stygimoloch Lord:57CD:/ duration 12.8
+19065.8 "Crushing Hoof" sync / 1[56]:[^:]*:Stygimoloch Lord:57D5:/
+19072.0 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Lord:57CF:/
+19072.0 "Whack 1" #sync / 1[56]:[^:]*:Stygimoloch Lord:57D1:/
+19074.0 "Whack 2" #sync / 1[56]:[^:]*:Stygimoloch Lord:57D1:/
+19076.0 "Whack 3" #sync / 1[56]:[^:]*:Stygimoloch Lord:57D1:/
+19092.5 "Foe Splitter" sync / 1[56]:[^:]*:Stygimoloch Lord:57D7:/
+19097.7 "Vicious Swipe" sync / 1[56]:[^:]*:Stygimoloch Lord:5552:/
+19102.8 "--sync--" sync / 1[56]:[^:]*:Stygimoloch Lord:57CF:/
+19102.8 "Whack 1" #sync / 1[56]:[^:]*:Stygimoloch Lord:57D1:/
+19104.8 "Whack 2" #sync / 1[56]:[^:]*:Stygimoloch Lord:57D1:/
+19106.8 "Whack 3" #sync / 1[56]:[^:]*:Stygimoloch Lord:57D1:/
+
+# loop block
+19121.3 "Thunderous Discharge" sync / 1[56]:[^:]*:Stygimoloch Lord:57D2:/ window 80,80 jump 19013.2
+19136.5 "Rapid Bolts 1" #sync / 1[56]:[^:]*:Stygimoloch Lord:57CD:/ duration 12.8
+19148.6 "1111-Tonze Swing" #sync / 1[56]:[^:]*:Stygimoloch Lord:57D8:/
+19159.7 "Rapid Bolts 2" #sync / 1[56]:[^:]*:Stygimoloch Lord:57CD:/ duration 12.8
+19166.8 "Rapid Bolts 3" #sync / 1[56]:[^:]*:Stygimoloch Lord:57CD:/ duration 12.8
+
+
+### The Queen
+# -p 59F9:20015.3
+# -ii 5B77 5B22 59ED 53EE 53EF 5A2E 5A04 5A05 5B85 5B84 5A1E 5A01 5A28 5A2A 59F7 5B5B 5B5C 5B73 5B74 5B75 5B76 5B41
+# -it "The Queen"
+# TODO: what is 5BCB? (--middle--?)
+# TODO: what is 55A8?
+20000.0 "--sync--" sync / 00:0839::Queensheart will be sealed off/ window 20000,0
+20000.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 0,2000 jump 0
+20010.3 "--sync--" sync / 14:[^:]*:The Queen:59F9:/ window 20,20
+20015.3 "Empyrean Iniquity" sync / 1[56]:[^:]*:The Queen:59F9:/
+20025.5 "--sync--" sync / 1[56]:[^:]*:The Queen:5BCB:/
+20033.9 "Queen's Will" sync / 1[56]:[^:]*:The Queen:59E6:/
+20040.0 "Northswain's Glow" sync / 1[56]:[^:]*:The Queen:59F3:/
+20048.2 "Beck And Call To Arms" sync / 1[56]:[^:]*:The Queen:5B99:/
+20050.8 "Northswain's Glow" sync / 1[56]:[^:]*:The Queen:59F4:/
+20052.5 "The Means" sync / 1[56]:[^:]*:Queen's Warrior:59E8:/
+20052.5 "The Ends" sync / 1[56]:[^:]*:Queen's Knight:59E7:/
+20056.3 "Beck And Call To Arms" sync / 1[56]:[^:]*:The Queen:5B9A:/
+20060.6 "The Means" sync / 1[56]:[^:]*:Queen's Gunner:59EA:/
+20060.6 "The Ends" sync / 1[56]:[^:]*:Queen's Soldier:59E9:/
+20076.5 "Cleansing Slash 1" sync / 1[56]:[^:]*:The Queen:59F5:/
+20079.7 "Cleansing Slash 2" sync / 1[56]:[^:]*:The Queen:5BB8:/
+20088.8 "Empyrean Iniquity" sync / 1[56]:[^:]*:The Queen:59F9:/
+20097.0 "--sync--" sync / 1[56]:[^:]*:The Queen:5BCB:/
+20105.2 "Queen's Edict" sync / 1[56]:[^:]*:The Queen:59EC:/
+20108.3 "--untargetable--"
+20124.7 "Beck And Call To Arms" sync / 1[56]:[^:]*:The Queen:5B9B:/
+20129.0 "The Means" sync / 1[56]:[^:]*:Queen's Warrior:59E8:/
+20129.0 "The Ends" sync / 1[56]:[^:]*:Queen's Knight:59E7:/
+20136.5 "Beck And Call To Arms" sync / 1[56]:[^:]*:The Queen:5B9C:/
+20140.8 "The Means" sync / 1[56]:[^:]*:Queen's Gunner:59EA:/
+20140.8 "The Ends" sync / 1[56]:[^:]*:Queen's Soldier:59E9:/
+
+20141.0 "Queen's Justice" sync / 1[56]:[^:]*:The Queen:59EB:/
+20156.0 "Queen's Justice" sync / 1[56]:[^:]*:The Queen:59EB:/
+20157.6 "Gunnhildr's Blades" sync / 1[56]:[^:]*:The Queen:5B21:/
+20160.7 "--targetable--"
+20167.9 "--sync--" sync / 1[56]:[^:]*:The Queen:5BCB:/
+20171.3 "--sync--" sync / 1[56]:[^:]*:The Queen:55A8:/
+20178.4 "Gods Save The Queen" sync / 1[56]:[^:]*:The Queen:59FA:/
+20194.7 "--sync--" sync / 1[56]:[^:]*:The Queen:5BCB:/
+20198.1 "--sync--" sync / 1[56]:[^:]*:The Queen:55A8:/
+20203.1 "Unlucky Lot x5" duration 8 #sync / 1[56]:[^:]*:Ball Lightning:55B6:/
+20198.1 "--sync--" sync / 1[56]:[^:]*:The Queen:55A8:/
+20210.0 "Maelstrom's Bolt" sync / 1[56]:[^:]*:The Queen:59EF:/
+
+20224.2 "Relentless Play 1" sync / 1[56]:[^:]*:The Queen:59FC:/ window 20,20
+20227.3 "--tethers--"
+20231.3 "Reversal Of Forces" sync / 1[56]:[^:]*:Queen's Warrior:5A0E:/
+20231.3 "Automatic Turret" sync / 1[56]:[^:]*:Queen's Gunner:5A2B:/
+20235.3 "Northswain's Glow" sync / 1[56]:[^:]*:The Queen:59F3:/
+20237.4 "Reading" sync / 1[56]:[^:]*:Queen's Gunner:5A2C:/
+20246.0 "Northswain's Glow" sync / 1[56]:[^:]*:The Queen:59F4:/
+20246.3 "Winds Of Weight" sync / 1[56]:[^:]*:Queen's Warrior:5A0F:/
+20246.3 "Winds Of Fate" sync / 1[56]:[^:]*:Queen's Warrior:5A11:/
+20246.3 "Weight Of Fortune" sync / 1[56]:[^:]*:Queen's Warrior:5A10:/
+20247.5 "Queen's Shot" sync / 1[56]:[^:]*:Queen's Gunner:5A2D:/
+20251.0 "Turret's Tour" sync / 1[56]:[^:]*:Automatic Turret:5A2F:/
+20260.4 "Cleansing Slash 1" sync / 1[56]:[^:]*:The Queen:59F5:/
+20263.6 "Cleansing Slash 2" sync / 1[56]:[^:]*:The Queen:5BB8:/
+
+20276.8 "Relentless Play 2" sync / 1[56]:[^:]*:The Queen:59FC:/ window 20,20
+20282.9 "Sword Omen/Shield Omen" sync / 1[56]:[^:]*:Queen's Knight:59F[DE]:/
+20287.9 "--untargetable--"
+20292.5 "Double Gambit" sync / 1[56]:[^:]*:Queen's Soldier:5A1B:/
+20296.3 "Optimal Offensive" sync / 1[56]:[^:]*:Queen's Knight:5A0[23]:/
+20298.2 "Judgment Blade" sync / 1[56]:[^:]*:The Queen:59F[12]:/
+20298.9 "Unlucky Lot" sync / 1[56]:[^:]*:Aetherial Sphere:5A06:/
+20300.7 "Secrets Revealed" sync / 1[56]:[^:]*:Queen's Soldier:5B8B:/
+20300.8 "--sync--" sync / 1[56]:[^:]*:Soldier Avatar:5B8C:/
+20309.9 "Judgment Blade" sync / 1[56]:[^:]*:The Queen:59F[12]:/
+20312.6 "Pawn Off" sync / 1[56]:[^:]*:Soldier Avatar:5A1D:/
+
+20314.6 "--targetable--"
+20324.7 "Empyrean Iniquity" sync / 1[56]:[^:]*:The Queen:59F9:/
+20332.9 "--sync--" sync / 1[56]:[^:]*:The Queen:5BCB:/
+20341.3 "Queen's Edict" sync / 1[56]:[^:]*:The Queen:59EC:/
+20344.4 "--untargetable--"
+20360.8 "Beck And Call To Arms" sync / 1[56]:[^:]*:The Queen:5B9B:/
+20365.1 "The Means" sync / 1[56]:[^:]*:Queen's Warrior:59E8:/
+20365.1 "The Ends" sync / 1[56]:[^:]*:Queen's Knight:59E7:/
+20372.6 "Beck And Call To Arms" sync / 1[56]:[^:]*:The Queen:5B9C:/
+20376.9 "The Means" sync / 1[56]:[^:]*:Queen's Gunner:59EA:/
+20376.9 "The Ends" sync / 1[56]:[^:]*:Queen's Soldier:59E9:/
+20377.1 "Queen's Justice" sync / 1[56]:[^:]*:The Queen:59EB:/
+20392.1 "Queen's Justice" sync / 1[56]:[^:]*:The Queen:59EB:/
+20393.8 "Gunnhildr's Blades" sync / 1[56]:[^:]*:The Queen:5B21:/
+20396.9 "--targetable--"
+20404.1 "Cleansing Slash 1" sync / 1[56]:[^:]*:The Queen:59F5:/
+20407.3 "Cleansing Slash 2" sync / 1[56]:[^:]*:The Queen:5BB8:/
+
+20422.5 "Relentless Play 3" sync / 1[56]:[^:]*:The Queen:59FC:/ window 20,20
+20428.6 "Sword Omen/Shield Omen" sync / 1[56]:[^:]*:Queen's Knight:59F[DE]:/
+20437.9 "Automatic Turret" sync / 1[56]:[^:]*:Queen's Gunner:5A26:/
+20440.0 "Optimal Play" sync / 1[56]:[^:]*:Queen's Knight:(5A00|59FF):/
+20446.0 "Turret's Tour" sync / 1[56]:[^:]*:Queen's Gunner:5A27:/
+20446.6 "--sync--" sync / 1[56]:[^:]*:The Queen:5BCB:/
+20446.6 "Turret's Tour" #sync / 1[56]:[^:]*:Automatic Turret:5A29:/
+20447.6 "Turret's Tour" #sync / 1[56]:[^:]*:Automatic Turret:5A29:/
+20449.9 "--sync--" sync / 1[56]:[^:]*:The Queen:55A8:/
+20454.9 "Unlucky Lot x5" duration 8 #sync / 1[56]:[^:]*:Ball Lightning:55B6:/
+20461.8 "Maelstrom's Bolt" sync / 1[56]:[^:]*:The Queen:59EF:/
+20474.9 "Empyrean Iniquity" sync / 1[56]:[^:]*:The Queen:59F9:/
+
+20488.1 "Relentless Play 4" sync / 1[56]:[^:]*:The Queen:59FC:/ window 20,20
+20494.2 "Bombslinger" sync / 1[56]:[^:]*:Queen's Warrior:5B3F:/
+20497.3 "--tethers--"
+20501.3 "Reversal Of Forces" sync / 1[56]:[^:]*:Queen's Warrior:5A0E:/
+20503.2 "Heaven's Wrath" sync / 1[56]:[^:]*:The Queen:59F6:/
+20509.0 "--knockback--" sync / 1[56]:[^:]*:The Queen:59F8:/
+20511.3 "--untargetable--"
+20512.2 "Icy Portent/Fiery Portent" sync / 1[56]:[^:]*:Queen's Soldier:5A2[12]:/
+20515.5 "Above Board" sync / 1[56]:[^:]*:Queen's Warrior:5A0B:/
+20515.5 "--sync--" sync / 1[56]:[^:]*:Queen's Warrior:5B8E:/
+20516.5 "--stunned--" # 3 or 7 second stun
+20518.5 "Lots Cast" sync / 1[56]:[^:]*:(Aetherial Burst:5B89|Aetherial Bolt:5A0D):/
+20521.5 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Bolt:5B88:/
+20522.7 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Bolt:5BB6:/
+20523.5 "--unstunned--"
+20525.6 "--targetable--"
+
+20530.7 "Relentless Play 5" sync / 1[56]:[^:]*:The Queen:59FC:/
+20538.8 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Knight:5A08:/
+20538.8 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Warrior:5A16:/
+20541.8 "Queen's Shot" sync / 1[56]:[^:]*:Queen's Gunner:5A35:/
+20541.8 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Soldier:5A23:/
+20546.9 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Knight:5A08:/
+20546.9 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Warrior:5A16:/
+20549.9 "Queen's Shot" sync / 1[56]:[^:]*:Queen's Gunner:5A35:/
+20549.9 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Soldier:5A23:/
+20552.7 "Empyrean Iniquity" sync / 1[56]:[^:]*:The Queen:59F9:/
+20558.9 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Knight:5A08:/
+20561.9 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Warrior:5A16:/
+20565.0 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Soldier:5A23:/
+20567.9 "Queen's Shot" sync / 1[56]:[^:]*:Queen's Gunner:5A35:/
+20574.6 "--sync--" sync / 1[56]:[^:]*:The Queen:55A8:/
+20586.7 "Gods Save The Queen Enrage" sync / 1[56]:[^:]*:The Queen:5B5A:/
+20586.7 "--untargetable--"

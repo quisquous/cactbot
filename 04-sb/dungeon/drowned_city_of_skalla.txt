@@ -1,0 +1,141 @@
+#Drowned City of Skalla
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~#
+# Kelpie #
+#~~~~~~~~#
+
+# -ii 2655
+
+0 "Start" sync / 00:0839::The Green Screams will be sealed off/ window 0,1
+7.4 "Torpedo" sync / 1[56]:[^:]*:Kelpie:264F:/ window 7.4,5
+15.0 "Rising Seas" sync / 1[56]:[^:]*:Kelpie:2650:/
+26.7 "Gallop" sync / 1[56]:[^:]*:Kelpie:2653:/
+37.0 "Hydro Pull/Hydro Push" sync / 1[56]:[^:]*:Kelpie:(2651|2652):/
+43.5 "Torpedo" sync / 1[56]:[^:]*:Kelpie:264F:/
+51.1 "Rising Seas" sync / 1[56]:[^:]*:Kelpie:2650:/
+62.7 "Bloody Puddle" sync / 1[56]:[^:]*:Kelpie:2654:/
+65.9 "Gallop" sync / 1[56]:[^:]*:Kelpie:2653:/ window 20,20
+73.9 "Bubble Burst" sync / 1[56]:[^:]*:Hydrosphere:261B:/
+76.2 "Hydro Pull/Hydro Push" sync / 1[56]:[^:]*:Kelpie:(2651|2652):/
+92.6 "Rising Seas" sync / 1[56]:[^:]*:Kelpie:2650:/
+
+# A near-perfect 50-second rotation
+102.2 "Torpedo" sync / 1[56]:[^:]*:Kelpie:264F:/ window 20,20
+107.8 "Rising Seas" sync / 1[56]:[^:]*:Kelpie:2650:/
+117.3 "Bloody Puddle" sync / 1[56]:[^:]*:Kelpie:2654:/
+120.5 "Gallop" sync / 1[56]:[^:]*:Kelpie:2653:/
+128.6 "Bubble Burst" sync / 1[56]:[^:]*:Hydrosphere:261B:/
+130.7 "Hydro Pull/Hydro Push" sync / 1[56]:[^:]*:Kelpie:(2651|2652):/
+
+152.2 "Torpedo" sync / 1[56]:[^:]*:Kelpie:264F:/ window 20,20 jump 102.2
+157.8 "Rising Seas"
+167.3 "Bloody Puddle"
+170.5 "Gallop"
+178.6 "Bubble Burst"
+180.7 "Hydro Push/Hydro Pull"
+
+#~~~~~~~~~~~~~#
+# The Old One #
+#~~~~~~~~~~~~~#
+
+# -ii 2659
+
+
+
+1000.0 "Start" sync / 00:0839::A Door Unopened will be sealed off/ window 1000,5
+1009.2 "Mystic Light" sync / 1[56]:[^:]*:The Old One:2657:/
+1015.0 "Mystic Flame" sync / 1[56]:[^:]*:The Old One:2658:/
+1018.1 "Order To Detonate (cast)" sync / 14:[^:]*:The Old One:265B:/ window 18.1,5 duration 19.7
+1037.8 "Order To Detonate?" # sync / 1[56]:[^:]*:The Old One:265B:/
+1040.6 "Self-Detonate?" # sync / 1[56]:[^:]*:Subservient:265C:/
+1047.7 "Mystic Flame" sync / 1[56]:[^:]*:The Old One:2658:/ window 20,20
+1058.8 "Mystic Light" sync / 1[56]:[^:]*:The Old One:2657:/
+1074.7 "Mystic Flame" sync / 1[56]:[^:]*:The Old One:2658:/ jump 1047.7
+1085.8 "Mystic Light"
+1101.7 "Mystic Flame"
+1112.8 "Mystic Light"
+1128.7 "Mystic Flame"
+1139.8 "Mystic Light"
+
+1200.0 "--sync--" sync / 14:[^:]*:The Old One:265A:/ window 200,10
+1202.7 "Shifting Light" sync / 1[56]:[^:]*:The Old One:265A:/
+1205.8 "Order To Detonate (cast)" sync / 14:[^:]*:The Old One:265B:/ duration 19.7
+# 1225.5 "Order To Detonate?" sync / 1[56]:[^:]*:The Old One:265B:/
+1228.3 "Self-Detonate?" # sync / 1[56]:[^:]*:Subservient:265C:/
+1232.6 "--sync--" sync / 14:[^:]*:The Old One:2657:/ window 32.6,5
+1236.3 "Mystic Light" sync / 1[56]:[^:]*:The Old One:2657:/
+1244.1 "Mystic Flame" sync / 1[56]:[^:]*:The Old One:2658:/
+1252.2 "Mystic Light" sync / 1[56]:[^:]*:The Old One:2657:/
+1269.0 "Mystic Light" sync / 1[56]:[^:]*:The Old One:2657:/ jump 1236.3
+1276.8 "Mystic Flame"
+1284.9 "Mystic Light"
+1301.7 "Mystic Light"
+1309.5 "Mystic Flame"
+1317.6 "Mystic Light"
+
+1400.0 "--sync--" sync / 14:[^:]*:The Old One:265A:/ window 190,5
+1402.7 "Shifting Light" sync / 1[56]:[^:]*:The Old One:265A:/
+1405.8 "Order To Detonate (cast)" sync / 14:[^:]*:The Old One:265B:/ duration 19.7
+# 1425.5 "Order To Detonate?" sync / 1[56]:[^:]*:The Old One:265B:/
+1428.3 "Self-Detonate?" # sync / 1[56]:[^:]*:Subservient:265C:/
+1432.6 "--sync--" sync / 14:[^:]*:The Old One:2657:/ window 32.6,5
+1436.3 "Mystic Light" sync / 1[56]:[^:]*:The Old One:2657:/
+1444.1 "Mystic Flame" sync / 1[56]:[^:]*:The Old One:2658:/
+1452.2 "Mystic Light" sync / 1[56]:[^:]*:The Old One:2657:/
+1469.0 "Mystic Light" sync / 1[56]:[^:]*:The Old One:2657:/ jump 1436.3
+1476.8 "Mystic Flame"
+1484.9 "Mystic Light"
+1501.7 "Mystic Light"
+1509.5 "Mystic Flame"
+1517.6 "Mystic Light"
+
+#~~~~~~~~~~~~~~~~~~~~~~#
+# Hrodric Poisontongue #
+#~~~~~~~~~~~~~~~~~~~~~~#
+
+2000.0 "Start" sync / 00:0839::The Golden Walls Of Ruin will be sealed off/ window 2000,5
+2012.6 "Rusting Claw" sync / 1[56]:[^:]*:Hrodric Poisontongue:2661:/ window 2012.6
+2026.2 "Tail Drive" sync / 1[56]:[^:]*:Hrodric Poisontongue:2663:/
+2035.9 "The Spin" sync / 1[56]:[^:]*:Hrodric Poisontongue:2664:/ window 35.9,5
+2041.6 "--sync--" sync / 1[56]:[^:]*:Hrodric Poisontongue:2666:/
+2046.7 "Ring Of Chaos" sync / 1[56]:[^:]*:Hrodric Poisontongue:2667:/
+2052.2 "Eye Of The Fire" sync / 1[56]:[^:]*:Hrodric Poisontongue:2665:/ window 2052.2,10
+2057.9 "--sync--" sync / 1[56]:[^:]*:Hrodric Poisontongue:2666:/
+2063.0 "Cross Of Chaos/Circle Of Chaos" sync / 1[56]:[^:]*:Hrodric Poisontongue:(2668|2669):/
+2068.7 "Words Of Woe" sync / 1[56]:[^:]*:Hrodric Poisontongue:2662:/
+2074.4 "Words Of Woe" sync / 1[56]:[^:]*:Hrodric Poisontongue:2662:/
+2080.2 "Words Of Woe" sync / 1[56]:[^:]*:Hrodric Poisontongue:2662:/
+2087.9 "--sync--" sync / 1[56]:[^:]*:Hrodric Poisontongue:2666:/ window 15,2.5 # Solo/duo runners will see only one or two lasers
+
+2093.0 "Ring Of Chaos/Cross Of Chaos" sync / 1[56]:[^:]*:Hrodric Poisontongue:(2667|2668):/
+2095.5 "--sync--" sync / 1[56]:[^:]*:Hrodric Poisontongue:2666:/
+2100.6 "Ring Of Chaos" sync / 1[56]:[^:]*:Hrodric Poisontongue:2667:/
+2103.0 "Tail Drive" sync / 1[56]:[^:]*:Hrodric Poisontongue:2663:/
+2115.6 "The Spin" sync / 1[56]:[^:]*:Hrodric Poisontongue:2664:/ window 30,30
+2126.3 "Rusting Claw" sync / 1[56]:[^:]*:Hrodric Poisontongue:2661:/
+2132.0 "--sync--" sync / 1[56]:[^:]*:Hrodric Poisontongue:2666:/
+2137.1 "Cross Of Chaos/Circle Of Chaos" sync / 1[56]:[^:]*:Hrodric Poisontongue:(2668|2669):/
+2139.6 "--sync--" sync / 1[56]:[^:]*:Hrodric Poisontongue:2666:/
+2144.7 "Ring Of Chaos" sync / 1[56]:[^:]*:Hrodric Poisontongue:2667:/
+2145.2 "Eye Of The Fire" sync / 1[56]:[^:]*:Hrodric Poisontongue:2665:/ window 30,30
+2155.8 "Rusting Claw" sync / 1[56]:[^:]*:Hrodric Poisontongue:2661:/
+2166.4 "Tail Drive" sync / 1[56]:[^:]*:Hrodric Poisontongue:2663:/
+2174.1 "--sync--" sync / 1[56]:[^:]*:Hrodric Poisontongue:2666:/
+2179.2 "Ring Of Chaos/Circle Of Chaos" sync / 1[56]:[^:]*:Hrodric Poisontongue:(2667|2669):/
+2181.7 "--sync--" sync / 1[56]:[^:]*:Hrodric Poisontongue:2666:/
+2186.8 "Cross Of Chaos" sync / 1[56]:[^:]*:Hrodric Poisontongue:2668:/
+2187.5 "Words Of Woe" sync / 1[56]:[^:]*:Hrodric Poisontongue:2662:/
+2195.2 "--sync--" sync / 1[56]:[^:]*:Hrodric Poisontongue:2666:/
+
+2200.3 "Ring Of Chaos/Cross Of Chaos" sync / 1[56]:[^:]*:Hrodric Poisontongue:(2667|2668):/ jump 2093.0
+2202.8 "--sync--"
+2207.9 "Ring Of Chaos"
+2210.3 "Tail Drive"
+2222.9 "The Spin"
+2233.6 "Rusting Claw"
+
+

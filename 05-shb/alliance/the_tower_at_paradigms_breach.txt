@@ -1,0 +1,537 @@
+### The Tower at Paradigm's Breach
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+### Knave of Hearts
+# -p 5EB5:1012
+# -ii 5CEC 5CED 5CEE 5CEF 5EA5 5EA6 5CF9 5EB4 5EAF
+# -ic "2B"
+# -it "Knave Of Hearts"
+
+# Note: 5EA7 (middle laser) is always 8 seconds, but 5EA4 (sides) is always 7 seconds.
+# This creates weird desyncing by ~1s around any place where there's randomness.
+# The starts casting of these two abilities overlaps, so there's not a great way
+# to come up with any timeline that will perfectly time both of them.
+# So, give up, and add extra syncs on abilities after.
+
+1000.0 "--sync--" sync / 00:0839::Closed Area A will be sealed off/ window 10000,0
+1012.0 "Roar" sync / 1[56]:[^:]*:Knave Of Hearts:5EB5:/ window 10,10
+1022.1 "Colossal Impact" sync / 1[56]:[^:]*:Knave Of Hearts:5EA7:/
+1033.2 "Colossal Impact" sync / 1[56]:[^:]*:Knave Of Hearts:5EA4:/
+1040.3 "--sync--" sync / 1[56]:[^:]*:Knave Of Hearts:5EB2:/ # Magic Artillery Beta cast
+1047.4 "Magic Artillery Beta" sync / 1[56]:[^:]*:Knave Of Hearts:5EB3:/ # damage
+
+1050.5 "Replicate" sync / 1[56]:[^:]*:Knave Of Hearts:5EA9:/
+1061.8 "Stacking The Deck" sync / 1[56]:[^:]*:Copied Knave:60F0:/
+1072.0 "Colossal Impact 1" sync / 1[56]:[^:]*:Knave Of Hearts:5EA[47]:/ window 4,4
+1077.0 "Colossal Impact 2" sync / 1[56]:[^:]*:Copied Knave:5EA[47]:/ window 4,4
+1085.2 "--sync--" sync / 14:[^:]*:Knave Of Hearts:5EA8:/ window 10,10
+1089.2 "Spheroids" sync / 1[56]:[^:]*:Knave Of Hearts:5EA8:/
+1093.4 "Knavish Bullets" sync / 1[56]:[^:]*:Spheroid:5EAD:/
+1094.2 "--sync--" sync / 1[56]:[^:]*:Knave Of Hearts:5EAA:/ # Magic Artillery Alpha cast
+1102.3 "Magic Artillery Alpha" sync / 1[56]:[^:]*:Knave Of Hearts:5EAB:/ # damage
+1116.4 "Light Leap" sync / 1[56]:[^:]*:Knave Of Hearts:5EAE:/
+1116.4 "--untargetable--"
+1118.5 "--sync--" sync / 1[56]:[^:]*:Knave Of Hearts:5EB0:/
+1120.5 "--targetable--"
+
+1123.6 "Replicate" sync / 1[56]:[^:]*:Knave Of Hearts:5EA9:/
+1134.9 "Stacking The Deck" sync / 1[56]:[^:]*:Copied Knave:60F0:/
+1145.1 "Lunge 1" sync / 1[56]:[^:]*:Knave Of Hearts:5EB1:/
+1146.2 "--sync--" sync / 1[56]:[^:]*:Knave Of Hearts:5EB0:/
+1155.1 "Lunge 2" sync / 1[56]:[^:]*:Copied Knave:5EB1:/
+1167.3 "Roar" sync / 1[56]:[^:]*:Knave Of Hearts:5EB5:/
+
+1178.5 "Replicate" sync / 1[56]:[^:]*:Knave Of Hearts:5EA9:/
+1189.8 "Stacking The Deck" sync / 1[56]:[^:]*:Copied Knave:60F0:/
+1200.0 "Colossal Impact 1" sync / 1[56]:[^:]*:Knave Of Hearts:5EA[47]:/ window 4,4
+1206.0 "Colossal Impact 2" sync / 1[56]:[^:]*:Copied Knave:5EA[47]:/ window 4,4
+1208.1 "Spheroids" sync / 1[56]:[^:]*:Knave Of Hearts:5EA8:/ window 10,10
+1211.0 "Colossal Impact 3" #sync / 1[56]:[^:]*:Copied Knave:5EA[47]:/
+1213.2 "--sync--" sync / 1[56]:[^:]*:Knave Of Hearts:5EAA:/ # Magic Artillery Alpha cast
+1221.2 "Magic Barrage 1" #sync / 1[56]:[^:]*:Spheroid:5EAC:/
+1221.3 "Magic Artillery Alpha" sync / 1[56]:[^:]*:Knave Of Hearts:5EAB:/ # damage
+1224.2 "Magic Barrage 2" #sync / 1[56]:[^:]*:Spheroid:5EAC:/
+1239.4 "Light Leap" sync / 1[56]:[^:]*:Knave Of Hearts:5EAE:/
+1239.4 "--untargetable--"
+1241.5 "--sync--" sync / 1[56]:[^:]*:Knave Of Hearts:5EB0:/
+1243.5 "--targetable--"
+
+1246.6 "Replicate" sync / 1[56]:[^:]*:Knave Of Hearts:5EA9:/
+1257.9 "Stacking The Deck" sync / 1[56]:[^:]*:Copied Knave:60F0:/
+1268.1 "Lunge 1" sync / 1[56]:[^:]*:Knave Of Hearts:5EB1:/
+1269.2 "--sync--" sync / 1[56]:[^:]*:Knave Of Hearts:5EB0:/
+1278.1 "Lunge 2" sync / 1[56]:[^:]*:Copied Knave:5EB1:/
+1280.1 "Colossal Impact" sync / 1[56]:[^:]*:Knave Of Hearts:(60C8|5CFD):/
+1287.2 "--sync--" sync / 1[56]:[^:]*:Knave Of Hearts:5EB2:/ # Magic Artillery Beta cast
+1294.3 "Magic Artillery Beta" sync / 1[56]:[^:]*:Knave Of Hearts:5EB3:/ # damage
+
+1305.4 "Spheroids" sync / 1[56]:[^:]*:Knave Of Hearts:5EA8:/
+1309.6 "Knavish Bullets" sync / 1[56]:[^:]*:Spheroid:5EAD:/
+1318.3 "Colossal Impact" sync / 1[56]:[^:]*:Knave Of Hearts:5EA[47]:/
+1332.5 "Roar" sync / 1[56]:[^:]*:Knave Of Hearts:5EB5:/
+
+# loop
+1342.7 "Replicate" sync / 1[56]:[^:]*:Knave Of Hearts:5EA9:/ window 50,50 jump 1178.5
+1354.0 "Stacking The Deck" #sync / 1[56]:[^:]*:Copied Knave:60F0:/
+1364.2 "Colossal Impact 1" #sync / 1[56]:[^:]*:Knave Of Hearts:5EA7:/ window 4,4
+1370.2 "Colossal Impact 2" #sync / 1[56]:[^:]*:Copied Knave:5EA7:/ window 4,4
+1372.3 "Spheroids" #sync / 1[56]:[^:]*:Knave Of Hearts:5EA8:/ window 10,10
+1375.2 "Colossal Impact 3" #sync / 1[56]:[^:]*:Copied Knave:5EA4:/
+1377.4 "--sync--" #sync / 1[56]:[^:]*:Knave Of Hearts:5EAA:/ # Magic Artillery Alpha cast
+1385.4 "Magic Barrage 1" #sync / 1[56]:[^:]*:Spheroid:5EAC:/
+1385.5 "Magic Artillery Alpha" sync / 1[56]:[^:]*:Knave Of Hearts:5EAB:/ # damage
+1388.4 "Magic Barrage 2" #sync / 1[56]:[^:]*:Spheroid:5EAC:/
+1403.6 "Light Leap" #sync / 1[56]:[^:]*:Knave Of Hearts:5EAE:/
+1403.6 "--untargetable--"
+1405.7 "--sync--" #sync / 1[56]:[^:]*:Knave Of Hearts:5EB0:/
+1407.7 "--targetable--"
+
+
+### Hansel & Gretel
+# -p 5C68:2012 (if Hansel starts with shield)
+# -p 5C69:2012 (if Gretel starts with shield)
+# -ii 5CEC 5CED 5CEE 5CEF 5C70 5C67 5C5C 5C6C 56CD 5C7F 5C55 61B9 61DB 5C65 5C66 5C6E 5C6F 5C57 5CF2 61BD 5C5B 5C72 61BB 55B3 5C5D 5C59 5C7D
+# -ic "2B"
+# -it "Hansel"
+
+2000.0 "--sync--" sync / 00:0839::Staging Node B will be sealed off/ window 10000,0
+2012.0 "Upgraded Shield" sync / 1[56]:[^:]*:Gretel:5C6[89]:/
+2012.0 "Upgraded Lance" sync / 1[56]:[^:]*:Hansel:5C6[AB]:/
+2025.2 "Wail" sync / 1[56]:[^:]*:Hansel:5C77:/
+2025.3 "Crippling Blow (G)" sync / 1[56]:[^:]*:Gretel:5C78:/
+2035.5 "Wail" sync / 1[56]:[^:]*:Gretel:5C76:/
+2035.6 "Crippling Blow (H)" sync / 1[56]:[^:]*:Hansel:5C79:/
+
+2043.8 "Tandem Assault: Bloody Sweep" sync / 1[56]:[^:]*:Gretel:61B8:/
+2046.0 "--sync--" sync / 1[56]:[^:]*:Gretel:5C7E:/
+2056.2 "Bloody Sweep" sync / 1[56]:[^:]*:Gretel:5C54:/
+
+2070.4 "Upgraded Shield" sync / 1[56]:[^:]*:Gretel:5C6[89]:/
+2070.4 "Upgraded Lance" sync / 1[56]:[^:]*:Hansel:5C6[AB]:/
+2083.6 "--sync--" sync / 1[56]:[^:]*:Gretel:5C7A:/ # Seed Of Magic Alpha cast
+2083.6 "--sync--" sync / 1[56]:[^:]*:Hansel:5C7B:/ # Riot Of Magic cast
+2089.4 "Seed Of Magic Alpha" sync / 1[56]:[^:]*:Gretel:5C61:/ # damage
+2089.4 "Riot Of Magic" sync / 1[56]:[^:]*:Hansel:5C63:/ # damage
+
+2098.9 "Tandem Assault: Passing Lance" sync / 1[56]:[^:]*:Gretel:61BC:/
+2101.0 "--untargetable--"
+2101.1 "--sync--" sync / 1[56]:[^:]*:Gretel:5C7E:/
+2111.3 "Passing Lance" sync / 1[56]:[^:]*:Gretel:5C64:/
+2116.1 "--targetable--"
+
+2126.2 "Upgraded Shield" sync / 1[56]:[^:]*:Gretel:5C6[89]:/
+2126.2 "Upgraded Lance" sync / 1[56]:[^:]*:Hansel:5C6[AB]:/
+2139.5 "Wail" sync / 1[56]:[^:]*:Hansel:5C77:/
+2139.6 "Crippling Blow (G)" sync / 1[56]:[^:]*:Gretel:5C78:/
+2149.8 "Wail" sync / 1[56]:[^:]*:Gretel:5C76:/
+2149.9 "Crippling Blow (H)" sync / 1[56]:[^:]*:Hansel:5C79:/
+
+2162.2 "Tandem Assault: Bloody Sweep" sync / 1[56]:[^:]*:Gretel:61B8:/
+2164.4 "--sync--" sync / 1[56]:[^:]*:Gretel:5C7E:/
+2166.5 "Tandem" sync / 1[56]:[^:]*:Gretel:5C58:/
+2176.7 "Transference" sync / 1[56]:[^:]*:Gretel:5CF1:/
+2181.6 "Bloody Sweep" sync / 1[56]:[^:]*:Gretel:5C56:/
+
+2184.9 "--sync--" sync / 1[56]:[^:]*:Gretel:5C7E:/
+2192.1 "Wandering Trail" sync / 1[56]:[^:]*:Gretel:5C5A:/
+2199.3 "Tandem Assault: Breakthrough" sync / 1[56]:[^:]*:Gretel:61BA:/
+2201.4 "--untargetable--"
+2201.5 "--sync--" sync / 1[56]:[^:]*:Gretel:5C7E:/
+2212.8 "Breakthrough" sync / 1[56]:[^:]*:Hansel:5C5E:/
+2213.1 "Uneven Footing" sync / 1[56]:[^:]*:Hansel & Gretel:5C5F:/
+2214.9 "--targetable--"
+
+2227.0 "Upgraded Shield" sync / 1[56]:[^:]*:Gretel:5C6[89]:/
+2227.0 "Upgraded Lance" sync / 1[56]:[^:]*:Hansel:5C6[AB]:/
+2240.2 "Wail" sync / 1[56]:[^:]*:Hansel:5C77:/
+2240.3 "Crippling Blow (G)" sync / 1[56]:[^:]*:Gretel:5C78:/
+2250.5 "Wail" sync / 1[56]:[^:]*:Gretel:5C76:/
+2250.6 "Crippling Blow (H)" sync / 1[56]:[^:]*:Hansel:5C79:/
+
+2262.9 "Tandem Assault: Passing Lance" sync / 1[56]:[^:]*:Gretel:61BC:/
+2266.1 "--untargetable--"
+2266.2 "--sync--" sync / 1[56]:[^:]*:Gretel:5C7E:/
+2267.9 "Seed Of Magic Alpha" sync / 1[56]:[^:]*:Gretel:5C61:/
+2267.9 "Riot Of Magic" sync / 1[56]:[^:]*:Hansel:5C63:/
+2276.4 "Passing Lance" sync / 1[56]:[^:]*:Gretel:5C64:/
+2281.2 "--targetable--"
+
+2291.3 "Upgraded Shield" sync / 1[56]:[^:]*:Gretel:5C6[89]:/
+2291.3 "Upgraded Lance" sync / 1[56]:[^:]*:Hansel:5C6A:/
+2307.6 "Wandering Trail" sync / 1[56]:[^:]*:Gretel:5C5A:/
+2315.8 "--sync--" sync / 1[56]:[^:]*:Gretel:5C7E:/
+2322.5 "Hungry Lance" sync / 1[56]:[^:]*:Gretel:5C71:/
+
+2334.7 "Upgraded Shield" sync / 1[56]:[^:]*:Gretel:5C6[89]:/
+2334.7 "Upgraded Lance" sync / 1[56]:[^:]*:Hansel:5C6[AB]:/
+2351.0 "--sync--" sync / 1[56]:[^:]*:Gretel:5C7C:/ # Seed Of Magic Beta cast
+2353.2 "--sync--" sync / 1[56]:[^:]*:Gretel:5C7E:/
+2359.9 "Wandering Trail" sync / 1[56]:[^:]*:Gretel:5C5A:/
+2361.8 "Seed Of Magic Beta" sync / 1[56]:[^:]*:Gretel:5C75:/ # damage
+
+2367.1 "Tandem Assault: Breakthrough" sync / 1[56]:[^:]*:Gretel:61BA:/
+2369.2 "--untargetable--"
+2369.3 "--sync--" sync / 1[56]:[^:]*:Gretel:5C7E:/
+2380.6 "Breakthrough" sync / 1[56]:[^:]*:Hansel:5C5E:/
+2380.9 "Uneven Footing" sync / 1[56]:[^:]*:Hansel & Gretel:5C5F:/
+2382.7 "--targetable--"
+
+2394.8 "Upgraded Shield" sync / 1[56]:[^:]*:Gretel:5C6[89]:/
+2394.8 "Upgraded Lance" sync / 1[56]:[^:]*:Hansel:5C6[AB]:/
+2408.1 "Wail" sync / 1[56]:[^:]*:Hansel:5C77:/
+2408.2 "Crippling Blow (G)" sync / 1[56]:[^:]*:Gretel:5C78:/
+2418.4 "Wail" sync / 1[56]:[^:]*:Gretel:5C76:/
+2418.5 "Crippling Blow (H)" sync / 1[56]:[^:]*:Hansel:5C79:/
+
+2430.8 "Tandem Assault: Bloody Sweep" sync / 1[56]:[^:]*:Gretel:61B8:/
+2433.0 "--sync--" sync / 1[56]:[^:]*:Gretel:5C7E:/
+2435.3 "Tandem" sync / 1[56]:[^:]*:Gretel:5C58:/
+2445.5 "Transference" sync / 1[56]:[^:]*:Gretel:5CF1:/
+2450.4 "Bloody Sweep" sync / 1[56]:[^:]*:Gretel:5C56:/
+2464.6 "Upgraded Shield" sync / 1[56]:[^:]*:Gretel:5C6[89]:/
+2464.6 "Upgraded Lance" sync / 1[56]:[^:]*:Hansel:5C6[AB]:/
+
+# loop
+2476.9 "Tandem Assault: Passing Lance" sync / 1[56]:[^:]*:Gretel:61BC:/ window 100,100 jump 2262.9
+2480.1 "--untargetable--"
+2480.2 "--sync--" #sync / 1[56]:[^:]*:Gretel:5C7E:/
+2481.9 "Seed Of Magic Alpha" #sync / 1[56]:[^:]*:Gretel:5C61:/
+2481.9 "Riot Of Magic" #sync / 1[56]:[^:]*:Hansel:5C63:/
+2490.4 "Passing Lance" #sync / 1[56]:[^:]*:Gretel:5C64:/
+2495.2 "--targetable--"
+
+2505.3 "Upgraded Shield" #sync / 1[56]:[^:]*:Gretel:5C6[89]:/
+2505.3 "Upgraded Lance" #sync / 1[56]:[^:]*:Hansel:5C6A:/
+2521.6 "Wandering Trail" #sync / 1[56]:[^:]*:Gretel:5C5A:/
+2529.8 "--sync--" #sync / 1[56]:[^:]*:Gretel:5C7E:/
+2536.5 "Hungry Lance" #sync / 1[56]:[^:]*:Gretel:5C71:/
+
+
+# Enrage (when one dies)
+2700.0 "--sync--" sync / 14:[^:]*:Gretel:5C73:/ window 700,0
+2700.0 "--sync--" sync / 14:[^:]*:Hansel:5C74:/ window 700,0
+2708.0 "Lamentation" sync / 1[56]:[^:]*:(Gretel:5C73|Hansel:5C74):/ window 100,100
+2713.8 "Seed Of Magic Beta" sync / 1[56]:[^:]*:(Gretel|Hansel):5C75:/
+2718.1 "Lamentation" #sync / 1[56]:[^:]*:(Gretel:5C73|Hansel:5C74):/
+2723.9 "Seed Of Magic Beta" #sync / 1[56]:[^:]*:(Gretel|Hansel):5C75:/
+2728.2 "Lamentation" #sync / 1[56]:[^:]*:(Gretel:5C73|Hansel:5C74):/
+2734.0 "Seed Of Magic Beta" #sync / 1[56]:[^:]*:(Gretel|Hansel):5C75:/
+2738.3 "Lamentation" #sync / 1[56]:[^:]*:(Gretel:5C73|Hansel:5C74):/
+
+
+### Assorted Trash
+# -ic "2B"
+# -it "2P-Operated Flight Unit"
+# -ii 5BFD 5BF7 5BF8 592A
+# -p 5BFE:3513.1
+3000.0 "--sync--" sync / 00:0839::Staging Node C will be sealed off/ window 10000,0
+
+# A bunch of 2P doing 5FB7/5BF8 blade flurry, but hard to sync this.
+# Presumably once they die, then flight units show up.
+# Here's a warning of what might be happening around here.
+3018.5 "--targetable?--"
+3031.6 "Lightfast Blade 1?"
+
+3500.0 "--targetable--"
+3501.1 "--sync--" sync / 14:[^:]*:2P-Operated Flight Unit:5BFE:/ window 3510,0
+3505.0 "--targetable--"
+3510.0 "--targetable--"
+3513.1 "Lightfast Blade 1" sync / 1[56]:[^:]*:2P-Operated Flight Unit:5BFE:/
+3515.0 "--targetable--"
+3518.1 "Lightfast Blade 2" sync / 1[56]:[^:]*:2P-Operated Flight Unit:5BFE:/
+3523.1 "Lightfast Blade 3" sync / 1[56]:[^:]*:2P-Operated Flight Unit:5BFE:/
+3528.1 "Lightfast Blade 4" sync / 1[56]:[^:]*:2P-Operated Flight Unit:5BFE:/
+3539.2 "Maneuver: Standard Laser" sync / 1[56]:[^:]*:2P-Operated Flight Unit:5BFF:/
+3549.4 "Maneuver: Standard Laser" sync / 1[56]:[^:]*:2P-Operated Flight Unit:5BFF:/
+3568.6 "Maneuver: Standard Laser" sync / 1[56]:[^:]*:2P-Operated Flight Unit:5BFF:/
+### ??? more lasers?
+
+# After flight units die, then a bunch more 2P doing 5BFA Balanced Edge/5BFB Whirling Assault
+# which are also hard to sync, sorry.
+
+
+### Red Girl
+# -p 6012:4014
+# -ii 6014 6006 6007 6008 6009 6310 6311 6312 6313 6021 6022 601A 620B 6027 6010 618C 6056
+# -ic "2B"
+# -it "Red Girl"
+
+# Phase 1
+4000.0 "--sync--" sync / 00:0839::Staging Node D will be sealed off/ window 10000,0
+4009.0 "--sync--" sync / 14:[^:]*:Red Girl:6012:/ window 10,10
+4014.0 "Cruelty" sync / 1[56]:[^:]*:Red Girl:6012:/
+4019.9 "Shockwave" sync / 1[56]:[^:]*:Red Girl:600E:/
+4026.0 "Generate: Barrier" sync / 1[56]:[^:]*:Red Girl:6004:/
+4031.0 "Shock: White" sync / 1[56]:[^:]*:Red Girl:600F:/
+4037.1 "Generate: Barrier" sync / 1[56]:[^:]*:Red Girl:6004:/
+4041.1 "Point: White" sync / 1[56]:[^:]*:White Lance:601F:/
+4043.2 "Shockwave" sync / 1[56]:[^:]*:Red Girl:600E:/
+4054.3 "Shock: Black" sync / 1[56]:[^:]*:Red Girl:6011:/
+4060.4 "Generate: Barrier" sync / 1[56]:[^:]*:Red Girl:6004:/
+4064.5 "Point: Black" sync / 1[56]:[^:]*:Black Lance:6020:/
+4074.7 "Cruelty" sync / 1[56]:[^:]*:Red Girl:6012:/
+
+4086.7 "Vortex" sync / 1[56]:[^:]*:Red Girl:6017:/
+4088.7 "Generate: Barrier" sync / 1[56]:[^:]*:Red Girl:6004:/
+4092.8 "Recreate Meteor" sync / 1[56]:[^:]*:Red Girl:6147:/
+4099.9 "Shockwave" sync / 1[56]:[^:]*:Red Girl:600E:/
+4106.0 "Shock: White" sync / 1[56]:[^:]*:Red Girl:600F:/
+4111.8 "Wipe: White" sync / 1[56]:[^:]*:Red Girl:600C:/
+4118.1 "Manipulate Energy" sync / 1[56]:[^:]*:Red Girl:6018:/
+4129.3 "Cruelty" sync / 1[56]:[^:]*:Red Girl:6012:/
+4142.5 "Replicate" sync / 1[56]:[^:]*:Red Girl:600A:/
+4153.6 "Diffuse Energy" sync / 1[56]:[^:]*:Red Girl:6023:/ duration 13.7
+4173.9 "Manipulate Energy" sync / 1[56]:[^:]*:Red Girl:6018:/
+
+# Phase 2: hacking
+4189.1 "Sublime Transcendence" sync / 1[56]:[^:]*:Red Girl:620A:/
+4193.2 "--untargetable--"
+4204.5 "--sync--" sync / 1[56]:[^:]*:Red Girl:601D:/ window 300,10
+4219.5 "Wave: White / Wave: Black" sync / 1[56]:[^:]*:Red Sphere:618[DE]:/
+4229.7 "Wave: White / Wave: Black" sync / 1[56]:[^:]*:Red Sphere:618[DE]:/
+4239.8 "Wave: Black / Wave: Black" sync / 1[56]:[^:]*:Red Sphere:618[DE]:/
+4249.9 "Wave: White / Wave: Black" sync / 1[56]:[^:]*:Red Sphere:618[DE]:/ window 10,100
+4260.0 "Wave: Black / Wave: Black" #sync / 1[56]:[^:]*:Red Sphere:618[DE]:/
+4270.1 "Wave: Black / Wave: Black" #sync / 1[56]:[^:]*:Red Sphere:618[DE]:/
+4280.2 "Wave: Black / Wave: Black" #sync / 1[56]:[^:]*:Red Sphere:618[DE]:/
+
+
+# Phase 3
+4500.0 "--sync--" sync / 14:[^:]*:Red Girl:6013:/ window 300,10
+4505.0 "Cruelty" sync / 1[56]:[^:]*:Red Girl:6013:/
+4521.2 "Child's Play" sync / 1[56]:[^:]*:Red Girl:6024:/
+4527.1 "Explosion" sync / 1[56]:[^:]*:Black Pylon:6026:/
+4533.3 "Shockwave" sync / 1[56]:[^:]*:Red Girl:600E:/
+4545.4 "Shock: Black" sync / 1[56]:[^:]*:Red Girl:6011:/
+4545.5 "Child's Play" sync / 1[56]:[^:]*:Red Girl:6025:/
+4551.4 "Explosion" sync / 1[56]:[^:]*:Black Pylon:6026:/
+4559.7 "Cruelty" sync / 1[56]:[^:]*:Red Girl:6013:/
+4572.9 "Cruelty" sync / 1[56]:[^:]*:Red Girl:6013:/
+
+4581.0 "Generate: Barrier" sync / 1[56]:[^:]*:Red Girl:6005:/
+4591.1 "Point: Black" sync / 1[56]:[^:]*:Black Lance:6020:/
+4591.1 "Point: White" sync / 1[56]:[^:]*:White Lance:601F:/
+4597.2 "Generate: Barrier" sync / 1[56]:[^:]*:Red Girl:6005:/
+4601.3 "Point: Black" sync / 1[56]:[^:]*:Black Lance:6020:/
+4601.3 "Point: White" sync / 1[56]:[^:]*:White Lance:601F:/
+4601.3 "Recreate Meteor" sync / 1[56]:[^:]*:Red Girl:6147:/
+4611.4 "Point: Black" sync / 1[56]:[^:]*:Black Lance:6020:/
+4620.4 "Wipe: Black" sync / 1[56]:[^:]*:Red Girl:600D:/
+4620.4 "Wipe: White" sync / 1[56]:[^:]*:Red Girl:600C:/
+4628.6 "Cruelty" sync / 1[56]:[^:]*:Red Girl:6013:/
+
+4647.9 "Replicate" sync / 1[56]:[^:]*:Red Girl:600B:/
+4658.9 "Diffuse Energy" sync / 1[56]:[^:]*:Red Girl:6023:/ duration 13.7
+4663.1 "Child's Play" sync / 1[56]:[^:]*:Red Girl:6024:/
+4676.2 "Manipulate Energy" sync / 1[56]:[^:]*:Red Girl:6019:/
+4691.4 "Cruelty" sync / 1[56]:[^:]*:Red Girl:6013:/
+4707.6 "Child's Play" sync / 1[56]:[^:]*:Red Girl:6025:/
+4713.5 "Explosion" sync / 1[56]:[^:]*:Black Pylon:6026:/
+4719.7 "Shockwave" sync / 1[56]:[^:]*:Red Girl:600E:/
+4731.8 "Shock: Black" sync / 1[56]:[^:]*:Red Girl:6011:/
+4731.9 "Child's Play" sync / 1[56]:[^:]*:Red Girl:6025:/
+4737.8 "Explosion" sync / 1[56]:[^:]*:Black Pylon:6026:/
+4746.1 "Cruelty" sync / 1[56]:[^:]*:Red Girl:6013:/
+4756.3 "Cruelty" sync / 1[56]:[^:]*:Red Girl:6013:/
+4763.4 "Manipulate Energy" sync / 1[56]:[^:]*:Red Girl:6018:/
+4780.7 "Cruelty" sync / 1[56]:[^:]*:Red Girl:6013:/
+
+# loop
+4788.8 "Generate: Barrier" sync / 1[56]:[^:]*:Red Girl:6005:/ window 100,100 jump 4581.0
+4798.9 "Point: Black" #sync / 1[56]:[^:]*:Black Lance:6020:/
+4798.9 "Point: White" #sync / 1[56]:[^:]*:White Lance:601F:/
+4805.0 "Generate: Barrier" #sync / 1[56]:[^:]*:Red Girl:6005:/
+4809.1 "Point: Black" #sync / 1[56]:[^:]*:Black Lance:6020:/
+4809.1 "Point: White" #sync / 1[56]:[^:]*:White Lance:601F:/
+4809.1 "Recreate Meteor" #sync / 1[56]:[^:]*:Red Girl:6147:/
+4819.2 "Point: Black" #sync / 1[56]:[^:]*:Black Lance:6020:/
+4828.2 "Wipe: Black" #sync / 1[56]:[^:]*:Red Girl:600D:/
+4828.2 "Wipe: White" #sync / 1[56]:[^:]*:Red Girl:600C:/
+4836.4 "Cruelty" #sync / 1[56]:[^:]*:Red Girl:6013:/
+
+
+### Trash-talking Philosophers
+# -ic "2B"
+# -it "Xun-Zi"
+# -p 5C00:5013.3
+# -ii 5CEC 5CED 5CEE 5C02 5C05 5C07 5C08
+5000.0 "--sync--" sync / 00:0839::The Ascension Platform will be sealed off/ window 10000,0
+5013.3 "Deploy Armaments" sync / 1[56]:[^:]*:Xun-Zi:5C0[03]:/
+5023.4 "Deploy Armaments" sync / 1[56]:[^:]*:Xun-Zi:5C0[03]:/
+5036.4 "Universal Assault" sync / 1[56]:[^:]*:Xun-Zi:5C06:/
+# ???
+
+# ~70% HP push?
+5200.0 "--untargetable--" sync / 22:........:Xun-Zi:........:Xun-Zi:00/ window 200,0
+5210.9 "--targetable--"
+5221.0 "Deploy Armaments" sync / 1[56]:[^:]*:Xun-Zi:5C0[03]:/
+5224.0 "Deploy Armaments" sync / 1[56]:[^:]*:Meng-Zi:5C0[03]:/
+
+5235.9 "Deploy Armaments" sync / 1[56]:[^:]*:Meng-Zi:5C0[03]:/
+5238.9 "Deploy Armaments" sync / 1[56]:[^:]*:Xun-Zi:5C0[03]:/
+
+5250.1 "Deploy Armaments" sync / 1[56]:[^:]*:Xun-Zi:5C0[14]:/
+5250.1 "Deploy Armaments" sync / 1[56]:[^:]*:Meng-Zi:5C0[14]:/
+
+5256.8 "High-Powered Laser" sync / 1[56]:[^:]*:Serial-Jointed Model:5C09:/
+
+5267.1 "Universal Assault" sync / 1[56]:[^:]*:Xun-Zi:5C06:/
+5270.1 "Universal Assault" sync / 1[56]:[^:]*:Meng-Zi:5C06:/
+5290.3 "Universal Assault" sync / 1[56]:[^:]*:Meng-Zi:5C06:/
+5293.3 "Universal Assault" sync / 1[56]:[^:]*:Xun-Zi:5C06:/
+
+# loop?
+# not sure what happens if Xun-Zi is still alive here?
+5312.7 "Deploy Armaments" sync / 1[56]:[^:]*:Meng-Zi:5C0[03]:/
+5322.8 "Deploy Armaments" sync / 1[56]:[^:]*:Meng-Zi:5C0[03]:/
+5333.9 "Deploy Armaments" sync / 1[56]:[^:]*:Meng-Zi:5C01:/
+5340.6 "High-Powered Laser" sync / 1[56]:[^:]*:Serial-Jointed Model:5C09:/
+
+
+
+### False Idol
+# -ic "2B"
+# -it "False Idol"
+# -p 5BDD:6012.3
+# -ii 5CEC 5CED 5CEE 5CEF 5FFC 5FFF 5BDA 5BDC
+6000.0 "--sync--" sync / 00:0839::Beyond will be sealed off/ window 10000,0
+6007.3 "--sync--" sync / 14:[^:]*:False Idol:5BDD:/ window 10000,10
+6012.3 "Screaming Score" sync / 1[56]:[^:]*:False Idol:5BDD:/
+6025.5 "Made Magic" sync / 1[56]:[^:]*:False Idol:5BD[67]:/
+6035.7 "Made Magic" sync / 1[56]:[^:]*:False Idol:5BD[67]:/
+6044.9 "--sync--" sync / 1[56]:[^:]*:False Idol:5BD8:/ # Lighter Note castbar
+6053.9 "Lighter Note" sync / 1[56]:[^:]*:False Idol:5BD9:/ duration 6.2
+6063.1 "Rhythm Rings" sync / 1[56]:[^:]*:False Idol:5BD4:/
+6074.1 "Magical Interference" #sync / 1[56]:[^:]*:False Idol:5BD5:/
+6076.1 "Magical Interference" #sync / 1[56]:[^:]*:False Idol:5BD5:/
+6078.1 "Magical Interference" #sync / 1[56]:[^:]*:False Idol:5BD5:/
+6080.1 "Magical Interference" #sync / 1[56]:[^:]*:False Idol:5BD5:/
+6082.1 "Magical Interference" #sync / 1[56]:[^:]*:False Idol:5BD5:/
+6092.3 "Seed Of Magic" sync / 1[56]:[^:]*:False Idol:5BDE:/
+6093.4 "Magical Interference" #sync / 1[56]:[^:]*:False Idol:5BD5:/
+6095.4 "Scattered Magic" sync / 1[56]:[^:]*:False Idol:5BDF:/
+6097.0 "Magical Interference" #sync / 1[56]:[^:]*:False Idol:5BD5:/
+6107.6 "Made Magic" sync / 1[56]:[^:]*:False Idol:5BD[67]:/
+6115.8 "Screaming Score" sync / 1[56]:[^:]*:False Idol:5BDD:/
+
+6128.0 "Darker Note" sync / 1[56]:[^:]*:False Idol:5BDB:/
+6137.2  "--sync--" sync / 1[56]:[^:]*:False Idol:5BD8:/ # Lighter Note castbar
+6146.2 "Lighter Note" sync / 1[56]:[^:]*:False Idol:5BD9:/ duration 6.2
+6159.4 "Made Magic" sync / 1[56]:[^:]*:False Idol:5BD[67]:/
+6167.6 "Rhythm Rings" sync / 1[56]:[^:]*:False Idol:5BD4:/
+6173.8 "Seed Of Magic" sync / 1[56]:[^:]*:False Idol:5BDE:/
+6176.8 "Scattered Magic" sync / 1[56]:[^:]*:False Idol:5BDF:/
+6178.6 "Magical Interference" #sync / 1[56]:[^:]*:False Idol:5BD5:/
+6180.6 "Magical Interference" #sync / 1[56]:[^:]*:False Idol:5BD5:/
+6182.6 "Magical Interference" #sync / 1[56]:[^:]*:False Idol:5BD5:/
+6184.6 "Magical Interference" #sync / 1[56]:[^:]*:False Idol:5BD5:/
+6190.9 "Seed Of Magic" sync / 1[56]:[^:]*:False Idol:5BDE:/
+6193.9 "Scattered Magic" sync / 1[56]:[^:]*:False Idol:5BDF:/
+6197.0 "Magical Interference" #sync / 1[56]:[^:]*:False Idol:5BD5:/
+6200.5 "Magical Interference" #sync / 1[56]:[^:]*:False Idol:5BD5:/
+6209.0 "Made Magic" sync / 1[56]:[^:]*:False Idol:5BD[67]:/
+6217.2 "Screaming Score" sync / 1[56]:[^:]*:False Idol:5BDD:/
+6225.4 "Screaming Score" sync / 1[56]:[^:]*:False Idol:5BDD:/
+
+# loop ??? (plz confirm)
+6239.6 "Darker Note" sync / 1[56]:[^:]*:False Idol:5BDB:/
+6248.8  "--sync--" sync / 1[56]:[^:]*:False Idol:5BD8:/ # Lighter Note castbar
+6257.8 "Lighter Note" sync / 1[56]:[^:]*:False Idol:5BD9:/ duration 6.2
+
+
+### Her Inflorescence
+# -ic "2B"
+# -it "Her Inflorescence"
+# -p 5BE0:7013.2
+# -ii 5CEC 5CED 5CEE 5CEF 5FFF 5BDA 5BDC 5BEF 5BF2 5BE6 5BE8 5BE7
+# Whether there is a checkpoint is unclear, but sync as if there is.
+
+6963.3 "--sync--" sync / 14:[^:]*:False Idol:5DD5:/ window 1000,0
+6968.3 "Eminence" sync / 1[56]:[^:]*:False Idol:5DD5:/
+6968.3 "--untargetable--"
+
+7000.0 "--targetable--"
+7010.2 "--sync--" sync / 14:[^:]*:Her Inflorescence:5BE0:/ window 10000,0
+7013.2 "Pervasion" sync / 1[56]:[^:]*:Her Inflorescence:5BE0:/
+7019.3 "Recreate Structure" sync / 1[56]:[^:]*:Her Inflorescence:5BE1:/
+7030.4 "Uneven Footing" sync / 1[56]:[^:]*:Her Inflorescence:5BE2:/
+7033.9 "Recreate Structure" sync / 1[56]:[^:]*:Her Inflorescence:5BE1:/
+7045.0 "Uneven Footing" sync / 1[56]:[^:]*:Her Inflorescence:5BE2:/
+
+7050.6 "Recreate Signal" sync / 1[56]:[^:]*:Her Inflorescence:5BE3:/
+7056.7 "Mixed Signals" sync / 1[56]:[^:]*:Her Inflorescence:5BE4:/
+7066.6 "Crash" sync / 1[56]:[^:]*:Her Inflorescence:5BE5:/
+7074.8 "Mixed Signals" sync / 1[56]:[^:]*:Her Inflorescence:5BE4:/
+7082.7 "Crash" sync / 1[56]:[^:]*:Her Inflorescence:5BE5:/
+7086.9 "--sync--" sync / 1[56]:[^:]*:Her Inflorescence:5C0C:/ # Lighter Note castbar
+7095.9 "Lighter Note" sync / 1[56]:[^:]*:Her Inflorescence:5BD9:/ # duration 6.2
+7105.0 "Screaming Score" sync / 1[56]:[^:]*:Her Inflorescence:5BF5:/
+7113.2 "Darker Note" sync / 1[56]:[^:]*:Her Inflorescence:5C0A:/
+7128.4 "Heavy Arms" sync / 1[56]:[^:]*:Her Inflorescence:5BE[DE]:/
+7138.6 "Heavy Arms" sync / 1[56]:[^:]*:Her Inflorescence:5BE[DE]:/
+
+7151.4 "Distortion" sync / 1[56]:[^:]*:Her Inflorescence:5BE9:/
+7157.6 "Place Of Power" sync / 1[56]:[^:]*:Her Inflorescence:5C0D:/
+7157.6 "The Final Song" sync / 1[56]:[^:]*:Her Inflorescence:5BEA:/
+7167.7 "White Dissonance / Black Dissonance" sync / 1[56]:[^:]*:Her Inflorescence:5BE[BC]:/
+7173.7 "White Dissonance / Black Dissonance" sync / 1[56]:[^:]*:Her Inflorescence:5BE[BC]:/
+7179.7 "White Dissonance / Black Dissonance" sync / 1[56]:[^:]*:Her Inflorescence:5BE[BC]:/
+
+7200.5 "Pillar Impact" sync / 1[56]:[^:]*:Her Inflorescence:5BF0:/
+7202.0 "Shockwave" sync / 1[56]:[^:]*:Her Inflorescence:5BF1:/
+7204.6 "Pillar Impact" sync / 1[56]:[^:]*:Her Inflorescence:5C0E:/
+7206.0 "Shockwave" sync / 1[56]:[^:]*:Her Inflorescence:5BF1:/
+7211.6 "Towerfall" sync / 1[56]:[^:]*:Her Inflorescence:5BF3:/
+7220.8 "Towerfall" sync / 1[56]:[^:]*:Her Inflorescence:5BF4:/
+
+7231.2 "Recreate Signal" sync / 1[56]:[^:]*:Her Inflorescence:5BE3:/
+7237.3 "Mixed Signals" sync / 1[56]:[^:]*:Her Inflorescence:5BE4:/
+7255.4 "Distortion" sync / 1[56]:[^:]*:Her Inflorescence:6058:/
+7261.6 "The Final Song" sync / 1[56]:[^:]*:Her Inflorescence:5BEA:/
+7270.7 "White Dissonance / Black Dissonance" #sync / 1[56]:[^:]*:Her Inflorescence:5BE[BC]:/
+7272.7 "White Dissonance / Black Dissonance" #sync / 1[56]:[^:]*:Her Inflorescence:5BE[BC]:/
+7274.7 "White Dissonance / Black Dissonance" #sync / 1[56]:[^:]*:Her Inflorescence:5BE[BC]:/
+7283.7 "Heavy Arms" sync / 1[56]:[^:]*:Her Inflorescence:5BE[DE]:/
+7289.8 "--sync--" sync / 1[56]:[^:]*:Her Inflorescence:5C0C:/ # Lighter Note castbar
+7298.8 "Lighter Note" sync / 1[56]:[^:]*:Her Inflorescence:5BD9:/ duration 6.2
+7309.9 "Heavy Arms" sync / 1[56]:[^:]*:Her Inflorescence:5BE[DE]:/
+
+7316.0 "Recreate Signal" sync / 1[56]:[^:]*:Her Inflorescence:5BE3:/
+7322.1 "Mixed Signals" sync / 1[56]:[^:]*:Her Inflorescence:5BE4:/
+7328.2 "Rhythm Rings" sync / 1[56]:[^:]*:Her Inflorescence:5C0B:/
+7330.0 "Crash" sync / 1[56]:[^:]*:Her Inflorescence:5BE5:/
+7338.2 "Magical Interference" sync / 1[56]:[^:]*:Her Inflorescence:5BD5:/
+7344.3 "Screaming Score" sync / 1[56]:[^:]*:Her Inflorescence:5BF5:/
+7352.5 "Darker Note" sync / 1[56]:[^:]*:Her Inflorescence:5C0A:/
+7364.7 "Pervasion" sync / 1[56]:[^:]*:Her Inflorescence:5BE0:/
+
+7370.8 "Recreate Structure" sync / 1[56]:[^:]*:Her Inflorescence:5BE1:/
+7381.0 "Rhythm Rings" sync / 1[56]:[^:]*:Her Inflorescence:5C0B:/
+7383.0 "Uneven Footing" sync / 1[56]:[^:]*:Her Inflorescence:5BE2:/
+7391.0 "Magical Interference" sync / 1[56]:[^:]*:Her Inflorescence:5BD5:/
+7398.2 "Heavy Arms" sync / 1[56]:[^:]*:Her Inflorescence:5BE[DE]:/
+7406.4 "Screaming Score" sync / 1[56]:[^:]*:Her Inflorescence:5BF5:/
+
+7425.3 "Pillar Impact" sync / 1[56]:[^:]*:Her Inflorescence:5BF0:/
+7426.8 "Shockwave" sync / 1[56]:[^:]*:Her Inflorescence:5BF1:/
+7429.4 "Pillar Impact" sync / 1[56]:[^:]*:Her Inflorescence:5C0E:/
+7430.8 "Shockwave" sync / 1[56]:[^:]*:Her Inflorescence:5BF1:/
+7436.4 "Towerfall" sync / 1[56]:[^:]*:Her Inflorescence:5BF3:/
+7445.6 "Towerfall" sync / 1[56]:[^:]*:Her Inflorescence:5BF4:/
+
+# loop
+7455.8 "Recreate Signal" sync / 1[56]:[^:]*:Her Inflorescence:5BE3:/ window 100,100 jump 7231.2
+7461.9 "Mixed Signals" #sync / 1[56]:[^:]*:Her Inflorescence:5BE4:/
+7480.0 "Distortion" #sync / 1[56]:[^:]*:Her Inflorescence:6058:/
+7486.2 "The Final Song" #sync / 1[56]:[^:]*:Her Inflorescence:5BEA:/
+7495.3 "White Dissonance / Black Dissonance" #sync / 1[56]:[^:]*:Her Inflorescence:5BE[BC]:/
+7497.3 "White Dissonance / Black Dissonance" #sync / 1[56]:[^:]*:Her Inflorescence:5BE[BC]:/
+7499.3 "White Dissonance / Black Dissonance" #sync / 1[56]:[^:]*:Her Inflorescence:5BE[BC]:/
+7508.3 "Heavy Arms" #sync / 1[56]:[^:]*:Her Inflorescence:5BE[DE]:/
+7514.4 "--sync--" #sync / 1[56]:[^:]*:Her Inflorescence:5C0C:/ # Lighter Note castbar
+7523.4 "Lighter Note" #sync / 1[56]:[^:]*:Her Inflorescence:5BD9:/ duration 6.2
+7534.5 "Heavy Arms" #sync / 1[56]:[^:]*:Her Inflorescence:5BE[DE]:/

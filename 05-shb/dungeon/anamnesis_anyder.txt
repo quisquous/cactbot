@@ -1,0 +1,145 @@
+### Anamnesis Anyder
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+### Unknown
+# -p 4B69:1013.5 4E4B:1313
+# -ii 4B78 4B6D 4B6F
+1000.0 "--sync--" sync / 00:0839::Katharsis will be sealed off/ window 1000,0
+1013.5 "Fetid Fang" sync / 1[56]:[^:]*:Unknown:4B69:/
+1032.3 "Scrutiny" sync / 1[56]:[^:]*:Unknown:4E25:/
+1034.3 "Explosion" sync / 1[56]:[^:]*:Sinister Bubble:4B6E:/
+1042.2 "Luminous Ray" sync / 1[56]:[^:]*:Unknown:4E26:/
+# ???
+
+# Two Adds (hp push???)
+# hopefully there's not an inscrutability cast before the one preceding the add?
+1047.4 "--sync--" sync / 14:[^:]*:Unknown:4B6A:/ window 50,0
+1051.4 "Inscrutability" sync / 1[56]:[^:]*:Unknown:4B6A:/
+1059.8 "Unknown Add" sync / 1[56]:[^:]*:Unknown:4B77:/ window 60,60
+1064.8 "Ectoplasmic Ray" sync / 1[56]:[^:]*:Unknown:4B7A:/
+1072.1 "Scrutiny" sync / 1[56]:[^:]*:Unknown:4E25:/
+1074.1 "Explosion" sync / 1[56]:[^:]*:Sinister Bubble:4B6E:/
+1082.3 "Luminous Ray" sync / 1[56]:[^:]*:Unknown:4E27:/
+1090.9 "Inscrutability" sync / 1[56]:[^:]*:Unknown:4B6A:/
+1100.2 "Fetid Fang" sync / 1[56]:[^:]*:Unknown:4B69:/
+1108.9 "Clearout" sync / 1[56]:[^:]*:Unknown:4B74:/
+1114.9 "Clearout" sync / 1[56]:[^:]*:Unknown:4B6B:/
+1120.1 "Setback" sync / 1[56]:[^:]*:Unknown:4B6C:/
+1126.3 "--sync--" sync / 1[56]:[^:]*:Unknown:4B70:/
+1131.3 "Ectoplasmic Ray" sync / 1[56]:[^:]*:Unknown:4B79:/
+1131.7 "Ectoplasmic Ray" sync / 1[56]:[^:]*:Unknown:4B71:/
+1138.2 "Luminous Ray" sync / 1[56]:[^:]*:Unknown:4E27:/
+1147.8 "Inscrutability" sync / 1[56]:[^:]*:Unknown:4B6A:/
+
+1156.9 "--sync--" sync / 1[56]:[^:]*:Unknown:4B77:/ window 50,50 jump 1059.8
+1161.9 "Ectoplasmic Ray" sync / 1[56]:[^:]*:Unknown:4B7A:/
+1169.5 "Scrutiny" sync / 1[56]:[^:]*:Unknown:4E25:/
+1171.5 "Explosion" sync / 1[56]:[^:]*:Sinister Bubble:4B6E:/
+1179.3 "Luminous Ray" sync / 1[56]:[^:]*:Unknown:4E27:/
+1187.4 "Inscrutability" sync / 1[56]:[^:]*:Unknown:4B6A:/
+1196.7 "Fetid Fang" sync / 1[56]:[^:]*:Unknown:4B69:/
+1206.0 "Clearout" sync / 1[56]:[^:]*:Unknown:4B74:/
+1212.0 "Clearout" sync / 1[56]:[^:]*:Unknown:4B6B:/
+1217.2 "Setback" sync / 1[56]:[^:]*:Unknown:4B6C:/
+
+# One add (???)
+# starts 3 second cast 10 seconds after other add dies?
+1310.0 "--sync--"  sync / 14:[^:]*:Unknown:4E4B:/ window 310,0
+1313.0 "Plain Weirdness" sync / 1[56]:[^:]*:Unknown:4E4B:/
+1319.2 "Inscrutability" sync / 1[56]:[^:]*:Unknown:4B73:/
+1329.4 "--sync--" sync / 1[56]:[^:]*:Unknown:4B77:/
+1334.4 "Ectoplasmic Ray" sync / 1[56]:[^:]*:Unknown:4B7A:/
+1342.0 "Luminous Ray" sync / 1[56]:[^:]*:Unknown:4E27:/
+1354.3 "Fetid Fang" sync / 1[56]:[^:]*:Unknown:4B72:/
+1362.5 "Inscrutability" sync / 1[56]:[^:]*:Unknown:4B73:/
+1383.6 "Scrutiny" sync / 1[56]:[^:]*:Unknown:4E25:/
+1385.6 "Explosion" sync / 1[56]:[^:]*:Sinister Bubble:4B6E:/
+1401.5 "Inscrutability" sync / 1[56]:[^:]*:Unknown:4B73:/
+
+
+
+### Kyklops
+# -p 4B58:2011
+# -ii 4B53 4B5C 4B5B
+2000.0 "--sync--" sync / 00:0839::Doxa will be sealed off/ window 2000,0
+2011.0 "The Final Verse" sync / 1[56]:[^:]*:Kyklops:4B58:/ window 2012,5
+2020.6 "Swing/Swipe/Cyclone" sync / 1[56]:[^:]*:Kyklops:4B5[457]:/
+2030.9 "Hammer/Blade Mark" sync / 1[56]:[^:]*:Kyklops:4B5[9A]:/
+2035.5 "Blade/Hammer Mark" sync / 1[56]:[^:]*:Kyklops:4B5[9A]:/
+2044.2 "Swing/Swipe/Cyclone" sync / 1[56]:[^:]*:Kyklops:4B5[457]:/
+2047.9 "Terrible Hammer/Blade" #sync / 1[56]:[^:]*:Kyklops:4B5[DE]:/
+2050.0 "Terrible Blade/Hammer" #sync / 1[56]:[^:]*:Kyklops:4B5[DE]:/
+2054.9 "Raging Glower" sync / 1[56]:[^:]*:Kyklops:4B56:/
+2064.5 "Swing/Swipe/Cyclone" sync / 1[56]:[^:]*:Kyklops:4B5[457]:/
+
+2073.2 "The Final Verse" sync / 1[56]:[^:]*:Kyklops:4B58:/
+2083.1 "Hammer/Blade Mark" sync / 1[56]:[^:]*:Kyklops:4B5[9A]:/
+2087.7 "Blade/Hammer Mark" sync / 1[56]:[^:]*:Kyklops:4B5[9A]:/
+2095.4 "Pyre/Hearth" sync / 1[56]:[^:]*:Kyklops:(4B5F|4B60):/
+2100.1 "Terrible Hammer/Blade" #sync / 1[56]:[^:]*:Kyklops:4B5[DE]:/
+2102.2 "Terrible Blade/Hammer" #sync / 1[56]:[^:]*:Kyklops:4B5[DE]:/
+2107.0 "Swing/Swipe/Cyclone" sync / 1[56]:[^:]*:Kyklops:4B5[457]:/
+
+2117.5 "The Final Verse" sync / 1[56]:[^:]*:Kyklops:4B58:/ window 20,20 jump 2073.2
+2127.4 "Hammer/Blade Mark"
+2132.0 "Blade/Hammer Mark"
+2139.7 "Pyre/Hearth"
+2144.4 "Terrible Hammer/Blade"
+2146.5 "Terrible Blade/Hammer"
+2151.3 "Swing/Swipe/Cyclone"
+
+
+### Rukshs Dheem
+# -p 4B8C:3013
+# -ii 4B7C 4B7E 4B8A 4B86 4B85 4B80 4B82 4B87
+3000.0 "--sync--" sync / 00:0839::Noesis will be sealed off/ window 3000,0
+3013.0 "Bonebreaker" sync / 1[56]:[^:]*:Rukshs Dheem:4B8C:/
+3019.2 "Swift Shift" sync / 1[56]:[^:]*:Rukshs Dheem:4B83:/
+3026.5 "Seabed Ceremony" sync / 1[56]:[^:]*:Rukshs Dheem:4B7B:/
+3032.6 "Depth Grip" sync / 1[56]:[^:]*:Rukshs Dheem:4B84:/
+3040.7 "Falling Water" sync / 1[56]:[^:]*:Rukshs Dheem:4B7D:/
+3042.4 "Wavebreaker x4" duration 3 #sync / 1[56]:[^:]*:Depth Grip:33D4:/
+3045.9 "Rising Tide" sync / 1[56]:[^:]*:Rukshs Dheem:4B8B:/
+3056.2 "Swift Shift" sync / 1[56]:[^:]*:Rukshs Dheem:4B83:/
+3063.6 "Seabed Ceremony" sync / 1[56]:[^:]*:Rukshs Dheem:4B7B:/ window 30,10
+3074.8 "Falling Water" sync / 1[56]:[^:]*:Rukshs Dheem:4B7D:/
+3087.0 "Bonebreaker" sync / 1[56]:[^:]*:Rukshs Dheem:4B8C:/
+3099.1 "Seabed Ceremony" sync / 1[56]:[^:]*:Rukshs Dheem:4B7B:/ window 30,10
+3105.2 "Depth Grip" sync / 1[56]:[^:]*:Rukshs Dheem:4B84:/
+3115.5 "Wavebreaker x8" duration 7 #sync / 1[56]:[^:]*:Depth Grip:33D4:/
+3131.8 "Bonebreaker" sync / 1[56]:[^:]*:Rukshs Dheem:4B8C:/
+3141.0 "Swift Shift" sync / 1[56]:[^:]*:Rukshs Dheem:4B83:/
+3148.4 "Depth Grip" sync / 1[56]:[^:]*:Rukshs Dheem:4B84:/
+3158.5 "Seabed Ceremony" sync / 1[56]:[^:]*:Rukshs Dheem:4B7B:/
+3160.5 "Wavebreaker" #sync / 1[56]:[^:]*:Depth Grip:33D5:/
+3171.6 "Flying Fount" sync / 1[56]:[^:]*:Rukshs Dheem:4B7F:/
+3178.8 "Swift Shift" sync / 1[56]:[^:]*:Rukshs Dheem:4B83:/
+3186.9 "Command Current" sync / 1[56]:[^:]*:Rukshs Dheem:4B81:/
+
+3193.6 "Swift Shift" sync / 1[56]:[^:]*:Rukshs Dheem:4B83:/
+3200.9 "Seabed Ceremony" sync / 1[56]:[^:]*:Rukshs Dheem:4B7B:/
+3207.0 "Depth Grip" sync / 1[56]:[^:]*:Rukshs Dheem:4B84:/
+3215.1 "Falling Water" sync / 1[56]:[^:]*:Rukshs Dheem:4B7D:/
+3216.8 "Wavebreaker x4" duration 3 #sync / 1[56]:[^:]*:Depth Grip:33D4:/
+3220.2 "Rising Tide" sync / 1[56]:[^:]*:Rukshs Dheem:4B8B:/
+3229.4 "Bonebreaker" sync / 1[56]:[^:]*:Rukshs Dheem:4B8C:/
+3241.7 "Seabed Ceremony" sync / 1[56]:[^:]*:Rukshs Dheem:4B7B:/
+3247.6 "Depth Grip" sync / 1[56]:[^:]*:Rukshs Dheem:4B84:/
+3257.8 "Wavebreaker x8" duration 7 #sync / 1[56]:[^:]*:Depth Grip:33D4:/
+3275.1 "Bonebreaker" sync / 1[56]:[^:]*:Rukshs Dheem:4B8C:/
+
+3282.3 "Swift Shift" sync / 1[56]:[^:]*:Rukshs Dheem:4B83:/ window 50,50 jump 3193.6
+3289.6 "Seabed Ceremony"
+3295.7 "Depth Grip"
+3303.8 "Falling Water"
+3305.5 "Wavebreaker x4"
+3308.9 "Rising Tide"
+3318.1 "Bonebreaker"
+3330.2 "Seabed Ceremony"
+3336.3 "Depth Grip"
+3346.5 "Wavebreaker x8"
+3363.8 "Bonebreaker"

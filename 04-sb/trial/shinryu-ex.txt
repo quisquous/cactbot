@@ -1,0 +1,126 @@
+# Shinryu Ex
+# Text Guide: http://clees.me/guides/shinryu-ex/
+#
+# -p 25DE:21.3 25E7:503 25E4:806 264B:859.5
+# -it Shinryu
+# -ii 25FD 25DA 25E9 25EB 2611 25FF 2616 1DD1 2614 25DB 25F6 25F4 25F2 25DF 25ED 260E 25DD 260F 2608 2609 260A 260B 25E6 25E3 2618 25DC 1DD3 264D 2612 2725 25E0 25E1 2600 2601
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# Heart add not listed here. Seems to be on an independent respawn timer.
+
+### PHASE 1: Elemental carousel
+###
+0.0 "--sync--" sync /:Engage!/ window 0,1
+11.3 "--sync--" sync / 14:[^:]*:Shinryu:25FD:/ window 20,20
+21.3 "Earthen Fury" sync / 1[56]:[^:]*:Shinryu:25DE:/
+36.4 "--Tethers--" # Burning Chains (301) effect
+44.5 "Tidal Wave" sync / 1[56]:[^:]*:Shinryu:25F9:/
+49.7 "--Tail Marker (healer)--" # 007E headmarker
+61.7 "Summon Icicle" sync / 1[56]:[^:]*:Left Wing:25EE:/
+62.4 "Icicle Impact" sync / 1[56]:[^:]*:Icicle:25EF:/
+67.0 "Spikesicle" sync / 1[56]:[^:]*:Icicle:25F0:/
+67.9 "Tail Slap" sync / 1[56]:[^:]*:Tail:25E2:/
+79.8 "Hypernova / Levinbolt" sync / 1[56]:[^:]*:Right Wing:(25E8|25EA):/
+90.9 "Dragonfist" sync / 1[56]:[^:]*:Shinryu:2610:/
+97.8 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:25F1:/ # sometimes 3 seconds earlier?
+108.0 "Akh Morn 1" sync / 1[56]:[^:]*:Shinryu:25F3:/ duration 3.2
+110.1 "Akh Rhai" sync / 1[56]:[^:]*:Shinryu:25F5:/ duration 5.3
+116.3 "Summon Icicle" sync / 1[56]:[^:]*:Left Wing:25EE:/
+116.9 "Icicle Impact" sync / 1[56]:[^:]*:Icicle:25EF:/
+121.4 "Spikesicle" sync / 1[56]:[^:]*:Icicle:25F0:/
+123.3 "Judgment Bolt / Hellfire" sync / 1[56]:[^:]*:Shinryu:(25FA|25DC):/
+
+138.4 "--Tail Marker (dps)--"
+149.5 "Levinbolt" sync / 1[56]:[^:]*:Right Wing:25EA:/
+156.6 "Tail Slap" sync / 1[56]:[^:]*:Tail:25E2:/
+164.5 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:25F1:/
+171.8 "--Tethers (T/H)--"
+180.6 "Earth Breath" sync / 1[56]:[^:]*:Shinryu:25EC:/
+188.0 "Akh Morn 2" sync / 1[56]:[^:]*:Shinryu:25F3:/ duration 3.2
+190.1 "Akh Rhai" sync / 1[56]:[^:]*:Shinryu:25F5:/ duration 5.3
+194.0 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:25F1:/
+206.6 "--Tethers (healers)--"
+208.2 "Diamond Dust" sync / 1[56]:[^:]*:Shinryu:25FC:/
+224.9 "--Reiryu Adds--"
+
+233.3 "--Tail Marker (tank)--"
+251.5 "Tail Slap" sync / 1[56]:[^:]*:Tail:260D:/
+268.5 "Summon Icicle" sync / 1[56]:[^:]*:Left Wing:25EE:/
+269.1 "Icicle Impact" sync / 1[56]:[^:]*:Icicle:25EF:/
+272.4 "Akh Morn 3" sync / 1[56]:[^:]*:Shinryu:25F3:/ duration 3.2
+273.6 "Spikesicle" sync / 1[56]:[^:]*:Icicle:25F0:/
+274.5 "Akh Rhai" sync / 1[56]:[^:]*:Shinryu:25F5:/ duration 5.3
+285.3 "Super Cyclone 1" #sync / 1[56]:[^:]*:Shinryu:260C:/
+287.4 "Super Cyclone 2" #sync / 1[56]:[^:]*:Shinryu:260C:/
+289.5 "Super Cyclone 3" #sync / 1[56]:[^:]*:Shinryu:260C:/
+291.7 "Aerial Blast" sync / 1[56]:[^:]*:Shinryu:25FE:/
+292.7 "--Tethers (dps)--"
+318.9 "Earth Breath" sync / 1[56]:[^:]*:Shinryu:25EC:/
+321.9 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:25F1:/
+
+325.3 "--untargetable--"
+334.7 "--sync--" sync / 1[56]:[^:]*:Shinryu:25F7:/
+335.9 "Gyre Charge" sync / 1[56]:[^:]*:Shinryu:2603:/
+341.8 "--targetable--"
+
+350.9 "Hypernova" sync / 1[56]:[^:]*:Right Wing:25E8:/
+363.0 "Akh Morn 4" sync / 1[56]:[^:]*:Shinryu:25F3:/ duration 4.3
+365.1 "Akh Rhai" sync / 1[56]:[^:]*:Shinryu:25F5:/ duration 5.3
+378.3 "Hypernova / Levinbolt" sync / 1[56]:[^:]*:Right Wing:(25E8|25EA):/
+384.3 "Tidal Wave" sync / 1[56]:[^:]*:Shinryu:25F9:/
+387.4 "--untargetable--"
+394.8 "Dark Matter" #sync / 1[56]:[^:]*:Shinryu:25E7:/
+
+
+### PHASE 2: Adds, explosions, dramatic tail climbing
+###
+500.0 "--Phase 2--" sync / 14:[^:]*:Shinryu:25E7:/ window 500,500
+503.0 "Dark Matter" sync / 1[56]:[^:]*:Shinryu:25E7:/
+513.0 "TAP BUTTON OR ELSE" duration 5
+540.7 "Touchdown" sync / 1[56]:[^:]*:Shinryu:2613:/
+545.2 "--sync--" sync / 1[56]:[^:]*:Shinryu:25D9:/
+552.3 "Meteor Impact 1" sync / 1[56]:[^:]*:Cocoon:25E5:/
+553.9 "--sync--" sync / 1[56]:[^:]*:Cocoon:2605:/
+571.1 "Meteor Impact 2" sync / 1[56]:[^:]*:Cocoon:25E5:/
+572.7 "--sync--" sync / 1[56]:[^:]*:Cocoon:2605:/
+588.0 "--Cocoon Markers--"
+601.0 "Meteor Impact 3" sync / 1[56]:[^:]*:Cocoon:25E5:/
+602.6 "--sync--" sync / 1[56]:[^:]*:Cocoon:2605:/
+
+### PHASE 3: Anticlimax
+###
+800.0 "--Phase 3--" sync / 14:[^:]*:Shinryu:25E4:/ window 500,500
+806.0 "Protostar" sync / 1[56]:[^:]*:Shinryu:25E4:/
+813.1 "Tail Spit" sync / 1[56]:[^:]*:Shinryu:2615:/
+837.4 "Shatter" sync / 1[56]:[^:]*:Shinryu:2617:/ window 50,50
+843.4 "--targetable--"
+
+# Loop 1
+855.5 "--sync--" sync / 14:[^:]*:Shinryu:264B:/ window 20,20
+859.5 "Tera Slash" sync / 1[56]:[^:]*:Shinryu:264B:/
+868.2 "Atomic Ray" sync / 1[56]:[^:]*:Shinryu:264C:/
+885.9 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:2722:/
+889.9 "Levinbolt / Hypernova" sync / 1[56]:[^:]*:Right Wing:(2720|271F):/
+897.9 "Wormwail / Benighting Breath" sync / 1[56]:[^:]*:Shinryu:(2648|2649):/
+907.1 "Tera Slash" sync / 1[56]:[^:]*:Shinryu:264B:/
+910.8 "--Reiryu Adds--"
+
+# Loop 2
+957.4 "Tera Slash" sync / 1[56]:[^:]*:Shinryu:264B:/ window 20,20
+966.1 "Atomic Ray" sync / 1[56]:[^:]*:Shinryu:264C:/
+983.8 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:2722:/
+987.8 "Levinbolt / Hypernova" sync / 1[56]:[^:]*:Right Wing:(2720|271F):/
+995.9 "Wormwail / Benighting Breath" sync / 1[56]:[^:]*:Shinryu:(2648|2649):/
+1005.1 "Tera Slash" sync / 1[56]:[^:]*:Shinryu:264B:/
+1009.1 "--Reiryu Adds--"
+
+### PHASE 4: Race to the finish!
+###
+1046.0 "--sync--" sync / 14:[^:]*:Shinryu:264E:/ window 300,300
+1085.0 "First Wing" # 35 second cast, starts 4 seconds later, 2718/2719
+1090.0 "Second Wing" # 35 second cast, starts 9 seconds later, 2719/2718
+1116.0 "Tidal Wave" sync / 1[56]:[^:]*:Shinryu:264E:/ # 70 second cast

@@ -1,0 +1,272 @@
+# Omega - Alphascape V4.0 (Savage) - O12S
+# -p 32FD:11.7
+# -it "Omega-M"
+# -ii 3326 337D 32F7 32FA 32F5 3302 32FC 32F9 32FA 32F8 32FB 32FC 330C 330B 32FE 32F2 3348 332C 3340 3350 3352 332D 3330 3331 3337 3338 333A 333C 333E
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "Start" sync / 00:0044:[^:]*:I am the Omega/ window 1,0
+2.4 "--sync--" sync / 1[56]:[^:]*:Omega-M:337D:/ window 2.4,0.5 # first auto
+11.7 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/ window 12,5
+19.7 "Suppression" sync / 1[56]:[^:]*:Omega-M:3345:/
+26.6 "Beyond Defense" sync / 1[56]:[^:]*:Omega-M:332B:/
+26.7 "Optical Laser" sync / 1[56]:[^:]*:Optical Unit:3347:/
+26.9 "Beyond Defense" sync / 1[56]:[^:]*:Omega-M:332C:/
+30.1 "Pile Pitch" sync / 1[56]:[^:]*:Omega-M:332E:/
+
+# F phase
+49.1 "Subject Simulation F" sync / 1[56]:[^:]*:Omega-M:32F1:/
+61.2 "Discharger" sync / 1[56]:[^:]*:Omega-M:3327:/ # drift -0.044
+73.2 "Synthetic Blades" sync / 1[56]:[^:]*:Omega-M:3301:/
+81.2 "Advanced Suppression" sync / 1[56]:[^:]*:Omega-M:3349:/
+87.2 "Superliminal Motion" sync / 1[56]:[^:]*:Omega-M:3334:/
+88.2 "Advanced Optical Laser" sync / 1[56]:[^:]*:Optical Unit:334A:/
+90.3 "Optimized Fire III" sync / 1[56]:[^:]*:Omega-M:3335:/ # drift 0.047
+
+# Twin phase
+102.6 "Subject Simulation M" sync / 1[56]:[^:]*:Omega-M:32F4:/ window 200,10
+108.9 "--untargetable--"
+114.1 "Electric Slide" sync / 1[56]:[^:]*:Omega:3354:/
+122.7 "Discharger" sync / 1[56]:[^:]*:Omega:3327:/
+122.7 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:3329:/
+125.7 "--targetable--"
+132.0 "Firewall" sync / 1[56]:[^:]*:Omega:3339:/ window 132.0
+141.2 "Resonance" sync / 1[56]:[^:]*:Omega:333B:/
+155.6 "Fundamental Synergy" sync / 1[56]:[^:]*:Omega:333D:/
+
+# Slides
+160.7 "Advanced Suppression" sync / 1[56]:[^:]*:Omega:3349:/
+163.9 "--untargetable--"
+164.2 "Electric Slide 1"
+166.0 "Electric Slide 2"
+167.7 "Electric Slide 3"
+167.8 "Advanced Optical Laser" sync / 1[56]:[^:]*:Optical Unit:334A:/
+169.4 "Electric Slide 4"
+170.7 "--targetable--"
+180.1 "Laser Shower" sync / 1[56]:[^:]*:Omega:3353:/
+189.3 "Solar Ray" sync / 1[56]:[^:]*:Omega:3351:/
+
+# Branch point
+200.5 "Synthetic Blades/Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/ jump 1200.5  # shield -> blades path
+200.5 "--sync--" sync / 1[56]:[^:]*:Omega:3301:/ jump 2200.5 # blades -> shield path
+212.2 "Operational Synergy"
+218.2 "Beyond Defense?"
+218.2 "Superliminal Steel?"
+219.8 "Optimized Blizzard III"
+221.5 "Pile Pitch"
+228.8 "Optimized Fire III"
+
+# Shield-first path
+1200.5 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/
+1212.2 "Operational Synergy" sync / 1[56]:[^:]*:Omega:3341:/
+1219.2 "Beyond Defense" sync / 1[56]:[^:]*:Omega-M:332B:/
+1219.4 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega:3333:/
+1222.7 "Pile Pitch" sync / 1[56]:[^:]*:Omega-M:332E:/
+1227.4 "Optimized Fire III" sync / 1[56]:[^:]*:Omega-F:3337:/
+1230.7 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:3328:/
+1233.7 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:3329:/
+1234.4 "Laser Shower" sync / 1[56]:[^:]*:Omega:3353:/
+1241.4 "Laser Shower" sync / 1[56]:[^:]*:Omega:3353:/
+1250.9 "Firewall" sync / 1[56]:[^:]*:Omega:3339:/
+1260.1 "Resonance" sync / 1[56]:[^:]*:Omega:333B:/
+1274.5 "Fundamental Synergy" sync / 1[56]:[^:]*:Omega:333D:/
+1279.6 "Advanced Suppression" sync / 1[56]:[^:]*:Omega:3349:/
+1282.3 "--untargetable--"
+1282.6 "Electric Slide 1" #sync / 1[56]:[^:]*:Omega:333F:/
+1284.3 "Electric Slide 2" #sync / 1[56]:[^:]*:Omega:333F:/
+1286.0 "Electric Slide 3" #sync / 1[56]:[^:]*:Omega:333F:/
+1286.5 "Advanced Optical Laser" sync / 1[56]:[^:]*:Optical Unit:334A:/
+1287.7 "Electric Slide 4" #sync / 1[56]:[^:]*:Omega:333F:/
+1289.0 "--targetable--"
+1298.4 "Laser Shower" sync / 1[56]:[^:]*:Omega:3353:/
+1307.4 "Solar Ray" sync / 1[56]:[^:]*:Omega:3351:/
+1318.4 "Synthetic Blades" sync / 1[56]:[^:]*:Omega:3301:/
+1329.4 "Operational Synergy" sync / 1[56]:[^:]*:Omega:3341:/
+1334.4 "Superliminal Steel" sync / 1[56]:[^:]*:Omega-F:3331:/
+1337.6 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega:3332:/
+1337.7 "Pile Pitch" sync / 1[56]:[^:]*:Omega-M:332E:/
+1343.8 "Superliminal Motion" sync / 1[56]:[^:]*:Omega:3334:/
+1347.0 "Optimized Fire III" sync / 1[56]:[^:]*:Omega-F:3337:/
+1348.2 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:332A:/
+1356.4 "Laser Shower" sync / 1[56]:[^:]*:Omega-M:3352:/
+1363.4 "Laser Shower" sync / 1[56]:[^:]*:Omega:3353:/
+1378.0 "Suppression" sync / 1[56]:[^:]*:Omega:3346:/ jump 378.0
+1385.1 "Optical Laser" # Cosmetic
+1385.4 "Optimized Meteor"
+1385.6 "Optimized Sagittarius Arrow"
+1396.4 "Cosmo Memory"
+1404.4 "Laser Shower"
+
+# Blades-first path
+2200.5 "Synthetic Blades" sync / 1[56]:[^:]*:Omega:3301:/
+2212.2 "Operational Synergy" sync / 1[56]:[^:]*:Omega:3341:/
+2217.2 "Superliminal Steel" sync / 1[56]:[^:]*:Omega:332F:/
+2220.3 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega:3332:/
+2220.3 "Pile Pitch" sync / 1[56]:[^:]*:Omega-M:332E:/
+2226.2 "Superliminal Motion" sync / 1[56]:[^:]*:Omega:3334:/
+2229.2 "Optimized Fire III" sync / 1[56]:[^:]*:Omega:3335:/
+2230.4 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:332A:/
+2238.2 "Laser Shower" sync / 1[56]:[^:]*:Omega:3353:/
+2250.4 "Firewall" sync / 1[56]:[^:]*:Omega:3339:/
+2259.4 "Resonance" sync / 1[56]:[^:]*:Omega:333B:/
+2273.4 "Fundamental Synergy" sync / 1[56]:[^:]*:Omega:333D:/
+2278.4 "Advanced Suppression" sync / 1[56]:[^:]*:Omega:3349:/
+2281.6 "--untargetable--"
+2282.0 "Electric Slide 1" #sync / 1[56]:[^:]*:Omega:333F:/
+2283.9 "Electric Slide 2" #sync / 1[56]:[^:]*:Omega:333F:/
+2285.5 "Advanced Optical Laser" sync / 1[56]:[^:]*:Optical Unit:334A:/
+2285.8 "Electric Slide 3" #sync / 1[56]:[^:]*:Omega:333F:/
+2287.7 "Electric Slide 4" #sync / 1[56]:[^:]*:Omega:333F:/
+2288.8 "--targetable--"
+2298.2 "Laser Shower" sync / 1[56]:[^:]*:Omega:3353:/
+2306.2 "Solar Ray" sync / 1[56]:[^:]*:Omega:3351:/
+2317.2 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/
+2328.2 "Operational Synergy" sync / 1[56]:[^:]*:Omega:3341:/
+2335.1 "Beyond Defense" sync / 1[56]:[^:]*:Omega-M:332B:/
+2335.4 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega:3333:/
+2338.6 "Pile Pitch" sync / 1[56]:[^:]*:Omega-M:332E:/
+2343.4 "Optimized Fire III" sync / 1[56]:[^:]*:Omega:3336:/
+2346.6 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:3328:/
+2349.6 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:3329:/
+2350.4 "Laser Shower" sync / 1[56]:[^:]*:Omega:3353:/
+2357.4 "Laser Shower" sync / 1[56]:[^:]*:Omega:3353:/
+2375.7 "Suppression" sync / 1[56]:[^:]*:Omega:3346:/ jump 378.0
+2382.7 "Optical Laser" # Cosmetic
+2382.7 "Optimized Meteor"
+2382.8 "Optimized Sagittarius Arrow"
+2393.3 "Cosmo Memory"
+2401.3 "Laser Shower"
+
+# Paths converge to enrage sequence
+378.0 "Suppression" sync / 1[56]:[^:]*:Omega:3346:/
+385.1 "Optical Laser" sync / 1[56]:[^:]*:Optical Unit:3347:/
+385.4 "Optimized Meteor" sync / 1[56]:[^:]*:Omega-F:334F:/
+385.6 "Optimized Sagittarius Arrow" sync / 1[56]:[^:]*:Omega-M:334D:/
+396.4 "Cosmo Memory" sync / 1[56]:[^:]*:Omega:3343:/
+404.4 "Laser Shower" sync / 1[56]:[^:]*:Omega:3353:/
+412.4 "Optimized Blade Dance" sync / 1[56]:[^:]*:Omega:334C:/
+430.4 "Advanced Suppression" sync / 1[56]:[^:]*:Omega:3349:/
+437.4 "Advanced Optical Laser" sync / 1[56]:[^:]*:Optical Unit:334A:/
+437.4 "Optimized Meteor" sync / 1[56]:[^:]*:Omega-F:334F:/
+437.4 "Optimized Sagittarius Arrow" sync / 1[56]:[^:]*:Omega-M:334D:/
+447.9 "Cosmo Memory" sync / 1[56]:[^:]*:Omega:3343:/
+455.9 "Laser Shower" sync / 1[56]:[^:]*:Omega:3353:/
+463.9 "Optimized Blade Dance" sync / 1[56]:[^:]*:Omega:334C:/
+479.4 "Cosmo Memory" sync / 1[56]:[^:]*:Omega:33EC:/
+
+# Final Omega - Alphascape V4.0 (Savage) - O12S+
+# -r ch1gtabdwN7QYDR6 -p 336C:3016 -ii 3380 3369 3366 335F 3377 336B 33B5
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+3000.0 "Start"
+3002.5 "--sync--" sync / 1[56]:[^:]*:Omega:3380:/ window 3003,0
+3016.0 "Target Analysis" sync / 1[56]:[^:]*:Omega:336C:/
+3019.0 "Savage Wave Cannon" sync / 1[56]:[^:]*:Omega:336D:/
+3027.5 "Patch" sync / 1[56]:[^:]*:Omega:3376:/
+3034.5 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:336[78]:/ # drift 0.046001
+3042.5 "Oversampled Wave Cannon" sync / 1[56]:[^:]*:Omega:336[45]:/
+3054.5 "Ion Efflux" sync / 1[56]:[^:]*:Omega:3357:/
+3062.6 "--sync--" sync / 1[56]:[^:]*:Omega:3381:/
+3069.9 "Hello, World" sync / 1[56]:[^:]*:Omega:336E:/
+3078.0 "Critical Synchronization Bug" #sync / 1[56]:[^:]*:Omega:336F:/
+3078.0 "Critical Overflow Bug" #sync / 1[56]:[^:]*:Omega:34E7:/
+3082.9 "Critical Synchronization Bug" #sync / 1[56]:[^:]*:Omega:336F:/
+3086.1 "Critical Overflow Bug" #sync / 1[56]:[^:]*:Omega:34E7:/
+3086.1 "Critical Synchronization Bug" #sync / 1[56]:[^:]*:Omega:336F:/
+3094.2 "Critical Overflow Bug" #sync / 1[56]:[^:]*:Omega:34E7:/
+3097.0 "Critical Error" sync / 1[56]:[^:]*:Omega:337E:/
+3105.1 "Critical Overflow Bug" #sync / 1[56]:[^:]*:Omega:34E7:/
+3105.1 "Critical Overflow Bug" #sync / 1[56]:[^:]*:Omega:34E7:/
+3113.1 "Ion Efflux" sync / 1[56]:[^:]*:Omega:3357:/
+3119.3 "--sync--" sync / 1[56]:[^:]*:Omega:3381:/
+3124.4 "Archive Peripheral" sync / 1[56]:[^:]*:Omega:3358:/ # drift -0.042999
+3140.5 "Hyper Pulse" sync / 1[56]:[^:]*:Right Arm Unit:335A:/
+3145.6 "Target Analysis" sync / 1[56]:[^:]*:Omega:336C:/
+3149.0 "Savage Wave Cannon" sync / 1[56]:[^:]*:Omega:336D:/
+3152.0 "--sync--" sync / 1[56]:[^:]*:Omega:3359:/ # drift 0.05
+3161.2 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:336[78]:/
+3169.4 "Oversampled Wave Cannon" sync / 1[56]:[^:]*:Omega:336[45]:/
+3183.6 "Index and Archive Peripheral" sync / 1[56]:[^:]*:Omega:339A:/
+3188.8 "--sync--" sync / 1[56]:[^:]*:Omega:3381:/
+3197.8 "Hyper Pulse" sync / 1[56]:[^:]*:Right Arm Unit:335C:/ duration 6.5
+3198.0 "Wave Cannon" sync / 1[56]:[^:]*:Omega:336A:/
+3206.2 "Target Analysis" sync / 1[56]:[^:]*:Omega:336C:/
+3209.2 "Savage Wave Cannon" sync / 1[56]:[^:]*:Omega:336D:/ # drift 0.047
+3212.2 "--sync--" sync / 1[56]:[^:]*:Omega:3359:/
+3234.2 "Patch" sync / 1[56]:[^:]*:Omega:3376:/
+3241.2 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:336[78]:/
+3249.4 "Oversampled Wave Cannon" sync / 1[56]:[^:]*:Omega:336[45]:/
+3261.5 "Ion Efflux" sync / 1[56]:[^:]*:Omega:3357:/ # drift -0.049001
+3269.8 "Archive All" sync / 1[56]:[^:]*:Omega:335D:/
+3283.0 "Electric Slide" sync / 1[56]:[^:]*:Omega:3363:/ # drift 0.05
+3289.1 "Delta Attack" sync / 1[56]:[^:]*:Omega:3378:/
+3292.2 "Floodlight" sync / 1[56]:[^:]*:Omega:337A:/
+3294.1 "Optimized Fire III" sync / 1[56]:[^:]*:Omega:3379:/ # drift 0.042001
+3294.1 "Spotlight" sync / 1[56]:[^:]*:Omega:337B:/
+3297.0 "Colossal Blow" sync / 1[56]:[^:]*:Left Arm Unit:3360:/
+3299.3 "--sync--" sync / 1[56]:[^:]*:Omega:335E:/
+3307.5 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:336[78]:/
+3320.8 "--sync--" sync / 1[56]:[^:]*:Omega:3381:/
+3328.0 "Hello, World" sync / 1[56]:[^:]*:Omega:336E:/
+3336.1 "Critical Synchronization Bug" #sync / 1[56]:[^:]*:Omega:336F:/
+3336.1 "Critical Overflow Bug" #sync / 1[56]:[^:]*:Omega:34E7:/
+3341.1 "Critical Synchronization Bug" #sync / 1[56]:[^:]*:Omega:336F:/
+3343.2 "Critical Underflow Bug" #sync / 1[56]:[^:]*:Omega:3371:/
+3344.2 "Critical Overflow Bug" #sync / 1[56]:[^:]*:Omega:34E7:/
+3344.2 "Critical Synchronization Bug" #sync / 1[56]:[^:]*:Omega:336F:/
+3344.2 "Critical Overflow Bug" #sync / 1[56]:[^:]*:Omega:34E7:/
+3345.8 "Critical Underflow Bug" #sync / 1[56]:[^:]*:Omega:3371:/
+3349.2 "Critical Underflow Bug" #sync / 1[56]:[^:]*:Omega:3371:/
+3352.2 "Critical Overflow Bug" #sync / 1[56]:[^:]*:Omega:34E7:/
+3353.3 "Critical Underflow Bug" #sync / 1[56]:[^:]*:Omega:3371:/
+3355.3 "Critical Error" sync / 1[56]:[^:]*:Omega:337E:/
+3358.3 "Cascading Latent Defect" sync / 1[56]:[^:]*:Omega:3373:/
+3360.9 "Critical Underflow Bug" #sync / 1[56]:[^:]*:Omega:3371:/ # drift 0.042999
+3362.6 "Critical Underflow Bug" #sync / 1[56]:[^:]*:Omega:3371:/
+3362.8 "Critical Underflow Bug" #sync / 1[56]:[^:]*:Omega:3371:/
+3363.4 "Critical Overflow Bug" #sync / 1[56]:[^:]*:Omega:34E7:/ # drift -0.041
+3371.5 "Ion Efflux" sync / 1[56]:[^:]*:Omega:3357:/
+3377.7 "--sync--" sync / 1[56]:[^:]*:Omega:3381:/ # drift 0.042001
+3382.7 "Archive Peripheral" sync / 1[56]:[^:]*:Omega:3358:/
+3399.0 "Hyper Pulse" sync / 1[56]:[^:]*:Right Arm Unit:335A:/ duration 6.5
+3403.9 "Target Analysis" sync / 1[56]:[^:]*:Omega:336C:/
+3407.4 "Savage Wave Cannon" sync / 1[56]:[^:]*:Omega:336D:/ # drift 0.043999
+3410.5 "--sync--" sync / 1[56]:[^:]*:Omega:3359:/
+3419.6 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:336[78]:/
+3427.8 "Oversampled Wave Cannon" sync / 1[56]:[^:]*:Omega:336[45]:/
+3442.0 "Index and Archive Peripheral" sync / 1[56]:[^:]*:Omega:339A:/
+3447.2 "--sync--" sync / 1[56]:[^:]*:Omega:3381:/
+3456.3 "Hyper Pulse" sync / 1[56]:[^:]*:Right Arm Unit:335C:/ duration 6.5
+3456.4 "Wave Cannon" sync / 1[56]:[^:]*:Omega:336A:/
+3464.5 "Target Analysis" sync / 1[56]:[^:]*:Omega:336C:/
+3467.8 "Savage Wave Cannon" sync / 1[56]:[^:]*:Omega:336D:/
+3470.9 "--sync--" sync / 1[56]:[^:]*:Omega:3359:/ # drift -0.047
+3493.1 "Patch" sync / 1[56]:[^:]*:Omega:3376:/
+3500.2 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:336[78]:/
+3508.4 "Oversampled Wave Cannon" sync / 1[56]:[^:]*:Omega:336[45]:/
+3520.7 "Ion Efflux" sync / 1[56]:[^:]*:Omega:3357:/
+3529.0 "Archive All" sync / 1[56]:[^:]*:Omega:335D:/ # drift -0.045999
+3542.1 "Electric Slide" sync / 1[56]:[^:]*:Omega:3363:/
+3548.2 "Delta Attack" sync / 1[56]:[^:]*:Omega:3378:/
+3551.3 "Floodlight" sync / 1[56]:[^:]*:Omega:337A:/
+3553.3 "Optimized Fire III" sync / 1[56]:[^:]*:Omega:3379:/ # drift 0.043999
+3553.3 "Spotlight" sync / 1[56]:[^:]*:Omega:337B:/
+3556.1 "Colossal Blow" sync / 1[56]:[^:]*:Left Arm Unit:3360:/
+3558.3 "--sync--" sync / 1[56]:[^:]*:Omega:335E:/
+3566.5 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:336[78]:/ # drift -0.042
+3579.8 "--sync--" sync / 1[56]:[^:]*:Omega:3381:/
+3585.2 "Program Omega" sync / 1[56]:[^:]*:Omega:360A:/
+3587.3 "Ion Efflux" sync / 1[56]:[^:]*:Omega:3355:/
+# Skipping the 3356 small explosions
+3596.4 "Ion Efflux" sync / 1[56]:[^:]*:Omega:35E1:/
+3599.6 "Ion Efflux" sync / 1[56]:[^:]*:Omega:3355:/
+3608.7 "Ion Efflux" sync / 1[56]:[^:]*:Omega:35E1:/
+3611.8 "Ion Efflux" sync / 1[56]:[^:]*:Omega:3355:/
+3620.9 "Ion Efflux" sync / 1[56]:[^:]*:Omega:35E1:/
+3624.1 "Ion Efflux" sync / 1[56]:[^:]*:Omega:3355:/
+3633.3 "Ion Efflux" sync / 1[56]:[^:]*:Omega:35E1:/
+3646.4 "Enrage" sync / 1[56]:[^:]*:Omega:337C:/

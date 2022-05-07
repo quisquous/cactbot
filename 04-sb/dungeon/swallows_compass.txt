@@ -1,0 +1,144 @@
+### THE SWALLOW'S COMPASS
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~#
+# OTENGU #
+#~~~~~~~~#
+
+# -ii 2B99
+
+0 "Start" sync / 00:0839::The Heart Of The Dragon will be sealed off/ window 0,1
+11.6 "Clout Of The Tengu" sync / 1[56]:[^:]*:Otengu:2B95:/
+22.5 "Yama-Kagura" sync / 1[56]:[^:]*:Otengu:2B96:/ window 22.5,5
+33.1 "Might Of The Tengu" sync / 1[56]:[^:]*:Otengu:2B94:/
+53.1 "Yama-Kagura" sync / 1[56]:[^:]*:Otengu:2B96:/ window 20,20
+64.2 "Wile Of The Tengu" sync / 1[56]:[^:]*:Otengu:2B97:/
+76.7 "Clout Of The Tengu" sync / 1[56]:[^:]*:Otengu:2B95:/
+85.5 "Flames Of Hate" sync / 1[56]:[^:]*:Tengu Ember:2B98:/ window 85.5,5
+93.1 "Might Of The Tengu" sync / 1[56]:[^:]*:Otengu:2B94:/
+106.1 "Clout Of The Tengu" sync / 1[56]:[^:]*:Otengu:2B95:/
+
+125.0 "Yama-Kagura" sync / 1[56]:[^:]*:Otengu:2B96:/ window 30,30
+136.1 "Wile Of The Tengu" sync / 1[56]:[^:]*:Otengu:2B97:/
+148.6 "Clout Of The Tengu" sync / 1[56]:[^:]*:Otengu:2B95:/
+157.4 "Flames Of Hate" sync / 1[56]:[^:]*:Tengu Ember:2B98:/
+164.9 "Might Of The Tengu" sync / 1[56]:[^:]*:Otengu:2B94:/
+177.9 "Clout Of The Tengu" sync / 1[56]:[^:]*:Otengu:2B95:/
+189.8 "Yama-Kagura" sync / 1[56]:[^:]*:Otengu:2B96:/ window 30,10
+
+211.2 "Yama-Kagura" sync / 1[56]:[^:]*:Otengu:2B96:/ jump 125.0
+222.3 "Wile Of The Tengu"
+234.8 "Clout Of The Tengu"
+243.6 "Flames Of Hate"
+
+#~~~~~~~~~~~~~~~#
+# DAIDARABOTCHI #
+#~~~~~~~~~~~~~~~#
+
+# -ii 2CD1 2B9B 2B9C 2B9F
+
+1000.0 "Start" sync / 00:0839::The Dragon's Mouth will be sealed off/ window 1000,1
+1011.2 "Greater Palm" sync / 1[56]:[^:]*:Daidarabotchi:2B9[DE]:/ window 11.2,5
+1023.1 "Greater Palm" sync / 1[56]:[^:]*:Daidarabotchi:2B9[DE]:/
+1035.3 "Tributary" sync / 1[56]:[^:]*:Daidarabotchi:2BA0:/ window 35,0
+1035.5 "Mountain Falls" sync / 1[56]:[^:]*:Daidarabotchi:2BA5:/ window 35,5
+1051.4 "Mirage x5" sync / 1[56]:[^:]*:Daidarabotchi:2BA1:/ duration 5
+
+1062.5 "--sync--" sync / 1[56]:[^:]*:Daidarabotchi:2BA3:/ window 62.5,10
+1067.5 "Mythmaker" sync / 1[56]:[^:]*:Daidarabotchi:2BA4:/
+1085.6 "Mountain Falls" sync / 1[56]:[^:]*:Daidarabotchi:2BA5:/
+1091.1 "Greater Palm" sync / 1[56]:[^:]*:Daidarabotchi:2B9[DE]:/ window 30,10
+1104.4 "Tributary" sync / 1[56]:[^:]*:Daidarabotchi:2BA0:/
+1121.4 "Mirage x5" sync / 1[56]:[^:]*:Daidarabotchi:2BA1:/ duration 5
+1131.9 "Greater Palm 1" sync / 1[56]:[^:]*:Daidarabotchi:2B9[DE]:/
+1138.7 "Greater Palm 2" sync / 1[56]:[^:]*:Daidarabotchi:2B9[DE]:/
+1151.9 "Tributary" sync / 1[56]:[^:]*:Daidarabotchi:2BA0:/
+1152.1 "Mountain Falls" sync / 1[56]:[^:]*:Daidarabotchi:2BA5:/ window 30,30
+1164.4 "Greater Palm" sync / 1[56]:[^:]*:Daidarabotchi:2B9[DE]:/
+1181.8 "Mirage x5" sync / 1[56]:[^:]*:Daidarabotchi:2BA1:/ duration 5
+1191.3 "Greater Palm" sync / 1[56]:[^:]*:Daidarabotchi:2B9[DE]:/
+
+1203.7 "--sync--" sync / 1[56]:[^:]*:Daidarabotchi:2BA3:/ window 100,10 jump 1062.5
+1208.7 "Mythmaker"
+1226.8 "Mountain Falls"
+1232.3 "Greater Palm"
+1245.6 "Tributary"
+1262.6 "Mirage x5"
+
+#~~~~~~~~~~~~~~~~#
+# QITIAN DASHENG #
+#~~~~~~~~~~~~~~~~#
+
+# -ii 2BAC
+# -p 2CC7:2300.0 2BB2:2383.9
+
+# The opening block repeats without interrruption above 50% HP.
+# Note that Dasheng's abilities are not the same as those of the shadows!
+2000.0 "Start" sync / 00:0839::Serenity will be sealed off/ window 2000,5
+2011.8 "The Short End" sync / 1[56]:[^:]*:Qitian Dasheng:2BA6:/ window 11.8,5
+2025.5 "Both Ends" sync / 1[56]:[^:]*:Qitian Dasheng:2BA[89]:/
+2036.1 "Mount Huaguo" sync / 1[56]:[^:]*:Qitian Dasheng:2BAA:/ window 36.1,5
+2052.3 "Both Ends" sync / 1[56]:[^:]*:Qitian Dasheng:2BA[89]:/
+2069.2 "The Long End" sync / 1[56]:[^:]*:Qitian Dasheng:2BA7:/
+2076.3 "Five-Fingered Punishment" sync / 1[56]:[^:]*:Qitian Dasheng:2BAB:/ window 76.3,10
+2084.9 "Both Ends" sync / 1[56]:[^:]*:Qitian Dasheng:2BA[89]:/
+
+2102.7 "Both Ends" sync / 1[56]:[^:]*:Qitian Dasheng:2BA[89]:/
+2113.3 "Mount Huaguo" sync / 1[56]:[^:]*:Qitian Dasheng:2BAA:/
+2132.6 "Both Ends" sync / 1[56]:[^:]*:Qitian Dasheng:2BA[89]:/
+2143.2 "The Short End" sync / 1[56]:[^:]*:Qitian Dasheng:2BA6:/ window 30,30
+
+2162.2 "Both Ends" sync / 1[56]:[^:]*:Qitian Dasheng:2BA[89]:/ jump 2102.7
+2172.8 "Mount Huaguo"
+2192.1 "Both Ends"
+2202.7 "The Short End"
+
+# Intermission at <50% HP.
+2300.0 "--sync--" sync / 1[56]:[^:]*:Qitian Dasheng:2CC7:/ window 300,5
+2310.3 "Equal Of Heaven" sync / 1[56]:[^:]*:Qitian Dasheng:2BB4:/
+2324.3 "Equal Of Heaven" sync / 1[56]:[^:]*:Qitian Dasheng:2BB4:/
+2338.3 "Equal Of Heaven" sync / 1[56]:[^:]*:Qitian Dasheng:2BB4:/
+2373.9 "Second Heaven" sync / 1[56]:[^:]*:Qitian Dasheng:2BB1:/ window 73.9,5
+
+
+# An interruptible rotation continues to the end.
+2383.9 "Splitting Hairs" sync / 1[56]:[^:]*:Qitian Dasheng:2BB2:/
+
+2392.0 "Equal Of Heaven" sync / 1[56]:[^:]*:Qitian Dasheng:2BB4:/ window 30,15
+2396.0 "Both Ends" sync / 1[56]:[^:]*:Shadow Of The Sage:2BA[EF]:/
+2407.6 "Mount Huaguo" sync / 1[56]:[^:]*:Shadow Of The Sage:2D08:/
+2421.9 "Equal Of Heaven" sync / 1[56]:[^:]*:Qitian Dasheng:2BB4:/
+2424.0 "The Long End" sync / 1[56]:[^:]*:Shadow Of The Sage:2BAD:/ window 30,30
+2435.2 "The Short End" sync / 1[56]:[^:]*:Shadow Of The Sage:2D07:/
+2449.1 "Equal Of Heaven" sync / 1[56]:[^:]*:Qitian Dasheng:2BB4:/
+2451.1 "Five-Fingered Punishment" sync / 1[56]:[^:]*:Shadow Of The Sage:2BB0:/ window 30,30
+2453.1 "Both Ends" sync / 1[56]:[^:]*:Shadow Of The Sage:2BA[EF]:/
+2464.7 "Mount Huaguo" sync / 1[56]:[^:]*:Shadow Of The Sage:2D08:/
+2464.7 "The Short End" sync / 1[56]:[^:]*:Shadow Of The Sage:2D07:/
+
+2479.0 "Equal Of Heaven" sync / 1[56]:[^:]*:Qitian Dasheng:2BB4:/ window 15,15 jump 2392.0
+2483.0 "Both Ends"
+2494.6 "Mount Huaguo"
+2508.9 "Equal Of Heaven"
+2511.0 "The Long End"
+2522.2 "The Short End"
+
+
+# Any time one shadow is reduced to 0% HP,
+# the other teleports to the center and casts Splitting Hairs.
+# Upon resolution, the shadows pick up approximately where they left off.
+# Unfortunately, this means we can't do a nice lookahead,
+# since it would just be a jumbled mess.
+
+# This is a safe sync. The usage immediately after the intermission is 2BB2 from Dasheng.
+#
+2590.3 "--sync--" sync / 14:[^:]*:Shadow Of The Sage:2BB3:/ window 2590.3,10
+2600.0 "Splitting Hairs" sync / 1[56]:[^:]*:Shadow Of The Sage:2BB3:/ window 2600,5
+2608.0 "Equal Of Heaven" sync / 1[56]:[^:]*:Qitian Dasheng:2BB4:/
+2610.0 "Five-Fingered Punishment?" sync / 1[56]:[^:]*:Shadow Of The Sage:2BB0:/ jump 2451.1
+2610.0 "The Long End?" sync / 1[56]:[^:]*:Shadow Of The Sage:2BAD:/ jump 2424.0
+2612.0 "Both Ends?" sync / 1[56]:[^:]*:Shadow Of The Sage:2BA[EF]:/ jump 2396.0

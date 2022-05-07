@@ -1,0 +1,132 @@
+# Susano Extreme
+# -it Susano
+# -p 202C:9.1 21C6:300 2032:400
+# -ii 203F 2038 2039 203A 203B 202E 2037 208D 203D 2031 2044
+
+hideall "--Reset--"
+hideall "--sync--"
+# Seasplitter knockback marker appearing, hidden for noise reasons.
+hideall "Yasakani-No-Magatama"
+# Used for triggers.
+hideall "--knockback cloud--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1 ###
+0.0 "--sync--" sync /:Engage!/ window 0,1
+9.1 "Assail" sync / 1[56]:[^:]*:Susano:202C:/ window 10,10
+12.3 "Churn" sync / 1[56]:[^:]*:Susano:203E:/
+36.4 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
+40.7 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+42.5 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
+47.7 "Assail" sync / 1[56]:[^:]*:Susano:202C:/
+50.8 "Churn" sync / 1[56]:[^:]*:Susano:203E:/
+58.8 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+70.0 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+77.1 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
+81.4 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+81.5 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+88.2 "Assail" sync / 1[56]:[^:]*:Susano:202C:/
+93.8 "--untargetable--"
+
+### Phase 2 (hp push at ???% / time push)
+# sync to touching the Blade's Shadow, this happens twice
+300.0 "--sync--" sync / 1[56]:[^:]*:Susano:21C6:/ window 300,100
+305.6 "--targetable--"
+305.6 "--Dark Levin 1--"
+308.4 "--Dark Levin 2--"
+311.5 "--Dark Levin 3--"
+314.4 "--Dark Levin 4--"
+
+### Phase 3 ###
+400.0 "Ame-No-Murakumo" sync / 1[56]:[^:]*:Susano:2032:/ window 400,100
+404.1 "Ame-No-Murakumo" sync / 1[56]:[^:]*:Susano:218C:/
+413.6 "--targetable--"
+
+425.9 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
+432.6 "Levinbolt 1" sync / 1[56]:[^:]*:Susano:203C:/
+438.1 "Levinbolt 2" sync / 1[56]:[^:]*:Susano:203C:/
+443.5 "Levinbolt 3" sync / 1[56]:[^:]*:Susano:203C:/
+449.0 "Levinbolt 4" sync / 1[56]:[^:]*:Susano:203C:/
+458.9 "Ukehi x2" sync / 1[56]:[^:]*:Susano:2036:/
+467.2 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+474.5 "--knockback cloud--"
+474.5 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
+478.8 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+478.9 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+480.6 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
+
+490.8 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
+495.9 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+497.5 "Levinbolt 1" sync / 1[56]:[^:]*:Susano:203C:/
+503.0 "Levinbolt 2" sync / 1[56]:[^:]*:Susano:203C:/
+506.7 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+508.5 "Levinbolt 3" sync / 1[56]:[^:]*:Susano:203C:/
+514.0 "Levinbolt 4" sync / 1[56]:[^:]*:Susano:203C:/
+521.1 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
+
+531.5 "The Hidden Gate" sync / 1[56]:[^:]*:Susano:2034:/
+547.2 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+554.5 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
+557.1 "The Sealed Gate" sync / 1[56]:[^:]*:Ama-No-Iwato:2035:/
+566.7 "Levinbolt Stun 1" sync / 1[56]:[^:]*:Susano:203C:/
+573.2 "Levinbolt Stun 2" sync / 1[56]:[^:]*:Susano:203C:/
+579.7 "Levinbolt Stun 3" sync / 1[56]:[^:]*:Susano:203C:/
+586.2 "Levinbolt Stun 4" sync / 1[56]:[^:]*:Susano:203C:/
+592.6 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
+604.0 "Churn" sync / 1[56]:[^:]*:Susano:203E:/
+611.2 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
+615.5 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+617.3 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
+622.4 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+
+632.7 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
+642.9 "Levinbolt Stun 1" sync / 1[56]:[^:]*:Susano:203C:/
+649.3 "Levinbolt Stun 2" sync / 1[56]:[^:]*:Susano:203C:/
+655.9 "Levinbolt Stun 3" sync / 1[56]:[^:]*:Susano:203C:/
+662.4 "Levinbolt Stun 4" sync / 1[56]:[^:]*:Susano:203C:/
+669.8 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
+676.1 "Churn" sync / 1[56]:[^:]*:Susano:203E:/
+684.1 "Rasen Kaikyo 1" sync / 1[56]:[^:]*:Susano:202D:/
+689.3 "Rasen Kaikyo 2" sync / 1[56]:[^:]*:Susano:202D:/
+
+701.6 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
+706.7 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+708.3 "Levinbolt 1" sync / 1[56]:[^:]*:Susano:203C:/
+713.8 "Levinbolt 2" sync / 1[56]:[^:]*:Susano:203C:/
+713.8 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+717.4 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+719.2 "Levinbolt 3" sync / 1[56]:[^:]*:Susano:203C:/
+723.9 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+724.7 "Levinbolt 4" sync / 1[56]:[^:]*:Susano:203C:/
+728.1 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+735.3 "--knockback cloud--"
+735.3 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
+739.6 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+739.7 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+741.4 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
+748.5 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
+
+760.0 "The Hidden Gate" sync / 1[56]:[^:]*:Susano:2034:/
+776.0 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
+781.1 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+782.7 "Levinbolt 1" sync / 1[56]:[^:]*:Susano:203C:/
+785.6 "The Sealed Gate" sync / 1[56]:[^:]*:Ama-No-Iwato:2035:/
+788.2 "Levinbolt 2" sync / 1[56]:[^:]*:Susano:203C:/
+791.9 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+793.7 "Levinbolt 3" sync / 1[56]:[^:]*:Susano:203C:/
+797.3 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+799.2 "Levinbolt 4" sync / 1[56]:[^:]*:Susano:203C:/
+807.3 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+812.4 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+814.8 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
+819.1 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
+819.2 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
+820.9 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
+826.0 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+832.1 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
+
+843.6 "The Hidden Gate" sync / 1[56]:[^:]*:Susano:2034:/ window 40,40 jump 531.5
+859.3 "Rasen Kaikyo" #sync / 1[56]:[^:]*:Susano:202D:/
+866.6 "Stormsplitter" #sync / 1[56]:[^:]*:Susano:2033:/
+869.2 "The Sealed Gate" #sync / 1[56]:[^:]*:Ama-No-Iwato:2035:/

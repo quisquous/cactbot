@@ -1,0 +1,111 @@
+### THE BURN
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+
+#~~~~~~~~~#
+# HEDETET #
+#~~~~~~~~~#
+
+# -ii 3198 3199
+
+0 "Start" sync / 00:0839::The Scorpion's Den will be sealed off/ window 0,1
+10.4 "Crystal Needle" sync / 1[56]:[^:]*:Hedetet:3193:/
+25.8 "Hailfire" sync / 1[56]:[^:]*:Hedetet:3194:/ window 25,30
+29.8 "Resonant Frequency" sync / 1[56]:[^:]*:Dim Crystal:3198:/
+39.8 "Shardstrike" sync / 1[56]:[^:]*:Hedetet:3195:/
+53.9 "Shardfall" sync / 1[56]:[^:]*:Hedetet:3191:/
+62.0 "Dissonance" sync / 1[56]:[^:]*:Hedetet:3192:/ window 30,30
+69.1 "Crystalline Fracture" sync / 1[56]:[^:]*:Dim Crystal:3197:/
+
+74.2 "Crystal Needle" sync / 1[56]:[^:]*:Hedetet:3193:/ window 20,20
+83.4 "--jump--" sync / 1[56]:[^:]*:Hedetet:3196:/
+92.8 "Hailfire" sync / 1[56]:[^:]*:Hedetet:3194:/ window 30,30
+103.9 "Shardstrike" sync / 1[56]:[^:]*:Hedetet:3195:/
+118.1 "Shardfall" sync / 1[56]:[^:]*:Hedetet:3191:/
+126.1 "Dissonance" sync / 1[56]:[^:]*:Hedetet:3192:/ window 30,30
+133.2 "Crystalline Fracture" sync / 1[56]:[^:]*:Dim Crystal:3197:/
+
+138.3 "Crystal Needle" sync / 1[56]:[^:]*:Hedetet:3193:/ window 20,20 jump 74.2
+147.5 "--jump--"
+156.9 "Hailfire"
+168.0 "Shardstrike"
+
+
+#~~~~~~~~~~~~~~~~~#
+# DEFECTIVE DRONE #
+#~~~~~~~~~~~~~~~~~#
+
+# -ii 2D76 2D77 34D5 34D6 34D9
+
+1000.0 "Start" sync / 00:0839::The Gamma Segregate will be sealed off/ window 1000,5
+1012.7 "Aetherochemical Flame" sync / 1[56]:[^:]*:Defective Drone:2D73:/
+1026.7 "Aetherochemical Residue" sync / 1[56]:[^:]*:Defective Drone:2D74:/
+1030.9 "--untargetable--"
+1039.1 "Full Throttle" sync / 1[56]:[^:]*:Defective Drone:2D75:/ window 39,30
+1042.2 "--targetable--"
+
+1059.3 "Aetherochemical Coil" sync / 1[56]:[^:]*:Defective Drone:2D72:/ window 30,15
+1074.5 "Adit Driver" # sync / 1[56]:[^:]*:Rock Biter:2D78:/
+1080.4 "Aetherochemical Flame" sync / 1[56]:[^:]*:Defective Drone:2D73:/
+1094.5 "Aetherochemical Coil" sync / 1[56]:[^:]*:Defective Drone:2D72:/
+1111.7 "Aetherochemical Residue" sync / 1[56]:[^:]*:Defective Drone:2D74:/
+1115.6 "--untargetable--"
+1123.8 "Full Throttle" sync / 1[56]:[^:]*:Defective Drone:2D75:/ window 30,30
+1123.8 "Adit Driver" # sync / 1[56]:[^:]*:Rock Biter:2D78:/
+1126.9 "--targetable--"
+
+1144.0 "Aetherochemical Coil" sync / 1[56]:[^:]*:Defective Drone:2D72:/ window 30,15 jump 1059.3
+1159.2 "Adit Driver"
+1165.1 "Aetherochemical Flame"
+1179.2 "Aetherochemical Coil"
+
+#~~~~~~~~~~~~~#
+# MIST DRAGON #
+#~~~~~~~~~~~~~#
+
+# -ii 3142 3145 3146 3149
+
+2000.0 "Start" sync / 00:0839::The Aspersory will be sealed off/ window 2000,5
+2013.2 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
+2021.4 "Frost Breath" sync / 1[56]:[^:]*:Mist Dragon:314C:/
+2030.7 "Fog Plume" sync / 1[56]:[^:]*:Mist Dragon:3144:/
+2050.9 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
+
+
+2061.9 "Vaporize" sync / 1[56]:[^:]*:Mist Dragon:3140:/ window 62,30
+2064.1 "--untargetable--"
+2073.1 "--targetable--"
+2093.1 "Cold Fog" sync / 1[56]:[^:]*:Mist Dragon:3141:/
+2104.4 "Chilling Aspiration" sync / 1[56]:[^:]*:Mist Dragon:314D:/
+2111.6 "Frost Breath" sync / 1[56]:[^:]*:Mist Dragon:314C:/
+2119.7 "Fog Plume" sync / 1[56]:[^:]*:Mist Dragon:3144:/
+2137.9 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
+2152.2 "Deep Fog" sync / 1[56]:[^:]*:Mist Dragon:3147:/ window 150,30
+2157.3 "--untargetable--"
+2167.4 "Cauterize" sync / 1[56]:[^:]*:Mist Dragon:3148:/
+2178.0 "Cauterize" sync / 1[56]:[^:]*:Mist Dragon:3148:/
+2187.0 "--targetable--" sync / 1[56]:[^:]*:Mist Dragon:314A:/
+2196.2 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
+2205.4 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
+2214.6 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
+2224.8 "Chilling Aspiration" sync / 1[56]:[^:]*:Mist Dragon:314D:/ window 30,30
+2232.0 "Frost Breath" sync / 1[56]:[^:]*:Mist Dragon:314C:/
+2240.1 "Fog Plume" sync / 1[56]:[^:]*:Mist Dragon:3144:/
+2254.3 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
+2263.5 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
+2273.7 "Deep Fog" sync / 1[56]:[^:]*:Mist Dragon:3147:/ window 30,30
+2278.8 "--untargetable--"
+2288.9 "Cauterize" sync / 1[56]:[^:]*:Mist Dragon:3148:/
+2299.5 "Cauterize" sync / 1[56]:[^:]*:Mist Dragon:3148:/
+2308.5 "--targetable--" sync / 1[56]:[^:]*:Mist Dragon:314A:/
+2317.7 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
+
+
+2329.8 "Vaporize" sync / 1[56]:[^:]*:Mist Dragon:3140:/ window 30,30 jump 2061.9
+2332.0 "--untargetable--"
+2341.0 "--targetable--"
+2361.0 "Cold Fog"

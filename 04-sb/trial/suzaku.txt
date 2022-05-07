@@ -1,0 +1,107 @@
+# Suzaku Normal
+# -ii 3232 323D
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.5 "--sync--" sync / 1[56]:[^:]*:Suzaku:367:/ window 2.5,1
+9.1 "Cremate" sync / 1[56]:[^:]*:Suzaku:3220:/ window 9.1,5
+18.7 "Eternal Flame" sync / 1[56]:[^:]*:Suzaku:3222:/
+29.9 "Fleeting Summer" sync / 1[56]:[^:]*:Suzaku:3223:/
+40.0 "Ashes To Ashes?" # sync / 1[56]:[^:]*:Scarlet Lady:321F:/
+42.5 "Screams Of The Damned" sync / 1[56]:[^:]*:Suzaku:3221:/
+50.6 "Phoenix Down" sync / 1[56]:[^:]*:Suzaku:3224:/
+62.1 "Cremate" sync / 1[56]:[^:]*:Suzaku:3220:/
+71.2 "Wing And A Prayer" sync / 1[56]:[^:]*:Scarlet Plume:3225:/
+71.6 "Screams Of The Damned" sync / 1[56]:[^:]*:Suzaku:3221:/
+85.1 "Fleeting Summer" sync / 1[56]:[^:]*:Suzaku:3223:/
+93.7 "Ashes To Ashes?" # sync / 1[56]:[^:]*:Scarlet Lady:321F:/
+100.0 "Eternal Flame" sync / 1[56]:[^:]*:Suzaku:3222:/
+102.0 "--untargetable--"
+
+117.3 "--sync--" sync / 1[56]:[^:]*:Suzaku:3226:/ window 117.3
+132.4 "--sync--" sync / 1[56]:[^:]*:Suzaku:3485:/
+133.9 "Scarlet Hymn 1" sync / 1[56]:[^:]*:Rapturous Echo:3228:/
+144.0 "Scarlet Hymn 2" sync / 1[56]:[^:]*:Rapturous Echo:3228:/
+153.2 "--sync--" sync / 1[56]:[^:]*:Suzaku:3486:/
+153.5 "Scarlet Hymn 3" sync / 1[56]:[^:]*:Rapturous Echo:3228:/
+156.5 "Scarlet Hymn 4" sync / 1[56]:[^:]*:Rapturous Echo:3228:/
+165.6 "Scarlet Hymn 5" sync / 1[56]:[^:]*:Rapturous Echo:3228:/
+167.6 "Scarlet Hymn 6" sync / 1[56]:[^:]*:Rapturous Echo:3228:/
+169.6 "Scarlet Hymn 7" sync / 1[56]:[^:]*:Rapturous Echo:3228:/
+182.8 "Scarlet Fever" sync / 1[56]:[^:]*:Suzaku:322C:/ window 182.8
+187.4 "--targetable--"
+
+197.6 "Southron Star" sync / 1[56]:[^:]*:Suzaku:3234:/
+205.2 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+210.7 "Ruthless Refrain" sync / 1[56]:[^:]*:Suzaku:3230:/
+222.9 "Phantom Flurry" sync / 1[56]:[^:]*:Suzaku:3231:/
+229.0 "Phantom Half" sync / 1[56]:[^:]*:Suzaku:3233:/
+239.7 "Well Of Flame" sync / 1[56]:[^:]*:Suzaku:3236:/
+246.9 "Scarlet Hymn" sync / 1[56]:[^:]*:Suzaku:3237:/ window 246.9
+270.8 "Hotspot 1" sync / 1[56]:[^:]*:Suzaku:3238:/
+286.0 "Hotspot 2" sync / 1[56]:[^:]*:Suzaku:3238:/
+291.6 "Well Of Flame" sync / 1[56]:[^:]*:Suzaku:3236:/
+302.3 "Hotspot 3" sync / 1[56]:[^:]*:Suzaku:3238:/
+304.8 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+310.3 "Ruthless Refrain" sync / 1[56]:[^:]*:Suzaku:3230:/
+318.6 "Hotspot 4" sync / 1[56]:[^:]*:Suzaku:3238:/
+329.5 "--sync--" sync / 1[56]:[^:]*:Suzaku:323A:/
+335.6 "Southron Star" sync / 1[56]:[^:]*:Suzaku:3234:/
+
+346.2 "Incandescent Interlude" sync / 1[56]:[^:]*:Suzaku:323C:/ window 346.2
+355.6 "Rekindle" sync / 1[56]:[^:]*:Suzaku:3235:/
+358.6 "Immolate" sync / 1[56]:[^:]*:Suzaku:323E:/
+366.6 "Phantom Flurry" sync / 1[56]:[^:]*:Suzaku:3231:/
+372.9 "Phantom Half" sync / 1[56]:[^:]*:Suzaku:3233:/
+378.5 "--sync--" sync / 1[56]:[^:]*:Suzaku:3239:/
+380.7 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+386.5 "Well Of Flame" sync / 1[56]:[^:]*:Suzaku:3236:/
+387.0 "Swoop" sync / 1[56]:[^:]*:Suzaku:323B:/ window 30,30
+389.7 "--sync--" sync / 1[56]:[^:]*:Suzaku:323A:/
+395.8 "Southron Star" sync / 1[56]:[^:]*:Suzaku:3234:/
+402.4 "Scarlet Hymn" sync / 1[56]:[^:]*:Suzaku:3237:/
+420.0 "Southron Star" sync / 1[56]:[^:]*:Suzaku:3234:/
+430.8 "Hotspot 1" # sync / 1[56]:[^:]*:Suzaku:3238:/
+432.9 "Hotspot 2" # sync / 1[56]:[^:]*:Suzaku:3238:/
+435.0 "Hotspot 3" # sync / 1[56]:[^:]*:Suzaku:3238:/
+437.0 "Hotspot 4" # sync / 1[56]:[^:]*:Suzaku:3238:/
+443.6 "Phantom Flurry" sync / 1[56]:[^:]*:Suzaku:3231:/ window 30,30
+449.9 "Phantom Half" sync / 1[56]:[^:]*:Suzaku:3233:/
+462.7 "Hotspot 1" # sync / 1[56]:[^:]*:Suzaku:3238:/
+464.8 "Hotspot 2" # sync / 1[56]:[^:]*:Suzaku:3238:/
+466.8 "Hotspot 3" # sync / 1[56]:[^:]*:Suzaku:3238:/
+468.9 "Hotspot 4" # sync / 1[56]:[^:]*:Suzaku:3238:/
+474.6 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+480.2 "Well Of Flame" sync / 1[56]:[^:]*:Suzaku:3236:/ window 30,30
+481.1 "Rekindle" sync / 1[56]:[^:]*:Suzaku:3235:/
+493.7 "Hotspot 1" # sync / 1[56]:[^:]*:Suzaku:3238:/
+494.4 "Phantom Flurry" sync / 1[56]:[^:]*:Suzaku:3231:/
+495.7 "Hotspot 2" # sync / 1[56]:[^:]*:Suzaku:3238:/
+497.8 "Hotspot 3" # sync / 1[56]:[^:]*:Suzaku:3238:/
+499.8 "Hotspot 4" # sync / 1[56]:[^:]*:Suzaku:3238:/
+500.5 "Phantom Half" sync / 1[56]:[^:]*:Suzaku:3233:/
+512.1 "Southron Star" sync / 1[56]:[^:]*:Suzaku:3234:/
+519.7 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+525.3 "Well Of Flame" sync / 1[56]:[^:]*:Suzaku:3236:/ window 30,30
+525.3 "Hotspot 1" # sync / 1[56]:[^:]*:Suzaku:3238:/
+527.4 "Hotspot 2" # sync / 1[56]:[^:]*:Suzaku:3238:/
+529.5 "Hotspot 3" # sync / 1[56]:[^:]*:Suzaku:3238:/
+531.6 "Hotspot 4" # sync / 1[56]:[^:]*:Suzaku:3238:/
+542.5 "Southron Star" sync / 1[56]:[^:]*:Suzaku:3234:/
+548.1 "--sync--" sync / 1[56]:[^:]*:Suzaku:323A:/
+554.2 "Southron Star" sync / 1[56]:[^:]*:Suzaku:3234:/
+566.9 "Phantom Flurry" sync / 1[56]:[^:]*:Suzaku:3231:/
+573.1 "Phantom Half" sync / 1[56]:[^:]*:Suzaku:3233:/
+584.8 "Well Of Flame" sync / 1[56]:[^:]*:Suzaku:3236:/
+585.7 "Rekindle" sync / 1[56]:[^:]*:Suzaku:3235:/
+596.9 "Southron Star" sync / 1[56]:[^:]*:Suzaku:3234:/
+
+609.4 "Incandescent Interlude" sync / 1[56]:[^:]*:Suzaku:323C:/ window 30,30 jump 346.2
+618.8 "Rekindle"
+621.8 "Immolate"
+629.9 "Phantom Flurry"
+636.0 "Phantom Half"

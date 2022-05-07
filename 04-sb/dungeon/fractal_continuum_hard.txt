@@ -1,0 +1,174 @@
+### FRACTAL CONTINUUM (HARD)
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~~#
+# MOTHERBIT #
+#~~~~~~~~~~~#
+
+# -ii 27A3 27A7 27A9
+
+0 "Start" sync / 00:0839::The reality augmentation bay will be sealed off/
+
+10.1 "Electrochemical Transfer" sync / 1[56]:[^:]*:Motherbit:27A4:/ window 11,5
+15.7 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:27AB:/
+18.8 "Aetherochemical Laser" # sync / 1[56]:[^:]*:Prototype Bit:27AA:/
+20.1 "Diffractive Laser" sync / 1[56]:[^:]*:Prototype Bit:27A8:/
+20.7 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:27AB:/
+22.8 "Aetherochemical Laser" # sync / 1[56]:[^:]*:Prototype Bit:27AA:/
+29.8 "Allagan Gravity" sync / 1[56]:[^:]*:Motherbit:27A6:/
+
+37.9 "Electrochemical Transfer" sync / 1[56]:[^:]*:Motherbit:27A4:/
+43.5 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:27AB:/
+54.2 "Citadel Buster" sync / 1[56]:[^:]*:Motherbit:27A5:/ window 30,30
+
+77.9 "Electrochemical Transfer" sync / 1[56]:[^:]*:Motherbit:27A4:/ jump 10.1
+86.6 "Aetherochemical Laser"
+87.9 "Diffractive Laser"
+90.6 "Aetherochemical Laser"
+97.6 "Allagan Gravity"
+105.7 "Electrochemical Transfer"
+
+#~~~~~~~~~~~~~~~~~~~~#
+# THE ULTIMA WARRIOR #
+#~~~~~~~~~~~~~~~~~~~~#
+
+# -ii 2798
+
+# Unfortunately, we have no choice but to use game log lines here.
+# The statues the boss tethers to are useless for timeline syncs,
+# and the boss gains no buffs for each form.
+
+# Each form is guaranteed to cycle once in three rounds,
+# but it is possible to have the same form back-to-back,
+# if the end of a round lines up with the beginning of the next.
+# That is, Sephirot->Sophia->Zurvan can immediately be followed by Zurvan->Sophia->Sephirot.
+
+# Each form has a set amount of dead time before announcing the next one.
+# That is, for Form X into whatever, the dead time is determined solely by X,
+# regardless of whether X is followed by Y or by Z.
+
+1000.0 "Start" sync / 00:0839::Exhibit level VIII will be sealed off/ window 1000,5
+1008.5 "Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Warrior:2793:/ window 8.5,5
+1018.9 "Citadel Buster" sync / 1[56]:[^:]*:The Ultima Warrior:2792:/
+1029.8 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Warrior:2794:/
+1042.0 "Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Warrior:2793:/ # skipped if boss is at or below 95% HP
+
+1053.4 "--sync--" sync / 00:0044:Vocal Guidance System:This humanoid prototype can perfectly replicate/ window 53.4,10 jump 1100.0
+1053.4 "--sync--" sync / 00:0044:Vocal Guidance System:Utilizing our data on Sophia/ window 53.4,10 jump 1200.0
+1053.4 "--sync--" sync / 00:0044:Vocal Guidance System:Successfully mimicking the Demon Zurvan/ window 53.4,10 jump 1300.0
+1060.9 "Primordial Aether"
+1062.0 "Ceruleum Vent?"
+1063.5 "Infinite Fire/Infinite Ice?"
+1071.5 "Ceruleum Vent?"
+1072.5 "Citadel Buster?"
+1073.5 "Ratzon?"
+1078.6 "Citadel Buster?"
+
+
+# Sephirot's block
+
+1100.0 "--sync--" sync / 00:0044:Vocal Guidance System:This humanoid prototype can perfectly replicate/
+1107.5 "Primordial Aether" sync / 1[56]:[^:]*:The Ultima Warrior:2796:/ window 10,10
+1119.1 "Citadel Buster" sync / 1[56]:[^:]*:The Ultima Warrior:2792:/
+1120.1 "Ratzon" sync / 1[56]:[^:]*:The Ultima Warrior:2797:/
+1125.2 "Citadel Buster" sync / 1[56]:[^:]*:The Ultima Warrior:2792:/
+1139.2 "Mass Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Warrior:2795:/
+1149.7 "Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Warrior:2793:/
+
+1154.8 "--sync--" sync / 00:0044:Vocal Guidance System:This humanoid prototype can perfectly replicate/ window 50,10 jump 1100.0
+1154.8 "--sync--" sync / 00:0044:Vocal Guidance System:Utilizing our data on Sophia/ window 50,10 jump 1200.0
+1154.8 "--sync--" sync / 00:0044:Vocal Guidance System:Successfully mimicking the Demon Zurvan/ window 50,10 jump 1300.0
+1162.3 "Primordial Aether"
+1163.4 "Ceruleum Vent?"
+1164.9 "Infinite Fire/Infinite Ice?"
+1172.9 "Ceruleum Vent?"
+1173.9 "Citadel Buster?"
+1174.9 "Ratzon?"
+1180.0 "Citadel Buster?"
+
+
+# Sophia's Block
+
+1200.0 "--sync--" sync / 00:0044:Vocal Guidance System:Utilizing our data on Sophia/
+1207.5 "Primordial Aether" sync / 1[56]:[^:]*:The Ultima Warrior:2796:/ window 10,10
+1218.1 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Warrior:2794:/
+1225.3 "Citadel Buster" sync / 1[56]:[^:]*:The Ultima Warrior:2792:/
+1226.3 "Dischordant Cleansing" sync / 1[56]:[^:]*:The Ultima Warrior:279C:/
+1231.4 "Citadel Buster" sync / 1[56]:[^:]*:The Ultima Warrior:2792:/
+1232.3 "Dischordant Cleansing" sync / 1[56]:[^:]*:The Ultima Warrior:279A:/
+1242.3 "Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Warrior:2793:/
+
+1248.5 "--sync--" sync / 00:0044:Vocal Guidance System:This humanoid prototype can perfectly replicate/ window 50,10 jump 1100.0
+1248.5 "--sync--" sync / 00:0044:Vocal Guidance System:Utilizing our data on Sophia/ window 50,10 jump 1200.0
+1248.5 "--sync--" sync / 00:0044:Vocal Guidance System:Successfully mimicking the Demon Zurvan/ window 50,10 jump 1300.0
+1256.0 "Primordial Aether"
+1257.1 "Ceruleum Vent?"
+1258.6 "Infinite Fire/Infinite Ice?"
+1266.6 "Ceruleum Vent?"
+1267.6 "Citadel Buster?"
+1268.6 "Ratzon?"
+1273.7 "Citadel Buster?"
+
+
+# Zurvan's Block
+
+1300.0 "--sync--" sync / 00:0044:Vocal Guidance System:Successfully mimicking the Demon Zurvan/
+1308.5 "Primordial Aether" sync / 1[56]:[^:]*:The Ultima Warrior:2796:/ window 10,10
+1311.1 "Infinite Fire/Infinite Ice" sync / 1[56]:[^:]*:The Ultima Warrior:279[DE]:/
+1319.1 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Warrior:2794:/
+1330.3 "Northern Star/Southern Star" sync / 1[56]:[^:]*:The Ultima Warrior:27A[01]:/
+1336.4 "Mass Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Warrior:2795:/
+1343.0 "Citadel Buster" sync / 1[56]:[^:]*:The Ultima Warrior:2792:/
+1354.0 "Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Warrior:2793:/
+
+1365.5 "--sync--" sync / 00:0044:Vocal Guidance System:This humanoid prototype can perfectly replicate/ window 50,10 jump 1100.0
+1365.5 "--sync--" sync / 00:0044:Vocal Guidance System:Utilizing our data on Sophia/ window 50,10 jump 1200.0
+1365.5 "--sync--" sync / 00:0044:Vocal Guidance System:Successfully mimicking the Demon Zurvan/ window 50,10 jump 1300.0
+1373.0 "Primordial Aether"
+1374.1 "Ceruleum Vent?"
+1375.6 "Infinite Fire/Infinite Ice?"
+1383.6 "Ceruleum Vent?"
+1384.6 "Citadel Buster?"
+1385.6 "Ratzon?"
+1390.7 "Citadel Buster?"
+
+
+#~~~~~~~~~~~~~~~~~~#
+# THE ULTIMA BEAST #
+#~~~~~~~~~~~~~~~~~~#
+
+# -ii 27B9 27BC 27BA 27BB
+
+2000.0 "Start" sync / 00:0839::The Genesis Engine will be sealed off/ window 2000,5
+2012.0 "Death Spin" sync / 1[56]:[^:]*:The Ultima Beast:27AD:/ window 12,5
+2025.6 "Aether Bend" sync / 1[56]:[^:]*:The Ultima Beast:27AF:/
+2035.2 "--sync--" sync / 1[56]:[^:]*:The Ultima Beast:27B6:/
+2044.1 "Flare Star" sync / 1[56]:[^:]*:The Ultima Beast:27BD:/
+2044.3 "Allagan Gravity" sync / 1[56]:[^:]*:The Ultima Beast:27B5:/ window 30,30
+2057.9 "Light Pillar" sync / 1[56]:[^:]*:The Ultima Beast:27B7:/
+2076.5 "Forborn Beast" sync / 1[56]:[^:]*:The Ultima Beast:27B1:/ window 76.5,5
+2085.0 "Demi Ultima" sync / 1[56]:[^:]*:The Ultima Beast:27B2:/
+2102.9 "Aether Bend/Death Spin" sync / 1[56]:[^:]*:The Ultima Beast:27(AD|B0):/
+2113.4 "--sync--" sync / 1[56]:[^:]*:The Ultima Beast:27B4:/
+2115.4 "Allagan Flare" sync / 1[56]:[^:]*:The Ultima Beast:27B8:/
+
+2128.0 "--sync--" sync / 1[56]:[^:]*:The Ultima Beast:27B6:/ window 30,30
+2136.9 "Flare Star" sync / 1[56]:[^:]*:The Ultima Beast:27BD:/
+2141.5 "--sync--" sync / 1[56]:[^:]*:The Ultima Beast:27B4:/
+2143.5 "Allagan Flare" sync / 1[56]:[^:]*:The Ultima Beast:27B8:/
+2158.1 "Aether Bend/Death Spin" sync / 1[56]:[^:]*:The Ultima Beast:27(AD|B0):/
+2168.7 "Light Pillar" sync / 1[56]:[^:]*:The Ultima Beast:27B7:/
+2176.7 "Allagan Gravity" sync / 1[56]:[^:]*:The Ultima Beast:27B5:/
+
+2196.2 "--sync--" sync / 1[56]:[^:]*:The Ultima Beast:27B6:/ window 30,30 jump 2128.0
+2205.1 "Flare Star"
+2211.7 "Allagan Flare"
+2226.3 "Aether Bend/Death Spin"
+
+
+3000.0 "--sync--" sync / 14:[^:]*:The Ultima Beast:27B3:/ window 1000,5
+3039.7 "Demi Ultima (Enrage)" sync / 1[56]:[^:]*:The Ultima Beast:27B3:/

@@ -1,0 +1,69 @@
+# Ifrit Story Mode / Normal Mode
+# -ii 2DD 2DE
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# 0%
+0.0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.2 "Incinerate" sync / 1[56]:[^:]*:Ifrit:1C5:/ window 10,10
+9.1 "Vulcan Burst" sync / 1[56]:[^:]*:Ifrit:1C6:/
+17.1 "Incinerate" sync / 1[56]:[^:]*:Ifrit:1C5:/
+30.0 "Incinerate" sync / 1[56]:[^:]*:Ifrit:1C5:/
+42.9 "Incinerate" sync / 1[56]:[^:]*:Ifrit:1C5:/
+
+50.7 "Vulcan Burst" sync / 1[56]:[^:]*:Ifrit:1C6:/ window 30,30 jump 9.1
+58.7 "Incinerate"
+71.6 "Incinerate"
+84.5 "Incinerate"
+
+92.3 "Vulcan Burst"
+100.3 "Incinerate"
+113.2 "Incinerate"
+126.1 "Incinerate"
+
+# 70%
+200.0 "--sync--" sync / 00:0044:Ifrit:Succumb to the inferno/ window 200,0
+201.0 "Incinerate" sync / 1[56]:[^:]*:Ifrit:1C5:/
+209.0 "Eruption" sync / 1[56]:[^:]*:Ifrit:1C7:/ window 210,5
+213.5 "Vulcan Burst" sync / 1[56]:[^:]*:Ifrit:1C6:/
+
+220.4 "Incinerate" sync / 1[56]:[^:]*:Ifrit:1C5:/
+228.5 "Eruption" sync / 1[56]:[^:]*:Ifrit:1C7:/
+237.1 "Incinerate" sync / 1[56]:[^:]*:Ifrit:1C5:/ window 10,10 jump 220.4
+245.2 "Eruption"
+253.8 "Incinerate"
+261.9 "Eruption"
+270.5 "Incinerate"
+278.6 "Eruption"
+
+# 50%
+300.0 "--sync--" sync / 00:0044:Ifrit:Surrender thyself to the fires of judgment/ window 300,0
+305.0 "Nail Add"
+306.7 "Incinerate" sync / 1[56]:[^:]*:Ifrit:1C5:/
+314.4 "Vulcan Burst" sync / 1[56]:[^:]*:Ifrit:1C6:/
+322.3 "Incinerate" sync / 1[56]:[^:]*:Ifrit:1C5:/
+335.1 "Incinerate" sync / 1[56]:[^:]*:Ifrit:1C5:/
+
+341.7 "--untargetable--"
+344.3 "--sync--" sync / 14:[^:]*:Ifrit:1CA:/ window 500,0
+346.3 "Hellfire" sync / 1[56]:[^:]*:Ifrit:1CA:/
+350.7 "--targetable--"
+
+352.6 "Incinerate" sync / 1[56]:[^:]*:Ifrit:1C5:/
+361.7 "Eruption" sync / 1[56]:[^:]*:Ifrit:1C7:/
+370.4 "Radiant Plume (inner)" sync / 1[56]:[^:]*:Ifrit:1C8:/
+378.8 "Radiant Plume (outer)" sync / 1[56]:[^:]*:Ifrit:1C8:/
+
+385.0 "Incinerate" sync / 1[56]:[^:]*:Ifrit:1C5:/ window 20,20 jump 352.6
+394.1 "Eruption"
+402.8 "Radiant Plume (inner)"
+411.2 "Radiant Plume (outer)"
+
+417.4 "Incinerate"
+426.5 "Eruption"
+435.2 "Radiant Plume (inner)"
+443.6 "Radiant Plume (outer)"

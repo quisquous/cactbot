@@ -1,0 +1,122 @@
+# Seiryu Extreme
+# -ii 37F3 37F7 37E7 37FB 37D3 37D4 3814 37F2 37F8 37FA 37F9 37CF 37EA 37C5 37EC 37DD 37CA 37E2 37E3 -p 37C9:400
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# Phase 1
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.5 "--sync--" sync / 1[56]:[^:]*:Seiryu:366:/ window 3,0
+12.5 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
+#18.5 "Serpent Ascending" sync / 1[56]:[^:]*:Seiryu:37DC:/ # towers later, but nothing here
+20.5 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+27.0 "Kuji-kiri" sync / 1[56]:[^:]*:Seiryu:37E1:/
+30.0 "--jump--" sync / 1[56]:[^:]*:Seiryu:37D5:/
+#33.5 "Onmyo Sigil" sync / 1[56]:[^:]*:Seiryu:37D6:/
+36.5 "Onmyo Sigil" sync / 1[56]:[^:]*:Seiryu:3A01:/
+46.5 "Cursekeeper" sync / 1[56]:[^:]*:Seiryu:37D2:/
+62.8 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37CE:/
+#64.8 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+69.8 "--sync--" sync / 1[56]:[^:]*:Seiryu:37EF:/
+75.8 "Red Rush" sync / 1[56]:[^:]*:Aka-no-shiki:37F1:/
+75.8 "Blue Bolt" sync / 1[56]:[^:]*:Ao-no-shiki:37F0:/
+80.5 "100-tonze Swing" sync / 1[56]:[^:]*:Iwa-no-shiki:37ED:/
+89.5 "Kanabo" sync / 1[56]:[^:]*:Iwa-no-shiki:37EE:/
+
+# Phase 2
+160.0 "Enrage"
+
+# Phase 3
+400.0 "Strength of Spirit" sync / 1[56]:[^:]*:Seiryu:37C9:/ window 400,0
+427.0 "Dragon's Wake" sync / 1[56]:[^:]*:Seiryu:37CB:/
+#429.5 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+437.5 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37D0:/
+448.0 "Coursing River" sync / 1[56]:[^:]*:Seiryu:37F6:/
+462.0 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
+466.5 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
+470.0 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
+478.0 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37D0:/
+478.0 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
+486.5 "Force of Nature" sync / 1[56]:[^:]*:Seiryu:37EB:/
+488.5 "Coursing River" sync / 1[56]:[^:]*:Seiryu:37F6:/
+494.3 "Forbidden Arts" sync / 1[56]:[^:]*:Seiryu:37C7:/
+496.3 "Forbidden Arts" sync / 1[56]:[^:]*:Seiryu:37C8:/
+504.3 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+511.9 "Blazing Aramitama" sync / 1[56]:[^:]*:Seiryu:37E4:/
+515.9 "--jump--" sync / 1[56]:[^:]*:Seiryu:37D5:/
+#519.4 "In/Out" sync / 1[56]:[^:]*:Seiryu:(37DA|37D8):/
+522.4 "In/Out" sync / 1[56]:[^:]*:Seiryu:(3A05|3A03):/
+#524.9 "Out/In" sync / 1[56]:[^:]*:Seiryu:(37DB|37D9):/
+525.4 "Out/In" sync / 1[56]:[^:]*:Seiryu:(3A06|3A04):/
+531.9 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+538.6 "Kuji-kiri" sync / 1[56]:[^:]*:Seiryu:37E1:/
+541.6 "--jump--" sync / 1[56]:[^:]*:Seiryu:37D5:/
+#545.1 "In/Out" sync / 1[56]:[^:]*:Seiryu:(37DA|37D8):/
+548.1 "In/Out" sync / 1[56]:[^:]*:Seiryu:(3A05|3A03):/
+#550.6 "Out/In" sync / 1[56]:[^:]*:Seiryu:(37DB|37D9):/
+551.1 "Out/In" sync / 1[56]:[^:]*:Seiryu:(3A06|3A04):/
+558.6 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
+572.6 "Serpent Ascending" sync / 1[56]:[^:]*:Seiryu:3C25:/
+578.6 "Serpent Descending" sync / 1[56]:[^:]*:Seiryu:37DE:/
+582.6 "Serpent's Fang" sync / 1[56]:[^:]*:Seiryu:37DF:/
+589.8 "Forbidden Arts 1" sync / 1[56]:[^:]*:Seiryu:3C22:/
+592.0 "Forbidden Arts 2" sync / 1[56]:[^:]*:Seiryu:3C23:/
+599.0 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
+611.0 "Cursekeeper" sync / 1[56]:[^:]*:Seiryu:37D2:/
+624.1 "Cursekeeper" sync / 1[56]:[^:]*:Seiryu:37D2:/
+633.3 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
+646.3 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37CD:/
+652.3 "--jump--" sync / 1[56]:[^:]*:Seiryu:37D5:/
+#655.8 "In/Out" sync / 1[56]:[^:]*:Seiryu:(37DA|37D8):/
+658.4 "100-tonze Swing" sync / 1[56]:[^:]*:Iwa-no-shiki:37ED:/
+658.8 "In/Out" sync / 1[56]:[^:]*:Seiryu:(3A05|3A03):/
+#661.3 "Out/In" sync / 1[56]:[^:]*:Seiryu:(37DB|37D9):/
+661.8 "Out/In" sync / 1[56]:[^:]*:Seiryu:(3A06|3A04):/
+667.5 "Kanabo" sync / 1[56]:[^:]*:Iwa-no-shiki:37EE:/
+671.3 "--sync--" sync / 1[56]:[^:]*:Seiryu:37EF:/
+676.3 "Serpent Ascending" sync / 1[56]:[^:]*:Seiryu:37DC:/
+677.3 "Red Rush" sync / 1[56]:[^:]*:Aka-no-shiki:37F1:/
+677.3 "Blue Bolt" sync / 1[56]:[^:]*:Ao-no-shiki:37F0:/
+678.3 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+685.0 "Kuji-kiri" sync / 1[56]:[^:]*:Seiryu:37E1:/
+691.9 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
+697.1 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
+700.0 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
+708.0 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
+708.6 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37D0:/
+716.5 "Force of Nature" sync / 1[56]:[^:]*:Seiryu:37EB:/
+719.1 "Coursing River" sync / 1[56]:[^:]*:Seiryu:37F6:/
+721.6 "--jump--" sync / 1[56]:[^:]*:Seiryu:37D5:/
+#725.1 "In/Out" sync / 1[56]:[^:]*:Seiryu:(37DA|37D8):/
+728.1 "In/Out" sync / 1[56]:[^:]*:Seiryu:(3A05|3A03):/
+#730.6 "Out/In" sync / 1[56]:[^:]*:Seiryu:(37DB|37D9):/
+731.1 "Out/In" sync / 1[56]:[^:]*:Seiryu:(3A06|3A04):/
+733.9 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
+741.9 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
+749.9 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
+751.0 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37D0:/
+758.4 "Force of Nature" sync / 1[56]:[^:]*:Seiryu:37EB:/
+761.5 "Coursing River" sync / 1[56]:[^:]*:Seiryu:37F6:/
+768.6 "Forbidden Arts 1" sync / 1[56]:[^:]*:Seiryu:3C22:/
+770.6 "Forbidden Arts 2" sync / 1[56]:[^:]*:Seiryu:3C23:/
+777.6 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
+794.6 "Cursekeeper" sync / 1[56]:[^:]*:Seiryu:37D2:/
+807.8 "Cursekeeper" sync / 1[56]:[^:]*:Seiryu:37D2:/
+817.0 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
+823.0 "--jump--" sync / 1[56]:[^:]*:Seiryu:37D5:/
+#826.5 "In/Out" sync / 1[56]:[^:]*:Seiryu:(37DA|37D8):/
+829.5 "In/Out" sync / 1[56]:[^:]*:Seiryu:(3A05|3A03):/
+#832.0 "Out/In" sync / 1[56]:[^:]*:Seiryu:(37DB|37D9):/
+832.5 "Out/In" sync / 1[56]:[^:]*:Seiryu:(3A06|3A04):/
+839.0 "Serpent Ascending" sync / 1[56]:[^:]*:Seiryu:3C25:/
+842.5 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+845.0 "Serpent Descending" sync / 1[56]:[^:]*:Seiryu:37DE:/
+849.0 "Serpent's Fang" sync / 1[56]:[^:]*:Seiryu:37DF:/
+849.0 "Kuji-kiri" sync / 1[56]:[^:]*:Seiryu:37E1:/
+857.6 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
+869.6 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
+876.9 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
+883.9 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
+906.0 "Enrage" sync / 1[56]:[^:]*:Seiryu:3CA9:/

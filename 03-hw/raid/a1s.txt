@@ -1,0 +1,126 @@
+### A1S
+# Alexander - The Fist of the Father (Savage)
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+### Faust
+# -p E3C:1006 -ii E3E
+1000.0 "--sync--" sync / 00:0839::Machinery Bay 44 will be sealed off/ window 1000,0
+1006.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/ window 1006,5
+1009.7 "Sturm Doll Add"
+1016.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1019.0 "Pressure Increase 1" sync / 1[56]:[^:]*:Faust:E3D:/
+1026.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1029.7 "Sturm Doll Add"
+1036.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1039.0 "Pressure Increase 2" sync / 1[56]:[^:]*:Faust:E3D:/
+1046.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1049.7 "Sturm Doll Add"
+1056.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1059.0 "Pressure Increase 3" sync / 1[56]:[^:]*:Faust:E3D:/
+1066.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1069.7 "Sturm Doll Add"
+1076.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1079.0 "Pressure Increase 4" sync / 1[56]:[^:]*:Faust:E3D:/
+1086.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1069.7 "Sturm Doll Add"
+1096.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1099.0 "Pressure Increase 5" sync / 1[56]:[^:]*:Faust:E3D:/
+1106.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1109.7 "Sturm Doll Add"
+1116.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1119.0 "Pressure Increase 6" sync / 1[56]:[^:]*:Faust:E3D:/
+1126.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1129.7 "Sturm Doll Add"
+1136.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1139.0 "Pressure Increase 7" sync / 1[56]:[^:]*:Faust:E3D:/
+1146.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
+1149.7 "Sturm Doll Add"
+1152.0 "Pressure Increase 16" sync / 1[56]:[^:]*:Faust:E7E:/
+1159.0 "Kaltstrahl Enrage" sync / 1[56]:[^:]*:Faust:E7D:/
+1164.0 "Kaltstrahl Enrage" sync / 1[56]:[^:]*:Faust:E7D:/
+# etc
+
+
+### Oppressor and a half
+# -p E40:2007
+# -ii E44 E53 E50 E4C E54 E47
+# -ic "Oppressor 0.5"
+
+2000.0 "--sync--" sync / 00:0839::Hangar 8 will be sealed off in 15 seconds/ window 2000,0
+2007.0 "Royal Fount" sync / 1[56]:[^:]*:Oppressor:E40:/ window 2010,5
+2011.1 "Gunnery Pod" sync / 1[56]:[^:]*:Oppressor:E41:/
+2016.2 "Hydrothermal Missile" sync / 1[56]:[^:]*:Oppressor:E43:/ duration 8
+2018.3 "Gunnery Pod" sync / 1[56]:[^:]*:Oppressor:E41:/
+2024.1 "Photon Spaser" sync / 1[56]:[^:]*:Oppressor:E42:/
+2028.2 "Royal Fount" sync / 1[56]:[^:]*:Oppressor:E40:/
+2036.3 "Resin Bomb" sync / 1[56]:[^:]*:Oppressor:E46:/
+2038.4 "Royal Fount" sync / 1[56]:[^:]*:Oppressor:E40:/
+2044.2 "Photon Spaser" sync / 1[56]:[^:]*:Oppressor:E42:/
+2046.3 "Gunnery Pod" sync / 1[56]:[^:]*:Oppressor:E41:/
+2049.1 "Royal Fount" sync / 1[56]:[^:]*:Oppressor:E40:/
+2054.2 "Emergency Deployment" sync / 1[56]:[^:]*:Oppressor:E45:/
+2054.5 "--targetable--"
+2061.3 "Hydrothermal Missile" sync / 1[56]:[^:]*:Oppressor:E43:/ duration 8
+2063.4 "Gunnery Pod" sync / 1[56]:[^:]*:Oppressor:E41:/
+2066.5 "Royal Fount" sync / 1[56]:[^:]*:Oppressor:E40:/
+2069.6 "Gunnery Pod" sync / 1[56]:[^:]*:Oppressor:E41:/
+2075.2 "Photon Spaser" sync / 1[56]:[^:]*:Oppressor:E42:/
+2077.3 "Gunnery Pod" #sync / 1[56]:[^:]*:Oppressor:E41:/
+2079.4 "Gunnery Pod" #sync / 1[56]:[^:]*:Oppressor:E41:/
+2083.5 "Royal Fount" sync / 1[56]:[^:]*:Oppressor:E40:/
+2085.6 "Distress Beacon" sync / 1[56]:[^:]*:Oppressor:E48:/
+2096.3 "--targetable--"
+
+2106.4 "3000-Tonze Missile" sync / 1[56]:[^:]*:Oppressor:E4B:/
+2112.6 "Gunnery Pod" sync / 1[56]:[^:]*:Oppressor:E41:/
+2117.7 "Emergency Deployment" sync / 1[56]:[^:]*:Oppressor:E45:/
+2118.0 "--targetable--"
+2125.8 "Resin Bomb" sync / 1[56]:[^:]*:Oppressor:E46:/
+2128.0 "Royal Fount" sync / 1[56]:[^:]*:Oppressor:E40:/
+2133.7 "Photon Spaser" sync / 1[56]:[^:]*:Oppressor:E42:/
+2136.9 "Gunnery Pod" sync / 1[56]:[^:]*:Oppressor:E41:/
+2143.0 "Hydrothermal Missile" sync / 1[56]:[^:]*:Oppressor:E43:/
+2148.2 "Royal Fount" sync / 1[56]:[^:]*:Oppressor:E40:/
+2156.3 "Hypercompressed Plasma" sync / 1[56]:[^:]*:Oppressor:E4A:/
+2159.9 "Missile Impact" #sync / 1[56]:[^:]*:3000-Tonze Missile:E4[DE]:/
+
+2166.5 "Photon Spaser" sync / 1[56]:[^:]*:Oppressor:E42:/
+2173.7 "Gunnery Pod" sync / 1[56]:[^:]*:Oppressor:E41:/
+2182.8 "Royal Fount" sync / 1[56]:[^:]*:Oppressor:E40:/
+2188.9 "--untargetable--"
+2189.0 "Emergency Liftoff" sync / 1[56]:[^:]*:Oppressor:E4F:/
+2203.7 "Resin Bomb 1" #sync / 1[56]:[^:]*:Oppressor 0.5:E52:/
+2204.7 "Resin Bomb 2" #sync / 1[56]:[^:]*:Oppressor:E52:/
+2205.7 "Resin Bomb 3" #sync / 1[56]:[^:]*:Oppressor:E52:/
+2206.7 "Resin Bomb 4" #sync / 1[56]:[^:]*:Oppressor 0.5:E52:/
+2207.7 "Resin Bomb 5" #sync / 1[56]:[^:]*:Oppressor:E52:/
+2208.7 "Resin Bomb 6" #sync / 1[56]:[^:]*:Oppressor:E52:/
+2209.7 "Resin Bomb 7" #sync / 1[56]:[^:]*:Oppressor 0.5:E52:/
+2210.7 "Resin Bomb 8" #sync / 1[56]:[^:]*:Oppressor 0.5:E52:/
+2210.7 "Quick Landing" sync / 1[56]:[^:]*:Oppressor:E51:/
+
+2215.8 "--targetable--"
+2226.7 "3000-Tonze Missile" sync / 1[56]:[^:]*:Oppressor:E4B:/ window 100,100 jump 2106.4
+2232.9 "Gunnery Pod"
+2238.0 "Emergency Deployment"
+2238.3 "--targetable--"
+2246.1 "Resin Bomb"
+2248.3 "Royal Fount"
+2254.0 "Photon Spaser"
+2257.2 "Gunnery Pod"
+2263.3 "Hydrothermal Missile"
+2268.5 "Royal Fount"
+2276.6 "Hypercompressed Plasma"
+2280.2 "Missile Impact"
+
+
+
+## Enrage
+3000.0 "--sync--" sync / 14:[^:]*:Oppressor:E49:/ window 3000,0
+3000.0 "--sync--" sync / 14:[^:]*:Oppressor 0\.5:E49:/ window 3000,0
+3010.0 "Self-Destruct Enrage" sync / 1[56]:[^:]*:Oppressor:E49:/

@@ -1,0 +1,268 @@
+### A12S
+# Alexander - The Burden of the Son (Savage)
+# https://dtguilds.enjin.com/a8sguide
+# -p 162A:6.7 163B:313.5 1657:603 167C:800 166E:1257.1
+# -ii 1629 162C 1630 1644 1643 164F 1667 166A 166B 165F 1671 1723 165C 1641
+
+hideall "--Reset--"
+hideall "--sync--"
+hideall "Magicked Mark"
+hideall "Brute Force"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1: Onslaughter: Execution and Legislation
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.0 "--sync--" sync / 1[56]:[^:]*:Onslaughter:1629:/ window 1,0
+6.7 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/ window 7,5
+15.9 "Seed Of The Sky" sync / 1[56]:[^:]*:Onslaughter:162D:/
+17.9 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:162E:/
+22.1 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+
+29.3 "Execution" sync / 1[56]:[^:]*:Onslaughter:1632:/
+31.5 "--targetable--"
+31.5 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+38.7 "Seed Of The Sky" sync / 1[56]:[^:]*:Onslaughter:162D:/
+40.7 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:162E:/
+47.9 "Perpetual Ray" sync / 1[56]:[^:]*:Onslaughter:162B:/ duration 3.3
+51.5 "--regulator check--" #sync / 1[56]:[^:]*:Steam Regulator B:1634:/
+54.7 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+61.8 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:162E:/
+66.0 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+
+73.2 "Legislation" sync / 1[56]:[^:]*:Onslaughter:1631:/
+78.3 "Discoid" sync / 1[56]:[^:]*:Onslaughter:162F:/
+79.9 "--orbs--"
+80.5 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+90.7 "Seed Of The Sky" sync / 1[56]:[^:]*:Onslaughter:162D:/
+93.0 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:162E:/
+95.4 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+
+102.5 "Perpetual Ray" sync / 1[56]:[^:]*:Onslaughter:162B:/ duration 3.3
+106.9 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+117.1 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+126.3 "Seed Of The Sky" sync / 1[56]:[^:]*:Onslaughter:162D:/
+127.4 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:162E:/
+132.6 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+138.7 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+
+145.8 "Perpetual Ray" sync / 1[56]:[^:]*:Onslaughter:162B:/ duration 3.3
+150.2 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+155.3 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+164.5 "Seed Of The Sky" sync / 1[56]:[^:]*:Onslaughter:162D:/
+165.6 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:162E:/
+170.8 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+176.9 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/
+
+184.0 "Perpetual Ray" sync / 1[56]:[^:]*:Onslaughter:162B:/ duration 3.3 window 30,30 jump 145.8
+188.4 "Hydrothermal Missile"
+193.5 "Hydrothermal Missile"
+202.7 "Seed Of The Sky"
+203.8 "Mega Beam"
+209.0 "Hydrothermal Missile"
+215.1 "Hydrothermal Missile"
+
+
+### Phase 2: Robots
+300.0 "--sync--" sync / 22:........:Onslaughter:........:Onslaughter:00/ window 300,0
+303.0 "--sync--" sync / 03:........:Blaster:/  window 303,30
+304.0 "Blaster (north)"
+304.0 "Brawler (middle)"
+306.2 "--targetable--"
+313.5 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:163B:/ window 314,5
+314.5 "Brute Force" sync / 1[56]:[^:]*:Blaster:1638:/
+316.6 "Auxiliary Power" sync / 1[56]:[^:]*:Brawler:164B:/
+
+319.8 "Attachment" sync / 1[56]:[^:]*:Brawler:163C:/
+322.4 "Mind Blast?" #sync / 1[56]:[^:]*:Blaster:1639:/ # 3 second cast, interruptible
+324.5 "Brute Force" #sync / 1[56]:[^:]*:Blaster Mirage:1638:/
+325.6 "Brute Force" sync / 1[56]:[^:]*:Blaster:1638:/
+326.0 "Brawler Mechanic" sync / 1[56]:[^:]*:Brawler:(163D|163E|163F|1640):/
+
+329.4 "Swindler (east)" #sync / 22:........:Swindler:........:Swindler:01/
+330.1 "Auxiliary Power" sync / 1[56]:[^:]*:Brawler:164B:/
+333.7 "Brute Force" sync / 1[56]:[^:]*:Blaster:1638:/
+334.2 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:163B:/
+334.6 "Brute Force" #sync / 1[56]:[^:]*:Blaster Mirage:1638:/
+337.5 "Magicked Mark" sync / 1[56]:[^:]*:Swindler:1646:/
+341.7 "Brute Force" sync / 1[56]:[^:]*:Blaster:1638:/
+343.2 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:163B:/
+346.3 "Auxiliary Power" sync / 1[56]:[^:]*:Brawler:164B:/
+348.5 "Height" sync / 1[56]:[^:]*:Swindler:1647:/
+349.4 "Attachment" sync / 1[56]:[^:]*:Brawler:163C:/
+
+352.4 "Vortexer (south)" #sync / 22:........:Vortexer:........:Vortexer:01/
+354.6 "Magicked Mark" sync / 1[56]:[^:]*:Swindler:1646:/
+355.5 "Brawler Mechanic" sync / 1[56]:[^:]*:Brawler:(163D|163E|163F|1640):/
+359.6 "Auxiliary Power" sync / 1[56]:[^:]*:Brawler:164B:/
+360.4 "Brute Force" sync / 1[56]:[^:]*:Vortexer:164D:/
+363.7 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:163B:/
+370.4 "Brute Force" sync / 1[56]:[^:]*:Vortexer:164D:/
+372.8 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:163B:/
+375.9 "Auxiliary Power" sync / 1[56]:[^:]*:Brawler:164B:/
+379.0 "Attachment" sync / 1[56]:[^:]*:Brawler:163C:/
+380.5 "Brute Force" sync / 1[56]:[^:]*:Vortexer:164D:/
+385.0 "Brawler Mechanic" sync / 1[56]:[^:]*:Brawler:(163D|163E|163F|1640):/
+390.2 "Auxiliary Power" sync / 1[56]:[^:]*:Brawler:164B:/
+390.6 "Brute Force" sync / 1[56]:[^:]*:Vortexer:164D:/
+393.4 "Attachment" sync / 1[56]:[^:]*:Brawler:163C:/
+399.5 "Brawler Mechanic" sync / 1[56]:[^:]*:Brawler:(163D|163E|163F|1640):/
+400.7 "Brute Force" sync / 1[56]:[^:]*:Vortexer:164D:/
+403.6 "Auxiliary Power" sync / 1[56]:[^:]*:Brawler:164B:/
+407.7 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:163B:/
+
+
+# All of the robots have their own rotation <50%
+# Messing up thunder seems the most punishing, so here's Vortexer.
+600.0 "--sync--" sync / 14:[^:]*:Vortexer:1657:/ window 600,0
+603.0 "Super Cyclone" sync / 1[56]:[^:]*:Vortexer:1657:/
+608.1 "Elemental Jammer" sync / 1[56]:[^:]*:Vortexer:167E:/
+615.4 "Ballistic Missile" sync / 1[56]:[^:]*:Vortexer:1650:/
+621.4 "Earth Missile" sync / 1[56]:[^:]*:Vortexer:1651:/
+645.8 "Ballistic Missile" sync / 1[56]:[^:]*:Vortexer:1650:/
+650.0 "Crashing Thunder" sync / 1[56]:[^:]*:Vortexer:164E:/
+651.7 "Earth Missile" sync / 1[56]:[^:]*:Vortexer:1651:/
+671.6 "Crashing Thunder" sync / 1[56]:[^:]*:Vortexer:164E:/
+676.1 "Ballistic Missile" sync / 1[56]:[^:]*:Vortexer:1650:/
+682.1 "Earth Missile" sync / 1[56]:[^:]*:Vortexer:1651:/
+
+
+### Phase 3: Brute Justice
+800.0 "Transform" sync / 1[56]:[^:]*:Brute Justice:167C:/ window 800,0
+802.7 "--targetable--"
+810.9 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:1662:/
+818.0 "Double Rocket Punch" sync / 1[56]:[^:]*:Brute Justice:1663:/
+821.2 "Missile Command" sync / 1[56]:[^:]*:Brute Justice:1668:/
+824.2 "Short Needle" sync / 1[56]:[^:]*:Brute Justice:1669:/
+825.3 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:1662:/
+# 166A (ground), 166B (prey), 166C (stack)
+828.2 "Long Needle" sync / 1[56]:[^:]*:Brute Justice:166C:/
+831.1 "Short Needle" sync / 1[56]:[^:]*:Brute Justice:1669:/
+831.6 "Mega Beam" sync / 1[56]:[^:]*:Brute Justice:1664:/
+837.0 "Super Jump" sync / 1[56]:[^:]*:Brute Justice:1665:/
+841.6 "Apocalyptic Ray" sync / 1[56]:[^:]*:Brute Justice:1666:/ duration 5
+850.9 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:1662:/
+857.0 "Double Rocket Punch" sync / 1[56]:[^:]*:Brute Justice:1663:/
+859.1 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:1662:/
+862.2 "Missile Command" sync / 1[56]:[^:]*:Brute Justice:1668:/
+865.2 "Short Needle" sync / 1[56]:[^:]*:Brute Justice:1669:/
+866.3 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:1662:/
+869.2 "Long Needle" sync / 1[56]:[^:]*:Brute Justice:166C:/
+872.2 "Short Needle" sync / 1[56]:[^:]*:Brute Justice:1669:/
+872.9 "Mega Beam" sync / 1[56]:[^:]*:Brute Justice:1664:/
+878.1 "Super Jump" sync / 1[56]:[^:]*:Brute Justice:1665:/
+881.2 "--untargetable--"
+
+
+### Phase 4: First Intermission
+884.4 "J Kick" sync / 1[56]:[^:]*:Brute Justice:166D:/ window 890,5
+892.7 "--sync--" sync / 1[56]:[^:]*:Brute Justice:1636:/
+893.9 "100-Megatonze Shock" sync / 1[56]:[^:]*:Onslaughter:1635:/
+894.7 "Mirage" sync / 1[56]:[^:]*:Blaster Mirage:1658:/
+895.7 "Attachment" sync / 1[56]:[^:]*:Brawler:163C:/
+899.7 "Supercharge" #sync / 1[56]:[^:]*:Blaster Mirage:1659:/
+901.9 "Double Buster" sync / 1[56]:[^:]*:Brawler:163E:/
+906.2 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:162E:/
+906.5 "Eye Of The Chakram" sync / 1[56]:[^:]*:Steam Chakram:1654:/
+914.0 "Attachment" sync / 1[56]:[^:]*:Brawler:163C:/
+915.5 "Height" sync / 1[56]:[^:]*:Swindler:1647:/
+915.6 "Ice Missile" #sync / 1[56]:[^:]*:Vortexer:1655:/
+916.4 "Earth Missile" sync / 1[56]:[^:]*:Vortexer:1651:/
+919.5 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:162E:/
+920.6 "Single Buster" sync / 1[56]:[^:]*:Brawler:163D:/
+
+
+### Phase 5: Round 2, Fighto!
+933.1 "--targetable--"
+936.2 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:1662:/
+943.3 "Double Rocket Punch" sync / 1[56]:[^:]*:Brute Justice:1663:/
+946.5 "Missile Command" sync / 1[56]:[^:]*:Brute Justice:1668:/
+949.5 "Short Needle" sync / 1[56]:[^:]*:Brute Justice:1669:/
+950.6 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:1662:/
+953.5 "Long Needle" sync / 1[56]:[^:]*:Brute Justice:166C:/
+956.4 "Short Needle" sync / 1[56]:[^:]*:Brute Justice:1669:/
+956.9 "Mega Beam" sync / 1[56]:[^:]*:Brute Justice:1664:/
+962.3 "Super Jump" sync / 1[56]:[^:]*:Brute Justice:1665:/
+966.9 "Apocalyptic Ray" sync / 1[56]:[^:]*:Brute Justice:1666:/ duration 5
+976.2 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:1662:/
+982.3 "Double Rocket Punch" sync / 1[56]:[^:]*:Brute Justice:1663:/
+984.4 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:1662:/
+987.5 "Missile Command" sync / 1[56]:[^:]*:Brute Justice:1668:/
+990.5 "Short Needle" sync / 1[56]:[^:]*:Brute Justice:1669:/
+991.6 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:1662:/
+994.5 "Long Needle" sync / 1[56]:[^:]*:Brute Justice:166C:/
+997.5 "Short Needle" sync / 1[56]:[^:]*:Brute Justice:1669:/
+998.2 "Mega Beam" sync / 1[56]:[^:]*:Brute Justice:1664:/
+1003.4 "Super Jump" sync / 1[56]:[^:]*:Brute Justice:1665:/
+1006.5 "--untargetable--"
+1009.7 "J Kick" sync / 1[56]:[^:]*:Brute Justice:166D:/
+# FIXME: some pause here, before looping back to targetable?
+1012.0 "--targetable--"
+
+
+### Phase 6: Second Intermission
+1200.0 "--untargetable--"
+1203.2 "J Kick" sync / 1[56]:[^:]*:Brute Justice:166D:/
+1211.5 "Attachment" sync / 1[56]:[^:]*:Brawler:163C:/ window 291.5,5
+1211.5 "--sync--" sync / 1[56]:[^:]*:Brute Justice:1636:/
+1212.6 "100-Megatonze Shock" sync / 1[56]:[^:]*:Onslaughter:1635:/
+# First Intermission can be skipped, but this is the first different ability.
+1217.5 "Hidden Minefield" sync / 1[56]:[^:]*:Hidden Mine:165E:/ window 1220,5 duration 9
+1217.6 "Double Drill Crush" sync / 1[56]:[^:]*:Brawler:1640:/
+1218.6 "Drill Drive" sync / 1[56]:[^:]*:Brawler:1641:/
+1222.1 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:162E:/
+1223.7 "Attachment" sync / 1[56]:[^:]*:Brawler:163C:/
+1228.5 "Mirage" sync / 1[56]:[^:]*:Blaster Mirage:1658:/
+1229.8 "Rocket Drill" sync / 1[56]:[^:]*:Brawler:163F:/
+1232.6 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:162E:/
+1232.6 "Eye Of The Chakram" sync / 1[56]:[^:]*:Steam Chakram:1654:/
+1233.6 "Power Tackle" #sync / 1[56]:[^:]*:Blaster Mirage:165B:/
+1233.6 "Blinder" #sync / 1[56]:[^:]*:Blaster Mirage:165A:/
+1241.4 "Enumeration" sync / 1[56]:[^:]*:Swindler:1649:/
+1241.4 "Ultra Flash" sync / 1[56]:[^:]*:Vortexer:1656:/
+
+
+### Phase 7: Gavel
+1252.1 "--targetable--" sync / 14:[^:]*:Brute Justice:166E:/ window 1255,100
+1257.1 "Justice" sync / 1[56]:[^:]*:Brute Justice:166E:/
+1264.2 "Verdict" sync / 1[56]:[^:]*:Brute Justice:166F:/
+1296.3 "Gavel" sync / 1[56]:[^:]*:Brute Justice:1670:/
+1304.4 "--untargetable--"
+
+
+### Phase 8: Final Justice
+1307.6 "J Kick" sync / 1[56]:[^:]*:Brute Justice:166D:/
+1310.6 "--targetable--"
+1313.7 "Link-Up" sync / 1[56]:[^:]*:Brute Justice:1673:/
+1324.8 "Final Punch" sync / 1[56]:[^:]*:Brute Justice:170C:/
+1326.0 "Final Apocalypse" sync / 1[56]:[^:]*:Brute Justice:1716:/
+1332.1 "Final Beam" sync / 1[56]:[^:]*:Brute Justice:1725:/
+1335.2 "Missile Command" sync / 1[56]:[^:]*:Brute Justice:1668:/
+1339.2 "Hidden Minefield" sync / 1[56]:[^:]*:Hidden Mine:165E:/ duration 9
+1340.3 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:1662:/
+1341.4 "Long Needle" sync / 1[56]:[^:]*:Brute Justice:166C:/
+1353.6 "Eye Of The Chakram" sync / 1[56]:[^:]*:Steam Chakram:1654:/
+1354.6 "Enumeration" sync / 1[56]:[^:]*:Brute Justice:1649:/
+1360.0 "Mega Beam" sync / 1[56]:[^:]*:Brute Justice:1664:/
+1365.1 "Super Jump" sync / 1[56]:[^:]*:Brute Justice:1665:/
+1371.3 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:1662:/
+1376.4 "Missile Command" sync / 1[56]:[^:]*:Brute Justice:1668:/
+1383.5 "Final Punch" sync / 1[56]:[^:]*:Brute Justice:170C:/
+1385.0 "Final Apocalypse" sync / 1[56]:[^:]*:Brute Justice:1716:/
+1391.1 "Final Beam" sync / 1[56]:[^:]*:Brute Justice:1725:/
+1398.2 "--untargetable--"
+
+
+### Phase 9: J-Storm
+1401.4 "J Storm" sync / 1[56]:[^:]*:Brute Justice:1674:/ window 1500,1000
+1403.4 "--targetable--"
+1407.5 "J Wave" sync / 1[56]:[^:]*:Brute Justice:1675:/ window 100,100
+1412.5 "J Wave" sync / 1[56]:[^:]*:Brute Justice:1675:/
+1417.5 "J Wave" sync / 1[56]:[^:]*:Brute Justice:1675:/
+1422.5 "J Wave" sync / 1[56]:[^:]*:Brute Justice:1675:/
+1427.5 "J Wave" sync / 1[56]:[^:]*:Brute Justice:1675:/
+1432.5 "J Wave" sync / 1[56]:[^:]*:Brute Justice:1675:/
+1437.5 "J Wave" sync / 1[56]:[^:]*:Brute Justice:1675:/
+1442.5 "J Wave" sync / 1[56]:[^:]*:Brute Justice:1675:/
+1447.5 "J Wave" sync / 1[56]:[^:]*:Brute Justice:1675:/
+1452.5 "J Wave" sync / 1[56]:[^:]*:Brute Justice:1675:/

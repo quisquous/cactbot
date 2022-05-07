@@ -1,0 +1,109 @@
+### Matoya's Relict
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+### Mudman
+# -p 547F:1011
+# -ii 368 5481 5487 548E 548F 5490 5492
+1000.0 "--sync--" sync / 00:0839::The Clayclot Cauldron will be sealed off/ window 1000,0
+# Loop 3 times
+1011.0 "Hard Rock" sync / 1[56]:[^:]*:Mudman:547F:/ window 10,10
+1020.2 "Petrified Peat" sync / 1[56]:[^:]*:Mudman:5480:/
+1032.3 "Peat Pelt" sync / 1[56]:[^:]*:Mudman:5482:/
+1041.4 "Rocky Roll" sync / 1[56]:[^:]*:Mud Bubble:548(3|4):/
+1050.7 "Brittle Breccia" sync / 1[56]:[^:]*:Mudman:548D:/
+1051.1 "Rocky Roll" sync / 1[56]:[^:]*:Mud Bubble:548(3|5):/
+1066.7 "Stone Age" sync / 1[56]:[^:]*:Mudman:5491:/
+
+1077.8 "Hard Rock" sync / 1[56]:[^:]*:Mudman:547F:/ window 10,10
+1087.0 "Petrified Peat" sync / 1[56]:[^:]*:Mudman:5480:/
+1099.1 "Peat Pelt" sync / 1[56]:[^:]*:Mudman:5482:/
+1108.2 "Rocky Roll" sync / 1[56]:[^:]*:Mud Bubble:548(3|4):/
+1117.5 "Brittle Breccia" sync / 1[56]:[^:]*:Mudman:548D:/
+1117.9 "Rocky Roll" sync / 1[56]:[^:]*:Mud Bubble:548(3|5):/
+1133.5 "Stone Age" sync / 1[56]:[^:]*:Mudman:5491:/
+
+# After this loop, each loop with "Falling Rock"
+1144.6 "Hard Rock" sync / 1[56]:[^:]*:Mudman:547F:/ window 10,10
+1153.8 "Petrified Peat" sync / 1[56]:[^:]*:Mudman:5480:/
+1165.9 "Peat Pelt" sync / 1[56]:[^:]*:Mudman:5482:/
+1175.0 "Rocky Roll" sync / 1[56]:[^:]*:Mud Bubble:548(3|4):/
+1184.3 "Brittle Breccia" sync / 1[56]:[^:]*:Mudman:548D:/
+1184.7 "Rocky Roll" sync / 1[56]:[^:]*:Mud Bubble:548(3|5):/
+1200.3 "Stone Age" sync / 1[56]:[^:]*:Mudman:5491:/
+
+1212.3 "Falling Rock" sync / 1[56]:[^:]*:Mudman:549(3|4):/
+
+1223.5 "Hard Rock" sync / 1[56]:[^:]*:Mudman:547F:/ window 10,10 jump 1144.6
+1232.7 "Petrified Peat" # sync / 1[56]:[^:]*:Mudman:5480:/
+1244.8 "Peat Pelt" # sync / 1[56]:[^:]*:Mudman:5482:/
+1253.9 "Rocky Roll" # sync / 1[56]:[^:]*:Mud Bubble:548(3|4):/
+1263.2 "Brittle Breccia" # sync / 1[56]:[^:]*:Mudman:548D:/
+
+
+### Nixie
+# -p 598F:2009.2
+# -ii 598E 5990 5992 5993 5994 5995 5996 5BB9
+2000.0 "--sync--" sync / 00:0839::The Clearnote Cauldron will be sealed off/ window 2000,0
+
+2009.2 "Crash-Smash" sync / 1[56]:[^:]*:Nixie:598F:/ window 10,10
+2023.4 "Shower Power" sync / 1[56]:[^:]*:Nixie:5991:/
+2038.1 "--untargetable--"
+2044.1 "Pitter-Patter" sync / 1[56]:[^:]*:Nixie:5988:/
+2072.2 "Sea Shanty" sync / 1[56]:[^:]*:Nixie:598[AC]:/
+2092.4 "Shower Power" sync / 1[56]:[^:]*:Nixie:5991:/
+
+2110.5 "Crash-Smash" sync / 1[56]:[^:]*:Nixie:598F:/ window 10,10
+2130.7 "Shower Power" sync / 1[56]:[^:]*:Nixie:5991:/
+2134.9 "Splish-Splash" sync / 1[56]:[^:]*:Nixie:598D:/
+2160.0 "Shower Power" sync / 1[56]:[^:]*:Nixie:5991:/
+
+2178.2 "Crash-Smash" sync / 1[56]:[^:]*:Nixie:598F:/ window 10,10 jump 2110.5
+2198.4 "Shower Power" # sync / 1[56]:[^:]*:Nixie:5991:/
+2202.6 "Splish-Splash" # sync / 1[56]:[^:]*:Nixie:598D:/
+2227.7 "Shower Power" # sync / 1[56]:[^:]*:Nixie:5991:/
+
+
+### Mother Porxie
+# -p 5913:3010.0
+# -ii 4A8F 5912 5914 5917 5918 591E 591F 5923 5925
+3000.0 "--sync--" sync / 00:0839::The Woebegone Workshop will be sealed off/ window 3000,0
+
+3011.3 "Tender Loin" sync / 1[56]:[^:]*:Mother Porxie:5913:/
+3029.5 "Huff And Puff" sync / 1[56]:[^:]*:Mother Porxie:5919:/
+3031.6 "Medium Rear" sync / 1[56]:[^:]*:Mother Porxie:591D:/
+3045.7 "Meat Mallet" sync / 1[56]:[^:]*:Mother Porxie:5916:/
+3045.7 "--untargetable--"
+3050.4 "Barbeque" sync / 1[56]:[^:]*:Mother Porxie:5B23:/
+3072.4 "To A Crisp" sync / 1[56]:[^:]*:Mother Porxie:5924:/
+3074.4 "--targetable--"
+3086.5 "Minced Meat" sync / 1[56]:[^:]*:Mother Porxie:5911:/ window 50,10
+3093.6 "--untargetable--"
+
+3096.6 "Huff And Puff" sync / 14:[^:]*:Mother Porxie:591A:/ window 96.6,5 duration 33.7
+3101.6 "Buffet" sync / 1[56]:[^:]*:Aeolian Cave Sprite:5926:/
+3107.3 "Buffet" sync / 1[56]:[^:]*:Aeolian Cave Sprite:5926:/
+3112.8 "Buffet" sync / 1[56]:[^:]*:Aeolian Cave Sprite:5926:/
+3118.4 "Buffet" sync / 1[56]:[^:]*:Aeolian Cave Sprite:5926:/
+3124.0 "Buffet" sync / 1[56]:[^:]*:Aeolian Cave Sprite:5926:/
+3129.6 "Buffet" sync / 1[56]:[^:]*:Aeolian Cave Sprite:5926:/
+3130.3 "Huff And Puff Enrage?" sync / 1[56]:[^:]*:Mother Porxie:591B:/ window 50,5
+
+3132.3 "--targetable--"
+# Loop
+3132.4 "Medium Rear" sync / 1[56]:[^:]*:Mother Porxie:591D:/
+3148.5 "Open Flame" sync / 1[56]:[^:]*:Mother Porxie:5922:/
+3160.6 "Minced Meat" sync / 1[56]:[^:]*:Mother Porxie:5911:/
+3172.7 "Tender Loin" sync / 1[56]:[^:]*:Mother Porxie:5913:/
+3186.8 "Tender Loin" sync / 1[56]:[^:]*:Mother Porxie:5913:/
+3207.1 "Huff And Puff" sync / 1[56]:[^:]*:Mother Porxie:5919:/
+
+3209.2 "Medium Rear" sync / 1[56]:[^:]*:Mother Porxie:591D:/
+3225.3 "Open Flame" sync / 1[56]:[^:]*:Mother Porxie:5922:/
+3237.5 "Minced Meat" sync / 1[56]:[^:]*:Mother Porxie:5911:/ jump 3160.6
+3249.6 "Tender Loin" # sync / 1[56]:[^:]*:Mother Porxie:5913:/
+3263.7 "Tender Loin" # sync / 1[56]:[^:]*:Mother Porxie:5913:/
+3281.9 "Huff And Puff" # sync / 1[56]:[^:]*:Mother Porxie:5919:/

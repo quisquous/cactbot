@@ -1,0 +1,208 @@
+### Hydaelyn Normal
+# -p 65D7:16.1 65BB:1000
+# -ii 668F 6CCE 6CCF 65CA 65D1 6C54 6C55 65B1
+# -it Hydaelyn
+# -it "Crystal of Light"
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# Phase 1
+0.0 "--sync--" sync /Engage!/ window 0,1
+11.1 "--sync--" sync / 14:[^:]*:Hydaelyn:65D7:/ window 20,20
+16.1 "Heros's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65D7:/
+23.3 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+29.9 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+36.2 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:65C8:/
+45.3 "Mousa's Scorn" sync / 1[56]:[^:]*:Hydaelyn:65D6:/
+52.5 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
+58.8 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+65.1 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:65C7:/
+74.2 "Magos's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65D8:/
+78.7 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+85.1 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+91.4 "Equinox" sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+100.6 "Heros's Sundering" sync / 1[56]:[^:]*:Hydaelyn:65D5:/
+107.8 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+114.1 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+# -> branch
+
+# Anthelion branch jump
+120.4 "Anthelion?" sync / 1[56]:[^:]*:Hydaelyn:65C8:/ window 30,30 jump 220.4
+129.5 "Mousa's Scorn?" #sync / 1[56]:[^:]*:Hydaelyn:65D6:/
+133.7 "--middle--" #sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
+140.0 "Dawn Mantle?" #sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+146.3 "Equinox?" #sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+154.4 "--untargetable--"
+
+# Highest Holy branch jump
+# FIXME: are Dawn Mantle/Equinox times slightly different here or is that just one log?
+120.4 "Highest Holy?" sync / 1[56]:[^:]*:Hydaelyn:65C7:/ window 30,30 jump 320.4
+129.5 "Magos's Radiance?" #sync / 1[56]:[^:]*:Hydaelyn:65D8:/
+
+
+# Anthelion/Mousa's Scorn -> add phase
+220.4 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:65C8:/
+229.5 "Mousa's Scorn" sync / 1[56]:[^:]*:Hydaelyn:65D6:/
+233.7 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
+240.0 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+246.3 "Equinox" sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+254.4 "--untargetable--"
+258.8 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65D3:/ window 50,50 jump 804.4
+
+
+# Highest Holy/Raidwide -> add phase
+320.4 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:65C7:/
+329.5 "Magos's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65D8:/
+334.0 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+340.3 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+346.6 "Equinox" sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+354.7 "--untargetable--"
+359.1 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65D3:/ window 50,50 jump 804.4
+
+
+# Add phase: timed push (70% push?)
+800.0 "--untargetable--"
+804.4 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65D3:/ window 1000,1000
+812.4 "--targetable--"
+826.7 "Hydaelyn's Ray" sync / 1[56]:[^:]*:Echo of Hydaelyn:65CC:/
+828.8 "Crystallize" sync / 1[56]:[^:]*:Echo of Hydaelyn:6C51:/
+837.7 "Crystalline Stone III" sync / 1[56]:[^:]*:Echo of Hydaelyn:6C59:/
+840.1 "--sync--" sync / 1[56]:[^:]*:Echo of Hydaelyn:659F:/
+853.8 "Hydaelyn's Ray" sync / 1[56]:[^:]*:Echo of Hydaelyn:65CC:/
+858.9 "Crystallize" sync / 1[56]:[^:]*:Echo of Hydaelyn:6CCD:/
+867.8 "Crystalline Blizzard III" sync / 1[56]:[^:]*:Echo of Hydaelyn:6C5A:/
+870.2 "--sync--" sync / 1[56]:[^:]*:Echo of Hydaelyn:659F:/
+880.9 "Hydaelyn's Ray" sync / 1[56]:[^:]*:Echo of Hydaelyn:65CC:/
+886.0 "Crystallize" sync / 1[56]:[^:]*:Echo of Hydaelyn:6C51:/
+894.9 "Crystalline Stone III" sync / 1[56]:[^:]*:Echo of Hydaelyn:6C59:/
+
+
+# Final Phase
+1000.0 "Exodus" sync / 1[56]:[^:]*:Hydaelyn:65BB:/ window 1000,0
+1014.8 "Exodus" sync / 1[56]:[^:]*:Hydaelyn:65D2:/
+1020.0 "--targetable--"
+1029.2 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+1034.8 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659C:/
+1042.8 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+1052.0 "Crystalline Blizzard III" #sync / 1[56]:[^:]*:Hydaelyn:6C5A:/
+
+# -> jump to Parhelic Circle first
+1049.1 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:65C7:/ window 30,30 jump 2049.1
+1066.0 "Parhelic Circle?" sync / 1[56]:[^:]*:Hydaelyn:65AC:/
+
+# -> jump to Parhelion first
+1049.1 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:65C8:/ window 30,30 jump 3049.1
+1064.3 "Mousa's Scorn?" #sync / 1[56]:[^:]*:Hydaelyn:65D6:/
+1075.0 "Parhelion?" #sync / 1[56]:[^:]*:Hydaelyn:65B0:/
+
+
+### Parhelic Circle first
+2034.8 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659C:/
+2042.8 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+2049.1 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:65C7:/
+2052.0 "Crystalline Blizzard III" sync / 1[56]:[^:]*:Hydaelyn:6C5A:/
+2052.2 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A0:/
+2058.3 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+
+2066.0 "Parhelic Circle" sync / 1[56]:[^:]*:Hydaelyn:65AC:/
+2066.8 "--sync--" sync / 1[56]:[^:]*:Mystic Refulgence:65AE:/
+2066.8 "--sync--" sync / 1[56]:[^:]*:Mystic Refulgence:65AD:/
+2069.3 "Incandescence" sync / 1[56]:[^:]*:Mystic Refulgence:65CD:/
+2077.2 "Magos's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65D8:/
+2081.8 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+2087.5 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659C:/
+2095.6 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+2101.9 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:65C8:/
+2105.0 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A1:/
+2105.7 "Crystalline Blizzard III" sync / 1[56]:[^:]*:Hydaelyn:6C5A:/
+2117.1 "Mousa's Scorn" sync / 1[56]:[^:]*:Hydaelyn:65D6:/
+2121.2 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
+
+2127.7 "Parhelion" sync / 1[56]:[^:]*:Hydaelyn:65B0:/
+2128.0 "Beacon 1" #sync / 1[56]:[^:]*:Parhelion:65CE:/
+2129.6 "Beacon 2" #sync / 1[56]:[^:]*:Parhelion:65CE:/
+2131.2 "Beacon 3" #sync / 1[56]:[^:]*:Parhelion:65CE:/
+2137.6 "Subparhelion" sync / 1[56]:[^:]*:Hydaelyn:6C56:/
+2141.8 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
+2144.0 "Beacon 1" #sync / 1[56]:[^:]*:Parhelion:65CF:/
+2145.6 "Beacon 2" #sync / 1[56]:[^:]*:Parhelion:65CF:/
+2147.2 "Beacon 3" #sync / 1[56]:[^:]*:Parhelion:65CF:/
+
+# -> jump back to shared loop below
+2147.3 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659E:/ window 50,50 jump 3147.3
+2155.4 "Dawn Mantle" #sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+2161.7 "Equinox" #sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+2164.8 "--sync--" #sync / 1[56]:[^:]*:Hydaelyn:659F:/
+2165.5 "Crystalline Blizzard III/Crystalline Stone III" #sync / 1[56]:[^:]*:Hydaelyn:(6C5A|6C59):/
+
+
+### Parhelion first
+3034.8 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659C:/
+3042.9 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+3049.1 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:65C8:/
+3052.3 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A1:/
+3053.0 "Crystalline Blizzard III" sync / 1[56]:[^:]*:Hydaelyn:6C5A:/
+3064.4 "Mousa's Scorn" sync / 1[56]:[^:]*:Hydaelyn:65D6:/
+3068.6 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
+3075.1 "Parhelion" sync / 1[56]:[^:]*:Hydaelyn:65B0:/
+3075.3 "Beacon 1" #sync / 1[56]:[^:]*:Parhelion:65CE:/
+3076.9 "Beacon 2" #sync / 1[56]:[^:]*:Parhelion:65CE:/
+3078.5 "Beacon 3" #sync / 1[56]:[^:]*:Parhelion:65CE:/
+3084.9 "Subparhelion" sync / 1[56]:[^:]*:Hydaelyn:6C56:/
+3089.1 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
+3091.2 "Beacon 1" #sync / 1[56]:[^:]*:Parhelion:65CF:/
+3092.8 "Beacon 2" #sync / 1[56]:[^:]*:Parhelion:65CF:/
+3094.4 "Beacon 3" #sync / 1[56]:[^:]*:Parhelion:65CF:/
+
+3094.5 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659E:/
+3102.5 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+3108.8 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:65C7:/
+3111.9 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A0:/
+3112.7 "Crystalline Stone III" sync / 1[56]:[^:]*:Hydaelyn:6C59:/
+3118.1 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+3125.8 "Parhelic Circle" sync / 1[56]:[^:]*:Hydaelyn:65AC:/
+3126.6 "--sync--" sync / 1[56]:[^:]*:Mystic Refulgence:65AE:/
+3126.6 "--sync--" sync / 1[56]:[^:]*:Mystic Refulgence:65AD:/
+3129.1 "Incandescence" sync / 1[56]:[^:]*:Mystic Refulgence:65CD:/
+3136.9 "Magos's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65D8:/
+3141.5 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+# -> Crystallize below
+
+
+### Shared branch after Parhelion / Parhelic Circle
+3147.2 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659C:/
+3155.2 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+3161.5 "Equinox" sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+3164.6 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:659F:/
+3165.4 "Crystalline Blizzard III/Crystalline Stone III" sync / 1[56]:[^:]*:Hydaelyn:(6C5A|6C59):/
+3176.9 "Heros's Sundering" sync / 1[56]:[^:]*:Hydaelyn:65D5:/
+3180.0 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+3186.5 "Radiant Halo" sync / 1[56]:[^:]*:Hydaelyn:65D0:/
+
+
+# Lightwave loop
+3191.8 "--sync--" sync / 14:[^:]*:Hydaelyn:(6693|6694|6695):/
+3195.8 "Lightwave" sync / 1[56]:[^:]*:Hydaelyn:(6693|6694|6695):/
+3203.9 "Echoes" sync / 1[56]:[^:]*:Hydaelyn:(65B5|65B6|65B7):/
+3221.1 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659[CE]:/
+3224.3 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:(65A9|6E7A):/
+3230.7 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+3237.0 "Highest Holy/Anthelion/Equinox" sync / 1[56]:[^:]*:Hydaelyn:(65C3|65C7|65C8):/
+# This timing is +/- 1 second for some reason (even with the same Crystallize),
+# so don't sync because it throws Lightwave off even more.
+3239.9 "Crystalline Blizzard III/Crystalline Stone III" #sync / 1[56]:[^:]*:Hydaelyn:(6C5A|6C59):/
+
+# Even ignoring the blizzard/stone above, this is still +/- 0.5s, so add a starts using cast.
+# TODO: it's possible the first loop is slightly different??
+3245.8 "--sync--" sync / 14:[^:]*:Hydaelyn:(6693|6694|6695):/ window 30,30 jump 3191.8
+3249.8 "Lightwave" #sync / 1[56]:[^:]*:Hydaelyn:(6693|6694|6695):/
+3257.9 "Echoes" #sync / 1[56]:[^:]*:Hydaelyn:(65B5|65B6|65B7):/
+3275.1 "Crystallize" #sync / 1[56]:[^:]*:Hydaelyn:659[CE]:/
+3278.3 "--middle--" #sync / 1[56]:[^:]*:Hydaelyn:(65A9|6E7A):/
+3284.7 "Dawn Mantle" #sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+3291.0 "Highest Holy/Anthelion/Equinox" #sync / 1[56]:[^:]*:Hydaelyn:(65C3|65C7|65C8):/
+3293.9 "Crystalline Blizzard III/Crystalline Stone III" #sync / 1[56]:[^:]*:Hydaelyn:(6C5A|6C59):/
+

@@ -1,0 +1,452 @@
+### Warrior of Light (Extreme)
+# https://docs.google.com/document/d/1UeDHZGa1_p2gytoZwQWt6rdr6eeDQdvwS6sdRlOt07Y/edit
+# https://saltedxiv.com/guides/the-seat-of-sacrifice-extreme-guide
+#
+# -p 4F09:9.7 5151:226 5152:500 -it "Warrior Of Light"
+# -ii 5459 4F43 4EEB 4EF8 4EEE 4F3C 4F06 4EFF 4F00 4EEA 4EED 4EEC 4F44 4F3E 4F01
+
+# Phase diagram:
+# 1 -> 2 -> 3a summon + quintuplecast -> 3b summon -> 3b
+
+# Notes:
+# 4F43 is the solemn confiteor windup, skipped above, but useful for phase syncing
+# 4F05 perfect decimation damage is sometimes missed
+# 4F03 is tower correctly done, 4F04 is failed
+# Have seen LB1+2+3 go to DRK.  Have only seen 2+3 go to WHM/BLM, but assuming LB1 could too.
+
+# TODO: More work needs to be done on the phase jump block
+# The ultimate -> block transition is fine.
+# It's not clear whether quintuplecast -> block has a different timing than block -> block.
+# Or worse, whether block1 -> block2 times different than block1 -> block3 relative to 4F45.
+# It's usually within 1s, although I've seen as much as 6s off.  It'll still sync at least.
+# TODO: we could also remove the jumps from a block to itself.
+
+hideall "--sync--"
+hideall "--Reset--"
+hideall "Limit Break"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1: Warmup
+0.0 "--sync--" sync /:Engage!/ window 0,1
+3.0 "--sync--" sync / 1[56]:[^:]*:Warrior Of Light:5459:/ window 3,0
+9.7 "Terror Unleashed" sync / 1[56]:[^:]*:Warrior Of Light:4F09:/ window 20,20
+15.8 "To The Limit 3" sync / 1[56]:[^:]*:Warrior Of Light:4F36:/
+27.6 "Solemn Confiteor" sync / 1[56]:[^:]*:Warrior Of Light:4F0C:/
+32.1 "Absolute Stone III" sync / 1[56]:[^:]*:Warrior Of Light:4F2C:/
+41.2 "Limit Break" sync / 1[56]:[^:]*:Warrior Of Light:4EFB:/
+41.3 "Radiant Meteor" sync / 1[56]:[^:]*:Warrior Of Light:4EFC:/
+49.4 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+54.6 "Imbued Stone" sync / 1[56]:[^:]*:Warrior Of Light:4EF6:/
+63.7 "Imbued Fire/Ice" sync / 1[56]:[^:]*:Warrior Of Light:4EF[34]:/
+76.8 "Imbued Coruscance" sync / 1[56]:[^:]*:Warrior Of Light:4F4[9A]:/
+84.0 "To The Limit 2" sync / 1[56]:[^:]*:Warrior Of Light:4F35:/
+92.1 "Sword Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F42:/
+109.4 "Absolute Holy" sync / 1[56]:[^:]*:Warrior Of Light:4F2B:/
+110.4 "Shining Wave" sync / 1[56]:[^:]*:Warrior Of Light:4F08:/
+118.6 "Limit Break" sync / 1[56]:[^:]*:Warrior Of Light:53CB:/
+119.0 "Radiant Desperado 1" sync / 1[56]:[^:]*:Warrior Of Light:4EF9:/
+123.3 "Radiant Desperado 2" sync / 1[56]:[^:]*:Warrior Of Light:4EFA:/
+127.4 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+132.7 "To The Limit 1" sync / 1[56]:[^:]*:Warrior Of Light:4F34:/
+140.8 "Imbued Holy" sync / 1[56]:[^:]*:Warrior Of Light:4EF5:/
+149.9 "Imbued Ice/Fire" sync / 1[56]:[^:]*:Warrior Of Light:4EF[34]:/
+163.0 "Imbued Coruscance" sync / 1[56]:[^:]*:Warrior Of Light:4F4[9A]:/
+173.1 "Limit Break" sync / 1[56]:[^:]*:Warrior Of Light:515C:/
+173.4 "Radiant Braver" sync / 1[56]:[^:]*:Warrior Of Light:4EF7:/
+186.5 "The Bitter End" sync / 1[56]:[^:]*:Warrior Of Light:4F0A:/
+192.7 "Summon Wyrm" sync / 1[56]:[^:]*:Warrior Of Light:4F41:/
+198.8 "Solemn Confiteor" sync / 1[56]:[^:]*:Warrior Of Light:4F0C:/
+200.8 "Absolute Flash" sync / 1[56]:[^:]*:Warrior Of Light:4F2F:/
+202.9 "Cauterize" sync / 1[56]:[^:]*:Wyrm Of Light:4F07:/
+209.0 "Elddragon Dive" sync / 1[56]:[^:]*:Warrior Of Light:4F0B:/
+
+### Phase 2: Adds
+217.4 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+222.8 "Specter Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F37:/ window 300,10
+225.9 "--untargetable--"
+226.0 "--sync--" sync / 1[56]:[^:]*:Warrior Of Light:5151:/
+
+231.2 "--adds targetable--"
+239.3 "Deluge Of Death" sync / 1[56]:[^:]*:Spectral Bard:4F3B:/
+241.3 "Twincast" sync / 1[56]:[^:]*:Spectral Black Mage:4F3D:/
+243.3 "--sync--" sync / 1[56]:[^:]*:Spectral Ninja:4F39:/
+244.0 "--sync--" sync / 1[56]:[^:]*:Spectral White Mage:531E:/
+245.4 "Fatal Cleave" sync / 1[56]:[^:]*:Spectral Warrior:5154:/
+245.4 "Blade Of Shadow" sync / 1[56]:[^:]*:Spectral Dark Knight:5157:/
+246.3 "Summon" sync / 1[56]:[^:]*:Spectral Summoner:4F3F:/
+247.4 "Deluge Of Death" sync / 1[56]:[^:]*:Spectral Bard:4F02:/
+251.0 "--sync--" sync / 1[56]:[^:]*:Spectral Bard:531E:/
+251.4 "Katon: San" sync / 1[56]:[^:]*:Spectral Ninja:4EFE:/
+253.4 "Meteor Impact" sync / 1[56]:[^:]*:Spectral Black Mage:5098:/
+255.1 "--sync--" sync / 1[56]:[^:]*:Spectral Ninja:531E:/
+258.4 "Berserk" #sync / 1[56]:[^:]*:Spectral Warrior:5156:/
+258.4 "Deep Darkside" #sync / 1[56]:[^:]*:Spectral Dark Knight:5158:/
+260.4 "Flare Breath" sync / 1[56]:[^:]*:Spectral Summoner:4F40:/
+266.2 "--sync--" sync / 1[56]:[^:]*:Spectral Summoner:531E:/
+
+272.6 "Fatal Cleave" sync / 1[56]:[^:]*:Spectral Warrior:5154:/
+272.6 "Blade Of Shadow" sync / 1[56]:[^:]*:Spectral Dark Knight:5157:/
+
+288.8 "Fatal Cleave" sync / 1[56]:[^:]*:Spectral Warrior:5154:/
+288.8 "Blade Of Shadow" sync / 1[56]:[^:]*:Spectral Dark Knight:5157:/
+
+305.4 "Fatal Cleave" sync / 1[56]:[^:]*:Spectral Warrior:5154:/
+305.4 "Blade Of Shadow" sync / 1[56]:[^:]*:Spectral Dark Knight:5157:/
+# ??? enrage
+
+
+### Phase 3: Random Summons
+500.0 "--sync--" sync / 1[56]:[^:]*:Warrior Of Light:5152:/ window 500,0
+506.1 "Ultimate Crossover" sync / 1[56]:[^:]*:Warrior Of Light:5153:/
+513.1 "--targetable--"
+517.3 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+
+# BLM/WHM
+519.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 1519.5
+522.6 "Specter -> BLM/WHM" #sync / 1[56]:[^:]*:Warrior Of Light:4F73:/
+527.8 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 1527.8
+
+# DRK/BRD
+519.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 2519.6
+522.6 "Limit -> DRK/BRD" #sync / 1[56]:[^:]*:Warrior Of Light:4F3[456]:/
+534.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 2534.0
+
+# NIN
+519.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 3519.6
+522.6 "Stone/Holy -> NIN" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[56]:/
+
+# SMN/WAR
+519.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 4519.7
+522.6 "Fire/Ice -> SMN/WAR" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[34]:/
+
+
+### Phase 3a: BLM/WHM
+1517.3 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+1519.5 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F37:/
+1522.5 "Specter Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F37:/
+1525.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[56]:/
+1527.8 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/
+1528.6 "To The Limit" sync / 1[56]:[^:]*:Warrior Of Light:4F3[456]:/
+1530.8 "Twincast" sync / 1[56]:[^:]*:Spectral Black Mage:4F3D:/
+1533.2 "--sync--" sync / 1[56]:[^:]*:Spectral White Mage:531E:/
+1533.2 "--sync--" sync / 1[56]:[^:]*:Spectral Black Mage:531E:/
+1545.3 "Meteor Impact 1" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+1547.3 "Meteor Impact 2" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+1549.4 "Meteor Impact 3" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+1551.4 "Meteor Impact 4" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+1553.4 "Meteor Impact 5" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+1555.4 "Meteor Impact 6" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+1557.4 "Meteor Impact 7" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+1557.8 "Summon Wyrm" sync / 1[56]:[^:]*:Warrior Of Light:4F41:/
+1559.4 "Meteor Impact 8" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+1567.9 "Coruscant Saber" sync / 1[56]:[^:]*:Warrior Of Light:4EF[12]:/
+1568.0 "Cauterize" sync / 1[56]:[^:]*:Wyrm Of Light:4F07:/
+1580.2 "Limit Break" sync / 1[56]:[^:]*:Warrior Of Light:(4EFB|53CB|515C):/
+### TODO: bitter end gets moved up 0.5s if it's meteor???
+1593.1 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F0A:/ window 10,10
+1598.1 "The Bitter End" sync / 1[56]:[^:]*:Warrior Of Light:4F0A:/
+
+1605.4 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+1619.6 "Quintuplecast" sync / 1[56]:[^:]*:Warrior Of Light:4EEF:/
+1622.8 "Cast 1" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+1625.9 "Cast 2" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+1629.0 "Cast 3" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+1632.1 "Cast 4" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+1635.2 "Cast 5" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+1650.2 "Shining Wave" sync / 1[56]:[^:]*:Warrior Of Light:4F08:/
+1651.4 "Elddragon Dive" sync / 1[56]:[^:]*:Warrior Of Light:4F0B:/
+1661.7 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+
+# DRK/BRD
+1664.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 7002.2
+1667.0 "Limit -> DRK/BRD" #sync / 1[56]:[^:]*:Warrior Of Light:4F3[456]:/
+1678.3 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 7016.6
+
+# NIN
+1664.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 8002.3
+1667.0 "Stone/Holy -> NIN" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[56]:/
+
+# SMN/WAR
+1664.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 9002.3
+1667.0 "Fire/Ice -> SMN/WAR" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[34]:/
+
+
+
+### Phase 3a: DRK/BRD
+2517.3 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+2519.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[46]:/
+2522.6 "To The Limit" sync / 1[56]:[^:]*:Warrior Of Light:4F3[456]:/
+2530.8 "Specter Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F37:/
+2534.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/
+2537.0 "--sync--" sync / 1[56]:[^:]*:Warrior Of Light:4F43:/
+2540.6 "Solemn Confiteor" sync / 1[56]:[^:]*:Warrior Of Light:4F0C:/
+2544.1 "Brimstone Earth" sync / 1[56]:[^:]*:Spectral Dark Knight:4F3A:/
+2547.4 "--sync--" sync / 1[56]:[^:]*:Spectral Dark Knight:531E:/
+2548.4 "Deluge Of Death" sync / 1[56]:[^:]*:Spectral Bard:4F3B:/
+2552.0 "--sync--" sync / 1[56]:[^:]*:Spectral Bard:531E:/
+2556.6 "Absolute Holy" sync / 1[56]:[^:]*:Warrior Of Light:4F2B:/
+2556.6 "Deluge Of Death" sync / 1[56]:[^:]*:Spectral Bard:4F02:/
+2563.6 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+2571.8 "Limit Break" sync / 1[56]:[^:]*:Warrior Of Light:(4EFB|53CB|515C):/
+2584.1 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F0A:/ window 10,10
+2589.1 "The Bitter End" sync / 1[56]:[^:]*:Warrior Of Light:4F0A:/
+
+2596.4 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+2610.6 "Quintuplecast" sync / 1[56]:[^:]*:Warrior Of Light:4EEF:/
+2613.8 "Cast 1" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+2616.9 "Cast 2" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+2620.0 "Cast 3" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+2623.1 "Cast 4" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+2626.2 "Cast 5" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+2641.2 "Shining Wave" sync / 1[56]:[^:]*:Warrior Of Light:4F08:/
+2642.4 "Elddragon Dive" sync / 1[56]:[^:]*:Warrior Of Light:4F0B:/
+2652.7 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+
+# BLM/WHM
+2655.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 6002.4
+2658.0 "Specter -> BLM/WHM" #sync / 1[56]:[^:]*:Warrior Of Light:4F73:/
+2663.4 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 6010.7
+
+# NIN
+2655.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 8002.3
+2658.0 "Stone/Holy -> NIN" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[56]:/
+
+# SMN/WAR
+2655.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 9002.3
+2658.0 "Fire/Ice -> SMN/WAR" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[34]:/
+
+
+
+### Phase 3a: NIN
+3517.3 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+3519.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/
+3522.6 "Imbued Stone/Holy" sync / 1[56]:[^:]*:Warrior Of Light:4EF[56]:/
+3531.7 "Specter Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F37:/
+3540.0 "--sync--" sync / 1[56]:[^:]*:Spectral Ninja:4F38:/
+3547.1 "--sync--" sync / 1[56]:[^:]*:Spectral Ninja:4F39:/
+3550.5 "Solemn Confiteor" sync / 1[56]:[^:]*:Warrior Of Light:4F0C:/
+3554.1 "Suiton: San" sync / 1[56]:[^:]*:Spectral Ninja:4EFD:/
+3557.2 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+3557.2 "Katon: San" sync / 1[56]:[^:]*:Spectral Ninja:4EFE:/
+3558.0 "--sync--" sync / 1[56]:[^:]*:Spectral Ninja:531E:/
+3566.6 "Imbued Coruscance" sync / 1[56]:[^:]*:Warrior Of Light:4F4[9A]:/
+3575.7 "Elddragon Dive" sync / 1[56]:[^:]*:Warrior Of Light:4F0B:/
+3589.0 "The Bitter End" sync / 1[56]:[^:]*:Warrior Of Light:4F0A:/
+
+3596.3 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+3610.5 "Quintuplecast" sync / 1[56]:[^:]*:Warrior Of Light:4EEF:/
+3613.7 "Cast 1" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+3616.8 "Cast 2" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+3619.9 "Cast 3" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+3623.0 "Cast 4" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+3626.1 "Cast 5" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+3641.1 "Shining Wave" sync / 1[56]:[^:]*:Warrior Of Light:4F08:/
+3642.3 "Elddragon Dive" sync / 1[56]:[^:]*:Warrior Of Light:4F0B:/
+3652.6 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+
+# BLM/WHM
+3654.9 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 6002.4
+3657.9 "Specter -> BLM/WHM" #sync / 1[56]:[^:]*:Warrior Of Light:4F73:/
+3663.3 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 6010.7
+
+# DRK/BRD
+3654.9 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 7002.2
+3657.9 "Limit -> DRK/BRD" #sync / 1[56]:[^:]*:Warrior Of Light:4F3[456]:/
+3669.2 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 7016.6
+
+# SMN/WAR
+3654.9 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 9002.3
+3657.9 "Fire/Ice -> SMN/WAR" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[34]:/
+
+
+### Phase 3a: SMN/WAR
+4517.4 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+4519.7 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/
+4522.7 "Imbued Fire/Ice" sync / 1[56]:[^:]*:Warrior Of Light:4EF[34]:/
+4531.9 "Specter Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F37:/
+4540.2 "Summon" sync / 1[56]:[^:]*:Spectral Summoner:4F3F:/
+4554.4 "Flare Breath" sync / 1[56]:[^:]*:Spectral Summoner:4F40:/
+4554.7 "Perfect Decimation" sync / 1[56]:[^:]*:(Spectral Warrior|Warrior Of Light):4F05:/
+4554.9 "Solemn Confiteor" sync / 1[56]:[^:]*:Warrior Of Light:4F0C:/
+4566.1 "Solemn Confiteor" sync / 1[56]:[^:]*:Warrior Of Light:4F0C:/
+4566.5 "Flare Breath" sync / 1[56]:[^:]*:Spectral Summoner:4F40:/
+4566.9 "Perfect Decimation" sync / 1[56]:[^:]*:(Spectral Warrior|Warrior Of Light):4F05:/
+4568.2 "--sync--" sync / 1[56]:[^:]*:Spectral Warrior:531E:/
+4572.4 "--sync--" sync / 1[56]:[^:]*:Spectral Summoner:531E:/
+4572.8 "Summon Wyrm" sync / 1[56]:[^:]*:Warrior Of Light:4F41:/
+4576.0 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+4583.1 "Cauterize" sync / 1[56]:[^:]*:Wyrm Of Light:4F07:/
+4585.2 "Imbued Coruscance" sync / 1[56]:[^:]*:Warrior Of Light:4F4[9A]:/
+4594.3 "Elddragon Dive" sync / 1[56]:[^:]*:Warrior Of Light:4F0B:/
+4607.6 "The Bitter End" sync / 1[56]:[^:]*:Warrior Of Light:4F0A:/
+
+4614.9 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+4629.1 "Quintuplecast" sync / 1[56]:[^:]*:Warrior Of Light:4EEF:/
+4632.3 "Cast 1" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+4635.4 "Cast 2" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+4638.5 "Cast 3" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+4641.6 "Cast 4" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+4644.7 "Cast 5" sync / 1[56]:[^:]*:Warrior Of Light:4EF0:/
+4659.7 "Shining Wave" sync / 1[56]:[^:]*:Warrior Of Light:4F08:/
+4660.9 "Elddragon Dive" sync / 1[56]:[^:]*:Warrior Of Light:4F0B:/
+4671.2 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+
+# BLM/WHM
+4673.5 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 6002.4
+4676.5 "Specter -> BLM/WHM" #sync / 1[56]:[^:]*:Warrior Of Light:4F73:/
+4681.9 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 6010.7
+
+# DRK/BRD
+4673.5 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 7002.2
+4676.5 "Limit -> DRK/BRD" #sync / 1[56]:[^:]*:Warrior Of Light:4F3[456]:/
+4687.8 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 7016.6
+
+# NIN
+4673.5 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 8002.3
+4676.5 "Stone/Holy -> NIN" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[56]:/
+
+
+
+### Phase 3b: BLM/WHM
+6000.0 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+6002.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F37:/
+6005.4 "Specter Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F37:/
+6008.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[56]:/
+6010.7 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/
+6011.6 "To The Limit" sync / 1[56]:[^:]*:Warrior Of Light:4F3[456]:/
+6013.7 "Twincast" sync / 1[56]:[^:]*:Spectral Black Mage:4F3D:/
+6016.2 "--sync--" sync / 1[56]:[^:]*:Spectral White Mage:531E:/
+6028.3 "Meteor Impact 1" #sync / 1[56]:[^:]*:Warrior Of Light:4F03:/
+6030.3 "Meteor Impact 2" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+6032.3 "Meteor Impact 3" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+6034.3 "Meteor Impact 4" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+6036.3 "Meteor Impact 5" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+6038.3 "Meteor Impact 6" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+6040.3 "Meteor Impact 7" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+6040.8 "Summon Wyrm" sync / 1[56]:[^:]*:Warrior Of Light:4F41:/
+6042.3 "Meteor Impact 8" #sync / 1[56]:[^:]*:Spectral Black Mage:4F03:/
+6050.9 "Coruscant Saber" sync / 1[56]:[^:]*:Warrior Of Light:4EF[12]:/
+6051.0 "Cauterize" sync / 1[56]:[^:]*:Wyrm Of Light:4F07:/
+### TODO: This is random (note: bitter end gets moved up 0.5s if it's meteor)
+6063.1 "Limit Break" sync / 1[56]:[^:]*:Warrior Of Light:(4EFB|53CB|515C):/
+6075.9 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F0A:/ window 10,10
+6080.9 "The Bitter End" sync / 1[56]:[^:]*:Warrior Of Light:4F0A:/
+6084.1 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+
+# DRK/BRD
+6086.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 7002.2
+6089.4 "Limit -> DRK/BRD" #sync / 1[56]:[^:]*:Warrior Of Light:4F3[456]:/
+6100.7 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 7016.6
+
+# NIN
+6086.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 8002.3
+6089.4 "Stone/Holy -> NIN" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[56]:/
+
+# SMN/WAR
+6086.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 9002.3
+6089.4 "Fire/Ice -> SMN/WAR" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[34]:/
+
+
+### Phase 3b: DRK/BRD
+7000.0 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+7002.2 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[46]:/
+7005.2 "To The Limit" sync / 1[56]:[^:]*:Warrior Of Light:4F3[456]:/
+7013.4 "Specter Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F37:/
+7016.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/
+7019.6 "--sync--" sync / 1[56]:[^:]*:Warrior Of Light:4F43:/
+7023.2 "Solemn Confiteor" sync / 1[56]:[^:]*:Warrior Of Light:4F0C:/
+7026.8 "Brimstone Earth" sync / 1[56]:[^:]*:Spectral Dark Knight:4F3A:/
+7030.1 "--sync--" sync / 1[56]:[^:]*:Spectral Dark Knight:531E:/
+7031.1 "Deluge Of Death" sync / 1[56]:[^:]*:Spectral Bard:4F3B:/
+7034.7 "--sync--" sync / 1[56]:[^:]*:Spectral Bard:531E:/
+7039.3 "Deluge Of Death" sync / 1[56]:[^:]*:Spectral Bard:4F02:/
+7039.3 "Absolute Holy" sync / 1[56]:[^:]*:Warrior Of Light:4F2B:/
+7046.3 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+7054.6 "Limit Break" sync / 1[56]:[^:]*:Warrior Of Light:(4EFB|53CB|515C):/
+# TODO: guessing here
+7066.8 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F0A:/ window 10,10
+7071.8 "The Bitter End" sync / 1[56]:[^:]*:Warrior Of Light:4F0A:/
+7079.1 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+
+# BLM/WHM
+7081.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 6002.4
+7084.4 "Specter -> BLM/WHM" #sync / 1[56]:[^:]*:Warrior Of Light:4F73:/
+7089.8 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 6010.7
+
+# NIN
+7081.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 8002.3
+7084.4 "Stone/Holy -> NIN" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[56]:/
+
+# SMN/WAR
+7081.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 9002.3
+7084.4 "Fire/Ice -> SMN/WAR" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[34]:/
+
+
+### Phase 3b: NIN
+8000.0 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+8002.3 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/
+8005.3 "Imbued Stone/Holy" sync / 1[56]:[^:]*:Warrior Of Light:4EF[56]:/
+8014.4 "Specter Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F37:/
+8022.7 "--sync--" sync / 1[56]:[^:]*:Spectral Ninja:4F38:/
+8029.8 "--sync--" sync / 1[56]:[^:]*:Spectral Ninja:4F39:/
+8033.2 "Solemn Confiteor" sync / 1[56]:[^:]*:Warrior Of Light:4F0C:/
+8036.8 "Suiton: San " sync / 1[56]:[^:]*:Spectral Ninja:4EFD:/
+8039.8 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+8039.9 "Katon: San " sync / 1[56]:[^:]*:Spectral Ninja:4EFE:/
+8040.7 "--sync--" sync / 1[56]:[^:]*:Spectral Ninja:531E:/
+8049.1 "Imbued Coruscance" sync / 1[56]:[^:]*:Warrior Of Light:4F4[9A]:/
+8058.2 "Elddragon Dive" sync / 1[56]:[^:]*:Warrior Of Light:4F0B:/
+8071.5 "The Bitter End" sync / 1[56]:[^:]*:Warrior Of Light:4F0A:/
+8074.7 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+
+# BLM/WHM
+8077.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 6002.4
+8080.0 "Specter -> BLM/WHM" #sync / 1[56]:[^:]*:Warrior Of Light:4F73:/
+8085.4 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 6010.7
+
+# DRK/BRD
+8077.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 7002.2
+8080.0 "Limit -> DRK/BRD" #sync / 1[56]:[^:]*:Warrior Of Light:4F3[456]:/
+8091.3 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 7016.6
+
+# SMN/WAR
+8077.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 9002.3
+8080.0 "Fire/Ice -> SMN/WAR" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[34]:/
+
+
+### Phase 3b: SMN/WAR
+9000.0 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+9002.3 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/
+9005.3 "Imbued Fire/Ice" sync / 1[56]:[^:]*:Warrior Of Light:4EF[34]:/
+9014.3 "Specter Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F37:/
+9022.6 "Summon" sync / 1[56]:[^:]*:Spectral Summoner:4F3F:/
+9036.7 "Flare Breath" sync / 1[56]:[^:]*:Spectral Summoner:4F40:/
+9037.0 "Perfect Decimation" sync / 1[56]:[^:]*:(Spectral Warrior|Warrior Of Light):4F05:/
+9037.2 "Solemn Confiteor" sync / 1[56]:[^:]*:Warrior Of Light:4F0C:/
+9048.5 "Solemn Confiteor" sync / 1[56]:[^:]*:Warrior Of Light:4F0C:/
+9048.8 "Flare Breath" sync / 1[56]:[^:]*:Spectral Summoner:4F40:/
+9049.2 "Perfect Decimation" sync / 1[56]:[^:]*:(Spectral Warrior|Warrior Of Light):4F05:/
+9050.8 "--sync--" sync / 1[56]:[^:]*:Spectral Warrior:531E:/
+9054.8 "--sync--" sync / 1[56]:[^:]*:Spectral Summoner:531E:/
+9055.2 "Summon Wyrm" sync / 1[56]:[^:]*:Warrior Of Light:4F41:/
+9058.4 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+9065.5 "Cauterize" sync / 1[56]:[^:]*:Wyrm Of Light:4F07:/
+9067.8 "Imbued Coruscance" sync / 1[56]:[^:]*:Warrior Of Light:4F4[9A]:/
+9076.9 "Elddragon Dive" sync / 1[56]:[^:]*:Warrior Of Light:4F0B:/
+9090.2 "The Bitter End" sync / 1[56]:[^:]*:Warrior Of Light:4F0A:/
+9093.4 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+
+# BLM/WHM
+9095.7 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 6002.4
+9098.7 "Specter -> BLM/WHM" #sync / 1[56]:[^:]*:Warrior Of Light:4F73:/
+9104.1 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 6010.7
+
+# DRK/BRD
+9095.7 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 7002.2
+9098.7 "Limit -> DRK/BRD" #sync / 1[56]:[^:]*:Warrior Of Light:4F3[456]:/
+9110.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 7016.6
+
+# NIN
+9095.7 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 8002.3
+9098.7 "Stone/Holy -> NIN" #sync / 1[56]:[^:]*:Warrior Of Light:4EF[56]:/

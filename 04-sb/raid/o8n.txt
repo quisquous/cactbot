@@ -1,0 +1,84 @@
+# Omega - Sigmascape V4.0 - O8N
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0 "Start" sync / 00:0044:[^:]*:Destroy! Destroy! Destroy! I will destroy it all!/
+15 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:292E:/ window 16,3
+23 "Blizzard Blitz" sync / 1[56]:[^:]*:Kefka:291(4|6|8|9):/
+36 "Flagrant Fire" sync / 1[56]:[^:]*:Kefka:291F:/
+38 "Thrumming Thunder" sync / 1[56]:[^:]*:Kefka:291(B|D):/
+54 "Blizzard Blitz" sync / 1[56]:[^:]*:Kefka:291(4|6|8|9):/
+62 "Thrumming Thunder" sync / 1[56]:[^:]*:Kefka:291(B|D):/
+
+82 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
+94 "Wave Cannon" sync / 1[56]:[^:]*:Graven Image:2928:/
+95 "Shockwave" sync / 1[56]:[^:]*:Graven Image:2927:/
+107 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
+115 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:292E:/
+129 "Flagrant Fire" sync / 1[56]:[^:]*:Kefka:2920:/
+131 "Blizzard Blitz" sync / 1[56]:[^:]*:Kefka:291(4|6|8|9):/
+137 "Timely Teleport" sync / 1[56]:[^:]*:Kefka:2922:/
+137 "--untargetable--"
+140 "--targetable--"
+140 "Aero/Ruin" duration 3
+148 "Aero Assault" sync / 1[56]:[^:]*:Kefka:2924:/
+
+160 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
+170 "Thrumming Thunder" sync / 1[56]:[^:]*:Kefka:291(B|D):/
+172 "Wave Cannon" sync / 1[56]:[^:]*:Graven Image:2928:/
+173 "Shockwave" sync / 1[56]:[^:]*:Graven Image:2927:/
+183 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
+190 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:292E:/
+
+204 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
+210 "Half Arena" sync / 1[56]:[^:]*:Graven Image:(292A|2929):/
+218 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
+
+228 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
+234 "Half Arena" sync / 1[56]:[^:]*:Graven Image:(292A|2929):/
+240 "Flagrant Fire" sync / 1[56]:[^:]*:Kefka:291F:/
+242 "Thrumming Thunder" sync / 1[56]:[^:]*:Kefka:291(B|D):/
+248 "Timely Teleport" sync / 1[56]:[^:]*:Kefka:2922:/
+248 "--untargetable--"
+251 "--targetable--"
+251 "Aero/Ruin" duration 3
+
+268 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
+274 "Half Arena" sync / 1[56]:[^:]*:Graven Image:292(9|A):/
+275 "Thrumming Thunder" sync / 1[56]:[^:]*:Kefka:291(B|D):/
+282 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
+289 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:292E:/
+
+302 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
+308 "Statue Gaze" sync / 1[56]:[^:]*:Graven Image:292C:/
+318 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
+325 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
+
+# loop here
+335 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
+341 "Statue Gaze" sync / 1[56]:[^:]*:Graven Image:292(B|C):/
+342 "Thrumming Thunder" sync / 1[56]:[^:]*:Kefka:291(B|D):/
+348 "Timely Teleport" sync / 1[56]:[^:]*:Kefka:2922:/
+348 "--untargetable--"
+351 "--targetable--"
+351 "Aero/Ruin" duration 3
+366 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:292E:/
+
+374 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
+380 "Statue Gaze" sync / 1[56]:[^:]*:Graven Image:292(B|C):/
+386 "Flagrant Fire" sync / 1[56]:[^:]*:Kefka:291F:/
+388 "Blizzard Blitz" sync / 1[56]:[^:]*:Kefka:291(4|6|8|9):/
+401 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
+408 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
+# end loop
+
+418 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/ jump 333
+424 "Statue Gaze"
+425 "Thrumming Thunder"
+431 "Timely Teleport"
+431 "--untargetable--"
+434 "--targetable--"
+434 "Aero/Ruin" duration 3

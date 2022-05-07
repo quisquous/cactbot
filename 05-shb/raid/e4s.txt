@@ -1,0 +1,148 @@
+### Eden 4 (Savage)
+# Eden's Gate: Sepulture (Savage)
+# -p 4371:1000 4116:16 -ii 413C 413D 413E 4105 41B5 410C 411E 410A 4120 411F 410D 410F 4142 4117 4118 4119 411B 43E8 4136 4687 43CA 4134 4123 4129 4125 4127 4128 412B 412C 43C9 4133 46A4 46C6 44D0 4139 43E9 413B 413F 442E 427D
+
+hideall "--Reset--"
+hideall "--sync--"
+hideall "Earthen Armor"
+hideall "Earthen Gauntlets"
+hideall "Earthen Wheels"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Warmup
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.5 "--sync--" sync / 1[56]:[^:]*:Titan:413D:/ window 3,0
+11.0 "--sync--" sync / 14:[^:]*:Titan:4116:/ window 11,5
+16.0 "Stonecrusher 1" sync / 1[56]:[^:]*:Titan:4116:/
+19.1 "Stonecrusher 2" #sync / 1[56]:[^:]*:Titan:4143:/
+22.1 "Stonecrusher 3" #sync / 1[56]:[^:]*:Titan:4143:/
+34.2 "Weight of the Land" sync / 1[56]:[^:]*:Titan:4108:/
+37.2 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
+39.5 "Evil Earth" sync / 1[56]:[^:]*:Titan:410B:/
+48.4 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
+54.6 "Voice of the Land" sync / 1[56]:[^:]*:Titan:4114:/
+66.8 "Geocrush" sync / 1[56]:[^:]*:Titan:4113:/
+
+70.5 "Earthen Wheels/Gauntlets?"
+70.5 "--sync--" sync / 1[56]:[^:]*:Titan:40E8:/ window 100,100 jump 270.5
+70.5 "--sync--" sync / 1[56]:[^:]*:Titan:40E6:/ window 100,100 jump 570.5
+
+### Wheels Path
+270.5 "Earthen Wheels" sync / 1[56]:[^:]*:Titan:40E8:/
+277.7 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
+277.7 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
+286.0 "Magnitude 5.0" sync / 1[56]:[^:]*:Titan:4121:/ window 10,10
+289.1 "Earthen Armor" sync / 1[56]:[^:]*:Titan:40E9:/
+291.0 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
+307.2 "Crumbling Down" sync / 1[56]:[^:]*:Titan:410E:/
+315.3 "Bomb Boulders" sync / 1[56]:[^:]*:Titan:4109:/
+327.4 "Seismic Wave" sync / 1[56]:[^:]*:Titan:4110:/
+340.7 "Voice of the Land" sync / 1[56]:[^:]*:Titan:4114:/
+350.0 "Stonecrusher 1" sync / 1[56]:[^:]*:Titan:4116:/
+353.1 "Stonecrusher 2" #sync / 1[56]:[^:]*:Titan:4143:/
+356.1 "Stonecrusher 3" #sync / 1[56]:[^:]*:Titan:4143:/
+372.4 "Geocrush" sync / 1[56]:[^:]*:Titan:4113:/
+376.2 "Earthen Gauntlets" sync / 1[56]:[^:]*:Titan:40E6:/
+382.6 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
+382.6 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
+396.7 "Voice of the Land" sync / 1[56]:[^:]*:Titan:4114:/
+407.5 "Landslide" sync / 1[56]:[^:]*:Titan:411A:/
+413.5 "Right/Left Landslide" sync / 1[56]:[^:]*:Titan:411[CD]:/
+420.7 "Earthen Armor" sync / 1[56]:[^:]*:Titan:40E7:/
+425.7 "--untargetable--"
+431.1 "Orogenesis" #sync / 1[56]:[^:]*:Titan:4371:/
+
+
+### Gauntlets path
+570.5 "Earthen Gauntlets" sync / 1[56]:[^:]*:Titan:40E6:/
+576.8 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
+576.8 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
+590.8 "Voice of the Land" sync / 1[56]:[^:]*:Titan:4114:/
+601.5 "Landslide" sync / 1[56]:[^:]*:Titan:411A:/
+607.5 "Right/Left Landslide" sync / 1[56]:[^:]*:Titan:411[CD]:/
+614.7 "Earthen Armor" sync / 1[56]:[^:]*:Titan:40E7:/
+632.9 "Crumbling Down" sync / 1[56]:[^:]*:Titan:410E:/
+641.1 "Bomb Boulders" sync / 1[56]:[^:]*:Titan:4109:/
+653.1 "Seismic Wave" sync / 1[56]:[^:]*:Titan:4110:/
+666.4 "Voice of the Land" sync / 1[56]:[^:]*:Titan:4114:/
+675.6 "Stonecrusher 1" sync / 1[56]:[^:]*:Titan:4116:/
+678.7 "Stonecrusher 2" #sync / 1[56]:[^:]*:Titan:4143:/
+681.8 "Stonecrusher 3" #sync / 1[56]:[^:]*:Titan:4143:/
+698.1 "Geocrush" sync / 1[56]:[^:]*:Titan:4113:/
+702.0 "Earthen Wheels" sync / 1[56]:[^:]*:Titan:40E8:/
+709.0 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
+709.0 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
+717.6 "Magnitude 5.0" sync / 1[56]:[^:]*:Titan:4121:/ window 10,10
+720.7 "Earthen Armor" sync / 1[56]:[^:]*:Titan:40E9:/
+722.6 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
+725.8 "--untargetable--"
+730.5 "Orogenesis" #sync / 1[56]:[^:]*:Titan:4371:/
+
+
+### Transition
+1000.0 "Orogenesis" sync / 1[56]:[^:]*:Titan:4371:/ window 1000,0
+1026.3 "--targetable--"
+1033.1 "Earthen Fury" sync / 1[56]:[^:]*:Titan Maximum:4124:/
+1048.3 "Earthen Fist" sync / 1[56]:[^:]*:Titan Maximum:(4130|4131|4132|412F):/
+1053.2 "Weight of the Land" sync / 1[56]:[^:]*:Titan:4108:/
+1061.9 "Dual Earthen Fists" sync / 1[56]:[^:]*:Titan Maximum:4135:/
+1065.9 "Earthen Anguish" sync / 1[56]:[^:]*:Titan:4137:/
+1071.8 "Megalith?" sync / 1[56]:[^:]*:Titan Maximum:4138:/
+1088.0 "Tectonic Uplift" sync / 1[56]:[^:]*:Titan Maximum:4122:/ window 20,20
+1100.1 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
+1100.1 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
+1108.2 "Earthen Fury" sync / 1[56]:[^:]*:Titan Maximum:4124:/
+1122.3 "Rock Throw" sync / 1[56]:[^:]*:Titan Maximum:412D:/
+1135.1 "Plate Fracture" sync / 1[56]:[^:]*:Titan:43EA:/
+1149.2 "Plate Fracture" sync / 1[56]:[^:]*:Titan:43EA:/
+1162.4 "Plate Fracture" sync / 1[56]:[^:]*:Titan:43EA:/
+1171.9 "Earthen Fury" sync / 1[56]:[^:]*:Titan Maximum:4124:/
+1180.7 "Tumult x5" sync / 1[56]:[^:]*:Titan Maximum:412A:/ duration 6
+1197.4 "Dual Earthen Fists" sync / 1[56]:[^:]*:Titan Maximum:4135:/
+1201.4 "Earthen Anguish" sync / 1[56]:[^:]*:Titan:4137:/
+1208.3 "Earthen Fist" sync / 1[56]:[^:]*:Titan Maximum:(4130|4131|4132|412F):/
+1225.7 "Tectonic Uplift" sync / 1[56]:[^:]*:Titan Maximum:4122:/
+1249.0 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
+1226.6 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
+1263.2 "Weight of the World" sync / 1[56]:[^:]*:Titan Maximum:442B:/
+1275.1 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
+1283.4 "Earthen Fury" sync / 1[56]:[^:]*:Titan Maximum:4124:/
+1292.2 "Tumult x5" sync / 1[56]:[^:]*:Titan Maximum:412A:/ duration 6
+1314.4 "Plate Fracture" sync / 1[56]:[^:]*:Titan:43EA:/
+1324.0 "Megalith" sync / 1[56]:[^:]*:Titan Maximum:4138:/
+1337.7 "Plate Fracture" sync / 1[56]:[^:]*:Titan:43EA:/
+1340.7 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
+1340.7 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
+1349.1 "Earthen Fury" sync / 1[56]:[^:]*:Titan Maximum:4124:/
+1359.3 "--untargetable--"
+
+1359.3 "Orogenesis" sync / 1[56]:[^:]*:Titan Maximum:4372:/ window 1500,1500
+1364.3 "--targetable--"
+1373.3 "Earthen Fury" sync / 1[56]:[^:]*:Titan Maximum:413A:/
+1392.6 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
+1392.6 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
+1401.9 "Dual Earthen Fists" sync / 1[56]:[^:]*:Titan Maximum:4135:/
+1406.0 "Earthen Anguish" sync / 1[56]:[^:]*:Titan:4137:/
+1414.6 "Voice of the Land" sync / 1[56]:[^:]*:Titan:4114:/
+1417.4 "Tumult x5" sync / 1[56]:[^:]*:Titan Maximum:412A:/ duration 6
+1426.9 "Voice of the Land" sync / 1[56]:[^:]*:Titan:4114:/
+1438.1 "Earthen Fury" sync / 1[56]:[^:]*:Titan Maximum:413A:/
+1457.3 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
+1457.3 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
+1468.4 "Earthen Fist" sync / 1[56]:[^:]*:Titan Maximum:(4130|4131|4132|412F):/
+1479.5 "Stonecrusher 1" sync / 1[56]:[^:]*:Titan:4116:/
+1482.6 "Stonecrusher 2" #sync / 1[56]:[^:]*:Titan:4143:/
+1485.7 "Stonecrusher 3" #sync / 1[56]:[^:]*:Titan:4143:/
+1491.8 "Megalith" sync / 1[56]:[^:]*:Titan Maximum:4138:/
+1504.1 "Earthen Fury" sync / 1[56]:[^:]*:Titan Maximum:413A:/
+1523.4 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
+1523.4 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
+1534.3 "Earthen Fist" sync / 1[56]:[^:]*:Titan Maximum:(4130|4131|4132|412F):/
+1543.4 "Voice of the Land" sync / 1[56]:[^:]*:Titan:4114:/
+1546.2 "Tumult x5" sync / 1[56]:[^:]*:Titan Maximum:412A:/ duration 6
+1555.6 "Voice of the Land" sync / 1[56]:[^:]*:Titan:4114:/
+1558.4 "Tumult x5" sync / 1[56]:[^:]*:Titan Maximum:412A:/ duration 6
+1567.9 "Voice of the Land" sync / 1[56]:[^:]*:Titan:4114:/
+1581.1 "Earthen Fury Enrage" sync / 1[56]:[^:]*:Titan Maximum:4140:/

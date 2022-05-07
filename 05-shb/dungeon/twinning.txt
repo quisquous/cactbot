@@ -1,0 +1,127 @@
+### Twinning
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+
+### Alpha Zaghnal
+# -p 3D65:108.5 -ii 3D66 3D67 3D68 3D69 3D6A 41CA 3D6C
+100.0 "--sync--" sync / 00:0839::Repurposing will be sealed off/ window 100,0
+102.5 "--sync--" sync / 1[56]:[^:]*:Cladoselache:366:/ window 103,0
+108.5 "Augurium" sync / 1[56]:[^:]*:Alpha Zaghnal:3D65:/
+117.6 "Beastly Roar" sync / 1[56]:[^:]*:Alpha Zaghnal:3D64:/
+122.9 "Beast Rampant" sync / 1[56]:[^:]*:Alpha Zaghnal:3D60:/
+
+136.4 "Forlorn Impact x4" sync / 1[56]:[^:]*:Alpha Zaghnal:3D61:/ duration 4
+141.3 "Beast Passant" sync / 1[56]:[^:]*:Alpha Zaghnal:3D62:/
+149.3 "Beastly Roar" sync / 1[56]:[^:]*:Alpha Zaghnal:3D64:/
+158.3 "Pounce Errant x4" sync / 1[56]:[^:]*:Alpha Zaghnal:3D5F:/ duration 5.2
+# I've seen this Augurium skipped??
+170.5 "Augurium" sync / 1[56]:[^:]*:Alpha Zaghnal:3D65:/
+178.8 "Charge Eradicated" sync / 1[56]:[^:]*:Alpha Zaghnal:3D63:/ window 50,5
+185.9 "Charge Eradicated" sync / 1[56]:[^:]*:Alpha Zaghnal:3D63:/
+195.2 "Beast Rampant" sync / 1[56]:[^:]*:Alpha Zaghnal:3D60:/
+
+208.6 "Forlorn Impact x4" sync / 1[56]:[^:]*:Alpha Zaghnal:3D61:/ duration 4 jump 136.4
+213.5 "Beast Passant"
+221.5 "Beastly Roar"
+230.5 "Pounce Errant x4"
+242.7 "Augurium"
+251.0 "Charge Eradicated"
+258.1 "Charge Eradicated"
+267.4 "Beast Rampant"
+
+
+### Mithridates
+# -p 3DED:512 -ii 3DEC 3DEF
+500.0 "--sync--" sync / 00:0839::Aetherial Observation will be sealed off/ window 500,0
+501.0 "--sync--" sync / 1[56]:[^:]*:Mithridates:366:/ window 501,0
+
+512.0 "Thunder Beam" sync / 1[56]:[^:]*:Mithridates:3DED:/
+522.2 "Electric Discharge" sync / 1[56]:[^:]*:Mithridates:3DF0:/
+531.1 "Shock" sync / 1[56]:[^:]*:Levinball:3DF1:/
+543.8 "Laserblade" sync / 1[56]:[^:]*:Mithridates:3DEB:/
+555.9 "Thunder Beam" sync / 1[56]:[^:]*:Mithridates:3DED:/
+569.5 "Allagan Thunder" sync / 1[56]:[^:]*:Mithridates:3DEE:/
+
+582.1 "Electric Discharge" sync / 1[56]:[^:]*:Mithridates:3DF0:/
+590.2 "Laserblade" sync / 1[56]:[^:]*:Mithridates:3DEB:/
+591.0 "Shock" sync / 1[56]:[^:]*:Levinball:3DF1:/
+602.4 "Thunder Beam" sync / 1[56]:[^:]*:Mithridates:3DED:/
+
+617.5 "Electric Discharge" sync / 1[56]:[^:]*:Mithridates:3DF0:/ window 20,20 jump 582.1
+625.6 "Laserblade"
+626.4 "Shock"
+637.8 "Thunder Beam"
+
+652.9 "Electric Discharge"
+661.1 "Laserblade"
+661.8 "Shock"
+673.2 "Thunder Beam"
+
+
+### The Tycoon
+# -p 3DF8:1013.8 -ii 3DF6 3DFD
+
+hideall "Temporal Paradox"
+hideall "Temporal Flow"
+
+1000.0 "--sync--" sync / 00:0839::The Cornice will be sealed off/ window 1000,0
+1001.0 "--sync--" sync / 1[56]:[^:]*:The Tycoon:3DFD:/ window 1001,0
+
+
+1013.8 "Magitek Crossray" sync / 1[56]:[^:]*:The Tycoon:3DF8:/
+1016.2 "Temporal Paradox" sync / 1[56]:[^:]*:The Tycoon:3DF7:/
+1023.1 "Temporal Flow" sync / 1[56]:[^:]*:The Tycoon:3DF5:/
+1024.4 "Magitek Ray" sync / 1[56]:[^:]*:The Tycoon:3DF3:/
+
+1034.2 "Defensive Array" sync / 1[56]:[^:]*:The Tycoon:3DF2:/
+1042.3 "Temporal Flow" sync / 1[56]:[^:]*:The Tycoon:3DF5:/
+1043.4 "Magitek Ray" sync / 1[56]:[^:]*:The Tycoon:3DF3:/
+1049.6 "Artificial Gravity" sync / 1[56]:[^:]*:The Tycoon:3DF9:/
+1056.3 "High Gravity" sync / 1[56]:[^:]*:The Tycoon:3DFA:/
+1065.9 "Rail Cannon" sync / 1[56]:[^:]*:The Tycoon:3DFB:/
+
+1079.1 "Defensive Array" sync / 1[56]:[^:]*:The Tycoon:3DF2:/
+1086.3 "Magicrystal" sync / 1[56]:[^:]*:The Tycoon:3E0C:/
+1093.0 "Shattered Crystal" sync / 1[56]:[^:]*:The Tycoon:439A:/
+1093.6 "Temporal Flow" sync / 1[56]:[^:]*:The Tycoon:3DF5:/
+1094.9 "Magitek Ray" sync / 1[56]:[^:]*:The Tycoon:3DF3:/
+
+1105.9 "High-Tension Discharger" sync / 1[56]:[^:]*:The Tycoon:3DFC:/
+1119.2 "Magitek Crossray" sync / 1[56]:[^:]*:The Tycoon:3DF8:/
+1129.3 "Artificial Gravity" sync / 1[56]:[^:]*:The Tycoon:3DF9:/
+1135.5 "Temporal Flow" sync / 1[56]:[^:]*:The Tycoon:3DF5:/
+1136.0 "High Gravity" sync / 1[56]:[^:]*:The Tycoon:3DFA:/
+1136.6 "Magitek Ray" sync / 1[56]:[^:]*:The Tycoon:3DF3:/
+1147.7 "Rail Cannon" sync / 1[56]:[^:]*:The Tycoon:3DFB:/
+
+1161.2 "Defensive Array" sync / 1[56]:[^:]*:The Tycoon:3DF2:/
+1167.3 "Gravity/Crossray??"
+# ???
+
+# TODO: It looks like from here, it can go:
+# A B
+# B B
+# B A
+# and then possibly another discharger??
+
+# Path A?
+#1161.2 "Defensive Array" sync / 1[56]:[^:]*:The Tycoon:3DF2:/
+#1167.3 "Artificial Gravity" sync / 1[56]:[^:]*:The Tycoon:3DF9:/
+#1170.5 "Magicrystal" sync / 1[56]:[^:]*:The Tycoon:3E0C:/
+#1174.0 "High Gravity" sync / 1[56]:[^:]*:The Tycoon:3DFA:/
+#1176.7 "Temporal Flow" sync / 1[56]:[^:]*:The Tycoon:3DF5:/
+#1177.2 "Shattered Crystal" sync / 1[56]:[^:]*:The Tycoon:439A:/
+#1178.0 "Magitek Ray" sync / 1[56]:[^:]*:The Tycoon:3DF3:/
+
+# Path B?
+#1161.0 "Defensive Array" sync / 1[56]:[^:]*:The Tycoon:3DF2:/
+#1172.2 "Magitek Crossray" sync / 1[56]:[^:]*:The Tycoon:3DF8:/
+#1179.5 "Magicrystal" sync / 1[56]:[^:]*:The Tycoon:3E0C:/
+#1186.2 "Shattered Crystal" sync / 1[56]:[^:]*:The Tycoon:439A:/
+#1186.7 "Temporal Flow" sync / 1[56]:[^:]*:The Tycoon:3DF5:/
+#1188.0 "Magitek Ray" sync / 1[56]:[^:]*:The Tycoon:3DF3:/
+#1199.0 "Rail Cannon" sync / 1[56]:[^:]*:The Tycoon:3DFB:/

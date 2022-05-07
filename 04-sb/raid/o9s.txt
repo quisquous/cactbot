@@ -1,0 +1,166 @@
+# Omega - Alphascape V1.0 Savage - O9S
+# -ii 319E 3174 3186 3176 3177 3178 3179 3182 3183 3184 3185 3187 3188 3189 319F 317A 317B 31A0 31A1 31A2 3419 3215 33C0 33C1 33C2
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.5 "--sync--" sync / 1[56]:[^:]*:Chaos:316F:/ window 3,0 # First autoattack
+
+## Branch between Fire/Water paths
+10.7 "--sync--" sync / 14:[^:]*:Chaos:317(2|3):/ window 12,12 jump 2010.1 # Long/lat means water path
+10.7 "--sync--" sync / 14:[^:]*:Chaos:3171:/ window 12,12 jump 1010.7 # Edict means fire path
+
+# Fake water path
+15.7 "Long/Lat Implosion?"
+29.7 "Tsunami?"
+38.7 "Umbra Smash?"
+40.2 "Stray Spray?"
+
+# Fake fire path
+16.7 "Damning Edict?"
+29.9 "Blaze?"
+
+#############
+# Fire path #
+#############
+
+# Fire phase
+1016.7 "Damning Edict" sync / 1[56]:[^:]*:Chaos:3171:/
+1029.9 "Blaze" sync / 1[56]:[^:]*:Chaos:3206:/
+1041.7 "(T/H) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
+1047.6 "Long/Lat Implosion" sync / 1[56]:[^:]*:Chaos:317(2|3):/
+1055.8 "(DPS) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
+1066.8 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
+1079.1 "Blaze" sync / 1[56]:[^:]*:Chaos:3206:/ # drift 0.028
+1090.9 "(T/H) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
+1098.8 "Knock" sync / 1[56]:[^:]*:Chaos:317E:/
+1104.9 "(DPS) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
+1109.8 "Big Bang" sync / 1[56]:[^:]*:Chaos:3180:/
+1118.6 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317C:/
+
+# Wind phase
+1141.0 "Cyclone" sync / 1[56]:[^:]*:Chaos:3208:/
+1153.2 "Umbra Smash" sync / 1[56]:[^:]*:Chaos:3175:/
+1160.7 "Cyclone" sync / 1[56]:[^:]*:Chaos:318F:/
+1163.4 "Damning Edict" sync / 1[56]:[^:]*:Chaos:3171:/
+1181.6 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
+1194.0 "Cyclone" sync / 1[56]:[^:]*:Chaos:3208:/
+1207.2 "Knock" sync / 1[56]:[^:]*:Chaos:317F:/
+1214.2 "Big Bang" sync / 1[56]:[^:]*:Chaos:3181:/
+1225.6 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317D:/
+
+# Orb phase
+1251.0 "Bowels of Agony" sync / 1[56]:[^:]*:Chaos:318A:/ # drift 0.04
+1265.1 "(DPS) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
+1268.1 "(T/H) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
+1293.1 "Soul of Chaos" sync / 1[56]:[^:]*:Chaos:318B:/ window 500,500
+
+# Water phase
+1320.1 "Long/Lat Implosion" sync / 1[56]:[^:]*:Chaos:317(2|3):/
+1334.5 "Tsunami" sync / 1[56]:[^:]*:Chaos:3207:/
+1343.6 "Umbra Smash" sync / 1[56]:[^:]*:Chaos:3175:/
+1345.1 "(T/H) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
+1352.1 "(DPS) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
+1353.8 "Damning Edict" sync / 1[56]:[^:]*:Chaos:3171:/
+1371.9 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
+1384.3 "Tsunami" sync / 1[56]:[^:]*:Chaos:3207:/
+1395.0 "(T/H) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
+1395.4 "Knock" sync / 1[56]:[^:]*:Chaos:317F:/
+1402.0 "(DPS) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
+1402.3 "Big Bang" sync / 1[56]:[^:]*:Chaos:3181:/
+1413.7 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317D:/
+
+# Earth phase
+1436.0 "Earthquake" sync / 1[56]:[^:]*:Chaos:3209:/
+1446.0 "Earthquake" sync / 1[56]:[^:]*:Chaos:3190:/
+1449.6 "Long/Lat Implosion" sync / 1[56]:[^:]*:Chaos:317(2|3):/
+1468.8 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
+1491.1 "Earthquake" sync / 1[56]:[^:]*:Chaos:3190:/
+1494.2 "Knock" sync / 1[56]:[^:]*:Chaos:317E:/
+1499.1 "Big Bang" sync / 1[56]:[^:]*:Chaos:3180:/
+1507.9 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317C:/
+
+# Enrage phase
+1538.4 "Blaze" sync / 1[56]:[^:]*:Chaos:3206:/
+1546.1 "(ALL) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
+1551.4 "Tsunami" sync / 1[56]:[^:]*:Chaos:3207:/
+1558.0 "(ALL) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
+1564.6 "Cyclone" sync / 1[56]:[^:]*:Chaos:3208:/
+1571.3 "Stray Gusts"
+1577.6 "Earthquake" sync / 1[56]:[^:]*:Chaos:3209:/
+1585.9 "Stray Earth"
+
+##############
+# Water Path #
+##############
+
+# Water phase
+2015.7 "Long/Lat Implosion" sync / 1[56]:[^:]*:Chaos:317(2|3):/
+2029.7 "Tsunami" sync / 1[56]:[^:]*:Chaos:3207:/
+2038.7 "Umbra Smash" sync / 1[56]:[^:]*:Chaos:3175:/
+2040.2 "(T/H) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
+2048.8 "Damning Edict" sync / 1[56]:[^:]*:Chaos:3171:/
+2066.8 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
+2078.8 "Tsunami" sync / 1[56]:[^:]*:Chaos:3207:/
+2096.3 "(T/H) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
+2089.6 "Knock" sync / 1[56]:[^:]*:Chaos:317F:/
+2096.3 "(DPS) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
+2096.5 "Big Bang" sync / 1[56]:[^:]*:Chaos:3181:/
+2107.8 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317D:/
+
+# Earth phase
+2129.8 "Earthquake" sync / 1[56]:[^:]*:Chaos:3209:/
+2139.8 "Earthquake" sync / 1[56]:[^:]*:Chaos:3190:/
+2143.3 "Long/Lat Implosion" sync / 1[56]:[^:]*:Chaos:317(2|3):/
+2162.3 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
+2174.3 "Earthquake" sync / 1[56]:[^:]*:Chaos:3209:/
+2184.3 "Earthquake" sync / 1[56]:[^:]*:Chaos:3190:/
+2187.2 "Knock" sync / 1[56]:[^:]*:Chaos:317E:/
+2192.0 "Big Bang" sync / 1[56]:[^:]*:Chaos:3180:/
+2200.6 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317C:/
+
+# Orb phase
+2225.6 "Bowels of Agony" sync / 1[56]:[^:]*:Chaos:318A:/ # drift 0.038
+2239.6 "(DPS) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
+2242.6 "(T/H) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
+2267.6 "Soul of Chaos" sync / 1[56]:[^:]*:Chaos:318B:/ window 500,500
+
+# Fire phase
+2295.3 "Damning Edict" sync / 1[56]:[^:]*:Chaos:3171:/
+2308.3 "Blaze" sync / 1[56]:[^:]*:Chaos:3206:/
+2320.0 "(T/H) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
+2325.8 "Long/Lat Implosion" sync / 1[56]:[^:]*:Chaos:317(2|3):/
+2334.0 "(DPS) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
+2344.8 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
+2356.8 "Blaze" sync / 1[56]:[^:]*:Chaos:3206:/
+2368.5 "(T/H) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
+2376.2 "Knock" sync / 1[56]:[^:]*:Chaos:317E:/
+2382.5 "(DPS) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
+2387.0 "Big Bang" sync / 1[56]:[^:]*:Chaos:3180:/
+2395.6 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317C:/
+
+# Wind phase
+2417.6 "Cyclone" sync / 1[56]:[^:]*:Chaos:3208:/
+2429.6 "Umbra Smash" sync / 1[56]:[^:]*:Chaos:3175:/
+2437.1 "Cyclone" sync / 1[56]:[^:]*:Chaos:318F:/
+2439.7 "Damning Edict" sync / 1[56]:[^:]*:Chaos:3171:/
+2457.7 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
+2469.7 "Cyclone" sync / 1[56]:[^:]*:Chaos:3208:/
+2482.6 "Knock" sync / 1[56]:[^:]*:Chaos:317F:/
+2482.7 "Cyclone" sync / 1[56]:[^:]*:Chaos:318F:/
+2489.4 "Big Bang" sync / 1[56]:[^:]*:Chaos:3181:/
+2500.7 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317D:/
+
+# Enrage phase
+2530.8 "Blaze" sync / 1[56]:[^:]*:Chaos:3206:/
+2538.5 "(ALL) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
+2543.8 "Tsunami" sync / 1[56]:[^:]*:Chaos:3207:/
+2550.4 "(ALL) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
+2556.9 "Cyclone" sync / 1[56]:[^:]*:Chaos:3208:/
+2563.5 "Stray Gusts"
+2569.7 "Earthquake" sync / 1[56]:[^:]*:Chaos:3209:/
+2578.0 "Stray Earth"

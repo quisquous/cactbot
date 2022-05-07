@@ -1,0 +1,118 @@
+### Dohn Mheg
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+
+### Aenc Thon, Lord of the Lingering Gaze
+# -ii 1EDB 22BD -p 2299:112.2
+100.0 "--sync--" sync / 00:0839::Teag Gye will be sealed off/ window 100,0
+
+112.2 "Candy Cane" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2299:/ window 113,5
+120.4 "Hydrofall" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:22A7:/
+128.7 "Laughing Leap" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2294:/
+133.8 "Landsblood" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:1E8E:/
+139.6 "Geyser x6" duration 12.5
+161.1 "Candy Cane" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2299:/
+
+170.4 "Hydrofall" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:22A7:/
+179.7 "Laughing Leap Stack" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2288:/
+189.9 "Candy Cane" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2299:/
+201.1 "Laughing Leap" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2294:/
+206.2 "Landsblood" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:1E8E:/
+212.0 "Geyser x6" duration 12.5
+233.4 "Candy Cane" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2299:/
+
+242.6 "Hydrofall" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:22A7:/ window 50,50 jump 170.4
+251.9 "Laughing Leap Stack"
+262.1 "Candy Cane"
+273.3 "Laughing Leap"
+278.4 "Landsblood"
+284.2 "Geyser x6"
+305.6 "Candy Cane"
+
+
+### Griaule
+# -p 2873:507.5
+500.0 "--sync--" sync / 00:0839::The Atelier will be sealed off/ window 500,0
+
+507.5 "Rake" sync / 1[56]:[^:]*:Griaule:2873:/ window 508,5
+518.0 "Swinge" sync / 1[56]:[^:]*:Griaule:22CA:/
+525.4 "Fodder" sync / 1[56]:[^:]*:Griaule:22C1:/
+533.5 "Tiiimbeeer" sync / 1[56]:[^:]*:Griaule:22D3:/
+538.6 "Feeding Time" sync / 1[56]:[^:]*:Painted Sapling:22C3:/
+541.7 "Tiiimbeeer" sync / 1[56]:[^:]*:Griaule:22D3:/
+554.0 "Swinge" sync / 1[56]:[^:]*:Griaule:22CA:/
+568.3 "Tiiimbeeer" sync / 1[56]:[^:]*:Griaule:22D3:/
+573.5 "Coiling Ivy" sync / 1[56]:[^:]*:Griaule:22C5:/
+580.7 "Rake" sync / 1[56]:[^:]*:Griaule:2873:/
+
+591.1 "Swinge" sync / 1[56]:[^:]*:Griaule:22CA:/
+605.4 "Tiiimbeeer" sync / 1[56]:[^:]*:Griaule:22D3:/
+614.5 "Rake" sync / 1[56]:[^:]*:Griaule:2873:/
+623.9 "Coiling Ivy" sync / 1[56]:[^:]*:Griaule:22C5:/
+631.1 "Fodder" sync / 1[56]:[^:]*:Griaule:22C1:/
+639.4 "Tiiimbeeer" sync / 1[56]:[^:]*:Griaule:22D3:/
+644.6 "Feeding Time" sync / 1[56]:[^:]*:Painted Sapling:22C3:/
+647.6 "Tiiimbeeer" sync / 1[56]:[^:]*:Griaule:22D3:/
+658.1 "Swinge" sync / 1[56]:[^:]*:Griaule:22CA:/
+665.4 "Coiling Ivy" sync / 1[56]:[^:]*:Griaule:22C5:/
+672.6 "Rake" sync / 1[56]:[^:]*:Griaule:2873:/
+
+682.8 "Swinge" sync / 1[56]:[^:]*:Griaule:22CA:/ window 10,10 jump 591.1
+697.1 "Tiiimbeeer"
+706.2 "Rake"
+715.6 "Coiling Ivy"
+722.8 "Fodder"
+731.1 "Tiiimbeeer"
+736.3 "Feeding Time"
+739.3 "Tiiimbeeer"
+749.8 "Swinge"
+757.1 "Coiling Ivy"
+764.3 "Rake"
+
+
+### Aenc Thon, Lord of the Lengthsome Gate
+# -p 35A4:1011 34D2:1300 -ii 34EC 3681 3396
+1000.0 "--sync--" sync / 00:0839::The throne room will be sealed off/ window 1000,0
+
+1011.0 "Crippling Blow" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:35A4:/ window 1011,5
+1018.2 "Virtuosic Capriccio" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:358C:/
+1027.5 "Imp Choir" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34F0:/
+1033.9 "Toad Choir" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34EF:/
+1044.1 "Crippling Blow" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:35A4:/
+
+1052.7 "Funambulist's Fantasia" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34BA:/
+1052.7 "--stun--" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34CF:/
+1112.7 "Enrage"
+
+1300.0 "--sync--" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34D2:/ window 300,0
+
+1302.1 "Changeling's Fantasia" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34D1:/
+1312.4 "Malaise" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34ED:/
+1318.5 "Bile Bombardment" sync / 1[56]:[^:]*:Shade of Fear:34EE:/
+1326.7 "Corrosive Bile" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34EB:/
+1338.0 "Malaise" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34ED:/
+1344.1 "Bile Bombardment" sync / 1[56]:[^:]*:Shade of Fear:34EE:/
+1345.1 "Flailing Tentacles" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:3680:/
+1354.4 "Corrosive Bile" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34EB:/
+
+1375.7 "Crippling Blow" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:35A4:/
+1389.0 "Virtuosic Capriccio" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:358C:/ window 3,3
+1396.1 "Virtuosic Capriccio" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:358C:/ window 3,3
+1403.2 "Virtuosic Capriccio" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:358C:/ window 3,3
+1414.5 "Imp Choir" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34F0:/
+1420.9 "Toad Choir" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34EF:/
+
+1438.3 "Crippling Blow" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:35A4:/ window 20,20 jump 1375.7
+1451.6 "Virtuosic Capriccio"
+1458.7 "Virtuosic Capriccio"
+1465.8 "Virtuosic Capriccio"
+1477.1 "Imp Choir"
+1483.5 "Toad Choir"
+
+
+1800.0 "--sync--" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34D2:/ window 590,0
+1802.0 "Changeling's Fantasia" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34D1:/

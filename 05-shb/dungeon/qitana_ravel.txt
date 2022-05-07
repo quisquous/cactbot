@@ -1,0 +1,117 @@
+### The Qitana Ravel (lvl 75 dungeon)
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+
+### Lozatl
+# -p 3C89:113.7
+100.0 "--sync--" sync / 00:0839::The Divine Threshold will be sealed off/ window 100,0
+
+113.7 "Stonefist" sync / 1[56]:[^:]*:Lozatl:3C89:/ window 114,5
+121.0 "Sun Toss" sync / 1[56]:[^:]*:Lozatl:3C8A:/
+127.2 "Lozatl's Scorn" sync / 1[56]:[^:]*:Lozatl:3C8B:/
+137.5 "Sun Toss" sync / 1[56]:[^:]*:Lozatl:3C8A:/
+137.5 "Ronkan Light" sync / 1[56]:[^:]*:Lozatl:(3D6D|3C8C):/
+145.1 "Heat Up" sync / 1[56]:[^:]*:Lozatl:3C8[DE]:/
+151.5 "Lozatl's Fury" sync / 1[56]:[^:]*:Lozatl:(3C8F|3C90):/
+
+161.2 "Stonefist" sync / 1[56]:[^:]*:Lozatl:3C89:/
+168.1 "Heat Up" sync / 1[56]:[^:]*:Lozatl:3C8[DE]:/
+173.2 "Lozatl's Scorn" sync / 1[56]:[^:]*:Lozatl:3C8B:/
+182.7 "Lozatl's Fury" sync / 1[56]:[^:]*:Lozatl:(3C8F|3C90):/
+183.4 "Ronkan Light" sync / 1[56]:[^:]*:Lozatl:(3D6D|3C8C):/
+191.4 "Sun Toss" #sync / 1[56]:[^:]*:Lozatl:3C8A:/
+196.7 "Sun Toss" #sync / 1[56]:[^:]*:Lozatl:3C8A:/
+
+207.9 "Stonefist" sync / 1[56]:[^:]*:Lozatl:3C89:/
+222.9 "Heat Up" sync / 1[56]:[^:]*:Lozatl:3C8[DE]:/
+228.1 "Lozatl's Scorn" sync / 1[56]:[^:]*:Lozatl:3C8B:/
+237.4 "Lozatl's Fury" sync / 1[56]:[^:]*:Lozatl:(3C8F|3C90):/
+238.5 "Ronkan Light" sync / 1[56]:[^:]*:Lozatl:(3D6D|3C8C):/
+246.2 "Sun Toss" #sync / 1[56]:[^:]*:Lozatl:3C8A:/
+251.5 "Sun Toss" #sync / 1[56]:[^:]*:Lozatl:3C8A:/
+
+262.9 "Stonefist" sync / 1[56]:[^:]*:Lozatl:3C89:/ window 50,50 jump 207.9
+277.9 "Heat Up"
+283.1 "Lozatl's Scorn"
+292.4 "Lozatl's Fury"
+293.5 "Ronkan Light"
+301.2 "Sun Toss"
+306.5 "Sun Toss"
+
+
+### Batsquatch
+# -ii 3C94 3C96 3C97 3C95 -p 3C91:514.5
+500.0 "--sync--" sync / 00:0839::Shadowed Hollow will be sealed off/ window 500,0
+
+514.5 "Ripper Fang" sync / 1[56]:[^:]*:Batsquatch:3C91:/ window 515,5
+525.7 "Soundwave" sync / 1[56]:[^:]*:Batsquatch:3C92:/
+542.2 "Subsonics" sync / 1[56]:[^:]*:Batsquatch:3C93:/ duration 6.1
+559.8 "Soundwave" sync / 1[56]:[^:]*:Batsquatch:3C92:/
+563.6 "Towerfall" sync / 1[56]:[^:]*:Batsquatch:3C98:/
+
+571.4 "Ripper Fang" sync / 1[56]:[^:]*:Batsquatch:3C91:/
+588.0 "Subsonics" sync / 1[56]:[^:]*:Batsquatch:3C93:/ duration 6.1
+605.6 "Soundwave" sync / 1[56]:[^:]*:Batsquatch:3C92:/
+609.4 "Towerfall" sync / 1[56]:[^:]*:Batsquatch:3C98:/
+
+616.5 "Ripper Fang" sync / 1[56]:[^:]*:Batsquatch:3C91:/
+636.9 "Subsonics" sync / 1[56]:[^:]*:Batsquatch:3C93:/ duration 6.1
+654.5 "Soundwave" sync / 1[56]:[^:]*:Batsquatch:3C92:/
+658.3 "Towerfall" sync / 1[56]:[^:]*:Batsquatch:3C98:/
+
+666.1 "Ripper Fang" sync / 1[56]:[^:]*:Batsquatch:3C91:/ window 20,20 jump 571.4
+682.7 "Subsonics"
+700.3 "Soundwave"
+704.1 "Towerfall"
+
+711.2 "Ripper Fang"
+731.6 "Subsonics"
+749.2 "Soundwave"
+753.0 "Towerfall"
+
+
+### Eros
+#
+1000.0 "--sync--" sync / 00:0839::The Song of Ox'Gatorl will be sealed off/ window 1000,0
+
+1015.0 "Rend" sync / 1[56]:[^:]*:Eros:3C99:/ window 1015,5
+1026.2 "Hound Out Of Heaven" sync / 1[56]:[^:]*:Eros:3C9A:/
+1036.1 "Glossolalia" sync / 1[56]:[^:]*:Eros:3C9B:/
+1048.3 "Viper Poison" sync / 1[56]:[^:]*:Eros:3C9C:/
+1050.9 "Jump" sync / 1[56]:[^:]*:Eros:3C9F:/
+1057.6 "Inhale" sync / 1[56]:[^:]*:Eros:4310:/
+1063.2 "Heaving Breath" sync / 1[56]:[^:]*:Eros:3CA0:/
+1075.9 "Rend" sync / 1[56]:[^:]*:Eros:3C99:/
+1083.3 "Jump" sync / 1[56]:[^:]*:Eros:3C9F:/
+1092.0 "Confession Of Faith" sync / 1[56]:[^:]*:Eros:3CA[14]:/
+1107.8 "Hound Out Of Heaven" sync / 1[56]:[^:]*:Eros:3C9A:/
+
+1122.6 "Viper Poison" sync / 1[56]:[^:]*:Eros:3C9C:/
+1125.5 "Jump" sync / 1[56]:[^:]*:Eros:3C9F:/
+1132.1 "Inhale" sync / 1[56]:[^:]*:Eros:4310:/
+1137.7 "Heaving Breath" sync / 1[56]:[^:]*:Eros:3CA0:/
+1150.5 "Rend" sync / 1[56]:[^:]*:Eros:3C99:/
+1162.8 "Hound Out Of Heaven" sync / 1[56]:[^:]*:Eros:3C9A:/
+1170.7 "Jump" sync / 1[56]:[^:]*:Eros:3C9F:/
+1179.3 "Confession Of Faith" sync / 1[56]:[^:]*:Eros:3CA[14]:/
+1193.1 "Glossolalia" sync / 1[56]:[^:]*:Eros:3C9B:/
+1202.3 "Glossolalia" sync / 1[56]:[^:]*:Eros:3C9B:/
+1213.5 "Hound Out Of Heaven" sync / 1[56]:[^:]*:Eros:3C9A:/
+1224.4 "Rend" sync / 1[56]:[^:]*:Eros:3C99:/
+
+1237.6 "Viper Poison" sync / 1[56]:[^:]*:Eros:3C9C:/ window 100,100 jump 1122.6
+1240.5 "Jump"
+1247.1 "Inhale"
+1252.7 "Heaving Breath"
+1265.5 "Rend"
+1277.8 "Hound Out Of Heaven"
+1285.7 "Jump"
+1294.3 "Confession Of Faith"
+1308.1 "Glossolalia"
+1317.3 "Glossolalia"
+1328.5 "Hound Out Of Heaven"
+1339.4 "Rend"

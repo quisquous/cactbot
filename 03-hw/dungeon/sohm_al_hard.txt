@@ -1,0 +1,108 @@
+
+# SOHM AL HARD
+
+hideall "--sync--"
+hideall "--Reset--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~~~~~~~~~#
+# THE LEIGHTONWARD #
+#~~~~~~~~~~~~~~~~~~#
+
+# -ic "Spore Sac"
+
+0.0 "--sync--" sync / 00:0839::The Wound will be sealed off/ window 0,1
+2.4 "--sync--" sync / 1[56]:[^:]*:The Leightonward:5B5:/ window 2.4,1
+6.1 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/ window 6.1,5
+13.2 "Inflammable Fumes (Readies)" sync / 1[56]:[^:]*:The Leightonward:1C30:/
+17.2 "Inflammable Fumes" sync / 1[56]:[^:]*:The Leightonward:1C31:/ window 15,15
+22.4 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
+27.5 "Spore Sac" sync / 1[56]:[^:]*:The Leightonward:1C2F:/
+33.6 "Inflammable Fumes (Readies)" sync / 1[56]:[^:]*:The Leightonward:1C30:/
+37.6 "Inflammable Fumes" sync / 1[56]:[^:]*:The Leightonward:1C31:/ window 15,15
+40.7 "Glorious Blaze" sync / 1[56]:[^:]*:Small Spore Sac:1C33:/
+44.9 "Excretion" sync / 1[56]:[^:]*:The Leightonward:1C2E:/
+49.0 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
+55.1 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
+60.2 "Spore Sac" sync / 1[56]:[^:]*:The Leightonward:1C2F:/
+66.3 "Inflammable Fumes (Readies)" sync / 1[56]:[^:]*:The Leightonward:1C30:/
+70.3 "Inflammable Fumes" sync / 1[56]:[^:]*:The Leightonward:1C31:/ window 15,15
+73.3 "Glorious Blaze" sync / 1[56]:[^:]*:Small Spore Sac:1C33:/
+84.6 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
+
+92.9 "Excretion" sync / 1[56]:[^:]*:The Leightonward:1C2E:/
+98.0 "Spore Sac" sync / 1[56]:[^:]*:The Leightonward:1C2F:/
+104.2 "Inflammable Fumes (Readies)" sync / 1[56]:[^:]*:The Leightonward:1C30:/
+108.2 "Inflammable Fumes" sync / 1[56]:[^:]*:The Leightonward:1C31:/ window 15,15
+111.2 "Glorious Blaze" sync / 1[56]:[^:]*:Small Spore Sac:1C33:/
+124.4 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
+130.5 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
+137.6 "Inflammable Fumes (Readies)" sync / 1[56]:[^:]*:The Leightonward:1C30:/
+141.6 "Inflammable Fumes" sync / 1[56]:[^:]*:The Leightonward:1C31:/ window 15,15
+143.8 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
+150.0 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/ jump 84.6
+
+# The timing from Wild Horn to Excretion is the same no matter
+# whether the lead block is the opener or the rotation block.
+# Because of this, we have just the one iteration of the rotation block.
+
+158.2 "Excretion"
+163.3 "Spore Sac"
+169.5 "Inflammable Fumes (Readies)"
+173.5 "Inflammable Fumes"
+176.5 "Glorious Blaze"
+189.7 "Wild Horn"
+
+
+
+# Unfortunately, Gowrow's abilities do not fit neatly into a timeline.
+
+#~~~~~~~~~~~~~~~#
+# LAVA SCORPION #
+#~~~~~~~~~~~~~~~#
+
+# -ii 1C3F
+
+2000.0 "--sync--" sync / 00:0839::The Lava Tube will be sealed off/ window 2000,1
+2001.2 "--sync--" sync / 1[56]:[^:]*:Lava Scorpion:366:/ window 1.2,2
+2012.0 "Molten Silk (Front)" sync / 1[56]:[^:]*:Lava Scorpion:1C43:/ window 12,5
+2022.2 "Flying Press" sync / 1[56]:[^:]*:Lava Scorpion:1C3E:/
+2038.4 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
+2045.6 "Hiss (Adds x2)" sync / 1[56]:[^:]*:Lava Scorpion:1C45:/ window 15,15
+2068.8 "Realm Shaker" sync / 1[56]:[^:]*:Lava Scorpion:1C41:/
+2079.4 "Flying Press" sync / 1[56]:[^:]*:Lava Scorpion:1C3E:/
+2091.6 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
+2101.8 "Molten Silk (Front)" sync / 1[56]:[^:]*:Lava Scorpion:1C43:/
+2106.9 "Molten Silk (Back)" sync / 1[56]:[^:]*:Lava Scorpion:1C44:/
+2118.6 "Hiss (Adds x4)" sync / 1[56]:[^:]*:Lava Scorpion:1C45:/ window 15,15
+2123.7 "Molten Silk (Ring)" sync / 1[56]:[^:]*:Lava Scorpion:1C42:/
+2129.8 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
+2150.0 "Flying Press" sync / 1[56]:[^:]*:Lava Scorpion:1C3E:/
+2156.1 "Flying Press" sync / 1[56]:[^:]*:Lava Scorpion:1C3E:/
+2167.3 "Molten Silk (Front)" sync / 1[56]:[^:]*:Lava Scorpion:1C43:/
+2172.4 "Molten Silk (Back)" sync / 1[56]:[^:]*:Lava Scorpion:1C44:/
+2182.0 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
+2187.1 "Flying Press" sync / 1[56]:[^:]*:Lava Scorpion:1C3E:/
+
+2196.3 "Realm Shaker" sync / 1[56]:[^:]*:Lava Scorpion:1C41:/ window 15,15
+2202.0 "Molten Silk (Ring)" sync / 1[56]:[^:]*:Lava Scorpion:1C42:/
+2211.2 "Hiss (Adds x2)" sync / 1[56]:[^:]*:Lava Scorpion:1C45:/
+2221.3 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
+2231.5 "Molten Silk (Back)" sync / 1[56]:[^:]*:Lava Scorpion:1C44:/
+2237.1 "Molten Silk (Front)" sync / 1[56]:[^:]*:Lava Scorpion:1C43:/
+2246.3 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
+
+2254.5 "Realm Shaker" sync / 1[56]:[^:]*:Lava Scorpion:1C41:/ window 15,15
+2260.2 "Molten Silk (Ring)" sync / 1[56]:[^:]*:Lava Scorpion:1C42:/
+2269.4 "Hiss (Adds x2)" sync / 1[56]:[^:]*:Lava Scorpion:1C45:/
+2279.5 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
+2289.7 "Molten Silk (Back)" sync / 1[56]:[^:]*:Lava Scorpion:1C44:/
+2295.3 "Molten Silk (Front)" sync / 1[56]:[^:]*:Lava Scorpion:1C43:/
+2304.5 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/ jump 2246.3
+
+2312.7 "Realm Shaker"
+2318.4 "Molten Silk (Ring)"
+2327.6 "Hiss (Adds x2)"
+2337.7 "Deadly Thrust"
+2347.9 "Molten Silk (Back)"

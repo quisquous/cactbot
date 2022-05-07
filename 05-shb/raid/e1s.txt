@@ -1,0 +1,93 @@
+### Eden 1 (Savage)
+# Eden's Gate: Resurrection (Savage)
+# -ii 3D87 3D81 367 44F6 44F5 44F7 44F2 44F1 3D79 3D7C 44FB 44FA 44F9 3D7E 3D83 3D84 44F3 -p 3D70:12 3D8C:500
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.5 "--sync--" sync / 1[56]:[^:]*:Eden Prime:367:/ window 2,0
+12.0 "Eden's Gravity" sync / 1[56]:[^:]*:Eden Prime:3D70:/ window 12,5
+25.6 "Vice And Virtue (D)" sync / 1[56]:[^:]*:Eden Prime:44EF:/
+32.0 "Eden's Flare" sync / 1[56]:[^:]*:Eden Prime:3D73:/
+50.5 "Vice And Virtue (T)" sync / 1[56]:[^:]*:Eden Prime:44EE:/
+58.0 "Spear Of Paradise" sync / 1[56]:[^:]*:Eden Prime:3D88:/
+59.5 "Heavensunder" sync / 1[56]:[^:]*:Eden Prime:3D89:/
+69.4 "Vice And Virtue (H)" sync / 1[56]:[^:]*:Eden Prime:44F0:/
+71.7 "--corner--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+80.4 "Pure Light" sync / 1[56]:[^:]*:Eden Prime:3D8A:/
+83.2 "--center--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+93.3 "Delta Attack (Cross)" sync / 1[56]:[^:]*:Eden Prime:44F4:/
+98.9 "--sync--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+105.5 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D7F:/
+112.0 "Paradise Lost" sync / 1[56]:[^:]*:Eden Prime:3D86:/ duration 9
+122.5 "Pure Beam" sync / 1[56]:[^:]*:Eden Prime:3D80:/
+125.0 "--corner--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+133.7 "Pure Light" sync / 1[56]:[^:]*:Eden Prime:3D8A:/
+136.5 "--center--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+143.1 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D7F:/
+153.7 "Fragor Maximus" sync / 1[56]:[^:]*:Eden Prime:3D8B:/ window 200,0
+154.3 "--untargetable--"
+
+### Phase 2 - Adds
+169.9 "--targetable--"
+169.9 "Paradisal Dive" sync / 1[56]:[^:]*:Guardian of Paradise:3D91:/
+185.2 "Mana Slice" sync / 1[56]:[^:]*:Guardian of Paradise:3D8E:/
+194.3 "Mana Burst" sync / 1[56]:[^:]*:Guardian of Paradise:3D8F:/
+199.4 "Mana Slice" sync / 1[56]:[^:]*:Guardian of Paradise:3D8E:/
+208.6 "Mana Burst" sync / 1[56]:[^:]*:Guardian of Paradise:3D8F:/
+213.7 "Mana Slice" sync / 1[56]:[^:]*:Guardian of Paradise:3D8E:/
+
+### Phase 3
+500.0 "Eternal Breath" sync / 1[56]:[^:]*:Eden Prime:3D8C:/ window 500,0
+510.0 "--targetable--"
+518.4 "Paradise Regained" sync / 1[56]:[^:]*:Eden Prime:44FC:/
+528.8 "Vice And Virtue! (T)" sync / 1[56]:[^:]*:Eden Prime:3D78:/
+542.5 "Vice And Virtue! (D)" sync / 1[56]:[^:]*:Eden Prime:3D7A:/
+544.9 "--sync--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+555.0 "Delta Attack (Donut)" sync / 1[56]:[^:]*:Eden Prime:44F8:/
+568.8 "Vice And Virtue! (H)" sync / 1[56]:[^:]*:Eden Prime:3D7D:/
+576.1 "Spear Of Paradise" sync / 1[56]:[^:]*:Eden Prime:3D88:/
+577.7 "Heavensunder" sync / 1[56]:[^:]*:Eden Prime:3D89:/
+582.5 "--sync--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+589.1 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D7F:/
+599.5 "Pure Beam!" sync / 1[56]:[^:]*:Eden Prime:3D82:/
+611.2 "--corner--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+619.9 "Pure Light" sync / 1[56]:[^:]*:Eden Prime:3D8A:/ duration 11.7
+622.8 "--center--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+629.3 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D7F:/
+642.1 "Eden's Gravity" sync / 1[56]:[^:]*:Eden Prime:3D70:/
+653.6 "Eden's Flare" sync / 1[56]:[^:]*:Eden Prime:3D73:/
+669.2 "Vice And Virtue (T)" sync / 1[56]:[^:]*:Eden Prime:44EE:/
+676.8 "Spear Of Paradise" sync / 1[56]:[^:]*:Eden Prime:3D88:/
+678.3 "Heavensunder" sync / 1[56]:[^:]*:Eden Prime:3D89:/
+688.0 "Vice And Virtue (D)" sync / 1[56]:[^:]*:Eden Prime:44EF:/
+690.5 "--sync--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+700.6 "Delta Attack (Cross)" sync / 1[56]:[^:]*:Eden Prime:44F4:/
+714.1 "Vice And Virtue (H)" sync / 1[56]:[^:]*:Eden Prime:44F0:/
+719.8 "--sync--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+726.4 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D7F:/
+736.9 "Pure Beam!" sync / 1[56]:[^:]*:Eden Prime:3D82:/ duration 11.7
+748.3 "--corner--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+757.1 "Pure Light" sync / 1[56]:[^:]*:Eden Prime:3D8A:/
+760.0 "--center--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+766.5 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D7F:/
+779.2 "Eden's Gravity" sync / 1[56]:[^:]*:Eden Prime:3D70:/
+790.7 "Eden's Flare" sync / 1[56]:[^:]*:Eden Prime:3D73:/
+
+801.2 "Paradise Regained" sync / 1[56]:[^:]*:Eden Prime:44FC:/ window 200,200 jump 518.4
+811.6 "Vice And Virtue! (T)"
+825.3 "Vice And Virtue! (D)"
+827.7 "--sync--"
+837.8 "Delta Attack (Donut)"
+851.6 "Vice And Virtue! (H)"
+858.9 "Spear Of Paradise"
+860.5 "Heavensunder"
+
+
+### Enrage
+900.0 "Fragor Maximus (Enrage)" sync / 14:[^:]*:Eden Prime:45E4:/ window 500,0 duration 10.0

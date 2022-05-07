@@ -1,0 +1,127 @@
+### Yojimbo (Kugane Ohashi)
+# -ii 383C 3831 384A 3849 3846 3847 3848 -p 383D:300
+
+### Mini-guide:
+#
+# Wakizashi: mini tank buster
+# Inoshikacho: butterfly summon that drop aoes
+# Metta-giri: raid aoe
+# Yukikaze: ice waffles
+# Gekko: initial markers for Kasha with aoe
+# Kasha: donut aoes from Gekko
+# Bitter End: frontal cleave
+# Dragon's Lair: summon dragons
+# Dragon Night: raidwide aoe
+# Tiny Song: dorito stack
+# Ame-no-Murakumo: susano-esque sword attack
+# Giga Jump: GA-100 proxmity head marker
+# Electrogenetic Force: lightning floor aoes
+# Enchain: distance-based gaols
+# Hell's Gate: gaol death
+# Masamune: line aoe
+# Zanma Zanmai: set to 1 hp
+# Epic Stormsplitter: line aoe that becomes a safe spot
+
+hideall "--Reset--"
+hideall "--sync--"
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+6.4 "Wakizashi" sync / 1[56]:[^:]*:Yojimbo:3827:/ window 7,7
+14.5 "Inoshikacho" sync / 1[56]:[^:]*:Yojimbo:3829:/ duration 9.2
+23.7 "--sync--" sync / 1[56]:[^:]*:Inoshikacho:382A:/
+28.8 "Metta-giri" sync / 1[56]:[^:]*:Yojimbo:3828:/
+32.0 "--untargetable--" sync / 1[56]:[^:]*:Yojimbo:382B:/
+37.2 "--sync--" sync / 1[56]:[^:]*:Yojimbo:382C:/
+44.0 "Unveiling" sync / 1[56]:[^:]*:Yojimbo:382D:/
+55.6 "--sync--" sync / 1[56]:[^:]*:Yojimbo:382F:/
+58.5 "Yukikaze" #sync / 1[56]:[^:]*:Yojimbo:3832:/
+59.6 "--sync--" sync / 1[56]:[^:]*:Yojimbo:3830:/
+62.1 "Yukikaze" #sync / 1[56]:[^:]*:Yojimbo:3832:/
+63.7 "Gekko" sync / 1[56]:[^:]*:Yojimbo:3833:/
+67.7 "Kasha" sync / 1[56]:[^:]*:Gilgamesh:3834:/
+73.7 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:31DE:/
+84.2 "Tiny Song" sync / 1[56]:[^:]*:Yojimbo:3835:/
+88.8 "Dragon's Lair" sync / 1[56]:[^:]*:Yojimbo:3836:/
+97.4 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
+103.8 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
+106.8 "Dragon Night" sync / 1[56]:[^:]*:Yojimbo:3838:/
+123.2 "Tiny Song" sync / 1[56]:[^:]*:Yojimbo:3835:/
+128.8 "--sync--" sync / 1[56]:[^:]*:Yojimbo:382F:/
+131.8 "Yukikaze" #sync / 1[56]:[^:]*:Yojimbo:3832:/
+132.9 "--sync--" sync / 1[56]:[^:]*:Yojimbo:3830:/
+135.4 "Yukikaze" #sync / 1[56]:[^:]*:Yojimbo:3832:/
+136.9 "Gekko" sync / 1[56]:[^:]*:Yojimbo:3833:/
+141.0 "Kasha" sync / 1[56]:[^:]*:Gilgamesh:3834:/
+
+147.1 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
+151.5 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
+
+# """Adds""" phase
+157.3 "--untargetable--"
+# starts 100 seconds of gauge
+157.7 "--sync--" sync / 1[56]:[^:]*:Yojimbo:383A:/ window 200,200
+161.2 "Giga Jump" sync / 1[56]:[^:]*:Embodiment:383B:/
+164.0 "--targetable--"
+
+169.6 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
+175.1 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
+175.3 "A Giant Me" sync / 1[56]:[^:]*:Embodiment:3830:/
+179.3 "Gekko" sync / 1[56]:[^:]*:Yojimbo:3833:/
+182.4 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
+183.4 "Kasha" sync / 1[56]:[^:]*:Gilgamesh:3834:/
+187.5 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
+198.9 "Kasha" sync / 1[56]:[^:]*:Yojimbo:3834:/
+203.2 "Gekko" sync / 1[56]:[^:]*:Yojimbo:3833:/
+206.0 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
+210.3 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
+223.7 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
+229.1 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
+# ???
+
+296.0 "--sync--" sync / 14:[^:]*:Gilgamesh:383D:/ window 100,0
+300.0 "Ame-no-Murakumo" sync / 1[56]:[^:]*:Gilgamesh:383D:/ window 300,300
+316.4 "Giga Jump" sync / 1[56]:[^:]*:Yojimbo:383E:/ # drift -0.048
+316.4 "--targetable--"
+319.0 "Electrogenetic Force" sync / 1[56]:[^:]*:Yojimbo:383F:/ duration 9.6
+328.6 "--sync--" sync / 1[56]:[^:]*:Electrogenetic Force:3840:/
+338.6 "Enchain" sync / 1[56]:[^:]*:Yojimbo:3841:/
+361.1 "Hell's Gate" sync / 1[56]:[^:]*:Yojimbo:3842:/
+
+# final loop
+374.5 "Masamune" sync / 1[56]:[^:]*:Yojimbo:3843:/
+380.4 "Zanma Zanmai" sync / 1[56]:[^:]*:Yojimbo:3844:/
+388.0 "Epic Stormsplitter" sync / 1[56]:[^:]*:Yojimbo:3845:/
+396.5 "Dragon's Lair" sync / 1[56]:[^:]*:Yojimbo:3836:/
+399.0 "Electrogenetic Force" sync / 1[56]:[^:]*:Yojimbo:383F:/ duration 9.6
+408.7 "--sync--" sync / 1[56]:[^:]*:Electrogenetic Force:3840:/
+414.5 "Dragon Night" sync / 1[56]:[^:]*:Yojimbo:3838:/
+416.6 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
+422.0 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
+
+433.5 "--sync--" sync / 1[56]:[^:]*:Yojimbo:382F:/
+436.5 "Yukikaze" #sync / 1[56]:[^:]*:Yojimbo:3832:/
+437.6 "--sync--" sync / 1[56]:[^:]*:Yojimbo:3830:/
+430.0 "Yukikaze" #sync / 1[56]:[^:]*:Yojimbo:3832:/
+441.6 "Gekko" sync / 1[56]:[^:]*:Yojimbo:3833:/
+445.7 "Kasha" sync / 1[56]:[^:]*:Gilgamesh:3834:/
+445.8 "Dragon's Lair" sync / 1[56]:[^:]*:Yojimbo:3836:/
+456.5 "Tiny Song" sync / 1[56]:[^:]*:Yojimbo:3835:/
+463.8 "Dragon Night" sync / 1[56]:[^:]*:Yojimbo:3838:/
+469.1 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
+
+474.4 "--sync--" sync / 1[56]:[^:]*:Yojimbo:382F:/
+477.4 "Yukikaze" sync / 1[56]:[^:]*:Yojimbo:3832:/
+478.5 "--sync--" sync / 1[56]:[^:]*:Yojimbo:3830:/
+480.9 "Yukikaze" sync / 1[56]:[^:]*:Yojimbo:3832:/
+482.5 "Gekko" sync / 1[56]:[^:]*:Yojimbo:3833:/
+486.6 "Kasha" sync / 1[56]:[^:]*:Gilgamesh:3834:/
+489.8 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
+
+# fake loop lookahead
+505.0 "Masamune" sync / 1[56]:[^:]*:Yojimbo:3843:/ window 40,40 jump 374.5
+510.9 "Zanma Zanmai"
+518.5 "Epic Stormsplitter"
+527.0 "Dragon's Lair"
+529.5 "Electrogenetic Force"

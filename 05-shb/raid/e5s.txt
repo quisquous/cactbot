@@ -1,0 +1,116 @@
+### Eden 5 (Savage)
+# Eden's Verse: Fulmination
+# -p 4BB5:12 -ii 4BC9 4BB4 4BB6 4BA7 4E61 4BB7 4BB9 4BB2 4BC1 4BC6 4BAE 4E4E 4D54 4E3D 4BB1
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+12.0 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/ window 12,20
+22.2 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4BA5:/
+27.1 "Impact" sync / 1[56]:[^:]*:Ramuh:4E3B:/
+35.6 "Judgment Jolt" sync / 1[56]:[^:]*:Ramuh:4BA6:/
+42.7 "Executor Summons" sync / 1[56]:[^:]*:Ramuh:4BBC:/
+52.2 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
+63.3 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+69.5 "Shock Blast" sync / 1[56]:[^:]*:Raiden:4BBE:/
+73.4 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BCA:/
+79.7 "Stormcloud Summons" sync / 1[56]:[^:]*:Ramuh:4BB8:/
+84.8 "Chaos Strike" sync / 1[56]:[^:]*:Ramuh:4BBB:/
+89.2 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/
+89.9 "Lightning Bolt" duration 24.5 # sync / 1[56]:[^:]*:Stormcloud:4BB9:/
+96.2 "Levinforce" sync / 1[56]:[^:]*:Ramuh:4BCC:/
+
+110.6 "Fury's Bolt?" sync / 1[56]:[^:]*:Ramuh:4BAA:/
+117.7 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4BAC:/
+128.6 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4BB3:/
+138.1 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BCA:/
+148.3 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+155.5 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
+163.6 "Thunderstorm" sync / 1[56]:[^:]*:Ramuh:4BBF:/
+174.5 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4BC3:/
+182.6 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4BC3:/
+189.1 "Executor Summons" sync / 1[56]:[^:]*:Ramuh:4BBC:/
+198.5 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BCA:/
+210.1 "Stepped Leader" sync / 1[56]:[^:]*:Ramuh:4BC7:/
+215.9 "Shock Blast" sync / 1[56]:[^:]*:Raiden:4BBE:/
+221.2 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+
+230.5 "Fury's Fourteen" sync / 1[56]:[^:]*:Ramuh:4BAB:/
+244.6 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4BA5:/
+249.5 "Impact" sync / 1[56]:[^:]*:Ramuh:4E3B:/
+253.0 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4BAC:/
+255.4 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/
+262.3 "Centaur's Charge" sync / 1[56]:[^:]*:Ramuh:4BAD:/
+267.3 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4BB3:/
+
+267.5 "Judgment Jolt" sync / 1[56]:[^:]*:Will Of Ramuh:4BA9:/
+279.1 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
+287.9 "Stepped Leader" sync / 1[56]:[^:]*:Ramuh:4BC8:/
+297.8 "Chain Lightning" sync / 1[56]:[^:]*:Ramuh:4BC4:/
+301.6 "Chain Lightning 1" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+305.2 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BCA:/
+305.3 "Chain Lightning 2" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+309.0 "Chain Lightning 3" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+312.7 "Chain Lightning 4" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+316.4 "Chain Lightning 5" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+317.4 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+320.1 "Chain Lightning 6" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+323.8 "Chain Lightning 7" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+327.5 "Chain Lightning 8" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+
+329.6 "Executor Summons" sync / 1[56]:[^:]*:Ramuh:4BBC:/
+337.0 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
+346.2 "Thunderstorm" sync / 1[56]:[^:]*:Ramuh:4BBF:/
+356.4 "Shock Blast" sync / 1[56]:[^:]*:Raiden:4BBE:/
+357.1 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4BC3:/
+365.2 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4BC3:/
+368.0 "Stepped Leader" sync / 1[56]:[^:]*:Ramuh:4BC7:/
+380.1 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BCA:/
+388.3 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+
+395.6 "Fury's Fourteen" sync / 1[56]:[^:]*:Ramuh:4BAB:/
+411.7 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4BA5:/
+416.6 "Impact" sync / 1[56]:[^:]*:Ramuh:4E3B:/
+420.1 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4BAC:/
+422.5 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/
+429.4 "Centaur's Charge" sync / 1[56]:[^:]*:Ramuh:4BAD:/
+434.4 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4BB3:/
+
+434.6 "Judgment Jolt" sync / 1[56]:[^:]*:Will Of Ramuh:4BA9:/
+440.2 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
+450.4 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+460.5 "Stormcloud Summons" sync / 1[56]:[^:]*:Ramuh:4BB8:/
+465.6 "Chaos Strike" sync / 1[56]:[^:]*:Ramuh:4BBB:/
+470.7 "Lightning Bolt" duration 24.5 # sync / 1[56]:[^:]*:Stormcloud:4BB9:/
+470.0 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/
+477.0 "Levinforce" sync / 1[56]:[^:]*:Ramuh:4BCC:/
+487.4 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+502.6 "Chain Lightning" sync / 1[56]:[^:]*:Ramuh:4BC4:/
+506.4 "Chain Lightning 1" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+510.0 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BCA:/
+510.1 "Chain Lightning 2" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+513.8 "Chain Lightning 3" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+517.5 "Chain Lightning 4" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+521.2 "Chain Lightning 5" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+523.2 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+524.8 "Chain Lightning 6" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+528.5 "Chain Lightning 7" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+532.2 "Chain Lightning 8" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+
+539.7 "Stepped Leader" sync / 1[56]:[^:]*:Ramuh:4BC7:/
+545.8 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
+554.9 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+566.0 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+574.1 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
+583.2 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+594.3 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+605.4 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+
+612.3 "Fury's Fourteen" sync / 1[56]:[^:]*:Ramuh:4BAB:/
+628.4 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4BA5:/
+
+#??? "Judgment Volts Enrage"

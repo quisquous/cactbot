@@ -1,0 +1,132 @@
+# Suzaku Extreme
+# -ii 32DC 32E5
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "Start" sync / 00:0044:[^:]*:Tenzen/
+2.5 "--sync--" sync / 1[56]:[^:]*:Suzaku:367:/ window 5,0
+11.5 "Screams Of The Damned" sync / 1[56]:[^:]*:Suzaku:32D2:/ window 12,20
+18.9 "--untargetable--"
+24.5 "Rout" sync / 1[56]:[^:]*:Suzaku:32F0:/
+26.2 "Rekindle" sync / 1[56]:[^:]*:Suzaku:32E0:/
+29.0 "--targetable--"
+35.3 "Fleeting Summer" sync / 1[56]:[^:]*:Suzaku:32D3:/
+42.8 "Cremate" sync / 1[56]:[^:]*:Suzaku:32D1:/
+54.3 "Phoenix Down" sync / 1[56]:[^:]*:Suzaku:3224:/
+67.4 "Rekindle" sync / 1[56]:[^:]*:Suzaku:32E0:/
+78.5 "Cremate" sync / 1[56]:[^:]*:Suzaku:32D1:/
+79.6 "Wing And A Prayer" sync / 1[56]:[^:]*:Scarlet Tail Feather:32D4:/
+92.2 "Screams Of The Damned" sync / 1[56]:[^:]*:Suzaku:32D2:/
+109.2 "Eternal Flame" sync / 1[56]:[^:]*:Suzaku:3222:/ # drift 0.023
+111.3 "--untargetable--"
+
+# DDR phase
+126.5 "--sync--" sync / 1[56]:[^:]*:Suzaku:3226:/
+132.7 "--sync--" sync / 1[56]:[^:]*:Suzaku:3485:/
+137.8 "Scarlet Hymn"
+138.9 "Scarlet Hymn"
+140.0 "Scarlet Hymn"
+144.6 "--sync--" sync / 1[56]:[^:]*:Suzaku:3486:/
+147.7 "Scarlet Hymn"
+149.8 "Scarlet Hymn"
+150.9 "Scarlet Hymn"
+152.0 "Scarlet Hymn"
+154.2 "Scarlet Hymn"
+156.3 "Scarlet Hymn"
+157.5 "Scarlet Hymn"
+174.7 "Scarlet Fever" sync / 1[56]:[^:]*:Suzaku:32D9:/ window 165,20
+
+# Main phase
+179.9 "--targetable--"
+189.4 "Southron Star" sync / 1[56]:[^:]*:Suzaku:32DF:/ window 20,20
+195.0 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+200.1 "Mesmerizing Melody" sync / 1[56]:[^:]*:Suzaku:32DA:/
+208.1 "Well Of Flame" sync / 1[56]:[^:]*:Suzaku:32E1:/
+208.8 "Rekindle" sync / 1[56]:[^:]*:Suzaku:32E0:/
+215.2 "Scathing Net" sync / 1[56]:[^:]*:Suzaku:3243:/
+220.2 "Phantom Flurry" sync / 1[56]:[^:]*:Suzaku:32DD:/ # drift 0.035
+226.3 "Phantom Half" sync / 1[56]:[^:]*:Suzaku:32DE:/
+
+# Simon says 1 (8+8)
+231.0 "Scarlet Hymn" sync / 1[56]:[^:]*:Suzaku:3237:/
+252.1 "Hotspot x8" duration 7.7
+269.9 "Hotspot x8" duration 7.7
+
+# Back to center
+286.7 "--sync--" sync / 1[56]:[^:]*:Suzaku:323A:/ window 20,20
+288.8 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+294.2 "Ruthless/Mesmerizing" sync / 1[56]:[^:]*:Suzaku:32D(A|B):/
+305.3 "Close-Quarter Crescendo" sync / 1[56]:[^:]*:Suzaku:32E4:/
+317.4 "Pay The Piper"
+321.1 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+327.0 "Well Of Flame" sync / 1[56]:[^:]*:Suzaku:32E1:/
+327.6 "Rekindle" sync / 1[56]:[^:]*:Suzaku:32E0:/
+334.1 "Scathing Net" sync / 1[56]:[^:]*:Suzaku:3243:/
+338.2 "Phantom Flurry" sync / 1[56]:[^:]*:Suzaku:32DD:/
+344.4 "Phantom Half" sync / 1[56]:[^:]*:Suzaku:32DE:/
+
+# Simon Says 2 (8+8 with aoe)
+350.7 "Scarlet Hymn" sync / 1[56]:[^:]*:Suzaku:3237:/
+360.2 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+365.3 "Ruthless/Mesmerizing" sync / 1[56]:[^:]*:Suzaku:32D(A|B):/
+370.4 "Hotspot x8" duration 7.7
+385.9 "Southron Star" sync / 1[56]:[^:]*:Suzaku:32DF:/
+391.0 "Hotspot x8" duration 7.7
+
+# Back to center
+407.5 "--sync--" sync / 1[56]:[^:]*:Suzaku:323A:/
+413.6 "Phantom Flurry" sync / 1[56]:[^:]*:Suzaku:32DD:/
+419.7 "Phantom Half" sync / 1[56]:[^:]*:Suzaku:32DE:/
+430.4 "Southron Star" sync / 1[56]:[^:]*:Suzaku:32DF:/
+442.0 "Incandescent Interlude" sync / 1[56]:[^:]*:Suzaku:323C:/
+446.1 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+452.1 "Ruthless Refrain" sync / 1[56]:[^:]*:Suzaku:32DB:/
+454.6 "Rekindle" sync / 1[56]:[^:]*:Suzaku:32E0:/
+459.5 "Well Of Flame" sync / 1[56]:[^:]*:Suzaku:32E1:/
+
+# Simon Says 2 (4+4+4+4 with forced march, knock/draw, phantom half)
+466.7 "Scarlet Hymn" sync / 1[56]:[^:]*:Suzaku:3237:/
+483.6 "Well Of Flame" sync / 1[56]:[^:]*:Suzaku:32E1:/
+484.3 "Rekindle" sync / 1[56]:[^:]*:Suzaku:32E0:/
+489.4 "Hotspot x4" duration 3.3
+496.6 "Close-Quarter Crescendo" sync / 1[56]:[^:]*:Suzaku:32E4:/
+508.7 "Pay the Piper"
+508.8 "Hotspot x4" duration 3.3
+517.9 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+523.4 "Ruthless/Mesmerizing" sync / 1[56]:[^:]*:Suzaku:32D(A|B):/
+528.5 "Hotspot x4" duration 3.3
+539.6 "Phantom Flurry" sync / 1[56]:[^:]*:Suzaku:32DD:/
+545.8 "Phantom Half" sync / 1[56]:[^:]*:Suzaku:32DE:/
+547.9 "Hotspot x4" duration 3.3
+
+# Back to center
+562.4 "--sync--" sync / 1[56]:[^:]*:Suzaku:323A:/
+572.5 "Southron Star" sync / 1[56]:[^:]*:Suzaku:32DF:/
+580.0 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+585.5 "Ruthless/Mesmerizing" sync / 1[56]:[^:]*:Suzaku:32D(A|B):/
+597.9 "Well Of Flame" sync / 1[56]:[^:]*:Suzaku:32E1:/
+598.5 "Rekindle" sync / 1[56]:[^:]*:Suzaku:32E0:/
+605.1 "Scathing Net" sync / 1[56]:[^:]*:Suzaku:3243:/
+610.2 "Phantom Flurry" sync / 1[56]:[^:]*:Suzaku:32DD:/
+616.4 "Phantom Half" sync / 1[56]:[^:]*:Suzaku:32DE:/
+626.5 "Southron Star" sync / 1[56]:[^:]*:Suzaku:32DF:/
+633.6 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+639.0 "Ruthless/Mesmerizing" sync / 1[56]:[^:]*:Suzaku:32D(A|B):/
+652.0 "Southron Star" sync / 1[56]:[^:]*:Suzaku:32DF:/
+658.4 "Phantom Flurry" sync / 1[56]:[^:]*:Suzaku:32DD:/
+664.5 "Phantom Half" sync / 1[56]:[^:]*:Suzaku:32DE:/
+674.1 "Scarlet Hymn" sync / 1[56]:[^:]*:Suzaku:3237:/
+683.6 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+689.0 "Ruthless/Mesmerizing" sync / 1[56]:[^:]*:Suzaku:32D(A|B):/
+695.0 "Hotspot x8" duration 7.7
+708.8 "Southron Star" sync / 1[56]:[^:]*:Suzaku:32DF:/ # drift -0.047
+714.2 "Hotspot x8" duration 7.7
+730.1 "--sync--" sync / 1[56]:[^:]*:Suzaku:323A:/
+736.1 "Phantom Flurry" sync / 1[56]:[^:]*:Suzaku:32DD:/
+742.2 "Phantom Half" sync / 1[56]:[^:]*:Suzaku:32DE:/
+743.8 "Scarlet Hymn" sync / 1[56]:[^:]*:Suzaku:3237:/
+755.3 "--sync--" sync / 1[56]:[^:]*:Suzaku:322E:/
+766.7 "Hotspot Enrage"

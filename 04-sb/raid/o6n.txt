@@ -1,0 +1,68 @@
+# Omega - Sigmascape V2.0 - O6N
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0 "Start" sync / 00:0044:[^:]*:I have claimed the girl in the picture! She's mine! You can't have her!/ window 0,1
+18 "--targetable--"
+21 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/ window 21,2.5
+30 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:282A:/
+
+54 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/
+59 "Flash Fire" sync / 1[56]:[^:]*:Portrayal of Fire:280B:/
+66 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
+76 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:282A:/
+86 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+
+99 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/
+104 "Earthquake" sync / 1[56]:[^:]*:Portrayal of Earth:2811:/
+118 "Demonic Stone" sync / 1[56]:[^:]*:Demon Chadarnook:2847:/
+125 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
+138 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:282A:/
+146 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+
+159 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/
+170 "Demonic Wave" sync / 1[56]:[^:]*:Portrayal of Water:2831:/
+179 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
+187 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:282A:/
+195 "Demonic Spout" sync / 1[56]:[^:]*:Demon Chadarnook:2835:/
+200 "Demonic Spout" sync / 1[56]:[^:]*:Demon Chadarnook:2837:/
+209 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+
+222 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/
+227 "Demonic Typhoon" sync / 1[56]:[^:]*:Demon Chadarnook:283D:/
+244 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
+245 "Featherlance" sync / 1[56]:[^:]*:Easterly:2AE8:/
+253 "Demonic Pain" sync / 1[56]:[^:]*:Demon Chadarnook:2AEB:/
+264 "Flash Gale" sync / 1[56]:[^:]*:Demon Chadarnook:2842:/
+275 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+
+# loop starts here
+288 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/
+293 "Flash Fire" sync / 1[56]:[^:]*:Portrayal of Fire:280B:/
+299 "Demonic Wave" sync / 1[56]:[^:]*:Portrayal of Water:2831:/
+308 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
+318 "Demonic Spout" sync / 1[56]:[^:]*:Demon Chadarnook:2835:/
+323 "Demonic Spout" sync / 1[56]:[^:]*:Demon Chadarnook:2837:/
+330 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:282A:/
+341 "Release" sync / 1[56]:[^:]*:Haunt:2809:/
+
+354 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/
+359 "Earthquake" sync / 1[56]:[^:]*:Portrayal of Earth:2811:/
+359 "Flash Fire" sync / 1[56]:[^:]*:Portrayal of Fire:280B:/
+368 "Materialize" sync / 1[56]:[^:]*:Demon Chadarnook:282D:/
+381 "Demonic Stone" sync / 1[56]:[^:]*:Demon Chadarnook:2847:/
+384 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
+394 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:282A:/
+404 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
+415 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+# loop ends here
+
+428 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ jump 288
+433 "Flash Fire"
+439 "Demonic Wave"
+448 "Demonic Howl"
+455 "Demonic Spout"
+458 "Demonic Spout"

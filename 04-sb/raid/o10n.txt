@@ -1,0 +1,99 @@
+# Omega - Alphascape V2.0 - O10N
+# -r MGmYR8kHQta1vN4D -rf 54 -ii 31F9 362D 31D5 3624 3630 31FB 3638
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+hideall "--Reset--"
+hideall "--sync--"
+
+## Common start
+0.0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.6 "--sync--" sync / 1[56]:[^:]*:Midgardsormr:31F9:/ window 2,0
+13.1 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31C7:/
+19.2 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31C9:/
+22.9 "Out" sync / 1[56]:[^:]*:Midgardsormr:31CD:/
+31.6 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31C7:/
+37.7 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31C9:/
+41.3 "Out" sync / 1[56]:[^:]*:Midgardsormr:31CD:/
+45.8 "Earth Shaker" sync / 1[56]:[^:]*:Midgardsormr:31D1:/
+57.1 "Akh Morn" sync / 1[56]:[^:]*:Midgardsormr:31C6:/ duration 4
+62.5 "--sync--" sync / 1[56]:[^:]*:Midgardsormr:3249:/
+68.9 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31C7:/
+75.0 "Flip" sync / 1[56]:[^:]*:Midgardsormr:31CB:/
+78.6 "In" sync / 1[56]:[^:]*:Midgardsormr:31CF:/
+87.3 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31C7:/
+93.4 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31C[B9]:/
+96.9 "In/Out" sync / 1[56]:[^:]*:Midgardsormr:31C[FD]:/
+100.4 "Thunderstorm" sync / 1[56]:[^:]*:Midgardsormr:31D2:/
+104.9 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:31D3:/
+117.3 "Flip" sync / 1[56]:[^:]*:Midgardsormr:31C8:/
+123.4 "Flip" sync / 1[56]:[^:]*:Midgardsormr:31CB:/
+127.5 "Corners" sync / 1[56]:[^:]*:Midgardsormr:31D0:/
+140.6 "Dry Ice" sync / 1[56]:[^:]*:Midgardsormr:3632:/
+142.8 "Flip" sync / 1[56]:[^:]*:Midgardsormr:31C8:/
+149.0 "Flip" sync / 1[56]:[^:]*:Midgardsormr:31CB:/
+151.4 "--sync--" sync / 1[56]:[^:]*:Midgardsormr:35BB:/
+153.1 "Corners" sync / 1[56]:[^:]*:Midgardsormr:31D0:/
+156.3 "--untargetable--"
+159.4 "--sync--" sync / 1[56]:[^:]*:Midgardsormr:35BC:/
+167.2 "Cauterize" sync / 1[56]:[^:]*:Midgardsormr:3241:/
+
+183.5 "Frost Breath" sync / 1[56]:[^:]*:Ancient Dragon:33EE:/ window 30,30
+195.5 "Frost Breath ready"
+
+500.0 "Protostar x4" sync / 1[56]:[^:]*:Midgardsormr:31C3:/ window 500,500 duration 12
+523.4 "--targetable--"
+536.6 "Tail End" sync / 1[56]:[^:]*:Midgardsormr:31C5:/
+544.6 "Exaflare"
+547.6 "Exaflare"
+550.6 "Exaflare"
+553.6 "Exaflare"
+556.6 "Exaflare"
+
+# Loop
+559.1 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:31D3:/
+570.6 "Northern Cross" sync / 1[56]:[^:]*:Midgardsormr:3629:/
+575.2 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31C[78]:/
+581.2 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31C[B9]:/
+584.7 "In/Out/Corners" sync / 1[56]:[^:]*:Midgardsormr:31(CF|CD|D0):/
+596.2 "Akh Rhai" sync / 1[56]:[^:]*:Midgardsormr:3622:/
+598.2 "Flip" sync / 1[56]:[^:]*:Midgardsormr:31C8:/
+604.2 "Flip" sync / 1[56]:[^:]*:Midgardsormr:31CB:/
+608.2 "Corners" sync / 1[56]:[^:]*:Midgardsormr:31D0:/
+611.2 "Thunderstorm" sync / 1[56]:[^:]*:Midgardsormr:31D2:/
+615.4 "--untargetable--"
+621.2 "Exaflare"
+624.2 "Exaflare"
+624.7 "Cauterize" sync / 1[56]:[^:]*:Midgardsormr:3241:/
+627.2 "Exaflare"
+630.2 "Exaflare"
+633.2 "Exaflare"
+635.3 "Cauterize" sync / 1[56]:[^:]*:Midgardsormr:3241:/
+642.7 "--targetable--"
+646.9 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31C[78]:/
+652.9 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31C[B9]:/
+656.9 "In/Out/Corners" sync / 1[56]:[^:]*:Midgardsormr:31(CF|CD|D0):/
+660.9 "Earth Shaker" sync / 1[56]:[^:]*:Midgardsormr:31D1:/
+
+669.4 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:31D3:/
+671.1 "Akh Morn" sync / 1[56]:[^:]*:Midgardsormr:31C6:/ duration 4
+676.3 "--sync--" sync / 1[56]:[^:]*:Midgardsormr:3249:/
+687.3 "Tail End" sync / 1[56]:[^:]*:Midgardsormr:31C5:/
+698.3 "Northern Cross" sync / 1[56]:[^:]*:Midgardsormr:3629:/
+706.8 "Thunderstorm" sync / 1[56]:[^:]*:Midgardsormr:320F:/
+707.3 "Thunderstorm" sync / 1[56]:[^:]*:Midgardsormr:31D2:/
+713.8 "Dry Ice" sync / 1[56]:[^:]*:Midgardsormr:3632:/
+721.8 "Exaflare"
+724.4 "--sync--" sync / 1[56]:[^:]*:Midgardsormr:35BB:/
+724.8 "Exaflare"
+727.8 "Exaflare"
+730.8 "Exaflare"
+732.4 "--sync--" sync / 1[56]:[^:]*:Midgardsormr:35BC:/
+733.8 "Exaflare"
+
+736.3 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:31D3:/ window 50,50 jump 559.1
+747.8 "Northern Cross"
+752.4 "Flip/Spin"
+758.4 "Flip/Spin"
+761.9 "In/Out/Corners"

@@ -1,0 +1,130 @@
+### HEROES' GAUNTLET
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~~~~~~~#
+# SPECTRAL THIEF #
+#~~~~~~~~~~~~~~~~#
+
+# -ii 4FCD 4FCE 4FCF 4FD0 4FD5 5015
+
+0 "Start" sync / 00:0839::The Mount Argai Mines will be sealed off/ window 0,1
+9.8 "Spectral Dream" sync / 1[56]:[^:]*:Spectral Thief:4FCB:/ window 9.8,5
+16.9 "Dash" sync / 1[56]:[^:]*:Spectral Thief:4FD3:/
+26.7 "Vacuum Blade" sync / 1[56]:[^:]*:Spectral Thief:506[12]:/
+37.8 "Spectral Whirlwind" sync / 1[56]:[^:]*:Spectral Thief:4FCC:/
+44.0 "--sync--" sync / 1[56]:[^:]*:Spectral Thief:53CE:/
+51.1 "Spectral Gust" sync / 1[56]:[^:]*:Spectral Thief:53CF:/
+52.1 "Chicken Knife" sync / 1[56]:[^:]*:Spectral Thief:4FD6:/
+59.2 "Shadowdash" sync / 1[56]:[^:]*:Spectral Thief:4FD4:/
+63.4 "Coward's Cunning" sync / 1[56]:[^:]*:Chicken Knife:4FD7:/
+
+69.0 "Papercutter" sync / 1[56]:[^:]*:Spectral Thief:4FD[12]:/
+83.2 "Spectral Dream" sync / 1[56]:[^:]*:Spectral Thief:4FCB:/
+88.4 "Chicken Knife" sync / 1[56]:[^:]*:Spectral Thief:4FD6:/ window 20,30
+95.5 "Shadowdash" sync / 1[56]:[^:]*:Spectral Thief:4FD4:/
+97.2 "Spectral Gust" sync / 1[56]:[^:]*:Spectral Thief:53CE:/
+99.7 "Coward's Cunning" sync / 1[56]:[^:]*:Chicken Knife:4FD7:/
+104.2 "Spectral Gust" sync / 1[56]:[^:]*:Spectral Thief:53CF:/
+
+107.4 "Vacuum Blade" sync / 1[56]:[^:]*:Spectral Thief:506[12]:/
+121.5 "Spectral Whirlwind" sync / 1[56]:[^:]*:Spectral Thief:4FCC:/
+129.6 "Chicken Knife" sync / 1[56]:[^:]*:Spectral Thief:4FD6:/ window 30,30
+136.8 "Shadowdash" sync / 1[56]:[^:]*:Spectral Thief:4FD4:/
+138.5 "Spectral Gust" sync / 1[56]:[^:]*:Spectral Thief:53CE:/
+141.0 "Coward's Cunning" sync / 1[56]:[^:]*:Chicken Knife:4FD7:/
+145.6 "Spectral Gust" sync / 1[56]:[^:]*:Spectral Thief:53CF:/
+
+148.8 "Papercutter" sync / 1[56]:[^:]*:Spectral Thief:4FD[12]:/ jump 69.0
+163.0 "Spectral Dream"
+168.2 "Chicken Knife"
+175.3 "Shadowdash"
+177.0 "Spectral Gust"
+179.5 "Coward's Cunning"
+
+
+#~~~~~~~~~~~~~~~~~~~~~~#
+# SPECTRAL NECROMANCER #
+#~~~~~~~~~~~~~~~~~~~~~~#
+
+# -ic Mustardseed "Tupaq Amaro" "Nu Mou" Peaseblossom
+# -ii 4F51 4F62 4F64 53B5 53B6 53B7 53B8 53B9 53BA
+
+1000.0 "Start" sync / 00:0839::The Summer Ballroom will be sealed off/ window 1000,5
+1012.8 "Absolute Dark II" sync / 1[56]:[^:]*:Spectral Necromancer:4F61:/ window 12.8,5
+1020.0 "Necromancy" sync / 1[56]:[^:]*:Spectral Necromancer:4F57:/
+1030.2 "Twisted Touch" sync / 1[56]:[^:]*:Spectral Necromancer:4F5E:/ window 30,30
+1046.7 "Necroburst" sync / 1[56]:[^:]*:Spectral Necromancer:4F5[9A]:/
+1051.4 "--sync--" sync / 1[56]:[^:]*:Spectral Necromancer:4FA3:/
+1059.0 "Pain Mire" sync / 1[56]:[^:]*:Spectral Necromancer:4FA4:/
+1066.7 "Necromancy" sync / 1[56]:[^:]*:Spectral Necromancer:4F58:/
+1074.2 "Death Throes" # sync / 1[56]:[^:]*:Necrobomb:4F63:/
+1085.7 "Necroburst" sync / 1[56]:[^:]*:Spectral Necromancer:4F5[9A]:/
+
+1096.8 "Chaos Storm" sync / 1[56]:[^:]*:Spectral Necromancer:4F60:/ window 100,30
+1105.4 "Necromancy" sync / 1[56]:[^:]*:Spectral Necromancer:4F57:/
+1111.6 "Necromancy" sync / 1[56]:[^:]*:Spectral Necromancer:4F58:/
+1121.7 "--sync--" sync / 1[56]:[^:]*:Spectral Necromancer:4F5C:/
+1122.7 "Dark Deluge" sync / 1[56]:[^:]*:Spectral Necromancer:4F5D:/ window 30,30
+1124.0 "Death Throes" # sync / 1[56]:[^:]*:Necrobomb:4F63:/
+1130.1 "Necroburst" sync / 1[56]:[^:]*:Spectral Necromancer:4F5[9A]:/
+1142.6 "Absolute Dark II" sync / 1[56]:[^:]*:Spectral Necromancer:4F61:/
+1149.8 "--sync--" sync / 1[56]:[^:]*:Spectral Necromancer:4FA3:/
+1157.4 "Pain Mire" sync / 1[56]:[^:]*:Spectral Necromancer:4FA4:/
+1164.9 "Chaos Storm" sync / 1[56]:[^:]*:Spectral Necromancer:4F60:/ window 30,30
+1176.0 "Twisted Touch" sync / 1[56]:[^:]*:Spectral Necromancer:4F5E:/
+1182.4 "--sync--" sync / 1[56]:[^:]*:Spectral Necromancer:4FA3:/
+1189.9 "Pain Mire" sync / 1[56]:[^:]*:Spectral Necromancer:4FA4:/
+1196.4 "Necromancy" sync / 1[56]:[^:]*:Spectral Necromancer:4F57:/
+1208.5 "--sync--" sync / 1[56]:[^:]*:Spectral Necromancer:4F5C:/
+1209.5 "Dark Deluge" sync / 1[56]:[^:]*:Spectral Necromancer:4F5D:/
+1218.9 "Necroburst" sync / 1[56]:[^:]*:Spectral Necromancer:4F59:/
+
+1230.1 "Chaos Storm" sync / 1[56]:[^:]*:Spectral Necromancer:4F60:/ window 30,30 jump 1096.8
+1238.7 "Necromancy"
+1244.9 "Necromancy"
+1256.0 "Dark Deluge"
+1257.3 "Death Throes"
+1263.4 "Necroburst"
+
+#~~~~~~~~~~~~~~~~~~~~#
+# SPECTRAL BERSERKER #
+#~~~~~~~~~~~~~~~~~~~~#
+
+# -ii 5203 5204 5209
+# -ic "Steelarm Cerigg" "Giott The Aleforged" "Lue-Reeq Of The Gilded Bow" "Granson Of The Mournful Blade"
+
+2000.0 "Start" sync / 00:0839::The Illuminated Plaza will be sealed off/ window 2000,5
+2012.0 "Beastly Fury" sync / 1[56]:[^:]*:Spectral Berserker:520C:/ window 12,5
+2024.4 "Wild Anguish" sync / 1[56]:[^:]*:Spectral Berserker:5208:/
+2036.3 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520A:/
+2041.0 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520B:/
+2051.8 "Beastly Fury" sync / 1[56]:[^:]*:Spectral Berserker:520C:/
+2066.0 "Wild Rage" sync / 1[56]:[^:]*:Spectral Berserker:5202:/ window 66,30
+2076.1 "Falling Rock" sync / 1[56]:[^:]*:Rubble:5205:/
+2082.3 "Wild Anguish x4" sync / 1[56]:[^:]*:Spectral Berserker:5208:/
+2105.7 "--sync--" sync / 1[56]:[^:]*:Spectral Berserker:5206:/
+2106.2 "Wild Rampage" sync / 1[56]:[^:]*:Spectral Berserker:5207:/ window 106.2,5
+2117.7 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520A:/
+2122.6 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520B:/
+2127.7 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520B:/
+2137.6 "Wild Rage" sync / 1[56]:[^:]*:Spectral Berserker:5202:/ window 30,30
+2149.4 "--sync--" sync / 1[56]:[^:]*:Spectral Berserker:5206:/
+2149.9 "Wild Rampage" sync / 1[56]:[^:]*:Spectral Berserker:5207:/
+2157.4 "Falling Rock" sync / 1[56]:[^:]*:Rubble:5205:/
+2162.6 "Wild Anguish x4" sync / 1[56]:[^:]*:Spectral Berserker:5208:/
+
+2182.5 "Beastly Fury" sync / 1[56]:[^:]*:Spectral Berserker:520C:/ window 30,5
+2198.7 "Beastly Fury" sync / 1[56]:[^:]*:Spectral Berserker:520C:/
+2207.8 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520A:/
+2212.3 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520B:/
+2217.2 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520B:/
+2226.1 "Wild Anguish" sync / 1[56]:[^:]*:Spectral Berserker:5208:/
+
+2240.2 "Beastly Fury" sync / 1[56]:[^:]*:Spectral Berserker:520C:/ window 30,5 jump 2182.5
+2256.4 "Beastly Fury"
+2265.5 "Raging Slice"
+2270.0 "Raging Slice"

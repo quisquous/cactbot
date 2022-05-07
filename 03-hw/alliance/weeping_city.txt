@@ -1,0 +1,420 @@
+### THE WEEPING CITY OF MHACH
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~~~~#
+# ARACHNE EVE #
+#~~~~~~~~~~~~~#
+
+# -ii 368 1835 1836
+# -ic "Webmaiden" "Spitting Spider" "Skittering Spider" "Earth Aether"
+
+0 "--sync--" sync / 00:0839::The Queen's Room will be sealed off/
+9.8 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
+21.6 "Silken Spray" sync / 1[56]:[^:]*:Arachne Eve:1824:/
+30.4 "Arachne Web x3" duration 5 # sync / 1[56]:[^:]*:Arachne Eve:185E:/
+36.8 "--untargetable--"
+41.9 "Tremblor x3" sync / 1[56]:[^:]*:Arachne Eve:1837:/ # 3 separate abilities, 1837/1836/1835
+48.4 "--sync--" sync / 1[56]:[^:]*:Arachne Eve:1889:/
+49.9 "Pitfall" sync / 1[56]:[^:]*:Arachne Eve:1825:/
+51.9 "--targetable--"
+52.1 "--sync--" sync / 1[56]:[^:]*:Arachne Eve:1847:/ # Sticky Wicket head markers
+55.7 "Sticky Wicket x3" # sync / 1[56]:[^:]*:Arachne Eve:183F:/
+64.1 "Silken Spray" sync / 1[56]:[^:]*:Arachne Eve:1824:/
+
+# Intermission up in her web. There's a LOT of stuff going on here,
+# but the add spawns and abilities are dependent on what the team kills.
+# Implosion is the only real consistency we have through the intermission.
+95.7 "Implosion" sync / 1[56]:[^:]*:Arachne Eve:1833:/ window 95.7,2.5
+113.9 "Implosion" sync / 1[56]:[^:]*:Arachne Eve:1833:/
+132.1 "Implosion" sync / 1[56]:[^:]*:Arachne Eve:1833:/
+150.3 "Implosion" sync / 1[56]:[^:]*:Arachne Eve:1833:/ jump 95.7
+168.5 "Implosion"
+186.7 "Implosion"
+
+# Back on the ground for a relatively short bridge block
+# We sync to a 14/20 startsUsing log line instead of a 15/21 ability line.
+# This lets us jump out of the intermission slightly earlier.
+197.3 "Dark Spike" sync / 14:[^:]*:Arachne Eve:1823:/ window 100,5
+206.3 "--sync--" sync / 1[56]:[^:]*:Arachne Eve:1847:/
+210.5 "Sticky Wicket x3" # sync / 1[56]:[^:]*:Arachne Eve:183F:/
+212.1 "--untargetable--"
+216.7 "Tremblor x3" sync / 1[56]:[^:]*:Arachne Eve:1837:/
+223.9 "--sync--" sync / 1[56]:[^:]*:Arachne Eve:1889:/
+225.5 "Pitfall" sync / 1[56]:[^:]*:Arachne Eve:1825:/
+227.5 "--targetable--"
+233.2 "Arachne Web x3" duration 5 # sync / 1[56]:[^:]*:Arachne Eve:185E:/
+246.3 "Shadow Burst" sync / 1[56]:[^:]*:Arachne Eve:1838:/
+253.0 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
+264.4 "Frond Affeared" sync / 1[56]:[^:]*:Arachne Eve:183A:/ window 30,30
+271.1 "Silken Spray" sync / 1[56]:[^:]*:Arachne Eve:1824:/
+277.9 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
+287.7 "Arachne Web x3" duration 5 # sync / 1[56]:[^:]*:Arachne Eve:185E:/
+294.2 "--untargetable--"
+297.9 "The Widow's Kiss" duration 5 # sync / 1[56]:[^:]*:Arachne Eve:1842:/
+305.9 "The Widow's Embrace" sync / 1[56]:[^:]*:Arachne Eve:1888:/
+308.5 "Pitfall" sync / 1[56]:[^:]*:Arachne Eve:1845:/
+310.5 "--targetable--"
+317.2 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
+
+# And up we go again.
+347.2 "Implosion" sync / 1[56]:[^:]*:Arachne Eve:1833:/ window 147,5
+365.4 "Implosion" sync / 1[56]:[^:]*:Arachne Eve:1833:/
+383.6 "Implosion" sync / 1[56]:[^:]*:Arachne Eve:1833:/ jump 347.2
+401.8 "Implosion"
+420.0 "Implosion"
+
+# Back down again for another bridge block
+464.9 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/ window 120,5
+476.4 "Arachne Web x3" duration 5 # sync / 1[56]:[^:]*:Arachne Eve:185E:/
+483.8 "--sync--" sync / 1[56]:[^:]*:Arachne Eve:1847:/
+487.4 "Sticky Wicket x3" # sync / 1[56]:[^:]*:Arachne Eve:183F:/
+489.8 "--untargetable--"
+494.4 "Tremblor x3" sync / 1[56]:[^:]*:Arachne Eve:1837:/
+501.3 "The Widow's Kiss x3" duration 5 # sync / 1[56]:[^:]*:Arachne Eve:1842:/
+509.3 "The Widow's Embrace" sync / 1[56]:[^:]*:Arachne Eve:1888:/
+511.9 "Pitfall" sync / 1[56]:[^:]*:Arachne Eve:1845:/
+513.9 "--targetable--"
+520.6 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
+526.4 "Silken Spray" sync / 1[56]:[^:]*:Arachne Eve:1824:/
+535.0 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
+546.3 "Frond Affeared" sync / 1[56]:[^:]*:Arachne Eve:183A:/ window 30,30
+559.7 "Shadow Burst" sync / 1[56]:[^:]*:Arachne Eve:1838:/
+565.2 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
+572.2 "--sync--" sync / 1[56]:[^:]*:Arachne Eve:1847:/
+575.9 "Sticky Wicket x3" # sync / 1[56]:[^:]*:Arachne Eve:183F:/
+578.3 "--untargetable--"
+582.9 "Tremblor x3" sync / 1[56]:[^:]*:Arachne Eve:1837:/
+
+# And *finally* we get to rotation blocks!
+# It may not be necessary to sync so widely, but it's probably a safe bet,
+# since we don't have any network logs that get this far to verify.
+589.4 "--sync--" sync / 1[56]:[^:]*:Arachne Eve:1889:/ window 100,5
+590.9 "Pitfall" sync / 1[56]:[^:]*:Arachne Eve:1825:/
+592.9 "--targetable--"
+604.6 "Arachne Web x3" duration 5 # sync / 1[56]:[^:]*:Arachne Eve:185E:/
+617.8 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
+623.3 "Silken Spray" sync / 1[56]:[^:]*:Arachne Eve:1824:/
+631.8 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
+642.8 "Frond Affeared" sync / 1[56]:[^:]*:Arachne Eve:183A:/ window 30,30
+656.5 "Shadow Burst" sync / 1[56]:[^:]*:Arachne Eve:1838:/
+662.0 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
+677.0 "Arachne Web x3" duration 5 # sync / 1[56]:[^:]*:Arachne Eve:185E:/
+681.2 "--untargetable--"
+684.9 "The Widow's Kiss x3" duration 5 # sync / 1[56]:[^:]*:Arachne Eve:1842:/
+692.9 "The Widow's Embrace" sync / 1[56]:[^:]*:Arachne Eve:1888:/
+695.4 "Pitfall" sync / 1[56]:[^:]*:Arachne Eve:1845:/
+697.4 "--targetable--"
+703.4 "--sync--" sync / 1[56]:[^:]*:Arachne Eve:1847:/
+707.1 "Sticky Wicket x3" # sync / 1[56]:[^:]*:Arachne Eve:183F:/
+716.1 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
+721.6 "Silken Spray" sync / 1[56]:[^:]*:Arachne Eve:1824:/
+730.1 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
+741.1 "Frond Affeared" sync / 1[56]:[^:]*:Arachne Eve:183A:/ window 30,30
+754.7 "Shadow Burst" sync / 1[56]:[^:]*:Arachne Eve:1838:/
+760.2 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
+767.2 "--sync--" sync / 1[56]:[^:]*:Arachne Eve:1847:/
+770.8 "Sticky Wicket x3" # sync / 1[56]:[^:]*:Arachne Eve:183F:/
+773.0 "--untargetable--"
+777.6 "Tremblor x3" # sync / 1[56]:[^:]*:Arachne Eve:1837:/
+
+784.1 "--sync--" sync / 1[56]:[^:]*:Arachne Eve:1889:/ jump 589.4
+785.6 "Pitfall"
+787.6 "--targetable--"
+799.3 "Arachne Web"
+812.5 "Dark Spike"
+818.0 "Silken Spray"
+
+#~~~~~~~~~#
+# FORGALL #
+#~~~~~~~~~#
+
+# -ii 366 17D5 17C1 17D6
+
+1000.0 "--sync--" sync / 00:0839::The Shrine Of The Goetic will be sealed off/ window 1000,5
+1014.2 "Necropurge" sync / 1[56]:[^:]*:Shriveled Talon:17D7:/
+1024.4 "Megiddo Flame" sync / 1[56]:[^:]*:Forgall:17C0:/
+1032.4 "Necropurge" sync / 1[56]:[^:]*:Forgall:17BE:/
+1060.7 "Megiddo Flame" sync / 1[56]:[^:]*:Forgall:17C0:/
+1066.7 "Punishing Ray" sync / 1[56]:[^:]*:Forgall:17C4:/
+1081.0 "Brand of the Fallen" sync / 1[56]:[^:]*:Forgall:17CC:/ window 20,20
+1090.3 "Evil Mist" sync / 1[56]:[^:]*:Forgall:17C5:/
+1101.3 "Necropurge" sync / 1[56]:[^:]*:Shriveled Talon:17D7:/
+1118.3 "Necropurge" sync / 1[56]:[^:]*:Forgall:17BE:/
+1131.6 "Necropurge" sync / 1[56]:[^:]*:Forgall:17BF:/
+1132.8 "Brand of the Fallen" sync / 1[56]:[^:]*:Forgall:17CC:/ window 20,20
+1141.1 "--sync--" sync / 1[56]:[^:]*:Forgall:17C2:/ # Dark Eruption markers go out.
+1146.3 "Dark Eruption x3" # sync / 1[56]:[^:]*:Forgall:17C3:/
+1163.2 "--sync--" sync / 1[56]:[^:]*:Forgall:17C7:/ window 163.2 # Pushes at 50% HP.
+
+# We don't know how long the intermission goes.
+# There's no data available to tell us what, if anything,
+# happens if the three adds aren't killed in time.
+# It could even be nothing.
+# If the intermission goes longer than 3 minutes, something is WRONG.
+
+1350.0 "Mana Explosion" sync / 1[56]:[^:]*:Forgall:17C8:/ window 350,5
+
+1360.2 "Necropurge" sync / 1[56]:[^:]*:Forgall:17BE:/ window 200,5
+1373.4 "Necropurge" sync / 1[56]:[^:]*:Forgall:17BF:/
+1373.4 "--sync--" sync / 1[56]:[^:]*:Poison Mist:17D8:/
+1377.5 "Mega Death" sync / 1[56]:[^:]*:Forgall:17CA:/ window 20,20
+1388.5 "--sync--" sync / 1[56]:[^:]*:Forgall:17C2:/
+1393.7 "Dark Eruption x3" # sync / 1[56]:[^:]*:Forgall:17C3:/
+1395.7 "Megiddo Flame" sync / 1[56]:[^:]*:Forgall:17C0:/
+1400.9 "Evil Mist" sync / 1[56]:[^:]*:Forgall:17C5:/
+1414.9 "Necropurge" sync / 1[56]:[^:]*:Forgall:17BF:/
+1414.9 "--sync--" sync / 1[56]:[^:]*:Poison Mist:17D8:/
+1419.1 "Mega Death" sync / 1[56]:[^:]*:Forgall:17CA:/ window 20,20
+1439.2 "Hell Wind" sync / 1[56]:[^:]*:Forgall:17CB:/
+1453.3 "Brand of the Fallen" sync / 1[56]:[^:]*:Forgall:17CC:/
+1459.5 "Punishing Ray" sync / 1[56]:[^:]*:Forgall:17C4:/
+1465.6 "Brand of the Fallen" sync / 1[56]:[^:]*:Forgall:17CC:/
+
+1481.9 "Necropurge" sync / 1[56]:[^:]*:Forgall:17BE:/ jump 1360.2
+1495.1 "Necropurge"
+1499.1 "Mega Death"
+1515.4 "Dark Eruption x3"
+
+#~~~~~~#
+# OZMA #
+#~~~~~~#
+
+# -ii 366 367 368 1802 1806 1807 1829 1830 1832
+# -ic "Singularity Ripple" "Singularity Trace"
+
+# Ozma is based on an A/B timeline pattern.
+# She begins in Sphere form and can morph into Cube or Pyramid stance.
+# The complete flow looks like:
+
+# Sphere opening block -->              --> Cube bridge block ---->       . - - - - - - - - - - ---
+#                                                                         V                       |
+# Cube opening block ----> Intermission --> Sphere bridge block --> (Cube|Sphere) rotation blocks |
+
+2000.0 "--sync--" sync / 00:0839::The Gloriole will be sealed off/ window 2000,5
+2015.0 "Meteor Headmarkers"
+2024.0 "Meteor Impact" sync / 1[56]:[^:]*:Singularity Fragment:1935:/
+
+2045.5 "Transfiguration (Pyramid/Cube?)" sync / 1[56]:[^:]*:Ozma:1826:/ jump 2150.0
+2045.5 "--sync--" sync / 1[56]:[^:]*:Ozma:1803:/ jump 2250.0
+2052.6 "Execration?"
+2052.6 "Flare Star?"
+2059.0 "Explosion x5?"
+2073.9 "Acceleration Bomb?"
+
+# Pyramid-first path
+
+2150.0 "Transfiguration (Pyramid)" sync / 1[56]:[^:]*:Ozma:1826:/
+2157.1 "Execration" sync / 1[56]:[^:]*:Ozma:1828:/
+2178.4 "Acceleration Bomb" sync / 1[56]:[^:]*:Ozma:182F:/
+2195.7 "Transfiguration (Sphere)" sync / 1[56]:[^:]*:Ozma:1827:/
+2199.1 "--sync--" sync / 14:[^:]*:Ozma:1800:/ window 48.8,5
+2203.8 "Black Hole" sync / 1[56]:[^:]*:Ozma:1800:/ window 53,5 jump 2400.0
+
+# Cube-first path
+
+2250.0 "Transfiguration (Cube)" sync / 1[56]:[^:]*:Ozma:1803:/
+2257.0 "Flare Star" sync / 1[56]:[^:]*:Ozma:1805:/
+2288.0 "Holy" sync / 1[56]:[^:]*:Ozma:182E:/
+2300.0 "Transfiguration (Sphere)" sync / 1[56]:[^:]*:Ozma:1804:/
+2303.3 "--sync--" sync / 14:[^:]*:Ozma:1800:/ window 53.3,5
+2308.0 "Black Hole" sync / 1[56]:[^:]*:Ozma:1800:/ window 58,5 jump 2400.0
+
+# Intermission
+
+2400.0 "Black Hole" # seems to be a 55% HP push.
+# We can't really do anything with this intermission.
+# The only real repetition is the Singularity Echoes casting stuff.
+# But they die well before the intermission ends, so no point.
+# Instead, we just let the timeline play on dead space.
+# The intermission's enrage is probably under 3 minutes, but we have no way to know.
+
+2594.4 "--sync--" sync / 1[56]:[^:]*:Ozma:182D:/ window 194.4,0
+2600.0 "--sync--" sync / 1[56]:[^:]*:Ozma:1826:/ window 200,5 jump 2700.0
+2600.0 "--sync--" sync / 1[56]:[^:]*:Ozma:1803:/ window 200,5 jump 3000.0
+
+# The continuation from the intermission is dependent on whichever was first.
+# Each has its own bridge block, each one leading into a pair of rotation blocks.
+# Because of this, it's necessary to jump around way more than we should have to.
+# Each block seems? to be full of tiny HP pushes back into Sphere form.
+
+
+# Cube-first continued
+2700.0 "Transfiguration (Pyramid)" sync / 1[56]:[^:]*:Ozma:1826:/
+2707.0 "Execration" sync / 1[56]:[^:]*:Ozma:1828:/
+2728.0 "Acceleration Bomb" sync / 1[56]:[^:]*:Ozma:182F:/
+2745.0 "Transfiguration (Sphere)" sync / 1[56]:[^:]*:Ozma:1827:/ window 45,5
+2763.0 "Meteor Impact" sync / 1[56]:[^:]*:Singularity Fragment:1935:/
+
+2790.8 "Transfiguration (Cube/Pyramid?)" sync / 1[56]:[^:]*:Ozma:1826:/ window 50,5 jump 3200
+2790.8 "--sync--" sync / 1[56]:[^:]*:Ozma:1803:/ window 50,5 jump 3400
+2797.8 "Execration?"
+2797.8 "Flare Star?"
+2809.8 "Holy?"
+2813.8 "Acceleration Bomb?"
+2816.8 "Meteor Impact?"
+
+
+# Pyramid-first continued
+
+3000.0 "Transfiguration (Cube)" sync / 1[56]:[^:]*:Ozma:1803:/
+3007.0 "Flare Star" sync / 1[56]:[^:]*:Ozma:1805:/
+3011.0 "Tank Lasers" # sync / 1[56]:[^:]*:Ozma:1831:/
+3029.7 "Transfiguration (Sphere)" sync / 1[56]:[^:]*:Ozma:1804:/
+3047.9 "Meteor Impact" sync / 1[56]:[^:]*:Singularity Fragment:1935:/
+
+3080.8 "Transfiguration (Cube/Pyramid?)" sync / 1[56]:[^:]*:Ozma:1826:/ window 50,5 jump 3200
+3080.8 "--sync--" sync / 1[56]:[^:]*:Ozma:1803:/ window 50,5 jump 3400
+3087.8 "Execration?"
+3087.8 "Flare Star?"
+3091.8 "Tank Lasers?"
+3099.8 "Holy?"
+3103.8 "Acceleration Bomb?"
+
+
+# Pyramid standard rotation
+
+3200.0 "Transfiguration (Pyramid)" sync / 1[56]:[^:]*:Ozma:1826:/
+3207.0 "Execration" sync / 1[56]:[^:]*:Ozma:1828:/
+3223.0 "Acceleration Bomb" sync / 1[56]:[^:]*:Ozma:182F:/
+3226.0 "Meteor Impact" sync / 1[56]:[^:]*:Singularity Fragment:1935:/
+3246.5 "Meteor" # sync / 1[56]:[^:]*:Ozma:182D:/
+3261.0 "Acceleration Bomb" sync / 1[56]:[^:]*:Ozma:182F:/
+3263.0 "Transfiguration (Sphere)" sync / 1[56]:[^:]*:Ozma:1827:/ window 50,5
+
+3275.0 "Transfiguration (Cube/Pyramid?)" sync / 1[56]:[^:]*:Ozma:1826:/ window 50,5 jump 3200
+3275.0 "--sync--" sync / 1[56]:[^:]*:Ozma:1803:/ jump 3400
+3282.0 "Execration?"
+3282.0 "Flare Star?"
+3286.0 "Tank Lasers?"
+3294.0 "Holy?"
+3298.0 "Acceleration Bomb?"
+
+
+# Cube standard rotation
+
+3400.0 "Transfiguration (Cube)" sync / 1[56]:[^:]*:Ozma:1803:/
+3407.0 "Flare Star" sync / 1[56]:[^:]*:Ozma:1805:/
+3411.0 "Tank Lasers" # sync / 1[56]:[^:]*:Ozma:1831:/
+3419.2 "Holy" sync / 1[56]:[^:]*:Ozma:182E:/
+3435.1 "Meteor Impact" sync / 1[56]:[^:]*:Singularity Fragment:1935:/
+3441.3 "Holy" sync / 1[56]:[^:]*:Ozma:182E:/
+3456.6 "Meteor" # sync / 1[56]:[^:]*:Ozma:182D:/
+3463.2 "Transfiguration (Sphere)" sync / 1[56]:[^:]*:Ozma:1804:/ window 50,5
+
+3475.2 "Transfiguration (Cube/Pyramid?)" sync / 1[56]:[^:]*:Ozma:1826:/ window 50,5 jump 3200
+3475.2 "--sync--" sync / 1[56]:[^:]*:Ozma:1803:/ window 50,5 jump 3400
+3482.2 "Execration?"
+3482.2 "Flare Star?"
+3486.2 "Tank Lasers?"
+3494.2 "Holy?"
+3498.2 "Acceleration Bomb?"
+
+
+
+
+#~~~~~~~~~~~~~#
+# CALOFISTERI #
+#~~~~~~~~~~~~~#
+
+# -ii 181B 181C 181D 181E 1928
+
+# 1811 and 180D are releasing hair after Haircut and Split End cleaves
+
+4000.0 "--sync--" sync / 00:0839::The Tomb Of The Nullstone will be sealed off/ window 4000,5
+4004.1 "Bloodied Nail x4" # sync / 1[56]:[^:]*:Calofisteri:181F:/
+4018.8 "Coif Change" sync / 1[56]:[^:]*:Calofisteri:180[AE]:/ window 18.8,5
+4027.8 "Haircut" sync / 1[56]:[^:]*:Calofisteri:180[BF]:/
+4030.8 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+4035.8 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+4040.8 "Extension" sync / 1[56]:[^:]*:Calofisteri:1812:/
+4043.8 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+4047.8 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+4051.9 "--sync--" sync / 1[56]:[^:]*:Calofisteri:18(0D|11):/ window 51,5
+4054.9 "Coif Change" sync / 1[56]:[^:]*:Calofisteri:180[AE]:/
+4063.9 "Haircut" sync / 1[56]:[^:]*:Calofisteri:180[BF]:/
+4066.9 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+4071.9 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+4076.9 "Extension" sync / 1[56]:[^:]*:Calofisteri:1812:/
+4079.9 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+4083.9 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+4090.9 "Haircut" sync / 1[56]:[^:]*:Calofisteri:180[BF]:/
+4093.9 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+4096.9 "Aura Burst" sync / 1[56]:[^:]*:Calofisteri:1821:/
+4099.8 "--sync--" sync / 1[56]:[^:]*:Calofisteri:18(0D|11):/ window 40,5
+4101.4 "--untargetable--"
+4103.8 "Dancing Mad" sync / 1[56]:[^:]*:Calofisteri:1818:/ window 103.8,5
+
+# An intermission full of SKY LASERS
+4112.3 "Feint Particle Beam x16" sync / 1[56]:[^:]*:Calofisteri:1927:/ duration 10
+4131.6 "Feint Particle Beam x16" sync / 1[56]:[^:]*:Calofisteri:1927:/ duration 10
+4140.9 "Feint Particle Beam x16" sync / 1[56]:[^:]*:Calofisteri:1927:/ jump 4112.3
+4160.8 "Feint Particle Beam x16"
+
+
+# Returning to a broken bridge block.
+# It doesn't look like time taken on the intermission affects how many times
+# Dancing Mad strikes.
+
+4200.0 "Mana Drain" sync / 1[56]:[^:]*:Calofisteri:1819:/ window 80,5
+4204.0 "Dancing Mad" sync / 1[56]:[^:]*:Calofisteri:181A:/
+4212.9 "--targetable--"
+4215.0 "Coif Change" sync / 1[56]:[^:]*:Calofisteri:180[AE]:/
+4224.0 "Haircut" sync / 1[56]:[^:]*:Calofisteri:180[BF]:/
+4227.0 "--sync--" sync / 1[56]:[^:]*:Calofisteri:18(0D|11):/
+4232.0 "Extension" sync / 1[56]:[^:]*:Calofisteri:1812:/
+4237.0 "--sync--" sync / 1[56]:[^:]*:Calofisteri:1813:/
+4238.0 "Bloodied Nail x3" # sync / 1[56]:[^:]*:Calofisteri:181F:/
+4249.0 "Evil Curl/Evil Tress" sync / 1[56]:[^:]*:Living Lock:181[67]:/
+4251.5 "Extension" sync / 1[56]:[^:]*:Calofisteri:1812:/
+4253.5 "Coif Change" sync / 1[56]:[^:]*:Calofisteri:180[AE]:/ window 15,15
+
+# This section of the bridge may be skipped depending on DPS. HP% for push is unknown.
+4262.5 "Haircut" sync / 1[56]:[^:]*:Calofisteri:180[BF]:/
+4268.5 "Aura Burst" sync / 1[56]:[^:]*:Calofisteri:1821:/
+4273.5 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+4278.5 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+
+4280.5 "--sync--" sync / 1[56]:[^:]*:Calofisteri:18(0D|11):/ window 27,15
+4285.5 "Extension" sync / 1[56]:[^:]*:Calofisteri:1812:/
+4290.5 "--sync--" sync / 1[56]:[^:]*:Calofisteri:1813:/
+4293.4 "Penetration" sync / 1[56]:[^:]*:Calofisteri:1822:/
+
+# Rotation block to 0%
+4296.9 "Coif Change" sync / 1[56]:[^:]*:Calofisteri:180[AE]:/ window 15,15
+4307.2 "Depth Charge" sync / 1[56]:[^:]*:Calofisteri:1820:/
+4311.2 "Haircut" sync / 1[56]:[^:]*:Calofisteri:180[BF]:/
+4317.2 "--sync--" sync / 1[56]:[^:]*:Calofisteri:18(0D|11):/
+4322.2 "Extension" sync / 1[56]:[^:]*:Calofisteri:1812:/
+4325.2 "Bloodied Nail x3" # sync / 1[56]:[^:]*:Calofisteri:181F:/
+4332.2 "Aura Burst" sync / 1[56]:[^:]*:Calofisteri:1821:/
+4338.7 "Coif Change" sync / 1[56]:[^:]*:Calofisteri:180[AE]:/ window 15,15
+4339.2 "Evil Switch" sync / 1[56]:[^:]*:Living Lock:1815:/
+4345.7 "Haircut" sync / 1[56]:[^:]*:Calofisteri:180[BF]:/
+4351.7 "Extension" sync / 1[56]:[^:]*:Calofisteri:1812:/
+4356.7 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+4358.7 "--sync--" sync / 1[56]:[^:]*:Calofisteri:18(0D|11):/
+4363.7 "Extension" sync / 1[56]:[^:]*:Calofisteri:1812:/
+4367.7 "Bloodied Nail x3" # sync / 1[56]:[^:]*:Calofisteri:181F:/
+4377.2 "Aura Burst" sync / 1[56]:[^:]*:Calofisteri:1821:/
+4379.2 "Coif Change" sync / 1[56]:[^:]*:Calofisteri:180[AE]:/ window 15,15
+4380.7 "Evil Curl/Evil Tress" sync / 1[56]:[^:]*:Living Lock:181[67]:/
+4386.3 "Haircut" sync / 1[56]:[^:]*:Calofisteri:180[BF]:/
+4392.3 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+4397.3 "Split End" sync / 1[56]:[^:]*:Calofisteri:18(0C|10):/
+4402.3 "Aura Burst" sync / 1[56]:[^:]*:Calofisteri:1821:/
+4404.3 "--sync--" sync / 1[56]:[^:]*:Calofisteri:18(0D|11):/
+4409.3 "Extension" sync / 1[56]:[^:]*:Calofisteri:1812:/
+4414.3 "--sync--" sync / 1[56]:[^:]*:Calofisteri:1813:/
+4417.7 "Penetration" sync / 1[56]:[^:]*:Calofisteri:1822:/
+4421.2 "Evil Curl/Evil Tress" sync / 1[56]:[^:]*:Living Lock:181[67]:/
+
+4421.2 "Coif Change" sync / 1[56]:[^:]*:Calofisteri:180[AE]:/ window 15,15 jump 4296.9
+4431.5 "Depth Charge"
+4435.5 "Haircut"
+4446.5 "Extension"
+4449.5 "Bloodied Nail x3"
+4456.5 "Aura Burst"

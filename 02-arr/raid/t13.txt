@@ -1,0 +1,239 @@
+### Turn 13
+# -ii BB0 BB1 BAC BBC BC5 BD0 BCC BCF -p BAD:7 BB9:200
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1: Megaflare Warmup
+0.0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.0 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:BAC:/ window 2,1
+7.0 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/ window 7,10
+15.1 "Megaflare" sync / 1[56]:[^:]*:Bahamut Prime:BAF:/ window 80,80
+18.8 "MF Spread" #sync / 1[56]:[^:]*:Bahamut Prime:BB0:/
+20.5 "MF Pepperoni" #sync / 1[56]:[^:]*:Bahamut Prime:BB1:/
+22.6 "MF Share" sync / 1[56]:[^:]*:Bahamut Prime:BB2:/
+25.1 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/ window 10,5
+33.1 "Flatten" sync / 1[56]:[^:]*:Bahamut Prime:BAE:/ window 30,30
+35.2 "Flare Breath x3" duration 4
+45.4 "Earth Shaker Marker"
+50.4 "Earth Shaker x3" duration 4
+
+56.6 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+64.7 "Megaflare" sync / 1[56]:[^:]*:Bahamut Prime:BAF:/ window 80,80
+68.4 "MF Spread"
+70.1 "MF Pepperoni"
+72.2 "MF Share"
+74.7 "Flare Breath"
+82.7 "Flatten"
+84.8 "Flare Breath x3"
+95.0 "Earth Shaker Marker"
+100.0 "Earth Shaker x3"
+
+
+### Phase 2 (75%): Flare Star, Rage of Bahamut, Dragons
+195.0 "--sync--" sync / 14:[^:]*:Bahamut Prime:BB9:/ window 200,0
+200.0 "Gigaflare" sync / 1[56]:[^:]*:Bahamut Prime:BB9:/ window 200,5
+
+203.0 "Shadow Add (N)"
+212.3 "Flare Star" sync / 1[56]:[^:]*:Bahamut Prime:BBB:/
+214.1 "(1x Dark Aether Orb)"
+220.5 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+226.6 "(3x Dark Aether Orbs)"
+234.5 "Flatten" sync / 1[56]:[^:]*:Bahamut Prime:BAE:/
+237.8 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+238.4 "(3x Dark Aether Orbs)"
+252.8 "Megaflare" sync / 1[56]:[^:]*:Bahamut Prime:BAF:/
+256.0 "MF Spread"
+258.0 "MF Pepperoni"
+260.3 "MF Share"
+261.9 "MF Tower" sync / 1[56]:[^:]*:Bahamut Prime:BB3:/
+263.0 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+269.1 "Rage Of Bahamut" sync / 1[56]:[^:]*:Bahamut Prime:BBD:/
+
+270.1 "Shadow Add (SW)"
+278.3 "Flare Star" sync / 1[56]:[^:]*:Bahamut Prime:BBB:/
+280.1 "(3x Dark Aether Orbs)"
+286.5 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+292.1 "(3x Dark Aether Orbs)"
+300.5 "Flatten" sync / 1[56]:[^:]*:Bahamut Prime:BAE:/
+303.8 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+304.6 "(2x Dark Aether Orbs)"
+318.8 "Megaflare" sync / 1[56]:[^:]*:Bahamut Prime:BAF:/
+322.0 "MF Spread"
+324.0 "MF Pepperoni"
+326.3 "MF Share"
+327.9 "MF Tower" sync / 1[56]:[^:]*:Bahamut Prime:BB3:/
+329.0 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+335.1 "Rage Of Bahamut" sync / 1[56]:[^:]*:Bahamut Prime:BBD:/
+
+336.1 "Shadow Add (SE)"
+344.3 "Flare Star" sync / 1[56]:[^:]*:Bahamut Prime:BBB:/
+346.1 "(3x Dark Aether Orbs)"
+352.5 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+358.1 "(3x Dark Aether Orbs)"
+366.5 "Flatten" sync / 1[56]:[^:]*:Bahamut Prime:BAE:/
+369.8 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+370.6 "(2x Dark Aether Orbs)"
+384.8 "Megaflare" sync / 1[56]:[^:]*:Bahamut Prime:BAF:/
+388.0 "MF Spread"
+390.0 "MF Pepperoni"
+392.3 "MF Share"
+393.9 "MF Tower" sync / 1[56]:[^:]*:Bahamut Prime:BB3:/
+395.0 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+401.1 "Rage Of Bahamut" sync / 1[56]:[^:]*:Bahamut Prime:BBD:/
+
+402.1 "Shadow Add"
+410.3 "Flare Star" sync / 1[56]:[^:]*:Bahamut Prime:BBB:/ window 50,50 jump 344.3
+412.1 "(3x Dark Aether Orbs)"
+418.5 "Flare Breath"
+424.1 "(3x Dark Aether Orbs)"
+432.5 "Flatten"
+435.8 "Flare Breath"
+436.6 "(2x Dark Aether Orbs)"
+450.8 "Megaflare"
+454.0 "MF Spread"
+456.0 "MF Pepperoni"
+458.3 "MF Share"
+459.9 "MF Tower"
+461.0 "Flare Breath"
+467.1 "Rage Of Bahamut"
+
+
+### Phase 3 (52%): adds, adds, adds
+495.0 "--sync--" sync / 14:[^:]*:Bahamut Prime:BB9:/ window 290,0
+500.0 "Gigaflare" sync / 1[56]:[^:]*:Bahamut Prime:BB9:/
+505.4 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:BBE:/
+508.5 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:BBF:/
+514.7 "Megaflare Dive" sync / 1[56]:[^:]*:Bahamut Prime:BC0:/
+516.6 "Double Dive" sync / 1[56]:[^:]*:The Storm of Meracydia:BC8:/
+517.8 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:BBE:/
+518.7 "MF Spread"
+520.9 "MF Pepperoni"
+523.0 "MF Share"
+525.1 "Blood, Pain Adds (E/W)"
+545.5 "3x Gust Adds"
+571.2 "2x Sin Adds (N/S)"
+599.7 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:BBF:/
+605.8 "Megaflare Dive" sync / 1[56]:[^:]*:Bahamut Prime:BC0:/
+607.7 "Double Dive" sync / 1[56]:[^:]*:The Storm of Meracydia:BC8:/
+608.9 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:BBE:/
+609.8 "MF Spread"
+612.0 "MF Pepperoni"
+614.1 "MF Share"
+620.3 "Storm Add (Center)"
+631.1 "Blood Add (N)"
+641.1 "2x Gust Adds (S)"
+651.6 "Sin Add (E)"
+672.2 "Pain Add (W)"
+692.8 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:BBF:/
+698.9 "Megaflare Dive" sync / 1[56]:[^:]*:Bahamut Prime:BC0:/
+702.1 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:BB  E:/
+702.9 "MF Spread"
+705.1 "MF Pepperoni"
+707.2 "MF Share"
+725.4 "Teraflare" sync / 1[56]:[^:]*:Bahamut Prime:BC1:/ window 700,700
+
+
+### Phase 4: Akh Morns, Tempest Wings
+735.6 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:BBE:/
+737.8 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:BBF:/
+
+745.1 "Akh Morn x2" sync / 1[56]:[^:]*:Bahamut Prime:BC2:/ window 40,40 duration 2.1
+759.5 "Megaflare" sync / 1[56]:[^:]*:Bahamut Prime:BAF:/
+764.6 "MF Pepperoni"
+766.6 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:BC4:/
+767.3 "MF Share" sync / 1[56]:[^:]*:Bahamut Prime:BB2:/
+767.9 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:C89:/ # Tempest Wing Gust?
+768.6 "MF Tower(s)" sync / 1[56]:[^:]*:Bahamut Prime:BB3:/
+781.7 "Earth Shaker Marker"
+786.7 "Earth Shaker x3" duration 4
+787.7 "Tempest Wing Tethers"
+793.7 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:BC4:/
+794.9 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:C89:/
+795.9 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+
+807.1 "Akh Morn x3" sync / 1[56]:[^:]*:Bahamut Prime:BC2:/ window 40,40 duration 3.1
+822.3 "Megaflare" sync / 1[56]:[^:]*:Bahamut Prime:BAF:/
+827.4 "MF Pepperoni"
+829.4 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:BC4:/
+830.1 "MF Share" sync / 1[56]:[^:]*:Bahamut Prime:BB2:/
+830.7 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:C89:/
+831.4 "MF Tower(s)" sync / 1[56]:[^:]*:Bahamut Prime:BB3:/
+844.5 "Earth Shaker Marker"
+849.5 "Earth Shaker x3" duration 4
+850.5 "Tempest Wing Tethers"
+856.5 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:BC4:/
+857.7 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:C89:/
+858.7 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+
+871.4 "Gigaflare" sync / 1[56]:[^:]*:Bahamut Prime:BB9:/ window 100,100
+
+880.8 "Akh Morn x4" sync / 1[56]:[^:]*:Bahamut Prime:BC2:/ window 40,40 duration 4.1
+897.2 "Megaflare" sync / 1[56]:[^:]*:Bahamut Prime:BAF:/
+902.3 "MF Pepperoni"
+904.3 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:BC4:/
+905.0 "MF Share" sync / 1[56]:[^:]*:Bahamut Prime:BB2:/
+905.6 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:C89:/
+906.3 "MF Tower(s)" sync / 1[56]:[^:]*:Bahamut Prime:BB3:/
+919.4 "Earth Shaker Marker"
+924.4 "Earth Shaker x3" duration 4
+925.4 "Tempest Wing Tethers"
+931.4 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:BC4:/
+932.6 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:C89:/
+933.6 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+
+944.8 "Akh Morn x5" sync / 1[56]:[^:]*:Bahamut Prime:BC2:/ window 40,40 duration 5.1
+962.2 "Megaflare" sync / 1[56]:[^:]*:Bahamut Prime:BAF:/
+967.3 "MF Pepperoni"
+969.3 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:BC4:/
+970.0 "MF Share" sync / 1[56]:[^:]*:Bahamut Prime:BB2:/
+970.6 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:C89:/
+971.3 "MF Tower(s)" sync / 1[56]:[^:]*:Bahamut Prime:BB3:/
+984.4 "Earth Shaker Marker"
+989.4 "Earth Shaker x3" duration 4
+990.4 "Tempest Wing Tethers"
+996.4 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:BC4:/
+997.6 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:C89:/
+998.6 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+
+1011.3 "Gigaflare" sync / 1[56]:[^:]*:Bahamut Prime:BB9:/ window 100,100
+
+1020.7 "Akh Morn x6" sync / 1[56]:[^:]*:Bahamut Prime:BC2:/ window 40,40 duration 6.1
+1039.1 "Megaflare" sync / 1[56]:[^:]*:Bahamut Prime:BAF:/
+1044.2 "MF Pepperoni"
+1046.2 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:BC4:/
+1046.9 "MF Share" sync / 1[56]:[^:]*:Bahamut Prime:BB2:/
+1047.5 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:C89:/
+1048.2 "MF Tower(s)" sync / 1[56]:[^:]*:Bahamut Prime:BB3:/
+1061.3 "Earth Shaker Marker"
+1066.3 "Earth Shaker x3" duration 4
+1067.3 "Tempest Wing Tethers"
+1073.3 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:BC4:/
+1074.5 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:C89:/
+1075.5 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+
+1086.7 "Akh Morn x7" sync / 1[56]:[^:]*:Bahamut Prime:BC2:/ window 40,40 duration 7.1
+1106.1 "Megaflare" sync / 1[56]:[^:]*:Bahamut Prime:BAF:/
+1111.2 "MF Pepperoni"
+1113.2 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:BC4:/
+1113.9 "MF Share" sync / 1[56]:[^:]*:Bahamut Prime:BB2:/
+1114.5 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:C89:/
+1115.2 "MF Tower(s)" sync / 1[56]:[^:]*:Bahamut Prime:BB3:/
+1128.3 "Earth Shaker Marker"
+1133.3 "Earth Shaker x3" duration 4
+1134.3 "Tempest Wing Tethers"
+1140.3 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:BC4:/
+1141.5 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:C89:/
+1142.5 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/
+
+1155.2 "Gigaflare" sync / 1[56]:[^:]*:Bahamut Prime:BB9:/ window 100,100
+
+
+### Enrage
+2000.0 "--sync--" sync / 14:[^:]*:Bahamut Prime:BBA:/ window 2000,2000
+2010.0 "Gigaflare Enrage"
+2025.2 "Gigaflare Enrage"
+2037.4 "Gigaflare Enrage"

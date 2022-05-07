@@ -1,0 +1,122 @@
+### Warrior of Light (normal)
+#
+# -ii 4F43 4F0E 4F0F 4F3C 531E 4F3A 4F1F 4F0D 4F16 4F17 4F18 4F19 4F1B 4F48 5251 4F23 5417
+# -p 4F27:9.3 547C:306.8 -it "Warrior Of Light"
+
+hideall "--sync--"
+hideall "--Reset--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1: 100%->50%
+# Note: Don't sync on engage or auto here because there's a checkpoint.
+0.0 "Start"
+5.2 "--sync--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/ window 20,20 jump 475.4
+6.3 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F27:/ window 10,10
+9.3 "Terror Unleashed" sync / 1[56]:[^:]*:Warrior Of Light:4F27:/
+25.1 "Solemn Confiteor" sync / 1[56]:[^:]*:Warrior Of Light:4F2A:/
+31.6 "Coruscant Saber (In)" sync / 1[56]:[^:]*:Warrior Of Light:4F11:/
+42.7 "Coruscant Saber (Out)" sync / 1[56]:[^:]*:Warrior Of Light:4F10:/
+51.9 "Absolute Fire III" sync / 1[56]:[^:]*:Warrior Of Light:4F2E:/
+65.2 "Absolute Blizzard III" sync / 1[56]:[^:]*:Warrior Of Light:4F2D:/
+
+76.5 "Imbued Fire/Blizzard" sync / 1[56]:[^:]*:Warrior Of Light:4F1[23]:/
+89.6 "Imbued Coruscance" sync / 1[56]:[^:]*:Warrior Of Light:4F4[BC]:/
+
+101.9 "Sword Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F42:/
+115.2 "Summon Wyrm" sync / 1[56]:[^:]*:Warrior Of Light:4F41:/
+120.1 "Shining Wave" sync / 1[56]:[^:]*:Warrior Of Light:4F26:/
+125.4 "Cauterize" sync / 1[56]:[^:]*:Wyrm Of Light:4F25:/
+131.4 "The Bitter End" sync / 1[56]:[^:]*:Warrior Of Light:4F28:/
+139.5 "Elddragon Dive" sync / 1[56]:[^:]*:Warrior Of Light:4F29:/
+153.1 "Imbued Fire/Blizzard" sync / 1[56]:[^:]*:Warrior Of Light:4F1[23]:/
+# FIXME: guessing here on timing
+166.2 "Imbued Coruscance" sync / 1[56]:[^:]*:Warrior Of Light:4F4[BC]:/
+# FIXME: missing an elddragon dive too??
+# FIXME: need a natural push
+
+### Cutscene: 50%
+300.0 "--sync--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+302.3 "--sync--" sync / 14:[^:]*:Warrior Of Light:5331:/ window 400,100
+308.3 "Ascendance" sync / 1[56]:[^:]*:Warrior Of Light:5331:/
+311.4 "--untargetable--"
+311.5 "--sync--" sync / 1[56]:[^:]*:Warrior Of Light:5071:/
+319.6 "Absolute Teleport" sync / 1[56]:[^:]*:Warrior Of Light:5332:/
+324.3 "--sync--" sync / 1[56]:[^:]*:Warrior Of Light:5083:/
+346.0 "--active time event--" duration 15
+447.1 "--sync--" sync / 1[56]:[^:]*:Warrior Of Light:5383:/
+457.1 "--sync--" sync / 1[56]:[^:]*:Warrior Of Light:547B:/
+463.2 "Ultimate Crossover" sync / 1[56]:[^:]*:Warrior Of Light:547C:/
+
+### Phase 2: Checkpoint, 50%->0%
+# Can't sync any of these things back to t=0 because they all appear in phase 1.
+# Phase 1 includes a jump to the middle line to sync.
+470.2 "--targetable--"
+475.4 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+480.8 "Imbued Fire/Blizzard" sync / 1[56]:[^:]*:Warrior Of Light:4F1[23]:/
+
+490.0 "Specter Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F37:/ window 350,10
+500.4 "Twincast" sync / 1[56]:[^:]*:Spectral Black Mage:4F3D:/
+515.0 "Meteor Impact 1" #sync / 1[56]:[^:]*:Spectral Black Mage:4F21:/
+518.0 "Meteor Impact 2" #sync / 1[56]:[^:]*:Spectral Black Mage:4F21:/
+521.0 "Meteor Impact 3" #sync / 1[56]:[^:]*:Spectral Black Mage:4F21:/
+524.0 "Meteor Impact 4" #sync / 1[56]:[^:]*:Spectral Black Mage:4F21:/
+528.2 "Imbued Coruscance" sync / 1[56]:[^:]*:Warrior Of Light:4F4[BC]:/
+
+537.3 "Elddragon Dive" sync / 1[56]:[^:]*:Warrior Of Light:4F29:/
+547.6 "Summon Wyrm" sync / 1[56]:[^:]*:Warrior Of Light:4F41:/
+551.7 "Brimstone Earth" sync / 1[56]:[^:]*:Spectral Dark Knight:4F1E:/
+555.9 "Deluge Of Death" sync / 1[56]:[^:]*:Spectral Bard:4F3B:/
+557.8 "Cauterize" sync / 1[56]:[^:]*:Wyrm Of Light:4F25:/
+566.0 "Deluge Of Death" sync / 1[56]:[^:]*:Spectral Bard:4F20:/
+566.0 "Absolute Holy" sync / 1[56]:[^:]*:Warrior Of Light:4F2B:/
+575.9 "The Bitter End" sync / 1[56]:[^:]*:Warrior Of Light:4F28:/
+582.2 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+
+587.5 "To The Limit 1" sync / 1[56]:[^:]*:Warrior Of Light:4F34:/
+598.7 "Radiant Braver" sync / 1[56]:[^:]*:Warrior Of Light:5254:/
+
+605.1 "To The Limit 2" sync / 1[56]:[^:]*:Warrior Of Light:4F35:/
+610.4 "--sync--" sync / 1[56]:[^:]*:Warrior Of Light:4F46:/
+616.3 "Radiant Desperado" sync / 1[56]:[^:]*:Warrior Of Light:515D:/
+
+628.0 "To The Limit 3" sync / 1[56]:[^:]*:Warrior Of Light:4F36:/
+639.1 "Radiant Meteor" sync / 1[56]:[^:]*:Warrior Of Light:4F1A:/
+
+650.4 "Sword Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F42:/
+668.6 "Shining Wave" sync / 1[56]:[^:]*:Warrior Of Light:4F26:/
+
+670.7 "Absolute Fire/Blizzard" sync / 1[56]:[^:]*:Warrior Of Light:4F2[DE]:/
+678.9 "Elddragon Dive" sync / 1[56]:[^:]*:Warrior Of Light:4F29:/
+683.1 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+688.3 "Imbued Fire/Blizzard" sync / 1[56]:[^:]*:Warrior Of Light:4F1[23]:/
+
+697.5 "Specter Of Light" sync / 1[56]:[^:]*:Warrior Of Light:4F37:/
+706.9 "--sync--" sync / 1[56]:[^:]*:Spectral Ninja:4F38:/
+714.0 "--sync--" sync / 1[56]:[^:]*:Spectral Ninja:4F39:/
+717.0 "Suiton: San" sync / 1[56]:[^:]*:Spectral Ninja:4F1C:/
+718.8 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/
+722.1 "Katon: San" sync / 1[56]:[^:]*:Spectral Ninja:4F1D:/
+
+727.0 "Summon" sync / 1[56]:[^:]*:Spectral Summoner:4F3F:/
+727.9 "Imbued Coruscance" sync / 1[56]:[^:]*:Warrior Of Light:4F4[BC]:/
+
+738.6 "Solemn Confiteor" sync / 1[56]:[^:]*:Warrior Of Light:4F2A:/
+743.3 "Flare Breath" sync / 1[56]:[^:]*:Spectral Egi:4F24:/
+752.4 "The Bitter End" sync / 1[56]:[^:]*:Warrior Of Light:4F28:/
+756.1 "Perfect Decimation" sync / 1[56]:[^:]*:Spectral Warrior:4F3E:/
+
+760.6 "Absolute Fire/Blizzard" sync / 1[56]:[^:]*:Warrior Of Light:4F2[DE]:/
+761.0 "Perfect Decimation" sync / 1[56]:[^:]*:Spectral Warrior:4F23:/
+772.8 "Elddragon Dive" sync / 1[56]:[^:]*:Warrior Of Light:4F29:/
+
+786.2 "--middle--" sync / 1[56]:[^:]*:Warrior Of Light:4F45:/ window 50,50 jump 475.4
+791.6 "Imbued Fire/Blizzard" #sync / 1[56]:[^:]*:Warrior Of Light:4F1[23]:/
+
+800.8 "Specter Of Light" #sync / 1[56]:[^:]*:Warrior Of Light:4F37:/
+811.2 "Twincast" #sync / 1[56]:[^:]*:Spectral Black Mage:4F3D:/
+825.8 "Meteor Impact 1" #sync / 1[56]:[^:]*:Spectral Black Mage:4F21:/
+828.8 "Meteor Impact 2" #sync / 1[56]:[^:]*:Spectral Black Mage:4F21:/
+831.8 "Meteor Impact 3" #sync / 1[56]:[^:]*:Spectral Black Mage:4F21:/
+834.8 "Meteor Impact 4" #sync / 1[56]:[^:]*:Spectral Black Mage:4F21:/
+839.0 "Imbued Coruscance" #sync / 1[56]:[^:]*:Warrior Of Light:4F4[BC]:/

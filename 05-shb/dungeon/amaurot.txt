@@ -1,0 +1,96 @@
+### Amaurot
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+
+### The First Beast
+# -p 3CCE:113.5 -ii 3CC6 3CCA 3CC8
+
+100.0 "--sync--" sync / 00:0839::The First Doom will be sealed off/ window 100,0
+101.5 "--sync--" sync / 1[56]:[^:]*:The First Beast:368:/ window 102,0
+113.5 "Venomous Breath" sync / 1[56]:[^:]*:The First Beast:3CCE:/
+122.7 "Meteor Rain" sync / 1[56]:[^:]*:The First Beast:3CC4:/
+132.9 "The Falling Sky" sync / 1[56]:[^:]*:The First Beast:3CC9:/
+136.3 "Cosmic Kiss" sync / 1[56]:[^:]*:Fallen Star:42D4:/
+151.6 "The Final Sky" sync / 1[56]:[^:]*:The First Beast:3CCB:/
+
+153.0 "Cosmic Shrapnel" sync / 1[56]:[^:]*:Fallen Star:42D6:/
+171.0 "Venomous Breath" sync / 1[56]:[^:]*:The First Beast:3CCE:/
+181.2 "Earthquake" sync / 1[56]:[^:]*:The First Beast:3CCD:/
+190.4 "Venomous Breath" sync / 1[56]:[^:]*:The First Beast:3CCE:/
+200.8 "Meteor Rain" sync / 1[56]:[^:]*:The First Beast:3CC4:/
+211.1 "The Falling Sky" sync / 1[56]:[^:]*:The First Beast:3CC9:/
+214.5 "Cosmic Kiss" sync / 1[56]:[^:]*:Fallen Star:42D4:/
+220.5 "The Burning Sky" sync / 1[56]:[^:]*:The First Beast:3CC7:/
+239.0 "The Final Sky" sync / 1[56]:[^:]*:The First Beast:3CCB:/
+
+240.4 "Cosmic Shrapnel" sync / 1[56]:[^:]*:Fallen Star:42D6:/ window 30,30 jump 153
+258.4 "Venomous Breath"
+268.6 "Earthquake"
+277.8 "Venomous Breath"
+288.2 "Meteor Rain"
+298.5 "The Falling Sky"
+301.9 "Cosmic Kiss"
+307.9 "The Burning Sky"
+326.4 "The Final Sky"
+
+
+### Terminus Bellwether
+# -p 3CCF:523 -ii 465D 3CE4 3CD3 3CD2 3CD5 417D
+500.0 "--sync--" sync / 00:0839::The Second Doom will be sealed off/ window 500,0
+501.5 "--sync--" sync / 1[56]:[^:]*:Terminus Bellwether:368:/ window 502,0
+523.0 "Shrill Shriek" sync / 1[56]:[^:]*:Terminus Bellwether:3CCF:/
+525.0 "--untargetable--"
+525.0 "Adds (N)"
+561.3 "Adds (SW)" sync / 03:........:Terminus Roiler:/  window 60,60
+610.9 "Adds (S)" sync / 03:........:Terminus Pursuer:/  window 100,100
+800.0 "--sync--" sync / 14:[^:]*:Terminus Bellwether:3CD0:/ window 300,00
+840.0 "Burst" sync / 1[56]:[^:]*:Terminus Bellwether:3CD0:/ window 40,40
+
+
+### Therion
+# -ii 3CD6 3CDD 3CD9 3CDE 3CE1 3CDB 4191 4192 -p 3CE3:1013
+1000.0 "--sync--" sync / 00:0839::The Third Doom will be sealed off/ window 1000,0
+1001.0 "--sync--" sync / 1[56]:[^:]*:Therion:3CD6:/ window 1001,0
+1013.0 "Shadow Wreck" sync / 1[56]:[^:]*:Therion:3CE3:/
+1026.2 "Apokalypsis" sync / 1[56]:[^:]*:Therion:3CD7:/ duration 5.9
+1042.8 "Therion Charge" sync / 1[56]:[^:]*:Therion:3CDA:/
+1051.1 "Shadow Wreck" sync / 1[56]:[^:]*:Therion:3CE3:/
+1060.0 "Deathly Ray" sync / 1[56]:[^:]*:The Face of the Beast:3CDC:/ duration 4.4
+1068.9 "Deathly Ray" sync / 1[56]:[^:]*:The Face of the Beast:3CDC:/ duration 4.4
+1081.6 "Shadow Wreck" sync / 1[56]:[^:]*:Therion:3CE3:/
+1091.5 "Deathly Ray" sync / 1[56]:[^:]*:Therion:3CDF:/ duration 4.3
+1096.5 "--sync--" sync / 1[56]:[^:]*:Therion:42D3:/
+1099.2 "Misfortune" sync / 1[56]:[^:]*:Therion:3CE2:/
+1100.2 "Deathly Ray" sync / 1[56]:[^:]*:Therion:3CDF:/ duration 4.3
+1105.3 "--sync--" sync / 1[56]:[^:]*:Therion:42D3:/
+1115.1 "Apokalypsis" sync / 1[56]:[^:]*:Therion:3CD7:/ duration 5.9
+1131.7 "Therion Charge" sync / 1[56]:[^:]*:Therion:3CDA:/
+1140.0 "Shadow Wreck" sync / 1[56]:[^:]*:Therion:3CE3:/
+
+1148.8 "Deathly Ray" sync / 1[56]:[^:]*:The Face of the Beast:3CDC:/ duration 4.4
+1156.6 "Misfortune" sync / 1[56]:[^:]*:Therion:3CE2:/
+1157.6 "Deathly Ray" sync / 1[56]:[^:]*:The Face of the Beast:3CDC:/ duration 4.4
+1170.3 "Shadow Wreck" sync / 1[56]:[^:]*:Therion:3CE3:/
+1180.2 "Deathly Ray" sync / 1[56]:[^:]*:Therion:3CDF:/ duration 4.3
+1185.2 "--sync--" sync / 1[56]:[^:]*:Therion:42D3:/
+1188.0 "Misfortune" sync / 1[56]:[^:]*:Therion:3CE2:/
+1188.8 "Deathly Ray" sync / 1[56]:[^:]*:Therion:3CDF:/ duration 4.3
+1193.9 "--sync--" sync / 1[56]:[^:]*:Therion:42D3:/
+1202.5 "Shadow Wreck" sync / 1[56]:[^:]*:Therion:3CE3:/
+1213.7 "Apokalypsis" sync / 1[56]:[^:]*:Therion:3CD7:/ duration 5.9
+
+1230.7 "Deathly Ray" sync / 1[56]:[^:]*:The Face of the Beast:3CDC:/ duration 4.4 window 50,50 jump 1148.8
+1238.5 "Misfortune"
+1239.5 "Deathly Ray"
+1252.2 "Shadow Wreck"
+1262.1 "Deathly Ray"
+1267.1 "--sync--"
+1269.9 "Misfortune"
+1270.7 "Deathly Ray"
+1275.8 "--sync--"
+1284.4 "Shadow Wreck"
+1295.6 "Apokalypsis"

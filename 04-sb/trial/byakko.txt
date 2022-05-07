@@ -1,0 +1,116 @@
+### Byakko Normal
+# -p 2A2F:11.4 27EE:204.3 2A2A:259.3
+# -ii 2A36 2A41 2A42 2A48 2A45 2A39 2A4E 27E7
+# -it "Byakko"
+# -it "Hakutei"
+
+hideall "--sync--"
+# redundant with Hundredfold Havoc
+hideall "Answer On High"
+# redundant with Highest Stakes
+hideall "Clutch"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1
+0.0 "--sync--" sync /:Engage!/ window 0,1
+7.4 "--sync--" sync / 14:[^:]*:Byakko:2A2F:/ window 10,10
+11.4 "Storm Pulse" sync / 1[56]:[^:]*:Byakko:2A2F:/
+17.6 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:2A2D:/
+28.7 "State Of Shock" sync / 1[56]:[^:]*:Byakko:27E0:/
+29.8 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
+36.1 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
+42.7 "Sweep The Leg" sync / 1[56]:[^:]*:Byakko:2A2E:/
+54.9 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:2A2D:/
+62.0 "--middle--" sync / 1[56]:[^:]*:Byakko:2757:/
+66.1 "Unrelenting Anguish" sync / 1[56]:[^:]*:Byakko:27ED:/
+71.4 "Aratama" sync / 1[56]:[^:]*:Aratama Force:2A48:/
+72.3 "Storm Pulse" sync / 1[56]:[^:]*:Byakko:2A2F:/
+78.5 "Fire And Lightning" sync / 1[56]:[^:]*:Byakko:2A2C:/
+85.8 "Fire And Lightning" sync / 1[56]:[^:]*:Byakko:2A2C:/
+89.0 "--jump--" sync / 1[56]:[^:]*:Byakko:2757:/
+94.7 "Fire And Lightning" sync / 1[56]:[^:]*:Byakko:2A2C:/
+105.9 "--sync--" sync / 1[56]:[^:]*:Byakko:2757:/
+107.7 "Dance Of The Incomplete" sync / 1[56]:[^:]*:Byakko:25D1:/
+107.8 "--sync--" sync / 1[56]:[^:]*:Hakutei:25CF:/
+111.7 "--untargetable--"
+
+### Hakutei add
+112.7 "--targetable--"
+119.3 "Aratama" sync / 1[56]:[^:]*:Hakutei:2A29:/
+121.9 "Steel Claw 1" sync / 1[56]:[^:]*:Hakutei:2A32:/
+128.0 "Steel Claw 2" sync / 1[56]:[^:]*:Hakutei:2A32:/
+134.0 "--untargetable--"
+139.8 "White Herald" sync / 1[56]:[^:]*:Hakutei:2A4C:/
+141.8 "--targetable--"
+145.9 "Fire And Lightning" sync / 1[56]:[^:]*:Hakutei:2A31:/
+149.1 "--sync--" sync / 1[56]:[^:]*:Hakutei:265E:/
+150.3 "The Voice Of Thunder" sync / 1[56]:[^:]*:Hakutei:2A49:/
+173.4 "The Roar Of Thunder" sync / 1[56]:[^:]*:Hakutei:2A4B:/
+176.5 "--untargetable--"
+
+### Midphase
+204.3 "--sync--" sync / 1[56]:[^:]*:Byakko:27EE:/ window 210,10
+218.6 "Sweep The Leg" sync / 1[56]:[^:]*:Byakko:2A46:/
+222.6 "--sync--" sync / 1[56]:[^:]*:Byakko:27EE:/
+224.3 "Imperial Guard" sync / 1[56]:[^:]*:Hakutei:2A43:/
+238.3 "Imperial Guard" sync / 1[56]:[^:]*:Hakutei:2A43:/
+242.8 "Sweep The Leg" sync / 1[56]:[^:]*:Byakko:2A46:/
+248.3 "Imperial Guard" sync / 1[56]:[^:]*:Hakutei:2A43:/
+
+### Final phase loop
+259.3 "--sync--" sync / 1[56]:[^:]*:Byakko:2A2A:/ window 260,100
+274.3 "Fell Swoop" sync / 1[56]:[^:]*:Byakko:2A4D:/
+
+294.5 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:2A2D:/
+300.6 "Answer On High" sync / 1[56]:[^:]*:Byakko:27E4:/
+305.6 "Hundredfold Havoc 1" sync / 1[56]:[^:]*:Byakko:2A38:/
+308.6 "Hundredfold Havoc 2" sync / 1[56]:[^:]*:Byakko:2A38:/
+316.7 "Bombogenesis" sync / 1[56]:[^:]*:Byakko:2A3B:/
+320.8 "Distant Clap" sync / 1[56]:[^:]*:Byakko:2A30:/
+
+326.9 "Answer On High" sync / 1[56]:[^:]*:Byakko:27E4:/
+331.9 "Hundredfold Havoc 1" sync / 1[56]:[^:]*:Byakko:2A38:/
+333.0 "State Of Shock 1" sync / 1[56]:[^:]*:Byakko:27E0:/
+334.1 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
+334.9 "Hundredfold Havoc 2" sync / 1[56]:[^:]*:Byakko:2A38:/
+340.3 "Highest Stakes 1" sync / 1[56]:[^:]*:Byakko:27E2:/
+342.9 "State Of Shock 2" sync / 1[56]:[^:]*:Byakko:2756:/
+344.0 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
+350.3 "Highest Stakes 2" sync / 1[56]:[^:]*:Byakko:27E2:/
+356.9 "Sweep The Leg" sync / 1[56]:[^:]*:Byakko:2A2E:/
+362.2 "--sync--" sync / 1[56]:[^:]*:Byakko:2757:/
+367.0 "Bombogenesis" sync / 1[56]:[^:]*:Byakko:2A3B:/
+367.8 "Fire And Lightning" sync / 1[56]:[^:]*:Byakko:2A2C:/
+383.1 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:2A2D:/
+393.2 "Sweep The Leg" sync / 1[56]:[^:]*:Byakko:2A2E:/
+
+399.4 "--middle--" sync / 1[56]:[^:]*:Byakko:2757:/
+403.7 "Unrelenting Anguish" sync / 1[56]:[^:]*:Byakko:27ED:/
+409.8 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:2A2F:/
+418.2 "Fire And Lightning" sync / 1[56]:[^:]*:Byakko:2A2C:/
+424.5 "--sync--" sync / 1[56]:[^:]*:Byakko:2757:/
+429.4 "Bombogenesis" sync / 1[56]:[^:]*:Byakko:2A3B:/
+430.3 "Fire And Lightning" sync / 1[56]:[^:]*:Byakko:2A2C:/
+445.6 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:2A2D:/
+455.7 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:2A2F:/
+463.9 "Sweep The Leg" sync / 1[56]:[^:]*:Byakko:2A2E:/
+474.0 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:2A2F:/
+
+483.3 "Answer On High" sync / 1[56]:[^:]*:Byakko:27E4:/
+488.3 "Hundredfold Havoc 1" sync / 1[56]:[^:]*:Byakko:2A38:/
+491.3 "Hundredfold Havoc 2" sync / 1[56]:[^:]*:Byakko:2A38:/
+499.4 "Bombogenesis" sync / 1[56]:[^:]*:Byakko:2A3B:/
+503.5 "Distant Clap" sync / 1[56]:[^:]*:Byakko:2A30:/
+509.6 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:2A2F:/
+
+# loop
+517.8 "Answer On High" sync / 1[56]:[^:]*:Byakko:27E4:/ window 20,20 jump 326.9
+522.8 "Hundredfold Havoc 1" #sync / 1[56]:[^:]*:Byakko:2A38:/
+523.9 "State Of Shock 1" #sync / 1[56]:[^:]*:Byakko:27E0:/
+525.0 "Clutch" #sync / 1[56]:[^:]*:Byakko:27E1:/
+525.8 "Hundredfold Havoc 2" #sync / 1[56]:[^:]*:Byakko:2A38:/
+531.2 "Highest Stakes 1" #sync / 1[56]:[^:]*:Byakko:27E2:/
+533.8 "State Of Shock 2" #sync / 1[56]:[^:]*:Byakko:2756:/
+534.9 "Clutch" #sync / 1[56]:[^:]*:Byakko:27E1:/
+541.2 "Highest Stakes 2" #sync / 1[56]:[^:]*:Byakko:27E2:/

@@ -1,0 +1,102 @@
+# Omega - Sigmascape V2.0 (Savage) - O6S
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0 "Start" sync / 00:0044:[^:]*I have claimed the girl in the picture!/ window 0,1
+18 "--targetable--"
+21 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/ window 21,0
+31 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
+
+57 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20,20
+62 "Flash Fire" sync / 1[56]:[^:]*:Portrayal of Fire:280A:/
+71 "Flash Gale" sync / 1[56]:[^:]*:Portrayal of Wind:2ABA:/
+73 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+87 "Poltergeist" sync / 1[56]:[^:]*:Goddess Chadarnook:2824:/
+92 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
+98 "Divine Lure" sync / 1[56]:[^:]*:Goddess Chadarnook:2822:/
+100 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+109 "Demonic Pain" sync / 1[56]:[^:]*:Demon Chadarnook:2AEC:/
+121 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+130 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+
+143 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20
+150 "Easterlies" sync / 03:........:Easterly:/ 
+153 "Rock Hard" sync / 1[56]:[^:]*:Portrayal of Earth:2812:/
+155 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
+164 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+166 "Featherlance" sync / 1[56]:[^:]*:Easterly:283E:/
+171 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+184 "Last Kiss" sync / 1[56]:[^:]*:Demon Chadarnook:2826:/
+195 "The Price" sync / 1[56]:[^:]*:Demon Chadarnook:2827:/
+198 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+200 "Poltergeist" sync / 1[56]:[^:]*:Goddess Chadarnook:2824:/
+208 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
+211 "Divine Lure" sync / 1[56]:[^:]*:Goddess Chadarnook:2822:/
+216 "Demonic Storm" sync / 1[56]:[^:]*:Demon Chadarnook:2840:/
+225 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+238 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+
+251 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20
+256 "Earthquake" sync / 1[56]:[^:]*:Portrayal of Earth:2810:/
+256 "Flash Fire" sync / 1[56]:[^:]*:Portrayal of Fire:280A:/
+261 "Flash Torrent" sync / 1[56]:[^:]*:Portrayal of Water:2AB9:/
+270 "Materialize" sync / 1[56]:[^:]*:Demon Chadarnook:282D:/
+281 "Demonic Pain" sync / 1[56]:[^:]*:Haunt:2AEC:/
+286 "Lullaby" sync / 1[56]:[^:]*:Goddess Chadarnook:2828:/
+294 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+300 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+306 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
+319 "Demonic Stone" duration 5
+329 "Last Kiss" sync / 1[56]:[^:]*:Demon Chadarnook:2826:/
+333 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+340 "The Price" sync / 1[56]:[^:]*:Demon Chadarnook:2827:/
+352 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+
+365 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20
+373 "Easterlies" sync / 03:........:Easterly:/ 
+375 "Rock Hard" sync / 1[56]:[^:]*:Portrayal of Earth:2812:/
+376 "Demonic Wave" sync / 1[56]:[^:]*:Portrayal of Water:2830:/
+384 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+388 "Featherlance" sync / 1[56]:[^:]*:Easterly:283E:/
+396 "Materialize" sync / 1[56]:[^:]*:Demon Chadarnook:282D:/
+403 "Demonic Spout" sync / 1[56]:[^:]*:Demon Chadarnook:2834:/
+408 "Demonic Storm" sync / 1[56]:[^:]*:Demon Chadarnook:2840:/
+408 "Demonic Spout" sync / 1[56]:[^:]*:Demon Chadarnook:2836:/
+425 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+438 "Demonic Pain" sync / 1[56]:[^:]*:Demon Chadarnook:2AEC:/
+443 "Last Kiss" sync / 1[56]:[^:]*:Demon Chadarnook:2826:/
+447 "Flash Torrent" sync / 1[56]:[^:]*:Demon Chadarnook:280C:/
+449 "Flash Flood" sync / 1[56]:[^:]*:Haunt:2AEA:/
+454 "The Price" sync / 1[56]:[^:]*:Demon Chadarnook:2827:/
+454 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+469 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
+482 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+
+495 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20
+500 "Earthquake" sync / 1[56]:[^:]*:Portrayal of Earth:2810:/
+500 "Flash Fire" sync / 1[56]:[^:]*:Portrayal of Fire:280A:/
+509 "Flash Gale" sync / 1[56]:[^:]*:Portrayal of Wind:2ABA:/
+511 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+519 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
+531 "Materialize" sync / 1[56]:[^:]*:Demon Chadarnook:282D:/
+538 "Poltergeist" sync / 1[56]:[^:]*:Goddess Chadarnook:2824:/
+546 "Demonic Stone" duration 5
+552 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+554 "Divine Lure" sync / 1[56]:[^:]*:Goddess Chadarnook:2822:/
+560 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
+573 "Demonic Pain" sync / 1[56]:[^:]*:Demon Chadarnook:2AEC:/
+581 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+590 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+
+603 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20
+611 "Easterlies" sync / 03:........:Easterly:/ 
+613 "Rock Hard" sync / 1[56]:[^:]*:Portrayal of Earth:2812:/
+614 "Demonic Wave" sync / 1[56]:[^:]*:Portrayal of Water:2830:/
+622 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
+626 "Featherlance" sync / 1[56]:[^:]*:Easterly:283E:/
+
+626 "--sync--" sync / 1[56]:[^:]*:284D:Demon Chadarnook:/
+641 "Enrage"

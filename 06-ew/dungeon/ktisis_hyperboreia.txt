@@ -1,0 +1,160 @@
+### KTISIS HYPERBORAEIA
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~#
+# LYSSA #
+#~~~~~~~#
+
+# -ii 1961 6258 6E90 -it Lyssa
+
+0.0 "--sync--" sync / 00:0839::The Frozen Sphere will be sealed off/ window 0,1
+10.7 "Skull Dasher" sync / 1[56]:[^:]*:Lyssa:625E:/ window 10.7,10
+21.2 "Frostbite and Seek" sync / 1[56]:[^:]*:Lyssa:6257:/
+23.2 "--untargetable--"
+35.2 "Punishing Slice" sync / 1[56]:[^:]*:Lyssa:6259:/ window 35.2,30
+36.3 "--targetable--"
+42.0 "--middle--"
+46.0 "Icicall" sync / 1[56]:[^:]*:Lyssa:625A:/
+50.9 "Ice Pillar" sync / 1[56]:[^:]*:Ice Pillar:625B:/
+54.2 "Frigid Stomp" sync / 1[56]:[^:]*:Lyssa:625D:/
+
+60.0 "Pillar Pierce" sync / 1[56]:[^:]*:Ice Pillar:631F:/ window 60.0,30
+70.6 "Skull Dasher" sync / 1[56]:[^:]*:Lyssa:625E:/
+81.0 "Frostbite and Seek" sync / 1[56]:[^:]*:Lyssa:6257:/
+83.1 "--untargetable--"
+98.0 "Punishing Slice" sync / 1[56]:[^:]*:Lyssa:6259:/
+99.1 "--targetable--"
+109.2 "Frigid Stomp" sync / 1[56]:[^:]*:Lyssa:625D:/ window 30,30
+114.6 "--middle--"
+118.6 "Icicall" sync / 1[56]:[^:]*:Lyssa:625A:/
+123.5 "Ice Pillar" sync / 1[56]:[^:]*:Ice Pillar:625B:/
+
+# Rotate from here
+132.5 "Pillar Pierce" sync / 1[56]:[^:]*:Ice Pillar:631F:/ window 30,30
+133.8 "Heavy Smash" sync / 1[56]:[^:]*:Lyssa:625C:/
+146.1 "Skull Dasher" sync / 1[56]:[^:]*:Lyssa:625E:/
+156.7 "Frostbite and Seek" sync / 1[56]:[^:]*:Lyssa:6257:/
+158.7 "--untargetable--"
+173.7 "Punishing Slice" sync / 1[56]:[^:]*:Lyssa:6259:/
+174.8 "--targetable--"
+184.9 "Frigid Stomp" sync / 1[56]:[^:]*:Lyssa:625D:/ window 30,30
+190.7 "--middle--"
+194.7 "Icicall" sync / 1[56]:[^:]*:Lyssa:625A:/
+199.5 "Ice Pillar" sync / 1[56]:[^:]*:Ice Pillar:625B:/
+
+208.6 "Pillar Pierce" sync / 1[56]:[^:]*:Ice Pillar:631F:/ jump 132.5
+209.9 "Heavy Smash"
+222.2 "Skull Dasher"
+232.8 "Frostbite and Seek"
+234.8 "--untargetable--"
+249.8 "Punishing Slice"
+
+#~~~~~~~~~~~~#
+# LADON LORD #
+#~~~~~~~~~~~~#
+
+# -ii 368 653B
+
+# "Pyric Breath" sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|6488|6489|648A|648B):/
+
+1000.0 "--sync--" sync / 00:0839::Concept Review will be sealed off/ window 1000,5
+1010.3 "Scratch" sync / 1[56]:[^:]*:Ladon Lord:648F:/ window 1010.3,10
+1019.3 "Inhale" sync / 1[56]:[^:]*:Ladon Lord:6484:/
+1025.5 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:6485:/
+1027.2 "--rotate--"
+1034.2 "Pyric Breath" sync / 1[56]:[^:]*:Ladon Lord:6486:/ window 1034.2,10
+1045.3 "Inhale" sync / 1[56]:[^:]*:Ladon Lord:6484:/
+1051.6 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:6485:/
+1053.1 "--rotate--"
+1060.1 "Pyric Breath #1" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|6488|6489|648A|648B):/
+1062.2 "Pyric Breath #2" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|6488|6489|648A|648B):/
+1067.3 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:648C:/
+
+# Rotation block.
+
+# TODO: Need extended rotations on this. The Pyric Sphere at 120 may not always be there?
+
+1074.4 "Inhale" sync / 1[56]:[^:]*:Ladon Lord:6484:/ window 15,15
+1077.4 "Pyric Sphere" sync / 1[56]:[^:]*:Pyric Sphere:6490:/
+1079.8 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:6485:/
+1081.9 "--rotate--"
+1082.5 "Pyric Sphere" sync / 1[56]:[^:]*:Pyric Sphere:6491:/
+1088.9 "Pyric Breath #1" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|6488|6489|648A|648B):/
+1091.0 "Pyric Breath #2" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|6488|6489|648A|648B):/
+1099.1 "Intimidation" sync / 1[56]:[^:]*:Ladon Lord:648D:/
+1105.3 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:648C:/
+1110.4 "Inhale" sync / 1[56]:[^:]*:Ladon Lord:6484:/ window 30,30
+1115.4 "Pyric Sphere #1" sync / 1[56]:[^:]*:Pyric Sphere:6490:/
+1120.5 "Pyric Sphere #2" sync / 1[56]:[^:]*:Pyric Sphere:6491:/
+1122.9 "Pyric Blast" sync / 1[56]:[^:]*:Ladon Lord:648E:/ window 10,10
+1126.2 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:6485:/
+1128.0 "--rotate--"
+1135.0 "Pyric Breath #1" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|6488|6489|648A|648B):/
+1137.1 "Pyric Breath #2" #sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|6488|6489|648A|648B):/
+1146.3 "Scratch" sync / 1[56]:[^:]*:Ladon Lord:648F:/
+1151.4 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:648C:/ window 30,30
+
+1158.8 "Inhale" sync / 1[56]:[^:]*:Ladon Lord:6484:/ jump 1074.4
+1161.8 "Pyric Sphere"
+1166.9 "Pyric Sphere"
+1166.3 "--rotate--"
+1173.3 "Pyric Breath #1"
+1175.4 "Pyric Breath #2"
+1183.5 "Intimidation"
+
+#~~~~~~~~#
+# HERMES #
+#~~~~~~~~#
+
+# -ii 368
+
+2000.0 "--sync--" sync / 00:0839::The Celestial Sphere will be sealed off/ window 2000,10
+2013.1 "Trismegistos" sync / 1[56]:[^:]*:Hermes:651E:/ window 2013.1,10
+2020.2 "--middle--"
+2024.2 "Hermetica" sync / 1[56]:[^:]*:Hermes:6520:/
+2029.7 "True Aero IV" sync / 1[56]:[^:]*:Karukeion:6521:/
+2038.4 "True Tornado" sync / 1[56]:[^:]*:Hermes:652E:/
+2038.5 "--sync--" sync / 1[56]:[^:]*:Hermes:652F:/ # True Tornado
+2038.5 "--sync--" sync / 1[56]:[^:]*:Hermes:(6530|6531):/ # True Tornado
+
+2046.6 "Meteor" sync / 1[56]:[^:]*:Hermes:6522:/ window 2046.6,30
+2054.7 "Cosmic Kiss" sync / 1[56]:[^:]*:Meteor:6523:/
+2055.7 "Double" sync / 1[56]:[^:]*:Hermes:6524:/
+2063.8 "Hermetica" sync / 1[56]:[^:]*:Hermes:6525:/
+2066.3 "True Aero IV #1" #sync / 1[56]:[^:]*:Karukeion:6CBC:/
+2069.3 "True Aero IV #2" #sync / 1[56]:[^:]*:Karukeion:6CBC:/
+2074.7 "--middle--"
+2078.7 "Double" sync / 1[56]:[^:]*:Hermes:6524:/
+2080.8 "--sync--" sync / 1[56]:[^:]*:Hermes:651F:/
+2085.8 "True Aero" sync / 1[56]:[^:]*:Hermes:652B:/
+2086.6 "--sync--" sync / 1[56]:[^:]*:Hermes:652C:/
+2089.7 "--sync--" sync / 1[56]:[^:]*:Hermes:652D:/
+2105.0 "Trismegistos" sync / 1[56]:[^:]*:Hermes:651E:/ window 30,30
+2115.3 "Quadruple" sync / 1[56]:[^:]*:Hermes:6526:/
+2129.4 "Hermetica" sync / 1[56]:[^:]*:Hermes:6527:/
+2131.9 "True Aero IV #1" sync / 1[56]:[^:]*:Karukeion:6CBD:/
+2134.9 "True Aero IV #2" sync / 1[56]:[^:]*:Karukeion:6CBD:/
+2137.9 "True Aero IV #3" sync / 1[56]:[^:]*:Karukeion:6CBD:/
+2140.7 "Double" sync / 1[56]:[^:]*:Hermes:6524:/ window 30,10
+2140.9 "True Aero IV #4" sync / 1[56]:[^:]*:Karukeion:6CBD:/
+2147.8 "True Aero II #1" sync / 1[56]:[^:]*:Hermes:(6528|6529):/
+2152.3 "True Aero II #2" sync / 1[56]:[^:]*:Hermes:652A:/
+2160.0 "Double" sync / 1[56]:[^:]*:Hermes:6524:/
+2167.2 "True Tornado" sync / 1[56]:[^:]*:Hermes:652E:/ window 30,30
+2167.3 "--sync--" sync / 1[56]:[^:]*:Hermes:(6530|6531):/ # True Tornado
+2170.9 "--sync--" sync / 1[56]:[^:]*:Hermes:6532:/ # True Tornado
+2186.5 "Trismegistos" sync / 1[56]:[^:]*:Hermes:651E:/
+2194.7 "Trismegistos" sync / 1[56]:[^:]*:Hermes:651E:/
+
+# TODO: Likely the rotation point? Might need more data.
+2204.9 "Meteor" sync / 1[56]:[^:]*:Hermes:6522:/ jump 2046.6
+2213.0 "Cosmic Kiss"
+2214.0 "Double"
+2222.1 "Hermetica"
+2224.6 "True Aero IV #1"
+2227.6 "True Aero IV #2"
+2237.0 "Double"

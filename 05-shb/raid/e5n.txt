@@ -1,0 +1,75 @@
+### Eden 5 (Normal)
+# Eden's Verse: Fulmination
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# ic "Stormcloud" -ii 4B8F 4B93 4B97 4B99 4B9A 4BA1 4BA2
+
+# Opening block
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+0.5 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BA2:/ window 0,1
+13.6 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BA3:/ window 15,15
+20.9 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/
+26.8 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4B8D:/ window 30,30
+31.7 "Impact" sync / 1[56]:[^:]*:Ramuh:4E3A:/
+38.7 "Judgment Jolt" sync / 1[56]:[^:]*:Ramuh:4B8E:/
+47.8 "Stormcloud Summons" sync / 1[56]:[^:]*:Ramuh:4B9B:/
+63.3 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4B98:/
+75.5 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BA3:/ window 30,30
+84.8 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4B90:/
+93.9 "Divine Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4E62:/
+107.1 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4B91:/
+114.6 "Deadly Discharge" sync / 1[56]:[^:]*:Will Of Ramuh:4B92:/
+123.7 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4B91:/
+131.2 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4B96:/
+
+#Training block
+137.3 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/
+143.3 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4B8D:/
+148.2 "Impact" sync / 1[56]:[^:]*:Ramuh:4E3A:/
+155.2 "Judgment Jolt" sync / 1[56]:[^:]*:Ramuh:4B8E:/ window 30,30
+164.4 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4B90:/
+173.5 "Divine Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4E62:/
+181.7 "Thunderstorm" sync / 1[56]:[^:]*:Ramuh:4BA0:/ window 30,30
+192.1 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4CF2:/
+199.1 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4CF2:/
+211.1 "Stormcloud Summons" sync / 1[56]:[^:]*:Ramuh:4B9B:/ window 30,30
+221.6 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4B91:/
+229.0 "Deadly Discharge" sync / 1[56]:[^:]*:Will Of Ramuh:4B92:/
+244.1 "Thunderstorm" sync / 1[56]:[^:]*:Ramuh:4BA0:/ window 30,30
+251.5 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4B91:/
+254.5 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4CF2:/
+261.0 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4B96:/
+261.6 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4CF2:/
+272.0 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BA3:/ window 30,30
+
+#Rotation block
+279.3 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/ window 30,30
+285.2 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4B8D:/
+290.1 "Impact" sync / 1[56]:[^:]*:Ramuh:4E3A:/
+293.6 "Stormcloud Summons" sync / 1[56]:[^:]*:Ramuh:4B9B:/
+303.1 "Judgment Jolt" sync / 1[56]:[^:]*:Ramuh:4B8E:/
+311.3 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4B90:/
+320.4 "Divine Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4E62:/
+331.6 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4B91:/ window 30,30
+339.1 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4B96:/
+339.1 "Deadly Discharge" sync / 1[56]:[^:]*:Will Of Ramuh:4B92:/
+350.1 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BA3:/
+362.4 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4B98:/
+371.6 "Thunderstorm" sync / 1[56]:[^:]*:Ramuh:4BA0:/ window 30,30
+379.0 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4B91:/
+382.0 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4CF2:/
+388.5 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4B96:/
+389.1 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4CF2:/
+399.5 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BA3:/ window 30,30 jump 272.0
+
+412.7 "Stratospear Summons"
+417.6 "Impact"
+421.1 "Stormcloud Summons"
+430.6 "Judgment Jolt"
+438.8 "Fury's Bolt"
+447.9 "Divine Judgment Volts"

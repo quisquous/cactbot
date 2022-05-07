@@ -1,0 +1,492 @@
+### DUN SCAITH
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~~~~~~~~~#
+# DEATHGAZE HOLLOW #
+#~~~~~~~~~~~~~~~~~~#
+
+# -ii 1C90 1ABC -ic "Fierce Wind" "Void Sprite"
+
+0 "--sync--" sync / 00:0839::The main deck will be sealed off/ window 0,5
+6.7 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+11.8 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C91:/
+16.6 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C92:/
+19.0 "Void Death" sync / 1[56]:[^:]*:Deathgaze Hollow:1C7F:/
+23.6 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+31.6 "Void Aero II" sync / 1[56]:[^:]*:Deathgaze Hollow:1C79:/
+32.4 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8C:/
+34.6 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+39.1 "Void Blizzard III" sync / 1[56]:[^:]*:Deathgaze Hollow:1C75:/
+39.6 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8A:/
+48.1 "Void Aero III" sync / 1[56]:[^:]*:Deathgaze Hollow:1C7B:/
+54.1 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8E:/
+54.1 "Void Aero III" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8D:/
+56.1 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+62.1 "Doomsay" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8[45]:/
+
+# Logs exist where this section is skipped? HP push?
+74.3 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+77.6 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C91:/
+82.4 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C92:/
+84.9 "Void Death" sync / 1[56]:[^:]*:Deathgaze Hollow:1C7F:/
+
+87.8 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C81:/ window 30,5
+94.8 "Void Blizzard IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C77:/
+99.8 "Void Blizzard IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8B:/
+103.8 "Void Aero IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C7C:/
+104.3 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8F:/
+113.8 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+123.8 "Void Aero II" sync / 1[56]:[^:]*:Deathgaze Hollow:1C78:/
+124.6 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8C:/
+129.8 "Void Aero III" sync / 1[56]:[^:]*:Deathgaze Hollow:1C7A:/
+139.8 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8E:/
+139.8 "Void Aero III" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8D:/
+139.8 "Bolt Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8[67]:/
+140.6 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C93:/
+145.8 "Void Death IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8[23]:/
+149.8 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+154.8 "Doomsay" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8[45]:/
+159.8 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+168.8 "Void Aero II" sync / 1[56]:[^:]*:Deathgaze Hollow:1C78:/
+169.6 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8C:/
+172.8 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+178.3 "Void Blizzard III" sync / 1[56]:[^:]*:Deathgaze Hollow:1C74:/
+178.8 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8A:/
+184.3 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+189.3 "Void Death IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8[23]:/
+194.3 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C91:/
+199.3 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C92:/
+201.7 "Void Death" sync / 1[56]:[^:]*:Deathgaze Hollow:1C7E:/
+204.3 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+209.3 "Doomsay" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8[45]:/
+218.3 "Void Aero II" sync / 1[56]:[^:]*:Deathgaze Hollow:1C78:/
+219.1 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8C:/
+228.3 "Void Blizzard IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C76:/
+233.3 "Void Blizzard IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8B:/
+237.3 "Void Aero IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C7D:/
+237.8 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8F:/
+247.3 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+257.3 "Void Aero II" sync / 1[56]:[^:]*:Deathgaze Hollow:1C79:/
+258.1 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8C:/
+263.3 "Void Aero III" sync / 1[56]:[^:]*:Deathgaze Hollow:1C7B:/
+273.3 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8E:/
+273.3 "Void Aero III" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8D:/
+273.3 "Bolt Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8[67]:/
+274.1 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C93:/
+279.3 "Void Death IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8[23]:/
+283.3 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+288.3 "Doomsay" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8[45]:/
+293.3 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+302.3 "Void Aero II" sync / 1[56]:[^:]*:Deathgaze Hollow:1C79:/
+303.1 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8C:/
+306.3 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+311.8 "Void Blizzard III" sync / 1[56]:[^:]*:Deathgaze Hollow:1C75:/
+312.3 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8A:/
+317.8 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+322.8 "Void Death IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8[23]:/
+327.8 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C91:/
+332.8 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C92:/
+335.2 "Void Death" sync / 1[56]:[^:]*:Deathgaze Hollow:1C7F:/
+337.8 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+342.8 "Doomsay" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8[45]:/
+351.8 "Void Aero II" sync / 1[56]:[^:]*:Deathgaze Hollow:1C79:/
+352.6 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8C:/
+361.8 "Void Blizzard IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C77:/
+366.8 "Void Blizzard IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8B:/
+370.8 "Void Aero IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C7C:/
+371.3 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8F:/
+380.8 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
+390.8 "Void Aero II" sync / 1[56]:[^:]*:Deathgaze Hollow:1C78:/
+391.6 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8C:/
+396.8 "Void Aero III" sync / 1[56]:[^:]*:Deathgaze Hollow:1C7A:/
+406.8 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8E:/
+406.8 "Void Aero III" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8D:/
+406.8 "Bolt Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8[67]:/
+407.6 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C93:/
+412.8 "Void Death IV" sync / 1[56]:[^:]*:Deathgaze Hollow:1C8[23]:/
+
+
+#~~~~~~~~~~~~~~~~#
+# FERDIAD HOLLOW #
+#~~~~~~~~~~~~~~~~#
+
+# -ii 1C97 1CA8 1CA9 1CAB -ic "Abyssal Scythe"
+# -ic "Ferdiad's Fool"
+
+1000.0 "--sync--" sync / 00:0839::The Rostrum will be sealed off/ window 1000,5
+1014.2 "Black Wind x3" # sync / 1[56]:[^:]*:Ferdiad Hollow:1CAC:/
+1020.3 "Sleight" sync / 1[56]:[^:]*:Ferdiad Hollow:1C99:/
+1028.0 "Wormhole" sync / 1[56]:[^:]*:Ferdiad Hollow:1C9A:/
+1028.3 "--sync--" sync / 1[56]:[^:]*:(Cursing Atomos|Wailing Atomos):1C49:/
+1028.5 "Juggling Sphere" sync / 1[56]:[^:]*:(Aether|Aetherial Chakram):1C(9F|A0):/
+1030.0 "--sync--" sync / 1[56]:[^:]*:(Cursing Atomos|Wailing Atomos):1C9[CD]:/
+1033.2 "Explosion" sync / 1[56]:[^:]*:(Aether|Aetherial Chakram):1CA[12]:/
+1039.2 "Jester's Reap" sync / 1[56]:[^:]*:Ferdiad Hollow:1E41:/
+1047.2 "Jongleur's X" sync / 1[56]:[^:]*:Ferdiad Hollow:1C98:/
+1052.2 "Sleight" sync / 1[56]:[^:]*:Ferdiad Hollow:1C99:/
+1060.5 "Wormhole" sync / 1[56]:[^:]*:Ferdiad Hollow:1C9A:/
+1060.8 "--sync--" sync / 1[56]:[^:]*:(Cursing Atomos|Wailing Atomos):1C49:/
+1061.0 "Juggling Sphere" sync / 1[56]:[^:]*:(Aether|Aetherial Chakram):1C(9F|A0):/
+1062.5 "--sync--" sync / 1[56]:[^:]*:(Cursing Atomos|Wailing Atomos):1C9[CD]:/
+1065.7 "Explosion" sync / 1[56]:[^:]*:(Aether|Aetherial Chakram):1CA[12]:/
+1069.7 "Debilitator" sync / 1[56]:[^:]*:Ferdiad Hollow:1CA6:/
+1079.9 "Jongleur's X" sync / 1[56]:[^:]*:Ferdiad Hollow:1C98:/
+1087.4 "Flameflow" sync / 1[56]:[^:]*:Ferdiad Hollow:1CA7:/
+1089.9 "Sleight" sync / 1[56]:[^:]*:Ferdiad Hollow:1C99:/
+
+
+# The intermission is extremely complex to figure out.
+# There are Atomos teleports, but only if Fools aren't alive.
+# The Fool actions don't seem to have strict timers.
+# It's all a mess, but Ferdiad is guaranteed to do his half-circle on time.
+1089.9 "--untargetable--"
+1095.9 "--sync--" sync / 1[56]:[^:]*:Wailing Atomos:1C9E:/ window 95.9,5
+1131.1 "Jester's Reward" sync / 1[56]:[^:]*:Ferdiad Hollow:1CA3:/
+
+
+
+1300.0 "--sync--" sync / 14:[^:]*:Ferdiad Hollow:1CA4:/ window 300,5
+1304.7 "Jester's Jig" sync / 1[56]:[^:]*:Ferdiad Hollow:1CA4:/
+1306.7 "--sync--" sync / 1[56]:[^:]*:Ferdiad Hollow:1CA5:/
+
+1319.0 "Sleight" sync / 1[56]:[^:]*:Ferdiad Hollow:1C99:/
+1327.5 "Wormhole" sync / 1[56]:[^:]*:Ferdiad Hollow:1C9A:/
+1327.8 "--sync--" sync / 1[56]:[^:]*:(Cursing Atomos|Wailing Atomos):1C49:/
+1328.0 "Juggling Sphere" sync / 1[56]:[^:]*:(Aether|Aetherial Chakram):1C(9F|A0):/
+1329.6 "--sync--" sync / 1[56]:[^:]*:(Cursing Atomos|Wailing Atomos):1C9[CD]:/
+1333.0 "Explosion" sync / 1[56]:[^:]*:(Aether|Aetherial Chakram):1CA[12]:/ window 15,15
+1338.1 "Jester's Reap" sync / 1[56]:[^:]*:Ferdiad Hollow:1E41:/
+1348.8 "Black Wind" # sync / 1[56]:[^:]*:Ferdiad Hollow:1CAC:/
+1362.4 "Blackfire" sync / 1[56]:[^:]*:Ferdiad Hollow:1CAA:/
+1372.7 "Jester's Reap" sync / 1[56]:[^:]*:Ferdiad Hollow:1E41:/
+1380.9 "Jongleur's X" sync / 1[56]:[^:]*:Ferdiad Hollow:1C98:/ window 15,15
+1387.2 "Debilitator" sync / 1[56]:[^:]*:Ferdiad Hollow:1CA6:/
+1394.7 "Blackbolt" sync / 1[56]:[^:]*:Ferdiad Hollow:1CAD:/
+1405.2 "Flameflow" sync / 1[56]:[^:]*:Ferdiad Hollow:1CA7:/
+1411.4 "Jester's Reap" sync / 1[56]:[^:]*:Ferdiad Hollow:1E41:/
+
+1420.4 "Sleight" sync / 1[56]:[^:]*:Ferdiad Hollow:1C99:/ window 15,15 jump 1319.0
+1428.9 "Wormhole"
+1429.4 "Juggling Sphere"
+1434.4 "Explosion"
+1439.5 "Jester's Reap"
+1450.2 "Black Wind"
+
+#~~~~~~~~~~~~~~#
+# PROTO ULTIMA #
+#~~~~~~~~~~~~~~#
+
+# It's all bad. It never lasts long enough to get a good sample of its abilities.
+# A couple logs exist that seem to indicate that Light Pillar can come first.
+# However, no logs since 2019 show this behavior.
+# Maybe HP%-based? We window Light Pillar just to be safe.
+
+# -ii 1D9B
+# -ic "Allagan Dreadnaught" "Proto Bit"
+
+2000.0 "--sync--" sync / 00:0839::The Queen's Pride will be sealed off/ window 2000,5
+
+2007.8 "Aether Bend" sync / 1[56]:[^:]*:Proto Ultima:1D99:/
+2018.4 "Aetherochemical Laser 1" sync / 1[56]:[^:]*:Proto Ultima:1D96:/
+2022.4 "Aetherochemical Laser 2" sync / 1[56]:[^:]*:Proto Ultima:1D98:/
+2026.4 "Aetherochemical Laser 3" sync / 1[56]:[^:]*:Proto Ultima:1D97:/
+2033.4 "Aetherochemical Flare" sync / 1[56]:[^:]*:Proto Ultima:1E52:/
+2034.6 "Diffractive Laser" # sync / 1[56]:[^:]*:Proto Ultima:1DAA:/
+2036.6 "--sync--" sync / 1[56]:[^:]*:Proto Ultima:1D9A:/ window 36,5 # Logs exist where this is first.
+2042.6 "Light Pillar x8" duration 10 # sync / 1[56]:[^:]*:Proto Ultima:1DA8:/
+2053.4 "Aetherochemical Flare" sync / 1[56]:[^:]*:Proto Ultima:1E52:/
+
+# We don't know about this part. Maybe it does this?
+# Timing might be a little different?
+2060.0 "Aether Bend" sync / 1[56]:[^:]*:Proto Ultima:1D99:/ window 30,15 jump 2007.8
+2070.6 "Aetherochemical Laser 1"
+2074.6 "Aetherochemical Laser 2" 
+2078.6 "Aetherochemical Laser 3"
+2079.8 "Diffractive Laser"
+2085.8 "Light Pillar x8"
+
+2100.0 "--untargetable--" sync / 1[56]:[^:]*:Proto Ultima:1DA0:/ window 100,5
+2110.6 "--sync--" sync / 1[56]:[^:]*:Proto Ultima:1DAC:/
+2110.6 "Eikonizer" sync / 1[56]:[^:]*:Proto Ultima:1DAD:/
+2117.5 "Aetherial Pool" sync / 1[56]:[^:]*:Proto Ultima:1DA3:/
+2119.1 "Flare Star" sync / 1[56]:[^:]*:Proto Ultima:1DA4:/
+2125.5 "Aetherial Pool" sync / 1[56]:[^:]*:Proto Ultima:1DA3:/
+2126.2 "--sync--" sync / 1[56]:[^:]*:Proto Ultima:1DA2:/
+2127.1 "Flare Star" sync / 1[56]:[^:]*:Proto Ultima:1DA4:/
+2131.2 "Citadel Buster" sync / 1[56]:[^:]*:Proto Ultima:1DAB:/
+2139.3 "Touchdown" sync / 1[56]:[^:]*:Proto Ultima:1D9C:/
+2139.3 "--targetable--"
+
+2147.4 "Supernova" sync / 1[56]:[^:]*:Proto Ultima:1D9D:/
+2156.6 "--sync--" sync / 1[56]:[^:]*:Proto Ultima:1D9A:/
+2160.7 "Light Pillar x10" # sync / 1[56]:[^:]*:Proto Ultima:1DA5:/
+2194.7 "Aether Bend" sync / 1[56]:[^:]*:Proto Ultima:1D99:/ window 30,5
+2200.7 "Aetherochemical Flare" sync / 1[56]:[^:]*:Proto Ultima:1E52:/
+2204.4 "Aetherochemical Laser 1" sync / 1[56]:[^:]*:Proto Ultima:1D96:/ window 45,5
+2208.4 "Aetherochemical Laser 2" sync / 1[56]:[^:]*:Proto Ultima:1D97:/
+2213.4 "Aetherochemical Laser 3" sync / 1[56]:[^:]*:Proto Ultima:1D98:/
+2214.4 "Diffractive Laser" # sync / 1[56]:[^:]*:Proto Ultima:1DAA:/
+
+# We don't know, but it seems likely.
+2216.4 "--sync--" sync / 1[56]:[^:]*:Proto Ultima:1D9A:/ window 30,30 jump 2156.6
+2220.5 "Light Pillar x10"
+
+# Enrage is a LOOOONG cast alongside Aether Collectors.
+2500.0 "--sync--" sync / 14:[^:]*:Proto Ultima:1DA9:/ window 2500,5
+2559.7 "Supernova Enrage" sync / 1[56]:[^:]*:Proto Ultima:1DA9:/
+
+
+#~~~~~~~~~~#
+# SCATHACH #
+#~~~~~~~~~~#
+
+# -ii 1D2C 1D2D 1D2E 1D30 1DD4 1DD5 1E50
+# -ic Shadowcourt Jester" "Chimera Poppet"
+
+3000.0 "--sync--" sync / 00:0839::The Queen's Graces will be sealed off/ window 3000,5
+3013.1 "Thirty Thorns" sync / 1[56]:[^:]*:Scathach:1D2B:/
+3030.2 "Thirty Arrows" sync / 1[56]:[^:]*:Scathach:1D2F:/ window 30,5
+3037.4 "Manos" sync / 1[56]:[^:]*:Scathach:1CD3:/ window 30,5
+3047.7 "--sync--" sync / 1[56]:[^:]*:Scathach:(1D1[EF]):/
+3049.0 "Shadespin" sync / 1[56]:[^:]*:Scathach:1D20:/
+3052.8 "Thirty Sickles" sync / 1[56]:[^:]*:Scathach:1D31:/
+3056.0 "Soar" sync / 1[56]:[^:]*:Scathach:1D1B:/
+3060.0 "--sync--" sync / 1[56]:[^:]*:Scathach:1D1C:/
+3061.0 "Shadesmite" sync / 1[56]:[^:]*:Scathach:1D1D:/
+
+3070.8 "--shadows gather--"
+3084.8 "Thirty Souls" sync / 1[56]:[^:]*:Scathach:1D32:/ window 30,5
+3088.0 "Shadow Release" sync / 1[56]:[^:]*:Scathach:1CD4:/ window 90,5
+3095.1 "--sync--" sync / 1[56]:[^:]*:Connla:1CD0:/
+3095.1 "Pitfall" sync / 1[56]:[^:]*:Connla:1CD1:/
+3101.1 "Thirty Thorns" sync / 1[56]:[^:]*:Scathach:1D2B:/
+3117.3 "Thirty Arrows" sync / 1[56]:[^:]*:Scathach:1D2F:/
+3130.4 "Thirty Souls" sync / 1[56]:[^:]*:Scathach:1D32:/ window 30,5
+3133.6 "Manos" sync / 1[56]:[^:]*:Scathach:1CD3:/ window 30,5
+3143.7 "--sync--" sync / 1[56]:[^:]*:Scathach:1D1[EF]:/
+3144.9 "Shadespin" sync / 1[56]:[^:]*:Scathach:1D20:/
+3151.9 "Nox x5" sync / 1[56]:[^:]*:Scathach:1D22:/
+3164.1 "Shadethrust" sync / 1[56]:[^:]*:Scathach:1D23:/
+3182.2 "Thirty Souls" sync / 1[56]:[^:]*:Scathach:1D32:/
+3197.4 "Thirty Sickles" sync / 1[56]:[^:]*:Scathach:1D31:/ window 45,5
+3199.4 "--shadows gather--"
+3203.6 "Soar" sync / 1[56]:[^:]*:Scathach:1D1B:/
+3207.8 "--sync--" sync / 1[56]:[^:]*:Scathach:1D1C:/
+3208.7 "Shadesmite" sync / 1[56]:[^:]*:Scathach:1D1D:/ window 30,30 jump 3061.0
+
+# We don't know 100% that this is the correct rotation,
+# but based on the available logs and video, it seems likely.
+3218.5 "--shadows gather--"
+3232.5 "Thirty Souls"
+3235.7 "Shadow Release"
+3242.8 "Pitfall"
+3248.8 "Thirty Thorns"
+
+
+# Intermission at 45% HP. Might be a time push too? but it's uncertain.
+3300.0 "--untargetable--" sync / 22:........:Scathach:........:Scathach:00/ window 300,5
+3302.2 "--sync--" sync / 03:........:Shadowcourt Jester:/  window 300,5
+3323.6 "--towers appear--"
+3333.6 "Particle Beam" sync / 1[56]:[^:]*:Scathach:1D2[78]:/
+
+
+3400.5 "--sync--" sync / 14:[^:]*:Scathach:1D34:/ window 100,5
+# 3405.2 "Blinding Shadow" sync / 1[56]:[^:]*:Scathach:1D34:/
+3409.2 "Blinding Shadow" sync / 1[56]:[^:]*:Scathach:1DAE:/
+
+# A very long rotation, approximately 192 seconds.
+# Add spawns and shadows gathering are approximate,
+# as nothing shows up for them in the log.
+3411.4 "Shadow Release" sync / 1[56]:[^:]*:Scathach:1CD4:/
+3421.5 "Thirty Souls" sync / 1[56]:[^:]*:Scathach:1D32:/
+3428.6 "Thirty Arrows" sync / 1[56]:[^:]*:Scathach:1D2F:/
+3435.6 "Particle Beam" sync / 1[56]:[^:]*:Scathach:1D2[78]:/
+3444.8 "Thirty Souls" sync / 1[56]:[^:]*:Scathach:1D32:/
+3453.1 "Thirty Souls" sync / 1[56]:[^:]*:Scathach:1D32:/
+3459.1 "Thirty Arrows" sync / 1[56]:[^:]*:Scathach:1D2F:/
+3469.4 "Thirty Cries" sync / 1[56]:[^:]*:Scathach:1D33:/
+3471.5 "Particle Beam" sync / 1[56]:[^:]*:Scathach:1D2[78]:/
+3480.7 "--sync--" sync / 1[56]:[^:]*:Connla:1CD0:/
+3480.7 "Pitfall" sync / 1[56]:[^:]*:Connla:1CD1:/
+3491.8 "Thirty Cries" sync / 1[56]:[^:]*:Scathach:1D33:/
+3494.9 "Thirty Thorns" sync / 1[56]:[^:]*:Scathach:1D2B:/
+3506.1 "Thirty Souls" sync / 1[56]:[^:]*:Scathach:1D32:/
+3510.4 "Manos" sync / 1[56]:[^:]*:Scathach:1CD3:/
+3520.5 "--sync--" sync / 1[56]:[^:]*:Scathach:1D1[EF]:/
+3521.6 "Shadespin" sync / 1[56]:[^:]*:Scathach:1D20:/
+3523.6 "--shadows gather--"
+3526.7 "Thirty Sickles" sync / 1[56]:[^:]*:Scathach:1D31:/
+3528.7 "--adds spawn--"
+3535.9 "Nox x5" sync / 1[56]:[^:]*:Scathach:1D22:/
+3544.1 "Shadethrust" sync / 1[56]:[^:]*:Scathach:1D23:/
+3552.2 "Thirty Souls" sync / 1[56]:[^:]*:Scathach:1D32:/
+3553.2 "--shadows gather--"
+3557.4 "Soar" sync / 1[56]:[^:]*:Scathach:1D1B:/
+3561.4 "--sync--" sync / 1[56]:[^:]*:Scathach:1D1C:/
+3562.4 "Shadesmite" sync / 1[56]:[^:]*:Scathach:1D1D:/
+3571.5 "Shadethrust" sync / 1[56]:[^:]*:Scathach:1D23:/
+3575.5 "--shadows gather--"
+3580.6 "--sync--" sync / 1[56]:[^:]*:Scathach:1D1[EF]:/
+3581.7 "Shadespin" sync / 1[56]:[^:]*:Scathach:1D20:/
+3588.8 "Thirty Souls" sync / 1[56]:[^:]*:Scathach:1D32:/
+3599.0 "Thirty Souls" sync / 1[56]:[^:]*:Scathach:1D32:/
+
+# Again, this is presumed based on what we have.
+# There might be extra adds/shadows.
+3603.3 "Shadow Release" sync / 1[56]:[^:]*:Scathach:1CD4:/ window 30,30 jump 3409.2
+3613.4 "Thirty Souls"
+3620.5 "Thirty Arrows"
+3627.5 "Particle Beam"
+3636.7 "Thirty Souls"
+
+
+#~~~~~~~~~~#
+# DIABOLOS #
+#~~~~~~~~~~#
+
+# -ii 1C1B
+
+# Timing can vary depending on whether or not stuns are used.
+# Abilities can be skipped or delayed, there doesn't seem to be a clear pattern.
+# Also, tons of possible micro-skips before and after Ruinous Omen.
+
+# We sync off an attack from Diabolos because there are two encounters in The Lunar.
+4000.0 "--sync--" sync / 1[56]:[^:]*:Diabolos:1C0C:/ window 4000,1
+4009.9 "Camisado" sync / 1[56]:[^:]*:Diabolos:1C0D:/
+4022.1 "Nightmare" sync / 1[56]:[^:]*:Diabolos:1C0E:/
+4032.3 "Ultimate Terror" sync / 1[56]:[^:]*:Diabolos:1C12:/ window 15,5
+4050.5 "Camisado" sync / 1[56]:[^:]*:Diabolos:1C0D:/
+4053.5 "Noctoshield" sync / 1[56]:[^:]*:Diabolos:1C0F:/ window 10,5
+4058.7 "Nightmare" sync / 1[56]:[^:]*:Diabolos:1C0E:/ window 10,5
+
+# This seems like a possible rotation? Maybe?
+4064.9 "Camisado" sync / 1[56]:[^:]*:Diabolos:1C0D:/
+4075.2 "Camisado" sync / 1[56]:[^:]*:Diabolos:1C0D:/
+4078.4 "Noctoshield" sync / 1[56]:[^:]*:Diabolos:1C0F:/
+4083.4 "Nightmare" sync / 1[56]:[^:]*:Diabolos:1C0E:/ window 10,5 jump 4058.7
+
+4089.6 "Camisado"
+4099.9 "Camisado"
+4103.1 "Noctoshield"
+4108.1 "Nightmare"
+
+4149.0 "--sync--" sync / 14:[^:]*:Diabolos:1C10:/ window 150,5
+4163.7 "Ruinous Omen" sync / 1[56]:[^:]*:Diabolos:1C10:/
+4164.7 "Ruinous Omen" sync / 1[56]:[^:]*:Diabolos:1C11:/
+
+4170.3 "Camisado" sync / 1[56]:[^:]*:Diabolos:1C0D:/
+4178.7 "Night Terror" sync / 1[56]:[^:]*:Diabolos:1C13:/
+4185.8 "Ultimate Terror" sync / 1[56]:[^:]*:Diabolos:1C12:/
+4190.0 "Camisado" sync / 1[56]:[^:]*:Diabolos:1C0D:/
+4195.1 "Camisado" sync / 1[56]:[^:]*:Diabolos:1C0D:/
+4203.5 "Nightmare" sync / 1[56]:[^:]*:Diabolos:1C0E:/
+4206.6 "Camisado" sync / 1[56]:[^:]*:Diabolos:1C0D:/
+4213.1 "Camisado" sync / 1[56]:[^:]*:Diabolos:1C0D:/
+4216.2 "Noctoshield" sync / 1[56]:[^:]*:Diabolos:1C0F:/
+4219.3 "Camisado" sync / 1[56]:[^:]*:Diabolos:1C0D:/
+4225.8 "Camisado" sync / 1[56]:[^:]*:Diabolos:1C0D:/
+
+4233.8 "Ultimate Terror" sync / 1[56]:[^:]*:Diabolos:1C12:/ window 15,15 jump 4185.8
+4238.9 "Camisado"
+4244.0 "Camisado"
+4252.4 "Nightmare"
+4255.5 "Camisado"
+4262.0 "Camisado"
+
+# This section leads directly into Diabolos Hollow the first time after Diabolos is defeated.
+# This is the dueling-lasers part where the party kills the big deathgate and two small ones.
+
+4274.0 "--sync--" sync / 22:........:Diabolos:........:Diabolos:00/ window 100,5
+4286.2 "--lifegate spawn--" sync / 03:........:Lifegate:/  window 300,5
+4300.0 "--sync--" sync / 1[56]:[^:]*:Diabolos:1C16:/ window 300,5
+4320.0 "--deathgate spawn--" sync / 03:........:Deathgate:/  window 50,5
+4477.1 "--sync--" sync / 1[56]:[^:]*:Diabolos:1AFB:/ window 177,5
+4488.5 "--sync--" sync / 1[56]:[^:]*:Diabolos:1AFD:/
+4494.6 "Dream Shroud" sync / 1[56]:[^:]*:Diabolos Hollow:1DB1:/ window 194,5
+
+
+#~~~~~~~~~~~~~~~~~#
+# DIABOLOS HOLLOW #
+#~~~~~~~~~~~~~~~~~#
+
+# -ii 1C1B 1C2A
+# ic 'Voidgate" "Shadowsphere" "Diabolic Gate" "Deathgate" "Shadow Dahak" "Shadow Hound"
+
+# This fight will normally begin immediately after Diabolos.
+# However, if an encounter with Diabolos Hollow fails,
+# the fight will resume here, rather than back at Diabolos.
+
+
+# As with Diabolos, we sync to an attack to start the timeline.
+# The attacks aren't always so cleanly distributed,
+# so we sync with wider windows than normal.
+
+# This first rotation block last until the initial zero-damage shield breaks.
+4500.9 "--sync--" sync / 1[56]:[^:]*:Diabolos Hollow:1E3E:/ window 4501,1
+4507.9 "Hollow Camisado" sync / 1[56]:[^:]*:Diabolos Hollow:1C19:/ window 5,5
+4516.2 "Shadethrust" sync / 1[56]:[^:]*:Diabolos Hollow:1C1A:/ window 5,5
+4523.6 "Hollow Camisado" sync / 1[56]:[^:]*:Diabolos Hollow:1C19:/ window 5,5
+4530.8 "Shadethrust" sync / 1[56]:[^:]*:Diabolos Hollow:1C1A:/ window 5,5
+
+4540.1 "Hollow Camisado" sync / 1[56]:[^:]*:Diabolos Hollow:1C19:/ window 5,5 jump 4507.9
+4547.2 "Shadethrust"
+4554.6 "Hollow Camisado"
+4561.8 "Shadethrust"
+4571.1 "Hollow Camisado"
+4578.2 "Shadethrust"
+
+# Presumably Nox is the first indication of Diabolos' shield breaking.
+# At 75%, Diabolos Hollow pushes Hollowshield,
+# replacing/delaying? whichever mechanic happens to be next.
+
+# Lots of possible pushes here, unknown what triggers them.
+# If not pushed, it *appears* this section flows naturally.
+4600.0 "Nox x5" sync / 1[56]:[^:]*:Diabolos Hollow:1C1C:/ window 100,5
+4604.2 "Hollow Night" sync / 1[56]:[^:]*:Diabolos Hollow:1C1D:/
+4613.6 "Shadethrust" sync / 1[56]:[^:]*:Diabolos Hollow:1C1A:/
+4620.4 "Particle Beam" sync / 1[56]:[^:]*:Diabolos Hollow:1C2[456]:/
+4620.8 "Hollow Camisado" sync / 1[56]:[^:]*:Diabolos Hollow:1C19:/
+4624.1 "--deathgate spawn--" sync / 03:........:Deathgate:/  window 25,5
+4627.1 "Hollowshield" sync / 1[56]:[^:]*:Diabolos Hollow:1C1E:/ window 27.1,5
+4637.5 "Hollow Camisado" sync / 1[56]:[^:]*:Diabolos Hollow:1C19:/
+4646.8 "Shadethrust" sync / 1[56]:[^:]*:Diabolos Hollow:1C1A:/ window 20,10
+
+4654.9 "Pavor Inanis" sync / 1[56]:[^:]*:Diabolos Hollow:1C1F:/ window 55,5
+4665.3 "Hollow Night" sync / 1[56]:[^:]*:Diabolos Hollow:1C1D:/
+4677.4 "Hollow Nightmare" sync / 1[56]:[^:]*:Diabolos Hollow:1C20:/
+4690.9 "Hollow Camisado" sync / 1[56]:[^:]*:Diabolos Hollow:1C19:/ window 30,5
+4700.2 "Nox x5" sync / 1[56]:[^:]*:Diabolos Hollow:1C1C:/ window 30,5
+4705.2 "Hollow Nightmare" sync / 1[56]:[^:]*:Diabolos Hollow:1C20:/
+4718.4 "Hollow Camisado" sync / 1[56]:[^:]*:Diabolos Hollow:1C19:/
+4727.6 "Hollow Terror" sync / 1[56]:[^:]*:Diabolos Hollow:1C21:/
+4737.2 "Shadethrust" sync / 1[56]:[^:]*:Diabolos Hollow:1C1A:/ window 20,5
+4751.0 "Shadethrust" sync / 1[56]:[^:]*:Diabolos Hollow:1C1A:/
+4753.5 "Particle Beam" sync / 1[56]:[^:]*:Diabolos Hollow:1C2[456]:/
+4760.3 "Pavor Inanis" sync / 1[56]:[^:]*:Diabolos Hollow:1C1F:/ window 30,30
+4766.6 "Hollow Camisado" sync / 1[56]:[^:]*:Diabolos Hollow:1C19:/
+4774.9 "Nightmare/Terror" sync / 1[56]:[^:]*:Diabolos Hollow:1C2[01]:/
+
+
+# Can push early at 50% HP
+4785.3 "--sync--" sync / 1[56]:[^:]*:Diabolos Hollow:1C18:/ window 785,5
+4804.1 "--sync--" sync / 1[56]:[^:]*:Diabolos Hollow:1C22:/
+4809.2 "Hollow Omen" sync / 1[56]:[^:]*:Diabolos Hollow:1C23:/
+4818.3 "Double Edge" sync / 1[56]:[^:]*:Diabolos Hollow:1C2B:/
+
+4825.6 "Blindside" sync / 1[56]:[^:]*:Diabolos Hollow:1C28:/
+4828.7 "--sync--" sync / 1[56]:[^:]*:Diabolos Hollow:1C18:/
+4836.0 "Earth Shaker" sync / 1[56]:[^:]*:Diabolos Hollow:1C29:/ window 15,15
+4844.0 "Blindside" sync / 1[56]:[^:]*:Diabolos Hollow:1C28:/
+4852.2 "Blindside" sync / 1[56]:[^:]*:Diabolos Hollow:1C28:/
+4855.4 "--sync--" sync / 1[56]:[^:]*:Diabolos Hollow:1C18:/
+4862.7 "Earth Shaker" sync / 1[56]:[^:]*:Diabolos Hollow:1C29:/
+
+4870.8 "Blindside" sync / 1[56]:[^:]*:Diabolos Hollow:1C28:/ window 10,5 jump 4825.6
+4881.2 "Earth Shaker"
+4889.2 "Blindside"
+4897.4 "Blindside"
+4907.9 "Earth Shaker"

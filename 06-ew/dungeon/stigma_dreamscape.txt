@@ -1,0 +1,123 @@
+### Stigma Dreamscape
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+
+#~~~~~~~~~~~~~#
+# PROTO-OMEGA #
+#~~~~~~~~~~~~~#
+
+0.0 "--sync--" sync / 00:0839::A-4 Command will be sealed off/ window 0,1
+12.6 "Side Cannons" sync / 1[56]:[^:]*:Proto-Omega:(6320|6321):/ window 12.6,10
+24.2 "Forward Interceptors/Rear Interceptors" sync / 1[56]:[^:]*:Proto-Omega:(6322|6324):/
+29.3 "Chemical Missile" sync / 1[56]:[^:]*:Proto-Omega:6328:/
+34.4 "Burn" sync / 1[56]:[^:]*:Proto-Omega:6329:/
+40.6 "Electric Slide" sync / 1[56]:[^:]*:Proto-Omega:632A:/ window 30,30
+49.7 "Guided Missile" sync / 1[56]:[^:]*:Proto-Omega:6326:/
+
+65.6 "Iron Kiss" sync / 1[56]:[^:]*:Mark II Guided Missile:6327:/
+73.0 "Electric Slide" sync / 1[56]:[^:]*:Proto-Omega:632A:/
+84.2 "Mustard Bomb" sync / 1[56]:[^:]*:Proto-Omega:632B:/
+96.4 "Side Cannons" sync / 1[56]:[^:]*:Proto-Omega:(6320|6321):/ window 10,10
+104.6 "Guided Missile" sync / 1[56]:[^:]*:Proto-Omega:6326:/
+111.7 "Chemical Missile" sync / 1[56]:[^:]*:Proto-Omega:6328:/
+116.8 "Burn" sync / 1[56]:[^:]*:Proto-Omega:6329:/
+
+# TODO This is likely inaccurate, but it's all we have.
+# More data is needed.
+120.4 "Iron Kiss" sync / 1[56]:[^:]*:Mark II Guided Missile:6327:/ jump 65.6
+127.8 "Electric Slide"
+139.0 "Mustard Bomb"
+151.2 "Side Cannons"
+159.4 "Guided Missile"
+166.5 "Chemical Missile"
+171.6 "Burn"
+
+#~~~~~~~~~~~~~#
+# ARCH-LAMBDA #
+#~~~~~~~~~~~~~#
+
+# -ii 368 63AE 63B2
+
+1000.0 "--sync--" sync / 00:0839::A-4 Conquest will be sealed off/ window 1000,10
+1010.7 "Wheel" sync / 1[56]:[^:]*:Arch-Lambda:63B5:/ window 1010.7,10
+1021.0 "--sync--" sync / 1[56]:[^:]*:Arch-Lambda:63AA:/
+1028.4 "Auto-mobile Assault Cannon" sync / 1[56]:[^:]*:Arch-Lambda:63AB:/
+1028.7 "Tread x4" duration 4 #sync / 1[56]:[^:]*:Arch-Lambda:63AC:/
+1032.1 "--sync--" sync / 1[56]:[^:]*:Arch-Lambda:63AD:/
+1036.3 "Wave Cannon" sync / 1[56]:[^:]*:Arch-Lambda:63AF:/ window 30,30
+1049.5 "Atomic Flame" sync / 1[56]:[^:]*:Arch-Lambda:63B4:/
+1061.8 "--sync--" sync / 1[56]:[^:]*:Arch-Lambda:63AA:/
+1070.7 "Auto-mobile Sniper Cannon" sync / 1[56]:[^:]*:Arch-Lambda:63B0:/
+1071.2 "Entrench" sync / 1[56]:[^:]*:Arch-Lambda:63B1:/
+
+1080.9 "Wheel" sync / 1[56]:[^:]*:Arch-Lambda:63B5:/ window 30,30
+1091.1 "--sync--" sync / 1[56]:[^:]*:Arch-Lambda:63AA:/
+1098.6 "Auto-mobile Assault Cannon" sync / 1[56]:[^:]*:Arch-Lambda:63AB:/
+1098.9 "Tread x4" duration 4 #sync / 1[56]:[^:]*:Arch-Lambda:63AC:/
+1102.2 "--sync--" sync / 1[56]:[^:]*:Arch-Lambda:63AD:/
+1106.4 "Wave Cannon" sync / 1[56]:[^:]*:Arch-Lambda:63AF:/ window 30,30
+1119.6 "Atomic Flame" sync / 1[56]:[^:]*:Arch-Lambda:63B4:/
+1131.9 "--sync--" sync / 1[56]:[^:]*:Arch-Lambda:63AA:/
+1140.8 "Auto-mobile Sniper Cannon" sync / 1[56]:[^:]*:Arch-Lambda:63B0:/
+1141.3 "Entrench" sync / 1[56]:[^:]*:Arch-Lambda:63B1:/
+
+# TODO: Probably the loop point? More data needed.
+1151.0 "Wheel" sync / 1[56]:[^:]*:Arch-Lambda:63B5:/ window 30,30 jump 1080.9
+1168.7 "Auto-mobile Assault Cannon"
+1169.0 "Tread x4"
+1176.5 "Wave Cannon"
+1189.7 "Atomic Flame"
+1210.9 "Auto-mobile Sniper Cannon"
+1211.4 "Entrench"
+
+
+#~~~~~~~~~~#
+# STIGMA-4 #
+#~~~~~~~~~~#
+
+# -ii 6435
+
+2000.0 "--sync--" sync / 00:0839::A-4 Headquarters will be sealed off/ window 2000,1
+2010.0 "AI Takeover" sync / 1[56]:[^:]*:Stigma-4:6429:/
+2015.6 "Touchdown?" sync / 1[56]:[^:]*:Hybrid Dragon:68F9:/
+2024.7 "Proto-wave Cannon?" sync / 1[56]:[^:]*:Omega Frame:(642A|642B):/
+2024.7 "Fire Breath?" sync / 1[56]:[^:]*:Hybrid Dragon:642E:/
+2031.3 "AI Takeover" sync / 1[56]:[^:]*:Stigma-4:6429:/
+2037.1 "Touchdown?" sync / 1[56]:[^:]*:Hybrid Dragon:68F9:/
+2044.5 "Self-Destruct?" # 14.7s cast time, cast seems to start 5.1s after Breath/Cannon
+2046.2 "Fire Breath?" sync / 1[56]:[^:]*:Hybrid Dragon:642E:/
+2046.2 "Proto-wave Cannon?" sync / 1[56]:[^:]*:Omega Frame:(642A|642B):/
+2052.6 "AI Takeover" sync / 1[56]:[^:]*:Stigma-4:6429:/
+2061.5 "Rush" sync / 1[56]:[^:]*:Proto-rocket Punch:642D:/ window 30,30
+2066.0 "Self-Destruct?"
+2067.0 "--sync--" sync / 1[56]:[^:]*:Stigma-4:6433:/
+2077.0 "Electromagnetic Release" sync / 1[56]:[^:]*:Stigma-4:6434:/
+2085.1 "--sync--" sync / 1[56]:[^:]*:Stigma-4:6431:/
+2095.1 "Electromagnetic Release" sync / 1[56]:[^:]*:Stigma-4:6432:/
+2108.2 "Mindhack" sync / 1[56]:[^:]*:Stigma-4:6430:/ window 30,30
+2113.4 "--sync--" sync / 1[56]:[^:]*:Stigma-4:(6431|6433):/
+2123.4 "Electromagnetic Release" sync / 1[56]:[^:]*:Stigma-4:(6432|6434):/
+2132.5 "Atomic Ray" sync / 1[56]:[^:]*:Stigma-4:6436:/
+2142.7 "Multi-AI Takeover" sync / 1[56]:[^:]*:Stigma-4:6C4B:/
+2148.4 "Touchdown?" sync / 1[56]:[^:]*:Hybrid Dragon:68F9:/
+2151.6 "Rush" sync / 1[56]:[^:]*:Proto-rocket Punch:642D:/ window 30,30
+2157.5 "Fire Breath?" sync / 1[56]:[^:]*:Hybrid Dragon:642E:/
+2157.5 "Proto-wave Cannon?" sync / 1[56]:[^:]*:Omega Frame:(642A|642B):/
+
+# TODO: Still not a loop, more data is needed
+2168.1 "Mindhack" sync / 1[56]:[^:]*:Stigma-4:6430:/ window 30,30
+2172.2 "--sync--" sync / 1[56]:[^:]*:Stigma-4:(6431|6433):/
+2177.3 "Self-Destruct?"
+2182.2 "Electromagnetic Release" sync / 1[56]:[^:]*:Stigma-4:(6432|6434):/
+2192.3 "Multi-AI Takeover" sync / 1[56]:[^:]*:Stigma-4:6C4B:/
+2198.0 "Touchdown?" sync / 1[56]:[^:]*:Hybrid Dragon:68F9:/
+2201.1 "Rush" sync / 1[56]:[^:]*:Proto-rocket Punch:642D:/ window 30,30
+2207.1 "Fire Breath?" sync / 1[56]:[^:]*:Hybrid Dragon:642E:/
+2207.1 "Proto-wave Cannon?" sync / 1[56]:[^:]*:Omega Frame:(642A|642B):/
+2217.6 "Atomic Ray" sync / 1[56]:[^:]*:Stigma-4:6436:/
+
+# ???

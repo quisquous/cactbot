@@ -1,0 +1,140 @@
+### The Grand Cosmos
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+### Seeker of Solitude
+# -ii 4768 49A4 476C 476F 4771 4770 -p 4769:111.7
+100.0 "--sync--" sync / 00:0839::The Martial Court will be sealed off/ window 100,0
+111.7 "Shadowbolt" sync / 1[56]:[^:]*:Seeker of Solitude:4769:/ window 112,5
+119.4 "Immortal Anathema" sync / 1[56]:[^:]*:Seeker of Solitude:49A3:/
+
+126.8 "Tribulation" sync / 1[56]:[^:]*:Seeker of Solitude:476B:/
+135.5 "Dark Shock" sync / 1[56]:[^:]*:Seeker of Solitude:476E:/
+155.4 "Dark Pulse" sync / 1[56]:[^:]*:Seeker of Solitude:476A:/
+162.1 "Dark Well" sync / 1[56]:[^:]*:Seeker of Solitude:476D:/
+172.9 "Shadowbolt" sync / 1[56]:[^:]*:Seeker of Solitude:4769:/
+183.6 "Immortal Anathema" sync / 1[56]:[^:]*:Seeker of Solitude:49A3:/
+
+190.5 "Tribulation" sync / 1[56]:[^:]*:Seeker of Solitude:476B:/
+199.2 "Dark Well" sync / 1[56]:[^:]*:Seeker of Solitude:476D:/
+214.0 "Dark Shock" sync / 1[56]:[^:]*:Seeker of Solitude:476E:/
+224.6 "Shadowbolt" sync / 1[56]:[^:]*:Seeker of Solitude:4769:/
+236.4 "Dark Pulse" sync / 1[56]:[^:]*:Seeker of Solitude:476A:/
+243.1 "Dark Well" sync / 1[56]:[^:]*:Seeker of Solitude:476D:/
+252.9 "Immortal Anathema" sync / 1[56]:[^:]*:Seeker of Solitude:49A3:/
+
+# TODO: not 100% sure this is the loop
+262.7 "Tribulation" sync / 1[56]:[^:]*:Seeker of Solitude:476B:/ window 50,50 jump 190.5
+271.4 "Dark Well"
+286.2 "Dark Shock"
+296.8 "Shadowbolt"
+308.6 "Dark Pulse"
+315.3 "Dark Well"
+325.1 "Immortal Anathema"
+
+
+### Leannan Sith
+# -ii 4724 471F -p 471B:512
+500.0 "--sync--" sync / 00:0839::The Font of Quintessence will be sealed off/ window 500,0 
+512.0 "Storm Of Color" sync / 1[56]:[^:]*:Leannan Sith:471B:/
+522.3 "Ode To Lost Love" sync / 1[56]:[^:]*:Leannan Sith:471C:/
+
+529.9 "Direct Seeding" sync / 1[56]:[^:]*:Leannan Sith:471D:/
+546.4 "Gardener's Hymn" sync / 1[56]:[^:]*:Leannan Sith:471E:/
+552.9 "Storm Of Color" sync / 1[56]:[^:]*:Leannan Sith:471B:/
+562.1 "Ode To Lost Love" sync / 1[56]:[^:]*:Leannan Sith:471C:/
+572.3 "Ode To Far Winds" sync / 1[56]:[^:]*:Leannan Sith:4722:/
+577.4 "Far Wind" sync / 1[56]:[^:]*:Leannan Sith:4723:/
+583.4 "Ode To Fallen Petals" sync / 1[56]:[^:]*:Leannan Sith:4950:/
+594.5 "Ode To Lost Love" sync / 1[56]:[^:]*:Leannan Sith:471C:/
+
+601.2 "Direct Seeding" sync / 1[56]:[^:]*:Leannan Sith:471D:/
+616.7 "Ireful Wind" sync / 1[56]:[^:]*:Enslaved Love:4721:/
+617.6 "Gardener's Hymn" sync / 1[56]:[^:]*:Leannan Sith:471E:/
+623.1 "Ode To Far Winds" sync / 1[56]:[^:]*:Leannan Sith:4722:/
+628.2 "Far Wind" sync / 1[56]:[^:]*:Leannan Sith:4723:/
+634.1 "Ode To Fallen Petals" sync / 1[56]:[^:]*:Leannan Sith:4950:/
+646.5 "Storm Of Color" sync / 1[56]:[^:]*:Leannan Sith:471B:/
+653.7 "Ode To Lost Love" sync / 1[56]:[^:]*:Leannan Sith:471C:/
+668.8 "Ode To Far Winds" sync / 1[56]:[^:]*:Leannan Sith:4722:/
+673.9 "Far Wind" sync / 1[56]:[^:]*:Leannan Sith:4723:/
+679.9 "Ode To Fallen Petals" sync / 1[56]:[^:]*:Leannan Sith:4950:/
+691.1 "Ode To Lost Love" sync / 1[56]:[^:]*:Leannan Sith:471C:/
+
+697.7 "Direct Seeding" sync / 1[56]:[^:]*:Leannan Sith:471D:/ window 50,50 jump 601.2
+713.2 "Ireful Wind"
+714.1 "Gardener's Hymn"
+719.6 "Ode To Far Winds"
+724.7 "Far Wind"
+730.6 "Ode To Fallen Petals"
+743.0 "Storm Of Color"
+750.2 "Ode To Lost Love"
+765.3 "Ode To Far Winds"
+770.4 "Far Wind"
+776.4 "Ode To Fallen Petals"
+787.6 "Ode To Lost Love"
+
+
+### Lugus
+# -ii 475B 4766 475A 475E -p 475D:1026.8
+1000.0 "--sync--" sync / 00:0839::The Chamber of Celestial Song will be sealed off/ window 1000,0
+1015.3 "Scorching Left/Right" sync / 1[56]:[^:]*:Lugus:476[23]:/
+1026.8 "Black Flame" sync / 1[56]:[^:]*:Lugus:475D:/
+1030.3 "Otherworldly Heat" sync / 1[56]:[^:]*:Lugus:475C:/
+1037.8 "Captive Bolt" sync / 1[56]:[^:]*:Lugus:4764:/
+1048.2 "Mortal Flame" sync / 1[56]:[^:]*:Lugus:4759:/ window 30,0
+1077.1 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
+1080.2 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+1081.7 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
+1084.7 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+1086.2 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
+1089.2 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+1090.7 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
+1093.7 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+1106.4 "Scorching Left/Right" sync / 1[56]:[^:]*:Lugus:476[23]:/
+
+1122.9 "Culling Blade" sync / 1[56]:[^:]*:Lugus:4765:/ window 25,20
+1126.2 "Plummet" sync / 1[56]:[^:]*:Lugus:4767:/
+1133.3 "Black Flame" sync / 1[56]:[^:]*:Lugus:475D:/
+1136.7 "Otherworldly Heat" sync / 1[56]:[^:]*:Lugus:475C:/
+1142.4 "Mortal Flame" sync / 1[56]:[^:]*:Lugus:4759:/
+1169.1 "Scorching Left/Right" sync / 1[56]:[^:]*:Lugus:476[23]:/
+1181.8 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
+1184.9 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+1186.4 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
+1189.4 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+1190.9 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
+1193.9 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+1195.4 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
+1198.4 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+
+1205.9 "Captive Bolt" sync / 1[56]:[^:]*:Lugus:4764:/ window 20,20
+1215.0 "Black Flame" sync / 1[56]:[^:]*:Lugus:475D:/
+1218.5 "Otherworldly Heat" sync / 1[56]:[^:]*:Lugus:475C:/
+1226.1 "Culling Blade" sync / 1[56]:[^:]*:Lugus:4765:/
+1238.9 "Scorching Left/Right" sync / 1[56]:[^:]*:Lugus:476[23]:/
+1251.6 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
+1254.7 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+1256.2 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
+1259.2 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+1260.7 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
+1263.7 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+1265.0 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
+1268.2 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+
+1275.7 "Captive Bolt" sync / 1[56]:[^:]*:Lugus:4764:/ window 50,50 jump 1205.9
+1284.8 "Black Flame"
+1288.3 "Otherworldly Heat"
+1295.9 "Culling Blade"
+1308.7 "Scorching Left/Right"
+1321.4 "Fire's Domain"
+1324.5 "Fire's Ire"
+1326.0 "Fire's Domain"
+1329.0 "Fire's Ire"
+1330.5 "Fire's Domain"
+1333.5 "Fire's Ire"
+1334.8 "Fire's Domain"
+1338.0 "Fire's Ire"

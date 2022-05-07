@@ -1,0 +1,34 @@
+### T4
+# http://forum.square-enix.com/ffxiv/threads/103985-EXTREME-BINDING-COIL-OF-BAHAMUT-TURN-4-GUIDE
+
+0.0 "6x Bug" sync / 03:........:Clockwork Bug:/  window 0,1
+
+63.0 "Knight + Soldier (NW)" sync / 03:........:Clockwork Knight:/  window 70,0
+63.0 "Knight + Soldier (NE)"
+
+123.0 "Dreadnaught (NW)" sync / 03:........:Clockwork Dreadnaught:/  window 130,0
+123.0 "4x Bug (S)"
+
+183.0 "2x Rook (E/W)" sync / 03:........:Spinner-rook:/  window 190,0
+183.0 "4x Bug (outside)"
+
+243.0 "Dreadnaught (NE)" sync / 03:........:Clockwork Dreadnaught:/  window 115,0
+243.0 "Soldier (center)"
+243.0 "Knight (SE)"
+
+303.0 "Dreadnaught (NE)" sync / 03:........:Clockwork Dreadnaught:/  window 55,0
+303.0 "Knight (center)"
+303.0 "Soldier (SW)"
+303.0 "Rook (NE)"
+303.0 "2x Bug (SE/NW)"
+
+423.0 "Emergency Override" sync / 1[56]:[^:]*:Drive Cylinder:4EA:/ window 500,500
+427.0 "Emergency Override"
+431.0 "Emergency Override"
+435.0 "Emergency Override"
+439.0 "Emergency Override"
+443.0 "Emergency Override"
+447.0 "Emergency Override"
+451.0 "Emergency Override"
+454.0 "Emergency Override"
+458.0 "Emergency Override"

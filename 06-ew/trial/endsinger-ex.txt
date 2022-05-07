@@ -1,0 +1,118 @@
+# Endsinger Extreme
+# -it 'The Endsinger'
+# -oc 'The Endsinger' 'Kakodaimon'
+# -ii 6FF5 6FF7 6FF8 6FF9 6FFE 6FFF 7000 7001 7003 7005 7008 700C 700D 7009 700A 700E 700F 7010 7011 7013 7015 7017 7018 7019 7019 7021 7029 702B 702D 72C4
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+7.0 "--sync--" sync / 14:[^:]*:The Endsinger:6FF6:/ window 10,10
+11.7 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
+25.1 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):6FF[AB]:/
+26.7 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
+29.9 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
+43.3 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):6FF[AB]:/
+44.9 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
+55.3 "Grip of Despair" sync / 1[56]:[^:]*:The Endsinger:701D:/
+
+# Towers 1
+64.6 "Tower Explosion" #sync / 1[56]:[^:]*:The Endsinger:702A:/
+65.4 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
+74.5 "Telos" sync / 1[56]:[^:]*:The Endsinger:702E:/
+84.6 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
+96.8 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
+110.2 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):6FF[AB]:/
+111.8 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
+114.1 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
+122.3 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
+132.6 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+139.1 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+145.4 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
+
+# 5Head 1
+154.6 "Twinsong's Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:7007:/
+165.7 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:7006:/
+174.8 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:7006:/
+183.9 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
+192.0 "Theological Fatalism" sync / 1[56]:[^:]*:The Endsinger:700B:/
+205.2 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
+205.2 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
+214.4 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
+
+# Stack/Flare/Donut/Spread
+224.6 "Despair Unforgotten" sync / 1[56]:[^:]*:The Endsinger:7012:/
+232.1 "Benevolence" sync / 1[56]:[^:]*:The Endsinger:7016:/
+237.8 "Despair Unforgotten" sync / 1[56]:[^:]*:The Endsinger:7012:/
+245.3 "Befoulment" sync / 1[56]:[^:]*:The Endsinger:7014:/
+250.0 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
+258.1 "Despair Unforgotten" sync / 1[56]:[^:]*:The Endsinger:7012:/
+265.6 "Benevolence" sync / 1[56]:[^:]*:The Endsinger:7016:/
+272.3 "Theological Fatalism" sync / 1[56]:[^:]*:The Endsinger:700B:/
+282.5 "Benevolence" sync / 1[56]:[^:]*:The Endsinger:701A:/
+
+289.5 "Telomania (cast)" sync / 1[56]:[^:]*:The Endsinger:72C3:/
+291.4 "Telomania (small) x4" duration 5 #sync / 1[56]:[^:]*:The Endsinger:665F:/
+299.7 "Telomania (big)" sync / 1[56]:[^:]*:The Endsinger:72C5:/
+
+# 6 Head Dodges 1
+313.6 "Endsong's Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:72B1:/
+321.8 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701B:/
+332.3 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701C:/
+341.4 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701C:/
+350.5 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701C:/
+354.0 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
+363.1 "Telos" sync / 1[56]:[^:]*:The Endsinger:702E:/
+373.2 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
+387.4 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
+400.8 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):6FF[AB]:/
+402.4 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
+404.7 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
+410.8 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
+420.9 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
+
+# Four Planets 1
+421.1 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+427.6 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+431.2 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+437.7 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+
+# Towers 2
+446.5 "Tower Explosion" #sync / 1[56]:[^:]*:The Endsinger:702A:/
+447.2 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/ window 5,5
+456.3 "Telomania (cast)" sync / 1[56]:[^:]*:The Endsinger:72C3:/
+458.2 "Telomania (small) x4" duration 5 #sync / 1[56]:[^:]*:The Endsinger:665F:/
+466.5 "Telomania (big)" sync / 1[56]:[^:]*:The Endsinger:72C5:/
+
+# 5Head 2
+480.5 "Twinsong's Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:7007:/
+491.6 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:7006:/
+500.7 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:7006:/
+509.9 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
+518.0 "Theological Fatalism" sync / 1[56]:[^:]*:The Endsinger:700B:/
+531.1 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
+531.1 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
+540.2 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
+
+# 6 Head Dodges 2
+550.4 "Endsong's Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:72B1:/
+558.6 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701B:/
+569.1 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701C:/
+578.1 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701C:/
+587.1 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701C:/
+590.7 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
+599.8 "Telos" sync / 1[56]:[^:]*:The Endsinger:702E:/
+613.0 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
+623.1 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
+
+# Four Planets 2
+623.3 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+629.8 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+633.4 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+639.9 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+647.2 "Telos" sync / 1[56]:[^:]*:The Endsinger:702E:/
+661.4 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:7031:/
+683.7 "--untargetable--"
+688.7 "Ultimate Fate (enrage)" sync / 1[56]:[^:]*:The Endsinger:7032:/

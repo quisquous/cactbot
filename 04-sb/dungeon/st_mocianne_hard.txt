@@ -1,0 +1,144 @@
+# SAINT MOCIANNE'S ARBORETUM (hard)
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~#
+# NULLCHU #
+#~~~~~~~~~#
+
+# -ii 2E51 2E4C
+
+0 "Start" sync / 00:0839::Zymology will be sealed off/ window 0,1
+9.7 "Odious Air" sync / 1[56]:[^:]*:Nullchu:2E49:/ window 9.7,5
+21.8 "Vine Whip" sync / 1[56]:[^:]*:Nullchu:2E48:/
+33.9 "--sync--" sync / 1[56]:[^:]*:Nullchu:2E4D:/
+36.9 "Sludge Bomb" sync / 1[56]:[^:]*:Nullchu:2E4E:/
+42.4 "Fault Warren" sync / 1[56]:[^:]*:Nullchu:2E4A:/
+
+53.9 "Devour" sync / 1[56]:[^:]*:Nullchu:2E4F:/ window 53.9,10
+57.8 "Odious Atmosphere" sync / 1[56]:[^:]*:Nullchu:2E50:/ duration 6
+74.3 "Vine Whip" sync / 1[56]:[^:]*:Nullchu:2E48:/
+84.8 "Taproot" sync / 1[56]:[^:]*:Nullchu:2E4B:/
+95.3 "Devour" sync / 1[56]:[^:]*:Nullchu:2E4F:/ window 15,15
+99.2 "Odious Atmosphere" sync / 1[56]:[^:]*:Nullchu:2E50:/ duration 6
+116.7 "Vine Whip" sync / 1[56]:[^:]*:Nullchu:2E48:/
+122.7 "--sync--" sync / 1[56]:[^:]*:Nullchu:2E4D:/
+125.7 "Sludge Bomb" sync / 1[56]:[^:]*:Nullchu:2E4E:/
+130.2 "Devour" sync / 1[56]:[^:]*:Nullchu:2E4F:/ window 15,15
+134.1 "Odious Atmosphere" sync / 1[56]:[^:]*:Nullchu:2E50:/ duration 6
+146.9 "Odious Air" sync / 1[56]:[^:]*:Nullchu:2E49:/
+157.6 "--sync--" sync / 1[56]:[^:]*:Nullchu:2E4D:/
+160.6 "Sludge Bomb" sync / 1[56]:[^:]*:Nullchu:2E4E:/
+166.1 "Fault Warren" sync / 1[56]:[^:]*:Nullchu:2E4A:/ window 30,30
+174.6 "Devour" sync / 1[56]:[^:]*:Nullchu:2E4F:/
+178.3 "Odious Atmosphere" sync / 1[56]:[^:]*:Nullchu:2E50:/ duration 6
+190.8 "Taproot" sync / 1[56]:[^:]*:Nullchu:2E4B:/
+205.9 "--sync--" sync / 1[56]:[^:]*:Nullchu:2E4D:/
+208.9 "Sludge Bomb" sync / 1[56]:[^:]*:Nullchu:2E4E:/
+214.3 "Fault Warren" sync / 1[56]:[^:]*:Nullchu:2E4A:/
+
+225.8 "Devour" sync / 1[56]:[^:]*:Nullchu:2E4F:/ window 30,30 jump 53.9
+229.7 "Odious Atmosphere"
+246.2 "Vine Whip"
+256.7 "Taproot"
+267.2 "Devour"
+
+
+#~~~~~~~~~#
+# LAKHAMU #
+#~~~~~~~~~#
+
+# -ii 312D 3131 3133 313F
+
+
+1000.0 "Start" sync / 00:0839::The Soil Bed will be sealed off/ window 1000,5
+1008.9 "Stone II" sync / 1[56]:[^:]*:Lakhamu:312A:/ window 1008.9,10
+1019.5 "Tectonics" sync / 1[56]:[^:]*:Lakhamu:312C:/
+1039.1 "Landslip" sync / 1[56]:[^:]*:Lakhamu:3132:/
+1041.1 "Rockslide" sync / 1[56]:[^:]*:Silt Golem:3134:/ window 1041.1,10
+1049.2 "Earthquake (inner)" sync / 1[56]:[^:]*:Lakhamu:312E:/
+1051.8 "Earthquake (outer)" sync / 1[56]:[^:]*:Lakhamu:312F:/
+1062.3 "Earth Shaker" sync / 1[56]:[^:]*:Lakhamu:3130:/
+1074.0 "Empty Gaze" sync / 1[56]:[^:]*:Lakhamu:312B:/ window 1074.0,10
+1086.1 "Landslip" sync / 1[56]:[^:]*:Lakhamu:3132:/
+1088.2 "Rockslide" sync / 1[56]:[^:]*:Silt Golem:3134:/
+
+1091.3 "Earthquake (inner)?" sync / 1[56]:[^:]*:Lakhamu:312E:/ jump 1200
+1093.8 "Earthquake (outer)?"
+1094.8 "Earth Shaker?" sync / 1[56]:[^:]*:Lakhamu:3130:/ jump 1400
+1110.9 "Tectonics"
+1120.0 "Stone II"
+1132.7 "Empty Gaze"
+1144.8 "Landslip"
+
+
+1200.0 "Earthquake (inner)" sync / 1[56]:[^:]*:Lakhamu:312E:/
+1202.5 "Earthquake (outer)" sync / 1[56]:[^:]*:Lakhamu:312F:/
+1219.6 "Tectonics" sync / 1[56]:[^:]*:Lakhamu:312C:/ window 30,30
+1228.7 "Stone II" sync / 1[56]:[^:]*:Lakhamu:312A:/
+1241.4 "Empty Gaze" sync / 1[56]:[^:]*:Lakhamu:312B:/
+1253.5 "Landslip" sync / 1[56]:[^:]*:Lakhamu:3132:/ window 30,30
+1255.6 "Rockslide" sync / 1[56]:[^:]*:Silt Golem:3134:/
+
+1258.7 "Earthquake (inner)?" sync / 1[56]:[^:]*:Lakhamu:312E:/ jump 1200
+1261.3 "Earthquake (outer)?"
+1261.3 "Earth Shaker?" sync / 1[56]:[^:]*:Lakhamu:3130:/ jump 1400
+1278.4 "Tectonics"
+1287.4 "Stone II"
+1300.1 "Empty Gaze"
+1312.2 "Landslip"
+
+
+1400.0 "Earth Shaker" sync / 1[56]:[^:]*:Lakhamu:3130:/
+1414.7 "Tectonics" sync / 1[56]:[^:]*:Lakhamu:312C:/ window 30,30
+1423.8 "Stone II" sync / 1[56]:[^:]*:Lakhamu:312A:/
+1436.5 "Empty Gaze" sync / 1[56]:[^:]*:Lakhamu:312B:/
+1448.7 "Landslip" sync / 1[56]:[^:]*:Lakhamu:3132:/ window 30,30
+1450.7 "Rockslide" sync / 1[56]:[^:]*:Silt Golem:3134:/
+
+1453.8 "Earthquake (inner)?" sync / 1[56]:[^:]*:Lakhamu:312E:/ jump 1200
+1455.8 "Earthquake (outer)?"
+1455.8 "Earth Shaker?" sync / 1[56]:[^:]*:Lakhamu:3130:/ jump 1400
+1469.5 "Tectonics"
+1478.6 "Stone II"
+1491.2 "Empty Gaze"
+1503.3 "Landslip"
+
+
+#~~~~~~~~~~~#
+# TOKKAPCHI #
+#~~~~~~~~~~~#
+
+# -ii 3139 321C 33A0
+
+2000.0 "Start" sync / 00:0839::Kingsloam will be sealed off/ window 2000,5
+2008.6 "Mudsling" sync / 1[56]:[^:]*:Tokkapchi:3135:/
+2021.8 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
+2028.8 "Quagmire" sync / 1[56]:[^:]*:Tokkapchi:3138:/
+2042.4 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
+2043.7 "--center--" sync / 1[56]:[^:]*:Tokkapchi:313E:/ window 2043.7,10
+2048.5 "Mud Pie" sync / 1[56]:[^:]*:Tokkapchi:3137:/
+2060.7 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
+2068.7 "Quagmire" sync / 1[56]:[^:]*:Tokkapchi:3138:/
+2084.3 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
+2091.3 "Bog Bequest" sync / 1[56]:[^:]*:Tokkapchi:313B:/ window 2091.3,30
+2098.9 "From Mud" sync / 1[56]:[^:]*:Tokkapchi:313D:/
+
+2106.3 "--center--" sync / 1[56]:[^:]*:Tokkapchi:313E:/ window 30,30
+2111.1 "Mud Pie" sync / 1[56]:[^:]*:Tokkapchi:3137:/
+2123.2 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
+2133.2 "Quagmire" sync / 1[56]:[^:]*:Tokkapchi:3138:/
+2147.4 "Feculent Flood" sync / 1[56]:[^:]*:Tokkapchi:313C:/ window 30,30
+2157.5 "Quagmire" sync / 1[56]:[^:]*:Tokkapchi:3138:/
+2169.1 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
+2174.1 "Bog Bequest" sync / 1[56]:[^:]*:Tokkapchi:313B:/ window 30,30
+2187.7 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
+2190.7 "Mudsling" sync / 1[56]:[^:]*:Tokkapchi:3135:/
+
+2195.0 "--center--" sync / 1[56]:[^:]*:Tokkapchi:313E:/ window 30,30 jump 2106.3
+2199.8 "Mud Pie"
+2211.9 "Quickmire"
+2221.9 "Quagmire"
+2236.1 "Feculent Flood"

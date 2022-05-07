@@ -1,0 +1,119 @@
+### Titania Ex
+# -ii 429E 3D2F 468B 468A 3D49 3D39 3D42 3D43 -p 3D4B:12 3D3D:500 3D32:800 3DAE:1510
+# https://thebalanceffxiv.com/guide/titania/
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+
+### Phase 1: single mechanics
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.5 "--sync--" sync / 1[56]:[^:]*:Titania:366:/ window 2,0
+12.0 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D4B:/ window 15,5
+26.0 "Phantom Rune Out" sync / 1[56]:[^:]*:Titania:3D4C:/
+37.0 "Mist Rune" sync / 1[56]:[^:]*:Titania:3D45:/
+55.5 "Flame Rune" sync / 1[56]:[^:]*:Titania:3D47:/
+69.7 "Flame Hammer 1" #sync / 1[56]:[^:]*:Spirit of Flame:3D48:/
+72.0 "Flame Hammer 2" #sync / 1[56]:[^:]*:Spirit of Flame:3D48:/
+78.6 "Divination Rune" sync / 1[56]:[^:]*:Titania:3D4A:/
+87.6 "Chain Of Brambles" sync / 1[56]:[^:]*:Titania:42D7:/
+103.9 "Phantom Rune In" sync / 1[56]:[^:]*:Titania:3D4D:/
+
+114.9 "Midsummer Night's Dream" sync / 1[56]:[^:]*:Titania:3D30:/
+128.2 "--center--" sync / 1[56]:[^:]*:Titania:3D28:/
+133.8 "Thunder Rune 1" sync / 1[56]:[^:]*:Titania:3D29:/ window 5,1
+139.3 "Thunder Rune 2" #sync / 1[56]:[^:]*:Titania:3D29:/
+144.8 "Thunder Rune 3" #sync / 1[56]:[^:]*:Titania:3D29:/
+150.3 "Thunder Rune 4" #sync / 1[56]:[^:]*:Titania:3D29:/
+155.8 "Thunder Rune 5" #sync / 1[56]:[^:]*:Titania:3D29:/
+161.4 "Thunder Rune 6" sync / 1[56]:[^:]*:Titania:3F2A:/ window 15,15
+172.4 "Fae Light" sync / 1[56]:[^:]*:Titania:3D2C:/
+175.4 "Fae Light 1" #sync / 1[56]:[^:]*:Titania:3D2D:/
+177.4 "Fae Light 2" #sync / 1[56]:[^:]*:Titania:3D2D:/
+179.6 "Fae Light 3" #sync / 1[56]:[^:]*:Titania:3D2D:/
+188.6 "Growth Rune" sync / 1[56]:[^:]*:Titania:3D2E:/
+194.6 "Chain Of Brambles" sync / 1[56]:[^:]*:Titania:42D7:/
+213.8 "Divination Rune" sync / 1[56]:[^:]*:Titania:3D4A:/
+222.8 "Frost Rune" sync / 1[56]:[^:]*:Titania:3D2A:/
+230.8 "Frost Rune Middle" #sync / 1[56]:[^:]*:Titania:3D2B:/
+239.8 "Uplift" sync / 1[56]:[^:]*:Titania:421E:/
+246.8 "Phantom Rune In" sync / 1[56]:[^:]*:Titania:3D4D:/
+
+
+### Phase 2a: smol adds
+256.4 "--untargetable--" sync / 1[56]:[^:]*:Titania:3D31:/ window 300,0
+258.8 "--targetable--"
+271.0 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D38:/
+271.1 "Gentle Breeze" sync / 1[56]:[^:]*:Puck:3F82:/
+273.4 "Pease" sync / 1[56]:[^:]*:Peaseblossom:3D35:/
+273.4 "Peasebomb" sync / 1[56]:[^:]*:Peaseblossom:3D34:/
+277.1 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D38:/
+281.2 "Pummel" sync / 1[56]:[^:]*:Puck:3D37:/
+284.4 "Hard Swipe" sync / 1[56]:[^:]*:Peaseblossom:3D36:/
+293.2 "Pummel" sync / 1[56]:[^:]*:Puck:3D37:/
+296.9 "Pease" sync / 1[56]:[^:]*:Peaseblossom:3D35:/
+296.9 "Peasebomb" sync / 1[56]:[^:]*:Peaseblossom:3D34:/
+307.9 "Hard Swipe" sync / 1[56]:[^:]*:Peaseblossom:3D36:/
+### ???
+
+
+### Phase 2b: bigger is better
+500.0 "Love-In-Idleness" sync / 1[56]:[^:]*:Titania:3D3D:/ window 500,0
+518.2 "--targetable--"
+528.5 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D3E:/
+529.0 "War And Pease" sync / 1[56]:[^:]*:Peaseblossom:3D40:/
+529.0 "Peasebomb" sync / 1[56]:[^:]*:Peaseblossom:3D3F:/
+536.0 "Puck's Breath" sync / 1[56]:[^:]*:Puck:3D41:/
+545.0 "Whispering Wind" sync / 1[56]:[^:]*:Mustardseed:40E2:/
+555.0 "Puck's Rebuke" sync / 1[56]:[^:]*:Puck:3D44:/
+557.0 "Wallop" sync / 1[56]:[^:]*:Spirit of Wood:3D3B:/
+559.5 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D3E:/
+568.0 "War And Pease" sync / 1[56]:[^:]*:Peaseblossom:3D40:/
+568.0 "Puck's Breath" sync / 1[56]:[^:]*:Puck:3D41:/
+568.0 "Peasebomb" sync / 1[56]:[^:]*:Peaseblossom:3D3F:/
+577.0 "Puck's Caprice" sync / 1[56]:[^:]*:Puck:3D3A:/
+
+
+### Phase 3: double mechanics
+800.0 "Being Mortal" sync / 1[56]:[^:]*:Titania:3D32:/ window 800,0
+808.5 "Being Mortal" sync / 1[56]:[^:]*:Titania:3D33:/
+814.0 "--targetable--"
+825.3 "Mist Rune" sync / 1[56]:[^:]*:Titania:3D45:/
+833.3 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D4[CD]:/
+846.3 "Flame Rune" sync / 1[56]:[^:]*:Titania:3D47:/
+852.3 "Growth Rune" sync / 1[56]:[^:]*:Titania:3D2E:/
+860.4 "Flame Hammer 1" #sync / 1[56]:[^:]*:Spirit of Flame:3D48:/
+862.6 "Flame Hammer 2" #sync / 1[56]:[^:]*:Spirit of Flame:3D48:/
+880.2 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D4[CD]:/
+891.2 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D4B:/
+903.2 "Fae Light" sync / 1[56]:[^:]*:Titania:3D2C:/
+906.2 "Fae Light 1" #sync / 1[56]:[^:]*:Titania:3D2D:/
+908.2 "Fae Light 2" #sync / 1[56]:[^:]*:Titania:3D2D:/
+910.2 "Fae Light 3" #sync / 1[56]:[^:]*:Titania:3D2D:/
+919.2 "Frost Rune" sync / 1[56]:[^:]*:Titania:3D2A:/
+927.2 "Frost Rune Middle" #sync / 1[56]:[^:]*:Titania:3D2B:/
+934.2 "Uplift" sync / 1[56]:[^:]*:Titania:421E:/
+942.2 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D4B:/
+950.6 "--center--" sync / 1[56]:[^:]*:Titania:3D28:/
+956.2 "Thunder Rune 1" sync / 1[56]:[^:]*:Titania:3D29:/ window 5,1
+961.7 "Thunder Rune 2" #sync / 1[56]:[^:]*:Titania:3D29:/
+967.2 "Thunder Rune 3" #sync / 1[56]:[^:]*:Titania:3D29:/
+972.7 "Thunder Rune 4" #sync / 1[56]:[^:]*:Titania:3D29:/
+978.2 "Thunder Rune 5" #sync / 1[56]:[^:]*:Titania:3D29:/
+983.7 "Thunder Rune 6" sync / 1[56]:[^:]*:Titania:3F2A:/ window 15,15
+994.7 "Growth Rune" sync / 1[56]:[^:]*:Titania:3D2E:/
+1000.7 "Chain Of Brambles" sync / 1[56]:[^:]*:Titania:42D7:/
+1023.7 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D4[CD]:/
+1031.7 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D4[CD]:/
+1043.7 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D4B:/
+1050.7 "Divination Rune" sync / 1[56]:[^:]*:Titania:3D4A:/
+1065.6 "Mist Rune" sync / 1[56]:[^:]*:Titania:3D45:/
+# ???
+
+
+### Phase 4: too slow
+1500.0 "--sync--" sync / 14:[^:]*:Titania:3DAE:/ window 1500,0
+1510.0 "Bright Sabbath Enrage" sync / 1[56]:[^:]*:Titania:3DAE:/

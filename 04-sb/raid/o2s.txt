@@ -1,0 +1,140 @@
+### Omega 2 (Savage)
+# Omega - Deltascape V2.0 (Savage)
+# -ii 25B6 2479 247A 2356 2364 245D 2368 2365 2366 24DB 235F 236D 2360 23EF 2362 235D
+# -p 2373:5
+
+# Note: Weighted Wing (236C) is renamed to Unstable Gravity, the effect it gives.
+
+hideall "--sync--"
+hideall "--Reset--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.3 "--sync--" sync / 1[56]:[^:]*:Catastrophe:25B6:/ window 0,1.3
+5.0 "Tremblor" sync / 1[56]:[^:]*:Catastrophe:2373:/ window 5,2.5
+8.7 "Tremblor" sync / 1[56]:[^:]*:Catastrophe:2373:/
+17.4 "Earthquake" sync / 1[56]:[^:]*:Catastrophe:2374:/ window 18,10
+24.6 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:2355:/
+32.8 "Antilight (center)" sync / 1[56]:[^:]*:Catastrophe:2361:/
+50.0 "Gravitational Wave" sync / 1[56]:[^:]*:Catastrophe:2372:/
+60.3 "Gravitational Manipulation" sync / 1[56]:[^:]*:Catastrophe:2363:/
+63.4 "Gravitational Distortion" sync / 1[56]:[^:]*:Catastrophe:2369:/
+67.5 "Gravitational Explosion" sync / 1[56]:[^:]*:Catastrophe:2367:/
+
+73.6 "Paranormal Wave 1" sync / 1[56]:[^:]*:Catastrophe:2370:/
+78.8 "Paranormal Wave 2" sync / 1[56]:[^:]*:Catastrophe:2370:/
+89.0 "Evilsphere" sync / 1[56]:[^:]*:Catastrophe:2371:/
+96.2 "Paranormal Wave 3" sync / 1[56]:[^:]*:Catastrophe:2370:/
+
+106.3 "Maniacal Probe (T/H)" sync / 1[56]:[^:]*:Catastrophe:235A:/
+116.4 "Erosion" sync / 1[56]:[^:]*:Fleshy Member:235B:/
+117.5 "Death's Gaze" sync / 1[56]:[^:]*:Catastrophe:236F:/
+122.7 "Epicenter" sync / 1[56]:[^:]*:Catastrophe:2357:/
+129.9 "Gravitational Wave" sync / 1[56]:[^:]*:Catastrophe:2372:/
+137.1 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:2355:/
+140.9 "Main Quake" sync / 1[56]:[^:]*:Catastrophe:2359:/
+145.2 "Gravitational Wave" sync / 1[56]:[^:]*:Catastrophe:2372:/
+
+150.5 "Paranormal Wave 1" sync / 1[56]:[^:]*:Catastrophe:2370:/
+160.7 "Gravitational Manipulation" sync / 1[56]:[^:]*:Catastrophe:2363:/
+167.9 "Gravitational Explosion" sync / 1[56]:[^:]*:Catastrophe:2367:/
+175.8 "Paranormal Wave 2" sync / 1[56]:[^:]*:Catastrophe:2370:/
+185.8 "Evilsphere" sync / 1[56]:[^:]*:Catastrophe:2371:/
+192.8 "Paranormal Wave 3" sync / 1[56]:[^:]*:Catastrophe:2370:/
+
+207.8 "-100 Gs" sync / 1[56]:[^:]*:Catastrophe:235E:/
+217.8 "Death's Gaze" sync / 1[56]:[^:]*:Catastrophe:236F:/
+227.8 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:2355:/
+
+235.8 "Antilight (center)" sync / 1[56]:[^:]*:Catastrophe:2361:/
+238.3 "Unstable Gravity (T/H)" sync / 1[56]:[^:]*:Catastrophe:236C:/
+243.3 "Gravitational Wave" sync / 1[56]:[^:]*:Catastrophe:2372:/
+254.3 "Long Drop" sync / 1[56]:[^:]*:Catastrophe:236B:/
+265.2 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:2355:/
+
+273.2 "Antilight (ground)" sync / 1[56]:[^:]*:Catastrophe:2361:/
+277.2 "Tremblor" sync / 1[56]:[^:]*:Catastrophe:2373:/
+280.7 "Tremblor" sync / 1[56]:[^:]*:Catastrophe:2373:/
+289.2 "Earthquake" sync / 1[56]:[^:]*:Catastrophe:2374:/
+299.2 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:2355:/
+
+314.2 "Maniacal Probe (DPS)" sync / 1[56]:[^:]*:Catastrophe:235A:/
+324.2 "Erosion" sync / 1[56]:[^:]*:Fleshy Member:235B:/
+325.2 "Death's Gaze" sync / 1[56]:[^:]*:Catastrophe:236F:/
+330.2 "Epicenter" sync / 1[56]:[^:]*:Catastrophe:2357:/
+339.2 "Gravitational Manipulation" sync / 1[56]:[^:]*:Catastrophe:2363:/
+346.2 "Gravitational Explosion" sync / 1[56]:[^:]*:Catastrophe:2367:/
+348.2 "Main Quake" sync / 1[56]:[^:]*:Catastrophe:2359:/
+
+349.2 "Antilight (center)" sync / 1[56]:[^:]*:Catastrophe:2361:/
+351.7 "Unstable Gravity (DPS)" sync / 1[56]:[^:]*:Catastrophe:236C:/
+356.7 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:2355:/
+367.7 "Long Drop" sync / 1[56]:[^:]*:Catastrophe:236B:/
+377.6 "Paranormal Wave 1" sync / 1[56]:[^:]*:Catastrophe:2370:/
+382.6 "Paranormal Wave 2" sync / 1[56]:[^:]*:Catastrophe:2370:/
+392.6 "Evilsphere" sync / 1[56]:[^:]*:Catastrophe:2371:/
+399.6 "Paranormal Wave 3" sync / 1[56]:[^:]*:Catastrophe:2370:/
+
+409.6 "Antilight (ground)" sync / 1[56]:[^:]*:Catastrophe:2361:/
+416.6 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:2355:/
+427.6 "Maniacal Probe (T/H)" sync / 1[56]:[^:]*:Catastrophe:235A:/
+437.6 "Erosion" sync / 1[56]:[^:]*:Fleshy Member:235B:/
+438.6 "Death's Gaze" sync / 1[56]:[^:]*:Catastrophe:236F:/
+443.6 "Epicenter" sync / 1[56]:[^:]*:Catastrophe:2357:/
+452.6 "Gravitational Manipulation" sync / 1[56]:[^:]*:Catastrophe:2363:/
+459.6 "Gravitational Explosion" sync / 1[56]:[^:]*:Catastrophe:2367:/
+461.6 "Main Quake" sync / 1[56]:[^:]*:Catastrophe:2359:/
+
+462.6 "Antilight (center)" sync / 1[56]:[^:]*:Catastrophe:2361:/
+465.1 "Unstable Gravity (T/H)" sync / 1[56]:[^:]*:Catastrophe:236C:/
+470.1 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:2355:/
+481.1 "Long Drop" sync / 1[56]:[^:]*:Catastrophe:236B:/
+482.0 "Gravitational Distortion" sync / 1[56]:[^:]*:Catastrophe:2369:/
+489.0 "Death's Gaze" sync / 1[56]:[^:]*:Catastrophe:236F:/
+497.0 "Gravitational Wave" sync / 1[56]:[^:]*:Catastrophe:2372:/
+
+499.0 "Paranormal Wave 1" sync / 1[56]:[^:]*:Catastrophe:2370:/
+507.0 "Antilight (ground)" sync / 1[56]:[^:]*:Catastrophe:2361:/
+514.0 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:2355:/
+519.0 "Paranormal Wave 2" sync / 1[56]:[^:]*:Catastrophe:2370:/
+531.0 "Evilsphere" sync / 1[56]:[^:]*:Catastrophe:2371:/
+538.0 "Paranormal Wave 3" sync / 1[56]:[^:]*:Catastrophe:2370:/
+548.0 "Gravitational Manipulation" sync / 1[56]:[^:]*:Catastrophe:2363:/
+550.0 "Gravitational Distortion" sync / 1[56]:[^:]*:Catastrophe:2369:/
+555.0 "Gravitational Explosion" sync / 1[56]:[^:]*:Catastrophe:2367:/
+
+562.0 "Antilight (ground)" sync / 1[56]:[^:]*:Catastrophe:2361:/
+568.0 "Tremblor" #sync / 1[56]:[^:]*:Catastrophe:2373:/
+568.5 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:2355:/
+570.5 "Tremblor" #sync / 1[56]:[^:]*:Catastrophe:2373:/
+579.0 "Earthquake" sync / 1[56]:[^:]*:Catastrophe:2374:/
+587.0 "Gravitational Wave" sync / 1[56]:[^:]*:Catastrophe:2372:/
+600.0 "Gravitational Collapse" sync / 1[56]:[^:]*:Catastrophe:235D:/
+600.0 "-100 Gs" sync / 1[56]:[^:]*:Catastrophe:235E:/
+610.0 "Death's Gaze" sync / 1[56]:[^:]*:Catastrophe:236F:/
+
+615.0 "Antilight (ground)" sync / 1[56]:[^:]*:Catastrophe:2361:/
+621.0 "Tremblor" #sync / 1[56]:[^:]*:Catastrophe:2373:/
+621.5 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:2355:/
+623.5 "Tremblor" #sync / 1[56]:[^:]*:Catastrophe:2373:/
+632.0 "Earthquake" sync / 1[56]:[^:]*:Catastrophe:2374:/
+
+562.0 "Antilight (ground)" sync / 1[56]:[^:]*:Catastrophe:2361:/
+568.0 "Tremblor" #sync / 1[56]:[^:]*:Catastrophe:2373:/
+568.5 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:2355:/
+570.5 "Tremblor" #sync / 1[56]:[^:]*:Catastrophe:2373:/
+579.0 "Earthquake" sync / 1[56]:[^:]*:Catastrophe:2374:/
+587.0 "Gravitational Wave" sync / 1[56]:[^:]*:Catastrophe:2372:/
+600.0 "Gravitational Collapse" sync / 1[56]:[^:]*:Catastrophe:235D:/
+600.0 "-100 Gs" sync / 1[56]:[^:]*:Catastrophe:235E:/
+610.0 "Death's Gaze" sync / 1[56]:[^:]*:Catastrophe:236F:/
+
+615.0 "Antilight (ground)" sync / 1[56]:[^:]*:Catastrophe:2361:/
+621.0 "Tremblor" #sync / 1[56]:[^:]*:Catastrophe:2373:/
+621.5 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:2355:/
+623.5 "Tremblor" #sync / 1[56]:[^:]*:Catastrophe:2373:/
+632.0 "Earthquake" sync / 1[56]:[^:]*:Catastrophe:2374:/
+
+633.3 "--sync--" sync / 14:[^:]*:Catastrophe:25A2:/
+643.3 "Gravitational Wave Enrage" sync / 1[56]:[^:]*:Catastrophe:25A2:/

@@ -1,0 +1,358 @@
+### The Bozjan Southern Front
+# https://docs.google.com/document/d/1zl-Z99fF1x8uhZwk9ewW4Q5UcR2dLLS_zzxQSRFWQNM/edit
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:80000014:00:/ window 100000 jump 0
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+# TODO: fill in CEs
+# The idea with each of them is that you have at most two minutes of standing
+# around, so start each timeline at +200 from the initial 0x21 sync line.
+# e.g. Kill It With Fire would start at 1200 with "Start" and then boss
+# abilities from there.
+
+### Kill It with Fire
+1000.0 "--sync--" sync / 21:........:80000014:1D4:/ window 100000,0
+
+### The Baying of the Hound(s)
+2000.0 "--sync--" sync / 21:........:80000014:1CC:/ window 100000,0
+
+### Vigil for the Lost
+3000.0 "--sync--" sync / 21:........:80000014:1D0:/ window 100000,0
+
+### Aces High
+4000.0 "--sync--" sync / 21:........:80000014:1D2:/ window 100000,0
+
+### The Shadow of Death's Hand
+5000.0 "--sync--" sync / 21:........:80000014:1CD:/ window 100000,0
+
+### The Final Furlong
+6000.0 "--sync--" sync / 21:........:80000014:1D5:/ window 100000,0
+
+### The Hunt for Red Choctober
+7000.0 "--sync--" sync / 21:........:80000014:1CA:/ window 100000,0
+
+### Beast of Man
+8000.0 "--sync--" sync / 21:........:80000014:1DB:/ window 100000,0
+
+### Fires of War
+9000.0 "--sync--" sync / 21:........:80000014:1D6:/ window 100000,0
+
+### Patriot Games
+10000.0 "--sync--" sync / 21:........:80000014:1D1:/ window 100000,0
+
+### Trampled under Hoof
+11000.0 "--sync--" sync / 21:........:80000014:1CE:/ window 100000,0
+
+### And the Flames Went Higher
+12000.0 "--sync--" sync / 21:........:80000014:1D3:/ window 100000,0
+
+### Metal Fox Chaos
+13000.0 "--sync--" sync / 21:........:80000014:1CB:/ window 100000,0
+
+### Rise of the Robots
+14000.0 "--sync--" sync / 21:........:80000014:1DF:/ window 100000,0
+
+### Where Strode the Behemoth
+15000.0 "--sync--" sync / 21:........:80000014:1DC:/ window 100000,0
+
+### The Battle of Castrum Lacus Litore
+#16000.0 "--sync--" sync / 21:........:80000014:1D7:/ window 100000,0
+
+### Brionac / 4th Legion Helldiver
+20000.0 "--sync--" sync / 00:0839::The grand gates will be sealed off/ window 100000,0
+20000.0 "--sync--" sync / 00:0839::Eaglesight will be sealed off/ window 100000,0
+# JavaScript will insert a sync to jump to 4th Legion Helldiver if you are on the bottom.
+# Unfortunately, there is nothing in the log to differentiate otherwise.
+
+### Brionac
+# -ic "Xeven The Vengeful" "Tunnel Armor" "4Th Legion Helldiver"
+# -ii 51DD 5201 53C5 51DA 51D4 51D6 51D8
+#-p 51DC:20014.7
+#
+# 53C5 Lightning Shower is the first obvious "you are on the top" damage
+# Anti-Warchmachina Weaponry summons an add; once dead, the timeline resumes.
+20014.7 "Electric Anvil" sync / 1[56]:[^:]*:Brionac:51DC:/
+20026.8 "False Thunder" sync / 1[56]:[^:]*:Brionac:51C[EF]:/
+20035.0 "Anti-Warmachina Weaponry" sync / 1[56]:[^:]*:Brionac:51CD:/
+20135.0 "--sync--" sync / 14:[^:]*:Brionac:53C4:/ window 100,50
+20139.0 "Lightning Shower" sync / 1[56]:[^:]*:Brionac:53C4:/
+
+20146.1 "Energy Generation" sync / 1[56]:[^:]*:Brionac:51D0:/
+20158.2 "Lightburst" sync / 1[56]:[^:]*:Lightsphere:51D1:/
+
+20171.2 "False Thunder" sync / 1[56]:[^:]*:Brionac:51C[EF]:/
+
+20177.3 "Energy Generation" sync / 1[56]:[^:]*:Brionac:51D0:/
+20189.5 "Shadow Burst" sync / 1[56]:[^:]*:Shadowsphere:51D2:/
+
+20203.5 "Electric Anvil" sync / 1[56]:[^:]*:Brionac:51DC:/
+20218.8 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
+20222.8 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
+20226.9 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
+20230.9 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
+
+20238.8 "Energy Generation" sync / 1[56]:[^:]*:Brionac:51D0:/
+20250.9 "Pole Shift" sync / 1[56]:[^:]*:Brionac:51D3:/
+20254.9 "Shadow Burst" sync / 1[56]:[^:]*:Shadowsphere:51D2:/
+20254.9 "Lightburst" sync / 1[56]:[^:]*:Lightsphere:51D1:/
+
+20263.2 "Anti-Warmachina Weaponry" sync / 1[56]:[^:]*:Brionac:51CD:/
+20363.2 "--sync--" sync / 14:[^:]*:Brionac:53C4:/ window 100,50
+20367.2 "Lightning Shower" sync / 1[56]:[^:]*:Brionac:53C4:/
+20374.3 "Energy Generation" sync / 1[56]:[^:]*:Brionac:51D0:/
+20384.4 "Magitek Magnetism" sync / 1[56]:[^:]*:Brionac:51D5:/
+20388.6 "Magnetic Jolt" sync / 1[56]:[^:]*:Brionac:51D7:/
+20389.4 "Lightburst" sync / 1[56]:[^:]*:Lightsphere:51D1:/
+20389.4 "Shadow Burst" sync / 1[56]:[^:]*:Shadowsphere:51D2:/
+20399.6 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
+20403.6 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
+20407.7 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
+20411.7 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
+20418.6 "False Thunder" sync / 1[56]:[^:]*:Brionac:51CF:/
+20427.9 "Anti-Warmachina Weaponry" sync / 1[56]:[^:]*:Brionac:51CD:/
+20527.9 "--sync--" sync / 14:[^:]*:Brionac:51DC:/ window 100,50
+20531.9 "Electric Anvil" sync / 1[56]:[^:]*:Brionac:51DC:/
+
+20539.0 "Energy Generation" sync / 1[56]:[^:]*:Brionac:51D0:/
+20549.1 "Polar Magnetism" sync / 1[56]:[^:]*:Brionac:51D9:/
+20554.2 "Shadow Burst" sync / 1[56]:[^:]*:Shadowsphere:51D2:/
+20554.2 "Lightburst" sync / 1[56]:[^:]*:Lightsphere:51D1:/
+
+20565.4 "Energy Generation" sync / 1[56]:[^:]*:Brionac:51D0:/
+20565.4 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
+
+# ???
+
+
+### 4th Legion Helldiver
+# -ic "Xeven The Vengeful" Brionac Lightsphere Shadowsphere
+# -ii 51FA 51FF 51ED 51FC 51F1 51F7 5200
+# -p 5200:30006.5
+#
+# 51FD MRV Missile is the first obvious "you are on the bottom"
+# Chain Cannon is not a trustworthy sync, even when it's on its own.
+
+# Uncomment this to more easily test this timeline.
+# 30000.0 "--sync--" sync / 00:0839::Eaglesight will be sealed off/ window 100000,0
+
+# Fake intro, where you don't know if you're on the top or the bottom.
+# Don't sync because sometimes these bosses are +/- 3 seconds @_@
+20022.2 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
+20036.9 "Mrv Missile" #sync / 1[56]:[^:]*:4Th Legion Helldiver:51FD:/
+
+30022.2 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
+30036.9 "Mrv Missile" sync / 1[56]:[^:]*:4Th Legion Helldiver:51FD:/ window 50,50
+30049.1 "Command: Lateral Dive" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EA:/
+30057.1 "Lateral Dive" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EB:/
+30065.3 "Command: Suppressive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F5:/
+30073.3 "Command: Suppressive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F6:/
+30082.6 "Magitek Missiles" sync / 1[56]:[^:]*:4Th Legion Helldiver:51FE:/
+30097.8 "Command: Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EC:/
+30102.4 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
+30106.4 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
+30110.4 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
+30114.4 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
+30134.1 "Command: Chain Cannon" sync / 1[56]:[^:]*:4Th Legion Helldiver:51FB:/
+30138.9 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
+30140.8 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
+30142.9 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
+30144.9 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
+30153.4 "Magitek Missiles" sync / 1[56]:[^:]*:4Th Legion Helldiver:51FE:/ window 15,15
+30167.6 "Command: Dive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EF:/
+30179.6 "Dive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F0:/
+30183.6 "Dive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F0:/
+30187.6 "Dive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F0:/
+30197.8 "Command: Lateral Dive" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EA:/
+30203.9 "Command: Suppressive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F5:/
+30205.8 "Lateral Dive" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EB:/
+30209.8 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
+30211.9 "Command: Suppressive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F6:/
+30232.6 "Magitek Missiles" sync / 1[56]:[^:]*:4Th Legion Helldiver:51FE:/
+30246.8 "Command: Joint Attack" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F2:/
+30255.0 "Command: Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EC:/
+30259.6 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
+30263.6 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
+30265.3 "Surface Missile" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F8:/
+30267.7 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
+30270.4 "Surface Missile" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F8:/
+30271.6 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
+30278.2 "Command: Chain Cannon" sync / 1[56]:[^:]*:4Th Legion Helldiver:51FB:/
+30282.8 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
+30284.3 "Command: Suppressive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F5:/
+30284.9 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
+30286.8 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
+30288.9 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
+30292.3 "Command: Suppressive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F6:/
+# ???
+
+
+### Albeleo the Maleficent
+40000.0 "--sync--" sync / 00:0839::Bladesmeet will be sealed off/ window 100000,0
+
+
+### Adrammelech
+# -p 4F96:50014.3
+# -ii 4F94 4F91 4F8D 504E 504F 5050 5051 5052 4F8B 4F7E 504C 545C 4F90 4F7C 4F84 4F88 4F89 4F82 4F83 4F93
+# note: accursed becoming IV casts have different ability ids the first time through.
+
+50000.0 "--sync--" sync / 00:0839::The airship landing will be sealed off/ window 100000,0
+50014.3 "Holy IV" sync / 1[56]:[^:]*:Adrammelech:4F96:/
+
+50021.8 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
+50028.9 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
+50036.1 "Water IV" sync / 1[56]:[^:]*:Adrammelech:53D8:/
+
+50044.4 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
+50051.5 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
+50058.7 "Fire IV/Blizzard IV" sync / 1[56]:[^:]*:Adrammelech:545[AD]:/
+
+50067.0 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
+50074.1 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
+50081.3 "Stone IV/Aero IV/Thunder IV" sync / 1[56]:[^:]*:Adrammelech:4F(7F|80|81):/
+
+50091.4 "Burst II" sync / 1[56]:[^:]*:Adrammelech:4F8A:/
+50102.5 "Warped Light" sync / 1[56]:[^:]*:Adrammelech:4F8C:/
+50105.5 "Shock" sync / 1[56]:[^:]*:Adrammelech:4F8E:/
+
+50116.0 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
+50123.1 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
+50130.3 "Orb 1" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
+50132.1 "Orb 2" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
+
+50144.3 "Tornado" sync / 1[56]:[^:]*:Adrammelech:4F8F:/
+50151.4 "Flare" sync / 1[56]:[^:]*:Adrammelech:4F95:/
+50160.5 "Holy IV" sync / 1[56]:[^:]*:Adrammelech:4F96:/
+50168.7 "Meteor" sync / 1[56]:[^:]*:Adrammelech:4F92:/ duration 20.7
+
+# HP push? I have seen Meteor and Tornado->Meteor all skipped.
+50194.3 "--sync--" sync / 14:[^:]*:Adrammelech:4F7A:/ window 70,20
+50197.3 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
+50204.4 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
+50211.6 "Orb 1" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
+50213.4 "Orb 2" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
+50213.5 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
+50220.7 "Orb 3" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
+50222.5 "Orb 4" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
+
+50230.7 "Flare" sync / 1[56]:[^:]*:Adrammelech:4F95:/
+50237.8 "Tornado" sync / 1[56]:[^:]*:Adrammelech:4F8F:/
+50244.9 "Meteor" sync / 1[56]:[^:]*:Adrammelech:4F92:/ duration 20.7
+50262.6 "Burst II" sync / 1[56]:[^:]*:Adrammelech:4F8A:/
+50273.8 "Warped Light" sync / 1[56]:[^:]*:Adrammelech:4F8C:/
+50276.8 "Shock" sync / 1[56]:[^:]*:Adrammelech:4F8E:/
+50288.0 "Holy IV" sync / 1[56]:[^:]*:Adrammelech:4F96:/
+50295.1 "Holy IV" sync / 1[56]:[^:]*:Adrammelech:4F96:/
+50304.2 "Flare" sync / 1[56]:[^:]*:Adrammelech:4F95:/
+
+50316.7 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
+50323.8 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
+50331.0 "Orb 1" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
+50332.8 "Orb 2" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
+50332.9 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
+50340.1 "Orb 3" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
+50341.9 "Orb 4" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
+
+# Loop
+# TODO: if anybody ever finds the enrage, we can unroll this.
+50350.1 "Flare" sync / 1[56]:[^:]*:Adrammelech:4F95:/
+50357.2 "Tornado" sync / 1[56]:[^:]*:Adrammelech:4F8F:/ window 100,100 jump 50237.8
+50364.3 "Meteor"
+50382.0 "Burst II"
+50385.0 "Meteor"
+50393.2 "Warped Light"
+50396.2 "Shock"
+50407.4 "Holy IV"
+50414.5 "Holy IV"
+50423.6 "Flare"
+
+
+### Dawon / Lyon
+# -ic "Tamed Coeurl" "Tamed Manticore" "Tamed Beetle" "Scarlet Plume"
+# -p 517A:60014.3
+# -ii 5165 5177 51BB 5190 5170 5160
+
+# Phase 1
+60000.0 "--sync--" sync / 00:0839::Majesty's Auspice will be sealed off/ window 100000,0
+60014.3 "Molting Plumage" sync / 1[56]:[^:]*:Dawon:517A:/
+60025.9 "Explosion" sync / 1[56]:[^:]*:Verdant Plume:5182:/
+60033.5 "Scratch" sync / 1[56]:[^:]*:Dawon:517B:/
+60042.1 "Fervid Pulse" sync / 1[56]:[^:]*:Dawon:5179:/
+60050.6 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:5175:/
+60058.4 "Frigid Pulse" sync / 1[56]:[^:]*:Dawon:5178:/
+60067.9 "Ready x3" duration 4.1 #sync / 1[56]:[^:]*:Lyon The Beast King:5191:/
+60074.9 "Obey" sync / 1[56]:[^:]*:Dawon:517C:/
+60077.0 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
+60079.8 "Frigid Pulse/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
+60082.2 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
+60085.0 "Frigid Pulse/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
+60087.4 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
+60090.2 "Frigid Pulse/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
+60101.6 "Call Beast" sync / 1[56]:[^:]*:Lyon The Beast King:5192:/
+60107.6 "Molting Plumage" sync / 1[56]:[^:]*:Dawon:517A:/
+60119.2 "Explosion" sync / 1[56]:[^:]*:Verdant Plume:5182:/
+60128.9 "Pentagust" sync / 1[56]:[^:]*:Dawon:5176:/
+60139.6 "Scratch" sync / 1[56]:[^:]*:Dawon:517B:/
+
+# This only sometimes happens?? Is there a loop here?
+# 60158.4 "Call Beast" sync / 1[56]:[^:]*:Lyon The Beast King:5192:/
+
+# Phase 2
+# Raging Winds starts and ends the phase, even if you win.
+# This starts when anybody goes up, so might be delayed
+# I've also seen this cast twice?? e.g. 173.3 Raging Winds, 177.5 Call Beast, 185.6 Raging Winds??
+# Regardless, everything seems to sync ok after that.
+# TODO: is there some way to isolate the top??
+60153.6 "--Lyon Passage--" # ??? double check this timing
+60166.5 "Raging Winds" sync / 1[56]:[^:]*:Lyon The Beast King:5164:/ window 100,20
+60172.6 "Winds' Peak" sync / 1[56]:[^:]*:Lyon The Beast King:516F:/
+60183.8 "Heart Of Nature" sync / 1[56]:[^:]*:Lyon The Beast King:515E:/
+60188.8 "Nature's Pulse" sync / 1[56]:[^:]*:Lyon The Beast King:5161:/
+60190.3 "Nature's Pulse" sync / 1[56]:[^:]*:Lyon The Beast King:5162:/
+60191.8 "Nature's Pulse" sync / 1[56]:[^:]*:Lyon The Beast King:5163:/
+60198.0 "Taste Of Blood" sync / 1[56]:[^:]*:Lyon The Beast King:5173:/
+60210.2 "Heart Of Nature" sync / 1[56]:[^:]*:Lyon The Beast King:515E:/ duration 6.6
+60218.2 "Nature's Blood" sync / 1[56]:[^:]*:Lyon The Beast King:515F:/
+60218.3 "Winds' Peak" sync / 1[56]:[^:]*:Lyon The Beast King:516F:/
+60228.4 "Twin Agonies" sync / 1[56]:[^:]*:Lyon The Beast King:5174:/
+60241.6 "Heart Of Nature" sync / 1[56]:[^:]*:Lyon The Beast King:515E:/ duration 6.6
+60248.7 "The King's Notice" sync / 1[56]:[^:]*:Lyon The Beast King:516E:/
+60249.6 "Nature's Blood" sync / 1[56]:[^:]*:Lyon The Beast King:515F:/
+60256.6 "Taste Of Blood" sync / 1[56]:[^:]*:Lyon The Beast King:5173:/
+60275.7 "Raging Winds Enrage" #sync / 1[56]:[^:]*:Lyon The Beast King:5164:/
+
+# Phase 3
+61000.0 "--sync--" sync / 14:[^:]*:Dawon:517D:/ window 1000,0
+61002.0 "Ready x4" duration 6.1 #sync / 1[56]:[^:]*:Lyon The Beast King:5191:/
+61012.0 "Obey" sync / 1[56]:[^:]*:Dawon:517D:/
+61014.1 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
+61016.9 "Frigid/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
+61019.3 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
+61022.1 "Frigid/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
+61024.5 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
+61027.3 "Frigid/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
+61029.7 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
+61032.5 "Frigid/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
+
+61042.9 "Call Beast" sync / 1[56]:[^:]*:Lyon The Beast King:5192:/
+61048.9 "Molting Plumage" sync / 1[56]:[^:]*:Dawon:517A:/
+61060.5 "Explosion" sync / 1[56]:[^:]*:Verdant Plume:5182:/
+
+61070.0 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:5175:/
+61075.8 "Pentagust" sync / 1[56]:[^:]*:Dawon:5176:/
+61087.5 "Scratch" sync / 1[56]:[^:]*:Dawon:517B:/
+
+# Loop!
+61100.7 "Ready x4" duration 6.1 #sync / 1[56]:[^:]*:Lyon The Beast King:5191:/
+61110.7 "Obey" sync / 1[56]:[^:]*:Dawon:517D:/ window 90,90 jump 61012.0
+61112.8 "Swooping Frenzy"
+61115.6 "Frigid/Fervid Pulse"
+61118.0 "Swooping Frenzy"
+61120.8 "Frigid/Fervid Pulse"
+61123.2 "Swooping Frenzy"
+61126.0 "Frigid/Fervid Pulse"
+61128.4 "Swooping Frenzy"
+61131.2 "Frigid/Fervid Pulse"
+

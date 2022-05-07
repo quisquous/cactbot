@@ -1,0 +1,70 @@
+### Eden 9 (Savage)
+# Eden's Promise: Umbra (Savage)
+# -ii 5B19 5609 5627 560F 5619 5621 55FA 5A95 561E 5614 55FF 561B 5600 5B01 55FC 5606 55FF 55FD 5616 5615 5B00 5611 5610 510E 5B01 561C 5B07 560A 5624 5617 562B 5019 561D 560B
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /:Engage!/ window 0,1
+0.8 "--sync--" sync / 1[56]:[^:]*:Cloud Of Darkness:5627:/ window 1,0
+16.9 "Ground-Razing Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:5625:/ window 17,10
+27.1 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:5B4[56]:/
+36.8 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:5B4[56]:/
+47.5 "Devouring Dark" sync / 1[56]:[^:]*:Cloud Of Darkness:5623:/
+
+## Woods
+63.1 "Obscure Woods" sync / 1[56]:[^:]*:Cloud Of Darkness:55EE:/
+74.3 "Flood Of Obscurity" sync / 1[56]:[^:]*:Cloud Of Darkness:5907:/
+81.8 "Rejuvenating Balm" sync / 1[56]:[^:]*:Cloud Of Darkness:5618:/
+101.6 "Phaser Unlimited 1" sync / 1[56]:[^:]*:Cloud Of Darkness:56(1[23]|0[DE]):/ window 4,4
+103.7 "--1--" sync / 1[56]:[^:]*:Cloud Of Darkness:56(14|0F):/
+105.7 "--2--" sync / 1[56]:[^:]*:Cloud Of Darkness:561[05]:/
+109.0 "--3--" sync / 1[56]:[^:]*:Cloud Of Darkness:5B0[01]:/
+126.2 "Ground-Razing Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:5625:/
+144.4 "The Second Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:560[12]:/
+159.5 "Phaser Unlimited 2" sync / 1[56]:[^:]*:Cloud Of Darkness:56(1[23]|0[DE]):/ window 4,4
+161.6 "--1--" sync / 1[56]:[^:]*:Cloud Of Darkness:56(14|0F):/
+163.6 "--2--" sync / 1[56]:[^:]*:Cloud Of Darkness:561[05]:/
+166.9 "--3--" sync / 1[56]:[^:]*:Cloud Of Darkness:5B0[01]:/
+182.1 "Devouring Dark" sync / 1[56]:[^:]*:Cloud Of Darkness:5623:/
+
+## Tiles
+197.7 "Empty Plane" sync / 1[56]:[^:]*:Cloud Of Darkness:55EF:/
+208.9 "Flood Of Emptiness" sync / 1[56]:[^:]*:Cloud Of Darkness:55F0:/
+216.0 "Hypercharged Condensation" sync / 1[56]:[^:]*:Cloud Of Darkness:560C:/
+231.2 "Full-Perimeter Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:5629:/
+248.5 "The Art Of Darkness (L/R)" sync / 1[56]:[^:]*:Cloud Of Darkness:5A9[56]:/
+264.3 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:55F[BE]:/
+279.0 "Deluge Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:55F1:/
+
+## Default
+285.9 "Summon" sync / 1[56]:[^:]*:Cloud Of Darkness:5019:/
+301.2 "The Art Of Darkness (L/R)" sync / 1[56]:[^:]*:Cloud Of Darkness:5A9[56]:/
+314.8 "Devouring Dark" sync / 1[56]:[^:]*:Cloud Of Darkness:5623:/
+337.4 "The Third Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:560[34]:/
+
+## Woods
+358.0 "Obscure Woods" sync / 1[56]:[^:]*:Cloud Of Darkness:55EE:/
+369.2 "Flood Of Obscurity" sync / 1[56]:[^:]*:Cloud Of Darkness:5907:/
+377.3 "Particle Concentration" sync / 1[56]:[^:]*:Cloud Of Darkness:5620:/
+397.3 "Phaser Unlimited 3" sync / 1[56]:[^:]*:Cloud Of Darkness:56(1[23]|0[DE]):/ window 4,4
+399.4 "--1--" sync / 1[56]:[^:]*:Cloud Of Darkness:56(14|0F):/
+401.4 "--2--" sync / 1[56]:[^:]*:Cloud Of Darkness:561[05]:/
+404.7 "--3--" sync / 1[56]:[^:]*:Cloud Of Darkness:5B0[01]:/
+418.9 "Ground-Razing Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:5625:/
+433.0 "Rejuvenating Balm" sync / 1[56]:[^:]*:Cloud Of Darkness:5618:/
+444.6 "The Second Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:560[12]:/
+461.3 "Devouring Dark" sync / 1[56]:[^:]*:Cloud Of Darkness:5623:/
+
+## Tiles
+476.7 "Empty Plane" sync / 1[56]:[^:]*:Cloud Of Darkness:55EF:/
+487.9 "Flood Of Emptiness" sync / 1[56]:[^:]*:Cloud Of Darkness:55F0:/
+495.0 "Hypercharged Condensation" sync / 1[56]:[^:]*:Cloud Of Darkness:560C:/
+510.2 "Full-Perimeter Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:5629:/
+527.5 "The Art Of Darkness (L/R)" sync / 1[56]:[^:]*:Cloud Of Darkness:5A9[56]:/
+543.3 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:55F[BE]:/
+564.2 "The Art Of Darkness (L/R)" sync / 1[56]:[^:]*:Cloud Of Darkness:5A9[56]:/
+580.0 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:55F[BE]:/
+597.1 "Enrage" sync / 1[56]:[^:]*:Cloud Of Darkness:562A:/

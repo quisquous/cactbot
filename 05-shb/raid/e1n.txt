@@ -1,0 +1,105 @@
+### Eden 1 (Normal)
+# Eden's Gate: Resurrection
+# -p 3DA1:12 3E3A:300 -ii 3D9E 3DA0 44FF
+
+hideall "--Reset--"
+hideall "--sync--"
+hideall "Vice And Virtue"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.0 "--sync--" sync / 1[56]:[^:]*:Eden Prime:367:/ window 2,0
+12.0 "Spear Of Paradise" sync / 1[56]:[^:]*:Eden Prime:3DA1:/ window 12,5
+13.5 "Heavensunder" sync / 1[56]:[^:]*:Eden Prime:3DA2:/
+22.5 "Eden's Gravity" sync / 1[56]:[^:]*:Eden Prime:3D94:/
+34.1 "Vice And Virtue" sync / 1[56]:[^:]*:Eden Prime:44E5:/
+34.1 "Vice Of Apathy" sync / 1[56]:[^:]*:Eden Prime:44E8:/
+40.5 "Eden's Flare" sync / 1[56]:[^:]*:Eden Prime:3D97:/
+56.1 "Vice And Virtue" sync / 1[56]:[^:]*:Eden Prime:44E4:/
+56.9 "Vice Of Vanity" sync / 1[56]:[^:]*:Eden Prime:44E7:/
+66.7 "Spear Of Paradise" sync / 1[56]:[^:]*:Eden Prime:3DA1:/
+68.2 "Heavensunder" sync / 1[56]:[^:]*:Eden Prime:3DA2:/
+73.2 "--corner--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+86.5 "Pure Light" sync / 1[56]:[^:]*:Eden Prime:3DA3:/
+92.4 "--center--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+101.6 "Delta Attack" sync / 1[56]:[^:]*:Eden Prime:44EA:/
+102.2 "Eden's Thunder III" sync / 1[56]:[^:]*:Eden Prime:44ED:/
+102.2 "Eden's Blizzard III" sync / 1[56]:[^:]*:Eden Prime:44EC:/
+102.2 "Eden's Fire III" sync / 1[56]:[^:]*:Eden Prime:44EB:/
+108.3 "--sync--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+114.8 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D9C:/
+123.3 "Pure Beam x6" sync / 1[56]:[^:]*:Eden Prime:3D9D:/ duration 17.3
+128.7 "Paradise Lost x3" sync / 1[56]:[^:]*:Eden Prime:3D9F:/ duration 11.2
+131.2 "--corner--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+144.5 "Pure Light" sync / 1[56]:[^:]*:Eden Prime:3DA3:/
+147.3 "--center--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+153.9 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D9C:/
+
+
+### Phase 2: cleavy adds
+166.5 "--untargetable--"
+166.5 "Fragor Maximus" sync / 1[56]:[^:]*:Eden Prime:3DA4:/ window 200,5
+182.7 "--targetable--"
+182.7 "Paradisal Dive" sync / 1[56]:[^:]*:Guardian of Paradise:3DA9:/
+193.8 "Mana Slice" sync / 1[56]:[^:]*:Guardian of Paradise:3DA6:/
+203.0 "Mana Burst" sync / 1[56]:[^:]*:Guardian of Paradise:3DA7:/
+209.1 "Mana Slice" sync / 1[56]:[^:]*:Guardian of Paradise:3DA6:/
+218.3 "Mana Burst" sync / 1[56]:[^:]*:Guardian of Paradise:3DA7:/
+223.5 "Mana Slice" sync / 1[56]:[^:]*:Guardian of Paradise:3DA6:/
+228.7 "Mana Slice" sync / 1[56]:[^:]*:Guardian of Paradise:3DA6:/
+242.7 "Unto Dust Enrage" sync / 1[56]:[^:]*:Guardian of Paradise:3DA8:/
+
+
+### Phase 3: more of the same
+300.0 "Primeval Stasis" sync / 1[56]:[^:]*:Eden:3E3A:/ window 300,0
+343.6 "Eternal Breath" sync / 1[56]:[^:]*:Eden Prime:3DA5:/
+
+354.0 "--targetable--"
+360.0 "Vice And Virtue" sync / 1[56]:[^:]*:Eden Prime:44E4:/
+360.8 "Vice Of Vanity" sync / 1[56]:[^:]*:Eden Prime:44E7:/
+370.6 "Spear Of Paradise" sync / 1[56]:[^:]*:Eden Prime:3DA1:/
+372.1 "Heavensunder" sync / 1[56]:[^:]*:Eden Prime:3DA2:/
+377.0 "--corner--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+390.3 "Pure Light" sync / 1[56]:[^:]*:Eden Prime:3DA3:/
+396.2 "--center--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+405.5 "Delta Attack" sync / 1[56]:[^:]*:Eden Prime:44EA:/
+406.1 "Eden's Thunder III" sync / 1[56]:[^:]*:Eden Prime:44ED:/
+406.1 "Eden's Blizzard III" sync / 1[56]:[^:]*:Eden Prime:44EC:/
+406.1 "Eden's Fire III" sync / 1[56]:[^:]*:Eden Prime:44EB:/
+412.1 "--sync--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+418.7 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D9C:/
+427.1 "Pure Beam x6" sync / 1[56]:[^:]*:Eden Prime:3D9D:/ duration 17.3
+432.6 "Paradise Lost x3" sync / 1[56]:[^:]*:Eden Prime:3D9F:/ duration 11.2
+435.1 "--corner--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+448.4 "Pure Light" sync / 1[56]:[^:]*:Eden Prime:3DA3:/
+451.2 "--center--" sync / 1[56]:[^:]*:Eden Prime:4683:/
+457.8 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D9C:/
+470.3 "Vice And Virtue" sync / 1[56]:[^:]*:Eden Prime:44E5:/
+470.4 "Vice Of Apathy" sync / 1[56]:[^:]*:Eden Prime:44E8:/
+476.9 "Eden's Flare" sync / 1[56]:[^:]*:Eden Prime:3D97:/
+488.4 "Eden's Gravity" sync / 1[56]:[^:]*:Eden Prime:3D94:/
+
+502.0 "Vice And Virtue" sync / 1[56]:[^:]*:Eden Prime:44E4:/ window 100,100 jump 360.0
+502.7 "Vice Of Vanity"
+512.5 "Spear Of Paradise"
+514.0 "Heavensunder"
+519.0 "--corner--"
+532.3 "Pure Light"
+538.2 "--center--"
+547.4 "Delta Attack"
+547.9 "Eden's Thunder III"
+547.9 "Eden's Blizzard III"
+547.9 "Eden's Fire III"
+554.1 "--sync--"
+560.7 "Dimensional Shift"
+569.2 "Pure Beam"
+574.6 "Paradise Lost"
+577.1 "--corner--"
+590.4 "Pure Light"
+593.2 "--center--"
+599.7 "Dimensional Shift"
+612.3 "Vice And Virtue"
+612.3 "Vice Of Apathy"

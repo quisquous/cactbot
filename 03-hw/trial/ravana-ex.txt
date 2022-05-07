@@ -1,0 +1,177 @@
+# -ii EC1 EC2 EA5 EAA EBE 1299 13BC 13BF 140F
+# ic "Spirit Gana" "Moon Gana" "Chandrahas"
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# During all phases, any attacks will increase Ravana's Bloodlust meter.
+# The relationship between increases and damage done is not fully understood.
+# The meter also increases passively during all phases except the opening block.
+# Any displayed phase lengths are the maximum that could occur with no "extra" Bloodlust.
+
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.2 "--sync--" sync / 1[56]:[^:]*:Ravana:13E4:/ window 1.2,1
+7.1 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/ window 7.1,10
+11.9 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
+16.0 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+22.2 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/ window 20,20
+29.4 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+32.5 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
+37.3 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
+42.5 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+
+51.7 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
+56.5 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
+60.6 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+66.8 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/ window 20,20
+74.0 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+77.1 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
+81.9 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
+87.1 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/ jump 42.5
+
+96.3 "Blinding Blade"
+101.1 "The Seeing"
+105.2 "Atma-Linga"
+111.4 "Tapasya x3"
+118.6 "Atma-Linga"
+121.7 "Blinding Blade"
+126.5 "The Seeing"
+
+# Block initiates at 100 bloodlust. Loosely linked to HP%, exact connection unknown.
+150.0 "Scorpion Avatar" sync / 1[56]:[^:]*:Ravana:E81:/ window 150,5
+155.2 "Blades Of Carnage And Liberation" sync / 1[56]:[^:]*:Ravana:137A:/
+175.3 "Prelude To Liberation" sync / 1[56]:[^:]*:Ravana:EBC:/
+175.3 "--untargetable--"
+182.4 "Prelude To Liberation (Flames)" sync / 1[56]:[^:]*:Ravana:EBD:/
+183.4 "--sync--" sync / 1[56]:[^:]*:Ravana:13BC:/
+189.6 "Prelude To Liberation (Circles)" sync / 1[56]:[^:]*:Ravana:EBF:/
+194.8 "--targetable--"
+195.0 "Blades Of Carnage And Liberation" sync / 1[56]:[^:]*:Ravana:137A:/
+215.6 "Liberation" sync / 1[56]:[^:]*:Ravana:EC0:/
+215.6 "--untargetable--"
+219.8 "Clone Spawn 1" # sync / 1[56]:[^:]*:Ravana:EC1:/
+220.8 "Clone Spawn 2" # sync / 1[56]:[^:]*:Ravana:EC1:/
+221.8 "Clone Spawn 3" # sync / 1[56]:[^:]*:Ravana:EC1:/
+222.8 "Clone Spawn 4" # sync / 1[56]:[^:]*:Ravana:EC1:/
+226.9 "Clone Dash 1" # sync / 1[56]:[^:]*:Ravana:EC2:/
+228.4 "Clone Dash 2" # sync / 1[56]:[^:]*:Ravana:EC2:/
+229.9 "Clone Dash 3" # sync / 1[56]:[^:]*:Ravana:EC2:/
+231.4 "Clone Dash 4" # sync / 1[56]:[^:]*:Ravana:EC2:/
+235.6 "--targetable--"
+
+# Initiates immediately following Liberation block.
+235.7 "Dragonfly Avatar" sync / 1[56]:[^:]*:Ravana:E80:/
+242.8 "Warlord Shell" sync / 1[56]:[^:]*:Ravana:EB1:/
+247.6 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
+255.4 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
+264.6 "Warlord Flame?" sync / 1[56]:[^:]*:Ravana:EB2:/ # Skipped if Ravana's shield is burned.
+267.8 "--sync--" sync / 1[56]:[^:]*:Ravana:EB0:/
+272.0 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/ window 30,5
+279.1 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+286.8 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
+290.9 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+296.2 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
+303.3 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+306.4 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
+309.5 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+312.7 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
+320.8 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
+325.5 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
+330.7 "Atma-Linga x2" # sync / 1[56]:[^:]*:Ravana:EA6:/
+
+# The intermission can have 0-10 Laughing Moon charges before Ravana uses the Chandrahas ultimate.
+# The number is dependent on how many Gana are able to finish their Falling Laughter casts.
+# More than 1-2 is typically a wipe, as each inflicts a Vulnerability Up stack to the party.
+336.8 "Bloody Fuller" sync / 14:[^:]*:Ravana:EB3:/ duration 4.7 window 336.8,5
+341.1 "--untargetable--"
+
+400.0 "Chandrahas" sync / 1[56]:[^:]*:Ravana:EB5:/ window 400,5
+413.9 "Beetle Avatar" sync / 1[56]:[^:]*:Ravana:E82:/ window 15,15
+414.0 "--targetable--" # Technically slightly before, but invulnerability drops here.
+422.0 "Pillars Of Heaven" sync / 1[56]:[^:]*:Ravana:EB8:/
+429.1 "--sync--" sync / 1[56]:[^:]*:Ravana:EB9:/
+429.8 "Laughing Rose" # The EB9 skill resolves well before the damage displays
+445.4 "Surpanakha x4" # sync / 1[56]:[^:]*:Ravana:EBA:/
+453.1 "The Rose Of Conviction" sync / 1[56]:[^:]*:Ravana:EB6:/
+460.2 "The Rose Of Hate" sync / 1[56]:[^:]*:Ravana:EBB:/
+465.4 "Surpanakha x7" # sync / 1[56]:[^:]*:Ravana:EBA:/
+466.3 "The Rose Of Conquest" sync / 1[56]:[^:]*:Ravana's Will:EB7:/
+485.8 "Pillars Of Heaven" sync / 1[56]:[^:]*:Ravana:EB8:/
+493.0 "--sync--" sync / 1[56]:[^:]*:Ravana:EB9:/
+493.7 "Laughing Rose"
+506.2 "Surpanakha x7?" # sync / 1[56]:[^:]*:Ravana:EBA:/
+# This phase ends at 100 Bloodlust.
+
+514.0 "Scorpion Avatar" sync / 1[56]:[^:]*:Ravana:E81:/ window 114,5
+514.1 "--sync--" sync / 1[56]:[^:]*:Ravana:13BF:/
+519.2 "Blades Of Carnage And Liberation" sync / 1[56]:[^:]*:Ravana:137A:/
+540.4 "Swift Liberation" sync / 1[56]:[^:]*:Ravana:EA7:/
+540.4 "--untargetable--"
+540.5 "Swift Liberation Dash 1" # sync / 1[56]:[^:]*:Ravana:EA8:/
+543.5 "Swift Liberation Dash 2" # sync / 1[56]:[^:]*:Ravana:EA8:/
+546.5 "Swift Liberation Dash 3" # sync / 1[56]:[^:]*:Ravana:EA8:/
+549.5 "Swift Liberation Dash 4" # sync / 1[56]:[^:]*:Ravana:EA8:/
+552.7 "Swift Liberation (Flames)" # sync / 1[56]:[^:]*:Ravana:EA9:/
+556.9 "Swift Liberation (Circles)" # sync / 1[56]:[^:]*:Ravana:EAB:/
+562.1 "--targetable--"
+562.3 "Blades Of Carnage And Liberation" sync / 1[56]:[^:]*:Ravana:137A:/ window 20,20
+583.5 "Final Liberation" sync / 1[56]:[^:]*:Ravana:EAC:/
+583.5 "--untargetable--"
+583.6 "Final Liberation (1st Double Prey)" sync / 1[56]:[^:]*:Ravana:EAD:/
+591.6 "Final Liberation (2nd Double Prey)" sync / 1[56]:[^:]*:Ravana:EAD:/
+597.7 "--sync--" sync / 1[56]:[^:]*:Ravana:13C4:/
+597.7 "Final Liberation (Outer AoE)" sync / 1[56]:[^:]*:Ravana:EAE:/
+598.9 "--targetable--"
+603.9 "Final Liberation (Inner AoE)" sync / 1[56]:[^:]*:Ravana:EAF:/
+603.9 "--untargetable--"
+610.1 "--targetable--"
+
+610.2 "Dragonfly Avatar" sync / 1[56]:[^:]*:Ravana:E80:/ window 96,20
+610.3 "--sync--" sync / 1[56]:[^:]*:Ravana:1299:/
+617.3 "Warlord Shell" sync / 1[56]:[^:]*:Ravana:EB1:/
+622.5 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
+626.7 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+631.0 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
+
+# If Blessing of Earth is not damaged off Ravana, he uses Warlord Flame at 640.2.
+# If it is, Flame is skipped and things go directly to Blinding Blade.
+# We assume the skip, and re-sync if it doesn't happen.
+636.4 "--sync--" sync / 1[56]:[^:]*:Ravana:EB2:/ window 15,15
+640.2 "Blinding Blade/Warlord Flame?" sync / 1[56]:[^:]*:Ravana:E9F:/ window 30,2.5
+643.3 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+646.1 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
+652.2 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+655.3 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
+658.4 "Atma-Linga x2" # sync / 1[56]:[^:]*:Ravana:EA6:/
+663.1 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
+669.2 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
+672.3 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+
+679.5 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
+682.6 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+685.0 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
+691.2 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+694.3 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
+697.4 "Atma-Linga x2" # sync / 1[56]:[^:]*:Ravana:EA6:/
+701.7 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
+708.1 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
+711.2 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+718.3 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
+
+721.4 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+723.9 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
+730.0 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+
+736.5 "Beetle Avatar" sync / 1[56]:[^:]*:Ravana:E82:/ window 130,10 jump 413.9
+744.6 "Pillars Of Heaven"
+751.7 "Laughing Rose"
+768.0 "Surpanakha x4"
+
+# Enrage follows this sequence, but unfortunately there's no way to sync to it.
+# 1781.6 "Dragonfly Avatar" sync / 1[56]:[^:]*:Ravana:E80:/
+# 1781.7 "--sync--" sync / 1[56]:[^:]*:Ravana:1299:/
+# 1786.7 "--untargetable--"
+# 1791.8 "Bloody Fuller" sync / 1[56]:[^:]*:Ravana:EB3:/
+# Laughing Moon until wipe

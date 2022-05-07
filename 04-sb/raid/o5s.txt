@@ -1,0 +1,97 @@
+# Omega - Sigmascape V1.0 (Savage) - O5S
+
+hideall "--Reset--"
+hideall "--sync--"
+
+# Saintly Beam: 0 light appears, 5 target, 10 hit
+# Diabolic Light: 0 target appears, 8 target, 13 hit
+
+##############################################################
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /:Engage!/ window 0,1
+11 "Encumber" sync / 1[56]:[^:]*:Wroth Ghost:28B6:/
+18 "Saintly Beam" duration 10
+31 "Knockback Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+41 "All In The Mind" sync / 1[56]:[^:]*:Remorse:28AD:/
+50 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28B1:/
+64 "Head On" sync / 1[56]:[^:]*:Phantom Train:28B7:/
+65 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
+71 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28B5:/
+80 "Crossing Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+90 "Saintly Beam" duration 10
+104 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
+116 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+125 "Saintly Beam" duration 10
+141 "Diabolic Light" duration 13
+152 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28B1:/
+159 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28B5:/
+
+
+# add phase
+
+168 "--untargetable--" sync / 1[56]:[^:]*:Phantom Train:28A7:/ window 500,500
+180 "Add Wave"
+196 "(DPS) Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
+203 "(T/H) Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
+
+# chimney + train cars
+300 "--sync--" sync / 1[56]:[^:]*:Phantom Train:28B3:/ window 500,500
+305 "(T/H) Ghosts" sync / 03:........:Agony:/
+309 "(DPS) Ghosts" sync / 03:........:Malice:/
+
+
+491 "--sync--" sync / 1[56]:[^:]*:Phantom Train:28A8:/ window 500,500
+500 "--targetable--"
+517 "Encumber" sync / 1[56]:[^:]*:Wroth Ghost:28B6:/ window 80,80
+525 "Diabolic Light" duration 13
+530 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
+534 "Saintly Beam" duration 10
+547 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28B1:/
+
+556 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+563 "Saintly Beam" duration 10
+580 "Knockback Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+589 "All In The Mind" sync / 1[56]:[^:]*:Remorse:28AD:/
+593 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
+611 "Head On" sync / 1[56]:[^:]*:Phantom Train:28B7:/
+612 "Saintly Beam" duration 10
+616 "Ghosts spawn"
+
+629 "Crossing Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+637 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
+645 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
+646 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+653 "Saintly Beam" duration 10
+659 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
+
+665 "Diabolic Light" duration 13
+676 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28B1:/
+683 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28B5:/
+697 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
+699 "Saintly Beam" duration 10
+704 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28B5:/
+
+718 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+728 "Saintly Beam" duration 10
+731 "Encumber" sync / 1[56]:[^:]*:Wroth Ghost:28B6:/
+732 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
+
+737 "Diabolic Light" duration 13
+748 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28B1:/
+760 "Knockback Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+769 "All In The Mind" sync / 1[56]:[^:]*:Remorse:28AD:/
+774 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
+
+789 "Head On" sync / 1[56]:[^:]*:Phantom Train:28B7:/
+791 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
+797 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28B5:/
+808 "Encumber" sync / 1[56]:[^:]*:Wroth Ghost:28B6:/
+811 "Crossing Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+819 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
+827 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
+828 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+
+# 10:00 enrage, final phase length depends on add phase time
+821 "--sync--" sync / 14:[^:]*:Phantom Train:2A87:/ window 821,500
+831 "Saintly Beam" sync / 1[56]:[^:]*:Phantom Train:2A87:/

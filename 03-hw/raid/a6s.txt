@@ -1,0 +1,202 @@
+### A6S
+# Alexander - The Cuff Of The Son (Savage)
+# https://dtguilds.enjin.com/a6sguide
+# -p 15F2:7 1600:1008.8 160D:2021.2 1619:3006.7
+# -ii 1607 1606 1616 160C 1618 1615 1626 1620 15F5 15FB 15F9 15FC 15FD
+
+hideall "Ballistic Missile"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+
+### Blaster
+0.0 "--sync--" sync / 00:0839::Machinery Bay 67 will be sealed off/ window 1,0
+7.0 "Brute Force" sync / 1[56]:[^:]*:Blaster:15F2:/ window 10,10
+14.1 "Mind Blast" sync / 1[56]:[^:]*:Blaster:15F3:/
+18.2 "Ballistic Missile" sync / 1[56]:[^:]*:Blaster:15F4:/
+23.2 "Hidden Minefield" sync / 1[56]:[^:]*:Blaster:15F7:/
+31.4 "Mirage" sync / 1[56]:[^:]*:Blaster Mirage:15FA:/
+39.6 "Brute Force" #sync / 1[56]:[^:]*:Blaster:15F2:/
+43.7 "Brute Force" #sync / 1[56]:[^:]*:Blaster:15F2:/
+
+# add phase
+46.7 "--untargetable--"
+49.9 "--targetable--"
+78.0 "Mind Blast" sync / 1[56]:[^:]*:Blaster Mirage:15FE:/
+
+85.2 "Mirage" sync / 1[56]:[^:]*:Blaster:15FA:/ window 40,40
+86.2 "--targetable--"
+91.3 "Mind Blast" sync / 1[56]:[^:]*:Blaster:15F3:/
+94.5 "Brute Force" sync / 1[56]:[^:]*:Blaster:15F2:/
+
+97.6 "Ballistic Missile" sync / 1[56]:[^:]*:Blaster:15F4:/
+101.7 "Brute Force" sync / 1[56]:[^:]*:Blaster:15F2:/
+102.6 "Hidden Minefield" sync / 1[56]:[^:]*:Blaster:15F7:/
+110.9 "Mirage" sync / 1[56]:[^:]*:Blaster Mirage:15FA:/
+120.2 "Brute Force" sync / 1[56]:[^:]*:Blaster:15F2:/
+128.3 "Mind Blast" sync / 1[56]:[^:]*:Blaster:15F3:/
+
+130.4 "Ballistic Missile" sync / 1[56]:[^:]*:Blaster:15F4:/
+134.5 "Brute Force" sync / 1[56]:[^:]*:Blaster:15F2:/
+135.4 "Hidden Minefield" sync / 1[56]:[^:]*:Blaster:15F7:/
+143.6 "Mirage" sync / 1[56]:[^:]*:Blaster Mirage:15FA:/
+151.8 "Brute Force" sync / 1[56]:[^:]*:Blaster:15F2:/
+162.9 "Mind Blast" sync / 1[56]:[^:]*:Blaster:15F3:/
+166.1 "Brute Force" sync / 1[56]:[^:]*:Blaster:15F2:/
+
+169.2 "Ballistic Missile" sync / 1[56]:[^:]*:Blaster:15F4:/ window 20,20 jump 97.6
+173.3 "Brute Force" #sync / 1[56]:[^:]*:Blaster:15F2:/
+174.2 "Hidden Minefield" #sync / 1[56]:[^:]*:Blaster:15F7:/
+182.5 "Mirage" #sync / 1[56]:[^:]*:Blaster Mirage:15FA:/
+191.8 "Brute Force" #sync / 1[56]:[^:]*:Blaster:15F2:/
+199.9 "Mind Blast" #sync / 1[56]:[^:]*:Blaster:15F3:/
+
+202.0 "Ballistic Missile" #sync / 1[56]:[^:]*:Blaster:15F4:/
+206.1 "Brute Force" #sync / 1[56]:[^:]*:Blaster:15F2:/
+207.0 "Hidden Minefield" #sync / 1[56]:[^:]*:Blaster:15F7:/
+215.2 "Mirage" #sync / 1[56]:[^:]*:Blaster Mirage:15FA:/
+223.4 "Brute Force" #sync / 1[56]:[^:]*:Blaster:15F2:/
+234.5 "Mind Blast" #sync / 1[56]:[^:]*:Blaster:15F3:/
+237.7 "Brute Force" #sync / 1[56]:[^:]*:Blaster:15F2:/
+
+
+
+### Brawler
+# Note: "Brawler Mechanic" drifts relative to attachment depending on type.
+# Brawler Mechanics seem entirely/mostly random?
+1000.0 "--sync--" sync / 00:0839::Machinery Bay 68 will be sealed off/ window 1000,0
+1008.8 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:1600:/ window 100,100
+1011.0 "Attachment" sync / 1[56]:[^:]*:Brawler:1601:/
+1017.2 "Brawler Mechanic" #sync / 1[56]:[^:]*:Brawler:160[2345]:/
+
+1022.2 "Magicked Mark" #sync / 1[56]:[^:]*:Brawler:1600:/
+1024.4 "Attachment" #sync / 1[56]:[^:]*:Brawler:1601:/
+1030.6 "Brawler Mechanic" #sync / 1[56]:[^:]*:Brawler:160[2345]:/
+
+1035.6 "Magicked Mark" #sync / 1[56]:[^:]*:Brawler:1600:/
+1037.8 "Attachment" #sync / 1[56]:[^:]*:Brawler:1601:/
+1044.0 "Brawler Mechanic" #sync / 1[56]:[^:]*:Brawler:160[2345]:/
+
+1049.0 "Magicked Mark" #sync / 1[56]:[^:]*:Brawler:1600:/
+1051.2 "Attachment" #sync / 1[56]:[^:]*:Brawler:1601:/
+1057.4 "Brawler Mechanic" #sync / 1[56]:[^:]*:Brawler:160[2345]:/
+
+## Brawler Orb Phase
+1500.0 "--sync--" sync / 22:........:Brawler:........:Brawler:00/ window 500,0
+1503.4 "Power Plasma Alpha x2" sync / 03:........:Power Plasma Alpha:/  window 500,5
+1503.4 "Power Plasma Gamma x2"
+
+1508.6 "Attachment" sync / 1[56]:[^:]*:Brawler:1601:/
+1514.7 "Brawler Mechanic" #sync / 1[56]:[^:]*:Brawler:160[2345]:/
+
+1517.5 "Power Plasma Alpha x2"
+1517.5 "Power Plasma Beta x2"
+1517.5 "Power Plasma Gamma x1"
+
+1529.6 "Power Plasma Alpha x2"
+1529.6 "Power Plasma Gamma x1"
+
+1534.0 "Attachment" sync / 1[56]:[^:]*:Brawler:1601:/
+1540.1 "Brawler Mechanic" #sync / 1[56]:[^:]*:Brawler:160[2345]:/
+
+1548.6 "Power Plasma Alpha x3"
+1548.6 "Power Plasma Gamma x1"
+
+1551.6 "Attachment" sync / 1[56]:[^:]*:Brawler:1601:/
+1557.7 "Brawler Mechanic" #sync / 1[56]:[^:]*:Brawler:160[2345]:/
+
+1561.2 "--unseal--"
+
+
+### Swindler
+2000.0 "--sync--" sync / 00:0839::Machinery Bay 69 will be sealed off/ window 2000,0
+2007.0 "--sync--" sync / 1[56]:[^:]*:Swindler:160C:/ window 7,3
+2021.2 "Height" sync / 1[56]:[^:]*:Swindler:160D:/
+2021.2 "Enumeration" sync / 1[56]:[^:]*:Swindler:160F:/
+2029.3 "Bio-Arithmeticks" sync / 1[56]:[^:]*:Swindler:1610:/
+
+# Add phase 1
+2031.4 "Gobwalker x1"
+2031.4 "Midan Hardhelm x1"
+2031.4 "Midan Hardmind x1"
+2031.4 "Midan Soldier x9"
+
+2040.6 "Auxiliary Power" sync / 1[56]:[^:]*:Swindler:1611:/
+
+2051.8 "Height" sync / 1[56]:[^:]*:Swindler:160D:/
+2061.0 "Enumeration" sync / 1[56]:[^:]*:Swindler:160F:/
+2070.1 "Bio-Arithmeticks" sync / 1[56]:[^:]*:Swindler:1610:/
+
+# Add phase 2
+2072.1 "Midan Gunner x4"
+
+2077.4 "Snipethoom" #sync / 1[56]:[^:]*:Midan Gunner:1617:/
+2078.3 "Auxiliary Power" sync / 1[56]:[^:]*:Swindler:1611:/
+2086.4 "Height" sync / 1[56]:[^:]*:Swindler:160D:/
+2087.5 "Snipethoom" #sync / 1[56]:[^:]*:Midan Gunner:1617:/
+2088.6 "Auxiliary Power" sync / 1[56]:[^:]*:Swindler:1611:/
+
+2095.7 "Height" sync / 1[56]:[^:]*:Swindler:160D:/
+2095.7 "Enumeration" sync / 1[56]:[^:]*:Swindler:160F:/
+2102.9 "Bio-Arithmeticks" sync / 1[56]:[^:]*:Swindler:1610:/
+
+# Final loop
+2111.1 "Bio-Arithmeticks" sync / 1[56]:[^:]*:Swindler:1610:/
+2133.5 "Height" sync / 1[56]:[^:]*:Swindler:160D:/
+2133.5 "Enumeration" sync / 1[56]:[^:]*:Swindler:160F:/
+
+2141.7 "Bio-Arithmeticks" sync / 1[56]:[^:]*:Swindler:1610:/ window 20,20 jump 2111.1
+2164.1 "Height" #sync / 1[56]:[^:]*:Swindler:160D:/
+2164.1 "Enumeration" #sync / 1[56]:[^:]*:Swindler:160F:/
+
+2172.3 "Bio-Arithmeticks" #sync / 1[56]:[^:]*:Swindler:1610:/
+2194.7 "Height" #sync / 1[56]:[^:]*:Swindler:160D:/
+2194.7 "Enumeration" #sync / 1[56]:[^:]*:Swindler:160F:/
+
+
+### Vortexer
+3000.0 "--sync--" sync / 00:0839::Machinery Bay 70 will be sealed off/ window 3000,0
+3002.0 "--sync--" sync / 1[56]:[^:]*:Vortexer:1618:/ window 2,1
+3006.7 "Brute Force" sync / 1[56]:[^:]*:Vortexer:1619:/ window 10,10
+3016.8 "Elemental Jammer" sync / 1[56]:[^:]*:Vortexer:161B:/
+3022.0 "Ballistic Missile" sync / 1[56]:[^:]*:Vortexer:1622:/
+3028.0 "Earth Missile x4" sync / 1[56]:[^:]*:Vortexer:1623:/
+3028.0 "Fire Beam x4" sync / 1[56]:[^:]*:Vortexer:1625:/
+3032.2 "Brute Force" sync / 1[56]:[^:]*:Vortexer:1619:/
+3038.4 "Crashing Thunder" sync / 1[56]:[^:]*:Vortexer:161D:/
+3038.4 "Crashing Wave" sync / 1[56]:[^:]*:Vortexer:161C:/
+3041.3 "Ballistic Missile" sync / 1[56]:[^:]*:Vortexer:1622:/
+3046.3 "Ice Missile x2" #sync / 1[56]:[^:]*:Vortexer:1624:/
+3054.3 "Brute Force" sync / 1[56]:[^:]*:Vortexer:1619:/
+3060.1 "Crashing Thunder" sync / 1[56]:[^:]*:Vortexer:161D:/
+3060.2 "Crashing Wave" sync / 1[56]:[^:]*:Vortexer:161C:/
+3066.4 "Ballistic Missile" sync / 1[56]:[^:]*:Vortexer:1622:/
+3072.4 "Earth Missile x4" sync / 1[56]:[^:]*:Vortexer:1623:/
+3072.4 "Fire Beam x4" sync / 1[56]:[^:]*:Vortexer:1625:/
+3077.6 "Super Cyclone" sync / 1[56]:[^:]*:Vortexer:1627:/
+3082.1 "Crashing Thunder" sync / 1[56]:[^:]*:Vortexer:161D:/
+3082.2 "Crashing Wave" sync / 1[56]:[^:]*:Vortexer:161C:/
+3084.8 "Brute Force" sync / 1[56]:[^:]*:Vortexer:1619:/
+3096.9 "Ultra Flash" sync / 1[56]:[^:]*:Vortexer:161A:/
+
+3099.7 "Brute Force" #sync / 1[56]:[^:]*:Vortexer:1619:/
+3109.8 "Elemental Jammer" sync / 1[56]:[^:]*:Vortexer:161B:/ window 50,50 jump 3016.8
+3115.0 "Ballistic Missile" #sync / 1[56]:[^:]*:Vortexer:1622:/
+3121.0 "Earth Missile" #sync / 1[56]:[^:]*:Vortexer:1623:/
+3121.0 "Fire Beam" #sync / 1[56]:[^:]*:Vortexer:1625:/
+3125.2 "Brute Force" #sync / 1[56]:[^:]*:Vortexer:1619:/
+3131.4 "Crashing Thunder" #sync / 1[56]:[^:]*:Vortexer:161D:/
+3131.4 "Crashing Wave" #sync / 1[56]:[^:]*:Vortexer:161C:/
+3134.3 "Ballistic Missile" #sync / 1[56]:[^:]*:Vortexer:1622:/
+3139.3 "Ice Missile" #sync / 1[56]:[^:]*:Vortexer:1624:/
+3147.3 "Brute Force" #sync / 1[56]:[^:]*:Vortexer:1619:/
+3153.1 "Crashing Thunder" #sync / 1[56]:[^:]*:Vortexer:161D:/
+3153.2 "Crashing Wave" #sync / 1[56]:[^:]*:Vortexer:161C:/
+3159.4 "Ballistic Missile" #sync / 1[56]:[^:]*:Vortexer:1622:/
+3165.4 "Earth Missile" #sync / 1[56]:[^:]*:Vortexer:1623:/
+3165.4 "Fire Beam" #sync / 1[56]:[^:]*:Vortexer:1625:/
+3170.6 "Super Cyclone" #sync / 1[56]:[^:]*:Vortexer:1627:/
+3175.1 "Crashing Thunder" #sync / 1[56]:[^:]*:Vortexer:161D:/
+3175.2 "Crashing Wave" #sync / 1[56]:[^:]*:Vortexer:161C:/
+3177.8 "Brute Force" #sync / 1[56]:[^:]*:Vortexer:1619:/
+3189.9 "Ultra Flash" #sync / 1[56]:[^:]*:Vortexer:161A:/

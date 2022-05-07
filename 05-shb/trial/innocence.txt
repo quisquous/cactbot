@@ -1,0 +1,102 @@
+### Innocence Normal
+# -p 3E9A:15 3E9A:15 3E92:205.5 4144:300 3EBE:605.7 3EC1:579.8 -ii 3E90 3EA0 3E9B 3E9E 3E9F 4317 3E9C 3F45 3EB2 3EFA 3EF9 3EBC 3EBF 3EC0 3EBD 3EC6 3EC5 3EB7 3EB8 3EB6 4690 3EA9 4690 4692 4691 42B1
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.0 "--sync--" sync / 1[56]:[^:]*:Innocence:3E90:/ window 1,0
+15.0 "Realmrazer" sync / 1[56]:[^:]*:Innocence:3E9A:/ window 15,5
+28.2 "Heavenly Host" sync / 1[56]:[^:]*:Innocence:3E95:/
+54.9 "Daybreak" sync / 1[56]:[^:]*:Innocence:3E9D:/
+69.1 "Enthrall" sync / 1[56]:[^:]*:Innocence:3E99:/
+71.1 "Sinsphere" sync / 1[56]:[^:]*:Innocence:3E97:/
+80.3 "Heavenly Host" sync / 1[56]:[^:]*:Innocence:3E95:/
+82.4 "--center--" sync / 1[56]:[^:]*:Innocence:3E91:/
+86.7 "Guiding Light" sync / 1[56]:[^:]*:Innocence:3E96:/
+100.4 "Daybreak" sync / 1[56]:[^:]*:Innocence:3E9D:/
+111.5 "Realmrazer" sync / 1[56]:[^:]*:Innocence:3E9A:/
+123.6 "Enthrall" sync / 1[56]:[^:]*:Innocence:3E99:/
+125.8 "Sinsphere" sync / 1[56]:[^:]*:Innocence:3E97:/
+
+# aoe spam until low
+200.0 "--north--" sync / 1[56]:[^:]*:Innocence:3E91:/ window 100,0
+205.5 "--sync--" sync / 1[56]:[^:]*:Innocence:3E92:/ window 200,0
+209.2 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
+215.6 "Exalted Wing" sync / 1[56]:[^:]*:Innocence:3E93:/ window 0,30
+220.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
+225.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
+230.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
+235.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
+240.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
+245.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
+250.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
+
+# ye olde cutscene
+300.0 "--sync--" sync / 1[56]:[^:]*:Innocence:4144:/ window 300,0
+302.5 "Exalted Plumes" sync / 1[56]:[^:]*:Innocence:3EF2:/
+306.6 "--sync--" sync / 1[56]:[^:]*:Innocence:3EA1:/
+306.6 "--sync--" sync / 1[56]:[^:]*:Innocence:3E94:/
+363.2 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3EA3:/
+372.4 "Winged Reprobation" sync / 1[56]:[^:]*:Innocence:40BC:/
+378.5 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EB3:/
+383.6 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EB3:/
+388.7 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EB3:/
+397.6 "Winged Reprobation" sync / 1[56]:[^:]*:Innocence:40BC:/
+403.8 "Soul And Body" sync / 1[56]:[^:]*:Innocence:3EB1:/
+416.7 "--sync--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+420.9 "Rightful Reprobation" sync / 1[56]:[^:]*:Innocence:3EB5:/
+428.2 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3EA3:/
+430.7 "Reprobation" sync / 1[56]:[^:]*:Innocence:3ECB:/
+439.3 "Shadowreaver" sync / 1[56]:[^:]*:Innocence:3EEA:/
+
+# add phase with manacles
+449.5 "--add Phase--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+451.9 "--untargetable--" sync / 1[56]:[^:]*:Innocence:42B0:/
+
+# looping final phase
+579.8 "Flaming Sword" sync / 1[56]:[^:]*:Sword of Condemnation:3EC1:/ window 600,0
+588.6 "Flaming Sword" sync / 1[56]:[^:]*:Innocence:4708:/
+600.0 "--targetable--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+605.7 "God Ray" #sync / 1[56]:[^:]*:Innocence:3EBE:/
+610.8 "God Ray" #sync / 1[56]:[^:]*:Innocence:3EBE:/
+615.9 "God Ray" #sync / 1[56]:[^:]*:Innocence:3EBE:/
+618.1 "--sync--" sync / 1[56]:[^:]*:Innocence:38FC:/
+623.1 "Light Pillar" sync / 1[56]:[^:]*:Innocence:3F3E:/
+632.6 "Winged Reprobation" sync / 1[56]:[^:]*:Innocence:40BC:/
+638.6 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EB3:/
+638.6 "Soul And Body" sync / 1[56]:[^:]*:Innocence:3EB1:/
+643.7 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EB3:/
+644.6 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3EA3:/
+648.8 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EB3:/
+651.8 "--jump--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+658.5 "Beatific Vision" sync / 1[56]:[^:]*:Innocence:3EC7:/
+676.8 "Shadowreaver" sync / 1[56]:[^:]*:Innocence:3EEA:/
+685.0 "--sync--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+689.2 "Rightful Reprobation" sync / 1[56]:[^:]*:Innocence:3EB5:/
+695.8 "Drop Of Light" sync / 1[56]:[^:]*:Innocence:3EC4:/
+697.9 "--sync--" sync / 1[56]:[^:]*:Innocence:38FC:/
+699.1 "Reprobation" sync / 1[56]:[^:]*:Innocence:3ECB:/
+702.9 "Light Pillar" sync / 1[56]:[^:]*:Innocence:3F3E:/
+707.4 "--jump--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+714.2 "Beatific Vision" sync / 1[56]:[^:]*:Innocence:3EC7:/
+730.4 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3EA3:/
+
+738.5 "--targetable--" sync / 1[56]:[^:]*:Innocence:3EA2:/ window 10,10 jump 600
+744.2 "God Ray"
+749.3 "God Ray"
+754.4 "God Ray"
+756.6 "--sync--"
+761.6 "Light Pillar"
+771.1 "Winged Reprobation"
+777.1 "Holy Trinity"
+777.1 "Soul And Body"
+782.2 "Holy Trinity"
+783.1 "Righteous Bolt"
+787.3 "Holy Trinity"
+790.3 "--jump--"
+797.0 "Beatific Vision"

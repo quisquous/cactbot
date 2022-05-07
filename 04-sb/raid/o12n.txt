@@ -1,0 +1,193 @@
+# Omega - Alphascape V4.0 - O12N
+# -ii 3326 32FA 32FC 32F5 330C 330B 32FE 3302 34CB 32F7 32FB 32F2 32F8 32F9 330E 3318 3306 3307 331C 331D 3395 331F 3324 3321 3310 3393 -p 330F:15.3 3319:700
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+hideall "--Reset--"
+hideall "--sync--"
+
+### Phase 1 (loops until low%)
+0.0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+15.3 "Solar Ray" sync / 1[56]:[^:]*:Omega-M:330F:/ window 16,3
+20.4 "Program Alpha" sync / 1[56]:[^:]*:Omega-M:3308:/
+23.5 "Floodlight" sync / 1[56]:[^:]*:Omega-M:3309:/
+27.5 "Spotlight" sync / 1[56]:[^:]*:Omega-M:330A:/
+27.7 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32FF:/
+38.0 "Subject Simulation F" sync / 1[56]:[^:]*:Omega-M:32F1:/
+50.4 "Discharger" sync / 1[56]:[^:]*:Omega-M:32F6:/
+61.7 "Optimized Fire III" sync / 1[56]:[^:]*:Omega-M:330D:/
+66.9 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-M:3303:/
+75.1 "Laser Shower" sync / 1[56]:[^:]*:Omega-M:3312:/
+92.5 "Synthetic Blades" sync / 1[56]:[^:]*:Omega-M:3301:/
+100.6 "Optimized Fire III" sync / 1[56]:[^:]*:Omega-M:330D:/
+105.9 "Superliminal Steel" sync / 1[56]:[^:]*:Omega-M:3305:/
+111.0 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-M:3303:/
+122.3 "Subject Simulation M" sync / 1[56]:[^:]*:Omega-M:32F4:/
+134.7 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32F3:/
+141.0 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/
+149.1 "Program Alpha" sync / 1[56]:[^:]*:Omega-M:3308:/
+152.2 "Floodlight" sync / 1[56]:[^:]*:Omega-M:3309:/
+156.2 "Spotlight" sync / 1[56]:[^:]*:Omega-M:330A:/
+156.4 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:3300:/
+162.6 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32FF:/
+175.9 "Laser Shower" sync / 1[56]:[^:]*:Omega-M:3311:/
+184.2 "Solar Ray" sync / 1[56]:[^:]*:Omega-M:330F:/ # drift -0.047
+191.4 "Laser Shower" sync / 1[56]:[^:]*:Omega-M:3311:/ # drift 0.045
+196.7 "Subject Simulation F" sync / 1[56]:[^:]*:Omega-M:32F1:/
+209.1 "Discharger" sync / 1[56]:[^:]*:Omega-M:32F6:/
+215.3 "Synthetic Blades" sync / 1[56]:[^:]*:Omega-M:3301:/
+223.5 "Optimized Fire III" sync / 1[56]:[^:]*:Omega-M:330D:/ # drift -0.043001
+228.7 "Superliminal Steel" sync / 1[56]:[^:]*:Omega-M:3305:/ # drift -0.046
+233.8 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-M:3303:/
+246.9 "Laser Shower" sync / 1[56]:[^:]*:Omega-M:3312:/
+
+# Fake lookahead window before loop back to beginning
+282.2 "Solar Ray" sync / 1[56]:[^:]*:Omega-M:330F:/ window 20,20 jump 15.3
+287.3 "Program Alpha"
+290.4 "Floodlight"
+294.4 "Spotlight"
+294.6 "Efficient Bladework"
+304.9 "Subject Simulation F"
+317.3 "Discharger"
+
+
+### Phase 2: Passage of Arms
+500.0 "--sync--" sync / 00:0044:Omega-M:\<blip\> Limits of single combatant/ window 500,0
+514.0 "Ground Zero" sync / 1[56]:[^:]*:Omega-M:3313:/ # drift 0.045001
+514.0 "Electric Slide" sync / 1[56]:[^:]*:Omega:3314:/
+522.0 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32F3:/ # drift -0.045
+522.0 "Discharger" sync / 1[56]:[^:]*:Omega:32F6:/
+
+526.3 "Optimized Passage of Arms" sync / 1[56]:[^:]*:Omega-M:3316:/ window 550,50
+587.5 "Laser Shower Enrage"
+
+
+### Phase 3: Everyone dies, loops forever
+# Post-passage of arms startup
+700.0 "--sync--" sync / 1[56]:[^:]*:Omega:3319:/ window 700,0
+711.0 "Ground Zero" sync / 1[56]:[^:]*:Omega-M:3313:/
+711.0 "Electric Slide" sync / 1[56]:[^:]*:Omega:3314:/
+719.1 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32F3:/ # drift -0.044
+719.1 "Discharger" sync / 1[56]:[^:]*:Omega:32F6:/
+725.1 "Firewall" sync / 1[56]:[^:]*:Omega-M:3392:/ window 100,10
+
+737.1 "Synthetic Blades/Shield" # branching
+737.1 "--sync--" sync / 1[56]:[^:]*:Omega-M:32FD:/ jump 937.1 window 20,20 # shield
+737.1 "--sync--" sync / 1[56]:[^:]*:Omega:3301:/ jump 1137.1 window 20,20 # blades
+739.1 "Laser Shower"
+
+# Two paths here.  The 1st Shield/Blades has a Solar Ray that the others don't.
+# Assuming it alternates shield/blades though.
+# PoA -> Firewall -> 1st Shield -> 2nd Blades -> 2nd Shield -> 2nd Blades -> etc
+# PoA -> Firewall -> 1st Blades -> 2nd Shield -> 2nd Blades -> 2nd Shield -> etc
+
+# first time shield loop (with solar ray)
+937.1 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/
+939.1 "Laser Shower" sync / 1[56]:[^:]*:Omega:3312:/
+947.1 "Optimized Fire III" sync / 1[56]:[^:]*:Omega:330D:/
+947.1 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:3300:/
+952.1 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega:3303:/
+953.1 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32FF:/
+963.1 "Solar Ray" sync / 1[56]:[^:]*:Omega-M:330F:/
+985.4 "Cosmo Memory" sync / 1[56]:[^:]*:Omega-M:331B:/
+992.5 "Resonance" sync / 1[56]:[^:]*:Omega-M:3394:/ # drift -0.046001
+1008.6 "Suppression" sync / 1[56]:[^:]*:Omega-M:331E:/ # drift -0.044999
+1013.6 "Optical Laser" sync / 1[56]:[^:]*:Optical Unit:3320:/
+1016.6 "Optimized Meteor" sync / 1[56]:[^:]*:Omega-M:3325:/
+1016.8 "Optimized Sagittarius Arrow" sync / 1[56]:[^:]*:Omega-M:3323:/ # drift -0.044
+1027.7 "Optimized Blade Dance" sync / 1[56]:[^:]*:Omega:3322:/
+1035.7 "Synthetic Blades" sync / 1[56]:[^:]*:Omega:3301:/ window 20,20 jump 1478.4
+
+# fake lookahead into 2nd blades loop
+1037.7 "Laser Shower"
+1044.9 "Program Alpha"
+1044.9 "Optimized Fire III"
+1047.9 "Floodlight"
+1051.1 "Superliminal Steel"
+1051.9 "Spotlight"
+1055.9 "Efficient Bladework"
+1056.1 "Optimized Blizzard III"
+
+# first time blades loop (with solar ray)
+1137.1 "Synthetic Blades" sync / 1[56]:[^:]*:Omega:3301:/
+1139.1 "Laser Shower" sync / 1[56]:[^:]*:Omega-M:3311:/
+1146.4 "Program Alpha" sync / 1[56]:[^:]*:Omega-M:3308:/
+1146.5 "Optimized Fire III" sync / 1[56]:[^:]*:Omega:330D:/
+1149.5 "Floodlight" sync / 1[56]:[^:]*:Omega-M:3309:/
+1152.9 "Superliminal Steel" sync / 1[56]:[^:]*:Omega:3305:/
+1153.5 "Spotlight" sync / 1[56]:[^:]*:Omega-M:331A:/ # drift -0.049001
+1157.6 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32FF:/
+1158.1 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega:3303:/
+1168.9 "Solar Ray" sync / 1[56]:[^:]*:Omega-M:330F:/
+1192.0 "Cosmo Memory" sync / 1[56]:[^:]*:Omega-M:331B:/
+1199.3 "Resonance" sync / 1[56]:[^:]*:Omega-M:3394:/
+1215.8 "Suppression" sync / 1[56]:[^:]*:Omega-M:331E:/
+1220.9 "Optical Laser" sync / 1[56]:[^:]*:Optical Unit:3320:/
+1224.1 "Optimized Meteor" sync / 1[56]:[^:]*:Omega-M:3325:/
+1224.3 "Optimized Sagittarius Arrow" sync / 1[56]:[^:]*:Omega-M:3323:/
+1235.4 "Optimized Blade Dance" sync / 1[56]:[^:]*:Omega:3322:/
+1243.6 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/ window 20,20 jump 1400
+
+# fake lookahead into 2nd shield loop
+1245.6 "Laser Shower"
+1254.1 "Optimized Fire III"
+1254.2 "Beyond Strength"
+1259.3 "Optimized Blizzard III"
+1260.3 "Efficient Bladework"
+1270.6 "Cosmo Memory"
+1277.8 "Resonance"
+
+# second time shield loop (no solar ray)
+1400.0 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/
+1402.0 "Laser Shower" sync / 1[56]:[^:]*:Omega:3312:/
+1410.5 "Optimized Fire III" sync / 1[56]:[^:]*:Omega:330D:/
+1410.6 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:3300:/
+1415.7 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega:3303:/
+1416.7 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32FF:/
+1427.0 "Cosmo Memory" sync / 1[56]:[^:]*:Omega-M:331B:/
+1434.2 "Resonance" sync / 1[56]:[^:]*:Omega-M:3394:/ # drift 0.045001
+1450.8 "Suppression" sync / 1[56]:[^:]*:Omega-M:331E:/
+1455.8 "Optical Laser" sync / 1[56]:[^:]*:Optical Unit:3320:/
+1459.0 "Optimized Meteor" sync / 1[56]:[^:]*:Omega-M:3325:/
+1459.2 "Optimized Sagittarius Arrow" sync / 1[56]:[^:]*:Omega-M:3323:/
+1470.3 "Optimized Blade Dance" sync / 1[56]:[^:]*:Omega:3322:/
+
+# second time blades loop (no solar ray)
+1478.4 "Synthetic Blades" sync / 1[56]:[^:]*:Omega:3301:/
+1480.4 "Laser Shower" sync / 1[56]:[^:]*:Omega-M:3311:/
+1487.6 "Program Alpha" sync / 1[56]:[^:]*:Omega-M:3308:/
+1487.6 "Optimized Fire III" sync / 1[56]:[^:]*:Omega:330D:/
+1490.6 "Floodlight" sync / 1[56]:[^:]*:Omega-M:3309:/
+1493.8 "Superliminal Steel" sync / 1[56]:[^:]*:Omega:3305:/
+1494.6 "Spotlight" sync / 1[56]:[^:]*:Omega-M:331A:/
+1498.6 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32FF:/
+1498.8 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega:3303:/
+1509.8 "Cosmo Memory" sync / 1[56]:[^:]*:Omega-M:331B:/
+1516.8 "Resonance" sync / 1[56]:[^:]*:Omega-M:3394:/
+1532.9 "Suppression" sync / 1[56]:[^:]*:Omega-M:331E:/
+1537.9 "Optical Laser" sync / 1[56]:[^:]*:Optical Unit:3320:/
+1540.9 "Optimized Meteor" sync / 1[56]:[^:]*:Omega-M:3325:/
+1541.1 "Optimized Sagittarius Arrow" sync / 1[56]:[^:]*:Omega-M:3323:/
+1551.9 "Optimized Blade Dance" sync / 1[56]:[^:]*:Omega:3322:/
+
+# Loop with fake lookahead window
+1560.0 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/ window 20,20 jump 1400
+1562.0 "Laser Shower"
+1570.5 "Optimized Fire III"
+1570.6 "Beyond Strength"
+1575.7 "Optimized Blizzard III"
+1576.7 "Efficient Bladework"
+1587.0 "Cosmo Memory"
+1594.2 "Resonance"
+
+
+### Phase 4: Laser Show Forever
+1800.0 "Enrage" sync / 00:0044:[^:]*:\<blip\> Warning\. Calculations indicate/ window 1800,0
+
+1806.0 "Laser Shower Enrage" sync / 1[56]:[^:]*:(Omega-M:3311|Omega:3312):/ window 20,20
+1812.0 "Laser Shower Enrage"
+1818.0 "Laser Shower Enrage"
+1824.0 "Laser Shower Enrage"
+1832.0 "Laser Shower Enrage"
+1838.0 "Laser Shower Enrage"

@@ -1,0 +1,205 @@
+# Omega - Sigmascape V4.0 (Savage) - O8S
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::The limit gauge resets!/ window 10000 jump 0
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+4 "--sync--" sync / 1[56]:[^:]*:Kefka:28C2:/ window 5,0
+13 "Mana Charge" sync / 1[56]:[^:]*:Kefka:28D1:/ window 20,20 # drift 0.476
+19 "Flagrant Fire" #sync / 1[56]:[^:]*:Kefka:28CE:/ # drift 0.215
+28 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:28E8:/
+36 "Mana Release" sync / 1[56]:[^:]*:Kefka:28D2:/
+41 "Flagrant Fire" #sync / 1[56]:[^:]*:Kefka:2B32:/
+44 "Thrumming Thunder" #sync / 1[56]:[^:]*:Kefka:28CA:/
+50 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/
+
+# First Graven
+71 "Graven Image" sync / 1[56]:[^:]*:Kefka:28D7:/
+73 "--untargetable--" sync / 14:[^:]*:Kefka:2B34:/
+75 "Inexorable Will" sync / 1[56]:[^:]*:Graven Image:28DA:/
+76 "Wave Cannon" sync / 1[56]:[^:]*:Graven Image:28DC:/
+79 "Inexorable Will" sync / 1[56]:[^:]*:Graven Image:28DA:/
+81 "Wave Cannon" sync / 1[56]:[^:]*:Graven Image:28DC:/
+83 "Pulse Wave" sync / 1[56]:[^:]*:Graven Image:28DD:/
+83 "Inexorable Will" sync / 1[56]:[^:]*:Graven Image:28DA:/
+86 "Indomitable Will" sync / 1[56]:[^:]*:Graven Image:28D9:/
+87 "Timely Teleport" sync / 1[56]:[^:]*:Kefka:28D3:/
+90 "Revolting Ruin" sync / 1[56]:[^:]*:Kefka:28D5:/
+98 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:28D8:/
+
+# Second Graven
+108 "Mana Charge" sync / 1[56]:[^:]*:Kefka:28D1:/
+115 "Thrumming Thunder" #sync / 1[56]:[^:]*:Kefka:28CA:/
+122 "Blizzard Blitz" #sync / 1[56]:[^:]*:Kefka:28C7:/
+130 "Graven Image" sync / 1[56]:[^:]*:Kefka:28D7:/
+139 "Mana Release" sync / 1[56]:[^:]*:Kefka:28D2:/
+140 "Shockwave" sync / 1[56]:[^:]*:Graven Image:28DB:/
+146 "Blizzard+Thunder" #sync / 1[56]:[^:]*:Kefka:2B2(E|F):/
+156 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/
+163 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:28E8:/
+
+# Third Graven
+178 "Graven Image" sync / 1[56]:[^:]*:Kefka:28D7:/
+181 "--untargetable--" sync / 14:[^:]*:Kefka:2B34:/
+183 "Gravitas" sync / 1[56]:[^:]*:Graven Image:28E0:/
+186 "Vitrophyre" sync / 1[56]:[^:]*:Graven Image:28E2:/
+190 "Half Arena" sync / 1[56]:[^:]*:Graven Image:28D(E|F):/
+193 "Gravitas" sync / 1[56]:[^:]*:Graven Image:28E0:/
+195 "--targetable--"
+196 "Vitrophyre" sync / 1[56]:[^:]*:Graven Image:28E2:/
+200 "Aero Assault" sync / 1[56]:[^:]*:Kefka:28D6:/
+208 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:28D8:/
+
+# Fourth Graven
+218 "Mana Charge" sync / 1[56]:[^:]*:Kefka:28D1:/ # drift 0.296
+224 "Flagrant Fire" #sync / 1[56]:[^:]*:Kefka:28CE:/ # drift 0.304
+232 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/
+240 "Graven Image" sync / 1[56]:[^:]*:Kefka:28D7:/ # drift 0.203
+245 "Half Arena" sync / 1[56]:[^:]*:Graven Image:28D(E|F):/
+246 "Mana Release" sync / 1[56]:[^:]*:Kefka:28D2:/ # drift 0.302
+251 "Flagrant Fire" #sync / 1[56]:[^:]*:Kefka:2B32:/
+254 "Thrumming Thunder" #sync / 1[56]:[^:]*:Kefka:28CA:/
+261 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/
+268 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:28E8:/
+
+# Fifth Graven
+288 "Graven Image" sync / 1[56]:[^:]*:Kefka:28D7:/ # drift 0.259
+290 "--untargetable--" sync / 14:[^:]*:Kefka:2B34:/
+293 "Inexorable Will" sync / 1[56]:[^:]*:Graven Image:28DA:/
+293 "Statue Gaze" #sync / 1[56]:[^:]*:Graven Image:28E(3|4):/
+308 "Statue Gaze" sync / 1[56]:[^:]*:Graven Image:28E(3|4):/ # drift -0.387
+310 "Timely Teleport" sync / 1[56]:[^:]*:Kefka:28D3:/
+313 "Revolting Ruin" sync / 1[56]:[^:]*:Kefka:28D5:/ # drift 0.227
+322 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:28D8:/
+329 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/ # drift 0.31
+
+# Sixth Graven
+336 "Mana Charge" sync / 1[56]:[^:]*:Kefka:28D1:/ # drift 0.256
+343 "Thrumming Thunder" #sync / 1[56]:[^:]*:Kefka:28CA:/
+350 "Blizzard Blitz" #sync / 1[56]:[^:]*:Kefka:28C7:/
+358 "Graven Image" sync / 1[56]:[^:]*:Kefka:28D7:/
+363 "Statue Gaze" sync / 1[56]:[^:]*:Graven Image:28E(3|4):/
+364 "Mana Release" sync / 1[56]:[^:]*:Kefka:28D2:/
+371 "Blizzard+Thunder" #sync / 1[56]:[^:]*:Kefka:2B2(E|F):/
+377 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:28E8:/
+
+# Enrage
+384 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/ # drift 0.285
+392 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/
+400 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/
+404 "--untargetable--"
+408 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:2A51:/
+
+#############
+# GOD KEFKA #
+#############
+
+1000 "Start"
+1001 "--sync--" sync / 1[56]:[^:]*:Kefka:28EC:/ window 1001,0
+1006 "--sync--" sync / 14:[^:]*:Kefka:28FA:/ window 10,0
+1010 "Heartless Angel" sync / 1[56]:[^:]*:Kefka:28FA:/
+1016 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1023 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:2912:/
+1032 "Celestriad" sync / 1[56]:[^:]*:Kefka:2907:/
+1034 "Thunder III" sync / 1[56]:[^:]*:Kefka:290A:/
+1035 "(DPS) Fire III" sync / 1[56]:[^:]*:Kefka:290B:/
+1041 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+
+# Forsaken 1
+1048 "--sync--" sync / 14:[^:]*:Kefka:28E9:/ window 120,60
+1053 "Forsaken #1" sync / 1[56]:[^:]*:Kefka:28E9:/
+1064 "Heartless Archangel" sync / 1[56]:[^:]*:Kefka:28FB:/
+1067 "Soak" sync / 1[56]:[^:]*:Light Of Consecration:28EA:/
+1077 "2x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:2900:/
+1083 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1093 "Heartless Archangel" sync / 1[56]:[^:]*:Kefka:28FB:/
+1096 "Soak" sync / 1[56]:[^:]*:Light Of Consecration:28EA:/
+
+# Light 1
+1108 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:28ED:/
+1122 "Trine (small)" sync / 1[56]:[^:]*:Kefka:290D:/
+1129 "1x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:28FE:/
+1140 "2x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:2900:/
+1157 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1165 "Past/Future" sync / 1[56]:[^:]*:Kefka:28(EF|F1):/
+1175 "Ultimate Embrace" sync / 1[56]:[^:]*:Kefka:2910:/
+1182 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:2912:/
+1189 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+
+# Forsaken 2
+1201 "--sync--" sync / 14:[^:]*:Kefka:28E9:/ window 120,60
+1206 "Forsaken #2" sync / 1[56]:[^:]*:Kefka:28E9:/
+1214 "Starstrafe" sync / 1[56]:[^:]*:Kefka:2902:/
+1221 "Past/Future End" sync / 1[56]:[^:]*:Kefka:28F(5|8):/
+1228 "All Things Ending" sync / 1[56]:[^:]*:Kefka:28F6:/
+1233 "Meteor" sync / 1[56]:[^:]*:Kefka:2905:/
+
+# Light 2
+1240 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:28ED:/
+1256 "Celestriad" sync / 1[56]:[^:]*:Kefka:2907:/
+1258 "Thunder III" sync / 1[56]:[^:]*:Kefka:290A:/
+1259 "(DPS) Fire III" sync / 1[56]:[^:]*:Kefka:290B:/
+1264 "1x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:28FF:/
+1271 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1287 "Trine (big)" sync / 1[56]:[^:]*:Kefka:290D:/
+1297 "Past/Future" sync / 1[56]:[^:]*:Kefka:28(EF|F1):/
+1307 "2x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:2900:/
+1313 "Ultimate Embrace" sync / 1[56]:[^:]*:Kefka:2910:/
+1320 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:2912:/
+1328 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+
+# Forsaken 3
+1340 "--sync--" sync / 14:[^:]*:Kefka:28E9:/ window 120,60
+1345 "Forsaken #3" sync / 1[56]:[^:]*:Kefka:28E9:/
+1358 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1359 "Knockback Tethers" sync / 1[56]:[^:]*:Graven Image:28DD:/
+1362 "Soak" sync / 1[56]:[^:]*:Light Of Consecration:28EA:/
+1364 "Ultimate Embrace" sync / 1[56]:[^:]*:Kefka:2910:/
+1371 "Sleep/Confuse Tethers" sync / 1[56]:[^:]*:Graven Image:28E(5|6):/
+1377 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1386 "Heartless Archangel" sync / 1[56]:[^:]*:Kefka:28FB:/
+1389 "Soak" sync / 1[56]:[^:]*:Light Of Consecration:28EA:/
+1399 "2x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:2900:/
+1400 "Soak"
+1405 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1412 "Statue Half Cleave" sync / 1[56]:[^:]*:Graven Image:28D(E|F):/
+1413 "1x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:28FF:/
+
+# Light 3
+1421 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:28ED:/
+1435 "Trine (small)" sync / 1[56]:[^:]*:Kefka:290D:/
+1442 "1x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:28FF:/
+1453 "2x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:2900:/
+1459 "Ultimate Embrace" sync / 1[56]:[^:]*:Kefka:2910:/
+1475 "Trine (big)" sync / 1[56]:[^:]*:Kefka:290D:/
+1485 "Past/Future" sync / 1[56]:[^:]*:Kefka:28(EF|F1):/
+1496 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:2912:/
+1504 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1512 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+
+# Forsaken 4 (repeats #3)
+1525 "--sync--" sync / 14:[^:]*:Kefka:28E9:/ window 120,60
+1530 "Forsaken #4" sync / 1[56]:[^:]*:Kefka:28E9:/
+1543 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1544 "Knockback Tethers" sync / 1[56]:[^:]*:Graven Image:28DD:/
+1547 "Soak" sync / 1[56]:[^:]*:Light Of Consecration:28EA:/
+1549 "Ultimate Embrace" sync / 1[56]:[^:]*:Kefka:2910:/
+1556 "Sleep/Confuse Tethers" sync / 1[56]:[^:]*:Graven Image:28E(5|6):/
+1562 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1571 "Heartless Archangel" sync / 1[56]:[^:]*:Kefka:28FB:/
+1574 "Soak"
+1584 "2x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:2900:/
+1586 "Soak"
+1590 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1595 "Statue Half Cleave"
+1596 "1x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:28FF:/
+
+# Enrage
+1602 "Ultima" sync / 1[56]:[^:]*:Kefka:283D:/
+1610 "Ultima" sync / 1[56]:[^:]*:Kefka:283D:/
+1618 "Ultima" sync / 1[56]:[^:]*:Kefka:283D:/
+1626 "Ultima" sync / 1[56]:[^:]*:Kefka:283D:/
+1630 "--sync--" sync / 14:[^:]*:Kefka:2A52:/
+1640 "Enrage" sync / 1[56]:[^:]*:Kefka:2A52:/ jump 0

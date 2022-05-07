@@ -1,0 +1,109 @@
+# DELTASCAPE V4.0--O4N
+# EXDEATH
+
+# Enrage appears to be 25 minutes. No way to accurately warn about it
+# as the second phase is HP-dependent.
+
+hideall "--Reset--"
+hideall "--sync--"
+
+# -ii 24BA 24BC 24BE 24C3 24C5
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.5 "--sync--" sync / 1[56]:[^:]*:Exdeath:366:/ window 2.5,1
+9.5 "Doom" sync / 1[56]:[^:]*:Exdeath:24B7:/ window 9.5,5
+19.1 "Blizzard/Fire III" sync / 1[56]:[^:]*:Exdeath:24B[9B]:/
+28.8 "Thunder III (Buster)" sync / 1[56]:[^:]*:Exdeath:24BD:/
+37.4 "Blizzard/Fire III" sync / 1[56]:[^:]*:Exdeath:24B[9B]:/
+50.3 "Mega Blizzard/Fire/Thunder" sync / 1[56]:[^:]*:Exdeath:24(BF|C[01]):/
+63.6 "Mega Blizzard/Fire/Thunder" sync / 1[56]:[^:]*:Exdeath:24(BF|C[01]):/
+74.8 "Mega Blizzard/Fire/Thunder" sync / 1[56]:[^:]*:Exdeath:24(BF|C[01]):/
+87.0 "Mega Blizzard/Fire/Thunder" sync / 1[56]:[^:]*:Exdeath:24(BF|C[01]):/
+92.6 "Blizzard/Fire III" sync / 1[56]:[^:]*:Exdeath:24B[9B]:/
+103.2 "Thunder III (Buster)" sync / 1[56]:[^:]*:Exdeath:24BD:/
+
+113.3 "Vacuum Wave" sync / 1[56]:[^:]*:Exdeath:24B8:/ window 40,30
+121.5 "Holy" sync / 1[56]:[^:]*:Exdeath:24C4:/
+132.8 "Mega Blizzard/Fire/Thunder" sync / 1[56]:[^:]*:Exdeath:24(BF|C[01]):/
+138.4 "Blizzard/Fire III" sync / 1[56]:[^:]*:Exdeath:24B[9B]:/
+149.1 "Thunder III (Buster)" sync / 1[56]:[^:]*:Exdeath:24BD:/
+
+159.2 "Vacuum Wave" sync / 1[56]:[^:]*:Exdeath:24B8:/ window 20,20
+167.4 "Holy" sync / 1[56]:[^:]*:Exdeath:24C4:/
+178.7 "Mega Blizzard/Fire/Thunder" sync / 1[56]:[^:]*:Exdeath:24(BF|C[01]):/
+184.3 "Blizzard/Fire III" sync / 1[56]:[^:]*:Exdeath:24B[9B]:/
+195.0 "Thunder III (Buster)" sync / 1[56]:[^:]*:Exdeath:24BD:/ jump 149.1
+
+205.1 "Vacuum Wave"
+213.3 "Holy"
+224.6 "Mega Blizzard/Fire/Thunder"
+230.2 "Blizzard/Fire III"
+
+# Phase change appears to be 65% HP.
+# This first section is not quite the same as the main rotation.
+300.0 "The Decisive Battle" sync / 1[56]:[^:]*:Exdeath:2408:/ window 300,5
+301.4 "--untargetable--"
+305.9 "--sync--" sync / 1[56]:[^:]*:Exdeath:240A:/
+307.0 "Collision" sync / 1[56]:[^:]*:Exdeath:24CA:/
+312.0 "Zombie Breath" sync / 1[56]:[^:]*:Exdeath:24CB:/
+317.0 "--targetable--"
+322.4 "Holy" sync / 1[56]:[^:]*:Exdeath:24C4:/ window 20,20
+329.5 "Flare" sync / 1[56]:[^:]*:Exdeath:24C2:/
+338.6 "Meteor" sync / 1[56]:[^:]*:Exdeath:24C6:/
+353.8 "Black Hole" sync / 1[56]:[^:]*:Exdeath:24C8:/ window 30,30
+365.1 "Mega Blizzard/Fire/Thunder" sync / 1[56]:[^:]*:Exdeath:24(BF|C[01]):/
+
+# This section has choices.
+370.7 "Blizzard/Fire III?" sync / 1[56]:[^:]*:Exdeath:24B[9B]:/
+372.2 "Holy?" sync / 1[56]:[^:]*:Exdeath:24C4:/
+386.3 "Meteor" sync / 1[56]:[^:]*:Exdeath:24C6:/
+396.4 "Thunder III (Buster)" sync / 1[56]:[^:]*:Exdeath:24BD:/ window 30,30
+410.7 "Black Hole" sync / 1[56]:[^:]*:Exdeath:24C8:/
+421.0 "Mega Blizzard/Fire/Thunder" sync / 1[56]:[^:]*:Exdeath:24(BF|C[01]):/
+427.1 "Flare?" sync / 1[56]:[^:]*:Exdeath:24C2:/
+427.1 "Vacuum Wave?" sync / 1[56]:[^:]*:Exdeath:24B8:/
+442.3 "Meteor" sync / 1[56]:[^:]*:Exdeath:24C6:/ window 30,30
+452.4 "Thunder III (Buster)" sync / 1[56]:[^:]*:Exdeath:24BD:/
+
+# Actual rotation block begins. Consistent first half...
+466.8 "The Decisive Battle" sync / 1[56]:[^:]*:Exdeath:2408:/ window 30,30
+468.2 "--untargetable--"
+472.6 "--sync--" sync / 1[56]:[^:]*:Exdeath:240A:/
+473.7 "Collision" sync / 1[56]:[^:]*:Exdeath:24CA:/
+475.1 "Clearout" sync / 1[56]:[^:]*:Deathly Vine:24CC:/
+478.8 "Zombie Breath" sync / 1[56]:[^:]*:Exdeath:24CB:/
+483.8 "--targetable--"
+488.3 "Vacuum Wave" sync / 1[56]:[^:]*:Exdeath:24B8:/
+496.5 "Holy" sync / 1[56]:[^:]*:Exdeath:24C4:/ window 30,30
+503.6 "Flare" sync / 1[56]:[^:]*:Exdeath:24C2:/
+512.7 "Meteor" sync / 1[56]:[^:]*:Exdeath:24C6:/
+528.0 "Black Hole" sync / 1[56]:[^:]*:Exdeath:24C8:/
+538.2 "Mega Blizzard/Fire/Thunder" sync / 1[56]:[^:]*:Exdeath:24(BF|C[01]):/
+
+# Leading into choices in the second half.
+543.8 "Blizzard/Fire III?" sync / 1[56]:[^:]*:Exdeath:24B[9B]:/
+545.3 "Holy?" sync / 1[56]:[^:]*:Exdeath:24C4:/
+557.5 "Meteor" sync / 1[56]:[^:]*:Exdeath:24C6:/
+567.7 "Thunder III (Buster)" sync / 1[56]:[^:]*:Exdeath:24BD:/ window 30,30
+582.0 "Black Hole" sync / 1[56]:[^:]*:Exdeath:24C8:/
+592.3 "Mega Blizzard/Fire/Thunder" sync / 1[56]:[^:]*:Exdeath:24(BF|C[01]):/
+599.4 "Flare?" sync / 1[56]:[^:]*:Exdeath:24C2:/
+599.4 "Vacuum Wave?" sync / 1[56]:[^:]*:Exdeath:24B8:/
+613.5 "Meteor" sync / 1[56]:[^:]*:Exdeath:24C6:/ window 30,30
+623.7 "Thunder III (Buster)" sync / 1[56]:[^:]*:Exdeath:24BD:/
+
+637.9 "The Decisive Battle" sync / 1[56]:[^:]*:Exdeath:2408:/ jump 466.8
+639.3 "--untargetable--"
+644.8 "Collision"
+646.2 "Clearout"
+649.9 "Zombie Breath"
+659.4 "Vacuum Wave"
+667.6 "Holy"
+674.7 "Flare"
+
+
+# Enrage. Exdeath is untargetable at this point.
+# "Nothingness is my weapon, and nothingness alone can strike me down!"
+1000.0 "--sync--" sync / 14:[^:]*:Exdeath:24C7:/ window 1000,0
+1005.0 "Meteor Enrage" sync / 1[56]:[^:]*:Exdeath:24C7:/

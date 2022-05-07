@@ -1,0 +1,88 @@
+### PAGLTH'AN
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~#
+# AMHULUK #
+#~~~~~~~~~#
+
+# -ii 5C52 5C53
+
+0 "Start" sync / 00:0839::The Gathering Ring will be sealed off/ window 0,1
+12.6 "Critical Rip" sync / 1[56]:[^:]*:Amhuluk:5C4E:/ window 12.6,10
+18.8 "--sync--" sync / 1[56]:[^:]*:Amhuluk:5C51:/
+30.2 "Lightning Bolt" sync / 1[56]:[^:]*:Amhuluk:5C4B:/
+31.0 "--sync--" sync / 1[56]:[^:]*:Amhuluk:5C4C:/
+36.8 "Electric Burst" sync / 1[56]:[^:]*:Amhuluk:5C4D:/
+48.0 "Thundercall" sync / 1[56]:[^:]*:Amhuluk:5C50:/ window 48,10
+48.5 "--Levin orbs--"
+61.3 "Wide Blaster" sync / 1[56]:[^:]*:Amhuluk:60C5:/ window 61.3,10
+63.9 "Spike Flail" sync / 1[56]:[^:]*:Amhuluk:5C4F:/
+66.1 "--sync--" sync / 1[56]:[^:]*:Amhuluk:5C51:/
+77.6 "Lightning Bolt" sync / 1[56]:[^:]*:Amhuluk:5C4B:/
+78.4 "--sync--" sync / 1[56]:[^:]*:Amhuluk:5C4C:/
+84.2 "Electric Burst" sync / 1[56]:[^:]*:Amhuluk:5C4D:/
+
+95.4 "Critical Rip" sync / 1[56]:[^:]*:Amhuluk:5C4E:/ window 45,30
+107.5 "Thundercall" sync / 1[56]:[^:]*:Amhuluk:5C50:/
+108.0 "--Levin orbs--"
+109.6 "--sync--" sync / 1[56]:[^:]*:Amhuluk:5C51:/
+121.0 "Lightning Bolt" sync / 1[56]:[^:]*:Amhuluk:5C4B:/
+121.8 "--sync--" sync / 1[56]:[^:]*:Amhuluk:5C4C:/
+127.6 "Electric Burst" sync / 1[56]:[^:]*:Amhuluk:5C4D:/
+137.7 "Wide Blaster" sync / 1[56]:[^:]*:Amhuluk:60C5:/ window 30,30
+140.3 "Spike Flail" sync / 1[56]:[^:]*:Amhuluk:5C4F:/
+
+160.4 "Critical Rip" sync / 1[56]:[^:]*:Amhuluk:5C4E:/ jump 95.4
+172.5 "Thundercall"
+173.0 "--Levin orbs--"
+186.0 "Lightning Bolt"
+192.6 "Electric Burst"
+
+# There's not a whole lot of stuff we can do with a timeline for boss 2,
+# and the timing on Stable Cannon seems to vary by up to a second or more.
+
+#~~~~~~~~~~~~~~~#
+# LUNAR BAHAMUT #
+#~~~~~~~~~~~~~~~#
+
+# -ii 5B56 5B50
+
+2000.0 "Start" sync / 00:0839::Sunseat will be sealed off/ window 2000,5
+2010.0 "Twisted Scream" sync / 1[56]:[^:]*:Lunar Bahamut:5B47:/
+2015.0 "Upburst x4" # sync / 1[56]:[^:]*:Lunar Nail:605B:/
+2021.6 "Big Burst x4" # sync / 1[56]:[^:]*:Lunar Nail:5B48:/
+2029.2 "Perigean Breath" sync / 1[56]:[^:]*:Lunar Bahamut:5B59:/ window 30,10
+2042.4 "Akh Morn x4" sync / 1[56]:[^:]*:Lunar Bahamut:5B55:/ duration 5
+2062.8 "Megaflare x3" sync / 1[56]:[^:]*:Lunar Bahamut:5B4C:/
+2064.8 "--sync--" sync / 1[56]:[^:]*:Lunar Bahamut:5B4D:/
+2068.9 "--sync--" sync / 1[56]:[^:]*:Lunar Bahamut:5B4E:/
+2071.0 "Twisted Scream" sync / 1[56]:[^:]*:Lunar Bahamut:5B47:/
+2076.0 "Upburst x4" # sync / 1[56]:[^:]*:Lunar Nail:605B:/
+2082.6 "Big Burst x4" # sync / 1[56]:[^:]*:Lunar Nail:5B48:/
+2083.9 "Megaflare Dive" sync / 1[56]:[^:]*:Lunar Bahamut:5B52:/ window 30,30
+2095.7 "Kan Rhai" sync / 1[56]:[^:]*:Lunar Bahamut:5B4F:/
+2097.3 "--sync--" sync / 1[56]:[^:]*:Lunar Bahamut:5B51:/
+2107.4 "Lunar Flare (circles)" sync / 1[56]:[^:]*:Lunar Bahamut:5B49:/
+2119.5 "Lunar Flare (explosions)" sync / 1[56]:[^:]*:Lunar Bahamut:5B4A:/
+
+2131.6 "Gigaflare" sync / 1[56]:[^:]*:Lunar Bahamut:5B57:/ window 131.6,10
+2150.7 "Akh Morn x4" sync / 1[56]:[^:]*:Lunar Bahamut:5B55:/ duration 5
+2168.1 "Twisted Scream" sync / 1[56]:[^:]*:Lunar Bahamut:5B47:/
+2173.1 "Upburst x4" # sync / 1[56]:[^:]*:Lunar Nail:605B:/
+2179.7 "Big Burst x4" # sync / 1[56]:[^:]*:Lunar Nail:5B48:/
+2191.3 "Lunar Flare (circles)" sync / 1[56]:[^:]*:Lunar Bahamut:5B49:/ window 30,30
+2203.4 "Lunar Flare (explosions)" sync / 1[56]:[^:]*:Lunar Bahamut:(5B4A|5B4B):/
+2215.5 "Kan Rhai" sync / 1[56]:[^:]*:Lunar Bahamut:5B4F:/
+2217.1 "--sync--" sync / 1[56]:[^:]*:Lunar Bahamut:5B51:/
+2223.5 "Flatten" sync / 1[56]:[^:]*:Lunar Bahamut:5B58:/
+
+2241.6 "Gigaflare" sync / 1[56]:[^:]*:Lunar Bahamut:5B57:/ jump 2131.6
+2260.7 "Akh Morn x4"
+2278.1 "Twisted Scream"
+2283.1 "Upburst x4"
+2289.7 "Big Burst x4"
+2301.3 "Lunar Flare (circles)"

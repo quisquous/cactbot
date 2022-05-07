@@ -1,0 +1,138 @@
+### Innocence Ex
+# -ii 3ED5 3ED4 3ED3 3ED2 3EE7 3EE8 3EE4 3EE5 3EFD 3EFE 3EEB 3F3E 3EFF 3F00 3ED8 3F01 3F02 3EFB 3EFC 3ED6 3EDE 3EDF 38FC 3EE0 3EF0 -p 3EE9:300
+# https://thebalanceffxiv.com/guide/innocence/
+
+hideall "--Reset--"
+hideall "--sync--"
+hideall "Holy Trinity"
+hideall "Soul And Body"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+
+### Phase 1
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.0 "--sync--" sync / 1[56]:[^:]*:Innocence:3ECA:/ window 2,0
+17.0 "Shadowreaver" sync / 1[56]:[^:]*:Innocence:3EEA:/ window 20,5
+28.0 "Winged Rep Tethers" sync / 1[56]:[^:]*:Innocence:40BD:/
+37.0 "Duel Descent" sync / 1[56]:[^:]*:Nail of Condemnation:3EA9:/
+47.0 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3ECD:/
+58.0 "Winged Rep Tethers" sync / 1[56]:[^:]*:Innocence:40BD:/
+61.0 "--sync--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+65.2 "Rightful Reprobation" sync / 1[56]:[^:]*:Innocence:3EDC:/
+67.0 "Duel Descent" sync / 1[56]:[^:]*:Nail of Condemnation:3EA9:/
+72.1 "Reprobation" sync / 1[56]:[^:]*:Innocence:3ECC:/
+81.2 "Winged Rep Rotate" sync / 1[56]:[^:]*:Innocence:40BD:/
+95.2 "Drop Of Light" sync / 1[56]:[^:]*:Innocence:3EEC:/
+107.8 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3ECD:/
+118.8 "Winged Rep Trident" sync / 1[56]:[^:]*:Innocence:40BD:/
+121.8 "--sync--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+124.8 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EDB:/
+125.8 "Rightful Reprobation" sync / 1[56]:[^:]*:Innocence:3EDD:/
+129.3 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EDB:/
+132.6 "Reprobation" sync / 1[56]:[^:]*:Innocence:3ECC:/
+133.7 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EDB:/
+137.0 "Light Pillar" sync / 1[56]:[^:]*:Innocence:3EED:/
+144.0 "Shadowreaver" sync / 1[56]:[^:]*:Innocence:3EEA:/
+# technically Tethers + Rotate
+155.0 "Winged Rep Tethers" sync / 1[56]:[^:]*:Innocence:40BD:/
+161.0 "Soul And Body" sync / 1[56]:[^:]*:Innocence:3ED7:/
+161.0 "Duel Descent" sync / 1[56]:[^:]*:Nail of Condemnation:3EA9:/
+
+
+### Phase 2: Adds
+178.0 "--untargetable--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+180.3 "--targetable--" sync / 1[56]:[^:]*:Innocence:42B0:/ window 200,200
+183.3 "--sync--" sync / 1[56]:[^:]*:Sword of Condemnation:42B1:/
+190.3 "Scold's Bridle" sync / 1[56]:[^:]*:Forgiven Shame:3EC8:/
+195.3 "Holy Sword" sync / 1[56]:[^:]*:Forgiven Venery:3EC9:/
+197.3 "Guiding Light" sync / 1[56]:[^:]*:Innocence:3F46:/
+211.3 "Holy Sword" sync / 1[56]:[^:]*:Forgiven Venery:3EC9:/
+213.3 "Guiding Light" sync / 1[56]:[^:]*:Innocence:3F46:/
+227.3 "Holy Sword" sync / 1[56]:[^:]*:Forgiven Venery:3EC9:/
+230.3 "Enrage"
+
+
+### Phase 3: Starbirth
+300.0 "--sync--" sync / 1[56]:[^:]*:Sword of Condemnation:3EE9:/ window 300,0
+314.0 "--targetable--"
+323.0 "Starbirth Corner" sync / 1[56]:[^:]*:Innocence:3EEF:/
+336.0 "Shadowreaver" sync / 1[56]:[^:]*:Innocence:3EEA:/
+337.0 "Explosion" sync / 1[56]:[^:]*:Innocence:3EF0:/
+347.0 "Winged Rep Rotate" sync / 1[56]:[^:]*:Innocence:40BD:/
+353.0 "Soul And Body" sync / 1[56]:[^:]*:Innocence:3ED9:/
+359.0 "--sync--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+363.0 "Rightful Reprobation" sync / 1[56]:[^:]*:Innocence:3EDD:/
+367.0 "--jump--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+369.8 "Reprobation" sync / 1[56]:[^:]*:Innocence:3ECC:/
+373.7 "Beatific Vision" sync / 1[56]:[^:]*:Innocence:3EEE:/
+389.7 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3ECD:/
+
+400.7 "Starbirth Avoid" sync / 1[56]:[^:]*:Innocence:3EEF:/
+407.7 "Drop Of Light 1" #sync / 1[56]:[^:]*:Innocence:3EEC:/
+412.8 "Drop Of Light 2" #sync / 1[56]:[^:]*:Innocence:3EEC:/
+419.7 "Light Pillar" sync / 1[56]:[^:]*:Innocence:3EED:/
+421.7 "--jump--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+428.3 "Beatific Vision" sync / 1[56]:[^:]*:Innocence:3EEE:/
+441.3 "--sync--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+445.4 "Rightful Reprobation" sync / 1[56]:[^:]*:Innocence:3EDC:/
+452.3 "Reprobation" sync / 1[56]:[^:]*:Innocence:3ECC:/
+452.9 "God Ray x3" sync / 1[56]:[^:]*:Innocence:3EE6:/ window 5,1 duration 10
+469.9 "Shadowreaver" sync / 1[56]:[^:]*:Innocence:3EEA:/
+480.9 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3ECD:/
+
+489.9 "Starbirth Explode" sync / 1[56]:[^:]*:Innocence:3EEF:/
+494.9 "Winged Rep Trident" sync / 1[56]:[^:]*:Innocence:40BD:/
+500.9 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EDB:/
+505.4 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EDB:/
+509.9 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EDB:/
+514.2 "Light Pillar" sync / 1[56]:[^:]*:Innocence:3EED:/
+523.2 "Shadowreaver" sync / 1[56]:[^:]*:Innocence:3EEA:/
+538.3 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3ECD:/
+# technical tethers + trident
+547.3 "Winged Rep Tethers" sync / 1[56]:[^:]*:Innocence:40BD:/
+553.3 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EDB:/
+553.3 "Duel Descent" sync / 1[56]:[^:]*:Nail of Condemnation:3EA9:/
+557.8 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EDB:/
+# technically trident + rotate
+561.3 "Winged Rep Trident" sync / 1[56]:[^:]*:Innocence:40BD:/
+562.3 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EDB:/
+562.3 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EDB:/
+
+570.3 "Starbirth Charge" sync / 1[56]:[^:]*:Innocence:3EEF:/
+573.3 "--jump--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+579.9 "Beatific Vision" sync / 1[56]:[^:]*:Innocence:3EEE:/
+592.9 "--sync--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+597.1 "Rightful Reprobation" sync / 1[56]:[^:]*:Innocence:3EDC:/
+598.9 "Drop Of Light 1" #sync / 1[56]:[^:]*:Innocence:3EEC:/
+604.0 "Reprobation" sync / 1[56]:[^:]*:Innocence:3ECC:/
+604.8 "Drop Of Light 2" #sync / 1[56]:[^:]*:Innocence:3EEC:/
+613.4 "Winged Rep Tethers" sync / 1[56]:[^:]*:Innocence:40BD:/
+622.4 "Duel Descent" sync / 1[56]:[^:]*:Nail of Condemnation:3EA9:/
+623.4 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3ECD:/
+
+634.4 "Starbirth Avoid" sync / 1[56]:[^:]*:Innocence:3EEF:/
+641.4 "Drop Of Light 1" #sync / 1[56]:[^:]*:Innocence:3EEC:/
+646.5 "Drop Of Light 2" #sync / 1[56]:[^:]*:Innocence:3EEC:/
+653.4 "Light Pillar" sync / 1[56]:[^:]*:Innocence:3EED:/
+655.4 "--jump--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+662.1 "Beatific Vision" sync / 1[56]:[^:]*:Innocence:3EEE:/
+675.2 "--sync--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+679.4 "Rightful Reprobation" sync / 1[56]:[^:]*:Innocence:3EDC:/
+686.3 "Reprobation" sync / 1[56]:[^:]*:Innocence:3ECC:/
+686.9 "God Ray x3" sync / 1[56]:[^:]*:Innocence:3EE6:/ window 5,1 duration 10
+703.9 "Shadowreaver" sync / 1[56]:[^:]*:Innocence:3EEA:/
+714.9 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3ECD:/
+
+723.9 "Starbirth Final" sync / 1[56]:[^:]*:Innocence:3EEF:/
+728.9 "Winged Rep Trident" sync / 1[56]:[^:]*:Innocence:40BD:/
+734.9 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EDB:/
+739.4 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EDB:/
+740.4 "--sync--" sync / 1[56]:[^:]*:Innocence:3EA2:/
+743.9 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EDB:/
+
+741.7 "--sync--" sync / 14:[^:]*:Innocence:3EEF:/ window 10,10
+744.7 "Starbirth Final" sync / 1[56]:[^:]*:Innocence:3EEF:/
+764.7 "Beatific Vision" sync / 1[56]:[^:]*:Innocence:3EF1:/
+765.6 "Explosion Enrage" sync / 1[56]:[^:]*:Innocence:3EF0:/

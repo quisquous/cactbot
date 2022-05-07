@@ -1,0 +1,177 @@
+### A5S
+# Alexander - The Fist of the Son (Savage)
+# https://dtguilds.enjin.com/a5sguide
+# -p 16CC:1009.8 1598:2001
+# -ii 16AD 169D 16A4
+
+hideall "Guzzle"
+hideall "Relaxant"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Hummel and Friends
+1000.0 "--sync--" sync / 00:0839::The Clevering will be sealed off/ window 1000,0
+1001.8 "--sync--" sync / 1[56]:[^:]*:Faust:367:/ window 1002,0.5
+1009.8 "Kaltstrahl x1" sync / 1[56]:[^:]*:Faust:16CC:/
+1018.9 "Kaltstrahl x2" duration 2.1 sync / 1[56]:[^:]*:Faust:16CC:/ window 5,0.5
+#1021.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:16CC:/
+1032.1 "Kaltstrahl x3" duration 4.2 sync / 1[56]:[^:]*:Faust:16CC:/ window 5,0.5
+#1034.2 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:16CC:/
+#1036.3 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:16CC:/
+1043.4 "Kaltstrahl x3" duration 4.2 sync / 1[56]:[^:]*:Faust:16CC:/ window 5,0.5
+#1045.5 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:16CC:/
+#1047.6 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:16CC:/
+
+1051.6 "--sync--" sync / 14:[^:]*:Hummelfaust:16D2:/ window 52,10
+1056.6 "Panzer Vor" sync / 1[56]:[^:]*:Hummelfaust:16D2:/
+
+# Note: if previous Fausts haven't been destroyed,
+# There's a 3.7 second delay for Reducible Complexity + Pressure Increase.
+# These two have been adjusted backwards in time by this to re-sync for it.
+# Assume this will not happen in general though.
+1053.4 "--sync--" sync / 1[56]:[^:]*:Faust:16CF:/ window 10,10 # Reducible Complexity
+1056.0 "--sync--" sync / 1[56]:[^:]*:Hummelfaust:16CD:/ window 10,10 # Pressure Increase.
+
+1065.2 "Kaltstrahl x2" duration 2.1 sync / 1[56]:[^:]*:Hummelfaust:16CE:/ window 5,0.5
+#1067.3 "Kaltstrahl" sync / 1[56]:[^:]*:Hummelfaust:16CE:/
+1085.4 "Kaltstrahl x3" duration 4.2 sync / 1[56]:[^:]*:Hummelfaust:16CE:/ window 5,0.5
+#1087.5 "Kaltstrahl" sync / 1[56]:[^:]*:Hummelfaust:16CE:/
+#1089.6 "Kaltstrahl" sync / 1[56]:[^:]*:Hummelfaust:16CE:/
+1101.7 "Panzerschreck" sync / 1[56]:[^:]*:Hummelfaust:16D0:/ window 15,15
+1110.9 "Kaltstrahl x4" duration 6.3 sync / 1[56]:[^:]*:Hummelfaust:16CE:/ window 5,0.5
+#1113.0 "Kaltstrahl" sync / 1[56]:[^:]*:Hummelfaust:16CE:/
+#1115.1 "Kaltstrahl" sync / 1[56]:[^:]*:Hummelfaust:16CE:/
+#1117.2 "Kaltstrahl" sync / 1[56]:[^:]*:Hummelfaust:16CE:/
+1128.3 "Panzerschreck" sync / 1[56]:[^:]*:Hummelfaust:16D0:/
+1134.4 "Panzerschreck" sync / 1[56]:[^:]*:Hummelfaust:16D0:/
+1138.5 "Kaltstrahl x4" duration 6.3 sync / 1[56]:[^:]*:Hummelfaust:16CE:/ window 5,0.5
+#1140.6 "Kaltstrahl" sync / 1[56]:[^:]*:Hummelfaust:16CE:/
+#1142.7 "Kaltstrahl" sync / 1[56]:[^:]*:Hummelfaust:16CE:/
+#1144.8 "Kaltstrahl" sync / 1[56]:[^:]*:Hummelfaust:16CE:/
+# FIXME: maybe more abilities if Fausts are pushed quickly?
+
+# Time-based enrage.
+1150.7 "--sync--" sync / 14:[^:]*:Hummelfaust:16D1:/ window 151,20
+1154.7 "Panzerschreck Enrage" sync / 1[56]:[^:]*:Hummelfaust:16D1:/
+
+
+
+### Ratfinx Twinkledinks
+# This happens so quickly, no need for "Advanced Clevering will be sealed off".
+2000.0 "Start"
+2001.0 "Guzzle" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1598:/ window 2001,30
+
+2005.6 "--big--" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1599:/
+2009.1 "Gobjab 1" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2013.2 "Gobjab 2" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2017.3 "Gobjab 3" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2021.4 "Gobjab 4" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2028.5 "Gobstraight/Cut" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A[AC]:/
+2041.1 "Gobdash" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16AF:/
+
+# will push at 90%
+2047.3 "Relaxant" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159B:/ window 50,20
+2049.4 "--small--" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1687:/
+2058.9 "Glupgloop" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16AE:/
+2068.0 "Cobra x2 (NE/SE)"
+2069.0 "Glupgloop" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16AE:/
+2074.1 "Shock Therapy" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/
+2077.3 "Steel Scales" #sync / 1[56]:[^:]*:Glassy-Eyed Cobra:16A2:/
+2078.5 "Regorge" #sync / 1[56]:[^:]*:Glassy-Eyed Cobra:16A1:/
+2085.3 "Shock Therapy" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/
+
+2098.5 "Bomb's Away" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1590:/
+2112.4 "Tetra Burst" sync / 1[56]:[^:]*:Bomb:16A3:/
+2112.6 "Big Burst" sync / 1[56]:[^:]*:Smartbomb:16A5:/
+2118.6 "Shock Therapy" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/
+
+2123.8 "Guzzle" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1598:/ window 110,20
+2128.4 "--big--" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1599:/
+2135.9 "Boost" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A6:/
+2139.1 "Gobswing x4" duration 6.3 #sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A7:/
+2144.9 "Tetra Burst 1" #sync / 1[56]:[^:]*:Bomb:16A3:/
+2145.9 "Tetra Burst 2" #sync / 1[56]:[^:]*:Bomb:16A3:/
+2146.9 "Tetra Burst 3" #sync / 1[56]:[^:]*:Bomb:16A3:/
+2147.9 "Tetra Burst 4" #sync / 1[56]:[^:]*:Bomb:16A3:/
+2158.1 "Gobdash" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16AF:/
+2164.2 "Gobhook" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:15A0:/
+2171.4 "Gobjab 1" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2175.5 "Gobjab 2" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2179.6 "Gobjab 3" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2183.7 "Gobjab 4" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2191.8 "Gobcut/Straight" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A[AC]:/
+
+2201.0 "Relaxant" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159B:/ window 140,20
+2203.1 "--small--" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1687:/
+2203.6 "Gobbledygroper Add"
+2214.1 "The Lion's Breath" #sync / 1[56]:[^:]*:Gobbledygroper:16A8:/
+2230.6 "Glupgloop" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16AE:/
+2237.7 "Bomb's Away" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1590:/
+2242.8 "Shock Therapy" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/
+2243.0 "Tetra Burst" sync / 1[56]:[^:]*:Bomb:16A3:/
+2250.9 "Shock Therapy" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/
+2251.8 "Big Burst" sync / 1[56]:[^:]*:Smartbomb:16A5:/
+2252.0 "Tetra Burst" sync / 1[56]:[^:]*:Bomb:16A3:/
+2259.0 "Shock Therapy" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/
+2267.1 "Shock Therapy" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/
+2275.3 "Shock Therapy" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/
+
+2277.5 "Guzzle" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1598:/ window 140,20
+2282.1 "--big--" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1599:/
+2289.6 "Boost" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A6:/
+2292.8 "Gobswing x4" duration 6.3 #sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A7:/
+2298.7 "Tetra Burst x4" sync / 1[56]:[^:]*:Bomb:16A3:/
+2321.2 "Gobstraight/Cut" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A[AC]:/
+2325.5 "Gobdash" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16AF:/
+2329.2 "Gobdash" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16AF:/
+2336.0 "Gobhook" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:15A0:/
+
+2343.5 "Gobjab 1" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2347.6 "Gobjab 2" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2351.7 "Gobjab 3" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2355.8 "Gobjab 4" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2362.9 "Gobcut/Straight" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A[AC]:/
+
+2381.1 "Relaxant" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159B:/ window 170,20
+2383.2 "--small--" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1687:/
+2386.7 "Minotaur (NW)"
+2386.7 "Yorn Pig x6 (NE)"
+2390.8 "Gobbledygawker x2 (SE/SW)"
+2398.1 "10-Tonze Slash" #sync / 1[56]:[^:]*:Glassy-Eyed Minotaur:16A0:/
+2399.2 "Oogle" #sync / 1[56]:[^:]*:Gobbledygawker:169C:/
+2407.6 "Yorn Pig x3 (NW)"
+2410.8 "Glupgloop" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16AE:/
+2411.8 "Cobra (NE)"
+2414.4 "Shabti (SE)"
+2415.3 "Feast" #sync / 1[56]:[^:]*:Glassy-Eyed Minotaur:169A:/
+2420.4 "Disorienting Groan" #sync / 1[56]:[^:]*:Glassy-Eyed Minotaur:169B:/
+2433.5 "10-Tonze Slash" #sync / 1[56]:[^:]*:Glassy-Eyed Minotaur:16A0:/
+2435.0 "Shock Therapy" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/
+2443.2 "Shock Therapy" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/
+2451.4 "Shock Therapy" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/
+2459.5 "Shock Therapy" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/
+2467.7 "Shock Therapy" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/
+
+2472.9 "Guzzle" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1598:/ window 190,20
+2477.5 "--big--" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1599:/
+2485.0 "Gobjab 1" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2489.1 "Gobjab 2" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2493.2 "Gobjab 3" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2497.3 "Gobjab 4" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
+2505.4 "Gobstraight/Cut" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A[AC]:/
+
+2513.6 "Relaxant" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159B:/ window 180,20
+2515.7 "--small--" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1687:/
+2516.4 "Gobbledygroper Add"
+2526.7 "The Lion's Breath" #sync / 1[56]:[^:]*:Gobbledygroper:16A8:/
+2532.9 "The Lion's Breath" #sync / 1[56]:[^:]*:Gobbledygroper:16A8:/
+2543.3 "Glupgloop" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16AE:/
+2555.7 "Tetra Burst" sync / 1[56]:[^:]*:Bomb:16A3:/
+# TODO: Maybe there are more mechanics here if you pushed the first phase quickly?
+
+
+### Enrage (time-based)
+# We could sync down here on an 16A4 ability, which is the damage,
+# but that point you're dead.
+2700.0 "--sync--" sync / 14:[^:]*:Ratfinx Twinkledinks:159C:/ window 200,200
+2703.0 "Shock Therapy Enrage" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:159C:/

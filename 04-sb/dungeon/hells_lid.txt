@@ -1,0 +1,129 @@
+### HELL'S LID
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~~~#
+# OTAKE-MARU #
+#~~~~~~~~~~~~#
+
+# -ii 27C0
+
+
+0 "Start" sync / 00:0839::Demonsgate will be sealed off/ window 0,1
+3.0 "--sync--" sync / 1[56]:[^:]*:Otake-Maru:368:/ window 3,0
+19.7 "100-Tonze Swing" sync / 1[56]:[^:]*:Otake-Maru:27BE:/ window 19.7,5
+27.3 "Volcanic Debris x8" # sync / 1[56]:[^:]*:Volcanic Debris:27C5:/
+28.3 "10-Tonze Slash" sync / 1[56]:[^:]*:Otake-Maru:27BF:/
+39.4 "100-Tonze Swing" sync / 1[56]:[^:]*:Otake-Maru:27BE:/ window 20,20
+56.2 "Eruptive Leap" sync / 1[56]:[^:]*:Otake-Maru:27C4:/
+57.3 "Disrobe 1" sync / 1[56]:[^:]*:Otake-Maru:27C1:/
+62.1 "Disrobe 2" sync / 1[56]:[^:]*:Otake-Maru:27C2:/
+69.3 "Eruptive Leap" sync / 1[56]:[^:]*:Otake-Maru:27C4:/
+70.4 "Stone Cudgel" sync / 1[56]:[^:]*:Otake-Maru:27C3:/
+73.1 "Eruptive Leap" sync / 1[56]:[^:]*:Otake-Maru:27C4:/
+74.2 "Stone Cudgel" sync / 1[56]:[^:]*:Otake-Maru:27C3:/
+79.9 "10-Tonze Slash" sync / 1[56]:[^:]*:Otake-Maru:27BF:/
+
+101.1 "100-Tonze Swing" sync / 1[56]:[^:]*:Otake-Maru:27BE:/ window 20,20
+108.8 "Eruptive Leap" sync / 1[56]:[^:]*:Otake-Maru:27C4:/
+109.9 "Disrobe 1" sync / 1[56]:[^:]*:Otake-Maru:27C1:/
+114.6 "Disrobe 2" sync / 1[56]:[^:]*:Otake-Maru:27C2:/
+115.7 "Volcanic Debris x14" # sync / 1[56]:[^:]*:Volcanic Debris:27C5:/
+121.9 "Eruptive Leap" sync / 1[56]:[^:]*:Otake-Maru:27C4:/
+123.0 "Stone Cudgel" sync / 1[56]:[^:]*:Otake-Maru:27C3:/
+125.6 "Eruptive Leap" sync / 1[56]:[^:]*:Otake-Maru:27C4:/
+126.7 "Stone Cudgel" sync / 1[56]:[^:]*:Otake-Maru:27C3:/
+132.4 "10-Tonze Slash" sync / 1[56]:[^:]*:Otake-Maru:27BF:/
+
+168.6 "100-Tonze Swing" sync / 1[56]:[^:]*:Otake-Maru:27BE:/ window 20,20 jump 101.1
+176.3 "Eruptive Leap"
+177.4 "Disrobe1 "
+182.1 "Disrobe 2"
+183.2 "Volcanic Debris x14"
+189.4 "Eruptive Leap"
+190.5 "Stone Cudgel"
+193.1 "Eruptive Leap"
+194.2 "Stone Cudgel"
+199.9 "10-Tonze Slash"
+
+
+#~~~~~~~~~~~~#
+# KAMAITACHI #
+#~~~~~~~~~~~~#
+
+# -ic "Tsumuji-Kaze"
+
+1000.0  "Start" sync / 00:0839::The Furnace will be sealed off/ window 1000,1
+1002.6  "--sync--" sync / 1[56]:[^:]*:Kamaitachi:366:/ window 2.6,1
+1011.5 "Whipping Whittret" sync / 1[56]:[^:]*:Kamaitachi:27C6:/ window 11.5,5
+1024.1 "Circling Winds" sync / 1[56]:[^:]*:Kamaitachi:27C8:/
+1037.8 "The Patient Blade" sync / 1[56]:[^:]*:Kamaitachi:27C7:/
+1050.5 "Rolling Winds" sync / 1[56]:[^:]*:Kamaitachi:27C9:/
+1064.2 "Whisper In The Wind" sync / 1[56]:[^:]*:Kamaitachi:27CA:/
+1066.3 "--untargetable--"
+
+1066.4 "--sync--" sync / 1[56]:[^:]*:Kamaitachi:284F:/ window 66.4,5
+1084.2 "Late Harvest" sync / 1[56]:[^:]*:Kamaitachi:27CC:/ window 30,0
+1084.8 "Late Harvest" # sync / 1[56]:[^:]*:Kamaitachi:27CC:/
+1085.4 "Late Harvest" # sync / 1[56]:[^:]*:Kamaitachi:27CC:/
+1092.2 "Late Harvest" sync / 1[56]:[^:]*:Kamaitachi:27CC:/ window 5,0
+1092.8 "Late Harvest" # sync / 1[56]:[^:]*:Kamaitachi:27CC:/
+1093.4 "Late Harvest" # sync / 1[56]:[^:]*:Kamaitachi:27CC:/
+1099.2 "Reaper's Gale" sync / 1[56]:[^:]*:Kamaitachi:27CB:/
+1099.3 "--sync--" sync / 1[56]:[^:]*:Kamaitachi:2967:/
+1105.6 "--targetable--"
+
+1110.9 "The Patient Blade" sync / 1[56]:[^:]*:Kamaitachi:27C7:/ window 50,5
+1116.6 "Whipping Whittret" sync / 1[56]:[^:]*:Kamaitachi:27C6:/
+1127.2 "Circling Winds" sync / 1[56]:[^:]*:Kamaitachi:27C8:/
+1138.9 "Rolling Winds" sync / 1[56]:[^:]*:Kamaitachi:27C9:/
+
+1151.6 "The Patient Blade" sync / 1[56]:[^:]*:Kamaitachi:27C7:/ window 30,30 jump 1110.9
+1157.3 "Whipping Whittret"
+1167.9 "Circling Winds"
+1179.6 "Rolling Winds"
+
+
+#~~~~~~~#
+# GENBU #
+#~~~~~~~#
+
+# -ii 27D2 27D5
+
+2000.0 "Start" sync / 00:0839::The Polished Shell will be sealed off/ window 2000,1
+2005.0 "Caduceus" sync / 1[56]:[^:]*:Genbu:27CF:/ window 5,5
+2013.1 "Hell Of Water" sync / 1[56]:[^:]*:Genbu:27D0:/
+2021.9 "Hell Of Waste" sync / 1[56]:[^:]*:Genbu:27D1:/
+2033.6 "Sinister Tide" sync / 1[56]:[^:]*:Genbu:27D4:/
+2050.7 "Caduceus" sync / 1[56]:[^:]*:Genbu:27CF:/ window 20,20
+2055.8 "Sinister Tide" sync / 1[56]:[^:]*:Genbu:27D4:/
+2079.0 "Hell Of Water" sync / 1[56]:[^:]*:Genbu:27D0:/
+2085.7 "Sinister Tide" sync / 1[56]:[^:]*:Genbu:27D4:/
+2092.9 "Hell Of Waste" sync / 1[56]:[^:]*:Genbu:27D1:/
+2103.6 "Caduceus" sync / 1[56]:[^:]*:Genbu:27CF:/ window 20,20
+2109.7 "--untargetable--"
+
+# This intermission has a boss limit break charging.
+# Its progress determines how powerful Divine Cataract will be.
+# This timeline is the maximum the intermission will run.
+2113.9 "Hell Of Waves" sync / 1[56]:[^:]*:Genbu:27D3:/ window 113.9,5
+2125.4 "Shell Shower" sync / 1[56]:[^:]*:Genbu:2850:/
+2140.5 "Shell Shower" sync / 1[56]:[^:]*:Genbu:2850:/
+2155.6 "Shell Shower" sync / 1[56]:[^:]*:Genbu:2850:/
+2170.6 "Shell Shower" sync / 1[56]:[^:]*:Genbu:2850:/
+2175.3 "Divine Cataract" sync / 1[56]:[^:]*:Genbu:27D7:/ window 61.4,10
+2178.3 "--targetable--"
+
+# Extra-aggressive syncs here, since Waste/Wave timings can drift.
+2182.4 "Sinister Tide" sync / 1[56]:[^:]*:Genbu:27D4:/ window 20,20
+2189.5 "Hell Of Waste/Hell Of Waves" sync / 1[56]:[^:]*:Genbu:27(D1|7E):/
+2202.6 "Hell Of Water" sync / 1[56]:[^:]*:Genbu:27D0:/ window 15,15
+2208.3 "Caduceus" sync / 1[56]:[^:]*:Genbu:27CF:/ window 15,15
+
+2214.4 "Sinister Tide" sync / 1[56]:[^:]*:Genbu:27D4:/ window 20,20 jump 2182.4
+2221.5 "Hell Of Waste/Hell Of Waves"
+2234.6 "Hell Of Water"
+2240.3 "Caduceus"

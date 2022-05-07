@@ -1,0 +1,256 @@
+# The Epic of Alexander (Ultimate)
+# https://clees.me/guides/tea/
+# -p 49B0:11.4 4830:200 -ii 4978 4979 497B 497A 481E 4B4E 4820
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1: Living Liquid
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+3.2 "--sync--" sync / 1[56]:[^:]*:Living Liquid:4978:/ window 5,0
+11.4 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:49B0:/ window 10,2.5
+19.5 "Cascade" sync / 1[56]:[^:]*:Living Liquid:4826:/
+35.8 "Hand of Prayer/Parting" sync / 1[56]:[^:]*:Liquid Hand:482[BC]:/
+36.7 "Rage Wave 1" sync / 1[56]:[^:]*:Liquid Rage:49B5:/
+37.7 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:49B0:/
+37.7 "Fluid Strike" #sync / 1[56]:[^:]*:Liquid Hand:49B7:/
+38.7 "Rage Wave 2" sync / 1[56]:[^:]*:Liquid Rage:49B6:/
+39.7 "Exhaust" sync / 1[56]:[^:]*:Jagd Doll:481E:/
+41.6 "Embolus" sync / 1[56]:[^:]*:Liquid Rage:4829:/
+42.8 "Hand of Pain" sync / 1[56]:[^:]*:Liquid Hand:482D:/
+50.3 "Exhaust" sync / 1[56]:[^:]*:Jagd Doll:481E:/
+56.7 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:49B0:/
+56.7 "Fluid Strike" #sync / 1[56]:[^:]*:Liquid Hand:49B7:/
+69.8 "Protean Wave 1" sync / 1[56]:[^:]*:Living Liquid:4822:/
+70.0 "Hand of Pain" sync / 1[56]:[^:]*:Liquid Hand:482D:/
+71.9 "Protean Wave 2" sync / 1[56]:[^:]*:Living Liquid:4823:/
+74.9 "Sluice" sync / 1[56]:[^:]*:Living Liquid:49B1:/
+75.0 "Protean Wave 3" sync / 1[56]:[^:]*:Living Liquid:4823:/
+81.1 "Splash x6" duration 5.6
+86.6 "Drainage" sync / 1[56]:[^:]*:Liquid Rage:4827:/
+89.1 "Hand of Pain" sync / 1[56]:[^:]*:Liquid Hand:482D:/
+91.7 "Cascade" sync / 1[56]:[^:]*:Living Liquid:4826:/
+95.9 "Throttles" sync / 1[56]:[^:]*:Liquid Rage:4828:/
+107.0 "Protean Wave 1" sync / 1[56]:[^:]*:Living Liquid:4822:/
+109.0 "Hand of Pain" sync / 1[56]:[^:]*:Liquid Hand:482D:/
+109.1 "Protean Wave 2" sync / 1[56]:[^:]*:Living Liquid:4823:/
+112.0 "Sluice" sync / 1[56]:[^:]*:Living Liquid:49B1:/
+112.1 "Protean Wave 3" sync / 1[56]:[^:]*:Living Liquid:4823:/
+113.0 "Rage Wave 1" sync / 1[56]:[^:]*:Liquid Rage :49B5:/
+115.1 "Rage Wave 2" sync / 1[56]:[^:]*:Liquid Rage:49B6:/
+119.1 "Embolus" sync / 1[56]:[^:]*:Liquid Rage:4829:/
+124.2 "Hand of Prayer/Parting" sync / 1[56]:[^:]*:Liquid Hand:482[BC]:/
+127.4 "Splash x6" duration 5.6
+129.3 "Hand of Pain" sync / 1[56]:[^:]*:Liquid Hand:482D:/
+134.1 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:49B0:/
+142.1 "Cascade Enrage" sync / 1[56]:[^:]*:Living Liquid:49B3:/
+
+### Transition 1: Cruise Chaser
+196.0 "--sync--" sync / 04:........:Liquid Hand:/ window 50,0
+200.0 "Hawk Blaster 1" sync / 1[56]:[^:]*:Cruise Chaser:4830:/ window 200,0
+202.2 "Hawk Blaster 2"
+204.4 "Hawk Blaster 3"
+206.6 "Hawk Blaster 4"
+207.4 "#1 Alpha Sword" sync / 1[56]:[^:]*:Cruise Chaser:4834:/
+208.8 "Middle Blaster"
+208.9 "#2 Super Blassty Charge" sync / 1[56]:[^:]*:Cruise Chaser:4B4F:/
+211.0 "Hawk Blaster 1"
+212.1 "#3 Alpha Sword" sync / 1[56]:[^:]*:Cruise Chaser:4834:/
+213.2 "Hawk Blaster 2"
+213.6 "#4 Super Blassty Charge" sync / 1[56]:[^:]*:Cruise Chaser:4B4F:/
+215.5 "Hawk Blaster 3"
+216.8 "#5 Alpha Sword" sync / 1[56]:[^:]*:Cruise Chaser:4834:/
+217.7 "Hawk Blaster 4"
+218.3 "#6 Super Blassty Charge" sync / 1[56]:[^:]*:Cruise Chaser:4B4F:/
+219.9 "Middle Blaster"
+221.4 "#7 Alpha Sword" sync / 1[56]:[^:]*:Cruise Chaser:4834:/
+222.9 "#8 Super Blassty Charge" sync / 1[56]:[^:]*:Cruise Chaser:4B4F:/
+
+### Phase 2: Cruise Chaser and Brute Justice
+226.1 "J Kick" sync / 1[56]:[^:]*:Brute Justice:4854:/ window 250,5
+229.1 "--targetable--"
+238.3 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:49C2:/
+241.3 "Judgment Nisi" sync / 1[56]:[^:]*:Brute Justice:483E:/
+247.4 "Link-Up" sync / 1[56]:[^:]*:Brute Justice:483F:/
+255.4 "Optical Sight" sync / 1[56]:[^:]*:Cruise Chaser:482F:/
+256.2 "Chakrams" sync / 1[56]:[^:]*:Steam Chakram:4855:/
+260.6 "Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:4831:/
+262.5 "Photon" sync / 1[56]:[^:]*:Cruise Chaser:4836:/
+272.7 "Spin Crusher" sync / 1[56]:[^:]*:Cruise Chaser:4A72:/
+277.3 "Water and Thunder" sync / 1[56]:[^:]*:Brute Justice:4841:/
+288.6 "Earth Missile" sync / 1[56]:[^:]*:Brute Justice:484E:/
+290.6 "Hidden Minefield" sync / 1[56]:[^:]*:Brute Justice:4851:/
+292.7 "Enumeration" sync / 1[56]:[^:]*:Brute Justice:4850:/
+306.7 "Water and Thunder" sync / 1[56]:[^:]*:Brute Justice:4841:/
+313.5 "Limit Cut" sync / 1[56]:[^:]*:Cruise Chaser:4833:/
+314.1 "--Cruise Chaser Invincible--" duration 6.3
+315.5 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:4845:/
+327.6 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:49C2:/
+336.2 "Water and Thunder" sync / 1[56]:[^:]*:Brute Justice:4841:/
+354.5 "Propeller Wind" sync / 1[56]:[^:]*:Cruise Chaser:4832:/
+356.5 "Gavel" sync / 1[56]:[^:]*:Brute Justice:483C:/
+366.8 "Photon" sync / 1[56]:[^:]*:Cruise Chaser:4836:/
+374.8 "Double Rocket Punch" sync / 1[56]:[^:]*:Brute Justice:4847:/
+382.1 "Super Jump" sync / 1[56]:[^:]*:Brute Justice:484A:/
+384.4 "Apocalyptic Ray x5" duration 4.4
+395.0 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:49C2:/
+403.1 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:49C2:/
+413.7 "Final Sentence" sync / 1[56]:[^:]*:Brute Justice:4856:/
+423.7 "Eternal Darkness Enrage" sync / 1[56]:[^:]*:Cruise Chaser:483A:/
+
+### Transition 2: Cruise Chaser, Brute Justice and Alexander Prime
+492.0 "--sync--" sync / 14:[^:]*:Alexander Prime:485A:/ window 500,0
+500.0 "Temporal Stasis" sync / 1[56]:[^:]*:Alexander Prime:485A:/
+503.1 "Surety and Severity" sync / 1[56]:[^:]*:Alexander Prime:4861:/
+505.1 "Alpha Sword" #sync / 1[56]:[^:]*:Cruise Chaser:486B:/
+505.2 "Flarethrower 1" #sync / 1[56]:[^:]*:Brute Justice:486C:/
+506.1 "Alpha Sword" #sync / 1[56]:[^:]*:Cruise Chaser:486B:/
+507.4 "Flarethrower 2" #sync / 1[56]:[^:]*:Brute Justice:486C:/
+507.2 "Alpha Sword" #sync / 1[56]:[^:]*:Cruise Chaser:486B:/
+511.4 "--targetable--"
+521.5 "Chastening Heat" sync / 1[56]:[^:]*:Alexander Prime:4A80:/
+524.6 "Divine Spear 1" #sync / 1[56]:[^:]*:Alexander Prime:4A82:/
+526.7 "Divine Spear 2" #sync / 1[56]:[^:]*:Alexander Prime:4A82:/
+528.8 "Divine Spear 3" #sync / 1[56]:[^:]*:Alexander Prime:4A82:/
+
+### Phase 3 Part 1 - Inception Formation
+537.9 "Inception Formation" sync / 1[56]:[^:]*:Alexander Prime:486F:/
+541.0 "--untargetable--"
+552.4 "Judgment Crystal" sync / 1[56]:[^:]*:Alexander Prime:485B:/
+558.2 "Judgment Crystal + True Heart" sync / 1[56]:[^:]*:Alexander Prime:485C:/
+569.5 "Flarethrower 1" #sync / 1[56]:[^:]*:Brute Justice:486C:/
+571.7 "Flarethrower 2" #sync / 1[56]:[^:]*:Brute Justice:486C:/
+573.8 "Flarethrower 3" #sync / 1[56]:[^:]*:Brute Justice:486C:/
+581.0 "Inception" sync / 1[56]:[^:]*:Alexander Prime:485E:/
+589.1 "Surety, Solidarity and Severity" sync / 1[56]:[^:]*:Alexander Prime:4861:/
+589.4 "Sacrament" sync / 1[56]:[^:]*:Alexander Prime:485F:/
+595.3 "Alpha Sword" #sync / 1[56]:[^:]*:Cruise Chaser:486B:/
+596.4 "Alpha Sword" #sync / 1[56]:[^:]*:Cruise Chaser:486B:/
+597.5 "Alpha Sword" #sync / 1[56]:[^:]*:Cruise Chaser:486B:/
+598.3 "Super Jump" sync / 1[56]:[^:]*:Brute Justice:484A:/
+600.3 "--targetable--"
+610.9 "Chastening Heat" sync / 1[56]:[^:]*:Alexander Prime:4A80:/
+616.0 "Divine Spear 1" #sync / 1[56]:[^:]*:Alexander Prime:4A82:/
+618.1 "Divine Spear 2" #sync / 1[56]:[^:]*:Alexander Prime:4A82:/
+620.2 "Divine Spear 3" #sync / 1[56]:[^:]*:Alexander Prime:4A82:/
+
+### Phase 3 Part 2 - Wormhole Formation
+629.3 "Wormhole Formation" sync / 1[56]:[^:]*:Alexander Prime:486E:/
+632.3 "--untargetable--"
+637.7 "Limit Cut" sync / 1[56]:[^:]*:Cruise Chaser:4B0F:/
+640.7 "Link-Up" sync / 1[56]:[^:]*:Brute Justice:483F:/
+643.7 "Void Of Repentance" sync / 1[56]:[^:]*:Alexander Prime:4866:/
+649.5 "Chakrams" #sync / 1[56]:[^:]*:Steam Chakram:4855:/
+650.9 "Super Jump" sync / 1[56]:[^:]*:Brute Justice:484A:/
+650.9 "#1 Alpha Sword" #sync / 1[56]:[^:]*:Cruise Chaser:4834:/
+652.4 "#2 Super Blassty Charge" sync / 1[56]:[^:]*:Cruise Chaser:49C3:/
+653.3 "Apocalyptic Ray x5" duration 5
+655.2 "#3 Alpha Sword" #sync / 1[56]:[^:]*:Cruise Chaser:4834:/
+655.6 "Repentance 1" sync / 1[56]:[^:]*:Alexander Prime:4869:/
+656.7 "#4 Super Blassty Charge" sync / 1[56]:[^:]*:Cruise Chaser:49C3:/
+657.9 "Sacrament" sync / 1[56]:[^:]*:Alexander Prime:4857:/
+659.5 "#5 Alpha Sword" #sync / 1[56]:[^:]*:Cruise Chaser:4834:/
+659.7 "Repentance 2" sync / 1[56]:[^:]*:Alexander Prime:4868:/
+660.8 "#6 Super Blassty Charge" sync / 1[56]:[^:]*:Cruise Chaser:49C3:/
+663.6 "#7 Alpha Sword" #sync / 1[56]:[^:]*:Cruise Chaser:4834:/
+664.0 "Repentance 3" sync / 1[56]:[^:]*:Alexander Prime:4867:/
+665.1 "#8 Super Blassty Charge" sync / 1[56]:[^:]*:Cruise Chaser:49C3:/
+666.4 "Missile Command" sync / 1[56]:[^:]*:Brute Justice:484D:/
+670.0 "Incinerating Heat" sync / 1[56]:[^:]*:Alexander Prime:4A51:/
+674.2 "--targetable--"
+674.6 "Enumeration" sync / 1[56]:[^:]*:Brute Justice:4850:/
+682.9 "Mega Holy" sync / 1[56]:[^:]*:Alexander Prime:4A83:/
+690.0 "Mega Holy" sync / 1[56]:[^:]*:Alexander Prime:4A83:/
+
+### Transition 3: DPS Checks
+699.4 "Summon Alexander" sync / 1[56]:[^:]*:Alexander Prime:4A55:/
+705.6 "--alex untargetable--"
+706.8 "--adds targetable--"
+705.7 "J Storm + Waves x16" sync / 1[56]:[^:]*:Brute Justice:4876:/ duration 50
+731.7 "Eternal Darkness Enrage" sync / 1[56]:[^:]*:Cruise Chaser:4875:/
+771.9 "Divine Judgment Enrage" sync / 1[56]:[^:]*:Alexander Prime:4879:/ window 67,5
+787.3 "Divine Judgment" sync / 1[56]:[^:]*:Alexander:487A:/
+787.4 "Down for the Count" duration 57
+
+### Phase 4: Perfect Alexander Part 1 - Fate Projection α
+845.4 "--targetable--"
+900.0 "--sync--" sync / 1[56]:[^:]*:Perfect Alexander:4A8B:/ window 900,0
+909.1 "The Final Word" sync / 1[56]:[^:]*:Perfect Alexander:487D:/
+916.1 "Ordained Motion/Stillness" sync / 1[56]:[^:]*:Perfect Alexander:487[EF]:/
+926.3 "Ordained Motion/Stillness" sync / 1[56]:[^:]*:Perfect Alexander:487[EF]:/
+936.5 "Optical Sight 1" sync / 1[56]:[^:]*:Perfect Alexander:488[AB]:/
+938.6 "Individual/Collective Reprobation" sync / 1[56]:[^:]*:Perfect Alexander:488[CD]:/
+942.7 "Optical Sight 2" sync / 1[56]:[^:]*:Perfect Alexander:488[AB]:/
+944.7 "Individual/Collective Reprobation" sync / 1[56]:[^:]*:Perfect Alexander:488[CD]:/
+957.6 "Fate Projection α" sync / 1[56]:[^:]*:Perfect Alexander:487B:/
+### Enigma Codex Revealed Events
+966.8 "Fate: Ordained Motion/Stillness" sync / 1[56]:[^:]*:Perfect Alexander:4B0[DE]:/
+972.7 "Fate: Obloquy, Solidarity and 3x Severity" sync / 1[56]:[^:]*:Perfect Alexander:48A4:/
+974.9 "Fate: Ordained Motion/Stillness" sync / 1[56]:[^:]*:Perfect Alexander:489[9A]:/
+975.9 "Fate: Sacrament x3" duration 1.5
+982.6 "Fate Calibration α" sync / 1[56]:[^:]*:Perfect Alexander:487C:/
+985.6 "--untargetable--"
+989.8 "Ordained Motion/Stillness" sync / 1[56]:[^:]*:Perfect Alexander:49A[BC]:/
+992.8 "Obloquy, Solidarity and 3x Severity" sync  /:Perfect Alexander:4861:/
+993.8 "Ordained Motion/Stillness" sync / 1[56]:[^:]*:Perfect Alexander:49A[BC]:/
+993.8 "Sacrament x3" duration 1.5
+998.8 "--targetable--"
+
+### Phase 4 Part 2 - Fate Projection β
+1008.0 "Ordained Capital Punishment" sync / 1[56]:[^:]*:Perfect Alexander:4892:/
+1011.1 "Ordained Capital Punishment 1" #sync / 1[56]:[^:]*:Perfect Alexander:4893:/
+1012.2 "Ordained Capital Punishment 2" #sync / 1[56]:[^:]*:Perfect Alexander:4893:/
+1013.3 "Ordained Capital Punishment 3" #sync / 1[56]:[^:]*:Perfect Alexander:4893:/
+1017.2 "Ordained Punishment" sync / 1[56]:[^:]*:Perfect Alexander:4891:/
+1032.3 "Fate Projection β" sync / 1[56]:[^:]*:Perfect Alexander:4B13:/
+### Enigma Codex Revealed Events
+1047.7 "Fate: Surety and Solidarity" #sync / 1[56]:[^:]*:Perfect Alexander:489C:/
+1050.5 "Fate: J Jump" sync / 1[56]:[^:]*:Perfect Alexander:489D:/
+1056.0 "Fate: Optical Sight" sync / 1[56]:[^:]*:Perfect Alexander:48A[01]:/
+1058.1 "Fate: Individual/Collective Reprobation" sync / 1[56]:[^:]*:Perfect Alexander:48A[23]:/
+1061.5 "Fate: Radiant Sacrament" sync / 1[56]:[^:]*:Perfect Alexander:489E:/
+1070.3 "Fate Calibration β" sync / 1[56]:[^:]*:Perfect Alexander:4B14:/
+1073.3 "--untargetable--"
+1081.5 "Surety and Solidarity" sync / 1[56]:[^:]*:Perfect Alexander:4863:/
+1082.5 "J Jump" sync / 1[56]:[^:]*:Perfect Alexander:4885:/
+1086.5 "Optical Sight 1" sync / 1[56]:[^:]*:Perfect Alexander:49A[ED]:/
+1088.6 "Individual/Collective Reprobation" sync / 1[56]:[^:]*:Perfect Alexander:488[CD]:/
+1093.5 "Radiant Sacrament" sync / 1[56]:[^:]*:Perfect Alexander:4886:/
+1098.5 "--targetable--"
+1106.8 "Ordained Capital Punishment" sync / 1[56]:[^:]*:Perfect Alexander:4892:/
+1109.9 "Ordained Capital Punishment 1" #sync / 1[56]:[^:]*:Perfect Alexander:4893:/
+1111.0 "Ordained Capital Punishment 2" #sync / 1[56]:[^:]*:Perfect Alexander:4893:/
+1112.1 "Ordained Capital Punishment 3" #sync / 1[56]:[^:]*:Perfect Alexander:4893:/
+1116.0 "Ordained Punishment" sync / 1[56]:[^:]*:Perfect Alexander:4891:/
+
+### Phase 4 Part 3 - Almighty Judgments and Burn
+1126.2 "Almighty Judgment" sync / 1[56]:[^:]*:Perfect Alexander:488E:/
+1130.8 "Almighty Judgment Reveal x3" duration 6
+1137.4 "Almighty Judgment 1" #sync / 1[56]:[^:]*:Perfect Alexander:4890:/
+1139.4 "Almighty Judgment 2" #sync / 1[56]:[^:]*:Perfect Alexander:4890:/
+1141.4 "Almighty Judgment 3" #sync / 1[56]:[^:]*:Perfect Alexander:4890:/
+1142.5 "Irresistible Grace" sync / 1[56]:[^:]*:Perfect Alexander:4894:/
+1152.6 "Ordained Capital Punishment" sync / 1[56]:[^:]*:Perfect Alexander:4892:/
+1155.7 "Ordained Capital Punishment 1" #sync / 1[56]:[^:]*:Perfect Alexander:4893:/
+1156.8 "Ordained Capital Punishment 2" #sync / 1[56]:[^:]*:Perfect Alexander:4893:/
+1157.9 "Ordained Capital Punishment 3" #sync / 1[56]:[^:]*:Perfect Alexander:4893:/
+1161.8 "Ordained Punishment" sync / 1[56]:[^:]*:Perfect Alexander:4891:/
+1171.7 "Almighty Judgment" sync / 1[56]:[^:]*:Perfect Alexander:488E:/
+1176.3 "Almighty Judgment Reveal x3" duration 6
+1182.9 "Almighty Judgment 1" #sync / 1[56]:[^:]*:Perfect Alexander:4890:/
+1184.9 "Almighty Judgment 2" #sync / 1[56]:[^:]*:Perfect Alexander:4890:/
+1186.9 "Almighty Judgment 3" #sync / 1[56]:[^:]*:Perfect Alexander:4890:/
+1187.9 "Irresistible Grace" sync / 1[56]:[^:]*:Perfect Alexander:4894:/
+1202.8 "Temporal Interference" sync / 1[56]:[^:]*:Perfect Alexander:4896:/
+1216.4 "7 Players Remaining"
+1221.4 "6 Players Remaining"
+1226.4 "5 Players Remaining"
+1231.5 "4 Players Remaining"
+1236.5 "3 Players Remaining"
+1241.6 "2 Players Remaining"
+1246.6 "1 Players Remaining"
+1247.6 "Temporal Prison Enrage" sync / 1[56]:[^:]*:Perfect Alexander:4897:/ duration 9
+1249.8 "0 Players Remaining"

@@ -1,0 +1,159 @@
+### Eden 12 (Normal)
+# Eden's Promise: Eternity
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# -ii 4B47 4B1D 5865 585B 586B 5874 5875 5876 587E 587F 5882 5884 5889 588A 588B
+# -ic "Lissom Sculpture" "Beastly Sculpture"
+
+
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.0 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:4B1D:/ window 1,1
+14.9 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:5872:/ window 14.9,5
+22.1 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5879:/
+25.3 "Initialize Recall" sync / 1[56]:[^:]*:Eden's Promise:5859:/
+34.9 "Judgment Jolt" sync / 1[56]:[^:]*:Eden's Promise:585F:/
+45.6 "Temporary Current" sync / 1[56]:[^:]*:Eden's Promise:585C:/
+56.3 "Judgment Jolt" sync / 1[56]:[^:]*:Eden's Promise:585F:/
+67.0 "Temporary Current" sync / 1[56]:[^:]*:Eden's Promise:585C:/
+80.0 "Formless Judgment" sync / 1[56]:[^:]*:Eden's Promise:5873:/
+87.3 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5879:/
+96.7 "Conflag Strike" sync / 1[56]:[^:]*:Eden's Promise:585D:/
+107.4 "Ferostorm" sync / 1[56]:[^:]*:Eden's Promise:585E:/
+118.1 "Conflag Strike" sync / 1[56]:[^:]*:Eden's Promise:585D:/
+128.7 "Ferostorm" sync / 1[56]:[^:]*:Eden's Promise:585E:/
+140.1 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:5872:/
+145.9 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:585A:/ window 145.9
+148.4 "--untargetable--"
+
+# Intermission. Can be pushed, unknown threshold, maybe 70% HP?
+196.5 "Eternal Oblivion" sync / 1[56]:[^:]*:Eden's Promise:587A:/ window 200,10
+204.3 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:4B20:/
+232.9 "Earth Shaker" sync / 1[56]:[^:]*:Eden's Promise:5885:/
+232.9 "Obliteration" sync / 1[56]:[^:]*:Eden's Promise:4B43:/
+251.2 "Eternal Oblivion" sync / 1[56]:[^:]*:Eden's Promise:587B:/ window 20,20
+259.0 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:4B21:/
+267.3 "Classical Sculpture" sync / 1[56]:[^:]*:Chiseled Sculpture:5886:/
+290.2 "Rapturous Reach" sync / 1[56]:[^:]*:Eden's Promise:5889:/
+290.2 "Palm Of Temperance" sync / 1[56]:[^:]*:Eden's Promise:4B44:/
+308.4 "Eternal Oblivion" sync / 1[56]:[^:]*:Eden's Promise:587C:/ window 20,20
+316.2 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:4B22:/
+337.5 "Laser Eye" sync / 1[56]:[^:]*:Eden's Promise:4B47:/
+356.3 "Eternal Oblivion" sync / 1[56]:[^:]*:Eden's Promise:587D:/ window 20,20
+364.1 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:4B23:/
+
+
+# Post-intermission initial block.
+500.0 "--sync--" sync / 14:[^:]*:Eden's Promise:4B48:/ window 500,10
+504.9 "Paradise Lost" sync / 1[56]:[^:]*:Eden's Promise:4B48:/
+511.9 "--targetable--"
+522.0 "Initialize Recall" sync / 1[56]:[^:]*:Eden's Promise:5859:/ window 30,30
+534.1 "Stock" sync / 1[56]:[^:]*:Eden's Promise:5860:/
+542.8 "Formless Judgment" sync / 1[56]:[^:]*:Eden's Promise:5873:/ window 30,30
+545.6 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5879:/
+555.7 "Release" sync / 1[56]:[^:]*:Eden's Promise:5861:/
+
+
+568.6 "Stock" sync / 1[56]:[^:]*:Eden's Promise:5860:/ window 15,30
+578.3 "Junction Shiva?" sync / 1[56]:[^:]*:Eden's Promise:5862:/ jump 700.0
+578.3 "Junction Titan?" sync / 1[56]:[^:]*:Eden's Promise:5863:/ jump 800.0
+589.0 "Diamond Dust?"
+589.0 "Earthen Fury?"
+594.0 "Impact 1?"
+597.0 "Impact 2?"
+600.2 "Frigid Stone?"
+
+
+# Paths split here. Titan OR Shiva can be used first,
+# and then this first block, always ending in 5861 Release,
+# is followed by:
+
+# Unknown_5879 > Cast > Cast > Maleficium
+# The time between 5861 Release and Unknown 5879
+# is consistent at 9 seconds for both Shiva and Titan.
+
+# It will then continue to the other of Titan/Shiva,
+# which will in turn be followed by the other closing pattern:
+
+# Stock > Formless Judgment > Unknown_5879 > Release
+# The time between Release and Stock is consistent at 14 seconds.
+
+# Shiva Block
+690.4 "Stock" sync / 1[56]:[^:]*:Eden's Promise:5860:/
+700.0 "Junction Shiva" sync / 1[56]:[^:]*:Eden's Promise:5862:/
+710.7 "Diamond Dust" sync / 1[56]:[^:]*:Eden's Promise:5864:/ window 30,30
+716.8 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5866:/
+721.9 "Frigid Stone" sync / 1[56]:[^:]*:Eden's Promise:5867:/
+727.9 "Ice Floe" sync / 1[56]:[^:]*:Eden's Promise:5868:/
+732.9 "Rapturous Reach" sync / 1[56]:[^:]*:Eden's Promise:587[78]:/ window 30,30
+735.4 "Frigid Stone" # sync / 1[56]:[^:]*:Eden's Promise:5869:/
+735.6 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5871:/
+738.2 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5879:/
+747.6 "Release" sync / 1[56]:[^:]*:Eden's Promise:5861:/
+
+756.6 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5879:/ jump 900.0
+761.5 "Stock?" sync / 1[56]:[^:]*:Eden's Promise:5860:/ jump 1000.0
+766.2 "Cast?"
+770.2 "Formless Judgment?"
+776.9 "Cast?"
+782.4 "Release?"
+784.6 "Maleficium?"
+
+
+# Titan Block
+790.3 "Stock" sync / 1[56]:[^:]*:Eden's Promise:5860:/
+800.0 "Junction Titan" sync / 1[56]:[^:]*:Eden's Promise:5863:/
+810.7 "Earthen Fury" sync / 1[56]:[^:]*:Eden's Promise:586A:/ window 30,30
+815.7 "Impact 1" sync / 1[56]:[^:]*:Titanic Bomb Boulder:586E:/
+818.7 "Impact 2" # sync / 1[56]:[^:]*:Bomb Boulder:586C:/
+822.7 "Explosion 1" sync / 1[56]:[^:]*:Titanic Bomb Boulder:586F:/
+825.7 "Explosion 2" # sync / 1[56]:[^:]*:Bomb Boulder:586D:/
+831.7 "Rapturous Reach" sync / 1[56]:[^:]*:Eden's Promise:587[78]:/ window 30,30
+834.2 "Under The Weight" sync / 1[56]:[^:]*:Eden's Promise:5870:/
+834.3 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5871:/
+836.9 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5879:/
+846.3 "Release" sync / 1[56]:[^:]*:Eden's Promise:5861:/
+
+855.3 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5879:/ jump 900.0
+860.2 "Stock?" sync / 1[56]:[^:]*:Eden's Promise:5860:/ jump 1000.0
+864.9 "Cast?"
+868.9 "Formless Judgment?"
+875.6 "Cast?"
+881.1 "Release?"
+883.3 "Maleficium?"
+
+# Maleficium Block
+900.0 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5879:/
+909.6 "Cast" sync / 1[56]:[^:]*:Eden's Promise:4E2C:/
+920.3 "Cast" sync / 1[56]:[^:]*:Eden's Promise:4E2C:/
+928.0 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:5872:/ window 15,15
+
+940.9 "Stock" sync / 1[56]:[^:]*:Eden's Promise:5860:/
+950.5 "Junction Shiva?" sync / 1[56]:[^:]*:Eden's Promise:5862:/ window 15,15 jump 700.0
+950.5 "Junction Titan?" sync / 1[56]:[^:]*:Eden's Promise:5863:/ window 15,15 jump 800.0
+961.2 "Diamond Dust?"
+961.2 "Earthen Fury?"
+966.2 "Impact 1?"
+969.2 "Impact 2?"
+972.4 "Frigid Stone?"
+973.2 "Explosion 1?"
+
+
+# Formless Judgment Block
+1000.0 "Stock" sync / 1[56]:[^:]*:Eden's Promise:5860:/
+1008.7 "Formless Judgment" sync / 1[56]:[^:]*:Eden's Promise:5873:/ window 15,15
+1011.5 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5879:/
+1020.9 "Release" sync / 1[56]:[^:]*:Eden's Promise:5861:/
+
+1034.8 "Stock" sync / 1[56]:[^:]*:Eden's Promise:5860:/
+1044.4 "Junction Shiva?" sync / 1[56]:[^:]*:Eden's Promise:5862:/ jump 700.0
+1044.4 "Junction Titan?" sync / 1[56]:[^:]*:Eden's Promise:5863:/ jump 800.0
+1055.1 "Diamond Dust?"
+1055.1 "Earthen Fury?"
+1060.1 "Impact 1?"
+1063.1 "Impact 2?"
+1066.3 "Frigid Stone?"
+1067.1 "Explosion 1?"

@@ -1,0 +1,275 @@
+# Ultima Weapon Ultimate
+## http://clees.me/guides/uwu/
+
+hideall "--sync--"
+hideall "--Reset--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1: Garuda ###
+0.0 "--sync--" sync /:Engage!/ window 0,1
+0 "--sync--" sync / 00:0044:[^:]*:Heehee HAHA hahaha HEEHEE haha HEEEEEE/ window 0,20
+9 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/ window 10,5 # drift 0.293
+12 "Mistral Song" sync / 1[56]:[^:]*:Garuda:2B42:/ # drift -0.456
+18 "Great Whirlwind" sync / 1[56]:[^:]*:Garuda:2B41:/
+24 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/ # drift 0.494
+27 "Downburst" sync / 1[56]:[^:]*:Garuda:2B50:/ # drift 0.422
+29 "Great Whirlwind" sync / 1[56]:[^:]*:Garuda:2B41:/ # drift 0.247
+34 "--untargetable--"
+37 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
+39 "--targetable--"
+42 "Mistral Shriek" sync / 1[56]:[^:]*:Garuda:2B54:/
+51 "Friction" sync / 1[56]:[^:]*:Garuda:2B48:/ # drift 0.492
+57 "Friction" sync / 1[56]:[^:]*:Garuda:2B48:/
+69 "--untargetable--"
+72 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/ # drift -0.32
+73.5 "--targetable--"
+77 "Aerial Blast" sync / 1[56]:[^:]*:Garuda:2B55:/
+93 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/ # drift 0.228
+100 "Mistral Song" sync / 1[56]:[^:]*:Chirada:2B4B:/
+100 "Eye Of The Storm" sync / 1[56]:[^:]*:Garuda:2B52:/ # drift 0.358
+100 "Wicked Wheel" sync / 1[56]:[^:]*:Garuda:2B4E:/
+104 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/ # drift 0.248
+105 "Great Whirlwind" sync / 1[56]:[^:]*:Suparna:2B41:/ # drift 0.48
+121 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/
+122 "Eye Of The Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
+124 "Mesohigh" sync / 1[56]:[^:]*:Chirada:2B49:/
+124 "Downburst" sync / 1[56]:[^:]*:Garuda:2B50:/
+129 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/ # drift -0.449
+142 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/ # drift -0.479
+151 "Wicked Wheel" sync / 1[56]:[^:]*:Garuda:2B4E:/ # drift -0.486
+153 "Wicked Tornado" sync / 1[56]:[^:]*:Garuda:2B4F:/
+156 "Downburst" sync / 1[56]:[^:]*:Garuda:2B50:/ # drift -0.218
+164 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/
+176 "--untargetable--" sync / 1[56]:[^:]*:Garuda:2B4D:/
+181 "Aerial Blast" sync / 1[56]:[^:]*:Garuda:2B55:/ # drift -0.29
+
+
+### Phase 2: Ifrit ###
+300 "Crimson Cyclone" sync / 1[56]:[^:]*:Ifrit:2B5F:/ window 300,70
+301 "Radiant Plume" sync / 1[56]:[^:]*:Ifrit:2B61:/
+307 "Hellfire" sync / 1[56]:[^:]*:Ifrit:2B5E:/ # drift 0.246
+315 "Vulcan Burst" sync / 1[56]:[^:]*:Ifrit:2B57:/
+318 "Incinerate"
+321 "Incinerate"
+325 "Incinerate"
+328 "Nail Adds" sync / 1[56]:[^:]*:Ifrit:1CD:/
+337 "Infernal Fetters" sync / 1[56]:[^:]*:Ifrit:2C19:/ # drift 0.214
+339 "Inferno Howl" sync / 1[56]:[^:]*:Ifrit:2B5B:/
+345 "Searing Wind"
+345 "Eruption" duration 6
+351 "Searing Wind"
+357 "Searing Wind"
+361.5 "--untargetable--"
+365.5 "--targetable--"
+369 "Hellfire" sync / 1[56]:[^:]*:Ifrit:2B5E:/ window 40,40 # drift 0.411
+377 "Inferno Howl" sync / 1[56]:[^:]*:Ifrit:2B5B:/ # drift 0.374
+383 "Searing Wind"
+383 "Eruption" duration 6
+389 "Searing Wind"
+390 "Crimson Cyclone" sync / 1[56]:[^:]*:Ifrit:2B5F:/
+395 "Inferno Howl" sync / 1[56]:[^:]*:Ifrit:2B5B:/
+395 "Searing Wind"
+401 "Searing Wind"
+405 "Flaming Crush" sync / 1[56]:[^:]*:Ifrit:2B5D:/
+407 "Searing Wind"
+409 "--untargetable--"
+413 "Searing Wind"
+416 "Crimson Cyclone"
+417 "Crimson Cyclone"
+419 "Crimson Cyclone"
+420 "Crimson Cyclone"
+428 "Incinerate" sync / 1[56]:[^:]*:Ifrit:2B56:/ window 5,1
+431 "Incinerate"
+435 "Incinerate"
+444 "Eruption" duration 6
+453 "Flaming Crush" sync / 1[56]:[^:]*:Ifrit:2B5D:/
+
+
+### Phase 3: Titan ###
+600 "Geocrush" sync / 1[56]:[^:]*:Titan:2CFD:/ window 600,0
+605 "Earthen Fury" sync / 1[56]:[^:]*:Titan:2B90:/ # drift 0.312999
+613 "Rock Buster" sync / 1[56]:[^:]*:Titan:2B62:/
+616 "Mountain Buster" sync / 1[56]:[^:]*:Titan:2B63:/ # drift 0.235001
+621 "Weight Of The Land" #sync / 1[56]:[^:]*:Titan:2B65:/
+623.5 "--untargetable--"
+624 "Weight Of The Land" #sync / 1[56]:[^:]*:Titan:2B65:/
+629 "--sync--" sync / 1[56]:[^:]*:Titan:2B66:/
+631 "Geocrush" sync / 1[56]:[^:]*:Titan:2B68:/ # drift 0.474
+634 "Bury" sync / 1[56]:[^:]*:Bomb Boulder:2B69:/
+637 "Upheaval" sync / 1[56]:[^:]*:Titan:2B67:/
+639 "Rock Throw" sync / 1[56]:[^:]*:Titan:2B6B:/
+642 "Bury" sync / 1[56]:[^:]*:Bomb Boulder:2B69:/
+644 "Landslide" sync / 1[56]:[^:]*:Titan:2B6F:/ window 5,3
+649 "Landslide"
+651 "Tumult x8" duration 7
+666 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:2B65:/ window 5,1
+669 "Weight Of The Land"
+671 "Landslide"
+673 "Landslide"
+676.5 "--untargetable--"
+684 "Rock Throw" sync / 1[56]:[^:]*:Titan:2B6B:/ # drift 0.420001
+699 "Landslide"
+701 "Landslide"
+704 "Tumult x6" sync / 1[56]:[^:]*:Titan:2C18:/ duration 5 window 5,0 # drift 0.254
+711 "Rock Buster" sync / 1[56]:[^:]*:Titan:2B62:/ # drift 0.280001
+715 "Mountain Buster" sync / 1[56]:[^:]*:Titan:2B63:/ # drift 0.205999
+720 "Bury" duration 6
+722 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:2B65:/ window 5,1
+725 "Weight Of The Land"
+727 "Landslide"
+728 "Weight Of The Land"
+729 "Landslide"
+735 "Rock Buster" sync / 1[56]:[^:]*:Titan:2B62:/ # drift 0.26
+739 "Mountain Buster" sync / 1[56]:[^:]*:Titan:2B63:/
+744 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:2B65:/
+747 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:2B65:/
+750 "Weight Of The Land"
+752 "Tumult x8" sync / 1[56]:[^:]*:Titan:2C18:/ duration 7 window 5,0 # drift -0.293
+768 "--untargetable--"
+
+
+### Phase 4: Snacks ###
+800 "Freefire" sync / 1[56]:[^:]*:(Titan|The Ultima Weapon):2CF5:/ window 800,0
+815 "Blight" sync / 1[56]:[^:]*:Lahabrea:2B73:/
+840 "Dark IV"
+848 "Ultima" sync / 1[56]:[^:]*:The Ultima Weapon:2B8B:/ window 50,10 jump 961
+
+
+### Phase 5: Ultima ###
+1000 "--targetable--" sync / 14:[^:]*:The Ultima Weapon:2B87:/ window 1000,100
+1004 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:2B87:/ # drift -0.314001
+1006 "Apply Viscous" sync / 1[56]:[^:]*:The Ultima Weapon:2B79:/ # drift 0.430001
+1012 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:2B7B:/ # drift 0.220999
+1017 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:2B7A:/
+
+## Ultimate Predation
+1023 "Ultimate Predation" sync / 1[56]:[^:]*:The Ultima Weapon:2B76:/ # drift 0.349
+1026 "--untargetable--"
+1038 "Crimson Cyclone" sync / 1[56]:[^:]*:Ifrit:2B5F:/
+1038 "Wicked Wheel" sync / 1[56]:[^:]*:Garuda:2B4E:/
+1038 "Landslide" sync / 1[56]:[^:]*:Titan:2B71:/
+1040 "Wicked Tornado"
+1040 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:2B7C:/
+1040 "Crimson Cyclone"
+1040 "Landslide"
+1045 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
+
+## Interlude Dance
+1048 "--targetable--"
+1059 "Eruption" sync / 1[56]:[^:]*:Ifrit:2B5A:/ duration 6 window 5,0 # drift 0.223
+1064 "Infernal Fetters"
+1069 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:2B7D:/
+1070 "Bury" sync / 1[56]:[^:]*:Bomb Boulder:2B69:/ duration 10 window 5,0
+1073 "Landslide" sync / 1[56]:[^:]*:Titan:2B71:/ window 5,1
+1074 "Landslide" sync / 1[56]:[^:]*:The Ultima Weapon:2B7E:/
+1079 "Tumult x7" sync / 1[56]:[^:]*:Titan:2C18:/ duration 6 window 5,0 # drift -0.248001
+1082 "Apply Viscous" sync / 1[56]:[^:]*:The Ultima Weapon:2B79:/
+1086 "Wicked Wheel" sync / 1[56]:[^:]*:Chirada:2B4C:/ # drift 0.339
+1088 "Mistral Shriek" sync / 1[56]:[^:]*:Garuda:2B54:/
+1091 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/ # drift 0.402001
+1092 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:2B7A:/ # drift -0.261001
+1093 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:2B7B:/
+1095 "Feather Rain"
+
+## Ultimate Annihilation
+1100 "Ultimate Annihilation" sync / 1[56]:[^:]*:The Ultima Weapon:2D4C:/ # drift 0.261
+1105 "--untargetable--"
+1109 "--targetable--"
+1112 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:2B65:/ window 5,1
+1114 "Flaming Crush" sync / 1[56]:[^:]*:Ifrit:2B5D:/
+1115 "Weight Of The Land"
+1115 "Eye Of The Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
+1116 "Aetheroplasm"
+1117 "Mesohigh" sync / 1[56]:[^:]*:Garuda:2B49:/
+1118 "Weight Of The Land"
+1118 "Inferno Howl" sync / 1[56]:[^:]*:Ifrit:2B5B:/
+1122 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/ # drift -0.466001
+1123 "Aetheroplasm"
+1124 "Searing Wind" sync / 1[56]:[^:]*:Ifrit:2B5C:/ # drift -0.237
+1126 "Crimson Cyclone" sync / 1[56]:[^:]*:Ifrit:2B5F:/
+1127 "Landslide" sync / 1[56]:[^:]*:Titan:2B71:/
+1128 "Crimson Cyclone" sync / 1[56]:[^:]*:Ifrit:2B60:/
+1129 "Landslide" sync / 1[56]:[^:]*:Titan:2C22:/
+1130 "Searing Wind" sync / 1[56]:[^:]*:Titan:2B5C:/ # drift -0.432999
+1131 "Aetheroplasm"
+1133 "Eye Of The Storm" sync / 1[56]:[^:]*:Garuda:2B52:/ # drift -0.436001
+1136 "Mesohigh" sync / 1[56]:[^:]*:Garuda:2B49:/ # drift -0.478999
+1136 "Aetheroplasm"
+1137 "Searing Wind" sync / 1[56]:[^:]*:Ifrit:2B5C:/ # drift 0.374
+1139 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:2B87:/ # drift -0.434
+1141 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/ # drift -0.328
+1142 "--untargetable--"
+1144 "Searing Wind" sync / 1[56]:[^:]*:Garuda:2B5C:/
+1147 "--targetable--"
+1150 "Searing Wind" sync / 1[56]:[^:]*:Garuda:2B5C:/
+1151 "Eye Of The Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
+1155 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:2B7B:/
+1163 "Eye Of The Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
+1165 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:2B7D:/ # drift 0.324001
+1169 "Diffractive Laser" sync / 1[56]:[^:]*:The Ultima Weapon:2B78:/ # drift -0.486999
+1173 "Vulcan Burst" sync / 1[56]:[^:]*:The Ultima Weapon:2CF4:/
+1175 "Eye Of The Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
+1181 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:2B7B:/
+1186 "Vulcan Burst" sync / 1[56]:[^:]*:The Ultima Weapon:2CF4:/
+1190 "Diffractive Laser"
+
+## Ultimate Suppression (50%)
+1195 "Ultimate Suppression" sync / 1[56]:[^:]*:The Ultima Weapon:2D4D:/ window 1200,500
+1200 "--untargetable--"
+1206 "Rock Throw" sync / 1[56]:[^:]*:Titan:2B6B:/
+1207 "Eruption" sync / 1[56]:[^:]*:Ifrit:2B5A:/ duration 6 window 5,0
+1210 "Mistral Song"
+1212 "Mistral Song"
+1215 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/ # drift -0.221
+1216 "Great Whirlwind" sync / 1[56]:[^:]*:Garuda:2B41:/
+1216 "Feather Rain" sync / 1[56]:[^:]*:Ifrit:2B4D:/ # drift 0.468
+1216 "Aetherochemical Laser" sync / 1[56]:[^:]*:The Ultima Weapon:2B85:/ window 5,2
+1220 "Aetherochemical Laser"
+1223 "Landslide" sync / 1[56]:[^:]*:Titan:2B71:/
+1224 "Aetherochemical Laser"
+1225 "Landslide" sync / 1[56]:[^:]*:Ifrit:2C22:/ # drift 0.288999
+1226 "Mesohigh" sync / 1[56]:[^:]*:Garuda:2B49:/
+1227 "Flaming Crush" sync / 1[56]:[^:]*:Ifrit:2B5D:/ # drift -0.252
+1232 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/ # drift -0.393999
+1232 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:2B87:/ # drift 0.369999
+1243 "Ultima" sync / 1[56]:[^:]*:The Ultima Weapon:2B8B:/ # drift 0.468
+1253 "Aetheric Boom" sync / 1[56]:[^:]*:The Ultima Weapon:2B88:/ # drift 0.227
+1274 "Apply Viscous" sync / 1[56]:[^:]*:The Ultima Weapon:2B8F:/ # drift 0.256
+1278 "Summon Random Primal"
+
+## Random Primal Finale (summon all three in random order)
+
+## Summon Garuda (random order)
+1300 "--sync--" sync / 1[56]:[^:]*:The Ultima Weapon:2CD3:/ window 50,300
+1307 "Wicked Wheel" sync / 1[56]:[^:]*:Garuda:2B4E:/ # drift 0.351
+1308 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:2B7A:/ # drift 0.326
+1309 "Wicked Tornado" sync / 1[56]:[^:]*:Garuda:2B4F:/ # drift -0.239
+1314 "Aerial Blast" sync / 1[56]:[^:]*:Garuda:2B55:/
+1320 "Summon Random Primal"
+1322 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/ # drift -0.208
+
+## Summon Ifrit (random order)
+1400 "--sync--" sync / 1[56]:[^:]*:The Ultima Weapon:2CD4:/ window 150,300
+1408 "Eruption" sync / 1[56]:[^:]*:Ifrit:2B5A:/ # drift -0.445001
+1408 "Crimson Cyclone" sync / 1[56]:[^:]*:Ifrit:2B5F:/
+1409 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:2B7A:/
+1416 "Hellfire" sync / 1[56]:[^:]*:Ifrit:2B5E:/ # drift -0.208999
+1421 "Summon Random Primal"
+
+## Summon Titan (random order)
+1500 "--sync--" sync / 1[56]:[^:]*:The Ultima Weapon:2CD5:/ window 250,300
+1505 "Weight Of The Land" #sync / 1[56]:[^:]*:Titan:2B65:/
+1508 "Weight Of The Land" #sync / 1[56]:[^:]*:Titan:2B65:/
+1508 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:2B7A:/ # drift 0.201999
+1511 "Weight Of The Land"
+1514 "Earthen Fury" sync / 1[56]:[^:]*:Titan:2B90:/ # drift 0.241001
+1516 "Summon Random Primal"
+
+## Enrage
+1600.0 "Enrage" sync / 1[56]:[^:]*:The Ultima Weapon:2B8C:/ window 400,0
+# FIXME: this waits until 100% aether, so likely needs to be shifted later for natural push.
+# +3 seconds for each further one.  Maybe not worth including.
+#1625.0 "Citadel Siege" sync / 1[56]:[^:]*:Garuda:2B92:/ window 100,50
+
+#$ python util/make_timeline.py --ignore-id 2B51 2B59 2B58 2Bb5 2B46 2B44 2B64 2B6E 2B77 2B6A 2B98 2B89 2B83 2B91 2DB8 2B75 2C20 2C21 2C1F 2CD4 2CD5 2B80 --phase 2B5F:300 2CFD:600 2CF5:800 2B87:1004

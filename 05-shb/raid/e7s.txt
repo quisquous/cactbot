@@ -1,0 +1,147 @@
+### Eden 7 (Savage)
+# Eden's Verse: Iconoclasm
+# -p 4C8A:13 4C8B:500 -ii 4C77 4C80 4C81 4C7D 4C34 3CC3 4CFD 4C28 4C72 4E7E 4C71 4D14 4D15 4C8E 4E55 4E56 4C36 4C75 4C76 4C7C 4C83 4C84 4C82 4C7F 4C37 4C38 4CAF
+
+# TODO: add interrupt ability
+# TODO: add explosions
+# TODO: final add enrage
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1
+0.0 "--sync--" sync /:Engage!/ window 0,1
+4.0 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4D59:/ window 5,0
+13.0 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8A:/ window 13,20
+25.2 "Unshadowed Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C88:/
+27.8 "Silver Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C89:/
+40.4 "Words Of Motion" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2B:/
+44.6 "Betwixt Worlds" sync / 1[56]:[^:]*:The Idol Of Darkness:4CF9:/
+51.7 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
+54.7 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
+59.7 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C62:/
+62.7 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C62:/
+71.3 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
+74.3 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
+81.9 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
+84.9 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
+92.5 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
+95.5 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C64:/
+
+96.5 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
+105.4 "Betwixt Worlds" sync / 1[56]:[^:]*:The Idol Of Darkness:4C6B:/
+108.5 "Shockwave" sync / 1[56]:[^:]*:The Idol Of Darkness:4C6C:/
+111.0 "Words Of Spite" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2F:/
+113.7 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
+116.7 "Away With Thee" sync / 1[56]:[^:]*:The Idol Of Darkness:4C39:/
+122.9 "Silver Sledge" sync / 1[56]:[^:]*:The Idol Of Darkness:4C26:/
+130.9 "Fate's Course" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C61:/
+131.0 "Silver Sledge" sync / 1[56]:[^:]*:The Idol Of Darkness:4C27:/
+
+132.1 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
+139.9 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8A:/
+147.5 "Unshadowed Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C88:/
+150.1 "Silver Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C89:/
+159.1 "Words Of Motion" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2B:/
+162.3 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
+163.3 "False Moonlight" sync / 1[56]:[^:]*:The Idol Of Darkness:4C98:/
+166.5 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
+167.4 "Silver Sword" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8E:/
+170.4 "Dark's Course" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5A:/
+170.4 "Silver Scourge" sync / 1[56]:[^:]*:The Idol Of Darkness:4C93:/
+174.5 "Dark's Course" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5A:/
+177.5 "Away With Thee" sync / 1[56]:[^:]*:The Idol Of Darkness:4C39:/
+
+179.5 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
+183.7 "False Midnight" sync / 1[56]:[^:]*:The Idol Of Darkness:4C99:/
+183.7 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
+187.5 "Dark's Course" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5A:/
+191.7 "Silver Sledge" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8D:/
+191.7 "Silver Shot" sync / 1[56]:[^:]*:The Idol Of Darkness:4C92:/
+191.7 "Dark's Course" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5A:/
+191.7 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
+198.5 "--untargetable--"
+198.6 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4D0A:/
+
+202.7 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C32:/ window 210,10
+203.6 "--sync--" sync / 1[56]:[^:]*:Idolatry:4C3A:/
+205.6 "--targetable--"
+224.9 "Overwhelming Force" sync / 1[56]:[^:]*:Blasphemy:4C73:/
+231.8 "Insatiable Light" sync / 1[56]:[^:]*:Idolatry:4C6D:/
+239.5 "Advent Of Light" sync / 14:[^:]*:Idolatry:4C6E:/ # use start of cast for this interrupt
+243.6 "Overwhelming Force" sync / 1[56]:[^:]*:Blasphemy:4C73:/
+253.7 "Overwhelming Force" sync / 1[56]:[^:]*:Blasphemy:4C73:/
+254.5 "Insatiable Light" sync / 1[56]:[^:]*:Idolatry:4C6D:/
+264.3 "Away With Thee" sync / 1[56]:[^:]*:The Idol Of Darkness:4C39:/
+268.1 "Strength In Numbers" sync / 1[56]:[^:]*:Idolatry:4C70:/
+278.2 "Insatiable Light" sync / 1[56]:[^:]*:Idolatry:4C6D:/
+290.9 "Overwhelming Force" sync / 1[56]:[^:]*:Blasphemy:4C73:/
+291.8 "Strength In Numbers" sync / 1[56]:[^:]*:Idolatry:4C7[01]:/
+302.0 "Insatiable Light" sync / 1[56]:[^:]*:Idolatry:4C6D:/
+# TODO: fix this sync up
+323.4 "Unearned Envy" sync / 1[56]:[^:]*:Blasphemy:4C74:/
+325.5 "Unearned Envy" #sync / 1[56]:[^:]*:Blasphemy:4C74:/
+327.6 "Unearned Envy" #sync / 1[56]:[^:]*:Blasphemy:4C74:/
+329.7 "Unearned Envy" #sync / 1[56]:[^:]*:Blasphemy:4C74:/
+331.8 "Unearned Envy" #sync / 1[56]:[^:]*:Blasphemy:4C74:/
+333.9 "Unearned Envy" #sync / 1[56]:[^:]*:Blasphemy:4C74:/
+# TODO: explosion?
+
+500.0 "Empty Flood" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8B:/ window 500,10
+503.2 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4D0B:/
+507.3 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C32:/
+
+510.3 "--targetable--"
+514.4 "Unjoined Aspect" sync / 1[56]:[^:]*:The Idol Of Darkness:4C3B:/
+519.4 "Words Of Unity" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2D:/
+524.0 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C5E:/
+529.0 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5B:/
+529.5 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
+534.8 "Words Of Entrapment" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2E:/
+550.5 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5F:/
+550.5 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
+550.5 "White/Black Smoke" sync / 1[56]:[^:]*:The Idol Of Darkness:4C9[46]:/
+555.7 "Words Of Unity" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2D:/
+560.4 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C5E:/
+565.4 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5B:/
+565.5 "Boundless Light" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5C:/
+565.9 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
+
+578.8 "Unjoined Aspect" sync / 1[56]:[^:]*:The Idol Of Darkness:4C3B:/
+582.0 "Betwixt Worlds" sync / 1[56]:[^:]*:The Idol Of Darkness:4CF9:/
+587.0 "Words Of Night" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2C:/
+596.6 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C62:/
+605.2 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
+610.2 "False Dawn" sync / 1[56]:[^:]*:The Idol Of Darkness:4C9A:/
+614.3 "Stygian Sword" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8F:/
+614.4 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
+617.3 "Stygian Spear" sync / 1[56]:[^:]*:The Idol Of Darkness:4C91:/
+617.3 "Silver Spear" sync / 1[56]:[^:]*:The Idol Of Darkness:4C90:/
+622.4 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
+
+625.4 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
+636.2 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8A:/
+643.8 "Unshadowed Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C88:/
+646.4 "Silver Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C89:/
+658.8 "--untargetable--"
+658.9 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C31:/
+
+668.5 "Crusade" sync / 1[56]:[^:]*:The Idol Of Darkness:4C58:/ window 700,10
+673.5 "--targetable--"
+677.6 "Unjoined Aspect" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7A:/
+683.7 "Words Of Fervor" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7B:/
+716.9 "Threefold Grace" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7E:/
+722.6 "Threefold Grace" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7E:/
+728.3 "Threefold Grace" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7E:/
+736.6 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4CB0:/
+746.2 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4CB0:/
+
+755.7 "Unjoined Aspect" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7A:/
+761.9 "Words Of Fervor" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7B:/
+795.1 "Threefold Grace" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7E:/
+800.8 "Threefold Grace" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7E:/
+806.5 "Threefold Grace" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7E:/
+814.8 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4CB0:/
+824.3 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4CB0:/

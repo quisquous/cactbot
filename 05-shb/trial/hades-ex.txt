@@ -1,0 +1,141 @@
+### Hades Ex
+# https://clees.me/guides/hades-ex/
+# -p 47A5:10.7 4951:238 47C8:510 47D5:804 4948:1204 -ii 47AC 47AB 47B2 47FA 47FB 47A8 481D 47CF 47F1 47EE 47D3 47F2 47EC 47ED 417C 47D7 47E6 47D9 47D8 47DA 47E7 47DC 494B 47CE 474B 47E3
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+
+### Phase 1
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.5 "--sync--" sync / 1[56]:[^:]*:Hades:368:/ window 3,0
+10.7 "Ancient Double" sync / 1[56]:[^:]*:Hades:47A5:/ window 11,0
+19.8 "Shadow Spread" sync / 1[56]:[^:]*:Hades:47A9:/
+22.8 "Shadow Spread" sync / 1[56]:[^:]*:Hades:47AA:/
+30.7 "Bad Faith" sync / 1[56]:[^:]*:Hades:(47AE|47AD):/
+33.8 "Bad Faith" sync / 1[56]:[^:]*:Hades:(47AF|47B0):/
+42.0 "Ravenous Assault" sync / 1[56]:[^:]*:Hades:47A6:/
+45.2 "Ravenous Assault" sync / 1[56]:[^:]*:Hades:47A7:/
+51.3 "Arcane Utterance" sync / 1[56]:[^:]*:Hades:47B3:/
+59.4 "Arcane Control" sync / 1[56]:[^:]*:Hades:47B4:/
+60.3 "Magic Chakram/Spear" #sync / 1[56]:[^:]*:Arcane Globe:47B5:/
+68.5 "Broken Faith" sync / 1[56]:[^:]*:Hades:47B1:/ duration 35.3
+107.8 "Arcane Utterance" sync / 1[56]:[^:]*:Hades:47B3:/
+115.9 "Arcane Control" sync / 1[56]:[^:]*:Hades:47B4:/
+116.8 "Magic Spear/Chakram" #sync / 1[56]:[^:]*:Arcane Font:47B6:/
+130.0 "Shadow Spread" sync / 1[56]:[^:]*:Hades:47A9:/
+133.0 "Shadow Spread" sync / 1[56]:[^:]*:Hades:47AA:/
+140.9 "Bad Faith" sync / 1[56]:[^:]*:Hades:(47AE|47AD):/
+144.0 "Bad Faith" sync / 1[56]:[^:]*:Hades:(47AF|47B0):/
+152.2 "Ravenous Assault" sync / 1[56]:[^:]*:Hades:47A6:/
+155.4 "Ravenous Assault" sync / 1[56]:[^:]*:Hades:47A7:/
+169.7 "Ancient Dark IV" sync / 1[56]:[^:]*:Hades:47B7:/
+
+
+### Phase 2
+200.0 "--sync--" sync / 22:........:Hades:........:Hades:00/ window 200,0
+# 00:0044:Hades:Pitiful, malformed, wretched creatures!
+# 00:0044:Hades:Your call for aid beyond this world will avail you naught!
+# 00:0044:Hades:My brethren are legion!
+# 00:0044:Hades:Let shadows form from my will alone!
+# 00:0044:Hades:Come, Nabriales!
+# 00:0044:Hades:Tremble and fall to the ground before me!
+227.9 "--targetable--"
+232.0 "--sync--" sync / 14:[^:]*:Nabriales's Shade:47B8:/ window 232,0
+238.0 "Comet 1" #sync / 1[56]:[^:]*:Nabriales's Shade:4951:/
+241.0 "Comet 2" #sync / 1[56]:[^:]*:Nabriales's Shade:4951:/
+241.2 "Dark II" sync / 1[56]:[^:]*:Shadow of the Ancients:47BA:/
+243.9 "Comet 3" #sync / 1[56]:[^:]*:Nabriales's Shade:4951:/
+246.9 "Comet 4" #sync / 1[56]:[^:]*:Nabriales's Shade:4951:/
+254.2 "Ancient Water III" sync / 1[56]:[^:]*:Shadow of the Ancients:47BC:/
+254.2 "Ancient Darkness" sync / 1[56]:[^:]*:Shadow of the Ancients:47BB:/
+259.7 "Quake III" sync / 1[56]:[^:]*:Nabriales's Shade:47B8:/
+# 00:0044:Hades:Emerge, Lahabrea! Rise, Igeyorhm!
+272.3 "--targetable--"
+277.5 "Annihilation" sync / 1[56]:[^:]*:Lahabrea's and Igeyorhm's Shades:47BF:/ window 50,10
+277.5 "Fire Sphere" #sync / 1[56]:[^:]*:Lahabrea's Shade:47BE:/
+277.5 "Blizzard Sphere" #sync / 1[56]:[^:]*:Igeyorhm's Shade:47BD:/
+295.6 "Fire IV" sync / 1[56]:[^:]*:Lahabrea's Shade:47C2:/
+295.6 "Blizzard IV" #sync / 1[56]:[^:]*:Igeyorhm's Shade:47C3:/
+299.5 "Dark Flame" sync / 1[56]:[^:]*:Shadow of the Ancients:47C6:/
+299.5 "Dark Freeze" #sync / 1[56]:[^:]*:Shadow of the Ancients:47C4:/
+307.6 "Annihilation" sync / 1[56]:[^:]*:Lahabrea's and Igeyorhm's Shades:47BF:/
+307.6 "Fire Sphere" #sync / 1[56]:[^:]*:Lahabrea's Shade:47BE:/
+307.6 "Blizzard Sphere" #sync / 1[56]:[^:]*:Igeyorhm's Shade:47BD:/
+320.8 "Fire IV" sync / 1[56]:[^:]*:Lahabrea's Shade:47C2:/
+320.8 "Blizzard IV" sync / 1[56]:[^:]*:Igeyorhm's Shade:47C3:/
+336.6 "Fire IV" sync / 1[56]:[^:]*:Lahabrea's Shade:47C2:/
+336.6 "Blizzard IV" sync / 1[56]:[^:]*:Igeyorhm's Shade:47C3:/
+355.2 "Shadow Flare" #sync / 1[56]:[^:]*:Lahabrea's Shade:47FD:/
+
+
+### Phase 3
+493.0 "--sync--" sync / 00:0044:Hades:Our plea transcends/ window 500,0
+# 00:0044:Hades:At last, you are one!
+499.9 "--targetable--"
+500.0 "--sync--" sync / 14:[^:]*:Ascian Prime's Shade:47C8:/ window 500,0
+510.0 "Universal Manipulation" sync / 1[56]:[^:]*:Ascian Prime's Shade:47C8:/
+520.2 "Ancient Circle" sync / 1[56]:[^:]*:Ascian Prime's Shade:47CA:/
+522.2 "Death Shriek" sync / 1[56]:[^:]*:Ascian Prime's Shade:47CB:/
+524.2 "Forked Lightning" sync / 1[56]:[^:]*:Ascian Prime's Shade:47C9:/
+531.2 "Blight" sync / 1[56]:[^:]*:Ascian Prime's Shade:47CC:/
+542.6 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime's Shade:47D1:/
+552.8 "Megiddo Flame" sync / 1[56]:[^:]*:Ascian Prime's Shade:47CD:/
+561.9 "Shadow Flare" sync / 1[56]:[^:]*:Ascian Prime's Shade:47D0:/
+569.4 "Ancient Eruption" sync / 1[56]:[^:]*:Ascian Prime's Shade:47D2:/
+580.8 "Shadow Flare" sync / 1[56]:[^:]*:Ascian Prime's Shade:47D0:/
+609.3 "Shadow Flare Enrage" sync / 1[56]:[^:]*:Ascian Prime's Shade:47D4:/
+
+
+### Phase 4
+750.2 "--sync--" sync / 22:........:Ascian Prime's Shade:........:Ascian Prime's Shade:00/ window 800,0
+799.9 "--targetable--"
+800.0 "--sync--" sync / 14:[^:]*:Hades:47D5:/ window 800,0
+804.0 "Again The Majestic" sync / 1[56]:[^:]*:Hades:47D5:/
+810.6 "Comet 1" sync / 1[56]:[^:]*:Hades:4952:/
+812.2 "Captivity" sync / 1[56]:[^:]*:Hades:47D[67]:/
+816.6 "Comet 2" sync / 1[56]:[^:]*:Hades:4952:/
+822.6 "Comet 3" sync / 1[56]:[^:]*:Hades:4952:/
+828.6 "Comet 4" sync / 1[56]:[^:]*:Hades:4952:/
+837.2 "Again The Martyr" sync / 1[56]:[^:]*:Hades:47DE:/
+846.3 "Wail Of The Lost" sync / 1[56]:[^:]*:Hades:47E1:/
+848.4 "Dark Flame" sync / 1[56]:[^:]*:Hades:47E0:/
+848.4 "Dark Freeze" sync / 1[56]:[^:]*:Hades:47DF:/
+856.5 "Again The Abyssal Celebrant" sync / 1[56]:[^:]*:Hades:47E2:/
+864.6 "Shadow Spread x3" #sync / 1[56]:[^:]*:Hades:47E4:/
+865.6 "Megiddo Flame x3" #sync / 1[56]:[^:]*:Hades:47E8:/
+865.6 "Nether Blast x3" #sync / 1[56]:[^:]*:Hades:47E6:/
+876.7 "Dark Seal" sync / 1[56]:[^:]*:Hades:47E9:/
+884.8 "Purgation/Stream" sync / 1[56]:[^:]*:Hades:47E[AB]:/
+892.9 "Stream/Purgation" sync / 1[56]:[^:]*:Hades:47E[AB]:/
+904.1 "Dark Seal" sync / 1[56]:[^:]*:Hades:47E9:/
+912.2 "Purgation/Stream" sync / 1[56]:[^:]*:Hades:47E[AB]:/
+918.3 "Stream/Purgation" sync / 1[56]:[^:]*:Hades:47E[AB]:/
+950.2 "Titanomachy Enrage" sync / 1[56]:[^:]*:Hades:47EF:/
+
+
+### Phase 5
+1200.0 "--sync--" sync / 14:[^:]*:Hades:4948:/ window 1200,0
+1204.0 "Life In Captivity" sync / 1[56]:[^:]*:Hades:4948:/
+1207.2 "--sync--" sync / 1[56]:[^:]*:Hades:47D9:/
+1210.2 "--sync--" sync / 1[56]:[^:]*:Hades:4949:/
+1242.3 "--sync--" sync / 1[56]:[^:]*:Hades:494A:/
+1282.4 "--targetable--"
+1286.6 "Dark Current" sync / 1[56]:[^:]*:Hades:47F0:/
+1311.2 "Gigantomachy" sync / 1[56]:[^:]*:Hades:47F3:/
+1318.4 "--sync--" sync / 1[56]:[^:]*:Hades:47F4:/
+1318.8 "Quadrastrike 1" #sync / 1[56]:[^:]*:Hades:47F5:/
+1320.2 "Quadrastrike 2" #sync / 1[56]:[^:]*:Hades:47F5:/
+1323.8 "Quadrastrike Tower" sync / 1[56]:[^:]*:Hades:47F6:/
+1330.6 "Quadrastrike Bleed" sync / 1[56]:[^:]*:Hades:47F8:/
+1344.5 "Dark Current" sync / 1[56]:[^:]*:Hades:47F0:/
+1369.0 "Gigantomachy" sync / 1[56]:[^:]*:Hades:47F3:/
+1376.2 "--sync--" sync / 1[56]:[^:]*:Hades:47F4:/
+1376.6 "Quadrastrike 1" #sync / 1[56]:[^:]*:Hades:47F5:/
+1378.0 "Quadrastrike 2" #sync / 1[56]:[^:]*:Hades:47F5:/
+1381.7 "Quadrastrike Tower" sync / 1[56]:[^:]*:Hades:47F6:/
+1388.5 "Quadrastrike Bleed" sync / 1[56]:[^:]*:Hades:47F8:/
+1426.5 "Gigantomachy Enrage" sync / 1[56]:[^:]*:Hades:47F9:/

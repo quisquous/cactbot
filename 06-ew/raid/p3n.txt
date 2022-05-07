@@ -1,0 +1,114 @@
+## Pandaemonium: Asphedolos, the Third Circle
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# -ii 669F 66A7 66A8 66A0 66A1 66AF 66B0 66B3 6D0C 6DDC 6EDD
+# -ic "Liturgic Bell"
+# -it Phoinix
+# -p 66AD:118 66A3: 200
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+9.1 "--sync--" sync / 14:[^:]*:Phoinix:(6696|6698):/ window 9.1,5
+13.8 "Experimental Fireplume" sync / 1[56]:[^:]*:Phoinix:(6696|6698):/ window 13.8,5
+19.0 "--giant fireplume?--" #sync / 1[56]:[^:]*:Phoinix:(6697|6699):/
+31.0 "Experimental Fireplume" sync / 1[56]:[^:]*:Phoinix:(6696|6698):/
+37.1 "--giant fireplume?--" #sync / 1[56]:[^:]*:Phoinix:(6697|6699):/
+49.2 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:66B8:/
+61.4 "Heat of Condemnation" sync / 1[56]:[^:]*:Phoinix:66B2:/ window 61.4,10
+75.6 "Darkened Fire" sync / 1[56]:[^:]*:Phoinix:6EDA:/
+85.7 "--sync--" sync / 1[56]:[^:]*:Phoinix:6EDC:/
+86.1 "Brightened Fire #1" #sync / 1[56]:[^:]*:Phoinix:6EDD:/
+87.2 "Brightened Fire #2" #sync / 1[56]:[^:]*:Phoinix:6EDD:/
+88.4 "Brightened Fire #3" #sync / 1[56]:[^:]*:Phoinix:6EDD:/
+89.5 "Brightened Fire #4" #sync / 1[56]:[^:]*:Phoinix:6EDD:/
+105.6 "Left Cinderwing/Right Cinderwing" sync / 1[56]:[^:]*:Phoinix:(66B4|66B5):/
+
+# There might be an enrage here? More data will be needed.
+110.7 "--untargetable--"
+118.0 "Trail of Condemnation" sync / 1[56]:[^:]*:Phoinix:66AD:/ window 118.0,10
+126.8 "--adds targetable--"
+127.0 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66A2:/
+135.1 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66A2:/ jump 127.0
+143.2 "Blazing Rain"
+151.3 "Blazing Rain"
+159.4 "Blazing Rain"
+167.5 "Blazing Rain"
+175.6 "Blazing Rain"
+183.7 "Blazing Rain"
+
+# There's no cast time on this ability.
+200.0 "Flames of Undeath" sync / 1[56]:[^:]*:Phoinix:66A3:/ window 200,10
+202.0 "--targetable--"
+
+# Post-intermission block, small differences from main rotation block.
+203.4 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66A2:/
+206.2 "Joint Pyre" sync / 1[56]:[^:]*:Sparkfledged:66A5:/
+209.1 "--sync--" sync / 1[56]:[^:]*:Phoinix:66AC:/
+221.2 "Dead Rebirth" sync / 1[56]:[^:]*:Phoinix:66A9:/ window 221.2,60
+231.4 "Left Cinderwing/Right Cinderwing" sync / 1[56]:[^:]*:Phoinix:(66B4|66B5):/
+239.6 "Fledgling Flight" sync / 1[56]:[^:]*:Phoinix:66AA:/
+253.8 "Ashen Eye #1" #sync / 1[56]:[^:]*:Sparkfledged:66AB:/
+255.7 "Ashen Eye #2" #sync / 1[56]:[^:]*:Sparkfledged:66AB:/
+257.7 "Experimental Charplume" sync / 1[56]:[^:]*:Phoinix:669C:/
+257.7 "Ashen Eye #3" #sync / 1[56]:[^:]*:Sparkfledged:66AB:/
+259.7 "Ashen Eye #4" #sync / 1[56]:[^:]*:Sparkfledged:66AB:/
+262.8 "Charplume" sync / 1[56]:[^:]*:Phoinix:669D:/
+262.8 "--sync--" sync / 1[56]:[^:]*:Phoinix:66AC:/
+277.9 "Heat of Condemnation" sync / 1[56]:[^:]*:Phoinix:66B2:/
+289.2 "--sync--" sync / 1[56]:[^:]*:Phoinix:669E:/
+291.3 "Devouring Brand" sync / 1[56]:[^:]*:Phoinix:66A0:/ duration 13
+300.7 "--fire expands--" sync / 1[56]:[^:]*:Phoinix:6D82:/
+305.6 "--sync--" sync / 1[56]:[^:]*:Phoinix:66B6:/
+308.7 "Searing Breeze" sync / 1[56]:[^:]*:Phoinix:66B7:/
+316.8 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:66B8:/
+326.0 "Experimental Charplume" sync / 1[56]:[^:]*:Phoinix:669C:/
+331.1 "Charplume" sync / 1[56]:[^:]*:Phoinix:669D:/
+335.1 "Experimental Fireplume" sync / 1[56]:[^:]*:Phoinix:(6696|6698):/ window 30,30
+341.2 "--giant fireplume?--" #sync / 1[56]:[^:]*:Phoinix:(6697|6699):/
+349.2 "--untargetable--"
+356.5 "Trail of Condemnation" sync / 1[56]:[^:]*:Phoinix:66AD:/
+361.2 "--targetable--"
+
+# Rotation block
+369.3 "Heat of Condemnation" sync / 1[56]:[^:]*:Phoinix:66B2:/
+378.5 "Fledgling Flight" sync / 1[56]:[^:]*:Phoinix:66AA:/
+392.4 "Ashen Eye #1" #sync / 1[56]:[^:]*:Sparkfledged:66AB:/
+394.3 "Ashen Eye #2" #sync / 1[56]:[^:]*:Sparkfledged:66AB:/
+396.3 "Ashen Eye #3" #sync / 1[56]:[^:]*:Sparkfledged:66AB:/
+398.3 "Ashen Eye #4" #sync / 1[56]:[^:]*:Sparkfledged:66AB:/
+399.7 "Experimental Fireplume" sync / 1[56]:[^:]*:Phoinix:(6696|6698):/
+405.8 "--giant fireplume?--" #sync / 1[56]:[^:]*:Phoinix:(6697|6699):/
+405.9 "--sync--" sync / 1[56]:[^:]*:Phoinix:66AC:/
+417.0 "--sync--" sync / 1[56]:[^:]*:Phoinix:66B6:/
+420.1 "Searing Breeze x3" #sync / 1[56]:[^:]*:Phoinix:66B7:/
+422.1 "Devouring Brand" sync / 1[56]:[^:]*:Phoinix:669E:/ duration 15
+433.4 "Darkened Fire" sync / 1[56]:[^:]*:Phoinix:6EDA:/
+433.8 "--fire expands--" sync / 1[56]:[^:]*:Phoinix:6D82:/
+443.7 "--sync--" sync / 1[56]:[^:]*:Phoinix:6EDC:/
+444.0 "Brightened Fire #1" #sync / 1[56]:[^:]*:Phoinix:6EDD:/
+445.2 "Brightened Fire #2" #sync / 1[56]:[^:]*:Phoinix:6EDD:/
+446.3 "Brightened Fire #3" #sync / 1[56]:[^:]*:Phoinix:6EDD:/
+447.5 "Brightened Fire #4" #sync / 1[56]:[^:]*:Phoinix:6EDD:/
+463.6 "Left Cinderwing/Right Cinderwing" sync / 1[56]:[^:]*:Phoinix:(66B4|66B5):/ window 30,30
+474.7 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:66B8:/
+484.9 "Experimental Charplume" sync / 1[56]:[^:]*:Phoinix:669C:/
+490.0 "Charplume" sync / 1[56]:[^:]*:Phoinix:669D:/
+494.0 "Experimental Fireplume" sync / 1[56]:[^:]*:Phoinix:(6696|6698):/ window 30,30
+500.1 "--giant fireplume?--" #sync / 1[56]:[^:]*:Phoinix:(6697|6699):/
+508.1 "--untargetable--"
+515.4 "Trail of Condemnation" sync / 1[56]:[^:]*:Phoinix:66AD:/
+518.9 "Flare of Condemnation" sync / 1[56]:[^:]*:Phoinix:66B0:/
+520.1 "--targetable--"
+
+528.2 "Heat of Condemnation" sync / 1[56]:[^:]*:Phoinix:66B2:/ jump 369.3
+537.4 "Fledgling Flight"
+551.3 "Ashen Eye #1"
+553.2 "Ashen Eye #2"
+555.2 "Ashen Eye #3"
+557.2 "Ashen Eye #4"
+558.6 "Experimental Fireplume"
+564.7 "--giant fireplume?--"
+

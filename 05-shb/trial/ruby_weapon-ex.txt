@@ -1,0 +1,127 @@
+### Ruby Weapon Ex
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1
+# -p 4ABE:14.5
+# -ii 4B2F 4D05 4ACD 4ACE 4ADA 4E6C 4AE9 4AE8 4E6B 4AEA 4AE8 4A6E 4ADE 4E6E 4AE2 4A98 4AE6 4E70 4B06 4B07 4B08 4B0D 4D0D 4AD9 4AE0 4AE4 4D04 4D57 4ADC 4E79 4BCF 4E77 4AD7 4AE7 4ADD 4E6D  4E6F 4AE5 4AE1
+
+0 "Start"
+2.0 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:368:/ window 3,0
+14.5 "Optimized Ultima" sync / 1[56]:[^:]*:The Ruby Weapon:4ABE:/ window 15,5
+28.7 "Magitek Bit" sync / 1[56]:[^:]*:The Ruby Weapon:4AD1:/
+30.8 "--middle--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+36.0 "Flexiclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A92:/
+38.9 "Magitek Ray" sync / 1[56]:[^:]*:Ruby Bit:4AD2:/
+44.6 "Helicoclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A99:/
+45.3 "Spike Of Flame" sync / 1[56]:[^:]*:The Ruby Weapon:(4D04|4AD3):/
+46.7 "Magitek Ray" sync / 1[56]:[^:]*:Ruby Bit:4AD2:/
+52.7 "Helicoclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A99:/
+53.4 "Spike Of Flame" sync / 1[56]:[^:]*:The Ruby Weapon:(4D04|4AD3):/
+54.5 "Magitek Ray" sync / 1[56]:[^:]*:Ruby Bit:4AD2:/
+62.4 "Magitek Ray" sync / 1[56]:[^:]*:Ruby Bit:4AD2:/
+72.6 "Stamp" sync / 1[56]:[^:]*:The Ruby Weapon:4B03:/
+77.8 "--middle--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+80.2 "Ruby Sphere" sync / 1[56]:[^:]*:The Ruby Weapon:4AC9:/
+86.3 "Flexiclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A92:/
+95.9 "Ravensclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4ACC:/
+102.0 "Liquefaction?/Undermine?" sync / 1[56]:[^:]*:The Ruby Weapon:(4ACF|4AD0):/
+105.2 "Ruby Sphere 1" #sync / 1[56]:[^:]*:The Ruby Weapon:4ACA:/
+108.2 "Ruby Sphere 2" #sync / 1[56]:[^:]*:The Ruby Weapon:4ACA:/
+111.2 "Ruby Sphere 3" #sync / 1[56]:[^:]*:The Ruby Weapon:4ACA:/
+127.6 "Ruby Ray" sync / 1[56]:[^:]*:The Ruby Weapon:4B02:/
+134.7 "Optimized Ultima" sync / 1[56]:[^:]*:The Ruby Weapon:4ABE:/
+145.4 "Flexiclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A92:/
+151.1 "Liquefaction" sync / 1[56]:[^:]*:The Ruby Weapon:4AEC:/
+157.6 "--north--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+168.0 "--untargetable--"
+168.0 "Ravensflight" sync / 1[56]:[^:]*:The Ruby Weapon:4AA1:/
+181.8 "--targetable--"
+196.9 "Optimized Ultima" sync / 1[56]:[^:]*:The Ruby Weapon:4ABE:/
+205.2 "Stamp" sync / 1[56]:[^:]*:The Ruby Weapon:4B03:/
+212.4 "--teleport--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+220.3 "Ruby Dynamics" sync / 1[56]:[^:]*:The Ruby Weapon:4B09:/
+221.4 "High-Powered Homing Lasers" sync / 1[56]:[^:]*:The Ruby Weapon:4AD8:/
+229.5 "Cut And Run" sync / 1[56]:[^:]*:The Ruby Weapon:4B05:/ duration 2.5
+231.1 "Homing Lasers" sync / 1[56]:[^:]*:The Ruby Weapon:4AD6:/
+237.1 "Magitek Charge" sync / 1[56]:[^:]*:The Ruby Weapon:4AD4:/
+246.2 "Ruby Ray" sync / 1[56]:[^:]*:The Ruby Weapon:4B02:/
+253.3 "Optimized Ultima" sync / 1[56]:[^:]*:The Ruby Weapon:4ABE:/
+259.5 "--middle--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+261.8 "Ruby Sphere" sync / 1[56]:[^:]*:The Ruby Weapon:4AC9:/
+267.9 "Flexiclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A92:/
+277.5 "Ravensclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4ACC:/
+283.6 "Undermine?/Liquefaction?" sync / 1[56]:[^:]*:The Ruby Weapon:(4ACF|4AD0):/
+286.9 "Ruby Sphere 1" #sync / 1[56]:[^:]*:The Ruby Weapon:4ACA:/
+289.9 "Ruby Sphere 2" #sync / 1[56]:[^:]*:The Ruby Weapon:4ACA:/
+292.9 "Ruby Sphere 3" #sync / 1[56]:[^:]*:The Ruby Weapon:4ACA:/
+307.2 "Ruby Ray" sync / 1[56]:[^:]*:The Ruby Weapon:4B02:/
+314.3 "Optimized Ultima" sync / 1[56]:[^:]*:The Ruby Weapon:4ABE:/
+325.0 "Flexiclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A92:/
+330.7 "Liquefaction" sync / 1[56]:[^:]*:The Ruby Weapon:4AEC:/
+337.2 "--north--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+347.6 "--untargetable--"
+347.6 "Ravensflight" sync / 1[56]:[^:]*:The Ruby Weapon:4AA1:/
+360.4 "--targetable--"
+375.5 "Optimized Ultima" sync / 1[56]:[^:]*:The Ruby Weapon:4ABE:/
+383.8 "Stamp" sync / 1[56]:[^:]*:The Ruby Weapon:4B03:/
+391.0 "--teleport--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+398.8 "Ruby Dynamics" sync / 1[56]:[^:]*:The Ruby Weapon:4B09:/
+399.9 "High-Powered Homing Lasers" sync / 1[56]:[^:]*:The Ruby Weapon:4AD8:/
+407.9 "Cut And Run" sync / 1[56]:[^:]*:The Ruby Weapon:4B05:/
+409.5 "Homing Lasers" sync / 1[56]:[^:]*:The Ruby Weapon:4AD6:/
+414.9 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+415.4 "Magitek Charge" sync / 1[56]:[^:]*:The Ruby Weapon:4AD4:/
+424.5 "Ruby Ray" sync / 1[56]:[^:]*:The Ruby Weapon:4B02:/
+431.7 "Optimized Ultima" sync / 1[56]:[^:]*:The Ruby Weapon:4ABE:/
+437.9 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+### Enrage (both time and hp% pushes)
+440.2 "--sync--" sync / 14:[^:]*:The Ruby Weapon:4B2D:/ window 600,0
+455.2 "Enrage" sync / 1[56]:[^:]*:The Ruby Weapon:4B2D:/
+
+### Cutscene
+800.0 "--cutscene--" sync / 1[56]:[^:]*:The Ruby Weapon:4E1C:/ window 800,0 duration 65.5
+865.5 "--targetable--"
+
+### Phase 2
+# -p 4AAA:1007
+# -ii 4CF7 4E68 4B00 4E20 4AF3 4AF4 4AF1 4AF2 4B30 4E31 4AB1
+
+1000.0 "Start"
+1000.5 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4CF7:/ window 1001,0
+1007.0 "Meteor Project" sync / 1[56]:[^:]*:The Ruby Weapon:4AAA:/ window 1007,5
+1013.2 "Negative Personae" sync / 1[56]:[^:]*:The Ruby Weapon:4ABD:/
+1023.9 "Meteor Stream" sync / 1[56]:[^:]*:The Ruby Weapon:4E72:/
+1029.3 "Greater Memory" sync / 1[56]:[^:]*:Raven's Image:4AFD:/
+1035.4 "Chariot/Dynamo" sync / 1[56]:[^:]*:Raven's Image:4EB[01]:/
+1035.5 "Negative Affect" sync / 1[56]:[^:]*:The Ruby Weapon:4AF8:/
+1043.7 "Meteor Stream" sync / 1[56]:[^:]*:The Ruby Weapon:4E72:/
+1052.0 "Ruby Claw x5" sync / 1[56]:[^:]*:Raven's Image:4AFF:/ duration 2.5
+1061.8 "Change Of Heart" sync / 1[56]:[^:]*:The Ruby Weapon:4AFC:/
+1063.4 "Greater Memory" sync / 1[56]:[^:]*:Raven's Image:4AFD:/
+1071.0 "Meteor Stream" sync / 1[56]:[^:]*:The Ruby Weapon:4E72:/
+1075.6 "Chariot/Dynamo" sync / 1[56]:[^:]*:Raven's Image:4EB[01]:/
+1092.2 "Negative Aura" sync / 1[56]:[^:]*:The Ruby Weapon:4AFE:/
+1106.0 "Dalamud Impact" sync / 1[56]:[^:]*:The Ruby Weapon:4B0B:/
+1120.4 "Meteor Project" sync / 1[56]:[^:]*:The Ruby Weapon:4AAA:/
+1126.6 "Meteor Mine" sync / 1[56]:[^:]*:The Ruby Weapon:4E89:/
+1143.8 "Landing x8" duration 7 #sync / 1[56]:[^:]*:Meteor:4AF1:/
+1156.0 "Screech" sync / 1[56]:[^:]*:The Ruby Weapon:4AEE:/
+1157.0 "Burst x8" duration 7 #sync / 1[56]:[^:]*:Meteor:4AF2:/
+1159.7 "Magitek Meteor" sync / 1[56]:[^:]*:The Ruby Weapon:4AF0:/
+1167.2 "Mark II Magitek Comet" sync / 1[56]:[^:]*:The Ruby Weapon:4AB6:/
+1178.8 "Tank Comets"
+1190.4 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4E38:/
+1190.5 "Bradamante" sync / 1[56]:[^:]*:The Ruby Weapon:4AF7:/
+1199.6 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4E38:/
+1199.7 "Bradamante" sync / 1[56]:[^:]*:The Ruby Weapon:4AF7:/
+1208.6 "Dalamud Impact" sync / 1[56]:[^:]*:The Ruby Weapon:4E52:/
+1221.9 "Meteor Project" sync / 1[56]:[^:]*:The Ruby Weapon:4AAC:/
+1235.1 "Outrage" sync / 1[56]:[^:]*:The Ruby Weapon:4B04:/
+1245.2 "Outrage" sync / 1[56]:[^:]*:The Ruby Weapon:4B04:/
+1254.3 "Meteor Stream" sync / 1[56]:[^:]*:The Ruby Weapon:4E72:/
+1262.1 "Meteor Stream" sync / 1[56]:[^:]*:The Ruby Weapon:4E72:/
+# Enrage ???

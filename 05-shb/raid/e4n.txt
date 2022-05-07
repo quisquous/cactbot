@@ -1,0 +1,200 @@
+### Eden 4 (Normal)
+# Eden's Gate: Sepulture
+# -p 40F7:13 -ii 413D 40EF 41B4 40FC 40FB 40ED 40F0 43E6 40EB 40FE 4101 4103 40F1 40FD
+
+
+hideall "--Reset--"
+hideall "--sync--"
+hideall "Earthen Armor"
+hideall "Earthen Gauntlets"
+hideall "Earthen Wheels"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# Phase chart
+# 1->2->3->
+#    4A->5A->6A->3A->loop to 4A
+#    6B->5B->4B->3B->loop to 6B
+# Numbered phases are the same, A and B are the different paths.
+
+### Phase 1
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.0 "--sync--" sync / 1[56]:[^:]*:Titan:413D:/ window 2,0
+13.0 "Voice Of The Land" sync / 1[56]:[^:]*:Titan:40F7:/
+21.3 "Evil Earth" sync / 1[56]:[^:]*:Titan:40EE:/
+30.5 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:40EA:/
+41.6 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 30,30
+54.0 "Crumbling Down" sync / 1[56]:[^:]*:Massive Boulder:40F2:/
+66.0 "Seismic Wave" sync / 1[56]:[^:]*:Titan:40F3:/
+79.3 "Geocrush" sync / 1[56]:[^:]*:Titan:40F6:/
+83.2 "Earthen Gauntlets" sync / 1[56]:[^:]*:Titan:40E6:/
+91.3 "Massive Landslide" sync / 1[56]:[^:]*:Titan:40FA:/
+97.1 "Earthen Armor" sync / 1[56]:[^:]*:Titan:40E7:/
+
+
+### Phase 2
+109.1 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 30,30
+115.2 "Bomb Boulders" sync / 1[56]:[^:]*:Titan:40EC:/
+116.2 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+122.1 "Cobalt Bomb" sync / 1[56]:[^:]*:Titan:40F4:/
+129.3 "Explosion" sync / 1[56]:[^:]*:Bomb Boulder:40F5:/
+137.3 "Voice Of The Land" sync / 1[56]:[^:]*:Titan:40F7:/
+149.7 "Geocrush" sync / 1[56]:[^:]*:Titan:40F6:/
+153.6 "Earthen Wheels" sync / 1[56]:[^:]*:Titan:40E8:/
+161.7 "Fault Zone" sync / 1[56]:[^:]*:Titan:4102:/
+163.9 "Earthen Armor" sync / 1[56]:[^:]*:Titan:40E9:/
+
+
+### Phase 3
+182.0 "Earthen Fury" sync / 1[56]:[^:]*:Titan:40F8:/
+197.2 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 30,30
+203.4 "Bomb Boulders" sync / 1[56]:[^:]*:Titan:40EC:/
+204.5 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+206.5 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+208.5 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+209.9 "Cobalt Bomb" sync / 1[56]:[^:]*:Titan:40F4:/
+217.4 "Explosion" sync / 1[56]:[^:]*:Bomb Boulder:40F5:/
+221.2 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:40EA:/
+231.3 "Voice Of The Land" sync / 1[56]:[^:]*:Titan:40F7:/
+244.6 "Crumbling Down" sync / 1[56]:[^:]*:Massive Boulder:40F2:/
+245.7 "Evil Earth" sync / 1[56]:[^:]*:Titan:40EE:/
+256.8 "Seismic Wave" sync / 1[56]:[^:]*:Titan:40F3:/
+
+
+### Phase 4A or Phase 6B?
+267.0 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 30,30
+274.3 "Geocrush" sync / 1[56]:[^:]*:Titan:40F6:/
+
+278.1 "Earthen Gauntlets" sync / 1[56]:[^:]*:Titan:40E6:/ window 30,30 jump 1278.1
+278.1 "Earthen Wheels" sync / 1[56]:[^:]*:Titan:40E8:/ window 30,30 jump 2278.1
+
+286.2 "Massive Landslide?"
+288.2 "Fault Zone?"
+295.8 "Fault Zone?"
+300.8 "Left/Right Landslide?"
+303.4 "Fault Zone?"
+311.4 "Magnitude 5.0?"
+314.6 "Earthen Armor?"
+315.4 "Left/Right Landslide?"
+327.7 "Earthen Fury?"
+
+
+### Phase 4A
+1267.0 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 30,30
+1274.3 "Geocrush" sync / 1[56]:[^:]*:Titan:40F6:/
+1278.1 "Earthen Gauntlets" sync / 1[56]:[^:]*:Titan:40E6:/
+1286.2 "Massive Landslide" sync / 1[56]:[^:]*:Titan:40FA:/
+1300.8 "Left/Right Landslide" sync / 1[56]:[^:]*:Titan:(40FF|4100):/
+1315.4 "Left/Right Landslide" sync / 1[56]:[^:]*:Titan:(40FF|4100):/
+1324.1 "Earthen Armor" sync / 1[56]:[^:]*:Titan:40E7:/
+
+
+### Phase 5A
+1339.3 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 30,30
+1345.5 "Bomb Boulders" sync / 1[56]:[^:]*:Titan:40EC:/
+1346.5 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+1350.6 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+1361.9 "Evil Earth" sync / 1[56]:[^:]*:Titan:40EE:/
+1373.0 "Voice Of The Land" sync / 1[56]:[^:]*:Titan:40F7:/
+1382.3 "Evil Earth" sync / 1[56]:[^:]*:Titan:40EE:/
+1392.5 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:40EA:/
+
+
+### Phase 6A
+1402.6 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 30,30
+1411.9 "Geocrush" sync / 1[56]:[^:]*:Titan:40F6:/
+1415.6 "Earthen Wheels" sync / 1[56]:[^:]*:Titan:40E8:/
+1423.8 "Fault Zone" sync / 1[56]:[^:]*:Titan:4102:/
+1431.4 "Fault Zone" sync / 1[56]:[^:]*:Titan:4102:/
+1439.0 "Fault Zone" sync / 1[56]:[^:]*:Titan:4102:/
+1447.0 "Magnitude 5.0" sync / 1[56]:[^:]*:Titan:4104:/
+1450.2 "Earthen Armor" sync / 1[56]:[^:]*:Titan:40E9:/
+
+
+### Phase 3A Redux
+1463.3 "Earthen Fury" sync / 1[56]:[^:]*:Titan:40F8:/
+1478.4 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 30,30
+1484.6 "Bomb Boulders" sync / 1[56]:[^:]*:Titan:40EC:/
+1485.5 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+1487.5 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+1489.5 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+1491.0 "Cobalt Bomb" sync / 1[56]:[^:]*:Titan:40F4:/
+1498.6 "Explosion" sync / 1[56]:[^:]*:Bomb Boulder:40F5:/
+1502.2 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:40EA:/
+1512.3 "Voice Of The Land" sync / 1[56]:[^:]*:Titan:40F7:/
+1525.6 "Crumbling Down" sync / 1[56]:[^:]*:Massive Boulder:40F2:/
+1526.8 "Evil Earth" sync / 1[56]:[^:]*:Titan:40EE:/
+1537.9 "Seismic Wave" sync / 1[56]:[^:]*:Titan:40F3:/
+
+
+### Phase 4A loop
+1548.0 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 50,50 jump 1267
+1555.2 "Geocrush"
+1559.0 "Earthen Gauntlets"
+1567.2 "Massive Landslide"
+1581.5 "Left/Right Landslide"
+1595.9 "Left/Right Landslide"
+1604.6 "Earthen Armor"
+
+
+
+
+### Phase 6B
+2267.0 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 30,30
+2274.3 "Geocrush" sync / 1[56]:[^:]*:Titan:40F6:/
+2278.1 "Earthen Wheels" sync / 1[56]:[^:]*:Titan:40E8:/
+2286.2 "Fault Zone" sync / 1[56]:[^:]*:Titan:4102:/
+2293.8 "Fault Zone" sync / 1[56]:[^:]*:Titan:4102:/
+2301.4 "Fault Zone" sync / 1[56]:[^:]*:Titan:4102:/
+2309.4 "Magnitude 5.0" sync / 1[56]:[^:]*:Titan:4104:/
+2312.6 "Earthen Armor" sync / 1[56]:[^:]*:Titan:40E9:/
+
+
+### Phase 5B
+2329.4 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 30,30
+2335.4 "Bomb Boulders" sync / 1[56]:[^:]*:Titan:40EC:/
+2336.4 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+2340.4 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+2351.5 "Evil Earth" sync / 1[56]:[^:]*:Titan:40EE:/
+2362.4 "Voice Of The Land" sync / 1[56]:[^:]*:Titan:40F7:/
+2371.5 "Evil Earth" sync / 1[56]:[^:]*:Titan:40EE:/
+2381.5 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:40EA:/
+
+
+### Phase 4B
+2391.4 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 30,30
+2400.4 "Geocrush" sync / 1[56]:[^:]*:Titan:40F6:/
+2404.2 "Earthen Gauntlets" sync / 1[56]:[^:]*:Titan:40E6:/
+2412.3 "Massive Landslide" sync / 1[56]:[^:]*:Titan:40FA:/
+2426.9 "Left/Right Landslide" sync / 1[56]:[^:]*:Titan:(40FF|4100):/
+2441.5 "Left/Right Landslide" sync / 1[56]:[^:]*:Titan:(40FF|4100):/
+2450.1 "Earthen Armor" sync / 1[56]:[^:]*:Titan:40E7:/
+
+
+### Phase 3B Redux
+2461.2 "Earthen Fury" sync / 1[56]:[^:]*:Titan:40F8:/
+2476.2 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 30,30
+2482.8 "Bomb Boulders" sync / 1[56]:[^:]*:Titan:40EC:/
+2483.8 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+2485.8 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+2487.8 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:4141:/
+2489.4 "Cobalt Bomb" sync / 1[56]:[^:]*:Titan:40F4:/
+2496.8 "Explosion" sync / 1[56]:[^:]*:Bomb Boulder:40F5:/
+2500.6 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:40EA:/
+2510.5 "Voice Of The Land" sync / 1[56]:[^:]*:Titan:40F7:/
+2523.5 "Crumbling Down" sync / 1[56]:[^:]*:Massive Boulder:40F2:/
+2524.6 "Evil Earth" sync / 1[56]:[^:]*:Titan:40EE:/
+2535.5 "Seismic Wave" sync / 1[56]:[^:]*:Titan:40F3:/
+
+
+### Phase 6B Loop
+2545.5 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 50,50 jump 2267
+2554.8 "Geocrush"
+2558.5 "Earthen Wheels"
+2566.7 "Fault Zone"
+2574.3 "Fault Zone"
+2581.9 "Fault Zone"
+2589.9 "Magnitude 5.0"
+2593.1 "Earthen Armor"
+2606.2 "Earthen Fury"

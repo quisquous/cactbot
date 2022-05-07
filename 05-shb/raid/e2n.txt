@@ -1,0 +1,77 @@
+### Eden 2 (Normal)
+# Eden's Gate: Descent
+# -ii 3E4C 3E4E 3E44 3E41 3E3F 3E42 3E45 3E6D 40B8 40B6
+
+hideall "--Reset--"
+hideall "--sync--"
+hideall "Spell-In-Waiting"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.0 "--sync--" sync / 1[56]:[^:]*:Voidwalker:3E4C:/ window 1,0
+10.7 "Doomvoid Guillotine" sync / 1[56]:[^:]*:Voidwalker:3E3B:/ window 11,5
+27.7 "Doomvoid Slicer" sync / 1[56]:[^:]*:Voidwalker:3E3C:/
+46.7 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E4D:/
+59.4 "Dark Fire III" sync / 1[56]:[^:]*:Voidwalker:3E43:/ window 60,5
+67.4 "Unholy Darkness" sync / 1[56]:[^:]*:Voidwalker:3E40:/
+72.7 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E3E:/
+91.2 "Dark Fire III" sync / 1[56]:[^:]*:Voidwalker:3E43:/
+92.9 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E3E:/
+111.4 "Unholy Darkness" sync / 1[56]:[^:]*:Voidwalker:3E40:/
+113.3 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E3E:/
+127.3 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E3E:/
+146.4 "Dark Fire III" sync / 1[56]:[^:]*:Voidwalker:3E43:/
+146.4 "Unholy Darkness" sync / 1[56]:[^:]*:Voidwalker:3E40:/
+
+156.8 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E6E:/ window 200,5
+167.3 "Empty Hate" sync / 1[56]:[^:]*:The Hand of Erebos:3E46:/
+174.3 "Doomvoid Guillotine" sync / 1[56]:[^:]*:Voidwalker:3E3B:/
+184.3 "Empty Hate" sync / 1[56]:[^:]*:The Hand of Erebos:3E46:/
+191.3 "Doomvoid Slicer" sync / 1[56]:[^:]*:Voidwalker:3E3C:/
+206.3 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E4D:/
+
+216.8 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E6E:/ window 30,5
+223.3 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E3E:/
+230.3 "Punishing Ray" sync / 1[56]:[^:]*:Voidwalker:3E47:/
+241.3 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E3E:/
+252.4 "Unholy Darkness" sync / 1[56]:[^:]*:Voidwalker:3E40:/
+259.4 "Dark Fire III" sync / 1[56]:[^:]*:Voidwalker:3E43:/
+270.3 "Empty Hate" sync / 1[56]:[^:]*:The Hand of Erebos:3E46:/
+277.3 "Punishing Ray" sync / 1[56]:[^:]*:Voidwalker:3E47:/
+
+286.8 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E6E:/
+296.0 "Shadoweye" sync / 1[56]:[^:]*:Voidwalker:40B7:/
+301.3 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E3E:/
+316.3 "Doomvoid Guillotine" sync / 1[56]:[^:]*:Voidwalker:3E3B:/
+331.3 "Doomvoid Slicer" sync / 1[56]:[^:]*:Voidwalker:3E3C:/
+331.4 "Shadoweye" sync / 1[56]:[^:]*:Voidwalker:40B7:/
+
+351.8 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E6E:/
+360.3 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E3E:/
+366.3 "Empty Hate" sync / 1[56]:[^:]*:The Hand of Erebos:3E46:/
+374.3 "Punishing Ray" sync / 1[56]:[^:]*:Voidwalker:3E47:/
+383.3 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E3E:/
+394.5 "Unholy Darkness" sync / 1[56]:[^:]*:Voidwalker:3E40:/
+401.5 "Dark Fire III" sync / 1[56]:[^:]*:Voidwalker:3E43:/
+408.4 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E4D:/
+416.4 "Doomvoid Guillotine" sync / 1[56]:[^:]*:Voidwalker:3E3B:/
+426.4 "Empty Hate" sync / 1[56]:[^:]*:The Hand of Erebos:3E46:/
+431.4 "Doomvoid Slicer" sync / 1[56]:[^:]*:Voidwalker:3E3C:/
+441.1 "Shadoweye" sync / 1[56]:[^:]*:Voidwalker:40B7:/
+450.4 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E4D:/
+
+461.8 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E6E:/ window 50,50 jump 351.8
+470.3 "Spell-In-Waiting"
+476.3 "Empty Hate"
+484.3 "Punishing Ray"
+493.3 "Spell-In-Waiting"
+504.5 "Unholy Darkness"
+511.5 "Dark Fire III"
+518.4 "Shadowflame"
+526.4 "Doomvoid Guillotine"
+536.4 "Empty Hate"
+541.4 "Doomvoid Slicer"
+551.1 "Shadoweye"
+560.4 "Shadowflame"

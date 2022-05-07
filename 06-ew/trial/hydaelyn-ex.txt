@@ -1,0 +1,224 @@
+### Hydaelyn Extreme
+# -p 65BC:336.2 65BB:1433.6
+# -ii 65A7 6F12 65BA 6507 65AA 6596 6690 65BE 686C 6C92
+# -it Hydaelyn
+# -it Echo of Hydaelyn
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+11.0 "--sync--" sync / 14:[^:]*:Hydaelyn:65C1:/ window 15,15
+16.0 "Heros's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65C1:/
+26.1 "Shining Saber" sync / 1[56]:[^:]*:Hydaelyn:68C8:/
+
+# Crystallize 1
+35.6 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659A:/
+44.8 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:6598:/ jump 144.8
+44.8 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:6594:/ jump 242.9
+
+44.8 "Highest Holy/Anthelion?" #sync / 1[56]:[^:]*:Hydaelyn:(6598|6594):/
+47.9 "--sync--" #sync / 1[56]:[^:]*:Hydaelyn:65A[01]:/
+48.8 "Crystalline Water III" #sync / 1[56]:[^:]*:Hydaelyn:65A2:/
+56.4 "Magos's Radiance/Mousa's Scorn?" #sync / 1[56]:[^:]*:Hydaelyn:(65C2|65C0):/
+66.6 "Aureole/Lateral Aureole?" #sync / 1[56]:[^:]*:Hydaelyn:(6C91|6F13):/
+
+
+# Highest Holy first
+144.8 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:6598:/
+147.9 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A0:/
+148.8 "Crystalline Water III" sync / 1[56]:[^:]*:Hydaelyn:65A2:/
+156.4 "Magos's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65C2:/
+166.6 "Aureole/Lateral Aureole" sync / 1[56]:[^:]*:Hydaelyn:(6C91|6F13):/
+175.7 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659C:/
+184.9 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:6594:/
+188.0 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A1:/
+188.9 "Crystalline Blizzard III" sync / 1[56]:[^:]*:Hydaelyn:65A4:/
+197.1 "Mousa's Scorn" sync / 1[56]:[^:]*:Hydaelyn:65C0:/
+
+207.3 "Aureole/Lateral Aureole" sync / 1[56]:[^:]*:Hydaelyn:(6F11|65C5):/ jump 307.1
+216.6 "Crystallize" #sync / 1[56]:[^:]*:Hydaelyn:(659E|6ED5|659A|659B):/
+225.8 "Equinox" #sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+228.9 "--sync--" #sync / 1[56]:[^:]*:Hydaelyn:659F:/
+229.8 "Crystalline Water/Stone III" #sync / 1[56]:[^:]*:Hydaelyn:65A[23]:/
+231.9 "--untargetable--"
+
+
+# Anthelion first
+242.9 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:6594:/
+246.0 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A1:/
+246.9 "Crystalline Water III" sync / 1[56]:[^:]*:Hydaelyn:65A2:/
+255.1 "Mousa's Scorn" sync / 1[56]:[^:]*:Hydaelyn:65C0:/
+265.3 "Aureole/Lateral Aureole" sync / 1[56]:[^:]*:Hydaelyn:(6F11|65C5):/
+276.1 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659D:/
+285.3 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:6598:/
+288.4 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A0:/
+289.2 "Crystalline Blizzard III" sync / 1[56]:[^:]*:Hydaelyn:65A4:/
+296.9 "Magos's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65C2:/
+# -> naturally into Crystallize 3 (or jump from above)
+
+# Crystallize 3 (Equinox and Water/Stone)
+307.1 "Aureole/Lateral Aureole" sync / 1[56]:[^:]*:Hydaelyn:(6C91|6F13):/
+316.4 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:(659E|6ED5|659A|659B):/
+325.6 "Equinox" sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+328.7 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:659F:/
+329.6 "Crystalline Water/Stone III" sync / 1[56]:[^:]*:Hydaelyn:65A[23]:/
+331.7 "--untargetable--"
+
+
+# Adds
+336.2 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65BC:/ window 350,10
+344.3 "Pure Crystal" sync / 1[56]:[^:]*:Hydaelyn:65BD:/
+344.3 "--targetable--"
+
+1433.6 "Exodus" sync / 1[56]:[^:]*:Hydaelyn:65BB:/ window 2000,10
+1448.4 "Exodus" sync / 1[56]:[^:]*:Hydaelyn:662B:/
+1453.7 "--targetable--"
+1468.8 "Halo" sync / 1[56]:[^:]*:Hydaelyn:65A5:/
+
+
+# Lightwave 1
+1476.9 "Lightwave" sync / 1[56]:[^:]*:Hydaelyn:6693:/
+1488.7 "Light of the Crystal" #sync / 1[56]:[^:]*:Hydaelyn:65A6:/
+1490.7 "--top-middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+1490.8 "Light of the Crystal" #sync / 1[56]:[^:]*:Hydaelyn:65A6:/
+1496.6 "Infralateral Arc x3" sync / 1[56]:[^:]*:Hydaelyn:6669:/ duration 3.2
+1497.8 "Light of the Crystal" sync / 1[56]:[^:]*:Hydaelyn:65A6:/
+
+# Lightwave 2
+1505.8 "Lightwave" sync / 1[56]:[^:]*:Hydaelyn:6693:/
+1509.0 "--top-middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+1515.4 "Heros's Glory" sync / 1[56]:[^:]*:Hydaelyn:65A8:/
+1520.5 "Light of the Crystal" sync / 1[56]:[^:]*:Hydaelyn:65A6:/
+1523.9 "Light of the Crystal" sync / 1[56]:[^:]*:Hydaelyn:65A6:/
+1527.1 "Light of the Crystal" #sync / 1[56]:[^:]*:Hydaelyn:65A6:/
+1528.7 "--top-middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+1529.9 "Light of the Crystal" sync / 1[56]:[^:]*:Hydaelyn:65A6:/
+1535.1 "Heros's Glory" sync / 1[56]:[^:]*:Hydaelyn:65A8:/
+1536.3 "Light of the Crystal" sync / 1[56]:[^:]*:Hydaelyn:65A6:/
+1544.6 "Halo" sync / 1[56]:[^:]*:Hydaelyn:65A5:/
+1555.7 "Heros's Sundering" sync / 1[56]:[^:]*:Hydaelyn:65BF:/
+1565.8 "Shining Saber" sync / 1[56]:[^:]*:Hydaelyn:68C8:/
+
+# Parhelion or Parhelic Circle
+1575.3 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:6594:/ jump 1675.3
+1575.3 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:6598:/ jump 1966.1
+1575.3 "Anthelion/Highest Holy?" #sync / 1[56]:[^:]*:Hydaelyn:(6594|6598):/
+1585.5 "Mousa's Scorn/Magos's Radiance?" #sync / 1[56]:[^:]*:Hydaelyn:(65C0|65C2):/
+1590.7 "--middle?--" #sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
+1594.6 "Crystallize?" #sync / 1[56]:[^:]*:Hydaelyn:659C:/
+1597.2 "Parhelion?" sync / 1[56]:[^:]*:Hydaelyn:(65B0|65AC):/
+1597.8 "--top-middle?--" #sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+1605.4 "Parhelic Circle?" #sync / 1[56]:[^:]*:Hydaelyn:65AC:/
+
+
+# Parhelion first
+1675.3 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:6594:/
+1685.5 "Mousa's Scorn" sync / 1[56]:[^:]*:Hydaelyn:65C0:/
+1690.7 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
+1697.2 "Parhelion" sync / 1[56]:[^:]*:Hydaelyn:65B0:/
+1697.5 "Beacon 1" #sync / 1[56]:[^:]*:Parhelion:65B2:/
+1699.1 "Beacon 2" #sync / 1[56]:[^:]*:Parhelion:65B2:/
+1700.7 "Beacon 3" #sync / 1[56]:[^:]*:Parhelion:65B2:/
+1706.0 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:6ED5:/
+1714.1 "Subparhelion" sync / 1[56]:[^:]*:Hydaelyn:6C56:/
+1716.1 "Crystalline Water III" sync / 1[56]:[^:]*:Hydaelyn:65A2:/
+1716.3 "Beacon 1" #sync / 1[56]:[^:]*:Parhelion:65B3:/
+1717.2 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A1:/
+1717.9 "Beacon 2" #sync / 1[56]:[^:]*:Parhelion:65B3:/
+1719.5 "Beacon 3" #sync / 1[56]:[^:]*:Parhelion:65B3:/
+1724.4 "Aureole/Lateral Aureole" sync / 1[56]:[^:]*:Hydaelyn:(6F11|65C5):/
+
+1733.5 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:6598:/
+1743.6 "Magos's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65C2:/
+1752.7 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659C:/
+1755.9 "--top-middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+1763.5 "Parhelic Circle" sync / 1[56]:[^:]*:Hydaelyn:65AC:/
+1764.3 "--sync--" sync / 1[56]:[^:]*:Mystic Refulgence:65AE:/
+1765.4 "Incandescence" sync / 1[56]:[^:]*:Mystic Refulgence:65AF:/
+1766.7 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A0:/
+1768.9 "Crystalline Blizzard III" sync / 1[56]:[^:]*:Hydaelyn:65A4:/
+1774.7 "Aureole/Lateral Aureole" sync / 1[56]:[^:]*:Hydaelyn:(6C91|6F13):/
+1783.8 "Equinox" sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+1791.0 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+1797.6 "Radiant Halo" sync / 1[56]:[^:]*:Hydaelyn:65B4:/
+
+1806.7 "Lightwave" sync / 1[56]:[^:]*:Hydaelyn:669[345]:/ jump 2206.7
+1826.3 "Echoes x5" #sync / 1[56]:[^:]*:Hydaelyn:65B5:/ duration 4.5
+1834.0 "Bright Spectrum" #sync / 1[56]:[^:]*:Hydaelyn:65B9:/
+1834.0 "Dichroic Spectrum" #sync / 1[56]:[^:]*:Hydaelyn:65B8:/
+1846.3 "Crystallize" #sync / 1[56]:[^:]*:Hydaelyn:659A:/
+
+
+# Parhelic Circle first
+1966.1 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:6598:/
+1976.3 "Magos's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65C2:/
+1985.4 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659C:/
+1988.6 "--top-middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+1996.3 "Parhelic Circle" sync / 1[56]:[^:]*:Hydaelyn:65AC:/
+1997.1 "--sync--" sync / 1[56]:[^:]*:Mystic Refulgence:65AE:/
+1998.2 "Incandescence" sync / 1[56]:[^:]*:Mystic Refulgence:65AF:/
+1999.5 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A0:/
+2001.7 "Crystalline Blizzard III" sync / 1[56]:[^:]*:Hydaelyn:65A4:/
+2007.6 "Aureole/Lateral Aureole" sync / 1[56]:[^:]*:Hydaelyn:(6C91|6F13):/
+
+2016.7 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:6594:/
+2026.9 "Mousa's Scorn" sync / 1[56]:[^:]*:Hydaelyn:65C0:/
+2032.1 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
+2038.7 "Parhelion" sync / 1[56]:[^:]*:Hydaelyn:65B0:/
+2039.0 "Beacon 1" #sync / 1[56]:[^:]*:Parhelion:65B2:/
+2040.6 "Beacon 2" #sync / 1[56]:[^:]*:Parhelion:65B2:/
+2042.2 "Beacon 3" #sync / 1[56]:[^:]*:Parhelion:65B2:/
+2047.5 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:6ED5:/
+2055.6 "Subparhelion" sync / 1[56]:[^:]*:Hydaelyn:6C56:/
+2057.6 "Crystalline Water III" sync / 1[56]:[^:]*:Hydaelyn:65A2:/
+2057.8 "Beacon 1" #sync / 1[56]:[^:]*:Parhelion:65B3:/
+2058.7 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A1:/
+2059.4 "Beacon 2" #sync / 1[56]:[^:]*:Parhelion:65B3:/
+2061.0 "Beacon 3" #sync / 1[56]:[^:]*:Parhelion:65B3:/
+2065.8 "Aureole/Lateral Aureole" sync / 1[56]:[^:]*:Hydaelyn:(6F11|65C5):/
+2074.9 "Equinox" sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+2082.1 "--top-middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+2088.6 "Radiant Halo" sync / 1[56]:[^:]*:Hydaelyn:65B4:/
+
+2097.7 "Lightwave" sync / 1[56]:[^:]*:Hydaelyn:669[345]:/ jump 2206.7
+2117.2 "Echoes x5" #sync / 1[56]:[^:]*:Hydaelyn:65B5:/
+2125.0 "Bright Spectrum" #sync / 1[56]:[^:]*:Hydaelyn:65B9:/
+2125.0 "Dichroic Spectrum" #sync / 1[56]:[^:]*:Hydaelyn:65B8:/
+2137.3 "Crystallize" #sync / 1[56]:[^:]*:Hydaelyn:659A:/
+
+
+# Lightwave 3
+2206.7 "Lightwave" sync / 1[56]:[^:]*:Hydaelyn:669[345]:/
+2226.3 "Echoes x5" sync / 1[56]:[^:]*:Hydaelyn:65B5:/ duration 4.5
+2234.0 "Bright Spectrum" sync / 1[56]:[^:]*:Hydaelyn:65B9:/
+2234.0 "Dichroic Spectrum" sync / 1[56]:[^:]*:Hydaelyn:65B8:/
+
+2246.3 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659A:/
+2253.9 "Shining Saber" sync / 1[56]:[^:]*:Hydaelyn:68C8:/
+2258.2 "Crystalline Water III" sync / 1[56]:[^:]*:Hydaelyn:65A2:/
+2263.2 "Highest Holy/Anthelion" sync / 1[56]:[^:]*:Hydaelyn:(6594|6598):/
+2266.3 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A[01]:/
+
+# Lightwave 4
+2274.4 "Lightwave" sync / 1[56]:[^:]*:Hydaelyn:669[345]:/
+2293.9 "Echoes x5" sync / 1[56]:[^:]*:Hydaelyn:65B[67]:/
+2301.8 "Bright Spectrum" sync / 1[56]:[^:]*:Hydaelyn:65B9:/
+2301.8 "Dichroic Spectrum" sync / 1[56]:[^:]*:Hydaelyn:65B8:/
+
+2314.0 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659[CD]:/
+2321.7 "Aureole/Lateral Aureole" sync / 1[56]:[^:]*:Hydaelyn:(6C91|6F13|6F11|65C5):/
+2325.9 "Crystalline Blizzard III" sync / 1[56]:[^:]*:Hydaelyn:65A4:/
+2330.9 "Highest Holy/Anthelion" sync / 1[56]:[^:]*:Hydaelyn:(6594|6598):/
+2334.0 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A[01]:/
+
+2342.1 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659E:/
+2350.3 "Aureole/Lateral Aureole" sync / 1[56]:[^:]*:Hydaelyn:(6C91|6F13|6F11|65C5):/
+2354.5 "Crystalline Stone III" sync / 1[56]:[^:]*:Hydaelyn:65A3:/
+2359.5 "Equinox" sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+
+2362.6 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:659F:/
+2369.7 "--sync--" sync / 14:[^:]*:Hydaelyn:5FFB:/ window 100,10
+2379.7 "Heros's Radiance Enrage" sync / 1[56]:[^:]*:Hydaelyn:5FFB:/

@@ -1,0 +1,268 @@
+# The Ridorana Lighthouse
+# https://docs.google.com/document/d/1EJMARltDR6Pmts1o5gqMl9pd5weTfROVFu1o1YwgAPk/edit
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+###########
+# Famfrit #
+###########
+0 "Start" sync / 00:0839::Echoes from Time's Garden will be sealed off/ window 0,1
+13 "Tide Pod" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3E:/ window 13,1
+26 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
+35 "Briny Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C45:/
+47 "Tsunami" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C50:/
+54 "Tsunami" duration 3
+66 "Tsunami" duration 3
+78 "Tsunami" duration 3
+86 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
+97 "Dark Ewer (cross)" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C43:/
+110 "Tide Pod" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3E:/
+118 "Briny Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C41:/
+119 "Briny Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C45:/
+124 "Dark Ewer (orbit)" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C43:/
+139 "Dark Rain" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C40:/
+
+# Begin loop
+151 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
+164 "Darkening Rainfall" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3F:/
+169 "Darkening Deluge" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C56:/
+176 "Dark Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C42:/
+200 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
+208 "Tsunami" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C50:/
+215 "Tsunami" duration 3
+227 "Tsunami" duration 3
+228 "Briny Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C45:/
+239 "Tsunami" duration 3
+247 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
+259 "Tide Pod" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3E:/
+272 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
+279 "Tide Pod" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3E:/
+291 "Dark Ewer (cross)" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C43:/
+302 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
+311 "Briny Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C45:/
+318 "Dark Ewer (orbit)" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C43:/
+324 "Tsunami" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C48:/
+331 "Tsunami" duration 3
+343 "Tsunami" duration 3
+355 "Tsunami" duration 3
+357 "Briny Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C45:/
+364 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
+371 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
+386 "Tide Pod" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3E:/
+397 "Tide Pod" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3E:/
+404 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/ jump 151
+# End loop
+
+# Dummy loop future
+418 "Darkening Rainfall"
+423 "Darkening Deluge"
+430 "Dark Cannonade"
+
+##########
+# Belias #
+##########
+
+1000 "Start" sync / 00:0839::The Spire's Bounds will be sealed off/ window 1000,0
+1012 "Fire" sync / 1[56]:[^:]*:Belias, the Gigas:2CDB:/ window 1012,5
+1024 "Fire IV" sync / 1[56]:[^:]*:Belias, the Gigas:2CDC:/
+1033 "Time Eruption" sync / 1[56]:[^:]*:Belias, the Gigas:2CDE:/
+1038 "Fast Hands" sync / 1[56]:[^:]*:Belias, the Gigas:2CDF:/
+1041 "Slow Hands" sync / 1[56]:[^:]*:Belias, the Gigas:2CE0:/
+1041 "--untargetable--"
+1048 "Crimson Cyclone" sync / 1[56]:[^:]*:Belias, the Gigas:2CE2:/
+1051 "Crimson Cyclone" sync / 1[56]:[^:]*:Belias, the Gigas:2D5F:/
+1054 "--targetable--"
+1062 "Fire" sync / 1[56]:[^:]*:Belias, the Gigas:2CDB:/
+1070 "Fire IV" sync / 1[56]:[^:]*:Belias, the Gigas:2CDC:/
+1079 "The Hand Of Time" sync / 1[56]:[^:]*:Belias, the Gigas:2CE5:/
+1089 "Fire IV" sync / 1[56]:[^:]*:Belias, the Gigas:2CDC:/
+1095 "Eruption" duration 4
+1100 "Fire" sync / 1[56]:[^:]*:Belias, the Gigas:2CDB:/
+1110 "Fire IV" sync / 1[56]:[^:]*:Belias, the Gigas:2CDC:/
+1118 "Gigas spawns"
+
+# Adds dead
+1300 "Hellfire" sync / 1[56]:[^:]*:Belias, the Gigas:2CE8:/ window 5000,700
+1313 "Time Bomb" duration 15
+1322 "Fire" sync / 1[56]:[^:]*:Belias, the Gigas:2CDB:/
+
+# Begin loop
+1342 "The Hand Of Time" sync / 1[56]:[^:]*:Belias, the Gigas:2CE5:/
+1345 "--untargetable--"
+1352 "Crimson Cyclone" sync / 1[56]:[^:]*:Belias, the Gigas:2CE2:/
+1355 "Crimson Cyclone" sync / 1[56]:[^:]*:Belias, the Gigas:2D5F:/
+1358 "--targetable--"
+1365 "Fire IV" sync / 1[56]:[^:]*:Belias, the Gigas:2CDC:/
+1375 "Time Eruption" sync / 1[56]:[^:]*:Belias, the Gigas:2CDE:/
+1380 "Fast Hands" sync / 1[56]:[^:]*:Belias, the Gigas:2CDF:/
+1380 "Time Bomb" duration 15
+1383 "Slow Hands" sync / 1[56]:[^:]*:Belias, the Gigas:2CE0:/
+1396 "Fire" sync / 1[56]:[^:]*:Belias, the Gigas:2CDB:/
+1411 "The Hand Of Time" sync / 1[56]:[^:]*:Belias, the Gigas:2CE5:/
+1421 "Fire IV" sync / 1[56]:[^:]*:Belias, the Gigas:2CDC:/
+1422 "Eruption" duration 4
+1436 "Time Bomb" duration 15
+1442 "--untargetable--"
+1449 "Crimson Cyclone" sync / 1[56]:[^:]*:Belias, the Gigas:2CE2:/
+1451 "Crimson Cyclone" sync / 1[56]:[^:]*:Belias, the Gigas:2D5F:/
+1454 "--targetable--"
+1466 "Time Eruption" sync / 1[56]:[^:]*:Belias, the Gigas:2CDE:/
+1471 "Fast Hands" sync / 1[56]:[^:]*:Belias, the Gigas:2CDF:/
+1474 "Slow Hands" sync / 1[56]:[^:]*:Belias, the Gigas:2CE0:/
+1486 "The Hand Of Time" sync / 1[56]:[^:]*:Belias, the Gigas:2CE5:/ jump 1342
+# End loop
+
+# Dummy loop future
+1489 "--untargetable--"
+1496 "Crimson Cyclone"
+1499 "Crimson Cyclone"
+1502 "--targetable--"
+1509 "Fire IV"
+
+###############
+# Construct 7 #
+###############
+2000 "Start" sync / 00:0839::The Cleft of Profaning Wind will be sealed off/ window 2000,0
+2016 "Destroy" sync / 1[56]:[^:]*:Construct 7:2C5A:/ window 2016,0
+2026 "Ignite" sync / 1[56]:[^:]*:Construct 7:2C67:/
+2029 "Accelerate" sync / 1[56]:[^:]*:Construct 7:2C65:/
+2043 "Pulverize (close)" sync / 1[56]:[^:]*:Construct 7:2C61:/
+2048 "Pulverize (far)" sync / 1[56]:[^:]*:Construct 7:2C62:/
+2049 "Compress" sync / 1[56]:[^:]*:Construct 7:2C5C:/
+2057 "--untargetable--" sync / 1[56]:[^:]*:Construct 7:2C66:/
+2072 "Ignite" sync / 1[56]:[^:]*:Construct 7:2C67:/
+2074 "Lithobrake" sync / 1[56]:[^:]*:Construct 7:2C68:/
+2083 "Dispose" duration 5
+2101 "Incinerate" sync / 1[56]:[^:]*:Construct 7:2C64:/
+2113 "Computation Mode" sync / 1[56]:[^:]*:Construct 7:2C57:/ # drift -0.356
+2120 "Subtract" sync / 1[56]:[^:]*:Construct 7:2C6C:/ # drift 0.204
+2138 "Division" sync / 1[56]:[^:]*:Construct 7:2CC(A|C|D|E):/ # drift 0.246
+2153 "Division" sync / 1[56]:[^:]*:Construct 7:2CC(A|C|D|E):/ # drift 0.355
+2168 "Incinerate" sync / 1[56]:[^:]*:Construct 7:2CC8:/
+2176 "Tartarus Mode" sync / 1[56]:[^:]*:Construct 7:2C58:/
+2178 "--untargetable--" sync / 1[56]:[^:]*:Construct 7:2C63:/
+
+# Adds. This doesn't currently show because of combat dropping
+2230 "Area Lockdown"
+
+# After adds
+2244 "--sync--" sync / 14:[^:]*:Construct 7:2C59:/ window 5000,766
+2254 "Annihilation Mode" sync / 1[56]:[^:]*:Construct 7:2C59:/ window 5000,756
+2264 "Destroy" sync / 1[56]:[^:]*:Construct 7:2C71:/
+2274 "Ignite" sync / 1[56]:[^:]*:Construct 7:2C67:/
+2277 "Accelerate" sync / 1[56]:[^:]*:Construct 7:2C65:/ window 150,150
+2291 "Pulverize (close)" sync / 1[56]:[^:]*:Construct 7:2C61:/
+2296 "Pulverize (far)" duration 4
+2297 "Compress" sync / 1[56]:[^:]*:Construct 7:2C5D:/
+2310 "Incinerate" sync / 1[56]:[^:]*:Construct 7:2D5C:/
+2322 "Computation Mode" sync / 1[56]:[^:]*:Construct 7:2C57:/
+2329 "Subtract" sync / 1[56]:[^:]*:Construct 7:2C6C:/
+2347 "Division" sync / 1[56]:[^:]*:Construct 7:2CC(A|C|D|E):/
+2362 "Division" sync / 1[56]:[^:]*:Construct 7:2CC(A|C|D|E):/
+2377 "Incinerate" sync / 1[56]:[^:]*:Construct 7:2D5D:/
+2383 "--untargetable--"
+
+# Begin loop
+2392 "Ignite" sync / 1[56]:[^:]*:Construct 7:2C66:/
+2401 "Lithobrake" sync / 1[56]:[^:]*:Construct 7:2D1E:/
+2410 "Dispose" duration 9
+2431 "Incinerate" sync / 1[56]:[^:]*:Construct 7:2D5C:/
+2444 "Ventilate" sync / 1[56]:[^:]*:Construct 7:2C69:/
+2454 "Destroy" sync / 1[56]:[^:]*:Construct 7:2C71:/
+2464 "Ignite" sync / 1[56]:[^:]*:Construct 7:2C67:/
+2467 "Accelerate" sync / 1[56]:[^:]*:Construct 7:2C65:/
+2481 "Pulverize (close)" sync / 1[56]:[^:]*:Construct 7:2C61:/
+2486 "Pulverize (far)" duration 4
+2487 "Compress" sync / 1[56]:[^:]*:Construct 7:2C5D:/
+2495 "--untargetable--"
+2504 "Ignite" sync / 1[56]:[^:]*:Construct 7:2C66:/ jump 2392
+# End loop
+
+# Dummy loop future
+2513 "Lithobrake"
+2522 "Dispose"
+
+
+### Yiazmat
+3000 "Start" sync / 00:0839::The Clockwork Coliseum will be sealed off/ window 3000,0
+3016 "Rake (single)" sync / 1[56]:[^:]*:Yiazmat:2C26:/ window 3016,0
+3026 "Gust Front" duration 4
+3034 "Stone Breath" sync / 1[56]:[^:]*:Yiazmat:2C29:/
+3046 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
+3059 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
+3074 "Magnetic Lysis" sync / 1[56]:[^:]*:Yiazmat:2C2A:/
+3082 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
+3088 "Gust Front" duration 4
+3092 "Stone Breath" sync / 1[56]:[^:]*:Yiazmat:2C29:/
+3098 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
+3101 "Magnetic Genesis" sync / 1[56]:[^:]*:Yiazmat:2C2B:/
+3114 "Rake (combo)" duration 14
+3134 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
+3149 "Rake (single)" sync / 1[56]:[^:]*:Yiazmat:2C26:/
+3160 "Gust Front" duration 4
+3162 "Stone Breath" sync / 1[56]:[^:]*:Yiazmat:2C29:/
+3175 "Summon" sync / 1[56]:[^:]*:Yiazmat:2C37:/
+3186 "Magnetic Lysis" sync / 1[56]:[^:]*:Yiazmat:2C2A:/
+3194 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
+3201 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
+3208 "Death Strike" sync / 1[56]:[^:]*:Yiazmat:2C34:/
+3213 "Magnetic Genesis" sync / 1[56]:[^:]*:Yiazmat:2C2B:/
+3222 "Cyclone" sync / 1[56]:[^:]*:Yiazmat:2C23:/ duration 4
+
+# Adds
+3241 "Archaeodemon spawn"
+3248 "Gust Front" duration 4
+3250 "Karma/Unholy Darkness"
+3258 "Death Strike" sync / 1[56]:[^:]*:Yiazmat:2C33:/
+3262 "Karma/Unholy Darkness"
+3301 "Enrage"
+
+# Adds complete
+3400 "Solar Storm" sync / 1[56]:[^:]*:Yiazmat:2C2C:/ window 5000,600
+3420 "Rake (combo)" duration 14
+3425 "Gust Front" duration 4
+3439 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
+3450 "Rake (single)" sync / 1[56]:[^:]*:Yiazmat:2C26:/
+
+# Begin loop
+3456 "Magnetic Lysis" sync / 1[56]:[^:]*:Yiazmat:2C2A:/
+3463 "Rake (combo)" duration 14
+3481 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
+3483 "Magnetic Genesis" sync / 1[56]:[^:]*:Yiazmat:2C2B:/
+3493 "Cyclone" sync / 1[56]:[^:]*:Yiazmat:2C23:/ duration 4
+3505 "Death Strike" sync / 1[56]:[^:]*:Yiazmat:2C34:/
+3510 "Gust Front" duration 4
+3520 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
+3531 "Rake (single)" sync / 1[56]:[^:]*:Yiazmat:2C26:/
+3537 "Magnetic Lysis" sync / 1[56]:[^:]*:Yiazmat:2C2A:/
+3544 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
+3551 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
+3553 "Gust Front" duration 4
+3561 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
+3565 "Magnetic Genesis" sync / 1[56]:[^:]*:Yiazmat:2C2B:/
+3577 "Gale Gaol" sync / 1[56]:[^:]*:Yiazmat:2C2D:/
+3584 "Gust Front" duration 4
+3587 "Stone Breath" sync / 1[56]:[^:]*:Yiazmat:2C29:/
+3595 "Rake (single)" sync / 1[56]:[^:]*:Yiazmat:2C26:/
+3600 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
+3610 "Magnetic Lysis" sync / 1[56]:[^:]*:Yiazmat:2C2A:/ jump 3456
+# End loop
+
+# Dummy loop future
+3617 "Rake (combo)"
+3634 "Dust Storm"
+
+# 9.99% push
+3694 "--sync--" sync / 14:[^:]*:Yiazmat:2C32:/ window 5000,306
+3700 "Growing Threat" sync / 1[56]:[^:]*:Yiazmat:2C32:/ window 5000,300
+3707 "Rake (combo)" duration 14
+3727 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
+3734 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
+3740 "Rake (combo)" duration 14
+3752 "Gust Front" duration 4
+3761 "Stone Breath" sync / 1[56]:[^:]*:Yiazmat:2C29:/
+3767 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
+# more?

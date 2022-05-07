@@ -1,0 +1,428 @@
+### The Puppets' Bunker
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+### 813P-Operated Aegis Unit
+# -p 508D:112.8 -ii 5074 5075 5076 5091 5092 5081 5099 507E 5090 51BC
+
+100.0 "--sync--" sync / 00:0839::The elevated detritus will be sealed off/ window 100,0
+112.8 "Firing Order: Anti-Personnel Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508D:/ window 20,20
+125.1 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[789A]:/
+140.1 "Maneuver: Beam Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5073:/
+158.4 "Maneuver: Collider Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[BCD]:/
+170.6 "Firing Order: Surface Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508E:/
+177.7 "Aerial Support: Swoop" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:50D2:/
+187.8 "Flight Path" sync / 1[56]:[^:]*:Flight Unit:508C:/
+197.9 "Maneuver: Refraction Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:(507F|5080):/
+206.2 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[789A]:/
+220.2 "Maneuver: Beam Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5073:/
+239.6 "Aerial Support: Bombardment" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:50D3:/
+244.4 "--adds targetable--"
+249.8 "Firing Order: Surface Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508E:/
+256.0 "Firing Order: High-Powered Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508F:/
+263.3 "High-Powered Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5093:/
+269.5 "Maneuver: Saturation Bombing?" sync / 1[56]:[^:]*:Flight Unit:5097:/
+
+# Singing Rotation 1
+280.3 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+287.8 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+288.3 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+295.8 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+296.3 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+303.8 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+309.3 "Aerial Support: Swoop" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:50D2:/
+317.4 "Maneuver: Refraction Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:(507F|5080):/
+319.4 "Flight Path" sync / 1[56]:[^:]*:Flight Unit:508C:/
+328.5 "Firing Order: Surface Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508E:/
+330.7 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[789A]:/
+345.7 "Maneuver: Beam Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5073:/
+349.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+
+# Singing Rotation 2
+354.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+357.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+359.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+362.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+364.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+367.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+369.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+372.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+377.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+382.8 "Aerial Support: Swoop" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:50D2:/
+392.9 "Flight Path" sync / 1[56]:[^:]*:Flight Unit:508C:/
+394.4 "Maneuver: Collider Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[BCD]:/
+411.7 "Firing Order: Anti-Personnel Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508D:/
+422.3 "Maneuver: Collider Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[BCD]:/
+441.6 "Firing Order: Surface Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508E:/
+443.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[789A]:/
+458.8 "Maneuver: Beam Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5073:/
+462.9 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+
+# Singing Rotation Loop
+467.9 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+470.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+472.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+475.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+477.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+480.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+482.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+485.2 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+490.2 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+495.7 "Aerial Support: Swoop" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:50D2:/
+503.8 "Maneuver: Refraction Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:(507F|5080):/
+505.8 "Flight Path" sync / 1[56]:[^:]*:Flight Unit:508C:/
+521.1 "Firing Order: Anti-Personnel Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508D:/
+531.1 "Maneuver: Collider Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[BCD]:/
+550.5 "Firing Order: Surface Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508E:/
+552.7 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[789A]:/
+566.7 "Maneuver: Beam Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5073:/
+570.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+
+# lookahead loop
+575.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+578.2 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+580.7 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+583.2 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+585.7 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+588.2 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+590.7 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+593.1 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+598.1 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
+603.6 "Aerial Support: Swoop" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:50D2:/ window 100,100 jump 495.7
+611.7 "Maneuver: Refraction Cannons" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:(507F|5080):/
+613.7 "Flight Path" #sync / 1[56]:[^:]*:Flight Unit:508C:/
+629.0 "Firing Order: Anti-Personnel Laser" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508D:/
+639.0 "Maneuver: Collider Cannons" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[BCD]:/
+658.4 "Firing Order: Surface Laser" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508E:/
+660.6 "--sync--" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[789A]:/
+674.6 "Maneuver: Beam Cannons" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5073:/
+678.7 "--sync--" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+
+
+### Light Artillery Unit x3 and friends
+# -ic "Yorha Close-Combat Unit: Spear" "Yorha Close-Combat Unit: Blade" "Yorha Close-Combat Unit: Martial"
+# -p 5212:1013.9 -ii 5214
+1000.0 "--sync--" sync / 00:0839::The sunken detritus will be sealed off/ window 1000,0
+1013.9 "Maneuver: Long-Barreled Laser" sync / 1[56]:[^:]*:Light Artillery Unit:5212:/ window 20,20
+1025.7 "Maneuver: Volt Array" sync / 1[56]:[^:]*:Light Artillery Unit:5211:/
+1036.0 "Authorization: No Restrictions" sync / 1[56]:[^:]*:Light Artillery Unit:520E:/
+1041.7 "Surface Missile Impact" sync / 1[56]:[^:]*:Light Artillery Unit:520F:/
+1043.7 "Homing Missile Impact" sync / 1[56]:[^:]*:Light Artillery Unit:5210:/
+
+1052.7 "Maneuver: Long-Barreled Laser" sync / 1[56]:[^:]*:Light Artillery Unit:5212:/
+1059.5 "Maneuver: Long-Barreled Laser" sync / 1[56]:[^:]*:Light Artillery Unit:5212:/
+1070.2 "Maneuver: Volt Array" sync / 1[56]:[^:]*:Light Artillery Unit:5211:/
+1086.7 "Maneuver: Martial Arm" sync / 1[56]:[^:]*:Light Artillery Unit:5213:/
+1097.1 "Maneuver: Martial Arm" sync / 1[56]:[^:]*:Light Artillery Unit:5213:/
+1103.5 "Maneuver: Long-Barreled Laser" sync / 1[56]:[^:]*:Light Artillery Unit:5212:/
+
+1103.7 "Maneuver: Long-Barreled Laser" sync / 1[56]:[^:]*:Light Artillery Unit:5212:/
+1119.6 "Maneuver: Volt Array" sync / 1[56]:[^:]*:Light Artillery Unit:5211:/
+1129.9 "Authorization: No Restrictions" sync / 1[56]:[^:]*:Light Artillery Unit:520E:/ window 50,50 jump 1036.0
+1135.6 "Surface Missile Impact" #sync / 1[56]:[^:]*:Light Artillery Unit:520F:/
+1137.6 "Homing Missile Impact" #sync / 1[56]:[^:]*:Light Artillery Unit:5210:/
+1153.7 "Initiate Self-Destruct" #sync / 1[56]:[^:]*:Light Artillery Unit:5215:/
+1153.7 "Initiate Self-Destruct" #sync / 1[56]:[^:]*:Light Artillery Unit:5215:/
+
+
+### Superior Flight Unit Swordy Boi Trio
+# -it "772P-Operated Superior Flight Unit \(C-Hi\)" -p 4FA6:2005.1 -ii 53AF 4FA7 4FBE 4FB5 4FA8 4FB6 4FB9 506E 5511 5512 5513 5514 506D 4FC5 4FB1 4FB2 4FBC 506F 5070 4FB8 4FBA 4FC0 4FC1
+# Notes:
+# * if one of the planes is dead, sliding swipe will end 2s earlier per dead plane
+# * most abilities are done by all planes, except:
+#   * Sliding Swipes done by individual planes, with unique ability ids.
+#   * Incendiary Barrage (4FAF) is only done by A???
+#   * Sharp Turn has unique ability ids per plane, but they all do it.
+# * however, syncing against multiple planes simultaneously might cause timeline jitter
+
+2000.0 "--sync--" sync / 00:0839::The launch deck will be sealed off/ window 2000,0
+2005.1 "Apply Shield Protocol" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FA6:/ window 20,20
+2018.3 "Maneuver: Missile Command" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/
+2031.5 "Maneuver: Incendiary Bombing" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC3:/
+2040.7 "Maneuver: High-Powered Laser" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB4:/
+
+2060.4 "Formation: Sharp Turn" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAB:/
+2073.6 "Sharp Turn" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FA[9A]:/
+
+2090.4 "Maneuver: Precision Guided Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC4:/
+2104.7 "Formation: Air Raid" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB0:/
+# Technically 2 missiles (4FB1/4FB2) come out during the 2.2s before this cast??
+2114.0 "Lethal Revolution" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB3:/ duration 5.8
+
+2142.4 "Formation: Sliding Swipe" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAE:/
+2144.4 "--untargetable--"
+2153.5 "Incendiary Barrage" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAF:/
+2155.0 "Sliding Swipe 1" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FA[CD]:/
+2157.0 "Sliding Swipe 2" sync / 1[56]:[^:]*:767P-Operated Superior Flight Unit \(B-Eta\):550[DE]:/
+2159.0 "Sliding Swipe 3" sync / 1[56]:[^:]*:772P-Operated Superior Flight Unit \(C-Hi\):(550F|5510):/
+2161.3 "--targetable--"
+
+2172.7 "--sync--" sync / 14:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC4:/ window 70,20
+2172.7 "--sync--" sync / 14:[^:]*:767P-Operated Superior Flight Unit \(B-Eta\):4FC4:/ window 70,20
+2172.7 "--sync--" sync / 14:[^:]*:772P-Operated Superior Flight Unit \(C-Hi\):4FC4:/ window 70,20
+2176.7 "Maneuver: Precision Guided Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC4:/ window 10,10
+2191.0 "Maneuver: Area Bombardment" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB7:/ duration 15
+2206.2 "Maneuver: High-Powered Laser" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB4:/
+2224.8 "Maneuver: Missile Command" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/
+
+2243.1 "Formation: Air Raid" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB0:/
+2252.5 "Lethal Revolution" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB3:/ duration 5.8
+
+2273.8 "Maneuver: Area Bombardment" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB7:/ duration 15
+
+2304.1 "Maneuver: Precision Guided Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC4:/
+2315.3 "Maneuver: Incendiary Bombing" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC3:/
+
+# Loop begins roughly here:
+2321.5 "Maneuver: High-Order Explosive Blast" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBF:/
+2339.8 "Maneuver: Missile Command" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/
+
+2356.1 "Formation: Sharp Turn" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAB:/
+2369.2 "Sharp Turn" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FA[9A]:/
+
+2392.0 "Formation: Sliding Swipe" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAE:/
+2394.0 "--untargetable--"
+2400.0 "Anti-Personnel Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBB:/
+2403.1 "Incendiary Barrage" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAF:/
+2404.6 "Sliding Swipe 1" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FA[CD]:/
+2406.6 "Sliding Swipe 2" sync / 1[56]:[^:]*:767P-Operated Superior Flight Unit \(B-Eta\):550[DE]:/
+2408.6 "Sliding Swipe 3" sync / 1[56]:[^:]*:772P-Operated Superior Flight Unit \(C-Hi\):(550F|5510):/
+2410.9 "--targetable--"
+
+2427.2 "--sync--" sync / 14:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/ window 70,20
+2427.2 "--sync--" sync / 14:[^:]*:767P-Operated Superior Flight Unit \(B-Eta\):4FBD:/ window 70,20
+2427.2 "--sync--" sync / 14:[^:]*:772P-Operated Superior Flight Unit \(C-Hi\):4FBD:/ window 70,20
+2431.2 "Maneuver: Missile Command" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/ window 10,10
+2447.4 "Maneuver: Precision Guided Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC4:/
+2467.7 "Maneuver: Area Bombardment" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB7:/ duration 15
+2482.9 "Maneuver: High-Powered Laser" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB4:/
+2501.5 "Maneuver: Missile Command" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/
+2519.8 "Formation: Air Raid" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB0:/
+2529.0 "Lethal Revolution" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB3:/ duration 5.8
+2550.5 "Maneuver: Area Bombardment" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB7:/ duration 15
+2565.6 "Anti-Personnel Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBB:/
+2580.8 "Maneuver: Precision Guided Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC4:/
+2592.0 "Maneuver: Incendiary Bombing" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC3:/
+
+2598.2 "--sync--" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBF:/ window 90,90 jump 2321.5
+2598.2 "--sync--" sync / 1[56]:[^:]*:767P-Operated Superior Flight Unit \(B-Eta\):4FBF:/ window 90,90 jump 2321.5
+2598.2 "--sync--" sync / 1[56]:[^:]*:772P-Operated Superior Flight Unit \(C-Hi\):4FBF:/ window 90,90 jump 2321.5
+
+2598.2 "Maneuver: High-Order Explosive Blast" #sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBF:/ jump 2321.5
+2616.5 "Maneuver: Missile Command" #sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/
+2632.8 "Formation: Sharp Turn" #sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAB:/
+2645.9 "Sharp Turn" #sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FA[9A]:/
+2668.7 "Formation: Sliding Swipe" #sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAE:/
+
+
+
+### 905P-Operated Heavy Artillery Unit
+# -p 5006:3012.1 -ii 4FF6 4FF7 4FF8 4FF9 4FFC 5004 4FFA 4FFF 4FFE 5002
+
+3000.0 "--sync--" sync / 00:0839::Core Command will be sealed off/ window 3000,0
+3012.1 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/ window 20,20
+3024.5 "Operation: Activate Laser Turret" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FED:/
+3028.2 "Lower Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5086:/ duration 3.5
+3028.2 "Upper Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5087:/ duration 2.5
+3031.2 "Upper Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5088:/ duration 2.5
+3034.2 "Upper Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5089:/ duration 2.5
+3038.5 "Maneuver: High-Powered Laser x2" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5001:/ duration 2.3
+3048.3 "--sync--" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5005:/
+3054.3 "Maneuver: Unconventional Voltage" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5003:/
+3061.4 "Energy Bombardment" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FFB:/ duration 9.2
+3072.5 "Maneuver: Impact Crusher x3" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FFD:/ duration 3.3
+
+3078.8 "Maneuver: Revolving Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5000:/
+3087.9 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+3109.9 "Operation: Access Self-Consciousness Data" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEF:/
+3126.2 "Operation: Activate Suppressive Unit" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEE:/ duration 30
+
+3156.2 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+3172.4 "Support: Pod" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FE9:/
+3182.7 "Operation: Pod Program" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEA:/
+3194.6 "R010: Laser / R030: Hammer" sync / 1[56]:[^:]*:Pod:4FF[01]:/
+3199.6 "Support: Pod" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FE9:/
+3210.8 "Operation: Pod Program" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEA:/
+3222.7 "R030: Hammer / R010: Laser" sync / 1[56]:[^:]*:Pod:4FF[01]:/
+3232.8 "Operation: Synthesize Compound" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEC:/
+3249.8 "Chemical Burn" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FF4:/
+3254.8 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+
+3266.1 "--sync--" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5005:/
+3272.1 "Maneuver: Unconventional Voltage" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5003:/
+3276.2 "Energy Bombardment" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FFB:/ duration 9.2
+3297.1 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+3309.3 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+3313.4 "Support: Pod" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FE9:/
+3323.7 "Operation: Pod Program" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEA:/
+3335.6 "R010: Laser" sync / 1[56]:[^:]*:Pod:4FF0:/
+3335.6 "R030: Hammer" sync / 1[56]:[^:]*:Pod:4FF1:/
+3340.6 "Support: Pod" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FE9:/
+3351.9 "Operation: Pod Program" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEA:/
+3363.9 "R010: Laser" sync / 1[56]:[^:]*:Pod:4FF0:/
+3363.9 "R030: Hammer" sync / 1[56]:[^:]*:Pod:4FF1:/
+3370.4 "Operation: Activate Laser Turret" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FED:/
+3374.1 "Lower Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5086:/ duration 3.5
+3374.1 "Upper Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5087:/ duration 2.5
+3377.1 "Upper Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5088:/ duration 2.5
+3380.1 "Upper Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5089:/ duration 2.5
+
+3381.3 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+3395.5 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+3404.7 "Operation: Synthesize Compound" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEC:/
+3421.7 "Chemical Conflagration" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FF5:/
+
+3424.7 "Maneuver: Impact Crusher x3" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FFD:/ duration 3.3
+3431.0 "Maneuver: Revolving Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5000:/
+3439.1 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+3456.4 "Operation: Activate Suppressive Unit" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEE:/ duration 30
+
+3480.4 "--sync--" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5005:/
+3486.4 "Maneuver: Unconventional Voltage" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5003:/
+3495.5 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+3503.6 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+
+# loop back to the first hammer+laser combo deal pod program
+3515.8 "--sync--" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5005:/
+3521.8 "Maneuver: Unconventional Voltage" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5003:/
+3525.9 "Energy Bombardment" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FFB:/ window 100,100 jump 3276.2
+3538.1 "Maneuver: High-Powered Laser" #sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5001:/
+3546.9 "Maneuver: Volt Array" #sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+3559.1 "Maneuver: Volt Array" #sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+3563.2 "Support: Pod" #sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FE9:/
+3573.5 "Operation: Pod Program" #sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEA:/
+
+
+### Heavy Artillery Unit: caster-friendly hallway section
+4000.0 "--sync--" sync / 00:0839::The passage will be sealed off/ window 4000,0
+
+
+### The Compound
+# -p 51B8:5013.2 53D5:6000 -ii 53CA 53F2 51B1 51B6 51B7 -it "The Compound"
+# Notes:
+# * Contusion is 51B5 (cast) 51B6 (ground) 51B7 (headmarker).  Left as 51B5 for simplicity.
+# * Can't use "The Bridge" area sync due to checkpoint with Compound 2P.
+
+#5000.0 "--sync--" sync / 00:0839::The bridge will be sealed off/ window 5000,0
+5002.0 "--sync--" sync / 1[56]:[^:]*:The Compound:53CA:/ window 6000,0
+5013.2 "Mechanical Laceration" sync / 1[56]:[^:]*:The Compound:51B8:/ window 6000,20
+5024.4 "Mechanical Decapitation/Dissection" sync / 1[56]:[^:]*:The Compound:51B[34]:/
+5034.9 "Mechanical Dissection/Decapitation" sync / 1[56]:[^:]*:The Compound:51B[34]:/
+5043.9 "Mechanical Contusion" sync / 1[56]:[^:]*:The Compound:51B5:/
+
+5058.0 "--untargetable--"
+5068.7 "Incongruous Spin x2" #sync / 1[56]:[^:]*:The Compound:51B2:/
+5073.9 "--targetable--"
+
+5088.0 "Mechanical Laceration" sync / 1[56]:[^:]*:The Compound:51B8:/
+5099.1 "Mechanical Decapitation" sync / 1[56]:[^:]*:The Compound:51B4:/
+5105.1 "Mechanical Contusion" sync / 1[56]:[^:]*:The Compound:51B5:/
+5115.3 "Mechanical Dissection" sync / 1[56]:[^:]*:The Compound:51B3:/
+5125.6 "Mechanical Laceration" sync / 1[56]:[^:]*:The Compound:51B8:/
+5141.7 "Mechanical Decapitation" sync / 1[56]:[^:]*:The Compound:51B4:/
+5147.7 "Mechanical Contusion" sync / 1[56]:[^:]*:The Compound:51B5:/
+5157.9 "Mechanical Dissection" sync / 1[56]:[^:]*:The Compound:51B3:/
+
+5168.2 "Mechanical Laceration" sync / 1[56]:[^:]*:The Compound:51B8:/
+5184.5 "Mechanical Dissection" sync / 1[56]:[^:]*:The Compound:51B3:/
+5190.8 "Mechanical Contusion" sync / 1[56]:[^:]*:The Compound:51B5:/
+5200.9 "Mechanical Decapitation" sync / 1[56]:[^:]*:The Compound:51B4:/
+
+5210.9 "Mechanical Laceration" sync / 1[56]:[^:]*:The Compound:51B8:/ window 30,30 jump 5168.2
+5227.2 "Mechanical Dissection" #sync / 1[56]:[^:]*:The Compound:51B3:/
+5233.5 "Mechanical Contusion" #sync / 1[56]:[^:]*:The Compound:51B5:/
+5243.6 "Mechanical Decapitation" #sync / 1[56]:[^:]*:The Compound:51B4:/
+
+
+### Compound 2P
+# -p 53D5:6000 51B0:6068.3 -it "Compound 2P" -ii 53CA 53F2 51AA 541B 51AF 51AD 51AE 5363 51A8 519C 519D 51A0 519F 51CB
+# Notes:
+# * 51A3 is creating a thing that gets an energy tether.
+# * 51A3 is used for self-teleportation, forced transfer, and reproduce.
+# * 53D0 / 53D1 are included here as stand-ins for "Forced Transfer" when there is no ability.
+# * However, 53D0 / 53D1 are noisy so they're not included everywhere.
+
+6000.0 "Mechanical Laceration" sync / 1[56]:[^:]*:The Compound:53D5:/ window 6000,0
+6051.1 "--targetable--"
+6068.3 "Centrifugal Slice" sync / 1[56]:[^:]*:Compound 2P:51B0:/ window 7000,0
+6080.1 "Relentless Spiral x3" sync / 1[56]:[^:]*:Compound 2P:51A9:/ duration 4.1
+6099.9 "Prime Blade (Out)" sync / 1[56]:[^:]*:Compound 2P:541F:/
+6110.5 "Prime Blade (Behind)" sync / 1[56]:[^:]*:Compound 2P:5420:/
+6121.0 "Prime Blade (In)" sync / 1[56]:[^:]*:Compound 2P:5421:/
+
+6131.5 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
+6140.1 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:53D0:/
+6143.6 "Prime Blade (In)" sync / 1[56]:[^:]*:Compound 2P:519A:/
+6153.1 "Centrifugal Slice" sync / 1[56]:[^:]*:Compound 2P:51B0:/
+
+6166.6 "Three Parts Disdain" sync / 1[56]:[^:]*:Compound 2P:519B:/ duration 3.6
+
+6179.5 "Compound Pod: R012" sync / 1[56]:[^:]*:Compound 2P:51AB:/
+6183.3 "R012: Laser" sync / 1[56]:[^:]*:Compound Pod:51AC:/
+
+6204.6 "Four Parts Resolve" sync / 1[56]:[^:]*:Compound 2P:519E:/ duration 9.4
+
+6224.4 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
+6230.6 "Reproduce" sync / 1[56]:[^:]*:Compound 2P:51A1:/
+6240.3 "Prime Blade (In)" sync / 1[56]:[^:]*:Compound 2P:5421:/
+6250.7 "Prime Blade (In)" sync / 1[56]:[^:]*:Puppet 2P:5421:/
+
+6255.8 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
+6261.9 "Energy Compression" sync / 1[56]:[^:]*:Compound 2P:51A6:/
+6272.9 "Explosion" sync / 1[56]:[^:]*:Compound 2P:51A7:/
+6287.4 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:51A2:/
+6291.2 "Explosion" sync / 1[56]:[^:]*:Compound 2P:51A7:/
+
+6299.2 "Compound Pod: R011" sync / 1[56]:[^:]*:Compound 2P:51A4:/
+6315.6 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:543A:/
+6318.5 "R011: Laser" sync / 1[56]:[^:]*:Compound Pod:51A5:/
+6329.9 "Relentless Spiral x3" sync / 1[56]:[^:]*:Compound 2P:51A9:/ duration 4.1
+
+6332.7 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
+6341.3 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:53D1:/
+6344.7 "Prime Blade (Out/Behind)" sync / 1[56]:[^:]*:Compound 2P:519[89]:/
+
+# beginning of loop
+6350.2 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
+6356.3 "Reproduce" sync / 1[56]:[^:]*:Compound 2P:51A1:/
+6366.0 "Prime Blade (In/Out)" sync / 1[56]:[^:]*:Compound 2P:(541F|5421):/
+6375.9 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:51A2:/
+6379.4 "Prime Blade (In/Out)" sync / 1[56]:[^:]*:Puppet 2P:(5198|519A):/
+
+
+# Random Three Parts/ Four Parts
+6391.8 "--sync--" sync / 14:[^:]*:Compound 2P:519E:/ window 50,50
+6399.8 "Four Parts Resolve?" sync / 1[56]:[^:]*:Compound 2P:519E:/
+
+# This is adjusted 9 seconds ahead so that Compound Pod: R012 lines up.  @_@;;
+6400.7 "--sync--" sync / 14:[^:]*:Compound 2P:519B:/ window 50,50
+6406.7 "Three Parts Disdain?" sync / 1[56]:[^:]*:Compound 2P:519B:/
+
+
+6420.5 "Compound Pod: R012" sync / 1[56]:[^:]*:Compound 2P:51AB:/
+6423.4 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
+6424.3 "R012: Laser" sync / 1[56]:[^:]*:Compound Pod:51AC:/
+6429.6 "Energy Compression" sync / 1[56]:[^:]*:Compound 2P:51A6:/
+6440.6 "Explosion" sync / 1[56]:[^:]*:Compound 2P:51A7:/
+
+6455.1 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:51A2:/
+6458.9 "Explosion" sync / 1[56]:[^:]*:Compound 2P:51A7:/
+
+6471.9 "Centrifugal Slice" sync / 1[56]:[^:]*:Compound 2P:51B0:/
+6490.2 "Compound Pod: R011" sync / 1[56]:[^:]*:Compound 2P:51A4:/
+6506.6 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:543A:/
+6509.5 "R011: Laser" sync / 1[56]:[^:]*:Compound Pod:51A5:/
+6520.9 "Relentless Spiral x3" sync / 1[56]:[^:]*:Compound 2P:51A9:/ duration 4.1
+
+6523.7 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
+6532.5 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:53D[01]:/
+6535.8 "Prime Blade (In/Out)" sync / 1[56]:[^:]*:Compound 2P:(5198|519A):/
+
+6541.3 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
+6547.4 "Reproduce" sync / 1[56]:[^:]*:Compound 2P:51A1:/ window 100,100 jump 6356.3
+6557.2 "Prime Blade (In/Out)" sync / 1[56]:[^:]*:Compound 2P:(541F|5421):/
+6567.1 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:51A2:/
+6570.6 "Prime Blade (In/Out)" sync / 1[56]:[^:]*:Puppet 2P:(5198|519A):/

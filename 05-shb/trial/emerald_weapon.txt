@@ -1,0 +1,150 @@
+### Emerald Weapon
+# -p 5554:13.4 5539:1011.2
+# -it "The Emerald Weapon"
+# -ii 5B1A 5B1C 5532 5533 5BA4 5BA5 553C 554E 5BA2 5551 553D 5B03 556F 5570 5563 4B3E 5568 5569 556A 5560
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1
+0 "Start"
+0.5 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1A:/ window 1,0.5
+8.4 "--sync--" sync / 14:[^:]*:The Emerald Weapon:5554:/ window 10,5
+13.4 "Emerald Shot" sync / 1[56]:[^:]*:The Emerald Weapon:5554:/
+
+26.6 "Emerald Beam" sync / 1[56]:[^:]*:The Emerald Weapon:552A:/
+26.6 "Heat Ray" sync / 1[56]:[^:]*:The Emerald Weapon:4F9D:/ duration 9.7
+26.6 "Photon Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5534:/
+28.6 "Photon Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5536:/
+30.6 "Photon Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5538:/
+32.4 "Photon Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5534:/
+34.4 "Photon Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5536:/
+36.4 "Photon Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5538:/
+39.4 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5017:/
+
+50.7 "Magitek Magnetism" sync / 1[56]:[^:]*:The Emerald Weapon:5B05:/
+64.3 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5545:/
+65.2 "Explosion" sync / 1[56]:[^:]*:Magnetic Mine:5B04:/
+
+73.9 "Optimized Ultima" sync / 1[56]:[^:]*:The Emerald Weapon:5555:/
+79.1 "Split" sync / 1[56]:[^:]*:The Emerald Weapon:553A:/
+85.2 "Sidescathe" sync / 1[56]:[^:]*:The Emerald Weapon:(553F|5541):/
+95.0 "Emerald Crusher" sync / 1[56]:[^:]*:The Emerald Weapon:553E:/
+
+99.2 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5543:/
+108.6 "Emerald Beam" sync / 1[56]:[^:]*:The Emerald Weapon:5530:/
+
+108.6 "Heat Ray" sync / 1[56]:[^:]*:The Emerald Weapon:4F9D:/ duration 9.7
+108.6 "Photon Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5534:/
+110.6 "Photon Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5536:/
+112.6 "Photon Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5538:/
+114.4 "Photon Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5534:/
+116.4 "Photon Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5536:/
+118.4 "Photon Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5538:/
+121.5 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5018:/
+
+134.8 "Bit Storm" sync / 1[56]:[^:]*:The Emerald Weapon:554A:/
+134.8 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:4F9C:/
+149.9 "Divide Et Impera" sync / 1[56]:[^:]*:The Emerald Weapon:5535:/
+162.2 "Magitek Magnetism" sync / 1[56]:[^:]*:The Emerald Weapon:5B06:/
+175.8 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5545:/
+176.6 "Explosion" sync / 1[56]:[^:]*:Magnetic Mine:5B04:/
+
+180.2 "Pulse Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5547:/
+180.4 "Pulse Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5548:/
+184.5 "Pulse Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5547:/
+184.7 "Pulse Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5548:/
+188.8 "Pulse Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5547:/
+189.0 "Pulse Laser" sync / 1[56]:[^:]*:The Emerald Weapon:5548:/
+195.5 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1D:/
+
+200.6 "Split" sync / 1[56]:[^:]*:The Emerald Weapon:553B:/
+211.7 "Bit Plasma" sync / 1[56]:[^:]*:Claw Bit:554F:/
+211.7 "Sidescathe" sync / 1[56]:[^:]*:The Emerald Weapon:(5540|5542):/
+219.2 "Bit Plasma" sync / 1[56]:[^:]*:Claw Bit:554F:/
+226.7 "Bit Plasma" sync / 1[56]:[^:]*:Claw Bit:554F:/
+
+240.5 "Emerald Crusher" sync / 1[56]:[^:]*:The Emerald Weapon:553E:/
+244.8 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5544:/
+247.9 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1E:/
+260.1 "Magitek Magnetism" sync / 1[56]:[^:]*:The Emerald Weapon:5B06:/
+273.6 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5545:/
+274.4 "Explosion" sync / 1[56]:[^:]*:Magnetic Mine:5B04:/
+284.2 "Optimized Ultima" sync / 1[56]:[^:]*:The Emerald Weapon:5556:/
+296.4 "Emerald Shot" sync / 1[56]:[^:]*:The Emerald Weapon:5554:/
+308.7 "Optimized Ultima" sync / 1[56]:[^:]*:The Emerald Weapon:5556:/
+315.9 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1D:/
+
+# TODO: loop???
+# TODO: there's sometimes a 5544/5B1E ability here?
+321.0 "Split" sync / 1[56]:[^:]*:The Emerald Weapon:553B:/ window 100,100 jump 200.6
+332.1 "Bit Plasma" #sync / 1[56]:[^:]*:Claw Bit:554F:/
+332.1 "Sidescathe" #sync / 1[56]:[^:]*:The Emerald Weapon:(5541|5542):/
+339.6 "Bit Plasma" #sync / 1[56]:[^:]*:Claw Bit:554F:/
+347.1 "Bit Plasma" #sync / 1[56]:[^:]*:Claw Bit:554F:/
+
+
+### Intermission
+936.6 "--untargetable--"
+936.7 "--sync--" sync / 14:[^:]*:The Emerald Weapon:5B02:/ window 1000,10
+940.7 "Disruption Field" sync / 1[56]:[^:]*:The Emerald Weapon:5B02:/
+1000.0 "--targetable--"
+
+
+### Phase 2 (checkpoint)
+1006.2 "--sync--" sync / 14:[^:]*:The Emerald Weapon:5539:/ window 1200,10
+1011.2 "Divide Et Impera" sync / 1[56]:[^:]*:The Emerald Weapon:5539:/
+1016.5 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1F:/
+1025.6 "Primus Terminus Est" sync / 1[56]:[^:]*:The Emerald Weapon:5562:/
+1037.7 "Secundus Terminus Est" sync / 1[56]:[^:]*:The Emerald Weapon:5567:/
+
+# Swords
+1053.9 "Tertius Terminus Est" sync / 1[56]:[^:]*:The Emerald Weapon:556B:/
+1055.9 "Tertius Terminus Est 1" #sync / 1[56]:[^:]*:Bitblade:556C:/
+1057.4 "Tertius Terminus Est 2" #sync / 1[56]:[^:]*:Bitblade:556C:/
+1058.9 "Tertius Terminus Est 3" #sync / 1[56]:[^:]*:Bitblade:556C:/
+1063.9 "Tertius Terminus Est 1" #sync / 1[56]:[^:]*:The Emerald Weapon:556D:/
+1065.4 "Tertius Terminus Est 2" #sync / 1[56]:[^:]*:The Emerald Weapon:556D:/
+1066.9 "Tertius Terminus Est 3" #sync / 1[56]:[^:]*:The Emerald Weapon:556D:/
+
+# Soldier phase
+1070.1 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B20:/
+1082.3 "Legio Phantasmatis" sync / 1[56]:[^:]*:The Emerald Weapon:5559:/
+1084.3 "--untargetable--"
+1091.6 "Rank And File" sync / 1[56]:[^:]*:Black Wolf's Image:555A:/
+
+1096.9 "Threefold Formation" sync / 1[56]:[^:]*:Black Wolf's Image:555D:/
+1104.8 "Fire Away" sync / 1[56]:[^:]*:Black Wolf's Image:555E:/
+1107.9 "Shots Fired 1" #sync / 1[56]:[^:]*:Imperial Image:555F:/
+1109.9 "Shots Fired 2" #sync / 1[56]:[^:]*:Imperial Image:555F:/
+1111.9 "Shots Fired 3" #sync / 1[56]:[^:]*:Imperial Image:555F:/
+1114.6 "Heirsbane" sync / 1[56]:[^:]*:Black Wolf's Image:5561:/
+
+1117.8 "Threefold Formation" sync / 1[56]:[^:]*:Black Wolf's Image:555D:/
+1125.4 "Fire Away" sync / 1[56]:[^:]*:Black Wolf's Image:555E:/
+1128.5 "Shots Fired 1" #sync / 1[56]:[^:]*:Imperial Image:555F:/
+1130.5 "Shots Fired 2" #sync / 1[56]:[^:]*:Imperial Image:555F:/
+1132.5 "Shots Fired 3" #sync / 1[56]:[^:]*:Imperial Image:555F:/
+1135.1 "Heirsbane" sync / 1[56]:[^:]*:Black Wolf's Image:5561:/
+1146.8 "--targetable--"
+
+1157.9 "Optimized Ultima" sync / 1[56]:[^:]*:The Emerald Weapon:5B0F:/
+1166.1 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1F:/
+
+# Swords
+1173.2 "Tertius Terminus Est" sync / 1[56]:[^:]*:The Emerald Weapon:556B:/
+1175.2 "Tertius Terminus Est 1" #sync / 1[56]:[^:]*:Bitblade:556C:/
+1176.7 "Tertius Terminus Est 2" #sync / 1[56]:[^:]*:Bitblade:556C:/
+1178.2 "Tertius Terminus Est 3" #sync / 1[56]:[^:]*:Bitblade:556C:/
+1183.2 "Tertius Terminus Est 1" #sync / 1[56]:[^:]*:The Emerald Weapon:556D:/
+1184.7 "Tertius Terminus Est 2" #sync / 1[56]:[^:]*:The Emerald Weapon:556D:/
+1186.2 "Tertius Terminus Est 3" #sync / 1[56]:[^:]*:The Emerald Weapon:556D:/
+1189.4 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B20:/
+
+# loop?
+1196.5 "Divide Et Impera" sync / 1[56]:[^:]*:The Emerald Weapon:5539:/ window 100,100 jump 1011.2
+1201.8 "--sync--" #sync / 1[56]:[^:]*:The Emerald Weapon:5B1F:/
+1210.9 "Primus Terminus Est" #sync / 1[56]:[^:]*:The Emerald Weapon:5562:/
+1223.0 "Secundus Terminus Est" #sync / 1[56]:[^:]*:The Emerald Weapon:5567:/

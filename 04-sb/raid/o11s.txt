@@ -1,0 +1,118 @@
+# Omega - Alphascape V3.0 (Savage) - O11S
+# -ii 2799 3608 3703 370D 325D 36FF 3708 370B 370A 3707 3705
+# -p 325B:310 326C:12.0
+# -it "Omega" / -it "Level Checker"
+# manually add in flamethrower during panto #2, diffuse wave cannon, panto ballistic impact
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# Phase 1
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.5 "--sync--" sync / 1[56]:[^:]*:Omega:368:/ window 3,0
+8.0 "--sync--" sync / 14:[^:]*:Omega:326C:/ window 8,8
+12.0 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326C:/
+24.0 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:326D:/
+30.0 "Flamethrower" sync / 1[56]:[^:]*:Omega:325C:/
+32.0 "Afterburner" sync / 1[56]:[^:]*:Omega:325E:/
+39.5 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:326[24]:/
+45.0 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:326[35]:/
+# Note: this looks like it can push early.
+53.5 "--sync--" sync / 14:[^:]*:Omega:324A:/ window 60,10
+56.5 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:324A:/
+72.5 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:326D:/
+
+### Phase 2: Tower Dance
+87.5 "--sync--" sync / 14:[^:]*:Omega:3251:/ window 90,10
+91.5 "--untargetable--"
+91.5 "Program Loop" sync / 1[56]:[^:]*:Omega:3251:/
+101.6 "--targetable--"
+106.5 "Executable" sync / 1[56]:[^:]*:Level Checker:3626:/
+115.5 "Ferrofluid" sync / 1[56]:[^:]*:Level Checker:3253:/
+116.5 "Magnetism" sync / 1[56]:[^:]*:Level Checker:3254:/
+116.5 "Repel" sync / 1[56]:[^:]*:Level Checker:3255:/
+116.5 "Magnetism" sync / 1[56]:[^:]*:Level Checker:3254:/
+118.5 "Dual Storage Violation" sync / 1[56]:[^:]*:Omega:3258:/
+128.5 "Executable" sync / 1[56]:[^:]*:Level Checker:3626:/
+139.5 "Dual Storage Violation" sync / 1[56]:[^:]*:Omega:3258:/
+145.5 "Storage Violation" sync / 1[56]:[^:]*:Omega:3256:/
+147.5 "Dual Storage Violation" sync / 1[56]:[^:]*:Omega:3258:/
+153.5 "Storage Violation" sync / 1[56]:[^:]*:Omega:3256:/
+155.5 "Dual Storage Violation" sync / 1[56]:[^:]*:Omega:3258:/
+158.4 "Reset" sync / 1[56]:[^:]*:Level Checker:3628:/
+161.4 "Storage Violation" sync / 1[56]:[^:]*:Omega:3256:/
+164.4 "Reformat" sync / 1[56]:[^:]*:Level Checker:3627:/
+185.9 "Force Quit Enrage"
+
+### Phase 3
+300.0 "--sync--" sync / 14:[^:]*:Omega:325B:/ window 200,200
+310.0 "Delta Attack" sync / 1[56]:[^:]*:Omega:325B:/
+321.4 "--targetable--"
+330.1 "Ballistic Missile" sync / 1[56]:[^:]*:Omega:325F:/
+337.2 "Flamethrower" sync / 1[56]:[^:]*:Omega:325C:/
+339.3 "Afterburner" sync / 1[56]:[^:]*:Omega:325E:/
+340.3 "Ballistic Impact" sync / 1[56]:[^:]*:Omega:3260:/
+346.8 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:326[24]:/
+352.3 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:326[35]:/
+366.8 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:326D:/
+368.9 "Blaster" sync / 1[56]:[^:]*:Omega:3261:/
+377.0 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326C:/
+
+387.0 "--sync--" sync / 14:[^:]*:Omega:324A:/ window 90,10
+390.0 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:324A:/
+403.0 "Rush" sync / 1[56]:[^:]*:Rocket Punch:3250:/
+410.0 "Electric Slide" sync / 1[56]:[^:]*:Omega:326B:/
+419.0 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:324A:/
+432.0 "Rush" sync / 1[56]:[^:]*:Rocket Punch:3250:/
+438.0 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:326[24]:/
+443.5 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:326[35]:/
+
+### Phase 4: Updated Program Light Show
+457.0 "Update Program" sync / 1[56]:[^:]*:Omega:36FC:/
+469.0 "Flamethrower" sync / 1[56]:[^:]*:Omega:36FE:/
+471.0 "Afterburner" sync / 1[56]:[^:]*:Omega:3700:/
+477.5 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[68]:/
+480.0 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[79]:/
+
+496.0 "Pantokrator 1" sync / 1[56]:[^:]*:Omega:3702:/
+500.0 "Ballistic Impact" duration 8
+510.1 "Condensed Wave Cannon Kyrios" sync / 1[56]:[^:]*:Omega:3704:/
+519.1 "Wave Cannon Kyrios 1" sync / 1[56]:[^:]*:Omega:3706:/
+526.2 "Wave Cannon Kyrios 2" sync / 1[56]:[^:]*:Omega:3706:/
+535.2 "Long Needle Kyrios" sync / 1[56]:[^:]*:Omega:370C:/
+544.6 "Blaster" sync / 1[56]:[^:]*:Omega:3261:/
+550.7 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326C:/
+
+561.8 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:324A:/
+565.8 "Unmitigated Explosion" # sync / 1[56]:[^:]*:Omega:36F8:/ # no sync
+586.8 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:326D:/
+598.8 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326C:/
+600.8 "Ballistic Missile" sync / 1[56]:[^:]*:Omega:325F:/
+607.8 "Flamethrower" sync / 1[56]:[^:]*:Omega:36FE:/
+609.8 "Afterburner" sync / 1[56]:[^:]*:Omega:3700:/
+610.8 "Ballistic Impact" sync / 1[56]:[^:]*:Omega:3260:/
+616.3 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[68]:/
+618.8 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[79]:/
+
+634.7 "Pantokrator 2" sync / 1[56]:[^:]*:Omega:3702:/
+639.7 "Ballistic Impact" duration 18 # +5
+642.7 "Flamethrower" duration 5.5 # +3
+646.7 "Guided Missile Kyrios" sync / 1[56]:[^:]*:Omega:3709:/ duration 6.5
+660.7 "Condensed Wave Cannon Kyrios" sync / 1[56]:[^:]*:Omega:3704:/
+662.7 "Diffuse Wave Cannon Kyrios" duration 16 # +2
+670.7 "Wave Cannon Kyrios 1" sync / 1[56]:[^:]*:Omega:3706:/
+677.7 "Wave Cannon Kyrios 2" sync / 1[56]:[^:]*:Omega:3706:/
+700.8 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[68]:/
+703.3 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[79]:/
+709.8 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[68]:/
+712.3 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[79]:/
+
+724.8 "Charybdis" sync / 1[56]:[^:]*:Omega:326E:/ window 10,10
+738.8 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:326D:/
+740.9 "Blaster" sync / 1[56]:[^:]*:Omega:3261:/
+748.9 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326A:/
+754.9 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326A:/
+760.9 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326A:/
+780.9 "Loop Enrage" # guessing at time

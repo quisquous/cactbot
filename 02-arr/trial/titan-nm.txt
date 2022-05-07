@@ -1,0 +1,106 @@
+### Titan Story / Normal
+# -ii 5C5 3CD -p 28B:203.0  28C:601.1
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1 100 -> 85%
+0.0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.0 "--sync--" sync / 1[56]:[^:]*:Titan:368:/ window 2,0
+5.0 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/ window 5,5
+7.0 "Tumult" sync / 1[56]:[^:]*:Titan:282:/
+16.1 "Tumult" sync / 1[56]:[^:]*:Titan:282:/
+19.2 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+25.2 "Tumult" sync / 1[56]:[^:]*:Titan:282:/ window 8,8
+
+32.3 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+34.3 "Tumult" sync / 1[56]:[^:]*:Titan:282:/
+43.4 "Tumult" sync / 1[56]:[^:]*:Titan:282:/
+46.5 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+52.5 "Tumult" sync / 1[56]:[^:]*:Titan:282:/ window 8,8 jump 25.2
+
+59.6 "Rock Buster"
+61.6 "Tumult"
+70.7 "Tumult"
+73.8 "Rock Buster"
+79.8 "Tumult"
+
+### Phase 2 85 -> 55%
+200.0 "--sync--" sync / 14:[^:]*:Titan:28B:/ window 200,0
+203.0 "Geocrush" sync / 1[56]:[^:]*:Titan:28B:/
+
+211.6 "Landslide" sync / 1[56]:[^:]*:Titan:28A:/ window 211,17
+217.8 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+221.8 "Tumult" sync / 1[56]:[^:]*:Titan:282:/
+229.1 "Landslide" sync / 1[56]:[^:]*:Titan:28A:/
+235.3 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+239.3 "Tumult" sync / 1[56]:[^:]*:Titan:282:/ window 17,16
+
+246.6 "Landslide" sync / 1[56]:[^:]*:Titan:28A:/
+252.8 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+256.8 "Tumult" sync / 1[56]:[^:]*:Titan:282:/ window 15,17
+264.1 "Landslide" sync / 1[56]:[^:]*:Titan:28A:/
+270.2 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+274.2 "Tumult" sync / 1[56]:[^:]*:Titan:282:/ window 17,16 jump 239.3
+
+### including syncs until a decision is made to keep or remove them. Potential FIX ME!
+281.6 "Landslide" sync / 1[56]:[^:]*:Titan:28A:/
+287.8 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+291.8 "Tumult" sync / 1[56]:[^:]*:Titan:282:/ window 15,17
+299.1 "Landslide" sync / 1[56]:[^:]*:Titan:28A:/
+305.2 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+309.2 "Tumult" sync / 1[56]:[^:]*:Titan:282:/
+
+### Phase 3 Heart Phase (55%)
+400.0 "--sync--" sync / 14:[^:]*:Titan:28B:/ window 196,0
+403.0 "Geocrush" sync / 1[56]:[^:]*:Titan:28B:/
+413.6 "Rock Throw" sync / 1[56]:[^:]*:Titan:285:/
+421.5 "Landslide" sync / 1[56]:[^:]*:Titan:28A:/
+427.6 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/ window 20,15
+431.6 "Tumult" sync / 1[56]:[^:]*:Titan:282:/
+435.1 "Rock Throw" sync / 1[56]:[^:]*:Titan:285:/
+442.9 "Landslide" sync / 1[56]:[^:]*:Titan:28A:/
+449.1 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+453.1 "Tumult" sync / 1[56]:[^:]*:Titan:282:/ window 16,25
+464.6 "Landslide" sync / 1[56]:[^:]*:Titan:28A:/
+473.6 "Enrage"
+
+### Phase 4 55 -> 0%
+600.0 "--sync--" sync / 14:[^:]*:Earthen Fury:28C:/ window 600,0
+601.1 "Earthen Fury" sync / 1[56]:[^:]*:Titan:28C:/
+
+614.1 "Landslide" sync / 1[56]:[^:]*:Titan:28A:/
+620.2 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+624.2 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:284:/ window 626,23
+630.3 "Tumult x2" duration 2.5 #sync / 1[56]:[^:]*:Titan:282:/
+636.5 "Rock Throw" sync / 1[56]:[^:]*:Titan:285:/
+643.6 "Landslide" sync / 1[56]:[^:]*:Titan:28A:/
+649.7 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+653.7 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:284:/ window 23,26
+659.8 "Tumult x2" duration 2.5 #sync / 1[56]:[^:]*:Titan:282:/
+667.0 "Rock Throw" sync / 1[56]:[^:]*:Titan:285:/
+
+674.1 "Landslide" sync / 1[56]:[^:]*:Titan:28A:/
+680.2 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+684.2 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:284:/ window 26,24
+690.3 "Tumult x2" duration 2.5 #sync / 1[56]:[^:]*:Titan:282:/
+696.5 "Rock Throw" sync / 1[56]:[^:]*:Titan:285:/
+703.6 "Landslide" sync / 1[56]:[^:]*:Titan:28A:/
+709.7 "Rock Buster" sync / 1[56]:[^:]*:Titan:281:/
+713.7 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:284:/
+719.8 "Tumult x2" duration 2.5 #sync / 1[56]:[^:]*:Titan:282:/ window 28,23
+727.0 "Rock Throw" sync / 1[56]:[^:]*:Titan:285:/ window 29,28 jump 667.0
+
+734.1 "Landslide"
+740.2 "Rock Buster"
+744.2 "Weight Of The Land"
+750.3 "Tumult x2"
+756.5 "Rock Throw"
+763.6 "Landslide"
+769.7 "Rock Buster"
+773.7 "Weight Of The Land"
+779.8 "Tumult x2"
+787.0 "Rock Throw"

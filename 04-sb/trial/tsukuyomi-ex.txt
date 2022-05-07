@@ -1,0 +1,156 @@
+# Tsukuyomi Extreme
+# http://clees.me/guides/tsukuyomi-ex/
+#
+# -p 2BBA:514.8 2BC8:1000 2CD6:1100 2CD0:1355.3
+# -it "Tsukuyomi"
+# -ii 2CAE 2CAA 2CA9 2CCF 2BCF 2EDF 2E23 2BC0 2BFD 2BFE 2D1D
+
+hideall "--sync--"
+hideall "--Reset--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# Timings get slightly off if there's lead or steel first, so do a split.
+0.0 "--sync--" sync /:Engage!/ window 0,1
+10.8 "--sync--" sync / 14:[^:]*:Tsukuyomi:2BBA:/ window 30,30
+14.8 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BBA:/
+25.0 "Nightfall (gun/spear)" sync / 1[56]:[^:]*:Tsukuyomi:2BB[CD]:/
+25.0 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2BBC:/ window 30,30 jump 225
+25.0 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2BBD:/ window 30,30 jump 525
+31.1 "Lead Of The Underworld?" sync / 1[56]:[^:]*:Tsukuyomi:2BBE:/
+31.8 "Steel Of The Underworld 1?" sync / 1[56]:[^:]*:Tsukuyomi:2BBF:/
+33.6 "Steel Of The Underworld 2?" sync / 1[56]:[^:]*:Tsukuyomi:2BBF:/
+35.4 "Steel Of The Underworld 3?" sync / 1[56]:[^:]*:Tsukuyomi:2BBF:/
+
+# Lead first
+214.8 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BBA:/
+225.0 "Nightfall (gun)" sync / 1[56]:[^:]*:Tsukuyomi:2BBC:/
+231.1 "Lead Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BBE:/
+236.2 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CCF:/
+242.3 "Nightfall (spear)" sync / 1[56]:[^:]*:Tsukuyomi:2BBD:/
+249.1 "Steel Of The Underworld 1" #sync / 1[56]:[^:]*:Tsukuyomi:2BBF:/
+250.9 "Steel Of The Underworld 2" #sync / 1[56]:[^:]*:Tsukuyomi:2BBF:/
+252.7 "Steel Of The Underworld 3" #sync / 1[56]:[^:]*:Tsukuyomi:2BBF:/
+255.9 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2BC0:/
+267.0 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BBA:/
+281.0 "Nightbloom" #sync / 1[56]:[^:]*:Tsukuyomi:2BC7:/
+281.8 "--untargetable--"
+
+# Steel first
+514.8 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BBA:/
+525.0 "Nightfall (spear)" sync / 1[56]:[^:]*:Tsukuyomi:2BBD:/
+531.8 "Steel Of The Underworld 1" #sync / 1[56]:[^:]*:Tsukuyomi:2BBF:/
+533.6 "Steel Of The Underworld 2" #sync / 1[56]:[^:]*:Tsukuyomi:2BBF:/
+535.4 "Steel Of The Underworld 3" #sync / 1[56]:[^:]*:Tsukuyomi:2BBF:/
+538.5 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2BC0:/
+545.6 "Nightfall (gun)" sync / 1[56]:[^:]*:Tsukuyomi:2BBC:/
+551.8 "Lead Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BBE:/
+556.9 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CCF:/
+567.0 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BBA:/
+581.0 "Nightbloom" #sync / 1[56]:[^:]*:Tsukuyomi:2BC7:/
+581.8 "--untargetable--"
+
+# Add phase
+781.0 "Nightbloom" sync / 1[56]:[^:]*:Tsukuyomi:2BC7:/ window 800,0
+781.8 "--untargetable--"
+792.3 "Homeland adds (E->W)" sync / 03:........:Specter Of The Patriarch:/  window 40,20
+852.3 "Empire adds (SW->NW)" sync / 03:........:Specter Of Asahi:/  window 160,20
+886.3 "Enrage"
+
+1000.0 "Concentrativity" sync / 1[56]:[^:]*:Specter of Zenos:2BC8:/ window 1000,0
+1006.7 "Unmoving Troika" sync / 1[56]:[^:]*:Specter Of Zenos:2CA8:/
+1013.7 "--sync--" sync / 1[56]:[^:]*:Specter Of Zenos:2BCA:/
+1013.7 "--sync--" sync / 1[56]:[^:]*:Specter Of Gosetsu:2BCB:/
+1023.7 "Dispersivity" sync / 1[56]:[^:]*:Specter:2BCC:/
+1029.8 "Dispersivity" sync / 1[56]:[^:]*:Specter:2BCC:/
+1035.9 "Dispersivity" sync / 1[56]:[^:]*:Specter:2BCC:/
+1042.0 "Dispersivity" sync / 1[56]:[^:]*:Specter:2BCC:/
+1048.1 "Dispersivity" sync / 1[56]:[^:]*:Specter:2BCC:/
+
+# Adds complete, crescent phase
+1100.0 "--sync--" sync / 1[56]:[^:]*:Specter Of Gosetsu:2CD6:/ window 1200,0
+1114.3 "Nightbloom" sync / 1[56]:[^:]*:Tsukuyomi:2CAF:/ window 1200,0
+1120.1 "--targetable--"
+1134.5 "Supreme Selenomancy" sync / 1[56]:[^:]*:Tsukuyomi:2EB0:/
+1143.5 "Lunar Halo" sync / 1[56]:[^:]*:Moonlight:2BD6:/
+1153.8 "Tsuki-No-Kakera" sync / 1[56]:[^:]*:Tsukuyomi:2BD0:/
+1159.9 "Nightfall (gun)" sync / 1[56]:[^:]*:Tsukuyomi:2BBC:/
+1166.4 "Lead Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BBE:/
+1179.0 "Moonfall" sync / 1[56]:[^:]*:Moondust:2BD1:/
+1180.8 "Midnight Rain" sync / 1[56]:[^:]*:Tsukuyomi:2BCE:/
+1189.7 "Lunar Halo" sync / 1[56]:[^:]*:Moonlight:2BD6:/
+1195.2 "Lunar Rays" sync / 1[56]:[^:]*:Tsukuyomi:2BD3:/
+1196.8 "Lunar Halo" sync / 1[56]:[^:]*:Moonlight:2BD6:/
+1197.2 "Crater" sync / 1[56]:[^:]*:Moondust:2CD7:/
+1197.2 "Moonbeam" sync / 1[56]:[^:]*:Moondust:2BD4:/
+1208.3 "Antitwilight/Perilune" sync / 1[56]:[^:]*:Tsukuyomi:(2BD7|2BD8):/
+
+1223.4 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BBA:/
+1230.6 "Zashiki-Asobi" sync / 1[56]:[^:]*:Tsukuyomi:2BC5:/
+1239.8 "Nightfall (gun/spear)" sync / 1[56]:[^:]*:Tsukuyomi:2BB[CD]:/
+1241.7 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BC6:/
+1244.7 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BC6:/
+# don't match 2BBF here because there's three of them, close in time.
+1246.3 "Lead Of The Underworld/Steel Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BBE:/
+
+# Torment Unto Death can be delayed by ~2s if it's Steel
+1257.5 "--sync--" sync / 14:[^:]*:Tsukuyomi:2BBB:/ window 10,10
+1262.5 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2BBB:/
+1273.8 "Supreme Selenomancy" sync / 1[56]:[^:]*:Tsukuyomi:2EB0:/
+1282.8 "Lunar Halo" sync / 1[56]:[^:]*:Moonlight:2BD6:/
+1292.8 "Tsuki-No-Kakera" sync / 1[56]:[^:]*:Tsukuyomi:2BD0:/
+1298.8 "Nightfall (spear)" sync / 1[56]:[^:]*:Tsukuyomi:2BBD:/
+1305.4 "Steel Of The Underworld 1" #sync / 1[56]:[^:]*:Tsukuyomi:2BBF:/
+1307.2 "Steel Of The Underworld 2" #sync / 1[56]:[^:]*:Tsukuyomi:2BBF:/
+1308.8 "Steel Of The Underworld 3" #sync / 1[56]:[^:]*:Tsukuyomi:2BBF:/
+1317.8 "Moonfall" sync / 1[56]:[^:]*:Moondust:2BD1:/
+1318.9 "Midnight Rain" sync / 1[56]:[^:]*:Tsukuyomi:2BCE:/
+1328.9 "Lunar Halo" sync / 1[56]:[^:]*:Moonlight:2BD6:/
+1332.9 "Lunar Rays" sync / 1[56]:[^:]*:Tsukuyomi:2BD3:/
+1334.9 "Moonbeam" sync / 1[56]:[^:]*:Moondust:2BD4:/
+1334.9 "Crater" sync / 1[56]:[^:]*:Moondust:2CD7:/
+1335.9 "Lunar Halo" sync / 1[56]:[^:]*:Moonlight:2BD6:/
+1346.0 "Antitwilight/Perilune" sync / 1[56]:[^:]*:Tsukuyomi:(2BD7|2BD8):/
+
+# 35% push
+1361.3 "Dance Of The Dead" sync / 1[56]:[^:]*:Tsukuyomi:2CD0:/ window 1400,20
+1378.6 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:2BD(A|B):/
+1379.5 "Waning Grudge/Waxing Grudge" sync / 1[56]:[^:]*:Tsukuyomi:2BD(E|F):/
+1392.0 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:2BD(A|B):/
+1393.0 "Waning Grudge/Waxing Grudge" sync / 1[56]:[^:]*:Tsukuyomi:2BD(E|F):/
+
+# loop begins
+1403.1 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BBA:/
+1415.3 "Lunacy" sync / 1[56]:[^:]*:Tsukuyomi:2BDC:/
+1416.1 "Tsuki-No-Maiogi" duration 4 #sync / 1[56]:[^:]*:Dancing Fan:2BC6:/
+1417.4 "Lunacy x3" #sync / 1[56]:[^:]*:Tsukuyomi:2BDD:/
+#1418.4 "Lunacy" sync / 1[56]:[^:]*:Tsukuyomi:2BDD:/
+#1419.4 "Lunacy" sync / 1[56]:[^:]*:Tsukuyomi:2BDD:/
+
+1427.4 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:2BD(A|B):/
+1428.4 "Waning Grudge/Waxing Grudge" sync / 1[56]:[^:]*:Tsukuyomi:2BD(E|F):/
+1437.5 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2EB2:/
+
+1450.7 "Hagetsu" sync / 1[56]:[^:]*:Tsukuyomi:2D1C:/
+1452.5 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BC6:/
+1455.5 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BC6:/
+
+1460.9 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:2BD(A|B):/
+1461.9 "Waning Grudge/Waxing Grudge" sync / 1[56]:[^:]*:Tsukuyomi:2BD(E|F):/
+1469.9 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BBA:/
+
+# loop
+1476.9 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BBA:/
+1489.2 "Lunacy" sync / 1[56]:[^:]*:Tsukuyomi:2BDC:/ window 50,50 jump 1415.3
+1490.0 "Tsuki-No-Maiogi" #duration 4 #sync / 1[56]:[^:]*:Dancing Fan:2BC6:/
+1491.3 "Lunacy x3" #sync / 1[56]:[^:]*:Tsukuyomi:2BDD:/
+#1492.3 "Lunacy" sync / 1[56]:[^:]*:Tsukuyomi:2BDD:/
+#1493.3 "Lunacy" sync / 1[56]:[^:]*:Tsukuyomi:2BDD:/
+
+1501.3 "Bright Blade/Dark Blade" #sync / 1[56]:[^:]*:Tsukuyomi:2BD(A|B):/
+1502.3 "Waning Grudge/Waxing Grudge" #sync / 1[56]:[^:]*:Tsukuyomi:2BD(E|F):/
+1511.4 "Torment Unto Death" #sync / 1[56]:[^:]*:Tsukuyomi:2EB2:/
+
+1524.6 "Hagetsu" #sync / 1[56]:[^:]*:Tsukuyomi:2D1C:/
+1526.4 "Tsuki-No-Maiogi" #sync / 1[56]:[^:]*:Dancing Fan:2BC6:/
+1529.4 "Tsuki-No-Maiogi" #sync / 1[56]:[^:]*:Dancing Fan:2BC6:/

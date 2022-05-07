@@ -1,0 +1,117 @@
+### Malikah's Well (lvl 77 dungeon)
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+
+### Greater Armadillo
+# -ii 3CEA 3CE8 -p 3CE5:115
+100.0 "--sync--" sync / 00:0839::Terminus will be sealed off/ window 100,0
+
+115.0 "Stone Flail" sync / 1[56]:[^:]*:Greater Armadillo:3CE5:/ window 115,5
+133.6 "Head Toss" sync / 1[56]:[^:]*:Greater Armadillo:3CE6:/
+138.6 "Right Round" sync / 1[56]:[^:]*:Greater Armadillo:3CE7:/
+144.2 "Flail Smash" sync / 1[56]:[^:]*:Greater Armadillo:3CE9:/
+148.9 "Earthshake" sync / 1[56]:[^:]*:Greater Armadillo:3E39:/
+
+160.7 "2x Pack Armadillo"
+
+175.3 "Stone Flail" sync / 1[56]:[^:]*:Greater Armadillo:3CE5:/
+198.0 "Head Toss" sync / 1[56]:[^:]*:Greater Armadillo:3CE6:/
+203.0 "Right Round" sync / 1[56]:[^:]*:Greater Armadillo:3CE7:/
+208.6 "Flail Smash" sync / 1[56]:[^:]*:Greater Armadillo:3CE9:/
+213.3 "Earthshake" sync / 1[56]:[^:]*:Greater Armadillo:3E39:/
+
+225.1 "2x Pack Armadillo"
+
+239.6 "Stone Flail" sync / 1[56]:[^:]*:Greater Armadillo:3CE5:/
+262.0 "Head Toss" sync / 1[56]:[^:]*:Greater Armadillo:3CE6:/
+266.9 "Right Round" sync / 1[56]:[^:]*:Greater Armadillo:3CE7:/
+272.5 "Flail Smash" sync / 1[56]:[^:]*:Greater Armadillo:3CE9:/
+277.2 "Earthshake" sync / 1[56]:[^:]*:Greater Armadillo:3E39:/
+
+289.0 "2x Pack Armadillo"
+
+303.5 "Stone Flail" sync / 1[56]:[^:]*:Greater Armadillo:3CE5:/ window 20,20 jump 175.3
+326.2 "Head Toss"
+331.2 "Right Round"
+336.8 "Flail Smash"
+341.5 "Earthshake"
+
+353.3 "2x Pack Armadillo"
+
+
+### Amphibious Talos
+# -ii 3CF0 -p 3CEB:515.5
+500.0 "--sync--" sync / 00:0839::Malikah's Gift will be sealed off/ window 500,0
+515.5 "Efface" sync / 1[56]:[^:]*:Amphibious Talos:3CEB:/
+527.1 "Wellbore" sync / 1[56]:[^:]*:Amphibious Talos:3CED:/
+531.3 "Geyser Eruption" sync / 1[56]:[^:]*:Amphibious Talos:3CEE:/
+534.1 "High Pressure" sync / 1[56]:[^:]*:Amphibious Talos:3CEC:/
+544.5 "Swift Spill x6" sync / 1[56]:[^:]*:Amphibious Talos:3CEF:/ duration 6.4
+562.4 "Efface" sync / 1[56]:[^:]*:Amphibious Talos:3CEB:/
+575.1 "Efface" sync / 1[56]:[^:]*:Amphibious Talos:3CEB:/
+
+590.4 "Wellbore" sync / 1[56]:[^:]*:Amphibious Talos:3CED:/
+594.6 "Geyser Eruption" sync / 1[56]:[^:]*:Amphibious Talos:3CEE:/
+597.4 "High Pressure" sync / 1[56]:[^:]*:Amphibious Talos:3CEC:/
+608.0 "Swift Spill x6" sync / 1[56]:[^:]*:Amphibious Talos:3CEF:/ duration 6.4
+625.9 "Efface" sync / 1[56]:[^:]*:Amphibious Talos:3CEB:/
+638.6 "Efface" sync / 1[56]:[^:]*:Amphibious Talos:3CEB:/
+
+653.9 "Wellbore" sync / 1[56]:[^:]*:Amphibious Talos:3CED:/ window 20,20 jump 590.4
+658.1 "Geyser Eruption"
+660.9 "High Pressure"
+671.5 "Swift Spill x6" duration 6.4
+689.4 "Efface"
+702.1 "Efface"
+
+
+### Storge
+# -ii 3CF7 3CA8 41A8 -p 3CF1:1015
+1000.0 "--sync--" sync / 00:0839::Unquestioned Acceptance will be sealed off/ window 1000,0
+1015.0 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/ window 1015,5
+1028.2 "Heretic's Fork" sync / 1[56]:[^:]*:Storge:3CF2:/
+1043.0 "Breaking Wheel" sync / 1[56]:[^:]*:Storge:3CF5:/
+
+1056.1 "Crystal Nail" sync / 1[56]:[^:]*:Storge:3CF6:/
+1063.2 "Heretic's Fork?" sync / 1[56]:[^:]*:Storge:3CF2:/ window 10,10 jump 2063.2
+1065.7 "Breaking Wheel?" sync / 1[56]:[^:]*:Storge:3CF5:/ window 10,10 jump 2156.2
+
+2056.1 "Crystal Nail" sync / 1[56]:[^:]*:Storge:3CF6:/
+2063.2 "Heretic's Fork" sync / 1[56]:[^:]*:Storge:3CF2:/
+2068.3 "Censure" sync / 1[56]:[^:]*:Storge:3CF8:/
+2078.5 "Heretic's Fork" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CF9:/
+2082.5 "Heretic's Fork" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CF9:/
+2086.5 "Heretic's Fork" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CF9:/
+2090.5 "Heretic's Fork" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CF9:/
+2093.4 "Heretic's Fork" sync / 1[56]:[^:]*:Storge:3E0E:/
+2105.6 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/
+2119.7 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/
+2133.8 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/
+
+2146.6 "Crystal Nail" sync / 1[56]:[^:]*:Storge:3CF6:/
+2156.2 "Breaking Wheel" sync / 1[56]:[^:]*:Storge:3CF5:/
+2161.4 "Censure" sync / 1[56]:[^:]*:Storge:3E37:/
+2172.5 "Breaking Wheel" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CFA:/
+2177.7 "Breaking Wheel" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CFA:/
+2182.7 "Breaking Wheel" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CFA:/
+2187.7 "Breaking Wheel" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CFA:/
+2192.6 "Breaking Wheel" sync / 1[56]:[^:]*:Storge:3E0F:/
+2212.4 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/
+2226.5 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/
+2240.6 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/
+
+2253.4 "Crystal Nail" sync / 1[56]:[^:]*:Storge:3CF6:/ window 50,50 jump 2056.1
+2260.5 "Heretic's Fork"
+2265.5 "Censure"
+2275.7 "Heretic's Fork"
+2279.7 "Heretic's Fork"
+2283.7 "Heretic's Fork"
+2287.7 "Heretic's Fork"
+2290.5 "Heretic's Fork"
+2302.7 "Intestinal Crank"
+2316.8 "Intestinal Crank"
+2331.0 "Intestinal Crank"

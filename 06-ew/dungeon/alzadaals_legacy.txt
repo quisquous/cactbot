@@ -1,0 +1,143 @@
+# Alzadaal's Legacy
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~#
+# ABUJAM #
+#~~~~~~~~#
+
+# -ii 71E5
+
+0.0 "--sync--" sync / 00:0839::The Undersea Entrance will be sealed off/ window 0,1
+11.0 "Big Wave" sync / 1[56]:[^:]*:Ambujam:6F60:/
+20.8 "Tentacle Dig" sync / 1[56]:[^:]*:Ambujam:6F55:/ window 20.8
+33.0 "--sync--" sync / 1[56]:[^:]*:Scarlet Tentacle:6F5B:/
+33.4 "Toxin Shower" sync / 1[56]:[^:]*:Ambujam:6F5C:/
+39.2 "--sync--" sync / 1[56]:[^:]*:Ambujam:6F56:/ window 39.2,10
+
+47.6 "Tentacle Dig" sync / 1[56]:[^:]*:Ambujam:6F59:/
+59.8 "--sync--" sync / 1[56]:[^:]*:Scarlet Tentacle:6F5B:/
+60.2 "Corrosive Venom/Toxic Shower" sync / 1[56]:[^:]*:Ambujam:(6F5C|71E6):/
+66.0 "--sync--" sync / 1[56]:[^:]*:Ambujam:6F5A:/ window 66,20
+76.3 "Corrosive Fountain/Toxic Fountain 1" sync / 1[56]:[^:]*:Ambujam:(731A|731B|7374):/
+79.3 "Corrosive Fountain/Toxic Fountain 2" sync / 1[56]:[^:]*:Ambujam:(731A|731B|7374):/
+80.6 "Corrosive Fountain/Toxic Fountain 3" sync / 1[56]:[^:]*:Ambujam:(731A|731B|7374):/
+104.4 "Big Wave" sync / 1[56]:[^:]*:Ambujam:6F60:/
+
+113.8 "Tentacle Dig" sync / 1[56]:[^:]*:Ambujam:6F59:/ window 30,30 jump 47.6
+126.4 "Corrosive Venom/Toxic Shower"
+142.5 "Corrosive Fountain/Toxic Fountain 1"
+145.5 "Corrosive Fountain/Toxic Fountain 2"
+146.8 "Corrosive Fountain/Toxic Fountain 3"
+170.6 "Big Wave"
+
+
+
+
+#~~~~~~~~~~~~~~~~~#
+# ARMORED CHARIOT #
+#~~~~~~~~~~~~~~~~~#
+
+# -ii 71CC 6F1A 6F1C 6F1D 6F26 6F27
+
+1000.0 "--sync--" sync / 00:0839::The Threshold Of Bounty will be sealed off/ window 1000,1
+1011.0 "Articulated Bits" sync / 1[56]:[^:]*:Armored Chariot:6F19:/
+1013.2 "Assail" sync / 1[56]:[^:]*:Armored Chariot:6F29:/
+1015.3 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F20|6F21):/
+1021.9 "Assault Cannon" sync / 1[56]:[^:]*:Armored Drudge:6F1B:/ duration 5
+1026.4 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:6F22:/
+1030.0 "Assault Cannon" sync / 1[56]:[^:]*:Armored Drudge:6F1B:/ duration 5
+
+# No Rail Cannon first time through the block.
+1036.3 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F24|6F25):/
+1047.4 "Diffusion Ray" sync / 1[56]:[^:]*:Armored Chariot:6F1E:/
+1056.6 "Articulated Bits" sync / 1[56]:[^:]*:Armored Chariot:6F19:/
+1058.8 "Assail" sync / 1[56]:[^:]*:Armored Chariot:6F28:/
+1060.9 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F20|6F21):/
+1067.5 "Assault Cannon" sync / 1[56]:[^:]*:Armored Drudge:6F1B:/ duration 5
+1073.9 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F24|6F25):/
+1083.2 "Articulated Bits" sync / 1[56]:[^:]*:Armored Chariot:6F19:/
+1085.4 "Assail" sync / 1[56]:[^:]*:Armored Chariot:6F29:/
+1087.5 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F20|6F21):/
+1094.1 "Assault Cannon" sync / 1[56]:[^:]*:Armored Drudge:6F1B:/ duration 5
+1098.7 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:6F23:/
+1102.3 "Assault Cannon" sync / 1[56]:[^:]*:Armored Drudge:6F1B:/ duration 5
+1104.8 "Graviton Cannon" sync / 1[56]:[^:]*:Armored Chariot:7373:/
+1108.6 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F24|6F25):/
+1117.8 "Articulated Bits" sync / 1[56]:[^:]*:Armored Chariot:6F19:/
+1120.0 "Assail" sync / 1[56]:[^:]*:Armored Chariot:6F28:/
+1122.1 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F20|6F21):/
+1128.7 "Assault Cannon" sync / 1[56]:[^:]*:Armored Drudge:6F1B:/ duration 5
+
+1135.0 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F24|6F25):/
+1145.1 "Diffusion Ray" sync / 1[56]:[^:]*:Armored Chariot:6F1E:/
+1155.2 "Rail Cannon" sync / 1[56]:[^:]*:Armored Chariot:6F1F:/
+1168.4 "Articulated Bits" sync / 1[56]:[^:]*:Armored Chariot:6F19:/
+1170.6 "Assail" sync / 1[56]:[^:]*:Armored Chariot:6F28:/
+1172.7 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F20|6F21):/
+1179.4 "Assault Cannon" sync / 1[56]:[^:]*:Armored Drudge:6F1B:/ duration 5
+1185.7 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F24|6F25):/
+1194.9 "Articulated Bits" sync / 1[56]:[^:]*:Armored Chariot:6F19:/
+1197.1 "Assail" sync / 1[56]:[^:]*:Armored Chariot:6F29:/
+1199.2 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F20|6F21):/
+1205.8 "Assault Cannon" sync / 1[56]:[^:]*:Armored Drudge:6F1B:/ duration 5
+1210.4 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:6F22:/
+1213.9 "Assault Cannon" sync / 1[56]:[^:]*:Armored Drudge:6F1B:/ duration 5
+1216.6 "Graviton Cannon" sync / 1[56]:[^:]*:Armored Chariot:7373:/
+1220.1 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F24|6F25):/
+1229.3 "Articulated Bits" sync / 1[56]:[^:]*:Armored Chariot:6F19:/
+1231.5 "Assail" sync / 1[56]:[^:]*:Armored Chariot:6F28:/
+1233.6 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F20|6F21):/
+1240.2 "Assault Cannon" sync / 1[56]:[^:]*:Armored Drudge:6F1B:/ duration 5
+
+1246.5 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F24|6F25):/ window 10,10 jump 2135
+1256.6 "Diffusion Ray" sync / 1[56]:[^:]*:Armored Chariot:6F1E:/
+1266.7 "Rail Cannon" sync / 1[56]:[^:]*:Armored Chariot:6F1F:/
+1280.0 "Articulated Bits" sync / 1[56]:[^:]*:Armored Chariot:6F19:/
+1282.2 "Assail" sync / 1[56]:[^:]*:Armored Chariot:6F28:/
+1284.3 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F20|6F21):/
+
+#~~~~~~~~~~#
+# KAPIKULU #
+#~~~~~~~~~~#
+
+# -ii 6F71 6F64 6F65 6F66 6F67 6F6D 6F6F
+
+2000.0 "--sync--" sync / 00:0839::Weaver'S Warding will be sealed off/ window 2000,1
+2015.2 "Billowing Bolts" sync / 1[56]:[^:]*:Kapikulu:6F70:/
+2023.4 "--sync--" sync / 1[56]:[^:]*:Kapikulu:6F62:/
+2027.8 "Spin Out" sync / 1[56]:[^:]*:Kapikulu:6F63:/
+2044.1 "--sync--" sync / 1[56]:[^:]*:Kapikulu:6F62:/
+2054.3 "Crewel Slice" sync / 1[56]:[^:]*:Kapikulu:6F72:/
+2061.4 "Billowing Bolts" sync / 1[56]:[^:]*:Kapikulu:6F70:/
+2069.6 "--sync--" sync / 1[56]:[^:]*:Kapikulu:6F62:/
+2074.7 "Wild Weave" sync / 1[56]:[^:]*:Kapikulu:6F69:/
+2084.5 "Power Serge" sync / 1[56]:[^:]*:Kapikulu:6F6A:/
+2088.8 "Mana Explosion" sync / 1[56]:[^:]*:Kapikulu:6F6B:/
+2099.6 "Magnitude Opus/Rotary Gale" sync / 1[56]:[^:]*:Kapikulu:(6F6C|6F6E):/
+2108.8 "--sync--" sync / 1[56]:[^:]*:Kapikulu:6F62:/
+2112.8 "Spin Out" sync / 1[56]:[^:]*:Kapikulu:6F63:/
+2120.5 "--sync--" sync / 1[56]:[^:]*:Kapikulu:6F62:/
+2127.9 "Basting Blade" sync / 1[56]:[^:]*:Kapikulu:6F68:/
+2131.5 "--sync--" sync / 1[56]:[^:]*:Kapikulu:6F62:/
+2138.8 "Basting Blade" sync / 1[56]:[^:]*:Kapikulu:6F68:/
+2140.9 "--sync--" sync / 1[56]:[^:]*:Kapikulu:6F62:/
+
+2151.1 "Crewel Slice" sync / 1[56]:[^:]*:Kapikulu:6F72:/
+2158.2 "Billowing Bolts" sync / 1[56]:[^:]*:Kapikulu:6F70:/
+2166.4 "--sync--" sync / 1[56]:[^:]*:Kapikulu:6F62:/
+2171.5 "Wild Weave" sync / 1[56]:[^:]*:Kapikulu:6F69:/
+2181.1 "Power Serge" sync / 1[56]:[^:]*:Kapikulu:6F6A:/
+2185.4 "Mana Explosion" sync / 1[56]:[^:]*:Kapikulu:6F6B:/
+2188.2 "Magnitude Opus/Rotary Gale" sync / 1[56]:[^:]*:Kapikulu:(6F6C|6F6E):/
+
+2199.4 "Crewel Slice" sync / 1[56]:[^:]*:Kapikulu:6F72:/ jump 2151.1
+2206.5 "Billowing Bolts" sync / 1[56]:[^:]*:Kapikulu:6F70:/
+2216.7 "--sync--" sync / 1[56]:[^:]*:Kapikulu:6F62:/
+2221.8 "Wild Weave" sync / 1[56]:[^:]*:Kapikulu:6F69:/
+2231.7 "Power Serge" sync / 1[56]:[^:]*:Kapikulu:6F6A:/
+2236.0 "Mana Explosion" sync / 1[56]:[^:]*:Kapikulu:6F6B:/
+2238.8 "Magnitude Opus/Rotary Gale" sync / 1[56]:[^:]*:Kapikulu:(6F6C|6F6E):/

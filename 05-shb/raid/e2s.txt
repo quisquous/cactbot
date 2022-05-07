@@ -1,0 +1,89 @@
+### Eden 2 (Savage)
+# Eden's Gate: Descent (Savage)
+# -p 3E64:11.2 -ii 3E60 3E62 3E51 3E53 3E55 3E56 3E58 3E68 3E6A 3E6F 4684 4686 3E72 3E65 3E67 3E63
+
+hideall "--Reset--"
+hideall "--sync--"
+hideall "Spell-In-Waiting"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.5 "--sync--" sync / 1[56]:[^:]*:Voidwalker:3E60:/ window 2,0
+10.5 "--sync--" sync / 1[56]:[^:]*:Voidwalker:3E63:/ window 11,5
+11.2 "Doomvoid Cleaver" sync / 1[56]:[^:]*:Voidwalker:3E64:/
+25.4 "Unholy Darkness" sync / 1[56]:[^:]*:Voidwalker:3E54:/
+31.8 "Slicer/Guillotine" sync / 1[56]:[^:]*:Voidwalker:(3E4F|3E50):/
+43.8 "Dark Fire III" sync / 1[56]:[^:]*:Voidwalker:3E57:/
+59.2 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
+69.3 "Punishing Ray" sync / 1[56]:[^:]*:Voidwalker:3E5B:/
+72.7 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
+86.1 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
+95.3 "Dark Fire III" sync / 1[56]:[^:]*:Voidwalker:3E57:/
+105.3 "Hell Wind" sync / 1[56]:[^:]*:Voidwalker:3E66:/
+106.8 "Shadoweye" sync / 1[56]:[^:]*:Voidwalker:3E69:/
+106.8 "Unholy Darkness" sync / 1[56]:[^:]*:Voidwalker:3E54:/
+121.9 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E61:/
+134.1 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E70:/
+143.8 "Empty Rage" sync / 1[56]:[^:]*:Voidwalker:3E6C:/
+148.7 "Doomvoid Guillotine" sync / 1[56]:[^:]*:Voidwalker:3E4F:/
+156.9 "Doomvoid Slicer" sync / 1[56]:[^:]*:Voidwalker:3E50:/
+164.9 "Empty Hate" sync / 1[56]:[^:]*:Voidwalker:3E5A:/
+175.8 "Doomvoid Cleaver" sync / 1[56]:[^:]*:Voidwalker:3E64:/
+191.2 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E61:/
+203.4 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E70:/
+208.0 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
+224.9 "Flare" sync / 1[56]:[^:]*:Voidwalker:4685:/
+229.3 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
+242.5 "Hell Wind" sync / 1[56]:[^:]*:Voidwalker:3E66:/
+248.5 "Punishing Ray" sync / 1[56]:[^:]*:Voidwalker:3E5B:/
+248.9 "Shadoweye" sync / 1[56]:[^:]*:Voidwalker:3E69:/
+260.7 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E61:/
+272.9 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E70:/
+282.9 "Light/Dark Circles" # ???
+286.4 "Doomvoid Cleaver" sync / 1[56]:[^:]*:Voidwalker:3E64:/
+295.7 "Unholy Darkness" sync / 1[56]:[^:]*:Voidwalker:3E54:/
+304.1 "Slicer/Guillotine" sync / 1[56]:[^:]*:Voidwalker:(3E4F|3E50):/
+330.3 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E61:/
+342.5 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E70:/
+348.1 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
+358.2 "Empty Hate/Rage" sync / 1[56]:[^:]*:Voidwalker:(3E5A|3E6C):/
+361.4 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
+374.7 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
+381.6 "Flare" sync / 1[56]:[^:]*:Voidwalker:4685:/
+386.9 "Unholy Darkness" sync / 1[56]:[^:]*:Voidwalker:3E54:/
+399.9 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E61:/
+408.5 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
+421.8 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
+430.0 "Shadoweye" sync / 1[56]:[^:]*:Voidwalker:3E69:/
+430.0 "Flare" sync / 1[56]:[^:]*:Voidwalker:4685:/
+437.4 "Dark Fire III" sync / 1[56]:[^:]*:Voidwalker:3E57:/
+445.4 "Light/Dark Circles" # ???
+450.2 "Punishing Ray" sync / 1[56]:[^:]*:Voidwalker:3E5B:/
+455.0 "Doomvoid Cleaver" sync / 1[56]:[^:]*:Voidwalker:3E64:/
+469.4 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E61:/
+
+# FIXME: I've seen this push ~6s earlier once
+# but is pretty consistent otherwise?
+499.2 "Quietus" sync / 1[56]:[^:]*:Voidwalker:3E71:/ window 500,20
+507.4 "Cycle Of ?" sync / 1[56]:[^:]*:Voidwalker:(40B9|4659):/
+510.5 "Slicer/Guillotine?" sync / 1[56]:[^:]*:Voidwalker:465A:/
+511.2 "Cleaver/Slicer?" sync / 1[56]:[^:]*:Voidwalker:3E64:/
+513.6 "Guillotine/Cleaver?" sync / 1[56]:[^:]*:Voidwalker:465B:/
+
+531.8 "Cycle Of ?" sync / 1[56]:[^:]*:Voidwalker:(40B9|4659):/
+534.9 "Slicer/Guillotine?" sync / 1[56]:[^:]*:Voidwalker:40BA:/
+538.0 "Cleaver/Slicer?" sync / 1[56]:[^:]*:Voidwalker:40BB:/
+538.7 "Guillotine/Cleaver?" sync / 1[56]:[^:]*:Voidwalker:3E64:/
+
+558.2 "Quietus" sync / 1[56]:[^:]*:Voidwalker:3E71:/
+568.2 "Cycle Of ?" sync / 1[56]:[^:]*:Voidwalker:(40B9|4659):/
+571.3 "Slicer/Guillotine?" sync / 1[56]:[^:]*:Voidwalker:(40BA|465A):/
+574.4 "Cleaver/Slicer?" #sync / 1[56]:[^:]*:Voidwalker:(40BB|3E64):/
+575.1 "Guillotine/Cleaver?" #sync / 1[56]:[^:]*:Voidwalker:(3E64|465B):/
+593.2 "Quietus" sync / 1[56]:[^:]*:Voidwalker:3E71:/
+602.5 "Quietus" sync / 1[56]:[^:]*:Voidwalker:3E71:/
+611.8 "Quietus" sync / 1[56]:[^:]*:Voidwalker:3E71:/
+624.8 "--sync--" sync / 14:[^:]*:Voidwalker:3E73:/ window 700,5
+629.8 "Quietus Enrage"

@@ -1,0 +1,299 @@
+### Unending Coil of Bahamut (Ultimate)
+# http://clees.me/guides/ucob/
+# -ii 26A7 26B4 26D0 26C6 26C7 26DA 26D8 26AF 26F0 26F1
+# -p 26A8:7 26AD:47.5 26B8:200 26D1:500 26E9:1200
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+##### TWINTANIA #####
+### Twintania P1: 100% -> 75%
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.5 "--sync--" sync / 1[56]:[^:]*:Twintania:26A7:/ window 2,0
+7.0 "Plummet" sync / 1[56]:[^:]*:Twintania:26A8:/ window 12,12
+13.1 "Twister" sync / 1[56]:[^:]*:Twintania:26AA:/
+16.3 "Fireball" sync / 1[56]:[^:]*:Twintania:26AC:/
+24.5 "Death Sentence" sync / 1[56]:[^:]*:Twintania:26A9:/
+27.6 "Plummet" sync / 1[56]:[^:]*:Twintania:26A8:/
+32.8 "Twister" sync / 1[56]:[^:]*:Twintania:26AA:/
+36.0 "Fireball" sync / 1[56]:[^:]*:Twintania:26AC:/
+40.0 "--push--"
+#44.2 "Death Sentence" sync / 1[56]:[^:]*:Twintania:26A9:/
+# TODO: presumably 44.2 is a loop back to 24.5.
+
+### Twintania P2: 75% -> 45%
+47.5 "Liquid Hell x5" duration 4.5 sync / 1[56]:[^:]*:Twintania:26AD:/ window 50,0
+53.0 "--sync--" sync / 14:[^:]*:Twintania:26AE:/ window 53,10
+56.0 "Generate" sync / 1[56]:[^:]*:Twintania:26AE:/
+59.1 "Liquid Hell x5" duration 4.5 #sync / 1[56]:[^:]*:Twintania:26AD:/
+70.6 "Death Sentence" sync / 1[56]:[^:]*:Twintania:26A9:/
+77.6 "Generate" sync / 1[56]:[^:]*:Twintania:26AE:/
+80.6 "Twister" sync / 1[56]:[^:]*:Twintania:26AA:/
+86.6 "Plummet" sync / 1[56]:[^:]*:Twintania:26A8:/
+91.7 "Liquid Hell x5" duration 4.5 #sync / 1[56]:[^:]*:Twintania:26AD:/
+99.0 "--push--"
+# TODO: presumably 91.7 is a loop back to 47.5.
+
+### Twintania P3: 45% -> 0%
+106.4 "Liquid Hell x5" duration 4.5 #sync / 1[56]:[^:]*:Twintania:26AD:/
+111.9 "--sync--" sync / 14:[^:]*:Twintania:26AE:/ window 30,10
+114.9 "Generate x2" sync / 1[56]:[^:]*:Twintania:26AE:/
+118.0 "Targeted Fire x5" duration 4.5 #sync / 1[56]:[^:]*:Twintania:26AD:/
+124.6 "Fireball" sync / 1[56]:[^:]*:Twintania:26AC:/ window 70,10
+133.6 "Death Sentence" sync / 1[56]:[^:]*:Twintania:26A9:/
+136.6 "Plummet" sync / 1[56]:[^:]*:Twintania:26A8:/
+143.6 "Generate x2" sync / 1[56]:[^:]*:Twintania:26AE:/
+146.6 "Twister" sync / 1[56]:[^:]*:Twintania:26AA:/
+151.6 "Plummet" sync / 1[56]:[^:]*:Twintania:26A8:/
+
+153.8 "Liquid Hell x5" duration 4.5 #sync / 1[56]:[^:]*:Twintania:26AD:/
+162.3 "Generate x2" sync / 1[56]:[^:]*:Twintania:26AE:/
+165.4 "Targeted Fire x5" duration 4.5 #sync / 1[56]:[^:]*:Twintania:26AD:/
+172.0 "Fireball" sync / 1[56]:[^:]*:Twintania:26AC:/ window 20,20 jump 124.6
+181.0 "Death Sentence" #sync / 1[56]:[^:]*:Twintania:26A9:/
+184.0 "Plummet" #sync / 1[56]:[^:]*:Twintania:26A8:/
+191.0 "Generate x2" #sync / 1[56]:[^:]*:Twintania:26AE:/
+194.0 "Twister" #sync / 1[56]:[^:]*:Twintania:26AA:/
+199.0 "Plummet" #sync / 1[56]:[^:]*:Twintania:26A8:/
+
+
+##### NAEL #####
+200.0 "Heavensfall" sync / 1[56]:[^:]*:Ragnarok:26B8:/ window 200,0
+205.5 "Meteor Stream x4" sync / 1[56]:[^:]*:Nael Geminus:26C0:/
+207.0 "Thermionic Burst" sync / 1[56]:[^:]*:Ragnarok:26B9:/
+208.5 "Meteor Stream x4" sync / 1[56]:[^:]*:Nael Geminus:26C0:/
+211.0 "Thermionic Burst" sync / 1[56]:[^:]*:Ragnarok:26B9:/
+211.5 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:26C1:/
+
+213.5 "--targetable--"
+213.6 "Bahamut's Claw x5" duration 2.8 #sync / 1[56]:[^:]*:Nael deus Darnus:26B5:/
+222.1 "Bahamut's Favor" sync / 1[56]:[^:]*:Nael deus Darnus:26C2:/
+
+230.6 "Dynamo + Beam/Chariot" duration 8
+235.1 "Chain Lightning x2" sync / 1[56]:[^:]*:Thunderwing:26C8:/
+#235.1 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:26BC:/
+#238.3 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:26BD:/
+239.1 "Doom x2" sync / 1[56]:[^:]*:Tail of Darkness:26C9:/
+241.1 "Fireball (1)" sync / 1[56]:[^:]*:Firehorn:26C5:/
+242.1 "Wings Of Salvation x2" duration 4 sync / 1[56]:[^:]*:Fang of Light:26CA:/
+249.3 "Bahamut's Claw x5" duration 2.8 #sync / 1[56]:[^:]*:Nael deus Darnus:26B5:/
+256.0 "Fireball (2)" sync / 1[56]:[^:]*:Firehorn:26C5:/
+
+258.0 "Thermionic + Dynamo/Chariot" duration 8
+260.0 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:26C8:/
+#262.8 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:26BD:/
+#265.8 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:26BC:/
+268.0 "Doom x3" sync / 1[56]:[^:]*:Tail of Darkness:26C9:/
+270.0 "Wings Of Salvation x3" duration 8 sync / 1[56]:[^:]*:Fang of Light:26CA:/
+278.9 "Chain Lightning x2" sync / 1[56]:[^:]*:Thunderwing:26C8:/
+281.9 "Fireball (3)" sync / 1[56]:[^:]*:Firehorn:26C5:/
+
+290.4 "Dive + Dynamo/Chariot" duration 8
+284.7 "Bahamut's Claw x5" duration 2.8 sync / 1[56]:[^:]*:Nael deus Darnus:26B5:/
+#295.3 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:26BE:/
+#298.3 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:26BC:/
+302.9 "Fireball (4)" sync / 1[56]:[^:]*:Firehorn:26C5:/
+303.9 "Doom x3" sync / 1[56]:[^:]*:Tail of Darkness:26C9:/
+305.9 "Chain Lightning x2" sync / 1[56]:[^:]*:Thunderwing:26C8:/
+306.0 "Wings Of Salvation x3" duration 8 sync / 1[56]:[^:]*:Fang of Light:26CA:/
+323.3 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:26B6:/
+333.5 "Hypernova x4" duration 6 #sync / 1[56]:[^:]*:Nael deus Darnus:26BF:/
+
+328.5 "Marker 1"
+332.5 "Marker 2"
+336.5 "Marker 3"
+339.5 "Cauterize" #sync / 1[56]:[^:]*:Thunderwing:26CD:/
+#339.5 "Cauterize" #sync / 1[56]:[^:]*:Tail of Darkness:26CE:/
+341.0 "--untargetable--"
+341.0 "Meteor/Dive or Dive/Beam" duration 3 # first mechanic -> second
+#342.7 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:26C0:/
+343.5 "Cauterize" #sync / 1[56]:[^:]*:Firehorn:26CB:/
+#345.7 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:26C1:/
+347.4 "Cauterize" #sync / 1[56]:[^:]*:Iceclaw:26CC:/
+#347.5 "Cauterize" #sync / 1[56]:[^:]*:Fang of Light:26CF:/
+
+349.7 "Bahamut's Claw x5" duration 2.8 #sync / 1[56]:[^:]*:Nael deus Darnus:26B5:/
+
+361.2 "Random Combo Attack" duration 8
+#366.2 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:26BD:/
+#369.2 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:26BC:/
+
+372.7 "Random Combo Attack" duration 8
+#377.3 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:26BE:/
+#380.3 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:26BC:/
+
+388.7 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:26B6:/
+395.7 "Bahamut's Claw x5" duration 2.8 #sync / 1[56]:[^:]*:Nael deus Darnus:26B5:/
+403.2 "--untargetable--"
+408.2 "Megaflare Enrage" sync / 1[56]:[^:]*:Nael deus Darnus:26BA:/
+
+
+##### BAHAMUT #####
+500.0 "Seventh Umbral Era" sync / 1[56]:[^:]*:Bahamut Prime:26D1:/ window 500,0
+503.0 "Calamitous Flame x3" sync / 1[56]:[^:]*:Bahamut Prime:26D2:/ duration 2
+508.0 "Calamitous Blaze" sync / 1[56]:[^:]*:Bahamut Prime:26D3:/
+511.0 "--targetable--"
+517.0 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:26D4:/
+525.0 "Flatten" sync / 1[56]:[^:]*:Bahamut Prime:26D5:/
+
+### QUICKMARCH
+532.0 "Quickmarch Trio" sync / 1[56]:[^:]*:Bahamut Prime:26E2:/ window 30,10
+534.0 "--untargetable--"
+#540.0 "Megaflare Dive" sync / 1[56]:[^:]*:Bahamut Prime:26E1:/
+#540.0 "Lunar Dive" sync / 1[56]:[^:]*:Nael deus Darnus:26C3:/
+540.0 "Twisting Dive" sync / 1[56]:[^:]*:Twintania:26B2:/
+544.0 "Spread" sync / 1[56]:[^:]*:Bahamut Prime:26DC:/
+545.0 "--targetable--"
+546.0 "Pepperoni" sync / 1[56]:[^:]*:Bahamut Prime:26DD:/
+548.0 "Stack" sync / 1[56]:[^:]*:Bahamut Prime:26DE:/
+550.0 "Earth Shaker x3" sync / 1[56]:[^:]*:Bahamut Prime:26D9:/
+552.0 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:26D7:/
+
+555.9 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:26D4:/
+563.9 "Flatten" sync / 1[56]:[^:]*:Bahamut Prime:26D5:/
+
+### BLACKFIRE
+572.0 "Blackfire Trio" sync / 1[56]:[^:]*:Bahamut Prime:26E3:/ window 70,10
+574.0 "--untargetable--"
+576.0 "Liquid Hell x5" duration 4.5 #sync / 1[56]:[^:]*:Twintania:26AD:/ 
+579.0 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:26BD:/
+580.0 "Megaflare Dive" sync / 1[56]:[^:]*:Bahamut Prime:26E1:/
+586.1 "Hypernova x4" duration 4.5 #sync / 1[56]:[^:]*:Nael deus Darnus:26BF:/
+588.0 "Stack" sync / 1[56]:[^:]*:Bahamut Prime:26DE:/
+590.0 "Towers" sync / 1[56]:[^:]*:Bahamut Prime:26DF:/
+
+590.0 "--targetable--"
+596.0 "Gigaflare" sync / 1[56]:[^:]*:Bahamut Prime:26D6:/
+605.0 "Flare Breath 1" #sync / 1[56]:[^:]*:Bahamut Prime:26D4:/
+607.0 "Flare Breath 2" #sync / 1[56]:[^:]*:Bahamut Prime:26D4:/
+609.0 "Flare Breath 3" #sync / 1[56]:[^:]*:Bahamut Prime:26D4:/
+
+### FELLRUIN
+622.0 "Fellruin Trio" sync / 1[56]:[^:]*:Bahamut Prime:26E4:/ window 130,10
+624.0 "--untargetable--"
+626.6 "Dive Dynamo Combo" duration 8
+#631.1 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:26BC:/
+#634.1 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:26BE:/
+637.1 "Tempest Wing" sync / 1[56]:[^:]*:Bahamut Prime:26D7:/
+638.1 "Aetheric Profusion" sync / 1[56]:[^:]*:Twintania:26B1:/
+
+640.1 "--targetable--"
+641.1 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:26C0:/
+646.1 "Gigaflare" sync / 1[56]:[^:]*:Bahamut Prime:26D6:/
+651.4 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:26D4:/
+660.4 "Flatten" sync / 1[56]:[^:]*:Bahamut Prime:26D5:/
+665.4 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:26D4:/
+
+#### HEAVENSFALL
+673.4 "Heavensfall Trio" sync / 1[56]:[^:]*:Bahamut Prime:26E5:/ window 170,10
+675.4 "--untargetable--"
+#681.4 "Megaflare Dive" sync / 1[56]:[^:]*:Bahamut Prime:26E1:/
+681.4 "Twisting Dive" sync / 1[56]:[^:]*:Twintania:26B2:/
+686.9 "Heavensfall" sync / 1[56]:[^:]*:Nael deus Darnus:26B7:/
+687.4 "Pepperoni" sync / 1[56]:[^:]*:Bahamut Prime:26DD:/
+688.9 "Heavensfall" sync / 1[56]:[^:]*:Ragnarok:26B8:/
+691.4 "Towers" sync / 1[56]:[^:]*:Bahamut Prime:26DF:/
+694.5 "Hypernova x3" duration 3.2 #sync / 1[56]:[^:]*:Nael deus Darnus:26BF:/
+696.0 "Thermionic Burst x8" duration 5 #sync / 1[56]:[^:]*:Ragnarok:26B9:/
+
+702.5 "--targetable--"
+703.5 "Fireball" sync / 1[56]:[^:]*:Twintania:26AC:/
+708.5 "Gigaflare" sync / 1[56]:[^:]*:Bahamut Prime:26D6:/
+717.5 "Flare Breath 1" #sync / 1[56]:[^:]*:Bahamut Prime:26D4:/
+719.5 "Flare Breath 2" #sync / 1[56]:[^:]*:Bahamut Prime:26D4:/
+721.5 "Flare Breath 3" #sync / 1[56]:[^:]*:Bahamut Prime:26D4:/
+
+### TENSTRIKE
+733.5 "Tenstrike Trio" sync / 1[56]:[^:]*:Bahamut Prime:26E6:/ window 200,10
+735.5 "--untargetable--"
+740.5 "Generate x3" sync / 1[56]:[^:]*:Twintania:26AE:/
+741.5 "Meteor Stream (dps)" duration 3 #sync / 1[56]:[^:]*:Nael Geminus:26C0:/
+744.5 "Generate x3" sync / 1[56]:[^:]*:Twintania:26AE:/
+745.5 "Meteor Stream (T/H)" duration 3 #sync / 1[56]:[^:]*:Nael Geminus:26C0:/
+754.4 "--targetable--"
+754.4 "Earth Shaker x4" sync / 1[56]:[^:]*:Bahamut Prime:26D9:/
+759.4 "Earth Shaker x4" sync / 1[56]:[^:]*:Bahamut Prime:26D9:/
+
+767.4 "Gigaflare" sync / 1[56]:[^:]*:Bahamut Prime:26D6:/
+778.4 "Flatten" sync / 1[56]:[^:]*:Bahamut Prime:26D5:/
+781.4 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:26D4:/
+
+### GRAND OCTET
+789.4 "Grand Octet" sync / 1[56]:[^:]*:Bahamut Prime:26E7:/ window 200,10
+791.4 "--untargetable--"
+797.4 "Nael Marker"
+801.4 "Lunar Dive" sync / 1[56]:[^:]*:Nael deus Darnus:26C3:/
+808.4 "Cauterize" #sync / 1[56]:[^:]*:Firehorn:26CB:/
+810.6 "Cauterize" #sync / 1[56]:[^:]*:Iceclaw:26CC:/
+812.6 "Cauterize" #sync / 1[56]:[^:]*:Fang of Light:26CF:/
+814.4 "Bahamut Marker"
+814.6 "Cauterize" #sync / 1[56]:[^:]*:Thunderwing:26CD:/
+816.6 "Cauterize" #sync / 1[56]:[^:]*:Tail of Darkness:26CE:/
+818.6 "Megaflare Dive" sync / 1[56]:[^:]*:Bahamut Prime:26E1:/
+823.4 "Twin Marker"
+826.4 "Stack" sync / 1[56]:[^:]*:Bahamut Prime:26DE:/
+827.6 "Twisting Dive" sync / 1[56]:[^:]*:Twintania:26B2:/
+828.4 "Towers" sync / 1[56]:[^:]*:Bahamut Prime:26DF:/
+
+
+##### ADDS PHASE: NAEL + TWIN #####
+843.4 "Bahamut's Favor" sync / 1[56]:[^:]*:Bahamut Prime:26E8:/ window 1000,100
+844.9 "--targetable--"
+852.9 "Bahamut's Claw x5" duration 2.8 #sync / 1[56]:[^:]*:Nael deus Darnus:26B5:/
+852.9 "Plummet" sync / 1[56]:[^:]*:Twintania:26A8:/
+
+856.0 "Liquid Hell x5" duration 4.5 #sync / 1[56]:[^:]*:Twintania:26AD:/
+864.5 "Generate x3" sync / 1[56]:[^:]*:Twintania:26AE:/
+868.6 "Twister" sync / 1[56]:[^:]*:Twintania:26AA:/
+871.6 "Triple Nael Quote"
+#876.3 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:26BB:/
+#879.3 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:26BD:/
+#882.4 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:26BE:/
+885.5 "Twister" sync / 1[56]:[^:]*:Twintania:26AA:/
+
+896.5 "Megaflare" sync / 1[56]:[^:]*:Nael deus Darnus:26BA:/
+904.6 "Death Sentence" sync / 1[56]:[^:]*:Twintania:26A9:/
+904.6 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:26B6:/
+908.6 "Plummet" sync / 1[56]:[^:]*:Twintania:26A8:/
+908.6 "Bahamut's Claw x5" duration 2.8 #sync / 1[56]:[^:]*:Nael deus Darnus:26B5:/
+
+917.7 "Liquid Hell x5" duration 4.5 #sync / 1[56]:[^:]*:Twintania:26AD:/
+926.5 "Generate x3" sync / 1[56]:[^:]*:Twintania:26AE:/
+930.7 "Twister" sync / 1[56]:[^:]*:Twintania:26AA:/
+934.7 "Triple Nael Quote"
+#938.3 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:26BC:/
+#941.4 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:26BB:/
+#944.6 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:26BE:/
+947.9 "Twister" sync / 1[56]:[^:]*:Twintania:26AA:/
+
+960.1 "Death Sentence" sync / 1[56]:[^:]*:Twintania:26A9:/
+960.7 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:26B6:/
+973.0 "Megaflare" sync / 1[56]:[^:]*:Nael deus Darnus:26BA:/
+984.0 "Enrage" # ???
+
+
+##### GOLDEN BAHAMUT #####
+1200.0 "Teraflare" sync / 1[56]:[^:]*:Bahamut Prime:26E9:/ window 1200,0
+1225.1 "Flames Of Rebirth" #sync / 1[56]:[^:]*:Phoenix:26F2:/
+1230.9 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:2707:/ window 30,30 # Glowing ball
+1245.0 "--targetable--"
+1251.1 "Morn Afah #1" sync / 1[56]:[^:]*:Bahamut Prime:26EC:/
+1257.5 "Akh Morn #1" sync / 1[56]:[^:]*:Bahamut Prime:26EA:/ duration 3.3
+1270.0 "Exaflare #1" sync / 1[56]:[^:]*:Bahamut Prime:26EF:/ window 10,10
+1289.3 "Akh Morn #2" sync / 1[56]:[^:]*:Bahamut Prime:26EA:/ duration 4.4
+1306.9 "Morn Afah #2" sync / 1[56]:[^:]*:Bahamut Prime:26EC:/
+1319.2 "Exaflare #2" sync / 1[56]:[^:]*:Bahamut Prime:26EF:/ window 10,10
+1340.5 "Morn Afah #3" sync / 1[56]:[^:]*:Bahamut Prime:26EC:/
+1352.7 "Akh Morn #3" sync / 1[56]:[^:]*:Bahamut Prime:26EA:/ duration 5.5
+1369.4 "Exaflare #3" sync / 1[56]:[^:]*:Bahamut Prime:26EF:/ window 10,10
+1390.6 "Morn Afah #4" sync / 1[56]:[^:]*:Bahamut Prime:26EC:/
+1402.7 "Akh Morn #4" sync / 1[56]:[^:]*:Bahamut Prime:26EA:/ duration 6.6
+1420.5 "Exaflare #4" sync / 1[56]:[^:]*:Bahamut Prime:26EF:/ window 10,10
+1441.6 "Morn Afah #5" sync / 1[56]:[^:]*:Bahamut Prime:26EC:/
+1453.7 "Morn Afah Enrage" sync / 1[56]:[^:]*:Bahamut Prime:26ED:/
+#1455.9 "Morn Afah" sync / 1[56]:[^:]*:Bahamut Prime:26EE:/
+#1457.2 "Morn Afah" sync / 1[56]:[^:]*:Bahamut Prime:26EE:/
+
+# victory ezpz

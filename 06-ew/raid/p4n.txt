@@ -1,0 +1,99 @@
+### P4N: Asphodelos: The Fourth Circle
+#
+# -p 6A50:15.8
+# -ii 6A41 6A42 6A43 6A38 6A39 6A3A 6A3B
+
+# Note: every Pinax is also accompanied by a Mekhane (6A38 through 6A3B)
+# of the same name.  These all happen at the same time, and are the
+# abilities that hit the player, so are removed.
+
+# Note: Northerly Shift (6A4A, 6DAE), Southerly Shift (6A4B, 6DAF),
+# Easterly Shift (6A4C, 6DB0), and Westerly Shift (6A4D, 6DB1)
+# are all combined into "Directional Shift" for brevity.  The first
+# id is for a shift + cleave, and the second id is for shift + knockback.
+# Only the first two ids are fixed (cleave first, then knockback) and it
+# is random after that.
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+10.8 "--sync--" sync / 14:[^:]*:Hesperos:6A50:/ window 20,20
+15.8 "Elegant Evisceration" sync / 1[56]:[^:]*:Hesperos:6A50:/
+24.0 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CA:/
+
+31.0 "Setting the Scene 1" sync / 1[56]:[^:]*:Hesperos:69CB:/
+43.2 "Pinax" sync / 1[56]:[^:]*:Hesperos:69CF:/
+53.3 "Levinstrike Pinax" sync / 1[56]:[^:]*:Hesperos:6A3F:/
+65.4 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A51:/
+69.6 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CA:/
+
+76.6 "Setting the Scene 2" sync / 1[56]:[^:]*:Hesperos:69CB:/
+88.8 "Pinax" sync / 1[56]:[^:]*:Hesperos:69CF:/
+98.9 "Well Pinax" sync / 1[56]:[^:]*:Hesperos:6A3E:/
+112.1 "Hell Skewer" sync / 1[56]:[^:]*:Hesperos:6A4F:/
+121.3 "Elegant Evisceration" sync / 1[56]:[^:]*:Hesperos:6A50:/
+125.5 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CA:/
+
+132.5 "Setting the Scene 3" sync / 1[56]:[^:]*:Hesperos:69CB:/
+144.7 "Pinax" sync / 1[56]:[^:]*:Hesperos:69CF:/
+154.8 "Well Pinax/Levinstrike Pinax" sync / 1[56]:[^:]*:Hesperos:(6A3E|6A3F):/
+162.0 "Hell Skewer" sync / 1[56]:[^:]*:Hesperos:6A4F:/
+165.7 "Acid Pinax" sync / 1[56]:[^:]*:Hesperos:6A3C:/
+176.7 "Levinstrike Pinax/Well Pinax" sync / 1[56]:[^:]*:Hesperos:(6A3E|6A3F):/
+184.1 "Hell Skewer" sync / 1[56]:[^:]*:Hesperos:6A4F:/
+199.3 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:6A40:/
+208.4 "Belone Coils" sync / 1[56]:[^:]*:Hesperos:69DD:/
+219.2 "Burst" sync / 1[56]:[^:]*:Hesperos:6A4[456]:/
+223.3 "Hell Skewer" sync / 1[56]:[^:]*:Hesperos:6A4F:/
+232.5 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A51:/
+
+239.7 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+248.4 "Directional Shift" sync / 1[56]:[^:]*:Hesperos:(6A4A|6A4B|6A4C|6A4D):/
+249.9 "Shifting Strike (cleave)" sync / 1[56]:[^:]*:Hesperos:6A4E:/
+257.6 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+266.2 "Directional Shift" sync / 1[56]:[^:]*:Hesperos:(6DAE|6DAF|6DB0|6DB1):/
+267.9 "Shifting Strike (knockback)" sync / 1[56]:[^:]*:Hesperos:6DB2:/
+269.4 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+278.4 "Directional Shift" sync / 1[56]:[^:]*:Hesperos:(6A4A|6A4B|6A4C|6A4D|6DAE|6DAF|6DB0|6DB1):/
+279.9 "Shifting Strike" sync / 1[56]:[^:]*:Hesperos:(6DB2|6A4E):/
+285.6 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+
+292.3 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:6A40:/
+300.5 "Belone Bursts" sync / 1[56]:[^:]*:Hesperos:69D9:/
+324.7 "Elegant Evisceration" sync / 1[56]:[^:]*:Hesperos:6A50:/
+328.9 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CA:/
+
+335.9 "Setting the Scene" sync / 1[56]:[^:]*:Hesperos:69CB:/
+349.1 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:6A40:/
+358.3 "Pinax" sync / 1[56]:[^:]*:Hesperos:69CF:/
+368.4 "Pinax 1" sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/
+371.5 "Hell Skewer" sync / 1[56]:[^:]*:Hesperos:6A4F:/
+379.4 "Pinax 2" sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/
+380.7 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+386.3 "Belone Coils" sync / 1[56]:[^:]*:Hesperos:69DD:/
+390.4 "Pinax 3" sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/
+397.1 "Burst" sync / 1[56]:[^:]*:Hesperos:6A4[456]:/
+403.4 "Pinax 4" sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/
+404.5 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+413.5 "Directional Shift" sync / 1[56]:[^:]*:Hesperos:(6A4A|6A4B|6A4C|6A4D|6DAE|6DAF|6DB0|6DB1):/
+415.0 "Shifting Strike" sync / 1[56]:[^:]*:Hesperos:(6DB2|6A4E):/
+428.9 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A51:/
+
+438.1 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:6A40:/
+446.3 "Belone Bursts" sync / 1[56]:[^:]*:Hesperos:69D9:/
+454.5 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+463.1 "Westerly Shift" sync / 1[56]:[^:]*:Hesperos:6DB1:/
+464.8 "Shifting Strike" sync / 1[56]:[^:]*:Hesperos:6DB2:/
+478.3 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A51:/
+491.5 "Elegant Evisceration" sync / 1[56]:[^:]*:Hesperos:6A50:/
+495.7 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CA:/
+
+502.7 "Setting the Scene" sync / 1[56]:[^:]*:Hesperos:69CB:/ window 50,50 jump 335.9
+515.9 "Bloodrake" #sync / 1[56]:[^:]*:Hesperos:6A40:/
+525.1 "Pinax" #sync / 1[56]:[^:]*:Hesperos:69CF:/
+535.2 "Pinax 1" #sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/
+538.3 "Hell Skewer" #sync / 1[56]:[^:]*:Hesperos:6A4F:/
+546.2 "Pinax 2" #sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/

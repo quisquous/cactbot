@@ -1,0 +1,88 @@
+hideall "--Reset--"
+hideall "--sync--"
+
+# ii 1F8B 1F8D 1F8E 1F8F 1F90 1F94 1F9A 1F9C 1F9E 1FA3 1FBB 1FCE 1FCF 1FF4 2218 2219 221A 244B 24F0
+
+# Elemental Attack is one of:
+# Aerial Blast, Judgment Bolt, Diamond Dust, Hellfire, Earthen Fury, Tidal Wave
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.0 "--sync--" sync / 1[56]:[^:]*:(Left Wing|Right Wing):1FA9:/ window 1,2
+20.6 "Tidal Wave" sync / 1[56]:[^:]*:Shinryu:1FAA:/ window 20.6,5
+38.8 "Hypernova/Levinbolt" sync / 1[56]:[^:]*:Right Wing:1F9[9B]:/
+49.9 "Akh Morn" sync / 1[56]:[^:]*:Shinryu:1FA4:/
+59.2 "Summon Icicle" sync / 1[56]:[^:]*:Left Wing:1F9F:/
+59.9 "Icicle Impact x2" # sync / 1[56]:[^:]*:Icicle:1FA0:/
+64.4 "Spikesicle x2" # sync / 1[56]:[^:]*:Icicle:1FA1:/
+75.2 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:1FA2:/
+88.3 "Earth Breath" sync / 1[56]:[^:]*:Shinryu:1F9D:/ # May be skipped with high DPS
+115.8 "Hellfire/Judgment Bolt"sync / 1[56]:[^:]*:Shinryu:1FA[BC]:/ window 30,30
+118.1 "--untargetable--"
+
+# Intermission.
+# The given times for Meteor Impact are the latest they can occur.
+119.0 "--sync--" sync / 1[56]:[^:]*:Shinryu:1F8A:/ window 120,5
+125.4 "--sync--" sync / 14:[^:]*:Cocoon:1F96:/ window 10,5
+129.1 "Meteor Impact" sync / 1[56]:[^:]*:Cocoon:1F96:/
+130.6 "--adds spawn--" sync / 1[56]:[^:]*:Cocoon:2142:/
+146.2 "--sync--" sync / 14:[^:]*:Cocoon:1F96:/ window 15,5
+150.9 "Meteor Impact" sync / 1[56]:[^:]*:Cocoon:1F96:/
+152.5 "--adds spawn--" sync / 1[56]:[^:]*:Cocoon:2142:/
+176.1 "--sync--" sync / 14:[^:]*:Cocoon:1F96:/ window 25,5
+180.8 "Meteor Impact" sync / 1[56]:[^:]*:Cocoon:1F96:/
+182.4 "--adds spawn--" sync / 1[56]:[^:]*:Cocoon:2142:/
+219.7 "--sync--" sync / 14:[^:]*:Shinryu:1F95:/ window 220,5
+225.2 "Protostar" sync / 1[56]:[^:]*:Shinryu:1F95:/
+234.3 "Dark Matter" sync / 1[56]:[^:]*:Shinryu:1F98:/
+240.5 "--sync--" sync / 1[56]:[^:]*:Shinryu:2128:/
+244.9 "TAP BUTTON OR ELSE" # Doesn't seem to have an actual log line to sync
+
+# Post-intermission block
+271.9 "Gyre Charge" sync / 1[56]:[^:]*:Shinryu:1FA8:/
+279.1 "--targetable--"
+290.3 "Tail Slap" sync / 1[56]:[^:]*:Tail:1F93:/
+311.3 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:1FA2:/
+317.4 "Tail Slap" sync / 1[56]:[^:]*:Tail:1F93:/
+328.4 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:1FA2:/
+335.5 "Dragonfist" sync / 1[56]:[^:]*:Shinryu:24EF:/ window 30,30
+353.6 "Elemental Attack" sync / 1[56]:[^:]*:Shinryu:1FA[ABCDEF]:/
+360.8 "--sync--" sync / 1[56]:[^:]*:Shinryu:1F9[12]:/ window 30,15
+363.7 "Summon Icicle" sync / 1[56]:[^:]*:Left Wing:1F9F:/
+364.3 "Icicle Impact x2" # sync / 1[56]:[^:]*:Icicle:1FA0:/
+368.8 "Spikesicle x2" # sync / 1[56]:[^:]*:Icicle:1FA1:/
+370.8 "Tail Slap" sync / 1[56]:[^:]*:Tail:1F93:/
+377.8 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:1FA2:/
+387.8 "Hypernova/Levinbolt" sync / 1[56]:[^:]*:Right Wing:1F9[9B]:/
+388.0 "--sync--" sync / 1[56]:[^:]*:Shinryu:1F9[12]:/
+398.1 "Tail Slap" sync / 1[56]:[^:]*:Tail:1F93:/
+425.2 "Elemental Attack" sync / 1[56]:[^:]*:Shinryu:1FA[ABCDEF]:/
+425.2 "--sync--" sync / 1[56]:[^:]*:Shinryu:23BA:/
+
+# Rotation to 0% HP
+434.4 "Akh Morn x3" sync / 1[56]:[^:]*:Shinryu:1FA4:/ window 30,30
+440.7 "--untargetable--"
+450.1 "Gyre Charge" sync / 1[56]:[^:]*:Shinryu:1FA8:/
+457.2 "--targetable--"
+466.4 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:1FA2:/
+478.4 "Dragonfist" sync / 1[56]:[^:]*:Shinryu:24EF:/ window 30,30
+484.4 "Hypernova/Levinbolt" sync / 1[56]:[^:]*:Right Wing:1F9[9B]:/
+496.5 "Elemental Attack" sync / 1[56]:[^:]*:Shinryu:1FA[ABCDEF]:/
+507.7 "--sync--" sync / 1[56]:[^:]*:Shinryu:1F9[12]:/ window 30,15
+509.7 "Summon Icicle" sync / 1[56]:[^:]*:Left Wing:1F9F:/
+510.3 "Icicle Impact" # sync / 1[56]:[^:]*:Icicle:1FA0:/
+514.8 "Spikesicle x2" # sync / 1[56]:[^:]*:Icicle:1FA1:/
+517.9 "Tail Slap" sync / 1[56]:[^:]*:Tail:1F93:/
+527.8 "Hypernova/Levinbolt" sync / 1[56]:[^:]*:Right Wing:1F9[9B]:/
+540.8 "Akh Morn x3" # sync / 1[56]:[^:]*:Shinryu:1FA4:/ duration 5
+548.9 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:1FA2:/
+555.2 "Earth Breath" sync / 1[56]:[^:]*:Shinryu:1F9D:/
+569.6 "Elemental Attack" sync / 1[56]:[^:]*:Shinryu:1FA[ABCDEF]:/
+
+578.8 "Akh Morn x3" sync / 1[56]:[^:]*:Shinryu:1FA4:/ jump 434.4
+585.1 "--untargetable--"
+594.5 "Gyre Charge"
+601.6 "--targetable--"
+610.8 "Ice Storm"
+

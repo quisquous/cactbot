@@ -1,0 +1,241 @@
+### Shiva Extreme
+# https://ffxiv.consolegameswiki.com/wiki/Akh_Afah_Amphitheatre_(Extreme)
+#
+# -ii BE2 C8A 9A2 -it Shiva
+# staff first: -p 995:100 C7F:200 994:800
+# blade first: -p 993:400 994:600 C7F:800
+# post-cutscene: -p C16:866.7
+#
+# Phase Flowchart:
+# HP:100%       95%          90%            80%        50% (if adds dead)
+#
+#           +-> 2a(staff) -> 3a(sword) -+
+# 1(autos) -+                           +-> 4(adds) -> cutscene ->
+#           +-> 2b(sword) -> 3b(staff) -+
+#
+#
+#
+#                        +-> 7a(staff) -+
+# -> 5(staff) -> 6(bow) -+              + -> 6(bow) -> etc
+#                        +-> 7b(sword) -+
+#
+#
+# Notes:
+# * in the 2b/3a sword phases, Whiteout / Glacier Bash can be +0.5s delayed randomly??
+# * Shiva will push at 50% to cutscene if adds are dead, invincible when <50% otherwise.
+# * permafrost is weirdly optional and makes timing the latter half a mess.
+# * 7a/7b have 1-2 permafrosts (1 of 2 options while weapon is out, 1 maybe during icicle impact)
+# * 5 only has the optional icicle impact permafrosts
+# * 6 has an optional permafrost after the avalanche laser
+# * permafrost appears to push back other abilities by ~4s, so lots of large syncs after them
+# * it doesn't seem like there's any connection between permafrost in one phase vs others
+# * overall, timings are very sloppy compared to other fights, maybe due to Shiva ~~animations~~
+
+hideall "--sync--"
+hideall "--Reset--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# Phase 1: Literally Just Autos (100% -> 95%)
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.0 "--sync--" sync / 1[56]:[^:]*:Shiva:BE4:/ window 10,10
+
+# jump to staff
+10.0 "--sync--" sync / 1[56]:[^:]*:Shiva:995:/ window 10,100 jump 100
+# jump to sword
+10.0 "--sync--" sync / 1[56]:[^:]*:Shiva:993:/ window 10,100 jump 400
+
+# Phase 2a: Staff (95% -> 90%)
+100.0 "Frost Staff" sync / 1[56]:[^:]*:Shiva:995:/
+108.1 "Hailstorm" sync / 1[56]:[^:]*:Shiva:997:/
+
+117.6 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:BE6:/
+127.0 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:BE6:/
+
+140.5 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:BE6:/ window 8,8 jump 117.6
+149.9 "Absolute Zero" #sync / 1[56]:[^:]*:Shiva:BE6:/
+
+163.4 "Absolute Zero" #sync / 1[56]:[^:]*:Shiva:BE6:/
+173.8 "Absolute Zero" #sync / 1[56]:[^:]*:Shiva:BE6:/
+
+
+# Phase 3a: Sword (90% -> 80%)
+200.0 "Melt" sync / 1[56]:[^:]*:Shiva:C7F:/ window 100,0
+# This rolls out x4 over 1.5 seconds, so don't sync
+207.2 "Icicle Impact" #sync / 1[56]:[^:]*:Shiva:BEB:/
+212.3 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:BEA:/
+
+225.0 "Frost Blade" sync / 1[56]:[^:]*:Shiva:993:/
+230.1 "Icebrand" sync / 1[56]:[^:]*:Shiva:BE1:/
+
+235.4 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:BE8:/
+245.0 "Glacier Bash" sync / 1[56]:[^:]*:Shiva:BE9:/
+255.4 "Whiteout" sync / 1[56]:[^:]*:Shiva:BEC:/
+
+263.9 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:BE8:/
+273.5 "Glacier Bash" sync / 1[56]:[^:]*:Shiva:BE9:/
+284.5 "Whiteout" sync / 1[56]:[^:]*:Shiva:BEC:/
+
+292.8 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:BE8:/ window 20,20 jump 235.4
+302.4 "Glacier Bash" #sync / 1[56]:[^:]*:Shiva:BE9:/
+312.8 "Whiteout" #sync / 1[56]:[^:]*:Shiva:BEC:/
+
+321.3 "Heavenly Strike" #sync / 1[56]:[^:]*:Shiva:BE8:/
+330.9 "Glacier Bash" #sync / 1[56]:[^:]*:Shiva:BE9:/
+341.9 "Whiteout" #sync / 1[56]:[^:]*:Shiva:BEC:/
+
+
+# Jump to adds phase from 1a/2a
+350.0 "--sync--" sync / 1[56]:[^:]*:Shiva:994:/ window 350,0 jump 800
+
+
+# Phase 2b: Sword (95% -> 90%)
+400.0 "Frost Blade" sync / 1[56]:[^:]*:Shiva:993:/
+405.1 "Icebrand" sync / 1[56]:[^:]*:Shiva:BE1:/
+
+410.3 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:BE8:/
+419.9 "Glacier Bash" sync / 1[56]:[^:]*:Shiva:BE9:/
+430.3 "Whiteout" sync / 1[56]:[^:]*:Shiva:BEC:/
+
+438.8 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:BE8:/
+448.4 "Glacier Bash" sync / 1[56]:[^:]*:Shiva:BE9:/
+458.8 "Whiteout" sync / 1[56]:[^:]*:Shiva:BEC:/
+
+467.2 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:BE8:/ window 20,20 jump 410.3
+477.3 "Glacier Bash" #sync / 1[56]:[^:]*:Shiva:BE9:/
+487.7 "Whiteout" #sync / 1[56]:[^:]*:Shiva:BEC:/
+
+496.2 "Heavenly Strike" #sync / 1[56]:[^:]*:Shiva:BE8:/
+505.8 "Glacier Bash" #sync / 1[56]:[^:]*:Shiva:BE9:/
+516.8 "Whiteout" #sync / 1[56]:[^:]*:Shiva:BEC:/
+
+
+# Phase 3b: Staff (90% -> 80%)
+600.0 "Melt" sync / 1[56]:[^:]*:Shiva:994:/ window 200,0
+# This rolls out x4 over 1.5 seconds, so don't sync
+607.2 "Icicle Impact" #sync / 1[56]:[^:]*:Shiva:BEB:/
+612.3 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:BEA:/
+
+625.0 "Frost Staff" sync / 1[56]:[^:]*:Shiva:995:/
+633.1 "Hailstorm" sync / 1[56]:[^:]*:Shiva:997:/
+
+642.6 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:BE6:/
+652.0 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:BE6:/
+
+665.5 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:BE6:/ window 8,8 jump 642.6
+674.9 "Absolute Zero" #sync / 1[56]:[^:]*:Shiva:BE6:/
+
+688.4 "Absolute Zero" #sync / 1[56]:[^:]*:Shiva:BE6:/
+698.8 "Absolute Zero" #sync / 1[56]:[^:]*:Shiva:BE6:/
+
+
+# Jump to adds phase from 1b/2b
+750.0 "--sync--" sync / 1[56]:[^:]*:Shiva:C7F:/ window 350,0 jump 801
+
+
+# Phase 4: Adds
+800.0 "--sync--" #sync / 1[56]:[^:]*:Shiva:994:/
+801.0 "--sync--" #sync / 1[56]:[^:]*:Shiva:C7F:/
+# If you push *really* fast and skip a 3a/3b weapon phase, you'll miss the melt jump.
+# So, fix that up with a combatant sync here.
+806.6 "--adds targetable--" sync / 03:........:Ice Soldier:/  window 807,10
+807.6 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:BEA:/
+813.2 "Frost Blade" sync / 1[56]:[^:]*:Shiva:993:/
+818.5 "Icebrand" sync / 1[56]:[^:]*:Shiva:BE1:/
+828.0 "Glacier Bash" sync / 1[56]:[^:]*:Shiva:BE9:/
+837.5 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:BE8:/
+
+
+# Diamond Dust Cutscene
+854.4 "Melt" sync / 1[56]:[^:]*:Shiva:994:/ window 60,10
+855.5 "--untargetable--"
+866.7 "--frozen--" sync / 1[56]:[^:]*:Shiva:C16:/ window 900,50
+871.6 "Diamond Dust" sync / 1[56]:[^:]*:Shiva:98A:/
+878.7 "--targetable--"
+878.9 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:BEA:/
+
+
+# Phase 5: Post-Cutscene Staff
+# Unlike phase 7a staff, this one can only have a single optional Permafrost.
+885.8 "Frost Staff" sync / 1[56]:[^:]*:Shiva:995:/
+888.1 "Icicle Impact (cross)" #sync / 1[56]:[^:]*:Shiva:BEB:/
+893.9 "Hailstorm" sync / 1[56]:[^:]*:Shiva:997:/
+896.0 "Icicle Impact (cross)" #sync / 1[56]:[^:]*:Shiva:BEB:/
+908.6 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:BE6:/
+920.2 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:BE6:/
+925.4 "Melt" sync / 1[56]:[^:]*:Shiva:C7F:/
+932.6 "Icicle Impact (circle)" duration 4 #sync / 1[56]:[^:]*:Shiva:BEB:/
+935.5 "Permafrost?" sync / 1[56]:[^:]*:Shiva:BE3:/
+939.7 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:BEA:/ window 20,10
+
+
+# Phase 6: Bow
+942.8 "Frost Bow" sync / 1[56]:[^:]*:Shiva:BDD:/
+947.9 "Glass Dance" sync / 1[56]:[^:]*:Shiva:BDF:/
+970.5 "Avalanche" sync / 1[56]:[^:]*:Shiva:BE0:/
+974.6 "Permafrost?" sync / 1[56]:[^:]*:Shiva:BE3:/
+986.1 "Melt" sync / 1[56]:[^:]*:Shiva:C7E:/ window 20,20
+988.3 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:BEA:/
+
+996.2 "Frost Staff?" sync / 1[56]:[^:]*:Shiva:995:/ window 100,50 jump 1096.2
+996.2 "Frost Blade?" sync / 1[56]:[^:]*:Shiva:993:/ window 100,50 jump 1296.2
+
+
+# Phase 7a: Staff
+1096.2 "Frost Staff" sync / 1[56]:[^:]*:Shiva:995:/
+1098.1 "Icicle Impact (cross)" #sync / 1[56]:[^:]*:Shiva:BEB:/
+1104.3 "Hailstorm" sync / 1[56]:[^:]*:Shiva:997:/
+1106.1 "Icicle Impact (cross)" #sync / 1[56]:[^:]*:Shiva:BEB:/
+1109.0 "Permafrost?" sync / 1[56]:[^:]*:Shiva:BE3:/
+1117.8 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:BE6:/ window 20,2.5
+1125.6 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:BE6:/
+1133.0 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:BE6:/
+# Note: this last absolute zero can either happen at 1135.8 or 1140.4 depending on
+# where the permafrost shows up.  So, don't sync it.
+1138.0 "Absolute Zero" #sync / 1[56]:[^:]*:Shiva:BE6:/
+1140.0 "Permafrost?" sync / 1[56]:[^:]*:Shiva:BE3:/
+1149.4 "Melt" sync / 1[56]:[^:]*:Shiva:C7F:/ window 20,20
+1156.6 "Icicle Impact (circle)" duration 4 #sync / 1[56]:[^:]*:Shiva:BEB:/
+1159.5 "Permafrost?" sync / 1[56]:[^:]*:Shiva:BE3:/
+1163.7 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:BEA:/ window 20,20
+
+1166.9 "Frost Bow" sync / 1[56]:[^:]*:Shiva:BDD:/ window 100,20 jump 942.8
+1172.0 "Glass Dance" #sync / 1[56]:[^:]*:Shiva:BDF:/
+1194.6 "Avalanche" #sync / 1[56]:[^:]*:Shiva:BE0:/
+1198.7 "Permafrost?" #sync / 1[56]:[^:]*:Shiva:BE3:/
+1210.2 "Melt" #sync / 1[56]:[^:]*:Shiva:C7E:/ window 20,20
+1212.4 "Dreams Of Ice" #sync / 1[56]:[^:]*:Shiva:BEA:/
+
+
+
+
+# Phase 7b: Sword
+1296.2 "Frost Blade" sync / 1[56]:[^:]*:Shiva:993:/
+1298.5 "Icicle Impact (cross)" #sync / 1[56]:[^:]*:Shiva:BEB:/
+1302.3 "Icebrand" sync / 1[56]:[^:]*:Shiva:BE1:/
+1306.4 "Icicle Impact (cross)" #sync / 1[56]:[^:]*:Shiva:BEB:/
+1306.4 "Permafrost?" sync / 1[56]:[^:]*:Shiva:BE3:/
+1316.8 "--sync--" sync / 14:[^:]*:Shiva:BE9:/ window 10,10
+1319.0 "Glacier Bash" sync / 1[56]:[^:]*:Shiva:BE9:/
+1329.4 "Whiteout" sync / 1[56]:[^:]*:Shiva:BEC:/
+1334.7 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:BE8:/
+1338.8 "Permafrost?" sync / 1[56]:[^:]*:Shiva:BE3:/
+1350.7 "Melt" sync / 1[56]:[^:]*:Shiva:994:/ window 20,10
+1357.9 "Icicle Impact (circle)" duration 4 #sync / 1[56]:[^:]*:Shiva:BEB:/
+1360.8 "Permafrost?" sync / 1[56]:[^:]*:Shiva:BE3:/
+1365.0 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:BEA:/ window 20,20
+
+1368.2 "Frost Bow" sync / 1[56]:[^:]*:Shiva:BDD:/ window 100,20 jump 942.8
+1373.3 "Glass Dance" #sync / 1[56]:[^:]*:Shiva:BDF:/
+1395.9 "Avalanche" #sync / 1[56]:[^:]*:Shiva:BE0:/
+1400.0 "Permafrost?" #sync / 1[56]:[^:]*:Shiva:BE3:/
+1411.5 "Melt" #sync / 1[56]:[^:]*:Shiva:C7E:/ window 20,20
+1413.7 "Dreams Of Ice" #sync / 1[56]:[^:]*:Shiva:BEA:/
+
+
+
+# Enrage
+#1165.6 "--untargetable--"
+#1176.7 "--sync--" sync / 1[56]:[^:]*:Shiva:C16:/
+#1176.7 "Diamond Dust" sync / 1[56]:[^:]*:Shiva:9A2:/
+#1181.6 "Diamond Dust" sync / 1[56]:[^:]*:Shiva:98A:/

@@ -1,0 +1,229 @@
+### A12S
+# Alexander - The Heart of the Creator (Savage)
+# https://docs.google.com/document/d/1z7VC-k2UzkLMsfWhWR9C5Z4dUlTZPPR0w2mNswTCnU4/edit
+# https://www.reddit.com/r/ffxiv/comments/5743rk/question_pillars_and_final_phase_of_a11s/d8p39zj/
+# -ii 1A64 1A65 1A77 1A74 1A7C 1AAF 1A61 1A62 1A63 1A70 1A72 1A7E
+# -p 1A80:179.3 1A19:352.5 1A75:651.8
+# Optionally for first phase: -p 1A6C:17.3 1A6D:17.3
+# Optionally for last phase: -p 1A76:551.3
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 00:0839::The Main Generators will be sealed off in 15 seconds/ window 10,10
+6.2 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A7[A9]:/ window 7,5
+9.2 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
+
+# skippable
+17.3 "Optical Sight (clock/out)" sync / 1[56]:[^:]*:Cruise Chaser:1A6[CD]:/
+
+# skippable
+33.4 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+40.6 "Spin Crusher" sync / 1[56]:[^:]*:Cruise Chaser:1A85:/
+
+# skippable
+45.8 "E.D.D. Add" sync / 03:........:E\.D\.D\.:/ window 50,5
+
+# If we jump to this laser sword immediately after first, the timing is:
+# 9.2 (first sword) 21.7 (second sword)
+# Sync to somewhere that will catch t=18.7 - 2.5 seconds = ~36 window (at least)
+51.8 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A7[A9]:/ window 40,5
+54.8 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
+55.8 "E.D.D. Armored Pauldron"
+64.0 "Spin Crusher" sync / 1[56]:[^:]*:Cruise Chaser:1A85:/
+81.2 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+
+85.3 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A7[A9]:/ window 30,5
+88.3 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
+
+# GA-100 in the first phase.  WHO KNEW?
+# There's a question mark because nobody should ever see this.
+101.6 "GA-100?" sync / 1[56]:[^:]*:Cruise Chaser:1A76:/
+
+# can skip add and jump here
+112.7 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A6E:/ window 113,5
+114.7 "Optical Sight (bait)" sync / 1[56]:[^:]*:Cruise Chaser:1A6E:/
+119.9 "Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A6F:/
+
+129.8 "Optical Sight (clock/out)" sync / 1[56]:[^:]*:Cruise Chaser:1A6[CD]:/
+137.9 "Super Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A71:/
+
+143.9 "Optical Sight (out/clock)" sync / 1[56]:[^:]*:Cruise Chaser:1A6[CD]:/
+150.9 "Super Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A71:/
+
+159.9 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+168.1 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
+
+### Limit Cut Numbers
+177.3 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A80:/ window 180,5
+179.3 "Limit Cut (numbers)" sync / 1[56]:[^:]*:Cruise Chaser:1A80:/
+179.9 "--invincible--"
+183.5 "Markers"
+192.1 "Sword 1" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
+193.2 "Charge 2" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
+195.4 "Sword 3" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
+196.5 "Charge 4" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
+198.7 "Sword 5" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
+199.8 "Charge 6" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
+202.0 "Sword 7" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
+203.1 "Charge 8" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
+205.2 "--targetable--"
+
+215.3 "Photon" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
+222.4 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+229.6 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
+237.1 "Blastoff" sync / 1[56]:[^:]*:Cruise Chaser:1A66:/ window 240,10
+237.9 "--untargetable--"
+
+
+### Cutscene
+240.2 "Transform" sync / 1[56]:[^:]*:Cruise Chaser:1A49:/
+247.9 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A4A:/
+252.8 "Blassty Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A69:/
+258.8 "Transform" sync / 1[56]:[^:]*:Cruise Chaser:1A4E:/
+264.8 "Perfect Landing" sync / 1[56]:[^:]*:Cruise Chaser:1A6B:/
+
+
+### ORBS
+268.0 "--targetable--"
+270.1 "Limit Cut (orbs)" sync / 1[56]:[^:]*:Cruise Chaser:1A80:/
+270.7 "--invincible--"
+273.2 "Lapis Lazuli x4"
+276.3 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A7B:/
+276.8 "Plasmasphere x1"
+283.4 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+287.6 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A5A:/
+292.7 "--sync--" sync / 1[56]:[^:]*:Claster:1A5B:/
+295.7 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A7B:/
+296.4 "Plasmasphere x2"
+297.4 "Assault Cannon" #sync / 1[56]:[^:]*:Claster:1A78:/
+308.0 "Laser X Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7F:/
+308.9 "--sync--" sync / 1[56]:[^:]*:Claster:1A5B:/
+313.7 "Assault Cannon" #sync / 1[56]:[^:]*:Claster:1A78:/
+315.1 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A7B:/
+315.7 "Plasmasphere x2"
+321.7 "Assault Cannon" #sync / 1[56]:[^:]*:Claster:1A78:/
+326.2 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
+338.3 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+
+
+### Eternal Darkness
+344.4 "--targetable--"
+344.5 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A19:/ window 350,10
+352.5 "Eternal Darkness" sync / 1[56]:[^:]*:Cruise Chaser:1A19:/
+361.7 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
+370.8 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+378.9 "Spin Crusher" sync / 1[56]:[^:]*:Cruise Chaser:1A85:/
+
+# skippable
+386.0 "Optical Sight (bait)" sync / 1[56]:[^:]*:Cruise Chaser:1A6E:/
+391.2 "Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A6F:/
+396.1 "Super Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A71:/
+
+# also skippable
+399.2 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A80:/ window 50,10
+401.2 "Limit Cut (shield)" sync / 1[56]:[^:]*:Cruise Chaser:1A80:/
+401.8 "--invincible--"
+406.6 "Plasma Shield"
+431.2 "Plasma Shield Enrage"
+431.2 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A83:/ window 40,30
+435.2 "Blassty Charge" sync / 1[56]:[^:]*:Cruise Chaser:1A83:/
+437.3 "--targetable--"
+
+439.5 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A73:/ window 40,10
+442.5 "Photon (offtank)" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
+450.9 "Laser X Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7F:/
+
+# maybe skippable
+458.7 "E.D.D. Add" sync / 03:........:E\.D\.D\.:/
+462.0 "Photon (dps)" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
+470.2 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+
+478.4 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A7[A9]:/ window 80,5
+481.4 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
+487.5 "Photon (healer)" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
+495.6 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+502.1 "Blastoff" sync / 1[56]:[^:]*:Cruise Chaser:1A66:/ window 260,10
+502.9 "--untargetable--"
+
+
+### Cutscene 2
+505.2 "Transform" sync / 1[56]:[^:]*:Cruise Chaser:1A49:/
+513.0 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A4A:/
+517.8 "Blassty Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A69:/
+520.8 "Multifield x3" sync / 03:........:Multifield:/
+523.9 "Transform" sync / 1[56]:[^:]*:Cruise Chaser:1A4E:/
+529.9 "Perfect Landing" sync / 1[56]:[^:]*:Cruise Chaser:1A6B:/
+
+
+### Final phase
+532.7 "--targetable--"
+551.3 "GA-100" sync / 1[56]:[^:]*:Cruise Chaser:1A76:/
+558.4 "Optical Sight (clock/out)" sync / 1[56]:[^:]*:Cruise Chaser:1A6[CD]:/
+565.5 "Super Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A71:/
+573.6 "Optical Sight (out/clock)" sync / 1[56]:[^:]*:Cruise Chaser:1A6[CD]:/
+581.7 "Super Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A71:/
+586.7 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+595.9 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+605.1 "Laser X Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7F:/
+612.2 "Optical Sight (bait)" sync / 1[56]:[^:]*:Cruise Chaser:1A6E:/
+617.4 "Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A6F:/
+622.3 "Super Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A71:/
+622.4 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A5A:/
+626.6 "--sync--" sync / 1[56]:[^:]*:Claster:1A5B:/
+# Well, really everyone but the main tank.  But that's too long to write out.
+628.6 "Photon (everyone)" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
+633.1 "Assault Cannon" #sync / 1[56]:[^:]*:Claster:1A78:/
+635.8 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+640.3 "Assault Cannon" #sync / 1[56]:[^:]*:Claster:1A78:/
+647.4 "Assault Cannon" #sync / 1[56]:[^:]*:Claster:1A78:/
+651.8 "Propeller Wind" sync / 1[56]:[^:]*:Cruise Chaser:1A75:/
+
+655.0 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A80:/ window 100,20
+657.0 "Limit Cut (numbers)" sync / 1[56]:[^:]*:Cruise Chaser:1A80:/
+657.6 "--invincible--"
+661.2 "Markers"
+669.9 "Sword 1" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
+671.0 "Charge 2" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
+673.2 "Sword 3" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
+674.3 "Charge 4" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
+676.5 "Sword 5" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
+677.6 "Charge 6" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
+679.8 "Sword 7" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
+680.9 "Charge 8" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
+683.0 "--targetable--"
+
+693.2 "Laser X Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7F:/
+697.2 "E.D.D. Add" sync / 03:........:E\.D\.D\.:/
+705.4 "Photon (dps)" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
+714.6 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
+722.7 "Photon (healer)" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
+730.8 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+
+733.7 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A80:/ window 70,20
+735.7 "Limit Cut (shield)" sync / 1[56]:[^:]*:Cruise Chaser:1A80:/
+736.3 "--invincible--"
+741.1 "Plasma Shield"
+765.7 "Plasma Shield Enrage"
+765.7 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A83:/ window 40,30
+769.7 "Blassty Charge" sync / 1[56]:[^:]*:Cruise Chaser:1A83:/
+771.8 "--targetable--"
+
+779.7 "Spin Crusher" sync / 1[56]:[^:]*:Cruise Chaser:1A85:/
+789.7 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+806.4 "Laser X Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7F:/
+
+# If you destroy a tower with the first GA-100, this is enrage.
+# FIXME: Guessing that this loops, but unclear.
+829.4 "GA-100" sync / 1[56]:[^:]*:Cruise Chaser:1A76:/ window 100,100 jump 551.3
+836.5 "Optical Sight (clock/out)"
+843.6 "Super Hawk Blaster"
+851.7 "Optical Sight (out/clock)"
+859.8 "Super Hawk Blaster"
+864.8 "Whirlwind"
+874.0 "Whirlwind"
+883.2 "Laser X Sword"

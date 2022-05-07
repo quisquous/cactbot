@@ -1,0 +1,277 @@
+# Turn 9
+# -ii 7EC 7F6 7E5 7FA 7E1 7E3 -p 7E7:683.5
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1
+# This phase really doesn't seem to loop anywhere.
+0.0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.5 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:367:/ window 3,0
+5.5 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/ window 6,5
+16.6 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+
+21.8 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
+30.8 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
+30.9 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/ duration 13
+36.2 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
+40.8 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
+42.6 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
+43.6 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
+44.0 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:7D7:/
+48.3 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+
+58.6 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
+63.4 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+67.6 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
+69.4 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
+71.8 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
+74.9 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
+83.7 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/ duration 13
+89.5 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+
+95.0 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
+96.6 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:7D7:/
+104.0 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
+107.2 "Meteor Stream" #sync / 1[56]:[^:]*:Nael Geminus:7DE:/
+112.3 "Meteor Stream" #sync / 1[56]:[^:]*:Nael Geminus:7DE:/
+115.4 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
+119.7 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+130.2 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/ duration 13
+
+135.5 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
+140.0 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+143.2 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:7D7:/
+144.6 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
+146.1 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
+150.7 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
+152.6 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
+153.6 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
+162.6 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+
+168.6 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
+177.4 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/ duration 13
+177.7 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
+183.9 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
+186.2 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
+189.3 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
+190.4 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:7D7:/
+192.9 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+
+203.9 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
+208.0 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+213.0 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
+217.5 "Meteor Stream" #sync / 1[56]:[^:]*:Nael Geminus:7DE:/
+222.6 "Meteor Stream" #sync / 1[56]:[^:]*:Nael Geminus:7DE:/
+225.8 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
+234.2 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/ duration 13
+239.6 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+
+245.8 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
+254.8 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
+255.5 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
+260.1 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
+262.1 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
+263.1 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
+266.4 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+277.3 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/ duration 13
+
+283.0 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
+286.8 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+292.0 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
+294.3 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
+296.7 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
+299.9 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
+307.9 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+
+314.3 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
+322.8 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/
+323.3 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
+332.0 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
+335.9 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:7D7:/
+337.0 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
+340.2 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
+343.2 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+
+355.0 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
+358.5 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+364.0 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
+366.0 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
+370.5 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
+372.7 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
+373.7 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
+
+# Meteors just start exploding here no matter how far away you put them.
+
+
+### Phase 2: Golem Adds
+500.0 "--untargetable--"
+503.3 "Golem Meteors" sync / 1B:........:[^:]*:....:....:0007:/ duration 11 window 505,0
+514.3 "--sync--" sync / 1[56]:[^:]*:Dalamud Fragment:7EB:/
+582.3 "Meteor 1/6" duration 7 sync / 1B:........:[^:]*:....:....:000[9A]:/ window 83,0
+584.3 "Meteor 2/6" duration 7
+586.3 "Meteor 3/6" duration 7
+588.3 "Meteor 4/6" duration 7
+590.5 "Meteor 5/6" duration 7
+592.5 "Meteor 6/6" duration 7
+598.3 "Golem Meteors" sync / 1B:........:[^:]*:....:....:0007:/ duration 11 window 80,80
+609.3 "--sync--" sync / 1[56]:[^:]*:Dalamud Fragment:7EB:/
+683.5 "Megaflare" sync / 1[56]:[^:]*:Nael deus Darnus:7E7:/ window 700,700
+
+
+### Phase 3: Heavensfall
+# Phase 3 is on a 54 second nael rotation and a 60 second dragon rotation.
+# This unrolls the loop for the first few dragons.
+693.6 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/ window 300,300
+695.6 "--targetable--"
+
+699.2 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:83B:/
+701.9 "Heavensfall" sync / 1[56]:[^:]*:Ragnarok:7E4:/ window 702,10
+714.3 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+716.0 "Ghost Add 1 (North)"
+721.8 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+737.0 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+744.4 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+
+749.5 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:83B:/
+752.2 "Heavensfall" sync / 1[56]:[^:]*:Ragnarok:7E4:/ window 40,40
+755.9 "Super Nova x2" duration 2.3 #sync / 1[56]:[^:]*:Nael deus Darnus:7E0:/
+768.7 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+775.9 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+776.0 "Ghost Add 2 (East)"
+791.3 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+798.5 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+
+803.5 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:83B:/
+806.2 "Heavensfall" sync / 1[56]:[^:]*:Ragnarok:7E4:/ window 40,40
+809.9 "Super Nova x2" duration 2.3 #sync / 1[56]:[^:]*:Nael deus Darnus:7E0:/
+822.7 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+829.9 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+836.0 "Ghost Add 3 (South)"
+845.3 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+852.5 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+
+857.5 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:83B:/
+860.2 "Heavensfall" sync / 1[56]:[^:]*:Ragnarok:7E4:/ window 40,40
+863.9 "Super Nova x2" duration 2.3 #sync / 1[56]:[^:]*:Nael deus Darnus:7E0:/
+876.7 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+883.9 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+899.3 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+906.5 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+
+911.5 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:83B:/ window 40,40 jump 857.5
+914.2 "Heavensfall"
+917.9 "Super Nova x2"
+930.7 "Bahamut's Claw x2"
+937.9 "Binding Coil"
+953.3 "Bahamut's Claw x2"
+960.5 "Binding Coil"
+
+
+### Phase 4: Divebombs and Dances
+1000.0 "Bahamut's Favor" sync / 1[56]:[^:]*:Nael deus Darnus:7E6:/ window 1000,80
+1003.1 "Bahamut's Claw x5" duration 2.9 #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+1013.9 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
+1014.4 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
+1014.9 "Fireball (Out)" sync / 1[56]:[^:]*:Firehorn:7FB:/
+1019.0 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
+1025.9 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
+1026.9 "Fireball (In)" sync / 1[56]:[^:]*:Firehorn:7FB:/
+1038.0 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
+1039.0 "Fireball (Out)" sync / 1[56]:[^:]*:Firehorn:7FB:/
+1040.2 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
+1041.9 "Super Nova x3" duration 3 #sync / 1[56]:[^:]*:Nael deus Darnus:7E0:/
+1047.4 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
+1050.0 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
+1051.2 "Fireball (In)" sync / 1[56]:[^:]*:Firehorn:7FB:/
+1054.2 "Bahamut's Claw x5" duration 2.9 #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+1061.2 "Divebomb Mark A" duration 5
+1067.3 "Divebomb Mark B" duration 5
+1070.5 "Cauterize x2" sync / 1[56]:[^:]*:Thunderwing:801:/
+1070.6 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
+1076.6 "Cauterize x1" sync / 1[56]:[^:]*:Firehorn:7FF:/
+1076.7 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
+1080.8 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
+
+1096.6 "Bahamut's Favor" sync / 1[56]:[^:]*:Nael deus Darnus:7E6:/ window 80,80
+1099.7 "Bahamut's Claw x5" duration 2.9 #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+1110.4 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
+1110.4 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
+1111.3 "Fireball (Out)" sync / 1[56]:[^:]*:Firehorn:7FB:/
+1114.9 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
+1122.5 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
+1123.4 "Fireball (In)" sync / 1[56]:[^:]*:Firehorn:7FB:/
+1134.4 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
+1135.5 "Fireball (Out)" sync / 1[56]:[^:]*:Firehorn:7FB:/
+1136.0 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
+1137.8 "Super Nova x3" duration 3 #sync / 1[56]:[^:]*:Nael deus Darnus:7E0:/
+1143.8 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
+1146.6 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
+1147.7 "Fireball (In)" sync / 1[56]:[^:]*:Firehorn:7FB:/
+1150.6 "Bahamut's Claw x5" duration 2.9 #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+1157.8 "Divebomb Mark A" duration 5
+1163.9 "Divebomb Mark B" duration 5
+1164.3 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
+1167.1 "Cauterize x2" sync / 1[56]:[^:]*:Firehorn:7FF:/
+1168.1 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
+1172.7 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
+1173.2 "Cauterize x1" sync / 1[56]:[^:]*:Iceclaw:800:/
+
+1193.1 "Bahamut's Favor" sync / 1[56]:[^:]*:Nael deus Darnus:7E6:/ window 80,80
+1196.1 "Bahamut's Claw x5" duration 2.9 #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+1206.9 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
+1207.0 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
+1207.9 "Fireball (Out)" sync / 1[56]:[^:]*:Firehorn:7FB:/
+1211.4 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
+1219.0 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
+1219.9 "Fireball (In)" sync / 1[56]:[^:]*:Firehorn:7FB:/
+1231.0 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
+1232.1 "Fireball (Out)" sync / 1[56]:[^:]*:Firehorn:7FB:/
+1232.6 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
+1234.4 "Super Nova x3" duration 3 #sync / 1[56]:[^:]*:Nael deus Darnus:7E0:/
+1240.5 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
+1243.1 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
+1244.4 "Fireball (In)" sync / 1[56]:[^:]*:Firehorn:7FB:/
+1247.4 "Bahamut's Claw x5" duration 2.9 #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+1254.4 "Divebomb Mark A" duration 5
+1260.3 "Divebomb Mark B" duration 5
+1263.7 "Cauterize x2" sync / 1[56]:[^:]*:Thunderwing:801:/
+1263.8 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
+1269.6 "Cauterize x1" sync / 1[56]:[^:]*:Firehorn:7FF:/
+1269.9 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
+1274.5 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
+
+1289.7 "Bahamut's Favor" sync / 1[56]:[^:]*:Nael deus Darnus:7E6:/ window 80,800 jump 1096.6
+1292.8 "Bahamut's Claw x5"
+1303.5 "Raven Dive"
+1303.5 "Chain Lightning"
+1304.4 "Fireball (Out)"
+1308.0 "Lunar Dynamo"
+1315.6 "Chain Lightning"
+1316.5 "Fireball (In)"
+1327.5 "Chain Lightning"
+1328.6 "Fireball (Out)"
+1329.1 "Iron Chariot"
+1330.9 "Super Nova x3"
+1336.9 "Thermionic Beam"
+1339.7 "Chain Lightning"
+1340.8 "Fireball (In)"
+1343.7 "Bahamut's Claw x5"
+1350.9 "Divebomb Mark A"
+1357.0 "Divebomb Mark B"
+1357.4 "Iron Chariot"
+1360.2 "Cauterize x2"
+1361.2 "Raven Dive"
+1365.8 "Lunar Dynamo"
+1366.3 "Cauterize x1"
+
+
+### Phase 5: What Took You So Long
+2000.0 "Megaflare Enrage" sync / 1[56]:[^:]*:Nael deus Darnus:7E8:/ window 2000,2000
+2008.5 "Megaflare Enrage"
+2017.0 "Megaflare Enrage"
+2025.5 "Megaflare Enrage"
+2034.0 "Megaflare Enrage"

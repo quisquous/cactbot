@@ -1,0 +1,271 @@
+# Alexander - Arm of the Son (Savage) - A7S / M3S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+# Last Updated: 5/19/2016
+
+#############################################################
+########CUSTOMIZE your timeline. Remove the hashtag from
+########the beginning of the following lines to prevent
+########them from appearing on your timeline.
+
+#########DPS CAN HIDE THESE
+#hideall "Sizzlespark"
+#hideall "Uplander Doom"
+#hideall "Big Doll"
+#hideall "Small Doll"
+#hideall "Small Dolls x2"
+
+#########HEALERS CAN HIDE THESE
+#hideall "Big Doll"
+#hideall "Small Doll"
+#hideall "Small Dolls x2"
+#hideall "Zoomdoom"
+#hideall "Stun Heart"
+
+##############################################################
+################## Windows 8 & 10 Voices ##################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft David Desktop" 0 100
+
+#################### Windows 7 Voices ####################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Anna" 0 100
+
+################ CUSTOMIZE Call Outs #####################
+########REMOVE THE HASHTAG to enable each call out
+#alertall "Zoomdoom" before 3 speak "voice" "Back Up"
+#alertall "Sizzlespark" before 4 speak "voice" "Spark"
+#alertall "Sizzlebeam" before 4 speak "voice" "Beam"
+#alertall "Bombs x8" before 3 speak "voice" "Bombs"
+#alertall "Bomb x1" before 3 speak "voice" "Bomb"
+#alertall "Flamethrower" before 4 speak "voice" "Flame"
+#alertall "Kill Heart" before 0 speak "voice" "Kill Heart"
+
+#alertall "Stun Heart" before 1 speak "voice" "Stun"
+#alertall "Uplander Doom" before 3 speak "voice" "buster"
+
+hideall "--Reset--"
+hideall "--sync--"
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+##############################################################
+################# Intro
+
+0 "--sync--" sync / 00:0839::electrocution gallery will be sealed off in 15 seconds/ window 10000
+8 "Hammertime x2"
+21 "Sizzlebeam"
+31 "Sizzlespark"
+35 "Bombs x8"
+
+################# Version 1 - Phase 1
+59 "Bomb x1"
+66 "Jails" #White Prey & Green Tether
+68 "Zoomdoom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15BE:/ window 60
+69 "Doll"
+84 "Resync" sync / 1A:[^:]*:Pyretic:[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:/ window 20 jump 384
+103 "Sizzlespark"
+116 "Uplander Doom"
+130 "Bomb x1"
+137 "Jails - Get Tether" #Red Prey & Purple Tether
+139 "Zoomdoom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15BE:/ window 60
+140 "Small Doll"
+178 "Sizzlebeam"
+190 "Sizzlespark"
+
+################# Version 1 - Phase 2
+194 "Uplander Doom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15F0:/ window 65,0
+204 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 145,10
+219 "Stun Heart"
+219 "Sizzlespark"
+229 "Flamethrower" sync / 1[56]:[^:]*:Quickthinx Allthoughts:1CFA:/ window 20
+234 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 20
+249 "Stun Heart"
+249 "Sizzlebeam"
+258 "Sizzlespark" #can be skipped
+266 "Bomb x1" sync / 03:........:Bomb:/  window 50 jump 561
+267 ""
+267 ""
+267 ""
+267 ""
+267 ""
+267 ""
+267 ""
+267 ""
+267 ""
+267 ""
+
+############################################
+################# Version 2 - Phase 1
+359 "Bomb x1"
+366 "Jails" #Purple Tether, Red Prey
+368 "Zoomdoom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15BE:/ window 60
+369 "Doll"
+397 "Uplander Doom"
+409 "Sizzlebeam"
+428 "Bomb x1"
+435 "Jails" #Green Tether, White Prey
+437 "Zoomdoom"
+438 "Big Doll"
+473 "Sizzlespark"
+485 "Sizzlespark"
+
+################# Version 2 - Phase 2
+489 "Uplander Doom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15F0:/ window 78,0
+499 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 130,10
+514 "Stun Heart"
+514 "Sizzlespark"
+524 "Flamethrower" sync / 1[56]:[^:]*:Quickthinx Allthoughts:1CFA:/ window 20
+529 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 10
+544 "Stun Heart"
+544 "Sizzlebeam"
+553 "Sizzlespark" #can be skipped
+
+############################################
+################# Version 1 - Phase 3
+561 "Bomb x1" sync / 03:........:Bomb:/  window 50,20
+567 "Jails" #Green Prey & Red Tether
+570 "Zoomdoom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15BE:/ window 60
+570 "Doll"
+582 "Resync" sync / 1A:[^:]*:Frostbite:[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:/ window 20 jump 983
+596 "Uplander Doom"
+613 "Sizzlespark"
+621 "Sizzlespark"
+628 "Bomb x1"
+636 "Jails - Get Prey" #Purple Prey & White Tether
+640 "Zoomdoom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15BE:/ window 60
+640 "Small Dolls x2"
+678 "Sizzlebeam"
+
+################# Phase 4
+686 "Sizzlespark" sync / 1[56]:[^:]*:Quickthinx Allthoughts:16F8:/ window 63,0
+694 "Sizzlespark"
+707 "Sizzlebeam" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15EE:/ window 20
+711 "Bombs x8"
+740 "Sizzlespark"
+748 "Sizzlespark"
+755 "Uplander Doom"
+773 "Flamethrower" sync / 1[56]:[^:]*:Quickthinx Allthoughts:1CFA:/ window 30
+779 "Hammertime x4"
+790 "Sizzlespark"
+793 "Hammertime x4"
+800 "Sizzlespark"
+806 "Sizzlespark"
+812 "Sizzlespark"
+828 "Sizzlebeam"
+836 "Sizzlespark"
+842 "Sizzlespark"
+
+################# Phase 5
+854 "Flamethrower" sync / 1[56]:[^:]*:Quickthinx Allthoughts:1CFA:/ window 60,10
+858 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 200,10
+865 "Uplander Doom"
+873 "Stun Heart"
+879 "Sizzlebeam"
+888 "Flamethrower"
+888 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 10
+901 "Sizzlespark"
+903 "Stun Heart"
+909 "Sizzlespark"
+917 "Sizzlespark"
+923 "Bombs / Sizzlebeam" sync / 03:........:Bomb:/  window 20 jump 1326
+924 "" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15EE:/ window 20 jump 1526
+924 ""
+924 ""
+924 ""
+924 ""
+924 ""
+924 ""
+924 ""
+924 ""
+924 ""
+
+############################################
+################# Version 2 - Phase 3
+962 "Bomb x1"
+970 "Jails" #White Tether, Purple Prey
+972 "Zoomdoom"
+972 "Doll"
+1011 "Sizzlebeam" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15EE:/ window 10
+1019 "Sizzlespark"
+1027 "Sizzlespark"
+1034 "Bomb x1"
+1041 "Jails" #Red Tether, Green Prey
+1043 "Zoomdoom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15BE:/ window 60
+1043 "Big Doll"
+1071 "Uplander Doom"
+
+################# Phase 4
+1087 "Sizzlespark"
+1095 "Sizzlespark"
+1108 "Sizzlebeam" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15EE:/ window 20
+1111 "Bombs x8"
+1141 "Sizzlespark"
+1149 "Sizzlespark"
+1156 "Uplander Doom"
+1174 "Flamethrower" sync / 1[56]:[^:]*:Quickthinx Allthoughts:1CFA:/ window 30
+1180 "Hammertime x4"
+1191 "Sizzlespark"
+1194 "Hammertime x4"
+1200 "Sizzlespark"
+1206 "Sizzlespark"
+1212 "Sizzlespark"
+1229 "Sizzlebeam"
+1236 "Sizzlespark"
+1243 "Sizzlespark"
+
+############################################
+################# Phase 5
+1253 "Flamethrower" sync / 1[56]:[^:]*:Quickthinx Allthoughts:1CFA:/ window 60,10
+1258 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 200,10
+1263 "Uplander Doom"
+1273 "Stun Heart"
+1280 "Sizzlebeam"
+1288 "Flamethrower"
+1288 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 10
+1301 "Sizzlespark"
+1303 "Stun Heart"
+1308 "Sizzlespark"
+1316 "Sizzlespark"
+
+############################################
+################# Version 1 - Phase 6
+1326 "Bombs x2" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15EE:/ window 40,10 jump 1526
+1333 "Jails" #Green Tether, Purple Prey
+1335 "Small Doll"
+1336 "Zoomdoom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15BE:/ window 55
+1344 "Big Doll"
+1348 "Resync" sync /suffers the effect of Pyretic/ window 20 jump 1548
+1348 "Resync" sync /suffer the effect of Pyretic/ window 20 jump 1548
+1362 "Uplander Doom"
+1381 "Sizzlespark"
+1392 "Sizzlebeam"
+1396 "Jails" #Red Tether, White Prey
+1398 "Zoomdoom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15BE:/ window 55
+1398 "Small Dolls x2"
+1426 "Sizzlespark"
+1433 "Sizzlebeam"
+1441 "Sizzlespark"
+1448 "Sizzlespark"
+1455 "Sizzlespark"
+1474 "Enrage"
+
+################# Version 2 - Phase 6
+1526 "Sizzlebeam"
+1530 "Jails" #White Prey & Red Tether
+1532 "Zoomdoom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15BE:/ window 55
+1533 "Small Dolls x2"
+1560 "Sizzlespark"
+1568 "Sizzlebeam"
+1576 "Sizzlespark"
+1583 "Sizzlespark"
+1590 "Sizzlespark"
+1595 "Bombs x2"
+1601 "Jails - Get Prey" #Purple Prey & Green Tether
+1603 "Zoomdoom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15BE:/ window 55
+1603 "Small Doll"
+1612 "Big Doll"
+1630 "Uplander Doom"
+1647 "Sizzlespark"
+1654 "Sizzlespark"
+1673 "Enrage"

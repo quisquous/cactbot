@@ -1,0 +1,227 @@
+### Eden 11 (Savage)
+# Eden's Promise: Anamorphosis (Savage)
+# -p 5666:17.4 5663:17.4
+# -it "Fatebreaker"
+# -ii 366 5664 5906 565C 5659 58F4 566C 5686 5682 567F 568C
+
+hideall "--Reset--"
+hideall "--sync--"
+
+# example lightning bound of faith
+# 46.7 "Bound Of Faith" sync / 1[56]:[^:]*:Fatebreaker:565[8B]:/
+# 46.8 "Floating Fetters" sync / 1[56]:[^:]*:Fatebreaker:58F4:/
+# 48.8 "Solemn Charge" sync / 1[56]:[^:]*:Fatebreaker:565C:/
+# 50.1 "Sinsmite" sync / 1[56]:[^:]*:Fatebreaker:565D:/
+# 50.5 "Bow Shock" sync / 1[56]:[^:]*:Fatebreaker:565E:/
+
+# example fire bound of faith
+# 46.6 "Bound Of Faith" sync / 1[56]:[^:]*:Fatebreaker:5658:/
+# 46.9 "Floating Fetters" sync / 1[56]:[^:]*:Fatebreaker:58F4:/
+# 49.0 "Solemn Charge" sync / 1[56]:[^:]*:Fatebreaker:5659:/
+# 50.3 "Sinsmoke" sync / 1[56]:[^:]*:Fatebreaker:565A:/
+
+# example holy bound of faith
+# 46.7 "Bound Of Faith" sync / 1[56]:[^:]*:Fatebreaker:565F:/
+# 46.9 "Floating Fetters" sync / 1[56]:[^:]*:Fatebreaker:58F4:/
+# 49.0 "Solemn Charge" sync / 1[56]:[^:]*:Fatebreaker:5660:/
+# 50.3 "Sinsight" sync / 1[56]:[^:]*:Fatebreaker:5661:/
+# 55.9 "Mortal Burn Mark" sync / 1[56]:[^:]*:Fatebreaker:5662:/
+
+# Burnt Strike timings:
+# * Burnout, lightning, 5655, 1.7s delay
+# * Blastburn, fire, 5653, 2.0s delay
+# * Shining Blade, light, 5657, 5.0s delay
+# Time these to burnout where it's random, and comment out the sync.
+# If testing were smarter we could have an optional sync here, otherwise test_timeline.py will be weird.
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# Phase 1
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.8 "--sync--" sync / 1[56]:[^:]*:Fatebreaker:366:/ window 3,0
+17.4 "Elemental Break" sync / 1[56]:[^:]*:Fatebreaker:566[36]:/
+19.9 "Sinsmoke/Sinsmite" sync / 1[56]:[^:]*:Fatebreaker:566[57]:/
+23.9 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
+33.0 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:565[24]:/
+34.7 "Burnout/Blastburn" #sync / 1[56]:[^:]*:Fatebreaker:565[35]:/
+46.7 "Bound Of Faith" sync / 1[56]:[^:]*:Fatebreaker:565[8B]:/
+50.1 "Sinsmoke/Sinsmite" sync / 1[56]:[^:]*:Fatebreaker:565[AD]:/
+
+59.9 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:56A4:/
+70.4 "Powder Mark" sync / 1[56]:[^:]*:Fatebreaker:56A2:/
+77.9 "Turn Of The Heavens" sync / 1[56]:[^:]*:Fatebreaker:566A:/
+89.3 "Burn Mark" sync / 1[56]:[^:]*:Fatebreaker:56A3:/
+89.7 "Brightfire" # sync / 1[56]:[^:]*:Halo of Flame:566D:/
+
+94.4 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
+103.9 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:565[24]:/
+105.6 "Burnout/Blastburn" #sync / 1[56]:[^:]*:Fatebreaker:565[35]:/
+117.6 "Bound Of Faith" sync / 1[56]:[^:]*:Fatebreaker:565[8B]:/
+121.3 "Sinsmoke/Sinsmite" sync / 1[56]:[^:]*:Fatebreaker:565[AD]:/
+
+# Dragon trio
+132.6 "Elemental Break" sync / 1[56]:[^:]*:Fatebreaker:566[36]:/
+135.1 "Sinsmite/Sinsmoke" sync / 1[56]:[^:]*:Fatebreaker:56(5A|57|65|67):/ window 10,10
+147.1 "Shifting Sky" sync / 1[56]:[^:]*:Fatebreaker:567[56]:/
+149.5 "--untargetable--"
+154.7 "Ageless Serpent" sync / 1[56]:[^:]*:Demi-Gukumatz:5687:/
+165.8 "Resonant Winds" sync / 1[56]:[^:]*:Demi-Gukumatz:5689:/
+169.4 "Sinsmoke" sync / 1[56]:[^:]*:Fatebreaker's Image:5681:/
+169.4 "Sinsmite" sync / 1[56]:[^:]*:Fatebreaker's Image:5684:/
+169.8 "Bow Shock" sync / 1[56]:[^:]*:Fatebreaker's Image:5685:/
+173.0 "Burnt Strike " sync / 1[56]:[^:]*:Fatebreaker's Image:567B:/
+174.7 "Burnout" sync / 1[56]:[^:]*:Fatebreaker's Image:567C:/
+176.0 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker's Image:5679:/
+178.0 "Blastburn" sync / 1[56]:[^:]*:Fatebreaker's Image:567A:/
+180.7 "--targetable--"
+
+# Phase 2: light sparkles
+191.5 "Elemental Break" sync / 1[56]:[^:]*:Fatebreaker:566[368]:/
+194.1 "Sinsmite/Sinsmoke" sync / 1[56]:[^:]*:Fatebreaker:56(5A|57|65|67):/
+204.0 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:56A4:/
+
+221.1 "Elemental Break" sync / 1[56]:[^:]*:Fatebreaker:5668:/
+223.6 "Sinsight" sync / 1[56]:[^:]*:Fatebreaker:5669:/
+227.6 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
+237.0 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:5656:/
+242.0 "Shining Blade" sync / 1[56]:[^:]*:Fatebreaker:5657:/
+250.7 "Bound Of Faith" sync / 1[56]:[^:]*:Fatebreaker:565F:/
+254.3 "Sinsight" sync / 1[56]:[^:]*:Fatebreaker:5661:/
+259.9 "Mortal Burn Mark" sync / 1[56]:[^:]*:Fatebreaker:5662:/
+
+264.1 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:56A4:/
+274.6 "Powder Mark" sync / 1[56]:[^:]*:Fatebreaker:56A2:/
+282.1 "Right Of The Heavens" sync / 1[56]:[^:]*:Fatebreaker:566[EF]:/ window 50,50
+293.5 "Burn Mark" sync / 1[56]:[^:]*:Fatebreaker:56A3:/
+
+298.6 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
+308.2 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:565[246]:/
+309.9 "Burnout/Blastburn" #sync / 1[56]:[^:]*:Fatebreaker:565[35]:/
+321.9 "Bound Of Faith" sync / 1[56]:[^:]*:Fatebreaker:565[8BF]:/
+325.6 "Sinsmoke/Sinsmite/Sinsight" sync / 1[56]:[^:]*:Fatebreaker:56(5[AD]|6[159]):/
+331.2 "Mortal Burn Mark?" # sync / 1[56]:[^:]*:Fatebreaker:5662:/
+336.9 "Elemental Break" sync / 1[56]:[^:]*:Fatebreaker:566[368]:/
+339.4 "Sinsmoke/Sinsmite/Sinsight" sync / 1[56]:[^:]*:Fatebreaker:56(5[AD]|6[1579]):/
+
+# dragon trio 2
+351.4 "Sundered Sky" sync / 1[56]:[^:]*:Fatebreaker:567[78]:/ window 50,50
+353.8 "--untargetable--"
+359.0 "Ageless Serpent" sync / 1[56]:[^:]*:Demi-Gukumatz:5687:/
+370.5 "Resounding Crack" sync / 1[56]:[^:]*:Demi-Gukumatz:5688:/
+372.5 "Sinsmoke" sync / 1[56]:[^:]*:Fatebreaker's Image:5681:/
+372.6 "Sinsight" sync / 1[56]:[^:]*:Fatebreaker's Image:5BC7:/
+376.5 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker's Image:567D:/
+378.2 "Mortal Burn Mark" sync / 1[56]:[^:]*:Fatebreaker's Image:5BC8:/
+380.1 "Burnt Strike " sync / 1[56]:[^:]*:Fatebreaker's Image:567B:/
+381.6 "Shining Blade" sync / 1[56]:[^:]*:Fatebreaker's Image:567E:/
+381.8 "Burnout" sync / 1[56]:[^:]*:Fatebreaker's Image:567C:/
+383.6 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker's Image:5679:/
+385.6 "Blastburn" sync / 1[56]:[^:]*:Fatebreaker's Image:567A:/
+386.4 "--targetable--"
+
+397.1 "Elemental Break" sync / 1[56]:[^:]*:Fatebreaker:566[368]:/
+399.6 "Sinsight/Sinsmite" sync / 1[56]:[^:]*:Fatebreaker:566[579]:/
+409.6 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:56A4:/
+
+427.1 "Turn Of The Heavens" sync / 1[56]:[^:]*:Fatebreaker:566[AB]:/ window 50,50
+429.6 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
+438.6 "Elemental Break" sync / 1[56]:[^:]*:Fatebreaker:566[368]:/
+441.1 "Sinsmite/Sinsmoke" sync / 1[56]:[^:]*:Fatebreaker:56(5A|57|65|67):/
+450.6 "Powder Mark" sync / 1[56]:[^:]*:Fatebreaker:56A2:/
+458.1 "Right Of The Heavens" sync / 1[56]:[^:]*:Fatebreaker:566[EF]:/
+460.6 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
+469.5 "Burn Mark" sync / 1[56]:[^:]*:Fatebreaker:56A3:/
+469.5 "Bound Of Faith" sync / 1[56]:[^:]*:Fatebreaker:565[8F]:/
+471.6 "Solemn Charge" # sync / 1[56]:[^:]*:Fatebreaker:56(59|60):/
+472.9 "Sinsight/Sinsmoke" # sync / 1[56]:[^:]*:Fatebreaker:56[56][159A]:/
+478.5 "Mortal Burn Mark?" # sync / 1[56]:[^:]*:Fatebreaker:5662:/
+488.3 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
+
+493.7 "Prismatic Deception" sync / 1[56]:[^:]*:Fatebreaker:5672:/ window 493.7,10
+496.8 "--untargetable--"
+513.9 "Blasting Zone" sync / 1[56]:[^:]*:Fatebreaker's Image:56A5:/
+532.0 "Blasting Zone" sync / 1[56]:[^:]*:Fatebreaker's Image:56A5:/
+537.9 "--targetable--"
+549.2 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:56A4:/ window 30,30
+
+
+561.7 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
+570.7 "Cycle Of Faith" sync / 1[56]:[^:]*:Fatebreaker:5692:/ jump 700
+570.7 "--sync--" sync / 1[56]:[^:]*:Fatebreaker:569A:/ jump 800
+570.7 "--sync--" sync / 1[56]:[^:]*:Fatebreaker:568B:/ jump 900
+570.8 "Elemental Break"
+573.3 "Sinsight/Sinsmite/Sinsmoke"
+575.2 "Burnt Strike"
+575.5 "Blastburn?"
+580.2 "Shining Blade?"
+580.2 "Floating Fetters"
+
+
+
+# Lightning Cycle
+691.0 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
+700.0 "Cycle Of Faith" sync / 1[56]:[^:]*:Fatebreaker:5692:/
+700.1 "Elemental Break" sync / 1[56]:[^:]*:Fatebreaker:5693:/
+702.7 "Sinsmite" sync / 1[56]:[^:]*:Fatebreaker:5694:/
+704.5 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:5695:/
+706.2 "Burnout" sync / 1[56]:[^:]*:Fatebreaker:5696:/
+711.6 "Solemn Charge" sync / 1[56]:[^:]*:Fatebreaker:5697:/
+713.1 "Sinsmite" sync / 1[56]:[^:]*:Fatebreaker:5698:/
+713.2 "--sync--" sync / 1[56]:[^:]*:Fatebreaker:5699:/
+725.7 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:56A4:/
+
+728.2 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/ window 30,30
+737.2 "Cycle Of Faith" sync / 1[56]:[^:]*:Fatebreaker:568A:/ jump 900.0
+737.2 "--sync--" sync / 1[56]:[^:]*:Fatebreaker:569A:/ jump 800.0
+737.3 "Elemental Break"
+739.8 "Sinsight/Sinsmite/Sinsmoke"
+741.7 "Burnt Strike"
+742.0 "Blastburn?"
+746.7 "Shining Blade?"
+
+
+# Holy Cycle
+791.0 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
+800.0 "Cycle Of Faith" sync / 1[56]:[^:]*:Fatebreaker:569A:/
+800.1 "Elemental Break" sync / 1[56]:[^:]*:Fatebreaker:56[89]B:/
+802.7 "Sinsight" sync / 1[56]:[^:]*:Fatebreaker:569C:/
+804.5 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:569D:/
+809.5 "Shining Blade" sync / 1[56]:[^:]*:Fatebreaker:569E:/
+811.6 "Solemn Charge" sync / 1[56]:[^:]*:Fatebreaker:569F:/
+813.1 "Sinsight" sync / 1[56]:[^:]*:Fatebreaker:56A0:/
+818.7 "Mortal Burn Mark" sync / 1[56]:[^:]*:Fatebreaker:56A1:/
+825.7 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:56A4:/
+
+828.2 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/ window 30,30
+837.2 "Cycle Of Faith" sync / 1[56]:[^:]*:Fatebreaker:5692:/ jump 700.0
+837.2 "--sync--" sync / 1[56]:[^:]*:Fatebreaker:568A:/ jump 900.0
+837.3 "Elemental Break"
+839.8 "Sinsight/Sinsmite/Sinsmoke"
+841.7 "Burnt Strike"
+842.0 "Blastburn?"
+846.7 "Shining Blade?"
+
+# Fire Cycle
+891.0 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
+900.0 "Cycle Of Faith" sync / 1[56]:[^:]*:Fatebreaker:568A:/
+900.1 "Elemental Break" sync / 1[56]:[^:]*:Fatebreaker:568B:/
+902.7 "Sinsmoke" sync / 1[56]:[^:]*:Fatebreaker:568D:/
+904.5 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:568E:/
+906.5 "Blastburn" sync / 1[56]:[^:]*:Fatebreaker:568F:/
+911.6 "Solemn Charge" sync / 1[56]:[^:]*:Fatebreaker:5690:/
+913.1 "Sinsmoke" sync / 1[56]:[^:]*:Fatebreaker:5691:/
+925.7 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:56A4:/
+
+928.2 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/ window 30,30
+937.2 "Cycle Of Faith" sync / 1[56]:[^:]*:Fatebreaker:5692:/ jump 700
+937.2 "--sync--" sync / 1[56]:[^:]*:Fatebreaker:569A:/ jump 800
+937.3 "Elemental Break"
+939.8 "Sinsight/Sinsmite/Sinsmoke"
+941.7 "Burnt Strike"
+942.0 "Blastburn?"
+946.7 "Shining Blade?"
+
+
+992.3 "Burnished Glory" sync / 14:[^:]*:Fatebreaker:5529:/ window 1000,0
+1000.0 "Burnished Glory Enrage" sync / 1[56]:[^:]*:Fatebreaker:5529:/

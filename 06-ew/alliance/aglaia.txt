@@ -1,0 +1,561 @@
+# Aglaia
+
+hideall "--Reset--"
+hideall "--sync--"
+hideall "Fan Flames"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~#
+# BYREGOT #
+#~~~~~~~~~#
+
+# -p 7176:1010.5
+# -ii 7165 7168 704D 704E 716D 716E
+
+# TODO: is the Builder's Build consistent in the loop? I've seen it missed at 1337.5, but not after that
+
+# Note: 7171 Peal of the Hammer is when the Levinforge hammer drops, and is marked as "--sync--"" instead.
+# Note: "--hammer--" lines are done visually, as there seem to be no log line for them.
+
+1000.0 "--sync--" sync / 00:0839::Ingenuity's Foothold will be sealed off/ window 10000,0
+1005.5 "--sync--" sync / 14:[^:]*:Byregot:7176:/ window 10,10
+1010.5 "Ordeal of Thunder" sync / 1[56]:[^:]*:Byregot:7176:/
+1022.4 "Byregot's Strike" sync / 1[56]:[^:]*:Byregot:725A:/
+1036.7 "Byregot's Ward" sync / 1[56]:[^:]*:Byregot:7175:/
+1044.8 "Builder's Build" sync / 1[56]:[^:]*:Byregot:72F9:/
+1053.2 "Byregot's Strike" sync / 1[56]:[^:]*:Byregot:7167:/
+
+1060.4 "--middle--" sync / 1[56]:[^:]*:Byregot:7169:/
+1062.9 "The Builder's Forge" sync / 1[56]:[^:]*:Byregot:716A:/
+1069.4 "--sync--" sync / 1[56]:[^:]*:Byregot:7174:/
+1083.3 "Peal of the Hammer" sync / 1[56]:[^:]*:Byregot:716F:/
+1110.1 "--hammer--"
+1108.3 "--sync--" sync / 1[56]:[^:]*:Byregot:7171:/
+1110.4 "Peal of the Hammer" sync / 1[56]:[^:]*:Byregot:716F:/
+1127.2 "--hammer--"
+1127.6 "Levinforge" sync / 1[56]:[^:]*:Byregot:7172:/
+1129.1 "Peal of the Hammer" sync / 1[56]:[^:]*:Byregot:716F:/
+1135.3 "--north--" sync / 1[56]:[^:]*:Byregot:7169:/
+1145.9 "--hammer--"
+1148.1 "Byregot's Spire" sync / 1[56]:[^:]*:Byregot:7170:/
+
+# If Byregot uses Builder's Build, then Strike has lightning and is pushed
+# back ~5.6seconds.  The real time for Builder's Build is 1176.6.  This
+# sync adjusts the timeline backwards in time to adjust for this.
+1151.2 "--middle--" sync / 1[56]:[^:]*:Byregot:7169:/
+1153.4 "The Builder's Forge" sync / 1[56]:[^:]*:Byregot:716A:/
+1168.0 "--sync--" sync / 14:[^:]*:Byregot:72F9:/ window 10,10
+1171.0 "Builder's Build?" sync / 1[56]:[^:]*:Byregot:72F9:/
+1173.7 "--sync--" sync / 14:[^:]*:Byregot:(725A|7167):/ window 10,10
+1179.7 "Byregot's Strike" sync / 1[56]:[^:]*:Byregot:(725A|7167):/
+1187.8 "Ordeal of Thunder" sync / 1[56]:[^:]*:Byregot:7176:/
+1196.9 "Reproduce" sync / 1[56]:[^:]*:Byregot:716B:/
+1199.8 "Builder's Build" sync / 1[56]:[^:]*:Byregot's Avatar:72FA:/
+1207.8 "Cloud to Ground" sync / 1[56]:[^:]*:Byregot's Avatar:716C:/ duration 7.6
+1223.0 "Byregot's Ward" sync / 1[56]:[^:]*:Byregot:7175:/
+
+1225.1 "--middle--" sync / 1[56]:[^:]*:Byregot:7169:/
+1227.4 "The Builder's Forge" sync / 1[56]:[^:]*:Byregot:716A:/
+1234.1 "--sync--" sync / 1[56]:[^:]*:Byregot:7174:/
+1247.7 "--sync--" sync / 1[56]:[^:]*:Byregot:7171:/
+1249.8 "Peal of the Hammer" sync / 1[56]:[^:]*:Byregot:716F:/
+1266.6 "--hammer--"
+1267.0 "Levinforge" sync / 1[56]:[^:]*:Byregot:7172:/
+1274.8 "--sync--" sync / 1[56]:[^:]*:Byregot:7171:/
+1276.9 "Peal of the Hammer" sync / 1[56]:[^:]*:Byregot:716F:/
+1293.7 "--hammer--"
+1294.1 "Levinforge" sync / 1[56]:[^:]*:Byregot:7172:/
+1295.6 "Peal of the Hammer" sync / 1[56]:[^:]*:Byregot:716F:/
+1301.8 "--north--" sync / 1[56]:[^:]*:Byregot:7169:/
+1312.4 "--hammer--"
+1314.6 "Byregot's Spire" sync / 1[56]:[^:]*:Byregot:7170:/
+
+1317.7 "--middle--" sync / 1[56]:[^:]*:Byregot:7169:/
+1319.9 "The Builder's Forge" sync / 1[56]:[^:]*:Byregot:716A:/
+1334.5 "--sync--" sync / 14:[^:]*:Byregot:72F9:/ window 10,10
+1337.5 "Builder's Build?" sync / 1[56]:[^:]*:Byregot:72F9:/
+1340.2 "--sync--" sync / 14:[^:]*:Byregot:(725A|7167):/ window 10,10
+1346.2 "Byregot's Strike" sync / 1[56]:[^:]*:Byregot:(725A|7167):/
+1354.3 "Ordeal of Thunder" sync / 1[56]:[^:]*:Byregot:7176:/
+1366.5 "Byregot's Ward" sync / 1[56]:[^:]*:Byregot:7175:/
+1374.6 "Reproduce" sync / 1[56]:[^:]*:Byregot:716B:/
+1377.5 "Builder's Build" sync / 1[56]:[^:]*:Byregot's Avatar:72FA:/
+1385.5 "Cloud to Ground" sync / 1[56]:[^:]*:Byregot's Avatar:716C:/ duration 7.6
+
+# LOOP
+1395.7 "--middle--" sync / 1[56]:[^:]*:Byregot:7169:/
+1398.1 "The Builder's Forge" sync / 1[56]:[^:]*:Byregot:716A:/ window 50,50 jump 1227.4
+1404.7 "--sync--" #sync / 1[56]:[^:]*:Byregot:7174:/
+1418.4 "--sync--" #sync / 1[56]:[^:]*:Byregot:7171:/
+1420.5 "Peal of the Hammer" #sync / 1[56]:[^:]*:Byregot:716F:/
+1437.3 "--hammer--"
+1437.7 "Levinforge" #sync / 1[56]:[^:]*:Byregot:7172:/
+1445.4 "--sync--" #sync / 1[56]:[^:]*:Byregot:7171:/
+1447.5 "Peal of the Hammer" #sync / 1[56]:[^:]*:Byregot:716F:/
+1464.3 "--hammer--"
+1464.7 "Levinforge" #sync / 1[56]:[^:]*:Byregot:7172:/
+1466.2 "Peal of the Hammer" #sync / 1[56]:[^:]*:Byregot:716F:/
+1472.4 "--north--" #sync / 1[56]:[^:]*:Byregot:7169:/
+1483.0 "--hammer--"
+1485.2 "Byregot's Spire" #sync / 1[56]:[^:]*:Byregot:7170:/
+
+
+#~~~~~~~~~~~~~~~~~~~#
+# RHALGR'S EMISSARY #
+#~~~~~~~~~~~~~~~~~~~#
+
+# -p 70E0:2012.8
+# -ii 70D8 70E2 70E4 70DC
+
+2000.0 "--sync--" sync / 00:0839::The Path will be sealed off/ window 10000,0
+2004.8 "--sync--" sync / 14:[^:]*:Rhalgr's Emissary:70E0:/ window 10,10
+2012.8 "Destructive Static" sync / 1[56]:[^:]*:Rhalgr's Emissary:70E0:/
+2019.8 "Destructive Charge" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DA:/ duration 17
+2036.9 "--sync--" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DB:/
+2037.5 "Lightning Bolt x3" sync / 1[56]:[^:]*:Rhalgr's Emissary:70E1:/ duration 8
+2052.7 "Bolts from the Blue" sync / 1[56]:[^:]*:Rhalgr's Emissary:70E3:/
+2058.1 "Destructive Charge" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DA:/ duration 17
+2075.2 "--sync--" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DB:/
+2078.1 "Destructive Static" sync / 1[56]:[^:]*:Rhalgr's Emissary:70E0:/
+2087.4 "Boltloop 1" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DD:/
+2089.4 "Boltloop 2" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DE:/
+2091.4 "Boltloop 3" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DF:/
+2100.6 "Destructive Strike" sync / 1[56]:[^:]*:Rhalgr's Emissary:70D9:/
+2111.7 "Bolts from the Blue" sync / 1[56]:[^:]*:Rhalgr's Emissary:70E3:/
+2118.1 "Destructive Charge" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DA:/ duration 17
+2135.2 "--sync--" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DB:/
+2135.7 "Lightning Bolt x3" sync / 1[56]:[^:]*:Rhalgr's Emissary:70E1:/ duration 8
+# TODO: is this a loop back to  2037.5??
+
+
+#~~~~~~~~#
+# RHALGR #
+#~~~~~~~-#
+
+# -p 70A5:3012.5
+# -ii 70A3 70B0 70B8 7314 70AF 70B4 70B1 71DC 72A3 72A4 72A5 70B7 71E0 71DB
+
+# TODO: is the ordering of fake vs real Broken World correct? Every log has been this.
+
+3000.0 "--sync--" sync / 00:0839::The Monument To Destruction will be sealed off/ window 10000,0
+3007.5 "--sync--" sync / 14:[^:]*:Rhalgr:70A5:/ window 10,10
+3012.5 "Lightning Reign" sync / 1[56]:[^:]*:Rhalgr:70A5:/
+3023.6 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/
+3038.7 "Hand of the Destroyer" sync / 1[56]:[^:]*:Rhalgr:70A[89]:/
+3054.6 "Broken World (summon)" sync / 1[56]:[^:]*:Rhalgr:70A6:/
+3067.3 "Broken World (proximity)" sync / 1[56]:[^:]*:Rhalgr:70B6:/
+3078.1 "Rhalgr's Beacon" sync / 1[56]:[^:]*:Rhalgr:70AA:/
+3094.3 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/
+3109.5 "Hand of the Destroyer" sync / 1[56]:[^:]*:Rhalgr:70A[89]:/
+3125.3 "Destructive Bolt" sync / 1[56]:[^:]*:Rhalgr:70A4:/
+3136.5 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/
+3142.6 "--jump--" sync / 1[56]:[^:]*:Rhalgr:70AE:/
+3147.0 "Broken World (summon)" sync / 1[56]:[^:]*:Rhalgr:70A6:/
+3158.1 "Hand of the Destroyer" sync / 1[56]:[^:]*:Rhalgr:70AC:/
+3163.9 "Broken World (fake)" sync / 1[56]:[^:]*:Rhalgr:71DD:/
+3180.2 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/
+3189.3 "Broken World (summon)" sync / 1[56]:[^:]*:Rhalgr:70A6:/
+3200.4 "Hand of the Destroyer" sync / 1[56]:[^:]*:Rhalgr:70AC:/
+3206.2 "Broken World (fake)" sync / 1[56]:[^:]*:Rhalgr:71DD:/
+
+3214.6 "--middle--" sync / 1[56]:[^:]*:Rhalgr:70AE:/
+3222.5 "Bronze Work" sync / 1[56]:[^:]*:Rhalgr:70AB:/
+3223.0 "Bronze Lightning 1" sync / 1[56]:[^:]*:Rhalgr:70B9:/ window 1,1
+3225.0 "Striking Meteor 1" sync / 1[56]:[^:]*:Rhalgr:70BB:/ window 1,1
+3225.0 "Bronze Lightning 2" sync / 1[56]:[^:]*:Rhalgr:70B9:/ window 1,1
+3227.0 "Striking Meteor 2" sync / 1[56]:[^:]*:Rhalgr:70BB:/ window 1,1
+3230.6 "Destructive Bolt" sync / 1[56]:[^:]*:Rhalgr:70A4:/
+
+3236.7 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/
+3245.8 "Broken World (summon)" sync / 1[56]:[^:]*:Rhalgr:70A6:/
+3256.9 "Hand of the Destroyer" sync / 1[56]:[^:]*:Rhalgr:70A9:/
+3258.5 "Broken World (proximity)" sync / 1[56]:[^:]*:Rhalgr:70B6:/
+3265.9 "Lightning Storm" sync / 1[56]:[^:]*:Rhalgr:70BA:/
+
+3274.7 "Hell of Lightning" sync / 1[56]:[^:]*:Rhalgr:70AD:/
+3286.1 "Rhalgr's Beacon" sync / 1[56]:[^:]*:Rhalgr:70AA:/
+3289.8 "Shock" sync / 1[56]:[^:]*:Lightning Orb:70B3:/
+
+3302.2 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/
+3311.3 "Broken World (summon)" sync / 1[56]:[^:]*:Rhalgr:70A6:/
+3322.4 "Hand of the Destroyer" sync / 1[56]:[^:]*:Rhalgr:70A[C9]:/
+3328.3 "Broken World (fake)" sync / 1[56]:[^:]*:Rhalgr:71DD:/
+3337.6 "Lightning Reign" sync / 1[56]:[^:]*:Rhalgr:70A5:/
+
+3347.8 "--middle--" sync / 1[56]:[^:]*:Rhalgr:70AE:/
+3355.5 "Bronze Work" sync / 1[56]:[^:]*:Rhalgr:70AB:/
+3356.0 "Bronze Lightning 1" sync / 1[56]:[^:]*:Rhalgr:70B9:/ window 1,1
+3358.0 "Striking Meteor 1" sync / 1[56]:[^:]*:Rhalgr:70BB:/ window 1,1
+3358.0 "Bronze Lightning 2" sync / 1[56]:[^:]*:Rhalgr:70B9:/ window 1,1
+3360.0 "Striking Meteor 2" sync / 1[56]:[^:]*:Rhalgr:70BB:/ window 1,1
+3363.6 "Destructive Bolt" sync / 1[56]:[^:]*:Rhalgr:70A4:/
+
+# Loop
+3369.7 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/ window 30,30 jump 3236.7
+3378.8 "Broken World (summon)" #sync / 1[56]:[^:]*:Rhalgr:70A6:/
+3389.9 "Hand of the Destroyer" #sync / 1[56]:[^:]*:Rhalgr:70A9:/
+3391.5 "Broken World (proximity)" #sync / 1[56]:[^:]*:Rhalgr:70B6:/
+3398.9 "Lightning Storm" #sync / 1[56]:[^:]*:Rhalgr:70BA:/
+
+
+#~~~~~~~~~~~~~~~~~#
+# LIONS OF AGLAIA #
+#~~~~~~~~~~~~~~~~~#
+
+# -p 71D7:4012
+# -ii 71D8 71D1 71D3 71D4
+
+# TODO: These do "Rejuvenating Spark" (71D9) to rebalance health.  Does that adjust timings?
+
+4000.0 "--sync--" sync / 00:0839::The Endless City will be sealed off/ window 10000,0
+4007.0 "--sync--" sync / 14:[^:]*:Lioness of Aglaia:71D7:/ window 10,10
+4012.0 "Double Immolation" sync / 1[56]:[^:]*:Lioness of Aglaia:71D7:/
+4019.8 "--sync--" sync / 1[56]:[^:]*:Lioness of Aglaia:71CD:/ window 10,10
+4028.1 "Slash and Burn" sync / 1[56]:[^:]*:(Lion of Aglaia|Lioness of Aglaia):(71D0|71D2):/
+4031.3 "Slash and Burn" sync / 1[56]:[^:]*:(Lioness of Aglaia|Lion of Aglaia):(71D6|71D5):/
+4036.1 "--sync--" sync / 1[56]:[^:]*:Lioness of Aglaia:71CD:/ window 10,10
+4044.7 "Slash and Burn" sync / 1[56]:[^:]*:(Lion of Aglaia|Lioness of Aglaia):(71D0|71D2):/
+4047.9 "Slash and Burn" sync / 1[56]:[^:]*:(Lioness of Aglaia|Lion of Aglaia):(71D6|71D5):/
+4056.7 "--sync--" sync / 1[56]:[^:]*:Lioness of Aglaia:71CD:/ window 10,10
+4063.8 "Roaring Blaze" sync / 1[56]:[^:]*:Lioness of Aglaia:71CE:/
+4066.8 "Roaring Blaze" sync / 1[56]:[^:]*:Lion of Aglaia:71CF:/
+4072.4 "--sync--" sync / 1[56]:[^:]*:Lioness of Aglaia:71CD:/ window 10,10
+4079.5 "Roaring Blaze" sync / 1[56]:[^:]*:Lion of Aglaia:71CE:/
+4082.5 "Roaring Blaze" sync / 1[56]:[^:]*:Lioness of Aglaia:71CF:/
+4085.1 "Rejuvenating Spark" sync / 1[56]:[^:]*:(Lion of Aglaia|Lioness of Aglaia):71D9:/
+4093.4 "--sync--" sync / 1[56]:[^:]*:Lioness of Aglaia:71CD:/ window 10,10
+4101.7 "Slash and Burn" sync / 1[56]:[^:]*:Lioness of Aglaia:71D2:/
+# ??? (is this a loop?)
+
+
+# Lioness dead branch
+4500.0 "--sync--" sync / 14:[^:]*:Lion of Aglaia:72C0:/ window 500,100
+4504.0 "Trial by Fire" sync / 1[56]:[^:]*:Lion of Aglaia:72C0:/
+4515.5 "Roaring Blaze" sync / 1[56]:[^:]*:Lion of Aglaia:72BF:/
+
+4526.9 "Trial by Fire" #sync / 1[56]:[^:]*:Lion of Aglaia:72C0:/
+4538.4 "Roaring Blaze" #sync / 1[56]:[^:]*:Lion of Aglaia:72BF:/
+
+# guessing at these two and the loop
+4549.8 "Trial by Fire" #sync / 1[56]:[^:]*:Lion of Aglaia:72C0:/
+4561.3 "Roaring Blaze" #sync / 1[56]:[^:]*:Lion of Aglaia:72BF:/
+
+
+# Lion dead branch
+4800.0 "--sync--" sync / 14:[^:]*:Lioness of Aglaia:72C1:/ window 800,100
+4804.0 "Spinning Slash" sync / 1[56]:[^:]*:Lioness of Aglaia:72C1:/
+4815.5 "Roaring Blaze" sync / 1[56]:[^:]*:Lioness of Aglaia:72BF:/
+
+4526.9 "Spinning Slash" #sync / 1[56]:[^:]*:Lioness of Aglaia:72C1:/
+4538.4 "Roaring Blaze" #sync / 1[56]:[^:]*:Lioness of Aglaia:72BF:/
+
+4549.8 "Spinning Slash" #sync / 1[56]:[^:]*:Lioness of Aglaia:72C1:/
+4561.3 "Roaring Blaze" #sync / 1[56]:[^:]*:Lioness of Aglaia:72BF:/
+
+
+#~~~~~~~~#
+# AZEYMA #
+#~~~~~~~~#
+
+# -p 70A0:5012.2
+# -ii 70A1 7082 7083 709F 708E 72BE 7093 7094 71EE 7089 731C 708C 7092 7087
+
+5000.0 "--sync--" sync / 00:0839::The Circle Of Inquiry will be sealed off/ window 10000,0
+5006.2 "--sync--" sync / 14:[^:]*:Azeyma:70A0:/ window 10,10
+5012.2 "Warden's Prominence" sync / 1[56]:[^:]*:Azeyma:70A0:/
+
+5018.3 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
+5019.9 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
+5030.2 "Solar Wings" sync / 1[56]:[^:]*:Azeyma:7081:/
+5037.9 "Solar Flair" sync / 1[56]:[^:]*:Sunstorm:7084:/
+5050.6 "Warden's Warmth" sync / 1[56]:[^:]*:Azeyma:709E:/
+
+5056.7 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
+5058.3 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
+5065.2 "Solar Wings" sync / 1[56]:[^:]*:Azeyma:7081:/
+5070.6 "Sun's Shine" sync / 1[56]:[^:]*:Azeyma:7085:/
+5073.5 "--sync--" sync / 1[56]:[^:]*:Azeyma's Heat:7315:/
+5081.4 "Haute Air" sync / 1[56]:[^:]*:Azeyma's Heat:7086:/
+5084.0 "Solar Flair" sync / 1[56]:[^:]*:Sunstorm:7084:/
+
+5084.7 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
+5086.3 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
+5093.1 "Solar Fans" sync / 1[56]:[^:]*:Azeyma:708D:/
+5101.3 "Radiant Rhythm" sync / 1[56]:[^:]*:Azeyma:708F:/
+5102.7 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
+5104.1 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
+5105.5 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
+5109.9 "Radiant Finish" sync / 1[56]:[^:]*:Azeyma:7091:/
+5116.0 "--sync--" sync / 1[56]:[^:]*:Azeyma:72B0:/
+5126.1 "Warden's Warmth" sync / 1[56]:[^:]*:Azeyma:709E:/
+5137.9 "Fleeting Spark" sync / 1[56]:[^:]*:Azeyma:709C:/
+
+5143.3 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
+5144.9 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
+5152.0 "Solar Fold" sync / 1[56]:[^:]*:Azeyma:7088:/
+5152.0 "Solar Fold" sync / 1[56]:[^:]*:Azeyma:71EE:/
+5157.1 "Sun's Shine" sync / 1[56]:[^:]*:Azeyma:7085:/
+5160.0 "--sync--" sync / 1[56]:[^:]*:Azeyma's Heat:7315:/
+5174.9 "Haute Air" sync / 1[56]:[^:]*:Azeyma's Heat:708A:/
+5176.0 "Dancing Flame" sync / 1[56]:[^:]*:Azeyma:708B:/
+5184.2 "Warden's Prominence" sync / 1[56]:[^:]*:Azeyma:70A0:/
+
+5188.4 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
+5195.0 "Wildfire Ward" sync / 1[56]:[^:]*:Azeyma:709A:/
+5211.2 "Illuminating Glimpse 1" sync / 1[56]:[^:]*:Azeyma's Heat:709B:/
+5215.3 "Illuminating Glimpse 2" sync / 1[56]:[^:]*:Azeyma's Heat:709B:/
+5219.3 "Illuminating Glimpse 3" sync / 1[56]:[^:]*:Azeyma's Heat:709B:/
+
+5225.2 "--jump--" sync / 1[56]:[^:]*:Azeyma:70A2:/
+5230.8 "Noble Dawn" sync / 1[56]:[^:]*:Azeyma:7095:/
+5234.6 "Sunbeam 1" #sync / 1[56]:[^:]*:Prodigal Sun:7096:/
+5236.6 "Sunbeam 2" #sync / 1[56]:[^:]*:Prodigal Sun:7096:/
+5238.6 "Sunbeam 3" #sync / 1[56]:[^:]*:Prodigal Sun:7096:/
+5241.6 "Sunbeam 1" #sync / 1[56]:[^:]*:Prodigal Sun:7097:/
+5243.6 "Sunbeam 2" #sync / 1[56]:[^:]*:Prodigal Sun:7097:/
+5245.6 "Sunbeam 3" #sync / 1[56]:[^:]*:Prodigal Sun:7097:/
+
+5248.8 "--jump--" sync / 1[56]:[^:]*:Azeyma:70A2:/
+5259.7 "Sublime Sunset" sync / 1[56]:[^:]*:Azeyma:7098:/
+5260.3 "Sunset" sync / 1[56]:[^:]*:Prodigal Sun:7099:/
+
+5268.9 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
+5270.5 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
+5277.4 "Solar Fans" sync / 1[56]:[^:]*:Azeyma:708D:/
+5285.6 "Radiant Rhythm" sync / 1[56]:[^:]*:Azeyma:708F:/
+5287.0 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
+5288.4 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
+5289.8 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
+5291.2 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
+5295.6 "Radiant Finish" sync / 1[56]:[^:]*:Azeyma:7091:/
+5306.1 "Fleeting Spark" sync / 1[56]:[^:]*:Azeyma:709C:/
+
+5309.8 "--sync--" sync / 1[56]:[^:]*:Azeyma:72B0:/
+5317.0 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
+5318.6 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
+5325.8 "Solar Wings" sync / 1[56]:[^:]*:Azeyma:7081:/
+5331.2 "Sun's Shine" sync / 1[56]:[^:]*:Azeyma:7085:/
+5334.1 "--sync--" sync / 1[56]:[^:]*:Azeyma's Heat:7315:/
+5342.0 "Haute Air" sync / 1[56]:[^:]*:Azeyma's Heat:7086:/
+5344.7 "Solar Flair" sync / 1[56]:[^:]*:Sunstorm:7084:/
+5352.4 "Warden's Warmth" sync / 1[56]:[^:]*:Azeyma:709E:/
+
+5357.6 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
+5359.2 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
+5366.4 "Solar Fold" sync / 1[56]:[^:]*:Azeyma:7088:/
+5371.5 "Sun's Shine" sync / 1[56]:[^:]*:Azeyma:7085:/
+5374.4 "--sync--" sync / 1[56]:[^:]*:Azeyma's Heat:7315:/
+5389.3 "Haute Air" sync / 1[56]:[^:]*:Azeyma's Heat:708A:/
+5390.4 "Dancing Flame" sync / 1[56]:[^:]*:Azeyma:708B:/
+
+5396.6 "Warden's Prominence" sync / 1[56]:[^:]*:Azeyma:70A0:/
+5402.7 "--sync--" sync / 1[56]:[^:]*:Azeyma:70A2:/
+5408.3 "Noble Dawn" sync / 1[56]:[^:]*:Azeyma:7095:/
+5412.1 "Sunbeam 1" #sync / 1[56]:[^:]*:Prodigal Sun:7096:/
+5414.1 "Sunbeam 2" #sync / 1[56]:[^:]*:Prodigal Sun:7096:/
+5416.1 "Sunbeam 3" #sync / 1[56]:[^:]*:Prodigal Sun:7096:/
+5419.1 "Sunbeam 1" #sync / 1[56]:[^:]*:Prodigal Sun:7097:/
+5421.1 "Sunbeam 2" #sync / 1[56]:[^:]*:Prodigal Sun:7097:/
+5423.1 "Sunbeam 3" #sync / 1[56]:[^:]*:Prodigal Sun:7097:/
+5431.0 "Fleeting Spark" sync / 1[56]:[^:]*:Azeyma:709C:/
+5433.4 "--sync--" sync / 1[56]:[^:]*:Azeyma:70A2:/
+5444.7 "Sublime Sunset" sync / 1[56]:[^:]*:Azeyma:7098:/
+5445.2 "Sunset" sync / 1[56]:[^:]*:Prodigal Sun:7099:/
+5453.8 "Warden's Warmth" sync / 1[56]:[^:]*:Azeyma:709E:/
+
+# Loop? (this is a guess), 5516.7 is the furthest seen in a log.
+5460.0 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
+5461.6 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/ window 50,50 jump 5270.5
+5468.5 "Solar Fans" #sync / 1[56]:[^:]*:Azeyma:708D:/
+5476.7 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:708F:/
+5478.1 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
+5479.5 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
+5480.9 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
+5482.3 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
+5486.7 "Radiant Finish" #sync / 1[56]:[^:]*:Azeyma:7091:/
+5497.2 "Fleeting Spark" #sync / 1[56]:[^:]*:Azeyma:709C:/
+
+
+#~~~~~~~~~~~#
+# NALD'THAL #
+#~~~~~~~~~~~#
+
+# -p 70E9:6013.2 7125:7012.5
+# -it "Nald'thal"
+# -ii 738B 738C 711F 711B 73C4 73C5 73C6 72B8 7110 72BA 6FD5 712C 7379 737A 73C1 73C2 73C3 711D 73A6 73A7 73A8 73A9 73C8 742F 73AC 7116 7117 7114 7432 7115 73B0 7433 7435
+
+# TODO: Is Fired Up I/II always knockback -> out and I/II/III is out -> knockback -> knockback or out?
+
+6000.0 "--sync--" sync / 00:0839::The Twin Halls will be sealed off/ window 10000,0
+6008.2 "--sync--" sync / 14:[^:]*:Nald'thal:70E9:/ window 10,10
+6013.2 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
+6027.4 "Heat Above, Flames Below" sync / 1[56]:[^:]*:Nald'thal:73A5:/
+6036.5 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
+6049.7 "Heat Above, Flames Below" sync / 1[56]:[^:]*:Nald'thal:73A4:/
+6056.8 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73CD:/
+6061.8 "Heavens' Trial" sync / 1[56]:[^:]*:Nald'thal:711E:/
+6062.7 "Smelting" sync / 1[56]:[^:]*:Nald'thal:7120:/
+6070.0 "Golden Tenet" sync / 1[56]:[^:]*:Nald'thal:711A:/
+6081.6 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E8:/
+
+6095.8 "Far Above, Deep Below" sync / 1[56]:[^:]*:Nald'thal:73A[AB]:/
+6096.7 "Far-flung Fire?" sync / 1[56]:[^:]*:Nald:73AD:/
+6102.1 "Deepest Pit?" sync / 1[56]:[^:]*:Thal:73C7:/ duration 4
+
+# Possible ~1s delay here
+6102.0 "--sync--" sync / 14:[^:]*:Nald'thal:70E[89]:/ window 10,10
+6107.0 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E[89]:/
+6121.2 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:(73BF|73C0|741C|741D):/
+
+# Possible ~5s delay here
+6132.6 "--sync--" sync / 14:[^:]*:Nald'thal:72B[79]:/ window 10,10
+6140.6 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B[79]:/
+6147.2 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710D:/
+6152.3 "Wayward Soul" sync / 1[56]:[^:]*:Nald'thal:710E:/ duration 20
+6175.3 "Wayward Soul" sync / 1[56]:[^:]*:Nald'thal:710E:/ duration 20
+6193.5 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710F:/
+
+6199.2 "--sync--" sync / 14:[^:]*:Nald'thal:72B[79]:/ window 10,10
+6207.2 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B[79]:/
+6224.1 "Fired Up I" sync / 1[56]:[^:]*:Nald'thal:7111:/
+6230.2 "Fired Up II" sync / 1[56]:[^:]*:Nald'thal:738A:/
+6240.3 "Fortune's Flux" sync / 1[56]:[^:]*:Nald'thal:7113:/
+6242.8 "--sync--" sync / 1[56]:[^:]*:Thal:7430:/
+6242.8 "Seventh Passage" sync / 1[56]:[^:]*:(Thal|Nald'thal):73AF:/
+6244.5 "Seventh Passage" sync / 1[56]:[^:]*:Nald'thal:7118:/
+6244.8 "--sync--" sync / 1[56]:[^:]*:Thal:7431:/
+6250.9 "Fired Up I" sync / 1[56]:[^:]*:Nald'thal:7112:/
+6257.0 "Fired Up II" sync / 1[56]:[^:]*:Nald'thal:7389:/
+6263.1 "Fired Up III" sync / 1[56]:[^:]*:Nald'thal:741[9A]:/
+6273.2 "Fortune's Flux" sync / 1[56]:[^:]*:Nald'thal:7113:/
+6275.1 "Seventh Passage 1" sync / 1[56]:[^:]*:Nald'thal:7119:/
+6277.8 "Seventh Passage 2" #sync / 1[56]:[^:]*:Thal:73AF:/
+6279.2 "Seventh Passage 3" #sync / 1[56]:[^:]*:Thal:(73AF|7118):/
+6289.7 "Soul's Measure" sync / 1[56]:[^:]*:Nald'thal:7122:/
+6290.8 "--untargetable--"
+
+# Add phase
+6300.0 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7123:/ window 300,10
+6311.0 "Equal Weight" sync / 1[56]:[^:]*:Soul Vessel:7124:/
+6311.2 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7386:/
+6322.6 "Twingaze" sync / 1[56]:[^:]*:Soul Vessel:712A:/
+6339.5 "Magmatic Spell" sync / 1[56]:[^:]*:Soul Vessel:712D:/
+6346.0 "Twingaze" sync / 1[56]:[^:]*:Soul Vessel:712A:/
+# ???
+
+# Loop block intro
+7000.0 "--sync--" sync / 14:[^:]*:Nald'thal:7125:/ window 1000,0
+7012.5 "Balance" sync / 1[56]:[^:]*:Nald'thal:7125:/
+7014.6 "Tipped Scales" sync / 1[56]:[^:]*:Nald'thal:7388:/
+7058.7 "--targetable--"
+
+7070.2 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
+7084.4 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:(73BF|73C0|741C|741D):/
+
+7091.6 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73CD:/
+7095.5 "Stygian Tenet?" sync / 1[56]:[^:]*:Nald'thal:711C:/
+7096.6 "Heavens' Trial?" sync / 1[56]:[^:]*:Nald'thal:711E:/
+7097.5 "Smelting?" sync / 1[56]:[^:]*:Nald:7120:/
+
+7105.7 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
+7119.9 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC)/
+7121.1 "Far-flung Fire?" sync / 1[56]:[^:]*:Nald:73AD:/
+7125.7 "Deepest Pit?" sync / 1[56]:[^:]*:Thal:73C7:/ duration 4
+7131.1 "Golden Tenet/Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:(7121|711A):/
+7147.6 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B[79]:/
+
+# Branch to Wayward Soul / Fired Up.
+#
+# Have seen these patterns in logs:
+# * Fired Up -> Wayward Soul -> Fired Up -> Wayward Soul -> ?
+#   https://www.fflogs.com/reports/6Mabf9r4jwt37KYP#fight=last
+# * Wayward Soul -> Fired Up -> Wayward Soul -> Fired Up -> ?
+#   https://www.fflogs.com/reports/cxqYG1L3mFMrpZdQ#fight=last
+
+# -> initial Wayward Soul block
+7156.0 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710D:/ window 100,100 jump 7998.3
+7161.1 "Wayward Soul?" #sync / 1[56]:[^:]*:Nald'thal:710E:/
+
+# -> main loop block, starting with Fired Up
+7159.5 "--sync--" sync / 14:[^:]*:Nald'thal:7112:/ window 100,100 jump 8159.5
+7163.5 "Fired Up I?" #sync / 1[56]:[^:]*:Nald'thal:7112:/
+7169.6 "Fired Up II?" #sync / 1[56]:[^:]*:Nald'thal:7389:/
+7175.7 "Fired Up III?" #sync / 1[56]:[^:]*:Nald'thal:7419:/
+
+
+# Initial Wayward Soul block, fall into Main loop block
+# This has slightly different timings here (+5/-5 on some abilities) than the loop.
+7998.3 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710D:/
+8003.4 "Wayward Soul" sync / 1[56]:[^:]*:Nald'thal:710E:/
+8023.6 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710F:/
+8034.3 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B7:/
+8044.5 "Stygian Tenet" sync / 1[56]:[^:]*:Nald'thal:711C:/
+8059.6 "Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:7121:/
+
+
+# Main loop, repeating the loop block intro, but with no more branching
+8070.2 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
+8084.4 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:(73BF|73C0|741C|741D):/
+
+8091.6 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73CD:/
+8095.5 "Stygian Tenet?" sync / 1[56]:[^:]*:Nald'thal:711C:/
+8096.6 "Heavens' Trial?" sync / 1[56]:[^:]*:Nald'thal:711E:/
+8097.5 "Smelting?" sync / 1[56]:[^:]*:Nald:7120:/
+
+8105.7 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
+8119.9 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC)/
+8121.1 "Far-flung Fire?" sync / 1[56]:[^:]*:Nald:73AD:/
+8125.7 "Deepest Pit?" sync / 1[56]:[^:]*:Thal:73C7:/ duration 4
+8131.1 "Golden Tenet/Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:(7121|711A):/
+8147.6 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B[79]:/
+
+8159.5 "--sync--" sync / 14:[^:]*:Nald'thal:7112:/ window 20,20
+8163.5 "Fired Up I" sync / 1[56]:[^:]*:Nald'thal:7112:/
+8169.6 "Fired Up II" sync / 1[56]:[^:]*:Nald'thal:7389:/
+8175.7 "Fired Up III" sync / 1[56]:[^:]*:Nald'thal:7419:/
+8185.8 "Fortune's Flux" sync / 1[56]:[^:]*:Nald'thal:7113:/
+8187.7 "Seventh Passage 1" sync / 1[56]:[^:]*:Nald'thal:7119:/
+8190.4 "Seventh Passage 2" #sync / 1[56]:[^:]*:Thal:73AF:/
+8191.7 "Seventh Passage 3" #sync / 1[56]:[^:]*:Thal:(73AF|7118):/
+
+8197.1 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73CD:/
+8202.1 "Heavens' Trial" sync / 1[56]:[^:]*:Nald'thal:711E:/
+8203.0 "Smelting" sync / 1[56]:[^:]*:Nald'thal:7120:/
+8212.3 "Golden Tenet" sync / 1[56]:[^:]*:Nald'thal:711A:/
+8227.5 "Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:7121:/
+
+8238.5 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
+8252.7 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:73C0:/
+8263.8 "Stygian Tenet?" sync / 1[56]:[^:]*:Nald'thal:711C:/
+8264.9 "Heavens' Trial?" sync / 1[56]:[^:]*:Nald'thal:711E:/
+8265.8 "Smelting?" sync / 1[56]:[^:]*:Nald:7120:/
+
+8274.0 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
+8288.2 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC)/
+8289.4 "Far-flung Fire?" sync / 1[56]:[^:]*:Nald:73AD:/
+8294.0 "Deepest Pit?" sync / 1[56]:[^:]*:Thal:73C7:/ duration 4
+8299.4 "Golden Tenet/Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:(7121|711A):/
+8315.9 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B[79]:/
+
+8324.1 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710D:/ window 20,20
+8329.2 "Wayward Soul" sync / 1[56]:[^:]*:Nald'thal:710E:/
+8344.4 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710F:/
+
+# Possibly ~5s delay here as well?
+8347.1 "--sync--" sync / 14:[^:]*:Nald'thal:72B[79]:/ window 10,10
+8355.1 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B[79]:/
+8375.3 "Stygian Tenet" sync / 1[56]:[^:]*:Nald'thal:711C:/
+8390.5 "Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:7121:/
+
+# Loop back to beginning of loop block
+8401.1 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/ window 50,50 jump 8070.2
+8415.3 "Once Above, Ever Below" #sync / 1[56]:[^:]*:Nald'thal:(73BF|73C0|741C|741D):/
+
+8422.5 "--sync--" #sync / 1[56]:[^:]*:Nald'thal:73CD:/
+8426.4 "Stygian Tenet?" #sync / 1[56]:[^:]*:Nald'thal:711C:/
+8427.5 "Heavens' Trial?" #sync / 1[56]:[^:]*:Nald'thal:711E:/
+8428.4 "Smelting?" #sync / 1[56]:[^:]*:Nald:7120:/
+
+8436.6 "As Above, So Below" #sync / 1[56]:[^:]*:Nald'thal:70E9:/
+8450.8 "Hearth Above, Flight Below" #sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC)/

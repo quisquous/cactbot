@@ -1,0 +1,107 @@
+### Titania Ex
+# -ii 468A 468B 3D50 3D55 3E03 3D58 -p 3D32:800 3D3D:500
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.5 "--sync--" sync / 1[56]:[^:]*:Titania:368:/ window 3,0
+12.5 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D5C:/ window 13,5
+26.7 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5[DE]:/
+37.9 "Divination Rune" sync / 1[56]:[^:]*:Titania:3D5B:/
+47.1 "Mist Rune" sync / 1[56]:[^:]*:Titania:3D45:/
+67.3 "Flame Rune" sync / 1[56]:[^:]*:Titania:3D47:/
+81.4 "Flame Hammer" sync / 1[56]:[^:]*:Spirit of Flame:4373:/
+91.4 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5[DE]:/
+
+103.7 "Midsummer Night's Dream" sync / 1[56]:[^:]*:Titania:3D30:/ window 150,0
+116.8 "Growth Rune" sync / 1[56]:[^:]*:Titania:3D2E:/
+144.0 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5[DE]:/
+151.1 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D5C:/
+161.4 "Frost Rune" sync / 1[56]:[^:]*:Titania:3D2A:/
+170.4 "Frost Rune Middle" #sync / 1[56]:[^:]*:Titania:3D4E:/
+176.7 "Uplift" sync / 1[56]:[^:]*:Titania:421F:/
+182.8 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5[DE]:/
+
+### Phase 2a
+193.5 "--untargetable--" sync / 1[56]:[^:]*:Titania:3D31:/ window 200,0
+196.0 "--targetable--"
+208.5 "Gentle Breeze" sync / 1[56]:[^:]*:Puck:3F83:/
+208.5 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D38:/
+210.8 "Peasebomb" sync / 1[56]:[^:]*:Peaseblossom:3D34:/
+210.8 "Pease" sync / 1[56]:[^:]*:Peaseblossom:3D52:/
+219.7 "Pummel" sync / 1[56]:[^:]*:Puck:3D54:/
+220.9 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D38:/
+222.1 "Hard Swipe" sync / 1[56]:[^:]*:Peaseblossom:3D53:/
+238.5 "Gentle Breeze" sync / 1[56]:[^:]*:Puck:3F83:/
+238.6 "Peasebomb" sync / 1[56]:[^:]*:Peaseblossom:3D34:/
+238.6 "Pease" sync / 1[56]:[^:]*:Peaseblossom:3D52:/
+249.8 "Pummel" sync / 1[56]:[^:]*:Puck:3D54:/
+250.7 "Hard Swipe" sync / 1[56]:[^:]*:Peaseblossom:3D53:/
+
+### Phase 2b: bigger is better
+500.0 "Love-In-Idleness" sync / 1[56]:[^:]*:Titania:3D3D:/
+518.1 "--targetable--"
+528.5 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D3E:/
+529.0 "Peasebomb" sync / 1[56]:[^:]*:Peaseblossom:3D3F:/
+529.0 "War And Pease" sync / 1[56]:[^:]*:Peaseblossom:3DAD:/
+536.0 "Puck's Breath" sync / 1[56]:[^:]*:Puck:3D57:/
+541.0 "--sync--" sync / 1[56]:[^:]*:Puck:3D42:/
+546.0 "Puck's Rebuke" sync / 1[56]:[^:]*:Puck:3D59:/
+
+551.5 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D3E:/
+560.0 "Peasebomb" sync / 1[56]:[^:]*:Peaseblossom:3D3F:/
+560.0 "War And Pease" sync / 1[56]:[^:]*:Peaseblossom:3DAD:/
+567.0 "Puck's Caprice" sync / 1[56]:[^:]*:Puck:3D56:/
+
+583.5 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D3E:/ window 15,15 jump 528.5
+584.0 "Peasebomb"
+584.0 "War And Pease"
+591.0 "Puck's Breath"
+596.0 "--sync--"
+601.0 "Puck's Rebuke"
+
+### Phase 3
+800.0 "Being Mortal" sync / 1[56]:[^:]*:Titania:3D32:/ window 800,0
+808.5 "Being Mortal" sync / 1[56]:[^:]*:Titania:3D51:/
+814.0 "--targetable--"
+825.0 "Mist Rune" sync / 1[56]:[^:]*:Titania:3D45:/
+833.0 "Uplift" sync / 1[56]:[^:]*:Titania:421F:/
+
+838.3 "Flame Rune" sync / 1[56]:[^:]*:Titania:3D47:/
+846.3 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5E:/
+852.4 "Flame Hammer" sync / 1[56]:[^:]*:Spirit of Flame:4373:/
+856.3 "Growth Rune" sync / 1[56]:[^:]*:Titania:3D2E:/
+864.3 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5D:/
+878.3 "Divination Rune" sync / 1[56]:[^:]*:Titania:3D5B:/
+887.3 "Frost Rune" sync / 1[56]:[^:]*:Titania:3D2A:/
+896.3 "Frost Rune Middle" #sync / 1[56]:[^:]*:Titania:3D4E:/
+903.3 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D5C:/
+915.3 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5E:/
+923.3 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5D:/
+937.3 "Divination Rune" sync / 1[56]:[^:]*:Titania:3D5B:/
+949.3 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D5C:/
+956.3 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D5C:/
+970.3 "Mist Rune" sync / 1[56]:[^:]*:Titania:3D45:/
+978.3 "Uplift" sync / 1[56]:[^:]*:Titania:421F:/
+
+985.3 "Flame Rune" sync / 1[56]:[^:]*:Titania:3D47:/ window 100,100 jump 838.3
+993.3 "Phantom Rune"
+999.4 "Flame Hammer"
+1003.3 "Growth Rune"
+1011.3 "Phantom Rune"
+1025.3 "Divination Rune"
+1034.3 "Frost Rune"
+1043.3 "Frost Rune Middle"
+1050.3 "Bright Sabbath"
+1062.3 "Phantom Rune"
+1070.3 "Phantom Rune"
+1084.3 "Divination Rune"
+1096.3 "Bright Sabbath"
+1103.3 "Bright Sabbath"
+1117.3 "Mist Rune"
+1125.3 "Uplift"

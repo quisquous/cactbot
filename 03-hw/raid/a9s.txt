@@ -1,0 +1,196 @@
+### A9S
+# Alexander - The Eyes of the Creator (Savage)
+# https://dtguilds.enjin.com/a9sguide
+
+hideall "--rocks fall--"
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+### Faust Z
+# -p 1A2B:1006.5
+1000.0	"--sync--"	sync / 00:0839::The Cranial Plate will be sealed off/ window 10000
+1006.5 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/ window 1007,2.5
+1013.6 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1020.7 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1027.8 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1030.9 "Panzerschreck" sync / 1[56]:[^:]*:Faust Z:1A2C:/
+1038.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1045.1 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1052.2 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1055.3 "Panzerschreck x2" duration 2.1 #sync / 1[56]:[^:]*:Faust Z:1A2C:/
+1059.5 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1066.6 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1073.7 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1080.8 "Panzerschreck x2" duration 2.1 #sync / 1[56]:[^:]*:Faust Z:1A2C:/
+1085.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1092.2 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1099.3 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1106.4 "Panzerschreck x2" duration 2.1 #sync / 1[56]:[^:]*:Faust Z:1A2C:/
+1110.6 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1117.7 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
+1126.1 "Panzerschreck Enrage" sync / 1[56]:[^:]*:Faust Z:1A2D:/ window 1200,100
+1136.3 "Panzerschreck Enrage" #sync / 1[56]:[^:]*:Faust Z:1A2D:/
+1146.5 "Panzerschreck Enrage" #sync / 1[56]:[^:]*:Faust Z:1A2D:/
+1156.7 "Panzerschreck Enrage" #sync / 1[56]:[^:]*:Faust Z:1A2D:/
+1166.9 "Panzerschreck Enrage" #sync / 1[56]:[^:]*:Faust Z:1A2D:/
+
+
+### Refurbisher Zero
+# -p 1A38:2010 -ii 1AFE 1AB5 1AB6 1AB7 1A36 FD7 1A3F
+
+# Note: this timeline assumes perfect feeding of adds.
+# It's possible to reassemble things earlier than here.
+# Any reassembly after stockpile delays the scrapline that follows.
+# If you've hit enrage, then any Scrap Storm further delays it,
+# hence large windows and multiple syncs on all the scraplines.
+# Power Generator "added combatants" are when they drop, so no syncs.
+# Lava doesn't show up in the log either.
+
+# Phase 1
+2000.0	"--sync--"	sync / 00:0839::Life Support will be sealed off/ window 10000
+2010.0 "Stockpile" sync / 1[56]:[^:]*:Refurbisher 0:1A38:/ window 2010,5
+2012.1 "Right Arm Reassembly" sync / 1[56]:[^:]*:Refurbisher 0:1A2E:/
+2014.3 "Power Generator x2 (NE)"
+2014.3 "Lava (NE)" duration 42
+2023.4 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2034.4 "--rocks fall--" #sync / 03:........:Scrap:/ 
+2039.6 "Scrap Burst" sync / 1[56]:[^:]*:Refurbisher 0:1A3A:/
+2048.8 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2055.9 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+
+# Phase 2
+2066.0 "Stockpile" sync / 1[56]:[^:]*:Refurbisher 0:1A38:/
+2074.2 "Scrapline" sync / 1[56]:[^:]*:Refurbisher 0:1A3[CD]:/ window 30,30
+2078.2 "Power Generator x2 (SE)"
+2078.2 "Lava (SE)" duration 42
+2087.5 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2099.7 "Acid Rain" #sync / 1[56]:[^:]*:Refurbisher 0:1C0A:/
+2099.7 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2106.8 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2121.0 "Scrap Bomb" sync / 1[56]:[^:]*:Refurbisher 0:1A3E:/
+
+# Phase 3
+2133.2 "Stockpile" sync / 1[56]:[^:]*:Refurbisher 0:1A38:/
+2141.4 "Scrapline" sync / 1[56]:[^:]*:Refurbisher 0:1A3[CD]:/ window 30,30
+2145.4 "Lava (NW)" duration 15
+2146.6 "Full-Metal Faust Add"
+2152.7 "Panzer Vor" sync / 1[56]:[^:]*:Full-Metal Faust:1C05:/
+2152.7 "--targetable--"
+2160.7 "Lava (NE)" duration 15
+2164.9 "Scrapline" sync / 1[56]:[^:]*:Refurbisher 0:1A3C:/
+2173.9 "Lava (SW)" duration 15
+2180.2 "Acid Rain" #sync / 1[56]:[^:]*:Refurbisher 0:1C0A:/
+2189.3 "Lava (SE)" duration 15
+2195.1 "--rocks fall--" #sync / 03:........:Scrap:/ 
+2200.3 "Scrap Burst" sync / 1[56]:[^:]*:Refurbisher 0:1A3A:/
+
+# Phase 4
+2215.5 "Stockpile" sync / 1[56]:[^:]*:Refurbisher 0:1A38:/
+2226.5 "Power Generator x1 (SW)"
+2226.5 "Alarum x1 (SW)"
+2226.5 "Lava (SW)" duration 42
+2238.7 "--rocks fall--" #sync / 03:........:Scrap:/ 
+2243.9 "Scrap Burst" sync / 1[56]:[^:]*:Refurbisher 0:1A3A:/
+2253.1 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2260.2 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2269.4 "Scrap Bomb" sync / 1[56]:[^:]*:Refurbisher 0:1A3E:/
+
+# Phase 5
+2281.6 "Stockpile" sync / 1[56]:[^:]*:Refurbisher 0:1A38:/
+2283.7 "Left Arm Reassembly" sync / 1[56]:[^:]*:Refurbisher 0:1A2F:/
+2294.9 "Double Scrapline" sync / 1[56]:[^:]*:Refurbisher 0:1A3[CD]:/ window 40,40
+2298.9 "Power Generator x2 (NW)"
+2298.9 "Alarum x1 (NW)"
+2298.9 "Bomb x2 (NE)"
+2298.9 "Lava (NW)" duration 42
+2306.2 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2313.3 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2320.5 "Acid Rain" #sync / 1[56]:[^:]*:Refurbisher 0:1C0A:/
+2325.5 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2332.6 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2337.1 "Explosion (NE)" sync / 1[56]:[^:]*:Bomb:1A35:/
+2339.7 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2344.7 "Acid Rain" #sync / 1[56]:[^:]*:Refurbisher 0:1C0A:/
+
+# Phase 6
+2350.8 "Stockpile" sync / 1[56]:[^:]*:Refurbisher 0:1A38:/
+2361.0 "Double Scrapline" sync / 1[56]:[^:]*:Refurbisher 0:1A3[CD]:/ window 40,40
+2365.0 "Power Generator x1 (SW)"
+2365.0 "Alarum x1 (SW)"
+2365.0 "Bomb x2 (NW/SE)"
+2365.0 "Lava (NE/SW)" duration 42
+2376.4 "Scrap Bomb" sync / 1[56]:[^:]*:Refurbisher 0:1A3E:/
+2384.6 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2403.3 "Explosion (NW/SE)" sync / 1[56]:[^:]*:Bomb:1A35:/
+2398.5 "--rocks fall--" #sync / 03:........:Scrap:/ 
+2403.7 "Scrap Burst" sync / 1[56]:[^:]*:Refurbisher 0:1A3A:/
+
+# Phase 7
+2418.9 "Stockpile" sync / 1[56]:[^:]*:Refurbisher 0:1A38:/
+2429.1 "Double Scrapline" sync / 1[56]:[^:]*:Refurbisher 0:1A3[CD]:/ window 40,40
+2433.1 "Power Generator x2 (NW)"
+2433.1 "Alarum (NW)"
+2433.1 "Bomb x2 (NE)"
+2433.1 "Lava (NW)" duration 42
+2440.4 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2447.5 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2454.7 "Acid Rain" #sync / 1[56]:[^:]*:Refurbisher 0:1C0A:/
+2459.7 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2466.9 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2471.4 "Explosion (NE)" sync / 1[56]:[^:]*:Bomb:1A35:/
+2474.1 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2479.1 "Acid Rain" #sync / 1[56]:[^:]*:Refurbisher 0:1C0A:/
+
+# Phase 8
+# TODO: double check this phase timings against a clean pull
+2485.2 "Stockpile" sync / 1[56]:[^:]*:Refurbisher 0:1A38:/
+2495.4 "Double Scrapline" sync / 1[56]:[^:]*:Refurbisher 0:1A3[CD]:/ window 40,40
+2499.4 "Power Generator x1 (SW)"
+2499.4 "Alarum x1 (SW)"
+2499.4 "Bomb x2 (NW/SE)"
+2499.4 "Lava (NE/SW)" duration 42
+2510.8 "Scrap Bomb" sync / 1[56]:[^:]*:Refurbisher 0:1A3E:/
+2524.9 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2537.7 "Explosion (NW/SE)" sync / 1[56]:[^:]*:Bomb:1A35:/
+2546.1 "Scrap Storm" sync / 1[56]:[^:]*:Refurbisher 0:1A3B:/
+
+### Enrage
+2554.3 "Stockpile" sync / 1[56]:[^:]*:Refurbisher 0:1A38:/
+2556.5 "Heat Shielding Reassembly" sync / 1[56]:[^:]*:Refurbisher 0:1A30:/
+2562.6 "Scrap Storm Enrage" sync / 1[56]:[^:]*:Refurbisher 0:1A3B:/
+
+
+### Post-enrage timeline science
+2572.7 "Double Scrapline" sync / 1[56]:[^:]*:Refurbisher 0:1A3[CD]:/ window 40,40
+2576.7 "Power Generator x1 (NW)"
+2576.7 "Alarum x1 (NW)"
+2576.7 "Bomb x2 (NE)"
+2576.7 "Lava (NW)" duration 42
+2584.0 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2591.1 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2598.3 "Acid Rain" #sync / 1[56]:[^:]*:Refurbisher 0:1C0A:/
+2603.3 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2610.5 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2615.0 "Explosion (NE)" sync / 1[56]:[^:]*:Bomb:1A35:/
+2617.6 "Scrap" sync / 1[56]:[^:]*:Refurbisher 0:1A39:/
+2622.6 "Acid Rain" #sync / 1[56]:[^:]*:Refurbisher 0:1C0A:/
+
+2628.7 "Stockpile" sync / 1[56]:[^:]*:Refurbisher 0:1A38:/
+2638.9 "Double Scrapline" sync / 1[56]:[^:]*:Refurbisher 0:1A3[CD]:/ window 40,40
+2642.9 "Power Generator x1 (SW)"
+2642.9 "Alarum x1 (SW)"
+2642.9 "Bomb x2 (NW/SE)"
+2642.9 "Lava (NE/SW)" duration 42
+2654.4 "Scrap Bomb" sync / 1[56]:[^:]*:Refurbisher 0:1A3E:/
+
+# 11 minute less soft enrage, in case you weren't killed by previous enrage.
+2659.2 "--sync--" sync / 14:[^:]*:Refurbisher 0:1A3B:/ window 50,10000
+2659.5 "Scrap Storm Enrage" sync / 1[56]:[^:]*:Refurbisher 0:1A3B:/
+2659.5 "Scrap Storm Enrage" #sync / 1[56]:[^:]*:Refurbisher 0:1A3B:/
+2667.7 "Scrap Storm Enrage" #sync / 1[56]:[^:]*:Refurbisher 0:1A3B:/
+2675.9 "Scrap Storm Enrage" #sync / 1[56]:[^:]*:Refurbisher 0:1A3B:/
+2684.1 "Scrap Storm Enrage" #sync / 1[56]:[^:]*:Refurbisher 0:1A3B:/
+2692.3 "Scrap Storm Enrage" #sync / 1[56]:[^:]*:Refurbisher 0:1A3B:/
+# &c &c &c

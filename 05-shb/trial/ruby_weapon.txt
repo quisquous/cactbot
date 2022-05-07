@@ -1,0 +1,95 @@
+### Ruby Weapon Normal
+
+# TODO: is the liquifaction/undermine order random in normal mode?
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+### Phase 1
+# -p 4AC7:16
+# -ii 4AA7 4E6A 4AA3 4E69 4AA5 4B2E 4D03 4C21 4AA4 4C2A 4AA2 4AA6 4A95 4AC4 4A98
+
+0 "Start"
+2.0 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:368:/ window 3,0
+16.0 "Stamp" sync / 1[56]:[^:]*:The Ruby Weapon:4AC7:/ window 17,0
+24.1 "Optimized Ultima" sync / 1[56]:[^:]*:The Ruby Weapon:4AA8:/
+31.3 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+36.7 "Flexiclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A92:/
+46.4 "Ravensclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A93:/
+47.0 "Spike Of Flame" sync / 1[56]:[^:]*:The Ruby Weapon:4A94:/
+53.6 "Liquefaction?/Undermine?" sync / 1[56]:[^:]*:The Ruby Weapon:4A9[67]:/
+70.6 "Ruby Ray" sync / 1[56]:[^:]*:The Ruby Weapon:4AC6:/
+79.7 "Optimized Ultima" sync / 1[56]:[^:]*:The Ruby Weapon:4AA8:/
+84.9 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+90.1 "Flexiclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A92:/
+98.7 "Helicoclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A99:/
+99.4 "Spike Of Flame" sync / 1[56]:[^:]*:The Ruby Weapon:(4A9A|4D02):/
+113.8 "High-Powered Homing Lasers" sync / 1[56]:[^:]*:The Ruby Weapon:4AC5:/
+120.5 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+130.8 "Ravensflight" sync / 1[56]:[^:]*:The Ruby Weapon:4AA1:/
+138.0 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4BCD:/
+154.3 "Stamp" sync / 1[56]:[^:]*:The Ruby Weapon:4AC7:/
+161.4 "Homing Lasers" sync / 1[56]:[^:]*:The Ruby Weapon:4AC2:/
+164.0 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+171.7 "Ruby Dynamics" sync / 1[56]:[^:]*:The Ruby Weapon:4AA0:/
+178.4 "Homing Lasers" sync / 1[56]:[^:]*:The Ruby Weapon:4AC3:/
+186.0 "Optimized Ultima" sync / 1[56]:[^:]*:The Ruby Weapon:4AA8:/
+191.2 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+196.4 "Flexiclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A92:/
+206.0 "Ravensclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A93:/
+206.6 "Spike Of Flame" sync / 1[56]:[^:]*:The Ruby Weapon:4A94:/
+213.1 "Undermine?/Liquifaction?" sync / 1[56]:[^:]*:The Ruby Weapon:4A9[67]:/
+224.8 "Ruby Ray" sync / 1[56]:[^:]*:The Ruby Weapon:4AC6:/
+233.9 "Optimized Ultima" sync / 1[56]:[^:]*:The Ruby Weapon:4AA8:/
+239.1 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+244.4 "Flexiclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A92:/
+253.0 "Helicoclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A99:/
+253.7 "Spike Of Flame" sync / 1[56]:[^:]*:The Ruby Weapon:(4A9A|4D02):/
+268.2 "High-Powered Homing Lasers" sync / 1[56]:[^:]*:The Ruby Weapon:4AC5:/
+274.9 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+285.2 "Ravensflight" sync / 1[56]:[^:]*:The Ruby Weapon:4AA1:/
+292.4 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4BCD:/
+308.7 "Stamp" sync / 1[56]:[^:]*:The Ruby Weapon:4AC7:/
+311.8 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4A9B:/
+
+# FIXME: does this push at a percent like extreme?
+314.0 "--sync--" sync / 14:[^:]*:The Ruby Weapon:4AA9:/ window 500,500
+329.0 "Optimized Ultima Enrage" sync / 1[56]:[^:]*:The Ruby Weapon:4AA9:/
+
+### Cutscene
+# FIXME: this duration differs from the extreme version??? is that true??
+500.0 "--cutscene--" sync / 1[56]:[^:]*:The Ruby Weapon:4E1C:/ window 500,0 duration 61.5
+561.5 "--targetable--"
+
+### Phase 2
+# -p 4AAA:1007
+# -ii 4CF6 4AC0 4AB8 4AB7 4E31 4E67 4ABB 4AB1
+
+1000.0 "Start"
+1000.5 "--sync--" sync / 1[56]:[^:]*:The Ruby Weapon:4CF6:/ window 1001,0
+1007.0 "Meteor Project" sync / 1[56]:[^:]*:The Ruby Weapon:4AAA:/ window 1007,5
+1014.2 "Negative Personae" sync / 1[56]:[^:]*:The Ruby Weapon:4ABD:/
+1023.3 "Meteor Stream" sync / 1[56]:[^:]*:The Ruby Weapon:4E71:/
+1031.8 "Ruby Claw" sync / 1[56]:[^:]*:Raven's Image:4ABF:/ duration 2.5
+1039.5 "Meteor Stream" sync / 1[56]:[^:]*:The Ruby Weapon:4E71:/
+1052.0 "Ruby Claw" sync / 1[56]:[^:]*:Raven's Image:4ABF:/ duration 2.5
+1057.7 "Meteor Stream" sync / 1[56]:[^:]*:The Ruby Weapon:4E71:/
+1069.0 "Dalamud Impact" sync / 1[56]:[^:]*:The Ruby Weapon:4AAE:/
+1080.9 "Meteor Project" sync / 1[56]:[^:]*:The Ruby Weapon:4AAA:/
+1094.2 "Magitek Comet" sync / 1[56]:[^:]*:The Ruby Weapon:4AB0:/
+1104.3 "Landing" sync / 1[56]:[^:]*:Comet:4E2B:/
+1114.9 "Magitek Meteor" sync / 1[56]:[^:]*:The Ruby Weapon:4AB2:/
+1115.9 "Burst" sync / 1[56]:[^:]*:Comet:4AB4:/
+1122.4 "Mark II Magitek Comet" sync / 1[56]:[^:]*:The Ruby Weapon:4AB6:/
+1150.5 "Bradamante" sync / 1[56]:[^:]*:The Ruby Weapon:4ABC:/
+1159.7 "Dalamud Impact" sync / 1[56]:[^:]*:The Ruby Weapon:4E51:/
+1171.7 "Meteor Project" sync / 1[56]:[^:]*:The Ruby Weapon:4AAC:/
+1181.9 "Outrage" sync / 1[56]:[^:]*:The Ruby Weapon:4AC8:/
+1192.0 "Outrage" sync / 1[56]:[^:]*:The Ruby Weapon:4AC8:/
+1202.1 "Outrage" sync / 1[56]:[^:]*:The Ruby Weapon:4AC8:/
+1212.2 "Meteor Stream" sync / 1[56]:[^:]*:The Ruby Weapon:4E71:/
+1220.5 "Meteor Stream" sync / 1[56]:[^:]*:The Ruby Weapon:4E71:/
+1230.7 "Outrage" sync / 1[56]:[^:]*:The Ruby Weapon:4AC8:/
+### ???

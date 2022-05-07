@@ -1,0 +1,105 @@
+### ALEXANDER - THE SOUL OF THE CREATOR
+### ALEXANDER PRIME
+
+hideall "--Reset--"
+hideall "--sync--"
+
+# -ii 1AE2 1AE6 1AF1
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /:Engage!/ window 0,1
+0.7 "--sync--" sync / 1[56]:[^:]*:Alexander Prime:1AE2:/ window 0.7,2
+6.4 "Divine Spear" sync / 1[56]:[^:]*:Alexander Prime:1AE3:/ window 6.4,5
+14.5 "Mega Holy" sync / 1[56]:[^:]*:Alexander Prime:1AE7:/
+22.6 "Punishing Heat" sync / 1[56]:[^:]*:Alexander Prime:1AE4:/
+31.8 "Sacrament" sync / 1[56]:[^:]*:Alexander Prime:1AE5:/ window 30,30
+36.0 "Divine Spear" sync / 1[56]:[^:]*:Alexander Prime:1AE3:/
+44.1 "Mega Holy" sync / 1[56]:[^:]*:Alexander Prime:1AE7:/
+51.2 "--sync--" sync / 1[56]:[^:]*:Alexander Prime:1AE8:/
+53.3 "Blazing Scourge" sync / 1[56]:[^:]*:Alexander Prime:1AE9:/
+56.4 "Divine Spear" sync / 1[56]:[^:]*:Alexander Prime:1AE3:/
+
+# The intermission can be pushed early at ~75% HP.
+61.4 "--untargetable--" sync / 22:........:Alexander Prime:........:Alexander Prime:00/ window 61.4,5
+161.9 "--sync--" sync / 1[56]:[^:]*:Alexander:1A18:/ window 161.9,5
+171.6 "Divine Judgment" sync / 1[56]:[^:]*:Alexander:1AEF:/
+
+# Bridge block to Timegate.
+182.4 "--targetable--"
+185.4 "Chronofoil" sync / 1[56]:[^:]*:Alexander Prime:19FA:/ window 185.4,5
+199.6 "Temporal Stasis" sync / 1[56]:[^:]*:Alexander Prime:1AF0:/
+203.7 "--untargetable--"
+203.7 "Plaint Of Solidarity" sync / 1[56]:[^:]*:Alexander Prime:1AF2:/
+206.9 "--targetable--"
+212.0 "Sacrament" sync / 1[56]:[^:]*:Alexander Prime:1AE5:/
+217.2 "Divine Spear" sync / 1[56]:[^:]*:Alexander Prime:1AE3:/
+223.3 "Mega Holy" sync / 1[56]:[^:]*:Alexander Prime:1AE7:/
+229.6 "Punishing Heat" sync / 1[56]:[^:]*:Alexander Prime:1AE4:/
+234.8 "Divine Spear" sync / 1[56]:[^:]*:Alexander Prime:1AE3:/
+244.9 "Temporal Stasis" sync / 1[56]:[^:]*:Alexander Prime:1AF0:/ window 30,30
+249.0 "--untargetable--"
+249.0 "Plaint Of Solidarity" sync / 1[56]:[^:]*:Alexander Prime:1AF2:/
+252.2 "--targetable--"
+257.3 "Sacrament" sync / 1[56]:[^:]*:Alexander Prime:1AE5:/
+266.5 "--sync--" sync / 1[56]:[^:]*:Alexander Prime:1AE8:/
+268.7 "Blazing Scourge" sync / 1[56]:[^:]*:Alexander Prime:1AE9:/
+274.6 "Mega Holy" sync / 1[56]:[^:]*:Alexander Prime:1AE7:/
+278.8 "Divine Spear" sync / 1[56]:[^:]*:Alexander Prime:1AE3:/
+
+# Timegates seem to push at 50% HP.
+# Push timings during Timegate seem inconsistent, so we include plenty of windows.
+# We don't sync to the 22 log line here because Alexander uses it twice in the bridge block.
+282.8 "--untargetable--"
+286.1 "--targetable--"
+290.1 "Timegate" sync / 1[56]:[^:]*:Alexander Prime:1A03:/ window 290,5
+309.7 "Divine Spear" sync / 1[56]:[^:]*:Alexander Prime:1AE3:/
+318.8 "Punishing Heat" sync / 1[56]:[^:]*:Alexander Prime:1AE4:/
+325.9 "--sync--" sync / 1[56]:[^:]*:Alexander Prime:1AE8:/
+328.0 "Blazing Scourge" sync / 1[56]:[^:]*:Alexander Prime:1AE9:/ window 30,5
+332.9 "Sacrament" sync / 1[56]:[^:]*:Alexander Prime:1AE5:/
+342.1 "Mega Holy" sync / 1[56]:[^:]*:Alexander Prime:1AE7:/ window 50,5
+346.2 "Divine Spear" sync / 1[56]:[^:]*:Alexander Prime:1AE3:/
+354.3 "Punishing Heat" sync / 1[56]:[^:]*:Alexander Prime:1AE4:/
+369.5 "--sync--" sync / 1[56]:[^:]*:Alexander Prime:1AEA:/
+374.6 "--sync--" sync / 1[56]:[^:]*:Alexander Prime:1AE8:/
+375.5 "Gravitational Anomaly" sync / 1[56]:[^:]*:Alexander Prime:1AEB:/ window 100,10
+376.8 "Blazing Scourge" sync / 1[56]:[^:]*:Alexander Prime:1AE9:/
+378.8 "Divine Spear" sync / 1[56]:[^:]*:Alexander Prime:1AE3:/
+386.9 "Mega Holy" sync / 1[56]:[^:]*:Alexander Prime:1AE7:/
+395.0 "Punishing Heat" sync / 1[56]:[^:]*:Alexander Prime:1AE4:/
+399.2 "Divine Spear" sync / 1[56]:[^:]*:Alexander Prime:1AE3:/
+408.3 "Temporal Stasis" sync / 1[56]:[^:]*:Alexander Prime:1AF0:/
+412.4 "Plaint Of Solidarity" sync / 1[56]:[^:]*:Alexander Prime:1AF2:/
+415.4 "--sync--" sync / 1[56]:[^:]*:Alexander Prime:1AEA:/
+421.4 "Gravitational Anomaly" sync / 1[56]:[^:]*:Alexander Prime:1AEB:/
+422.6 "Sacrament" sync / 1[56]:[^:]*:Alexander Prime:1AE5:/
+429.8 "Incinerating Heat" sync / 1[56]:[^:]*:Alexander Prime:1AF3:/
+
+# Summon Alexander seems to push at 30% HP.
+# It appears that Alexander has to complete at least a part of the Timegate section first?
+# (Pushes of anywhere from 5% to 30% have been seen.)
+# Enrage happens after loop 4 if there have been no phase pushes.
+# Whether this is the case with pushes is unknown.
+
+436.0 "Summon Alexander" sync / 1[56]:[^:]*:Alexander Prime:1A0A:/ window 412.8,5
+446.2 "Divine Spear" sync / 1[56]:[^:]*:Alexander Prime:1AE3:/
+454.3 "Mega Holy" sync / 1[56]:[^:]*:Alexander Prime:1AE7:/
+461.2 "Communion x4" # sync / 1[56]:[^:]*:Alexander:1AFC:/
+470.6 "Temporal Stasis" sync / 1[56]:[^:]*:Alexander Prime:1AF0:/ window 30,30
+474.7 "--untargetable--"
+474.7 "Plaint Of Solidarity" sync / 1[56]:[^:]*:Alexander Prime:1AF2:/
+477.9 "--targetable--"
+481.4 "Communion x4" # sync / 1[56]:[^:]*:Alexander:1AFC:/
+483.0 "Sacrament" sync / 1[56]:[^:]*:Alexander Prime:1AE5:/
+499.2 "Punishing Heat" sync / 1[56]:[^:]*:Alexander Prime:1AE4:/ window 30,30
+503.4 "Divine Spear" sync / 1[56]:[^:]*:Alexander Prime:1AE3:/
+511.5 "Mega Holy" sync / 1[56]:[^:]*:Alexander Prime:1AE7:/
+
+521.7 "Divine Spear" sync / 1[56]:[^:]*:Alexander Prime:1AE3:/ jump 446.2
+529.8 "Mega Holy"
+536.7 "Communion x4"
+546.1 "Temporal Stasis"
+550.2 "--untargetable--"
+550.2 "Plaint Of Solidarity"
+553.4 "--targetable--"

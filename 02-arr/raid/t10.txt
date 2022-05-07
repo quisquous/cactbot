@@ -1,0 +1,73 @@
+# Turn 10
+# -ii B5A B5C B60 B66 B68 B64 B59 B58 B65 B61 B57 -p B5D:200 B5E:500
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+# Initial Phase: Tankbuster, Charge, Repeat
+0.0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 00:0839::The Alpha Concourse will be sealed off/ window 5,5
+8.0 "Crackle Hiss" sync / 1[56]:[^:]*:Imdugud:B55:/
+16.0 "Critical Rip" sync / 1[56]:[^:]*:Imdugud:B56:/
+20.0 "Crackle Hiss" sync / 1[56]:[^:]*:Imdugud:B55:/
+32.0 "Wild Charge" sync / 1[56]:[^:]*:Imdugud:B5B:/ window 8,8
+36.0 "Crackle Hiss" sync / 1[56]:[^:]*:Imdugud:B55:/
+51.0 "Spike Flail" #sync / 1[56]:[^:]*:Imdugud:B57:/
+56.0 "Crackle Hiss" sync / 1[56]:[^:]*:Imdugud:B55:/
+64.0 "Critical Rip" sync / 1[56]:[^:]*:Imdugud:B56:/ window 20,20 jump 20
+# fake lookahead loop
+68.0 "Crackle Hiss"
+80.0 "Wild Charge"
+84.0 "Crackle Hiss"
+89.0 "Spike Flail"
+
+# 85% push into Adds Phase #1
+196.0 "--sync--" sync / 14:[^:]*:Imdugud:B5D:/ window 200,0
+200.0 "Electrocharge" sync / 1[56]:[^:]*:Imdugud:B5D:/ window 200,0
+201.0 "2x Son / 2x Daughter Adds"
+
+# Mid Phase: Alternates Heat Lightning, Heat Lightning+Charge, Tankbuster, Repeat
+497.0 "--sync--" sync / 14:[^:]*:Imdugud:B5E:/ window 500,0
+500.0 "Electric Burst" sync / 1[56]:[^:]*:Imdugud:B5E:/ window 500,0
+509.2 "Heat Lightning" sync / 1[56]:[^:]*:Imdugud:B5F:/
+528.1 "Crackle Hiss" sync / 1[56]:[^:]*:Imdugud:B55:/
+535.2 "Heat Lightning" sync / 1[56]:[^:]*:Imdugud:B5F:/
+541.9 "Wild Charge" sync / 1[56]:[^:]*:Imdugud:B5B:/ window 8,8
+545.3 "Crackle Hiss" sync / 1[56]:[^:]*:Imdugud:B55:/
+558.3 "Critical Rip" sync / 1[56]:[^:]*:Imdugud:B56:/
+561.5 "Crackle Hiss" sync / 1[56]:[^:]*:Imdugud:B55:/
+# fake lookahead loop
+569.8 "Heat Lightning" sync / 1[56]:[^:]*:Imdugud:B5F:/ window 20,20 jump 509.2
+588.7 "Crackle Hiss"
+595.8 "Heat Lightning"
+602.5 "Wild Charge"
+
+# 53% push into Adds Phase #2
+696.0 "--sync--" sync / 14:[^:]*:Imdugud:B5D:/ window 200,0
+700.0 "Electrocharge" sync / 1[56]:[^:]*:Imdugud:B5D:/ window 400,0
+701.0 "2x Son / 2x Daughter Adds"
+736.0 "1x Son / 1x Daughter Adds"
+
+# Final Phase: Heat+Tether, Buster, Random Mechanic, Repeat
+997.0 "--sync--" sync / 14:[^:]*:Imdugud:B5E:/ window 400,0
+1000.0 "Electric Burst" sync / 1[56]:[^:]*:Imdugud:B5E:/ window 400,0
+
+1009.3 "Heat Lightning" sync / 1[56]:[^:]*:Imdugud:B5F:/
+1013.5 "Cyclonic Chaos" sync / 1[56]:[^:]*:Imdugud:B61:/
+1028.5 "Crackle Hiss" sync / 1[56]:[^:]*:Imdugud:B55:/
+
+1035.8 "Critical Rip" sync / 1[56]:[^:]*:Imdugud:B56:/ window 20,20
+1042.0 "Crackle Hiss" sync / 1[56]:[^:]*:Imdugud:B55:/
+
+# Heat + Charge, OR Tether + Charge
+1058.0 "Random + Charge"
+
+1061.2 "Crackle Hiss" sync / 1[56]:[^:]*:Imdugud:B55:/
+1089.2 "Heat Lightning" sync / 1[56]:[^:]*:Imdugud:B5F:/ window 20,20 jump 1009.3
+1093.4 "Cyclonic Chaos"
+1108.4 "Crackle Hiss"
+1115.7 "Critical Rip"
+1121.9 "Crackle Hiss"

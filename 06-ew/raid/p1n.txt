@@ -1,0 +1,80 @@
+### P1N: Asphodelos: The First Circle
+#
+# -ii 65F2 65E6 65DA 65D9 65E0 65DF
+
+# Note: Gaoler's Flail cast is reworded to Aetherflail (65E0|65DF) in the
+# timeline as that is the cast that is visible. However, damage is from the
+# Gaoler's Flail (6DA3|6DA2) cast end after.
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+
+## First Gaoler's Flail
+8.7 "--sync--" sync / 14:[^:]*:Erichthonios:(6DA3|6DA2):/ window 10,9
+17.4 "Gaoler's Flail Left/Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
+28.5 "Gaoler's Flail Right/Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
+39.0 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
+46.2 "--knockback stack--" sync / 1[56]:[^:]*:Erichthonios:6D15:/
+51.5 "Pitiless Flail" sync / 1[56]:[^:]*:Erichthonios:65E5:/
+58.6 "True Holy" sync / 1[56]:[^:]*:Erichthonios:65E7:/
+
+## Third Gaoler's Flail
+70.5 "Gaoler's Flail Left/Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
+81.1 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/
+93.2 "Intemperance" sync / 1[56]:[^:]*:Erichthonios:65EE:/
+97.3 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
+105.1 "Intemperate Torment" sync / 1[56]:[^:]*:Erichthonios:65EF:/
+107.7 "Hot Spell/Cold Spell 1" sync / 1[56]:[^:]*:Erichthonios:(65F0|54F1):/
+116.7 "Hot Spell/Cold Spell 2" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
+125.7 "Hot Spell/Cold Spell 3" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
+135.3 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
+147.6 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/
+162.7 "Shining Cells" sync / 1[56]:[^:]*:Erichthonios:65E9:/
+174.9 "Aetherchain" sync / 1[56]:[^:]*:Erichthonios:65EB:/
+175.8 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+183.1 "Aetherchain" sync / 1[56]:[^:]*:Erichthonios:65EB:/
+184.0 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+
+## Beginning of Loop
+188.3 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
+
+# Fourth Gaoler's Flail
+198.7 "Aetherflail Left/Aetherflail Right" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
+198.8 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+209.8 "Aetherflail Right/Aetherflail Left" sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
+209.9 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+214.3 "--knockback stack--" sync / 1[56]:[^:]*:Erichthonios:6D15:/
+219.6 "Pitiless Flail" sync / 1[56]:[^:]*:Erichthonios:65E5:/
+226.7 "True Holy" sync / 1[56]:[^:]*:Erichthonios:65E7:/
+232.9 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
+
+# Sixth Gaoler's Flail
+243.3 "Aetherflail Left/Aetherflail Right" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
+243.4 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+260.8 "Slam Shut" sync / 1[56]:[^:]*:Erichthonios:65EA:/
+270.0 "Intemperance" sync / 1[56]:[^:]*:Erichthonios:65EE:/
+274.1 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
+281.7 "Intemperate Torment" sync / 1[56]:[^:]*:Erichthonios:65EF:/
+284.3 "Hot Spell/Cold Spell 1" sync / 1[56]:[^:]*:Erichthonios:(65F0|54F1):/
+293.3 "Hot Spell/Cold Spell 2" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
+302.3 "Hot Spell/Cold Spell 3" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
+305.6 "Gaoler's Flail Right/Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
+316.1 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
+327.3 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
+336.6 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/
+355.8 "Shining Cells" sync / 1[56]:[^:]*:Erichthonios:65E9:/
+
+# Repeat
+360.0 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/ window 50,50 jump 188.3
+370.3 "Aetherflail Left/Aetherflail Right" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
+370.4 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+381.4 "Aetherflail Right/Aetherflail Left" #sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
+381.5 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+385.9 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
+391.2 "Pitiless Flail" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
+398.3 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
+404.5 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/

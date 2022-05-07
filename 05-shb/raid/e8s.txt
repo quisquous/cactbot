@@ -1,0 +1,157 @@
+### Eden 8 (Savage)
+# Eden's Verse: Refulgence
+#  -p 4DCC:16 4D74:213 4D79:368.6 -ii 4DA8 4D9C 4D95 4D9A 4DA9 4DA8 4DCD 4DAB 4D84 4E19 4D98 4E3C 4D7A 4DCF 4DAF 4D91 4DA7 4D88 4FD8
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.5 "--sync--" sync / 1[56]:[^:]*:Shiva:4D59:/ window 2,0
+16.0 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:4DCC:/ window 17,20
+27.2 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4D5A:/
+39.3 "Biting/Driving Frost" sync / 1[56]:[^:]*:Shiva:4D6[67]:/
+44.4 "Reflected Frost (G)" sync / 1[56]:[^:]*:Frozen Mirror:4DB[78]:/
+49.4 "Reflected Frost (R)" sync / 1[56]:[^:]*:Frozen Mirror:4DC[34]:/
+
+### Diamond Frost
+57.5 "--middle--" sync / 1[56]:[^:]*:Shiva:4D58:/
+63.7 "Diamond Frost" sync / 1[56]:[^:]*:Shiva:4D6C:/
+71.9 "Frigid Stone" sync / 1[56]:[^:]*:Shiva:4D9B:/
+74.9 "Icicle Impact" sync / 1[56]:[^:]*:Shiva:4DA0:/
+76.9 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:4D61:/
+78.9 "Icicle Impact" sync / 1[56]:[^:]*:Shiva:4DA0:/
+80.9 "Frigid Needle" sync / 1[56]:[^:]*:Shiva:4D9D:/
+80.9 "Frigid Water" sync / 1[56]:[^:]*:Shiva:4D9E:/
+82.9 "Icicle Impact" sync / 1[56]:[^:]*:Shiva:4DA0:/
+83.9 "Frigid Eruption 1" #sync / 1[56]:[^:]*:Shiva:4D9F:/
+85.9 "Frigid Eruption 2" #sync / 1[56]:[^:]*:Shiva:4D9F:/
+87.9 "Frigid Eruption 3" #sync / 1[56]:[^:]*:Shiva:4D9F:/
+92.9 "Driving/Biting Frost" sync / 1[56]:[^:]*:Shiva:4D6[67]:/
+101.7 "Double Slap" sync / 1[56]:[^:]*:Shiva:4D65:/
+115.0 "Shining Armor" sync / 1[56]:[^:]*:Shiva:4DD1:/
+123.0 "Axe/Scythe Kick" sync / 1[56]:[^:]*:Shiva:4D6[DE]:/
+
+### Light Rampant
+131.2 "--middle--" sync / 1[56]:[^:]*:Shiva:4D58:/
+137.4 "Light Rampant" sync / 1[56]:[^:]*:Shiva:4D73:/ window 150,10
+148.6 "Bright Hunger" sync / 1[56]:[^:]*:Shiva:4DA2:/
+148.6 "The Path Of Light" sync / 1[56]:[^:]*:Shiva:4D63:/
+156.6 "Bright Hunger" sync / 1[56]:[^:]*:Shiva:4DA2:/
+159.8 "The Path Of Light" sync / 1[56]:[^:]*:Shiva:4D63:/
+164.7 "Bright Hunger" sync / 1[56]:[^:]*:Shiva:4DA2:/
+173.0 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4D5A:/
+185.2 "Scythe/Axe Kick" sync / 1[56]:[^:]*:Shiva:4D6[DE]:/
+190.2 "Reflected Kick (G)" sync / 1[56]:[^:]*:Frozen Mirror:4DB[9A]:/
+193.3 "Banish III" sync / 1[56]:[^:]*:Shiva:4D8[01]:/
+
+### Adds Phase
+201.5 "--untargetable--"
+201.7 "--sync--" sync / 1[56]:[^:]*:Shiva:4D58:/
+213.0 "Shattered World" sync / 1[56]:[^:]*:Shiva:4D74:/ window 220,20
+229.2 "Heart Asunder" sync / 1[56]:[^:]*:Mothercrystal:4DAC:/
+238.9 "Rush 1" sync / 1[56]:[^:]*:Luminous Aether:4D86:/
+243.3 "Heart Asunder" sync / 1[56]:[^:]*:Mothercrystal:4DAC:/
+253.0 "Rush 2" sync / 1[56]:[^:]*:Luminous Aether:4D86:/
+257.4 "Heart Asunder" sync / 1[56]:[^:]*:Mothercrystal:4DAC:/
+267.1 "Rush 3" sync / 1[56]:[^:]*:Luminous Aether:4D86:/
+271.5 "Heart Asunder" sync / 1[56]:[^:]*:Mothercrystal:4DAC:/
+281.2 "Rush 4" sync / 1[56]:[^:]*:Luminous Aether:4D86:/
+292.6 "Skyfall" sync / 1[56]:[^:]*:Shiva:4DAD:/ window 100,100
+
+### Dragon Fanfic
+# :eyes:
+
+### Wing Mirrors
+350.5 "--targetable--"
+364.2 "--sync--" sync / 14:[^:]*:Shiva:4D79:/ window 370,10
+368.6 "Akh Morn x3" sync / 1[56]:[^:]*:Shiva:4D79:/ duration 3.1
+378.0 "Morn Afah" sync / 1[56]:[^:]*:Shiva:4D7B:/
+389.4 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4D5A:/
+396.9 "--sync--" sync / 1[56]:[^:]*:Shiva:4D58:/
+403.2 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
+403.2 "Reflected Wings (B)" sync / 1[56]:[^:]*:Frozen Mirror:4D9[01]:/
+408.2 "Reflected Wings (G)" sync / 1[56]:[^:]*:Frozen Mirror:4DB[BC]:/
+413.2 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
+413.2 "Reflected Wings (R)" sync / 1[56]:[^:]*:Frozen Mirror:4DC[78]:/
+
+### Wyrm's Lament
+421.7 "--middle--" sync / 1[56]:[^:]*:Shiva:4D58:/
+427.9 "Wyrm's Lament" sync / 1[56]:[^:]*:Shiva:4D7C:/
+441.0 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
+449.1 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
+457.2 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
+465.3 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
+473.5 "Frost Armor" sync / 1[56]:[^:]*:Shiva:4DD0:/
+481.4 "Twin Silence/Stillness" sync / 1[56]:[^:]*:Shiva:4D6[89]:/
+483.5 "Twin Stillness/Silence" sync / 1[56]:[^:]*:Shiva:4D6[AB]:/
+491.6 "Double Slap" sync / 1[56]:[^:]*:Shiva:4D65:/
+504.8 "Drachen Armor" sync / 1[56]:[^:]*:Shiva:4DD2:/
+507.3 "Akh Rhai" sync / 1[56]:[^:]*:Shiva:4D99:/
+
+### Stack Mirrors
+516.1 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4D5A:/
+523.6 "--teleport--" sync / 1[56]:[^:]*:Shiva:4D58:/
+530.0 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D77:/
+535.1 "Reflected Wings (G)" sync / 1[56]:[^:]*:Frozen Mirror:4DBD:/
+540.1 "Reflected Wings (R)" sync / 1[56]:[^:]*:Frozen Mirror:4DC9:/
+
+### Lookaway Mirrors
+554.1 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4D5A:/
+566.6 "Shining Armor" sync / 1[56]:[^:]*:Shiva:4DD1:/
+566.6 "Reflected Armor (B)" sync / 1[56]:[^:]*:Frozen Mirror:4D8A:/
+571.7 "Reflected Armor (G)" sync / 1[56]:[^:]*:Frozen Mirror:4DB5:/
+576.7 "Reflected Armor (R)" sync / 1[56]:[^:]*:Frozen Mirror:4DC1:/
+577.6 "Holy" sync / 1[56]:[^:]*:Shiva:4D8[23]:/
+585.7 "Embittered/Spiteful Dance" sync / 1[56]:[^:]*:Shiva:4D(6F|70):/
+589.8 "Spiteful/Embittered Dance" sync / 1[56]:[^:]*:Shiva:4D7[12]:/
+
+### Akh Rhai Mirrors
+600.9 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4D5A:/
+608.1 "Drachen Armor" sync / 1[56]:[^:]*:Shiva:4DD2:/
+610.6 "Akh Rhai" sync / 1[56]:[^:]*:Shiva:4D99:/
+618.2 "Reflected Drachen" sync / 1[56]:[^:]*:Frozen Mirror:4DC2:/
+620.4 "Akh Morn x4" sync / 1[56]:[^:]*:Shiva:4D79:/ duration 4.2
+620.7 "Akh Rhai" sync / 1[56]:[^:]*:Shiva:4D99:/
+630.8 "Morn Afah" sync / 1[56]:[^:]*:Shiva:4D7B:/
+
+### Icelit Dragonsong
+648.8 "--middle--" sync / 1[56]:[^:]*:Shiva:4D58:/
+655.4 "Icelit Dragonsong" sync / 1[56]:[^:]*:Shiva:4D7D:/
+663.6 "Frigid Stone" sync / 1[56]:[^:]*:Shiva:4D9B:/
+666.6 "Bright Hunger" sync / 1[56]:[^:]*:Shiva:4DA2:/
+668.6 "Draconic Strike" sync / 1[56]:[^:]*:Shiva:4D62:/
+669.3 "--knockback--"
+672.7 "Frigid Needle" sync / 1[56]:[^:]*:Shiva:4D9D:/
+674.7 "Bright Hunger" sync / 1[56]:[^:]*:Shiva:4DA2:/
+676.7 "Frigid Eruption 1" #sync / 1[56]:[^:]*:Shiva:4D9F:/
+676.8 "Banish" sync / 1[56]:[^:]*:Shiva:4D7[EF]:/
+678.7 "Frigid Eruption 2" #sync / 1[56]:[^:]*:Shiva:4D9F:/
+680.8 "Frigid Eruption 3" #sync / 1[56]:[^:]*:Shiva:4D9F:/
+682.7 "Inescapable Illumination" sync / 1[56]:[^:]*:Shiva:4DA3:/
+688.0 "The House Of Light" sync / 1[56]:[^:]*:Shiva:4D64:/
+688.9 "The Path Of Light" sync / 1[56]:[^:]*:Shiva:4DA1:/
+
+### Ice Mirror
+699.6 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4D5A:/
+709.9 "Frost Armor" sync / 1[56]:[^:]*:Shiva:4DD0:/
+719.9 "Reflected Frost Armor (R)" sync / 1[56]:[^:]*:Frozen Mirror:4DC0:/
+720.4 "Drachen Armor" sync / 1[56]:[^:]*:Shiva:4DD2:/
+722.9 "Akh Rhai" sync / 1[56]:[^:]*:Shiva:4D99:/
+
+### Wyrm's Lament Take 2
+732.1 "--middle--" sync / 1[56]:[^:]*:Shiva:4D58:/
+738.3 "Wyrm's Lament" sync / 1[56]:[^:]*:Shiva:4D7C:/
+745.5 "Akh Morn x5" sync / 1[56]:[^:]*:Shiva:4D79:/ duration 5.3
+757.1 "Morn Afah" sync / 1[56]:[^:]*:Shiva:4D7B:/
+764.3 "Akh Morn x6" sync / 1[56]:[^:]*:Shiva:4D79:/ duration 6.4
+777.0 "Morn Afah" sync / 1[56]:[^:]*:Shiva:4D7B:/
+784.3 "Akh Morn x7" sync / 1[56]:[^:]*:Shiva:4D79:/ duration 7.5
+798.1 "Morn Afah" sync / 1[56]:[^:]*:Shiva:4D7B:/
+
+### Enrage Mirrors
+817.1 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4D5A:/
+819.2 "--teleport--" sync / 1[56]:[^:]*:Shiva:4D58:/
+830.6 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D78:/
+840.8 "Enrage" sync / 1[56]:[^:]*:Frozen Mirror:4DC[AB]:/

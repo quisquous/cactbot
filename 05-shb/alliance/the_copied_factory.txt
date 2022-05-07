@@ -1,0 +1,458 @@
+### The Copied Factory
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+### Serial-jointed Command Model
+# -ic 2P -p 48B2:108.5 -ii 4B31 48B3 48B4 48B7 48B6 48CB 48CC 48BA 4B32 48FA 48BC 48BD 48BE 48BF 48C0 48C1 48C2 48C9
+
+100.0 "--sync--" sync / 00:0839::Warehouse A will be sealed off/ window 100,0
+108.5 "Systematic Siege" sync / 1[56]:[^:]*:Serial-jointed Command Model:48B2:/
+122.6 "Clanging Blow" sync / 1[56]:[^:]*:Serial-jointed Command Model:48CE:/
+134.1 "Energy Bombardment" sync / 1[56]:[^:]*:Serial-jointed Command Model:48B8:/
+143.3 "Forceful Impact" sync / 1[56]:[^:]*:Serial-jointed Command Model:48CF:/
+156.1 "Energy Assault" sync / 1[56]:[^:]*:Serial-jointed Command Model:48B5:/ duration 6.5
+163.2 "--sync--" sync / 1[56]:[^:]*:Serial-jointed Command Model:4A10:/
+176.0 "Systematic Targeting" sync / 1[56]:[^:]*:Serial-jointed Command Model:48C4:/
+188.5 "High-Powered Laser" #sync / 1[56]:[^:]*:Serial-jointed Service Model:48C5:/
+193.8 "Forceful Impact" sync / 1[56]:[^:]*:Serial-jointed Command Model:48CF:/
+206.7 "Spin" sync / 1[56]:[^:]*:Serial-jointed Command Model:48C[A8]:/
+220.3 "Systematic Airstrike" sync / 1[56]:[^:]*:Serial-jointed Command Model:48B9:/ duration 24.8
+234.2 "Clanging Blow" sync / 1[56]:[^:]*:Serial-jointed Command Model:48CE:/
+259.1 "Systematic Suppression" sync / 1[56]:[^:]*:Serial-jointed Command Model:48C6:/
+272.0 "High-Caliber Laser" #sync / 1[56]:[^:]*:Serial-jointed Service Model:48C7:/
+276.0 "High-Caliber Laser" #sync / 1[56]:[^:]*:Serial-jointed Service Model:48C7:/
+281.9 "Forceful Impact" sync / 1[56]:[^:]*:Serial-jointed Command Model:48CF:/
+
+# Maybe an HP push?
+292.3 "Systematic Siege" sync / 1[56]:[^:]*:Serial-jointed Command Model:48B2:/ window 150,5
+303.2 "Energy Bombardment" sync / 1[56]:[^:]*:Serial-jointed Command Model:48B8:/
+306.8 "Systematic Targeting" sync / 1[56]:[^:]*:Serial-jointed Command Model:48C4:/
+317.8 "Clanging Blow" sync / 1[56]:[^:]*:Serial-jointed Command Model:48CE:/
+319.3 "High-Powered Laser" #sync / 1[56]:[^:]*:Serial-jointed Service Model:48C5:/
+332.1 "Spin" sync / 1[56]:[^:]*:Serial-jointed Command Model:48C[A8]:/
+343.2 "Forceful Impact" sync / 1[56]:[^:]*:Serial-jointed Command Model:48CF:/
+352.6 "Systematic Airstrike" sync / 1[56]:[^:]*:Serial-jointed Command Model:48B9:/ duration 24.8
+371.5 "Shockwave" sync / 1[56]:[^:]*:Serial-jointed Command Model:48C3:/
+387.9 "Energy Ring" sync / 1[56]:[^:]*:Serial-jointed Command Model:48BB:/ duration 7.2
+404.9 "Energy Assault" sync / 1[56]:[^:]*:Serial-jointed Command Model:48B5:/ duration 6.5
+412.1 "--sync--" sync / 1[56]:[^:]*:Serial-jointed Command Model:4A10:/
+420.7 "Systematic Suppression" sync / 1[56]:[^:]*:Serial-jointed Command Model:48C6:/
+433.5 "High-Caliber Laser" #sync / 1[56]:[^:]*:Serial-jointed Service Model:48C7:/
+437.6 "High-Caliber Laser" #sync / 1[56]:[^:]*:Serial-jointed Service Model:48C7:/
+442.6 "Forceful Impact" sync / 1[56]:[^:]*:Serial-jointed Command Model:48CF:/
+457.4 "Spin" sync / 1[56]:[^:]*:Serial-jointed Command Model:48C[A8]:/
+468.5 "Clanging Blow" sync / 1[56]:[^:]*:Serial-jointed Command Model:48CE:/
+
+478.4 "Systematic Siege" sync / 1[56]:[^:]*:Serial-jointed Command Model:48B2:/ window 100,100 jump 292.3
+489.3 "Energy Bombardment"
+492.9 "Systematic Targeting"
+503.9 "Clanging Blow"
+505.4 "High-Powered Laser"
+518.2 "Spin"
+529.3 "Forceful Impact"
+
+
+### Trash
+# -ic 2P -ii 491D 491C -p 491B:715.5
+600.0 "--sync--" sync / 00:0839::Warehouse B will be sealed off/ window 600,0
+700.0 "--sync--" sync / 22:........:Small Flyer:........:Small Flyer:01/ window 100,0
+715.5 "Frontal Somersault" sync / 1[56]:[^:]*:Small Biped:491B:/ window 116,2.5
+721.4 "Frontal Somersault" sync / 1[56]:[^:]*:Small Biped:491B:/
+725.7 "High-Frequency Laser" sync / 1[56]:[^:]*:Multi-leg Medium Model:491E:/
+732.1 "High-Frequency Laser" sync / 1[56]:[^:]*:Multi-leg Medium Model:491E:/
+738.5 "High-Frequency Laser" sync / 1[56]:[^:]*:Multi-leg Medium Model:491E:/
+740.8 "Frontal Somersault" sync / 1[56]:[^:]*:Small Biped:491B:/
+746.9 "Frontal Somersault" sync / 1[56]:[^:]*:Small Biped:491B:/
+751.2 "High-Frequency Laser" sync / 1[56]:[^:]*:Multi-leg Medium Model:491E:/
+757.5 "High-Frequency Laser" sync / 1[56]:[^:]*:Multi-leg Medium Model:491E:/
+763.9 "High-Frequency Laser" sync / 1[56]:[^:]*:Multi-leg Medium Model:491E:/
+770.1 "High-Frequency Laser" sync / 1[56]:[^:]*:Multi-leg Medium Model:491E:/
+776.3 "High-Frequency Laser" sync / 1[56]:[^:]*:Multi-leg Medium Model:491E:/
+
+
+### Hobbes
+# -ic 2P -p 4805:913 -ii 481C 4811 4810 49C5 49C6 49C7 4917 490D 480C 4911 4918 490E 4910 4912 490F 4808 4809 4814 4800 4801 4802 4803 4804 4916 47FE 480F 4915
+# Alliance A floor: 4819
+# Alliance B floor: 481A
+# Alliance C floor: 481B
+
+# This is a mess, so has been simplified to just "wall mechanic" and "floor mechanic".
+# You can use the make_timeline parameters above to see the combined set of mechanics.
+
+# Notes for the future:
+# Alliance A's floor mechanic is "Electromagnetic Pulse" on "Floor 1" and "Floor 2"
+# Alliance B's floor mechanic is a single "Unwilling Cargo" on "Floor 1"
+# Alliance C's floor mechanic is "Oil Well" on "Floor 1" and "Floor 2"
+
+# Alliance A always starts with Variable Combat Test (wall-mounted right arm)
+# Alliance B always starts with Fire-Resistance Test (wall-mounted flamethrower)
+# Alliance C always starts with Impact/Towerfall (wall-mounted left arm)
+
+# Everybody will always get each of these mechanics as the first three wall mechanics,
+# however, they may rotate clockwise or counter-clockwise to begin with.
+
+# Just to make this even more worse for timelines, after the first floor mechanic
+# it rotates once more, then maybe changes direction, and rotates again (???)
+# It could also just be random after the floor mechanic?
+
+# This means these options are all valid wall rotations:
+# * Fire->Impact->Variable->(floor)->Variable->Impact->Fire->repeat
+# * Fire->Impact->Variable->(floor)->Impact->Variable->Fire->repeat
+# * Variable->Impact->Fire->(floor)->Impact->Fire->Variable->repeat
+
+# This is why the timeline has "Wall 1 2 3" and "Wall A B C".
+
+# TODO: you could use the initial rp text to figure out which alliance you're in,
+# and then from there also use the second rp text to figure out which of the initial
+# six possibilities you're in, then collapse back to three timelines, and then
+# branch out to six timelines again for the second half, but it'd be, well, a lot.
+
+900.0 "--sync--" sync / 00:0839::Quality assurance will be sealed off/ window 900,0
+913.0 "Laser-Resistance Test x3" sync / 1[56]:[^:]*:Hobbes:4805:/ duration 2.3
+
+924.5 "--sync--" sync / 1[56]:[^:]*:Hobbes:480A:/
+926.0 "--sync--" sync / 1[56]:[^:]*:Hobbes:4913:/
+934.0 "Wall Mechanic 1"
+
+969.6 "--sync--" sync / 1[56]:[^:]*:Hobbes:480A:/
+971.1 "--sync--" sync / 1[56]:[^:]*:Hobbes:4913:/
+
+979.1 "Wall Mechanic 2"
+
+996.8 "Ring Laser" sync / 1[56]:[^:]*:Hobbes:47FF:/ duration 8.1
+
+1030.5 "--sync--" sync / 1[56]:[^:]*:Hobbes:480A:/
+1032.1 "--sync--" sync / 1[56]:[^:]*:Hobbes:4913:/
+
+1040.1 "Wall Mechanic 3"
+
+1061.3 "Laser Sight" sync / 1[56]:[^:]*:Hobbes:4807:/
+
+1090.7 "Floor 1" sync / 1[56]:[^:]*:Hobbes:481B:/
+1097.3 "Floor 2" sync / 1[56]:[^:]*:Hobbes:481B:/
+
+1114.1 "Laser-Resistance Test x4" sync / 1[56]:[^:]*:Hobbes:4805:/ duration 3.3
+
+1128.6 "Floor 1" sync / 1[56]:[^:]*:Hobbes:481B:/
+1130.5 "Short-Range Missile" sync / 1[56]:[^:]*:Hobbes:4815:/
+1135.2 "Floor 2" sync / 1[56]:[^:]*:Hobbes:481B:/
+
+1143.7 "--sync--" sync / 1[56]:[^:]*:Hobbes:480A:/
+1149.2 "--sync--" sync / 1[56]:[^:]*:Hobbes:4913:/
+1149.6 "Laser Sight" sync / 1[56]:[^:]*:Hobbes:4807:/
+
+1157.2 "Wall Mechanic A"
+
+1187.9 "Laser-Resistance Test x5" sync / 1[56]:[^:]*:Hobbes:4805:/ duration 4.3
+
+1200.8 "Ring Laser" sync / 1[56]:[^:]*:Hobbes:47FF:/ duration 8.1
+1203.4 "Floor 1" sync / 1[56]:[^:]*:Hobbes:481B:/
+1209.9 "Floor 2" sync / 1[56]:[^:]*:Hobbes:481B:/
+
+1218.2 "--sync--" sync / 1[56]:[^:]*:Hobbes:480A:/
+1223.8 "--sync--" sync / 1[56]:[^:]*:Hobbes:4913:/
+1224.2 "Short-Range Missile" sync / 1[56]:[^:]*:Hobbes:4815:/
+
+1231.8 "Wall Mechanic B"
+
+1262.6 "Laser-Resistance Test x6" sync / 1[56]:[^:]*:Hobbes:4805:/ duration 5.3
+
+1279.2 "Floor 1" sync / 1[56]:[^:]*:Hobbes:481B:/
+1281.2 "Laser Sight" sync / 1[56]:[^:]*:Hobbes:4807:/
+1285.8 "Floor 2" sync / 1[56]:[^:]*:Hobbes:481B:/
+
+1294.5 "--sync--" sync / 1[56]:[^:]*:Hobbes:480A:/
+1300.0 "--sync--" sync / 1[56]:[^:]*:Hobbes:4913:/
+1301.9 "Ring Laser" sync / 1[56]:[^:]*:Hobbes:47FF:/ duration 8.1
+
+1308.0 "Wall Mechanic C"
+
+1339.0 "Laser-Resistance Test x6" sync / 1[56]:[^:]*:Hobbes:4805:/ duration 5.3
+
+1355.7 "Floor 1" sync / 1[56]:[^:]*:Hobbes:481B:/
+1357.7 "Short-Range Missile" sync / 1[56]:[^:]*:Hobbes:4815:/
+1362.3 "Floor 2" sync / 1[56]:[^:]*:Hobbes:481B:/
+
+1370.9 "--sync--" sync / 1[56]:[^:]*:Hobbes:480A:/
+1376.4 "--sync--" sync / 1[56]:[^:]*:Hobbes:4913:/
+1376.8 "Laser Sight" sync / 1[56]:[^:]*:Hobbes:4807:/
+1384.4 "Wall Mechanic A"
+
+1414.9 "Laser-Resistance Test x6" sync / 1[56]:[^:]*:Hobbes:4805:/ duration 5.3
+
+1429.0 "Ring Laser" sync / 1[56]:[^:]*:Hobbes:47FF:/ duration 8.1 window 100,100 jump 1200.8
+
+1431.6 "Floor 1"
+1438.1 "Floor 2"
+
+1446.4 "--sync--"
+1452.0 "--sync--"
+1452.4 "Short-Range Missile"
+
+1459.9 "Wall Mechanic B"
+
+
+### Goliath Tank
+# -ic 2P -p 4932:1509 493D:1800 -ii 4937 4934 4938 4935 4939 4936 493A 4933 470D 4943 493E
+1500.0 "--sync--" sync / 00:0839::Warehouse C will be sealed off/ window 1500,0
+1509.0 "Energy Ring" sync / 1[56]:[^:]*:Goliath Tank:4932:/ duration 15.1
+1516.9 "Exploding Tethers"
+1526.0 "Convenient Self-Destruction" sync / 1[56]:[^:]*:Medium Exploder:493C:/
+1533.9 "Laser Turret" sync / 1[56]:[^:]*:Goliath Tank:493B:/
+1547.2 "Energy Ring" sync / 1[56]:[^:]*:Goliath Tank:4932:/ duration 30
+1561.1 "Exploding Tethers"
+1570.2 "Convenient Self-Destruction" sync / 1[56]:[^:]*:Medium Exploder:493C:/
+1584.2 "Laser Turret" sync / 1[56]:[^:]*:Goliath Tank:493B:/
+1593.6 "Laser Turret" sync / 1[56]:[^:]*:Goliath Tank:493B:/
+1603.0 "Laser Turret" sync / 1[56]:[^:]*:Goliath Tank:493B:/
+
+1800.0 "--sync--" sync / 1[56]:[^:]*:Flight Unit:493D:/ window 300,0
+1810.0 "--targetable--"
+1817.2 "--sync--" sync / 1[56]:[^:]*:Flight Unit:493F:/
+1821.7 "Area Bombing Maneuver" sync / 1[56]:[^:]*:Flight Unit:4942:/ duration 9.1
+1835.9 "360-Degree Bombing Maneuver" sync / 1[56]:[^:]*:Flight Unit:4941:/
+1851.3 "Lightfast Blade" sync / 1[56]:[^:]*:Flight Unit:4940:/
+1857.5 "--sync--" sync / 1[56]:[^:]*:Flight Unit:493F:/
+1861.8 "Area Bombing Maneuver" sync / 1[56]:[^:]*:Flight Unit:4942:/ duration 9.1
+1871.1 "Lightfast Blade" sync / 1[56]:[^:]*:Flight Unit:4940:/
+1873.2 "--jump--" sync / 1[56]:[^:]*:Flight Unit:493F:/
+1879.7 "Lightfast Blade" sync / 1[56]:[^:]*:Flight Unit:4940:/
+1888.8 "360-Degree Bombing Maneuver" sync / 1[56]:[^:]*:Flight Unit:4941:/
+1899.1 "360-Degree Bombing Maneuver" sync / 1[56]:[^:]*:Flight Unit:4941:/
+1918.5 "Lightfast Blade" sync / 1[56]:[^:]*:Flight Unit:4940:/
+
+
+### Engels
+# -ic 2P -p 4727:2015.7 4740:2400 -ii 4751 4752 4729 4728 4753 4738 4735 4737 472F 4730 4731 4732 472B 472C 472D 473B 473D 4734 4758 4745 48FC 474F 4747 474D 4748
+
+# TODO: are the Marx Smashes after the crushers more specific?
+# One log has 472[6,7,7,A] as the four.  Left as all random for now.
+
+2000.0 "--sync--" sync / 00:0839::The forward deck will be sealed off/ window 2000,0
+2015.7 "Marx Smash L/R" sync / 1[56]:[^:]*:Engels:472[67]:/
+2029.6 "Marx Smash R/L" sync / 1[56]:[^:]*:Engels:472[67]:/
+2044.4 "Precision Guided Missile" sync / 1[56]:[^:]*:Engels:4754:/
+2055.8 "Incendiary Bombing" sync / 1[56]:[^:]*:Engels:4739:/
+2070.5 "Guided Missile" sync / 1[56]:[^:]*:Engels:4736:/ duration 3.4
+2078.8 "Diffuse Laser" sync / 1[56]:[^:]*:Engels:4755:/
+2097.3 "Marx Smash Back" sync / 1[56]:[^:]*:Engels:472[AE]:/
+2115.9 "Marx Smash Front" sync / 1[56]:[^:]*:Engels:472[AE]:/
+2135.6 "Energy Barrage" sync / 1[56]:[^:]*:Engels:473C:/
+2143.4 "Laser Sight" sync / 1[56]:[^:]*:Engels:473A:/
+2154.1 "Energy Blast" sync / 1[56]:[^:]*:Engels:473E:/
+2156.7 "Surface Missile" sync / 1[56]:[^:]*:Engels:4733:/
+2171.6 "Precision Guided Missile" sync / 1[56]:[^:]*:Engels:4754:/
+2178.0 "Diffuse Laser" sync / 1[56]:[^:]*:Engels:4755:/
+
+# TODO: Maybe time-based or hp-based?
+2193.1 "--untargetable--"
+2193.2 "--sync--" sync / 1[56]:[^:]*:Engels:473F:/ window 200,50
+2197.0 "Adds"
+2198.3 "--targetable--"
+# These arm lasers can get desynced.
+2214.5 "Arm Laser" #sync / 1[56]:[^:]*:Reverse-jointed Goliath:4757:/
+2229.7 "Arm Laser" #sync / 1[56]:[^:]*:Reverse-jointed Goliath:4757:/
+2244.9 "Arm Laser" #sync / 1[56]:[^:]*:Reverse-jointed Goliath:4757:/
+2258.3 "Enrage" # 60 seconds ???
+
+2400.0 "Wide-Angle Diffuse Laser" sync / 1[56]:[^:]*:Engels:4740:/ window 200,0
+2402.1 "Diffuse Laser" sync / 1[56]:[^:]*:Engels:4741:/
+2412.2 "--sync--" sync / 1[56]:[^:]*:Engels:4743:/
+2433.0 "Demolish Structure" sync / 1[56]:[^:]*:Engels:4744:/
+
+2442.2 "--targetable--"
+2448.2 "Marx Activation" sync / 1[56]:[^:]*:Engels:48A8:/
+2466.3 "Marx Thrust" sync / 1[56]:[^:]*:Marx:4756:/
+2476.3 "Marx Thrust" sync / 1[56]:[^:]*:Marx:4756:/
+2478.5 "Area Bombardment" sync / 1[56]:[^:]*:Engels:4750:/
+2486.3 "Marx Thrust" sync / 1[56]:[^:]*:Marx:4756:/
+2491.1 "Incendiary Bombing" sync / 1[56]:[^:]*:Engels:4739:/
+2505.1 "Guided Missile" sync / 1[56]:[^:]*:Engels:4736:/
+2511.4 "Diffuse Laser" sync / 1[56]:[^:]*:Engels:4755:/
+2529.2 "Incendiary Bombing" sync / 1[56]:[^:]*:Engels:4739:/
+2533.7 "Marx Smash" sync / 1[56]:[^:]*:Engels:472E:/
+2553.9 "Incendiary Bombing" sync / 1[56]:[^:]*:Engels:4739:/
+2558.5 "Marx Smash" sync / 1[56]:[^:]*:Engels:472A:/
+2572.5 "Incendiary Saturation Bombing" sync / 1[56]:[^:]*:Engels:474E:/
+
+2581.2 "Crusher Adds"
+2584.7 "Marx Crush" sync / 1[56]:[^:]*:Engels:4746:/
+2586.8 "Radiate Heat" sync / 1[56]:[^:]*:Engels:474C:/
+2586.8 "Radiate Heat" sync / 1[56]:[^:]*:Engels:474C:/
+2593.9 "Radiate Heat" sync / 1[56]:[^:]*:Engels:474C:/
+2600.0 "Crushing Wheel" sync / 1[56]:[^:]*:Marx [LR]:474B:/
+2600.7 "Radiate Heat" sync / 1[56]:[^:]*:Engels:474C:/
+2607.8 "Radiate Heat" sync / 1[56]:[^:]*:Engels:474C:/
+2614.1 "Crushing Wheel" sync / 1[56]:[^:]*:Marx [LR]:474B:/
+# guessing here for enrage ???
+2621.8 "Radiate Heat" sync / 1[56]:[^:]*:Engels:474C:/
+2625.2 "Crushing Wheel Enrage?"  sync / 1[56]:[^:]*:Marx [LR]:474B:/
+
+2700.0 "--targetable--" sync / 22:........:Engels:........:Engels:01/ window 150,0
+2706.2 "--sync--" sync / 14:[^:]*:Engels:4733:/ window 150,5
+2709.7 "Surface Missile" sync / 1[56]:[^:]*:Engels:4733:/
+2718.9 "Marx Smash" sync / 1[56]:[^:]*:Engels:472[67AE]:/
+2728.6 "Surface Missile" sync / 1[56]:[^:]*:Engels:4733:/
+2737.9 "Marx Smash" sync / 1[56]:[^:]*:Engels:472[67AE]:/
+2747.0 "Energy Barrage" sync / 1[56]:[^:]*:Engels:473C:/
+2754.8 "Laser Sight" sync / 1[56]:[^:]*:Engels:473A:/
+2765.5 "Energy Blast" sync / 1[56]:[^:]*:Engels:473E:/
+2768.1 "Surface Missile" sync / 1[56]:[^:]*:Engels:4733:/
+2776.8 "Diffuse Laser" sync / 1[56]:[^:]*:Engels:4755:/
+2790.6 "Precision Guided Missile" sync / 1[56]:[^:]*:Engels:4754:/
+2795.0 "Diffuse Laser" sync / 1[56]:[^:]*:Engels:4755:/
+2816.3 "Surface Missile" sync / 1[56]:[^:]*:Engels:4733:/
+2825.5 "Marx Smash" sync / 1[56]:[^:]*:Engels:472[67AE]:/
+2840.7 "Incendiary Bombing" sync / 1[56]:[^:]*:Engels:4739:/
+2845.5 "Marx Smash" sync / 1[56]:[^:]*:Engels:472[67AE]:/
+
+# TODO: it is unclear if this is the actual loop.
+# The log needs to be about ~14 min to verify if the
+# crusher phase happens again or if that's a one time thing.
+2859.3 "Marx Activation" sync / 1[56]:[^:]*:Engels:48A8:/ window 200,200 jump 2448.2
+2877.4 "Marx Thrust"
+2887.4 "Marx Thrust"
+2889.6 "Area Bombardment"
+2897.4 "Marx Thrust"
+2902.2 "Incendiary Bombing"
+2916.2 "Guided Missile"
+
+
+### 9S
+# -ic 2P -p 48F5:3013.3 48E7:3310 48EB:3510 -ii 49C4 48F9 48F7 48DC 485E 48E3 48E6 48E0 48EC 48A5 48A7 48D6 4ABE
+3000.0 "--sync--" sync / 00:0839::The rear deck will be sealed off/ window 3000,0
+3013.3 "Neutralization" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F5:/
+3021.5 "Laser Saturation" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F6:/
+3030.2 "Laser Turret" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4A74:/
+3039.7 "Ground-To-Ground Missile" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4974:/
+3049.3 "Cannons" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D[EF]:/
+3056.5 "Cannons" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D[EF]:/
+3065.7 "Engage Marx Support" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D3:/
+3081.9 "Marx Impact" sync / 1[56]:[^:]*:Marx:48D4:/
+3087.5 "Ground-To-Ground Missile" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4974:/
+3088.8 "Laser Turret" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4A74:/
+3094.7 "Laser Saturation" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F6:/
+
+# Dodging Phase
+3108.2 "--untargetable--"
+3108.2 "Undock" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4B37:/
+3108.5 "--sync--" sync / 1[56]:[^:]*:9S-Operated Flight Unit:4A5D:/
+3123.6 "--sync--" sync / 1[56]:[^:]*:9S-Operated Flight Unit:48D8:/
+3125.7 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D9:/
+3128.2 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48DA:/
+3130.7 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48DB:/
+3136.7 "--sync--" sync / 1[56]:[^:]*:9S-Operated Flight Unit:4B17:/
+3138.9 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D9:/
+3141.4 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48DA:/
+3143.9 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48DB:/
+3146.8 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48DD:/
+
+3151.7 "--targetable--"
+3152.0 "--sync--" sync / 14:[^:]*:9S-Operated Walking Fortress:48F5:/
+3156.0 "Neutralization" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F5:/
+3170.7 "Anti-Personnel Missile" #sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48E4:/
+3172.7 "Anti-Personnel Missile" #sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48E4:/
+3178.3 "Laser Turret" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4A74:/
+
+# Tank Adds
+3187.6 "Engage Goliath Tank Support" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48E5:/
+3190.8 "Tank Adds"
+3196.9 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F8:/
+3202.5 "Ground-To-Ground Missile" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4974:/
+3209.2 "Laser Saturation" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F6:/
+
+3217.4 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F8:/ window 10,10 jump 3196.9
+3223.0 "Ground-To-Ground Missile"
+3229.7 "Laser Saturation"
+
+3243.5 "Ground-To-Ground Missile"
+3250.2 "Laser Saturation"
+
+3264.0 "Ground-To-Ground Missile"
+3270.7 "Laser Saturation"
+
+# Tank Explosions
+3300.0 "--sync--" sync / 14:[^:]*:9S-Operated Walking Fortress:48E7:/ window 200,0
+3310.0 "Hack Goliath Tank" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48E7:/
+3310.0 "Convenient Self-Destruction" sync / 1[56]:[^:]*:Goliath Tank:48E8:/
+3313.2 "Ground-To-Ground Missile" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F8:/
+3318.9 "Convenient Self-Destruction" sync / 1[56]:[^:]*:Goliath Tank:48E9:/
+3325.4 "Cannons" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D[EF]:/
+3336.5 "Laser Saturation" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F6:/
+3342.6 "Neutralization" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F5:/
+
+# Three Adds
+# Adds independently can do Sidestriking or Centrifugal spin.
+3353.5 "--untargetable--"
+3353.6 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48EA:/
+3360.0 "Serial-Jointed Adds"
+3362.7 "--targetable--"
+3379.8 "Clanging Blow" sync / 1[56]:[^:]*:Serial-jointed Service Model:48F0:/
+3392.0 "Shrapnel Impact" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F3:/
+3398.0 "Spin" sync / 1[56]:[^:]*:Serial-jointed Service Model:4A8[46]:/
+3407.1 "Clanging Blow" sync / 1[56]:[^:]*:Serial-jointed Service Model:48F0:/
+3421.4 "Shrapnel Impact" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F3:/
+3422.3 "Spin" sync / 1[56]:[^:]*:Serial-jointed Service Model:4A8[46]:/
+3432.7 "Enrage?" # 70s ???
+
+3500.0 "--sync--" sync / 14:[^:]*:9S-Operated Walking Fortress:48EB:/ window 300,0
+3510.0 "Total Annihilation Maneuver" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48EB:/
+3520.0 "--targetable--"
+3530.1 "Neutralization" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F5:/
+3541.9 "Ground-To-Ground Missile" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4974:/
+3543.2 "Laser Turret" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4A74:/
+3562.0 "Anti-Personnel Missile" # sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48E4:/
+3564.0 "Anti-Personnel Missile" # sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48E4:/
+3566.0 "Anti-Personnel Missile" # sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48E4:/
+3573.0 "Cannons" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D[EF]:/
+3581.1 "Laser Saturation" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F6:/
+
+3591.1 "--untargetable--"
+3591.1 "Undock" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D5:/
+3600.3 "--sync--" sync / 1[56]:[^:]*:9S-Operated Flight Unit:48D8:/
+3602.4 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D9:/
+3604.9 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48DA:/
+3607.4 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48DB:/
+3611.4 "Anti-Personnel Missile" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4B11:/
+3614.6 "--sync--" sync / 1[56]:[^:]*:9S-Operated Flight Unit:48D8:/
+3616.7 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D9:/
+3619.2 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48DA:/
+3621.7 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48DB:/
+3627.6 "Anti-Personnel Missile" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4B11:/
+3628.7 "--sync--" sync / 1[56]:[^:]*:9S-Operated Flight Unit:4B17:/
+3630.8 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D9:/
+3633.3 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48DA:/
+3635.8 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48DB:/
+3638.8 "--sync--" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48DD:/
+
+3643.8 "--targetable--"
+3643.9 "--sync--" sync / 14:[^:]*:9S-Operated Walking Fortress:48F6:/ window 10,10
+3647.9 "Laser Saturation" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F6:/
+3659.3 "Engage Marx Support" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D3:/
+3674.5 "Ground-To-Ground Missile" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F8:/
+3675.6 "Marx Impact" sync / 1[56]:[^:]*:Marx:48D4:/
+3681.6 "Cannons" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D[EF]:/
+3693.9 "Neutralization" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F5:/
+3705.7 "Ground-To-Ground Missile" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4974:/
+3706.9 "Laser Turret" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4A74:/
+3724.3 "Anti-Personnel Missile" #sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48E4:/
+3726.3 "Anti-Personnel Missile" #sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48E4:/
+3728.3 "Anti-Personnel Missile" #sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48E4:/
+3735.4 "Cannons" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D[EF]:/
+3743.5 "Laser Saturation" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F6:/
+3755.3 "Ground-To-Ground Missile" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4974:/
+3756.5 "Laser Turret" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4A74:/
+3763.4 "Cannons" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D[EF]:/
+3773.5 "Neutralization" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F5:/
+3783.6 "Laser Saturation" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F6:/
+
+3794.8 "Engage Marx Support" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48D3:/ window 100,100 jump 3659.3
+3810.0 "Ground-To-Ground Missile"
+3811.1 "Marx Impact"
+3817.1 "Cannons"
+3829.4 "Neutralization"
+3841.2 "Ground-To-Ground Missile"
+3842.4 "Laser Turret"

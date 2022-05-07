@@ -1,0 +1,425 @@
+### Zadnor
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:80000014:00:/ window 100000 jump 0
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+# TODO: fill in CEs
+# The idea with each of them is that you have at most two minutes of standing
+# around, so start each timeline at +200 from the initial 0x21 sync line.
+# e.g. On Serpents' Wings would start at 1200 with "Start" and then boss
+# abilities from there.
+
+### On Serpents' Wings
+1000.0 "--sync--" sync / 21:........:80000014:211:/ window 100000,0
+
+### Feeling the Burn
+2000.0 "--sync--" sync / 21:........:80000014:20E:/ window 100000,0
+
+### The Broken Blade
+3000.0 "--sync--" sync / 21:........:80000014:21F:/ window 100000,0
+
+### From Beyond the Grave
+4000.0 "--sync--" sync / 21:........:80000014:21B:/ window 100000,0
+
+### With Diremite and Main
+5000.0 "--sync--" sync / 21:........:80000014:221:/ window 100000,0
+
+### Here Comes the Cavalry
+6000.0 "--sync--" sync / 21:........:80000014:21C:/ window 100000,0
+
+### Head of the Snake
+7000.0 "--sync--" sync / 21:........:80000014:21E:/ window 100000,0
+
+### There Would Be Blood
+8000.0 "--sync--" sync / 21:........:80000014:210:/ window 100000,0
+
+### Never Cry Wolf
+9000.0 "--sync--" sync / 21:........:80000014:20F:/ window 100000,0
+
+### Time To Burn
+10000.0 "--sync--" sync / 21:........:80000014:21D:/ window 100000,0
+
+### Lean, Mean, Magitek Machines
+11000.0 "--sync--" sync / 21:........:80000014:218:/ window 100000,0
+
+### Worn to a Shadow
+12000.0 "--sync--" sync / 21:........:80000014:222:/ window 100000,0
+
+### A Familiar Face
+13000.0 "--sync--" sync / 21:........:80000014:212:/ window 100000,0
+
+### Looks to Die For
+14000.0 "--sync--" sync / 21:........:80000014:207:/ window 100000,0
+
+### Taking the Lyon's Share
+15000.0 "--sync--" sync / 21:........:80000014:220:/ window 100000,0
+
+### The Dalriada
+#20000.0 "--sync--" sync / 21:........:80000014:213:/ window 100000,0
+
+### Sartauvoir (up)
+# Note: can't sync to the zone closing here, as you (of course) can see the
+# zone closing message (but nothing else) from both up and down locations.
+#
+# Note Named the second "Mannatheihwon Flame" as "Ignis Est" as that's the
+# add name, and it's similar to Varis Extreme.
+#
+# -p 5E7C:21016 5E7E:21300
+# -ii 61BE 5E7D 5E75 5E88 5E8A 5E79 5E7B
+#21000.0 "--sync--" sync / 00:0839::The loading dock will be sealed off/ window 100000,0
+21016.0 "Pyrokinesis" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E7C:/ window 100000,0
+21028.2 "--sync--" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E6C:/
+21034.3 "Time Eruption 1" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E6E:/
+21036.3 "Time Eruption 2" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E6F:/
+21045.4 "Phenex" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E72:/
+21053.6 "Thermal Gust" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E74:/
+21057.6 "Flamedive" sync / 1[56]:[^:]*:Huma:5E73:/
+# This can push.
+21059.8 "--sync--" sync / 14:[^:]*:Sartauvoir The Inferno:5E6D:/ window 70,10
+21066.8 "--sync--" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E6D:/
+21072.9 "Reverse Time Eruption 1" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E71:/
+21074.9 "Reverse Time Eruption 2" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E70:/
+# This too?
+21078.0 "--sync--" sync / 14:[^:]*:Sartauvoir The Inferno:5E7C:/ window 80,10
+21083.0 "Pyrokinesis" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E7C:/
+21091.2 "Hyperpyroplexy" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E76:/
+21101.4 "Pyroplexy" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E77:/
+21106.7 "Grand Crossflame" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E7A:/
+# ???
+
+# transformation (hp% push)
+21300.0 "--sync--" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E7E:/ window 300,0
+21306.1 "Burn" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E7F:/
+21311.1 "Burn" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E7F:/
+21316.1 "Immolate" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E80:/
+21319.1 "--sync--" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E81:/
+21334.6 "Burning Blade" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E90:/
+21343.9 "Mannatheihwon Flame" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E87:/
+21356.8 "Ignis Est" sync / 1[56]:[^:]*:Ignis Est:5E89:/
+21366.2 "Left Brand/Right Brand" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E8[BC]:/
+21374.5 "Double Cast" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E8D:/
+21382.6 "Pyrodoxy" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E8E:/
+21382.6 "Pyrocrisis" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E8F:/
+21389.9 "Left Brand/Right Brand" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E8[BC]:/
+21398.3 "Phenex" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E85:/
+21408.6 "Time Eruption/Reverse Time Eruption" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E8[34]:/
+21411.6 "Flamedive" sync / 1[56]:[^:]*:Huma:5E73:/
+21415.9 "Time Eruption 1" sync / 1[56]:[^:]*:Sartauvoir The Inferno:(5E6E|5E71):/
+21417.9 "Time Eruption 2" sync / 1[56]:[^:]*:Sartauvoir The Inferno:(5E6F|5E70):/
+21425.9 "Pyrokinesis" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E82:/
+21437.3 "Hyperpyroplexy" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E86:/
+# ???
+
+
+### Blackburn / Augur / Alkonost / Carrion Crow (down)
+# -ic "Fran" "Llofii The Forthright" "Meryall Of The Crimson Flame" "Tsubame Sunrise" "Oboro Moonrise"
+# -p 5F12:22016 5F1F:22305 5F26:22512
+# -ii 6226 6227 6228 6229 5F13 5F1D 5F20 5F15 5F1C 5F29 5F31
+
+#22000.0 "--sync--" sync / 00:0839::The flagship landing will be sealed off/ window 100000,0
+
+# Blackburn
+22011.0 "--sync--" sync / 14:[^:]*:4Th Legion Blackburn:5F12:/ window 100000,0
+22016.0 "Suppressive Magitek Rays" sync / 1[56]:[^:]*:4Th Legion Blackburn:5F12:/
+22031.7 "Anti-Personnel Missile" sync / 1[56]:[^:]*:4Th Legion Blackburn:5F0D:/
+22033.8 "Ballistic Impact 1" #sync / 1[56]:[^:]*:4Th Legion Blackburn:5F0E:/
+22036.8 "Ballistic Impact 2" #sync / 1[56]:[^:]*:4Th Legion Blackburn:5F0E:/
+22039.8 "Ballistic Impact 3" #sync / 1[56]:[^:]*:4Th Legion Blackburn:5F0E:/
+22047.9 "Read Orders: Field Support" sync / 1[56]:[^:]*:4Th Legion Blackburn:5F0C:/
+22054.6 "Terminus Est" #sync / 1[56]:[^:]*:4Th Legion Infantry:5F03:/
+22057.6 "Analysis" sync / 1[56]:[^:]*:4Th Legion Blackburn:5F0F:/ window 10,10
+22064.7 "Terminus Est" #sync / 1[56]:[^:]*:Terminus Est:5F07:/
+22073.2 "Suppressive Magitek Rays" sync / 1[56]:[^:]*:4Th Legion Blackburn:5F12:/
+22083.4 "Surface Missile" sync / 1[56]:[^:]*:4Th Legion Blackburn:5F10:/
+22089.5 "Surface Missile" sync / 1[56]:[^:]*:4Th Legion Blackburn:5F11:/
+# ???
+
+# Augur
+# this cast starts almost immediately after the Augur apperas
+22300.0 "--sync--" sync / 14:[^:]*:4Th Legion Augur:5F1F:/ window 300,0
+22305.0 "Sanctified Quake III" sync / 1[56]:[^:]*:4Th Legion Augur:5F1F:/
+22313.2 "Void Call" sync / 1[56]:[^:]*:4Th Legion Augur:5F1E:/
+22325.5 "Turbine" sync / 1[56]:[^:]*:Flameborne Zirnitra:5F14:/
+22328.0 "Flaming Cyclone" sync / 1[56]:[^:]*:Stormborne Zirnitra:5F19:/
+22328.6 "74 Degrees" sync / 1[56]:[^:]*:Waveborne Zirnitra:5F17:/
+22332.5 "Pyroplexy" sync / 1[56]:[^:]*:4Th Legion Augur:5F1B:/
+22358.7 "Sanctified Quake III" sync / 1[56]:[^:]*:4Th Legion Augur:5F1F:/
+# ???
+
+# Tamed Alkonost / Tamed Carrion Crow
+22500.0 "--sync--" sync / 03:........:Tamed Carrion Crow:/  window 600,0
+22507.0 "--sync--" sync / 14:[^:]*:Tamed Alkonost:5F26:/ window 600,10
+22512.0 "Stormcall" sync / 1[56]:[^:]*:Tamed Alkonost:5F26:/
+22526.9 "Orb 1" sync / 1[56]:[^:]*:Vortical Orb:5F27:/
+22526.9 "North Wind/South Wind" sync / 1[56]:[^:]*:Tamed Carrion Crow:5F2[12]:/
+22527.0 "--sync--" sync / 1[56]:[^:]*:Tamed Carrion Crow:5F23:/
+22527.6 "--knockback--" sync / 1[56]:[^:]*:Tamed Carrion Crow:60E[EF]:/
+22534.0 "Orb 2" sync / 1[56]:[^:]*:Vortical Orb:5F27:/
+22548.7 "Painful Gust/Pain Storm" sync / 1[56]:[^:]*:Tamed Alkonost:5F2[BC]:/
+22557.8 "Frigid Pulse" sync / 1[56]:[^:]*:Tamed Alkonost:5F2A:/
+22568.2 "North Wind/South Wind" sync / 1[56]:[^:]*:Tamed Carrion Crow:5F2[12]:/
+22568.3 "--sync--" sync / 1[56]:[^:]*:Tamed Carrion Crow:5F23:/
+22568.9 "--knockback--" sync / 1[56]:[^:]*:Tamed Carrion Crow:60E[EF]:/
+22572.9 "Foreshadowing" sync / 1[56]:[^:]*:Tamed Alkonost:5F30:/
+22572.9 "Painful Gust/Pain Storm" sync / 1[56]:[^:]*:Tamed Alkonost's Shadow:5F2[EF]:/
+22572.9 "Frigid Pulse" sync / 1[56]:[^:]*:Tamed Alkonost's Shadow:5F2D:/
+
+22586.1 "Nihility's Song" sync / 1[56]:[^:]*:Tamed Alkonost:5F28:/
+22597.8 "Broadside Barrage" sync / 1[56]:[^:]*:Tamed Carrion Crow:5F25:/
+22605.7 "Painful Gust" sync / 1[56]:[^:]*:Tamed Alkonost:5F2C:/
+22612.8 "Nihility's Song" sync / 1[56]:[^:]*:Tamed Alkonost:5F28:/
+22613.1 "Broadside Barrage" sync / 1[56]:[^:]*:Tamed Carrion Crow:5F25:/
+22613.4 "Nihility's Song" sync / 1[56]:[^:]*:Tamed Alkonost:5F29:/
+22629.0 "Frigid Pulse" sync / 1[56]:[^:]*:Tamed Alkonost:5F2A:/
+22635.5 "Broadside Barrage" sync / 1[56]:[^:]*:Tamed Carrion Crow:5F25:/
+# ???
+
+
+### Cuchulainn
+# -p 5C8F:23013.3
+# -ii 5C89 5C90 5C83 5C84 5C85 6179 614E 5C8C 5C87
+23000.0 "--sync--" sync / 00:0839::Magitek Development will be sealed off/ window 100000,0
+23013.3 "Putrified Soul" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8F:/
+23022.4 "Burgeoning Dread" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C88:/
+23043.7 "Putrified Soul" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8F:/
+23055.9 "Fleshy Necromass" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C82:/ duration 8.7
+23082.7 "Necrotic Billow" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C86:/ duration 8.7
+23099.9 "--sync--" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8D:/
+23108.7 "Ambient Pulsation 1" #sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8E:/
+23110.2 "Ambient Pulsation 2" #sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8E:/
+23111.7 "Ambient Pulsation 3" #sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8E:/
+
+23126.1 "Might Of Malice" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C92:/
+23140.2 "Necrotic Billow?" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C86:/
+23143.3 "Fleshy Necromass?" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C82:/
+# this timing can be 8 seconds earlier if it's Billow instead of Necromass.
+23163.2 "--sync--" sync / 14:[^:]*:4Th-Make Cuchulainn:5C88:/ window 20,20
+23168.2 "Burgeoning Dread" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C88:/
+
+23179.3 "--sync--" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8D:/
+23188.1 "Ambient Pulsation 1" #sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8E:/
+23189.6 "Ambient Pulsation 2" #sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8E:/
+23191.1 "Ambient Pulsation 3" #sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8E:/
+23195.5 "Might Of Malice" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C92:/
+23210.6 "Putrified Soul" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8F:/
+
+23217.7 "Ghastly Aura" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:614D:/
+23226.8 "Necrotic Billow?" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C86:/
+23230.9 "Fleshy Necromass?" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C82:/
+# this timing can be 8 seconds earlier if it's Billow instead of Necromass.
+23249.1 "--sync--" sync / 14:[^:]*:4Th-Make Cuchulainn:5C8B:/ window 20,5
+23254.1 "Fell Flow 1" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8B:/
+23261.4 "Fell Flow 2" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8B:/
+23275.6 "Burgeoning Dread" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C88:/
+
+# TODO: is this a loop??? guessing it goes back to the previous burgeoning+ambient
+23286.7 "--sync--" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8D:/ window 30,30 jump 23179.3
+23295.5 "Ambient Pulsation 1" #sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8E:/
+23297.0 "Ambient Pulsation 2" #sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8E:/
+23298.5 "Ambient Pulsation 3" #sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8E:/
+23303.0 "Might Of Malice" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C92:/
+
+
+### Saunion & Dawon
+# -p 5DC5:24022.9 5DC6:24306
+# -it "Saunion"
+# -ii 5DB6 5DB8 6150 5DC7 60C4 5DCF 5DB3 5DD2 61E4 61E5
+24000.0 "--sync--" sync / 00:0839::The greater hold will be sealed off/ window 100000,0
+24011.7 "Magitek Halo/Magitek Crossray" sync / 1[56]:[^:]*:Saunion:5DB[57]:/
+24022.9 "High-Powered Magitek Ray" sync / 1[56]:[^:]*:Saunion:5DC5:/
+24034.1 "Magitek Crossray/Magitek Halo" sync / 1[56]:[^:]*:Saunion:5DB[57]:/
+24040.3 "--sync--" sync / 1[56]:[^:]*:Saunion:5DD7:/
+24050.5 "Mobile Halo/Mobile Crossray" sync / 1[56]:[^:]*:Saunion:(5DB[9ABCDEF]|5DC0):/
+24063.7 "Missile Command" sync / 1[56]:[^:]*:Saunion:5DC1:/
+24069.9 "Surface Missile" sync / 1[56]:[^:]*:Saunion:5DC4:/
+24069.9 "Anti-Personnel Missile" sync / 1[56]:[^:]*:Saunion:5DC2:/
+24074.9 "Missile Salvo" sync / 1[56]:[^:]*:Saunion:5DC3:/
+24078.9 "--sync--" sync / 1[56]:[^:]*:Saunion:5DD7:/
+24089.0 "Mobile Crossray/Mobile Halo" sync / 1[56]:[^:]*:Saunion:(5DB[9ABCDEF]|5DC0):/
+24099.8 "--sync--" sync / 1[56]:[^:]*:Saunion:5DD7:/
+# ?
+
+24300.0 "--sync--" sync / 14:[^:]*:Dawon The Younger:5DC6:/ window 300,0
+24306.0 "Touchdown" sync / 1[56]:[^:]*:Dawon The Younger:5DC6:/
+24323.3 "--targetable--"
+24342.5 "--sync--" sync / 1[56]:[^:]*:Saunion:5DD7:/
+24348.5 "Wildfire Winds" sync / 1[56]:[^:]*:Dawon The Younger:5DCD:/
+24352.5 "Mobile Halo/Mobile Crossray" sync / 1[56]:[^:]*:Saunion:(5DB[9ABCDEF]|5DC0):/
+24361.2 "Raw Heat" sync / 1[56]:[^:]*:Vermilion Flame:5DCE:/
+24362.7 "Missile Command" sync / 1[56]:[^:]*:Saunion:5DC1:/
+24368.9 "Surface Missile" sync / 1[56]:[^:]*:Saunion:5DC4:/
+24368.9 "Anti-Personnel Missile" sync / 1[56]:[^:]*:Saunion:5DC2:/
+24372.1 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon The Younger:5DD0:/
+24373.9 "Missile Salvo" sync / 1[56]:[^:]*:Saunion:5DC3:/
+24380.2 "Frigid Pulse" sync / 1[56]:[^:]*:Dawon The Younger:607D:/
+24402.5 "--sync--" sync / 1[56]:[^:]*:Saunion:5DD7:/
+
+# spiral scourge + obey
+24412.1 "Spiral Scourge" sync / 1[56]:[^:]*:Saunion:5DB2:/ duration 20.5
+24412.1 "--untargetable--"
+24413.4 "Obey" sync / 1[56]:[^:]*:Dawon The Younger:5DC9:/
+24415.5 "Swooping Frenzy 1" sync / 1[56]:[^:]*:Dawon The Younger:5DCA:/
+24418.6 "Frigid Pulse/Fire Brand" sync / 1[56]:[^:]*:Dawon The Younger:5DC[BC]:/
+24421.9 "Swooping Frenzy 2" sync / 1[56]:[^:]*:Dawon The Younger:5DCA:/
+24425.0 "Frigid Pulse/Fire Brand" sync / 1[56]:[^:]*:Dawon The Younger:5DC[BC]:/
+24428.4 "Swooping Frenzy 3" sync / 1[56]:[^:]*:Dawon The Younger:5DCA:/
+24431.5 "Frigid Pulse/Fire Brand" sync / 1[56]:[^:]*:Dawon The Younger:5DC[BC]:/
+24432.2 "--sync--" sync / 1[56]:[^:]*:Saunion:5DB4:/
+24432.2 "--targetable--"
+24450.0 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon The Younger:5DD0:/
+24452.2 "Missile Command" sync / 1[56]:[^:]*:Saunion:5DC1:/
+24458.1 "Pentagust" sync / 1[56]:[^:]*:Dawon The Younger:5DD1:/
+24458.4 "Surface Missile" sync / 1[56]:[^:]*:Saunion:5DC4:/
+24458.4 "Anti-Personnel Missile" sync / 1[56]:[^:]*:Saunion:5DC2:/
+24463.4 "Missile Salvo" sync / 1[56]:[^:]*:Saunion:5DC3:/
+24479.9 "Tooth And Talon" sync / 1[56]:[^:]*:Dawon The Younger:5DD4:/
+24479.9 "High-Powered Magitek Ray" sync / 1[56]:[^:]*:Saunion:5DC5:/
+24500.4 "--sync--" sync / 1[56]:[^:]*:Saunion:5DD7:/
+24501.3 "Wildfire Winds 1" sync / 1[56]:[^:]*:Dawon The Younger:5DCD:/
+
+# spiral scourge + wildfire winds
+24510.1 "Spiral Scourge" sync / 1[56]:[^:]*:Saunion:5DB2:/ duration 20.5
+24510.1 "--untargetable--"
+24514.1 "Raw Heat 1" sync / 1[56]:[^:]*:Vermilion Flame:5DCE:/
+24516.5 "Wildfire Winds 2" sync / 1[56]:[^:]*:Dawon The Younger:5DCD:/
+24529.3 "Raw Heat 2" sync / 1[56]:[^:]*:Vermilion Flame:5DCE:/
+24530.1 "--sync--" sync / 1[56]:[^:]*:Saunion:5DB4:/
+24530.1 "--targetable--"
+24549.9 "--sync--" sync / 1[56]:[^:]*:Saunion:5DD7:/
+24555.8 "Wildfire Winds" sync / 1[56]:[^:]*:Dawon The Younger:5DCD:/
+24559.9 "Mobile Crossray/Mobile Halo" sync / 1[56]:[^:]*:Saunion:(5DB[9ABCDEF]|5DC0):/
+24568.6 "Raw Heat" sync / 1[56]:[^:]*:Vermilion Flame:5DCE:/
+24570.1 "Missile Command" sync / 1[56]:[^:]*:Saunion:5DC1:/
+24576.3 "Surface Missile" sync / 1[56]:[^:]*:Saunion:5DC4:/
+24576.3 "Anti-Personnel Missile" sync / 1[56]:[^:]*:Saunion:5DC2:/
+24579.5 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon The Younger:5DD0:/
+24581.3 "Missile Salvo" sync / 1[56]:[^:]*:Saunion:5DC3:/
+24587.6 "Frigid Pulse" sync / 1[56]:[^:]*:Dawon The Younger:607D:/
+24609.7 "--sync--" sync / 1[56]:[^:]*:Saunion:5DD7:/
+
+# loop
+24619.2 "Spiral Scourge" sync / 1[56]:[^:]*:Saunion:5DB2:/ window 50,50 jump 24412.1
+24619.2 "--untargetable--"
+24620.5 "Obey" #sync / 1[56]:[^:]*:Dawon The Younger:5DC9:/
+24622.6 "Swooping Frenzy 1" #sync / 1[56]:[^:]*:Dawon The Younger:5DCA:/
+24625.7 "Frigid Pulse/Fire Brand" #sync / 1[56]:[^:]*:Dawon The Younger:5DC{BC]}:/
+24629.0 "Swooping Frenzy 2" #sync / 1[56]:[^:]*:Dawon The Younger:5DCA:/
+24632.1 "Frigid Pulse/Fire Brand" #sync / 1[56]:[^:]*:Dawon The Younger:5DC[BC]:/
+24635.5 "Swooping Frenzy 3" #sync / 1[56]:[^:]*:Dawon The Younger:5DCA:/
+24638.6 "Frigid Pulse/Fire Brand" #sync / 1[56]:[^:]*:Dawon The Younger:5DC[BC]:/
+24639.3 "--sync--" #sync / 1[56]:[^:]*:Saunion:5DB4:/
+24639.3 "--targetable--"
+
+# TODO: not enough data for what happens when one of them dies?
+# Saunion seems to go back to first phase halo/crossray? Not sure about Dawon.
+
+
+### The Diablo Armament
+# -p 5CC6:25013 5CB7:25805
+# -ii 6143 61A2 5CC7 61C4 5CB2 5CB8 5CC5 6092 6091 6093 5CC3 5CB4 5CB5 5CC1 5CAD 5CA1 5CA2
+25000.0 "--sync--" sync / 00:0839::The fallen ring will be sealed off/ window 100000,0
+25013.0 "Aetheric Explosion" sync / 1[56]:[^:]*:The Diablo Armament:5CC6:/
+25023.4 "Aetherochemical Laser 1" sync / 1[56]:[^:]*:The Diablo Armament:5CA[45]:/
+25027.5 "Aetherochemical Laser 2" sync / 1[56]:[^:]*:The Diablo Armament:5CA[45]:/
+25034.5 "Explosion 1" sync / 1[56]:[^:]*:The Diablo Armament:5CA[67]:/
+25036.6 "Explosion 2" sync / 1[56]:[^:]*:The Diablo Armament:5CA[89]:/
+25046.0 "Advanced Death Ray" sync / 1[56]:[^:]*:The Diablo Armament:5CC4:/
+25057.3 "Aetheric Explosion" sync / 1[56]:[^:]*:The Diablo Armament:5CC6:/
+
+# If you are in a cutscene and don't make it down in time, you miss the zone seal.
+# Add one extra "really big" sync a little bit in.
+25068.6 "Diabolic Gate" sync / 1[56]:[^:]*:The Diablo Armament:5C9F:/ window 100000,100
+25091.1 "--sync--" sync / 1[56]:[^:]*:The Diablo Armament:5CA0:/
+25092.7 "Ruinous Pseudomen 1" sync / 1[56]:[^:]*:The Diablo Armament:61A3:/
+25096.7 "Ruinous Pseudomen 2" #sync / 1[56]:[^:]*:The Diablo Armament:614C:/
+25099.7 "Ruinous Pseudomen 3" #sync / 1[56]:[^:]*:The Diablo Armament:614C:/
+25104.0 "Ruinous Pseudomen 4" sync / 1[56]:[^:]*:The Diablo Armament:614F:/
+25111.0 "Ultimate Pseudoterror" sync / 1[56]:[^:]*:The Diablo Armament:5CA3:/
+
+25125.4 "Aetheric Explosion" sync / 1[56]:[^:]*:The Diablo Armament:5CC6:/
+25139.8 "Advanced Death Ray" sync / 1[56]:[^:]*:The Diablo Armament:5CC4:/
+25147.0 "Magitek Bit" sync / 1[56]:[^:]*:The Diablo Armament:5CAC:/
+25161.5 "Assault Cannon" sync / 1[56]:[^:]*:Diabolic Bit:5CAE:/
+25163.4 "Aetheric Explosion" sync / 1[56]:[^:]*:The Diablo Armament:5CC6:/
+25175.7 "--sync--" sync / 1[56]:[^:]*:The Diablo Armament:5CAF:/
+25183.8 "Advanced Death IV" sync / 1[56]:[^:]*:The Diablo Armament:5CB0:/
+25190.8 "Advanced Death IV" sync / 1[56]:[^:]*:The Diablo Armament:5CB0:/
+25196.5 "Light Pseudopillar" sync / 1[56]:[^:]*:The Diablo Armament:5CB1:/ duration 2.5
+25203.6 "Advanced Death Ray" sync / 1[56]:[^:]*:The Diablo Armament:5CC4:/
+25209.9 "Aetherochemical Laser 1" sync / 1[56]:[^:]*:The Diablo Armament:5CA[45]:/
+25214.0 "Aetherochemical Laser 2" sync / 1[56]:[^:]*:The Diablo Armament:5CA[45]:/
+25219.5 "Aetherochemical Laser 3" sync / 1[56]:[^:]*:The Diablo Armament:5CA[45]:/
+25221.0 "Explosion 1" sync / 1[56]:[^:]*:The Diablo Armament:5CA[67]:/
+25223.1 "Explosion 2" sync / 1[56]:[^:]*:The Diablo Armament:5CA[89]:/
+25226.6 "Explosion 3" sync / 1[56]:[^:]*:The Diablo Armament:5CA[AB]:/
+25242.2 "Aetheric Boom" sync / 1[56]:[^:]*:The Diablo Armament:5CB3:/
+
+25265.0 "Diabolic Gate" sync / 1[56]:[^:]*:The Diablo Armament:5C9F:/ window 100,100
+25287.5 "--sync--" sync / 1[56]:[^:]*:The Diablo Armament:5CA0:/
+25289.1 "Ruinous Pseudomen 1" sync / 1[56]:[^:]*:The Diablo Armament:61A3:/
+25293.1 "Ruinous Pseudomen 2" #sync / 1[56]:[^:]*:The Diablo Armament:614C:/
+25296.1 "Ruinous Pseudomen 3" #sync / 1[56]:[^:]*:The Diablo Armament:614C:/
+25300.3 "Ruinous Pseudomen 4" sync / 1[56]:[^:]*:The Diablo Armament:614F:/
+25307.4 "Ultimate Pseudoterror" sync / 1[56]:[^:]*:The Diablo Armament:5CA3:/
+
+25321.8 "Aetheric Explosion" sync / 1[56]:[^:]*:The Diablo Armament:5CC6:/
+25327.9 "--sync--" sync / 1[56]:[^:]*:The Diablo Armament:5CAF:/
+25336.0 "Advanced Death IV" sync / 1[56]:[^:]*:The Diablo Armament:5CB0:/
+25344.0 "Advanced Death IV" sync / 1[56]:[^:]*:The Diablo Armament:5CB0:/
+25346.6 "Magitek Bit" sync / 1[56]:[^:]*:The Diablo Armament:5CAC:/
+25353.8 "Aetherochemical Laser 1" sync / 1[56]:[^:]*:The Diablo Armament:5CA[45]:/
+25357.9 "Aetherochemical Laser 2" sync / 1[56]:[^:]*:The Diablo Armament:5CA[45]:/
+25361.3 "Assault Cannon" sync / 1[56]:[^:]*:Diabolic Bit:5CAE:/
+25364.8 "Explosion 1" sync / 1[56]:[^:]*:The Diablo Armament:5CA[67]:/
+25366.9 "Explosion 2" sync / 1[56]:[^:]*:The Diablo Armament:5CA[89]:/
+25373.1 "Assault Cannon" sync / 1[56]:[^:]*:Diabolic Bit:5CAE:/
+25380.4 "Deadly Dealing" sync / 1[56]:[^:]*:The Diablo Armament:5CC2:/
+25384.6 "Assault Cannon" sync / 1[56]:[^:]*:Diabolic Bit:5CAE:/
+25397.9 "Aetheric Explosion" sync / 1[56]:[^:]*:The Diablo Armament:5CC6:/
+25404.1 "Light Pseudopillar" sync / 1[56]:[^:]*:The Diablo Armament:5CB1:/ duration 2.5
+
+25407.3 "Aetherochemical Laser 1" sync / 1[56]:[^:]*:The Diablo Armament:5CA[45]:/
+25411.4 "Aetherochemical Laser 2" sync / 1[56]:[^:]*:The Diablo Armament:5CA[45]:/
+25416.9 "Aetherochemical Laser 3" sync / 1[56]:[^:]*:The Diablo Armament:5CA[45]:/
+25418.4 "Explosion 1" sync / 1[56]:[^:]*:The Diablo Armament:5CA[67]:/
+25420.5 "Explosion 2" sync / 1[56]:[^:]*:The Diablo Armament:5CA[89]:/
+25424.0 "Explosion 3" sync / 1[56]:[^:]*:The Diablo Armament:5CA[AB]:/
+25426.0 "Advanced Death Ray" sync / 1[56]:[^:]*:The Diablo Armament:5CC4:/
+25438.3 "--sync--" sync / 1[56]:[^:]*:The Diablo Armament:5CBF:/
+25447.4 "Deadly Dealing" sync / 1[56]:[^:]*:The Diablo Armament:5CC2:/
+25449.0 "Advanced Nox" sync / 1[56]:[^:]*:The Diablo Armament:5CC0:/ duration 4.5
+25461.7 "Aetheric Boom" sync / 1[56]:[^:]*:The Diablo Armament:5CB3:/
+25463.8 "Aetherochemical Laser 1" sync / 1[56]:[^:]*:The Diablo Armament:5CA5:/
+25467.9 "Aetherochemical Laser 2" sync / 1[56]:[^:]*:The Diablo Armament:5CA4:/
+25474.9 "Explosion 1" sync / 1[56]:[^:]*:The Diablo Armament:5CA[67]:/
+25477.0 "Explosion 2" sync / 1[56]:[^:]*:The Diablo Armament:5CA[89]:/
+
+# TODO: this is probably a loop?? guessing it goes back to first gate???
+25489.6 "Diabolic Gate" sync / 1[56]:[^:]*:The Diablo Armament:5C9F:/ window 100,100 jump 25068.6
+25512.1 "--sync--" sync / 1[56]:[^:]*:The Diablo Armament:5CA0:/
+25513.7 "Ruinous Pseudomen 1" sync / 1[56]:[^:]*:The Diablo Armament:61A3:/
+25517.7 "Ruinous Pseudomen 2" #sync / 1[56]:[^:]*:The Diablo Armament:614C:/
+25520.7 "Ruinous Pseudomen 3" #sync / 1[56]:[^:]*:The Diablo Armament:614C:/
+25525.0 "Ruinous Pseudomen 4" sync / 1[56]:[^:]*:The Diablo Armament:614F:/
+25532.0 "Ultimate Pseudoterror" sync / 1[56]:[^:]*:The Diablo Armament:5CA3:/
+
+# final phase (hp%?)
+25800.0 "--sync--" sync / 14:[^:]*:The Diablo Armament:5CB7:/ window 1000,0
+25805.0 "Void Systems Overload" sync / 1[56]:[^:]*:The Diablo Armament:5CB7:/
+25815.1 "Pillar Of Shamash" sync / 1[56]:[^:]*:The Diablo Armament:5CB9:/
+25816.6 "Pillar Of Shamash" sync / 1[56]:[^:]*:The Diablo Armament:5CBA:/
+25818.1 "Pillar Of Shamash" sync / 1[56]:[^:]*:The Diablo Armament:5CBB:/
+25822.2 "Pillar Of Shamash" sync / 1[56]:[^:]*:The Diablo Armament:5CBD:/
+25824.2 "--lasers--" sync / 1[56]:[^:]*:The Diablo Armament:5CBC:/
+25828.2 "--line stack--" sync / 1[56]:[^:]*:The Diablo Armament:5CBE:/
+
+25842.2 "Void Systems Overload" sync / 1[56]:[^:]*:The Diablo Armament:6314:/ window 100,100 jump 25805.0
+25852.3 "Pillar Of Shamash" sync / 1[56]:[^:]*:The Diablo Armament:5CB9:/
+25853.8 "Pillar Of Shamash" sync / 1[56]:[^:]*:The Diablo Armament:5CBA:/
+25855.3 "Pillar Of Shamash" sync / 1[56]:[^:]*:The Diablo Armament:5CBB:/
+25859.4 "Pillar Of Shamash" sync / 1[56]:[^:]*:The Diablo Armament:5CBD:/
+25861.4 "--lasers--" sync / 1[56]:[^:]*:The Diablo Armament:5CBC:/
+25865.4 "--line stack--" sync / 1[56]:[^:]*:The Diablo Armament:5CBE:/

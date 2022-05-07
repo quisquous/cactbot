@@ -1,0 +1,212 @@
+# Omega - Alphascape V2.0 (Savage) - O10S
+# -ii 31FA 3249 3630 3623 35BB 35BC 31D6 31B7 31C4 362C 321E 320D
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+
+0.0 "Start" sync / 00:0044:[^:]*:I am Midgardsormr/ window 0,1
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.2 "--sync--" sync / 1[56]:[^:]*:Midgardsormr:31F9:/ window 2.5,0 # first auto
+12.3 "Flip" sync / 1[56]:[^:]*:Midgardsormr:31AD:/
+23.5 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31AE:/
+27.4 "Cardinals" sync /::31B3:/ # X hit, not sure of sync yet
+
+35.9 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31AC:/ # drift 0.029
+47.1 "Akh Morn" sync / 1[56]:[^:]*:Midgardsormr:31AB:/
+53.6 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31AE:/
+57.2 "Out" sync / 1[56]:[^:]*:Midgardsormr:31B2:/
+69.9 "Tail End" sync / 1[56]:[^:]*:Midgardsormr:31AA:/
+
+78.2 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31AC:/ # drift 0.039
+89.4 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31(AE|B0):/
+92.9 "In/Out" sync / 1[56]:[^:]*:(Midgardsormr)?:31B(2|4):/ # Sometimes missing actor name
+92.9 "Earth Shaker" sync / 1[56]:[^:]*:Midgardsormr:31B6:/ # Missing actor name on all but one
+
+101.8 "Flip" sync / 1[56]:[^:]*:Midgardsormr:31AD:/
+112.0 "Tail End" sync / 1[56]:[^:]*:Midgardsormr:31AA:/
+114.1 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31(AE|B0):/
+118.1 "Corners/Cardinals" sync / 1[56]:[^:]*:Midgardsormr:31B(3|5):/
+118.7 "Thunderstorm" sync / 1[56]:[^:]*:Midgardsormr:31B8:/
+
+131.2 "Time Immemorial" sync / 1[56]:[^:]*:Midgardsormr:32EF:/
+141.5 "Tail End" sync / 1[56]:[^:]*:Midgardsormr:31AA:/
+149.8 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31AC:/ # drift 0.041
+158.9 "Northern Cross" sync / 1[56]:[^:]*:Midgardsormr:3625:/
+163.1 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31AE:/ # drift 0.021
+166.6 "In/Out" sync / 1[56]:[^:]*:Midgardsormr:31B(2|4):/
+173.4 "Akh Rhai" sync / 1[56]:[^:]*:Midgardsormr:3622:/
+175.3 "Dry Ice" sync / 1[56]:[^:]*:Midgardsormr:3631:/
+
+179.7 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31AC:/ # drift 0.036
+191.0 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31(AE|B0):/
+194.5 "In/Out" sync / 1[56]:[^:]*:Midgardsormr:31B(2|4):/
+194.9 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:31B9:/
+202.9 "--untargetable--"
+
+# Add phase
+215.9 "Frost Breath" sync / 1[56]:[^:]*:Ancient Dragon:33F1:/ window 2.5,30
+226.2 "Frost Breath ready"
+
+282.0 "--sync--" sync / 1[56]:[^:]*:Ancient Dragon:341A:/ window 80,10
+284.2 "Protostar" sync / 1[56]:[^:]*:Midgardsormr:31C3:/ window 500,500
+294.8 "Protostar" # Damage instances
+295.9 "Protostar"
+297.0 "Protostar"
+
+310.9 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:31B9:/
+312.5 "Thunderstorm" sync / 1[56]:[^:]*:Midgardsormr:31B8:/
+313.0 "Cauterize" sync / 1[56]:[^:]*:Midgardsormr:3240:/
+321.8 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:31B9:/
+323.3 "Thunderstorm" sync / 1[56]:[^:]*:Midgardsormr:31B8:/
+323.9 "Cauterize" sync / 1[56]:[^:]*:Midgardsormr:3240:/
+328.0 "Touchdown" sync / 1[56]:[^:]*:Midgardsormr:31BB:/
+332.5 "--targetable--"
+
+339.2 "Time Immemorial" sync / 1[56]:[^:]*:Midgardsormr:31BF:/
+350.7 "Crimson Breath" sync / 1[56]:[^:]*:Midgardsormr:31BC:/
+357.9 "Crimson Breath" sync / 1[56]:[^:]*:Midgardsormr:31BC:/
+365.3 "Crimson Breath" sync / 1[56]:[^:]*:Midgardsormr:31BC:/
+372.5 "Crimson Breath" sync / 1[56]:[^:]*:Midgardsormr:31BC:/
+390.3 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:3414:/
+390.3 "Flame Blast"
+392.9 "Flame Blast"
+395.3 "Flame Blast"
+396.9 "Hot Tail" sync / 1[56]:[^:]*:Midgardsormr:31BD:/
+
+408.1 "--untargetable--"
+412.3 "Exaflare"
+412.8 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:31B9:/
+414.9 "Cauterize" sync / 1[56]:[^:]*:Midgardsormr:3240:/
+415.3 "Exaflare"
+418.3 "Exaflare"
+421.4 "Exaflare"
+423.7 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:31B9:/ # drift 0.033
+424.4 "Exaflare"
+425.8 "Cauterize" sync / 1[56]:[^:]*:Midgardsormr:3240:/ # drift 0.048
+
+431.8 "--targetable--"
+444.8 "Tail End" sync / 1[56]:[^:]*:Midgardsormr:31AA:/
+456.0 "Akh Morn" sync / 1[56]:[^:]*:Midgardsormr:31AB:/ # drift -0.033
+466.0 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:31B9:/
+467.6 "Thunderstorm" sync / 1[56]:[^:]*:Midgardsormr:31B8:/
+
+##################
+## Branch point ##
+##################
+
+474.4 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31AC:/ jump 1474.4 # C means spin
+474.4 "--sync--" sync / 1[56]:[^:]*:Midgardsormr:31AD:/ jump 2474.4 # D means flip
+484.5 "Tail End" # Cosmetic
+486.6 "Flip/Spin"
+490.6 "Signal?"
+492.1 "Position?"
+
+## Branch A1: Spin->Earthshaker
+
+1474.4 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31AC:/
+1484.5 "Tail End" sync / 1[56]:[^:]*:Midgardsormr:31AA:/
+1486.6 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31AE:/
+1490.6 "In/Out" sync / 1[56]:[^:]*:Midgardsormr:31B(2|4):/
+1490.6 "Earth Shaker" sync / 1[56]:[^:]*:Midgardsormr:31B6:/
+1502.3 "Time Immemorial" sync / 1[56]:[^:]*:Midgardsormr:32EF:/ jump 502.3
+1512.6 "Exaflare" # Cosmetic
+1513.7 "Dry Ice"
+1515.7 "Exaflare"
+1518.6 "Exaflare"
+1520.8 "Akh Morn"
+1521.7 "Exaflare"
+
+## Branch B1: Flip->Thunderstorm
+
+2474.4 "Flip" sync / 1[56]:[^:]*:Midgardsormr:31AD:/
+2484.5 "Tail End" sync / 1[56]:[^:]*:Midgardsormr:31AA:/
+2486.6 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31AE:/
+2490.6 "Corners/Cardinals" sync / 1[56]:[^:]*:Midgardsormr:31B(3|5):/
+2492.1 "Thunderstorm" sync / 1[56]:[^:]*:Midgardsormr:31B8:/
+2502.3 "Time Immemorial" sync / 1[56]:[^:]*:Midgardsormr:32EF:/ jump 502.3
+2512.6 "Exaflare" # Cosmetic
+2513.7 "Dry Ice"
+2515.7 "Exaflare"
+2518.6 "Exaflare"
+2520.8 "Akh Morn"
+2521.7 "Exaflare"
+
+##################################
+## Branches A1/B1 converge back ##
+##################################
+
+502.3 "Time Immemorial" sync / 1[56]:[^:]*:Midgardsormr:32EF:/
+512.6 "Exaflare"
+513.7 "Dry Ice" sync / 1[56]:[^:]*:Midgardsormr:3631:/
+515.7 "Exaflare"
+518.6 "Exaflare"
+520.8 "Akh Morn" sync / 1[56]:[^:]*:Midgardsormr:31AB:/
+521.7 "Exaflare"
+524.7 "Exaflare"
+
+##################
+## Branch point ##
+##################
+
+536.8 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31AC:/ jump 1536.8 # C means spin->shaker
+536.8 "--sync--" sync / 1[56]:[^:]*:Midgardsormr:31AD:/ jump 2536.8 # D means flip->thunder
+545.9 "Northern Cross" # Cosmetic
+550.1 "Spin/Flip"
+553.6 "Position"
+553.6 "Shaker/Thunder"
+
+## Branch A2: Spin->Earthshaker
+1536.8 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31AC:/
+1545.9 "Northern Cross" sync / 1[56]:[^:]*:Midgardsormr:3625:/
+1550.1 "Spin/Flip" sync / 1[56]:[^:]*:Midgardsormr:31AE:/
+1553.6 "In/Out" sync / 1[56]:[^:]*:Midgardsormr:31B(2|4):/
+1553.6 "Earth Shaker" sync / 1[56]:[^:]*:Midgardsormr:31B6:/
+1562.3 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:31B9:/ jump 562.3
+1573.4 "Akh Rhai" # Cosmetic
+1579.6 "Tail End"
+1587.9 "Flip/Spin"
+
+## Branch B2: Flip->Thunderstorm
+2536.8 "Flip" sync / 1[56]:[^:]*:Midgardsormr:31AD:/
+2545.9 "Northern Cross" sync / 1[56]:[^:]*:Midgardsormr:3625:/
+2550.1 "Spin/Flip" sync / 1[56]:[^:]*:Midgardsormr:31AE:/
+2553.6 "Corners/Cardinals" sync / 1[56]:[^:]*:Midgardsormr:31B(3|5):/
+2555.1 "Thunderstorm" sync / 1[56]:[^:]*:Midgardsormr:31B8:/
+2562.3 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:31B9:/ jump 562.3
+2573.4 "Akh Rhai" # Cosmetic
+2579.6 "Tail End"
+2587.9 "Flip/Spin"
+
+##################################
+## Branches A2/B2 converge back ##
+##################################
+
+562.3 "Horrid Roar" sync / 1[56]:[^:]*:Midgardsormr:31B9:/
+573.4 "Akh Rhai" sync / 1[56]:[^:]*:Midgardsormr:3622:/
+579.6 "Tail End" sync / 1[56]:[^:]*:Midgardsormr:31AA:/ # drift 0.026
+
+##################
+## Branch point ##
+##################
+
+# Return to A1/B1
+587.9 "Flip/Spin" sync / 1[56]:[^:]*:Midgardsormr:31AC:/ jump 1474.4 # C means spin->shaker
+587.9 "--sync--" sync / 1[56]:[^:]*:Midgardsormr:31AD:/ jump 2474.4 # D means flip->thunder
+598.0 "Tail End" # Cosmetic
+600.1 "Flip/Spin"
+604.1 "Signal?"
+605.6 "Position?"
+615.8 "Time Immemorial"
+
+# Enrage
+700.0 "--sync--" sync / 14:[^:]*:Midgardsormr:3247:/ window 700,3000
+704.9 "Enrage Hit 1"
+707.2 "Enrage Hit 2"
+708.5 "Enrage Hit 3"
+709.8 "Enrage Hit 4"
+711.1 "Enrage Hit 5"
+712.2 "Enrage Hit 6"
+713.3 "Enrage Hit 7"
+714.4 "Enrage Hit 8"
