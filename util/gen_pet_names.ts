@@ -27,6 +27,7 @@ const normalize = (
   content: XivapiResult['Results'],
 ): Record<'en' | 'de' | 'fr' | 'ja', string[]> => {
   const result: Record<'en' | 'de' | 'fr' | 'ja', string[]> = {
+    // cactbot-ignore-missing-translations
     en: [],
     de: [],
     fr: [],
