@@ -14,7 +14,7 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 // TODO: "move" call after you take your Brightwing cleave?
 // TODO: Meteor "run" call?
 
-type Phase = 'doorboss' | 'thordan';
+type Phase = 'doorboss' | 'thordan' | 'niddhog' | 'haurchefant' | 'thordan2' | 'niddhog2' | 'dragon-king';
 
 export interface Data extends RaidbossData {
   phase: Phase;
@@ -57,10 +57,9 @@ const headmarkers = {
   'dot3': '0141',
 } as const;
 
-const firstMarker: { [phase in Phase]: string } = {
-  'doorboss': headmarkers.hyperdimensionalSlash,
-  'thordan': headmarkers.skywardLeap,
-} as const;
+const firstMarker = (phase: Phase) => {
+  return phase === 'doorboss' ? headmarkers.hyperdimensionalSlash : headmarkers.skywardLeap;
+};
 
 const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker'], firstDecimalMarker?: number) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
@@ -124,6 +123,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 62D4 = Holiest of Holy
       // 63C8 = Ascalon's Mercy Concealed
+      // 6708 = Final Chorus
+      // 62E2 = Spear of the Fury
+      // 6B87 = the Dragon's Eye
+      // 6667 = unknown_6667
+      // 7438 = Alternative End
       netRegex: NetRegexes.startsUsing({ id: ['62D4', '63C8'], capture: true }),
       run: (data, matches) => {
         switch (matches.id) {
@@ -132,6 +136,21 @@ const triggerSet: TriggerSet<Data> = {
             break;
           case '63C8':
             data.phase = 'thordan';
+            break;
+          case '6708':
+            data.phase = 'niddhog';
+            break;
+          case '62E2':
+            data.phase = 'haurchefant';
+            break;
+          case '6B87':
+            data.phase = 'thordan2';
+            break;
+          case '6667':
+            data.phase = 'niddhog2';
+            break;
+          case '7438':
+            data.phase = 'dragon-king';
             break;
         }
       },
@@ -143,7 +162,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => {
-        const firstHeadmarker: number = parseInt(firstMarker[data.phase], 16);
+        const firstHeadmarker: number = parseInt(firstMarker(data.phase), 16);
         getHeadmarkerId(data, matches, firstHeadmarker);
       },
     },
