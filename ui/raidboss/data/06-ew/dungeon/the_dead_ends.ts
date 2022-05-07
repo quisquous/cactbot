@@ -375,7 +375,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Caustic Grebuloff': 'グレビュオフ・メルター',
         'Golden Wings': '黄金蝶',

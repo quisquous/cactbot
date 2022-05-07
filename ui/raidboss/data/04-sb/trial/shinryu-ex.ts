@@ -802,6 +802,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Worm\'s Heart': '神龍の心核',
         'Icicle': 'アイシクル',
         'Cocoon': '光の繭',
+        'Hakkinryu': '白金龍',
       },
       'replaceText': {
         'Aerial Blast': 'エリアルブラスト',

@@ -380,6 +380,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Byakko': '白虎',
         'Hakutei': '白帝',
+        'Twofold is my wrath, twice-cursed my foes!': '駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！',
       },
       'replaceText': {
         '--leap north--': '--北に飛ぶ--',

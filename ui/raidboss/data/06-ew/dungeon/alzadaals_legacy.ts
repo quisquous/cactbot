@@ -249,7 +249,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Ambujam': 'アムブジャ',
         'Armored Chariot': 'アーマード・チャリオット',
