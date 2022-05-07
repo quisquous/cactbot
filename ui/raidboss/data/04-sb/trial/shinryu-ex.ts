@@ -854,6 +854,7 @@ const triggerSet: TriggerSet<Data> = {
         'Shinryu': '神龙',
         'Tail': '龙尾',
         'The Worm\'s Heart': '神龙的核心',
+        'Hakkinryu': '白金龙',
       },
       'replaceText': {
         'Aerial Blast': '大气爆发',
