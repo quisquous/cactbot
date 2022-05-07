@@ -1454,6 +1454,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Lance of Virtue Containment Unit': '미덕의 창 봉인 구역',
         'The Shin-Zantetsuken Containment Unit': '진 참철검 봉인 구역',
         'The Proto Ozma Containment Unit': '프로토 오즈마 봉인 구역',
+        'The memories of heroes past live on again': '영걸의 가호의 효과가 발휘되어 부활했습니다',
       },
       'replaceText': {
         'Acallam Na Senorach': '피어너의 창',
