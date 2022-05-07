@@ -584,6 +584,7 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
         thordanLocation: {
           en: '${dir} Thordan',
+          jp: 'トールダンが${dir}で'
           de: '${dir} Thordan',
           ko: '토르당 ${dir}',
         },
@@ -696,11 +697,13 @@ const triggerSet: TriggerSet<Data> = {
         clockwise: {
           en: 'Clockwise',
           de: 'Im Uhrzeigersinn',
+          jp: '時計回り',
           ko: '시계방향',
         },
         counterclock: {
           en: 'Counterclockwise',
           de: 'Gegen den Uhrzeigersinn',
+          jp: '反時計回り',
           ko: '반시계방향',
         },
         unknown: Outputs.unknown,
@@ -722,11 +725,13 @@ const triggerSet: TriggerSet<Data> = {
         sword1: {
           en: '1',
           de: '1',
+          jp: '1',
           ko: '1',
         },
         sword2: {
           en: '2',
           de: '2',
+          jp: '2',
           ko: '2',
         },
       },
@@ -762,12 +767,14 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Tank/Healer Meteors',
           de: 'Tank/Heiler Meteore',
           fr: 'Météores Tank/Healer',
+          jp: 'タンヒラ 隕石',
           ko: '탱/힐 메테오',
         },
         dpsMeteors: {
           en: 'DPS Meteors',
           de: 'DDs Meteore',
           fr: 'Météores DPS',
+          jp: 'DPS 隕石',
           ko: '딜러 메테오',
         },
       },
@@ -800,6 +807,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Behind => Right',
           de: 'Hinter ihn => Rechts',
+          jp: '後ろ => 右',
         },
       },
     },
@@ -817,6 +825,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Behind => Left',
           de: 'Hinter ihn => Links',
+          jp: '後ろ => 左',
         },
       },
     },
@@ -879,6 +888,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait',
           de: 'Ködern',
+          jp: '誘導',
         },
       },
     },
