@@ -128,7 +128,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6B87 = the Dragon's Eye
       // 6667 = unknown_6667
       // 7438 = Alternative End
-      netRegex: NetRegexes.startsUsing({ id: ['62D4', '63C8', '62E2', '6B87', '6667', '7438'], capture: true }),
+      netRegex: NetRegexes.startsUsing({ id: ['62D4', '63C8', '6708', '62E2', '6B87', '6667', '7438'], capture: true }),
       run: (data, matches) => {
         switch (matches.id) {
           case '62D4':
