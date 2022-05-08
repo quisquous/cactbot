@@ -309,7 +309,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Aethershot': 'エーテル弾',
         'Amon the Undying': '異執のアモン',

@@ -221,6 +221,7 @@ const triggerSet: TriggerSet<Data> = {
         'Small Spore Sac': 'klein(?:e|er|es|en) Sporensack',
         '(?<!Small )Spore Sac': 'Sporensack',
         'Lava Scorpion': 'Lavaskorpion',
+        'Gowrow': 'Gowrow',
       },
       'replaceText': {
         '\\(Back\\)': '(Hinten)',
@@ -249,6 +250,7 @@ const triggerSet: TriggerSet<Data> = {
         'Lava Scorpion': 'scorpion de lave',
         'The Scorpion\'s Tail': 'queue du scorpion',
         '(?<!Small )Spore Sac': 'Sac de spores',
+        'Gowrow': 'Gowrow',
       },
       'replaceText': {
         '\\(Back\\)': '(Derrière)',
@@ -277,6 +279,7 @@ const triggerSet: TriggerSet<Data> = {
         'Lava Scorpion': 'ラーヴァ・スコーピオン',
         'The Scorpion\'s Tail': 'テイル・スコーピオン',
         '(?<!Small )Spore Sac': 'スポアサック',
+        'Gowrow': 'ガウロウ',
       },
       'replaceText': {
         '\\(Adds x2\\)': '(2つ 雑魚)',
@@ -350,7 +353,7 @@ const triggerSet: TriggerSet<Data> = {
         'Glorious Blaze': '불붙이기',
         'Flying Press': '도약 내리찍기',
         'Excretion': '점액',
-        'Deadly Thrust': '치명적 일격',
+        'Deadly Thrust': '죽음의 꼬리',
       },
     },
   ],

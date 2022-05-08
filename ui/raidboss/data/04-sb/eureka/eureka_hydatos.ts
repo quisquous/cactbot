@@ -1244,7 +1244,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ja',
       'replaceSync': {
-        '7 minutes have elapsed since your last activity..*?': '操作がない状態になってから7分が経過しました。.*?',
+        '7 minutes have elapsed since your last activity.': '操作がない状態になってから7分が経過しました。',
         'Absolute Virtue': 'アブソリュートヴァーチュー',
         'Arsenal Centaur': 'アーセナル・セントール',
         'Art': 'アルト',
@@ -1263,6 +1263,9 @@ const triggerSet: TriggerSet<Data> = {
         'The Lance of Virtue Containment Unit': 'ランス・オブ・ヴァーチュー封印区',
         'The Proto Ozma Containment Unit': 'プロトオズマ封印区',
         'The Shin-Zantetsuken Containment Unit': '真・斬鉄剣封印区',
+        'The memories of heroes past live on again': '英傑の加護の効果が発揮され、蘇生された',
+        'Munderg, turn flesh to ash': '白の妖槍「ムンジャルグ」、燃え上がれ！',
+        'Munderg, turn blood to ice': '白の妖槍「ムンジャルグ」、震え凍れよ！',
       },
       'replaceText': {
         '\\?': ' ?',
@@ -1451,6 +1454,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Lance of Virtue Containment Unit': '미덕의 창 봉인 구역',
         'The Shin-Zantetsuken Containment Unit': '진 참철검 봉인 구역',
         'The Proto Ozma Containment Unit': '프로토 오즈마 봉인 구역',
+        'The memories of heroes past live on again': '영걸의 가호의 효과가 발휘되어 부활했습니다',
       },
       'replaceText': {
         'Acallam Na Senorach': '피어너의 창',

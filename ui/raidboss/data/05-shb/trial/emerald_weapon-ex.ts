@@ -617,7 +617,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'bitblade': 'ガンブレードビット',
         'Black Wolf\'s Image': 'ガイウスの幻影',
