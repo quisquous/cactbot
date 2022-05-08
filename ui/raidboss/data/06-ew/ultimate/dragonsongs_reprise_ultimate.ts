@@ -11,7 +11,6 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Ser Adelphel left/right movement after initial charge
-// TODO: "move" call after you take your Brightwing cleave?
 // TODO: Meteor "run" call?
 
 type Phase = 'doorboss' | 'thordan';
@@ -354,6 +353,16 @@ const triggerSet: TriggerSet<Data> = {
           ko: '블루 X징',
         },
       },
+    },
+    {
+      id: 'DSR Skyblind',
+      // 631A Skyblind (2.2s cast) is a targetted ground aoe where A65 Skyblind
+      // effect expired on the player.
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'A65' }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 0.2,
+      response: Responses.moveAway(),
     },
     {
       id: 'DSR Ascalon\'s Mercy Concealed',
