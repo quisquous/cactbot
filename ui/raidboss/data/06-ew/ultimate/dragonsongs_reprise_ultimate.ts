@@ -351,7 +351,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Blue X',
           de: 'Blaues X',
           fr: 'Croix bleue',
-          ko: '블루 X징',
+          ko: '파랑 X징',
         },
       },
     },
@@ -801,6 +801,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Behind => Right',
           de: 'Hinter ihn => Rechts',
+          ko: '뒤 => 오른쪽',
         },
       },
     },
@@ -818,6 +819,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Behind => Left',
           de: 'Hinter ihn => Links',
+          ko: '뒤 => 왼쪽',
         },
       },
     },
@@ -880,6 +882,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait',
           de: 'Ködern',
+          ko: '공격 유도',
         },
       },
     },
@@ -957,15 +960,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         circleAllCircles: {
           en: '#${num} All Circles',
+          ko: '#${num} 전부 하이점프',
         },
         circleWithArrows: {
           en: '#${num} Circle (with arrows)',
+          ko: '#${num} 하이점프 (다른사람 화살표)',
         },
         upArrow: {
           en: '#${num} Up Arrow',
+          ko: '#${num} 위 화살표 (척추 강타)',
         },
         downArrow: {
           en: '#${num} Down Arrow',
+          ko: '#${num} 아래 화살표 (교묘한 점프)',
         },
       },
     },
