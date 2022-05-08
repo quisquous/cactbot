@@ -361,7 +361,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'A65' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 0.2,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration),
       response: Responses.moveAway(),
     },
     {
