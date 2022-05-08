@@ -438,5 +438,12 @@ Options.Triggers.push({
         'Subparhelion': '映幻日',
       },
     },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Hydaelyn': '하이델린',
+      },
+    },
   ],
 });

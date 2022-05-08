@@ -278,13 +278,12 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
-        'Calculations indicate increased probability of defeat': '警告……警告……敗北の危険性が上昇……',
         'Omega(?!-)': 'オメガ',
         'Omega-M': 'オメガM',
         'Optical Unit': 'オプチカルユニット',
         'Progress to party combat': '単独戦闘による限界を確認',
+        '\\\\<blip\\\\> Warning\\\\\. Calculations indicate': '警告……警告……敗北の危険性が上昇……',
       },
       'replaceText': {
         'Beyond Strength': 'シールドコンボG',
@@ -356,7 +355,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': '오메가',
         'Omega-M': '오메가 M',

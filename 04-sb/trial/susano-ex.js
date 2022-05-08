@@ -294,7 +294,7 @@ Options.Triggers.push({
       'replaceSync': {
         'Ame-No-Murakumo': 'アメノムラクモ',
         'Susano': 'スサノオ',
-        'Thunderhead': 'サンダーヘッド',
+        'Thunderhead': '雷雲',
         'Ama-No-Iwato': '天岩戸',
       },
       'replaceText': {

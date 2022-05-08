@@ -418,7 +418,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Arcane Sigil': 'emblème secret',
         'Behemoth': 'béhémoth',

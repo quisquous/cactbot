@@ -636,7 +636,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': 'ハリカルナッソス',
         'Apanda': 'アパンダ',

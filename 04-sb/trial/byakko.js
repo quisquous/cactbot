@@ -114,7 +114,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Aratama Force': '荒弾',
         'Byakko': '白虎',

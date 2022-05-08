@@ -304,7 +304,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Blaster(?! Mirage)': 'ブラスター',
         'Blaster Mirage': 'ブラスター・ミラージュ',

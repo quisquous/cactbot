@@ -993,6 +993,7 @@ Options.Triggers.push({
         'Nabriales\'s Shade': 'ナプリアレスの影',
         'Our plea transcends': 'その強き願いは、魂の境界さえ超えた……！',
         'Shadow of the Ancients': '古代人の影',
+        'Aetherial Gaol': 'エーテリアル・ジェイル',
       },
       'replaceText': {
         'Again The Abyssal Celebrant': '深淵の記憶',

@@ -1237,7 +1237,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Exdeath': 'エクスデス',
         'Neo Exdeath': 'ネオエクスデス',

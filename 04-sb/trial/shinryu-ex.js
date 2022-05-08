@@ -785,6 +785,7 @@ Options.Triggers.push({
         'The Worm\'s Heart': '神龍の心核',
         'Icicle': 'アイシクル',
         'Cocoon': '光の繭',
+        'Hakkinryu': '白金龍',
       },
       'replaceText': {
         'Aerial Blast': 'エリアルブラスト',
@@ -836,6 +837,7 @@ Options.Triggers.push({
         'Shinryu': '神龙',
         'Tail': '龙尾',
         'The Worm\'s Heart': '神龙的核心',
+        'Hakkinryu': '白金龙',
       },
       'replaceText': {
         'Aerial Blast': '大气爆发',

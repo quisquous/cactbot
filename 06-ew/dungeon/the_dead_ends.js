@@ -362,7 +362,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Caustic Grebuloff': 'グレビュオフ・メルター',
         'Golden Wings': '黄金蝶',

@@ -204,7 +204,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Ambujam': 'Ambujam',
         'Armored Chariot': 'char cuirassé',
@@ -240,7 +239,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Ambujam': 'アムブジャ',
         'Armored Chariot': 'アーマード・チャリオット',

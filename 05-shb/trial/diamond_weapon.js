@@ -269,7 +269,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Articulated Bit': 'アームビット',
         'The Diamond Weapon': 'ダイヤウェポン',

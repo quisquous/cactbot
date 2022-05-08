@@ -293,6 +293,7 @@ Options.Triggers.push({
       'replaceSync': {
         'Dreaming Kshatriya': 'テンパード・クシャトリア',
         'Lakshmi': 'ラクシュミ',
+        'Vril': 'ラクシュミエーテル',
       },
       'replaceText': {
         'Adds Appear': '雑魚',
