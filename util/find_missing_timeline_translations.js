@@ -168,7 +168,7 @@ function findMissingRegex(findMissingArgs) {
         triggersFile,
         lineNumber,
         trigger.id,
-        `missing timelineReplace for regex '${origRegex}'`,
+        `missing timelineReplace for regex '${origRegex}' (with no ${localeReg})`,
       );
     }
   }
