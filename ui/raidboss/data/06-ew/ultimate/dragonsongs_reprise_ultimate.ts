@@ -364,7 +364,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: '63C8', source: '騎神トールダン', capture: true }),
       netRegexCn: NetRegexes.startsUsing({ id: '63C8', source: '骑神托尔丹', capture: true }),
       netRegexKo: NetRegexes.startsUsing({ id: '63C8', source: '기사신 토르당', capture: true }),
-      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 1,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 0.5,
       response: Responses.moveAway(),
     },
     {
