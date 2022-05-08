@@ -307,6 +307,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Dreaming Kshatriya': 'テンパード・クシャトリア',
         'Lakshmi': 'ラクシュミ',
+        'Vril': 'ラクシュミエーテル',
       },
       'replaceText': {
         'Adds Appear': '雑魚',

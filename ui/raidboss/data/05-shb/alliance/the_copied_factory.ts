@@ -1055,6 +1055,12 @@ const triggerSet: TriggerSet<Data> = {
         'Warehouse A': '倉庫A',
         'Warehouse B': '倉庫B',
         'Warehouse C': '倉庫C',
+        'The wall-mounted right arm begins to move': '壁面のライトアームが稼働を始めた……！',
+        'The wall-mounted flamethrowers activate\.': '壁面の火炎放射器が稼働を始めた……！',
+        'The wall-mounted left arm begins to move': '壁面のレフトアームが稼働を始めた……！',
+        'You hear frenzied movement from machines beneath': '床下の機械生命体が怪しく動き始めた……！',
+        'The conveyer belts whirr to life!': '床面のローラーコンベアが稼働を始めた……！',
+        'Flammable oil is leaking from the floor': '床下に可燃性の液体が満ち始めた……！',
       },
       'replaceText': {
         'Front(?!al)': '前',

@@ -241,7 +241,7 @@ export class EncounterFinder {
   }
 }
 
-export class EncounterCollector extends EncounterFinder {
+class EncounterCollector extends EncounterFinder {
   zones: Array<ZoneEncInfo> = [];
   fights: Array<FightEncInfo> = [];
   lastSeal?: string;
@@ -286,3 +286,187 @@ export class EncounterCollector extends EncounterFinder {
     this.lastSeal = undefined;
   }
 }
+
+class TLFuncs {
+  static timeFromDate(date?: Date): string {
+    if (date)
+      return date.toISOString().slice(11, 19);
+    return 'Unknown_Time';
+  }
+
+  static dayFromDate(date?: Date): string {
+    if (date)
+      return date.toISOString().slice(0, 10);
+    return 'Unknown_Date';
+  }
+
+  static durationFromDates(start?: Date, end?: Date): string {
+    if (start === undefined || end === undefined)
+      return 'Unknown_Duration';
+    const ms = end.valueOf() - start.valueOf();
+    const totalSeconds = Math.round(ms / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    if (totalMinutes > 0)
+      return totalMinutes.toString() + 'm';
+    return (totalSeconds % 60).toString() + 's';
+  }
+
+  static toProperCase(str: string): string {
+    return str.split(' ').map((str) => {
+      const cap = str[0]?.toUpperCase();
+      const lower = str.slice(1);
+      if (cap)
+        return `${cap} ${lower}`;
+    }).join(' ');
+  }
+
+  static leftExtendStr(str?: string, length?: number): string {
+    if (str === undefined)
+      return '';
+    if (length === undefined || length <= str.length)
+      return str;
+    return str.padStart(length - str.length, ' ');
+  }
+
+  static rightExtendStr(str?: string, length?: number): string {
+    if (str === undefined)
+      return '';
+    if (length === undefined || length <= str.length)
+      return str;
+    return str.padEnd(length - str.length, ' ');
+  }
+
+  static generateFileName(fightOrZone: FightEncInfo | ZoneEncInfo): string {
+    const zoneName = fightOrZone.zoneName ?? 'Unknown_Zone';
+    const dateStr = TLFuncs.dayFromDate(fightOrZone.startTime).replace(/-/g, '');
+    const timeStr = TLFuncs.timeFromDate(fightOrZone.startTime).replace(/:/g, '');
+    const duration = TLFuncs.durationFromDates(fightOrZone.startTime, fightOrZone.endTime);
+    let seal;
+    if ('sealName' in fightOrZone)
+      seal = fightOrZone['sealName'];
+    if (seal)
+      seal = '_' + TLFuncs.toProperCase(seal).replace(/[^A-z0-9]/g, '');
+    else
+      seal = '';
+    let wipeStr = '';
+    if ('endType' in fightOrZone)
+      wipeStr = fightOrZone.endType === 'Wipe' ? '_wipe' : '';
+    return `${zoneName}${seal}_${dateStr}_${timeStr}_${duration}${wipeStr}.log`;
+  }
+
+// For an array of arrays, return an array where each value is the max length at that index
+// among all of the inner arrays, e.g. find the max length per field of an array of rows.
+  static maxLengthPerIndex(outputRows: Array<Array<string>>): Array<number> {
+    const outputSizes = outputRows.map((row) => row.map((field) => field.length));
+    return outputSizes.reduce((max, row) => {
+      return max.map((val, idx) => {
+        const indexed = row[idx];
+        if (indexed !== undefined)
+          return Math.max(val, indexed);
+        return 0;
+     });
+    });
+  }
+
+  static printCollectedZones(collector: EncounterCollector): void {
+    let idx = 1;
+    const outputRows = [];
+    for (const zone of collector.zones) {
+      const zoneName = zone.zoneName ?? 'Unknown_Zone';
+      const startDate = zone.startTime ? TLFuncs.dayFromDate(zone.startTime) : 'Unknown_Date';
+      const startTime = zone.startTime ? TLFuncs.timeFromDate(zone.startTime) : 'Unknown_Start';
+
+      outputRows.push([
+        idx.toString(),
+        startDate,
+        startTime,
+        TLFuncs.durationFromDates(zone.startTime, zone.endTime),
+        zoneName,
+      ]);
+      idx++;
+    }
+
+    if (outputRows.length === 0)
+      return;
+
+    const lengths = TLFuncs.maxLengthPerIndex(outputRows);
+
+    const dateIdx = 1;
+    let lastDate = null;
+    for (const row of outputRows) {
+      if (row[dateIdx] !== lastDate) {
+        lastDate = row[dateIdx];
+        console.log(lastDate);
+      }
+      const row0 = TLFuncs.leftExtendStr(row[0], lengths[0]);
+      const row2 = TLFuncs.leftExtendStr(row[2], lengths[2]);
+      const row3 = TLFuncs.leftExtendStr(row[3], lengths[3]);
+      const row4 = TLFuncs.rightExtendStr(row[4], lengths[4]);
+
+      console.log(`  ${row0})   ${row2}   ${row3}  ${row4}`);
+    }
+  }
+
+  static printCollectedFights = (collector: EncounterCollector): void => {
+    let idx = 1;
+    const outputRows = [];
+    let seenSeal = false;
+    let lastDate = null;
+    for (const fight of collector.fights) {
+      // Add a zone name row when there's seal messages for clarity.
+      const zoneName = fight.zoneName ?? 'Unknown_Zone';
+      const startDate = fight.startTime ? TLFuncs.dayFromDate(fight.startTime) : 'Unknown_Date';
+      const startTime = fight.startTime ? TLFuncs.timeFromDate(fight.startTime) : 'Unknown_Start';
+      const fightDuration = TLFuncs.durationFromDates(fight.startTime, fight.endTime) ?? 'Unknown Duration';
+      let fightName = 'Unknown_Encounter';
+      if (fight.sealName)
+        fightName = fight.sealName;
+      else if (fight.fightName)
+        fightName = fight.fightName;
+
+      if (!seenSeal && fight.sealName) {
+        outputRows.push(['', '', '', '', `~${zoneName}~`, '']);
+        seenSeal = true;
+      } else if (seenSeal && !fight.sealName) {
+        seenSeal = false;
+      }
+      if (fight.startTime)
+        lastDate = TLFuncs.dayFromDate(fight.startTime);
+      const row = [
+        idx.toString(),
+        startDate,
+        startTime,
+        fightDuration,
+        fightName,
+        fight.endType ?? 'Unknown_End_Type',
+      ];
+      outputRows.push(row);
+      idx++;
+    }
+
+    if (outputRows.length === 0)
+      return;
+
+    const lengths = TLFuncs.maxLengthPerIndex(outputRows);
+
+    const dateIdx = 1;
+    console.log(lastDate);
+
+    for (const row of outputRows) {
+      if (row[dateIdx] !== lastDate) {
+        lastDate = row[dateIdx];
+        console.log(lastDate);
+      }
+
+      const col0 = TLFuncs.leftExtendStr(row[0], lengths[0]);
+      const col1 = row[0] ? ') ' : '  ';
+      const col2 = TLFuncs.leftExtendStr(row[2], lengths[2]);
+      const col3 = TLFuncs.leftExtendStr(row[3], lengths[3]);
+      const col4 = TLFuncs.rightExtendStr(row[4], lengths[4]);
+      const col5 = row[5] ? (' ' + '[' + row[5] + ']') : '';
+      console.log(`  ${col0}${col1} ${col2} ${col3} ${col4} ${col5}`);
+    }
+  };
+}
+
+export { EncounterCollector, TLFuncs };
