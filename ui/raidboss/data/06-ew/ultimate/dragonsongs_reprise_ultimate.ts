@@ -14,7 +14,7 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 // TODO: "move" call after you take your Brightwing cleave?
 // TODO: Meteor "run" call?
 
-type Phase = 'doorboss' | 'thordan' | 'niddhog' | 'haurchefant' | 'thordan2' | 'niddhog2' | 'dragon-king';
+type Phase = 'doorboss' | 'thordan' | 'niddhogg' | 'haurchefant' | 'thordan2' | 'niddhogg2' | 'dragon-king';
 
 export interface Data extends RaidbossData {
   phase: Phase;
@@ -128,7 +128,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6B87 = the Dragon's Eye
       // 6667 = unknown_6667
       // 7438 = Alternative End
-      netRegex: NetRegexes.startsUsing({ id: ['62D4', '63C8'], capture: true }),
+      netRegex: NetRegexes.startsUsing({ id: ['62D4', '63C8', '62E2', '6B87', '6667', '7438'], capture: true }),
       run: (data, matches) => {
         switch (matches.id) {
           case '62D4':
@@ -138,7 +138,7 @@ const triggerSet: TriggerSet<Data> = {
             data.phase = 'thordan';
             break;
           case '6708':
-            data.phase = 'niddhog';
+            data.phase = 'niddhogg';
             break;
           case '62E2':
             data.phase = 'haurchefant';
@@ -147,7 +147,7 @@ const triggerSet: TriggerSet<Data> = {
             data.phase = 'thordan2';
             break;
           case '6667':
-            data.phase = 'niddhog2';
+            data.phase = 'niddhogg2';
             break;
           case '7438':
             data.phase = 'dragon-king';
