@@ -538,6 +538,7 @@ Options.Triggers.push({
         thordanLocation: {
           en: '${dir} Thordan',
           de: '${dir} Thordan',
+          ja: 'トールダンが${dir}で',
           ko: '토르당 ${dir}',
         },
       },
@@ -644,11 +645,13 @@ Options.Triggers.push({
         clockwise: {
           en: 'Clockwise',
           de: 'Im Uhrzeigersinn',
+          ja: '時計回り',
           ko: '시계방향',
         },
         counterclock: {
           en: 'Counterclockwise',
           de: 'Gegen den Uhrzeigersinn',
+          ja: '反時計回り',
           ko: '반시계방향',
         },
         unknown: Outputs.unknown,
@@ -670,11 +673,13 @@ Options.Triggers.push({
         sword1: {
           en: '1',
           de: '1',
+          ja: '1',
           ko: '1',
         },
         sword2: {
           en: '2',
           de: '2',
+          ja: '2',
           ko: '2',
         },
       },
@@ -710,12 +715,14 @@ Options.Triggers.push({
           en: 'Tank/Healer Meteors',
           de: 'Tank/Heiler Meteore',
           fr: 'Météores Tank/Healer',
+          ja: 'タンヒラ 隕石',
           ko: '탱/힐 메테오',
         },
         dpsMeteors: {
           en: 'DPS Meteors',
           de: 'DDs Meteore',
           fr: 'Météores DPS',
+          ja: 'DPS 隕石',
           ko: '딜러 메테오',
         },
       },
@@ -748,6 +755,7 @@ Options.Triggers.push({
         text: {
           en: 'Behind => Right',
           de: 'Hinter ihn => Rechts',
+          ja: '後ろ => 右',
           ko: '뒤 => 오른쪽',
         },
       },
@@ -766,6 +774,7 @@ Options.Triggers.push({
         text: {
           en: 'Behind => Left',
           de: 'Hinter ihn => Links',
+          ja: '後ろ => 左',
           ko: '뒤 => 왼쪽',
         },
       },
@@ -829,6 +838,7 @@ Options.Triggers.push({
         text: {
           en: 'Bait',
           de: 'Ködern',
+          ja: '誘導',
           ko: '공격 유도',
         },
       },
