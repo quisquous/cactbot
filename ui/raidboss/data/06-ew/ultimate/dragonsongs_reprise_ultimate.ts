@@ -127,7 +127,7 @@ const triggerSet: TriggerSet<Data> = {
       // 62E2 = Spear of the Fury
       // 6B86 = Incarnation
       // 6667 = unknown_6667
-      // 7438 = Alternative End
+      // 71E4 = Shockwave
       netRegex: NetRegexes.startsUsing({ id: ['62D4', '63C8', '6708', '62E2', '6B86', '6667', '7438'], capture: true }),
       run: (data, matches) => {
         switch (matches.id) {
@@ -149,7 +149,7 @@ const triggerSet: TriggerSet<Data> = {
           case '6667':
             data.phase = 'nidhogg2';
             break;
-          case '7438':
+          case '71E4':
             data.phase = 'dragon-king';
             break;
         }
