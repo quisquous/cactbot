@@ -125,10 +125,10 @@ const triggerSet: TriggerSet<Data> = {
       // 63C8 = Ascalon's Mercy Concealed
       // 6708 = Final Chorus
       // 62E2 = Spear of the Fury
-      // 6B87 = the Dragon's Eye
+      // 6B86 = Incarnation
       // 6667 = unknown_6667
       // 7438 = Alternative End
-      netRegex: NetRegexes.startsUsing({ id: ['62D4', '63C8', '6708', '62E2', '6B87', '6667', '7438'], capture: true }),
+      netRegex: NetRegexes.startsUsing({ id: ['62D4', '63C8', '6708', '62E2', '6B86', '6667', '7438'], capture: true }),
       run: (data, matches) => {
         switch (matches.id) {
           case '62D4':
@@ -143,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
           case '62E2':
             data.phase = 'haurchefant';
             break;
-          case '6B87':
+          case '6B86':
             data.phase = 'thordan2';
             break;
           case '6667':
