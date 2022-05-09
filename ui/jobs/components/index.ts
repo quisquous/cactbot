@@ -378,6 +378,6 @@ export class ComponentManager {
     if (showMs <= 0)
       this.bars._updateFoodBuff(true);
     else
-      window.setTimeout(() => this._shouldShowFoodBuff.bind(this), showMs);
+      this.foodBuffTimer = window.setTimeout(() => this._shouldShowFoodBuff.bind(this), showMs);
   }
 }
