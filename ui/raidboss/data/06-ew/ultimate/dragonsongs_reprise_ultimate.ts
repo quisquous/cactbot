@@ -14,7 +14,7 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 // TODO: "move" call after you take your Brightwing cleave?
 // TODO: Meteor "run" call?
 
-type Phase = 'doorboss' | 'thordan' | 'niddhogg' | 'haurchefant' | 'thordan2' | 'niddhogg2' | 'dragon-king';
+type Phase = 'doorboss' | 'thordan' | 'nidhogg' | 'haurchefant' | 'thordan2' | 'nidhogg2' | 'dragon-king';
 
 export interface Data extends RaidbossData {
   phase: Phase;
@@ -138,7 +138,7 @@ const triggerSet: TriggerSet<Data> = {
             data.phase = 'thordan';
             break;
           case '6708':
-            data.phase = 'niddhogg';
+            data.phase = 'nidhogg';
             break;
           case '62E2':
             data.phase = 'haurchefant';
@@ -147,7 +147,7 @@ const triggerSet: TriggerSet<Data> = {
             data.phase = 'thordan2';
             break;
           case '6667':
-            data.phase = 'niddhogg2';
+            data.phase = 'nidhogg2';
             break;
           case '7438':
             data.phase = 'dragon-king';
