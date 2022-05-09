@@ -15,7 +15,6 @@ import {
   kMPUI1Rate,
   kMPUI2Rate,
   kMPUI3Rate,
-  kWellFedContentTypes,
 } from './constants';
 import { JobsEventEmitter } from './event_emitter';
 import './jobs_config';
@@ -715,50 +714,12 @@ export class Bars {
       : '1.0';
   }
 
-  _updateFoodBuff(o: {
-    inCombat: boolean;
-    contentType?: number;
-    foodBuffExpiresTimeMs: number;
-    foodBuffTimer: number;
-  }): number | undefined {
+  _updateFoodBuff(show: boolean): void {
     // Non-combat jobs don't set up the left buffs list.
     if (!this.o.leftBuffsList || !this.o.foodBuff)
       return;
 
-    const CanShowWellFedWarning = () => {
-      if (!this.options.HideWellFedAboveSeconds)
-        return false;
-      if (o.inCombat)
-        return false;
-      if (o.contentType === undefined)
-        return false;
-      return kWellFedContentTypes.includes(o.contentType);
-    };
-
-    // Returns the number of ms until it should be shown. If <= 0, show it.
-    const TimeToShowWellFedWarning = () => {
-      const nowMs = Date.now();
-      const showAtMs = o.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
-      return showAtMs - nowMs;
-    };
-
-    window.clearTimeout(o.foodBuffTimer);
-    o.foodBuffTimer = 0;
-
-    const canShow = CanShowWellFedWarning();
-    const showAfterMs = TimeToShowWellFedWarning();
-
-    if (!canShow || showAfterMs > 0) {
-      this.o.foodBuff.style.display = 'none';
-      if (canShow) {
-        return window.setTimeout(
-          this._updateFoodBuff.bind(this, o),
-          showAfterMs,
-        );
-      }
-    } else {
-      this.o.foodBuff.style.display = '';
-    }
+    this.o.foodBuff.style.display = show ? '' : 'none';
   }
 
   _setPullCountdown(seconds: number): void {

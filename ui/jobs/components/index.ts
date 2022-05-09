@@ -4,6 +4,7 @@ import Util from '../../../resources/util';
 import { Job } from '../../../types/job';
 import { Bars } from '../bars';
 import { BuffTracker } from '../buff_tracker';
+import { kWellFedContentTypes } from '../constants';
 import { JobsEventEmitter } from '../event_emitter';
 import { FfxivRegion } from '../jobs';
 import { JobsOptions } from '../jobs_options';
@@ -158,15 +159,8 @@ export class ComponentManager {
     this.ee.on('party', (party) => this.partyTracker.onPartyChanged({ party }));
 
     this.player.on('level', (level, prevLevel) => {
-      if (level - prevLevel) {
-        this.bars._updateFoodBuff({
-          inCombat: this.component?.inCombat ?? false,
-          foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
-          foodBuffTimer: this.foodBuffTimer,
-          contentType: this.contentType,
-        });
-        this.lastCalledMs = Date.now();
-      }
+      if (level - prevLevel)
+        this._shouldShowFoodBuff();
     });
 
     // change color when target is far away
@@ -235,13 +229,7 @@ export class ComponentManager {
           const seconds = parseFloat(matches.duration ?? '0');
           const now = Date.now(); // This is in ms.
           this.foodBuffExpiresTimeMs = now + (seconds * 1000);
-          this.bars._updateFoodBuff({
-            inCombat: this.component?.inCombat ?? false,
-            foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
-            foodBuffTimer: this.foodBuffTimer,
-            contentType: this.contentType,
-          });
-          this.lastCalledMs = Date.now();
+          this._shouldShowFoodBuff();
         }
       });
       // As you cannot change jobs in combat, we can assume that
@@ -269,15 +257,8 @@ export class ComponentManager {
 
     this.ee.on('battle/in-combat', ({ game }) => {
       this.bars._updateProcBoxNotifyState(game);
-      if (this.component && this.component.inCombat !== game) {
-        this.bars._updateFoodBuff({
-          inCombat: this.component.inCombat,
-          foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
-          foodBuffTimer: this.foodBuffTimer,
-          contentType: this.contentType,
-        });
-        this.lastCalledMs = Date.now();
-      }
+      if (this.component && this.component.inCombat !== game)
+        this._shouldShowFoodBuff();
 
       // make bars transparent when out of combat if requested
       this.bars._updateOpacity(!game && this.options.LowerOpacityOutOfCombat);
@@ -328,13 +309,7 @@ export class ComponentManager {
       this.inPvPZone = isPvPZone(id);
       this.contentType = info?.contentType;
 
-      this.bars._updateFoodBuff({
-        inCombat: this.component?.inCombat ?? false,
-        foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
-        foodBuffTimer: this.foodBuffTimer,
-        contentType: this.contentType,
-      });
-      this.lastCalledMs = Date.now();
+      this._shouldShowFoodBuff();
 
       this.buffTracker?.clear();
 
@@ -381,5 +356,28 @@ export class ComponentManager {
       })
     )
       this.bars.setJobsContainerVisibility(false);
+  }
+
+  private _shouldShowFoodBuff(): void {
+    if (
+      !this.options.HideWellFedAboveSeconds ||
+      this.component?.inCombat ||
+      this.contentType === undefined ||
+      !kWellFedContentTypes.includes(this.contentType)
+    ) {
+      this.bars._updateFoodBuff(false);
+      return;
+    }
+
+    const showAtMs = this.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
+    const showMs = showAtMs - Date.now();
+
+    window.clearTimeout(this.foodBuffTimer);
+    this.foodBuffTimer = 0;
+
+    if (showMs <= 0)
+      this.bars._updateFoodBuff(true);
+    else
+      window.setTimeout(() => this._shouldShowFoodBuff.bind(this), showMs);
   }
 }
