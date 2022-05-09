@@ -365,7 +365,7 @@ export class ComponentManager {
       this.contentType === undefined ||
       !kWellFedContentTypes.includes(this.contentType)
     ) {
-      this.bars._updateFoodBuff(false);
+      this.bars._showFoodBuff(false);
       return;
     }
 
@@ -375,9 +375,11 @@ export class ComponentManager {
     window.clearTimeout(this.foodBuffTimer);
     this.foodBuffTimer = 0;
 
-    if (showMs <= 0)
-      this.bars._updateFoodBuff(true);
-    else
-      this.foodBuffTimer = window.setTimeout(() => this._shouldShowFoodBuff.bind(this), showMs);
+    if (showMs <= 0) {
+      this.bars._showFoodBuff(true);
+    } else {
+      this.bars._showFoodBuff(false);
+      this.foodBuffTimer = window.setTimeout(this._shouldShowFoodBuff.bind(this), showMs);
+    }
   }
 }

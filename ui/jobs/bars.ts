@@ -714,7 +714,7 @@ export class Bars {
       : '1.0';
   }
 
-  _updateFoodBuff(show: boolean): void {
+  _showFoodBuff(show: boolean): void {
     // Non-combat jobs don't set up the left buffs list.
     if (!this.o.leftBuffsList || !this.o.foodBuff)
       return;
