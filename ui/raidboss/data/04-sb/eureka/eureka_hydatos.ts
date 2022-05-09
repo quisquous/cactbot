@@ -106,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.message({ line: 'Fermeture d(?:e|u|es) (?:l\'|la |les? )?.* dans.*?', capture: false }),
       netRegexJa: NetRegexes.message({ line: '.*の封鎖まであと.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '距.*被封锁还有.*?', capture: false }),
-      netRegexKo: NetRegexes.message({ line: '15초 후에 .*(?:이|가) 봉쇄됩니다.*?', capture: false }),
+      netRegexKo: NetRegexes.message({ line: '15초 후에 .*[이가] 봉쇄됩니다.*?', capture: false }),
       run: (data) => data.sealed = true,
     },
     {
