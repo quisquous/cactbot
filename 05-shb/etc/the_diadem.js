@@ -21,7 +21,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.gameLog({ line: 'Vous détectez une? (?:filon de minerai|carrière de pierre|arbre mature|carré de végétation) évanescente?.*?', capture: false }),
       netRegexJa: NetRegexes.gameLog({ line: '(?:東|南|西|北|北東|南東|北西|南西)にレベル80の幻の(?:採掘場|岩場|良木|草刈場)を感知した！.*?', capture: false }),
       netRegexCn: NetRegexes.gameLog({ line: '在(?:东|南|西|北|东北|东南|西北|西南)+感知到了80级的梦幻的(?:矿脉|石场|良材|草场)！.*?', capture: false }),
-      netRegexKo: NetRegexes.gameLog({ line: '(?:동|서|남|북)+쪽에 레벨 80 환상의 (?:광맥|바위터|성목|약초밭)(?:이|가) 있습니다!.*?', capture: false }),
+      netRegexKo: NetRegexes.gameLog({ line: '[동서남북]+쪽에 레벨 80 환상의 (?:광맥|바위터|성목|약초밭)[이가] 있습니다!.*?', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
