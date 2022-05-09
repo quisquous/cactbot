@@ -164,7 +164,6 @@ export class ComponentManager {
           foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
           foodBuffTimer: this.foodBuffTimer,
           contentType: this.contentType,
-          lastCalledMs: this.lastCalledMs,
         });
         this.lastCalledMs = Date.now();
       }
@@ -241,7 +240,6 @@ export class ComponentManager {
             foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
             foodBuffTimer: this.foodBuffTimer,
             contentType: this.contentType,
-            lastCalledMs: this.lastCalledMs,
           });
           this.lastCalledMs = Date.now();
         }
@@ -277,7 +275,6 @@ export class ComponentManager {
           foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
           foodBuffTimer: this.foodBuffTimer,
           contentType: this.contentType,
-          lastCalledMs: this.lastCalledMs,
         });
         this.lastCalledMs = Date.now();
       }
@@ -336,7 +333,6 @@ export class ComponentManager {
         foodBuffExpiresTimeMs: this.foodBuffExpiresTimeMs,
         foodBuffTimer: this.foodBuffTimer,
         contentType: this.contentType,
-        lastCalledMs: this.lastCalledMs,
       });
       this.lastCalledMs = Date.now();
 

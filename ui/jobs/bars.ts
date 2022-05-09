@@ -752,10 +752,7 @@ export class Bars {
       this.o.foodBuff.style.display = 'none';
       if (canShow) {
         return window.setTimeout(
-          this._updateFoodBuff.bind(this, {
-            ...o,
-            lastCalledMs: Date.now(),
-          }),
+          this._updateFoodBuff.bind(this, o),
           showAfterMs,
         );
       }
