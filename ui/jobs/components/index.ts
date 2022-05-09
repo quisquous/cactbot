@@ -257,8 +257,10 @@ export class ComponentManager {
 
     this.ee.on('battle/in-combat', ({ game }) => {
       this.bars._updateProcBoxNotifyState(game);
-      if (this.component && this.component.inCombat !== game)
+      if (this.component && this.component.inCombat !== game) {
+        this.component.inCombat = game;
         this._shouldShowFoodBuff();
+      }
 
       // make bars transparent when out of combat if requested
       this.bars._updateOpacity(!game && this.options.LowerOpacityOutOfCombat);
@@ -359,12 +361,7 @@ export class ComponentManager {
   }
 
   private _shouldShowFoodBuff(): void {
-    if (
-      !this.options.HideWellFedAboveSeconds ||
-      this.component?.inCombat ||
-      this.contentType === undefined ||
-      !kWellFedContentTypes.includes(this.contentType)
-    ) {
+    if (!this._canShowFoodBuff()) {
       this.bars._showFoodBuff(false);
       return;
     }
@@ -381,5 +378,14 @@ export class ComponentManager {
       this.bars._showFoodBuff(false);
       this.foodBuffTimer = window.setTimeout(this._shouldShowFoodBuff.bind(this), showMs);
     }
+  }
+
+  private _canShowFoodBuff(): boolean {
+    return (
+      Boolean(this.options.HideWellFedAboveSeconds) &&
+      !this.component?.inCombat &&
+      this.contentType !== undefined &&
+      kWellFedContentTypes.includes(this.contentType)
+    );
   }
 }
