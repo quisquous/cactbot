@@ -310,6 +310,16 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'DSR Skyblind',
+      // 631A Skyblind (2.2s cast) is a targetted ground aoe where A65 Skyblind
+      // effect expired on the player.
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'A65' }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration),
+      response: Responses.moveAway(),
+    },
+    {
       id: 'DSR Ascalon\'s Mercy Concealed',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '63C8', source: 'King Thordan', capture: false }),
