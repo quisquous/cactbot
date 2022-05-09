@@ -372,13 +372,6 @@ Options.Triggers.push({
         'You bid farewell to the striking dummy': '.*は木人に別れの挨拶をした',
         'You bow courteously to the striking dummy': '.*は木人にお辞儀した',
         'test sync': 'test sync',
-        'You burst out laughing at the striking dummy': '.*は木人のことを大笑いした',
-        'cactbot lang': 'cactbot言語',
-        'cactbot test response': 'cactbotレスポンステスト',
-        'cactbot test watch': 'cactbot探知テスト',
-        'You clap for the striking dummy': '.*は木人に拍手した',
-        'You psych yourself up alongside the striking dummy': '.*は木人に活を入れた',
-        'You poke the striking dummy': '.*は木人をつついた',
       },
       replaceText: {
         'Almagest': 'アルマゲスト',
