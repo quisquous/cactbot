@@ -6,6 +6,7 @@ import process from 'process';
 import eslint from 'eslint';
 
 import UserConfig from '../resources/user_config';
+import { LooseTriggerSet } from '../types/trigger';
 import defaultRaidbossOptions from '../ui/raidboss/raidboss_options';
 
 import { walkDirAsync } from './file_utils';
@@ -106,12 +107,13 @@ const lint = async (filename: string, lines: string[]) => {
 const processFile = async (filename: string) => {
   console.error(`Processing file: ${filename}`);
   const originalContents = fs.readFileSync(filename).toString();
+  const originalFilename = outputFileToOrigFile(filename);
   let lines = originalContents.split(/[\r\n]+/);
 
   lines = removeImports(lines);
   lines = changeExportToPush(lines);
   lines = removeExportOnDeclarations(lines);
-  const lintResult = await lint(outputFileToOrigFile(filename), lines);
+  const lintResult = await lint(originalFilename, lines);
   if (!lintResult) {
     console.error('${filename}: No result from linting?');
     process.exit(2);
@@ -159,6 +161,23 @@ const processFile = async (filename: string) => {
 
   // Overwrite the file.
   fs.writeFileSync(filename, contents);
+
+  // Copy timeline file if present
+  const importPath = path.join(
+    '..',
+    originalFilename.replace(path.extname(originalFilename), '.ts'),
+  );
+  // Dynamic imports don't have a type, so add type assertion.
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  const triggerSet = (await import(importPath)).default as LooseTriggerSet;
+  const timelineFilename = triggerSet?.timelineFile;
+  if (timelineFilename) {
+    const timelineFile = path.join(path.dirname(importPath), timelineFilename);
+    if (fs.existsSync(timelineFile)) {
+      const destination = path.join(path.dirname(filename), timelineFilename);
+      fs.copyFileSync(timelineFile, destination);
+    }
+  }
 };
 
 const processAllFiles = async (root: string, tscCmd: string) => {

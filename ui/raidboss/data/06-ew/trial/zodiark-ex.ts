@@ -445,7 +445,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Arcane Sigil': 'emblème secret',
         'Behemoth': 'béhémoth',

@@ -262,7 +262,11 @@ def test_match(event, entry):
         elif entry["special_type"] == "battlelog" and event.startswith(entry["special_line"]):
             # Matching this format generically:
             # 00|2019-01-12T18:08:14.0000000-05:00|0839||The Realm of the Machinists will be sealed off in 15 seconds!|
-            log_match = re.search(entry["regex"], event, re.IGNORECASE,)
+            log_match = re.search(
+                entry["regex"],
+                event,
+                re.IGNORECASE,
+            )
             if log_match:
                 return True
             else:
@@ -280,7 +284,10 @@ def test_match(event, entry):
 
         # Head marker case
         elif entry["special_type"] == "headmarker" and event.startswith(entry["special_line"]):
-            marker_match = re.search(entry["regex"], event,)
+            marker_match = re.search(
+                entry["regex"],
+                event,
+            )
             if marker_match:
                 return True
             else:
@@ -600,18 +607,18 @@ if __name__ == "__main__":
 
     # Check dependent args
     if args.search_fights and not args.file:
-        raise parser.error("Automatic encounter listing requires an input file")
+        parser.error("Automatic encounter listing requires an input file")
 
     if args.search_fights and args.search_fights > -1 and not args.timeline:
-        raise parser.error(
+        parser.error(
             "You must specify a timeline file before testing against a specific encounter."
         )
 
     if args.file and not ((args.start and args.end) or args.search_fights):
-        raise parser.error("Log file input requires start and end timestamps")
+        parser.error("Log file input requires start and end timestamps")
 
     if args.report and not args.key:
-        raise parser.error(
+        parser.error(
             "FFlogs parsing requires an API key. Visit https://www.fflogs.com/profile and use the V1 Client Key"
         )
 

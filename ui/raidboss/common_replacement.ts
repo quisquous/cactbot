@@ -4,11 +4,13 @@ import { Lang, NonEnLang } from '../../resources/languages';
 
 // It's awkward to refer to these string keys, so name them as replaceSync[keys.sealKey].
 export const syncKeys = {
-  // Match Regexes, NetRegexes, and timeline constructions of seal log lines.
-  // FIXME: This seal regex includes an optional second colon, as "0839::?"".
-  // Once we have completely converted things for 6.0,
-  // we should come back here and make the doubled colon non-optional.
-  seal: '(?<=00:0839::|00\\|[^|]*\\|0839\\|\\|)(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
+  // Seal is trying to match these types of lines, and is more complicated because it's
+  // trying to also capture the area name:
+  //   parsed log lines: 00:0839::Something will be sealed off
+  //   network log lines: 00|timestamp|0839||Something will be sealed off
+  //   NetRegexes: ^^(?:00)\|(?:[^|]*)\|(?:0839)\|(?:[^|]*)\|(?:Something will be sealed off.*?)\|
+  seal:
+    '(?<=00:0839::|00\\|[^|]*\\|0839\\|\\||\\|\\(\\?:)([^|]*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
   unseal: 'is no longer sealed',
   engage: 'Engage!',
 };

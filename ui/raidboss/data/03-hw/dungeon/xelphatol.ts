@@ -196,6 +196,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Tlachtli': 'タパソリ闘技場',
         'The Vortex': '神前祭壇',
         'Tozol Huatotl': '晴嵐のトゾル・ファトトル',
+        'Floating Turret': 'バルーンタレット',
       },
       'replaceText': {
         '\\(buster\\)': '(タンクバスター)',
@@ -292,7 +293,7 @@ const triggerSet: TriggerSet<Data> = {
         'Summon Garuda': '가루다 소환',
         'Swiftfeather': '깃털 바람',
         'Wicked Wheel': '마녀의 수레바퀴',
-        'Wind Blast': '공기 분출',
+        'Wind Blast': '바람 분출',
       },
     },
   ],

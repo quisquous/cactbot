@@ -312,7 +312,7 @@ const raidEmulatorOnLoad = async () => {
       });
     } else {
       // Assume it's a log file
-      const importModal = showModal('.importProgressModal');
+      const importModal = showModal('.import-progress-modal');
       const bar = querySelectorSafe(importModal, '.progress-bar');
       bar.style.width = '0px';
       const label = querySelectorSafe(importModal, '.label');
@@ -325,7 +325,7 @@ const raidEmulatorOnLoad = async () => {
         throw new UnreachableCode();
       doneButton.disabled = true;
 
-      const doneButtonTimeout = querySelectorSafe(doneButton, '.doneBtnTimeout');
+      const doneButtonTimeout = querySelectorSafe(doneButton, '.done-btn-timeout');
 
       let promise: Promise<unknown> | undefined;
 
@@ -402,7 +402,7 @@ const raidEmulatorOnLoad = async () => {
                 doneButtonTimeout.innerText = ` (${seconds})`;
                 if (seconds === 0) {
                   window.clearInterval(interval);
-                  hideModal('.importProgressModal');
+                  hideModal('.import-progress-modal');
                 }
               }, 1000);
             });

@@ -130,7 +130,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Faites-vous toucher par un sourir bleu',
           ja: 'ニコニコ(青)',
           cn: '吃蓝脸AOE',
-          ko: '파란 얼굴 빔 맞기',
+          ko: '파란 얼굴이 쏘는 레이저 맞기',
         },
         frowny: {
           en: 'Get hit by red frowny',
@@ -138,7 +138,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Faites-vous toucher par un visage en colère rouge',
           ja: 'ムカムカ(赤)',
           cn: '吃红脸AOE',
-          ko: '빨강 얼굴 빔 맞기',
+          ko: '빨간 얼굴이 쏘는 레이저 맞기',
         },
         either: {
           en: 'Get hit by red or blue face',
@@ -146,7 +146,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Faites-vous toucher par une couleur',
           ja: '青か赤の攻撃を受ける',
           cn: '吃任意颜色脸的AOE',
-          ko: '파랑/빨강 빔 맞기',
+          ko: '아무 색의 레이저 맞기',
         },
       },
     },

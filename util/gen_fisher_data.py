@@ -200,7 +200,8 @@ def get_fish_data():
 def get_tackle():
     # Also get fishing tackle
     response = xivapi(
-        "ItemUICategory", {"id": tackle_id, "columns": ["GameContentLinks.Item.ItemUICategory"]},
+        "ItemUICategory",
+        {"id": tackle_id, "columns": ["GameContentLinks.Item.ItemUICategory"]},
     )
 
     item_ids = response["GameContentLinks"]["Item"]["ItemUICategory"]

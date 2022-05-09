@@ -24,6 +24,7 @@ import {
   LooseTriggerSet,
   Output,
   OutputStrings,
+  ResponseFunc,
   TriggerFunc,
 } from '../../types/trigger';
 
@@ -48,6 +49,10 @@ const netRegexLanguages: (keyof LooseTrigger)[] = [
 ];
 
 const isKeyInTriggerFunctions = (arr: string[], key: string): boolean => arr.includes(key);
+
+const isResponseFunc = (func: unknown): func is ResponseFunc<RaidbossData, Matches> => {
+  return typeof func === 'function';
+};
 
 const createTriggerRegexString = (str: string): RegExp => {
   return new RegExp(`(?:regex|triggerRegex)(?:|\\w{2}): \/${str}\/`, 'g');
@@ -527,14 +532,18 @@ const testTriggerFile = (file: string) => {
             );
             continue;
           }
-          const output = new TestOutputProxy(trigger, outputStrings) as Output;
-          // Call the function to get the outputStrings.
-          const data = (triggerSet.initData?.() ?? {}) as RaidbossData;
-          response = trigger.response(data, {}, output) ?? {};
 
-          if (typeof outputStrings !== 'object') {
-            assert.fail(`'${trigger.id}' built-in response did not set outputStrings.`);
-            continue;
+          const output = new TestOutputProxy(trigger, outputStrings) as Output;
+          const responseFunc = trigger.response;
+          if (isResponseFunc(responseFunc)) {
+            // Call the function to get the outputStrings.
+            const data = (triggerSet.initData?.() ?? {}) as RaidbossData;
+            response = responseFunc(data, {}, output) ?? {};
+
+            if (typeof outputStrings !== 'object') {
+              assert.fail(`'${trigger.id}' built-in response did not set outputStrings.`);
+              continue;
+            }
           }
         } else {
           if (trigger.outputStrings && typeof outputStrings !== 'object') {
@@ -669,6 +678,13 @@ const testTriggerFile = (file: string) => {
           }
         }
       }
+    }
+  });
+
+  it('has valid timeline file', () => {
+    if (triggerSet.timelineFile) {
+      const timelineFile = path.join(path.dirname(file), triggerSet.timelineFile);
+      assert.isTrue(fs.existsSync(timelineFile), `${triggerSet.timelineFile} does not exist`);
     }
   });
 };

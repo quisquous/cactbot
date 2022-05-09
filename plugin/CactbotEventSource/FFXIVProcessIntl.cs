@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 using CactbotEventSource.loc;
+using RainbowMage.OverlayPlugin;
 
 namespace Cactbot {
   public class FFXIVProcessIntl : FFXIVProcess {
@@ -126,7 +127,7 @@ namespace Cactbot {
       // They both point to the same spot, so verify these have the same value.
       p = SigScan(kCharmapSignature, kCharmapSignatureOffset, kCharmapSignatureRIP);
       if (p.Count == 0) {
-        logger_.LogError(Strings.CharmapSignatureFoundMultipleMatchesErrorMessage, p.Count);
+        logger_.Log(LogLevel.Error, Strings.CharmapSignatureFoundMultipleMatchesErrorMessage, p.Count);
       } else {
         IntPtr player_ptr_value = IntPtr.Zero;
         foreach (IntPtr ptr in p) {
@@ -136,28 +137,28 @@ namespace Cactbot {
             player_ptr_value = value;
             player_ptr_addr_ = addr;
           } else {
-            logger_.LogError(Strings.CharmapSignatureConflictingMatchErrorMessage);
+            logger_.Log(LogLevel.Error, Strings.CharmapSignatureConflictingMatchErrorMessage);
           }
         }
       }
 
       p = SigScan(kJobDataSignature, kJobDataSignatureOffset, kJobDataSignatureRIP);
       if (p.Count != 1) {
-        logger_.LogError(Strings.JobSignatureFoundMultipleMatchesErrorMessage, p.Count);
+        logger_.Log(LogLevel.Error, Strings.JobSignatureFoundMultipleMatchesErrorMessage, p.Count);
       } else {
         job_data_outer_addr_ = IntPtr.Add(p[0], kJobDataOuterStructOffset);
       }
 
       p = SigScan(kInCombatSignature, kInCombatSignatureOffset, kInCombatSignatureRIP, kInCombatRipOffset);
       if (p.Count != 1) {
-        logger_.LogError(Strings.InCombatSignatureFoundMultipleMatchesErrorMessage, p.Count);
+        logger_.Log(LogLevel.Error, Strings.InCombatSignatureFoundMultipleMatchesErrorMessage, p.Count);
       } else {
         in_combat_addr_ = p[0];
       }
 
       p = SigScan(kBaitSignature, kBaitBaseOffset, kBaitBaseRIP);
       if (p.Count != 1) {
-        logger_.LogError(Strings.BaitSignatureFoundMultipleMatchesErrorMessage, p.Count);
+        logger_.Log(LogLevel.Error, Strings.BaitSignatureFoundMultipleMatchesErrorMessage, p.Count);
       } else {
         bait_addr_ = p[0];
       }

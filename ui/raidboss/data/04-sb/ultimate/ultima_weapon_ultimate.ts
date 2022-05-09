@@ -674,7 +674,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ja',
       'replaceSync': {
-        'Bomb Boulder': 'ボムボルダ',
+        'Bomb Boulder': 'ボムボルダー',
         'Chirada': 'チラーダ',
         'Garuda': 'ガルーダ',
         'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'はじめようぞ、虫ケラ…… .わたくしの風でッ！　嵐でッ！　無残に散れッ！',

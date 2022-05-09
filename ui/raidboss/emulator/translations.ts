@@ -30,11 +30,11 @@ const emulatorButtons: Translation = {
     cn: '关闭',
   },
   '.doneButton': {
-    en: 'Done<span class="doneBtnTimeout"></span>',
-    de: 'Fertig<span class="doneBtnTimeout"></span>',
-    fr: 'Terminé<span class="doneBtnTimeout"></span>',
-    ja: '完了<span class="doneBtnTimeout"></span>',
-    cn: '完成<span class="doneBtnTimeout"></span>',
+    en: 'Done<span class="done-btn-timeout"></span>',
+    de: 'Fertig<span class="done-btn-timeout"></span>',
+    fr: 'Terminé<span class="done-btn-timeout"></span>',
+    ja: '完了<span class="done-btn-timeout"></span>',
+    cn: '完成<span class="done-btn-timeout"></span>',
   },
   '.loadNetworkLogButton': {
     en: 'Load Network Log',
@@ -77,14 +77,14 @@ const emulatorTitle: Translation = {
 } as const;
 
 const emulatorImportModal: Translation = {
-  '.importProgressModal .modal-title': {
+  '.import-progress-modal .modal-title': {
     en: 'Log File Import Progress',
     de: 'Fortschritt des Logdatei Imports',
     fr: 'Progression de l\'importation du fichier journal',
     ja: 'ログファイルのインポート進捗',
     cn: '日志文件导入进度',
   },
-  '.importProgressModal .modal-body-contents': {
+  '.import-progress-modal .modal-body-contents': {
     en: `<h3>Latest encounter:</h3>
     Zone: <span class="zone"></span><br />
     Encounter: <span class="encounter"></span><br />
@@ -481,7 +481,7 @@ export const emulatorTooltipTranslations: Translation = {
 // Template elements need special handling, any templates that have translatable elements
 // should be listed here
 export const emulatorTemplateTranslations: { [selector: string]: Translation } = {
-  'template.encounterInfo': emulatorEncounterInfo,
+  'template.encounter-info': emulatorEncounterInfo,
 };
 
 export const emulatorStartStatuses = {

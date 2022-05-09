@@ -4,7 +4,7 @@
 
 html {
   overflow: visible !important;
-  font-family: "Meiryo", sans-serif;
+  font-family: Meiryo, sans-serif;
   font-size: 16;
 }
 
@@ -41,13 +41,13 @@ html {
 
   /* these are icon fonts, so there's no fallback for this */
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
-  font-family: 'Font Awesome 5 Free';
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  content: '\f138';
+  content: "\f138";
 }
 
 .mistake-collapser.expanded::before {
-  content: '\f13a';
+  content: "\f13a";
 }
 
 .summary {
@@ -141,11 +141,11 @@ html {
 }
 
 .death-details .damage {
-  color: rgb(255, 0, 0);
+  color: rgb(255 0 0);
 }
 
 .death-details .heal {
-  color: rgb(16, 205, 16);
+  color: rgb(16 205 16);
 }
 
 .death-row-icon.mistake-icon {

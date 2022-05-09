@@ -702,7 +702,7 @@ const triggerSet: TriggerSet<Data> = {
         'Tower Explosion': 'Turm Explosion',
         'Theological Fatalism': 'Theologischer Fatalismus',
         'Twinsong\'s Aporrhoia': 'Aporia der Verzweiflung',
-        'Ultimate Fate': '',
+        'Ultimate Fate': 'Ultimatives Schicksal',
       },
     },
     {
@@ -759,6 +759,21 @@ const triggerSet: TriggerSet<Data> = {
         'Theological Fatalism': 'セオロジカル・フェイタリズム',
         'Twinsong\'s Aporrhoia': 'アポロイア：絶望合唱',
         'Ultimate Fate': 'ウルティマフェイト',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Azure Star': '蓝色天体',
+        'Fiery Star': '红色天体',
+        'The Endsinger': '讴歌终结之物',
+      },
+      'replaceText': {
+        'Elenchos': '反诘',
+        'Fatalism': '宿命',
+        'Telomania': '终末狂热',
+        'Ultimate Fate': '终极命运',
       },
     },
   ],

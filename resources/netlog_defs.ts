@@ -26,8 +26,10 @@ export type LogDefinition = {
   };
   // map of indexes from a player id to the index of that player name
   playerIds?: { [fieldIdx: number]: number | null };
-  // a list of fields that are ok to not appear (or have invalid ids)
-  optionalFields?: readonly number[];
+  // a list of fields that are ok to be blank (or have invalid ids)
+  blankFields?: readonly number[];
+  // this field and any field after will be treated as optional when creating capturing regexes
+  firstOptionalField: (number | undefined);
 };
 export type LogDefinitionMap = { [name: string]: LogDefinition };
 type LogDefinitionVersionMap = { [version: string]: LogDefinitionMap };
@@ -64,6 +66,7 @@ const latestLogDefinitions = {
         },
       },
     },
+    firstOptionalField: undefined,
   },
   ChangeZone: {
     type: '01',
@@ -77,6 +80,7 @@ const latestLogDefinitions = {
     },
     lastInclude: true,
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   ChangedPlayer: {
     type: '02',
@@ -93,6 +97,7 @@ const latestLogDefinitions = {
     },
     lastInclude: true,
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   AddedCombatant: {
     type: '03',
@@ -126,6 +131,7 @@ const latestLogDefinitions = {
       6: null,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   RemovedCombatant: {
     type: '04',
@@ -153,6 +159,7 @@ const latestLogDefinitions = {
       6: null,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   PartyList: {
     type: '11',
@@ -213,32 +220,7 @@ const latestLogDefinitions = {
       25: null,
       26: null,
     },
-    optionalFields: [
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21,
-      22,
-      23,
-      24,
-      25,
-      26,
-    ],
+    firstOptionalField: 3,
     canAnonymize: true,
     lastInclude: true,
   },
@@ -269,6 +251,7 @@ const latestLogDefinitions = {
     },
     canAnonymize: true,
     lastInclude: true,
+    firstOptionalField: undefined,
   },
   StartsUsing: {
     type: '20',
@@ -289,12 +272,13 @@ const latestLogDefinitions = {
       z: 11,
       heading: 12,
     },
-    optionalFields: [6],
+    blankFields: [6],
     playerIds: {
       2: 3,
       6: 7,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   Ability: {
     type: '21',
@@ -337,9 +321,10 @@ const latestLogDefinitions = {
       2: 3,
       6: 7,
     },
-    optionalFields: [6],
+    blankFields: [6],
     firstUnknownField: 44,
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   NetworkAOEAbility: {
     type: '22',
@@ -364,9 +349,10 @@ const latestLogDefinitions = {
       2: 3,
       6: 7,
     },
-    optionalFields: [6],
+    blankFields: [6],
     firstUnknownField: 44,
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   NetworkCancelAbility: {
     type: '23',
@@ -385,6 +371,7 @@ const latestLogDefinitions = {
       2: 3,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   NetworkDoT: {
     type: '24',
@@ -413,6 +400,7 @@ const latestLogDefinitions = {
       2: 3,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   WasDefeated: {
     type: '25',
@@ -431,6 +419,7 @@ const latestLogDefinitions = {
       4: 5,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   GainsEffect: {
     type: '26',
@@ -455,6 +444,7 @@ const latestLogDefinitions = {
       7: 8,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   HeadMarker: {
     type: '27',
@@ -471,6 +461,7 @@ const latestLogDefinitions = {
       2: 3,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   NetworkRaidMarker: {
     type: '28',
@@ -488,6 +479,7 @@ const latestLogDefinitions = {
       z: 8,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   NetworkTargetMarker: {
     type: '29',
@@ -507,6 +499,7 @@ const latestLogDefinitions = {
       4: null,
       5: null,
     },
+    firstOptionalField: undefined,
   },
   LosesEffect: {
     type: '30',
@@ -528,6 +521,7 @@ const latestLogDefinitions = {
       7: 8,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   NetworkGauge: {
     type: '31',
@@ -549,6 +543,7 @@ const latestLogDefinitions = {
     // For safety, anonymize all of the gauge data.
     firstUnknownField: 3,
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   NetworkWorld: {
     type: '32',
@@ -559,6 +554,7 @@ const latestLogDefinitions = {
       timestamp: 1,
     },
     isUnknown: true,
+    firstOptionalField: undefined,
   },
   ActorControl: {
     type: '33',
@@ -575,6 +571,7 @@ const latestLogDefinitions = {
       data3: 7,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   NameToggle: {
     type: '34',
@@ -594,6 +591,7 @@ const latestLogDefinitions = {
       4: 5,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   Tether: {
     type: '35',
@@ -614,6 +612,7 @@ const latestLogDefinitions = {
     },
     canAnonymize: true,
     firstUnknownField: 9,
+    firstOptionalField: undefined,
   },
   LimitBreak: {
     type: '36',
@@ -626,6 +625,7 @@ const latestLogDefinitions = {
       bars: 3,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   NetworkEffectResult: {
     type: '37',
@@ -653,6 +653,7 @@ const latestLogDefinitions = {
     },
     firstUnknownField: 22,
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   StatusEffect: {
     type: '38',
@@ -675,6 +676,9 @@ const latestLogDefinitions = {
       data0: 15,
       data1: 16,
       data2: 17,
+      data3: 18,
+      data4: 19,
+      data5: 20,
       // Variable number of triplets here, but at least one.
     },
     playerIds: {
@@ -682,6 +686,7 @@ const latestLogDefinitions = {
     },
     firstUnknownField: 20,
     canAnonymize: true,
+    firstOptionalField: 18,
   },
   NetworkUpdateHP: {
     type: '39',
@@ -707,6 +712,7 @@ const latestLogDefinitions = {
       2: 3,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   Map: {
     type: '40',
@@ -721,6 +727,7 @@ const latestLogDefinitions = {
       placeNameSub: 5,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   SystemLogMessage: {
     type: '41',
@@ -736,6 +743,7 @@ const latestLogDefinitions = {
       param2: 6,
     },
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   ParserInfo: {
     type: '249',
@@ -747,6 +755,7 @@ const latestLogDefinitions = {
     },
     globalInclude: true,
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   ProcessInfo: {
     type: '250',
@@ -758,6 +767,7 @@ const latestLogDefinitions = {
     },
     globalInclude: true,
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   Debug: {
     type: '251',
@@ -769,6 +779,7 @@ const latestLogDefinitions = {
     },
     globalInclude: true,
     canAnonymize: false,
+    firstOptionalField: undefined,
   },
   PacketDump: {
     type: '252',
@@ -779,6 +790,7 @@ const latestLogDefinitions = {
       timestamp: 1,
     },
     canAnonymize: false,
+    firstOptionalField: undefined,
   },
   Version: {
     type: '253',
@@ -790,6 +802,7 @@ const latestLogDefinitions = {
     },
     globalInclude: true,
     canAnonymize: true,
+    firstOptionalField: undefined,
   },
   Error: {
     type: '254',
@@ -800,6 +813,7 @@ const latestLogDefinitions = {
       timestamp: 1,
     },
     canAnonymize: false,
+    firstOptionalField: undefined,
   },
   None: {
     type: '[0-9]+',
@@ -810,6 +824,7 @@ const latestLogDefinitions = {
       timestamp: 1,
     },
     isUnknown: true,
+    firstOptionalField: undefined,
   },
 } as const;
 
@@ -832,6 +847,7 @@ export type ParseHelperField<
 > = {
   field: Fields[Field] extends string ? Fields[Field] : never;
   value?: string;
+  optional?: boolean;
 };
 
 export type ParseHelperFields<T extends LogDefinitionTypes> = {

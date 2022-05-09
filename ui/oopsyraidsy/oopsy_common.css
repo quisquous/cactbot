@@ -17,7 +17,7 @@
 
   /* these are icon fonts, so there's no fallback for this */
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
-  font-family: 'Font Awesome 5 Free';
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
 }
 
@@ -29,49 +29,49 @@
 
 .mistake-icon.pull::before {
   color: green;
-  content: '\f04b';
+  content: "\f04b";
 }
 
 .mistake-icon.death::before {
   color: red;
-  content: '\f54c';
+  content: "\f54c";
 }
 
 .mistake-icon.warn::before {
   color: yellow;
-  content: '\f071';
+  content: "\f071";
 }
 
 .mistake-icon.fail::before {
   color: red;
-  content: '\f05e';
+  content: "\f05e";
 }
 
 .mistake-icon.wipe::before {
   color: blue;
-  content: '\f2ed';
+  content: "\f2ed";
 }
 
 .mistake-icon.potion::before {
   color: purple;
-  content: '\f000';
+  content: "\f000";
 }
 
 .mistake-icon.good::before {
   color: green;
-  content: '\f00c';
+  content: "\f00c";
 }
 
 .mistake-icon.damage::before {
   color: white;
-  content: '\f102';
+  content: "\f102";
 }
 
 .mistake-icon.heal::before {
   color: cyan;
-  content: '\f0fe';
+  content: "\f0fe";
 }
 
-.resizeHandle .hide-if-resizing {
+.resize-handle .hide-if-resizing {
   display: none;
 }
