@@ -53,11 +53,6 @@ cactbot은 다음 모듈을 지원합니다:
 
 ![xephero 스크린샷](../../screenshots/xephero.png)
 
-### 동영상 예시
-
-* [O4S raidboss + 몽크 jobs](https://www.twitch.tv/videos/209562337)
-* [O3S spellblade callouts](https://clips.twitch.tv/StrangeHungryGarageShadyLulu)
-
 ## 설치하기
 
 **참고**: 해루봇을 사용하는 경우에는 이 문단을 읽지 말고 해루봇에서 다운로드하면 됩니다.

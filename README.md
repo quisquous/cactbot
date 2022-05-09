@@ -53,11 +53,6 @@ cactbot provides these modules:
 
 ![xephero screenshot](screenshots/xephero.png)
 
-### Video Examples
-
-* [O4S raidboss + monk jobs](https://www.twitch.tv/videos/209562337)
-* [O3S spellblade callouts](https://clips.twitch.tv/StrangeHungryGarageShadyLulu)
-
 ## Installing
 
 ### Dependencies
