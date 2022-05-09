@@ -97,7 +97,6 @@ export class ComponentManager {
   // misc variables
   shouldShow: ShouldShow;
   contentType?: number;
-  lastCalledMs: number;
   inPvPZone?: boolean;
   // food buffs
   foodBuffExpiresTimeMs: number;
@@ -118,7 +117,6 @@ export class ComponentManager {
 
     this.shouldShow = {};
     this.contentType = undefined;
-    this.lastCalledMs = 0;
 
     this.foodBuffExpiresTimeMs = 0;
     this.foodBuffTimer = 0;
