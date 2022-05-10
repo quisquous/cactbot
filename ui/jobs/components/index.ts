@@ -158,7 +158,7 @@ export class ComponentManager {
 
     this.player.on('level', (level, prevLevel) => {
       if (level !== prevLevel)
-        this._shouldShowFoodBuff();
+        this._updateFoodBuff();
     });
 
     // change color when target is far away
@@ -227,7 +227,7 @@ export class ComponentManager {
           const seconds = parseFloat(matches.duration ?? '0');
           const now = Date.now(); // This is in ms.
           this.foodBuffExpiresTimeMs = now + (seconds * 1000);
-          this._shouldShowFoodBuff();
+          this._updateFoodBuff();
         }
       });
       // As you cannot change jobs in combat, we can assume that
@@ -257,7 +257,7 @@ export class ComponentManager {
       this.bars._updateProcBoxNotifyState(game);
       if (this.component && this.component.inCombat !== game) {
         this.component.inCombat = game;
-        this._shouldShowFoodBuff();
+        this._updateFoodBuff();
       }
 
       // make bars transparent when out of combat if requested
@@ -309,7 +309,7 @@ export class ComponentManager {
       this.inPvPZone = isPvPZone(id);
       this.contentType = info?.contentType;
 
-      this._shouldShowFoodBuff();
+      this._updateFoodBuff();
 
       this.buffTracker?.clear();
 
@@ -358,8 +358,8 @@ export class ComponentManager {
       this.bars.setJobsContainerVisibility(false);
   }
 
-  private _shouldShowFoodBuff(): void {
-    if (!this._canShowFoodBuff()) {
+  private _updateFoodBuff(): void {
+    if (!this._shouldShowFoodBuff()) {
       this.bars._showFoodBuff(false);
       return;
     }
@@ -374,11 +374,11 @@ export class ComponentManager {
       this.bars._showFoodBuff(true);
     } else {
       this.bars._showFoodBuff(false);
-      this.foodBuffTimer = window.setTimeout(() => this._shouldShowFoodBuff(), showMs);
+      this.foodBuffTimer = window.setTimeout(() => this._updateFoodBuff(), showMs);
     }
   }
 
-  private _canShowFoodBuff(): boolean {
+  private _shouldShowFoodBuff(): boolean {
     return (
       this.options.HideWellFedAboveSeconds !== 0 &&
       !this.component?.inCombat &&
