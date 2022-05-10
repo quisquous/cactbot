@@ -17,6 +17,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'Anabella' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'ラグ' }),
       netRegexCn: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: '拉格' }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: '라그' }),
       response: Responses.tankBuster(),
     },
     {
@@ -31,6 +32,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Anabella' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'ラグ' }),
       netRegexCn: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: '拉格' }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: '라그' }),
       run: (data, matches) => {
         const transmuteFire = '629A';
         const transmuteBio = '631D';
@@ -54,6 +56,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'Anabella' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'ラグ' }),
       netRegexCn: NetRegexes.startsUsing({ id: ['629[1-4]'], source: '拉格' }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['629[1-4]'], source: '라그' }),
       durationSeconds: (data) => {
         // Based on network log data analysis, the first orb will finish
         // 8 seconds after this cast started, while the second orb will
@@ -130,6 +133,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '629C', source: 'Anabella', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '629C', source: 'ラグ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '629C', source: '拉格', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '629C', source: '라그', capture: false }),
       // There's a Dhrupad cast after every transmute sequence.
       run: (data) => {
         data.orbCount = 0;
@@ -145,6 +149,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'Samanta' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'ドグ' }),
       netRegexCn: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: '多格' }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: '도그' }),
       response: Responses.tankBuster(),
     },
     {
@@ -156,6 +161,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'Samanta', capture: false }),
       netRegexJa: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'ドグ', capture: false }),
       netRegexCn: NetRegexes.ability({ id: ['62A1', '62BC'], source: '多格', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: ['62A1', '62BC'], source: '도그', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -176,6 +182,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '62A5', source: 'Samanta', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '62A5', source: 'ドグ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '62A5', source: '多格', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '62A5', source: '도그', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -196,6 +203,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '62B9', source: 'Maria', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '62B9', source: 'マグ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '62B9', source: '马格', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '62B9', source: '마그', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -206,6 +214,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '62A9', source: 'Maria' }),
       netRegexJa: NetRegexes.startsUsing({ id: '62A9', source: 'マグ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '62A9', source: '马格' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '62A9', source: '마그' }),
       response: Responses.tankBuster(),
     },
     {
@@ -216,6 +225,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '62B8', source: 'Maria' }),
       netRegexJa: NetRegexes.startsUsing({ id: '62B8', source: 'マグ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '62B8', source: '马格' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '62B8', source: '마그' }),
       response: Responses.stackMarkerOn(),
     },
   ],
@@ -389,6 +399,47 @@ Options.Triggers.push({
         'Sphere Shatter': '碎裂',
         'Transmute Element III': '魔力操纵：元素',
         'Transmute Thunder III': '魔力操纵：暴雷',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Berserker Sphere': '광폭화 구체',
+        'Cinduruva': '마그',
+        'Ingenuity\'s Ingress': '기교의 방',
+        'Minduruva': '라그',
+        'Prosperity\'S Promise': '부의 방',
+        'Sanduruva': '도그',
+        'Wisdom\'S Ward': '지혜의 방',
+        'Prosperity\'s Promise': '부의 방',
+        'Wisdom\'s Ward': '지혜의 방',
+      },
+      'replaceText': {
+        'Cinduruva': '마그',
+        'Sanduruva': '도그',
+        'Delta Attack': '델타 공격',
+        'Dhrupad': '드루파드',
+        'Explosive Force': '기폭',
+        'Isitva Siddhi': '이시트바 싯디',
+        'Manusya Berserk': '마누샤 광폭화',
+        'Manusya Bio(?! )': '마누샤 바이오',
+        'Manusya Bio III': '마누샤 바이오가',
+        'Manusya Blizzard(?! )': '마누샤 블리자드',
+        'Manusya Blizzard III': '마누샤 블리자가',
+        'Manusya Confuse': '마누샤 혼란',
+        'Manusya Faith': '마누샤 신앙',
+        'Manusya Fire(?! )': '마누샤 파이어',
+        'Manusya Fire III': '마누샤 파이가',
+        'Manusya Reflect': '마누샤 리플렉트',
+        'Manusya Stop': '마누샤 정지',
+        'Manusya Thunder(?! )': '마누샤 선더',
+        'Manusya Thunder III': '마누샤 선더가',
+        'Prakamya Siddhi': '프라카먀 싯디',
+        'Prapti Siddhi': '프랍티 싯디',
+        'Samsara': '삼사라',
+        'Sphere Shatter': '파열',
+        'Transmute Thunder III': '마력 조작: 선더가',
       },
     },
   ],

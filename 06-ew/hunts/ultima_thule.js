@@ -9,6 +9,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6A85', source: 'Arch-Êta', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A85', source: 'アーチイータ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6A85', source: '伊塔总领', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6A85', source: '아치 에타', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -19,6 +20,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6A88', source: 'Arch-Êta', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A88', source: 'アーチイータ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6A88', source: '伊塔总领', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6A88', source: '아치 에타', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -29,6 +31,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6A86', source: 'Arch-Êta', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A86', source: 'アーチイータ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6A86', source: '伊塔总领', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6A86', source: '아치 에타', capture: false }),
       alertText: (_data, _matches, output) => output.getFront(),
       outputStrings: {
         getFront: {
@@ -49,6 +52,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.ability({ id: '6A8A', source: 'Arch-Êta', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '6A8A', source: 'アーチイータ', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '6A8A', source: '伊塔总领', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '6A8A', source: '아치 에타', capture: false }),
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -68,6 +72,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6A89', source: 'Arch-Êta' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6A89', source: 'アーチイータ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6A89', source: '伊塔总领' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6A89', source: '아치 에타' }),
       response: Responses.tankBuster('info'),
     },
     {
@@ -78,6 +83,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6AF4', source: 'Fan Ail', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6AF4', source: 'ファン・アイル', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6AF4', source: '凡·艾尔', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6AF4', source: '판 아일', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -88,6 +94,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6AF2', source: 'Fan Ail', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6AF2', source: 'ファン・アイル', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6AF2', source: '凡·艾尔', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6AF2', source: '판 아일', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -98,6 +105,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6AED', source: 'Fan Ail' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6AED', source: 'ファン・アイル' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6AED', source: '凡·艾尔' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6AED', source: '판 아일' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.divebombOnYou();

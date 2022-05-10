@@ -10,6 +10,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6C3C', source: 'Ægeiros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6C3C', source: 'アイゲイロス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6C3C', source: '黑杨树精', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6C3C', source: '아이게이로스', capture: false }),
       // Alarm text mostly because this one kills so many people.
       alarmText: (_data, _matches, output) => output.outAndBehind(),
       outputStrings: {
@@ -30,6 +31,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6C40', source: 'Ægeiros', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6C40', source: 'アイゲイロス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6C40', source: '黑杨树精', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6C40', source: '아이게이로스', capture: false }),
       alertText: (_data, _matches, output) => output.getFront(),
       outputStrings: {
         getFront: {
@@ -49,6 +51,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6B7D', source: 'Minerva' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6B7D', source: 'ミネルウァ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6B7D', source: '密涅瓦' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6B7D', source: '미네르바' }),
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -80,6 +83,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6B7E', source: 'Minerva' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6B7E', source: 'ミネルウァ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6B7E', source: '密涅瓦' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6B7E', source: '미네르바' }),
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {

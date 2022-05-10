@@ -9,6 +9,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '69C1', source: 'Huldre', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69C1', source: 'フルドラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '69C1', source: '胡睹', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '69C1', source: '훌드라', capture: false }),
       response: Responses.awayFromFront('info'),
     },
     {
@@ -19,6 +20,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '69C3', source: 'Huldre', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69C3', source: 'フルドラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '69C3', source: '胡睹', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '69C3', source: '훌드라', capture: false }),
       infoText: (_data, _matches, output) => output.followCharge(),
       outputStrings: {
         followCharge: {
@@ -38,6 +40,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '69C4', source: 'Huldre', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69C4', source: 'フルドラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '69C4', source: '胡睹', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '69C4', source: '훌드라', capture: false }),
       response: Responses.getUnder('alert'),
     },
     {
@@ -48,6 +51,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '69C6', source: 'Huldre' }),
       netRegexJa: NetRegexes.startsUsing({ id: '69C6', source: 'フルドラ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '69C6', source: '胡睹' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '69C6', source: '훌드라' }),
       // Not a cleave.
       response: Responses.tankBuster('info'),
     },
@@ -59,6 +63,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '69C5', source: 'Huldre', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '69C5', source: 'フルドラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '69C5', source: '胡睹', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '69C5', source: '훌드라', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -69,6 +74,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6AE1', source: 'Storsie' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6AE1', source: 'ストーシー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6AE1', source: '斯图希' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6AE1', source: '스토르시에' }),
       // Not a cleave.
       response: Responses.tankBuster('info'),
     },
@@ -81,6 +87,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.ability({ id: '6ADA', source: 'Storsie', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '6ADA', source: 'ストーシー', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '6ADA', source: '斯图希', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '6ADA', source: '스토르시에', capture: false }),
       response: Responses.getBehind(),
     },
     {
@@ -92,6 +99,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.ability({ id: '6ADB', source: 'Storsie', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '6ADB', source: 'ストーシー', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '6ADB', source: '斯图希', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '6ADB', source: '스토르시에', capture: false }),
       response: Responses.getIn(),
     },
     {
@@ -103,6 +111,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.ability({ id: '6ADC', source: 'Storsie', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '6ADC', source: 'ストーシー', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '6ADC', source: '斯图希', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '6ADC', source: '스토르시에', capture: false }),
       response: Responses.getOut(),
     },
   ],

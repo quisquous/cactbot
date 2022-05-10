@@ -58,6 +58,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '662A', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '662A', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '662A', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '662A', source: '에리크토니오스', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -160,6 +161,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6616', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6616', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6616', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6616', source: '에리크토니오스', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -170,6 +172,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6617', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6617', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6617', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6617', source: '에리크토니오스', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -180,6 +183,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '65F6', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65F6', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '65F6', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '65F6', source: '에리크토니오스', capture: false }),
       alertText: (_data, _matches, output) => output.combo({ first: output.l(), second: output.r() }),
       outputStrings: flailDirections,
     },
@@ -191,6 +195,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '65F7', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65F7', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '65F7', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '65F7', source: '에리크토니오스', capture: false }),
       alertText: (_data, _matches, output) => output.combo({ first: output.r(), second: output.l() }),
       outputStrings: flailDirections,
     },
@@ -202,6 +207,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: ['65F8', '65F9'], source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['65F8', '65F9'], source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['65F8', '65F9'], source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['65F8', '65F9'], source: '에리크토니오스', capture: false }),
       alertText: (_data, _matches, output) => output.outThenIn(),
       outputStrings: {
         outThenIn: Outputs.outThenIn,
@@ -215,6 +221,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: ['65FA', '65FB'], source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['65FA', '65FB'], source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['65FA', '65FB'], source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['65FA', '65FB'], source: '에리크토니오스', capture: false }),
       alertText: (_data, _matches, output) => output.inThenOut(),
       outputStrings: {
         inThenOut: Outputs.inThenOut,
@@ -228,6 +235,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6629', source: 'Érichthonios' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6629', source: 'エリクトニオス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6629', source: '埃里克特翁尼亚斯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6629', source: '에리크토니오스' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
@@ -239,6 +247,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '660E', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '660E', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '660E', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '660E', source: '에리크토니오스', capture: false }),
       alertText: (_data, _matches, output) => output.directions(),
       outputStrings: {
         directions: {
@@ -259,6 +268,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '660F', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '660F', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '660F', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '660F', source: '에리크토니오스', capture: false }),
       alertText: (_data, _matches, output) => output.directions(),
       outputStrings: {
         directions: {
@@ -279,6 +289,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '661F', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '661F', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '661F', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '661F', source: '에리크토니오스', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -299,6 +310,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '6620', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6620', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6620', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6620', source: '에리크토니오스', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -661,6 +673,13 @@ Options.Triggers.push({
         'True Flare': '纯正核爆',
         'True Holy': '纯正神圣',
         'Warder\'s Wrath': '魔锁乱流',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Erichthonios': '에리크토니오스',
       },
     },
   ],
