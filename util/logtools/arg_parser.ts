@@ -32,7 +32,7 @@ class LogUtilArgParse {
   // The only validation done here is to ensure that at least one
   // of these arguments is present.
   requiredGroup = this.parser.addMutuallyExclusiveGroup();
-  args: TimelineArgs;
+  args?: TimelineArgs;
 
   constructor() {
     this.fileGroup.addArgument(['-f', '--file'], {
@@ -78,7 +78,6 @@ class LogUtilArgParse {
       type: 'float',
       help: 'Adjust all entries in a timeline file by this amount',
     });
-    this.args = this.parser.parseArgs() as TimelineArgs;
   }
 }
 

@@ -9,7 +9,7 @@ import { LogUtilArgParse } from './arg_parser';
 
 // TODO: add options for not splitting / not anonymizing.
 const timelineParse = new LogUtilArgParse();
-const args = timelineParse.args;
+const args = timelineParse.parser.parseArgs();
 
 const printHelpAndExit = (errString) => {
   console.error(errString);
