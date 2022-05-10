@@ -374,7 +374,7 @@ export class ComponentManager {
       this.bars._showFoodBuff(true);
     } else {
       this.bars._showFoodBuff(false);
-      this.foodBuffTimer = window.setTimeout(this._shouldShowFoodBuff.bind(this), showMs);
+      this.foodBuffTimer = window.setTimeout(() => this._shouldShowFoodBuff(), showMs);
     }
   }
 
