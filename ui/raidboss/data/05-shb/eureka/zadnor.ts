@@ -2158,7 +2158,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
-        'Alkonost': 'Alkonost',
+        '(?<!Tamed )Alkonost': 'Alkonost',
         'Ayida': 'Ayida',
         '4Th Legion Augur': 'Augur der IV\\. Legion',
         '4Th Legion Blackburn': 'Schwarzbrand der IV\\. Legion',
@@ -2287,7 +2287,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
-        'Alkonost': 'Alkonost',
+        '(?<!Tamed )Alkonost(?! dressé)': 'Alkonost',
         'Ayida': 'Ayida',
         '4Th Legion Augur': 'augure de la 4e légion',
         '4Th Legion Blackburn': 'Escarre de la 4e légion',

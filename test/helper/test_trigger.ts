@@ -663,7 +663,7 @@ const testTriggerFile = (file: string) => {
             // Consider any partial translations as "not found" (e.g. a sea;
             // message that still needs the zone name to be translated to be
             // considered fully translated).  However, still translate it as
-            // we use the translated regex below.
+            // we use the translated regex below (for now).
             let isPartial = false;
             for (const key of partialCommonTriggerReplacementKeys) {
               if (Regexes.parseGlobal(key).test(regex))
@@ -697,7 +697,7 @@ const testTriggerFile = (file: string) => {
           assert.strictEqual(
             locRegex,
             transRegex,
-            `locale ${locale}:incorrect timelineReplace replaceSync for regex '${locRegex}'`,
+            `${trigger.id}:locale ${locale}:incorrect timelineReplace replaceSync for regex '${locRegex}'`,
           );
         }
 
@@ -705,12 +705,12 @@ const testTriggerFile = (file: string) => {
         if (locRegex) {
           assert.isTrue(
             foundMatch,
-            `locale ${locale}:missing timelineReplace replaceSync for regex '${origRegex}' (but have ${localeReg})`,
+            `${trigger.id}:locale ${locale}:missing timelineReplace replaceSync for regex '${origRegex}' (but have ${localeReg})`,
           );
         } else {
           assert.isTrue(
             foundMatch,
-            `locale ${locale}:missing timelineReplace replaceSync for regex '${origRegex}'`,
+            `${trigger.id}:locale ${locale}:missing timelineReplace replaceSync for regex '${origRegex}'`,
           );
         }
       }
