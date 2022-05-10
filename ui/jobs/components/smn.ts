@@ -86,10 +86,6 @@ export class SMNComponent extends BaseComponent {
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['SMN']): void {
-    // assert this is running on a 6.x server
-    if (('bahamutStance' in jobDetail))
-      return;
-
     // Aetherflow Guage
     const stack = jobDetail.aetherflowStacks;
     this.aetherflowStackBox.innerText = stack.toString();

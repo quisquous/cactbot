@@ -454,13 +454,3 @@ export const partialCommonReplacementKeys = [
   textKeys.Healer,
   textKeys.DPS,
 ];
-
-// Replacement when using Korean language in the parser, as the Korean version
-// does not have the 6.x changes from Ravahn yet.
-// These are applied after other translations and don't count for collisions.
-// TODO: this misses a few things like 1A lines in a7s/o7n/o7s.
-export const backCompatParsedSyncReplace: { [replaceKey: string]: string } = {
-  ' 00:\\[\\^:\\]\\*:': ' 00:',
-  ' 00:0839::': ' 00:0839:',
-  ' 14:\\[\\^:\\]\\*:([^:]*):([^:]*):': ':$2:$1',
-};
