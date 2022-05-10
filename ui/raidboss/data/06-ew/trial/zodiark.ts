@@ -25,6 +25,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6B62', source: 'Zordiarche' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6B62', source: 'ゾディアーク' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6B62', source: '佐迪亚克' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6B62', source: '조디아크' }),
       response: Responses.tankBuster(),
     },
     {
@@ -35,6 +36,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '67D1', source: 'Zordiarche', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '67D1', source: 'ゾディアーク', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '67D1', source: '佐迪亚克', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '67D1', source: '조디아크', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       // Warn about knockback just as a precaution in case players don't make it.
       // Also, technically NE/SW is safe, but having all players run together is better.
@@ -57,6 +59,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '67D2', source: 'Zordiarche', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '67D2', source: 'ゾディアーク', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '67D2', source: '佐迪亚克', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '67D2', source: '조디아크', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -196,6 +199,37 @@ const triggerSet: TriggerSet<Data> = {
         'Styx': '仇恨',
         'Trimorphos Exoterikos': '三重外纹',
         'Triple Esoteric Ray': '三重神秘光线',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Arcane Sigil': '비문',
+        'Behemoth': '베히모스',
+        'Python': '퓌톤',
+        'Zodiark': '조디아크',
+      },
+      'replaceText': {
+        'Adikia': '불의',
+        'Algedon': '아픔',
+        'Ania': '핍박',
+        'Astral Eclipse': '별들의 식',
+        'Astral Flow': '천상의 흐름',
+        'Complete Control': '완전 접속',
+        'Esoteric Dyad': '내밀한 양면',
+        'Esoteric Sect': '내밀한 종파',
+        'Explosion': '폭산',
+        'Kokytos': '코퀴토스',
+        'Meteoros Eidolon': '허깨비 운석',
+        'Opheos Eidolon': '허깨비 뱀',
+        'Paradeigma': '시범',
+        'Phlegethon': '플레게톤',
+        'Styx': '스틱스',
+        'Trimorphos Exoterikos': '삼중 엑소테리코스',
+        'Triple Esoteric Ray': '내밀한 삼중 광선',
+        '(?<!Triple )Esoteric Ray': '내밀한 광선',
+        '(?<!Trimorphos )Exoterikos': '엑소테리코스',
       },
     },
   ],
