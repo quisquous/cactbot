@@ -48,11 +48,6 @@ cactbot提供以下模块：
 
 ![xephero屏幕截图](../../screenshots/xephero.png)
 
-### 视频实例
-
-* [O4S raidboss + 武僧职业量谱](https://www.twitch.tv/videos/209562337)
-* [O3S 女王之舞提示](https://clips.twitch.tv/StrangeHungryGarageShadyLulu)
-
 ## 安装
 
 ### 依赖

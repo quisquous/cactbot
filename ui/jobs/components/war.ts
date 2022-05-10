@@ -70,10 +70,7 @@ export class WARComponent extends BaseComponent {
         break;
       case kAbility.InnerRelease:
       case kAbility.Berserk:
-        if (this.ffxivRegion === 'ko')
-          this.innerReleaseBox.duration = 90;
-        else
-          this.innerReleaseBox.duration = 60;
+        this.innerReleaseBox.duration = 60;
         break;
     }
   }
@@ -89,16 +86,14 @@ export class WARComponent extends BaseComponent {
       this.comboTimer.duration = this.comboDuration;
   }
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
-    // TODO: delete StormsEye after every region launch 6.0
-    if (id !== EffectId.SurgingTempest && id !== EffectId.StormsEye)
+    if (id !== EffectId.SurgingTempest)
       return;
     const duration = parseFloat(matches.duration ?? '0');
     this.tempestBox.duration = duration + this.bonus - 0.5; // buff logline delay
     this.bonus = 0;
   }
   override onYouLoseEffect(id: string): void {
-    // TODO: delete StormsEye after every region launch 6.0
-    if (id === EffectId.SurgingTempest || id === EffectId.StormsEye)
+    if (id === EffectId.SurgingTempest)
       this.tempestBox.duration = 0;
   }
 

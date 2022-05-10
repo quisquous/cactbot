@@ -858,6 +858,8 @@ const triggerSet: TriggerSet<Data> = {
         'Ruby Bit': 'ルビービット',
         'Raven\'s Image': 'ネールの幻影',
         'The Ruby Weapon': 'ルビーウェポン',
+        'White Agony': 'ネールの悲嘆',
+        'White Fury': 'ネールの憤怒',
       },
       'replaceText': {
         '\\?': ' ?',

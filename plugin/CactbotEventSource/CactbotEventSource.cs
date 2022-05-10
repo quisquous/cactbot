@@ -13,17 +13,7 @@ using System.Globalization;
 using static Cactbot.VersionChecker;
 
 namespace Cactbot {
-
-  // TODO: remove this in favor of the rainbowmage ilogger
-  public interface ILogger {
-    void LogDebug(string format, params object[] args);
-    void LogError(string format, params object[] args);
-    void LogWarning(string format, params object[] args);
-    void LogInfo(string format, params object[] args);
-  }
-
-
-  public class CactbotEventSource : EventSourceBase, ILogger {
+  public class CactbotEventSource : EventSourceBase {
     public CactbotEventSourceConfig Config { get; private set; }
 
     private static int kFastTimerMilli = 16;
@@ -101,8 +91,7 @@ namespace Cactbot {
       OnCEEvent(e);
     }
 
-    public CactbotEventSource(RainbowMage.OverlayPlugin.ILogger logger)
-        : base(logger) {
+    public CactbotEventSource(TinyIoCContainer container) : base(container) {
       Name = "Cactbot Config";
 
       RegisterPresets();
@@ -180,7 +169,7 @@ namespace Cactbot {
 
       var configFile = "ui/config/config.html";
       var distFolder = "dist/";
-      var dir = new VersionChecker(this).GetCactbotDirectory();
+      var dir = new VersionChecker(this.logger).GetCactbotDirectory();
       var url = Path.GetFullPath(Path.Combine(dir, distFolder, configFile));
       // Attempt to use the local webpack override, otherwise fall back to default path
       if (!File.Exists(url))
@@ -191,7 +180,7 @@ namespace Cactbot {
           return;
         initDone = true;
         control.Init(url);
-        MinimalApi.AttachTo(control.Renderer);
+        MinimalApi.AttachTo(control.Renderer, container);
       };
       return control;
     }
@@ -218,15 +207,15 @@ namespace Cactbot {
           timer_interval = SendFastRateEvents();
         } catch (Exception e) {
           // SendFastRateEvents holds this semaphore until it exits.
-          LogError(Strings.SendFastRateEventsException, e.Message);
-          LogError(Strings.Stack, e.StackTrace);
-          LogError(Strings.Source, e.Source);
+          logger.Log(LogLevel.Error, Strings.SendFastRateEventsException, e.Message);
+          logger.Log(LogLevel.Error, Strings.Stack, e.StackTrace);
+          logger.Log(LogLevel.Error, Strings.Source, e.Source);
         }
         fast_update_timer_.Interval = timer_interval;
       };
       fast_update_timer_.AutoReset = false;
 
-      FFXIVPlugin plugin_helper = new FFXIVPlugin(this);
+      FFXIVPlugin plugin_helper = new FFXIVPlugin(this.logger);
       language_ = plugin_helper.GetLocaleString();
       pc_locale_ = System.Globalization.CultureInfo.CurrentUICulture.Name;
 
@@ -241,7 +230,7 @@ namespace Cactbot {
         // TODO: remove this try/catch and verify a null check is sufficient?
       }
 
-      var versions = new VersionChecker(this);
+      var versions = new VersionChecker(this.logger);
       cactbot_version_ = versions.GetCactbotVersion();
       overlay_plugin_version_ = versions.GetOverlayPluginVersion();
       ffxiv_plugin_version_ = versions.GetFFXIVPluginVersion();
@@ -249,39 +238,39 @@ namespace Cactbot {
       game_region_ = versions.GetGameRegion();
 
       // Print out version strings and locations to help users debug.
-      LogInfo(Strings.CactbotBaseInfo, cactbot_version_.ToString(), versions.GetCactbotPluginLocation(), versions.GetCactbotDirectory());
-      LogInfo(Strings.OverlayPluginBaseInfo, overlay_plugin_version_.ToString(), versions.GetOverlayPluginLocation());
-      LogInfo(Strings.FFXIVPluginBaseInfo, ffxiv_plugin_version_.ToString(), versions.GetFFXIVPluginLocation());
-      LogInfo(Strings.ACTBaseInfo, act_version_.ToString(), versions.GetACTLocation());
+      logger.Log(LogLevel.Info, Strings.CactbotBaseInfo, cactbot_version_.ToString(), versions.GetCactbotPluginLocation(), versions.GetCactbotDirectory());
+      logger.Log(LogLevel.Info, Strings.OverlayPluginBaseInfo, overlay_plugin_version_.ToString(), versions.GetOverlayPluginLocation());
+      logger.Log(LogLevel.Info, Strings.FFXIVPluginBaseInfo, ffxiv_plugin_version_.ToString(), versions.GetFFXIVPluginLocation());
+      logger.Log(LogLevel.Info, Strings.ACTBaseInfo, act_version_.ToString(), versions.GetACTLocation());
       if (language_ == null) {
-        LogInfo(Strings.ParsingPluginLanguage, "(unknown)");
+        logger.Log(LogLevel.Info, Strings.ParsingPluginLanguage, "(unknown)");
       } else {
-        LogInfo(Strings.ParsingPluginLanguage, language_);
+        logger.Log(LogLevel.Info, Strings.ParsingPluginLanguage, language_);
       }
       if (pc_locale_ == null) {
-        LogInfo(Strings.SystemLocale, "(unknown)");
+        logger.Log(LogLevel.Info, Strings.SystemLocale, "(unknown)");
       } else {
-        LogInfo(Strings.SystemLocale, pc_locale_);
+        logger.Log(LogLevel.Info, Strings.SystemLocale, pc_locale_);
       }
 
       // This will be set explicitly, so if it's not set now, it will be set after reloading ACT.
       // Log this for now as there will likely be a lot of questions, re: user directories.
       if (Config.UserConfigFile != null)
-        LogInfo(Strings.CactbotUserDirectory, Config.UserConfigFile);
+        logger.Log(LogLevel.Info, Strings.CactbotUserDirectory, Config.UserConfigFile);
 
       switch (game_region_)
       {
         case GameRegion.Chinese:
-          ffxiv_ = new FFXIVProcessCn(this);
-          LogInfo(Strings.Version, "cn");
+          ffxiv_ = new FFXIVProcessCn(this.logger);
+          logger.Log(LogLevel.Info, Strings.Version, "cn");
           break;
         case GameRegion.Korean:
-          ffxiv_ = new FFXIVProcessKo(this);
-          LogInfo(Strings.Version, "ko");
+          ffxiv_ = new FFXIVProcessKo(this.logger);
+          logger.Log(LogLevel.Info, Strings.Version, "ko");
           break;
         default:
-          ffxiv_ = new FFXIVProcessIntl(this);
-          LogInfo(Strings.Version, "intl");
+          ffxiv_ = new FFXIVProcessIntl(this.logger);
+          logger.Log(LogLevel.Info, Strings.Version, "intl");
           break;
       }
 
@@ -290,7 +279,7 @@ namespace Cactbot {
       plugin_helper.RegisterProcessChangedHandler(ffxiv_.OnProcessChanged);
       ffxiv_.OnProcessChanged(plugin_helper.GetCurrentProcess());
 
-      fate_watcher_ = new FateWatcher(this, language_);
+      fate_watcher_ = new FateWatcher(this, language_, logger);
 
       // Incoming events.
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
@@ -315,7 +304,7 @@ namespace Cactbot {
       string net_version_str = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location).ProductVersion;
       string[] net_version = net_version_str.Split('.');
       if (int.Parse(net_version[0]) < kRequiredNETVersionMajor || int.Parse(net_version[1]) < kRequiredNETVersionMinor)
-        LogError(Strings.RequireDotNetVersion, net_version_str);
+        logger.Log(LogLevel.Error, Strings.RequireDotNetVersion, net_version_str);
 
       versions.DoUpdateCheck(Config);
     }
@@ -487,20 +476,6 @@ namespace Cactbot {
       return game_active ? kFastTimerMilli : kSlowTimerMilli;
     }
 
-    // ILogger implementation.
-    public void LogDebug(string format, params object[] args) {
-      this.Log(LogLevel.Debug, format, args);
-    }
-    public void LogError(string format, params object[] args) {
-      this.Log(LogLevel.Error, format, args);
-    }
-    public void LogWarning(string format, params object[] args) {
-      this.Log(LogLevel.Warning, format, args);
-    }
-    public void LogInfo(string format, params object[] args) {
-      this.Log(LogLevel.Info, format, args);
-    }
-
     private static string GetRelativePath(string top_dir, string filename) {
       // TODO: .net 5.0 / .net core 2.0 has Path.GetRelativePath.
       // There's also a win api function we could call, but that's a bit gross.
@@ -546,7 +521,7 @@ namespace Cactbot {
          }
 
       } catch (Exception e) {
-        LogError(Strings.CheckDirectoryErrorMessage, e.ToString());
+        logger.Log(LogLevel.Error, Strings.CheckDirectoryErrorMessage, e.ToString());
         return null;
       }
 
@@ -576,7 +551,7 @@ namespace Cactbot {
           user_files[GetRelativePath(top_dir, filename)] = File.ReadAllText(filename);
         }
       } catch (Exception e) {
-        LogError(Strings.UserErrorFileException, e.ToString());
+        logger.Log(LogLevel.Error, Strings.UserErrorFileException, e.ToString());
       }
 
       return user_files;
@@ -600,7 +575,7 @@ namespace Cactbot {
             config_dir = Path.GetFullPath(url_dir + "\\..\\..\\user\\");
             local_files = GetLocalUserFiles(config_dir, overlay_name);
           } catch (Exception e) {
-            LogError(Strings.CheckingHtmlRelDirErrorMessage, source, e.ToString());
+            logger.Log(LogLevel.Error, Strings.CheckingHtmlRelDirErrorMessage, source, e.ToString());
             config_dir = null;
             local_files = null;
           }
@@ -608,11 +583,11 @@ namespace Cactbot {
         if (local_files == null) {
           // Second try a user directory relative to the dll.
           try {
-            config_dir = Path.GetFullPath((new VersionChecker(this)).GetCactbotDirectory() + "\\user");
+            config_dir = Path.GetFullPath((new VersionChecker(this.logger)).GetCactbotDirectory() + "\\user");
             local_files = GetLocalUserFiles(config_dir, overlay_name);
           } catch (Exception e) {
             // Accessing CactbotEventSourceConfig.CactbotDllRelativeUserUri can throw an exception so don't.
-            LogError(Strings.CheckingDllRelDirErrorMessage, config_dir, e.ToString());
+            logger.Log(LogLevel.Error, Strings.CheckingDllRelDirErrorMessage, config_dir, e.ToString());
             config_dir = null;
             local_files = null;
           }
@@ -661,13 +636,14 @@ namespace Cactbot {
     }
 
     private void RegisterPreset(string dirName, int width, int height, string nameOverride = null, string fileOverride = null) {
-      var path = new VersionChecker(this).GetCactbotDirectory();
+      var path = new VersionChecker(this.logger).GetCactbotDirectory();
       string lc = dirName.ToLowerInvariant();
       var name = nameOverride != null ? nameOverride : dirName;
       var filename = (fileOverride != null ? fileOverride : dirName).ToLowerInvariant() + ".html";
       var uri = new System.Uri(Path.Combine(path, "ui", lc, filename));
 
-      Registry.RegisterOverlayPreset(new OverlayPreset{
+      var registry = container.Resolve<Registry>();
+      registry.RegisterOverlayPreset2(new OverlayPreset{
         Name = $"Cactbot {name}",
         Url = uri.AbsoluteUri,
         Size = new int[] { width, height },
@@ -676,10 +652,12 @@ namespace Cactbot {
     }
 
     private void RegisterDpsPreset(string name, string file, int width, int height) {
-      var path = new VersionChecker(this).GetCactbotDirectory();
+      var path = new VersionChecker(this.logger).GetCactbotDirectory();
       string lc = name.ToLowerInvariant();
       var uri = new System.Uri(Path.Combine(path, "ui", "dps", lc, $"{file}.html"));
-      Registry.RegisterOverlayPreset(new OverlayPreset{
+
+      var registry = container.Resolve<Registry>();
+      registry.RegisterOverlayPreset2(new OverlayPreset{
         Name = $"Cactbot DPS {name}",
         Url = uri.AbsoluteUri,
         Size = new int[] { width, height },
@@ -689,7 +667,9 @@ namespace Cactbot {
 
     private void RegisterExternalPreset(string name, string url, int width, int height)
     {
-        Registry.RegisterOverlayPreset(new OverlayPreset
+
+        var registry = container.Resolve<Registry>();
+        registry.RegisterOverlayPreset2(new OverlayPreset
         {
             Name = $"{name}",
             Url = url,

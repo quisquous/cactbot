@@ -1,3 +1,4 @@
+import { NetFieldsReverse } from '../types/net_fields';
 import { NetParams } from '../types/net_props';
 import { CactbotBaseRegExp } from '../types/net_trigger';
 
@@ -32,13 +33,15 @@ const defaultParams = <
   V extends LogDefinitionVersions,
 >(type: T, version: V, include?: string[]): Partial<ParseHelperFields<T>> => {
   include ??= Object.keys(logDefinitionsVersions[version][type].fields);
-  const params: { [index: number]: { field: string; value?: string } } = {};
+  const params: { [index: number]: { field: string; value?: string; optional: boolean } } = {};
+  const firstOptionalField = logDefinitionsVersions[version][type].firstOptionalField;
 
   for (const [prop, index] of Object.entries(logDefinitionsVersions[version][type].fields)) {
     if (!include.includes(prop))
       continue;
-    const param: { field: string; value?: string } = {
+    const param: { field: string; value?: string; optional: boolean } = {
       field: prop,
+      optional: firstOptionalField !== undefined && index >= firstOptionalField,
     };
     if (prop === 'type')
       param.value = logDefinitionsVersions[version][type].type;
@@ -49,8 +52,14 @@ const defaultParams = <
   return params as unknown as Partial<ParseHelperFields<T>>;
 };
 
+type ParseHelperType<T extends LogDefinitionTypes> =
+  & {
+    [field in Extract<keyof NetFieldsReverse[T], string>]?: string;
+  }
+  & { capture?: boolean };
+
 const parseHelper = <T extends LogDefinitionTypes>(
-  params: { timestamp?: string; capture?: boolean } | undefined,
+  params: ParseHelperType<T> | undefined,
   funcName: string,
   fields: Partial<ParseHelperFields<T>>,
 ): CactbotBaseRegExp<T> => {
@@ -70,7 +79,20 @@ const parseHelper = <T extends LogDefinitionTypes>(
   const fieldKeys = Object.keys(fields).sort((a, b) => parseInt(a) - parseInt(b));
   let maxKeyStr: string;
   if (capture) {
-    maxKeyStr = fieldKeys[fieldKeys.length - 1] ?? '0';
+    const keys: Extract<keyof NetFieldsReverse[T], string>[] = [];
+    for (const key in fields)
+      keys.push(key);
+    let tmpKey = keys.pop();
+    if (!tmpKey) {
+      maxKeyStr = fieldKeys[fieldKeys.length - 1] ?? '0';
+    } else {
+      while (
+        fields[tmpKey]?.optional &&
+        !((fields[tmpKey]?.field ?? '') in params)
+      )
+        tmpKey = keys.pop();
+      maxKeyStr = tmpKey ?? '0';
+    }
   } else {
     maxKeyStr = '0';
     for (const key in fields) {
@@ -119,7 +141,7 @@ const parseHelper = <T extends LogDefinitionTypes>(
         // maybe this function needs a refactoring
         capture,
         fieldName,
-        (params as { [s: string]: string })[fieldName],
+        params[fieldName],
         fieldValue,
       ) +
         separator;
@@ -163,7 +185,7 @@ export default class NetRegexes {
     return parseHelper(params, 'ability', {
       ...defaultParams('Ability', NetRegexes.logVersion),
       // Override type
-      0: { field: 'type', value: '2[12]' },
+      0: { field: 'type', value: '2[12]', optional: false },
     });
   }
 

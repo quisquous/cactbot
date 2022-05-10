@@ -22,6 +22,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '653C', source: 'Grébuloff En Stade Terminal', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '653C', source: 'グレビュオフ・メルター', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '653C', source: '变异的格雷布洛弗', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '653C', source: '부식된 그레불로프', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -33,6 +34,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '6EBD', source: 'Grébuloff En Stade Terminal' }),
       netRegexJa: NetRegexes.ability({ id: '6EBD', source: 'グレビュオフ・メルター' }),
       netRegexCn: NetRegexes.ability({ id: '6EBD', source: '变异的格雷布洛弗' }),
+      netRegexKo: NetRegexes.ability({ id: '6EBD', source: '부식된 그레불로프' }),
       condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
@@ -44,6 +46,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6542', source: 'Grébuloff En Stade Terminal' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6542', source: 'グレビュオフ・メルター' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6542', source: '变异的格雷布洛弗' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6542', source: '부식된 그레불로프' }),
       response: Responses.stackMarkerOn(),
     },
     {
@@ -54,6 +57,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6544', source: 'Grébuloff En Stade Terminal' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6544', source: 'グレビュオフ・メルター' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6544', source: '变异的格雷布洛弗' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6544', source: '부식된 그레불로프' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -82,6 +86,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6540', source: 'Grébuloff En Stade Terminal' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6540', source: 'グレビュオフ・メルター' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6540', source: '变异的格雷布洛弗' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6540', source: '부식된 그레불로프' }),
       response: Responses.tankBuster(),
     },
     {
@@ -92,6 +97,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6550', source: 'Pacificateur', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6550', source: 'ピースキーパー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6550', source: '和平捍卫者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6550', source: '평화수호자', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -102,6 +108,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6EC7', source: 'Pacificateur' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6EC7', source: 'ピースキーパー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6EC7', source: '和平捍卫者' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6EC7', source: '평화수호자' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -113,6 +120,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6548', source: 'Pacificateur' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6548', source: 'ピースキーパー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6548', source: '和平捍卫者' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6548', source: '평화수호자' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -124,6 +132,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6EBF', source: 'Pacificateur', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6EBF', source: 'ピースキーパー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6EBF', source: '和平捍卫者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6EBF', source: '평화수호자', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -144,6 +153,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '654B', source: 'Pacificateur', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '654B', source: 'ピースキーパー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '654B', source: '和平捍卫者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '654B', source: '평화수호자', capture: false }),
       response: Responses.knockback(),
     },
     {
@@ -154,6 +164,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '654F', source: 'Pacificateur' }),
       netRegexJa: NetRegexes.startsUsing({ id: '654F', source: 'ピースキーパー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '654F', source: '和平捍卫者' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '654F', source: '평화수호자' }),
       // TODO: this is maybe worth promoting to responses?
       response: (data, matches, output) => {
         // cactbot-builtin-response
@@ -199,6 +210,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '655E', source: 'Ra-La', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '655E', source: 'ラーラー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '655E', source: '拉啦', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '655E', source: '라라', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -209,6 +221,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '655D', source: 'Ra-La' }),
       netRegexJa: NetRegexes.startsUsing({ id: '655D', source: 'ラーラー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '655D', source: '拉啦' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '655D', source: '라라' }),
       response: Responses.tankBuster(),
     },
     {
@@ -219,6 +232,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '655A', source: 'Ra-La' }),
       netRegexJa: NetRegexes.startsUsing({ id: '655A', source: 'ラーラー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '655A', source: '拉啦' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '655A', source: '라라' }),
       response: Responses.stackMarkerOn(),
     },
     {
@@ -233,6 +247,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6557', source: 'Ra-La', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6557', source: 'ラーラー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6557', source: '拉啦', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6557', source: '라라', capture: false }),
       alertText: (data, _matches, output) => data.seenLovingEmbrace ? output.right!() : output.left!(),
       run: (data) => data.seenLovingEmbrace = true,
       outputStrings: {
@@ -248,6 +263,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6558', source: 'Ra-La', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6558', source: 'ラーラー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6558', source: '拉啦', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6558', source: '라라', capture: false }),
       alertText: (data, _matches, output) => data.seenLovingEmbrace ? output.left!() : output.right!(),
       run: (data) => data.seenLovingEmbrace = true,
       outputStrings: {
@@ -263,6 +279,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '655C', source: 'Ra-La' }),
       netRegexJa: NetRegexes.startsUsing({ id: '655C', source: 'ラーラー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '655C', source: '拉啦' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '655C', source: '라라' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -375,7 +392,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Caustic Grebuloff': 'グレビュオフ・メルター',
         'Golden Wings': '黄金蝶',
@@ -458,6 +474,48 @@ const triggerSet: TriggerSet<Data> = {
         'Still Embrace': '安宁之翼',
         'Warm Glow': '慈光',
         'Wave of Nausea': '疾病激流',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Caustic Grebuloff': '부식된 그레불로프',
+        'Golden Wings': '황금나비',
+        'Peacekeeper': '평화수호자',
+        'Perpetual War Machine': '자동살상병기',
+        'Ra-la': '라라',
+        'The Deterrence Grounds': '억제 언덕',
+        'The Shell Mound': '사라져가는 패총',
+        'The World Tree': '세계수 정원',
+        'Weeping Miasma': '부패 독소',
+      },
+      'replaceText': {
+        'Befoulment': '고름탄',
+        'Benevolence': '박애',
+        'Blighted Water': '썩은물 덩어리',
+        'Certain Solitude': '고독의 절망',
+        'Cough Up': '흉수류',
+        'Decimation': '소각 광선',
+        'Disengage Hatch': '격납문 개방',
+        'Eclipsing Exhaust': '대분사',
+        'Electromagnetic Repellant': '초전자 방사',
+        'Elimination': '대인 광선',
+        'Infantry Deterrent': '대지 폭탄',
+        'Lamellar Light': '인광',
+        'Lifesbreath': '생기',
+        'Loving Embrace': '자애의 날개',
+        'Miasmata': '부패 독소 살포',
+        'Necrotic Fluid': '죽음의 부패독 살포',
+        'No Future': '미래는 없다',
+        'Order to Fire': '공격 명령',
+        'Peacefire': '평화포',
+        'Pity': '자비',
+        'Pox Flail': '두창 주먹',
+        'Prance': '약동',
+        'Small-bore Laser': '소구경 광선',
+        'Still Embrace': '안녕의 날개',
+        'Warm Glow': '자광',
+        'Wave of Nausea': '병의 격류',
       },
     },
   ],

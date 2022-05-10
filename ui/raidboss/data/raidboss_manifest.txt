@@ -3,6 +3,7 @@
 00-misc/test.txt
 02-arr/alliance/the_world_of_darkness.ts
 02-arr/dungeon/amdapor_keep_hard.ts
+02-arr/dungeon/amdapor_keep.ts
 02-arr/dungeon/aurum_vale.ts
 02-arr/dungeon/brayfloxs_longstop.ts
 02-arr/dungeon/cutters_cry.ts
@@ -10,6 +11,10 @@
 02-arr/dungeon/haukke_manor.ts
 02-arr/dungeon/sastasha_hard.ts
 02-arr/dungeon/the_stone_vigil_hard.ts
+02-arr/dungeon/hullbreaker_isle.ts
+02-arr/dungeon/pharos_sirius.ts
+02-arr/dungeon/snowcloak.ts
+02-arr/dungeon/the_lost_city_of_amdapor.ts
 02-arr/dungeon/the_stone_vigil.ts
 02-arr/dungeon/the_sunken_temple_of_quarn_hard.ts
 02-arr/dungeon/the_sunken_temple_of_quarn.ts

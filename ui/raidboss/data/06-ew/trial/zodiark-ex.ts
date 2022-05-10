@@ -53,6 +53,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '67EF', source: 'Zordiarche' }),
       netRegexJa: NetRegexes.startsUsing({ id: '67EF', source: 'ゾディアーク' }),
       netRegexCn: NetRegexes.startsUsing({ id: '67EF', source: '佐迪亚克' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '67EF', source: '조디아크' }),
       response: Responses.tankBusterSwap(),
     },
     {
@@ -63,6 +64,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6C60', source: 'Zordiarche', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6C60', source: 'ゾディアーク', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6C60', source: '佐迪亚克', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6C60', source: '조디아크', capture: false }),
       response: Responses.bigAoe(),
     },
     {
@@ -73,6 +75,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '67BF', source: 'Zordiarche', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '67BF', source: 'ゾディアーク', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '67BF', source: '佐迪亚克', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '67BF', source: '조디아크', capture: false }),
       alertText: (data, _matches, output) => {
         ++data.paradeigmaCounter;
         if (data.paradeigmaCounter === 1)
@@ -95,6 +98,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '67F3', source: 'Zordiarche', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '67F3', source: 'ゾディアーク', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '67F3', source: '佐迪亚克', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '67F3', source: '조디아크', capture: false }),
       alertText: (data, _matches, output) => output.text!({ num: data.styxCount }),
       run: (data) => data.styxCount = Math.min(data.styxCount + 1, 9),
       outputStrings: {
@@ -110,6 +114,11 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Arcane Sigil End',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' }),
+      netRegexDe: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Geheimzeichen' }),
+      netRegexFr: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'emblème secret' }),
+      netRegexJa: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '秘紋' }),
+      netRegexCn: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '秘纹' }),
+      netRegexKo: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '비문' }),
       run: (data, matches, _output) => {
         for (let i = 0; i < data.activeSigils.length; ++i) {
           const sig = data.activeSigils[i];
@@ -126,6 +135,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.tether({ id: '00A4', source: 'Zordiarche' }),
       netRegexJa: NetRegexes.tether({ id: '00A4', source: 'ゾディアーク' }),
       netRegexCn: NetRegexes.tether({ id: '00A4', source: '佐迪亚克' }),
+      netRegexKo: NetRegexes.tether({ id: '00A4', source: '조디아크' }),
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsById([matches.targetId]);
         for (const actor of portalActors) {
@@ -185,6 +195,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.tether({ id: '00AB', source: 'Zordiarche' }),
       netRegexJa: NetRegexes.tether({ id: '00AB', source: 'ゾディアーク' }),
       netRegexCn: NetRegexes.tether({ id: '00AB', source: '佐迪亚克' }),
+      netRegexKo: NetRegexes.tether({ id: '00AB', source: '조디아크' }),
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsById([matches.targetId]);
         for (const actor of portalActors) {
@@ -224,6 +235,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.addedCombatant({ name: 'Orbe Des Ténèbres', capture: false }),
       netRegexJa: NetRegexes.addedCombatant({ name: '闇の奔流', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '黑暗奔流', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '어둠의 급류', capture: false }),
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -243,6 +255,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Emblème Secret' }),
       netRegexJa: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '秘紋' }),
       netRegexCn: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '秘纹' }),
+      netRegexKo: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '비문' }),
       run: (data, matches, _output) => {
         if (parseFloat(matches.y) < 100)
           data.activeFrontSigils.push({ x: parseFloat(matches.x), y: parseFloat(matches.y), typeId: matches.id, npcId: matches.sourceId });
@@ -256,6 +269,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Emblème Secret', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '秘紋', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '秘纹', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '비문', capture: false }),
       delaySeconds: 0.2,
       suppressSeconds: 0.5,
       alertText: (data, _matches, output) => {
@@ -329,6 +343,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: 'Zordiarche' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: 'ゾディアーク' }),
       netRegexCn: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: '佐迪亚克' }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: '조디아크' }),
       alertText: (_data, matches, output) => {
         if (matches.id === '67EC') {
           // NE/SW
@@ -360,6 +375,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '63A9', source: 'Zordiarche', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '63A9', source: 'ゾディアーク', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '63A9', source: '佐迪亚克', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '63A9', source: '조디아크', capture: false }),
       alertText: (data, _matches, output) => {
         return data.seenAdikia ? output.adikia2!() : output.adikia1!();
       },
@@ -387,6 +403,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '67F0', source: 'Zordiarche', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '67F0', source: 'ゾディアーク', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '67F0', source: '佐迪亚克', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '67F0', source: '조디아크', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -445,7 +462,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Arcane Sigil': 'emblème secret',
         'Behemoth': 'béhémoth',
@@ -557,6 +573,44 @@ const triggerSet: TriggerSet<Data> = {
         'Styx': '仇恨',
         'Trimorphos Exoterikos': '三重外纹',
         'Triple Esoteric Ray': '三重神秘光线',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Arcane Sigil': '비문',
+        'Behemoth': '베히모스',
+        'Quetzalcoatl': '케찰코아틀',
+        'Roiling Darkness': '어둠의 급류',
+        'Zodiark': '조디아크',
+        'python': '퓌톤',
+      },
+      'replaceText': {
+        'Adikia': '불의',
+        'Algedon': '아픔',
+        'Ania': '핍박',
+        'Apomnemoneumata': '기억들',
+        'Astral Eclipse': '별들의 식',
+        'Astral Flow': '천상의 흐름',
+        'Esoteric Dyad': '내밀한 양면',
+        'Esoteric Sect': '내밀한 종파',
+        'Esoterikos': '에소테리코스',
+        'Explosion': '폭산',
+        'Infernal Stream': '지옥불 흐름',
+        'Infernal Torrent': '지옥불 급류',
+        'Keraunos Eidolon': '허깨비 낙뢰',
+        'Kokytos': '코퀴토스',
+        'Meteoros Eidolon': '허깨비 운석',
+        'Opheos Eidolon': '허깨비 뱀',
+        'Paradeigma': '시범',
+        'Phlegethon': '플레게톤',
+        'Phobos': '포보스',
+        'Styx': '스틱스',
+        'Trimorphos Exoterikos': '삼중 엑소테리코스',
+        'Triple Esoteric Ray': '내밀한 삼중 광선',
+        '(?<!Triple )Esoteric Ray': '내밀한 광선',
+        '(?<!Trimorphos )Exoterikos': '엑소테리코스',
       },
     },
   ],

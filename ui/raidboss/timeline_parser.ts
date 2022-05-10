@@ -3,7 +3,7 @@ import { UnreachableCode } from '../../resources/not_reached';
 import Regexes from '../../resources/regexes';
 import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
 
-import { backCompatParsedSyncReplace, commonReplacement } from './common_replacement';
+import { commonReplacement } from './common_replacement';
 import defaultOptions, { RaidbossOptions, TimelineConfig } from './raidboss_options';
 
 export type TimelineReplacement = {
@@ -139,7 +139,7 @@ export class TimelineParser {
       comment: /^\s*#/,
       commentLine: /#.*$/,
       durationCommand: /(?:[^#]*?\s)?(?<text>duration\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(\s.*)?$/,
-      ignore: /^hideall\s+\"(?<id>[^"]+)\"$/,
+      ignore: /^hideall\s+\"(?<id>[^"]+)\"(?:\s*#.*)?$/,
       jumpCommand: /(?:[^#]*?\s)?(?<text>jump\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
       line: /^(?<text>(?<time>[0-9]+(?:\.[0-9]+)?)\s+"(?<name>.*?)")(\s+(.*))?/,
       popupText:
@@ -415,14 +415,6 @@ export class TimelineParser {
         continue;
       const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
       text = text.replace(regex, repl);
-    }
-
-    // Backwards compat replacements for Korean parsed log lines before 6.x changes.
-    if (replaceLang === 'ko' && replaceKey === 'replaceSync') {
-      for (const [key, repl] of Object.entries(backCompatParsedSyncReplace)) {
-        const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
-        text = text.replace(regex, repl);
-      }
     }
 
     return text;

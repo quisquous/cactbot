@@ -501,8 +501,8 @@ if (typeof document !== 'undefined') {
   document.addEventListener('onOverlayStateUpdate', (e) => {
     const docClassList = document.documentElement.classList;
     if (e.detail.isLocked)
-      docClassList.remove('resizeHandle', 'unlocked');
+      docClassList.remove('resize-handle', 'unlocked');
     else
-      docClassList.add('resizeHandle', 'unlocked');
+      docClassList.add('resize-handle', 'unlocked');
   });
 }

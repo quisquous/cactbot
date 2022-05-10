@@ -82,17 +82,11 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
       jobInfo.innerText =
         `${detail.jobDetail.lilyStacks} (${detail.jobDetail.lilyMilliseconds}) | ${detail.jobDetail.bloodlilyStacks}`;
     } else if (detail.job === 'SMN' && detail.jobDetail) {
-      // TODO: remove if-check after CN/KR patch 6.0 released.
-      if ('bahamutStance' in detail.jobDetail) {
-        jobInfo.innerText =
-          `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.dreadwyrmStacks} | ${detail.jobDetail.bahamutStance} | ${detail.jobDetail.bahamutSummoned} (${detail.jobDetail.stanceMilliseconds}) | ${detail.jobDetail.phoenixReady}`;
-      } else if ('tranceMilliseconds' in detail.jobDetail) {
-        jobInfo.innerText =
-          `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.tranceMilliseconds} | ${detail.jobDetail.attunement} | ${detail.jobDetail.attunementMilliseconds} | ${detail
-            .jobDetail.activePrimal ?? '-'} | [${
-            detail.jobDetail.usableArcanum.join(', ')
-          }] | ${detail.jobDetail.nextSummoned}`;
-      }
+      jobInfo.innerText =
+        `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.tranceMilliseconds} | ${detail.jobDetail.attunement} | ${detail.jobDetail.attunementMilliseconds} | ${detail
+          .jobDetail.activePrimal ?? '-'} | [${
+          detail.jobDetail.usableArcanum.join(', ')
+        }] | ${detail.jobDetail.nextSummoned}`;
     } else if (detail.job === 'SCH' && detail.jobDetail) {
       jobInfo.innerText =
         `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.fairyGauge} | ${detail.jobDetail.fairyStatus} (${detail.jobDetail.fairyMilliseconds})`;

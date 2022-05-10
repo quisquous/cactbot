@@ -13,6 +13,9 @@ export default class Combatant {
   job?: Job;
   jobId?: number;
   level?: number;
+  npcBaseId?: number;
+  ownerId?: number;
+  npcNameId?: number;
 
   constructor(id: string, name: string) {
     this.id = id;

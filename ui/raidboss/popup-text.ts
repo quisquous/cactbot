@@ -889,8 +889,15 @@ export class PopupText {
     // not sure if that's worth the effort
     const currentTime = +new Date();
 
-    if (isWipe(log))
+    if (isWipe(log)) {
+      // isWipe can be called with `/e end` to stop the timeline due to e.g. countdown but no pull
+      // However, `this.inCombat` will already be `false` in that case preventing the timeline from
+      // getting stopped. If we're not inCombat and we've hit the wipe conditions defined by
+      // `isWipe`, just set it to true first and then to false
+      if (!this.inCombat)
+        this.SetInCombat(true);
       this.SetInCombat(false);
+    }
 
     for (const trigger of this.netTriggers) {
       const r = trigger.localNetRegex?.exec(log);

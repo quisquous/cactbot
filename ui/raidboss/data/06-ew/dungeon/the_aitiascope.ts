@@ -18,6 +18,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6448', source: 'Livia', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6448', source: '愛執のリウィア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6448', source: '迷执爱恋的莉维亚', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6448', source: '애집의 리위아', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -28,6 +29,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6442', source: 'Livia', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6442', source: '愛執のリウィア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6442', source: '迷执爱恋的莉维亚', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6442', source: '애집의 리위아', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -48,6 +50,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6443', source: 'Livia', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6443', source: '愛執のリウィア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6443', source: '迷执爱恋的莉维亚', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6443', source: '애집의 리위아', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -68,6 +71,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6449', source: 'Livia' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6449', source: '愛執のリウィア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6449', source: '迷执爱恋的莉维亚' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6449', source: '애집의 리위아' }),
       response: Responses.tankCleave('alert'),
     },
     {
@@ -78,6 +82,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '644D', source: 'Livia' }),
       netRegexJa: NetRegexes.startsUsing({ id: '644D', source: '愛執のリウィア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '644D', source: '迷执爱恋的莉维亚' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '644D', source: '애집의 리위아' }),
       response: Responses.stackMarkerOn(),
     },
     {
@@ -88,6 +93,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6455', source: 'Rhitahtyn', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6455', source: '宿執のリットアティン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6455', source: '强执忠义的里塔提恩', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6455', source: '숙집의 리트아틴', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -98,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6450', source: 'Rhitahtyn', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6450', source: '宿執のリットアティン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6450', source: '强执忠义的里塔提恩', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6450', source: '숙집의 리트아틴', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -118,6 +125,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6452', source: 'Rhitahtyn', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6452', source: '宿執のリットアティン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6452', source: '强执忠义的里塔提恩', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6452', source: '숙집의 리트아틴', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -138,6 +146,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6456', source: 'Rhitahtyn' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6456', source: '宿執のリットアティン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6456', source: '强执忠义的里塔提恩' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6456', source: '숙집의 리트아틴' }),
       response: Responses.tankBuster(),
     },
     {
@@ -148,6 +157,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6B1F', source: 'Regret Enfoui' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6B1F', source: 'サンクン・リグレト' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6B1F', source: '沉沦的后悔' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6B1F', source: '침잠한 후회' }),
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
@@ -159,6 +169,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6464', source: 'Amon' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6464', source: '異執のアモン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6464', source: '邪执外道的亚蒙' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6464', source: '이집의 아몬' }),
       response: Responses.tankBuster(),
     },
     {
@@ -169,6 +180,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '6C6C', source: 'Âme D\'Ysayle', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '6C6C', source: 'イゼルの魂', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '6C6C', source: '伊塞勒的灵魂', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '6C6C', source: '이젤의 영혼', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -189,6 +201,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6465', source: 'Amon', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6465', source: '異執のアモン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6465', source: '邪执外道的亚蒙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6465', source: '이집의 아몬', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -199,6 +212,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6460', source: 'Amon', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6460', source: '異執のアモン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6460', source: '邪执外道的亚蒙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6460', source: '이집의 아몬', capture: false }),
       response: Responses.goRight(),
     },
     {
@@ -209,6 +223,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6461', source: 'Amon', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6461', source: '異執のアモン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6461', source: '邪执外道的亚蒙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6461', source: '이집의 아몬', capture: false }),
       response: Responses.goLeft(),
     },
   ],
@@ -309,7 +324,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Aethershot': 'エーテル弾',
         'Amon the Undying': '異執のアモン',
@@ -392,6 +406,50 @@ const triggerSet: TriggerSet<Data> = {
         'Tartarean Spark': '冥狱火花',
         'Thundaga Forte': '强音暴雷',
         'Vexillatio': '布旗',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Aethershot': '에테르탄',
+        'Amon the Undying': '이집의 아몬',
+        'Livia the Undeterred': '애집의 리위아',
+        'Rhitahtyn the Unshakable': '숙집의 리트아틴',
+        'Sinking Regret': '침잠한 후회',
+        'The Central Observatory': '주 관측실',
+        'The Midnight Downwell': '별바다 난류해역',
+        'The Saltcrystal Strings': '별바다 결정해역',
+        'Ysayle\'s Spirit': '이젤의 영혼',
+      },
+      'replaceText': {
+        'Aglaea Bite': '아글라이아 쌍격',
+        'Aglaea Climb': '아글라이아 상승격',
+        'Aglaea Shot': '아글라이아 사격',
+        'Antistrophe': '응답절',
+        'Anvil of Tartarus': '타르타로스의 모루',
+        'Curtain Call': '대단원의 열광',
+        'Dark Forte': '포르테 다크',
+        'Disparagement': '비방',
+        'Dreams of Ice': '빙결의 환상',
+        'Entr\'acte': '막간의 풍류광',
+        'Epode': '최종절',
+        'Eruption Forte': '포르테 분출',
+        'Frustration': '좌절',
+        'Ignis Amoris': '미움의 불',
+        'Ignis Odi': '사랑의 불',
+        'Left Firaga Forte': '왼쪽 포르테 파이가',
+        'Odi et Amo': '오디 에트 아모',
+        'Right Firaga Forte': '오른쪽 포르테 파이가',
+        'Shield Skewer': '방패 찌르기',
+        'Shrapnel Shell': '유산탄',
+        'Tartarean Impact': '타르타로스의 충격',
+        'Tartarean Spark': '타르타로스의 불꽃',
+        'Thundaga Forte': '포르테 선더가',
+        'Vexillatio': '파견 부대',
+        'Left Firaga Forte(?!/)': '왼쪽 포르테 파이가',
+        '(?<!/)Right Firaga Forte': '오른쪽 포르테 파이가',
+        '(?<!Tartarean )Impact': '충격',
+        '(?<!Anti)Strophe': '시작절',
       },
     },
   ],

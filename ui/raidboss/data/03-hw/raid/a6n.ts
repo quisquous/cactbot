@@ -313,7 +313,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Blaster(?! Mirage)': 'ブラスター',
         'Blaster Mirage': 'ブラスター・ミラージュ',

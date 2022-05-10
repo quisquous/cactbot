@@ -23,6 +23,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'Barnabas', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'バルナバ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: '巴尔纳伯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: '바르나바', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -45,6 +46,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'Barnabas' }),
       netRegexJa: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'バルナバ' }),
       netRegexCn: NetRegexes.headMarker({ id: ['0122', '0123'], target: '巴尔纳伯' }),
+      netRegexKo: NetRegexes.headMarker({ id: ['0122', '0123'], target: '바르나바' }),
       run: (data, matches) => data.barnabasNegative = matches.id === '0122',
     },
     {
@@ -55,6 +57,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'Barnabas', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'バルナバ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: '巴尔纳伯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: '바르나바', capture: false }),
       delaySeconds: 0.5, // Ensure we have markers stored.
       infoText: (data, _matches, output) => {
         if ([data.barnabasNegative, data.playerNegative].includes(undefined))
@@ -95,6 +98,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas' }),
       netRegexJa: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'バルナバ' }),
       netRegexCn: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: '巴尔纳伯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: '바르나바' }),
       run: (data, matches) => data.barnabasNegative = matches.id === '6245',
     },
     {
@@ -105,6 +109,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'バルナバ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: '巴尔纳伯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: '바르나바', capture: false }),
       delaySeconds: 0.5, // Ensure we have markers stored.
       infoText: (data, _matches, output) => {
         if ([data.barnabasNegative, data.playerNegative].includes(undefined))
@@ -142,6 +147,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '62EB', source: 'Barnabas', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '62EB', source: 'バルナバ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '62EB', source: '巴尔纳伯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '62EB', source: '바르나바', capture: false }),
       response: Responses.outOfMelee(),
     },
     {
@@ -158,6 +164,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '62F3', source: 'Lugae', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '62F3', source: 'ルゲイエ', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '62F3', source: '卢格', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '62F3', source: '루게이에', capture: false }),
       suppressSeconds: 10,
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
@@ -179,6 +186,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '62F5', source: 'Lugae', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '62F5', source: 'ルゲイエ', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '62F5', source: '卢格', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '62F5', source: '루게이에', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
@@ -199,6 +207,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '62FA', source: 'Lugae', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '62FA', source: 'ルゲイエ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '62FA', source: '卢格', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '62FA', source: '루게이에', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -209,6 +218,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '62F8', source: 'Lugae', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '62F8', source: 'ルゲイエ', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '62F8', source: '卢格', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '62F8', source: '루게이에', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
@@ -230,6 +240,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '62FE', source: 'Anima', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '62FE', source: 'アニマ', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '62FE', source: '阿尼玛', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '62FE', source: '아니마', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
@@ -249,6 +260,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6300', source: 'Anima', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6300', source: 'アニマ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6300', source: '阿尼玛', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6300', source: '아니마', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -260,6 +272,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6301', source: 'Méga Graviton' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6301', source: 'メガグラビトン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6301', source: '百万重力' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6301', source: '메가 그래비톤' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
@@ -280,6 +293,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '6303', source: 'Anima', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '6303', source: 'アニマ', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '6303', source: '阿尼玛', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '6303', source: '아니마', capture: false }),
       alertText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
@@ -500,6 +514,54 @@ const triggerSet: TriggerSet<Data> = {
         'Surface Missile': '对地导弹',
         'Thermal Suppression': '火力压制',
         'Thundercall': '招雷',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Anima': '아니마',
+        'Barnabas': '바르나바',
+        'Iron Nail': '아니마의 발톱',
+        'Iron Womb': '철의 태내',
+        'Lugae': '루게이에',
+        'Magitek Chakram': '마도 차크람',
+        'Magitek Explosive': '마도 폭탄',
+        'Magitek Servicing': '마도 정비고',
+        'Martial Conditioning': '무술 훈련장',
+        'Mega-graviton': '메가 그래비톤',
+        'Thunderball': '번개 구체',
+      },
+      'replaceText': {
+        'Aetherial Pull': '흡인',
+        'Boundless Pain': '무한한 고통',
+        'Charnel Claw': '무덤의 발톱',
+        'Coffin Scratch': '관짝 할퀴기',
+        'Downpour': '물고문',
+        'Dynamic Pound': '초전자 그라운드 펀치',
+        'Dynamic Scrapline': '초전자 롤링 래리어트',
+        'Electromagnetic Release': '전자기 방사',
+        'Erupting Pain': '고통의 불기둥',
+        'Explosion': '폭발',
+        'Graviton Spark': '그래비톤 스파크',
+        'Ground and Pound': '그라운드 펀치',
+        'Imperatum': '임페라토르',
+        'Lunar Nail': '기괴한 말뚝',
+        'Magitek Chakram': '마도 차크람',
+        'Magitek Explosive': '마도 폭탄',
+        'Magitek Missile': '마도 미사일',
+        'Magitek Ray': '마도 레이저',
+        'Mega Graviton': '메가 그래비톤',
+        'Mighty Blow': '격돌',
+        'Obliviating Claw': '망각의 발톱',
+        'Oblivion': '혼돈의 차원',
+        'Pater Patriae': '파테르 파트리아이',
+        'Phantom Pain': '환상통',
+        'Rolling Scrapline': '롤링 래리어트',
+        'Shocking Force': '고전압 방전',
+        'Surface Missile': '대지 미사일',
+        'Thermal Suppression': '화력 제압',
+        'Thundercall': '초뢰',
+        'Shock(?!ing)': '방전',
       },
     },
   ],

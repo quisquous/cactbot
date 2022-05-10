@@ -12,7 +12,7 @@ namespace Cactbot {
     public CactbotEventSourceConfig() {
     }
 
-    public static CactbotEventSourceConfig LoadConfig(IPluginConfig pluginConfig, RainbowMage.OverlayPlugin.ILogger logger) {
+    public static CactbotEventSourceConfig LoadConfig(IPluginConfig pluginConfig, ILogger logger) {
       var result = new CactbotEventSourceConfig();
 
       if (pluginConfig.EventSourceConfigs.ContainsKey("CactbotESConfig")) {
@@ -43,7 +43,7 @@ namespace Cactbot {
     }
 
     public Dictionary<string, JToken> OverlayData = null;
-    
+
     public DateTime LastUpdateCheck;
 
     [JsonIgnore]
@@ -60,7 +60,7 @@ namespace Cactbot {
         return dir.ToString();
       }
     }
-    
+
     [JsonIgnore]
     public string UserConfigFile {
       get {

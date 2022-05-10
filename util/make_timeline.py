@@ -426,7 +426,9 @@ if __name__ == "__main__":
 
     # Report arguments
     parser.add_argument(
-        "-k", "--key", help="The FFLogs API key to use, from https://www.fflogs.com/profile",
+        "-k",
+        "--key",
+        help="The FFLogs API key to use, from https://www.fflogs.com/profile",
     )
     parser.add_argument(
         "-rf",
@@ -507,11 +509,11 @@ if __name__ == "__main__":
 
     # Check dependent args
     if args.search_fights and not args.file:
-        raise parser.error("Automatic encounter listing requires an input file")
+        parser.error("Automatic encounter listing requires an input file")
     if args.file and not ((args.start and args.end) or args.search_fights):
-        raise parser.error("Log file input requires start and end timestamps")
+        parser.error("Log file input requires start and end timestamps")
     if args.report and not args.key:
-        raise parser.error(
+        parser.error(
             "FFlogs parsing requires an API key. Visit https://www.fflogs.com/profile and use the V1 Client Key"
         )
 

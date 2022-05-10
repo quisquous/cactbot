@@ -698,7 +698,7 @@ const triggerSet: TriggerSet<Data> = {
         'Archaeodemon': 'アルケオデーモン',
         'Belias, The Gigas': '魔人ベリアス',
         'Construct 7': '労働七号',
-        'Dark Rain': '暗雲の雨水',
+        'Dark Rain': '暗黒の雨水',
         'Echoes from Time\'s Garden': 'はるかなる時の庭',
         'Famfrit, The Darkening Cloud': '暗黒の雲ファムフリート',
         '(?<! )Gigas': '魔人兵',

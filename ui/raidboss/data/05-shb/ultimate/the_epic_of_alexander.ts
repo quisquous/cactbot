@@ -3173,6 +3173,7 @@ const triggerSet: TriggerSet<Data> = {
         'Living Liquid': 'リビングリキッド',
         'Perfect Alexander': 'パーフェクト・アレキサンダー',
         'Steam Chakram': 'スチームチャクラム',
+        'Judgment Crystal': '審判の結晶',
       },
       'replaceText': {
         '--alex untargetable--': '--アレキサンダー タゲ不可--',

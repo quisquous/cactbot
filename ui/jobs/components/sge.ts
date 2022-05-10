@@ -16,7 +16,6 @@ export class SGEComponent extends BaseComponent {
   phlegma: TimerBox;
   rhizomata: TimerBox;
   lucidDream: TimerBox;
-  lastPhlegmaTimestamp?: string;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -84,11 +83,8 @@ export class SGEComponent extends BaseComponent {
       case kAbility.Phlegma:
       case kAbility.Phlegma2:
       case kAbility.Phlegma3:
-        if (matches.timestamp !== this.lastPhlegmaTimestamp) {
-          // TODO: use targetIndex instead.
-          // Avoid multiple call in AOE
+        if (matches.targetIndex === '0') { // Avoid multiple call in AOE
           this.phlegma.duration = 45 + this.phlegma.value;
-          this.lastPhlegmaTimestamp = matches.timestamp;
         }
         break;
       case kAbility.Rhizomata:

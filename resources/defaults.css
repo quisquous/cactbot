@@ -36,10 +36,10 @@ body {
 :lang(zh-CN) .text {
   font-family:
     "黑体",
-    "SimHei",
+    SimHei,
     "微软雅黑",
     "Microsoft Yahei UI",
-    "Lato",
+    Lato,
     Arial,
     Helvetica,
     sans-serif;
@@ -49,14 +49,14 @@ body {
   display: none !important;
 }
 
-.resizeHandle {
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4zjOaXUAAAAGZJREFUOE+ljEEOACEIA92f+f9XaQ822EUgajJJC4xtvu+BPnEXFSBff7Bk5N8yw8pgW2aojLwdRHhy+YOTjMzhiUgGDB6ZjMyiVGTAgeV0rB1wqMusL7iIjrVb0mPtypMMGC7k1geoEhcn0OEM6wAAAABJRU5ErkJggg==);
+.resize-handle {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4zjOaXUAAAAGZJREFUOE+ljEEOACEIA92f+f9XaQ822EUgajJJC4xtvu+BPnEXFSBff7Bk5N8yw8pgW2aojLwdRHhy+YOTjMzhiUgGDB6ZjMyiVGTAgeV0rB1wqMusL7iIjrVb0mPtypMMGC7k1geoEhcn0OEM6wAAAABJRU5ErkJggg==");
   background-position: bottom right;
   background-repeat: no-repeat;
   box-sizing: border-box;
 
   /* not fully transparent to make it easier to move */
-  background-color: rgba(0, 0, 150, 0.2);
+  background-color: rgb(0 0 150 / 20%);
 }
 
 .unlocked {

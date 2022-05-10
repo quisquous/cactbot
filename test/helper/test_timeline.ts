@@ -290,7 +290,7 @@ const testTimelineFiles = (timelineFiles: string[]): void => {
                     break;
                   }
                 }
-                assert(
+                assert.isTrue(
                   matched,
                   `${triggersFile}:locale ${locale}:no translation for ${testCase.type} '${item}'`,
                 );
@@ -330,18 +330,14 @@ const testTimelineFiles = (timelineFiles: string[]): void => {
         it('should have proper sealed sync', () => {
           for (const sync of timeline.syncStarts) {
             const regex = sync.regex.source;
-            // FIXME: This test will currently accept log lines with or without a second colon,
-            // as "0839:" or "0839::".
-            // Once we have completely converted things for 6.0,
-            // we should come back here and make the doubled colon non-optional.
             if (regex.includes('is no longer sealed')) {
-              assert(
-                /00:0839::?\.\*is no longer sealed/.exec(regex),
+              assert.isArray(
+                /00:0839::\.\*is no longer sealed/.exec(regex),
                 `${timelineFile}:${sync.lineNumber} 'is no longer sealed' sync must be exactly '00:0839::.*is no longer sealed'`,
               );
             } else if (regex.includes('will be sealed')) {
-              assert(
-                /00:0839::?.*will be sealed/.exec(regex),
+              assert.isArray(
+                /00:0839::.*will be sealed/.exec(regex),
                 `${timelineFile}:${sync.lineNumber} 'will be sealed' sync must be preceded by '00:0839::'`,
               );
             }

@@ -5,6 +5,7 @@ import Combatant from './Combatant';
 import CombatantJobSearch from './CombatantJobSearch';
 import CombatantState from './CombatantState';
 import LineEvent, {
+  isLineEvent0x03,
   isLineEventAbility,
   isLineEventJobLevel,
   isLineEventSource,
@@ -88,6 +89,10 @@ export default class CombatantTracker {
 
   addCombatantFromSourceLine(line: LineEventSource, extractedState: Partial<CombatantState>): void {
     const combatant = this.combatants[line.id] ?? this.initCombatant(line.id, line.name);
+
+    if (combatant.states[this.firstTimestamp])
+      return;
+
     const initState: Partial<CombatantState> = combatant.states[this.firstTimestamp] ?? {};
 
     initState.posX = initState.posX ?? extractedState.posX;
@@ -110,29 +115,38 @@ export default class CombatantTracker {
         combatant.job = CombatantJobSearch.getJob(line.abilityId);
     }
 
-    if (!combatant.states[this.firstTimestamp]) {
-      combatant.pushState(
-        this.firstTimestamp,
-        new CombatantState(
-          Number(initState.posX),
-          Number(initState.posY),
-          Number(initState.posZ),
-          Number(initState.heading),
-          initState.targetable ?? true,
-          Number(initState.hp),
-          Number(initState.maxHp),
-          Number(initState.mp),
-          Number(initState.maxMp),
-        ),
-      );
-    } else {
-      combatant.pushPartialState(this.firstTimestamp, initState);
+    if (isLineEvent0x03(line)) {
+      if (line.npcBaseId !== undefined)
+        combatant.npcBaseId = parseInt(line.npcBaseId);
+      if (line.npcNameId !== undefined)
+        combatant.npcNameId = parseInt(line.npcNameId);
+      if (line.ownerId !== undefined)
+        combatant.ownerId = parseInt(line.ownerId);
     }
+
+    combatant.pushState(
+      this.firstTimestamp,
+      new CombatantState(
+        Number(initState.posX),
+        Number(initState.posY),
+        Number(initState.posZ),
+        Number(initState.heading),
+        initState.targetable ?? true,
+        Number(initState.hp),
+        Number(initState.maxHp),
+        Number(initState.mp),
+        Number(initState.maxMp),
+      ),
+    );
   }
 
   addCombatantFromTargetLine(line: LineEventTarget, extractedState: Partial<CombatantState>): void {
     const combatant = this.combatants[line.targetId] ??
       this.initCombatant(line.targetId, line.targetName);
+
+    if (combatant.states[this.firstTimestamp])
+      return;
+
     const initState: Partial<CombatantState> = combatant.states[this.firstTimestamp] ?? {};
 
     initState.posX = initState.posX ?? extractedState.posX;
@@ -145,46 +159,42 @@ export default class CombatantTracker {
     initState.maxMp = initState.maxMp ?? extractedState.maxMp;
     initState.targetable = initState.targetable ?? extractedState.targetable ?? true;
 
-    if (!combatant.states[this.firstTimestamp]) {
-      combatant.pushState(
-        this.firstTimestamp,
-        new CombatantState(
-          Number(initState.posX),
-          Number(initState.posY),
-          Number(initState.posZ),
-          Number(initState.heading),
-          initState.targetable ?? true,
-          Number(initState.hp),
-          Number(initState.maxHp),
-          Number(initState.mp),
-          Number(initState.maxMp),
-        ),
-      );
-    } else {
-      combatant.pushPartialState(this.firstTimestamp, initState);
-    }
+    combatant.pushState(
+      this.firstTimestamp,
+      new CombatantState(
+        Number(initState.posX),
+        Number(initState.posY),
+        Number(initState.posZ),
+        Number(initState.heading),
+        initState.targetable ?? true,
+        Number(initState.hp),
+        Number(initState.maxHp),
+        Number(initState.mp),
+        Number(initState.maxMp),
+      ),
+    );
   }
 
   extractStateFromLine(line: LineEventSource): Partial<CombatantState> {
     const state: Partial<CombatantState> = {};
 
-    if (line.x !== undefined)
+    if (line.x !== undefined && !isNaN(line.x))
       state.posX = line.x;
-    if (line.y !== undefined)
+    if (line.y !== undefined && !isNaN(line.y))
       state.posY = line.y;
-    if (line.z !== undefined)
+    if (line.z !== undefined && !isNaN(line.z))
       state.posZ = line.z;
-    if (line.heading !== undefined)
+    if (line.heading !== undefined && !isNaN(line.heading))
       state.heading = line.heading;
     if (line.targetable !== undefined)
       state.targetable = line.targetable;
-    if (line.hp !== undefined)
+    if (line.hp !== undefined && !isNaN(line.hp))
       state.hp = line.hp;
-    if (line.maxHp !== undefined)
+    if (line.maxHp !== undefined && !isNaN(line.maxHp))
       state.maxHp = line.maxHp;
-    if (line.mp !== undefined)
+    if (line.mp !== undefined && !isNaN(line.mp))
       state.mp = line.mp;
-    if (line.maxMp !== undefined)
+    if (line.maxMp !== undefined && !isNaN(line.maxMp))
       state.maxMp = line.maxMp;
 
     if (line.decEvent === 4)
@@ -196,21 +206,21 @@ export default class CombatantTracker {
   extractStateFromTargetLine(line: LineEventTarget): Partial<CombatantState> {
     const state: Partial<CombatantState> = {};
 
-    if (line.targetX !== undefined)
+    if (line.targetX !== undefined && !isNaN(line.targetX))
       state.posX = line.targetX;
-    if (line.targetY !== undefined)
+    if (line.targetY !== undefined && !isNaN(line.targetY))
       state.posY = line.targetY;
-    if (line.targetZ !== undefined)
+    if (line.targetZ !== undefined && !isNaN(line.targetZ))
       state.posZ = line.targetZ;
-    if (line.targetHeading !== undefined)
+    if (line.targetHeading !== undefined && !isNaN(line.targetHeading))
       state.heading = line.targetHeading;
-    if (line.targetHp !== undefined)
+    if (line.targetHp !== undefined && !isNaN(line.targetHp))
       state.hp = line.targetHp;
-    if (line.targetMaxHp !== undefined)
+    if (line.targetMaxHp !== undefined && !isNaN(line.targetMaxHp))
       state.maxHp = line.targetMaxHp;
-    if (line.targetMp !== undefined)
+    if (line.targetMp !== undefined && !isNaN(line.targetMp))
       state.mp = line.targetMp;
-    if (line.targetMaxMp !== undefined)
+    if (line.targetMaxMp !== undefined && !isNaN(line.targetMaxMp))
       state.maxMp = line.targetMaxMp;
 
     return state;

@@ -1026,7 +1026,7 @@ const triggerSet: TriggerSet<Data> = {
         'Albeleo\'s Monstrosity': 'アルビレオズ・ビースト',
         'Albeleo\'s Hrodvitnir': 'アルビレオズ・フローズヴィトニル',
         'Electric Charge': '雷気',
-        '7 minutes have elapsed since your last activity..*?': '操作がない状態になってから7分が経過しました。.*?',
+        '7 minutes have elapsed since your last activity.': '操作がない状態になってから7分が経過しました。',
         '4Th Legion Helldiver': 'IVレギオン・ヘルダイバー',
         'Adrammelech': 'アドラメレク',
         'Bladesmeet': '剣たちの大広間',
