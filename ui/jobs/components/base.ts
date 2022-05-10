@@ -2,7 +2,7 @@ import PartyTracker from '../../../resources/party';
 import { JobDetail } from '../../../types/event';
 import { Bars } from '../bars';
 import { ComboTracker } from '../combo_tracker';
-import { kComboDelay, kComboDelay5x } from '../constants';
+import { kComboDelay } from '../constants';
 import { JobsEventEmitter, PartialFieldMatches } from '../event_emitter';
 import { FfxivRegion } from '../jobs';
 import { JobsOptions } from '../jobs_options';
@@ -45,7 +45,7 @@ export class BaseComponent implements ComponentInterface {
     this.partyTracker = o.partyTracker;
     this.player = o.player;
     this.ffxivRegion = o.ffxivRegion;
-    this.comboDuration = o.ffxivRegion === 'ko' ? kComboDelay5x : kComboDelay;
+    this.comboDuration = kComboDelay;
 
     this.inCombat = false;
 
