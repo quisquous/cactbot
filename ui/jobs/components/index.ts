@@ -230,6 +230,12 @@ export class ComponentManager {
           this._updateFoodBuff();
         }
       });
+      this.player.onYouLoseEffect((id) => {
+        if (id === EffectId.WellFed) {
+          this.foodBuffExpiresTimeMs = Date.now();
+          this._updateFoodBuff();
+        }
+      });
       // As you cannot change jobs in combat, we can assume that
       // it is always false here.
       this.bars._updateProcBoxNotifyState(false);
