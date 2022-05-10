@@ -157,7 +157,7 @@ export class ComponentManager {
     this.ee.on('party', (party) => this.partyTracker.onPartyChanged({ party }));
 
     this.player.on('level', (level, prevLevel) => {
-      if (level - prevLevel)
+      if (level !== prevLevel)
         this._shouldShowFoodBuff();
     });
 
