@@ -3,7 +3,10 @@ import path from 'path';
 import Regexes from '../resources/regexes';
 import NetRegexes from '../resources/netregexes';
 import { TimelineParser } from '../ui/raidboss/timeline_parser';
-import { commonReplacement, partialCommonTimelineReplacementKeys } from '../ui/raidboss/common_replacement';
+import {
+  commonReplacement,
+  partialCommonTimelineReplacementKeys,
+} from '../ui/raidboss/common_replacement';
 
 // Set a global flag to mark regexes for NetRegexes.doesNetRegexNeedTranslation.
 // See details in that function for more information.
