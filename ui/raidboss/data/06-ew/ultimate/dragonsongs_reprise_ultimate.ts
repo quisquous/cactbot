@@ -178,7 +178,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '62DA', source: '圣骑士格里诺', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '62DA', source: '성기사 그리노', capture: false }),
       alertText: (data, _matches, output) => {
-        return data.seenEmptyDimension ? output.in!() : output.inAndTether!();
+        return data.phase !== 'doorboss' || data.seenEmptyDimension ? output.in!() : output.inAndTether!();
       },
       run: (data) => data.seenEmptyDimension = true,
       outputStrings: {
