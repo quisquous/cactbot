@@ -23,6 +23,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6DA2', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6DA2', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6DA2', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6DA2', source: '에리크토니오스', capture: false }),
       response: Responses.goLeft(),
     },
     {
@@ -34,6 +35,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6DA3', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6DA3', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6DA3', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6DA3', source: '에리크토니오스', capture: false }),
       response: Responses.goRight(),
     },
     {
@@ -44,6 +46,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '65F4', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65F4', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '65F4', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '65F4', source: '에리크토니오스', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -54,6 +57,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '65E9', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65E9', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '65E9', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '65E9', source: '에리크토니오스', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -64,6 +68,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '65EA', source: 'Érichthonios', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '65EA', source: 'エリクトニオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '65EA', source: '埃里克特翁尼亚斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '65EA', source: '에리크토니오스', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -114,6 +119,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '65F3', source: 'Érichthonios' }),
       netRegexJa: NetRegexes.startsUsing({ id: '65F3', source: 'エリクトニオス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '65F3', source: '埃里克特翁尼亚斯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '65F3', source: '에리크토니오스' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
@@ -256,6 +262,13 @@ const triggerSet: TriggerSet<Data> = {
         'Slam Shut': '监狱封闭',
         'True Holy': '纯正神圣',
         'Warder\'s Wrath': '魔锁乱流',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Erichthonios': '에리크토니오스',
       },
     },
   ],

@@ -21,6 +21,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6238', source: 'Pillard De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6238', source: 'ターミナス・スナッチャー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6238', source: '终末的抢夺', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6238', source: '종말의 강탈자', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -31,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6231', source: 'Pillard De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6231', source: 'ターミナス・スナッチャー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6231', source: '终末的抢夺', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6231', source: '종말의 강탈자', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -51,6 +53,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6235', source: 'Pillard De L\'Apocalypse' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6235', source: 'ターミナス・スナッチャー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6235', source: '终末的抢夺' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6235', source: '종말의 강탈자' }),
       response: Responses.tankBuster(),
     },
     {
@@ -61,6 +64,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6233', source: 'Pillard De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6233', source: 'ターミナス・スナッチャー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6233', source: '终末的抢夺', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6233', source: '종말의 강탈자', capture: false }),
       response: Responses.goLeft(),
     },
     {
@@ -71,6 +75,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6234', source: 'Pillard De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6234', source: 'ターミナス・スナッチャー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6234', source: '终末的抢夺', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6234', source: '종말의 강탈자', capture: false }),
       response: Responses.goRight(),
     },
     {
@@ -81,6 +86,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6236', source: 'Pillard De L\'Apocalypse' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6236', source: 'ターミナス・スナッチャー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6236', source: '终末的抢夺' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6236', source: '종말의 강탈자' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -92,6 +98,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6241', source: 'Destructeur De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6241', source: 'ターミナス・レッカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6241', source: '终末的破坏', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6241', source: '종말의 파괴자', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -102,6 +109,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6242', source: 'Destructeur De L\'Apocalypse' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6242', source: 'ターミナス・レッカー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6242', source: '终末的破坏' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6242', source: '종말의 파괴자' }),
       response: Responses.tankBuster(),
     },
     {
@@ -112,6 +120,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '623C', source: 'Destructeur De L\'Apocalypse' }),
       netRegexJa: NetRegexes.startsUsing({ id: '623C', source: 'ターミナス・レッカー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '623C', source: '终末的破坏' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '623C', source: '종말의 파괴자' }),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),
     },
@@ -123,6 +132,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '623B', source: 'Destructeur De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '623B', source: 'ターミナス・レッカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '623B', source: '终末的破坏', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '623B', source: '종말의 파괴자', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -143,6 +153,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6C21', source: 'Picoreur De L\'Apocalypse', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6C21', source: 'ターミナス・ツイッチャー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6C21', source: '终末的抽搐', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6C21', source: '종말의 경련자', capture: false }),
       response: Responses.lookAway(),
     },
     {
@@ -153,6 +164,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6252', source: 'Svarbhanu', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6252', source: 'スヴァーバーヌ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6252', source: '斯伐婆奴', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6252', source: '스바르바누', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -163,6 +175,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6250', source: 'Svarbhanu' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6250', source: 'スヴァーバーヌ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6250', source: '斯伐婆奴' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6250', source: '스바르바누' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -174,6 +187,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6253', source: 'Svarbhanu' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6253', source: 'スヴァーバーヌ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6253', source: '斯伐婆奴' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6253', source: '스바르바누' }),
       response: Responses.tankBuster(),
     },
     {
@@ -184,6 +198,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6248', source: 'Svarbhanu', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6248', source: 'スヴァーバーヌ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6248', source: '斯伐婆奴', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6248', source: '스바르바누', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -353,6 +368,42 @@ const triggerSet: TriggerSet<Data> = {
         'Wallow': '呜咽',
         'What Is Left': '污秽的左手',
         'What Is Right': '污秽的右手',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Devatagara': '데바타 사원',
+        'Insight': '이장 저택',
+        'Svarbhanu': '스바르바누',
+        'Terminus Snatcher': '종말의 강탈자',
+        'Terminus Twitcher': '종말의 경련자',
+        'Terminus Wrecker': '종말의 파괴자',
+        'Trnakiya': '숲속 공터',
+      },
+      'replaceText': {
+        'Aether Siphon': '속성 흡수',
+        'Aether Spray': '속성 방출',
+        'Aetherial Disruption': '지맥 폭주',
+        'Chaotic Pulse': '지맥 활성',
+        'Chaotic Undercurrent': '지맥 난류',
+        'Cosmic Kiss': '착탄',
+        'Crumbling Sky': '유성 소환',
+        'Flames of Decay': '절망의 불꽃',
+        'Gnashing of Teeth': '물기',
+        'Last Gasp': '슬픈 호소',
+        'Lost Hope': '망연자실한 외침',
+        'Meaningless Destruction': '절망의 광란',
+        'Mouth Off': '유구무행',
+        'Note of Despair': '절망의 외침',
+        'Poison Heart': '독액 덩어리',
+        'Total Wreck': '때려부수기',
+        'Unholy Water': '물감옥',
+        'Vitriol': '유언실행',
+        'Wallow': '오열',
+        'What Is Left': '부정한 왼손',
+        'What Is Right': '부정한 오른손',
       },
     },
   ],
