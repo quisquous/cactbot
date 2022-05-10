@@ -380,7 +380,7 @@ export class ComponentManager {
 
   private _canShowFoodBuff(): boolean {
     return (
-      Boolean(this.options.HideWellFedAboveSeconds) &&
+      this.options.HideWellFedAboveSeconds !== 0 &&
       !this.component?.inCombat &&
       this.contentType !== undefined &&
       kWellFedContentTypes.includes(this.contentType)
