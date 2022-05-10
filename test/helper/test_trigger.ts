@@ -32,10 +32,6 @@ import {
   partialCommonTriggerReplacementKeys,
 } from '../../ui/raidboss/common_replacement';
 
-// Set a global flag to mark regexes for NetRegexes.doesNetRegexNeedTranslation.
-// See details in that function for more information.
-NetRegexes.setFlagTranslationsNeeded(true);
-
 const { assert } = chai;
 
 const regexLanguages: (keyof LooseTrigger)[] = [
@@ -74,6 +70,14 @@ const testTriggerFile = (file: string) => {
     // Dynamic imports don't have a type, so add type assertion.
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     triggerSet = (await import(importPath)).default as LooseTriggerSet;
+
+    // Set a global flag to mark regexes for NetRegexes.doesNetRegexNeedTranslation.
+    // See details in that function for more information.
+    NetRegexes.setFlagTranslationsNeeded(true);
+  });
+
+  after(() => {
+    NetRegexes.setFlagTranslationsNeeded(false);
   });
 
   // Dummy test so that failures in before show up with better text.
