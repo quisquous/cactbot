@@ -8,7 +8,7 @@ import { LooseTriggerSet } from '../../types/trigger';
 import {
   CommonReplacement,
   commonReplacement,
-  partialCommonReplacementKeys,
+  partialCommonTimelineReplacementKeys,
 } from '../../ui/raidboss/common_replacement';
 import { TimelineParser, TimelineReplacement } from '../../ui/raidboss/timeline_parser';
 
@@ -96,7 +96,7 @@ const getTestCases = (
   for (const testCase of testCases) {
     const common = commonReplacement[testCase.type];
     for (const [key, localeText] of Object.entries(common)) {
-      if (skipPartialCommon && partialCommonReplacementKeys.includes(key))
+      if (skipPartialCommon && partialCommonTimelineReplacementKeys.includes(key))
         continue;
       const regexKey = Regexes.parse(key);
       const transText = localeText[trans.locale];
@@ -250,7 +250,7 @@ const testTimelineFiles = (timelineFiles: string[]): void => {
             }
           }
         });
-        it('should not be missing translations', () => {
+        it('should not be missing timeline translations', () => {
           const translations = triggerSet.timelineReplace;
           if (!translations)
             return;

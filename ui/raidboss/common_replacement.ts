@@ -436,8 +436,9 @@ export const commonReplacement: CommonReplacement = {
 // Keys into commonReplacement objects that represent "partial" translations,
 // in the sense that even if it applies, there still needs to be another
 // translation for it to be complete.  These keys should be exactly the same
-// as the keys from the commonReplacement block above.
-export const partialCommonReplacementKeys = [
+// as the keys from the commonReplacement block above.  These are used for
+// timeline regexes only.
+export const partialCommonTimelineReplacementKeys = [
   // Because the zone name needs to be translated here, this is partial.
   syncKeys.seal,
   // Directions
@@ -453,4 +454,10 @@ export const partialCommonReplacementKeys = [
   textKeys.Tank,
   textKeys.Healer,
   textKeys.DPS,
+];
+
+// Same as the timeline version above, but only for trigger regexes.
+export const partialCommonTriggerReplacementKeys = [
+  // Because the zone name needs to be translated here, this is partial.
+  syncKeys.seal,
 ];
