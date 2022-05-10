@@ -7,6 +7,7 @@
 02-arr/dungeon/aurum_vale.ts
 02-arr/dungeon/brayfloxs_longstop.ts
 02-arr/dungeon/cutters_cry.ts
+02-arr/dungeon/halatali_hard.ts
 02-arr/dungeon/haukke_manor_hard.ts
 02-arr/dungeon/haukke_manor.ts
 02-arr/dungeon/sastasha_hard.ts
@@ -18,7 +19,7 @@
 02-arr/dungeon/the_stone_vigil.ts
 02-arr/dungeon/the_sunken_temple_of_quarn_hard.ts
 02-arr/dungeon/the_sunken_temple_of_quarn.ts
-02-arr/dungeon/the_tam_tara_depotcraft_hard.ts
+02-arr/dungeon/the_tam_tara_depocraft_hard.ts
 02-arr/dungeon/the_wanderers_palace_hard.ts
 02-arr/raid/t1.ts
 02-arr/raid/t10.ts
