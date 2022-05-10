@@ -518,7 +518,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Anima': '아니마',
         'Barnabas': '바르나바',

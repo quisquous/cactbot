@@ -561,7 +561,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'A-4 Command': '지휘소-A4',
         'A-4 Conquest': '점령지-A4',

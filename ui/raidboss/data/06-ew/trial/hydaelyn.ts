@@ -460,7 +460,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Echo of Hydaelyn': '하이델린 투영체',
         'Mystic Refulgence': '환상빛',

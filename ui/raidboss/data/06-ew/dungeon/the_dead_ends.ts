@@ -478,7 +478,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Caustic Grebuloff': '부식된 그레불로프',
         'Golden Wings': '황금나비',

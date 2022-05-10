@@ -410,7 +410,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Aethershot': '에테르탄',
         'Amon the Undying': '이집의 아몬',

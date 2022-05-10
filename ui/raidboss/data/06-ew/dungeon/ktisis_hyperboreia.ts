@@ -316,7 +316,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Concept Review': '창조 생물 평가실',
         'Hermes': '헤르메스',

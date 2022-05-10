@@ -203,7 +203,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Arcane Sigil': '비문',
         'Behemoth': '베히모스',

@@ -416,7 +416,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Excavation Bomb': '채굴 폭탄',
         'Frameworker': '프레임워커',

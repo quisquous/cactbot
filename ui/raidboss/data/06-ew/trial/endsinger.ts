@@ -518,7 +518,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Doomed Stars': '멸망한 별',
         'Kakodaimon': '카코다이몬',
