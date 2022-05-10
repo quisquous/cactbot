@@ -4,7 +4,7 @@ import readline from 'readline';
 import NetRegexes from '../../resources/netregexes';
 import { NetMatches } from '../../types/net_matches';
 
-import { LogUtilArgParse, TimelineArgs as TLArgs } from './arg_parser';
+import { LogUtilArgParse, TimelineArgs } from './arg_parser';
 import { EncounterCollector, TLFuncs } from './encounter_tools';
 
 type TimelineEntry = {
@@ -18,6 +18,19 @@ type TimelineEntry = {
   window?: { beforeWindow: number; afterWindow: number };
   zoneSeal?: { seal: string; code: '0839' };
   lineComment?: string;
+};
+
+type ExtendedArgs = TimelineArgs & {
+  [index: string]: string | string[] | number | boolean | undefined;
+  'output-file'?: string;
+  'start'?: string;
+  'end'?: string;
+  'ignore-id'?: string[];
+  'ignore-ability'?: string[];
+  'ignore-combatant'?: string[];
+  'only-combatant'?: string[];
+  'phase'?: string;
+  'include-targetable'?: string[];
 };
 
 // Some NPCs can be picked up by our entry processor.
@@ -128,7 +141,7 @@ timelineParse.parser.addArgument(['--include-targetable', '-it'], {
   constant: [],
   help: 'Set this flag to include "34" log lines when making the timeline',
 });
-const args = timelineParse.args;
+const args = timelineParse.parser.parseArgs() as ExtendedArgs;
 
 const printHelpAndExit = (errString: string): void => {
   console.error(errString);
