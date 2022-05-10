@@ -69,6 +69,7 @@ Options.Triggers.push({
     return {
       phase: 'doorboss',
       firstAdelphelJump: true,
+      thordanMeteorMarkers: [],
       diveFromGraceNum: {},
       diveFromGraceHasArrow: { 1: false, 2: false, 3: false },
     };
@@ -720,29 +721,39 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker(),
       condition: (data) => data.phase === 'thordan',
-      suppressSeconds: 1,
       infoText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
         if (id !== headmarkers.meteor)
           return;
-        if (data.party.isDPS(matches.target))
-          return output.dpsMeteors();
-        return output.tankHealerMeteors();
+        data.thordanMeteorMarkers.push(matches.target);
+        const [p1, p2] = data.thordanMeteorMarkers.sort();
+        if (data.thordanMeteorMarkers.length !== 2 || p1 === undefined || p2 === undefined)
+          return;
+        const p1dps = data.party.isDPS(p1);
+        const p2dps = data.party.isDPS(p2);
+        if (p1dps && p2dps)
+          return output.dpsMeteors({ player1: data.ShortName(p1), player2: data.ShortName(p2) });
+        if (!p1dps && !p2dps)
+          return output.tankHealerMeteors({ player1: data.ShortName(p1), player2: data.ShortName(p2) });
+        return output.unknownMeteors({ player1: data.ShortName(p1), player2: data.ShortName(p2) });
       },
       outputStrings: {
         tankHealerMeteors: {
-          en: 'Tank/Healer Meteors',
-          de: 'Tank/Heiler Meteore',
-          fr: 'Météores Tank/Healer',
-          ja: 'タンヒラ 隕石',
-          ko: '탱/힐 메테오',
+          en: 'Tank/Healer Meteors (${player1}, ${player2})',
+          de: 'Tank/Heiler Meteore (${player1}, ${player2})',
+          fr: 'Météores Tank/Healer (${player1}, ${player2})',
+          ja: 'タンヒラ 隕石 (${player1}, ${player2})',
+          ko: '탱/힐 메테오 (${player1}, ${player2})', // FIXME
         },
         dpsMeteors: {
-          en: 'DPS Meteors',
-          de: 'DDs Meteore',
-          fr: 'Météores DPS',
-          ja: 'DPS 隕石',
-          ko: '딜러 메테오',
+          en: 'DPS Meteors (${player1}, ${player2})',
+          de: 'DDs Meteore (${player1}, ${player2})',
+          fr: 'Météores DPS (${player1}, ${player2})',
+          ja: 'DPS 隕石 (${player1}, ${player2})',
+          ko: '딜러 메테오 (${player1}, ${player2})', // FIXME
+        },
+        unknownMeteors: {
+          en: '??? Meteors (${player1}, ${player2})',
         },
       },
     },
