@@ -8,7 +8,7 @@ using RainbowMage.OverlayPlugin;
 
 namespace Cactbot {
   public class FFXIVProcessIntl : FFXIVProcess {
-    // Last updated for FFXIV 6.0
+    // Last updated for FFXIV 6.1
 
     [StructLayout(LayoutKind.Explicit)]
     public unsafe struct EntityMemory {

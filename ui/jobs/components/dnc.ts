@@ -86,7 +86,7 @@ export class DNCComponent extends BaseComponent {
           break;
         }
       }
-    } else if (this.ffxivRegion === 'cn') {
+    } else {
       switch (effect) {
         case EffectId.SilkenSymmetry:
         case EffectId.SilkenFlow: //  6.0 names FlourishingXXX, name changed but id not.
@@ -96,24 +96,6 @@ export class DNCComponent extends BaseComponent {
             this.flourishEffect.push(effect);
           if ((this.flourishEffect.length === 4 && this.flourishIsActive) ||
             (this.player.level < 86 && this.flourishEffect.length === 3 && this.flourishIsActive)) {
-            this.flourish.duration = 60 - this.flourish.elapsed;
-            this.flourishIsActive = false;
-            this.flourish.threshold = this.player.gcdSkill + 1;
-            this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish');
-          }
-          break;
-        }
-      }
-    } else {
-      switch (effect) {
-        case EffectId.FlourishingCascade:
-        case EffectId.FlourishingFountain:
-        case EffectId.FlourishingShower:
-        case EffectId.FlourishingWindmill:
-        case EffectId.ThreefoldFanDance: { // 5.x names FlourishingFanDance, name changed but id not
-          if (!(this.flourishEffect.includes(effect)))
-            this.flourishEffect.push(effect);
-          if (this.flourishEffect.length === 5 && this.flourishIsActive) {
             this.flourish.duration = 60 - this.flourish.elapsed;
             this.flourishIsActive = false;
             this.flourish.threshold = this.player.gcdSkill + 1;
@@ -157,19 +139,13 @@ export class DNCComponent extends BaseComponent {
         break;
       }
       case kAbility.Flourish: {
-        if (this.ffxivRegion === 'ko')
-          this.flourish.duration = 20;
-        else
-          this.flourish.duration = 30;
+        this.flourish.duration = 30;
         this.flourishEffect = [];
         this.flourishIsActive = true;
         this.flourish.threshold = 1000;
         this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish.active');
         this.tid2 = window.setTimeout(() => {
-          if (this.ffxivRegion === 'ko')
-            this.flourish.duration = 40;
-          else
-            this.flourish.duration = 30;
+          this.flourish.duration = 30;
           this.flourishIsActive = false;
           this.flourish.threshold = this.player.gcdSkill + 1;
           this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish');

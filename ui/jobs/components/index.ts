@@ -10,25 +10,25 @@ import { JobsOptions } from '../jobs_options';
 import { Player } from '../player';
 import { doesJobNeedMPBar, isPvPZone, RegexesHolder } from '../utils';
 
-import { AST5xComponent, ASTComponent } from './ast';
+import { ASTComponent } from './ast';
 import { BaseComponent, ComponentInterface, ShouldShow } from './base';
 import { BLMComponent } from './blm';
 import { BLUComponent } from './blu';
-import { BRD5xComponent, BRDComponent } from './brd';
+import { BRDComponent } from './brd';
 import { DNCComponent } from './dnc';
-import { DRG5xComponent, DRGComponent } from './drg';
+import { DRGComponent } from './drg';
 import { DRKComponent } from './drk';
 import { GNBComponent } from './gnb';
 import { MCHComponent } from './mch';
 import { MNKComponent } from './mnk';
 import { NINComponent } from './nin';
 import { PLDComponent } from './pld';
-import { RDM5xComponent, RDMComponent } from './rdm';
+import { RDMComponent } from './rdm';
 import { RPRComponent } from './rpr';
 import { SAMComponent } from './sam';
 import { SCHComponent } from './sch';
 import { SGEComponent } from './sge';
-import { SMN5xComponent, SMNComponent } from './smn';
+import { SMNComponent } from './smn';
 import { WARComponent } from './war';
 import { WHMComponent } from './whm';
 
@@ -128,19 +128,10 @@ export class ComponentManager {
   }
 
   getJobComponents(job: Job): BaseComponent {
-    // For KR that is still in 5.x
-    if (this.o.ffxivRegion === 'ko') {
-      if (job === 'SMN')
-        return new SMN5xComponent(this.o);
-      if (job === 'AST')
-        return new AST5xComponent(this.o);
-      if (job === 'RDM')
-        return new RDM5xComponent(this.o);
-      if (job === 'DRG')
-        return new DRG5xComponent(this.o);
-      if (job === 'BRD')
-        return new BRD5xComponent(this.o);
-    }
+    // if (this.o.ffxivRegion === 'cn/ko') {
+    //   if (job === 'XXX')
+    //     return new XXXOldComponent(this.o);
+    // }
 
     const Component = ComponentMap[job];
     if (!Component)

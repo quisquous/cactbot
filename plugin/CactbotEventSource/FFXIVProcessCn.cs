@@ -8,7 +8,7 @@ using RainbowMage.OverlayPlugin;
 
 namespace Cactbot {
   public class FFXIVProcessCn : FFXIVProcess {
-    // Last updated for FFXIV 6.0
+    // Last updated for FFXIV CN version 6.0
 
     // Latest CN version can be found at:
     // http://ff.sdo.com/web8/index.html#/patchnote
