@@ -69,6 +69,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback (with lightning)',
           de: 'Rückstoß (mit Blitzen)',
+          fr: 'Poussée (avec éclair)',
           ko: '넉백 (번개 장판)',
         },
       },
@@ -94,6 +95,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Dodge normal -> glowing row',
           de: 'Normal ausweichen -> leuchtende Reihe',
+          fr: 'Évitez normal -> ligne brillante',
           ko: '안전 지대 -> 빛나는 열 피하기',
         },
       },
@@ -159,6 +161,7 @@ const triggerSet: TriggerSet<Data> = {
           tankCleaves: {
             en: 'Avoid Tank Cleaves',
             de: 'Weiche Tank-Cleaves aus',
+            fr: 'Évitez le cleave sur le tank',
             ko: '광역 탱버',
           },
         };
@@ -187,6 +190,7 @@ const triggerSet: TriggerSet<Data> = {
         knockbackOrbs: {
           en: 'Knockback (avoid orbs)',
           de: 'Rückstoßs (weiche den Orbs aus)',
+          fr: 'Poussée (évitez les orbes)',
           ko: '넉백 (오브 피하기)',
         },
       },
@@ -236,11 +240,13 @@ const triggerSet: TriggerSet<Data> = {
         redSide: {
           en: 'Be on red half',
           de: 'Geh zur roten Seite',
+          fr: 'Placez-vous sur la moitié rouge',
           ko: '빨간 포탈쪽으로',
         },
         redSideAway: {
           en: 'Be on red half (away from portal)',
           de: 'Geh zur roten Seite (weg vom Portal)',
+          fr: 'Placez-vous sur la moitié rouge (loin du portail)',
           ko: '빨간 포탈쪽, 포탈에서 멀리 떨어지기',
         },
       },
@@ -257,6 +263,7 @@ const triggerSet: TriggerSet<Data> = {
         blueSide: {
           en: 'Be on blue half',
           de: 'Geh zur blauen Seite',
+          fr: 'Placez-vous sur la moitié bleue',
           ko: '파란 포탈쪽으로',
         },
       },
@@ -273,6 +280,7 @@ const triggerSet: TriggerSet<Data> = {
         nearRed: {
           en: 'Go near red portal',
           de: 'Geh zum roten Portal',
+          fr: 'Allez sur le portail rouge',
           ko: '빨간 포탈 근처로',
         },
       },
@@ -298,6 +306,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Under Lioness => Out',
           de: 'Unter Löwin => Raus',
+          fr: 'Sous la Lionne => Extérieur',
           ko: '안 => 바깥으로',
         },
       },
@@ -314,6 +323,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Out => Under Lioness',
           de: 'Raus => Unter Löwin',
+          fr: 'Extérieur => Sous la lionne',
           ko: '바깥 => 안으로',
         },
       },
@@ -361,6 +371,7 @@ const triggerSet: TriggerSet<Data> = {
           tankCleaves: {
             en: 'Avoid Tank Cleaves',
             de: 'Weiche Tank-Cleaves aus',
+            fr: 'Évitez les cleaves sur le tank',
             ko: '광역 탱버',
           },
         };
@@ -392,6 +403,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away from Orb',
           de: 'Weg vom Orb',
+          fr: 'Éloignez-vous de l\'orbe',
           ko: '오브 피하기',
         },
       },
@@ -440,6 +452,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Protean Spread on YOU',
           de: 'Protean verteilen auf DIR',
+          fr: 'Position sur VOUS',
           ko: '산개징 대상자',
         },
       },
@@ -491,11 +504,13 @@ const triggerSet: TriggerSet<Data> = {
           dropMarkerOutside: {
             en: 'Drop marker outside',
             de: 'Marker draußen ablegen',
+            fr: 'Déposez les marqueurs à l\'extérieur',
             ko: '징 밖에서 처리',
           },
           ignoreLineStack: {
             en: 'Ignore fake stack',
             de: 'Falsches Sammeln ignorieren',
+            fr: 'Ignorez le faux marqueur de package',
             ko: '가짜 징 무시',
           },
         };
@@ -527,6 +542,7 @@ const triggerSet: TriggerSet<Data> = {
         ignoreArrow: {
           en: 'Ignore fake arrow',
           de: 'Falschen Pfeil ignorieren',
+          fr: 'Ignorez la fausse flèche',
           ko: '가짜 징 무시',
         },
       },
@@ -570,6 +586,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to Blue Quadrant',
           de: 'Geh zum blauen Quadrant',
+          fr: 'Allez sur le quart bleu',
           ko: '파랑 장판으로',
         },
       },
@@ -590,6 +607,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to Orange Quadrant',
           de: 'Geh zum orangenen Quadrant',
+          fr: 'Allez sur le quart orange',
           ko: '주황 장판으로',
         },
       },
@@ -628,6 +646,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack groups',
           de: 'Sammel Gruppen',
+          fr: 'Package en groupe',
           ko: '그룹별 쉐어',
         },
       },
@@ -657,6 +676,7 @@ const triggerSet: TriggerSet<Data> = {
           tankCleaves: {
             en: 'Avoid Tank Cleaves',
             de: 'Weiche den Tank-Cleaves aus',
+            fr: 'Évitez les cleaves sur le tank',
             ko: '광역 탱버',
           },
         };
@@ -683,11 +703,13 @@ const triggerSet: TriggerSet<Data> = {
           dropMarkerOutside: {
             en: 'Under => Drop marker outside',
             de: 'Unter ihn => Marker drausen ablegen',
+            fr: 'Dessous => Déposez le marqueur à l\'extérieur',
             ko: '보스 근처 => 징 밖에서 처리',
           },
           ignoreLineStack: {
             en: 'Under (ignore fake stack)',
             de: 'Unter ihn (falsches Sammeln ignorieren)',
+            fr: 'Dessous (ignorez le faux package)',
             ko: '보스 근처 (가짜 징 무시)',
           },
         };
@@ -724,6 +746,7 @@ const triggerSet: TriggerSet<Data> = {
         ignoreArrow: {
           en: 'Out (ignore fake arrow)',
           de: 'Raus (falschen Pfeil ignorieren)',
+          fr: 'Extérieur (ignorez la fausse flèche)',
           ko: '바깥으로 (가짜 징 무시)',
         },
         out: Outputs.out,
@@ -767,9 +790,9 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         '--hammer--': '--Hammer--',
-        '\(fake\)': '(falsch)',
-        '\(proximity\)': '(Distanz)',
-        '\(summon\)': '(Beschwörung)',
+        '\(fake\)': 'falsch',
+        '\(proximity\)': 'Distanz',
+        '\(summon\)': 'Beschwörung',
         'Advent of the Eighth': 'Lehre des Kometen',
         'As Above, So Below': 'Flamme von Leben und Tod',
         'Balance': 'Seelenabrechnung',

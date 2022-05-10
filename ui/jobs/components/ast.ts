@@ -19,104 +19,6 @@ const minorMap = {
   'Lady': '＋',
 } as const;
 
-export class AST5xComponent extends BaseComponent {
-  combustBox: TimerBox;
-  drawBox: TimerBox;
-  lucidBox: TimerBox;
-  cardBox: ResourceBox;
-  sealBox: ResourceBox;
-
-  constructor(o: ComponentInterface) {
-    super(o);
-
-    this.combustBox = this.bars.addProcBox({
-      id: 'ast-procs-combust',
-      fgColor: 'ast-color-combust',
-      notifyWhenExpired: true,
-    });
-
-    this.drawBox = this.bars.addProcBox({
-      id: 'ast-procs-draw',
-      fgColor: 'ast-color-draw',
-    });
-
-    this.lucidBox = this.bars.addProcBox({
-      id: 'ast-procs-luciddreaming',
-      fgColor: 'ast-color-lucid',
-    });
-
-    this.cardBox = this.bars.addResourceBox({
-      classList: ['ast-color-card'],
-    });
-
-    this.sealBox = this.bars.addResourceBox({
-      classList: ['ast-color-seal'],
-    });
-
-    this.reset();
-  }
-
-  override onJobDetailUpdate(jobDetail: JobDetail['AST']): void {
-    const card = jobDetail.heldCard;
-    const seals = jobDetail.arcanums;
-
-    // Show on which kind of jobs your card plays better by color
-    // Blue on melee, purple on ranged, and grey when no card
-    const cardParent = this.cardBox.parentNode;
-    cardParent.classList.remove('melee', 'range');
-    if (card in cardsMap)
-      cardParent.classList.add(cardsMap[card].bonus);
-
-    // Show whether you already have this seal
-    // O means it's OK to play this card
-    // X means don't play this card directly if time permits
-    if (!cardsMap[card])
-      this.cardBox.innerText = '';
-    else if (seals.includes(cardsMap[card].seal))
-      this.cardBox.innerText = 'X';
-    else
-      this.cardBox.innerText = 'O';
-
-    // Show how many kind of seals you already have
-    // Turn green when you have all 3 kinds of seal
-    const sealCount = new Set(seals).size;
-    this.sealBox.innerText = sealCount.toString();
-    this.sealBox.parentNode.classList.toggle('ready', sealCount === 3);
-  }
-
-  override onUseAbility(id: string): void {
-    switch (id) {
-      case kAbility.Combust2:
-      case kAbility.Combust3:
-        this.combustBox.duration = 30;
-        break;
-      case kAbility.Combust:
-        this.combustBox.duration = 18;
-        break;
-      case kAbility.Draw:
-        this.drawBox.duration = 30;
-        break;
-      case kAbility.LucidDreaming:
-        this.lucidBox.duration = 60;
-        break;
-    }
-  }
-  override onStatChange({ gcdSpell }: { gcdSpell: number }): void {
-    this.combustBox.valuescale = gcdSpell;
-    this.combustBox.threshold = gcdSpell + 1;
-    this.drawBox.valuescale = gcdSpell;
-    this.drawBox.threshold = gcdSpell + 1;
-    this.lucidBox.valuescale = gcdSpell;
-    this.lucidBox.threshold = gcdSpell + 1;
-  }
-
-  override reset(): void {
-    this.combustBox.duration = 0;
-    this.drawBox.duration = 0;
-    this.lucidBox.duration = 0;
-  }
-}
-
 export class ASTComponent extends BaseComponent {
   combustBox: TimerBox;
   drawBox: TimerBox;
@@ -206,7 +108,7 @@ export class ASTComponent extends BaseComponent {
       elem.classList.remove('Solar', 'Lunar', 'Celestial');
       const asign = sign[i];
       if (asign)
-        elem.classList.add(asign);
+        elem.classList.add(asign.toLowerCase());
     });
   }
 

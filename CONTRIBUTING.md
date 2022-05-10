@@ -214,7 +214,7 @@ If there are errors in the build, such as lint failings,
 the complete list of commands being run in CI are found within
 [.github/workflows](.github/workflows/README.md)
 and can be run locally without needing to commit changes just to test them.
-If it is not obvious _which_ command is failing,
+If it is not obvious *which* command is failing,
 you can click the workflow in the
 [GitHub Actions](https://github.com/quisquous/cactbot/actions)
 page and click `Workflow file` to see the exact list of commands being run.

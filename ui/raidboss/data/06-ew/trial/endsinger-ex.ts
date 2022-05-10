@@ -171,6 +171,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '6FF6', source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '6FF6', source: '終焉を謳うもの', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '6FF6', source: '讴歌终结之物', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '6FF6', source: '종언을 노래하는 자', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -181,6 +182,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '702E', source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '702E', source: '終焉を謳うもの', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '702E', source: '讴歌终结之物', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '702E', source: '종언을 노래하는 자', capture: false }),
       response: Responses.bigAoe(),
     },
     {
@@ -191,6 +193,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '7022', source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '7022', source: '終焉を謳うもの', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '7022', source: '讴歌终结之物', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '7022', source: '종언을 노래하는 자', capture: false }),
       response: Responses.goSides(),
     },
     {
@@ -201,6 +204,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '7020', source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '7020', source: '終焉を謳うもの', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '7020', source: '讴歌终结之物', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '7020', source: '종언을 노래하는 자', capture: false }),
       response: Responses.goMiddle(),
     },
     {
@@ -211,6 +215,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '702C', source: 'Chantre De L\'Anéantissement', capture: true }),
       netRegexJa: NetRegexes.startsUsing({ id: '702C', source: '終焉を謳うもの', capture: true }),
       netRegexCn: NetRegexes.startsUsing({ id: '702C', source: '讴歌终结之物', capture: true }),
+      netRegexKo: NetRegexes.startsUsing({ id: '702C', source: '종언을 노래하는 자', capture: true }),
       response: Responses.tankCleave(),
     },
     {
@@ -228,6 +233,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: ['702F', '7030'], source: 'Chantre De L\'Anéantissement', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['702F', '7030'], source: '終焉を謳うもの', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['702F', '7030'], source: '讴歌终结之物', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['702F', '7030'], source: '종언을 노래하는 자', capture: false }),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.groups!(),
       outputStrings: {
@@ -356,6 +362,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: ['6FFC', '7006', '7009', '700A'], source: 'Chantre De L\'Anéantissement', capture: true }),
       netRegexJa: NetRegexes.startsUsing({ id: ['6FFC', '7006', '7009', '700A'], source: '終焉を謳うもの', capture: true }),
       netRegexCn: NetRegexes.startsUsing({ id: ['6FFC', '7006', '7009', '700A'], source: '讴歌终结之物', capture: true }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['6FFC', '7006', '7009', '700A'], source: '종언을 노래하는 자', capture: true }),
       condition: (data) => data.headPhase === 5,
       // Do not need delaySeconds here, heads have been spawned for 5+ seconds
       promise: async (data, matches) => {
@@ -450,6 +457,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.gainsEffect({ effectId: '808', target: 'Chantre De L\'Anéantissement', capture: true }),
       netRegexJa: NetRegexes.gainsEffect({ effectId: '808', target: '終焉を謳うもの', capture: true }),
       netRegexCn: NetRegexes.gainsEffect({ effectId: '808', target: '讴歌终结之物', capture: true }),
+      netRegexKo: NetRegexes.gainsEffect({ effectId: '808', target: '종언을 노래하는 자', capture: true }),
       condition: (data) => data.headPhase === 5,
       infoText: (data, matches, output) => {
         const head = data.storedHeads[matches.targetId];
@@ -526,6 +534,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.tether({ id: ['00BD', '00B5'], target: 'Chantre De L\'Anéantissement', capture: true }),
       netRegexJa: NetRegexes.tether({ id: ['00BD', '00B5'], target: '終焉を謳うもの', capture: true }),
       netRegexCn: NetRegexes.tether({ id: ['00BD', '00B5'], target: '讴歌终结之物', capture: true }),
+      netRegexKo: NetRegexes.tether({ id: ['00BD', '00B5'], target: '종언을 노래하는 자', capture: true }),
       condition: (data) => data.headPhase === 6,
       delaySeconds: 0.5,
       promise: async (data, matches) => {
@@ -702,7 +711,7 @@ const triggerSet: TriggerSet<Data> = {
         'Tower Explosion': 'Turm Explosion',
         'Theological Fatalism': 'Theologischer Fatalismus',
         'Twinsong\'s Aporrhoia': 'Aporia der Verzweiflung',
-        'Ultimate Fate': '',
+        'Ultimate Fate': 'Ultimatives Schicksal',
       },
     },
     {
@@ -759,6 +768,36 @@ const triggerSet: TriggerSet<Data> = {
         'Theological Fatalism': 'セオロジカル・フェイタリズム',
         'Twinsong\'s Aporrhoia': 'アポロイア：絶望合唱',
         'Ultimate Fate': 'ウルティマフェイト',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Azure Star': '蓝色天体',
+        'Fiery Star': '红色天体',
+        'The Endsinger': '讴歌终结之物',
+      },
+      'replaceText': {
+        'Elenchos': '反诘',
+        'Fatalism': '宿命',
+        'Telomania': '终末狂热',
+        'Ultimate Fate': '终极命运',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Azure Star': '청색천체',
+        'Fiery Star': '적색천체',
+        'The Endsinger': '종언을 노래하는 자',
+      },
+      'replaceText': {
+        'Elenchos': '엘렝코스',
+        'Fatalism': '운명론',
+        'Telomania': '텔로스마니아',
+        'Ultimate Fate': '종언의 운명',
       },
     },
   ],

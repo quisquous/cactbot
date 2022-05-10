@@ -57,9 +57,6 @@ export class MNKComponent extends BaseComponent {
   stacksContainer.classList.add('stacks');
   this.bars.addJobBarContainer().appendChild(stacksContainer);
 
-  if (this.ffxivRegion === 'ko')
-    stacksContainer.classList.add('hide');
-
   const lunarStacksContainer = document.createElement('div');
   lunarStacksContainer.id = 'mnk-stacks-lunar';
   stacksContainer.appendChild(lunarStacksContainer);
@@ -100,13 +97,11 @@ export class MNKComponent extends BaseComponent {
       this.chakraBox.parentNode.classList.toggle('dim', jobDetail.chakraStacks < 5);
     }
 
-    if (this.ffxivRegion === 'ko')
-      return;
     this.beastChakraStacks.forEach((elem, i) => {
       elem.classList.remove('Opo', 'Coeurl', 'Raptor');
       const beastChakra = jobDetail.beastChakra[i];
       if (beastChakra)
-        elem.classList.add(beastChakra);
+        elem.classList.add(beastChakra.toLowerCase());
     });
     this.lunarStacks[0]?.classList.toggle('active', jobDetail.lunarNadi);
     this.solarStacks[0]?.classList.toggle('active', jobDetail.solarNadi);
@@ -123,8 +118,6 @@ export class MNKComponent extends BaseComponent {
 
   override onYouLoseEffect(id: string): void {
     switch (id) {
-      // TODO: delete TwinSnakes after every region launch 6.0
-      case EffectId.TwinSnakes:
       case EffectId.DisciplinedFist:
         this.twinSnakesBox.duration = 0;
         break;
@@ -141,8 +134,6 @@ export class MNKComponent extends BaseComponent {
 
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     switch (id) {
-      // TODO: delete TwinSnakes after every region launch 6.0
-      case EffectId.TwinSnakes:
       case EffectId.DisciplinedFist:
         // -0.5 for logline delay
         this.twinSnakesBox.duration = parseFloat(matches.duration ?? '0') - 0.5;

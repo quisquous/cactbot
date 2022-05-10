@@ -9,7 +9,6 @@ import boleImage from '../../resources/ffxiv/status/bole.png';
 import brotherhoodImage from '../../resources/ffxiv/status/brotherhood.png';
 import chainStratagemImage from '../../resources/ffxiv/status/chain-stratagem.png';
 import devilmentImage from '../../resources/ffxiv/status/devilment.png';
-import devotionImage from '../../resources/ffxiv/status/devotion.png';
 import divinationImage from '../../resources/ffxiv/status/divination.png';
 import dragonSightImage from '../../resources/ffxiv/status/dragon-sight.png';
 import emboldenImage from '../../resources/ffxiv/status/embolden.png';
@@ -644,79 +643,7 @@ export class BuffTracker {
 
     // Abilities that are different in Ko region.
     const vKo = {
-      litany: {
-        cooldownAbility: [kAbility.BattleLitany],
-        gainEffect: [EffectId.BattleLitany],
-        loseEffect: [EffectId.BattleLitany],
-        useEffectDuration: true,
-        durationSeconds: 20,
-        partyOnly: true,
-        icon: battleLitanyImage,
-        // Cyan.
-        borderColor: '#099',
-        sortKey: 2,
-        cooldown: 180,
-      },
-      embolden: {
-        // On each embolden stack changes,
-        // there will be a gain effect log with a wrong duration (always 20).
-        // So using stack to identify the first log.
-        cooldownAbility: [kAbility.Embolden],
-        gainEffect: [EffectId.Embolden, EffectId.EmboldenSelf],
-        loseEffect: [EffectId.Embolden, EffectId.EmboldenSelf],
-        useEffectDuration: true,
-        durationSeconds: 20,
-        partyOnly: true,
-        stack: 5,
-        icon: emboldenImage,
-        // Lime.
-        borderColor: '#57FC4A',
-        sortKey: 3,
-        cooldown: 120,
-      },
-      battlevoice: {
-        cooldownAbility: [kAbility.BattleVoice],
-        gainEffect: [EffectId.BattleVoice],
-        loseEffect: [EffectId.BattleVoice],
-        useEffectDuration: true,
-        durationSeconds: 20,
-        partyOnly: true,
-        icon: battleVoiceImage,
-        // Red.
-        borderColor: '#D6371E',
-        sortKey: 7,
-        cooldown: 180,
-      },
-      brotherhood: {
-        cooldownAbility: [kAbility.Brotherhood],
-        gainEffect: [EffectId.Brotherhood],
-        loseEffect: [EffectId.Brotherhood],
-        useEffectDuration: true,
-        durationSeconds: 15,
-        partyOnly: true,
-        icon: brotherhoodImage,
-        // Dark Orange.
-        borderColor: '#994200',
-        sortKey: 11,
-        cooldown: 90,
-      },
-      devotion: {
-        // FIXME: pet is not considered inParty, so this cannot track it if it misses you.
-        // By the way, pet can delay using devotion after been ordered
-        // and if you order it to continue moving, it can greatly delay up to 30s,
-        // so it may not be accurate.
-        cooldownAbility: [kAbility.Devotion],
-        gainEffect: [EffectId.Devotion],
-        loseEffect: [EffectId.Devotion],
-        useEffectDuration: true,
-        durationSeconds: 15,
-        partyOnly: true,
-        icon: devotionImage,
-        // Yellow.
-        borderColor: '#ffbf00',
-        sortKey: 12,
-        cooldown: 180,
-      },
+      ...vCn,
     };
 
     if (this.ffxivRegion === 'ko') {

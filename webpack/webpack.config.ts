@@ -1,6 +1,9 @@
 import path from 'path';
 
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+// copy-webpack-plugin has changed to a newer export syntax that current eslint
+// version doesn't support
+// eslint-disable-next-line import/default
 import CopyPlugin from 'copy-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';

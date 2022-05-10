@@ -6,7 +6,6 @@ import {
   kComboBreakersCn,
   kComboBreakersKo,
   kComboDelay,
-  kComboDelay5x,
 } from './constants';
 import { FfxivRegion } from './jobs';
 import { Player } from './player';
@@ -126,7 +125,7 @@ export class ComboTracker extends EventEmitter<{ combo: ComboCallback }> {
     const comboTracker = new ComboTracker({
       player: player,
       comboBreakers: breakers,
-      comboDelayMs: (ffxivRegion === 'ko' ? kComboDelay5x : kComboDelay) * 1000,
+      comboDelayMs: kComboDelay * 1000,
     });
     kComboActions.forEach((skillList) => comboTracker.AddCombo(skillList));
     return comboTracker;

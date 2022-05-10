@@ -80,32 +80,17 @@ export class BLMComponent extends BaseComponent {
   }
 
   override onUseAbility(id: string): void {
-    if (this.ffxivRegion === 'ko') {
-      switch (id) {
-        case kAbility.Thunder1:
-        case kAbility.Thunder4:
-          this.thunderDot.duration = 18;
-          break;
-        case kAbility.Thunder2:
-          this.thunderDot.duration = 12;
-          break;
-        case kAbility.Thunder3:
-          this.thunderDot.duration = 24;
-          break;
-      }
-    } else {
-      switch (id) {
-        case kAbility.Thunder2:
-        case kAbility.Thunder4:
-          this.thunderDot.duration = 18;
-          break;
-        case kAbility.Thunder1:
-          this.thunderDot.duration = 21;
-          break;
-        case kAbility.Thunder3:
-          this.thunderDot.duration = 30;
-          break;
-      }
+    switch (id) {
+      case kAbility.Thunder2:
+      case kAbility.Thunder4:
+        this.thunderDot.duration = 18;
+        break;
+      case kAbility.Thunder1:
+        this.thunderDot.duration = 21;
+        break;
+      case kAbility.Thunder3:
+        this.thunderDot.duration = 30;
+        break;
     }
   }
 

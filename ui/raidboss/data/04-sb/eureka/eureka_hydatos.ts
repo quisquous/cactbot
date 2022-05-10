@@ -103,10 +103,10 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: NetRegexes.message({ line: '.* will be sealed off.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?.* schließt.*?', capture: false }),
-      netRegexFr: NetRegexes.message({ line: 'Fermeture d(?:e|u|es) .*? dans.*?', capture: false }),
-      netRegexJa: NetRegexes.message({ line: '.*?の封鎖まであと', capture: false }),
-      netRegexCn: NetRegexes.message({ line: '距.*?被封锁还有.*?', capture: false }),
-      netRegexKo: NetRegexes.message({ line: '15초 후에 .*?(?:이|가) 봉쇄됩니다.*?', capture: false }),
+      netRegexFr: NetRegexes.message({ line: 'Fermeture d(?:e|u|es) (?:l\'|la |les? )?.* dans.*?', capture: false }),
+      netRegexJa: NetRegexes.message({ line: '.*の封鎖まであと.*?', capture: false }),
+      netRegexCn: NetRegexes.message({ line: '距.*被封锁还有.*?', capture: false }),
+      netRegexKo: NetRegexes.message({ line: '15초 후에 .*[이가] 봉쇄됩니다.*?', capture: false }),
       run: (data) => data.sealed = true,
     },
     {
@@ -1244,7 +1244,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ja',
       'replaceSync': {
-        '7 minutes have elapsed since your last activity..*?': '操作がない状態になってから7分が経過しました。.*?',
+        '7 minutes have elapsed since your last activity.': '操作がない状態になってから7分が経過しました。',
         'Absolute Virtue': 'アブソリュートヴァーチュー',
         'Arsenal Centaur': 'アーセナル・セントール',
         'Art': 'アルト',
@@ -1263,6 +1263,9 @@ const triggerSet: TriggerSet<Data> = {
         'The Lance of Virtue Containment Unit': 'ランス・オブ・ヴァーチュー封印区',
         'The Proto Ozma Containment Unit': 'プロトオズマ封印区',
         'The Shin-Zantetsuken Containment Unit': '真・斬鉄剣封印区',
+        'The memories of heroes past live on again': '英傑の加護の効果が発揮され、蘇生された',
+        'Munderg, turn flesh to ash': '白の妖槍「ムンジャルグ」、燃え上がれ！',
+        'Munderg, turn blood to ice': '白の妖槍「ムンジャルグ」、震え凍れよ！',
       },
       'replaceText': {
         '\\?': ' ?',
@@ -1451,6 +1454,7 @@ const triggerSet: TriggerSet<Data> = {
         'The Lance of Virtue Containment Unit': '미덕의 창 봉인 구역',
         'The Shin-Zantetsuken Containment Unit': '진 참철검 봉인 구역',
         'The Proto Ozma Containment Unit': '프로토 오즈마 봉인 구역',
+        'The memories of heroes past live on again': '영걸의 가호의 효과가 발휘되어 부활했습니다',
       },
       'replaceText': {
         'Acallam Na Senorach': '피어너의 창',

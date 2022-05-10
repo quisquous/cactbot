@@ -45,6 +45,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move to safe quadrant',
           de: 'Beweg dich in den sicheren Quadranten',
+          cn: '移动到安全区域',
+          ko: '안전한 지역으로 이동',
         },
       },
     },
@@ -56,6 +58,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait toward puddle',
           de: 'In Richtung Fläche ködern',
+          cn: '靠近圈圈集合诱导AOE',
+          ko: '장판 쪽으로 아인 유도',
         },
       },
     },
@@ -72,10 +76,14 @@ const triggerSet: TriggerSet<Data> = {
         noPillar: {
           en: 'Bait Yesod',
           de: 'Yesod ködern',
+          cn: '集合诱导基盘碎击',
+          ko: '예소드 붕괴 유도',
         },
         withPillar: {
           en: 'Bait Yesod inside puddle',
           de: 'Yesod in die Fläche ködern',
+          cn: '圈圈内集合诱导基盘碎击',
+          ko: '장판 안에 예소드 유도하기',
         },
       },
     },
@@ -150,10 +158,14 @@ const triggerSet: TriggerSet<Data> = {
         noStack: {
           en: 'Don\'t Stack!',
           de: 'Nicht sammeln!',
+          cn: '不要重合！',
+          ko: '겹치면 안됨!',
         },
         stack: {
           en: 'Group Stacks',
           de: 'In der Gruppe sammeln',
+          cn: '分组集合',
+          ko: '그룹 쉐어',
         },
       },
     },
@@ -202,6 +214,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${force} on you',
           de: '${force} auf dir',
+          cn: '${force}点名',
+          ko: '나에게 ${force}',
         },
       },
     },
@@ -259,10 +273,14 @@ const triggerSet: TriggerSet<Data> = {
         getTower: {
           en: 'Get a tower',
           de: 'Nimm einen Turm',
+          cn: '踩塔',
+          ko: '기둥 밟기',
         },
         avoidTower: {
           en: 'Avoid towers',
           de: 'Turm meiden',
+          cn: '躲塔',
+          ko: '기둥 피하기',
         },
       },
     },
@@ -280,10 +298,14 @@ const triggerSet: TriggerSet<Data> = {
         might: {
           en: 'Get Away, Avoid Puddles + Tethers',
           de: 'Geh weg, weiche Flächen und Verbindungen aus',
+          cn: '远离, 躲避圈圈 + 连线',
+          ko: '멀리 떨어지고, 장판 + 선 피하기',
         },
         magic: {
           en: 'Go Front; Get Tether',
           de: 'Geh nach Vorne; Nimm eine Verbindung',
+          cn: '去前面; 接线',
+          ko: '앞으로 가서 선 가로채기',
         },
       },
     },
@@ -316,10 +338,14 @@ const triggerSet: TriggerSet<Data> = {
         shakerTarget: {
           en: 'Earth Shaker (Max Melee)',
           de: 'Erdstoß (Max Nahkampf)',
+          cn: '大地摇动 (最远近战距离)',
+          ko: '어스징 (칼끝딜 거리)',
         },
         shakerAvoid: {
           en: 'Avoid Earth Shakers',
           de: 'Weiche Erdstoß aus',
+          cn: '躲避大地摇动',
+          ko: '어스징 피하기',
         },
       },
     },
@@ -346,6 +372,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Wörtersturm besiegen',
           fr: 'Tuez Tempête de mots ou mourrez',
           cn: '击杀言语风暴!',
+          ko: '신언의 폭풍 제거',
         },
       },
     },
@@ -461,9 +488,13 @@ const triggerSet: TriggerSet<Data> = {
         'Storm Of Words': '言语风暴',
       },
       'replaceText': {
+        'puddle(?:s)?': '圈圈',
+        'spread': '散开',
+        'Tethers': '连线',
         'Adds Spawn': '小怪出现',
         'Ascension': '上升气流',
-        'Chesed': '仁慈',
+        'Chesed(?! Gevurah)': '仁慈',
+        'Chesed Gevurah': '仁慈之严酷',
         'Da\'at': '知识',
         'Earth Shaker': '大地摇动',
         'Ein Sof': '无限',
@@ -490,6 +521,7 @@ const triggerSet: TriggerSet<Data> = {
         'Storm Of Words': '신언의 폭풍',
       },
       'replaceText': {
+        'puddle(?:s)?': '장판',
         'Adds Spawn': '쫄 등장',
         'Ascension': '승천',
         'Chesed': '헤세드',

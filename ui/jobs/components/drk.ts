@@ -17,7 +17,6 @@ export class DRKComponent extends BaseComponent {
   livingShadow: TimerBox;
   tid1 = 0;
   tid2 = 0;
-  tid3 = 0;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -107,20 +106,8 @@ export class DRKComponent extends BaseComponent {
         break;
       }
       case kAbility.Delirium: {
-        if (this.ffxivRegion === 'ko') {
-          this.delirium.duration = 10.5;
-          this.delirium.threshold = 20;
-          this.delirium.fg = computeBackgroundColorFrom(this.delirium, 'drk-color-delirium.active');
-          this.tid2 = window.setTimeout(() => {
-            this.delirium.duration = 79.5;
-            this.delirium.threshold = this.player.gcdSkill * 2;
-            this.delirium.fg = computeBackgroundColorFrom(this.delirium, 'drk-color-delirium');
-          }, 10000);
-          break;
-        } else {
           this.delirium.duration = 60;
           break;
-        }
       }
       case kAbility.LivingShadow: {
         this.livingShadow.duration = 24;
@@ -129,7 +116,7 @@ export class DRKComponent extends BaseComponent {
           this.livingShadow,
           'drk-color-livingshadow.active',
         );
-        this.tid3 = window.setTimeout(() => {
+        this.tid2 = window.setTimeout(() => {
           this.livingShadow.duration = 96;
           this.livingShadow.threshold = this.player.gcdSkill * 4;
           this.livingShadow.fg = computeBackgroundColorFrom(
@@ -148,14 +135,11 @@ export class DRKComponent extends BaseComponent {
     this.bloodWeapon.threshold = this.player.gcdSkill * 2;
     this.bloodWeapon.fg = computeBackgroundColorFrom(this.bloodWeapon, 'drk-color-bloodweapon');
     this.delirium.duration = 0;
-    this.delirium.threshold = this.player.gcdSkill * 2;
-    this.delirium.fg = computeBackgroundColorFrom(this.delirium, 'drk-color-delirium');
     this.livingShadow.duration = 0;
     this.livingShadow.threshold = this.player.gcdSkill * 4;
     this.livingShadow.fg = computeBackgroundColorFrom(this.livingShadow, 'drk-color-livingshadow');
     this.darksideBox.duration = 0;
     window.clearTimeout(this.tid1);
     window.clearTimeout(this.tid2);
-    window.clearTimeout(this.tid3);
   }
 }

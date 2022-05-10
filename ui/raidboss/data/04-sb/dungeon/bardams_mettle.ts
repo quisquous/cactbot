@@ -54,12 +54,12 @@ const triggerSet: TriggerSet<Data> = {
       // If we're in the Yol encounter, we're obviously not fighting Bardam.
       id: 'Bardam\'s Mettle Dead Bardam',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: '.*Voiceless Muse will be sealed off.*?', capture: false }),
-      netRegexDe: NetRegexes.message({ line: '.*Stumme Muse will be sealed off.*?', capture: false }),
-      netRegexFr: NetRegexes.message({ line: '.*la Muse sans voix will be sealed off.*?', capture: false }),
-      netRegexJa: NetRegexes.message({ line: '.*物言わぬ語り部 will be sealed off.*?', capture: false }),
-      netRegexCn: NetRegexes.message({ line: '.*无声的叙事者 will be sealed off.*?', capture: false }),
-      netRegexKo: NetRegexes.message({ line: '.*말 없는 이야기꾼 will be sealed off.*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'Voiceless Muse will be sealed off.*?', capture: false }),
+      netRegexDe: NetRegexes.message({ line: 'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?Stumme Muse schließt.*?', capture: false }),
+      netRegexFr: NetRegexes.message({ line: 'Fermeture d(?:e|u|es) (?:l\'|la |les? )?la Muse sans voix dans.*?', capture: false }),
+      netRegexJa: NetRegexes.message({ line: '物言わぬ語り部の封鎖まであと.*?', capture: false }),
+      netRegexCn: NetRegexes.message({ line: '距无声的叙事者被封锁还有.*?', capture: false }),
+      netRegexKo: NetRegexes.message({ line: '15초 후에 말 없는 이야기꾼[이가] 봉쇄됩니다.*?', capture: false }),
       run: (data) => data.deadBardam = true,
     },
     {

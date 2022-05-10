@@ -22,7 +22,6 @@ export class RPRComponent extends BaseComponent {
   shroud: HTMLElement[] = [];
   tid1 = 0;
   tid2 = 0;
-  lastSoulSliceTimestamp?: string;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -117,11 +116,8 @@ export class RPRComponent extends BaseComponent {
       case kAbility.SoulScythe:
         if (this.player.level < 78) {
           this.soulSliceBox.duration = 30;
-        } else if (matches.timestamp !== this.lastSoulSliceTimestamp) {
-          // Avoid multiple call in AOE
-          // TODO: use targetIndex instead.
+        } else if (matches.targetIndex === '0') { // Avoid multiple call in AOE
           this.soulSliceBox.duration = 30 + this.soulSliceBox.value;
-          this.lastSoulSliceTimestamp = matches.timestamp;
         }
         break;
       case kAbility.Gluttony:

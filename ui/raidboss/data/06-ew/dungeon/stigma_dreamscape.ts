@@ -36,6 +36,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6320', source: 'Proto-Oméga', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6320', source: 'プロトオメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6320', source: '欧米茄原型', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6320', source: '프로토 오메가', capture: false }),
       response: Responses.goLeft(),
     },
     {
@@ -46,6 +47,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6321', source: 'Proto-Oméga', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6321', source: 'プロトオメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6321', source: '欧米茄原型', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6321', source: '프로토 오메가', capture: false }),
       response: Responses.goRight(),
     },
     {
@@ -56,6 +58,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6322', source: 'Proto-Oméga', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6322', source: 'プロトオメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6322', source: '欧米茄原型', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6322', source: '프로토 오메가', capture: false }),
       response: Responses.getBehind(),
     },
     {
@@ -66,6 +69,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6324', source: 'Proto-Oméga', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '6324', source: 'プロトオメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '6324', source: '欧米茄原型', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6324', source: '프로토 오메가', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -126,7 +130,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Missile guidé sur VOUS',
           ja: '誘導ミサイル',
           cn: '导弹点名',
-          ko: '유도 미사일',
+          ko: '나에게 유도 미사일',
         },
       },
     },
@@ -138,6 +142,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '632B', source: 'Proto-Oméga' }),
       netRegexJa: NetRegexes.startsUsing({ id: '632B', source: 'プロトオメガ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '632B', source: '欧米茄原型' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '632B', source: '프로토 오메가' }),
       response: Responses.tankBuster(),
     },
     {
@@ -148,6 +153,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '63AB', source: 'Arch-Lambda', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '63AB', source: 'アーチラムダ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '63AB', source: '拉姆达总领', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '63AB', source: '아치 람다', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -188,6 +194,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '63B5', source: 'Arch-Lambda' }),
       netRegexJa: NetRegexes.startsUsing({ id: '63B5', source: 'アーチラムダ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '63B5', source: '拉姆达总领' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '63B5', source: '아치 람다' }),
       response: Responses.tankBuster(),
     },
     {
@@ -201,6 +208,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.ability({ id: '6435', source: 'Stigma-4', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '6435', source: 'スティグマ・フォー', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '6435', source: '斯提格玛四', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '6435', source: '스티그마-4', capture: false }),
       run: (data) => data.lastBoss = true,
     },
     {
@@ -211,6 +219,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '63B4', source: 'Arch-Lambda', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '63B4', source: 'アーチラムダ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '63B4', source: '拉姆达总领', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '63B4', source: '아치 람다', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -225,6 +234,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.addedCombatantFull({ name: 'Dragon Hybride' }),
       netRegexJa: NetRegexes.addedCombatantFull({ name: 'ハイブリッドドラゴン' }),
       netRegexCn: NetRegexes.addedCombatantFull({ name: '改造龙族' }),
+      netRegexKo: NetRegexes.addedCombatantFull({ name: '혼종 드래곤' }),
       condition: (data) => data.lastBoss,
       infoText: (_data, matches, output) => {
         // The arena is a 50x50 square, with (0,0) in the exact center.
@@ -246,6 +256,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '642D', source: 'Proto-Astéropoing', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '642D', source: 'プロトロケットパンチ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '642D', source: '原型火箭飞拳', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '642D', source: '프로토 로켓 주먹', capture: false }),
       suppressSeconds: 5, // All five Punches use it at the same time
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -267,6 +278,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6434', source: 'Stigma-4' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6434', source: 'スティグマ・フォー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6434', source: '斯提格玛四' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6434', source: '스티그마-4' }),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4, // Full cast is 9.7s.
       response: Responses.getOut(),
     },
@@ -278,6 +290,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '6432', source: 'Stigma-4' }),
       netRegexJa: NetRegexes.startsUsing({ id: '6432', source: 'スティグマ・フォー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '6432', source: '斯提格玛四' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '6432', source: '스티그마-4' }),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4, // Full cast is 9.7s.
       response: Responses.getIn(),
     },
@@ -289,6 +302,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '642A', source: 'Châssis Expérimental Oméga', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '642A', source: 'オメガフレーム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '642A', source: '欧米茄框架', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '642A', source: '오메가 프레임', capture: false }),
       response: Responses.goLeft(),
     },
     {
@@ -299,6 +313,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexFr: NetRegexes.startsUsing({ id: '642B', source: 'Châssis Expérimental Oméga', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '642B', source: 'オメガフレーム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '642B', source: '欧米茄框架', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '642B', source: '오메가 프레임', capture: false }),
       response: Responses.goRight(),
     },
     {
@@ -542,6 +557,49 @@ const triggerSet: TriggerSet<Data> = {
         'Tread': '突击机动',
         '(?<!Proto-)Wave Cannon': '波动炮',
         'Wheel': '车轮',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'A-4 Command': '지휘소-A4',
+        'A-4 Conquest': '점령지-A4',
+        'A-4 Headquarters': '사령부-A4',
+        'Arch-Lambda': '아치 람다',
+        'Hybrid Dragon': '혼종 드래곤',
+        'Mark II Guided Missile': '유도 미사일 II',
+        'Omega Frame': '오메가 프레임',
+        'Proto-Omega': '프로토 오메가',
+        'Proto-rocket Punch': '프로토 로켓 주먹',
+        'Stigma-4': '스티그마-4',
+      },
+      'replaceText': {
+        'Atomic Flame': '원자 화염',
+        'Atomic Ray': '원자 파동',
+        'Auto-mobile Assault Cannon': '강습식 파동포',
+        'Auto-mobile Sniper Cannon': '저격식 파동포',
+        'Burn': '연소',
+        'Chemical Missile': '네이팜 미사일',
+        'Electric Slide': '오메가 슬라이드',
+        'Electromagnetic Release': '전자기 방사',
+        'Entrench': '강습기동',
+        'Fire Breath': '화염 숨결',
+        'Forward Interceptors': '전방 요격 로켓',
+        'Guided Missile': '유도 미사일',
+        'Iron Kiss': '착탄',
+        'Mindhack': '두뇌 침입',
+        'Multi-AI Takeover': '복합 지원 요청',
+        'Mustard Bomb': '겨자 폭탄',
+        'Proto-wave Cannon': '시험형 파동포',
+        'Rear Interceptors': '후방 요격 로켓',
+        'Rush': '돌진',
+        'Self-Destruct': '자폭',
+        'Side Cannons': '측면 기관포',
+        'Touchdown': '착지',
+        'Tread': '돌격기동',
+        'Wheel': '바퀴',
+        '(?<!Proto-)Wave Cannon': '파동포',
+        '(?<!Multi-)AI Takeover': '지원 요청',
       },
     },
   ],

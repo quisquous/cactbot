@@ -108,9 +108,7 @@ namespace Cactbot {
       try {
         var mach = Assembly.Load("Machina.FFXIV");
         var opcode_manager_type = mach.GetType("Machina.FFXIV.Headers.Opcodes.OpcodeManager");
-        var opcode_manager = opcode_manager_type.GetProperty("Instance")
-                                                           .GetValue(mach
-                                                                         .CreateInstance("Machina.FFXIV.Headers.Opcodes.OpcodeManager"));
+        var opcode_manager = opcode_manager_type.GetProperty("Instance").GetValue(null);
         var machina_region = opcode_manager_type.GetProperty("GameRegion").GetValue(opcode_manager).ToString();
         switch (machina_region) {
           case "Chinese":
@@ -121,7 +119,7 @@ namespace Cactbot {
             return GameRegion.International;
         }
       } catch (Exception e) {
-        logger_.LogError(Strings.GetGameRegionException, e.Message);
+        logger_.Log(LogLevel.Error, Strings.GetGameRegionException, e.Message);
         return GameRegion.International;
       }
     }
@@ -129,12 +127,12 @@ namespace Cactbot {
     public async void DoUpdateCheck(CactbotEventSourceConfig config) {
       var pluginDirectory = GetCactbotDirectory();
       if (pluginDirectory == "") {
-        logger_.LogError(Strings.UnableUpdateDueToUnknownDirectoryErrorMessage);
+        logger_.Log(LogLevel.Error, Strings.UnableUpdateDueToUnknownDirectoryErrorMessage);
         return;
       }
 
       if (Directory.Exists(Path.Combine(pluginDirectory, ".git"))) {
-        logger_.LogInfo(Strings.IgnoreUpdateDueToDotGitDirectoryMessage);
+        logger_.Log(LogLevel.Info, Strings.IgnoreUpdateDueToDotGitDirectoryMessage);
         return;
       }
 

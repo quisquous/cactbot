@@ -1,7 +1,6 @@
 // This test loads an individual trigger file and makes validates
 // the format and regex calls made.
 
-// TODO: Remove ` ?` before each hex value once global prefix `^.{14} ` is added.
 // JavaScript doesn't allow for possessive operators in regular expressions.
 
 import fs from 'fs';
@@ -24,6 +23,7 @@ import {
   LooseTriggerSet,
   Output,
   OutputStrings,
+  ResponseFunc,
   TriggerFunc,
 } from '../../types/trigger';
 
@@ -49,8 +49,8 @@ const netRegexLanguages: (keyof LooseTrigger)[] = [
 
 const isKeyInTriggerFunctions = (arr: string[], key: string): boolean => arr.includes(key);
 
-const createTriggerRegexString = (str: string): RegExp => {
-  return new RegExp(`(?:regex|triggerRegex)(?:|\\w{2}): \/${str}\/`, 'g');
+const isResponseFunc = (func: unknown): func is ResponseFunc<RaidbossData, Matches> => {
+  return typeof func === 'function';
 };
 
 const testTriggerFile = (file: string) => {
@@ -70,93 +70,34 @@ const testTriggerFile = (file: string) => {
   // Dummy test so that failures in before show up with better text.
   it('should load properly', () => {/* noop */});
 
-  it('has valid trigger regex language', () => {
-    const unsupportedRegexLanguage = /(?:regex|triggerRegex)(?!:|Cn|De|Fr|Ko|Ja)\w*\s*:/g;
-    const results = unsupportedRegexLanguage.exec(contents);
+  it('should not use Regexes', () => {
+    const regexes = /(?:(?:regex)(?:|Cn|De|Fr|Ko|Ja)\w*\s*:\w*\s*Regexes\.)/g;
+    const results = regexes.exec(contents);
     if (results && results.length > 0) {
       for (const result of results)
-        assert.fail(`invalid regex language '${result}'`);
+        assert.fail(`using Regexes: '${result}'`);
     }
   });
 
-  it('has well-formed new combatant trigger regex', () => {
-    // Escape the escapes so they can escape the escape in the parsed regex.
-    const newCombatantRegex = createTriggerRegexString(
-      '(?! ?03:\\\\y{ObjectId}:)(.*:)?Added new combatant.*',
-    );
-    const results = newCombatantRegex.exec(contents);
-    if (results) {
-      for (const result of results) {
-        assert.fail(
-          `'Added new combatant' regex should begin with '03:\\y{ObjectId}:', found '${result}'`,
-        );
-      }
+  it('should not use non-network triggers', () => {
+    const regexesProps = ['regex', 'regexCn', 'regexDe', 'regexFr', 'regexKo', 'regexJa'];
+    for (const trigger of triggerSet.triggers ?? []) {
+      for (const prop of regexesProps)
+        assert.isFalse(prop in trigger, `trigger ${trigger.id} has prop ${prop}`);
     }
   });
 
-  it('has well-formed starts using trigger', () => {
-    const startsUsingRegex = createTriggerRegexString('(?! ?14:)(.* )?starts using.*');
-    const results = startsUsingRegex.exec(contents);
-    if (results) {
+  it('should always use NetRegexes', () => {
+    const regexes = /(?:(?:netRegex)(?:|Cn|De|Fr|Ko|Ja)\w*\s*:\w*\s*\/)[^,]+/g;
+    const results = regexes.exec(contents);
+    if (results && results.length > 0) {
       for (const result of results)
-        assert.fail(`'starts using' regex should begin with '14:', found '${result}'`);
-    }
-  });
-
-  it('has well-formed gains effect trigger', () => {
-    // There are some weird Eureka "gains effect" messages with 00:332e.
-    // But everything else is 1A.
-    const gainsEffectRegex = createTriggerRegexString(
-      '(?! (?:1A:\\\\y{ObjectId}|00:332e):)(.* )?gains the effect of.*',
-    );
-    const results = gainsEffectRegex.exec(contents);
-    if (results) {
-      for (const result of results) {
-        assert.fail(
-          `'gains the effect of' regex should begin with '1A:\\y{ObjectId}:', found '${result}'`,
-        );
-      }
-    }
-  });
-
-  it('has well-formed loses effect trigger', () => {
-    const losesEffectRegex = createTriggerRegexString(
-      '(?! ?1E:\\\\y{ObjectId}:)(.* )?loses the effect of.*',
-    );
-    const results = losesEffectRegex.exec(contents);
-    if (results) {
-      for (const result of results) {
-        assert.fail(
-          `'loses the effect of' regex should begin with '1E:\\y{ObjectId}:', found '${result}'`,
-        );
-      }
-    }
-  });
-
-  it('has no bad catch-all regex', () => {
-    // Matches 3, 5, 6, 7, or 9 (or more) consecutive '.' operators
-    const badCatchAllRegex = createTriggerRegexString('.*:(\\.{3}(\\.{2,4})?|\\.{9,}):.*');
-    const results = badCatchAllRegex.exec(contents);
-    if (results) {
-      for (const result of results)
-        assert.fail(`Invalid number of '.' operators, found '${result}'`);
-    }
-  });
-
-  it('should use ObjectId instead of literal periods', () => {
-    const objectIdRegex = createTriggerRegexString('.*:\\.{8}:.*');
-    const results = objectIdRegex.exec(contents);
-    if (results) {
-      for (const result of results) {
-        assert.fail(
-          `${file}: ObjectId should be used in favor of literal '........', found '${result}'`,
-        );
-      }
+        assert.fail(`using raw regex: '${result}'`);
     }
   });
 
   it('should not use an unnecessary group regex', () => {
-    const unnecessaryGroupRegex = createTriggerRegexString('.*\\(\\?:.\\|.\\).*');
+    const unnecessaryGroupRegex = /\(\?:.(?:\|.)+\)/g;
     const results = unnecessaryGroupRegex.exec(contents);
     if (results) {
       for (const result of results) {
@@ -200,13 +141,14 @@ const testTriggerFile = (file: string) => {
           const funcStr = currentTriggerFunction.toString();
 
           const containsOutput = /\boutput\.(\w*)\(/.test(funcStr);
-          const containsOutputParam = getParamNames(funcStr).includes('output');
+          const paramNames = getParamNames(funcStr);
+          const containsOutputParam = paramNames.includes('output');
           // TODO: should we error when there is an unused output param? that seems a bit much.
           if (containsOutput && !containsOutputParam)
             assert.fail(`Missing 'output' param for '${currentTrigger.id}'.`);
 
           containsMatches = containsMatches || /(?<!_)matches/.test(funcStr);
-          for (const paramName of getParamNames(funcStr))
+          for (const paramName of paramNames)
             containsMatchesParam = containsMatchesParam || /(?<!_)matches/.test(paramName);
 
           const builtInResponse = 'cactbot-builtin-response';
@@ -292,20 +234,6 @@ const testTriggerFile = (file: string) => {
             `Found 'matches' as a function parameter without regex capturing group for trigger id '${currentTrigger.id}'.`,
           );
         }
-      }
-    }
-  });
-
-  it('has valid trigger fields', () => {
-    for (const currentTrigger of triggerSet.triggers ?? []) {
-      for (const key in currentTrigger) {
-        if (isKeyInTriggerFunctions(triggerFunctions, key))
-          continue;
-        if (isKeyInTriggerFunctions(regexLanguages, key))
-          continue;
-        if (isKeyInTriggerFunctions(netRegexLanguages, key))
-          continue;
-        assert.fail(`${file}: Found unknown key '${key}' in trigger id '${currentTrigger.id}'.`);
       }
     }
   });
@@ -527,14 +455,18 @@ const testTriggerFile = (file: string) => {
             );
             continue;
           }
-          const output = new TestOutputProxy(trigger, outputStrings) as Output;
-          // Call the function to get the outputStrings.
-          const data = (triggerSet.initData?.() ?? {}) as RaidbossData;
-          response = trigger.response(data, {}, output) ?? {};
 
-          if (typeof outputStrings !== 'object') {
-            assert.fail(`'${trigger.id}' built-in response did not set outputStrings.`);
-            continue;
+          const output = new TestOutputProxy(trigger, outputStrings) as Output;
+          const responseFunc = trigger.response;
+          if (isResponseFunc(responseFunc)) {
+            // Call the function to get the outputStrings.
+            const data = (triggerSet.initData?.() ?? {}) as RaidbossData;
+            response = responseFunc(data, {}, output) ?? {};
+
+            if (typeof outputStrings !== 'object') {
+              assert.fail(`'${trigger.id}' built-in response did not set outputStrings.`);
+              continue;
+            }
           }
         } else {
           if (trigger.outputStrings && typeof outputStrings !== 'object') {
@@ -669,6 +601,13 @@ const testTriggerFile = (file: string) => {
           }
         }
       }
+    }
+  });
+
+  it('has valid timeline file', () => {
+    if (triggerSet.timelineFile) {
+      const timelineFile = path.join(path.dirname(file), triggerSet.timelineFile);
+      assert.isTrue(fs.existsSync(timelineFile), `${triggerSet.timelineFile} does not exist`);
     }
   });
 };

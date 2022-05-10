@@ -26,7 +26,7 @@
 
 :root {
   --text-shadow-color: #217aa2;
-  --damage-shadow-color: rgba(217, 255, 0, 0.2);
+  --damage-shadow-color: rgb(217 255 0 / 20%);
   --live-list-max-width: 500px;
 }
 
@@ -50,7 +50,7 @@
   display: none;
 }
 
-.resizeHandle .resize-helper {
+.resize-handle .resize-helper {
   display: inline-block;
 }
 
@@ -75,18 +75,22 @@
 }
 
 .livelist-shadow {
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5px 2px rgb(0 0 0 / 50%);
   margin: 5px;
 }
 
 .out-of-combat .livelist-shadow {
-  box-shadow: 0 0 5px 2px rgba(200, 200, 70, 0.3);
+  box-shadow: 0 0 5px 2px rgb(200 200 70 / 30%);
 }
 
 div {
-  font-family: "Meiryo", sans-serif;
+  font-family: Meiryo, sans-serif;
   font-size: 12;
-  text-shadow: -1px 0 3px var(--text-shadow-color), 0 1px 3px var(--text-shadow-color), 1px 0 3px var(--text-shadow-color), 0 -1px 3px var(--text-shadow-color);
+  text-shadow:
+    -1px 0 3px var(--text-shadow-color),
+    0 1px 3px var(--text-shadow-color),
+    1px 0 3px var(--text-shadow-color),
+    0 -1px 3px var(--text-shadow-color);
   font-weight: 300;
   color: #e2ebf5;
 }
@@ -96,11 +100,11 @@ div {
 }
 
 .mistake-row:nth-child(even) {
-  background-color: rgba(20, 20, 20, 0.3);
+  background-color: rgb(20 20 20 / 30%);
 }
 
 .mistake-row:nth-child(odd) {
-  background-color: rgba(50, 50, 50, 0.3);
+  background-color: rgb(50 50 50 / 30%);
 }
 
 .mistake-row > div {
@@ -127,7 +131,7 @@ div {
   order: 3;
 }
 
-.resizeHandle .hide-if-resizing {
+.resize-handle .hide-if-resizing {
   display: none;
 }
 
@@ -140,7 +144,7 @@ div {
 
 .death-report > div {
   padding: 5px;
-  background-color: rgba(20, 20, 20, 0.3);
+  background-color: rgb(20 20 20 / 30%);
 }
 
 .death-title {
@@ -183,7 +187,7 @@ div {
 }
 
 .death-details .damage {
-  color: rgb(255, 0, 0);
+  color: rgb(255 0 0);
   font-weight: bold;
 
   /* blue text shadow looks really weird, and I can't find a shadow combination with red
@@ -192,7 +196,7 @@ div {
 }
 
 .death-details .heal {
-  color: rgb(125, 250, 125);
+  color: rgb(125 250 125);
 }
 
 .death-row-icon.mistake-icon {
@@ -216,7 +220,7 @@ div {
   display: none;
 }
 
-@keyframes fadeOut {
+@keyframes fade-out {
   50% {
     opacity: 1;
   }
@@ -233,10 +237,10 @@ div {
   position: absolute;
   margin: 0 auto;
   color: white;
-  box-shadow: 0 0 5px 2px rgba(70, 115, 200, 0.3);
-  background-color: rgba(50, 50, 50, 0.5);
+  box-shadow: 0 0 5px 2px rgb(70 115 200 / 30%);
+  background-color: rgb(50 50 50 / 50%);
   pointer-events: none;
-  animation: 1s fadeOut;
+  animation: 1s fade-out;
   animation-fill-mode: forwards;
 }
 
@@ -255,19 +259,19 @@ div {
 }
 
 .icon-close {
-  color: rgb(230, 230, 230);
+  color: rgb(230 230 230);
 }
 
 .icon-close::before {
-  content: '\f00d';
+  content: "\f00d";
 }
 
 .icon-summary {
-  color: rgb(230, 230, 230);
+  color: rgb(230 230 230);
 }
 
 .icon-summary::before {
-  content: '\f35d';
+  content: "\f35d";
 }
 
 .icon-entry {
@@ -280,5 +284,5 @@ div {
 }
 
 .icon-entry:hover {
-  color: rgb(247, 255, 129);
+  color: rgb(247 255 129);
 }

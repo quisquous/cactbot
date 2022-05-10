@@ -2,6 +2,7 @@ import logDefinitions, { LogDefinitionMap } from '../../../../../resources/netlo
 import { Job } from '../../../../../types/job';
 import EmulatorCommon, { getTimezoneOffsetMillis } from '../../EmulatorCommon';
 
+import { LineEvent0x03 } from './LineEvent0x03';
 import LogRepository from './LogRepository';
 
 const fields = {
@@ -139,4 +140,8 @@ export interface LineEventAbility extends LineEvent {
 
 export const isLineEventAbility = (line: LineEvent): line is LineEventAbility => {
   return 'isAbility' in line;
+};
+
+export const isLineEvent0x03 = (line: LineEvent): line is LineEvent0x03 => {
+  return line.decEvent === 3;
 };

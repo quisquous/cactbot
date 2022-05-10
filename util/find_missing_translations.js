@@ -63,10 +63,12 @@ const parseJavascriptFile = (file, locales) => {
   let keys = [];
   let fixme = [];
   let openMatch = null;
+  let foundIgnore = false;
 
   const openObjRe = /^(\s*)(.*{)\s*$/;
   const keyRe = /^\s*(\w{2}):/;
   const fixmeRe = /\/\/ FIX-?ME/;
+  const ignoreRe = /cactbot-ignore-missing-translations/;
 
   lineReader.on('line', (line, idx = lineCounter()) => {
     // Immediately exit if the file is auto-generated
@@ -85,6 +87,7 @@ const parseJavascriptFile = (file, locales) => {
       lineNumber = idx + 1;
       keys = [];
       fixme = [];
+      foundIgnore = false;
       return;
     }
 
@@ -96,7 +99,7 @@ const parseJavascriptFile = (file, locales) => {
     // then we've probably maybe found the end of this object.
     if (line.match(`${openMatch[1]}}`)) {
       // Check if these keys look like a translation block.
-      if (keys.includes('en')) {
+      if (!foundIgnore && keys.includes('en')) {
         const missingKeys = new Set([...locales].filter((locale) => {
           return !keys.includes(locale) || fixme.includes(locale);
         }));
@@ -116,6 +119,9 @@ const parseJavascriptFile = (file, locales) => {
       openMatch = null;
       return;
     }
+
+    if (line.match(ignoreRe))
+      foundIgnore = true;
 
     // If we're inside an object, find anything that looks like a key.
     const keyMatch = line.match(keyRe);

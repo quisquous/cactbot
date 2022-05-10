@@ -231,7 +231,7 @@ if __name__ == "__main__":
         sys.exit(0)
 
     if args.report and not args.key:
-        raise parser.error(
+        parser.error(
             "FFlogs parsing requires an API key. Visit https://www.fflogs.com/profile and use the V1 Client Key"
         )
 

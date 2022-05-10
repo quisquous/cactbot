@@ -84,8 +84,8 @@ export default class EmulatedPartyInfo extends EventBus {
 
   constructor(private emulator: RaidEmulator) {
     super();
-    this.$partyInfo = querySelectorSafe(document, '.partyInfoColumn .party');
-    this.$triggerInfo = querySelectorSafe(document, '.triggerInfoColumn');
+    this.$partyInfo = querySelectorSafe(document, '.party-info-column .party');
+    this.$triggerInfo = querySelectorSafe(document, '.trigger-info-column');
     const skipped = querySelectorSafe(document, '.triggerHideSkipped');
     if (!(skipped instanceof HTMLInputElement))
       throw new UnreachableCode();
@@ -94,7 +94,7 @@ export default class EmulatedPartyInfo extends EventBus {
     if (!(collector instanceof HTMLInputElement))
       throw new UnreachableCode();
     this.$triggerHideCollectCheckbox = collector;
-    this.$triggerBar = querySelectorSafe(document, '.playerTriggers');
+    this.$triggerBar = querySelectorSafe(document, '.player-triggers');
     this.latestDisplayedState = 0;
     for (let i = 0; i < 8; ++i)
       this.triggerBars[i] = querySelectorSafe(this.$triggerBar, '.player' + i.toString());
@@ -129,8 +129,8 @@ export default class EmulatedPartyInfo extends EventBus {
     this.$triggerHideSkippedCheckbox.addEventListener('change', this.updateTriggerState);
     this.$triggerHideCollectCheckbox.addEventListener('change', this.updateTriggerState);
 
-    this.$triggerItemTemplate = getTemplateChild(document, 'template.triggerItem');
-    this.$playerInfoRowTemplate = getTemplateChild(document, 'template.playerInfoRow');
+    this.$triggerItemTemplate = getTemplateChild(document, 'template.trigger-item');
+    this.$playerInfoRowTemplate = getTemplateChild(document, 'template.player-info-row');
     this.$playerTriggerInfoTemplate = getTemplateChild(document, 'template.playerTriggerInfo');
     this.$jsonViewerTemplate = getTemplateChild(document, 'template.jsonViewer');
     this.$wrapCollapseTemplate = getTemplateChild(document, 'template.wrapCollapse');
@@ -182,7 +182,7 @@ export default class EmulatedPartyInfo extends EventBus {
     this.displayedParty = {};
     this.latestDisplayedState = 0;
     this.$partyInfo.innerHTML = '';
-    this.$triggerBar.querySelectorAll('.triggerItem').forEach((n) => {
+    this.$triggerBar.querySelectorAll('.trigger-item').forEach((n) => {
       n.remove();
     });
     const membersToDisplay = tracker.partyMembers.sort((l, r) => {
@@ -257,7 +257,7 @@ export default class EmulatedPartyInfo extends EventBus {
       r.classList.add('d-none')
     );
     display.$triggerElem.classList.remove('d-none');
-    this.$partyInfo.querySelectorAll('.playerInfoRow').forEach((r) => {
+    this.$partyInfo.querySelectorAll('.player-info-row').forEach((r) => {
       r.classList.remove('border');
       r.classList.remove('border-success');
     });
@@ -300,7 +300,7 @@ export default class EmulatedPartyInfo extends EventBus {
     const $e = cloneSafe(this.$playerInfoRowTemplate);
     const $hp = querySelectorSafe($e, '.hp');
     const $mp = querySelectorSafe($e, '.mp');
-    const $name = querySelectorSafe($e, '.playerName');
+    const $name = querySelectorSafe($e, '.player-name');
     const ret = {
       $rootElem: $e,
       $iconElem: querySelectorSafe($e, '.jobicon'),
@@ -318,7 +318,7 @@ export default class EmulatedPartyInfo extends EventBus {
     const combatant = encounter.encounter.combatantTracker?.combatants[id];
     if (!combatant)
       throw new UnreachableCode();
-    ret.$rootElem.classList.add((combatant.job || '').toUpperCase());
+    ret.$rootElem.classList.add((combatant.job || '').toLowerCase());
     this.tooltips.push(new Tooltip(ret.$rootElem, 'left', combatant.name));
     $name.innerHTML = combatant.name;
     ret.$rootElem.addEventListener('click', () => {

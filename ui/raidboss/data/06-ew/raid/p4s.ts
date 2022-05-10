@@ -1628,7 +1628,7 @@ const triggerSet: TriggerSet<Data> = {
         'Cursed Casting': '诅咒发动',
         'Dark Design': '黑暗设计',
         'Decollation': '断头',
-        'Demigod Double': '半神的双击',
+        'Demigod Double': '半神双击',
         'Director\'s Belone': '附魔佩罗涅·职责',
         'Directional Shift': '换位强袭·方位',
         'Elegant Evisceration': '优雅除脏',

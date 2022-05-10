@@ -672,7 +672,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': 'ハリカルナッソス',
         'Apanda': 'アパンダ',

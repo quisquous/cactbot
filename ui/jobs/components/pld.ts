@@ -134,7 +134,7 @@ export class PLDComponent extends BaseComponent {
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     if (id === EffectId.SwordOath)
       this.setAtonement(this.atonementBox, parseInt(matches.count ?? '0'));
-    if (id === EffectId.Requiescat && !(this.ffxivRegion === 'ko')) {
+    if (id === EffectId.Requiescat) {
       this.stacksContainer.classList.remove('hide');
       this.setRequiescat(parseInt(matches.count ?? '0'));
     }
@@ -143,7 +143,7 @@ export class PLDComponent extends BaseComponent {
   override onYouLoseEffect(id: string): void {
     if (id === EffectId.SwordOath)
       this.setAtonement(this.atonementBox, 0);
-    if (id === EffectId.Requiescat && !(this.ffxivRegion === 'ko')) {
+    if (id === EffectId.Requiescat) {
       this.setRequiescat(0);
       this.stacksContainer.classList.add('hide');
     }

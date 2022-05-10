@@ -21,7 +21,7 @@ export default class ProgressBar {
     this.$progressBarDuration = querySelectorSafe(document, '.duration-timestamp');
     this.$progress = querySelectorSafe(document, '.encounterProgressBar');
     this.$progressBar = querySelectorSafe(document, '.encounterProgressBar .progress-bar');
-    this.$engageIndicator = querySelectorSafe(document, '.progressBarRow .engageIndicator');
+    this.$engageIndicator = querySelectorSafe(document, '.progress-bar-row .engage-indicator');
     new Tooltip(this.$engageIndicator, 'bottom', 'Fight Begins');
     this.$progress.addEventListener('mousemove', (e) => {
       if (emulator.currentEncounter) {
@@ -73,8 +73,8 @@ export default class ProgressBar {
       this.$progressBarCurrent.textContent = EmulatorCommon.timeToString(progValue, false);
       this.$progressBar.style.width = `${progPercent}%`;
     });
-    const $play = querySelectorSafe(document, '.progressBarRow button.play');
-    const $pause = querySelectorSafe(document, '.progressBarRow button.pause');
+    const $play = querySelectorSafe(document, '.progress-bar-row button.play');
+    const $pause = querySelectorSafe(document, '.progress-bar-row button.pause');
     $play.addEventListener('click', () => {
       if (emulator.play()) {
         $play.classList.add('d-none');

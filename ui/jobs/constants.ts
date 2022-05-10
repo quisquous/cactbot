@@ -10,15 +10,7 @@ export const kMPUI2Rate = 0.45;
 export const kMPUI3Rate = 0.60;
 export const kMPTickInterval = 3.0;
 
-/**
- * DoT ticks on every "Eorzea minute",
- * and it is known that 1 "Eorzea day" equals to 70 "Earth minutes",
- * so 1 "Eorzea minute" is equal to `70 * 60 / (1 * 24 * 60)` = `2.9166667`
- */
-export const kDoTTickInterval = 70 * 60 / (1 * 24 * 60);
-
 export const kComboDelay = 30;
-export const kComboDelay5x = 15;
 
 export const kWellFedContentTypes: number[] = [
   ContentType.Dungeons,
@@ -26,13 +18,6 @@ export const kWellFedContentTypes: number[] = [
   ContentType.Raids,
   ContentType.UltimateRaids,
 ];
-
-// this object holds effect id that is different from the patch 6.x
-// or removed in patch 6.x. In order to support CN/KR that is still
-// in patch 5.x, we move them here.
-export const patch5xEffectId = {
-  FurtherRuin5x: '4BC',
-};
 
 export const kAbility = {
   // LB
@@ -238,6 +223,7 @@ export const kAbility = {
   HeatBlast: '1CF2',
   AutoCrossbow: '4071',
   ChainSaw: '64BC',
+  Scattergun: '64BA',
   // DNC
   Cascade: '3E75',
   Fountain: '3E76',
@@ -265,15 +251,6 @@ export const kAbility = {
   DreadwyrmTrance: 'DFD',
   SummonBahamut: '1D03',
   SummonPhoenix: '64E7',
-  // 5.x
-  Miasma: 'A8',
-  Miasma3: '1D01',
-  BioSmn: 'A4',
-  BioSmn2: 'B2',
-  Bio3: '1D00',
-  Tridisaster: 'DFC',
-  FirebirdTrance: '40A5',
-  Devotion: '1D1A',
   // RDM
   Verstone: '1D57',
   Verfire: '1D56',
@@ -559,6 +536,7 @@ export const kComboBreakers = [
   kAbility.HeatedSlugShot,
   kAbility.HeatedCleanShot,
   kAbility.SpreadShot,
+  kAbility.Scattergun,
   // DNC
   kAbility.Cascade,
   kAbility.Fountain,
@@ -577,42 +555,6 @@ export const kComboBreakersCn = [
 export const kComboBreakersKo = [
   ...kComboBreakers,
   ...kComboBreakersCn,
-  // LB
-  kAbility.ShieldWall,
-  kAbility.Stronghold,
-  kAbility.LastBastion,
-  kAbility.LandWaker,
-  kAbility.DarkForce,
-  kAbility.GunmetalSoul,
-  kAbility.HealingWind,
-  kAbility.BreathoftheEarth,
-  kAbility.PulseofLife,
-  kAbility.AngelFeathers,
-  kAbility.AstralStasis,
-  kAbility.Braver,
-  kAbility.Bladedance,
-  kAbility.FinalHeaven,
-  kAbility.Chimatsuri,
-  kAbility.DragonsongDive,
-  kAbility.DoomoftheLiving,
-  kAbility.BigShot,
-  kAbility.Desperado,
-  kAbility.SagittariusArrow,
-  kAbility.SatelliteBeam,
-  kAbility.CrimsonLotus,
-  kAbility.Skyshard,
-  kAbility.Starstorm,
-  kAbility.Meteor,
-  kAbility.Teraflare,
-  kAbility.VermilionScourge,
-  // Ranged
-  kAbility.ShieldLob,
-  kAbility.Tomahawk,
-  kAbility.Unmend,
-  kAbility.LightningShot,
-  kAbility.PiercingTalon,
-  kAbility.ThrowingDagger,
-  kAbility.Enpi,
 ];
 
 // [level][Sub][Div]

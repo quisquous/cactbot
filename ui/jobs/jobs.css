@@ -84,7 +84,7 @@ div.justbuffs div#procs-container {
   position: relative;
   width: 202px;
   height: 0;
-  background: rgba(30, 30, 30, 0.7);
+  background: rgb(30 30 30 / 70%);
 }
 
 .timer-bar {
@@ -101,7 +101,7 @@ div.justbuffs div#procs-container {
   border: 1px solid black;
   width: 200px; /* 202 minus borders */
   height: calc(8px * 2 - 4px);
-  background: rgba(30, 30, 30, 0.7);
+  background: rgb(30 30 30 / 70%);
 }
 
 #rdm-bar .marker {
@@ -110,7 +110,7 @@ div.justbuffs div#procs-container {
 }
 
 #rdm-bar .marker.even {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgb(0 0 0 / 70%);
 }
 
 /* Relative to #rdm-bar */
@@ -118,7 +118,7 @@ div.justbuffs div#procs-container {
 #rdm-black-bar {
   display: block;
   position: relative;
-  margin: -1px -1px -2px -1px;
+  margin: -1px -1px -2px;
   width: 100%;
   height: calc(100% - 4px);
 }
@@ -140,7 +140,7 @@ div.justbuffs div#procs-container {
 .box-container > div {
   display: inline-block;
   margin-left: 4;
-  border: 1px solid rgba(0, 0, 0, 0.7);
+  border: 1px solid rgb(0 0 0 / 70%);
   width: 29px;
   height: 29px;
 }
@@ -221,7 +221,7 @@ div.justbuffs div#procs-container {
 
   /* fix this hack by using better layout primitives */
   left: -242px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgb(0 0 0 / 30%);
 }
 
 /* Side Icons */
@@ -303,7 +303,7 @@ div.justbuffs div#procs-container {
 }
 
 .stacks > * > * {
-  background-color: rgba(174, 227, 235, 0.2);
+  background-color: rgb(174 227 235 / 20%);
   margin-right: 2px;
   display: inline-block;
   border: 1px solid black;
@@ -316,43 +316,43 @@ div.justbuffs div#procs-container {
 }
 
 #pld-stacks-requiescat > div.active {
-  background-color: rgb(25, 156, 255);
+  background-color: rgb(25 156 255);
 }
 
 #whm-stacks-lily > div.active {
-  background-color: rgb(60, 80, 200);
+  background-color: rgb(60 80 200);
 }
 
 #whm-stacks-bloodlily > div {
-  background-color: rgba(66, 19, 128, 0.2);
+  background-color: rgb(66 19 128 / 20%);
 }
 
 #whm-stacks-bloodlily > div.active {
-  background-color: rgb(190, 43, 30);
+  background-color: rgb(190 43 30);
 }
 
-#ast-stacks-sign > div.Solar {
-  background-color: rgb(190, 43, 30);
+#ast-stacks-sign > div.solar {
+  background-color: rgb(190 43 30);
 }
 
-#ast-stacks-sign > div.Lunar {
-  background-color: rgb(222, 195, 95);
+#ast-stacks-sign > div.lunar {
+  background-color: rgb(222 195 95);
 }
 
-#ast-stacks-sign > div.Celestial {
-  background-color: rgb(125, 250, 250);
+#ast-stacks-sign > div.celestial {
+  background-color: rgb(125 250 250);
 }
 
 #sge-stacks-addersgall > div.active {
-  background-color: rgb(120, 170, 250);
+  background-color: rgb(120 170 250);
 }
 
 #sge-stacks-addersting > div {
-  background-color: rgba(66, 19, 128, 0.2);
+  background-color: rgb(66 19 128 / 20%);
 }
 
 #sge-stacks-addersting > div.active {
-  background-color: rgb(195, 85, 155);
+  background-color: rgb(195 85 155);
 }
 
 #mnk-stacks-beastchakra {
@@ -360,103 +360,103 @@ div.justbuffs div#procs-container {
 }
 
 #mnk-stacks-lunar > div {
-  background-color: rgba(66, 19, 128, 0.2);
+  background-color: rgb(66 19 128 / 20%);
 }
 
 #mnk-stacks-solar > div {
-  background-color: rgba(66, 19, 128, 0.2);
+  background-color: rgb(66 19 128 / 20%);
 }
 
 #mnk-stacks-lunar > div.active {
-  background-color: rgb(90, 50, 170);
+  background-color: rgb(90 50 170);
 }
 
 #mnk-stacks-solar > div.active {
-  background-color: rgb(200, 200, 200);
+  background-color: rgb(200 200 200);
 }
 
-#mnk-stacks-beastchakra > div.Opo {
-  background-color: rgb(150, 90, 180);
+#mnk-stacks-beastchakra > div.opo {
+  background-color: rgb(150 90 180);
 }
 
-#mnk-stacks-beastchakra > div.Coeurl {
-  background-color: rgb(240, 100, 150);
+#mnk-stacks-beastchakra > div.coeurl {
+  background-color: rgb(240 100 150);
 }
 
-#mnk-stacks-beastchakra > div.Raptor {
-  background-color: rgb(75, 155, 120);
+#mnk-stacks-beastchakra > div.raptor {
+  background-color: rgb(75 155 120);
 }
 
 #sam-stacks-setsu.active {
-  background-color: rgb(139, 209, 242);
+  background-color: rgb(139 209 242);
 }
 
 #sam-stacks-getsu.active {
-  background-color: rgb(100, 100, 238);
+  background-color: rgb(100 100 238);
 }
 
 #sam-stacks-ka.active {
-  background-color: rgb(230, 142, 142);
+  background-color: rgb(230 142 142);
 }
 
 #rpr-stacks-enshroud > div.lemure {
-  background-color: rgb(70, 255, 255);
+  background-color: rgb(70 255 255);
 }
 
 #rpr-stacks-enshroud > div.void {
-  background-color: rgb(255, 0, 255);
+  background-color: rgb(255 0 255);
 }
 
 #brd-stacks-magescoda.active {
-  background-color: rgb(143, 90, 143);
+  background-color: rgb(143 90 143);
 }
 
 #brd-stacks-armyscoda.active {
-  background-color: rgb(207, 205, 52);
+  background-color: rgb(207 205 52);
 }
 
 #brd-stacks-wandererscoda.active {
-  background-color: rgb(100, 150, 100);
+  background-color: rgb(100 150 100);
 }
 
 #mch-stacks-wildfire > div.active {
-  background-color: rgb(250, 0, 0);
+  background-color: rgb(250 0 0);
 }
 
 #mch-stacks-wildfire > div.fix {
-  background-color: rgb(190, 80, 70);
+  background-color: rgb(190 80 70);
 }
 
 #blm-stacks-heart > div.active {
-  background-color: rgb(174, 227, 235);
+  background-color: rgb(174 227 235);
 }
 
 #blm-stacks-xeno > div {
-  background-color: rgba(66, 19, 128, 0.2);
+  background-color: rgb(66 19 128 / 20%);
 }
 
 #blm-stacks-xeno > div.active {
-  background-color: rgb(200, 50, 200);
+  background-color: rgb(200 50 200);
 }
 
 #smn-stacks-ruin4 > div.active {
-  background-color: rgb(65, 0, 200);
+  background-color: rgb(65 0 200);
 }
 
 #smn-stacks-ruby > div.active {
-  background-color: rgb(240, 30, 30);
+  background-color: rgb(240 30 30);
 }
 
 #smn-stacks-emerald > div.active {
-  background-color: rgb(0, 140, 0);
+  background-color: rgb(0 140 0);
 }
 
 #smn-stacks-topaz > div.active {
-  background-color: rgb(238, 234, 14);
+  background-color: rgb(238 234 14);
 }
 
 #rdm-stacks-manastack > div.active {
-  background-color: rgb(255, 100, 100);
+  background-color: rgb(255 100 100);
 }
 
 /* Procs */
@@ -496,692 +496,692 @@ div.justbuffs div#procs-container {
 
 /* Colors */
 .bar-border-color {
-  background-color: rgb(30, 30, 30);
+  background-color: rgb(30 30 30);
 }
 
 .hp-color {
-  background-color: rgb(59, 133, 4);
+  background-color: rgb(59 133 4);
 }
 
 .hp-color.low {
-  background-color: rgb(190, 43, 30);
+  background-color: rgb(190 43 30);
 }
 
 .hp-color.mid {
-  background-color: rgb(127, 185, 29);
+  background-color: rgb(127 185 29);
 }
 
 .mp-color {
-  background-color: rgb(188, 55, 147);
+  background-color: rgb(188 55 147);
 }
 
 .mp-color.far {
-  background-color: rgb(215, 120, 0);
+  background-color: rgb(215 120 0);
 }
 
 .mp-color.low {
-  background-color: rgb(210, 20, 65);
+  background-color: rgb(210 20 65);
 }
 
 .mp-color.medium {
-  background-color: rgb(65, 0, 200);
+  background-color: rgb(65 0 200);
 }
 
 .mp-tick-color {
-  background-color: rgb(133, 192, 231);
+  background-color: rgb(133 192 231);
 }
 
 .mp-tick-color.ice {
-  background-color: rgb(30, 80, 245);
+  background-color: rgb(30 80 245);
 }
 
 .mp-tick-color.fire {
-  background-color: rgb(229, 56, 53);
+  background-color: rgb(229 56 53);
 }
 
 .cp-color {
-  background-color: rgb(75, 135, 230);
+  background-color: rgb(75 135 230);
 }
 
 .gp-color {
-  background-color: rgb(20, 50, 20);
+  background-color: rgb(20 50 20);
 }
 
 .combo-color {
-  background-color: rgb(180, 200, 220);
+  background-color: rgb(180 200 220);
 }
 
 /* PLD */
 .pld-color-oath {
-  background-color: rgb(255, 210, 45);
+  background-color: rgb(255 210 45);
 }
 
 .pld-color-oath.mid {
-  background-color: rgb(255, 255, 100);
+  background-color: rgb(255 255 100);
 }
 
 .pld-color-oath.low {
-  background-color: rgb(255, 255, 200);
+  background-color: rgb(255 255 200);
 }
 
 .pld-color-atonement {
-  background-color: rgb(214, 237, 255);
+  background-color: rgb(214 237 255);
 }
 
 .pld-color-atonement.any {
-  background-color: rgb(25, 156, 255);
+  background-color: rgb(25 156 255);
 }
 
 .pld-color-gore {
-  background-color: rgb(255, 135, 35);
+  background-color: rgb(255 135 35);
 }
 
 .pld-color-fightorflight {
-  background-color: rgb(140, 20, 50);
+  background-color: rgb(140 20 50);
 }
 
 .pld-color-fightorflight.active {
-  background-color: rgb(240, 50, 20);
+  background-color: rgb(240 50 20);
 }
 
 .pld-color-expiacion {
-  background-color: rgb(140, 60, 200);
+  background-color: rgb(140 60 200);
 }
 
 /* WAR */
 .war-color-beast {
-  background-color: rgb(230, 20, 20);
+  background-color: rgb(230 20 20);
 }
 
 .war-color-beast.low {
-  background-color: rgb(255, 235, 153);
+  background-color: rgb(255 235 153);
 }
 
 .war-color-beast.mid {
-  background-color: rgb(255, 153, 0);
+  background-color: rgb(255 153 0);
 }
 
 .war-color-tempest {
-  background-color: rgb(255, 140, 140);
+  background-color: rgb(255 140 140);
 }
 
 .war-color-upheaval {
-  background-color: rgb(130, 40, 0);
+  background-color: rgb(130 40 0);
 }
 
 .war-color-innerrelease {
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(255 0 0);
 }
 
 /* DRK */
 .drk-color-blood {
-  background-color: rgb(255, 0, 10);
+  background-color: rgb(255 0 10);
 }
 
 .drk-color-blood.low {
-  background-color: rgb(60, 0, 10);
+  background-color: rgb(60 0 10);
 }
 
 .drk-color-blood.mid {
-  background-color: rgb(200, 0, 10);
+  background-color: rgb(200 0 10);
 }
 
 .drk-color-darkside {
-  background-color: rgb(129, 33, 138);
+  background-color: rgb(129 33 138);
 }
 
 .drk-color-bloodweapon {
-  background-color: rgb(133, 0, 0, 0.7);
+  background-color: rgb(133 0 0 / 70%);
 }
 
 .drk-color-bloodweapon.active {
-  background-color: rgb(199, 0, 0);
+  background-color: rgb(199 0 0);
 }
 
 .drk-color-delirium {
-  background-color: rgb(255, 80, 80, 0.6);
+  background-color: rgb(255 80 80 / 60%);
 }
 
 .drk-color-delirium.active {
-  background-color: rgb(255, 80, 80);
+  background-color: rgb(255 80 80);
 }
 
 .drk-color-livingshadow {
-  background-color: rgb(123, 58, 126, 0.5);
+  background-color: rgb(123 58 126 / 50%);
 }
 
 .drk-color-livingshadow.active {
-  background-color: rgb(179, 0, 189);
+  background-color: rgb(179 0 189);
 }
 
 /* GNB */
 .gnb-color-cartridge {
-  background-color: rgb(115, 218, 255);
+  background-color: rgb(115 218 255);
 }
 
 .gnb-color-cartridge.full {
-  background-color: rgb(250, 86, 45);
+  background-color: rgb(250 86 45);
 }
 
 .gnb-color-gnashingfang {
-  background-color: rgb(216, 111, 12);
+  background-color: rgb(216 111 12);
 }
 
 .gnb-color-nomercy {
-  background-color: rgba(232, 127, 127, 0.7);
+  background-color: rgb(232 127 127 / 70%);
 }
 
 .gnb-color-nomercy.active {
-  background-color: rgb(232, 127, 127);
+  background-color: rgb(232 127 127);
 }
 
 .gnb-color-bloodfest {
-  background-color: rgb(9, 81, 98);
+  background-color: rgb(9 81 98);
 }
 
 /* WHM */
 .whm-color-dia {
-  background-color: rgb(120, 170, 250);
+  background-color: rgb(120 170 250);
 }
 
 .whm-color-assize {
-  background-color: rgb(62, 224, 170);
+  background-color: rgb(62 224 170);
 }
 
 .whm-color-lucid {
-  background-color: rgb(227, 148, 210);
+  background-color: rgb(227 148 210);
 }
 
 .whm-color-lilysecond {
-  background-color: rgb(120, 170, 250);
+  background-color: rgb(120 170 250);
 }
 
 .whm-color-lilysecond.full {
-  background-color: rgb(240, 30, 30);
+  background-color: rgb(240 30 30);
 }
 
 /* SCH */
 .sch-color-bio {
-  background-color: rgb(60, 80, 200);
+  background-color: rgb(60 80 200);
 }
 
 .sch-color-aetherflow {
-  background-color: rgb(255, 96, 207);
+  background-color: rgb(255 96 207);
 }
 
 .sch-color-aetherflow.too-much-stacks {
-  background-color: rgb(240, 30, 30);
+  background-color: rgb(240 30 30);
 }
 
 .sch-color-fairygauge {
-  background-color: rgb(62, 224, 170);
+  background-color: rgb(62 224 170);
 }
 
 .sch-color-fairygauge.bright {
-  background-color: rgb(120, 170, 250);
+  background-color: rgb(120 170 250);
 }
 
 .sch-color-lucid {
-  background-color: rgb(227, 148, 210);
+  background-color: rgb(227 148 210);
 }
 
 /* AST */
 .ast-color-combust {
-  background-color: rgb(120, 170, 250);
+  background-color: rgb(120 170 250);
 }
 
 .ast-color-benefic {
-  background-color: rgb(62, 224, 170);
+  background-color: rgb(62 224 170);
 }
 
 .ast-color-helios {
-  background-color: rgb(175, 235, 215);
+  background-color: rgb(175 235 215);
 }
 
 .ast-color-draw {
-  background-color: rgb(64, 65, 163);
+  background-color: rgb(64 65 163);
 }
 
 .ast-color-card {
-  background-color: rgb(180, 200, 220);
+  background-color: rgb(180 200 220);
 }
 
 .ast-color-card.range {
-  background-color: rgb(255, 96, 207);
+  background-color: rgb(255 96 207);
 }
 
 .ast-color-card.melee {
-  background-color: rgb(120, 170, 250);
+  background-color: rgb(120 170 250);
 }
 
 .ast-color-seal {
-  background-color: rgb(180, 200, 220);
+  background-color: rgb(180 200 220);
 }
 
 .ast-color-seal.ready {
-  background-color: rgb(62, 224, 170);
+  background-color: rgb(62 224 170);
 }
 
 .ast-color-lucid {
-  background-color: rgb(227, 148, 210);
+  background-color: rgb(227 148 210);
 }
 
 .ast-color-card.lady {
-  background-color: rgb(200, 160, 200);
+  background-color: rgb(200 160 200);
 }
 
 .ast-color-card.lord {
-  background-color: rgb(200, 70, 70);
+  background-color: rgb(200 70 70);
 }
 
 .ast-color-minordraw {
-  background-color: rgb(250, 120, 60);
+  background-color: rgb(250 120 60);
 }
 
 /* SGE */
 .sge-color-adder {
-  background-color: rgb(120, 170, 250);
+  background-color: rgb(120 170 250);
 }
 
 .sge-color-adder.exceed {
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(255 0 0);
 }
 
 .sge-color-dosis {
-  background-color: rgb(195, 85, 155);
+  background-color: rgb(195 85 155);
 }
 
 .sge-color-phlegma {
-  background-color: rgb(255, 200, 255);
+  background-color: rgb(255 200 255);
 }
 
 .sge-color-rhizomata {
-  background-color: rgb(40, 95, 150);
+  background-color: rgb(40 95 150);
 }
 
 .sge-color-lucid {
-  background-color: rgb(227, 148, 210);
+  background-color: rgb(227 148 210);
 }
 
 /* MNK */
 .mnk-color-chakra {
-  background-color: rgb(230, 20, 20);
+  background-color: rgb(230 20 20);
 }
 
 .mnk-color-chakra.dim {
-  background-color: rgba(244, 194, 66, 0.3);
+  background-color: rgb(244 194 66 / 30%);
 }
 
 .mnk-color-form {
-  background-color: rgb(180, 200, 220);
+  background-color: rgb(180 200 220);
 }
 
 .mnk-color-pb {
-  background-color: rgb(200, 130, 0);
+  background-color: rgb(200 130 0);
 }
 
 .mnk-color-dragonkick {
-  background-color: rgb(200, 130, 0);
+  background-color: rgb(200 130 0);
 }
 
 .mnk-color-twinsnakes {
-  background-color: rgb(215, 80, 70);
+  background-color: rgb(215 80 70);
 }
 
 .mnk-color-demolish {
-  background-color: rgb(60, 80, 200);
+  background-color: rgb(60 80 200);
 }
 
 /* DRG */
 .drg-color-disembowel {
-  background-color: rgba(0, 255, 255, 0.7);
+  background-color: rgb(0 255 255 / 70%);
 }
 
 .drg-color-blood {
-  background-color: rgba(180, 200, 220);
+  background-color: rgb(180 200 220);
 }
 
 .drg-color-blood.blood {
-  background-color: rgba(0, 89, 255, 0.5);
+  background-color: rgb(0 89 255 / 50%);
 }
 
 .drg-color-blood.zero {
-  background-color: rgba(0, 89, 255, 0.5);
+  background-color: rgb(0 89 255 / 50%);
 }
 
 .drg-color-blood.one {
-  background-color: rgba(200, 50, 200, 0.6);
+  background-color: rgb(200 50 200 / 60%);
 }
 
 .drg-color-blood.two {
-  background-color: rgba(217, 51, 0, 0.7);
+  background-color: rgb(217 51 0 / 70%);
 }
 
 .drg-color-blood.life {
-  background-color: rgba(217, 51, 0);
+  background-color: rgb(217 51 0);
 }
 
 .drg-color-eyes {
-  background-color: rgba(180, 200, 220);
+  background-color: rgb(180 200 220);
 }
 
 .drg-color-eyes.zero {
-  background-color: rgba(0, 89, 255, 0.5);
+  background-color: rgb(0 89 255 / 50%);
 }
 
 .drg-color-eyes.one {
-  background-color: rgba(200, 50, 200, 0.7);
+  background-color: rgb(200 50 200 / 70%);
 }
 
 .drg-color-eyes.two {
-  background-color: rgba(217, 51, 0);
+  background-color: rgb(217 51 0);
 }
 
 .drg-color-highjump {
-  background-color: rgb(35, 100, 255);
+  background-color: rgb(35 100 255);
 }
 
 .drg-color-lancecharge {
-  background-color: rgb(100, 15, 15);
+  background-color: rgb(100 15 15);
 }
 
 .drg-color-lancecharge.active {
-  background-color: rgb(217, 51, 0);
+  background-color: rgb(217 51 0);
 }
 
 .drg-color-dragonsight {
-  background-color: rgb(187, 42, 42, 0.8);
+  background-color: rgb(187 42 42 / 80%);
 }
 
 .drg-color-dragonsight.active {
-  background-color: rgb(217, 51, 0);
+  background-color: rgb(217 51 0);
 }
 
 .drg-color-firstmindsfocus {
-  background-color: rgb(170, 80, 200);
+  background-color: rgb(170 80 200);
 }
 
 /* NIN */
 .nin-color-huton {
-  background-color: rgb(0, 255, 255);
+  background-color: rgb(0 255 255);
 }
 
 .nin-color-trickattack {
-  background-color: rgb(255, 200, 0, 0.6);
+  background-color: rgb(255 200 0 / 60%);
 }
 
 .nin-color-trickattack.active {
-  background-color: rgb(255, 200, 0);
+  background-color: rgb(255 200 0);
 }
 
 .nin-color-bunshin {
-  background-color: rgb(250, 80, 0);
+  background-color: rgb(250 80 0);
 }
 
 .nin-color-ninjutsu {
-  background-color: rgb(250, 150, 250);
+  background-color: rgb(250 150 250);
 }
 
 .nin-color-ninki.low {
-  background-color: rgb(140, 90, 200);
+  background-color: rgb(140 90 200);
 }
 
 .nin-color-ninki {
-  background-color: rgb(200, 50, 20, 0.7);
+  background-color: rgb(200 50 20 / 70%);
 }
 
 .nin-color-ninki.high {
-  background-color: rgb(255, 42, 0);
+  background-color: rgb(255 42 0);
 }
 
 /* SAM */
 .sam-color-kenki {
-  background-color: rgb(255, 150, 150);
+  background-color: rgb(255 150 150);
 }
 
 .sam-color-kenki.high {
-  background-color: rgb(255, 50, 50);
+  background-color: rgb(255 50 50);
 }
 
 .sam-color-meditation {
-  background-color: rgb(188, 76, 35);
+  background-color: rgb(188 76 35);
 }
 
 .sam-color-meditation.high {
-  background-color: rgb(255, 255, 160);
+  background-color: rgb(255 255 160);
 }
 
 .sam-color-fuka {
-  background-color: rgb(200, 50, 40);
+  background-color: rgb(200 50 40);
 }
 
 .sam-color-fugetsu {
-  background-color: rgb(10, 40, 160);
+  background-color: rgb(10 40 160);
 }
 
 .sam-color-tsubamegaeshi {
-  background-color: rgb(150, 100, 230);
+  background-color: rgb(150 100 230);
 }
 
 .sam-color-higanbana {
-  background-color: rgb(220, 115, 60);
+  background-color: rgb(220 115 60);
 }
 
 /* RPR */
 .rpr-color-deathsdesign {
-  background-color: rgb(140, 35, 140);
+  background-color: rgb(140 35 140);
 }
 
 .rpr-color-gluttony {
-  background-color: rgb(220, 60, 100);
+  background-color: rgb(220 60 100);
 }
 
 .rpr-color-soulslice {
-  background-color: rgb(15, 35, 75);
+  background-color: rgb(15 35 75);
 }
 
 .rpr-color-arcanecircle {
-  background-color: rgb(220, 150, 180);
+  background-color: rgb(220 150 180);
 }
 
 .rpr-color-arcanecircle.active {
-  background-color: rgb(200, 40, 120);
+  background-color: rgb(200 40 120);
 }
 
 .rpr-color-bloodsowncircle {
-  background-color: rgb(100, 220, 150);
+  background-color: rgb(100 220 150);
 }
 
 .rpr-color-soul {
-  background-color: rgb(180, 20, 20);
+  background-color: rgb(180 20 20);
 }
 
 .rpr-color-shroud {
-  background-color: rgb(0, 170, 170);
+  background-color: rgb(0 170 170);
 }
 
 /* BRD */
 .brd-color-causticbite {
-  background-color: rgb(182, 68, 235);
+  background-color: rgb(182 68 235);
 }
 
 .brd-color-stormbite {
-  background-color: rgb(72, 117, 202);
+  background-color: rgb(72 117 202);
 }
 
 .brd-color-bite {
-  background-color: rgb(150, 30, 90);
+  background-color: rgb(150 30 90);
 }
 
 .brd-color-straightshotready {
-  background-color: rgb(240, 130, 80);
+  background-color: rgb(240 130 80);
 }
 
 .brd-color-song {
-  background-color: rgb(180, 200, 220);
+  background-color: rgb(180 200 220);
 }
 
 .brd-color-song.minuet {
-  background-color: rgb(100, 150, 100);
+  background-color: rgb(100 150 100);
 }
 
 .brd-color-song.minuet.full {
-  background-color: rgb(250, 150, 0);
+  background-color: rgb(250 150 0);
 }
 
 .brd-color-song.ballad {
-  background-color: rgb(143, 90, 143);
+  background-color: rgb(143 90 143);
 }
 
 .brd-color-song.paeon {
-  background-color: rgb(207, 205, 52);
+  background-color: rgb(207 205 52);
 }
 
 .brd-color-soulvoice {
-  background-color: rgb(180, 200, 220);
+  background-color: rgb(180 200 220);
 }
 
 .brd-color-soulvoice.high {
-  background-color: rgb(250, 100, 0);
+  background-color: rgb(250 100 0);
 }
 
 .brd-color-empyreal {
-  background-color: rgb(80, 200, 250);
+  background-color: rgb(80 200 250);
 }
 
 /* MCH */
 .mch-color-heat {
-  background-color: rgb(250, 100, 0);
+  background-color: rgb(250 100 0);
 }
 
 .mch-color-heat.overheat {
-  background-color: rgb(250, 0, 0);
+  background-color: rgb(250 0 0);
 }
 
 .mch-color-battery {
-  background-color: rgb(60, 110, 110);
+  background-color: rgb(60 110 110);
 }
 
 .mch-color-battery.robot-active {
-  background-color: rgb(80, 200, 200);
+  background-color: rgb(80 200 200);
 }
 
 .mch-color-drill {
-  background-color: rgb(235, 235, 50);
+  background-color: rgb(235 235 50);
 }
 
 .mch-color-airanchor {
-  background-color: rgba(80, 200, 200, 0.5);
+  background-color: rgb(80 200 200 / 50%);
 }
 
 .mch-color-chainsaw {
-  background-color: rgba(190, 60, 100);
+  background-color: rgb(190 60 100);
 }
 
 .mch-color-wildfire {
-  background-color: rgba(160, 40, 20, 0.7);
+  background-color: rgb(160 40 20 / 70%);
 }
 
 .mch-color-wildfire.active {
-  background-color: rgba(250, 0, 0);
+  background-color: rgb(250 0 0);
 }
 
 /* DNC */
 .dnc-color-standardstep {
-  background-color: rgb(235, 235, 50);
+  background-color: rgb(235 235 50);
 }
 
 .dnc-color-technicalstep {
-  background-color: rgb(80, 200, 200, 0.7);
+  background-color: rgb(80 200 200 / 70%);
 }
 
 .dnc-color-technicalstep.active {
-  background-color: rgb(80, 200, 200);
+  background-color: rgb(80 200 200);
 }
 
 .dnc-color-flourish {
-  background-color: rgb(150, 100, 0);
+  background-color: rgb(150 100 0);
 }
 
 .dnc-color-flourish.active {
-  background-color: rgb(255, 145, 0);
+  background-color: rgb(255 145 0);
 }
 
 .dnc-color-esprit {
-  background-color: rgb(255, 200, 0, 0.7);
+  background-color: rgb(255 200 0 / 70%);
 }
 
 .dnc-color-esprit.high {
-  background-color: rgb(255, 50, 150);
+  background-color: rgb(255 50 150);
 }
 
 .dnc-color-feather {
-  background-color: rgb(160, 200, 50);
+  background-color: rgb(160 200 50);
 }
 
 /* BLM */
 .blm-color-thunder {
-  background-color: rgb(64, 65, 163);
+  background-color: rgb(64 65 163);
 }
 
 .blm-color-dot {
-  background-color: rgb(110, 186, 245);
+  background-color: rgb(110 186 245);
 }
 
 .blm-color-fire {
-  background-color: rgb(217, 51, 0);
+  background-color: rgb(217 51 0);
 }
 
 .blm-umbral-timer.fire {
-  background-color: rgb(229, 56, 53);
+  background-color: rgb(229 56 53);
 }
 
 .blm-umbral-timer.ice {
-  background-color: rgb(30, 80, 245);
+  background-color: rgb(30 80 245);
 }
 
 .blm-xeno-timer {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgb(0 0 0 / 30%);
 }
 
 .blm-xeno-timer.active {
-  background-color: rgb(200, 50, 200);
+  background-color: rgb(200 50 200);
 }
 
 /* Pulse effect for xeno overwrite */
 @keyframes pulse {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(200, 50, 200, 0.7);
+    box-shadow: 0 0 0 0 rgb(200 50 200 / 70%);
   }
 
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(200, 50, 200, 0);
+    box-shadow: 0 0 0 10px rgb(200 50 200 / 0%);
   }
 
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(200, 50, 200, 0);
+    box-shadow: 0 0 0 0 rgb(200 50 200 / 0%);
   }
 }
 
 .blm-xeno-timer.pulse {
-  box-shadow: 0 0 0 0 rgba(200, 50, 200, 1);
+  box-shadow: 0 0 0 0 rgb(200 50 200 / 100%);
   animation: pulse 1s infinite;
 }
 
 /* SMN */
 .smn-color-ruin {
-  background-color: rgb(150, 233, 140);
+  background-color: rgb(150 233 140);
 }
 
 .smn-color-aetherflow {
-  background-color: rgb(255, 96, 207);
+  background-color: rgb(255 96 207);
 }
 
 .smn-color-aetherflow.too-much-stacks {
-  background-color: rgb(240, 30, 30);
+  background-color: rgb(240 30 30);
 }
 
 .smn-color-biosmn {
@@ -1197,15 +1197,15 @@ div.justbuffs div#procs-container {
 }
 
 .smn-color-trance {
-  background-color: rgb(60, 80, 200);
+  background-color: rgb(60 80 200);
 }
 
 .smn-color-demisummon {
-  background-color: rgb(180, 200, 220);
+  background-color: rgb(180 200 220);
 }
 
 .smn-color-demisummon.bahamutready {
-  background-color: rgb(64, 65, 163);
+  background-color: rgb(64 65 163);
 }
 
 .smn-color-demisummon.firebirdready {
@@ -1213,79 +1213,82 @@ div.justbuffs div#procs-container {
 }
 
 .smn-color-demisummon.last {
-  background-color: rgb(240, 30, 30);
+  background-color: rgb(240 30 30);
 }
 
 .smn-color-demisummon.ifrit {
-  background-color: rgb(240, 30, 30);
+  background-color: rgb(240 30 30);
 }
 
 .smn-color-demisummon.garuda {
-  background-color: rgb(0, 140, 0);
+  background-color: rgb(0 140 0);
 }
 
 .smn-color-demisummon.titan {
-  background-color: rgb(238, 234, 14);
+  background-color: rgb(238 234 14);
 }
 
 .smn-color-lucid {
-  background-color: rgb(227, 148, 210);
+  background-color: rgb(227 148 210);
 }
 
 /* RDM */
 .rdm-color-white-mana {
-  background-color: rgb(220, 220, 240);
+  background-color: rgb(220 220 240);
 }
 
 .rdm-color-black-mana {
-  background-color: rgb(47, 100, 208);
+  background-color: rgb(47 100 208);
 }
 
 .rdm-color-white-mana.dim {
-  background-color: rgb(100, 100, 100);
+  background-color: rgb(100 100 100);
 }
 
 .rdm-color-black-mana.dim {
-  background-color: rgb(13, 76, 80);
+  background-color: rgb(13 76 80);
 }
 
 .rdm-color-lucid {
-  background-color: rgb(227, 148, 210);
+  background-color: rgb(227 148 210);
 }
 
 .rdm-color-stone {
-  background-color: rgb(250, 176, 73);
+  background-color: rgb(250 176 73);
 }
 
 .rdm-color-fire {
-  background-color: rgb(240, 76, 0);
+  background-color: rgb(240 76 0);
 }
 
 .rdm-color-fleche {
-  background-color: rgb(25, 190, 255);
+  background-color: rgb(25 190 255);
 }
 
 .rdm-color-contresixte {
-  background-color: rgb(30, 80, 170);
+  background-color: rgb(30 80 170);
 }
 
 /* BLU */
 .blu-color-offguard {
-  background-color: rgb(210, 255, 196);
+  background-color: rgb(210 255 196);
 }
 
 .blu-color-torment {
-  background-color: rgb(168, 65, 45);
+  background-color: rgb(168 65 45);
 }
 
 .blu-color-lucid {
-  background-color: rgb(227, 148, 210);
+  background-color: rgb(227 148 210);
 }
 
 /* Proc box animation */
 .proc-box.in-combat .notify-when-expired.expired {
   display: block;
-  animation: var(--proc-box-notify-animation, proc-box-flash) var(--proc-box-notify-duration, 1s) var(--proc-box-notify-repeat, infinite);
+  animation:
+    var(--proc-box-notify-animation, proc-box-flash)
+    var(--proc-box-notify-duration, 1s)
+    var(--proc-box-notify-repeat, infinite);
 }
 
 @keyframes proc-box-flash {
