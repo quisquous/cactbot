@@ -122,14 +122,6 @@ export interface JobDetail {
     aetherflowStacks: number;
   };
   'SMN': {
-    // TODO: remove this after CN/KR patch 6.0 released.
-    stanceMilliseconds: number;
-    bahamutStance: 5 | 0;
-    bahamutSummoned: 1 | 0;
-    aetherflowStacks: number;
-    dreadwyrmStacks: number;
-    phoenixReady: number;
-  } | {
     aetherflowStacks: number;
     tranceMilliseconds: number;
     attunementMilliseconds: number;
