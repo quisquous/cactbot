@@ -31,6 +31,8 @@ export interface Data extends RaidbossData {
   diveFromGraceNum: { [name: string]: number };
   // mapping of 1, 2, 3 to whether that group has seen an arrow.
   diveFromGraceHasArrow: { [num: number]: boolean };
+  diveFromGraceTowerCounter?: number;
+  eyeOfTyrantCounter?: number;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -118,6 +120,47 @@ const triggerSet: TriggerSet<Data> = {
       diveFromGraceHasArrow: { 1: false, 2: false, 3: false },
     };
   },
+  timelineTriggers: [
+    {
+      id: 'DSR Eye of the Tyrant Stack',
+      // Calls out which numbers stack prior to Eye of the Tyrant
+      // Players marked 1 will get a stack call if they bait second towers
+      regex: /Eye of the Tyrant/,
+      beforeSeconds: 6,
+      condition: (data) => {
+        data.eyeOfTyrantCounter = (data.eyeOfTyrantCounter ?? 0) + 1;
+        const num = data.diveFromGraceNum[data.me];
+        if (!num) {
+          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          // Default to true as stack needs more players
+          return true;
+        }
+
+        // First stack requires players numbered 2 and 3
+        if ((num === 2 || num === 3) && data.eyeOfTyrantCounter === 1)
+          return true;
+        // Second stack requires players numbered 1 and 2
+        if (num === 2 && data.eyeOfTyrantCounter === 2)
+          return true;
+        // Could get who the last 1 player is by collecting which 1 does not have fire resistance down
+        return false;
+      },
+      durationSeconds: 6,
+      alertText: (data, _matches, output) => {
+        if (data.eyeOfTyrantCounter === 1)
+          return output.stackNums!({num1: output.num2!(), num2: output.num3!()});
+        return output.stackNums!({num1: output.num1!(), num2: output.num2!()});
+      },
+      outputStrings: {
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+        stackNums: {
+          en: '${num1} and ${num2} Stack',
+        },
+      },
+    },
+  ],
   triggers: [
     {
       id: 'DSR Phase Tracker',
@@ -918,6 +961,72 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'DSR Nidhogg Dive Tower Soaks',
+      // 670E Dark High Jump
+      // 670F Dark Spineshatter Dive
+      // 6710 Dark Elusive Jump
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
+      netRegexDe: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
+      netRegexFr: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
+      netRegexJa: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'ニーズヘッグ' }),
+      netRegexCn: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '尼德霍格' }),
+      netRegexKo: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '니드호그' }),
+      condition: (data) => {
+        // Increment tower count on detection of Jump/Dive
+        data.diveFromGraceTowerCounter = (data.diveFromGraceTowerCounter ?? 0) + 1;
+        const num = data.diveFromGraceNum[data.me];
+        if (!num) {
+          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          return;
+        }
+
+        // Callout to players marked 3 to soak
+        if (num === 3 && data.diveFromGraceTowerCounter === 1)
+          return true;
+        // Callout to players marked 2 to soak
+        if (num === 2 && data.diveFromGraceTowerCounter === 3)
+          return true;
+        // Callout to players marked 1 to soak
+        if (num === 1 && data.diveFromGraceTowerCounter !== 1)
+          return true;
+      },
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        const num = data.diveFromGraceNum[data.me];
+        if (!num) {
+          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          return;
+        }
+
+        if (num === 1) {
+          // TODO: Track Fire Resistance Down II?
+          // We could determine which num1 needs to soak tower 3 based on Fire
+          // Resistance Down II (B56) tracking
+          if (data.diveFromGraceTowerCounter === 3)
+            return output.numsSoakTowers!({num1: output.num1!(), num2: output.num2!()});
+          // TODO: A callout for second towers can only be a guess, but make an
+          // educated guess for the case of single high jump where most strats
+          // have the Spine/Elusive 1s do 2nd tower soaks?
+        }
+        if (num === 2 && data.diveFromGraceTowerCounter === 3)
+          return output.numsSoakTower!({num1: output.num1!(), num2: output.num2!()});
+        if (num === 3 && data.diveFromGraceTowerCounter === 2)
+          return output.numSoakTowers!({num: output.num3!()});
+      },
+      outputStrings: {
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+        numSoakTowers: {
+          en: '${num} Soak Towers',
+        },
+        numsSoakTowers: {
+          en: '${num1} and ${num2} Soak Towers',
+        },
+      },
+    },
+    {
       id: 'DSR Darkdragon Dive Single Tower',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6711', source: 'Nidhogg' }),
@@ -928,8 +1037,18 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.ability({ id: '6711', source: '니드호그' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text!(),
+      infoText: (data, _matches, output) => {
+        // eyeOfTyrantCounter set at 7 seconds before, meaning about ~2.2s
+        // before this trigger fires, the counter should be at 2
+        if (data.eyeOfTyrantCounter === 2)
+          return output.baitThenStack!({num: output.num2!()});
+        return output.text!()
+      },
       outputStrings: {
+        num2: Outputs.num2,
+        baitThenStack: {
+          en: 'Bait => Stack with #${num}',
+        },
         text: {
           en: 'Bait',
           de: 'Ködern',
@@ -1025,6 +1144,78 @@ const triggerSet: TriggerSet<Data> = {
         downArrow: {
           en: '#${num} Down Arrow',
           ko: '#${num} 아래 화살표 (교묘한 점프)',
+        },
+      },
+    },
+    {
+      id: 'DSR Dive From Grace Position',
+      type: 'GainsEffect',
+      // AC3 = High Jump Target
+      // AC4 = Spineshatter Dive Target
+      // AC5 = Elusive Jump Target
+      // Defaults:
+      //   Spineshatter West, Elusive East, All Face East
+      //   High Jump North if solo, no assignment if all circle
+      //   2s Southeast/Southwest, no assignment if circle
+      //   Assumes North Party Stack
+      //
+      // Spineshatter and Elusive elusive come together
+      // Circle never paired with single Spine/Elusive
+      netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      alertText: (data, matches, output) => {
+        const num = data.diveFromGraceNum[data.me];
+        if (!num) {
+          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          return;
+        }
+
+        // Output no direction when all circles
+        if (!data.diveFromGraceHasArrow[num]) {
+          if (num === 2)
+            return output.diveIntercard!();
+          return output.divePosition!();
+        }
+
+        // Output West or East
+        if (num === 1 || num === 3) {
+          if (matches.effectId === 'AC3')
+            return output.diveSouth!();
+          if (matches.effectId === 'AC4')
+            return output.diveWest!();
+          return output.diveEast!();
+        }
+
+        // By the time 2s turn, they will be stacked, facing boss,
+        // so calls are relative to the boss
+        if (num === 2) {
+          if (matches.effectId === 'AC4')
+            return output.diveNorthwest!();
+          return output.diveNortheast!();
+        }
+      },
+      outputStrings: {
+        divePosition: {
+          en: 'Dive Position',
+        },
+        diveSouth: {
+          en: 'South Dive',
+        },
+        diveIntercard: {
+          en: 'Intercard Dive',
+        },
+        diveWest: {
+          en: 'West Dive, Face Boss',
+        },
+        diveEast: {
+          en: 'East Dive, Face Out',
+        },
+        diveNorthwest: {
+          en: 'Backright Dive, Face East',
+        },
+        diveNortheast: {
+          en: 'Backleft Dive, Face East',
         },
       },
     },
