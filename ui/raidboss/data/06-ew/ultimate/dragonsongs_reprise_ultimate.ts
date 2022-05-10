@@ -966,12 +966,12 @@ const triggerSet: TriggerSet<Data> = {
       // 670F Dark Spineshatter Dive
       // 6710 Dark Elusive Jump
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
-      netRegexDe: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
-      netRegexFr: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
-      netRegexJa: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'ニーズヘッグ' }),
-      netRegexCn: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '尼德霍格' }),
-      netRegexKo: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '니드호그' }),
+      netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'ニーズヘッグ', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '尼德霍格', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '니드호그', capture: false }),
       condition: (data) => {
         // Increment tower count on detection of Jump/Dive
         data.diveFromGraceTowerCounter = (data.diveFromGraceTowerCounter ?? 0) + 1;
