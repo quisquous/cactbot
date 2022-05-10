@@ -148,8 +148,8 @@ const triggerSet: TriggerSet<Data> = {
       durationSeconds: 6,
       alertText: (data, _matches, output) => {
         if (data.eyeOfTyrantCounter === 1)
-          return output.stackNums!({num1: output.num2!(), num2: output.num3!()});
-        return output.stackNums!({num1: output.num1!(), num2: output.num2!()});
+          return output.stackNums!({ num1: output.num2!(), num2: output.num3!() });
+        return output.stackNums!({ num1: output.num1!(), num2: output.num2!() });
       },
       outputStrings: {
         num1: Outputs.num1,
@@ -1004,15 +1004,15 @@ const triggerSet: TriggerSet<Data> = {
           // We could determine which num1 needs to soak tower 3 based on Fire
           // Resistance Down II (B56) tracking
           if (data.diveFromGraceTowerCounter === 3)
-            return output.numsSoakTowers!({num1: output.num1!(), num2: output.num2!()});
+            return output.numsSoakTowers!({ num1: output.num1!(), num2: output.num2!() });
           // TODO: A callout for second towers can only be a guess, but make an
           // educated guess for the case of single high jump where most strats
           // have the Spine/Elusive 1s do 2nd tower soaks?
         }
         if (num === 2 && data.diveFromGraceTowerCounter === 3)
-          return output.numsSoakTowers!({num1: output.num1!(), num2: output.num2!()});
+          return output.numsSoakTowers!({ num1: output.num1!(), num2: output.num2!() });
         if (num === 3 && data.diveFromGraceTowerCounter === 2)
-          return output.numSoakTowers!({num: output.num3!()});
+          return output.numSoakTowers!({ num: output.num3!() });
       },
       outputStrings: {
         num1: Outputs.num1,
@@ -1041,8 +1041,8 @@ const triggerSet: TriggerSet<Data> = {
         // eyeOfTyrantCounter set at 7 seconds before, meaning about ~2.2s
         // before this trigger fires, the counter should be at 2
         if (data.eyeOfTyrantCounter === 2)
-          return output.baitThenStack!({num: output.num2!()});
-        return output.text!()
+          return output.baitThenStack!({ num: output.num2!() });
+        return output.text!();
       },
       outputStrings: {
         num2: Outputs.num2,
