@@ -1010,7 +1010,7 @@ const triggerSet: TriggerSet<Data> = {
           // have the Spine/Elusive 1s do 2nd tower soaks?
         }
         if (num === 2 && data.diveFromGraceTowerCounter === 3)
-          return output.numsSoakTower!({num1: output.num1!(), num2: output.num2!()});
+          return output.numsSoakTowers!({num1: output.num1!(), num2: output.num2!()});
         if (num === 3 && data.diveFromGraceTowerCounter === 2)
           return output.numSoakTowers!({num: output.num3!()});
       },
