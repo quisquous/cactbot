@@ -201,7 +201,7 @@ export class EncounterFinder {
       zoneName: zoneName,
       startLine: line,
       zoneId: parseInt(matches.id),
-      startTime: this.dateFromMatches(matches),
+      startTime: TLFuncs.dateFromMatches(matches),
     };
   }
   onStartFight(line: string, fightName: string, matches: NetMatches['Ability' | 'GameLog']): void {
@@ -209,7 +209,7 @@ export class EncounterFinder {
       fightName: fightName,
       zoneName: this.currentZone.zoneName, // Sometimes the same as the fight name, but that's fine.
       startLine: line,
-      startTime: this.dateFromMatches(matches),
+      startTime: TLFuncs.dateFromMatches(matches),
     };
   }
 
@@ -231,14 +231,6 @@ export class EncounterFinder {
     this.onEndFight(line, matches, 'Unseal');
     this.currentSeal = undefined;
   }
-
-  dateFromMatches(matches: NetAnyMatches): Date {
-    // No current match definitions are missing a timestamp,
-    // but in the event any are added without in future, we will be ready!
-    if (!matches.timestamp)
-      throw new UnreachableCode();
-    return new Date(Date.parse(matches.timestamp));
-  }
 }
 
 class EncounterCollector extends EncounterFinder {
@@ -251,7 +243,7 @@ class EncounterCollector extends EncounterFinder {
 
   override onEndZone(line: string, _zoneName: string, matches: NetMatches['ChangeZone']): void {
     this.currentZone.endLine = line;
-    this.currentZone.endTime = this.dateFromMatches(matches);
+    this.currentZone.endTime = TLFuncs.dateFromMatches(matches);
     this.zones.push(this.currentZone);
     this.initializeZone();
   }
@@ -261,14 +253,14 @@ class EncounterCollector extends EncounterFinder {
       fightName: fightName,
       zoneName: this.currentZone.zoneName,
       startLine: line,
-      startTime: this.dateFromMatches(matches),
+      startTime: TLFuncs.dateFromMatches(matches),
       zoneId: this.currentZone.zoneId,
     };
   }
 
   override onEndFight(line: string, matches: NetAnyMatches, endType: string): void {
     this.currentFight.endLine = line;
-    this.currentFight.endTime = this.dateFromMatches(matches);
+    this.currentFight.endTime = TLFuncs.dateFromMatches(matches);
     this.currentFight.endType = endType;
     this.fights.push(this.currentFight);
     this.initializeFight();
@@ -288,6 +280,13 @@ class EncounterCollector extends EncounterFinder {
 }
 
 class TLFuncs {
+  static dateFromMatches(matches: NetAnyMatches): Date {
+    // No current match definitions are missing a timestamp,
+    // but in the event any are added without in future, we will be ready!
+    if (!matches.timestamp)
+      throw new UnreachableCode();
+    return new Date(Date.parse(matches.timestamp));
+  }
   static timeFromDate(date?: Date): string {
     if (date)
       return date.toISOString().slice(11, 19);
@@ -469,4 +468,4 @@ class TLFuncs {
   };
 }
 
-export { EncounterCollector, TLFuncs };
+export { EncounterCollector, TLFuncs, ZoneEncInfo, FightEncInfo };
