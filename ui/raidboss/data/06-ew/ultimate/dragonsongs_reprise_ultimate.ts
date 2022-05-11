@@ -1029,7 +1029,7 @@ const triggerSet: TriggerSet<Data> = {
           }
           // Num1 soaks middle tower 3 if they did not soak num2's towers
           if (data.diveFromGraceTowerCounter === 3 && !data.diveFromGraceFire)
-            return output.cicleTower!({ num: output.num1!() });
+            return output.circleTower!({ num: output.num1!() });
         } else if (num === 2 && data.diveFromGraceTowerCounter === 3) {
           // Num2 High Jump Tower 3
           // Requires player priority to know Left/Right
