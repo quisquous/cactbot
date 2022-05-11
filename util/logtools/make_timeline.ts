@@ -166,14 +166,14 @@ if (args['fight_regex'] === '-1')
 if (args['zone_regex'] === '-1')
   printHelpAndExit('Error: -zr must specify a regex\n');
 
-if (args.file && !(args.start && args.end)) {
+if (args.file && numExclusiveArgs !== 1 && !(args.start && args.end)) {
   printHelpAndExit(
     'Error: -s and -e must be specified if not using one of -lf, -lz, -fr, or -zr\ ',
   );
 }
-if (!(typeof args.start === 'string' && timeStampValidate(args.start)))
+if (args.start && !(typeof args.start === 'string' && timeStampValidate(args.start)))
   printHelpAndExit('Error: Timestamp must be entered exactly as HH:MM:SS.DDD, as 12:34:56:.789');
-if (!(typeof args.end === 'string' && timeStampValidate(args.end)))
+if (args.end && !(typeof args.end === 'string' && timeStampValidate(args.end)))
   printHelpAndExit('Error: Timestamp must be entered exactly as HH:MM:SS.DDD, as 12:34:56:.789');
 
 const makeCollectorFromPrepass = async (fileName: string) => {
@@ -237,11 +237,11 @@ const extractTLEntries = (
   });
   file.on('line', (line) => {
     const lineTimeStamp = line.substring(14, 26);
-    if ([start, end].includes(lineTimeStamp))
+    if (start === lineTimeStamp)
       started = start === lineTimeStamp;
     if (started)
       lines.push(line);
-    if (!started && lines.length > 0)
+    if (end === lineTimeStamp)
       file.close();
   });
 
@@ -296,15 +296,72 @@ const extractTLEntries = (
   return entries;
 };
 
-const assembleTimelineStrings = (entries: TimelineEntry[], args: TLArgs): string[] => {
+const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): boolean => {
+  const abilityName = entry.abilityName;
+  const abilityId = entry.abilityId;
+  const combatant = entry.combatant;
+  // Ignore auto-attacks named "attack"
+  if (abilityName?.toLowerCase() === 'attack')
+    return true;
+
+  // Ignore abilities from NPC allies.
+  if (combatant && ignoredCombatants.includes(combatant))
+    return true;
+
+  // Ignore abilities by name.
+  if (abilityName && args['ignore-ability'] && args['ignore-ability'].includes(abilityName))
+    return true;
+
+  // Ignore abilities by ID
+  if (abilityId && args['ignore-id'] && args['ignore-id'].includes(abilityId))
+    return true;
+
+  // Ignore combatants by name
+  if (combatant && args['ignore-combatant'] && args['ignore-combatant'].includes(combatant))
+    return true;
+
+  // If only-combatants was specified, ignore all combatants not in the list.
+  if (combatant && args['only-combatant'] && !args['only-combatant'].includes(combatant))
+    return true;
+  return false;
+};
+
+const findTimeDifferences = (lastTimeDiff: number): { diffSeconds: number; drift: number } => {
+  let diffSeconds = lastTimeDiff % 1000000;
+  const diffMicroSeconds = lastTimeDiff - diffSeconds;
+  let drift = 0;
+
+  // Find the difference in tenths of a second.
+  const diffTenthSeconds = diffMicroSeconds / 100000;
+
+  // Adjust full-second difference.
+  diffSeconds += diffTenthSeconds;
+
+  // Round up a tenth of a second.
+  if (diffMicroSeconds > 60000) {
+    diffSeconds += 0.1;
+  } else if (diffMicroSeconds > 50000) {
+    // Round up, warning of exceptional drift.
+    diffSeconds += 0.1;
+    drift = diffMicroSeconds - 100000;
+  } else if (diffMicroSeconds > 40000) {
+    // Round down, warning of exceptional drift
+    drift = diffMicroSeconds;
+  } else {
+    // If <20ms then there's no need to adjust sec or drift
+    true;
+  }
+  return { diffSeconds: diffSeconds, drift: drift };
+};
+
+const assembleTimelineStrings = (
+  entries: TimelineEntry[],
+  start: string,
+  args: ExtendedArgs,
+): string[] => {
   const assembled: string[] = [];
-  // const phases: {[name: string]: string } = {};
-  // if (args.phase && args.phase is typeof string[]) {
-  //   for (const phase of args.phase)
-  // }
-  const timelinePosition = 0;
-  const lastAbilityTime = entries[0]?.time;
-  const ignoredAbilities = args['ignore-ability'] as string[];
+  let lastAbilityTime = parseInt(start);
+  let lastEntry: TimelineEntry = { time: start ?? 'Unknown', lineType: 'None' };
   if (entries[0]?.zoneSeal) {
     const zoneMessage = TLFuncs.toProperCase(entries[0].zoneSeal.seal);
     const tlString = `0.0 "--sync--" sync / 00:0839::${zoneMessage} will be sealed off/ window 0,1`;
@@ -314,20 +371,67 @@ const assembleTimelineStrings = (entries: TimelineEntry[], args: TLArgs): string
   }
 
   for (const entry of entries) {
-    // Begin by culling ignored items.,
-    if (entry.lineType === 'ability') {
-      const aName = entry.abilityName;
-      const aId = entry.abilityId;
-      const combatant = entry.combatant;
-      // Ignore auto-attacks named "attack"
-      if (aName?.toLowerCase() === 'attack')
+    // Ignore auto-attacks, NPC allies, and abilities based on user-entered flags.
+    if (entry.lineType === 'ability' && ignoreTimelineAbilityEntry(entry, args))
+      continue;
+
+    // Ignore AoE spam
+    if (lastEntry.time === entry.time) {
+      if (entry.abilityId && lastEntry.abilityId && entry.abilityId === lastEntry.abilityId)
         continue;
-      // Ignore abilities from NPC allies.
-      if (combatant && ignoredCombatants.includes(combatant))
-        continue;
-      const ignoredAbility = aName && ignoredAbilities.includes(aName);
-      const ignoredId = aId
     }
+
+    // Ignore targetable lines if not specified
+    if (entry.lineType === 'targetable' && !args['include-targetable'])
+      continue;
+
+    // Find out how long it's been since the last ability.
+    const lineTime = TLFuncs.timeFromString(entry.time);
+    const lastTimeDiff = lineTime - lastAbilityTime;
+    const timeInfo = findTimeDifferences(lastTimeDiff);
+
+    let timelinePosition = 0;
+
+    // If the user entered phase information,
+    // process it and store it off.
+    const phases: { [name: string]: number } = {};
+    if (args.phase) {
+      for (const phase of args.phase) {
+        const ability = phase.split(':')[0];
+        const time = phase.split(':')[1];
+        if (ability && time)
+          phases[ability] = parseInt(time);
+      }
+    }
+
+    // Set the time, adjusting to phases if necessary.
+    const abilityName = entry.abilityName ?? 'Unknown';
+    const phaseTime = phases[abilityName] ?? timelinePosition;
+    if (
+      !(entry.lineType === 'ability' && Object.keys(phases).includes(abilityName))
+    ) {
+      timelinePosition += timeInfo.diffSeconds;
+    } else if (abilityName && Object.keys(phases).includes(abilityName)) {
+      timelinePosition = phaseTime;
+      delete phases[abilityName];
+    }
+
+    // We're done manipulating time, so save where we are for the next loop.
+    lastAbilityTime = lineTime;
+
+    if (entry.lineType !== 'nameToggle') {
+      const ability = entry.abilityName ?? 'Unknown';
+      const abilityId = entry.abilityId ?? 'Unknown';
+      const combatant = entry.combatant ?? 'Unknown';
+      const newEntry =
+        `${timelinePosition} "${ability}" sync / 1[56]:[^:]*:${combatant}:${abilityId}:/`;
+      assembled.push(newEntry);
+    } else {
+      const targetable = entry.targetable ? '--targetable--' : '--untargetable--';
+      const newEntry = `${timelinePosition} "${targetable}"`;
+      assembled.push(newEntry);
+    }
+    lastEntry = entry;
   }
   return assembled;
 };
@@ -353,7 +457,7 @@ const writeTimelineToFile = (entryList: string[], fileName: string, force: boole
   }
 };
 
-(async function() {
+const makeTimeline = async () => {
   if (args.file) {
     const collector = await makeCollectorFromPrepass(args.file);
     if (args['search_fights'] === -1) {
@@ -374,14 +478,22 @@ const writeTimelineToFile = (entryList: string[], fileName: string, force: boole
       }
       const startTime = TLFuncs.timeFromDate(fight.startTime);
       const endTime = TLFuncs.timeFromDate(fight.endTime);
-      const baseEntries = extractTLEntries(args.file, startTime, endTime);
-      const assembled = assembleTimelineStrings(baseEntries, startTime, endTime, args);
+      const baseEntries = extractTLEntries(
+        args.file,
+        startTime,
+        endTime,
+        args['include-targetable'],
+      );
+      const assembled = assembleTimelineStrings(baseEntries, startTime, args);
       if (args['output-file'] && typeof args['output-file'] === 'string') {
         const force = args.force !== undefined;
         writeTimelineToFile(assembled, args['output-file'], force);
       }
       if (!args['output-file'])
         printTimelineToConsole(assembled);
+      process.exit(0);
     }
   }
-});
+};
+
+void makeTimeline();
