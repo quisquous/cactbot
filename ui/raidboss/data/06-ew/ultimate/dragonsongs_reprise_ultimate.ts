@@ -186,7 +186,7 @@ const triggerSet: TriggerSet<Data> = {
         return false;
       },
       durationSeconds: 2,
-      alertText: (data, _matches, output) => output.stackNums!({ num1: output.num1!(), num2: output.num2!() }),
+      alertText: (_data, _matches, output) => output.stackNums!({ num1: output.num1!(), num2: output.num2!() }),
       outputStrings: {
         num1: Outputs.num1,
         num2: Outputs.num2,
