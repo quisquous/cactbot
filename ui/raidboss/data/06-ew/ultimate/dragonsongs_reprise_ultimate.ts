@@ -143,9 +143,15 @@ const triggerSet: TriggerSet<Data> = {
         if ((num === 2 || num === 3) && data.eyeOfTheTyrantCounter === 1)
           return true;
         // Second stack requires players numbered 1 and 2
-        if (num === 2 && data.eyeOfTheTyrantCounter === 2)
-          return true;
-        // Could get who the last 1 player is by collecting which 1 does not have fire resistance down
+        if (data.eyeOfTheTyrantCounter === 2) {
+          if (num === 2)
+            return true;
+          // Can resolve a num1 player early when they are solo High Jump
+          if (num === 1 && !data.diveFromGraceHasArrow[1]  && data.diveFromGraceDir[data.me] === 'AC3')
+            return true;
+          // Cactbot will also know last player within ~2.2s by fire resistance
+          // down debuffs, which would require a separate trigger due to timing
+        }
         return false;
       },
       durationSeconds: 6,
