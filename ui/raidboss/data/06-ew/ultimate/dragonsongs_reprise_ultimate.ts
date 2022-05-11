@@ -1019,7 +1019,7 @@ const triggerSet: TriggerSet<Data> = {
               return output.spineshatterTower2!({ num: output.num1!() });
             // Num1 Elusive Tower 2
             if (data.diveFromGraceDir[data.me] === 'AC5')
-              return output.elusiveTower2!({ num: output.num!() });
+              return output.elusiveTower2!({ num: output.num1!() });
           }
           // Num1 soaks middle tower 3 if they did not soak num2's towers
           if (data.diveFromGraceTowerCounter === 3 && !data.diveFromGraceFire)
@@ -1047,10 +1047,10 @@ const triggerSet: TriggerSet<Data> = {
 
           // Num3 Spineshatter Tower 1
           if (data.diveFromGraceDir[data.me] === 'AC4')
-            return output.spineshatterTower!({ num: output.num2!() });
+            return output.spineshatterTower!({ num: output.num3!() });
           // Num3 Elusive Tower 1
           if (data.diveFromGraceDir[data.me] === 'AC5')
-            return output.elusiveTower!({ num: output.num2!() });
+            return output.elusiveTower!({ num: output.num3!() });
         }
       },
       outputStrings: {
