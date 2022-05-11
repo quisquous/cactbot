@@ -133,6 +133,38 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.awayFrom(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Angra Mainyu': 'Angra Mainyu',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Angra Mainyu': 'Angra Mainyu',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Angra Mainyu': 'アンラ・マンユ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Angra Mainyu': '安哥拉·曼纽',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Angra Mainyu': '앙그라 마이뉴',
+      },
+    },
+  ],
 };
 
 export default triggerSet;

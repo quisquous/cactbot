@@ -32,6 +32,38 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getIn(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Chimera': 'Chimära',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Chimera': 'Chimère',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Chimera': 'キマイラ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Chimera': '奇美拉',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Chimera': '키마이라',
+      },
+    },
+  ],
 };
 
 export default triggerSet;
