@@ -127,7 +127,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Eye of the Tyrant Stack',
       // Calls out which numbers stack prior to Eye of the Tyrant
-      // Players marked 1 will get a stack call if they bait second towers
+      // Predicting Num1 Player timing may vary based on debuffs
       regex: /Eye of the Tyrant/,
       beforeSeconds: 6,
       condition: (data) => {
@@ -149,7 +149,7 @@ const triggerSet: TriggerSet<Data> = {
           // Can resolve a num1 player early when they are solo High Jump
           if (num === 1 && data.diveFromGraceHasArrow[1] && data.diveFromGraceDir[data.me] === 'AC3')
             return true;
-          // Cactbot will also know last player within ~2.2s by fire resistance
+          // Cactbot will also know last player within ~5s by fire resistance
           // down debuffs, which would require a separate trigger due to timing
         }
         return false;
@@ -170,10 +170,10 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Eye of the Tyrant Stack Num1',
-      // Last second callout for stack for Num1 when all Circles
+      id: 'DSR Eye of the Tyrant Stack Late',
+      // Later stack call for the Num1 player when all are circles
       regex: /Eye of the Tyrant/,
-      beforeSeconds: 2,
+      beforeSeconds: 4.5, // Could be up to 5s, but less for latency
       condition: (data) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
@@ -185,7 +185,7 @@ const triggerSet: TriggerSet<Data> = {
           return true;
         return false;
       },
-      durationSeconds: 2,
+      durationSeconds: 4.5,
       alertText: (_data, _matches, output) => output.stackNums!({ num1: output.num1!(), num2: output.num2!() }),
       outputStrings: {
         num1: Outputs.num1,
