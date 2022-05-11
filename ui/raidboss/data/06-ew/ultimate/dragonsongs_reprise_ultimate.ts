@@ -1017,7 +1017,7 @@ const triggerSet: TriggerSet<Data> = {
         data.diveFromGraceTowerCounter = (data.diveFromGraceTowerCounter ?? 0) + 1;
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(`DFG Tower Soaks: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
 
