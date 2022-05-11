@@ -1286,7 +1286,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         diveCircles: {
-          en: 'Dive Position',
+          en: 'Cardinal Dive',
         },
         diveCircle: {
           en: 'South Dive',
