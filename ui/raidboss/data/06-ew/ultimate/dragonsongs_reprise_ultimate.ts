@@ -134,7 +134,7 @@ const triggerSet: TriggerSet<Data> = {
         data.eyeOfTheTyrantCounter = (data.eyeOfTheTyrantCounter ?? 0) + 1;
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`Eye of Tyrant Stack: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(`Eye of The Tyrant Stack: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           // Default to true as stack needs more players
           return true;
         }
@@ -147,7 +147,7 @@ const triggerSet: TriggerSet<Data> = {
           if (num === 2)
             return true;
           // Can resolve a num1 player early when they are solo High Jump
-          if (num === 1 && !data.diveFromGraceHasArrow[1]  && data.diveFromGraceDir[data.me] === 'AC3')
+          if (num === 1 && data.diveFromGraceHasArrow[1] && data.diveFromGraceDir[data.me] === 'AC3')
             return true;
           // Cactbot will also know last player within ~2.2s by fire resistance
           // down debuffs, which would require a separate trigger due to timing
@@ -164,6 +164,32 @@ const triggerSet: TriggerSet<Data> = {
         num1: Outputs.num1,
         num2: Outputs.num2,
         num3: Outputs.num3,
+        stackNums: {
+          en: '${num1} and ${num2} Stack',
+        },
+      },
+    },
+    {
+      id: 'DSR Eye of the Tyrant Stack Num1',
+      // Last second callout for stack for Num1 when all Circles
+      regex: /Eye of the Tyrant/,
+      beforeSeconds: 2,
+      condition: (data) => {
+        const num = data.diveFromGraceNum[data.me];
+        if (!num) {
+          console.error(`Eye of The Tyrant Stack 1: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          return false;
+        }
+        // Num1s have all circles and this num1 did not soak towers
+        if (num === 1 && !data.diveFromGraceHasArrow[1] && !data.diveFromGraceFire && data.eyeOfTheTyrantCounter === 2)
+          return true;
+        return false;
+      },
+      durationSeconds: 2,
+      alertText: (data, _matches, output) => output.stackNums!({ num1: output.num1!(), num2: output.num2!() }),
+      outputStrings: {
+        num1: Outputs.num1,
+        num2: Outputs.num2,
         stackNums: {
           en: '${num1} and ${num2} Stack',
         },
