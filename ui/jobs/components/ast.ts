@@ -105,7 +105,7 @@ export class ASTComponent extends BaseComponent {
       this.cardBox.innerText = '○';
 
     this.signs.forEach((elem, i) => {
-      elem.classList.remove('Solar', 'Lunar', 'Celestial');
+      elem.classList.remove('solar', 'lunar', 'celestial');
       const asign = sign[i];
       if (asign)
         elem.classList.add(asign.toLowerCase());
