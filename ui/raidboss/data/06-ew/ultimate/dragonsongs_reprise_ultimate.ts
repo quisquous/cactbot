@@ -32,7 +32,8 @@ export interface Data extends RaidbossData {
   // mapping of 1, 2, 3 to whether that group has seen an arrow.
   diveFromGraceHasArrow: { [num: number]: boolean };
   diveFromGraceTowerCounter?: number;
-  eyeOfTyrantCounter?: number;
+  eyeOfTheTyrantCounter?: number;
+  diveFromGraceFire?: boolean;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -128,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
       regex: /Eye of the Tyrant/,
       beforeSeconds: 6,
       condition: (data) => {
-        data.eyeOfTyrantCounter = (data.eyeOfTyrantCounter ?? 0) + 1;
+        data.eyeOfTheTyrantCounter = (data.eyeOfTheTyrantCounter ?? 0) + 1;
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
           console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
@@ -137,17 +138,17 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         // First stack requires players numbered 2 and 3
-        if ((num === 2 || num === 3) && data.eyeOfTyrantCounter === 1)
+        if ((num === 2 || num === 3) && data.eyeOfTheTyrantCounter === 1)
           return true;
         // Second stack requires players numbered 1 and 2
-        if (num === 2 && data.eyeOfTyrantCounter === 2)
+        if (num === 2 && data.eyeOfTheTyrantCounter === 2)
           return true;
         // Could get who the last 1 player is by collecting which 1 does not have fire resistance down
         return false;
       },
       durationSeconds: 6,
       alertText: (data, _matches, output) => {
-        if (data.eyeOfTyrantCounter === 1)
+        if (data.eyeOfTheTyrantCounter === 1)
           return output.stackNums!({ num1: output.num2!(), num2: output.num3!() });
         return output.stackNums!({ num1: output.num1!(), num2: output.num2!() });
       },
@@ -1000,10 +1001,8 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         if (num === 1) {
-          // TODO: Track Fire Resistance Down II?
-          // We could determine which num1 needs to soak tower 3 based on Fire
-          // Resistance Down II (B56) tracking
-          if (data.diveFromGraceTowerCounter === 3)
+          // Num1 soaks tower 3 if they did not soak num2's towers
+          if (data.diveFromGraceTowerCounter === 3 && !data.diveFromGraceFire)
             return output.numsSoakTowers!({ num1: output.num1!(), num2: output.num2!() });
           // TODO: A callout for second towers can only be a guess, but make an
           // educated guess for the case of single high jump where most strats
@@ -1038,9 +1037,9 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        // eyeOfTyrantCounter set at 7 seconds before, meaning about ~2.2s
+        // eyeOfTheTyrantCounter set at 7 seconds before, meaning about ~2.2s
         // before this trigger fires, the counter should be at 2
-        if (data.eyeOfTyrantCounter === 2)
+        if (data.eyeOfTheTyrantCounter === 2)
           return output.baitThenStack!({ num: output.num2!() });
         return output.text!();
       },
@@ -1174,50 +1173,68 @@ const triggerSet: TriggerSet<Data> = {
         // Output no direction when all circles
         if (!data.diveFromGraceHasArrow[num]) {
           if (num === 2)
-            return output.diveIntercard!();
-          return output.divePosition!();
+            return output.diveCircles2!();
+          return output.diveCircles!();
         }
 
         // Output West or East
         if (num === 1 || num === 3) {
           if (matches.effectId === 'AC3')
-            return output.diveSouth!();
+            return output.diveCircle!();
           if (matches.effectId === 'AC4')
-            return output.diveWest!();
-          return output.diveEast!();
+            return output.diveSpineshatter!();
+          return output.diveElusive!();
         }
 
         // By the time 2s turn, they will be stacked, facing boss,
         // so calls are relative to the boss
         if (num === 2) {
           if (matches.effectId === 'AC4')
-            return output.diveNorthwest!();
-          return output.diveNortheast!();
+            return output.diveSpineshatter2!();
+          return output.diveElusive2!();
         }
       },
       outputStrings: {
-        divePosition: {
+        diveCircles: {
           en: 'Dive Position',
         },
-        diveSouth: {
+        diveCircle: {
           en: 'South Dive',
         },
-        diveIntercard: {
+        diveCircles2: {
           en: 'Intercard Dive',
         },
-        diveWest: {
+        diveSpineshatter: {
           en: 'West Dive, Face Boss',
         },
-        diveEast: {
+        diveElusive: {
           en: 'East Dive, Face Out',
         },
-        diveNorthwest: {
+        diveSpineshatter2: {
           en: 'Backright Dive, Face East',
         },
-        diveNortheast: {
+        diveElusive2: {
           en: 'Backleft Dive, Face East',
         },
       },
+    },
+    {
+      id: 'DSR Dive From Grace Fire Collect',
+      type: 'GainsEffect',
+      // B56 = Fire Resistance Down II
+      // This only matches for num1s
+      netRegex: NetRegexes.gainsEffect({ effectId: ['B56'] }),
+      condition: (data, matches) => data.phase === 'nidhogg' && matches.target === data.me && data.diveFromGraceNum[data.me] === 1,
+      run: (data) => data.diveFromGraceFire = true,
+    },
+    {
+      id: 'DSR Dive From Grace Fire Remove',
+      type: 'LosesEffect',
+      // B56 = Fire Resistance Down II
+      // This only matches for num1s
+      netRegex: NetRegexes.losesEffect({ effectId: ['B56'] }),
+      condition: (data, matches) => data.phase === 'nidhogg' && matches.target === data.me && data.diveFromGraceNum[data.me] === 1,
+      run: (data) => delete data.diveFromGraceFire,
     },
   ],
   timelineReplace: [
