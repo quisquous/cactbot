@@ -44,6 +44,7 @@ const crystallizeOutputStrings = {
     fr: 'Cristallisation : ${name}',
     ja: 'クリスタライズ: ${name}',
     cn: '水晶化: ${name}',
+    ko: '크리스탈화: ${name}',
   },
 };
 
@@ -699,7 +700,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Crystal of Light': '빛의 크리스탈',
         'Hydaelyn': '하이델린',
@@ -707,6 +707,8 @@ const triggerSet: TriggerSet<Data> = {
         'Parhelion': '무리해',
       },
       'replaceText': {
+        '--top-middle': '--위쪽 중앙',
+        '--middle': '--중앙',
         'Anthelion': '맞무리해',
         'Aureole': '후광',
         'Beacon': '광망',
@@ -714,6 +716,7 @@ const triggerSet: TriggerSet<Data> = {
         'Crystalline Blizzard III': '크리스탈 블리자가',
         'Crystalline Stone III': '크리스탈 스톤가',
         'Crystalline Water III': '크리스탈 워터가',
+        'Crystalline Water/Stone III': '크리스탈 워터가/스톤가',
         'Crystallize': '크리스탈화',
         'Dichroic Spectrum': '이분광',
         'Echoes': '되울림',

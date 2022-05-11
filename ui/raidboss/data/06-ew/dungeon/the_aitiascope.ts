@@ -422,6 +422,7 @@ const triggerSet: TriggerSet<Data> = {
         'Ysayle\'s Spirit': '이젤의 영혼',
       },
       'replaceText': {
+        '\\(proximity\\)': '(중앙)',
         'Aglaea Bite': '아글라이아 쌍격',
         'Aglaea Climb': '아글라이아 상승격',
         'Aglaea Shot': '아글라이아 사격',

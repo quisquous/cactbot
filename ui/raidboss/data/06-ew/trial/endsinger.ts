@@ -525,6 +525,9 @@ const triggerSet: TriggerSet<Data> = {
         'oblivion': '혼돈의 차원',
       },
       'replaceText': {
+        '\\(big\\)': '(강)',
+        '\\(cast\\)': '(시전)',
+        '\\(small\\)': '(약)',
         'Aporrhoia': '발출',
         'Crash': '충돌',
         'Dead Star': '행성 붕괴',
