@@ -31,6 +31,7 @@ export interface Data extends RaidbossData {
   diveFromGraceNum: { [name: string]: number };
   // mapping of 1, 2, 3 to whether that group has seen an arrow.
   diveFromGraceHasArrow: { [num: number]: boolean };
+  diveFromGraceDir: { [name: string]: string };
   diveFromGraceTowerCounter?: number;
   eyeOfTheTyrantCounter?: number;
   diveFromGraceFire?: boolean;
@@ -119,6 +120,7 @@ const triggerSet: TriggerSet<Data> = {
       thordanMeteorMarkers: [],
       diveFromGraceNum: {},
       diveFromGraceHasArrow: { 1: false, 2: false, 3: false },
+      diveFromGraceDir: {},
     };
   },
   timelineTriggers: [
@@ -966,6 +968,11 @@ const triggerSet: TriggerSet<Data> = {
       // 670E Dark High Jump
       // 670F Dark Spineshatter Dive
       // 6710 Dark Elusive Jump
+      // Defaults: (as players will be coming from stack)
+      //   Spineshatter Left, Elusive Right, All Face East
+      //   High Jump North if solo, no assignment if all circle
+      //   2s Southeast/Southwest, no assignment if circle
+      //   Assumes North Party Stack
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false }),
       netRegexDe: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false }),
@@ -978,7 +985,7 @@ const triggerSet: TriggerSet<Data> = {
         data.diveFromGraceTowerCounter = (data.diveFromGraceTowerCounter ?? 0) + 1;
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFG Tower Soaks: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
 
@@ -1001,27 +1008,75 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         if (num === 1) {
-          // Num1 soaks tower 3 if they did not soak num2's towers
+          // Num1 must soak 2nd or 3rd tower set
+          if (data.diveFromGraceTowerCounter === 2) {
+            // Num1 High Jump Tower
+            // Unable to call with this, requires player priority as one of the
+            // three Num1 players needs to save themself for 3rd tower set
+
+            // Num1 Spineshatter Tower 2
+            if (data.diveFromGraceDir[data.me] === 'AC4')
+              return output.spineshatterTower2!({ num: output.num1!() });
+            // Num1 Elusive Tower 2
+            if (data.diveFromGraceDir[data.me] === 'AC5')
+              return output.elusiveTower2!({ num: output.num!() });
+          }
+          // Num1 soaks middle tower 3 if they did not soak num2's towers
           if (data.diveFromGraceTowerCounter === 3 && !data.diveFromGraceFire)
-            return output.numsSoakTowers!({ num1: output.num1!(), num2: output.num2!() });
-          // TODO: A callout for second towers can only be a guess, but make an
-          // educated guess for the case of single high jump where most strats
-          // have the Spine/Elusive 1s do 2nd tower soaks?
+            return output.cicleTower!({ num: output.num1!() });
+        } else if (num === 2 && data.diveFromGraceTowerCounter === 3) {
+          // Num2 High Jump Tower 3
+          // Requires player priority to know Left/Right
+          if (data.diveFromGraceDir[data.me] === 'AC3')
+            return output.circleTowers3!({ num: output.num2!() });
+
+          // Num2 Spineshatter Tower 3
+          if (data.diveFromGraceDir[data.me] === 'AC4')
+            return output.spineshatterTower!({ num: output.num2!() });
+          // Num2 Elusive Tower 3
+          if (data.diveFromGraceDir[data.me] === 'AC5')
+            return output.elusiveTower!({ num: output.num2!() });
+        } else if (num === 3 && data.diveFromGraceTowerCounter === 2) {
+          // Num3 High Jump Tower 1
+          if (data.diveFromGraceDir[data.me] === 'AC3') {
+            // Solo High Jump Tower 1
+            if (!data.diveFromGraceHasArrow[3])
+              return output.circleTower!({ num: output.num3!() });
+            return output.circleTowers!({ num: output.num3!() });
+          }
+
+          // Num3 Spineshatter Tower 1
+          if (data.diveFromGraceDir[data.me] === 'AC4')
+            return output.spineshatterTower!({ num: output.num2!() });
+          // Num3 Elusive Tower 1
+          if (data.diveFromGraceDir[data.me] === 'AC5')
+            return output.elusiveTower!({ num: output.num2!() });
         }
-        if (num === 2 && data.diveFromGraceTowerCounter === 3)
-          return output.numsSoakTowers!({ num1: output.num1!(), num2: output.num2!() });
-        if (num === 3 && data.diveFromGraceTowerCounter === 2)
-          return output.numSoakTowers!({ num: output.num3!() });
       },
       outputStrings: {
         num1: Outputs.num1,
         num2: Outputs.num2,
         num3: Outputs.num3,
-        numSoakTowers: {
-          en: '${num} Soak Towers',
+        circleTower: {
+          en: '${num} South Tower',
         },
-        numsSoakTowers: {
-          en: '${num1} and ${num2} Soak Towers',
+        circleTowers: {
+          en: '${num} Cirdinal Towers',
+        },
+        circleTowers3: {
+          en: '${num} Left/Right Tower',
+        },
+        spineshatterTower: {
+          en: '${num} Left Tower',
+        },
+        spineshatterTower2: {
+          en: '${num} Backleft Tower',
+        },
+        elusiveTower: {
+          en: '${num} Right Tower',
+        },
+        elusiveTower2: {
+          en: '${num} Backright Tower',
         },
       },
     },
@@ -1089,17 +1144,20 @@ const triggerSet: TriggerSet<Data> = {
       // AC3 = High Jump Target
       // AC4 = Spineshatter Dive Target
       // AC5 = Elusive Jump Target
-      // This only matches on non-circles.
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AC4', 'AC5'] }),
+      netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
       run: (data, matches) => {
-        const duration = parseFloat(matches.duration);
-        // These come out in 9, 19, 30 seconds.
-        if (duration < 15)
-          data.diveFromGraceHasArrow[1] = true;
-        else if (duration < 25)
-          data.diveFromGraceHasArrow[2] = true;
-        else
-          data.diveFromGraceHasArrow[3] = true;
+        if (matches.effectId === 'AC4' || matches.effectId === 'AC5') {
+          const duration = parseFloat(matches.duration);
+          // These come out in 9, 19, 30 seconds.
+          if (duration < 15)
+            data.diveFromGraceHasArrow[1] = true;
+          else if (duration < 25)
+            data.diveFromGraceHasArrow[2] = true;
+          else
+            data.diveFromGraceHasArrow[3] = true;
+        }
+        // Store result for position callout
+        data.diveFromGraceDir[matches.target] = matches.effectId;
       },
     },
     {
