@@ -132,7 +132,7 @@ const triggerSet: TriggerSet<Data> = {
         data.eyeOfTheTyrantCounter = (data.eyeOfTheTyrantCounter ?? 0) + 1;
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(`Eye of Tyrant Stack: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           // Default to true as stack needs more players
           return true;
         }
@@ -962,7 +962,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Nidhogg Dive Tower Soaks',
+      id: 'DSR Dive From Grace Tower Soaks',
       // 670E Dark High Jump
       // 670F Dark Spineshatter Dive
       // 6710 Dark Elusive Jump
@@ -978,7 +978,7 @@ const triggerSet: TriggerSet<Data> = {
         data.diveFromGraceTowerCounter = (data.diveFromGraceTowerCounter ?? 0) + 1;
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(`DFG Tower Soaks: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
 
@@ -996,7 +996,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(`DFG Tower Soaks: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
 
@@ -1166,7 +1166,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(`DFG Position: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
 
