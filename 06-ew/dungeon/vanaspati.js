@@ -361,7 +361,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Devatagara': '데바타 사원',
         'Insight': '이장 저택',
@@ -372,6 +371,10 @@ Options.Triggers.push({
         'Trnakiya': '숲속 공터',
       },
       'replaceText': {
+        '\\(Bubble\\)': '(구슬)',
+        '\\(Knockback\\)': '(넉백)',
+        '\\(Spread\\)': '(산개)',
+        '--meteor': '--메테오',
         'Aether Siphon': '속성 흡수',
         'Aether Spray': '속성 방출',
         'Aetherial Disruption': '지맥 폭주',
@@ -391,8 +394,7 @@ Options.Triggers.push({
         'Unholy Water': '물감옥',
         'Vitriol': '유언실행',
         'Wallow': '오열',
-        'What Is Left': '부정한 왼손',
-        'What Is Right': '부정한 오른손',
+        'What Is Left/What Is Right': '부정한 왼손/오른손',
       },
     },
   ],

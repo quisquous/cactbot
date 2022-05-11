@@ -403,7 +403,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Berserker Sphere': '광폭화 구체',
         'Cinduruva': '마그',
@@ -418,7 +417,10 @@ Options.Triggers.push({
       'replaceText': {
         'Cinduruva': '마그',
         'Sanduruva': '도그',
+        'Delayed Element III': '지연 랜덤 마법',
+        'Delayed Thunder III': '지연 선더가',
         'Delta Attack': '델타 공격',
+        'Delta Blizzard/Fire/Thunder III': '델타 블리자가/파이가/선더가',
         'Dhrupad': '드루파드',
         'Explosive Force': '기폭',
         'Isitva Siddhi': '이시트바 싯디',
@@ -428,6 +430,7 @@ Options.Triggers.push({
         'Manusya Blizzard(?! )': '마누샤 블리자드',
         'Manusya Blizzard III': '마누샤 블리자가',
         'Manusya Confuse': '마누샤 혼란',
+        'Manusya Element III': '마누샤 랜덤 마법',
         'Manusya Faith': '마누샤 신앙',
         'Manusya Fire(?! )': '마누샤 파이어',
         'Manusya Fire III': '마누샤 파이가',
@@ -439,6 +442,7 @@ Options.Triggers.push({
         'Prapti Siddhi': '프랍티 싯디',
         'Samsara': '삼사라',
         'Sphere Shatter': '파열',
+        'Transmute Element III': '마력 조작: 랜덤 마법',
         'Transmute Thunder III': '마력 조작: 선더가',
       },
     },

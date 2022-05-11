@@ -477,6 +477,8 @@ Options.Triggers.push({
         'Weeping Miasma': '부패 독소',
       },
       'replaceText': {
+        '\\(circles\\)': '(장판)',
+        '\\(spread\\)': '(산개)',
         'Befoulment': '고름탄',
         'Benevolence': '박애',
         'Blighted Water': '썩은물 덩어리',
