@@ -98,7 +98,7 @@ export class MNKComponent extends BaseComponent {
     }
 
     this.beastChakraStacks.forEach((elem, i) => {
-      elem.classList.remove('Opo', 'Coeurl', 'Raptor');
+      elem.classList.remove('opo', 'coeurl', 'raptor');
       const beastChakra = jobDetail.beastChakra[i];
       if (beastChakra)
         elem.classList.add(beastChakra.toLowerCase());
