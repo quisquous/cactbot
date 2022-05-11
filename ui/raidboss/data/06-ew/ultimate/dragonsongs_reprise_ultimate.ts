@@ -1061,7 +1061,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '${num} South Tower',
         },
         circleTowers: {
-          en: '${num} Cirdinal Towers',
+          en: '${num} Cardinal Towers',
         },
         circleTowers3: {
           en: '${num} Left/Right Tower',
