@@ -5,7 +5,7 @@ import NetRegexes from '../../resources/netregexes';
 import { NetMatches } from '../../types/net_matches';
 
 import { LogUtilArgParse, TimelineArgs } from './arg_parser';
-import { EncounterCollector, TLFuncs } from './encounter_tools';
+import { EncounterCollector, FightEncInfo, TLFuncs } from './encounter_tools';
 
 // TODO: Add support for auto-commenting repeated abilities
 // that can't be synced but should be visible.
@@ -232,6 +232,24 @@ const parseAbilityToEntry = (matches: NetMatches['Ability']): TimelineEntry => {
   return entry;
 };
 
+const extractRawLines = async (fileName: string, start: string, end: string): Promise<string[]> => {
+  const lines: string[] = [];
+  const file = readline.createInterface({
+    input: fs.createReadStream(fileName),
+  });
+  let started = false;
+  for await (const line of file) {
+    const lineTimeStamp = line.substring(14, 26);
+    if (start === lineTimeStamp && !started)
+      started = start === lineTimeStamp;
+    if (started)
+      lines.push(line);
+    if (lineTimeStamp === end)
+      file.close();
+  }
+  return lines;
+};
+
 const extractTLEntries = async (
   fileName: string,
   start: string,
@@ -239,43 +257,31 @@ const extractTLEntries = async (
   targetArray?: string[],
 ): Promise<TimelineEntry[]> => {
   const entries: TimelineEntry[] = [];
-  let started = false;
-  const lines: string[] = [];
-  // Read out the relevant encounter lines in a pre-pass
-  const file = readline.createInterface({
-    input: fs.createReadStream(fileName),
-  });
-
-  for await (const line of file) {
-    const lineTimeStamp = line.substring(14, 26);
-    if (start === lineTimeStamp)
-      started = start === lineTimeStamp;
-    if (started)
-      lines.push(line);
-    if (end === lineTimeStamp)
-      file.close();
-  }
+  const lines: string[] = await extractRawLines(fileName, start, end);
 
   // We have exactly the lines relevant to our encounter now.
   for (const line of lines) {
+    const gameLog = NetRegexes.gameLog().exec(line)?.groups;
+    const targetable = NetRegexes.nameToggle().exec(line)?.groups;
+    const ability = NetRegexes.ability().exec(line)?.groups;
     // Cull non-relevant lines immediately.
-    if (!['00', '21', '22', '34'].includes(line.substring(0, 2)))
+    if (!(ability || gameLog || targetable))
       continue;
 
     // Check for zone seals.
-    const gameLog = NetRegexes.gameLog().exec(line)?.groups;
+
     if (gameLog?.code === '0839' && gameLog.line.includes('will be sealed off')) {
       const glEntry = parseGameLogToEntry(gameLog);
       entries.push(glEntry);
       continue;
     }
-    // Cull all remaining gameLog lines, as well as all lines not from enemies.
-    // Nameplate change lines are retained.
-    if (!['21', '22', '34'].includes(line.substring(0, 2)) || line.substring(37, 40) === '400')
+    // Cull all remaining gameLog lines.Nameplate change lines are retained.
+    if (gameLog)
+      continue;
+    if (!ability && !targetable)
       continue;
 
     // Make nameplate toggle lines if and only if the user has specified them.
-    const targetable = NetRegexes.nameToggle().exec(line)?.groups;
     if (targetable) {
       if (targetArray?.length && targetArray.length > 0) {
         const targetEntry = parseNameToggleToEntry(targetable);
@@ -284,9 +290,11 @@ const extractTLEntries = async (
       continue;
     }
 
-    // At this point, only enemy combat lines are left.
-    const ability = NetRegexes.ability().exec(line)?.groups;
+    // At this point, only ability lines are left.
     if (ability) {
+      // Cull non-enemy lines
+      if (ability.sourceId.substring(0, 2) !== '400')
+        continue;
       const abilityEntry = parseAbilityToEntry(ability);
       entries.push(abilityEntry);
       continue;
@@ -303,8 +311,9 @@ const extractTLEntries = async (
   if (entries.length === 0) {
     console.error('Fight not found');
     process.exit(-1);
+  } else {
+    return entries;
   }
-  return entries;
 };
 
 const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): boolean => {
@@ -366,6 +375,7 @@ const findTimeDifferences = (lastTimeDiff: number): { diffSeconds: number; drift
 };
 
 const assembleTimelineStrings = (
+  fight: FightEncInfo,
   entries: TimelineEntry[],
   start: string,
   args: ExtendedArgs,
@@ -373,8 +383,8 @@ const assembleTimelineStrings = (
   const assembled: string[] = [];
   let lastAbilityTime = parseInt(start);
   let lastEntry: TimelineEntry = { time: start ?? 'Unknown', lineType: 'None' };
-  if (entries[0]?.zoneSeal) {
-    const zoneMessage = TLFuncs.toProperCase(entries[0].zoneSeal.seal);
+  if (fight.sealName) {
+    const zoneMessage = TLFuncs.toProperCase(fight.sealName);
     const tlString = `0.0 "--sync--" sync / 00:0839::${zoneMessage} will be sealed off/ window 0,1`;
     assembled.push(tlString);
   } else {
@@ -495,7 +505,7 @@ const makeTimeline = async () => {
         endTime,
         args['include-targetable'],
       );
-      const assembled = assembleTimelineStrings(baseEntries, startTime, args);
+      const assembled = assembleTimelineStrings(fight, baseEntries, startTime, args);
       if (args['output-file'] && typeof args['output-file'] === 'string') {
         const force = args.force !== undefined;
         writeTimelineToFile(assembled, args['output-file'], force);
