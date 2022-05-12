@@ -302,9 +302,7 @@ export class CactbotConfigurator {
     if (textObj === null || typeof textObj !== 'object' || !textObj['en'])
       throw new Error(`Invalid config: ${JSON.stringify(textObj)}`);
     const t = textObj[this.lang];
-    if (t)
-      return t;
-    return textObj['en'];
+    return t ?? textObj['en'];
   }
 
   getBooleanOption(group: string, path: string | string[], defaultValue: boolean): boolean {
@@ -414,7 +412,7 @@ export class CactbotConfigurator {
     defaultValue: SavedConfigEntry,
   ): SavedConfigEntry {
     const objOrValue = this._getOptionLeafHelper(group, path);
-    return objOrValue ? objOrValue : defaultValue;
+    return objOrValue ?? defaultValue;
   }
 
   // Sets an option in the config at a variable level of nesting.
@@ -744,7 +742,7 @@ export class CactbotConfigurator {
       let zoneId: number | undefined = undefined;
 
       // Make assumptions about trigger structure here to try to get the zoneId out.
-      if (triggerSet && typeof triggerSet.zoneId === 'number') {
+      if (typeof triggerSet.zoneId === 'number') {
         zoneId = triggerSet.zoneId;
         // Use the translatable zone info name, if possible.
         const zoneInfo = ZoneInfo[zoneId];
@@ -769,8 +767,6 @@ export class CactbotConfigurator {
     const userMap: ConfigProcessedFileMap<T> = {};
     let userFileIdx = 0;
     for (const triggerSet of userTriggerSets || []) {
-      if (!triggerSet)
-        continue;
       // TODO: pass in userTriggerSets as a filename -> triggerSet map as well
       // so we don't need to read this added value.
       if (!triggerSet.filename)

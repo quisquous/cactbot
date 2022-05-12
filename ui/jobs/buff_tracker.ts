@@ -785,7 +785,7 @@ export class BuffTracker {
     option: 'active' | 'cooldown',
   ): void {
     let list = this.rightBuffDiv;
-    if (info.side === 'left' && this.leftBuffDiv)
+    if (info.side === 'left')
       list = this.leftBuffDiv;
 
     let buff = this.buffs[name];

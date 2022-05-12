@@ -195,9 +195,9 @@ class OopsyConfigurator {
       item.triggers = {};
       const triggerSet = item.triggerSet;
       for (const prop of oopsyHelpers) {
-        if (triggerSet[prop])
-          continue;
         const obj = triggerSet[prop];
+        if (obj === undefined || obj === null)
+          continue;
         if (typeof obj === 'object') {
           for (const id in obj)
             item.triggers[id] = { id: id };
@@ -235,14 +235,14 @@ const templateOptions: OptionsTemplate = {
       return;
     const triggers = savedConfig['triggers'];
 
-    if (!triggers || typeof triggers !== 'object' || Array.isArray(triggers))
+    if (triggers === undefined || typeof triggers !== 'object' || Array.isArray(triggers))
       return;
 
     for (const [id, entry] of Object.entries(triggers)) {
       if (typeof entry !== 'object' || Array.isArray(entry))
         continue;
       const output = entry['Output'];
-      if (!output)
+      if (output === undefined)
         continue;
 
       perTriggerAutoConfig[id] = {
@@ -365,17 +365,15 @@ const templateOptions: OptionsTemplate = {
 const userFileHandler: UserFileCallback = (
   name: string,
   _files: { [filename: string]: string },
-  baseOptions: BaseOptions,
+  baseOptions: BaseOptions & Partial<OopsyOptions>,
   basePath: string,
 ) => {
   // TODO: Rewrite user_config to be templated on option type so that this function knows
   // what type of options it is using.
-  const options = baseOptions as OopsyOptions;
-
-  if (!options.Triggers)
+  if (!baseOptions.Triggers)
     return;
 
-  for (const baseTriggerSet of options.Triggers) {
+  for (const baseTriggerSet of baseOptions.Triggers) {
     const set: ConfigLooseOopsyTriggerSet = baseTriggerSet;
 
     // Annotate triggers with where they came from.  Note, options is passed in repeatedly

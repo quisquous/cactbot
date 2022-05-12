@@ -97,9 +97,7 @@ export class ASTComponent extends BaseComponent {
     // Show whether you already have this seal
     // ○ means it's OK to play this card
     // × means you'd better redraw if possible
-    if (!cardsMap[card])
-      this.cardBox.innerText = '';
-    else if (sign.includes(cardsMap[card].seal))
+    if (sign.includes(cardsMap[card].seal))
       this.cardBox.innerText = '×';
     else
       this.cardBox.innerText = '○';

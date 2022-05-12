@@ -121,15 +121,11 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
   }
 
   processEnmityTargetData({ Target: target }: OverlayEventResponses['EnmityTargetData']): void {
-    if (target) {
-      this.emit('battle/target', {
-        name: target.Name,
-        distance: target.Distance,
-        effectiveDistance: target.EffectiveDistance,
-      });
-    } else {
-      this.emit('battle/target');
-    }
+    this.emit('battle/target', {
+      name: target.Name,
+      distance: target.Distance,
+      effectiveDistance: target.EffectiveDistance,
+    });
   }
 }
 
