@@ -67,13 +67,13 @@ const testTriggerFile = (file: string) => {
     // Normalize path
     const importPath = '../../' + path.relative(process.cwd(), file).replace('.ts', '.js');
 
-    // Dynamic imports don't have a type, so add type assertion.
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    triggerSet = (await import(importPath)).default as LooseTriggerSet;
-
     // Set a global flag to mark regexes for NetRegexes.doesNetRegexNeedTranslation.
     // See details in that function for more information.
     NetRegexes.setFlagTranslationsNeeded(true);
+
+    // Dynamic imports don't have a type, so add type assertion.
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    triggerSet = (await import(importPath)).default as LooseTriggerSet;
   });
 
   after(() => {
@@ -690,9 +690,7 @@ const testTriggerFile = (file: string) => {
         ] as const;
         const shortLanguage = locale.charAt(0).toUpperCase() + locale.slice(1);
         const localeReg = langSpecificRegexes.find((x) => x === `netRegex${shortLanguage}`);
-        if (!localeReg)
-          return;
-        const locRegex = trigger[localeReg]?.source.toLowerCase();
+        const locRegex = localeReg ? trigger[localeReg]?.source.toLowerCase() : undefined;
         // NetRegexes will be deprecated for new triggers, but if they are
         // there verify that they match.
         if (locRegex) {
@@ -705,18 +703,10 @@ const testTriggerFile = (file: string) => {
           );
         }
 
-        // Assert that we have found a timelineReplace that applies to this regex.
-        if (locRegex) {
-          assert.isTrue(
-            foundMatch,
-            `${trigger.id}:locale ${locale}:missing timelineReplace replaceSync for regex '${origRegex}' (but have ${localeReg})`,
-          );
-        } else {
-          assert.isTrue(
-            foundMatch,
-            `${trigger.id}:locale ${locale}:missing timelineReplace replaceSync for regex '${origRegex}'`,
-          );
-        }
+        assert.isTrue(
+          foundMatch,
+          `${trigger.id}:locale ${locale}:missing timelineReplace replaceSync for regex '${origRegex}'`,
+        );
       }
     }
   });
