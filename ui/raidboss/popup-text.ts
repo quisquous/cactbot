@@ -586,6 +586,7 @@ export class PopupText {
     // Drop the triggers and timelines from the previous zone, so we can add new ones.
     this.triggers = [];
     this.netTriggers = [];
+    this.dataInitializers = [];
     let timelineFiles = [];
     let timelines: string[] = [];
     const replacements: TimelineReplacement[] = [];

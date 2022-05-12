@@ -138,9 +138,11 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     emulator.on('midSeek', async (line: LineEvent) => {
       await this.doUpdate(line.timestamp);
     });
-    emulator.on('preSeek', () => {
+    emulator.on('preSeek', (seekTimestamp: number) => {
       this.seeking = true;
       this._emulatorReset();
+      if (seekTimestamp < this.emulatedOffset)
+        this.ReloadTimelines();
     });
     emulator.on('postSeek', () => {
       // This is a hacky fix for audio still playing during seek
