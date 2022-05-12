@@ -581,7 +581,8 @@ const testTriggerFile = (file: string) => {
           const funcStr = func.toString();
           const keys: string[] = [];
 
-          dynamicOutputStringAccess = dynamicOutputStringAccess || /\boutput\[/.test(funcStr);
+          dynamicOutputStringAccess = dynamicOutputStringAccess ||
+            /(?:\boutput\[|\boutput[^.\r\n])/.test(funcStr);
 
           // Validate that any calls to output.word() have a corresponding outputStrings entry.
           funcStr.replace(/\boutput\.(\w*)\(/g, (fullMatch: string, key: string) => {
