@@ -979,7 +979,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Dive From Grace Tower Soaks',
+      id: 'DSR Dive From Grace Tower 2 and 3',
       // 670E Dark High Jump
       // 670F Dark Spineshatter Dive
       // 6710 Dark Elusive Jump
@@ -1001,7 +1001,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFG Tower Soaks: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(`DFG Tower 2 and 3: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
 
@@ -1011,7 +1011,7 @@ const triggerSet: TriggerSet<Data> = {
             a === undefined || a[0] === undefined || a[1] === undefined ||
             b === undefined || b[0] === undefined || b[1] === undefined
           ) {
-            console.error(`DFG Tower Soaks: Missing targetX, targetY`);
+            console.error(`DFG Tower 2 and 3: Missing targetX, targetY`);
             return -1;
           }
           const x = a[0] - b[0];
@@ -1103,24 +1103,6 @@ const triggerSet: TriggerSet<Data> = {
             // Other players just move so 3s can get tower
             return output.move!();
           }
-
-          // Call 1st Tower Soak (Must be based on debuffs?)
-          if (num === 3) {
-            // Num3 High Jump Tower 1
-            if (data.diveFromGraceDir[data.me] === 'AC3') {
-              // Solo High Jump Tower 1
-              if (!data.diveFromGraceHasArrow[3])
-                return output.circleTower!();
-              // All High Jumps, unknown exact position
-              return output.circleTowers!({ num: output.num3!() });
-            }
-            // Num3 Spineshatter Tower 1
-            if (data.diveFromGraceDir[data.me] === 'AC4')
-              return output.spineshatterTower!();
-            // Num3 Elusive Tower 1
-            if (data.diveFromGraceDir[data.me] === 'AC5')
-              return output.elusiveTower!();
-          }
         }
 
         // Second Dive, on num2s
@@ -1143,26 +1125,15 @@ const triggerSet: TriggerSet<Data> = {
         }
         // Third Dive, on num3s
         if (data.diveFromGraceTowerCounter === 3) {
-          // Could all Num1 and Num2s here, but stack has not gone off yet
           // Num3s need to move out of tower 3
           if (num === 3)
             return output.move!();
         }
       },
       outputStrings: {
-        num3: Outputs.num3,
         move: Outputs.moveAway,
-        circleTower: {
-          en: 'South Tower',
-        },
-        circleTowers: {
-          en: '${num} Cardinal Towers',
-        },
         circleTower3: {
           en: 'Stack => South Tower',
-        },
-        spineshatterTower: {
-          en: 'Left Tower',
         },
         spineshatterTower2: {
           en: 'Backleft Tower',
@@ -1170,14 +1141,64 @@ const triggerSet: TriggerSet<Data> = {
         spineshatterTower3: {
           en: 'Stack => Left Tower',
         },
-        elusiveTower: {
-          en: 'Right Tower',
-        },
         elusiveTower2: {
           en: 'Backright Tower',
         },
         elusiveTower3: {
           en: 'Stack => Right Tower',
+        },
+      },
+    },
+    {
+      id: 'DSR Dive From Grace Tower 1',
+      // Triggered on first instance of Eye of the Tyrant (6714)
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg' }),
+      netRegexDe: NetRegexes.ability({ id: '6714', source: 'Nidhogg' }),
+      netRegexFr: NetRegexes.ability({ id: '6714', source: 'Nidhogg' }),
+      netRegexJa: NetRegexes.ability({ id: '6714', source: 'ニーズヘッグ' }),
+      netRegexCn: NetRegexes.ability({ id: '6714', source: '尼德霍格' }),
+      netRegexKo: NetRegexes.ability({ id: '6714', source: '니드호그' }),
+      // Ignore targetIsYou() incase player misses stack
+      condition: (data, matches) => data.eyeOfTheTyrantCounter === 1,
+      infoText: (data, _matches, output) => {
+        // No callout if missing numbers
+        const num = data.diveFromGraceNum[data.me];
+        if (!num) {
+          console.error(`DFG Tower 1 Reminder: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          return;
+        }
+        // Call 1st Tower Soak (Must be based on debuffs?)
+        if (num === 3) {
+          // Num3 High Jump Tower 1
+          if (data.diveFromGraceDir[data.me] === 'AC3') {
+            // Solo High Jump Tower 1
+            if (!data.diveFromGraceHasArrow[3])
+              return output.circleTower!();
+            // All High Jumps, unknown exact position
+            return output.circleTowers!({ num: output.num3!() });
+          }
+          // Num3 Spineshatter Tower 1
+          if (data.diveFromGraceDir[data.me] === 'AC4')
+            return output.spineshatterTower!();
+          // Num3 Elusive Tower 1
+          if (data.diveFromGraceDir[data.me] === 'AC5')
+            return output.elusiveTower!();
+        }
+      },
+      outputStrings: {
+        num3: Outputs.num3,
+        circleTower: {
+          en: 'South Tower',
+        },
+        circleTowers: {
+          en: '${num} Cardinal Towers',
+        },
+        spineshatterTower: {
+          en: 'Left Tower',
+        },
+        elusiveTower: {
+          en: 'Right Tower',
         },
       },
     },
@@ -1191,7 +1212,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ id: '6714', source: 'ニーズヘッグ' }),
       netRegexCn: NetRegexes.ability({ id: '6714', source: '尼德霍格' }),
       netRegexKo: NetRegexes.ability({ id: '6714', source: '니드호그' }),
-      condition: (data, matches) => data.eyeOfTheTyrantCounter === 2 && matches.target === data.me,
+      // Ignore targetIsYou() incase player misses stack
+      condition: (data, matches) => data.eyeOfTheTyrantCounter === 2,
       infoText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
