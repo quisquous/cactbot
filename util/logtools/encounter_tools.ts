@@ -288,8 +288,13 @@ class TLFuncs {
     return new Date(Date.parse(matches.timestamp));
   }
   static timeFromDate(date?: Date): string {
-    if (date)
-      return date.toISOString().slice(11, 23);
+    if (date) {
+      const wholeTime = date.toLocaleTimeString('en-US', { hour12: false });
+      const milliseconds = date.getMilliseconds();
+      // If milliseconds is under 100, the leading zeroes will be truncated.
+      // We don't want that, so we pad it inside the formatter.
+      return `${wholeTime}.${milliseconds.toString().padStart(3, '0')}`;
+    }
     return 'Unknown_Time';
   }
 
