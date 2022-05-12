@@ -232,12 +232,12 @@ const parseAbilityToEntry = (matches: NetMatches['Ability']): TimelineEntry => {
   return entry;
 };
 
-const extractTLEntries = (
+const extractTLEntries = async (
   fileName: string,
   start: string,
   end: string,
   targetArray?: string[],
-): TimelineEntry[] => {
+): Promise<TimelineEntry[]> => {
   const entries: TimelineEntry[] = [];
   let started = false;
   const lines: string[] = [];
@@ -245,7 +245,8 @@ const extractTLEntries = (
   const file = readline.createInterface({
     input: fs.createReadStream(fileName),
   });
-  file.on('line', (line) => {
+
+  for await (const line of file) {
     const lineTimeStamp = line.substring(14, 26);
     if (start === lineTimeStamp)
       started = start === lineTimeStamp;
@@ -253,7 +254,7 @@ const extractTLEntries = (
       lines.push(line);
     if (end === lineTimeStamp)
       file.close();
-  });
+  }
 
   // We have exactly the lines relevant to our encounter now.
   for (const line of lines) {
@@ -488,7 +489,7 @@ const makeTimeline = async () => {
       }
       const startTime = TLFuncs.timeFromDate(fight.startTime);
       const endTime = TLFuncs.timeFromDate(fight.endTime);
-      const baseEntries = extractTLEntries(
+      const baseEntries = await extractTLEntries(
         args.file,
         startTime,
         endTime,
