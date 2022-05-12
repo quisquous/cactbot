@@ -7,6 +7,16 @@ import { NetMatches } from '../../types/net_matches';
 import { LogUtilArgParse, TimelineArgs } from './arg_parser';
 import { EncounterCollector, TLFuncs } from './encounter_tools';
 
+// TODO: Add support for auto-commenting repeated abilities
+// that can't be synced but should be visible.
+
+// TODO: Add support for assigning sync windows to specific abilities,
+// with or without phase conditions.
+
+// TODO: Add support for auto-generating loops.
+
+// TODO: Add FFLogs report parsing support.
+
 type TimelineEntry = {
   time: string;
   combatant?: string;
