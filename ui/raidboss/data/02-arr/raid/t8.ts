@@ -49,7 +49,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T8 Landmine Explosion',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7D1', source: 'Allagan Mine' }),
-      netRegexDe: NetRegexes.ability({ id: '7D1', source: 'Allagisch(?:e|er|es|en) Mine' }),
+      netRegexDe: NetRegexes.ability({ id: '7D1', source: 'Allagische Mine' }),
       netRegexFr: NetRegexes.ability({ id: '7D1', source: 'Mine Allagoise' }),
       netRegexJa: NetRegexes.ability({ id: '7D1', source: 'アラガンマイン' }),
       netRegexCn: NetRegexes.ability({ id: '7D1', source: '亚拉戈机雷' }),
@@ -212,7 +212,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'de',
       'replaceSync': {
         'Allagan Field': 'Allagisches Feld',
-        'Allagan Mine': 'allagisch(?:e|er|es|en) Mine',
+        'Allagan Mine': 'Allagische Mine',
         'Clockwork Dreadnaught': 'Brummonaut',
         'Landmines have been scattered': 'Die Landminen haben sich verteilt',
         'The Avatar': 'Avatar',

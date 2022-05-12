@@ -3,7 +3,10 @@ import path from 'path';
 import Regexes from '../resources/regexes';
 import NetRegexes from '../resources/netregexes';
 import { TimelineParser } from '../ui/raidboss/timeline_parser';
-import { commonReplacement, partialCommonReplacementKeys } from '../ui/raidboss/common_replacement';
+import {
+  commonReplacement,
+  partialCommonTimelineReplacementKeys,
+} from '../ui/raidboss/common_replacement';
 
 // Set a global flag to mark regexes for NetRegexes.doesNetRegexNeedTranslation.
 // See details in that function for more information.
@@ -51,7 +54,6 @@ export async function findMissing(triggersFile, locale, errorFunc) {
     errorFunc,
   };
 
-  findMissingRegex(findMissingArgs);
   findMissingTimeline(findMissingArgs);
 }
 
@@ -76,102 +78,6 @@ function findLineNumberByTriggerId(text, id) {
   // This should never happen.
   console.log('Failure to find id in file for: ' + id);
   return '?';
-}
-
-function findMissingRegex(findMissingArgs) {
-  const {
-    triggerSet,
-    triggerLines,
-    timeline,
-    trans,
-    triggersFile,
-    locale,
-    errorFunc,
-  } = findMissingArgs;
-  const triggers = triggerSet.triggers;
-  for (const trigger of triggers) {
-    let origRegex = trigger.netRegex;
-    if (!origRegex)
-      continue;
-
-    const lineNumber = findLineNumberByTriggerId(triggerLines, trigger.id);
-
-    origRegex = origRegex.source.toLowerCase();
-
-    let foundMatch = false;
-
-    let transRegex = origRegex;
-    for (const regex in trans.replaceSync) {
-      const replace = Regexes.parseGlobal(regex);
-      if (transRegex.match(replace))
-        foundMatch = true;
-      transRegex = transRegex.replace(replace, trans.replaceSync[regex]);
-    }
-    for (const regex in commonReplacement.replaceSync) {
-      const replace = Regexes.parseGlobal(regex);
-      if (transRegex.match(replace))
-        foundMatch = true;
-      transRegex = transRegex.replace(replace, commonReplacement.replaceSync[regex][locale]);
-    }
-
-    transRegex = transRegex.toLowerCase();
-
-    if (!NetRegexes.doesNetRegexNeedTranslation(transRegex))
-      continue;
-
-    const localeReg = 'netRegex' + locale[0].toUpperCase() + locale[1];
-    let locRegex = trigger[localeReg];
-    if (locRegex) {
-      // Things are in a good state if the translation regex matches the
-      // locale regex.
-      locRegex = locRegex.source.toLowerCase();
-      if (transRegex === locRegex)
-        continue;
-
-      // If we have a match, then something translated it *AND* it is
-      // different than what is there.  This is the worst case scenario.
-      if (foundMatch) {
-        errorFunc(
-          triggersFile,
-          lineNumber,
-          trigger.id,
-          `incorrect timelineReplace for regex, got '${transRegex}', needed ${localeReg} '${locRegex}'`,
-        );
-      }
-    }
-    // Things *might* be in a good state if we have any translation for this.
-    if (foundMatch)
-      continue;
-
-    // Any missing translations in the ignore list should be skipped.
-    const ignore = timeline.GetMissingTranslationsToIgnore();
-    let foundIgnore = false;
-    for (const ig of ignore) {
-      if (origRegex.match(ig)) {
-        foundIgnore = true;
-        break;
-      }
-    }
-    if (foundIgnore)
-      continue;
-
-    // In any case, if we have no match for this, then this is missing.
-    if (locRegex) {
-      errorFunc(
-        triggersFile,
-        lineNumber,
-        trigger.id,
-        `missing timelineReplace for regex '${origRegex}' (but have ${localeReg})`,
-      );
-    } else {
-      errorFunc(
-        triggersFile,
-        lineNumber,
-        trigger.id,
-        `missing timelineReplace for regex '${origRegex}' (with no ${localeReg})`,
-      );
-    }
-  }
 }
 
 function findMissingTimeline(findMissingArgs) {
@@ -205,7 +111,7 @@ function findMissingTimeline(findMissingArgs) {
   for (const testCase of testCases) {
     const common = commonReplacement[testCase.type];
     for (const key in common) {
-      if (skipPartialCommon && partialCommonReplacementKeys.includes(key))
+      if (skipPartialCommon && partialCommonTimelineReplacementKeys.includes(key))
         continue;
       if (!common[key][trans.locale]) {
         // To avoid throwing a "missing translation" error for
