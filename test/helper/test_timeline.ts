@@ -4,12 +4,9 @@ import path from 'path';
 import chai from 'chai';
 
 import Regexes from '../../resources/regexes';
+import { translateWithReplacements } from '../../resources/translations';
 import { LooseTriggerSet } from '../../types/trigger';
-import {
-  CommonReplacement,
-  commonReplacement,
-  partialCommonTimelineReplacementKeys,
-} from '../../ui/raidboss/common_replacement';
+import { CommonReplacement, commonReplacement } from '../../ui/raidboss/common_replacement';
 import { TimelineParser, TimelineReplacement } from '../../ui/raidboss/timeline_parser';
 
 const { assert } = chai;
@@ -70,7 +67,6 @@ const getTestCases = (
   triggersFile: string,
   timeline: TimelineParser,
   trans: TimelineReplacement,
-  skipPartialCommon?: boolean,
 ) => {
   const syncMap: ReplaceMap = new Map();
   for (const [key, replaceSync] of Object.entries(trans.replaceSync ?? {}))
@@ -96,8 +92,6 @@ const getTestCases = (
   for (const testCase of testCases) {
     const common = commonReplacement[testCase.type];
     for (const [key, localeText] of Object.entries(common)) {
-      if (skipPartialCommon && partialCommonTimelineReplacementKeys.includes(key))
-        continue;
       const regexKey = Regexes.parse(key);
       const transText = localeText[trans.locale];
       if (!transText) {
@@ -116,14 +110,6 @@ const getTestCases = (
   }
 
   return testCases;
-};
-
-const getTestCasesWithoutPartialCommon = (
-  triggersFile: string,
-  timeline: TimelineParser,
-  trans: TimelineReplacement,
-) => {
-  return getTestCases(triggersFile, timeline, trans, true);
 };
 
 const testTimelineFiles = (timelineFiles: string[]): void => {
@@ -266,9 +252,7 @@ const testTimelineFiles = (timelineFiles: string[]): void => {
             if (trans.missingTranslations)
               continue;
 
-            // Ignore partial common translations here, as they don't
-            // count towards completing missing translations.
-            const testCases = getTestCasesWithoutPartialCommon(triggersFile, timeline, trans);
+            const testCases = getTestCases(triggersFile, timeline, trans);
 
             const ignore = timeline.GetMissingTranslationsToIgnore();
             const isIgnored = (x: string) => {
@@ -283,15 +267,9 @@ const testTimelineFiles = (timelineFiles: string[]): void => {
               for (const item of testCase.items) {
                 if (isIgnored(item))
                   continue;
-                let matched = false;
-                for (const regex of testCase.replace.keys()) {
-                  if (regex.test(item)) {
-                    matched = true;
-                    break;
-                  }
-                }
                 assert.isTrue(
-                  matched,
+                  translateWithReplacements(item, testCase.type, locale, translations)
+                    .wasTranslated,
                   `${triggersFile}:locale ${locale}:no translation for ${testCase.type} '${item}'`,
                 );
               }

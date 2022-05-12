@@ -1,9 +1,9 @@
 import { Lang } from '../../resources/languages';
 import { UnreachableCode } from '../../resources/not_reached';
 import Regexes from '../../resources/regexes';
+import { translateRegex, translateText } from '../../resources/translations';
 import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
 
-import { commonReplacement } from './common_replacement';
 import defaultOptions, { RaidbossOptions, TimelineConfig } from './raidboss_options';
 
 export type TimelineReplacement = {
@@ -389,37 +389,6 @@ export class TimelineParser {
     });
   }
 
-  private GetReplacedHelper(
-    text: string,
-    replaceKey: 'replaceSync' | 'replaceText',
-    replaceLang: Lang,
-    isGlobal: boolean,
-  ): string {
-    if (!this.replacements)
-      return text;
-
-    for (const r of this.replacements) {
-      if (r.locale && r.locale !== replaceLang)
-        continue;
-      const reps = r[replaceKey];
-      if (!reps)
-        continue;
-      for (const [key, value] of Object.entries(reps))
-        text = text.replace(Regexes.parse(key), value);
-    }
-    // Common Replacements
-    const replacement = commonReplacement[replaceKey];
-    for (const [key, value] of Object.entries(replacement ?? {})) {
-      const repl = value[replaceLang];
-      if (!repl)
-        continue;
-      const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
-      text = text.replace(regex, repl);
-    }
-
-    return text;
-  }
-
   private GetReplacedText(text: string): string {
     // Anything in the timeline config takes precedence over timelineReplace sections in
     // the trigger file.  It is also a full replacement, vs the regex-style GetReplacedHelper.
@@ -427,21 +396,16 @@ export class TimelineParser {
     if (rename !== undefined)
       return rename;
 
-    if (!this.replacements)
-      return text;
-
-    const replaceLang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
-    const isGlobal = false;
-    return this.GetReplacedHelper(text, 'replaceText', replaceLang, isGlobal);
+    const replaceLang = this.options.TimelineLanguage ?? this.options.ParserLanguage ?? 'en';
+    return translateText(text, replaceLang, this.replacements);
   }
 
   private GetReplacedSync(sync: string): string {
     if (!this.replacements)
       return sync;
 
-    const replaceLang = this.options.ParserLanguage || 'en';
-    const isGlobal = true;
-    return this.GetReplacedHelper(sync, 'replaceSync', replaceLang, isGlobal);
+    const replaceLang = this.options.ParserLanguage ?? 'en';
+    return translateRegex(sync, replaceLang, this.replacements);
   }
 
   public GetMissingTranslationsToIgnore(): RegExp[] {

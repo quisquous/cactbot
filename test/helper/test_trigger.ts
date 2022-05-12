@@ -16,6 +16,7 @@ import {
   triggerFunctions,
   triggerTextOutputFunctions,
 } from '../../resources/responses';
+import { translateWithReplacements } from '../../resources/translations';
 import { RaidbossData } from '../../types/data';
 import { Matches } from '../../types/net_matches';
 import {
@@ -27,10 +28,6 @@ import {
   ResponseFunc,
   TriggerFunc,
 } from '../../types/trigger';
-import {
-  commonReplacement,
-  partialCommonTriggerReplacementKeys,
-} from '../../ui/raidboss/common_replacement';
 
 const { assert } = chai;
 
@@ -649,37 +646,12 @@ const testTriggerFile = (file: string) => {
         if (!NetRegexes.doesNetRegexNeedTranslation(origRegex))
           continue;
 
-        let foundMatch = false;
-
-        let transRegex = origRegex;
-        for (const [regex, replaceSync] of Object.entries(trans.replaceSync ?? {})) {
-          const replace = Regexes.parseGlobal(regex);
-          if (transRegex.match(replace))
-            foundMatch = true;
-          transRegex = transRegex.replace(replace, replaceSync);
-        }
-        for (const [regex, localeReplace] of Object.entries(commonReplacement.replaceSync)) {
-          const replace = Regexes.parseGlobal(regex);
-          const replaceSync = localeReplace[locale];
-          if (replaceSync === undefined)
-            continue;
-          if (transRegex.match(replace)) {
-            // Consider any partial translations as "not found" (e.g. a sea;
-            // message that still needs the zone name to be translated to be
-            // considered fully translated).  However, still translate it as
-            // we use the translated regex below (for now).
-            let isPartial = false;
-            for (const key of partialCommonTriggerReplacementKeys) {
-              if (Regexes.parseGlobal(key).test(regex))
-                isPartial = true;
-            }
-            if (!isPartial)
-              foundMatch = true;
-          }
-          transRegex = transRegex.replace(replace, replaceSync);
-        }
-
-        transRegex = transRegex.toLowerCase();
+        const { text, wasTranslated } = translateWithReplacements(
+          origRegex,
+          'replaceSync',
+          locale,
+          translations,
+        );
 
         const langSpecificRegexes = [
           'netRegexDe',
@@ -698,13 +670,13 @@ const testTriggerFile = (file: string) => {
           // different than what is in timelineReplace.  This is the worst case scenario.
           assert.strictEqual(
             locRegex,
-            transRegex,
+            text.toLowerCase(),
             `${trigger.id}:locale ${locale}:incorrect timelineReplace replaceSync for regex '${locRegex}'`,
           );
         }
 
         assert.isTrue(
-          foundMatch,
+          wasTranslated,
           `${trigger.id}:locale ${locale}:missing timelineReplace replaceSync for regex '${origRegex}'`,
         );
       }
