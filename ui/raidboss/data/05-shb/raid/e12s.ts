@@ -462,10 +462,6 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`sculpture: null statueData`);
           return;
         }
-        if (!statueData.combatants) {
-          console.error(`sculpture: null combatants`);
-          return;
-        }
         if (statueData.combatants.length !== 2) {
           console.error(`sculpture: unexpected length: ${JSON.stringify(statueData)}`);
           return;
@@ -1244,11 +1240,6 @@ const triggerSet: TriggerSet<Data> = {
         // trigger will not work, so just resume promise here
         if (oracleData === null) {
           console.error(`Oracle Of Darkness: null data`);
-          delete data.safeZone;
-          return;
-        }
-        if (!oracleData.combatants) {
-          console.error(`Oracle Of Darkness: null combatants`);
           delete data.safeZone;
           return;
         }

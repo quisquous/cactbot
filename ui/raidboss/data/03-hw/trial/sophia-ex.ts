@@ -240,7 +240,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.startsUsing({ id: '1988', source: '信徒其一' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1988', source: '제1신도' }),
       infoText: (data, matches, output) => {
-        if (Conditions.targetIsYou())
+        if (Conditions.targetIsYou()(data, matches))
           return output.infusionOnYou!();
 
         return output.infusionOn!({ player: data.ShortName(matches.target) });

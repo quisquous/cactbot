@@ -66,7 +66,6 @@ const triggerSet: TriggerSet<Data> = {
         // trigger will not work, so just resume promise here.
         if (
           !(combatantData !== null &&
-            combatantData.combatants &&
             combatantData.combatants.length)
         ) {
           delete data.safeZone;

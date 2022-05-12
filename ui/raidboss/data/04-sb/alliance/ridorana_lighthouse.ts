@@ -13,7 +13,7 @@ export interface Data extends RaidbossData {
 }
 
 const mathDirection = (mathBaseValue: number | undefined, correctMath: number[], output: Output) => {
-  if (!correctMath || mathBaseValue === undefined)
+  if (mathBaseValue === undefined)
     return;
   if (mathBaseValue < 1 || mathBaseValue > 9) {
     console.error(`Bad math: ${mathBaseValue}`);

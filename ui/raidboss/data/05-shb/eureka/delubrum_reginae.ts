@@ -326,10 +326,6 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`Iron Splitter: null data`);
           return;
         }
-        if (!seekerData.combatants) {
-          console.error(`Iron Splitter: null combatants`);
-          return;
-        }
         if (seekerData.combatants.length !== 1) {
           console.error(`Iron Splitter: expected 1, got ${seekerData.combatants.length}`);
           return;
@@ -1189,10 +1185,6 @@ const triggerSet: TriggerSet<Data> = {
 
         if (unseenData === null) {
           console.error(`Gleaming Arrow: null data`);
-          return;
-        }
-        if (!unseenData.combatants) {
-          console.error(`Gleaming Arrow: null combatants`);
           return;
         }
         if (unseenData.combatants.length !== unseenIds.length) {

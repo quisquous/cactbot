@@ -90,7 +90,7 @@ const triggerSet: TriggerSet<Data> = {
         const callData = await callOverlayHandler({
           call: 'getCombatants',
         });
-        if (!callData || !callData.combatants || !callData.combatants.length) {
+        if (!callData.combatants.length) {
           console.error('Dive: failed to get combatants: ${JSON.stringify(callData)}');
           return;
         }
