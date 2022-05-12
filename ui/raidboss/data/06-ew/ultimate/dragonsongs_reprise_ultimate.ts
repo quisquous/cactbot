@@ -1183,7 +1183,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Dive From Grace Tower 3',
+      id: 'DSR Dive From Grace Tower 3 Reminder',
       // Triggered on second instance of Eye of the Tyrant (6714)
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg' }),
@@ -1196,7 +1196,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFG Tower Soaks: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(`DFG Tower 3 Reminder: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
         // Call Tower 3 Soak for num1 (based on previous position)
