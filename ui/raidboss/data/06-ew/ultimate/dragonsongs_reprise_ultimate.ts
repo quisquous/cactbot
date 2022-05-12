@@ -1144,16 +1144,7 @@ const triggerSet: TriggerSet<Data> = {
         }
         // Third Dive, on num3s
         if (data.diveFromGraceTowerCounter === 3) {
-          // Call Tower 3 Soak for num1 (based on previous position)
-          if (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle')
-            return output.circleTower!();
-          // Call Tower 3 Soak for num2s (based on previous position)
-          if (num === 2) {
-            if (data.diveFromGracePreviousPosition[data.me] === 'west')
-              return output.elusiveTower!();
-            if (data.diveFromGracePreviousPosition[data.me] === 'east')
-              return output.spineshatterTower!();
-          }
+          // Could all Num1 and Num2s here, but stack has not gone off yet
           // Num3s need to move out of tower 3
           if (num === 3)
             return output.move!();
@@ -1188,6 +1179,52 @@ const triggerSet: TriggerSet<Data> = {
         },
         elusiveTower3: {
           en: 'Stack => Right Tower',
+        },
+      },
+    },
+    {
+      id: 'DSR Dive From Grace Tower 3',
+      // Triggered on second instance of Eye of the Tyrant (6714)
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg' }),
+      netRegexDe: NetRegexes.ability({ id: '6714', source: 'Nidhogg' }),
+      netRegexFr: NetRegexes.ability({ id: '6714', source: 'Nidhogg' }),
+      netRegexJa: NetRegexes.ability({ id: '6714', source: 'ニーズヘッグ' }),
+      netRegexCn: NetRegexes.ability({ id: '6714', source: '尼德霍格' }),
+      netRegexKo: NetRegexes.ability({ id: '6714', source: '니드호그' }),
+      condition: (data, matches) => data.eyeOfTheTyrantCounter === 2 && matches.target === data.me,
+      infoText: (data, _matches, output) => {
+        const num = data.diveFromGraceNum[data.me];
+        if (!num) {
+          console.error(`DFG Tower Soaks: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          return;
+        }
+        // Call Tower 3 Soak for num1 (based on previous position)
+        if (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle')
+          return output.circleTower!();
+        // Call Tower 3 Soak for num2s (based on previous position)
+        if (num === 2) {
+          if (data.diveFromGracePreviousPosition[data.me] === 'west')
+            return output.elusiveTower!();
+          if (data.diveFromGracePreviousPosition[data.me] === 'east')
+            return output.spineshatterTower!();
+        }
+        // If failed to get positions, call Towers in general
+        if (num !== 3)
+          return output.circleTowers!();
+      },
+      outputStrings: {
+        circleTower: {
+          en: 'South Tower',
+        },
+        circleTowers: {
+          en: 'Cardinal Towers',
+        },
+        spineshatterTower: {
+          en: 'Left Tower',
+        },
+        elusiveTower: {
+          en: 'Right Tower',
         },
       },
     },
