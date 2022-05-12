@@ -120,7 +120,7 @@ Options.Triggers.push({
       id: 'T11 Forked Lightning',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B85', source: 'Electric Node' }),
-      netRegexDe: NetRegexes.ability({ id: 'B85', source: 'Elektrisch(?:e|er|es|en) Modul' }),
+      netRegexDe: NetRegexes.ability({ id: 'B85', source: 'Elektrisches Modul' }),
       netRegexFr: NetRegexes.ability({ id: 'B85', source: 'Module D\'Électrochoc' }),
       netRegexJa: NetRegexes.ability({ id: 'B85', source: '雷撃システム' }),
       netRegexCn: NetRegexes.ability({ id: 'B85', source: '雷击系统' }),
@@ -273,7 +273,7 @@ Options.Triggers.push({
     {
       'locale': 'de',
       'replaceSync': {
-        'Electric Node': 'elektrisch(?:e|er|es|en) Modul',
+        'Electric Node': 'Elektrisches Modul',
         'Kaliya': 'Kaliya',
         'The Core Override': 'Kern-Steuereinheit',
       },

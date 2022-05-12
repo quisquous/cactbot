@@ -673,6 +673,7 @@ Options.Triggers.push({
     {
       'locale': 'de',
       'replaceSync': {
+        'Hakkinryu': 'Hakkinryu',
         'Left Wing': 'link(?:e|er|es|en) Schwinge',
         'Right Wing': 'recht(?:e|er|es|en) Schwinge',
         'Shinryu': 'Shinryu',
@@ -725,6 +726,7 @@ Options.Triggers.push({
     {
       'locale': 'fr',
       'replaceSync': {
+        'Hakkinryu': 'Hakkinryu',
         'Icicle': 'stalactite',
         'Left Wing': 'aile gauche',
         'Right Wing': 'aile droite',

@@ -10,7 +10,7 @@ Options.Triggers.push({
       id: 'Brayflox Normal Numbing Breath',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FA', source: 'Great Yellow Pelican' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1FA', source: 'Groß(?:e|er|es|en) Gelbpelikan' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1FA', source: 'Großer Gelbpelikan' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FA', source: 'Grand Pélican Jaune' }),
       netRegexJa: NetRegexes.startsUsing({ id: '1FA', source: 'グレート・イエローペリカン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FA', source: '大黄鹈鹕' }),
@@ -217,7 +217,7 @@ Options.Triggers.push({
       'replaceSync': {
         'Aiatar': 'Aiatar',
         'Ashdrake': 'Asch-Drakon',
-        'Great Yellow Pelican': 'groß(?:e|er|es|en) Gelbpelikan',
+        'Great Yellow Pelican': 'Großer Gelbpelikan',
         'Hellbender': 'Höllenkrümmer',
         'Inferno Drake': 'Sonnen-Drakon',
       },
