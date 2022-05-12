@@ -469,11 +469,6 @@ const config: markdownMagic.Configuration = {
 
       const lineDoc = lineDocs[lineType];
 
-      if (!lineDoc) {
-        console.error(`Received missing type specification: ${lineType ?? 'undefined'}`);
-        process.exit(-3);
-      }
-
       mappedLogLines[language] ??= [];
       mappedLogLines[language]?.push(lineType);
 

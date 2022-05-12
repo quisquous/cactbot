@@ -211,16 +211,15 @@ export const main = async (updateHashes = false): Promise<void> => {
     console.log('Saving dependency cache...');
     await fs.writeFile(cachePath, JSON.stringify(cache, null, 2));
 
-    if (hashUpdateMap) {
-      console.log('Updating hashes...');
-      console.log(hashUpdateMap);
-      const data = await readTextFile(depsPath);
+    console.log('Updating hashes...');
+    console.log(hashUpdateMap);
+    const data = await readTextFile(depsPath);
 
-      for (const [oldCache, newCache] of Object.entries(hashUpdateMap))
-        data.replace(oldCache, newCache);
+    for (const [oldCache, newCache] of Object.entries(hashUpdateMap))
+      data.replace(oldCache, newCache);
 
-      await fs.writeFile(depsPath, data);
-    }
+    await fs.writeFile(depsPath, data);
+
     console.log('Cleaning up...');
     await safeRmDir(dlPath);
   }
