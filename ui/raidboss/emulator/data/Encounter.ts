@@ -59,9 +59,6 @@ export default class Encounter {
     const startStatuses = new Set<string>();
 
     for (const line of this.logLines) {
-      if (!line)
-        throw new UnreachableCode();
-
       this.tzOffsetMillis = line.tzOffsetMillis;
 
       let res: MatchStartInfo | MatchEndInfo | undefined = EmulatorCommon.matchStart(

@@ -145,7 +145,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
           r = regex.exec(logObj.convertedLine) ?? false;
           lineCache.set(trigger, r);
         }
-        if (!r)
+        if (r === false)
           continue;
 
         const resolver = this.currentResolver = new Resolver({
@@ -180,7 +180,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
           r = regex.exec(logObj.networkLine) ?? false;
           lineCache.set(trigger, r);
         }
-        if (r) {
+        if (r !== false) {
           const resolver = this.currentResolver = new Resolver({
             initialData: EmulatorCommon.cloneData(this.data),
             suppressed: false,

@@ -171,7 +171,7 @@ export default class EmulatedPartyInfo extends EventBus {
   resetPartyInfo(encounter: AnalyzedEncounter): void {
     const enc = encounter.encounter;
     const tracker = enc.combatantTracker;
-    if (!enc || !tracker)
+    if (!tracker)
       throw new UnreachableCode();
     this.tooltips.map((tt: Tooltip) => {
       tt.delete();

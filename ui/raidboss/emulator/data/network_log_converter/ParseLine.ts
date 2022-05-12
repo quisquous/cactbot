@@ -123,11 +123,11 @@ export default class ParseLine {
     }
 
     // Also don't parse lines with a non-sane date. This is 2000-01-01 00:00:00
-    if (ret && ret.timestamp < 946684800)
+    if (ret.timestamp < 946684800)
       return;
 
     // Finally, if the object marks itself as invalid, skip it
-    if (ret && ret.invalid)
+    if (ret.invalid)
       return;
 
     return ret;
