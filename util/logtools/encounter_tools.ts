@@ -289,7 +289,7 @@ class TLFuncs {
   }
   static timeFromDate(date?: Date): string {
     if (date)
-      return date.toISOString().slice(11, 19);
+      return date.toISOString().slice(11, 23);
     return 'Unknown_Time';
   }
 
