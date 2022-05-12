@@ -37,6 +37,7 @@ const ZoneInfo = _ZoneInfo;
 // Convince TypeScript and eslint that these are used.  TypeScript doesn't have a great way
 // to disable individual rules, so this is safer than disabling all rules.
 console.assert(
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   Conditions && ContentType && NetRegexes && Regexes &&
     Responses && Outputs && Util && ZoneId && ZoneInfo,
 );
@@ -369,8 +370,7 @@ class UserConfig {
       }
 
       // Post this callback so that the js and css can be executed first.
-      if (callback)
-        callback();
+      callback();
 
       void callOverlayHandler({ call: 'cactbotRequestState' });
     };
@@ -432,7 +432,7 @@ class UserConfig {
     if (!template)
       return;
 
-    const templateOptions = template.options || [];
+    const templateOptions = template.options;
     for (const opt of templateOptions) {
       // Grab the saved value or the default to set in options.
 

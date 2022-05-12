@@ -429,7 +429,7 @@ export default class Regexes {
     if (args.length === 1) {
       if (Array.isArray(args[0]))
         array = args[0];
-      else if (args[0])
+      else if (args[0] !== undefined)
         array = [args[0]];
       else
         array = [];

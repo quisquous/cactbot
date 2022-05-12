@@ -206,7 +206,7 @@ const Util = {
   canAddle: (job: Job) => addleJobs.includes(job),
   watchCombatant: watchCombatant,
   clearWatchCombatants: () => {
-    if (clearCombatantsOverride)
+    if (clearCombatantsOverride !== undefined)
       clearCombatantsOverride();
     else
       defaultClearCombatants();

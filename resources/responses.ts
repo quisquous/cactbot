@@ -114,7 +114,7 @@ const defaultAlarmText = (sev?: Severity): SevText => {
 const getTarget = (matches: TargetedMatches) => {
   // Often tankbusters can be casted by the boss on the boss.
   // Consider this as "not having a target".
-  if (!matches || matches.target === matches.source)
+  if (matches.target === matches.source)
     return;
   return matches.target;
 };
@@ -137,14 +137,20 @@ const combineFuncs = function(
     obj[text2] = func2;
   } else {
     obj[text1] = (data: Data, matches: TargetedMatches, output: Output) => {
-      return func1(data, matches, output) || func2(data, matches, output);
+      const func1Value = func1(data, matches, output);
+      if (func1Value !== undefined && func1Value !== null && func1Value === true)
+        return true;
+      const func2Value = func2(data, matches, output);
+      if (func2Value !== undefined && func2Value !== null && func2Value === true)
+        return true;
+      return func1Value !== false || func2Value !== false;
     };
   }
   return obj;
 };
 
 const isPlayerId = (id?: string) => {
-  return id && id[0] !== '4';
+  return id !== undefined && id[0] !== '4';
 };
 
 // For responses that unconditionally return static text.
