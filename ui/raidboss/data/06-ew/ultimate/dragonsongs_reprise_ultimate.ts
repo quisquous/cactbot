@@ -1056,7 +1056,7 @@ const triggerSet: TriggerSet<Data> = {
 
           // Assuming the two players furthest apart are the left/right players
           if (distanceAB === sorted[0]) {
-              data.diveFromGracePreviousPosition[nameC] = 'middle';
+            data.diveFromGracePreviousPosition[nameC] = 'middle';
             if (posAX < posBX) {
               data.diveFromGracePreviousPosition[nameA] = 'west';
               data.diveFromGracePreviousPosition[nameB] = 'east';
@@ -1086,11 +1086,11 @@ const triggerSet: TriggerSet<Data> = {
         } else {
           // Only comparing X values for Dive 2
           if (posAX < posBX) {
-              data.diveFromGracePreviousPosition[nameA] = 'west';
-              data.diveFromGracePreviousPosition[nameB] = 'east';
+            data.diveFromGracePreviousPosition[nameA] = 'west';
+            data.diveFromGracePreviousPosition[nameB] = 'east';
           } else {
-              data.diveFromGracePreviousPosition[nameB] = 'west';
-              data.diveFromGracePreviousPosition[nameA] = 'east';
+            data.diveFromGracePreviousPosition[nameB] = 'west';
+            data.diveFromGracePreviousPosition[nameA] = 'east';
           }
         }
 
@@ -1128,17 +1128,17 @@ const triggerSet: TriggerSet<Data> = {
         if (data.diveFromGraceTowerCounter === 2) {
           // Stack => Predict Tower 3 (based on previous position)
           if (num === 2) {
-            if (data.diveFromGracePreviousPosition[data.me] === 'west' )
+            if (data.diveFromGracePreviousPosition[data.me] === 'west')
               return output.elusiveTower3!();
-            if (data.diveFromGracePreviousPosition[data.me] === 'east' )
+            if (data.diveFromGracePreviousPosition[data.me] === 'east')
               return output.spineshatterTower3!();
           }
 
           // Call Tower 2 Soak (based on previous position)
           if (num === 1) {
-            if (data.diveFromGracePreviousPosition[data.me] === 'west' )
+            if (data.diveFromGracePreviousPosition[data.me] === 'west')
               return output.elusiveTower2!();
-            if (data.diveFromGracePreviousPosition[data.me] === 'east' )
+            if (data.diveFromGracePreviousPosition[data.me] === 'east')
               return output.spineshatterTower2!();
           }
         }
@@ -1160,8 +1160,6 @@ const triggerSet: TriggerSet<Data> = {
         }
       },
       outputStrings: {
-        num1: Outputs.num1,
-        num2: Outputs.num2,
         num3: Outputs.num3,
         move: Outputs.moveAway,
         circleTower: {
