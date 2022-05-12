@@ -384,7 +384,7 @@ export class CactbotConfigurator {
   // the value 3.
   getOption(group: string, path: string | string[], defaultValue: ConfigValue): ConfigValue {
     const objOrValue = this._getOptionLeafHelper(group, path);
-    if (!objOrValue)
+    if (objOrValue === undefined)
       return defaultValue;
 
     // At the leaf node.
