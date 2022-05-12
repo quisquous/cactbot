@@ -205,7 +205,7 @@ export const translateWithReplacements = (
     if (!reps)
       continue;
     for (const [key, value] of Object.entries(reps)) {
-      const regex = Regexes.parse(key);
+      const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
       if (text.match(regex))
         wasTranslated = true;
       text = text.replace(regex, value);
