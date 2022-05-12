@@ -135,20 +135,19 @@ const triggerSet: TriggerSet<Data> = {
       beforeSeconds: 6,
       condition: (data) => {
         data.eyeOfTheTyrantCounter = (data.eyeOfTheTyrantCounter ?? 0) + 1;
+        // Second stack handled by DFG Tower Soaks and DFG Baits
+        if (data.eyeOfTheTyrantCounter !== 1)
+          return false;
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
           console.error(`Eye of The Tyrant Stack: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           // Default to true as stack needs more players
-          if (data.eyeOfTheTyrantCounter === 1)
-            return true;
-          return false;
+          return true;
         }
 
         // First stack requires players numbered 2 and 3
         if ((num === 2 || num === 3) && data.eyeOfTheTyrantCounter === 1)
           return true;
-        // Second stack handled by DFG Tower Soaks and DFG Baits
-        return false;
       },
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.stackNums!({ num1: output.num2!(), num2: output.num3!() }),
