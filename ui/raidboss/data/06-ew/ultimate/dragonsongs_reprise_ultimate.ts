@@ -1153,14 +1153,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Dive From Grace Tower 1',
       // Triggered on first instance of Eye of the Tyrant (6714)
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg' }),
-      netRegexDe: NetRegexes.ability({ id: '6714', source: 'Nidhogg' }),
-      netRegexFr: NetRegexes.ability({ id: '6714', source: 'Nidhogg' }),
-      netRegexJa: NetRegexes.ability({ id: '6714', source: 'ニーズヘッグ' }),
-      netRegexCn: NetRegexes.ability({ id: '6714', source: '尼德霍格' }),
-      netRegexKo: NetRegexes.ability({ id: '6714', source: '니드호그' }),
+      netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '6714', source: 'ニーズヘッグ', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '6714', source: '尼德霍格', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '6714', source: '니드호그', capture: false }),
       // Ignore targetIsYou() incase player misses stack
-      condition: (data, matches) => data.eyeOfTheTyrantCounter === 1,
+      condition: (data) => data.eyeOfTheTyrantCounter === 1,
       infoText: (data, _matches, output) => {
         // No callout if missing numbers
         const num = data.diveFromGraceNum[data.me];
@@ -1206,14 +1206,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Dive From Grace Tower 3 Reminder',
       // Triggered on second instance of Eye of the Tyrant (6714)
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg' }),
-      netRegexDe: NetRegexes.ability({ id: '6714', source: 'Nidhogg' }),
-      netRegexFr: NetRegexes.ability({ id: '6714', source: 'Nidhogg' }),
-      netRegexJa: NetRegexes.ability({ id: '6714', source: 'ニーズヘッグ' }),
-      netRegexCn: NetRegexes.ability({ id: '6714', source: '尼德霍格' }),
-      netRegexKo: NetRegexes.ability({ id: '6714', source: '니드호그' }),
+      netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '6714', source: 'ニーズヘッグ', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '6714', source: '尼德霍格', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '6714', source: '니드호그', capture: false }),
       // Ignore targetIsYou() incase player misses stack
-      condition: (data, matches) => data.eyeOfTheTyrantCounter === 2,
+      condition: (data) => data.eyeOfTheTyrantCounter === 2,
       infoText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
