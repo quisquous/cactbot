@@ -1016,14 +1016,16 @@ const triggerSet: TriggerSet<Data> = {
 
         // With two Cartesian Coordinates, calculate distance
         const distance = (a?: number[], b?: number[]) => {
-          if (a === undefined || a[0] === undefined || a[1] === undefined ||
-            b === undefined || b[0] === undefined || b[1] === undefined) {
+          if (
+            a === undefined || a[0] === undefined || a[1] === undefined ||
+            b === undefined || b[0] === undefined || b[1] === undefined
+          ) {
             console.error(`DFG Tower Soaks: Missing targetX, targetY`);
             return -1;
-          };
+          }
           const x = a[0] - b[0];
           const y = a[1] - b[1];
-          return Math.sqrt(x*x + y*y);
+          return Math.sqrt(x * x + y * y);
         };
 
         // Map position values and player name keys to arrays
@@ -1059,7 +1061,7 @@ const triggerSet: TriggerSet<Data> = {
 
           // Sort the distances
           const sorted = distances.sort((a, b) => a - b);
-          
+
           // Assuming the two players furthest apart are the left/right players
           if (distanceAB === sorted[0]) {
               data.diveFromGracePreviousPosition[nameC] = 'middle';
@@ -1089,8 +1091,7 @@ const triggerSet: TriggerSet<Data> = {
               data.diveFromGracePreviousPosition[nameB] = 'east';
             }
           }
-        }
-        else {
+        } else {
           // Only comparing X values for Dive 2
           if (posAX < posBX) {
               data.diveFromGracePreviousPosition[nameA] = 'west';
@@ -1344,7 +1345,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(`DFG Dive Position: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
 
@@ -1376,7 +1377,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         diveCircles: {
-          en: 'Cardinal Position',
+          en: 'Cardinal Dive',
         },
         diveCircle: {
           en: 'South Dive',
