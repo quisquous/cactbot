@@ -32,9 +32,11 @@ export interface Data extends RaidbossData {
   // mapping of 1, 2, 3 to whether that group has seen an arrow.
   diveFromGraceHasArrow: { [num: number]: boolean };
   diveFromGraceDir: { [name: string]: string };
+  // mapping of player name to cartesian (x, y)
+  diveFromGracePositions: { [name: string]: number[] };
   diveFromGraceTowerCounter?: number;
   eyeOfTheTyrantCounter?: number;
-  diveFromGraceFire?: boolean;
+  diveFromGracePreviousPosition: { [num: string]: string };
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -120,7 +122,9 @@ const triggerSet: TriggerSet<Data> = {
       thordanMeteorMarkers: [],
       diveFromGraceNum: {},
       diveFromGraceHasArrow: { 1: false, 2: false, 3: false },
+      diveFromGracePositions: {},
       diveFromGraceDir: {},
+      diveFromGracePreviousPosition: {},
     };
   },
   timelineTriggers: [
@@ -146,11 +150,6 @@ const triggerSet: TriggerSet<Data> = {
         if (data.eyeOfTheTyrantCounter === 2) {
           if (num === 2)
             return true;
-          // Can resolve a num1 player early when they are solo High Jump
-          if (num === 1 && data.diveFromGraceHasArrow[1] && data.diveFromGraceDir[data.me] === 'AC3')
-            return true;
-          // Cactbot will also know last player within ~5s by fire resistance
-          // down debuffs, which would require a separate trigger due to timing
         }
         return false;
       },
@@ -164,32 +163,6 @@ const triggerSet: TriggerSet<Data> = {
         num1: Outputs.num1,
         num2: Outputs.num2,
         num3: Outputs.num3,
-        stackNums: {
-          en: '${num1} and ${num2} Stack',
-        },
-      },
-    },
-    {
-      id: 'DSR Eye of the Tyrant Stack Late',
-      // Later stack call for the Num1 player when all are circles
-      regex: /Eye of the Tyrant/,
-      beforeSeconds: 4.5, // Could be up to 5s, but less for latency
-      condition: (data) => {
-        const num = data.diveFromGraceNum[data.me];
-        if (!num) {
-          console.error(`Eye of The Tyrant Stack 1: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
-          return false;
-        }
-        // Num1s have all circles and this num1 did not soak towers
-        if (num === 1 && !data.diveFromGraceHasArrow[1] && !data.diveFromGraceFire && data.eyeOfTheTyrantCounter === 2)
-          return true;
-        return false;
-      },
-      durationSeconds: 4.5,
-      alertText: (_data, _matches, output) => output.stackNums!({ num1: output.num1!(), num2: output.num2!() }),
-      outputStrings: {
-        num1: Outputs.num1,
-        num2: Outputs.num2,
         stackNums: {
           en: '${num1} and ${num2} Stack',
         },
@@ -996,6 +969,25 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'DSR Dive From Grace Dive Collect',
+      // 670E Dark High Jump
+      // 670F Dark Spineshatter Dive
+      // 6710 Dark Elusive Jump
+      // Collect players hit by dive
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
+      netRegexDe: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
+      netRegexFr: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
+      netRegexJa: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'ニーズヘッグ' }),
+      netRegexCn: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '尼德霍格' }),
+      netRegexKo: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '니드호그' }),
+      run: (data, matches) => {
+        const PosX = parseFloat(matches.targetX);
+        const PosY = parseFloat(matches.targetY);
+        data.diveFromGracePositions[matches.target] = [PosX, PosY];
+      },
+    },
+    {
       id: 'DSR Dive From Grace Tower Soaks',
       // 670E Dark High Jump
       // 670F Dark Spineshatter Dive
@@ -1012,25 +1004,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'ニーズヘッグ', capture: false }),
       netRegexCn: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '尼德霍格', capture: false }),
       netRegexKo: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '니드호그', capture: false }),
-      condition: (data) => {
-        // Increment tower count on detection of Jump/Dive
-        data.diveFromGraceTowerCounter = (data.diveFromGraceTowerCounter ?? 0) + 1;
-        const num = data.diveFromGraceNum[data.me];
-        if (!num) {
-          console.error(`DFG Tower Soaks: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
-          return;
-        }
-
-        // Callout to players marked 3 to soak
-        if (num === 3 && data.diveFromGraceTowerCounter === 1)
-          return true;
-        // Callout to players marked 2 to soak
-        if (num === 2 && data.diveFromGraceTowerCounter === 3)
-          return true;
-        // Callout to players marked 1 to soak
-        if (num === 1 && data.diveFromGraceTowerCounter !== 1)
-          return true;
-      },
+      preRun: (data) => data.diveFromGraceTowerCounter = (data.diveFromGraceTowerCounter ?? 0) + 1,
+      delaySeconds: 0.1,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
@@ -1039,76 +1014,189 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
 
-        if (num === 1) {
-          // Num1 must soak 2nd or 3rd tower set
-          if (data.diveFromGraceTowerCounter === 2) {
-            // Num1 High Jump Tower
-            // Unable to call with this, requires player priority as one of the
-            // three Num1 players needs to save themself for 3rd tower set
+        // With two Cartesian Coordinates, calculate distance
+        const distance = (a?: number[], b?: number[]) => {
+          if (a === undefined || a[0] === undefined || a[1] === undefined ||
+            b === undefined || b[0] === undefined || b[1] === undefined) {
+            console.error(`DFG Tower Soaks: Missing targetX, targetY`);
+            return -1;
+          };
+          const x = a[0] - b[0];
+          const y = a[1] - b[1];
+          return Math.sqrt(x*x + y*y);
+        };
 
-            // Num1 Spineshatter Tower 2
+        // Map position values and player name keys to arrays
+        let [posA, posB, posC] = Object.values(data.diveFromGracePositions);
+        let [nameA, nameB, nameC] = Object.keys(data.diveFromGracePositions);
+
+        // If undefined position, will not be able to predict position
+        if (posA === undefined)
+          posA = [];
+        if (posB === undefined)
+          posB = [];
+        if (posC === undefined)
+          posC = [];
+        const posAX = posA[0] ?? 0;
+        const posBX = posB[0] ?? 0;
+        const posCX = posC[0] ?? 0;
+
+        // If undefined keys, map to non-player names
+        if (nameA === undefined)
+          nameA = '???';
+        if (nameB === undefined)
+          nameB = '???';
+        if (nameC === undefined)
+          nameC = '???';
+
+        // Dive 1 and Dive 3 have 3 players
+        if (data.diveFromGraceTowerCounter !== 2) {
+          // Get Distances of assumed "Triangle" pattern created by 3 players
+          const distanceAB = distance(posA, posB);
+          const distanceAC = distance(posA, posC);
+          const distanceBC = distance(posB, posC);
+          const distances = [distanceAB, distanceAC, distanceBC];
+
+          // Sort the distances
+          const sorted = distances.sort((a, b) => a - b);
+          
+          // Assuming the two players furthest apart are the left/right players
+          if (distanceAB === sorted[0]) {
+              data.diveFromGracePreviousPosition[nameC] = 'middle';
+            if (posAX < posBX) {
+              data.diveFromGracePreviousPosition[nameA] = 'west';
+              data.diveFromGracePreviousPosition[nameB] = 'east';
+            } else {
+              data.diveFromGracePreviousPosition[nameB] = 'west';
+              data.diveFromGracePreviousPosition[nameA] = 'east';
+            }
+          } else if (distanceAC === sorted[0]) {
+            data.diveFromGracePreviousPosition[nameB] = 'middle';
+            if (posAX < posCX) {
+              data.diveFromGracePreviousPosition[nameA] = 'west';
+              data.diveFromGracePreviousPosition[nameC] = 'east';
+            } else {
+              data.diveFromGracePreviousPosition[nameC] = 'west';
+              data.diveFromGracePreviousPosition[nameA] = 'east';
+            }
+          } else if (distanceBC === sorted[0]) {
+            data.diveFromGracePreviousPosition[nameA] = 'middle';
+            if (posAX < posCX) {
+              data.diveFromGracePreviousPosition[nameB] = 'west';
+              data.diveFromGracePreviousPosition[nameC] = 'east';
+            } else {
+              data.diveFromGracePreviousPosition[nameC] = 'west';
+              data.diveFromGracePreviousPosition[nameB] = 'east';
+            }
+          }
+        }
+        else {
+          // Only comparing X values for Dive 2
+          if (posAX < posBX) {
+              data.diveFromGracePreviousPosition[nameA] = 'west';
+              data.diveFromGracePreviousPosition[nameB] = 'east';
+          } else {
+              data.diveFromGracePreviousPosition[nameB] = 'west';
+              data.diveFromGracePreviousPosition[nameA] = 'east';
+          }
+        }
+
+        // First Dive, on num1s
+        if (data.diveFromGraceTowerCounter === 1) {
+          // Stack or Move
+          if (num === 1) {
+            // Stack => Predict Tower 3
+            if (data.diveFromGracePreviousPosition[data.me] === 'middle')
+              return output.circleTower3!();
+            // Other players just move so 3s can get tower
+            return output.move!();
+          }
+
+          // Call 1st Tower Soak (Must be based on debuffs?)
+          if (num === 3) {
+            // Num3 High Jump Tower 1
+            if (data.diveFromGraceDir[data.me] === 'AC3') {
+              // Solo High Jump Tower 1
+              if (!data.diveFromGraceHasArrow[3])
+                return output.circleTower!();
+              // All High Jumps, unknown exact position
+              return output.circleTowers!({ num: output.num3!() });
+            }
+            // Num3 Spineshatter Tower 1
             if (data.diveFromGraceDir[data.me] === 'AC4')
-              return output.spineshatterTower2!({ num: output.num1!() });
-            // Num1 Elusive Tower 2
+              return output.spineshatterTower!();
+            // Num3 Elusive Tower 1
             if (data.diveFromGraceDir[data.me] === 'AC5')
-              return output.elusiveTower2!({ num: output.num1!() });
+              return output.elusiveTower!();
           }
-          // Num1 soaks middle tower 3 if they did not soak num2's towers
-          if (data.diveFromGraceTowerCounter === 3 && !data.diveFromGraceFire)
-            return output.circleTower!({ num: output.num1!() });
-        } else if (num === 2 && data.diveFromGraceTowerCounter === 3) {
-          // Num2 High Jump Tower 3
-          // Requires player priority to know Left/Right
-          if (data.diveFromGraceDir[data.me] === 'AC3')
-            return output.circleTowers3!({ num: output.num2!() });
+        }
 
-          // Num2 Spineshatter Tower 3
-          if (data.diveFromGraceDir[data.me] === 'AC4')
-            return output.spineshatterTower!({ num: output.num2!() });
-          // Num2 Elusive Tower 3
-          if (data.diveFromGraceDir[data.me] === 'AC5')
-            return output.elusiveTower!({ num: output.num2!() });
-        } else if (num === 3 && data.diveFromGraceTowerCounter === 2) {
-          // Num3 High Jump Tower 1
-          if (data.diveFromGraceDir[data.me] === 'AC3') {
-            // Solo High Jump Tower 1
-            if (!data.diveFromGraceHasArrow[3])
-              return output.circleTower!({ num: output.num3!() });
-            return output.circleTowers!({ num: output.num3!() });
+        // Second Dive, on num2s
+        if (data.diveFromGraceTowerCounter === 2) {
+          // Stack => Predict Tower 3 (based on previous position)
+          if (num === 2) {
+            if (data.diveFromGracePreviousPosition[data.me] === 'west' )
+              return output.elusiveTower3!();
+            if (data.diveFromGracePreviousPosition[data.me] === 'east' )
+              return output.spineshatterTower3!();
           }
 
-          // Num3 Spineshatter Tower 1
-          if (data.diveFromGraceDir[data.me] === 'AC4')
-            return output.spineshatterTower!({ num: output.num3!() });
-          // Num3 Elusive Tower 1
-          if (data.diveFromGraceDir[data.me] === 'AC5')
-            return output.elusiveTower!({ num: output.num3!() });
+          // Call Tower 2 Soak (based on previous position)
+          if (num === 1) {
+            if (data.diveFromGracePreviousPosition[data.me] === 'west' )
+              return output.elusiveTower2!();
+            if (data.diveFromGracePreviousPosition[data.me] === 'east' )
+              return output.spineshatterTower2!();
+          }
+        }
+        // Third Dive, on num3s
+        if (data.diveFromGraceTowerCounter === 3) {
+          // Call Tower 3 Soak for num1 (based on previous position)
+          if (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle')
+            return output.circleTower!();
+          // Call Tower 3 Soak for num2s (based on previous position)
+          if (num === 2) {
+            if (data.diveFromGracePreviousPosition[data.me] === 'west')
+              return output.elusiveTower!();
+            if (data.diveFromGracePreviousPosition[data.me] === 'east')
+              return output.spineshatterTower!();
+          }
+          // Num3s need to move out of tower 3
+          if (num === 3)
+            return output.move!();
         }
       },
       outputStrings: {
         num1: Outputs.num1,
         num2: Outputs.num2,
         num3: Outputs.num3,
+        move: Outputs.moveAway,
         circleTower: {
-          en: '${num} South Tower',
+          en: 'South Tower',
         },
         circleTowers: {
           en: '${num} Cardinal Towers',
         },
-        circleTowers3: {
-          en: '${num} Left/Right Tower',
+        circleTower3: {
+          en: 'Stack => South Tower',
         },
         spineshatterTower: {
-          en: '${num} Left Tower',
+          en: 'Left Tower',
         },
         spineshatterTower2: {
-          en: '${num} Backleft Tower',
+          en: 'Backleft Tower',
+        },
+        spineshatterTower3: {
+          en: 'Stack => Left Tower',
         },
         elusiveTower: {
-          en: '${num} Right Tower',
+          en: 'Right Tower',
         },
         elusiveTower2: {
-          en: '${num} Backright Tower',
+          en: 'Backright Tower',
+        },
+        elusiveTower3: {
+          en: 'Stack => Right Tower',
         },
       },
     },
@@ -1237,7 +1325,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Dive From Grace Position',
+      id: 'DSR Dive From Grace Dive Position',
       type: 'GainsEffect',
       // AC3 = High Jump Target
       // AC4 = Spineshatter Dive Target
@@ -1256,7 +1344,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFG Position: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
 
@@ -1264,6 +1352,8 @@ const triggerSet: TriggerSet<Data> = {
         if (!data.diveFromGraceHasArrow[num]) {
           if (num === 2)
             return output.diveCircles2!();
+
+          // Can predict where num3s will go based on Darkdragon Dive targeting
           return output.diveCircles!();
         }
 
@@ -1286,7 +1376,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         diveCircles: {
-          en: 'Cardinal Dive',
+          en: 'Cardinal Position',
         },
         diveCircle: {
           en: 'South Dive',
@@ -1307,24 +1397,6 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Backleft Dive, Face East',
         },
       },
-    },
-    {
-      id: 'DSR Dive From Grace Fire Collect',
-      type: 'GainsEffect',
-      // B56 = Fire Resistance Down II
-      // This only matches for num1s
-      netRegex: NetRegexes.gainsEffect({ effectId: ['B56'] }),
-      condition: (data, matches) => data.phase === 'nidhogg' && matches.target === data.me && data.diveFromGraceNum[data.me] === 1,
-      run: (data) => data.diveFromGraceFire = true,
-    },
-    {
-      id: 'DSR Dive From Grace Fire Remove',
-      type: 'LosesEffect',
-      // B56 = Fire Resistance Down II
-      // This only matches for num1s
-      netRegex: NetRegexes.losesEffect({ effectId: ['B56'] }),
-      condition: (data, matches) => data.phase === 'nidhogg' && matches.target === data.me && data.diveFromGraceNum[data.me] === 1,
-      run: (data) => delete data.diveFromGraceFire,
     },
   ],
   timelineReplace: [
