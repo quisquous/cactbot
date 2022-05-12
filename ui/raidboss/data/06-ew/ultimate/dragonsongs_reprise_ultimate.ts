@@ -129,9 +129,8 @@ const triggerSet: TriggerSet<Data> = {
   },
   timelineTriggers: [
     {
-      id: 'DSR Eye of the Tyrant Stack',
+      id: 'DSR First Eye of the Tyrant Stack',
       // Calls out which numbers stack prior to Eye of the Tyrant
-      // Predicting Num1 Player timing may vary based on debuffs
       regex: /Eye of the Tyrant/,
       beforeSeconds: 6,
       condition: (data) => {
@@ -140,27 +139,20 @@ const triggerSet: TriggerSet<Data> = {
         if (!num) {
           console.error(`Eye of The Tyrant Stack: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           // Default to true as stack needs more players
-          return true;
+          if (data.eyeOfTheTyrantCounter === 1)
+            return true;
+          return false;
         }
 
         // First stack requires players numbered 2 and 3
         if ((num === 2 || num === 3) && data.eyeOfTheTyrantCounter === 1)
           return true;
-        // Second stack requires players numbered 1 and 2
-        if (data.eyeOfTheTyrantCounter === 2) {
-          if (num === 2)
-            return true;
-        }
+        // Second stack handled by DFG Tower Soaks and DFG Baits
         return false;
       },
       durationSeconds: 6,
-      alertText: (data, _matches, output) => {
-        if (data.eyeOfTheTyrantCounter === 1)
-          return output.stackNums!({ num1: output.num2!(), num2: output.num3!() });
-        return output.stackNums!({ num1: output.num1!(), num2: output.num2!() });
-      },
+      alertText: (data, _matches, output) => output.stackNums!({ num1: output.num2!(), num2: output.num3!() }),
       outputStrings: {
-        num1: Outputs.num1,
         num2: Outputs.num2,
         num3: Outputs.num3,
         stackNums: {
