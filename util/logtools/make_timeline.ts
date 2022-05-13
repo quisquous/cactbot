@@ -117,8 +117,7 @@ timelineParse.parser.addArgument(['--end', '-e'], {
 });
 
 timelineParse.parser.addArgument(['--ignore-id', '-ii'], {
-  nargs: '?',
-  constant: [],
+  nargs: '+',
   help: 'Ability IDs to ignore, e.g. 27EF',
 });
 
@@ -198,15 +197,6 @@ const makeCollectorFromPrepass = async (fileName: string) => {
   return collector;
 };
 
-const parseGameLogToEntry = (matches: NetMatches['GameLog']): TimelineEntry => {
-  const entry: TimelineEntry = {
-    time: matches.timestamp,
-    lineType: 'zoneSeal',
-    zoneSeal: { seal: matches.line, code: '0839' },
-  };
-  return entry;
-};
-
 const parseNameToggleToEntry = (matches: NetMatches['NameToggle']): TimelineEntry => {
   const targetable = matches.toggle === '01';
   const entry: TimelineEntry = {
@@ -261,23 +251,10 @@ const extractTLEntries = async (
 
   // We have exactly the lines relevant to our encounter now.
   for (const line of lines) {
-    const gameLog = NetRegexes.gameLog().exec(line)?.groups;
     const targetable = NetRegexes.nameToggle().exec(line)?.groups;
     const ability = NetRegexes.ability().exec(line)?.groups;
     // Cull non-relevant lines immediately.
-    if (!(ability || gameLog || targetable))
-      continue;
 
-    // Check for zone seals.
-
-    if (gameLog?.code === '0839' && gameLog.line.includes('will be sealed off')) {
-      const glEntry = parseGameLogToEntry(gameLog);
-      entries.push(glEntry);
-      continue;
-    }
-    // Cull all remaining gameLog lines.Nameplate change lines are retained.
-    if (gameLog)
-      continue;
     if (!ability && !targetable)
       continue;
 
@@ -293,7 +270,7 @@ const extractTLEntries = async (
     // At this point, only ability lines are left.
     if (ability) {
       // Cull non-enemy lines
-      if (ability.sourceId.substring(0, 2) !== '400')
+      if (ability.sourceId.substring(0, 3) !== '400')
         continue;
       const abilityEntry = parseAbilityToEntry(ability);
       entries.push(abilityEntry);
@@ -320,6 +297,9 @@ const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): b
   const abilityName = entry.abilityName;
   const abilityId = entry.abilityId;
   const combatant = entry.combatant;
+
+  const ia = args.ignore_ability as string[];
+  const ii = args.ignore_id as string[];
   // Ignore auto-attacks named "attack"
   if (abilityName?.toLowerCase() === 'attack')
     return true;
@@ -329,12 +309,14 @@ const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): b
     return true;
 
   // Ignore abilities by name.
-  if (abilityName && args['ignore-ability'] && args['ignore-ability'].includes(abilityName))
+  if (abilityName && ia && ia.includes(abilityName))
     return true;
 
   // Ignore abilities by ID
-  if (abilityId && args['ignore-id'] && args['ignore-id'].includes(abilityId))
-    return true;
+  if (abilityId && ii !== undefined && ii.length > 0) {
+    if (ii.includes(abilityId))
+      return true;
+  }
 
   // Ignore combatants by name
   if (combatant && args['ignore-combatant'] && args['ignore-combatant'].includes(combatant))
@@ -347,26 +329,28 @@ const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): b
 };
 
 const findTimeDifferences = (lastTimeDiff: number): { diffSeconds: number; drift: number } => {
-  let diffSeconds = lastTimeDiff % 1000000;
-  const diffMicroSeconds = lastTimeDiff - diffSeconds;
+  if (lastTimeDiff === 0)
+    return { diffSeconds: 0, drift: 0 };
+  let diffSeconds = Math.floor(lastTimeDiff / 1000);
+  const diffMilliSeconds = lastTimeDiff - (diffSeconds * 1000);
   let drift = 0;
 
   // Find the difference in tenths of a second.
-  const diffTenthSeconds = diffMicroSeconds / 100000;
+  const diffTenthSeconds = Math.floor(diffMilliSeconds / 100) / 10;
 
   // Adjust full-second difference.
   diffSeconds += diffTenthSeconds;
 
   // Round up a tenth of a second.
-  if (diffMicroSeconds > 60000) {
+  if (diffMilliSeconds > 600) {
     diffSeconds += 0.1;
-  } else if (diffMicroSeconds > 50000) {
+  } else if (diffMilliSeconds > 500) {
     // Round up, warning of exceptional drift.
     diffSeconds += 0.1;
-    drift = diffMicroSeconds - 100000;
-  } else if (diffMicroSeconds > 40000) {
+    drift = diffMilliSeconds - 1000;
+  } else if (diffMilliSeconds > 400) {
     // Round down, warning of exceptional drift
-    drift = diffMicroSeconds;
+    drift = diffMilliSeconds;
   } else {
     // If <20ms then there's no need to adjust sec or drift
     true;
@@ -382,6 +366,7 @@ const assembleTimelineStrings = (
 ): string[] => {
   const assembled: string[] = [];
   let lastAbilityTime = parseInt(start);
+  let timelinePosition = 0;
   let lastEntry: TimelineEntry = { time: start ?? 'Unknown', lineType: 'None' };
   if (fight.sealName) {
     const zoneMessage = TLFuncs.toProperCase(fight.sealName);
@@ -408,10 +393,10 @@ const assembleTimelineStrings = (
 
     // Find out how long it's been since the last ability.
     const lineTime = TLFuncs.timeFromString(entry.time);
+    if (lastAbilityTime === 0)
+      lastAbilityTime = lineTime;
     const lastTimeDiff = lineTime - lastAbilityTime;
     const timeInfo = findTimeDifferences(lastTimeDiff);
-
-    let timelinePosition = 0;
 
     // If the user entered phase information,
     // process it and store it off.
