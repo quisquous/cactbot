@@ -93,7 +93,7 @@ export default class RaidEmulator extends EventBus {
   }
 
   async seek(timeOffset: number): Promise<void> {
-    if (!this.currentEncounter || !this.currentEncounter.encounter)
+    if (!this.currentEncounter)
       throw new UnreachableCode();
 
     const seekTimestamp = this.currentEncounter.encounter.startTimestamp + timeOffset;
@@ -101,7 +101,7 @@ export default class RaidEmulator extends EventBus {
   }
 
   async seekTo(seekTimestamp: number): Promise<void> {
-    if (!this.currentEncounter || !this.currentEncounter.encounter)
+    if (!this.currentEncounter)
       throw new UnreachableCode();
 
     await this.dispatch('preSeek', seekTimestamp);
@@ -149,8 +149,7 @@ export default class RaidEmulator extends EventBus {
   async tick(): Promise<void> {
     if (
       this.currentLogLineIndex === undefined || !this.currentEncounter ||
-      this.lastTickTime === undefined || this.currentLogTime === undefined ||
-      !this.currentEncounter.encounter
+      this.lastTickTime === undefined || this.currentLogTime === undefined
     )
       throw new UnreachableCode();
     if (this.currentLogLineIndex + 1 >= this.currentEncounter.encounter.logLines.length) {

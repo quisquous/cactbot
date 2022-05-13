@@ -31,7 +31,12 @@ export default class Tooltip {
   private inner: HTMLElement;
   private arrow: HTMLElement;
 
-  private static templates: TemplatesType;
+  private static templates: TemplatesType = {
+    top: Tooltip.getTemplate('top'),
+    right: Tooltip.getTemplate('right'),
+    bottom: Tooltip.getTemplate('bottom'),
+    left: Tooltip.getTemplate('left'),
+  };
 
   constructor(
     private target: HTMLElement,
@@ -40,8 +45,6 @@ export default class Tooltip {
     autoShow = true,
     autoHide = true,
   ) {
-    Tooltip.initializeTemplates();
-
     if (!(target instanceof HTMLElement)) {
       const msg = 'Invalid element passed to Tooltip';
       console.error(msg);
@@ -122,18 +125,6 @@ export default class Tooltip {
 
   delete(): void {
     this.tooltip.remove();
-  }
-
-  static initializeTemplates(): void {
-    if (Tooltip.templates)
-      return;
-
-    Tooltip.templates = {
-      top: Tooltip.getTemplate('top'),
-      right: Tooltip.getTemplate('right'),
-      bottom: Tooltip.getTemplate('bottom'),
-      left: Tooltip.getTemplate('left'),
-    };
   }
 
   static getTemplate(dir: string): HTMLTemplateElement {

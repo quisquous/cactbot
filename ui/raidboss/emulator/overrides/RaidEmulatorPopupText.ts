@@ -156,7 +156,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
         return;
 
       const enc = currentEnc.encounter;
-      if (!enc || !enc.encounterZoneName || enc.encounterZoneId === undefined)
+      if (!enc.encounterZoneName || enc.encounterZoneId === undefined)
         return;
 
       this._emulatorReset();
@@ -194,7 +194,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
   override _onTriggerInternalDelaySeconds(triggerHelper: TriggerHelper): Promise<void> | undefined {
     const delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
 
-    if (!delay || delay <= 0 || typeof delay !== 'number')
+    if (delay === undefined || delay === null || delay <= 0 || typeof delay !== 'number')
       return;
 
     let ret: Promise<void>;
