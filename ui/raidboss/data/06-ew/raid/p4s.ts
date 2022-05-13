@@ -1,6 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
-import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -934,10 +933,6 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`Hesperos: null data`);
           return;
         }
-        if (!combatantData.combatants) {
-          console.error(`Hesperos: null combatants`);
-          return;
-        }
         const combatantDataLength = combatantData.combatants.length;
         if (combatantDataLength < 8) {
           console.error(`Hesperos: expected at least 8 combatants got ${combatantDataLength}`);
@@ -947,9 +942,6 @@ const triggerSet: TriggerSet<Data> = {
         // the lowest eight Hesperos IDs are the thorns that tether the boss
         const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
         const sortedCombatantData = combatantData.combatants.sort(sortCombatants).splice(combatantDataLength - 8, combatantDataLength);
-
-        if (!sortedCombatantData)
-          throw new UnreachableCode();
 
         sortedCombatantData.forEach((combatant: PluginCombatantState) => {
           (data.thornIds ??= []).push(combatant.ID ?? 0);

@@ -649,10 +649,6 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`Iron Splitter: null data`);
           return;
         }
-        if (!seekerData.combatants) {
-          console.error(`Iron Splitter: null combatants`);
-          return;
-        }
         if (seekerData.combatants.length !== 1) {
           console.error(`Iron Splitter: expected 1, got ${seekerData.combatants.length}`);
           return;
@@ -729,10 +725,6 @@ const triggerSet: TriggerSet<Data> = {
 
         if (cometData === null) {
           console.error('Baleful Comet: null cometData');
-          return;
-        }
-        if (!cometData.combatants) {
-          console.error('Baleful Comet: null combatants');
           return;
         }
         if (!cometData.combatants.length) {
@@ -2147,18 +2139,8 @@ const triggerSet: TriggerSet<Data> = {
           delete data.safeZone;
           return;
         }
-        if (!combatantDataBoss.combatants) {
-          console.error(`Trinity Avowed: null combatants`);
-          delete data.safeZone;
-          return;
-        }
         if (combatantDataAvatars === null) {
           console.error(`Avowed Avatar: null data`);
-          delete data.safeZone;
-          return;
-        }
-        if (!combatantDataAvatars.combatants) {
-          console.error(`Avowed Avatar: null combatants`);
           delete data.safeZone;
           return;
         }
@@ -2337,7 +2319,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // Calculate which adjacent zone to go to, if needed
         let adjacentZone = null;
-        if (effectiveTemperature && adjacentZones) {
+        if (effectiveTemperature !== 0) {
           // Find the adjacent zone that gets closest to 0
           const calculatedZones = Object.values(adjacentZones).map((i: number) => Math.abs(effectiveTemperature + i));
 
@@ -2432,10 +2414,6 @@ const triggerSet: TriggerSet<Data> = {
 
         if (unseenData === null) {
           console.error(`Gleaming Arrow: null data`);
-          return;
-        }
-        if (!unseenData.combatants) {
-          console.error(`Gleaming Arrow: null combatants`);
           return;
         }
         if (unseenData.combatants.length !== unseenIds.length) {

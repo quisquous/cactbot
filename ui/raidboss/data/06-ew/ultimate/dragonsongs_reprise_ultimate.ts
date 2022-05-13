@@ -288,10 +288,6 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`Ser Adelphel: null data`);
           return;
         }
-        if (!adelphelData.combatants) {
-          console.error(`Ser Adelphel: null combatants`);
-          return;
-        }
         const adelphelDataLength = adelphelData.combatants.length;
         if (adelphelDataLength !== 1) {
           console.error(`Ser Adelphel: expected 1 combatants got ${adelphelDataLength}`);
@@ -461,10 +457,6 @@ const triggerSet: TriggerSet<Data> = {
             console.error(`Spiral Thrust: null data`);
             return;
           }
-          if (!combatantData.combatants) {
-            console.error(`Spiral Thrust: null combatants`);
-            return;
-          }
           const combatantDataLength = combatantData.combatants.length;
           if (combatantDataLength !== 1) {
             console.error(`Spiral Thrust: expected 1 combatants got ${combatantDataLength}`);
@@ -567,10 +559,6 @@ const triggerSet: TriggerSet<Data> = {
         // trigger will not work, so just resume promise here
         if (thordanData === null) {
           console.error(`King Thordan: null data`);
-          return;
-        }
-        if (!thordanData.combatants) {
-          console.error(`King Thordan: null combatants`);
           return;
         }
         const thordanDataLength = thordanData.combatants.length;
@@ -696,10 +684,6 @@ const triggerSet: TriggerSet<Data> = {
         // trigger will not work, so just resume promise here
         if (combatantDataJanlenoux === null) {
           console.error(`Ser Janlenoux: null data`);
-          return;
-        }
-        if (!combatantDataJanlenoux.combatants) {
-          console.error(`Ser Janlenoux: null combatants`);
           return;
         }
         const combatantDataJanlenouxLength = combatantDataJanlenoux.combatants.length;
