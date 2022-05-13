@@ -42,8 +42,8 @@ export interface JobDetail {
     fairyStatus: number;
   };
   'AST': {
-    heldCard: 'Balance' | 'Bole' | 'Arrow' | 'Spear' | 'Ewer' | 'Spire';
-    crownCard: 'Lord' | 'Lady';
+    heldCard: 'None' | 'Balance' | 'Bole' | 'Arrow' | 'Spear' | 'Ewer' | 'Spire';
+    crownCard: 'None' | 'Lord' | 'Lady';
     arcanums: ('Solar' | 'Lunar' | 'Celestial')[];
   };
   'SGE': {
@@ -137,6 +137,41 @@ export interface JobDetail {
   };
 }
 
+export type EnmityTargetCombatant = {
+  ID: number;
+  OwnerID: number;
+  Type: number;
+  MonsterType: number;
+  Status: number;
+  ModelStatus: number;
+  AggressionStatus;
+  TargetID: number;
+  IsTargetable: boolean;
+
+  Job: number;
+  Name: string;
+
+  CurrentHP: number;
+  MaxHP: number;
+
+  PosX: number;
+  PosY: number;
+  PosZ: number;
+  Rotation: number;
+  Radius: number;
+
+  Distance: string;
+  EffectiveDistance: string;
+
+  Effects: {
+    BuffID: number;
+    Stack: number;
+    Timer: number;
+    ActorID: number;
+    isOwner: boolean;
+  }[];
+};
+
 export interface EventMap {
   // #region OverlayPlugin built-in Event
   'CombatData': (ev: {
@@ -186,12 +221,19 @@ export interface EventMap {
 
   'EnmityTargetData': (ev: {
     type: 'EnmityTargetData';
-    Target: {
-      Name: string;
+    Target: EnmityTargetCombatant | null;
+    Focus: EnmityTargetCombatant | null;
+    Hover: EnmityTargetCombatant | null;
+    TargetOfTarget: EnmityTargetCombatant | null;
+    Entries: {
       ID: number;
-      Distance: number;
-      EffectiveDistance: number;
-    };
+      OwnerID: number;
+      Name: string;
+      Enmity: number;
+      isMe: boolean;
+      HateRate: number;
+      Job: number;
+    }[] | null;
   }) => void;
   // #endregion
 
