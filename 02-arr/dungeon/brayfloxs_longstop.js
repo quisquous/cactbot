@@ -33,8 +33,6 @@ Options.Triggers.push({
       delaySeconds: 1,
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {
-        if (!data.pelicanPoisons)
-          return;
         const names = data.pelicanPoisons.sort();
         if (names.length === 1 && names[0] === data.me)
           return output.esunaYourPoison();

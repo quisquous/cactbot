@@ -35,7 +35,7 @@ Options.Triggers.push({
         const callData = await callOverlayHandler({
           call: 'getCombatants',
         });
-        if (!callData || !callData.combatants || !callData.combatants.length) {
+        if (!callData.combatants.length) {
           console.error('SpokenCataract: failed to get combatants: ${JSON.stringify(callData)}');
           return;
         }

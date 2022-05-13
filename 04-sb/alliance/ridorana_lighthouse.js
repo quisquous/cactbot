@@ -1,5 +1,5 @@
 const mathDirection = (mathBaseValue, correctMath, output) => {
-  if (!correctMath || mathBaseValue === undefined)
+  if (mathBaseValue === undefined)
     return;
   if (mathBaseValue < 1 || mathBaseValue > 9) {
     console.error(`Bad math: ${mathBaseValue}`);

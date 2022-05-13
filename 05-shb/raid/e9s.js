@@ -160,7 +160,7 @@ const calculateSummonSafeZone = (boss, clone1, clone2, abilityId) => {
     .filter((pos) => !badZones.includes(pos))
     .map((pos) => directions[pos]);
   const safeZone = safeZones[0];
-  if (!safeZone || safeZones.length !== 1)
+  if (safeZone === undefined || safeZones.length !== 1)
     return 'unknown';
   return safeZone;
 };
@@ -802,7 +802,7 @@ Options.Triggers.push({
           call: 'getCombatants',
           names: [cloudOfDarknessLocaleNames[data.parserLang]],
         });
-        if (bossData === null || !bossData.combatants || !bossData.combatants.length)
+        if (!bossData?.combatants.length)
           return;
         // All of the fake bosses have a BNpcID of 9020, 12379 is the real one.
         const boss = bossData.combatants.filter((boss) => boss.BNpcID === 12379)[0];
@@ -821,7 +821,7 @@ Options.Triggers.push({
           call: 'getCombatants',
           names: [cloneOfDarknessLocaleNames[data.parserLang]],
         });
-        if (cloneData === null || !cloneData.combatants || !cloneData.combatants.length)
+        if (!cloneData?.combatants.length)
           return;
         data.clones = cloneData.combatants;
       },

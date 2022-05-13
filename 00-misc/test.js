@@ -285,7 +285,8 @@ Options.Triggers.push({
           const me = ret.combatants.find((c) => c.Name === data.me);
           const dummyName = strikingDummyNames[data.lang] ?? strikingDummyNames['en'];
           const dummies = ret.combatants.filter((c) => c.Name === dummyName);
-          if (me && dummies) {
+          console.log(`test watch: me = ${me?.Name ?? 'undefined'}; ${dummies.length} dummies`);
+          if (me) {
             for (const dummy of dummies) {
               const distX = Math.abs(me.PosX - dummy.PosX);
               const distY = Math.abs(me.PosY - dummy.PosY);
@@ -296,7 +297,6 @@ Options.Triggers.push({
             }
             return false;
           }
-          console.log(`test watch: me = ${me ? 'true' : 'false'}; no dummies`);
           return false;
         }),
       infoText: (_data, _matches, output) => output.close(),
