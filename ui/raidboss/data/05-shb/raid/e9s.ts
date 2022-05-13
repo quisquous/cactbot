@@ -842,7 +842,7 @@ const triggerSet: TriggerSet<Data> = {
           names: [cloudOfDarknessLocaleNames[data.parserLang]],
         });
 
-        if (bossData === null || !bossData.combatants.length)
+        if (!bossData?.combatants.length)
           return;
 
         // All of the fake bosses have a BNpcID of 9020, 12379 is the real one.
@@ -867,7 +867,7 @@ const triggerSet: TriggerSet<Data> = {
           names: [cloneOfDarknessLocaleNames[data.parserLang]],
         });
 
-        if (cloneData === null || !cloneData.combatants.length)
+        if (!cloneData?.combatants.length)
           return;
 
         data.clones = cloneData.combatants;
