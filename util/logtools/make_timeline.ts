@@ -126,31 +126,26 @@ timelineParse.parser.addArgument(['--ignore-id', '-ii'], {
 
 timelineParse.parser.addArgument(['--ignore-ability', '-ia'], {
   nargs: '+',
-  constant: [],
   help: 'Ability names to ignore, e.g. Attack',
 });
 
 timelineParse.parser.addArgument(['--ignore-combatant', '-ic'], {
-  nargs: '*',
-  constant: [],
+  nargs: '+',
   help: 'Combatant names to ignore, e.g. "Aratama Soul"',
 });
 
 timelineParse.parser.addArgument(['--only-combatant', '-oc'], {
-  nargs: '*',
-  constant: [],
+  nargs: '+',
   help: 'Only the listed combatants will generate timeline data, e.g. "Aratama Soul"',
 });
 
 timelineParse.parser.addArgument(['--phase', '-p'], {
-  nargs: '?',
-  type: 'string',
+  nargs: '+',
   help: 'Abilities that indicate a new phase, and the time to jump to, e.g. 28EC:1000',
 });
 
 timelineParse.parser.addArgument(['--include-targetable', '-it'], {
-  nargs: '*',
-  constant: [],
+  nargs: '+',
   help: 'Set this flag to include "34" log lines when making the timeline',
 });
 const args = timelineParse.parser.parseArgs() as ExtendedArgs;
