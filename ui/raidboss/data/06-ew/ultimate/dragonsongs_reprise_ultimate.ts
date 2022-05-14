@@ -1087,16 +1087,16 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Stack North',
         },
         spineshatterTower2: {
-          en: 'Backleft Tower',
-        },
-        spineshatterTower3: {
-          en: 'Stack => Left Tower',
-        },
-        elusiveTower2: {
           en: 'Backright Tower',
         },
-        elusiveTower3: {
+        spineshatterTower3: {
           en: 'Stack => Right Tower',
+        },
+        elusiveTower2: {
+          en: 'Backleft Tower',
+        },
+        elusiveTower3: {
+          en: 'Stack => Left Tower',
         },
       },
     },
@@ -1196,10 +1196,10 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Cardinal Towers',
         },
         spineshatterTower: {
-          en: 'Left Tower',
+          en: 'Right Tower',
         },
         elusiveTower: {
-          en: 'Right Tower',
+          en: 'Left Tower',
         },
       },
     },
