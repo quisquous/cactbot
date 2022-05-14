@@ -89,7 +89,7 @@ const timeStampValidate = (timeStr?: string) => {
 
 const timelineParse = new LogUtilArgParse();
 
-timelineParse.parser.addArgument(['--output-file', '-of'], {
+timelineParse.parser.addArgument(['--output_file', '-of'], {
   nargs: '?',
   type: 'string',
   help: 'Optional location to write timeline to file.',
@@ -107,22 +107,22 @@ timelineParse.parser.addArgument(['--end', '-e'], {
   help: 'Timestamp to end assembling an encounter timeline, e.g. 12:34:56.789',
 });
 
-timelineParse.parser.addArgument(['--ignore-id', '-ii'], {
+timelineParse.parser.addArgument(['--ignore_id', '-ii'], {
   nargs: '+',
   help: 'Ability IDs to ignore, e.g. 27EF',
 });
 
-timelineParse.parser.addArgument(['--ignore-ability', '-ia'], {
+timelineParse.parser.addArgument(['--ignore_ability', '-ia'], {
   nargs: '+',
   help: 'Ability names to ignore, e.g. Attack',
 });
 
-timelineParse.parser.addArgument(['--ignore-combatant', '-ic'], {
+timelineParse.parser.addArgument(['--ignore_combatant', '-ic'], {
   nargs: '+',
   help: 'Combatant names to ignore, e.g. "Aratama Soul"',
 });
 
-timelineParse.parser.addArgument(['--only-combatant', '-oc'], {
+timelineParse.parser.addArgument(['--only_combatant', '-oc'], {
   nargs: '+',
   help: 'Only the listed combatants will generate timeline data, e.g. "Aratama Soul"',
 });
@@ -132,7 +132,7 @@ timelineParse.parser.addArgument(['--phase', '-p'], {
   help: 'Abilities that indicate a new phase, and the time to jump to, e.g. 28EC:1000',
 });
 
-timelineParse.parser.addArgument(['--include-targetable', '-it'], {
+timelineParse.parser.addArgument(['--include_targetable', '-it'], {
   nargs: '+',
   help: 'Set this flag to include "34" log lines when making the timeline',
 });
@@ -156,9 +156,9 @@ for (const opt of ['search_fights', 'search_zones', 'fight_regex', 'zone_regex']
 }
 if (numExclusiveArgs !== 1)
   printHelpAndExit('Error: Must specify exactly one of -lf, -lz, or -fr\n');
-if (args['fight_regex'] === '-1')
+if (args.fight_regex === '-1')
   printHelpAndExit('Error: -fr must specify a regex\n');
-if (args['zone_regex'] === '-1')
+if (args.zone_regex === '-1')
   printHelpAndExit('Error: -zr must specify a regex\n');
 
 if (args.file && numExclusiveArgs !== 1 && !(args.start && args.end)) {
@@ -378,7 +378,7 @@ const assembleTimelineStrings = (
     }
 
     // Ignore targetable lines if not specified
-    if (entry.lineType === 'targetable' && !args['include-targetable'])
+    if (entry.lineType === 'targetable' && !args.include_targetable)
       continue;
 
     // Find out how long it's been since the last ability.
@@ -455,18 +455,18 @@ const writeTimelineToFile = (entryList: string[], fileName: string, force: boole
 const makeTimeline = async () => {
   if (args.file) {
     const collector = await makeCollectorFromPrepass(args.file);
-    if (args['search_fights'] === -1) {
+    if (args.search_fights === -1) {
       TLFuncs.printCollectedFights(collector);
       process.exit(0);
     }
-    if (args['search_zones'] === -1) {
+    if (args.search_zones === -1) {
       TLFuncs.printCollectedZones(collector);
       process.exit(0);
     }
     // All fights are 1-indexed on collectors,
     // so we subtract 1 from the user's 1-indexed selection.
-    if (args['search_fights']) {
-      const fight = collector.fights[args['search_fights'] - 1];
+    if (args.search_fights) {
+      const fight = collector.fights[args.search_fights - 1];
       if (!fight) {
         console.error('No fight found at specified index');
         process.exit(-1);
@@ -486,11 +486,11 @@ const makeTimeline = async () => {
         args.include_targetable as string[],
       );
       const assembled = assembleTimelineStrings(fight, baseEntries, startTime, args);
-      if (args['output-file'] && typeof args['output-file'] === 'string') {
+      if (args.output_file && typeof args.output_file === 'string') {
         const force = args.force !== undefined;
-        writeTimelineToFile(assembled, args['output-file'], force);
+        writeTimelineToFile(assembled, args.output_file, force);
       }
-      if (!args['output-file'])
+      if (!args.output_file)
         printTimelineToConsole(assembled);
       process.exit(0);
     }
