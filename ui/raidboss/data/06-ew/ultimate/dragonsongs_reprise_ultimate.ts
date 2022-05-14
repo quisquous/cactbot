@@ -1012,6 +1012,23 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'DSR Twisting Dive',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6B8B', source: 'Vedrfolnir', capture: false }),
+      suppressSeconds: 1,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Twisters',
+          de: 'Wirbelstürme',
+          fr: 'Tornades',
+          ja: '大竜巻',
+          cn: '旋风',
+          ko: '회오리',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
@@ -1023,6 +1040,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'King Thordan': 'Thordan',
         'Nidhogg': 'Nidhogg',
