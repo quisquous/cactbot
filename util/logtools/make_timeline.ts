@@ -2,6 +2,7 @@ import fs from 'fs';
 import readline from 'readline';
 
 import NetRegexes from '../../resources/netregexes';
+import PetData from '../../resources/pet_names';
 import { NetMatches } from '../../types/net_matches';
 
 import { LogUtilArgParse, TimelineArgs } from './arg_parser';
@@ -48,12 +49,7 @@ type ExtendedArgs = TimelineArgs & {
 
 // Some NPCs can be picked up by our entry processor.
 // We list them out explicitly here so we can ignore them at will.
-const ignoredCombatants = [
-  'Eos',
-  'Selene',
-  'Garuda-Egi',
-  'Titan-Egi',
-  'Ifrit-Egi',
+const ignoredCombatants = PetData['en'].concat([
   'Carbuncle',
   'Ruby Ifrit',
   'Emerald Garuda',
@@ -62,15 +58,7 @@ const ignoredCombatants = [
   'Topaz Carbuncle',
   'Ruby Carbuncle',
   'Moonstone Carbuncle',
-  'Rook Autoturret',
-  'Bishop Autoturret',
-  'Demi-Bahamut',
-  'Demi-Phoenix',
   'Earthly Star',
-  'Seraph',
-  'Automaton Queen',
-  'Bunshin',
-  'Esteem',
   'Alphinaud',
   'Alisaie',
   'Y\'shtola',
@@ -91,7 +79,7 @@ const ignoredCombatants = [
   'Crystal Exarch',
   'Mikoto',
   'Liturgic Bell',
-];
+]);
 
 const timeStampValidate = (timeStr?: string) => {
   if (timeStr === undefined)
