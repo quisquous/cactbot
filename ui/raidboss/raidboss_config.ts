@@ -1531,7 +1531,7 @@ const processPerZoneTimelineConfig = (options: RaidbossOptions, savedConfig: Sav
   if (typeof savedConfig !== 'object' || Array.isArray(savedConfig))
     return;
   const timeline = savedConfig['timeline'];
-  if (timeline === undefined || typeof timeline !== 'object' || Array.isArray(timeline))
+  if (typeof timeline !== 'object' || Array.isArray(timeline))
     return;
 
   for (const [zoneKey, zoneEntry] of Object.entries(timeline)) {
@@ -1540,25 +1540,21 @@ const processPerZoneTimelineConfig = (options: RaidbossOptions, savedConfig: Sav
       continue;
     const timelineConfig = perZoneTimelineConfig[zoneId] ??= {};
 
-    if (zoneEntry === undefined || typeof zoneEntry !== 'object' || Array.isArray(zoneEntry))
+    if (typeof zoneEntry !== 'object' || Array.isArray(zoneEntry))
       continue;
 
     const enableEntry = zoneEntry['enable'];
     const replaceEntry = zoneEntry['globalReplace'];
     const addEntry = zoneEntry['add'];
 
-    if (
-      enableEntry !== undefined && typeof enableEntry === 'object' && !Array.isArray(enableEntry)
-    ) {
+    if (typeof enableEntry === 'object' && !Array.isArray(enableEntry)) {
       for (const [key, value] of Object.entries(enableEntry)) {
         if (typeof value === 'boolean' && !value)
           (timelineConfig.Ignore ??= []).push(key);
       }
     }
 
-    if (
-      replaceEntry !== undefined && typeof replaceEntry === 'object' && !Array.isArray(replaceEntry)
-    ) {
+    if (typeof replaceEntry === 'object' && !Array.isArray(replaceEntry)) {
       for (const [key, value] of Object.entries(replaceEntry)) {
         if (typeof value === 'string')
           (timelineConfig.Rename ??= {})[key] = value;

@@ -401,9 +401,6 @@ export class TimelineParser {
   }
 
   private GetReplacedSync(sync: string): string {
-    if (this.replacements.length === 0)
-      return sync;
-
     const replaceLang = this.options.ParserLanguage ?? 'en';
     return translateRegex(sync, replaceLang, this.replacements);
   }

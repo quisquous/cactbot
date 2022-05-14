@@ -1077,51 +1077,50 @@ export class PopupText {
 
   _onTriggerInternalCondition(triggerHelper: TriggerHelper): boolean {
     const condition = triggerHelper.triggerOptions.Condition ?? triggerHelper.trigger.condition;
-    if (condition !== undefined && condition !== false) {
-      if (condition === true)
-        return true;
-      if (!condition(this.data, triggerHelper.matches, triggerHelper.output))
-        return false;
-    }
-    return true;
+    // If the condition is missing or hardcoded as `true`
+    if (condition === undefined || condition === true)
+      return true;
+    // If the condition is hardcoded as `false`
+    else if (condition === false)
+      return false;
+
+    const conditionFuncReturn = condition(this.data, triggerHelper.matches, triggerHelper.output);
+    if (conditionFuncReturn === true)
+      return true;
+    // Treat all other return values as false (undefined | false)
+    return false;
   }
 
   // Set defaults for triggerHelper object (anything that won't change based on
   // other trigger functions running)
   _onTriggerInternalHelperDefaults(triggerHelper: TriggerHelper): void {
-    {
-      const textAlertsEnabled = triggerHelper.triggerAutoConfig.TextAlertsEnabled;
-      if (textAlertsEnabled !== undefined)
-        triggerHelper.textAlertsEnabled = textAlertsEnabled;
-      const soundAlertsEnabled = triggerHelper.triggerAutoConfig.SoundAlertsEnabled;
-      if (soundAlertsEnabled !== undefined)
-        triggerHelper.soundAlertsEnabled = soundAlertsEnabled;
-      const spokenAlertsEnabled = triggerHelper.triggerAutoConfig.SpokenAlertsEnabled;
-      if (spokenAlertsEnabled !== undefined)
-        triggerHelper.spokenAlertsEnabled = spokenAlertsEnabled;
-    }
+    // Load settings from triggerAutoConfig if they're set
+    triggerHelper.textAlertsEnabled =
+      triggerHelper.triggerAutoConfig.TextAlertsEnabled ?? triggerHelper.textAlertsEnabled;
+    triggerHelper.soundAlertsEnabled =
+      triggerHelper.triggerAutoConfig.SoundAlertsEnabled ?? triggerHelper.soundAlertsEnabled;
+    triggerHelper.spokenAlertsEnabled =
+      triggerHelper.triggerAutoConfig.SpokenAlertsEnabled ?? triggerHelper.spokenAlertsEnabled;
 
-    {
-      const textAlertsEnabled = triggerHelper.triggerOptions.TextAlert;
-      if (textAlertsEnabled !== undefined)
-        triggerHelper.textAlertsEnabled = textAlertsEnabled;
-      const soundAlertsEnabled = triggerHelper.triggerOptions.SoundAlert;
-      if (soundAlertsEnabled !== undefined)
-        triggerHelper.soundAlertsEnabled = soundAlertsEnabled;
-      const spokenAlertsEnabled = triggerHelper.triggerOptions.SpeechAlert;
-      if (spokenAlertsEnabled !== undefined)
-        triggerHelper.spokenAlertsEnabled = spokenAlertsEnabled;
-      const groupSpokenAlertsEnabled = triggerHelper.triggerOptions.GroupSpeechAlert;
-      if (groupSpokenAlertsEnabled !== undefined)
-        triggerHelper.groupSpokenAlertsEnabled = groupSpokenAlertsEnabled;
-    }
+    // Load settings from triggerOptions if they're set
+    triggerHelper.textAlertsEnabled =
+      triggerHelper.triggerOptions.TextAlert ?? triggerHelper.textAlertsEnabled;
+    triggerHelper.soundAlertsEnabled =
+      triggerHelper.triggerOptions.SoundAlert ?? triggerHelper.soundAlertsEnabled;
+    triggerHelper.spokenAlertsEnabled =
+      triggerHelper.triggerOptions.SpeechAlert ?? triggerHelper.spokenAlertsEnabled;
+    triggerHelper.groupSpokenAlertsEnabled =
+      triggerHelper.triggerOptions.GroupSpeechAlert ?? triggerHelper.groupSpokenAlertsEnabled;
 
+    // If the user has suppressed all output for the trigger, reflect that here
     if (triggerHelper.userSuppressedOutput) {
       triggerHelper.textAlertsEnabled = false;
       triggerHelper.soundAlertsEnabled = false;
       triggerHelper.spokenAlertsEnabled = false;
       triggerHelper.groupSpokenAlertsEnabled = false;
     }
+
+    // If the user has disabled audio output, reflect that here
     if (!this.options.AudioAllowed) {
       triggerHelper.soundAlertsEnabled = false;
       triggerHelper.spokenAlertsEnabled = false;
