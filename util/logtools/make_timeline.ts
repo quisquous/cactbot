@@ -262,7 +262,7 @@ const extractTLEntries = async (
 
     // Make nameplate toggle lines if and only if the user has specified them.
     if (targetable) {
-      if (targetArray?.length && targetArray.length > 0) {
+      if (targetArray && targetArray.includes(targetable.name)) {
         const targetEntry = parseNameToggleToEntry(targetable);
         entries.push(targetEntry);
       }
@@ -495,7 +495,7 @@ const makeTimeline = async () => {
         args.file,
         startTime,
         endTime,
-        args['include-targetable'],
+        args.include_targetable as string[],
       );
       const assembled = assembleTimelineStrings(fight, baseEntries, startTime, args);
       if (args['output-file'] && typeof args['output-file'] === 'string') {
