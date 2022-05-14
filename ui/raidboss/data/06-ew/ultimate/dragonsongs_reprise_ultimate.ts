@@ -1215,7 +1215,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-       const num = data.diveFromGraceNum[data.me];
+        const num = data.diveFromGraceNum[data.me];
         if (!num) {
           console.error(`DFG Dive Single Tower: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
