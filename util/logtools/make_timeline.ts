@@ -17,6 +17,9 @@ import { EncounterCollector, FightEncInfo, TLFuncs } from './encounter_tools';
 
 // TODO: Add FFLogs report parsing support.
 
+// TODO: Reinstate support for using raw start/end times
+// rather than force fight indexing.
+
 type TimelineEntry = {
   time: string;
   combatant?: string;
@@ -229,6 +232,8 @@ const extractRawLines = async (fileName: string, start: string, end: string): Pr
   });
   let started = false;
   for await (const line of file) {
+    // This will fail on lines with 3-digit identifiers,
+    // but that's okay because those will never be start lines.
     const lineTimeStamp = line.substring(14, 26);
     if (start === lineTimeStamp && !started)
       started = start === lineTimeStamp;
@@ -242,12 +247,14 @@ const extractRawLines = async (fileName: string, start: string, end: string): Pr
 
 const extractTLEntries = async (
   fileName: string,
-  start: string,
-  end: string,
+  start: Date,
+  end: Date,
   targetArray?: string[],
 ): Promise<TimelineEntry[]> => {
   const entries: TimelineEntry[] = [];
-  const lines: string[] = await extractRawLines(fileName, start, end);
+  const fileStart = TLFuncs.timeFromDate(start);
+  const fileEnd = TLFuncs.timeFromDate(end);
+  const lines: string[] = await extractRawLines(fileName, fileStart, fileEnd);
 
   // We have exactly the lines relevant to our encounter now.
   for (const line of lines) {
@@ -300,6 +307,8 @@ const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): b
 
   const ia = args.ignore_ability as string[];
   const ii = args.ignore_id as string[];
+  const ic = args.ignore_combatant as string[];
+  const oc = args.only_combatant as string[];
   // Ignore auto-attacks named "attack"
   if (abilityName?.toLowerCase() === 'attack')
     return true;
@@ -313,17 +322,17 @@ const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): b
     return true;
 
   // Ignore abilities by ID
-  if (abilityId && ii !== undefined && ii.length > 0) {
+  if (abilityId && ii && ii.length > 0) {
     if (ii.includes(abilityId))
       return true;
   }
 
   // Ignore combatants by name
-  if (combatant && args['ignore-combatant'] && args['ignore-combatant'].includes(combatant))
+  if (combatant && ic && ic.includes(combatant))
     return true;
 
   // If only-combatants was specified, ignore all combatants not in the list.
-  if (combatant && args['only-combatant'] && !args['only-combatant'].includes(combatant))
+  if (combatant && oc && !oc.includes(combatant))
     return true;
   return false;
 };
@@ -361,13 +370,13 @@ const findTimeDifferences = (lastTimeDiff: number): { diffSeconds: number; drift
 const assembleTimelineStrings = (
   fight: FightEncInfo,
   entries: TimelineEntry[],
-  start: string,
+  start: Date,
   args: ExtendedArgs,
 ): string[] => {
   const assembled: string[] = [];
-  let lastAbilityTime = parseInt(start);
+  let lastAbilityTime = (start.getTime());
   let timelinePosition = 0;
-  let lastEntry: TimelineEntry = { time: start ?? 'Unknown', lineType: 'None' };
+  let lastEntry: TimelineEntry = { time: lastAbilityTime.toString(), lineType: 'None' };
   if (fight.sealName) {
     const zoneMessage = TLFuncs.toProperCase(fight.sealName);
     const tlString = `0.0 "--sync--" sync / 00:0839::${zoneMessage} will be sealed off/ window 0,1`;
@@ -392,9 +401,7 @@ const assembleTimelineStrings = (
       continue;
 
     // Find out how long it's been since the last ability.
-    const lineTime = TLFuncs.timeFromString(entry.time);
-    if (lastAbilityTime === 0)
-      lastAbilityTime = lineTime;
+    const lineTime = Date.parse(entry.time);
     const lastTimeDiff = lineTime - lastAbilityTime;
     const timeInfo = findTimeDifferences(lastTimeDiff);
 
@@ -421,6 +428,9 @@ const assembleTimelineStrings = (
       timelinePosition = phaseTime;
       delete phases[abilityName];
     }
+
+    // Avoid awkward floating-point nonsense.
+    timelinePosition = Math.round(timelinePosition * 10) / 10;
 
     // We're done manipulating time, so save where we are for the next loop.
     lastAbilityTime = lineTime;
@@ -482,8 +492,14 @@ const makeTimeline = async () => {
         console.error('No fight found at specified index');
         process.exit(-1);
       }
-      const startTime = TLFuncs.timeFromDate(fight.startTime);
-      const endTime = TLFuncs.timeFromDate(fight.endTime);
+      const startTime = fight.startTime;
+      const endTime = fight.endTime;
+      // All encounters on a collector will guaranteed have a start/end time,
+      // but Typescript doesn't know that.
+      if (!(startTime && endTime)) {
+        console.error('Missing start or end time at specified index.');
+        process.exit(1);
+      }
       const baseEntries = await extractTLEntries(
         args.file,
         startTime,
