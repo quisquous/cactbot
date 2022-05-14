@@ -25,7 +25,7 @@ const findTriggersFile = (shortName: string): string | undefined => {
 
 export default async (timelinePath: string, locale: Lang): Promise<void> => {
   const triggersFile = findTriggersFile(timelinePath);
-  if (!triggersFile) {
+  if (triggersFile === undefined) {
     console.error(`Couldn\'t find '${timelinePath}', aborting.`);
     process.exit(-2);
   }

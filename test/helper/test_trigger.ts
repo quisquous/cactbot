@@ -139,7 +139,7 @@ const testTriggerFile = (file: string) => {
       const verifyTrigger = (trigger: LooseTrigger) => {
         for (const func of triggerFunctions) {
           const currentTriggerFunction = trigger[func];
-          if (!currentTriggerFunction)
+          if (currentTriggerFunction === undefined)
             continue;
           if (func === 'response' && typeof currentTriggerFunction === 'object') {
             // Hack: treat a literal response object as a trigger.  FIXME.
@@ -195,7 +195,7 @@ const testTriggerFile = (file: string) => {
       // Check for inconsistencies between languages in regexes.
       for (const regexLang of regexLanguages) {
         const currentRegex = currentTrigger[regexLang];
-        if (currentRegex) {
+        if (currentRegex !== undefined && currentRegex !== null) {
           const capture = new RegExp(`(?:${currentRegex.toString()})?`).exec('');
           if (!capture)
             throw new UnreachableCode();
@@ -214,7 +214,7 @@ const testTriggerFile = (file: string) => {
       // Check for inconsistencies between languages in netRegexes.
       for (const netRegexLang of netRegexLanguages) {
         const currentRegex = currentTrigger[netRegexLang];
-        if (currentRegex) {
+        if (currentRegex !== undefined && currentRegex !== null) {
           const capture = new RegExp(`(?:${currentRegex.toString()})?`).exec('');
           if (!capture)
             throw new UnreachableCode();
@@ -578,11 +578,12 @@ const testTriggerFile = (file: string) => {
           const funcStr = func.toString();
           const keys: string[] = [];
 
-          dynamicOutputStringAccess = dynamicOutputStringAccess || /\boutput\[/.test(funcStr);
+          dynamicOutputStringAccess = dynamicOutputStringAccess ||
+            /(?:\boutput\[|\boutput[^.\r\n])/.test(funcStr);
 
           // Validate that any calls to output.word() have a corresponding outputStrings entry.
           funcStr.replace(/\boutput\.(\w*)\(/g, (fullMatch: string, key: string) => {
-            if (!outputStrings[key]) {
+            if (outputStrings[key] === undefined) {
               assert.fail(`missing key '${key}' in '${trigger.id}' outputStrings`);
               return fullMatch;
             }
@@ -604,7 +605,7 @@ const testTriggerFile = (file: string) => {
 
         // Responses can have unused output strings in some cases, such as ones
         // that work with and without matching.
-        if (!response && !dynamicOutputStringAccess) {
+        if (!dynamicOutputStringAccess) {
           for (const key in outputStrings) {
             if (!usedOutputStringEntries.has(key))
               assert.fail(`'${trigger.id}' has unused outputStrings entry '${key}'`);

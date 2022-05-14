@@ -89,8 +89,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['AB3', 'AB4'], capture: true }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, _output) => {
-        return _matches.effectId === 'AB3' ? _output.red!() : _output.blue!();
+      alertText: (_data, _matches, output) => {
+        return _matches.effectId === 'AB3' ? output.red!() : output.blue!();
       },
       outputStrings: {
         red: {
@@ -127,10 +127,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P1N Powerful Light',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '893', capture: true }),
-      alertText: (_data, matches, _output) => {
+      alertText: (_data, matches, output) => {
         if (matches.count === '14C')
-          return _output.light!();
-        return _output.fire!();
+          return output.light!();
+        return output.fire!();
       },
       outputStrings: {
         fire: {

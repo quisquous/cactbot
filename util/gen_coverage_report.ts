@@ -28,8 +28,6 @@ const emptyCoverage = (): CoverageEntry => {
 
 const readManifest = (filename: string) => {
   const contents = fs.readFileSync(filename);
-  if (!contents)
-    return [];
   const lines = contents.toString().split(/[\r\n]+/);
   return lines;
 };
@@ -123,7 +121,7 @@ const processOopsyFile = (
 
   for (const field of oopsyTriggerSetFields) {
     const obj = triggerSet[field];
-    if (!obj)
+    if (obj === undefined || obj === null)
       continue;
     if (typeof obj !== 'object')
       continue;
@@ -251,7 +249,7 @@ const buildTotals = (coverage: Coverage) => {
       totalsByContentType.raidboss++;
       totals.overall.raidboss++;
     }
-    if (thisCoverage?.oopsy?.num ?? 0 > 0) {
+    if ((thisCoverage?.oopsy?.num ?? 0) > 0) {
       accum.oopsy++;
       versionInfo.overall.oopsy++;
       totalsByContentType.oopsy++;

@@ -23,9 +23,6 @@ export const addPlayerChangedOverrideListener = (
   func: PlayerChangedFunc,
   playerName?: string,
 ): void => {
-  if (!func)
-    return;
-
   let lastPlayerChangedEvent: PlayerChangedDetail | null = null;
   let lastPlayerJob: Job | null = null;
 
