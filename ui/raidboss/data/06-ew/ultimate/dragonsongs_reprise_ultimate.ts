@@ -1161,6 +1161,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.ability({ id: '6714', source: '니드호그', capture: false }),
       // Ignore targetIsYou() incase player misses stack
       condition: (data) => data.eyeOfTheTyrantCounter === 1,
+      suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         // No callout if missing numbers
         const num = data.diveFromGraceNum[data.me];
@@ -1214,6 +1215,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexKo: NetRegexes.ability({ id: '6714', source: '니드호그', capture: false }),
       // Ignore targetIsYou() incase player misses stack
       condition: (data) => data.eyeOfTheTyrantCounter === 2,
+      suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
