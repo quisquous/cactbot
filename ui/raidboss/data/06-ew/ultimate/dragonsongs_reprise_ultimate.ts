@@ -1231,9 +1231,12 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        // eyeOfTheTyrantCounter set at 7 seconds before, meaning about ~2.2s
-        // before this trigger fires, the counter should be at 2
-        if (data.eyeOfTheTyrantCounter === 2)
+       const num = data.diveFromGraceNum[data.me];
+        if (!num) {
+          console.error(`DFG Dive Single Tower: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          return;
+        }
+        if (data.eyeOfTheTyrantCounter === 2 && num === 1)
           return output.baitThenStack!({ num: output.num2!() });
         return output.text!();
       },
