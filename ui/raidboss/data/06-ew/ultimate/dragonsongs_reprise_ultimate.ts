@@ -1218,7 +1218,7 @@ const triggerSet: TriggerSet<Data> = {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
           console.error(`DFG Dive Single Tower: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
-          return;
+          return output.text!();
         }
         if (data.eyeOfTheTyrantCounter === 2 && num === 1)
           return output.baitThenStack!({ num: output.num2!() });
