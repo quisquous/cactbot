@@ -935,7 +935,7 @@ const triggerSet: TriggerSet<Data> = {
       // 670F Dark Spineshatter Dive
       // 6710 Dark Elusive Jump
       // Defaults: (as players will be coming from stack)
-      //   Spineshatter Left, Elusive Right, All Face East
+      //   Spineshatter Right, Elusive Left, All Face East
       //   High Jump North if solo, no assignment if all circle
       //   2s Southeast/Southwest, no assignment if circle
       //   Assumes North Party Stack
@@ -1061,17 +1061,17 @@ const triggerSet: TriggerSet<Data> = {
           // Stack => Predict Tower 3 (based on previous position)
           if (num === 2) {
             if (data.diveFromGracePreviousPosition[data.me] === 'west')
-              return output.elusiveTower3!();
-            if (data.diveFromGracePreviousPosition[data.me] === 'east')
               return output.spineshatterTower3!();
+            if (data.diveFromGracePreviousPosition[data.me] === 'east')
+              return output.elusiveTower3!();
           }
 
           // Call Tower 2 Soak (based on previous position)
           if (num === 1) {
             if (data.diveFromGracePreviousPosition[data.me] === 'west')
-              return output.elusiveTower2!();
-            if (data.diveFromGracePreviousPosition[data.me] === 'east')
               return output.spineshatterTower2!();
+            if (data.diveFromGracePreviousPosition[data.me] === 'east')
+              return output.elusiveTower2!();
           }
         }
         // Third Dive, on num3s
@@ -1148,10 +1148,10 @@ const triggerSet: TriggerSet<Data> = {
           en: '${num} Cardinal Towers',
         },
         spineshatterTower: {
-          en: 'Left Tower',
+          en: 'Right Tower',
         },
         elusiveTower: {
-          en: 'Right Tower',
+          en: 'Left Tower',
         },
       },
     },
@@ -1180,9 +1180,9 @@ const triggerSet: TriggerSet<Data> = {
         // Call Tower 3 Soak for num2s (based on previous position)
         if (num === 2) {
           if (data.diveFromGracePreviousPosition[data.me] === 'west')
-            return output.elusiveTower!();
-          if (data.diveFromGracePreviousPosition[data.me] === 'east')
             return output.spineshatterTower!();
+          if (data.diveFromGracePreviousPosition[data.me] === 'east')
+            return output.elusiveTower!();
         }
         // If failed to get positions, call Towers in general
         if (num !== 3)
