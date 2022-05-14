@@ -127,39 +127,6 @@ const triggerSet: TriggerSet<Data> = {
       diveFromGracePreviousPosition: {},
     };
   },
-  timelineTriggers: [
-    {
-      id: 'DSR First Eye of the Tyrant Stack',
-      // Calls out which numbers stack prior to Eye of the Tyrant
-      regex: /Eye of the Tyrant/,
-      beforeSeconds: 6,
-      condition: (data) => {
-        data.eyeOfTheTyrantCounter = (data.eyeOfTheTyrantCounter ?? 0) + 1;
-        // Second stack handled by DFG Tower Soaks and DFG Baits
-        if (data.eyeOfTheTyrantCounter !== 1)
-          return false;
-        const num = data.diveFromGraceNum[data.me];
-        if (!num) {
-          console.error(`Eye of The Tyrant Stack: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
-          // Default to true as stack needs more players
-          return true;
-        }
-
-        // First stack requires players numbered 2 and 3
-        if ((num === 2 || num === 3) && data.eyeOfTheTyrantCounter === 1)
-          return true;
-      },
-      durationSeconds: 6,
-      alertText: (_data, _matches, output) => output.stackNums!({ num1: output.num2!(), num2: output.num3!() }),
-      outputStrings: {
-        num2: Outputs.num2,
-        num3: Outputs.num3,
-        stackNums: {
-          en: '${num1} and ${num2} Stack',
-        },
-      },
-    },
-  ],
   triggers: [
     {
       id: 'DSR Phase Tracker',
@@ -1160,7 +1127,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ id: '6714', source: '尼德霍格', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '6714', source: '니드호그', capture: false }),
       // Ignore targetIsYou() incase player misses stack
-      condition: (data) => data.eyeOfTheTyrantCounter === 1,
+      condition: (data) => data.eyeOfTheTyrantCounter === undefined,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         // No callout if missing numbers
@@ -1187,6 +1154,7 @@ const triggerSet: TriggerSet<Data> = {
             return output.elusiveTower!();
         }
       },
+      run: (data) => data.eyeOfTheTyrantCounter = 2,
       outputStrings: {
         num3: Outputs.num3,
         circleTower: {
@@ -1296,17 +1264,20 @@ const triggerSet: TriggerSet<Data> = {
         } else if (id === headmarkers.dot2) {
           data.diveFromGraceNum[matches.target] = 2;
           if (matches.target === data.me)
-            return output.num2!();
+            return output.stackNorthNum!({ num: output.num2!() });
         } else if (id === headmarkers.dot3) {
           data.diveFromGraceNum[matches.target] = 3;
           if (matches.target === data.me)
-            return output.num3!();
+            return output.stackNorthNum!({ num: output.num3!() });
         }
       },
       outputStrings: {
         num1: Outputs.num1,
         num2: Outputs.num2,
         num3: Outputs.num3,
+        stackNorthNum: {
+          en: '${num}, Stack North',
+        },
       },
     },
     {
