@@ -1050,8 +1050,8 @@ const triggerSet: TriggerSet<Data> = {
           const distanceBC = distance(posB, posC);
           const distances = [distanceAB, distanceAC, distanceBC];
 
-          // Sort the distances
-          const sorted = distances.sort((a, b) => a - b);
+          // Sort the distances, largest to smallest
+          const sorted = distances.sort((a, b) => b - a);
 
           // Assuming the two players furthest apart are the left/right players
           if (distanceAB === sorted[0]) {
