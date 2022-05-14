@@ -1050,7 +1050,7 @@ const triggerSet: TriggerSet<Data> = {
           if (num === 1) {
             // Stack => Predict Tower 3
             if (data.diveFromGracePreviousPosition[data.me] === 'middle')
-              return output.circleTower3!();
+              return output.stackNorth!();
             // Other players just move so 3s can get tower
             return output.move!();
           }
@@ -1083,8 +1083,8 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         move: Outputs.moveAway,
-        circleTower3: {
-          en: 'Stack => South Tower',
+        stackNorth: {
+          en: 'Stack North',
         },
         spineshatterTower2: {
           en: 'Backleft Tower',
@@ -1404,6 +1404,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         diveElusive2: {
           en: 'Backleft Dive, Face East',
+        },
       },
     },
     {
