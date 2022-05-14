@@ -235,7 +235,7 @@ const templateOptions: OptionsTemplate = {
       return;
     const triggers = savedConfig['triggers'];
 
-    if (triggers === undefined || typeof triggers !== 'object' || Array.isArray(triggers))
+    if (typeof triggers !== 'object' || Array.isArray(triggers))
       return;
 
     for (const [id, entry] of Object.entries(triggers)) {
