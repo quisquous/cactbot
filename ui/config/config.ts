@@ -442,7 +442,7 @@ export class CactbotConfigurator {
 
     const allButFinalArg = args.slice(0, -1);
     for (const arg of allButFinalArg) {
-      if (typeof obj !== 'undefined' && typeof obj !== 'object' || Array.isArray(obj)) {
+      if (typeof obj !== 'object' || Array.isArray(obj)) {
         // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
         // until leaf node ConfigValue.
         console.error(`Unexpected entry: ${JSON.stringify([group, ...args].join(', '))}`);
@@ -452,7 +452,7 @@ export class CactbotConfigurator {
       obj = obj[arg] ??= {};
     }
 
-    if (typeof obj !== 'undefined' && typeof obj !== 'object' || Array.isArray(obj)) {
+    if (typeof obj !== 'object' || Array.isArray(obj)) {
       // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
       // until leaf node ConfigValue.
       console.error(`Unexpected entry: ${JSON.stringify([group, ...args].join(', '))}`);
