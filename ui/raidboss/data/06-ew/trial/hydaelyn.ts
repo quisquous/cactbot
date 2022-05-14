@@ -33,6 +33,7 @@ const crystallizeOutputStrings = {
     fr: 'Cristallisation : ${name}',
     ja: 'クリスタライズ: ${name}',
     cn: '水晶化: ${name}',
+    ko: '크리스탈화: ${name}',
   },
 };
 

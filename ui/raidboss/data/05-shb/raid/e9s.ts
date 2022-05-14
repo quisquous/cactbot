@@ -191,7 +191,7 @@ const calculateSummonSafeZone = (boss: PluginCombatantState, clone1: PluginComba
     .map((pos) => directions[pos]);
 
   const safeZone = safeZones[0];
-  if (!safeZone || safeZones.length !== 1)
+  if (safeZone === undefined || safeZones.length !== 1)
     return 'unknown';
 
   return safeZone;
@@ -842,7 +842,7 @@ const triggerSet: TriggerSet<Data> = {
           names: [cloudOfDarknessLocaleNames[data.parserLang]],
         });
 
-        if (bossData === null || !bossData.combatants || !bossData.combatants.length)
+        if (!bossData?.combatants.length)
           return;
 
         // All of the fake bosses have a BNpcID of 9020, 12379 is the real one.
@@ -867,7 +867,7 @@ const triggerSet: TriggerSet<Data> = {
           names: [cloneOfDarknessLocaleNames[data.parserLang]],
         });
 
-        if (cloneData === null || !cloneData.combatants || !cloneData.combatants.length)
+        if (!cloneData?.combatants.length)
           return;
 
         data.clones = cloneData.combatants;

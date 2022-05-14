@@ -1,4 +1,10 @@
 import { CactbotBaseRegExp } from '../types/net_trigger';
+import {
+  commonReplacement,
+  partialCommonTimelineReplacementKeys,
+  partialCommonTriggerReplacementKeys,
+} from '../ui/raidboss/common_replacement';
+import { TimelineReplacement } from '../ui/raidboss/timeline_parser';
 
 import { Lang } from './languages';
 import NetRegexes from './netregexes';
@@ -176,3 +182,82 @@ const regexSet = new RegexSet();
 
 export const LocaleRegex = regexSet.localeRegex;
 export const LocaleNetRegex = regexSet.localeNetRegex;
+
+// Translate a trigger or timeline regex (replaceSync) or timeline text (replaceText),
+// returning the text and whether or not it can be considered "translated".
+// Note, this won't catch anything that needs multiple translations, but will catch
+// anything from common translations that are partial (e.g. a seal regex needs
+// a zone name to be considered a full translation.
+export const translateWithReplacements = (
+  text: string,
+  replaceKey: 'replaceSync' | 'replaceText',
+  replaceLang: Lang,
+  replacements?: TimelineReplacement[],
+): { text: string; wasTranslated: boolean } => {
+  // All regex replacements are always global.
+  const isGlobal = replaceKey === 'replaceSync';
+
+  let wasTranslated = false;
+  for (const r of replacements ?? []) {
+    if (r.locale && r.locale !== replaceLang)
+      continue;
+    const reps = r[replaceKey];
+    if (!reps)
+      continue;
+    for (const [key, value] of Object.entries(reps)) {
+      const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
+      if (text.match(regex))
+        wasTranslated = true;
+      text = text.replace(regex, value);
+    }
+  }
+
+  // Common Replacements
+  const replacement = commonReplacement[replaceKey];
+  for (const [key, value] of Object.entries(replacement ?? {})) {
+    const repl = value[replaceLang];
+    if (!repl)
+      continue;
+    const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
+
+    const partialKeys = replaceKey === 'replaceSync'
+      ? partialCommonTriggerReplacementKeys
+      : partialCommonTimelineReplacementKeys;
+    if (text.match(regex)) {
+      // Consider any partial translations as "not found" (e.g. a seal
+      // message that still needs the zone name to be translated to be
+      // considered fully translated).
+      let isPartial = false;
+      for (const partialKey of partialKeys) {
+        if (Regexes.parseGlobal(partialKey).test(key)) {
+          isPartial = true;
+          break;
+        }
+      }
+      if (!isPartial)
+        wasTranslated = true;
+    }
+
+    text = text.replace(regex, repl);
+  }
+
+  return { text, wasTranslated };
+};
+
+// Translates a timeline or trigger regex for a given language.
+export const translateRegex = (
+  text: string | RegExp,
+  replaceLang: Lang,
+  replacements?: TimelineReplacement[],
+): string => {
+  if (typeof text === 'string')
+    return translateWithReplacements(text, 'replaceSync', replaceLang, replacements).text;
+  return translateWithReplacements(text.source, 'replaceSync', replaceLang, replacements).text;
+};
+
+// Translates a timeline text for a given language.
+export const translateText = (
+  text: string,
+  replaceLang: Lang,
+  replacements?: TimelineReplacement[],
+): string => translateWithReplacements(text, 'replaceText', replaceLang, replacements).text;

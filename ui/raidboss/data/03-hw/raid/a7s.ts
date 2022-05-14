@@ -236,8 +236,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.addedCombatant({ name: '牢门的锁', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '자물쇠', capture: false }),
       condition: (data) => {
-        if (!data.grabbed)
-          return false;
         // If you're not in a jail, kill the padlock.
         return !data.grabbed.includes(data.me) && data.stickyloom !== data.me;
       },

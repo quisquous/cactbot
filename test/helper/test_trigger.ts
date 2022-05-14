@@ -8,6 +8,7 @@ import path from 'path';
 
 import chai from 'chai';
 
+import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import Regexes from '../../resources/regexes';
 import {
@@ -15,6 +16,7 @@ import {
   triggerFunctions,
   triggerTextOutputFunctions,
 } from '../../resources/responses';
+import { translateWithReplacements } from '../../resources/translations';
 import { RaidbossData } from '../../types/data';
 import { Matches } from '../../types/net_matches';
 import {
@@ -62,9 +64,17 @@ const testTriggerFile = (file: string) => {
     // Normalize path
     const importPath = '../../' + path.relative(process.cwd(), file).replace('.ts', '.js');
 
+    // Set a global flag to mark regexes for NetRegexes.doesNetRegexNeedTranslation.
+    // See details in that function for more information.
+    NetRegexes.setFlagTranslationsNeeded(true);
+
     // Dynamic imports don't have a type, so add type assertion.
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     triggerSet = (await import(importPath)).default as LooseTriggerSet;
+  });
+
+  after(() => {
+    NetRegexes.setFlagTranslationsNeeded(false);
   });
 
   // Dummy test so that failures in before show up with better text.
@@ -608,6 +618,68 @@ const testTriggerFile = (file: string) => {
     if (triggerSet.timelineFile) {
       const timelineFile = path.join(path.dirname(file), triggerSet.timelineFile);
       assert.isTrue(fs.existsSync(timelineFile), `${triggerSet.timelineFile} does not exist`);
+    }
+  });
+
+  it('should not have missing regex translations', () => {
+    const translations = triggerSet.timelineReplace;
+    if (!translations)
+      return;
+
+    for (const trans of translations) {
+      const locale = trans.locale;
+      if (!locale)
+        continue;
+      // English cannot be missing translations and is always a "partial" translation.
+      if (locale === 'en')
+        continue;
+
+      if (trans.missingTranslations)
+        continue;
+
+      const triggers = triggerSet.triggers;
+      for (const trigger of triggers ?? []) {
+        const origRegex = trigger.netRegex?.source.toLowerCase();
+        if (!origRegex)
+          continue;
+
+        if (!NetRegexes.doesNetRegexNeedTranslation(origRegex))
+          continue;
+
+        const { text, wasTranslated } = translateWithReplacements(
+          origRegex,
+          'replaceSync',
+          locale,
+          translations,
+        );
+
+        const langSpecificRegexes = [
+          'netRegexDe',
+          'netRegexFr',
+          'netRegexJa',
+          'netRegexCn',
+          'netRegexKo',
+        ] as const;
+        const shortLanguage = locale.charAt(0).toUpperCase() + locale.slice(1);
+        const localeReg = langSpecificRegexes.find((x) => x === `netRegex${shortLanguage}`);
+        const locRegex = localeReg ? trigger[localeReg]?.source.toLowerCase() : undefined;
+        // NetRegexes will be deprecated for new triggers, but if they are
+        // there verify that they match.
+        if (locRegex) {
+          // If we have do not have a match, then something translated it *AND* it is
+          // different than what is in timelineReplace.  This is the worst case scenario.
+          assert.strictEqual(
+            locRegex,
+            text.toLowerCase(),
+            `${trigger.id}:locale ${locale}:incorrect timelineReplace replaceSync for regex '${locRegex}'`,
+          );
+        }
+
+        assert.isTrue(
+          wasTranslated,
+          `${trigger.id}:locale ${locale}:missing timelineReplace replaceSync for regex '${origRegex}'`,
+        );
+      }
     }
   });
 };

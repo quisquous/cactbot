@@ -44,7 +44,7 @@ export default class AnalyzedEncounter extends EventBus {
   }
 
   selectPerspective(id: string, popupText: PopupTextAnalysis | RaidEmulatorPopupText): void {
-    if (this.encounter && this.encounter.combatantTracker) {
+    if (this.encounter.combatantTracker) {
       const selectedPartyMember = this.encounter.combatantTracker.combatants[id];
       if (!selectedPartyMember)
         return;
@@ -187,9 +187,6 @@ export default class AnalyzedEncounter extends EventBus {
           currentLine?.timestamp,
         );
         popupText.triggerResolvers.push(resolver);
-
-        if (!currentLine)
-          throw new UnreachableCode();
 
         popupText.OnTrigger(trigger, matches, currentLine.timestamp);
 

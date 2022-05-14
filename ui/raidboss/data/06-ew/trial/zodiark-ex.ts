@@ -577,7 +577,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Arcane Sigil': '비문',
         'Behemoth': '베히모스',
@@ -593,8 +592,10 @@ const triggerSet: TriggerSet<Data> = {
         'Apomnemoneumata': '기억들',
         'Astral Eclipse': '별들의 식',
         'Astral Flow': '천상의 흐름',
-        'Esoteric Dyad': '내밀한 양면',
-        'Esoteric Sect': '내밀한 종파',
+        'Esoteric Dyad(?!/)': '내밀한 양면',
+        'Esoteric Dyad/Esoteric Sect': '내밀한 양면/종파',
+        '(?<!/)Esoteric Sect': '내밀한 종파',
+        'Esoteric Pattern': '내밀한 양면/종파/광선',
         'Esoterikos': '에소테리코스',
         'Explosion': '폭산',
         'Infernal Stream': '지옥불 흐름',

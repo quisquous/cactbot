@@ -459,7 +459,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         if (!data.color)
           return;
-        const colorTrans = colorMap[data.color] || {};
+        const colorTrans = colorMap[data.color];
         const color = colorTrans[data.displayLang];
         if (!color)
           return;
@@ -579,7 +579,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         if (!data.color)
           return;
-        const colorTrans = colorMap[data.color] || {};
+        const colorTrans = colorMap[data.color];
         const color = colorTrans[data.displayLang];
         if (!color)
           return;

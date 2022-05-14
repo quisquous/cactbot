@@ -297,10 +297,6 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`Ser Adelphel: null data`);
           return;
         }
-        if (!adelphelData.combatants) {
-          console.error(`Ser Adelphel: null combatants`);
-          return;
-        }
         const adelphelDataLength = adelphelData.combatants.length;
         if (adelphelDataLength !== 1) {
           console.error(`Ser Adelphel: expected 1 combatants got ${adelphelDataLength}`);
@@ -396,14 +392,14 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'DSR Ascalon\'s Mercy Concealed',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '63C8', source: 'King Thordan', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '63C8', source: 'Thordan', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '63C8', source: 'Roi Thordan', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '63C8', source: '騎神トールダン', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '63C8', source: '骑神托尔丹', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '63C8', source: '기사신 토르당', capture: false }),
-      suppressSeconds: 5,
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '63C8', source: 'King Thordan', capture: true }),
+      netRegexDe: NetRegexes.startsUsing({ id: '63C8', source: 'Thordan', capture: true }),
+      netRegexFr: NetRegexes.startsUsing({ id: '63C8', source: 'Roi Thordan', capture: true }),
+      netRegexJa: NetRegexes.startsUsing({ id: '63C8', source: '騎神トールダン', capture: true }),
+      netRegexCn: NetRegexes.startsUsing({ id: '63C8', source: '骑神托尔丹', capture: true }),
+      netRegexKo: NetRegexes.startsUsing({ id: '63C8', source: '기사신 토르당', capture: true }),
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime),
       response: Responses.moveAway(),
     },
     {
@@ -468,10 +464,6 @@ const triggerSet: TriggerSet<Data> = {
           // trigger will not work, so just resume promise here
           if (combatantData === null) {
             console.error(`Spiral Thrust: null data`);
-            return;
-          }
-          if (!combatantData.combatants) {
-            console.error(`Spiral Thrust: null combatants`);
             return;
           }
           const combatantDataLength = combatantData.combatants.length;
@@ -576,10 +568,6 @@ const triggerSet: TriggerSet<Data> = {
         // trigger will not work, so just resume promise here
         if (thordanData === null) {
           console.error(`King Thordan: null data`);
-          return;
-        }
-        if (!thordanData.combatants) {
-          console.error(`King Thordan: null combatants`);
           return;
         }
         const thordanDataLength = thordanData.combatants.length;
@@ -705,10 +693,6 @@ const triggerSet: TriggerSet<Data> = {
         // trigger will not work, so just resume promise here
         if (combatantDataJanlenoux === null) {
           console.error(`Ser Janlenoux: null data`);
-          return;
-        }
-        if (!combatantDataJanlenoux.combatants) {
-          console.error(`Ser Janlenoux: null combatants`);
           return;
         }
         const combatantDataJanlenouxLength = combatantDataJanlenoux.combatants.length;
@@ -1420,6 +1404,22 @@ const triggerSet: TriggerSet<Data> = {
         },
         diveElusive2: {
           en: 'Backleft Dive, Face East',
+      },
+    },
+    {
+      id: 'DSR Twisting Dive',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6B8B', source: 'Vedrfolnir', capture: false }),
+      suppressSeconds: 1,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Twisters',
+          de: 'Wirbelstürme',
+          fr: 'Tornades',
+          ja: '大竜巻',
+          cn: '旋风',
+          ko: '회오리',
         },
       },
     },
@@ -1434,6 +1434,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'King Thordan': 'Thordan',
         'Nidhogg': 'Nidhogg',
