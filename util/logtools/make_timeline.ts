@@ -322,10 +322,8 @@ const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): b
     return true;
 
   // Ignore abilities by ID
-  if (abilityId && ii && ii.length > 0) {
-    if (ii.includes(abilityId))
-      return true;
-  }
+  if (abilityId && ii && ii.includes(abilityId))
+    return true;
 
   // Ignore combatants by name
   if (combatant && ic && ic.includes(combatant))
@@ -429,9 +427,6 @@ const assembleTimelineStrings = (
       delete phases[abilityName];
     }
 
-    // Avoid awkward floating-point nonsense.
-    timelinePosition = Math.round(timelinePosition * 10) / 10;
-
     // We're done manipulating time, so save where we are for the next loop.
     lastAbilityTime = lineTime;
 
@@ -439,12 +434,13 @@ const assembleTimelineStrings = (
       const ability = entry.abilityName ?? 'Unknown';
       const abilityId = entry.abilityId ?? 'Unknown';
       const combatant = entry.combatant ?? 'Unknown';
-      const newEntry =
-        `${timelinePosition} "${ability}" sync / 1[56]:[^:]*:${combatant}:${abilityId}:/`;
+      const newEntry = `${
+        timelinePosition.toFixed(1)
+      } "${ability}" sync / 1[56]:[^:]*:${combatant}:${abilityId}:/`;
       assembled.push(newEntry);
     } else {
       const targetable = entry.targetable ? '--targetable--' : '--untargetable--';
-      const newEntry = `${timelinePosition} "${targetable}"`;
+      const newEntry = `${timelinePosition.toFixed(1)} "${targetable}"`;
       assembled.push(newEntry);
     }
     lastEntry = entry;
