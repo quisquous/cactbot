@@ -171,15 +171,15 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-20-0x14-networkstartscasting
    */
   static startsUsing(params?: NetParams['StartsUsing']): CactbotBaseRegExp<'StartsUsing'> {
     return parseHelper(params, 'startsUsing', defaultParams('StartsUsing', NetRegexes.logVersion));
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-21-0x15-networkability
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-22-0x16-networkaoeability
    */
   static ability(params?: NetParams['Ability']): CactbotBaseRegExp<'Ability'> {
     return parseHelper(params, 'ability', {
@@ -190,8 +190,8 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-21-0x15-networkability
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-22-0x16-networkaoeability
    *
    * @deprecated Use `ability` instead
    */
@@ -200,14 +200,14 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1b-networktargeticon-head-markers
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-27-0x1b-networktargeticon-head-marker
    */
   static headMarker(params?: NetParams['HeadMarker']): CactbotBaseRegExp<'HeadMarker'> {
     return parseHelper(params, 'headMarker', defaultParams('HeadMarker', NetRegexes.logVersion));
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-03-0x03-addcombatant
    */
   static addedCombatant(params?: NetParams['AddedCombatant']): CactbotBaseRegExp<'AddedCombatant'> {
     return parseHelper(
@@ -223,7 +223,7 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-03-0x03-addcombatant
    */
   static addedCombatantFull(
     params?: NetParams['AddedCombatant'],
@@ -236,7 +236,7 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#04-removecombatant
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-04-0x04-removecombatant
    */
   static removingCombatant(
     params?: NetParams['RemovedCombatant'],
@@ -249,7 +249,7 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1a-networkbuff
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-26-0x1a-networkbuff
    */
   static gainsEffect(params?: NetParams['GainsEffect']): CactbotBaseRegExp<'GainsEffect'> {
     return parseHelper(params, 'gainsEffect', defaultParams('GainsEffect', NetRegexes.logVersion));
@@ -257,7 +257,7 @@ export default class NetRegexes {
 
   /**
    * Prefer gainsEffect over this function unless you really need extra data.
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#26-networkstatuseffects
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-38-0x26-networkstatuseffects
    */
   static statusEffectExplicit(
     params?: NetParams['StatusEffect'],
@@ -270,14 +270,14 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-30-0x1e-networkbuffremove
    */
   static losesEffect(params?: NetParams['LosesEffect']): CactbotBaseRegExp<'LosesEffect'> {
     return parseHelper(params, 'losesEffect', defaultParams('LosesEffect', NetRegexes.logVersion));
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#23-networktether
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-35-0x23-networktether
    */
   static tether(params?: NetParams['Tether']): CactbotBaseRegExp<'Tether'> {
     return parseHelper(params, 'tether', defaultParams('Tether', NetRegexes.logVersion));
@@ -285,14 +285,14 @@ export default class NetRegexes {
 
   /**
    * 'target' was defeated by 'source'
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#19-networkdeath
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-25-0x19-networkdeath
    */
   static wasDefeated(params?: NetParams['WasDefeated']): CactbotBaseRegExp<'WasDefeated'> {
     return parseHelper(params, 'wasDefeated', defaultParams('WasDefeated', NetRegexes.logVersion));
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
   static echo(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
     if (typeof params === 'undefined')
@@ -307,7 +307,7 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
   static dialog(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
     if (typeof params === 'undefined')
@@ -322,7 +322,7 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
   static message(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
     if (typeof params === 'undefined')
@@ -338,14 +338,14 @@ export default class NetRegexes {
 
   /**
    * fields: code, name, line, capture
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
   static gameLog(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
     return parseHelper(params, 'gameLog', defaultParams('GameLog', NetRegexes.logVersion));
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
   static gameNameLog(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
     // Backwards compatability.
@@ -353,42 +353,42 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0c-playerstats
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-12-0x0c-playerstats
    */
   static statChange(params?: NetParams['PlayerStats']): CactbotBaseRegExp<'PlayerStats'> {
     return parseHelper(params, 'statChange', defaultParams('PlayerStats', NetRegexes.logVersion));
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#01-changezone
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-01-0x01-changezone
    */
   static changeZone(params?: NetParams['ChangeZone']): CactbotBaseRegExp<'ChangeZone'> {
     return parseHelper(params, 'changeZone', defaultParams('ChangeZone', NetRegexes.logVersion));
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#21-network6d-actor-control-lines
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-33-0x21-network6d-actor-control
    */
   static network6d(params?: NetParams['ActorControl']): CactbotBaseRegExp<'ActorControl'> {
     return parseHelper(params, 'network6d', defaultParams('ActorControl', NetRegexes.logVersion));
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#22-networknametoggle
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-34-0x22-networknametoggle
    */
   static nameToggle(params?: NetParams['NameToggle']): CactbotBaseRegExp<'NameToggle'> {
     return parseHelper(params, 'nameToggle', defaultParams('NameToggle', NetRegexes.logVersion));
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#28-map
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-40-0x28-map
    */
   static map(params?: NetParams['Map']): CactbotBaseRegExp<'Map'> {
     return parseHelper(params, 'map', defaultParams('Map', NetRegexes.logVersion));
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#29-systemlogmessage
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-41-0x29-systemlogmessage
    */
   static systemLogMessage(
     params?: NetParams['SystemLogMessage'],
