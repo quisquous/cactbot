@@ -36,11 +36,15 @@ const ZoneInfo = _ZoneInfo;
 
 // Convince TypeScript and eslint that these are used.  TypeScript doesn't have a great way
 // to disable individual rules, so this is safer than disabling all rules.
-console.assert(
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-  Conditions && ContentType && NetRegexes && Regexes &&
-    Responses && Outputs && Util && ZoneId && ZoneInfo,
-);
+console.assert(Conditions);
+console.assert(ContentType);
+console.assert(NetRegexes);
+console.assert(Regexes);
+console.assert(Responses);
+console.assert(Outputs);
+console.assert(Util);
+console.assert(ZoneId);
+console.assert(ZoneInfo);
 
 // TODO: move all of these to config.js?
 export type UserFileCallback = (

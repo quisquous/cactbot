@@ -137,13 +137,7 @@ const combineFuncs = function(
     obj[text2] = func2;
   } else {
     obj[text1] = (data: Data, matches: TargetedMatches, output: Output) => {
-      const func1Value = func1(data, matches, output);
-      if (func1Value !== undefined && func1Value !== null && func1Value === true)
-        return true;
-      const func2Value = func2(data, matches, output);
-      if (func2Value !== undefined && func2Value !== null && func2Value === true)
-        return true;
-      return func1Value !== false || func2Value !== false;
+      return func1(data, matches, output) ?? func2(data, matches, output);
     };
   }
   return obj;
