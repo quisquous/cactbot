@@ -320,7 +320,7 @@ class TLFuncs {
       const cap = str[0]?.toUpperCase();
       const lower = str.slice(1);
       if (cap)
-        return `${cap} ${lower}`;
+        return `${cap}${lower}`;
     }).join(' ');
   }
 
