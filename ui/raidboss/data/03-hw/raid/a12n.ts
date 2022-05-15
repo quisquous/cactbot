@@ -43,11 +43,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A12N Punishing Heat',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1AE4' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '1AE4' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '1AE4' }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1AE4' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1AE4' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1AE4' }),
       response: Responses.tankBuster(),
     },
     {
@@ -61,11 +56,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A12N Mega Holy',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1AE7', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '1AE7', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '1AE7', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1AE7', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1AE7', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1AE7', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -114,11 +104,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A12N Laser Sacrament',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1AE5', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '1AE5', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '1AE5', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1AE5', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1AE5', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1AE5', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -135,11 +120,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A12N Communion Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
-      netRegexDe: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
-      netRegexFr: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
-      netRegexJa: NetRegexes.tether({ source: 'アレキサンダー', id: '0036' }),
-      netRegexCn: NetRegexes.tether({ source: '亚历山大', id: '0036' }),
-      netRegexKo: NetRegexes.tether({ source: '알렉산더', id: '0036' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
