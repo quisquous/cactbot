@@ -21,33 +21,18 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TsukuyomiEx Nightfall Gun',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2BBC', source: 'ツクヨミ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2BBC', source: '月读', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2BBC', source: '츠쿠요미', capture: false }),
       response: Responses.stackMarker(),
     },
     {
       id: 'TsukuyomiEx Nightfall Spear',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2BBD', source: 'ツクヨミ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2BBD', source: '月读', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2BBD', source: '츠쿠요미', capture: false }),
       response: Responses.spread(),
     },
     {
       id: 'TsukuyomiEx Torment',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'ツクヨミ' }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: '月读' }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: '츠쿠요미' }),
       alarmText: (data, matches, output) => {
         if (matches.target === data.me || data.role !== 'tank')
           return;
@@ -85,33 +70,18 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TsukuyomiEx Full Moon',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '5FF', capture: false }),
-      netRegexDe: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '5FF', capture: false }),
-      netRegexFr: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '5FF', capture: false }),
-      netRegexJa: NetRegexes.gainsEffect({ target: 'ツクヨミ', effectId: '5FF', capture: false }),
-      netRegexCn: NetRegexes.gainsEffect({ target: '月读', effectId: '5FF', capture: false }),
-      netRegexKo: NetRegexes.gainsEffect({ target: '츠쿠요미', effectId: '5FF', capture: false }),
       run: (data) => data.moonIsOut = true,
     },
     {
       id: 'TsukuyomiEx New Moon',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '600', capture: false }),
-      netRegexDe: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '600', capture: false }),
-      netRegexFr: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '600', capture: false }),
-      netRegexJa: NetRegexes.gainsEffect({ target: 'ツクヨミ', effectId: '600', capture: false }),
-      netRegexCn: NetRegexes.gainsEffect({ target: '月读', effectId: '600', capture: false }),
-      netRegexKo: NetRegexes.gainsEffect({ target: '츠쿠요미', effectId: '600', capture: false }),
       run: (data) => data.moonIsOut = false,
     },
     {
       id: 'TsukuyomiEx Dark Blade',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2BDA', source: 'ツクヨミ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2BDA', source: '月读', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2BDA', source: '츠쿠요미', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.moonIsOut)
           return output.leftAndOut!();
@@ -140,11 +110,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TsukuyomiEx Bright Blade',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2BDB', source: 'ツクヨミ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2BDB', source: '月读', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2BDB', source: '츠쿠요미', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.moonIsOut)
           return output.rightAndOut!();
@@ -196,22 +161,12 @@ const triggerSet: TriggerSet<Data> = {
       // This happens after 2nd meteors naturally, but if dps is good
       // then this could push unexpectedly earlier (or paired with buster).
       netRegex: NetRegexes.dialog({ line: '[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\..*?', capture: false }),
-      netRegexDe: NetRegexes.dialog({ line: '[^:]*:Meine Rache \.\.\. Ich will\.\.\. meine Rache\.\.\..*?', capture: false }),
-      netRegexFr: NetRegexes.dialog({ line: '[^:]*:Non\, je ne peux pas\.\.\. échouer\.\.\..*?', capture: false }),
-      netRegexJa: NetRegexes.dialog({ line: '[^:]*:嗚呼、まだ、あたしは…………。.*?', capture: false }),
-      netRegexCn: NetRegexes.dialog({ line: '[^:]*:我不能输.*我还没有.*.*?', capture: false }),
-      netRegexKo: NetRegexes.dialog({ line: '[^:]*:아아, 나는 아직……\..*?', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'TsukuyomiEx Supreme Selenomancy',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'ツクヨミ', id: '2EB0', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '月读', id: '2EB0', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '츠쿠요미', id: '2EB0', capture: false }),
       suppressSeconds: 5,
       run: (data) => {
         delete data.moonlitCount;

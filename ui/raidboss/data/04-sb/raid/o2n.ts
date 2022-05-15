@@ -81,22 +81,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2N Evilsphere',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '250F', source: 'Catastrophe' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '250F', source: 'Katastroph' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '250F', source: 'Catastrophe' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '250F', source: 'カタストロフィー' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '250F', source: '灾变者' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '250F', source: '카타스트로피' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'O2N -100Gs',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '24FF', source: 'Catastrophe', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '24FF', source: 'Katastroph', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '24FF', source: 'Catastrophe', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '24FF', source: 'カタストロフィー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '24FF', source: '灾变者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '24FF', source: '카타스트로피', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -113,22 +103,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2N Demon Eye',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '250D', source: 'Catastrophe', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '250D', source: 'Katastroph', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '250D', source: 'Catastrophe', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '250D', source: 'カタストロフィー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '250D', source: '灾变者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '250D', source: '카타스트로피', capture: false }),
       response: Responses.lookAway(),
     },
     {
       id: 'O2N Earthquake',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2512', source: 'Catastrophe', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2512', source: 'Katastroph', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2512', source: 'Catastrophe', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2512', source: 'カタストロフィー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2512', source: '灾变者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2512', source: '카타스트로피', capture: false }),
       alertText: (data, _matches, output) => {
         if (!data.levitating)
           return output.levitate!();
@@ -160,11 +140,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2N Gravitational Wave',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2510', source: 'Catastrophe', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2510', source: 'Katastroph', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2510', source: 'Catastrophe', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2510', source: 'カタストロフィー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2510', source: '灾变者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2510', source: '카타스트로피', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -214,11 +189,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2N Antilight',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2502', source: 'Catastrophe', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2502', source: 'Katastroph', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2502', source: 'Catastrophe', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2502', source: 'カタストロフィー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2502', source: '灾变者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2502', source: '카타스트로피', capture: false }),
       preRun: (data) => data.antiCounter ??= 0,
       durationSeconds: (data) => {
         if (data.antiCounter === 0 && data.levitating)
