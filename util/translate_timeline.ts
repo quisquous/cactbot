@@ -39,7 +39,7 @@ export default async (timelinePath: string, locale: Lang): Promise<void> => {
   // Use findMissing to figure out which lines have errors on them.
   const syncErrors: { [lineNumber: number]: boolean } = {};
   const textErrors: { [lineNumber: number]: boolean } = {};
-  await findMissing(triggersFile, locale, (filename: string, lineNumber: number, label: string) => {
+  await findMissing(triggersFile, locale, (filename, lineNumber, label, _message) => {
     if (!filename.endsWith('.txt') || !lineNumber)
       return;
     if (label === 'text')
