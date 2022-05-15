@@ -555,11 +555,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Brute Phase',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '483E', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '483E', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '483E', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '483E', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '483E', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '483E', capture: false }),
       run: (data) => {
         data.phase = 'brute';
         resetState(data);
@@ -569,11 +564,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Inception Phase',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '486F', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '486F', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '486F', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '486F', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '486F', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '486F', capture: false }),
       run: (data) => {
         data.phase = 'inception';
         resetState(data);
@@ -583,11 +573,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Wormhole Phase',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '486E', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '486E', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '486E', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '486E', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '486E', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '486E', capture: false }),
       run: (data) => {
         data.phase = 'wormhole';
         resetState(data);
@@ -597,11 +582,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Fate Alpha Phase',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '487B', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '487B', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '487B', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487B', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '487B', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '487B', capture: false }),
       run: (data) => {
         data.phase = 'alpha';
         resetState(data);
@@ -611,11 +591,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Fate Beta Phase',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '4B13', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '4B13', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '4B13', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4B13', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '4B13', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '4B13', capture: false }),
       run: (data) => {
         data.phase = 'beta';
         resetState(data);
@@ -625,66 +600,36 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Liquid Tank',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Living Liquid', id: '4978' }),
-      netRegexDe: NetRegexes.abilityFull({ source: 'belebtes Wasser', id: '4978' }),
-      netRegexFr: NetRegexes.abilityFull({ source: 'liquide vivant', id: '4978' }),
-      netRegexJa: NetRegexes.abilityFull({ source: 'リビングリキッド', id: '4978' }),
-      netRegexCn: NetRegexes.abilityFull({ source: '有生命活水', id: '4978' }),
-      netRegexKo: NetRegexes.abilityFull({ source: '살아있는 액체', id: '4978' }),
       run: (data, matches) => data.liquidTank = matches.target,
     },
     {
       id: 'TEA Hand Tank',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Liquid Hand', id: '4979' }),
-      netRegexDe: NetRegexes.abilityFull({ source: 'belebte Hand', id: '4979' }),
-      netRegexFr: NetRegexes.abilityFull({ source: 'membre liquide', id: '4979' }),
-      netRegexJa: NetRegexes.abilityFull({ source: 'リキッドハンド', id: '4979' }),
-      netRegexCn: NetRegexes.abilityFull({ source: '活水之手', id: '4979' }),
-      netRegexKo: NetRegexes.abilityFull({ source: '액체 손', id: '4979' }),
       run: (data, matches) => data.handTank = matches.target,
     },
     {
       id: 'TEA Cruise Chaser Tank',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Cruise Chaser', id: '497A' }),
-      netRegexDe: NetRegexes.abilityFull({ source: 'Chaser-Mecha', id: '497A' }),
-      netRegexFr: NetRegexes.abilityFull({ source: 'Croiseur-chasseur', id: '497A' }),
-      netRegexJa: NetRegexes.abilityFull({ source: 'クルーズチェイサー', id: '497A' }),
-      netRegexCn: NetRegexes.abilityFull({ source: '巡航驱逐者', id: '497A' }),
-      netRegexKo: NetRegexes.abilityFull({ source: '순항추격기', id: '497A' }),
       run: (data, matches) => data.cruiseTank = matches.target,
     },
     {
       id: 'TEA Brute Tank',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Brute Justice', id: '497B' }),
-      netRegexDe: NetRegexes.abilityFull({ source: 'Brutalus', id: '497B' }),
-      netRegexFr: NetRegexes.abilityFull({ source: 'Justicier', id: '497B' }),
-      netRegexJa: NetRegexes.abilityFull({ source: 'ブルートジャスティス', id: '497B' }),
-      netRegexCn: NetRegexes.abilityFull({ source: '残暴正义号', id: '497B' }),
-      netRegexKo: NetRegexes.abilityFull({ source: '포악한 심판자', id: '497B' }),
       run: (data, matches) => data.bruteTank = matches.target,
     },
     {
       id: 'TEA Cascade',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: '4826', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'belebtes Wasser', id: '4826', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'liquide vivant', id: '4826', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'リビングリキッド', id: '4826', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: '4826', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: '4826', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'TEA Protean Wave',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: '4822', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'belebtes Wasser', id: '4822', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'liquide vivant', id: '4822', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'リビングリキッド', id: '4822', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: '4822', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: '4822', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -701,11 +646,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Drainage Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Liquid Rage', id: '0003' }),
-      netRegexDe: NetRegexes.tether({ source: 'levitierte Rage', id: '0003' }),
-      netRegexFr: NetRegexes.tether({ source: 'furie liquide', id: '0003' }),
-      netRegexJa: NetRegexes.tether({ source: 'リキッドレイジ', id: '0003' }),
-      netRegexCn: NetRegexes.tether({ source: '活水之怒', id: '0003' }),
-      netRegexKo: NetRegexes.tether({ source: '분노한 액체', id: '0003' }),
       condition: Conditions.targetIsYou(),
       // Even if folks have the right tethers, this happens repeatedly.
       suppressSeconds: 5,
@@ -725,11 +665,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Hand of Pain 5',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Liquid Hand', id: '482D', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'belebte Hand', id: '482D', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'membre liquide', id: '482D', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'リキッドハンド', id: '482D', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '活水之手', id: '482D', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '액체 손', id: '482D', capture: false }),
       preRun: (data) => {
         data.handOfPainCount = (data.handOfPainCount || 0) + 1;
       },
@@ -884,11 +819,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // Link Up
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '483F', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '483F', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '483F', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '483F', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '483F', capture: false }),
       condition: (data) => data.phase === 'brute',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -907,11 +837,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // Optical Sight
       netRegex: NetRegexes.ability({ source: 'Cruise Chaser', id: '482F', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Chaser-Mecha', id: '482F', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Croiseur-chasseur', id: '482F', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'クルーズチェイサー', id: '482F', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '巡航驱逐者', id: '482F', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '순항추격기', id: '482F', capture: false }),
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -929,22 +854,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Whirlwind',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '49C2', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Chaser-Mecha', id: '49C2', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Croiseur-chasseur', id: '49C2', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '49C2', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '49C2', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '49C2', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'TEA Spin Crusher',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '4A72', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Chaser-Mecha', id: '4A72', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Croiseur-chasseur', id: '4A72', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '4A72', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '4A72', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '4A72', capture: false }),
       // Nobody should be in front of cruise chaser but the tank, and this is close to
       // water thunder handling, so only tell the tank.
       condition: (data) => data.me === data.cruiseTank,
@@ -981,11 +896,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Hidden Minefield',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '4851', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '4851', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '4851', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '4851', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '4851', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '4851', capture: false }),
       condition: (data) => data.role === 'tank',
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
@@ -1047,11 +957,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Limit Cut Shield',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Cruise Chaser', id: '4833', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Chaser-Mecha', id: '4833', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Croiseur-chasseur', id: '4833', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'クルーズチェイサー', id: '4833', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '巡航驱逐者', id: '4833', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '순항추격기', id: '4833', capture: false }),
       delaySeconds: 2,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1148,11 +1053,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 4 seconds after Photon cast starts.
       netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '4836', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Chaser-Mecha', id: '4836', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Croiseur-chasseur', id: '4836', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '4836', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '4836', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '4836', capture: false }),
       delaySeconds: 4,
       suppressSeconds: 10000,
       alertText: (_data, _matches, output) => output.text!(),
@@ -1173,11 +1073,6 @@ const triggerSet: TriggerSet<Data> = {
       // 1 second after enumeration.
       // TODO: find a startsUsing instead of matching an action.
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '4850', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '4850', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '4850', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '4850', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '4850', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '4850', capture: false }),
       // Ignore enumerations later in the fight.
       condition: (data) => data.phase === 'brute',
       delaySeconds: 1,
@@ -1199,11 +1094,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 8 seconds after Flarethrower cast starts.
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '4845', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '4845', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '4845', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '4845', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '4845', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '4845', capture: false }),
       delaySeconds: 8,
       durationSeconds: 9,
       alertText: (data, _matches, output) => namedNisiPass(data, output),
@@ -1265,22 +1155,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Gavel',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '483C', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '483C', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '483C', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '483C', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '483C', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '483C', capture: false }),
       run: (data) => data.seenGavel = true,
     },
     {
       id: 'TEA Double Rocket Punch',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '4847' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '4847' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '4847' }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '4847' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '4847' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '4847' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.sharedTankbusterOnYou!();
@@ -1324,11 +1204,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Brute Ray',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '484A', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
       condition: (data) => data.phase === 'brute',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1476,11 +1351,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Chastening Heat',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A80' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '4A80' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '4A80' }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A80' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '4A80' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A80' }),
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.tankBusterOnYou!();
@@ -1524,11 +1394,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Judgment Crystal Placement',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '485C', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Prim-Alexander', id: '485C', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '485C', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '485C', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '至尊亚历山大', id: '485C', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '485C', capture: false }),
       suppressSeconds: 100,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1546,11 +1411,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Terashatter Flarethrower',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Judgment Crystal', id: '4A88', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Urteilskristall', id: '4A88', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Cristal du jugement', id: '4A88', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '審判の結晶', id: '4A88', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '审判结晶', id: '4A88', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '심판의 결정체', id: '4A88', capture: false }),
       delaySeconds: 1,
       suppressSeconds: 100,
       infoText: (_data, _matches, output) => output.text!(),
@@ -1580,11 +1440,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // Sacrament cast.
       netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '485F', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Prim-Alexander', id: '485F', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '485F', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '485F', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '至尊亚历山大', id: '485F', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '485F', capture: false }),
       condition: (data) => data.phase === 'inception',
       alarmText: (data, _matches, output) => {
         data.vuln ??= {};
@@ -1660,11 +1515,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Wormhole',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '486E', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Prim-Alexander', id: '486E', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '486E', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '486E', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '至尊亚历山大', id: '486E', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '486E', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.options.cactbotWormholeStrat)
           return output.baitChakramsWormholeStrat!();
@@ -1802,11 +1652,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Cactbot Wormhole 4 Super Jump',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '484A', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
       condition: (data) => {
         if (!data.options.cactbotWormholeStrat)
           return false;
@@ -1847,11 +1692,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Mega Holy',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '4A83', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '4A83', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A83', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '4A83', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A83', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1868,11 +1708,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Summon Alexander',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A55', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '4A55', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '4A55', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A55', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '4A55', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A55', capture: false }),
       delaySeconds: 10.4,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1890,11 +1725,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Divine Judgment',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '4879', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Prim-Alexander', id: '4879', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '4879', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '4879', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '至尊亚历山大', id: '4879', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '4879', capture: false }),
       condition: (data) => data.role === 'tank',
       delaySeconds: 6,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -1913,11 +1743,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Perfect Optical Sight Spread',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '488A', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '488A', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '488A', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '488A', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '488A', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '488A', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: Outputs.spread,
@@ -1959,11 +1784,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Ordained Motion',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '487E', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '487E', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '487E', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487E', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '487E', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '487E', capture: false }),
       durationSeconds: 4,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1981,11 +1801,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Ordained Stillness',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '487F', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '487F', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '487F', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487F', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '487F', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '487F', capture: false }),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -2207,11 +2022,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Alpha Ordained Motion 1',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B0D', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '4B0D', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B0D', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0D', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '4B0D', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B0D', capture: false }),
       durationSeconds: 8,
       suppressSeconds: 20,
       infoText: (_data, _matches, output) => output.motionFirst!(),
@@ -2224,11 +2034,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Alpha Ordained Stillness 1',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B0E', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '4B0E', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B0E', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0E', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '4B0E', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B0E', capture: false }),
       durationSeconds: 8,
       suppressSeconds: 20,
       infoText: (_data, _matches, output) => output.stillnessFirst!(),
@@ -2243,11 +2048,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Alpha Ordained Motion 2',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '4899', capture: false }),
-      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '4899', capture: false }),
-      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '4899', capture: false }),
-      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4899', capture: false }),
-      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '4899', capture: false }),
-      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '4899', capture: false }),
       durationSeconds: 15,
       suppressSeconds: 20,
       infoText: (data, _matches, output) => {
@@ -2264,11 +2064,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Alpha Ordained Stillness 2',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '489A', capture: false }),
-      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '489A', capture: false }),
-      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '489A', capture: false }),
-      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489A', capture: false }),
-      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '489A', capture: false }),
-      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '489A', capture: false }),
       durationSeconds: 15,
       suppressSeconds: 20,
       infoText: (data, _matches, output) => {
@@ -2286,11 +2081,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // The non-safe alexanders use 489F.
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '49AA' }),
-      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '49AA' }),
-      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '49AA' }),
-      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '49AA' }),
-      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '49AA' }),
-      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '49AA' }),
       durationSeconds: 10,
       infoText: (data, matches, output) => {
         // TODO: this is overly complicated.
@@ -2372,11 +2162,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Alpha Resolve First Motion',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '487C', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '487C', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '487C', capture: false }),
       // 5 seconds until mechanic
       delaySeconds: 2.2,
       alertText: (data, _matches, output) => {
@@ -2408,11 +2193,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Alpha Resolve Second Motion',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '487C', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '487C', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '487C', capture: false }),
       // ~4 seconds until mechanic (to avoid overlapping with first)
       delaySeconds: 7.2,
       alertText: (data, _matches, output) => {
@@ -2571,11 +2351,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Beta Radiant',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '489E' }),
-      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '489E' }),
-      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '489E' }),
-      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489E' }),
-      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '489E' }),
-      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '489E' }),
       infoText: (data, matches, output) => {
         // Track which perfect alexander clone did this.
         data.radiantSourceId = matches.sourceId;
@@ -2608,11 +2383,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Beta Optical Spread',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '48A0', capture: false }),
-      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '48A0', capture: false }),
-      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '48A0', capture: false }),
-      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A0', capture: false }),
-      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '48A0', capture: false }),
-      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '48A0', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.betaIsOpticalStack = false,
       outputStrings: {
@@ -2630,11 +2400,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Beta Optical Stack',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '48A1', capture: false }),
-      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '48A1', capture: false }),
-      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '48A1', capture: false }),
-      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A1', capture: false }),
-      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '48A1', capture: false }),
-      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '48A1', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.betaIsOpticalStack = true,
       outputStrings: {
@@ -2652,11 +2417,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Beta Optical Final',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '4B14', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
       delaySeconds: 12.2,
       alertText: (data, _matches, output) => {
         if (!data.betaIsOpticalStack)
@@ -2716,11 +2476,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Beta Radiant Final',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '4B14', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
       condition: (data) => !!data.radiantOutputStringKey,
       delaySeconds: 16,
       alertText: (data, _matches, output) => output[data.radiantOutputStringKey ?? 'unknown']!(),
@@ -2730,11 +2485,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Ordained Punishment',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '4891' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '4891' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '4891' }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4891' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '4891' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '4891' }),
       // Because this is two in a row, make this second one info.
       response: Responses.tankBusterSwap('info', 'alarm'),
     },
@@ -2742,11 +2492,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Trine Get Middle',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '488E', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '488E', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '488E', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '488E', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '488E', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '488E', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -2763,11 +2508,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Trine Initial',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '488F' }),
-      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '488F' }),
-      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '488F' }),
-      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '488F' }),
-      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '488F' }),
-      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '488F' }),
       alertText: (data, matches, output) => {
         // Looking for (100, 92), (100, 100), or (100, 108).
         const x = Math.round(parseFloat(matches.x));
@@ -2928,11 +2668,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Trine Second',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '4890', capture: false }),
-      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '4890', capture: false }),
-      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '4890', capture: false }),
-      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4890', capture: false }),
-      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '4890', capture: false }),
-      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '4890', capture: false }),
       suppressSeconds: 15,
       alertText: (data, _matches, output) => output[data.secondTrineResponse ?? 'unknown']!(),
       outputStrings: {
@@ -2955,11 +2690,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Irresistible Grace',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '4894' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '4894' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '4894' }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4894' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '4894' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '4894' }),
       // Don't collide with trine.
       delaySeconds: 2,
       response: Responses.stackMarkerOn('info'),
