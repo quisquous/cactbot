@@ -21,11 +21,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Secondary Head',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B73' }),
-      netRegexDe: NetRegexes.ability({ source: 'Kaliya', id: 'B73' }),
-      netRegexFr: NetRegexes.ability({ source: 'Kaliya', id: 'B73' }),
-      netRegexJa: NetRegexes.ability({ source: 'カーリア', id: 'B73' }),
-      netRegexCn: NetRegexes.ability({ source: '卡利亚', id: 'B73' }),
-      netRegexKo: NetRegexes.ability({ source: '칼리야', id: 'B73' }),
       alertText: (data, matches, output) => {
         return output.text!({ player: data.ShortName(matches.target) });
       },
@@ -44,11 +39,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Seed River First',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'カーリア', id: 'B74', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '卡利亚', id: 'B74', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '칼리야', id: 'B74', capture: false }),
       condition: (data) => !data.firstSeed,
       response: Responses.spreadThenStack(),
       run: (data) => {
@@ -60,11 +50,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Seed Sea First',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: 'B75', source: 'カーリア', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: 'B75', source: '卡利亚', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: 'B75', source: '칼리야', capture: false }),
       condition: (data) => !data.firstSeed,
       response: Responses.stackThenSpread(),
       run: (data) => {
@@ -76,11 +61,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Seed River Second',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: 'B76', source: 'カーリア', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: 'B76', source: '卡利亚', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: 'B76', source: '칼리야', capture: false }),
       condition: (data) => !data.firstSeed,
       response: Responses.stackMarker(),
       run: (data) => delete data.firstSeed,
@@ -89,11 +69,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Seed Sea Second',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: 'B77', source: 'カーリア', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: 'B77', source: '卡利亚', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: 'B77', source: '칼리야', capture: false }),
       condition: (data) => !data.firstSeed,
       response: Responses.spread(),
       run: (data) => delete data.firstSeed,
@@ -103,11 +78,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // Barofield
       netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B6F' }),
-      netRegexDe: NetRegexes.ability({ source: 'Kaliya', id: 'B6F' }),
-      netRegexFr: NetRegexes.ability({ source: 'Kaliya', id: 'B6F' }),
-      netRegexJa: NetRegexes.ability({ source: 'カーリア', id: 'B6F' }),
-      netRegexCn: NetRegexes.ability({ source: '卡利亚', id: 'B6F' }),
-      netRegexKo: NetRegexes.ability({ source: '칼리야', id: 'B6F' }),
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
       promise: (_data, matches) =>
@@ -135,11 +105,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Forked Lightning',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B85', source: 'Electric Node' }),
-      netRegexDe: NetRegexes.ability({ id: 'B85', source: 'Elektrisches Modul' }),
-      netRegexFr: NetRegexes.ability({ id: 'B85', source: 'Module D\'Électrochoc' }),
-      netRegexJa: NetRegexes.ability({ id: 'B85', source: '雷撃システム' }),
-      netRegexCn: NetRegexes.ability({ id: 'B85', source: '雷击系统' }),
-      netRegexKo: NetRegexes.ability({ id: 'B85', source: '뇌격 시스템' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -157,11 +122,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Phase 3',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: 'B78', source: 'カーリア', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: 'B78', source: '卡利亚', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: 'B78', source: '칼리야', capture: false }),
       sound: 'Long',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -179,11 +139,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Tether Accumulate A',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '001C', target: 'Kaliya' }),
-      netRegexDe: NetRegexes.tether({ id: '001C', target: 'Kaliya' }),
-      netRegexFr: NetRegexes.tether({ id: '001C', target: 'Kaliya' }),
-      netRegexJa: NetRegexes.tether({ id: '001C', target: 'カーリア' }),
-      netRegexCn: NetRegexes.tether({ id: '001C', target: '卡利亚' }),
-      netRegexKo: NetRegexes.tether({ id: '001C', target: '칼리야' }),
       run: (data, matches) => {
         (data.tetherA ??= []).push(matches.source);
       },
@@ -192,11 +147,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Tether Accumulate B',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '001D', target: 'Kaliya' }),
-      netRegexDe: NetRegexes.tether({ id: '001D', target: 'Kaliya' }),
-      netRegexFr: NetRegexes.tether({ id: '001D', target: 'Kaliya' }),
-      netRegexJa: NetRegexes.tether({ id: '001D', target: 'カーリア' }),
-      netRegexCn: NetRegexes.tether({ id: '001D', target: '卡利亚' }),
-      netRegexKo: NetRegexes.tether({ id: '001D', target: '칼리야' }),
       run: (data, matches) => {
         (data.tetherB ??= []).push(matches.source);
       },
@@ -205,11 +155,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Tether A',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
-      netRegexDe: NetRegexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
-      netRegexFr: NetRegexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
-      netRegexJa: NetRegexes.tether({ id: '001C', target: 'カーリア', capture: false }),
-      netRegexCn: NetRegexes.tether({ id: '001C', target: '卡利亚', capture: false }),
-      netRegexKo: NetRegexes.tether({ id: '001C', target: '칼리야', capture: false }),
       condition: (data) => data.tetherA?.length === 2,
       alarmText: (data, _matches, output) => {
         let partner;
@@ -240,11 +185,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Tether B',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
-      netRegexDe: NetRegexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
-      netRegexFr: NetRegexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
-      netRegexJa: NetRegexes.tether({ id: '001D', target: 'カーリア', capture: false }),
-      netRegexCn: NetRegexes.tether({ id: '001D', target: '卡利亚', capture: false }),
-      netRegexKo: NetRegexes.tether({ id: '001D', target: '칼리야', capture: false }),
       condition: (data) => data.tetherB?.length === 2,
       alarmText: (data, _matches, output) => {
         let partner;
@@ -275,11 +215,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Tether Cleanup',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: 'B7B', source: 'カーリア', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: 'B7B', source: '卡利亚', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: 'B7B', source: '칼리야', capture: false }),
       run: (data) => {
         delete data.tetherA;
         delete data.tetherB;

@@ -101,11 +101,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TitanEx Upheaval',
       // Five second cast time.
       netRegex: NetRegexes.startsUsing({ source: 'Titan', id: '5BA', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Titan', id: '5BA', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Titan', id: '5BA', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'タイタン', id: '5BA', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '泰坦', id: '5BA', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '타이탄', id: '5BA', capture: false }),
       response: Responses.knockback('info'),
     },
   ],
