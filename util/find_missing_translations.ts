@@ -1,9 +1,12 @@
-import path from 'path';
 import fs from 'fs';
-import { fileURLToPath } from 'url';
+import path from 'path';
 import readline from 'readline';
-import { findMissing } from './find_missing_timeline_translations';
+import { fileURLToPath } from 'url';
+
+import { isLang, Lang } from '../resources/languages';
+
 import { walkDirSync } from './file_utils';
+import { findMissing } from './find_missing_timeline_translations';
 
 // Directory names to ignore when looking for JavaScript files.
 const ignoreDirs = [
@@ -16,13 +19,13 @@ const ignoreDirs = [
 ];
 
 // All valid two letter locale names.
-const allLocales = new Set(['en', 'cn', 'de', 'fr', 'ja', 'ko']);
+const allLocales = new Set<Lang>(['en', 'cn', 'de', 'fr', 'ja', 'ko']);
 
 // Locales that are in zoneRegex object blocks.
-const zoneregexLocales = new Set(['en', 'cn', 'ko']);
+const zoneregexLocales = new Set<Lang>(['en', 'cn', 'ko']);
 
 // Locales that are not in zoneRegex object blocks.
-const nonZoneregexLocales = new Set([...allLocales].filter((locale) => {
+const nonZoneregexLocales = new Set<Lang>([...allLocales].filter((locale) => {
   return !zoneregexLocales.has(locale);
 }));
 
@@ -30,8 +33,8 @@ const nonZoneregexLocales = new Set([...allLocales].filter((locale) => {
 const basePath = () => path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 
 // Return a list of all javascript filenames found under basePath()
-const findAllJavascriptFiles = (filter) => {
-  const arr = [];
+const findAllJavascriptFiles = (filter: string): string[] => {
+  const arr: string[] = [];
   walkDirSync(basePath(), (filepath) => {
     if (ignoreDirs.some((str) => filepath.includes(str)))
       return;
@@ -50,8 +53,8 @@ const findAllJavascriptFiles = (filter) => {
 
 // Print missing translations in |file| for |locales|
 // TODO: this should just leverage eval
-const parseJavascriptFile = (file, locales) => {
-  locales = new Set(locales);
+const parseJavascriptFile = (file: string, inputLocales: Lang[]) => {
+  const locales = new Set(inputLocales);
 
   const lineCounter = ((i = 0) => () => i++)();
 
@@ -60,9 +63,9 @@ const parseJavascriptFile = (file, locales) => {
   });
 
   let lineNumber = 0;
-  let keys = [];
-  let fixme = [];
-  let openMatch = null;
+  let keys: string[] = [];
+  let fixme: Lang[] = [];
+  let openMatch: RegExpMatchArray | undefined = undefined;
   let foundIgnore = false;
 
   const openObjRe = /^(\s*)(.*{)\s*$/;
@@ -92,12 +95,13 @@ const parseJavascriptFile = (file, locales) => {
     }
 
     // If we're not inside an object, keep looking for the start of one.
-    if (!openMatch)
+    const openMatchValue = openMatch?.[1];
+    if (!openMatch || !openMatchValue)
       return;
 
     // If this object is ended with the same indentation,
     // then we've probably maybe found the end of this object.
-    if (line.match(`${openMatch[1]}}`)) {
+    if (line.match(`${openMatchValue}}`)) {
       // Check if these keys look like a translation block.
       if (!foundIgnore && keys.includes('en')) {
         const missingKeys = new Set([...locales].filter((locale) => {
@@ -105,18 +109,22 @@ const parseJavascriptFile = (file, locales) => {
         }));
 
         const openStr = openMatch[2];
+
+        if (!openStr)
+          return;
+
         // Only some locales care about zoneRegex, so special case.
         if (openStr === 'zoneRegex: {')
-          missingKeys.delete(nonZoneregexLocales);
+          nonZoneregexLocales.forEach((lang: Lang) => missingKeys.delete(lang));
 
         if (missingKeys.size > 0) {
           let err = `${file}:${lineNumber} "${openStr}"`;
-          if (locales.length > 1)
-            err += ` ${missingKeys}`;
+          if (locales.size > 1)
+            err += ` ${[...missingKeys].join(',')}`;
           console.log(err);
         }
       }
-      openMatch = null;
+      openMatch = undefined;
       return;
     }
 
@@ -127,28 +135,34 @@ const parseJavascriptFile = (file, locales) => {
     const keyMatch = line.match(keyRe);
     if (keyMatch) {
       const lang = keyMatch[1];
-      keys.push(lang);
+      if (isLang(lang)) {
+        keys.push(lang);
 
-      // Track if this line has a FIXME comment on it, so we can include it as "missing".
-      if (fixmeRe.test(line))
-        fixme.push(lang);
+        // Track if this line has a FIXME comment on it, so we can include it as "missing".
+        if (fixmeRe.test(line))
+          fixme.push(lang);
+      }
     }
   });
 };
 
-export const run = async (filter, locale) => {
+export const run = async (filter: string, locale: Lang): Promise<void> => {
   const files = findAllJavascriptFiles(filter);
   for (const file of files) {
-    await findMissing(file, locale, (file, line, label, message) => {
-      let str = file;
-      if (line)
-        str += `:${line}`;
-      if (label)
-        str += ` ${label}`;
-      if (message)
-        str += ` ${message}`;
-      console.log(str);
-    });
+    await findMissing(
+      file,
+      locale,
+      (file: string, line: number | undefined, label: string | undefined, message: string) => {
+        let str = file;
+        if (line)
+          str += `:${line}`;
+        if (label)
+          str += ` ${label}`;
+        if (message)
+          str += ` ${message}`;
+        console.log(str);
+      },
+    );
     parseJavascriptFile(file, [locale]);
   }
 };
