@@ -337,7 +337,7 @@ class TriggerOutputProxy {
     params: TriggerParams,
     name: string,
     id: string): string | undefined {
-    if (!template)
+    if (template === undefined)
       return;
 
     let value: unknown;
@@ -353,7 +353,7 @@ class TriggerOutputProxy {
     }
 
     return value.replace(/\${\s*([^}\s]+)\s*}/g, (_fullMatch: string, key: string) => {
-      if (params && key in params) {
+      if (key in params) {
         const str = params[key];
         switch (typeof str) {
           case 'string':
@@ -581,7 +581,7 @@ export class PopupText {
   }
 
   ReloadTimelines(): void {
-    if (!this.triggerSets || !this.me || !this.zoneName || !this.timelineLoader.IsReady())
+    if (!this.me || !this.zoneName || !this.timelineLoader.IsReady())
       return;
 
     // Drop the triggers and timelines from the previous zone, so we can add new ones.
@@ -633,7 +633,7 @@ export class PopupText {
         continue;
       }
 
-      if (set.zoneId) {
+      if (set.zoneId !== undefined) {
         if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId)))
           continue;
       } else if (set.zoneRegex) {
@@ -758,7 +758,7 @@ export class PopupText {
         }
       }
 
-      if (set.timeline)
+      if (set.timeline !== undefined)
         addTimeline(set.timeline);
       if (set.timelineReplace)
         replacements.push(...set.timelineReplace);
@@ -1091,51 +1091,50 @@ export class PopupText {
 
   _onTriggerInternalCondition(triggerHelper: TriggerHelper): boolean {
     const condition = triggerHelper.triggerOptions.Condition ?? triggerHelper.trigger.condition;
-    if (condition) {
-      if (condition === true)
-        return true;
-      if (!condition(this.data, triggerHelper.matches, triggerHelper.output))
-        return false;
-    }
-    return true;
+    // If the condition is missing or hardcoded as `true`
+    if (condition === undefined || condition === true)
+      return true;
+    // If the condition is hardcoded as `false`
+    else if (condition === false)
+      return false;
+
+    const conditionFuncReturn = condition(this.data, triggerHelper.matches, triggerHelper.output);
+    if (conditionFuncReturn === true)
+      return true;
+    // Treat all other return values as false (undefined | false)
+    return false;
   }
 
   // Set defaults for triggerHelper object (anything that won't change based on
   // other trigger functions running)
   _onTriggerInternalHelperDefaults(triggerHelper: TriggerHelper): void {
-    if (triggerHelper.triggerAutoConfig) {
-      const textAlertsEnabled = triggerHelper.triggerAutoConfig.TextAlertsEnabled;
-      if (textAlertsEnabled !== undefined)
-        triggerHelper.textAlertsEnabled = textAlertsEnabled;
-      const soundAlertsEnabled = triggerHelper.triggerAutoConfig.SoundAlertsEnabled;
-      if (soundAlertsEnabled !== undefined)
-        triggerHelper.soundAlertsEnabled = soundAlertsEnabled;
-      const spokenAlertsEnabled = triggerHelper.triggerAutoConfig.SpokenAlertsEnabled;
-      if (spokenAlertsEnabled !== undefined)
-        triggerHelper.spokenAlertsEnabled = spokenAlertsEnabled;
-    }
+    // Load settings from triggerAutoConfig if they're set
+    triggerHelper.textAlertsEnabled =
+      triggerHelper.triggerAutoConfig.TextAlertsEnabled ?? triggerHelper.textAlertsEnabled;
+    triggerHelper.soundAlertsEnabled =
+      triggerHelper.triggerAutoConfig.SoundAlertsEnabled ?? triggerHelper.soundAlertsEnabled;
+    triggerHelper.spokenAlertsEnabled =
+      triggerHelper.triggerAutoConfig.SpokenAlertsEnabled ?? triggerHelper.spokenAlertsEnabled;
 
-    if (triggerHelper.triggerOptions) {
-      const textAlertsEnabled = triggerHelper.triggerOptions.TextAlert;
-      if (textAlertsEnabled !== undefined)
-        triggerHelper.textAlertsEnabled = textAlertsEnabled;
-      const soundAlertsEnabled = triggerHelper.triggerOptions.SoundAlert;
-      if (soundAlertsEnabled !== undefined)
-        triggerHelper.soundAlertsEnabled = soundAlertsEnabled;
-      const spokenAlertsEnabled = triggerHelper.triggerOptions.SpeechAlert;
-      if (spokenAlertsEnabled !== undefined)
-        triggerHelper.spokenAlertsEnabled = spokenAlertsEnabled;
-      const groupSpokenAlertsEnabled = triggerHelper.triggerOptions.GroupSpeechAlert;
-      if (groupSpokenAlertsEnabled !== undefined)
-        triggerHelper.groupSpokenAlertsEnabled = groupSpokenAlertsEnabled;
-    }
+    // Load settings from triggerOptions if they're set
+    triggerHelper.textAlertsEnabled =
+      triggerHelper.triggerOptions.TextAlert ?? triggerHelper.textAlertsEnabled;
+    triggerHelper.soundAlertsEnabled =
+      triggerHelper.triggerOptions.SoundAlert ?? triggerHelper.soundAlertsEnabled;
+    triggerHelper.spokenAlertsEnabled =
+      triggerHelper.triggerOptions.SpeechAlert ?? triggerHelper.spokenAlertsEnabled;
+    triggerHelper.groupSpokenAlertsEnabled =
+      triggerHelper.triggerOptions.GroupSpeechAlert ?? triggerHelper.groupSpokenAlertsEnabled;
 
+    // If the user has suppressed all output for the trigger, reflect that here
     if (triggerHelper.userSuppressedOutput) {
       triggerHelper.textAlertsEnabled = false;
       triggerHelper.soundAlertsEnabled = false;
       triggerHelper.spokenAlertsEnabled = false;
       triggerHelper.groupSpokenAlertsEnabled = false;
     }
+
+    // If the user has disabled audio output, reflect that here
     if (!this.options.AudioAllowed) {
       triggerHelper.soundAlertsEnabled = false;
       triggerHelper.spokenAlertsEnabled = false;
@@ -1152,7 +1151,7 @@ export class PopupText {
 
   _onTriggerInternalDelaySeconds(triggerHelper: TriggerHelper): Promise<void> | undefined {
     const delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
-    if (!delay || delay <= 0 || typeof delay !== 'number')
+    if (delay === undefined || delay === null || delay <= 0 || typeof delay !== 'number')
       return;
 
     const triggerID = this.currentTriggerID++;
@@ -1161,7 +1160,7 @@ export class PopupText {
       window.setTimeout(() => {
         if (this.timers[triggerID])
           res();
-        else if (rej)
+        else
           rej();
         delete this.timers[triggerID];
       }, delay * 1000);
@@ -1280,20 +1279,21 @@ export class PopupText {
   _onTriggerInternalTTS(triggerHelper: TriggerHelper): void {
     if (!triggerHelper.groupSpokenAlertsEnabled || typeof triggerHelper.ttsText === 'undefined') {
       let result = undefined;
-      if (triggerHelper.triggerOptions.TTSText) {
+      if (triggerHelper.triggerOptions.TTSText !== undefined) {
         result = triggerHelper.valueOrFunction(triggerHelper.triggerOptions.TTSText);
       } else if (triggerHelper.trigger.tts !== undefined) {
         // Allow null/false/NaN/0/'' in this branch.
         result = triggerHelper.valueOrFunction(triggerHelper.trigger.tts);
       } else if (triggerHelper.response) {
         const resp: ResponseField<RaidbossData, Matches> = triggerHelper.response;
-        if (resp.tts)
+        if (resp.tts !== undefined)
           result = triggerHelper.valueOrFunction(resp.tts);
       }
 
       // Allow falsey values to disable tts entirely
       // Undefined will fall back to defaultTTSText
       if (result !== undefined) {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         if (result)
           triggerHelper.ttsText = result?.toString();
       } else {
@@ -1303,7 +1303,7 @@ export class PopupText {
   }
 
   _onTriggerInternalPlayAudio(triggerHelper: TriggerHelper): void {
-    if (triggerHelper.trigger.sound &&
+    if (triggerHelper.trigger.sound !== undefined &&
         triggerHelper.soundUrl &&
         soundStrs.includes(triggerHelper.soundUrl)) {
       const namedSound = triggerHelper.soundUrl + 'Sound';
@@ -1406,14 +1406,14 @@ export class PopupText {
 
     let textObj: RaidbossTriggerOutput =
       triggerHelper.triggerOptions[upperTextKey];
-    if (!textObj && triggerHelper.trigger[lowerTextKey])
+    if (textObj === undefined && triggerHelper.trigger[lowerTextKey] !== undefined)
       textObj = triggerHelper.trigger[lowerTextKey];
-    if (!textObj && triggerHelper.response)
+    if (textObj === undefined && triggerHelper.response !== undefined)
       textObj = triggerHelper.response[lowerTextKey];
-    if (!textObj)
+    if (textObj === undefined || textObj === null)
       return;
     let text = triggerHelper.valueOrFunction(textObj);
-    if (!text)
+    if (text === undefined || text === null)
       return;
     if (typeof text === 'number')
       text = text.toString();
@@ -1462,7 +1462,7 @@ export class PopupText {
 
   getDataObject(): RaidbossData {
     let preserveHP = 0;
-    if (this.data && this.data.currentHP)
+    if (this.data.currentHP)
       preserveHP = this.data.currentHP;
 
     // TODO: make a breaking change at some point and

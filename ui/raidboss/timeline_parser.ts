@@ -90,7 +90,7 @@ export class TimelineParser {
     zoneId?: number,
   ) {
     this.options = options ?? defaultOptions;
-    this.perTriggerAutoConfig = this.options['PerTriggerAutoConfig'] || {};
+    this.perTriggerAutoConfig = this.options.PerTriggerAutoConfig;
     this.replacements = replacements;
 
     // A set of names which will not be notified about.
@@ -401,9 +401,6 @@ export class TimelineParser {
   }
 
   private GetReplacedSync(sync: string): string {
-    if (!this.replacements)
-      return sync;
-
     const replaceLang = this.options.ParserLanguage ?? 'en';
     return translateRegex(sync, replaceLang, this.replacements);
   }
