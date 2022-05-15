@@ -5,6 +5,7 @@ import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_
 import PartyTracker from '../../resources/party';
 import { addPlayerChangedOverrideListener, PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
+import { translateRegex } from '../../resources/translations';
 import Util from '../../resources/util';
 import ZoneId from '../../resources/zone_id';
 import { RaidbossData } from '../../types/data';
@@ -696,7 +697,10 @@ export class PopupText {
 
           const triggerObject: { [key: string]: unknown } = trigger;
 
-          // parser-language-based regex takes precedence.
+          // `regex` and `regexDe` (etc) are deprecated, however they may still be used
+          // by user triggers, and so are still checked here.  As these aren't used
+          // by cactbot itself, they are never auto-translated.
+          // TODO: maybe we could consider removing these once timelines don't need parsed lines?
           if (isRegexTrigger(trigger)) {
             const regex = triggerObject[regexParserLang] ?? trigger.regex;
             if (regex instanceof RegExp) {
@@ -706,10 +710,20 @@ export class PopupText {
             }
           }
 
+          // `netRegexDe` (etc) is also deprecated, but they also may still be used by
+          // user triggers.  If they exist, they will take precedence over `netRegex`.
+          // `netRegex` will be auto-translated into the parser language.  `netRegexDe`
+          // and friends will never be auto-translated and are assumed to be correct.
           if (isNetRegexTrigger(trigger)) {
-            const netRegex = triggerObject[netRegexParserLang] ?? trigger.netRegex;
-            if (netRegex instanceof RegExp) {
-              trigger.localNetRegex = Regexes.parse(netRegex);
+            const defaultNetRegex = trigger.netRegex;
+            const localeNetRegex = triggerObject[netRegexParserLang];
+            if (localeNetRegex instanceof RegExp) {
+              trigger.localNetRegex = Regexes.parse(localeNetRegex);
+              orderedTriggers.push(trigger);
+              found = true;
+            } else if (defaultNetRegex) {
+              const trans = translateRegex(defaultNetRegex, this.parserLang, set.timelineReplace);
+              trigger.localNetRegex = Regexes.parse(trans);
               orderedTriggers.push(trigger);
               found = true;
             }
