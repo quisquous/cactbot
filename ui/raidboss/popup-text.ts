@@ -1462,7 +1462,8 @@ export class PopupText {
 
   getDataObject(): RaidbossData {
     let preserveHP = 0;
-    if (this.data.currentHP)
+    // Note that this function gets called in the constructor, before `this.data` has been set.
+    if (this.data?.currentHP)
       preserveHP = this.data.currentHP;
 
     // TODO: make a breaking change at some point and
