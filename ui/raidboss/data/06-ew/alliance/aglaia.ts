@@ -43,27 +43,18 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Byregot Ordeal of Thunder',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7176', source: 'Byregot', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '7176', source: 'Byregot', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '7176', source: 'Byregot', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '7176', source: 'ビエルゴ', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Aglaia Byregot Byregot\'s Strike',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '725A', source: 'Byregot', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '725A', source: 'Byregot', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '725A', source: 'Byregot', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '725A', source: 'ビエルゴ', capture: false }),
       response: Responses.knockback('info'),
     },
     {
       id: 'Aglaia Byregot Byregot\'s Strike Lightning',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7167', source: 'Byregot', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '7167', source: 'Byregot', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '7167', source: 'Byregot', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '7167', source: 'ビエルゴ', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -78,18 +69,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Byregot Byregot\'s Ward',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7175', source: 'Byregot' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '7175', source: 'Byregot' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '7175', source: 'Byregot' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '7175', source: 'ビエルゴ' }),
       response: Responses.tankCleave(),
     },
     {
       id: 'Aglaia Byregot Reproduce',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '716B', source: 'Byregot', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '716B', source: 'Byregot', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '716B', source: 'Byregot', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '716B', source: 'ビエルゴ', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -104,54 +89,36 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Rhalgr\'s Emissary Destructive Static',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70E0', source: 'Rhalgr\'s Emissary', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70E0', source: 'Rhalgrs Abgesandt(?:e|er|es|en)', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70E0', source: 'Émissaire De Rhalgr', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70E0', source: 'ラールガーズ・エミッサリー', capture: false }),
       response: Responses.getBehind(),
     },
     {
       id: 'Aglaia Rhalgr\'s Emissary Bolts from the Blue',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70E3', source: 'Rhalgr\'s Emissary', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70E3', source: 'Rhalgrs Abgesandt(?:e|er|es|en)', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70E3', source: 'Émissaire De Rhalgr', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70E3', source: 'ラールガーズ・エミッサリー', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Aglaia Rhalgr\'s Emissary Destructive Strike',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70D9', source: 'Rhalgr\'s Emissary' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70D9', source: 'Rhalgrs Abgesandt(?:e|er|es|en)' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70D9', source: 'Émissaire De Rhalgr' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70D9', source: 'ラールガーズ・エミッサリー' }),
       response: Responses.tankCleave(),
     },
     {
       id: 'Aglaia Rhalgr Lightning Reign',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70A5', source: 'Rhalgr', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70A5', source: 'Rhalgr', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70A5', source: 'Rhalgr', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70A5', source: 'ラールガー', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Aglaia Rhalgr Destructive Bolt Collect',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70B4', source: 'Rhalgr' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70B4', source: 'Rhalgr' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70B4', source: 'Rhalgr' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70B4', source: 'ラールガー' }),
       run: (data, matches) => data.tankbusters.push(matches.target),
     },
     {
       id: 'Aglaia Rhalgr Destructive Bolt',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70B4', source: 'Rhalgr', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70B4', source: 'Rhalgr', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70B4', source: 'Rhalgr', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70B4', source: 'ラールガー', capture: false }),
       delaySeconds: 0.3,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
@@ -176,9 +143,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Rhalgr Rhalgr\'s Beacon',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70B8', source: 'Rhalgr', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70B8', source: 'Rhalgr', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70B8', source: 'Rhalgr', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70B8', source: 'ラールガー', capture: false }),
       // 10 second cast.
       delaySeconds: 5,
       alertText: (data, _matches, output) => {
@@ -199,9 +163,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Rhalgr Lightning Storm',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70BA', source: 'Rhalgr' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70BA', source: 'Rhalgr' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70BA', source: 'Rhalgr' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70BA', source: 'ラールガー' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -209,18 +170,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Rhalgr Broken World',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70A6', source: 'Rhalgr', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70A6', source: 'Rhalgr', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70A6', source: 'Rhalgr', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70A6', source: 'ラールガー', capture: false }),
       run: (data) => data.rhalgrBrokenWorldActive = true,
     },
     {
       id: 'Aglaia Rhalgr Broken World Cleanup',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70A6', source: 'Rhalgr', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70A6', source: 'Rhalgr', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70A6', source: 'Rhalgr', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70A6', source: 'ラールガー', capture: false }),
       delaySeconds: 20,
       run: (data) => data.rhalgrBrokenWorldActive = false,
     },
@@ -228,9 +183,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Rhalgr Hand of the Destroyer Blue',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70A9', source: 'Rhalgr', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70A9', source: 'Rhalgr', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70A9', source: 'Rhalgr', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70A9', source: 'ラールガー', capture: false }),
       alertText: (data, _matches, output) => {
         if (data.rhalgrBrokenWorldActive)
           return output.redSideAway!();
@@ -255,9 +207,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Rhalgr Hand of the Destroyer Red Initial',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70A8', source: 'Rhalgr', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70A8', source: 'Rhalgr', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70A8', source: 'Rhalgr', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70A8', source: 'ラールガー', capture: false }),
       alertText: (_data, _matches, output) => output.blueSide!(),
       outputStrings: {
         blueSide: {
@@ -272,9 +221,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Rhalgr Hand of the Destroyer Red',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70AC', source: 'Rhalgr', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70AC', source: 'Rhalgr', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70AC', source: 'Rhalgr', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70AC', source: 'ラールガー', capture: false }),
       alertText: (_data, _matches, output) => output.nearRed!(),
       outputStrings: {
         nearRed: {
@@ -289,18 +235,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Lions Double Immolation',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7177', source: ['Lion of Aglaia', 'Lioness of Aglaia'], capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '7177', source: ['Aglaia-Löwe', 'Aglaia-Löwin'], capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '7177', source: ['Lion D\'Aglaé', 'Lionne D\'Aglaé'], capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '7177', source: ['アグライア・ライオン', 'アグライア・ライオネス'], capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Aglaia Lions Slash and Burn Lioness First',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '71D2', source: 'Lioness of Aglaia', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '71D2', source: 'Aglaia-Löwin', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '71D2', source: 'Lionne D\'Aglaé', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '71D2', source: 'アグライア・ライオネス', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -315,9 +255,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Lions Slash and Burn Lion First',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '71D0', source: 'Lion of Aglaia', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '71D0', source: 'Aglaia-Löwe', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '71D0', source: 'Lion D\'Aglaé', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '71D0', source: 'アグライア・ライオン', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -332,36 +269,24 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Azeyma Warden\'s Prominence',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '70A0', source: 'Azeyma', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '70A0', source: 'Azeyma', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '70A0', source: 'Azeyma', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '70A0', source: 'アーゼマ', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Aglaia Azeyma Solar Wings',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7081', source: 'Azeyma', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '7081', source: 'Azeyma', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '7081', source: 'Azeyma', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '7081', source: 'アーゼマ', capture: false }),
       response: Responses.goFrontBack(),
     },
     {
       id: 'Aglaia Azeyma Warden\'s Warmth Collect',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '709F', source: 'Azeyma' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '709F', source: 'Azeyma' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '709F', source: 'Azeyma' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '709F', source: 'アーゼマ' }),
       run: (data, matches) => data.tankbusters.push(matches.target),
     },
     {
       id: 'Aglaia Azeyma Warden\'s Warmth',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '709F', source: 'Azeyma', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '709F', source: 'Azeyma', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '709F', source: 'Azeyma', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '709F', source: 'アーゼマ', capture: false }),
       delaySeconds: 0.3,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
@@ -386,18 +311,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Azeyma Fleeting Spark',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '709C', source: 'Azeyma', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '709C', source: 'Azeyma', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '709C', source: 'Azeyma', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '709C', source: 'アーゼマ', capture: false }),
       response: Responses.getBehind(),
     },
     {
       id: 'Aglaia Azeyma Sublime Sunset',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7098', source: 'Azeyma', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '7098', source: 'Azeyma', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '7098', source: 'Azeyma', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '7098', source: 'アーゼマ', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -412,18 +331,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal As Above, So Below',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['70E8', '70E9'], source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['70E8', '70E9'], source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['70E8', '70E9'], source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['70E8', '70E9'], source: 'ナルザル', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Aglaia Nald\'thal Heat Above, Flames Below Orange Swap',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '73A4', source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '73A4', source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '73A4', source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '73A4', source: 'ナルザル', capture: false }),
       durationSeconds: 6,
       response: Responses.getOut(),
       run: (data) => data.naldLastColor = 'orange',
@@ -432,9 +345,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Heat Above, Flames Below Blue',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '73A5', source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '73A5', source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '73A5', source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '73A5', source: 'ナルザル', capture: false }),
       durationSeconds: 6,
       response: Responses.getUnder(),
       run: (data) => data.naldLastColor = 'blue',
@@ -461,9 +371,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Heavens\' Trial',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '711F', source: ['Thal', 'Nald\'thal'] }),
-      netRegexDe: NetRegexes.startsUsing({ id: '711F', source: ['Thal', 'Nald\'Thal'] }),
-      netRegexFr: NetRegexes.startsUsing({ id: '711F', source: ['Thal', 'Nald\'Thal'] }),
-      netRegexJa: NetRegexes.startsUsing({ id: '711F', source: ['ザル神', 'ナルザル'] }),
       alertText: (data, matches, output) => {
         if (data.naldSmeltingSpread.includes(data.me))
           return;
@@ -478,9 +385,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Golden Tenet',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '711B', source: 'Nald\'thal' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '711B', source: 'Nald\'Thal' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '711B', source: 'Nald\'Thal' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '711B', source: 'ナルザル' }),
       response: Responses.sharedTankBuster(),
     },
     {
@@ -495,9 +399,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Far Above, Deep Below Blue',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '73AA', source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '73AA', source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '73AA', source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '73AA', source: 'ナルザル', capture: false }),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -530,9 +431,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Far Above, Deep Below Orange',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '73AB', source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '73AB', source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '73AB', source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '73AB', source: 'ナルザル', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.naldArrowMarker.includes(data.me))
           return output.ignoreArrow!();
@@ -551,9 +449,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Far-flung Fire',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '73AC', source: 'Nald' }),
-      netRegexDe: NetRegexes.ability({ id: '73AC', source: 'Nald' }),
-      netRegexFr: NetRegexes.ability({ id: '73AC', source: 'Nald' }),
-      netRegexJa: NetRegexes.ability({ id: '73AC', source: 'ナル神' }),
       condition: (data) => data.naldLastColor === 'orange',
       alertText: (data, matches, output) => {
         return output.lineStackOn!({ player: data.ShortName(matches.target) });
@@ -576,9 +471,6 @@ const triggerSet: TriggerSet<Data> = {
       // 73BF = starts blue, swaps orange
       // 741D = starts orange, stays orange
       netRegex: NetRegexes.startsUsing({ id: ['73BF', '741D'], source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['73BF', '741D'], source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['73BF', '741D'], source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['73BF', '741D'], source: 'ナルザル', capture: false }),
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.naldLastColor = 'orange',
@@ -597,9 +489,6 @@ const triggerSet: TriggerSet<Data> = {
       // 73C0 = starts blue, stays blue
       // 741C = starts orange, swaps blue
       netRegex: NetRegexes.startsUsing({ id: ['73C0', '741C'], source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['73C0', '741C'], source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['73C0', '741C'], source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['73C0', '741C'], source: 'ナルザル', capture: false }),
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.naldLastColor = 'blue',
@@ -616,18 +505,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Hell of Fire Front',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '72B7', source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '72B7', source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '72B7', source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '72B7', source: 'ナルザル', capture: false }),
       response: Responses.getBehind(),
     },
     {
       id: 'Aglaia Nald\'thal Hell of Fire Back',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '72B9', source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '72B9', source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '72B9', source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '72B9', source: 'ナルザル', capture: false }),
       alertText: (_data, _matches, output) => output.goFront!(),
       outputStrings: {
         goFront: Outputs.goFront,
@@ -637,9 +520,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Soul Vessel Magmatic Spell',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '712D', source: 'Soul Vessel', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '712D', source: 'Seelengefäß', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '712D', source: 'réceptacle d\'âme', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '712D', source: '魂の器', capture: false }),
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -655,18 +535,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Stygian Tenet Collect',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '711D', source: 'Nald\'thal' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '711D', source: 'Nald\'Thal' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '711D', source: 'Nald\'Thal' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '711D', source: 'ナルザル' }),
       run: (data, matches) => data.tankbusters.push(matches.target),
     },
     {
       id: 'Aglaia Nald\'thal Stygian Tenet',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '711D', source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '711D', source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '711D', source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '711D', source: 'ナルザル', capture: false }),
       delaySeconds: 0.3,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
@@ -693,9 +567,6 @@ const triggerSet: TriggerSet<Data> = {
       // 73CA = start blue, stay blue
       // 73CC = start orange, swap blue
       netRegex: NetRegexes.startsUsing({ id: ['73CA', '73CC'], source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['73CA', '73CC'], source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['73CA', '73CC'], source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['73CA', '73CC'], source: 'ナルザル', capture: false }),
       durationSeconds: 6,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
@@ -731,9 +602,6 @@ const triggerSet: TriggerSet<Data> = {
       // 73CB = orange, unknown if swap
       // 741B = orange, unknown if swap
       netRegex: NetRegexes.startsUsing({ id: ['73CB', '741B'], source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['73CB', '741B'], source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['73CB', '741B'], source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['73CB', '741B'], source: 'ナルザル', capture: false }),
       durationSeconds: 6,
       // Use info here to not conflict with the 73AC line stack trigger.
       infoText: (data, _matches, output) => {
@@ -756,9 +624,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aglaia Nald\'thal Hells\' Trial',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7121', source: 'Nald\'thal', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '7121', source: 'Nald\'Thal', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '7121', source: 'Nald\'Thal', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '7121', source: 'ナルザル', capture: false }),
       response: Responses.aoe(),
     },
   ],
