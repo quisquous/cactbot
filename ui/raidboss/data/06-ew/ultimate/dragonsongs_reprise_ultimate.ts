@@ -1036,7 +1036,7 @@ const triggerSet: TriggerSet<Data> = {
       // B52 = Boiling
       // B53 = Freezing
       // TODO: Get cardinal of the dragon to stand in
-      // TODO: Adjust dealy to when the bosses jump to cardinal
+      // TODO: Adjust delay to when the bosses jump to cardinal
       netRegex: NetRegexes.gainsEffect({ effectId: ['B52', 'B53'] }),
       condition: Conditions.targetIsYou(),
       // Lasts 10.96s, but bosses do not cast Cauterize until 7.5s after debuff
