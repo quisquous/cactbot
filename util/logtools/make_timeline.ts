@@ -81,30 +81,12 @@ const ignoredCombatants = PetData['en'].concat([
   'Liturgic Bell',
 ]);
 
-const timeStampValidate = (timeStr?: string) => {
-  if (timeStr === undefined)
-    return false;
-  return /\d{2}:\d{2}:\d{2}\.\d{3}/.test(timeStr);
-};
-
 const timelineParse = new LogUtilArgParse();
 
 timelineParse.parser.addArgument(['--output_file', '-of'], {
   nargs: '?',
   type: 'string',
   help: 'Optional location to write timeline to file.',
-});
-
-timelineParse.parser.addArgument(['--start', '-s'], {
-  nargs: '?',
-  type: 'string',
-  help: 'Timestamp to start assembling an encounter timeline, e.g. 12:34:56.789',
-});
-
-timelineParse.parser.addArgument(['--end', '-e'], {
-  nargs: '?',
-  type: 'string',
-  help: 'Timestamp to end assembling an encounter timeline, e.g. 12:34:56.789',
 });
 
 timelineParse.parser.addArgument(['--ignore_id', '-ii'], {
@@ -150,26 +132,16 @@ if (args.file === null)
 if (!args.file?.includes('.log'))
   printHelpAndExit('Error: Must specify an FFXIV ACT log file, as log.log\n');
 let numExclusiveArgs = 0;
-for (const opt of ['search_fights', 'search_zones', 'fight_regex', 'zone_regex']) {
+for (const opt of ['search_fights', 'search_zones']) {
   if (args[opt] !== null)
     numExclusiveArgs++;
 }
 if (numExclusiveArgs !== 1)
-  printHelpAndExit('Error: Must specify exactly one of -lf, -lz, or -fr\n');
+  printHelpAndExit('Error: Must specify exactly one of -lf or -lz\n');
 if (args.fight_regex === '-1')
-  printHelpAndExit('Error: -fr must specify a regex\n');
+  printHelpAndExit('Error: Timeline generation does not currently support -fr\n');
 if (args.zone_regex === '-1')
-  printHelpAndExit('Error: -zr must specify a regex\n');
-
-if (args.file && numExclusiveArgs !== 1 && !(args.start && args.end)) {
-  printHelpAndExit(
-    'Error: -s and -e must be specified if not using one of -lf, -lz, -fr, or -zr\ ',
-  );
-}
-if (args.start && !(typeof args.start === 'string' && timeStampValidate(args.start)))
-  printHelpAndExit('Error: Timestamp must be entered exactly as HH:MM:SS.DDD, as 12:34:56:.789');
-if (args.end && !(typeof args.end === 'string' && timeStampValidate(args.end)))
-  printHelpAndExit('Error: Timestamp must be entered exactly as HH:MM:SS.DDD, as 12:34:56:.789');
+  printHelpAndExit('Error: Timeline generation does not currently support -zr\n');
 
 const makeCollectorFromPrepass = async (fileName: string) => {
   const collector = new EncounterCollector();
