@@ -1040,7 +1040,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: ['B52', 'B53'] }),
       condition: Conditions.targetIsYou(),
       // Lasts 10.96s, but bosses do not cast Cauterize until 7.5s after debuff
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6, 
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
       infoText: (_data, matches, output) => {
         if (matches.id === 'B52')
           return output.hraesvelgr!();
