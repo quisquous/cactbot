@@ -220,15 +220,15 @@ hideall "--sync--"
 3043.1 "Liquid Heaven 1" sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
 3044.3 "Liquid Heaven 2" sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
 3045.5 "Liquid Heaven 3" sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
-3046.6 "Altar Flare 1" sync / 1[56]:[^:]*:Ser Charibert:63E4:/
+3046.6 "--sync--" sync / 1[56]:[^:]*:Ser Charibert:63E4:/
 3046.7 "Liquid Heaven 4" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
-3047.1 "Altar Flare 2" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
+3047.1 "Altar Flare 1" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
 3047.9 "Liquid Heaven 5" sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
-3048.7 "Altar Flare 3" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
+3048.7 "Altar Flare 2" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
 3050.1 "Cauterize" #sync / 1[56]:[^:]*:Darkscale:6B8D:/
-3050.2 "Altar Flare 4" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
+3050.2 "Altar Flare 3" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
 3050.3 "Empty Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:62DA:/
-3051.7 "Altar Flare 5" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
+3051.7 "Altar Flare 4" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
 3057.4 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
 3067.8 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
 3071.0 "Ascalon's Might" #sync / 1[56]:[^:]*:King Thordan:63C5:/
