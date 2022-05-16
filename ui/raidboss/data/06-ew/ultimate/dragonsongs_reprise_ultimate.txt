@@ -1,7 +1,7 @@
 ### Dragonsong's Reprise Ultimate
 # phase 1 logs: -p 62D4:10 62E1:500
 # -p 63C8:553 6708:1000 717A:1500 62E1:2000 6B86:3000 6667:3500 71E4:4000
-# -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3 63DC 63CF 63C9 63E2 6FAF 6FB0 63D0 63E7 63E9 737C 6FEB 63C2 6715 6716 670C 6318 6B91 63CB 63E5 6D22 6D25 6D28 6D29 6D2A 6D32 6D33 6D3E 6D41 6D43 6D44 742B 742C 70E7 7310 7311 730F 6D9F 6DA0 6DA1 6D9D 6D91 6D92 730C 730D 730E 6D96 6D97 6D9C 6D94 6D95 6D9A 6DD2 6DD3
+# -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3 63DC 63CF 63C9 63E2 6FAF 6FB0 63D0 63E7 63E9 737C 6FEB 63C2 6715 6716 670C 6318 6B91 63CB 62DF 63E5 6D22 6D25 6D28 6D29 6D2A 6D32 6D33 6D3E 6D41 6D43 6D44 742B 742C 70E7 7310 7311 730F 6D9F 6DA0 6DA1 6D9D 6D91 6D92 730C 730D 730E 6D96 6D97 6D9C 6D94 6D95 6D9A 6DD2 6DD3
 
 # TODO: should we include something for P1 62CE/62CF Shining Blade/Bright Flare stuff?
 
@@ -251,8 +251,7 @@ hideall "--sync--"
 3115.5 "Faith Unmoving" #sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
 3115.5 "The Dragon's Gaze" #sync / 1[56]:[^:]*:King Thordan:63D1:/
 3115.5 "The Dragon's Glory" #sync / 1[56]:[^:]*:King Thordan:63D2:/
-3117.4 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:62DE:/
-3118.1 "Heavensflame x2" #sync / 1[56]:[^:]*:Ser Charibert:62DF:/
+3117.4 "Heavensflame 2" sync / 1[56]:[^:]*:Ser Charibert:62DE:/
 3140.3 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
 3150.5 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
 3153.6 "Ascalon's Might" #sync / 1[56]:[^:]*:King Thordan:63C5:/
