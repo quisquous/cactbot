@@ -19,11 +19,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Ground And Pound',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'Barnabas', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'Barnabas', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'Barnabas', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'バルナバ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: '巴尔纳伯', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: '바르나바', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -42,22 +37,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Dynamic Scrapline Barnabas Collect',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'Barnabas' }),
-      netRegexDe: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'Barnabas' }),
-      netRegexFr: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'Barnabas' }),
-      netRegexJa: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'バルナバ' }),
-      netRegexCn: NetRegexes.headMarker({ id: ['0122', '0123'], target: '巴尔纳伯' }),
-      netRegexKo: NetRegexes.headMarker({ id: ['0122', '0123'], target: '바르나바' }),
       run: (data, matches) => data.barnabasNegative = matches.id === '0122',
     },
     {
       id: 'Tower Of Babil Dynamic Scrapline',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'Barnabas', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'Barnabas', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'Barnabas', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'バルナバ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: '巴尔纳伯', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: '바르나바', capture: false }),
       delaySeconds: 0.5, // Ensure we have markers stored.
       infoText: (data, _matches, output) => {
         if ([data.barnabasNegative, data.playerNegative].includes(undefined))
@@ -94,22 +79,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Dynamic Pound Collect',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas' }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas' }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas' }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'バルナバ' }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: '巴尔纳伯' }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: '바르나바' }),
       run: (data, matches) => data.barnabasNegative = matches.id === '6245',
     },
     {
       id: 'Tower Of Babil Dynamic Pound',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'バルナバ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: '巴尔纳伯', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: '바르나바', capture: false }),
       delaySeconds: 0.5, // Ensure we have markers stored.
       infoText: (data, _matches, output) => {
         if ([data.barnabasNegative, data.playerNegative].includes(undefined))
@@ -143,11 +118,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Rolling Scrapline',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '62EB', source: 'Barnabas', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '62EB', source: 'Barnabas', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '62EB', source: 'Barnabas', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '62EB', source: 'バルナバ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '62EB', source: '巴尔纳伯', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '62EB', source: '바르나바', capture: false }),
       response: Responses.outOfMelee(),
     },
     {
@@ -160,11 +130,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Magitek Chakram',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '62F3', source: 'Lugae', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '62F3', source: 'Lugae', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '62F3', source: 'Lugae', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '62F3', source: 'ルゲイエ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '62F3', source: '卢格', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '62F3', source: '루게이에', capture: false }),
       suppressSeconds: 10,
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
@@ -182,11 +147,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Downpour',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '62F5', source: 'Lugae', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '62F5', source: 'Lugae', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '62F5', source: 'Lugae', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '62F5', source: 'ルゲイエ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '62F5', source: '卢格', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '62F5', source: '루게이에', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
@@ -203,22 +163,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Thermal Suppression',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '62FA', source: 'Lugae', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '62FA', source: 'Lugae', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '62FA', source: 'Lugae', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '62FA', source: 'ルゲイエ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '62FA', source: '卢格', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '62FA', source: '루게이에', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Tower Of Babil Magitek Explosive',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '62F8', source: 'Lugae', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '62F8', source: 'Lugae', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '62F8', source: 'Lugae', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '62F8', source: 'ルゲイエ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '62F8', source: '卢格', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '62F8', source: '루게이에', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
@@ -236,11 +186,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Lunar Nail Warning',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '62FE', source: 'Anima', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '62FE', source: 'Anima', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '62FE', source: 'Anima', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '62FE', source: 'アニマ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '62FE', source: '阿尼玛', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '62FE', source: '아니마', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
@@ -256,11 +201,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Mega Graviton',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6300', source: 'Anima', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6300', source: 'Anima', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6300', source: 'Anima', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6300', source: 'アニマ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '6300', source: '阿尼玛', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '6300', source: '아니마', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -268,11 +208,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Aetherial Pull',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6301', source: 'Mega-graviton' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6301', source: 'Mega-Graviton' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6301', source: 'Méga Graviton' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6301', source: 'メガグラビトン' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '6301', source: '百万重力' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '6301', source: '메가 그래비톤' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
@@ -289,11 +224,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Tower Of Babil Boundless Pain',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6303', source: 'Anima', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '6303', source: 'Anima', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '6303', source: 'Anima', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '6303', source: 'アニマ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '6303', source: '阿尼玛', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '6303', source: '아니마', capture: false }),
       alertText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
