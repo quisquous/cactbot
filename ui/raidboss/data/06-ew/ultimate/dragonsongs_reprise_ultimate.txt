@@ -116,13 +116,6 @@ hideall "--sync--"
 669.8 "Hiemal Storm" sync / 1[56]:[^:]*:Ser Haumeric:63E6:/
 671.9 "Conviction 1" sync / 1[56]:[^:]*:Ser Hermenost:737B:/
 674.7 "Holy Comet x7" duration 12.7 sync / 1[56]:[^:]*:Ser Noudenet:63E8:/
-675.6 "Holy Comet 1" sync / 1[56]:[^:]*:Holy Comet:63E9:/
-677.0 "Holy Comet 2" sync / 1[56]:[^:]*:Holy Comet:63E9:/
-678.4 "Holy Comet 3" sync / 1[56]:[^:]*:Holy Comet:63E9:/
-679.8 "Holy Comet 4" sync / 1[56]:[^:]*:Holy Comet:63E9:/
-681.2 "Holy Comet 5" sync / 1[56]:[^:]*:Holy Comet:63E9:/
-682.6 "Holy Comet 6" sync / 1[56]:[^:]*:Holy Comet:63E9:/
-684.0 "Holy Comet 7" sync / 1[56]:[^:]*:Holy Comet:63E9:/
 
 685.1 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
 685.2 "Conviction 2" sync / 1[56]:[^:]*:Ser Hermenost:6FEA:/
