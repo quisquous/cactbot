@@ -1064,7 +1064,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: ['B52'] }),
       condition: Conditions.targetIsYou(),
       // Boiling lasts 10.96s, after which Pyretic is applied provide warning
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 1.5,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 1,
       // Player will have Pyretic for about 3s before hit by Cauterize
       durationSeconds: 4,
       infoText: (_data, _matches, output) => output.text!(),
