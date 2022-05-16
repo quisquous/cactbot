@@ -207,7 +207,7 @@ hideall "--sync--"
 
 ### Phase 5: King Thordan II
 3000.0 "Incarnation" sync / 1[56]:[^:]*:King Thordan:6B86:/ window 1000,0
-3006.2 "the Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:6B87:/
+3006.2 "The Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:6B87:/
 3016.7 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
 3017.8 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:63ED:/
 3024.9 "Wrath of the Heavens" sync / 1[56]:[^:]*:King Thordan:6B89:/
@@ -247,10 +247,10 @@ hideall "--sync--"
 3104.1 "Heavy Impact 3" sync / 1[56]:[^:]*:Ser Guerrique:63D8:/
 3106.0 "Heavy Impact 4" sync / 1[56]:[^:]*:Ser Guerrique:63D9:/
 3107.9 "Heavy Impact 5" sync / 1[56]:[^:]*:Ser Guerrique:63DA:/
-3114.4 "the Dragon's Gaze" sync / 1[56]:[^:]*:King Thordan:63D0:/
+3114.4 "The Dragon's Gaze" sync / 1[56]:[^:]*:King Thordan:63D0:/
 3115.5 "Faith Unmoving" #sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
-3115.5 "the Dragon's Gaze" #sync / 1[56]:[^:]*:King Thordan:63D1:/
-3115.5 "the Dragon's Glory" #sync / 1[56]:[^:]*:King Thordan:63D2:/
+3115.5 "The Dragon's Gaze" #sync / 1[56]:[^:]*:King Thordan:63D1:/
+3115.5 "The Dragon's Glory" #sync / 1[56]:[^:]*:King Thordan:63D2:/
 3117.4 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:62DE:/
 3118.1 "Heavensflame x2" #sync / 1[56]:[^:]*:Ser Charibert:62DF:/
 3140.3 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
