@@ -22,11 +22,6 @@ Options.Triggers.push({
       id: 'O7S Dadaluma Simulation',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D3', capture: false }),
-      netRegexDe: NetRegexes.gainsEffect({ target: 'Wächter', effectId: '5D3', capture: false }),
-      netRegexFr: NetRegexes.gainsEffect({ target: 'gardien', effectId: '5D3', capture: false }),
-      netRegexJa: NetRegexes.gainsEffect({ target: 'ガーディアン', effectId: '5D3', capture: false }),
-      netRegexCn: NetRegexes.gainsEffect({ target: '守护者', effectId: '5D3', capture: false }),
-      netRegexKo: NetRegexes.gainsEffect({ target: '가디언', effectId: '5D3', capture: false }),
       condition: (data) => !data.first || data.seenVirus && !data.second,
       run: (data) => {
         if (data.seenVirus)
@@ -39,11 +34,6 @@ Options.Triggers.push({
       id: 'O7S Bibliotaph Simulation',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D4', capture: false }),
-      netRegexDe: NetRegexes.gainsEffect({ target: 'Wächter', effectId: '5D4', capture: false }),
-      netRegexFr: NetRegexes.gainsEffect({ target: 'gardien', effectId: '5D4', capture: false }),
-      netRegexJa: NetRegexes.gainsEffect({ target: 'ガーディアン', effectId: '5D4', capture: false }),
-      netRegexCn: NetRegexes.gainsEffect({ target: '守护者', effectId: '5D4', capture: false }),
-      netRegexKo: NetRegexes.gainsEffect({ target: '가디언', effectId: '5D4', capture: false }),
       condition: (data) => !data.first || data.seenVirus && !data.second,
       run: (data) => {
         if (data.seenVirus)
@@ -56,22 +46,12 @@ Options.Triggers.push({
       id: 'O7S Virus Tracker',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D5', capture: false }),
-      netRegexDe: NetRegexes.gainsEffect({ target: 'Wächter', effectId: '5D5', capture: false }),
-      netRegexFr: NetRegexes.gainsEffect({ target: 'gardien', effectId: '5D5', capture: false }),
-      netRegexJa: NetRegexes.gainsEffect({ target: 'ガーディアン', effectId: '5D5', capture: false }),
-      netRegexCn: NetRegexes.gainsEffect({ target: '守护者', effectId: '5D5', capture: false }),
-      netRegexKo: NetRegexes.gainsEffect({ target: '가디언', effectId: '5D5', capture: false }),
       run: (data) => data.seenVirus = true,
     },
     {
       id: 'O7S Magitek Ray',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2788', source: 'Guardian', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2788', source: 'Wächter', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2788', source: 'Gardien', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2788', source: 'ガーディアン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2788', source: '守护者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2788', source: '가디언', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -88,11 +68,6 @@ Options.Triggers.push({
       id: 'O7S Arm And Hammer',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2789', source: 'Guardian' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2789', source: 'Wächter' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2789', source: 'Gardien' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2789', source: 'ガーディアン' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2789', source: '守护者' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2789', source: '가디언' }),
       response: Responses.tankBuster(),
     },
     {
@@ -208,11 +183,6 @@ Options.Triggers.push({
       id: 'O7S Stoneskin',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2AB5', source: 'Orthros' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2AB5', source: 'オルトロス' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2AB5', source: '奥尔特罗斯' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2AB5', source: '오르트로스' }),
       response: Responses.interrupt('alarm'),
     },
     {
@@ -223,11 +193,6 @@ Options.Triggers.push({
       // Retrieve: 2774
       // Paste: 2776
       netRegex: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Guardian', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Wächter', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Gardien', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'ガーディアン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '守护者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '가디언', capture: false }),
       alertText: (data, _matches, output) => {
         data.loadCount = (data.loadCount ?? 0) + 1;
         if (data.loadCount === 1) {
@@ -308,11 +273,6 @@ Options.Triggers.push({
       id: 'O7S Run',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '276F', source: 'Guardian', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '276F', source: 'Wächter', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '276F', source: 'Gardien', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '276F', source: 'ガーディアン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '276F', source: '守护者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '276F', source: '가디언', capture: false }),
       infoText: (data, _matches, output) => {
         data.runCount = (data.runCount ?? 0) + 1;
         if (data.runCount === 1)

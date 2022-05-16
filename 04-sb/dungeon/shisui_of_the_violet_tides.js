@@ -29,11 +29,6 @@ Options.Triggers.push({
       id: 'Shisui Ruby Princess Seduce',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Ruby Princess', id: '1F7A', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Rubinprinzessin', id: '1F7A', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Princesse De Rubis', id: '1F7A', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '紅玉姫', id: '1F7A', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '红玉公主', id: '1F7A', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '홍옥 공주', id: '1F7A', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -74,11 +69,6 @@ Options.Triggers.push({
       id: 'Shisui Shisui Yohi Mad Stare',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shisui Yohi', id: '1F82', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Shisui Yohi', id: '1F82', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Shisui Yohi', id: '1F82', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '紫水妖妃', id: '1F82', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '紫水妖妃', id: '1F82', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '시스이 요비', id: '1F82', capture: false }),
       response: Responses.lookAway(),
     },
   ],

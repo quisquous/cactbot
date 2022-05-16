@@ -7,22 +7,12 @@ Options.Triggers.push({
       id: 'Tsukuyomi Torment Unto Death',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2BE3', source: 'Tsukuyomi' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2BE3', source: 'Tsukuyomi' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2BE3', source: 'Tsukuyomi' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2BE3', source: 'ツクヨミ' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2BE3', source: '月读' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2BE3', source: '츠쿠요미' }),
       response: Responses.tankCleave(),
     },
     {
       id: 'Tsukuyomi Reprimand',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2BE2', source: 'Tsukuyomi', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2BE2', source: 'Tsukuyomi', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2BE2', source: 'Tsukuyomi', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2BE2', source: 'ツクヨミ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2BE2', source: '月读', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2BE2', source: '츠쿠요미', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -35,11 +25,6 @@ Options.Triggers.push({
       id: 'Tsukuyomi Lead Of The Underworld',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2BE6', source: 'Tsukuyomi' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2BE6', source: 'Tsukuyomi' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2BE6', source: 'Tsukuyomi' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2BE6', source: 'ツクヨミ' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2BE6', source: '月读' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2BE6', source: '츠쿠요미' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.lineStackOnYou();
@@ -68,11 +53,6 @@ Options.Triggers.push({
       id: 'Tsukuyomi Nightbloom',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2CB0', source: 'Tsukuyomi', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2CB0', source: 'Tsukuyomi', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2CB0', source: 'Tsukuyomi', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2CB0', source: 'ツクヨミ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2CB0', source: '月读', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2CB0', source: '츠쿠요미', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -129,11 +109,6 @@ Options.Triggers.push({
       // Dance Of The Dead has no castbar.
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '2BFD', source: 'Tsukuyomi', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '2BFD', source: 'Tsukuyomi', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '2BFD', source: 'Tsukuyomi', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '2BFD', source: 'ツクヨミ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '2BFD', source: '月读', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '2BFD', source: '츠쿠요미', capture: false }),
       response: Responses.aoe(),
     },
   ],

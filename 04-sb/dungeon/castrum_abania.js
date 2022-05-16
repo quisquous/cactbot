@@ -6,11 +6,6 @@ Options.Triggers.push({
       id: 'CastrumAbania Magna Roader Fire III',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Magna Roader', id: '1F16', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Magna Rotula', id: '1F16', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Magna Rouleur Magitek', id: '1F16', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '魔導マグナローダー', id: '1F16', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '魔导机车大魔', id: '1F16', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '마도 마그나로더', id: '1F16', capture: false }),
       response: Responses.aoe(),
       run: (data) => data.calledWildSpeed = data.calledUseCannon = false,
     },
@@ -18,11 +13,6 @@ Options.Triggers.push({
       id: 'CastrumAbania Magna Roader Wild Speed',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Magna Roader', id: '207E', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Magna Rotula', id: '207E', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Magna Rouleur Magitek', id: '207E', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '魔導マグナローダー', id: '207E', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '魔导机车大魔', id: '207E', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '마도 마그나로더', id: '207E', capture: false }),
       // This repeats indefinitely, so only call the first one per Wild Speed phase.
       condition: (data) => !data.calledWildSpeed,
       delaySeconds: 6,
@@ -33,11 +23,6 @@ Options.Triggers.push({
       id: 'CastrumAbania Magna Roader Mark XLIII Mini Cannon',
       type: 'NameToggle',
       netRegex: NetRegexes.nameToggle({ name: 'Mark XLIII Mini Cannon', toggle: '01', capture: false }),
-      netRegexDe: NetRegexes.nameToggle({ name: 'Kleingeschütz Xliii', toggle: '01', capture: false }),
-      netRegexFr: NetRegexes.nameToggle({ name: 'Mortier Type Xliii', toggle: '01', capture: false }),
-      netRegexJa: NetRegexes.nameToggle({ name: 'Xliii式小臼砲', toggle: '01', capture: false }),
-      netRegexCn: NetRegexes.nameToggle({ name: '43式小迫击炮', toggle: '01', capture: false }),
-      netRegexKo: NetRegexes.nameToggle({ name: 'Xliii식 소형 박격포', toggle: '01', capture: false }),
       // There's two cannons, so only say something when the first one is targetable.
       condition: (data) => !data.calledUseCannon,
       delaySeconds: 6,
@@ -57,22 +42,12 @@ Options.Triggers.push({
       id: 'CastrumAbania Number XXIV Stab',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Number XXIV', id: '1F1B' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Nummer Xxiv', id: '1F1B' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Numéro Xxiv', id: '1F1B' }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ナンバーXxiv', id: '1F1B' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '024号', id: '1F1B' }),
-      netRegexKo: NetRegexes.startsUsing({ source: 'Xxiv호', id: '1F1B' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'CastrumAbania Number XXIV Barrier Shift Fire',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Number XXIV', id: '1F21', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Nummer Xxiv', id: '1F21', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Numéro Xxiv', id: '1F21', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ナンバーXxiv', id: '1F21', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '024号', id: '1F21', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: 'Xxiv호', id: '1F21', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -88,11 +63,6 @@ Options.Triggers.push({
       id: 'CastrumAbania Number XXIV Barrier Shift Ice',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Number XXIV', id: '1F22', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Nummer Xxiv', id: '1F22', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Numéro Xxiv', id: '1F22', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ナンバーXxiv', id: '1F22', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '024号', id: '1F22', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: 'Xxiv호', id: '1F22', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -108,11 +78,6 @@ Options.Triggers.push({
       id: 'CastrumAbania Number XXIV Barrier Shift Lightning',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Number XXIV', id: '1F23', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Nummer Xxiv', id: '1F23', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Numéro Xxiv', id: '1F23', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ナンバーXxiv', id: '1F23', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '024号', id: '1F23', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: 'Xxiv호', id: '1F23', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -128,11 +93,6 @@ Options.Triggers.push({
       id: 'CastrumAbania Inferno Ketu Slash',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Inferno', id: ['1F26', '208B', '208C'] }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Inferno', id: ['1F26', '208B', '208C'] }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Inferno', id: ['1F26', '208B', '208C'] }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'インフェルノ', id: ['1F26', '208B', '208C'] }),
-      netRegexCn: NetRegexes.startsUsing({ source: '炼狱炎魔', id: ['1F26', '208B', '208C'] }),
-      netRegexKo: NetRegexes.startsUsing({ source: '인페르노', id: ['1F26', '208B', '208C'] }),
       response: Responses.tankBuster(),
     },
     {
@@ -153,11 +113,6 @@ Options.Triggers.push({
       type: 'StartsUsing',
       // Rahu Comet (1F2B) does not do knockback until it has been empowered at least once.
       netRegex: NetRegexes.startsUsing({ source: 'Inferno', id: ['2088', '2089'], capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Inferno', id: ['2088', '2089'], capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Inferno', id: ['2088', '2089'], capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'インフェルノ', id: ['2088', '2089'], capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '炼狱炎魔', id: ['2088', '2089'], capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '인페르노', id: ['2088', '2089'], capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

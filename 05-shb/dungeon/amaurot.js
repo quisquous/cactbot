@@ -53,11 +53,6 @@ Options.Triggers.push({
       id: 'Amaurot Final Sky',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CCB', source: 'The First Beast', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '3CCB', source: '(?:der|die|das) Erst(?:e|er|es|en) Unheil', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '3CCB', source: 'Annélide De L\'Apocalypse', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '3CCB', source: 'ファースト・ビースト', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '3CCB', source: '第一之兽', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '3CCB', source: '최초의 야수', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -74,22 +69,12 @@ Options.Triggers.push({
       id: 'Amaurot Shadow Wreck',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '3CE3', source: 'Mégatherion', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '3CE3', source: 'メガセリオン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '3CE3', source: '至大灾兽', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '3CE3', source: '메가테리온', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Amaurot Apokalypsis',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '3CD7', source: 'Mégatherion', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '3CD7', source: 'メガセリオン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '3CD7', source: '至大灾兽', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '3CD7', source: '메가테리온', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

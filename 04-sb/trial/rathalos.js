@@ -13,11 +13,6 @@ Options.Triggers.push({
       id: 'Rathalos Mangle Phase 1',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rathalos', id: '286A', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Rathalos', id: '286A', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Rathalos', id: '286A', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'リオレウス', id: '286A', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '火龙', id: '286A', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '리오레우스', id: '286A', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -33,11 +28,6 @@ Options.Triggers.push({
       id: 'Rathalos Mangle Phase 2',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rathalos', id: '287A', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Rathalos', id: '287A', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Rathalos', id: '287A', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'リオレウス', id: '287A', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '火龙', id: '287A', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '리오레우스', id: '287A', capture: false }),
       response: Responses.awayFromFront('info'),
     },
     {
@@ -46,11 +36,6 @@ Options.Triggers.push({
       type: 'Ability',
       // No starts using for this, but this ability is 1.5s warning.
       netRegex: NetRegexes.ability({ source: 'Rathalos', id: '286C', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Rathalos', id: '286C', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Rathalos', id: '286C', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'リオレウス', id: '286C', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '火龙', id: '286C', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '리오레우스', id: '286C', capture: false }),
       // This hits multiple people.
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
@@ -69,11 +54,6 @@ Options.Triggers.push({
       id: 'Rathalos Flaming Recoil',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rathalos', id: ['2870', '2872'], capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Rathalos', id: ['2870', '2872'], capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Rathalos', id: ['2870', '2872'], capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'リオレウス', id: ['2870', '2872'], capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '火龙', id: ['2870', '2872'], capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '리오레우스', id: ['2870', '2872'], capture: false }),
       // It seems to be 180 degrees in front, so "Get Behind" rather than "Away From Front".
       // This is less severe in normal mode than in extreme, so leave as info here.
       response: Responses.getBehind('info'),
@@ -82,11 +62,6 @@ Options.Triggers.push({
       id: 'Rathalos Rush',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Rathalos', id: ['286D', '2878'], capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Rathalos', id: ['286D', '2878'], capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Rathalos', id: ['286D', '2878'], capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'リオレウス', id: ['286D', '2878'], capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '火龙', id: ['286D', '2878'], capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '리오레우스', id: ['286D', '2878'], capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -144,11 +119,6 @@ Options.Triggers.push({
       type: 'Ability',
       // No starts using for this, but this ability is 1.5s warning.
       netRegex: NetRegexes.ability({ source: 'Rathalos', id: '2879', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Rathalos', id: '2879', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Rathalos', id: '2879', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'リオレウス', id: '2879', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '火龙', id: '2879', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '리오레우스', id: '2879', capture: false }),
       // This hits multiple people.
       suppressSeconds: 1,
       response: Responses.awayFromFront('info'),
