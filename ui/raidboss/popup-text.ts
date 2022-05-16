@@ -336,8 +336,13 @@ class TriggerOutputProxy {
     template: { [lang: string]: unknown } | string | undefined,
     params: TriggerParams,
     name: string,
-    id: string): string | undefined {
-    if (template === undefined)
+    id: string,
+  ): string | undefined {
+    // If an output strings entry is edited in the config UI and then blanked,
+    // the entry will still exist in the config file as an empty string.
+    // These should be ignored as not being an override.
+    // TODO: maybe blanked/default entries should be deleted from the config?
+    if (template === undefined || template === '')
       return;
 
     let value: unknown;
