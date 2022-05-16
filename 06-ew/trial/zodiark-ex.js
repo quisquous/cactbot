@@ -28,33 +28,18 @@ Options.Triggers.push({
       id: 'ZodiarkEx Ania',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '67EF', source: 'Zodiark' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '67EF', source: 'Zodiark' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '67EF', source: 'Zordiarche' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '67EF', source: 'ゾディアーク' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '67EF', source: '佐迪亚克' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '67EF', source: '조디아크' }),
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'ZodiarkEx Kokytos',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6C60', source: 'Zodiark', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '6C60', source: 'Zodiark', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '6C60', source: 'Zordiarche', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '6C60', source: 'ゾディアーク', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '6C60', source: '佐迪亚克', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '6C60', source: '조디아크', capture: false }),
       response: Responses.bigAoe(),
     },
     {
       id: 'ZodiarkEx Paradeigma',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '67BF', source: 'Zodiark', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '67BF', source: 'Zodiark', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '67BF', source: 'Zordiarche', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '67BF', source: 'ゾディアーク', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '67BF', source: '佐迪亚克', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '67BF', source: '조디아크', capture: false }),
       alertText: (data, _matches, output) => {
         ++data.paradeigmaCounter;
         if (data.paradeigmaCounter === 1)
@@ -73,11 +58,6 @@ Options.Triggers.push({
       id: 'ZodiarkEx Styx',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '67F3', source: 'Zodiark', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '67F3', source: 'Zodiark', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '67F3', source: 'Zordiarche', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '67F3', source: 'ゾディアーク', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '67F3', source: '佐迪亚克', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '67F3', source: '조디아크', capture: false }),
       alertText: (data, _matches, output) => output.text({ num: data.styxCount }),
       run: (data) => data.styxCount = Math.min(data.styxCount + 1, 9),
       outputStrings: {
@@ -93,11 +73,6 @@ Options.Triggers.push({
       id: 'ZodiarkEx Arcane Sigil End',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' }),
-      netRegexDe: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Geheimzeichen' }),
-      netRegexFr: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'emblème secret' }),
-      netRegexJa: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '秘紋' }),
-      netRegexCn: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '秘纹' }),
-      netRegexKo: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '비문' }),
       run: (data, matches, _output) => {
         for (let i = 0; i < data.activeSigils.length; ++i) {
           const sig = data.activeSigils[i];
@@ -110,11 +85,6 @@ Options.Triggers.push({
       id: 'ZodiarkEx Blue Cone Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '00A4', source: 'Zodiark' }),
-      netRegexDe: NetRegexes.tether({ id: '00A4', source: 'Zodiark' }),
-      netRegexFr: NetRegexes.tether({ id: '00A4', source: 'Zordiarche' }),
-      netRegexJa: NetRegexes.tether({ id: '00A4', source: 'ゾディアーク' }),
-      netRegexCn: NetRegexes.tether({ id: '00A4', source: '佐迪亚克' }),
-      netRegexKo: NetRegexes.tether({ id: '00A4', source: '조디아크' }),
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsById([matches.targetId]);
         for (const actor of portalActors) {
@@ -167,11 +137,6 @@ Options.Triggers.push({
       id: 'ZodiarkEx Red Box Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '00AB', source: 'Zodiark' }),
-      netRegexDe: NetRegexes.tether({ id: '00AB', source: 'Zodiark' }),
-      netRegexFr: NetRegexes.tether({ id: '00AB', source: 'Zordiarche' }),
-      netRegexJa: NetRegexes.tether({ id: '00AB', source: 'ゾディアーク' }),
-      netRegexCn: NetRegexes.tether({ id: '00AB', source: '佐迪亚克' }),
-      netRegexKo: NetRegexes.tether({ id: '00AB', source: '조디아크' }),
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsById([matches.targetId]);
         for (const actor of portalActors) {
@@ -204,11 +169,6 @@ Options.Triggers.push({
       id: 'ZodiarkEx Roiling Darkness Spawn',
       type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Roiling Darkness', capture: false }),
-      netRegexDe: NetRegexes.addedCombatant({ name: 'Strom Der Dunkelheit', capture: false }),
-      netRegexFr: NetRegexes.addedCombatant({ name: 'Orbe Des Ténèbres', capture: false }),
-      netRegexJa: NetRegexes.addedCombatant({ name: '闇の奔流', capture: false }),
-      netRegexCn: NetRegexes.addedCombatant({ name: '黑暗奔流', capture: false }),
-      netRegexKo: NetRegexes.addedCombatant({ name: '어둠의 급류', capture: false }),
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -224,11 +184,6 @@ Options.Triggers.push({
       id: 'ZodiarkEx Arcane Sigil Start',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' }),
-      netRegexDe: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Geheimzeichen' }),
-      netRegexFr: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Emblème Secret' }),
-      netRegexJa: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '秘紋' }),
-      netRegexCn: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '秘纹' }),
-      netRegexKo: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '비문' }),
       run: (data, matches, _output) => {
         if (parseFloat(matches.y) < 100)
           data.activeFrontSigils.push({ x: parseFloat(matches.x), y: parseFloat(matches.y), typeId: matches.id, npcId: matches.sourceId });
@@ -238,11 +193,6 @@ Options.Triggers.push({
       id: 'ZodiarkEx Arcane Sigil',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Geheimzeichen', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Emblème Secret', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '秘紋', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '秘纹', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: '비문', capture: false }),
       delaySeconds: 0.2,
       suppressSeconds: 0.5,
       alertText: (data, _matches, output) => {
@@ -312,11 +262,6 @@ Options.Triggers.push({
       id: 'ZodiarkEx Algedon',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: 'Zodiark' }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: 'Zodiark' }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: 'Zordiarche' }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: 'ゾディアーク' }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: '佐迪亚克' }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: '조디아크' }),
       alertText: (_data, matches, output) => {
         if (matches.id === '67EC') {
           // NE/SW
@@ -344,11 +289,6 @@ Options.Triggers.push({
       id: 'ZodiarkEx Adikia',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '63A9', source: 'Zodiark', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '63A9', source: 'Zodiark', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '63A9', source: 'Zordiarche', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '63A9', source: 'ゾディアーク', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '63A9', source: '佐迪亚克', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '63A9', source: '조디아크', capture: false }),
       alertText: (data, _matches, output) => {
         return data.seenAdikia ? output.adikia2() : output.adikia1();
       },
@@ -372,11 +312,6 @@ Options.Triggers.push({
       id: 'ZodiarkEx Phobos',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '67F0', source: 'Zodiark', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '67F0', source: 'Zodiark', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '67F0', source: 'Zordiarche', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '67F0', source: 'ゾディアーク', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '67F0', source: '佐迪亚克', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '67F0', source: '조디아크', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

@@ -13,11 +13,6 @@ Options.Triggers.push({
       type: 'StartsUsing',
       // 62CA in the final phase.
       netRegex: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'Minduruva' }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'Rug' }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'Anabella' }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'ラグ' }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: '拉格' }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: '라그' }),
       response: Responses.tankBuster(),
     },
     {
@@ -28,11 +23,6 @@ Options.Triggers.push({
       // 631C = Transmute Thunder III
       // 631D = Transmute Bio III
       netRegex: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Minduruva' }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Rug' }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Anabella' }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'ラグ' }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: '拉格' }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: '라그' }),
       run: (data, matches) => {
         const transmuteFire = '629A';
         const transmuteBio = '631D';
@@ -52,11 +42,6 @@ Options.Triggers.push({
       // 6293 = Manusya Thunder III
       // 6294 = Manusya Bio III
       netRegex: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'Minduruva' }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'Rug' }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'Anabella' }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'ラグ' }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['629[1-4]'], source: '拉格' }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['629[1-4]'], source: '라그' }),
       durationSeconds: (data) => {
         // Based on network log data analysis, the first orb will finish
         // 8 seconds after this cast started, while the second orb will
@@ -129,11 +114,6 @@ Options.Triggers.push({
       id: 'Zot Minduruva Dhrupad Reset',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '629C', source: 'Minduruva', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '629C', source: 'Rug', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '629C', source: 'Anabella', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '629C', source: 'ラグ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '629C', source: '拉格', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '629C', source: '라그', capture: false }),
       // There's a Dhrupad cast after every transmute sequence.
       run: (data) => {
         data.orbCount = 0;
@@ -145,11 +125,6 @@ Options.Triggers.push({
       type: 'StartsUsing',
       // 62A9 is 2nd boss, 62C0 is 3rd boss.
       netRegex: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'Sanduruva' }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'Dug' }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'Samanta' }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'ドグ' }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: '多格' }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: '도그' }),
       response: Responses.tankBuster(),
     },
     {
@@ -157,11 +132,6 @@ Options.Triggers.push({
       type: 'Ability',
       // 62A1 is 2nd boss, 62BC in the 3rd boss.
       netRegex: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'Sanduruva', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'Dug', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'Samanta', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'ドグ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: ['62A1', '62BC'], source: '多格', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: ['62A1', '62BC'], source: '도그', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -178,11 +148,6 @@ Options.Triggers.push({
       id: 'Zot Sanduruva Manusya Confuse',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '62A5', source: 'Sanduruva', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '62A5', source: 'Dug', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '62A5', source: 'Samanta', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '62A5', source: 'ドグ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '62A5', source: '多格', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '62A5', source: '도그', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -199,33 +164,18 @@ Options.Triggers.push({
       id: 'Zot Cinduruva Samsara',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '62B9', source: 'Cinduruva', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '62B9', source: 'Mug', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '62B9', source: 'Maria', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '62B9', source: 'マグ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '62B9', source: '马格', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '62B9', source: '마그', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zot Cinduruva Isitva Siddhi',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '62A9', source: 'Cinduruva' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '62A9', source: 'Mug' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '62A9', source: 'Maria' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '62A9', source: 'マグ' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '62A9', source: '马格' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '62A9', source: '마그' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'Zot Cinduruva Delta Thunder III Stack',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '62B8', source: 'Cinduruva' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '62B8', source: 'Mug' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '62B8', source: 'Maria' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '62B8', source: 'マグ' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '62B8', source: '马格' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '62B8', source: '마그' }),
       response: Responses.stackMarkerOn(),
     },
   ],
