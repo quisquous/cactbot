@@ -82,7 +82,7 @@ export class OopsySummaryTable implements MistakeObserver {
 
   OnMistakeObj(m: OopsyMistake): void {
     const longName = m.name ?? m.blame;
-    if (!longName || !m.text)
+    if (!longName)
       return;
     const name = ShortNamify(longName, this.options.PlayerNicks);
 

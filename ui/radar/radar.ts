@@ -214,8 +214,7 @@ class Radar {
     this.regexes = {
       abilityFull: NetRegexes.abilityFull(),
       addedCombatantFull: NetRegexes.addedCombatantFull(),
-      instanceChanged: instanceChangedRegexes[this.options.ParserLanguage] ||
-        instanceChangedRegexes['en'],
+      instanceChanged: instanceChangedRegexes[this.options.ParserLanguage],
       wasDefeated: NetRegexes.wasDefeated(),
     };
 
@@ -235,8 +234,6 @@ class Radar {
 
   AddMonster(log: string, hunt: HuntEntry, matches: NetMatches['AddedCombatant']) {
     if (!this.playerPos)
-      return;
-    if (!matches)
       return;
     if (
       matches.id === undefined ||
@@ -378,26 +375,24 @@ class Radar {
       targetVector.x - playerVector.x,
       targetVector.y - playerVector.y,
     );
-    if (tr) {
-      const node = tr.childNodes[1];
-      if (node && node instanceof HTMLElement) {
-        node.innerHTML = `${monster.rank ?? ''}&nbsp;&nbsp;&nbsp;&nbsp;${monster.name}`;
-        if (Math.abs(this.playerPos.z - monster.posZ) > 5)
-          node.innerHTML += '&nbsp;&nbsp;' + (this.playerPos.z < monster.posZ ? '↑' : '↓');
-        node.innerHTML += '<br>' + deltaVector.length().toFixed(2) + 'm';
-        if (Date.now().valueOf() / 1000 <= monster.battleTime + 60) {
-          node.innerHTML += ' ' + (monster.currentHp * 100 /
-            monster.hp).toFixed(2) +
-            '%';
-        }
-        if (monster.puller)
-          node.innerHTML += '&nbsp;&nbsp;' + monster.puller;
-        // Z position is relative to the map so it's omitted.
-        if (options.Position) {
-          node.innerHTML += '<br>X: ' +
-            posToMap(monster.pos.x).toFixed(1) + '&nbsp;&nbsp;Y:' +
-            posToMap(monster.pos.y).toFixed(1);
-        }
+    const node = tr.childNodes[1];
+    if (node && node instanceof HTMLElement) {
+      node.innerHTML = `${monster.rank ?? ''}&nbsp;&nbsp;&nbsp;&nbsp;${monster.name}`;
+      if (Math.abs(this.playerPos.z - monster.posZ) > 5)
+        node.innerHTML += '&nbsp;&nbsp;' + (this.playerPos.z < monster.posZ ? '↑' : '↓');
+      node.innerHTML += '<br>' + deltaVector.length().toFixed(2) + 'm';
+      if (Date.now().valueOf() / 1000 <= monster.battleTime + 60) {
+        node.innerHTML += ' ' + (monster.currentHp * 100 /
+          monster.hp).toFixed(2) +
+          '%';
+      }
+      if (monster.puller)
+        node.innerHTML += '&nbsp;&nbsp;' + monster.puller;
+      // Z position is relative to the map so it's omitted.
+      if (options.Position) {
+        node.innerHTML += '<br>X: ' +
+          posToMap(monster.pos.x).toFixed(1) + '&nbsp;&nbsp;Y:' +
+          posToMap(monster.pos.y).toFixed(1);
       }
     }
     if (options.DetectionRange > 0 && deltaVector.length() > options.DetectionRange)

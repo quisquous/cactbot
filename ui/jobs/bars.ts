@@ -517,7 +517,7 @@ export class Bars {
     mpTicker.loop = true;
     this.ee.on('battle/in-combat', (ev) => {
       // Hide out of combat if requested
-      if (mpTicker && !this.options.ShowMPTickerOutOfCombat && !ev.game) {
+      if (!this.options.ShowMPTickerOutOfCombat && !ev.game) {
         mpTicker.duration = 0;
         mpTicker.stylefill = 'empty';
       }

@@ -213,7 +213,7 @@ const bossFightTriggers: readonly Boss[] = [
 ] as const;
 
 const getLocaleObject = <T>(object: LocaleObject<T>, lang: Lang): T => {
-  return object[lang] || object.en;
+  return object[lang] ?? object.en;
 };
 
 class PullCounter {
@@ -233,8 +233,7 @@ class PullCounter {
   constructor(private options: PullCounterOptions, private element: HTMLElement) {
     this.party = [];
 
-    this.countdownEngageRegex = LocaleNetRegex.countdownEngage[this.options.ParserLanguage] ||
-      LocaleNetRegex.countdownEngage['en'];
+    this.countdownEngageRegex = LocaleNetRegex.countdownEngage[this.options.ParserLanguage];
 
     void callOverlayHandler({
       call: 'cactbotLoadData',
@@ -336,7 +335,7 @@ class PullCounter {
     this.bosses = [];
     this.countdownBoss = undefined;
 
-    if (!this.zoneId || !this.pullCounts)
+    if (!this.zoneId)
       return;
 
     for (const boss of bossFightTriggers) {
@@ -393,7 +392,7 @@ class PullCounter {
   }
 
   SetSaveData(e?: SavedConfig) {
-    if (!e || !e.data) {
+    if (e?.data === undefined) {
       this.pullCounts = {};
       this.ReloadTriggers();
       return;

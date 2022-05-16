@@ -83,7 +83,7 @@ export class ASTComponent extends BaseComponent {
     const minor = jobDetail.crownCard;
     this.minorBox.parentNode.classList.toggle('lord', minor === 'Lord');
     this.minorBox.parentNode.classList.toggle('lady', minor === 'Lady');
-    this.minorBox.innerText = minorMap[minor] ?? '';
+    this.minorBox.innerText = minor === 'None' ? '' : minorMap[minor];
 
     const card = jobDetail.heldCard;
     const sign = jobDetail.arcanums;
@@ -91,18 +91,18 @@ export class ASTComponent extends BaseComponent {
     // Blue on melee, purple on ranged, and grey when no card
     const cardParent = this.cardBox.parentNode;
     cardParent.classList.remove('melee', 'range');
-    if (card in cardsMap)
+    this.cardBox.innerText = '';
+    if (card !== 'None') {
       cardParent.classList.add(cardsMap[card].bonus);
 
-    // Show whether you already have this seal
-    // ○ means it's OK to play this card
-    // × means you'd better redraw if possible
-    if (!cardsMap[card])
-      this.cardBox.innerText = '';
-    else if (sign.includes(cardsMap[card].seal))
-      this.cardBox.innerText = '×';
-    else
-      this.cardBox.innerText = '○';
+      // Show whether you already have this seal
+      // ○ means it's OK to play this card
+      // × means you'd better redraw if possible
+      if (sign.includes(cardsMap[card].seal))
+        this.cardBox.innerText = '×';
+      else
+        this.cardBox.innerText = '○';
+    }
 
     this.signs.forEach((elem, i) => {
       elem.classList.remove('solar', 'lunar', 'celestial');

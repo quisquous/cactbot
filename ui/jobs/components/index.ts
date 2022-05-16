@@ -135,8 +135,6 @@ export class ComponentManager {
     // }
 
     const Component = ComponentMap[job];
-    if (!Component)
-      return new BaseComponent(this.o);
 
     return new Component(this.o);
   }

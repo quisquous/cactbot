@@ -139,12 +139,9 @@ export class DamageTracker {
     );
 
     const lang = this.options.ParserLanguage;
-    this.countdownEngageRegex = LocaleNetRegex.countdownEngage[lang] ||
-      LocaleNetRegex.countdownEngage['en'];
-    this.countdownStartRegex = LocaleNetRegex.countdownStart[lang] ||
-      LocaleNetRegex.countdownStart['en'];
-    this.countdownCancelRegex = LocaleNetRegex.countdownCancel[lang] ||
-      LocaleNetRegex.countdownCancel['en'];
+    this.countdownEngageRegex = LocaleNetRegex.countdownEngage[lang];
+    this.countdownStartRegex = LocaleNetRegex.countdownStart[lang];
+    this.countdownCancelRegex = LocaleNetRegex.countdownCancel[lang];
     this.abilityFullRegex = NetRegexes.abilityFull();
     this.wipeCactbotEcho = NetRegexes.echo({ line: 'cactbot wipe.*?' });
     this.wipeEndEcho = NetRegexes.echo({ line: 'end' });
@@ -378,9 +375,9 @@ export class DamageTracker {
     let matches: Matches = {};
     // If using named groups, treat matches.groups as matches
     // so triggers can do things like matches.target.
-    if (execMatches?.groups) {
+    if (execMatches.groups) {
       matches = execMatches.groups;
-    } else if (execMatches) {
+    } else {
       // If there are no matching groups, reproduce the old js logic where
       // groups ended up as the original RegExpExecArray object
       execMatches.forEach((value, idx) => {
@@ -409,14 +406,17 @@ export class DamageTracker {
 
     if ('condition' in trigger) {
       const condition = ValueOrFunction(trigger.condition, matches);
-      if (!condition)
+      if (condition === undefined || condition === null || condition === false)
         return;
     }
 
     const delayField = 'delaySeconds' in trigger
       ? ValueOrFunction(trigger.delaySeconds, matches)
       : 0;
-    const delaySeconds = !delayField || typeof delayField !== 'number' ? 0 : delayField;
+    const delaySeconds = delayField === undefined || delayField === null || delayField === false ||
+        typeof delayField !== 'number'
+      ? 0
+      : delayField;
 
     const suppress = 'suppressSeconds' in trigger
       ? ValueOrFunction(trigger.suppressSeconds, matches)
@@ -439,7 +439,7 @@ export class DamageTracker {
       }
       if ('deathReason' in trigger) {
         const ret = ValueOrFunction(trigger.deathReason, matches);
-        if (ret && typeof ret === 'object' && !Array.isArray(ret)) {
+        if (ret !== null && typeof ret === 'object' && !Array.isArray(ret)) {
           if (!isOopsyMistake(ret))
             this.playerStateTracker.OnDeathReason(timestamp, ret);
         }
