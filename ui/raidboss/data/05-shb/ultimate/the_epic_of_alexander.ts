@@ -1516,7 +1516,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '486E', capture: false }),
       infoText: (data, _matches, output) => {
-        if (data.options.cactbotWormholeStrat)
+        if (data.options.cactbotWormholeStrat === true)
           return output.baitChakramsWormholeStrat!();
 
         return output.baitChakrams!();
@@ -1545,7 +1545,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => {
-        if (!data.options.cactbotWormholeStrat)
+        if (data.options.cactbotWormholeStrat !== true)
           return false;
         if (!(/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)))
           return false;
@@ -1653,7 +1653,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
       condition: (data) => {
-        if (!data.options.cactbotWormholeStrat)
+        if (data.options.cactbotWormholeStrat !== true)
           return false;
         if (data.phase !== 'wormhole')
           return;

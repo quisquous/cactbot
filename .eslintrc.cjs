@@ -256,7 +256,7 @@ const tsOverrides = {
     '@typescript-eslint/object-curly-spacing': ['warn', 'always'],
     '@typescript-eslint/strict-boolean-expressions': ['error', {
       // @TODO: Enable these keys over time
-      'allowAny': true,
+      'allowAny': false,
       'allowNullableBoolean': true,
       'allowNullableNumber': true,
       'allowNullableString': true,

@@ -15,6 +15,7 @@ export interface BaseOptions {
   GroupSpokenAlertsEnabled: boolean;
   Skin?: string;
   SystemInfo: SystemInfo;
+  Debug?: boolean;
   [key: string]: unknown;
 }
 

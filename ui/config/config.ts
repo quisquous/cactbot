@@ -299,7 +299,7 @@ export class CactbotConfigurator {
   // Helper translate function.  Takes in an object with language keys
   // and returns a single entry based on available translations.
   translate<T>(textObj: LocaleObject<T>): T {
-    if (textObj === null || typeof textObj !== 'object' || !textObj['en'])
+    if (textObj === null || typeof textObj !== 'object')
       throw new Error(`Invalid config: ${JSON.stringify(textObj)}`);
     const t = textObj[this.lang];
     return t ?? textObj['en'];
