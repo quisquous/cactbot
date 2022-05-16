@@ -703,13 +703,19 @@ export class PopupText {
           const triggerObject: { [key: string]: unknown } = trigger;
 
           // `regex` and `regexDe` (etc) are deprecated, however they may still be used
-          // by user triggers, and so are still checked here.  As these aren't used
-          // by cactbot itself, they are never auto-translated.
+          // by user triggers, and so are still checked here.  `regexDe` and friends
+          // will never be auto-translated and are assumed to be correct.
           // TODO: maybe we could consider removing these once timelines don't need parsed lines?
           if (isRegexTrigger(trigger)) {
-            const regex = triggerObject[regexParserLang] ?? trigger.regex;
-            if (regex instanceof RegExp) {
-              trigger.localRegex = Regexes.parse(regex);
+            const defaultRegex = trigger.regex;
+            const localeRegex = triggerObject[regexParserLang];
+            if (localeRegex instanceof RegExp) {
+              trigger.localRegex = Regexes.parse(localeRegex);
+              orderedTriggers.push(trigger);
+              found = true;
+            } else if (defaultRegex) {
+              const trans = translateRegex(defaultRegex, this.parserLang, set.timelineReplace);
+              trigger.localRegex = Regexes.parse(trans);
               orderedTriggers.push(trigger);
               found = true;
             }
@@ -769,6 +775,7 @@ export class PopupText {
         replacements.push(...set.timelineReplace);
       if (set.timelineTriggers) {
         for (const trigger of set.timelineTriggers) {
+          // Timeline triggers are never translated.
           this.ProcessTrigger(trigger);
           trigger.isTimelineTrigger = true;
           orderedTriggers.push(trigger);
