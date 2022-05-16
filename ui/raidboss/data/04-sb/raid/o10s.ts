@@ -25,11 +25,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O10S Tail End',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '31AA', source: 'ミドガルズオルム' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '31AA', source: '尘世幻龙' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '31AA', source: '미드가르드오름' }),
       response: Responses.tankBuster(),
     },
     {
@@ -109,22 +104,12 @@ const triggerSet: TriggerSet<Data> = {
       // Also, some log lines are inconsistent here and don't always list
       // Midgardsormr's name and are sometimes blank.
       netRegex: NetRegexes.ability({ id: '31B[2345]', source: ['Midgardsormr', ''], capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '31B[2345]', source: ['Midgardsormr', ''], capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '31B[2345]', source: ['Midgardsormr', ''], capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '31B[2345]', source: ['ミドガルズオルム', ''], capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '31B[2345]', source: ['尘世幻龙', ''], capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '31B[2345]', source: ['미드가르드오름', ''], capture: false }),
       run: (data) => delete data.lastSpinWasHorizontal,
     },
     {
       id: 'O10S Horizontal Spin 1',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '31AC', source: 'ミドガルズオルム', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '31AC', source: '尘世幻龙', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '31AC', source: '미드가르드오름', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.lastSpinWasHorizontal = true,
       outputStrings: {
@@ -142,11 +127,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O10S Vertical Spin 1',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '31AD', source: 'ミドガルズオルム', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '31AD', source: '尘世幻龙', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '31AD', source: '미드가르드오름', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.lastSpinWasHorizontal = false,
       outputStrings: {
@@ -164,11 +144,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O10S Horizontal Spin 2',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '31AE', source: 'ミドガルズオルム', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '31AE', source: '尘世幻龙', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '31AE', source: '미드가르드오름', capture: false }),
       condition: (data) => data.lastSpinWasHorizontal !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastSpinWasHorizontal)
@@ -199,11 +174,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O10S Vertical Spin 2',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '31B0', source: 'ミドガルズオルム', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '31B0', source: '尘世幻龙', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '31B0', source: '미드가르드오름', capture: false }),
       condition: (data) => data.lastSpinWasHorizontal !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastSpinWasHorizontal)
