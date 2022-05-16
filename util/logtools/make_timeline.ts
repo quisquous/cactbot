@@ -21,6 +21,8 @@ import { EncounterCollector, FightEncInfo, TLFuncs } from './encounter_tools';
 // TODO: Reinstate support for using raw start/end times
 // rather than force fight indexing.
 
+// TODO: Add support for compiling log lines during the collector pre-pass.
+
 type TimelineEntry = {
   time: string;
   combatant?: string;
@@ -211,7 +213,7 @@ const extractTLEntries = async (
   const fileEnd = TLFuncs.timeFromDate(end);
   const lines: string[] = await extractRawLines(fileName, fileStart, fileEnd);
 
-  // We have exactly the lines relevant to our encounter now.
+  // We have exactly and only the lines from the start to the end of the encounter.
   for (const line of lines) {
     const targetable = NetRegexes.nameToggle().exec(line)?.groups;
     const ability = NetRegexes.ability().exec(line)?.groups;
@@ -232,6 +234,7 @@ const extractTLEntries = async (
     // At this point, only ability lines are left.
     if (ability) {
       // Cull non-enemy lines
+      // TODO: Handle this using the raid eumlator's line parsing functionality.
       if (ability.sourceId.substring(0, 3) !== '400')
         continue;
       const abilityEntry = parseAbilityToEntry(ability);
@@ -420,8 +423,8 @@ const writeTimelineToFile = (entryList: string[], fileName: string, force: boole
       writer.write(entry);
       writer.write('\n');
     }
-    writer.close();
   }
+  writer.close();
 };
 
 const makeTimeline = async () => {
@@ -459,7 +462,7 @@ const makeTimeline = async () => {
       );
       const assembled = assembleTimelineStrings(fight, baseEntries, startTime, args);
       if (args.output_file && typeof args.output_file === 'string') {
-        const force = args.force !== undefined;
+        const force = args.force !== null;
         writeTimelineToFile(assembled, args.output_file, force);
       }
       if (!args.output_file)
