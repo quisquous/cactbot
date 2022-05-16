@@ -53,11 +53,6 @@ Options.Triggers.push({
       id: 'A10S Floor Spike Trap',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB2', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AB2', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1AB2', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AB2', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB2', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB2', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -74,11 +69,6 @@ Options.Triggers.push({
       id: 'A10S Frost Laser Trap',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB1', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AB1', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1AB1', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AB1', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB1', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB1', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -95,11 +85,6 @@ Options.Triggers.push({
       id: 'A10S Ceiling Weight Trap',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB0', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AB0', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1AB0', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AB0', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB0', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB0', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -117,11 +102,6 @@ Options.Triggers.push({
       type: 'Ability',
       // This also handles the "single charge" call.
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB[89AB]' }),
-      netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AB[89AB]' }),
-      netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1AB[89AB]' }),
-      netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AB[89AB]' }),
-      netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB[89AB]' }),
-      netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB[89AB]' }),
       preRun: (data, matches) => {
         const chargeMap = {
           '1AB8': 'getIn',
@@ -144,22 +124,12 @@ Options.Triggers.push({
       id: 'A10S Charge 1',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A9[789]', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A9[789]', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1A9[789]', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1A9[789]', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1A9[789]', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1A9[789]', capture: false }),
       run: (data) => data.charges.shift(),
     },
     {
       id: 'A10S Charge Double Triple',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A9[ABCE]', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A9[ABCE]', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1A9[ABCE]', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1A9[ABCE]', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1A9[ABCE]', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1A9[ABCE]', capture: false }),
       suppressSeconds: 0.5,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
@@ -175,11 +145,6 @@ Options.Triggers.push({
       id: 'A10S Charge Clear',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A9[789]', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A9[789]', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1A9[789]', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1A9[789]', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1A9[789]', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1A9[789]', capture: false }),
       delaySeconds: 10,
       run: (data) => {
         // Cleanup just in case.
@@ -190,22 +155,12 @@ Options.Triggers.push({
       id: 'A10S Gobrush Rushgob',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Lamebrix Strikebocks', id: '1A9F' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A9F' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Lamebrix Le Mercenaire', id: '1A9F' }),
-      netRegexJa: NetRegexes.startsUsing({ source: '傭兵のレイムプリクス', id: '1A9F' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '佣兵雷姆普里克斯', id: '1A9F' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '용병 레임브릭스', id: '1A9F' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'A10S Slicetops Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Lamebrix Strikebocks', id: '0039' }),
-      netRegexDe: NetRegexes.tether({ source: 'Wüterix (?:der|die|das) Söldner', id: '0039' }),
-      netRegexFr: NetRegexes.tether({ source: 'Lamebrix Le Mercenaire', id: '0039' }),
-      netRegexJa: NetRegexes.tether({ source: '傭兵のレイムプリクス', id: '0039' }),
-      netRegexCn: NetRegexes.tether({ source: '佣兵雷姆普里克斯', id: '0039' }),
-      netRegexKo: NetRegexes.tether({ source: '용병 레임브릭스', id: '0039' }),
       alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
@@ -243,22 +198,12 @@ Options.Triggers.push({
       id: 'A10S Gobsnick Leghops',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Lamebrix Strikebocks', id: '1AA4', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AA4', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Lamebrix Le Mercenaire', id: '1AA4', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '傭兵のレイムプリクス', id: '1AA4', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '佣兵雷姆普里克斯', id: '1AA4', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '용병 레임브릭스', id: '1AA4', capture: false }),
       response: Responses.stopEverything(),
     },
     {
       id: 'A10S Brighteyes Tracker',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AA9', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AA9', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1AA9', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AA9', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AA9', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AA9', capture: false }),
       run: (data) => {
         // This comes out 0.1s before every '0029' prey marker.
         data.seenBrighteyes = true;
@@ -268,11 +213,6 @@ Options.Triggers.push({
       id: 'A10S Brighteyes Cleanup',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AA9', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1AA9', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1AA9', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AA9', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AA9', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AA9', capture: false }),
       delaySeconds: 20,
       suppressSeconds: 20,
       run: (data) => delete data.seenBrighteyes,
@@ -319,11 +259,6 @@ Options.Triggers.push({
       id: 'A10S Gobslice Mooncrops',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Lamebrix Strikebocks', id: '1A92', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A92', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Lamebrix Le Mercenaire', id: '1A92', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '傭兵のレイムプリクス', id: '1A92', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '佣兵雷姆普里克斯', id: '1A92', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '용병 레임브릭스', id: '1A92', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -340,22 +275,12 @@ Options.Triggers.push({
       id: 'A10S Gobslice Mooncrops Cast',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Lamebrix Strikebocks', id: '1A8F', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A8F', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Lamebrix Le Mercenaire', id: '1A8F', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '傭兵のレイムプリクス', id: '1A8F', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '佣兵雷姆普里克斯', id: '1A8F', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '용병 레임브릭스', id: '1A8F', capture: false }),
       response: Responses.getOut('info'),
     },
     {
       id: 'A10S Gobspin Zoomdrops',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A8F', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Wüterix (?:der|die|das) Söldner', id: '1A8F', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Lamebrix Le Mercenaire', id: '1A8F', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1A8F', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1A8F', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1A8F', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

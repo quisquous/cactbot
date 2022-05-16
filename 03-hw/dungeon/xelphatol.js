@@ -31,31 +31,16 @@ Options.Triggers.push({
     {
       id: 'Xelphatol Long Burst',
       netRegex: NetRegexes.startsUsing({ id: '19C8', source: 'Nuzal Hueloc', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '19C8', source: 'Nuzal Hueloc', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '19C8', source: 'Nuzal Hueloc', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '19C8', source: '飛天のヌザル・フェロック', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '19C8', source: '飞天枪 奴扎尔·怀罗克', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '19C8', source: '비천의 누잘 후엘록', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Xelphatol Hot Blast',
       netRegex: NetRegexes.startsUsing({ id: '19CC', source: 'Floating Turret', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '19CC', source: 'Schwebend(?:e|er|es|en) Geschütz', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '19CC', source: 'Tourelle Volante', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '19CC', source: 'バルーンタレット', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '19CC', source: '气球炮塔', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '19CC', source: '기구 포탑', capture: false }),
       response: Responses.getUnder(),
     },
     {
       id: 'Xelphatol On High',
       netRegex: NetRegexes.startsUsing({ id: '19CF', source: 'Dotoli Ciloc', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '19CF', source: 'Dotoli Ciloc', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '19CF', source: 'Dotoli Ciloc', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '19CF', source: '旋風のドトリ・シロック', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '19CF', source: '旋风扇 德托里·西罗克', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '19CF', source: '선풍의 도톨리 실록', capture: false }),
       response: Responses.knockback(),
     },
     {
@@ -78,11 +63,6 @@ Options.Triggers.push({
     {
       id: 'Xelphatol Ixali Aero AOE',
       netRegex: NetRegexes.startsUsing({ id: '19D5', source: 'Tozol Huatotl', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '19D5', source: 'Tozol Huatotl', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '19D5', source: 'Tozol Huatotl', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '19D5', source: '晴嵐のトゾル・ファトトル', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '19D5', source: '晴天霹雳 托佐尔·法托特尔', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '19D5', source: '청풍의 토졸 후아토틀', capture: false }),
       response: Responses.aoe(),
     },
     {

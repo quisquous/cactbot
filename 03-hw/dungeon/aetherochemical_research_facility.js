@@ -32,22 +32,12 @@ Options.Triggers.push({
     {
       id: 'Facility Petrifaction',
       netRegex: NetRegexes.startsUsing({ id: '10EB', source: 'Harmachis', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '10EB', source: 'Harmachis', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '10EB', source: 'Horemakhet', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '10EB', source: 'ハルマキス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '10EB', source: '赫鲁玛奇斯', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '10EB', source: '하르마키스', capture: false }),
       response: Responses.lookAway(),
     },
     {
       id: 'Facility Inertia Stream',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '10ED', source: 'Harmachis' }),
-      netRegexDe: NetRegexes.ability({ id: '10ED', source: 'Harmachis' }),
-      netRegexFr: NetRegexes.ability({ id: '10ED', source: 'Horemakhet' }),
-      netRegexJa: NetRegexes.ability({ id: '10ED', source: 'ハルマキス' }),
-      netRegexCn: NetRegexes.ability({ id: '10ED', source: '赫鲁玛奇斯' }),
-      netRegexKo: NetRegexes.ability({ id: '10ED', source: '하르마키스' }),
       condition: (data) => {
         // Tanks technically shouldn't assist with this mechanic
         return data.role !== 'tank';
@@ -57,42 +47,22 @@ Options.Triggers.push({
     {
       id: 'Facility Dark Orb',
       netRegex: NetRegexes.startsUsing({ id: '10FC', source: ['Igeyorhm', 'Lahabrea'] }),
-      netRegexDe: NetRegexes.startsUsing({ id: '10FC', source: ['Igeyorhm', 'Lahabrea'] }),
-      netRegexFr: NetRegexes.startsUsing({ id: '10FC', source: ['Igeyorhm', 'Lahabrea'] }),
-      netRegexJa: NetRegexes.startsUsing({ id: '10FC', source: ['アシエン・イゲオルム', 'アシエン・ラハブレア'] }),
-      netRegexCn: NetRegexes.startsUsing({ id: '10FC', source: ['以格约姆', '拉哈布雷亚'] }),
-      netRegexKo: NetRegexes.startsUsing({ id: '10FC', source: ['아씨엔 이게요름', '아씨엔 라하브레아'] }),
       response: Responses.tankBuster(),
     },
     {
       id: 'Facility Shadow Flare',
       netRegex: NetRegexes.startsUsing({ id: '1109', source: 'Ascian Prime', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1109', source: 'Prim-Ascian', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1109', source: 'Primo-Ascien', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1109', source: 'アシエン・プライム', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1109', source: '至尊无影', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1109', source: '아씨엔 프라임', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Facility Annihilation',
       netRegex: NetRegexes.startsUsing({ id: '110A', source: 'Ascian Prime', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '110A', source: 'Prim-Ascian', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '110A', source: 'Primo-Ascien', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '110A', source: 'アシエン・プライム', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '110A', source: '至尊无影', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '110A', source: '아씨엔 프라임', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Facility Universal Manipulation',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1105', source: 'Ascian Prime' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1105', source: 'Prim-Ascian' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1105', source: 'Primo-Ascien' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1105', source: 'アシエン・プライム' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1105', source: '至尊无影' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1105', source: '아씨엔 프라임' }),
       // The cast is ~10s, but it takes about 2s for correct execution to register
       // 6s to execute is *usually* enough time
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
@@ -112,11 +82,6 @@ Options.Triggers.push({
       id: 'Facility Chaosphere',
       type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Chaosphere', capture: false }),
-      netRegexDe: NetRegexes.addedCombatant({ name: 'Chaossphäre', capture: false }),
-      netRegexFr: NetRegexes.addedCombatant({ name: 'Sphère De Chaos', capture: false }),
-      netRegexJa: NetRegexes.addedCombatant({ name: 'カオススフィア', capture: false }),
-      netRegexCn: NetRegexes.addedCombatant({ name: '混沌晶球', capture: false }),
-      netRegexKo: NetRegexes.addedCombatant({ name: '혼돈의 구체', capture: false }),
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {

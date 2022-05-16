@@ -27,11 +27,6 @@ Options.Triggers.push({
       id: 'Gubal Hard Bibliocide',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1945', source: 'Liquid Flame', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1945', source: 'flüssig(?:e|er|es|en) Flamme', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1945', source: 'Flamme Liquide', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1945', source: 'リクイドフレイム', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1945', source: '液态火焰', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1945', source: '액체 불꽃', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -75,11 +70,6 @@ Options.Triggers.push({
       id: 'Gubal Hard Slosh',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0039', source: 'Liquid Flame' }),
-      netRegexDe: NetRegexes.tether({ id: '0039', source: 'Flüssig(?:e|er|es|en) Flamme' }),
-      netRegexFr: NetRegexes.tether({ id: '0039', source: 'Flamme Liquide' }),
-      netRegexJa: NetRegexes.tether({ id: '0039', source: 'リクイドフレイム' }),
-      netRegexCn: NetRegexes.tether({ id: '0039', source: '液态火焰' }),
-      netRegexKo: NetRegexes.tether({ id: '0039', source: '액체 불꽃' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -132,11 +122,6 @@ Options.Triggers.push({
       id: 'Gubal Hard Condensed Libra',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '198D', source: 'Mechanoscribe', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '198D', source: 'Mechanoscholar', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '198D', source: 'Mécano-Scribe', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '198D', source: 'メカノスクライブ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '198D', source: '自走人偶抄写员', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '198D', source: '기계 서기', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.CanSilence())
           return output.interruptMechanoscribe();
@@ -166,11 +151,6 @@ Options.Triggers.push({
       id: 'Gubal Hard Properties of Quakes',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1956', source: 'ストリックス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1956', source: '博学林鸮', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1956', source: '스트릭스', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -187,11 +167,6 @@ Options.Triggers.push({
       id: 'Gubal Hard Properties of Tornadoes',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1957', source: 'ストリックス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1957', source: '博学林鸮', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1957', source: '스트릭스', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -208,11 +183,6 @@ Options.Triggers.push({
       id: 'Gubal Hard Properties of Imps',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1959', source: 'ストリックス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1959', source: '博学林鸮', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1959', source: '스트릭스', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -229,33 +199,18 @@ Options.Triggers.push({
       id: 'Gubal Hard Properties of Thunder',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '195A', source: 'ストリックス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '195A', source: '博学林鸮', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '195A', source: '스트릭스', capture: false }),
       response: Responses.spread(),
     },
     {
       id: 'Gubal Hard Properties of Darkness II',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1955', source: 'ストリックス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1955', source: '博学林鸮', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1955', source: '스트릭스', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Gubal Hard Ecliptic Meteor',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '195D', source: 'Behemoth Ward', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '195D', source: 'Buch-Behemoth', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '195D', source: 'Béhémoth Conjuré', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '195D', source: 'ベヒーモス・ワード', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '195D', source: '贝希摩斯护卫', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '195D', source: '고서의 베히모스', capture: false }),
       delaySeconds: 14,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {

@@ -40,11 +40,6 @@ Options.Triggers.push({
       id: 'Sohm Al Myath Chyme',
       type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Chyme Of The Mountain', capture: false }),
-      netRegexDe: NetRegexes.addedCombatant({ name: 'Gebirgsbrei', capture: false }),
-      netRegexFr: NetRegexes.addedCombatant({ name: 'Chyme Des Montagnes', capture: false }),
-      netRegexJa: NetRegexes.addedCombatant({ name: 'キームス・マウンテン', capture: false }),
-      netRegexCn: NetRegexes.addedCombatant({ name: '圣山之糜', capture: false }),
-      netRegexKo: NetRegexes.addedCombatant({ name: '산의 유미즙', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
