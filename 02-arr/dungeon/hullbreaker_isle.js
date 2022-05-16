@@ -5,22 +5,12 @@ Options.Triggers.push({
       id: 'Hullbreaker Isle Stool Pelt',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '89E', source: 'Sasquatch', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '89E', source: 'Sasquatch', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '89E', source: 'Sasquatch', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '89E', source: 'サスカッチ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '89E', source: '大脚巨猿', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '89E', source: '사스콰치', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Hullbreaker Isle Chest Thump',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '89F', source: 'Sasquatch', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '89F', source: 'Sasquatch', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '89F', source: 'Sasquatch', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '89F', source: 'サスカッチ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '89F', source: '大脚巨猿', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '89F', source: '사스콰치', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

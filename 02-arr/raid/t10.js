@@ -6,22 +6,12 @@ Options.Triggers.push({
       id: 'T10 Phase Change',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: 'B5D', source: 'イムドゥグド', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: 'B5D', source: '伊姆都古德', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: 'B5D', source: '임두구드', capture: false }),
       sound: 'Long',
     },
     {
       id: 'T10 Heat Lightning',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: 'B5F', source: 'イムドゥグド', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: 'B5F', source: '伊姆都古德', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: 'B5F', source: '임두구드', capture: false }),
       response: Responses.spread(),
     },
     {
@@ -65,11 +55,6 @@ Options.Triggers.push({
       id: 'T10 Cyclonic Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
-      netRegexDe: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
-      netRegexFr: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
-      netRegexJa: NetRegexes.tether({ id: '0015', source: 'イムドゥグド' }),
-      netRegexCn: NetRegexes.tether({ id: '0015', source: '伊姆都古德' }),
-      netRegexKo: NetRegexes.tether({ id: '0015', source: '임두구드' }),
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.cyclonicOnYou();

@@ -5,11 +5,6 @@ Options.Triggers.push({
       id: 'Snowcloak Lunar Cry',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'C1F', source: 'Fenrir', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: 'C1F', source: 'Fenrir', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: 'C1F', source: 'Fenrir', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: 'C1F', source: 'フェンリル', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: 'C1F', source: '芬里尔', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: 'C1F', source: '펜리르', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

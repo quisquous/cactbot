@@ -139,11 +139,6 @@ Options.Triggers.push({
       type: 'Ability',
       // Ravensclaw
       netRegex: NetRegexes.ability({ id: '7D5', source: 'Nael Deus Darnus' }),
-      netRegexDe: NetRegexes.ability({ id: '7D5', source: 'Nael Deus Darnus' }),
-      netRegexFr: NetRegexes.ability({ id: '7D5', source: 'Nael Deus Darnus' }),
-      netRegexJa: NetRegexes.ability({ id: '7D5', source: 'ネール・デウス・ダーナス' }),
-      netRegexCn: NetRegexes.ability({ id: '7D5', source: '奈尔·神·达纳斯' }),
-      netRegexKo: NetRegexes.ability({ id: '7D5', source: '넬 데우스 다르누스' }),
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
       promise: (_data, matches) =>
@@ -160,11 +155,6 @@ Options.Triggers.push({
       id: 'T9 Earthshock',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7F5', source: 'Dalamud Spawn', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '7F5', source: 'Dalamud-Golem', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '7F5', source: 'Golem De Dalamud', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '7F5', source: 'ダラガブゴーレム', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '7F5', source: '卫月巨像', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '7F5', source: '달라가브 골렘', capture: false }),
       condition: (data) => data.CanSilence(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -182,11 +172,6 @@ Options.Triggers.push({
       id: 'T9 Heavensfall',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '83B', source: 'ネール・デウス・ダーナス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '83B', source: '奈尔·神·达纳斯', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '83B', source: '넬 데우스 다르누스', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -221,11 +206,6 @@ Options.Triggers.push({
       id: 'T9 Ghost Death',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7FA', source: 'The Ghost Of Meracydia', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '7FA', source: 'Geist Von Meracydia', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '7FA', source: 'Fantôme Méracydien', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '7FA', source: 'メラシディアン・ゴースト', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '7FA', source: '美拉西迪亚幽龙', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '7FA', source: '메라시디아의 유령', capture: false }),
       condition: (data) => data.garotte,
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -250,11 +230,6 @@ Options.Triggers.push({
       id: 'T9 Final Phase',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '7E6', source: 'ネール・デウス・ダーナス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       condition: (data) => !data.seenFinalPhase,
       sound: 'Long',
       run: (data) => data.seenFinalPhase = true,
@@ -263,11 +238,6 @@ Options.Triggers.push({
       id: 'T9 Dragon Locations',
       type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ name: ['Firehorn', 'Iceclaw', 'Thunderwing'] }),
-      netRegexDe: NetRegexes.addedCombatantFull({ name: ['Feuerhorn', 'Eisklaue', 'Donnerschwinge'] }),
-      netRegexFr: NetRegexes.addedCombatantFull({ name: ['Corne-De-Feu', 'Griffe-De-Glace', 'Aile-De-Foudre'] }),
-      netRegexJa: NetRegexes.addedCombatantFull({ name: ['ファイアホーン', 'アイスクロウ', 'サンダーウィング'] }),
-      netRegexCn: NetRegexes.addedCombatantFull({ name: ['火角', '冰爪', '雷翼'] }),
-      netRegexKo: NetRegexes.addedCombatantFull({ name: ['화염뿔', '얼음발톱', '번개날개'] }),
       run: (data, matches) => {
         // Lowercase all of the names here for case insensitive matching.
         const allNames = {
@@ -300,11 +270,6 @@ Options.Triggers.push({
       id: 'T9 Final Phase Reset',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '7E6', source: 'ネール・デウス・ダーナス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       run: (data) => {
         data.tetherCount = 0;
         data.naelDiveMarkerCount = 0;
@@ -344,11 +309,6 @@ Options.Triggers.push({
       id: 'T9 Dragon Marks',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '7E6', source: 'ネール・デウス・ダーナス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       durationSeconds: 12,
       infoText: (data, _matches, output) =>
         output.marks({
@@ -371,11 +331,6 @@ Options.Triggers.push({
       id: 'T9 Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0005', source: 'Firehorn' }),
-      netRegexDe: NetRegexes.tether({ id: '0005', source: 'Feuerhorn' }),
-      netRegexFr: NetRegexes.tether({ id: '0005', source: 'Corne-De-Feu' }),
-      netRegexJa: NetRegexes.tether({ id: '0005', source: 'ファイアホーン' }),
-      netRegexCn: NetRegexes.tether({ id: '0005', source: '火角' }),
-      netRegexKo: NetRegexes.tether({ id: '0005', source: '화염뿔' }),
       preRun: (data) => {
         data.tetherCount++;
       },
@@ -430,11 +385,6 @@ Options.Triggers.push({
       id: 'T9 Thunder',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Thunderwing', id: '7FD' }),
-      netRegexDe: NetRegexes.ability({ source: 'Donnerschwinge', id: '7FD' }),
-      netRegexFr: NetRegexes.ability({ source: 'Aile-De-Foudre', id: '7FD' }),
-      netRegexJa: NetRegexes.ability({ source: 'サンダーウィング', id: '7FD' }),
-      netRegexCn: NetRegexes.ability({ source: '雷翼', id: '7FD' }),
-      netRegexKo: NetRegexes.ability({ source: '번개날개', id: '7FD' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {

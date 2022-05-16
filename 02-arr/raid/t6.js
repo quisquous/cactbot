@@ -7,11 +7,6 @@ Options.Triggers.push({
       type: 'Ability',
       // Bloody Caress.
       netRegex: NetRegexes.ability({ id: '797', source: 'Rafflesia' }),
-      netRegexDe: NetRegexes.ability({ id: '797', source: 'Rafflesia' }),
-      netRegexFr: NetRegexes.ability({ id: '797', source: 'Rafflesia' }),
-      netRegexJa: NetRegexes.ability({ id: '797', source: 'ラフレシア' }),
-      netRegexCn: NetRegexes.ability({ id: '797', source: '大王花' }),
-      netRegexKo: NetRegexes.ability({ id: '797', source: '라플레시아' }),
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
       promise: (_data, matches) =>
@@ -42,11 +37,6 @@ Options.Triggers.push({
       id: 'T6 Thorn Whip',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
-      netRegexDe: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
-      netRegexFr: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
-      netRegexJa: NetRegexes.ability({ id: '879', source: 'ラフレシア' }),
-      netRegexCn: NetRegexes.ability({ id: '879', source: '大王花' }),
-      netRegexKo: NetRegexes.ability({ id: '879', source: '라플레시아' }),
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         const partners = data.thornMap?.[data.me] ?? [];
@@ -156,22 +146,12 @@ Options.Triggers.push({
       id: 'T6 Blighted',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '79D', source: 'ラフレシア', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '79D', source: '大王花', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '79D', source: '라플레시아', capture: false }),
       response: Responses.stopEverything(),
     },
     {
       id: 'T6 Phase 3',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '79E', source: 'ラフレシア', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '79E', source: '大王花', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '79E', source: '라플레시아', capture: false }),
       condition: (data) => !data.seenLeafstorm,
       sound: 'Long',
       run: (data) => data.seenLeafstorm = true,
@@ -180,11 +160,6 @@ Options.Triggers.push({
       id: 'T6 Swarm Stack',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '86C', source: 'ラフレシア', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '86C', source: '大王花', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '86C', source: '라플레시아', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -200,11 +175,6 @@ Options.Triggers.push({
       id: 'T6 Swarm',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
-      netRegexDe: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
-      netRegexFr: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
-      netRegexJa: NetRegexes.ability({ id: '7A0', source: 'ラフレシア' }),
-      netRegexCn: NetRegexes.ability({ id: '7A0', source: '大王花' }),
-      netRegexKo: NetRegexes.ability({ id: '7A0', source: '라플레시아' }),
       condition: (data, matches) => data.me === matches.target || data.role === 'healer' || data.job === 'BLU',
       alertText: (data, matches, output) => {
         if (matches.target === data.me)

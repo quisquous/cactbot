@@ -19,11 +19,6 @@ Options.Triggers.push({
       id: 'T13 Gigaflare Phase Change',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BB9', source: 'Bahamut Prime', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: 'BB9', source: 'Prim-Bahamut', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: 'BB9', source: 'Primo-Bahamut', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: 'BB9', source: 'バハムート・プライム', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: 'BB9', source: '至尊巴哈姆特', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: 'BB9', source: '바하무트 프라임', capture: false }),
       // Only the first two gigas are phase changes, the rest are in final phase.
       condition: (data) => data.gigaflare <= 2,
       sound: 'Long',
@@ -47,11 +42,6 @@ Options.Triggers.push({
       id: 'T13 Flatten',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BAE', source: 'Bahamut Prime' }),
-      netRegexDe: NetRegexes.startsUsing({ id: 'BAE', source: 'Prim-Bahamut' }),
-      netRegexFr: NetRegexes.startsUsing({ id: 'BAE', source: 'Primo-Bahamut' }),
-      netRegexJa: NetRegexes.startsUsing({ id: 'BAE', source: 'バハムート・プライム' }),
-      netRegexCn: NetRegexes.startsUsing({ id: 'BAE', source: '至尊巴哈姆特' }),
-      netRegexKo: NetRegexes.startsUsing({ id: 'BAE', source: '바하무트 프라임' }),
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.flattenOnYou();
@@ -107,11 +97,6 @@ Options.Triggers.push({
       id: 'T13 Tempest Wing',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0004', target: 'Bahamut Prime' }),
-      netRegexDe: NetRegexes.tether({ id: '0004', target: 'Prim-Bahamut' }),
-      netRegexFr: NetRegexes.tether({ id: '0004', target: 'Primo-Bahamut' }),
-      netRegexJa: NetRegexes.tether({ id: '0004', target: 'バハムート・プライム' }),
-      netRegexCn: NetRegexes.tether({ id: '0004', target: '至尊巴哈姆特' }),
-      netRegexKo: NetRegexes.tether({ id: '0004', target: '바하무트 프라임' }),
       condition: (data, matches) => data.me === matches.source,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -129,11 +114,6 @@ Options.Triggers.push({
       id: 'T13 Akh Morn',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BC2', source: 'Bahamut Prime' }),
-      netRegexDe: NetRegexes.startsUsing({ id: 'BC2', source: 'Prim-Bahamut' }),
-      netRegexFr: NetRegexes.startsUsing({ id: 'BC2', source: 'Primo-Bahamut' }),
-      netRegexJa: NetRegexes.startsUsing({ id: 'BC2', source: 'バハムート・プライム' }),
-      netRegexCn: NetRegexes.startsUsing({ id: 'BC2', source: '至尊巴哈姆特' }),
-      netRegexKo: NetRegexes.startsUsing({ id: 'BC2', source: '바하무트 프라임' }),
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.akhMornOnYou();
