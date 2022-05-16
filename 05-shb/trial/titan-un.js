@@ -93,6 +93,11 @@ Options.Triggers.push({
       type: 'StartsUsing',
       // Five second cast time.
       netRegex: NetRegexes.startsUsing({ source: 'Titan', id: '58F9', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Titan', id: '58F9', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Titan', id: '58F9', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'タイタン', id: '58F9', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '泰坦', id: '58F9', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '타이탄', id: '58F9', capture: false }),
       response: Responses.knockback('info'),
     },
   ],
