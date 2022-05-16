@@ -369,7 +369,7 @@ hideall "--sync--"
 4073.0 "Trinity 4" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4082.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D99:/
 4083.9 "Gigaflare's Edge x3" #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9A:/ duration 7.9
-4084.0 "Chariot" sync / 1[56]:[^:]*:Dragon-king Thordan:6D91:/
+4084.0 "Dynamo/Chariot" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
 4100.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4102.0 "Trinity 5" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4104.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
