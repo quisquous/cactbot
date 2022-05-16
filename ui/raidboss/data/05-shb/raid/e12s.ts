@@ -434,11 +434,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Tether',
       // This always directly follows the 1B: headmarker line.
       netRegex: NetRegexes.tether({ target: 'Chiseled Sculpture', id: '0011' }),
-      netRegexDe: NetRegexes.tether({ target: 'Abbild Eines Mannes', id: '0011' }),
-      netRegexFr: NetRegexes.tether({ target: 'Création Masculine', id: '0011' }),
-      netRegexJa: NetRegexes.tether({ target: '創られた男', id: '0011' }),
-      netRegexCn: NetRegexes.tether({ target: '被创造的男性', id: '0011' }),
-      netRegexKo: NetRegexes.tether({ target: '창조된 남자', id: '0011' }),
       condition: (data, matches) => matches.source === data.me,
       durationSeconds: (data) => {
         // Handle laser #1 differently to not collide with the rapturous reach.
@@ -550,11 +545,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Palm Of Temperance SE',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Guardian Of Eden', id: '58B4', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Wächter Von Eden', id: '58B4', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Gardien D\'Éden', id: '58B4', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ガーディアン・オブ・エデン', id: '58B4', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '伊甸守卫', id: '58B4', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 수호자', id: '58B4', capture: false }),
       durationSeconds: 10,
       infoText: (_data, _matches, output) => output.knockback!(),
       outputStrings: {
@@ -572,11 +562,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Palm Of Temperance SW',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Guardian Of Eden', id: '58B5', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Wächter Von Eden', id: '58B5', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Gardien D\'Éden', id: '58B5', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ガーディアン・オブ・エデン', id: '58B5', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '伊甸守卫', id: '58B5', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 수호자', id: '58B5', capture: false }),
       durationSeconds: 10,
       infoText: (_data, _matches, output) => output.knockback!(),
       outputStrings: {
@@ -594,11 +579,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Statue 2nd/3rd/4th Laser',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Abbild Eines Mannes', id: '58B3', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Création Masculine', id: '58B3', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '創られた男', id: '58B3', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '被创造的男性', id: '58B3', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '창조된 남자', id: '58B3', capture: false }),
 
       condition: (data) => !data.statueLaserCount || data.statueLaserCount < 4,
       durationSeconds: 3,
@@ -669,11 +649,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Weight Cleanup',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A5', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58A5', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A5', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A5', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58A5', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '58A5', capture: false }),
       run: (data) => {
         delete data.weightTargets;
         data.seenFirstBombs = true;
@@ -683,11 +658,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Formless Judgment',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A9', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58A9', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A9', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A9', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58A9', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '58A9', capture: false }),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -722,11 +692,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Rapturous Reach Left',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58AD', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58AD', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AD', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AD', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58AD', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '58AD', capture: false }),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -772,11 +737,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Rapturous Reach Right',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58AE', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58AE', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AE', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AE', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58AE', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '58AE', capture: false }),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -822,11 +782,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Maleficium',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A8', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58A8', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A8', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A8', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58A8', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '58A8', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -913,11 +868,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Stock',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '5892', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '5892', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '5892', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '5892', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '5892', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '5892', capture: false }),
       infoText: (data, _matches, output) => {
         data.stockedTethers = data.tethers;
         delete data.tethers;
@@ -933,11 +883,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Cast Release',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: ['4E43', '5893'] }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: ['4E43', '5893'] }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: ['4E43', '5893'] }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: ['4E43', '5893'] }),
-      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: ['4E43', '5893'] }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: ['4E43', '5893'] }),
       preRun: (data) => data.castCount = (data.castCount ?? 0) + 1,
       // The pattern is cast - cast - release - release - cast - release.
       // #4 (the 2nd release) starts casting just before the second lion fire breath.
@@ -981,11 +926,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // This has a 9 second cast. :eyes:
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '589D', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '589D', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '589D', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '589D', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '589D', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '589D', capture: false }),
       delaySeconds: 4,
       response: Responses.knockback(),
     },
@@ -1002,11 +942,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Small Lion Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Beastly Sculpture', id: '0011' }),
-      netRegexDe: NetRegexes.tether({ source: 'Abbild Eines Löwen', id: '0011' }),
-      netRegexFr: NetRegexes.tether({ source: 'Création Léonine', id: '0011' }),
-      netRegexJa: NetRegexes.tether({ source: '創られた獅子', id: '0011' }),
-      netRegexCn: NetRegexes.tether({ source: '被创造的狮子', id: '0011' }),
-      netRegexKo: NetRegexes.tether({ source: '창조된 사자', id: '0011' }),
       condition: Conditions.targetIsYou(),
       // Don't collide with reach left/right call.
       delaySeconds: 0.5,
@@ -1079,22 +1014,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Oracle Shockwave Pulsar',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58F0', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58F0', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58F0', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58F0', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58F0', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58F0', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'E12S Relativity Phase',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E[0-3]' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E[0-3]' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E[0-3]' }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E[0-3]' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E[0-3]' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E[0-3]' }),
       run: (data, matches) => {
         const phaseMap: { [id: string]: string } = {
           '58E0': 'basic',
@@ -1109,44 +1034,24 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Oracle Basic Relativity',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E0', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E0', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E0', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E0', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E0', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E0', capture: false }),
       response: Responses.bigAoe(),
     },
     {
       id: 'E12S Oracle Intermediate Relativity',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E1', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E1', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E1', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E1', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E1', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E1', capture: false }),
       response: Responses.bigAoe(),
     },
     {
       id: 'E12S Oracle Advanced Relativity',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E2', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E2', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E2', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E2', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E2', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E2', capture: false }),
       response: Responses.bigAoe(),
     },
     {
       id: 'E12S Oracle Terminal Relativity',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E3', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E3', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E3', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E3', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E3', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E3', capture: false }),
       response: Responses.bigAoe(),
     },
     {
@@ -1154,11 +1059,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // Darkest and Somber Dance both.
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: ['58BE', '58BD'], capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: ['58BE', '58BD'], capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: ['58BE', '58BD'], capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: ['58BE', '58BD'], capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: ['58BE', '58BD'], capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: ['58BE', '58BD'], capture: false }),
       infoText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.tankBait!();
@@ -1188,11 +1088,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // Call for second hit of somber dance after first hit lands.
       netRegex: NetRegexes.ability({ source: 'Oracle Of Darkness', id: '58BD', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Orakel Der Dunkelheit', id: '58BD', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Prêtresse Des Ténèbres', id: '58BD', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '闇の巫女', id: '58BD', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '暗之巫女', id: '58BD', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '어둠의 무녀', id: '58BD', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
         if (data.role === 'tank')
@@ -1222,11 +1117,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Oracle Cataclysm',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C2' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C2' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C2' }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C2' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58C2' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58C2' }),
       delaySeconds: 0.5,
       promise: async (data, matches, output) => {
         // select the Oracle Of Darkness with same source id
@@ -1279,11 +1169,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Shell Crusher',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C3', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C3', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C3', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58C3', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58C3', capture: false }),
       response: Responses.getTogether(),
     },
     {
@@ -1292,11 +1177,6 @@ const triggerSet: TriggerSet<Data> = {
       // Spirit Taker always comes after Shell Crusher, so trigger on Shell Crusher damage
       // to warn people a second or two earlier than `starts using Spirit Taker` would occur.
       netRegex: NetRegexes.ability({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Orakel Der Dunkelheit', id: '58C3', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Prêtresse Des Ténèbres', id: '58C3', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '闇の巫女', id: '58C3', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '暗之巫女', id: '58C3', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '어둠의 무녀', id: '58C3', capture: false }),
       suppressSeconds: 1,
       response: Responses.spread(),
     },
@@ -1304,11 +1184,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Black Halo',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C7' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C7' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C7' }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C7' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58C7' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58C7' }),
       response: Responses.tankBuster(),
     },
     {
