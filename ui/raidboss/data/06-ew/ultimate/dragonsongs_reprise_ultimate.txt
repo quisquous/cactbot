@@ -202,6 +202,7 @@ hideall "--sync--"
 2031.1 "Brightwing 4" sync / 1[56]:[^:]*:Ser Charibert:6319:/
 2034.1 "Skyblind 3" sync / 1[56]:[^:]*:Ser Charibert:631A:/
 2036.3 "Pure of Heart" sync / 1[56]:[^:]*:Ser Charibert:62E4:/
+2038.6 "--targetable--"
 2039.3 "Skyblind 4" sync / 1[56]:[^:]*:Ser Charibert:631A:/
 # Enrage??
 
