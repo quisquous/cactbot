@@ -789,20 +789,21 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tankHealerMeteors: {
           en: 'Tank/Healer Meteors (${player1}, ${player2})',
-          de: 'Tank/Heiler Meteore (${player1}, ${player2})', // FIXME
+          de: 'Tank/Heiler Meteore (${player1}, ${player2})',
           fr: 'Météores Tank/Healer (${player1}, ${player2})', // FIXME
           ja: 'タンヒラ 隕石 (${player1}, ${player2})', // FIXME
           ko: '탱/힐 메테오 (${player1}, ${player2})', // FIXME
         },
         dpsMeteors: {
           en: 'DPS Meteors (${player1}, ${player2})',
-          de: 'DDs Meteore (${player1}, ${player2})', // FIXME
+          de: 'DDs Meteore (${player1}, ${player2})',
           fr: 'Météores DPS (${player1}, ${player2})', // FIXME
           ja: 'DPS 隕石 (${player1}, ${player2})', // FIXME
           ko: '딜러 메테오 (${player1}, ${player2})', // FIXME
         },
         unknownMeteors: {
           en: '??? Meteors (${player1}, ${player2})',
+          de: '??? Meteore (${player1}, ${player2})',
         },
       },
     },
@@ -996,18 +997,22 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         circleAllCircles: {
           en: '#${num} All Circles',
+          de: '#${num} Alle Kreise',
           ko: '#${num} 전부 하이점프',
         },
         circleWithArrows: {
           en: '#${num} Circle (with arrows)',
+          de: '#${num} Kreise (mit Pfeilen)',
           ko: '#${num} 하이점프 (다른사람 화살표)',
         },
         upArrow: {
           en: '#${num} Up Arrow',
+          de: '#${num} Pfeil nach Vorne',
           ko: '#${num} 위 화살표 (척추 강타)',
         },
         downArrow: {
           en: '#${num} Down Arrow',
+          de: '#${num} Pfeil nach Hinten',
           ko: '#${num} 아래 화살표 (교묘한 점프)',
         },
       },
