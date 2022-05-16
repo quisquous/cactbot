@@ -216,13 +216,13 @@ hideall "--sync--"
 3036.8 "Skyward Leap" sync / 1[56]:[^:]*:Ser Paulecrain:72A2:/
 3036.8 "Spiral Pierce" sync / 1[56]:[^:]*:Ser Ignasse:6B8A:/
 3042.2 "Ascalon's Mercy Revealed" sync / 1[56]:[^:]*:King Thordan:63CA:/
-3043.1 "Liquid Heaven 1" sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
-3044.3 "Liquid Heaven 2" sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
-3045.5 "Liquid Heaven 3" sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
+3043.1 "Liquid Heaven 1" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
+3044.3 "Liquid Heaven 2" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
+3045.5 "Liquid Heaven 3" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
 3046.6 "--sync--" sync / 1[56]:[^:]*:Ser Charibert:63E4:/
 3046.7 "Liquid Heaven 4" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
 3047.1 "Altar Flare 1" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
-3047.9 "Liquid Heaven 5" sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
+3047.9 "Liquid Heaven 5" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
 3048.7 "Altar Flare 2" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
 3050.1 "Cauterize" #sync / 1[56]:[^:]*:Darkscale:6B8D:/
 3050.2 "Altar Flare 3" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
