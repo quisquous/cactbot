@@ -1063,9 +1063,9 @@ const triggerSet: TriggerSet<Data> = {
       // Pyretic will cause damage on movement
       netRegex: NetRegexes.gainsEffect({ effectId: ['B52'] }),
       condition: Conditions.targetIsYou(),
-      // Boiling lasts 10.96s, after which Pyretic is applied Provide warning
+      // Boiling lasts 10.96s, after which Pyretic is applied provide warning
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 9.5,
-      // Player will have Pyertic for about 3s before hit by Cauterize
+      // Player will have Pyretic for about 3s before hit by Cauterize
       durationSeconds: 4,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
