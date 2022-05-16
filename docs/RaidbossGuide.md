@@ -97,10 +97,8 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
   disabled: false,
   // Note: use the regex helpers from [netregexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts)
   netRegex: NetRegexes.startsUsing({ id: 'some-id', source: 'some-name' }),
-  netRegexFr: NetRegexes.startsUsing({ id: 'some-id', source: 'some-name-but-in-french' }),
   // Note: prefer to use the regex helpers from [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts)
   regex: /trigger-regex-for-act-log-lines/,
-  regexFr: /trigger-regex-for-act-log-lines-but-in-French/,
   condition: function(data, matches, output) { return true if it should run },
   preRun: function(data, matches, output) { do stuff.. },
   delaySeconds: 0,
@@ -166,7 +164,7 @@ Defaults to false.
 The regular expression cactbot will run against each log line
 to determine whether the trigger will activate.
 The `netRegex` version matches against network log lines,
-while the `regex` version matches against regular ACT log lines.
+while the `regex` version matches against parsed ACT log lines.
 
 More commonly, however, a regex replacement is used instead of a bare regex.
 Helper functions defined in [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts)
@@ -177,21 +175,7 @@ be matched against.
 Unsurprisingly, for `netRegex` use the `NetRegexes` helper
 and for `regex` use the `Regexes` helper.
 
-**netRegexFr / regexFr**
-Example of a locale-based regular expression for the 'fr' locale.
-If `Options.ParserLanguage == 'fr'`, then `regexFr` (if it exists) takes precedence over `regex`.
-Otherwise, it is ignored.  This is only an example for french, but other locales behave the same, e.g. regexEn, regexKo.
-Like `netRegex` vs `regex`,
-`netRegexFr` matches against network log lines in French
-while `regexFr` matches against ACT log lines in French.
-
-Locale regexes do not have a defined ordering.
-Current practice is to order them as `de`, `fr`, `ja`, `cn`, `ko`, however.
-Additionally, as with bare `regex` elements, current practice is to use regex replacements instead.
-
-(Ideally, at some point in the future, we could get to the point where we don't need individual locale regexes.
-Instead, we could use the translations provided in the `timelineReplace` object to do this automagically.
-We're not there yet, but there's always someday.)
+`regex` and `netRegex` lines are auto-translated using the `timelineReplace` section.
 
 **condition: function(data, matches, output)**
 Activates the trigger if the function returns `true`.
@@ -376,8 +360,8 @@ Trigger elements are evaluated in this order, and must be listed in this order:
 
 - id
 - disabled
-- netRegex (and netRegexDe, netRegexFr, etc)
-- regex (and regexDe, regexFr, etc)
+- netRegex
+- regex
 - beforeSeconds (for timelineTriggers)
 - (suppressed triggers early out here)
 - condition
@@ -436,28 +420,18 @@ A sample trigger that makes use of all these elements:
 ```javascript
 {
   id: 'TEA Mega Holy Modified',
-  regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
-  regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A83', capture: false }),
-  regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A83', capture: false }),
-  regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A83', capture: false }),
-  regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A83', capture: false }),
-  regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A83', capture: false }),
+  netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
   condition: Conditions.caresAboutMagical(),
   response: Responses.bigAoe('alert'),
 },
 ```
 
-While this doesn't reduce the number of lines we need to match the locale regexes, this is far less verbose than:
+This is far less verbose than:
 
 ```javascript
 {
   id: 'TEA Mega Holy Modified',
-  regex:  / 14:........:Alexander Prime starts using Mega Holy/,
-  regexDe: / 14:........:Prim-Alexander starts using Super-Sanctus/,
-  regexFr: / 14:........:Primo-Alexander starts using Méga Miracle/,
-  regexJa: / 14:........:アレキサンダー・プライム starts using メガホーリー/,
-  regexCn: / 14:........:至尊亚历山大 starts using 百万神圣/,
-  regexKo: / 14:........:알렉산더 프라임 starts using 지진/,
+  netRegex: /^(?:20)\|(?:[^|]*)\|(?:[^|]*)\|(?:Alexander Prime)\|(?:4A83)\|/i,
   condition: function(data) {
     return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
   },

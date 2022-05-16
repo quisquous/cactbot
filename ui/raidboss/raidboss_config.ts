@@ -3,6 +3,7 @@ import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
 import Regexes from '../../resources/regexes';
 import { triggerOutputFunctions } from '../../resources/responses';
+import { translateRegex } from '../../resources/translations';
 import UserConfig, {
   ConfigValue,
   OptionsTemplate,
@@ -1096,7 +1097,7 @@ class RaidbossConfigurator {
     return this.valueOrFunction(result['en'], data, matches, output);
   }
 
-  processTrigger(trig: ConfigLooseTrigger): ConfigLooseTrigger {
+  processTrigger(trig: ConfigLooseTrigger, set: ConfigLooseTriggerSet): ConfigLooseTrigger {
     // TODO: with some hackiness (e.g. regexes?) we could figure out which
     // output string came from which alert type (alarm, alert, info, tts).
     // See `makeOutput` comments for why this needs a type assertion to be an Output.
@@ -1254,30 +1255,15 @@ class RaidbossConfigurator {
 
     trig.configOutput = output;
 
+    // TODO: this shows the regexes in the display language.
+    // Should we show them in the parser language instead?
     const lang = this.base.lang;
 
-    const langSpecificRegexes = [
-      'netRegexDe',
-      'netRegexFr',
-      'netRegexJa',
-      'netRegexCn',
-      'netRegexKo',
-      'regexDe',
-      'regexFr',
-      'regexJa',
-      'regexCn',
-      'regexKo',
-    ] as const;
     const getRegex = (baseField: 'regex' | 'netRegex') => {
-      const shortLanguage = lang.charAt(0).toUpperCase() + lang.slice(1);
-      const concatStr = langSpecificRegexes.find((x) => x === `${baseField}${shortLanguage}`);
-      if (!concatStr)
+      const regex = trig[baseField];
+      if (regex === undefined)
         return;
-      const langSpecificRegex = trig[concatStr] ?? trig[baseField];
-      if (!langSpecificRegex)
-        return;
-      const baseRegex = Regexes.parse(langSpecificRegex);
-      return Regexes.parse(baseRegex);
+      return Regexes.parse(translateRegex(regex, lang, set.timelineReplace));
     };
 
     if (trig.isTimelineTrigger) {
@@ -1349,7 +1335,7 @@ class RaidbossConfigurator {
           trig.isTimelineTrigger = key === 'timeline';
           // Also, if a user has two of the same id in the same triggerSet (?!)
           // then only the second trigger will show up.
-          item.triggers[trig.id] = this.processTrigger(trig);
+          item.triggers[trig.id] = this.processTrigger(trig, triggerSet);
         }
       }
     }
