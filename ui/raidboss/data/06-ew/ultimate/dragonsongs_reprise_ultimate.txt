@@ -253,7 +253,7 @@ hideall "--sync--"
 3115.5 "Faith Unmoving" #sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
 3115.5 "The Dragon's Gaze" #sync / 1[56]:[^:]*:King Thordan:63D1:/
 3115.5 "The Dragon's Glory" #sync / 1[56]:[^:]*:King Thordan:63D2:/
-3117.4 "Heavensflame 2" sync / 1[56]:[^:]*:Ser Charibert:62DE:/
+3117.4 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:62DE:/
 3140.3 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
 3150.5 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
 3153.6 "Ascalon's Might 1" #sync / 1[56]:[^:]*:King Thordan:63C5:/
