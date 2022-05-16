@@ -27,11 +27,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T8 Landmine Start',
       type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'Landmines have been scattered.*?', capture: false }),
-      netRegexDe: NetRegexes.message({ line: 'Die Landminen haben sich verteilt.*?', capture: false }),
-      netRegexFr: NetRegexes.message({ line: 'Des mines ont été répandues.*?', capture: false }),
-      netRegexJa: NetRegexes.message({ line: '地雷が散布された.*?', capture: false }),
-      netRegexCn: NetRegexes.message({ line: '地雷分布在了各处.*?', capture: false }),
-      netRegexKo: NetRegexes.message({ line: '지뢰가 뿌려졌습니다.*?', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.landmines = {},
       outputStrings: {
@@ -49,11 +44,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T8 Landmine Explosion',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7D1', source: 'Allagan Mine' }),
-      netRegexDe: NetRegexes.ability({ id: '7D1', source: 'Allagische Mine' }),
-      netRegexFr: NetRegexes.ability({ id: '7D1', source: 'Mine Allagoise' }),
-      netRegexJa: NetRegexes.ability({ id: '7D1', source: 'アラガンマイン' }),
-      netRegexCn: NetRegexes.ability({ id: '7D1', source: '亚拉戈机雷' }),
-      netRegexKo: NetRegexes.ability({ id: '7D1', source: '알라그 지뢰' }),
       infoText: (data, matches, output) => {
         if (matches.target in data.landmines)
           return;
@@ -93,11 +83,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T8 Homing Missile Warning',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0005', target: 'The Avatar' }),
-      netRegexDe: NetRegexes.tether({ id: '0005', target: 'Avatar' }),
-      netRegexFr: NetRegexes.tether({ id: '0005', target: 'Bio-Tréant' }),
-      netRegexJa: NetRegexes.tether({ id: '0005', target: 'アバター' }),
-      netRegexCn: NetRegexes.tether({ id: '0005', target: '降世化身' }),
-      netRegexKo: NetRegexes.tether({ id: '0005', target: '아바타' }),
       suppressSeconds: 6,
       infoText: (data, matches, output) => {
         return output.text!({ player: data.ShortName(matches.source) });
@@ -117,11 +102,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T8 Brainjack',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7C3', source: 'The Avatar' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '7C3', source: 'Avatar' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '7C3', source: 'Bio-Tréant' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '7C3', source: 'アバター' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '7C3', source: '降世化身' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '7C3', source: '아바타' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.brainjackOnYou!();
@@ -153,11 +133,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T8 Allagan Field',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7C4', source: 'The Avatar' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '7C4', source: 'Avatar' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '7C4', source: 'Bio-Tréant' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '7C4', source: 'アバター' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '7C4', source: '降世化身' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '7C4', source: '아바타' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.allaganFieldOnYou!();
@@ -189,11 +164,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T8 Dreadnaught',
       type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Clockwork Dreadnaught', capture: false }),
-      netRegexDe: NetRegexes.addedCombatant({ name: 'Brummonaut', capture: false }),
-      netRegexFr: NetRegexes.addedCombatant({ name: 'Cuirassé Dreadnaught', capture: false }),
-      netRegexJa: NetRegexes.addedCombatant({ name: 'ドレッドノート', capture: false }),
-      netRegexCn: NetRegexes.addedCombatant({ name: '恐慌装甲', capture: false }),
-      netRegexKo: NetRegexes.addedCombatant({ name: '드레드노트', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
