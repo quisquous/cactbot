@@ -231,9 +231,9 @@ hideall "--sync--"
 3051.7 "Altar Flare 4" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
 3057.4 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
 3067.8 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
-3071.0 "Ascalon's Might" #sync / 1[56]:[^:]*:King Thordan:63C5:/
-3072.6 "Ascalon's Might" #sync / 1[56]:[^:]*:King Thordan:63C5:/
-3074.2 "Ascalon's Might" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3071.0 "Ascalon's Might 1" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3072.6 "Ascalon's Might 2" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3074.2 "Ascalon's Might 3" #sync / 1[56]:[^:]*:King Thordan:63C5:/
 3077.0 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
 3078.1 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:63ED:/
 3085.2 "Death of the Heavens" sync / 1[56]:[^:]*:King Thordan:6B92:/
@@ -255,9 +255,9 @@ hideall "--sync--"
 3117.4 "Heavensflame 2" sync / 1[56]:[^:]*:Ser Charibert:62DE:/
 3140.3 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
 3150.5 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
-3153.6 "Ascalon's Might" #sync / 1[56]:[^:]*:King Thordan:63C5:/
-3155.2 "Ascalon's Might" #sync / 1[56]:[^:]*:King Thordan:63C5:/
-3156.8 "Ascalon's Might" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3153.6 "Ascalon's Might 1" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3155.2 "Ascalon's Might 2" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3156.8 "Ascalon's Might 3" #sync / 1[56]:[^:]*:King Thordan:63C5:/
 # Enrage?
 
 
