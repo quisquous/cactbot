@@ -355,7 +355,7 @@ hideall "--sync--"
 4015.8 "Alternate End" sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
 4035.1 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9B:/
 4036.0 "Exaflare's Edge" #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9C:/ duration 9.3
-4036.2 "Chariot" sync / 1[56]:[^:]*:(Nidhogg|Dragon-king Thordan):6D91:/
+4036.2 "Dynamo/Chariot" sync / 1[56]:[^:]*:(Nidhogg|Dragon-king Thordan):(6D92|6D91):/
 4043.2 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4044.3 "Trinity 1" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4047.3 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
