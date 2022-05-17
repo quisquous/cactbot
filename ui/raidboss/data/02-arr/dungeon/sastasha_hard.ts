@@ -30,7 +30,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Sastasha Hard Tail Screw',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BF4', source: 'Karlabos' }),
-      response: Responses.tankBuster(),
+      response: Responses.stun(),
     },
   ],
 };

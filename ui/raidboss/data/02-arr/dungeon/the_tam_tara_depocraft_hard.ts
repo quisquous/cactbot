@@ -15,7 +15,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'DO NOT KILL ADDS! Stack up.',
+          en: 'Stack (ignore adds)',
           fr: 'Packez-vous: ne tuez pas les Adds',
         },
       },

@@ -23,8 +23,8 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
-          en: 'Heal ${player} to full : Doom',
-          fr: 'Soin complet sur ${player} : Glas',
+          en: 'Heal ${player} to full',
+          fr: 'Soin complet sur ${player}',
         },
       },
     },
