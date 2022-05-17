@@ -47,6 +47,7 @@ hideall "--sync--"
 133.6 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
 # ???
 
+
 ### Phase 1.5: Haurchefant v1, a time loop better suits a hero
 500.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:62E1:/ window 500,0
 500.0 "Pure of Heart" sync / 14:[^:]*:Ser Charibert:62E4:/ duration 36
@@ -190,6 +191,7 @@ hideall "--sync--"
 1570.6 "Steep in Rage" #sync / 1[56]:[^:]*:Right Eye:68BD:/
 # Enrage??
 
+
 ### Phase 4.5: Haurchefant v2
 2000.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:62E1:/ window 500,0
 2000.0 "Brightwinged Flight" sync / 1[56]:[^:]*:Ser Adelphel:6316:/
@@ -325,6 +327,7 @@ hideall "--sync--"
 3828.3 "--sync--" #sync / 1[56]:[^:]*:Left Eye:63F3:/
 3828.5 "--sync--" #sync / 1[56]:[^:]*:Right Eye:63F3:/
 3842.3 "Alternate End?" #sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
+
 
 # Phase 7: Dragon-king Thordan
 # Note: Nidhogg seems to get named for the first Chariot
