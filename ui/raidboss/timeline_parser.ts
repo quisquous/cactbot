@@ -112,10 +112,10 @@ export class TimelineParser {
     for (const text of this.timelineConfig.Ignore ?? [])
       this.ignores[text] = true;
 
-    let uniqueId = 1;
+    let uniqueId = 0;
     for (const event of this.timelineConfig.Add ?? []) {
       this.events.push({
-        id: uniqueId++,
+        id: ++uniqueId,
         time: event.time,
         name: event.text,
         text: event.text,
@@ -239,7 +239,7 @@ export class TimelineParser {
 
       const seconds = parseFloat(parsedLine.time);
       const e: Event = {
-        id: uniqueid++,
+        id: ++uniqueid,
         time: seconds,
         // The original ability name in the timeline.  Used for hideall, infotext, etc.
         name: parsedLine.name,
