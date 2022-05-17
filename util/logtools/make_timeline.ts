@@ -196,9 +196,12 @@ const extractRawLines = async (fileName: string, start: string, end: string): Pr
       started = start === lineTimeStamp;
     if (started)
       lines.push(line);
-    if (lineTimeStamp === end)
+    if (lineTimeStamp === end) {
       file.close();
+      return lines;
+    }
   }
+  file.close();
   return lines;
 };
 
@@ -234,8 +237,8 @@ const extractTLEntries = async (
     // At this point, only ability lines are left.
     if (ability) {
       // Cull non-enemy lines
-      // TODO: Handle this using the raid eumlator's line parsing functionality.
-      if (ability.sourceId.substring(0, 3) !== '400')
+      // TODO: Handle this using the raid emulator's line parsing functionality.
+      if (ability.sourceId[0] !== '4')
         continue;
       const abilityEntry = parseAbilityToEntry(ability);
       entries.push(abilityEntry);
