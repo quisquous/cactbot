@@ -193,7 +193,8 @@ const testLineEvents = async (
     const lineNumber = (firedEvent.event.lineNumber ?? -1);
     const lineStr = linesString[lineNumber - 1] ?? '';
     const delta = ((firedEvent.timestamp - firedEvent.timebase) / 1000) - firedEvent.event.time;
-    const sign = delta > 0 ? '+' : ' ';
+    const invertedDelta = delta * -1;
+    const sign = invertedDelta > 0 ? '+' : ' ';
     const lowWindow = firedEvent.sync.start - firedEvent.sync.time;
     const highWindow = firedEvent.sync.end - firedEvent.sync.time;
     const color =
@@ -201,7 +202,7 @@ const testLineEvents = async (
       : ((delta < lowWindow - driftWarn || delta > highWindow + driftWarn) ? 'redBright' : 'green');
     console.log(
       chalk[color](`%s | %s | %s`),
-      `${sign}${delta.toFixed(3)}`.padStart(12),
+      `${sign}${invertedDelta.toFixed(3)}`.padStart(12),
       `${lineNumber}`.padStart(4),
       lineStr);
   }
@@ -221,10 +222,11 @@ const testLineEvents = async (
 
   for (const trigger of ui.triggers) {
     const delta = ((trigger.timestamp - trigger.timebase) / 1000) - trigger.text.time;
-    const sign = delta > 0 ? '+' : ' ';
+    const invertedDelta = delta * -1;
+    const sign = invertedDelta > 0 ? '+' : ' ';
     console.log(
       chalk.green(`%s | %s`),
-      `${sign}${delta.toFixed(3)}`.padStart(12),
+      `${sign}${invertedDelta.toFixed(3)}`.padStart(12),
       trigger.trigger.id);
   }
 };
