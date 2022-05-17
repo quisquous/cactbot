@@ -412,7 +412,7 @@ const printTimelineToConsole = (entryList: string[]): void => {
 };
 
 const writeTimelineToFile = (entryList: string[], fileName: string, force: boolean): void => {
-  const flags = force ? 'wx' : 'w';
+  const flags = force ? 'w' : 'wx';
   const writer = fs.createWriteStream(fileName, { flags: flags });
   writer.on('error', (err) => {
     console.error(err);
