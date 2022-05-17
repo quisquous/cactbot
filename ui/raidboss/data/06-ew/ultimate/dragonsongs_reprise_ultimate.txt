@@ -1,7 +1,7 @@
 ### Dragonsong's Reprise Ultimate
 # phase 1 logs: -p 62D4:10 62E1:500
 # -p 63C8:553 6708:1000 717A:1500 62E1:2000 6B86:3000 6667:3500 71E4:4000
-# -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3 63DC 63CF 63C9 63E2 6FAF 6FB0 63D0 63E7 63E9 737C 6FEB 63C2 6715 6716 670C 6318 6B91 63CB 62DF 63E5 6D22 6D25 6D28 6D29 6D2A 6D36 6D37 6D3D 6D3C 6D32 6D33 6D38 6D39 6D25 6D28 6D29 6D2C 6D2E 6D3E 6D41 6D43 6D44 6D47 742B 742C 70E7 7310 7311 730F 6D9F 6DA0 6DA1 6D9D 6D91 6D92 730C 730D 730E 6D96 6D97 6D9C 6D94 6D95 6D9A 6DD2 6DD3
+# -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3 63DC 63CF 63C9 63E2 6FAF 6FB0 63D0 63E7 63E9 737C 6FEB 63C2 6715 6716 670C 6318 72A2 6B8A 6B91 63CB 62DF 63E5 6D22 6D25 6D28 6D29 6D2C 6D2E 6D28 6D29 6D2A 6D32 6D33 6D36 6D37 6D38 6D39 6D3A 6D3C 6D3D 6D3E 6D41 6D43 6D44 6D47 742B 742C 70E7 7310 7311 730F 6D9F 6DA0 6DA1 6D9D 6D91 6D92 730C 730D 730E 6D96 6D97 6D9C 6D94 6D95 6D9A 6DD2 6DD3
 
 
 # TODO: should we include something for P1 62CE/62CF Shining Blade/Bright Flare stuff?
@@ -215,8 +215,8 @@ hideall "--sync--"
 3024.9 "Wrath of the Heavens" sync / 1[56]:[^:]*:King Thordan:6B89:/
 3034.4 "Chain Lightning" sync / 1[56]:[^:]*:Darkscale:6B8F:/
 3036.8 "Twisting Dive" sync / 1[56]:[^:]*:Vedrfolnir:6B8B:/
-3036.8 "Skyward Leap" sync / 1[56]:[^:]*:Ser Paulecrain:72A2:/
-3036.8 "Spiral Pierce" sync / 1[56]:[^:]*:Ser Ignasse:6B8A:/
+3036.8 "Skyward Leap" #sync / 1[56]:[^:]*:Ser Paulecrain:72A2:/
+3036.8 "Spiral Pierce" #sync / 1[56]:[^:]*:Ser Ignasse:6B8A:/
 3042.2 "Ascalon's Mercy Revealed" sync / 1[56]:[^:]*:King Thordan:63CA:/
 3043.1 "Liquid Heaven 1" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
 3044.3 "Liquid Heaven 2" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
@@ -226,7 +226,7 @@ hideall "--sync--"
 3047.1 "Altar Flare 1" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
 3047.9 "Liquid Heaven 5" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
 3048.7 "Altar Flare 2" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
-3050.1 "Cauterize" #sync / 1[56]:[^:]*:Darkscale:6B8D:/
+3050.1 "Cauterize" sync / 1[56]:[^:]*:Darkscale:6B8D:/
 3050.2 "Altar Flare 3" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
 3050.3 "Empty Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:62DA:/
 3051.7 "Altar Flare 4" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
@@ -242,7 +242,7 @@ hideall "--sync--"
 3100.4 "Heavy Impact 1" sync / 1[56]:[^:]*:Ser Guerrique:63D6:/
 3102.0 "Lightning Storm" sync / 1[56]:[^:]*:King Thordan:63CC:/
 3102.3 "Twisting Dive" #sync / 1[56]:[^:]*:Vedrfolnir:6B8B:/
-3102.3 "Cauterize" #sync / 1[56]:[^:]*:Darkscale:6B8D:/
+3102.3 "Cauterize" sync / 1[56]:[^:]*:Darkscale:6B8D:/
 3102.3 "Spear of the Fury" #sync / 1[56]:[^:]*:Ser Zephirin:6B93:/
 3102.3 "Heavy Impact 2" #sync / 1[56]:[^:]*:Ser Guerrique:63D7:/
 3102.4 "Lightning Storm" #sync / 1[56]:[^:]*:King Thordan:63CD:/
