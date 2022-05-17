@@ -1,7 +1,7 @@
 ### Dragonsong's Reprise Ultimate
 # phase 1 logs: -p 62D4:10 62E1:500
 # -p 63C8:553 6708:1000 717A:1500 62E1:2000 6B86:3000 6667:3500 71E4:4000
-# -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3 63DC 63CF 63C9 63E2 6FAF 6FB0 63D0 63E7 63E9 737C 6FEB 63C2 6715 6716 670C 6318 6B91 63CB 62DF 63E5 6D22 6D25 6D28 6D29 6D2A 6D36 6D37 6D3D 6D3C 6D32 6D33 6D38 6D39 6D3E 6D41 6D43 6D44 742B 742C 70E7 7310 7311 730F 6D9F 6DA0 6DA1 6D9D 6D91 6D92 730C 730D 730E 6D96 6D97 6D9C 6D94 6D95 6D9A 6DD2 6DD3
+# -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3 63DC 63CF 63C9 63E2 6FAF 6FB0 63D0 63E7 63E9 737C 6FEB 63C2 6715 6716 670C 6318 6B91 63CB 62DF 63E5 6D22 6D25 6D28 6D29 6D2A 6D36 6D37 6D3D 6D3C 6D32 6D33 6D38 6D39 6D25 6D28 6D29 6D2C 6D2E 6D3E 6D41 6D43 6D44 742B 742C 70E7 7310 7311 730F 6D9F 6DA0 6DA1 6D9D 6D91 6D92 730C 730D 730E 6D96 6D97 6D9C 6D94 6D95 6D9A 6DD2 6DD3
 
 
 # TODO: should we include something for P1 62CE/62CF Shining Blade/Bright Flare stuff?
@@ -262,6 +262,12 @@ hideall "--sync--"
 
 
 # Phase 6: Nidhogg v2
+# 6D23 => 6D25 Head Down, Left Wing
+# 6D24 => 6D25 Head Up, Left Wing
+# 6D26 => 6D28 Head Down, Right Wing
+# 6D27 => 6D28 Head Up, Right Wing
+# 6D2D => 6D2E Hot Tail 
+# 6D2B => 6D2C Hot Wing 
 3500.0 "--sync--" sync / 1[56]:[^:]*:King Thordan:6667:/ window 500,0
 3535.0 "Great Wyrmsbreath" sync / 1[56]:[^:]*:Hraesvelgr:6D35:/
 3535.0 "Dread Wyrmsbreath" #sync / 1[56]:[^:]*:Nidhogg:6D33:/
@@ -272,11 +278,9 @@ hideall "--sync--"
 3535.8 "Staggering Breath" #sync / 1[56]:[^:]*:Nidhogg:6D3D:/
 3543.0 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D30:/
 3554.3 "Akh Afah" sync / 1[56]:[^:]*:Hraesvelgr:6D42:/
-3567.4 "Hallowed Wings" sync / 1[56]:[^:]*:Hraesvelgr:6D24:/
 3568.5 "Cauterize" sync / 1[56]:[^:]*:Nidhogg:6D3E:/
-3567.8 "Hallowed Wings" sync / 1[56]:[^:]*:Hraesvelgr:6D27:/
+3567.8 "Hallowed Wings" sync / 1[56]:[^:]*:Hraesvelgr:(6D23|6D24|6D26|6D27):/
 3568.6 "Hallowed Plume" #sync / 1[56]:[^:]*:Hraesvelgr:6D29:/
-3568.6 "Hallowed Wings" #sync / 1[56]:[^:]*:Hraesvelgr:6D28:/
 3577.0 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D31:/
 3582.4 "Wroth Flames" sync / 1[56]:[^:]*:Nidhogg:6D45:/
 3593.2 "Akh Morn 1" sync / 1[56]:[^:]*:Nidhogg:6D46:/
@@ -284,19 +288,16 @@ hideall "--sync--"
 3594.9 "Akh Morn 2" sync / 1[56]:[^:]*:Nidhogg:6D47:/
 3596.5 "Akh Morn 3" sync / 1[56]:[^:]*:Nidhogg:6D47:/
 3598.1 "Akh Morn 4" sync / 1[56]:[^:]*:Nidhogg:6D47:/
-3605.2 "Hot Wing" sync / 1[56]:[^:]*:Nidhogg:6D2B:/
-3606.3 "Hot Wing" sync / 1[56]:[^:]*:Nidhogg:6D2C:/
+3605.2 "Hot Tail/Hot Wing" sync / 1[56]:[^:]*:Nidhogg:(6D2D|6D2B):/
 3607.2 "Spreading Flames" #sync / 1[56]:[^:]*:Nidhogg:742B:/
 3607.2 "Entangled Flames" #sync / 1[56]:[^:]*:Nidhogg:742C:/
 3607.2 "Spreading Flames" #sync / 1[56]:[^:]*:Nidhogg:742B:/
 3607.2 "Entangled Flames" #sync / 1[56]:[^:]*:Nidhogg:742C:/
 3611.1 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D31:/
 3623.4 "Akh Afah" sync / 1[56]:[^:]*:Hraesvelgr:6D42:/
-3635.4 "Hallowed Wings" sync / 1[56]:[^:]*:Hraesvelgr:6D26:/
-3635.4 "Hot Tail" #sync / 1[56]:[^:]*:Nidhogg:6D2D:/
+3635.4 "Hallowed Wings" sync / 1[56]:[^:]*:Hraesvelgr:(6D23|6D24|6D26|6D27):/
+3635.4 "Hot Tail/Hot Wing" #sync / 1[56]:[^:]*:Nidhogg:(6D2D|6D2B):/
 3635.5 "Hallowed Plume" #sync / 1[56]:[^:]*:Hraesvelgr:6D29:/
-3635.5 "Hallowed Wings" #sync / 1[56]:[^:]*:Hraesvelgr:6D25:/
-3636.4 "Hot Tail" #sync / 1[56]:[^:]*:Nidhogg:6D2E:/
 3645.1 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D31:/
 3655.1 "Great Wyrmsbreath" sync / 1[56]:[^:]*:Hraesvelgr:6D35:/
 3655.1 "Dread Wyrmsbreath" #sync / 1[56]:[^:]*:Nidhogg:6D33:/
