@@ -263,10 +263,10 @@ const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): b
   const abilityId = entry.abilityId;
   const combatant = entry.combatant;
 
-  const ia = args.ignore_ability as string[];
-  const ii = args.ignore_id as string[];
-  const ic = args.ignore_combatant as string[];
-  const oc = args.only_combatant as string[];
+  const ia = args.ignore_ability as string[] | null;
+  const ii = args.ignore_id as string[] | null;
+  const ic = args.ignore_combatant as string[] | null;
+  const oc = args.only_combatant as string[] | null;
   // Ignore auto-attacks named "attack"
   if (abilityName?.toLowerCase() === 'attack')
     return true;
@@ -276,19 +276,19 @@ const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): b
     return true;
 
   // Ignore abilities by name.
-  if (abilityName && ia && ia.includes(abilityName))
+  if (abilityName && ia !== null && ia.includes(abilityName))
     return true;
 
   // Ignore abilities by ID
-  if (abilityId && ii && ii.includes(abilityId))
+  if (abilityId && ii !== null && ii.includes(abilityId))
     return true;
 
   // Ignore combatants by name
-  if (combatant && ic && ic.includes(combatant))
+  if (combatant && ic !== null && ic.includes(combatant))
     return true;
 
   // If only-combatants was specified, ignore all combatants not in the list.
-  if (combatant && oc && !oc.includes(combatant))
+  if (combatant && oc !== null && !oc.includes(combatant))
     return true;
   return false;
 };
@@ -353,7 +353,7 @@ const assembleTimelineStrings = (
     }
 
     // Ignore targetable lines if not specified
-    if (entry.lineType === 'targetable' && !args.include_targetable)
+    if (entry.lineType === 'targetable' && args.include_targetable === null)
       continue;
 
     // Find out how long it's been since the last ability.
@@ -461,11 +461,11 @@ const makeTimeline = async () => {
         args.include_targetable as string[],
       );
       const assembled = assembleTimelineStrings(fight, baseEntries, startTime, args);
-      if (args.output_file && typeof args.output_file === 'string') {
+      if (typeof args.output_file === 'string') {
         const force = args.force !== null;
         writeTimelineToFile(assembled, args.output_file, force);
       }
-      if (!args.output_file)
+      if (args.output_file === null)
         printTimelineToConsole(assembled);
       process.exit(0);
     }
