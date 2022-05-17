@@ -119,12 +119,10 @@ const triggerUpperCase = (str: string): string => {
   return str.replace(/[^αβγδ]/g, (x) => x.toUpperCase());
 };
 
-// Disable no-explicit-any due to catch clauses requiring any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const onTriggerException = (trigger: ProcessedTrigger, e: any) => {
+const onTriggerException = (trigger: ProcessedTrigger, e: unknown) => {
   // When a fight ends and there are open promises, from delaySeconds or promise itself,
   // all promises will be rejected.  In this case there is no error; simply return without logging.
-  if (!e)
+  if (e === null || typeof e !== 'object')
     return;
 
   let str = 'Error in trigger: ' + (trigger.id ? trigger.id : '[unknown trigger id]');

@@ -415,7 +415,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E8S Hallowed Wings Knockback',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D77', capture: false }),
-      condition: (data) => !!data.options.cactbote8sUptimeKnockbackStrat,
+      condition: (data) => data.options.cactbote8sUptimeKnockbackStrat === true,
       // This gives a warning within 1.4 seconds, so you can hit arm's length.
       delaySeconds: 8.6,
       durationSeconds: 1.4,

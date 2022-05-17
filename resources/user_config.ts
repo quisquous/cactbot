@@ -94,6 +94,7 @@ class UserConfig {
         actVersion: '0.0.0.0',
         gameRegion: 'International',
       },
+      Debug: false,
     };
   }
 
@@ -302,7 +303,8 @@ class UserConfig {
 
       // If the overlay has a "Debug" setting, set to true via the config tool,
       // then also print out user files that have been loaded.
-      const printUserFile = options.Debug ? (x: string) => console.log(x) : () => {/* noop */};
+      const debug = options.Debug !== undefined && options.Debug !== false;
+      const printUserFile = debug ? (x: string) => console.log(x) : () => {/* noop */};
 
       // With user files being arbitrary javascript, and having multiple files
       // in user folders, it's possible for later files to accidentally remove
@@ -323,7 +325,7 @@ class UserConfig {
       // and so we use `any` here.  The only operation done on this field is a !==
       // for change detection to see if the the user file has modified it.
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const variableTracker: { [fieldName: string]: any } = {};
+      const variableTracker: { [fieldName: string]: unknown } = {};
 
       if (localFiles) {
         // localFiles may be null if there is no valid user directory.
@@ -337,7 +339,8 @@ class UserConfig {
             this.evalUserFile(localFiles[jsFile] ?? '', options);
 
             for (const field of warnOnVariableResetMap[overlayName] ?? []) {
-              if (variableTracker[field] && variableTracker[field] !== options[field]) {
+              const value = variableTracker[field];
+              if (value !== null && value !== undefined && value !== options[field]) {
                 // Ideally users should do something like `Options.Triggers.push([etc]);`
                 // instead of `Options.Triggers = [etc];`
                 console.log(

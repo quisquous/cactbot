@@ -403,7 +403,7 @@ class PullCounter {
         throw new Error(e.data.toString());
 
       const parsed: unknown = JSON.parse(e.data);
-      if (!parsed || typeof parsed !== 'object')
+      if (parsed === null || typeof parsed !== 'object')
         throw new Error(e.data);
 
       for (const [id, count] of Object.entries(parsed ?? {})) {
