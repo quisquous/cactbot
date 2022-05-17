@@ -96,7 +96,7 @@ export class Timeline {
 
   private activeText: string;
 
-  private activeSyncs: Sync[];
+  protected activeSyncs: Sync[];
   private activeEvents: Event[];
 
   public ignores: { [ignoreId: string]: boolean };

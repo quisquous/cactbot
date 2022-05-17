@@ -4,6 +4,7 @@ import inquirerFuzzyPath, { FuzzyPathQuestionOptions } from 'inquirer-fuzzy-path
 
 import { registerFindMissingTranslations } from './find_missing_translations';
 import { registerGenerateDataFiles } from './generate_data_files';
+import { registerTestTimeline } from './test_timeline';
 import { registerTranslateTimeline } from './translate_timeline';
 
 declare module 'inquirer' {
@@ -34,6 +35,7 @@ const subparsers = argumentParser.addSubparsers({
 registerTranslateTimeline(actionChoices, subparsers);
 registerGenerateDataFiles(actionChoices, subparsers);
 registerFindMissingTranslations(actionChoices, subparsers);
+registerTestTimeline(actionChoices, subparsers);
 
 inquirer.registerPrompt('fuzzypath', inquirerFuzzyPath);
 
