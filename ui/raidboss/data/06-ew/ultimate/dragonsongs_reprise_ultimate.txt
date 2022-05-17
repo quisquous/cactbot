@@ -249,7 +249,6 @@ hideall "--sync--"
 3104.1 "Heavy Impact 3" sync / 1[56]:[^:]*:Ser Guerrique:63D8:/
 3106.0 "Heavy Impact 4" sync / 1[56]:[^:]*:Ser Guerrique:63D9:/
 3107.9 "Heavy Impact 5" sync / 1[56]:[^:]*:Ser Guerrique:63DA:/
-3114.4 "The Dragon's Gaze" sync / 1[56]:[^:]*:King Thordan:63D0:/
 3115.5 "Faith Unmoving" #sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
 3115.5 "The Dragon's Gaze" #sync / 1[56]:[^:]*:King Thordan:63D1:/
 3115.5 "The Dragon's Glory" #sync / 1[56]:[^:]*:King Thordan:63D2:/
