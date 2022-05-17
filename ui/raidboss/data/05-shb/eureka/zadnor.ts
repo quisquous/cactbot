@@ -120,7 +120,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => {
         // This fires when you win, lose, or teleport out.
         if (matches.data0 === '00') {
-          if (data.ce && data.options.Debug === true)
+          if (data.ce && data.options.Debug)
             console.log(`Stop CE: ${data.ce}`);
           // Stop any active timelines.
           data.StopCombat();
@@ -134,14 +134,14 @@ const triggerSet: TriggerSet<Data> = {
         const anonCEs: { [key: string]: string } = ceIds;
         for (const key in anonCEs) {
           if (anonCEs[key] === ceId) {
-            if (data.options.Debug === true)
+            if (data.options.Debug)
               console.log(`Start CE: ${key} (${ceId})`);
             data.ce = key;
             return;
           }
         }
 
-        if (data.options.Debug === true)
+        if (data.options.Debug)
           console.log(`Start CE: ??? (${ceId})`);
       },
     },

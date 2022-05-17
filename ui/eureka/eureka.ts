@@ -470,7 +470,7 @@ class EurekaTracker {
   }
 
   DebugPrint(str: string) {
-    if (this.options.Debug === true)
+    if (this.options.Debug)
       console.log(str);
   }
 

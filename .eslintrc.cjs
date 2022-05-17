@@ -255,8 +255,7 @@ const tsOverrides = {
     '@typescript-eslint/no-unused-vars': ['warn', { 'args': 'all', 'argsIgnorePattern': '^_\\w?' }],
     '@typescript-eslint/object-curly-spacing': ['warn', 'always'],
     '@typescript-eslint/strict-boolean-expressions': ['error', {
-      // @TODO: Enable these keys over time
-      'allowAny': false,
+      // @TODO: Remove these keys over time, setting them back to default
       'allowNullableBoolean': true,
       'allowNullableNumber': true,
       'allowNullableString': true,

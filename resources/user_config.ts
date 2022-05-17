@@ -94,6 +94,7 @@ class UserConfig {
         actVersion: '0.0.0.0',
         gameRegion: 'International',
       },
+      Debug: false,
     };
   }
 
