@@ -67,9 +67,7 @@
   disabled: false,
   // 提示：推荐使用 [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts) 中的工具函数自动生成正则表达式
   netRegex: /trigger-regex-for-network-log-lines/,
-  netRegexFr: /trigger-regex-for-network-log-lines-but-in-French/
   regex: /trigger-regex-for-act-log-lines/,
-  regexFr: /trigger-regex-for-act-log-lines-but-in-French/,
   condition: function(data, matches) { return true if it should run },
   preRun: function(data, matches) { do stuff.. },
   delaySeconds: 0,
@@ -100,12 +98,6 @@
 **netRegex / regex** 正则表达式，cactbot会将该正则表达式与每一条日志行做比对， 并在匹配成功时触发当前触发器。 `netRegex` 版本用于匹配网络日志行， 而 `regex` 版本用于匹配普通的ACT日志行。
 
 更多时候，相对于直接使用正则表达式字面量，我们更加推荐使用正则替换函数。 正则替换函数是指定义在 [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts) 和 [netregexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts) 中的辅助函数， 这些函数可以接受特定参数值用于匹配日志，并通过正则捕获组的方式帮助你提取未定义的参数值。 换句话说，这些函数用于自动构建能够匹配指定类型的日志行的正则表达式。 顾名思义，`netRegex` 使用 `NetRegexes` 辅助函数， 而 `regex` 使用 `Regexes` 辅助函数。
-
-**netRegexFr / regexFr** 语言特定正则表达式（以fr为示例）。 若设置了 `Options.ParserLanguage == 'fr'`，则 `regexFr` (如果存在的话) 优先于 `regex` 对日志行进行匹配。 否则，该值将会被忽略。  这里虽然只有法语的例子，但其他语言也是可用的。例如：regexEn, regexKo。 就像 `netRegex` 对于 `regex` 一样， `netRegexFr` 匹配法语的网络日志行 而 `regexFr` 匹配法语的ACT日志行。
-
-这些语言特定正则表达式并没有明确的顺序规定。 但是我们定义的顺序通常为：`de`、`fr`、`ja`、`cn`、`ko` 。 同样，比起 `正则表达式字面量`，使用上述的正则替换函数更好。
-
-(理论上，以后我们可能不再需要独立的语言特定正则表达式， 而是采用 `timelineReplace` 对象自动地替换这些正则表达式。 我们还没有确定具体的实现方式，但条条大路通罗马。)
 
 **condition: function(data, matches)** 当函数返回 `true` 时激活该触发器。 若返回的不是 `true`，则当前触发器不会有任何响应。 不管触发器对象里定义了多少函数，该函数总是第一个执行。 ([conditions.ts](https://github.com/quisquous/cactbot/blob/main/resources/conditions.ts) 中定义了一部分高阶条件函数。 一般情况下，如果与情境相符，使用这些函数是最佳解决方案。)
 
@@ -143,8 +135,8 @@
 
 - id
 - disabled
-- netRegex (以及 netRegexDe、netRegexFr 等等)
-- regex (以及 regexDe、regexFr 等等)
+- netRegex
+- regex
 - beforeSeconds (仅存在于 timelineTriggers 中)
 - (休眠的触发器会在此处直接退出)
 - condition
@@ -188,12 +180,7 @@
 ```javascript
 {
   id: 'TEA Mega Holy Modified',
-  regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
-  regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A83', capture: false }),
-  regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A83', capture: false }),
-  regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A83', capture: false }),
-  regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A83', capture: false }),
-  regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A83', capture: false }),
+  netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
   condition: Conditions.caresAboutMagical(),
   response: Responses.bigAoe('alert'),
 },
@@ -204,12 +191,7 @@
 ```javascript
 {
   id: 'TEA Mega Holy Modified',
-  regex:  / 14:........:Alexander Prime starts using Mega Holy/,
-  regexDe: / 14:........:Prim-Alexander starts using Super-Sanctus/,
-  regexFr: / 14:........:Primo-Alexander starts using Méga Miracle/,
-  regexJa: / 14:........:アレキサンダー・プライム starts using メガホーリー/,
-  regexCn: / 14:........:至尊亚历山大 starts using 百万神圣/,
-  regexKo: / 14:........:알렉산더 프라임 starts using 지진/,
+  netRegex: /^(?:20)\|(?:[^|]*)\|(?:[^|]*)\|(?:Alexander Prime)\|(?:4A83)\|/i,
   condition: function(data) {
     return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
   },

@@ -299,12 +299,10 @@ export class CactbotConfigurator {
   // Helper translate function.  Takes in an object with language keys
   // and returns a single entry based on available translations.
   translate<T>(textObj: LocaleObject<T>): T {
-    if (textObj === null || typeof textObj !== 'object' || !textObj['en'])
+    if (textObj === null || typeof textObj !== 'object')
       throw new Error(`Invalid config: ${JSON.stringify(textObj)}`);
     const t = textObj[this.lang];
-    if (t)
-      return t;
-    return textObj['en'];
+    return t ?? textObj['en'];
   }
 
   getBooleanOption(group: string, path: string | string[], defaultValue: boolean): boolean {
@@ -414,7 +412,7 @@ export class CactbotConfigurator {
     defaultValue: SavedConfigEntry,
   ): SavedConfigEntry {
     const objOrValue = this._getOptionLeafHelper(group, path);
-    return objOrValue ? objOrValue : defaultValue;
+    return objOrValue ?? defaultValue;
   }
 
   // Sets an option in the config at a variable level of nesting.
@@ -442,7 +440,7 @@ export class CactbotConfigurator {
 
     const allButFinalArg = args.slice(0, -1);
     for (const arg of allButFinalArg) {
-      if (typeof obj !== 'undefined' && typeof obj !== 'object' || Array.isArray(obj)) {
+      if (typeof obj !== 'object' || Array.isArray(obj)) {
         // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
         // until leaf node ConfigValue.
         console.error(`Unexpected entry: ${JSON.stringify([group, ...args].join(', '))}`);
@@ -452,7 +450,7 @@ export class CactbotConfigurator {
       obj = obj[arg] ??= {};
     }
 
-    if (typeof obj !== 'undefined' && typeof obj !== 'object' || Array.isArray(obj)) {
+    if (typeof obj !== 'object' || Array.isArray(obj)) {
       // SavedConfigEntry is arbitrary JSON, but these options should be nothing but objects
       // until leaf node ConfigValue.
       console.error(`Unexpected entry: ${JSON.stringify([group, ...args].join(', '))}`);
@@ -744,7 +742,7 @@ export class CactbotConfigurator {
       let zoneId: number | undefined = undefined;
 
       // Make assumptions about trigger structure here to try to get the zoneId out.
-      if (triggerSet && typeof triggerSet.zoneId === 'number') {
+      if (typeof triggerSet.zoneId === 'number') {
         zoneId = triggerSet.zoneId;
         // Use the translatable zone info name, if possible.
         const zoneInfo = ZoneInfo[zoneId];
@@ -769,8 +767,6 @@ export class CactbotConfigurator {
     const userMap: ConfigProcessedFileMap<T> = {};
     let userFileIdx = 0;
     for (const triggerSet of userTriggerSets || []) {
-      if (!triggerSet)
-        continue;
       // TODO: pass in userTriggerSets as a filename -> triggerSet map as well
       // so we don't need to read this added value.
       if (!triggerSet.filename)

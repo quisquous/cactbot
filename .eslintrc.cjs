@@ -254,6 +254,12 @@ const tsOverrides = {
     '@typescript-eslint/no-unsafe-argument': 'error',
     '@typescript-eslint/no-unused-vars': ['warn', { 'args': 'all', 'argsIgnorePattern': '^_\\w?' }],
     '@typescript-eslint/object-curly-spacing': ['warn', 'always'],
+    '@typescript-eslint/strict-boolean-expressions': ['error', {
+      // @TODO: Remove these keys over time, setting them back to default
+      'allowNullableBoolean': true,
+      'allowNullableNumber': true,
+      'allowNullableString': true,
+    }],
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
     'import/order': [
       'error',

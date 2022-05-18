@@ -481,8 +481,8 @@ Run the command again with this ignore to have a cleaned up version:
 `python util/make_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14`
 
 At this point, it may also be worth going through and finding other lines to add.
-Usually, these are [added combatant](LogGuide.md#03-addcombatant) lines
-or [game log lines](LogGuide.md#00-logline) for rp text.
+Usually, these are [added combatant](LogGuide.md#line-03-0x03-addcombatant) lines
+or [game log lines](LogGuide.md#line-00-0x00-logline) for rp text.
 You can look at the time and figure out where they go yourself.
 (Patches welcome to add either of these into **make_timeline.py** automatically.)
 

@@ -221,11 +221,6 @@ Options.Triggers.push({
     {
       id: 'UCU Nael Fireball 1',
       netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 99999,
       // infoText는 화면에 초록색으로 표시되는 문구입니다.
@@ -438,11 +433,6 @@ User 폴더의 위치를 모른다면, [User 디렉토리 설정하기](#User-�
       { // <- id 바로 위의 여는 중괄호가 하나의 트리거의 시작점입니다.
         id: 'E8S Reflected Frost 1',
         netRegex: NetRegexes.ability({ source: 'Frozen Mirror', id: '4DB[78]', capture: false }),
-        netRegexDe: NetRegexes.ability({ source: 'Eisspiegel', id: '4DB[78]', capture: false }),
-        netRegexFr: NetRegexes.ability({ source: 'miroir de glace', id: '4DB[78]', capture: false }),
-        netRegexJa: NetRegexes.ability({ source: '氷面鏡', id: '4DB[78]', capture: false }),
-        netRegexCn: NetRegexes.ability({ source: '冰面镜', id: '4DB[78]', capture: false }),
-        netRegexKo: NetRegexes.ability({ source: '얼음 거울', id: '4DB[78]', capture: false }),
         suppressSeconds: 5,
         infoText: {
           en: 'Swap Sides',
@@ -462,11 +452,6 @@ User 폴더의 위치를 모른다면, [User 디렉토리 설정하기](#User-�
       {
         id: 'E8S Reflected Frost 1',
         netRegex: NetRegexes.ability({ source: 'Frozen Mirror', id: '4DB[78]', capture: false }),
-        netRegexDe: NetRegexes.ability({ source: 'Eisspiegel', id: '4DB[78]', capture: false }),
-        netRegexFr: NetRegexes.ability({ source: 'miroir de glace', id: '4DB[78]', capture: false }),
-        netRegexJa: NetRegexes.ability({ source: '氷面鏡', id: '4DB[78]', capture: false }),
-        netRegexCn: NetRegexes.ability({ source: '冰面镜', id: '4DB[78]', capture: false }),
-        netRegexKo: NetRegexes.ability({ source: '얼음 거울', id: '4DB[78]', capture: false }),
         suppressSeconds: 5,
         infoText: {
           en: 'Swap Sides',
@@ -528,11 +513,6 @@ Options.Triggers.push({
     {
       id: 'E8S Reflected Frost 1', // 이렇게 어느 문장 뒤에도 메모를 추가할 수 있습니다.
       netRegex: NetRegexes.ability({ source: 'Frozen Mirror', id: '4DB[78]', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Eisspiegel', id: '4DB[78]', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'miroir de glace', id: '4DB[78]', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '氷面鏡', id: '4DB[78]', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '冰面镜', id: '4DB[78]', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '얼음 거울', id: '4DB[78]', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'Swap Sides',

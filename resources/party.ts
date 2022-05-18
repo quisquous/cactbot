@@ -26,9 +26,6 @@ export default class PartyTracker {
 
   // Bind this to PartyChanged events.
   onPartyChanged(e: { party: Party[] }): void {
-    if (!e || !e.party)
-      return;
-
     this.reset();
     this.details = e.party;
 

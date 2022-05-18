@@ -30,11 +30,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Earthen Gauntlets',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '40E6', source: 'タイタン', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '40E6', source: '泰坦', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '40E6', source: '타이탄', capture: false }),
       run: (data) => {
         data.phase = 'landslide';
         delete data.printedBury;
@@ -44,11 +39,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Earthen Armor',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['40E7', '40E9'], source: 'Titan', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: ['40E7', '40E9'], source: 'Titan', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: ['40E7', '40E9'], source: 'Titan', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: ['40E7', '40E9'], source: 'タイタン', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: ['40E7', '40E9'], source: '泰坦', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: ['40E7', '40E9'], source: '타이탄', capture: false }),
       run: (data) => {
         data.phase = 'armor';
         delete data.printedBury;
@@ -58,11 +48,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Stonecrusher',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4116', source: 'Titan' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '4116', source: 'Titan' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '4116', source: 'Titan' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '4116', source: 'タイタン' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4116', source: '泰坦' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4116', source: '타이탄' }),
       // As this seems to usually seems to be invulned,
       // don't make a big deal out of it.
       response: Responses.tankBuster('info'),
@@ -78,11 +63,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Evil Earth',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '410C', source: 'Titan', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '410C', source: 'Titan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '410C', source: 'Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '410C', source: 'タイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '410C', source: '泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '410C', source: '타이탄', capture: false }),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -107,33 +87,18 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Voice of the Land',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4114', source: 'Titan', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '4114', source: 'Titan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '4114', source: 'Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '4114', source: 'タイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4114', source: '泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4114', source: '타이탄', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'E4S Geocrush',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4113', source: 'Titan', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '4113', source: 'Titan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '4113', source: 'Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '4113', source: 'タイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4113', source: '泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4113', source: '타이탄', capture: false }),
       response: Responses.knockback(),
     },
     {
       id: 'E4S Massive Landslide - Front',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '40E6', source: 'タイタン', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '40E6', source: '泰坦', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '40E6', source: '타이탄', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -150,22 +115,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Massive Landslide - Sides',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '4117', source: 'Titan', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '4117', source: 'Titan', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '4117', source: 'Titan', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '4117', source: 'タイタン', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '4117', source: '泰坦', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '4117', source: '타이탄', capture: false }),
       response: Responses.goSides('info'),
     },
     {
       id: 'E4S Landslide',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '411A', source: 'Titan', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '411A', source: 'Titan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '411A', source: 'Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '411A', source: 'タイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '411A', source: '泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '411A', source: '타이탄', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -201,11 +156,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Bury Directions',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '4142', source: 'Bomb Boulder' }),
-      netRegexDe: NetRegexes.abilityFull({ id: '4142', source: 'Bomber-Brocken' }),
-      netRegexFr: NetRegexes.abilityFull({ id: '4142', source: 'Bombo Rocher' }),
-      netRegexJa: NetRegexes.abilityFull({ id: '4142', source: 'ボムボルダー' }),
-      netRegexCn: NetRegexes.abilityFull({ id: '4142', source: '爆破岩石' }),
-      netRegexKo: NetRegexes.abilityFull({ id: '4142', source: '바위폭탄' }),
       condition: (data) => !data.printedBury,
       durationSeconds: 7,
       alertText: (data, matches, output) => {
@@ -277,11 +227,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Fault Line - Sides',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '40E8', source: 'Titan', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '40E8', source: 'Titan', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '40E8', source: 'Titan', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '40E8', source: 'タイタン', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '40E8', source: '泰坦', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '40E8', source: '타이탄', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -298,11 +243,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Fault Line - Front',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '411F', source: 'Titan', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '411F', source: 'Titan', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '411F', source: 'Titan', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '411F', source: 'タイタン', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '411F', source: '泰坦', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '411F', source: '타이탄', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -319,33 +259,18 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Magnitude 5.0',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4121', source: 'Titan', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '4121', source: 'Titan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '4121', source: 'Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '4121', source: 'タイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4121', source: '泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4121', source: '타이탄', capture: false }),
       response: Responses.getUnder('alert'),
     },
     {
       id: 'E4S Earthen Fury',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4124', source: 'Titan Maximum', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '4124', source: 'Gigantitan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '4124', source: 'Maxi Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '4124', source: 'マキシタイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4124', source: '极大泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4124', source: '거대 타이탄', capture: false }),
       response: Responses.bigAoe(),
     },
     {
       id: 'E4S Earthen Fist - Left/Right',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '412F', source: 'Titan Maximum', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '412F', source: 'Gigantitan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '412F', source: 'Maxi Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '412F', source: 'マキシタイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '412F', source: '极大泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '412F', source: '거대 타이탄', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -362,11 +287,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Earthen Fist - Right/Left',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4130', source: 'Titan Maximum', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '4130', source: 'Gigantitan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '4130', source: 'Maxi Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '4130', source: 'マキシタイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4130', source: '极大泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4130', source: '거대 타이탄', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -383,11 +303,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Earthen Fist - 2x Left',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4131', source: 'Titan Maximum', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '4131', source: 'Gigantitan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '4131', source: 'Maxi Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '4131', source: 'マキシタイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4131', source: '极大泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4131', source: '거대 타이탄', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -404,11 +319,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Earthen Fist - 2x Right',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4132', source: 'Titan Maximum', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '4132', source: 'Gigantitan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '4132', source: 'Maxi Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '4132', source: 'マキシタイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4132', source: '极大泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4132', source: '거대 타이탄', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -425,11 +335,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Dual Earthen Fists',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4135', source: 'Titan Maximum', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '4135', source: 'Gigantitan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '4135', source: 'Maxi Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '4135', source: 'マキシタイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4135', source: '极大泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4135', source: '거대 타이탄', capture: false }),
       response: Responses.knockback('info'),
     },
     {
@@ -492,11 +397,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Plate Fracture - Front Right',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4125', source: 'Titan Maximum', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '4125', source: 'Gigantitan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '4125', source: 'Maxi Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '4125', source: 'マキシタイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4125', source: '极大泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4125', source: '거대 타이탄', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -513,11 +413,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Plate Fracture - Back Right',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4126', source: 'Titan Maximum', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '4126', source: 'Gigantitan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '4126', source: 'Maxi Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '4126', source: 'マキシタイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4126', source: '极大泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4126', source: '거대 타이탄', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -534,11 +429,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Plate Fracture - Back Left',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4127', source: 'Titan Maximum', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '4127', source: 'Gigantitan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '4127', source: 'Maxi Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '4127', source: 'マキシタイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4127', source: '极大泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4127', source: '거대 타이탄', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -555,11 +445,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Plate Fracture - Front Left',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4128', source: 'Titan Maximum', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '4128', source: 'Gigantitan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '4128', source: 'Maxi Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '4128', source: 'マキシタイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4128', source: '极大泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4128', source: '거대 타이탄', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -576,11 +461,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E4S Tumult',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '412A', source: 'Titan Maximum', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '412A', source: 'Gigantitan', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '412A', source: 'Maxi Titan', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '412A', source: 'マキシタイタン', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '412A', source: '极大泰坦', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '412A', source: '거대 타이탄', capture: false }),
       response: Responses.aoe(),
     },
   ],

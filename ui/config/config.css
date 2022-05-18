@@ -56,7 +56,7 @@ html {
   margin-bottom: 20px;
 }
 
-.collapsed > div:not(:first-child) {
+.collapsed > :not(:first-child) {
   display: none;
 }
 

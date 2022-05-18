@@ -67,11 +67,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Exdeath Thunder III Counter',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '23F9', source: 'エクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '23F9', source: '艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '23F9', source: '엑스데스', capture: false }),
       run: (data) => {
         data.thunderCount = (data.thunderCount ?? 0) + 1;
       },
@@ -81,11 +76,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Exdeath Fire III Counter',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '23F5', source: 'エクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '23F5', source: '艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '23F5', source: '엑스데스', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -103,11 +93,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Exdeath Blizzard III',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '23F7', source: 'エクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '23F7', source: '艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '23F7', source: '엑스데스', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -125,11 +110,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Exdeath Thunder III',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '23F9', source: 'エクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '23F9', source: '艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '23F9', source: '엑스데스', capture: false }),
       alertText: (data, _matches, output) => {
         // Tanks/healers always get an alert.
         if (data.role === 'tank' || data.role === 'healer')
@@ -177,11 +157,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Exdeath Ultimate Fire III',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23FB', source: 'Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '23FB', source: 'Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '23FB', source: 'Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '23FB', source: 'エクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '23FB', source: '艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '23FB', source: '엑스데스', capture: false }),
       response: Responses.stopMoving(),
     },
     {
@@ -189,11 +164,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Exdeath Ultimate Blizzard III',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23FC', source: 'Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '23FC', source: 'Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '23FC', source: 'Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '23FC', source: 'エクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '23FC', source: '艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '23FC', source: '엑스데스', capture: false }),
       response: Responses.moveAround(),
     },
     {
@@ -201,11 +171,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Exdeath Ultimate Thunder III',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '23FD', source: 'Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '23FD', source: 'Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '23FD', source: 'Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '23FD', source: 'エクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '23FD', source: '艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '23FD', source: '엑스데스', capture: false }),
       response: Responses.getOut(),
     },
     {
@@ -213,11 +178,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Exdeath Flare',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2401', source: 'Exdeath' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2401', source: 'Exdeath' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2401', source: 'Exdeath' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2401', source: 'エクスデス' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2401', source: '艾克斯迪司' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2401', source: '엑스데스' }),
       condition: (data, matches) => {
         data.flareTargets ??= [];
         data.flareTargets.push(matches.target);
@@ -245,11 +205,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Grand Cross Alpha Tracker',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '242B', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '242B', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '242B', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '242B', source: '네오 엑스데스', capture: false }),
       run: (data) => {
         data.phase = 'alpha';
         data.alphaCount = (data.alphaCount ?? 0) + 1;
@@ -262,11 +217,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Grand Cross Delta Tracker',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '242C', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '242C', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '242C', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '242C', source: '네오 엑스데스', capture: false }),
       run: (data) => {
         data.phase = 'delta';
         delete data.waterHealer;
@@ -276,11 +226,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Grand Cross Omega Tracker',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '242D', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '242D', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '242D', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '242D', source: '네오 엑스데스', capture: false }),
       run: (data) => {
         data.phase = 'omega';
         delete data.waterHealer;
@@ -291,11 +236,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Neverwhere Tracker',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2426', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2426', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2426', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2426', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2426', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2426', source: '네오 엑스데스', capture: false }),
       run: (data) => data.finalphase = true,
     },
     {
@@ -358,11 +298,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Flood of Naught: Inside',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '240E', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '240E', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '240E', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '240E', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '240E', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '240E', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
       alarmText: (data, _matches, output) => {
         if (shouldDieOnLaser(data))
@@ -417,11 +352,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Flood of Naught: Outside',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '240F', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '240F', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '240F', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '240F', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '240F', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '240F', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
       alarmText: (data, _matches, output) => {
         if (shouldDieOnLaser(data))
@@ -476,11 +406,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Flood of Naught: Colors Purple Blue',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2411', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2411', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2411', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2411', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2411', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2411', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
       alarmText: (data, _matches, output) => {
         if (!shouldDieOnLaser(data))
@@ -568,11 +493,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Flood of Naught: Colors Blue Purple',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2412', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2412', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2412', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2412', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2412', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2412', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
       alarmText: (data, _matches, output) => {
         if (!shouldDieOnLaser(data))
@@ -660,11 +580,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Laser Counter',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: '네오 엑스데스', capture: false }),
       run: (data) => {
         if (data.phase !== 'omega')
           return;
@@ -683,11 +598,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Flood of Naught: Charge',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2416', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2416', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2416', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2416', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2416', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2416', source: '네오 엑스데스', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.allaganField) {
           if (data.role === 'tank')
@@ -748,11 +658,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Double Attack',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '241C', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '241C', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '241C', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '241C', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '241C', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '241C', source: '네오 엑스데스', capture: false }),
       alertText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.doubleAttack!();
@@ -783,11 +688,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Grand Cross Alpha',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '242B', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '242B', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '242B', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '242B', source: '네오 엑스데스', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       tts: (_data, _matches, output) => output.tts!(),
       outputStrings: {
@@ -813,11 +713,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Grand Cross Delta',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '242C', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '242C', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '242C', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '242C', source: '네오 엑스데스', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.beInFront!();
@@ -891,11 +786,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Grand Cross Omega',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '242D', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '242D', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '242D', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '242D', source: '네오 엑스데스', capture: false }),
       response: Responses.goMiddle(),
     },
     {
@@ -1107,22 +997,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Delta Attack',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '241E', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '241E', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '241E', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '241E', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '241E', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '241E', source: '네오 엑스데스', capture: false }),
       response: Responses.getTogether(),
     },
     {
       id: 'O4S Neo Almagest',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2417', source: 'Neo Exdeath', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2417', source: 'Neo Exdeath', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2417', source: 'Néo-Exdeath', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2417', source: 'ネオエクスデス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2417', source: '新生艾克斯迪司', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2417', source: '네오 엑스데스', capture: false }),
       alertText: (_data, _matches, output) => output.almagest!(),
       run: (data) => {
         data.almagestCount = (data.almagestCount ?? 0) + 1;
@@ -1142,11 +1022,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Flare',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2401', source: 'Neo Exdeath' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2401', source: 'Neo Exdeath' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2401', source: 'Néo-Exdeath' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2401', source: 'ネオエクスデス' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2401', source: '新生艾克斯迪司' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2401', source: '네오 엑스데스' }),
       condition: (data, matches) => {
         data.flareTargets ??= [];
         data.flareTargets.push(matches.target);

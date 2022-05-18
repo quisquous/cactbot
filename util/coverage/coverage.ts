@@ -353,19 +353,17 @@ const buildZoneGrid = (container: HTMLElement, lang: Lang, coverage: Coverage) =
           addDiv(container, 'text', name);
         },
         triggers: () => {
-          const emoji = zoneCoverage.triggers && zoneCoverage.triggers.num > 0 ? '✔️' : undefined;
+          const emoji = zoneCoverage.triggers.num > 0 ? '✔️' : undefined;
           addDiv(container, 'emoji', emoji);
         },
         timeline: () => {
           let emoji = undefined;
-          if (zoneCoverage.timeline) {
-            if (zoneCoverage.timeline.hasNoTimeline)
-              emoji = '➖';
-            else if (zoneCoverage.timeline.timelineNeedsFixing)
-              emoji = '⚠️';
-            else if (zoneCoverage.timeline.hasFile)
-              emoji = '✔️';
-          }
+          if (zoneCoverage.timeline.hasNoTimeline)
+            emoji = '➖';
+          else if (zoneCoverage.timeline.timelineNeedsFixing)
+            emoji = '⚠️';
+          else if (zoneCoverage.timeline.hasFile)
+            emoji = '✔️';
 
           addDiv(container, 'emoji', emoji);
         },

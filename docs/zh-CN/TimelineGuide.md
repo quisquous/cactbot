@@ -389,7 +389,7 @@ make_timeline.py 脚本支持两个选项以提供此功能。其一为“忽略
 
 重新运行命令，这次带上忽略id的选项：`python util/make_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14`
 
-您最好再次阅览生成的时间轴，以确认是否还有小怪的日志行。我们通常要手动添加 [added combatant (添加实体)](LogGuide.md#03-addcombatant) 或用于匹配的NPC话语的 [game log lines (游戏日志行)](LogGuide.md#00-logline)。您可以自己研究如何将其添加进时间轴中。(欢迎向 **make_timeline.py** 贡献代码以自动实现这一步骤。)
+您最好再次阅览生成的时间轴，以确认是否还有小怪的日志行。我们通常要手动添加 [added combatant (添加实体)](LogGuide.md#line-03-0x03-addcombatant) 或用于匹配的NPC话语的 [game log lines (游戏日志行)](LogGuide.md#line-00-0x00-logline)。您可以自己研究如何将其添加进时间轴中。(欢迎向 **make_timeline.py** 贡献代码以自动实现这一步骤。)
 
 相关日志如下所示：
 

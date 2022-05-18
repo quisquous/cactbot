@@ -48,11 +48,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2S Phase Probe Tracker',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '235A', source: 'Katastroph', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '235A', source: 'カタストロフィー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '235A', source: '灾变者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
       run: (data) => {
         data.probeCount = (data.probeCount ?? 0) + 1;
         data.dpsProbe = data.probeCount === 2 || data.probeCount === 4;
@@ -77,11 +72,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2S Evilsphere',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2371', source: 'Catastrophe' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2371', source: 'Katastroph' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2371', source: 'Catastrophe' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2371', source: 'カタストロフィー' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2371', source: '灾变者' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2371', source: '카타스트로피' }),
       response: Responses.tankBusterSwap(),
     },
     {
@@ -125,11 +115,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2S -100Gs',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '235E', source: 'Catastrophe', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '235E', source: 'Katastroph', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '235E', source: 'Catastrophe', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '235E', source: 'カタストロフィー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '235E', source: '灾变者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '235E', source: '카타스트로피', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -146,22 +131,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2S Death\'s Gaze',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '236F', source: 'Catastrophe', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '236F', source: 'Katastroph', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '236F', source: 'Catastrophe', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '236F', source: 'カタストロフィー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '236F', source: '灾变者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '236F', source: '카타스트로피', capture: false }),
       response: Responses.lookAway('alert'),
     },
     {
       id: 'O2S Earthquake',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2374', source: 'Catastrophe', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2374', source: 'Katastroph', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2374', source: 'Catastrophe', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2374', source: 'カタストロフィー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2374', source: '灾变者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2374', source: '카타스트로피', capture: false }),
       alertText: (data, _matches, output) => {
         if (!data.levitating)
           return output.earthquakeLevitate!();
@@ -246,22 +221,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O2S Gravitational Wave',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2372', source: 'Catastrophe', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2372', source: 'Katastroph', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2372', source: 'Catastrophe', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2372', source: 'カタストロフィー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2372', source: '灾变者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2372', source: '카타스트로피', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'O2S Maniacal Probe',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '235A', source: 'Katastroph', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '235A', source: 'カタストロフィー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '235A', source: '灾变者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
       condition: (data) => data.job !== 'BLU',
       alertText: (data, _matches, output) => {
         if (data.myProbe) {

@@ -131,11 +131,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Test Poke',
       type: 'GameLog',
       netRegex: NetRegexes.gameNameLog({ line: 'You poke the striking dummy.*?', capture: false }),
-      netRegexDe: NetRegexes.gameNameLog({ line: 'Du stupst die Trainingspuppe an.*?', capture: false }),
-      netRegexFr: NetRegexes.gameNameLog({ line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt.*?', capture: false }),
-      netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人をつついた.*?', capture: false }),
-      netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?', capture: false }),
-      netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?', capture: false }),
       preRun: (data) => ++data.pokes,
       infoText: (data, _matches, output) => output.poke!({ numPokes: data.pokes }),
       outputStrings: {
@@ -153,11 +148,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Test Psych',
       type: 'GameLog',
       netRegex: NetRegexes.gameNameLog({ line: 'You psych yourself up alongside the striking dummy.*?', capture: false }),
-      netRegexDe: NetRegexes.gameNameLog({ line: 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen.*?', capture: false }),
-      netRegexFr: NetRegexes.gameNameLog({ line: 'Vous vous motivez devant le mannequin d\'entraînement.*?', capture: false }),
-      netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人に活を入れた.*?', capture: false }),
-      netRegexCn: NetRegexes.gameNameLog({ line: '.*激励木人.*?', capture: false }),
-      netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 힘을 불어넣습니다.*?', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       tts: {
         en: 'psych',
@@ -182,11 +172,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Test Laugh',
       type: 'GameLog',
       netRegex: NetRegexes.gameNameLog({ line: 'You burst out laughing at the striking dummy.*?', capture: false }),
-      netRegexDe: NetRegexes.gameNameLog({ line: 'Du lachst herzlich mit der Trainingspuppe.*?', capture: false }),
-      netRegexFr: NetRegexes.gameNameLog({ line: 'Vous vous esclaffez devant le mannequin d\'entraînement.*?', capture: false }),
-      netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人のことを大笑いした.*?', capture: false }),
-      netRegexCn: NetRegexes.gameNameLog({ line: '.*看着木人高声大笑.*?', capture: false }),
-      netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 보고 폭소를 터뜨립니다.*?', capture: false }),
       suppressSeconds: 5,
       alarmText: (_data, _matches, output) => output.text!(),
       tts: {
@@ -212,11 +197,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Test Clap',
       type: 'GameLog',
       netRegex: NetRegexes.gameNameLog({ line: 'You clap for the striking dummy.*?', capture: false }),
-      netRegexDe: NetRegexes.gameNameLog({ line: 'Du klatschst begeistert Beifall für die Trainingspuppe.*?', capture: false }),
-      netRegexFr: NetRegexes.gameNameLog({ line: 'Vous applaudissez le mannequin d\'entraînement.*?', capture: false }),
-      netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人に拍手した.*?', capture: false }),
-      netRegexCn: NetRegexes.gameNameLog({ line: '.*向木人送上掌声.*?', capture: false }),
-      netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 박수를 보냅니다.*?', capture: false }),
       sound: '../../resources/sounds/freesound/power_up.webm',
       soundVolume: 0.3,
       tts: (_data, _matches, output) => output.text!(),
@@ -236,11 +216,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       // In game: /echo cactbot lang
       netRegex: NetRegexes.echo({ line: 'cactbot lang.*?', capture: false }),
-      netRegexDe: NetRegexes.echo({ line: 'cactbot sprache.*?', capture: false }),
-      netRegexFr: NetRegexes.echo({ line: 'cactbot langue.*?', capture: false }),
-      netRegexJa: NetRegexes.echo({ line: 'cactbot言語.*?', capture: false }),
-      netRegexCn: NetRegexes.echo({ line: 'cactbot语言.*?', capture: false }),
-      netRegexKo: NetRegexes.echo({ line: 'cactbot 언어.*?', capture: false }),
       infoText: (data, _matches, output) => output.text!({ lang: data.parserLang }),
       outputStrings: {
         text: {
@@ -257,11 +232,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Test Response',
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
-      netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
-      netRegexFr: NetRegexes.echo({ line: 'cactbot test de réponse.*?', capture: false }),
-      netRegexJa: NetRegexes.echo({ line: 'cactbotレスポンステスト.*?', capture: false }),
-      netRegexCn: NetRegexes.echo({ line: 'cactbot响应测试.*?', capture: false }),
-      netRegexKo: NetRegexes.echo({ line: 'cactbot 응답 테스트.*?', capture: false }),
       response: (_data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -282,11 +252,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Test Watch',
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
-      netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
-      netRegexFr: NetRegexes.echo({ line: 'cactbot test d\'observation.*?', capture: false }),
-      netRegexJa: NetRegexes.echo({ line: 'cactbot探知テスト.*?', capture: false }),
-      netRegexCn: NetRegexes.echo({ line: 'cactbot探测测试.*?', capture: false }),
-      netRegexKo: NetRegexes.echo({ line: 'cactbot 탐지 테스트.*?', capture: false }),
       promise: (data) =>
         Util.watchCombatant({
           names: [

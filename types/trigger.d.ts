@@ -130,11 +130,6 @@ export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = 
 type PartialNetRegexTrigger<T extends TriggerTypes> = {
   type?: T;
   netRegex: CactbotBaseRegExp<T>;
-  netRegexDe?: CactbotBaseRegExp<T>;
-  netRegexFr?: CactbotBaseRegExp<T>;
-  netRegexJa?: CactbotBaseRegExp<T>;
-  netRegexCn?: CactbotBaseRegExp<T>;
-  netRegexKo?: CactbotBaseRegExp<T>;
 };
 
 export type NetRegexTrigger<Data extends RaidbossData> = TriggerTypes extends infer T
@@ -147,11 +142,6 @@ export type GeneralNetRegexTrigger<Data extends RaidbossData, T extends TriggerT
 
 type PartialRegexTrigger = {
   regex: RegExp;
-  regexDe?: RegExp;
-  regexFr?: RegExp;
-  regexJa?: RegExp;
-  regexCn?: RegExp;
-  regexKo?: RegExp;
 };
 
 export type RegexTrigger<Data extends RaidbossData> =

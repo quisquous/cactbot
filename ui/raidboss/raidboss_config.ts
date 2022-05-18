@@ -3,6 +3,7 @@ import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
 import Regexes from '../../resources/regexes';
 import { triggerOutputFunctions } from '../../resources/responses';
+import { translateRegex } from '../../resources/translations';
 import UserConfig, {
   ConfigValue,
   OptionsTemplate,
@@ -589,7 +590,7 @@ class RaidbossConfigurator {
       // Timeline editing is tied to a single, specific zoneId per file for now.
       // We could add more indirection (via fileKey?) and look up zoneId -> fileKey[]
       // and fileKey -> timeline edits if needed.
-      if (info.triggerSet.timeline && typeof info.zoneId === 'number')
+      if (info.triggerSet.timeline !== undefined && typeof info.zoneId === 'number')
         this.buildTimelineUIContainer(info.zoneId, info.triggerSet, triggerContainer, userOptions);
 
       const triggerOptions = document.createElement('div');
@@ -651,7 +652,7 @@ class RaidbossConfigurator {
             continue;
           const trigOutput = trig.configOutput?.[detailKey];
           const trigFunc = trig[detailKey];
-          if (!trigFunc)
+          if (trigFunc === undefined || trigFunc === null)
             continue;
 
           const detailCls = [opt.cls];
@@ -1096,7 +1097,7 @@ class RaidbossConfigurator {
     return this.valueOrFunction(result['en'], data, matches, output);
   }
 
-  processTrigger(trig: ConfigLooseTrigger): ConfigLooseTrigger {
+  processTrigger(trig: ConfigLooseTrigger, set: ConfigLooseTriggerSet): ConfigLooseTrigger {
     // TODO: with some hackiness (e.g. regexes?) we could figure out which
     // output string came from which alert type (alarm, alert, info, tts).
     // See `makeOutput` comments for why this needs a type assertion to be an Output.
@@ -1195,7 +1196,7 @@ class RaidbossConfigurator {
     const evalTrigger = (trig: LooseTrigger, key: OutputKey, data: RaidbossData) => {
       try {
         const result = this.valueOrFunction(trig[key], data, kFakeMatches, fakeOutputProxy);
-        if (!result)
+        if (result === null || result === undefined)
           return false;
 
         // Super hack:
@@ -1254,32 +1255,15 @@ class RaidbossConfigurator {
 
     trig.configOutput = output;
 
+    // TODO: this shows the regexes in the display language.
+    // Should we show them in the parser language instead?
     const lang = this.base.lang;
 
-    const langSpecificRegexes = [
-      'netRegexDe',
-      'netRegexFr',
-      'netRegexJa',
-      'netRegexCn',
-      'netRegexKo',
-      'regexDe',
-      'regexFr',
-      'regexJa',
-      'regexCn',
-      'regexKo',
-    ] as const;
     const getRegex = (baseField: 'regex' | 'netRegex') => {
-      const shortLanguage = lang.charAt(0).toUpperCase() + lang.slice(1);
-      const concatStr = langSpecificRegexes.find((x) => x === `${baseField}${shortLanguage}`);
-      if (!concatStr)
+      const regex = trig[baseField];
+      if (regex === undefined)
         return;
-      const langSpecificRegex = trig[concatStr] ?? trig[baseField];
-      if (!langSpecificRegex)
-        return;
-      const baseRegex = Regexes.parse(langSpecificRegex);
-      if (!baseRegex)
-        return;
-      return Regexes.parse(baseRegex);
+      return Regexes.parse(translateRegex(regex, lang, set.timelineReplace));
     };
 
     if (trig.isTimelineTrigger) {
@@ -1351,7 +1335,7 @@ class RaidbossConfigurator {
           trig.isTimelineTrigger = key === 'timeline';
           // Also, if a user has two of the same id in the same triggerSet (?!)
           // then only the second trigger will show up.
-          item.triggers[trig.id] = this.processTrigger(trig);
+          item.triggers[trig.id] = this.processTrigger(trig, triggerSet);
         }
       }
     }
@@ -1440,17 +1424,15 @@ const flattenTimeline = (
 const userFileHandler: UserFileCallback = (
   name: string,
   files: { [filename: string]: string },
-  baseOptions: BaseOptions,
+  baseOptions: (BaseOptions & Partial<RaidbossOptions>),
   basePath: string,
 ) => {
   // TODO: Rewrite user_config to be templated on option type so that this function knows
   // what type of options it is using.
-  const options = baseOptions as RaidbossOptions;
-
-  if (!options.Triggers)
+  if (!baseOptions.Triggers)
     return;
 
-  for (const baseTriggerSet of options.Triggers) {
+  for (const baseTriggerSet of baseOptions.Triggers) {
     const set: ConfigLooseTriggerSet = baseTriggerSet;
 
     // Annotate triggers with where they came from.  Note, options is passed in repeatedly
@@ -1475,7 +1457,7 @@ const processPerTriggerAutoConfig = (options: RaidbossOptions, savedConfig: Save
   if (typeof savedConfig !== 'object' || Array.isArray(savedConfig))
     return;
   const triggers = savedConfig['triggers'];
-  if (!triggers || typeof triggers !== 'object' || Array.isArray(triggers))
+  if (triggers === undefined || typeof triggers !== 'object' || Array.isArray(triggers))
     return;
 
   const outputObjs: { [key: string]: TriggerAutoConfig } = {};
@@ -1519,7 +1501,7 @@ const processPerTriggerAutoConfig = (options: RaidbossOptions, savedConfig: Save
     )
       autoConfig[kOptionKeys.outputStrings] = outputStrings;
 
-    if (output || duration || outputStrings)
+    if (output || duration || outputStrings !== undefined)
       perTriggerAutoConfig[id] = autoConfig;
   }
 };
@@ -1535,7 +1517,7 @@ const processPerZoneTimelineConfig = (options: RaidbossOptions, savedConfig: Sav
   if (typeof savedConfig !== 'object' || Array.isArray(savedConfig))
     return;
   const timeline = savedConfig['timeline'];
-  if (!timeline || typeof timeline !== 'object' || Array.isArray(timeline))
+  if (typeof timeline !== 'object' || Array.isArray(timeline))
     return;
 
   for (const [zoneKey, zoneEntry] of Object.entries(timeline)) {
@@ -1544,28 +1526,28 @@ const processPerZoneTimelineConfig = (options: RaidbossOptions, savedConfig: Sav
       continue;
     const timelineConfig = perZoneTimelineConfig[zoneId] ??= {};
 
-    if (!zoneEntry || typeof zoneEntry !== 'object' || Array.isArray(zoneEntry))
+    if (typeof zoneEntry !== 'object' || Array.isArray(zoneEntry))
       continue;
 
     const enableEntry = zoneEntry['enable'];
     const replaceEntry = zoneEntry['globalReplace'];
     const addEntry = zoneEntry['add'];
 
-    if (enableEntry && typeof enableEntry === 'object' && !Array.isArray(enableEntry)) {
+    if (typeof enableEntry === 'object' && !Array.isArray(enableEntry)) {
       for (const [key, value] of Object.entries(enableEntry)) {
         if (typeof value === 'boolean' && !value)
           (timelineConfig.Ignore ??= []).push(key);
       }
     }
 
-    if (replaceEntry && typeof replaceEntry === 'object' && !Array.isArray(replaceEntry)) {
+    if (typeof replaceEntry === 'object' && !Array.isArray(replaceEntry)) {
       for (const [key, value] of Object.entries(replaceEntry)) {
         if (typeof value === 'string')
           (timelineConfig.Rename ??= {})[key] = value;
       }
     }
 
-    if (addEntry && typeof addEntry === 'object' && Array.isArray(addEntry)) {
+    if (addEntry !== undefined && typeof addEntry === 'object' && Array.isArray(addEntry)) {
       for (const row of addEntry) {
         if (typeof row !== 'object' || Array.isArray(row))
           continue;

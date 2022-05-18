@@ -31,26 +31,6 @@ import {
 
 const { assert } = chai;
 
-const regexLanguages: (keyof LooseTrigger)[] = [
-  'regex',
-  'regexCn',
-  'regexDe',
-  'regexFr',
-  'regexJa',
-  'regexKo',
-];
-
-const netRegexLanguages: (keyof LooseTrigger)[] = [
-  'netRegex',
-  'netRegexCn',
-  'netRegexDe',
-  'netRegexFr',
-  'netRegexJa',
-  'netRegexKo',
-];
-
-const isKeyInTriggerFunctions = (arr: string[], key: string): boolean => arr.includes(key);
-
 const isResponseFunc = (func: unknown): func is ResponseFunc<RaidbossData, Matches> => {
   return typeof func === 'function';
 };
@@ -139,7 +119,7 @@ const testTriggerFile = (file: string) => {
       const verifyTrigger = (trigger: LooseTrigger) => {
         for (const func of triggerFunctions) {
           const currentTriggerFunction = trigger[func];
-          if (!currentTriggerFunction)
+          if (currentTriggerFunction === undefined)
             continue;
           if (func === 'response' && typeof currentTriggerFunction === 'object') {
             // Hack: treat a literal response object as a trigger.  FIXME.
@@ -190,44 +170,13 @@ const testTriggerFile = (file: string) => {
       };
       verifyTrigger(currentTrigger);
 
-      let captures = -1;
-
-      // Check for inconsistencies between languages in regexes.
-      for (const regexLang of regexLanguages) {
-        const currentRegex = currentTrigger[regexLang];
-        if (currentRegex) {
-          const capture = new RegExp(`(?:${currentRegex.toString()})?`).exec('');
-          if (!capture)
-            throw new UnreachableCode();
-          const currentCaptures = capture.length - 1;
-          // Ignore first pass
-          if (captures !== -1 && captures !== currentCaptures) {
-            assert.fail(
-              `Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`,
-            );
-            break;
-          }
-          captures = Math.max(captures, currentCaptures);
-        }
-      }
-
-      // Check for inconsistencies between languages in netRegexes.
-      for (const netRegexLang of netRegexLanguages) {
-        const currentRegex = currentTrigger[netRegexLang];
-        if (currentRegex) {
-          const capture = new RegExp(`(?:${currentRegex.toString()})?`).exec('');
-          if (!capture)
-            throw new UnreachableCode();
-          const currentCaptures = capture.length - 1;
-          // Ignore first pass
-          if (captures !== -1 && captures !== currentCaptures) {
-            assert.fail(
-              `Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`,
-            );
-            break;
-          }
-          captures = Math.max(captures, currentCaptures);
-        }
+      let captures = 0;
+      const currentNetRegex = currentTrigger.netRegex;
+      if (currentNetRegex !== undefined && currentNetRegex !== null) {
+        const capture = new RegExp(`(?:${currentNetRegex.toString()})?`).exec('');
+        if (!capture)
+          throw new UnreachableCode();
+        captures = capture.length - 1;
       }
 
       if (captures > 0) {
@@ -397,10 +346,7 @@ const testTriggerFile = (file: string) => {
         // regex is the only valid regular expression field on a timeline trigger.
         if (key === 'regex')
           continue;
-        if (
-          isKeyInTriggerFunctions(regexLanguages, key) ||
-          isKeyInTriggerFunctions(netRegexLanguages, key)
-        )
+        if (key === 'netRegex')
           assert.fail(`in ${trigger.id}, invalid field '${key}' in timelineTrigger`);
       }
     }
@@ -578,11 +524,12 @@ const testTriggerFile = (file: string) => {
           const funcStr = func.toString();
           const keys: string[] = [];
 
-          dynamicOutputStringAccess = dynamicOutputStringAccess || /\boutput\[/.test(funcStr);
+          dynamicOutputStringAccess = dynamicOutputStringAccess ||
+            /(?:\boutput\[|\boutput[^.\r\n])/.test(funcStr);
 
           // Validate that any calls to output.word() have a corresponding outputStrings entry.
           funcStr.replace(/\boutput\.(\w*)\(/g, (fullMatch: string, key: string) => {
-            if (!outputStrings[key]) {
+            if (outputStrings[key] === undefined) {
               assert.fail(`missing key '${key}' in '${trigger.id}' outputStrings`);
               return fullMatch;
             }
@@ -604,7 +551,7 @@ const testTriggerFile = (file: string) => {
 
         // Responses can have unused output strings in some cases, such as ones
         // that work with and without matching.
-        if (!response && !dynamicOutputStringAccess) {
+        if (!dynamicOutputStringAccess) {
           for (const key in outputStrings) {
             if (!usedOutputStringEntries.has(key))
               assert.fail(`'${trigger.id}' has unused outputStrings entry '${key}'`);
@@ -646,34 +593,12 @@ const testTriggerFile = (file: string) => {
         if (!NetRegexes.doesNetRegexNeedTranslation(origRegex))
           continue;
 
-        const { text, wasTranslated } = translateWithReplacements(
+        const wasTranslated = translateWithReplacements(
           origRegex,
           'replaceSync',
           locale,
           translations,
-        );
-
-        const langSpecificRegexes = [
-          'netRegexDe',
-          'netRegexFr',
-          'netRegexJa',
-          'netRegexCn',
-          'netRegexKo',
-        ] as const;
-        const shortLanguage = locale.charAt(0).toUpperCase() + locale.slice(1);
-        const localeReg = langSpecificRegexes.find((x) => x === `netRegex${shortLanguage}`);
-        const locRegex = localeReg ? trigger[localeReg]?.source.toLowerCase() : undefined;
-        // NetRegexes will be deprecated for new triggers, but if they are
-        // there verify that they match.
-        if (locRegex) {
-          // If we have do not have a match, then something translated it *AND* it is
-          // different than what is in timelineReplace.  This is the worst case scenario.
-          assert.strictEqual(
-            locRegex,
-            text.toLowerCase(),
-            `${trigger.id}:locale ${locale}:incorrect timelineReplace replaceSync for regex '${locRegex}'`,
-          );
-        }
+        ).wasTranslated;
 
         assert.isTrue(
           wasTranslated,

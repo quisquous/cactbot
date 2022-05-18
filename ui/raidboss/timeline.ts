@@ -92,12 +92,11 @@ const computeBackgroundColorFrom = (element: HTMLElement, classList: string): st
 };
 
 export class Timeline {
-  private options: RaidbossOptions;
   private replacements: TimelineReplacement[];
 
   private activeText: string;
 
-  private activeSyncs: Sync[];
+  protected activeSyncs: Sync[];
   private activeEvents: Event[];
 
   public ignores: { [ignoreId: string]: boolean };
@@ -122,10 +121,9 @@ export class Timeline {
     replacements: TimelineReplacement[],
     triggers: LooseTimelineTrigger[],
     styles: TimelineStyle[],
-    options: RaidbossOptions,
+    private options: RaidbossOptions,
     private zoneId: number,
   ) {
-    this.options = options || {};
     this.replacements = replacements;
 
     const lang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
@@ -526,8 +524,6 @@ export class TimelineUI {
 
     for (let i = 0; i < this.options.MaxNumberOfTimerBars; ++i) {
       const helperBar = document.createElement('div');
-      if (!helperBar)
-        continue;
       helperBar.classList.add('text');
       helperBar.classList.add('resize-helper-bar');
       helperBar.classList.add('timeline-bar-color');

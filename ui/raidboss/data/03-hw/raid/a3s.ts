@@ -121,11 +121,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A3S Equal Concentration',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: ['Liquid Limb', 'Living Liquid'], id: 'F09', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: ['Belebt(?:e|er|es|en) Hand', 'Belebt(?:e|er|es|en) Wasser'], id: 'F09', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: ['Membre Liquide', 'Liquide Vivant'], id: 'F09', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: ['リキッドハンド', 'リビングリキッド'], id: 'F09', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: ['活水之手', '有生命活水'], id: 'F09', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: ['액체 손', '살아있는 액체'], id: 'F09', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -142,11 +137,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A3S Drainage You',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0005', target: 'Living Liquid' }),
-      netRegexDe: NetRegexes.tether({ id: '0005', target: 'Belebt(?:e|er|es|en) Wasser' }),
-      netRegexFr: NetRegexes.tether({ id: '0005', target: 'Liquide Vivant' }),
-      netRegexJa: NetRegexes.tether({ id: '0005', target: 'リビングリキッド' }),
-      netRegexCn: NetRegexes.tether({ id: '0005', target: '有生命活水' }),
-      netRegexKo: NetRegexes.tether({ id: '0005', target: '살아있는 액체' }),
       condition: (data, matches) => matches.source === data.me,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -164,11 +154,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A3S Drainage Tank',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0005', target: 'Living Liquid', capture: false }),
-      netRegexDe: NetRegexes.tether({ id: '0005', target: 'Belebt(?:e|er|es|en) Wasser', capture: false }),
-      netRegexFr: NetRegexes.tether({ id: '0005', target: 'Liquide Vivant', capture: false }),
-      netRegexJa: NetRegexes.tether({ id: '0005', target: 'リビングリキッド', capture: false }),
-      netRegexCn: NetRegexes.tether({ id: '0005', target: '有生命活水', capture: false }),
-      netRegexKo: NetRegexes.tether({ id: '0005', target: '살아있는 액체', capture: false }),
       condition: (data) => data.role === 'tank',
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
@@ -207,11 +192,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A3S Ferrofluid',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: 'F01' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Belebt(?:e|er|es|en) Wasser', id: 'F01' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Liquide Vivant', id: 'F01' }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'リビングリキッド', id: 'F01' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: 'F01' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: 'F01' }),
       alertText: (data, matches, output) => {
         data.ferroTether ??= {};
         data.ferroMarker ??= {};
@@ -249,11 +229,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A3S Cascade',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: 'EFE', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Belebt(?:e|er|es|en) Wasser', id: 'EFE', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Liquide Vivant', id: 'EFE', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'リビングリキッド', id: 'EFE', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: 'EFE', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: 'EFE', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -261,11 +236,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A3S Throttle',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Liquid Rage', id: 'F1A' }),
-      netRegexDe: NetRegexes.ability({ source: 'Levitiert(?:e|er|es|en) Rage', id: 'F1A' }),
-      netRegexFr: NetRegexes.ability({ source: 'Furie Liquide', id: 'F1A' }),
-      netRegexJa: NetRegexes.ability({ source: 'リキッドレイジ', id: 'F1A' }),
-      netRegexCn: NetRegexes.ability({ source: '活水之怒', id: 'F1A' }),
-      netRegexKo: NetRegexes.ability({ source: '분노한 액체', id: 'F1A' }),
       condition: (data) => data.CanCleanse(),
       alertText: (data, matches, output) => {
         return output.text!({ player: data.ShortName(matches.target) });
@@ -317,11 +287,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A3S Embolus',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Living Liquid', id: 'F1B', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Belebt(?:e|er|es|en) Wasser', id: 'F1B', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Liquide Vivant', id: 'F1B', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'リビングリキッド', id: 'F1B', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '有生命活水', id: 'F1B', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '살아있는 액체', id: 'F1B', capture: false }),
       condition: (data) => data.role === 'tank' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

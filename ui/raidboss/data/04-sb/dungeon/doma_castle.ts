@@ -23,11 +23,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Doma Castle Magitek Hexadrone Magitek Missiles',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Magitek Hexadrone', id: '20A4', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Magitek-Hexadrohne', id: '20A4', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Hexadrone Magitek', id: '20A4', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '魔導ヘキサローラー', id: '20A4', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '魔导六轮装甲', id: '20A4', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '마도 헥사롤러', id: '20A4', capture: false }),
       infoText: (data, _matches, output) => {
         return data.seenTowers ? output.getTowers!() : output.getTower!();
       },

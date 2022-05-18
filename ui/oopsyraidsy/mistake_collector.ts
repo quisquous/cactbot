@@ -80,7 +80,7 @@ export class MistakeCollector implements MistakeObserver {
     if (e.source !== broadcastSource)
       return;
     const msg = e.msg;
-    if (!msg || typeof msg !== 'object')
+    if (msg === null || typeof msg !== 'object')
       return;
 
     // Turn an unknown into an indexable object.

@@ -47,7 +47,6 @@ const defaultOopsyNonConfigOptions: OopsyNonConfigOptions = {
 export type DeathReportSide = 'left' | 'right' | 'disabled';
 
 type OopsyConfigOptions = {
-  Debug: boolean;
   NumLiveListItemsInCombat: number;
   MinimumTimeForPullMistake: number;
   TimeToShowDeathReportMs: number;
@@ -55,7 +54,6 @@ type OopsyConfigOptions = {
 };
 
 const defaultOopsyConfigOptions: OopsyConfigOptions = {
-  Debug: false,
   NumLiveListItemsInCombat: 5,
   MinimumTimeForPullMistake: 0.4,
   TimeToShowDeathReportMs: 4000,
