@@ -846,10 +846,8 @@ const triggerSet: TriggerSet<Data> = {
       // 670E Dark High Jump
       // 670F Dark Spineshatter Dive
       // 6710 Dark Elusive Jump
-      // Defaults: (as players will be coming from stack)
-      //   Spineshatter Right, Elusive Left, All Face East
-      //   High Jump North if solo, no assignment if all circle
-      //   2s Southeast/Southwest, no assignment if circle
+      // Defaults:
+      //   High Jump South if solo, no assignment if all circle
       //   Assumes North Party Stack
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false }),
