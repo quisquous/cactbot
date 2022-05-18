@@ -835,11 +835,6 @@ const triggerSet: TriggerSet<Data> = {
       // Collect players hit by dive
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
-      netRegexDe: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
-      netRegexFr: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
-      netRegexJa: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'ニーズヘッグ' }),
-      netRegexCn: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '尼德霍格' }),
-      netRegexKo: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '니드호그' }),
       run: (data, matches) => {
         const PosX = parseFloat(matches.targetX);
         const PosY = parseFloat(matches.targetY);
@@ -858,11 +853,6 @@ const triggerSet: TriggerSet<Data> = {
       //   Assumes North Party Stack
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'ニーズヘッグ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '尼德霍格', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: '니드호그', capture: false }),
       preRun: (data) => data.diveFromGraceTowerCounter = (data.diveFromGraceTowerCounter ?? 0) + 1,
       delaySeconds: 0.1,
       suppressSeconds: 1,
@@ -1022,11 +1012,6 @@ const triggerSet: TriggerSet<Data> = {
       // Triggered on first instance of Eye of the Tyrant (6714)
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '6714', source: 'ニーズヘッグ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '6714', source: '尼德霍格', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '6714', source: '니드호그', capture: false }),
       // Ignore targetIsYou() incase player misses stack
       condition: (data) => data.eyeOfTheTyrantCounter === undefined,
       suppressSeconds: 1,
@@ -1077,11 +1062,6 @@ const triggerSet: TriggerSet<Data> = {
       // Triggered on second instance of Eye of the Tyrant (6714)
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '6714', source: 'ニーズヘッグ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '6714', source: '尼德霍格', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '6714', source: '니드호그', capture: false }),
       // Ignore targetIsYou() incase player misses stack
       condition: (data) => data.eyeOfTheTyrantCounter === 1,
       suppressSeconds: 1,
