@@ -37,7 +37,7 @@ export interface Data extends RaidbossData {
   diveFromGracePositions: { [name: string]: number[] };
   diveFromGraceTowerCounter?: number;
   eyeOfTheTyrantCounter?: number;
-  diveFromGracePreviousPosition: { [num: string]: string };
+  diveFromGracePreviousPosition: { [num: string]: 'middle' | 'west' | 'east' };
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
