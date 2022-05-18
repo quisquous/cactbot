@@ -1138,7 +1138,7 @@ const triggerSet: TriggerSet<Data> = {
             return output.elusiveTower!();
         }
       },
-      run: (data) => data.eyeOfTheTyrantCounter = 2,
+      run: (data) => data.eyeOfTheTyrantCounter = 1,
       outputStrings: {
         num3: Outputs.num3,
         circleTower: {
@@ -1156,7 +1156,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Dive From Grace Tower 3 Reminder',
+      id: 'DSR Dive From Grace Tower 3',
       // Triggered on second instance of Eye of the Tyrant (6714)
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
@@ -1166,7 +1166,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.ability({ id: '6714', source: '尼德霍格', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '6714', source: '니드호그', capture: false }),
       // Ignore targetIsYou() incase player misses stack
-      condition: (data) => data.eyeOfTheTyrantCounter === 2,
+      condition: (data) => data.eyeOfTheTyrantCounter === 1,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
@@ -1188,6 +1188,7 @@ const triggerSet: TriggerSet<Data> = {
         if (num !== 3)
           return output.circleTowers!();
       },
+      run: (data) => data.eyeOfTheTyrantCounter === 2,
       outputStrings: {
         circleTower: {
           en: 'South Tower',
@@ -1220,7 +1221,7 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`DFG Dive Single Tower: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return output.text!();
         }
-        if (data.eyeOfTheTyrantCounter === 2 && num === 1)
+        if (data.eyeOfTheTyrantCounter === 1 && num === 1)
           return output.baitThenStack!({ num: output.num2!() });
         return output.text!();
       },
