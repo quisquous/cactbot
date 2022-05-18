@@ -836,9 +836,9 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
       run: (data, matches) => {
-        const PosX = parseFloat(matches.targetX);
-        const PosY = parseFloat(matches.targetY);
-        data.diveFromGracePositions[matches.target] = [PosX, PosY];
+        const posX = parseFloat(matches.targetX);
+        const posY = parseFloat(matches.targetY);
+        data.diveFromGracePositions[matches.target] = [posX, posY];
       },
     },
     {
