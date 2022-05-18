@@ -1,7 +1,7 @@
 ### Dragonsong's Reprise Ultimate
 # phase 1 logs: -p 62D4:10 62E1:500
 # -p 63C8:553 6708:1000 717A:1500 62E1:2000 6B86:3000 6667:3500 71E4:4000
-# -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3 63DC 63CF 63C9 63E2 6FAF 6FB0 63D0 63E7 63E9 737C 6FEB 63C2 6715 6716 670C 6318 72A2 6B8A 6B91 63CB 62DF 63E5 6D22 6D25 6D28 6D29 6D2C 6D2E 6D28 6D29 6D2A 6D32 6D33 6D36 6D37 6D38 6D39 6D3A 6D3C 6D3D 6D3E 6D41 6D43 6D44 6D47 742B 742C 70E7 7310 7311 730F 6D9F 6DA0 6DA1 6D9D 6D91 6D92 730C 730D 730E 6D96 6D97 6D9C 6D94 6D95 6D9A 6DD2 6DD3
+# -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3 63DC 63CF 63C9 63E2 6FAF 6FB0 63D0 63E7 63E9 737C 6FEB 63C2 6715 6716 670C 6318 72A2 63CB 62DF 6D22 6D25 6D28 6D2C 6D2E 6D2A 6D32 6D41 6D43 6D44 6D9D 6D96 6D97 6D94 6D95 6DD2 6DD3
 
 
 # TODO: should we include something for P1 62CE/62CF Shining Blade/Bright Flare stuff?
@@ -393,7 +393,7 @@ hideall "--sync--"
 4126.9 "Trinity 2" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4134.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D93:/
 4135.6 "Akh Morn's Edge x6" #sync / 1[56]:[^:]*:Dragon-king Thordan:(730C|730D|730E):/ duration 6.6
-4135.7 "Dynmo/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
+4135.7 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
 4147.5 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4148.6 "Trinity 3" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4151.6 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
