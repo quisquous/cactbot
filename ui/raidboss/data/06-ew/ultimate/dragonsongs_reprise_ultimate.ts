@@ -898,6 +898,7 @@ const triggerSet: TriggerSet<Data> = {
               break;
             case posCX:
               data.diveFromGracePreviousPosition[nameC] = 'east';
+              break;
           }
           // Middle value = middle
           switch (sorted[1]) {
@@ -909,6 +910,7 @@ const triggerSet: TriggerSet<Data> = {
               break;
             case posCX:
               data.diveFromGracePreviousPosition[nameC] = 'middle';
+              break;
           }
           // Lowest value = west
           switch (sorted[2]) {
@@ -920,6 +922,7 @@ const triggerSet: TriggerSet<Data> = {
               break;
             case posCX:
               data.diveFromGracePreviousPosition[nameC] = 'west';
+              break;
           }
         } else {
           // Only comparing X values for Dive 2
