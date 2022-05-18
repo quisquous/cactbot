@@ -990,7 +990,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       run: (data) => {
         // Empty the collector
-        for (var player in data.diveFromGracePositions)
+        for (const player in data.diveFromGracePositions)
           delete data.diveFromGracePositions[player];
       },
       outputStrings: {
