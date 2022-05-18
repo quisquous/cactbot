@@ -75,7 +75,7 @@ const latePullText = {
 };
 
 // Internal trigger id for early pull
-const earlyPullTriggerId = 'General Early Pull';
+export const earlyPullTriggerId = 'General Early Pull';
 
 const isOopsyMistake = (x: OopsyMistake | OopsyDeathReason): x is OopsyMistake => 'type' in x;
 
@@ -114,7 +114,7 @@ export class DamageTracker {
 
   private job: Job = 'NONE';
   private role: Role = 'none';
-  private me?: string;
+  private me = '';
   private zoneName?: string;
   private zoneId: ZoneIdType = ZoneId.MatchAll;
   private contentType = 0;
@@ -161,7 +161,7 @@ export class DamageTracker {
 
   GetDataObject(): OopsyData {
     return {
-      me: this.me ?? '',
+      me: this.me,
       job: this.job,
       role: this.role,
       party: this.partyTracker,
@@ -481,6 +481,7 @@ export class DamageTracker {
     const zoneInfo = ZoneInfo[this.zoneId];
     this.contentType = zoneInfo?.contentType ?? 0;
 
+    this.combatState.StopCombat(timestamp);
     this.combatState.Reset();
     this.playerStateTracker.ClearTriggerSets();
     this.playerStateTracker.OnChangeZone(timestamp, zoneName, zoneId);
@@ -603,7 +604,7 @@ export class DamageTracker {
     this.ProcessDataFiles();
 
     // Wait for datafiles / jobs / zone events / localization.
-    if (!this.triggerSets || !this.me || !this.zoneName)
+    if (!this.triggerSets || !this.zoneName)
       return;
 
     this.Reset();
@@ -707,8 +708,6 @@ export class DamageTracker {
   ProcessDataFiles(): void {
     // Only run this once.
     if (this.triggerSets)
-      return;
-    if (!this.me)
       return;
 
     this.triggerSets = this.options.Triggers;

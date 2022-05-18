@@ -18,7 +18,7 @@ export class MistakeCollector implements MistakeObserver {
   private creationTime = Date.now();
   private latestSyncTimestamp?: number;
 
-  constructor(private options: OopsyOptions) {
+  constructor(private options: OopsyOptions, private shouldSync: boolean) {
     this.AddObserver(this);
     this.RequestSync();
   }
@@ -29,6 +29,8 @@ export class MistakeCollector implements MistakeObserver {
   }
 
   private RequestSync(): void {
+    if (!this.shouldSync)
+      return;
     this.DebugPrint(`RequestSync: ${this.creationTime}`);
     void callOverlayHandler({
       call: 'broadcast',
@@ -42,6 +44,8 @@ export class MistakeCollector implements MistakeObserver {
   }
 
   private SendSyncResponse(): void {
+    if (!this.shouldSync)
+      return;
     this.DebugPrint(`SendSyncResponse: ${this.creationTime}`);
     void callOverlayHandler({
       call: 'broadcast',
@@ -77,6 +81,8 @@ export class MistakeCollector implements MistakeObserver {
   }
 
   OnBroadcastMessage(e: EventResponses['BroadcastMessage']): void {
+    if (!this.shouldSync)
+      return;
     if (e.source !== broadcastSource)
       return;
     const msg = e.msg;
