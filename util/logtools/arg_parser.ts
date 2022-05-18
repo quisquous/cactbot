@@ -1,14 +1,13 @@
 import argparse from 'argparse';
 
 type TimelineArgs = {
-  [index: string]: string | number | boolean | undefined;
-  'file'?: string;
-  'force'?: boolean;
-  'search_fights'?: number;
-  'search_zones'?: number;
-  'fight_regex'?: string;
-  'zone_regex'?: string;
-  'adjust'?: number;
+  'file': string | null;
+  'force': boolean | null;
+  'search_fights': number | null;
+  'search_zones': number | null;
+  'fight_regex': string | null;
+  'zone_regex': string | null;
+  'adjust': number | null;
 };
 
 class LogUtilArgParse {

@@ -1,6 +1,8 @@
 import fs from 'fs';
 import readline from 'readline';
 
+import { Namespace } from 'argparse';
+
 import NetRegexes from '../../resources/netregexes';
 import PetData from '../../resources/pet_names';
 import { NetMatches } from '../../types/net_matches';
@@ -37,17 +39,35 @@ type TimelineEntry = {
 };
 
 type ExtendedArgs = TimelineArgs & {
-  [index: string]: string | string[] | number | boolean | undefined;
-  'output-file'?: string;
-  'start'?: string;
-  'end'?: string;
-  'ignore-id'?: string[];
-  'ignore-ability'?: string[];
-  'ignore-combatant'?: string[];
-  'only-combatant'?: string[];
-  'phase'?: string;
-  'include-targetable'?: string[];
+  'output_file': string | null;
+  'start': string | null;
+  'end': string | null;
+  'ignore_id': string[] | null;
+  'ignore_ability': string[] | null;
+  'ignore_combatant': string[] | null;
+  'only_combatant': string[] | null;
+  'phase': string | null;
+  'include_targetable': string[] | null;
 };
+
+class ExtendedArgsNamespace extends Namespace implements ExtendedArgs {
+  'file': string | null;
+  'force': boolean | null;
+  'search_fights': number | null;
+  'search_zones': number | null;
+  'fight_regex': string | null;
+  'zone_regex': string | null;
+  'adjust': number | null;
+  'output_file': string | null;
+  'start': string | null;
+  'end': string | null;
+  'ignore_id': string[] | null;
+  'ignore_ability': string[] | null;
+  'ignore_combatant': string[] | null;
+  'only_combatant': string[] | null;
+  'phase': string | null;
+  'include_targetable': string[] | null;
+}
 
 // Some NPCs can be picked up by our entry processor.
 // We list them out explicitly here so we can ignore them at will.
@@ -120,7 +140,8 @@ timelineParse.parser.addArgument(['--include_targetable', '-it'], {
   nargs: '+',
   help: 'Set this flag to include "34" log lines when making the timeline',
 });
-const args = timelineParse.parser.parseArgs() as ExtendedArgs;
+const args = new ExtendedArgsNamespace({});
+timelineParse.parser.parseArgs(undefined, args);
 
 const printHelpAndExit = (errString: string): void => {
   console.error(errString);
@@ -134,7 +155,8 @@ if (args.file === null)
 if (!args.file?.includes('.log'))
   printHelpAndExit('Error: Must specify an FFXIV ACT log file, as log.log\n');
 let numExclusiveArgs = 0;
-for (const opt of ['search_fights', 'search_zones']) {
+const exclusiveArgs = ['search_fights', 'search_zones'] as const;
+for (const opt of exclusiveArgs) {
   if (args[opt] !== null)
     numExclusiveArgs++;
 }
@@ -266,10 +288,10 @@ const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): b
   const abilityId = entry.abilityId;
   const combatant = entry.combatant;
 
-  const ia = args.ignore_ability as string[] | null;
-  const ii = args.ignore_id as string[] | null;
-  const ic = args.ignore_combatant as string[] | null;
-  const oc = args.only_combatant as string[] | null;
+  const ia = args.ignore_ability;
+  const ii = args.ignore_id;
+  const ic = args.ignore_combatant;
+  const oc = args.only_combatant;
   // Ignore auto-attacks named "attack"
   if (abilityName?.toLowerCase() === 'attack')
     return true;
