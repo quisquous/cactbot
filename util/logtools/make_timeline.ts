@@ -366,6 +366,18 @@ const assembleTimelineStrings = (
     assembled.push('0.0 "--sync--" sync /Engage!/ window 0,1');
   }
 
+  // If the user entered phase information,
+  // process it and store it off.
+  const phases: { [name: string]: number } = {};
+  if (args.phase) {
+    for (const phase of args.phase) {
+      const ability = phase.split(':')[0];
+      const time = phase.split(':')[1];
+      if (ability && time)
+        phases[ability] = parseInt(time);
+    }
+  }
+
   for (const entry of entries) {
     // Ignore auto-attacks, NPC allies, and abilities based on user-entered flags.
     if (entry.lineType === 'ability' && ignoreTimelineAbilityEntry(entry, args))
@@ -386,28 +398,16 @@ const assembleTimelineStrings = (
     const lastTimeDiff = lineTime - lastAbilityTime;
     const timeInfo = findTimeDifferences(lastTimeDiff);
 
-    // If the user entered phase information,
-    // process it and store it off.
-    const phases: { [name: string]: number } = {};
-    if (args.phase) {
-      for (const phase of args.phase) {
-        const ability = phase.split(':')[0];
-        const time = phase.split(':')[1];
-        if (ability && time)
-          phases[ability] = parseInt(time);
-      }
-    }
-
     // Set the time, adjusting to phases if necessary.
-    const abilityName = entry.abilityName ?? 'Unknown';
-    const phaseTime = phases[abilityName] ?? timelinePosition;
+    const abilityId = entry.abilityId ?? 'Unknown';
+    const phaseTime = abilityId ? phases[abilityId] : timelinePosition;
     if (
-      !(entry.lineType === 'ability' && Object.keys(phases).includes(abilityName))
+      !(entry.lineType === 'ability' && abilityId && Object.keys(phases).includes(abilityId))
     ) {
       timelinePosition += timeInfo.diffSeconds;
-    } else if (abilityName && Object.keys(phases).includes(abilityName)) {
+    } else if (abilityId && phaseTime && Object.keys(phases).includes(abilityId)) {
       timelinePosition = phaseTime;
-      delete phases[abilityName];
+      delete phases[abilityId];
     }
 
     // We're done manipulating time, so save where we are for the next loop.
@@ -415,7 +415,6 @@ const assembleTimelineStrings = (
 
     if (entry.lineType !== 'nameToggle') {
       const ability = entry.abilityName ?? 'Unknown';
-      const abilityId = entry.abilityId ?? 'Unknown';
       const combatant = entry.combatant ?? 'Unknown';
       const newEntry = `${
         timelinePosition.toFixed(1)
