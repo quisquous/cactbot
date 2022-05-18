@@ -280,9 +280,9 @@ hideall "--sync--"
 3535.8 "Staggering Breath" #sync / 1[56]:[^:]*:Nidhogg:6D3D:/
 3543.0 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D30:/
 3554.3 "Akh Afah" sync / 1[56]:[^:]*:Hraesvelgr:6D42:/
+3567.4 "Hallowed Wings" sync / 1[56]:[^:]*:Hraesvelgr:(6D23|6D24|6D26|6D27):/
+3568.2 "Hallowed Plume" #sync / 1[56]:[^:]*:Hraesvelgr:6D29:/
 3568.5 "Cauterize" sync / 1[56]:[^:]*:Nidhogg:6D3E:/
-3567.8 "Hallowed Wings" sync / 1[56]:[^:]*:Hraesvelgr:(6D23|6D24|6D26|6D27):/
-3568.6 "Hallowed Plume" #sync / 1[56]:[^:]*:Hraesvelgr:6D29:/
 3577.0 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D31:/
 3582.4 "Wroth Flames" sync / 1[56]:[^:]*:Nidhogg:6D45:/
 3593.2 "Akh Morn 1" sync / 1[56]:[^:]*:Nidhogg:6D46:/
