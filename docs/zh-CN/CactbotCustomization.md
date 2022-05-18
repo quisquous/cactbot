@@ -215,7 +215,6 @@ Options.Triggers.push([
         // 这是一个自定义的id，因此不会覆盖任何现有的触发器。
         id: 'Personal Forked Lightning',
         regex: Regexes.gainsEffect({ effect: 'Forked Lightning' }),
-        regexCn: Regexes.gainsEffect({ effect: '叉形闪电' }),
         condition: (data, matches) => { return matches.target === data.me; },
         delaySeconds: 1,
         alertText: '快出去!!!',

@@ -36,6 +36,7 @@ export default (
         'jobs',
         'oopsyraidsyLive',
         'oopsyraidsySummary',
+        'oopsyraidsyViewer',
         'pullcounter',
         'radar',
         'raidboss',
