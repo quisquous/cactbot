@@ -947,6 +947,21 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'DSR Akh Afah',
+      // 6D41 Akh Afah from Hraesvelgr, and 64D2 is immediately after
+      // 6D43 Akh Afah from Nidhogg, and 6D44 is immediately after
+      // Hits highest emnity target
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['6D41', '6D43'], source: ['Hraesvelgr', 'Nidhogg'], capture: false }),
+      suppressSeconds: 2,
+      infoText: (_data, _matches, output) => output.groups!(),
+      outputStrings: {
+        groups: {
+          en: 'Tank Groups',
+        },
+      },
+    },
+    {
       id: 'DSR Wyrmsbreath 2 Boiling and Freezing',
       type: 'GainsEffect',
       // B52 = Boiling
