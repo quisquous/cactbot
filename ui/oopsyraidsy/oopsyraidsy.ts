@@ -40,10 +40,12 @@ export const addDebugInfo = (collector: MistakeCollector, numMistakes: number): 
   }
 };
 
+// Note: changes to this setup function should be reflected in
+// oopsy_viewer as well.
 UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
   const options = { ...defaultOptions };
 
-  const mistakeCollector = new MistakeCollector(options);
+  const mistakeCollector = new MistakeCollector(options, true);
   const summaryElement = document.getElementById('summary');
   const liveListElement = document.getElementById('livelist');
 

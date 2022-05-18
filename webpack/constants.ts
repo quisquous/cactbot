@@ -8,6 +8,7 @@ export const cactbotModules = {
   jobs: 'ui/jobs/jobs',
   oopsyraidsyLive: 'ui/oopsyraidsy/oopsy_live',
   oopsyraidsySummary: 'ui/oopsyraidsy/oopsy_summary',
+  oopsyraidsyViewer: 'ui/oopsyraidsy/oopsy_viewer',
   pullcounter: 'ui/pullcounter/pullcounter',
   radar: 'ui/radar/radar',
   raidboss: 'ui/raidboss/raidboss',
@@ -64,6 +65,12 @@ export const cactbotHtmlChunksMap = {
     chunks: [
       cactbotChunks.oopsyraidsyData,
       cactbotModules.oopsyraidsySummary,
+    ],
+  },
+  'ui/oopsyraidsy/oopsy_viewer.html': {
+    chunks: [
+      cactbotChunks.oopsyraidsyData,
+      cactbotModules.oopsyraidsyViewer,
     ],
   },
   'ui/oopsyraidsy/oopsyraidsy.html': {

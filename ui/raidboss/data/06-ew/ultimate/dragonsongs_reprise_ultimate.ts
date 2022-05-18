@@ -735,18 +735,19 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Tank/Heiler Meteore (${player1}, ${player2})',
           fr: 'Météores Tank/Healer (${player1}, ${player2})', // FIXME
           ja: 'タンヒラ 隕石 (${player1}, ${player2})', // FIXME
-          ko: '탱/힐 메테오 (${player1}, ${player2})', // FIXME
+          ko: '탱/힐 메테오 (${player1}, ${player2})',
         },
         dpsMeteors: {
           en: 'DPS Meteors (${player1}, ${player2})',
           de: 'DDs Meteore (${player1}, ${player2})',
           fr: 'Météores DPS (${player1}, ${player2})', // FIXME
           ja: 'DPS 隕石 (${player1}, ${player2})', // FIXME
-          ko: '딜러 메테오 (${player1}, ${player2})', // FIXME
+          ko: '딜러 메테오 (${player1}, ${player2})',
         },
         unknownMeteors: {
           en: '??? Meteors (${player1}, ${player2})',
           de: '??? Meteore (${player1}, ${player2})',
+          ko: '??? 메테오 (${player1}, ${player2})',
         },
       },
     },
@@ -948,6 +949,21 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'DSR Akh Afah',
+      // 6D41 Akh Afah from Hraesvelgr, and 64D2 is immediately after
+      // 6D43 Akh Afah from Nidhogg, and 6D44 is immediately after
+      // Hits highest emnity target
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['6D41', '6D43'], source: ['Hraesvelgr', 'Nidhogg'], capture: false }),
+      suppressSeconds: 2,
+      infoText: (_data, _matches, output) => output.groups!(),
+      outputStrings: {
+        groups: {
+          en: 'Tank Groups',
+        },
+      },
+    },
+    {
       id: 'DSR Hallowed Wings and Plume',
       // 6D23 Head Down, Left Wing
       // 6D24 Head Up, Left Wing
@@ -1013,9 +1029,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         nidhogg: {
           en: 'Get hit by Nidhogg',
+          ko: '니드호그에게 맞기',
         },
         hraesvelgr: {
           en: 'Get hit by Hraesvelgr',
+          ko: '흐레스벨그에게 맞기',
         },
       },
     },
