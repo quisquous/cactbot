@@ -562,8 +562,12 @@ export class DamageTracker {
       const trigger: OopsyTrigger<OopsyData> = {
         id: key,
         type: 'Ability',
-        netRegex: NetRegexes.abilityFull({ type: '22', id: id, ...playerDamageFields }),
+        netRegex: NetRegexes.ability({ type: '22', id: id, ...playerDamageFields }),
         mistake: (_data, matches) => {
+          // Some single target damage is still marked as AOEActionEffect type 22, so check
+          // the number of targets that it hits.
+          if (parseInt(matches.targetCount) === 1)
+            return;
           return {
             type: type,
             blame: matches.target,
