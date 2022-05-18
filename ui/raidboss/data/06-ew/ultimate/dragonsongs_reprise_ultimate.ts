@@ -958,8 +958,6 @@ const triggerSet: TriggerSet<Data> = {
             // Stack => Predict Tower 3
             if (data.diveFromGracePreviousPosition[data.me] === 'middle')
               return output.stackNorth!();
-            // Other players just move so 3s can get tower
-            return output.move!();
           }
         }
 
@@ -980,12 +978,6 @@ const triggerSet: TriggerSet<Data> = {
             if (data.diveFromGracePreviousPosition[data.me] === 'east')
               return output.elusiveTower2!();
           }
-        }
-        // Third Dive, on num3s
-        if (data.diveFromGraceTowerCounter === 3) {
-          // Num3s need to move out of tower 3
-          if (num === 3)
-            return output.move!();
         }
       },
       run: (data) => data.diveFromGracePositions = {},
