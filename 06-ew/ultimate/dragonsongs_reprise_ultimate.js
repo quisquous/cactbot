@@ -877,6 +877,55 @@ Options.Triggers.push({
         },
       },
     },
+    {
+      id: 'DSR Wyrmsbreath 2 Boiling and Freezing',
+      type: 'GainsEffect',
+      // B52 = Boiling
+      // B53 = Freezing
+      // TODO: Get cardinal of the dragon to stand in
+      // TODO: Adjust delay to when the bosses jump to cardinal
+      netRegex: NetRegexes.gainsEffect({ effectId: ['B52', 'B53'] }),
+      condition: Conditions.targetIsYou(),
+      // Lasts 10.96s, but bosses do not cast Cauterize until 7.5s after debuff
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
+      infoText: (_data, matches, output) => {
+        if (matches.id === 'B52')
+          return output.hraesvelgr();
+        return output.nidhogg();
+      },
+      outputStrings: {
+        nidhogg: {
+          en: 'Get hit by Nidhogg',
+        },
+        hraesvelgr: {
+          en: 'Get hit by Hraesvelgr',
+        },
+      },
+    },
+    {
+      id: 'DSR Wyrmsbreath 2 Pyretic',
+      type: 'GainsEffect',
+      // B52 = Boiling
+      // When Boiling expires, Pyretic (3C0) will apply
+      // Pyretic will cause damage on movement
+      netRegex: NetRegexes.gainsEffect({ effectId: ['B52'] }),
+      condition: Conditions.targetIsYou(),
+      // Boiling lasts 10.96s, after which Pyretic is applied provide warning
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 1,
+      // Player will have Pyretic for about 3s before hit by Cauterize
+      durationSeconds: 4,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stop',
+          de: 'Stopp',
+          fr: 'Stop',
+          ja: '動かない',
+          cn: '停停停',
+          ko: '멈추기',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
