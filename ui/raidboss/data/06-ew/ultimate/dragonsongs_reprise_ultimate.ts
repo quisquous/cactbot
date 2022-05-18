@@ -894,11 +894,11 @@ const triggerSet: TriggerSet<Data> = {
 
         // If undefined keys, map to non-player names
         if (nameA === undefined)
-          nameA = '???';
+          nameA = output.unknown!();
         if (nameB === undefined)
-          nameB = '???';
+          nameB = output.unknown!();
         if (nameC === undefined)
-          nameC = '???';
+          nameC = output.unknown!();
 
         // Dive 1 and Dive 3 have 3 players
         if (data.diveFromGraceTowerCounter !== 2) {
@@ -982,6 +982,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       run: (data) => data.diveFromGracePositions = {},
       outputStrings: {
+        unknown: Outputs.unknown,
         stackNorth: {
           en: 'Stack North',
         },
