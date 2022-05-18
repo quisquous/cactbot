@@ -1119,13 +1119,12 @@ const triggerSet: TriggerSet<Data> = {
           return output.text!();
         }
         if (data.eyeOfTheTyrantCounter === 1 && num === 1)
-          return output.baitThenStack!({ num: output.num2!() });
+          return output.baitThenStack!();
         return output.text!();
       },
       outputStrings: {
-        num2: Outputs.num2,
         baitThenStack: {
-          en: 'Bait => Stack with #${num}',
+          en: 'Bait => Stack',
         },
         text: {
           en: 'Bait',
