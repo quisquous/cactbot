@@ -32,7 +32,7 @@ export interface Data extends RaidbossData {
   diveFromGraceNum: { [name: string]: number };
   // mapping of 1, 2, 3 to whether that group has seen an arrow.
   diveFromGraceHasArrow: { [num: number]: boolean };
-  diveFromGraceDir: { [name: string]: string };
+  diveFromGraceDir: { [name: string]: 'circle' | 'up' | 'down' };
   // mapping of player name to cartesian (x, y)
   diveFromGracePositions: { [name: string]: number[] };
   diveFromGraceTowerCounter?: number;
@@ -1018,7 +1018,7 @@ const triggerSet: TriggerSet<Data> = {
         // Call 1st Tower Soak (Must be based on debuffs?)
         if (num === 3) {
           // Num3 High Jump Tower 1
-          if (data.diveFromGraceDir[data.me] === 'AC3') {
+          if (data.diveFromGraceDir[data.me] === 'circle') {
             // Solo High Jump Tower 1
             if (!data.diveFromGraceHasArrow[3])
               return output.southTower!();
@@ -1026,10 +1026,10 @@ const triggerSet: TriggerSet<Data> = {
             return output.circleTowers!();
           }
           // Num3 Spineshatter Tower 1
-          if (data.diveFromGraceDir[data.me] === 'AC4')
+          if (data.diveFromGraceDir[data.me] === 'up')
             return output.westTower!();
           // Num3 Elusive Tower 1
-          if (data.diveFromGraceDir[data.me] === 'AC5')
+          if (data.diveFromGraceDir[data.me] === 'down')
             return output.eastTower!();
         }
       },
@@ -1170,7 +1170,17 @@ const triggerSet: TriggerSet<Data> = {
             data.diveFromGraceHasArrow[3] = true;
         }
         // Store result for position callout
-        data.diveFromGraceDir[matches.target] = matches.effectId;
+        switch (matches.effectId) {
+          case 'AC3':
+            data.diveFromGraceDir[matches.target] = 'circle';
+            break;
+          case 'AC4':
+            data.diveFromGraceDir[matches.target] = 'up';
+            break;
+          case 'AC5':
+            data.diveFromGraceDir[matches.target] = 'down';
+            break;
+        }
       },
     },
     {
