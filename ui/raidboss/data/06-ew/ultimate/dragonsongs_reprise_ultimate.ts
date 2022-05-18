@@ -933,7 +933,7 @@ const triggerSet: TriggerSet<Data> = {
             }
           } else if (distanceBC === sorted[0]) {
             data.diveFromGracePreviousPosition[nameA] = 'middle';
-            if (posAX < posCX) {
+            if (posBX < posCX) {
               data.diveFromGracePreviousPosition[nameB] = 'west';
               data.diveFromGracePreviousPosition[nameC] = 'east';
             } else {
