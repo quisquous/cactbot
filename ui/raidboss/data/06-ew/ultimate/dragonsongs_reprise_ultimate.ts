@@ -1227,9 +1227,7 @@ const triggerSet: TriggerSet<Data> = {
       // AC4 = Spineshatter Dive Target
       // AC5 = Elusive Jump Target
       // Defaults:
-      //   Spineshatter West, Elusive East, All Face East
-      //   High Jump North if solo, no assignment if all circle
-      //   2s Southeast/Southwest, no assignment if circle
+      //   High Jump South if solo, no assignment if all circle
       //   Assumes North Party Stack
       //
       // Spineshatter and Elusive elusive come together
@@ -1247,50 +1245,50 @@ const triggerSet: TriggerSet<Data> = {
         // Output no direction when all circles
         if (!data.diveFromGraceHasArrow[num]) {
           if (num === 2)
-            return output.diveCircles2!();
+            return output.circlesDive2!();
 
           // Can predict where num3s will go based on Darkdragon Dive targeting
-          return output.diveCircles!();
+          return output.circlesDive!();
         }
 
         // Output West or East
         if (num === 1 || num === 3) {
           if (matches.effectId === 'AC3')
-            return output.diveCircle!();
+            return output.southDive!();
           if (matches.effectId === 'AC4')
-            return output.diveSpineshatter!();
-          return output.diveElusive!();
+            return output.upArrowDive!();
+          return output.downArrowDive!();
         }
 
         // By the time 2s turn, they will be stacked, facing boss,
         // so calls are relative to the boss
         if (num === 2) {
           if (matches.effectId === 'AC4')
-            return output.diveSpineshatter2!();
-          return output.diveElusive2!();
+            return output.upArrowDive2!();
+          return output.downArrowDive2!();
         }
       },
       outputStrings: {
-        diveCircles: {
-          en: 'Cardinal Dive',
+        circlesDive: {
+          en: 'Dive (all circles)',
         },
-        diveCircle: {
+        southDive: {
           en: 'South Dive',
         },
-        diveCircles2: {
-          en: 'Intercard Dive',
+        circlesDive2: {
+          en: 'Dive (all circles)',
         },
-        diveSpineshatter: {
-          en: 'West Dive, Face Boss',
+        upArrowDive: {
+          en: 'Up Arrow Dive',
         },
-        diveElusive: {
-          en: 'East Dive, Face Out',
+        downArrowDive: {
+          en: 'Down Arrow Dive',
         },
-        diveSpineshatter2: {
-          en: 'Backright Dive, Face East',
+        upArrowDive2: {
+          en: 'Up Arrow Dive',
         },
-        diveElusive2: {
-          en: 'Backleft Dive, Face East',
+        downArrowDive2: {
+          en: 'Down Arrow Dive',
         },
       },
     },
