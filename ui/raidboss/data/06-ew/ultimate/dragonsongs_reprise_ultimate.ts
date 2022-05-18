@@ -973,7 +973,7 @@ const triggerSet: TriggerSet<Data> = {
             break;
           case '6D27':
             wings = output.left!();
-            head = data.role === 'tank' ? output.farr!() : output.near!();
+            head = data.role === 'tank' ? output.far!() : output.near!();
             break;
         }
         return output.text!({ wings: wings, head: head });
