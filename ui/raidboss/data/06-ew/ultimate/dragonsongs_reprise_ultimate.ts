@@ -13,6 +13,8 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 // TODO: Ser Adelphel left/right movement after initial charge
 // TODO: Meteor "run" call?
 // TODO: Wyrmsbreath 2 cardinal positions for Cauterize and adjust delay
+// TODO: Intercard instead of left/right for Hallowed Wings with Cauterize
+// TODO: Trigger for Hallowed Wings with Hot Tail/Hot Wings
 
 type Phase = 'doorboss' | 'thordan' | 'nidhogg' | 'haurchefant' | 'thordan2' | 'nidhogg2' | 'dragon-king';
 
@@ -958,6 +960,53 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         groups: {
           en: 'Tank Groups',
+        },
+      },
+    },
+    {
+      id: 'DSR Hallowed Wings and Plume',
+      // 6D23 Head Down, Left Wing
+      // 6D24 Head Up, Left Wing
+      // 6D26 Head Down, Right Wing
+      // 6D27 Head Up, Right Wing
+      // Head Up = Tanks Far
+      // Head Down = Tanks Near
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['6D23', '6D24', '6D26', '6D27'], source: 'Hraesvelgr' }),
+      alertText: (data, matches, output) => {
+        let head;
+        let wings;
+        switch (matches.id) {
+          case '6D23':
+            wings = output.right!();
+            head = data.role === 'tank' ? output.near!() : output.far!();
+            break;
+          case '6D24':
+            wings = output.right!();
+            head = data.role === 'tank' ? output.far!() : output.near!();
+            break;
+          case '6D26':
+            wings = output.left!();
+            head = data.role === 'tank' ? output.near!() : output.far!();
+            break;
+          case '6D27':
+            wings = output.left!();
+            head = data.role === 'tank' ? output.far!() : output.near!();
+            break;
+        }
+        return output.text!({ wings: wings, head: head });
+      },
+      outputStrings: {
+        left: Outputs.left,
+        right: Outputs.right,
+        near: {
+          en: 'Near Hraesvelgr (Tankbusters)',
+        },
+        far: {
+          en: 'Far from Hraesvelgr (Tankbusters)',
+        },
+        text: {
+          en: '${wings}, ${head}',
         },
       },
     },
