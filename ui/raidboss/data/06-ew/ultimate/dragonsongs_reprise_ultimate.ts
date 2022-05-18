@@ -966,17 +966,17 @@ const triggerSet: TriggerSet<Data> = {
           // Stack => Predict Tower 3 (based on previous position)
           if (num === 2) {
             if (data.diveFromGracePreviousPosition[data.me] === 'west')
-              return output.spineshatterTower3!();
+              return output.westTower3!();
             if (data.diveFromGracePreviousPosition[data.me] === 'east')
-              return output.elusiveTower3!();
+              return output.eastTower3!();
           }
 
           // Call Tower 2 Soak (based on previous position)
           if (num === 1) {
             if (data.diveFromGracePreviousPosition[data.me] === 'west')
-              return output.spineshatterTower2!();
+              return output.northwestTower2!();
             if (data.diveFromGracePreviousPosition[data.me] === 'east')
-              return output.elusiveTower2!();
+              return output.northeastTower2!();
           }
         }
       },
@@ -985,17 +985,17 @@ const triggerSet: TriggerSet<Data> = {
         stackNorth: {
           en: 'Stack North',
         },
-        spineshatterTower2: {
-          en: 'Backright Tower',
+        northwestTower2: {
+          en: 'Northwest Tower',
         },
-        spineshatterTower3: {
-          en: 'Stack => Right Tower',
+        westTower3: {
+          en: 'Stack => West Tower',
         },
-        elusiveTower2: {
-          en: 'Backleft Tower',
+        northeastTower2: {
+          en: 'Northeast Tower',
         },
-        elusiveTower3: {
-          en: 'Stack => Left Tower',
+        eastTower3: {
+          en: 'Stack => East Tower',
         },
       },
     },
@@ -1020,32 +1020,31 @@ const triggerSet: TriggerSet<Data> = {
           if (data.diveFromGraceDir[data.me] === 'AC3') {
             // Solo High Jump Tower 1
             if (!data.diveFromGraceHasArrow[3])
-              return output.circleTower!();
+              return output.southTower!();
             // All High Jumps, unknown exact position
-            return output.circleTowers!({ num: output.num3!() });
+            return output.circleTowers!();
           }
           // Num3 Spineshatter Tower 1
           if (data.diveFromGraceDir[data.me] === 'AC4')
-            return output.spineshatterTower!();
+            return output.westTower!();
           // Num3 Elusive Tower 1
           if (data.diveFromGraceDir[data.me] === 'AC5')
-            return output.elusiveTower!();
+            return output.eastTower!();
         }
       },
       run: (data) => data.eyeOfTheTyrantCounter = 1,
       outputStrings: {
-        num3: Outputs.num3,
-        circleTower: {
+        southTower: {
           en: 'South Tower',
         },
         circleTowers: {
-          en: '${num} Cardinal Towers',
+          en: 'Towers (all circles)',
         },
-        spineshatterTower: {
-          en: 'Right Tower',
+        westTower: {
+          en: 'West Tower',
         },
-        elusiveTower: {
-          en: 'Left Tower',
+        eastTower: {
+          en: 'East Tower',
         },
       },
     },
@@ -1065,13 +1064,13 @@ const triggerSet: TriggerSet<Data> = {
         }
         // Call Tower 3 Soak for num1 (based on previous position)
         if (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle')
-          return output.circleTower!();
+          return output.southTower!();
         // Call Tower 3 Soak for num2s (based on previous position)
         if (num === 2) {
           if (data.diveFromGracePreviousPosition[data.me] === 'west')
-            return output.spineshatterTower!();
+            return output.westTower!();
           if (data.diveFromGracePreviousPosition[data.me] === 'east')
-            return output.elusiveTower!();
+            return output.eastTower!();
         }
         // If failed to get positions, call Towers in general
         if (num !== 3)
@@ -1079,17 +1078,17 @@ const triggerSet: TriggerSet<Data> = {
       },
       run: (data) => data.eyeOfTheTyrantCounter === 2,
       outputStrings: {
-        circleTower: {
+        southTower: {
           en: 'South Tower',
         },
         circleTowers: {
-          en: 'Cardinal Towers',
+          en: 'Towers (all circles)',
         },
-        spineshatterTower: {
-          en: 'Right Tower',
+        westTower: {
+          en: 'West Tower',
         },
-        elusiveTower: {
-          en: 'Left Tower',
+        eastTower: {
+          en: 'East Tower',
         },
       },
     },
