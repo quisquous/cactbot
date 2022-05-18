@@ -988,11 +988,7 @@ const triggerSet: TriggerSet<Data> = {
             return output.move!();
         }
       },
-      run: (data) => {
-        // Empty the collector
-        for (const player in data.diveFromGracePositions)
-          delete data.diveFromGracePositions[player];
-      },
+      run: (data) => data.diveFromGracePositions = {},
       outputStrings: {
         move: Outputs.moveAway,
         stackNorth: {
