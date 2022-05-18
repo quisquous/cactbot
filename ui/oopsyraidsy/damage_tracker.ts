@@ -566,14 +566,15 @@ export class DamageTracker {
         mistake: (_data, matches) => {
           // Some single target damage is still marked as AOEActionEffect type 22, so check
           // the number of targets that it hits.
-          if (parseInt(matches.targetCount) === 1)
+          const numTargets = parseInt(matches.targetCount);
+          if (numTargets === 1 || isNaN(numTargets))
             return;
           return {
             type: type,
             blame: matches.target,
             reportId: matches.targetId,
             triggerType: 'Share',
-            text: GetShareMistakeText(matches.ability),
+            text: GetShareMistakeText(matches.ability, numTargets),
           };
         },
       };
