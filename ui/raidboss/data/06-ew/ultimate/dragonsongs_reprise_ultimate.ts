@@ -946,6 +946,53 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'DSR Hallowed Wings and Plume',
+      // 6D23 Head Down, Left Wing
+      // 6D24 Head Up, Left Wing
+      // 6D26 Head Down, Right Wing
+      // 6D27 Head Up, Right Wing
+      // Head Up = Tanks Far
+      // Head Down = Tanks Near
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['6D23', '6D24', '6D26', '6D27'], source: 'Hraesvelgr' }),
+      alertText: (data, matches, output) => {
+        let head;
+        let wings;
+        switch (matches.id) {
+          case '6D23':
+            wings = output.right!();
+            head = data.role === 'tank' ? output.near!() : output.far!();
+            break;
+          case '6D24':
+            wings = output.right!();
+            head = data.role === 'tank' ? output.far!() : output.near!();
+            break;
+          case '6D26':
+            wings = output.left!();
+            head = data.role === 'tank' ? output.near!() : output.far!();
+            break;
+          case '6D27':
+            wings = output.left!();
+            head = data.role === 'tank' ? output.farr!() : output.near!();
+            break;
+        }
+        return output.text!({ wings: wings, head: head });
+      },
+      outputStrings: {
+        left: Outputs.left,
+        right: Outputs.right,
+        near: {
+          en: 'Near Hraesvelgr (Tankbusters)',
+        },
+        far: {
+          en: 'Far from Hraesvelgr (Tankbusters)',
+        },
+        text: {
+          en: '${wings}, ${head}',
+        },
+      },
+    },
+    {
       id: 'DSR Wyrmsbreath 2 Boiling and Freezing',
       type: 'GainsEffect',
       // B52 = Boiling
