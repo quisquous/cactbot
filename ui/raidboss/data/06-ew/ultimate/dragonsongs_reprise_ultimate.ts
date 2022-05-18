@@ -982,7 +982,6 @@ const triggerSet: TriggerSet<Data> = {
       },
       run: (data) => data.diveFromGracePositions = {},
       outputStrings: {
-        move: Outputs.moveAway,
         stackNorth: {
           en: 'Stack North',
         },
