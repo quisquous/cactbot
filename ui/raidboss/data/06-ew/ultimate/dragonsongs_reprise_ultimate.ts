@@ -13,7 +13,8 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 // TODO: Ser Adelphel left/right movement after initial charge
 // TODO: Meteor "run" call?
 // TODO: Wyrmsbreath 2 cardinal positions for Cauterize and adjust delay
-// TODO: Call safe Intercard instead of left/right for Hallowed Wings and Plumes (requires capturing Cauterize)
+// TODO: Intercard instead of left/right for Hallowed Wings with Cauterize
+// TODO: Trigger for Hallowed Wings with Hot Tail/Hot Wings
 
 type Phase = 'doorboss' | 'thordan' | 'nidhogg' | 'haurchefant' | 'thordan2' | 'nidhogg2' | 'dragon-king';
 
