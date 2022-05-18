@@ -35,8 +35,8 @@ export interface Data extends RaidbossData {
   // mapping of 1, 2, 3 to whether that group has seen an arrow.
   diveFromGraceHasArrow: { [num: number]: boolean };
   diveFromGraceDir: { [name: string]: 'circle' | 'up' | 'down' };
-  // mapping of player name to cartesian (x, y)
-  diveFromGracePositions: { [name: string]: number[] };
+  // mapping of player name to x coordinate
+  diveFromGracePositions: { [name: string]: number };
   diveFromGraceTowerCounter?: number;
   eyeOfTheTyrantCounter?: number;
   diveFromGracePreviousPosition: { [num: string]: 'middle' | 'west' | 'east' };
@@ -840,8 +840,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
       run: (data, matches) => {
         const posX = parseFloat(matches.targetX);
-        const posY = parseFloat(matches.targetY);
-        data.diveFromGracePositions[matches.target] = [posX, posY];
+        data.diveFromGracePositions[matches.target] = posX;
       },
     },
     {
@@ -864,34 +863,14 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
 
-        // With two Cartesian Coordinates, calculate distance
-        const distance = (a: number[], b: number[]) => {
-          if (
-            a[0] === undefined || a[1] === undefined ||
-            b[0] === undefined || b[1] === undefined
-          ) {
-            console.error(`DFG Tower 2 and 3: Missing targetX, targetY`);
-            return -1;
-          }
-          const x = a[0] - b[0];
-          const y = a[1] - b[1];
-          return Math.sqrt(x * x + y * y);
-        };
-
         // Map position values and player name keys to arrays
         let [posA, posB, posC] = Object.values(data.diveFromGracePositions);
         let [nameA, nameB, nameC] = Object.keys(data.diveFromGracePositions);
 
         // If undefined position, will not be able to predict position
-        if (posA === undefined)
-          posA = [];
-        if (posB === undefined)
-          posB = [];
-        if (posC === undefined)
-          posC = [];
-        const posAX = posA[0] ?? 0;
-        const posBX = posB[0] ?? 0;
-        const posCX = posC[0] ?? 0;
+        const posAX = posA ?? 0;
+        const posBX = posB ?? 0;
+        const posCX = posC ?? 0;
 
         // If undefined keys, map to non-player names
         if (nameA === undefined)
@@ -903,43 +882,44 @@ const triggerSet: TriggerSet<Data> = {
 
         // Dive 1 and Dive 3 have 3 players
         if (data.diveFromGraceTowerCounter !== 2) {
-          // Get Distances of assumed "Triangle" pattern created by 3 players
-          const distanceAB = distance(posA, posB);
-          const distanceAC = distance(posA, posC);
-          const distanceBC = distance(posB, posC);
-          const distances = [distanceAB, distanceAC, distanceBC];
+          // Get the posX of each player hitby dive
+          const positionsX = [posAX, posBX, posCX];
 
-          // Sort the distances, largest to smallest
-          const sorted = distances.sort((a, b) => b - a);
+          // Sort the the posX values, highest to lowest
+          const sorted = positionsX.sort((a, b) => b - a);
 
-          // Assuming the two players furthest apart are the left/right players
-          if (distanceAB === sorted[0]) {
-            data.diveFromGracePreviousPosition[nameC] = 'middle';
-            if (posAX < posBX) {
-              data.diveFromGracePreviousPosition[nameA] = 'west';
-              data.diveFromGracePreviousPosition[nameB] = 'east';
-            } else {
-              data.diveFromGracePreviousPosition[nameB] = 'west';
+          // Highest value = east
+          switch (sorted[0]) {
+            case posAX:
               data.diveFromGracePreviousPosition[nameA] = 'east';
-            }
-          } else if (distanceAC === sorted[0]) {
-            data.diveFromGracePreviousPosition[nameB] = 'middle';
-            if (posAX < posCX) {
-              data.diveFromGracePreviousPosition[nameA] = 'west';
-              data.diveFromGracePreviousPosition[nameC] = 'east';
-            } else {
-              data.diveFromGracePreviousPosition[nameC] = 'west';
-              data.diveFromGracePreviousPosition[nameA] = 'east';
-            }
-          } else if (distanceBC === sorted[0]) {
-            data.diveFromGracePreviousPosition[nameA] = 'middle';
-            if (posBX < posCX) {
-              data.diveFromGracePreviousPosition[nameB] = 'west';
-              data.diveFromGracePreviousPosition[nameC] = 'east';
-            } else {
-              data.diveFromGracePreviousPosition[nameC] = 'west';
+              break;
+            case posBX:
               data.diveFromGracePreviousPosition[nameB] = 'east';
-            }
+              break;
+            case posCX:
+              data.diveFromGracePreviousPosition[nameC] = 'east';
+          }
+          // Middle value = middle
+          switch (sorted[1]) {
+            case posAX:
+              data.diveFromGracePreviousPosition[nameA] = 'middle';
+              break;
+            case posBX:
+              data.diveFromGracePreviousPosition[nameB] = 'middle';
+              break;
+            case posCX:
+              data.diveFromGracePreviousPosition[nameC] = 'middle';
+          }
+          // Lowest value = west
+          switch (sorted[2]) {
+            case posAX:
+              data.diveFromGracePreviousPosition[nameA] = 'west';
+              break;
+            case posBX:
+              data.diveFromGracePreviousPosition[nameB] = 'west';
+              break;
+            case posCX:
+              data.diveFromGracePreviousPosition[nameC] = 'west';
           }
         } else {
           // Only comparing X values for Dive 2
