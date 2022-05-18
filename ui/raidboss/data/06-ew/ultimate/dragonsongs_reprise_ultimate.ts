@@ -864,10 +864,10 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         // With two Cartesian Coordinates, calculate distance
-        const distance = (a?: number[], b?: number[]) => {
+        const distance = (a: number[], b: number[]) => {
           if (
-            a === undefined || a[0] === undefined || a[1] === undefined ||
-            b === undefined || b[0] === undefined || b[1] === undefined
+            a[0] === undefined || a[1] === undefined ||
+            b[0] === undefined || b[1] === undefined
           ) {
             console.error(`DFG Tower 2 and 3: Missing targetX, targetY`);
             return -1;
