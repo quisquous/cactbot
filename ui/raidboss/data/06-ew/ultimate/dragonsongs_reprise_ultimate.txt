@@ -1,7 +1,8 @@
 ### Dragonsong's Reprise Ultimate
 # phase 1 logs: -p 62D4:10 62E1:500
-# -p 63C8:553 6708:1000 717A:1500 62E1:2000 6B86:3000
-# -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3 63DC 63CF 63C9 63E2 6FAF 6FB0 63D0 63E7 63E9 737C 6FEB 63C2 6715 6716 670C
+# -p 63C8:553 6708:1000 717A:1500 62E1:2000 6B86:3000 6667:3500 71E4:4000
+# -ii 6F73 6F74 62D3 63EE 62CE 62CF 63EC 62E3 63DC 63CF 63C9 63E2 6FAF 6FB0 63D0 63E7 63E9 737C 6FEB 63C2 6715 6716 670C 6318 72A2 63CB 62DF 6D22 6D25 6D28 6D2C 6D2E 6D2A 6D32 6D41 6D43 6D44 6D9D 6D96 6D97 6D94 6D95 6DD2 6DD3
+
 
 # TODO: should we include something for P1 62CE/62CF Shining Blade/Bright Flare stuff?
 
@@ -45,6 +46,7 @@ hideall "--sync--"
 133.6 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
 133.6 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Adelphel:62D4:/
 # ???
+
 
 ### Phase 1.5: Haurchefant v1, a time loop better suits a hero
 500.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:62E1:/ window 500,0
@@ -115,7 +117,15 @@ hideall "--sync--"
 669.8 "Heavens' Stake" sync / 1[56]:[^:]*:Ser Charibert:6FAE:/
 669.8 "Hiemal Storm" sync / 1[56]:[^:]*:Ser Haumeric:63E6:/
 671.9 "Conviction 1" sync / 1[56]:[^:]*:Ser Hermenost:737B:/
-674.7 "Holy Comet x7" duration 12.7 sync / 1[56]:[^:]*:Ser Noudenet:63E8:/
+674.7 "--sync--" sync / 1[56]:[^:]*:Ser Noudenet:63E8:/
+675.6 "Holy Comet 1" #sync / 1[56]:[^:]*:Holy Comet:63E9:/
+677.0 "Holy Comet 2" #sync / 1[56]:[^:]*:Holy Comet:63E9:/
+678.4 "Holy Comet 3" #sync / 1[56]:[^:]*:Holy Comet:63E9:/
+679.8 "Holy Comet 4" #sync / 1[56]:[^:]*:Holy Comet:63E9:/
+681.2 "Holy Comet 5" #sync / 1[56]:[^:]*:Holy Comet:63E9:/
+682.6 "Holy Comet 6" #sync / 1[56]:[^:]*:Holy Comet:63E9:/
+684.0 "Holy Comet 7" #sync / 1[56]:[^:]*:Holy Comet:63E9:/
+
 685.1 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
 685.2 "Conviction 2" sync / 1[56]:[^:]*:Ser Hermenost:6FEA:/
 692.5 "--targetable--"
@@ -179,12 +189,243 @@ hideall "--sync--"
 1555.7 "Mirage Dive 3" #sync / 1[56]:[^:]*:Nidhogg:68C4:/
 1560.8 "Mirage Dive 4" #sync / 1[56]:[^:]*:Nidhogg:68C4:/
 1570.6 "Steep in Rage" #sync / 1[56]:[^:]*:Right Eye:68BD:/
-### ???
+# Enrage??
 
 
 ### Phase 4.5: Haurchefant v2
 2000.0 "Planar Prison" sync / 1[56]:[^:]*:Ser Grinnaux:62E1:/ window 500,0
+2000.0 "Brightwinged Flight" sync / 1[56]:[^:]*:Ser Adelphel:6316:/
+2010.0 "Spear of the Fury" sync / 1[56]:[^:]*:Ser Zephirin:62E2:/
+2015.9 "Brightwing 1" sync / 1[56]:[^:]*:Ser Charibert:6319:/
+2021.0 "Brightwing 2" sync / 1[56]:[^:]*:Ser Charibert:6319:/
+2024.0 "Skyblind 1" sync / 1[56]:[^:]*:Ser Charibert:631A:/
+2026.1 "Brightwing 3" sync / 1[56]:[^:]*:Ser Charibert:6319:/
+2029.0 "Skyblind 2" sync / 1[56]:[^:]*:Ser Charibert:631A:/
+2031.1 "Brightwing 4" sync / 1[56]:[^:]*:Ser Charibert:6319:/
+2034.1 "Skyblind 3" sync / 1[56]:[^:]*:Ser Charibert:631A:/
+2036.3 "Pure of Heart" sync / 1[56]:[^:]*:Ser Charibert:62E4:/
+2038.6 "--targetable--"
+2039.3 "Skyblind 4" sync / 1[56]:[^:]*:Ser Charibert:631A:/
+# Enrage??
 
 
 ### Phase 5: King Thordan II
 3000.0 "Incarnation" sync / 1[56]:[^:]*:King Thordan:6B86:/ window 1000,0
+3006.2 "The Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:6B87:/
+3016.7 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
+3017.8 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:63ED:/
+3024.9 "Wrath of the Heavens" sync / 1[56]:[^:]*:King Thordan:6B89:/
+3034.4 "Chain Lightning" sync / 1[56]:[^:]*:Darkscale:6B8F:/
+3036.8 "Twisting Dive" sync / 1[56]:[^:]*:Vedrfolnir:6B8B:/
+3036.8 "Skyward Leap" #sync / 1[56]:[^:]*:Ser Paulecrain:72A2:/
+3036.8 "Spiral Pierce" #sync / 1[56]:[^:]*:Ser Ignasse:6B8A:/
+3042.2 "Ascalon's Mercy Revealed" sync / 1[56]:[^:]*:King Thordan:63CA:/
+3043.1 "Liquid Heaven 1" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
+3044.3 "Liquid Heaven 2" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
+3045.5 "Liquid Heaven 3" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
+3046.6 "--sync--" sync / 1[56]:[^:]*:Ser Charibert:63E4:/
+3046.7 "Liquid Heaven 4" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
+3047.1 "Altar Flare 1" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
+3047.9 "Liquid Heaven 5" #sync / 1[56]:[^:]*:Vedrfolnir:6B91:/
+3048.7 "Altar Flare 2" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
+3050.1 "Cauterize" sync / 1[56]:[^:]*:Darkscale:6B8D:/
+3050.2 "Altar Flare 3" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
+3050.3 "Empty Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:62DA:/
+3051.7 "Altar Flare 4" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
+3057.4 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
+3067.8 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
+3071.0 "Ascalon's Might 1" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3072.6 "Ascalon's Might 2" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3074.2 "Ascalon's Might 3" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3077.0 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
+3078.1 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:63ED:/
+3085.2 "Death of the Heavens" sync / 1[56]:[^:]*:King Thordan:6B92:/
+3092.2 "Deathstorm" sync / 1[56]:[^:]*:Darkscale:6B94:/
+3100.4 "Heavy Impact 1" sync / 1[56]:[^:]*:Ser Guerrique:63D6:/
+3102.0 "Lightning Storm" sync / 1[56]:[^:]*:King Thordan:63CC:/
+3102.3 "Twisting Dive" #sync / 1[56]:[^:]*:Vedrfolnir:6B8B:/
+3102.3 "Cauterize" sync / 1[56]:[^:]*:Darkscale:6B8D:/
+3102.3 "Spear of the Fury" #sync / 1[56]:[^:]*:Ser Zephirin:6B93:/
+3102.3 "Heavy Impact 2" #sync / 1[56]:[^:]*:Ser Guerrique:63D7:/
+3102.4 "Lightning Storm" #sync / 1[56]:[^:]*:King Thordan:63CD:/
+3104.1 "Heavy Impact 3" sync / 1[56]:[^:]*:Ser Guerrique:63D8:/
+3106.0 "Heavy Impact 4" sync / 1[56]:[^:]*:Ser Guerrique:63D9:/
+3107.9 "Heavy Impact 5" sync / 1[56]:[^:]*:Ser Guerrique:63DA:/
+3115.5 "Faith Unmoving" #sync / 1[56]:[^:]*:Ser Grinnaux:62DC:/
+3115.5 "The Dragon's Gaze" #sync / 1[56]:[^:]*:King Thordan:63D1:/
+3115.5 "The Dragon's Glory" #sync / 1[56]:[^:]*:King Thordan:63D2:/
+3117.4 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:62DE:/
+3140.3 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
+3150.5 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
+3153.6 "Ascalon's Might 1" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3155.2 "Ascalon's Might 2" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3156.8 "Ascalon's Might 3" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+# Enrage?
+
+
+# Phase 6: Nidhogg v2
+# 6D23 => 6D25 Head Down, Left Wing
+# 6D24 => 6D25 Head Up, Left Wing
+# 6D26 => 6D28 Head Down, Right Wing
+# 6D27 => 6D28 Head Up, Right Wing
+# 6D2D => 6D2E Hot Tail 
+# 6D2B => 6D2C Hot Wing 
+3500.0 "--sync--" sync / 1[56]:[^:]*:King Thordan:6667:/ window 500,0
+3535.0 "Great Wyrmsbreath" sync / 1[56]:[^:]*:Hraesvelgr:6D35:/
+3535.0 "Dread Wyrmsbreath" #sync / 1[56]:[^:]*:Nidhogg:6D33:/
+3535.7 "Swirling Blizzard" #sync / 1[56]:[^:]*:Hraesvelgr:6D38:/
+3535.8 "Ice Breath" #sync / 1[56]:[^:]*:Hraesvelgr:6D37:/
+3535.8 "Holy Breath" #sync / 1[56]:[^:]*:Hraesvelgr:6D3C:/
+3535.8 "Flame Breath" #sync / 1[56]:[^:]*:Nidhogg:6D36:/
+3535.8 "Staggering Breath" #sync / 1[56]:[^:]*:Nidhogg:6D3D:/
+3543.0 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D30:/
+3554.3 "Akh Afah" sync / 1[56]:[^:]*:Hraesvelgr:6D42:/
+3567.4 "Hallowed Wings" sync / 1[56]:[^:]*:Hraesvelgr:(6D23|6D24|6D26|6D27):/
+3568.2 "Hallowed Plume" #sync / 1[56]:[^:]*:Hraesvelgr:6D29:/
+3568.5 "Cauterize" sync / 1[56]:[^:]*:Nidhogg:6D3E:/
+3577.0 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D31:/
+3582.4 "Wroth Flames" sync / 1[56]:[^:]*:Nidhogg:6D45:/
+3593.2 "Akh Morn 1" sync / 1[56]:[^:]*:Nidhogg:6D46:/
+3593.3 "Cauterize" sync / 1[56]:[^:]*:Hraesvelgr:6D3F:/
+3594.9 "Akh Morn 2" #sync / 1[56]:[^:]*:Nidhogg:6D47:/
+3596.5 "Akh Morn 3" #sync / 1[56]:[^:]*:Nidhogg:6D47:/
+3598.1 "Akh Morn 4" #sync / 1[56]:[^:]*:Nidhogg:6D47:/
+3605.2 "Hot Tail/Hot Wing" sync / 1[56]:[^:]*:Nidhogg:(6D2D|6D2B):/
+3607.2 "Spreading Flames" #sync / 1[56]:[^:]*:Nidhogg:742B:/
+3607.2 "Entangled Flames" #sync / 1[56]:[^:]*:Nidhogg:742C:/
+3607.2 "Spreading Flames" #sync / 1[56]:[^:]*:Nidhogg:742B:/
+3607.2 "Entangled Flames" #sync / 1[56]:[^:]*:Nidhogg:742C:/
+3611.1 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D31:/
+3623.4 "Akh Afah" sync / 1[56]:[^:]*:Hraesvelgr:6D42:/
+3635.4 "Hallowed Wings" sync / 1[56]:[^:]*:Hraesvelgr:(6D23|6D24|6D26|6D27):/
+3635.4 "Hot Tail/Hot Wing" #sync / 1[56]:[^:]*:Nidhogg:(6D2D|6D2B):/
+3635.5 "Hallowed Plume" #sync / 1[56]:[^:]*:Hraesvelgr:6D29:/
+3645.1 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D31:/
+3655.1 "Great Wyrmsbreath" sync / 1[56]:[^:]*:Hraesvelgr:6D35:/
+3655.1 "Dread Wyrmsbreath" #sync / 1[56]:[^:]*:Nidhogg:6D33:/
+3655.8 "Swirling Blizzard" #sync / 1[56]:[^:]*:Hraesvelgr:6D38:/
+3655.9 "Ice Breath" #sync / 1[56]:[^:]*:Hraesvelgr:6D37:/
+3655.9 "Holy Orb" #sync / 1[56]:[^:]*:Hraesvelgr:6D3A:/
+3655.9 "Flame Breath" #sync / 1[56]:[^:]*:Nidhogg:6D36:/
+3655.9 "Dark Orb" #sync / 1[56]:[^:]*:Nidhogg:6D39:/
+3668.4 "Cauterize" sync / 1[56]:[^:]*:Hraesvelgr:6D3F:/
+3674.5 "--sync--" sync / 1[56]:[^:]*:Hraesvelgr:6D40:/
+3675.4 "Touchdown" sync / 1[56]:[^:]*:(Hraesvelgr|Nidhogg):70E7:/
+3679.1 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D31:/
+3701.8 "Revenge of the Horde (enrage)" sync / 1[56]:[^:]*:(Hraesvelgr|Nidhogg):6D21:/
+
+3711.8 "Resentment?"
+3718.8 "Shockwave?" #sync / 1[56]:[^:]*:(King Thordan|Nidhogg):71E4:/
+3744.6 "Alternate End?" #sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
+
+
+# Phase 6.5: Eyes v2
+# Note: Shockwave could come from King Thordan or Nidhogg
+3809.5 "--sync--" sync / 1[56]:[^:]*:Right Eye:717A:/ window 200,0
+3809.5 "Resentment"
+3826.5 "Shockwave?" #sync / 1[56]:[^:]*:(King Thordan|Nidhogg):71E4:/
+3828.3 "--sync--" #sync / 1[56]:[^:]*:Left Eye:63F3:/
+3828.5 "--sync--" #sync / 1[56]:[^:]*:Right Eye:63F3:/
+3842.3 "Alternate End?" #sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
+
+
+# Phase 7: Dragon-king Thordan
+# Note: Nidhogg seems to get named for the first Chariot
+# Note: King Thordon can appear as one of the Exaflare casters in the first set
+# Note: Many of these spells are not named in garland db, so here is a name mapping:
+# Exaflare's Edge Spells:
+#   6D9B = Cast
+#   69DC = First Exaflare
+#   6D9D = Subsequent Exaflares
+# Akh Morn's Edge Spells:
+#  69D3 = Cast
+#  730C = 3 player tower (First hit)
+#  730D = 3 player tower (First hit)
+#  730E = 2 player tower (First hit)
+#  6D96 = 3 player tower (after first hit)
+#  6D97 = 2 player tower (after first hit)
+#  6D94 = Cast that checks if player is in towers?
+#  6D95 = Last cast in the Akh Morn in the sets in place of 6D94
+#  ???? = Raidwide spellid(s) if miss a tower
+# Trinity Spells:
+#  6D9E = Cast
+#  6D9F = Highest Emnity
+#  6DA0 = Second Highest Emnity
+#  6DA1 = Nearest Player
+# Gigaflare Spells:
+#  6D99 = Cast
+#  6D9A = First Proximity AoE
+#  6DD2 = Second Proximity AoE
+#  6DD3 = Third Proximity AoE
+# 6D91 = Flames of Ascalon (Out/Chariot)
+# 6D92 = Ice of Ascalon (In/Dynamo)
+4000.0 "Shockwave" sync / 1[56]:[^:]*:Nidhogg:71E4:/ window 400,0
+4001.8 "--sync--" sync / 1[56]:[^:]*:Left Eye:63F3:/
+4002.0 "--sync--" #sync / 1[56]:[^:]*:Right Eye:63F3:/
+4015.8 "Alternate End" sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
+4035.1 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9B:/
+4036.0 "Exaflare's Edge" #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9C:/ duration 9.3
+4036.2 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:(Nidhogg|Dragon-king Thordan):(6D92|6D91):/
+4043.2 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4044.3 "Trinity 1" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4047.3 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4048.4 "Trinity 2" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4056.3 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D93:/
+4057.0 "Akh Morn's Edge x5" #sync / 1[56]:[^:]*:Dragon-king Thordan:(730C|730D|730E):/ duration 5.5
+4057.1 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
+4067.8 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4068.9 "Trinity 3" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4071.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4073.0 "Trinity 4" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4082.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D99:/
+4083.9 "Gigaflare's Edge x3" #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9A:/ duration 7.9
+4084.0 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
+4100.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4102.0 "Trinity 5" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4104.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4106.0 "Trinity 6" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4113.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9B:/
+4114.8 "Exaflare's Edge" #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9C:/ duration 9.3
+4115.0 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
+4121.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4122.9 "Trinity 1" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4125.8 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4126.9 "Trinity 2" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4134.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D93:/
+4135.6 "Akh Morn's Edge x6" #sync / 1[56]:[^:]*:Dragon-king Thordan:(730C|730D|730E):/ duration 6.6
+4135.7 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
+4147.5 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4148.6 "Trinity 3" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4151.6 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4152.7 "Trinity 4" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4162.6 "Gigaflare's Edge x3" sync / 1[56]:[^:]*:Dragon-king Thordan:6D99:/ duration 7.9
+4163.7 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
+4180.8 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4181.9 "Trinity 5" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4184.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4186.0 "Trinity 6" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4193.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9B:/
+4194.8 "Exaflare's Edge" #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9C:/ duration 9.3
+4195.0 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
+4201.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4202.9 "Trinity 1" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4205.8 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4206.9 "Trinity 2" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4214.8 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D93:/
+4215.5 "Akh Morn's Edge x7" #sync / 1[56]:[^:]*:Dragon-king Thordan:(730C|730D|730E):/ duration 7.7
+4215.6 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
+4228.5 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4229.6 "Trinity 3" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4232.6 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
+4233.7 "Trinity 4" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
+4245.6 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6E2E:/
+4246.3 "Morn Afah's Edge x3" sync / 1[56]:[^:]*:Dragon-king Thordan:(730F|7310|7311):/
+
+# This seems to loop indefinitely
+# 6E31 will fire if 6E30 does not hit a player
+4248.7 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6E2F:/
+4249.5 "Morn Afah's Edge x3" sync / 1[56]:[^:]*:Dragon-king Thordan:6E30:/
+4251.8 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6E2F:/ jump 4248.7
+4252.6 "Morn Afah's Edge x3" #sync / 1[56]:[^:]*:Dragon-king Thordan:6E30:/
+4255.7 "Morn Afah's Edge x3" #sync / 1[56]:[^:]*:Dragon-king Thordan:6E30:/
+4258.8 "Morn Afah's Edge x3" #sync / 1[56]:[^:]*:Dragon-king Thordan:6E30:/
