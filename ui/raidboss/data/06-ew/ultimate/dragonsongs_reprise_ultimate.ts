@@ -864,7 +864,7 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         // Map position values and player name keys to arrays
-        let [posA, posB, posC] = Object.values(data.diveFromGracePositions);
+        const [posA, posB, posC] = Object.values(data.diveFromGracePositions);
         let [nameA, nameB, nameC] = Object.keys(data.diveFromGracePositions);
 
         // If undefined position, will not be able to predict position
