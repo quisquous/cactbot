@@ -40,6 +40,7 @@ export interface Data extends RaidbossData {
   diveFromGraceTowerCounter?: number;
   eyeOfTheTyrantCounter?: number;
   diveFromGracePreviousPosition: { [num: string]: 'middle' | 'west' | 'east' };
+  waitingForGeirskogul?: boolean;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -1116,6 +1117,7 @@ const triggerSet: TriggerSet<Data> = {
         }
         return output.text!();
       },
+      run: (data) => data.waitingForGeirskogul = true,
       outputStrings: {
         baitThenStack: {
           en: 'Bait => Stack',
