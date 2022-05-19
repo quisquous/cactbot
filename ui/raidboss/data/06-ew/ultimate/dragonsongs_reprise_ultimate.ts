@@ -1141,6 +1141,15 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'DSR Geirskogul',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '670A', source: 'Nidhogg', capture: false }),
+      condition: (data) => data.waitingForGeirskogul,
+      suppressSeconds: 1,
+      response: Responses.moveAway(),
+      run: (data) => delete data.waitingForGeirskogul,
+    },
+    {
       id: 'DSR Dive From Grace Number',
       // This comes out ~5s before symbols.
       type: 'HeadMarker',
