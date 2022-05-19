@@ -395,10 +395,11 @@ export class PlayerStateTracker {
         continue;
 
       const type = event.splitLine[logDefinitions.None.fields.type];
-      const targetCount = event.splitLine[logDefinitions.Ability.fields.targetCount];
+      const targetCountStr = event.splitLine[logDefinitions.Ability.fields.targetCount];
+      const targetCount = parseInt(targetCountStr ?? '1');
       // Some abilities (e.g. Kampeos Harma 6826) are AOE Ability types but only hit one person.
       // The reverse (Ability.type but targetCount > 1) is not possible.
-      const isSharedDamage = type === logDefinitions.NetworkAOEAbility.type && targetCount !== '1';
+      const isSharedDamage = type === logDefinitions.NetworkAOEAbility.type && targetCount !== 1;
 
       // Combining share/solo mistake lines with ability damage lines is a bit of
       // duplication, but unless PlayerStateTracker generated share/solo/damage mistakes
@@ -409,7 +410,10 @@ export class PlayerStateTracker {
       } else if (isSharedDamage && id in this.mistakeShareMap) {
         event.mistake = this.mistakeShareMap[id];
         const ability = event.splitLine[logDefinitions.Ability.fields.ability] ?? '???';
-        event.mistakeText = Translate(this.options.DisplayLanguage, GetShareMistakeText(ability));
+        event.mistakeText = Translate(
+          this.options.DisplayLanguage,
+          GetShareMistakeText(ability, targetCount),
+        );
       } else if (!isSharedDamage && id in this.mistakeSoloMap) {
         event.mistake = this.mistakeSoloMap[id];
         const ability = event.splitLine[logDefinitions.Ability.fields.ability] ?? '???';

@@ -166,13 +166,13 @@ export const GetSoloMistakeText = (ability: string): LocaleText => {
   };
 };
 
-export const GetShareMistakeText = (ability: string): LocaleText => {
+export const GetShareMistakeText = (ability: string, numTargets: number): LocaleText => {
   return {
-    en: `${ability} (share)`,
-    de: `${ability} (geteilt)`,
-    fr: `${ability} (partage)`,
-    ja: `${ability} (頭割り)`,
-    cn: `${ability} (重叠)`,
-    ko: `${ability} (같이 맞음)`,
+    en: `${ability} (share x${numTargets})`,
+    de: `${ability} (geteilt)`, // FIXME
+    fr: `${ability} (partage)`, // FIXME
+    ja: `${ability} (頭割り)`, // FIXME
+    cn: `${ability} (重叠)`, // FIXME
+    ko: `${ability} (같이 맞음)`, // FIXME
   };
 };
