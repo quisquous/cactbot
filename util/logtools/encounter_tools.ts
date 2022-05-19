@@ -327,17 +327,17 @@ class TLFuncs {
   static leftExtendStr(str?: string, length?: number): string {
     if (str === undefined)
       return '';
-    if (length === undefined || length <= str.length)
+    if (length === undefined)
       return str;
-    return str.padStart(length - str.length, ' ');
+    return str.padStart(length, ' ');
   }
 
   static rightExtendStr(str?: string, length?: number): string {
     if (str === undefined)
       return '';
-    if (length === undefined || length <= str.length)
+    if (length === undefined)
       return str;
-    return str.padEnd(length - str.length, ' ');
+    return str.padEnd(length, ' ');
   }
 
   static generateFileName(fightOrZone: FightEncInfo | ZoneEncInfo): string {
@@ -367,7 +367,7 @@ class TLFuncs {
         const indexed = row[idx];
         if (indexed !== undefined)
           return Math.max(val, indexed);
-        return 0;
+        return val;
      });
     });
   }
@@ -461,14 +461,17 @@ class TLFuncs {
         lastDate = row[dateIdx];
         console.log(lastDate);
       }
-
       const col0 = TLFuncs.leftExtendStr(row[0], lengths[0]);
       const col1 = row[0] ? ') ' : '  ';
       const col2 = TLFuncs.leftExtendStr(row[2], lengths[2]);
       const col3 = TLFuncs.leftExtendStr(row[3], lengths[3]);
       const col4 = TLFuncs.rightExtendStr(row[4], lengths[4]);
       const col5 = row[5] ? (' ' + '[' + row[5] + ']') : '';
-      console.log(`  ${col0}${col1} ${col2} ${col3} ${col4} ${col5}`);
+      // Differentiate formatting for zone name rows vs encounter rows.
+      if (row[0] === '' && row[4] !== undefined)
+        console.log(`  ${col0}${col1} ${col2} ${col3} ${col4} ${col5}`);
+      else
+        console.log(`  ${col0}${col1} ${col2} | ${col3} | ${col4} ${col5}`);
     }
   };
 }
