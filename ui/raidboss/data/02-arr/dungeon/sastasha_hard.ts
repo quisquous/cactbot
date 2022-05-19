@@ -1,5 +1,5 @@
 import NetRegexes from '../../../../../resources/netregexes';
-import { Responses } from '../../../../../resources/responses';
+import outputs from '../../../../../resources/outputs';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -30,7 +30,19 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Sastasha Hard Tail Screw',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BF4', source: 'Karlabos' }),
-      response: Responses.stun(),
+      alertText: (data, matches, output) => {
+        if (data.CanStun())
+          return output.stun!({name: matches.source});
+      },
+      infoText: (data, matches, output) => {
+        return output.tailScrewOn!({player: data.ShortName(matches.target)});
+      },
+      outputStrings: {
+        stun: outputs.stunTarget,
+        tailScrew: {
+          en: 'Tail Screw on ${player}',
+        },
+      },
     },
   ],
 };
