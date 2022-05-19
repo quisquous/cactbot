@@ -1283,20 +1283,20 @@ const triggerSet: TriggerSet<Data> = {
 
         // Output West or East
         if (num === 1 || num === 3) {
-          if (data.diveFromGraceDir[data.me] ===  'circle')
+          if (data.diveFromGraceDir[data.me] === 'circle')
             return output.southDive!();
-          if (data.diveFromGraceDir[data.me] ===  'up')
+          if (data.diveFromGraceDir[data.me] === 'up')
             return output.upArrowDive!();
-          if (data.diveFromGraceDir[data.me] ===  'down')
+          if (data.diveFromGraceDir[data.me] === 'down')
             return output.downArrowDive!();
         }
 
         // By the time 2s turn, they will be stacked, facing boss,
         // so calls are relative to the boss
         if (num === 2) {
-          if (data.diveFromGraceDir[data.me] ===  'up')
+          if (data.diveFromGraceDir[data.me] === 'up')
             return output.upArrowDive2!();
-          if (data.diveFromGraceDir[data.me] ===  'down')
+          if (data.diveFromGraceDir[data.me] === 'down')
             return output.downArrowDive2!();
         }
         // Outputs nothing if did not find debuff where there was an arrow
