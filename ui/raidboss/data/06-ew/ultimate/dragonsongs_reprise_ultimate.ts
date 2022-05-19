@@ -1126,7 +1126,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceText': {
         'Aetheric Burst': 'Ätherschub',
         'Akh Afah': 'Akh Afah',
-        'Akh Morn': 'Akh Morn',
+        'Akh Morn(?!\'s Edge)': 'Akh Morn',
         'Akh Morn\'s Edge': 'Akh Morns Klinge',
         'Ancient Quaga': 'Seisga Antiqua',
         'Alternative End': 'Ein neues Ende',
@@ -1256,7 +1256,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceText': {
         'Aetheric Burst': 'Explosion éthérée',
         'Akh Afah': 'Akh Afah',
-        'Akh Morn': 'Akh Morn',
+        'Akh Morn(?!\'s Edge)': 'Akh Morn',
         'Akh Morn\'s Edge': 'Lame d\'Akh Morn',
         'Ancient Quaga': 'Méga Séisme ancien',
         'Alternative End': 'Fin alternative',
@@ -1385,7 +1385,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceText': {
         'Aetheric Burst': 'エーテルバースト',
         'Akh Afah': 'アク・アファー',
-        'Akh Morn': 'アク・モーン',
+        'Akh Morn(?!\'s Edge)': 'アク・モーン',
         'Akh Morn\'s Edge': '騎竜剣アク・モーン',
         'Ancient Quaga': 'エンシェントクエイガ',
         'Alternative End': 'アルティメットエンド・オルタナ',
