@@ -1211,16 +1211,16 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 0.5,
-      alertText: (data, matches, output) => {
+      alertText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
           console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
 
-        if (matches.effectId === 'AC4')
+        if (data.diveFromGraceDir[data.me] === 'up')
           return output.upArrow!({ num: num });
-        else if (matches.effectId === 'AC5')
+        else if (data.diveFromGraceDir[data.me] === 'down')
           return output.downArrow!({ num: num });
 
         if (data.diveFromGraceHasArrow[num])
