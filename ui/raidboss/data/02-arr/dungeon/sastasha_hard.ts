@@ -32,14 +32,14 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: 'BF4', source: 'Karlabos' }),
       alertText: (data, matches, output) => {
         if (data.CanStun())
-          return output.stun!({name: matches.source});
+          return output.stun!( {name: matches.source} );
       },
       infoText: (data, matches, output) => {
-        return output.tailScrewOn!({player: data.ShortName(matches.target)});
+        return output.tailScrewOn!( {player: data.ShortName(matches.target)} );
       },
       outputStrings: {
         stun: outputs.stunTarget,
-        tailScrew: {
+        tailScrewOn: {
           en: 'Tail Screw on ${player}',
         },
       },
