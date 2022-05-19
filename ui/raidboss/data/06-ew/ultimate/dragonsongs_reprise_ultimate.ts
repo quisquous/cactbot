@@ -1265,7 +1265,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
-      alertText: (data, matches, output) => {
+      alertText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
           console.error(`DFG Dive Position: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
@@ -1283,20 +1283,23 @@ const triggerSet: TriggerSet<Data> = {
 
         // Output West or East
         if (num === 1 || num === 3) {
-          if (matches.effectId === 'AC3')
+          if (data.diveFromGraceDir[data.me] ===  'circle')
             return output.southDive!();
-          if (matches.effectId === 'AC4')
+          if (data.diveFromGraceDir[data.me] ===  'up')
             return output.upArrowDive!();
-          return output.downArrowDive!();
+          if (data.diveFromGraceDir[data.me] ===  'down')
+            return output.downArrowDive!();
         }
 
         // By the time 2s turn, they will be stacked, facing boss,
         // so calls are relative to the boss
         if (num === 2) {
-          if (matches.effectId === 'AC4')
+          if (data.diveFromGraceDir[data.me] ===  'up')
             return output.upArrowDive2!();
-          return output.downArrowDive2!();
+          if (data.diveFromGraceDir[data.me] ===  'down')
+            return output.downArrowDive2!();
         }
+        // Outputs nothing if did not find debuff where there was an arrow
       },
       outputStrings: {
         circlesDive: {
