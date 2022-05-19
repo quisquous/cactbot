@@ -130,6 +130,14 @@ const triggerSet: TriggerSet<Data> = {
       diveFromGracePreviousPosition: {},
     };
   },
+  timelineTriggers: [
+    {
+      id: 'DSR Eye of the Tyrant Counter',
+      regex: /Eye of the Tyrant/,
+      beforeSeconds: 1,
+      run: (data) => data.eyeOfTheTyrantCounter = data.eyeOfTheTyrantCounter ?? 0 + 1,
+    },
+  ],
   triggers: [
     {
       id: 'DSR Phase Tracker',
@@ -990,7 +998,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
       // Ignore targetIsYou() incase player misses stack
-      condition: (data) => data.eyeOfTheTyrantCounter === undefined,
+      condition: (data) => data.eyeOfTheTyrantCounter === 1,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         // No callout if missing numbers
@@ -1017,7 +1025,6 @@ const triggerSet: TriggerSet<Data> = {
             return output.eastTower!();
         }
       },
-      run: (data) => data.eyeOfTheTyrantCounter = 1,
       outputStrings: {
         southTower: {
           en: 'South Tower',
@@ -1039,7 +1046,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
       // Ignore targetIsYou() incase player misses stack
-      condition: (data) => data.eyeOfTheTyrantCounter === 1,
+      condition: (data) => data.eyeOfTheTyrantCounter === 2,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
@@ -1061,7 +1068,6 @@ const triggerSet: TriggerSet<Data> = {
         if (num !== 3)
           return output.circleTowers!();
       },
-      run: (data) => data.eyeOfTheTyrantCounter === 2,
       outputStrings: {
         southTower: {
           en: 'South Tower',
