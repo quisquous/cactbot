@@ -1095,13 +1095,42 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`DFG Dive Single Tower: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return output.text!();
         }
-        if (data.eyeOfTheTyrantCounter === 1 && num === 1)
-          return output.baitThenStack!();
+        if (data.eyeOfTheTyrantCounter === 1) {
+          // Number 1s Stack after bait
+          if (num === 1)
+            return output.baitThenStack!();
+          // Number 3s Dive position reminder after bait (in case different from Tower)
+          if (num === 3) {
+            if (data.diveFromGraceHasArrow[3]) {
+              if (data.diveFromGraceDir[data.me] === 'circle')
+                return output.baitThenSouthDive!();
+              if (data.diveFromGraceDir[data.me] === 'up')
+                return output.baitThenUpArrowDive!();
+              if (data.diveFromGraceDir[data.me] === 'down')
+                return output.baitThenDownArrowDive!();
+              // Unknown debuff
+              return output.text!();
+            }
+            return output.baitThenCirclesDive!();
+          }
+        }
         return output.text!();
       },
       outputStrings: {
         baitThenStack: {
           en: 'Bait => Stack',
+        },
+        baitThenSouthDive: {
+          en: 'Bait => South Dive',
+        },
+        baitThenCirclesDive: {
+          en: 'Bait => Dive (all circles)',
+        },
+        baitThenUpArrowDive: {
+          en: 'Bait => Up Arrow Dive',
+        },
+        baitThenDownArrowDive: {
+          en: 'Bait => Down Arrow Dive',
         },
         text: {
           en: 'Bait',
