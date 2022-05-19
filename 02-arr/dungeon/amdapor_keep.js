@@ -5,13 +5,13 @@ Options.Triggers.push({
       id: 'Amdapor Keep Liquefy Middle',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '415', source: 'Demon Wall', capture: false }),
-      response: Responses.goMiddle(),
+      response: Responses.goSides(),
     },
     {
       id: 'Amdapor Keep Liquefy Sides',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '416', source: 'Demon Wall', capture: false }),
-      response: Responses.goSides(),
+      response: Responses.goMiddle(),
     },
     {
       id: 'Amdapor Keep Repel',
