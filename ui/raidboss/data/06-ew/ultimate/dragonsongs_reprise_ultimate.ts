@@ -1004,7 +1004,7 @@ const triggerSet: TriggerSet<Data> = {
           // Num3 High Jump Tower 1
           if (data.diveFromGraceDir[data.me] === 'circle') {
             // Solo High Jump Tower 1
-            if (!data.diveFromGraceHasArrow[3])
+            if (data.diveFromGraceHasArrow[3])
               return output.southTower!();
             // All High Jumps, unknown exact position
             return output.circleTowers!();
