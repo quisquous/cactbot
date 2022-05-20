@@ -22,6 +22,7 @@ type FightEncInfo = ZoneEncInfo & {
   fightName?: string;
   endType?: string;
   sealName?: string;
+  logLines?: string[];
 };
 
 export class EncounterFinder {
@@ -106,7 +107,14 @@ export class EncounterFinder {
     return !keepTypes.includes(content);
   }
 
-  process(line: string): void {
+  process(line: string, store: boolean): void {
+    // Irrespective of any processing that occurs, we want to store every line of an encounter.
+    // This allows us to save a pass when making timelines.
+    if (store && this.currentFight.startTime !== undefined) {
+      this.currentFight.logLines = this.currentFight.logLines ?? [];
+      this.currentFight.logLines?.push(line);
+    }
+
     const cZ = this.regex.changeZone.exec(line)?.groups;
     if (cZ) {
       if (this.currentZone.zoneName === cZ.name) {
