@@ -1,6 +1,7 @@
 import logDefinitions from '../../resources/netlog_defs';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
+import { Party } from '../../types/event';
 import {
   DeathReportData,
   OopsyDeathReason,
@@ -84,10 +85,13 @@ export type TrackedEventType = TrackedEvent['type'];
 // * Generates some internal mistakes that need extra tracking (missed buffs, deaths)
 // * Tracks events in `trackedEvents` that can be handed to DeathReports for processing.
 export class PlayerStateTracker {
+  public partyTracker: PartyTracker;
+
   private missedBuffCollector;
   private triggerSets: ProcessedOopsyTriggerSet[] = [];
   private partyIds: Set<string> = new Set();
   private deadIds: Set<string> = new Set();
+  private idToPartyInfo: { [combatantId: string]: Party } = {};
   private petIdToOwnerId: { [petId: string]: string } = {};
   private abilityIdToBuff: { [abilityId: string]: MissableAbility } = {};
   private effectIdToBuff: { [effectId: string]: MissableEffect } = {};
@@ -110,10 +114,10 @@ export class PlayerStateTracker {
 
   constructor(
     private options: OopsyOptions,
-    private partyTracker: PartyTracker,
     private collector: MistakeCollector,
     requestTimestampCallback: RequestTimestampCallback,
   ) {
+    this.partyTracker = new PartyTracker();
     this.missedBuffCollector = new MissedBuffCollector(
       requestTimestampCallback,
       (timestamp, buff) => this.OnBuffCollected(timestamp, buff),
@@ -188,6 +192,7 @@ export class PlayerStateTracker {
   }
 
   private Reset(): void {
+    this.idToPartyInfo = {};
     this.petIdToOwnerId = {};
     this.deadIds.clear();
     this.trackedEvents = [];
@@ -200,6 +205,23 @@ export class PlayerStateTracker {
   }
 
   OnAddedCombatant(_line: string, splitLine: string[]): void {
+    const id = splitLine[logDefinitions.AddedCombatant.fields.id];
+    const name = splitLine[logDefinitions.AddedCombatant.fields.name];
+    const worldIdStr = splitLine[logDefinitions.AddedCombatant.fields.worldId];
+    const jobStr = splitLine[logDefinitions.AddedCombatant.fields.job];
+    if (
+      id !== undefined && name !== undefined &&
+      worldIdStr !== undefined && jobStr !== undefined
+    ) {
+      // Generate the party info we would get from OverlayPlugin via logs.
+      const worldId = parseInt(worldIdStr);
+      const job = parseInt(jobStr);
+      // Consider everybody in the party for now and we'll figure it out later.
+      const inParty = true;
+      this.idToPartyInfo[id] = { id, name, worldId, job, inParty };
+    }
+
+    // Track pet owners as well.
     const petId = splitLine[logDefinitions.AddedCombatant.fields.id];
     const ownerId = splitLine[logDefinitions.AddedCombatant.fields.ownerId];
     if (petId === undefined || ownerId === undefined)
@@ -209,6 +231,30 @@ export class PlayerStateTracker {
 
     // Fix any lowercase ids.
     this.petIdToOwnerId[petId.toUpperCase()] = ownerId.toUpperCase();
+  }
+
+  OnPartyList(_line: string, splitLine: string[]): void {
+    // So that party lists can be used from logs, we will fake `onPartyChanged` events
+    // using log information.  AddedCombatant seems to come before PartyList lines,
+    // so we accumulate those and then generate the party info from here.
+
+    // Start from id0 and drop the hash at the end.
+    const count = parseInt(splitLine[logDefinitions.PartyList.fields.partyCount] ?? '');
+    if (isNaN(count))
+      return;
+
+    const ids = splitLine.slice(logDefinitions.PartyList.fields.id0, -1);
+    const party: Party[] = [];
+    ids.forEach((id, idx) => {
+      const p = this.idToPartyInfo[id];
+      if (!p)
+        return;
+      // count is 1-indexed and idx is 0-indexed.
+      p.inParty = idx < count;
+      party.push(p);
+    });
+    this.partyTracker.onPartyChanged({ party });
+    this.OnPartyChanged();
   }
 
   OnChangedPlayer(_line: string, splitLine: string[]): void {
@@ -395,10 +441,11 @@ export class PlayerStateTracker {
         continue;
 
       const type = event.splitLine[logDefinitions.None.fields.type];
-      const targetCount = event.splitLine[logDefinitions.Ability.fields.targetCount];
+      const targetCountStr = event.splitLine[logDefinitions.Ability.fields.targetCount];
+      const targetCount = parseInt(targetCountStr ?? '1');
       // Some abilities (e.g. Kampeos Harma 6826) are AOE Ability types but only hit one person.
       // The reverse (Ability.type but targetCount > 1) is not possible.
-      const isSharedDamage = type === logDefinitions.NetworkAOEAbility.type && targetCount !== '1';
+      const isSharedDamage = type === logDefinitions.NetworkAOEAbility.type && targetCount !== 1;
 
       // Combining share/solo mistake lines with ability damage lines is a bit of
       // duplication, but unless PlayerStateTracker generated share/solo/damage mistakes
@@ -409,7 +456,10 @@ export class PlayerStateTracker {
       } else if (isSharedDamage && id in this.mistakeShareMap) {
         event.mistake = this.mistakeShareMap[id];
         const ability = event.splitLine[logDefinitions.Ability.fields.ability] ?? '???';
-        event.mistakeText = Translate(this.options.DisplayLanguage, GetShareMistakeText(ability));
+        event.mistakeText = Translate(
+          this.options.DisplayLanguage,
+          GetShareMistakeText(ability, targetCount),
+        );
       } else if (!isSharedDamage && id in this.mistakeSoloMap) {
         event.mistake = this.mistakeSoloMap[id];
         const ability = event.splitLine[logDefinitions.Ability.fields.ability] ?? '???';

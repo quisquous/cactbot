@@ -1,7 +1,5 @@
 import logDefinitions from '../../resources/netlog_defs';
 import NetRegexes from '../../resources/netregexes';
-import { addOverlayListener } from '../../resources/overlay_plugin_api';
-import PartyTracker from '../../resources/party';
 import { PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
 import { LocaleNetRegex } from '../../resources/translations';
@@ -93,7 +91,6 @@ export class DamageTracker {
   private ignoreZone = false;
   private timers: number[] = [];
   private triggers: ProcessedOopsyTrigger[] = [];
-  private partyTracker: PartyTracker;
   private playerStateTracker: PlayerStateTracker;
   private countdownEngageRegex: RegExp;
   private countdownStartRegex: RegExp;
@@ -124,16 +121,10 @@ export class DamageTracker {
     private collector: MistakeCollector,
     private dataFiles: OopsyFileData,
   ) {
-    this.partyTracker = new PartyTracker();
-    addOverlayListener('PartyChanged', (e) => {
-      this.partyTracker.onPartyChanged(e);
-      this.playerStateTracker.OnPartyChanged();
-    });
     const timestampCallback = (timestamp: number, callback: (timestamp: number) => void) =>
       this.OnRequestTimestampCallback(timestamp, callback);
     this.playerStateTracker = new PlayerStateTracker(
       this.options,
-      this.partyTracker,
       this.collector,
       timestampCallback,
     );
@@ -164,7 +155,7 @@ export class DamageTracker {
       me: this.me,
       job: this.job,
       role: this.role,
-      party: this.partyTracker,
+      party: this.playerStateTracker.partyTracker,
       inCombat: this.inCombat,
       ShortName: (name?: string) => ShortNamify(name, this.options.PlayerNicks),
       IsPlayerId: IsPlayerId,
@@ -256,6 +247,9 @@ export class DamageTracker {
           if (name !== undefined && id !== undefined)
             this.SetZone(this.lastTimestamp, name, parseInt(id, 16));
         }
+        break;
+      case logDefinitions.PartyList.type:
+        this.playerStateTracker.OnPartyList(line, splitLine);
         break;
       case logDefinitions.ChangedPlayer.type:
         this.playerStateTracker.OnChangedPlayer(line, splitLine);
@@ -566,14 +560,15 @@ export class DamageTracker {
         mistake: (_data, matches) => {
           // Some single target damage is still marked as AOEActionEffect type 22, so check
           // the number of targets that it hits.
-          if (parseInt(matches.targetCount) === 1)
+          const numTargets = parseInt(matches.targetCount);
+          if (numTargets === 1 || isNaN(numTargets))
             return;
           return {
             type: type,
             blame: matches.target,
             reportId: matches.targetId,
             triggerType: 'Share',
-            text: GetShareMistakeText(matches.ability),
+            text: GetShareMistakeText(matches.ability, numTargets),
           };
         },
       };
