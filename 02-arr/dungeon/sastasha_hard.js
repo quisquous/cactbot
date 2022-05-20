@@ -33,7 +33,40 @@ Options.Triggers.push({
         stun: Outputs.stunTarget,
         tailScrewOn: {
           en: 'Tail Screw on ${player}',
+          de: 'Schweifschraube auf ${player}',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Karlabos': 'Karlabos',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Karlabos': 'Karlabos',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Karlabos': 'カーラボス',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Karlabos': '真红龙虾',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Karlabos': '칼라보스',
       },
     },
   ],

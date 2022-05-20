@@ -9,6 +9,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Use the Orb',
+          de: 'Orb benutzen',
           fr: 'Utilisez l\'Orbe',
         },
       },
@@ -21,8 +22,46 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Use the Nail',
+          de: 'Nagel benutzen',
           fr: 'Utilisez L\'Épine',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Catoblepas': 'Catblepus',
+        'Mumuepo the Beholden': 'Ex-Bischof Mumuepo ',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Catoblepas': 'catoblépas',
+        'Mumuepo the Beholden': 'Mumuepo le prêtre déchu',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Catoblepas': 'カトブレパス',
+        'Mumuepo the Beholden': '廃司教 ムムエポ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Catoblepas': '卡托布莱帕斯',
+        'Mumuepo the Beholden': '退位主教 穆穆埃珀',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Catoblepas': '카토블레파스',
+        'Mumuepo the Beholden': '폐주교 무무에포',
       },
     },
   ],

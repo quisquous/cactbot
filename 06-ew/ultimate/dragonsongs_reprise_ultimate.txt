@@ -327,7 +327,7 @@ hideall "--sync--"
 
 3711.8 "Resentment?"
 3718.8 "Shockwave?" #sync / 1[56]:[^:]*:(King Thordan|Nidhogg):71E4:/
-3744.6 "Alternate End?" #sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
+3744.6 "Alternative End?" #sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
 
 
 # Phase 6.5: Eyes v2
@@ -337,7 +337,7 @@ hideall "--sync--"
 3826.5 "Shockwave?" #sync / 1[56]:[^:]*:(King Thordan|Nidhogg):71E4:/
 3828.3 "--sync--" #sync / 1[56]:[^:]*:Left Eye:63F3:/
 3828.5 "--sync--" #sync / 1[56]:[^:]*:Right Eye:63F3:/
-3842.3 "Alternate End?" #sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
+3842.3 "Alternative End?" #sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
 
 
 # Phase 7: Dragon-king Thordan
@@ -373,7 +373,7 @@ hideall "--sync--"
 4000.0 "Shockwave" sync / 1[56]:[^:]*:Nidhogg:71E4:/ window 400,0
 4001.8 "--sync--" sync / 1[56]:[^:]*:Left Eye:63F3:/
 4002.0 "--sync--" #sync / 1[56]:[^:]*:Right Eye:63F3:/
-4015.8 "Alternate End" sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
+4015.8 "Alternative End" sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
 4035.1 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9B:/
 4036.0 "Exaflare's Edge" #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9C:/ duration 9.3
 4036.2 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:(Nidhogg|Dragon-king Thordan):(6D92|6D91):/
