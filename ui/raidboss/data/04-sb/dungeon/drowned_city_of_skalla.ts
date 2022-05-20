@@ -140,17 +140,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Skalla Words Of Woe',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2662', source: 'Hrodric Poisontongue', capture: false }),
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'avoid eye lasers',
-          de: 'Augenlaser ausweichen',
-          fr: 'Évitez les lasers',
-          ja: '前方レーザーを避ける',
-          cn: '避开眼部激光',
-          ko: '레이저 피하기',
-        },
-      },
+      response: Responses.awayFromFront(),
     },
   ],
   timelineReplace: [
