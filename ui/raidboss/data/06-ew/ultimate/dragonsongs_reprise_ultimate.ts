@@ -863,7 +863,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false }),
       preRun: (data) => data.diveFromGraceTowerCounter = (data.diveFromGraceTowerCounter ?? 0) + 1,
-      delaySeconds: 0.1,
+      delaySeconds: 0.2,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
