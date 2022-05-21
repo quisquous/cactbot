@@ -412,33 +412,26 @@ const triggerSet: TriggerSet<Data> = {
         combatantNameKnights.push(ignasseLocaleNames[data.parserLang]);
 
         const spiralThrusts = [];
-        for (const combatantName of combatantNameKnights) {
-          let combatantData = null;
-          if (combatantName) {
-            combatantData = await callOverlayHandler({
-              call: 'getCombatants',
-              names: [combatantName],
-            });
-          }
 
-          // if we could not retrieve combatant data, the
-          // trigger will not work, so just resume promise here
-          if (combatantData === null) {
-            console.error(`Spiral Thrust: null data`);
-            return;
-          }
-          const combatantDataLength = combatantData.combatants.length;
-          if (combatantDataLength !== 1) {
-            console.error(`Spiral Thrust: expected 1 combatants got ${combatantDataLength}`);
-            return;
-          }
+        const knightCombatantData = await callOverlayHandler({
+          call: 'getCombatants',
+          names: combatantNameKnights,
+        });
 
-          // Add the combatant's position
-          const combatant = combatantData.combatants.pop();
-          if (!combatant)
-            throw new UnreachableCode();
-          spiralThrusts.push(matchedPositionTo8Dir(combatant));
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (knightCombatantData === null) {
+          console.error(`Spiral Thrust: null data`);
+          return;
         }
+        const combatantDataLength = knightCombatantData.combatants.length;
+        if (combatantDataLength !== 3) {
+          console.error(`Spiral Thrust: expected 3 combatants got ${combatantDataLength}`);
+          return;
+        }
+
+        for (const combatant of knightCombatantData.combatants)
+          spiralThrusts.push(matchedPositionTo8Dir(combatant));
 
         const [thrust0, thrust1, thrust2] = spiralThrusts;
         if (thrust0 === undefined || thrust1 === undefined || thrust2 === undefined)
@@ -643,7 +636,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
         const combatantDataJanlenouxLength = combatantDataJanlenoux.combatants.length;
-        if (combatantDataJanlenouxLength <= 1) {
+        if (combatantDataJanlenouxLength < 1) {
           console.error(`Ser Janlenoux: expected at least 1 combatants got ${combatantDataJanlenouxLength}`);
           return;
         }
