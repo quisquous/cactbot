@@ -406,10 +406,10 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         // Select the knights
-        const combatantNameKnights = [];
-        combatantNameKnights.push(vellguineLocaleNames[data.parserLang]);
-        combatantNameKnights.push(paulecrainLocaleNames[data.parserLang]);
-        combatantNameKnights.push(ignasseLocaleNames[data.parserLang]);
+        const combatantNameKnights: string[] = [];
+        combatantNameKnights.push(vellguineLocaleNames[data.parserLang] ?? vellguineLocaleNames['en']);
+        combatantNameKnights.push(paulecrainLocaleNames[data.parserLang] ?? paulecrainLocaleNames['en']);
+        combatantNameKnights.push(ignasseLocaleNames[data.parserLang] ?? ignasseLocaleNames['en']);
 
         const spiralThrusts = [];
 
