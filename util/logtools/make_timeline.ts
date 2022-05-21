@@ -167,14 +167,14 @@ if (args.fight_regex === '-1')
 if (args.zone_regex === '-1')
   printHelpAndExit('Error: Timeline generation does not currently support -zr\n');
 
-const makeCollectorFromPrepass = async (fileName: string) => {
+const makeCollectorFromPrepass = async (fileName: string, store: boolean) => {
   const collector = new EncounterCollector();
   const lineReader = readline.createInterface({
     input: fs.createReadStream(fileName),
   });
   for await (const line of lineReader) {
     // TODO: this could be more efficient if it stopped when it found the requested encounter.
-    collector.process(line);
+    collector.process(line, store);
   }
   return collector;
 };
@@ -204,11 +204,17 @@ const parseAbilityToEntry = (matches: NetMatches['Ability']): TimelineEntry => {
   return entry;
 };
 
-const extractRawLines = async (fileName: string, start: string, end: string): Promise<string[]> => {
+const extractRawLines = async (
+  fileName: string,
+  start: string | Date,
+  end: string | Date,
+): Promise<string[]> => {
   const lines: string[] = [];
   const file = readline.createInterface({
     input: fs.createReadStream(fileName),
   });
+  start = typeof start === 'string' ? start : TLFuncs.timeFromDate(start);
+  end = typeof end === 'string' ? end : TLFuncs.timeFromDate(end);
   let started = false;
   for await (const line of file) {
     // This will fail on lines with 3-digit identifiers,
@@ -227,18 +233,11 @@ const extractRawLines = async (fileName: string, start: string, end: string): Pr
   return lines;
 };
 
-const extractTLEntries = async (
-  fileName: string,
-  start: Date,
-  end: Date,
-  targetArray?: string[],
-): Promise<TimelineEntry[]> => {
+const extractTLEntries = (
+  lines: string[],
+  targetArray: string[] | null,
+): TimelineEntry[] => {
   const entries: TimelineEntry[] = [];
-  const fileStart = TLFuncs.timeFromDate(start);
-  const fileEnd = TLFuncs.timeFromDate(end);
-  const lines: string[] = await extractRawLines(fileName, fileStart, fileEnd);
-
-  // We have exactly and only the lines from the start to the end of the encounter.
   for (const line of lines) {
     const targetable = NetRegexes.nameToggle().exec(line)?.groups;
     const ability = NetRegexes.ability().exec(line)?.groups;
@@ -249,7 +248,7 @@ const extractTLEntries = async (
 
     // Make nameplate toggle lines if and only if the user has specified them.
     if (targetable) {
-      if (targetArray && targetArray.includes(targetable.name)) {
+      if (targetArray !== null && targetArray.includes(targetable.name)) {
         const targetEntry = parseNameToggleToEntry(targetable);
         entries.push(targetEntry);
       }
@@ -453,8 +452,9 @@ const writeTimelineToFile = (entryList: string[], fileName: string, force: boole
 
 const makeTimeline = async () => {
   if (args.file) {
-    const collector = await makeCollectorFromPrepass(args.file);
-    if (args.search_fights === -1) {
+    const store = (args.search_fights !== null && (args.search_fights > 0));
+    const collector = await makeCollectorFromPrepass(args.file, store);
+    if (args['search_fights'] === -1) {
       TLFuncs.printCollectedFights(collector);
       process.exit(0);
     }
@@ -478,11 +478,20 @@ const makeTimeline = async () => {
         console.error('Missing start or end time at specified index.');
         process.exit(1);
       }
-      const baseEntries = await extractTLEntries(
-        args.file,
-        startTime,
-        endTime,
-        args.include_targetable as string[],
+      // This logic can probably be split out once we re-enable support for raw start/end times.
+      let lines: string[];
+      if (fight.logLines !== undefined) {
+        lines = fight.logLines;
+      } else {
+        lines = await extractRawLines(
+          args.file,
+          TLFuncs.timeFromDate(startTime),
+          TLFuncs.timeFromDate(endTime),
+        );
+      }
+      const baseEntries = extractTLEntries(
+        lines,
+        args.include_targetable,
       );
       const assembled = assembleTimelineStrings(fight, baseEntries, startTime, args);
       if (typeof args.output_file === 'string') {
