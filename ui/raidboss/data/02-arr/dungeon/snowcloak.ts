@@ -18,6 +18,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Hide behind Ice',
           de: 'Hinter dem Eis verstecken',
           fr: 'Cachez vous derrière un pilier de glace',
+          ko: '얼음 뒤에 숨기',
         },
       },
     },

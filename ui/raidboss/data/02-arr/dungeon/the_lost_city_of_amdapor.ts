@@ -26,6 +26,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Drop Puddle Outside',
           de: 'Fläche draußen ablegen',
+          ko: '바깥쪽으로 장판 유도하기',
         },
       },
     },
