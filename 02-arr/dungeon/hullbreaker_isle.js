@@ -17,6 +17,7 @@ Options.Triggers.push({
           en: 'Shake Banana tree',
           de: 'Bananenbaum schütteln',
           fr: 'Secouez le bananier',
+          ko: '바나나 나무 사용하기',
         },
       },
     },
