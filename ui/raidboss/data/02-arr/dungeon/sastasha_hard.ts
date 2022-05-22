@@ -42,6 +42,7 @@ const triggerSet: TriggerSet<Data> = {
         tailScrewOn: {
           en: 'Tail Screw on ${player}',
           de: 'Schweifschraube auf ${player}',
+          ko: '${player} 꼬리 후려치기',
         },
       },
     },
