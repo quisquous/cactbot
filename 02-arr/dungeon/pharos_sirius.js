@@ -23,6 +23,7 @@ Options.Triggers.push({
         text: {
           en: 'Spread: Stacks Explode Soon',
           de: 'Verteilen: Kristallstacks explodieren bald',
+          cn: '散开: 即将爆炸',
         },
       },
     },
@@ -37,6 +38,7 @@ Options.Triggers.push({
           en: 'Heal ${player} to full',
           de: 'Heile ${player} voll',
           fr: 'Soin complet sur ${player}',
+          cn: '奶满${player}',
           ko: '완전 회복: ${player}',
         },
       },
