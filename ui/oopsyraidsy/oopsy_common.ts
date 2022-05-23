@@ -172,7 +172,7 @@ export const GetShareMistakeText = (ability: string, numTargets: number): Locale
     de: `${ability} (geteilt mit ${numTargets})`,
     fr: `${ability} (partage)`, // FIXME
     ja: `${ability} (頭割り)`, // FIXME
-    cn: `${ability} (重叠)`, // FIXME
+    cn: `${ability} (重叠: ${numTargets}次)`,
     ko: `${ability} (같이 맞음: ${numTargets}명)`,
   };
 };

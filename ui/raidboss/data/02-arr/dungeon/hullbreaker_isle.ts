@@ -25,6 +25,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Shake Banana tree',
           de: 'Bananenbaum schütteln',
           fr: 'Secouez le bananier',
+          cn: '摇晃香蕉树',
           ko: '바나나 나무 사용하기',
         },
       },
