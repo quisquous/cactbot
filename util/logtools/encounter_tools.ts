@@ -44,7 +44,7 @@ const fixedTable = (data: { [index: number]: { [index: string]: string } }): voi
     r = r.replace(/^├─*┼/, '├');
     r = r.replace(/│[^│]*/, '');
     r = r.replace(/^└─*┴/, '└');
-    r = r.replace(/('|")/g, ' ');
+    r = r.replace(/(\s['"]|['"]\s)/g, '  ');
     result += `${r}\n`;
   }
   console.log(result);
