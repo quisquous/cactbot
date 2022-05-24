@@ -128,7 +128,7 @@ const triggerSet: TriggerSet<Data> = {
       regex: /Resentment/,
       beforeSeconds: 5.7,
       condition: (data) => data.phase === 'nidhogg',
-      infoText: (data, _matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'aoe + dot',
