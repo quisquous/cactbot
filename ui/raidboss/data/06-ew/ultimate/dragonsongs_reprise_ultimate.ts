@@ -126,8 +126,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Resentment',
       regex: /Resentment/,
+      beforeSeconds: 5.7,
       condition: (data) => data.phase === 'nidhogg',
-      beforeSeconds: 5,
       infoText: (data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
