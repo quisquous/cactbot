@@ -44,7 +44,12 @@ const fixedTable = (data: { [index: number]: { [index: string]: string } }): voi
     r = r.replace(/^├─*┼/, '├');
     r = r.replace(/│[^│]*/, '');
     r = r.replace(/^└─*┴/, '└');
-    r = r.replace(/(\s['"]|['"]\s)/g, '  ');
+    // console.table emits a pipe character with identifier u2502,
+    // rather than the standard u7C.
+    // If we naively just do /['"](\s+\|/ and aren't explicit about it,
+    // there's too much chance one of the consuming applications will get it wrong.
+    r = r.replace(/['"](\s+\u2502)/g, ' $1');
+    r = r.replace(/(\u2502\s+)['"]/g, '$1 ');
     result += `${r}\n`;
   }
   console.log(result);
