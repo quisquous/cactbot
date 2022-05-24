@@ -15,6 +15,7 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 // TODO: Wyrmsbreath 2 cardinal positions for Cauterize and adjust delay
 // TODO: Intercard instead of left/right for Hallowed Wings with Cauterize
 // TODO: Trigger for Hallowed Wings with Hot Tail/Hot Wings
+// TODO: Phase 6 Resentment callout?
 
 type Phase = 'doorboss' | 'thordan' | 'nidhogg' | 'haurchefant' | 'thordan2' | 'nidhogg2' | 'dragon-king';
 
