@@ -74,6 +74,25 @@ Options.Triggers.push({
       diveFromGraceHasArrow: { 1: false, 2: false, 3: false },
     };
   },
+  timelineTriggers: [
+    {
+      id: 'DSR Resentment',
+      regex: /Resentment/,
+      beforeSeconds: 5,
+      condition: (data) => data.phase === 'nidhogg',
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'aoe + dot',
+          de: 'AoE + DoT',
+          fr: 'AoE + dot',
+          ja: 'AoE + DoT',
+          cn: 'AOE + dot',
+          ko: '전체공격 + 도트뎀',
+        },
+      },
+    },
+  ],
   triggers: [
     {
       id: 'DSR Phase Tracker',
