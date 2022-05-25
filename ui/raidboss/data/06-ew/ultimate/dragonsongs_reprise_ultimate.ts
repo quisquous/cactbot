@@ -882,7 +882,14 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: ['6715', '6716'], source: 'Nidhogg' }),
       // These are ~3s apart.  Only call after the first (and ignore multiple people getting hit).
       suppressSeconds: 6,
-      infoText: (_data, matches, output) => matches.id === '6715' ? output.in!() : output.out!(),
+      infoText: (data, matches, output) => {
+        if (matches.id === '6715') {
+          data.diveFromGraceLashGnashKey = 'in';
+          return output.in!();
+        }
+        data.diveFromGraceLashGnashKey = 'out';
+        return output.out!();
+      },
       outputStrings: {
         out: Outputs.out,
         in: Outputs.in,
