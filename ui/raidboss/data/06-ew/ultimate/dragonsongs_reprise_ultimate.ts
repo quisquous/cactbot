@@ -36,7 +36,7 @@ export interface Data extends RaidbossData {
   // mapping of 1, 2, 3 to whether that group has seen an arrow.
   diveFromGraceHasArrow: { [num: number]: boolean };
   diveFromGraceDir: { [name: string]: 'circle' | 'up' | 'down' };
-  diveFromGraceLashGnash?: string;
+  diveFromGraceLashGnashKey: string;
   // mapping of player name to x coordinate
   diveFromGracePositions: { [name: string]: number };
   diveFromGraceTowerCounter?: number;
@@ -118,6 +118,24 @@ const matchedPositionTo4Dir = (combatant: PluginCombatantState) => {
   return (Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4);
 };
 
+const diveFromGraceTowerOutputStrings = {
+  unknown: Outputs.unknown,
+  in: Outputs.in,
+  out: Outputs.out,
+  southTower: {
+    en: '${inout} => South Tower',
+  },
+  circleTowers: {
+    en: '${inout} => Towers (all circles)',
+  },
+  westTower: {
+    en: '${inout} => West Tower',
+  },
+  eastTower: {
+    en: '${inout} => East Tower',
+  },
+};
+
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.DragonsongsRepriseUltimate,
   timelineFile: 'dragonsongs_reprise_ultimate.txt',
@@ -128,6 +146,7 @@ const triggerSet: TriggerSet<Data> = {
       thordanMeteorMarkers: [],
       diveFromGraceNum: {},
       diveFromGraceHasArrow: { 1: false, 2: false, 3: false },
+      diveFromGraceLashGnashKey: 'unknown',
       diveFromGracePositions: {},
       diveFromGraceDir: {},
       diveFromGracePreviousPosition: {},
@@ -845,12 +864,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '6712', source: 'Nidhogg', capture: false }),
       durationSeconds: 8,
       response: Responses.getOutThenIn(),
-      run: (data, _matches, output) => { 
-        output.responseOutputStrings = {
-          out: Outputs.out,
-        };
-        data.diveFromGraceLashGnash = output.out!();
-      },
+      run: (data) => data.diveFromGraceLashGnashKey = 'out',
     },
     {
       id: 'DSR Lash and Gnash',
@@ -858,12 +872,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '6713', source: 'Nidhogg', capture: false }),
       durationSeconds: 8,
       response: Responses.getInThenOut(),
-      run: (data, _matches, output) => {
-        output.responseOutputStrings = {
-          in: Outputs.in,
-        };
-        data.diveFromGraceLashGnash = output.in!();
-      },
+      run: (data) => data.diveFromGraceLashGnashKey = 'in',
     },
     {
       id: 'DSR Lash Gnash Followup',
@@ -1048,38 +1057,32 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`DFG Tower 1 Reminder: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
+        // Map for In/Out Output Lookups
+        const gnashLash: { [inout: string]: string } = {
+          'unknown': output.unknown!(),
+          'in': output.in!(),
+          'out': output.out!(),
+        };
+
         // Call 1st Tower Soak (Must be based on debuffs?)
         if (num === 3) {
           // Num3 High Jump Tower 1
           if (data.diveFromGraceDir[data.me] === 'circle') {
             // Solo High Jump Tower 1
             if (data.diveFromGraceHasArrow[3])
-              return output.southTower!({ inout: data.diveFromGraceLashGnash });
+              return output.southTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
             // All High Jumps, unknown exact position
-            return output.circleTowers!({ inout: data.diveFromGraceLashGnash });
+            return output.circleTowers!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
           }
           // Num3 Spineshatter Tower 1
           if (data.diveFromGraceDir[data.me] === 'up')
-            return output.westTower!({ inout: data.diveFromGraceLashGnash });
+            return output.westTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
           // Num3 Elusive Tower 1
           if (data.diveFromGraceDir[data.me] === 'down')
-            return output.eastTower!({ inout: data.diveFromGraceLashGnash });
+            return output.eastTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
         }
       },
-      outputStrings: {
-        southTower: {
-          en: '${inout} => South Tower',
-        },
-        circleTowers: {
-          en: '${inout} => Towers (all circles)',
-        },
-        westTower: {
-          en: '${inout} => West Tower',
-        },
-        eastTower: {
-          en: '${inout} => East Tower',
-        },
-      },
+      outputStrings: diveFromGraceTowerOutputStrings,
     },
     {
       id: 'DSR Dive From Grace Tower 3',
@@ -1095,34 +1098,28 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`DFG Tower 3 Reminder: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
+        // Map for In/Out Output Lookups
+        const gnashLash: { [inout: string]: string } = {
+          'unknown': output.unknown!(),
+          'in': output.in!(),
+          'out': output.out!(),
+        };
+
         // Call Tower 3 Soak for num1 (based on previous position)
         if (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle')
-          return output.southTower!({ inout: data.diveFromGraceLashGnash });
+          return output.southTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
         // Call Tower 3 Soak for num2s (based on previous position)
         if (num === 2) {
           if (data.diveFromGracePreviousPosition[data.me] === 'west')
-            return output.westTower!({ inout: data.diveFromGraceLashGnash });
+            return output.westTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
           if (data.diveFromGracePreviousPosition[data.me] === 'east')
-            return output.eastTower!({ inout: data.diveFromGraceLashGnash });
+            return output.eastTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
         }
         // If failed to get positions, call Towers in general
         if (num !== 3)
           return output.circleTowers!({ inout: data.diveFromGraceLashGnash });
       },
-      outputStrings: {
-        southTower: {
-          en: '${inout} => South Tower',
-        },
-        circleTowers: {
-          en: '${inout} => Towers (all circles)',
-        },
-        westTower: {
-          en: '${inout} => West Tower',
-        },
-        eastTower: {
-          en: '${inout} => East Tower',
-        },
-      },
+      outputStrings: diveFromGraceTowerOutputStrings,
     },
     {
       id: 'DSR Darkdragon Dive Single Tower',
