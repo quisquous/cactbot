@@ -1159,6 +1159,15 @@ const triggerSet: TriggerSet<Data> = {
             return output.baitThenCirclesDive!();
           }
         }
+        // Reminder in/out for last bait
+        if (data.diveFromGraceTowerCounter === 3) {
+          const gnashLash: { [inout: string]: string } = {
+            'unknown': output.unknown!(),
+            'in': output.in!(),
+            'out': output.out!(),
+          };
+          return output.inOutThenBait!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
+        }
         return output.text!();
       },
       run: (data) => data.waitingForGeirskogul = true,
@@ -1177,6 +1186,9 @@ const triggerSet: TriggerSet<Data> = {
         },
         baitThenDownArrowDive: {
           en: 'Bait => Down Arrow Dive',
+        },
+        inOutThenBait: {
+          en: '${inout} => Bait',
         },
         text: {
           en: 'Bait',
