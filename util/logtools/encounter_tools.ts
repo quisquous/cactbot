@@ -1,3 +1,6 @@
+import { Console } from 'console';
+import { Transform } from 'stream';
+
 import ContentType from '../../resources/content_type';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
@@ -22,6 +25,35 @@ type FightEncInfo = ZoneEncInfo & {
   fightName?: string;
   endType?: string;
   sealName?: string;
+  logLines?: string[];
+};
+
+const fixedTable = (data: { [index: number]: { [index: string]: string } }): void => {
+  // Original console output interception and rewriting technique by Brickshot
+  // See https://stackoverflow.com/a/69874540
+  const ts = new Transform({
+    transform(chunk, _enc, cb) {
+      cb(null, chunk);
+    }
+  });
+  const logger = new Console({ stdout: ts });
+  logger.table(data);
+  const tsRead = ts.read() as Buffer;
+  let result = '';
+  for (const row of tsRead.toString().split(/[\r\n]+/)) {
+    let r = row.replace(/[^┬]*┬/, '┌');
+    r = r.replace(/^├─*┼/, '├');
+    r = r.replace(/│[^│]*/, '');
+    r = r.replace(/^└─*┴/, '└');
+    // console.table emits a pipe character with identifier u2502,
+    // rather than the standard u7C.
+    // If we naively just do /['"](\s+\|/ and aren't explicit about it,
+    // there's too much chance one of the consuming applications will get it wrong.
+    r = r.replace(/['"](\s+\u2502)/g, ' $1');
+    r = r.replace(/(\u2502\s+)['"]/g, '$1 ');
+    result += `${r}\n`;
+  }
+  console.log(result);
 };
 
 export class EncounterFinder {
@@ -106,7 +138,14 @@ export class EncounterFinder {
     return !keepTypes.includes(content);
   }
 
-  process(line: string): void {
+  process(line: string, store: boolean): void {
+    // Irrespective of any processing that occurs, we want to store every line of an encounter.
+    // This allows us to save a pass when making timelines.
+    if (store && this.currentFight.startTime !== undefined) {
+      this.currentFight.logLines = this.currentFight.logLines ?? [];
+      this.currentFight.logLines?.push(line);
+    }
+
     const cZ = this.regex.changeZone.exec(line)?.groups;
     if (cZ) {
       if (this.currentZone.zoneName === cZ.name) {
@@ -327,17 +366,17 @@ class TLFuncs {
   static leftExtendStr(str?: string, length?: number): string {
     if (str === undefined)
       return '';
-    if (length === undefined || length <= str.length)
+    if (length === undefined)
       return str;
-    return str.padStart(length - str.length, ' ');
+    return str.padStart(length, ' ');
   }
 
   static rightExtendStr(str?: string, length?: number): string {
     if (str === undefined)
       return '';
-    if (length === undefined || length <= str.length)
+    if (length === undefined)
       return str;
-    return str.padEnd(length - str.length, ' ');
+    return str.padEnd(length, ' ');
   }
 
   static generateFileName(fightOrZone: FightEncInfo | ZoneEncInfo): string {
@@ -367,109 +406,72 @@ class TLFuncs {
         const indexed = row[idx];
         if (indexed !== undefined)
           return Math.max(val, indexed);
-        return 0;
+        return val;
      });
     });
   }
 
   static printCollectedZones(collector: EncounterCollector): void {
     let idx = 1;
-    const outputRows = [];
+    const outputRows: { [index: number]: { [index: string]: string } } = {};
     for (const zone of collector.zones) {
       const zoneName = zone.zoneName ?? 'Unknown_Zone';
       const startDate = zone.startTime ? TLFuncs.dayFromDate(zone.startTime) : 'Unknown_Date';
       const startTime = zone.startTime ? TLFuncs.timeFromDate(zone.startTime) : 'Unknown_Start';
+      const duration = TLFuncs.durationFromDates(zone.startTime, zone.endTime);
 
-      outputRows.push([
-        idx.toString(),
-        startDate,
-        startTime,
-        TLFuncs.durationFromDates(zone.startTime, zone.endTime),
-        zoneName,
-      ]);
+      const row = {
+        'Index': idx.toString(),
+        'Start Date': startDate,
+        'Start Time': startTime,
+        'Duration': duration,
+        'Zone Name': zoneName,
+      };
+      outputRows[idx] = row;
       idx++;
     }
 
-    if (outputRows.length === 0)
+    if (Object.keys(outputRows).length === 0)
       return;
-
-    const lengths = TLFuncs.maxLengthPerIndex(outputRows);
-
-    const dateIdx = 1;
-    let lastDate = null;
-    for (const row of outputRows) {
-      if (row[dateIdx] !== lastDate) {
-        lastDate = row[dateIdx];
-        console.log(lastDate);
-      }
-      const row0 = TLFuncs.leftExtendStr(row[0], lengths[0]);
-      const row2 = TLFuncs.leftExtendStr(row[2], lengths[2]);
-      const row3 = TLFuncs.leftExtendStr(row[3], lengths[3]);
-      const row4 = TLFuncs.rightExtendStr(row[4], lengths[4]);
-
-      console.log(`  ${row0})   ${row2}   ${row3}  ${row4}`);
+    fixedTable(outputRows);
     }
-  }
 
   static printCollectedFights = (collector: EncounterCollector): void => {
     let idx = 1;
-    const outputRows = [];
+    const outputRows: { [index: number]: { [index: string]: string } } = {};
     let seenSeal = false;
-    let lastDate = null;
     for (const fight of collector.fights) {
-      // Add a zone name row when there's seal messages for clarity.
-      const zoneName = fight.zoneName ?? 'Unknown_Zone';
-      const startDate = fight.startTime ? TLFuncs.dayFromDate(fight.startTime) : 'Unknown_Date';
-      const startTime = fight.startTime ? TLFuncs.timeFromDate(fight.startTime) : 'Unknown_Start';
+      const startDate = fight.startTime ? TLFuncs.dayFromDate(fight.startTime) : 'Unknown Date';
+      const startTime = fight.startTime ? TLFuncs.timeFromDate(fight.startTime) : 'Unknown Start';
       const fightDuration = TLFuncs.durationFromDates(fight.startTime, fight.endTime) ?? 'Unknown Duration';
-      let fightName = 'Unknown_Encounter';
+      let fightName = 'Unknown Encounter';
       if (fight.sealName)
         fightName = fight.sealName;
       else if (fight.fightName)
         fightName = fight.fightName;
 
-      if (!seenSeal && fight.sealName) {
-        outputRows.push(['', '', '', '', `~${zoneName}~`, '']);
+      if (!seenSeal && fight.sealName)
         seenSeal = true;
-      } else if (seenSeal && !fight.sealName) {
+       else if (seenSeal && !fight.sealName)
         seenSeal = false;
-      }
-      if (fight.startTime)
-        lastDate = TLFuncs.dayFromDate(fight.startTime);
-      const row = [
-        idx.toString(),
-        startDate,
-        startTime,
-        fightDuration,
-        fightName,
-        fight.endType ?? 'Unknown_End_Type',
-      ];
-      outputRows.push(row);
+
+      const row = {
+        'Index': idx.toString(),
+        'Start Date': startDate,
+        'Start Time': startTime,
+        'Duration': fightDuration,
+        'Zone Name': fight.zoneName ?? 'Unknown Zone',
+        'Encounter Name': fightName,
+        'End Type': fight.endType ?? 'Unknown End Type',
+      };
+      outputRows[idx] = row;
       idx++;
     }
 
-    if (outputRows.length === 0)
+    if (Object.keys(outputRows).length === 0)
       return;
 
-    const lengths = TLFuncs.maxLengthPerIndex(outputRows);
-
-    const dateIdx = 1;
-    console.log(lastDate);
-
-    for (const row of outputRows) {
-      if (row[dateIdx] !== lastDate) {
-        lastDate = row[dateIdx];
-        console.log(lastDate);
-      }
-
-      const col0 = TLFuncs.leftExtendStr(row[0], lengths[0]);
-      const col1 = row[0] ? ') ' : '  ';
-      const col2 = TLFuncs.leftExtendStr(row[2], lengths[2]);
-      const col3 = TLFuncs.leftExtendStr(row[3], lengths[3]);
-      const col4 = TLFuncs.rightExtendStr(row[4], lengths[4]);
-      const col5 = row[5] ? (' ' + '[' + row[5] + ']') : '';
-      console.log(`  ${col0}${col1} ${col2} ${col3} ${col4} ${col5}`);
-    }
+    fixedTable(outputRows);
   };
 }
 

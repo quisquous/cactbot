@@ -52,10 +52,12 @@ class CoinachReader:
                     self.ffxiv_path = p
                     break
 
-        if not os.path.isfile(os.path.join(self.coinach_path, _COINACH_EXE)):
-            raise Exception("invalid coinach path: %s" % self.coinach_path)
-        if not os.path.isfile(os.path.join(self.ffxiv_path, _FFXIV_EXE)):
-            raise Exception("invalid ffxiv path: %s" % self.ffxiv_path)
+        if self.coinach_path is None or not os.path.isfile(
+            os.path.join(self.coinach_path, _COINACH_EXE)
+        ):
+            raise FileNotFoundError("invalid coinach path: %s" % self.coinach_path)
+        if self.ffxiv_path is None or not os.path.isfile(os.path.join(self.ffxiv_path, _FFXIV_EXE)):
+            raise FileNotFoundError("invalid ffxiv path: %s" % self.ffxiv_path)
 
     def exd(self, table, lang="en"):
         return self._coinach_cmd("exd", table, lang)
@@ -84,14 +86,18 @@ class CoinachReader:
             cmd,
             cwd=self.coinach_path,
         )
-        output = raw_output.decode("utf8")
+        try:
+            output = raw_output.decode("utf8")
+        except UnicodeDecodeError:
+            output = str(raw_output).replace("\\r", "\r").replace("\\n", "\n")
 
         # Manually check output for errors.
         m = re.search(r"^([0-9])* files exported, ([0-9])* failed", output, re.MULTILINE)
         if not m:
             raise CoinachError("Unknown output", cmd, output)
         if m.group(1) == "0":
-            raise CoinachError("Zero successes", cmd, output)
+            message = "Zero successes. This may occurs if you run SaintCoinach with a Chinese or Korean ffxiv client."
+            raise CoinachError(message, cmd, output)
         if m.group(2) != "0":
             raise CoinachError("Non-zero failures", cmd, output)
 
@@ -125,8 +131,8 @@ class CoinachWriter:
         if not cactbot_path:
             cactbot_path = self._find_cactbot_path()
         self.cactbot_path = cactbot_path
-        if not os.path.isdir(self.cactbot_path):
-            raise Exception("Invalid cactbot path: %s" % self.cactbot_path)
+        if self.cactbot_path is None or not os.path.isdir(self.cactbot_path):
+            raise FileNotFoundError("Invalid cactbot path: %s" % self.cactbot_path)
 
     def _find_cactbot_path(self):
         p = os.path.abspath(__file__)

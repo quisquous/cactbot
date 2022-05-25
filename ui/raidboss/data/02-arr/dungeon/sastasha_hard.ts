@@ -41,7 +41,42 @@ const triggerSet: TriggerSet<Data> = {
         stun: Outputs.stunTarget,
         tailScrewOn: {
           en: 'Tail Screw on ${player}',
+          de: 'Schweifschraube auf ${player}',
+          cn: '螺旋尾点${player}',
+          ko: '${player} 꼬리 후려치기',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Karlabos': 'Karlabos',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Karlabos': 'Karlabos',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Karlabos': 'カーラボス',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Karlabos': '真红龙虾',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Karlabos': '칼라보스',
       },
     },
   ],

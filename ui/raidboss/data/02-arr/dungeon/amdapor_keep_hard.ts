@@ -25,7 +25,10 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go Behind Statue',
+          de: 'Geh hinter die Statue',
           fr: 'Cachez vous derriere une statue',
+          cn: '躲在雕像后',
+          ko: '조각상 뒤에 숨기',
         },
       },
     },
@@ -37,7 +40,10 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Kill luminescence and stay close to boss',
+          de: 'Besiege die Photosphäre und steh nahe am Boss',
           fr: 'Tuez la Luminescence et restez près du boss',
+          cn: '击杀幻光球, 靠近BOSS',
+          ko: '빛구슬을 잡고 보스와 가까이 붙기',
         },
       },
     },
@@ -46,6 +52,38 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['29B', '260'], capture: false }),
       response: Responses.killAdds(),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Boogyman': 'Butzemann',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Boogyman': 'croque-mitaine',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Boogyman': 'ボギーマン',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Boogyman': '夜魔人',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Boogyman': '부기맨',
+      },
     },
   ],
 };
