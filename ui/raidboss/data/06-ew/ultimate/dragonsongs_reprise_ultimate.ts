@@ -36,6 +36,7 @@ export interface Data extends RaidbossData {
   // mapping of 1, 2, 3 to whether that group has seen an arrow.
   diveFromGraceHasArrow: { [num: number]: boolean };
   diveFromGraceDir: { [name: string]: 'circle' | 'up' | 'down' };
+  diveFromGraceLashGnash?: string;
   // mapping of player name to x coordinate
   diveFromGracePositions: { [name: string]: number };
   diveFromGraceTowerCounter?: number;
@@ -844,6 +845,10 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '6712', source: 'Nidhogg', capture: false }),
       durationSeconds: 8,
       response: Responses.getOutThenIn(),
+      run: (data, _matches, output) => data.diveFromGraceLashGnash = output.in!(),
+      outputStrings: {
+        in: Outputs.in,
+      },
     },
     {
       id: 'DSR Lash and Gnash',
@@ -851,6 +856,10 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '6713', source: 'Nidhogg', capture: false }),
       durationSeconds: 8,
       response: Responses.getInThenOut(),
+      run: (data, _matches, output) => data.diveFromGraceLashGnash = output.out!(),
+      outputStrings: {
+        out: Outputs.out,
+      }
     },
     {
       id: 'DSR Lash Gnash Followup',
@@ -1041,30 +1050,30 @@ const triggerSet: TriggerSet<Data> = {
           if (data.diveFromGraceDir[data.me] === 'circle') {
             // Solo High Jump Tower 1
             if (data.diveFromGraceHasArrow[3])
-              return output.southTower!();
+              return output.southTower!({ inout: data.diveFromGraceLashGnash });
             // All High Jumps, unknown exact position
-            return output.circleTowers!();
+            return output.circleTowers!({ inout: data.diveFromGraceLashGnash });
           }
           // Num3 Spineshatter Tower 1
           if (data.diveFromGraceDir[data.me] === 'up')
-            return output.westTower!();
+            return output.westTower!({ inout: data.diveFromGraceLashGnash });
           // Num3 Elusive Tower 1
           if (data.diveFromGraceDir[data.me] === 'down')
-            return output.eastTower!();
+            return output.eastTower!({ inout: data.diveFromGraceLashGnash });
         }
       },
       outputStrings: {
         southTower: {
-          en: 'South Tower',
+          en: '${inout} => South Tower',
         },
         circleTowers: {
-          en: 'Towers (all circles)',
+          en: '${inout} => Towers (all circles)',
         },
         westTower: {
-          en: 'West Tower',
+          en: '${inout} => West Tower',
         },
         eastTower: {
-          en: 'East Tower',
+          en: '${inout} => East Tower',
         },
       },
     },
@@ -1084,30 +1093,30 @@ const triggerSet: TriggerSet<Data> = {
         }
         // Call Tower 3 Soak for num1 (based on previous position)
         if (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle')
-          return output.southTower!();
+          return output.southTower!({ inout: data.diveFromGraceLashGnash });
         // Call Tower 3 Soak for num2s (based on previous position)
         if (num === 2) {
           if (data.diveFromGracePreviousPosition[data.me] === 'west')
-            return output.westTower!();
+            return output.westTower!({ inout: data.diveFromGraceLashGnash });
           if (data.diveFromGracePreviousPosition[data.me] === 'east')
-            return output.eastTower!();
+            return output.eastTower!({ inout: data.diveFromGraceLashGnash });
         }
         // If failed to get positions, call Towers in general
         if (num !== 3)
-          return output.circleTowers!();
+          return output.circleTowers!({ inout: data.diveFromGraceLashGnash });
       },
       outputStrings: {
         southTower: {
-          en: 'South Tower',
+          en: '${inout} => South Tower',
         },
         circleTowers: {
-          en: 'Towers (all circles)',
+          en: '${inout} => Towers (all circles)',
         },
         westTower: {
-          en: 'West Tower',
+          en: '${inout} => West Tower',
         },
         eastTower: {
-          en: 'East Tower',
+          en: '${inout} => East Tower',
         },
       },
     },
