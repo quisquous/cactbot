@@ -136,7 +136,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Eye of the Tyrant Counter',
       regex: /Eye of the Tyrant/,
       beforeSeconds: 1,
-      run: (data) => data.eyeOfTheTyrantCounter = data.eyeOfTheTyrantCounter ?? 0 + 1,
+      run: (data) => data.eyeOfTheTyrantCounter = (data.eyeOfTheTyrantCounter ?? 0) + 1,
     },
   ],
   triggers: [
