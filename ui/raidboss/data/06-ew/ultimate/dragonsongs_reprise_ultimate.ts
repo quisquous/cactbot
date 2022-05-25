@@ -845,9 +845,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '6712', source: 'Nidhogg', capture: false }),
       durationSeconds: 8,
       response: Responses.getOutThenIn(),
-      run: (data, _matches, output) => data.diveFromGraceLashGnash = output.in!(),
-      outputStrings: {
-        in: Outputs.in,
+      run: (data, _matches, output) => { 
+        output.responseOutputStrings = {
+          out: Outputs.out,
+        };
+        data.diveFromGraceLashGnash = output.in!();
       },
     },
     {
@@ -856,10 +858,12 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '6713', source: 'Nidhogg', capture: false }),
       durationSeconds: 8,
       response: Responses.getInThenOut(),
-      run: (data, _matches, output) => data.diveFromGraceLashGnash = output.out!(),
-      outputStrings: {
-        out: Outputs.out,
-      }
+      run: (data, _matches, output) => {
+        output.responseOutputStrings = {
+          out: Outputs.out,
+        };
+        data.diveFromGraceLashGnash = output.out!();
+      },
     },
     {
       id: 'DSR Lash Gnash Followup',
