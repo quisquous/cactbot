@@ -885,14 +885,35 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => {
         if (matches.id === '6715') {
           data.diveFromGraceLashGnashKey = 'in';
+          if (data.eyeOfTheTyrantCounter === 2) {
+            const num = data.diveFromGraceNum[data.me];
+            if (!num) {
+              console.error(`DSR Lash Gnash Followup: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+              return output.in!();
+            }
+            if (num === 2 || (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle'))
+              return output.inOutThenBait!({ inout: output.in!() });
+          }
           return output.in!();
         }
         data.diveFromGraceLashGnashKey = 'out';
+        if (data.eyeOfTheTyrantCounter === 2) {
+          const num = data.diveFromGraceNum[data.me];
+          if (!num) {
+            console.error(`DSR Lash Gnash Followup: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+            return output.out!();
+          }
+          if (num === 2 || (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle'))
+            return output.inOutThenBait!({ inout: output.in!() });
+        }
         return output.out!();
       },
       outputStrings: {
         out: Outputs.out,
         in: Outputs.in,
+        inOutThenBait: {
+          en: '${inout} => Bait',
+        },
       },
     },
     {
@@ -1159,22 +1180,10 @@ const triggerSet: TriggerSet<Data> = {
             return output.baitThenCirclesDive!();
           }
         }
-        // Reminder in/out for last bait
-        if (data.diveFromGraceTowerCounter === 3) {
-          const gnashLash: { [inout: string]: string } = {
-            'unknown': output.unknown!(),
-            'in': output.in!(),
-            'out': output.out!(),
-          };
-          return output.inOutThenBait!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
-        }
         return output.text!();
       },
       run: (data) => data.waitingForGeirskogul = true,
       outputStrings: {
-        unknown: Outputs.unknown,
-        in: Outputs.in,
-        out: Outputs.out,
         baitThenStack: {
           en: 'Bait => Stack',
         },
@@ -1189,9 +1198,6 @@ const triggerSet: TriggerSet<Data> = {
         },
         baitThenDownArrowDive: {
           en: 'Bait => Down Arrow Dive',
-        },
-        inOutThenBait: {
-          en: '${inout} => Bait',
         },
         text: {
           en: 'Bait',
