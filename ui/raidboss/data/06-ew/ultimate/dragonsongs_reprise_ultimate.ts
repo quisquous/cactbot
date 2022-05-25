@@ -1172,6 +1172,9 @@ const triggerSet: TriggerSet<Data> = {
       },
       run: (data) => data.waitingForGeirskogul = true,
       outputStrings: {
+        unknown: Outputs.unknown,
+        in: Outputs.in,
+        out: Outputs.out,
         baitThenStack: {
           en: 'Bait => Stack',
         },
