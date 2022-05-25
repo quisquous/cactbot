@@ -15,6 +15,7 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 // TODO: Wyrmsbreath 2 cardinal positions for Cauterize and adjust delay
 // TODO: Intercard instead of left/right for Hallowed Wings with Cauterize
 // TODO: Trigger for Hallowed Wings with Hot Tail/Hot Wings
+// TODO: Phase 6 Resentment callout?
 
 type Phase = 'doorboss' | 'thordan' | 'nidhogg' | 'haurchefant' | 'thordan2' | 'nidhogg2' | 'dragon-king';
 
@@ -121,6 +122,25 @@ const triggerSet: TriggerSet<Data> = {
       diveFromGraceHasArrow: { 1: false, 2: false, 3: false },
     };
   },
+  timelineTriggers: [
+    {
+      id: 'DSR Resentment',
+      regex: /Resentment/,
+      beforeSeconds: 5,
+      condition: (data) => data.phase === 'nidhogg',
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'aoe + dot',
+          de: 'AoE + DoT',
+          fr: 'AoE + dot',
+          ja: 'AoE + DoT',
+          cn: 'AOE + dot',
+          ko: '전체공격 + 도트뎀',
+        },
+      },
+    },
+  ],
   triggers: [
     {
       id: 'DSR Phase Tracker',
