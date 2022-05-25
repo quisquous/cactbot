@@ -75,6 +75,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR King Thordan Ascalon\'s Might': '63C5', // tank cleaves
     'DSR Holy Shield Bash': '62D1', // Ser Adelphel/Janlenoux tank tether stun charges
     'DSR Nidhogg Soul Tether': '671C', // tank tether cleaves
+    'DSR Nidhogg Mirage Dive': '68C4', // dives during eye phase, probably a wipe if shared
     'DSR Skyward Leap 1x': '72A2', // Ser Paulecraine single blue marker during Wrath
   },
   soloWarn: {
