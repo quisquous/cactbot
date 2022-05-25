@@ -849,7 +849,7 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           out: Outputs.out,
         };
-        data.diveFromGraceLashGnash = output.in!();
+        data.diveFromGraceLashGnash = output.out!();
       },
     },
     {
@@ -860,9 +860,9 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getInThenOut(),
       run: (data, _matches, output) => {
         output.responseOutputStrings = {
-          out: Outputs.out,
+          in: Outputs.in,
         };
-        data.diveFromGraceLashGnash = output.out!();
+        data.diveFromGraceLashGnash = output.in!();
       },
     },
     {
