@@ -123,16 +123,16 @@ const diveFromGraceTowerOutputStrings = {
   in: Outputs.in,
   out: Outputs.out,
   southTower: {
-    en: '${inout} => South Tower',
+    en: 'South Tower (${inout})',
   },
   circleTowers: {
-    en: '${inout} => Towers (all circles)',
+    en: 'Towers (all circles, ${inout})',
   },
   westTower: {
-    en: '${inout} => West Tower',
+    en: 'West Tower (${inout})',
   },
   eastTower: {
-    en: '${inout} => East Tower',
+    en: 'East Tower (${inout})',
   },
 };
 
