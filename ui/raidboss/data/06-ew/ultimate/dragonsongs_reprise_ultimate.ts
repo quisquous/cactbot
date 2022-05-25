@@ -1117,7 +1117,7 @@ const triggerSet: TriggerSet<Data> = {
         }
         // If failed to get positions, call Towers in general
         if (num !== 3)
-          return output.circleTowers!({ inout: data.diveFromGraceLashGnash });
+          return output.circleTowers!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
       },
       outputStrings: diveFromGraceTowerOutputStrings,
     },
