@@ -1569,7 +1569,7 @@ const triggerSet: TriggerSet<Data> = {
         const [fullName1, fullName2] = data.thunderstruck.sort();
         const name1 = fullName1 ? data.ShortName(fullName1) : output.unknown!();
         const name2 = fullName2 ? data.ShortName(fullName2) : output.unknown!();
-        return output.text!({ name1, name2 });
+        return output.text!({ name1: name1, name2: name2 });
       },
       // Sorry tts players, but "Thunder on YOU" and "Thunder: names" are too similar.
       tts: null,
