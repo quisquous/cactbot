@@ -214,7 +214,9 @@ const triggerSet: TriggerSet<Data> = {
             data.phase = 'nidhogg';
             break;
           case '62E2':
-            data.phase = 'haurchefant';
+            // This ability is used in both doorboss and haurchefant.
+            if (data.phase !== 'doorboss')
+              data.phase = 'haurchefant';
             break;
           case '6B86':
             data.phase = 'thordan2';
@@ -1485,6 +1487,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Spear of the Fury Limit Break',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '62E2', source: 'Ser Zephirin', capture: false }),
+      // This ability also happens in doorboss phase.
       condition: (data) => data.role === 'tank' && data.phase === 'haurchefant',
       // This is a 10 second cast, and (from video) my understanding is to
       // hit tank LB when the cast bar gets to the "F" in "Fury", which is
