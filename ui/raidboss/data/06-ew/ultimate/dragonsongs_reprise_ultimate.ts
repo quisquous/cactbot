@@ -915,12 +915,9 @@ const triggerSet: TriggerSet<Data> = {
       // These are ~3s apart.  Only call after the first (and ignore multiple people getting hit).
       suppressSeconds: 6,
       infoText: (data, matches, output) => {
-        let num = data.diveFromGraceNum[data.me];
-        if (!num) {
+        const num = data.diveFromGraceNum[data.me];
+        if (num === undefined)
           console.error(`DSR Lash Gnash Followup: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
-          // Set to 0 to output default in/out
-          num = 0;
-        }
         if (matches.id === '6715') {
           data.diveFromGraceLashGnashKey = 'in';
           if (data.eyeOfTheTyrantCounter === 1 && num === 3)
