@@ -1,5 +1,5 @@
 import logDefinitions from '../../../../../resources/netlog_defs';
-import EmulatorCommon from '../../EmulatorCommon';
+import SFuncs from '../../../../../resources/stringhandlers';
 
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
@@ -28,10 +28,10 @@ export class LineEvent0x1F extends LineEvent {
     super(repo, line, parts);
 
     this.id = parts[fields.id]?.toUpperCase() ?? '';
-    this.dataBytes1 = EmulatorCommon.zeroPad(parts[fields.data0] ?? '');
-    this.dataBytes2 = EmulatorCommon.zeroPad(parts[fields.data1] ?? '');
-    this.dataBytes3 = EmulatorCommon.zeroPad(parts[fields.data2] ?? '');
-    this.dataBytes4 = EmulatorCommon.zeroPad(parts[fields.data3] ?? '');
+    this.dataBytes1 = SFuncs.zeroPad(parts[fields.data0] ?? '');
+    this.dataBytes2 = SFuncs.zeroPad(parts[fields.data1] ?? '');
+    this.dataBytes3 = SFuncs.zeroPad(parts[fields.data2] ?? '');
+    this.dataBytes4 = SFuncs.zeroPad(parts[fields.data3] ?? '');
 
     this.jobGaugeBytes = [
       ...splitFunc(this.dataBytes1),
