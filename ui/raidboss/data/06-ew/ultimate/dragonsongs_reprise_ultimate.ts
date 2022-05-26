@@ -1161,7 +1161,7 @@ const triggerSet: TriggerSet<Data> = {
         }
         // Number 1s Stack after bait
         if (data.eyeOfTheTyrantCounter === 1 && num === 1)
-           return output.baitThenStack!();
+          return output.baitThenStack!();
         return output.text!();
       },
       run: (data) => data.waitingForGeirskogul = true,
