@@ -44,6 +44,7 @@ export interface Data extends RaidbossData {
   eyeOfTheTyrantCounter: number;
   diveFromGracePreviousPosition: { [num: string]: 'middle' | 'west' | 'east' };
   waitingForGeirskogul?: boolean;
+  stackAfterGeirskogul?: boolean;
   diveCounter: number;
 }
 
@@ -999,6 +1000,10 @@ const triggerSet: TriggerSet<Data> = {
           return inout;
         }
 
+        // Special case for side ones baiting the two towers.
+        if (data.eyeOfTheTyrantCounter === 1 && num === 1 && data.diveFromGracePreviousPosition[data.me] !== 'middle')
+          return output.baitStackInOut!({ inout: inout });
+
         // Filter out anybody who needs to be stacking.
         const firstStack = data.eyeOfTheTyrantCounter === 0 && num !== 1;
         const secondStack = data.eyeOfTheTyrantCounter === 1 && num !== 3;
@@ -1045,6 +1050,9 @@ const triggerSet: TriggerSet<Data> = {
         out: Outputs.out,
         stackInOut: {
           en: 'Stack => ${inout}',
+        },
+        baitStackInOut: {
+          en: 'Bait => Stack => ${inout}',
         },
         circlesDive1: {
           en: 'Dive (circles) => ${inout}',
@@ -1325,16 +1333,15 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`DFG Dive Single Tower: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return output.text!();
         }
-        // Number 1s Stack after bait
-        if (data.eyeOfTheTyrantCounter === 1 && num === 1)
-          return output.baitThenStack!();
+        // To condense messages, two tower baiters get this call during the gnash and lash.
+        if (data.diveFromGraceTowerCounter === 2) {
+          data.stackAfterGeirskogul = true;
+          return;
+        }
         return output.text!();
       },
       run: (data) => data.waitingForGeirskogul = true,
       outputStrings: {
-        baitThenStack: {
-          en: 'Bait => Stack',
-        },
         text: {
           en: 'Bait',
           de: 'Ködern',
@@ -1349,8 +1356,29 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '670A', source: 'Nidhogg', capture: false }),
       condition: (data) => data.waitingForGeirskogul,
       suppressSeconds: 1,
-      response: Responses.moveAway(),
-      run: (data) => delete data.waitingForGeirskogul,
+      infoText: (data, _matches, output) => {
+        if (!data.waitingForGeirskogul)
+          return;
+        // Two tower baiters need to quickly get to the stack here.
+        if (data.stackAfterGeirskogul) {
+          const inout = output[data.diveFromGraceLashGnashKey]!();
+          return output.stackInOut!({ inout: inout });
+        }
+        return output.move!();
+      },
+      run: (data) => {
+        delete data.waitingForGeirskogul;
+        delete data.stackAfterGeirskogul;
+      },
+      outputStrings: {
+        in: Outputs.in,
+        out: Outputs.out,
+        unknown: Outputs.unknown,
+        stackInOut: {
+          en: 'Stack => ${inout}',
+        },
+        move: Outputs.moveAway,
+      },
     },
     {
       id: 'DSR Right Eye Blue Tether',
