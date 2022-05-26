@@ -37,11 +37,11 @@ export interface Data extends RaidbossData {
   // mapping of 1, 2, 3 to whether that group has seen an arrow.
   diveFromGraceHasArrow: { [num: number]: boolean };
   diveFromGraceDir: { [name: string]: 'circle' | 'up' | 'down' };
-  diveFromGraceLashGnashKey: string;
+  diveFromGraceLashGnashKey: 'in' | 'out' | 'unknown';
   // mapping of player name to x coordinate
   diveFromGracePositions: { [name: string]: number };
   diveFromGraceTowerCounter?: number;
-  eyeOfTheTyrantCounter?: number;
+  eyeOfTheTyrantCounter: number;
   diveFromGracePreviousPosition: { [num: string]: 'middle' | 'west' | 'east' };
   waitingForGeirskogul?: boolean;
   diveCounter: number;
@@ -120,30 +120,6 @@ const matchedPositionTo4Dir = (combatant: PluginCombatantState) => {
   return (Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4);
 };
 
-const diveFromGraceTowerOutputStrings = {
-  unknown: Outputs.unknown,
-  in: Outputs.in,
-  out: Outputs.out,
-  southTower: {
-    en: 'South Tower (${inout})',
-  },
-  circleTowers: {
-    en: 'Towers (all circles, ${inout})',
-  },
-  upArrowTower: {
-    en: 'Up Arrow Tower (${inout})',
-  },
-  downArrowTower: {
-    en: 'Down Arrow Tower (${inout})',
-  },
-  westTower3: {
-    en: 'West Tower (${inout})',
-  },
-  eastTower3: {
-    en: 'East Tower (${inout})',
-  },
-};
-
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.DragonsongsRepriseUltimate,
   timelineFile: 'dragonsongs_reprise_ultimate.txt',
@@ -158,6 +134,7 @@ const triggerSet: TriggerSet<Data> = {
       diveFromGraceLashGnashKey: 'unknown',
       diveFromGracePositions: {},
       diveFromGraceDir: {},
+      eyeOfTheTyrantCounter: 0,
       diveFromGracePreviousPosition: {},
       diveCounter: 1,
     };
@@ -167,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Eye of the Tyrant Counter',
       regex: /Eye of the Tyrant/,
       beforeSeconds: 1,
-      run: (data) => data.eyeOfTheTyrantCounter = (data.eyeOfTheTyrantCounter ?? 0) + 1,
+      run: (data) => data.eyeOfTheTyrantCounter++,
     },
     {
       id: 'DSR Resentment',
@@ -1007,18 +984,92 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Gnash and Lash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6712', source: 'Nidhogg', capture: false }),
+      // 6712 = Gnash and Lash (out then in)
+      // 6713 = Lash and Gnash (in then out)
+      netRegex: NetRegexes.startsUsing({ id: ['6712', '6713'], source: 'Nidhogg' }),
       durationSeconds: 8,
-      response: Responses.getOutThenIn(),
-      run: (data) => data.diveFromGraceLashGnashKey = 'out',
-    },
-    {
-      id: 'DSR Lash and Gnash',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6713', source: 'Nidhogg', capture: false }),
-      durationSeconds: 8,
-      response: Responses.getInThenOut(),
-      run: (data) => data.diveFromGraceLashGnashKey = 'in',
+      alertText: (data, matches, output) => {
+        const key = matches.id === '6712' ? 'out' : 'in';
+        const inout = output[key]!();
+        data.diveFromGraceLashGnashKey = key;
+
+        const num = data.diveFromGraceNum[data.me];
+        if (num !== 1 && num !== 2 && num !== 3) {
+          console.error(`DSR Gnash and Lash: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          return inout;
+        }
+
+        // Filter out anybody who needs to be stacking.
+        const firstStack = data.eyeOfTheTyrantCounter === 0 && num !== 1;
+        const secondStack = data.eyeOfTheTyrantCounter === 1 && num !== 3;
+        if (firstStack || secondStack)
+          return output.stackInOut!({ inout: inout });
+
+        // Call out all circles.
+        if (!data.diveFromGraceHasArrow[num]) {
+          return {
+            1: output.circlesDive1!({ inout: inout }),
+            2: inout, // this shouldn't happen, but TypeScript wants this key
+            3: output.circlesDive3!({ inout: inout }),
+          }[num];
+        }
+
+        // Remaining people are arrow dives.
+        if (num === 1) {
+          if (data.diveFromGraceDir[data.me] === 'circle')
+            return output.southDive1!({ inout: inout });
+          if (data.diveFromGraceDir[data.me] === 'up')
+            return output.upArrowDive1!({ inout: inout });
+          if (data.diveFromGraceDir[data.me] === 'down')
+            return output.downArrowDive1!({ inout: inout });
+        } else if (num === 3) {
+          if (data.diveFromGraceDir[data.me] === 'circle')
+            return output.southDive3!({ inout: inout });
+          if (data.diveFromGraceDir[data.me] === 'up')
+            return output.upArrowDive3!({ inout: inout });
+          if (data.diveFromGraceDir[data.me] === 'down')
+            return output.downArrowDive3!({ inout: inout });
+        }
+
+        // If things have gone awry, at least output something.
+        return inout;
+      },
+      // The 2 dives are called after the in/out occurs.
+      // The 1+3 dives get separate output strings here in case somebody has a weird strat
+      // that does different things for them and want better output strings.
+      // The idea here is that folks can rename "Up Arrow Dive" to "East Dive" depending on
+      // which way their strat wants them to look.
+      outputStrings: {
+        in: Outputs.in,
+        out: Outputs.out,
+        stackInOut: {
+          en: 'Stack => ${inout}',
+        },
+        circlesDive1: {
+          en: 'Dive (circles) => ${inout}',
+        },
+        circlesDive3: {
+          en: 'Dive (circles) => ${inout}',
+        },
+        southDive1: {
+          en: 'South Dive => ${inout}',
+        },
+        southDive3: {
+          en: 'South Dive => ${inout}',
+        },
+        upArrowDive1: {
+          en: 'Up Arrow Dive => ${inout}',
+        },
+        upArrowDive3: {
+          en: 'Up Arrow Dive => ${inout}',
+        },
+        downArrowDive1: {
+          en: 'Down Arrow Dive => ${inout}',
+        },
+        downArrowDive3: {
+          en: 'Down Arrow Dive => ${inout}',
+        },
+      },
     },
     {
       id: 'DSR Lash Gnash Followup',
@@ -1029,33 +1080,49 @@ const triggerSet: TriggerSet<Data> = {
       // These are ~3s apart.  Only call after the first (and ignore multiple people getting hit).
       suppressSeconds: 6,
       infoText: (data, matches, output) => {
+        const key = matches.id === '6715' ? 'in' : 'out';
+        const inout = output[key]!();
+        data.diveFromGraceLashGnashKey = key;
+
         const num = data.diveFromGraceNum[data.me];
-        if (num === undefined)
+        if (num === undefined) {
           console.error(`DSR Lash Gnash Followup: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
-        if (matches.id === '6715') {
-          data.diveFromGraceLashGnashKey = 'in';
-          if (data.eyeOfTheTyrantCounter === 1 && num === 3)
-            return output.inOutAndBait!({ inout: output.in!() });
-          if (data.eyeOfTheTyrantCounter === 2) {
-            if (num === 2 || (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle'))
-              return output.inOutAndBait!({ inout: output.in!() });
+          return inout;
+        }
+
+        if (data.eyeOfTheTyrantCounter === 1) {
+          if (num === 2) {
+            if (!data.diveFromGraceHasArrow[num])
+              return output.circlesDive2!({ inout: inout });
+            if (data.diveFromGraceDir[data.me] === 'up')
+              return output.upArrowDive2!({ inout: inout });
+            if (data.diveFromGraceDir[data.me] === 'down')
+              return output.downArrowDive2!({ inout: inout });
+          } else if (num === 3) {
+            return output.inOutAndBait!({ inout: inout });
           }
-          return output.in!();
-        }
-        data.diveFromGraceLashGnashKey = 'out';
-        if (data.eyeOfTheTyrantCounter === 1 && num === 3)
-          return output.inOutAndBait!({ inout: output.out!() });
-        if (data.eyeOfTheTyrantCounter === 2) {
+        } else if (data.eyeOfTheTyrantCounter === 2) {
           if (num === 2 || (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle'))
-            return output.inOutAndBait!({ inout: output.out!() });
+            return output.inOutAndBait!({ inout: inout });
         }
-        return output.out!();
+
+        // Otherwise, just tell the remaining people the dodge.
+        return inout;
       },
       outputStrings: {
         out: Outputs.out,
         in: Outputs.in,
         inOutAndBait: {
           en: '${inout} + Bait',
+        },
+        circlesDive2: {
+          en: '${inout} => Dive (circles)',
+        },
+        upArrowDive2: {
+          en: '${inout} => Up Arrow Dive',
+        },
+        downArrowDive2: {
+          en: '${inout} => Down Arrow Dive',
         },
       },
     },
@@ -1073,49 +1140,95 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Dive From Grace Tower 1',
+      id: 'DSR Dive From Grace Post Stack',
       // Triggered on first instance of Eye of the Tyrant (6714)
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
       // Ignore targetIsYou() incase player misses stack
-      condition: (data) => data.eyeOfTheTyrantCounter === 1,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        // No callout if missing numbers
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
           console.error(`DFG Tower 1 Reminder: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
-        // Map for In/Out Output Lookups
-        const gnashLash: { [inout: string]: string } = {
-          'unknown': output.unknown!(),
-          'in': output.in!(),
-          'out': output.out!(),
-        };
 
-        // Call 1st Tower Soak (Must be based on debuffs?)
-        if (num === 3) {
-          // Num3 High Jump Tower 1
-          if (data.diveFromGraceDir[data.me] === 'circle') {
-            // Solo High Jump Tower 1
-            if (data.diveFromGraceHasArrow[3])
-              return output.southTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
-            // All High Jumps, unknown exact position
-            return output.circleTowers!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
+        const inout = output[data.diveFromGraceLashGnashKey]!();
+
+        if (data.eyeOfTheTyrantCounter === 1) {
+          // Tower 1 soaks only based on debuffs.
+          if (num === 3) {
+            if (data.diveFromGraceDir[data.me] === 'circle') {
+              if (data.diveFromGraceHasArrow[3])
+                return output.southTower1!({ inout: inout });
+              return output.circleTowers1!({ inout: inout });
+            } else if (data.diveFromGraceDir[data.me] === 'up') {
+              return output.upArrowTower1!({ inout: inout });
+            } else if (data.diveFromGraceDir[data.me] === 'down') {
+              return output.downArrowTower1!({ inout: inout });
+            }
+            return output.unknownTower!({ inout: inout });
           }
-          // Num3 Spineshatter Tower 1
-          if (data.diveFromGraceDir[data.me] === 'up')
-            return output.upArrowTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
-          // Num3 Elusive Tower 1
-          if (data.diveFromGraceDir[data.me] === 'down')
-            return output.downArrowTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
+        } else if (data.eyeOfTheTyrantCounter === 2) {
+          // Tower 3 soaks based on debuffs and previous positions.
+          const pos = data.diveFromGracePreviousPosition[data.me];
+          if (num === 1) {
+            if (pos === 'middle')
+              return output.southTower3!({ inout: inout });
+            // Already soaked the number two towers.
+            if (pos === 'east' || pos === 'west')
+              return;
+          } else if (num === 2) {
+            if (pos === 'west')
+              return output.westTower3!({ inout: inout });
+            if (pos === 'east')
+              return output.eastTower3!({ inout: inout });
+          } else if (num === 3) {
+            return;
+          }
+          return output.unknownTower!({ inout: inout });
         }
       },
-      outputStrings: diveFromGraceTowerOutputStrings,
+      outputStrings: {
+        unknown: Outputs.unknown,
+        in: Outputs.in,
+        out: Outputs.out,
+        unknownTower: {
+          en: 'Tower (${inout})',
+        },
+        southTower1: {
+          en: 'South Tower (${inout})',
+        },
+        southTower3: {
+          en: 'South Tower (${inout})',
+        },
+        circleTowers1: {
+          en: 'Towers (circles, ${inout})',
+        },
+        circleTowers3: {
+          en: 'Towers (circles, ${inout})',
+        },
+        upArrowTower1: {
+          en: 'Up Arrow Tower (${inout})',
+        },
+        downArrowTower1: {
+          en: 'Down Arrow Tower (${inout})',
+        },
+        upArrowTower3: {
+          en: 'Up Arrow Tower (${inout})',
+        },
+        downArrowTower3: {
+          en: 'Down Arrow Tower (${inout})',
+        },
+        westTower3: {
+          en: 'West Tower (${inout})',
+        },
+        eastTower3: {
+          en: 'East Tower (${inout})',
+        },
+      },
     },
     {
-      // Callouts after the first and second dives.
       id: 'DSR Dive From Grace Tower 1 and 2',
       // 670E Dark High Jump
       // 670F Dark Spineshatter Dive
@@ -1197,44 +1310,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Dive From Grace Tower 3',
-      // Triggered on second instance of Eye of the Tyrant (6714)
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
-      // Ignore targetIsYou() incase player misses stack
-      condition: (data) => data.eyeOfTheTyrantCounter === 2,
-      suppressSeconds: 1,
-      infoText: (data, _matches, output) => {
-        const num = data.diveFromGraceNum[data.me];
-        if (!num) {
-          console.error(`DFG Tower 3 Reminder: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
-          return;
-        }
-        // Map for In/Out Output Lookups
-        const gnashLash: { [inout: string]: string } = {
-          'unknown': output.unknown!(),
-          'in': output.in!(),
-          'out': output.out!(),
-        };
-
-        // Call Tower 3 Soak for num1 (based on previous position)
-        if (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle')
-          return output.southTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
-        // Call Tower 3 Soak for num2s (based on previous position)
-        if (num === 2) {
-          if (data.diveFromGracePreviousPosition[data.me] === 'west')
-            return output.westTower3!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
-          if (data.diveFromGracePreviousPosition[data.me] === 'east')
-            return output.eastTower3!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
-        }
-        // If failed to get positions, call Towers in general
-        // Alternatively could add track for vulnerabilities and ignore the num1s that have vuln
-        if ((num === 1 && data.diveFromGracePreviousPosition[data.me] !== 'east' && data.diveFromGracePreviousPosition[data.me] !== 'west') || num === 2)
-          return output.circleTowers!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
-      },
-      outputStrings: diveFromGraceTowerOutputStrings,
-    },
-    {
       id: 'DSR Darkdragon Dive Single Tower',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6711', source: 'Nidhogg' }),
@@ -1272,81 +1347,6 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 1,
       response: Responses.moveAway(),
       run: (data) => delete data.waitingForGeirskogul,
-    },
-    {
-      id: 'DSR Dive From Grace Dive Position',
-      type: 'GainsEffect',
-      // AC3 = High Jump Target
-      // AC4 = Spineshatter Dive Target
-      // AC5 = Elusive Jump Target
-      // Defaults:
-      //   High Jump South if solo, no assignment if all circle
-      //   Assumes North Party Stack
-      //
-      // Spineshatter and Elusive elusive come together
-      // Circle never paired with single Spine/Elusive
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
-      condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
-      alertText: (data, _matches, output) => {
-        const num = data.diveFromGraceNum[data.me];
-        if (!num) {
-          console.error(`DFG Dive Position: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
-          return;
-        }
-
-        // Output no direction when all circles
-        if (!data.diveFromGraceHasArrow[num]) {
-          if (num === 2)
-            return output.circlesDive2!();
-
-          // Can predict where num3s will go based on Darkdragon Dive targeting
-          return output.circlesDive!();
-        }
-
-        // Output West or East
-        if (num === 1 || num === 3) {
-          if (data.diveFromGraceDir[data.me] === 'circle')
-            return output.southDive!();
-          if (data.diveFromGraceDir[data.me] === 'up')
-            return output.upArrowDive!();
-          if (data.diveFromGraceDir[data.me] === 'down')
-            return output.downArrowDive!();
-        }
-
-        // By the time 2s turn, they will be stacked, facing boss,
-        // so calls are relative to the boss
-        if (num === 2) {
-          if (data.diveFromGraceDir[data.me] === 'up')
-            return output.upArrowDive2!();
-          if (data.diveFromGraceDir[data.me] === 'down')
-            return output.downArrowDive2!();
-        }
-        // Outputs nothing if did not find debuff where there was an arrow
-      },
-      outputStrings: {
-        circlesDive: {
-          en: 'Dive (all circles)',
-        },
-        southDive: {
-          en: 'South Dive',
-        },
-        circlesDive2: {
-          en: 'Dive (all circles)',
-        },
-        upArrowDive: {
-          en: 'Up Arrow Dive',
-        },
-        downArrowDive: {
-          en: 'Down Arrow Dive',
-        },
-        upArrowDive2: {
-          en: 'Up Arrow Dive',
-        },
-        downArrowDive2: {
-          en: 'Down Arrow Dive',
-        },
-      },
     },
     {
       id: 'DSR Right Eye Blue Tether',
