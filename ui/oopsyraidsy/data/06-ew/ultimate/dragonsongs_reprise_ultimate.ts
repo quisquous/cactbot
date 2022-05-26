@@ -5,10 +5,11 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { kFlagInstantDeath, playerDamageFields } from '../../../oopsy_common';
 
 // TODO: 63DD Skyward Leap during Strength of the Heavens should ignore invulning tanks
-// TODO: track missing towers during Sanctity
 // TODO: track missing towers during Nidhogg
 
 export interface Data extends OopsyData {
+  towerAbility?: string;
+  convictionTower?: { [name: string]: boolean };
   hasDoom?: { [name: string]: boolean };
 }
 
@@ -48,7 +49,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR Dimensional Purgation': '62D9', // Ser Adelphel tethering a cloud during charges
     'DSR Ser Charibert Holy Chain': '62E0', // failing to break chains, often kills people
     'DSR Ser Grinnaux Planar Prison': '63EC', // leaving the purple circle
-    'DSR Ser Eternal Conviction': '63E0', // messing up towers
     'DSR Holy Comet Holy Impact': '63EA', // meteor explosion from being too close
     'DSR King Thordan Ascalon\'s Mercy Concealed': '63C9', // protean 2nd hit
     'DSR Nidhogg Darkdragon Dive Miss': '671B', // tower failure
@@ -84,6 +84,57 @@ const triggerSet: OopsyTriggerSet<Data> = {
   triggers: [
     {
       // Interrupt.
+      id: 'DSR Ser Adelphel Holiest Hallowing',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '62D0' }),
+      mistake: (_data, matches) => {
+        return { type: 'fail', blame: matches.target, text: matches.ability };
+      },
+    },
+    {
+      id: 'DSR Ser Hermenost Conviction Cast Cleanup',
+      type: 'StartsUsing',
+      // 63DE/63DF = Strength of the Ward towers
+      // 737B/737C = Sanctity of the Ward first towers
+      // 6FEA/6FEB = Sanctity of the Ward second towers
+      netRegex: NetRegexes.startsUsing({ id: ['63DE', '737B', '6FEA'] }),
+      run: (data, matches) => {
+        data.towerAbility = matches.id;
+        data.convictionTower = {};
+      },
+    },
+    {
+      id: 'DSR Ser Hermenost Conviction Tower Collect',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['63DF', '737C', '6FEB'], ...playerDamageFields }),
+      run: (data, matches) => (data.convictionTower ??= {})[matches.target] = true,
+    },
+    {
+      id: 'DSR Ser Hermenost Eternal Conviction Failure',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '63E0' }),
+      suppressSeconds: 1,
+      mistake: (data) => {
+        const missing = data.party.partyNames.filter((name) => {
+          if (data.convictionTower?.[name])
+            return false;
+          // Skip tanks on Conviction during Strength of the Ward.
+          if (data.towerAbility === '63DE' && data.party.isTank(name))
+            return false;
+          return true;
+        }).sort();
+        return missing.map((name) => {
+          return {
+            type: 'fail',
+            blame: name,
+            text: {
+              en: 'Missed Tower',
+            },
+          };
+        });
+      },
+    },
+    {
       id: 'DSR Ser Adelphel Holiest Hallowing',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '62D0' }),
