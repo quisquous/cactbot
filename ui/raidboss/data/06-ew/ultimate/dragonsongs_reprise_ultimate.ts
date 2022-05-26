@@ -1254,24 +1254,7 @@ const triggerSet: TriggerSet<Data> = {
       preRun: (data) => data.diveFromGraceTowerCounter = (data.diveFromGraceTowerCounter ?? 0) + 1,
       delaySeconds: 0.2,
       suppressSeconds: 1,
-      response: (data, _matches, output) => {
-        // cactbot-builtin-response
-        output.responseOutputStrings = {
-          unknown: Outputs.unknown,
-          stackNorth: {
-            en: 'Stack North',
-          },
-          unknownTower: {
-            en: 'Tower',
-          },
-          northwestTower2: {
-            en: 'Northwest Tower',
-          },
-          northeastTower2: {
-            en: 'Northeast Tower',
-          },
-        };
-
+      alertText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
           console.error(`DFG Tower 1 and 2: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
@@ -1302,24 +1285,29 @@ const triggerSet: TriggerSet<Data> = {
           data.diveFromGracePreviousPosition[nameB] = 'east';
         }
 
-        if (data.diveFromGraceTowerCounter === 1) {
-          if (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle')
-            return { infoText: output.stackNorth!() };
-        } else if (data.diveFromGraceTowerCounter === 2) {
-          if (num === 1) {
-            if (data.diveFromGracePreviousPosition[data.me] === 'west')
-              return { alertText: output.northwestTower2!() };
-            if (data.diveFromGracePreviousPosition[data.me] === 'east')
-              return { alertText: output.northeastTower2!() };
-            if (data.diveFromGracePreviousPosition[data.me] === 'middle')
-              return;
-            return { alertText: output.unknownTower!() };
-          } else if (num === 2) {
-            return { infoText: output.stackNorth!() };
-          }
+        if (num === 1 && data.diveFromGraceTowerCounter === 2) {
+          if (data.diveFromGracePreviousPosition[data.me] === 'west')
+            return output.northwestTower2!();
+          if (data.diveFromGracePreviousPosition[data.me] === 'east')
+            return output.northeastTower2!();
+          if (data.diveFromGracePreviousPosition[data.me] === 'middle')
+            return;
+          return output.unknownTower!();
         }
       },
       run: (data) => data.diveFromGracePositions = {},
+      outputStrings: {
+        unknown: Outputs.unknown,
+        unknownTower: {
+          en: 'Tower',
+        },
+        northwestTower2: {
+          en: 'Northwest Tower',
+        },
+        northeastTower2: {
+          en: 'Northeast Tower',
+        },
+      },
     },
     {
       id: 'DSR Darkdragon Dive Single Tower',
