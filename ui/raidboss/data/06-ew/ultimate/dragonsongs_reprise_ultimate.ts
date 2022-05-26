@@ -891,6 +891,120 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'DSR Dive From Grace Number',
+      // This comes out ~5s before symbols.
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker(),
+      infoText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        if (id === headmarkers.dot1) {
+          data.diveFromGraceNum[matches.target] = 1;
+          if (matches.target === data.me)
+            return output.num1!();
+        } else if (id === headmarkers.dot2) {
+          data.diveFromGraceNum[matches.target] = 2;
+          if (matches.target === data.me)
+            return output.stackNorthNum!({ num: output.num2!() });
+        } else if (id === headmarkers.dot3) {
+          data.diveFromGraceNum[matches.target] = 3;
+          if (matches.target === data.me)
+            return output.stackNorthNum!({ num: output.num3!() });
+        }
+      },
+      outputStrings: {
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+        stackNorthNum: {
+          en: '${num}, Stack North',
+        },
+      },
+    },
+    {
+      id: 'DSR Dive From Grace Dir Collect',
+      type: 'GainsEffect',
+      // AC3 = High Jump Target
+      // AC4 = Spineshatter Dive Target
+      // AC5 = Elusive Jump Target
+      netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
+      run: (data, matches) => {
+        if (matches.effectId === 'AC4' || matches.effectId === 'AC5') {
+          const duration = parseFloat(matches.duration);
+          // These come out in 9, 19, 30 seconds.
+          if (duration < 15)
+            data.diveFromGraceHasArrow[1] = true;
+          else if (duration < 25)
+            data.diveFromGraceHasArrow[2] = true;
+          else
+            data.diveFromGraceHasArrow[3] = true;
+        }
+        // Store result for position callout
+        switch (matches.effectId) {
+          case 'AC3':
+            data.diveFromGraceDir[matches.target] = 'circle';
+            break;
+          case 'AC4':
+            data.diveFromGraceDir[matches.target] = 'up';
+            break;
+          case 'AC5':
+            data.diveFromGraceDir[matches.target] = 'down';
+            break;
+        }
+      },
+    },
+    {
+      id: 'DSR Dive From Grace Dir You',
+      type: 'GainsEffect',
+      // AC3 = High Jump Target
+      // AC4 = Spineshatter Dive Target
+      // AC5 = Elusive Jump Target
+      netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: 0.5,
+      alertText: (data, _matches, output) => {
+        const num = data.diveFromGraceNum[data.me];
+        if (!num) {
+          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          return;
+        }
+
+        if (data.diveFromGraceDir[data.me] === 'up')
+          return output.upArrow!({ num: num });
+        else if (data.diveFromGraceDir[data.me] === 'down')
+          return output.downArrow!({ num: num });
+
+        if (data.diveFromGraceHasArrow[num])
+          return output.circleWithArrows!({ num: num });
+        return output.circleAllCircles!({ num: num });
+      },
+      outputStrings: {
+        circleAllCircles: {
+          en: '#${num} All Circles',
+          de: '#${num} Alle Kreise',
+          ja: '#${num} みんなハイジャンプ',
+          ko: '#${num} 모두 하이점프',
+        },
+        circleWithArrows: {
+          en: '#${num} Circle (with arrows)',
+          de: '#${num} Kreise (mit Pfeilen)',
+          ja: '#${num} 自分のみハイジャンプ',
+          ko: '#${num} 나만 하이점프',
+        },
+        upArrow: {
+          en: '#${num} Up Arrow',
+          de: '#${num} Pfeil nach Vorne',
+          ja: '#${num} 上矢印 / スパインダイブ',
+          ko: '#${num} 위 화살표 / 척추 강타',
+        },
+        downArrow: {
+          en: '#${num} Down Arrow',
+          de: '#${num} Pfeil nach Hinten',
+          ja: '#${num} 下矢印 / イルーシヴジャンプ',
+          ko: '#${num} 아래 화살표 / 교묘한 점프',
+        },
+      },
+    },
+    {
       id: 'DSR Gnash and Lash',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6712', source: 'Nidhogg', capture: false }),
@@ -957,6 +1071,48 @@ const triggerSet: TriggerSet<Data> = {
         const posX = parseFloat(matches.targetX);
         data.diveFromGracePositions[matches.target] = posX;
       },
+    },
+    {
+      id: 'DSR Dive From Grace Tower 1',
+      // Triggered on first instance of Eye of the Tyrant (6714)
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
+      // Ignore targetIsYou() incase player misses stack
+      condition: (data) => data.eyeOfTheTyrantCounter === 1,
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        // No callout if missing numbers
+        const num = data.diveFromGraceNum[data.me];
+        if (!num) {
+          console.error(`DFG Tower 1 Reminder: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          return;
+        }
+        // Map for In/Out Output Lookups
+        const gnashLash: { [inout: string]: string } = {
+          'unknown': output.unknown!(),
+          'in': output.in!(),
+          'out': output.out!(),
+        };
+
+        // Call 1st Tower Soak (Must be based on debuffs?)
+        if (num === 3) {
+          // Num3 High Jump Tower 1
+          if (data.diveFromGraceDir[data.me] === 'circle') {
+            // Solo High Jump Tower 1
+            if (data.diveFromGraceHasArrow[3])
+              return output.southTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
+            // All High Jumps, unknown exact position
+            return output.circleTowers!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
+          }
+          // Num3 Spineshatter Tower 1
+          if (data.diveFromGraceDir[data.me] === 'up')
+            return output.upArrowTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
+          // Num3 Elusive Tower 1
+          if (data.diveFromGraceDir[data.me] === 'down')
+            return output.downArrowTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
+        }
+      },
+      outputStrings: diveFromGraceTowerOutputStrings,
     },
     {
       id: 'DSR Dive From Grace Tower 2 and Stacks',
@@ -1091,48 +1247,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Dive From Grace Tower 1',
-      // Triggered on first instance of Eye of the Tyrant (6714)
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
-      // Ignore targetIsYou() incase player misses stack
-      condition: (data) => data.eyeOfTheTyrantCounter === 1,
-      suppressSeconds: 1,
-      infoText: (data, _matches, output) => {
-        // No callout if missing numbers
-        const num = data.diveFromGraceNum[data.me];
-        if (!num) {
-          console.error(`DFG Tower 1 Reminder: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
-          return;
-        }
-        // Map for In/Out Output Lookups
-        const gnashLash: { [inout: string]: string } = {
-          'unknown': output.unknown!(),
-          'in': output.in!(),
-          'out': output.out!(),
-        };
-
-        // Call 1st Tower Soak (Must be based on debuffs?)
-        if (num === 3) {
-          // Num3 High Jump Tower 1
-          if (data.diveFromGraceDir[data.me] === 'circle') {
-            // Solo High Jump Tower 1
-            if (data.diveFromGraceHasArrow[3])
-              return output.southTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
-            // All High Jumps, unknown exact position
-            return output.circleTowers!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
-          }
-          // Num3 Spineshatter Tower 1
-          if (data.diveFromGraceDir[data.me] === 'up')
-            return output.upArrowTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
-          // Num3 Elusive Tower 1
-          if (data.diveFromGraceDir[data.me] === 'down')
-            return output.downArrowTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
-        }
-      },
-      outputStrings: diveFromGraceTowerOutputStrings,
-    },
-    {
       id: 'DSR Dive From Grace Tower 3',
       // Triggered on second instance of Eye of the Tyrant (6714)
       type: 'Ability',
@@ -1208,120 +1322,6 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 1,
       response: Responses.moveAway(),
       run: (data) => delete data.waitingForGeirskogul,
-    },
-    {
-      id: 'DSR Dive From Grace Number',
-      // This comes out ~5s before symbols.
-      type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
-      infoText: (data, matches, output) => {
-        const id = getHeadmarkerId(data, matches);
-        if (id === headmarkers.dot1) {
-          data.diveFromGraceNum[matches.target] = 1;
-          if (matches.target === data.me)
-            return output.num1!();
-        } else if (id === headmarkers.dot2) {
-          data.diveFromGraceNum[matches.target] = 2;
-          if (matches.target === data.me)
-            return output.stackNorthNum!({ num: output.num2!() });
-        } else if (id === headmarkers.dot3) {
-          data.diveFromGraceNum[matches.target] = 3;
-          if (matches.target === data.me)
-            return output.stackNorthNum!({ num: output.num3!() });
-        }
-      },
-      outputStrings: {
-        num1: Outputs.num1,
-        num2: Outputs.num2,
-        num3: Outputs.num3,
-        stackNorthNum: {
-          en: '${num}, Stack North',
-        },
-      },
-    },
-    {
-      id: 'DSR Dive From Grace Dir Collect',
-      type: 'GainsEffect',
-      // AC3 = High Jump Target
-      // AC4 = Spineshatter Dive Target
-      // AC5 = Elusive Jump Target
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
-      run: (data, matches) => {
-        if (matches.effectId === 'AC4' || matches.effectId === 'AC5') {
-          const duration = parseFloat(matches.duration);
-          // These come out in 9, 19, 30 seconds.
-          if (duration < 15)
-            data.diveFromGraceHasArrow[1] = true;
-          else if (duration < 25)
-            data.diveFromGraceHasArrow[2] = true;
-          else
-            data.diveFromGraceHasArrow[3] = true;
-        }
-        // Store result for position callout
-        switch (matches.effectId) {
-          case 'AC3':
-            data.diveFromGraceDir[matches.target] = 'circle';
-            break;
-          case 'AC4':
-            data.diveFromGraceDir[matches.target] = 'up';
-            break;
-          case 'AC5':
-            data.diveFromGraceDir[matches.target] = 'down';
-            break;
-        }
-      },
-    },
-    {
-      id: 'DSR Dive From Grace Dir You',
-      type: 'GainsEffect',
-      // AC3 = High Jump Target
-      // AC4 = Spineshatter Dive Target
-      // AC5 = Elusive Jump Target
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
-      condition: Conditions.targetIsYou(),
-      delaySeconds: 0.5,
-      alertText: (data, _matches, output) => {
-        const num = data.diveFromGraceNum[data.me];
-        if (!num) {
-          console.error(`DFGYou: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
-          return;
-        }
-
-        if (data.diveFromGraceDir[data.me] === 'up')
-          return output.upArrow!({ num: num });
-        else if (data.diveFromGraceDir[data.me] === 'down')
-          return output.downArrow!({ num: num });
-
-        if (data.diveFromGraceHasArrow[num])
-          return output.circleWithArrows!({ num: num });
-        return output.circleAllCircles!({ num: num });
-      },
-      outputStrings: {
-        circleAllCircles: {
-          en: '#${num} All Circles',
-          de: '#${num} Alle Kreise',
-          ja: '#${num} みんなハイジャンプ',
-          ko: '#${num} 모두 하이점프',
-        },
-        circleWithArrows: {
-          en: '#${num} Circle (with arrows)',
-          de: '#${num} Kreise (mit Pfeilen)',
-          ja: '#${num} 自分のみハイジャンプ',
-          ko: '#${num} 나만 하이점프',
-        },
-        upArrow: {
-          en: '#${num} Up Arrow',
-          de: '#${num} Pfeil nach Vorne',
-          ja: '#${num} 上矢印 / スパインダイブ',
-          ko: '#${num} 위 화살표 / 척추 강타',
-        },
-        downArrow: {
-          en: '#${num} Down Arrow',
-          de: '#${num} Pfeil nach Hinten',
-          ja: '#${num} 下矢印 / イルーシヴジャンプ',
-          ko: '#${num} 아래 화살표 / 교묘한 점프',
-        },
-      },
     },
     {
       id: 'DSR Dive From Grace Dive Position',
