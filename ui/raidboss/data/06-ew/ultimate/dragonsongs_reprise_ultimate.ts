@@ -1144,7 +1144,8 @@ const triggerSet: TriggerSet<Data> = {
             return output.eastTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
         }
         // If failed to get positions, call Towers in general
-        if (num !== 3)
+        // Alternatively could add track for vulnerabilities and ignore the num1s that have vuln
+        if ((num === 1 && data.diveFromGracePreviousPosition[data.me] !== 'east' && data.diveFromGracePreviousPosition[data.me] !== 'west') || num === 2)
           return output.circleTowers!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
       },
       outputStrings: diveFromGraceTowerOutputStrings,
