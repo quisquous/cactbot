@@ -1115,7 +1115,8 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: diveFromGraceTowerOutputStrings,
     },
     {
-      id: 'DSR Dive From Grace Tower 2 and Stacks',
+      // Callouts after the first and second dives.
+      id: 'DSR Dive From Grace Tower 1 and 2',
       // 670E Dark High Jump
       // 670F Dark Spineshatter Dive
       // 6710 Dark Elusive Jump
@@ -1130,85 +1131,36 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFG Tower 2 and 3: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(`DFG Tower 1 and 2: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
           return;
         }
 
-        // Map position values and player name keys to arrays
-        const [posA, posB, posC] = Object.values(data.diveFromGracePositions);
-        let [nameA, nameB, nameC] = Object.keys(data.diveFromGracePositions);
-
-        // If undefined position, will not be able to predict position
-        const posAX = posA ?? 0;
-        const posBX = posB ?? 0;
-        const posCX = posC ?? 0;
-
-        // If undefined keys, map to non-player names
-        if (nameA === undefined)
-          nameA = output.unknown!();
-        if (nameB === undefined)
-          nameB = output.unknown!();
-        if (nameC === undefined)
-          nameC = output.unknown!();
+        // Sorted from west to east, and filled in with unknown if missing.
+        const [nameA, nameB, nameC] = [
+          ...Object.keys(data.diveFromGracePositions).sort((keyA, keyB) => {
+            const posA = data.diveFromGracePositions[keyA];
+            const posB = data.diveFromGracePositions[keyB];
+            if (posA === undefined || posB === undefined)
+              return 0;
+            return posA - posB;
+          }),
+          output.unknown!(),
+          output.unknown!(),
+          output.unknown!(),
+        ];
 
         // Dive 1 and Dive 3 have 3 players
         if (data.diveFromGraceTowerCounter !== 2) {
-          // Get the posX of each player hitby dive
-          const positionsX = [posAX, posBX, posCX];
-
-          // Sort the the posX values, highest to lowest
-          const sorted = positionsX.sort((a, b) => b - a);
-
-          // Highest value = east
-          switch (sorted[0]) {
-            case posAX:
-              data.diveFromGracePreviousPosition[nameA] = 'east';
-              break;
-            case posBX:
-              data.diveFromGracePreviousPosition[nameB] = 'east';
-              break;
-            case posCX:
-              data.diveFromGracePreviousPosition[nameC] = 'east';
-              break;
-          }
-          // Middle value = middle
-          switch (sorted[1]) {
-            case posAX:
-              data.diveFromGracePreviousPosition[nameA] = 'middle';
-              break;
-            case posBX:
-              data.diveFromGracePreviousPosition[nameB] = 'middle';
-              break;
-            case posCX:
-              data.diveFromGracePreviousPosition[nameC] = 'middle';
-              break;
-          }
-          // Lowest value = west
-          switch (sorted[2]) {
-            case posAX:
-              data.diveFromGracePreviousPosition[nameA] = 'west';
-              break;
-            case posBX:
-              data.diveFromGracePreviousPosition[nameB] = 'west';
-              break;
-            case posCX:
-              data.diveFromGracePreviousPosition[nameC] = 'west';
-              break;
-          }
+          data.diveFromGracePreviousPosition[nameA] = 'west';
+          data.diveFromGracePreviousPosition[nameB] = 'middle';
+          data.diveFromGracePreviousPosition[nameC] = 'east';
         } else {
-          // Only comparing X values for Dive 2
-          if (posAX < posBX) {
-            data.diveFromGracePreviousPosition[nameA] = 'west';
-            data.diveFromGracePreviousPosition[nameB] = 'east';
-          } else {
-            data.diveFromGracePreviousPosition[nameB] = 'west';
-            data.diveFromGracePreviousPosition[nameA] = 'east';
-          }
+          data.diveFromGracePreviousPosition[nameA] = 'west';
+          data.diveFromGracePreviousPosition[nameB] = 'east';
         }
 
         // First Dive, on num1s
         if (data.diveFromGraceTowerCounter === 1) {
-          // Stack or Move
           if (num === 1) {
             // Stack => Predict Tower 3
             if (data.diveFromGracePreviousPosition[data.me] === 'middle')
@@ -1218,9 +1170,8 @@ const triggerSet: TriggerSet<Data> = {
 
         // Second Dive, on num2s
         if (data.diveFromGraceTowerCounter === 2) {
-          // Call stack for 2s
           if (num === 2)
-            return output.stack!();
+            return output.stackNorth!();
 
           // Call Tower 2 Soak (based on previous position)
           if (num === 1) {
@@ -1234,7 +1185,6 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => data.diveFromGracePositions = {},
       outputStrings: {
         unknown: Outputs.unknown,
-        stack: Outputs.stackMarker,
         stackNorth: {
           en: 'Stack North',
         },
