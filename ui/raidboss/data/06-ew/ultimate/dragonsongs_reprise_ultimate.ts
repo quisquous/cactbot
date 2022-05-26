@@ -936,7 +936,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Dive From Grace Tower 2 and 3',
+      id: 'DSR Dive From Grace Tower 2 and Stacks',
       // 670E Dark High Jump
       // 670F Dark Spineshatter Dive
       // 6710 Dark Elusive Jump
@@ -1059,20 +1059,15 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => data.diveFromGracePositions = {},
       outputStrings: {
         unknown: Outputs.unknown,
+        stack: Outputs.stackMarker,
         stackNorth: {
           en: 'Stack North',
         },
         northwestTower2: {
           en: 'Northwest Tower',
         },
-        westTower3: {
-          en: 'Stack => West Tower',
-        },
         northeastTower2: {
           en: 'Northeast Tower',
-        },
-        eastTower3: {
-          en: 'Stack => East Tower',
         },
       },
     },
