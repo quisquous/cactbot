@@ -921,27 +921,27 @@ const triggerSet: TriggerSet<Data> = {
         if (matches.id === '6715') {
           data.diveFromGraceLashGnashKey = 'in';
           if (data.eyeOfTheTyrantCounter === 1 && num === 3)
-            return output.inOutThenBait!({ inout: output.in!() });
+            return output.inOutAndBait!({ inout: output.in!() });
           if (data.eyeOfTheTyrantCounter === 2) {
             if (num === 2 || (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle'))
-              return output.inOutThenBait!({ inout: output.in!() });
+              return output.inOutAndBait!({ inout: output.in!() });
           }
           return output.in!();
         }
         data.diveFromGraceLashGnashKey = 'out';
         if (data.eyeOfTheTyrantCounter === 1 && num === 3)
-          return output.inOutThenBait!({ inout: output.out!() });
+          return output.inOutAndBait!({ inout: output.out!() });
         if (data.eyeOfTheTyrantCounter === 2) {
           if (num === 2 || (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle'))
-            return output.inOutThenBait!({ inout: output.out!() });
+            return output.inOutAndBait!({ inout: output.out!() });
         }
         return output.out!();
       },
       outputStrings: {
         out: Outputs.out,
         in: Outputs.in,
-        inOutThenBait: {
-          en: '${inout} => Bait',
+        inOutAndBait: {
+          en: '${inout} + Bait',
         },
       },
     },
