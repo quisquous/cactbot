@@ -1039,6 +1039,7 @@ const triggerSet: TriggerSet<Data> = {
       // that does different things for them and want better output strings.
       // The idea here is that folks can rename "Up Arrow Dive" to "East Dive" depending on
       // which way their strat wants them to look.
+      // TODO: should we warn the south tower here? e.g. Stack => Out => South Tower?
       outputStrings: {
         in: Outputs.in,
         out: Outputs.out,
@@ -1079,51 +1080,55 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: ['6715', '6716'], source: 'Nidhogg' }),
       // These are ~3s apart.  Only call after the first (and ignore multiple people getting hit).
       suppressSeconds: 6,
-      infoText: (data, matches, output) => {
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          out: Outputs.out,
+          in: Outputs.in,
+          inOutAndBait: {
+            en: '${inout} + Bait',
+          },
+          circlesDive2: {
+            en: '${inout} => Dive (circles)',
+          },
+          upArrowDive2: {
+            en: '${inout} => Up Arrow Dive',
+          },
+          downArrowDive2: {
+            en: '${inout} => Down Arrow Dive',
+          },
+        };
+
         const key = matches.id === '6715' ? 'in' : 'out';
         const inout = output[key]!();
         data.diveFromGraceLashGnashKey = key;
 
         const num = data.diveFromGraceNum[data.me];
         if (num === undefined) {
-          console.error(`DSR Lash Gnash Followup: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
-          return inout;
+          // Don't print a console error here because this response gets eval'd as part
+          // of the config ui and testing.  We'll get errors elsewhere if needed.
+          // TODO: maybe have a better way to know if we're in the middle of testing?
+          return { intoText: inout };
         }
 
         if (data.eyeOfTheTyrantCounter === 1) {
           if (num === 2) {
             if (!data.diveFromGraceHasArrow[num])
-              return output.circlesDive2!({ inout: inout });
+              return { alertText: output.circlesDive2!({ inout: inout }) };
             if (data.diveFromGraceDir[data.me] === 'up')
-              return output.upArrowDive2!({ inout: inout });
+              return { alertText: output.upArrowDive2!({ inout: inout }) };
             if (data.diveFromGraceDir[data.me] === 'down')
-              return output.downArrowDive2!({ inout: inout });
+              return { alertText: output.downArrowDive2!({ inout: inout }) };
           } else if (num === 3) {
-            return output.inOutAndBait!({ inout: inout });
+            return { alertText: output.inOutAndBait!({ inout: inout }) };
           }
         } else if (data.eyeOfTheTyrantCounter === 2) {
           if (num === 2 || (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle'))
-            return output.inOutAndBait!({ inout: inout });
+            return { alertText: output.inOutAndBait!({ inout: inout }) };
         }
 
         // Otherwise, just tell the remaining people the dodge.
-        return inout;
-      },
-      outputStrings: {
-        out: Outputs.out,
-        in: Outputs.in,
-        inOutAndBait: {
-          en: '${inout} + Bait',
-        },
-        circlesDive2: {
-          en: '${inout} => Dive (circles)',
-        },
-        upArrowDive2: {
-          en: '${inout} => Up Arrow Dive',
-        },
-        downArrowDive2: {
-          en: '${inout} => Down Arrow Dive',
-        },
+        return { infoText: inout };
       },
     },
     {
@@ -1229,7 +1234,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Dive From Grace Tower 1 and 2',
+      id: 'DSR Dive From Grace Post Dive',
       // 670E Dark High Jump
       // 670F Dark Spineshatter Dive
       // 6710 Dark Elusive Jump
@@ -1241,7 +1246,24 @@ const triggerSet: TriggerSet<Data> = {
       preRun: (data) => data.diveFromGraceTowerCounter = (data.diveFromGraceTowerCounter ?? 0) + 1,
       delaySeconds: 0.2,
       suppressSeconds: 1,
-      infoText: (data, _matches, output) => {
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          unknown: Outputs.unknown,
+          stackNorth: {
+            en: 'Stack North',
+          },
+          unknownTower: {
+            en: 'Tower',
+          },
+          northwestTower2: {
+            en: 'Northwest Tower',
+          },
+          northeastTower2: {
+            en: 'Northeast Tower',
+          },
+        };
+
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
           console.error(`DFG Tower 1 and 2: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
@@ -1272,42 +1294,24 @@ const triggerSet: TriggerSet<Data> = {
           data.diveFromGracePreviousPosition[nameB] = 'east';
         }
 
-        // First Dive, on num1s
         if (data.diveFromGraceTowerCounter === 1) {
-          if (num === 1) {
-            // Stack => Predict Tower 3
-            if (data.diveFromGracePreviousPosition[data.me] === 'middle')
-              return output.stackNorth!();
-          }
-        }
-
-        // Second Dive, on num2s
-        if (data.diveFromGraceTowerCounter === 2) {
-          if (num === 2)
-            return output.stackNorth!();
-
-          // Call Tower 2 Soak (based on previous position)
+          if (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle')
+            return { infoText: output.stackNorth!() };
+        } else if (data.diveFromGraceTowerCounter === 2) {
           if (num === 1) {
             if (data.diveFromGracePreviousPosition[data.me] === 'west')
-              return output.northwestTower2!();
+              return { alertText: output.northwestTower2!() };
             if (data.diveFromGracePreviousPosition[data.me] === 'east')
-              return output.northeastTower2!();
+              return { alertText: output.northeastTower2!() };
+            if (data.diveFromGracePreviousPosition[data.me] === 'middle')
+              return;
+            return { alertText: output.unknownTower!() };
+          } else if (num === 2) {
+            return { infoText: output.stackNorth!() };
           }
         }
       },
       run: (data) => data.diveFromGracePositions = {},
-      outputStrings: {
-        unknown: Outputs.unknown,
-        stackNorth: {
-          en: 'Stack North',
-        },
-        northwestTower2: {
-          en: 'Northwest Tower',
-        },
-        northeastTower2: {
-          en: 'Northeast Tower',
-        },
-      },
     },
     {
       id: 'DSR Darkdragon Dive Single Tower',
