@@ -1039,13 +1039,9 @@ const triggerSet: TriggerSet<Data> = {
 
         // Second Dive, on num2s
         if (data.diveFromGraceTowerCounter === 2) {
-          // Stack => Predict Tower 3 (based on previous position)
-          if (num === 2) {
-            if (data.diveFromGracePreviousPosition[data.me] === 'west')
-              return output.westTower3!();
-            if (data.diveFromGracePreviousPosition[data.me] === 'east')
-              return output.eastTower3!();
-          }
+          // Call stack for 2s
+          if (num === 2)
+            return output.stack!();
 
           // Call Tower 2 Soak (based on previous position)
           if (num === 1) {
