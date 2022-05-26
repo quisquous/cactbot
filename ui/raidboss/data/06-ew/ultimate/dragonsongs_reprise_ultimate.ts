@@ -128,10 +128,16 @@ const diveFromGraceTowerOutputStrings = {
   circleTowers: {
     en: 'Towers (all circles, ${inout})',
   },
-  westTower: {
+  upArrowTower: {
+    en: 'Up Arrow Tower (${inout})',
+  },
+  downArrowTower: {
+    en: 'Down Arrow Tower (${inout})',
+  },
+  westTower3: {
     en: 'West Tower (${inout})',
   },
-  eastTower: {
+  eastTower3: {
     en: 'East Tower (${inout})',
   },
 };
@@ -1104,10 +1110,10 @@ const triggerSet: TriggerSet<Data> = {
           }
           // Num3 Spineshatter Tower 1
           if (data.diveFromGraceDir[data.me] === 'up')
-            return output.westTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
+            return output.upArrowTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
           // Num3 Elusive Tower 1
           if (data.diveFromGraceDir[data.me] === 'down')
-            return output.eastTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
+            return output.downArrowTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
         }
       },
       outputStrings: diveFromGraceTowerOutputStrings,
@@ -1139,9 +1145,9 @@ const triggerSet: TriggerSet<Data> = {
         // Call Tower 3 Soak for num2s (based on previous position)
         if (num === 2) {
           if (data.diveFromGracePreviousPosition[data.me] === 'west')
-            return output.westTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
+            return output.westTower3!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
           if (data.diveFromGracePreviousPosition[data.me] === 'east')
-            return output.eastTower!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
+            return output.eastTower3!({ inout: gnashLash[data.diveFromGraceLashGnashKey] });
         }
         // If failed to get positions, call Towers in general
         // Alternatively could add track for vulnerabilities and ignore the num1s that have vuln
