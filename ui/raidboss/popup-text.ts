@@ -304,7 +304,7 @@ class TriggerOutputProxy {
 
         // Because output.func() must exist at the time of trigger eval,
         // always provide a function even before we know which keys are valid.
-        return (params: TriggerParams) => {
+        return (params?: TriggerParams) => {
           const id = target.trigger.id ?? 'Unknown Trigger';
 
           // Priority: per-trigger config from ui > response > built-in trigger
@@ -332,7 +332,7 @@ class TriggerOutputProxy {
   getReplacement(
     // Can't use optional modifier for this arg since the others aren't optional
     template: { [lang: string]: unknown } | string | undefined,
-    params: TriggerParams,
+    params: TriggerParams | undefined,
     name: string,
     id: string,
   ): string | undefined {
@@ -356,7 +356,7 @@ class TriggerOutputProxy {
     }
 
     return value.replace(/\${\s*([^}\s]+)\s*}/g, (_fullMatch: string, key: string) => {
-      if (key in params) {
+      if (params !== undefined && key in params) {
         const str = params[key];
         switch (typeof str) {
           case 'string':
