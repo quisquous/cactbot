@@ -92,6 +92,7 @@ Options.Triggers.push({
     return {
       phase: 'doorboss',
       firstAdelphelJump: true,
+      brightwingCounter: 1,
       thordanMeteorMarkers: [],
       diveFromGraceNum: {},
       diveFromGraceHasArrow: { 1: false, 2: false, 3: false },
@@ -99,6 +100,7 @@ Options.Triggers.push({
       diveFromGracePositions: {},
       diveFromGraceDir: {},
       diveFromGracePreviousPosition: {},
+      diveCounter: 1,
     };
   },
   timelineTriggers: [
@@ -139,6 +141,8 @@ Options.Triggers.push({
       // 71E4 = Shockwave
       netRegex: NetRegexes.startsUsing({ id: ['62D4', '63C8', '6708', '62E2', '6B86', '6667', '7438'], capture: true }),
       run: (data, matches) => {
+        // On the unlikely chance that somebody proceeds directly from the checkpoint into the next phase.
+        data.brightwingCounter = 1;
         switch (matches.id) {
           case '62D4':
             data.phase = 'doorboss';
@@ -150,7 +154,9 @@ Options.Triggers.push({
             data.phase = 'nidhogg';
             break;
           case '62E2':
-            data.phase = 'haurchefant';
+            // This ability is used in both doorboss and haurchefant.
+            if (data.phase !== 'doorboss')
+              data.phase = 'haurchefant';
             break;
           case '6B86':
             data.phase = 'thordan2';
@@ -355,8 +361,32 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'DSR Brightwing Counter',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6319', source: 'Ser Charibert', capture: false }),
+      // One ability for each player hit (hopefully only two??)
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => output[`dive${data.brightwingCounter}`](),
+      run: (data) => data.brightwingCounter++,
+      outputStrings: {
+        // Ideally folks can customize this with who needs to run in.
+        dive1: Outputs.num1,
+        dive2: Outputs.num2,
+        dive3: Outputs.num3,
+        dive4: Outputs.num4,
+      },
+    },
+    {
+      id: 'DSR Brightwing Move',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6319', source: 'Ser Charibert' }),
+      condition: Conditions.targetIsYou(),
+      // Once hit, drop your Skyblind puddle somewhere else.
+      response: Responses.moveAway('alert'),
+    },
+    {
       id: 'DSR Skyblind',
-      // 631A Skyblind (2.2s cast) is a targetted ground aoe where A65 Skyblind
+      // 631A Skyblind (2.2s cast) is a targeted ground aoe where A65 Skyblind
       // effect expired on the player.
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'A65' }),
@@ -1269,6 +1299,110 @@ Options.Triggers.push({
         },
         downArrowDive2: {
           en: 'Down Arrow Dive',
+        },
+      },
+    },
+    {
+      id: 'DSR Right Eye Blue Tether',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '0033' }),
+      condition: (data, matches) => matches.source === data.me,
+      // Have blue/red be different alert/info to differentiate.
+      // Since dives are usually blue people dropping off their blue tether
+      // to a red person (who needs to run in), make the blue tether
+      // the higher severity one.
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Blue',
+        },
+      },
+    },
+    {
+      id: 'DSR Left Eye Red tether',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '0034' }),
+      condition: (data, matches) => matches.source === data.me,
+      // See note above on Right Eye Blue Tether.
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Red',
+        },
+      },
+    },
+    {
+      id: 'DSR Eyes Dive Cast',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '68C3', source: ['Right Eye', 'Left Eye'], capture: false }),
+      // One cast for each dive.  68C3 is the initial cast/self-targeted ability.
+      // 68C4 is the damage on players.
+      suppressSeconds: 1,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dives Soon',
+        },
+      },
+    },
+    {
+      id: 'DSR Eyes Dive Counter',
+      type: 'Ability',
+      // TODO: should this call out who it was on? some strats involve the
+      // first dive targets swapping with the third dive targets.
+      netRegex: NetRegexes.ability({ id: '68C4', source: 'Nidhogg', capture: false }),
+      // One ability for each player hit.
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => output[`dive${data.diveCounter}`](),
+      run: (data) => data.diveCounter++,
+      outputStrings: {
+        dive1: Outputs.num1,
+        dive2: Outputs.num2,
+        dive3: Outputs.num3,
+        dive4: Outputs.num4,
+      },
+    },
+    {
+      id: 'DSR Eyes Steep in Rage',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '68BD', source: ['Right Eye', 'Left Eye'], capture: false }),
+      // Each of the eyes (if alive) will start this aoe.  It has the same id from each eye.
+      suppressSeconds: 1,
+      response: Responses.bigAoe('alert'),
+    },
+    {
+      id: 'DSR Right Eye Reminder',
+      type: 'StartsUsing',
+      // If the Right Eye is dead and the Left Eye gets the aoe off, then the Right Eye
+      // will be revived and you shouldn't forget about it.
+      netRegex: NetRegexes.startsUsing({ id: '68BD', source: 'Left Eye' }),
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime),
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Right Eye',
+        },
+      },
+    },
+    {
+      id: 'DSR Spear of the Fury Limit Break',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '62E2', source: 'Ser Zephirin', capture: false }),
+      // This ability also happens in doorboss phase.
+      condition: (data) => data.role === 'tank' && data.phase === 'haurchefant',
+      // This is a 10 second cast, and (from video) my understanding is to
+      // hit tank LB when the cast bar gets to the "F" in "Fury", which is
+      // roughly 2.8 seconds before it ends.
+      delaySeconds: 10 - 2.8,
+      alarmText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'TANK LB!!',
+          de: 'TANK LB!!',
+          fr: 'LB TANK !!',
+          ja: 'タンクLB!!',
+          cn: '坦克LB！！',
+          ko: '리미트 브레이크!!',
         },
       },
     },
