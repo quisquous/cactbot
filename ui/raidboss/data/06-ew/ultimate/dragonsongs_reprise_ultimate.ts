@@ -1055,10 +1055,10 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Bait => Stack => ${inout}',
         },
         circlesDive1: {
-          en: 'Dive (circles) => ${inout}',
+          en: 'Dive (all circles) => ${inout}',
         },
         circlesDive3: {
-          en: 'Dive (circles) => ${inout}',
+          en: 'Dive (all circles) => ${inout}',
         },
         southDive1: {
           en: 'South Dive => ${inout}',
@@ -1097,7 +1097,7 @@ const triggerSet: TriggerSet<Data> = {
             en: '${inout} + Bait',
           },
           circlesDive2: {
-            en: '${inout} => Dive (circles)',
+            en: '${inout} => Dive (all circles)',
           },
           upArrowDive2: {
             en: '${inout} => Up Arrow Dive',
@@ -1216,10 +1216,10 @@ const triggerSet: TriggerSet<Data> = {
           en: 'South Tower (${inout})',
         },
         circleTowers1: {
-          en: 'Towers (circles, ${inout})',
+          en: 'Tower (all circles, ${inout})',
         },
         circleTowers3: {
-          en: 'Towers (circles, ${inout})',
+          en: 'Tower (all circles, ${inout})',
         },
         upArrowTower1: {
           en: 'Up Arrow Tower (${inout})',
