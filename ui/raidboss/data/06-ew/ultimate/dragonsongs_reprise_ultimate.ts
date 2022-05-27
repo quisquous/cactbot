@@ -895,6 +895,7 @@ const triggerSet: TriggerSet<Data> = {
         num3: Outputs.num3,
         stackNorthNum: {
           en: '${num}, Stack North',
+          de: '${num}, Im Norden sammeln',
         },
       },
     },
@@ -1050,33 +1051,43 @@ const triggerSet: TriggerSet<Data> = {
         out: Outputs.out,
         stackInOut: {
           en: 'Stack => ${inout}',
+          de: 'Sammeln => ${inout}',
         },
         baitStackInOut: {
           en: 'Bait => Stack => ${inout}',
+          de: 'Ködern => Sammeln => ${inout}',
         },
         circlesDive1: {
           en: 'Dive (all circles) => ${inout}',
+          de: 'Sturz (alle Kreise) => ${inout}',
         },
         circlesDive3: {
           en: 'Dive (all circles) => ${inout}',
+          de: 'Sturz (alle Kreise) => ${inout}',
         },
         southDive1: {
           en: 'South Dive => ${inout}',
+          de: 'Südlicher Sturz => ${inout}',
         },
         southDive3: {
           en: 'South Dive => ${inout}',
+          de: 'Südlicher Sturz => ${inout}',
         },
         upArrowDive1: {
           en: 'Up Arrow Dive => ${inout}',
+          de: 'Vorne-Pfeil-Sturz => ${inout}',
         },
         upArrowDive3: {
           en: 'Up Arrow Dive => ${inout}',
+          de: 'Vorne-Pfeil-Sturz => ${inout}',
         },
         downArrowDive1: {
           en: 'Down Arrow Dive => ${inout}',
+          de: 'Hinten-Pfeil-Sturz => ${inout}',
         },
         downArrowDive3: {
           en: 'Down Arrow Dive => ${inout}',
+          de: 'Hinten-Pfeil-Sturz => ${inout}',
         },
       },
     },
@@ -1095,15 +1106,19 @@ const triggerSet: TriggerSet<Data> = {
           in: Outputs.in,
           inOutAndBait: {
             en: '${inout} + Bait',
+            de: '${inout} + Ködern',
           },
           circlesDive2: {
             en: '${inout} => Dive (all circles)',
+            de: '${inout} => Sturz (alle Kreise)',
           },
           upArrowDive2: {
             en: '${inout} => Up Arrow Dive',
+            de: '${inout} => Vorne-Pfeil-Sturz',
           },
           downArrowDive2: {
             en: '${inout} => Down Arrow Dive',
+            de: '${inout} => Hinten-Pfeil-Sturz',
           },
         };
 
@@ -1208,36 +1223,47 @@ const triggerSet: TriggerSet<Data> = {
         out: Outputs.out,
         unknownTower: {
           en: 'Tower (${inout})',
+          de: 'Turm (${inout})',
         },
         southTower1: {
           en: 'South Tower (${inout})',
+          de: 'Südlicher Turm (${inout})',
         },
         southTower3: {
           en: 'South Tower (${inout})',
+          de: 'Südlicher Turm (${inout})',
         },
         circleTowers1: {
           en: 'Tower (all circles, ${inout})',
+          de: 'Türme (alle Kreise, ${inout})',
         },
         circleTowers3: {
           en: 'Tower (all circles, ${inout})',
+          de: 'Türme (alle Kreise, ${inout})',
         },
         upArrowTower1: {
           en: 'Up Arrow Tower (${inout})',
+          de: 'Vorne-Pfeil-Turm (${inout})',
         },
         downArrowTower1: {
           en: 'Down Arrow Tower (${inout})',
+          de: 'Hinten-Pfeil-Turm (${inout})',
         },
         upArrowTower3: {
           en: 'Up Arrow Tower (${inout})',
+          de: 'Vorne-Pfeil-Turm (${inout})',
         },
         downArrowTower3: {
           en: 'Down Arrow Tower (${inout})',
+          de: 'Hinten-Pfeil-Turm (${inout})',
         },
         westTower3: {
           en: 'West Tower (${inout})',
+          de: 'Westlicher Turm (${inout})',
         },
         eastTower3: {
           en: 'East Tower (${inout})',
+          de: 'Östlicher Turm (${inout})',
         },
       },
     },
@@ -1300,12 +1326,15 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
         unknownTower: {
           en: 'Tower',
+          de: 'Turm',
         },
         northwestTower2: {
           en: 'Northwest Tower',
+          de: 'Nordwestlicher Turm',
         },
         northeastTower2: {
           en: 'Northeast Tower',
+          de: 'Nordöstlicher Turm',
         },
       },
     },
@@ -1364,6 +1393,7 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
         stackInOut: {
           en: 'Stack => ${inout}',
+          de: 'Sammeln => ${inout}',
         },
         move: Outputs.moveAway,
       },
@@ -1381,6 +1411,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Blue',
+          de: 'Blau',
         },
       },
     },
@@ -1394,6 +1425,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Red',
+          de: 'Rot',
         },
       },
     },
@@ -1408,6 +1440,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dives Soon',
+          de: 'Stürze bald',
         },
       },
     },
@@ -1447,6 +1480,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Kill Right Eye',
+          de: 'Besiege Rechtes Auge',
         },
       },
     },
