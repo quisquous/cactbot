@@ -1182,6 +1182,9 @@ const triggerSet: TriggerSet<Data> = {
             }
             return output.unknownTower!({ inout: inout });
           }
+          // Folks who could be placing a two tower here just get
+          // the normal "in" or "out" below, and the Lash Gnash Followup
+          // will say "In => Up Arrow Tower" as a reminder.
         } else if (data.eyeOfTheTyrantCounter === 2) {
           // Tower 3 soaks based on debuffs and previous positions.
           const pos = data.diveFromGracePreviousPosition[data.me];
@@ -1201,6 +1204,9 @@ const triggerSet: TriggerSet<Data> = {
           }
           return output.unknownTower!({ inout: inout });
         }
+
+        // Anybody who isn't placing or taking a tower here just gets a "in/out" reminder.
+        return inout;
       },
       outputStrings: {
         unknown: Outputs.unknown,
