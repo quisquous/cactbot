@@ -785,6 +785,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker(),
       condition: (data) => data.phase === 'thordan',
+      // Keep this up through the first tower.
+      durationSeconds: 10,
       infoText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
         if (id !== headmarkers.meteor)
