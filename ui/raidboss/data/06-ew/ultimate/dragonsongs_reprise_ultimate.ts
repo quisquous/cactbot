@@ -1116,7 +1116,7 @@ const triggerSet: TriggerSet<Data> = {
           // Don't print a console error here because this response gets eval'd as part
           // of the config ui and testing.  We'll get errors elsewhere if needed.
           // TODO: maybe have a better way to know if we're in the middle of testing?
-          return { intoText: inout };
+          return { infoText: inout };
         }
 
         if (data.eyeOfTheTyrantCounter === 1) {
