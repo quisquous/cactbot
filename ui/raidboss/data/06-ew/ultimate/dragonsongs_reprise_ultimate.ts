@@ -667,6 +667,12 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
+      id: 'DSR Heavenly Heel',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '63C7', source: 'King Thordan' }),
+      response: Responses.tankBusterSwap('alert', 'alert'),
+    },
+    {
       id: 'DSR Sanctity of the Ward Direction',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '63E1', source: 'King Thordan', capture: false }),
