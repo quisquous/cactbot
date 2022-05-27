@@ -124,21 +124,27 @@ const diveFromGraceTowerOutputStrings = {
   out: Outputs.out,
   southTower: {
     en: 'South Tower (${inout})',
+    de: 'Süd-Turm (${inout})',
   },
   circleTowers: {
     en: 'Towers (all circles, ${inout})',
+    de: 'Türme (alle Kreise, ${inout})',
   },
   upArrowTower: {
     en: 'Up Arrow Tower (${inout})',
+    de: 'Vorne-Pfeil-Turm (${inout})',
   },
   downArrowTower: {
     en: 'Down Arrow Tower (${inout})',
+    de: 'Hinten-Pfeil-Turm (${inout})',
   },
   westTower3: {
     en: 'West Tower (${inout})',
+    de: 'West-Turm (${inout})',
   },
   eastTower3: {
     en: 'East Tower (${inout})',
+    de: 'Ost-Turm (${inout})',
   },
 };
 
@@ -912,6 +918,7 @@ const triggerSet: TriggerSet<Data> = {
         in: Outputs.in,
         inOutThenBait: {
           en: '${inout} => Bait',
+          de: '${inout} => Ködern',
         },
       },
     },
@@ -1051,12 +1058,15 @@ const triggerSet: TriggerSet<Data> = {
         stack: Outputs.stackMarker,
         stackNorth: {
           en: 'Stack North',
+          de: 'Im Norden sammeln',
         },
         northwestTower2: {
           en: 'Northwest Tower',
+          de: 'Nord-West Turm',
         },
         northeastTower2: {
           en: 'Northeast Tower',
+          de: 'Nord-Ost Turm',
         },
       },
     },
@@ -1161,6 +1171,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitThenStack: {
           en: 'Bait => Stack',
+          de: 'Ködern => Sammeln',
         },
         text: {
           en: 'Bait',
@@ -1206,6 +1217,7 @@ const triggerSet: TriggerSet<Data> = {
         num3: Outputs.num3,
         stackNorthNum: {
           en: '${num}, Stack North',
+          de: '${num}, Im Norden sammeln',
         },
       },
     },
@@ -1347,24 +1359,31 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         circlesDive: {
           en: 'Dive (all circles)',
+          de: 'Sturz (alle Kreise)',
         },
         southDive: {
           en: 'South Dive',
+          de: 'Südlicher Sturz',
         },
         circlesDive2: {
           en: 'Dive (all circles)',
+          de: 'Sturz (alle Kreise)',
         },
         upArrowDive: {
           en: 'Up Arrow Dive',
+          de: 'Vorne-Pfeil-Sturz',
         },
         downArrowDive: {
           en: 'Down Arrow Dive',
+          de: 'Hinten-Pfeil-Sturz',
         },
         upArrowDive2: {
           en: 'Up Arrow Dive',
+          de: 'Vorne-Pfeil-Sturz',
         },
         downArrowDive2: {
           en: 'Down Arrow Dive',
+          de: 'Hinten-Pfeil-Sturz',
         },
       },
     },
