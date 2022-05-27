@@ -1,5 +1,5 @@
 import './raidboss_config';
-
+import DTFuncs from '../../resources/datetime';
 import { isLang, Lang, langMap } from '../../resources/languages';
 import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler } from '../../resources/overlay_plugin_api';
@@ -13,7 +13,7 @@ import Encounter from './emulator/data/Encounter';
 import LineEvent from './emulator/data/network_log_converter/LineEvent';
 import Persistor from './emulator/data/Persistor';
 import RaidEmulator from './emulator/data/RaidEmulator';
-import EmulatorCommon, {
+import {
   getTemplateChild,
   querySelectorAllSafe,
   querySelectorSafe,
@@ -353,14 +353,14 @@ const raidEmulatorOnLoad = async () => {
                 .toString();
               querySelectorSafe(encLabel, '.end').innerText = new Date(enc.endTimestamp).toString();
 
-              const duration = EmulatorCommon.timeToString(
+              const duration = DTFuncs.timeToString(
                 enc.endTimestamp - enc.startTimestamp,
                 false,
               )
                 .split(':');
               const durationMins = duration[0] ?? '0';
               const durationSecs = duration[1] ?? '00';
-              const pullDuration = EmulatorCommon.timeToString(
+              const pullDuration = DTFuncs.timeToString(
                 enc.endTimestamp - enc.initialTimestamp,
                 false,
               )

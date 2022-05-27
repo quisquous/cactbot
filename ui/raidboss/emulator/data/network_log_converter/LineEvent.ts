@@ -1,6 +1,7 @@
+import DTFuncs from '../../../../../resources/datetime';
 import logDefinitions, { LogDefinitionMap } from '../../../../../resources/netlog_defs';
+import SFuncs from '../../../../../resources/stringhandlers';
 import { Job } from '../../../../../types/job';
-import EmulatorCommon, { getTimezoneOffsetMillis } from '../../EmulatorCommon';
 
 import { LineEvent0x03 } from './LineEvent0x03';
 import LogRepository from './LogRepository';
@@ -34,10 +35,10 @@ export default class LineEvent {
 
   constructor(repo: LogRepository, public networkLine: string, parts: string[]) {
     const timestampString = parts[fields.timestamp] ?? '0';
-    this.tzOffsetMillis = getTimezoneOffsetMillis(timestampString);
+    this.tzOffsetMillis = DTFuncs.getTimezoneOffsetMillis(timestampString);
     this.decEventStr = parts[fields.event] ?? '00';
     this.decEvent = parseInt(this.decEventStr);
-    this.hexEvent = EmulatorCommon.zeroPad(this.decEvent.toString(16).toUpperCase());
+    this.hexEvent = SFuncs.zeroPad(this.decEvent.toString(16).toUpperCase());
     this.timestamp = new Date(timestampString).getTime();
     this.checksum = parts.slice(-1)[0] ?? '';
     repo.updateTimestamp(this.timestamp);
@@ -45,7 +46,7 @@ export default class LineEvent {
   }
 
   prefix(): string {
-    const timeString = EmulatorCommon.timeToTimeString(this.timestamp, this.tzOffsetMillis, true);
+    const timeString = DTFuncs.timeToTimeString(this.timestamp, this.tzOffsetMillis, true);
     const logMessageName = logMessagePrefix[this.decEventStr] ?? unknownLogMessagePrefix;
     return `[${timeString}] ${logMessageName} ${this.hexEvent}:`;
   }
@@ -62,7 +63,7 @@ export default class LineEvent {
     if (LineEvent.isDamageHallowed(damage))
       return 0;
 
-    damage = EmulatorCommon.zeroPad(damage, 8);
+    damage = SFuncs.zeroPad(damage, 8);
     const parts = [
       damage.substr(0, 2),
       damage.substr(2, 2),

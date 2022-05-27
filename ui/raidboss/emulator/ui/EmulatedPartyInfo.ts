@@ -1,8 +1,10 @@
+import DTFuncs from '../../../../resources/datetime';
 import { UnreachableCode } from '../../../../resources/not_reached';
+import SFuncs from '../../../../resources/stringhandlers';
 import Util from '../../../../resources/util';
 import AnalyzedEncounter, { PerspectiveTrigger } from '../data/AnalyzedEncounter';
 import RaidEmulator from '../data/RaidEmulator';
-import EmulatorCommon, { cloneSafe, getTemplateChild, querySelectorSafe } from '../EmulatorCommon';
+import { cloneSafe, getTemplateChild, querySelectorSafe } from '../EmulatorCommon';
 import EventBus from '../EventBus';
 
 import Tooltip from './Tooltip';
@@ -285,13 +287,13 @@ export default class EmulatedPartyInfo extends EventBus {
 
     const hpProg = (State.hp / State.maxHp) * 100;
     let hpLabel = `${State.hp}/${State.maxHp}`;
-    hpLabel = EmulatorCommon.spacePadLeft(hpLabel, (State.maxHp.toString().length * 2) + 1);
+    hpLabel = SFuncs.leftExtendStr(hpLabel, (State.maxHp.toString().length * 2) + 1, ' ');
     display.$hpProgElem.style.width = `${hpProg}%`;
     display.$hpLabelElem.textContent = hpLabel;
 
     const mpProg = (State.mp / State.maxMp) * 100;
     let mpLabel = `${State.mp}/${State.maxMp}`;
-    mpLabel = EmulatorCommon.spacePadLeft(mpLabel, (State.maxMp.toString().length * 2) + 1);
+    mpLabel = SFuncs.leftExtendStr(mpLabel, (State.maxMp.toString().length * 2) + 1, ' ');
     display.$mpProgElem.style.width = `${mpProg}%`;
     display.$mpLabelElem.textContent = mpLabel;
   }
@@ -382,7 +384,7 @@ export default class EmulatedPartyInfo extends EventBus {
     $finalDataViewer.textContent = JSON.stringify(per.finalData, null, 2);
 
     $container.append(this._wrapCollapse({
-      time: EmulatorCommon.timeToString(
+      time: DTFuncs.timeToString(
         encounter.encounter.duration - encounter.encounter.initialOffset,
         false,
       ),
@@ -414,14 +416,14 @@ export default class EmulatedPartyInfo extends EventBus {
   }
 
   getTriggerFiredLabelTime(trigger: PerspectiveTrigger): string {
-    return EmulatorCommon.timeToString(
+    return DTFuncs.timeToString(
       trigger.logLine.offset - (this.emulator.currentEncounter?.encounter.initialOffset ?? 0),
       false,
     );
   }
 
   getTriggerResolvedLabelTime(trigger: PerspectiveTrigger): string {
-    return EmulatorCommon.timeToString(
+    return DTFuncs.timeToString(
       trigger.resolvedOffset - (this.emulator.currentEncounter?.encounter.initialOffset ?? 0),
       false,
     );

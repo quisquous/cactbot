@@ -2,8 +2,10 @@ import { Console } from 'console';
 import { Transform } from 'stream';
 
 import ContentType from '../../resources/content_type';
+import DTFuncs from '../../resources/datetime';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
+import StringFuncs from '../../resources/stringhandlers';
 import ZoneInfo from '../../resources/zone_info';
 import { NetMatches, NetAnyMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
@@ -319,6 +321,13 @@ class EncounterCollector extends EncounterFinder {
 }
 
 class TLFuncs {
+  // TODO: Replace the line argument with a NetAnyMatches once
+  // we move the ParseLine logic out of the emulator.
+  static getTZOffsetFromLogLine(line: string): number {
+    const time = !line.substring(0, 3).includes('|') ? line.substring(3, 36) : line.substring(4, 37);
+    return DTFuncs.getTimezoneOffsetMillis(time);
+  }
+
   static dateFromMatches(matches: NetAnyMatches): Date {
     // No current match definitions are missing a timestamp,
     // but in the event any are added without in future, we will be ready!
@@ -337,12 +346,6 @@ class TLFuncs {
     return 'Unknown_Time';
   }
 
-  static dayFromDate(date?: Date): string {
-    if (date)
-      return date.toISOString().slice(0, 10);
-    return 'Unknown_Date';
-  }
-
   static durationFromDates(start?: Date, end?: Date): string {
     if (start === undefined || end === undefined)
       return 'Unknown_Duration';
@@ -354,41 +357,25 @@ class TLFuncs {
     return (totalSeconds % 60).toString() + 's';
   }
 
-  static toProperCase(str: string): string {
-    return str.split(' ').map((str) => {
-      const cap = str[0]?.toUpperCase();
-      const lower = str.slice(1);
-      if (cap)
-        return `${cap}${lower}`;
-    }).join(' ');
-  }
-
-  static leftExtendStr(str?: string, length?: number): string {
-    if (str === undefined)
-      return '';
-    if (length === undefined)
-      return str;
-    return str.padStart(length, ' ');
-  }
-
-  static rightExtendStr(str?: string, length?: number): string {
-    if (str === undefined)
-      return '';
-    if (length === undefined)
-      return str;
-    return str.padEnd(length, ' ');
-  }
-
   static generateFileName(fightOrZone: FightEncInfo | ZoneEncInfo): string {
     const zoneName = fightOrZone.zoneName ?? 'Unknown_Zone';
-    const dateStr = TLFuncs.dayFromDate(fightOrZone.startTime).replace(/-/g, '');
-    const timeStr = TLFuncs.timeFromDate(fightOrZone.startTime).replace(/:/g, '');
+    let tzOffset = 0;
+    if (fightOrZone.startLine !== undefined)
+      tzOffset = TLFuncs.getTZOffsetFromLogLine(fightOrZone.startLine);
+
+    let dateStr = 'Unknown_Date';
+    let timeStr = 'Unknown_Time';
+    if (fightOrZone.startTime !== undefined) {
+      dateStr = DTFuncs.dateObjectToDateString(fightOrZone.startTime, tzOffset).replace(/-/g, '');
+      timeStr = DTFuncs.dateObjectToTimeString(fightOrZone.startTime, tzOffset).replace(/:/g, '');
+    }
+
     const duration = TLFuncs.durationFromDates(fightOrZone.startTime, fightOrZone.endTime);
     let seal;
     if ('sealName' in fightOrZone)
       seal = fightOrZone['sealName'];
     if (seal)
-      seal = '_' + TLFuncs.toProperCase(seal).replace(/[^A-z0-9]/g, '');
+      seal = '_' + StringFuncs.toProperCase(seal).replace(/[^A-z0-9]/g, '');
     else
       seal = '';
     let wipeStr = '';
@@ -396,7 +383,6 @@ class TLFuncs {
       wipeStr = fightOrZone.endType === 'Wipe' ? '_wipe' : '';
     return `${zoneName}${seal}_${dateStr}_${timeStr}_${duration}${wipeStr}.log`;
   }
-
 // For an array of arrays, return an array where each value is the max length at that index
 // among all of the inner arrays, e.g. find the max length per field of an array of rows.
   static maxLengthPerIndex(outputRows: Array<Array<string>>): Array<number> {
@@ -416,14 +402,22 @@ class TLFuncs {
     const outputRows: { [index: number]: { [index: string]: string } } = {};
     for (const zone of collector.zones) {
       const zoneName = zone.zoneName ?? 'Unknown_Zone';
-      const startDate = zone.startTime ? TLFuncs.dayFromDate(zone.startTime) : 'Unknown_Date';
-      const startTime = zone.startTime ? TLFuncs.timeFromDate(zone.startTime) : 'Unknown_Start';
+      let tzOffset = 0;
+      if (zone.startLine !== undefined)
+        tzOffset = TLFuncs.getTZOffsetFromLogLine(zone.startLine);
+
+      let dateStr = 'Unknown_Date';
+      let timeStr = 'Unknown_Time';
+      if (zone.startTime !== undefined) {
+        dateStr = DTFuncs.dateObjectToDateString(zone.startTime, tzOffset).replace(/-/g, '');
+        timeStr = DTFuncs.dateObjectToTimeString(zone.startTime, tzOffset).replace(/:/g, '');
+      }
       const duration = TLFuncs.durationFromDates(zone.startTime, zone.endTime);
 
       const row = {
         'Index': idx.toString(),
-        'Start Date': startDate,
-        'Start Time': startTime,
+        'Start Date': dateStr,
+        'Start Time': timeStr,
         'Duration': duration,
         'Zone Name': zoneName,
       };
@@ -441,8 +435,16 @@ class TLFuncs {
     const outputRows: { [index: number]: { [index: string]: string } } = {};
     let seenSeal = false;
     for (const fight of collector.fights) {
-      const startDate = fight.startTime ? TLFuncs.dayFromDate(fight.startTime) : 'Unknown Date';
-      const startTime = fight.startTime ? TLFuncs.timeFromDate(fight.startTime) : 'Unknown Start';
+      let tzOffset = 0;
+      if (fight.startLine !== undefined)
+        tzOffset = TLFuncs.getTZOffsetFromLogLine(fight.startLine);
+
+      let startDate = 'Unknown_Date';
+      let startTime = 'Unknown_Time';
+      if (fight.startTime !== undefined) {
+        startDate = DTFuncs.dateObjectToDateString(fight.startTime, tzOffset).replace(/-/g, '');
+        startTime = DTFuncs.dateObjectToTimeString(fight.startTime, tzOffset).replace(/:/g, '');
+      }
       const fightDuration = TLFuncs.durationFromDates(fight.startTime, fight.endTime) ?? 'Unknown Duration';
       let fightName = 'Unknown Encounter';
       if (fight.sealName)

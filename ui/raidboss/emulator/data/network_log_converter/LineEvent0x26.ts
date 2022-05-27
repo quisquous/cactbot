@@ -1,7 +1,7 @@
 import logDefinitions from '../../../../../resources/netlog_defs';
+import SFuncs from '../../../../../resources/stringhandlers';
 import Util from '../../../../../resources/util';
 import { Job } from '../../../../../types/job';
-import EmulatorCommon from '../../EmulatorCommon';
 
 import LineEvent, { LineEventJobLevel, LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
@@ -45,7 +45,7 @@ export class LineEvent0x26 extends LineEvent implements LineEventSource, LineEve
     this.z = parseFloat(parts[fields.z] ?? '');
     this.heading = parseFloat(parts[fields.heading] ?? '');
 
-    const padded = EmulatorCommon.zeroPad(this.jobLevelData, 8);
+    const padded = SFuncs.zeroPad(this.jobLevelData, 8);
 
     this.jobIdHex = padded.substr(6, 2).toUpperCase();
     this.jobId = parseInt(this.jobIdHex, 16);

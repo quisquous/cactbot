@@ -1,11 +1,8 @@
+import DTFuncs from '../../../../resources/datetime';
 import { UnreachableCode } from '../../../../resources/not_reached';
 import Persistor from '../data/Persistor';
 import PersistorEncounter from '../data/PersistorEncounter';
-import EmulatorCommon, {
-  getTemplateChild,
-  querySelectorAllSafe,
-  querySelectorSafe,
-} from '../EmulatorCommon';
+import { getTemplateChild, querySelectorAllSafe, querySelectorSafe } from '../EmulatorCommon';
 import EventBus from '../EventBus';
 
 type DateMap = {
@@ -57,9 +54,9 @@ export default class EncounterTab extends EventBus {
       for (const enc of encounters) {
         const zone = enc.zoneName;
         // ?? operator here to account for old encounters that don't have the property
-        const encDate = EmulatorCommon.timeToDateString(enc.start, enc.tzOffsetMillis ?? 0);
-        const encTime = EmulatorCommon.timeToTimeString(enc.start, enc.tzOffsetMillis ?? 0);
-        const encDuration = EmulatorCommon.msToDuration(enc.duration);
+        const encDate = DTFuncs.timeStringToDateString(enc.start, enc.tzOffsetMillis ?? 0);
+        const encTime = DTFuncs.timeToTimeString(enc.start, enc.tzOffsetMillis ?? 0);
+        const encDuration = DTFuncs.msToDuration(enc.duration);
         const zoneObj = this.encounters[zone] = this.encounters[zone] || {};
         const dateObj = zoneObj[encDate] = zoneObj[encDate] || [];
         dateObj.push({
@@ -235,7 +232,7 @@ export default class EncounterTab extends EventBus {
 
     let pullAt = 'N/A';
     if (!isNaN(enc.offset))
-      pullAt = EmulatorCommon.timeToString(enc.offset, false);
+      pullAt = DTFuncs.timeToString(enc.offset, false);
 
     const $info = this.$encounterInfoTemplate.cloneNode(true);
     if (!($info instanceof HTMLElement))
@@ -255,9 +252,9 @@ export default class EncounterTab extends EventBus {
     });
     querySelectorSafe($info, '.encounterZone .label').textContent = enc.zoneName;
     // ?? operator here to account for old encounters that don't have the property
-    querySelectorSafe($info, '.encounterStart .label').textContent = EmulatorCommon
+    querySelectorSafe($info, '.encounterStart .label').textContent = DTFuncs
       .dateTimeToString(enc.start, enc.tzOffsetMillis ?? 0);
-    querySelectorSafe($info, '.encounterDuration .label').textContent = EmulatorCommon.timeToString(
+    querySelectorSafe($info, '.encounterDuration .label').textContent = DTFuncs.timeToString(
       enc.duration,
       false,
     );

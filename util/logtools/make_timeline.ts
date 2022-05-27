@@ -5,6 +5,7 @@ import { Namespace } from 'argparse';
 
 import NetRegexes from '../../resources/netregexes';
 import PetData from '../../resources/pet_names';
+import SFuncs from '../../resources/stringhandlers';
 import { NetMatches } from '../../types/net_matches';
 
 import { LogUtilArgParse, TimelineArgs } from './arg_parser';
@@ -358,7 +359,7 @@ const assembleTimelineStrings = (
   let timelinePosition = 0;
   let lastEntry: TimelineEntry = { time: lastAbilityTime.toString(), lineType: 'None' };
   if (fight.sealName) {
-    const zoneMessage = TLFuncs.toProperCase(fight.sealName);
+    const zoneMessage = SFuncs.toProperCase(fight.sealName);
     const tlString = `0.0 "--sync--" sync / 00:0839::${zoneMessage} will be sealed off/ window 0,1`;
     assembled.push(tlString);
   } else {
