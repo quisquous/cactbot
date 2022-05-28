@@ -1,5 +1,5 @@
 import logDefinitions from '../../../../../resources/netlog_defs';
-import EmulatorCommon from '../../EmulatorCommon';
+import SFuncs from '../../../../../resources/stringhandlers';
 
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
@@ -17,7 +17,7 @@ export class LineEvent0x01 extends LineEvent {
 
     this.zoneId = parts[fields.id] ?? '';
     this.zoneName = parts[fields.name] ?? '';
-    this.zoneNameProperCase = EmulatorCommon.properCase(this.zoneName);
+    this.zoneNameProperCase = SFuncs.toProperCase(this.zoneName);
   }
 }
 

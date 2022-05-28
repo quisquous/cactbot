@@ -1,7 +1,8 @@
+import DTFuncs from '../../../../resources/datetime';
 import { UnreachableCode } from '../../../../resources/not_reached';
 import AnalyzedEncounter from '../data/AnalyzedEncounter';
 import RaidEmulator from '../data/RaidEmulator';
-import EmulatorCommon, { querySelectorSafe } from '../EmulatorCommon';
+import { querySelectorSafe } from '../EmulatorCommon';
 
 import Tooltip from './Tooltip';
 
@@ -32,7 +33,7 @@ export default class ProgressBar {
         const time = Math.floor(emulator.currentEncounter.encounter.duration * percent) -
           emulator.currentEncounter.encounter.initialOffset;
         this.$progressBarTooltip.offset.x = e.offsetX - (target.offsetWidth / 2);
-        this.$progressBarTooltip.setText(EmulatorCommon.timeToString(time));
+        this.$progressBarTooltip.setText(DTFuncs.timeToString(time));
         this.$progressBarTooltip.show();
       }
     });
@@ -47,8 +48,8 @@ export default class ProgressBar {
       }
     });
     emulator.on('currentEncounterChanged', (encounter: AnalyzedEncounter) => {
-      this.$progressBarCurrent.textContent = EmulatorCommon.timeToString(0, false);
-      this.$progressBarDuration.textContent = EmulatorCommon.timeToString(
+      this.$progressBarCurrent.textContent = DTFuncs.timeToString(0, false);
+      this.$progressBarDuration.textContent = DTFuncs.timeToString(
         encounter.encounter.duration - encounter.encounter.initialOffset,
         false,
       );
@@ -70,7 +71,7 @@ export default class ProgressBar {
       const currentOffset = currentLogTime - curEnc.encounter.startTimestamp;
       const progPercent = (currentOffset / curEnc.encounter.duration) * 100;
       const progValue = currentLogTime - curEnc.encounter.initialTimestamp;
-      this.$progressBarCurrent.textContent = EmulatorCommon.timeToString(progValue, false);
+      this.$progressBarCurrent.textContent = DTFuncs.timeToString(progValue, false);
       this.$progressBar.style.width = `${progPercent}%`;
     });
     const $play = querySelectorSafe(document, '.progress-bar-row button.play');
