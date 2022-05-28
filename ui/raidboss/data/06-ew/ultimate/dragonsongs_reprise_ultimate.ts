@@ -1711,8 +1711,8 @@ const triggerSet: TriggerSet<Data> = {
         count: '02'
       }),
       condition: (data, matches) => data.me === matches.target,
-      alertText: function(data, matches, output) {
-        if (Number(matches.duration) > 10)
+      alertText: (data, matches, output) => {
+        if (parseFloat(matches.duration) > 10)
           return output.text!()
       },
       outputStrings: {
