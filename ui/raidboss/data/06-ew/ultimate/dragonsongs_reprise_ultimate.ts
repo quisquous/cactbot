@@ -1668,7 +1668,7 @@ const triggerSet: TriggerSet<Data> = {
       }
     },
     {
-      id: 'Entangled Flame',
+      id: 'DSR Entangled Flame',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({
         effectId: 'AC7',
