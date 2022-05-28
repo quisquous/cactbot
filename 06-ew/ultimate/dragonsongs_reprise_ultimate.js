@@ -861,6 +861,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 0.5,
+      durationSeconds: 5,
       alertText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
@@ -908,7 +909,7 @@ Options.Triggers.push({
       // 6712 = Gnash and Lash (out then in)
       // 6713 = Lash and Gnash (in then out)
       netRegex: NetRegexes.startsUsing({ id: ['6712', '6713'], source: 'Nidhogg' }),
-      durationSeconds: 8,
+      durationSeconds: 5,
       alertText: (data, matches, output) => {
         const key = matches.id === '6712' ? 'out' : 'in';
         const inout = output[key]();
