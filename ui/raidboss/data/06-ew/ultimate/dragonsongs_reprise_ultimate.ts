@@ -1655,14 +1655,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Spreading Flame',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({
-        effectId: 'AC6'
+        effectId: 'AC6',
       }),
       condition: (data, matches) => data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Spread',
-          ko: '산개징 대상자'
+          ko: '산개징 대상자',
         }
       }
     },
@@ -1670,14 +1670,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Entangled Flame',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({
-        effectId: 'AC7'
+        effectId: 'AC7',
       }),
       condition: (data, matches) => data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Stack',
-          ko: '집합징 대상자'
+          ko: '집합징 대상자',
         }
       }
     },
@@ -1687,18 +1687,18 @@ const triggerSet: TriggerSet<Data> = {
       // C40 = Dark Resistance Down, highest enmity target
       netRegex: NetRegexes.gainsEffect({
         effectId: 'C40',
-        count: '02'
+        count: '02',
       }),
       condition: (data, matches) => data.me === matches.target,
-      alertText: function(data, matches, output) {
-        if (Number(matches.duration) > 10)
+      alertText: (data, matches, output) => {
+        if (parseFloat(matches.duration) > 10)
           return output.text!()
       },
       outputStrings: {
         text: {
-          //Only showing 'swap' is really confusing, in my opinion
-          en: 'Get 2nd emnity',
-          ko: '적개심 2순위 잡기'
+          // Only showing 'swap' is really confusing, in my opinion
+          en: 'Get 2nd enmity',
+          ko: '적개심 2순위 잡기',
         }
       }
     },
@@ -1708,17 +1708,19 @@ const triggerSet: TriggerSet<Data> = {
       // C3F = Light Resistance Down, 2nd highest enmity target
       netRegex: NetRegexes.gainsEffect({
         effectId: 'C3F',
-        count: '02'
+        count: '02',
       }),
       condition: (data, matches) => data.me === matches.target,
-      alertText: function(data, matches, output) {
-        if (Number(matches.duration) > 10)
+      // To prevent boss rotating around before Exaflare
+      delaySeconds: 2.5,
+      alertText: (data, matches, output) => {
+        if (parseFloat(matches.duration) > 10)
           return output.text!()
       },
       outputStrings: {
         text: {
-          en: 'Get 1st emnity',
-          ko: '적개심 1순위 잡기'
+          en: 'Provoke',
+          ko: '도발하기',
         }
       }
     }
