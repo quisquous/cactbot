@@ -1652,6 +1652,79 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'Spreading Flame',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({
+        effectId: 'AC6',
+      }),
+      condition: (data, matches) => data.me === matches.target,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Spread',
+          ko: '산개징 대상자',
+        }
+      }
+    },
+    {
+      id: 'Entangled Flame',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({
+        effectId: 'AC7',
+      }),
+      condition: (data, matches) => data.me === matches.target,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Stack',
+          ko: '집합징 대상자',
+        }
+      }
+    },
+    {
+      id: 'DSR Trinity Tank Dark Resistance',
+      type: 'GainsEffect',
+      // C40 = Dark Resistance Down, highest enmity target
+      netRegex: NetRegexes.gainsEffect({
+        effectId: 'C40',
+        count: '02',
+      }),
+      condition: (data, matches) => data.me === matches.target,
+      alertText: (data, matches, output) => {
+        if (parseFloat(matches.duration) > 10)
+          return output.text!()
+      },
+      outputStrings: {
+        text: {
+          // Only showing 'swap' is really confusing, in my opinion
+          en: 'Get 2nd enmity',
+          ko: '적개심 2순위 잡기',
+        }
+      }
+    },
+    {
+      id: 'DSR Trinity Tank Light Resistance',
+      type: 'GainsEffect',
+      // C3F = Light Resistance Down, 2nd highest enmity target
+      netRegex: NetRegexes.gainsEffect({
+        effectId: 'C3F',
+        count: '02',
+      }),
+      condition: (data, matches) => data.me === matches.target,
+      // To prevent boss rotating around before Exaflare
+      delaySeconds: 2.5,
+      alertText: (data, matches, output) => {
+        if (parseFloat(matches.duration) > 10)
+          return output.text!()
+      },
+      outputStrings: {
+        text: {
+          en: 'Provoke',
+          ko: '도발하기',
+        }
+      }
+    }
   ],
   timelineReplace: [
     {
