@@ -1696,7 +1696,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         text: {
-          //Only showing 'swap' is really confusing, in my opinion
+          // Only showing 'swap' is really confusing, in my opinion
           en: 'Get 2nd emnity',
           ko: '적개심 2순위 잡기'
         }
