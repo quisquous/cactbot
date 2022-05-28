@@ -1338,6 +1338,13 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'DSR Drachenlance',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '670C', source: 'Nidhogg', capture: false }),
+      // This could be "out of front" as sides are safe but this is urgent, so be more clear.
+      response: Responses.getBehind(),
+    },
+    {
       id: 'DSR Right Eye Blue Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0033' }),
