@@ -814,6 +814,7 @@ Options.Triggers.push({
         stackNorthNum: {
           en: '${num}, Stack North',
           de: '${num}, Im Norden sammeln',
+          ko: '${num}, 북쪽에서 쉐어',
         },
       },
     },
@@ -962,42 +963,52 @@ Options.Triggers.push({
         stackInOut: {
           en: 'Stack => ${inout}',
           de: 'Sammeln => ${inout}',
+          ko: '쉐어 => ${inout}',
         },
         baitStackInOut: {
           en: 'Bait => Stack => ${inout}',
           de: 'Ködern => Sammeln => ${inout}',
+          ko: '공격 유도 => 쉐어 => ${inout}',
         },
         circlesDive1: {
           en: 'Dive (all circles) => ${inout}',
           de: 'Sturz (alle Kreise) => ${inout}',
+          ko: '다이브 (모두 하이점프) => ${inout}',
         },
         circlesDive3: {
           en: 'Dive (all circles) => ${inout}',
           de: 'Sturz (alle Kreise) => ${inout}',
+          ko: '다이브 (모두 하이점프) => ${inout}',
         },
         southDive1: {
           en: 'South Dive => ${inout}',
           de: 'Südlicher Sturz => ${inout}',
+          ko: '남쪽 다이브 => ${inout}',
         },
         southDive3: {
           en: 'South Dive => ${inout}',
           de: 'Südlicher Sturz => ${inout}',
+          ko: '남쪽 다이브 => ${inout}',
         },
         upArrowDive1: {
           en: 'Up Arrow Dive => ${inout}',
           de: 'Vorne-Pfeil-Sturz => ${inout}',
+          ko: '위 화살표 => ${inout}',
         },
         upArrowDive3: {
           en: 'Up Arrow Dive => ${inout}',
           de: 'Vorne-Pfeil-Sturz => ${inout}',
+          ko: '위 화살표 => ${inout}',
         },
         downArrowDive1: {
           en: 'Down Arrow Dive => ${inout}',
           de: 'Hinten-Pfeil-Sturz => ${inout}',
+          ko: '아래 화살표 => ${inout}',
         },
         downArrowDive3: {
           en: 'Down Arrow Dive => ${inout}',
           de: 'Hinten-Pfeil-Sturz => ${inout}',
+          ko: '아래 화살표 => ${inout}',
         },
       },
     },
@@ -1017,18 +1028,22 @@ Options.Triggers.push({
           inOutAndBait: {
             en: '${inout} + Bait',
             de: '${inout} + Ködern',
+            ko: '${inout} + 공격 유도',
           },
           circlesDive2: {
             en: '${inout} => Dive (all circles)',
             de: '${inout} => Sturz (alle Kreise)',
+            ko: '${inout} => 다이브 (모두 하이점프)',
           },
           upArrowDive2: {
             en: '${inout} => Up Arrow Dive',
             de: '${inout} => Vorne-Pfeil-Sturz',
+            ko: '${inout} => 위 화살표',
           },
           downArrowDive2: {
             en: '${inout} => Down Arrow Dive',
             de: '${inout} => Hinten-Pfeil-Sturz',
+            ko: '${inout} => 아래 화살표',
           },
         };
         const key = matches.id === '6715' ? 'in' : 'out';
@@ -1128,46 +1143,57 @@ Options.Triggers.push({
         unknownTower: {
           en: 'Tower (${inout})',
           de: 'Turm (${inout})',
+          ko: '기둥 (${inout})',
         },
         southTower1: {
           en: 'South Tower (${inout})',
           de: 'Südlicher Turm (${inout})',
+          ko: '남쪽 기둥 (${inout})',
         },
         southTower3: {
           en: 'South Tower (${inout})',
           de: 'Südlicher Turm (${inout})',
+          ko: '남쪽 기둥 (${inout})',
         },
         circleTowers1: {
           en: 'Tower (all circles, ${inout})',
           de: 'Türme (alle Kreise, ${inout})',
+          ko: '기둥 (모두 하이점프, ${inout})',
         },
         circleTowers3: {
           en: 'Tower (all circles, ${inout})',
           de: 'Türme (alle Kreise, ${inout})',
+          ko: '기둥 (모두 하이점프, ${inout})',
         },
         upArrowTower1: {
           en: 'Up Arrow Tower (${inout})',
           de: 'Vorne-Pfeil-Turm (${inout})',
+          ko: '위 화살표 기둥 (${inout})',
         },
         downArrowTower1: {
           en: 'Down Arrow Tower (${inout})',
           de: 'Hinten-Pfeil-Turm (${inout})',
+          ko: '아래 화살표 기둥 (${inout})',
         },
         upArrowTower3: {
           en: 'Up Arrow Tower (${inout})',
           de: 'Vorne-Pfeil-Turm (${inout})',
+          ko: '위 화살표 기둥 (${inout})',
         },
         downArrowTower3: {
           en: 'Down Arrow Tower (${inout})',
           de: 'Hinten-Pfeil-Turm (${inout})',
+          ko: '아래 화살표 기둥 (${inout})',
         },
         westTower3: {
           en: 'West Tower (${inout})',
           de: 'Westlicher Turm (${inout})',
+          ko: '서쪽 기둥 (${inout})',
         },
         eastTower3: {
           en: 'East Tower (${inout})',
           de: 'Östlicher Turm (${inout})',
+          ko: '동쪽 기둥 (${inout})',
         },
       },
     },
@@ -1228,14 +1254,17 @@ Options.Triggers.push({
         unknownTower: {
           en: 'Tower',
           de: 'Turm',
+          ko: '기둥',
         },
         northwestTower2: {
           en: 'Northwest Tower',
           de: 'Nordwestlicher Turm',
+          ko: '북서쪽 기둥',
         },
         northeastTower2: {
           en: 'Northeast Tower',
           de: 'Nordöstlicher Turm',
+          ko: '북동쪽 기둥',
         },
       },
     },
@@ -1295,6 +1324,7 @@ Options.Triggers.push({
         stackInOut: {
           en: 'Stack => ${inout}',
           de: 'Sammeln => ${inout}',
+          ko: '쉐어 => ${inout}',
         },
         move: Outputs.moveAway,
       },
@@ -1313,6 +1343,7 @@ Options.Triggers.push({
         text: {
           en: 'Blue',
           de: 'Blau',
+          ko: '파랑',
         },
       },
     },
@@ -1327,6 +1358,7 @@ Options.Triggers.push({
         text: {
           en: 'Red',
           de: 'Rot',
+          ko: '빨강',
         },
       },
     },
@@ -1342,6 +1374,7 @@ Options.Triggers.push({
         text: {
           en: 'Dives Soon',
           de: 'Stürze bald',
+          ko: '곧 다이브',
         },
       },
     },
@@ -1382,6 +1415,7 @@ Options.Triggers.push({
         text: {
           en: 'Kill Right Eye',
           de: 'Besiege Rechtes Auge',
+          ko: '오른눈 잡기',
         },
       },
     },
@@ -1403,7 +1437,7 @@ Options.Triggers.push({
           fr: 'LB TANK !!',
           ja: 'タンクLB!!',
           cn: '坦克LB！！',
-          ko: '리미트 브레이크!!',
+          ko: '탱리밋!!',
         },
       },
     },
