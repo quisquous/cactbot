@@ -1664,8 +1664,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Spread',
           ko: '산개징 대상자',
-        }
-      }
+        },
+      },
     },
     {
       id: 'DSR Entangled Flame',
@@ -1679,8 +1679,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack',
           ko: '집합징 대상자',
-        }
-      }
+        },
+      },
     },
     {
       id: 'DSR Trinity Tank Dark Resistance',
@@ -1691,17 +1691,17 @@ const triggerSet: TriggerSet<Data> = {
         count: '02',
       }),
       condition: (data, matches) => data.me === matches.target,
-      alertText: (data, matches, output) => {
+      alertText: (_data, matches, output) => {
         if (parseFloat(matches.duration) > 10)
-          return output.text!()
+          return output.text!();
       },
       outputStrings: {
         text: {
           // Only showing 'swap' is really confusing, in my opinion
           en: 'Get 2nd enmity',
           ko: '적개심 2순위 잡기',
-        }
-      }
+        },
+      },
     },
     {
       id: 'DSR Trinity Tank Light Resistance',
@@ -1714,17 +1714,17 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => data.me === matches.target,
       // To prevent boss rotating around before Exaflare
       delaySeconds: 2.5,
-      alertText: (data, matches, output) => {
+      alertText: (_data, matches, output) => {
         if (parseFloat(matches.duration) > 10)
-          return output.text!()
+          return output.text!();
       },
       outputStrings: {
         text: {
           en: 'Provoke',
           ko: '도발하기',
-        }
-      }
-    }
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
