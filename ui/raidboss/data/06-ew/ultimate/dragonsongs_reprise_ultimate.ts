@@ -896,9 +896,9 @@ const triggerSet: TriggerSet<Data> = {
         num2: Outputs.num2,
         num3: Outputs.num3,
         stackNorthNum: {
-          en: '${num}, Stack North',
-          de: '${num}, Im Norden sammeln',
-          ko: '${num}, 북쪽에서 쉐어',
+          en: '${num} (stack North)',
+          de: '${num} (Im Norden sammeln)',
+          ko: '${num} (북쪽에서 쉐어)',
         },
       },
     },
