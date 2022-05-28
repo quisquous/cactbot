@@ -1653,7 +1653,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'Spreading Flame',
+      id: 'DSR Spreading Flame',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({
         effectId: 'AC6',
