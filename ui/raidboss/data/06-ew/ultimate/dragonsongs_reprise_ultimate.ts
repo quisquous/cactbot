@@ -1719,6 +1719,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Spread',
+          de: 'Verteilen',
           ko: '산개징 대상자',
         },
       },
@@ -1734,6 +1735,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Stack',
+          de: 'Sammeln',
           ko: '집합징 대상자',
         },
       },
@@ -1755,6 +1757,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           // Only showing 'swap' is really confusing, in my opinion
           en: 'Get 2nd enmity',
+          de: 'Sei 2. in der Aggro',
           ko: '적개심 2순위 잡기',
         },
       },
@@ -1777,6 +1780,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Provoke',
+          de: 'Herausforderung',
           ko: '도발하기',
         },
       },
