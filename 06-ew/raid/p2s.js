@@ -293,7 +293,7 @@ Options.Triggers.push({
             de: '#${num} Viereck, geh gegenüber',
             fr: '#${num} Carré, allez à l\'opposé',
             ja: '四角 #${num}：ボスの対角へ',
-            cn: '方块 #${num}: 去Boss斜对角',
+            cn: '方块 #${num}: 去Boss对角',
             ko: '#${num} 네모, 보스 대각 발판으로',
           },
           // Trying not to confuse with boss/across
@@ -302,7 +302,7 @@ Options.Triggers.push({
             de: '#${num} Viereck, Boss Fläche',
             fr: '#${num} Carré, case du boss',
             ja: '四角 #${num}：ボスの下へ',
-            cn: '方块 #${num}: 去Boss后面',
+            cn: '方块 #${num}: 去Boss脚下',
             ko: '#${num} 네모, 보스 발판으로',
           },
           triangle: {
