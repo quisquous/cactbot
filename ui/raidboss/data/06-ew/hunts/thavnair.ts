@@ -139,6 +139,43 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getBehind(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Sugriva': 'Sugriva',
+        'Yilan': 'Yilan',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Sugriva': 'Sugriva',
+        'Yilan': 'yilan',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Sugriva': 'スグリーヴァ',
+        'Yilan': 'ユラン',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Sugriva': '须羯里婆',
+        'Yilan': '尤兰',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Sugriva': '수그리바',
+        'Yilan': '윌란',
+      },
+    },
+  ],
 };
 
 export default triggerSet;
