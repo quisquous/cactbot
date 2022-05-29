@@ -329,7 +329,7 @@ const triggerSet: TriggerSet<Data> = {
         'Right Disassembler': '右腕分解炮',
         'Steel Beam': '前方斩击',
         'Temper\'s Flare': '熊熊核爆',
-        'Temper, Temper': 'メラメラフレイム',
+        'Temper, Temper': '熊熊烈焰',
         'Upside Down': '回旋号令',
         'Violent Discharge': '强制放电',
       },
