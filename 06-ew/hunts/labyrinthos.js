@@ -70,4 +70,41 @@ Options.Triggers.push({
       response: Responses.getOut(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Hulder': 'Hulder',
+        'Storsie': 'Storsie',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Hulder': 'huldre',
+        'Storsie': 'Storsie',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Hulder': 'フルドラ',
+        'Storsie': 'ストーシー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Hulder': '胡睹',
+        'Storsie': '斯图希',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Hulder': '훌드라',
+        'Storsie': '스토르시에',
+      },
+    },
+  ],
 });

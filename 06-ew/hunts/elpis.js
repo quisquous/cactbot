@@ -84,4 +84,41 @@ Options.Triggers.push({
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Gurangatch': 'Gurangatch',
+        'Petalodus': 'Petalodus',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Gurangatch': 'Gurangatch',
+        'Petalodus': 'petalodus',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Gurangatch': 'グランガチ',
+        'Petalodus': 'ペタロドゥス',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Gurangatch': '固兰盖奇',
+        'Petalodus': '瓣齿鲨',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Gurangatch': '구랑가치',
+        'Petalodus': '페탈로두스',
+      },
+    },
+  ],
 });

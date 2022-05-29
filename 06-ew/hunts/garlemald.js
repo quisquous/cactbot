@@ -88,4 +88,41 @@ Options.Triggers.push({
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Aegeiros': 'Aegeiros',
+        'Minerva': 'Minerva',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Aegeiros': 'ægeiros',
+        'Minerva': 'Minerva',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Aegeiros': 'アイゲイロス',
+        'Minerva': 'ミネルウァ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Aegeiros': '黑杨树精',
+        'Minerva': '密涅瓦',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Aegeiros': '아이게이로스',
+        'Minerva': '미네르바',
+      },
+    },
+  ],
 });

@@ -89,4 +89,41 @@ Options.Triggers.push({
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Arch-Eta': 'Erz-Eta',
+        'Fan Ail': 'Fan Ail',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Arch-Eta': 'Arch-Êta',
+        'Fan Ail': 'Fan Ail',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Arch-Eta': 'アーチイータ',
+        'Fan Ail': 'ファン・アイル',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Arch-Eta': '伊塔总领',
+        'Fan Ail': '凡·艾尔',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Arch-Eta': '아치 에타',
+        'Fan Ail': '판 아일',
+      },
+    },
+  ],
 });

@@ -121,4 +121,41 @@ Options.Triggers.push({
       response: Responses.outOfMelee(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Lunatender Queen': 'Lunatender-Königin',
+        'Mousse Princess': 'Mousse-Prinzessin',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Lunatender Queen': 'pampa sélénienne reine',
+        'Mousse Princess': 'princesse mousse',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Lunatender Queen': 'ルナテンダー・クイーン',
+        'Mousse Princess': 'ムースプリンセス',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Lunatender Queen': '月面仙人刺女王',
+        'Mousse Princess': '慕斯公主',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Lunatender Queen': '루나텐더 여왕',
+        'Mousse Princess': '무스 공주',
+      },
+    },
+  ],
 });
