@@ -1735,7 +1735,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'LB TANK !!',
           ja: 'タンクLB!!',
           cn: '坦克LB!!',
-          ko: '탱커 LIMIT BREAK!!',
+          ko: '탱리밋!!',
         },
       },
     },
