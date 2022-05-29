@@ -71,7 +71,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Under NW Quetzalcoatl',
           de: 'Unter NW Quetzalcoatl',
           cn: '站在左上 (西北) 鸟',
-          ko: '북동쪽 새 밑으로',
+          ko: '북서쪽 새 밑으로', // 한섭은 보통 북동쪽으로 가지만, 번역 일관성을 위해 이렇게 함
         },
       },
     },
