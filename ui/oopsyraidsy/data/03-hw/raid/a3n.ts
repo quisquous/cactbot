@@ -11,7 +11,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
   damageWarn: {
     'A3N Protean Wave': '12F0',
     'A3N Sluice Puddles': '12F4', // Puddle AoEs
-    'A3N Ultramagnetism': '1308', // Attracting magnets too close,
+    'A3N Ultramagnetism': '1308', // Attracting magnets too close
+    'A3N Current Leakeage 1': '130C', // Gear Lubricant escaping
+    'A3N Current Leakeage 2': '130D', // Piston Lubricant escaping
   },
   gainsEffectWarn: {
     'A3N Electrocution': '120', // Arena edge debuff. (Also paralysis and stun.)
