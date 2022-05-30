@@ -46,6 +46,7 @@ Options.Triggers.push({
           de: 'Wörtersturm besiegen',
           fr: 'Tuez Tempête de mots ou mourrez',
           cn: '击杀言语风暴!',
+          ko: '신언의 폭풍 제거',
         },
       },
     },

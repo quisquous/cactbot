@@ -50,7 +50,7 @@ Options.Triggers.push({
           en: 'Under NW Quetzalcoatl',
           de: 'Unter NW Quetzalcoatl',
           cn: '站在左上 (西北) 鸟',
-          ko: '북서쪽 새 밑으로',
+          ko: '북동쪽 새 밑으로', // This is northeast. Because Korean folks go there.
         },
       },
     },

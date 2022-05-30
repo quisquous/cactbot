@@ -359,7 +359,7 @@ Options.Triggers.push({
           fr: 'LB TANK !!',
           ja: 'タンクLB!!',
           cn: '坦克LB！！',
-          ko: '리미트 브레이크!!',
+          ko: '탱리밋!!',
         },
       },
     },
