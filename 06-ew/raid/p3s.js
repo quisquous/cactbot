@@ -112,13 +112,13 @@ Options.Triggers.push({
       id: 'P3S Right Cinderwing',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6702', source: 'Phoinix', capture: false }),
-      response: Responses.goLeft(),
+      response: Responses.goRight(),
     },
     {
       id: 'P3S Left Cinderwing',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6703', source: 'Phoinix', capture: false }),
-      response: Responses.goRight(),
+      response: Responses.goLeft(),
     },
     {
       id: 'P3S Flare of Condemnation',
