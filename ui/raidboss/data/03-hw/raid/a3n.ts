@@ -76,7 +76,12 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: '12FF', source: 'Living Liquid', capture: false }),
       delaySeconds: 5,
       suppressSeconds: 1,
-      response: Responses.tankCleave(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: '3x Tank Cleave',
+        },
+      },
     },
     {
       id: 'A3N Fluid Strike 3',
