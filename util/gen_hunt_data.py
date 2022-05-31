@@ -50,9 +50,9 @@ def parse_data(monsters, notorious, lang, name_map):
         # Other dumps just have the int.
         base = base.replace("BNpcBase#", "")
 
-        if base == "10422":
+        if base in ["10422", "13775"]:
             rank = "SS+"
-        elif base == "10755":
+        elif base in ["10755", "13938"]:
             rank = "SS-"
         elif rank_id == "3":
             rank = "S"
