@@ -10,7 +10,7 @@ const headmarkers = {
   'firechainSquare': '011B',
   'firechainX': '011C',
   // vfx/lockon/eff/r1fz_skywl_s9x.avfx
-  'skywardLeap': '014A',
+  'skywardTriple': '014A',
   // vfx/lockon/eff/m0244trg_a1t.avfx and a2t
   'sword1': '0032',
   'sword2': '0033',
@@ -20,9 +20,13 @@ const headmarkers = {
   'dot1': '013F',
   'dot2': '0140',
   'dot3': '0141',
+  // vfx/lockon/eff/m0005sp_19o0t.avfx
+  'skywardSingle': '000E',
+  // vfx/lockon/eff/bahamut_wyvn_glider_target_02tm.avfx
+  'cauterize': '0014',
 };
 const firstMarker = (phase) => {
-  return phase === 'doorboss' ? headmarkers.hyperdimensionalSlash : headmarkers.skywardLeap;
+  return phase === 'doorboss' ? headmarkers.hyperdimensionalSlash : headmarkers.skywardTriple;
 };
 const getHeadmarkerId = (data, matches, firstDecimalMarker) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
@@ -79,6 +83,8 @@ Options.Triggers.push({
       eyeOfTheTyrantCounter: 0,
       diveFromGracePreviousPosition: {},
       diveCounter: 1,
+      thunderstruck: [],
+      hasDoom: {},
     };
   },
   timelineTriggers: [
@@ -200,7 +206,12 @@ Options.Triggers.push({
       id: 'DSR Faith Unmoving',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '62DC', source: 'Ser Grinnaux', capture: false }),
-      condition: (data) => data.phase !== 'doorboss' || data.adelphelDir === undefined,
+      condition: (data) => {
+        // Drop the knockback call during Playstation2 as there is too much going on.
+        if (data.phase === 'thordan2')
+          return false;
+        return data.phase !== 'doorboss' || data.adelphelDir === undefined;
+      },
       response: Responses.knockback(),
     },
     {
@@ -305,7 +316,7 @@ Options.Triggers.push({
         if (id === headmarkers.firechainSquare)
           return output.square();
         if (id === headmarkers.firechainX)
-          return output.x();
+          return output.cross();
       },
       outputStrings: {
         circle: {
@@ -329,7 +340,7 @@ Options.Triggers.push({
           ja: '紫しかく',
           ko: '보라 사각',
         },
-        x: {
+        cross: {
           en: 'Blue X',
           de: 'Blaues X',
           fr: 'Croix bleue',
@@ -572,7 +583,7 @@ Options.Triggers.push({
       condition: (data, matches) => data.phase === 'thordan' && data.me === matches.target,
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
-        if (id === headmarkers.skywardLeap)
+        if (id === headmarkers.skywardTriple)
           return output.leapOnYou();
       },
       outputStrings: {
@@ -1480,6 +1491,187 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'DSR Wrath Spiral Pierce',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '0005' }),
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tether on YOU',
+        },
+      },
+    },
+    {
+      id: 'DSR Wrath Skyward Leap',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker(),
+      condition: Conditions.targetIsYou(),
+      alarmText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        // The Wrath of the Heavens skyward leap is a different headmarker.
+        if (id === headmarkers.skywardSingle)
+          return output.leapOnYou();
+      },
+      outputStrings: {
+        leapOnYou: {
+          en: 'Leap on YOU',
+          de: 'Sprung auf DIR',
+          fr: 'Saut sur VOUS',
+          ja: '自分に青マーカー',
+          ko: '광역 대상자',
+        },
+      },
+    },
+    {
+      id: 'DSR Wrath Thunderstruck',
+      // This is effectId B11, but the timing is somewhat inconsistent based on statuses rolling out.
+      // Use the Chain Lightning ability instead.
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6B8F', source: 'Darkscale' }),
+      // Call this after, which is ~2.3s after this ability.
+      // This avoids people with itchy feet running when they hear something.
+      delaySeconds: 2.5,
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.text();
+      },
+      run: (data, matches) => data.thunderstruck.push(matches.target),
+      outputStrings: {
+        text: {
+          en: 'Thunder on YOU',
+        },
+      },
+    },
+    {
+      id: 'DSR Wrath Thunderstruck Targets',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6B8F', source: 'Darkscale', capture: false }),
+      delaySeconds: 2.8,
+      suppressSeconds: 1,
+      // This is just pure extra info, no need to make noise for people.
+      sound: '',
+      infoText: (data, _matches, output) => {
+        // In case somebody wants to do some "go in the order cactbot tells you" sort of strat.
+        const [fullName1, fullName2] = data.thunderstruck.sort();
+        const name1 = fullName1 ? data.ShortName(fullName1) : output.unknown();
+        const name2 = fullName2 ? data.ShortName(fullName2) : output.unknown();
+        return output.text({ name1: name1, name2: name2 });
+      },
+      // Sorry tts players, but "Thunder on YOU" and "Thunder: names" are too similar.
+      tts: null,
+      outputStrings: {
+        text: {
+          en: 'Thunder: ${name1}, ${name2}',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'DSR Wrath Cauterize Marker',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker(),
+      condition: Conditions.targetIsYou(),
+      alarmText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        if (id === headmarkers.cauterize)
+          return output.diveOnYou();
+      },
+      outputStrings: {
+        diveOnYou: {
+          en: 'Divebomb (opposite warrior)',
+        },
+      },
+    },
+    {
+      id: 'DSR Doom Gain',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'BA0' }),
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.text();
+      },
+      run: (data, matches) => data.hasDoom[matches.target] = true,
+      outputStrings: {
+        text: {
+          en: 'Doom on YOU',
+        },
+      },
+    },
+    {
+      id: 'DSR Playstation2 Fire Chains',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => data.phase === 'thordan2' && data.me === matches.target,
+      alertText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        // Note: in general, both circles should always have Doom and both crosses
+        // should not have Doom, but who knows what happens if there's people dead.
+        // For example, in P1 tanks can get circles if enough people are dead.
+        const hasDoom = data.hasDoom[data.me];
+        if (hasDoom) {
+          if (id === headmarkers.firechainCircle)
+            return output.circleWithDoom();
+          if (id === headmarkers.firechainTriangle)
+            return output.triangleWithDoom();
+          if (id === headmarkers.firechainSquare)
+            return output.squareWithDoom();
+          if (id === headmarkers.firechainX)
+            return output.crossWithDoom();
+        }
+        if (id === headmarkers.firechainCircle)
+          return output.circle();
+        if (id === headmarkers.firechainTriangle)
+          return output.triangle();
+        if (id === headmarkers.firechainSquare)
+          return output.square();
+        if (id === headmarkers.firechainX)
+          return output.cross();
+      },
+      outputStrings: {
+        circle: {
+          en: 'Red Circle',
+          de: 'Roter Kreis',
+          fr: 'Cercle rouge',
+          ja: '赤まる',
+          ko: '빨강 동그라미',
+        },
+        triangle: {
+          en: 'Green Triangle',
+          de: 'Grünes Dreieck',
+          fr: 'Triangle vert',
+          ja: '緑さんかく',
+          ko: '초록 삼각',
+        },
+        square: {
+          en: 'Purple Square',
+          de: 'Lilanes Viereck',
+          fr: 'Carré violet',
+          ja: '紫しかく',
+          ko: '보라 사각',
+        },
+        cross: {
+          en: 'Blue X',
+          de: 'Blaues X',
+          fr: 'Croix bleue',
+          ja: '青バツ',
+          ko: '파랑 X',
+        },
+        circleWithDoom: {
+          en: 'Red Circle (Doom)',
+        },
+        triangleWithDoom: {
+          en: 'Green Triangle (Doom)',
+        },
+        squareWithDoom: {
+          en: 'Purple Square (Doom)',
+        },
+        crossWithDoom: {
+          en: 'Blue X (Doom)',
+        },
+      },
+    },
+    {
       id: 'DSR Akh Afah',
       // 6D41 Akh Afah from Hraesvelgr, and 64D2 is immediately after
       // 6D43 Akh Afah from Nidhogg, and 6D44 is immediately after
@@ -1696,6 +1888,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Darkscale': 'Dunkelschuppe',
         'Dragon-king Thordan': 'König Thordan',

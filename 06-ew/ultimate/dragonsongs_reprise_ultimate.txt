@@ -211,9 +211,10 @@ hideall "--sync--"
 2031.1 "Brightwing 4" sync / 1[56]:[^:]*:Ser Charibert:6319:/
 2034.1 "Skyblind 3" sync / 1[56]:[^:]*:Ser Charibert:631A:/
 2036.3 "Pure of Heart" sync / 1[56]:[^:]*:Ser Charibert:62E4:/
-2038.6 "--targetable--"
+2038.3 "--targetable--"
 2039.3 "Skyblind 4" sync / 1[56]:[^:]*:Ser Charibert:631A:/
-# Enrage?
+2041.0 "--sync--" sync / 14:[^:]*:Spear of the Fury:69B5:/ window 10,10
+2052.0 "Pierce Enrage" sync / 1[56]:[^:]*:Spear of the Fury:69B5:/
 
 # Ascalon's Mercy Concealed cast from King Thordan if Haurchefant dies and it loops.
 2055.9 "--sync--" sync / 14:[^:]*:King Thordan:63C8:/ window 60,200 jump 550
@@ -221,11 +222,16 @@ hideall "--sync--"
 
 
 ### Phase 5: King Thordan II
-3000.0 "Incarnation" sync / 1[56]:[^:]*:King Thordan:6B86:/ window 1000,0
+2980.8 "--sync--" sync / 1[56]:[^:]*:Haurchefant:6317:/ window 1000,0
+2995.9 "--targetable--"
+2996.0 "--sync--" sync / 14:[^:]*:King Thordan:6B86:/ window 1000,10
+3000.0 "Incarnation" sync / 1[56]:[^:]*:King Thordan:6B86:/
 3006.2 "The Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:6B87:/
 3016.7 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
+
 3017.8 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:63ED:/
 3024.9 "Wrath of the Heavens" sync / 1[56]:[^:]*:King Thordan:6B89:/
+3028.0 "--untargetable--"
 3034.4 "Chain Lightning" sync / 1[56]:[^:]*:Darkscale:6B8F:/
 3036.8 "Twisting Dive" sync / 1[56]:[^:]*:Vedrfolnir:6B8B:/
 3036.8 "Skyward Leap" #sync / 1[56]:[^:]*:Ser Paulecrain:72A2:/
@@ -243,14 +249,18 @@ hideall "--sync--"
 3050.2 "Altar Flare 3" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
 3050.3 "Empty Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:62DA:/
 3051.7 "Altar Flare 4" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
+
+3051.4 "--targetable--"
 3057.4 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
 3067.8 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
 3071.0 "Ascalon's Might 1" #sync / 1[56]:[^:]*:King Thordan:63C5:/
 3072.6 "Ascalon's Might 2" #sync / 1[56]:[^:]*:King Thordan:63C5:/
 3074.2 "Ascalon's Might 3" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+
 3077.0 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
 3078.1 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:63ED:/
 3085.2 "Death of the Heavens" sync / 1[56]:[^:]*:King Thordan:6B92:/
+3088.3 "--untargetable--"
 3092.2 "Deathstorm" sync / 1[56]:[^:]*:Darkscale:6B94:/
 3100.4 "Heavy Impact 1" sync / 1[56]:[^:]*:Ser Guerrique:63D6:/
 3102.0 "Lightning Storm" sync / 1[56]:[^:]*:King Thordan:63CC:/
@@ -266,6 +276,9 @@ hideall "--sync--"
 3115.5 "The Dragon's Gaze" #sync / 1[56]:[^:]*:King Thordan:63D1:/
 3115.5 "The Dragon's Glory" #sync / 1[56]:[^:]*:King Thordan:63D2:/
 3117.4 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:62DE:/
+3119.7 "Holy Meteor" sync / 1[56]:[^:]*:Ser Noudenet:6B97:/
+# TODO: meteors targetable?
+# TODO: thordan targetable?
 3140.3 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
 3150.5 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
 3153.6 "Ascalon's Might 1" #sync / 1[56]:[^:]*:King Thordan:63C5:/
