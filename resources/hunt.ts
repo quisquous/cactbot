@@ -800,7 +800,7 @@ const data: HuntMap = {
       'ja': 'ケール',
       'ko': '케르',
     },
-    'rank': 'S',
+    'rank': 'SS+',
   },
   'Ker shroud': {
     'id': '10616',
@@ -812,7 +812,7 @@ const data: HuntMap = {
       'ja': 'ケールの従者',
       'ko': '케르의 시종',
     },
-    'rank': 'B',
+    'rank': 'SS-',
   },
   'Kiwa': {
     'id': '6013',
