@@ -95,6 +95,8 @@
 03-hw/raid/a2s.ts
 03-hw/raid/a2s.txt
 03-hw/raid/a3s.ts
+03-hw/raid/a3n.txt
+03-hw/raid/a3n.ts
 03-hw/raid/a3s.txt
 03-hw/raid/a4s.ts
 03-hw/raid/a4s.txt
