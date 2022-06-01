@@ -300,6 +300,27 @@ const triggerSet: TriggerSet<Data> = {
         'Tainted Flood': '污染洪水',
       },
     },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Hippokampos': '히포캄포스',
+      },
+      'replaceText': {
+        '\\(knockback\\)': '(넉백)',
+        'Coherence Flare': '간섭 공격 (플레어)',
+        'Coherence Line': '간섭 공격 (쉐어)',
+        'Dissociation(?! Dive)': '머리 분리',
+        'Dissociation Dive': '머리 분리 (돌진)',
+        'Doubled Impact': '이중 충격',
+        'Murky Depths': '짙은 탁류',
+        'Predatory Sight': '먹잇감 각인',
+        'Sewage Deluge': '하수 범람',
+        'Sewage Eruption': '하수 분출',
+        'Shockwave': '충격파',
+        'Spoken Cataract': '숨결 홍수',
+        'Tainted Flood': '오염 침수',
+      },
+    },
   ],
 };
 

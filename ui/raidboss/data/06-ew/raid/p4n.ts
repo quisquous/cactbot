@@ -354,6 +354,31 @@ const triggerSet: TriggerSet<Data> = {
         'Westerly Shift': '换位强袭·西',
       },
     },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Hesperos': '헤스페로스',
+      },
+      'replaceText': {
+        '\\(cleave\\)': '(가르기)',
+        '\\(knockback\\)': '(넉백)',
+        'Acid Pinax': '독 배경판',
+        'Belone Bursts': '마법검 벨로네: 폭발',
+        'Belone Coils': '마법검 벨로네: 원형',
+        'Bloodrake': '피갈퀴',
+        'Burst(?!s)': '대폭발',
+        'Decollation': '집단 참수',
+        'Directional Shift': '이동 공격: 동서남북',
+        'Elegant Evisceration': '우아한 적출',
+        'Hell Skewer': '지옥 찌르기',
+        'Levinstrike Pinax': '번개 배경판',
+        '(?<!\\w )Pinax': '배경판',
+        'Setting the Scene': '극장 창조',
+        'Shifting Strike': '이동 공격',
+        'Well Pinax': '물기둥 배경판',
+        'Westerly Shift': '이동 공격: 서',
+      },
+    },
   ],
 };
 
