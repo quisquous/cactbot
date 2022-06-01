@@ -360,7 +360,7 @@ const triggerSet: TriggerSet<Data> = {
         'Hesperos': '헤스페로스',
       },
       'replaceText': {
-        '\\(cleave\\)': '(가르기)',
+        '\\(cleave\\)': '(칼)',
         '\\(knockback\\)': '(넉백)',
         'Acid Pinax': '독 배경판',
         'Belone Bursts': '마법검 벨로네: 폭발',
