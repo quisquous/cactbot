@@ -129,6 +129,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             blame: name,
             text: {
               en: 'Missed Tower',
+              ko: '기둥 놓침',
             },
           };
         });
