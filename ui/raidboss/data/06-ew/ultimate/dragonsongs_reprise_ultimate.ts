@@ -1602,6 +1602,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Tether on YOU',
+          ko: '선 대상자',
         },
       },
     },
@@ -1643,6 +1644,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Thunder on YOU',
+          ko: '번개 대상자',
         },
       },
     },
@@ -1666,6 +1668,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Thunder: ${name1}, ${name2}',
+          ko: '번개: ${name1}, ${name2}',
         },
         unknown: Outputs.unknown,
       },
@@ -1683,6 +1686,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         diveOnYou: {
           en: 'Divebomb (opposite warrior)',
+          ko: '카탈 대상자 (도끼 든 성기사 반대편)',
         },
       },
     },
@@ -1698,6 +1702,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Doom on YOU',
+          ko: '선고 대상자',
         },
       },
     },
@@ -1764,15 +1769,19 @@ const triggerSet: TriggerSet<Data> = {
         },
         circleWithDoom: {
           en: 'Red Circle (Doom)',
+          ko: '빨강 동그라미 (선고)',
         },
         triangleWithDoom: {
           en: 'Green Triangle (Doom)',
+          ko: '초록 삼각 (선고)',
         },
         squareWithDoom: {
           en: 'Purple Square (Doom)',
+          ko: '보라 사각 (선고)',
         },
         crossWithDoom: {
           en: 'Blue X (Doom)',
+          ko: '파랑 X (선고)',
         },
       },
     },
