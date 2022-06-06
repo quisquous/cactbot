@@ -1797,10 +1797,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Hallowed Wings and Plume',
       // Calls left and right while looking at Hraesvelgr.
-      // 6D23 Head Down, Right Wing
-      // 6D24 Head Up, Right Wing
-      // 6D26 Head Down, Left Wing
-      // 6D27 Head Up, Left Wing
+      // 6D23 Head Down, Left Wing
+      // 6D24 Head Up, Left Wing
+      // 6D26 Head Down, Right Wing
+      // 6D27 Head Up, Right Wing
       // Head Up = Tanks Far
       // Head Down = Tanks Near
       type: 'StartsUsing',
