@@ -191,9 +191,66 @@ Options.Triggers.push({
       // the message is sent to this channel; when a ready check is invoked by others, then it
       // would be sent to the 0239 channel.  (Sometimes this is also sent to 0139, unknown why?)
       id: 'General Ready Check',
-      netRegex: NetRegexes.gameLog({ line: '(?:\\y{Name} has initiated|You have commenced) a ready check\..*?', code: ['0039', '0139', '0239'], capture: false }),
+      netRegex: NetRegexes.gameLog({ line: '(?:You have commenced a ready check|\\y{Name} has initiated a ready check).*?', code: ['0039', '0139', '0239'], capture: false }),
       sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.webm',
       soundVolume: 0.6,
+    },
+  ],
+  timelineReplace: [
+    {
+      locale: 'de',
+      replaceSync: {
+        'has initiated a ready check': 'eine Bereitschaftsanfrage gestellt',
+        'You have commenced a ready check': 'Du hast eine Bereitschaftsanfrage gestellt',
+        'You poke the striking dummy': 'Du stupst die Trainingspuppe an',
+        'You psych yourself up alongside the striking dummy': 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
+        'You burst out laughing at the striking dummy': 'Du lachst herzlich mit der Trainingspuppe',
+        'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
+      },
+    },
+    {
+      locale: 'fr',
+      replaceSync: {
+        ' has initiated a ready check': '',
+        'You have commenced a ready check\\|': 'Un appel de préparation a été lancé par ',
+        'You poke the striking dummy': 'Vous touchez légèrement le mannequin d\'entraînement du doigt',
+        'You psych yourself up alongside the striking dummy': 'Vous vous motivez devant le mannequin d\'entraînement',
+        'You burst out laughing at the striking dummy': 'Vous vous esclaffez devant le mannequin d\'entraînement',
+        'You clap for the striking dummy': 'Vous applaudissez le mannequin d\'entraînement',
+      },
+    },
+    {
+      locale: 'ja',
+      replaceSync: {
+        ' has initiated a ready check': 'がレディチェックを開始しました',
+        'You have commenced a ready check': 'レディチェックを開始しました',
+        'You poke the striking dummy': '.*は木人をつついた',
+        'You psych yourself up alongside the striking dummy': '.*は木人に活を入れた',
+        'You burst out laughing at the striking dummy': '.*は木人のことを大笑いした',
+        'You clap for the striking dummy': '.*は木人に拍手した',
+      },
+    },
+    {
+      locale: 'cn',
+      replaceSync: {
+        ' has initiated a ready check': '发起了准备确认',
+        'You have commenced a ready check': '发起了准备确认',
+        'You poke the striking dummy': '.*用手指戳向木',
+        'You psych yourself up alongside the striking dummy': '.*激励木人',
+        'You burst out laughing at the striking dummy': '.*看着木人高声大笑',
+        'You clap for the striking dummy': '.*向木人送上掌声',
+      },
+    },
+    {
+      locale: 'ko',
+      replaceSync: {
+        'has initiated a ready check': '님이 준비 확인을 시작했습니다',
+        'You have commenced a ready check': '준비 확인을 시작합니다',
+        'You poke the striking dummy': '.*나무인형을 쿡쿡 찌릅니다',
+        'You psych yourself up alongside the striking dummy': '.*나무인형에게 힘을 불어넣습니다',
+        'You burst out laughing at the striking dummy': '.*나무인형을 보고 폭소를 터뜨립니다',
+        'You clap for the striking dummy': '.*나무인형에게 박수를 보냅니다',
+      },
     },
   ],
 });
