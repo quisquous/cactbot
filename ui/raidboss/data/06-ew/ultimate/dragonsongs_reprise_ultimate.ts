@@ -1862,7 +1862,7 @@ const triggerSet: TriggerSet<Data> = {
       // Lasts 10.96s, but bosses do not cast Cauterize until 7.5s after debuff
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
       infoText: (_data, matches, output) => {
-        if (matches.id === 'B52')
+        if (matches.effectId === 'B52')
           return output.hraesvelgr!();
         return output.nidhogg!();
       },
