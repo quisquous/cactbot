@@ -1805,6 +1805,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'DSR Hallowed Wings and Plume',
+      // Calls left and right while looking at Hraesvelgr.
       // 6D23 Head Down, Left Wing
       // 6D24 Head Up, Left Wing
       // 6D26 Head Down, Right Wing
@@ -1818,19 +1819,19 @@ const triggerSet: TriggerSet<Data> = {
         let wings;
         switch (matches.id) {
           case '6D23':
-            wings = output.right!();
+            wings = output.left!();
             head = data.role === 'tank' ? output.near!() : output.far!();
             break;
           case '6D24':
-            wings = output.right!();
+            wings = output.left!();
             head = data.role === 'tank' ? output.far!() : output.near!();
             break;
           case '6D26':
-            wings = output.left!();
+            wings = output.right!();
             head = data.role === 'tank' ? output.near!() : output.far!();
             break;
           case '6D27':
-            wings = output.left!();
+            wings = output.right!();
             head = data.role === 'tank' ? output.far!() : output.near!();
             break;
         }
