@@ -438,6 +438,15 @@ const lineDocs: LineDocs = {
       ],
     },
   },
+  StatusList3: {
+    examples: {
+      'en-US': [
+        '42|2022-06-06T21:57:14.8920000+08:00|10FF0001|Tini Poutini|0A0168|41F00000|E0000000|14016A|41F00000|E0000000|29310030|44835452|10FF0001|4361fffcb50708dd',
+        '42|2022-06-06T10:04:52.3370000-07:00|10FF0002|Potato Chippy|037F|0|E0000000|ee5bd3e5dbb46f59',
+        '42|2022-06-06T10:09:06.2140000-07:00|10FF0002|Potato Chippy|0|0|0|f988f962f9c768e3',
+      ],
+    },
+  },
 } as const;
 
 type LogGuideOptions = {
