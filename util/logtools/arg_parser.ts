@@ -7,7 +7,6 @@ type TimelineArgs = {
   'search_zones': number | null;
   'fight_regex': string | null;
   'zone_regex': string | null;
-  'adjust': number | null;
 };
 
 class LogUtilArgParse {
