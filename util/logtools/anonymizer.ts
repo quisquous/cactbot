@@ -1,31 +1,35 @@
+import logDefinitions, { LogDefinition } from '../../resources/netlog_defs';
+import { UnreachableCode } from '../../resources/not_reached';
+
+import FakeNameGenerator from './fake_name_generator';
+
 // TODO: is the first byte of ids always flags, such that "..000000" is always empty?
 const emptyIds = ['E0000000', '80000000'];
 
-import logDefinitions from '../../resources/netlog_defs';
-import FakeNameGenerator from './fake_name_generator';
-
 // notifier here is a { warn: (str) => {} } object to return errors in a more structured way.
+export type Notifier = {
+  warn: (str: string, splitLine?: string[]) => void;
+};
 
 export default class Anonymizer {
+  private logTypes: { [type: string]: LogDefinition } = {};
+
+  private nameGenerator = new FakeNameGenerator();
+
+  // uppercase hex id -> name
+  private playerMap: { [id: string]: string } = {};
+  // uppercase hex real player id -> uppercase hex fake player id
+  private anonMap: { [id: string]: string } = {};
+
+  // About 20% of any log is hashes, so just clear instead of faking.
+  private fakeHash = '';
+
+  private lastPlayerIdx = 0x10FF0000;
+
   constructor() {
     // Remap logDefinitions from log type (instead of name) to definition.
-    this.logTypes = {};
-    for (const logName in logDefinitions) {
-      const def = logDefinitions[logName];
+    for (const def of Object.values(logDefinitions))
       this.logTypes[def.type] = def;
-    }
-
-    this.nameGenerator = new FakeNameGenerator();
-
-    // uppercase hex id -> name
-    this.playerMap = {};
-    // uppercase hex real player id -> uppercase hex fake player id
-    this.anonMap = {};
-
-    this.lastPlayerIdx = 0x10FF0000;
-
-    // About 20% of any log is hashes, so just clear instead of faking.
-    this.fakeHash = '';
 
     for (const id of emptyIds) {
       // Empty ids have already been anonymized (to themselves).
@@ -35,21 +39,22 @@ export default class Anonymizer {
     }
   }
 
-  process(line, notifier) {
+  public process(line: string, notifier: Notifier): string | undefined {
     const splitLine = line.split('|');
 
     // Improperly closed files can leave a blank line.
-    if (splitLine.length <= 1)
+    const typeField = splitLine[0];
+    if (typeField === undefined || splitLine.length <= 1)
       return line;
 
     // Always replace the hash.
-    if (splitLine[splitLine.length - 1].length === 16)
+    if (splitLine[splitLine.length - 1]?.length === 16)
       splitLine[splitLine.length - 1] = this.fakeHash;
     else
-      notifier.warn('missing hash ' + splitLine.length, splitLine);
+      notifier.warn(`missing hash ${splitLine.length}`, splitLine);
 
-    const type = this.logTypes[splitLine[0]];
-    if (!type || type.isUnknown) {
+    const type = this.logTypes[typeField];
+    if (type === undefined || type.isUnknown) {
       notifier.warn('unknown type', splitLine);
       return;
     }
@@ -63,7 +68,10 @@ export default class Anonymizer {
         let fieldIdx = -1;
         for (const fieldName in type.fields) {
           if (fieldName === subFieldName) {
-            fieldIdx = type.fields[fieldName];
+            const idx = type.fields[fieldName];
+            if (idx === undefined)
+              throw new UnreachableCode();
+            fieldIdx = idx;
             break;
           }
         }
@@ -72,11 +80,15 @@ export default class Anonymizer {
           return;
         }
         const value = splitLine[fieldIdx];
+        if (value === undefined) {
+          notifier.warn('internal error: missing subfield: ' + subFieldName, splitLine);
+          return;
+        }
         const subValues = type.subFields[subFieldName];
 
         // Unhandled values inherit the field's value.
-        if (value in subValues) {
-          const subType = subValues[value];
+        const subType = subValues?.[value];
+        if (subType !== undefined) {
           canAnonymizeSubField = subType.canAnonymize;
           if (!canAnonymizeSubField)
             return;
@@ -89,34 +101,38 @@ export default class Anonymizer {
       return;
 
     // If nothing to anonymize, we're done.
-    if (!type.playerIds)
+    const playerIds = type.playerIds;
+    if (playerIds === undefined)
       return splitLine.join('|');
 
     // Anonymize fields.
-    for (let idIdx in type.playerIds) {
-      idIdx = parseInt(idIdx);
-      const nameIdx = type.playerIds[idIdx];
+    for (const [idIdxStr, nameIdx] of Object.entries(playerIds)) {
+      const idIdx = parseInt(idIdxStr);
+
+      const isOptional = type.firstOptionalField !== undefined && idIdx >= type.firstOptionalField;
 
       // Check for ids that are out of range, possibly optional.
       // The last field is always the hash, so don't include that either.
       if (idIdx > splitLine.length - 2) {
         // Some ids are optional and may not exist, these are ok to skip.
-        if (type.firstOptionalField !== undefined && idIdx >= type.firstOptionalField)
+        if (isOptional)
           continue;
 
-        notifier.warn('unexpected missing field ' + idIdx, splitLine);
+        notifier.warn(`unexpected missing field ${idIdx}`, splitLine);
         continue;
       }
 
       // TODO: keep track of uppercase/lowercase??
-      const playerId = splitLine[idIdx].toUpperCase();
+      const field = splitLine[idIdx];
+      if (field === undefined)
+        throw new UnreachableCode();
+      const playerId = field.toUpperCase();
 
       // Cutscenes get added combatant messages with ids such as 'FF000006' and no name.
       const isCutsceneId = playerId.substr(0, 2) === 'FF';
 
       // Handle weirdly shaped ids.
       if (playerId.length !== 8 || isCutsceneId) {
-        const isOptional = type.optionalFields && type.optionalFields.includes(idIdx);
         // Also, sometimes ids are '0000' or '0'.  Treat these the same as implicitly optional.
         const isZero = parseInt(playerId) === 0;
         if (isOptional || isZero || isCutsceneId) {
@@ -124,11 +140,11 @@ export default class Anonymizer {
           // However, in these cases, it should have an empty name (or no name field).
           // e.g. 21|2019-09-07T10:18:11.4390000-07:00|10FF007E|X'xzzrmk Tia|01|Key Item|793E69||
           if (typeof nameIdx === 'number' && splitLine[nameIdx] !== '')
-            notifier.warn('invalid id with valid name at index ' + idIdx, splitLine);
+            notifier.warn(`invalid id with valid name at index ${idIdx}`, splitLine);
           continue;
         }
 
-        notifier.warn('expected id field at index ' + idIdx, splitLine);
+        notifier.warn(`expected id field at index ${idIdx}`, splitLine);
         continue;
       }
 
@@ -140,15 +156,22 @@ export default class Anonymizer {
       if (!this.anonMap[playerId])
         this.anonMap[playerId] = this.addNewPlayer();
       const fakePlayerId = this.anonMap[playerId];
-      if (!fakePlayerId)
+      if (fakePlayerId === undefined) {
         notifier.warn('internal error: missing player id', splitLine);
-      if (typeof this.playerMap[fakePlayerId] === 'undefined')
-        notifier.warn('internal error: missing player name ' + fakePlayerId, splitLine);
+        continue;
+      }
+
       splitLine[idIdx] = fakePlayerId;
 
       // Replace the corresponding name, if there's a name mapping.
-      if (typeof nameIdx === 'number')
-        splitLine[nameIdx] = this.playerMap[fakePlayerId];
+      if (typeof nameIdx === 'number') {
+        const fakePlayerName = this.playerMap[fakePlayerId];
+        if (fakePlayerName === undefined) {
+          notifier.warn(`internal error: missing player name ${fakePlayerId}`, splitLine);
+          continue;
+        }
+        splitLine[nameIdx] = fakePlayerName;
+      }
     }
 
     // For unknown fields, just clear them, as they may have ids.
@@ -160,7 +183,7 @@ export default class Anonymizer {
     return splitLine.join('|');
   }
 
-  addNewPlayer() {
+  private addNewPlayer(): string {
     this.lastPlayerIdx++;
     const playerName = this.nameGenerator.makeName(this.lastPlayerIdx);
     const playerId = this.lastPlayerIdx.toString(16).toUpperCase();
@@ -169,7 +192,7 @@ export default class Anonymizer {
   }
 
   // Once a log has been anonymized, this validates fake ids don't collide with real.
-  validateIds(notifier) {
+  validateIds(notifier: Notifier): boolean {
     let success = true;
 
     // valid player ids
@@ -181,7 +204,7 @@ export default class Anonymizer {
       if (emptyIds.includes(anonId))
         continue;
       if (playerIds.includes(anonId)) {
-        notifier.warn('player id collision ' + anonId);
+        notifier.warn(`player id collision ${anonId}`);
         success = false;
       }
     }
@@ -190,22 +213,21 @@ export default class Anonymizer {
   }
 
   // Once a log has been anonymized, call it with all the lines again to verify.
-  validateLine(line, notifier) {
+  validateLine(line: string, notifier: Notifier): boolean {
     const splitLine = line.split('|');
 
     let success = true;
 
     const playerIds = Object.keys(this.anonMap);
 
-    for (let idx = 0; idx < splitLine.length; ++idx) {
-      const field = splitLine[idx];
+    splitLine.forEach((field, idx) => {
       if (emptyIds.includes(field))
-        continue;
+        return;
       if (playerIds.includes(field)) {
-        notifier.warn('uncaught player id ' + field + ', idx: ' + idx, splitLine);
+        notifier.warn(`uncaught player id ${field}, idx: ${idx}`, splitLine);
         success = false;
       }
-    }
+    });
 
     return success;
   }
