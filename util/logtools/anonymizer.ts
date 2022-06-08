@@ -2,14 +2,10 @@ import logDefinitions, { LogDefinition } from '../../resources/netlog_defs';
 import { UnreachableCode } from '../../resources/not_reached';
 
 import FakeNameGenerator from './fake_name_generator';
+import { Notifier } from './notifier';
 
 // TODO: is the first byte of ids always flags, such that "..000000" is always empty?
 const emptyIds = ['E0000000', '80000000'];
-
-// notifier here is a { warn: (str) => {} } object to return errors in a more structured way.
-export type Notifier = {
-  warn: (str: string, splitLine?: string[]) => void;
-};
 
 export default class Anonymizer {
   private logTypes: { [type: string]: LogDefinition } = {};
