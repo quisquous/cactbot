@@ -6,6 +6,7 @@ import { EncounterCollector, TLFuncs } from './encounter_tools';
 import ZoneId from '../../resources/zone_id';
 import argparse from 'argparse';
 import { LogUtilArgParse } from './arg_parser';
+import { ConsoleNotifier } from './notifier';
 
 // TODO: add options for not splitting / not anonymizing.
 const timelineParse = new LogUtilArgParse();
@@ -38,25 +39,9 @@ const errorFunc = (str) => {
   exitCode = 1;
 };
 
-class ConsoleNotifier {
-  warn(reason, splitLine) {
-    if (typeof splitLine === 'undefined')
-      errorFunc(this.fileName + ': ' + reason);
-    else
-      errorFunc(this.fileName + ': ' + reason + ': ' + splitLine.join('|'));
-  }
-
-  error(reason, splitLine) {
-    if (typeof splitLine === 'undefined')
-      errorFunc(this.fileName + ': ' + reason);
-    else
-      errorFunc(this.fileName + ': ' + reason + ': ' + splitLine.join('|'));
-  }
-}
-
 const writeFile = (outputFile, startLine, endLine) => {
   return new Promise((resolve, reject) => {
-    const notifier = new ConsoleNotifier();
+    const notifier = new ConsoleNotifier(logFileName, errorFunc);
     const anonymizer = new Anonymizer();
 
     const lineReader = readline.createInterface({
