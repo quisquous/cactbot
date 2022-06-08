@@ -43,7 +43,7 @@ export default class Anonymizer {
       return line;
 
     // Always replace the hash.
-    if (splitLine[splitLine.length - 1].length === 32)
+    if (splitLine[splitLine.length - 1].length === 16)
       splitLine[splitLine.length - 1] = this.fakeHash;
     else
       notifier.warn('missing hash ' + splitLine.length, splitLine);
@@ -101,7 +101,7 @@ export default class Anonymizer {
       // The last field is always the hash, so don't include that either.
       if (idIdx > splitLine.length - 2) {
         // Some ids are optional and may not exist, these are ok to skip.
-        if (type.optionalFields && type.optionalFields.includes(idIdx))
+        if (type.firstOptionalField !== undefined && idIdx >= type.firstOptionalField)
           continue;
 
         notifier.warn('unexpected missing field ' + idIdx, splitLine);
