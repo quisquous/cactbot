@@ -1,33 +1,26 @@
-import logDefinitions from '../../resources/netlog_defs';
+import logDefinitions, { LogDefinition } from '../../resources/netlog_defs';
+
+import { Notifier } from './notifier';
 
 export default class Splitter {
+  private logTypes: { [type: string]: LogDefinition } = {};
+  private haveStarted = false;
+  private haveStopped = false;
+  private haveFoundFirstNonIncludeLine = false;
+  private globalLines: string[] = [];
+  // log type => line
+  private lastInclude: { [type: string]: string } = {};
+  // id -> line
+  private addedCombatants: { [id: string]: string } = {};
+
   // startLine and stopLine are both inclusive.
-  constructor(startLine, stopLine, notifier) {
+  constructor(private startLine: string, private stopLine: string, private notifier: Notifier) {
     // Remap logDefinitions from log type (instead of name) to definition.
-    this.logTypes = {};
-    for (const logName in logDefinitions) {
-      const def = logDefinitions[logName];
+    for (const def of Object.values(logDefinitions))
       this.logTypes[def.type] = def;
-    }
-
-    this.startLine = startLine;
-    this.stopLine = stopLine;
-    this.notifier = notifier;
-
-    this.haveStarted = false;
-    this.haveStopped = false;
-    this.haveFoundFirstNonIncludeLine = false;
-
-    this.globalLines = [];
-    // log type => line
-    this.lastInclude = {};
-
-    // id -> line
-    this.addedCombatants = {};
   }
 
-  // Can return string, array of strings, or undefined (i.e. skip).
-  process(line) {
+  process(line: string): string | string[] | undefined {
     if (this.haveStopped)
       return;
 
@@ -40,8 +33,10 @@ export default class Splitter {
 
     const splitLine = line.split('|');
     const typeField = splitLine[0];
+    if (typeField === undefined)
+      return;
     const type = this.logTypes[typeField];
-    if (!type) {
+    if (type === undefined) {
       this.notifier.error(`Unknown type: ${typeField}: ${line}`);
       return;
     }
@@ -59,12 +54,14 @@ export default class Splitter {
       this.addedCombatants = {};
     } else if (typeField === '03') {
       const idIdx = 2;
-      const combatantId = splitLine[idIdx].toUpperCase();
-      this.addedCombatants[combatantId] = line;
+      const combatantId = splitLine[idIdx]?.toUpperCase();
+      if (combatantId !== undefined)
+        this.addedCombatants[combatantId] = line;
     } else if (typeField === '04') {
       const idIdx = 2;
-      const combatantId = splitLine[idIdx].toUpperCase();
-      delete this.addedCombatants[combatantId];
+      const combatantId = splitLine[idIdx]?.toUpperCase();
+      if (combatantId !== undefined)
+        delete this.addedCombatants[combatantId];
     }
 
     if (!this.haveStarted && line !== this.startLine)
@@ -83,10 +80,10 @@ export default class Splitter {
 
     let lines = this.globalLines;
 
-    for (const typeField in this.lastInclude)
-      lines.push(this.lastInclude[typeField]);
-    for (const key in this.addedCombatants)
-      lines.push(this.addedCombatants[key]);
+    for (const line of Object.values(this.lastInclude))
+      lines.push(line);
+    for (const line of Object.values(this.addedCombatants))
+      lines.push(line);
     lines.push(line);
 
     lines = lines.sort((a, b) => {
@@ -98,15 +95,15 @@ export default class Splitter {
     });
 
     // These should be unused from here on out.
-    this.globalLines = null;
-    this.lastInclude = null;
-    this.addedCombatants = null;
+    this.globalLines = [];
+    this.lastInclude = {};
+    this.addedCombatants = {};
 
     return lines;
   }
 
   // Call callback with any emitted line.
-  processWithCallback(line, callback) {
+  public processWithCallback(line: string, callback: (str: string) => void): void {
     const result = this.process(line);
     if (typeof result === 'undefined') {
       return;
@@ -118,11 +115,11 @@ export default class Splitter {
     }
   }
 
-  isDone() {
+  public isDone(): boolean {
     return this.haveStopped;
   }
 
-  wasStarted() {
+  public wasStarted(): boolean {
     return this.haveStarted;
   }
 }
