@@ -133,6 +133,9 @@ This guide was last updated for:
     - [Structure](#structure-25)
     - [Regexes](#regexes-16)
     - [Examples](#examples-25)
+  - [Line 42 (0x2A): StatusList3](#line-42-0x2a-statuslist3)
+    - [Structure](#structure-26)
+    - [Examples](#examples-26)
   - [Line 251 (0xFB): Debug](#line-251-0xfb-debug)
   - [Line 252 (0xFC): PacketDump](#line-252-0xfc-packetdump)
   - [Line 253 (0xFD): Version](#line-253-0xfd-version)
@@ -1730,10 +1733,10 @@ and [NetworkActionSync](#line37).
 
 ```log
 Network Log Line Structure:
-38|[timestamp]|[targetId]|[target]|[jobLevelData]|[hp]|[maxHp]|[mp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]|[data0]|[data1]|[data2]
+38|[timestamp]|[targetId]|[target]|[jobLevelData]|[hp]|[maxHp]|[mp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]|[data0]|[data1]|[data2]|[data3]|[data4]|[data5]
 
 ACT Log Line Structure:
-[timestamp] StatusList 26:[targetId]:[target]:[jobLevelData]:[hp]:[maxHp]:[mp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]:[data0]:[data1]:[data2]
+[timestamp] StatusList 26:[targetId]:[target]:[jobLevelData]:[hp]:[maxHp]:[mp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]:[data0]:[data1]:[data2]:[data3]:[data4]:[data5]
 ```
 
 #### Regexes
@@ -1976,6 +1979,41 @@ Future work:
 - What is `param0`? Is it just skipped?
 - How do `PlayerParameter` and `ObjectParameter` work in the `LogMessage` table?
 - Some log messages don't show as 41 lines, e.g. "You have arrived at a vista" or "Engage!".
+
+<a name="line42"></a>
+
+### Line 42 (0x2A): StatusList3
+
+This line seems to be sent only for the current player and lists some status effects.
+More information is needed.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=StatusList3&lang=en-US) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+42|[timestamp]|[id]|[name]
+
+ACT Log Line Structure:
+[timestamp] StatusList3 2A:[id]:[name]
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+42|2022-06-06T21:57:14.8920000+08:00|10FF0001|Tini Poutini|0A0168|41F00000|E0000000|14016A|41F00000|E0000000|29310030|44835452|10FF0001|4361fffcb50708dd
+42|2022-06-06T10:04:52.3370000-07:00|10FF0002|Potato Chippy|037F|0|E0000000|ee5bd3e5dbb46f59
+42|2022-06-06T10:09:06.2140000-07:00|10FF0002|Potato Chippy|0|0|0|f988f962f9c768e3
+
+ACT Log Line Examples:
+[21:57:14.892] StatusList3 2A:10FF0001:Tini Poutini:0A0168:41F00000:E0000000:14016A:41F00000:E0000000:29310030:44835452:10FF0001
+[10:04:52.337] StatusList3 2A:10FF0002:Potato Chippy:037F:0:E0000000
+[10:09:06.214] StatusList3 2A:10FF0002:Potato Chippy:0:0:0
+```
+
+<!-- AUTO-GENERATED-CONTENT:END (logLines:type=StatusList3&lang=en-US) -->
 
 <a name="line251"></a>
 

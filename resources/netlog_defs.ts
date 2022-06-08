@@ -767,6 +767,24 @@ const latestLogDefinitions = {
     canAnonymize: true,
     firstOptionalField: undefined,
   },
+  StatusList3: {
+    type: '42',
+    name: 'StatusList3',
+    messageType: 'StatusList3',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      id: 2,
+      name: 3,
+      // triplets of fields from here (effectId, data, playerId)?
+    },
+    playerIds: {
+      2: 3,
+    },
+    canAnonymize: true,
+    firstOptionalField: 4,
+    firstUnknownField: 4,
+  },
   ParserInfo: {
     type: '249',
     name: 'ParserInfo',
