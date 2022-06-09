@@ -5,6 +5,7 @@ import { Namespace } from 'argparse';
 
 import Anonymizer from './anonymizer';
 import { LogUtilArgParse, TimelineArgs } from './arg_parser';
+import { printCollectedFights, printCollectedZones } from './encounter_printer';
 import { EncounterCollector, TLFuncs } from './encounter_tools';
 import { ConsoleNotifier } from './notifier';
 import Splitter from './splitter';
@@ -135,11 +136,11 @@ void (async function() {
   const collector = await makeCollectorFromPrepass(logFileName);
 
   if (args['search_fights'] === -1) {
-    TLFuncs.printCollectedFights(collector);
+    printCollectedFights(collector);
     process.exit(0);
   }
   if (args['search_zones'] === -1) {
-    TLFuncs.printCollectedZones(collector);
+    printCollectedZones(collector);
     process.exit(0);
   }
 
