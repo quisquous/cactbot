@@ -324,7 +324,7 @@ class TLFuncs {
   // TODO: Replace the line argument with a NetAnyMatches once
   // we move the ParseLine logic out of the emulator.
   static getTZOffsetFromLogLine(line: string): number {
-    const time = !line.substring(0, 3).includes('|') ? line.substring(3, 36) : line.substring(4, 37);
+    const time = line.substring(0, 3).includes('|') ? line.substring(3, 36) : line.substring(4, 37);
     return DTFuncs.getTimezoneOffsetMillis(time);
   }
 
@@ -409,8 +409,8 @@ class TLFuncs {
       let dateStr = 'Unknown_Date';
       let timeStr = 'Unknown_Time';
       if (zone.startTime !== undefined) {
-        dateStr = DTFuncs.dateObjectToDateString(zone.startTime, tzOffset).replace(/-/g, '');
-        timeStr = DTFuncs.dateObjectToTimeString(zone.startTime, tzOffset).replace(/:/g, '');
+        dateStr = DTFuncs.dateObjectToDateString(zone.startTime, tzOffset);
+        timeStr = DTFuncs.dateObjectToTimeString(zone.startTime, tzOffset);
       }
       const duration = TLFuncs.durationFromDates(zone.startTime, zone.endTime);
 
@@ -442,8 +442,8 @@ class TLFuncs {
       let startDate = 'Unknown_Date';
       let startTime = 'Unknown_Time';
       if (fight.startTime !== undefined) {
-        startDate = DTFuncs.dateObjectToDateString(fight.startTime, tzOffset).replace(/-/g, '');
-        startTime = DTFuncs.dateObjectToTimeString(fight.startTime, tzOffset).replace(/:/g, '');
+        startDate = DTFuncs.dateObjectToDateString(fight.startTime, tzOffset);
+        startTime = DTFuncs.dateObjectToTimeString(fight.startTime, tzOffset);
       }
       const fightDuration = TLFuncs.durationFromDates(fight.startTime, fight.endTime) ?? 'Unknown Duration';
       let fightName = 'Unknown Encounter';
