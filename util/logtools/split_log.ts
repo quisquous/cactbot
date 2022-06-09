@@ -17,6 +17,9 @@ class SplitLogArgs extends Namespace implements TimelineArgs {
   'search_zones': number | null;
   'fight_regex': string | null;
   'zone_regex': string | null;
+  'report_id': string | null;
+  'report_fight': number | null;
+  'key': string | null;
 }
 
 // TODO: add options for not splitting / not anonymizing.
