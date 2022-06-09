@@ -1814,6 +1814,7 @@ const triggerSet: TriggerSet<Data> = {
       // Head Down = Tanks Near
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6D23', '6D24', '6D26', '6D27'], source: 'Hraesvelgr' }),
+      durationSeconds: 6,
       alertText: (data, matches, output) => {
         let head;
         let wings;
