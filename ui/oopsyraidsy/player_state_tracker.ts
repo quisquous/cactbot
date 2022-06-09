@@ -192,7 +192,7 @@ export class PlayerStateTracker {
   }
 
   private Reset(): void {
-    this.idToPartyInfo = {};
+    // Deliberately do not clear idToPartyInfo here.
     this.petIdToOwnerId = {};
     this.deadIds.clear();
     this.trackedEvents = [];
@@ -201,6 +201,9 @@ export class PlayerStateTracker {
 
   OnChangeZone(timestamp: number, zoneName: string, zoneId: number): void {
     this.Reset();
+    // combatants and party info are re-sent on zone change, so clear here
+    // to periodically trim this.
+    this.idToPartyInfo = {};
     this.collector.OnChangeZone(timestamp, zoneName, zoneId);
   }
 
@@ -508,7 +511,8 @@ export class PlayerStateTracker {
     const blameId = ownerId ?? collected.sourceId;
     const sourceName = this.partyTracker.nameFromId(blameId);
     if (sourceName === undefined) {
-      console.error(`Couldn't find name for ${blameId} (owner: ${ownerId ?? 'none'})`);
+      const line = JSON.stringify(collected.splitLine);
+      console.error(`Couldn't find name for ${blameId} (owner: ${ownerId ?? 'none'}), ${line}`);
       return;
     }
 
@@ -545,8 +549,10 @@ export class PlayerStateTracker {
 
     const missedNames = missedIds.map((id) => {
       const name = this.partyTracker.nameFromId(id);
-      if (!name)
-        console.error(`Couldn't find name for ${id}`);
+      if (!name) {
+        const line = JSON.stringify(collected.splitLine);
+        console.error(`Couldn't find name for ${id}, ${line}`);
+      }
       return name ?? '???';
     });
 
