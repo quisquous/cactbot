@@ -14,7 +14,12 @@ export default class Splitter {
   private addedCombatants: { [id: string]: string } = {};
 
   // startLine and stopLine are both inclusive.
-  constructor(private startLine: string, private stopLine: string, private notifier: Notifier) {
+  constructor(
+    private startLine: string,
+    private stopLine: string,
+    private notifier: Notifier,
+    private includeGlobals: boolean,
+  ) {
     // Remap logDefinitions from log type (instead of name) to definition.
     for (const def of Object.values(logDefinitions))
       this.logTypes[def.type] = def;
@@ -42,7 +47,7 @@ export default class Splitter {
     }
 
     // Hang onto every globalInclude line, and the last instance of each lastInclude line.
-    if (type.globalInclude)
+    if (type.globalInclude && this.includeGlobals)
       this.globalLines.push(line);
     else if (type.lastInclude)
       this.lastInclude[typeField] = line;

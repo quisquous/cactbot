@@ -1,6 +1,6 @@
 import './raidboss_config';
 import DTFuncs from '../../resources/datetime';
-import { isLang, Lang, langMap } from '../../resources/languages';
+import { browserLanguagesToLang, Lang, langMap } from '../../resources/languages';
 import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler } from '../../resources/overlay_plugin_api';
 import UserConfig from '../../resources/user_config';
@@ -148,13 +148,9 @@ const raidEmulatorOnLoad = async () => {
 
   if (!websocketConnected) {
     // Find the most appropriate lang code to use based on browser language priority
-    const browserLang = [...navigator.languages, 'en']
-      .map((l) => l.substr(0, 2))
-      // Remap `zh` to `cn` to match cactbot languages
-      .map((l) => l === 'zh' ? 'cn' : l)
-      .filter((l) => ['en', 'de', 'fr', 'ja', 'cn', 'ko'].includes(l))[0];
-    options.ParserLanguage = isLang(browserLang) ? browserLang : 'en';
-    options.DisplayLanguage = isLang(browserLang) ? browserLang : 'en';
+    const browserLang = browserLanguagesToLang(navigator.languages);
+    options.ParserLanguage = browserLang;
+    options.DisplayLanguage = browserLang;
     // Default options
     options.IsRemoteRaidboss = true;
     options.TextAlertsEnabled = true;
