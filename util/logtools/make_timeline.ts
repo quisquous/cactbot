@@ -58,7 +58,6 @@ class ExtendedArgsNamespace extends Namespace implements ExtendedArgs {
   'search_zones': number | null;
   'fight_regex': string | null;
   'zone_regex': string | null;
-  'adjust': number | null;
   'output_file': string | null;
   'start': string | null;
   'end': string | null;

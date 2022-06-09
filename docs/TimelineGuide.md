@@ -526,22 +526,15 @@ for clarity.
 ```
 
 It's pretty clear that there's a loop of roughly 27.8 or 27.9 seconds.
-Let's just assume it's 27.8
+Let's just assume it's 27.8.
 
-The best tool for making perfect loops is **util/timeline_adjust.py**.
-This script will walk through a timeline file and print out the same
-timeline file, adjusted by any amount, positive or negative.
-
-If you are using VSCode, you can also use the [adjust time feature](https://github.com/MaikoTan/cactbot-highlight#adjust-time) from the [Cactbot Highlight](https://marketplace.visualstudio.com/items?itemName=MaikoTan.cactbot-highlight) extension,
+If you are using VSCode, you should use the [adjust time feature](https://github.com/MaikoTan/cactbot-highlight#adjust-time) from the [Cactbot Highlight](https://marketplace.visualstudio.com/items?itemName=MaikoTan.cactbot-highlight) extension,
 which offer a simple way to adjust time in one-click.
+This will not adjust jumps.
 
-(Note: they both will not adjust jumps.)
-
-Here's an abbreviated version of the output from running this command:
+Here's an abbreviated version of the output after adjusting the time:
 
 ```bash
-python util/timeline_adjust.py --file=ui/raidboss/data/timelines/cape_westwind.txt --adjust=27.8
-
 29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -569,8 +562,8 @@ at least make a loop that goes 30 seconds ahead.
 
 Here's what a completed version of the first phase loop looks like.
 
-Note that we've used the times from **timeline_adjust.py** rather
-than the original times. (You could also use `Cactbot Highlight` if you prefer that.)
+Note that we've used adjusted times rather
+than the original times.
 This is so that when we jump from 52.2 to 24.4 that all of the
 relative times stay the same.  In both cases when `Gate Of Tartarus`
 occurs, there's a `Shield Skewer` in 5.4 seconds after it.
@@ -648,10 +641,8 @@ with manually added blank lines to break out the loops.
 
 It looks like there's a clear loop here,
 where every iteration of the loop has 2x `Firebomb` and 2x `Shield Skewer`.
-The loop time is 34.6.  Time to break out **timeline_adjust.py** again.
-
-Running `python util/timeline_adjust.py --file=ui/raidboss/data/timelines/cape_westwind.txt --adjust=27.8`,
-the relevant output is:
+The loop time is 34.6.
+After adjusting the time again, it looks like this:
 
 ```bash
 234.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -671,8 +662,7 @@ If you want to be more precise,
 this is where you would compare against some other runs.
 
 However, this is good enough for Cape Westwind,
-so we will replace the second loop with this output
-from **timeline_adjust.py**.
+so we will replace the second loop with adjusted output.
 
 The current state of our timeline is now:
 
@@ -737,8 +727,6 @@ Unfortunately, the boss uses `Gate of Tartarus` in phase 1,
 so we can't add it using `-p` like we did for phase 2.
 (Patches welcome to add more options to make this possible?)
 
-Instead, we can just use **timeline_adjust.py** to just
-shift the timeline forward automatically.
 If we adjust the original timeline by 400-175.8=224.2
 then we can start phase 3 at t=400.
 
@@ -787,14 +775,12 @@ We'll test this later.
 It looks a bit like there's another loop just like phase 2.
 
 One consideration is to see if it's exactly the same as phase 2.
-You can use **timeline_adjust.py** with an adjustment of 208.7
+You can move the abilities with an adjustment of 208.7
 to move phase 2's `Shield Skewer` on top of phase 3.
 However, you can see from that output that it's not quite the same.
 Therefore, we'll need to build phase 3 separately.
 
-It's pretty clear that this loop is also a 36.2 second loop.
-Using **timeline_adjust.py** with a 36.2 adjustment gets
-this output:
+A 36.2 adjustment gets this output:
 
 ```bash
 445.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -863,7 +849,7 @@ Here's the final command line, including this second phase:
 ```
 
 This sure looks like a 40.2 second loop.
-Using **timeline_adjust.py**, with a 40.2 second adjustment,
+With a 40.2 second adjustment,
 we get the following output:
 
 ```bash
