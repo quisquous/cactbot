@@ -232,12 +232,13 @@ class Fisher {
         undiscovered: /미지의 낚시터/,
         cast: NetRegexes.gameLog({
           code: '08c3',
-          line: '(?:[\\w\'가-힣]+) 님이 (?<place>[\\s\\d\':가-힣]+)에서 낚시를 시작합니다\\..*?',
+          line: '(?:[\\w\'가-힣]+) 님이 (?<place>[\\s\\w\'\\-\\.\\(\\):가-힣]+)에서 낚시를 시작합니다\\..*?',
         }),
         bite: NetRegexes.gameLog({ code: '08c3', line: '낚싯대를 낚아챘습니다!.*?' }),
         catch: NetRegexes.gameLog({
           code: '0843',
-          line: '(?:[\\w\'가-힣]+) 님이 (?<fish>[\\s\\d\':가-힣]+)\\(?:\\d+\\.\\d일름\\)(?:을|를) 낚았습니다.*?',
+          line:
+            '(?:[\\w\'가-힣]+) 님이 (?<fish>[\\s\\w\'\\-\\.:가-힣]+)\\(?:\\d+\\.\\d일름\\)(?:을|를) 낚았습니다.*?',
         }),
         nocatch: NetRegexes.gameLog({
           code: '08c3',
@@ -247,7 +248,7 @@ class Fisher {
         mooch: NetRegexes.gameLog({
           code: '08c3',
           line:
-            '(?:[\\w\'가-힣]+) 님이 방금 낚은 (?:[\\s\\d\':가-힣]+)(?:을|를) 조심스럽게 물에 넣고 생미끼 낚시를 시도합니다\\..*?',
+            '(?:[\\w\'가-힣]+) 님이 방금 낚은 (?:[\\s\\w\'\\-\\.:가-힣]+)(?:을|를) 조심스럽게 물에 넣고 생미끼 낚시를 시도합니다\\..*?',
         }),
         quit: NetRegexes.gameLog({
           code: '08c3',
@@ -256,7 +257,7 @@ class Fisher {
         }),
         discovered: NetRegexes.gameLog({
           code: '08c3',
-          line: '낚시 수첩에 새로운 낚시터 (?<place>[\\s\\d\':가-힣]+)의 정보를 기록했습니다!.*?',
+          line: '낚시 수첩에 새로운 낚시터 (?<place>[\\s\\w\'\\-\\.\\(\\):가-힣]+)의 정보를 기록했습니다!.*?',
         }),
       },
     };
