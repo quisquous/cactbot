@@ -498,7 +498,7 @@ export default {
     fr: 'Éloignez-vous du groupe',
     ja: '外へ',
     cn: '远离人群',
-    ko: '다른 사람들이랑 떨어지기',
+    ko: '다른 사람들과 떨어지기',
   },
   awayFromPlayer: {
     en: 'Away from ${player}',
@@ -506,7 +506,7 @@ export default {
     fr: 'Éloignez-vous de ${player}',
     ja: '${player}から離れる',
     cn: '远离${player}',
-    ko: '"${player}"에서 멀어지기',
+    ko: '"${player}"에게서 멀어지기',
   },
   meteorOnYou: {
     en: 'Meteor on YOU',
@@ -644,7 +644,7 @@ export default {
     fr: 'Nord-Ouest',
     ja: '北西',
     cn: '左上(西北)',
-    ko: '북서',
+    ko: '북서쪽',
   },
   northeast: {
     en: 'Northeast',
@@ -652,7 +652,7 @@ export default {
     fr: 'Nord-Est',
     ja: '北東',
     cn: '右上(东北)',
-    ko: '북동',
+    ko: '북동쪽',
   },
   southwest: {
     en: 'Southwest',
@@ -660,7 +660,7 @@ export default {
     fr: 'Sud-Ouest',
     ja: '南西',
     cn: '左下(西南)',
-    ko: '남서',
+    ko: '남서쪽',
   },
   southeast: {
     en: 'Southeast',
@@ -668,7 +668,7 @@ export default {
     fr: 'Sud-Est',
     ja: '南東',
     cn: '右下(东南)',
-    ko: '남동',
+    ko: '남동쪽',
   },
   dirN: {
     en: 'N',
@@ -676,7 +676,7 @@ export default {
     fr: 'N',
     ja: '北',
     cn: '上(北)',
-    ko: '북쪽',
+    ko: '북',
   },
   dirS: {
     en: 'S',
@@ -684,7 +684,7 @@ export default {
     fr: 'S',
     ja: '南',
     cn: '下(南)',
-    ko: '남쪽',
+    ko: '남',
   },
   dirE: {
     en: 'E',
@@ -692,7 +692,7 @@ export default {
     fr: 'E',
     ja: '東',
     cn: '右(东)',
-    ko: '동쪽',
+    ko: '동',
   },
   dirW: {
     en: 'W',
@@ -700,7 +700,7 @@ export default {
     fr: 'O',
     ja: '西',
     cn: '左(西)',
-    ko: '서쪽',
+    ko: '서',
   },
   dirNW: {
     en: 'NW',
