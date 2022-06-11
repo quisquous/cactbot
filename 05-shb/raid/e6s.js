@@ -89,7 +89,7 @@ Options.Triggers.push({
           fr: '${dir}',
           ja: '${dir}へ',
           cn: '去${dir}',
-          ko: '${dir}쪽으로',
+          ko: '${dir}으로',
         },
         twoDirs: {
           en: '${dir1}${dir2}',
@@ -97,7 +97,7 @@ Options.Triggers.push({
           fr: '${dir1} ${dir2}',
           ja: '${dir1}${dir2}へ',
           cn: '去${dir2}${dir1}',
-          ko: '${dir1}${dir2}쪽으로',
+          ko: '${dir1}${dir2}으로',
         },
         unknown: Outputs.unknown,
         north: Outputs.north,

@@ -485,5 +485,12 @@ Options.Triggers.push({
         'Winged Cataract': '展翅飞瀑',
       },
     },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Hippokampos': '히포캄포스',
+      },
+    },
   ],
 });

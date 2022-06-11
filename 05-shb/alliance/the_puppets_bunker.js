@@ -1160,7 +1160,9 @@ Options.Triggers.push({
         'The passage': '통로',
       },
       'replaceText': {
-        '(?<=\\(|/)Behind(?=\\))': '뒤',
+        '\\(Behind\\)': '(뒤)',
+        '\\(Out/Behind\\)': '(밖/뒤)',
+        '\\(In/Out\\)': '(안/밖)',
         'Aerial Support: Bombardment': '항공 지원: 폭격',
         'Aerial Support: Swoop': '항공 지원: 돌격',
         'Anti-Personnel Missile': '대인 미사일 난사',

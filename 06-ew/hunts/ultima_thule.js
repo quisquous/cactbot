@@ -40,7 +40,7 @@ Options.Triggers.push({
           de: 'Weg vom Sprung',
           fr: 'Éloignez-vous du saut',
           cn: '躲开跳跃',
-          ko: '점프뛰는 곳 피하기',
+          ko: '점프뛴 곳에서 멀리 떨어지기',
         },
       },
     },

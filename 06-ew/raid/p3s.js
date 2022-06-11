@@ -679,5 +679,15 @@ Options.Triggers.push({
         'Winds of Asphodelos': '边境之风',
       },
     },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Fountain of Fire': '영검의 불꽃',
+        'Phoinix': '페넥스',
+        'Sparkfledged': '화령조',
+        'Sunbird': '양염조',
+      },
+    },
   ],
 });
