@@ -1273,6 +1273,7 @@ const triggerSet: TriggerSet<Data> = {
         'Wail': '고함',
         'Wandering Trail': '마장륜',
         'Wave: Black': '파동: 흑',
+        'Wave: Black(?! )': '파동: 흑',
         'Wave: White': '파동: 백',
         'White Dissonance': '침식: 백',
         'Wipe: Black': '대폭발: 흑',

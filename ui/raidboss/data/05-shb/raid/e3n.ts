@@ -84,7 +84,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Évitez les zones au sol et les piqués',
           ja: '円範囲から離れる',
           cn: '躲圈闪避',
-          ko: '돌진이랑 장판 피하세요',
+          ko: '돌진이랑 장판 피하기',
         },
       },
     },
