@@ -29,8 +29,6 @@ export interface Data extends RaidbossData {
   adelphelDir?: number;
   brightwingCounter: number;
   spiralThrustSafeZones?: number[];
-  thordanJumpCounter?: number;
-  thordanDir?: number;
   sanctityWardDir?: string;
   thordanMeteorMarkers: string[];
   // mapping of player name to 1, 2, 3 dot.
