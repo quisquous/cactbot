@@ -614,6 +614,8 @@ Options.Triggers.push({
       netRegex: NetRegexes.ability({ id: '63E1', source: 'King Thordan', capture: false }),
       condition: (data) => data.phase === 'thordan',
       delaySeconds: 4.7,
+      // Keep message up until knights are done dashing
+      durationSeconds: 13,
       promise: async (data, _matches, output) => {
         // The two gladiators spawn in one of two positions: West (95, 100) or East (105, 100).
         // This triggers uses east/west location of the white knight, Ser Janlennoux (3635) to
