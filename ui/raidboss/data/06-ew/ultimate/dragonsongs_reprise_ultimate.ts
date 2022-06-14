@@ -8,7 +8,7 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { LocaleText, TriggerSet } from '../../../../../types/trigger';
+import { LocaleObject, LocaleText, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Ser Adelphel left/right movement after initial charge
 // TODO: Meteor "run" call?
@@ -20,6 +20,7 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 type Phase = 'doorboss' | 'thordan' | 'nidhogg' | 'haurchefant' | 'thordan2' | 'nidhogg2' | 'dragon-king';
 
 export interface Data extends RaidbossData {
+  combatantData: PluginCombatantState[];
   phase: Phase;
   decOffset?: number;
   seenEmptyDimension?: boolean;
@@ -133,6 +134,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'dragonsongs_reprise_ultimate.txt',
   initData: () => {
     return {
+      combatantData: [],
       phase: 'doorboss',
       firstAdelphelJump: true,
       brightwingCounter: 1,
@@ -587,39 +589,60 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'DSR Dragon\'s Rage',
-      // 63C4 Is Thordan's --middle-- action, thordan jumps again and becomes untargetable, shortly after the 2nd 6C34 action
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '63C4', source: 'King Thordan' }),
-      condition: (data) => (data.phase === 'thordan' && (data.thordanJumpCounter = (data.thordanJumpCounter ?? 0) + 1) === 2),
-      delaySeconds: 0.5,
-      promise: async (data, matches) => {
-        // Select King Thordan
-        let thordanData = null;
-        thordanData = await callOverlayHandler({
+      netRegex: NetRegexes.ability({ id: '63D7', source: 'Ser Guerrique' }),
+      durationSeconds: 7,
+      promise: async (data) => {
+        // These are the first actions these actors take, so can't easily get their ids earlier.
+        // Therefore, use names.  There should be exactly one of each.
+        // TODO: maybe we need data function to do this sort of translating so it's
+        // not duplicating the timelineReplace section below.
+        const names: LocaleObject<string[]> = {
+          en: ['Ser Adelphel', 'Ser Janlenoux'],
+          de: ['Adelphel', 'Janlenoux'],
+          fr: ['sire Adelphel', 'sire Janlenoux'],
+          ja: ['聖騎士アデルフェル', '聖騎士ジャンルヌ'],
+          cn: ['圣骑士阿代尔斐尔', '圣骑士让勒努'],
+          ko: ['성기사 아델펠', '성기사 장르누'],
+        };
+
+        const combatantNames = names[data.parserLang] ?? names['en'];
+        data.combatantData = (await callOverlayHandler({
           call: 'getCombatants',
-          ids: [parseInt(matches.sourceId, 16)],
-        });
-
-        // if we could not retrieve combatant data, the
-        // trigger will not work, so just resume promise here
-        if (thordanData === null) {
-          console.error(`King Thordan: null data`);
-          return;
-        }
-        const thordanDataLength = thordanData.combatants.length;
-        if (thordanDataLength !== 1) {
-          console.error(`King Thordan: expected 1 combatants got ${thordanDataLength}`);
-          return;
-        }
-
-        // Add the combatant's position
-        const thordan = thordanData.combatants.pop();
-        if (!thordan)
-          throw new UnreachableCode();
-        data.thordanDir = matchedPositionTo8Dir(thordan);
+          names: combatantNames,
+        })).combatants;
       },
+      // Deliberately don't play a sound here, because there's also a sound for the
+      // Ascalon's Mercy Concealed and you don't want people to be jumpy.
+      sound: '',
       infoText: (data, _matches, output) => {
-        // Map of directions
+        const [c1, c2] = data.combatantData;
+        if (data.combatantData.length !== 2 || c1 === undefined || c2 === undefined) {
+          console.error(`DragonsRage: wrong length: ${JSON.stringify(data.combatantData)}`);
+          return;
+        }
+
+        // Ser Adelphel and Ser Janlenoux appear on the field in two spots.  It is random which
+        // side they are on.  Thordan appears opposite of them.  If they are SW and SE, then
+        // Thordan is N.  They will always be two spaces apart.
+        let d1 = matchedPositionTo8Dir(c1);
+        let d2 = matchedPositionTo8Dir(c2);
+
+        // Adjust for wrapping around n=0/8 so that we can average the two points below.
+        if (d2 === 6 && d1 === 0 || d2 === 7 && d1 === 1)
+          d1 += 8;
+        if (d1 === 6 && d2 === 0 || d1 === 7 && d2 === 1)
+          d2 += 8;
+
+        // After the above adjustment to handle modular math wrapping,
+        // d1 and d2 should be exactly two spaces apart.
+        if (d2 - d1 !== 2 && d1 - d2 !== 2) {
+          console.error(`DragonsRage: bad dirs: ${d1}, ${d2}, ${JSON.stringify(data.combatantData)}`);
+          return;
+        }
+
+        // Average to find the point between d1 and d2, then add 4 to find its opposite.
+        const thordanDir = (Math.floor((d1 + d2) / 2) + 4) % 8;
         const dirs: { [dir: number]: string } = {
           0: output.northwest!(),
           1: output.north!(),
@@ -629,13 +652,11 @@ const triggerSet: TriggerSet<Data> = {
           5: output.south!(),
           6: output.southwest!(),
           7: output.west!(),
-          8: output.unknown!(),
         };
         return output.thordanLocation!({
-          dir: dirs[data.thordanDir ?? 8],
+          dir: dirs[thordanDir] ?? output.unknown!(),
         });
       },
-      run: (data) => delete data.thordanDir,
       outputStrings: {
         north: Outputs.north,
         northeast: Outputs.northeast,
