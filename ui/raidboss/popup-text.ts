@@ -1444,7 +1444,7 @@ export class PopupText {
         duration = 0;
 
       this._createTextFor(triggerHelper, text, textType, lowerTextKey, duration);
-      if (!triggerHelper.soundUrl) {
+      if (triggerHelper.soundUrl === undefined) {
         triggerHelper.soundUrl = this.options[upperSound];
         triggerHelper.soundVol = this.options[upperSoundVolume];
       }
