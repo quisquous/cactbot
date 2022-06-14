@@ -590,7 +590,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Dragon\'s Rage',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '63D7', source: 'Ser Guerrique' }),
+      netRegex: NetRegexes.ability({ id: '63D7', source: 'Ser Guerrique', capture: false }),
       durationSeconds: 7,
       promise: async (data) => {
         // These are the first actions these actors take, so can't easily get their ids earlier.
