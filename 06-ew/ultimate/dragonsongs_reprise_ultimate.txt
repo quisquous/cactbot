@@ -277,14 +277,21 @@ hideall "--sync--"
 3115.5 "The Dragon's Glory" #sync / 1[56]:[^:]*:King Thordan:63D2:/
 3117.4 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:62DE:/
 3119.7 "Holy Meteor" sync / 1[56]:[^:]*:Ser Noudenet:6B97:/
-# TODO: meteors targetable?
-# TODO: thordan targetable?
-3140.3 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
-3150.5 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
-3153.6 "Ascalon's Might 1" #sync / 1[56]:[^:]*:King Thordan:63C5:/
-3155.2 "Ascalon's Might 2" #sync / 1[56]:[^:]*:King Thordan:63C5:/
-3156.8 "Ascalon's Might 3" #sync / 1[56]:[^:]*:King Thordan:63C5:/
-# Enrage?
+
+# Meteors targetable
+3120.7 "--targetable--"
+3135.4 "Meteor Impact?" sync / 1[56]:[^:]*:Meteor Circle:6B98:/
+
+# skip to here when meteors are killed
+3200.0 "--targetable--"
+3202.1 "--sync--" sync / 14:[^:]*:King Thordan:63C6:/ window 80,10
+3208.1 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
+3218.3 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
+3221.4 "Ascalon's Might 1" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3223.0 "Ascalon's Might 2" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3224.6 "Ascalon's Might 3" #sync / 1[56]:[^:]*:King Thordan:63C5:/
+3229.5 "--sync--" sync / 14:[^:]*:King Thordan:6B88:/
+3235.5 "Aetheric Burst Enrage" sync / 1[56]:[^:]*:King Thordan:6B88:/
 
 
 # Phase 6: Nidhogg v2
