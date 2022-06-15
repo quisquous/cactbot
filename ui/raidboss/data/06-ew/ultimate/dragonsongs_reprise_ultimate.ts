@@ -31,6 +31,8 @@ export interface Data extends RaidbossData {
   thordanJumpCounter?: number;
   thordanDir?: number;
   sanctityWardDir?: string;
+  sanctitySword1?: string;
+  sanctitySword2?: string;
   thordanMeteorMarkers: string[];
   // mapping of player name to 1, 2, 3 dot.
   diveFromGraceNum: { [name: string]: number };
@@ -792,6 +794,36 @@ const triggerSet: TriggerSet<Data> = {
           de: '2',
           ja: '2',
           ko: '2',
+        },
+      },
+    },
+    {
+      id: 'DSR Sanctity of the Ward Sword Names',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data) => data.phase === 'thordan',
+      sound: '',
+      infoText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        if (id === headmarkers.sword1)
+          data.sanctitySword1 = matches.target;
+        else if (id === headmarkers.sword2)
+          data.sanctitySword2 = matches.target;
+        else
+          return;
+
+        if (data.sanctitySword1 === undefined || data.sanctitySword2 === undefined)
+          return;
+
+        const name1 = data.ShortName(data.sanctitySword1);
+        const name2 = data.ShortName(data.sanctitySword2);
+        return output.text!({ name1: name1, name2: name2 });
+      },
+      // Don't collide with the more important 1/2 call.
+      tts: '',
+      outputStrings: {
+        text: {
+          en: 'Swords: ${name1}, ${name2}',
         },
       },
     },
