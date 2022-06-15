@@ -251,7 +251,7 @@ ThirdParty
 
 ### [oopsyraidsy](../../ui/oopsyraidsy) 模块
 
-要使用该模块，定位到cactbot下面的 **ui/raidboss/oopsyraidsy.html** 或使用 `Cactbot OopsyRaidsy` 预设。
+要使用该模块，定位到cactbot下面的 **ui/oopsyraidsy/oopsyraidsy.html** 或使用 `Cactbot OopsyRaidsy` 预设。
 
 此模块提供错误追踪和死亡报告。  通过 oopsy raidsy 模块可以检查战斗中出了什么问题，以及队友死亡的原因，以减少攻略副本的时间。  在战斗中，仅显示一定数量的错误（以避免混乱），但脱战后可以显示完整的可滚动列表。
 
@@ -315,7 +315,7 @@ ThirdParty
 
 ### [radar](../../ui/radar) 模块
 
-要使用该模块，定位到cactbot下面的 **ui/raidboss/radar.html** 或使用 `Cactbot Radar` 预设。
+要使用该模块，定位到cactbot下面的 **ui/radar/radar.html** 或使用 `Cactbot Radar` 预设。
 
 该模块可让您发现附近的狩猎怪（S级，A级等）。 当一个狩猎怪出现时，该模块会显示一个箭头（基于角色面向）指向该狩猎怪并会显示您与该狩猎怪之间的距离。
 
@@ -327,7 +327,7 @@ ThirdParty
 
 ### [fisher](../../ui/fisher) 模块
 
-要使用该模块，定位到cactbot下面的 **ui/raidboss/fisher.html** 或使用 `Cactbot Fisher` 预设。
+要使用该模块，定位到cactbot下面的 **ui/fisher/fisher.html** 或使用 `Cactbot Fisher` 预设。
 
 当您在一个渔场投出鱼线时，该模块会一直追踪您何时钓到了什么鱼，以便您日后知道提钩时将会钓到什么鱼。
 
@@ -344,10 +344,12 @@ ThirdParty
 cactbot可以与为OverlayPlugin的数据统计功能设计的任何DPS统计悬浮窗共同使用，并可以选择通过cactbot附加的Javascript API扩展更多功能。  cactbot还可以在团灭时自动停止统计，因此您可以将ACT的战斗时间配置为无限。
 
 [xephero](../../ui/dps/xephero)DPS统计悬浮窗具有在多列显示对副本的每个阶段的DPS数据进行分段的功能。 在下面的截图中，各阶段分别命名为B1、B2、B3。  它们会在4人本的BOSS自动生成，也可以用来区分Raid副本的阶段。
+要使用该悬浮窗，定位到cactbot下面的 **ui/dps/xephero/xephero-cactbot.html**
 
 ![xephero屏幕截图](../../screenshots/xephero.png)
 
 [rdmty](../../ui/dps/rdmty)DPS统计悬浮窗为4.X职业进行了适配更新，并为了匹配[fflogs](http://fflogs.com)进行了重新着色。
+要使用该悬浮窗，定位到cactbot下面的 **ui/dps/rdmty/dps.html**
 
 ![rdmty屏幕截图](../../screenshots/rdmty.png)
 
@@ -361,7 +363,7 @@ cactbot可以与为OverlayPlugin的数据统计功能设计的任何DPS统计悬
 
 ### [test](../../ui/test) 模块
 
-要使用该模块，定位到cactbot下面的 **ui/raidboss/test.html** 或使用 `Cactbot Test` 预设。
+要使用该模块，定位到cactbot下面的 **ui/test/test.html** 或使用 `Cactbot Test` 预设。
 
 该模块仅用于cactbot所用变量的可视化测试，并不适合在正常游戏时使用。 该模块可用来测试所有数据的获取是否正常、模块能否按照预期正常工作，或用来调试悬浮窗的错误。
 
