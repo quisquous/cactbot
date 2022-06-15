@@ -114,6 +114,7 @@
 03-hw/raid/a8s.txt
 03-hw/raid/a9s.ts
 03-hw/raid/a9s.txt
+03-hw/trial/bismarck-ex.ts
 03-hw/trial/ravana-ex.ts
 03-hw/trial/ravana-ex.txt
 03-hw/trial/sephirot.ts
