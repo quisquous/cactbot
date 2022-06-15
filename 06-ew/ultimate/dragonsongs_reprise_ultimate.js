@@ -1638,15 +1638,24 @@ Options.Triggers.push({
       id: 'DSR Doom Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'BA0' }),
+      preRun: (data, matches) => data.hasDoom[matches.target] = true,
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.text();
+          return output.doomOnYou();
       },
-      run: (data, matches) => data.hasDoom[matches.target] = true,
+      infoText: (data, _matches, output) => {
+        const dooms = Object.keys(data.hasDoom).filter((x) => data.hasDoom[x]);
+        if (dooms.length !== 4 || dooms.includes(data.me))
+          return;
+        return output.noDoom();
+      },
       outputStrings: {
-        text: {
+        doomOnYou: {
           en: 'Doom on YOU',
           ko: '선고 대상자',
+        },
+        noDoom: {
+          en: 'No Doom',
         },
       },
     },
