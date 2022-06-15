@@ -7,6 +7,9 @@ type TimelineArgs = {
   'search_zones': number | null;
   'fight_regex': string | null;
   'zone_regex': string | null;
+  'report_id': string | null;
+  'report_fight': number | null;
+  'key': string | null;
 };
 
 class LogUtilArgParse {
@@ -16,7 +19,7 @@ class LogUtilArgParse {
   // At least one argument must be selected from this group.
   fileGroup = this.parser.addArgumentGroup({
     title: 'File Args',
-    description: 'A file and/or a timeline must be selected before performing operations',
+    description: 'A file, report, and/or timeline must be selected before performing operations',
   });
   // Exactly one argument should be selected from this group.
   // All arguments within this group are defined with nargs: '?',
@@ -30,6 +33,10 @@ class LogUtilArgParse {
   // The only validation done here is to ensure that at least one
   // of these arguments is present.
   requiredGroup = this.parser.addMutuallyExclusiveGroup();
+  reportGroup = this.requiredGroup.addArgumentGroup({
+    title: 'Report Args',
+    description: 'Using an FFLogs report requires use of an API key and report information',
+  });
   args?: TimelineArgs;
 
   constructor() {
@@ -38,6 +45,10 @@ class LogUtilArgParse {
     });
     this.fileGroup.addArgument(['-t', '--timeline'], {
       help: 'The filename of the timeline to test against, e.g. ultima_weapon_ultimate',
+    });
+    this.fileGroup.addArgument(['-r', '--report_id'], {
+      nargs: '?',
+      help: 'The ID of an FFLogs report',
     });
     this.parser.addArgument(['--force'], {
       nargs: '?',
@@ -75,6 +86,13 @@ class LogUtilArgParse {
       constant: 0,
       type: 'float',
       help: 'Adjust all entries in a timeline file by this amount',
+    });
+    this.reportGroup.addArgument(['-k', '--key'], {
+      help: 'The FFLogs API key to use, from https://www.fflogs.com/profile.',
+    });
+    this.reportGroup.addArgument(['-rf', '--report-fight'], {
+      help: 'Fight ID of the report to use.',
+      type: 'int',
     });
   }
 }
