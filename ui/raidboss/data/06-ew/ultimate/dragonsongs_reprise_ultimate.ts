@@ -54,7 +54,9 @@ export interface Data extends RaidbossData {
   thunderstruck: string[];
   hasDoom: { [name: string]: boolean };
   deathMarker: { [name: string]: PlaystationMarker };
+  addsPhaseNidhoggId?: string;
   hraesvelgrGlowing?: boolean;
+  hallowedWingsCount: number;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -169,6 +171,7 @@ const triggerSet: TriggerSet<Data> = {
       thunderstruck: [],
       hasDoom: {},
       deathMarker: {},
+      hallowedWingsCount: 0,
     };
   },
   timelineTriggers: [
@@ -2106,6 +2109,13 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'DSR Adds Phase Nidhogg',
+      type: 'AddedCombatant',
+      // There are many Nidhoggs, but the real one (and the one that moves for cauterize) is npcBaseId=12612.
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '3458', npcBaseId: '12612' }),
+      run: (data, matches) => data.addsPhaseNidhoggId = matches.id,
+    },
+    {
       id: 'DSR Hallowed Wings and Plume',
       // Calls left and right while looking at Hraesvelgr.
       // 6D23 Head Down, Left Wing
@@ -2116,50 +2126,94 @@ const triggerSet: TriggerSet<Data> = {
       // Head Down = Tanks Near
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6D23', '6D24', '6D26', '6D27'], source: 'Hraesvelgr' }),
+      preRun: (data) => data.hallowedWingsCount++,
       durationSeconds: 6,
+      promise: async (data) => {
+        data.combatantData = [];
+
+        // TODO: implement Hot Tail/Hot Wing combination here
+        if (data.hallowedWingsCount !== 1)
+          return;
+
+        // If we have missed the Nidhogg id (somehow?), we'll handle it later.
+        const id = data.addsPhaseNidhoggId;
+        if (id === undefined)
+          return;
+
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(id, 16)],
+        })).combatants;
+
+        if (data.combatantData.length === 0)
+          console.error(`Hallowed: no Nidhoggs found`);
+        else if (data.combatantData.length > 1)
+          console.error(`Hallowed: unexpected number of Nidhoggs: ${JSON.stringify(data.combatantData)}`);
+      },
       alertText: (data, matches, output) => {
+        const wings = (matches.id === '6D23' || matches.id === '6D24') ? output.left!() : output.right!();
         let head;
-        let wings;
-        switch (matches.id) {
-          case '6D23':
-            wings = output.left!();
-            head = data.role === 'tank' ? output.near!() : output.far!();
-            break;
-          case '6D24':
-            wings = output.left!();
-            head = data.role === 'tank' ? output.far!() : output.near!();
-            break;
-          case '6D26':
-            wings = output.right!();
-            head = data.role === 'tank' ? output.near!() : output.far!();
-            break;
-          case '6D27':
-            wings = output.right!();
-            head = data.role === 'tank' ? output.far!() : output.near!();
-            break;
+        if (matches.id === '6D24' || matches.id === '6D26')
+          head = data.role === 'tank' ? output.tanksNear!() : output.partyFar!();
+        else
+          head = data.role === 'tank' ? output.tanksFar!() : output.partyNear!();
+
+        const [nidhogg] = data.combatantData;
+        if (nidhogg !== undefined && data.combatantData.length === 1) {
+          // Nidhogg is at x = 100 +/- 11, y = 100 +/- 34
+          const quadrant = nidhogg.PosX < 100 ? output.nearQuadrant!() : output.farQuadrant!();
+          return output.wingsQuadrantHead!({ wings: wings, quadrant: quadrant, head: head });
         }
-        return output.text!({ wings: wings, head: head });
+
+        // If something has gone awry, call out what we can.
+        return output.wingsHead!({ wings: wings, head: head });
       },
       outputStrings: {
+        // The calls here assume that all players are looking at Hraesvelgr, and thus
+        // "Near Quadrant" means east and "Far Quadrant" means west, and "Left" means
+        // north and "Right" means south.  The cactbot UI could rename them if this
+        // wording is awkward to some people.
+        //
+        // It *is* a little confusing to have "Near Quadrant" and "Party Near" which both use
+        // the word "Near", and so hopefully the extra words distinguish which is which.
+        //
+        // Also, in case somebody is raid calling, differentiate "Party Near" vs "Tanks Near".
+        // This will also help in a rare edge case bug where sometimes people don't have the
+        // right job, see: https://github.com/quisquous/cactbot/issues/4237.
+        //
+        // Yes, these are also tank busters, but there's too many things to call out here,
+        // and this is a case of "tanks and healers need to know what's going on ahead of time".
         left: Outputs.left,
         right: Outputs.right,
-        near: {
-          en: 'Near Hraesvelgr (Tankbusters)',
-          de: 'Nahe Hraesvelgr (Tankbuster)',
-          ja: 'フレースヴェルグに近づく (タンクバスター)',
-          ko: '흐레스벨그 부근으로 (탱버)',
+        partyNear: {
+          en: 'Party Near',
         },
-        far: {
-          en: 'Far from Hraesvelgr (Tankbusters)',
-          de: 'Weit weg von Hraesvelgr (Tankbusters)',
-          ja: 'フレースヴェルグから離れる (タンクバスター)',
-          ko: '흐레스벨그와 멀어지기 (탱버)',
+        tanksNear: {
+          en: 'Tanks Near',
         },
-        text: {
+        partyFar: {
+          en: 'Party Far',
+        },
+        tanksFar: {
+          en: 'Tanks Far',
+        },
+        nearQuadrant: {
+          en: 'Near Quadrant',
+        },
+        farQuadrant: {
+          en: 'Far Quadrant',
+        },
+        wingsHead: {
           en: '${wings}, ${head}',
           de: '${wings}, ${head}',
           ja: '${wings}, ${head}',
           ko: '${wings}, ${head}',
+        },
+        wingsQuadrantHead: {
+          en: '${wings}, ${quadrant}, ${head}',
+          de: '${wings}, ${quadrant}, ${head}',
+          ja: '${wings}, ${quadrant}, ${head}',
+          ko: '${wings}, ${quadrant}, ${head}',
         },
       },
     },
