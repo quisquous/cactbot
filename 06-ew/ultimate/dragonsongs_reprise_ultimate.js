@@ -754,6 +754,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Swords: ${name1}, ${name2}',
+          ko: '돌진 대상자: ${name1}, ${name2}',
         },
       },
     },
@@ -1656,6 +1657,7 @@ Options.Triggers.push({
         },
         noDoom: {
           en: 'No Doom',
+          ko: '선고 없음',
         },
       },
     },
@@ -1895,7 +1897,7 @@ Options.Triggers.push({
         text: {
           en: 'Stack',
           de: 'Sammeln',
-          ko: '집합징 대상자',
+          ko: '쉐어징 대상자',
         },
       },
     },
@@ -1940,7 +1942,7 @@ Options.Triggers.push({
         text: {
           en: 'Provoke',
           de: 'Herausforderung',
-          ko: '도발하기',
+          ko: '도발',
         },
       },
     },
