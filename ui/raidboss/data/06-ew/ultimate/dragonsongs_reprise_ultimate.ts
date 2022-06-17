@@ -843,6 +843,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Swords: ${name1}, ${name2}',
+          ko: '돌진 대상자: ${name1}, ${name2}',
         },
       },
     },
@@ -1765,6 +1766,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         noDoom: {
           en: 'No Doom',
+          ko: '선고 없음',
         },
       },
     },
@@ -2006,7 +2008,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack',
           de: 'Sammeln',
-          ko: '집합징 대상자',
+          ko: '쉐어징 대상자',
         },
       },
     },
@@ -2051,7 +2053,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Provoke',
           de: 'Herausforderung',
-          ko: '도발하기',
+          ko: '도발',
         },
       },
     },
