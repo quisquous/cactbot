@@ -13,8 +13,9 @@ import { printCollectedFights, printCollectedZones } from './encounter_printer';
 import { EncounterCollector, FightEncInfo, TLFuncs } from './encounter_tools';
 import FFLogs, { ffLogsEventEntry } from './fflogs';
 
-// TODO: Add support for auto-commenting repeated abilities
-// that can't be synced but should be visible.
+// TODO: Repeated abilities that need to be auto-commented may not get the comment marker
+// if there's an intervening entry between the repeated entries.
+// Figure out a more robust way to auto-comment lines that should be visible but unsynced.
 
 // TODO: Add support for assigning sync windows to specific abilities,
 // with or without phase conditions.
