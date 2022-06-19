@@ -500,9 +500,12 @@ const assembleTimelineStrings = (
     if (entry.lineType !== 'nameToggle') {
       const ability = entry.abilityName ?? 'Unknown';
       const combatant = entry.combatant ?? 'Unknown';
+      let commentSync = '';
+      if (timeInfo.diffSeconds < 2.5 && lastEntry.abilityId === entry.abilityId)
+        commentSync = '#';
       const newEntry = `${
         timelinePosition.toFixed(1)
-      } "${ability}" sync / 1[56]:[^:]*:${combatant}:${abilityId}:/`;
+      } "${ability}" ${commentSync}sync / 1[56]:[^:]*:${combatant}:${abilityId}:/`;
       assembled.push(newEntry);
     } else {
       const targetable = entry.targetable ? '--targetable--' : '--untargetable--';
