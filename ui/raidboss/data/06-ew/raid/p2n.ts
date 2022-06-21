@@ -316,7 +316,7 @@ const triggerSet: TriggerSet<Data> = {
         'Predatory Sight': '먹잇감 각인',
         'Sewage Deluge': '하수 범람',
         'Sewage Eruption': '하수 분출',
-        'Shockwave': '충격파',
+        'Shockwave': '충격 파동',
         'Spoken Cataract': '숨결 홍수',
         'Tainted Flood': '오염 침수',
       },

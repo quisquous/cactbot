@@ -51,7 +51,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             de: 'Saat des Phoinix verbunden',
             fr: 'Oiselet de feu lié',
             cn: '火灵鸟连线',
-            ko: '불새 선 연결됨',
+            ko: '화령조 선 연결됨',
           },
         };
       },
