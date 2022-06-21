@@ -13,8 +13,9 @@ import { printCollectedFights, printCollectedZones } from './encounter_printer';
 import { EncounterCollector, FightEncInfo, TLFuncs } from './encounter_tools';
 import FFLogs, { ffLogsEventEntry } from './fflogs';
 
-// TODO: Add support for auto-commenting repeated abilities
-// that can't be synced but should be visible.
+// TODO: Repeated abilities that need to be auto-commented may not get the comment marker
+// if there's an intervening entry between the repeated entries.
+// Figure out a more robust way to auto-comment lines that should be visible but unsynced.
 
 // TODO: Add support for assigning sync windows to specific abilities,
 // with or without phase conditions.
@@ -500,9 +501,12 @@ const assembleTimelineStrings = (
     if (entry.lineType !== 'nameToggle') {
       const ability = entry.abilityName ?? 'Unknown';
       const combatant = entry.combatant ?? 'Unknown';
+      let commentSync = '';
+      if (timeInfo.diffSeconds < 2.5 && lastEntry.abilityId === entry.abilityId)
+        commentSync = '#';
       const newEntry = `${
         timelinePosition.toFixed(1)
-      } "${ability}" sync / 1[56]:[^:]*:${combatant}:${abilityId}:/`;
+      } "${ability}" ${commentSync}sync / 1[56]:[^:]*:${combatant}:${abilityId}:/`;
       assembled.push(newEntry);
     } else {
       const targetable = entry.targetable ? '--targetable--' : '--untargetable--';
