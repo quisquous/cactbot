@@ -6176,6 +6176,20 @@ const data: FisherData = {
         'Missratene Quellen',
       ],
       '36521': 'Phallaina',
+      '36660': [
+        'Samenkröte',
+        'Samenkröten',
+      ],
+      '36662': [
+        'benedeite Bommel',
+        'benedeiten Bommel',
+        'benedeites Bommel',
+        'benedeiter Bommel',
+      ],
+      '36663': [
+        'Kreidekoralle',
+        'Kreidekorallen',
+      ],
       '36679': 'Magitek-E-Gitarrenrochen',
       '36680': [
         'Jumbo-Snook',
@@ -9669,6 +9683,15 @@ const data: FisherData = {
         'phallaina',
         'phallainai',
       ],
+      '36660': [
+        'seedtoad',
+        'seedtoads',
+      ],
+      '36662': [
+        'holier-than mogpom',
+        'holier-than mogpoms',
+      ],
+      '36663': 'chalky coral',
       '36679': 'aetherolectric guitarfish',
       '36680': 'jumbo snook',
       '36681': [
@@ -14122,6 +14145,18 @@ const data: FisherData = {
         'matrices-des-agénésiaques',
       ],
       '36521': 'phallaina',
+      '36660': [
+        'crapaud-pousse',
+        'crapauds-pousses',
+      ],
+      '36662': [
+        'pompon auréolé',
+        'pompons auréolés',
+      ],
+      '36663': [
+        'corail cendré',
+        'coraux cendrés',
+      ],
       '36679': [
         'poisson-guitare électrique',
         'poissons-guitares électriques',
@@ -15356,6 +15391,9 @@ const data: FisherData = {
       '36519': 'E.B.E-9318',
       '36520': 'アンビゴッテン',
       '36521': 'パライナ',
+      '36660': 'シードトード',
+      '36662': 'ハロポンポン',
+      '36663': '灰白珊瑚',
       '36679': 'エレキギターフィッシュ',
       '36680': 'ジャンボスヌーク',
       '36681': 'イアフルサンフィッシュ',
@@ -18498,6 +18536,7 @@ const data: FisherData = {
     '2017': [
       12758,
       16749,
+      36662,
     ],
     '2019': [
       12721,
@@ -19506,6 +19545,7 @@ const data: FisherData = {
       36425,
       36426,
       36427,
+      36663,
     ],
     '4061': [
       35605,
@@ -19531,6 +19571,7 @@ const data: FisherData = {
       36438,
       36441,
       36442,
+      36660,
     ],
     '4065': [
       36436,
@@ -23394,6 +23435,8 @@ const data: FisherData = {
     '27511': 1,
     '27512': 1,
     '27513': 1,
+    '27514': 1,
+    '27515': 2,
     '28065': 3,
     '28066': 3,
     '28068': 3,
