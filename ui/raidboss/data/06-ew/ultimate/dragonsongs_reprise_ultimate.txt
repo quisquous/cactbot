@@ -111,8 +111,10 @@ hideall "--sync--"
 638.7 "Sanctity of the Ward" sync / 1[56]:[^:]*:King Thordan:63E1:/
 641.8 "--untargetable--"
 652.2 "Sacred Sever x4" duration 5.3 #sync / 1[56]:[^:]*:Ser Zephirin:63E3:/
+652.3 "Shining Blade 1"
 652.4 "The Dragon's Glory" sync / 1[56]:[^:]*:King Thordan:63D2:/
 652.4 "The Dragon's Gaze" sync / 1[56]:[^:]*:King Thordan:63D1:/
+653.9 "Shining Blade 2"
 658.5 "--sync--" sync / 1[56]:[^:]*:King Thordan:63C4:/
 669.8 "Heavens' Stake" sync / 1[56]:[^:]*:Ser Charibert:6FAE:/
 669.8 "Hiemal Storm" sync / 1[56]:[^:]*:Ser Haumeric:63E6:/
