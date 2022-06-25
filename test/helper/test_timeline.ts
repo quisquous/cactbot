@@ -14,9 +14,10 @@ const { assert } = chai;
 const parseTimelineFileFromTriggerFile = (filepath: string) => {
   const fileContents = fs.readFileSync(filepath, 'utf8');
   const match = / {2}timelineFile: '(?<timelineFile>.*)',/.exec(fileContents);
-  if (!match?.groups?.timelineFile)
+  const timelineFile = match?.groups?.timelineFile;
+  if (timelineFile === undefined || timelineFile.length === 0)
     throw new Error(`Error: Trigger file ${filepath} has no timelineFile attribute defined`);
-  return match.groups.timelineFile;
+  return timelineFile;
 };
 
 type TestFile = {
@@ -94,7 +95,7 @@ const getTestCases = (
     for (const [key, localeText] of Object.entries(common)) {
       const regexKey = Regexes.parse(key);
       const transText = localeText[trans.locale];
-      if (!transText) {
+      if (transText === undefined) {
         // To avoid throwing a "missing translation" error for
         // every single common translation, automatically add noops.
         testCase.replace.set(regexKey, key);
@@ -141,7 +142,7 @@ const testTimelineFiles = (timelineFiles: string[]): void => {
         // that timeline.js can parse it without errors.
         it('should load without errors', () => {
           for (const e of timeline.errors) {
-            if (e.line && e.lineNumber)
+            if (e.line !== undefined && e.lineNumber !== undefined)
               assert.isNull(e, `${timelineFile}:${e.lineNumber}:${e.error}:${e.line}`);
             else
               assert.isNull(e, `${timelineFile}:${e.error}`);

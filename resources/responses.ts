@@ -176,7 +176,7 @@ export const Responses = {
 
     const targetFunc = (data: Data, matches: TargetedMatches, output: Output) => {
       const target = getTarget(matches);
-      if (!target) {
+      if (target === undefined) {
         if (data.role !== 'tank' && data.role !== 'healer')
           return;
         return output.noTarget?.();
@@ -188,7 +188,7 @@ export const Responses = {
 
     const otherFunc = (data: Data, matches: TargetedMatches, output: Output) => {
       const target = getTarget(matches);
-      if (!target) {
+      if (target === undefined) {
         if (data.role === 'tank' || data.role === 'healer')
           return;
         return output.noTarget?.();
@@ -280,7 +280,7 @@ export const Responses = {
     };
     const targetFunc = (data: Data, matches: TargetedMatches, output: Output) => {
       const target = getTarget(matches);
-      if (!target) {
+      if (target === undefined) {
         if (data.role !== 'tank' && data.role !== 'healer')
           return;
         return output.sharedTankbuster?.();
@@ -294,7 +294,7 @@ export const Responses = {
 
     const otherFunc = (data: Data, matches: TargetedMatches, output: Output) => {
       const target = getTarget(matches);
-      if (!target) {
+      if (target === undefined) {
         if (data.role === 'tank' || data.role === 'healer')
           return;
         return output.avoidCleave?.();

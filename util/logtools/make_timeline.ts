@@ -396,23 +396,23 @@ const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): b
     return true;
 
   // Ignore abilities from NPC allies.
-  if (combatant && ignoredCombatants.includes(combatant))
+  if (combatant !== undefined && ignoredCombatants.includes(combatant))
     return true;
 
   // Ignore abilities by name.
-  if (abilityName && ia !== null && ia.includes(abilityName))
+  if (abilityName !== undefined && ia !== null && ia.includes(abilityName))
     return true;
 
   // Ignore abilities by ID
-  if (abilityId && ii !== null && ii.includes(abilityId))
+  if (abilityId !== undefined && ii !== null && ii.includes(abilityId))
     return true;
 
   // Ignore combatants by name
-  if (combatant && ic !== null && ic.includes(combatant))
+  if (combatant !== undefined && ic !== null && ic.includes(combatant))
     return true;
 
   // If only-combatants was specified, ignore all combatants not in the list.
-  if (combatant && oc !== null && !oc.includes(combatant))
+  if (combatant !== undefined && oc !== null && !oc.includes(combatant))
     return true;
   return false;
 };
@@ -458,7 +458,7 @@ const assembleTimelineStrings = (
   let lastAbilityTime = (start.getTime());
   let timelinePosition = 0;
   let lastEntry: TimelineEntry = { time: lastAbilityTime.toString(), lineType: 'None' };
-  if (fight !== undefined && fight.sealName !== undefined) {
+  if (fight !== undefined && fight.sealName !== undefined && fight.sealName.length > 0) {
     const zoneMessage = SFuncs.toProperCase(fight.sealName);
     const tlString = `0.0 "--sync--" sync / 00:0839::${zoneMessage} will be sealed off/ window 0,1`;
     assembled.push(tlString);
@@ -469,11 +469,11 @@ const assembleTimelineStrings = (
   // If the user entered phase information,
   // process it and store it off.
   const phases: { [name: string]: number } = {};
-  if (args.phase) {
+  if (args.phase !== null && args.phase.length > 0) {
     for (const phase of args.phase) {
       const ability = phase.split(':')[0];
       const time = phase.split(':')[1];
-      if (ability && time)
+      if (ability !== undefined && time !== undefined)
         phases[ability] = parseInt(time);
     }
   }
@@ -485,7 +485,11 @@ const assembleTimelineStrings = (
 
     // Ignore AoE spam
     if (lastEntry.time === entry.time) {
-      if (entry.abilityId && lastEntry.abilityId && entry.abilityId === lastEntry.abilityId)
+      if (
+        entry.abilityId !== undefined && entry.abilityId.length > 0 &&
+        lastEntry.abilityId !== undefined && lastEntry.abilityId.length > 0 &&
+        entry.abilityId === lastEntry.abilityId
+      )
         continue;
     }
 
@@ -613,7 +617,7 @@ const makeTimeline = async () => {
       args,
     );
   }
-  if (args.file !== null) {
+  if (args.file !== null && args.file.length > 0) {
     const store = (args.search_fights !== null && (args.search_fights > 0));
     const collector = await makeCollectorFromPrepass(args.file, store);
     if (args['search_fights'] === -1) {

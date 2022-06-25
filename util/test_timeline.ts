@@ -93,7 +93,7 @@ const testLineEvents = async (
   driftFail: number
 ): Promise<void> => {
   const triggersFile = findTriggersFile(timelineName);
-  if (!triggersFile) {
+  if (triggersFile === undefined || triggersFile.length === 0) {
     console.error(`Couldn\'t find '${timelineName}', aborting.`);
     process.exit(-2);
   }
@@ -330,12 +330,12 @@ const testTimelineFileFunc = (args: TestTimelineNamespace): Promise<void> => {
 
   return inquirer.prompt<TestTimelineInquirerType>(questions)
     .then((answers) => {
-      const timeline = (answers.timeline || args.timeline) ?? '';
-      const file = (answers.file || args.file) ?? '';
-      const start = (answers.start || args.start) ?? '';
-      const end = (answers.end || args.end) ?? '';
-      const driftWarn = (answers.drift_warning || args.drift_warning) ?? '';
-      const driftFail = (answers.drift_failure || args.drift_failure) ?? '';
+      const timeline = answers.timeline ?? args.timeline ?? '';
+      const file = answers.file ?? args.file ?? '';
+      const start = answers.start ?? args.start ?? '';
+      const end = answers.end ?? args.end ?? '';
+      const driftWarn = answers.drift_warning ?? args.drift_warning ?? '';
+      const driftFail = answers.drift_failure ?? args.drift_failure ?? '';
       if (
         typeof timeline === 'string' && typeof file === 'string' &&
         typeof start === 'string' && typeof end === 'string'

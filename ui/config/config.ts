@@ -435,7 +435,7 @@ export class CactbotConfigurator {
       return;
     }
     const finalArg = args.slice(-1)[0];
-    if (!finalArg)
+    if (finalArg === undefined)
       throw new UnreachableCode();
 
     const allButFinalArg = args.slice(0, -1);
@@ -769,7 +769,7 @@ export class CactbotConfigurator {
     for (const triggerSet of userTriggerSets || []) {
       // TODO: pass in userTriggerSets as a filename -> triggerSet map as well
       // so we don't need to read this added value.
-      if (!triggerSet.filename)
+      if (triggerSet.filename === undefined || triggerSet.filename.length === 0)
         throw new Error('UserHandler must add filename');
       const fileKey = `user/${triggerSet.filename}/${userFileIdx++}`;
 

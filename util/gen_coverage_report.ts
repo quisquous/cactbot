@@ -55,7 +55,7 @@ const processRaidbossFile = (
   // 1000 here is an arbitrary limit to ignore stub timeline files that haven't been filled out.
   // ifrit-nm is the shortest real timeline, at 1800 characters.
   // TODO: consider processing the timeline and finding the max time? or some other heuristic.
-  if (timelineContents && timelineContents.length > 1000)
+  if (timelineContents !== undefined && timelineContents.length > 1000)
     timelineEntry.hasFile = true;
   if (triggerSet.hasNoTimeline)
     timelineEntry.hasNoTimeline = true;
@@ -79,7 +79,7 @@ const processRaidbossCoverage = async (manifest: string, coverage: Coverage) => 
     const triggerSet = (await import(triggerFileName)).default as LooseTriggerSet;
 
     let timelineContents: string | undefined = undefined;
-    if (triggerSet.timelineFile) {
+    if (triggerSet.timelineFile !== undefined && triggerSet.timelineFile.length > 0) {
       const timelineFileName = path.join(path.dirname(triggerFileName), triggerSet.timelineFile);
       try {
         timelineContents = fs.readFileSync(timelineFileName).toString();

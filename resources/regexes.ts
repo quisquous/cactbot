@@ -69,7 +69,7 @@ const parseHelper = <T extends LogDefinitionTypes>(
     for (const key in fields)
       keys.push(key);
     let tmpKey = keys.pop();
-    if (!tmpKey) {
+    if (tmpKey === undefined) {
       maxKeyStr = fieldKeys[fieldKeys.length - 1] ?? '0';
     } else {
       while (
@@ -86,7 +86,7 @@ const parseHelper = <T extends LogDefinitionTypes>(
       if (typeof value !== 'object')
         continue;
       const fieldName = fields[key]?.field;
-      if (fieldName && fieldName in params)
+      if (fieldName !== undefined && fieldName in params)
         maxKeyStr = key;
     }
   }
@@ -132,12 +132,12 @@ const parseHelper = <T extends LogDefinitionTypes>(
     if (typeof value !== 'object')
       throw new Error(`${defKey}: invalid value: ${JSON.stringify(value)}`);
 
-    const fieldDefault = fieldName && fieldsWithPotentialColons.includes(fieldName)
+    const fieldDefault = fieldName !== undefined && fieldsWithPotentialColons.includes(fieldName)
       ? matchWithColonsDefault
       : matchDefault;
     const fieldValue = fields[keyStr]?.value?.toString() ?? fieldDefault;
 
-    if (fieldName) {
+    if (fieldName !== undefined) {
       str += Regexes.maybeCapture(
         // more accurate type instead of `as` cast
         // maybe this function needs a refactoring
@@ -496,9 +496,8 @@ export default class Regexes {
     if (typeof f !== 'object')
       return;
     const keys = Object.keys(f);
-    for (let k = 0; k < keys.length; ++k) {
-      const key = keys[k];
-      if (key && !params.includes(key)) {
+    for (const key of keys) {
+      if (!params.includes(key)) {
         throw new Error(
           `${funcName}: invalid parameter '${key}'.  ` +
             `Valid params: ${JSON.stringify(params)}`,

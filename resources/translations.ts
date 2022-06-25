@@ -169,11 +169,11 @@ class RegexSet {
     const regexEn = builder(lines.en);
     return {
       en: regexEn,
-      de: lines.de ? builder(lines.de) : regexEn,
-      fr: lines.fr ? builder(lines.fr) : regexEn,
-      ja: lines.ja ? builder(lines.ja) : regexEn,
-      cn: lines.cn ? builder(lines.cn) : regexEn,
-      ko: lines.ko ? builder(lines.ko) : regexEn,
+      de: lines.de !== undefined ? builder(lines.de) : regexEn,
+      fr: lines.fr !== undefined ? builder(lines.fr) : regexEn,
+      ja: lines.ja !== undefined ? builder(lines.ja) : regexEn,
+      cn: lines.cn !== undefined ? builder(lines.cn) : regexEn,
+      ko: lines.ko !== undefined ? builder(lines.ko) : regexEn,
     };
   }
 }
@@ -216,7 +216,7 @@ export const translateWithReplacements = (
   const replacement = commonReplacement[replaceKey];
   for (const [key, value] of Object.entries(replacement ?? {})) {
     const repl = value[replaceLang];
-    if (!repl)
+    if (repl === undefined)
       continue;
     const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
 

@@ -99,7 +99,7 @@ const findMissingTimeline = (
       if (skipPartialCommon && partialCommonTimelineReplacementKeys.includes(key))
         continue;
       const transValue = value[trans.locale];
-      if (!transValue) {
+      if (transValue === undefined || transValue.length === 0) {
         // To avoid throwing a "missing translation" error for
         // every single common translation, automatically add noops.
         testCase.replace[key] = key;

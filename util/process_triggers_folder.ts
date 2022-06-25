@@ -87,7 +87,12 @@ const lint = async (filename: string, lines: string[]) => {
   const contents = lines.join('\n');
   const eslintResults = await linter.lintText(contents, { filePath: filename });
   const eslintLintResult = eslintResults[0];
-  if (!eslintLintResult?.output || eslintLintResult.errorCount > 0) {
+  if (
+    eslintLintResult === undefined ||
+    eslintLintResult.output === undefined ||
+    eslintLintResult.output.length === 0 ||
+    eslintLintResult.errorCount > 0
+  ) {
     console.error('Lint (eslint) ran with errors, aborting.');
     return eslintLintResult;
   }
@@ -97,7 +102,7 @@ const lint = async (filename: string, lines: string[]) => {
   const lintResult = results[0];
   // If dprint didn't have anything to change, the output is undefined, so return the results
   // of the previous lint.
-  if (!lintResult?.output)
+  if (lintResult?.output === undefined || lintResult?.output.length === 0)
     return eslintLintResult;
 
   // There's only one result from lintText, as per documentation.
@@ -126,7 +131,7 @@ const processFile = async (filename: string) => {
     'max-len',
   ];
   const messages = lintResult.messages.filter((message) => {
-    if (!message.ruleId)
+    if (message.ruleId === null || message.ruleId.length === 0)
       return true;
     return !ignoreRules.includes(message.ruleId);
   });
@@ -171,7 +176,7 @@ const processFile = async (filename: string) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const triggerSet = (await import(importPath)).default as LooseTriggerSet;
   const timelineFilename = triggerSet?.timelineFile;
-  if (timelineFilename) {
+  if (timelineFilename !== undefined && timelineFilename.length > 0) {
     const timelineFile = path.join(path.dirname(importPath), timelineFilename);
     if (fs.existsSync(timelineFile)) {
       const destination = path.join(path.dirname(filename), timelineFilename);

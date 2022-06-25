@@ -509,7 +509,7 @@ const config: markdownMagic.Configuration = {
       const structureLogLine = ParseLine.parse(logRepo, structureNetworkArray.join('|'));
       let structureLog = structureLogLine?.convertedLine;
 
-      if (!structureLog)
+      if (structureLog === undefined || structureLog.length === 0)
         throw new UnreachableCode();
 
       // Replace default timestamp with `[timestamp]` indicator
@@ -553,7 +553,7 @@ ${structureLog}
 ${translate(language, titles.networkLogLineRegexes)}
 ${regexes.network}
 `;
-        if (regexes.logLine) {
+        if (regexes.logLine !== undefined && regexes.logLine.length > 0) {
           ret += `
 ${translate(language, titles.actLogLineRegexes)}
 ${regexes.logLine}

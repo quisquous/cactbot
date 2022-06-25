@@ -129,7 +129,7 @@ export class EncounterFinder {
       // Therefore we can safely initialize everything.
       if (this.currentFight.startTime)
         this.onEndFight(line, cZ, 'Zone Change');
-      if (this.currentZone.zoneName)
+      if (this.currentZone.zoneName !== undefined && this.currentZone.zoneName.length > 0)
         this.onEndZone(line, this.currentZone.zoneName, cZ);
 
       this.zoneInfo = ZoneInfo[parseInt(cZ.id, 16)];
@@ -143,7 +143,11 @@ export class EncounterFinder {
     }
 
     // If no zone change is found, we next verify that we are inside a combat zone.
-    if (this.skipZone() || !this.currentZone.zoneName)
+    if (
+      this.skipZone() ||
+      this.currentZone.zoneName === undefined ||
+      this.currentZone.zoneName.length === 0
+    )
       return;
 
     // We are in a combat zone, so we next check for victory/defeat.
@@ -340,10 +344,10 @@ class TLFuncs {
     }
 
     const duration = TLFuncs.durationFromDates(fightOrZone.startTime, fightOrZone.endTime);
-    let seal;
+    let seal: string | undefined;
     if ('sealName' in fightOrZone)
       seal = fightOrZone['sealName'];
-    if (seal)
+      if (seal !== undefined && seal.length > 0)
       seal = '_' + StringFuncs.toProperCase(seal).replace(/[^A-z0-9]/g, '');
     else
       seal = '';
