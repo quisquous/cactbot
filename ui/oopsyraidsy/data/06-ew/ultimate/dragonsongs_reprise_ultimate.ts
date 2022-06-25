@@ -5,7 +5,8 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { kFlagInstantDeath, playerDamageFields } from '../../../oopsy_common';
 
 // TODO: 63DD Skyward Leap during Strength of the Heavens should ignore invulning tanks
-// TODO: track missing towers during Nidhogg
+// TODO: track vulns from Wrath tethers/blue marker in case they take a (deadly) liquid fire tick
+// TODO: Akh Morn puddle damage is effectId=0 0x18 lines from Bleeding B87, but everybody gets this effect temporarily?
 
 export interface Data extends OopsyData {
   towerAbility?: string;
@@ -43,6 +44,14 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR Darkscale Chain Lightning': '6B90', // 2x lightning spread during Wrath (doesn't hit player it's on)
     'DSR Ser Zephirin Spear of the Fury': '6B93', // spear line aoe during Death of the Heavens
     'DSR Vidofnir Wings of Salvation': '6B96', // white puddle that creates doom cleanser in Death of the Heavens
+    'DSR Hrasevelgr Swirling Blizzard': '6D38', // wind donut during adds phase first tethers
+    'DSR Nidhogg Dark Breath': '6D3B', // conal attack during single tank buster during adds phase tethers
+    'DSR Hraesvelgr Holy Breath': '6D3C', // conal attack during single tank buster during adds phase tethers
+    'DSR Hraesvelgr Hallowed Wings Left Wing': '6D25', // left glowing wing
+    'DSR Hraesvelgr Hallowed Wings Right Wing': '6D28', // right glowing wing
+    'DSR The Scarlet Price Flame Blast': '6729', // bomberman orbs during Wroth Flames
+    'DSR Nidhogg Hot Tail': '6D2E', // center line aoe
+    'DSR Nidhogg Hot Wing': '6D2C', // sides line aoes
   },
   damageFail: {
     'DSR Dimensional Torsion': '62D8', // player tethering a cloud
@@ -52,10 +61,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR Holy Comet Holy Impact': '63EA', // meteor explosion from being too close
     'DSR King Thordan Ascalon\'s Mercy Concealed': '63C9', // protean 2nd hit
     'DSR Nidhogg Darkdragon Dive Miss': '671B', // tower failure
+    'DSR Nidhogg Cauterize': '6D3E', // cauterize during Hallowed Wings
+    'DSR Hraesvelgr Cauterize': '6D3F', // cauterize during Wroth Flames
   },
   gainsEffectFail: {
     'DSR Burns': 'B81', // fire puddles during Sanctity of the Ward
     'DSR Frostbite': 'B82', // ice puddles during Sanctity of the Ward
+    'DSR Suppuration': 'C3D', // sharing a Mortal Vow pass (or initial application)
   },
   shareWarn: {
     'DSR Ser Adelphel Execution': '62D5', // dive on main tank after 62CE Shining Blade
@@ -77,9 +89,17 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR Nidhogg Soul Tether': '671C', // tank tether cleaves
     'DSR Nidhogg Mirage Dive': '68C4', // dives during eye phase, probably a wipe if shared
     'DSR Skyward Leap 1x': '72A2', // Ser Paulecraine single blue marker during Wrath
+    'DSR Staggering Breath': '6D3D', // solo tank buster from Nidhogg/Hrae during adds phase tethers
+    'DSR Hallowed Plume': '6D29', // Hallowed Wings tankbusters
+    'DSR Nidhogg Spreading Flames': '742B', // Wroth Flames spread
   },
   soloWarn: {
     'DSR Ser Haumeric Hiemal Storm': '63E7', // Sanctity of the Ward ice pair stacks
+  },
+  soloFail: {
+    'DSR Nidhogg Dark Orb': '63D9', // shared tank buster during adds phase tethers
+    'DSR Hraesvelgr Holy Orb': '6D3A', // shared tank buster during adds phase tethers
+    'DSR Nidhogg Entangled Flames': '742C', // Wroth Flames stack
   },
   triggers: [
     {
