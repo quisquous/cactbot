@@ -201,7 +201,7 @@ export class DamageTracker {
 
   private UpdateLastTimestamp(splitLine: string[]): void {
     const timeField = splitLine[logDefinitions.None.fields.timestamp];
-    if (timeField !== undefined && timeField.length > 0)
+    if (timeField !== undefined)
       this.lastTimestamp = new Date(timeField).getTime();
   }
 
@@ -294,7 +294,7 @@ export class DamageTracker {
   private OnAbilityEvent(line: string, splitLine: string[]): void {
     if (
       (this.firstPuller !== undefined && this.firstPuller.length > 0) ||
-      (this.combatState.startTime !== undefined && this.combatState.startTime !== 0)
+      this.combatState.startTime !== undefined
     )
       return;
 
@@ -382,7 +382,7 @@ export class DamageTracker {
       });
     }
 
-    if (trigger.id !== undefined && trigger.id.length > 0) {
+    if (trigger.id !== undefined) {
       if (!IsTriggerEnabled(this.options, trigger.id))
         return;
 
@@ -420,7 +420,6 @@ export class DamageTracker {
       : 0;
     if (
       trigger.id !== undefined &&
-      trigger.id.length > 0 &&
       typeof suppress === 'number' &&
       suppress > 0
     )
@@ -611,10 +610,7 @@ export class DamageTracker {
     this.ProcessDataFiles();
 
     // Wait for datafiles / jobs / zone events / localization.
-    if (
-      this.triggerSets === undefined || this.triggerSets.length === 0 ||
-      this.zoneName === undefined || this.zoneName.length === 0
-    )
+    if (this.triggerSets === undefined || this.zoneName === undefined)
       return;
 
     this.Reset();
@@ -666,7 +662,7 @@ export class DamageTracker {
       }
 
       if (this.options.Debug) {
-        if (set.filename !== undefined && set.filename.length > 0)
+        if (set.filename !== undefined)
           console.log(`Loading ${set.filename}`);
         else
           console.log('Loading user triggers for zone');
