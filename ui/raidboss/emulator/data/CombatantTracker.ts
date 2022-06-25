@@ -238,7 +238,7 @@ export default class CombatantTracker {
   }
 
   getMainCombatantName(): string {
-    if (this.mainCombatantID)
+    if (this.mainCombatantID !== undefined)
       return this.combatants[this.mainCombatantID]?.name ?? 'Unknown';
     return 'Unknown';
   }

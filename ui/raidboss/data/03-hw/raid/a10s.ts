@@ -155,7 +155,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         const charge = data.charges.shift();
-        if (charge)
+        if (charge !== undefined && charge.length > 0)
           return { alertText: output[charge]!() };
       },
     },

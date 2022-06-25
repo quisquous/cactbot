@@ -93,7 +93,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
       condition: (data) => {
         // Have not seen any frost yet.
-        return !data.firstFrost;
+        return data.firstFrost === undefined || data.firstFrost.length === 0;
       },
       // This cast is 5 seconds, so don't muddy the back/front call.
       // But also don't wait too long to give directions?
@@ -116,7 +116,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E8S Driving Frost First Mirror',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
-      condition: (data) => !data.firstFrost,
+      condition: (data) => data.firstFrost === undefined || data.firstFrost.length === 0,
       // See comments on Biting Frost First Mirror above.
       delaySeconds: 2,
       infoText: (_data, _matches, output) => output.text!(),
@@ -153,7 +153,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
       response: Responses.getBehind(),
-      run: (data) => data.firstFrost = data.firstFrost || 'biting',
+      run: (data) => data.firstFrost ??= 'biting',
     },
     {
       id: 'E8S Driving Frost',

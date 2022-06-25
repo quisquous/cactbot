@@ -195,7 +195,7 @@ const triggerSet: TriggerSet<Data> = {
         const partnerId = matches.id === '004D' ? '004E' : '004D';
         // If for some reason there is no partner, we get a vulnerability or bleed and are sad.
         const partner = data.dischord?.[partnerId];
-        if (!partner)
+        if (partner === undefined || partner.length === 0)
           return;
         return output.text!({ player: data.ShortName(partner) });
       },

@@ -82,7 +82,7 @@ const tankBusterOnParty = (data: Data, matches: NetMatches['StartsUsing']) => {
 const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   if (data.decOffset === undefined) {
     // If we don't know, return garbage to avoid accidentally running other triggers.
-    if (!data.firstUnknownHeadmarker)
+    if (data.firstUnknownHeadmarker === undefined || data.firstUnknownHeadmarker.length === 0)
       return '0000';
 
     data.decOffset = parseInt(matches.id, 16) - parseInt(data.firstUnknownHeadmarker, 16);
@@ -696,7 +696,7 @@ const triggerSet: TriggerSet<Data> = {
           'west',
           'northwest',
         ][safeDir];
-        if (!initialDir)
+        if (initialDir === undefined)
           throw new UnreachableCode();
 
         return output.text!({ dir: output[initialDir]!(), rotate: rotateStr });
@@ -1559,7 +1559,7 @@ const triggerSet: TriggerSet<Data> = {
           '510': output.right!(),
         };
 
-        if (data.forcedMarch) {
+        if (data.forcedMarch !== undefined && data.forcedMarch.length > 0) {
           const marchStr = marchStrMap[data.forcedMarch];
           return output.marchToArrow!({ arrow: arrowStr, dir: marchStr });
         }
@@ -1692,7 +1692,7 @@ const triggerSet: TriggerSet<Data> = {
           '510': output.right!(),
         };
 
-        if (data.forcedMarch) {
+        if (data.forcedMarch !== undefined && data.forcedMarch.length > 0) {
           const marchStr = marchStrMap[data.forcedMarch];
           return output.marchToMeteor!({ meteor: meteorStr, dir: marchStr });
         }
@@ -1834,13 +1834,13 @@ const triggerSet: TriggerSet<Data> = {
 
         let combatantDataBoss = null;
         let combatantDataAvatars = null;
-        if (combatantNameBoss) {
+        if (combatantNameBoss !== undefined && combatantNameBoss.length > 0) {
           combatantDataBoss = await callOverlayHandler({
             call: 'getCombatants',
             names: [combatantNameBoss],
           });
         }
-        if (combatantNameAvatar) {
+        if (combatantNameAvatar !== undefined && combatantNameAvatar.length > 0) {
           combatantDataAvatars = await callOverlayHandler({
             call: 'getCombatants',
             names: [combatantNameAvatar],
@@ -2055,7 +2055,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // Callout safe spot and get cleaved spot if both are known
         // Callout safe spot only if no need to be cleaved
-        if (adjacentZone) {
+        if (adjacentZone !== undefined && adjacentZone !== null && adjacentZone.length > 0) {
           data.safeZone = output.getCleaved!({ dir1: safeZone, dir2: adjacentZone });
         } else if (safeZone) {
           data.safeZone = output.safeSpot!({ dir: safeZone });
@@ -2064,7 +2064,7 @@ const triggerSet: TriggerSet<Data> = {
           data.safeZone = output.unknown!();
         }
       },
-      alertText: (data, _matches, output) => !data.safeZone ? output.unknown!() : data.safeZone,
+      alertText: (data, _matches, output) => (data.safeZone === undefined || data.safeZone.length === 0) ? output.unknown!() : data.safeZone,
       outputStrings: {
         getCleaved: {
           en: '${dir1} Safe Spot => ${dir2} for cleave',

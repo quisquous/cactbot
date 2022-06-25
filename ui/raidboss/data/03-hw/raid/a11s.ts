@@ -236,7 +236,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // Evens
         const partner = data.limitCutMap[data.limitCutNumber - 1];
-        if (!partner) {
+        if (partner === undefined || partner.length === 0) {
           // In case something goes awry?
           return output.knockbackCharge!();
         }

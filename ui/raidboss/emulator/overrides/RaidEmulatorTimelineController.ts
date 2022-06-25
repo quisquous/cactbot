@@ -29,7 +29,7 @@ export default class RaidEmulatorTimelineController extends TimelineController {
     // Get the text from each file in |timelineFiles|.
     for (const timelineFile of timelineFiles) {
       const name = this.timelines[timelineFile];
-      if (name)
+      if (name !== undefined && name.length > 0)
         text = `${text}\n${name}`;
       else
         console.log(`Timeline file not found: ${timelineFile}`);

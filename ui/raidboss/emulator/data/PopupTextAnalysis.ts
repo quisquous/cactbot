@@ -304,7 +304,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
     if (triggerHelper.resolver) {
       // If we already have text and this is a default alert sound, don't override that info
-      if (triggerHelper.resolver.status.responseType) {
+      if (triggerHelper.resolver.status.responseType !== undefined) {
         if (
           ['info', 'alert', 'alarm'].includes(triggerHelper.resolver.status.responseType) &&
           [this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound].includes(url))

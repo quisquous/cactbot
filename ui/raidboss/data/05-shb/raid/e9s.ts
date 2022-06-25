@@ -334,7 +334,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 7,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
-        if (key)
+        if (key !== undefined && key.length > 0)
           return output[key]!();
       },
       outputStrings: phaserOutputStrings,
@@ -346,7 +346,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 12,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
-        if (key)
+        if (key !== undefined && key.length > 0)
           return output[key]!();
       },
       outputStrings: phaserOutputStrings,
@@ -373,7 +373,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 8,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
-        if (key)
+        if (key !== undefined && key.length > 0)
           return output[key]!();
       },
       outputStrings: phaserOutputStrings,
@@ -385,7 +385,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 12,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
-        if (key)
+        if (key !== undefined && key.length > 0)
           return output[key]!();
       },
       outputStrings: phaserOutputStrings,
@@ -463,7 +463,7 @@ const triggerSet: TriggerSet<Data> = {
         for (let i = 0; i < 4; ++i) {
           const hexPivot = (idPivot + i).toString(16).toUpperCase().padStart(4, '0');
           const outputKey = artOfDarknessOutputKeys[i];
-          if (!outputKey)
+          if (outputKey === undefined || outputKey.length === 0)
             throw new UnreachableCode();
           data.artOfDarknessIdMap[hexPivot] = outputKey;
         }
@@ -493,11 +493,11 @@ const triggerSet: TriggerSet<Data> = {
         return output === 'stackWithPartner' || output === 'protean';
       },
       preRun: (data, matches) => data.artOfDarkness?.push(data.artOfDarknessIdMap?.[matches.id] ?? 'unknown'),
-      durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
+      durationSeconds: (data) => (data.finalArtOfDarkness !== undefined && data.finalArtOfDarkness.length > 0) ? 16 : 9,
       alertText: (data, _matches, output) => {
         // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
         const callout = data.artOfDarkness?.slice();
-        if (data.finalArtOfDarkness)
+        if (data.finalArtOfDarkness !== undefined && data.finalArtOfDarkness.length > 0)
           callout?.push(data.finalArtOfDarkness);
         return callout?.map((key) => output[key]!()).join(' -> ');
       },

@@ -380,10 +380,13 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '28D2', source: 'Kefka', capture: false }),
       infoText: (data, _matches, output) => {
-        if (data.lastFire)
+        if (data.lastFire !== undefined && data.lastFire.length > 0)
           return output[data.lastFire]!();
 
-        if (!data.lastIceDir || !data.lastThunder)
+        if (
+          data.lastIceDir === undefined || data.lastIceDir.length === 0 ||
+          data.lastThunder === undefined || data.lastThunder.length === 0
+        )
           return;
 
         return output.thunderIce!({

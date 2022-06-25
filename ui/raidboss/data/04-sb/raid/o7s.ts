@@ -38,7 +38,11 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O7S Dadaluma Simulation',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D3', capture: false }),
-      condition: (data) => !data.first || data.seenVirus && !data.second,
+      condition: (data) => {
+        return (data.first === undefined || data.first.length === 0) ||
+          data.seenVirus === true &&
+            (data.second === undefined || data.second.length === 0);
+      },
       run: (data) => {
         if (data.seenVirus)
           data.second = 'dada';
@@ -50,7 +54,11 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O7S Bibliotaph Simulation',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D4', capture: false }),
-      condition: (data) => !data.first || data.seenVirus && !data.second,
+      condition: (data) => {
+        return (data.first === undefined || data.first.length === 0) ||
+          data.seenVirus === true &&
+            (data.second === undefined || data.second.length === 0);
+      },
       run: (data) => {
         if (data.seenVirus)
           data.second = 'biblio';

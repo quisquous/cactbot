@@ -89,7 +89,7 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         if (data.role === 'tank') {
-          if (data.currentTank && data.blunt[data.currentTank])
+          if (data.currentTank !== undefined && data.currentTank.length > 0 && data.blunt[data.currentTank])
             return { alertText: output.staffTankSwap!() };
         }
 
@@ -122,7 +122,7 @@ const triggerSet: TriggerSet<Data> = {
           },
         };
         if (data.role === 'tank') {
-          if (data.currentTank && data.slashing[data.currentTank])
+          if (data.currentTank !== undefined && data.currentTank.length > 0 && data.slashing[data.currentTank])
             return { alertText: output.swordTankSwap!() };
         }
 

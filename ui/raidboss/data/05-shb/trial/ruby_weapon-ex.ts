@@ -254,7 +254,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.role !== 'healer' && data.role !== 'tank')
           return false;
         const myColor = data.colors?.[data.me];
-        if (myColor && myColor === data.colors?.[matches.target])
+        if (myColor !== undefined && myColor.length > 0 && myColor === data.colors?.[matches.target])
           return true;
         return data.me === matches.target;
       },
@@ -351,10 +351,10 @@ const triggerSet: TriggerSet<Data> = {
         const colorToAction: { [color: string]: string } = {};
         for (const color of ['blue', 'red']) {
           const id = data.colorToImageId[color];
-          if (!id)
+          if (id === undefined || id.length === 0)
             continue;
           const action = data.imageIdToAction[id];
-          if (!action)
+          if (action === undefined || action.length === 0)
             continue;
           colorToAction[color] = action;
         }
@@ -368,11 +368,14 @@ const triggerSet: TriggerSet<Data> = {
           suffix = output.bothSuffix!();
         } else if (numAdds === 1) {
           const color = Object.keys(colorToAction)[0];
-          if (!color)
+          if (color === undefined || color.length === 0)
             throw new UnreachableCode();
           suffix = color === 'blue' ? output.blueSuffix!() : output.redSuffix!();
           actionId = colorToAction[color];
-        } else if (myColor && colorToAction[myColor]) {
+        } else if (
+          myColor !== undefined && myColor.length > 0 &&
+          colorToAction[myColor] !== undefined && (colorToAction[myColor]?.length ?? 0) > 0
+        ) {
           suffix = myColor === 'blue' ? output.blueSuffix!() : output.redSuffix!();
           actionId = colorToAction[myColor];
         } else {
@@ -381,7 +384,10 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
 
-        if (!suffix || !actionId)
+        if (
+          suffix === undefined || suffix.length === 0 ||
+          actionId === undefined || actionId.length === 0
+        )
           return;
 
         const isDynamo = actionId === '4EB0';
@@ -409,7 +415,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.ravenDead)
           return;
         const color = data.colors?.[data.me];
-        if (!color)
+        if (color === undefined || color.length === 0)
           return;
         if (color === 'red')
           return output.attackRedEast!();

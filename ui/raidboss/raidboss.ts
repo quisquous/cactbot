@@ -22,7 +22,7 @@ UserConfig.getUserConfigLocation('raidboss', defaultOptions, () => {
 
   options.IsRemoteRaidboss = false;
   const overlayWsParam = params.get('OVERLAY_WS');
-  if (overlayWsParam) {
+  if (overlayWsParam !== null && overlayWsParam.length > 0) {
     const wsParam = decodeURIComponent(overlayWsParam);
     // TODO: is there a better way to do this?? This seems better than looking for ngrok.
     const isLocal = wsParam.includes('localhost') || wsParam.includes('127.0.0.1');
@@ -30,7 +30,7 @@ UserConfig.getUserConfigLocation('raidboss', defaultOptions, () => {
   }
 
   const playerNameParam = params.get('player');
-  if (playerNameParam) {
+  if (playerNameParam !== null && playerNameParam.length > 0) {
     options.PlayerNameOverride = playerNameParam;
     console.log('Enabling player name override via query parameter, name: ' + playerNameParam);
   }
@@ -44,7 +44,7 @@ UserConfig.getUserConfigLocation('raidboss', defaultOptions, () => {
   }
 
   const ttsParam = params.get('forceTTS');
-  if (ttsParam) {
+  if (ttsParam !== null && ttsParam.length > 0) {
     const forceEnable = !!parseInt(ttsParam);
     if (forceEnable) {
       options.SpokenAlertsEnabled = true;

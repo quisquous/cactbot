@@ -132,7 +132,7 @@ const orbOutputStrings = {
 // TODO: promote something like this to Conditions?
 const tankBusterOnParty = (ceName?: string) =>
   (data: Data, matches: NetMatches['StartsUsing']) => {
-    if (ceName && data.ce !== ceName)
+    if (ceName !== undefined && ceName.length > 0 && data.ce !== ceName)
       return false;
     if (matches.target === data.me)
       return true;
@@ -182,7 +182,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => {
         // This fires when you win, lose, or teleport out.
         if (matches.data0 === '00') {
-          if (data.ce && data.options.Debug)
+          if (data.ce !== undefined && data.ce.length > 0 && data.options.Debug)
             console.log(`Stop CE: ${data.ce}`);
           // Stop any active timelines.
           data.StopCombat();
@@ -445,10 +445,10 @@ const triggerSet: TriggerSet<Data> = {
 
         const orbOutput = data.orbOutput = sortedOrbs.map((orbId) => {
           const nameId = orbIdToNameId[orbId];
-          if (!nameId)
+          if (nameId === undefined || nameId.length === 0)
             return 'unknown';
           const output = orbNpcNameIdToOutputString[nameId];
-          return output ? output : 'unknown';
+          return (output !== undefined && output.length > 0) ? output : 'unknown';
         });
 
         // If there is a pair of orbs, and they are the same type, then this is the mechanic
@@ -486,7 +486,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         data.orbOutput ??= [];
         const orb = data.orbOutput.shift();
-        if (!orb)
+        if (orb === undefined || orb.length === 0)
           return;
         return output[orb]!();
       },
@@ -501,7 +501,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         data.orbOutput ??= [];
         const orb = data.orbOutput.shift();
-        if (!orb)
+        if (orb === undefined || orb.length === 0)
           return;
         return output[orb]!();
       },

@@ -161,7 +161,10 @@ export default class EncounterTab extends EventBus {
 
     let clear = true;
 
-    if (!this.currentZone || !this.currentDate)
+    if (
+      this.currentZone === undefined || this.currentZone.length === 0 ||
+      this.currentDate === undefined || this.currentDate.length === 0
+    )
       return;
 
     const zoneMap = this.encounters[this.currentZone];
@@ -199,7 +202,7 @@ export default class EncounterTab extends EventBus {
         });
         t.classList.add('selected');
         const index = t.getAttribute('data-index');
-        if (index)
+        if (index !== null && index.length > 0)
           this.currentEncounter = parseInt(index);
         this.refreshUI();
       });
@@ -213,18 +216,21 @@ export default class EncounterTab extends EventBus {
   refreshInfo(): void {
     this.$infoColumn.innerHTML = '';
 
-    const zoneMap = this.currentZone ? this.encounters[this.currentZone] : undefined;
-
-    if (!zoneMap)
+    if (this.currentZone === undefined || this.currentZone.length === 0)
+      return;
+    const zoneMap = this.encounters[this.currentZone];
+    if (zoneMap === undefined)
       return;
 
-    const dateMap = this.currentDate ? zoneMap[this.currentDate] : undefined;
-
+    if (this.currentDate === undefined || this.currentDate.length === 0)
+      return;
+    const dateMap = zoneMap[this.currentDate];
     if (!dateMap)
       return;
 
-    const encMap = this.currentEncounter !== undefined ? dateMap[this.currentEncounter] : undefined;
-
+    if (this.currentEncounter === undefined)
+      return;
+    const encMap = dateMap[this.currentEncounter];
     if (!encMap)
       return;
 

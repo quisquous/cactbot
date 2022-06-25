@@ -282,7 +282,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.tether({ id: '002D' }),
       run: (data, matches) => {
         const spot = data.cloneSpots?.[matches.sourceId];
-        if (!spot)
+        if (spot === undefined || spot.length === 0)
           throw new UnreachableCode();
         if (data.seenThunder) {
           data.aeroClones ??= [];
@@ -352,12 +352,12 @@ const triggerSet: TriggerSet<Data> = {
         const firstClone = data.thunderClones[0];
         const secondClone = data.thunderClones[1];
 
-        if (firstClone && secondClone) {
+        if (firstClone !== undefined && firstClone.length > 0 && secondClone !== undefined && secondClone.length > 0) {
           return output.multiple!({
             dir1: localeCompass[firstClone],
             dir2: localeCompass[secondClone],
           });
-        } else if (firstClone) {
+        } else if (firstClone !== undefined && firstClone.length > 0) {
           return localeCompass[firstClone];
         }
       },

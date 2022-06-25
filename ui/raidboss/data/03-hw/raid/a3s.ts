@@ -199,7 +199,11 @@ const triggerSet: TriggerSet<Data> = {
         const marker1 = data.ferroMarker[data.me];
         const marker2 = data.ferroMarker[partner ?? ''];
 
-        if (!partner || !marker1 || !marker2)
+        if (
+          partner === undefined || partner.length === 0 ||
+          marker1 === undefined || marker1.length === 0 ||
+          marker2 === undefined || marker2.length === 0
+        )
           return matches.ability + ' (???)';
 
         if (marker1 === marker2)

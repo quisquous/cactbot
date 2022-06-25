@@ -288,7 +288,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Compressed Lightning Soon',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
-      condition: (data) => !!data.lightning,
+      condition: (data) => data.lightning !== undefined && data.lightning.length > 0,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {
         return output.text!({ player: data.ShortName(data.lightning) });
@@ -794,7 +794,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Compressed Water Soon',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: (data) => !!data.water,
+      condition: (data) => data.water !== undefined && data.water.length > 0,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {
         return output.text!({ player: data.ShortName(data.water) });

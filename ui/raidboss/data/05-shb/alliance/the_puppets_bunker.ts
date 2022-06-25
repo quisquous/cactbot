@@ -401,9 +401,9 @@ const triggerSet: TriggerSet<Data> = {
         // The first swipe callout has been cleared to null.
         // Deliberately skip it so that when the first swipe goes off, we call the second.
         let swipe = data.swipe.shift();
-        if (!swipe)
+        if (swipe === undefined || swipe.length === 0)
           swipe = data.swipe.shift();
-        if (!swipe)
+        if (swipe === undefined || swipe.length === 0)
           return;
         return output[swipe]!();
       },

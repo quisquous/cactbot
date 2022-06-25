@@ -609,7 +609,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         const next = data.quintuplecasts?.shift();
         // The last cast of 4EF0 will not have a next mechanic to call.
-        if (next)
+        if (next !== undefined && next.length > 0)
           return output[next]!();
       },
       outputStrings: quintupleOutputStrings,

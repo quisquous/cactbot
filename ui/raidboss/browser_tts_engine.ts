@@ -1,4 +1,4 @@
-import { Lang } from '../../resources/languages';
+import { isLang, Lang } from '../../resources/languages';
 
 class TTSItem {
   readonly text: string;
@@ -7,7 +7,7 @@ class TTSItem {
   constructor(text: string, lang?: string, voice?: SpeechSynthesisVoice) {
     this.text = text;
     this.item = new SpeechSynthesisUtterance(text);
-    if (lang)
+    if (isLang(lang))
       this.item.lang = lang;
     if (voice)
       this.item.voice = voice;

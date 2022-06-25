@@ -74,7 +74,7 @@ const triggerSet: TriggerSet<Data> = {
         return;
 
       const goof = goofs[Math.floor(Math.random() * goofs.length)];
-      if (goof)
+      if (goof !== undefined && goof.length > 0)
         return `${time} "${goof}"`;
     },
   ],

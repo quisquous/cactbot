@@ -317,7 +317,7 @@ const triggerSet: TriggerSet<Data> = {
       preRun: (data, matches) => {
         data.safeColor = matches.count === '14C' ? 'light' : 'fire';
       },
-      alertText: (data, _matches, output) => data.safeColor && output[data.safeColor]!(),
+      alertText: (data, _matches, output) => (data.safeColor !== undefined && data.safeColor.length > 0) && output[data.safeColor]!(),
       outputStrings: fireLightOutputStrings,
     },
     {

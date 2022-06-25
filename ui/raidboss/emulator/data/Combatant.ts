@@ -114,7 +114,7 @@ export default class Combatant {
 
     if (
       lastSignificantStateTimestamp !== timestamp &&
-      oldState.json &&
+      oldState.json !== undefined &&
       oldState.json !== newState.json
     ) {
       delete oldState.json;

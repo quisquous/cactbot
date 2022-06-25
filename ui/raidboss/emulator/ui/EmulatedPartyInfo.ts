@@ -236,7 +236,7 @@ export default class EmulatedPartyInfo extends EventBus {
     this.updateTriggerState();
 
     const toDisplay = membersToDisplay[0];
-    if (!toDisplay)
+    if (toDisplay === undefined)
       throw new UnreachableCode();
 
     this.selectPerspective(toDisplay);
@@ -361,7 +361,7 @@ export default class EmulatedPartyInfo extends EventBus {
         name: trigger.triggerHelper.trigger.id,
         icon: this.getTriggerLabelIcon(trigger),
         text: triggerText,
-        classes: type ? [type] : [],
+        classes: (type !== undefined && type.length > 0) ? [type] : [],
         $obj: $triggerDataViewer,
       });
       if (trigger.status.executed)

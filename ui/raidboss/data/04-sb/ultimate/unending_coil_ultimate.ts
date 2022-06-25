@@ -806,7 +806,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.dooms)
           name = data.dooms[data.doomCount];
         data.doomCount++;
-        if (name)
+        if (name !== undefined && name !== null && name.length > 0)
           return output.text!({ num: data.doomCount, player: data.ShortName(name) });
       },
       outputStrings: {
@@ -1065,7 +1065,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UCU Nael Dragon Dive Marker Me',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0014' }),
-      condition: (data) => !data.trio,
+      condition: (data) => data.trio === undefined || data.trio.length === 0,
       alarmText: (data, matches, output) => {
         if (matches.target !== data.me)
           return;
@@ -1096,7 +1096,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UCU Nael Dragon Dive Marker Others',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0014' }),
-      condition: (data) => !data.trio,
+      condition: (data) => data.trio === undefined || data.trio.length === 0,
       infoText: (data, matches, output) => {
         if (matches.target === data.me)
           return;
@@ -1118,7 +1118,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UCU Nael Dragon Dive Marker Counter',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0014', capture: false }),
-      condition: (data) => !data.trio,
+      condition: (data) => data.trio === undefined || data.trio.length === 0,
       run: (data) => data.naelDiveMarkerCount++,
     },
     {
@@ -1236,7 +1236,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.twinOnYou!();
       },
       infoText: (data, _matches, output) => {
-        if (!data.lastOctetMarker)
+        if (data.lastOctetMarker === undefined || data.lastOctetMarker.length === 0)
           return output.twinOnUnknown!();
 
         // If this person is not alive, then everybody should stack,
@@ -1245,7 +1245,11 @@ const triggerSet: TriggerSet<Data> = {
           return output.twinOnPlayer!({ player: data.ShortName(data.lastOctetMarker) });
       },
       tts: (data, _matches, output) => {
-        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
+        if (
+          data.lastOctetMarker === undefined ||
+          data.lastOctetMarker.length === 0 ||
+          data.lastOctetMarker === data.me
+        )
           return output.stackTTS!();
       },
       outputStrings: {
@@ -1353,7 +1357,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.trio === 'blackfire')
           return output.blackfireTower!();
 
-        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
+        if (data.lastOctetMarker === undefined || data.lastOctetMarker.length === 0 || data.lastOctetMarker === data.me)
           return output.octetTowerPlusTwin!();
 
         return output.octetTower!();
@@ -1409,7 +1413,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         if (data.trio !== 'blackfire' && data.trio !== 'octet' || data.megaStack.length !== 4)
           return;
-        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
+        if (data.lastOctetMarker === undefined || data.lastOctetMarker.length === 0 || data.lastOctetMarker === data.me)
           return;
 
         const twin = data.ShortName(data.lastOctetMarker);

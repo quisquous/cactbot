@@ -39,10 +39,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Seed River First',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
-      condition: (data) => !data.firstSeed,
+      condition: (data) => data.firstSeed === undefined || data.firstSeed.length === 0,
       response: Responses.spreadThenStack(),
       run: (data) => {
-        if (!data.firstSeed)
+        if (data.firstSeed === undefined || data.firstSeed.length === 0)
           data.firstSeed = 'river';
       },
     },
@@ -50,10 +50,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Seed Sea First',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
-      condition: (data) => !data.firstSeed,
+      condition: (data) => data.firstSeed === undefined || data.firstSeed.length === 0,
       response: Responses.stackThenSpread(),
       run: (data) => {
-        if (!data.firstSeed)
+        if (data.firstSeed === undefined || data.firstSeed.length === 0)
           data.firstSeed = 'sea';
       },
     },
@@ -61,7 +61,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Seed River Second',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
-      condition: (data) => !data.firstSeed,
+      condition: (data) => data.firstSeed === undefined || data.firstSeed.length === 0,
       response: Responses.stackMarker(),
       run: (data) => delete data.firstSeed,
     },
@@ -69,7 +69,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Seed Sea Second',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
-      condition: (data) => !data.firstSeed,
+      condition: (data) => data.firstSeed === undefined || data.firstSeed.length === 0,
       response: Responses.spread(),
       run: (data) => delete data.firstSeed,
     },
@@ -159,14 +159,14 @@ const triggerSet: TriggerSet<Data> = {
       alarmText: (data, _matches, output) => {
         let partner;
         const [player0, player1] = data.tetherA ?? [];
-        if (!player0 || !player1)
+        if (player0 === undefined || player0.length === 0 || player1 === undefined || player1.length === 0)
           return;
 
         if (player0 === data.me)
           partner = player1;
         if (player1 === data.me)
           partner = player0;
-        if (!partner)
+        if (partner === undefined || partner.length === 0)
           return;
         return output.text!({ player: data.ShortName(partner) });
       },
@@ -189,14 +189,14 @@ const triggerSet: TriggerSet<Data> = {
       alarmText: (data, _matches, output) => {
         let partner;
         const [player0, player1] = data.tetherB ?? [];
-        if (!player0 || !player1)
+        if (player0 === undefined || player0.length === 0 || player1 === undefined || player1.length === 0)
           return;
 
         if (player0 === data.me)
           partner = player1;
         if (player1 === data.me)
           partner = player0;
-        if (!partner)
+        if (partner === undefined || partner.length === 0)
           return;
         return output.text!({ player: data.ShortName(partner) });
       },

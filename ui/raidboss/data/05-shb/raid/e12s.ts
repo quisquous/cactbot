@@ -55,7 +55,10 @@ const getTetherString = (tethers: string[] | undefined, output: Output) => {
   const sorted = tethers?.sort();
 
   const [first, second] = sorted ?? [];
-  if (!first || !second)
+  if (
+    first === undefined || first.length === 0 ||
+    second === undefined || second.length === 0
+  )
     return;
 
   const comboStr = first + second;
@@ -499,11 +502,11 @@ const triggerSet: TriggerSet<Data> = {
         };
         const numStr = numMap[data.statueTetherNumber ?? -1];
 
-        if (!numStr) {
+        if (numStr === undefined || numStr.length === 0) {
           console.error(`sculpture: invalid tether number: ${data.statueTetherNumber ?? '???'}`);
           return;
         }
-        if (!data.statueDir) {
+        if (data.statueDir === undefined || data.statueDir.length === 0) {
           console.error(`sculpture: missing statueDir`);
           return;
         }
@@ -873,7 +876,7 @@ const triggerSet: TriggerSet<Data> = {
         delete data.tethers;
 
         const text = getTetherString(data.stockedTethers, output);
-        if (!text)
+        if (text === undefined || text.length === 0)
           return;
         return output.stock!({ text: text });
       },
@@ -899,9 +902,9 @@ const triggerSet: TriggerSet<Data> = {
         // which means that we need to grab the original tethers during the first stock.
         const isRelease = matches.id === '5893';
         const text = getTetherString(isRelease ? data.stockedTethers : data.tethers, output);
-        if (!text)
+        if (text === undefined || text.length === 0)
           return;
-        if (!data.junctionSuffix)
+        if (data.junctionSuffix === undefined || data.junctionSuffix.length === 0)
           return text;
         return output.junctionSuffix!({
           text: text,
@@ -1156,7 +1159,7 @@ const triggerSet: TriggerSet<Data> = {
 
         data.safeZone = dirs[cardinal];
       },
-      infoText: (data, _matches, output) => !data.safeZone ? output.unknown!() : data.safeZone,
+      infoText: (data, _matches, output) => (data.safeZone === undefined || data.safeZone.length === 0) ? output.unknown!() : data.safeZone,
       outputStrings: {
         unknown: Outputs.unknown,
         north: Outputs.north,
@@ -1291,7 +1294,11 @@ const triggerSet: TriggerSet<Data> = {
         const keys = sortedIds.map((effectId) => effectIdToOutputStringKey[effectId]);
 
         const [key0, key1, key2] = keys;
-        if (!key0 || !key1 || !key2)
+        if (
+          key0 === undefined || key0.length === 0 ||
+          key1 === undefined || key1.length === 0 ||
+          key2 === undefined || key2.length === 0
+        )
           throw new UnreachableCode();
 
         // Stash outputstring keys to use later.
@@ -1344,7 +1351,7 @@ const triggerSet: TriggerSet<Data> = {
           return { infoText: output.moveAway!() };
 
         const key = data.intermediateDebuffs && data.intermediateDebuffs.shift();
-        if (!key)
+        if (key === undefined || key.length === 0)
           return { infoText: output.moveAway!() };
         return { alertText: output[key]!() };
       },
@@ -1375,7 +1382,7 @@ const triggerSet: TriggerSet<Data> = {
             player1: data.ShortName(player1),
             player2: data.ShortName(player2),
           });
-        } else if (player1 === data.me && player2) {
+        } else if (player1 === data.me && player2 !== undefined && player2.length > 0) {
           // Call out second player name if exists and you have eye
           return output.lookAwayFromPlayer!({ player: data.ShortName(player2) });
         } else if (player2 === data.me) {
@@ -1505,7 +1512,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Initial Dark Water',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '99D' }),
-      condition: (data) => !data.phase,
+      condition: (data) => data.phase === undefined || data.phase.length === 0,
       delaySeconds: (data, matches) => {
         const duration = parseFloat(matches.duration);
         return data.seenInitialSpread ? duration - 6 : duration - 8;
@@ -1541,7 +1548,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Initial Dark Eruption',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '99C' }),
-      condition: (data) => !data.phase,
+      condition: (data) => data.phase === undefined || data.phase.length === 0,
       delaySeconds: (data, matches) => {
         const duration = parseFloat(matches.duration);
         return data.seenInitialSpread ? duration - 6 : duration - 8;

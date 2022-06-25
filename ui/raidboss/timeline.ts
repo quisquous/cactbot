@@ -495,7 +495,7 @@ export class TimelineUI {
     // TODO: left for now as backwards compatibility with user css.  Remove this later??
     this.root.classList.add(`lang-${this.lang}`);
     this.root.lang = langToLocale(this.lang);
-    if (this.options.Skin)
+    if (this.options.Skin !== undefined && this.options.Skin.length > 0)
       this.root.classList.add(`skin-${this.options.Skin}`);
 
     this.barColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color');
@@ -788,7 +788,7 @@ export class TimelineController {
     // Get the text from each file in |timelineFiles|.
     for (const timelineFile of timelineFiles) {
       const name = this.timelines[timelineFile];
-      if (name)
+      if (name !== undefined && name.length > 0)
         text = `${text}\n${name}`;
       else
         console.log(`Timeline file not found: ${timelineFile}`);

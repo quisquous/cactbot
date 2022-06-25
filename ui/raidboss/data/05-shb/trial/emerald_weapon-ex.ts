@@ -348,7 +348,14 @@ const triggerSet: TriggerSet<Data> = {
 
         const [s4, s5] = spawns.filter((x) => ![s0, s1, s2, s3].includes(x));
 
-        if (!s0 || !s1 || !s2 || !s3 || !s4 || !s5)
+        if (
+          s0 === undefined || s0.length === 0 ||
+          s1 === undefined || s1.length === 0 ||
+          s2 === undefined || s2.length === 0 ||
+          s3 === undefined || s3.length === 0 ||
+          s4 === undefined || s4.length === 0 ||
+          s5 === undefined || s5.length === 0
+        )
           throw new UnreachableCode();
         // A pair of swords s0/s1, s2/s3, s4/s5 is either two intercard corners or two middle.
         // The second pair (s2/s3) is never the middle pair of swords.

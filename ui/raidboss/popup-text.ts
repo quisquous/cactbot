@@ -125,9 +125,9 @@ const onTriggerException = (trigger: ProcessedTrigger, e: unknown) => {
   if (e === null || typeof e !== 'object')
     return;
 
-  let str = 'Error in trigger: ' + (trigger.id ? trigger.id : '[unknown trigger id]');
+  let str = 'Error in trigger: ' + (trigger.id ?? '[unknown trigger id]');
 
-  if (trigger.filename)
+  if (trigger.filename !== undefined && trigger.filename.length > 0)
     str += ' (' + trigger.filename + ')';
   console.error(str);
 
@@ -217,7 +217,7 @@ class OrderedTriggerList {
 
       // TODO: be verbose now while this is fresh, but hide this output behind debug flags later.
       const triggerFile =
-        (trigger: ProcessedTrigger) => trigger.filename ? `'${trigger.filename}'` : 'user override';
+        (trigger: ProcessedTrigger) => (trigger.filename !== undefined && trigger.filename.length > 0) ? `'${trigger.filename}'` : 'user override';
       const oldFile = triggerFile(oldTrigger);
       const newFile = triggerFile(trigger);
       console.log(`Overriding '${trigger.id}' from ${oldFile} with ${newFile}.`);
@@ -254,7 +254,7 @@ class TriggerOutputProxy {
     public perTriggerAutoConfig?: PerTriggerAutoConfig) {
     this.outputStrings = trigger.outputStrings ?? {};
 
-    if (trigger.id && perTriggerAutoConfig) {
+    if (trigger.id !== undefined && trigger.id.length > 0 && perTriggerAutoConfig) {
       const config = perTriggerAutoConfig[trigger.id];
       if (config && config.OutputStrings)
         this.overrideStrings = config.OutputStrings;
@@ -611,7 +611,7 @@ export class PopupText {
           addTimeline(objVal);
       } else if (typeof obj === 'function') {
         addTimeline(obj(this.data));
-      } else if (obj) {
+      } else if (obj !== undefined && obj.length > 0) {
         timelines.push(obj);
       }
     }).bind(this);
@@ -630,7 +630,7 @@ export class PopupText {
         continue;
       }
       if (haveZoneId && set.zoneId === undefined) {
-        const filename = set.filename ? `'${set.filename}'` : '(user file)';
+        const filename = (set.filename !== undefined && set.filename.length > 0) ? `'${set.filename}'` : '(user file)';
         console.error(`Trigger set has zoneId, but with nothing specified in ${filename}.  ` +
                       `Did you misspell the ZoneId.ZoneName?`);
         continue;
@@ -665,7 +665,7 @@ export class PopupText {
       }
 
       if (this.options.Debug) {
-        if (set.filename)
+        if (set.filename !== undefined && set.filename.length > 0)
           console.log('Loading ' + set.filename);
         else
           console.log('Loading user triggers for zone');
@@ -746,7 +746,7 @@ export class PopupText {
       }
 
       if (set.overrideTimelineFile) {
-        const filename = set.filename ? `'${set.filename}'` : '(user file)';
+        const filename = (set.filename !== undefined && set.filename.length > 0) ? `'${set.filename}'` : '(user file)';
         console.log(`Overriding timeline from ${filename}.`);
 
         // If the timeline file override is set, all previously loaded timeline info is dropped.
@@ -756,8 +756,8 @@ export class PopupText {
       }
 
       // And set the timeline files/timelines from each set that matches.
-      if (set.timelineFile) {
-        if (set.filename) {
+      if (set.timelineFile !== undefined && set.timelineFile.length > 0) {
+        if (set.filename !== undefined && set.filename.length > 0) {
           const dir = set.filename.substring(0, set.filename.lastIndexOf('/'));
           timelineFiles.push(dir + '/' + set.timelineFile);
         } else {
@@ -863,7 +863,7 @@ export class PopupText {
 
     const nick = this.options.PlayerNicks[name];
 
-    if (nick)
+    if (nick !== undefined && nick.length > 0)
       return nick;
 
     const idx = name.indexOf(' ');
@@ -1039,7 +1039,7 @@ export class PopupText {
     let options: PerTriggerOption = {};
     let config: TriggerAutoConfig = {};
     let suppressed = false;
-    if (id) {
+    if (id !== undefined && id.length > 0) {
       options = this.options.PerTriggerOptions[id] ?? options;
       config = this.options.PerTriggerAutoConfig[id] ?? config;
       suppressed = this.options.DisabledTriggers[id] ?? suppressed;
@@ -1194,7 +1194,10 @@ export class PopupText {
     const suppress = 'suppressSeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.suppressSeconds) : 0;
     if (typeof suppress !== 'number')
       return;
-    if (triggerHelper.trigger.id && suppress > 0)
+    if (
+      triggerHelper.trigger.id !== undefined && triggerHelper.trigger.id.length > 0 &&
+      suppress > 0
+    )
       this.triggerSuppress[triggerHelper.trigger.id] = triggerHelper.now + (suppress * 1000);
   }
 
@@ -1314,7 +1317,7 @@ export class PopupText {
 
   _onTriggerInternalPlayAudio(triggerHelper: TriggerHelper): void {
     if (triggerHelper.trigger.sound !== undefined &&
-        triggerHelper.soundUrl &&
+        triggerHelper.soundUrl !== undefined && triggerHelper.soundUrl.length > 0 &&
         soundStrs.includes(triggerHelper.soundUrl)) {
       const namedSound = triggerHelper.soundUrl + 'Sound';
       const namedSoundVolume = triggerHelper.soundUrl + 'SoundVolume';
@@ -1336,7 +1339,10 @@ export class PopupText {
     // of infoText triggers without tts entries by turning
     // on (speech=true, text=true, sound=true) but this will
     // not cause tts to play over top of sounds or noises.
-    if (triggerHelper.ttsText && triggerHelper.spokenAlertsEnabled) {
+    if (
+      triggerHelper.ttsText !== undefined && triggerHelper.ttsText.length > 0 &&
+      triggerHelper.spokenAlertsEnabled
+    ) {
       // Heuristics for auto tts.
       // * In case this is an integer.
       triggerHelper.ttsText = triggerHelper.ttsText.toString();
@@ -1365,7 +1371,10 @@ export class PopupText {
       triggerHelper.ttsText = triggerHelper.ttsText.replace(/\s*(<[-=]|[=-]>)\s*/g,
         arrowReplacement[this.displayLang]);
       this.ttsSay(triggerHelper.ttsText);
-    } else if (triggerHelper.soundUrl && triggerHelper.soundAlertsEnabled) {
+    } else if (
+      triggerHelper.soundUrl !== undefined && triggerHelper.soundUrl.length > 0 &&
+      triggerHelper.soundAlertsEnabled
+    ) {
       this._playAudioFile(triggerHelper, triggerHelper.soundUrl, triggerHelper.soundVol);
     }
   }

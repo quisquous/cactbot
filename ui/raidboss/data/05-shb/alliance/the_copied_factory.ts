@@ -142,7 +142,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'The wall-mounted flamethrowers activate\..*?', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
-      run: (data) => data.alliance = data.alliance || 'B',
+      run: (data) => data.alliance = data.alliance ?? 'B',
       outputStrings: {
         text: {
           en: 'Look Behind For Flamethrowers',
@@ -160,7 +160,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.message({ line: 'The wall-mounted left arm begins to move.*?', capture: false }),
       durationSeconds: 6,
       response: Responses.getOut('info'),
-      run: (data) => data.alliance = data.alliance || 'C',
+      run: (data) => data.alliance = data.alliance ?? 'C',
     },
     {
       id: 'Copied Hobbes Left Arm 2',

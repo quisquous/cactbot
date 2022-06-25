@@ -370,7 +370,7 @@ const triggerSet: TriggerSet<Data> = {
           if (multipleSwings)
             return output.tankBusters!();
 
-          if (data.liquidTank)
+          if (data.liquidTank !== undefined && data.liquidTank.length > 0)
             return output.tankBusterOn!({ player: data.ShortName(data.liquidTank) });
 
           return output.tankBuster!();
@@ -490,16 +490,25 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         // data.puddle is set by 'TEA Wormhole TPS Strat' (or by some user trigger).
         // If that's disabled, this will still just call out puddle counts.
-        if (matches[1] && parseInt(matches[1]) === data.puddle)
+        if (
+          matches[1] !== undefined && matches[1].length > 0 &&
+          parseInt(matches[1]) === data.puddle
+        )
           return output.soakThisPuddle!({ num: matches[1] });
       },
       infoText: (data, matches, output) => {
-        if (matches[1] && parseInt(matches[1]) === data.puddle)
+        if (
+          matches[1] !== undefined && matches[1].length > 0 &&
+          parseInt(matches[1]) === data.puddle
+        )
           return;
         return output.puddle!({ num: matches[1] });
       },
       tts: (data, matches, output) => {
-        if (matches[1] && parseInt(matches[1]) === data.puddle)
+        if (
+          matches[1] !== undefined && matches[1].length > 0 &&
+          parseInt(matches[1]) === data.puddle
+        )
           return output.soakThisPuddleTTS!();
       },
       outputStrings: {
@@ -1242,7 +1251,8 @@ const triggerSet: TriggerSet<Data> = {
       durationSeconds: 10,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        if (data.buffMap?.[data.me])
+        const buff = data.buffMap?.[data.me];
+        if (buff !== undefined && buff.length > 0)
           return;
         return output.text!();
       },
@@ -2369,7 +2379,7 @@ const triggerSet: TriggerSet<Data> = {
           3: 'west',
         };
         data.radiantOutputStringKey = outputMap[idx];
-        if (data.radiantOutputStringKey)
+        if (data.radiantOutputStringKey !== undefined && data.radiantOutputStringKey.length > 0)
           return output[data.radiantOutputStringKey]!();
       },
       outputStrings: radiantOutputStrings,
@@ -2433,7 +2443,7 @@ const triggerSet: TriggerSet<Data> = {
         if (!data.betaBait || data.betaBait.length === 0)
           return output.opticalStack!();
 
-        const names = data.betaBait.map((x) => x ? data.ShortName(x) : output.unknown!()).sort();
+        const names = data.betaBait.map((x) => (x !== undefined && x.length > 0) ? data.ShortName(x) : output.unknown!()).sort();
         return output.opticalStackPlayers!({ players: names.join(', ') });
       },
       outputStrings: {
@@ -2476,7 +2486,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Beta Radiant Final',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
-      condition: (data) => !!data.radiantOutputStringKey,
+      condition: (data) => data.radiantOutputStringKey !== undefined && data.radiantOutputStringKey.length > 0,
       delaySeconds: 16,
       alertText: (data, _matches, output) => output[data.radiantOutputStringKey ?? 'unknown']!(),
       outputStrings: radiantOutputStrings,
@@ -2524,7 +2534,7 @@ const triggerSet: TriggerSet<Data> = {
           108: 'y',
         };
         const thisTrine = trineMap[y];
-        if (!thisTrine)
+        if (thisTrine === undefined || thisTrine.length === 0)
           return;
         data.trine.push(thisTrine);
 
@@ -2537,7 +2547,10 @@ const triggerSet: TriggerSet<Data> = {
         const threeArr = ['r', 'g', 'y'].filter((x) => !data.trine?.includes(x));
         const [three] = threeArr;
         const [one] = data.trine;
-        if (!one || !three)
+        if (
+          one === undefined || one.length === 0 ||
+          three === undefined || three.length === 0
+        )
           return;
 
         // Start on the third trine, then move to the first.

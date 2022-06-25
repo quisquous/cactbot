@@ -738,7 +738,7 @@ const triggerSet: TriggerSet<Data> = {
         combatantNameJanlenoux = janlenouxLocaleNames[data.parserLang];
 
         let combatantDataJanlenoux = null;
-        if (combatantNameJanlenoux) {
+        if (combatantNameJanlenoux !== undefined) {
           combatantDataJanlenoux = await callOverlayHandler({
             call: 'getCombatants',
             names: [combatantNameJanlenoux],
@@ -1713,8 +1713,8 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         // In case somebody wants to do some "go in the order cactbot tells you" sort of strat.
         const [fullName1, fullName2] = data.thunderstruck.sort();
-        const name1 = fullName1 ? data.ShortName(fullName1) : output.unknown!();
-        const name2 = fullName2 ? data.ShortName(fullName2) : output.unknown!();
+        const name1 = fullName1 === undefined ? data.ShortName(fullName1) : output.unknown!();
+        const name2 = fullName2 === undefined ? data.ShortName(fullName2) : output.unknown!();
         return output.text!({ name1: name1, name2: name2 });
       },
       // Sorry tts players, but "Thunder on YOU" and "Thunder: names" are too similar.

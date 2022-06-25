@@ -285,7 +285,7 @@ const raidEmulatorOnLoad = async () => {
       showModal('.introModal');
     } else {
       let lastEncounter: string | number | null = window.localStorage.getItem('currentEncounter');
-      if (lastEncounter) {
+      if (lastEncounter !== null) {
         lastEncounter = parseInt(lastEncounter);
         const matchedEncounters = encounters.filter((e) => e.id === lastEncounter);
         if (matchedEncounters.length)
@@ -444,7 +444,7 @@ const raidEmulatorOnLoad = async () => {
   // Auto initialize all collapse elements on the page
   document.querySelectorAll('[data-toggle="collapse"]').forEach((n) => {
     const targetSel = n.getAttribute('data-target');
-    if (!targetSel)
+    if (targetSel === null)
       throw new UnreachableCode();
     const target = querySelectorSafe(document, targetSel);
     n.addEventListener('click', () => {
