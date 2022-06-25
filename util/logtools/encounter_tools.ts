@@ -143,11 +143,7 @@ export class EncounterFinder {
     }
 
     // If no zone change is found, we next verify that we are inside a combat zone.
-    if (
-      this.skipZone() ||
-      this.currentZone.zoneName === undefined ||
-      this.currentZone.zoneName.length === 0
-    )
+    if (this.skipZone() || this.currentZone.zoneName === undefined)
       return;
 
     // We are in a combat zone, so we next check for victory/defeat.
@@ -347,7 +343,7 @@ class TLFuncs {
     let seal: string | undefined;
     if ('sealName' in fightOrZone)
       seal = fightOrZone['sealName'];
-      if (seal !== undefined && seal.length > 0)
+    if (seal !== undefined)
       seal = '_' + StringFuncs.toProperCase(seal).replace(/[^A-z0-9]/g, '');
     else
       seal = '';

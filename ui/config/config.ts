@@ -769,7 +769,7 @@ export class CactbotConfigurator {
     for (const triggerSet of userTriggerSets || []) {
       // TODO: pass in userTriggerSets as a filename -> triggerSet map as well
       // so we don't need to read this added value.
-      if (triggerSet.filename === undefined || triggerSet.filename.length === 0)
+      if (triggerSet.filename === undefined)
         throw new Error('UserHandler must add filename');
       const fileKey = `user/${triggerSet.filename}/${userFileIdx++}`;
 

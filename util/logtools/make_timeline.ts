@@ -458,7 +458,7 @@ const assembleTimelineStrings = (
   let lastAbilityTime = (start.getTime());
   let timelinePosition = 0;
   let lastEntry: TimelineEntry = { time: lastAbilityTime.toString(), lineType: 'None' };
-  if (fight !== undefined && fight.sealName !== undefined && fight.sealName.length > 0) {
+  if (fight !== undefined && fight.sealName !== undefined) {
     const zoneMessage = SFuncs.toProperCase(fight.sealName);
     const tlString = `0.0 "--sync--" sync / 00:0839::${zoneMessage} will be sealed off/ window 0,1`;
     assembled.push(tlString);
