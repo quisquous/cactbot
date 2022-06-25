@@ -75,7 +75,7 @@ class Fisher {
         cast: NetRegexes.gameLog({
           code: '08c3',
           line:
-            '(?:[\\w\']\\.?)(?:[\\w\'\\s]+\\.?)? cast(?:s?) (?:your|his|her) line (?:on|in|at) (?:the )?(?<place>[\\w\\s\'&()]+)\\..*?',
+            '(?:[\\w\']\\.?)(?:[\\w\'\\s]+\\.?)? cast(?:s?) (?:your|his|her) line (?:on|in|at) (?:the )?(?<place>.+)\\..*?',
         }),
         bite: NetRegexes.gameLog({ code: '08c3', line: 'Something bites!.*?' }),
         catch: NetRegexes.gameLog({
@@ -116,7 +116,7 @@ class Fisher {
         catch: NetRegexes.gameLog({
           code: '0843',
           line:
-            'Du (?:hast eine?n? |ziehst \\d+ )?.+?\\s?(?<fish>[\\w\\s\\-\'\\.\\d\u00c4-\u00fc]{3,})(?: | [^\\w] |[^\\w\\s\\-\'\u00c4-\u00fc].+ )(?:\\(\\d|mit ein).*?',
+            'Du (?:hast eine?n? |ziehst \\d+ )?.+?\\s?(?<fish>[\\w\\s\\-\'\\.\\d\?\u00c4-\u00fc]{3,})(?: | [^\\w] |[^\\w\\s\\-\'\u00c4-\u00fc].+ )(?:\\(\\d|mit ein).*?',
         }),
         nocatch: NetRegexes.gameLog({
           code: '08c3',
@@ -131,7 +131,7 @@ class Fisher {
         discovered: NetRegexes.gameLog({
           code: '08c3',
           line:
-            'Die neue Angelstelle (?<place>[^\\w\\s\\-\'\u00c4-\u00fc].+ ) wurde in deinem Fischer-Notizbuch vermerkt\\..*?',
+            'Die neue Angelstelle (?<place>[^\\w\\s\\-\'\u00c4-\u00fc].+) wurde in deinem Fischer-Notizbuch vermerkt\\..*?',
         }),
       },
       fr: {
@@ -139,13 +139,13 @@ class Fisher {
         cast: NetRegexes.gameLog({
           code: '08c3',
           line:
-            'Vous commencez à pêcher. Point de pêche: (?<place>[\\w\\s\\-\'\\(\\)\u00b0\u00c0-\u017f]+).*?',
+            'Vous commencez à pêcher. Point de pêche: (?<place>[\\w\\s\\-\'\\(\\)\u00b0\u00c0-\u017fαβγ]+).*?',
         }),
         bite: NetRegexes.gameLog({ code: '08c3', line: 'Vous avez une touche!.*?' }),
         catch: NetRegexes.gameLog({
           code: '0843',
           line:
-            'Vous avez pêché (?:un |une )?.+?\\s?(?<fish>[\\w\\s\\-\'\\(\\)\u00b0\u00c0-\u017f]{3,})\ue03c?.+de \\d.*?',
+            'Vous avez pêché (?:un |une )?.+?\\s?(?<fish>[\\w\\s\\-\'\\(\\)\?\u00b0\u00c0-\u017f]{3,})\ue03c?.+de \\d.*?',
         }),
         nocatch: NetRegexes.gameLog({
           code: '08c3',
@@ -158,22 +158,20 @@ class Fisher {
         ),
         discovered: NetRegexes.gameLog({
           code: '08c3',
-          line:
-            'Vous notez le banc de poissons “(?<place>[\\w\\s\\-\'\\(\\)\u00b0\u00c0-\u017f]+)” dans votre carnet\\..*?',
+          line: 'Vous notez le banc de poissons “(?<place>.+)” dans votre carnet\\..*?',
         }),
       },
       ja: {
         undiscovered: /未知の釣り場/,
         cast: NetRegexes.gameLog({
           code: '08c3',
-          line:
-            '(?:[\\w\\s-\']+)\u306f(?<place>[\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf\d\uff1a]+)で釣りを開始した。.*?',
+          line: '(?:[\\w\\s-\']+)\u306f(?<place>.+)で釣りを開始した。.*?',
         }),
         bite: NetRegexes.gameLog({ code: '08c3', line: '魚をフッキングした！.*?' }),
         catch: NetRegexes.gameLog({
           code: '0843',
           line:
-            '(?:[\\w\\s-\']+)\u306f.+?(?<fish>[\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf\d\uff1a]+)(?:[^\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf]+)?（\\d+\\.\\dイルム）を釣り上げた。.*?',
+            '(?:[\\w\\s-\']+)\u306f.+?(?<fish>[\\w\\.\\-\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf\uff1a？]+)(?:[^\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf]+)?（\\d+\\.\\dイルム）を釣り上げた。.*?',
         }),
         nocatch: NetRegexes.gameLog({
           code: '08c3',
@@ -191,22 +189,20 @@ class Fisher {
         }),
         discovered: NetRegexes.gameLog({
           code: '08c3',
-          line:
-            '釣り手帳に新しい釣り場「(?<place>[\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf\\d\uff1a]+)」の情報を記録した！.*?',
+          line: '釣り手帳に新しい釣り場「(?<place>.+)」の情報を記録した！.*?',
         }),
       },
       cn: {
         undiscovered: /未知钓场/,
         cast: NetRegexes.gameLog({
           code: '08c3',
-          line:
-            '(?:[\\w\\s-\'\u4e00-\u9fa5·]+)在(?<place>[\\w\\s-\'\u4e00-\u9fa5·\uff08\uff09]+)甩出了鱼线开始钓鱼。.*?',
+          line: '(?:[\\w\\s-\'\u4e00-\u9fa5·]+)在(?<place>.+)甩出了鱼线开始钓鱼。.*?',
         }),
         bite: NetRegexes.gameLog({ code: '08c3', line: '有鱼上钩了！.*?' }),
         catch: NetRegexes.gameLog({
           code: '0843',
           line:
-            '(?:[\\w\\s-\'\u4e00-\u9fa5·]+)?成功钓上了.*?(?<fish>[\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf·]+\\d*).*（\\d+\\.\\d星寸）。.*?',
+            '(?:[\\w\\s-\'\u4e00-\u9fa5·]+)?成功钓上了.*?(?<fish>[\\d\\-\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf·？]+\\d*).*（\\d+\\.\\d星寸）。.*?',
         }),
         nocatch: NetRegexes.gameLog({
           code: '08c3',
@@ -216,7 +212,7 @@ class Fisher {
         mooch: NetRegexes.gameLog({
           code: '08c3',
           line:
-            '(?:[\\w\\s-\'\u4e00-\u9fa5·]+)开始利用上钩的.*?([\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf·]+\\d*).*尝试以小钓大。.*?',
+            '(?:[\\w\\s-\'\u4e00-\u9fa5·]+)开始利用上钩的.*?([\\d\\-\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf·？]+\\d*).*尝试以小钓大。.*?',
         }),
         quit: NetRegexes.gameLog({
           code: '08c3',
@@ -225,20 +221,20 @@ class Fisher {
         }),
         discovered: NetRegexes.gameLog({
           code: '08c3',
-          line: '将新钓场.*(?<place>[\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf·]+\\d*).*记录到了钓鱼笔记中！.*?',
+          line: '将新钓场“(?<place>.+)”记录到了钓鱼笔记中！.*?',
         }),
       },
       ko: {
         undiscovered: /미지의 낚시터/,
         cast: NetRegexes.gameLog({
           code: '08c3',
-          line: '(?:[\\w\'가-힣]+) 님이 (?<place>[\\s\\w\'\\-\\.\\(\\):가-힣]+)에서 낚시를 시작합니다\\..*?',
+          line: '(?:[\\w\'가-힣]+) 님이 (?<place>.+)에서 낚시를 시작합니다\\..*?',
         }),
         bite: NetRegexes.gameLog({ code: '08c3', line: '낚싯대를 낚아챘습니다!.*?' }),
         catch: NetRegexes.gameLog({
           code: '0843',
           line:
-            '(?:[\\w\'가-힣]+) 님이 (?<fish>[\\s\\w\'\\-\\.\\(\\)\?:가-힣]+)\\(?:\\d+\\.\\d일름\\)(?:을|를) 낚았습니다.*?',
+            '(?:[\\w\'가-힣]+) 님이 (?<fish>[\\s\\w\'\\-\\.\\(\\)\?:가-힣]+)\\(?:\\d+\\.\\d일름\\)[을를] 낚았습니다.*?',
         }),
         nocatch: NetRegexes.gameLog({
           code: '08c3',
@@ -248,7 +244,7 @@ class Fisher {
         mooch: NetRegexes.gameLog({
           code: '08c3',
           line:
-            '(?:[\\w\'가-힣]+) 님이 방금 낚은 (?:[\\s\\w\'\\-\\.\\(\\)\?:가-힣]+)(?:을|를) 조심스럽게 물에 넣고 생미끼 낚시를 시도합니다\\..*?',
+            '(?:[\\w\'가-힣]+) 님이 방금 낚은 (?:[\\s\\w\'\\-\\.\\(\\)\?:가-힣]+)[을를] 조심스럽게 물에 넣고 생미끼 낚시를 시도합니다\\..*?',
         }),
         quit: NetRegexes.gameLog({
           code: '08c3',
@@ -257,7 +253,7 @@ class Fisher {
         }),
         discovered: NetRegexes.gameLog({
           code: '08c3',
-          line: '낚시 수첩에 새로운 낚시터 (?<place>[\\s\\w\'\\-\\.\\(\\):가-힣]+)의 정보를 기록했습니다!.*?',
+          line: '낚시 수첩에 새로운 낚시터 \'(?<place>.+)\'의 정보를 기록했습니다!.*?',
         }),
       },
     };
