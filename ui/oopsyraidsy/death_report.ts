@@ -348,7 +348,10 @@ export class DeathReport {
       sourceName = event.splitLine[logDefinitions.GainsEffect.fields.source];
     }
 
-    if (!buffName || !sourceName)
+    if (
+      buffName === undefined || buffName.length === 0 ||
+      sourceName === undefined || sourceName.length === 0
+    )
       return;
 
     const text = Translate(this.lang, {

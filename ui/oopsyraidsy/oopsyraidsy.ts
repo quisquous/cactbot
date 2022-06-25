@@ -73,7 +73,8 @@ UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
 
   // NOTE: add "debug=1" url parameter to add extra events.
   const params = new URLSearchParams(window.location.search);
-  if (params.get('debug'))
+  const debug = params.get('debug');
+  if (debug !== null && debug.length > 0)
     addDebugInfo(mistakeCollector, 2200);
 
   const damageTracker = new DamageTracker(options, mistakeCollector, oopsyFileData);

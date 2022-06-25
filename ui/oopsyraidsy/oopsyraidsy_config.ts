@@ -95,7 +95,7 @@ class OopsyConfigurator {
 
       const parts = [info.title, info.type, expansion];
       for (const part of parts) {
-        if (!part)
+        if (part === undefined || part.length === 0)
           continue;
         const partDiv = document.createElement('div');
         partDiv.classList.add('trigger-file-header-part');

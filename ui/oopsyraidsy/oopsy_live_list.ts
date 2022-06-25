@@ -157,7 +157,7 @@ export class DeathReportLive {
 
     const damageElem = document.createElement('div');
     damageElem.classList.add('death-row-amount');
-    if (amountClass)
+    if (amountClass !== undefined && amountClass.length > 0)
       damageElem.classList.add(amountClass);
     if (amount !== undefined)
       damageElem.innerText = amount;
@@ -272,9 +272,11 @@ export class OopsyLiveList implements MistakeObserver {
 
     const iconClass = m.type;
     const blame = m.name ?? m.blame;
-    const blameText = blame ? ShortNamify(blame, this.options.PlayerNicks) + ': ' : '';
+    const blameText = (blame !== undefined && blame.length > 0)
+      ? ShortNamify(blame, this.options.PlayerNicks) + ': '
+      : '';
     const translatedText = Translate(this.options.DisplayLanguage, m.text);
-    if (!translatedText)
+    if (translatedText === undefined || translatedText.length === 0)
       return;
 
     const time = GetFormattedTime(this.baseTime, timestamp);
@@ -336,7 +338,9 @@ export class OopsyLiveList implements MistakeObserver {
     div.addEventListener('click', () => {
       const mistakeText = div.childNodes[1]?.textContent ?? '';
       const mistakeTime = div.childNodes[2]?.textContent;
-      const str = mistakeTime ? `[${mistakeTime}] ${mistakeText}` : mistakeText;
+      const str = (mistakeTime !== undefined && mistakeTime !== null && mistakeTime.length > 0)
+        ? `[${mistakeTime}] ${mistakeText}`
+        : mistakeText;
       const el = document.createElement('textarea');
       el.value = str;
       document.body.appendChild(el);

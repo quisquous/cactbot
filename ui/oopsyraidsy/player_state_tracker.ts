@@ -185,7 +185,11 @@ export class PlayerStateTracker {
     const arr = [...this.partyTracker.partyIds];
 
     // Include the player in the party for mistakes even if there is no party.
-    if (this.myPlayerId && !arr.includes(this.myPlayerId))
+    if (
+      this.myPlayerId !== undefined &&
+      this.myPlayerId.length > 0 &&
+      !arr.includes(this.myPlayerId)
+    )
       arr.push(this.myPlayerId);
 
     this.partyIds = new Set(arr);
@@ -262,7 +266,7 @@ export class PlayerStateTracker {
 
   OnChangedPlayer(_line: string, splitLine: string[]): void {
     const id = splitLine[logDefinitions.ChangedPlayer.fields.id];
-    if (id)
+    if (id !== undefined && id.length > 0)
       this.SetPlayerId(id);
   }
 
@@ -328,7 +332,7 @@ export class PlayerStateTracker {
     const targetId = splitLine[logDefinitions.GainsEffect.fields.targetId];
     // Do not consider pets gaining effects here.
     // Summoner pets (e.g. Demi-Phoenix) gain party buffs (e.g. Embolden), with no sourceId/source.
-    if (!targetId || !this.IsPlayerInParty(targetId))
+    if (targetId === undefined || targetId.length === 0 || !this.IsPlayerInParty(targetId))
       return;
 
     const effectId = splitLine[logDefinitions.GainsEffect.fields.effectId];
@@ -371,7 +375,7 @@ export class PlayerStateTracker {
 
   OnLosesEffect(_line: string, splitLine: string[]): void {
     const targetId = splitLine[logDefinitions.GainsEffect.fields.targetId];
-    if (!targetId || !this.IsPlayerInParty(targetId))
+    if (targetId === undefined || targetId.length === 0 || !this.IsPlayerInParty(targetId))
       return;
 
     const effectId = splitLine[logDefinitions.GainsEffect.fields.effectId];
@@ -394,7 +398,7 @@ export class PlayerStateTracker {
       return;
 
     const text = Translate(this.options.DisplayLanguage, reason.text);
-    if (!text)
+    if (text === undefined || text.length === 0)
       return;
     this.trackedEvents.push({
       timestamp: timestamp,
@@ -408,7 +412,7 @@ export class PlayerStateTracker {
     this.collector.OnMistakeObj(timestamp, mistake);
 
     const targetId = mistake.reportId;
-    if (!targetId || !IsPlayerId(targetId))
+    if (targetId === undefined || targetId.length === 0 || !IsPlayerId(targetId))
       return;
 
     this.trackedEvents.push({
@@ -422,7 +426,7 @@ export class PlayerStateTracker {
   // Returns an event for why this person died.
   OnDefeated(_line: string, splitLine: string[]): void {
     const targetId = splitLine[logDefinitions.WasDefeated.fields.targetId];
-    if (!targetId || !IsPlayerId(targetId))
+    if (targetId === undefined || targetId.length === 0 || !IsPlayerId(targetId))
       return;
 
     const targetInParty = this.IsInParty(targetId);
@@ -440,7 +444,7 @@ export class PlayerStateTracker {
       if (event.type !== 'Ability')
         continue;
       const id = event.splitLine[logDefinitions.Ability.fields.id];
-      if (!id)
+      if (id === undefined || id.length === 0)
         continue;
 
       const type = event.splitLine[logDefinitions.None.fields.type];
@@ -486,7 +490,7 @@ export class PlayerStateTracker {
 
   OnHoTDoT(_line: string, splitLine: string[]): void {
     const targetId = splitLine[logDefinitions.NetworkDoT.fields.id];
-    if (!targetId || !this.IsInParty(targetId))
+    if (targetId === undefined || targetId.length === 0 || !this.IsInParty(targetId))
       return;
 
     this.trackedEvents.push({
@@ -549,7 +553,7 @@ export class PlayerStateTracker {
 
     const missedNames = missedIds.map((id) => {
       const name = this.partyTracker.nameFromId(id);
-      if (!name) {
+      if (name === undefined || name.length === 0) {
         const line = JSON.stringify(collected.splitLine);
         console.error(`Couldn't find name for ${id}, ${line}`);
       }
