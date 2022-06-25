@@ -469,7 +469,7 @@ const assembleTimelineStrings = (
   // If the user entered phase information,
   // process it and store it off.
   const phases: { [name: string]: number } = {};
-  if (args.phase !== null && args.phase.length > 0) {
+  if (args.phase !== null) {
     for (const phase of args.phase) {
       const ability = phase.split(':')[0];
       const time = phase.split(':')[1];
@@ -486,8 +486,8 @@ const assembleTimelineStrings = (
     // Ignore AoE spam
     if (lastEntry.time === entry.time) {
       if (
-        entry.abilityId !== undefined && entry.abilityId.length > 0 &&
-        lastEntry.abilityId !== undefined && lastEntry.abilityId.length > 0 &&
+        entry.abilityId !== undefined &&
+        lastEntry.abilityId !== undefined &&
         entry.abilityId === lastEntry.abilityId
       )
         continue;

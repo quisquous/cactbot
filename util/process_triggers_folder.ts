@@ -131,7 +131,7 @@ const processFile = async (filename: string) => {
     'max-len',
   ];
   const messages = lintResult.messages.filter((message) => {
-    if (message.ruleId === null || message.ruleId.length === 0)
+    if (message.ruleId === null)
       return true;
     return !ignoreRules.includes(message.ruleId);
   });
@@ -176,7 +176,7 @@ const processFile = async (filename: string) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const triggerSet = (await import(importPath)).default as LooseTriggerSet;
   const timelineFilename = triggerSet?.timelineFile;
-  if (timelineFilename !== undefined && timelineFilename.length > 0) {
+  if (timelineFilename !== undefined) {
     const timelineFile = path.join(path.dirname(importPath), timelineFilename);
     if (fs.existsSync(timelineFile)) {
       const destination = path.join(path.dirname(filename), timelineFilename);

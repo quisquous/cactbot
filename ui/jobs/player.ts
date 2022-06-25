@@ -418,7 +418,7 @@ export class Player extends PlayerBase {
       case logDefinitions.GainsEffect.type: {
         const matches = normalizeLogLine(line, logDefinitions.GainsEffect.fields);
         const effectId = matches.effectId?.toUpperCase();
-        if (effectId === undefined || effectId.length === 0)
+        if (effectId === undefined)
           break;
 
         if (matches.targetId?.toUpperCase() === this.idHex)
@@ -429,7 +429,7 @@ export class Player extends PlayerBase {
       case logDefinitions.LosesEffect.type: {
         const matches = normalizeLogLine(line, logDefinitions.LosesEffect.fields);
         const effectId = matches.effectId?.toUpperCase();
-        if (effectId === undefined || effectId.length === 0)
+        if (effectId === undefined)
           break;
 
         if (matches.targetId?.toUpperCase() === this.idHex)
@@ -442,19 +442,19 @@ export class Player extends PlayerBase {
         const matches = normalizeLogLine(line, logDefinitions.Ability.fields);
         const sourceId = matches.sourceId?.toUpperCase();
         const id = matches.id;
-        if (id === undefined || id.length === 0)
+        if (id === undefined)
           break;
 
         this.emit('action', id, matches);
 
-        if (sourceId !== undefined && sourceId.length > 0) {
-          if (sourceId === this.idHex)
-            this.emit('action/you', id, matches);
-          else if (this.partyTracker.inParty(matches.source ?? ''))
-            this.emit('action/party', id, matches);
-          else if (sourceId.startsWith('1')) // starts with '1' is a player
-            this.emit('action/other', id, matches);
-        }
+        if (sourceId === undefined)
+          break;
+        if (sourceId === this.idHex)
+          this.emit('action/you', id, matches);
+        else if (this.partyTracker.inParty(matches.source ?? ''))
+          this.emit('action/party', id, matches);
+        else if (sourceId.startsWith('1')) // starts with '1' is a player
+          this.emit('action/other', id, matches);
         break;
       }
     }

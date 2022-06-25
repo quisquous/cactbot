@@ -315,7 +315,7 @@ export class ComponentManager {
     this.ee.on('log/game', (_log, _line, rawLine) => {
       const m = this.regexes?.countdownStartRegex.exec(rawLine);
       const time = m?.groups?.time;
-      if (time !== undefined && time.length > 0) {
+      if (time !== undefined) {
         const seconds = parseFloat(time);
         this.bars._setPullCountdown(seconds);
       }
@@ -348,8 +348,9 @@ export class ComponentManager {
       anyRegexMatched(message, this.regexes.craftingStopRegexes) ||
       this.regexes.craftingFinishRegexes.some((regex) => {
         const m = regex.exec(message)?.groups;
-        return m &&
-          (m.player === undefined || m.player.length === 0 || m.player === this.player.name);
+        if (m === undefined)
+          return false;
+        return m.player === undefined || m.player === this.player.name;
       })
     )
       this.bars.setJobsContainerVisibility(false);

@@ -361,14 +361,14 @@ class UserConfig {
         // This is a bit awkward to handle skin settings here, but
         // doing it after user config files and before user css files
         // allows user css to override skin-specific css as well.
-        if (options.Skin !== undefined && options.Skin.length > 0)
+        if (options.Skin !== undefined)
           this.handleSkin(options.Skin);
 
         for (const cssFile of cssFiles) {
           printUserFile(`local user file: ${basePath}${cssFile}`);
           const userCssText = document.createElement('style');
           const contents = localFiles[cssFile];
-          if (contents !== undefined && contents.length > 0)
+          if (contents !== undefined)
             userCssText.innerText = contents;
           const head = document.getElementsByTagName('head')[0];
           if (head)

@@ -89,13 +89,13 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
         break;
       case logDefinitions.GainsEffect.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.GainsEffect.fields);
-        if (matches.effectId !== undefined && matches.effectId.length > 0)
+        if (matches.effectId !== undefined)
           this.emit('effect/gain', matches.effectId, matches);
         break;
       }
       case logDefinitions.LosesEffect.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.LosesEffect.fields);
-        if (matches.effectId !== undefined && matches.effectId.length > 0)
+        if (matches.effectId !== undefined)
           this.emit('effect/lose', matches.effectId, matches);
         break;
       }

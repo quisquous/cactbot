@@ -290,9 +290,9 @@ export class Bars {
     });
     container.innerHTML = ''; // remove any existing timer boxes, if there are.
     container.appendChild(timerBox);
-    if (fgColor !== undefined && fgColor.length > 0)
+    if (fgColor !== undefined)
       timerBox.fg = computeBackgroundColorFrom(timerBox, fgColor);
-    if (id !== undefined && id.length > 0) {
+    if (id !== undefined) {
       timerBox.id = id;
       timerBox.classList.add('timer-box');
     }

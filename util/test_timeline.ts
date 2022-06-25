@@ -93,7 +93,7 @@ const testLineEvents = async (
   driftFail: number
 ): Promise<void> => {
   const triggersFile = findTriggersFile(timelineName);
-  if (triggersFile === undefined || triggersFile.length === 0) {
+  if (triggersFile === undefined) {
     console.error(`Couldn\'t find '${timelineName}', aborting.`);
     process.exit(-2);
   }

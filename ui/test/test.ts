@@ -157,7 +157,7 @@ addOverlayListener('onLogEvent', (e) => {
     // Match "/echo tts:<stuff>"
     const r = /00:0038:tts:(.*)/.exec(log);
     const text = r?.[1];
-    if (text !== undefined && text.length > 0) {
+    if (text !== undefined) {
       void callOverlayHandler({
         call: 'cactbotSay',
         text: text,

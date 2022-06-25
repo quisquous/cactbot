@@ -129,7 +129,7 @@ export class EncounterFinder {
       // Therefore we can safely initialize everything.
       if (this.currentFight.startTime)
         this.onEndFight(line, cZ, 'Zone Change');
-      if (this.currentZone.zoneName !== undefined && this.currentZone.zoneName.length > 0)
+      if (this.currentZone.zoneName !== undefined)
         this.onEndZone(line, this.currentZone.zoneName, cZ);
 
       this.zoneInfo = ZoneInfo[parseInt(cZ.id, 16)];

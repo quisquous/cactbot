@@ -593,7 +593,7 @@ class EurekaTracker {
         iconElem.innerHTML = weatherIcon ?? '';
         textElem.innerHTML = weatherStr;
       });
-    } else if (currentWeather !== undefined && currentWeather.length > 0) {
+    } else if (currentWeather !== undefined) {
       const stopTime = findNextWeatherNot(nowMs, zoneId, currentWeather);
       const weatherIcon = gWeatherIcons[currentWeather];
       let weatherStr = this.TransByDispLang(this.options.timeStrings.weatherFor)(nowMs, stopTime);
@@ -664,7 +664,7 @@ class EurekaTracker {
       respawnMs = Math.max(respawnMs, nowMs);
       let respawnIcon = '';
 
-      if (nm.weather !== undefined && nm.weather.length > 0) {
+      if (nm.weather !== undefined) {
         const respawnWeather = getWeather(respawnMs, zoneId);
         if (respawnWeather !== nm.weather) {
           const weatherStartTime = findNextWeather(respawnMs, zoneId, nm.weather);
@@ -696,7 +696,7 @@ class EurekaTracker {
 
       if (remainingMs <= 0) {
         let openUntil = null;
-        if (nm.weather !== undefined && nm.weather.length > 0) {
+        if (nm.weather !== undefined) {
           const weatherStartTime = findNextWeatherNot(nowMs, zoneId, nm.weather);
           respawnIcon = gWeatherIcons[nm.weather] ?? '';
           openUntil = weatherStartTime;
@@ -913,7 +913,7 @@ class EurekaTracker {
 
   AddFlag(x: number, y: number, beforeText: string, afterText: string) {
     const simplify = this.SimplifyText(beforeText, afterText);
-    if (simplify !== undefined && simplify.length > 0) {
+    if (simplify !== undefined) {
       beforeText = simplify;
       afterText = '';
     }

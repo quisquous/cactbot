@@ -79,7 +79,7 @@ const processRaidbossCoverage = async (manifest: string, coverage: Coverage) => 
     const triggerSet = (await import(triggerFileName)).default as LooseTriggerSet;
 
     let timelineContents: string | undefined = undefined;
-    if (triggerSet.timelineFile !== undefined && triggerSet.timelineFile.length > 0) {
+    if (triggerSet.timelineFile !== undefined) {
       const timelineFileName = path.join(path.dirname(triggerFileName), triggerSet.timelineFile);
       try {
         timelineContents = fs.readFileSync(timelineFileName).toString();
