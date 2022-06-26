@@ -248,7 +248,7 @@ const testTriggerFile = (file: string) => {
     // you cannot have two triggers like "O4N Thing 1" and "O4S Thing 2",
     // as the prefix "O4" is not a full word (and have a space after it,
     // as "Prefix " does.  This is a bit rigid, but prevents many typos.
-    if (ids.size > 1 && !brokenPrefixes && prefix && prefix.length > 0) {
+    if (ids.size > 1 && !brokenPrefixes && prefix !== null && prefix.length > 0) {
       // if prefix includes more than one word, just remove latter letters.
       if (prefix.includes(' '))
         prefix = prefix.substr(0, prefix.lastIndexOf(' ') + 1);
@@ -562,7 +562,7 @@ const testTriggerFile = (file: string) => {
   });
 
   it('has valid timeline file', () => {
-    if (triggerSet.timelineFile) {
+    if (triggerSet.timelineFile !== undefined) {
       const timelineFile = path.join(path.dirname(file), triggerSet.timelineFile);
       assert.isTrue(fs.existsSync(timelineFile), `${triggerSet.timelineFile} does not exist`);
     }
@@ -587,7 +587,7 @@ const testTriggerFile = (file: string) => {
       const triggers = triggerSet.triggers;
       for (const trigger of triggers ?? []) {
         const origRegex = trigger.netRegex?.source.toLowerCase();
-        if (!origRegex)
+        if (origRegex === undefined)
           continue;
 
         if (!NetRegexes.doesNetRegexNeedTranslation(origRegex))

@@ -265,7 +265,7 @@ const translate = (obj: LocaleText, lang: Lang) => obj[lang] ?? obj['en'];
 const addDiv = (container: HTMLElement, cls: string, text?: string) => {
   const div = document.createElement('div');
   div.classList.add(cls);
-  if (text)
+  if (text !== undefined)
     div.innerHTML = text;
   container.appendChild(div);
 };

@@ -83,7 +83,7 @@ const parseHelper = <T extends LogDefinitionTypes>(
     for (const key in fields)
       keys.push(key);
     let tmpKey = keys.pop();
-    if (!tmpKey) {
+    if (tmpKey === undefined) {
       maxKeyStr = fieldKeys[fieldKeys.length - 1] ?? '0';
     } else {
       while (
@@ -100,7 +100,7 @@ const parseHelper = <T extends LogDefinitionTypes>(
       if (typeof value !== 'object')
         continue;
       const fieldName = fields[key]?.field;
-      if (fieldName && fieldName in params)
+      if (fieldName !== undefined && fieldName in params)
         maxKeyStr = key;
     }
   }
@@ -135,7 +135,7 @@ const parseHelper = <T extends LogDefinitionTypes>(
     const fieldName = fields[keyStr]?.field;
     const fieldValue = fields[keyStr]?.value?.toString() ?? matchDefault;
 
-    if (fieldName) {
+    if (fieldName !== undefined) {
       str += Regexes.maybeCapture(
         // more accurate type instead of `as` cast
         // maybe this function needs a refactoring

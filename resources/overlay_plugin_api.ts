@@ -154,7 +154,7 @@ const callOverlayHandlerInternal: IOverlayHandler = (
   } else {
     p = new Promise((resolve, reject) => {
       sendMessage(msg, (data) => {
-        if (!data) {
+        if (data === null) {
           resolve(data);
           return;
         }

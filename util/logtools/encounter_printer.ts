@@ -84,14 +84,14 @@ export const printCollectedFights = (collector: EncounterCollector): void => {
     const fightDuration = TLFuncs.durationFromDates(fight.startTime, fight.endTime) ??
       'Unknown Duration';
     let fightName = 'Unknown Encounter';
-    if (fight.sealName)
+    if (fight.sealName !== undefined)
       fightName = fight.sealName;
-    else if (fight.fightName)
+    else if (fight.fightName !== undefined)
       fightName = fight.fightName;
 
-    if (!seenSeal && fight.sealName)
+    if (!seenSeal && fight.sealName !== undefined)
       seenSeal = true;
-    else if (seenSeal && !fight.sealName)
+    else if (seenSeal && fight.sealName === undefined)
       seenSeal = false;
 
     const row = {

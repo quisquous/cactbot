@@ -593,7 +593,7 @@ class EurekaTracker {
         iconElem.innerHTML = weatherIcon ?? '';
         textElem.innerHTML = weatherStr;
       });
-    } else if (currentWeather) {
+    } else if (currentWeather !== undefined) {
       const stopTime = findNextWeatherNot(nowMs, zoneId, currentWeather);
       const weatherIcon = gWeatherIcons[currentWeather];
       let weatherStr = this.TransByDispLang(this.options.timeStrings.weatherFor)(nowMs, stopTime);
@@ -664,7 +664,7 @@ class EurekaTracker {
       respawnMs = Math.max(respawnMs, nowMs);
       let respawnIcon = '';
 
-      if (nm.weather) {
+      if (nm.weather !== undefined) {
         const respawnWeather = getWeather(respawnMs, zoneId);
         if (respawnWeather !== nm.weather) {
           const weatherStartTime = findNextWeather(respawnMs, zoneId, nm.weather);
@@ -696,7 +696,7 @@ class EurekaTracker {
 
       if (remainingMs <= 0) {
         let openUntil = null;
-        if (nm.weather) {
+        if (nm.weather !== undefined) {
           const weatherStartTime = findNextWeatherNot(nowMs, zoneId, nm.weather);
           respawnIcon = gWeatherIcons[nm.weather] ?? '';
           openUntil = weatherStartTime;
@@ -772,7 +772,7 @@ class EurekaTracker {
     if (type === logDefinitions.GameLog.type) {
       const flagRegex = this.TransByParserLang(this.options.Regex).flagRegex;
       const flag = flagRegex.exec(log)?.groups;
-      if (flag && flag.x && flag.y) {
+      if (flag !== undefined && flag.x !== undefined && flag.y !== undefined) {
         this.AddFlag(
           parseFloat(flag.x),
           parseFloat(flag.y),
@@ -786,12 +786,12 @@ class EurekaTracker {
 
       const trackerRegex = this.TransByParserLang(this.options.Regex).trackerRegex;
       const tracker = trackerRegex.exec(log)?.groups;
-      if (tracker && tracker.id)
+      if (tracker?.id !== undefined)
         this.currentTracker = tracker.id;
 
       const importRegex = this.TransByParserLang(this.options.Regex).importRegex;
       const imp = importRegex.exec(log)?.groups;
-      if (imp && imp.nms)
+      if (imp?.nms !== undefined)
         this.ImportFromTracker(imp.nms);
     } else if (type === logDefinitions.AddedCombatant.type && this.fairyRegex) {
       const fairy = this.fairyRegex.exec(log)?.groups;
@@ -913,7 +913,7 @@ class EurekaTracker {
 
   AddFlag(x: number, y: number, beforeText: string, afterText: string) {
     const simplify = this.SimplifyText(beforeText, afterText);
-    if (simplify) {
+    if (simplify !== undefined) {
       beforeText = simplify;
       afterText = '';
     }

@@ -109,8 +109,8 @@ const translateTimelineFunc = (args: Namespace): Promise<void> => {
   ] as const;
   return inquirer.prompt<TranslateTimelineInquirerType>(questions)
     .then((answers) => {
-      const timeline = answers.timeline || args.timeline;
-      const locale = answers.locale || args.locale;
+      const timeline = answers.timeline ?? args.timeline;
+      const locale = answers.locale ?? args.locale;
       if (typeof timeline === 'string' && typeof locale === 'string' && isLang(locale))
         return translateTimeline(timeline, locale);
     });

@@ -149,7 +149,7 @@ export default class Anonymizer {
         continue;
 
       // Replace the id at this index with a fake player id.
-      if (!this.anonMap[playerId])
+      if (this.anonMap[playerId] === undefined)
         this.anonMap[playerId] = this.addNewPlayer();
       const fakePlayerId = this.anonMap[playerId];
       if (fakePlayerId === undefined) {

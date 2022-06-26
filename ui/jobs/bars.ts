@@ -272,7 +272,7 @@ export class Bars {
     scale?: number;
     notifyWhenExpired?: boolean;
   }): TimerBox {
-    let container = id ? document.getElementById(id) : undefined;
+    let container = id !== undefined ? document.getElementById(id) : undefined;
     if (!container) {
       container = document.createElement('div');
       container.classList.add('proc-box');
@@ -290,9 +290,9 @@ export class Bars {
     });
     container.innerHTML = ''; // remove any existing timer boxes, if there are.
     container.appendChild(timerBox);
-    if (fgColor)
+    if (fgColor !== undefined)
       timerBox.fg = computeBackgroundColorFrom(timerBox, fgColor);
-    if (id) {
+    if (id !== undefined) {
       timerBox.id = id;
       timerBox.classList.add('timer-box');
     }

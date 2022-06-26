@@ -344,7 +344,7 @@ class Radar {
   }
 
   UpdateMonsterPuller(monster: Monster, puller: string) {
-    if (monster.puller || monster.alreadyPulled)
+    if (monster.puller !== undefined || monster.alreadyPulled)
       return;
 
     PlayPullSound(monster, this.options);
@@ -386,7 +386,7 @@ class Radar {
           monster.hp).toFixed(2) +
           '%';
       }
-      if (monster.puller)
+      if (monster.puller !== undefined)
         node.innerHTML += '&nbsp;&nbsp;' + monster.puller;
       // Z position is relative to the map so it's omitted.
       if (options.Position) {

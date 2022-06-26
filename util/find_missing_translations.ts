@@ -102,7 +102,7 @@ const parseJavascriptFile = (file: string, inputLocales: Lang[]) => {
 
     // If we're not inside an object, keep looking for the start of one.
     const openMatchValue = openMatch?.[1];
-    if (!openMatch || !openMatchValue)
+    if (!openMatch || openMatchValue === undefined)
       return;
 
     // If this object is ended with the same indentation,
@@ -116,7 +116,7 @@ const parseJavascriptFile = (file: string, inputLocales: Lang[]) => {
 
         const openStr = openMatch[2];
 
-        if (!openStr)
+        if (openStr === undefined)
           return;
 
         // Only some locales care about zoneRegex, so special case.
@@ -162,7 +162,7 @@ const findMissingTranslations = async (filter: string, locale: Lang): Promise<vo
         let str = file;
         if (line)
           str += `:${line}`;
-        if (label)
+        if (label !== undefined)
           str += ` ${label}`;
         if (message)
           str += ` ${message}`;
@@ -213,8 +213,8 @@ const findMissingTranslationsFunc = (args: Namespace): Promise<void> => {
   ] as const;
   return inquirer.prompt<FindMissingTranslationsInquirerType>(questions)
     .then((answers) => {
-      const filter = answers.filter || args.filter;
-      const locale = answers.locale || args.locale;
+      const filter = answers.filter ?? args.filter;
+      const locale = answers.locale ?? args.locale;
       if (typeof filter === 'string' && typeof locale === 'string' && isLang(locale))
         return findMissingTranslations(filter, locale);
     });

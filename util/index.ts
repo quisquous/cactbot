@@ -71,7 +71,7 @@ const run = (args: UtilNamespace): Promise<unknown> => {
     },
   ] as const;
   return inquirer.prompt<UtilInquirerType>(questions).then((answer) => {
-    const action = answer.action || args.action;
+    const action = answer.action ?? args.action;
     if (action === null)
       return;
     const actionMap = actionChoices[action];

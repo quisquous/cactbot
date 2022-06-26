@@ -74,7 +74,7 @@ const makeEffectMap = (table: Table<'#', 'Name'>) => {
   const map = new Map<string, string>();
   for (const [id, effect] of Object.entries(table)) {
     const rawName = effect['Name'];
-    if (!rawName)
+    if (rawName === undefined)
       continue;
     const name = cleanName(rawName);
     // Skip empty strings.

@@ -57,7 +57,7 @@ export const langMap: { [lang in Lang]: { [lang in Lang]: string } } = {
 
 export const isLang = (lang?: string): lang is Lang => {
   const langStrs: readonly string[] = languages;
-  if (!lang)
+  if (lang === undefined)
     return false;
   return langStrs.includes(lang);
 };
