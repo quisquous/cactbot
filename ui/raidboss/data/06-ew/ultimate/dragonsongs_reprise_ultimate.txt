@@ -393,7 +393,7 @@ hideall "--sync--"
 #  6DD3 = Third Proximity AoE
 # 6D91 = Flames of Ascalon (Out/Chariot)
 # 6D92 = Ice of Ascalon (In/Dynamo)
-4000.0 "Shockwave" sync / 1[56]:[^:]*:Nidhogg:71E4:/ window 400,0
+4000.0 "Shockwave" sync / 1[56]:[^:]*:(King Thordan|Nidhogg):71E4:/ window 400,0
 4001.8 "--sync--" sync / 1[56]:[^:]*:Left Eye:63F3:/
 4002.0 "--sync--" #sync / 1[56]:[^:]*:Right Eye:63F3:/
 4015.8 "Alternative End" sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
