@@ -1879,8 +1879,8 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // In some cases due to deaths, there's an unmarked player.
-      // Try to give people a heads up about what they could be.
+      // If one doom person dies, then there will be an unmarked non-doom player (cross)
+      // and two non-doom players who will get the same symbol (triangle OR square).
       // If there's more than two symbols missing this is probably a wipe,
       // so don't bother trying to call out "unmarked circle or square".
       // TODO: should we run this on Playstation1 as well (and consolidate triggers?)
@@ -1901,6 +1901,8 @@ const triggerSet: TriggerSet<Data> = {
         if (marker === undefined || markers.length !== 1)
           return;
 
+        // Note: this will still call out for the dead doom person, but it seems better
+        // in case they somehow got insta-raised.
         if (data.hasDoom[data.me]) {
           if (marker === 'circle')
             return output.circleWithDoom!();
