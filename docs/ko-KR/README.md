@@ -76,7 +76,7 @@ Startup Wizard를 다른 방법으로 실행하려면,
 
 Startup Wizard에서,
 `FFXIV Parsing Plugin`을 선택하고 `Download/Enable Plugin` 버튼을 클릭하세요.
-이렇게 해서 `%APPDATA%Advanced Combat Tracker\Plugins\FFXIV_ACT_Plugin.dll`를 다운로드하고
+이렇게 해서 `%APPDATA%\Advanced Combat Tracker\Plugins\FFXIV_ACT_Plugin.dll`를 다운로드하고
 플러그인 리스트에서 활성화시킵니다.
 
 ![startup wizard 다운로드 스크린샷](../../screenshots/ffxiv_plugin_parsing_plugin.png)
@@ -100,7 +100,7 @@ Startup Wizard에서,
 ![overlay plugin 선택 스크린샷](../../screenshots/get_plugins_overlayplugin.png)
 
 이렇게 해서 ngld OverlayPlugin을
-`%APPDATA%Advanced Combat Tracker\Plugins\OverlayPlugin`에 다운로드하고
+`%APPDATA%\Advanced Combat Tracker\Plugins\OverlayPlugin`에 다운로드하고
 `OverlayPlugin.dll`을 플러그인 리스트에서 활성화합니다.
 
 참고로, RainbowMage 버전이나 hibiyasleep 버전이 아니라
@@ -116,7 +116,7 @@ Startup Wizard에서,
 ![cactbot selection 스크린샷](../../screenshots/get_plugins_cactbot.png)
 
 이렇게 해서 cactbot을
-`%APPDATA%Advanced Combat Tracker\Plugins\cactbot-version\cactbot`에 다운로드하고
+`%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot`에 다운로드하고
 `CactbotOverlay.dll`을 플러그인 리스트에서 활성화합니다.
 
 **참고**: ACT가 기대하는 압축 파일 구조와

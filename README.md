@@ -74,7 +74,7 @@ click on `Options` and then click on `Show Startup Wizard`.
 
 In the startup wizard,
 select `FFXIV Parsing Plugin` and then click the `Download/Enable Plugin` button.
-This will download `%APPDATA%Advanced Combat Tracker\Plugins\FFXIV_ACT_Plugin.dll`
+This will download `%APPDATA%\Advanced Combat Tracker\Plugins\FFXIV_ACT_Plugin.dll`
 and enable it in the list of plugins.
 
 ![startup wizard download screenshot](screenshots/ffxiv_plugin_parsing_plugin.png)
@@ -98,7 +98,7 @@ Select `Overlay Plugin` and then click `Download and Enable`.
 ![overlay plugin selection screenshot](screenshots/get_plugins_overlayplugin.png)
 
 This will download the ngld OverlayPlugin into
-`%APPDATA%Advanced Combat Tracker\Plugins\OverlayPlugin`
+`%APPDATA%\Advanced Combat Tracker\Plugins\OverlayPlugin`
 and enable `OverlayPlugin.dll` in the list of plugins.
 
 As a note, you must use the [ngld](https://github.com/ngld) version of
@@ -114,7 +114,7 @@ Select `Cactbot` and then click `Download and Enable`.
 ![cactbot selection screenshot](screenshots/get_plugins_cactbot.png)
 
 This will download the cactbot into
-`%APPDATA%Advanced Combat Tracker\Plugins\cactbot-version\cactbot`
+`%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot`
 and enable `CactbotOverlay.dll` in the list of plugins.
 
 **Note**: Due to a difference in how ACT expects archives to be
@@ -253,7 +253,7 @@ for more details about using Webpack.
 
 The [ui/](ui/) directory contains cactbot's ui modules.
 If you installed cactbot following the instructions above,
-this will most likely be `%APPDATA%Advanced Combat Tracker\Plugins\cactbot-version\cactbot\ui\`.
+this will most likely be `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot\ui\`.
 
 Each cactbot ui module should be added as a separate overlay.
 See the [Adding Overlay Modules](#adding-overlay-modules) section for more details about setup.
@@ -281,7 +281,7 @@ with [some extensions](docs/TimelineGuide.md).
 There are three levels of text alerts, in order of escalating importance: `info`, `alert`, and `alarm`.
 Text messages will be in one of these, and more important levels are larger and more eye grabbing colors.  Text-to-speech can be configured if you prefer that over on screen text.
 
-Timeline files and triggers for text and sound alerts are found in [ui/raidboss/data](ui/raidboss/data), timeline files with `.txt` extension and trigger files with `.js` extension.
+Timeline files and triggers for text and sound alerts are found in [ui/raidboss/data](ui/raidboss/data), timeline files with `.txt` extension and trigger files with `.ts` extension.
 
 In this screenshot, the raidboss module is highlighted, with the timeline circled in red, and the
 text alerts circled in yellow, with an `alert`-level text message visible.
