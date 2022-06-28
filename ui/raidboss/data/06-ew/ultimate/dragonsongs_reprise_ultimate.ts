@@ -1999,11 +1999,12 @@ const triggerSet: TriggerSet<Data> = {
           return output.doubleSquare!({ player: data.ShortName(partner) });
       },
       outputStrings: {
+        // In case users want to have triangle vs square say something different.
         doubleTriangle: {
-          en: 'Double Non-Doom Triangle (${player})',
+          en: 'Double Non-Doom (${player})',
         },
         doubleSquare: {
-          en: 'Double Non-Doom Square (${player})',
+          en: 'Double Non-Doom (${player})',
         },
       },
     },
