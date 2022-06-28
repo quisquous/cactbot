@@ -50,6 +50,7 @@ export interface Data extends RaidbossData {
   // names of players with chain lightning during wrath.
   thunderstruck: string[];
   hasDoom: { [name: string]: boolean };
+  hraesvelgrGlowing?: boolean;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -1846,6 +1847,83 @@ const triggerSet: TriggerSet<Data> = {
         crossWithDoom: {
           en: 'Blue X (Doom)',
           ko: '파랑 X (선고)',
+        },
+      },
+    },
+    {
+      id: 'DSR Great Wyrmsbreath Hraesvelgr Not Glowing',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6D34', source: 'Hraesvelgr', capture: false }),
+      alertText: (data, _matches, output) => {
+        if (data.role === 'tank')
+          return output.tanksApart!();
+      },
+      infoText: (data, _matches, output) => {
+        if (data.role !== 'tank')
+          return output.hraesvelgrTankbuster!();
+      },
+      run: (data) => data.hraesvelgrGlowing = false,
+      outputStrings: {
+        tanksApart: {
+          en: 'Apart (Hrae buster)',
+        },
+        hraesvelgrTankbuster: {
+          en: 'Hrae Tankbuster',
+        },
+      },
+    },
+    {
+      id: 'DSR Great Wyrmsbreath Hraesvelgr Glowing',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6D35', source: 'Hraesvelgr', capture: false }),
+      condition: (data) => data.role === 'tank',
+      run: (data) => data.hraesvelgrGlowing = true,
+    },
+    {
+      id: 'DSR Great Wyrmsbreath Nidhogg Not Glowing',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6D32', source: 'Nidhogg', capture: false }),
+      alertText: (data, _matches, output) => {
+        if (data.role === 'tank')
+          return output.tanksApart!();
+      },
+      infoText: (data, _matches, output) => {
+        if (data.role !== 'tank')
+          return output.hraesvelgrTankbuster!();
+      },
+      run: (data) => data.hraesvelgrGlowing = false,
+      outputStrings: {
+        tanksApart: {
+          en: 'Apart (Nid buster)',
+        },
+        hraesvelgrTankbuster: {
+          en: 'Nid Tankbuster',
+        },
+      },
+    },
+    {
+      // Great Wyrmsbreath ids
+      //   6D32 Nidhogg not glowing
+      //   6D33 Nidhogg glowing
+      //   6D34 Hraesvelgr not glowing
+      //   6D35 Hraesvelgr glowing
+      // Hraesvelgr always comes first, so set `hraesvelgrGlowing` in Hrae lines and
+      // unset it after any Nidhogg lines.
+      id: 'DSR Great Wyrmsbreath Nidhogg Glowing',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6D33', source: 'Nidhogg', capture: false }),
+      alertText: (data, _matches, output) => {
+        if (data.hraesvelgrGlowing && data.role === 'tank')
+          return output.sharedBuster!();
+      },
+      infoText: (data, _matches, output) => {
+        if (data.hraesvelgrGlowing && data.role !== 'tank')
+          return output.sharedBuster!();
+      },
+      run: (data) => delete data.hraesvelgrGlowing,
+      outputStrings: {
+        sharedBuster: {
+          en: 'Shared Buster',
         },
       },
     },
