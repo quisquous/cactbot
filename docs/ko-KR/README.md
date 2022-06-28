@@ -345,7 +345,7 @@ cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습�
 |<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px"/><br> 학자|에테르 순환 스택, 요정 게이지 양/남은 시간, 도트 남은 시간, 그리고 에테르 순환/자각몽 쿨을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px"/><br> 점성술사|Shows Seals amount, notify who or whether to play the current card, 도트 남은 시간, 그리고 점지/자각몽 쿨을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> 몽크|투기량을 보여주고, 품새 시간, 몽크 버프와 디버프를 추적해줍니다.|
-|<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px"/><br> 용기사|용혈과 용눈 갯수, 몸통 가르기 버프 남은 시간, 점프 쿨, 돌격하는 창과 용의 시선 지속 시간/쿨타임을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px"/><br> 용기사|천룡의 눈과 용의 눈 갯수, 용창 버프 남은 시간, 점프 쿨, 돌격하는 창과 용의 시선 지속 시간/쿨타임을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px"/><br> 닌자|인법 수치, 풍둔술 지속 시간, 속임수 공격 지속시간/쿨, 분신술/삼인술 쿨, 그리고 콤보 유지 시간을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px"/><br> 사무라이|검기 수치, 투기 스택, 사풍/진풍/피안화 지속시간, 제비반전 쿨, 그리고 콤보 유지시간을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/brd-large.png" width="30px"/><br> 음유시인|Shows songs playing and remaining time, Repertoire stack, Soul Voice amount, StraightShotReady track, DoT remaining time, and a bar that show when your DoTs will tick.|
