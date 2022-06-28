@@ -431,8 +431,6 @@ When you cast your line at a fishing hole, this module keeps track of when you r
 
 Cast times are currently only logged as you fish, so there won't be any data until you've caught each fish. Green bars represent light tugs, yellow is a medium tug and red bars are legendary/heavy tugs.
 
-[See here](https://www.youtube.com/watch?v=GHgWIA-Zhug) for examples of the different tug types.
-
 Check [here](docs/FAQ-Troubleshooting.md#fisher-module) for common troubleshooting tips.
 
 ### [dps](ui/dps) meters

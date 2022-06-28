@@ -335,8 +335,6 @@ ThirdParty
 
 目前该模块仅会记录您的钓鱼记录，因此只有在您钓到了鱼时才会有数据。 绿色的条形代表轻杆，黄色的条形代表中杆，红色的条形代表鱼王杆/重杆。
 
-有关不同杆种类型的示例，请参见[此处](https://www.youtube.com/watch?v=GHgWIA-Zhug)。
-
 在[此链接](./FAQ-Troubleshooting.md#fisher-module)中可以找到fisher模块的常见问题解答。
 
 ### [dps](../../ui/dps) 统计模块
