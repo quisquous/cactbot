@@ -319,6 +319,8 @@ cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습�
 
 ![oopsy 스크린샷](../../screenshots/promo_oopsy.png)
 
+클릭하면 해당 항목이 클립보드에 복사되는 기능도 있습니다. (오버레이 `클릭 무시` 설정시 작동하지 않음.)
+
 ### [jobs](../../ui/jobs) 모듈
 
 이 모듈을 사용하려면,
