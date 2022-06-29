@@ -2032,7 +2032,7 @@ Options.Triggers.push({
           const dive = nidhogg.PosX < 100 ? output.forward() : output.backward();
           return output.wingsDiveHead({ wings: wings, dive: dive, head: head });
         }
-        // If something has gone awry, call out what we can.
+        // If something has gone awry (or this is the second hallowed), call out what we can.
         return output.wingsHead({ wings: wings, head: head });
       },
       outputStrings: {
@@ -2078,6 +2078,30 @@ Options.Triggers.push({
           de: '${wings} + ${dive}, ${head}',
           ja: '${wings} + ${dive}, ${head}',
           ko: '${wings} + ${dive}, ${head}',
+        },
+      },
+    },
+    {
+      id: 'DSR Nidhogg Hot Wing',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6D2B', source: 'Nidhogg', capture: false }),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          // Often cactbot uses "in" and "out", but that's usually hitbox relative vs
+          // anything else.  Because this is more arena-relative.
+          en: 'Inside',
+        },
+      },
+    },
+    {
+      id: 'DSR Nidhogg Hot Tail',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6D2D', source: 'Nidhogg', capture: false }),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Outside',
         },
       },
     },
