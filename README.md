@@ -338,7 +338,8 @@ Mistake triggers are specified for individual fights in the [ui/oopsyraidsy/data
 
 ![oopsy screenshot](screenshots/promo_oopsy.png)
 
-You can copy oopsy logs to clipboard by clicking it. (You have to uncheck `Enable Clickthrough` checkbox from the overlay option.)
+You can copy oopsy lines to the clipboard by clicking them.
+(You may need to uncheck `Enable Clickthrough` checkbox from the OverlayPlugin option.)
 
 ### [jobs](ui/jobs) module
 
