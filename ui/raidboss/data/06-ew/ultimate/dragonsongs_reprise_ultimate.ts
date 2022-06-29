@@ -2153,7 +2153,8 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         const wings = (matches.id === '6D23' || matches.id === '6D24') ? output.left!() : output.right!();
         let head;
-        if (matches.id === '6D24' || matches.id === '6D26')
+        const headDown = matches.id === '6D23' || matches.id === '6D26';
+        if (headDown)
           head = data.role === 'tank' ? output.tanksNear!() : output.partyFar!();
         else
           head = data.role === 'tank' ? output.tanksFar!() : output.partyNear!();
