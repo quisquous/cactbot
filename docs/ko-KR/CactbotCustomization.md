@@ -409,7 +409,7 @@ User 폴더의 위치를 모른다면, [User 디렉토리 설정하기](#User-�
     });
     ```
 
-1) [데이터 목록](../../ui/raidboss/data)에서 지금 수정하고 싶은 레이드나 던전의 `.js` 파일을 찾아서 여세요. 해당하는 던전의 영문명은 직접 알아내야 합니다.
+1) [데이터 목록](https://github.com/quisquous/cactbot/tree/triggers)에서 지금 수정하고 싶은 레이드나 던전의 `.js` 파일을 찾아서 여세요. 해당하는 던전의 영문명은 직접 알아내야 합니다.
 
 1) `raidboss.js` 파일에 붙여넣은 내용 중, `ZoneId.SomeId`를 지우고 그 위치에 방금 찾아서 연 `.js` 파일에 나와있는 `zoneId`를 붙여넣습니다.
 예시) `e8s.js`에는 `ZoneId.EdensVerseRefulgenceSavage`가 `zoneId`로 적혀있으므로, `ZoneId.SomeId`를 지우고 `ZoneId.EdensVerseRefulgenceSavage`를 붙여넣습니다.
@@ -474,7 +474,7 @@ User 폴더의 위치를 모른다면, [User 디렉토리 설정하기](#User-�
 
 1) `user` 폴더의 `raidboss.js` 파일을 편집 프로그램으로 엽니다. (메모장으로도 가능하며, 추가 프로그램을 설치할 의향이 있다면, [notepad++](https://notepad-plus-plus.org/downloads/)를 추천합니다.) 해당 파일이 없다면, 새로 만듭니다. 확장자가 js로 생성됐는지 반드시 확인하세요.
 
-1) 수정하고 싶은 타임라인을 [데이터 목록](../../ui/raidboss/data)에서 다운로드하세요.
+1) 수정하고 싶은 타임라인을 [데이터 목록](https://github.com/quisquous/cactbot/tree/triggers)에서 다운로드하세요.
     1) 목록에서 해당 파일을 찾습니다.
     1) `Raw` 버튼을 클릭합니다.
     1) 화면 우클릭 후, `다른 이름으로 저장`을 클릭하면 다운로드할 수 있습니다.
@@ -492,9 +492,9 @@ User 폴더의 위치를 모른다면, [User 디렉토리 설정하기](#User-�
     });
     ```
 
-1) 수정하고 싶은 타임라인의 던전에 해당하는 `.js` 파일을 [데이터 목록](../../ui/raidboss/data)에서 열고, 그 파일 상단에 있는 `zoneId` 값을 `ZoneId.SomeId` 대신 집어 넣습니다. 예를 들어, 절알렉 타임라인을 수정하고 있다면, `the_epic_of_alexander.js`을 열어서 그 곳에 적힌 `ZoneId.TheEpicOfAlexanderUltimate`를 `ZoneId.SomeId`를 대신해 붙여넣습니다.
+1) 수정하고 싶은 타임라인의 던전에 해당하는 `.js` 파일을 [데이터 목록](https://github.com/quisquous/cactbot/tree/triggers)에서 열고, 그 파일 상단에 있는 `zoneId` 값을 `ZoneId.SomeId` 대신 집어 넣습니다. 예를 들어, 절알렉 타임라인을 수정하고 있다면, `the_epic_of_alexander.js`을 열어서 그 곳에 적힌 `ZoneId.TheEpicOfAlexanderUltimate`를 `ZoneId.SomeId`를 대신해 붙여넣습니다.
 
-1) `timelineFile` 뒤에 `txt` 파일명을 방금 다운로드한 타임라인 `txt` 파일명으로 수정합니다.
+1) `timelineFile` 뒤의 `txt` 파일명을 방금 다운로드한 타임라인 `txt` 파일명으로 수정합니다.
 
 1) 다운로드 한 타임라인을 편집기로 열어 원하는 대로 수정합니다.
 

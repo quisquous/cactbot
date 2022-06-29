@@ -22,7 +22,7 @@ cactbot은 [파이널 판타지 14](http://www.ff14.co.kr/)를 위한 레이드 
 [ngld의 OverlayPlugin](https://github.com/ngld/OverlayPlugin)에서 작동하는
 오버레이 플러그인 입니다.
 
-cactbot은 다음 모듈을 지원합니다:
+cactbot은 다음 모듈을 제공합니다:
 
 * raidboss: 미리 설정된 타임라인과 트리거:
 
@@ -76,12 +76,12 @@ Startup Wizard를 다른 방법으로 실행하려면,
 
 Startup Wizard에서,
 `FFXIV Parsing Plugin`을 선택하고 `Download/Enable Plugin` 버튼을 클릭하세요.
-이렇게 해서 `%APPDATA%Advanced Combat Tracker\Plugins\FFXIV_ACT_Plugin.dll`를 다운로드하고
+이렇게 해서 `%APPDATA%\Advanced Combat Tracker\Plugins\FFXIV_ACT_Plugin.dll`를 다운로드하고
 플러그인 리스트에서 활성화시킵니다.
 
 ![startup wizard 다운로드 스크린샷](../../screenshots/ffxiv_plugin_parsing_plugin.png)
 
-다른 FFXIV Plugin 가이드:
+다른 FFXIV Plugin 설치 가이드:
 
 * [fflogs 동영상 가이드](https://www.fflogs.com/help/start/)
 * [TomRichter 가이드](https://gist.github.com/TomRichter/e044a3dff5c50024cf514ffb20a201a9#installing-act--ffxiv-plugin)
@@ -100,7 +100,7 @@ Startup Wizard에서,
 ![overlay plugin 선택 스크린샷](../../screenshots/get_plugins_overlayplugin.png)
 
 이렇게 해서 ngld OverlayPlugin을
-`%APPDATA%Advanced Combat Tracker\Plugins\OverlayPlugin`에 다운로드하고
+`%APPDATA%\Advanced Combat Tracker\Plugins\OverlayPlugin`에 다운로드하고
 `OverlayPlugin.dll`을 플러그인 리스트에서 활성화합니다.
 
 참고로, RainbowMage 버전이나 hibiyasleep 버전이 아니라
@@ -116,11 +116,11 @@ Startup Wizard에서,
 ![cactbot selection 스크린샷](../../screenshots/get_plugins_cactbot.png)
 
 이렇게 해서 cactbot을
-`%APPDATA%Advanced Combat Tracker\Plugins\cactbot-version\cactbot`에 다운로드하고
+`%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot`에 다운로드하고
 `CactbotOverlay.dll`을 플러그인 리스트에서 활성화합니다.
 
 **참고**: ACT가 기대하는 압축 파일 구조와
-cactbot이 zip 파일을 생성하는 구조와의 차이점 때문에
+cactbot이 zip 파일을 생성하는 구조 간의 차이 때문에
 처음 cactbot을 받았던 버전을 포함한
 `cactbot-0.15.2`과 같은 폴더가 생성될 것입니다.
 이 폴더명은 상관이 없고 딱히 의미가 없습니다.
@@ -228,7 +228,7 @@ ThirdParty
 1. "Release"와 "x64" 설정으로 빌드하세요.
 1. 플러그인은 **bin/x64/Release/CactbotOverlay.dll**에 빌드될 겁니다.
 1. 빌드된 플러그인을 ACT에 플러그인으로 직접 추가하세요.
-ACT -> Plugins -> Plugin Listing 탭에서, `Browse` 버튼을 클릭하고 이 파일이 빌드된 **bin/x64/Release/CactbotOverlay.dll**을 찾으세요.  그리고 `Add/Enable Plugin`을 클릭하세요.
+ACT -> Plugins -> Plugin Listing 탭에서, `Browse` 버튼을 클릭하고 이 파일이 빌드된 위치인 **bin/x64/Release/CactbotOverlay.dll**을 선택하세요.  그리고 `Add/Enable Plugin`을 클릭하세요.
 
 ### npm과 webpack
 
@@ -252,7 +252,7 @@ Webpack에 대해 더 자세히 알고 싶다면
 만약 cactbot을 상기 설명에 따라 설치했다면,
 이 디렉토리는 `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot\ui\`에 있을 것입니다.
 
-각각의 cactbot ui 모듈은 분리된 오버레이로 따로 추가되어야 합니다.
+각각의 cactbot ui 모듈은 분리된 오버레이로 따로 추가해야 합니다.
 더욱 자세한 오버레이 설치 방법을 확인하려면 [오버레이 모듈 추가하기](#오버레이-모듈-추가하기) 문단을 확인하세요.
 
 ### [raidboss](../../ui/raidboss) 모듈
@@ -260,23 +260,25 @@ Webpack에 대해 더 자세히 알고 싶다면
 이 모듈을 사용하려면,
 **ui/raidboss/raidboss.html** 파일을 URL 부분에서 선택하거나 `Cactbot Raidboss` 프리셋을 사용하세요.
 
-이 모듈은 레이드의 타임라인과 레이드에서 놓칠만한 정보들을 알려주는 텍스트/사운드 알림을 제공합니다. 텍스트와 사운드 알람은 ACT의 "커스텀 트리거" 기능과 비슷한 방식으로, 전투 타임라인이나 게임에서 찍히는 로그 메시지를 기반으로 제공됩니다.
+이 모듈은 레이드의 타임라인과 레이드에서 놓칠만한 정보들을 알려주는 텍스트/사운드 알림을 제공합니다.
+텍스트와 사운드 알람은 ACT의 "커스텀 트리거" 기능과 비슷한 방식으로, 전투 타임라인이나 게임에서 찍히는 로그 메시지를 기반으로 제공됩니다.
 이 모듈은 월드 오브 워크래프트의 [BigWigs Bossmods](https://www.curseforge.com/wow/addons/big-wigs) 애드온과 비슷하게 보이고 느껴지도록 디자인 되었습니다.
 
 [이 페이지](https://quisquous.github.io/cactbot/util/coverage/coverage.html?lang=ko)에는
 현재 cactbot이 지원하는 컨텐츠 목록이 나열되어 있습니다.
 지원하는 컨텐츠는 계속해서 늘리고 있습니다.
-하지만 많은 수의 오래된 컨텐츠들은 아직도 지원되지 않습니다.
+하지만 많은 수의 오래된 컨텐츠들이 아직 지원되지 않습니다.
 
-전투 타임라인은 [ACT Timeline](https://github.com/grindingcoil/act_timeline)플러그인에 맞게 디자인된 파일들을 사용합니다. [이 곳](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)에 규칙이 정리되어 있으며,
+전투 타임라인은 [ACT Timeline](https://github.com/grindingcoil/act_timeline) 플러그인에 맞게 디자인된 파일들을 사용합니다. [이 곳](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)에 규칙이 정리되어 있으며,
 cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습니다.
 
 텍스트 알람에는 세 단계가 있으며, 중요도에 따라 다음과 같이 분류됩니다: `info`, `alert`, 그리고 `alarm`.
-텍스트 메시지는 이 세 개 중 한가지이며, 더 중요한 알림일수록 크고 눈에 잘 띄는 색으로 표현됩니다. 화면에 나오는 텍스트보다는 TTS를 선호하는 경우 TTS로 나오도록 설정할 수 있습니다.
+텍스트 메시지는 이 세 개 중 한 가지며, 더 중요한 알림일수록 크고 눈에 잘 띄는 색으로 표현됩니다.
+화면에 나오는 텍스트보다는 TTS를 선호하는 경우 TTS로 나오도록 설정할 수 있습니다.
 
-타임라인 파일과 트리거 파일은 [ui/raidboss/data](../../ui/raidboss/data)에서 찾을 수 있습니다. 타임라인 파일은 `.txt` 확장자를 가지며, 트리거 파일은 `.js` 확장자를 갖습니다.
+타임라인 파일과 트리거 파일은 [ui/raidboss/data](../../ui/raidboss/data)에서 찾을 수 있습니다. 타임라인 파일은 `.txt` 확장자를 가지며, 트리거 파일은 `.ts` 확장자를 갖습니다.
 
-스크린샷에서, raidboss 모듈이 하이라이트되어 있습니다. 빨간색 동그라미로 표시된 것이 타임라인이고, 노란색 동그라미로 표시된 것이 `alert` 단계의 텍스트 알람입니다.
+아래 스크린샷은 raidboss 모듈이 하이라이트되어 있습니다. 빨간색 동그라미로 표시된 것이 타임라인이고, 노란색 동그라미로 표시된 것이 `alert` 단계의 텍스트 알람입니다.
 
 ![raidboss 스크린샷](../../screenshots/Raidboss.png)
 
@@ -309,15 +311,25 @@ cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습�
 이 모듈을 사용하려면,
 **ui/oopsyraidsy/oopsyraidsy.html** 파일을 URL 부분에서 선택하거나 `Cactbot OopsyRaidsy` 프리셋을 사용하세요.
 
-이 모듈은 실수 추적과 사망 리포트를 제공합니다. Oopsy raidsy는 전투에서 어떤 문제가 있었는지, 왜 죽었는지 이해하는데 낭비되는 시간을 줄이는 목적으로 제작되었습니다. 전투동안은 혼란을 피하기 위해 제한된 수의 실수가 표시되지만, 전투가 종료되면 스크롤이 가능한 전체 실수 리스트를 보여줍니다.
+이 모듈은 실수 추적과 사망 리포트를 제공합니다.
+Oopsy raidsy는 전투에서 어떤 문제가 있었는지, 왜 죽었는지 이해하는데 낭비되는 시간을 줄이는 목적으로 제작되었습니다.
+전투동안은 혼란을 피하기 위해 제한된 수의 실수가 표시되지만,
+전투가 종료되면 스크롤이 가능한 전체 실수 리스트를 보여줍니다.
 
-누군가 죽는다면, 마지막에 받은 데미지가 로그에 님습니다. 예를 들어, 다음과 같은 로그가 나왔다면: ":skull: 아무개: 강철 전차 (82173/23703)" 아무개가 강철 전차에 죽었을 가능성이 아주 높고, 체력이 23703 남았을 때 82173의 데미지를 받았다는 뜻입니다. 체력 값은 완벽하지 않습니다. 서버틱 문제와 동시에 많은 갯수의 데미지가 들어온 경우에 최대 1초 정도의 지연이 있을 수 있습니다.
+누군가 죽는다면, 마지막에 받은 데미지가 로그에 남습니다.
+예를 들어, 다음과 같은 로그가 나왔다면: ":skull: 아무개: 강철 전차 (82173/23703)" 아무개가 강철 전차에 죽었을 가능성이 아주 높고, 체력이 23703 남았을 때 82173의 데미지를 받았다는 뜻입니다.
+체력 값은 완벽하지 않습니다.
+서버틱 문제와 동시에 많은 갯수의 데미지가 들어온 경우에 최대 1초 정도의 지연이 있을 수 있습니다.
 
-피할 수 있는 실수를 했을 경우에는, oopsy에 경고(:warning:)나 실패(:no_entry_sign:) 로그가 찍혀서 무엇을 실수했는지 알려주게 됩니다.
+피할 수 있는 실수를 했을 경우에는,
+oopsy에 경고(:warning:)나 실패(:no_entry_sign:) 로그가 찍혀서 무엇을 실수했는지 알 수 있습니다.
 
 실수 트리거들은 [ui/oopsyraidsy/data](../../ui/oopsyraidsy/data) 폴더의 각 개별 전투 파일에 자세히 나열되어 있습니다.
 
 ![oopsy 스크린샷](../../screenshots/promo_oopsy.png)
+
+클릭하면 해당 항목이 클립보드에 복사되는 기능도 있습니다.
+(오버레이 `클릭 무시` 설정시 작동하지 않음.)
 
 ### [jobs](../../ui/jobs) 모듈
 
@@ -328,7 +340,7 @@ cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습�
 레벨링이나 레이드를 할 때 음식 시간 부족 경고도 보여주고,
 시각적인 초읽기 기능도 제공합니다.
 
-일부 직업에 대해서는 구체적인 지원을 하지만 대부분의 직업은 기능을 만드는 중입니다.
+일부 직업에 대해서는 구체적인 기능을 제공하지만, 대부분의 직업은 기능을 만드는 중입니다.
 
 <details>
 <summary>지원하는 잡 (클릭해서 확장)</summary>
@@ -343,7 +355,7 @@ cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습�
 |<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px"/><br> 학자|에테르 순환 스택, 요정 게이지 양/남은 시간, 도트 남은 시간, 그리고 에테르 순환/자각몽 쿨을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px"/><br> 점성술사|Shows Seals amount, notify who or whether to play the current card, 도트 남은 시간, 그리고 점지/자각몽 쿨을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> 몽크|투기량을 보여주고, 품새 시간, 몽크 버프와 디버프를 추적해줍니다.|
-|<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px"/><br> 용기사|용혈과 용눈 갯수, 몸통 가르기 버프 남은 시간, 점프 쿨, 돌격하는 창과 용의 시선 지속 시간/쿨타임을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px"/><br> 용기사|천룡의 눈과 용의 눈 갯수, 용창 버프 남은 시간, 점프 쿨, 돌격하는 창과 용의 시선 지속 시간/쿨타임을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px"/><br> 닌자|인법 수치, 풍둔술 지속 시간, 속임수 공격 지속시간/쿨, 분신술/삼인술 쿨, 그리고 콤보 유지 시간을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px"/><br> 사무라이|검기 수치, 투기 스택, 사풍/진풍/피안화 지속시간, 제비반전 쿨, 그리고 콤보 유지시간을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/brd-large.png" width="30px"/><br> 음유시인|Shows songs playing and remaining time, Repertoire stack, Soul Voice amount, StraightShotReady track, DoT remaining time, and a bar that show when your DoTs will tick.|
@@ -356,9 +368,11 @@ cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습�
 
 </details>
 
-스크린샷을 보시면, job 모듈은 적마도사에 맞춰져 있습니다. 보라색 원이 되어 있는 곳을 보면, 체력과 마나 바와 함께
-적마도사의 흰/붉은 마나를 추적 해주고 있습니다. 주황색 화살표를 보면 파티 버프도 추적되고 있습니다.
-<del>체력바 위에 있는 노란색 박스가 첫 근접 콤보를 실행했다는 것을 보여줍니다.</del> 프록 트래커는 초록색 원으로 표시된 곳에 나타나고 있습니다.
+스크린샷을 보시면, job 모듈은 적마도사에 맞춰져 있습니다.
+보라색 원이 되어 있는 곳을 보면, 체력과 마나 바와 함께 적마도사의 흰/붉은 마나를 추적 해주고 있습니다.
+주황색 화살표를 보면 파티 버프도 추적되고 있습니다.
+<del>체력바 위에 있는 노란색 박스가 첫 근접 콤보를 실행했다는 것을 보여줍니다.</del>
+프록 트래커는 초록색 원으로 표시된 곳에 나타나고 있습니다.
 
 ![jobs 스크린샷](../../screenshots/Jobs.png)
 
@@ -367,7 +381,8 @@ cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습�
 이 모듈을 사용하려면,
 **ui/eureka/eureka.html** 파일을 URL 부분에서 선택하거나 `Cactbot Eureka` 프리셋을 사용하세요.
 
-이 모듈은 자동으로 소환되었거나 죽은 NM을 기록하는 트래커를 제공합니다. 폭풍/밤 타이머를 보여주고, 채팅창에 올라온 에우레카 트래커 링크를 보여줍니다.
+이 모듈은 자동으로 소환되었거나 죽은 NM을 기록하는 트래커를 제공합니다.
+폭풍/밤 타이머를 보여주고, 채팅창에 올라온 에우레카 트래커 링크를 보여줍니다.
 채팅창에 올라온 깃발(\<flag\>)도 지도에 표시해 주고 있습니다.
 
 현재 트래커 정보를 직접적으로 불러오지는 못하지만,
@@ -383,11 +398,13 @@ cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습�
 이 모듈을 사용하려면,
 **ui/radar/radar.html** 파일을 URL 부분에서 선택하거나 `Cactbot Radar` 프리셋을 사용하세요.
 
-이 모듈은 주위 마물(S급, A급, 등)을 알 수 있게 해줍니다.
+이 모듈은 주위 마물(S급, A급 등)을 알 수 있게 해줍니다.
 하나를 발견하면, 대상으로의 화살표(캐릭터의 전방 기준)나 거리를 알려줍니다.
 
 누가 마물을 처음 공격 또는 애드냈는지 알려주는 옵션도 있습니다.
-또, 다른 등급끼리 개별적인 옵션을 설정할 수도 있습니다.(예를 들어, S급에는 소리 알림을 주게 하고, B급에는 조용히 하게 할 수 있습니다.) 다른 어떤 몬스터 이름이든 커스텀 트리거로 만들 수도 있습니다.
+또, 다른 등급끼리 개별적인 옵션을 설정할 수도 있습니다.
+(예를 들어, S급에는 소리 알림을 주게 하고, B급에는 조용히 하게 할 수 있습니다.)
+다른 어떤 몬스터 이름이든 커스텀 트리거로 만들 수도 있습니다.
 
 `cactbot/user/radar-example.js`에서 더 많은 옵션을 확인할 수 있습니다.
 
@@ -398,14 +415,16 @@ cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습�
 이 모듈을 사용하려면,
 **ui/fisher/fisher.html** 파일을 URL 부분에서 선택하거나 `Cactbot Fisher` 프리셋을 사용하세요.
 
-낚싯터에서 낚시를 시작하면, 이 모듈이 사용자가 물고기를 낚는 것을 추적합니다. 이를 통해 사용자가 물고기를 낚을 때 어떤 물고기를 낚게 되는지 알 수 있게 될 것입니다.
+낚싯터에서 낚시를 하면, 이 모듈이 사용자가 낚은 물고기를 추적합니다. 이를 통해 사용자가 물고기를 낚을 때 어떤 물고기를 낚게 될지 예상할 수 있게 해줍니다.
 
 ![fishing 스크린샷](../../screenshots/promo_fishing.png)
 
-물고기가 잡히는 낚시 캐스팅 시간 정보는 사용자가 직접 물고기를 낚을 때 기록됩니다. 따라서 각 물고기를 낚기 전에는
-아무런 데이터가 없을 것입니다. 초록색 바는 입질이 약한 물고기(섬세한 낚아채기 사용)를 의미하며, 노란색 바는 입질이 중간인 물고기를 의미하고, 빨간색 바는 전설 물고기 또는 입질이 강한 물고기를 의미합니다. *번역자가 낚시에 대해 잘 알지 못해 물고기 종류에 대해 번역을 잘못했을 수 있음*
-
-여러 종류의 물고기의 예시를 보려면 [여기](https://www.youtube.com/watch?v=GHgWIA-Zhug)를 확인하세요.
+물고기가 잡히는 낚시 캐스팅 시간 정보는 사용자가 직접 물고기를 낚을 때 기록됩니다.
+따라서 각 물고기를 낚기 전에는 아무런 데이터가 없을 것입니다.
+초록색 바는 입질이 약한 물고기(섬세한 낚아채기 사용)를 의미하며,
+노란색 바는 입질이 중간인 물고기를 의미하고,
+빨간색 바는 전설 물고기 또는 입질이 강한 물고기를 의미합니다.
+*번역자가 낚시에 대해 잘 알지 못해 물고기 종류에 대해 번역을 잘못했을 수 있음*
 
 일반적인 문제 해결 팁은 [여기](../FAQ-Troubleshooting.md#fisher-module)를 확인하세요.
 
@@ -413,7 +432,8 @@ cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습�
 
 cactbot은 오버레이 플러그인의 MiniParse의 애드온에 맞게 제작된 그 어떤 미터기 오버레이와 함께 사용할 수 있습니다.
 cactbot의 추가적인 자바스크립트 API를 이용해 더 많은 기능을 사용할 수 있는 옵션을 제공할 수도 있습니다.
-cactbot은 전멸시에 자동으로 전투 종료를 실행해줍니다. 따라서 ACT 전투 시간을 `infinity`(무제한)로 설정해도 괜찮습니다.
+cactbot은 전멸시에 자동으로 전투 종료를 실행해줍니다.
+따라서 ACT 전투 시간을 `infinity`(무제한)로 설정해도 괜찮습니다.
 
 [xephero](../../ui/dps/xephero) 미터기는 MiniParse의 미터기와 같은 기반을 사용하였는데,
 페이즈별 미터기 기록을 나눠볼 수 있는 기능이 추가되어 있습니다.
@@ -478,15 +498,15 @@ Raidboss -> 공용 트리거 -> General -> General Ready Check로 가서,
 `%APPDATA%\Advanced Combat Tracker\Config\RainbowMage.OverlayPlugin.config.json`
 파일에 저장됩니다.
 이 파일을 직접 수정하는 것은 권장하지 않습니다.
-이 파일은 [엄격한 json](https://jsonlint.com/) 문법으로 작성되어야 하고
+이 파일은 [엄격한 json](https://jsonlint.com/) 문법으로 작성해야 하고
 파일이 잘못 작성되면 ACT에서 불러오지 못할 수 있기 때문입니다.
 
 user 파일을 사용하기 보다는
 대부분의 설정들은 이 설정 패널을 통해서 하기를 권장합니다.
 `cactbot/user/`에 있는 파일들은 더 강력하며
 설정 패널에 있는 모든 것들을 덮어쓸 수 있습니다.
-하지만, `cactbot/user/` 파일이 조용히 덮어쓰고 있고
-설정 패널이 제대로 적용되지 않을 때 혼란스러울 수 있습니다.
+하지만, `cactbot/user/` 파일이 조용히 설정을 덮어쓰고 있어서
+설정 패널이 제대로 적용되지 않을 때는 혼란스러울 수 있습니다.
 
 사용자 Javascript와 css 파일에 대해 더 자세히 알고 싶다면
 [이 문서](CactbotCustomization.md)를 확인하세요.

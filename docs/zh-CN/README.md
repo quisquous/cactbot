@@ -64,7 +64,7 @@ cactbot提供以下模块：
 
 ![开始向导屏幕截图](../../screenshots/ffxiv_plugin_show_startup_wizard.png)
 
-在启动向导中， 选择 `FFXIV Parsing Plugin` ，然后单击 `Download/Enable Plugin` 按钮。 这将下载 `%APPDATA%Advanced Combat Tracker\Plugins\FFXIV_ACT_Plugin.dll`， 并在插件列表中启用它。
+在启动向导中， 选择 `FFXIV Parsing Plugin` ，然后单击 `Download/Enable Plugin` 按钮。 这将下载 `%APPDATA%\Advanced Combat Tracker\Plugins\FFXIV_ACT_Plugin.dll`， 并在插件列表中启用它。
 
 ![开始向导下载屏幕截图](../../screenshots/ffxiv_plugin_parsing_plugin.png)
 
@@ -207,7 +207,7 @@ ThirdParty
 
 ## UI模块概述
 
-[ui/](ui/) 文件夹中包含cactbot的所有ui模块。 如果您按照上述说明安装了cactbot， 则很有可能是 `%APPDATA%Advanced Combat Tracker\Plugins\cactbot-version\cactbot\ui\`。
+[ui/](ui/) 文件夹中包含cactbot的所有ui模块。 如果您按照上述说明安装了cactbot， 则很有可能是 `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot\ui\`。
 
 每个cactbot ui模块都应当作为单独的悬浮窗添加。 有关配置的更多信息，请参见“ [添加悬浮窗模块](#添加悬浮窗模块) 部分。
 
@@ -223,7 +223,7 @@ ThirdParty
 
 这里有三个等级的警报提示，重要性从低到高分别为： `info(信息)`、 `alert(警告)` 和 `alarm(警报)`。 文本信息只会有这三种等级，等级越高，越重要，则文字会越大，颜色也会越醒目。  如果你更喜欢文本到语音(TTS)，你也可以配置这个提示方式。
 
-在[ui/raidboss/data](../../ui/raidboss/data)文件夹下存在定义了文本显示和声音提示的时间轴和触发器等， 时间轴文件拥有 `.txt` 扩展名，而触发器文件则为 `.js` 扩展名。
+在[ui/raidboss/data](../../ui/raidboss/data)文件夹下存在定义了文本显示和声音提示的时间轴和触发器等， 时间轴文件拥有 `.txt` 扩展名，而触发器文件则为 `.ts` 扩展名。
 
 在下方的截图中，高亮的是raidboss模块，其中时间轴用红色圆圈圈出， 文本警报用黄色圆圈圈出，可见的是 `警告`等级的文字提示。
 
@@ -334,8 +334,6 @@ ThirdParty
 ![捕鱼人屏幕截图](../../screenshots/promo_fishing.png)
 
 目前该模块仅会记录您的钓鱼记录，因此只有在您钓到了鱼时才会有数据。 绿色的条形代表轻杆，黄色的条形代表中杆，红色的条形代表鱼王杆/重杆。
-
-有关不同杆种类型的示例，请参见[此处](https://www.youtube.com/watch?v=GHgWIA-Zhug)。
 
 在[此链接](./FAQ-Troubleshooting.md#fisher-module)中可以找到fisher模块的常见问题解答。
 
