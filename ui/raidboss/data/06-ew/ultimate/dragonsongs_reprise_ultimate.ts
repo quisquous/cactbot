@@ -2153,8 +2153,8 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         const wings = (matches.id === '6D23' || matches.id === '6D24') ? output.left!() : output.right!();
         let head;
-        const headDown = matches.id === '6D23' || matches.id === '6D26';
-        if (headDown)
+        const isHeadDown = matches.id === '6D23' || matches.id === '6D26';
+        if (isHeadDown)
           head = data.role === 'tank' ? output.tanksNear!() : output.partyFar!();
         else
           head = data.role === 'tank' ? output.tanksFar!() : output.partyNear!();
@@ -2162,8 +2162,8 @@ const triggerSet: TriggerSet<Data> = {
         const [nidhogg] = data.combatantData;
         if (nidhogg !== undefined && data.combatantData.length === 1) {
           // Nidhogg is at x = 100 +/- 11, y = 100 +/- 34
-          const quadrant = nidhogg.PosX < 100 ? output.nearQuadrant!() : output.farQuadrant!();
-          return output.wingsQuadrantHead!({ wings: wings, quadrant: quadrant, head: head });
+          const dive = nidhogg.PosX < 100 ? output.forward!() : output.backward!();
+          return output.wingsDiveHead!({ wings: wings, dive: dive, head: head });
         }
 
         // If something has gone awry, call out what we can.
@@ -2171,12 +2171,9 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         // The calls here assume that all players are looking at Hraesvelgr, and thus
-        // "Near Quadrant" means east and "Far Quadrant" means west, and "Left" means
+        // "Forward" means east and "Backward" means west, and "Left" means
         // north and "Right" means south.  The cactbot UI could rename them if this
         // wording is awkward to some people.
-        //
-        // It *is* a little confusing to have "Near Quadrant" and "Party Near" which both use
-        // the word "Near", and so hopefully the extra words distinguish which is which.
         //
         // Also, in case somebody is raid calling, differentiate "Party Near" vs "Tanks Near".
         // This will also help in a rare edge case bug where sometimes people don't have the
@@ -2186,6 +2183,12 @@ const triggerSet: TriggerSet<Data> = {
         // and this is a case of "tanks and healers need to know what's going on ahead of time".
         left: Outputs.left,
         right: Outputs.right,
+        forward: {
+          en: 'Forward',
+        },
+        backward: {
+          en: 'Backward',
+        },
         partyNear: {
           en: 'Party Near',
         },
@@ -2198,23 +2201,17 @@ const triggerSet: TriggerSet<Data> = {
         tanksFar: {
           en: 'Tanks Far',
         },
-        nearQuadrant: {
-          en: 'Near Quadrant',
-        },
-        farQuadrant: {
-          en: 'Far Quadrant',
-        },
         wingsHead: {
           en: '${wings}, ${head}',
           de: '${wings}, ${head}',
           ja: '${wings}, ${head}',
           ko: '${wings}, ${head}',
         },
-        wingsQuadrantHead: {
-          en: '${wings}, ${quadrant}, ${head}',
-          de: '${wings}, ${quadrant}, ${head}',
-          ja: '${wings}, ${quadrant}, ${head}',
-          ko: '${wings}, ${quadrant}, ${head}',
+        wingsDiveHead: {
+          en: '${wings} + ${dive}, ${head}',
+          de: '${wings} + ${dive}, ${head}',
+          ja: '${wings} + ${dive}, ${head}',
+          ko: '${wings} + ${dive}, ${head}',
         },
       },
     },
