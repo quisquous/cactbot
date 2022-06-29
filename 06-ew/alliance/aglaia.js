@@ -356,8 +356,12 @@ Options.Triggers.push({
       response: Responses.sharedTankBuster(),
     },
     {
-      // The order of events is:
+      // The order of events is either:
       // Deepest Pit headmarker (always) -> Far Above cast -> 73AC ability (always)
+      // Deepest Pit headmarker (always) -> 73AC ability (always) -> Far Above cast
+      // The 73AC and Far Above cast come from different actors and can be ordered differently.
+      // As a hack, 73AC gets a slight delay.  The Deepest Pit and 73AC lines always
+      // happen even if they are fake (because it is orange or blue, respectively).
       id: 'Aglaia Nald\'thal Deepest Pit Collect',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0154' }),
@@ -401,7 +405,10 @@ Options.Triggers.push({
         if (data.naldArrowMarker.includes(data.me))
           return output.ignoreArrow();
       },
-      run: (data) => data.naldLastColor = 'orange',
+      run: (data) => {
+        data.naldLastColor = 'orange';
+        data.naldArrowMarker = [];
+      },
       outputStrings: {
         ignoreArrow: {
           en: 'Ignore fake arrow',
@@ -415,11 +422,14 @@ Options.Triggers.push({
       id: 'Aglaia Nald\'thal Far-flung Fire',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '73AC', source: 'Nald' }),
-      condition: (data) => data.naldLastColor === 'orange',
+      // 73AC sometimes comes before the Far Above, Deep Below cast.
+      // It has the exact same network log time, but is just sometimes ordered wrong.
+      // Add a slight delay here so the calls end up being correct.
+      delaySeconds: 0.5,
       alertText: (data, matches, output) => {
-        return output.lineStackOn({ player: data.ShortName(matches.target) });
+        if (data.naldLastColor === 'orange')
+          return output.lineStackOn({ player: data.ShortName(matches.target) });
       },
-      run: (data) => data.naldArrowMarker = [],
       outputStrings: {
         lineStackOn: {
           en: 'Line stack on ${player}',
