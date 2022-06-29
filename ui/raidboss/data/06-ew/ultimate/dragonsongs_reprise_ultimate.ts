@@ -19,6 +19,9 @@ import { LocaleObject, LocaleText, TriggerSet } from '../../../../../types/trigg
 
 type Phase = 'doorboss' | 'thordan' | 'nidhogg' | 'haurchefant' | 'thordan2' | 'nidhogg2' | 'dragon-king';
 
+const playstationMarkers = ['circle', 'cross', 'triangle', 'square'] as const;
+type PlaystationMarker = typeof playstationMarkers[number];
+
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
   phase: Phase;
@@ -50,6 +53,7 @@ export interface Data extends RaidbossData {
   // names of players with chain lightning during wrath.
   thunderstruck: string[];
   hasDoom: { [name: string]: boolean };
+  deathMarker: { [name: string]: PlaystationMarker };
   hraesvelgrGlowing?: boolean;
 }
 
@@ -79,6 +83,20 @@ const headmarkers = {
   'skywardSingle': '000E',
   // vfx/lockon/eff/bahamut_wyvn_glider_target_02tm.avfx
   'cauterize': '0014',
+} as const;
+
+const playstationHeadmarkerIds: readonly string[] = [
+  headmarkers.firechainCircle,
+  headmarkers.firechainTriangle,
+  headmarkers.firechainSquare,
+  headmarkers.firechainX,
+] as const;
+
+const playstationMarkerMap: { [id: string]: PlaystationMarker } = {
+  [headmarkers.firechainCircle]: 'circle',
+  [headmarkers.firechainTriangle]: 'triangle',
+  [headmarkers.firechainSquare]: 'square',
+  [headmarkers.firechainX]: 'cross',
 } as const;
 
 const firstMarker = (phase: Phase) => {
@@ -150,6 +168,7 @@ const triggerSet: TriggerSet<Data> = {
       diveCounter: 1,
       thunderstruck: [],
       hasDoom: {},
+      deathMarker: {},
     };
   },
   timelineTriggers: [
@@ -1775,33 +1794,42 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Playstation2 Fire Chains',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker(),
-      condition: (data, matches) => data.phase === 'thordan2' && data.me === matches.target,
+      condition: (data) => data.phase === 'thordan2',
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
+        const marker = playstationMarkerMap[id];
+        if (marker === undefined)
+          return;
+
+        data.deathMarker[matches.target] = marker;
+
+        if (data.me !== matches.target)
+          return;
 
         // Note: in general, both circles should always have Doom and both crosses
-        // should not have Doom, but who knows what happens if there's people dead.
-        // For example, in P1 tanks can get circles if enough people are dead.
+        // should not have Doom.  If one doom dies, it seems that crosses are
+        // removed and there's a double triangle non-doom.  If enough people die,
+        // anything can happen.  For example, in P1 tanks can get circles if enough people are dead.
 
-        const hasDoom = data.hasDoom[data.me];
-        if (hasDoom) {
-          if (id === headmarkers.firechainCircle)
+        if (data.hasDoom[data.me]) {
+          if (marker === 'circle')
             return output.circleWithDoom!();
-          if (id === headmarkers.firechainTriangle)
+          else if (marker === 'triangle')
             return output.triangleWithDoom!();
-          if (id === headmarkers.firechainSquare)
+          else if (marker === 'square')
             return output.squareWithDoom!();
-          if (id === headmarkers.firechainX)
+          else if (marker === 'cross')
             return output.crossWithDoom!();
+        } else {
+          if (marker === 'circle')
+            return output.circle!();
+          else if (marker === 'triangle')
+            return output.triangle!();
+          else if (marker === 'square')
+            return output.square!();
+          else if (marker === 'cross')
+            return output.cross!();
         }
-        if (id === headmarkers.firechainCircle)
-          return output.circle!();
-        if (id === headmarkers.firechainTriangle)
-          return output.triangle!();
-        if (id === headmarkers.firechainSquare)
-          return output.square!();
-        if (id === headmarkers.firechainX)
-          return output.cross!();
       },
       outputStrings: {
         circle: {
@@ -1847,6 +1875,136 @@ const triggerSet: TriggerSet<Data> = {
         crossWithDoom: {
           en: 'Blue X (Doom)',
           ko: '파랑 X (선고)',
+        },
+      },
+    },
+    {
+      // If one doom person dies, then there will be an unmarked non-doom player (cross)
+      // and two non-doom players who will get the same symbol (triangle OR square).
+      // If there's more than two symbols missing this is probably a wipe,
+      // so don't bother trying to call out "unmarked circle or square".
+      // TODO: should we run this on Playstation1 as well (and consolidate triggers?)
+      id: 'DSR Playstation2 Fire Chains No Marker',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => data.phase === 'thordan2' && playstationHeadmarkerIds.includes(getHeadmarkerId(data, matches)),
+      delaySeconds: 0.5,
+      suppressSeconds: 5,
+      alarmText: (data, _matches, output) => {
+        if (data.deathMarker[data.me] !== undefined)
+          return;
+
+        const seenMarkers = Object.values(data.deathMarker);
+        const markers = [...playstationMarkers].filter((x) => !seenMarkers.includes(x));
+
+        const [marker] = markers;
+        if (marker === undefined || markers.length !== 1)
+          return;
+
+        // Note: this will still call out for the dead doom person, but it seems better
+        // in case they somehow got insta-raised.
+        if (data.hasDoom[data.me]) {
+          if (marker === 'circle')
+            return output.circleWithDoom!();
+          else if (marker === 'triangle')
+            return output.triangleWithDoom!();
+          else if (marker === 'square')
+            return output.squareWithDoom!();
+          else if (marker === 'cross')
+            return output.crossWithDoom!();
+        } else {
+          if (marker === 'circle')
+            return output.circle!();
+          else if (marker === 'triangle')
+            return output.triangle!();
+          else if (marker === 'square')
+            return output.square!();
+          else if (marker === 'cross')
+            return output.cross!();
+        }
+      },
+      outputStrings: {
+        circle: {
+          en: 'Unmarked Red Circle',
+        },
+        triangle: {
+          en: 'Unmarked Green Triangle',
+        },
+        square: {
+          en: 'Unmarked Purple Square',
+        },
+        cross: {
+          en: 'Unmarked Blue X',
+        },
+        circleWithDoom: {
+          en: 'Unmarked Red Circle (Doom)',
+        },
+        triangleWithDoom: {
+          en: 'Unmarked Green Triangle (Doom)',
+        },
+        squareWithDoom: {
+          en: 'Unmarked Purple Square (Doom)',
+        },
+        crossWithDoom: {
+          en: 'Unmarked Blue X (Doom)',
+        },
+      },
+    },
+    {
+      // This will only fire if you got a marker, so that it's mutually exclusive
+      // with the "No Marker" trigger above.
+      id: 'DSR Playstation2 Fire Chains Unexpected Pair',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => {
+        if (data.phase !== 'thordan2')
+          return false;
+        if (data.me !== matches.target)
+          return false;
+        return playstationHeadmarkerIds.includes(getHeadmarkerId(data, matches));
+      },
+      delaySeconds: 0.5,
+      alarmText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        const myMarker = playstationMarkerMap[id];
+        if (myMarker === undefined)
+          return;
+
+        // Find person with the same mark.
+        let partner: string | undefined = undefined;
+        for (const [player, marker] of Object.entries(data.deathMarker)) {
+          if (player !== data.me && marker === myMarker) {
+            partner = player;
+            break;
+          }
+        }
+        if (partner === undefined)
+          return;
+
+        // If a circle ends up with a non-doom or a cross ends up with a doom,
+        // I think you're in serious unrecoverable trouble.  These people also
+        // already need to look and adjust to the other person, vs the triangle
+        // and square which can have a fixed position based on doom vs non-doom.
+        if (myMarker === 'circle' || myMarker === 'cross')
+          return;
+
+        // I think circles fill out with doom first, so it should be impossible
+        // to have two doom triangles or two doom squares as well.
+        if (data.hasDoom[data.me] || data.hasDoom[partner])
+          return;
+
+        if (myMarker === 'triangle')
+          return output.doubleTriangle!({ player: data.ShortName(partner) });
+        if (myMarker === 'square')
+          return output.doubleSquare!({ player: data.ShortName(partner) });
+      },
+      outputStrings: {
+        // In case users want to have triangle vs square say something different.
+        doubleTriangle: {
+          en: 'Double Non-Doom (${player})',
+        },
+        doubleSquare: {
+          en: 'Double Non-Doom (${player})',
         },
       },
     },
