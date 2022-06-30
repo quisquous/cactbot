@@ -56,6 +56,8 @@ export interface Data extends RaidbossData {
   addsPhaseNidhoggId?: string;
   hraesvelgrGlowing?: boolean;
   hallowedWingsCount: number;
+  spreadingFlame: string[];
+  entangledFlame: string[];
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -171,6 +173,8 @@ const triggerSet: TriggerSet<Data> = {
       hasDoom: {},
       deathMarker: {},
       hallowedWingsCount: 0,
+      spreadingFlame: [],
+      entangledFlame: [],
     };
   },
   timelineTriggers: [
@@ -2294,30 +2298,39 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Spreading Flame',
+      id: 'DSR Spreading/Entangled Flame',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AC6' }),
-      condition: (data, matches) => data.me === matches.target,
-      infoText: (_data, _matches, output) => output.text!(),
+      netRegex: NetRegexes.gainsEffect({ effectId: ['AC6', 'AC7']}),
+      preRun: (data, matches) => {
+        if (matches.effectId === 'AC6') {
+          data.spreadingFlame.push(matches.target);
+        }
+        if (matches.effectId === 'AC7') {
+          data.entangledFlame.push(matches.target);
+        }
+      },
+      infoText: (data, _matches, output) => {
+        if (data.spreadingFlame.length < 4) return;
+        if (data.entangledFlame.length < 2) return;
+
+        if (data.spreadingFlame.includes(data.me)) return output.spread!();
+        if (data.entangledFlame.includes(data.me)) return output.stack!();
+        return output.nodebuff!();
+      },
       outputStrings: {
-        text: {
+        spread: {
           en: 'Spread',
           de: 'Verteilen',
           ko: '산개징 대상자',
         },
-      },
-    },
-    {
-      id: 'DSR Entangled Flame',
-      type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AC7' }),
-      condition: (data, matches) => data.me === matches.target,
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
+        stack: {
           en: 'Stack',
           de: 'Sammeln',
           ko: '쉐어징 대상자',
+        },
+        nodebuff: {
+          en: 'No debuff (Stack)',
+          ko: '무징 (쉐어)'
         },
       },
     },
