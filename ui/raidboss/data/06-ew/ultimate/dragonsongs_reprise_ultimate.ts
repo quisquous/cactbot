@@ -2330,7 +2330,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         nodebuff: {
           en: 'No debuff (Stack)',
-          ko: '무징 (쉐어)'
+          ko: '무징 (쉐어)',
         },
       },
     },
