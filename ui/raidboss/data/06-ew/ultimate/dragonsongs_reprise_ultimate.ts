@@ -2300,21 +2300,24 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Spreading/Entangled Flame',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AC6', 'AC7']}),
+      netRegex: NetRegexes.gainsEffect({ effectId: ['AC6', 'AC7'] }),
       preRun: (data, matches) => {
-        if (matches.effectId === 'AC6') {
+        if (matches.effectId === 'AC6')
           data.spreadingFlame.push(matches.target);
-        }
-        if (matches.effectId === 'AC7') {
+
+        if (matches.effectId === 'AC7')
           data.entangledFlame.push(matches.target);
-        }
       },
       infoText: (data, _matches, output) => {
-        if (data.spreadingFlame.length < 4) return;
-        if (data.entangledFlame.length < 2) return;
+        if (data.spreadingFlame.length < 4)
+          return;
+        if (data.entangledFlame.length < 2)
+          return;
 
-        if (data.spreadingFlame.includes(data.me)) return output.spread!();
-        if (data.entangledFlame.includes(data.me)) return output.stack!();
+        if (data.spreadingFlame.includes(data.me))
+          return output.spread!();
+        if (data.entangledFlame.includes(data.me))
+          return output.stack!();
         return output.nodebuff!();
       },
       outputStrings: {
