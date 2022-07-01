@@ -423,6 +423,9 @@ export default class Regexes {
    */
   static anyOf(...args: (string | string[] | RegExp)[]): string {
     const anyOfArray = (array: (string | RegExp)[]): string => {
+      const [elem] = array;
+      if (elem !== undefined && array.length === 1)
+        return `${elem instanceof RegExp ? elem.source : elem}`;
       return `(?:${array.map((elem) => elem instanceof RegExp ? elem.source : elem).join('|')})`;
     };
     let array: (string | RegExp)[] = [];
