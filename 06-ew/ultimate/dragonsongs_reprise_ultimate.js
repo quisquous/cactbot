@@ -101,8 +101,6 @@ Options.Triggers.push({
       hasDoom: {},
       deathMarker: {},
       hallowedWingsCount: 0,
-      spreadingFlame: [],
-      entangledFlame: [],
     };
   },
   timelineTriggers: [
@@ -2168,40 +2166,30 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'DSR Spreading/Entangled Flame',
+      id: 'DSR Spreading Flame',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AC6', 'AC7'] }),
-      preRun: (data, matches) => {
-        if (matches.effectId === 'AC6')
-          data.spreadingFlame.push(matches.target);
-        if (matches.effectId === 'AC7')
-          data.entangledFlame.push(matches.target);
-      },
-      infoText: (data, _matches, output) => {
-        if (data.spreadingFlame.length < 4)
-          return;
-        if (data.entangledFlame.length < 2)
-          return;
-        if (data.spreadingFlame.includes(data.me))
-          return output.spread();
-        if (data.entangledFlame.includes(data.me))
-          return output.stack();
-        return output.nodebuff();
-      },
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AC6' }),
+      condition: (data, matches) => data.me === matches.target,
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
-        spread: {
+        text: {
           en: 'Spread',
           de: 'Verteilen',
           ko: '산개징 대상자',
         },
-        stack: {
+      },
+    },
+    {
+      id: 'DSR Entangled Flame',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'AC7' }),
+      condition: (data, matches) => data.me === matches.target,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
           en: 'Stack',
           de: 'Sammeln',
           ko: '쉐어징 대상자',
-        },
-        nodebuff: {
-          en: 'No debuff (Stack)',
-          ko: '무징 (쉐어)',
         },
       },
     },
