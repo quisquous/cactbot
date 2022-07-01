@@ -398,35 +398,35 @@ hideall "--sync--"
 4002.0 "--sync--" #sync / 1[56]:[^:]*:Right Eye:63F3:/
 4015.8 "Alternative End" sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
 4035.1 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9B:/
-4036.0 "Exaflare's Edge" #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9C:/ duration 9.3
+4036.0 "Exaflare's Edge" duration 9.3 #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9C:/
 4036.2 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:(Nidhogg|Dragon-king Thordan):(6D92|6D91):/
 4043.2 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4044.3 "Trinity 1" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4047.3 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4048.4 "Trinity 2" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4056.3 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D93:/
-4057.0 "Akh Morn's Edge x5" #sync / 1[56]:[^:]*:Dragon-king Thordan:(730C|730D|730E):/ duration 5.5
+4057.0 "Akh Morn's Edge x5" duration 5.5 #sync / 1[56]:[^:]*:Dragon-king Thordan:(730C|730D|730E):/
 4057.1 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
 4067.8 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4068.9 "Trinity 3" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4071.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4073.0 "Trinity 4" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4082.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D99:/
-4083.9 "Gigaflare's Edge x3" #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9A:/ duration 7.9
+4083.9 "Gigaflare's Edge x3" duration 7.9 #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9A:/
 4084.0 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
 4100.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4102.0 "Trinity 5" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4104.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4106.0 "Trinity 6" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4113.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9B:/
-4114.8 "Exaflare's Edge" #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9C:/ duration 9.3
+4114.8 "Exaflare's Edge" duration 9.3 #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9C:/
 4115.0 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
 4121.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4122.9 "Trinity 1" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4125.8 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4126.9 "Trinity 2" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4134.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D93:/
-4135.6 "Akh Morn's Edge x6" #sync / 1[56]:[^:]*:Dragon-king Thordan:(730C|730D|730E):/ duration 6.6
+4135.6 "Akh Morn's Edge x6" duration 6.6 #sync / 1[56]:[^:]*:Dragon-king Thordan:(730C|730D|730E):/
 4135.7 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
 4147.5 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4148.6 "Trinity 3" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
@@ -439,14 +439,14 @@ hideall "--sync--"
 4184.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4186.0 "Trinity 6" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4193.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9B:/
-4194.8 "Exaflare's Edge" #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9C:/ duration 9.3
+4194.8 "Exaflare's Edge" duration 9.3 #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9C:/
 4195.0 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
 4201.9 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4202.9 "Trinity 1" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4205.8 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4206.9 "Trinity 2" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
 4214.8 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D93:/
-4215.5 "Akh Morn's Edge x7" #sync / 1[56]:[^:]*:Dragon-king Thordan:(730C|730D|730E):/ duration 7.7
+4215.5 "Akh Morn's Edge x7" duration 7.7 #sync / 1[56]:[^:]*:Dragon-king Thordan:(730C|730D|730E):/
 4215.6 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:Dragon-king Thordan:(6D92|6D91):/
 4228.5 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9E:/
 4229.6 "Trinity 3" #sync / 1[56]:[^:]*:Dragon-king Thordan:(6D9F|6DA0|6DA1):/
