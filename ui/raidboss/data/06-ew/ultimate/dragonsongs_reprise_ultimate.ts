@@ -1933,27 +1933,35 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         circle: {
           en: 'Unmarked Red Circle',
+          ko: '무징 빨강 동그라미',
         },
         triangle: {
           en: 'Unmarked Green Triangle',
+          ko: '무징 초록 삼각',
         },
         square: {
           en: 'Unmarked Purple Square',
+          ko: '무징 보라 사각',
         },
         cross: {
           en: 'Unmarked Blue X',
+          ko: '무징 파랑 X',
         },
         circleWithDoom: {
           en: 'Unmarked Red Circle (Doom)',
+          ko: '무징 빨강 동그라미 (선고)',
         },
         triangleWithDoom: {
           en: 'Unmarked Green Triangle (Doom)',
+          ko: '무징 초록 삼각 (선고)',
         },
         squareWithDoom: {
           en: 'Unmarked Purple Square (Doom)',
+          ko: '무징 보라 사각 (선고)',
         },
         crossWithDoom: {
           en: 'Unmarked Blue X (Doom)',
+          ko: '무징 파랑 X (선고)',
         },
       },
     },
@@ -2009,9 +2017,11 @@ const triggerSet: TriggerSet<Data> = {
         // In case users want to have triangle vs square say something different.
         doubleTriangle: {
           en: 'Double Non-Doom (${player})',
+          ko: '둘 다 선고 없음 (${player})',
         },
         doubleSquare: {
           en: 'Double Non-Doom (${player})',
+          ko: '둘 다 선고 없음 (${player})',
         },
       },
     },
@@ -2024,9 +2034,11 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           tanksApart: {
             en: 'Apart (Hrae buster)',
+            ko: '떨어지기 (흐레스벨그 탱버)',
           },
           hraesvelgrTankbuster: {
             en: 'Hrae Tankbuster',
+            ko: '흐레스벨그 탱버',
           },
         };
 
@@ -2051,9 +2063,11 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           tanksApart: {
             en: 'Apart (Nid buster)',
+            ko: '떨어지기 (니드호그 탱버)',
           },
           nidTankbuster: {
             en: 'Nid Tankbuster',
+            ko: '니드호그 탱버',
           },
         };
 
@@ -2086,6 +2100,7 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           sharedBuster: {
             en: 'Shared Buster',
+            ko: '쉐어 탱버',
           },
         };
 
@@ -2197,21 +2212,27 @@ const triggerSet: TriggerSet<Data> = {
         right: Outputs.right,
         forward: {
           en: 'Forward',
+          ko: '앞쪽으로',
         },
         backward: {
           en: 'Backward',
+          ko: '뒤쪽으로',
         },
         partyNear: {
           en: 'Party Near',
+          ko: '본대가 가까이',
         },
         tanksNear: {
           en: 'Tanks Near',
+          ko: '탱커가 가까이',
         },
         partyFar: {
           en: 'Party Far',
+          ko: '본대가 멀리',
         },
         tanksFar: {
           en: 'Tanks Far',
+          ko: '탱커가 멀리',
         },
         wingsHead: {
           en: '${wings}, ${head}',
@@ -2237,6 +2258,7 @@ const triggerSet: TriggerSet<Data> = {
           // Often cactbot uses "in" and "out", but that's usually hitbox relative vs
           // anything else.  Because this is more arena-relative.
           en: 'Inside',
+          ko: '중앙쪽으로',
         },
       },
     },
@@ -2248,6 +2270,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Outside',
+          ko: '바깥쪽으로',
         },
       },
     },
