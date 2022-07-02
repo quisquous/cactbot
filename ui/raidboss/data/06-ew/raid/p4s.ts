@@ -141,7 +141,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Packez les zones au sol d\'AoEs',
           ja: 'AoEを誘導',
           cn: '集合放置AOE',
-          ko: '중앙에 모여 장판 한곳에 깔기',
+          ko: '모여서 장판 한곳에 깔기',
         },
       },
     },
