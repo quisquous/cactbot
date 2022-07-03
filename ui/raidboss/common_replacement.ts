@@ -2,15 +2,19 @@
 
 import { Lang, NonEnLang } from '../../resources/languages';
 
+const parsedLB = '00:0839::';
+const networkLB = '00\\|[^|]*\\|0839\\|\\|';
+const netRegexLB = '\\\\\\|0839\\\\\\|\\[\\^\\|\\]\\*\\\\\\|';
+
 // It's awkward to refer to these string keys, so name them as replaceSync[keys.sealKey].
 export const syncKeys = {
   // Seal is trying to match these types of lines, and is more complicated because it's
   // trying to also capture the area name:
   //   parsed log lines: 00:0839::Something will be sealed off
   //   network log lines: 00|timestamp|0839||Something will be sealed off
-  //   NetRegexes: ^^(?:00)\|(?:[^|]*)\|(?:0839)\|(?:[^|]*)\|(?:Something will be sealed off.*?)\|
+  //   NetRegexes: ^^00\|[^|]*\|0839\|[^|]*\|Something will be sealed off.*?\|
   seal:
-    '(?<=00:0839::|00\\|[^|]*\\|0839\\|\\||\\|\\(\\?:)([^|]*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
+    `(?<=${parsedLB}|${networkLB}|${netRegexLB})([^|]*) will be sealed off(?: in (?:[0-9]+ seconds)?)?`,
   unseal: 'is no longer sealed',
   engage: 'Engage!',
 };

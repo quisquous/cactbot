@@ -382,10 +382,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:00))\|(?<timestamp>(?:[^|]*))\|(?<code>(?:[^|]*))\|(?<name>(?:[^|]*))\|(?<line>(?:[^|]*))\|
+^(?<type>00)\|(?<timestamp>[^|]*)\|(?<code>[^|]*)\|(?<name>[^|]*)\|(?<line>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) ChatLog (?<type>00):(?<code>(?:[^:]*)):(?<name>(?:[^:]*)):(?<line>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) ChatLog (?<type>00):(?<code>[^:]*):(?<name>[^:]*):(?<line>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -455,10 +455,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:01))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|
+^(?<type>01)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) Territory (?<type>01):(?<id>(?:[^:]*)):(?<name>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) Territory (?<type>01):(?<id>[^:]*):(?<name>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -530,10 +530,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:03))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|(?<job>(?:[^|]*))\|(?<level>(?:[^|]*))\|(?<ownerId>(?:[^|]*))\|(?<worldId>(?:[^|]*))\|(?<world>(?:[^|]*))\|(?<npcNameId>(?:[^|]*))\|(?<npcBaseId>(?:[^|]*))\|(?<currentHp>(?:[^|]*))\|(?<hp>(?:[^|]*))\|(?<currentMp>(?:[^|]*))\|(?<mp>(?:[^|]*))\|(?:[^|]*\|){2}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|
+^(?<type>03)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<job>[^|]*)\|(?<level>[^|]*)\|(?<ownerId>[^|]*)\|(?<worldId>[^|]*)\|(?<world>[^|]*)\|(?<npcNameId>[^|]*)\|(?<npcBaseId>[^|]*)\|(?<currentHp>[^|]*)\|(?<hp>[^|]*)\|(?<currentMp>[^|]*)\|(?<mp>[^|]*)\|(?:[^|]*\|){2}(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|(?<heading>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) AddCombatant (?<type>03):(?<id>(?:[^:]*)):(?<name>(?:[^:]*)):(?<job>(?:[^:]*)):(?<level>(?:[^:]*)):(?<ownerId>(?:[^:]*)):(?<worldId>(?:[^:]*)):(?<world>(?:[^:]*)):(?<npcNameId>(?:[^:]*)):(?<npcBaseId>(?:[^:]*)):(?<currentHp>(?:[^:]*)):(?<hp>(?:[^:]*)):(?<currentMp>(?:[^:]*)):(?<mp>(?:[^:]*))(?::[^:]*){2}:(?<x>(?:[^:]*)):(?<y>(?:[^:]*)):(?<z>(?:[^:]*)):(?<heading>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) AddCombatant (?<type>03):(?<id>[^:]*):(?<name>[^:]*):(?<job>[^:]*):(?<level>[^:]*):(?<ownerId>[^:]*):(?<worldId>[^:]*):(?<world>[^:]*):(?<npcNameId>[^:]*):(?<npcBaseId>[^:]*):(?<currentHp>[^:]*):(?<hp>[^:]*):(?<currentMp>[^:]*):(?<mp>[^:]*)(?::[^:]*){2}:(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*):(?<heading>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -593,10 +593,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:04))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|(?<job>(?:[^|]*))\|(?<level>(?:[^|]*))\|(?<owner>(?:[^|]*))\|(?:[^|]*\|)(?<world>(?:[^|]*))\|(?<npcNameId>(?:[^|]*))\|(?<npcBaseId>(?:[^|]*))\|(?:[^|]*\|)(?<hp>(?:[^|]*))\|(?:[^|]*\|){4}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|
+^(?<type>04)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<job>[^|]*)\|(?<level>[^|]*)\|(?<owner>[^|]*)\|(?:[^|]*\|)(?<world>[^|]*)\|(?<npcNameId>[^|]*)\|(?<npcBaseId>[^|]*)\|(?:[^|]*\|)(?<hp>[^|]*)\|(?:[^|]*\|){4}(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|(?<heading>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) RemoveCombatant (?<type>04):(?<id>(?:[^:]*)):(?<name>(?:[^:]*)):(?<job>(?:[^:]*)):(?<level>(?:[^:]*)):(?<owner>(?:[^:]*)):[^:]*:(?<world>(?:[^:]*)):(?<npcNameId>(?:[^:]*)):(?<npcBaseId>(?:[^:]*)):[^:]*:(?<hp>(?:[^:]*))(?::[^:]*){4}:(?<x>(?:[^:]*)):(?<y>(?:[^:]*)):(?<z>(?:[^:]*)):(?<heading>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) RemoveCombatant (?<type>04):(?<id>[^:]*):(?<name>[^:]*):(?<job>[^:]*):(?<level>[^:]*):(?<owner>[^:]*):[^:]*:(?<world>[^:]*):(?<npcNameId>[^:]*):(?<npcBaseId>[^:]*):[^:]*:(?<hp>[^:]*)(?::[^:]*){4}:(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*):(?<heading>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -667,10 +667,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:12))\|(?<timestamp>(?:[^|]*))\|(?<job>(?:[^|]*))\|(?<strength>(?:[^|]*))\|(?<dexterity>(?:[^|]*))\|(?<vitality>(?:[^|]*))\|(?<intelligence>(?:[^|]*))\|(?<mind>(?:[^|]*))\|(?<piety>(?:[^|]*))\|(?<attackPower>(?:[^|]*))\|(?<directHit>(?:[^|]*))\|(?<criticalHit>(?:[^|]*))\|(?<attackMagicPotency>(?:[^|]*))\|(?<healMagicPotency>(?:[^|]*))\|(?<determination>(?:[^|]*))\|(?<skillSpeed>(?:[^|]*))\|(?<spellSpeed>(?:[^|]*))\|(?:[^|]*\|)(?<tenacity>(?:[^|]*))\|(?<localContentId>(?:[^|]*))\|
+^(?<type>12)\|(?<timestamp>[^|]*)\|(?<job>[^|]*)\|(?<strength>[^|]*)\|(?<dexterity>[^|]*)\|(?<vitality>[^|]*)\|(?<intelligence>[^|]*)\|(?<mind>[^|]*)\|(?<piety>[^|]*)\|(?<attackPower>[^|]*)\|(?<directHit>[^|]*)\|(?<criticalHit>[^|]*)\|(?<attackMagicPotency>[^|]*)\|(?<healMagicPotency>[^|]*)\|(?<determination>[^|]*)\|(?<skillSpeed>[^|]*)\|(?<spellSpeed>[^|]*)\|(?:[^|]*\|)(?<tenacity>[^|]*)\|(?<localContentId>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) PlayerStats (?<type>0C):(?<job>(?:[^:]*)):(?<strength>(?:[^:]*)):(?<dexterity>(?:[^:]*)):(?<vitality>(?:[^:]*)):(?<intelligence>(?:[^:]*)):(?<mind>(?:[^:]*)):(?<piety>(?:[^:]*)):(?<attackPower>(?:[^:]*)):(?<directHit>(?:[^:]*)):(?<criticalHit>(?:[^:]*)):(?<attackMagicPotency>(?:[^:]*)):(?<healMagicPotency>(?:[^:]*)):(?<determination>(?:[^:]*)):(?<skillSpeed>(?:[^:]*)):(?<spellSpeed>(?:[^:]*)):[^:]*:(?<tenacity>(?:[^:]*)):(?<localContentId>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) PlayerStats (?<type>0C):(?<job>[^:]*):(?<strength>[^:]*):(?<dexterity>[^:]*):(?<vitality>[^:]*):(?<intelligence>[^:]*):(?<mind>[^:]*):(?<piety>[^:]*):(?<attackPower>[^:]*):(?<directHit>[^:]*):(?<criticalHit>[^:]*):(?<attackMagicPotency>[^:]*):(?<healMagicPotency>[^:]*):(?<determination>[^:]*):(?<skillSpeed>[^:]*):(?<spellSpeed>[^:]*):[^:]*:(?<tenacity>[^:]*):(?<localContentId>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -716,10 +716,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:20))\|(?<timestamp>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<ability>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<castTime>(?:[^|]*))\|(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|
+^(?<type>20)\|(?<timestamp>[^|]*)\|(?<sourceId>[^|]*)\|(?<source>[^|]*)\|(?<id>[^|]*)\|(?<ability>[^|]*)\|(?<targetId>[^|]*)\|(?<target>[^|]*)\|(?<castTime>[^|]*)\|(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|(?<heading>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) StartsCasting (?<type>14):(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<id>(?:[^:]*)):(?<ability>(?:(?:[^:]|: )*?)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<castTime>(?:[^:]*)):(?<x>(?:[^:]*)):(?<y>(?:[^:]*)):(?<z>(?:[^:]*)):(?<heading>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) StartsCasting (?<type>14):(?<sourceId>[^:]*):(?<source>[^:]*):(?<id>[^:]*):(?<ability>(?:[^:]|: )*?):(?<targetId>[^:]*):(?<target>[^:]*):(?<castTime>[^:]*):(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*):(?<heading>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -779,10 +779,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:2[12]))\|(?<timestamp>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<ability>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<flags>(?:[^|]*))\|(?<damage>(?:[^|]*))\|(?:[^|]*\|){14}(?<targetCurrentHp>(?:[^|]*))\|(?<targetMaxHp>(?:[^|]*))\|(?<targetCurrentMp>(?:[^|]*))\|(?<targetMaxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<targetX>(?:[^|]*))\|(?<targetY>(?:[^|]*))\|(?<targetZ>(?:[^|]*))\|(?<targetHeading>(?:[^|]*))\|(?<currentHp>(?:[^|]*))\|(?<maxHp>(?:[^|]*))\|(?<currentMp>(?:[^|]*))\|(?<maxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|(?<sequence>(?:[^|]*))\|(?<targetIndex>(?:[^|]*))\|(?<targetCount>(?:[^|]*))\|
+^(?<type>2[12])\|(?<timestamp>[^|]*)\|(?<sourceId>[^|]*)\|(?<source>[^|]*)\|(?<id>[^|]*)\|(?<ability>[^|]*)\|(?<targetId>[^|]*)\|(?<target>[^|]*)\|(?<flags>[^|]*)\|(?<damage>[^|]*)\|(?:[^|]*\|){14}(?<targetCurrentHp>[^|]*)\|(?<targetMaxHp>[^|]*)\|(?<targetCurrentMp>[^|]*)\|(?<targetMaxMp>[^|]*)\|(?:[^|]*\|){2}(?<targetX>[^|]*)\|(?<targetY>[^|]*)\|(?<targetZ>[^|]*)\|(?<targetHeading>[^|]*)\|(?<currentHp>[^|]*)\|(?<maxHp>[^|]*)\|(?<currentMp>[^|]*)\|(?<maxMp>[^|]*)\|(?:[^|]*\|){2}(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|(?<heading>[^|]*)\|(?<sequence>[^|]*)\|(?<targetIndex>[^|]*)\|(?<targetCount>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) (?:ActionEffect|AOEActionEffect) (?<type>(?:15|16)):(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<id>(?:[^:]*)):(?<ability>(?:(?:[^:]|: )*?)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<flags>(?:[^:]*)):(?<damage>(?:[^:]*))(?::[^:]*){14}:(?<targetCurrentHp>(?:[^:]*)):(?<targetMaxHp>(?:[^:]*)):(?<targetCurrentMp>(?:[^:]*)):(?<targetMaxMp>(?:[^:]*))(?::[^:]*){2}:(?<targetX>(?:[^:]*)):(?<targetY>(?:[^:]*)):(?<targetZ>(?:[^:]*)):(?<targetHeading>(?:[^:]*)):(?<currentHp>(?:[^:]*)):(?<maxHp>(?:[^:]*)):(?<currentMp>(?:[^:]*)):(?<maxMp>(?:[^:]*))(?::[^:]*){2}:(?<x>(?:[^:]*)):(?<y>(?:[^:]*)):(?<z>(?:[^:]*)):(?<heading>(?:[^:]*)):(?<sequence>(?:[^:]*)):(?<targetIndex>(?:[^:]*)):(?<targetCount>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) (?:ActionEffect|AOEActionEffect) (?<type>(?:15|16)):(?<sourceId>[^:]*):(?<source>[^:]*):(?<id>[^:]*):(?<ability>(?:[^:]|: )*?):(?<targetId>[^:]*):(?<target>[^:]*):(?<flags>[^:]*):(?<damage>[^:]*)(?::[^:]*){14}:(?<targetCurrentHp>[^:]*):(?<targetMaxHp>[^:]*):(?<targetCurrentMp>[^:]*):(?<targetMaxMp>[^:]*)(?::[^:]*){2}:(?<targetX>[^:]*):(?<targetY>[^:]*):(?<targetZ>[^:]*):(?<targetHeading>[^:]*):(?<currentHp>[^:]*):(?<maxHp>[^:]*):(?<currentMp>[^:]*):(?<maxMp>[^:]*)(?::[^:]*){2}:(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*):(?<heading>[^:]*):(?<sequence>[^:]*):(?<targetIndex>[^:]*):(?<targetCount>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1043,10 +1043,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:25))\|(?<timestamp>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|
+^(?<type>25)\|(?<timestamp>[^|]*)\|(?<targetId>[^|]*)\|(?<target>[^|]*)\|(?<sourceId>[^|]*)\|(?<source>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) Death (?<type>19):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) Death (?<type>19):(?<targetId>[^:]*):(?<target>[^:]*):(?<sourceId>[^:]*):(?<source>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1089,10 +1089,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:26))\|(?<timestamp>(?:[^|]*))\|(?<effectId>(?:[^|]*))\|(?<effect>(?:[^|]*))\|(?<duration>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<count>(?:[^|]*))\|(?<targetMaxHp>(?:[^|]*))\|(?<sourceMaxHp>(?:[^|]*))\|
+^(?<type>26)\|(?<timestamp>[^|]*)\|(?<effectId>[^|]*)\|(?<effect>[^|]*)\|(?<duration>[^|]*)\|(?<sourceId>[^|]*)\|(?<source>[^|]*)\|(?<targetId>[^|]*)\|(?<target>[^|]*)\|(?<count>[^|]*)\|(?<targetMaxHp>[^|]*)\|(?<sourceMaxHp>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) StatusAdd (?<type>1A):(?<effectId>(?:[^:]*)):(?<effect>(?:(?:[^:]|: )*?)):(?<duration>(?:[^:]*)):(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<count>(?:[^:]*)):(?<targetMaxHp>(?:[^:]*)):(?<sourceMaxHp>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) StatusAdd (?<type>1A):(?<effectId>[^:]*):(?<effect>(?:[^:]|: )*?):(?<duration>[^:]*):(?<sourceId>[^:]*):(?<source>[^:]*):(?<targetId>[^:]*):(?<target>[^:]*):(?<count>[^:]*):(?<targetMaxHp>[^:]*):(?<sourceMaxHp>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1145,10 +1145,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:27))\|(?<timestamp>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?:[^|]*\|){2}(?<id>(?:[^|]*))\|
+^(?<type>27)\|(?<timestamp>[^|]*)\|(?<targetId>[^|]*)\|(?<target>[^|]*)\|(?:[^|]*\|){2}(?<id>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) TargetIcon (?<type>1B):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*))(?::[^:]*){2}:(?<id>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) TargetIcon (?<type>1B):(?<targetId>[^:]*):(?<target>[^:]*)(?::[^:]*){2}:(?<id>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1356,10 +1356,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:30))\|(?<timestamp>(?:[^|]*))\|(?<effectId>(?:[^|]*))\|(?<effect>(?:[^|]*))\|(?:[^|]*\|)(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<count>(?:[^|]*))\|
+^(?<type>30)\|(?<timestamp>[^|]*)\|(?<effectId>[^|]*)\|(?<effect>[^|]*)\|(?:[^|]*\|)(?<sourceId>[^|]*)\|(?<source>[^|]*)\|(?<targetId>[^|]*)\|(?<target>[^|]*)\|(?<count>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) StatusRemove (?<type>1E):(?<effectId>(?:[^:]*)):(?<effect>(?:(?:[^:]|: )*?)):[^:]*:(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<count>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) StatusRemove (?<type>1E):(?<effectId>[^:]*):(?<effect>(?:[^:]|: )*?):[^:]*:(?<sourceId>[^:]*):(?<source>[^:]*):(?<targetId>[^:]*):(?<target>[^:]*):(?<count>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1486,10 +1486,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:33))\|(?<timestamp>(?:[^|]*))\|(?<instance>(?:[^|]*))\|(?<command>(?:[^|]*))\|(?<data0>(?:[^|]*))\|(?<data1>(?:[^|]*))\|(?<data2>(?:[^|]*))\|(?<data3>(?:[^|]*))\|
+^(?<type>33)\|(?<timestamp>[^|]*)\|(?<instance>[^|]*)\|(?<command>[^|]*)\|(?<data0>[^|]*)\|(?<data1>[^|]*)\|(?<data2>[^|]*)\|(?<data3>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) Director (?<type>21):(?<instance>(?:[^:]*)):(?<command>(?:[^:]*)):(?<data0>(?:[^:]*)):(?<data1>(?:[^:]*)):(?<data2>(?:[^:]*)):(?<data3>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) Director (?<type>21):(?<instance>[^:]*):(?<command>[^:]*):(?<data0>[^:]*):(?<data1>[^:]*):(?<data2>[^:]*):(?<data3>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1565,10 +1565,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:34))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<targetName>(?:[^|]*))\|(?<toggle>(?:[^|]*))\|
+^(?<type>34)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<targetId>[^|]*)\|(?<targetName>[^|]*)\|(?<toggle>[^|]*)\|
 
 ACT Log Line Regex:
-^(?<type>(?:34))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<name>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<targetName>(?:[^|]*))\|(?<toggle>(?:[^|]*))\|
+^(?<type>34)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<targetId>[^|]*)\|(?<targetName>[^|]*)\|(?<toggle>[^|]*)\|
 ```
 
 #### Examples
@@ -1609,10 +1609,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:35))\|(?<timestamp>(?:[^|]*))\|(?<sourceId>(?:[^|]*))\|(?<source>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?:[^|]*\|){2}(?<id>(?:[^|]*))\|
+^(?<type>35)\|(?<timestamp>[^|]*)\|(?<sourceId>[^|]*)\|(?<source>[^|]*)\|(?<targetId>[^|]*)\|(?<target>[^|]*)\|(?:[^|]*\|){2}(?<id>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) Tether (?<type>23):(?<sourceId>(?:[^:]*)):(?<source>(?:[^:]*)):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*))(?::[^:]*){2}:(?<id>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) Tether (?<type>23):(?<sourceId>[^:]*):(?<source>[^:]*):(?<targetId>[^:]*):(?<target>[^:]*)(?::[^:]*){2}:(?<id>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1743,10 +1743,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:38))\|(?<timestamp>(?:[^|]*))\|(?<targetId>(?:[^|]*))\|(?<target>(?:[^|]*))\|(?<jobLevelData>(?:[^|]*))\|(?<hp>(?:[^|]*))\|(?<maxHp>(?:[^|]*))\|(?<mp>(?:[^|]*))\|(?<maxMp>(?:[^|]*))\|(?:[^|]*\|){2}(?<x>(?:[^|]*))\|(?<y>(?:[^|]*))\|(?<z>(?:[^|]*))\|(?<heading>(?:[^|]*))\|(?<data0>(?:[^|]*))\|(?<data1>(?:[^|]*))\|(?<data2>(?:[^|]*))\|
+^(?<type>38)\|(?<timestamp>[^|]*)\|(?<targetId>[^|]*)\|(?<target>[^|]*)\|(?<jobLevelData>[^|]*)\|(?<hp>[^|]*)\|(?<maxHp>[^|]*)\|(?<mp>[^|]*)\|(?<maxMp>[^|]*)\|(?:[^|]*\|){2}(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|(?<heading>[^|]*)\|(?<data0>[^|]*)\|(?<data1>[^|]*)\|(?<data2>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) StatusList (?<type>26):(?<targetId>(?:[^:]*)):(?<target>(?:[^:]*)):(?<jobLevelData>(?:[^:]*)):(?<hp>(?:[^:]*)):(?<maxHp>(?:[^:]*)):(?<mp>(?:[^:]*)):(?<maxMp>(?:[^:]*))(?::[^:]*){2}:(?<x>(?:[^:]*)):(?<y>(?:[^:]*)):(?<z>(?:[^:]*)):(?<heading>(?:[^:]*)):(?<data0>(?:[^:]*)):(?<data1>(?:[^:]*)):(?<data2>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) StatusList (?<type>26):(?<targetId>[^:]*):(?<target>[^:]*):(?<jobLevelData>[^:]*):(?<hp>[^:]*):(?<maxHp>[^:]*):(?<mp>[^:]*):(?<maxMp>[^:]*)(?::[^:]*){2}:(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*):(?<heading>[^:]*):(?<data0>[^:]*):(?<data1>[^:]*):(?<data2>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1837,10 +1837,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:40))\|(?<timestamp>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<regionName>(?:[^|]*))\|(?<placeName>(?:[^|]*))\|(?<placeNameSub>(?:[^|]*))\|
+^(?<type>40)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<regionName>[^|]*)\|(?<placeName>[^|]*)\|(?<placeNameSub>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) ChangeMap (?<type>28):(?<id>(?:[^:]*)):(?<regionName>(?:[^:]*)):(?<placeName>(?:[^:]*)):(?<placeNameSub>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) ChangeMap (?<type>28):(?<id>[^:]*):(?<regionName>[^:]*):(?<placeName>[^:]*):(?<placeNameSub>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1897,10 +1897,10 @@ ACT Log Line Structure:
 
 ```log
 Network Log Line Regex:
-^(?<type>(?:41))\|(?<timestamp>(?:[^|]*))\|(?<instance>(?:[^|]*))\|(?<id>(?:[^|]*))\|(?<param0>(?:[^|]*))\|(?<param1>(?:[^|]*))\|(?<param2>(?:[^|]*))\|
+^(?<type>41)\|(?<timestamp>[^|]*)\|(?<instance>[^|]*)\|(?<id>[^|]*)\|(?<param0>[^|]*)\|(?<param1>[^|]*)\|(?<param2>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) SystemLogMessage (?<type>29):(?<instance>(?:[^:]*)):(?<id>(?:[^:]*)):(?<param0>(?:[^:]*)):(?<param1>(?:[^:]*)):(?<param2>(?:[^:]*))(?:$|:)
+(?<timestamp>^.{14}) SystemLogMessage (?<type>29):(?<instance>[^:]*):(?<id>[^:]*):(?<param0>[^:]*):(?<param1>[^:]*):(?<param2>[^:]*)(?:$|:)
 ```
 
 #### Examples
