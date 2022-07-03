@@ -347,24 +347,26 @@ oopsy에 경고(:warning:)나 실패(:no_entry_sign:) 로그가 찍혀서 무엇
 
 |잡|기능|
 |:-:|:-:|
-|<img src="../../resources/ffxiv/jobs/pld-large.png" width="30px"/><br> 나이트|현재 충의 수치와 회한의 검 스택을 보여줍니다. 꿰뚫는 검격의 도트도 추적해줍니다. |
-|<img src="../../resources/ffxiv/jobs/war-large.png" width="30px"/><br> 전사|원초 수치, 폭풍의 눈 버프 남은 시간, 그리고 콤보 유지 시간을 보여줍니다.|
-|<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px"/><br> 암흑기사|흑혈 수치와 암흑 시간, 피의 칼날/열광검/환영 구현 지속 시간과 쿨, 그리고 콤보 유지 시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/pld-large.png" width="30px"/><br> 나이트|현재 충의 수치와 회한의 검 스택, 도트 남은 시간, 임전무퇴 지속 시간과 쿨, 그리고 속죄 쿨과 콤보 유지 시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/war-large.png" width="30px"/><br> 전사|원초 수치, 전장의 폭풍 버프의 남은 시간, 격변과 원초의 해방 쿨, 그리고 콤보 유지 시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px"/><br> 암흑기사|흑혈 수치와 암흑 버프 시간, 피의 칼날/피의 열광/환영 구현 지속 시간과 쿨, 그리고 콤보 유지 시간을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> 건브레이커|무자비 지속 시간과 쿨, 피의 소일/난폭한 송곳니 쿨, 소일 양, 그리고 콤보 유지 시간을 보여줍니다.|
-|<img src="../../resources/ffxiv/jobs/whm-large.png" width="30px"/><br> 백마도사|Shows Heal&Blood Lily amount, time to next Lily, 도트 남은 시간, 그리고 심판/자각몽 쿨을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/whm-large.png" width="30px"/><br> 백마도사|치유의 백합&피의 백합 수, 다음 백합 충전까지의 시간, 도트 남은 시간, 그리고 심판/자각몽 쿨을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px"/><br> 학자|에테르 순환 스택, 요정 게이지 양/남은 시간, 도트 남은 시간, 그리고 에테르 순환/자각몽 쿨을 보여줍니다.|
-|<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px"/><br> 점성술사|Shows Seals amount, notify who or whether to play the current card, 도트 남은 시간, 그리고 점지/자각몽 쿨을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px"/><br> 점성술사|현재 보유중인 징조의 상태와, 누가 카드 효과를 받고 있는지와, 도트 남은 시간, 그리고 점지/자각몽 쿨을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/sge-large.png" width="30px"/><br> 현자|의술석&의술침 스택, 다음 의술석 충전까지의 시간, 도트 남은 시간, 그리고 플레그마/만물의 근원/자각몽 쿨을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> 몽크|투기량을 보여주고, 품새 시간, 몽크 버프와 디버프를 추적해줍니다.|
 |<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px"/><br> 용기사|천룡의 눈과 용의 눈 갯수, 용창 버프 남은 시간, 점프 쿨, 돌격하는 창과 용의 시선 지속 시간/쿨타임을 보여줍니다.|
-|<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px"/><br> 닌자|인법 수치, 풍둔술 지속 시간, 속임수 공격 지속시간/쿨, 분신술/삼인술 쿨, 그리고 콤보 유지 시간을 보여줍니다.|
-|<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px"/><br> 사무라이|검기 수치, 투기 스택, 사풍/진풍/피안화 지속시간, 제비반전 쿨, 그리고 콤보 유지시간을 보여줍니다.|
-|<img src="../../resources/ffxiv/jobs/brd-large.png" width="30px"/><br> 음유시인|Shows songs playing and remaining time, Repertoire stack, Soul Voice amount, StraightShotReady track, DoT remaining time, and a bar that show when your DoTs will tick.|
-|<img src="../../resources/ffxiv/jobs/mch-large.png" width="30px"/><br> 기공사|Shows Heat gauge, Battery gauge, Combo Timer, Drill/Bioblaster&Air Anchor Cooldown, Wild Fire Cooldown&Duration. When Wild Fire is active, there will be a gauge to show how many GCD you have landed.|
-|<img src="../../resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> 무도가|Shows Combo Timer, Feather Guage, Esprit Guage, Standard Step Cooldown, Technical Step&Flourish Cooldown & Duration.|
-|<img src="../../resources/ffxiv/jobs/blm-large.png" width="30px"/><br> 흑마도사|Shows DoTs remaining time, firestarter&thundercloud proc duration, time to next xeno, MP ticker, Fire/Ice stack and umbral heart stack.|
-|<img src="../../resources/ffxiv/jobs/smn-large.png" width="30px"/><br> 소환사|Shows DoTs remaining time, Energy Drain Cooldown, Trance Cooldown, Aetherflow stack, Demi-Summoning time and FurtherRuin Stack Guage.|
-|<img src="../../resources/ffxiv/jobs/rdm-large.png" width="30px"/><br> 적마도사|Shows white/black mana, tracks procs for Verstone&Verfire and show cooldown of lucid dreaming.|
-|<img src="../../resources/ffxiv/jobs/blu-large.png" width="30px"/><br> 청마도사|Shows cooldown of offguard&lucid dreaming, and Song Of Torment DoT remaining time.|
+|<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px"/><br> 닌자|인법 수치, 풍둔술 지속 시간, 속임수 공격 지속시간/쿨, 분신술/인술 쿨, 그리고 콤보 유지 시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px"/><br> 사무라이|검기 수치, 검압 스택, 풍월/풍화/피안화 지속시간, 제비반전 쿨, 그리고 콤보 유지시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/rpr-large.png" width="30px"/><br> 리퍼|영혼/수의 수치, 죽음 설계 지속시간, 영혼 낫질&탐식 쿨, 신비의 원 지속시간과 쿨, 그리고 콤보 유지시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/brd-large.png" width="30px"/><br> 음유시인|현재 연주중인 노래와 지속시간, 시상 스택, 영혼의 소리 양, 직선 사격 시전 가능 유지시간, 도트 남은 시간, 그리고 도트 틱을 표시하는 막대를 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/mch-large.png" width="30px"/><br> 기공사|열기와 충전지 수치, 콤보 유지 시간, 드릴/생화학무기&사슬닻&회전톱 쿨, 소이탄 지속시간&쿨을 보여줍니다. 그리고 소이탄을 사용하였을 때, 몇 글쿨을 때렸는지 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> 무도가|콤보 유지 시간, 환상부채 수, 에스프리 수치, 정석무도 쿨, 기교무도&플러리쉬의 쿨과 지속시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/blm-large.png" width="30px"/><br> 흑마도사|도트 남은 시간, 파이가&선더 프록 지속시간, 다음 언어 통달 획득까지의 시간, MP 틱, 화염/냉기 스택과 얼어붙은 마음 스택을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/smn-large.png" width="30px"/><br> 소환사|빙의 지속시간, 에테르 순환 스택, 불/땅/바람 에테르 스택, 생명력 흡수&빙의&자각몽 쿨을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/rdm-large.png" width="30px"/><br> 적마도사|흑/백마나 양, 버스톤/버파이어 프록 지속시간, 그리고 플레슈&콩트르 식스트 쿨을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/blu-large.png" width="30px"/><br> 청마도사|무방비와 자각몽 쿨, 고통의 노래 도트 남은 시간을 보여줍니다.|
 
 </details>
 
