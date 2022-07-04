@@ -357,26 +357,26 @@ It has more fleshed out support for some jobs but is *strongly* a Work In Progre
 
 |Job|Feature|
 |:-:|:-:|
-|<img src="./resources/ffxiv/jobs/pld-large.png" width="30px"/><br> Paladin|Shows Oath amount, and atonement stacks, DoT remaining time, Fight or Flight duration&cooldown, Expiacion cooldown and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/war-large.png" width="30px"/><br> Warrior|Shows Beast amount, Surging Tempest duration, Upheaval&Inner Release cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/drk-large.png" width="30px"/><br> Dark Knight|Shows the blood amount and darkside time, BloodWeapon&Delirium&LivingShadow duration and cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> Gunbreaker|Shows No Mercy duration&cooldown, Bloodfest&Gnashing Fang cooldown, Cartridge amount, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/whm-large.png" width="30px"/><br> White Mage|Shows Heal&Blood Lily amount, time to next Lily, DoTs remaining time, and shows Assize&Lucid Dreaming cooldown.|
-|<img src="./resources/ffxiv/jobs/sch-large.png" width="30px"/><br> Scholar|Shows Aetherflow stacks, Fairy gauge amount/time remaining, DoTs remaining time, and shows Aetherflow&Lucid Dreaming cooldown.|
-|<img src="./resources/ffxiv/jobs/ast-large.png" width="30px"/><br> Astrologian|Shows Astrosigns amount, notify who or whether to play the current card, DoTs remaining time, and shows Draw&Lucid Dreaming cooldown.|
-|<img src="./resources/ffxiv/jobs/sge-large.png" width="30px"/><br> Sage|Shows Addersgall&Addersting stacks, time to next Addersgall, DoTs remaining time, and shows Phlegma&Rhizomata&Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/pld-large.png" width="30px"/><br> Paladin|Shows Oath amount, and atonement stacks, DoT remaining time, Fight or Flight duration/cooldown, Expiacion cooldown and shows combo time remaining.|
+|<img src="./resources/ffxiv/jobs/war-large.png" width="30px"/><br> Warrior|Shows Beast amount, Surging Tempest duration, Upheaval and Inner Release cooldown, and shows combo time remaining.|
+|<img src="./resources/ffxiv/jobs/drk-large.png" width="30px"/><br> Dark Knight|Shows the blood amount and darkside time, BloodWeapon and Delirium and LivingShadow duration/cooldown, and shows combo time remaining.|
+|<img src="./resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> Gunbreaker|Shows No Mercy duration/cooldown, Bloodfest and Gnashing Fang cooldown, Cartridge amount, and shows combo time remaining.|
+|<img src="./resources/ffxiv/jobs/whm-large.png" width="30px"/><br> White Mage|Shows Heal and Blood Lily amount, time to next Lily, DoTs remaining time, and shows Assize and Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/sch-large.png" width="30px"/><br> Scholar|Shows Aetherflow stacks, Fairy gauge amount/time remaining, DoTs remaining time, and shows Aetherflow and Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/ast-large.png" width="30px"/><br> Astrologian|Shows Astrosigns amount, notify who or whether to play the current card, DoTs remaining time, and shows Draw and Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/sge-large.png" width="30px"/><br> Sage|Shows Addersgall and Addersting stacks, time to next Addersgall, DoTs remaining time, and shows Phlegma and Rhizomata and Lucid Dreaming cooldown.|
 |<img src="./resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> Monk|Shows chakra count and form time, and tracks monk buffs and debuffs.|
-|<img src="./resources/ffxiv/jobs/drg-large.png" width="30px"/><br> Dragoon|Shows blood&eye amount, remaining Disembowel time, jump cooldown, and Lance Charge&Dragon Sight duration/cooldown.|
-|<img src="./resources/ffxiv/jobs/nin-large.png" width="30px"/><br> Ninja|Shows Ninki amount, Huton remaining time, Trick Attack duration&cooldown, Bunshin&Mudras cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/sam-large.png" width="30px"/><br> Samurai|Shows Kenki amount, Meditation stacks, Fugetsu&Fuka&Higanbana duration, Tsubame-gaeshi cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/rpr-large.png" width="30px"/><br> Reaper|Shows Soul Gauge, Shroud Gauge, Death's Design duration, Soul Slice&Gluttony cooldown, Arcane Circle duration/cooldown, and shows combo time remaining.|
+|<img src="./resources/ffxiv/jobs/drg-large.png" width="30px"/><br> Dragoon|Shows blood and eye amount, remaining Disembowel time, jump cooldown, and Lance Charge and Dragon Sight duration/cooldown.|
+|<img src="./resources/ffxiv/jobs/nin-large.png" width="30px"/><br> Ninja|Shows Ninki amount, Huton remaining time, Trick Attack duration/cooldown, Bunshin and Mudras cooldown, and shows combo time remaining.|
+|<img src="./resources/ffxiv/jobs/sam-large.png" width="30px"/><br> Samurai|Shows Kenki amount, Meditation stacks, Fugetsu and Fuka and Higanbana duration, Tsubame-gaeshi cooldown, and shows combo time remaining.|
+|<img src="./resources/ffxiv/jobs/rpr-large.png" width="30px"/><br> Reaper|Shows Soul Gauge, Shroud Gauge, Death's Design duration, Soul Slice and Gluttony cooldown, Arcane Circle duration/cooldown, and shows combo time remaining.|
 |<img src="./resources/ffxiv/jobs/brd-large.png" width="30px"/><br> Bard|Shows songs playing and remaining time, Repertoire stack, Soul Voice amount, StraightShotReady track, DoT remaining time, and a bar that show when your DoTs will tick.|
-|<img src="./resources/ffxiv/jobs/mch-large.png" width="30px"/><br> Machinist|Shows Heat gauge, Battery gauge, combo timer, Drill/Bioblaster&Air Anchor&Chain Saw cooldown, Wild Fire cooldown/duration. When Wild Fire is active, there will be a gauge to show how many GCD you have landed.|
-|<img src="./resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> Dancer|Shows combo timer, Feather gauge, Esprit gauge, Standard Step cooldown, Technical Step&Flourish cooldown/duration.|
-|<img src="./resources/ffxiv/jobs/blm-large.png" width="30px"/><br> Black Mage|Shows DoTs remaining time, firestarter&thundercloud proc duration, time to next xeno, MP ticker, Fire/Ice stack and umbral heart stack.|
+|<img src="./resources/ffxiv/jobs/mch-large.png" width="30px"/><br> Machinist|Shows Heat gauge, Battery gauge, combo timer, Drill/Bioblaster and Air Anchor and Chain Saw cooldown, Wild Fire cooldown/duration. When Wild Fire is active, there will be a gauge to show how many GCD you have landed.|
+|<img src="./resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> Dancer|Shows combo timer, Feather gauge, Esprit gauge, Standard Step cooldown, Technical Step and Flourish cooldown/duration.|
+|<img src="./resources/ffxiv/jobs/blm-large.png" width="30px"/><br> Black Mage|Shows DoTs remaining time, Firestarter and Thundercloud proc duration, time to next xeno, MP ticker, Fire/Ice stack and umbral heart stack.|
 |<img src="./resources/ffxiv/jobs/smn-large.png" width="30px"/><br> Summoner|Shows Demi-Summoning time, Aetherflow stack, Attunement stacks, Energy Drain cooldown, Trance cooldown, and Lucid Dreaming cooldown.|
-|<img src="./resources/ffxiv/jobs/rdm-large.png" width="30px"/><br> Red Mage|Shows white/black mana, tracks procs for Verstone&Verfire and Fleche&Contre Sixte cooldown.|
-|<img src="./resources/ffxiv/jobs/blu-large.png" width="30px"/><br> Blue Mage|Shows cooldown of offguard&lucid dreaming, and Song Of Torment DoT remaining time.|
+|<img src="./resources/ffxiv/jobs/rdm-large.png" width="30px"/><br> Red Mage|Shows white/black mana, tracks procs for Verstone and Verfire, and Fleche and Contre Sixte cooldown.|
+|<img src="./resources/ffxiv/jobs/blu-large.png" width="30px"/><br> Blue Mage|Shows cooldown of offguard, lucid dreaming, and Song Of Torment DoT remaining time.|
 
 </details>
 
