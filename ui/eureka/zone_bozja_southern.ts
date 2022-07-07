@@ -786,7 +786,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
         de: 'Ungeheuerlich',
         fr: 'Plantes',
         ja: '華麗なる珍獣使い',
-        cn: '兽性兽心的驯兽师',
+        cn: '华丽魔女的珍兽使者',
         ko: '화려한 희귀마수 조련사',
       },
       x: 17.3,
