@@ -7,11 +7,13 @@ import { kFlagInstantDeath, playerDamageFields } from '../../../oopsy_common';
 // TODO: 63DD Skyward Leap during Strength of the Heavens should ignore invulning tanks
 // TODO: track vulns from Wrath tethers/blue marker in case they take a (deadly) liquid fire tick
 // TODO: Akh Morn puddle damage is effectId=0 0x18 lines from Bleeding B87, but everybody gets this effect temporarily?
+// TODO: Getting hit by the wrong cauterize at the end of adds phase
 
 export interface Data extends OopsyData {
   towerAbility?: string;
   convictionTower?: { [name: string]: boolean };
   hasDoom?: { [name: string]: boolean };
+  seenWrothFlames?: boolean;
 }
 
 const triggerSet: OopsyTriggerSet<Data> = {
@@ -61,8 +63,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR Holy Comet Holy Impact': '63EA', // meteor explosion from being too close
     'DSR King Thordan Ascalon\'s Mercy Concealed': '63C9', // protean 2nd hit
     'DSR Nidhogg Darkdragon Dive Miss': '671B', // tower failure
-    'DSR Nidhogg Cauterize': '6D3E', // cauterize during Hallowed Wings
-    'DSR Hraesvelgr Cauterize': '6D3F', // cauterize during Wroth Flames
   },
   gainsEffectFail: {
     'DSR Burns': 'B81', // fire puddles during Sanctity of the Ward
@@ -156,14 +156,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Ser Adelphel Holiest Hallowing',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '62D0' }),
-      mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, text: matches.ability };
-      },
-    },
-    {
       id: 'DSR King Thordan Gaze',
       // Same abilities during both Thordan1 and Thordan2
       // 63D1 = The Dragon's Gaze (Thordan lookaway)
@@ -236,6 +228,29 @@ const triggerSet: OopsyTriggerSet<Data> = {
           name: matches.target,
           text: matches.effect,
         };
+      },
+    },
+    {
+      id: 'DSR Wroth Flames',
+      // Wroth Flames cast happens, then cauterize that nobody should be hit by,
+      // then at the end is the first Hot Wing / Hot Tail, marking the end of Wroth Flames.
+      // Cauterize after this is intentionally hit.
+      // 6D2B = Hot Wing (self-casted)
+      // 6D2D = Hot Tail (self-casted)
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['6D2B', '6D2D'], capture: false }),
+      run: (data) => data.seenWrothFlames = true,
+    },
+    {
+      id: 'DSR Hraesvelgr Nidhogg Cauterize',
+      // During the first hallowed and wroth flames, there are cauterize casts.
+      // 6D3E = Nidhogg (during Wroth Flames and before Touchdown)
+      // 6D3F = Hraesvelgr (during the first Hallowed Wings and before Touchdown)
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['6D3E', '6D3F'], ...playerDamageFields }),
+      condition: (data) => !data.seenWrothFlames,
+      mistake: (_data, matches) => {
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
   ],
