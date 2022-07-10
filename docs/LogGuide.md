@@ -72,18 +72,19 @@ This guide was last updated for:
     - [Examples](#examples-9)
   - [Line 24 (0x18): NetworkDoT](#line-24-0x18-networkdot)
     - [Structure](#structure-10)
+    - [Regexes](#regexes-7)
     - [Examples](#examples-10)
   - [Line 25 (0x19): NetworkDeath](#line-25-0x19-networkdeath)
     - [Structure](#structure-11)
-    - [Regexes](#regexes-7)
+    - [Regexes](#regexes-8)
     - [Examples](#examples-11)
   - [Line 26 (0x1A): NetworkBuff](#line-26-0x1a-networkbuff)
     - [Structure](#structure-12)
-    - [Regexes](#regexes-8)
+    - [Regexes](#regexes-9)
     - [Examples](#examples-12)
   - [Line 27 (0x1B): NetworkTargetIcon (Head Marker)](#line-27-0x1b-networktargeticon-head-marker)
     - [Structure](#structure-13)
-    - [Regexes](#regexes-9)
+    - [Regexes](#regexes-10)
     - [Examples](#examples-13)
     - [Head Marker IDs](#head-marker-ids)
   - [Line 28 (0x1C): NetworkRaidMarker (Floor Marker)](#line-28-0x1c-networkraidmarker-floor-marker)
@@ -96,7 +97,7 @@ This guide was last updated for:
     - [Floor Marker Codes](#floor-marker-codes)
   - [Line 30 (0x1E): NetworkBuffRemove](#line-30-0x1e-networkbuffremove)
     - [Structure](#structure-16)
-    - [Regexes](#regexes-10)
+    - [Regexes](#regexes-11)
     - [Examples](#examples-16)
   - [Line 31 (0x1F): NetworkGauge](#line-31-0x1f-networkgauge)
     - [Structure](#structure-17)
@@ -104,15 +105,15 @@ This guide was last updated for:
   - [Line 32 (0x20): NetworkWorld](#line-32-0x20-networkworld)
   - [Line 33 (0x21): Network6D (Actor Control)](#line-33-0x21-network6d-actor-control)
     - [Structure](#structure-18)
-    - [Regexes](#regexes-11)
+    - [Regexes](#regexes-12)
     - [Examples](#examples-18)
   - [Line 34 (0x22): NetworkNameToggle](#line-34-0x22-networknametoggle)
     - [Structure](#structure-19)
-    - [Regexes](#regexes-12)
+    - [Regexes](#regexes-13)
     - [Examples](#examples-19)
   - [Line 35 (0x23): NetworkTether](#line-35-0x23-networktether)
     - [Structure](#structure-20)
-    - [Regexes](#regexes-13)
+    - [Regexes](#regexes-14)
     - [Examples](#examples-20)
   - [Line 36 (0x24): LimitBreak](#line-36-0x24-limitbreak)
     - [Structure](#structure-21)
@@ -120,18 +121,18 @@ This guide was last updated for:
   - [Line 37 (0x25): NetworkActionSync](#line-37-0x25-networkactionsync)
   - [Line 38 (0x26): NetworkStatusEffects](#line-38-0x26-networkstatuseffects)
     - [Structure](#structure-22)
-    - [Regexes](#regexes-14)
+    - [Regexes](#regexes-15)
     - [Examples](#examples-22)
   - [Line 39 (0x27): NetworkUpdateHP](#line-39-0x27-networkupdatehp)
     - [Structure](#structure-23)
     - [Examples](#examples-23)
   - [Line 40 (0x28): Map](#line-40-0x28-map)
     - [Structure](#structure-24)
-    - [Regexes](#regexes-15)
+    - [Regexes](#regexes-16)
     - [Examples](#examples-24)
   - [Line 41 (0x29): SystemLogMessage](#line-41-0x29-systemlogmessage)
     - [Structure](#structure-25)
-    - [Regexes](#regexes-16)
+    - [Regexes](#regexes-17)
     - [Examples](#examples-25)
   - [Line 42 (0x2A): StatusList3](#line-42-0x2a-statuslist3)
     - [Structure](#structure-26)
@@ -1000,6 +1001,16 @@ Network Log Line Structure:
 
 ACT Log Line Structure:
 [timestamp] DoTHoT 18:[id]:[name]:[which]:[effectId]:[damage]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>24)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<which>[^|]*)\|(?<effectId>[^|]*)\|(?<damage>[^|]*)\|(?<currentHp>[^|]*)\|(?<maxHp>[^|]*)\|(?<currentMp>[^|]*)\|(?<maxMp>[^|]*)\|(?:[^|]*\|){2}(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|(?<heading>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) DoTHoT (?<type>18):(?<id>[^:]*):(?<name>[^:]*):(?<which>[^:]*):(?<effectId>[^:]*):(?<damage>[^:]*):(?<currentHp>[^:]*):(?<maxHp>[^:]*):(?<currentMp>[^:]*):(?<maxMp>[^:]*)(?::[^:]*){2}:(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*):(?<heading>[^:]*)(?:$|:)
 ```
 
 #### Examples
