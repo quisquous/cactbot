@@ -277,6 +277,13 @@ export default class Regexes {
   }
 
   /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-24-0x18-networkdot
+   */
+  static networkDoT(params?: NetParams['NetworkDoT']): CactbotBaseRegExp<'NetworkDoT'> {
+    return parseHelper(params, 'NetworkDoT', defaultParams('NetworkDoT', Regexes.logVersion));
+  }
+
+  /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
   static echo(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {

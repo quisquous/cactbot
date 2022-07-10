@@ -258,6 +258,10 @@ const lineDocs: LineDocs = {
     },
   },
   NetworkDoT: {
+    regexes: {
+      network: NetRegexes.networkDoT({ capture: true }).source,
+      logLine: Regexes.networkDoT({ capture: true }).source,
+    },
     examples: {
       'en-US': [
         '24|2021-07-27T12:47:05.5100000-04:00|10FF0002|Potato Chippy|HoT|0|3A1|21194|21194|8964|10000|0|1000|-1.815857|-5.630676|10.55192|2.929996|63d7d7e99108018a1890f367f89eae43',

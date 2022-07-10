@@ -53,6 +53,27 @@ describe('netregex tests', () => {
 
     assert.equal(NetRegexes.ability().source, NetRegexes.abilityFull().source);
   });
+  it('networkDoT', () => {
+    const lines = [
+      '24|2022-07-07T21:59:30.6210000-07:00|105C4F8B|Tini Poutini|DoT|3C0|9920|32134|63300|10000|10000|||90.44|87.60|0.00|-3.07|549a72f2e53a9dea',
+      '24|2022-07-07T21:45:54.1840000-07:00|4000F643|King Thordan|DoT|0|1597|7328307|7439000|10000|10000|||99.78|104.81|0.00|2.95|875689e722298558',
+      '24|2022-07-07T21:45:54.7190000-07:00|10595B8B|Baked Potato|HoT|0|1560|56391|56391|9500|10000|||99.73|108.37|0.00|3.14|9849e336f9aeec29',
+    ] as const;
+    regexCaptureTest((params?: RegexUtilParams) => NetRegexes.networkDoT(params), lines);
+
+    const matches = lines[0].match(NetRegexes.networkDoT())?.groups;
+    assert.equal(matches?.id, '105C4F8B');
+    assert.equal(matches?.name, 'Tini Poutini');
+    assert.equal(matches?.which, 'DoT');
+    assert.equal(matches?.effectId, '3C0');
+    assert.equal(matches?.damage, '9920');
+    assert.equal(matches?.currentHp, '32134');
+    assert.equal(matches?.maxHp, '63300');
+    assert.equal(matches?.x, '90.44');
+    assert.equal(matches?.y, '87.60');
+    assert.equal(matches?.z, '0.00');
+    assert.equal(matches?.heading, '-3.07');
+  });
   it('headMarker', () => {
     const lines = [
       '27|2020-02-24T21:51:06.0270000-08:00|107C73B8|Aloo Gobi|0000|5DC3|00C0|0000|0000|0000||fc68ff4de5f5779534fa44927c0c124f',

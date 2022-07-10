@@ -64,6 +64,27 @@ describe('regex tests', () => {
 
     assert.equal(Regexes.ability().source, Regexes.abilityFull().source);
   });
+  it('networkDoT', () => {
+    const lines = [
+      '[21:59:29.594] DoTHoT 18:105C4F8B:Tini Poutini:DoT:3C0:9920:32134:63300:10000:10000:::90.44:87.60:0.00:-3.07',
+      '[21:45:54.184] DoTHoT 18:4000F643:King Thordan:DoT:0:1597:7328307:7439000:10000:10000:::99.78:104.81:0.00:2.95',
+      '[21:45:54.719] DoTHoT 18:10595B8B:Baked Potato:HoT:0:1560:56391:56391:9500:10000:::99.73:108.37:0.00:3.14',
+    ] as const;
+    regexCaptureTest((params?: RegexUtilParams) => Regexes.networkDoT(params), lines);
+
+    const matches = lines[0].match(Regexes.networkDoT())?.groups;
+    assert.equal(matches?.id, '105C4F8B');
+    assert.equal(matches?.name, 'Tini Poutini');
+    assert.equal(matches?.which, 'DoT');
+    assert.equal(matches?.effectId, '3C0');
+    assert.equal(matches?.damage, '9920');
+    assert.equal(matches?.currentHp, '32134');
+    assert.equal(matches?.maxHp, '63300');
+    assert.equal(matches?.x, '90.44');
+    assert.equal(matches?.y, '87.60');
+    assert.equal(matches?.z, '0.00');
+    assert.equal(matches?.heading, '-3.07');
+  });
   it('headMarker', () => {
     const lines = [
       '[21:51:06.027] TargetIcon 1B:107C73B8:Aloo Gobi:0000:5DC3:00C0:0000:0000:0000:',
