@@ -7,6 +7,7 @@ import { kFlagInstantDeath, playerDamageFields } from '../../../oopsy_common';
 // TODO: 63DD Skyward Leap during Strength of the Heavens should ignore invulning tanks
 // TODO: track vulns from Wrath tethers/blue marker in case they take a (deadly) liquid fire tick
 // TODO: Akh Morn puddle damage is effectId=0 0x18 lines from Bleeding B87, but everybody gets this effect temporarily?
+//       it is the only non-zero player dot damage between wroth flames and hot wing and hot-tail, though?
 // TODO: Getting hit by the wrong cauterize at the end of adds phase
 
 export interface Data extends OopsyData {
@@ -251,6 +252,22 @@ const triggerSet: OopsyTriggerSet<Data> = {
       condition: (data) => !data.seenWrothFlames,
       mistake: (_data, matches) => {
         return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+      },
+    },
+    {
+      id: 'DSR Pyretic',
+      type: 'NetworkDoT',
+      // Amazingly, the dot/hot line has the effect id for pyretic here.  Most dots don't.
+      netRegex: NetRegexes.networkDoT({ effectId: '3C0' }),
+      mistake: (_data, matches) => {
+        return {
+          type: 'fail',
+          blame: matches.name,
+          reportId: matches.id,
+          text: {
+            en: 'Pyretic',
+          },
+        };
       },
     },
   ],
