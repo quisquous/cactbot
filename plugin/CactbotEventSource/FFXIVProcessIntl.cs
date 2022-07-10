@@ -44,7 +44,7 @@ namespace Cactbot {
       [FieldOffset(0x1C4)]
       public CharacterDetails charDetails;
 
-      [FieldOffset(0x19D9)]
+      [FieldOffset(0x1AD3)]
       public byte shieldPercentage;
     }
 
