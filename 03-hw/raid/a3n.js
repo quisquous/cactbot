@@ -67,6 +67,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '3x Tank Cleave',
+          cn: '3x 顺劈',
         },
       },
     },
@@ -79,6 +80,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Repeated tank cleaves',
+          cn: '多重顺劈',
         },
       },
     },
