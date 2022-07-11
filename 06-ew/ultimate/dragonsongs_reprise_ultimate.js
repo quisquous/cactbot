@@ -370,7 +370,10 @@ Options.Triggers.push({
     {
       id: 'DSR Brightwing Counter',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6319', source: 'Ser Charibert', capture: false }),
+      // Visually, this comes from Ser Charibert.  However, ~30% of the time
+      // the first set of Brightwing cleaves come from King Thordan/Ser Hermonst
+      // entities.  This is likely just stale combatant data from the ffxiv plugin.
+      netRegex: NetRegexes.ability({ id: '6319', capture: false }),
       // One ability for each player hit (hopefully only two??)
       suppressSeconds: 1,
       infoText: (data, _matches, output) => output[`dive${data.brightwingCounter}`](),
