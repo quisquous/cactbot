@@ -48,7 +48,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Ania',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '67EF', source: 'Zodiark' }),
+      netRegex: NetRegexes.startsUsing({ id: '6B63', source: 'Zodiark' }),
       response: Responses.tankBusterSwap(),
     },
     {
