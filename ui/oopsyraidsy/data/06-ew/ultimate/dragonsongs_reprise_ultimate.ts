@@ -149,6 +149,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             blame: name,
             text: {
               en: 'Missed Tower',
+              cn: '错过塔',
               ko: '기둥 놓침',
             },
           };

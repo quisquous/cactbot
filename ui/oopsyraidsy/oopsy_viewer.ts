@@ -18,6 +18,7 @@ import './oopsy_viewer.css';
 
 const fileDropText: LocaleText = {
   en: 'Drop Network log file here',
+  cn: '将网络日志文件拖放到此处',
 };
 
 // TODO: fake the partyTracker somehow (or get it from log lines) for missed buffs

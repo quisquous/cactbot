@@ -80,6 +80,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '3x Tank Cleave',
+          cn: '3x 顺劈',
         },
       },
     },
@@ -92,6 +93,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Repeated tank cleaves',
+          cn: '多重顺劈',
         },
       },
     },
