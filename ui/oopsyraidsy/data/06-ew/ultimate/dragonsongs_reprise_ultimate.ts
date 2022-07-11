@@ -97,7 +97,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR Ser Haumeric Hiemal Storm': '63E7', // Sanctity of the Ward ice pair stacks
   },
   soloFail: {
-    'DSR Nidhogg Dark Orb': '63D9', // shared tank buster during adds phase tethers
+    'DSR Nidhogg Dark Orb': '6D39', // shared tank buster during adds phase tethers
     'DSR Hraesvelgr Holy Orb': '6D3A', // shared tank buster during adds phase tethers
     'DSR Nidhogg Entangled Flames': '742C', // Wroth Flames stack
   },
