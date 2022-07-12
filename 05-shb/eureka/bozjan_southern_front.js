@@ -591,7 +591,7 @@ Options.Triggers.push({
           de: 'Zu einem weggeschleuderten Lichtorb gehen',
           fr: 'Allez sous un Orbe lumineux soufflé',
           ja: '赤玉へ',
-          cn: '靠近火球',
+          cn: '靠近吹动后的白球',
           ko: '하얀 구슬이 이동할 위치로',
         },
       },
