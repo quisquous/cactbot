@@ -68,7 +68,6 @@ Options.Triggers.push({
         text: {
           en: '3x Tank Cleave',
           cn: '3x 顺劈',
-          ko: '광역 탱버 3번',
         },
       },
     },
@@ -82,7 +81,6 @@ Options.Triggers.push({
         text: {
           en: 'Repeated tank cleaves',
           cn: '多重顺劈',
-          ko: '광역 탱버 반복',
         },
       },
     },
