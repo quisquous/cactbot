@@ -82,6 +82,8 @@
 03-hw/dungeon/xelphatol.ts
 03-hw/dungeon/xelphatol.txt
 03-hw/pvp/shatter.ts
+03-hw/raid/a10n.ts
+03-hw/raid/a10n.txt
 03-hw/raid/a10s.ts
 03-hw/raid/a10s.txt
 03-hw/raid/a11s.ts
