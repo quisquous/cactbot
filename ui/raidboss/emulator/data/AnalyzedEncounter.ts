@@ -213,14 +213,11 @@ export default class AnalyzedEncounter extends EventBus {
       if (!perspective || !triggerHelper)
         throw new UnreachableCode();
 
-      const delay = currentTriggerStatus.delay ?? 0;
-
       perspective.triggers.push({
         triggerHelper: triggerHelper,
         status: currentTriggerStatus,
         logLine: log,
-        resolvedOffset: (log.timestamp - this.encounter.startTimestamp) +
-          (delay * 1000),
+        resolvedOffset: (log.timestamp - this.encounter.startTimestamp),
       });
     };
     popupText.triggerResolvers = [];

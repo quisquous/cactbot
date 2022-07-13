@@ -220,13 +220,19 @@ export default class EmulatedPartyInfo extends EventBus {
         );
       }
 
+      const trimmedDuration = encounter.encounter.duration - encounter.encounter.initialOffset;
+
       for (const trigger of perspective.triggers) {
-        if (!trigger.status.executed || trigger.resolvedOffset > encounter.encounter.duration)
+        if (
+          !trigger.status.executed ||
+          trigger.resolvedOffset > encounter.encounter.duration ||
+          trigger.resolvedOffset < encounter.encounter.initialOffset
+        )
           continue;
 
         const $e = cloneSafe(this.$triggerItemTemplate);
-        $e.style.left = ((trigger.resolvedOffset / encounter.encounter.duration) * 100).toString() +
-          '%';
+        const adjustedOffset = trigger.resolvedOffset - encounter.encounter.initialOffset;
+        $e.style.left = ((adjustedOffset / trimmedDuration) * 100).toString() + '%';
         const triggerId = trigger.triggerHelper.trigger.id ?? 'Unknown Trigger';
         this.tooltips.push(new Tooltip($e, 'bottom', triggerId));
         bar.append($e);

@@ -432,13 +432,6 @@ const emulatorEncounterInfo: Translation = {
     ja: '持続時間: <span class="label"></span>',
     cn: '持续时间: <span class="label"></span>',
   },
-  '.encounterOffset': {
-    en: 'Pull At: <span class="label"></span>',
-    de: 'Start um: <span class="label"></span>',
-    fr: 'Pull à : <span class="label"></span>',
-    ja: '戦闘開始: <span class="label"></span>',
-    cn: '开始于: <span class="label"></span>',
-  },
   '.encounterName': {
     en: 'Name: <span class="label"></span>',
     de: 'Name: <span class="label"></span>',
