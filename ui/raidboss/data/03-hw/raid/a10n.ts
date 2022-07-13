@@ -122,6 +122,15 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'en',
+      'replaceText': {
+        'Gobspin Whooshdrops/Gobswipe Conklops': 'Single Charge #1',
+        'Gobswipe Conklops/Gobspin Whooshdrops': 'Single Charge #2',
+      },
+    },
+  ],
 };
 
 export default triggerSet;

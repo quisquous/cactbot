@@ -64,13 +64,13 @@ hideall "--sync--"
 317.3 "Gobrush Rushgob" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACF:/
 
 321.4 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB8|1AB9):/
-324.6 "Single Charge #1" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A97:/
+324.6 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A97:/
 325.5 "Gobspin Whooshdrops/Gobswipe Conklops" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1ACB|1ACC):/ window 25,10
 331.6 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
 335.6 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
 339.7 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
 344.7 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB8|1AB9):/
-347.9 "Single Charge #2" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A97:/
+347.9 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A97:/
 348.8 "Gobswipe Conklops/Gobspin Whooshdrops" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1ACB|1ACC):/ window 10,10
 355.9 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
 360.0 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
