@@ -224,7 +224,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Erichthonios': '에리크토니오스',
       },
