@@ -20,6 +20,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
   },
   gainsEffectWarn: {
     'A10N Electrocution': '120', // Arena danger walls
+    'A10N Stab Wound': '45D', // Activation of the spike trap. (No info on who did it.)
   },
   shareWarn: {
     'A10N Lamebrix Gobslash Slicetops': '1AD1', // Stretchy tether AoE
