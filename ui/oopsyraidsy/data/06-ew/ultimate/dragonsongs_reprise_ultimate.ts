@@ -267,6 +267,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.id,
           text: {
             en: 'Pyretic',
+            ko: '열병',
           },
         };
       },
