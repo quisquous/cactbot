@@ -1,0 +1,114 @@
+### A10N
+# Alexander - The Breath of the Creator
+
+# -ii 1DCD 1AC9 1AB4
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+0.0 "--sync--" sync / 00:0839::The Excruciationator will be sealed off/ window 0,1
+7.0 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
+10.1 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+15.2 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+22.2 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
+34.4 "Gobslash Slicetops" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD1:/
+37.5 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
+45.6 "Gobrush Rushgob" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACF:/
+49.7 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+56.7 "Trap" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB0|1AB1):/ window 56.7,5
+58.0 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AA2:/
+61.1 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
+61.7 "Frostbite/Impact" sync / 1[56]:[^:]*:(Blizzard Arrow|Weight of the World):(1AC7|1AC6):/
+69.0 "Trap" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB0|1AB1):/
+70.3 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AA2:/
+74.0 "Impact/Frostbite" sync / 1[56]:[^:]*:(Blizzard Arrow|Weight of the World):(1AC7|1AC6):/
+74.9 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
+78.0 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
+87.1 "Gobslash Slicetops" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD1:/
+90.2 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
+98.3 "Gobrush Rushgob" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACF:/
+102.4 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+
+105.4 "--untargetable--"
+105.4 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AA2:/ window 20,20
+110.7 "--targetable--"
+
+111.1 "--sync--"  sync / 14:[^:]*:Gobpress R-VI:1AC9:/ window 112,10
+112.8 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A9C:/
+117.8 "Critical Wrath" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACD:/
+122.9 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
+126.2 "Steam Roller" sync / 1[56]:[^:]*:Gobpress R-VI:1ACA:/
+132.2 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+136.2 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+142.3 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
+145.5 "Steam Roller" sync / 1[56]:[^:]*:Gobpress R-VI:1ACA:/
+156.2 "Bomb Toss" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACE:/
+161.4 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
+165.0 "Steam Roller" sync / 1[56]:[^:]*:Gobpress R-VI:1ACA:/
+170.2 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+174.3 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+180.4 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
+184.3 "Steam Roller" sync / 1[56]:[^:]*:Gobpress R-VI:1ACA:/
+
+# The Gobpress gains a damage up buff here. The intermission continues and loops if unsynced.
+189.7 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+194.8 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+199.9 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+203.6 "Steam Roller Enrage?" sync / 1[56]:[^:]*:Gobpress R-VI:1ACA:/
+
+# This targetable entry is the earliest we can re-sync the timeline.
+300.0 "--targetable--" sync /22:[^:]*:Lamebrix Strikebocks:[^:]*:Lamebrix Strikebocks:01/ window 190,10
+309.2 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/ window 200,10
+317.3 "Gobrush Rushgob" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACF:/
+
+321.4 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB8|1AB9):/
+324.6 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A97:/
+325.5 "Gobspin Whooshdrops/Gobswipe Conklops" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1ACB|1ACC):/ window 25,10
+331.6 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+335.6 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
+339.7 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+344.7 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB8|1AB9):/
+347.9 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A97:/
+348.8 "Gobswipe Conklops/Gobspin Whooshdrops" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1ACB|1ACC):/ window 10,10
+355.9 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+360.0 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
+368.1 "Gobrush Rushgob" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACF:/
+372.3 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
+377.3 "Laceration #1" sync / 1[56]:[^:]*:Buzzsaw:1AC8:/ window 30,2.5
+380.3 "Laceration #2" sync / 1[56]:[^:]*:Buzzsaw:1AC8:/
+383.3 "Laceration #3" sync / 1[56]:[^:]*:Buzzsaw:1AC8:/
+385.3 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+389.3 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+393.3 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
+398.2 "Trap #1" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB0|1AB1):/ window 100,2.5
+402.3 "Trap #2" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB0|1AB1):/
+403.2 "Frostbite/Impact" sync / 1[56]:[^:]*:(Blizzard Arrow|Weight of the World):(1AC7|1AC6):/
+403.6 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AA2:/
+407.3 "Impact/Frostbite" sync / 1[56]:[^:]*:(Blizzard Arrow|Weight of the World):(1AC7|1AC6):/
+408.9 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
+418.1 "Gobslash Slicetops" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD1:/
+422.1 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
+430.2 "Gobrush Rushgob" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACF:/
+434.3 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+440.4 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A9C:/ window 30,30
+444.4 "Laceration #1" sync / 1[56]:[^:]*:Buzzsaw:1AC8:/
+445.4 "Critical Wrath" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACD:/
+447.4 "Laceration #2" sync / 1[56]:[^:]*:Buzzsaw:1AC8:/
+450.4 "Laceration #3" sync / 1[56]:[^:]*:Buzzsaw:1AC8:/
+453.1 "Bomb Toss" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACE:/
+465.1 "Gobbieboom?" sync / 1[56]:[^:]*:Goblin of Fortune:1AD3:/
+467.2 "Gobrush Rushgob" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACF:/
+470.3 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+
+474.4 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB8|1AB9):/ window 30,10 jump 321.4
+477.6 "Single Charge"
+478.5 "Gobspin Whooshdrops/Gobswipe Conklops"
+484.6 "Gobsway Rumblerocks"
+488.6 "Goblin Rush"
+492.7 "Gobsway Rumblerocks"
+500.9 "Single Charge"
+501.8 "Gobswipe Conklops/Gobspin Whooshdrops"
+508.9 "Gobsway Rumblerocks"
+513.0 "Goblin Rush"
