@@ -17,6 +17,7 @@
 03-hw/raid/a3n.ts
 03-hw/raid/a12n.ts
 03-hw/raid/a6n.ts
+03-hw/trial/sephirot-ex.ts
 04-sb/alliance/orbonne_monastery.ts
 04-sb/alliance/ridorana_lighthouse.ts
 04-sb/alliance/royal_city_of_rabanastre.ts
