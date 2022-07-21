@@ -9,6 +9,7 @@ import { kFlagInstantDeath, playerDamageFields } from '../../../oopsy_common';
 // TODO: Akh Morn puddle damage is effectId=0 0x18 lines from Bleeding B87, but everybody gets this effect temporarily?
 //       it is the only non-zero player dot damage between wroth flames and hot wing and hot-tail, though?
 // TODO: Getting hit by the wrong cauterize at the end of adds phase
+// TODO: trinity autos on wrong people, based on debuffs
 
 export interface Data extends OopsyData {
   towerAbility?: string;
@@ -64,6 +65,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR Holy Comet Holy Impact': '63EA', // meteor explosion from being too close
     'DSR King Thordan Ascalon\'s Mercy Concealed': '63C9', // protean 2nd hit
     'DSR Nidhogg Darkdragon Dive Miss': '671B', // tower failure
+    'DSR Dragon-King Thordan Flames of Ascalon': '6D91', // final phase "get out"
+    'DSR Dragon-King Thordan Ice of Ascalon': '6D92', // final phase "get in"
+    'DSR Dragon-King Thordan Exaflare\'s Edge': '6D9D', // final phase exaflares
   },
   gainsEffectFail: {
     'DSR Burns': 'B81', // fire puddles during Sanctity of the Ward
@@ -93,6 +97,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR Staggering Breath': '6D3D', // solo tank buster from Nidhogg/Hrae during adds phase tethers
     'DSR Hallowed Plume': '6D29', // Hallowed Wings tankbusters
     'DSR Nidhogg Spreading Flames': '742B', // Wroth Flames spread
+    'DSR King Thordan Trinity Highest Enmity': '6D9F', // Trinity auto
+    'DSR King Thordan Trinity Second Enmity': '6DA0', // Trinity auto
+    'DSR King Thordan Trinity Nearest': '6DA1', // Trinity auto
   },
   soloWarn: {
     'DSR Ser Haumeric Hiemal Storm': '63E7', // Sanctity of the Ward ice pair stacks
