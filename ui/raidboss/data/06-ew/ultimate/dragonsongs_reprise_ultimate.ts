@@ -2392,7 +2392,7 @@ const triggerSet: TriggerSet<Data> = {
         effectId: 'C40',
         count: '02',
       }),
-      condition: (data, matches) => data.me === matches.target,
+      condition: (data, matches) => data.me === matches.target && data.role === 'tank',
       alertText: (_data, matches, output) => {
         if (parseFloat(matches.duration) > 10)
           return output.text!();
@@ -2414,7 +2414,7 @@ const triggerSet: TriggerSet<Data> = {
         effectId: 'C3F',
         count: '02',
       }),
-      condition: (data, matches) => data.me === matches.target,
+      condition: (data, matches) => data.me === matches.target && data.role === 'tank',
       // To prevent boss rotating around before Exaflare
       delaySeconds: 2.5,
       alertText: (_data, matches, output) => {
