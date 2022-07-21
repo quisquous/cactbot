@@ -78,9 +78,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'warn',
           blame: matches.target,
-          text: {
-            en: 'Took green; orange debuff',
-          },
+          text: matches.ability,
         };
       },
     },
@@ -93,9 +91,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'warn',
           blame: matches.target,
-          text: {
-            en: 'Took orange; green debuff',
-          },
+          text: matches.ability,
         };
       },
     },
@@ -108,25 +104,25 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'warn',
           blame: matches.target,
-          text: {
-            en: 'Tower with green',
-          },
+          text: matches.ability,
         };
       },
     },
     {
-      // Only tanks should take towers without a Force debuff.
+      // Only tanks or Blue Mages should take towers without a Force debuff.
       id: 'SephirotEX Fiendish Wail Non-Tank',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1576', source: 'Sephirot' }),
-      condition: (data, matches) => !data.party.isTank(matches.target) && data?.force?.[matches.target] === undefined,
+      condition: (data, matches) => {
+        if (data.party.isTank(matches.target) || data.job === 'BLU')
+          return false;
+        return data?.force?.[matches.target] === undefined;
+      },
       mistake: (_data, matches) => {
         return {
           type: 'fail',
           blame: matches.target,
-          text: {
-            en: 'Non-tank in tower',
-          },
+          text: matches.ability,
         };
       },
     },
@@ -140,9 +136,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return {
           type: 'fail',
           blame: matches.target,
-          text: {
-            en: 'Orange took tether',
-          },
+          text: matches.ability,
         };
       },
     },
