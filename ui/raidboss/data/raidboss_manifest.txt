@@ -77,6 +77,8 @@
 03-hw/dungeon/sohm_al.txt
 03-hw/dungeon/sohm_al_hard.ts
 03-hw/dungeon/sohm_al_hard.txt
+03-hw/dungeon/the_lost_city_of_amdapor_hard.ts
+03-hw/dungeon/the_lost_city_of_amdapor_hard.txt
 03-hw/dungeon/the_vault.ts
 03-hw/dungeon/the_vault.txt
 03-hw/dungeon/xelphatol.ts

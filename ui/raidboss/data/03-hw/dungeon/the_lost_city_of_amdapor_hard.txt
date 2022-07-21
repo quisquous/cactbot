@@ -1,0 +1,175 @@
+### THE LOST CITY OF AMDAPOR (HARD)
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~#
+# ACHAMOTH #
+#~~~~~~~~~~#
+
+# -p 15C6:1022.7 -ii 15C8 15C4
+# 15C4 Proboscis does little damage and makes this encounter hard to time, so ignored.
+# Timings seem to get off if the boss moves around, so extra syncs are added.
+
+1000.0 "--sync--" sync / 00:0839::The Tower Of White will be sealed off/ window 10000,0
+1022.7 "Psycho Squama" sync / 1[56]:[^:]*:Achamoth:15C6:/
+1044.0 "Psycho Squama" sync / 1[56]:[^:]*:Achamoth:15C6:/
+1055.1 "Neuro Squama" sync / 1[56]:[^:]*:Achamoth:15C5:/
+1063.2 "Toxic Squama" sync / 1[56]:[^:]*:Achamoth:15C7:/
+1068.2 "Enthrallment" sync / 1[56]:[^:]*:Whisper of Existence:15C3:/
+1078.3 "Enthrallment" sync / 1[56]:[^:]*:Whisper of Existence:15C3:/
+1089.4 "Psycho Squama" sync / 1[56]:[^:]*:Achamoth:15C6:/
+1109.8 "Toxic Squama" sync / 1[56]:[^:]*:Achamoth:15C7:/
+
+1130.0 "Neuro Squama" sync / 1[56]:[^:]*:Achamoth:15C5:/
+1140.0 "Enthrallment" sync / 1[56]:[^:]*:Whisper of Existence:15C3:/
+1145.1 "Toxic Squama" sync / 1[56]:[^:]*:Achamoth:15C7:/ window 8,8
+1154.1 "Psycho Squama" sync / 1[56]:[^:]*:Achamoth:15C6:/
+1161.1 "Enthrallment" sync / 1[56]:[^:]*:Whisper of Existence:15C3:/
+1183.7 "Toxic Squama" sync / 1[56]:[^:]*:Achamoth:15C7:/ window 8,8
+1194.8 "Psycho Squama" sync / 1[56]:[^:]*:Achamoth:15C6:/
+
+1212.0 "Neuro Squama" sync / 1[56]:[^:]*:Achamoth:15C5:/ window 20,20 jump 1130
+1222.0 "Enthrallment" #sync / 1[56]:[^:]*:Whisper of Existence:15C3:/
+1227.1 "Toxic Squama" #sync / 1[56]:[^:]*:Achamoth:15C7:/
+1236.1 "Psycho Squama" #sync / 1[56]:[^:]*:Achamoth:15C6:/
+1243.1 "Enthrallment" #sync / 1[56]:[^:]*:Whisper of Existence:15C3:/
+1265.7 "Toxic Squama" #sync / 1[56]:[^:]*:Achamoth:15C7:/
+1276.8 "Psycho Squama" #sync / 1[56]:[^:]*:Achamoth:15C6:/
+
+
+#~~~~~~~~~~~~~#
+# WINGED LION #
+#~~~~~~~~~~~~~#
+
+# -p 15CE:2012
+# -it "Winged Lion"
+# -ii 15D1 15D3 15D4 15CF 15CC 15D6 1706 15CD 167B
+
+2000.0 "--sync--" sync / 00:0839::Dark Wings will be sealed off/ window 10000,0
+2012.0 "Ancient Aero" sync / 1[56]:[^:]*:Winged Lion:15CE:/
+2025.1 "Scratch" sync / 1[56]:[^:]*:Winged Lion:15D5:/
+2033.2 "Ancient Stone" sync / 1[56]:[^:]*:Winged Lion:15D2:/
+2043.3 "Scratch" sync / 1[56]:[^:]*:Winged Lion:15D5:/
+
+# can hp% push here
+2049.5 "--sync--" sync / 14:[^:]*:Winged Lion:15C9:/ window 50,5
+2052.5 "--sync--" sync / 1[56]:[^:]*:Winged Lion:15C9:/
+2054.5 "--untargetable--"
+2072.6 "Ancient Holy" sync / 1[56]:[^:]*:Winged Lion:15CA:/ window 20,20
+2074.6 "--targetable--"
+
+2088.7 "Ancient Stone" sync / 1[56]:[^:]*:Winged Lion:15D2:/
+2097.8 "Scratch" sync / 1[56]:[^:]*:Winged Lion:15D5:/
+2105.9 "Scratch" sync / 1[56]:[^:]*:Winged Lion:15D5:/
+2120.0 "Ancient Libra" sync / 1[56]:[^:]*:Winged Lion:167D:/
+2125.1 "Scratch" sync / 1[56]:[^:]*:Winged Lion:15D5:/
+2133.2 "Ancient Stone" sync / 1[56]:[^:]*:Winged Lion:15D2:/
+2138.3 "Scratch" sync / 1[56]:[^:]*:Winged Lion:15D5:/
+
+2143.3 "--sync--" sync / 14:[^:]*:Winged Lion:15C9:/ window 80,5
+2145.6 "--adds--"
+2146.3 "--sync--" sync / 1[56]:[^:]*:Winged Lion:15C9:/
+2148.3 "--untargetable--"
+2166.4 "Ancient Holy" sync / 1[56]:[^:]*:Winged Lion:15CA:/ window 20,20
+2168.4 "--targetable--"
+
+2176.5 "Ancient Libra" sync / 1[56]:[^:]*:Winged Lion:167D:/
+2188.6 "Ancient Aero" sync / 1[56]:[^:]*:Winged Lion:15CE:/
+2196.7 "Scratch" sync / 1[56]:[^:]*:Winged Lion:15D5:/
+2203.7 "Scratch" sync / 1[56]:[^:]*:Winged Lion:15D5:/
+2211.8 "Ancient Stone" sync / 1[56]:[^:]*:Winged Lion:15D2:/
+2218.9 "Scratch" sync / 1[56]:[^:]*:Winged Lion:15D5:/
+2228.0 "Ancient Aero" sync / 1[56]:[^:]*:Winged Lion:15CE:/
+2241.1 "Ancient Libra" sync / 1[56]:[^:]*:Winged Lion:167D:/
+2246.1 "Scratch" sync / 1[56]:[^:]*:Winged Lion:15D5:/
+2254.2 "Ancient Stone" sync / 1[56]:[^:]*:Winged Lion:15D2:/
+2259.3 "Scratch" sync / 1[56]:[^:]*:Winged Lion:15D5:/
+
+2266.7 "--adds--"
+2264.4 "--sync--" sync / 14:[^:]*:Winged Lion:15C9:/ window 80,5
+2267.4 "--sync--" sync / 1[56]:[^:]*:Winged Lion:15C9:/
+2269.4 "--untargetable--"
+2287.5 "Ancient Holy" sync / 1[56]:[^:]*:Winged Lion:15CA:/ window 50,50 jump 2166.4
+2289.5 "--targetable--"
+
+2297.6 "Ancient Libra" #sync / 1[56]:[^:]*:Winged Lion:167D:/
+2309.7 "Ancient Aero" #sync / 1[56]:[^:]*:Winged Lion:15CE:/
+2317.8 "Scratch" #sync / 1[56]:[^:]*:Winged Lion:15D5:/
+2324.8 "Scratch" #sync / 1[56]:[^:]*:Winged Lion:15D5:/
+2332.9 "Ancient Stone" #sync / 1[56]:[^:]*:Winged Lion:15D2:/
+2340.0 "Scratch" #sync / 1[56]:[^:]*:Winged Lion:15D5:/
+2349.1 "Ancient Aero" #sync / 1[56]:[^:]*:Winged Lion:15CE:/
+2362.2 "Ancient Libra" #sync / 1[56]:[^:]*:Winged Lion:167D:/
+2367.2 "Scratch" #sync / 1[56]:[^:]*:Winged Lion:15D5:/
+2375.3 "Ancient Stone" #sync / 1[56]:[^:]*:Winged Lion:15D2:/
+2380.4 "Scratch" #sync / 1[56]:[^:]*:Winged Lion:15D5:/
+
+
+#~~~~~~~~#
+# KURIBU #
+#~~~~~~~~#
+
+# Phase 1
+3000.0 "--sync--" sync / 00:0839::The Protectorate will be sealed off/ window 10000,0
+3007.0 "Glory" sync / 1[56]:[^:]*:Kuribu:15E4:/
+3015.1 "Regen" sync / 1[56]:[^:]*:Kuribu:15DC:/
+3022.2 "Transference" sync / 1[56]:[^:]*:Kuribu:15DE:/
+3032.2 "Cure IV" sync / 1[56]:[^:]*:Kuribu:15DF:/
+3042.4 "Cure III" sync / 1[56]:[^:]*:Kuribu:15D9:/
+3050.5 "Glory" sync / 1[56]:[^:]*:Kuribu:15E4:/
+3058.6 "Glory" sync / 1[56]:[^:]*:Kuribu:15E4:/
+
+3067.7 "Glory" sync / 1[56]:[^:]*:Kuribu:15E4:/
+3075.8 "Regen" sync / 1[56]:[^:]*:Kuribu:15DC:/
+3082.9 "Transference" sync / 1[56]:[^:]*:Kuribu:15DE:/ window 30,30 jump 3022.2
+3092.9 "Cure IV" #sync / 1[56]:[^:]*:Kuribu:15DF:/
+3103.1 "Cure III" #sync / 1[56]:[^:]*:Kuribu:15D9:/
+3111.2 "Glory" #sync / 1[56]:[^:]*:Kuribu:15E4:/
+3119.3 "Glory" #sync / 1[56]:[^:]*:Kuribu:15E4:/
+
+# Phase 2
+3300.0 "--untargetable--" sync / 22:........:Kuribu:........:Kuribu:00/ window 300,0
+3306.0 "--targetable--"
+3306.0 "Reverse" sync / 1[56]:[^:]*:Kuribu:15D8:/ window 306,5
+
+3313.0 "Regen" sync / 1[56]:[^:]*:Kuribu:15DD:/
+3326.1 "Cure IV" sync / 1[56]:[^:]*:Kuribu:15E0:/
+3334.2 "Glory" sync / 1[56]:[^:]*:Kuribu:15E4:/
+3344.3 "Cure III" sync / 1[56]:[^:]*:Kuribu:15DA:/
+3355.5 "Glory" sync / 1[56]:[^:]*:Kuribu:15E4:/
+
+3365.6 "Regen" sync / 1[56]:[^:]*:Kuribu:15DD:/ window 30,30 jump 3313.0
+3378.7 "Cure IV" #sync / 1[56]:[^:]*:Kuribu:15E0:/
+3386.8 "Glory" #sync / 1[56]:[^:]*:Kuribu:15E4:/
+3396.9 "Cure III" #sync / 1[56]:[^:]*:Kuribu:15DA:/
+3408.2 "Glory" #sync / 1[56]:[^:]*:Kuribu:15E4:/
+
+# Phase 3
+3500.0 "--untargetable--" sync / 22:........:Kuribu:........:Kuribu:00/ window 200,0
+3506.0 "--targetable--"
+3506.0 "Reverse" sync / 1[56]:[^:]*:Kuribu:15D8:/
+3511.0 "Decoy" sync / 1[56]:[^:]*:Kuribu:15E1:/ window 511,10
+3511.5 "--targetable--"
+3516.1 "Glory" sync / 1[56]:[^:]*:Kuribu:15E4:/
+3518.2 "Transference" sync / 1[56]:[^:]*:Kuribu:15DE:/
+3528.2 "Cure IV" sync / 1[56]:[^:]*:Kuribu:15DF:/
+3536.3 "Glory" sync / 1[56]:[^:]*:Kuribu:15E4:/
+
+3541.5 "Reverse" sync / 1[56]:[^:]*:Kuribu:15D8:/
+3546.5 "Decoy" sync / 1[56]:[^:]*:Kuribu:15E2:/
+3547.0 "--targetable--"
+3551.6 "Regen" sync / 1[56]:[^:]*:Kuribu:15DD:/
+3579.7 "Cure IV" sync / 1[56]:[^:]*:Kuribu:15E0:/
+3595.8 "Cure III" sync / 1[56]:[^:]*:Kuribu:15DA:/
+3608.0 "Glory" sync / 1[56]:[^:]*:Kuribu:15E4:/
+
+3617.2 "Reverse" sync / 1[56]:[^:]*:Kuribu:15D8:/ window 30,30 jump 3506.0
+3622.2 "Decoy" #sync / 1[56]:[^:]*:Kuribu:15E1:/
+3622.7 "--targetable--"
+3627.3 "Glory" #sync / 1[56]:[^:]*:Kuribu:15E4:/
+3629.4 "Transference" #sync / 1[56]:[^:]*:Kuribu:15DE:/
+3639.4 "Cure IV" #sync / 1[56]:[^:]*:Kuribu:15DF:/
+3647.5 "Glory" #sync / 1[56]:[^:]*:Kuribu:15E4:/
