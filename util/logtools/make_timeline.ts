@@ -474,7 +474,7 @@ const assembleTimelineStrings = (
       const ability = phase.split(':')[0];
       const time = phase.split(':')[1];
       if (ability !== undefined && time !== undefined)
-        phases[ability] = parseInt(time);
+        phases[ability] = parseFloat(time);
     }
   }
 
