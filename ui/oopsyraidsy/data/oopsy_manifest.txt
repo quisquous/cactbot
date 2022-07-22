@@ -14,6 +14,7 @@
 03-hw/dungeon/fractal_continuum.ts
 03-hw/dungeon/gubal_library_hard.ts
 03-hw/dungeon/sohm_al_hard.ts
+03-hw/dungeon/the_lost_city_of_amdapor_hard.ts
 03-hw/raid/a3n.ts
 03-hw/raid/a12n.ts
 03-hw/raid/a10n.ts
