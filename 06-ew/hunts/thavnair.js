@@ -5,18 +5,21 @@ Options.Triggers.push({
       id: 'Hunt Sugriva Spark',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A55', source: 'Sugriva', capture: false }),
+      condition: (data) => data.inCombat,
       response: Responses.getIn(),
     },
     {
       id: 'Hunt Sugriva Scythe Tail',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A56', source: 'Sugriva', capture: false }),
+      condition: (data) => data.inCombat,
       response: Responses.getOut(),
     },
     {
       id: 'Hunt Sugriva Twister',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A53', source: 'Sugriva', capture: false }),
+      condition: (data) => data.inCombat,
       infoText: (_data, _matches, output) => output.knockbackStack(),
       outputStrings: {
         knockbackStack: {
@@ -34,6 +37,7 @@ Options.Triggers.push({
       // This is followed up with Rip (6A58) which is also a tank cleave.
       // We could call out 2x tank cleave, but maybe that's overkill.
       netRegex: NetRegexes.startsUsing({ id: '6A57', source: 'Sugriva' }),
+      condition: (data) => data.inCombat,
       response: Responses.tankCleave(),
     },
     {
@@ -41,12 +45,14 @@ Options.Triggers.push({
       type: 'StartsUsing',
       // One telegraphed circle in front, then some untelegraphed ones.
       netRegex: NetRegexes.startsUsing({ id: '6A59', source: 'Sugriva', capture: false }),
+      condition: (data) => data.inCombat,
       response: Responses.getBehind(),
     },
     {
       id: 'Hunt Sugriva Crosswind',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A5B', source: 'Sugriva', capture: false }),
+      condition: (data) => data.inCombat,
       response: Responses.aoe(),
     },
     {
@@ -125,6 +131,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       // Untelegraphed conal attack.
       netRegex: NetRegexes.startsUsing({ id: '6A62', source: 'Yilan', capture: false }),
+      condition: (data) => data.inCombat,
       response: Responses.getBehind(),
     },
   ],
