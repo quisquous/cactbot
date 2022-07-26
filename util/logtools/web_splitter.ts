@@ -163,8 +163,8 @@ class PageState {
 }
 
 class WebNotifier implements Notifier {
-  public warn(_reason: string, _splitLine?: string[]): void {}
-  public error(_reason: string, _splitLine?: string[]): void {}
+  public warn(_reason: string, _splitLine?: string[]): void {/* noop */}
+  public error(_reason: string, _splitLine?: string[]): void {/* noop */}
 }
 
 const doExport = (state: PageState): void => {
@@ -227,7 +227,7 @@ const doExport = (state: PageState): void => {
   a.setAttribute('download', filename);
   a.href = window.URL.createObjectURL(blob);
   a.click();
-  window.URL.revokeObjectURL(a.href)
+  window.URL.revokeObjectURL(a.href);
 };
 
 const onLoaded = () => {
