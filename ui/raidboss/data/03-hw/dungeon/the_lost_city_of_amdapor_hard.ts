@@ -48,12 +48,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Achamoth Toxic Squama',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
-      condition: Conditions.targetIsYou(),
+      netRegex: NetRegexes.headMarker({ id: '0001', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Away from orb',
+          en: 'Avoid chasing orb',
         },
       },
     },
@@ -120,8 +119,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'LostCityHard Winged Lion Ancient Stone',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '15D2', source: 'Winged Lion', capture: false }),
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '15D2', source: 'Winged Lion', capture: false }),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -140,8 +139,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'LostCityHard Winged Lion Ancient Aero',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '15CE', source: 'Winged Lion', capture: false }),
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '15CE', source: 'Winged Lion', capture: false }),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -174,6 +173,14 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '680', source: 'Light Sprite' }),
       response: Responses.stunOrInterruptIfPossible(),
+    },
+    {
+      id: 'LostCityHard Mana Pot Mysterious Light',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '16C8', source: 'Mana Pot', capture: false }),
+      // These adds tend to do this all at once (or close) so be less noisy.
+      suppressSeconds: 5,
+      response: Responses.lookAway('alert'),
     },
     {
       id: 'LostCityHard Kuribu Regen',
