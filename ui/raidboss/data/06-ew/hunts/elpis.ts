@@ -16,6 +16,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Gurangatch Left Hammer Slammer',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6B65', source: 'Gurangatch', capture: false }),
+      condition: (data) => data.inCombat,
       alarmText: (_data, _matches, output) => output.rightThenLeft!(),
       outputStrings: {
         rightThenLeft: {
@@ -31,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Gurangatch Right Hammer Slammer',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6B66', source: 'Gurangatch', capture: false }),
+      condition: (data) => data.inCombat,
       alarmText: (_data, _matches, output) => output.leftThenRight!(),
       outputStrings: {
         leftThenRight: {
@@ -46,31 +48,35 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Gurangatch Bone Shaker',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6B78', source: 'Gurangatch', capture: false }),
+      condition: (data) => data.inCombat,
       response: Responses.aoe(),
     },
     {
       id: 'Hunt Petalodus Marine Mayhem',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69B7', source: 'Petalodus' }),
-      condition: (data) => data.CanSilence(),
+      condition: (data) => data.inCombat && data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
       id: 'Hunt Petalodus Tidal Guillotine',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69BC', source: 'Petalodus', capture: false }),
+      condition: (data) => data.inCombat,
       response: Responses.getOut(),
     },
     {
       id: 'Hunt Petalodus Ancient Blizzard',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69BD', source: 'Petalodus', capture: false }),
+      condition: (data) => data.inCombat,
       response: Responses.awayFromFront(),
     },
     {
       id: 'Hunt Petalodus Waterga IV',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '69BB', source: 'Petalodus' }),
+      condition: (data) => data.inCombat,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
