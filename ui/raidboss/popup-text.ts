@@ -1488,6 +1488,7 @@ export class PopupText {
       displayLang: this.displayLang,
       currentHP: preserveHP,
       options: this.options,
+      inCombat: this.inCombat,
       ShortName: this.ShortNamify.bind(this),
       StopCombat: () => this.SetInCombat(false),
       ParseLocaleFloat: parseFloat,
