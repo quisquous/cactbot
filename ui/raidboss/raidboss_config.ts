@@ -1114,6 +1114,7 @@ class RaidbossConfigurator {
       lang: this.base.lang,
       currentHP: 1000,
       options: this.base.configOptions,
+      inCombat: true,
       ShortName: (x?: string) => x ?? '???',
       StopCombat: () => {/* noop */},
       ParseLocaleFloat: parseFloat,

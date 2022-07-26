@@ -29,6 +29,7 @@ export interface RaidbossData {
   displayLang: Lang;
   currentHP: number;
   options: BaseOptions;
+  inCombat: boolean;
   ShortName: (x?: string) => string;
   StopCombat: () => void;
   /** @deprecated Use parseFloat instead */
