@@ -15,18 +15,21 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Arch-Eta Energy Wave',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A85', source: 'Arch-Eta', capture: false }),
+      condition: (data) => data.inCombat,
       response: Responses.awayFromFront(),
     },
     {
       id: 'Hunt Arch-Eta Sonic Howl',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A88', source: 'Arch-Eta', capture: false }),
+      condition: (data) => data.inCombat,
       response: Responses.aoe(),
     },
     {
       id: 'Hunt Arch-Eta Tail Swipe',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A86', source: 'Arch-Eta', capture: false }),
+      condition: (data) => data.inCombat,
       alertText: (_data, _matches, output) => output.getFront!(),
       outputStrings: {
         getFront: {
@@ -43,6 +46,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // Before Heavy Stomp (6A87) cast.
       netRegex: NetRegexes.ability({ id: '6A8A', source: 'Arch-Eta', capture: false }),
+      condition: (data) => data.inCombat,
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -58,24 +62,28 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Arch-Eta Steel Fang',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6A89', source: 'Arch-Eta' }),
+      condition: (data) => data.inCombat,
       response: Responses.tankBuster('info'),
     },
     {
       id: 'Hunt Fan Ail Cyclone Wing',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6AF4', source: 'Fan Ail', capture: false }),
+      condition: (data) => data.inCombat,
       response: Responses.aoe(),
     },
     {
       id: 'Hunt Fan Ail Plummet',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6AF2', source: 'Fan Ail', capture: false }),
+      condition: (data) => data.inCombat,
       response: Responses.awayFromFront(),
     },
     {
       id: 'Hunt Fan Ail Divebomb',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6AED', source: 'Fan Ail' }),
+      condition: (data) => data.inCombat,
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.divebombOnYou!();
