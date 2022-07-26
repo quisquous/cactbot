@@ -1,0 +1,41 @@
+:root {
+  --table-cols: 7;
+}
+
+#filedrop {
+  width: 400px;
+  height: 100px;
+  background-color: darkgrey;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#fight-table {
+  display: grid;
+  grid-template-columns: repeat(var(--table-cols), max-content);
+  align-items: center;
+}
+
+#fight-table .header {
+  border-bottom: solid black 2px;
+  font-weight: bold;
+}
+
+#fight-table > div {
+  padding: 4px 8px 8px 4px;
+}
+
+.input-label {
+  display: block;
+  margin: 5px 10px 10px 5px;
+}
+
+button {
+  padding: 5px;
+}
+
+.hide {
+  display: none;
+}
