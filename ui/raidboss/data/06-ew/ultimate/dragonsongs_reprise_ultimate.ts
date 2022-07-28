@@ -214,8 +214,8 @@ const triggerSet: TriggerSet<Data> = {
           return output.vowOn!({ player: data.mortalVowPlayer });
         return output.vowSoon!();
       },
-	    outputStrings: {
-	      vowOnYou: {
+      outputStrings: {
+        vowOnYou: {
           en: 'Vow on you',
         },
         vowOn: {
