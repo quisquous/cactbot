@@ -206,7 +206,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Mortal Vow',
       regex: /Mortal Vow/,
-      beforeSeconds: 5,
+      // 3.7s to avoid early movement at Touchdown and last Mortal Vow
+      beforeSeconds: 3.7,
+      durationSeconds: 3.7,
       infoText: (data, _matches, output) => {
         if (data.me === data.mortalVowPlayer)
           return output.vowOnYou!();
