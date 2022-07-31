@@ -134,6 +134,13 @@ Options.Triggers.push({
       condition: (data) => data.inCombat,
       response: Responses.getBehind(),
     },
+    {
+      id: 'Hunt Yilan Mini Light',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6A5F', source: 'Yilan', capture: false }),
+      condition: (data) => data.inCombat,
+      response: Responses.getOut(),
+    },
   ],
   timelineReplace: [
     {

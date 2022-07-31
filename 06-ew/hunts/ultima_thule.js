@@ -72,29 +72,9 @@ Options.Triggers.push({
     {
       id: 'Hunt Fan Ail Divebomb',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AED', source: 'Fan Ail' }),
+      netRegex: NetRegexes.startsUsing({ id: '6AED', source: 'Fan Ail', capture: false }),
       condition: (data) => data.inCombat,
-      alertText: (data, matches, output) => {
-        if (data.me === matches.target)
-          return output.divebombOnYou();
-        return output.divebombMarker();
-      },
-      outputStrings: {
-        divebombOnYou: {
-          en: 'Divebomb on YOU',
-          de: 'Sturzflug auf DIR',
-          fr: 'Bombe plongeante sur VOUS',
-          cn: '俯冲点名',
-          ko: '나에게 초록징',
-        },
-        divebombMarker: {
-          en: 'Away from Divebomb Marker',
-          de: 'Weg von dem Sturzflug-Marker',
-          fr: 'Éloignez-vous de la bombe plongeante',
-          cn: '躲开俯冲点名',
-          ko: '초록징 피하기',
-        },
-      },
+      response: Responses.awayFromFront(),
     },
   ],
   timelineReplace: [
