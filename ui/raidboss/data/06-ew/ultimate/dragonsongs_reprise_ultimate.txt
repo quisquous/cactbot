@@ -315,24 +315,24 @@ hideall "--sync--"
 3535.8 "Staggering Breath" #sync / 1[56]:[^:]*:Nidhogg:6D3D:/
 3543.0 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D30:/
 3554.3 "Akh Afah" sync / 1[56]:[^:]*:Hraesvelgr:6D42:/
-3558.3 "--nidhogg untargetable--"
-3559.5 "--nidhogg targetable--"
+3558.3 "--untargetable--"
+3559.5 "--targetable--"
 3567.4 "Hallowed Wings" sync / 1[56]:[^:]*:Hraesvelgr:(6D23|6D24|6D26|6D27):/
 3568.2 "Hallowed Plume" #sync / 1[56]:[^:]*:Hraesvelgr:6D29:/
 3568.5 "Cauterize" sync / 1[56]:[^:]*:Nidhogg:6D3E:/
-3568.8 "--nidhogg untargetable--"
-3571.9 "--nidhogg targetable--"
+3568.8 "--untargetable--"
+3571.9 "--targetable--"
 3577.0 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D31:/
 3582.4 "Wroth Flames" sync / 1[56]:[^:]*:Nidhogg:6D45:/
-3583.3 "--hraesvelgr untargetable--"
-3584.5 "--hraesvelgr targetable--"
+3583.3 "--untargetable--"
+3584.5 "--targetable--"
 3593.2 "Akh Morn 1" sync / 1[56]:[^:]*:Nidhogg:6D46:/
 3593.3 "Cauterize" sync / 1[56]:[^:]*:Hraesvelgr:6D3F:/
-3593.8 "--hraesvelgr untargetable--"
+3593.8 "--untargetable--"
 3594.9 "Akh Morn 2" #sync / 1[56]:[^:]*:Nidhogg:6D47:/
 3596.5 "Akh Morn 3" #sync / 1[56]:[^:]*:Nidhogg:6D47:/
 3598.1 "Akh Morn 4" #sync / 1[56]:[^:]*:Nidhogg:6D47:/
-3599.1 "--hraesvelgr targetable--"
+3599.1 "--targetable--"
 3605.2 "Hot Tail/Hot Wing" sync / 1[56]:[^:]*:Nidhogg:(6D2D|6D2B):/
 3607.2 "Spreading Flames" #sync / 1[56]:[^:]*:Nidhogg:742B:/
 3607.2 "Entangled Flames" #sync / 1[56]:[^:]*:Nidhogg:742C:/
