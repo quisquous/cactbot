@@ -319,8 +319,8 @@ hideall "--sync--"
 3559.5 "--nidhogg targetable--"
 3567.4 "Hallowed Wings" sync / 1[56]:[^:]*:Hraesvelgr:(6D23|6D24|6D26|6D27):/
 3568.2 "Hallowed Plume" #sync / 1[56]:[^:]*:Hraesvelgr:6D29:/
-3568.8 "--nidhogg untargetable--"
 3568.5 "Cauterize" sync / 1[56]:[^:]*:Nidhogg:6D3E:/
+3568.8 "--nidhogg untargetable--"
 3571.9 "--nidhogg targetable--"
 3577.0 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D31:/
 3582.4 "Wroth Flames" sync / 1[56]:[^:]*:Nidhogg:6D45:/
