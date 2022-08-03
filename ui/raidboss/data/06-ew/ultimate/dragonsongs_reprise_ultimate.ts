@@ -2436,6 +2436,10 @@ const triggerSet: TriggerSet<Data> = {
       'replaceText': {
         'Empty Dimension/Full Dimension': 'Empty/Full Dimension',
         'Lash and Gnash/Gnash and Lash': 'Lash and Gnash',
+        '--hraesvelgr targetable--': '--hrae targetable--',
+        '--hraesvelgr untargetable--': '--hrae untargetable--',
+        '--nidhogg targetable--': '--nid targetable--',
+        '--nidhogg untargetable--': '--nid untargetable--',
         'Ice of Ascalon/Flames of Ascalon': 'Ice/Flames of Ascalon',
       },
     },
