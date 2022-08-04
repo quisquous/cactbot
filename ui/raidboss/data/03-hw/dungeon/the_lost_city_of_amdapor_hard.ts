@@ -31,6 +31,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         comfort: {
           en: '/comfort ${name}',
+          de: '/trösten ${name}',
         },
       },
     },
@@ -42,6 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go to edge; look outside',
+          de: 'Geh zum Rand und schau nach draußen',
         },
       },
     },
@@ -53,6 +55,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid chasing orb',
+          de: 'Weiche dem verfolgenden Orb aus',
         },
       },
     },
@@ -87,6 +90,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid Aero',
+          de: 'Vermeide Wind',
         },
       },
     },
@@ -108,6 +112,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid Stone',
+          de: 'Vermeide Stein',
         },
       },
     },
@@ -126,9 +131,11 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           pop: {
             en: 'Pop stone orb',
+            de: 'Nimm Stein Orb',
           },
           avoid: {
             en: 'Avoid stone orb',
+            de: 'Vermeide Stein Orb',
           },
         };
 
@@ -146,9 +153,11 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           pop: {
             en: 'Pop aero orb',
+            de: 'Nimm Wind Orb',
           },
           avoid: {
             en: 'Avoid aero orb',
+            de: 'Vermeide Wind Orb',
           },
         };
 
@@ -165,6 +174,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Pop holy orb',
+          de: 'Nimm Sanctus Orb',
         },
       },
     },
@@ -191,6 +201,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Move boss out of puddle',
+          de: 'Bewege Boss aus der Fläche',
         },
       },
     },
@@ -203,6 +214,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Stand in Circle',
+          de: 'In einem Kreis stehen',
         },
       },
     },
@@ -212,6 +224,163 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.headMarker({ id: '004A' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Achamoth': 'Achamoth',
+        'Dark Wings': 'Dunkle Schwingen',
+        'Kuribu': 'Kuribu',
+        'The Protectorate': 'Weihestätte',
+        'The Tower Of White': 'Weißmagischer Turm',
+        'Whisper of Existence': 'Trugbild',
+        'Winged Lion': 'Schwingenlöwe',
+      },
+      'replaceText': {
+        'Ancient Aero': 'Antiker Wind',
+        'Ancient Holy': 'Sanctus Antiquus',
+        'Ancient Libra': 'Antike Analyse',
+        'Ancient Stone': 'Antiker Stein',
+        'Cure III': 'Vitaga',
+        'Cure IV': 'Vitaka',
+        'Decoy': 'Lockvogel',
+        'Enthrallment': 'Bezauberung',
+        'Glory': 'Ruhm',
+        'Neuro Squama': 'Neuroschuppen',
+        'Psycho Squama': 'Psychoschuppen',
+        'Regen': 'Regena',
+        'Reverse': 'Umkehrung',
+        'Scratch': 'Schramme',
+        'Toxic Squama': 'Giftschuppen',
+        'Transference': 'Transfer',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Achamoth': 'Achamoth',
+        'Dark Wings': 'Ailes sombres',
+        'Kuribu': 'Kuribu',
+        'The Protectorate': 'Protectorat',
+        'The Tower Of White': 'Tour des Guérisseurs',
+        'Whisper of Existence': 'mirage',
+        'Winged Lion': 'lion ailé',
+      },
+      'replaceText': {
+        'Ancient Aero': 'Vent ancien',
+        'Ancient Holy': 'Miracle ancien',
+        'Ancient Libra': 'Acuité ancienne',
+        'Ancient Stone': 'Terre ancienne',
+        'Cure III': 'Méga Soin',
+        'Cure IV': 'Giga Soin',
+        'Decoy': 'Leurre',
+        'Enthrallment': 'Fascination',
+        'Glory': 'Gloire',
+        'Neuro Squama': 'Photo-écailles',
+        'Psycho Squama': 'Psycho-écailles',
+        'Regen': 'Récup',
+        'Reverse': 'Inversion',
+        'Scratch': 'Griffade',
+        'Toxic Squama': 'Toxico-écailles',
+        'Transference': 'Transfert',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Achamoth': 'アカモート',
+        'Dark Wings': '黒風',
+        'Kuribu': 'クリブ',
+        'The Protectorate': '守護の聖域',
+        'The Tower Of White': '白魔道士の塔',
+        'Whisper of Existence': '冒険者の幻影',
+        'Winged Lion': 'ウィングドライオン',
+      },
+      'replaceText': {
+        'Ancient Aero': 'エンシェントエアロ',
+        'Ancient Holy': 'エンシェントホーリー',
+        'Ancient Libra': 'エンシェントライブラ',
+        'Ancient Stone': 'エンシェントストーン',
+        'Cure III': 'ケアルガ',
+        'Cure IV': 'ケアルジャ',
+        'Decoy': 'デコイ',
+        'Enthrallment': '無我夢中',
+        'Glory': 'グローリーブレード',
+        'Neuro Squama': '幻惑の鱗粉',
+        'Psycho Squama': '魅了の鱗粉',
+        'Regen': 'リジェネ',
+        'Reverse': 'リバース',
+        'Scratch': 'スクラッチ',
+        'Toxic Squama': '毒素の鱗粉',
+        'Transference': '転移',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Achamoth': '阿卡莫特',
+        'Dark Wings': '黑旋风',
+        'Kuribu': '基路伯',
+        'The Protectorate': '守护圣域',
+        'The Tower Of White': '白魔法师塔',
+        'Whisper of Existence': '冒险者的幻影',
+        'Winged Lion': '双翼飞狮',
+      },
+      'replaceText': {
+        'Ancient Aero': '古代疾风',
+        'Ancient Holy': '古代神圣',
+        'Ancient Libra': '古代侦测',
+        'Ancient Stone': '古代飞石',
+        'Cure III': '愈疗',
+        'Cure IV': '圣疗',
+        'Decoy': '引诱',
+        'Enthrallment': '醉生梦死',
+        'Glory': '荣耀之剑',
+        'Neuro Squama': '幻惑鳞粉',
+        'Psycho Squama': '魅惑鳞粉',
+        'Regen': '再生',
+        'Reverse': '逆转',
+        'Scratch': '抓击',
+        'Toxic Squama': '毒素鳞粉',
+        'Transference': '转移',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Achamoth': '아카모트',
+        'Dark Wings': '흑풍',
+        'Kuribu': '쿠리부',
+        'The Protectorate': '수호의 성역',
+        'The Tower Of White': '백마도사의 탑',
+        'Whisper of Existence': '모험가의 환영',
+        'Winged Lion': '날개사자',
+      },
+      'replaceText': {
+        'Ancient Aero': '에인션트 에어로',
+        'Ancient Holy': '에인션트 홀리',
+        'Ancient Libra': '에인션트 라이브라',
+        'Ancient Stone': '에인션트 스톤',
+        'Cure III': '케알가',
+        'Cure IV': '케알쟈',
+        'Decoy': '유인',
+        'Enthrallment': '호접몽',
+        'Glory': '영광의 검',
+        'Neuro Squama': '현혹의 비늘가루',
+        'Psycho Squama': '매혹의 비늘가루',
+        'Regen': '리제네',
+        'Reverse': '역전',
+        'Scratch': '생채기',
+        'Toxic Squama': '독소 비늘가루',
+        'Transference': '전이',
+      },
     },
   ],
 };
