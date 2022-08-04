@@ -305,6 +305,7 @@ hideall "--sync--"
 # 6D2D => 6D2E Hot Tail
 # 6D2B => 6D2C Hot Wing
 3500.0 "--sync--" sync / 1[56]:[^:]*:King Thordan:6667:/ window 500,0
+3517.3 "--targetable--"
 3535.0 "Great Wyrmsbreath" sync / 1[56]:[^:]*:Hraesvelgr:6D35:/
 3535.0 "Dread Wyrmsbreath" #sync / 1[56]:[^:]*:Nidhogg:6D33:/
 3535.7 "Swirling Blizzard" #sync / 1[56]:[^:]*:Hraesvelgr:6D38:/
@@ -314,16 +315,24 @@ hideall "--sync--"
 3535.8 "Staggering Breath" #sync / 1[56]:[^:]*:Nidhogg:6D3D:/
 3543.0 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D30:/
 3554.3 "Akh Afah" sync / 1[56]:[^:]*:Hraesvelgr:6D42:/
+3558.3 "--untargetable--"
+3559.5 "--targetable--"
 3567.4 "Hallowed Wings" sync / 1[56]:[^:]*:Hraesvelgr:(6D23|6D24|6D26|6D27):/
 3568.2 "Hallowed Plume" #sync / 1[56]:[^:]*:Hraesvelgr:6D29:/
 3568.5 "Cauterize" sync / 1[56]:[^:]*:Nidhogg:6D3E:/
+3568.8 "--untargetable--"
+3571.9 "--targetable--"
 3577.0 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D31:/
 3582.4 "Wroth Flames" sync / 1[56]:[^:]*:Nidhogg:6D45:/
+3583.3 "--untargetable--"
+3584.5 "--targetable--"
 3593.2 "Akh Morn 1" sync / 1[56]:[^:]*:Nidhogg:6D46:/
 3593.3 "Cauterize" sync / 1[56]:[^:]*:Hraesvelgr:6D3F:/
+3593.8 "--untargetable--"
 3594.9 "Akh Morn 2" #sync / 1[56]:[^:]*:Nidhogg:6D47:/
 3596.5 "Akh Morn 3" #sync / 1[56]:[^:]*:Nidhogg:6D47:/
 3598.1 "Akh Morn 4" #sync / 1[56]:[^:]*:Nidhogg:6D47:/
+3599.1 "--targetable--"
 3605.2 "Hot Tail/Hot Wing" sync / 1[56]:[^:]*:Nidhogg:(6D2D|6D2B):/
 3607.2 "Spreading Flames" #sync / 1[56]:[^:]*:Nidhogg:742B:/
 3607.2 "Entangled Flames" #sync / 1[56]:[^:]*:Nidhogg:742C:/
@@ -342,9 +351,13 @@ hideall "--sync--"
 3655.9 "Holy Orb" #sync / 1[56]:[^:]*:Hraesvelgr:6D3A:/
 3655.9 "Flame Breath" #sync / 1[56]:[^:]*:Nidhogg:6D36:/
 3655.9 "Dark Orb" #sync / 1[56]:[^:]*:Nidhogg:6D39:/
+3661.2 "--untargetable--"
+3662.4 "--targetable--"
 3668.4 "Cauterize" sync / 1[56]:[^:]*:Hraesvelgr:6D3F:/
+3668.7 "--untargetable--"
 3674.5 "--sync--" sync / 1[56]:[^:]*:Hraesvelgr:6D40:/
 3675.4 "Touchdown" sync / 1[56]:[^:]*:(Hraesvelgr|Nidhogg):70E7:/
+3675.7 "--targetable--"
 3679.1 "Mortal Vow" sync / 1[56]:[^:]*:Nidhogg:6D31:/
 3701.8 "Revenge of the Horde (enrage)" sync / 1[56]:[^:]*:(Hraesvelgr|Nidhogg):6D21:/
 
@@ -365,7 +378,7 @@ hideall "--sync--"
 
 # Phase 7: Dragon-king Thordan
 # Note: Nidhogg seems to get named for the first Chariot
-# Note: King Thordon can appear as one of the Exaflare casters in the first set
+# Note: King Thordan can appear as one of the Exaflare casters in the first set
 # Note: Many of these spells are not named in garland db, so here is a name mapping:
 # Exaflare's Edge Spells:
 #   6D9B = Cast
@@ -397,6 +410,7 @@ hideall "--sync--"
 4001.8 "--sync--" sync / 1[56]:[^:]*:Left Eye:63F3:/
 4002.0 "--sync--" #sync / 1[56]:[^:]*:Right Eye:63F3:/
 4015.8 "Alternative End" sync / 1[56]:[^:]*:Dragon-king Thordan:7438:/
+4024.8 "--targetable--"
 4035.1 "--sync--" sync / 1[56]:[^:]*:Dragon-king Thordan:6D9B:/
 4036.0 "Exaflare's Edge" duration 9.3 #sync / 1[56]:[^:]*:Dragon-king Thordan:6D9C:/
 4036.2 "Ice of Ascalon/Flames of Ascalon" sync / 1[56]:[^:]*:(Nidhogg|Dragon-king Thordan):(6D92|6D91):/
