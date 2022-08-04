@@ -251,9 +251,9 @@ hideall "--sync--"
 3050.1 "Cauterize" sync / 1[56]:[^:]*:Darkscale:6B8D:/
 3050.2 "Altar Flare 3" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
 3050.3 "Empty Dimension" sync / 1[56]:[^:]*:Ser Grinnaux:62DA:/
+3051.4 "--targetable--"
 3051.7 "Altar Flare 4" #sync / 1[56]:[^:]*:Ser Charibert:63E5:/
 
-3051.4 "--targetable--"
 3057.4 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:63C6:/
 3067.8 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:63C7:/
 3071.0 "Ascalon's Might 1" #sync / 1[56]:[^:]*:King Thordan:63C5:/
