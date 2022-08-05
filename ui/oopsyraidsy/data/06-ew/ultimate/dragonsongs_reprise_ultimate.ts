@@ -157,6 +157,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             blame: name,
             text: {
               en: 'Missed Tower',
+              de: 'Tower verfehlt',
               cn: '错过塔',
               ko: '기둥 놓침',
             },
@@ -274,6 +275,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.id,
           text: {
             en: 'Pyretic',
+            de: 'Pyretisch',
             ko: '열병',
           },
         };
