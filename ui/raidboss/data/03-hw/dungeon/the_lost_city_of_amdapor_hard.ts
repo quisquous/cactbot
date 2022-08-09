@@ -32,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
         comfort: {
           en: '/comfort ${name}',
           de: '/trösten ${name}',
+          cn: '/安慰 ${name}',
         },
       },
     },
@@ -44,6 +45,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to edge; look outside',
           de: 'Geh zum Rand und schau nach draußen',
+          cn: '去场边; 看场外',
         },
       },
     },
@@ -56,6 +58,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid chasing orb',
           de: 'Weiche dem verfolgenden Orb aus',
+          cn: '躲避追踪球',
         },
       },
     },
@@ -91,6 +94,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Aero',
           de: 'Vermeide Wind',
+          cn: '躲避风',
         },
       },
     },
@@ -113,6 +117,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Stone',
           de: 'Vermeide Stein',
+          cn: '躲避石',
         },
       },
     },
@@ -132,10 +137,12 @@ const triggerSet: TriggerSet<Data> = {
           pop: {
             en: 'Pop stone orb',
             de: 'Nimm Stein Orb',
+            cn: '踩石圈',
           },
           avoid: {
             en: 'Avoid stone orb',
             de: 'Vermeide Stein Orb',
+            cn: '躲避石圈',
           },
         };
 
@@ -154,10 +161,12 @@ const triggerSet: TriggerSet<Data> = {
           pop: {
             en: 'Pop aero orb',
             de: 'Nimm Wind Orb',
+            cn: '踩风圈',
           },
           avoid: {
             en: 'Avoid aero orb',
             de: 'Vermeide Wind Orb',
+            cn: '躲避风圈',
           },
         };
 
@@ -175,6 +184,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Pop holy orb',
           de: 'Nimm Sanctus Orb',
+          cn: '踩神圣圈',
         },
       },
     },
@@ -202,6 +212,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move boss out of puddle',
           de: 'Bewege Boss aus der Fläche',
+          cn: '把BOSS拉出罩子',
         },
       },
     },
@@ -215,6 +226,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand in Circle',
           de: 'In einem Kreis stehen',
+          cn: '站进圈圈',
         },
       },
     },
@@ -334,7 +346,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Achamoth': '阿卡莫特',
         'Dark Wings': '黑旋风',
@@ -349,6 +360,7 @@ const triggerSet: TriggerSet<Data> = {
         'light sprite': '光元精',
       },
       'replaceText': {
+        '--adds--': '--小怪--',
         'Ancient Aero': '古代疾风',
         'Ancient Holy': '古代神圣',
         'Ancient Libra': '古代侦测',

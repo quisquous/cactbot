@@ -276,6 +276,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Pyretic',
             de: 'Pyretisch',
+            cn: '热病',
             ko: '열병',
           },
         };
