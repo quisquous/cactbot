@@ -388,6 +388,7 @@ const data: ZoneInfoType = {
     'contentType': 6,
     'exVersion': 0,
     'name': {
+      'cn': '角力学校',
       'de': 'Die Palästra',
       'en': 'The Palaistra',
       'fr': 'Le Palestre',
@@ -402,6 +403,7 @@ const data: ZoneInfoType = {
     'contentType': 6,
     'exVersion': 0,
     'name': {
+      'cn': '火山之心',
       'de': 'Das Herz des Vulkans',
       'en': 'The Volcanic Heart',
       'fr': 'Le Cœur volcanique',
@@ -416,6 +418,7 @@ const data: ZoneInfoType = {
     'contentType': 6,
     'exVersion': 0,
     'name': {
+      'cn': '九霄云上',
       'de': 'Wolke Sieben',
       'en': 'Cloud Nine',
       'fr': 'Le Petit Nuage',
@@ -430,6 +433,7 @@ const data: ZoneInfoType = {
     'contentType': 4,
     'exVersion': 4,
     'name': {
+      'cn': '究极神兵幻巧战',
       'de': 'Traumprüfung - Ultima',
       'en': 'Ultima\'s Bane (Unreal)',
       'fr': 'Le fléau d\'Ultima (irréel)',
@@ -636,6 +640,7 @@ const data: ZoneInfoType = {
     'contentType': 4,
     'exVersion': 0,
     'name': {
+      'cn': '究极神兵破坏作战',
       'de': 'Porta Decumana',
       'en': 'The Porta Decumana',
       'fr': 'Porta Decumana',
@@ -650,6 +655,7 @@ const data: ZoneInfoType = {
     'contentType': 7,
     'exVersion': 0,
     'name': {
+      'cn': '里塔提恩强攻战',
       'de': 'Kap Westwind',
       'en': 'Cape Westwind',
       'fr': 'Le Cap Vendouest',
@@ -664,6 +670,7 @@ const data: ZoneInfoType = {
     'contentType': 2,
     'exVersion': 4,
     'name': {
+      'cn': '近东秘宝阿尔扎达尔海底遗迹群',
       'de': 'Alzadaals Vermächtnis',
       'en': 'Alzadaal\'s Legacy',
       'fr': 'Le legs d\'Alzadaal',
@@ -678,6 +685,7 @@ const data: ZoneInfoType = {
     'contentType': 7,
     'exVersion': 4,
     'name': {
+      'cn': '涅尔瓦的帝国',
       'de': 'Nervas Reich',
       'en': 'Forlorn Glory',
       'fr': 'Nerva, le patriote',
@@ -692,6 +700,7 @@ const data: ZoneInfoType = {
     'contentType': 7,
     'exVersion': 0,
     'name': {
+      'cn': '拉哈布雷亚讨伐战',
       'de': 'Das Antlitz der Kaltblütigkeit',
       'en': 'Devastation',
       'fr': 'Le Praetorium en flammes',
@@ -706,6 +715,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '灿烂神域阿格莱亚',
       'de': 'Aglaia',
       'en': 'Aglaia',
       'fr': 'Domaine divin - Aglaé',
@@ -720,6 +730,7 @@ const data: ZoneInfoType = {
     'contentType': 6,
     'exVersion': 0,
     'name': {
+      'cn': '水晶冲突（角力学校：自定赛）',
       'de': 'Crystalline Conflict: Die Palästra (Schaukampf)',
       'en': 'Crystalline Conflict (Custom Match - The Palaistra)',
       'fr': 'Crystalline Conflict (partie personnalisée - Le Palestre)',
@@ -734,6 +745,7 @@ const data: ZoneInfoType = {
     'contentType': 6,
     'exVersion': 0,
     'name': {
+      'cn': '水晶冲突（火山之心：自定赛）',
       'de': 'Crystalline Conflict: Das Herz des Vulkans (Schaukampf)',
       'en': 'Crystalline Conflict (Custom Match - The Volcanic Heart)',
       'fr': 'Crystalline Conflict (partie personnalisée - Le Cœur volcanique)',
@@ -748,6 +760,7 @@ const data: ZoneInfoType = {
     'contentType': 6,
     'exVersion': 0,
     'name': {
+      'cn': '水晶冲突（九霄云上：自定赛）',
       'de': 'Crystalline Conflict: Wolke Sieben (Schaukampf)',
       'en': 'Crystalline Conflict (Custom Match - Cloud Nine)',
       'fr': 'Crystalline Conflict (partie personnalisée - Le Petit Nuage)',
@@ -8205,6 +8218,7 @@ const data: ZoneInfoType = {
     'contentType': 4,
     'exVersion': 4,
     'name': {
+      'cn': '终极之战',
       'de': 'Eschatos - Endsängerin',
       'en': 'The Minstrel\'s Ballad: Endsinger\'s Aria',
       'fr': 'Le Répons final (extrême)',
