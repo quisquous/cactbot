@@ -32,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
         comfort: {
           en: '/comfort ${name}',
           de: '/trösten ${name}',
+          ko: '/위로 ${name}',
         },
       },
     },
@@ -44,6 +45,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to edge; look outside',
           de: 'Geh zum Rand und schau nach draußen',
+          ko: '구석에서 바깥 보기',
         },
       },
     },
@@ -56,6 +58,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid chasing orb',
           de: 'Weiche dem verfolgenden Orb aus',
+          ko: '유도 구슬 피하기',
         },
       },
     },
@@ -91,6 +94,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Aero',
           de: 'Vermeide Wind',
+          ko: '에어로 피하기',
         },
       },
     },
@@ -113,6 +117,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Stone',
           de: 'Vermeide Stein',
+          ko: '스톤 피하기',
         },
       },
     },
@@ -132,10 +137,12 @@ const triggerSet: TriggerSet<Data> = {
           pop: {
             en: 'Pop stone orb',
             de: 'Nimm Stein Orb',
+            ko: '스톤 구슬 부딪히기',
           },
           avoid: {
             en: 'Avoid stone orb',
             de: 'Vermeide Stein Orb',
+            ko: '스톤 구슬 피하기',
           },
         };
 
@@ -154,10 +161,12 @@ const triggerSet: TriggerSet<Data> = {
           pop: {
             en: 'Pop aero orb',
             de: 'Nimm Wind Orb',
+            ko: '에어로 구슬 부딪히기',
           },
           avoid: {
             en: 'Avoid aero orb',
             de: 'Vermeide Wind Orb',
+            ko: '에어로 구슬 피하기',
           },
         };
 
@@ -175,6 +184,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Pop holy orb',
           de: 'Nimm Sanctus Orb',
+          ko: '홀리 구슬 잡기',
         },
       },
     },
@@ -202,6 +212,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move boss out of puddle',
           de: 'Bewege Boss aus der Fläche',
+          ko: '보스 장판에서 나오도록 유도하기',
         },
       },
     },
@@ -215,6 +226,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand in Circle',
           de: 'In einem Kreis stehen',
+          ko: '보스 장판 안으로',
         },
       },
     },
