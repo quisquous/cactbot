@@ -745,7 +745,7 @@ const triggerSet: TriggerSet<Data> = {
         '(?<! )Fatalism': '宿命',
         'Grip of Despair': '绝望的锁链',
         'Hubris': '傲慢',
-        'Star Collision': '星球碰撞',
+        'Star Collision': '天体撞击',
         'Telomania': '终末狂热',
         'Telos': '终末',
         'Tower Explosion': '塔爆炸',
