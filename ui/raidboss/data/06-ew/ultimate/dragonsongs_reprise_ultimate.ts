@@ -219,12 +219,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         vowOnYou: {
           en: 'Vow on you',
+          ko: '멸살의 맹세 대상자',
         },
         vowOn: {
           en: 'Vow on ${player}',
+          ko: '${player} 멸살의 맹세',
         },
         vowSoon: {
           en: 'Vow soon (Spread)',
+          ko: '곧 멸살의 맹세 (산개)',
         },
       },
     },
