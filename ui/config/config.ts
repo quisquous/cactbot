@@ -541,7 +541,35 @@ export class CactbotConfigurator {
 
     const header = document.createElement('div');
     header.classList.add('overlay-header');
-    header.innerText = group;
+    switch (group) {
+      case 'general':
+        header.innerText = '通用设置';
+        break;
+
+      case 'raidboss':
+        header.innerText = 'raidboss / 时间轴与触发器提示';
+        break;
+
+      case 'jobs':
+        header.innerText = 'jobs / 职业、buff、倒计时监控';
+        break;
+
+      case 'eureka':
+        header.innerText = 'eureka / 优雷卡工具';
+        break;
+
+      case 'oopsyraidsy':
+        header.innerText = 'oopsyraidsy / 失误死亡报告';
+        break;
+
+      case 'radar':
+        header.innerText = 'radar / 狩猎目标监控雷达';
+        break;
+
+      default:
+        header.innerText = group;
+        break;
+    }
     a.appendChild(header);
 
     const groupDiv = document.createElement('div');

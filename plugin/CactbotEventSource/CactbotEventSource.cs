@@ -92,7 +92,7 @@ namespace Cactbot {
     }
 
     public CactbotEventSource(TinyIoCContainer container) : base(container) {
-      Name = "Cactbot Config";
+      Name = "Cactbot设置";
 
       RegisterPresets();
 
@@ -685,21 +685,21 @@ namespace Cactbot {
     }
 
     private void RegisterPresets() {
-      RegisterPreset("Raidboss", width:1100, height:300, Strings.PresetRaidbossCombined, "raidboss");
-      RegisterPreset("Raidboss", width:1100, height:300, Strings.PresetRaidbossAlertOnly, "raidboss_alerts_only");
-      RegisterPreset("Raidboss", width:320, height:220, Strings.PresetRaidbossTimelineOnly, "raidboss_timeline_only");
-      RegisterPreset("Jobs", width:600, height:300, Strings.PresetJobs);
-      RegisterPreset("Eureka", width:400, height:400, Strings.PresetEureka);
-      RegisterPreset("Fisher", width:500, height:500, Strings.PresetFisher);
-      RegisterPreset("OopsyRaidsy", width:400, height:400, Strings.PresetOopsyRaidsy);
-      RegisterPreset("PullCounter", width:200, height:200, Strings.PresetPullCounter);
-      RegisterPreset("Radar", width:300, height:400, Strings.PresetRadar);
-      RegisterPreset("Test", width:300, height:300, Strings.PresetTest);
+      RegisterPreset("Raidboss", 1100, 300, "时间轴与触发器", "raidboss");
+      RegisterPreset("Raidboss", 1100, 300, "触发器", "raidboss_alerts_only");
+      RegisterPreset("Raidboss", 320, 220, "时间轴", "raidboss_timeline_only");
+      RegisterPreset("Jobs", 600, 300, "Buff/倒计时/职业监控", null);
+      RegisterPreset("Eureka", 400, 400, "优雷卡工具", null);
+      RegisterPreset("Fisher", 500, 500, "捕鱼达人", null);
+      RegisterPreset("OopsyRaidsy", 400, 400, "失误死亡报告", null);
+      RegisterPreset("PullCounter", 200, 200, "团灭计数器", null);
+      RegisterPreset("Radar", 300, 400, "目标雷达", null);
+      RegisterPreset("Test", 300, 300, "测试", null);
       // FIXME: these should be consistently named.
-      RegisterDpsPreset(Strings.PresetXephero, "xephero-cactbot", width:600, height:400);
-      RegisterDpsPreset(Strings.PresetRdmty, "dps", width:600, height:400);
+      RegisterDpsPreset("统计 (Xephero样式)", "xephero-cactbot", 600, 400);
+      RegisterDpsPreset("统计 (Rdmty样式)", "dps", 600, 400);
       // External Overlays using Cactbot Plugin
-      RegisterExternalPreset(Strings.PresetZeffUI, "https://zeffuro.github.io/ZeffUI/", width: 800, height: 600);
+      RegisterExternalPreset(Strings.PresetZeffUI, "https://act.diemoe.net/overlays/ZeffUI/", width: 800, height: 600);
     }
 
     // State that is tracked and sent to JS when it changes.

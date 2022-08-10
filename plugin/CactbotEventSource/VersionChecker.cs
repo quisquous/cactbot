@@ -10,7 +10,7 @@ namespace Cactbot {
   class VersionChecker {
     private ILogger logger_ = null;
 
-    public const string kRepo = "quisquous/cactbot";
+    public const string kRepo = "NewMoe-Technology/cactbot";
     public const string kDownloadUrl = "https://github.com/{REPO}/releases/download/v{VERSION}/cactbot-{VERSION}.zip";
 
     public VersionChecker(ILogger logger) {
