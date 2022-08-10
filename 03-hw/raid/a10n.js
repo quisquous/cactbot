@@ -26,6 +26,7 @@ Options.Triggers.push({
         text: {
           en: 'Avoid side saws',
           de: 'Weiche den Sägen an der Seite aus',
+          cn: '躲避场边电锯',
         },
       },
     },
@@ -108,10 +109,12 @@ Options.Triggers.push({
         target: {
           en: 'Get away--Laser on YOU',
           de: 'Geh weg--Laser auf DIR',
+          cn: '出去--激光点名',
         },
         avoid: {
           en: 'Avoid Prey Laser',
           de: 'Weiche dem Markierungs-Laser aus',
+          cn: '躲避追踪激光',
         },
       },
     },

@@ -20,6 +20,7 @@ Options.Triggers.push({
         comfort: {
           en: '/comfort ${name}',
           de: '/trösten ${name}',
+          cn: '/安慰 ${name}',
           ko: '/위로 ${name}',
         },
       },
@@ -33,6 +34,7 @@ Options.Triggers.push({
         text: {
           en: 'Go to edge; look outside',
           de: 'Geh zum Rand und schau nach draußen',
+          cn: '去场边; 看场外',
           ko: '구석에서 바깥 보기',
         },
       },
@@ -46,6 +48,7 @@ Options.Triggers.push({
         text: {
           en: 'Avoid chasing orb',
           de: 'Weiche dem verfolgenden Orb aus',
+          cn: '躲避追踪球',
           ko: '유도 구슬 피하기',
         },
       },
@@ -82,6 +85,7 @@ Options.Triggers.push({
         text: {
           en: 'Avoid Aero',
           de: 'Vermeide Wind',
+          cn: '躲避风',
           ko: '에어로 피하기',
         },
       },
@@ -105,6 +109,7 @@ Options.Triggers.push({
         text: {
           en: 'Avoid Stone',
           de: 'Vermeide Stein',
+          cn: '躲避石',
           ko: '스톤 피하기',
         },
       },
@@ -125,11 +130,13 @@ Options.Triggers.push({
           pop: {
             en: 'Pop stone orb',
             de: 'Nimm Stein Orb',
+            cn: '踩石圈',
             ko: '스톤 구슬 부딪히기',
           },
           avoid: {
             en: 'Avoid stone orb',
             de: 'Vermeide Stein Orb',
+            cn: '躲避石圈',
             ko: '스톤 구슬 피하기',
           },
         };
@@ -148,11 +155,13 @@ Options.Triggers.push({
           pop: {
             en: 'Pop aero orb',
             de: 'Nimm Wind Orb',
+            cn: '踩风圈',
             ko: '에어로 구슬 부딪히기',
           },
           avoid: {
             en: 'Avoid aero orb',
             de: 'Vermeide Wind Orb',
+            cn: '躲避风圈',
             ko: '에어로 구슬 피하기',
           },
         };
@@ -170,6 +179,7 @@ Options.Triggers.push({
         text: {
           en: 'Pop holy orb',
           de: 'Nimm Sanctus Orb',
+          cn: '踩神圣圈',
           ko: '홀리 구슬 잡기',
         },
       },
@@ -198,6 +208,7 @@ Options.Triggers.push({
         text: {
           en: 'Move boss out of puddle',
           de: 'Bewege Boss aus der Fläche',
+          cn: '把BOSS拉出罩子',
           ko: '보스 장판에서 나오도록 유도하기',
         },
       },
@@ -212,6 +223,7 @@ Options.Triggers.push({
         text: {
           en: 'Stand in Circle',
           de: 'In einem Kreis stehen',
+          cn: '站进圈圈',
           ko: '보스 장판 안으로',
         },
       },
@@ -332,7 +344,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Achamoth': '阿卡莫特',
         'Dark Wings': '黑旋风',
@@ -347,6 +358,7 @@ Options.Triggers.push({
         'light sprite': '光元精',
       },
       'replaceText': {
+        '--adds--': '--小怪--',
         'Ancient Aero': '古代疾风',
         'Ancient Holy': '古代神圣',
         'Ancient Libra': '古代侦测',
