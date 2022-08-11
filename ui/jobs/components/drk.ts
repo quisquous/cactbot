@@ -85,7 +85,7 @@ export class DRKComponent extends BaseComponent {
   override onUseAbility(id: string): void {
     switch (id) {
       case kAbility.BloodWeapon: {
-        if (this.ffxivRegion === 'intl') {
+        if (this.ffxivRegion !== 'ko') {
           this.bloodWeapon.duration = 60;
         } else {
           this.bloodWeapon.duration = 10;

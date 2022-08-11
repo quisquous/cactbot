@@ -67,7 +67,7 @@ export class DNCComponent extends BaseComponent {
   }
 
   override onYouLoseEffect(effect: string): void {
-    if (this.ffxivRegion === 'intl') {
+    if (this.ffxivRegion !== 'ko') {
       switch (effect) {
         case EffectId.FlourishingSymmetry:
         case EffectId.FlourishingFlow:
