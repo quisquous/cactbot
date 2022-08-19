@@ -2516,14 +2516,14 @@ const triggerSet: TriggerSet<Data> = {
         const y = parseFloat(matches.y) - 100;
 
         // Collect Gigaflare position
-        matches.id === '6D9A' ? data.firstGigaflare = [x, y]: data.secondGigaflare = [x, y];
+        matches.id === '6D9A' ? data.firstGigaflare = [x, y] : data.secondGigaflare = [x, y];
         if (data.firstGigaflare !== undefined && data.secondGigaflare !== undefined) {
           // Store temporary copies and remove data for next run
           const first = data.firstGigaflare;
           const second = data.secondGigaflare;
           delete data.firstGigaflare;
           delete data.secondGigaflare;
-          
+
           if (first[0] === undefined || first[1] === undefined || second[0] === undefined || second[1] === undefined) {
             console.error(`Gigaflare: missing coordinates`);
             return;
