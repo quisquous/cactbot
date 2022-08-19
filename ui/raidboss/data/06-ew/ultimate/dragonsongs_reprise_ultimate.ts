@@ -2529,7 +2529,7 @@ const triggerSet: TriggerSet<Data> = {
             return;
           }
           // Compute atan2 of determinant and dot product to get rotational direction
-          const result = Math.atan2(first[0] * second[1] - second[0] * first[1], first[0] * second[0] + first[0] * second[0]);
+          const result = Math.atan2(first[0] * second[1] - first[1] * second[0], first[0] * second[0] + first[1] * second[1]);
           if (result > 0)
             return output.clockwise!();
           if (result < 0)
