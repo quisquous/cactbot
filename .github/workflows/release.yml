@@ -66,24 +66,14 @@ jobs:
         run: |
           mkdir cactbot
           mv publish/cactbot-release/cactbot/ cactbot
-          compress-archive cactbot cactbot.zip
+          compress-archive cactbot cactbot-${{ env.RELEASE_VERSION }}.zip
         shell: pwsh
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: cactbot-${{ env.RELEASE_VERSION }}
-          body: |
-            Changes in this release:
-            - plugin
-            - raidboss
+          name: ${{ env.RELEASE_VERSION }}
+          tag: ${{ github.ref }}
+          artifacts: cactbot-${{ env.RELEASE_VERSION }}.zip
+          artifactContentType: application/zip
           draft: true
-          prerelease: false
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./cactbot.zip
-          asset_name: cactbot-${{ env.RELEASE_VERSION }}.zip
-          asset_content_type: application/zip
+          generateReleaseNotes: true
