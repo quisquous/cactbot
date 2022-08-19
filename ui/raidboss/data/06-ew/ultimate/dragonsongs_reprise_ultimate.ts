@@ -60,6 +60,8 @@ export interface Data extends RaidbossData {
   spreadingFlame: string[];
   entangledFlame: string[];
   mortalVowPlayer?: string;
+  firstGigaflare?: number[];
+  secondGigaflare?: number[];
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -2497,6 +2499,54 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Provoke',
           de: 'Herausforderung',
           ko: '도발',
+        },
+      },
+    },
+    {
+      id: 'DSR Gigaflare',
+      // 6D9A fires first, followed by 6DD2, then 6DD3
+      // 6D99 is cast by boss at the center
+      // Only need to compare the rotation of 6D9A to 6DD2
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['6D9A', '6DD2'], source: 'Dragon-king Thordan' }),
+      alarmText: (data, matches, output) => {
+        // Positions are moved up 100 and right 100
+        const x = parseFloat(matches.x) - 100;
+        const y = parseFloat(matches.y) - 100;
+
+        // Collect Gigaflare position
+        matches.id === '6D9A' ? data.firstGigaflare = [x, y]: data.secondGigaflare = [x, y];
+        if (data.firstGigaflare !== undefined && data.secondGigaflare !== undefined) {
+          // Store temporary copies and remove data for next run
+          const first = data.firstGigaflare;
+          const second = data.secondGigaflare;
+          delete data.firstGigaflare;
+          delete data.secondGigaflare;
+          
+          if (first[0] === undefined || first[1] === undefined || second[0] === undefined || second[1] === undefined) {
+            console.error(`Gigaflare: missing coordinates`);
+            return;
+          }
+          // Compute atan2 of determinant and dot product to get rotational direction
+          const result = Math.atan2(first[0] * second[1] - second[0] * first[1], first[0] * second[0] + first[0] * second[0]);
+          if (result > 0)
+            return output.clockwise!();
+          if (result < 0)
+            return output.counterclock!();
+        }
+      },
+      outputStrings: {
+        clockwise: {
+          en: 'Clockwise',
+          de: 'Im Uhrzeigersinn',
+          ja: '時計回り',
+          ko: '시계방향',
+        },
+        counterclock: {
+          en: 'Counterclockwise',
+          de: 'Gegen den Uhrzeigersinn',
+          ja: '反時計回り',
+          ko: '반시계방향',
         },
       },
     },
