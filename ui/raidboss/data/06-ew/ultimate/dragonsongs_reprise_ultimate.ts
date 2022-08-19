@@ -2509,7 +2509,7 @@ const triggerSet: TriggerSet<Data> = {
       // Only need to compare the rotation of 6D9A to 6DD2
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['6D9A', '6DD2'], source: 'Dragon-king Thordan' }),
-      alarmText: (data, matches, output) => {
+      infoText: (data, matches, output) => {
         // Positions are moved up 100 and right 100
         const x = parseFloat(matches.x) - 100;
         const y = parseFloat(matches.y) - 100;
