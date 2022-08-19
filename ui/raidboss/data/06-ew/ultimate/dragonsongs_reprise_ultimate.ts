@@ -241,7 +241,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6708 = Final Chorus
       // 62E2 = Spear of the Fury
       // 6B86 = Incarnation
-      netRegex: NetRegexes.startsUsing({ id: ['62D4', '63C8', '6708', '62E2', '6B86' ], capture: true }),
+      netRegex: NetRegexes.startsUsing({ id: ['62D4', '63C8', '6708', '62E2', '6B86'], capture: true }),
       run: (data, matches) => {
         // On the unlikely chance that somebody proceeds directly from the checkpoint into the next phase.
         data.brightwingCounter = 1;
@@ -272,7 +272,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // 6667 = unknown_6667
       // 71E4 = Shockwave
-      netRegex: NetRegexes.ability({ id: ['6667', '71E4'], capture: true }),
+      netRegex: NetRegexes.ability({ id: ['6667', '71E4'], source: ['King Thordan', 'Nidhogg'] }),
       suppresSeconds: 1,
       run: (data, matches) => {
         switch (matches.id) {
