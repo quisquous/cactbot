@@ -273,6 +273,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6667 = unknown_6667
       // 71E4 = Shockwave
       netRegex: NetRegexes.ability({ id: ['6667', '71E4'], capture: true }),
+      suppresSeconds: 1,
       run: (data, matches) => {
         switch (matches.id) {
           case '6667':
