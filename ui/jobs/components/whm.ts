@@ -73,7 +73,7 @@ export class WHMComponent extends BaseComponent {
     const lily = jobDetail.lilyStacks;
     // bars milliseconds is countup, so use floor instead of ceil.
     const lilysecond = Math.floor(jobDetail.lilyMilliseconds / 1000);
-    if (this.ffxivRegion === 'intl') {
+    if (this.ffxivRegion !== 'ko') {
       this.lilysecondBox.innerText = lily === 3 ? '' : (20 - lilysecond).toString();
       this.lilysecondBox.parentNode.classList.toggle('full', (lily === 2 && 20 - lilysecond <= 5) || lily === 3);
     } else {
@@ -88,7 +88,7 @@ export class WHMComponent extends BaseComponent {
     switch (id) {
       case kAbility.Aero:
       case kAbility.Aero2:
-        if (this.ffxivRegion === 'intl')
+        if (this.ffxivRegion !== 'ko')
           this.diaBox.duration = 30 + 1;
         else
           this.diaBox.duration = 18 + 1;
