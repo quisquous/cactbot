@@ -268,12 +268,12 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'DSR Phase Tracker P6/P7',
+      id: 'DSR Phase Tracker P6 and P7',
       type: 'Ability',
       // 6667 = unknown_6667
       // 71E4 = Shockwave
-      netRegex: NetRegexes.ability({ id: ['6667', '71E4'], source: ['King Thordan', 'Nidhogg'] }),
-      suppresSeconds: 1,
+      netRegex: NetRegexes.ability({ id: ['6667', '71E4'] }),
+      suppressSeconds: 1,
       run: (data, matches) => {
         switch (matches.id) {
           case '6667':
