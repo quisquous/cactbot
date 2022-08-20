@@ -62,6 +62,7 @@ export interface Data extends RaidbossData {
   mortalVowPlayer?: string;
   firstGigaflare?: number[];
   secondGigaflare?: number[];
+  centerGigaflare?: number[];
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -2508,7 +2509,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6D99 is cast by boss at the center
       // Only need to compare the rotation of 6D9A to 6DD2
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6D9A', '6DD2'], source: 'Dragon-king Thordan' }),
+      netRegex: NetRegexes.startsUsing({ id: ['6D99', '6D9A', '6DD2'], source: 'Dragon-king Thordan' }),
       durationSeconds: 10,
       infoText: (data, matches, output) => {
         // Positions are moved up 100 and right 100
@@ -2516,27 +2517,82 @@ const triggerSet: TriggerSet<Data> = {
         const y = parseFloat(matches.y) - 100;
 
         // Collect Gigaflare position
-        matches.id === '6D9A' ? data.firstGigaflare = [x, y] : data.secondGigaflare = [x, y];
-        if (data.firstGigaflare !== undefined && data.secondGigaflare !== undefined) {
+        switch(matches.id) {
+          case '6D99':
+            data.centerGigaflare = [x, y, parseFloat(matches.heading)];
+            break;
+          case '6D9A':
+            data.firstGigaflare = [x, y];
+            break;
+          case '6DD2':
+            data.secondGigaflare = [x, y];
+            break;
+        }
+
+        if (data.firstGigaflare !== undefined && data.secondGigaflare !== undefined && data.centerGigaflare !== undefined) {
           // Store temporary copies and remove data for next run
           const first = data.firstGigaflare;
           const second = data.secondGigaflare;
+          const center = data.centerGigaflare;
           delete data.firstGigaflare;
           delete data.secondGigaflare;
+          delete data.centerGigaflare;
 
-          if (first[0] === undefined || first[1] === undefined || second[0] === undefined || second[1] === undefined) {
+          if (first[0] === undefined || first[1] === undefined ||
+            second[0] === undefined || second[1] === undefined ||
+            center[0] === undefined || center[1] === undefined || center[2] === undefined) {
             console.error(`Gigaflare: missing coordinates`);
             return;
           }
+
           // Compute atan2 of determinant and dot product to get rotational direction
-          const result = Math.atan2(first[0] * second[1] - first[1] * second[0], first[0] * second[0] + first[1] * second[1]);
-          if (result > 0)
-            return output.clockwise!();
-          if (result < 0)
-            return output.counterclock!();
+          const getRotation = (x1: number, y1: number, x2: number, y2: number) => {
+            return Math.atan2(x1 * y2 - y1 * x2, x1 * x2 + y1 * y2);
+          };
+
+          // Get rotation of first and second gigaflares
+          const rotation = getRotation(first[0], first[1], second[0], second[1]);
+
+          // Compute initial location relative to boss
+          // Calculate point on circle where boss is facing
+          const radius = Math.sqrt((center[0] - first[0]) ** 2 + (center[1] - first[1]) ** 2);
+          const relX = Math.round(radius * Math.sin(center[2]));
+          const relY = Math.round(radius * Math.cos(center[2]));
+
+          // Get rotation of first gigaflare relative to boss
+          const startNum = getRotation(relX, relY, first[0], first[1]);
+          let start;
+
+          // Case for if Front since data for heading is not exact
+          if (Math.round(center[2] / 2) === Math.round(Math.atan2(first[1], first[0])))
+            start = output.front!();
+          else if (startNum > 0)
+            start = output.backLeft!();
+          else if (startNum < 0)
+            start = output.backRight!();
+          else
+            start = output.unknown!();
+
+          if (rotation > 0)
+            return output.directions!({ start: start, rotation: output.clockwise!()});
+          if (rotation < 0)
+            return output.directions!({ start: start, rotation: output.counterclock!()});
         }
       },
       outputStrings: {
+        directions: {
+          en: '${start} => ${rotation}',
+        },
+        backLeft: {
+          en: 'Back left',
+        },
+        backRight: {
+          en: 'Back right',
+        },
+        front: {
+          en: 'Front',
+        },
+        unknown: Outputs.unknown,
         clockwise: {
           en: 'Clockwise',
           de: 'Im Uhrzeigersinn',
