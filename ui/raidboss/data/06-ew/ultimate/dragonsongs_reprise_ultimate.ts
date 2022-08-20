@@ -2538,9 +2538,11 @@ const triggerSet: TriggerSet<Data> = {
           delete data.secondGigaflare;
           delete data.centerGigaflare;
 
-          if (first[0] === undefined || first[1] === undefined ||
+          if (
+            first[0] === undefined || first[1] === undefined ||
             second[0] === undefined || second[1] === undefined ||
-            center[0] === undefined || center[1] === undefined || center[2] === undefined) {
+            center[0] === undefined || center[1] === undefined || center[2] === undefined
+          ) {
             console.error(`Gigaflare: missing coordinates`);
             return;
           }
@@ -2575,12 +2577,14 @@ const triggerSet: TriggerSet<Data> = {
 
           if (rotation > 0) {
             return output.directions!({
-              start: start, rotation: output.clockwise!()
+              start: start,
+              rotation: output.clockwise!(),
             });
           }
           if (rotation < 0) {
             return output.directions!({
-              start: start, rotation: output.counterclock!()
+              start: start,
+              rotation: output.counterclock!(),
             });
           }
         }
