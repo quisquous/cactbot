@@ -2573,10 +2573,16 @@ const triggerSet: TriggerSet<Data> = {
           else
             start = output.unknown!();
 
-          if (rotation > 0)
-            return output.directions!({ start: start, rotation: output.clockwise!() });
-          if (rotation < 0)
-            return output.directions!({ start: start, rotation: output.counterclock!() });
+          if (rotation > 0) {
+            return output.directions!({
+              start: start, rotation: output.clockwise!()
+            });
+          }
+          if (rotation < 0) {
+            return output.directions!({
+              start: start, rotation: output.counterclock!()
+            });
+          }
         }
       },
       outputStrings: {
