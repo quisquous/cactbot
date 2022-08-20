@@ -2517,7 +2517,7 @@ const triggerSet: TriggerSet<Data> = {
         const y = parseFloat(matches.y) - 100;
 
         // Collect Gigaflare position
-        switch(matches.id) {
+        switch (matches.id) {
           case '6D99':
             data.centerGigaflare = [x, y, parseFloat(matches.heading)];
             break;
