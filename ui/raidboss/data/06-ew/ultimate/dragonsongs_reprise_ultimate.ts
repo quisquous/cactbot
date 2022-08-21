@@ -2555,21 +2555,20 @@ const triggerSet: TriggerSet<Data> = {
           // Get rotation of first and second gigaflares
           const rotation = getRotation(first[0], first[1], second[0], second[1]);
 
-          // Compute initial location relative to boss
-          // Calculate point on circle where boss is facing
-          const radius = Math.sqrt((center[0] - first[0]) ** 2 + (center[1] - first[1]) ** 2);
-          const relX = Math.round(radius * Math.sin(center[2]));
-          const relY = Math.round(radius * Math.cos(center[2]));
-
           // Get rotation of first gigaflare relative to boss
           let start;
-
           // Case for if Front since data for heading is not exact
           if (Math.round(center[2] / 2) === Math.round(Math.atan2(first[1], first[0]))) {
             start = output.front!();
           } else {
             // Gigaflare was not in line with boss facing,
-            // check rotation of boss facing to first gigaflare
+            // Compute initial location relative to boss by
+            // calculating point on circle where boss is facing
+            const radius = Math.sqrt((center[0] - first[0]) ** 2 + (center[1] - first[1]) ** 2);
+            const relX = Math.round(radius * Math.sin(center[2]));
+            const relY = Math.round(radius * Math.cos(center[2]));
+
+            // Check rotation of boss facing to first gigaflare:
             const startNum = getRotation(relX, relY, first[0], first[1]);
             if (startNum > 0)
               start = output.backLeft!();
