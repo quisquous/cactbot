@@ -2565,9 +2565,9 @@ const triggerSet: TriggerSet<Data> = {
           let start;
 
           // Case for if Front since data for heading is not exact
-          if (Math.round(center[2] / 2) === Math.round(Math.atan2(first[1], first[0])))
+          if (Math.round(center[2] / 2) === Math.round(Math.atan2(first[1], first[0]))) {
             start = output.front!();
-          else {
+          } else {
             // Gigaflare was not in line with boss facing,
             // check rotation of boss facing to first gigaflare
             const startNum = getRotation(relX, relY, first[0], first[1]);
