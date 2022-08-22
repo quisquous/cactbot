@@ -2548,8 +2548,9 @@ const triggerSet: TriggerSet<Data> = {
           }
 
           // Compute atan2 of determinant and dot product to get rotational direction
+          // Note: X and Y are flipped due to Y axis being reversed
           const getRotation = (x1: number, y1: number, x2: number, y2: number) => {
-            return Math.atan2(x1 * y2 - y1 * x2, x1 * x2 + y1 * y2);
+            return Math.atan2(y1 * x2 - x1 * y2, y1 * y2 + x1 * x2);
           };
 
           // Get rotation of first and second gigaflares
@@ -2570,21 +2571,21 @@ const triggerSet: TriggerSet<Data> = {
 
             // Check rotation of boss facing to first gigaflare:
             const startNum = getRotation(relX, relY, first[0], first[1]);
-            if (startNum > 0)
+            if (startNum < 0)
               start = output.backLeft!();
-            else if (startNum < 0)
+            else if (startNum > 0)
               start = output.backRight!();
             else
               start = output.unknown!();
           }
 
-          if (rotation > 0) {
+          if (rotation < 0) {
             return output.directions!({
               start: start,
               rotation: output.clockwise!(),
             });
           }
-          if (rotation < 0) {
+          if (rotation > 0) {
             return output.directions!({
               start: start,
               rotation: output.counterclock!(),
