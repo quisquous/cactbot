@@ -231,7 +231,7 @@ class UserConfig {
     this.loadUserFiles(overlayName, options, callback);
   }
 
-  loadUserFiles(overlayName: string, options: BaseOptions, callback: () => void) {
+  loadUserFiles(overlayName: string, options: BaseOptions, callback: () => void, loadCss = true) {
     const readOptions = callOverlayHandler({
       call: 'cactbotLoadData',
       overlay: 'options',
@@ -331,7 +331,7 @@ class UserConfig {
         // localFiles may be null if there is no valid user directory.
         const sortedFiles = this.sortUserFiles(Object.keys(localFiles));
         const jsFiles = this.filterUserFiles(sortedFiles, overlayName, '.js');
-        const cssFiles = this.filterUserFiles(sortedFiles, overlayName, '.css');
+        const cssFiles = loadCss ? this.filterUserFiles(sortedFiles, overlayName, '.css') : [];
 
         for (const jsFile of jsFiles) {
           try {
