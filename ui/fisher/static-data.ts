@@ -6227,6 +6227,34 @@ const data: FisherData = {
         'thavnairisches Tintenfische',
         'thavnairischer Tintenfische',
       ],
+      '37697': 'Mayapanzer',
+      '37845': [
+        'Großschwert-Snook',
+        'Großschwert-Snooks',
+      ],
+      '37846': [
+        'Schlammschlucker-Kahlhecht',
+        'Schlammschlucker-Kahlhechte',
+      ],
+      '37847': [
+        'Lalekrabbe',
+        'Lalekrabben',
+      ],
+      '37848': [
+        'Bicuda-Bruder',
+        'Bicuda-Brüder',
+      ],
+      '37849': 'Schattenkaiser',
+      '37850': [
+        'Verschwindarucu',
+        'Verschwindarucus',
+      ],
+      '37851': 'Sternenspäher',
+      '37852': [
+        'Argonauta Argo',
+        'Argonauta Argos',
+      ],
+      '37853': 'Planetes',
     },
     'en': {
       '4776': [
@@ -9436,8 +9464,8 @@ const data: FisherData = {
       ],
       '36421': 'Qeyiq sole',
       '36422': [
-        'Gwl crab',
-        'Gwl crabs',
+        'gwl crab',
+        'gwl crabs',
       ],
       '36423': [
         'pantherscale grouper',
@@ -9720,6 +9748,31 @@ const data: FisherData = {
         'forbiddingways',
       ],
       '36686': 'Thavnairian calamari',
+      '37697': [
+        'Mayashell',
+        'Mayashells',
+      ],
+      '37845': 'greatsword snook',
+      '37846': [
+        'swampsucker bowfin',
+        'swampsucker bowfins',
+      ],
+      '37847': [
+        'lale crab',
+        'lale crabs',
+      ],
+      '37848': 'bigcuda',
+      '37849': [
+        'sovereign shadow',
+        'sovereign shadows',
+      ],
+      '37850': 'disappirarucu',
+      '37851': [
+        'starscryer',
+        'starscryers',
+      ],
+      '37852': 'Argonauta argo',
+      '37853': 'planetes',
     },
     'fr': {
       '4776': [
@@ -12460,7 +12513,7 @@ const data: FisherData = {
       ],
       '27447': [
         'méduse-globule',
-        'méduses-globule',
+        'méduses-globules',
       ],
       '27448': [
         'flet kholusien',
@@ -14185,12 +14238,43 @@ const data: FisherData = {
         'orphie d\'Éblana',
         'orphies d\'Éblana',
       ],
-      '36684': 'Foun Ahlm ',
+      '36684': 'Foun Ahlm',
       '36685': 'Forbiddingway',
       '36686': [
         'calmar thavnairois',
         'calmars thavnairois',
       ],
+      '37697': [
+        'tortue éthérée de la Maya',
+        'tortues éthérées de la Maya',
+      ],
+      '37845': [
+        'snook-grande épée',
+        'snooks-grandes épées',
+      ],
+      '37846': [
+        'poisson-castor palustre',
+        'poissons-castors palustres',
+      ],
+      '37847': [
+        'crabe lale',
+        'crabes lale',
+      ],
+      '37848': 'bœuf-cuda',
+      '37849': [
+        'ombrecouronne',
+        'ombrecouronnes',
+      ],
+      '37850': [
+        'pirarucu imitation',
+        'pirarucus imitations',
+      ],
+      '37851': [
+        'scrutateur stellaire',
+        'scrutateurs stellaires',
+      ],
+      '37852': 'argonauta argo',
+      '37853': 'planetes',
     },
     'ja': {
       '4776': 'マルムケルプ',
@@ -15410,6 +15494,16 @@ const data: FisherData = {
       '36684': 'フォン・アールム',
       '36685': 'フォービディングウェイ',
       '36686': 'サベネアンカラマリ',
+      '37697': 'マーヤーの霊亀',
+      '37845': 'グレートソードスヌーク',
+      '37846': 'スワンプボウフィン',
+      '37847': 'ラーレギュルクラブ',
+      '37848': 'ビッグビックーダ',
+      '37849': '影なる帝冠',
+      '37850': 'イミテーションピラルク',
+      '37851': '破軍星の欠片',
+      '37852': 'アルゴノート・アルゴ',
+      '37853': '水面の恒星',
     },
     'ko': {
       '4776': '말름미역',
@@ -19494,6 +19588,7 @@ const data: FisherData = {
       36392,
       36393,
       36394,
+      37845,
     ],
     '4052': [
       36390,
@@ -19520,6 +19615,7 @@ const data: FisherData = {
       36398,
       36407,
       36408,
+      37846,
     ],
     '4056': [
       36397,
@@ -19546,6 +19642,7 @@ const data: FisherData = {
       36421,
       36422,
       36423,
+      37847,
     ],
     '4060': [
       36420,
@@ -19580,6 +19677,7 @@ const data: FisherData = {
       36441,
       36442,
       36660,
+      37848,
     ],
     '4065': [
       36436,
@@ -19593,6 +19691,7 @@ const data: FisherData = {
       36447,
       36448,
       36449,
+      37697,
     ],
     '4067': [
       36450,
@@ -19616,12 +19715,14 @@ const data: FisherData = {
       36460,
       36461,
       36462,
+      37849,
     ],
     '4070': [
       36463,
       36465,
       36466,
       36467,
+      37850,
     ],
     '4071': [
       36468,
@@ -19641,6 +19742,7 @@ const data: FisherData = {
       36478,
       36479,
       36480,
+      37853,
     ],
     '4074': [
       36476,
@@ -19679,6 +19781,7 @@ const data: FisherData = {
       36501,
       36502,
       36503,
+      37851,
     ],
     '4080': [
       36499,
@@ -19703,6 +19806,7 @@ const data: FisherData = {
       36515,
       36516,
       36517,
+      37852,
     ],
     '4083': [
       36506,
@@ -21440,7 +21544,7 @@ const data: FisherData = {
       '4076': 'apohelos 18-γ',
       '4077': 'apohelos 18-β',
       '4078': 'apohelos 18-α',
-      '4079': 'Wellspring of Regret',
+      '4079': 'wellspring of regret',
       '4080': 'Elegeia',
       '4081': 'limne 18',
       '4082': 'limne 3-α',
@@ -23509,6 +23613,7 @@ const data: FisherData = {
     '36417': 2,
     '36418': 2,
     '36419': 2,
+    '36422': 2,
     '36423': 2,
     '36425': 2,
     '36426': 2,
