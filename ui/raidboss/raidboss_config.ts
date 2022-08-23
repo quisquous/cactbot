@@ -1572,7 +1572,7 @@ const templateOptions: OptionsTemplate = {
     const userOptions = { ...raidbossOptions };
     UserConfig.loadUserFiles('raidboss', userOptions, () => {
       builder.buildUI(container, raidbossFileData, userOptions);
-    });
+    }, false);
   },
   processExtraOptions: (baseOptions, savedConfig) => {
     // TODO: Rewrite user_config to be templated on option type so that this function knows
