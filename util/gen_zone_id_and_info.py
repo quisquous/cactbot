@@ -30,6 +30,7 @@ synthetic_ids = {
     "TheAkhAfahAmphitheatreUnreal": 930,
     "TheNavelUnreal": 953,
     "TheWhorleaterUnreal": 972,
+    "UltimasBaneUnreal": 1035,
 }
 
 synthetic_zone_info = {
@@ -80,6 +81,21 @@ synthetic_zone_info = {
         "offsetY": 0,
         "sizeFactor": 400,
         "weatherRate": 38,
+    },
+    1035: {
+        "contentType": 4,
+        "exVersion": 4,
+        "name": {
+            "cn": "究极神兵幻巧战",
+            "de": "Traumprüfung - Ultima",
+            "en": "Ultima's Bane (Unreal)",
+            "fr": "Le fléau d'Ultima (irréel)",
+            "ja": "幻アルテマウェポン破壊作戦",
+        },
+        "offsetX": 0,
+        "offsetY": 0,
+        "sizeFactor": 400,
+        "weatherRate": 31,
     },
 }
 
