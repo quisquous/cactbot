@@ -510,6 +510,7 @@ const data = {
   'UldahStepsOfNald': 130,
   'UldahStepsOfThal': 131,
   'UltimaThule': 960,
+  'UltimasBaneUnreal': 1035,
   'UnderTheArmor': 190,
   'UpperLaNoscea': 139,
   'UrthsFount': 394,
