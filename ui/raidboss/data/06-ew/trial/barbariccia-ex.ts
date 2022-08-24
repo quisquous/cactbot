@@ -11,6 +11,7 @@ export type Data = RaidbossData;
 // TODO: Add In=>Healer Groups, or Wall (+cardinal?)=>Healer Groups to Deadly Twist
 // TODO: Verify Playstation Marker Ids match: 016F (circle), 0170 (triangle), 0171 (square), 0172 (cross)
 // TODO: Stack callout for the healer that gets stackmarker in phase 2?
+// TODO: Call out a move for the player with Brutal Rush tether to avoid the Gust?
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.StormsCrownExtreme,
@@ -80,6 +81,20 @@ const triggerSet: TriggerSet<Data> = {
           ja: '8方向散開',
           cn: '分散站位',
           ko: '정해진 위치로 산개',
+        },
+      },
+    },
+    {
+      // Is it possible to get the order the player's gust goes off to call out a move?
+      // These also favor a certain order of Tank/Healer for first set then DPS second set
+      id: 'BarbaricciaEx Brutal Rush',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '0011' }),
+      condition: (data, matches) => matches.source === data.me,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Brutal Rush tether on You',
         },
       },
     },
