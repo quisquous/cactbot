@@ -22,6 +22,12 @@ const triggerSet: TriggerSet<Data> = {
       beforeSeconds: 5,
       response: Responses.aoe(),
     },
+    {
+      id: 'BarnaroccoaEx Impact',
+      regex: /Impact/,
+      beforeSeconds: 5,
+      response: Responses.knockback(),
+    },
   ],
   triggers: [
     {
@@ -93,13 +99,6 @@ const triggerSet: TriggerSet<Data> = {
           ko: '플레어 대상자',
         },
       },
-    },
-    {
-      id: 'BarnaroccoaEx Impact',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75A0', source: 'BarbaricciaEx', capture: false }),
-      delaySeconds: 1,
-      response: Responses.knockback(),
     },
     {
       id: 'BarbaricciaEx Playstation Hair Chains',
