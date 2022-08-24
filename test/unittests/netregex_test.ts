@@ -348,7 +348,7 @@ describe('netregex tests', () => {
   });
   it('network6D', () => {
     const lines = [
-      '33|2020-05-13T19:57:07.1320000-07:00|80034E37|40000010|A91|01|02|03|2f54812b15aac21ba1c2f22b477023a9',
+      '33|2020-05-13T19:57:07.1320000-07:00|80034E37|4000000F|A91|01|02|03|2f54812b15aac21ba1c2f22b477023a9',
       '33|2020-03-10T18:19:59.4560000-07:00|80030049|80000001|2EC|00|00|00|1d4cd6ed286bc0a563c2508d4488dc75',
       '33|2020-03-10T23:57:06.1520000-04:00|8003758C|40000001|1518|00|00|00|b0a350a0c04f38c03cb040655e901705',
     ] as const;
@@ -357,7 +357,7 @@ describe('netregex tests', () => {
     const matches = lines[0].match(NetRegexes.network6d())?.groups;
     assert.equal(matches?.type, '33');
     assert.equal(matches?.instance, '80034E37');
-    assert.equal(matches?.command, '40000010');
+    assert.equal(matches?.command, '4000000F');
     assert.equal(matches?.data0, 'A91');
     assert.equal(matches?.data1, '01');
     assert.equal(matches?.data2, '02');

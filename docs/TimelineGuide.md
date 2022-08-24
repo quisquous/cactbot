@@ -875,7 +875,7 @@ In general, most timelines should include some boilerplate at the top like this:
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 10000 jump 0
 
 0 "Start"
 0.0 "--sync--" sync /:Engage!/ window 0,1
@@ -891,7 +891,7 @@ There can be anything in the text, it is just called `--sync--` for convenience.
 
 It's good practice to have a Reset line to stop the timeline when there's a wipe.
 On fights where the entire zone resets (e.g. all of omegascape, a4s, a8s, a12s, t9, t13),
-`sync / 21:........:40000010:/` is a good sync to use.
+`sync / 21:........:4000000F:/` is a good sync to use.
 On fights with zones that seal and unseal, (e.g. a1s,  t1-8)
 you should use the zone sealing message itself to reset.
 
@@ -982,7 +982,7 @@ loops are on less frequent abilities just to be more careful.
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 10000 jump 0
 
 ### Phase 1: skewers and stuns
 0 "Start"

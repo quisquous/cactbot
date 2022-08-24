@@ -427,7 +427,7 @@ export interface TriggerHelper {
 
 const wipeCactbotEcho = NetRegexes.echo({ line: 'cactbot wipe.*?' });
 const wipeEndEcho = NetRegexes.echo({ line: 'end' });
-const wipeFadeIn = NetRegexes.network6d({ command: '40000010' });
+const wipeFadeIn = NetRegexes.network6d({ command: ['40000010', '4000000F'] });
 
 const isWipe = (line: string): boolean => {
   if (
