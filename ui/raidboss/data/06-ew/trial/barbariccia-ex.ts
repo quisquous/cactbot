@@ -9,6 +9,7 @@ export type Data = RaidbossData;
 
 // TODO: Add In=>Spread or Wall (+cardinal?)=>Spread callout to Hair Spray (note this is cast at other phases)
 // TODO: Add In=>Healer Groups, or Wall (+cardinal?)=>Healer Groups to Deadly Twist
+// TODO: Verify Playstation Marker Ids match: 016F (circle), 0170 (triangle), 0171 (square), 0172 (cross)
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.StormsCrownExtreme,
@@ -72,6 +73,58 @@ const triggerSet: TriggerSet<Data> = {
           ja: '8方向散開',
           cn: '分散站位',
           ko: '정해진 위치로 산개',
+        },
+      },
+    },
+    {
+      id: 'BarbaricciaEx Playstation Hair Chains',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker(),
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, matches, output) => {
+        switch (matches.id) {
+          case '016F':
+            return output.circle!();
+            break;
+          case '0170':
+            return output.triangle!();
+            break;
+          case '0171':
+            return output.square!();
+            break;
+          case '0172':
+            return output.cross!();
+            break;
+        }
+      },
+      outputStrings: {
+        circle: {
+          en: 'Red Circle',
+          de: 'Roter Kreis',
+          fr: 'Cercle rouge',
+          ja: '赤まる',
+          ko: '빨강 동그라미',
+        },
+        triangle: {
+          en: 'Green Triangle',
+          de: 'Grünes Dreieck',
+          fr: 'Triangle vert',
+          ja: '緑さんかく',
+          ko: '초록 삼각',
+        },
+        square: {
+          en: 'Purple Square',
+          de: 'Lilanes Viereck',
+          fr: 'Carré violet',
+          ja: '紫しかく',
+          ko: '보라 사각',
+        },
+        cross: {
+          en: 'Blue X',
+          de: 'Blaues X',
+          fr: 'Croix bleue',
+          ja: '青バツ',
+          ko: '파랑 X',
         },
       },
     },
