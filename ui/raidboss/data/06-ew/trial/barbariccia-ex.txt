@@ -94,45 +94,45 @@ hideall "--sync--"
 210.2 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758F:/
 210.9 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758D:/
 212.0 "Upbraid" sync / 1[56]:[^:]*:Barbariccia:75A8:/
-214.9 "Brutal Rush" sync / 1[56]:[^:]*:Barbariccia:7583:/
-216.5 "Brutal Rush" sync / 1[56]:[^:]*:Barbariccia:7583:/
-217.2 "Brutal Gust" sync / 1[56]:[^:]*:Barbariccia:7585:/
-218.3 "Brutal Rush" sync / 1[56]:[^:]*:Barbariccia:7583:/
-218.8 "Brutal Gust" sync / 1[56]:[^:]*:Barbariccia:7585:/
-219.9 "Brutal Rush" sync / 1[56]:[^:]*:Barbariccia:7584:/
-220.5 "Brutal Gust" sync / 1[56]:[^:]*:Barbariccia:7585:/
+214.9 "Brutal Rush 1" sync / 1[56]:[^:]*:Barbariccia:7583:/
+216.5 "Brutal Rush 2" sync / 1[56]:[^:]*:Barbariccia:7583:/
+217.2 "Brutal Gust 1" sync / 1[56]:[^:]*:Barbariccia:7585:/
+218.3 "Brutal Rush 3" sync / 1[56]:[^:]*:Barbariccia:7583:/
+218.8 "Brutal Gust 2" sync / 1[56]:[^:]*:Barbariccia:7585:/
+219.9 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/
+220.5 "Brutal Gust 3" sync / 1[56]:[^:]*:Barbariccia:7585:/
 221.5 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
-222.2 "Brutal Gust" sync / 1[56]:[^:]*:Barbariccia:7585:/
+222.2 "Brutal Gust 4" sync / 1[56]:[^:]*:Barbariccia:7585:/
 222.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7597:/
 225.2 "Knuckle Drum" duration 7.5 #sync / 1[56]:[^:]*:Barbariccia:7598:/
 232.7 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7599:/
 234.8 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7595:/
-238.5 "Brutal Rush" sync / 1[56]:[^:]*:Barbariccia:7583:/
-240.1 "Brutal Rush" sync / 1[56]:[^:]*:Barbariccia:7583:/
+238.5 "Brutal Rush 1" sync / 1[56]:[^:]*:Barbariccia:7583:/
+240.1 "Brutal Rush 2" sync / 1[56]:[^:]*:Barbariccia:7583:/
 240.5 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
-240.8 "Brutal Gust" sync / 1[56]:[^:]*:Barbariccia:7585:/
-241.7 "Brutal Rush" sync / 1[56]:[^:]*:Barbariccia:7583:/
-242.4 "Brutal Gust" sync / 1[56]:[^:]*:Barbariccia:7585:/
+240.8 "Brutal Gust 1" sync / 1[56]:[^:]*:Barbariccia:7585:/
+241.7 "Brutal Rush 3" sync / 1[56]:[^:]*:Barbariccia:7583:/
+242.4 "Brutal Gust 2" sync / 1[56]:[^:]*:Barbariccia:7585:/
 242.5 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
-243.3 "Brutal Rush" sync / 1[56]:[^:]*:Barbariccia:7584:/
-244.0 "Brutal Gust" sync / 1[56]:[^:]*:Barbariccia:7585:/
+243.3 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/
+244.0 "Brutal Gust 3" sync / 1[56]:[^:]*:Barbariccia:7585:/
 244.5 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
 244.9 "Bold Boulder" sync / 1[56]:[^:]*:Barbariccia:759A:/
-245.6 "Brutal Gust" sync / 1[56]:[^:]*:Barbariccia:7585:/
+245.6 "Brutal Gust 4" sync / 1[56]:[^:]*:Barbariccia:7585:/
 246.5 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
 250.1 "Impact" sync / 1[56]:[^:]*:Barbariccia:759F:/
 252.9 "Bold Boulder" sync / 1[56]:[^:]*:Barbariccia:759B:/
 253.3 "Trample" sync / 1[56]:[^:]*:Barbariccia:75A2:/
 256.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
-259.1 "Brutal Rush" sync / 1[56]:[^:]*:Barbariccia:7583:/
-260.7 "Brutal Rush" sync / 1[56]:[^:]*:Barbariccia:7583:/
-261.4 "Brutal Gust" sync / 1[56]:[^:]*:Barbariccia:7585:/
-262.3 "Brutal Rush" sync / 1[56]:[^:]*:Barbariccia:7583:/
-263.0 "Brutal Gust" sync / 1[56]:[^:]*:Barbariccia:7585:/
-264.0 "Brutal Rush" sync / 1[56]:[^:]*:Barbariccia:7584:/
-264.6 "Brutal Gust" sync / 1[56]:[^:]*:Barbariccia:7585:/
+259.1 "Brutal Rush 1" sync / 1[56]:[^:]*:Barbariccia:7583:/
+260.7 "Brutal Rush 2" sync / 1[56]:[^:]*:Barbariccia:7583:/
+261.4 "Brutal Gust 1" sync / 1[56]:[^:]*:Barbariccia:7585:/
+262.3 "Brutal Rush 3" sync / 1[56]:[^:]*:Barbariccia:7583:/
+263.0 "Brutal Gust 2" sync / 1[56]:[^:]*:Barbariccia:7585:/
+264.0 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/
+264.6 "Brutal Gust 3" sync / 1[56]:[^:]*:Barbariccia:7585:/
 265.6 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
-266.3 "Brutal Gust" sync / 1[56]:[^:]*:Barbariccia:7585:/
+266.3 "Brutal Gust 4" sync / 1[56]:[^:]*:Barbariccia:7585:/
 
 # Teasing Tangles 2
 266.7 "Teasing Tangles" sync / 1[56]:[^:]*:Barbariccia:75AA:/
