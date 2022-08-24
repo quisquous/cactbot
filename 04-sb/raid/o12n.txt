@@ -1,7 +1,7 @@
 # Omega - Alphascape V4.0 - O12N
 # -ii 3326 32FA 32FC 32F5 330C 330B 32FE 3302 34CB 32F7 32FB 32F2 32F8 32F9 330E 3318 3306 3307 331C 331D 3395 331F 3324 3321 3310 3393 -p 330F:15.3 3319:700
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 hideall "--Reset--"
 hideall "--sync--"

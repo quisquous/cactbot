@@ -8,7 +8,7 @@ hideall "--sync--"
 hideall "Yata-No-Kagami"
 hideall "Yasakani-No-Magatama"
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 ### Phase 1
 0.0 "--sync--" sync /:Engage!/ window 0,1

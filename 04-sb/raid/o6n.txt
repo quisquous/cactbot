@@ -3,7 +3,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0 "Start" sync / 00:0044:[^:]*:I have claimed the girl in the picture! She's mine! You can't have her!/ window 0,1
 18 "--targetable--"

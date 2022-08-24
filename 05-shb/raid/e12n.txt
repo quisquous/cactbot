@@ -4,7 +4,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 # -ii 4B47 4B1D 5865 585B 586B 5874 5875 5876 587E 587F 5882 5884 5889 588A 588B
 # -ic "Lissom Sculpture" "Beastly Sculpture"

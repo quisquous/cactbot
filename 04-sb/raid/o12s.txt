@@ -6,7 +6,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "Start" sync / 00:0044:[^:]*:I am the Omega/ window 1,0
 2.4 "--sync--" sync / 1[56]:[^:]*:Omega-M:337D:/ window 2.4,0.5 # first auto
@@ -160,7 +160,7 @@ hideall "--sync--"
 # Final Omega - Alphascape V4.0 (Savage) - O12S+
 # -r ch1gtabdwN7QYDR6 -p 336C:3016 -ii 3380 3369 3366 335F 3377 336B 33B5
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 3000.0 "Start"
 3002.5 "--sync--" sync / 1[56]:[^:]*:Omega:3380:/ window 3003,0

@@ -7,7 +7,7 @@ hideall "--sync--"
 # Note: various "Blast" are renamed "Elemental Blast" and various "Arrow" are renamed
 # to be "Elemental Arrow" to avoid having too many skills on the timeline.
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
 
 ### Trinity Seeker

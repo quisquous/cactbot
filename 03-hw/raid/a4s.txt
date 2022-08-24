@@ -8,7 +8,7 @@
 #       From most logs it seemed like ~5.8 seconds before the first ray.
 #       So, I applied that to all perpetual rays.
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 
 ### Leg 1

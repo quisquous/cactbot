@@ -3,7 +3,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 # -ii 669F 66A7 66A8 66A0 66A1 66AF 66B0 66B3 6D0C 6DDC 6EDD
 # -ic "Liturgic Bell"

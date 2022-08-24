@@ -6,7 +6,7 @@ hideall "--sync--"
 
 # -ii 4C30 4C32 4C33 4C36 4C3A 4C49 4D0A 4D0B
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 
 # Opening block

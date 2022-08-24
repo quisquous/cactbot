@@ -4,7 +4,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 ### Eden's Promise
 # -ii 4B1E 58AA 58AB 4E44 4E45 4E46 4E47 589B 4E5A 58A0 58B8 5897 58B0 58B4 4F9E 58BB 58BC

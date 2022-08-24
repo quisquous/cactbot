@@ -6,7 +6,7 @@ hideall "--sync--"
 # Elemental Attack is one of:
 # Aerial Blast, Judgment Bolt, Diamond Dust, Hellfire, Earthen Fury, Tidal Wave
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "--sync--" sync /:Engage!/ window 0,1
 1.0 "--sync--" sync / 1[56]:[^:]*:(Left Wing|Right Wing):1FA9:/ window 1,2
