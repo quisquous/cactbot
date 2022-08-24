@@ -10,6 +10,7 @@ export type Data = RaidbossData;
 // TODO: Add In=>Spread or Wall (+cardinal?)=>Spread callout to Hair Spray (note this is cast at other phases)
 // TODO: Add In=>Healer Groups, or Wall (+cardinal?)=>Healer Groups to Deadly Twist
 // TODO: Verify Playstation Marker Ids match: 016F (circle), 0170 (triangle), 0171 (square), 0172 (cross)
+// TODO: Stack callout for the healer that gets stackmarker in phase 2?
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.StormsCrownExtreme,
@@ -77,6 +78,30 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'BarbaricciaEx Bold Boulder',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '015A' }),
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Flare on YOU',
+          de: 'Flare auf DIR',
+          fr: 'Brasier sur VOUS',
+          ja: '自分にフレア',
+          cn: '核爆点名',
+          ko: '플레어 대상자',
+        },
+      },
+    },
+    {
+      id: 'BarnaroccoaEx Impact',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '75A0', source: 'BarbaricciaEx', capture: false }),
+      delaySeconds: 1,
+      response: Responses.knockback(),
+    },
+    {
       id: 'BarbaricciaEx Playstation Hair Chains',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker(),
@@ -85,16 +110,12 @@ const triggerSet: TriggerSet<Data> = {
         switch (matches.id) {
           case '016F':
             return output.circle!();
-            break;
           case '0170':
             return output.triangle!();
-            break;
           case '0171':
             return output.square!();
-            break;
           case '0172':
             return output.cross!();
-            break;
         }
       },
       outputStrings: {
