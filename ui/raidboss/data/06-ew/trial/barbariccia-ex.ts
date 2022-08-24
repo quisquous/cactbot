@@ -24,7 +24,7 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
-      id: 'BarnaroccoaEx Impact',
+      id: 'BarbaricciaEx Impact',
       regex: /Impact/,
       beforeSeconds: 5,
       response: Responses.knockback(),
