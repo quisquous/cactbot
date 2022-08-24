@@ -16,7 +16,6 @@ export class DRKComponent extends BaseComponent {
   delirium: TimerBox;
   livingShadow: TimerBox;
   tid1 = 0;
-  tid2 = 0;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -50,6 +49,15 @@ export class DRKComponent extends BaseComponent {
     });
 
     this.reset();
+  }
+
+  override onStatChange({ gcdSkill }: { gcdSkill: number }): void {
+    this.bloodWeapon.valuescale = gcdSkill;
+    this.bloodWeapon.threshold = gcdSkill + 1;
+    this.delirium.valuescale = gcdSkill;
+    this.delirium.threshold = gcdSkill + 1;
+    this.livingShadow.valuescale = gcdSkill;
+    this.livingShadow.threshold = gcdSkill * 4 + 1;
   }
 
   override onJobDetailUpdate(jobDetail: JobDetail['DRK']): void {
@@ -105,27 +113,12 @@ export class DRKComponent extends BaseComponent {
         }
         break;
       }
-      case kAbility.Delirium: {
-          this.delirium.duration = 60;
-          break;
-      }
-      case kAbility.LivingShadow: {
-        this.livingShadow.duration = 24;
-        this.livingShadow.threshold = 24;
-        this.livingShadow.fg = computeBackgroundColorFrom(
-          this.livingShadow,
-          'drk-color-livingshadow.active',
-        );
-        this.tid2 = window.setTimeout(() => {
-          this.livingShadow.duration = 96;
-          this.livingShadow.threshold = this.player.gcdSkill * 4;
-          this.livingShadow.fg = computeBackgroundColorFrom(
-            this.livingShadow,
-            'drk-color-livingshadow',
-          );
-        }, 24000);
+      case kAbility.Delirium:
+        this.delirium.duration = 60;
         break;
-      }
+      case kAbility.LivingShadow:
+        this.livingShadow.duration = 120;
+        break;
     }
   }
 
@@ -136,10 +129,7 @@ export class DRKComponent extends BaseComponent {
     this.bloodWeapon.fg = computeBackgroundColorFrom(this.bloodWeapon, 'drk-color-bloodweapon');
     this.delirium.duration = 0;
     this.livingShadow.duration = 0;
-    this.livingShadow.threshold = this.player.gcdSkill * 4;
-    this.livingShadow.fg = computeBackgroundColorFrom(this.livingShadow, 'drk-color-livingshadow');
     this.darksideBox.duration = 0;
     window.clearTimeout(this.tid1);
-    window.clearTimeout(this.tid2);
   }
 }
