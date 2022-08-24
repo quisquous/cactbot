@@ -90,6 +90,12 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'BarbaricciaEx Boulder Break',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7383', source: 'Barbariccia' }),
+      response: Responses.sharedTankBuster(),
+    },
+    {
       // Is it possible to get the order the player's gust goes off to call out a move?
       // These also favor a certain order of Tank/Healer for first set then DPS second set
       id: 'BarbaricciaEx Brutal Rush',
