@@ -36,6 +36,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'In/Wall => Spread',
+          cn: '靠近BOSS分散',
         },
       },
     },
@@ -74,7 +75,7 @@ Options.Triggers.push({
           de: 'Himmelsrichtungen',
           fr: 'Positions',
           ja: '8方向散開',
-          cn: '分散站位',
+          cn: '八方位站位',
           ko: '정해진 위치로 산개',
         },
       },
@@ -94,6 +95,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bait Middle => Out (Spread)',
+          cn: '中间集合然后八方分散',
         },
       },
     },
@@ -108,6 +110,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Brutal Rush tether on You',
+          cn: '拳击点名',
         },
       },
     },
@@ -151,6 +154,7 @@ Options.Triggers.push({
           de: 'Roter Kreis',
           fr: 'Cercle rouge',
           ja: '赤まる',
+          cn: '红圈',
           ko: '빨강 동그라미',
         },
         triangle: {
@@ -158,6 +162,7 @@ Options.Triggers.push({
           de: 'Grünes Dreieck',
           fr: 'Triangle vert',
           ja: '緑さんかく',
+          cn: '绿三角',
           ko: '초록 삼각',
         },
         square: {
@@ -165,6 +170,7 @@ Options.Triggers.push({
           de: 'Lilanes Viereck',
           fr: 'Carré violet',
           ja: '紫しかく',
+          cn: '紫方块',
           ko: '보라 사각',
         },
         cross: {
@@ -172,6 +178,7 @@ Options.Triggers.push({
           de: 'Blaues X',
           fr: 'Croix bleue',
           ja: '青バツ',
+          cn: '蓝叉',
           ko: '파랑 X',
         },
       },
