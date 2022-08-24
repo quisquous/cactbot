@@ -170,17 +170,17 @@ hideall "--sync--"
 336.1 "Secret Breeze 1" #sync / 1[56]:[^:]*:Barbariccia:7415:/
 338.2 "Secret Breeze 2" #sync / 1[56]:[^:]*:Barbariccia:7581:/
 
-# Pattern 3a
-347.4 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:748B:/
-348.4 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:757A:/
-350.5 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:757B:/
+# Pattern 3a, linked with pattern 4a through 757A+7575 and 757A+757B
+347.4 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/
+348.4 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7574|757A):/
+350.5 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7575|757B):/
 
 351.5 "Brush with Death" sync / 1[56]:[^:]*:Barbariccia:75A4:/
 
-# Pattern 3b
-360.6 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:757E:/
-362.6 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:757F:/
-364.9 "Deadly Twist" sync / 1[56]:[^:]*:Barbariccia:75A7:/
+# Pattern 3b, linked with Pattern 4b through 757C+757D and 757E+757F and also independently by 75A6 and 75A7
+360.6 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757C|757E):/
+362.6 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757D|757F):/
+364.9 "Deadly Twist/Hair Spray" sync / 1[56]:[^:]*:Barbariccia:(75A7/75A6):/
 
 373.8 "Void Aero IV" sync / 1[56]:[^:]*:Barbariccia:7570:/
 380.9 "Void Aero III" sync / 1[56]:[^:]*:Barbariccia:7571:/
@@ -195,14 +195,14 @@ hideall "--sync--"
 409.2 "Upbraid" sync / 1[56]:[^:]*:Barbariccia:75A8:/
 
 # Pattern 4a
-416.7 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:7573:/
-417.7 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:7574:/
-419.8 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:7575:/
+416.7 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/
+417.7 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(757A|7574):/
+419.8 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(757B|7575):/
 
 # Pattern 4b
-426.8 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:757C:/
-428.8 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:757D:/
-430.7 "Hair Spray" sync / 1[56]:[^:]*:Barbariccia:75A6:/
+426.8 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757C|757E):/
+428.8 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757D|757F):/
+430.7 "Hair Spray/Deadly Twist" sync / 1[56]:[^:]*:Barbariccia:(75A6|75A7):/
 
 439.9 "Void Aero IV" sync / 1[56]:[^:]*:Barbariccia:7570:/
 447.1 "Raging Storm" sync / 1[56]:[^:]*:Barbariccia:7572:/
@@ -247,7 +247,6 @@ hideall "--sync--"
 514.9 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758F:/
 515.6 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758D:/
 518.5 "Impact" sync / 1[56]:[^:]*:Barbariccia:759F:/
-521.0 "Hair Spray" sync / 1[56]:[^:]*:Barbariccia:75A6:/
 521.0 "Hair Spray" sync / 1[56]:[^:]*:Barbariccia:75A6:/
 522.8 "Brutal Rush 1" sync / 1[56]:[^:]*:Barbariccia:7583:/
 524.4 "Brutal Rush 2" sync / 1[56]:[^:]*:Barbariccia:7583:/
@@ -302,16 +301,16 @@ hideall "--sync--"
 622.9 "Secret Breeze 2" #sync / 1[56]:[^:]*:Barbariccia:7581:/
 
 # Pattern 5a
-628.2 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:748B:/
-629.2 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:757A:/
-631.3 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:757B:/
+628.2 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/
+629.2 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7574|757A):/
+631.3 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7575|757B):/
 
 632.3 "Brush with Death" sync / 1[56]:[^:]*:Barbariccia:75A4:/
 
 # Pattern 5b
-641.4 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:757E:/
-643.4 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:757F:/
-645.7 "Deadly Twist" sync / 1[56]:[^:]*:Barbariccia:75A7:/
+641.4 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757C|757E):/
+643.4 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757D|757E):/
+645.7 "Hair Spray/Deadly Twist" sync / 1[56]:[^:]*:Barbariccia:(75A6|75A7):/
 
 654.6 "Void Aero IV" sync / 1[56]:[^:]*:Barbariccia:7570:/
 656.7 "Raging Storm" sync / 1[56]:[^:]*:Barbariccia:7572:/
