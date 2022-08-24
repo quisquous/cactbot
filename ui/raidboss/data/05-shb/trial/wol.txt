@@ -6,7 +6,7 @@
 hideall "--sync--"
 hideall "--Reset--"
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 ### Phase 1: 100%->50%
 # Note: Don't sync on engage or auto here because there's a checkpoint.
