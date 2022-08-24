@@ -1,7 +1,7 @@
 # Omega - Alphascape V2.0 - O10N
 # -r MGmYR8kHQta1vN4D -rf 54 -ii 31F9 362D 31D5 3624 3630 31FB 3638
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 hideall "--Reset--"
 hideall "--sync--"
