@@ -46,6 +46,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'In/Wall => Spread',
+          cn: '靠近BOSS分散',
         },
       },
     },
@@ -84,7 +85,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Himmelsrichtungen',
           fr: 'Positions',
           ja: '8方向散開',
-          cn: '分散站位',
+          cn: '八方位站位',
           ko: '정해진 위치로 산개',
         },
       },
@@ -104,6 +105,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Middle => Out (Spread)',
+          cn: '中间集合然后八方分散'
         },
       },
     },
@@ -118,6 +120,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Brutal Rush tether on You',
+          cn: '拳击点名'
         },
       },
     },
@@ -161,6 +164,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Roter Kreis',
           fr: 'Cercle rouge',
           ja: '赤まる',
+          cn: '红圈'，
           ko: '빨강 동그라미',
         },
         triangle: {
@@ -168,6 +172,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Grünes Dreieck',
           fr: 'Triangle vert',
           ja: '緑さんかく',
+          cn: '绿三角',
           ko: '초록 삼각',
         },
         square: {
@@ -175,6 +180,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Lilanes Viereck',
           fr: 'Carré violet',
           ja: '紫しかく',
+          cn: '紫方块',
           ko: '보라 사각',
         },
         cross: {
@@ -182,6 +188,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Blaues X',
           fr: 'Croix bleue',
           ja: '青バツ',
+          cn: '蓝叉',
           ko: '파랑 X',
         },
       },
