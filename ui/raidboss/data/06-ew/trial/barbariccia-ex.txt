@@ -249,7 +249,7 @@ hideall "--sync--"
 574.4 "Blustery Ruler" sync / 1[56]:[^:]*:Barbariccia:7590:/
 577.4 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7593:/
 581.0 "Boulder Break" sync / 1[56]:[^:]*:Barbariccia:7382:/
-582.1 "Dry Blows" durtaion 8.2 #sync / 1[56]:[^:]*:Barbariccia:7594:/
+582.1 "Dry Blows" duration 8.2 #sync / 1[56]:[^:]*:Barbariccia:7594:/
 586.0 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758E:/
 586.9 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758C:/
 588.6 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758F:/
