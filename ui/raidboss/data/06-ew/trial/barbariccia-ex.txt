@@ -55,7 +55,7 @@ hideall "--sync--"
 130.7 "Void Aero IV" sync / 1[56]:[^:]*:Barbariccia:7570:/
 137.9 "Raging Storm" sync / 1[56]:[^:]*:Barbariccia:7572:/
 
-# Tansition 1
+# Tansition 1 - First Curling Iron
 146.3 "Curling Iron" sync / 1[56]:[^:]*:Barbariccia:75B2:/
 152.0 "Voidstrom" duration 2 #sync / 1[56]:[^:]*:Barbariccia:7577:/
 154.5 "Curling Iron" sync / 1[56]:[^:]*:Barbariccia:75B3:/
@@ -154,7 +154,7 @@ hideall "--sync--"
 300.8 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7599:/
 302.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
 
-### Transition 2
+# Transition 2
 304.2 "Iron Out" sync / 1[56]:[^:]*:Barbariccia:75B5:/
 309.4 "Voidstrom" duration 2 #sync / 1[56]:[^:]*:Barbariccia:7577:/
 312.4 "Iron Out" sync / 1[56]:[^:]*:Barbariccia:7455:/
@@ -205,7 +205,7 @@ hideall "--sync--"
 439.9 "Void Aero IV" sync / 1[56]:[^:]*:Barbariccia:7570:/
 447.1 "Raging Storm" sync / 1[56]:[^:]*:Barbariccia:7572:/
 
-# Transition 3
+# Transition 3 - Second Curling Iron
 455.4 "Curling Iron" sync / 1[56]:[^:]*:Barbariccia:75B2:/
 460.7 "Voidstrom" duration 2 #sync / 1[56]:[^:]*:Barbariccia:7577:/
 463.7 "Curling Iron" sync / 1[56]:[^:]*:Barbariccia:75B3:/
