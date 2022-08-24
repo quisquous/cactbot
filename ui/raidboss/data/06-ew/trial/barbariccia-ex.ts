@@ -42,7 +42,12 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '75A6', source: 'Barbariccia' }),
       condition: Conditions.targetIsYou(),
-      response: Responses.spread(),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'In/Wall => Spread',
+        },
+      },
     },
     {
       id: 'BarbaricciaEx Deadly Twist',
