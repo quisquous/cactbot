@@ -164,7 +164,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Roter Kreis',
           fr: 'Cercle rouge',
           ja: '赤まる',
-          cn: '红圈'，
+          cn: '红圈',
           ko: '빨강 동그라미',
         },
         triangle: {
