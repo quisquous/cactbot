@@ -149,7 +149,7 @@ hideall "--sync--"
 287.4 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758F:/
 288.1 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758D:/
 290.0 "Upbraid" sync / 1[56]:[^:]*:Barbariccia:75A8:/
-291.0 "Knuckle Drum" sync / 1[56]:[^:]*:Barbariccia:7597:/
+291.0 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7597:/
 293.3 "Knuckle Drum" duration 7.5 #sync / 1[56]:[^:]*:Barbariccia:7598:/
 300.8 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7599:/
 302.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
