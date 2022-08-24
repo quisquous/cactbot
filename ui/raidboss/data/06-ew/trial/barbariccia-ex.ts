@@ -105,7 +105,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Middle => Out (Spread)',
-          cn: '中间集合然后八方分散'
+          cn: '中间集合然后八方分散',
         },
       },
     },
@@ -120,7 +120,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Brutal Rush tether on You',
-          cn: '拳击点名'
+          cn: '拳击点名',
         },
       },
     },
