@@ -7,6 +7,9 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export type Data = RaidbossData;
 
+// TODO: Add In=>Spread or Wall (+cardinal?)=>Spread callout to Hair Spray (note this is cast at other phases)
+// TODO: Add In=>Healer Groups, or Wall (+cardinal?)=>Healer Groups to Deadly Twist
+
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.StormsCrownExtreme,
   timelineFile: 'barbariccia-ex.txt',
@@ -24,6 +27,30 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7570', source: 'Barbariccia', capture: false }),
       response: Responses.aoe(),
+    },
+    {
+      id: 'BarbaricciaEx Hair Spray',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '75A6', source: 'Barbariccia' }),
+      condition: Conditions.targetIsYou(),
+      response: Responses.spread(),
+    },
+    {
+      id: 'BarbaricciaEx Deadly Twist',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '75A7', source: 'Barbariccia', capture: false }),
+      suppressSeconds: 2,
+      alertText: (_data, _matches, output) => output.groups!(),
+      outputStrings: {
+        groups: {
+          en: 'Healer Groups',
+          de: 'Heiler-Gruppen',
+          fr: 'Groupes sur les heals',
+          ja: 'ヒラに頭割り',
+          cn: '与治疗分摊',
+          ko: '힐러 그룹 쉐어',
+        },
+      },
     },
     {
       id: 'BarbaricciaEx Void Aero III',
