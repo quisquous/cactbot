@@ -207,7 +207,7 @@ hideall "--sync--"
 495.2 "Boulder" sync / 1[56]:[^:]*:Barbariccia:759C:/
 496.7 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
 498.7 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
-500.5 "Brutal Rush 1" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2 3
+500.5 "Brutal Rush 1" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
 500.7 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
 502.1 "Brutal Rush 2" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
 503.1 "Brittle Boulder" sync / 1[56]:[^:]*:Barbariccia:759E:/
