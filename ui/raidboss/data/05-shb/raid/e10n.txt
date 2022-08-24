@@ -6,7 +6,7 @@ hideall "--sync--"
 
 # -ii 56B0 56B6 56B9 56BA 56BB 56BD 56BE 56C0 56C1 56CC 56D4 56D5 56D8 56D9 56E1 56E7 5B09 5B0D 5B26
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "--sync--" sync /:Engage!/ window 0,1
 2.6 "--sync--" sync / 1[56]:[^:]*:Shadowkeeper:5B09:/ window 2.6,1

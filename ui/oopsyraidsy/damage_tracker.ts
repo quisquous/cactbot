@@ -43,7 +43,8 @@ import {
 import { OopsyOptions } from './oopsy_options';
 import { PlayerStateTracker } from './player_state_tracker';
 
-const actorControlFadeInCommand = '40000010';
+const actorControlFadeInCommandPre62 = '40000010';
+const actorControlFadeInCommand = '4000000F';
 
 const partyWipeText = {
   en: 'Party Wipe',
@@ -275,7 +276,10 @@ export class DamageTracker {
         this.playerStateTracker.OnHoTDoT(line, splitLine);
         break;
       case logDefinitions.ActorControl.type:
-        if (splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommand) {
+        if (
+          splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommand ||
+          splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommandPre62
+        ) {
           this.Wipe(this.lastTimestamp);
           this.playerStateTracker.OnWipe(line, splitLine);
         }

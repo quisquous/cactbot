@@ -110,7 +110,7 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
       }
       case logDefinitions.ActorControl.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.ActorControl.fields);
-        if (matches.command === '40000010')
+        if (matches.command === '40000010' || matches.command === '4000000F')
           this.emit('battle/wipe');
         break;
       }

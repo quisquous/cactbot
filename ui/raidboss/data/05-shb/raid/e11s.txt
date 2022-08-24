@@ -34,7 +34,7 @@ hideall "--sync--"
 # Time these to burnout where it's random, and comment out the sync.
 # If testing were smarter we could have an optional sync here, otherwise test_timeline.py will be weird.
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 # Phase 1
 0 "Start"

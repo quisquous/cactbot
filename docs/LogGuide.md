@@ -1507,12 +1507,12 @@ ACT Log Line Regex:
 
 ```log
 Network Log Line Examples:
-33|2021-04-26T17:23:28.6780000-04:00|80034E6C|40000010|B5D|00|00|00|f777621829447c53c82c9a24aa25348f
+33|2021-04-26T17:23:28.6780000-04:00|80034E6C|4000000F|B5D|00|00|00|f777621829447c53c82c9a24aa25348f
 33|2021-04-26T14:17:31.6980000-04:00|80034E5B|8000000C|16|FFFFFFFF|00|00|b543f3c5c715e93d9de2aa65b8fe83ad
 33|2021-04-26T14:18:39.0120000-04:00|80034E5B|40000007|00|01|00|00|7a2b827bbc7a58ecc0c5edbdf14a2c14
 
 ACT Log Line Examples:
-[17:23:28.678] Director 21:80034E6C:40000010:B5D:00:00:00
+[17:23:28.678] Director 21:80034E6C:4000000F:B5D:00:00:00
 [14:17:31.698] Director 21:80034E5B:8000000C:16:FFFFFFFF:00:00
 [14:18:39.012] Director 21:80034E5B:40000007:00:01:00:00
 ```
@@ -1527,7 +1527,9 @@ For example, if `instance` is `80034E6C` then `0x4E6C` is the `InstanceContentTy
 `0x4E6C` is 20076 in decimal, and corresponds to Diamond Weapon (Savage):
 <https://xivapi.com/InstanceContent/20076?pretty=true>.
 
-Wipes on most raids and primals these days can be detected via this regex:
+Wipes on most raids and primals these days can be detected via this regex in 6.2:
+`21:........:4000000F:`.
+Prior to 6.2, you can use this regex:
 `21:........:40000010:`.
 However, this does not occur on some older fights,
 such as coil turns where there is a zone seal.
@@ -1540,8 +1542,8 @@ Known types:
 - Charge boss limit break: `21:content:8000000C:value1:value2:00:00`
 - Music change: `21:content:80000001:value:00:00:00`
 - Fade out: `21:content:40000005:00:00:00:00` (wipe)
-- Fade in: `21:content:40000010:00:00:00:00` (always paired with barrier up)
-- Barrier up: `21:content:40000012:00:00:00:00` (always comes after fade in)
+- Fade in: `21:content:4000000F:00:00:00:00` (always paired with barrier up)
+- Barrier up: `21:content:40000011:00:00:00:00` (always comes after fade in)
 - Victory: `21:zone:40000003:00:00:00:00`
 
 Note: cactbot uses "fade in" as the wipe trigger,
