@@ -3,8 +3,6 @@
 #
 # -ii 7413 7415 7581 7577 7578 7585 7586 7587 7588 7589 758B 7594 7598 75A1 75A0
 
-# TODO: Account for the patterns of Savage Barbery and Hair Raid, and possible Tornado Chain.
-
 hideall "--Reset--"
 hideall "--sync--"
 
