@@ -5,7 +5,7 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 export type Data = OopsyData;
 
 const triggerSet: OopsyTriggerSet<Data> = {
-  zoneId: ZoneId.AbyssosTheSeventhCircleSavage,
+  zoneId: ZoneId.AbyssosTheEighthCircle,
 };
 
 export default triggerSet;
