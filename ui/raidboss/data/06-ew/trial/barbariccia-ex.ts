@@ -46,6 +46,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'In/Wall => Spread',
+          fr: 'Intérieur/Extérieur -> Écartez-vous',
           cn: '靠近BOSS分散',
         },
       },
@@ -105,6 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Middle => Out (Spread)',
+          fr: 'Posez au centre -> Écartez-vous à l\'extérieur',
           cn: '中间集合然后八方分散',
         },
       },
@@ -120,6 +122,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Brutal Rush tether on You',
+          fr: 'Lien de Ruée brutale sur VOUS',
           cn: '拳击点名',
         },
       },
