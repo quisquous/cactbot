@@ -47,6 +47,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'In/Wall => Spread',
           de: 'Rein/Rand => Verteilen',
+          fr: 'Intérieur/Extérieur -> Écartez-vous',
           cn: '靠近BOSS分散',
         },
       },
@@ -107,6 +108,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait Middle => Out (Spread)',
           de: 'In der Mitte Ködern => Raus (verteilen)',
+          fr: 'Posez au centre -> Écartez-vous à l\'extérieur',
           cn: '中间集合然后八方分散',
         },
       },
@@ -123,6 +125,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Brutal Rush tether on You',
           de: 'Grausame Hatz Verbindung auf DIR',
+          fr: 'Lien de Ruée brutale sur VOUS',
           cn: '拳击点名',
         },
       },
