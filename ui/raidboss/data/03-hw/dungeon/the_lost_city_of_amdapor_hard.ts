@@ -32,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
         comfort: {
           en: '/comfort ${name}',
           de: '/trösten ${name}',
+          fr: '/consoler ${name}',
           cn: '/安慰 ${name}',
           ko: '/위로 ${name}',
         },
@@ -46,6 +47,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to edge; look outside',
           de: 'Geh zum Rand und schau nach draußen',
+          fr: 'Allez sur les bords et regardez à l\'extérieur',
           cn: '去场边; 看场外',
           ko: '구석에서 바깥 보기',
         },
@@ -60,6 +62,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid chasing orb',
           de: 'Weiche dem verfolgenden Orb aus',
+          fr: 'Évitez l\'orbe',
           cn: '躲避追踪球',
           ko: '유도 구슬 피하기',
         },
@@ -97,6 +100,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Aero',
           de: 'Vermeide Wind',
+          fr: 'Évitez le Vent',
           cn: '躲避风',
           ko: '에어로 피하기',
         },
@@ -121,6 +125,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Stone',
           de: 'Vermeide Stein',
+          fr: 'Évitez le rocher',
           cn: '躲避石',
           ko: '스톤 피하기',
         },
@@ -222,6 +227,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move boss out of puddle',
           de: 'Bewege Boss aus der Fläche',
+          fr: 'Déplacez le boss hors de la zone au sol',
           cn: '把BOSS拉出罩子',
           ko: '보스 장판에서 나오도록 유도하기',
         },
@@ -237,6 +243,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand in Circle',
           de: 'In einem Kreis stehen',
+          fr: 'Restez dans le cercle',
           cn: '站进圈圈',
           ko: '보스 장판 안으로',
         },
