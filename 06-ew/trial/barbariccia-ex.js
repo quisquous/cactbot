@@ -13,12 +13,6 @@ Options.Triggers.push({
       beforeSeconds: 5,
       response: Responses.aoe(),
     },
-    {
-      id: 'BarbaricciaEx Impact',
-      regex: /Impact/,
-      beforeSeconds: 5,
-      response: Responses.knockback(),
-    },
   ],
   triggers: [
     {
@@ -136,6 +130,14 @@ Options.Triggers.push({
           ko: '플레어 대상자',
         },
       },
+    },
+    {
+      id: 'BarbaricciaEx Impact',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '75A0', source: 'Barbariccia' }),
+      // Could also have used 75A1, full cast time is 5.9s
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
+      response: Responses.knockback(),
     },
     {
       id: 'BarbaricciaEx Playstation Hair Chains',
