@@ -99,7 +99,7 @@ class FFLogs {
     const urlSegment = fightsOrEvents === 'fights' ? fightsOrEvents : `${fightsOrEvents}/summary`;
     const url = `https://${prefix}.fflogs.com:443/v1/report/${urlSegment}/${reportId}`;
 
-    const data = await makeRequest(url, options);
+    let data = await makeRequest(url, options);
 
     // For a simple list of encounters, one call should be enough.
     if (fightsOrEvents === 'fights')
@@ -111,9 +111,17 @@ class FFLogs {
       const nextOptions = new URLSearchParams();
       Object.assign(nextOptions, options);
       nextOptions.set('start', data.nextPageTimestamp.toString());
-      const nextData = await this.callFFLogs('fights', reportId, 'www', nextOptions);
-      const mergedData = Object.assign(data, nextData);
-      return mergedData;
+      data = data as fflogsEventResponse;
+      const nextData = await this.callFFLogs(
+        'events',
+        reportId,
+        'www',
+        nextOptions,
+      ) as fflogsEventResponse;
+      data.events = data.events.concat(nextData.events);
+      data.count += nextData.count;
+      data.nextPageTimestamp = nextData.nextPageTimestamp;
+      return data;
     }
     return data;
   };
