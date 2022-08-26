@@ -11,7 +11,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Better Starving Stampede guidance
 
 export interface Data extends RaidbossData {
-  reflection?: boolean;
   seenStones?: boolean;
   numStones?: number;
   acid?: boolean;
@@ -24,18 +23,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5N Searing Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76D[78]', source: 'Proto-Carbuncle', capture: false }),
-      delaySeconds: 0.5,
+      netRegex: NetRegexes.startsUsing({ id: '76D7', source: 'Proto-Carbuncle', capture: false }),
+      response: Responses.getBehind(),
+    },
+    {
+      id: 'P5N Searing Ray Reflected',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '76D8', source: 'Proto-Carbuncle', capture: false }),
       alertText: (data, _matches, output) => {
-        if (!data.reflection)
-          return output.getBehind!();
         if (data.acid && data.numStones)
           return output.goFrontAvoid!();
         return output.goFront!();
       },
-      run: (data) => data.reflection = false,
       outputStrings: {
-        getBehind: Outputs.getBehind,
         goFront: Outputs.goFront,
         goFrontAvoid: {
           en: 'Go Front (avoid puddle)',
@@ -48,12 +48,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '76D[45]', source: 'Proto-Carbuncle', capture: false }),
       suppressSeconds: 1,
       response: Responses.aoe(),
-    },
-    {
-      id: 'P5N Ruby Reflection',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76DA', source: 'Proto-Carbuncle', capture: false }),
-      preRun: (data) => data.reflection = true,
     },
     {
       id: 'P5N Crunch',
@@ -73,10 +67,10 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: '76DE', source: 'Proto-Carbuncle', capture: false }),
       infoText: (data, _matches, output) => {
         if (!data.seenStones || !data.numStones)
-          return;
+          return; // First time is just floor AoEs
         if (data.numStones === 2) {
           if (data.acid)
-            return; // handled in Searing Ray
+            return; // Handled in Searing Ray Reflected
           return output.getInEmptyTile!();
         }
         if (data.numStones < 4)
@@ -89,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Get in empty tile (no stones)',
         },
         moveAway: {
-          en: 'Move away from green puddles',
+          en: 'Move away from puddles',
         },
       },
     },
@@ -141,7 +135,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Move 4 -> 1',
+          en: 'Start in empty tile -> move to first tile',
         },
       },
     },
@@ -155,7 +149,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Move 5 -> 1',
+          en: 'Start in middle -> move to first jump',
         },
       },
     },
