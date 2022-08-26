@@ -55,8 +55,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'BarbaricciaEx Savage Barbery Line',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '757A', source: 'Barbariccia', capture: false }),
-      // TODO: should this say "side + out" or something else? out is possibly misleading.
-      response: Responses.getOut(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Out and Away',
+        },
+      },
     },
     {
       // Hair Raid has 2 casts that start at the same time, then a slight delay for stack/spread.
