@@ -96,6 +96,7 @@ const ignoredCombatants = PetData['en'].concat([
   'Urianger',
   'Estinien',
   'G\'raha Tia',
+  'Varshahn',
   'Alphinaud\'s Avatar',
   'Alisaie\'s Avatar',
   'Thancred\'s Avatar',
