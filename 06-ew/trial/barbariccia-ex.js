@@ -1,17 +1,24 @@
-// TODO: Add In=>Spread or Wall (+cardinal?)=>Spread callout to Hair Spray (note this is cast at other phases)
-// TODO: Add In=>Healer Groups, or Wall (+cardinal?)=>Healer Groups to Deadly Twist
-// TODO: Verify Playstation Marker Ids match: 016F (circle), 0170 (triangle), 0171 (square), 0172 (cross)
-// TODO: Stack callout for the healer that gets stackmarker in phase 2?
-// TODO: Call out a move for the player with Brutal Rush tether to avoid the Gust?
 Options.Triggers.push({
   zoneId: ZoneId.StormsCrownExtreme,
   timelineFile: 'barbariccia-ex.txt',
+  initData: () => {
+    return {
+      boldBoulderTargets: [],
+      hairFlayUpbraidTargets: [],
+    };
+  },
   timelineTriggers: [
     {
       id: 'BarbaricciaEx Knuckle Drum',
       regex: /Knuckle Drum/,
       beforeSeconds: 5,
-      response: Responses.aoe(),
+      response: Responses.bigAoe(),
+    },
+    {
+      id: 'BarbaricciaEx Blow Away',
+      regex: /Blow Away/,
+      beforeSeconds: 5,
+      response: Responses.getTogether('info'),
     },
   ],
   triggers: [
@@ -22,26 +29,64 @@ Options.Triggers.push({
       response: Responses.aoe(),
     },
     {
-      id: 'BarbaricciaEx Hair Spray',
+      // Savage Barbery has 3 casts that all start at the same time.
+      // 5.7 duration: 7464, 7465, 7466, 7489, 748B, 7573 (all actual cast bar, unknown how to differentiate)
+      // 6.7 duration: 7574 (donut), 757A (line)
+      // 8.8 duration: 7575 (out, paired with donut), 757B (out, paired with line)
+      id: 'BarbaricciaEx Savage Barbery Donut',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75A6', source: 'Barbariccia' }),
-      condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text(),
+      netRegex: NetRegexes.startsUsing({ id: '7574', source: 'Barbariccia', capture: false }),
+      response: Responses.getIn(),
+    },
+    {
+      id: 'BarbaricciaEx Savage Barbery Line',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '757A', source: 'Barbariccia', capture: false }),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'In/Wall => Spread',
-          de: 'Rein/Rand => Verteilen',
-          fr: 'Intérieur/Extérieur -> Écartez-vous',
-          cn: '靠近BOSS分散',
+          en: 'Out and Away',
         },
       },
+    },
+    {
+      // Hair Raid has 2 casts that start at the same time, then a slight delay for stack/spread.
+      // 5.7 duration: 757C (wall), 757E (donut)
+      // 7.7 duration: 757D (paired with wall), 757F (paired with donut)
+      //
+      // ~2.2s delay, and then:
+      // 7.7 duration (Hair Spray): 75A6
+      // 7.7 duration (Deadly Twist): 75A7
+      id: 'BarbaricciaEx Hair Raid Donut',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '757E', source: 'Barbariccia', capture: false }),
+      response: Responses.getIn(),
+    },
+    {
+      id: 'BarbaricciaEx Hair Raid Wall',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '757C', source: 'Barbariccia', capture: false }),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Wall',
+        },
+      },
+    },
+    {
+      id: 'BarbaricciaEx Hair Spray',
+      type: 'StartsUsing',
+      // This spread mechanic is used later in other phases of the fight as well.
+      netRegex: NetRegexes.startsUsing({ id: '75A6', source: 'Barbariccia', capture: false }),
+      suppressSeconds: 1,
+      response: Responses.spread(),
     },
     {
       id: 'BarbaricciaEx Deadly Twist',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '75A7', source: 'Barbariccia', capture: false }),
       suppressSeconds: 2,
-      alertText: (_data, _matches, output) => output.groups(),
+      infoText: (_data, _matches, output) => output.groups(),
       outputStrings: {
         groups: {
           en: 'Healer Groups',
@@ -58,13 +103,14 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7571', source: 'Barbariccia' }),
       condition: Conditions.caresAboutPhysical(),
-      response: Responses.tankBuster(),
+      response: Responses.tankBusterSwap(),
     },
     {
       id: 'BarbaricciaEx Secret Breeze',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7580', source: 'Barbariccia', capture: false }),
-      infoText: (_data, _matches, output) => output.protean(),
+      durationSeconds: 3,
+      alertText: (_data, _matches, output) => output.protean(),
       outputStrings: {
         protean: {
           en: 'Protean',
@@ -84,9 +130,9 @@ Options.Triggers.push({
     },
     {
       id: 'BarbaricciaEx Brittle Boulder',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '759E', source: 'Barbariccia' }),
-      condition: Conditions.targetIsYou(),
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({ id: '016D', capture: false }),
+      suppressSeconds: 2,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -98,8 +144,8 @@ Options.Triggers.push({
       },
     },
     {
-      // Is it possible to get the order the player's gust goes off to call out a move?
-      // These also favor a certain order of Tank/Healer for first set then DPS second set
+      // These also favor a certain order of Tank/Healer for first set then DPS second set,
+      // but if people are dead anybody can get these.
       id: 'BarbaricciaEx Brutal Rush',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0011' }),
@@ -115,13 +161,70 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'BarbaricciaEx Bold Boulder',
-      type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '015A' }),
+      id: 'BarbaricciaEx Brutal Rush Move',
+      type: 'Ability',
+      // When the Brutal Rush hits you, the follow-up Brutal Gust has locked in.
+      netRegex: NetRegexes.ability({ id: '7583', source: 'Barbariccia' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      response: Responses.moveAway(),
+    },
+    {
+      id: 'BarbaricciaEx Hair Flay',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7413', source: 'Barbariccia' }),
+      alertText: (data, matches, output) => {
+        data.hairFlayUpbraidTargets.push(matches.target);
+        if (data.me === matches.target)
+          return output.spread();
+      },
       outputStrings: {
-        text: {
+        spread: Outputs.spread,
+      },
+    },
+    {
+      id: 'BarbaricciaEx Upbraid',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '75A8', source: 'Barbariccia' }),
+      alertText: (data, matches, output) => {
+        data.hairFlayUpbraidTargets.push(matches.target);
+        if (data.me === matches.target)
+          return output.partnerStack();
+      },
+      outputStrings: {
+        partnerStack: {
+          en: 'Partner Stack',
+        },
+      },
+    },
+    {
+      id: 'BarbaricciaEx Upbraid Untargeted',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '75A8', source: 'Barbariccia', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 2,
+      alertText: (data, _matches, output) => {
+        if (data.hairFlayUpbraidTargets.includes(data.me))
+          return;
+        return output.partnerStack();
+      },
+      run: (data) => data.hairFlayUpbraidTargets = [],
+      outputStrings: {
+        partnerStack: {
+          en: 'Partner Stack (unmarked)',
+        },
+      },
+    },
+    {
+      id: 'BarbaricciaEx Bold Boulder',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '759B', source: 'Barbariccia' }),
+      infoText: (data, matches, output) => {
+        data.boldBoulderTargets.push(matches.target);
+        if (data.me === matches.target)
+          return output.flareOnYou();
+      },
+      outputStrings: {
+        flareOnYou: {
           en: 'Flare on YOU',
           de: 'Flare auf DIR',
           fr: 'Brasier sur VOUS',
@@ -129,6 +232,25 @@ Options.Triggers.push({
           cn: '核爆点名',
           ko: '플레어 대상자',
         },
+      },
+    },
+    {
+      id: 'BarbaricciaEx Trample',
+      type: 'StartsUsing',
+      // There's no castbar for Trample, so use Bold Boulder and collect flares.
+      // There's also an 0064 stack headmarker, but that's used elsewhere.
+      netRegex: NetRegexes.startsUsing({ id: '759B', source: 'Barbariccia', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      // info to match spread and flare to not conflict during knockback
+      infoText: (data, _matches, output) => {
+        if (data.boldBoulderTargets.includes(data.me))
+          return;
+        return output.stackMarker();
+      },
+      run: (data) => data.boldBoulderTargets = [],
+      outputStrings: {
+        stackMarker: Outputs.stackMarker,
       },
     },
     {
