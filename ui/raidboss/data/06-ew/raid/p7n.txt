@@ -24,7 +24,7 @@ hideall "--sync--"
 128.9 "Spark of Life" sync / 1[56]:[^:]*:Agdistis:780B:/
 143.2 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7801:/
 154.9 "Static Moon" sync / 1[56]:[^:]*:Immature Io:7802:/ window 155,10
-166.9 "Blades of Attis(lines)" sync / 1[56]:[^:]*:Agdistis:7805:/
+166.9 "Blades of Attis (lines)" sync / 1[56]:[^:]*:Agdistis:7805:/
 184.1 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7801:/
 195.8 "Stymphalian Strike" sync / 1[56]:[^:]*:Immature Stymphalide:7803:/ window 50,50
 216.9 "Hemitheos's Glare III" sync / 1[56]:[^:]*:Agdistis:79FA:/
