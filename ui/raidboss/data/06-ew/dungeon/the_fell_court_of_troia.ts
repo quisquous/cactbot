@@ -21,6 +21,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Eye Lasers',
           de: 'Weiche dem Augenlaser aus',
+          fr: 'Évitez les yeux',
         },
       },
     },
@@ -41,6 +42,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Kill One Eye',
           de: 'Besiege ein Auge',
+          fr: 'Tuez un Œil',
         },
       },
     },
@@ -61,6 +63,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Look Away from Rings',
           de: 'Schau von den Ringen weg',
+          fr: 'Ne regardez pas l\'anneau',
         },
       },
     },
@@ -73,6 +76,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away From Exploding Lines',
           de: 'Weg von den explodierenden Linien',
+          fr: 'Éloignez-vous des lignes explosives',
         },
       },
     },
@@ -111,7 +115,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'aoe + bleed',
           de: 'AoE + Blutung',
-          fr: 'AoE + saignement',
+          fr: 'AoE + Saignement',
           ja: 'AoE + DoT',
           cn: 'AOE + 流血',
           ko: '전체 공격 + 출혈',
@@ -134,6 +138,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback Into Wall',
           de: 'Rückstoß in eine Wand',
+          fr: 'Faites-vous pousser sur un mur',
         },
       },
     },
@@ -146,6 +151,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Behind and Out',
           de: 'Geh nach Hinten und Raus',
+          fr: 'Passez derrière et extérieur',
         },
       },
     },

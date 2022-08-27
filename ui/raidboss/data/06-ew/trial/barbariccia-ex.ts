@@ -60,6 +60,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Out and Away',
           de: 'Raus und Weg',
+          fr: 'Extérieur et derrière',
         },
       },
     },
@@ -85,6 +86,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Wall',
           de: 'Wand',
+          fr: 'Mur',
         },
       },
     },
@@ -209,6 +211,7 @@ const triggerSet: TriggerSet<Data> = {
         partnerStack: {
           en: 'Partner Stack',
           de: 'Mit Partner sammeln',
+          fr: 'Package partenaire',
         },
       },
     },
@@ -228,6 +231,7 @@ const triggerSet: TriggerSet<Data> = {
         partnerStack: {
           en: 'Partner Stack (unmarked)',
           de: 'Mit Partner sammeln (nicht markiert)',
+          fr: 'Package partenaire (sans marque)',
         },
       },
     },
