@@ -40,6 +40,7 @@ const triggerSet: TriggerSet<Data> = {
         goFrontAvoid: {
           en: 'Go Front (avoid puddle)',
           de: 'Geh nach Vorne (weiche Flächen aus)',
+          fr: 'Allez devant (Évitez les zones au sol)',
         },
       },
     },
@@ -83,6 +84,7 @@ const triggerSet: TriggerSet<Data> = {
         getInEmptyTile: {
           en: 'Get in empty tile (no stones)',
           de: 'Geh ins leere Feld (ohne Stein)',
+          fr: 'Allez dans une case vide (sans pierres)',
         },
         moveAway: {
           en: 'Move away from puddles',
@@ -140,6 +142,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Start in empty tile -> move to first tile',
           de: 'Starte im leeren Feld -> in das erste Feld bewegen',
+          fr: 'Démarrez sur une case vide -> aller vers la 1ère case',
         },
       },
     },
@@ -155,6 +158,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Start in middle -> move to first jump',
           de: 'Starte in der Mitte -> zum ersten Sprung bewegen',
+          fr: 'Démarrez au milieu -> allez vers le 1er saut',
         },
       },
     },
