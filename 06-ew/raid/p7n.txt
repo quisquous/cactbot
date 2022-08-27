@@ -5,3 +5,120 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+# -ii 77F6 77F7 77FA 77FD 77FF 7800 7804 7806 7807 780A 783E 7841
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+3.0 "--sync--" sync / 1[56]:[^:]*:Agdistis:78E3:/
+15.8 "Bough of Attis (out)" sync / 1[56]:[^:]*:Agdistis:77F9:/ window 16,5
+23.4 "Bough of Attis (left/right)" sync / 1[56]:[^:]*:Agdistis:(77FB|77FC):/
+37.6 "Hemitheos's Holy" sync / 1[56]:[^:]*:Agdistis:7808:/
+44.0 "Hemitheos's Glare III" sync / 1[56]:[^:]*:Agdistis:77F8:/
+54.1 "Bough of Attis (in)"  sync / 1[56]:[^:]*:Agdistis:77FE:/
+64.5 "Bough of Attis (out)" sync / 1[56]:[^:]*:Agdistis:77F9:/
+72.1 "Bough of Attis (left/right)" sync / 1[56]:[^:]*:Agdistis:(77FB|77FC):/
+81.9 "Immortal's Obol" sync / 1[56]:[^:]*:Agdistis:77F5:/
+102.0 "Bough of Attis (out)" sync / 1[56]:[^:]*:Agdistis:77F9:/
+109.6 "Bough of Attis (left/right)" sync / 1[56]:[^:]*:Agdistis:(77FB|77FC):/
+119.7 "Hemitheos's Aero II" sync / 1[56]:[^:]*:Agdistis:7809:/ window 215,10
+128.9 "Spark of Life" sync / 1[56]:[^:]*:Agdistis:780B:/
+143.2 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7801:/
+154.9 "Static Moon" sync / 1[56]:[^:]*:Immature Io:7802:/ window 155,10
+166.9 "Blades of Attis (lines)" sync / 1[56]:[^:]*:Agdistis:7805:/
+184.1 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7801:/
+195.8 "Stymphalian Strike" sync / 1[56]:[^:]*:Immature Stymphalide:7803:/ window 50,50
+216.9 "Hemitheos's Glare III" sync / 1[56]:[^:]*:Agdistis:79FA:/
+224.5 "Blades of Attis (triangle)" sync / 1[56]:[^:]*:Agdistis:7805:/
+238.5 "Bough of Attis (out)" sync / 1[56]:[^:]*:Agdistis:77F9:/
+246.1 "Bough of Attis (left/right)" sync / 1[56]:[^:]*:Agdistis:77FB:/
+
+# Forbidden Fruit pre-cast
+249.5 "--sync--" sync / 14:[^:]*:Agdistis:7800:/ window 30,30 jump 400
+# Hemitheos' Holy pre-cast
+250.6 "--sync--" sync / 14:[^:]*:Agdistis:7807:/ window 30,30 jump 1000
+258.2 "Forbidden Fruit?"
+260.4 "Hemitheos's Holy?"
+266.8 "Hemitheos's Glare III?"
+270.3 "Static Moon?"
+270.3 "Hemitheos's Holy?"
+276.9 "Bough of Attis?"
+280.1 "Immortal's Obol?"
+287.3 "Bough of Attis?"
+
+
+# Forbidden Fruit block
+400.0 "--sync--" sync / 14:[^:]*:Agdistis:7800:/
+408.7 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7801:/
+420.8 "Static Moon" sync / 1[56]:[^:]*:Immature Io:7802:/
+420.8 "Hemitheos's Holy" sync / 1[56]:[^:]*:Agdistis:7808:/
+430.6 "Immortal's Obol" sync / 1[56]:[^:]*:Agdistis:77F5:/
+450.9 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7801:/
+464.3 "Bough of Attis (in)"  sync / 1[56]:[^:]*:Agdistis:77FE:/
+465.7 "Static Moon" sync / 1[56]:[^:]*:Immature Io:7802:/
+475.9 "Hemitheos's Aero II" sync / 1[56]:[^:]*:Agdistis:7809:/ window 30,30
+489.2 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7801:/
+492.3 "Shadow of Attis" sync / 1[56]:[^:]*:Agdistis:783C:/
+500.7 "Static Moon/Stymphalian Strike" sync / 1[56]:[^:]*:(Immature Io|Immature Stymphalide):(7802|7803):/
+505.4 "Burst" sync / 1[56]:[^:]*:Agdistis:783D:/
+513.6 "Bough of Attis (out)" sync / 1[56]:[^:]*:Agdistis:77F9:/
+521.2 "Bough of Attis (left/right)" sync / 1[56]:[^:]*:Agdistis:(77FB|77FC):/
+530.4 "Spark of Life" sync / 1[56]:[^:]*:Agdistis:780B:/
+539.5 "Spark of Life" sync / 1[56]:[^:]*:Agdistis:780B:/
+548.6 "Spark of Life" sync / 1[56]:[^:]*:Agdistis:780B:/
+563.8 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7801:/
+576.9 "Hemitheos's Aero IV" sync / 1[56]:[^:]*:Agdistis:7840:/ window 30,30
+580.5 "Stymphalian Strike" sync / 1[56]:[^:]*:Immature Stymphalide:7803:/
+580.5 "Static Moon" sync / 1[56]:[^:]*:Immature Io:7802:/
+588.2 "Blades of Attis (lines)" sync / 1[56]:[^:]*:Agdistis:7805:/
+599.5 "Hemitheos's Holy" sync / 1[56]:[^:]*:Agdistis:7808:/
+607.8 "Spark of Life" sync / 1[56]:[^:]*:Agdistis:780B:/
+616.9 "Hemitheos's Aero II" sync / 1[56]:[^:]*:Agdistis:7809:/
+636.1 "Hemitheos's Glare III" sync / 1[56]:[^:]*:Agdistis:79FA:/ window 30,30
+643.7 "Blades of Attis (triangle)" sync / 1[56]:[^:]*:Agdistis:7805:/
+658.0 "Bough of Attis (out)" sync / 1[56]:[^:]*:Agdistis:77F9:/
+665.6 "Bough of Attis (left/right)" sync / 1[56]:[^:]*:Agdistis:(77FB|77FC):/
+
+669.1 "--sync--" sync / 14:[^:]*:Agdistis:7800:/ window 30,30 jump 400
+670.2 "--sync--" sync / 14:[^:]*:Agdistis:7807:/ window 30,30 jump 1000
+677.8 "Forbidden Fruit?"
+680.0 "Hemitheos's Holy?"
+686.4 "Hemitheos's Glare III?"
+689.9 "Static Moon?"
+689.9 "Hemitheos's Holy?"
+696.5 "Bough of Attis?"
+699.7 "Immortal's Obol?"
+706.9 "Bough of Attis?"
+
+
+# Hemitheos' Holy block
+1000.0 "--sync--" sync / 14:[^:]*:Agdistis:7807:/
+1009.8 "Hemitheos's Holy" sync / 1[56]:[^:]*:Agdistis:7808:/
+1016.2 "Hemitheos's Glare III" sync / 1[56]:[^:]*:Agdistis:77F8:/ window 30,30
+1026.3 "Bough of Attis (in)"  sync / 1[56]:[^:]*:Agdistis:77FE:/
+1036.7 "Bough of Attis (out)" sync / 1[56]:[^:]*:Agdistis:77F9:/
+1044.3 "Bough of Attis (left/right)" sync / 1[56]:[^:]*:Agdistis:(77FB|77FC):/
+1054.1 "Immortal's Obol" sync / 1[56]:[^:]*:Agdistis:77F5:/ window 30,30
+1074.2 "Bough of Attis (out)" sync / 1[56]:[^:]*:Agdistis:77F9:/
+1081.8 "Bough of Attis (left/right)" sync / 1[56]:[^:]*:Agdistis:(77FB|77FC):/
+1091.9 "Hemitheos's Aero II" sync / 1[56]:[^:]*:Agdistis:7809:/ window 30,30
+1101.1 "Spark of Life" sync / 1[56]:[^:]*:Agdistis:780B:/
+1115.5 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7801:/
+1127.2 "Static Moon" sync / 1[56]:[^:]*:Immature Io:7802:/
+1139.2 "Blades of Attis" sync / 1[56]:[^:]*:Agdistis:7805:/
+1156.9 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7801:/
+1168.6 "Stymphalian Strike" sync / 1[56]:[^:]*:Immature Stymphalide:7803:/
+1189.8 "Hemitheos's Glare III" sync / 1[56]:[^:]*:Agdistis:79FA:/ window 30,30
+1197.4 "Blades of Attis" sync / 1[56]:[^:]*:Agdistis:7805:/
+1211.7 "Bough of Attis (out)" sync / 1[56]:[^:]*:Agdistis:77F9:/
+1219.3 "Bough of Attis (left/right)" sync / 1[56]:[^:]*:Agdistis:(77FB|77FC):/
+
+1222.5 "--sync--" sync / 14:[^:]*:Agdistis:7800:/ window 30,30 jump 400
+1223.6 "--sync--" sync / 14:[^:]*:Agdistis:7807:/ window 30,30 jump 1000
+1231.2 "Forbidden Fruit?"
+1233.4 "Hemitheos's Holy?"
+1239.8 "Hemitheos's Glare III?"
+1243.3 "Static Moon?"
+1243.3 "Hemitheos's Holy?"
+1249.9 "Bough of Attis?"
+1253.1 "Immortal's Obol?"
+1260.3 "Bough of Attis?"
