@@ -47,6 +47,7 @@ Options.Triggers.push({
         text: {
           en: 'Out and Away',
           de: 'Raus und Weg',
+          fr: 'Extérieur et derrière',
         },
       },
     },
@@ -72,6 +73,7 @@ Options.Triggers.push({
         text: {
           en: 'Wall',
           de: 'Wand',
+          fr: 'Mur',
         },
       },
     },
@@ -196,6 +198,7 @@ Options.Triggers.push({
         partnerStack: {
           en: 'Partner Stack',
           de: 'Mit Partner sammeln',
+          fr: 'Package partenaire',
         },
       },
     },
@@ -215,6 +218,7 @@ Options.Triggers.push({
         partnerStack: {
           en: 'Partner Stack (unmarked)',
           de: 'Mit Partner sammeln (nicht markiert)',
+          fr: 'Package partenaire (sans marque)',
         },
       },
     },

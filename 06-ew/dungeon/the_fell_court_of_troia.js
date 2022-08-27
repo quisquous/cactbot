@@ -12,6 +12,7 @@ Options.Triggers.push({
         text: {
           en: 'Avoid Eye Lasers',
           de: 'Weiche dem Augenlaser aus',
+          fr: 'Évitez les yeux',
         },
       },
     },
@@ -32,6 +33,7 @@ Options.Triggers.push({
         text: {
           en: 'Kill One Eye',
           de: 'Besiege ein Auge',
+          fr: 'Tuez un Œil',
         },
       },
     },
@@ -52,6 +54,7 @@ Options.Triggers.push({
         text: {
           en: 'Look Away from Rings',
           de: 'Schau von den Ringen weg',
+          fr: 'Ne regardez pas l\'anneau',
         },
       },
     },
@@ -64,6 +67,7 @@ Options.Triggers.push({
         text: {
           en: 'Away From Exploding Lines',
           de: 'Weg von den explodierenden Linien',
+          fr: 'Éloignez-vous des lignes explosives',
         },
       },
     },
@@ -102,7 +106,7 @@ Options.Triggers.push({
         text: {
           en: 'aoe + bleed',
           de: 'AoE + Blutung',
-          fr: 'AoE + saignement',
+          fr: 'AoE + Saignement',
           ja: 'AoE + DoT',
           cn: 'AOE + 流血',
           ko: '전체 공격 + 출혈',
@@ -125,6 +129,7 @@ Options.Triggers.push({
         text: {
           en: 'Knockback Into Wall',
           de: 'Rückstoß in eine Wand',
+          fr: 'Faites-vous pousser sur un mur',
         },
       },
     },
@@ -137,6 +142,7 @@ Options.Triggers.push({
         text: {
           en: 'Get Behind and Out',
           de: 'Geh nach Hinten und Raus',
+          fr: 'Passez derrière et extérieur',
         },
       },
     },
