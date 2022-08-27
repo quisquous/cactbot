@@ -46,6 +46,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Out and Away',
+          de: 'Raus und Weg',
         },
       },
     },
@@ -70,6 +71,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Wall',
+          de: 'Wand',
         },
       },
     },
@@ -193,6 +195,7 @@ Options.Triggers.push({
       outputStrings: {
         partnerStack: {
           en: 'Partner Stack',
+          de: 'Mit Partner sammeln',
         },
       },
     },
@@ -211,6 +214,7 @@ Options.Triggers.push({
       outputStrings: {
         partnerStack: {
           en: 'Partner Stack (unmarked)',
+          de: 'Mit Partner sammeln (nicht markiert)',
         },
       },
     },
