@@ -126,7 +126,19 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['0046', '0047'] }),
       condition: Conditions.targetIsYou(),
-      response: Responses.spread(),
+      infoText: (_data, matches, output) => {
+        if (matches.id === '0046')
+          return output.green!();
+        return output.purple!();
+      },
+      outputStrings: {
+        purple: {
+          en: 'Purple spread',
+        },
+        green: {
+          en: 'Green spread',
+        },
+      },
     },
     {
       id: 'SephirotUn Fiendish Rage',
