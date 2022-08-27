@@ -95,7 +95,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7N Hemitheos Aero II Call',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '016C' }),
+      netRegex: NetRegexes.headMarker({ id: '016C', capture: false }),
       delaySeconds: 0.3,
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {
