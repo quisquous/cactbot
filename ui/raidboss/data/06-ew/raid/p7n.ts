@@ -82,7 +82,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'In circle--get to edge',
+          en: 'Get to edge (in circle)',
         },
       },
     },
