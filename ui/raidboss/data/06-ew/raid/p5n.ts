@@ -39,6 +39,7 @@ const triggerSet: TriggerSet<Data> = {
         goFront: Outputs.goFront,
         goFrontAvoid: {
           en: 'Go Front (avoid puddle)',
+          de: 'Geh nach Vorne (weiche Flächen aus)',
         },
       },
     },
@@ -81,9 +82,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         getInEmptyTile: {
           en: 'Get in empty tile (no stones)',
+          de: 'Geh ins leere Feld (ohne Stein)',
         },
         moveAway: {
           en: 'Move away from puddles',
+          de: 'Geh weg von den Flächen',
         },
       },
     },
@@ -136,6 +139,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Start in empty tile -> move to first tile',
+          de: 'Starte im leeren Feld -> in das erste Feld bewegen',
         },
       },
     },
@@ -150,7 +154,67 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Start in middle -> move to first jump',
+          de: 'Starte in der Mitte -> zum ersten Sprung bewegen',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Proto-Carbuncle': 'Proto-Karfunkel',
+      },
+      'replaceText': {
+        '(?<!Toxic )Crunch': 'Quetscher',
+        'Ruby Glow': 'Rubinlicht',
+        'Searing Ray': 'Sengender Strahl',
+        'Sonic Howl': 'Schallheuler',
+        'Starving Stampede': 'Hungerstampede',
+        'Topaz Cluster': 'Topasbündel',
+        'Topaz Stones': 'Topasstein',
+        'Toxic Crunch': 'Giftquetscher',
+        'Venom Pool': 'Giftschwall',
+        'Venom Rain': 'Giftregen',
+        'Venom Squall': 'Giftwelle',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Proto-Carbuncle': 'Proto-Carbuncle',
+      },
+      'replaceText': {
+        '(?<!Toxic )Crunch': 'Croqueur',
+        'Ruby Glow': 'Lumière rubis',
+        'Searing Ray': 'Rayon irradiant',
+        'Sonic Howl': 'Hurlement sonique',
+        'Starving Stampede': 'Charge affamée',
+        'Topaz Cluster': 'Chaîne de topazes',
+        'Topaz Stones': 'Topazes',
+        'Toxic Crunch': 'Croqueur venimeux',
+        'Venom Pool': 'Giclée de venin',
+        'Venom Rain': 'Pluie de venin',
+        'Venom Squall': 'Crachat de venin',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Proto-Carbuncle': 'プロトカーバンクル',
+      },
+      'replaceText': {
+        '(?<!Toxic )Crunch': 'クランチ',
+        'Ruby Glow': 'ルビーの光',
+        'Searing Ray': 'シアリングレイ',
+        'Sonic Howl': 'ソニックハウル',
+        'Starving Stampede': 'スターヴィング・スタンピード',
+        'Topaz Cluster': 'トパーズクラスター',
+        'Topaz Stones': 'トパーズストーン',
+        'Toxic Crunch': 'ベノムクランチ',
+        'Venom Pool': 'ベノムスプラッシュ',
+        'Venom Rain': 'ベノムレイン',
+        'Venom Squall': 'ベノムスコール',
       },
     },
   ],
