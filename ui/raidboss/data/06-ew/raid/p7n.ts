@@ -111,7 +111,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7N Hemitheos Aero II Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '016C' }),
+      netRegex: NetRegexes.headMarker({ id: '016C', capture: false }),
       delaySeconds: 5,
       run: (data) => data.busterTargets = [],
     },
