@@ -27,6 +27,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get towers',
+          de: 'Türme nehmen',
         },
       },
     },
@@ -72,6 +73,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Move center when safe',
+          de: 'Geh in die Mitte, wenn es sicher ist',
         },
       },
     },
@@ -83,6 +85,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get to edge (in circle)',
+          de: 'Geh zum Rand (in den Kreisen)',
         },
       },
     },
@@ -130,6 +133,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid Behemoths',
+          de: 'Behemoths ausweichen',
         },
       },
     },
@@ -142,6 +146,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid line dashes',
+          de: 'Linien Anstürme ausweichen',
         },
       },
     },
@@ -154,6 +159,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid Exaflares',
+          de: 'Exaflares ausweichen',
         },
       },
     },
@@ -165,6 +171,81 @@ const triggerSet: TriggerSet<Data> = {
       // Don't risk someone being too fast.
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
       response: Responses.knockback('info'), // avoid collisions with Forbidden Fruit triggers.
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Agdistis': 'Agdistis',
+        'Immature Io': 'unreif(?:e|er|es|en) Io',
+        'Immature Stymphalide': 'unreif(?:e|er|es|en) Stymphalides',
+      },
+      'replaceText': {
+        'lines': 'Linien',
+        'trianngle': 'Dreieck',
+        'Blades of Attis': 'Schwertblatt des Attis',
+        'Bough of Attis': 'Ast des Attis',
+        'Burst': 'Explosion',
+        'Forbidden Fruit': 'Frucht des Lebens',
+        'Hemitheos\'s Aero II': 'Hemitheisches Windra',
+        'Hemitheos\'s Aero IV': 'Hemitheisches Windka',
+        'Hemitheos\'s Glare III': 'Hemitheisches Blendga',
+        'Hemitheos\'s Holy': 'Hemitheisches Sanctus',
+        'Immortal\'s Obol': 'Leitstab des Lebens',
+        'Shadow of Attis': 'Lichttropfen des Attis',
+        'Spark of Life': 'Schein des Lebens',
+        'Static Moon': 'Statischer Mond',
+        'Stymphalian Strike': 'Vogelschlag',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Agdistis': 'Agdistis',
+        'Immature Io': 'io immature',
+        'Immature Stymphalide': 'stymphalide immature',
+      },
+      'replaceText': {
+        'Blades of Attis': 'Lames d\'Attis',
+        'Bough of Attis': 'Grandes branches d\'Attis',
+        'Burst': 'Explosion',
+        'Forbidden Fruit': 'Fruits de la vie',
+        'Hemitheos\'s Aero II': 'Extra Vent d\'hémithéos',
+        'Hemitheos\'s Aero IV': 'Giga Vent d\'hémithéos',
+        'Hemitheos\'s Glare III': 'Méga Chatoiement d\'hémithéos',
+        'Hemitheos\'s Holy': 'Miracle d\'hémithéos',
+        'Immortal\'s Obol': 'Branche de vie et de mort',
+        'Shadow of Attis': 'Rai d\'Attis',
+        'Spark of Life': 'Étincelle de vie',
+        'Static Moon': 'Lune statique',
+        'Stymphalian Strike': 'Assaut stymphalide',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Agdistis': 'アグディスティス',
+        'Immature Io': 'イマチュア・イーオー',
+        'Immature Stymphalide': 'イマチュア・ステュムパリデス',
+      },
+      'replaceText': {
+        'Blades of Attis': 'アッティスの刃葉',
+        'Bough of Attis': 'アッティスの巨枝',
+        'Burst': '爆発',
+        'Forbidden Fruit': '生命の果実',
+        'Hemitheos\'s Aero II': 'ヘーミテオス・エアロラ',
+        'Hemitheos\'s Aero IV': 'ヘーミテオス・エアロジャ',
+        'Hemitheos\'s Glare III': 'ヘーミテオス・グレアガ',
+        'Hemitheos\'s Holy': 'ヘーミテオス・ホーリー',
+        'Immortal\'s Obol': '生滅の導枝',
+        'Shadow of Attis': 'アッティスの光雫',
+        'Spark of Life': '生命の光芒',
+        'Static Moon': 'スタティックムーン',
+        'Stymphalian Strike': 'バードストライク',
+      },
     },
   ],
 };
