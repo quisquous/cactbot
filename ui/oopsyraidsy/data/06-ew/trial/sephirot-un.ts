@@ -10,29 +10,29 @@ export interface Data extends OopsyData {
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.ContainmentBayS1T7Unreal,
   damageWarn: {
-    'SephirotEX Yesod': '76AB', // Snapshot floor spikes
-    'SephirotEX Ain': '7696', // Half-arena baited frontal
-    'SephirotEX Ein Sof': '769C', // Expanding green puddles
-    'SephirotEX Fiendish Wail': '76A4', // Raidwide if tower is missed
+    'SephirotUn Yesod': '76AB', // Snapshot floor spikes
+    'SephirotUn Ain': '7696', // Half-arena baited frontal
+    'SephirotUn Ein Sof': '769C', // Expanding green puddles
+    'SephirotUn Fiendish Wail': '76A4', // Raidwide if tower is missed
   },
   damageFail: {
-    'SephirotEX Pillar Of Mercy': '76AE', // Standing in the blue puddles
-    'SephirotEX Storm Of Words Revelation': '7680', // Missing the enrage on Storm of Words
+    'SephirotUn Pillar Of Mercy': '76AE', // Standing in the blue puddles
+    'SephirotUn Storm Of Words Revelation': '7680', // Missing the enrage on Storm of Words
   },
   shareWarn: {
-    'SephirotEX Triple Trial': '7693', // Instant tank cleave
-    'SephirotEX Ratzon Green': '7698', // Small green spread circle
-    'SephirotEX Ratzon Purple': '7699', // Large purple spread circle
-    'SephirotEX Earth Shaker': '7688',
-    'SephirotEX Spread Da\'at': '76A0',
+    'SephirotUn Triple Trial': '7693', // Instant tank cleave
+    'SephirotUn Ratzon Green': '7698', // Small green spread circle
+    'SephirotUn Ratzon Purple': '7699', // Large purple spread circle
+    'SephirotUn Earth Shaker': '7688',
+    'SephirotUn Spread Da\'at': '76A0',
   },
   soloWarn: {
-    'SephirotEX Fiendish Rage': '769A', // Stack markers, phase 1
+    'SephirotUn Fiendish Rage': '769A', // Stack markers, phase 1
   },
   triggers: [
     {
       // Pillar of Mercy,  Malkuth, and Pillar of Severity
-      id: 'SephirotEX Knockbacks',
+      id: 'SephirotUn Knockbacks',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['76AD', '76AF', '76B2'], source: 'Sephirot' }),
       deathReason: (_data, matches) => {
@@ -52,7 +52,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       // 3ED is Force Against Might orange, 3EE is Force Against Magic, green.
-      id: 'SephirotEX Force Against Gain',
+      id: 'SephirotUn Force Against Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['3ED', '3EE'] }),
       run: (data, matches) => {
@@ -61,7 +61,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'SephirotEX Force Against Lose',
+      id: 'SephirotUn Force Against Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: ['3ED', '3EE'] }),
       run: (data, matches) => {
@@ -70,7 +70,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'SephirotEX Spirit',
+      id: 'SephirotUn Spirit',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '76A8', source: 'Sephirot' }),
       condition: (data, matches) => data?.force?.[matches.target] === '3ED',
@@ -83,7 +83,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'SephirotEX Life Force',
+      id: 'SephirotUn Life Force',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '76A7', source: 'Sephirot' }),
       condition: (data, matches) => data?.force?.[matches.target] === '3EE',
@@ -96,7 +96,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'SephirotEX Fiendish Wail Green',
+      id: 'SephirotUn Fiendish Wail Green',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '76A3', source: 'Sephirot' }),
       condition: (data, matches) => data?.force?.[matches.target] === '3EE',
@@ -110,7 +110,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       // Only tanks or Blue Mages should take towers without a Force debuff.
-      id: 'SephirotEX Fiendish Wail Non-Tank',
+      id: 'SephirotUn Fiendish Wail Non-Tank',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '76A3', source: 'Sephirot' }),
       condition: (data, matches) => {
@@ -128,7 +128,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       // Taking a tether while under Force Against Might (orange) kills the target
-      id: 'SephirotEX Tether Da\'at',
+      id: 'SephirotUn Tether Da\'at',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '76A1', source: 'Sephirot' }),
       condition: (data, matches) => data?.force?.[matches.target] === '3ED',
