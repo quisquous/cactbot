@@ -4,7 +4,7 @@ const echoesOutputStrings = {
     en: 'Stack Donut',
     de: 'Sammeln Donut',
     fr: 'Packez-vous, donut',
-    ja: 'スタック',
+    ja: '頭割り',
     cn: '集合放月环',
     ko: '도넛 장판, 쉐어',
   },

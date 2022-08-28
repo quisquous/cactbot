@@ -41,6 +41,7 @@ Options.Triggers.push({
         text: {
           en: 'Out and Away',
           de: 'Raus und Weg',
+          ja: '外へ',
         },
       },
     },
@@ -53,6 +54,7 @@ Options.Triggers.push({
         text: {
           en: 'Wall',
           de: 'Wand',
+          ja: '壁へ',
         },
       },
     },

@@ -16,6 +16,7 @@ Options.Triggers.push({
         text: {
           en: 'Get towers',
           de: 'Türme nehmen',
+          ja: '塔へ',
         },
       },
     },
@@ -62,6 +63,7 @@ Options.Triggers.push({
         text: {
           en: 'Move center when safe',
           de: 'Geh in die Mitte, wenn es sicher ist',
+          ja: '安置になったら入る',
         },
       },
     },
@@ -74,6 +76,7 @@ Options.Triggers.push({
         text: {
           en: 'Get to edge (in circle)',
           de: 'Geh zum Rand (in den Kreisen)',
+          ja: '角へ (円の中)',
         },
       },
     },
@@ -122,6 +125,7 @@ Options.Triggers.push({
         text: {
           en: 'Avoid Behemoths',
           de: 'Behemoths ausweichen',
+          ja: 'ベヒーモスから離れる',
         },
       },
     },
@@ -135,6 +139,7 @@ Options.Triggers.push({
         text: {
           en: 'Avoid line dashes',
           de: 'Linien Anstürme ausweichen',
+          ja: '突進回避',
         },
       },
     },
@@ -148,6 +153,7 @@ Options.Triggers.push({
         text: {
           en: 'Avoid Exaflares',
           de: 'Exaflares ausweichen',
+          ja: 'エクサプレア',
         },
       },
     },

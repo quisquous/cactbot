@@ -166,38 +166,47 @@ Options.Triggers.push({
         combo: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          ja: '${dir1} / ${dir2}',
         },
         outsideNorth: {
           en: 'Outside North',
           de: 'Im Norden raus',
+          ja: '北、外側',
         },
         insideNorth: {
           en: 'Inside North',
           de: 'Im Norden rein',
+          ja: '北、内側',
         },
         outsideEast: {
           en: 'Outside East',
           de: 'Im Osten raus',
+          ja: '東、外側',
         },
         insideEast: {
           en: 'Inside East',
           de: 'Im Osten rein',
+          ja: '東、内側',
         },
         outsideSouth: {
           en: 'Outside South',
           de: 'Im Süden raus',
+          ja: '南、外側',
         },
         insideSouth: {
           en: 'Inside South',
           de: 'Im Süden rein',
+          ja: '南、内側',
         },
         outsideWest: {
           en: 'Outside West',
           de: 'Im Westen raus',
+          ja: '西、外側',
         },
         insideWest: {
           en: 'Inside West',
           de: 'Im Westen rein',
+          ja: '西、内側',
         },
       },
     },
