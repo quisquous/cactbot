@@ -155,17 +155,17 @@ hideall "--sync--"
 # -> Quadruped v2 branch
 706.5 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
 711.7 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794B:/ window 50,50 jump 811.7
-722.3 "Quadrupedal Crush" #sync / 1[56]:[^:]*:Hephaistos:7904:/
+722.3 "Quadrupedal Crush?" #sync / 1[56]:[^:]*:Hephaistos:7904:/
 728.3 "--sync--" #sync / 1[56]:[^:]*:Hephaistos:790B:/
-737.0 "Blazing Footfalls" #sync / 1[56]:[^:]*:Hephaistos:790A:/
+737.0 "Blazing Footfalls?" #sync / 1[56]:[^:]*:Hephaistos:790A:/
 
 # -> Gorgon v2 branch
 706.5 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
 711.7 "--sync--" sync / 1[56]:[^:]*:Hephaistos:794C:/ window 50,50 jump 1111.7
-724.0 "Into the Shadows" #sync / 1[56]:[^:]*:Hephaistos:78FB:/
+724.0 "Into the Shadows?" #sync / 1[56]:[^:]*:Hephaistos:78FB:/
 732.0 "--sync--" #sync / 1[56]:[^:]*:Gorgon:78FC:/
-732.0 "Gorgospit" #sync / 1[56]:[^:]*:Illusory Hephaistos:6FD7:/
-732.0 "Volcanic Torches" #sync / 1[56]:[^:]*:Hephaistos:71DE:/
+732.0 "Gorgospit?" #sync / 1[56]:[^:]*:Illusory Hephaistos:6FD7:/
+732.0 "Volcanic Torches?" #sync / 1[56]:[^:]*:Hephaistos:71DE:/
 
 
 
@@ -285,14 +285,14 @@ hideall "--sync--"
 # -> Quadruped v2 branch
 1360.8 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
 1366.0 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794B:/ window 50,50 jump 811.7
-1376.6 "Quadrupedal Crush" #sync / 1[56]:[^:]*:Hephaistos:7904:/
+1376.6 "Quadrupedal Crush?" #sync / 1[56]:[^:]*:Hephaistos:7904:/
 1382.6 "--sync--" #sync / 1[56]:[^:]*:Hephaistos:790B:/
-1391.3 "Blazing Footfalls" #sync / 1[56]:[^:]*:Hephaistos:790A:/
+1391.3 "Blazing Footfalls?" #sync / 1[56]:[^:]*:Hephaistos:790A:/
 
 # -> Gorgon v2 branch
 1360.8 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
 1366.0 "--sync--" sync / 1[56]:[^:]*:Hephaistos:794C:/ window 50,50 jump 1111.7
-1378.3 "Into the Shadows" #sync / 1[56]:[^:]*:Hephaistos:78FB:/
+1378.3 "Into the Shadows?" #sync / 1[56]:[^:]*:Hephaistos:78FB:/
 1386.3 "--sync--" #sync / 1[56]:[^:]*:Gorgon:78FC:/
-1386.3 "Gorgospit" #sync / 1[56]:[^:]*:Illusory Hephaistos:6FD7:/
-1386.3 "Volcanic Torches" #sync / 1[56]:[^:]*:Hephaistos:71DE:/
+1386.3 "Gorgospit?" #sync / 1[56]:[^:]*:Illusory Hephaistos:6FD7:/
+1386.3 "Volcanic Torches?" #sync / 1[56]:[^:]*:Hephaistos:71DE:/
