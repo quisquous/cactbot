@@ -330,6 +330,10 @@ Options.Triggers.push({
         'Stiff Breeze': 'Föhn',
       },
       'replaceText': {
+        'ground': 'Boden',
+        'line': 'Linie',
+        'donut': 'Donut',
+        'protean': 'Himmelsrichtungen',
         'Blow Away': 'Hauerwelle',
         'Blustery Ruler': 'Tosende Herrin',
         'Bold Boulder': 'Feister Fels',

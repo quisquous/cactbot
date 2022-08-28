@@ -117,9 +117,11 @@ Options.Triggers.push({
       outputStrings: {
         purple: {
           en: 'Purple spread',
+          de: 'Lila verteilen',
         },
         green: {
           en: 'Green spread',
+          de: 'Grün verteilen',
         },
       },
     },
