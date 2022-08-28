@@ -107,6 +107,7 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.Smileton,
   ZoneId.TheStigmaDreamscape,
   ZoneId.AlzadaalsLegacy,
+  ZoneId.TheFellCourtOfTroia,
 
   // Guildhests
   ZoneId.BasicTrainingEnemyParties,
@@ -221,12 +222,15 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheDarkInside,
   ZoneId.TheMothercrystal,
   ZoneId.TheFinalDay,
+  ZoneId.StormsCrown,
 
   // High-end Trials (Endwalker)
   ZoneId.TheMinstrelsBalladZodiarksFall,
   ZoneId.TheMinstrelsBalladHydaelynsCall,
   ZoneId.TheMinstrelsBalladEndsingersAria,
+  ZoneId.StormsCrownExtreme,
   ZoneId.UltimasBaneUnreal,
+  ZoneId.ContainmentBayS1T7Unreal,
 
   // Alliance Raids (A Realm Reborn)
   ZoneId.TheLabyrinthOfTheAncients,
@@ -361,12 +365,20 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.AsphodelosTheSecondCircle,
   ZoneId.AsphodelosTheThirdCircle,
   ZoneId.AsphodelosTheFourthCircle,
+  ZoneId.AbyssosTheFifthCircle,
+  ZoneId.AbyssosTheSixthCircle,
+  ZoneId.AbyssosTheSeventhCircle,
+  ZoneId.AbyssosTheEighthCircle,
 
   // Savage Raids (Endwalker)
   ZoneId.AsphodelosTheFirstCircleSavage,
   ZoneId.AsphodelosTheSecondCircleSavage,
   ZoneId.AsphodelosTheThirdCircleSavage,
   ZoneId.AsphodelosTheFourthCircleSavage,
+  ZoneId.AbyssosTheFifthCircleSavage,
+  ZoneId.AbyssosTheSixthCircleSavage,
+  ZoneId.AbyssosTheSeventhCircleSavage,
+  ZoneId.AbyssosTheEighthCircleSavage,
 
   // Ultimate Raids
   ZoneId.TheUnendingCoilOfBahamutUltimate,
