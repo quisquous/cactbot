@@ -236,6 +236,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Gorgon': 'Gorgone',
         'Hephaistos': 'Hephaistos',
@@ -243,6 +244,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Gorgon': 'gorgone',
         'Hephaistos': 'Héphaïstos',
@@ -250,6 +252,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Gorgon': 'ゴルゴン',
         'Hephaistos': 'ヘファイストス',
