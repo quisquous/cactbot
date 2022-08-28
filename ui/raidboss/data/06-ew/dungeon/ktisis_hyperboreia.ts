@@ -93,6 +93,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Hide behind unbroken meteor',
           de: 'Hinter einem nicht zerbrochenen Meteor verstecken',
           fr: 'Cachez-vous derrière le météore intact',
+          ja: '壊れていないメテオの後ろへ',
           cn: '躲在未破碎的陨石后',
           ko: '금이 안 간 돌 뒤에 숨기',
         },

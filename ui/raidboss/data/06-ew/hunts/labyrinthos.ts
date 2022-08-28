@@ -27,6 +27,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Follow charge',
           de: 'Folge dem Ansturm',
           fr: 'Suivez la charge',
+          ja: 'ボス従う',
           cn: '跟随冲锋',
           ko: '돌진 따라가기',
         },
