@@ -1,7 +1,298 @@
 ### P8N: Abyssos: The Eighth Circle
 #
+# -ii 7909 790F 78F3 78F4 7902 790E 790C
+# -it "Gorgon"
+# -it "Hephaistos"
 
 hideall "--Reset--"
 hideall "--sync--"
 
+# Phase flowchart:
+#
+#           +-> Quadruped -> Vent -> Gorgon -+
+# Sunforge -+                                +-> Torches -> (continued below)
+#           +-> Gorgon -> Vent -> Quadruped -+
+#
+#
+#           +-> Quadruped v2 -> Vent v2 -> Gorgon v2 -+                +-> Quadruped v2 -> etc
+# (cont.) --+                                         +-> Sunforge v2 -+
+#           +-> Gorgon v2 -> Vent v2 -> Quadruped v2 -+                +-> Gorgon v2 -> etc
+
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+0.0 "--sync--" sync /Engage!/ window 1,0
+7.0 "--sync--" sync / 14:[^:]*:Hephaistos:7905:/ window 10,10
+12.0 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7905:/
+
+# Sunforge v1
+17.1 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+26.4 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:78EC:/
+27.4 "Scorching Fang" sync / 1[56]:[^:]*:Hephaistos:78EE:/
+36.6 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:78ED:/
+37.6 "Sun's Pinion" sync / 1[56]:[^:]*:Hephaistos:78EF:/
+46.8 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:(78EC|78ED):/
+47.8 "Scorching Fang/Sun's Pinion" sync / 1[56]:[^:]*:Hephaistos:(78EE|78EF):/
+56.1 "Flameviper" sync / 1[56]:[^:]*:Hephaistos:7908:/
+# jump to Quadruped v1 or Gorgon v1
+
+# -> Quadruped v1 branch
+63.3 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+68.5 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794B:/ window 50,50 jump 168.5
+79.1 "Quadrupedal Crush?" #sync / 1[56]:[^:]*:Hephaistos:7904:/
+85.1 "--sync--" #sync / 1[56]:[^:]*:Hephaistos:790B:/
+91.6 "Blazing Footfalls?" #sync / 1[56]:[^:]*:Hephaistos:7900:/
+
+# -> Gorgon v1 branch
+63.3 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+# don't double up with quadruped's 794B Reforged Reflection above
+68.5 "--sync--" sync / 1[56]:[^:]*:Hephaistos:794C:/ window 50,50 jump 468.5
+80.8 "Into the Shadows?" #sync / 1[56]:[^:]*:Hephaistos:78FB:/
+88.8 "--sync--" #sync / 1[56]:[^:]*:Gorgon:78FC:/
+89.9 "Petrifaction?" #sync / 1[56]:[^:]*:[^:]*:6723:/
+
+
+# Quadruped v1 (Quadruped branch)
+163.3 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+168.5 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794B:/
+179.1 "Quadrupedal Crush" sync / 1[56]:[^:]*:Hephaistos:7904:/
+185.1 "--sync--" sync / 1[56]:[^:]*:Hephaistos:790B:/
+191.6 "Blazing Footfalls" sync / 1[56]:[^:]*:Hephaistos:7900:/
+191.6 "--untargetable--"
+192.3 "Trailblaze" sync / 1[56]:[^:]*:Hephaistos:790D:/
+194.6 "Quadrupedal Impact" sync / 1[56]:[^:]*:Hephaistos:7103:/
+197.2 "Quadrupedal Impact" sync / 1[56]:[^:]*:Hephaistos:7103:/
+198.9 "--targetable--"
+208.0 "Rearing Rampage" sync / 1[56]:[^:]*:Hephaistos:79AB:/
+
+# Vent v1 (Quadruped branch)
+221.5 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+226.8 "Fourfold Fires" sync / 1[56]:[^:]*:Hephaistos:78F2:/
+232.6 "Abyssal Fires" sync / 1[56]:[^:]*:Hephaistos:78F1:/
+235.9 "--sync--" sync / 1[56]:[^:]*:Hephaistos:78F0:/
+241.8 "Cthonic Vent 1" sync / 1[56]:[^:]*:Suneater:78F5:/
+249.8 "Cthonic Vent 2" sync / 1[56]:[^:]*:Suneater:794D:/
+257.8 "Cthonic Vent 3" sync / 1[56]:[^:]*:Suneater:78F6:/
+264.2 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:(78EC|78ED):/
+265.2 "Scorching Fang/Sun's Pinion" sync / 1[56]:[^:]*:Hephaistos:(78EE|78EF):/
+272.3 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7905:/
+
+# Gorgon v1 (Quadruped branch)
+279.5 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+284.7 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794C:/
+297.0 "Into the Shadows" sync / 1[56]:[^:]*:Hephaistos:78FB:/
+305.0 "--sync--" sync / 1[56]:[^:]*:Gorgon:78FC:/
+306.1 "Petrifaction" sync / 1[56]:[^:]*:[^:]*:6723:/
+306.1 "--targetable--"
+312.3 "Gorgospit" sync / 1[56]:[^:]*:Hephaistos:78FF:/
+319.6 "Gorgospit" sync / 1[56]:[^:]*:Hephaistos:78FF:/
+327.7 "Ektothermos" sync / 1[56]:[^:]*:Hephaistos:78FE:/
+338.1 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+
+# -> Torches v1 (both branches)
+343.6 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+348.7 "Volcanic Torches" sync / 1[56]:[^:]*:Hephaistos:78F7:/ window 50,50 jump 643.7
+362.7 "Torch Flame" #sync / 1[56]:[^:]*:Hephaistos:78F8:/
+366.8 "Volcanic Torches" #sync / 1[56]:[^:]*:Hephaistos:78F7:/
+374.9 "Hemitheos's Flare" #sync / 1[56]:[^:]*:Hephaistos:7906:/
+380.8 "Torch Flame" #sync / 1[56]:[^:]*:Hephaistos:78F8:/
+380.9 "Hemitheos's Flare" #sync / 1[56]:[^:]*:Hephaistos:7907:/
+388.1 "Sunforge" #sync / 1[56]:[^:]*:Hephaistos:(78EC|78ED):/
+389.1 "Scorching Fang/Sun's Pinion" #sync / 1[56]:[^:]*:Hephaistos:(78EE|78EF):/
+396.2 "Genesis of Flame" #sync / 1[56]:[^:]*:Hephaistos:7905:/
+404.4 "Flameviper" #sync / 1[56]:[^:]*:Hephaistos:7908:/
+
+# Gorgon v1 (Gorgon branch)
+463.3 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+468.5 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794C:/
+480.8 "Into the Shadows" sync / 1[56]:[^:]*:Hephaistos:78FB:/
+488.8 "--sync--" sync / 1[56]:[^:]*:Gorgon:78FC:/
+489.9 "Petrifaction" sync / 1[56]:[^:]*:[^:]*:6723:/
+489.9 "--targetable--"
+496.1 "Gorgospit" sync / 1[56]:[^:]*:Hephaistos:78FF:/
+503.4 "Gorgospit" sync / 1[56]:[^:]*:Hephaistos:78FF:/
+511.5 "Ektothermos" sync / 1[56]:[^:]*:Hephaistos:78FE:/
+
+# Vent v1 (Gorgon branch)
+521.9 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+527.2 "Fourfold Fires" sync / 1[56]:[^:]*:Hephaistos:78F2:/
+533.0 "Abyssal Fires" sync / 1[56]:[^:]*:Hephaistos:78F1:/
+536.3 "--sync--" sync / 1[56]:[^:]*:Hephaistos:78F0:/
+542.2 "Cthonic Vent 1" sync / 1[56]:[^:]*:Suneater:78F5:/
+550.2 "Cthonic Vent 2" sync / 1[56]:[^:]*:Suneater:794D:/
+558.2 "Cthonic Vent 3" sync / 1[56]:[^:]*:Suneater:78F6:/
+564.6 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:(78EC|78ED):/
+565.6 "Scorching Fang/Sun's Pinion" sync / 1[56]:[^:]*:Hephaistos:(78EE|78EF):/
+572.7 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7905:/
+
+# Quadruped v1 (Gorgon branch)
+579.9 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+585.1 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794B:/
+595.8 "Quadrupedal Crush" sync / 1[56]:[^:]*:Hephaistos:7904:/
+601.8 "--sync--" sync / 1[56]:[^:]*:Hephaistos:790B:/
+608.4 "Blazing Footfalls" sync / 1[56]:[^:]*:Hephaistos:7900:/
+608.4 "--untargetable--"
+609.1 "Trailblaze" sync / 1[56]:[^:]*:Hephaistos:790D:/
+611.6 "Quadrupedal Impact 1" sync / 1[56]:[^:]*:Hephaistos:7103:/
+614.4 "Quadrupedal Impact 2" sync / 1[56]:[^:]*:Hephaistos:7103:/
+616.2 "--targetable--"
+625.3 "Rearing Rampage" sync / 1[56]:[^:]*:Hephaistos:79AB:/
+
+
+# Torches v1 (both branches)
+638.6 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+643.7 "Volcanic Torches" sync / 1[56]:[^:]*:Hephaistos:78F7:/
+657.7 "Torch Flame" sync / 1[56]:[^:]*:Hephaistos:78F8:/
+661.8 "Volcanic Torches" sync / 1[56]:[^:]*:Hephaistos:78F7:/
+669.9 "Hemitheos's Flare" sync / 1[56]:[^:]*:Hephaistos:7906:/
+675.8 "Torch Flame" sync / 1[56]:[^:]*:Hephaistos:78F8:/
+675.9 "Hemitheos's Flare" sync / 1[56]:[^:]*:Hephaistos:7907:/
+683.1 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:(78EC|78ED):/
+684.1 "Scorching Fang/Sun's Pinion" sync / 1[56]:[^:]*:Hephaistos:(78EE|78EF):/
+691.2 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7905:/
+699.4 "Flameviper" sync / 1[56]:[^:]*:Hephaistos:7908:/
+# jump to Quadruped v2 or Gorgon v2
+
+# -> Quadruped v2 branch
+706.5 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+711.7 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794B:/ window 50,50 jump 811.7
+722.3 "Quadrupedal Crush?" #sync / 1[56]:[^:]*:Hephaistos:7904:/
+728.3 "--sync--" #sync / 1[56]:[^:]*:Hephaistos:790B:/
+737.0 "Blazing Footfalls?" #sync / 1[56]:[^:]*:Hephaistos:790A:/
+
+# -> Gorgon v2 branch
+706.5 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+711.7 "--sync--" sync / 1[56]:[^:]*:Hephaistos:794C:/ window 50,50 jump 1111.7
+724.0 "Into the Shadows?" #sync / 1[56]:[^:]*:Hephaistos:78FB:/
+732.0 "--sync--" #sync / 1[56]:[^:]*:Gorgon:78FC:/
+732.0 "Gorgospit?" #sync / 1[56]:[^:]*:Illusory Hephaistos:6FD7:/
+732.0 "Volcanic Torches?" #sync / 1[56]:[^:]*:Hephaistos:71DE:/
+
+
+
+# Quadruped v2 (Quadruped2 branch)
+806.5 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+811.7 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794B:/
+822.3 "Quadrupedal Crush" sync / 1[56]:[^:]*:Hephaistos:7904:/
+828.3 "--sync--" sync / 1[56]:[^:]*:Hephaistos:790B:/
+837.0 "Blazing Footfalls" sync / 1[56]:[^:]*:Hephaistos:790A:/
+837.0 "--untargetable--"
+837.7 "Trailblaze" sync / 1[56]:[^:]*:Hephaistos:790D:/
+840.2 "Quadrupedal Impact 1" sync / 1[56]:[^:]*:Hephaistos:7103:/
+843.0 "Quadrupedal Impact 2" sync / 1[56]:[^:]*:Hephaistos:7103:/
+845.8 "Quadrupedal Impact 3" sync / 1[56]:[^:]*:Hephaistos:7103:/
+847.6 "--targetable--"
+857.7 "Rearing Rampage" sync / 1[56]:[^:]*:Hephaistos:79AB:/
+
+# Vent v2 (Quadruped2 branch)
+871.1 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+876.2 "Fourfold Fires" sync / 1[56]:[^:]*:Hephaistos:78F2:/
+882.0 "Abyssal Fires" sync / 1[56]:[^:]*:Hephaistos:78F1:/
+885.3 "--sync--" sync / 1[56]:[^:]*:Hephaistos:78F0:/
+891.2 "Cthonic Vent 1" sync / 1[56]:[^:]*:Suneater:78F5:/
+896.4 "Volcanic Torches" sync / 1[56]:[^:]*:Hephaistos:78F7:/
+899.1 "Cthonic Vent 2" sync / 1[56]:[^:]*:Suneater:794D:/
+907.1 "Cthonic Vent 3" sync / 1[56]:[^:]*:Suneater:78F6:/
+909.5 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7906:/
+910.4 "Torch Flame" sync / 1[56]:[^:]*:Hephaistos:78F8:/
+915.5 "Hemitheos's Flare" sync / 1[56]:[^:]*:Hephaistos:7907:/
+919.7 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:(78EC|78ED):/
+920.7 "Scorching Fang/Sun's Pinion" sync / 1[56]:[^:]*:Hephaistos:(78EE|78EF):/
+927.8 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7905:/
+935.9 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7905:/
+944.1 "Flameviper" sync / 1[56]:[^:]*:Hephaistos:7908:/
+
+# Gorgon v2 (Quadruped2 branch)
+952.2 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+957.4 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794C:/
+969.7 "Into the Shadows" sync / 1[56]:[^:]*:Hephaistos:78FB:/
+977.7 "--sync--" sync / 1[56]:[^:]*:Gorgon:78FC:/
+977.7 "Gorgospit" sync / 1[56]:[^:]*:Illusory Hephaistos:6FD7:/
+977.7 "Volcanic Torches" sync / 1[56]:[^:]*:Hephaistos:71DE:/
+978.7 "Petrifaction" sync / 1[56]:[^:]*:[^:]*:6723:/
+978.7 "--targetable--"
+983.9 "Gorgospit" sync / 1[56]:[^:]*:Hephaistos:78FF:/
+990.1 "Gorgospit" sync / 1[56]:[^:]*:Hephaistos:78FF:/
+991.7 "Torch Flame" sync / 1[56]:[^:]*:Hephaistos:78F8:/
+998.3 "Ektothermos" sync / 1[56]:[^:]*:Hephaistos:78FE:/
+
+# -> Sunforge v2 (both branches)
+1008.7 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+1017.9 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:(78EC|78ED):/ window 50,50 jump 1317.9
+1018.9 "Scorching Fang/Sun\'s Pinion" #sync / 1[56]:[^:]*:Hephaistos:(78EE|78EF):/
+1029.1 "Genesis of Flame" #sync / 1[56]:[^:]*:Hephaistos:7905:/
+1037.4 "Flameviper" #sync / 1[56]:[^:]*:Hephaistos:7908:/
+1052.6 "Sunforge" #sync / 1[56]:[^:]*:Hephaistos:78EC:/
+1053.6 "Scorching Fang/Sun\'s Pinion" #sync / 1[56]:[^:]*:Hephaistos:(78EE|78EF):/
+
+
+
+# Gorgon v2 (Gorgon2 branch)
+1106.5 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+1111.7 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794C:/
+1124.0 "Into the Shadows" sync / 1[56]:[^:]*:Hephaistos:78FB:/
+1132.0 "--sync--" sync / 1[56]:[^:]*:Gorgon:78FC:/
+1132.0 "Gorgospit" sync / 1[56]:[^:]*:Illusory Hephaistos:6FD7:/
+1132.0 "Volcanic Torches" sync / 1[56]:[^:]*:Hephaistos:71DE:/
+1133.0 "Petrifaction" sync / 1[56]:[^:]*:[^:]*:6723:/
+1133.0 "--targetable--"
+1138.2 "Gorgospit" sync / 1[56]:[^:]*:Hephaistos:78FF:/
+1144.4 "Gorgospit" sync / 1[56]:[^:]*:Hephaistos:78FF:/
+1146.0 "Torch Flame" sync / 1[56]:[^:]*:Hephaistos:78F8:/
+1152.6 "Ektothermos" sync / 1[56]:[^:]*:Hephaistos:78FE:/
+
+# Vent v2 (Gorgon2 branch)
+1163.0 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+1168.1 "Fourfold Fires" sync / 1[56]:[^:]*:Hephaistos:78F2:/
+1173.9 "Abyssal Fires" sync / 1[56]:[^:]*:Hephaistos:78F1:/
+1177.2 "--sync--" sync / 1[56]:[^:]*:Hephaistos:78F0:/
+1183.1 "Cthonic Vent 1" sync / 1[56]:[^:]*:Suneater:78F5:/
+1188.3 "Volcanic Torches" sync / 1[56]:[^:]*:Hephaistos:78F7:/
+1191.0 "Cthonic Vent 2" sync / 1[56]:[^:]*:Suneater:794D:/
+1199.0 "Cthonic Vent 3" sync / 1[56]:[^:]*:Suneater:78F6:/
+1201.4 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7906:/
+1202.3 "Torch Flame" sync / 1[56]:[^:]*:Hephaistos:78F8:/
+1207.4 "Hemitheos's Flare" sync / 1[56]:[^:]*:Hephaistos:7907:/
+1211.6 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:(78EC|78ED):/
+1212.6 "Scorching Fang/Sun's Pinion" sync / 1[56]:[^:]*:Hephaistos:(78EE|78EF):/
+1219.7 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7905:/
+1227.8 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7905:/
+1236.0 "Flameviper" sync / 1[56]:[^:]*:Hephaistos:7908:/
+
+# Quadruped v2 (Gorgon2 branch)
+1244.1 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+1249.3 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794B:/
+1259.9 "Quadrupedal Crush" sync / 1[56]:[^:]*:Hephaistos:7904:/
+1265.9 "--sync--" sync / 1[56]:[^:]*:Hephaistos:790B:/
+1274.6 "Blazing Footfalls" sync / 1[56]:[^:]*:Hephaistos:790A:/
+1274.6 "--untargetable--"
+1275.3 "Trailblaze" sync / 1[56]:[^:]*:Hephaistos:790D:/
+1277.8 "Quadrupedal Impact 1" sync / 1[56]:[^:]*:Hephaistos:7103:/
+1280.6 "Quadrupedal Impact 2" sync / 1[56]:[^:]*:Hephaistos:7103:/
+1283.4 "Quadrupedal Impact 3" sync / 1[56]:[^:]*:Hephaistos:7103:/
+1285.2 "--targetable--"
+1295.3 "Rearing Rampage" sync / 1[56]:[^:]*:Hephaistos:79AB:/
+
+# Sunforge v2 (both branches)
+1308.7 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+1317.9 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:(78EC|78ED):/
+1318.9 "Scorching Fang/Sun\'s Pinion" sync / 1[56]:[^:]*:Hephaistos:(78EE|78EF):/
+1329.1 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7905:/
+1337.4 "Flameviper" sync / 1[56]:[^:]*:Hephaistos:7908:/
+1352.6 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:78EC:/
+1353.6 "Scorching Fang/Sun\'s Pinion" sync / 1[56]:[^:]*:Hephaistos:(78EE|78EF):/
+# jump to Quadruped v2 or Gorgon v2
+
+# -> Quadruped v2 branch
+1360.8 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+1366.0 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794B:/ window 50,50 jump 811.7
+1376.6 "Quadrupedal Crush?" #sync / 1[56]:[^:]*:Hephaistos:7904:/
+1382.6 "--sync--" #sync / 1[56]:[^:]*:Hephaistos:790B:/
+1391.3 "Blazing Footfalls?" #sync / 1[56]:[^:]*:Hephaistos:790A:/
+
+# -> Gorgon v2 branch
+1360.8 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+1366.0 "--sync--" sync / 1[56]:[^:]*:Hephaistos:794C:/ window 50,50 jump 1111.7
+1378.3 "Into the Shadows?" #sync / 1[56]:[^:]*:Hephaistos:78FB:/
+1386.3 "--sync--" #sync / 1[56]:[^:]*:Gorgon:78FC:/
+1386.3 "Gorgospit?" #sync / 1[56]:[^:]*:Illusory Hephaistos:6FD7:/
+1386.3 "Volcanic Torches?" #sync / 1[56]:[^:]*:Hephaistos:71DE:/
