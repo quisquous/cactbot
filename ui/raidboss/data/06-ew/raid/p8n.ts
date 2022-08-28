@@ -189,30 +189,39 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         combo: {
           en: '${dir1} / ${dir2}',
+          de: '${dir1} / ${dir2}',
         },
         outsideNorth: {
           en: 'Outside North',
+          de: 'Im Norden raus',
         },
         insideNorth: {
           en: 'Inside North',
+          de: 'Im Norden rein',
         },
         outsideEast: {
           en: 'Outside East',
+          de: 'Im Osten raus',
         },
         insideEast: {
           en: 'Inside East',
+          de: 'Im Osten rein',
         },
         outsideSouth: {
           en: 'Outside South',
+          de: 'Im Süden raus',
         },
         insideSouth: {
           en: 'Inside South',
+          de: 'Im Süden rein',
         },
         outsideWest: {
           en: 'Outside West',
+          de: 'Im Westen raus',
         },
         insideWest: {
           en: 'Inside West',
+          de: 'Im Westen rein',
         },
       },
     },
@@ -222,6 +231,29 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '7907', source: 'Hephaistos' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Gorgon': 'Gorgone',
+        'Hephaistos': 'Hephaistos',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Gorgon': 'gorgone',
+        'Hephaistos': 'Héphaïstos',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Gorgon': 'ゴルゴン',
+        'Hephaistos': 'ヘファイストス',
+      },
     },
   ],
 };
