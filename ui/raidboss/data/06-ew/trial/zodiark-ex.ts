@@ -70,6 +70,7 @@ const triggerSet: TriggerSet<Data> = {
         underQuetz: {
           en: 'Under NW Quetzalcoatl',
           de: 'Unter NW Quetzalcoatl',
+          ja: '北東の鳥の下',
           cn: '站在左上 (西北) 鸟',
           ko: '북동쪽 새 밑으로', // This is northeast. Because Korean folks go there.
         },
@@ -85,6 +86,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack x${num}',
           de: 'Sammeln x${num}',
+          ja: '頭割り x${num}',
           cn: '${num}次分摊',
           ko: '쉐어 ${num}번',
         },
@@ -134,24 +136,28 @@ const triggerSet: TriggerSet<Data> = {
         northCone: {
           en: 'North Cone',
           de: 'Nördliche Kegel-AoE',
+          ja: '北のさんかく',
           cn: '上 (北) 扇形',
           ko: '북쪽 삼각형',
         },
         eastCone: {
           en: 'East Cone',
           de: 'Östliche Kegel-AoE',
+          ja: '東のさんかく',
           cn: '右 (东) 扇形',
           ko: '동쪽 삼각형',
         },
         westCone: {
           en: 'West Cone',
           de: 'Westliche Kegel-AoE',
+          ja: '西のさんかく',
           cn: '左 (西) 扇形',
           ko: '서쪽 삼각형',
         },
         southCone: {
           en: 'South Cone',
           de: 'Südliche Kegel-AoE',
+          ja: '南のさんかく',
           cn: '下 (南) 扇形',
           ko: '남쪽 삼각형',
         },
@@ -202,6 +208,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: Outputs.killAdds.en + '(back first)',
           de: Outputs.killAdds.de + '(hinten zuerst)',
+          ja: Outputs.killAdds.ja + '(下の雑魚から)',
           cn: Outputs.killAdds.cn + '(先打后方的)',
           ko: Outputs.killAdds.ko + '(아래쪽 먼저)',
         },
@@ -253,12 +260,14 @@ const triggerSet: TriggerSet<Data> = {
         frontsides: {
           en: 'front sides',
           de: 'Vorne Seiten',
+          ja: '前の横側',
           cn: '前方两边',
           ko: '앞쪽 양옆',
         },
         backmiddle: {
           en: 'back middle',
           de: 'Hinten Mitte',
+          ja: '後ろの真ん中',
           cn: '后方中间',
           ko: '뒤쪽 중앙',
         },
@@ -273,12 +282,14 @@ const triggerSet: TriggerSet<Data> = {
           // Similarly, there's a algodon knockback call too.
           en: 'sides (for laser)',
           de: 'Seiten (für die Laser)',
+          ja: '横側 (レーザー回避)',
           cn: '两边 (躲避激光)',
           ko: '양옆 (레이저 피하기)',
         },
         middle: {
           en: 'middle (for laser)',
           de: 'Mitte (für die Laser)',
+          ja: '真ん中 (レーザー回避)',
           cn: '中间 (躲避激光)',
           ko: '중앙 (레이저 피하기)',
         },
@@ -307,6 +318,7 @@ const triggerSet: TriggerSet<Data> = {
         combo: {
           en: 'Go ${first} / ${second} (knockback)',
           de: 'Geh ${first} / ${second} (Rückstoß)',
+          ja: '${first} / ${second} (ノックバック)',
           cn: '去 ${first} / ${second} (击退)',
           ko: '${first} / ${second} (넉백)',
         },
@@ -324,12 +336,14 @@ const triggerSet: TriggerSet<Data> = {
         adikia1: {
           en: 'Double fists (look for pythons)',
           de: 'Doppel-Fäuste (halt Ausschau nach den Pythons)',
+          ja: 'ダブルフィスト (ヘビー確認)',
           cn: '双拳 (找蛇)',
           ko: '양 옆 큰 원형 장판 (뱀 위치 확인)',
         },
         adikia2: {
           en: 'Double fists',
           de: 'Doppel-Fäuste',
+          ja: 'ダブルフィスト',
           cn: '双拳',
           ko: '양 옆 큰 원형 장판',
         },
@@ -344,6 +358,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Heavy DoT',
           de: 'Starker DoT',
+          ja: '痛いDOT',
           cn: '超痛流血AOE',
           ko: '아픈 도트딜',
         },
