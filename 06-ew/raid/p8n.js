@@ -221,6 +221,7 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Gorgon': 'Gorgone',
         'Hephaistos': 'Hephaistos',
@@ -228,6 +229,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Gorgon': 'gorgone',
         'Hephaistos': 'Héphaïstos',
@@ -235,6 +237,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Gorgon': 'ゴルゴン',
         'Hephaistos': 'ヘファイストス',
