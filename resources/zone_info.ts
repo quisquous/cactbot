@@ -8083,6 +8083,7 @@ const data: ZoneInfoType = {
     'contentType': 28,
     'exVersion': 4,
     'name': {
+      'cn': '幻想龙诗绝境战',
       'de': 'Drachenkrieg (fatal)',
       'en': 'Dragonsong\'s Reprise (Ultimate)',
       'fr': 'La Guerre du chant des dragons (fatal)',

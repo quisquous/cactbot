@@ -140,11 +140,13 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Purple spread',
           de: 'Lila verteilen',
           ja: '紫散会',
+          cn: '紫圈分散',
         },
         green: {
           en: 'Green spread',
           de: 'Grün verteilen',
           ja: '緑散会',
+          cn: '绿圈分散',
         },
       },
     },
