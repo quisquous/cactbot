@@ -68,7 +68,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Wall',
           de: 'Wand',
           ja: '壁へ',
-          ko: '벽쪽으로',
+          ko: '벽으로',
         },
       },
     },
