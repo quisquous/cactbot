@@ -158,6 +158,14 @@ export default {
     cn: '集合',
     ko: '모이기',
   },
+  healerGroups: {
+    en: 'Healer Groups',
+    de: 'Heiler-Gruppen',
+    fr: 'Groupes sur les heals',
+    ja: 'ヒラに頭割り',
+    cn: '治疗分摊组',
+    ko: '힐러 그룹 쉐어',
+  },
   stackOnYou: {
     en: 'Stack on YOU',
     de: 'Auf DIR sammeln',
