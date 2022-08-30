@@ -82,10 +82,12 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         first: {
           en: 'Short parasite on YOU',
+          de: 'Kurzer Parasit auf DIR',
           ko: '짧은 기생 디버프 대상자',
         },
         second: {
           en: 'Long parasite on YOU',
+          de: 'Langer Parasit auf DIR',
           ko: '긴 기생 디버프 대상자',
         },
       },
@@ -100,6 +102,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Face outside: Parasite',
+          de: 'Nach außen schauen: Parasit',
           ko: '바깥 보기: 기생',
         },
       },
@@ -144,8 +147,77 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Be opposite tethered safespot',
+          de: 'Sei gegenüber dem verbundenen, sicheren Platz',
           ko: '선 연결된 기둥의 안전지대로',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Hegemone': 'Hegemone',
+        'Parasitos': 'Parasit',
+      },
+      'replaceText': {
+        'random': 'Zufällig',
+        'sides': 'Seiten',
+        'front': 'Vorne',
+        'back': 'Hinten',
+        'Aetherial Exchange': 'Ätherwechsel',
+        'Aetheric Polyominoid': 'Äther-Polyomino',
+        'Choros Ixou': 'Choros Ixou',
+        'Dark Ashes': 'Dunkle Asche',
+        'Hemitheos\'s Dark IV': 'Hemitheisches Nachtka',
+        'Polyominoid Sigma': 'Äther-Polyomino Σ',
+        'Polyominous Dark IV': 'Neka-Polyomino',
+        'Reek Havoc': 'Gasausstoß',
+        'Strophe Ixou': 'Strophe Ixou',
+        'Synergy': 'Synergie',
+        'Transmission': 'Parasitismus',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Hegemone': 'Hégémone',
+        'Parasitos': 'créature parasite',
+      },
+      'replaceText': {
+        'Aetherial Exchange': 'Changement éthéréen',
+        'Aetheric Polyominoid': 'Polyomino éthéré',
+        'Choros Ixou': 'Choros Ixou',
+        'Dark Ashes': 'Cendres ténébreuses',
+        'Hemitheos\'s Dark IV': 'Giga Ténèbres d\'hémithéos',
+        'Polyominoid Sigma': 'Polyomino éthéré Σ',
+        'Polyominous Dark IV': 'Polyomino Giga Ténèbres',
+        'Reek Havoc': 'Exhalaison',
+        'Strophe Ixou': 'Strophe Ixou',
+        'Synergy': 'Synergie',
+        'Transmission': 'Parasitage',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Hegemone': 'ヘーゲモネー',
+        'Parasitos': '寄生生物',
+      },
+      'replaceText': {
+        'Aetherial Exchange': 'エーテルチェンジ',
+        'Aetheric Polyominoid': 'エーテル・ポリオミノ',
+        'Choros Ixou': 'ホロス・イクソス',
+        'Dark Ashes': 'ダークアッシュ',
+        'Hemitheos\'s Dark IV': 'ヘーミテオス・ダージャ',
+        'Polyominoid Sigma': 'エーテル・ポリオミノΣ',
+        'Polyominous Dark IV': 'ダージャ・ポリオミノ',
+        'Reek Havoc': '噴気',
+        'Strophe Ixou': 'ストロペー・イクソス',
+        'Synergy': 'シュネルギア',
+        'Transmission': '寄生',
       },
     },
   ],

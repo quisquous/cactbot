@@ -194,6 +194,8 @@ const triggerSet: TriggerSet<Data> = {
         'Immature Stymphalide': 'unreif(?:e|er|es|en) Stymphalides',
       },
       'replaceText': {
+        'left': 'Links',
+        'right': 'Rechts',
         'lines': 'Linien',
         'trianngle': 'Dreieck',
         'Blades of Attis': 'Schwertblatt des Attis',
