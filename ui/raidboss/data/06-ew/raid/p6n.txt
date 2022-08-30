@@ -1,5 +1,5 @@
 ### P6N: Abyssos: The Sixth Circle
-# -ii 784B 785C 785D 7859 785A 785E 7A13 7A16 7A17
+# -ii 784B 785C 785D 7859 785A 785E 7A13 7A16 7A17 7A14 7A15
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -27,8 +27,6 @@ hideall "--sync--"
 135.9 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7855:/
 141.3 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
 149.1 "Strophe Ixou x8" sync / 1[56]:[^:]*:Hegemone:7A11:/
-149.1 "Chelic Vector" sync / 1[56]:[^:]*:Hegemone:7A15:/
-149.1 "Pathogenic Cells" sync / 1[56]:[^:]*:Hegemone:7A14:/
 
 # Transmission All + Choros Ixou + Ashes
 170.7 "Hemitheos's Dark IV" sync / 1[56]:[^:]*:Hegemone:784E:/ window 30,30
@@ -57,8 +55,6 @@ hideall "--sync--"
 314.4 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
 319.0 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
 326.8 "Strophe Ixou x8" sync / 1[56]:[^:]*:Hegemone:7A11:/ duration 11.5
-326.8 "Chelic Vector" sync / 1[56]:[^:]*:Hegemone:7A15:/
-326.8 "Pathogenic Cells" sync / 1[56]:[^:]*:Hegemone:7A14:/
 327.0 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7855:/
 347.3 "Synergy" sync / 1[56]:[^:]*:Hegemone:785B:/ window 30,30
 
@@ -91,8 +87,6 @@ hideall "--sync--"
 498.0 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
 502.6 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
 510.5 "Strophe Ixou x8" sync / 1[56]:[^:]*:Hegemone:7A11:/ duration 11.5
-510.5 "Chelic Vector" sync / 1[56]:[^:]*:Hegemone:7A15:/
-510.5 "Pathogenic Cells" sync / 1[56]:[^:]*:Hegemone:7A14:/
 510.6 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7855:/
 531.0 "Synergy" sync / 1[56]:[^:]*:Hegemone:785B:/
 
