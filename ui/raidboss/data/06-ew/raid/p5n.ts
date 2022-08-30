@@ -121,11 +121,11 @@ const triggerSet: TriggerSet<Data> = {
         const x = Math.round((parseFloat(matches.x) - 100) / 7.5);
         const y = Math.round((parseFloat(matches.y) - 100) / 7.5);
 
-        const directions: { [coord: string]: { [dir: string]: string } } = {
-          '0,1': Outputs.dirSW,
-          '1,0': Outputs.dirSE,
-          '0,-1': Outputs.dirNE,
-          '-1,0': Outputs.dirNW,
+        const directions: { [coord: string]: string } = {
+          '0,1': 'dirSW',
+          '1,0': 'dirSE',
+          '0,-1': 'dirNE',
+          '-1,0': 'dirNW',
         };
 
         const direction = directions[`${x},${y}`];
@@ -133,16 +133,22 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         if (matches.id === '76E7')
-          data.topazRayDirections[0] = direction[data.parserLang];
+          data.topazRayDirections[0] = direction;
         if (matches.id === '76EA')
-          data.topazRayDirections[1] = direction[data.parserLang];
+          data.topazRayDirections[1] = direction;
 
         if (!data.topazRayDirections[0] || !data.topazRayDirections[1])
           return;
 
-        return output.text!({ start: data.topazRayDirections[1], end: data.topazRayDirections[0] });
+        const dir0Str = output[data.topazRayDirections[0]]!();
+        const dir1Str = output[data.topazRayDirections[1]]!();
+        return output.text!({ start: dir1Str, end: dir0Str });
       },
       outputStrings: {
+        dirSW: Outputs.dirSW,
+        dirSE: Outputs.dirSE,
+        dirNE: Outputs.dirNE,
+        dirNW: Outputs.dirNW,
         text: {
           en: 'start at ${start} -> move to ${end}',
         },
