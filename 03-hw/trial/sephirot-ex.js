@@ -337,6 +337,8 @@ Options.Triggers.push({
       'replaceText': {
         'Tethers': 'Verbindungen',
         'spread': 'verteilen',
+        'puddles': 'Flächen',
+        'puddle(?!s)': 'Fläche',
         'Adds Spawn': 'Adds erscheinen',
         'Ascension': 'Himmelfahrt',
         'Chesed': 'Chesed',
