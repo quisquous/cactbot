@@ -65,7 +65,7 @@ Options.Triggers.push({
           fr: 'Évitez les lasers',
           ja: 'レーザー回避',
           cn: '躲避浮游炮激光',
-          ko: '비트 레이저 피하기',
+          ko: '비트가 쏘는 레이저 피하기',
         },
       },
     },
