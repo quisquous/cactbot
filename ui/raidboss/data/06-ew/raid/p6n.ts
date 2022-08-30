@@ -82,9 +82,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         first: {
           en: 'Short parasite on YOU',
+          ko: '짧은 기생 디버프 대상자',
         },
         second: {
           en: 'Long parasite on YOU',
+          ko: '긴 기생 디버프 대상자',
         },
       },
     },
@@ -98,6 +100,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Face outside: Parasite',
+          ko: '바깥 보기: 기생',
         },
       },
     },
@@ -141,6 +144,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Be opposite tethered safespot',
+          ko: '선 연결된 기둥의 안전지대로',
         },
       },
     },
