@@ -103,6 +103,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P5S Double Rush',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '771B', source: 'Proto-Carbuncle', capture: false }),
+      delaySeconds: 3,
       response: Responses.knockback(),
     },
     {
