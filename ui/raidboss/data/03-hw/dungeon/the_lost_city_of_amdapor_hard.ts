@@ -415,6 +415,7 @@ const triggerSet: TriggerSet<Data> = {
         'light sprite': '빛 정령',
       },
       'replaceText': {
+        '--adds--': '--쫄--',
         'Ancient Aero': '에인션트 에어로',
         'Ancient Holy': '에인션트 홀리',
         'Ancient Libra': '에인션트 라이브라',
