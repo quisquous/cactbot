@@ -283,5 +283,5 @@ hideall "--sync--"
 1786.3 "Sonic Shatter" sync / 1[56]:[^:]*:Proto-Carbuncle:7722:/
 1791.4 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:7708:/
 
-1801.8 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7723:/ window 650,10
+1801.8 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7723:/ window 1850,10
 1806.5 "Acidic Slaver (enrage)" sync / 1[56]:[^:]*:Proto-Carbuncle:7723:/
