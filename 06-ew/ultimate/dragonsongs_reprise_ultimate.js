@@ -2967,7 +2967,7 @@ Options.Triggers.push({
       'locale': 'cn',
       'replaceSync': {
         'Darkscale': '暗鳞黑龙',
-        'Dragon-king Thordan': '骑龙神托尔丹',
+        'Dragon-king Thordan': '龙威骑神托尔丹',
         'Estinien': '埃斯蒂尼安',
         'Haurchefant': '奥尔什方',
         'Hraesvelgr': '赫拉斯瓦尔格',
