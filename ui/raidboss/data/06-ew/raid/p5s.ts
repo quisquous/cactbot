@@ -40,12 +40,15 @@ const triggerSet: TriggerSet<Data> = {
   },
   triggers: [
     {
+      // The tank busters are not cast on a target,
+      // keep track of who the boss is auto attacking.
       id: 'P5S Attack',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7A0E', source: 'Proto-Carbuncle' }),
       run: (data, matches) => data.target = matches.target,
     },
     {
+      // Update target whenever Provoke is used.
       id: 'P5S Provoke',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '1D6D' }),
@@ -80,7 +83,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // Maybe too noisy?
       id: 'P5S Toxic Crunch',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '784A', source: 'Proto-Carbuncle', capture: false }),
@@ -90,11 +92,11 @@ const triggerSet: TriggerSet<Data> = {
 
         if (data.target === data.me)
           return output.busterOnYou!();
-        return output.busterOnTarget!({ player: data.ShortName(data.target) });
+        return output.tankBuster!();
       },
       outputStrings: {
         busterOnYou: Outputs.tankBusterOnYou,
-        busterOnTarget: Outputs.tankBusterOnPlayer,
+        tankBuster: Outputs.tankBuster,
       },
     },
     {
