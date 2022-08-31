@@ -7,11 +7,17 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   target?: string;
+  clawCount: number;
 }
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheFifthCircleSavage,
   timelineFile: 'p5s.txt',
+  initData: () => {
+    return {
+      clawCount: 0,
+    };
+  },
   triggers: [
     {
       // The tank busters are not cast on a target,
@@ -98,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
         spread: Outputs.spread,
         text: {
           en: '${dir1} -> Bait -> ${dir2}',
+          de: '${dir1} -> Ködern -> ${dir2}',
           fr: '${dir1} -> Attendez -> ${dir2}',
         },
       },
@@ -110,11 +117,144 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getFrontThenBack(),
     },
     {
+      id: 'P5S Raging Tail Move',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7A0C', source: 'Proto-Carbuncle', capture: false }),
+      infoText: (_data, _matches, output) => output.moveBehind!(),
+      outputStrings: {
+        moveBehind: {
+          en: 'Move Behind',
+        },
+      },
+    },
+    {
       id: 'P5S Claw to Tail',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '770E', source: 'Proto-Carbuncle', capture: false }),
       durationSeconds: 5,
       response: Responses.getBackThenFront(),
+    },
+    {
+      id: 'P5S Raging Claw Move',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '770F', source: 'Proto-Carbuncle', capture: false }),
+      condition: (data) => {
+        data.clawCount = data.clawCount + 1;
+        return data.clawCount === 6;
+      },
+      infoText: (_data, _matches, output) => output.moveFront!(),
+      run: (data) => {
+        data.clawCount = 0;
+      },
+      outputStrings: {
+        moveFront: {
+          en: 'Move Front',
+        },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Lively Bait': 'zappelnd(?:e|er|es|en) Köder',
+        'Proto-Carbuncle': 'Proto-Karfunkel',
+      },
+      'replaceText': {
+        '--towers--': '--Türme--',
+        'Acidic Slaver': 'Säurespeichel',
+        'Claw to Tail': 'Kralle und Schwanz',
+        'Devour': 'Verschlingen',
+        'Double Rush': 'Doppelsturm',
+        'Impact': 'Impakt',
+        'Raging Claw': 'Wütende Kralle',
+        'Raging Tail': 'Wütender Schwanz',
+        'Ruby Glow': 'Rubinlicht',
+        'Ruby Reflection': 'Rubinspiegelung',
+        'Scatterbait': 'Streuköder',
+        'Sonic Howl': 'Schallheuler',
+        'Sonic Shatter': 'Schallbrecher',
+        'Spit': 'Hypersekretion',
+        'Starving Stampede': 'Hungerstampede',
+        'Tail to Claw': 'Schwanz und Kralle',
+        'Topaz Cluster': 'Topasbündel',
+        'Topaz Ray': 'Topasstrahl',
+        'Topaz Stones': 'Topasstein',
+        'Toxic Crunch': 'Giftquetscher',
+        'Venom(?!( |ous))': 'Toxinspray',
+        'Venom Drops': 'Gifttropfen',
+        'Venom Pool': 'Giftschwall',
+        'Venom Rain': 'Giftregen',
+        'Venom Squall': 'Giftwelle',
+        'Venom Surge': 'Giftwallung',
+        'Venomous Mass': 'Giftmasse',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Lively Bait': 'amuse-gueule',
+        'Proto-Carbuncle': 'Proto-Carbuncle',
+      },
+      'replaceText': {
+        'Acidic Slaver': 'Salive acide',
+        'Devour': 'Dévoration',
+        'Impact': 'Impact',
+        'Raging Claw': 'Griffes enragées',
+        'Raging Tail': 'Queue enragée',
+        'Ruby Glow': 'Lumière rubis',
+        'Ruby Reflection': 'Réflexion rubis',
+        'Scatterbait': 'Éclate-appât',
+        'Sonic Howl': 'Hurlement sonique',
+        'Sonic Shatter': 'Pulvérisation sonique',
+        'Spit': 'Crachat',
+        'Starving Stampede': 'Charge affamée',
+        'Topaz Cluster': 'Chaîne de topazes',
+        'Topaz Ray': 'Rayon topaze',
+        'Topaz Stones': 'Topazes',
+        'Toxic Crunch': 'Croqueur venimeux',
+        'Venom(?!( |ous))': 'Venin',
+        'Venom Drops': 'Crachin de venin',
+        'Venom Pool': 'Giclée de venin',
+        'Venom Rain': 'Pluie de venin',
+        'Venom Squall': 'Crachat de venin',
+        'Venom Surge': 'Déferlante de venin',
+        'Venomous Mass': 'Masse venimeuse',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Lively Bait': 'ライブリー・ベイト',
+        'Proto-Carbuncle': 'プロトカーバンクル',
+      },
+      'replaceText': {
+        'Acidic Slaver': 'アシッドスレイバー',
+        'Devour': '捕食',
+        'Impact': '衝撃',
+        'Raging Claw': 'レイジングクロウ',
+        'Raging Tail': 'レイジングテイル',
+        'Ruby Glow': 'ルビーの光',
+        'Ruby Reflection': 'ルビーリフレクション',
+        'Scatterbait': 'スキャッターベイト',
+        'Sonic Howl': 'ソニックハウル',
+        'Sonic Shatter': 'ソニックシャッター',
+        'Spit': '放出',
+        'Starving Stampede': 'スターヴィング・スタンピード',
+        'Topaz Cluster': 'トパーズクラスター',
+        'Topaz Ray': 'トパーズレイ',
+        'Topaz Stones': 'トパーズストーン',
+        'Toxic Crunch': 'ベノムクランチ',
+        'Venom(?!( |ous))': '毒液',
+        'Venom Drops': 'ベノムドロップ',
+        'Venom Pool': 'ベノムスプラッシュ',
+        'Venom Rain': 'ベノムレイン',
+        'Venom Squall': 'ベノムスコール',
+        'Venom Surge': 'ベノムサージ',
+        'Venomous Mass': 'ベノムマス',
+      },
     },
   ],
 };

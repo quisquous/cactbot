@@ -32,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Split Tankbusters',
+          de: 'Geteilter Tankbuster',
         },
       },
     },
@@ -55,6 +56,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Circles',
+          de: 'Kreise ködern',
         },
       },
     },
@@ -63,6 +65,26 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '788B', source: 'Hegemone', capture: false }),
       response: Responses.moveAway(),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Hegemone': 'Hegemone',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Hegemone': 'Hégémone',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Hegemone': 'ヘーゲモネー',
+      },
     },
   ],
 };
