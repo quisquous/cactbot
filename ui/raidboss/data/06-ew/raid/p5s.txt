@@ -94,6 +94,7 @@ hideall "--sync--"
 322.0 "Topaz Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:79FE:/
 322.6 "Ruby Reflection" sync / 1[56]:[^:]*:Proto-Carbuncle:76F8:/
 327.7 "Raging Claw x7 / Searing Ray?" #sync / 1[56]:[^:]*:Proto-Carbuncle:(76FA|76F7):/
+328.5 "Ruby Reflection?" #sync / 1[56]:[^:]*:Proto-Carbuncle:76F8:/
 
 # Light party splits
 341.8 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/
