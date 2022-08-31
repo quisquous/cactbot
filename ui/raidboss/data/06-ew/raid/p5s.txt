@@ -150,4 +150,7 @@ hideall "--sync--"
 584.5 "Sonic Shatter" sync / 1[56]:[^:]*:Proto-Carbuncle:7722:/
 587.6 "Sonic Shatter" sync / 1[56]:[^:]*:Proto-Carbuncle:7722:/
 592.7 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:7708:/
-# Hard Enrage?
+
+# Hard Enrage
+603.1 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7723:/ window 1850,10
+607.8 "Acidic Slaver (enrage)" sync / 1[56]:[^:]*:Proto-Carbuncle:7723:/
