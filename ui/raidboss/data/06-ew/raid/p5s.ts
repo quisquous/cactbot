@@ -138,7 +138,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '770F', source: 'Proto-Carbuncle', capture: false }),
       condition: (data) => {
-        return ++data.clawCount === 6;
+        data.clawCount = data.clawCount + 1;
+        return data.clawCount === 6;
       },
       infoText: (_data, _matches, output) => output.moveFront!(),
       run: (data) => {
