@@ -93,7 +93,7 @@ hideall "--sync--"
 320.8 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76F5:/
 322.0 "Topaz Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:79FE:/
 322.6 "Ruby Reflection" sync / 1[56]:[^:]*:Proto-Carbuncle:76F8:/
-327.7 "Raging Claw x7" sync / 1[56]:[^:]*:Proto-Carbuncle:76FA:/ duration 2.2
+327.7 "Raging Claw x7 / Searing Ray?" #sync / 1[56]:[^:]*:Proto-Carbuncle:(76FA|76F7):/
 
 # Light party splits
 341.8 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/
@@ -154,3 +154,23 @@ hideall "--sync--"
 # Hard Enrage
 603.1 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7723:/ window 1850,10
 607.8 "Acidic Slaver (enrage)" sync / 1[56]:[^:]*:Proto-Carbuncle:7723:/
+
+
+## Raging Claw / Searing Ray
+# Searing Ray Block
+1323.0 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:76F7:/ window 1400,50
+1327.7 "Searing Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:76F7:/
+1341.8 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/ jump 341.8
+1348.9 "Toxic Crunch" #sync / 1[56]:[^:]*:Proto-Carbuncle:784A:/
+1362.3 "Ruby Glow" #sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
+1369.4 "Topaz Stones" #sync / 1[56]:[^:]*:Proto-Carbuncle:76FD:/
+1383.0 "Topaz Ray" #sync / 1[56]:[^:]*:Proto-Carbuncle:79FE:/
+
+# Raging Claw Block
+1423.0 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:76FA:/ window 1500,50
+1427.7 "Raging Claw x7" sync / 1[56]:[^:]*:Proto-Carbuncle:76FA:/ duration 2.2
+1441.8 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/ jump 341.8
+1448.9 "Toxic Crunch" #sync / 1[56]:[^:]*:Proto-Carbuncle:784A:/
+1462.3 "Ruby Glow" #sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
+1469.4 "Topaz Stones" #sync / 1[56]:[^:]*:Proto-Carbuncle:76FD:/
+1483.0 "Topaz Ray" #sync / 1[56]:[^:]*:Proto-Carbuncle:79FE:/
