@@ -83,11 +83,13 @@ const triggerSet: TriggerSet<Data> = {
         first: {
           en: 'Short parasite on YOU',
           de: 'Kurzer Parasit auf DIR',
+          fr: 'Parasite court sur VOUS',
           ko: '짧은 기생 디버프 대상자',
         },
         second: {
           en: 'Long parasite on YOU',
           de: 'Langer Parasit auf DIR',
+          fr: 'Parasite long sur VOUS',
           ko: '긴 기생 디버프 대상자',
         },
       },
@@ -103,6 +105,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Face outside: Parasite',
           de: 'Nach außen schauen: Parasit',
+          fr: 'Regardez vers l\'extérieur : Parasite',
           ko: '바깥 보기: 기생',
         },
       },
@@ -148,6 +151,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Be opposite tethered safespot',
           de: 'Sei gegenüber dem verbundenen, sicheren Platz',
+          fr: 'Placez vous sur la zone sûre de l\'élément opposé',
           ko: '선 연결된 기둥의 안전지대로',
         },
       },

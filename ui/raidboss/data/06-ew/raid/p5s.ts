@@ -99,6 +99,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir1} -> Bait -> ${dir2}',
           de: '${dir1} -> Ködern -> ${dir2}',
+          fr: '${dir1} -> Attendez -> ${dir2}',
         },
       },
     },
