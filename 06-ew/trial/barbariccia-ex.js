@@ -389,6 +389,10 @@ Options.Triggers.push({
         'Stiff Breeze': 'rafale de vent',
       },
       'replaceText': {
+        'ground': 'Sol',
+        'line': 'Ligne',
+        'donut': 'Donut',
+        'protean': 'Positions',
         'Blow Away': 'Coups convulsifs',
         'Blustery Ruler': 'Despote venteux',
         'Bold Boulder': 'Grand conglomérat',

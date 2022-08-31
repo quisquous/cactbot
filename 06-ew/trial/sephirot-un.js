@@ -29,6 +29,7 @@ Options.Triggers.push({
         text: {
           en: 'Move to safe quadrant',
           de: 'Beweg dich in den sicheren Quadranten',
+          fr: 'Allez sur un quart safe',
           ja: '安置へ移動',
           cn: '移动到安全区域',
           ko: '안전한 지역으로 이동',
@@ -43,6 +44,7 @@ Options.Triggers.push({
         text: {
           en: 'Bait toward puddle',
           de: 'In Richtung Fläche ködern',
+          fr: 'Attendez devant la zone au sol',
           ja: '緑ドームの方へ誘導',
           cn: '靠近圈圈集合诱导AOE',
           ko: '장판 쪽으로 아인 유도',
@@ -62,6 +64,7 @@ Options.Triggers.push({
         noPillar: {
           en: 'Bait Yesod',
           de: 'Yesod ködern',
+          fr: 'Attirez Yesod',
           ja: 'イェソドクラッシュ誘導',
           cn: '集合诱导基盘碎击',
           ko: '예소드 붕괴 유도',
@@ -69,6 +72,7 @@ Options.Triggers.push({
         withPillar: {
           en: 'Bait Yesod inside puddle',
           de: 'Yesod in die Fläche ködern',
+          fr: 'Attirez Yesod dans une zone au sol',
           ja: '青いサークルの中でイェソドクラッシュ誘導',
           cn: '圈圈内集合诱导基盘碎击',
           ko: '장판 안에 예소드 유도하기',
@@ -122,6 +126,7 @@ Options.Triggers.push({
         purple: {
           en: 'Purple spread',
           de: 'Lila verteilen',
+          fr: 'Violet écartez-vous',
           ja: '紫散会',
           cn: '紫圈分散',
           ko: '보라색 징 산개',
@@ -129,6 +134,7 @@ Options.Triggers.push({
         green: {
           en: 'Green spread',
           de: 'Grün verteilen',
+          fr: 'Vert écartez-vous',
           ja: '緑散会',
           cn: '绿圈分散',
           ko: '초록색 징 산개',
@@ -150,6 +156,7 @@ Options.Triggers.push({
         noStack: {
           en: 'Don\'t Stack!',
           de: 'Nicht sammeln!',
+          fr: 'Ne vous packez pas !',
           ja: '頭割りに参加しないで',
           cn: '不要重合！',
           ko: '겹치면 안됨!',
@@ -157,6 +164,7 @@ Options.Triggers.push({
         stack: {
           en: 'Group Stacks',
           de: 'In der Gruppe sammeln',
+          fr: 'Package en groupe',
           ja: 'グループ頭割り',
           cn: '分组集合',
           ko: '그룹 쉐어',
@@ -194,6 +202,7 @@ Options.Triggers.push({
         text: {
           en: '${force} on you',
           de: '${force} auf dir',
+          fr: '${force} sur vous',
           ja: '自分に${force}',
           cn: '${force}点名',
           ko: '나에게 ${force}',
@@ -249,6 +258,7 @@ Options.Triggers.push({
         getTower: {
           en: 'Get a tower',
           de: 'Nimm einen Turm',
+          fr: 'Prenez une tour',
           ja: '塔を踏む',
           cn: '踩塔',
           ko: '기둥 밟기',
@@ -256,6 +266,7 @@ Options.Triggers.push({
         avoidTower: {
           en: 'Avoid towers',
           de: 'Turm meiden',
+          fr: 'Évitez les tours',
           ja: '塔から離れる',
           cn: '躲塔',
           ko: '기둥 피하기',
@@ -276,6 +287,7 @@ Options.Triggers.push({
         might: {
           en: 'Get Away, Avoid Puddles + Tethers',
           de: 'Geh weg, weiche Flächen und Verbindungen aus',
+          fr: 'Éloignez-vous, Évitez les zones au sol et les liens',
           ja: '離れる、AOEと線回避',
           cn: '远离, 躲避圈圈 + 连线',
           ko: '멀리 떨어지고, 장판 + 선 피하기',
@@ -283,6 +295,7 @@ Options.Triggers.push({
         magic: {
           en: 'Go Front; Get Tether',
           de: 'Geh nach Vorne; Nimm eine Verbindung',
+          fr: 'Allez devant puis prenez les liens',
           ja: '前へ、線取り',
           cn: '去前面; 接线',
           ko: '앞으로 가서 선 가로채기',
@@ -318,6 +331,7 @@ Options.Triggers.push({
         shakerTarget: {
           en: 'Earth Shaker (Max Melee)',
           de: 'Erdstoß (Max Nahkampf)',
+          fr: 'Secousse (Max Melée)',
           ja: 'アスシェイカー',
           cn: '大地摇动 (最远近战距离)',
           ko: '어스징 (칼끝딜 거리)',
@@ -325,6 +339,7 @@ Options.Triggers.push({
         shakerAvoid: {
           en: 'Avoid Earth Shakers',
           de: 'Weiche Erdstoß aus',
+          fr: 'Évitez les secousses',
           ja: 'アスシェイカー回避',
           cn: '躲避大地摇动',
           ko: '어스징 피하기',

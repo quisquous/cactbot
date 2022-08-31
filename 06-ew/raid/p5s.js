@@ -85,6 +85,7 @@ Options.Triggers.push({
         spread: Outputs.spread,
         text: {
           en: '${dir1} -> Bait -> ${dir2}',
+          fr: '${dir1} -> Attendez -> ${dir2}',
         },
       },
     },

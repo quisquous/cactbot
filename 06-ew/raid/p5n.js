@@ -80,6 +80,7 @@ Options.Triggers.push({
         moveAway: {
           en: 'Move away from puddles',
           de: 'Geh weg von den Flächen',
+          fr: 'Éloignez-vous des zones au sol',
           ko: '장판으로부터 멀리 떨어지기',
         },
       },
@@ -131,6 +132,7 @@ Options.Triggers.push({
         dirNW: Outputs.dirNW,
         text: {
           en: 'start at ${start} -> move to ${end}',
+          fr: 'Commencez à ${start} -> allez vers ${end}',
         },
       },
     },
