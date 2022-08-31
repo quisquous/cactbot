@@ -154,6 +154,7 @@ const triggerSet: TriggerSet<Data> = {
         dirNW: Outputs.dirNW,
         text: {
           en: 'start at ${start} -> move to ${end}',
+          de: 'Starte im ${start} -> Bewegen nach ${end}',
         },
       },
     },
