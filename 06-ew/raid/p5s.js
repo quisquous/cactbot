@@ -1,6 +1,11 @@
 Options.Triggers.push({
   zoneId: ZoneId.AbyssosTheFifthCircleSavage,
   timelineFile: 'p5s.txt',
+  initData: () => {
+    return {
+      clawCount: 0,
+    };
+  },
   triggers: [
     {
       // The tank busters are not cast on a target,
@@ -97,11 +102,40 @@ Options.Triggers.push({
       response: Responses.getFrontThenBack(),
     },
     {
+      id: 'P5S Raging Tail Move',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7A0C', source: 'Proto-Carbuncle', capture: false }),
+      infoText: (_data, _matches, output) => output.moveBehind(),
+      outputStrings: {
+        moveBehind: {
+          en: 'Move Behind',
+        },
+      },
+    },
+    {
       id: 'P5S Claw to Tail',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '770E', source: 'Proto-Carbuncle', capture: false }),
       durationSeconds: 5,
       response: Responses.getBackThenFront(),
+    },
+    {
+      id: 'P5S Raging Claw Move',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '770F', source: 'Proto-Carbuncle', capture: false }),
+      condition: (data) => {
+        data.clawCount = data.clawCount + 1;
+        return data.clawCount === 6;
+      },
+      infoText: (_data, _matches, output) => output.moveFront(),
+      run: (data) => {
+        data.clawCount = 0;
+      },
+      outputStrings: {
+        moveFront: {
+          en: 'Move Front',
+        },
+      },
     },
   ],
 });
