@@ -122,7 +122,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.moveBehind!(),
       outputStrings: {
         moveBehind: {
-          en: 'Move (Behind)',
+          en: 'Move Behind',
         },
       },
     },
