@@ -146,7 +146,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         moveFront: {
-          en: 'Move (Front)',
+          en: 'Move Front',
         },
       },
     },
