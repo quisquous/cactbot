@@ -92,7 +92,7 @@ const triggerSet: TriggerSet<Data> = {
         // show the number until you are done.
         return data.pathogenicCellsDelay;
       },
-      alertText: (data, _matches, output) => output.text!({ num: data.pathogenicCellsNumber }),
+      infoText: (data, _matches, output) => output.text!({ num: data.pathogenicCellsNumber }),
       outputStrings: {
         text: {
           en: '#${num}',
