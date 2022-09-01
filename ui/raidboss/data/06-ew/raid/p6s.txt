@@ -16,9 +16,9 @@ hideall "--sync--"
 42.0 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
 48.6 "Unholy Darkness" sync / 1[56]:[^:]*:Hegemone:(786D|786E|7891):/
 54.6 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7867:/
-54.7 "Exocleaver 1" sync / 1[56]:[^:]*:Hegemone:7869:/
+54.7 "Exocleaver 1" sync / 1[56]:[^:]*:Hegemone:(7869|786B):/
 56.8 "Unholy Darkness" sync / 1[56]:[^:]*:Hegemone:7892:/
-57.2 "Exocleaver 2" sync / 1[56]:[^:]*:Hegemone:786B:/
+57.2 "Exocleaver 2" sync / 1[56]:[^:]*:Hegemone:(7869|786B):/
 71.2 "Pathogenic Cells x8" sync / 1[56]:[^:]*:Hegemone:7864:/ duration 15
 91.9 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
 97.7 "Aetherial Exchange" sync / 1[56]:[^:]*:Hegemone:784D:/
@@ -42,9 +42,9 @@ hideall "--sync--"
 204.0 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
 209.8 "Aetherial Exchange" sync / 1[56]:[^:]*:Hegemone:784D:/
 216.5 "Exchange Of Agonies" sync / 1[56]:[^:]*:Hegemone:786C:/
-224.4 "Exocleaver 1" sync / 1[56]:[^:]*:Hegemone:7869:/
+224.4 "Exocleaver 1" sync / 1[56]:[^:]*:Hegemone:(7869|786B):/
 224.4 "Unholy Darkness" sync / 1[56]:[^:]*:Hegemone:7A0F:/
-227.0 "Exocleaver 2" sync / 1[56]:[^:]*:Hegemone:786B:/
+227.0 "Exocleaver 2" sync / 1[56]:[^:]*:Hegemone:(7869|786B):/
 239.3 "Synergy" sync / 1[56]:[^:]*:Hegemone:(7887|788A):/
 252.2 "Hemitheos's Dark IV" sync / 1[56]:[^:]*:Hegemone:7860:/
 262.0 "Aetherial Exchange" sync / 1[56]:[^:]*:Hegemone:784D:/
