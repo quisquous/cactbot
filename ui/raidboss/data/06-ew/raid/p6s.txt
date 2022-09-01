@@ -129,5 +129,5 @@ hideall "--sync--"
 621.8 "Hemitheos's Dark IV" sync / 1[56]:[^:]*:Hegemone:7860:/
 
 # Enrage
-631.0 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7723:/ window 1000,10
+631.0 "--sync--" sync / 14:[^:]*:Hegemone:7893:/ window 1000,10
 640.7 "Hemitheos's Dark IV (enrage)" sync / 1[56]:[^:]*:Hegemone:7893:/
