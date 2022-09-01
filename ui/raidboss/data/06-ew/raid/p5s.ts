@@ -5,6 +5,8 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: Callout safe quadrant/half for Venom Pool with Crystals
+
 export interface Data extends RaidbossData {
   target?: string;
   clawCount: number;
@@ -106,6 +108,20 @@ const triggerSet: TriggerSet<Data> = {
           en: '${dir1} -> Bait -> ${dir2}',
           de: '${dir1} -> Ködern -> ${dir2}',
           fr: '${dir1} -> Attendez -> ${dir2}',
+        },
+      },
+    },
+    {
+      id: 'P5S Venom Pool with Crystals',
+      // TODO: Callout safe quadrant/half
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '79E2', source: 'Proto-Carbuncle', capture: false }),
+      infoText: (_data, _matches, output) => {
+        return output.groups!();
+      },
+      outputStrings: {
+        groups: {
+          en: 'Healer Groups on Topaz Stones',
         },
       },
     },
