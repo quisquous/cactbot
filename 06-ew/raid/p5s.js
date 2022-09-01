@@ -110,6 +110,7 @@ Options.Triggers.push({
       outputStrings: {
         moveBehind: {
           en: 'Move Behind',
+          de: 'Nach Hinten bewegen',
         },
       },
     },
@@ -135,6 +136,7 @@ Options.Triggers.push({
       outputStrings: {
         moveFront: {
           en: 'Move Front',
+          de: 'Nach Vorne bewegen',
         },
       },
     },
