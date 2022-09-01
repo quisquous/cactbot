@@ -115,6 +115,45 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'P6S Exchange of Agonies Markers',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      condition: (data, matches) => {
+        return data.me === matches.target;
+      },
+      infoText: (data, matches, output) => {
+        const correctedMatch = getHeadmarkerId(data, matches);
+        switch (correctedMatch) {
+          case '0163':
+          case '0167':
+          case '0169':
+            return output.stackOnYou();
+          case '0164':
+          case '0165':
+          case '016A':
+            return output.spreadCorner();
+          case '0166':
+          case '0168':
+          case '016E':
+            return output.donut();
+        }
+      },
+      outputStrings: {
+        stackOnYou: Outputs.stackOnYou,
+        donut: {
+          en: 'Stack Donut',
+          de: 'Sammeln Donut',
+          fr: 'Packez-vous, donut',
+          ja: '頭割り',
+          cn: '集合放月环',
+          ko: '도넛 장판, 쉐어',
+        },
+        spreadCorner: {
+          en: 'Spread Corner',
+        },
+      },
+    },
+    {
       id: 'P6S Dark Dome Bait',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '788B', source: 'Hegemone', capture: false }),

@@ -29,6 +29,12 @@ Options.Triggers.push({
       response: Responses.aoe(),
     },
     {
+      id: 'P5S Ruby Glow',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '76F3', source: 'Proto-Carbuncle', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
       id: 'P5S Venomous Mass',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '771D', source: 'Proto-Carbuncle', capture: false }),
