@@ -137,7 +137,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Raging Claw Move',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '770F', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: NetRegexes.ability({ id: '7710', source: 'Proto-Carbuncle', capture: false }),
       condition: (data) => {
         data.clawCount = data.clawCount + 1;
         return data.clawCount === 6;
