@@ -92,11 +92,13 @@ const triggerSet: TriggerSet<Data> = {
         switch (correctedMatch) {
           case '0163':
           case '0167':
+          case '0169':
             return output.stackOnYou!();
           case '0164':
           case '0165':
           case '016A':
             return output.goCorner!();
+          case '0166':
           case '0168':
           case '016E':
             return output.donut!();
