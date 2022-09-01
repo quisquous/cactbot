@@ -41,6 +41,13 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
+      id: 'P5S Ruby Glow',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '76F[34]', source: 'Proto-Carbuncle', capture: false }),
+      suppressSeconds: 1,
+      response: Responses.aoe(),
+    },
+    {
       id: 'P5S Venomous Mass',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '771D', source: 'Proto-Carbuncle', capture: false }),
