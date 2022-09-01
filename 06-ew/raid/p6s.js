@@ -50,6 +50,7 @@ Options.Triggers.push({
         text: {
           en: 'Split Tankbusters',
           de: 'Geteilter Tankbuster',
+          fr: 'Séparez les Tankbusters',
         },
       },
     },
@@ -150,6 +151,7 @@ Options.Triggers.push({
         },
         spreadCorner: {
           en: 'Spread Corner',
+          fr: 'Écartez-vous dans le coin',
         },
       },
     },
@@ -162,6 +164,7 @@ Options.Triggers.push({
         text: {
           en: 'Bait Circles',
           de: 'Kreise ködern',
+          fr: 'Attirez les cercles',
         },
       },
     },

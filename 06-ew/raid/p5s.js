@@ -162,6 +162,7 @@ Options.Triggers.push({
         NW: Outputs.dirNW,
         text: {
           en: '${dir1} -> ${dir2} -> ${dir3} -> ${dir4}',
+          fr: '${dir1} -> ${dir2} -> ${dir3} -> ${dir4}',
         },
       },
     },
@@ -199,6 +200,7 @@ Options.Triggers.push({
       outputStrings: {
         groups: {
           en: 'Healer Groups on Topaz Stones',
+          fr: 'Groupes heal sur les Topazes',
         },
       },
     },
