@@ -124,7 +124,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         moveBehind: {
           en: 'Move Behind',
-          fr: 'Allez devant',
+          fr: 'Allez derrière',
         },
       },
     },
@@ -150,7 +150,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         moveFront: {
           en: 'Move Front',
-          fr: 'Allez derrière',
+          fr: 'Allez devant',
         },
       },
     },
