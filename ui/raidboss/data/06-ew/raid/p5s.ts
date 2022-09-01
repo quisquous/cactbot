@@ -5,6 +5,8 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: Callout safe quadrant/half for Venom Pool with Crystals
+
 export interface Data extends RaidbossData {
   target?: string;
   clawCount: number;
@@ -110,6 +112,20 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P5S Venom Pool with Crystals',
+      // TODO: Callout safe quadrant/half
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '79E2', source: 'Proto-Carbuncle', capture: false }),
+      infoText: (_data, _matches, output) => {
+        return output.groups!();
+      },
+      outputStrings: {
+        groups: {
+          en: 'Healer Groups on Topaz Stones',
+        },
+      },
+    },
+    {
       id: 'P5S Tail to Claw',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7712', source: 'Proto-Carbuncle', capture: false }),
@@ -124,6 +140,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         moveBehind: {
           en: 'Move Behind',
+          de: 'Nach Hinten bewegen',
           fr: 'Allez derrière',
         },
       },
@@ -138,7 +155,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Raging Claw Move',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '770F', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: NetRegexes.ability({ id: '7710', source: 'Proto-Carbuncle', capture: false }),
       condition: (data) => {
         data.clawCount = data.clawCount + 1;
         return data.clawCount === 6;
@@ -150,6 +167,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         moveFront: {
           en: 'Move Front',
+          de: 'Nach Vorne bewegen',
           fr: 'Allez devant',
         },
       },
