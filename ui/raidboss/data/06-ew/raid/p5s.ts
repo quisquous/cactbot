@@ -116,7 +116,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: Callout safe quadrant/half
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '79E2', source: 'Proto-Carbuncle', capture: false }),
-      infoText: (data, _matches, output) => {
+      infoText: (_data, _matches, output) => {
         return output.groups!();
       },
       outputStrings: {
