@@ -187,6 +187,7 @@ const triggerSet: TriggerSet<Data> = {
         NW: Outputs.dirNW,
         text: {
           en: '${dir1} -> ${dir2} -> ${dir3} -> ${dir4}',
+          fr: '${dir1} -> ${dir2} -> ${dir3} -> ${dir4}',
         },
       },
     },
@@ -224,6 +225,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         groups: {
           en: 'Healer Groups on Topaz Stones',
+          fr: 'Groupes heal sur les Topazes',
         },
       },
     },
