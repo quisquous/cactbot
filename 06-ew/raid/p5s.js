@@ -154,6 +154,21 @@ Options.Triggers.push({
         },
       },
     },
+    {
+      id: 'P5S Searing Ray',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '76[DF]7', source: 'Proto-Carbuncle', capture: false }),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: Outputs.goFront,
+      },
+    },
+    {
+      id: 'P5S Raging Claw',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '76FA', source: 'Proto-Carbuncle', capture: false }),
+      response: Responses.getBehind(),
+    },
   ],
   timelineReplace: [
     {
