@@ -5,7 +5,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-
 export interface Data extends RaidbossData {
   decOffset?: number;
   pathogenicCellsNumber?: number;
