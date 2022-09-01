@@ -63,6 +63,7 @@ hideall "--sync--"
 
 239.0 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76F5:/
 245.1 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:7708:/
+256.1 "--untargetable--"
 257.0 "Starving Stampede 1" duration 9 #sync / 1[56]:[^:]*:Proto-Carbuncle:7A03:/
 258.4 "Starving Stampede 2" #sync / 1[56]:[^:]*:Proto-Carbuncle:7A03:/
 259.8 "Starving Stampede 3" #sync / 1[56]:[^:]*:Proto-Carbuncle:7A03:/
@@ -71,6 +72,7 @@ hideall "--sync--"
 263.7 "Starving Stampede 6" #sync / 1[56]:[^:]*:Proto-Carbuncle:7A03:/
 264.9 "Starving Stampede 7" #sync / 1[56]:[^:]*:Proto-Carbuncle:7A03:/
 266.0 "Starving Stampede 8" #sync / 1[56]:[^:]*:Proto-Carbuncle:7A03:/
+267.0 "--targetable--"
 
 # TODO: this section likely needs to be cleaned up??
 #267.3 "Devour" sync / 1[56]:[^:]*:Proto-Carbuncle:7725:/
@@ -93,7 +95,8 @@ hideall "--sync--"
 320.8 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76F5:/
 322.0 "Topaz Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:79FE:/
 322.6 "Ruby Reflection" sync / 1[56]:[^:]*:Proto-Carbuncle:76F8:/
-327.7 "Raging Claw x7" sync / 1[56]:[^:]*:Proto-Carbuncle:76FA:/ duration 2.2
+327.7 "Raging Claw x7 / Searing Ray?" #sync / 1[56]:[^:]*:Proto-Carbuncle:(76FA|76F7):/
+328.5 "Ruby Reflection?" #sync / 1[56]:[^:]*:Proto-Carbuncle:76F8:/
 
 # Light party splits
 341.8 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/
