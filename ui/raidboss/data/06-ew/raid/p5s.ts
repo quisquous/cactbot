@@ -156,6 +156,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Lively Bait': 'zappelnd(?:e|er|es|en) Köder',
         'Proto-Carbuncle': 'Proto-Karfunkel',
