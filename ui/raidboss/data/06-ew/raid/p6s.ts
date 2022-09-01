@@ -81,6 +81,55 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.goSides(),
     },
     {
+      id: 'P6S Pathogenic Cells Numbers',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      condition: (data, matches) => {
+        return data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
+      },
+      preRun: (data, matches) => {
+        const correctedMatch = getHeadmarkerId(data, matches);
+        const pathogenicCellsNumberMap: { [id: string]: number } = {
+          '004F': 1,
+          '0050': 2,
+          '0051': 3,
+          '0052': 4,
+          '0053': 5,
+          '0054': 6,
+          '0055': 7,
+          '0056': 8,
+        };
+        data.pathogenicCellsNumber = pathogenicCellsNumberMap[correctedMatch];
+
+        const pathogenicCellsDelayMap: { [id: string]: number } = {
+          '004F': 8.6,
+          '0050': 10.6,
+          '0051': 12.5,
+          '0052': 14.4,
+          '0053': 16.4,
+          '0054': 18.3,
+          '0055': 20.2,
+          '0056': 22.2,
+        };
+        data.pathogenicCellsDelay = pathogenicCellsDelayMap[correctedMatch];
+      },
+      durationSeconds: (data) => {
+        // Because people are very forgetful,
+        // show the number until you are done.
+        return data.pathogenicCellsDelay;
+      },
+      infoText: (data, _matches, output) => output.text!({ num: data.pathogenicCellsNumber }),
+      outputStrings: {
+        text: {
+          en: '#${num}',
+          de: '#${num}',
+          fr: '#${num}',
+          ja: '${num}番',
+          cn: '#${num}',
+          ko: '${num}번째',
+      },
+    },
+    {
       id: 'P6S Exchange of Agonies Markers',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
