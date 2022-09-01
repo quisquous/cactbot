@@ -70,6 +70,39 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P6S Unholy Darkness Healer Groups',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      condition: (data, matches) => {
+        return (/013E/).test(getHeadmarkerId(data, matches));
+      },
+      suppressSeconds: 1,
+      infoText: (_data, matches, output) => {
+        return output.healerGroups!();
+      },
+      outputStrings: {
+        healerGroups: Outputs.healerGroups,
+      },
+    },
+    {
+      id: 'P6S Exocleaver',
+      // Unholy Darkness stack headmarkers are 3.8s before first Exocleavers
+      // Exchange of Agonies headmarkers are 7s before second Exocleavers
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
+      alertText: (_data, _matches, output) => output.protean!(),
+      outputStrings: {
+        protean: {
+          en: 'Protean',
+          de: 'Himmelsrichtungen',
+          fr: 'Positions',
+          ja: '8方向散開',
+          cn: '八方位站位',
+          ko: '정해진 위치로 산개',
+        },
+      },
+    },
+    {
       id: 'P6S Choros Ixou Front Back',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7883', source: 'Hegemone', capture: false }),
