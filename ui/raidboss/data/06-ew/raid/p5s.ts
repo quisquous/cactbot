@@ -1,5 +1,6 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -7,8 +8,17 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Callout safe quadrant/half for Venom Pool with Crystals
 
+const directions = {
+  'NE': true,
+  'SE': true,
+  'SW': true,
+  'NW': true,
+};
+
 export interface Data extends RaidbossData {
   target?: string;
+  topazClusterCombatantIdToAbilityId: { [id: number]: string };
+  topazRays: { [time: number]: (keyof typeof directions)[] };
   clawCount: number;
 }
 
@@ -17,6 +27,8 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'p5s.txt',
   initData: () => {
     return {
+      topazClusterCombatantIdToAbilityId: {},
+      topazRays: {},
       clawCount: 0,
     };
   },
@@ -93,6 +105,90 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '771B', source: 'Proto-Carbuncle', capture: false }),
       delaySeconds: 3,
       response: Responses.knockback(),
+    },
+    {
+      // Collect CombatantIds for the Topaz Stone Proto-Carbuncles
+      id: 'P5S Topaz Cluster Collect',
+      type: 'StartsUsing',
+      // 7703: 3.7s, 7704: 6.2s, 7705: 8.7s, 7706: 11.2s
+      netRegex: NetRegexes.startsUsing({ id: '770[3456]', source: 'Proto-Carbuncle' }),
+      run: (data, matches) => data.topazClusterCombatantIdToAbilityId[parseInt(matches.sourceId, 16)] = matches.id,
+    },
+    {
+      id: 'P5S Topaz Cluster',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7702', source: 'Proto-Carbuncle', capture: false }),
+      durationSeconds: 12,
+      promise: async (data) => {
+        // Log position data can be stale, call OverlayPlugin
+        const result = await callOverlayHandler({
+          call: 'getCombatants',
+          ids: Object.keys(data.topazClusterCombatantIdToAbilityId).map(Number),
+        });
+
+        // For each topaz stone combatant, determine the quadrant
+        for (const combatant of result.combatants) {
+          if (combatant.ID === undefined)
+            continue;
+          const abilityId = data.topazClusterCombatantIdToAbilityId[combatant.ID];
+          if (abilityId === undefined)
+            continue;
+
+          // Convert from ability id to [0-3] index
+          // 7703 is the Topaz Ray cast with the lowest cast time
+          const index = parseInt(abilityId, 16) - parseInt('7703', 16);
+          data.topazRays[index] ??= [];
+
+          // Map from coordinate position to intercardinal quadrant
+          const convertCoordinatesToDirection = (x: number, y: number): keyof typeof directions => {
+            if (x > 100)
+              return y < 100 ? 'NE' : 'SE';
+            return y < 100 ? 'NW' : 'SW';
+          };
+          const direction = convertCoordinatesToDirection(combatant.PosX, combatant.PosY);
+          data.topazRays[index]?.push(direction);
+        }
+      },
+      infoText: (data, _matches, output) => {
+        const remainingDirections: { [index: string]: Set<keyof typeof directions> } = {};
+        for (const [index, directions] of Object.entries(data.topazRays)) {
+          remainingDirections[index] = new Set(['NE', 'SE', 'SW', 'NW']);
+          for (const direction of directions)
+            remainingDirections[index]?.delete(direction);
+        }
+
+        // 770[34] cast 2 times, 770[56] cast 3 times
+        const expectedLengths = [2, 2, 1, 1];
+        const safeDirs = [];
+        for (let i = 0; i < 4; i++) {
+          if (remainingDirections[i]?.size !== expectedLengths[i])
+            return;
+
+          const tmpDirs = [...remainingDirections[i] ?? []];
+          if (!tmpDirs[0])
+            return;
+
+          // If there's one safe location, print that
+          let dirStr = tmpDirs[0];
+          // If there's multiple, prefer south
+          if (tmpDirs.length === 2 && tmpDirs[1])
+            dirStr = ['SE', 'SW'].includes(tmpDirs[0]) ? tmpDirs[0] : tmpDirs[1];
+          safeDirs.push(dirStr);
+        }
+
+        if (safeDirs.length !== 4)
+          return;
+        return output.text!({ dir1: safeDirs[0], dir2: safeDirs[1], dir3: safeDirs[2], dir4: safeDirs[3] });
+      },
+      outputStrings: {
+        NE: Outputs.dirNE,
+        SE: Outputs.dirSE,
+        SW: Outputs.dirSW,
+        NW: Outputs.dirNW,
+        text: {
+          en: '${dir1} -> ${dir2} -> ${dir3} -> ${dir4}',
+        },
+      },
     },
     {
       id: 'P5S Venom Squall/Surge',
