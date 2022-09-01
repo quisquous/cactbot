@@ -21,7 +21,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Eye Lasers',
           de: 'Weiche dem Augenlaser aus',
-          fr: 'Évitez les yeux',
+          fr: 'Évitez les lasers',
           ja: '目からビーム',
           ko: '눈이 쏘는 레이저 피하기',
         },
@@ -44,7 +44,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Kill One Eye',
           de: 'Besiege ein Auge',
-          fr: 'Tuez un Œil',
+          fr: 'Tuez une tête',
           ja: '安置になる目を攻撃',
           ko: '눈 하나 집중해서 잡기',
         },
