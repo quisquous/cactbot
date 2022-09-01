@@ -2,8 +2,9 @@ import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 import { NetMatches } from '../../../../../types/net_matches';
+import { TriggerSet } from '../../../../../types/trigger';
+
 
 export interface Data extends RaidbossData {
   decOffset?: number;
@@ -75,14 +76,14 @@ const triggerSet: TriggerSet<Data> = {
         data.pathogenicCellsNumber = pathogenicCellsNumberMap[correctedMatch];
 
         const pathogenicCellsDelayMap: { [id: string]: number } = {
-            '004F': 8.6,
-            '0050': 10.6,
-            '0051': 12.5,
-            '0052': 14.4,
-            '0053': 16.4,
-            '0054': 18.3,
-            '0055': 20.2,
-            '0056': 22.2,
+          '004F': 8.6,
+          '0050': 10.6,
+          '0051': 12.5,
+          '0052': 14.4,
+          '0053': 16.4,
+          '0054': 18.3,
+          '0055': 20.2,
+          '0056': 22.2,
         };
         data.pathogenicCellsDelay = pathogenicCellsDelayMap[correctedMatch];
       },
