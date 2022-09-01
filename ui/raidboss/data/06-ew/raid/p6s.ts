@@ -85,7 +85,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => {
-        return data.me === matches.target && !(/(00(?:4F|5[0-6]))|013E|0148|0065/).test(getHeadmarkerId(data, matches));
+        return data.me === matches.target;
       },
       infoText: (data, matches, output) => {
         const correctedMatch = getHeadmarkerId(data, matches);
