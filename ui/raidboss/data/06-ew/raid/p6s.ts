@@ -97,7 +97,7 @@ const triggerSet: TriggerSet<Data> = {
           case '0164':
           case '0165':
           case '016A':
-            return output.goCorner!();
+            return output.spreadCorner!();
           case '0166':
           case '0168':
           case '016E':
@@ -117,12 +117,7 @@ const triggerSet: TriggerSet<Data> = {
           ko: '도넛 장판, 쉐어',
         },
         goCorner: {
-          en: 'Go To Corner',
-          de: 'Geh in die Ecken',
-          fr: 'Allez dans un coin',
-          ja: 'コーナーへ',
-          cn: '去角落',
-          ko: '구석으로',
+          en: 'Spread Corner',
         },
         unknown: Outputs.unknown,
       },
