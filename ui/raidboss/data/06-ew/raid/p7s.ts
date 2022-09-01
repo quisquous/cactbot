@@ -1,3 +1,4 @@
+import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
@@ -52,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '7839', source: 'Agdistis', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
-        text: 'Raidwide + Bleed',
+        text: 'aoe + bleed',
       },
     },
     {
@@ -61,7 +62,7 @@ const triggerSet: TriggerSet<Data> = {
       // CEC/D45 = Inviolate Winds
       // CED/D56 = Holy Bonds
       netRegex: NetRegexes.gainsEffect({ effectId: ['CEC', 'D45'] }),
-      condition: (data, matches) => matches.target === data.me,
+      condition: Conditions.targetIsYou(),
       durationSeconds: 20,
       response: (_data, matches, output) => {
         // cactbot-builtin-response
@@ -92,7 +93,10 @@ const triggerSet: TriggerSet<Data> = {
         data.purgationDebuffCount += 1;
 
         const role = data.party.isDPS(matches.target) ? 'dps' : 'support';
-        data.purgationDebuffs[role]![matches.effectId.toUpperCase()] = parseFloat(matches.duration);
+        const debuff = data.purgationDebuffs[role];
+        if (!debuff)
+          return;
+        debuff[matches.effectId.toUpperCase()] = parseFloat(matches.duration);
       },
       durationSeconds: 55,
       infoText: (data, _matches, output) => {
@@ -100,8 +104,8 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         // Sort effects ascending by duration
-        const role = (data.role === 'tank' || data.role === 'healer') ? 'support' : 'dps';
-        const unsortedDebuffs = Object.keys(data.purgationDebuffs[role]!);
+        const role = data.role === 'dps' ? 'dps' : 'support';
+        const unsortedDebuffs = Object.keys(data.purgationDebuffs[role] ?? {});
         const sortedDebuffs = unsortedDebuffs.sort((a, b) => (data.purgationDebuffs[role]?.[a] ?? 0) - (data.purgationDebuffs[role]?.[b] ?? 0));
 
         // get stack or spread from effectId
@@ -122,12 +126,8 @@ const triggerSet: TriggerSet<Data> = {
         comboText: {
           en: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
         },
-        spread: {
-          en: 'Spread',
-        },
-        stack: {
-          en: 'Stack',
-        },
+        spread: Outputs.spread,
+        stack: Outputs.stackMarker,
       },
     },
   ],
