@@ -164,7 +164,7 @@ const triggerSet: TriggerSet<Data> = {
           cn: '集合放月环',
           ko: '도넛 장판, 쉐어',
         },
-        goCorner: {
+        spreadCorner: {
           en: 'Spread Corner',
         },
       },
