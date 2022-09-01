@@ -54,6 +54,32 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.sharedTankBuster(),
     },
     {
+      id: 'P6S Synergy',
+      type: 'StartsUsing',
+      // There are 7889 individual starts using casts on the two tanks as well,
+      // if this trigger wanted to be more complicated.
+      netRegex: NetRegexes.startsUsing({ id: '7887', source: 'Hegemone', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Split Tankbusters',
+          de: 'Geteilter Tankbuster',
+        },
+      },
+    },
+    {
+      id: 'P6S Choros Ixou Front Back',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7883', source: 'Hegemone', capture: false }),
+      response: Responses.goFrontBack(),
+    },
+    {
+      id: 'P6S Choros Ixou Sides',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7881', source: 'Hegemone', capture: false }),
+      response: Responses.goSides(),
+    },
+    {
       id: 'P6S Pathogenic Cells Numbers',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
@@ -102,32 +128,6 @@ const triggerSet: TriggerSet<Data> = {
           ko: '${num}번째',
         },
       },
-    },
-    {
-      id: 'P6S Synergy',
-      type: 'StartsUsing',
-      // There are 7889 individual starts using casts on the two tanks as well,
-      // if this trigger wanted to be more complicated.
-      netRegex: NetRegexes.startsUsing({ id: '7887', source: 'Hegemone', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Split Tankbusters',
-          de: 'Geteilter Tankbuster',
-        },
-      },
-    },
-    {
-      id: 'P6S Choros Ixou Front Back',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7883', source: 'Hegemone', capture: false }),
-      response: Responses.goFrontBack(),
-    },
-    {
-      id: 'P6S Choros Ixou Sides',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7881', source: 'Hegemone', capture: false }),
-      response: Responses.goSides(),
     },
     {
       id: 'P6S Dark Dome Bait',
