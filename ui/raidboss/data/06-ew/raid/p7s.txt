@@ -1,7 +1,143 @@
 ### P7N: Abyssos: The Seventh Circle (Savage)
 #
+# -ii 782A 7837 7838 7830 780D 7822 7825 7827 7819 7814
 
 hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+13.0 "Spark of Life" sync / 1[56]:[^:]*:Agdistis:7839:/ window 50,50
+26.3 "Condensed Aero II/Dispersed Aero II" sync / 1[56]:[^:]*:Agdistis:(7836|7835):/
+34.1 "--sync--" sync / 1[56]:[^:]*:Agdistis:782E:/
+42.7 "Immortal's Obol" sync / 1[56]:[^:]*:Agdistis:780C:/
+44.6 "Blades of Attis" sync / 1[56]:[^:]*:Agdistis:782F:/ duration 14
+
+# Forbidden Fruit: Healer Stacks
+59.4 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7810:/
+64.5 "--eggs--" sync / 1[56]:[^:]*:Agdistis:7811:/
+70.7 "--sync--" sync / 1[56]:[^:]*:Agdistis:783A:/
+79.8 "Hemitheos's Holy III" sync / 1[56]:[^:]*:Agdistis:783B:/
+80.0 "Bough of Attis (far)" sync / 1[56]:[^:]*:Agdistis:7826:/
+80.3 "Stymphalian Strike" sync / 1[56]:[^:]*:Immature Stymphalide:7815:/
+91.7 "Condensed Aero II/Dispersed Aero II" sync / 1[56]:[^:]*:Agdistis:(7836|7835):/
+102.5 "Spark of Life" sync / 1[56]:[^:]*:Agdistis:7839:/
+
+# Inviolate Bonds: Spread/Stack
+111.8 "Inviolate Bonds" sync / 1[56]:[^:]*:Agdistis:781A:/
+121.8 "Bough of Attis (close)" sync / 1[56]:[^:]*:Agdistis:7821:/
+121.9 "Hemitheos's Aero III" sync / 1[56]:[^:]*:Agdistis:781B:/
+121.9 "Hemitheos's Holy III" sync / 1[56]:[^:]*:Agdistis:781C:/
+129.4 "Bough of Attis (arrow)" sync / 1[56]:[^:]*:Agdistis:(7823|7824):/
+132.9 "Hemitheos's Aero III" sync / 1[56]:[^:]*:Agdistis:781B:/
+132.9 "Hemitheos's Holy III" sync / 1[56]:[^:]*:Agdistis:781C:/
+138.6 "Roots of Attis" sync / 1[56]:[^:]*:Agdistis:780E:/
+157.1 "Condensed Aero II/Dispersed Aero II" sync / 1[56]:[^:]*:Agdistis:(7836|7835):/
+
+# Forbidden Fruit: Birds + Knockback
+165.8 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7810:/
+170.9 "--eggs--" sync / 1[56]:[^:]*:Agdistis:7811:/
+176.0 "Multicast" sync / 1[56]:[^:]*:Agdistis:79F5:/
+182.0 "Hemitheos's Aero IV" sync / 1[56]:[^:]*:Agdistis:7A0B:/
+185.8 "Hemitheos's Holy" sync / 1[56]:[^:]*:Agdistis:7832:/
+186.8 "Stymphalian Strike" sync / 1[56]:[^:]*:Immature Stymphalide:7815:/
+194.1 "Roots of Attis" sync / 1[56]:[^:]*:Agdistis:780E:/
+
+# Forbidden Fruit: Stacks on walkway
+205.5 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7810:/
+210.6 "--eggs--" sync / 1[56]:[^:]*:Agdistis:7811:/
+217.4 "--sync--" sync / 1[56]:[^:]*:Agdistis:783A:/
+223.4 "Hemitheos's Holy III" sync / 1[56]:[^:]*:Agdistis:783B:/
+
+240.6 "Bough of Attis (close)" sync / 1[56]:[^:]*:Agdistis:7821:/
+248.2 "Bough of Attis (arrow)" sync / 1[56]:[^:]*:Agdistis:(7823|7824):/
+258.3 "Condensed Aero II/Dispersed Aero II" sync / 1[56]:[^:]*:Agdistis:(7836|7835):/
+
+# Forbidden Fruit: 3 Minos, 2 Birds
+266.0 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7810:/
+271.1 "--eggs--" sync / 1[56]:[^:]*:Agdistis:7811:/
+286.7 "Bullish Swipe" sync / 1[56]:[^:]*:Immature Minotaur:7818:/
+286.7 "Bullish Slash" sync / 1[56]:[^:]*:Immature Minotaur:7817:/
+286.7 "Static Path" sync / 1[56]:[^:]*:Immature Io:7813:/
+
+# Knockback into stack groups with exaflares
+294.8 "--sync--" sync / 1[56]:[^:]*:Agdistis:782E:/
+300.9 "Multicast" sync / 1[56]:[^:]*:Agdistis:79F5:/
+305.3 "Blades of Attis" sync / 1[56]:[^:]*:Agdistis:782F:/ duration 14
+307.0 "Hemitheos's Aero IV" sync / 1[56]:[^:]*:Agdistis:7834:/
+309.7 "Hemitheos's Holy III" sync / 1[56]:[^:]*:Agdistis:783B:/
+324.2 "Condensed Aero II/Dispersed Aero II" sync / 1[56]:[^:]*:Agdistis:(7836|7835):/
+
+# Forbidden Fruit: Towers and Birds
+333.9 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7810:/
+339.0 "--eggs--" sync / 1[56]:[^:]*:Agdistis:7811:/
+342.7 "Shadow of Attis" sync / 1[56]:[^:]*:Agdistis:782B:/
+354.2 "Bronze Bellows" sync / 1[56]:[^:]*:Immature Stymphalide:7816:/
+363.3 "Spark of Life" sync / 1[56]:[^:]*:Agdistis:7839:/
+376.1 "Immortal's Obol" sync / 1[56]:[^:]*:Agdistis:780C:/
+
+# Inviolate Purgation
+385.2 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7810:/
+390.3 "--eggs--" sync / 1[56]:[^:]*:Agdistis:7811:/
+396.4 "Inviolate Purgation" sync / 1[56]:[^:]*:Agdistis:781E:/
+407.5 "Hemitheos's Holy III" sync / 1[56]:[^:]*:Agdistis:781C:/
+407.5 "Hemitheos's Aero III" sync / 1[56]:[^:]*:Agdistis:781B:/
+407.9 "Stymphalian Strike" sync / 1[56]:[^:]*:Immature Stymphalide:7815:/
+422.5 "Hemitheos's Aero III" sync / 1[56]:[^:]*:Agdistis:781B:/
+422.5 "Hemitheos's Holy III" sync / 1[56]:[^:]*:Agdistis:781C:/
+422.6 "Hemitheos's Glare III" sync / 1[56]:[^:]*:Agdistis:7820:/
+422.6 "Hemitheos's Tornado" sync / 1[56]:[^:]*:Agdistis:781F:/
+429.7 "Light of Life 1" sync / 1[56]:[^:]*:Agdistis:78E2:/
+437.5 "Hemitheos's Aero III" sync / 1[56]:[^:]*:Agdistis:781B:/
+437.5 "Hemitheos's Holy III" sync / 1[56]:[^:]*:Agdistis:781C:/
+437.5 "Hemitheos's Tornado" sync / 1[56]:[^:]*:Agdistis:781F:/
+437.5 "Hemitheos's Glare III" sync / 1[56]:[^:]*:Agdistis:7820:/
+437.5 "Hemitheos's Tornado" sync / 1[56]:[^:]*:Agdistis:781F:/
+452.5 "Hemitheos's Aero III" sync / 1[56]:[^:]*:Agdistis:781B:/
+452.5 "Hemitheos's Holy III" sync / 1[56]:[^:]*:Agdistis:781C:/
+452.5 "Hemitheos's Tornado" sync / 1[56]:[^:]*:Agdistis:781F:/
+452.5 "Hemitheos's Glare III" sync / 1[56]:[^:]*:Agdistis:7820:/
+452.5 "Hemitheos's Tornado" sync / 1[56]:[^:]*:Agdistis:781F:/
+460.8 "Light of Life 2" sync / 1[56]:[^:]*:Agdistis:78E2:/
+467.5 "Hemitheos's Tornado" sync / 1[56]:[^:]*:Agdistis:781F:/
+467.5 "Hemitheos's Glare III" sync / 1[56]:[^:]*:Agdistis:7820:/
+
+# Forbidden Fruit: chasing aoes
+476.2 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7810:/
+481.3 "--eggs--" sync / 1[56]:[^:]*:Agdistis:7811:/
+486.4 "Roots of Attis" sync / 1[56]:[^:]*:Agdistis:780E:/
+493.5 "Hemitheos's Glare" sync / 1[56]:[^:]*:Agdistis:7828:/
+498.5 "--chasing aoe--" sync / 1[56]:[^:]*:Agdistis:7829:/ duration 5.5
+501.1 "Stymphalian Strike" sync / 1[56]:[^:]*:Immature Stymphalide:7815:/
+
+# Famine's Harvest
+508.0 "Famine's Harvest" sync / 1[56]:[^:]*:Agdistis:7A4F:/
+513.1 "--eggs--" sync / 1[56]:[^:]*:Agdistis:7811:/
+528.7 "Bullish Swipe" sync / 1[56]:[^:]*:Immature Minotaur:7818:/
+528.7 "Bullish Slash" sync / 1[56]:[^:]*:Immature Minotaur:7817:/
+528.9 "Stymphalian Strike" sync / 1[56]:[^:]*:Immature Stymphalide:7815:/
+
+# Death's Harvest
+540.6 "Death's Harvest" sync / 1[56]:[^:]*:Agdistis:7A50:/
+545.7 "--eggs--" sync / 1[56]:[^:]*:Agdistis:7811:/
+561.3 "Static Path" sync / 1[56]:[^:]*:Immature Io:7813:/
+561.6 "Stymphalian Strike" sync / 1[56]:[^:]*:Immature Stymphalide:7815:/
+
+# War's Harvest
+573.3 "War's Harvest" sync / 1[56]:[^:]*:Agdistis:7A51:/
+578.4 "--eggs--" sync / 1[56]:[^:]*:Agdistis:7811:/
+594.0 "Bullish Slash" sync / 1[56]:[^:]*:Immature Minotaur:7817:/
+594.0 "Bronze Bellows" sync / 1[56]:[^:]*:Immature Stymphalide:7816:/
+594.0 "Static Path" sync / 1[56]:[^:]*:Immature Io:7813:/
+
+607.0 "Spark of Life" sync / 1[56]:[^:]*:Agdistis:7839:/
+617.3 "--sync--" sync / 1[56]:[^:]*:Agdistis:783A:/
+626.3 "Bough of Attis (close)" sync / 1[56]:[^:]*:Agdistis:7821:/
+627.5 "Hemitheos's Holy III" sync / 1[56]:[^:]*:Agdistis:783B:/
+633.9 "Bough of Attis (arrow)" sync / 1[56]:[^:]*:Agdistis:(7823|7824):/
+643.1 "Spark of Life" sync / 1[56]:[^:]*:Agdistis:7839:/
+656.3 "Spark of Life" sync / 1[56]:[^:]*:Agdistis:7839:/
+
+663.5 "--sync--" sync / 14:[^:]*:Agdistis:783F:/ window 50,50
+673.5 "Light of Life (enrage)" sync / 1[56]:[^:]*:Agdistis:783F:/
