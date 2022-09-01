@@ -156,10 +156,10 @@ Options.Triggers.push({
         return output.text({ dir1: safeDirs[0], dir2: safeDirs[1], dir3: safeDirs[2], dir4: safeDirs[3] });
       },
       outputStrings: {
-        NE: Outputs.dirNE,
-        SE: Outputs.dirSE,
-        SW: Outputs.dirSW,
-        NW: Outputs.dirNW,
+        two: Outputs.dirNE,
+        three: Outputs.dirSE,
+        four: Outputs.dirSW,
+        one: Outputs.dirNW,
         text: {
           en: '${dir1} -> ${dir2} -> ${dir3} -> ${dir4}',
           fr: '${dir1} -> ${dir2} -> ${dir3} -> ${dir4}',
