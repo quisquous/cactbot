@@ -96,6 +96,20 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'P5S Venom Pool with Crystals',
+      // TODO: Callout safe quadrant/half
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '79E2', source: 'Proto-Carbuncle', capture: false }),
+      infoText: (_data, _matches, output) => {
+        return output.groups();
+      },
+      outputStrings: {
+        groups: {
+          en: 'Healer Groups on Topaz Stones',
+        },
+      },
+    },
+    {
       id: 'P5S Tail to Claw',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7712', source: 'Proto-Carbuncle', capture: false }),
