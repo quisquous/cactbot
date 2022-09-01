@@ -125,6 +125,7 @@ Options.Triggers.push({
         moveBehind: {
           en: 'Move Behind',
           de: 'Nach Hinten bewegen',
+          fr: 'Allez derrière',
         },
       },
     },
@@ -151,6 +152,7 @@ Options.Triggers.push({
         moveFront: {
           en: 'Move Front',
           de: 'Nach Vorne bewegen',
+          fr: 'Allez devant',
         },
       },
     },
