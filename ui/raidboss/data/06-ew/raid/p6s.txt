@@ -19,7 +19,16 @@ hideall "--sync--"
 54.7 "Exocleaver 1" sync / 1[56]:[^:]*:Hegemone:(7869|786B):/ window 2,2
 56.8 "Unholy Darkness" sync / 1[56]:[^:]*:Hegemone:7892:/
 57.2 "Exocleaver 2" sync / 1[56]:[^:]*:Hegemone:(7869|786B):/ window 2,2
-71.2 "Pathogenic Cells x8" sync / 1[56]:[^:]*:Hegemone:7864:/ duration 15
+71.2 "--sync--" sync / 1[56]:[^:]*:Hegemone:7864:/
+71.7 "#1 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+73.6 "#2 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+75.6 "#3 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+77.5 "#4 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+79.5 "#5 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+81.4 "#6 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+83.4 "#7 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+85.3 "#8 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+
 91.9 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
 97.7 "Aetherial Exchange" sync / 1[56]:[^:]*:Hegemone:784D:/ window 100,30
 104.4 "Exchange Of Agonies" sync / 1[56]:[^:]*:Hegemone:786C:/
@@ -118,4 +127,7 @@ hideall "--sync--"
 595.9 "Choros Ixou 2" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
 608.9 "Synergy" sync / 1[56]:[^:]*:Hegemone:(7887|788A):/
 621.8 "Hemitheos's Dark IV" sync / 1[56]:[^:]*:Hegemone:7860:/
+
+# Enrage
+631.0 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7723:/ window 1000,10
 640.7 "Hemitheos's Dark IV (enrage)" sync / 1[56]:[^:]*:Hegemone:7893:/
