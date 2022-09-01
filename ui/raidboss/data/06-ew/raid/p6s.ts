@@ -127,6 +127,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${num}番',
           cn: '#${num}',
           ko: '${num}번째',
+        },
       },
     },
     {
