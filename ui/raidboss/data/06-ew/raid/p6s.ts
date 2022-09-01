@@ -102,8 +102,6 @@ const triggerSet: TriggerSet<Data> = {
           case '0168':
           case '016E':
             return output.donut!();
-          default:
-            return output.unknown!();
         }
       },
       outputStrings: {
@@ -119,7 +117,6 @@ const triggerSet: TriggerSet<Data> = {
         goCorner: {
           en: 'Spread Corner',
         },
-        unknown: Outputs.unknown,
       },
     },
     {
