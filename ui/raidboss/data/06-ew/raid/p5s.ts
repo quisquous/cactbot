@@ -20,17 +20,6 @@ export interface Data extends RaidbossData {
   clawCount: number;
 }
 
-const convertAbilityIdToTopazRayIndex = (id: string): number => {
-  // 7703 is the Topaz Ray cast with the lowest cast time
-  return parseInt(id, 16) - parseInt('7703', 16);
-};
-
-const convertCoordinatesToDirection = (x: number, y: number): keyof typeof directions => {
-  if (x > 100)
-    return y < 100 ? 'NE' : 'SE';
-  return y < 100 ? 'NW' : 'SW';
-};
-
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheFifthCircleSavage,
   timelineFile: 'p5s.txt',
@@ -136,9 +125,18 @@ const triggerSet: TriggerSet<Data> = {
           const abilityId = data.topazClusterCombatantIdToAbilityId[combatant.ID];
           if (abilityId === undefined)
             continue;
-          const index = convertAbilityIdToTopazRayIndex(abilityId);
-          if (data.topazRays[index] === undefined)
-            data.topazRays[index] = [];
+
+          // Convert from ability id to [0-3] index
+          // 7703 is the Topaz Ray cast with the lowest cast time
+          const index = parseInt(abilityId, 16) - parseInt('7703', 16);
+          data.topazRays[index] ??= [];
+
+          // Map from coordinate position to intercardinal quadrant
+          const convertCoordinatesToDirection = (x: number, y: number): keyof typeof directions => {
+            if (x > 100)
+              return y < 100 ? 'NE' : 'SE';
+            return y < 100 ? 'NW' : 'SW';
+          };
           const direction = convertCoordinatesToDirection(combatant.PosX, combatant.PosY);
           data.topazRays[index]?.push(direction);
         }
