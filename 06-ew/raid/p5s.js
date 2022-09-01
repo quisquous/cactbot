@@ -149,7 +149,7 @@ Options.Triggers.push({
           // If there's multiple, prefer south
           if (tmpDirs.length === 2 && tmpDirs[1])
             dirStr = ['SE', 'SW'].includes(tmpDirs[0]) ? tmpDirs[0] : tmpDirs[1];
-          safeDirs.push(dirStr);
+          safeDirs.push(output[dirStr]());
         }
         if (safeDirs.length !== 4)
           return;
