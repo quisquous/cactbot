@@ -6,6 +6,8 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: Callout safe quadrant/half for Venom Pool with Crystals
+
 const directions = {
   'NE': true,
   'SE': true,
@@ -50,6 +52,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P5S Sonic Howl',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7720', source: 'Proto-Carbuncle', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'P5S Ruby Glow',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '76F3', source: 'Proto-Carbuncle', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -206,6 +214,20 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P5S Venom Pool with Crystals',
+      // TODO: Callout safe quadrant/half
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '79E2', source: 'Proto-Carbuncle', capture: false }),
+      infoText: (_data, _matches, output) => {
+        return output.groups!();
+      },
+      outputStrings: {
+        groups: {
+          en: 'Healer Groups on Topaz Stones',
+        },
+      },
+    },
+    {
       id: 'P5S Tail to Claw',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7712', source: 'Proto-Carbuncle', capture: false }),
@@ -220,6 +242,8 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         moveBehind: {
           en: 'Move Behind',
+          de: 'Nach Hinten bewegen',
+          fr: 'Allez derrière',
         },
       },
     },
@@ -233,7 +257,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Raging Claw Move',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '770F', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: NetRegexes.ability({ id: '7710', source: 'Proto-Carbuncle', capture: false }),
       condition: (data) => {
         data.clawCount = data.clawCount + 1;
         return data.clawCount === 6;
@@ -245,13 +269,31 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         moveFront: {
           en: 'Move Front',
+          de: 'Nach Vorne bewegen',
+          fr: 'Allez devant',
         },
       },
+    },
+    {
+      id: 'P5S Searing Ray',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '76[DF]7', source: 'Proto-Carbuncle', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: Outputs.goFront,
+      },
+    },
+    {
+      id: 'P5S Raging Claw',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '76FA', source: 'Proto-Carbuncle', capture: false }),
+      response: Responses.getBehind(),
     },
   ],
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Lively Bait': 'zappelnd(?:e|er|es|en) Köder',
         'Proto-Carbuncle': 'Proto-Karfunkel',
