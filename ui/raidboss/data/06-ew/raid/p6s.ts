@@ -191,18 +191,21 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Hegemone': 'Hegemone',
       },
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Hegemone': 'Hégémone',
       },
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Hegemone': 'ヘーゲモネー',
       },
