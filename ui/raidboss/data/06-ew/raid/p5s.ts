@@ -141,6 +141,7 @@ const triggerSet: TriggerSet<Data> = {
         moveBehind: {
           en: 'Move Behind',
           de: 'Nach Hinten bewegen',
+          fr: 'Allez derrière',
         },
       },
     },
@@ -167,6 +168,7 @@ const triggerSet: TriggerSet<Data> = {
         moveFront: {
           en: 'Move Front',
           de: 'Nach Vorne bewegen',
+          fr: 'Allez devant',
         },
       },
     },
