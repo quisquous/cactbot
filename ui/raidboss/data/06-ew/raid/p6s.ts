@@ -222,17 +222,26 @@ const triggerSet: TriggerSet<Data> = {
         const duration = parseFloat(matches.duration);
         // First Dual Predation is 3.7s before expiration
         // Remaining Dual Predations are 12.3s (second), 12.4s (third/fourth)
-        return duration === 20 ? duration - 3.8 : duration + 12.3;
+        return duration > 16 ? duration - 3.8 : duration + 12.3;
       },
       infoText: (data, matches, output) => {
-        const AetheronecrosisMap: { [duration: number]: string } = {
-          20.00: output.firstBait!(),
-          8.00: output.secondBait!(),
-          12.00: output.thirdBait!(),
-          16.00: output.fourthBait!(),
-        };
+        const duration = parseFloat(matches.duration);
         const dir = data.predationDebuff === 'CF7' ? output.left!() : output.right!();
-        return output.text!({ dir: dir, bait: AetheronecrosisMap[parseFloat(matches.duration)] });
+        let numBait;
+
+        // Allow for slight variation in duration
+        if (duration <= 8) {
+          numBait = output.secondBait!();
+        } else if (duration <= 12) {
+          numBait = output.thirdBait!();
+        } else if (duration <= 16) {
+          numBait = output.fourthBait!();
+        } else {
+          // 20s
+          numBait = output.firstBait!();
+        }
+
+        return output.text!({ dir: dir, bait: numBait });
       },
       outputStrings: {
         text: {
@@ -264,7 +273,7 @@ const triggerSet: TriggerSet<Data> = {
       // Delayed to give roughly same notice interval as other bait reminders
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7878', source: 'Hegemone' }),
-      condition: (data) => data.aetheronecrosisDuration === 20.00,
+      condition: (data) => data.aetheronecrosisDuration > 16,
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
       infoText: (_data, _matches, output) => output.inFirstBait!(),
       outputStrings: {
@@ -283,16 +292,23 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         data.predationCount = data.predationCount + 1;
+        let countMap;
 
-        // Map duration to the predation count
-        const AetheronecrosisMap: { [duration: number]: number } = {
-          8.00: 1,
-          12.00: 2,
-          16.00: 3,
-        };
+        // Allow for slight variation in duration
+        if (data.aetheronecrosisDuration <= 8) {
+          countMap = 1;
+        } else if (data.aetheronecrosisDuration <= 12) {
+          countMap = 2;
+        } else if (data.aetheronecrosisDuration <= 16) {
+          countMap = 3;
+        }
+        else {
+          // 20s
+          countMap = 0;
+        }
 
         // Output for in players
-        if (AetheronecrosisMap[data.aetheronecrosisDuration] === data.predationCount) {
+        if (countMap === data.predationCount) {
           const inBaitMap: { [duration: number]: string } = {
             1: output.inSecondBait!(),
             2: output.inThirdBait!(),
