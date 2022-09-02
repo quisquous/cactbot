@@ -234,16 +234,16 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Right (Snake Side)',
         },
         firstBait: {
-          en: '20: First Bait',
+          en: 'First Bait (20s)',
         },
         secondBait: {
-          en: '8: Second Bait',
+          en: 'Second Bait (8s)',
         },
         thirdBait: {
-          en: '12: Third Bait',
+          en: 'Third Bait (12s)',
         },
         fourthBait: {
-          en: '16: Fourth Bait',
+          en: 'Fourth Bait (16s)',
         },
       },
     },
