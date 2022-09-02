@@ -247,7 +247,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P6S Ptera Ixou',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '787C', source: 'Hegemone', capture: false }),
-      alertText: (data, _matches, output) => data.predationDebuff === 'CF7' ? output.left!() : output.right!(),
+      infoText: (data, _matches, output) => data.predationDebuff === 'CF7' ? output.left!() : output.right!(),
       outputStrings: {
         left: Outputs.left,
         right: Outputs.right,
