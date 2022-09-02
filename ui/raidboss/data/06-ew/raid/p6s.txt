@@ -59,7 +59,7 @@ hideall "--sync--"
 262.0 "Aetherial Exchange" sync / 1[56]:[^:]*:Hegemone:784D:/
 268.7 "Polyominoid Sigma" sync / 1[56]:[^:]*:Hegemone:7868:/
 268.7 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
-275.3 "Unholy Darkness" sync / 1[56]:[^:]*:Hegemone:(786D|786E|7891):/
+275.3 "Unholy Darkness" sync / 1[56]:[^:]*:Hegemone:7892:/
 282.3 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7867:/ window 30,30
 287.3 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
 294.0 "Dark Ashes" sync / 1[56]:[^:]*:Hegemone:788D:/
