@@ -71,21 +71,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P6S Unholy Darkness Healer Groups',
-      type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => {
-        return (/013E/).test(getHeadmarkerId(data, matches));
-      },
-      suppressSeconds: 1,
-      infoText: (_data, matches, output) => {
-        return output.healerGroups!();
-      },
-      outputStrings: {
-        healerGroups: Outputs.healerGroups,
-      },
-    },
-    {
       id: 'P6S Exocleaver',
       // Unholy Darkness stack headmarkers are same time as first Exocleaver
       // Exchange of Agonies headmarkers are 7s before second Exocleavers
