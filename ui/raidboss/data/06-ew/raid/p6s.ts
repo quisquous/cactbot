@@ -65,6 +65,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Split Tankbusters',
           de: 'Geteilter Tankbuster',
+          fr: 'Séparez les Tankbusters',
         },
       },
     },
@@ -166,6 +167,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         spreadCorner: {
           en: 'Spread Corner',
+          fr: 'Écartez-vous dans le coin',
         },
       },
     },
@@ -178,6 +180,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait Circles',
           de: 'Kreise ködern',
+          fr: 'Attirez les cercles',
         },
       },
     },
