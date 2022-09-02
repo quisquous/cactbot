@@ -10,12 +10,13 @@ export interface Data extends RaidbossData {
   decOffset?: number;
   pathogenicCellsNumber?: number;
   pathogenicCellsDelay?: number;
+  secondExocleavers?: boolean;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
-// The first 1B marker in the encounter is an Exocleaver (013E).
+// The first 1B marker in the encounter is an Unholy Darkness stack marker (013E).
 const firstHeadmarker = parseInt('013E', 16);
 const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 013E.
@@ -90,8 +91,16 @@ const triggerSet: TriggerSet<Data> = {
       // Exchange of Agonies headmarkers are 7s before second Exocleavers
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
-      alertText: (_data, _matches, output) => output.protean!(),
+      alertText: (data, _matches, output) => {
+        if (data.secondExocleavers)
+          return output.protean!();
+        return output.healerGroupsProtean!();
+      },
+      run: (data) => data.secondExocleavers = true,
       outputStrings: {
+        healerGroupsProtean: {
+          en: 'Healer Groups + Protean',
+        },
         protean: {
           en: 'Protean',
           de: 'Himmelsrichtungen',
