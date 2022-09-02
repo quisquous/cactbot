@@ -84,9 +84,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P6S Exocleaver Move',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['7869', '786B'], source: 'Hegemone' }),
-      delaySeconds: (_data, matches) => parseFloat(matches.castTime),
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['7869', '786B'], source: 'Hegemone', capture: false}),
+      // Supress until after second Exocleaver in the set
+      suppressSeconds: 4,
       response: Responses.moveAway(),
     },
     {
