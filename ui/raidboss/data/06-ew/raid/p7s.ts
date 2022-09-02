@@ -48,6 +48,22 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P7S Hemitheos\'s Aero IV',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7A0B', source: 'Agdistis', capture: false }),
+      response: Responses.knockback(),
+    },
+    {
+      id: 'P7S Immature Stymphalide Tether',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '0011', source: 'Immature Stymphalide', capture: false }),
+      // ~9s between tether and Bronze Bellows (no cast) in all cases.
+      delaySeconds: 4,
+      // Just give this to everyone.  People in towers or elsewhere can be safe.
+      suppressSeconds: 1,
+      response: Responses.knockback(),
+    },
+    {
       id: 'P7S Spark of Life',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7839', source: 'Agdistis', capture: false }),
