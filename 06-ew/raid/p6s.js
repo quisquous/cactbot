@@ -1,7 +1,7 @@
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
-// The first 1B marker in the encounter is an Exocleaver (013E).
+// The first 1B marker in the encounter is an Unholy Darkness stack marker (013E).
 const firstHeadmarker = parseInt('013E', 16);
 const getHeadmarkerId = (data, matches) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 013E.
@@ -53,6 +53,26 @@ Options.Triggers.push({
           fr: 'Séparez les Tankbusters',
         },
       },
+    },
+    {
+      id: 'P6S Exocleaver Healer Groups',
+      // Unholy Darkness stack headmarkers are same time as first Exocleaver
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
+      condition: (data) => !data.secondExocleavers,
+      alertText: (_data, _matches, output) => output.healerGroups(),
+      run: (data) => data.secondExocleavers = true,
+      outputStrings: {
+        healerGroups: Outputs.healerGroups,
+      },
+    },
+    {
+      id: 'P6S Exocleaver Move',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
+      // Supress until after second Exocleaver in the set
+      suppressSeconds: 4,
+      response: Responses.moveAway(),
     },
     {
       id: 'P6S Choros Ixou Front Back',
