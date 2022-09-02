@@ -37,7 +37,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'p6s.txt',
   initData: () => {
     return {
-      aetheronecroisDuration: 0,
+      aetheronecrosisDuration: 0,
       predationCount: 0,
     };
   },
@@ -216,7 +216,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'CF9' }),
       condition: Conditions.targetIsYou(),
-      preRun: (data, matches) => data.aetheronecroisDuration = parseFloat(matches.duration),
+      preRun: (data, matches) => data.aetheronecrosisDuration = parseFloat(matches.duration),
       delaySeconds: 0.1,
       durationSeconds: (_data, matches) => {
         const duration = parseFloat(matches.duration);
@@ -265,7 +265,7 @@ const triggerSet: TriggerSet<Data> = {
       // Delayed to give roughly same notice interval as other bait reminders
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7878', source: 'Hegemone' }),
-      condition: (data) => data.aetheronecroisDuration === 20.00,
+      condition: (data) => data.aetheronecrosisDuration === 20.00,
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
       infoText: (_data, _matches, output) => output.inFirstBait!(),
       outputStrings: {
@@ -285,6 +285,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => {
         data.predationCount = data.predationCount + 1;
 
+        // Map duration to the predation count
         const AetheronecrosisMap: { [duration: number]: number } = {
           8.00: 1,
           12.00: 2,
@@ -292,7 +293,7 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         // Output for in players
-        if (AetheronecrosisMap[data.aetheronecroisDuration] === data.predationCount) {
+        if (AetheronecrosisMap[data.aetheronecrosisDuration] === data.predationCount) {
           const inBaitMap: { [duration: number]: string } = {
             1: output.inSecondBait!(),
             2: output.inThirdBait!(),
