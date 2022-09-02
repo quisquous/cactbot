@@ -281,7 +281,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone' }),
       durationSeconds: 4,
       suppressSeconds: 1,
-      infoText: (data, matches, output) => {
+      infoText: (data, _matches, output) => {
         data.predationCount = data.predationCount + 1;
 
         // Map duration to the predation count
