@@ -163,26 +163,27 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      // Each head marker is for each scenario.
+      // There are markers for: stack, no exchange; spread exchanged to donut; spread exchanged to stack; etc.
+      // Therefore, there is no need to keep track of tethers as well.
       id: 'P6S Exchange of Agonies Markers',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => {
-        return data.me === matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, matches, output) => {
         const correctedMatch = getHeadmarkerId(data, matches);
         switch (correctedMatch) {
-          case '0163':
-          case '0167':
-          case '0169':
+          case '0163': // stack
+          case '0167': // spread exchanged to stack
+          case '0169': // donut exchanged to stack
             return output.stackOnYou!();
-          case '0164':
-          case '0165':
-          case '016A':
+          case '0164': // spread
+          case '0165': // stack exchanged to spread
+          case '016A': // donut exchanged to spread
             return output.spreadCorner!();
-          case '0166':
-          case '0168':
-          case '016E':
+          case '0166': // stack exchanged to donut
+          case '0168': // spread exchanged to donut
+          case '016E': // donut
             return output.donut!();
         }
       },
