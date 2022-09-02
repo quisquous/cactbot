@@ -216,7 +216,7 @@ const triggerSet: TriggerSet<Data> = {
         'Pathogenic Cells': 'Pathogene Zellen',
         'Polyominoid Sigma': 'Äther-Polyomino Σ',
         'Polyominous Dark IV': 'Neka-Polyomino',
-        'Predation': 'Prädation',
+        '(?<!Dual )Predation': 'Prädation',
         'Ptera Ixou': 'Ptera Ixou',
         'Reek Havoc': 'Gasausstoß',
         'Synergy': 'Synergie',
