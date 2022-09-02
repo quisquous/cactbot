@@ -85,7 +85,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Exocleaver Move',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['7869', '786B'], source: 'Hegemone', capture: false}),
+      netRegex: NetRegexes.ability({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
       // Supress until after second Exocleaver in the set
       suppressSeconds: 4,
       response: Responses.moveAway(),
