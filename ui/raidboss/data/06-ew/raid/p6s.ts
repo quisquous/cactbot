@@ -73,7 +73,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Exocleaver',
       // Unholy Darkness stack headmarkers are same time as first Exocleaver
-      // Exchange of Agonies headmarkers are 7s before second Exocleavers
+      // Exchange of Agonies headmarkers are 3s before second Exocleavers
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
       alertText: (data, _matches, output) => {
