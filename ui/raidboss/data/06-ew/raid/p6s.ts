@@ -220,7 +220,9 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 0.1,
       durationSeconds: (_data, matches) => {
         const duration = parseFloat(matches.duration);
-        return duration === 20 ? duration - 0.1 : duration + 16 - 0.1;
+        // First Dual Predation is 3.7s before expiration
+        // Remaining Dual Predations are 12.3s (second), 12.4s (third/fourth)
+        return duration === 20 ? duration - 3.8 : duration + 12.3;
       },
       infoText: (data, matches, output) => {
         const AetheronecrosisMap: { [duration: number]: string } = {
