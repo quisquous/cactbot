@@ -278,7 +278,7 @@ const triggerSet: TriggerSet<Data> = {
       // Using Chelic Predation (787B) and Glossal Predation (787A)
       // Player could get hit at wrong time and still get this trigger
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone' }),
+      netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone', capture: false }),
       durationSeconds: 4,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
