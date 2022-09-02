@@ -162,6 +162,7 @@ Options.Triggers.push({
         NW: Outputs.dirNW,
         text: {
           en: '${dir1} -> ${dir2} -> ${dir3} -> ${dir4}',
+          de: '${dir1} -> ${dir2} -> ${dir3} -> ${dir4}',
           fr: '${dir1} -> ${dir2} -> ${dir3} -> ${dir4}',
         },
       },
@@ -200,6 +201,7 @@ Options.Triggers.push({
       outputStrings: {
         groups: {
           en: 'Healer Groups on Topaz Stones',
+          de: 'Heilergruppen auf Topassteine',
           fr: 'Groupes heal sur les Topazes',
         },
       },
@@ -270,7 +272,6 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Lively Bait': 'zappelnd(?:e|er|es|en) Köder',
         'Proto-Carbuncle': 'Proto-Karfunkel',
