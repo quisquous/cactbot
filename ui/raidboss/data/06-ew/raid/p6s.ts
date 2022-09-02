@@ -11,6 +11,8 @@ export interface Data extends RaidbossData {
   decOffset?: number;
   pathogenicCellsNumber?: number;
   pathogenicCellsDelay?: number;
+  aetheronecrosisDuration: number;
+  predationCount: number;
   predationDebuff?: string;
 }
 
@@ -33,6 +35,12 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheSixthCircleSavage,
   timelineFile: 'p6s.txt',
+  initData: () => {
+    return {
+      aetheronecroisDuration: 0,
+      predationCount: 0,
+    };
+  },
   triggers: [
     {
       id: 'P6S Headmarker Tracker',
@@ -208,6 +216,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'CF9' }),
       condition: Conditions.targetIsYou(),
+      preRun: (data, matches) => data.aetheronecroisDuration = parseFloat(matches.duration),
       delaySeconds: 0.1,
       durationSeconds: (_data, matches) => {
         const duration = parseFloat(matches.duration);
@@ -223,6 +232,7 @@ const triggerSet: TriggerSet<Data> = {
         const dir = data.predationDebuff === 'CF7' ? output.left!() : output.right!();
         return output.text!({ dir: dir, bait: AetheronecrosisMap[parseFloat(matches.duration)] });
       },
+      run: (data) => data.aetheronecrosisDuration = parseFloat(matches.duration),
       outputStrings: {
         text: {
           en: '${dir}, ${bait}',
@@ -245,6 +255,70 @@ const triggerSet: TriggerSet<Data> = {
         fourthBait: {
           en: 'Fourth Bait (16s)',
         },
+      },
+    },
+    {
+      id: 'P6S Predation In First Bait Reminder',
+      // Using Dual Predation (7878)
+      // Delayed to give roughly same notice interval as other bait reminders
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7878', source: 'Hegemone' }),
+      condition: (data) => data.aetheronecroisDuration === 20.00,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
+      infoText: (_data, _matches, output) => output.inFirstBait!(),
+      outputStrings: {
+        inFirstBait: {
+          en: 'In (First Bait)',
+        },
+      },
+    },
+    {
+      id: 'P6S Predation In Bait Reminder',
+      // Using Chelic Predation (787B) and Glossal Predation (787A)
+      // Player could get hit at wrong time and still get this trigger
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone' }),
+      durationSeconds: 4,
+      suppressSeconds: 1,
+      infoText: (data, matches, output) => {
+        data.predationCount = data.predationCount + 1;
+
+        const AetheronecrosisMap: { [duration: number]: number } = {
+          8.00: 1,
+          12.00: 2,
+          16.00: 3,
+        };
+
+        // Output for in players
+        if (AetheronecrosisMap[data.aetheronecroisDuration] === data.predationCount) {
+          const inBaitMap: { [duration: number]: string } = {
+            1: output.inSecondBait!(),
+            2: output.inThirdBait!(),
+            3: output.inFourthBait!(),
+          };
+          return inBaitMap[data.predationCount];
+        }
+      },
+      outputStrings: {
+        inSecondBait: {
+          en: 'In (Second Bait)',
+        },
+        inThirdBait: {
+          en: 'In (Third Bait)',
+        },
+        inFourthBait: {
+          en: 'In (Fourth Bait)',
+        },
+      },
+    },
+    {
+      id: 'P6S Predation Out',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone' }),
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.out!(),
+      outputStrings: {
+        out: Outputs.out,
       },
     },
     {
