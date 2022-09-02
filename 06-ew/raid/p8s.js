@@ -31,6 +31,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '(partner stack, for later)',
+          de: '(Partner-Stacks, für später)',
         },
       },
     },
@@ -43,6 +44,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '(spread, for later)',
+          de: '(Verteilen, für später)',
         },
       },
     },
@@ -153,18 +155,23 @@ Options.Triggers.push({
         },
         insideSquare: {
           en: 'Inside Square',
+          de: 'Inneres Viereck',
         },
         cornerNW: {
           en: 'NW Corner',
+          de: 'NW Ecke',
         },
         cornerNE: {
           en: 'NE Corner',
+          de: 'NO Ecke',
         },
         cornerSE: {
           en: 'SE Corner',
+          de: 'SO Ecke',
         },
         cornerSW: {
           en: 'SW Corner',
+          de: 'SW Ecke',
         },
         outsideNorth: {
           en: 'Outside North',
@@ -300,6 +307,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '(avoid proteans)',
+          de: '(weiche Himmelsrichtungen aus)',
         },
       },
     },
@@ -316,6 +324,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'In for Protean',
+          de: 'rein für Himmelsrichtungen',
         },
       },
     },
@@ -326,6 +335,24 @@ Options.Triggers.push({
       'replaceText': {
         'Conceptual Octaflare/Conceptual Tetraflare': 'Conceptual Octa/Tetraflare',
         'Emergent Octaflare/Emergent Tetraflare': 'Emergent Octa/Tetraflare',
+      },
+    },
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Hephaistos': 'Hephaistos',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Hephaistos': 'Héphaïstos',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Hephaistos': 'ヘファイストス',
       },
     },
   ],

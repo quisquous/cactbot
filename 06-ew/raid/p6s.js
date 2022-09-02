@@ -245,24 +245,31 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '${dir}, ${bait}',
+          de: '${dir}, ${bait}',
         },
         left: {
           en: 'Left (Wing Side)',
+          de: 'Links (Flügel-Seite)',
         },
         right: {
           en: 'Right (Snake Side)',
+          de: 'Rechts (Schlangen-Seite)',
         },
         firstBait: {
           en: 'First Bait (20s)',
+          de: 'Köder als 1. (20s)',
         },
         secondBait: {
           en: 'Second Bait (8s)',
+          de: 'Köder als 2. (20s)',
         },
         thirdBait: {
           en: 'Third Bait (12s)',
+          de: 'Köder als 3. (20s)',
         },
         fourthBait: {
           en: 'Fourth Bait (16s)',
+          de: 'Köder als 4. (20s)',
         },
       },
     },
@@ -278,6 +285,7 @@ Options.Triggers.push({
       outputStrings: {
         inFirstBait: {
           en: 'In (First Bait)',
+          de: 'Rein (Köder als 1.)',
         },
       },
     },
@@ -316,12 +324,15 @@ Options.Triggers.push({
       outputStrings: {
         inSecondBait: {
           en: 'In (Second Bait)',
+          de: 'Rein (Köder als 2.)',
         },
         inThirdBait: {
           en: 'In (Third Bait)',
+          de: 'Rein (Köder als 3.)',
         },
         inFourthBait: {
           en: 'In (Fourth Bait)',
+          de: 'Rein (Köder als 4.)',
         },
       },
     },
@@ -343,9 +354,11 @@ Options.Triggers.push({
       outputStrings: {
         left: {
           en: 'Left (Wing Side)',
+          de: 'Links (Flügel-Seite)',
         },
         right: {
           en: 'Right (Snake Side)',
+          de: 'Rechts (Schlangen-Seite)',
         },
       },
     },
