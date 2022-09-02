@@ -318,7 +318,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.out!(),
+      infoText: (_data, _matches, output) => output.out!(),
       outputStrings: {
         out: Outputs.out,
       },
