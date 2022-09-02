@@ -227,19 +227,23 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir}, ${bait}',
         },
-        left: Outputs.left,
-        right: Outputs.right,
+        left: {
+          en: 'Left (Wing Side)',
+        },
+        right: {
+          en: 'Right (Snake Side)',
+        },
         firstBait: {
-          en: 'First Bait',
+          en: '20: First Bait',
         },
         secondBait: {
-          en: 'Second Bait',
+          en: '8: Second Bait',
         },
         thirdBait: {
-          en: 'Third Bait',
+          en: '12: Third Bait',
         },
         fourthBait: {
-          en: 'Fourth Bait',
+          en: '16: Fourth Bait',
         },
       },
     },
@@ -249,8 +253,12 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '787C', source: 'Hegemone', capture: false }),
       infoText: (data, _matches, output) => data.predationDebuff === 'CF7' ? output.left!() : output.right!(),
       outputStrings: {
-        left: Outputs.left,
-        right: Outputs.right,
+        left: {
+          en: 'Left (Wing Side)',
+        },
+        right: {
+          en: 'Right (Snake Side)',
+        },
       },
     },
   ],
