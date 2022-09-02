@@ -1,3 +1,4 @@
+import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -11,6 +12,9 @@ export interface Data extends RaidbossData {
   pathogenicCellsNumber?: number;
   pathogenicCellsDelay?: number;
   secondExocleavers?: boolean;
+  aetheronecrosisDuration: number;
+  predationCount: number;
+  predationDebuff?: string;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -32,6 +36,12 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheSixthCircleSavage,
   timelineFile: 'p6s.txt',
+  initData: () => {
+    return {
+      aetheronecrosisDuration: 0,
+      predationCount: 0,
+    };
+  },
   triggers: [
     {
       id: 'P6S Headmarker Tracker',
@@ -211,6 +221,158 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '788B', source: 'Hegemone', capture: false }),
       response: Responses.moveAway(),
+    },
+    {
+      id: 'P6S Predation Debuff Collect',
+      // CF7 Glossal Resistance Down (Snake Icon)
+      // CF8 Chelic Resistance Down (Wing Icon)
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['CF7', 'CF8'] }),
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => data.predationDebuff = matches.effectId,
+    },
+    {
+      id: 'P6S Predation Bait Order',
+      // Using Aetheronecrosis (CF9)
+      // These come out as 20s, 16s, 12s, or 8s
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'CF9' }),
+      condition: Conditions.targetIsYou(),
+      preRun: (data, matches) => data.aetheronecrosisDuration = parseFloat(matches.duration),
+      delaySeconds: 0.1,
+      durationSeconds: (_data, matches) => {
+        const duration = parseFloat(matches.duration);
+        // First Dual Predation is 3.7s before expiration
+        // Remaining Dual Predations are 12.3s (second), 12.4s (third/fourth)
+        return duration > 16 ? duration - 3.8 : duration + 12.3;
+      },
+      infoText: (data, matches, output) => {
+        const duration = parseFloat(matches.duration);
+        const dir = data.predationDebuff === 'CF7' ? output.left!() : output.right!();
+        let numBait;
+
+        // Allow for slight variation in duration
+        if (duration <= 8) {
+          numBait = output.secondBait!();
+        } else if (duration <= 12) {
+          numBait = output.thirdBait!();
+        } else if (duration <= 16) {
+          numBait = output.fourthBait!();
+        } else {
+          // 20s
+          numBait = output.firstBait!();
+        }
+
+        return output.text!({ dir: dir, bait: numBait });
+      },
+      outputStrings: {
+        text: {
+          en: '${dir}, ${bait}',
+        },
+        left: {
+          en: 'Left (Wing Side)',
+        },
+        right: {
+          en: 'Right (Snake Side)',
+        },
+        firstBait: {
+          en: 'First Bait (20s)',
+        },
+        secondBait: {
+          en: 'Second Bait (8s)',
+        },
+        thirdBait: {
+          en: 'Third Bait (12s)',
+        },
+        fourthBait: {
+          en: 'Fourth Bait (16s)',
+        },
+      },
+    },
+    {
+      id: 'P6S Predation In First Bait Reminder',
+      // Using Dual Predation (7878)
+      // Delayed to give roughly same notice interval as other bait reminders
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7878', source: 'Hegemone' }),
+      condition: (data) => data.aetheronecrosisDuration > 16,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
+      infoText: (_data, _matches, output) => output.inFirstBait!(),
+      outputStrings: {
+        inFirstBait: {
+          en: 'In (First Bait)',
+        },
+      },
+    },
+    {
+      id: 'P6S Predation In Bait Reminder',
+      // Using Chelic Predation (787B) and Glossal Predation (787A)
+      // Player could get hit at wrong time and still get this trigger
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone', capture: false }),
+      durationSeconds: 4,
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        data.predationCount = data.predationCount + 1;
+        let countMap;
+
+        // Allow for slight variation in duration
+        if (data.aetheronecrosisDuration <= 8) {
+          countMap = 1;
+        } else if (data.aetheronecrosisDuration <= 12) {
+          countMap = 2;
+        } else if (data.aetheronecrosisDuration <= 16) {
+          countMap = 3;
+        } else {
+          // 20s
+          countMap = 0;
+        }
+
+        // Output for in players
+        if (countMap === data.predationCount) {
+          const inBaitMap: { [duration: number]: string } = {
+            1: output.inSecondBait!(),
+            2: output.inThirdBait!(),
+            3: output.inFourthBait!(),
+          };
+          return inBaitMap[data.predationCount];
+        }
+      },
+      outputStrings: {
+        inSecondBait: {
+          en: 'In (Second Bait)',
+        },
+        inThirdBait: {
+          en: 'In (Third Bait)',
+        },
+        inFourthBait: {
+          en: 'In (Fourth Bait)',
+        },
+      },
+    },
+    {
+      id: 'P6S Predation Out',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone' }),
+      condition: Conditions.targetIsYou(),
+      infoText: (_data, _matches, output) => output.out!(),
+      outputStrings: {
+        out: Outputs.out,
+      },
+    },
+    {
+      id: 'P6S Ptera Ixou',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '787C', source: 'Hegemone', capture: false }),
+      infoText: (data, _matches, output) => data.predationDebuff === 'CF7' ? output.left!() : output.right!(),
+      outputStrings: {
+        left: {
+          en: 'Left (Wing Side)',
+        },
+        right: {
+          en: 'Right (Snake Side)',
+        },
+      },
     },
   ],
   timelineReplace: [
