@@ -301,8 +301,7 @@ const triggerSet: TriggerSet<Data> = {
           countMap = 2;
         } else if (data.aetheronecrosisDuration <= 16) {
           countMap = 3;
-        }
-        else {
+        } else {
           // 20s
           countMap = 0;
         }
