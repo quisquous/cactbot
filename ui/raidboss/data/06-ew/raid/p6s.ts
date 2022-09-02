@@ -11,6 +11,7 @@ export interface Data extends RaidbossData {
   decOffset?: number;
   pathogenicCellsNumber?: number;
   pathogenicCellsDelay?: number;
+  secondExocleavers?: boolean;
   aetheronecrosisDuration: number;
   predationCount: number;
   predationDebuff?: string;
@@ -19,7 +20,7 @@ export interface Data extends RaidbossData {
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
-// The first 1B marker in the encounter is an Exocleaver (013E).
+// The first 1B marker in the encounter is an Unholy Darkness stack marker (013E).
 const firstHeadmarker = parseInt('013E', 16);
 const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 013E.
@@ -78,6 +79,26 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Séparez les Tankbusters',
         },
       },
+    },
+    {
+      id: 'P6S Exocleaver Healer Groups',
+      // Unholy Darkness stack headmarkers are same time as first Exocleaver
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
+      condition: (data) => !data.secondExocleavers,
+      alertText: (_data, _matches, output) => output.healerGroups!(),
+      run: (data) => data.secondExocleavers = true,
+      outputStrings: {
+        healerGroups: Outputs.healerGroups,
+      },
+    },
+    {
+      id: 'P6S Exocleaver Move',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
+      // Supress until after second Exocleaver in the set
+      suppressSeconds: 4,
+      response: Responses.moveAway(),
     },
     {
       id: 'P6S Choros Ixou Front Back',
@@ -177,6 +198,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         spreadCorner: {
           en: 'Spread Corner',
+          de: 'In Ecken Verteilen',
           fr: 'Écartez-vous dans le coin',
         },
       },
@@ -356,9 +378,33 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Hegemone': 'Hegemone',
+        'Parasitos': 'Parasit',
+      },
+      'replaceText': {
+        'Aetherial Exchange': 'Ätherwechsel',
+        'Aetheric Polyominoid': 'Äther-Polyomino',
+        'Aetheronecrosis': 'Explozelle',
+        'Cachexia': 'Cachexia',
+        'Chelic Claw': 'Chelische Kralle',
+        'Choros Ixou': 'Choros Ixou',
+        'Dark Ashes': 'Dunkle Asche',
+        'Dark Dome': 'Dunkles Gewölbe',
+        'Dark Sphere': 'Dunkle Kugel',
+        'Dual Predation': 'Doppelte Prädation',
+        'Exchange Of Agonies': 'Wechselschub',
+        'Exocleaver': 'Exospalter',
+        'Hemitheos\'s Dark IV': 'Hemitheisches Nachtka',
+        'Pathogenic Cells': 'Pathogene Zellen',
+        'Polyominoid Sigma': 'Äther-Polyomino Σ',
+        'Polyominous Dark IV': 'Neka-Polyomino',
+        '(?<!Dual )Predation': 'Prädation',
+        'Ptera Ixou': 'Ptera Ixou',
+        'Reek Havoc': 'Gasausstoß',
+        'Synergy': 'Synergie',
+        'Transmission': 'Parasitismus',
+        'Unholy Darkness': 'Unheiliges Dunkel',
       },
     },
     {
@@ -366,6 +412,25 @@ const triggerSet: TriggerSet<Data> = {
       'missingTranslations': true,
       'replaceSync': {
         'Hegemone': 'Hégémone',
+        'Parasitos': 'créature parasite',
+      },
+      'replaceText': {
+        'Aetherial Exchange': 'Changement éthéréen',
+        'Aetheric Polyominoid': 'Polyomino éthéré',
+        'Chelic Claw': 'Griffe chélique',
+        'Choros Ixou': 'Choros Ixou',
+        'Dark Ashes': 'Cendres ténébreuses',
+        'Dark Dome': 'Dôme ténébreux',
+        'Dark Sphere': 'Sphère sombre',
+        'Exocleaver': 'Exo-couperet',
+        'Hemitheos\'s Dark IV': 'Giga Ténèbres d\'hémithéos',
+        'Pathogenic Cells': 'Souffle de cellules parasites',
+        'Polyominoid Sigma': 'Polyomino éthéré Σ',
+        'Polyominous Dark IV': 'Polyomino Giga Ténèbres',
+        'Reek Havoc': 'Exhalaison',
+        'Synergy': 'Synergie',
+        'Transmission': 'Parasitage',
+        'Unholy Darkness': 'Miracle ténébreux',
       },
     },
     {
@@ -373,6 +438,25 @@ const triggerSet: TriggerSet<Data> = {
       'missingTranslations': true,
       'replaceSync': {
         'Hegemone': 'ヘーゲモネー',
+        'Parasitos': '寄生生物',
+      },
+      'replaceText': {
+        'Aetherial Exchange': 'エーテルチェンジ',
+        'Aetheric Polyominoid': 'エーテル・ポリオミノ',
+        'Chelic Claw': '爪撃',
+        'Choros Ixou': 'ホロス・イクソス',
+        'Dark Ashes': 'ダークアッシュ',
+        'Dark Dome': 'ダークドーム',
+        'Dark Sphere': 'ダークスフィア',
+        'Exocleaver': 'エクソークリーバー',
+        'Hemitheos\'s Dark IV': 'ヘーミテオス・ダージャ',
+        'Pathogenic Cells': '軟体細胞流',
+        'Polyominoid Sigma': 'エーテル・ポリオミノΣ',
+        'Polyominous Dark IV': 'ダージャ・ポリオミノ',
+        'Reek Havoc': '噴気',
+        'Synergy': 'シュネルギア',
+        'Transmission': '寄生',
+        'Unholy Darkness': 'ダークホーリー',
       },
     },
   ],
