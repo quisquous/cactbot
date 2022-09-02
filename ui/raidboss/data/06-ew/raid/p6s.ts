@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
   decOffset?: number;
   pathogenicCellsNumber?: number;
   pathogenicCellsDelay?: number;
+  predationDebuff?: string;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -189,6 +190,57 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '788B', source: 'Hegemone', capture: false }),
       response: Responses.moveAway(),
+    },
+    {
+      id: 'P6S Predation Debuff Collect',
+      // CF7 Glossal Resistance Down (Snake Icon)
+      // CF8 Chelic Resistance Down (Wing Icon)
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['CF7', 'CF8'] }),
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => data.predationDebuff = matches.effectId,
+    },
+    {
+      id: 'P6S Predation Bait Order',
+      // Using Aetheronecrosis (CF9)
+      // These come out as 20s, 16s, 12s, or 8s
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'CF9' }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: 0.1,
+      durationSeconds: (_data, matches) => {
+        const duration = parseFloat(matches.duration);
+        return duration === 20 ? duration - 0.1 : duration + 16 - 0.1;
+      },
+      infoText: (data, matches, output) => {
+        const AetheronecrosisMap: { [duration: number]: string } = {
+          20.00: output.firstBait!(),
+          8.00: output.secondBait!(),
+          12.00: output.thirdBait!(),
+          16.00: output.fourthBait!(),
+        };
+        const dir = data.predationDebuff === 'CF7' ? output.left!() : output.right!();
+        return output.text!({ dir: dir , bait: AetheronecrosisMap[parseFloat(matches.duration)] });
+      },
+      outputStrings: {
+        text: {
+          en: '${dir}, ${bait}',
+        },
+        left: Outputs.left,
+        right: Outputs.right,
+        firstBait: {
+          en: 'First Bait',
+        },
+        secondBait: {
+          en: 'Second Bait',
+        },
+        thirdBait: {
+          en: 'Third Bait',
+        },
+        fourthBait: {
+          en: 'Fourth Bait',
+        },
+      },
     },
   ],
   timelineReplace: [
