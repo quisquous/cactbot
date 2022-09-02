@@ -87,10 +87,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['7869', '786B'], source: 'Hegemone' }),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime),
-      infoText: (_data, _matches, output) => output.moveAway!(),
-      outputStrings: {
-        moveAway: Outputs.moveAway,
-      },
+      response: Responses.moveAway(),
     },
     {
       id: 'P6S Choros Ixou Front Back',
