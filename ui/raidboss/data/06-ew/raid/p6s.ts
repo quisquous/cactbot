@@ -71,29 +71,25 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P6S Exocleaver',
+      id: 'P6S Exocleaver Healer Groups',
       // Unholy Darkness stack headmarkers are same time as first Exocleaver
-      // Exchange of Agonies headmarkers are 3s before second Exocleavers
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
-      alertText: (data, _matches, output) => {
-        if (data.secondExocleavers)
-          return output.protean!();
-        return output.healerGroupsProtean!();
-      },
+      condition: (data) => !data.secondExocleavers,
+      alertText: (_data, _matches, output) => output.healerGroups!(),
       run: (data) => data.secondExocleavers = true,
       outputStrings: {
-        healerGroupsProtean: {
-          en: 'Healer Groups + Protean',
-        },
-        protean: {
-          en: 'Protean',
-          de: 'Himmelsrichtungen',
-          fr: 'Positions',
-          ja: '8方向散開',
-          cn: '八方位站位',
-          ko: '정해진 위치로 산개',
-        },
+        healerGroups: Outputs.healerGroups,
+      },
+    },
+    {
+      id: 'P6S Exocleaver Move',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['7869', '786B'], source: 'Hegemone' }),
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime),
+      infoText: (_data, _matches, output) => output.moveAway!(),
+      outputStrings: {
+        moveAway: Outputs.moveAway,
       },
     },
     {
