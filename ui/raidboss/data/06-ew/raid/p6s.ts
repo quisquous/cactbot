@@ -221,7 +221,7 @@ const triggerSet: TriggerSet<Data> = {
           16.00: output.fourthBait!(),
         };
         const dir = data.predationDebuff === 'CF7' ? output.left!() : output.right!();
-        return output.text!({ dir: dir , bait: AetheronecrosisMap[parseFloat(matches.duration)] });
+        return output.text!({ dir: dir, bait: AetheronecrosisMap[parseFloat(matches.duration)] });
       },
       outputStrings: {
         text: {
