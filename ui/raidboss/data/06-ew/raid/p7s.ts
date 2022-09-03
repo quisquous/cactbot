@@ -7,7 +7,7 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: Tethers in Famine's Harvest, Death's Harvest and War's Harvest
+// TODO: Tether plant locations via OverlayPlugin X, Y and bird headings?
 
 export interface Data extends RaidbossData {
   purgationDebuffs: { [role: string]: { [name: string]: number } };
