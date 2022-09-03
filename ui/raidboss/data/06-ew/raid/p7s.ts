@@ -58,7 +58,6 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.rootsCounter === undefined,
       delaySeconds: 0.1, // Slight delay to prevent duplicate callout
       run: (data) => data.rootsCounter = true,
-      },
     },
     {
       id: 'P7S Roots of Attis 2',
