@@ -150,7 +150,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '(Line AoE)',
         },
         bigCleave: {
-          en: '(bigCleave)',
+          en: '(Big Cleave)',
         },
       },
     },
