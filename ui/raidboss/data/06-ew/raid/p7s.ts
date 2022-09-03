@@ -207,7 +207,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '78E2', source: 'Agdistis', capture: false }),
       // ~5s castTime, but boss cancels it and ability goes off 26s after start
       delaySeconds: 21,
-      alertText: (data, _matches, output) => output.bigAoEMiddle!(),
+      alertText: (_data, _matches, output) => output.bigAoEMiddle!(),
       outputStrings: {
         bigAoEMiddle: {
           en: 'Big AOE, Get Middle',
