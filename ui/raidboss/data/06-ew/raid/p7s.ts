@@ -13,6 +13,7 @@ export interface Data extends RaidbossData {
   purgationDebuffs: { [role: string]: { [name: string]: number } };
   purgationDebuffCount: number;
   tetherCollect: string[];
+  stopTethers?: boolean;
   tetherCollectPhase?: string;
 }
 
@@ -109,7 +110,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: Get locations with OverlayPlugin via X, Y and bird headings?
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: ['0006', '0039'] }),
-      // ~9s between tether and Static Path (no cast) in all cases.
+      condition: (data) => !data.stopTethers,
       preRun: (data, matches) => data.tetherCollect.push(matches.target),
       delaySeconds: 0.1,
       infoText: (data, matches, output) => {
@@ -155,21 +156,28 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P7S Bull and Minotaur Tether Cleanup',
+      id: 'P7S Bull and Minotaur Tethers Stop Collection',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: ['0006', '0039'], capture: false }),
-      delaySeconds: 1,
-      suppressSeconds: 1,
-      run: (data) => {
+      delaySeconds: 0.2,
+      suppressSeconds: 6,
+      run: (data) => data.stopTethers = true,
+    },
+    {
+      id: 'P7S Bull and Minotaur Tethers Phase Tracker',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['7A4F', '7A50', '7451'] }),
+      run: (data, matches) => {
+        data.stopTethers = false;
         data.tetherCollect = [];
-        switch (data.tetherCollectPhase) {
-          case undefined:
+        switch (matches.id) {
+          case '7A4F':
             data.tetherCollectPhase = 'famine';
             break;
-          case 'famine':
+          case '7A50':
             data.tetherCollectPhase = 'death';
             break;
-          case 'death':
+          case '7451':
             data.tetherCollectPhase = 'war';
             break;
         }
