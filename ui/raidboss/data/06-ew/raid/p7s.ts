@@ -13,7 +13,6 @@ export interface Data extends RaidbossData {
   purgationDebuffs: { [role: string]: { [name: string]: number } };
   purgationDebuffCount: number;
   tetherCollect: string[];
-  tetherCollect: string[];
   tetherCollectPhase?: string;
 }
 
