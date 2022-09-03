@@ -12,7 +12,7 @@ export interface Data extends RaidbossData {
   decOffset?: number;
   purgationDebuffs: { [role: string]: { [name: string]: number } };
   purgationDebuffCount: number;
-  rootsCounter?: boolean;
+  secondRoots?: boolean;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -106,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P7S Roots of Attis 3',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
-      condition: (data) => data.rootsCounter === false,
+      condition: (data) => data.secondRoots === false,
       infoText: (_data, _matches, output) => output.baitSoon!(),
       outputStrings: {
         baitSoon: {
@@ -118,9 +118,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P7S Roots of Attis 2',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
-      condition: (data) => data.rootsCounter,
+      condition: (data) => data.secondRoots,
       infoText: (_data, _matches, output) => output.separateHealerGroups!(),
-      run: (data) => data.rootsCounter = false,
+      run: (data) => data.secondRoots = false,
       outputStrings: {
         separateHealerGroups: {
           en: 'Healer Group Platforms',
@@ -134,7 +134,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P7S Roots of Attis 1',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
-      run: (data) => data.rootsCounter = true,
+      condition: (data) => data.secondRoots === undefined,
+      run: (data) => data.secondRoots = true,
     },
     {
       id: 'P7S Hemitheos\'s Aero IV',
