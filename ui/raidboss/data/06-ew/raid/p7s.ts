@@ -48,6 +48,18 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P7S Bough of Attis Left Arrows',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7824', source: 'Agdistis', capture: false }),
+      response: Responses.goLeft(),
+    },
+    {
+      id: 'P7S Bough of Attis Right Arrows',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7823', source: 'Agdistis', capture: false }),
+      response: Responses.goRight(),
+    },
+    {
       id: 'P7S Hemitheos\'s Aero IV',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7A0B', source: 'Agdistis', capture: false }),
