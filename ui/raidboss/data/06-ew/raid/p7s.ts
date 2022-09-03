@@ -7,9 +7,13 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: Tethers in Famine's Harvest, Death's Harvest and War's Harvest
+
 export interface Data extends RaidbossData {
   purgationDebuffs: { [role: string]: { [name: string]: number } };
   purgationDebuffCount: number;
+  tetherCollect: string[];
+  stopTetherCollect?: boolean;
 }
 
 // effect ids for inviolate purgation
@@ -30,6 +34,7 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => ({
     purgationDebuffs: { 'dps': {}, 'support': {} },
     purgationDebuffCount: 0,
+    tetherCollect: [],
   }),
   triggers: [
     {
@@ -91,6 +96,52 @@ const triggerSet: TriggerSet<Data> = {
         if (longTimer)
           return { infoText: output.stackThenSpread!() };
         return { infoText: output.spreadThenStack!() };
+      },
+    },
+    {
+      id: 'P7S Forbidden Fruit 4 Tethers',
+      // 0006 Immature Io (Bull) Tether
+      // 0039 Immature Minotaur Tether
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: ['0006', '0039'] }),
+      // ~9s between tether and Static Path (no cast) in all cases.
+      condition: (data) => !data.stopTetherCollect,
+      preRun: (data, matches) => data.tetherCollect.push(matches.target),
+      delaySeconds: 0.1,
+      infoText: (data, matches, output) => {
+        if (data.me === matches.target) {
+          if (matches.id === '0006')
+            return output.bullTether!();
+          if (matches.id === '0039')
+            return output.minotaurTether!();
+        }
+        if (!data.tetherCollect.includes(data.me)) {
+          // Prevent duplicate callout
+          data.tetherCollect.push(data.me);
+          return output.baitMinotaur!();
+        }
+      },
+      outputStrings: {
+        bullTether: {
+          en: 'Bull Tether (Line AoE)',
+        },
+        minotaurTether: {
+          en: 'Minotaur Tether (Big Cleave)',
+        },
+        baitMinotaur: {
+          en: 'No Tether, Bait Minotaur Cleave',
+        },
+      },
+    },    {
+      id: 'P7S Forbidden Fruit 4 Cleanup',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: ['0006', '0039'] }),
+      condition: (data) => !data.stopTetherCollect,
+      delaySeconds: 1,
+      suppressSeconds: 1,
+      run: (data) => {
+        data.tetherCollect = [];
+        data.stopTetherCollect = true;
       },
     },
     {
