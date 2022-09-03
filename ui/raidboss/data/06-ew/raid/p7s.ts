@@ -51,19 +51,13 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P7S Bough of Attis Left Arrows',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7824', source: 'Agdistis', capture: false }),
-      alertText: (_data, _matches, output) => output.northwest!(),
-      outputStrings: {
-        northwest: Outputs.northwest,
-      },
+      response: Responses.goLeft(),
     },
     {
       id: 'P7S Bough of Attis Right Arrows',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7823', source: 'Agdistis', capture: false }),
-      alertText: (_data, _matches, output) => output.northeast!(),
-      outputStrings: {
-        northeast: Outputs.northeast,
-      },
+      response: Responses.goRight(),
     },
     {
       id: 'P7S Hemitheos\'s Aero IV',
