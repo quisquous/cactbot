@@ -10,6 +10,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   purgationDebuffs: { [role: string]: { [name: string]: number } };
   purgationDebuffCount: number;
+  rootsCounter?: boolean;
 }
 
 // effect ids for inviolate purgation
