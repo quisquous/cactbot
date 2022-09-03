@@ -171,7 +171,7 @@ const triggerSet: TriggerSet<Data> = {
             break;
           case 'death':
             data.tetherCollectPhase = 'war';
-          break;
+            break;
         }
       },
     },
