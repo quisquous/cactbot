@@ -13,7 +13,8 @@ export interface Data extends RaidbossData {
   purgationDebuffs: { [role: string]: { [name: string]: number } };
   purgationDebuffCount: number;
   tetherCollect: string[];
-  stopTetherCollect?: boolean;
+  tetherCollect: string[];
+  tetherCollectPhase?: string;
 }
 
 // effect ids for inviolate purgation
@@ -99,50 +100,74 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P7S Forbidden Fruit 4 Tethers',
+      id: 'P7S Bull and Minotaur Tethers',
       // 0006 Immature Io (Bull) Tether
       // 0039 Immature Minotaur Tether
+      // Forbidden Fruit 4 has 4 Bull, 2 Minotaur Tethers, 1 Non-tethered Minotaur
+      // Famine has 4 Minotaur Tethers and 2 Non-tethered Minotaurs
+      // Death has 8 Bull Tethers /w Static Birds
+      // War has 4 Bull Tethers, 2 Minotaur Tethers, 2 Bird Tethers
+      // TODO: Get locations with OverlayPlugin via X, Y and bird headings?
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: ['0006', '0039'] }),
       // ~9s between tether and Static Path (no cast) in all cases.
-      condition: (data) => !data.stopTetherCollect,
       preRun: (data, matches) => data.tetherCollect.push(matches.target),
       delaySeconds: 0.1,
       infoText: (data, matches, output) => {
         if (data.me === matches.target) {
+          // Bull Tethers
           if (matches.id === '0006')
             return output.bullTether!();
+
+          // Minotaur Tethers
           if (matches.id === '0039')
             return output.minotaurTether!();
         }
+
+        // No Tethers
         if (!data.tetherCollect.includes(data.me)) {
           // Prevent duplicate callout
           data.tetherCollect.push(data.me);
-          return output.baitMinotaur!();
+          if (!data.tetherCollectPhase)
+            return output.baitMinotaur!({ location: output.middle!() });
+          if (data.tetherCollectPhase === 'famine')
+            return output.baitMinotaur!();
         }
       },
       outputStrings: {
         bullTether: {
-          en: 'Bull Tether (Line AoE)',
+          en: 'Bull Tether ${location}',
         },
         minotaurTether: {
-          en: 'Minotaur Tether (Big Cleave)',
+          en: 'Minotaur Tether ${location}',
         },
         baitMinotaur: {
-          en: 'No Tether, Bait Minotaur Cleave (Middle)',
+          en: 'No Tether, Bait Minotaur Cleave ${location}',
+        },
+        middle: {
+          en: '(Middle)',
         },
       },
     },
     {
-      id: 'P7S Forbidden Fruit 4 Cleanup',
+      id: 'P7S Bull and Minotaur Tether Cleanup',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: ['0006', '0039'], capture: false }),
-      condition: (data) => !data.stopTetherCollect,
       delaySeconds: 1,
       suppressSeconds: 1,
       run: (data) => {
         data.tetherCollect = [];
-        data.stopTetherCollect = true;
+        switch (data.tetherCollectPhase) {
+          case undefined:
+            data.tetherCollectPhase = 'famine';
+            break;
+          case 'famine':
+            data.tetherCollectPhase = 'death';
+            break;
+          case 'death':
+            data.tetherCollectPhase = 'war';
+          break;
+        }
       },
     },
     {
