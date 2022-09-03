@@ -134,6 +134,7 @@ Options.Triggers.push({
           en: 'start at ${start} -> move to ${end}',
           de: 'Starte im ${start} -> Bewegen nach ${end}',
           fr: 'Commencez à ${start} -> allez vers ${end}',
+          ko: '${start}쪽에서 시작 -> ${end}쪽으로 이동',
         },
       },
     },

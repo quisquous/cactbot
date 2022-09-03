@@ -57,6 +57,7 @@ Options.Triggers.push({
           en: 'Split Tankbusters',
           de: 'Geteilter Tankbuster',
           fr: 'Séparez les Tankbusters',
+          ko: '따로맞는 탱버',
         },
       },
     },
@@ -179,6 +180,7 @@ Options.Triggers.push({
           en: 'Spread Corner',
           de: 'In Ecken Verteilen',
           fr: 'Écartez-vous dans le coin',
+          ko: '구석으로 산개',
         },
       },
     },
@@ -192,6 +194,7 @@ Options.Triggers.push({
           en: 'Bait Circles',
           de: 'Kreise ködern',
           fr: 'Attirez les cercles',
+          ko: '장판 유도',
         },
       },
     },
@@ -246,30 +249,37 @@ Options.Triggers.push({
         text: {
           en: '${dir}, ${bait}',
           de: '${dir}, ${bait}',
+          ko: '${dir}, ${bait}',
         },
         left: {
           en: 'Left (Wing Side)',
           de: 'Links (Flügel-Seite)',
+          ko: '왼쪽 (날개쪽)',
         },
         right: {
           en: 'Right (Snake Side)',
           de: 'Rechts (Schlangen-Seite)',
+          ko: '오른쪽 (뱀쪽)',
         },
         firstBait: {
           en: 'First Bait (20s)',
           de: 'Köder als 1. (20s)',
+          ko: '유도 1번 (20초)',
         },
         secondBait: {
           en: 'Second Bait (8s)',
-          de: 'Köder als 2. (20s)',
+          de: 'Köder als 2. (8s)',
+          ko: '유도 2번 (8초)',
         },
         thirdBait: {
           en: 'Third Bait (12s)',
-          de: 'Köder als 3. (20s)',
+          de: 'Köder als 3. (12s)',
+          ko: '유도 3번 (12초)',
         },
         fourthBait: {
           en: 'Fourth Bait (16s)',
-          de: 'Köder als 4. (20s)',
+          de: 'Köder als 4. (16s)',
+          ko: '유도 4번 (16초)',
         },
       },
     },
@@ -286,6 +296,7 @@ Options.Triggers.push({
         inFirstBait: {
           en: 'In (First Bait)',
           de: 'Rein (Köder als 1.)',
+          ko: '안으로 (유도 1번)',
         },
       },
     },
@@ -325,14 +336,17 @@ Options.Triggers.push({
         inSecondBait: {
           en: 'In (Second Bait)',
           de: 'Rein (Köder als 2.)',
+          ko: '안으로 (유도 2번)',
         },
         inThirdBait: {
           en: 'In (Third Bait)',
           de: 'Rein (Köder als 3.)',
+          ko: '안으로 (유도 3번)',
         },
         inFourthBait: {
           en: 'In (Fourth Bait)',
           de: 'Rein (Köder als 4.)',
+          ko: '안으로 (유도 4번)',
         },
       },
     },
@@ -355,10 +369,12 @@ Options.Triggers.push({
         left: {
           en: 'Left (Wing Side)',
           de: 'Links (Flügel-Seite)',
+          ko: '왼쪽 (날개쪽)',
         },
         right: {
           en: 'Right (Snake Side)',
           de: 'Rechts (Schlangen-Seite)',
+          ko: '오른쪽 (뱀쪽)',
         },
       },
     },
