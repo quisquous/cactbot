@@ -117,11 +117,11 @@ const triggerSet: TriggerSet<Data> = {
         if (data.me === matches.target) {
           // Bull Tethers
           if (matches.id === '0006')
-            return output.bullTether!();
+            return output.bullTether!({ location: output.lineAoE!() });
 
           // Minotaur Tethers
           if (matches.id === '0039')
-            return output.minotaurTether!();
+            return output.minotaurTether!({ location: output.bigCleave!() });
         }
 
         // No Tethers
@@ -131,7 +131,7 @@ const triggerSet: TriggerSet<Data> = {
           if (!data.tetherCollectPhase)
             return output.baitMinotaur!({ location: output.middle!() });
           if (data.tetherCollectPhase === 'famine')
-            return output.baitMinotaur!();
+            return output.baitMinotaur!({ location: '' });
         }
       },
       outputStrings: {
@@ -146,6 +146,12 @@ const triggerSet: TriggerSet<Data> = {
         },
         middle: {
           en: '(Middle)',
+        },
+        lineAoE: {
+          en: '(Line AoE)',
+        },
+        bigCleave: {
+          en: '(bigCleave)',
         },
       },
     },
