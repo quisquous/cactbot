@@ -129,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Minotaur Tether (Big Cleave)',
         },
         baitMinotaur: {
-          en: 'No Tether, Bait Minotaur Cleave',
+          en: 'No Tether, Bait Minotaur Cleave (Middle)',
         },
       },
     },    {
