@@ -180,7 +180,7 @@ const triggerSet: TriggerSet<Data> = {
           case '7A50':
             data.tetherCollectPhase = 'death';
             break;
-          case '7451':
+          case '7A51':
             data.tetherCollectPhase = 'war';
             break;
         }
