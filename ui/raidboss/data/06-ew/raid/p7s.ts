@@ -157,6 +157,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P7S Bull and Minotaur Tethers Stop Collection',
+      // 0001 Tether also goes off on players that get 0039 Tethers which leads
+      // to 0039 possibly reapplying. This trigger is used to only collect tethers
+      // during a defined window.
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: ['0006', '0039'], capture: false }),
       delaySeconds: 0.2,
