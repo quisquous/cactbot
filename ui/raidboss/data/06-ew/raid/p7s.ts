@@ -135,7 +135,7 @@ const triggerSet: TriggerSet<Data> = {
     },    {
       id: 'P7S Forbidden Fruit 4 Cleanup',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: ['0006', '0039'] }),
+      netRegex: NetRegexes.tether({ id: ['0006', '0039'], capture: false }),
       condition: (data) => !data.stopTetherCollect,
       delaySeconds: 1,
       suppressSeconds: 1,
