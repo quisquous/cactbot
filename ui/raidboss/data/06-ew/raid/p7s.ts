@@ -201,6 +201,14 @@ const triggerSet: TriggerSet<Data> = {
         stack: Outputs.stackMarker,
       },
     },
+    {
+      id: 'P7S Light of Life',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '78E2', source: 'Agdistis' }),
+      // ~5s castTime, but boss cancels it and ability goes off 26s after start
+      delaySeconds: 21,
+      response: Responses.bigAoe(),
+    },
   ],
   timelineReplace: [
     {
