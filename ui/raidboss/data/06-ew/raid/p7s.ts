@@ -132,7 +132,8 @@ const triggerSet: TriggerSet<Data> = {
           en: 'No Tether, Bait Minotaur Cleave (Middle)',
         },
       },
-    },    {
+    },
+    {
       id: 'P7S Forbidden Fruit 4 Cleanup',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: ['0006', '0039'], capture: false }),
