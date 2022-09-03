@@ -1,3 +1,18 @@
+// Due to changes introduced in patch 5.2, overhead markers now have a random offset
+// added to their ID. This offset currently appears to be set per instance, so
+// we can determine what it is from the first overhead marker we see.
+// The first 1B marker in the encounter is an Hemitheos's Holy III stack marker (013E).
+const firstHeadmarker = parseInt('013E', 16);
+const getHeadmarkerId = (data, matches) => {
+  // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 013E.
+  // (This makes the offset 0, and !0 is true.)
+  if (typeof data.decOffset === 'undefined')
+    data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
+  // The leading zeroes are stripped when converting back to string, so we re-add them here.
+  // Fortunately, we don't have to worry about whether or not this is robust,
+  // since we know all the IDs that will be present in the encounter.
+  return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
+};
 // effect ids for inviolate purgation
 const effectIdToOutputStringKey = {
   'CEE': 'spread',
@@ -17,6 +32,30 @@ Options.Triggers.push({
     purgationDebuffCount: 0,
   }),
   triggers: [
+    {
+      id: 'P7S Headmarker Tracker',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      condition: (data) => data.decOffset === undefined,
+      // Unconditionally set the first headmarker here so that future triggers are conditional.
+      run: (data, matches) => {
+        getHeadmarkerId(data, matches);
+      },
+    },
+    {
+      id: 'P7S Hemitheos\'s Holy III Healer Groups',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      suppressSeconds: 1,
+      infoText: (data, matches, output) => {
+        const correctedMatch = getHeadmarkerId(data, matches);
+        if (correctedMatch === '013E')
+          return output.healerGroups();
+      },
+      outputStrings: {
+        healerGroups: Outputs.healerGroups,
+      },
+    },
     {
       id: 'P7S Condensed Aero II',
       type: 'StartsUsing',
