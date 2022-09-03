@@ -10,7 +10,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   decOffset?: number;
-  previousInviolateDebuff?: string;
+  previousBondsDebuff?: string;
   purgationDebuffs: { [role: string]: { [name: string]: number } };
   purgationDebuffCount: number;
   purgationEffects?: string[];
@@ -146,7 +146,7 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         // Strore debuff for reminders
-        data.previousInviolateDebuff = matches.effectId;
+        data.previousBondsDebuff = matches.effectId;
 
         const longTimer = parseFloat(matches.duration) > 9;
         if (longTimer)
@@ -164,12 +164,12 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => {
         const correctedMatch = getHeadmarkerId(data, matches);
         if (correctedMatch === '00A6' && data.purgationDebuffCount === 0) {
-          switch (data.previousInviolateDebuff) {
+          switch (data.previousBondsDebuff) {
             case 'CEC':
-              data.previousInviolateDebuff = 'D45';
+              data.previousBondsDebuff = 'D45';
               return output.spread!();
             case 'D45':
-              data.previousInviolateDebuff = 'CEC';
+              data.previousBondsDebuff = 'CEC';
               return output.stackMarker!();
           }
         }
