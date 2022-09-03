@@ -5,9 +5,11 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
+  decOffset?: number;
   purgationDebuffs: { [role: string]: { [name: string]: number } };
   purgationDebuffCount: number;
 }
