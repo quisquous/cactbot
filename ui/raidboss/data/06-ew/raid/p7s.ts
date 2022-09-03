@@ -69,7 +69,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => data.rootsCounter = false,
       outputStrings: {
         separateHealerGroups: {
-          en: 'Separate Healer Groups',
+          en: 'Healer Group Platforms',
         },
       },
     },
