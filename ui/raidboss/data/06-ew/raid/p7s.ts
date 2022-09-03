@@ -49,7 +49,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // First breaks north bridge for upcoming, South Knockback Spreads Soon
+      // First breaks north bridge for upcoming South Knockback Spreads
       // Second breaks remaining bridges, Separate Healer Groups
       // Third breaks all bridges, Bait on Empty Platform
       id: 'P7S Roots of Attis 1',
@@ -57,12 +57,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
       condition: (data) => data.rootsCounter === undefined,
       delaySeconds: 0.1, // Slight delay to prevent duplicate callout
-      infoText: (_data, _matches, output) => output.knockbackSpreadSoon!(),
       run: (data) => data.rootsCounter = true,
-      outputStrings: {
-        knockbackSpreadSoon: {
-          en: 'South Knockback Spread Soon',
-        },
       },
     },
     {
