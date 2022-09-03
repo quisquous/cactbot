@@ -53,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '7824', source: 'Agdistis', capture: false }),
       alertText: (_data, _matches, output) => output.northwest!(),
       outputStrings: {
-        northwest: Outputs.northwest, 
+        northwest: Outputs.northwest,
       },
     },
     {
