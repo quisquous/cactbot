@@ -48,6 +48,49 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      // First breaks north bridge for upcoming, South Knockback Spreads Soon
+      // Second breaks remaining bridges, Separate Healer Groups
+      // Third breaks all bridges, Bait on Empty Platform
+      id: 'P7S Roots of Attis 1',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      condition: (data) => data.rootsCounter === undefined,
+      delaySeconds: 0.1, // Slight delay to prevent duplicate callout
+      infoText: (_data, _matches, output) => output.knockbackSpreadSoon!(),
+      run: (data) => data.rootsCounter = true,
+      outputStrings: {
+        knockbackSpreadSoon: {
+          en: 'South Knockback Spread Soon',
+        },
+      },
+    },
+    {
+      id: 'P7S Roots of Attis 2',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      condition: (data) => data.rootsCounter,
+      delaySeconds: 0.1, // Slight delay to prevent duplicate callout
+      infoText: (_data, _matches, output) => output.separateHealerGroups!(),
+      run: (data) => data.rootsCounter = false,
+      outputStrings: {
+        separateHealerGroups: {
+          en: 'Separate Healer Groups',
+        },
+      },
+    },
+    {
+      id: 'P7S Roots of Attis 3',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      condition: (data) => data.rootsCounter === false,
+      infoText: (_data, _matches, output) => output.baitSoon!(),
+      outputStrings: {
+        baitSoon: {
+          en: 'Bait on Empty Platform Soon',
+        },
+      },
+    },
+    {
       id: 'P7S Hemitheos\'s Aero IV',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7A0B', source: 'Agdistis', capture: false }),
