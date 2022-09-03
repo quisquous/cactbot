@@ -14,7 +14,6 @@ export interface Data extends RaidbossData {
   purgationDebuffCount: number;
   purgationEffects?: string[];
   purgationEffectIndex: number;
-  purgationDebuffCount: number;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
