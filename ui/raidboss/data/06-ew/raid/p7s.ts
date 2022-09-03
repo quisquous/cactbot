@@ -49,31 +49,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // First breaks north bridge for upcoming South Knockback Spreads
-      // Second breaks remaining bridges, Separate Healer Groups
-      // Third breaks all bridges, Bait on Empty Platform
-      id: 'P7S Roots of Attis 1',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
-      condition: (data) => data.rootsCounter === undefined,
-      delaySeconds: 0.1, // Slight delay to prevent duplicate callout
-      run: (data) => data.rootsCounter = true,
-    },
-    {
-      id: 'P7S Roots of Attis 2',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
-      condition: (data) => data.rootsCounter,
-      delaySeconds: 0.1, // Slight delay to prevent duplicate callout
-      infoText: (_data, _matches, output) => output.separateHealerGroups!(),
-      run: (data) => data.rootsCounter = false,
-      outputStrings: {
-        separateHealerGroups: {
-          en: 'Healer Group Platforms',
-        },
-      },
-    },
-    {
       id: 'P7S Roots of Attis 3',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
@@ -84,6 +59,28 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Bait on Empty Platform Soon',
         },
       },
+    },
+    {
+      id: 'P7S Roots of Attis 2',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      condition: (data) => data.rootsCounter,
+      infoText: (_data, _matches, output) => output.separateHealerGroups!(),
+      run: (data) => data.rootsCounter = false,
+      outputStrings: {
+        separateHealerGroups: {
+          en: 'Healer Group Platforms',
+        },
+      },
+    },
+    {
+      // First breaks north bridge for upcoming South Knockback Spreads
+      // Second breaks remaining bridges, Separate Healer Groups
+      // Third breaks all bridges, Bait on Empty Platform
+      id: 'P7S Roots of Attis 1',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      run: (data) => data.rootsCounter = true,
     },
     {
       id: 'P7S Hemitheos\'s Aero IV',
