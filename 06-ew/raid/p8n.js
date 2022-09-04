@@ -1,16 +1,19 @@
-// TODO: Cthonic Vent is tricky; the initial cast is ~5s, but the next two explosions are ~2s.
-//       There's no map events.  There's two Suneater adds that are added immediately before
-//       the first 78F5 cast, and these same two combatants are used for the next two circles.
-//       It seems like these adds that are doing damage are moved only at the last second.
-//       It's possible there's some other hidden combatants moving around, or this is
-//       just a case of missing some animation data in network logs that would tell us.
 // TODO: how to detect/what to say for Blazing Footfalls knockbacks?
+const centerX = 100;
+const centerY = 100;
+const positionTo8Dir = (combatant) => {
+  const x = combatant.PosX - centerX;
+  const y = combatant.PosY - centerY;
+  // Dirs: N = 0, NE = 1, ..., NW = 7
+  return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+};
 Options.Triggers.push({
   zoneId: ZoneId.AbyssosTheEighthCircle,
   timelineFile: 'p8n.txt',
   initData: () => {
     return {
       combatantData: [],
+      ventIds: [],
       torches: [],
     };
   },
@@ -80,6 +83,77 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '79AB', source: 'Hephaistos', capture: false }),
       response: Responses.aoe(),
+    },
+    {
+      id: 'P8N Suneater Cthonic Vent Add',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '11404' }),
+      run: (data, matches) => data.ventIds.push(matches.id),
+    },
+    {
+      id: 'P8N Suneater Cthonic Vent Initial',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '78F5', source: 'Suneater', capture: false }),
+      suppressSeconds: 1,
+      promise: async (data) => {
+        data.combatantData = [];
+        if (data.ventIds.length !== 2)
+          return;
+        const ids = data.ventIds.map((id) => parseInt(id, 16));
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        if (data.combatantData.length === 0)
+          return;
+        const unsafeSpots = data.combatantData.map((c) => positionTo8Dir(c)).sort();
+        const [unsafe0, unsafe1] = unsafeSpots;
+        if (unsafe0 === undefined || unsafe1 === undefined)
+          throw new UnreachableCode();
+        // edge case wraparound
+        if (unsafe0 === 1 && unsafe1 === 7)
+          return output.south();
+        // adjacent unsafe spots, cardinal is safe
+        if (unsafe1 - unsafe0 === 2) {
+          // this average is safe to do because wraparound was taken care of above.
+          const unsafeCard = Math.floor((unsafe0 + unsafe1) / 2);
+          const safeDirMap = {
+            0: output.south(),
+            2: output.west(),
+            4: output.north(),
+            6: output.east(),
+          };
+          return safeDirMap[unsafeCard] ?? output.unknown();
+        }
+        // two intercards are safe, they are opposite each other,
+        // so we can pick the intercard counterclock of each unsafe spot.
+        // e.g. 1/5 are unsafe (NE and SW), so SE and NW are safe.
+        const safeIntercardMap = {
+          1: output.dirNW(),
+          3: output.dirNE(),
+          5: output.dirSE(),
+          7: output.dirSW(),
+        };
+        const safeStr0 = safeIntercardMap[unsafe0] ?? output.unknown();
+        const safeStr1 = safeIntercardMap[unsafe1] ?? output.unknown();
+        return output.comboDir({ dir1: safeStr0, dir2: safeStr1 });
+      },
+      outputStrings: {
+        comboDir: {
+          en: '${dir1} / ${dir2}',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+        dirNE: Outputs.dirNE,
+        dirSE: Outputs.dirSE,
+        dirSW: Outputs.dirSW,
+        dirNW: Outputs.dirNW,
+        unknown: Outputs.unknown,
+      },
     },
     {
       id: 'P8N Volcanic Torches Cleanup',
