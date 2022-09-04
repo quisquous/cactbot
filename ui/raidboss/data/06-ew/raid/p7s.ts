@@ -96,7 +96,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: '7811', source: 'Agdistis', capture: false }),
       preRun: (data) => data.fruitCount = data.fruitCount + 1,
       delaySeconds: 0.5,
-      promise: async (data, matches) => {
+      promise: async (data) => {
         const combatantData = await callOverlayHandler({
           call: 'getCombatants',
           names: ['Forbidden Fruit'],
@@ -154,7 +154,7 @@ const triggerSet: TriggerSet<Data> = {
           const birdPosition1 = matchedPositionTo8Dir(data.unhatchedEggs[6]);
           const birdPosition2 = matchedPositionTo8Dir(data.unhatchedEggs[7]);
           // Platforms are at 0 NW, 2 NE, 5 S
-          let safeSpots: { [bird: number]: string } = {
+          const safeSpots: { [bird: number]: string } = {
             0: 'left',
             2: 'right',
             5: 'south',
@@ -165,7 +165,7 @@ const triggerSet: TriggerSet<Data> = {
 
           if (Object.keys(safeSpots).length === 1) {
             const safeSpot = Object.values(safeSpots)[0];
-            if ( safeSpot !== undefined)
+            if (safeSpot !== undefined)
               return { infoText: output[safeSpot]!() };
             console.error(`Forbidden Fruit 7: Invalid positions.`);
           }
