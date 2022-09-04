@@ -698,19 +698,28 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
-        'Hephaistos': 'Hephaistos',
+        'Gorgon': 'gorgone',
+        '(?<!Illusory )Hephaistos': 'Héphaïstos',
+        'Illusory Hephaistos': 'spectre d\'Héphaïstos',
+        'Suneater': 'serpent en flammes',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
-        'Hephaistos': 'Héphaïstos',
+        'Gorgon': 'gorgone',
+        '(?<!Illusory )Hephaistos': 'Héphaïstos',
+        'Illusory Hephaistos': 'spectre d\'Héphaïstos',
+        'Suneater': 'serpent en flammes',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
-        'Hephaistos': 'ヘファイストス',
+        'Gorgon': 'ゴルゴン',
+        '(?<!Illusory )Hephaistos': 'ヘファイストス',
+        'Illusory Hephaistos': 'ヘファイストスの幻影',
+        'Suneater': '炎霊蛇',
       },
     },
   ],
