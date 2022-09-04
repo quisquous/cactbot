@@ -163,9 +163,8 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         const correctedMatch = getHeadmarkerId(data, matches);
-        if (correctedMatch === '00A6' && data.purgationDebuffCount === 0 && data.bondsDebuff) {
+        if (correctedMatch === '00A6' && data.purgationDebuffCount === 0 && data.bondsDebuff)
           return output[data.bondsDebuff]!();
-        }
       },
       run: (data) => data.bondsDebuff = (data.bondsDebuff === 'spread' ? 'stackMarker' : 'spread'),
       outputStrings: {
