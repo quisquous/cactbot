@@ -644,12 +644,22 @@ Options.Triggers.push({
       'replaceText': {
         'Conceptual Octaflare/Conceptual Tetraflare': 'Conceptual Octa/Tetraflare',
         'Emergent Octaflare/Emergent Tetraflare': 'Emergent Octa/Tetraflare',
+        'Tetraflare/Octaflare': 'Tetra/Octaflare',
+        'Scorching Fang/Scorched Pinion': 'Fang/Pinion',
+        'Scorching Fang/Sun\'s Pinion': 'Fang/Pinion',
+        'Tetraflare/Nest of Flamevipers': 'Tetraflare/Flamevipers',
+        'Quadrupedal Impact/Quadrupedal Crush': 'Quadrupedal Impact/Crush',
+        'Quadrupedal Crush/Quadrupedal Impact': 'Quadrupedal Crush/Impact',
+        'Emergent Diflare/Emergent Tetraflare': 'Emergent Di/Tetraflare',
         'Forcible Trifire/Forcible Difreeze': 'Forcible Trifire/Difreeze',
         'Forcible Difreeze/Forcible Trifire': 'Forcible Difreeze/Trifire',
+        'Forcible Fire III/Forcible Fire II': 'Forcible Fire III/II',
+        'Forcible Fire II/Forcible Fire III': 'Forcible Fire II/III',
       },
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Gorgon': 'gorgone',
         '(?<!Illusory )Hephaistos': 'Héphaïstos',
@@ -659,6 +669,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Gorgon': 'gorgone',
         '(?<!Illusory )Hephaistos': 'Héphaïstos',
@@ -668,6 +679,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Gorgon': 'ゴルゴン',
         '(?<!Illusory )Hephaistos': 'ヘファイストス',
