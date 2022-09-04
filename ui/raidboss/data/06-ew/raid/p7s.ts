@@ -219,6 +219,22 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'P7S Chaser Baits',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      suppressSeconds: 1,
+      infoText: (data, matches, output) => {
+        const correctedMatch = getHeadmarkerId(data, matches);
+        if (correctedMatch === '00C5')
+          return output.baitOnEdge!();
+      },
+      outputStrings: {
+        baitOnEdge: {
+          en: 'Bait on Edge'
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
