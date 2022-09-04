@@ -171,37 +171,28 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           bullTether: {
-            en: 'Bull Tether ${location}',
+            en: 'Bull Tether (Line AoE)',
           },
           deathBullTether: {
-            en: 'Bull Tether ${location}',
+            en: 'Bull Tether (Line AoE)',
           },
           warBullTether: {
-            en: 'Bull Tether ${location}',
+            en: 'Bull Tether (Line AoE)',
           },
           minotaurTether: {
-            en: 'Minotaur Tether ${location}',
+            en: 'Minotaur Tether (Big Cleave)',
           },
           famineMinotaurTethers: {
-            en: 'Cross Minotaur Tethers ${location}',
+            en: 'Cross Minotaur Tethers (Big Cleave)',
           },
           warMinotaurTethers: {
-            en: 'Minotaur Tether ${location}',
+            en: 'Minotaur Tether (Big Cleave)',
           },
           noTether: {
-            en: 'No Tether, Bait Minotaur Cleave ${location}',
+            en: 'No Tether, Bait Minotaur Cleave (Middle)',
           },
           famineNoTether: {
-            en: 'No Tether, Bait Minotaur Cleave ${location}',
-          },
-          middle: {
-            en: '(Middle)',
-          },
-          lineAoE: {
-            en: '(Line AoE)',
-          },
-          bigCleave: {
-            en: '(Big Cleave)',
+            en: 'No Tether, Bait Minotaur Cleave',
           },
         };
 
@@ -209,19 +200,19 @@ const triggerSet: TriggerSet<Data> = {
           // Bull Tethers
           if (matches.id === '0006') {
             if (data.tetherCollectPhase === 'death')
-              return { infoText: output.deathBullTether!({ location: '' }) };
+              return { infoText: output.deathBullTether!() };
             if (data.tetherCollectPhase === 'war')
-              return { infoText: output.warBullTether!({ location: '' }) };
-            return { infoText: output.bullTether!({ location: output.lineAoE!() }) };
+              return { infoText: output.warBullTether!() };
+            return { infoText: output.bullTether!() };
           }
 
           // Minotaur Tethers
           if (matches.id === '0039') {
             if (data.tetherCollectPhase === 'famine')
-              return { infoText: output.famineMinotaurTethers!({ location: '' }) };
+              return { infoText: output.famineMinotaurTethers!() };
             if (data.tetherCollectPhase === 'war')
-              return { infoText: output.warMinotaurTethers!({ location: '' }) };
-            return { infoText: output.minotaurTether!({ location: output.bigCleave!() }) };
+              return { infoText: output.warMinotaurTethers!() };
+            return { infoText: output.minotaurTether!() };
           }
         }
 
@@ -230,9 +221,9 @@ const triggerSet: TriggerSet<Data> = {
           // Prevent duplicate callout
           data.tetherCollect.push(data.me);
           if (!data.tetherCollectPhase)
-            return { infoText: output.noTether!({ location: output.middle!() }) };
+            return { infoText: output.noTether!() };
           if (data.tetherCollectPhase === 'famine')
-            return { alertText: output.famineNoTether!({ location: '' }) };
+            return { alertText: output.famineNoTether!() };
         }
       },
     },
