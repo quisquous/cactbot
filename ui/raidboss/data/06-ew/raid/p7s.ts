@@ -2,14 +2,21 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: Tether locations, and/or additional egg locations
+
 export interface Data extends RaidbossData {
   decOffset?: number;
+  fruitCount: number;
+  hatchedEggs?: PluginCombatantState[];
+  unhatchedEggs?: PluginCombatantState[];
   purgationDebuffs: { [role: string]: { [name: string]: number } };
   purgationDebuffCount: number;
 }
@@ -30,6 +37,19 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
+// Calculate combatant position in an all 8 cards/intercards
+const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
+  // Positions are moved up 100 and right 100
+  const y = combatant.PosY - 100;
+  const x = combatant.PosX - 100;
+
+  // Majority of mechanics center around three circles:
+  // NW at 0, NE at 2, South at 5
+  // Map NW = 0, N = 1, ..., W = 7
+
+  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+};
+
 // effect ids for inviolate purgation
 const effectIdToOutputStringKey: { [effectId: string]: string } = {
   'CEE': 'spread',
@@ -46,6 +66,7 @@ const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheSeventhCircleSavage,
   timelineFile: 'p7s.txt',
   initData: () => ({
+    fruitCount: 0,
     purgationDebuffs: { 'dps': {}, 'support': {} },
     purgationDebuffCount: 0,
   }),
@@ -58,6 +79,97 @@ const triggerSet: TriggerSet<Data> = {
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => {
         getHeadmarkerId(data, matches);
+      },
+    },
+    {
+      id: 'P7S Egg Tracker',
+      // Collects combatantData of the eggs
+      // combatant.BNpcNameID Mapping:
+      //   11375 => Immature Io
+      //   11376 => Immature Stymphalide
+      //   11377 => Immature Minotaur
+      // unhatchedEggs Mapping:
+      //   0-5 are Minotaurs
+      //   6-9 are Birds
+      //   10-12 are Ios
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7811', source: 'Agdistis', capture: false }),
+      preRun: (data) => data.fruitCount = data.fruitCount + 1,
+      delaySeconds: 0.5,
+      promise: async (data, matches) => {
+        const combatantData = await callOverlayHandler({
+          call: 'getCombatants',
+          names: ['Forbidden Fruit'],
+        });
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (combatantData === null) {
+          console.error(`Forbidden Fruit: null data`);
+          return;
+        }
+        const combatantDataLength = combatantData.combatants.length;
+        if (combatantDataLength < 13) {
+          console.error(`Forbidden Fruit: expected at least 13 combatants got ${combatantDataLength}`);
+          return;
+        }
+
+        // Sort the combatants for parsing its role in the encounter
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
+        const sortedCombatantData = combatantData.combatants.sort(sortCombatants);
+        data.unhatchedEggs = sortedCombatantData;
+      },
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          left: Outputs.left,
+          right: Outputs.right,
+          south: Outputs.south,
+        };
+
+        if (data.fruitCount === 1) {
+          // Find location of the north-most bird
+          // Forbidden Fruit 1 uses last two birds
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined || data.unhatchedEggs[9] === undefined) {
+            console.error(`Forbidden Fruit 1: Missing egg data.`);
+            return;
+          }
+          const bird1 = data.unhatchedEggs[8];
+          const bird2 = data.unhatchedEggs[9];
+
+          // Lower PosY = more north
+          const northBird = (bird1.PosY < bird2.PosY ? bird1 : bird2);
+
+          // Check north bird's side
+          if (northBird.PosX < 100)
+            return { alertText: output.left!() };
+          return { alertText: output.right!() };
+        }
+        if (data.fruitCount === 7) {
+          // Check each location for bird, safe spot is where there is no bird
+          // Forbidden Fruit 7 uses first two birds
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[6] === undefined || data.unhatchedEggs[7] === undefined) {
+            console.error(`Forbidden Fruit 7: Missing egg data.`);
+            return;
+          }
+          const birdPosition1 = matchedPositionTo8Dir(data.unhatchedEggs[6]);
+          const birdPosition2 = matchedPositionTo8Dir(data.unhatchedEggs[7]);
+          // Platforms are at 0 NW, 2 NE, 5 S
+          let safeSpots: { [bird: number]: string } = {
+            0: 'left',
+            2: 'right',
+            5: 'south',
+          };
+
+          delete safeSpots[birdPosition1];
+          delete safeSpots[birdPosition2];
+
+          if (Object.keys(safeSpots).length === 1) {
+            const safeSpot = Object.values(safeSpots)[0];
+            if ( safeSpot !== undefined)
+              return { infoText: output[safeSpot]!() };
+            console.error(`Forbidden Fruit 7: Invalid positions.`);
+          }
+        }
       },
     },
     {
