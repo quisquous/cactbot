@@ -10,7 +10,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   decOffset?: number;
-  previousBondsDebuff?: string;
+  bondsDebuff?: string;
   purgationDebuffs: { [role: string]: { [name: string]: number } };
   purgationDebuffCount: number;
   purgationEffects?: string[];
@@ -146,7 +146,7 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         // Store debuff for reminders
-        data.previousBondsDebuff = matches.effectId;
+        data.bondsDebuff = (matches.effectId === 'CEC' ? 'spread' : 'stackMarker');
 
         const longTimer = parseFloat(matches.duration) > 9;
         if (longTimer)
@@ -163,17 +163,11 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         const correctedMatch = getHeadmarkerId(data, matches);
-        if (correctedMatch === '00A6' && data.purgationDebuffCount === 0) {
-          switch (data.previousBondsDebuff) {
-            case 'CEC':
-              data.previousBondsDebuff = 'D45';
-              return output.spread!();
-            case 'D45':
-              data.previousBondsDebuff = 'CEC';
-              return output.stackMarker!();
-          }
+        if (correctedMatch === '00A6' && data.purgationDebuffCount === 0 && data.bondsDebuff) {
+          return output[data.bondsDebuff]!();
         }
       },
+      run: (data) => data.bondsDebuff = (data.bondsDebuff === 'spread' ? 'stackMarker' : 'spread'),
       outputStrings: {
         spread: Outputs.spread,
         stackMarker: Outputs.stackMarker,
