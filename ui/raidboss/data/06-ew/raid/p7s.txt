@@ -54,7 +54,7 @@ hideall "--sync--"
 248.2 "Bough of Attis (arrow)" sync / 1[56]:[^:]*:Agdistis:(7823|7824):/
 258.3 "Condensed Aero II/Dispersed Aero II" sync / 1[56]:[^:]*:Agdistis:(7836|7835):/
 
-# Forbidden Fruit: 3 Minos, 2 Birds
+# Forbidden Fruit: 3 Minos, 2 Bulls
 266.0 "Forbidden Fruit" sync / 1[56]:[^:]*:Agdistis:7810:/
 271.1 "--eggs--" sync / 1[56]:[^:]*:Agdistis:7811:/
 286.7 "Bullish Swipe" sync / 1[56]:[^:]*:Immature Minotaur:7818:/
