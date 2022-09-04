@@ -205,7 +205,7 @@ const triggerSet: TriggerSet<Data> = {
           },
         };
 
-       if (data.me === matches.target) {
+        if (data.me === matches.target) {
           // Bull Tethers
           if (matches.id === '0006') {
             if (data.tetherCollectPhase === 'death')
