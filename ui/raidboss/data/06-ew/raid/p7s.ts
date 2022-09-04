@@ -103,10 +103,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P7S Bull and Minotaur Tethers',
       // 0006 Immature Io (Bull) Tether
       // 0039 Immature Minotaur Tether
-      // Forbidden Fruit 4 has 4 Bull, 2 Minotaur Tethers, 1 Non-tethered Minotaur
-      // Famine has 4 Minotaur Tethers and 2 Non-tethered Minotaurs
-      // Death has 8 Bull Tethers /w Static Birds
-      // War has 4 Bull Tethers, 2 Minotaur Tethers, 2 Bird Tethers
+      // Forbidden Fruit 4: 4 Bull Tethers, 2 Minotaur Tethers, 1 Non-tethered Minotaur
+      // Famine: 4 Minotaur Tethers, 2 Non-tethered Minotaurs, 2 Static Birds
+      // Death: 2 Bulls with Tethers, 1 Bull casting Puddle AoE, 2 Static Birds
+      // War: 4 Bull Tethers, 2 Minotaur Tethers, 2 Bird Tethers
       // TODO: Get locations with OverlayPlugin via X, Y and bird headings?
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: ['0006', '0039'] }),
