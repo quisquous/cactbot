@@ -116,12 +116,22 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => {
         if (data.me === matches.target) {
           // Bull Tethers
-          if (matches.id === '0006')
+          if (matches.id === '0006') {
+            if (data.tetherCollectPhase === 'death')
+              return output.deathBullTether!({ location: '' });
+            if (data.tetherCollectPhase === 'war')
+              return output.warBullTether!({ location: '' });
             return output.bullTether!({ location: output.lineAoE!() });
+          }
 
           // Minotaur Tethers
-          if (matches.id === '0039')
+          if (matches.id === '0039') {
+            if (data.tetherCollectPhase === 'famine')
+              return output.famineMinotaurTethers!({ location: '' });
+            if (data.tetherCollectPhase === 'war')
+              return output.warMinotaurTethers!({ location: '' });
             return output.minotaurTether!({ location: output.bigCleave!() });
+          }
         }
 
         // No Tethers
@@ -129,19 +139,34 @@ const triggerSet: TriggerSet<Data> = {
           // Prevent duplicate callout
           data.tetherCollect.push(data.me);
           if (!data.tetherCollectPhase)
-            return output.baitMinotaur!({ location: output.middle!() });
+            return output.noTether!({ location: output.middle!() });
           if (data.tetherCollectPhase === 'famine')
-            return output.baitMinotaur!({ location: '' });
+            return output.famineNoTether!({ location: '' });
         }
       },
       outputStrings: {
         bullTether: {
           en: 'Bull Tether ${location}',
         },
+        deathBullTether: {
+          en: 'Bull Tether ${location}',
+        },
+        warBullTether: {
+          en: 'Bull Tether ${location}',
+        },
         minotaurTether: {
           en: 'Minotaur Tether ${location}',
         },
-        baitMinotaur: {
+        famineMinotaurTethers: {
+          en: 'Cross Minotaur Tethers ${location}',
+        },
+        warBaitMinotaur: {
+          en: 'No Tether, Bait Minotaur Cleave ${location}',
+        },
+        noTetherBait: {
+          en: 'No Tether, Bait Minotaur Cleave ${location}',
+        },
+        famineNoTether: {
           en: 'No Tether, Bait Minotaur Cleave ${location}',
         },
         middle: {
