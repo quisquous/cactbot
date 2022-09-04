@@ -201,6 +201,24 @@ const triggerSet: TriggerSet<Data> = {
         stack: Outputs.stackMarker,
       },
     },
+    {
+      id: 'P7S Light of Life',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '78E2', source: 'Agdistis', capture: false }),
+      // ~5s castTime, but boss cancels it and ability goes off 26s after start
+      delaySeconds: 21,
+      alertText: (_data, _matches, output) => output.bigAoEMiddle!(),
+      outputStrings: {
+        bigAoEMiddle: {
+          en: 'Big AOE, Get Middle',
+          de: 'Große AoE, geh in die Mitte',
+          fr: 'Grosse AoE, allez au milieu',
+          ja: '大ダメージ、中へ',
+          cn: '超大伤害，去中间',
+          ko: '아픈 광뎀, 중앙으로',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
