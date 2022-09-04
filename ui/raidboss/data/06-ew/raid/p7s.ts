@@ -254,8 +254,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         spread: Outputs.spread,
         stack: Outputs.stackMarker,
-  },
-  {
+      },
+    },
+    {
       id: 'P7S Light of Life',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '78E2', source: 'Agdistis', capture: false }),
