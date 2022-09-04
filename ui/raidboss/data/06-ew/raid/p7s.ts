@@ -145,7 +145,7 @@ const triggerSet: TriggerSet<Data> = {
           spreadThenStack: Outputs.spreadThenStack,
         };
 
-        // Strore debuff for reminders
+        // Store debuff for reminders
         data.previousBondsDebuff = matches.effectId;
 
         const longTimer = parseFloat(matches.duration) > 9;
