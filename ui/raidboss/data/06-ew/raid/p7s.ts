@@ -10,9 +10,9 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   decOffset?: number;
+  rootsCount: number;
   purgationDebuffs: { [role: string]: { [name: string]: number } };
   purgationDebuffCount: number;
-  secondRoots?: boolean;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -47,6 +47,7 @@ const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheSeventhCircleSavage,
   timelineFile: 'p7s.txt',
   initData: () => ({
+    rootsCount: 0,
     purgationDebuffs: { 'dps': {}, 'support': {} },
     purgationDebuffCount: 0,
   }),
@@ -106,7 +107,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P7S Roots of Attis 3',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
-      condition: (data) => data.secondRoots === false,
+      condition: (data) => data.rootsCount === 2,
       infoText: (_data, _matches, output) => output.baitSoon!(),
       outputStrings: {
         baitSoon: {
@@ -118,9 +119,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P7S Roots of Attis 2',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
-      condition: (data) => data.secondRoots,
+      condition: (data) => data.rootsCount === 1,
       infoText: (_data, _matches, output) => output.separateHealerGroups!(),
-      run: (data) => data.secondRoots = false,
+      run: (data) => data.rootsCount = data.rootsCount + 1,
       outputStrings: {
         separateHealerGroups: {
           en: 'Healer Group Platforms',
@@ -134,8 +135,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P7S Roots of Attis 1',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
-      condition: (data) => data.secondRoots === undefined,
-      run: (data) => data.secondRoots = true,
+      condition: (data) => data.rootsCount === 0,
+      run: (data) => data.rootsCount = data.rootsCount + 1,
     },
     {
       id: 'P7S Hemitheos\'s Aero IV',
