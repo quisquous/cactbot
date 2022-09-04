@@ -113,24 +113,61 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => !data.stopTethers,
       preRun: (data, matches) => data.tetherCollect.push(matches.target),
       delaySeconds: 0.1,
-      infoText: (data, matches, output) => {
-        if (data.me === matches.target) {
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          bullTether: {
+            en: 'Bull Tether ${location}',
+          },
+          deathBullTether: {
+            en: 'Bull Tether ${location}',
+          },
+          warBullTether: {
+            en: 'Bull Tether ${location}',
+          },
+          minotaurTether: {
+            en: 'Minotaur Tether ${location}',
+          },
+          famineMinotaurTethers: {
+            en: 'Cross Minotaur Tethers ${location}',
+          },
+          warBaitMinotaur:  {
+            en: 'Minotaur Tether ${location}',
+          },
+          noTether: {
+            en: 'No Tether, Bait Minotaur Cleave ${location}',
+          },
+          famineNoTether: {
+            en: 'No Tether, Bait Minotaur Cleave ${location}',
+          },
+          middle: {
+            en: '(Middle)',
+          },
+          lineAoE: {
+            en: '(Line AoE)',
+          },
+          bigCleave: {
+            en: '(Big Cleave)',
+          },
+        };
+
+       if (data.me === matches.target) {
           // Bull Tethers
           if (matches.id === '0006') {
             if (data.tetherCollectPhase === 'death')
-              return output.deathBullTether!({ location: '' });
+              return { infoText: output.deathBullTether!({ location: '' }) };
             if (data.tetherCollectPhase === 'war')
-              return output.warBullTether!({ location: '' });
-            return output.bullTether!({ location: output.lineAoE!() });
+              return { infoText: output.warBullTether!({ location: '' }) };
+            return { infoText: output.bullTether!({ location: output.lineAoE!() }) };
           }
 
           // Minotaur Tethers
           if (matches.id === '0039') {
             if (data.tetherCollectPhase === 'famine')
-              return output.famineMinotaurTethers!({ location: '' });
+              return { infoText: output.famineMinotaurTethers!({ location: '' }) };
             if (data.tetherCollectPhase === 'war')
-              return output.warMinotaurTethers!({ location: '' });
-            return output.minotaurTether!({ location: output.bigCleave!() });
+              return { infoText: output.warMinotaurTethers!({ location: '' }) };
+            return { infoText: output.minotaurTether!({ location: output.bigCleave!() }) };
           }
         }
 
@@ -139,45 +176,10 @@ const triggerSet: TriggerSet<Data> = {
           // Prevent duplicate callout
           data.tetherCollect.push(data.me);
           if (!data.tetherCollectPhase)
-            return output.noTether!({ location: output.middle!() });
+            return { infoText: output.noTether!({ location: output.middle!() }) };
           if (data.tetherCollectPhase === 'famine')
-            return output.famineNoTether!({ location: '' });
+            return { alertText: output.famineNoTether!({ location: '' }) };
         }
-      },
-      outputStrings: {
-        bullTether: {
-          en: 'Bull Tether ${location}',
-        },
-        deathBullTether: {
-          en: 'Bull Tether ${location}',
-        },
-        warBullTether: {
-          en: 'Bull Tether ${location}',
-        },
-        minotaurTether: {
-          en: 'Minotaur Tether ${location}',
-        },
-        famineMinotaurTethers: {
-          en: 'Cross Minotaur Tethers ${location}',
-        },
-        warBaitMinotaur:  {
-          en: 'Minotaur Tether ${location}',
-        },
-        noTether: {
-          en: 'No Tether, Bait Minotaur Cleave ${location}',
-        },
-        famineNoTether: {
-          en: 'No Tether, Bait Minotaur Cleave ${location}',
-        },
-        middle: {
-          en: '(Middle)',
-        },
-        lineAoE: {
-          en: '(Line AoE)',
-        },
-        bigCleave: {
-          en: '(Big Cleave)',
-        },
       },
     },
     {
