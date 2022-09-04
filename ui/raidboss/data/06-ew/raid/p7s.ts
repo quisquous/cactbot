@@ -154,16 +154,17 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P7S Bull and Minotaur Tethers',
+      id: 'P7S Forbidden Fruit 4 and Harvest Tethers',
       // 0006 Immature Io (Bull) Tether
       // 0039 Immature Minotaur Tether
+      // 0011 Immature Stymphalide (Bird) Tether
       // Forbidden Fruit 4: 4 Bull Tethers, 2 Minotaur Tethers, 1 Non-tethered Minotaur
       // Famine: 4 Minotaur Tethers, 2 Non-tethered Minotaurs, 2 Static Birds
       // Death: 2 Bulls with Tethers, 1 Bull casting Puddle AoE, 2 Static Birds
       // War: 4 Bull Tethers, 2 Minotaur Tethers, 2 Bird Tethers
       // TODO: Get locations with OverlayPlugin via X, Y and bird headings?
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: ['0006', '0039'] }),
+      netRegex: NetRegexes.tether({ id: ['0006', '0039', '0011'] }),
       condition: (data) => !data.stopTethers,
       preRun: (data, matches) => data.tetherCollect.push(matches.target),
       delaySeconds: 0.1,
@@ -182,11 +183,14 @@ const triggerSet: TriggerSet<Data> = {
           minotaurTether: {
             en: 'Minotaur Tether (Big Cleave)',
           },
-          famineMinotaurTethers: {
+          famineMinotaurTether: {
             en: 'Cross Minotaur Tethers (Big Cleave)',
           },
-          warMinotaurTethers: {
+          warMinotaurTether: {
             en: 'Minotaur Tether (Big Cleave)',
+          },
+          warBirdTether: {
+            en: 'Bird Tether',
           },
           noTether: {
             en: 'No Tether, Bait Minotaur Cleave (Middle)',
@@ -209,11 +213,15 @@ const triggerSet: TriggerSet<Data> = {
           // Minotaur Tethers
           if (matches.id === '0039') {
             if (data.tetherCollectPhase === 'famine')
-              return { infoText: output.famineMinotaurTethers!() };
+              return { infoText: output.famineMinotaurTether!() };
             if (data.tetherCollectPhase === 'war')
-              return { infoText: output.warMinotaurTethers!() };
+              return { infoText: output.warMinotaurTether!() };
             return { infoText: output.minotaurTether!() };
           }
+
+          // Bird Tethers
+          if (matches.id === '0011')
+            return { infoText: output.warBirdTether!() };
         }
 
         // No Tethers
@@ -228,7 +236,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P7S Bull and Minotaur Tethers Stop Collection',
+      id: 'P7S Forbidden Fruit 4 and Harvest Stop Collection',
       // 0001 Tether also goes off on players that get 0039 Tethers which leads
       // to 0039 possibly reapplying. This trigger is used to only collect tethers
       // during a defined window.
@@ -239,7 +247,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => data.stopTethers = true,
     },
     {
-      id: 'P7S Bull and Minotaur Tethers Phase Tracker',
+      id: 'P7S Harvest Phase Tracker',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['7A4F', '7A50', '7A51'] }),
       run: (data, matches) => {
