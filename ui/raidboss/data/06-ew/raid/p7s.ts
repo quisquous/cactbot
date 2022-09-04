@@ -185,7 +185,7 @@ const triggerSet: TriggerSet<Data> = {
           famineMinotaurTethers: {
             en: 'Cross Minotaur Tethers ${location}',
           },
-          warBaitMinotaur: {
+          warMinotaurTethers: {
             en: 'Minotaur Tether ${location}',
           },
           noTether: {
