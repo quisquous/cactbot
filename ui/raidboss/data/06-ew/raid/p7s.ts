@@ -231,7 +231,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         baitOnEdge: {
-          en: 'Bait on Edge'
+          en: 'Bait on Edge',
         },
       },
     },
