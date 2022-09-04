@@ -1,3 +1,11 @@
+const centerX = 100;
+const centerY = 100;
+const positionTo8Dir = (combatant) => {
+  const x = combatant.PosX - centerX;
+  const y = combatant.PosY - centerY;
+  // Dirs: N = 0, NE = 1, ..., NW = 7
+  return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+};
 Options.Triggers.push({
   zoneId: ZoneId.AbyssosTheEighthCircleSavage,
   timelineFile: 'p8s.txt',
@@ -7,14 +15,62 @@ Options.Triggers.push({
       torches: [],
       flareTargets: [],
       upliftCounter: 0,
+      ventIds: [],
     };
   },
   triggers: [
+    // ---------------- Part 1 ----------------
     {
       id: 'P8S Genesis of Flame',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7944', source: 'Hephaistos', capture: false }),
       response: Responses.aoe(),
+    },
+    {
+      id: 'P8S Scorching Fang',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7912', source: 'Hephaistos', capture: false }),
+      alertText: (data, _matches, output) => {
+        if (data.conceptual === 'octa')
+          return output.outAndSpread();
+        if (data.conceptual === 'tetra')
+          return output.outAndStacks();
+        return output.out();
+      },
+      run: (data) => delete data.conceptual,
+      outputStrings: {
+        out: Outputs.out,
+        outAndSpread: {
+          en: 'Out + Spread',
+        },
+        outAndStacks: {
+          en: 'Out + Stacks',
+        },
+      },
+    },
+    {
+      id: 'P8S Sun\'s Pinion',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7913', source: 'Hephaistos', capture: false }),
+      // There are two casts, one for each side.
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        if (data.conceptual === 'octa')
+          return output.inAndSpread();
+        if (data.conceptual === 'tetra')
+          return output.inAndStacks();
+        return output.in();
+      },
+      run: (data) => delete data.conceptual,
+      outputStrings: {
+        in: Outputs.in,
+        inAndSpread: {
+          en: 'In + Spread',
+        },
+        inAndStacks: {
+          en: 'In + Stacks',
+        },
+      },
     },
     {
       id: 'P8S Flameviper',
@@ -23,8 +79,36 @@ Options.Triggers.push({
       response: Responses.tankBusterSwap(),
     },
     {
+      id: 'P8S Conceptual Diflare Quadruped',
+      type: 'StartsUsing',
+      // 7915 normally
+      // 7916 during Blazing Footfalls
+      netRegex: NetRegexes.startsUsing({ id: '7917', source: 'Hephaistos', capture: false }),
+      durationSeconds: 20,
+      infoText: (_data, _matches, output) => output.healerGroups(),
+      outputStrings: {
+        healerGroups: Outputs.healerGroups,
+      },
+    },
+    {
+      id: 'P8S Conceptual Tetraflare Quadruped',
+      type: 'StartsUsing',
+      // 7915 normally
+      // 7916 during Blazing Footfalls
+      netRegex: NetRegexes.startsUsing({ id: '7916', source: 'Hephaistos', capture: false }),
+      durationSeconds: 20,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Partner Stacks',
+        },
+      },
+    },
+    {
       id: 'P8S Conceptual Tetraflare',
       type: 'StartsUsing',
+      // 7915 normally
+      // 7916 during Blazing Footfalls
       netRegex: NetRegexes.startsUsing({ id: '7915', source: 'Hephaistos', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       run: (data) => data.conceptual = 'tetra',
@@ -45,6 +129,63 @@ Options.Triggers.push({
         text: {
           en: '(spread, for later)',
           de: '(Verteilen, für später)',
+        },
+      },
+    },
+    {
+      id: 'P8S Octaflare',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '791D', source: 'Hephaistos', capture: false }),
+      response: Responses.spread('alarm'),
+    },
+    {
+      id: 'P8S Tetraflare',
+      type: 'StartsUsing',
+      // During vents and also during clones.
+      netRegex: NetRegexes.startsUsing({ id: '791E', source: 'Hephaistos', capture: false }),
+      alertText: (data, _matches, output) => {
+        if (data.illusory === 'bird')
+          return output.inAndStacks();
+        if (data.illusory === 'snake')
+          return output.outAndStacks();
+        return output.stacks();
+      },
+      run: (data) => delete data.illusory,
+      outputStrings: {
+        inAndStacks: {
+          en: 'In + Stacks',
+        },
+        outAndStacks: {
+          en: 'Out + Stacks',
+        },
+        stacks: {
+          en: 'Partner Stacks',
+        },
+      },
+    },
+    {
+      id: 'P8S Nest of Flamevipers',
+      type: 'StartsUsing',
+      // During clones.
+      netRegex: NetRegexes.startsUsing({ id: '791F', source: 'Hephaistos', capture: false }),
+      alertText: (data, _matches, output) => {
+        if (data.illusory === 'bird')
+          return output.inAndProtean();
+        if (data.illusory === 'snake')
+          return output.outAndProtean();
+        // This shouldn't happen, but just in case.
+        return output.protean();
+      },
+      run: (data) => delete data.illusory,
+      outputStrings: {
+        inAndProtean: {
+          en: 'In + Protean',
+        },
+        outAndProtean: {
+          en: 'Out + Protean',
+        },
+        protean: {
+          en: 'Protean',
         },
       },
     },
@@ -296,6 +437,78 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'P8S Quadrupedal Impact',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7A04', source: 'Hephaistos', capture: false }),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Follow Jump',
+        },
+      },
+    },
+    {
+      id: 'P8S Quadrupedal Crush',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7A05', source: 'Hephaistos', capture: false }),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away From Jump',
+        },
+      },
+    },
+    {
+      id: 'P8S Illusory Hephaistos Scorched Pinion First',
+      type: 'StartsUsing',
+      // This is "Illusory Hephaistos" but sometimes it says "Gorgon".
+      netRegex: NetRegexes.startsUsing({ id: '7953' }),
+      condition: (data) => data.flareTargets.length === 0,
+      suppressSeconds: 1,
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        const id = parseInt(matches.sourceId, 16);
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [id],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        const combatant = data.combatantData[0];
+        if (combatant === undefined || data.combatantData.length !== 1)
+          return;
+        const dir = positionTo8Dir(combatant);
+        if (dir === 0 || dir === 4)
+          return output.northSouth();
+        if (dir === 2 || dir === 6)
+          return output.eastWest();
+      },
+      outputStrings: {
+        northSouth: {
+          en: 'North/South Bird',
+        },
+        eastWest: {
+          en: 'East/West Bird',
+        },
+      },
+    },
+    {
+      id: 'P8S Illusory Hephaistos Scorched Pinion Second',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7953', source: 'Illusory Hephaistos', capture: false }),
+      condition: (data) => data.flareTargets.length > 0,
+      suppressSeconds: 1,
+      run: (data) => data.illusory = 'bird',
+    },
+    {
+      id: 'P8S Illusory Hephaistos Scorching Fang Second',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7952', source: 'Illusory Hephaistos', capture: false }),
+      condition: (data) => data.flareTargets.length > 0,
+      suppressSeconds: 1,
+      run: (data) => data.illusory = 'snake',
+    },
+    {
       id: 'P8S Hemitheos\'s Flare Hit',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '72CE', source: 'Hephaistos' }),
@@ -328,6 +541,102 @@ Options.Triggers.push({
         },
       },
     },
+    {
+      id: 'P8S Suneater Cthonic Vent Add',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '11404' }),
+      run: (data, matches) => data.ventIds.push(matches.id),
+    },
+    {
+      id: 'P8S Suneater Cthonic Vent Initial',
+      type: 'StartsUsing',
+      // TODO: vents #2 and #3 are hard, but the first vent cast has a ~5s cast time.
+      netRegex: NetRegexes.startsUsing({ id: '7925', source: 'Suneater', capture: false }),
+      suppressSeconds: 1,
+      promise: async (data) => {
+        data.combatantData = [];
+        if (data.ventIds.length !== 2)
+          return;
+        const ids = data.ventIds.map((id) => parseInt(id, 16));
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        if (data.combatantData.length === 0)
+          return;
+        const unsafeSpots = data.combatantData.map((c) => positionTo8Dir(c)).sort();
+        const [unsafe0, unsafe1] = unsafeSpots;
+        if (unsafe0 === undefined || unsafe1 === undefined)
+          throw new UnreachableCode();
+        // edge case wraparound
+        if (unsafe0 === 1 && unsafe1 === 7)
+          return output.south();
+        // adjacent unsafe spots, cardinal is safe
+        if (unsafe1 - unsafe0 === 2) {
+          // this average is safe to do because wraparound was taken care of above.
+          const unsafeCard = Math.floor((unsafe0 + unsafe1) / 2);
+          const safeDirMap = {
+            0: output.south(),
+            2: output.west(),
+            4: output.north(),
+            6: output.east(),
+          };
+          return safeDirMap[unsafeCard] ?? output.unknown();
+        }
+        // two intercards are safe, they are opposite each other,
+        // so we can pick the intercard counterclock of each unsafe spot.
+        // e.g. 1/5 are unsafe (NE and SW), so SE and NW are safe.
+        const safeIntercardMap = {
+          1: output.dirNW(),
+          3: output.dirNE(),
+          5: output.dirSE(),
+          7: output.dirSW(),
+        };
+        const safeStr0 = safeIntercardMap[unsafe0] ?? output.unknown();
+        const safeStr1 = safeIntercardMap[unsafe1] ?? output.unknown();
+        return output.comboDir({ dir1: safeStr0, dir2: safeStr1 });
+      },
+      outputStrings: {
+        comboDir: {
+          en: '${dir1} / ${dir2}',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+        dirNE: Outputs.dirNE,
+        dirSE: Outputs.dirSE,
+        dirSW: Outputs.dirSW,
+        dirNW: Outputs.dirNW,
+        unknown: Outputs.unknown,
+      },
+    },
+    // ---------------- Part 2 ----------------
+    {
+      id: 'P8S Aioniopyr',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '79DF', source: 'Hephaistos', capture: false }),
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'aoe + bleed',
+        },
+      },
+    },
+    {
+      id: 'P8S Tyrant\'s Unholy Darkness',
+      type: 'StartsUsing',
+      // Untargeted, with 79DE damage after.
+      netRegex: NetRegexes.startsUsing({ id: '79DD', source: 'Hephaistos', capture: false }),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Split Tankbusters',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
@@ -335,24 +644,35 @@ Options.Triggers.push({
       'replaceText': {
         'Conceptual Octaflare/Conceptual Tetraflare': 'Conceptual Octa/Tetraflare',
         'Emergent Octaflare/Emergent Tetraflare': 'Emergent Octa/Tetraflare',
+        'Forcible Trifire/Forcible Difreeze': 'Forcible Trifire/Difreeze',
+        'Forcible Difreeze/Forcible Trifire': 'Forcible Difreeze/Trifire',
       },
     },
     {
       'locale': 'de',
       'replaceSync': {
-        'Hephaistos': 'Hephaistos',
+        'Gorgon': 'gorgone',
+        '(?<!Illusory )Hephaistos': 'Héphaïstos',
+        'Illusory Hephaistos': 'spectre d\'Héphaïstos',
+        'Suneater': 'serpent en flammes',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
-        'Hephaistos': 'Héphaïstos',
+        'Gorgon': 'gorgone',
+        '(?<!Illusory )Hephaistos': 'Héphaïstos',
+        'Illusory Hephaistos': 'spectre d\'Héphaïstos',
+        'Suneater': 'serpent en flammes',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
-        'Hephaistos': 'ヘファイストス',
+        'Gorgon': 'ゴルゴン',
+        '(?<!Illusory )Hephaistos': 'ヘファイストス',
+        'Illusory Hephaistos': 'ヘファイストスの幻影',
+        'Suneater': '炎霊蛇',
       },
     },
   ],
