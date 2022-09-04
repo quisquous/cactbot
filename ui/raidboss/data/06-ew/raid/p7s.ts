@@ -250,7 +250,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Bull and Minotaur Tethers Phase Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['7A4F', '7A50', '7451'] }),
+      netRegex: NetRegexes.startsUsing({ id: ['7A4F', '7A50', '7A51'] }),
       run: (data, matches) => {
         data.stopTethers = false;
         data.tetherCollect = [];
