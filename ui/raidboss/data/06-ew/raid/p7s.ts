@@ -155,12 +155,12 @@ const triggerSet: TriggerSet<Data> = {
         }
         if (data.fruitCount === 6) {
           // Check where bull is
-          // Forbidden Fruit 6 uses birds 1 and 4, bull 1
-          if (data.unhatchedEggs === undefined || data.unhatchedEggs[10] === undefined) {
+          // Forbidden Fruit 6 uses birds 1 and 4, bull 3
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[12] === undefined) {
             console.error(`Forbidden Fruit 7: Missing egg data.`);
             return;
           }
-          const bullPosition = matchedPositionTo8Dir(data.unhatchedEggs[10]);
+          const bullPosition = matchedPositionTo8Dir(data.unhatchedEggs[12]);
 
           delete safeSpots[bullPosition];
 
