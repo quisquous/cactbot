@@ -157,7 +157,7 @@ const triggerSet: TriggerSet<Data> = {
           // Check where bull is
           // Forbidden Fruit 6 uses birds 1 and 4, bull 3
           if (data.unhatchedEggs === undefined || data.unhatchedEggs[12] === undefined) {
-            console.error(`Forbidden Fruit 7: Missing egg data.`);
+            console.error(`Forbidden Fruit 6: Missing egg data.`);
             return;
           }
           const bullPosition = matchedPositionTo8Dir(data.unhatchedEggs[12]);
@@ -173,13 +173,13 @@ const triggerSet: TriggerSet<Data> = {
         }
         if (data.fruitCount === 7) {
           // Check each location for bird, safe spot is where there is no bird
-          // Forbidden Fruit 7 uses first two birds
-          if (data.unhatchedEggs === undefined || data.unhatchedEggs[6] === undefined || data.unhatchedEggs[7] === undefined) {
+          // Forbidden Fruit 7 uses last two birds
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined || data.unhatchedEggs[9] === undefined) {
             console.error(`Forbidden Fruit 7: Missing egg data.`);
             return;
           }
-          const birdPosition1 = matchedPositionTo8Dir(data.unhatchedEggs[6]);
-          const birdPosition2 = matchedPositionTo8Dir(data.unhatchedEggs[7]);
+          const birdPosition1 = matchedPositionTo8Dir(data.unhatchedEggs[8]);
+          const birdPosition2 = matchedPositionTo8Dir(data.unhatchedEggs[9]);
 
           delete safeSpots[birdPosition1];
           delete safeSpots[birdPosition2];
