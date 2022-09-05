@@ -130,10 +130,10 @@ const triggerSet: TriggerSet<Data> = {
         };
         // Platforms are at 0 NW, 2 NE, 5 S
         const safeSpots: { [bird: number]: string } = {
-            0: 'left',
-            2: 'right',
-            5: 'south',
-          };
+          0: 'left',
+          2: 'right',
+          5: 'south',
+        };
 
         if (data.fruitCount === 1) {
           // Find location of the north-most bird
