@@ -215,7 +215,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait Circles',
           de: 'Kreise ködern',
-          fr: 'Attirez les cercles',
+          fr: 'Posez les cercles',
           ko: '장판 유도',
         },
       },
@@ -273,36 +273,43 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir}, ${bait}',
           de: '${dir}, ${bait}',
+          fr: '${dir}, ${bait}',
           ko: '${dir}, ${bait}',
         },
         left: {
           en: 'Left (Wing Side)',
           de: 'Links (Flügel-Seite)',
+          fr: 'Gauche (Côté Aile)',
           ko: '왼쪽 (날개쪽)',
         },
         right: {
           en: 'Right (Snake Side)',
           de: 'Rechts (Schlangen-Seite)',
+          fr: 'Droite (Côté Serpent)',
           ko: '오른쪽 (뱀쪽)',
         },
         firstBait: {
           en: 'First Bait (20s)',
           de: 'Köder als 1. (20s)',
+          fr: 'Dépose en 1er (20s)',
           ko: '유도 1번 (20초)',
         },
         secondBait: {
           en: 'Second Bait (8s)',
           de: 'Köder als 2. (8s)',
+          fr: 'Dépose en 2ème (8s)',
           ko: '유도 2번 (8초)',
         },
         thirdBait: {
           en: 'Third Bait (12s)',
           de: 'Köder als 3. (12s)',
+          fr: 'Dépose en 3ème (12s)',
           ko: '유도 3번 (12초)',
         },
         fourthBait: {
           en: 'Fourth Bait (16s)',
           de: 'Köder als 4. (16s)',
+          fr: 'Dépose en 4ème (16s)',
           ko: '유도 4번 (16초)',
         },
       },
@@ -320,6 +327,7 @@ const triggerSet: TriggerSet<Data> = {
         inFirstBait: {
           en: 'In (First Bait)',
           de: 'Rein (Köder als 1.)',
+          fr: 'À l\'intérieur (1er)',
           ko: '안으로 (유도 1번)',
         },
       },
@@ -362,16 +370,19 @@ const triggerSet: TriggerSet<Data> = {
         inSecondBait: {
           en: 'In (Second Bait)',
           de: 'Rein (Köder als 2.)',
+          fr: 'À l\'intérieur (2ème)',
           ko: '안으로 (유도 2번)',
         },
         inThirdBait: {
           en: 'In (Third Bait)',
           de: 'Rein (Köder als 3.)',
+          fr: 'À l\'intérieur (3ème)',
           ko: '안으로 (유도 3번)',
         },
         inFourthBait: {
           en: 'In (Fourth Bait)',
           de: 'Rein (Köder als 4.)',
+          fr: 'À l\'intérieur (4ème)',
           ko: '안으로 (유도 4번)',
         },
       },
@@ -395,11 +406,13 @@ const triggerSet: TriggerSet<Data> = {
         left: {
           en: 'Left (Wing Side)',
           de: 'Links (Flügel-Seite)',
+          fr: 'Gauche (Côté Aile)',
           ko: '왼쪽 (날개쪽)',
         },
         right: {
           en: 'Right (Snake Side)',
           de: 'Rechts (Schlangen-Seite)',
+          fr: 'Droite (Côté Serpent)',
           ko: '오른쪽 (뱀쪽)',
         },
       },
