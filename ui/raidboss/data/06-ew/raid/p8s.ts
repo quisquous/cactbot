@@ -67,9 +67,11 @@ const triggerSet: TriggerSet<Data> = {
         out: Outputs.out,
         outAndSpread: {
           en: 'Out + Spread',
+          de: 'Raus + Verteilen',
         },
         outAndStacks: {
           en: 'Out + Stacks',
+          de: 'Raus + Sammeln',
         },
       },
     },
@@ -91,9 +93,11 @@ const triggerSet: TriggerSet<Data> = {
         in: Outputs.in,
         inAndSpread: {
           en: 'In + Spread',
+          de: 'Rein + Verteilen',
         },
         inAndStacks: {
           en: 'In + Stacks',
+          de: 'Rein + Sammeln',
         },
       },
     },
@@ -126,6 +130,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Partner Stacks',
+          de: 'Mit Partner sammeln',
         },
       },
     },
@@ -179,12 +184,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         inAndStacks: {
           en: 'In + Stacks',
+          de: 'Rein + Sammeln',
         },
         outAndStacks: {
           en: 'Out + Stacks',
+          de: 'Raus + Sammeln',
         },
         stacks: {
           en: 'Partner Stacks',
+          de: 'Mit Partner sammeln',
         },
       },
     },
@@ -205,12 +213,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         inAndProtean: {
           en: 'In + Protean',
+          de: 'Rein + Himmelsrichtung',
         },
         outAndProtean: {
           en: 'Out + Protean',
+          de: 'Raus + Himmelsrichtung',
         },
         protean: {
           en: 'Protean',
+          de: 'Himmelsrichtung',
         },
       },
     },
@@ -481,6 +492,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Follow Jump',
+          de: 'Sprung folgen',
         },
       },
     },
@@ -492,6 +504,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away From Jump',
+          de: 'Weg vom Sprung',
         },
       },
     },
@@ -525,9 +538,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         northSouth: {
           en: 'North/South Bird',
+          de: 'Norden/Süden Vogel',
         },
         eastWest: {
           en: 'East/West Bird',
+          de: 'Osten/Westen Vogel',
         },
       },
     },
@@ -669,6 +684,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'aoe + bleed',
+          de: 'AoE + Blutung',
         },
       },
     },
@@ -681,6 +697,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Split Tankbusters',
+          de: 'Geteilter Tankbuster',
         },
       },
     },
@@ -708,10 +725,10 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
-        'Gorgon': 'gorgone',
-        '(?<!Illusory )Hephaistos': 'Héphaïstos',
-        'Illusory Hephaistos': 'spectre d\'Héphaïstos',
-        'Suneater': 'serpent en flammes',
+        'Gorgon': 'Gorgone',
+        '(?<!Illusory )Hephaistos': 'Hephaistos',
+        'Illusory Hephaistos': 'Hephaistos-Phantom',
+        'Suneater': 'Schlund des Phoinix',
       },
     },
     {
