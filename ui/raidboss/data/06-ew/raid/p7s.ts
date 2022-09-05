@@ -124,7 +124,16 @@ const triggerSet: TriggerSet<Data> = {
           left: Outputs.left,
           right: Outputs.right,
           south: Outputs.south,
+          twoPlatforms: {
+            en: '${platform1} / ${platform2}',
+          },
         };
+        // Platforms are at 0 NW, 2 NE, 5 S
+        const safeSpots: { [bird: number]: string } = {
+            0: 'left',
+            2: 'right',
+            5: 'south',
+          };
 
         if (data.fruitCount === 1) {
           // Find location of the north-most bird
@@ -144,6 +153,24 @@ const triggerSet: TriggerSet<Data> = {
             return { alertText: output.left!() };
           return { alertText: output.right!() };
         }
+        if (data.fruitCount === 6) {
+          // Check where bull is
+          // Forbidden Fruit 6 uses birds 1 and 4, bull 1
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[10] === undefined) {
+            console.error(`Forbidden Fruit 7: Missing egg data.`);
+            return;
+          }
+          const bullPosition = matchedPositionTo8Dir(data.unhatchedEggs[10]);
+
+          delete safeSpots[bullPosition];
+
+          if (Object.keys(safeSpots).length === 2) {
+            const safePlatform1 = Object.values(safeSpots)[0];
+            const safePlatform2 = Object.values(safeSpots)[1];
+            if (safePlatform1 !== undefined && safePlatform2 !== undefined)
+              return { infoText: output.twoPlatforms!({ platform1: output[safePlatform1]!(), platform2: output[safePlatform2]!() }) };
+          }
+        }
         if (data.fruitCount === 7) {
           // Check each location for bird, safe spot is where there is no bird
           // Forbidden Fruit 7 uses first two birds
@@ -153,12 +180,6 @@ const triggerSet: TriggerSet<Data> = {
           }
           const birdPosition1 = matchedPositionTo8Dir(data.unhatchedEggs[6]);
           const birdPosition2 = matchedPositionTo8Dir(data.unhatchedEggs[7]);
-          // Platforms are at 0 NW, 2 NE, 5 S
-          const safeSpots: { [bird: number]: string } = {
-            0: 'left',
-            2: 'right',
-            5: 'south',
-          };
 
           delete safeSpots[birdPosition1];
           delete safeSpots[birdPosition2];
