@@ -172,6 +172,7 @@ Options.Triggers.push({
         comboText: {
           en: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
           de: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
+          fr: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
         },
         spread: Outputs.spread,
         stack: Outputs.stackMarker,
