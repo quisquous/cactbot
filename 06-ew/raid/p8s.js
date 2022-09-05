@@ -42,9 +42,11 @@ Options.Triggers.push({
         out: Outputs.out,
         outAndSpread: {
           en: 'Out + Spread',
+          de: 'Raus + Verteilen',
         },
         outAndStacks: {
           en: 'Out + Stacks',
+          de: 'Raus + Sammeln',
         },
       },
     },
@@ -66,9 +68,11 @@ Options.Triggers.push({
         in: Outputs.in,
         inAndSpread: {
           en: 'In + Spread',
+          de: 'Rein + Verteilen',
         },
         inAndStacks: {
           en: 'In + Stacks',
+          de: 'Rein + Sammeln',
         },
       },
     },
@@ -101,6 +105,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Partner Stacks',
+          de: 'Mit Partner sammeln',
         },
       },
     },
@@ -154,12 +159,15 @@ Options.Triggers.push({
       outputStrings: {
         inAndStacks: {
           en: 'In + Stacks',
+          de: 'Rein + Sammeln',
         },
         outAndStacks: {
           en: 'Out + Stacks',
+          de: 'Raus + Sammeln',
         },
         stacks: {
           en: 'Partner Stacks',
+          de: 'Mit Partner sammeln',
         },
       },
     },
@@ -180,12 +188,15 @@ Options.Triggers.push({
       outputStrings: {
         inAndProtean: {
           en: 'In + Protean',
+          de: 'Rein + Himmelsrichtung',
         },
         outAndProtean: {
           en: 'Out + Protean',
+          de: 'Raus + Himmelsrichtung',
         },
         protean: {
           en: 'Protean',
+          de: 'Himmelsrichtung',
         },
       },
     },
@@ -444,6 +455,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Follow Jump',
+          de: 'Sprung folgen',
         },
       },
     },
@@ -455,6 +467,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Away From Jump',
+          de: 'Weg vom Sprung',
         },
       },
     },
@@ -486,9 +499,11 @@ Options.Triggers.push({
       outputStrings: {
         northSouth: {
           en: 'North/South Bird',
+          de: 'Norden/Süden Vogel',
         },
         eastWest: {
           en: 'East/West Bird',
+          de: 'Osten/Westen Vogel',
         },
       },
     },
@@ -622,6 +637,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'aoe + bleed',
+          de: 'AoE + Blutung',
         },
       },
     },
@@ -634,6 +650,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Split Tankbusters',
+          de: 'Geteilter Tankbuster',
         },
       },
     },
@@ -661,10 +678,10 @@ Options.Triggers.push({
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
-        'Gorgon': 'gorgone',
-        '(?<!Illusory )Hephaistos': 'Héphaïstos',
-        'Illusory Hephaistos': 'spectre d\'Héphaïstos',
-        'Suneater': 'serpent en flammes',
+        'Gorgon': 'Gorgone',
+        '(?<!Illusory )Hephaistos': 'Hephaistos',
+        'Illusory Hephaistos': 'Hephaistos-Phantom',
+        'Suneater': 'Schlund des Phoinix',
       },
     },
     {

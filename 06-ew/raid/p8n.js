@@ -143,6 +143,7 @@ Options.Triggers.push({
       outputStrings: {
         comboDir: {
           en: '${dir1} / ${dir2}',
+          de: '${dir1} / ${dir2}',
         },
         north: Outputs.north,
         east: Outputs.east,
