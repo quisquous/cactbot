@@ -10,8 +10,11 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   decOffset?: number;
+  bondsDebuff?: string;
   purgationDebuffs: { [role: string]: { [name: string]: number } };
   purgationDebuffCount: number;
+  purgationEffects?: string[];
+  purgationEffectIndex: number;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -48,6 +51,7 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => ({
     purgationDebuffs: { 'dps': {}, 'support': {} },
     purgationDebuffCount: 0,
+    purgationEffectIndex: 0,
   }),
   triggers: [
     {
@@ -144,17 +148,38 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: ['CEC', 'D45'] }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 20,
-      response: (_data, matches, output) => {
+      response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           stackThenSpread: Outputs.stackThenSpread,
           spreadThenStack: Outputs.spreadThenStack,
         };
 
+        // Store debuff for reminders
+        data.bondsDebuff = (matches.effectId === 'CEC' ? 'spread' : 'stackMarker');
+
         const longTimer = parseFloat(matches.duration) > 9;
         if (longTimer)
           return { infoText: output.stackThenSpread!() };
         return { infoText: output.spreadThenStack!() };
+      },
+    },
+    {
+      id: 'P7S Inviolate Bonds Reminders',
+      // First trigger is ~4s after debuffs callout
+      // These happen 6s before cast
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      suppressSeconds: 1,
+      infoText: (data, matches, output) => {
+        const correctedMatch = getHeadmarkerId(data, matches);
+        if (correctedMatch === '00A6' && data.purgationDebuffCount === 0 && data.bondsDebuff)
+          return output[data.bondsDebuff]!();
+      },
+      run: (data) => data.bondsDebuff = (data.bondsDebuff === 'spread' ? 'stackMarker' : 'spread'),
+      outputStrings: {
+        spread: Outputs.spread,
+        stackMarker: Outputs.stackMarker,
       },
     },
     {
@@ -195,6 +220,9 @@ const triggerSet: TriggerSet<Data> = {
         if (!effect1 || !effect2 || !effect3 || !effect4)
           throw new UnreachableCode();
 
+        // Store effects for reminders later
+        data.purgationEffects = [effect1, effect2, effect3, effect4];
+
         return output.comboText!({
           effect1: output[effect1]!(),
           effect2: output[effect2]!(),
@@ -210,6 +238,32 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
           ko: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
         },
+        spread: Outputs.spread,
+        stack: Outputs.stackMarker,
+      },
+    },
+    {
+      id: 'P7S Inviolate Purgation Reminders',
+      // First trigger is ~4s after debuffs callout
+      // These happen 6s before cast
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      suppressSeconds: 1,
+      infoText: (data, matches, output) => {
+        // Return if we are missing effects
+        if (data.purgationEffects === undefined)
+          return;
+
+        const correctedMatch = getHeadmarkerId(data, matches);
+        if (correctedMatch === '00A6' && data.purgationDebuffCount !== 0) {
+          const text = data.purgationEffects[data.purgationEffectIndex];
+          data.purgationEffectIndex = data.purgationEffectIndex + 1;
+          if (text === undefined)
+            return;
+          return output[text]!();
+        }
+      },
+      outputStrings: {
         spread: Outputs.spread,
         stack: Outputs.stackMarker,
       },
