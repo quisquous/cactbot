@@ -777,7 +777,6 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         '(?<!Illusory )Hephaistos': 'Hephaistos',
         'Gorgon': 'Gorgone',
-        'Hephaistos': 'Hephaistos',
         'Illusory Hephaistos': 'Hephaistos-Phantom',
         'Suneater': 'Schlund des Phoinix',
       },
@@ -861,7 +860,6 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         '(?<!Illusory )Hephaistos': 'Héphaïstos',
         'Gorgon': 'gorgone',
-        'Hephaistos': 'Héphaïstos',
         'Illusory Hephaistos': 'spectre d\'Héphaïstos',
         'Suneater': 'serpent en flammes',
       },
@@ -944,7 +942,6 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         '(?<!Illusory )Hephaistos': 'ヘファイストス',
         'Gorgon': 'ゴルゴン',
-        'Hephaistos': 'ヘファイストス',
         'Illusory Hephaistos': 'ヘファイストスの幻影',
         'Suneater': '炎霊蛇',
       },
