@@ -89,6 +89,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Split Tankbusters',
           de: 'Geteilter Tankbuster',
+          ja: '2人同時タンク強攻撃',
         },
       },
     },
@@ -129,6 +130,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'aoe + bleed',
           de: 'AoE + Blutung',
+          ja: 'AOE + 出血',
         },
       },
     },
@@ -203,6 +205,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
           de: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
           fr: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
+          ja: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
         },
         spread: Outputs.spread,
         stack: Outputs.stackMarker,
@@ -220,7 +223,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Big AOE, Get Middle',
           de: 'Große AoE, geh in die Mitte',
           fr: 'Grosse AoE, allez au milieu',
-          ja: '大ダメージ、中へ',
+          ja: '強力なAOE、真ん中へ',
           cn: '超大伤害，去中间',
           ko: '아픈 광뎀, 중앙으로',
         },
