@@ -337,7 +337,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         spread: Outputs.spread,
         stackMarker: Outputs.stackMarker,
-        },
       },
     },
     {
