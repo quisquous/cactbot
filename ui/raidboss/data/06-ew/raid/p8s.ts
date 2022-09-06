@@ -68,10 +68,12 @@ const triggerSet: TriggerSet<Data> = {
         outAndSpread: {
           en: 'Out + Spread',
           de: 'Raus + Verteilen',
+          ja: '外側 + 散会',
         },
         outAndStacks: {
           en: 'Out + Stacks',
           de: 'Raus + Sammeln',
+          ja: '内側 + 頭割り',
         },
       },
     },
@@ -94,10 +96,12 @@ const triggerSet: TriggerSet<Data> = {
         inAndSpread: {
           en: 'In + Spread',
           de: 'Rein + Verteilen',
+          ja: '内側 + 散会',
         },
         inAndStacks: {
           en: 'In + Stacks',
           de: 'Rein + Sammeln',
+          ja: '内側 + 頭割り',
         },
       },
     },
@@ -131,6 +135,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Partner Stacks',
           de: 'Mit Partner sammeln',
+          ja: '2人頭割り',
         },
       },
     },
@@ -146,6 +151,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '(partner stack, for later)',
           de: '(Partner-Stacks, für später)',
+          ja: '(後で2人頭割り)',
         },
       },
     },
@@ -159,6 +165,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '(spread, for later)',
           de: '(Verteilen, für später)',
+          ja: '(後で散会)',
         },
       },
     },
@@ -185,14 +192,17 @@ const triggerSet: TriggerSet<Data> = {
         inAndStacks: {
           en: 'In + Stacks',
           de: 'Rein + Sammeln',
+          ja: '内側 + 頭割り',
         },
         outAndStacks: {
           en: 'Out + Stacks',
           de: 'Raus + Sammeln',
+          ja: '外側 + 頭割り',
         },
         stacks: {
           en: 'Partner Stacks',
           de: 'Mit Partner sammeln',
+          ja: '2人頭割り',
         },
       },
     },
@@ -214,14 +224,17 @@ const triggerSet: TriggerSet<Data> = {
         inAndProtean: {
           en: 'In + Protean',
           de: 'Rein + Himmelsrichtung',
+          ja: '内側 + 散会',
         },
         outAndProtean: {
           en: 'Out + Protean',
           de: 'Raus + Himmelsrichtung',
+          ja: '外側 + 散会',
         },
         protean: {
           en: 'Protean',
           de: 'Himmelsrichtung',
+          ja: '散会',
         },
       },
     },
@@ -345,77 +358,82 @@ const triggerSet: TriggerSet<Data> = {
         insideSquare: {
           en: 'Inside Square',
           de: 'Inneres Viereck',
+          ja: '内側の四角',
         },
         cornerNW: {
           en: 'NW Corner',
           de: 'NW Ecke',
+          ja: '北西の角',
         },
         cornerNE: {
           en: 'NE Corner',
           de: 'NO Ecke',
+          ja: '北東の角',
         },
         cornerSE: {
           en: 'SE Corner',
           de: 'SO Ecke',
+          ja: '南東の角',
         },
         cornerSW: {
           en: 'SW Corner',
           de: 'SW Ecke',
+          ja: '南西の角',
         },
         outsideNorth: {
           en: 'Outside North',
           de: 'Im Norden raus',
           fr: 'Nord Extérieur',
-          ja: '北、外側',
+          ja: '北の外側',
           ko: '북쪽, 바깥',
         },
         insideNorth: {
           en: 'Inside North',
           de: 'Im Norden rein',
           fr: 'Nord Intérieur',
-          ja: '北、内側',
+          ja: '北の内側',
           ko: '북쪽, 안',
         },
         outsideEast: {
           en: 'Outside East',
           de: 'Im Osten raus',
           fr: 'Est Extérieur',
-          ja: '東、外側',
+          ja: '東の外側',
           ko: '동쪽, 바깥',
         },
         insideEast: {
           en: 'Inside East',
           de: 'Im Osten rein',
           fr: 'Est Intérieur',
-          ja: '東、内側',
+          ja: '東の内側',
           ko: '동쪽, 안',
         },
         outsideSouth: {
           en: 'Outside South',
           de: 'Im Süden raus',
           fr: 'Sud Extérieur',
-          ja: '南、外側',
+          ja: '南の外側',
           ko: '남쪽, 바깥',
         },
         insideSouth: {
           en: 'Inside South',
           de: 'Im Süden rein',
           fr: 'Sud Intérieur',
-          ja: '南、内側',
+          ja: '南の内側',
           ko: '남쪽, 안',
         },
         outsideWest: {
           en: 'Outside West',
           de: 'Im Westen raus',
           fr: 'Ouest Extérieur',
-          ja: '西、外側',
+          ja: '西の外側',
           ko: '서쪽, 바깥',
         },
         insideWest: {
           en: 'Inside West',
           de: 'Im Westen rein',
           fr: 'Ouest Intérieur',
-          ja: '西、内側',
+          ja: '西の内側',
           ko: '서쪽, 안',
         },
       },
@@ -493,6 +511,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Follow Jump',
           de: 'Sprung folgen',
+          ja: '近づく',
         },
       },
     },
@@ -505,6 +524,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away From Jump',
           de: 'Weg vom Sprung',
+          ja: '離れる',
         },
       },
     },
@@ -539,10 +559,12 @@ const triggerSet: TriggerSet<Data> = {
         northSouth: {
           en: 'North/South Bird',
           de: 'Norden/Süden Vogel',
+          ja: '南北フェニックス',
         },
         eastWest: {
           en: 'East/West Bird',
           de: 'Osten/Westen Vogel',
+          ja: '東西フェニックス',
         },
       },
     },
@@ -575,6 +597,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '(avoid proteans)',
           de: '(weiche Himmelsrichtungen aus)',
+          ja: '(回避)',
         },
       },
     },
@@ -592,6 +615,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'In for Protean',
           de: 'rein für Himmelsrichtungen',
+          ja: '内側で散会',
         },
       },
     },
@@ -685,6 +709,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'aoe + bleed',
           de: 'AoE + Blutung',
+          ja: 'AOE + 出血',
         },
       },
     },
@@ -698,6 +723,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Split Tankbusters',
           de: 'Geteilter Tankbuster',
+          ja: '2人同時タンク強攻撃',
         },
       },
     },
