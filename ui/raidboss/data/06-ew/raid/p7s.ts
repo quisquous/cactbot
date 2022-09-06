@@ -155,6 +155,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P7S Forbidden Fruit 4 and Harvest Tethers',
+      // 0001 Immature Minotaur Spike Tether
       // 0006 Immature Io (Bull) Tether
       // 0039 Immature Minotaur Tether
       // 0011 Immature Stymphalide (Bird) Tether
@@ -164,7 +165,7 @@ const triggerSet: TriggerSet<Data> = {
       // War: 4 Bull Tethers, 2 Minotaur Tethers, 2 Bird Tethers
       // TODO: Get locations with OverlayPlugin via X, Y and bird headings?
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: ['0006', '0039', '0011'] }),
+      netRegex: NetRegexes.tether({ id: ['0001', '0006', '0039', '0011'] }),
       condition: (data) => !data.stopTethers,
       preRun: (data, matches) => data.tetherCollect.push(matches.target),
       delaySeconds: 0.1,
