@@ -90,6 +90,7 @@ const triggerSet: TriggerSet<Data> = {
         second: {
           en: 'Long parasite on YOU',
           de: 'Langer Parasit auf DIR',
+          ja: 'Parasite long sur VOUS',
           fr: '自分に長い寄生',
           ko: '긴 기생 디버프 대상자',
         },
