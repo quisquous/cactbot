@@ -68,10 +68,12 @@ const triggerSet: TriggerSet<Data> = {
         outAndSpread: {
           en: 'Out + Spread',
           de: 'Raus + Verteilen',
+          ko: '밖으로 + 산개',
         },
         outAndStacks: {
           en: 'Out + Stacks',
           de: 'Raus + Sammeln',
+          ko: '밖으로 + 쉐어',
         },
       },
     },
@@ -94,10 +96,12 @@ const triggerSet: TriggerSet<Data> = {
         inAndSpread: {
           en: 'In + Spread',
           de: 'Rein + Verteilen',
+          ko: '안으로 + 산개',
         },
         inAndStacks: {
           en: 'In + Stacks',
           de: 'Rein + Sammeln',
+          ko: '안으로 + 쉐어',
         },
       },
     },
@@ -131,6 +135,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Partner Stacks',
           de: 'Mit Partner sammeln',
+          ko: '2인 쉐어',
         },
       },
     },
@@ -146,6 +151,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '(partner stack, for later)',
           de: '(Partner-Stacks, für später)',
+          ko: '(곧 2인 쉐어)',
         },
       },
     },
@@ -159,6 +165,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '(spread, for later)',
           de: '(Verteilen, für später)',
+          ko: '(곧 산개)',
         },
       },
     },
@@ -185,14 +192,17 @@ const triggerSet: TriggerSet<Data> = {
         inAndStacks: {
           en: 'In + Stacks',
           de: 'Rein + Sammeln',
+          ko: '안으로 + 쉐어',
         },
         outAndStacks: {
           en: 'Out + Stacks',
           de: 'Raus + Sammeln',
+          ko: '밖으로 +쉐어',
         },
         stacks: {
           en: 'Partner Stacks',
           de: 'Mit Partner sammeln',
+          ko: '2인 쉐어',
         },
       },
     },
@@ -214,14 +224,17 @@ const triggerSet: TriggerSet<Data> = {
         inAndProtean: {
           en: 'In + Protean',
           de: 'Rein + Himmelsrichtung',
+          ko: '안으로 + 산개',
         },
         outAndProtean: {
           en: 'Out + Protean',
           de: 'Raus + Himmelsrichtung',
+          ko: '밖으로 + 산개',
         },
         protean: {
           en: 'Protean',
           de: 'Himmelsrichtung',
+          ko: '산개',
         },
       },
     },
@@ -345,22 +358,27 @@ const triggerSet: TriggerSet<Data> = {
         insideSquare: {
           en: 'Inside Square',
           de: 'Inneres Viereck',
+          ko: '중앙',
         },
         cornerNW: {
           en: 'NW Corner',
           de: 'NW Ecke',
+          ko: '북서쪽 구석',
         },
         cornerNE: {
           en: 'NE Corner',
           de: 'NO Ecke',
+          ko: '북동쪽 구석',
         },
         cornerSE: {
           en: 'SE Corner',
           de: 'SO Ecke',
+          ko: '남동쪽 구석',
         },
         cornerSW: {
           en: 'SW Corner',
           de: 'SW Ecke',
+          ko: '남서쪽 구석',
         },
         outsideNorth: {
           en: 'Outside North',
@@ -493,6 +511,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Follow Jump',
           de: 'Sprung folgen',
+          ko: '보스 따라가기',
         },
       },
     },
@@ -505,6 +524,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away From Jump',
           de: 'Weg vom Sprung',
+          ko: '멀리 떨어지기',
         },
       },
     },
@@ -539,10 +559,12 @@ const triggerSet: TriggerSet<Data> = {
         northSouth: {
           en: 'North/South Bird',
           de: 'Norden/Süden Vogel',
+          ko: '새 남/북쪽',
         },
         eastWest: {
           en: 'East/West Bird',
           de: 'Osten/Westen Vogel',
+          ko: '새 동/서쪽',
         },
       },
     },
@@ -685,6 +707,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'aoe + bleed',
           de: 'AoE + Blutung',
+          ko: '전체 공격 + 출혈',
         },
       },
     },
@@ -698,6 +721,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Split Tankbusters',
           de: 'Geteilter Tankbuster',
+          ko: '따로맞는 탱버',
         },
       },
     },

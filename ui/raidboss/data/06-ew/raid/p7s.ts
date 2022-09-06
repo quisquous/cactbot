@@ -89,6 +89,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Split Tankbusters',
           de: 'Geteilter Tankbuster',
+          ko: '따로맞는 탱버',
         },
       },
     },
@@ -129,6 +130,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'aoe + bleed',
           de: 'AoE + Blutung',
+          ko: '전체 공격 + 출혈',
         },
       },
     },
@@ -203,6 +205,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
           de: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
           fr: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
+          ko: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
         },
         spread: Outputs.spread,
         stack: Outputs.stackMarker,
