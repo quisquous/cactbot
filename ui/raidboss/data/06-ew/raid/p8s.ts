@@ -597,7 +597,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '(avoid proteans)',
           de: '(weiche Himmelsrichtungen aus)',
-          ja: '(回避)'
+          ja: '(回避)',
         },
       },
     },
