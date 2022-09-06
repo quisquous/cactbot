@@ -212,7 +212,7 @@ const triggerSet: TriggerSet<Data> = {
           }
 
           // Minotaur Tethers
-          if (matches.id === '0039') {
+          if (matches.id === '0001' || matches.id === '0039') {
             if (data.tetherCollectPhase === 'famine')
               return { infoText: output.famineMinotaurTether!() };
             if (data.tetherCollectPhase === 'war')
