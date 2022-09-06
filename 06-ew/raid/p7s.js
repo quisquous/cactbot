@@ -28,6 +28,7 @@ Options.Triggers.push({
   zoneId: ZoneId.AbyssosTheSeventhCircleSavage,
   timelineFile: 'p7s.txt',
   initData: () => ({
+    rootsCount: 0,
     purgationDebuffs: { 'dps': {}, 'support': {} },
     purgationDebuffCount: 0,
     purgationEffectIndex: 0,
@@ -88,6 +89,41 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7823', source: 'Agdistis', capture: false }),
       response: Responses.goRight(),
+    },
+    {
+      id: 'P7S Roots of Attis 3',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      condition: (data) => data.rootsCount === 2,
+      infoText: (_data, _matches, output) => output.baitSoon(),
+      outputStrings: {
+        baitSoon: {
+          en: 'Bait on Empty Platform Soon',
+        },
+      },
+    },
+    {
+      id: 'P7S Roots of Attis 2',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      condition: (data) => data.rootsCount === 1,
+      infoText: (_data, _matches, output) => output.separateHealerGroups(),
+      run: (data) => data.rootsCount = data.rootsCount + 1,
+      outputStrings: {
+        separateHealerGroups: {
+          en: 'Healer Group Platforms',
+        },
+      },
+    },
+    {
+      // First breaks north bridge for upcoming South Knockback Spreads
+      // Second breaks remaining bridges, Separate Healer Groups
+      // Third breaks all bridges, Bait on Empty Platform
+      id: 'P7S Roots of Attis 1',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      condition: (data) => data.rootsCount === 0,
+      run: (data) => data.rootsCount = data.rootsCount + 1,
     },
     {
       id: 'P7S Hemitheos\'s Aero IV',
