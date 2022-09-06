@@ -78,7 +78,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Move center when safe',
           de: 'Geh in die Mitte, wenn es sicher ist',
           fr: 'Allez au centre quand il est sûr',
-          ja: '安置になったら入る',
+          ja: '安置に入る',
           ko: '중앙 바닥이 생기면 들어가기',
         },
       },

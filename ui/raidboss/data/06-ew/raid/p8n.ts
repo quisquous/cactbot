@@ -1,5 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import { UnreachableCode } from '../../../../../resources/not_reached';
+import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -7,11 +9,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  combatantData: PluginCombatantState[];
-  torches: NetMatches['StartsUsing'][];
-}
 
 // TODO: Cthonic Vent is tricky; the initial cast is ~5s, but the next two explosions are ~2s.
 //       There's no map events.  There's two Suneater adds that are added immediately before
@@ -21,12 +18,32 @@ export interface Data extends RaidbossData {
 //       just a case of missing some animation data in network logs that would tell us.
 // TODO: how to detect/what to say for Blazing Footfalls knockbacks?
 
+export interface Data extends RaidbossData {
+  combatantData: PluginCombatantState[];
+  ventIds: string[];
+  torches: NetMatches['StartsUsing'][];
+}
+
+// TODO: how to detect/what to say for Blazing Footfalls knockbacks?
+
+const centerX = 100;
+const centerY = 100;
+
+const positionTo8Dir = (combatant: PluginCombatantState) => {
+  const x = combatant.PosX - centerX;
+  const y = combatant.PosY - centerY;
+
+  // Dirs: N = 0, NE = 1, ..., NW = 7
+  return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+};
+
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheEighthCircle,
   timelineFile: 'p8n.txt',
   initData: () => {
     return {
       combatantData: [],
+      ventIds: [],
       torches: [],
     };
   },
@@ -96,6 +113,87 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '79AB', source: 'Hephaistos', capture: false }),
       response: Responses.aoe(),
+    },
+    {
+      id: 'P8N Suneater Cthonic Vent Add',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '11404' }),
+      run: (data, matches) => data.ventIds.push(matches.id),
+    },
+    {
+      id: 'P8N Suneater Cthonic Vent Initial',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '78F5', source: 'Suneater', capture: false }),
+      suppressSeconds: 1,
+      promise: async (data: Data) => {
+        data.combatantData = [];
+        if (data.ventIds.length !== 2)
+          return;
+
+        const ids = data.ventIds.map((id) => parseInt(id, 16));
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        if (data.combatantData.length === 0)
+          return;
+
+        const unsafeSpots = data.combatantData.map((c) => positionTo8Dir(c)).sort();
+
+        const [unsafe0, unsafe1] = unsafeSpots;
+        if (unsafe0 === undefined || unsafe1 === undefined)
+          throw new UnreachableCode();
+
+        // edge case wraparound
+        if (unsafe0 === 1 && unsafe1 === 7)
+          return output.south!();
+
+        // adjacent unsafe spots, cardinal is safe
+        if (unsafe1 - unsafe0 === 2) {
+          // this average is safe to do because wraparound was taken care of above.
+          const unsafeCard = Math.floor((unsafe0 + unsafe1) / 2);
+
+          const safeDirMap: { [dir: number]: string } = {
+            0: output.south!(), // this won't happen, but here for completeness
+            2: output.west!(),
+            4: output.north!(),
+            6: output.east!(),
+          } as const;
+          return safeDirMap[unsafeCard] ?? output.unknown!();
+        }
+
+        // two intercards are safe, they are opposite each other,
+        // so we can pick the intercard counterclock of each unsafe spot.
+        // e.g. 1/5 are unsafe (NE and SW), so SE and NW are safe.
+        const safeIntercardMap: { [dir: number]: string } = {
+          1: output.dirNW!(),
+          3: output.dirNE!(),
+          5: output.dirSE!(),
+          7: output.dirSW!(),
+        } as const;
+
+        const safeStr0 = safeIntercardMap[unsafe0] ?? output.unknown!();
+        const safeStr1 = safeIntercardMap[unsafe1] ?? output.unknown!();
+        return output.comboDir!({ dir1: safeStr0, dir2: safeStr1 });
+      },
+      outputStrings: {
+        comboDir: {
+          en: '${dir1} / ${dir2}',
+          de: '${dir1} / ${dir2}',
+          ja: '${dir1} / ${dir2}',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+        dirNE: Outputs.dirNE,
+        dirSE: Outputs.dirSE,
+        dirSW: Outputs.dirSW,
+        dirNW: Outputs.dirNW,
+        unknown: Outputs.unknown,
+      },
     },
     {
       id: 'P8N Volcanic Torches Cleanup',
