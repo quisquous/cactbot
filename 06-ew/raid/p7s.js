@@ -29,6 +29,7 @@ Options.Triggers.push({
   timelineFile: 'p7s.txt',
   initData: () => ({
     rootsCount: 0,
+    tetherCollect: [],
     purgationDebuffs: { 'dps': {}, 'support': {} },
     purgationDebuffCount: 0,
     purgationEffectIndex: 0,
@@ -175,6 +176,116 @@ Options.Triggers.push({
         if (longTimer)
           return { infoText: output.stackThenSpread() };
         return { infoText: output.spreadThenStack() };
+      },
+    },
+    {
+      id: 'P7S Forbidden Fruit 4 and Harvest Tethers',
+      // 0001 Immature Minotaur Spike Tether
+      // 0006 Immature Io (Bull) Tether
+      // 0039 Immature Minotaur Tether
+      // 0011 Immature Stymphalide (Bird) Tether
+      // Forbidden Fruit 4: 4 Bull Tethers, 2 Minotaur Tethers, 1 Non-tethered Minotaur
+      // Famine: 4 Minotaur Tethers, 2 Non-tethered Minotaurs, 2 Static Birds
+      // Death: 2 Bulls with Tethers, 1 Bull casting Puddle AoE, 2 Static Birds
+      // War: 4 Bull Tethers, 2 Minotaur Tethers, 2 Bird Tethers
+      // TODO: Get locations with OverlayPlugin via X, Y and bird headings?
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: ['0001', '0006', '0039', '0011'] }),
+      condition: (data) => !data.stopTethers,
+      preRun: (data, matches) => data.tetherCollect.push(matches.target),
+      delaySeconds: 0.1,
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          bullTether: {
+            en: 'Bull Tether (Line AoE)',
+          },
+          deathBullTether: {
+            en: 'Bull Tether (Line AoE)',
+          },
+          warBullTether: {
+            en: 'Bull Tether (Line AoE)',
+          },
+          minotaurTether: {
+            en: 'Minotaur Tether (Big Cleave)',
+          },
+          famineMinotaurTether: {
+            en: 'Cross Minotaur Tethers (Big Cleave)',
+          },
+          warMinotaurTether: {
+            en: 'Minotaur Tether (Big Cleave)',
+          },
+          warBirdTether: {
+            en: 'Bird Tether',
+          },
+          noTether: {
+            en: 'No Tether, Bait Minotaur Cleave (Middle)',
+          },
+          famineNoTether: {
+            en: 'No Tether, Bait Minotaur Cleave',
+          },
+        };
+        if (data.me === matches.target) {
+          // Bull Tethers
+          if (matches.id === '0006') {
+            if (data.tetherCollectPhase === 'death')
+              return { infoText: output.deathBullTether() };
+            if (data.tetherCollectPhase === 'war')
+              return { infoText: output.warBullTether() };
+            return { infoText: output.bullTether() };
+          }
+          // Minotaur Tethers
+          if (matches.id === '0001' || matches.id === '0039') {
+            if (data.tetherCollectPhase === 'famine')
+              return { infoText: output.famineMinotaurTether() };
+            if (data.tetherCollectPhase === 'war')
+              return { infoText: output.warMinotaurTether() };
+            return { infoText: output.minotaurTether() };
+          }
+          // Bird Tethers
+          if (matches.id === '0011')
+            return { infoText: output.warBirdTether() };
+        }
+        // No Tethers
+        if (!data.tetherCollect.includes(data.me)) {
+          // Prevent duplicate callout
+          data.tetherCollect.push(data.me);
+          if (!data.tetherCollectPhase)
+            return { infoText: output.noTether() };
+          if (data.tetherCollectPhase === 'famine')
+            return { alertText: output.famineNoTether() };
+        }
+      },
+    },
+    {
+      id: 'P7S Forbidden Fruit 4 and Harvest Stop Collection',
+      // 0001 Tether also goes off on players that get 0039 Tethers which leads
+      // to 0039 possibly reapplying. This trigger is used to only collect tethers
+      // during a defined window.
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: ['0006', '0039'], capture: false }),
+      delaySeconds: 0.2,
+      suppressSeconds: 6,
+      run: (data) => data.stopTethers = true,
+    },
+    {
+      id: 'P7S Harvest Phase Tracker',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['7A4F', '7A50', '7A51'] }),
+      run: (data, matches) => {
+        data.stopTethers = false;
+        data.tetherCollect = [];
+        switch (matches.id) {
+          case '7A4F':
+            data.tetherCollectPhase = 'famine';
+            break;
+          case '7A50':
+            data.tetherCollectPhase = 'death';
+            break;
+          case '7A51':
+            data.tetherCollectPhase = 'war';
+            break;
+        }
       },
     },
     {
