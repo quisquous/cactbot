@@ -15,10 +15,12 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   decOffset?: number;
   fruitCount: number;
-  hatchedEggs?: PluginCombatantState[];
   unhatchedEggs?: PluginCombatantState[];
+  bondsDebuff?: string;
   purgationDebuffs: { [role: string]: { [name: string]: number } };
   purgationDebuffCount: number;
+  purgationEffects?: string[];
+  purgationEffectIndex: number;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -69,6 +71,7 @@ const triggerSet: TriggerSet<Data> = {
     fruitCount: 0,
     purgationDebuffs: { 'dps': {}, 'support': {} },
     purgationDebuffCount: 0,
+    purgationEffectIndex: 0,
   }),
   triggers: [
     {
@@ -219,7 +222,12 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '7835', source: 'Agdistis', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
-        text: 'Split Tankbusters',
+        text: {
+          en: 'Split Tankbusters',
+          de: 'Geteilter Tankbuster',
+          ja: '2人同時タンク強攻撃',
+          ko: '따로맞는 탱버',
+        },
       },
     },
     {
@@ -256,7 +264,12 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '7839', source: 'Agdistis', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
-        text: 'aoe + bleed',
+        text: {
+          en: 'aoe + bleed',
+          de: 'AoE + Blutung',
+          ja: 'AOE + 出血',
+          ko: '전체 공격 + 출혈',
+        },
       },
     },
     {
@@ -267,17 +280,38 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: ['CEC', 'D45'] }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 20,
-      response: (_data, matches, output) => {
+      response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           stackThenSpread: Outputs.stackThenSpread,
           spreadThenStack: Outputs.spreadThenStack,
         };
 
+        // Store debuff for reminders
+        data.bondsDebuff = (matches.effectId === 'CEC' ? 'spread' : 'stackMarker');
+
         const longTimer = parseFloat(matches.duration) > 9;
         if (longTimer)
           return { infoText: output.stackThenSpread!() };
         return { infoText: output.spreadThenStack!() };
+      },
+    },
+    {
+      id: 'P7S Inviolate Bonds Reminders',
+      // First trigger is ~4s after debuffs callout
+      // These happen 6s before cast
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      suppressSeconds: 1,
+      infoText: (data, matches, output) => {
+        const correctedMatch = getHeadmarkerId(data, matches);
+        if (correctedMatch === '00A6' && data.purgationDebuffCount === 0 && data.bondsDebuff)
+          return output[data.bondsDebuff]!();
+      },
+      run: (data) => data.bondsDebuff = (data.bondsDebuff === 'spread' ? 'stackMarker' : 'spread'),
+      outputStrings: {
+        spread: Outputs.spread,
+        stackMarker: Outputs.stackMarker,
       },
     },
     {
@@ -318,6 +352,9 @@ const triggerSet: TriggerSet<Data> = {
         if (!effect1 || !effect2 || !effect3 || !effect4)
           throw new UnreachableCode();
 
+        // Store effects for reminders later
+        data.purgationEffects = [effect1, effect2, effect3, effect4];
+
         return output.comboText!({
           effect1: output[effect1]!(),
           effect2: output[effect2]!(),
@@ -329,7 +366,36 @@ const triggerSet: TriggerSet<Data> = {
         comboText: {
           en: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
           de: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
+          fr: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
+          ja: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
+          ko: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
         },
+        spread: Outputs.spread,
+        stack: Outputs.stackMarker,
+      },
+    },
+    {
+      id: 'P7S Inviolate Purgation Reminders',
+      // First trigger is ~4s after debuffs callout
+      // These happen 6s before cast
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker({}),
+      suppressSeconds: 1,
+      infoText: (data, matches, output) => {
+        // Return if we are missing effects
+        if (data.purgationEffects === undefined)
+          return;
+
+        const correctedMatch = getHeadmarkerId(data, matches);
+        if (correctedMatch === '00A6' && data.purgationDebuffCount !== 0) {
+          const text = data.purgationEffects[data.purgationEffectIndex];
+          data.purgationEffectIndex = data.purgationEffectIndex + 1;
+          if (text === undefined)
+            return;
+          return output[text]!();
+        }
+      },
+      outputStrings: {
         spread: Outputs.spread,
         stack: Outputs.stackMarker,
       },
@@ -346,7 +412,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Big AOE, Get Middle',
           de: 'Große AoE, geh in die Mitte',
           fr: 'Grosse AoE, allez au milieu',
-          ja: '大ダメージ、中へ',
+          ja: '強力なAOE、真ん中へ',
           cn: '超大伤害，去中间',
           ko: '아픈 광뎀, 중앙으로',
         },
@@ -362,7 +428,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Agdistis': 'Agdistis',
         'Immature Io': 'unreif(?:e|er|es|en) Io',
@@ -381,7 +446,9 @@ const triggerSet: TriggerSet<Data> = {
         'Bullish Slash': 'Bullenansturm',
         'Bullish Swipe': 'Bullenfeger',
         'Condensed Aero II': 'Gehäuftes Windra',
+        'Death\'s Harvest': 'Unheilvolle Wucherung des Lebens',
         'Dispersed Aero II': 'Flächiges Windra',
+        'Famine\'s Harvest': 'Wilde Wucherung des Lebens',
         'Forbidden Fruit': 'Frucht des Lebens',
         'Hemitheos\'s Aero III': 'Hemitheisches Windga',
         'Hemitheos\'s Aero IV': 'Hemitheisches Windka',
@@ -392,6 +459,7 @@ const triggerSet: TriggerSet<Data> = {
         'Hemitheos\'s Tornado': 'Hemitheischer Tornado',
         'Immortal\'s Obol': 'Zweig des Lebens und des Todes',
         'Inviolate Bonds': 'Siegelschaffung',
+        'Inviolate Purgation': 'Siegelschaffung der Hölle',
         'Light of Life': 'Aurora des Lebens',
         'Multicast': 'Multizauber',
         'Roots of Attis': 'Wurzel des Attis',
@@ -399,6 +467,7 @@ const triggerSet: TriggerSet<Data> = {
         'Spark of Life': 'Schein des Lebens',
         'Static Path': 'Statischer Pfad',
         'Stymphalian Strike': 'Vogelschlag',
+        'War\'s Harvest': 'Chaotische Wucherung des Lebens',
       },
     },
     {
@@ -417,7 +486,9 @@ const triggerSet: TriggerSet<Data> = {
         'Bullish Slash': 'Taillade catabatique',
         'Bullish Swipe': 'Balayage catabatique',
         'Condensed Aero II': 'Extra Vent concentré',
+        'Death\'s Harvest': 'Bourgeonnement de vie morbide',
         'Dispersed Aero II': 'Extra vent étendu',
+        'Famine\'s Harvest': 'Bourgeonnement de vie féroce',
         'Forbidden Fruit': 'Fruits de la vie',
         'Hemitheos\'s Aero III': 'Méga Vent d\'hémithéos',
         'Hemitheos\'s Aero IV': 'Giga Vent d\'hémithéos',
@@ -427,12 +498,16 @@ const triggerSet: TriggerSet<Data> = {
         'Hemitheos\'s Holy III': 'Méga Miracle d\'hémithéos',
         'Hemitheos\'s Tornado': 'Tornade d\'hémithéos',
         'Immortal\'s Obol': 'Branche de vie et de mort',
+        'Inviolate Bonds': 'Tracé de sigil',
+        'Inviolate Purgation': 'Tracé de sigils multiples',
         'Light of Life': 'Éclair de vie',
+        'Multicast': 'Multisort',
         'Roots of Attis': 'Racines d\'Attis',
         'Shadow of Attis': 'Rai d\'Attis',
         'Spark of Life': 'Étincelle de vie',
         'Static Path': 'Chemin statique',
         'Stymphalian Strike': 'Assaut stymphalide',
+        'War\'s Harvest': 'Bourgeonnement de vie chaotique',
       },
     },
     {
@@ -451,7 +526,9 @@ const triggerSet: TriggerSet<Data> = {
         'Bullish Slash': 'ブルスラッシュ',
         'Bullish Swipe': 'ブルスワイプ',
         'Condensed Aero II': 'アグリゲート・エアロラ',
+        'Death\'s Harvest': '生命の繁茂【凶】',
         'Dispersed Aero II': 'スプレッド・エアロラ',
+        'Famine\'s Harvest': '生命の繁茂【猛】',
         'Forbidden Fruit': '生命の果実',
         'Hemitheos\'s Aero III': 'ヘーミテオス・エアロガ',
         'Hemitheos\'s Aero IV': 'ヘーミテオス・エアロジャ',
@@ -461,12 +538,16 @@ const triggerSet: TriggerSet<Data> = {
         'Hemitheos\'s Holy III': 'ヘーミテオス・ホーリガ',
         'Hemitheos\'s Tornado': 'ヘーミテオス・トルネド',
         'Immortal\'s Obol': '生滅の導枝',
+        'Inviolate Bonds': '魔印創成',
+        'Inviolate Purgation': '魔印創成・獄',
         'Light of Life': '生命の極光',
+        'Multicast': 'マルチキャスト',
         'Roots of Attis': 'アッティスの根',
         'Shadow of Attis': 'アッティスの光雫',
         'Spark of Life': '生命の光芒',
         'Static Path': 'スタティックパース',
         'Stymphalian Strike': 'バードストライク',
+        'War\'s Harvest': '生命の繁茂【乱】',
       },
     },
   ],
