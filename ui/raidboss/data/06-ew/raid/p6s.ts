@@ -11,6 +11,7 @@ export interface Data extends RaidbossData {
   decOffset?: number;
   pathogenicCellsNumber?: number;
   pathogenicCellsDelay?: number;
+  pathogenicCellsCounter: number;
   secondExocleavers?: boolean;
   aetheronecrosisDuration: number;
   predationCount: number;
@@ -38,6 +39,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'p6s.txt',
   initData: () => {
     return {
+      pathogenicCellsCounter: 0,
       aetheronecrosisDuration: 0,
       predationCount: 0,
     };
@@ -162,6 +164,26 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${num}番',
           cn: '#${num}',
           ko: '${num}번째',
+        },
+      },
+    },
+    {
+      id: 'P6S Pathogenic Cells Counter',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7865', source: 'Hegemone', capture: false }),
+      preRun: (data, _matches) => data.pathogenicCellsCounter++,
+      suppressSeconds: 1,
+      sound: '',
+      infoText: (data, _matches, output) => output.text!({ num: data.pathogenicCellsCounter }),
+      tts: null,
+      outputStrings: {
+        text: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
         },
       },
     },
