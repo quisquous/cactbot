@@ -136,14 +136,26 @@ const triggerSet: TriggerSet<Data> = {
           twoPlatforms: {
             en: '${platform1} / ${platform2}',
           },
+          orientation: {
+            en: 'Line Bull: ${location}'
+          },
+          famineOrientation: {
+            en: 'Minotaurs without Bird: ${location}',
+          },
+          deathOrientation: {
+            en: 'Lighning Bull: ${location',
+          },
+          warOrientation: {
+            en: 'Bird with Minotaurs: ${location}',
+          },
         };
+
         // Platforms are at 0 NW, 2 NE, 5 S
         const safeSpots: { [bird: number]: string } = {
           0: 'left',
           2: 'right',
           5: 'south',
         };
-
         if (data.fruitCount === 1) {
           // Find location of the north-most bird
           // Forbidden Fruit 1 uses last two birds
@@ -161,6 +173,24 @@ const triggerSet: TriggerSet<Data> = {
           if (northBird.PosX < 100)
             return { alertText: output.left!() };
           return { alertText: output.right!() };
+        }
+        if (data.fruitCount === 4 || data.fruitCount === 9) {
+          const errorMessagePhase = (data.tetherCollectPhase === undefined ? 'Forbidden Fruit 4' : data.tetherCollectPhase);
+          // Check where bull is
+          // Forbidden Fruit 4 and 9 use bull 3
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[12] === undefined) {
+            console.error(`${errorMessagePhase}: Missing egg data.`);
+            return;
+          }
+          const bullPosition = matchedPositionTo8Dir(data.unhatchedEggs[12]);
+
+          const safeSpot = safeSpots[bullPosition];
+          if (safeSpot !== undefined) {
+            if (data.fruitCount === 4)
+              return { infoText: output.orientation!({ entity: output.bull!(), location: output[safeSpot]!() }) };
+            return { infoText: output.deathOrientation!({ location: output[safeSpot]!() }) };
+          }
+          console.error(`${errorMessagePhase}: Invalid positions.`);
         }
         if (data.fruitCount === 6) {
           // Check where bull is
@@ -180,11 +210,12 @@ const triggerSet: TriggerSet<Data> = {
               return { infoText: output.twoPlatforms!({ platform1: output[safePlatform1]!(), platform2: output[safePlatform2]!() }) };
           }
         }
-        if (data.fruitCount === 7) {
-          // Check each location for bird, safe spot is where there is no bird
-          // Forbidden Fruit 7 uses last two birds
+        if (data.fruitCount === 7 || data.fruitCount === 8 || data.fruitCount === 10) {
+          const errorMessagePhase = (data.tetherCollectPhase === undefined ? 'Forbidden Fruit 7' : data.tetherCollectPhase);
+          // Check each location for bird, call out where there is no bird
+          // Forbidden Fruit 7, 8, and 10 use last two birds
           if (data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined || data.unhatchedEggs[9] === undefined) {
-            console.error(`Forbidden Fruit 7: Missing egg data.`);
+            console.error(`${errorMessagePhase}: Missing egg data.`);
             return;
           }
           const birdPosition1 = matchedPositionTo8Dir(data.unhatchedEggs[8]);
@@ -195,9 +226,17 @@ const triggerSet: TriggerSet<Data> = {
 
           if (Object.keys(safeSpots).length === 1) {
             const safeSpot = Object.values(safeSpots)[0];
-            if (safeSpot !== undefined)
-              return { infoText: output[safeSpot]!() };
-            console.error(`Forbidden Fruit 7: Invalid positions.`);
+            if (safeSpot !== undefined) {
+              switch (data.fruitCount) {
+                case 7:
+                  return { infoText: output[safeSpot]!() };
+                case 8:
+                  return { infoText: output.famineOrientation!({ location: output[safeSpot]!() }) };
+                case 10:
+                  return { infoText: output.warOrientation!({ location: output[safeSpot]!() }) };
+              }
+            }
+            console.error(`${errorMessagePhase}: Invalid positions.`);
           }
         }
       },
