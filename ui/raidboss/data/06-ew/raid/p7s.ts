@@ -143,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Minotaurs without Bird: ${location}',
           },
           deathOrientation: {
-            en: 'Lighning Bull: ${location}',
+            en: 'Lightning Bull: ${location}',
           },
           warOrientation: {
             en: 'Bird with Minotaurs: ${location}',
