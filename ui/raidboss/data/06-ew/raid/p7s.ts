@@ -137,13 +137,13 @@ const triggerSet: TriggerSet<Data> = {
             en: '${platform1} / ${platform2}',
           },
           orientation: {
-            en: 'Line Bull: ${location}'
+            en: 'Line Bull: ${location}',
           },
           famineOrientation: {
             en: 'Minotaurs without Bird: ${location}',
           },
           deathOrientation: {
-            en: 'Lighning Bull: ${location',
+            en: 'Lighning Bull: ${location}',
           },
           warOrientation: {
             en: 'Bird with Minotaurs: ${location}',
