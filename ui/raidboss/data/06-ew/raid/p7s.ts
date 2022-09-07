@@ -150,7 +150,7 @@ const triggerSet: TriggerSet<Data> = {
           },
         };
 
-          // Map of dirs to Platform locations
+        // Map of dirs to Platform locations
         // Note: Eggs may spawn in additional cardinals/intercardinals
         const dirToPlatform: { [dir: number]: string } = {
           0: 'left',
@@ -200,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
           if (data.fruitCount === 6) {
             // Callout where bull is not
             // Remove platform from platforms
-            const newPlatforms = platforms.filter(val => val != platform);
+            const newPlatforms = platforms.filter(val => val !== platform);
 
             if (newPlatforms.length === 2) {
               const safePlatform1 = newPlatforms[0];
@@ -256,7 +256,7 @@ const triggerSet: TriggerSet<Data> = {
           const birdPlatform2 = dirToPlatform[birdDir2];
 
           // Remove platform from platforms
-          const newPlatforms = platforms.filter(val => val != birdPlatform1 && val != birdPlatform2);
+          const newPlatforms = platforms.filter(val => val !== birdPlatform1 && val !== birdPlatform2);
 
           if (newPlatforms.length === 1) {
             const platform = newPlatforms[0];
