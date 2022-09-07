@@ -222,6 +222,13 @@ const triggerSet: TriggerSet<Data> = {
           const minotaurDir1 = matchedPositionTo8Dir(data.unhatchedEggs[4]);
           const minotaurDir2 = matchedPositionTo8Dir(data.unhatchedEggs[5]);
 
+          // Return if received bad data
+          const validDirs = [1, 4, 6];
+          if (!validDirs.includes(minotaurDir1) || !validDirs.includes(minotaurDir2) ) {
+            console.error(`Forbidden Fruit ${data.fruitCount}: Expected minotaurs at 1, 4, or 6. Got ${minotaurDir1} and ${minotaurDir2}.`);
+            return;
+          }
+
           // Add the two positions to calculate platform between
           // Minotaurs spawn at dirs 1 (N), 4 (SE), or 6 (SW)
           const bridgeDirsToPlatform: { [dir: number]: string } = {
@@ -233,7 +240,6 @@ const triggerSet: TriggerSet<Data> = {
           const platform = bridgeDirsToPlatform[minotaurDir1 + minotaurDir2];
           if (platform !== undefined)
             return { infoText: output.warOrientation!({ location: output[platform]!() }) };
-          console.error(`Forbidden Fruit ${data.fruitCount}: Invalid positions.`);
         }
 
         if (data.fruitCount > 6 && data.fruitCount < 10) {
