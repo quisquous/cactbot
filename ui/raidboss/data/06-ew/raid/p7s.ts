@@ -200,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
           if (data.fruitCount === 6) {
             // Callout where bull is not
             // Remove platform from platforms
-            const newPlatforms = platforms.filter(val => val !== platform);
+            const newPlatforms = platforms.filter((val) => val !== platform);
 
             if (newPlatforms.length === 2) {
               const safePlatform1 = newPlatforms[0];
@@ -224,7 +224,7 @@ const triggerSet: TriggerSet<Data> = {
 
           // Return if received bad data
           const validDirs = [1, 4, 6];
-          if (!validDirs.includes(minotaurDir1) || !validDirs.includes(minotaurDir2) ) {
+          if (!validDirs.includes(minotaurDir1) || !validDirs.includes(minotaurDir2)) {
             console.error(`Forbidden Fruit ${data.fruitCount}: Expected minotaurs at 1, 4, or 6. Got ${minotaurDir1} and ${minotaurDir2}.`);
             return;
           }
@@ -256,7 +256,7 @@ const triggerSet: TriggerSet<Data> = {
           const birdPlatform2 = dirToPlatform[birdDir2];
 
           // Remove platform from platforms
-          const newPlatforms = platforms.filter(val => val !== birdPlatform1 && val !== birdPlatform2);
+          const newPlatforms = platforms.filter((val) => val !== birdPlatform1 && val !== birdPlatform2);
 
           if (newPlatforms.length === 1) {
             const platform = newPlatforms[0];
