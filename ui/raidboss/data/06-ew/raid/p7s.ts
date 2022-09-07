@@ -187,7 +187,7 @@ const triggerSet: TriggerSet<Data> = {
           const safeSpot = safeSpots[bullPosition];
           if (safeSpot !== undefined) {
             if (data.fruitCount === 4)
-              return { infoText: output.orientation!({ entity: output.bull!(), location: output[safeSpot]!() }) };
+              return { infoText: output.orientation!({ location: output[safeSpot]!() }) };
             return { infoText: output.deathOrientation!({ location: output[safeSpot]!() }) };
           }
           console.error(`${errorMessagePhase}: Invalid positions.`);
