@@ -100,6 +100,7 @@ Options.Triggers.push({
       outputStrings: {
         baitSoon: {
           en: 'Bait on Empty Platform Soon',
+          de: 'Bald auf freier Plattform ködern',
         },
       },
     },
@@ -113,6 +114,7 @@ Options.Triggers.push({
       outputStrings: {
         separateHealerGroups: {
           en: 'Healer Group Platforms',
+          de: 'Heiler-Gruppen Plattformen',
         },
       },
     },
@@ -199,30 +201,39 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           bullTether: {
             en: 'Bull Tether (Line AoE)',
+            de: 'Stier-Verbindung (Linien AoE)',
           },
           deathBullTether: {
             en: 'Bull Tether (Line AoE)',
+            de: 'Stier-Verbindung (Linien AoE)',
           },
           warBullTether: {
             en: 'Bull Tether (Line AoE)',
+            de: 'Stier-Verbindung (Linien AoE)',
           },
           minotaurTether: {
             en: 'Minotaur Tether (Big Cleave)',
+            de: 'Minotaurus-Verbindung (Große Kegel-AoE)',
           },
           famineMinotaurTether: {
             en: 'Cross Minotaur Tethers (Big Cleave)',
+            de: 'Überkreuze Minotaurus-Verbindung (Große Kegel-AoE)',
           },
           warMinotaurTether: {
             en: 'Minotaur Tether (Big Cleave)',
+            de: 'Minotaurus-Verbindung (Große Kegel-AoE)',
           },
           warBirdTether: {
             en: 'Bird Tether',
+            de: 'Vogel-Verbindung',
           },
           noTether: {
             en: 'No Tether, Bait Minotaur Cleave (Middle)',
+            de: 'Keine Verbindung, Minotaurus-Verbindung ködern (Mitte)',
           },
           famineNoTether: {
             en: 'No Tether, Bait Minotaur Cleave',
+            de: 'Keine Verbindung, Minotaurus-Verbindung ködern',
           },
         };
         if (data.me === matches.target) {
