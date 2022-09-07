@@ -151,16 +151,20 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         // Platforms are at 0 NW, 2 NE, 5 S
+        // Eggs may spawn in additional cardinals/intercardinals
         const safeSpots: { [bird: number]: string } = {
           0: 'left',
           2: 'right',
+          3: 'right',
           5: 'south',
+          7: 'left',
         };
+
         if (data.fruitCount === 1) {
           // Find location of the north-most bird
           // Forbidden Fruit 1 uses last two birds
           if (data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined || data.unhatchedEggs[9] === undefined) {
-            console.error(`Forbidden Fruit 1: Missing egg data.`);
+            console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
             return;
           }
           const bird1 = data.unhatchedEggs[8];
@@ -174,48 +178,44 @@ const triggerSet: TriggerSet<Data> = {
             return { alertText: output.left!() };
           return { alertText: output.right!() };
         }
-        if (data.fruitCount === 4 || data.fruitCount === 9) {
-          const errorMessagePhase = (data.tetherCollectPhase === undefined ? 'Forbidden Fruit 4' : data.tetherCollectPhase);
+
+        if (data.fruitCount === 4 || data.fruitCount === 6 || data.fruitCount === 9) {
           // Check where bull is
-          // Forbidden Fruit 4 and 9 use bull 3
+          // Forbidden Fruit 4, 6, and 9 use bull 3
           if (data.unhatchedEggs === undefined || data.unhatchedEggs[12] === undefined) {
-            console.error(`${errorMessagePhase}: Missing egg data.`);
+            console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
             return;
           }
           const bullPosition = matchedPositionTo8Dir(data.unhatchedEggs[12]);
 
-          const safeSpot = safeSpots[bullPosition];
+          // Filter the result unique values to account for variations on platforms
+          const filteredSafeSpots = Array.from(new Set(Object.values(safeSpots)));
+
+          const safeSpot = filteredSafeSpots[bullPosition];
           if (safeSpot !== undefined) {
             if (data.fruitCount === 4)
               return { infoText: output.orientation!({ location: output[safeSpot]!() }) };
-            return { infoText: output.deathOrientation!({ location: output[safeSpot]!() }) };
-          }
-          console.error(`${errorMessagePhase}: Invalid positions.`);
-        }
-        if (data.fruitCount === 6) {
-          // Check where bull is
-          // Forbidden Fruit 6 uses birds 1 and 4, bull 3
-          if (data.unhatchedEggs === undefined || data.unhatchedEggs[12] === undefined) {
-            console.error(`Forbidden Fruit 6: Missing egg data.`);
-            return;
-          }
-          const bullPosition = matchedPositionTo8Dir(data.unhatchedEggs[12]);
 
-          delete safeSpots[bullPosition];
+            if (data.fruitCount === 6) {
+              if (filteredSafeSpots.length === 2) {
+                const safePlatform1 = filteredSafeSpots[0];
+                const safePlatform2 = filteredSafeSpots[1];
+                if (safePlatform1 !== undefined && safePlatform2 !== undefined)
+                  return { infoText: output.twoPlatforms!({ platform1: output[safePlatform1]!(), platform2: output[safePlatform2]!() }) };
+              }
+            }
 
-          if (Object.keys(safeSpots).length === 2) {
-            const safePlatform1 = Object.values(safeSpots)[0];
-            const safePlatform2 = Object.values(safeSpots)[1];
-            if (safePlatform1 !== undefined && safePlatform2 !== undefined)
-              return { infoText: output.twoPlatforms!({ platform1: output[safePlatform1]!(), platform2: output[safePlatform2]!() }) };
+            if (data.fruitCount === 9)
+              return { infoText: output.deathOrientation!({ location: output[safeSpot]!() }) };
           }
+          console.error(`Forbidden Fruit ${data.fruitCount}: Invalid positions.`);
         }
+
         if (data.fruitCount === 7 || data.fruitCount === 8 || data.fruitCount === 10) {
-          const errorMessagePhase = (data.tetherCollectPhase === undefined ? 'Forbidden Fruit 7' : data.tetherCollectPhase);
           // Check each location for bird, call out where there is no bird
           // Forbidden Fruit 7, 8, and 10 use last two birds
           if (data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined || data.unhatchedEggs[9] === undefined) {
-            console.error(`${errorMessagePhase}: Missing egg data.`);
+            console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
             return;
           }
           const birdPosition1 = matchedPositionTo8Dir(data.unhatchedEggs[8]);
@@ -224,8 +224,11 @@ const triggerSet: TriggerSet<Data> = {
           delete safeSpots[birdPosition1];
           delete safeSpots[birdPosition2];
 
-          if (Object.keys(safeSpots).length === 1) {
-            const safeSpot = Object.values(safeSpots)[0];
+          // Filter the result unique values to account for variations on platforms
+          const filteredSafeSpots = Array.from(new Set(Object.values(safeSpots)));
+
+          if (filteredSafeSpots.length === 1) {
+            const safeSpot = filteredSafeSpots[0];
             if (safeSpot !== undefined) {
               switch (data.fruitCount) {
                 case 7:
@@ -236,7 +239,7 @@ const triggerSet: TriggerSet<Data> = {
                   return { infoText: output.warOrientation!({ location: output[safeSpot]!() }) };
               }
             }
-            console.error(`${errorMessagePhase}: Invalid positions.`);
+            console.error(`Forbidden Fruit ${data.fruitCount}: Invalid positions.`);
           }
         }
       },
