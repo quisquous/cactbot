@@ -127,6 +127,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitSoon: {
           en: 'Bait on Empty Platform Soon',
+          ko: '빈 플랫폼에서 장판 유도 준비',
         },
       },
     },
@@ -140,6 +141,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         separateHealerGroups: {
           en: 'Healer Group Platforms',
+          ko: '힐러 그룹별로 플랫폼',
         },
       },
     },
@@ -179,7 +181,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'aoe + bleed',
           de: 'AoE + Blutung',
           ja: 'AOE + 出血',
-          ko: '전체 공격 + 출혈',
+          ko: '전체 공격 + 도트',
         },
       },
     },
@@ -228,30 +230,39 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           bullTether: {
             en: 'Bull Tether (Line AoE)',
+            ko: '소 (직선 장판)',
           },
           deathBullTether: {
             en: 'Bull Tether (Line AoE)',
+            ko: '소 (직선 장판)',
           },
           warBullTether: {
             en: 'Bull Tether (Line AoE)',
+            ko: '소 (직선 장판)',
           },
           minotaurTether: {
             en: 'Minotaur Tether (Big Cleave)',
+            ko: '미노타우로스 (부채꼴 장판)',
           },
           famineMinotaurTether: {
             en: 'Cross Minotaur Tethers (Big Cleave)',
+            ko: '미노타우로스 선 교차하기 (부채꼴 장판)',
           },
           warMinotaurTether: {
             en: 'Minotaur Tether (Big Cleave)',
+            ko: '미노타우로스 (부채꼴 장판)',
           },
           warBirdTether: {
             en: 'Bird Tether',
+            ko: '새',
           },
           noTether: {
             en: 'No Tether, Bait Minotaur Cleave (Middle)',
+            ko: '선 없음, 미노타우로스 유도 (중앙)',
           },
           famineNoTether: {
             en: 'No Tether, Bait Minotaur Cleave',
+            ko: '선 없음, 미노타우로스 유도',
           },
         };
 
