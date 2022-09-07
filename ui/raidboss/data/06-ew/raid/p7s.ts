@@ -223,6 +223,7 @@ const triggerSet: TriggerSet<Data> = {
           const minotaurDir2 = matchedPositionTo8Dir(data.unhatchedEggs[5]);
 
           // Add the two positions to calculate platform between
+          // Minotaurs spawn at dirs 1 (N), 4 (SE), or 6 (SW)
           const bridgeDirsToPlatform: { [dir: number]: string } = {
             5: 'right', // N + SE
             7: 'left', // N + SW
