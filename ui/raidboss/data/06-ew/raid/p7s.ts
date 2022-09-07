@@ -150,15 +150,18 @@ const triggerSet: TriggerSet<Data> = {
           },
         };
 
-        // Platforms are at 0 NW, 2 NE, 5 S
-        // Eggs may spawn in additional cardinals/intercardinals
-        const safeSpots: { [bird: number]: string } = {
+          // Map of dirs to Platform locations
+        // Note: Eggs may spawn in additional cardinals/intercardinals
+        const dirToPlatform: { [dir: number]: string } = {
           0: 'left',
           2: 'right',
           3: 'right',
           5: 'south',
           7: 'left',
         };
+
+        // Platforms array used to filter for new platforms
+        const platforms = ['right', 'left', 'south'];
 
         if (data.fruitCount === 1) {
           // Find location of the north-most bird
@@ -181,27 +184,27 @@ const triggerSet: TriggerSet<Data> = {
 
         if (data.fruitCount === 4 || data.fruitCount === 6) {
           // Check where bull is
-          // Forbidden Fruit 4 and 6 use bull 3
+          // Forbidden Fruit 4 and 6 use last bull
           if (data.unhatchedEggs === undefined || data.unhatchedEggs[12] === undefined) {
             console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
             return;
           }
-          const bullPosition = matchedPositionTo8Dir(data.unhatchedEggs[12]);
+          const bullDir = matchedPositionTo8Dir(data.unhatchedEggs[12]);
+          const platform = dirToPlatform[bullDir];
 
           if (data.fruitCount === 4) {
-            // Safe spot is where bull is
-            const safeSpot = safeSpots[bullPosition];
-            if (safeSpot !== undefined)
-              return { infoText: output.orientation!({ location: output[safeSpot]!() }) };
+            // Call out orientation based on bull's platform
+            if (platform !== undefined)
+              return { infoText: output.orientation!({ location: output[platform]!() }) };
           }
-
           if (data.fruitCount === 6) {
-            // Safe spots is where bull is not
-            // Filter the result unique values to account for variations on platforms
-            const filteredSafeSpots = Array.from(new Set(Object.values(safeSpots)));
-            if (filteredSafeSpots.length === 2) {
-              const safePlatform1 = filteredSafeSpots[0];
-              const safePlatform2 = filteredSafeSpots[1];
+            // Callout where bull is not
+            // Remove platform from platforms
+            const newPlatforms = platforms.filter(val => val != platform);
+
+            if (newPlatforms.length === 2) {
+              const safePlatform1 = newPlatforms[0];
+              const safePlatform2 = newPlatforms[1];
               if (safePlatform1 !== undefined && safePlatform2 !== undefined)
                 return { infoText: output.twoPlatforms!({ platform1: output[safePlatform1]!(), platform2: output[safePlatform2]!() }) };
             }
@@ -216,19 +219,19 @@ const triggerSet: TriggerSet<Data> = {
             console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
             return;
           }
-          const minotaurPosition1 = matchedPositionTo8Dir(data.unhatchedEggs[4]);
-          const minotaurPosition2 = matchedPositionTo8Dir(data.unhatchedEggs[5]);
+          const minotaurDir1 = matchedPositionTo8Dir(data.unhatchedEggs[4]);
+          const minotaurDir2 = matchedPositionTo8Dir(data.unhatchedEggs[5]);
 
           // Add the two positions to calculate platform between
-          const safeSpots: { [minotaurs: number]: string } = {
+          const bridgeDirsToPlatform: { [dir: number]: string } = {
             5: 'right', // N + SE
             7: 'left', // N + SW
             10: 'south', // SE + SW
           };
 
-          const safeSpot = safeSpots[minotaurPosition1 + minotaurPosition2];
-          if (safeSpot !== undefined)
-            return { infoText: output.warOrientation!({ location: output[safeSpot]!() }) };
+          const platform = bridgeDirsToPlatform[minotaurDir1 + minotaurDir2];
+          if (platform !== undefined)
+            return { infoText: output.warOrientation!({ location: output[platform]!() }) };
           console.error(`Forbidden Fruit ${data.fruitCount}: Invalid positions.`);
         }
 
@@ -239,25 +242,25 @@ const triggerSet: TriggerSet<Data> = {
             console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
             return;
           }
-          const birdPosition1 = matchedPositionTo8Dir(data.unhatchedEggs[8]);
-          const birdPosition2 = matchedPositionTo8Dir(data.unhatchedEggs[9]);
+          const birdDir1 = matchedPositionTo8Dir(data.unhatchedEggs[8]);
+          const birdDir2 = matchedPositionTo8Dir(data.unhatchedEggs[9]);
 
-          delete safeSpots[birdPosition1];
-          delete safeSpots[birdPosition2];
+          const birdPlatform1 = dirToPlatform[birdDir1];
+          const birdPlatform2 = dirToPlatform[birdDir2];
 
-          // Filter the result unique values to account for variations on platforms
-          const filteredSafeSpots = Array.from(new Set(Object.values(safeSpots)));
+          // Remove platform from platforms
+          const newPlatforms = platforms.filter(val => val != birdPlatform1 && val != birdPlatform2);
 
-          if (filteredSafeSpots.length === 1) {
-            const safeSpot = filteredSafeSpots[0];
-            if (safeSpot !== undefined) {
+          if (newPlatforms.length === 1) {
+            const platform = newPlatforms[0];
+            if (platform !== undefined) {
               switch (data.fruitCount) {
                 case 7:
-                  return { infoText: output[safeSpot]!() };
+                  return { infoText: output[platform]!() };
                 case 8:
-                  return { infoText: output.famineOrientation!({ location: output[safeSpot]!() }) };
+                  return { infoText: output.famineOrientation!({ location: output[platform]!() }) };
                 case 9:
-                  return { infoText: output.deathOrientation!({ location: output[safeSpot]!() }) };
+                  return { infoText: output.deathOrientation!({ location: output[platform]!() }) };
               }
             }
             console.error(`Forbidden Fruit ${data.fruitCount}: Invalid positions.`);
