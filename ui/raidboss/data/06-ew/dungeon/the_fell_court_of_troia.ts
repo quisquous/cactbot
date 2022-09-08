@@ -126,7 +126,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'AoE + Saignement',
           ja: 'AoE + DoT',
           cn: 'AOE + 流血',
-          ko: '전체 공격 + 출혈',
+          ko: '전체 공격 + 도트',
         },
       },
     },
