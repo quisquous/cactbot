@@ -2,6 +2,7 @@
 #
 # -p 7720:14.9
 # -ii 7A0E 76F4 7701 771E 771F 76F9 7710 76FB 75FC 7711 770F 770A 79E3 76FC
+# -it "Proto-Carbuncle"
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -74,86 +75,83 @@ hideall "--sync--"
 266.0 "Starving Stampede 8" #sync / 1[56]:[^:]*:Proto-Carbuncle:7A03:/
 267.0 "--targetable--"
 
-# TODO: this section likely needs to be cleaned up??
-#267.3 "Devour" sync / 1[56]:[^:]*:Proto-Carbuncle:7725:/
-#270.4 "Venom" sync / 1[56]:[^:]*:Proto-Carbuncle:770C:/
-#270.4 "Devour" sync / 1[56]:[^:]*:Proto-Carbuncle:7726:/
-#277.7 "Spit" sync / 1[56]:[^:]*:Proto-Carbuncle:7727:/
-#280.3 "Impact" sync / 1[56]:[^:]*:Proto-Carbuncle:7A1F:/
-#280.5 "Devour" sync / 1[56]:[^:]*:Proto-Carbuncle:7728:/
-#282.1 "Devour" sync / 1[56]:[^:]*:Proto-Carbuncle:7849:/
-#285.2 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76F5:/
-#285.3 "Scatterbait" sync / 1[56]:[^:]*:Lively Bait:770D:/
+# This section can be extended by 10+ seconds if multiple towers are missed
+# due to multiple Devour/Spits.  Have this timelime reflect the "good" pattern.
+# Unclear what the timeline looks like if you let one bait spawn.
+267.0 "--targetable--"
+270.3 "Venom" sync / 1[56]:[^:]*:Proto-Carbuncle:770C:/
+272.4 "Devour" sync / 1[56]:[^:]*:Proto-Carbuncle:7849:/
+275.5 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76F5:/
 
 # 2/3 Topaz Stones + stacks to break them
-# big sync just for safety
-295.3 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:7720:/ window 50,10
-302.4 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
-308.5 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76FD:/
-308.5 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76FE:/
-315.6 "Venom Pool" sync / 1[56]:[^:]*:Proto-Carbuncle:79E2:/
-320.8 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76F5:/
-322.0 "Topaz Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:79FE:/
-322.6 "Ruby Reflection" sync / 1[56]:[^:]*:Proto-Carbuncle:76F8:/
-327.7 "Raging Claw x7 / Searing Ray?" #sync / 1[56]:[^:]*:Proto-Carbuncle:(76FA|76F7):/
-328.5 "Ruby Reflection?" #sync / 1[56]:[^:]*:Proto-Carbuncle:76F8:/
+280.6 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7720:/ window 50,10
+285.6 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:7720:/
+292.7 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
+298.8 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76FD:/
+298.8 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76FE:/
+305.9 "Venom Pool" sync / 1[56]:[^:]*:Proto-Carbuncle:79E2:/
+311.1 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76F5:/
+312.3 "Topaz Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:79FE:/
+312.9 "Ruby Reflection" sync / 1[56]:[^:]*:Proto-Carbuncle:76F8:/
+318.0 "Raging Claw x7 / Searing Ray?" #sync / 1[56]:[^:]*:Proto-Carbuncle:(76FA|76F7):/
+318.8 "Ruby Reflection?" #sync / 1[56]:[^:]*:Proto-Carbuncle:76F8:/
 
 # Light party splits
-341.8 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/
-348.9 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:784A:/
-362.3 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
-369.4 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76FD:/
-369.4 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76FE:/
-383.0 "Topaz Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:79FE:/
-383.6 "Ruby Reflection" sync / 1[56]:[^:]*:Proto-Carbuncle:7700:/
-383.6 "Venom Squall" sync / 1[56]:[^:]*:Proto-Carbuncle:7716:/
-387.5 "Venom Rain" sync / 1[56]:[^:]*:Proto-Carbuncle:7718:/
-393.5 "Venom Drops" sync / 1[56]:[^:]*:Proto-Carbuncle:7719:/
-396.5 "Venom Pool" sync / 1[56]:[^:]*:Proto-Carbuncle:771A:/
+332.1 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/
+339.2 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:784A:/
+352.6 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
+359.7 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76FD:/
+359.7 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76FE:/
+373.3 "Topaz Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:79FE:/
+373.9 "Ruby Reflection" sync / 1[56]:[^:]*:Proto-Carbuncle:7700:/
+373.9 "Venom Squall" sync / 1[56]:[^:]*:Proto-Carbuncle:7716:/
+377.8 "Venom Rain" sync / 1[56]:[^:]*:Proto-Carbuncle:7718:/
+383.8 "Venom Drops" sync / 1[56]:[^:]*:Proto-Carbuncle:7719:/
+386.8 "Venom Pool" sync / 1[56]:[^:]*:Proto-Carbuncle:771A:/
 
-399.7 "--towers--" duration 10 # guessing
-414.5 "Claw to Tail/Tail to Claw" sync / 1[56]:[^:]*:Proto-Carbuncle:(770E|7712):/
+390.0 "--towers--" duration 10 # guessing
+404.8 "Claw to Tail/Tail to Claw" sync / 1[56]:[^:]*:Proto-Carbuncle:(770E|7712):/
 #414.9 "Raging Tail" sync / 1[56]:[^:]*:Proto-Carbuncle:7A0C:/
 #416.8 "Raging Claw" sync / 1[56]:[^:]*:Proto-Carbuncle:7713:/ duration 2.2
-426.7 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/
-433.8 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:784A:/
-445.1 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:7720:/
+417.0 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/
+424.1 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:784A:/
+435.4 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:7720:/
 
 # Break Topaz Stones with poison stacks again
-452.2 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
-458.3 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76FD:/
-458.3 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76FE:/
-465.4 "Venom Pool" sync / 1[56]:[^:]*:Proto-Carbuncle:79E2:/
-471.9 "Topaz Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:79FE:/
-472.5 "Ruby Reflection" sync / 1[56]:[^:]*:Proto-Carbuncle:7700:/
+442.5 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
+448.6 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76FD:/
+448.6 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76FE:/
+455.7 "Venom Pool" sync / 1[56]:[^:]*:Proto-Carbuncle:79E2:/
+462.2 "Topaz Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:79FE:/
+462.8 "Ruby Reflection" sync / 1[56]:[^:]*:Proto-Carbuncle:7700:/
 
 # Double Rush
-475.3 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76F5:/
-482.4 "Double Rush 1" sync / 1[56]:[^:]*:Proto-Carbuncle:771B:/
-484.4 "Double Rush 2" sync / 1[56]:[^:]*:Proto-Carbuncle:771C:/
+465.6 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76F5:/
+472.7 "Double Rush 1" sync / 1[56]:[^:]*:Proto-Carbuncle:771B:/
+474.7 "Double Rush 2" sync / 1[56]:[^:]*:Proto-Carbuncle:771C:/
 
-486.4 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76F5:/
-492.4 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/
-499.5 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:784A:/
-512.9 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:7720:/
+476.7 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76F5:/
+482.7 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/
+489.8 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:784A:/
+503.2 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:7720:/
 
-521.1 "Venom Squall/Venom Surge" sync / 1[56]:[^:]*:Proto-Carbuncle:(7716|7717):/
-525.0 "Venom Rain/Venom Pool" sync / 1[56]:[^:]*:Proto-Carbuncle:(7718|771A):/
-531.0 "Venom Drops" sync / 1[56]:[^:]*:Proto-Carbuncle:7719:/
-534.0 "Venom Pool/Venom Rain" sync / 1[56]:[^:]*:Proto-Carbuncle:(771A|7718):/
+511.4 "Venom Squall/Venom Surge" sync / 1[56]:[^:]*:Proto-Carbuncle:(7716|7717):/
+515.3 "Venom Rain/Venom Pool" sync / 1[56]:[^:]*:Proto-Carbuncle:(7718|771A):/
+521.3 "Venom Drops" sync / 1[56]:[^:]*:Proto-Carbuncle:7719:/
+524.3 "Venom Pool/Venom Rain" sync / 1[56]:[^:]*:Proto-Carbuncle:(771A|7718):/
 
-540.4 "Claw to Tail/Tail to Claw" sync / 1[56]:[^:]*:Proto-Carbuncle:(770E|7712):/
-553.8 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/
-560.9 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:784A:/
+530.7 "Claw to Tail/Tail to Claw" sync / 1[56]:[^:]*:Proto-Carbuncle:(770E|7712):/
+544.1 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/
+551.2 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:784A:/
 
 # Soft enrage
-575.2 "Sonic Shatter" sync / 1[56]:[^:]*:Proto-Carbuncle:7721:/
-578.3 "Sonic Shatter" sync / 1[56]:[^:]*:Proto-Carbuncle:7722:/
-581.4 "Sonic Shatter" sync / 1[56]:[^:]*:Proto-Carbuncle:7722:/
-584.5 "Sonic Shatter" sync / 1[56]:[^:]*:Proto-Carbuncle:7722:/
-587.6 "Sonic Shatter" sync / 1[56]:[^:]*:Proto-Carbuncle:7722:/
-592.7 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:7708:/
+565.5 "Sonic Shatter" sync / 1[56]:[^:]*:Proto-Carbuncle:7721:/
+568.6 "Sonic Shatter" sync / 1[56]:[^:]*:Proto-Carbuncle:7722:/
+571.7 "Sonic Shatter" sync / 1[56]:[^:]*:Proto-Carbuncle:7722:/
+574.8 "Sonic Shatter" sync / 1[56]:[^:]*:Proto-Carbuncle:7722:/
+577.9 "Sonic Shatter" sync / 1[56]:[^:]*:Proto-Carbuncle:7722:/
+583.0 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:7708:/
 
 # Hard Enrage
-603.1 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7723:/ window 1850,10
-607.8 "Acidic Slaver (enrage)" sync / 1[56]:[^:]*:Proto-Carbuncle:7723:/
+593.4 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7723:/ window 1850,10
+598.1 "Acidic Slaver (enrage)" sync / 1[56]:[^:]*:Proto-Carbuncle:7723:/
