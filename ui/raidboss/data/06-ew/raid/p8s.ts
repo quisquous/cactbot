@@ -27,6 +27,8 @@ export interface Data extends RaidbossData {
   firstSnakeCalled?: boolean;
   secondSnakeGazeFirst: { [name: string]: boolean };
   secondSnakeDebuff: { [name: string]: 'nothing' | 'shriek' | 'stack' };
+  firstAlignmentSecondAbility?: 'stack' | 'spread';
+  seenFirstAlignmentStackSpread?: boolean;
   concept: { [name: string]: InitialConcept };
   splicer: { [name: string]: Splicer };
   alignmentTargets: string[];
@@ -1032,13 +1034,45 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8S Ashing Blaze Right',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '79D7', source: 'Hephaistos', capture: false }),
-      response: Responses.goRight(),
+      alertText: (data, _matches, output) => {
+        if (data.firstAlignmentSecondAbility === 'stack')
+          return output.rightAndStack!();
+        if (data.firstAlignmentSecondAbility === 'spread')
+          return output.rightAndSpread!();
+        return output.right!();
+      },
+      run: (data) => delete data.firstAlignmentSecondAbility,
+      outputStrings: {
+        right: Outputs.right,
+        rightAndSpread: {
+          en: 'Right + Spread',
+        },
+        rightAndStack: {
+          en: 'Right + Stack',
+        },
+      },
     },
     {
       id: 'P8S Ashing Blaze Left',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '79D8', source: 'Hephaistos', capture: false }),
-      response: Responses.goLeft(),
+      alertText: (data, _matches, output) => {
+        if (data.firstAlignmentSecondAbility === 'stack')
+          return output.leftAndStack!();
+        if (data.firstAlignmentSecondAbility === 'spread')
+          return output.leftAndSpread!();
+        return output.left!();
+      },
+      run: (data) => delete data.firstAlignmentSecondAbility,
+      outputStrings: {
+        left: Outputs.left,
+        leftAndSpread: {
+          en: 'Left + Spread',
+        },
+        leftAndStack: {
+          en: 'Left + Stack',
+        },
+      },
     },
     {
       id: 'P8S High Concept',
@@ -1121,18 +1155,38 @@ const triggerSet: TriggerSet<Data> = {
           spread: {
             en: 'Spread First',
           },
+          baitAndStack: {
+            en: 'Bait => Stack',
+          },
+          baitAndSpread: {
+            en: 'Bait => Spread',
+          },
         };
         const isReversed = data.inverseMagics[matches.target] === true;
         const id = matches.count;
 
-        // This vfx transitions into the animated version at id-1, e.g. 1DD -> 1DC.
         // Huge credit to Aya for this.  Also note `209` is the purple swirl.
         const ids = {
-          fireThenIce: '1DD',
-          iceThenFire: '1DF',
-          stackThenSpread: '1E1',
-          spreadThenStack: '1E3',
+          fireThenIce: '1DC',
+          iceThenFire: '1DE',
+          stackThenSpread: '1E0',
+          spreadThenStack: '1E2',
         } as const;
+
+        // The first time through, use the "bait" version to avoid people running off
+        // as soon as they hear the beepy boops.
+        if (!data.seenFirstAlignmentStackSpread) {
+          // The first one can't be reversed.
+          // Store the follow-up ability so it can be used with the left/right Ashing Blaze.
+          if (id === ids.stackThenSpread) {
+            data.firstAlignmentSecondAbility = 'spread';
+            return { alertText: output.baitAndStack!() };
+          }
+          if (id === ids.stackThenSpread) {
+            data.firstAlignmentSecondAbility = 'stack';
+            return { alertText: output.baitAndSpread!() };
+          }
+        }
 
         const key = isReversed ? 'alarmText' : 'alertText';
         if (!isReversed && id === ids.fireThenIce || isReversed && id === ids.iceThenFire)
@@ -1150,7 +1204,12 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['79C0', '79BF', '79BD', '79BE'], source: 'Hephaistos' }),
       suppressSeconds: 8,
-      alertText: (_data, matches, output) => {
+      alertText: (data, matches, output) => {
+        // Due to the way suppress works, put this check here and not in the condition field.
+        // This callout will get merged with the left/right which happens at the same time.
+        if (!data.seenFirstAlignmentStackSpread)
+          return;
+
         const id = matches.id;
         const ids = {
           spread: '79C0',
@@ -1170,6 +1229,7 @@ const triggerSet: TriggerSet<Data> = {
         if (id === ids.fire)
           return output.ice!();
       },
+      run: (data) => data.seenFirstAlignmentStackSpread = true,
       outputStrings: {
         stack: Outputs.stackMarker,
         spread: Outputs.spread,
