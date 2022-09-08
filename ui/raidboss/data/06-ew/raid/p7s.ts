@@ -8,7 +8,7 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
+import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Tether locations, and/or additional egg locations
 
@@ -106,9 +106,15 @@ const triggerSet: TriggerSet<Data> = {
       preRun: (data) => data.fruitCount = data.fruitCount + 1,
       delaySeconds: 0.5,
       promise: async (data) => {
+        const fruitLocaleNames: LocaleText = {
+          en: 'Forbidden Fruit',
+        };
+
+        // Select the Forbidden Fruits
+        const combatantNameFruits = [fruitLocaleNames[data.parserLang] ?? fruitLocaleNames['en']];
         const combatantData = await callOverlayHandler({
           call: 'getCombatants',
-          names: ['Forbidden Fruit'],
+          names: combatantNameFruits,
         });
         // if we could not retrieve combatant data, the
         // trigger will not work, so just resume promise here
