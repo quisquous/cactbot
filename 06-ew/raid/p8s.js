@@ -514,10 +514,13 @@ Options.Triggers.push({
     {
       id: 'P8S Illusory Hephaistos Scorched Pinion First',
       type: 'StartsUsing',
-      // This is "Illusory Hephaistos" but sometimes it says "Gorgon".
-      netRegex: NetRegexes.startsUsing({ id: '7953' }),
+      // This is "Illusory Hephaistos" but sometimes it says "Gorgon", so drop the name.
+      // This trigger calls out the Scorched Pinion location (7953), but is looking
+      // for the Scorching Fang (7952) ability.  The reason for this is that there are
+      // two casts of 7953 and only one 7952, and there's some suspicion that position
+      // data may be incorrect on one of the 7953 mobs.
+      netRegex: NetRegexes.startsUsing({ id: '7952' }),
       condition: (data) => data.flareTargets.length === 0,
-      suppressSeconds: 1,
       promise: async (data, matches) => {
         data.combatantData = [];
         const id = parseInt(matches.sourceId, 16);
@@ -530,11 +533,12 @@ Options.Triggers.push({
         const combatant = data.combatantData[0];
         if (combatant === undefined || data.combatantData.length !== 1)
           return;
+        // We are looking for "7953"
         const dir = positionTo8Dir(combatant);
         if (dir === 0 || dir === 4)
-          return output.northSouth();
-        if (dir === 2 || dir === 6)
           return output.eastWest();
+        if (dir === 2 || dir === 6)
+          return output.northSouth();
       },
       outputStrings: {
         northSouth: {
