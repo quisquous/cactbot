@@ -10,10 +10,19 @@ import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: call out gorgon spawn locations
+// TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
+// TODO: crush/impact directions during 2nd beast phase
+// TODO: make the torch call say left/right during 2nd beast
+// TODO: better vent callouts
+// TODO: initial tank auto call on final boss as soon as boss pulled
+// TODO: figure out how to handle towers during HC1/HC2
+
 export type InitialConcept = 'shortalpha' | 'longalpha' | 'shortbeta' | 'longbeta' | 'shortgamma' | 'longgamma';
 export type Splicer = 'solosplice' | 'multisplice' | 'supersplice';
 
 export interface Data extends RaidbossData {
+  // Door Boss
   conceptual?: 'octa' | 'tetra' | 'di';
   combatantData: PluginCombatantState[];
   torches: NetMatches['StartsUsing'][];
@@ -27,6 +36,9 @@ export interface Data extends RaidbossData {
   firstSnakeCalled?: boolean;
   secondSnakeGazeFirst: { [name: string]: boolean };
   secondSnakeDebuff: { [name: string]: 'nothing' | 'shriek' | 'stack' };
+
+  // Final Boss
+  seenFirstTankAutos?: boolean;
   firstAlignmentSecondAbility?: 'stack' | 'spread';
   seenFirstAlignmentStackSpread?: boolean;
   concept: { [name: string]: InitialConcept };
@@ -71,11 +83,17 @@ const triggerSet: TriggerSet<Data> = {
   timelineTriggers: [
     {
       id: 'P8S Tank Cleave Autos',
-      // TODO: this could do a better job on the initial autos.
       regex: /--auto--/,
       beforeSeconds: 8,
       suppressSeconds: 20,
-      alertText: (_data, _matches, output) => output.text!(),
+      alertText: (data, _matches, output) => {
+        // TODO: because of how the timeline starts in a doorboss fight, this call occurs
+        // somewhere after the first few autos and so feels really weird.  Ideally, figure
+        // out some way to call this out immediately when combat starts?? Maybe off engage?
+        if (data.seenFirstTankAutos)
+          return output.text!();
+      },
+      run: (data) => data.seenFirstTankAutos = true,
       outputStrings: {
         text: {
           en: 'Tank Autos',
