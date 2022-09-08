@@ -219,7 +219,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait Circles',
           de: 'Kreise ködern',
-          fr: 'Posez les cercles',
+          fr: 'Déposez les cercles',
           ja: 'ゆか誘導',
           cn: '集合放圈',
           ko: '장판 유도',
