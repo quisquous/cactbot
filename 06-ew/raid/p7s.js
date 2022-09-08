@@ -13,6 +13,16 @@ const getHeadmarkerId = (data, matches) => {
   // since we know all the IDs that will be present in the encounter.
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
+// Calculate combatant position in an all 8 cards/intercards
+const matchedPositionTo8Dir = (combatant) => {
+  // Positions are moved up 100 and right 100
+  const y = combatant.PosY - 100;
+  const x = combatant.PosX - 100;
+  // Majority of mechanics center around three circles:
+  // NW at 0, NE at 2, South at 5
+  // Map NW = 0, N = 1, ..., W = 7
+  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+};
 // effect ids for inviolate purgation
 const effectIdToOutputStringKey = {
   'CEE': 'spread',
@@ -28,6 +38,7 @@ Options.Triggers.push({
   zoneId: ZoneId.AbyssosTheSeventhCircleSavage,
   timelineFile: 'p7s.txt',
   initData: () => ({
+    fruitCount: 0,
     rootsCount: 0,
     tetherCollect: [],
     purgationDebuffs: { 'dps': {}, 'support': {} },
@@ -43,6 +54,179 @@ Options.Triggers.push({
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => {
         getHeadmarkerId(data, matches);
+      },
+    },
+    {
+      id: 'P7S Egg Tracker',
+      // Collects combatantData of the eggs
+      // combatant.BNpcNameID Mapping:
+      //   11375 => Immature Io
+      //   11376 => Immature Stymphalide
+      //   11377 => Immature Minotaur
+      // unhatchedEggs Mapping:
+      //   0-5 are Minotaurs
+      //   6-9 are Birds
+      //   10-12 are Ios
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7811', source: 'Agdistis', capture: false }),
+      preRun: (data) => data.fruitCount = data.fruitCount + 1,
+      delaySeconds: 0.5,
+      promise: async (data) => {
+        const fruitLocaleNames = {
+          en: 'Forbidden Fruit',
+        };
+        // Select the Forbidden Fruits
+        const combatantNameFruits = [fruitLocaleNames[data.parserLang] ?? fruitLocaleNames['en']];
+        const combatantData = await callOverlayHandler({
+          call: 'getCombatants',
+          names: combatantNameFruits,
+        });
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (combatantData === null) {
+          console.error(`Forbidden Fruit: null data`);
+          return;
+        }
+        const combatantDataLength = combatantData.combatants.length;
+        if (combatantDataLength < 13) {
+          console.error(`Forbidden Fruit: expected at least 13 combatants got ${combatantDataLength}`);
+          return;
+        }
+        // Sort the combatants for parsing its role in the encounter
+        const sortCombatants = (a, b) => (a.ID ?? 0) - (b.ID ?? 0);
+        const sortedCombatantData = combatantData.combatants.sort(sortCombatants);
+        data.unhatchedEggs = sortedCombatantData;
+      },
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          left: Outputs.left,
+          right: Outputs.right,
+          south: Outputs.south,
+          twoPlatforms: {
+            en: '${platform1} / ${platform2}',
+          },
+          orientation: {
+            en: 'Line Bull: ${location}',
+          },
+          famineOrientation: {
+            en: 'Minotaurs without Bird: ${location}',
+          },
+          deathOrientation: {
+            en: 'Lightning Bull: ${location}',
+          },
+          warOrientation: {
+            en: 'Bird with Minotaurs: ${location}',
+          },
+        };
+        // Map of dirs to Platform locations
+        // Note: Eggs may spawn in additional cardinals/intercardinals
+        const dirToPlatform = {
+          0: 'left',
+          2: 'right',
+          3: 'right',
+          5: 'south',
+          7: 'left',
+        };
+        // Platforms array used to filter for new platforms
+        const platforms = ['right', 'left', 'south'];
+        if (data.fruitCount === 1) {
+          // Find location of the north-most bird
+          // Forbidden Fruit 1 uses last two birds
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined || data.unhatchedEggs[9] === undefined) {
+            console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
+            return;
+          }
+          const bird1 = data.unhatchedEggs[8];
+          const bird2 = data.unhatchedEggs[9];
+          // Lower PosY = more north
+          const northBird = (bird1.PosY < bird2.PosY ? bird1 : bird2);
+          // Check north bird's side
+          if (northBird.PosX < 100)
+            return { alertText: output.left() };
+          return { alertText: output.right() };
+        }
+        if (data.fruitCount === 4 || data.fruitCount === 6) {
+          // Check where bull is
+          // Forbidden Fruit 4 and 6 use last bull
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[12] === undefined) {
+            console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
+            return;
+          }
+          const bullDir = matchedPositionTo8Dir(data.unhatchedEggs[12]);
+          const platform = dirToPlatform[bullDir];
+          if (data.fruitCount === 4) {
+            // Call out orientation based on bull's platform
+            if (platform !== undefined)
+              return { infoText: output.orientation({ location: output[platform]() }) };
+          }
+          if (data.fruitCount === 6) {
+            // Callout where bull is not
+            // Remove platform from platforms
+            const newPlatforms = platforms.filter((val) => val !== platform);
+            if (newPlatforms.length === 2) {
+              const safePlatform1 = newPlatforms[0];
+              const safePlatform2 = newPlatforms[1];
+              if (safePlatform1 !== undefined && safePlatform2 !== undefined)
+                return { infoText: output.twoPlatforms({ platform1: output[safePlatform1](), platform2: output[safePlatform2]() }) };
+            }
+          }
+          console.error(`Forbidden Fruit ${data.fruitCount}: Invalid positions.`);
+        }
+        if (data.fruitCount === 10) {
+          // Check where minotaurs are to determine middle bird
+          // Forbidden Fruit 10 uses last two minotaurs
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[4] === undefined || data.unhatchedEggs[5] === undefined) {
+            console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
+            return;
+          }
+          const minotaurDir1 = matchedPositionTo8Dir(data.unhatchedEggs[4]);
+          const minotaurDir2 = matchedPositionTo8Dir(data.unhatchedEggs[5]);
+          // Return if received bad data
+          const validDirs = [1, 4, 6];
+          if (!validDirs.includes(minotaurDir1) || !validDirs.includes(minotaurDir2)) {
+            console.error(`Forbidden Fruit ${data.fruitCount}: Expected minotaurs at 1, 4, or 6. Got ${minotaurDir1} and ${minotaurDir2}.`);
+            return;
+          }
+          // Add the two positions to calculate platform between
+          // Minotaurs spawn at dirs 1 (N), 4 (SE), or 6 (SW)
+          const bridgeDirsToPlatform = {
+            5: 'right',
+            7: 'left',
+            10: 'south', // SE + SW
+          };
+          const platform = bridgeDirsToPlatform[minotaurDir1 + minotaurDir2];
+          if (platform !== undefined)
+            return { infoText: output.warOrientation({ location: output[platform]() }) };
+        }
+        if (data.fruitCount > 6 && data.fruitCount < 10) {
+          // Check each location for bird, call out where there is no bird
+          // Forbidden Fruit 7 - 10 use last two birds
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined || data.unhatchedEggs[9] === undefined) {
+            console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
+            return;
+          }
+          const birdDir1 = matchedPositionTo8Dir(data.unhatchedEggs[8]);
+          const birdDir2 = matchedPositionTo8Dir(data.unhatchedEggs[9]);
+          const birdPlatform1 = dirToPlatform[birdDir1];
+          const birdPlatform2 = dirToPlatform[birdDir2];
+          // Remove platform from platforms
+          const newPlatforms = platforms.filter((val) => val !== birdPlatform1 && val !== birdPlatform2);
+          if (newPlatforms.length === 1) {
+            const platform = newPlatforms[0];
+            if (platform !== undefined) {
+              switch (data.fruitCount) {
+                case 7:
+                  return { infoText: output[platform]() };
+                case 8:
+                  return { infoText: output.famineOrientation({ location: output[platform]() }) };
+                case 9:
+                  return { infoText: output.deathOrientation({ location: output[platform]() }) };
+              }
+            }
+            console.error(`Forbidden Fruit ${data.fruitCount}: Invalid positions.`);
+          }
+        }
       },
     },
     {
