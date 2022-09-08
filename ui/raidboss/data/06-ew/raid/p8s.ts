@@ -10,7 +10,19 @@ import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: call out gorgon spawn locations
+// TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
+// TODO: crush/impact directions during 2nd beast phase
+// TODO: make the torch call say left/right during 2nd beast
+// TODO: better vent callouts
+// TODO: initial tank auto call on final boss as soon as boss pulled
+// TODO: figure out how to handle towers during HC1/HC2
+
+export type InitialConcept = 'shortalpha' | 'longalpha' | 'shortbeta' | 'longbeta' | 'shortgamma' | 'longgamma';
+export type Splicer = 'solosplice' | 'multisplice' | 'supersplice';
+
 export interface Data extends RaidbossData {
+  // Door Boss
   conceptual?: 'octa' | 'tetra' | 'di';
   combatantData: PluginCombatantState[];
   torches: NetMatches['StartsUsing'][];
@@ -18,6 +30,22 @@ export interface Data extends RaidbossData {
   upliftCounter: number;
   ventIds: string[];
   illusory?: 'bird' | 'snake';
+  seenSnakeIllusoryCreation?: boolean;
+  firstSnakeOrder: { [name: string]: 1 | 2 };
+  firstSnakeDebuff: { [name: string]: 'gaze' | 'poison' };
+  firstSnakeCalled?: boolean;
+  secondSnakeGazeFirst: { [name: string]: boolean };
+  secondSnakeDebuff: { [name: string]: 'nothing' | 'shriek' | 'stack' };
+
+  // Final Boss
+  seenFirstTankAutos?: boolean;
+  firstAlignmentSecondAbility?: 'stack' | 'spread';
+  seenFirstAlignmentStackSpread?: boolean;
+  concept: { [name: string]: InitialConcept };
+  splicer: { [name: string]: Splicer };
+  alignmentTargets: string[];
+  inverseMagics: { [name: string]: boolean };
+  deformationTargets: string[];
 }
 
 const centerX = 100;
@@ -41,8 +69,38 @@ const triggerSet: TriggerSet<Data> = {
       flareTargets: [],
       upliftCounter: 0,
       ventIds: [],
+      firstSnakeOrder: {},
+      firstSnakeDebuff: {},
+      secondSnakeGazeFirst: {},
+      secondSnakeDebuff: {},
+      concept: {},
+      splicer: {},
+      alignmentTargets: [],
+      inverseMagics: {},
+      deformationTargets: [],
     };
   },
+  timelineTriggers: [
+    {
+      id: 'P8S Tank Cleave Autos',
+      regex: /--auto--/,
+      beforeSeconds: 8,
+      suppressSeconds: 20,
+      alertText: (data, _matches, output) => {
+        // TODO: because of how the timeline starts in a doorboss fight, this call occurs
+        // somewhere after the first few autos and so feels really weird.  Ideally, figure
+        // out some way to call this out immediately when combat starts?? Maybe off engage?
+        if (data.seenFirstTankAutos)
+          return output.text!();
+      },
+      run: (data) => data.seenFirstTankAutos = true,
+      outputStrings: {
+        text: {
+          en: 'Tank Autos',
+        },
+      },
+    },
+  ],
   triggers: [
     // ---------------- Part 1 ----------------
     {
@@ -478,12 +536,176 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getOut(),
     },
     {
+      id: 'P8S First Snake Debuff Collect',
+      // BBC = First in Line
+      // BBD = Second in Line,
+      // D17 = Eye of the Gorgon
+      // D18 = Crown of the Gorgon
+      // CFE = Blood of the Gorgon
+      // CFF = Breath of the Gorgon
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['BB[CD]', 'D17', 'CFE'] }),
+      condition: (data) => !data.firstSnakeCalled,
+      run: (data, matches) => {
+        const id = matches.effectId;
+        if (id === 'BBC')
+          data.firstSnakeOrder[matches.target] = 1;
+        else if (id === 'BBD')
+          data.firstSnakeOrder[matches.target] = 2;
+        else if (id === 'D17')
+          data.firstSnakeDebuff[matches.target] = 'gaze';
+        else if (id === 'CFE')
+          data.firstSnakeDebuff[matches.target] = 'poison';
+      },
+    },
+    {
+      id: 'P8S First Snake Debuff Initial Call',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['BB[CD]', 'D17', 'CFE'], capture: false }),
+      condition: (data) => !data.firstSnakeCalled,
+      delaySeconds: 0.3,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          firstGaze: {
+            en: 'First Gaze (w/ ${player})',
+          },
+          secondGaze: {
+            en: 'Second Gaze (w/ ${player})',
+          },
+          firstPoison: {
+            en: 'First Poison (w/ ${player})',
+          },
+          secondPoison: {
+            en: 'Second Poison (w/ ${player})',
+          },
+          unknown: Outputs.unknown,
+        };
+
+        const myNumber = data.firstSnakeOrder[data.me];
+        if (myNumber === undefined)
+          return;
+        const myDebuff = data.firstSnakeDebuff[data.me];
+        if (myDebuff === undefined)
+          return;
+
+        let partner = output.unknown!();
+        for (const [name, theirDebuff] of Object.entries(data.firstSnakeDebuff)) {
+          if (myDebuff !== theirDebuff || name === data.me)
+            continue;
+          const theirNumber = data.firstSnakeOrder[name];
+          if (myNumber === theirNumber) {
+            partner = data.ShortName(name);
+            break;
+          }
+        }
+
+        if (myNumber === 1) {
+          if (myDebuff === 'gaze')
+            return { alertText: output.firstGaze!({ player: partner }) };
+          return { alertText: output.firstPoison!({ player: partner }) };
+        }
+        if (myDebuff === 'gaze')
+          return { infoText: output.secondGaze!({ player: partner }) };
+        return { infoText: output.secondPoison!({ player: partner }) };
+      },
+      run: (data) => data.firstSnakeCalled = true,
+    },
+    {
+      id: 'P8S Second Snake Debuff Collect',
+      // D17 = Eye of the Gorgon (gaze)
+      // D18 = Crown of the Gorgon (shriek)
+      // CFE = Blood of the Gorgon (small poison)
+      // CFF = Breath of the Gorgon (stack poison)
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D1[78]', 'CFF'] }),
+      condition: (data) => data.firstSnakeCalled,
+      run: (data, matches) => {
+        const id = matches.effectId;
+
+        if (id === 'D17') {
+          // 23s short, 29s long
+          const duration = parseFloat(matches.duration);
+          data.secondSnakeGazeFirst[matches.target] = duration < 24;
+          data.secondSnakeDebuff[matches.target] ??= 'nothing';
+        } else if (id === 'D18') {
+          data.secondSnakeDebuff[matches.target] = 'shriek';
+        } else if (id === 'CFF') {
+          data.secondSnakeDebuff[matches.target] = 'stack';
+        }
+      },
+    },
+    {
+      id: 'P8S Second Snake Debuff Initial Call',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D1[78]', 'CFF'], capture: false }),
+      condition: (data) => data.firstSnakeCalled,
+      delaySeconds: 0.3,
+      durationSeconds: 6,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          firstGaze: {
+            en: 'First Gaze',
+          },
+          secondGaze: {
+            en: 'Second Gaze',
+          },
+          shriek: {
+            en: 'Shriek later (with ${player})',
+          },
+          stack: {
+            en: 'Stack later (with ${player})',
+          },
+          noDebuff: {
+            en: 'No debuff (w/ ${player1}, ${player2}, ${player3})',
+          },
+        };
+
+        const isGazeFirst = data.secondSnakeGazeFirst[data.me];
+        const myDebuff = data.secondSnakeDebuff[data.me];
+        if (isGazeFirst === undefined || myDebuff === undefined)
+          return;
+
+        const friends = [];
+        for (const [name, theirDebuff] of Object.entries(data.secondSnakeDebuff)) {
+          if (myDebuff === theirDebuff && name !== data.me)
+            friends.push(data.ShortName(name));
+        }
+
+        const gazeAlert = isGazeFirst ? output.firstGaze!() : output.secondGaze!();
+        if (myDebuff === 'nothing') {
+          return {
+            alertText: gazeAlert,
+            infoText: output.noDebuff!({ player1: friends[0], player2: friends[1], player3: friends[2] }),
+          };
+        }
+
+        if (myDebuff === 'shriek') {
+          return {
+            alertText: gazeAlert,
+            infoText: output.shriek!({ player: friends[0] }),
+          };
+        }
+
+        if (myDebuff === 'stack') {
+          return {
+            alertText: gazeAlert,
+            infoText: output.stack!({ player: friends[0] }),
+          };
+        }
+      },
+    },
+    {
       id: 'P8S Uplift Counter',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7935', source: 'Hephaistos', capture: false }),
       // Count in a separate trigger so that we can suppress it, but still call out for
       // both people hit.
       preRun: (data, _matches) => data.upliftCounter++,
+      durationSeconds: 1.7,
       suppressSeconds: 1,
       sound: '',
       infoText: (data, _matches, output) => output.text!({ num: data.upliftCounter }),
@@ -657,7 +879,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8S Suneater Cthonic Vent Initial',
       type: 'StartsUsing',
       // TODO: vents #2 and #3 are hard, but the first vent cast has a ~5s cast time.
-      netRegex: NetRegexes.startsUsing({ id: '7925', source: 'Suneater', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '7925', capture: false }),
       suppressSeconds: 1,
       promise: async (data: Data) => {
         data.combatantData = [];
@@ -729,6 +951,73 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
       },
     },
+    {
+      id: 'P8S Snake 2 Illusory Creation',
+      type: 'StartsUsing',
+      // Illusory Creation happens elsewhere, but this id only in Snake 2.
+      // This is used to differentiate the 4x 7932 Gorgospit from the 1x 7932 Gorgospit that
+      // (ideally) kills two Gorgons.
+      netRegex: NetRegexes.startsUsing({ id: '7931', source: 'Hephaistos', capture: false }),
+      run: (data) => data.seenSnakeIllusoryCreation = true,
+    },
+    {
+      id: 'P8S Gorgospit Location',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7932' }),
+      condition: (data) => data.seenSnakeIllusoryCreation,
+      promise: async (data, matches) => {
+        data.combatantData = [];
+
+        const id = parseInt(matches.sourceId, 16);
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [id],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        const combatant = data.combatantData[0];
+        if (combatant === undefined || data.combatantData.length !== 1)
+          return;
+
+        // If Gorgons on cardinals, clone is (100, 100+/-20) or (100+/-20, 100).
+        // If Gorgons on intercards, clone is (100+/-10, 100+/ 20) or (100+/-20, 100+/-10).
+        // Also sometimes it's +/-11 and not +/-10 (???)
+
+        const x = combatant.PosX;
+        const y = combatant.PosY;
+
+        // Add a little slop to find positions, just in case.  See note above about 11 vs 10.
+        const epsilon = 3;
+
+        // Handle 4x potential locations for line hitting cardinal Gorgons.
+        if (Math.abs(x - 100) < epsilon)
+          return output.eastWest!();
+        if (Math.abs(y - 100) < epsilon)
+          return output.northSouth!();
+
+        // Handle 8x potential locations for line hitting intercard Gorgons.
+        if (Math.abs(x - 90) < epsilon)
+          return output.east!();
+        if (Math.abs(x - 110) < epsilon)
+          return output.west!();
+        if (Math.abs(y - 90) < epsilon)
+          return output.south!();
+        if (Math.abs(y - 110) < epsilon)
+          return output.north!();
+      },
+      outputStrings: {
+        northSouth: {
+          en: 'North / South',
+        },
+        eastWest: {
+          en: 'East / West',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        west: Outputs.west,
+        south: Outputs.south,
+      },
+    },
     // ---------------- Part 2 ----------------
     {
       id: 'P8S Aioniopyr',
@@ -756,6 +1045,364 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Geteilter Tankbuster',
           ja: '2人同時タンク強攻撃',
           ko: '따로맞는 탱버',
+        },
+      },
+    },
+    {
+      id: 'P8S Ashing Blaze Right',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '79D7', source: 'Hephaistos', capture: false }),
+      alertText: (data, _matches, output) => {
+        if (data.firstAlignmentSecondAbility === 'stack')
+          return output.rightAndStack!();
+        if (data.firstAlignmentSecondAbility === 'spread')
+          return output.rightAndSpread!();
+        return output.right!();
+      },
+      run: (data) => delete data.firstAlignmentSecondAbility,
+      outputStrings: {
+        right: Outputs.right,
+        rightAndSpread: {
+          en: 'Right + Spread',
+        },
+        rightAndStack: {
+          en: 'Right + Stack',
+        },
+      },
+    },
+    {
+      id: 'P8S Ashing Blaze Left',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '79D8', source: 'Hephaistos', capture: false }),
+      alertText: (data, _matches, output) => {
+        if (data.firstAlignmentSecondAbility === 'stack')
+          return output.leftAndStack!();
+        if (data.firstAlignmentSecondAbility === 'spread')
+          return output.leftAndSpread!();
+        return output.left!();
+      },
+      run: (data) => delete data.firstAlignmentSecondAbility,
+      outputStrings: {
+        left: Outputs.left,
+        leftAndSpread: {
+          en: 'Left + Spread',
+        },
+        leftAndStack: {
+          en: 'Left + Stack',
+        },
+      },
+    },
+    {
+      id: 'P8S High Concept',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '79AC', source: 'Hephaistos', capture: false }),
+      response: Responses.bigAoe(),
+      run: (data) => {
+        data.concept = {};
+        data.splicer = {};
+      },
+    },
+    {
+      id: 'P8S Inverse Magics',
+      type: 'GainsEffect',
+      // This gets recast a lot on the same people, but shouldn't cause an issue.
+      // This also only happens once on the second time through, so no need to reset.
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D15' }),
+      infoText: (data, matches, output) => {
+        if (!data.inverseMagics[matches.target])
+          return output.reversed!({ player: data.ShortName(matches.target) });
+      },
+      run: (data, matches) => data.inverseMagics[matches.target] = true,
+      outputStrings: {
+        reversed: {
+          en: '${player} reversed',
+        },
+      },
+    },
+    {
+      id: 'P8S Natural Alignment Purple on You',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: '9F8', count: '209' }),
+      preRun: (data, matches) => data.alignmentTargets.push(matches.target),
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.text!();
+      },
+      outputStrings: {
+        text: {
+          en: 'Alignment on YOU',
+        },
+      },
+    },
+    {
+      id: 'P8S Natural Alignment Purple Targets',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: '9F8', count: '209', capture: false }),
+      delaySeconds: 0.3,
+      suppressSeconds: 5,
+      sound: '',
+      infoText: (data, _matches, output) => {
+        const [name1, name2] = data.alignmentTargets.sort();
+        return output.text!({ player1: data.ShortName(name1), player2: data.ShortName(name2) });
+      },
+      tts: null,
+      run: (data) => data.alignmentTargets = [],
+      outputStrings: {
+        text: {
+          en: 'Alignment on ${player1}, ${player2}',
+        },
+      },
+    },
+    {
+      id: 'P8S Natural Alignment First',
+      type: 'GainsEffect',
+      // This is a magic effectId with a statusloopvfx count, like 808 elsewhere.
+      netRegex: NetRegexes.gainsEffect({ effectId: '9F8' }),
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          ice: {
+            en: 'Ice Groups First',
+          },
+          fire: {
+            en: 'Fire Partners First',
+          },
+          stack: {
+            en: 'Stack First',
+          },
+          spread: {
+            en: 'Spread First',
+          },
+          baitAndStack: {
+            en: 'Bait => Stack',
+          },
+          baitAndSpread: {
+            en: 'Bait => Spread',
+          },
+        };
+        const isReversed = data.inverseMagics[matches.target] === true;
+        const id = matches.count;
+
+        // Huge credit to Aya for this.  Also note `209` is the purple swirl.
+        const ids = {
+          fireThenIce: '1DC',
+          iceThenFire: '1DE',
+          stackThenSpread: '1E0',
+          spreadThenStack: '1E2',
+        } as const;
+
+        // The first time through, use the "bait" version to avoid people running off
+        // as soon as they hear the beepy boops.
+        if (!data.seenFirstAlignmentStackSpread) {
+          // The first one can't be reversed.
+          // Store the follow-up ability so it can be used with the left/right Ashing Blaze.
+          if (id === ids.stackThenSpread) {
+            data.firstAlignmentSecondAbility = 'spread';
+            return { alertText: output.baitAndStack!() };
+          }
+          if (id === ids.stackThenSpread) {
+            data.firstAlignmentSecondAbility = 'stack';
+            return { alertText: output.baitAndSpread!() };
+          }
+        }
+
+        const key = isReversed ? 'alarmText' : 'alertText';
+        if (!isReversed && id === ids.fireThenIce || isReversed && id === ids.iceThenFire)
+          return { [key]: output.fire!() };
+        if (!isReversed && id === ids.iceThenFire || isReversed && id === ids.fireThenIce)
+          return { [key]: output.ice!() };
+        if (!isReversed && id === ids.spreadThenStack || isReversed && id === ids.stackThenSpread)
+          return { [key]: output.spread!() };
+        if (!isReversed && id === ids.stackThenSpread || isReversed && id === ids.spreadThenStack)
+          return { [key]: output.stack!() };
+      },
+    },
+    {
+      id: 'P8S Natural Alignment Second',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['79C0', '79BF', '79BD', '79BE'], source: 'Hephaistos' }),
+      suppressSeconds: 8,
+      alertText: (data, matches, output) => {
+        // Due to the way suppress works, put this check here and not in the condition field.
+        // This callout will get merged with the left/right which happens at the same time.
+        if (!data.seenFirstAlignmentStackSpread)
+          return;
+
+        const id = matches.id;
+        const ids = {
+          spread: '79C0',
+          stack: '79BF',
+          fire: '79BD',
+          ice: '79BE',
+        } as const;
+
+        // TODO: Should the left/right call (or some future "front row"/"2nd row") call be combined
+        // with the followup here?
+        if (id === ids.spread)
+          return output.stack!();
+        if (id === ids.stack)
+          return output.spread!();
+        if (id === ids.ice)
+          return output.fire!();
+        if (id === ids.fire)
+          return output.ice!();
+      },
+      run: (data) => data.seenFirstAlignmentStackSpread = true,
+      outputStrings: {
+        stack: Outputs.stackMarker,
+        spread: Outputs.spread,
+        ice: {
+          en: 'Ice Groups',
+        },
+        fire: {
+          en: 'Fire Partners',
+        },
+      },
+    },
+    {
+      id: 'P8S High Concept Collect',
+      // D02 = Imperfection Alpha
+      // D03 = Imperfection Beta
+      // D04 = Imperfection Gamma
+      // D11 = Solosplice
+      // D12 = Multisplice
+      // D13 = Supersplice
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D0[2-4]', 'D1[1-3]'] }),
+      run: (data, matches) => {
+        const id = matches.effectId;
+        // 8 and 26s second debuffs.
+        const isLong = parseFloat(matches.duration) > 10;
+        if (id === 'D02')
+          data.concept[matches.target] = isLong ? 'longalpha' : 'shortalpha';
+        else if (id === 'D03')
+          data.concept[matches.target] = isLong ? 'longbeta' : 'shortbeta';
+        else if (id === 'D04')
+          data.concept[matches.target] = isLong ? 'longgamma' : 'shortgamma';
+        else if (id === 'D11')
+          data.splicer[matches.target] = 'solosplice';
+        else if (id === 'D12')
+          data.splicer[matches.target] = 'multisplice';
+        else if (id === 'D13')
+          data.splicer[matches.target] = 'supersplice';
+      },
+    },
+    {
+      id: 'P8S High Concept Debuffs',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D0[2-4]', 'D1[1-3]'], capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          noDebuff: {
+            en: 'No Debuff',
+          },
+          shortAlpha: {
+            en: 'Short Alpha',
+          },
+          longAlpha: {
+            en: 'Long Alpha',
+          },
+          longAlphaSplicer: {
+            en: 'Long Alpha + ${splicer}',
+          },
+          shortBeta: {
+            en: 'Short Beta',
+          },
+          longBeta: {
+            en: 'Long Beta',
+          },
+          longBetaSplicer: {
+            en: 'Long Beta + ${splicer}',
+          },
+          shortGamma: {
+            en: 'Short Gamma',
+          },
+          longGamma: {
+            en: 'Long Gamma',
+          },
+          longGammaSplicer: {
+            en: 'Long Gamma + ${splicer}',
+          },
+          soloSplice: {
+            en: 'Solo Stack',
+          },
+          multiSplice: {
+            en: 'Two Stack',
+          },
+          superSplice: {
+            en: 'Three Stack',
+          },
+        };
+
+        // General thought here: alarm => EXPLOSION GO, alert/info => go to safe corner
+
+        const concept = data.concept[data.me];
+        const splicer = data.splicer[data.me];
+
+        const singleConceptMap: { [key in InitialConcept]: string } = {
+          shortalpha: output.shortAlpha!(),
+          longalpha: output.longAlpha!(),
+          shortbeta: output.shortBeta!(),
+          longbeta: output.longBeta!(),
+          shortgamma: output.shortGamma!(),
+          longgamma: output.longGamma!(),
+        };
+
+        if (splicer === undefined) {
+          if (concept === undefined)
+            return { alarmText: output.noDebuff!() };
+
+          const isShort = concept === 'shortalpha' || concept === 'shortbeta' || concept === 'shortgamma';
+          const conceptStr = singleConceptMap[concept];
+          if (isShort)
+            return { alarmText: conceptStr };
+          return { alertText: conceptStr };
+        }
+
+        const splicerMap: { [key in Splicer]: string } = {
+          solosplice: output.soloSplice!(),
+          multisplice: output.multiSplice!(),
+          supersplice: output.superSplice!(),
+        };
+        const splicerStr = splicerMap[splicer];
+        if (concept === undefined)
+          return { infoText: splicerStr };
+        else if (concept === 'longalpha')
+          return { alertText: output.longAlphaSplicer!({ splicer: splicerStr }) };
+        else if (concept === 'longbeta')
+          return { alertText: output.longBetaSplicer!({ splicer: splicerStr }) };
+        else if (concept === 'longgamma')
+          return { alertText: output.longGammaSplicer!({ splicer: splicerStr }) };
+
+        // If we get here then we have a short concept with a splicer which shouldn't be possible,
+        // but at least return *something* just in case.
+        return { alarmText: singleConceptMap[concept] };
+      },
+    },
+    {
+      id: 'P8S Limitless Desolation',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '75ED', source: 'Hephaistos', capture: false }),
+      response: Responses.spread('alert'),
+    },
+    {
+      id: 'P8S Dominion',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '79D9', source: 'Hephaistos', capture: false }),
+      response: Responses.spread('alert'),
+      run: (data) => data.deformationTargets = [],
+    },
+    {
+      id: 'P8S Aionagonia',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7A22', source: 'Hephaistos', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'big aoe + bleed',
         },
       },
     },
