@@ -382,7 +382,7 @@ export default class TimerBar extends HTMLElement {
             0 -1px 3px #AA6E03;
         }
 
-        :host-context(.skin-jwidea) .text-container {
+        :host-context(.skin-lippe) .text-container {
           top: 0px;
           z-index: 2;
         }
@@ -420,7 +420,7 @@ export default class TimerBar extends HTMLElement {
             0 -1px 3px #545552;
         }
 
-        :host-context(.skin-material) .text-container {
+        :host-context(.skin-jwidea) .text-container {
           top: 0px;
           z-index: 2;
         }
