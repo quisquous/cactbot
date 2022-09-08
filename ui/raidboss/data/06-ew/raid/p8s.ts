@@ -371,31 +371,31 @@ const triggerSet: TriggerSet<Data> = {
         insideSquare: {
           en: 'Inside Square',
           de: 'Inneres Viereck',
-          ja: '内側の四角',
+          ja: '内側の四角の中',
           ko: '중앙',
         },
         cornerNW: {
           en: 'NW Corner',
           de: 'NW Ecke',
-          ja: '北西の角',
+          ja: '北西の隅',
           ko: '북서쪽 구석',
         },
         cornerNE: {
           en: 'NE Corner',
           de: 'NO Ecke',
-          ja: '北東の角',
+          ja: '北東の隅',
           ko: '북동쪽 구석',
         },
         cornerSE: {
           en: 'SE Corner',
           de: 'SO Ecke',
-          ja: '南東の角',
+          ja: '南東の隅',
           ko: '남동쪽 구석',
         },
         cornerSW: {
           en: 'SW Corner',
           de: 'SW Ecke',
-          ja: '南西の角',
+          ja: '南西の隅',
           ko: '남서쪽 구석',
         },
         outsideNorth: {
