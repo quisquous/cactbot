@@ -124,13 +124,13 @@ hideall "--sync--"
 434.1 "Into the Shadows" sync / 1[56]:[^:]*:Hephaistos:792A:/
 448.1 "--sync--" sync / 1[56]:[^:]*:Gorgon:792B:/
 449.3 "Petrifaction" sync / 1[56]:[^:]*:Gorgon:6724:/
-450.3 "Gorgospit" sync / 1[56]:[^:]*:Illusory Hephaistos:7932:/
+450.3 "Gorgospit (outside)" sync / 1[56]:[^:]*:Illusory Hephaistos:7932:/
 451.8 "Blood of the Gorgon 1" sync / 1[56]:[^:]*:Hephaistos:792F:/
 451.8 "Eye of the Gorgon 1" sync / 1[56]:[^:]*:Hephaistos:792D:/
 456.4 "Illusory Creation" sync / 1[56]:[^:]*:Hephaistos:7931:/
 457.8 "Blood of the Gorgon 2" sync / 1[56]:[^:]*:Hephaistos:792F:/
 457.8 "Eye of the Gorgon 2" sync / 1[56]:[^:]*:Hephaistos:792D:/
-465.3 "Gorgospit" sync / 1[56]:[^:]*:Illusory Hephaistos:7932:/
+465.3 "Gorgospit (line)" sync / 1[56]:[^:]*:Illusory Hephaistos:7932:/
 466.9 "Crown of the Gorgon" sync / 1[56]:[^:]*:Hephaistos:792E:/
 467.8 "Breath of the Gorgon" sync / 1[56]:[^:]*:Hephaistos:7930:/
 481.0 "Flameviper 1" sync / 1[56]:[^:]*:Hephaistos:7945:/
@@ -265,13 +265,13 @@ hideall "--sync--"
 1512.7 "Into the Shadows" sync / 1[56]:[^:]*:Hephaistos:792A:/
 1526.7 "--sync--" sync / 1[56]:[^:]*:Gorgon:792B:/
 1527.9 "Petrifaction" sync / 1[56]:[^:]*:Gorgon:6724:/
-1528.9 "Gorgospit" sync / 1[56]:[^:]*:Illusory Hephaistos:7932:/
+1528.9 "Gorgospit (outside)" sync / 1[56]:[^:]*:Illusory Hephaistos:7932:/
 1530.4 "Blood of the Gorgon 1" sync / 1[56]:[^:]*:Hephaistos:792F:/
 1530.4 "Eye of the Gorgon 1" sync / 1[56]:[^:]*:Hephaistos:792D:/
 1535.0 "Illusory Creation" sync / 1[56]:[^:]*:Hephaistos:7931:/
 1536.4 "Blood of the Gorgon 2" sync / 1[56]:[^:]*:Hephaistos:792F:/
 1536.4 "Eye of the Gorgon 2" sync / 1[56]:[^:]*:Hephaistos:792D:/
-1543.9 "Gorgospit" sync / 1[56]:[^:]*:Illusory Hephaistos:7932:/
+1543.9 "Gorgospit (line)" sync / 1[56]:[^:]*:Illusory Hephaistos:7932:/
 1545.5 "Crown of the Gorgon" sync / 1[56]:[^:]*:Hephaistos:792E:/
 1546.4 "Breath of the Gorgon" sync / 1[56]:[^:]*:Hephaistos:7930:/
 
@@ -318,12 +318,11 @@ hideall "--sync--"
 
 5088.7 "Aioniopyr" sync / 1[56]:[^:]*:Hephaistos:79DF:/ window 20,20
 5091.7 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
-5091.7 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
 5094.8 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
 5101.9 "Tyrant's Unholy Darkness" sync / 1[56]:[^:]*:Hephaistos:79DD:/
 5114.1 "--sync--" sync / 1[56]:[^:]*:Hephaistos:79AC:/
 5106.9 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
-5118.6 "High Concept 1" sync / 1[56]:[^:]*:Hephaistos:710A:/
+5118.6 "High Concept 1" sync / 1[56]:[^:]*:Hephaistos:710A:/ window 20,20
 5126.3 "Arcane Control" sync / 1[56]:[^:]*:Hephaistos:79B6:/
 5126.7 "Conceptual Shift" sync / 1[56]:[^:]*:Hephaistos:79AD:/
 5126.7 "Splicer" sync / 1[56]:[^:]*:Hephaistos:79B3:/
@@ -371,7 +370,6 @@ hideall "--sync--"
 5301.9 "Aioniopyr" sync / 1[56]:[^:]*:Hephaistos:79DF:/ window 20,20
 5305.0 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
 5308.0 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
-5308.0 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
 5315.0 "Tyrant's Unholy Darkness" sync / 1[56]:[^:]*:Hephaistos:79DD:/
 5320.2 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
 
@@ -392,16 +390,16 @@ hideall "--sync--"
 5393.3 "Ego Death" sync / 1[56]:[^:]*:Hephaistos:7AA0:/
 5403.4 "--sync--" sync / 1[56]:[^:]*:Hephaistos:79F0:/
 
-5424.5 "Aionagonia" sync / 1[56]:[^:]*:Hephaistos:7A22:/ window 20,20
+5424.5 "Aionagonia 1" sync / 1[56]:[^:]*:Hephaistos:7A22:/ window 20,20
 5434.6 "Dominion" sync / 1[56]:[^:]*:Hephaistos:79D9:/
 5435.7 "Orogenic Deformation" sync / 1[56]:[^:]*:Hephaistos:79DB:/
 5442.7 "Orogenic Shift 1" sync / 1[56]:[^:]*:Hephaistos:79DC:/
 5448.7 "Orogenic Shift 2" sync / 1[56]:[^:]*:Hephaistos:79DC:/
-5453.8 "Aionagonia" sync / 1[56]:[^:]*:Hephaistos:7A22:/
+5453.8 "Aionagonia 2" sync / 1[56]:[^:]*:Hephaistos:7A22:/
 5463.9 "Dominion" sync / 1[56]:[^:]*:Hephaistos:79D9:/
 5465.0 "Orogenic Deformation" sync / 1[56]:[^:]*:Hephaistos:79DB:/
 5472.0 "Orogenic Shift 1" sync / 1[56]:[^:]*:Hephaistos:79DC:/
 5478.0 "Orogenic Shift 2" sync / 1[56]:[^:]*:Hephaistos:79DC:/
 
-5483.0 "Aionagonia" sync / 1[56]:[^:]*:Hephaistos:7A22:/ window 20,20
+5483.0 "Aionagonia 3" sync / 1[56]:[^:]*:Hephaistos:7A22:/ window 20,20
 5506.3 "Ego Death" sync / 1[56]:[^:]*:Hephaistos:79E4:/
