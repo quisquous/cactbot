@@ -115,7 +115,7 @@ Options.Triggers.push({
           en: 'aoe + bleed',
           de: 'AoE + Blutung',
           fr: 'AoE + Saignement',
-          ja: 'AoE + DoT',
+          ja: 'AoE + 出血',
           cn: 'AOE + 流血',
           ko: '전체 공격 + 도트',
         },

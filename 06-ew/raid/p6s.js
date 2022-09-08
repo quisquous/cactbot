@@ -183,7 +183,7 @@ Options.Triggers.push({
           en: 'Spread Corner',
           de: 'In Ecken Verteilen',
           fr: 'Écartez-vous dans le coin',
-          ja: '角で散会',
+          ja: '隅で散会',
           cn: '去角落',
           ko: '구석으로 산개',
         },

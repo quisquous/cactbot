@@ -81,7 +81,7 @@ Options.Triggers.push({
           en: 'Get to edge (in circle)',
           de: 'Geh zum Rand (in den Kreisen)',
           fr: 'Allez sur le bord (dans le cercle)',
-          ja: '角へ (円の中)',
+          ja: '外側の隅へ (円の中)',
           ko: '구석으로 (원 안으로)',
         },
       },

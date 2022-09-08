@@ -207,7 +207,7 @@ Options.Triggers.push({
           en: 'Healer Groups on Topaz Stones',
           de: 'Heilergruppen auf Topassteine',
           fr: 'Groupes heal sur les Topazes',
-          ja: 'トパーズの上でヒラに頭割り',
+          ja: 'トパーズの上でヒーラーと頭割り',
           ko: '돌 위에서 힐러 그룹 쉐어',
         },
       },
