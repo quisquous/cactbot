@@ -1833,26 +1833,32 @@ const templateOptions: OptionsTemplate = {
         en: {
           'Default': 'default',
           'lippe': 'lippe',
+          'jwidea': 'jwidea',
         },
         de: {
           'Default': 'default',
           'lippe': 'lippe',
+          'jwidea': 'jwidea',
         },
         fr: {
           'Défaut': 'default',
           'lippe': 'lippe',
+          'jwidea': 'jwidea',
         },
         ja: {
           '初期設定': 'default',
           'lippe': 'lippe',
+          'jwidea': 'jwidea',
         },
         cn: {
           '默认': 'default',
           'lippe': 'lippe',
+          'jwidea': 'jwidea',
         },
         ko: {
           '기본': 'default',
           'lippe': 'lippe',
+          'jwidea': 'jwidea',
         },
       },
       default: 'default',
