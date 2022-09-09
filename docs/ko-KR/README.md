@@ -19,7 +19,7 @@
 
 cactbot은 [파이널 판타지 14](http://www.ff14.co.kr/)를 위한 레이드 툴을 제공하는 ACT 오버레이 입니다. 이 프로젝트는
 [Advanced Combat Tracker](http://advancedcombattracker.com/)의 플러그인인
-[ngld의 OverlayPlugin](https://github.com/ngld/OverlayPlugin)에서 작동하는
+[OverlayPlugin](https://github.com/OverlayPlugin/OverlayPlugin)에서 작동하는
 오버레이 플러그인 입니다.
 
 cactbot은 다음 모듈을 제공합니다:
@@ -86,7 +86,7 @@ Startup Wizard에서,
 * [fflogs 동영상 가이드](https://www.fflogs.com/help/start/)
 * [TomRichter 가이드](https://gist.github.com/TomRichter/e044a3dff5c50024cf514ffb20a201a9#installing-act--ffxiv-plugin)
 
-### ngld OverlayPlugin 설치
+### OverlayPlugin 설치
 
 이제, `Plugins` 탭을 선택하고 `Plugin Listing`을 클릭해보면,
 플러그인 리스트가 다음과 같이 보여야 합니다.
@@ -99,12 +99,12 @@ Startup Wizard에서,
 
 ![overlay plugin 선택 스크린샷](../../screenshots/get_plugins_overlayplugin.png)
 
-이렇게 해서 ngld OverlayPlugin을
+이렇게 해서 OverlayPlugin을
 `%APPDATA%\Advanced Combat Tracker\Plugins\OverlayPlugin`에 다운로드하고
 `OverlayPlugin.dll`을 플러그인 리스트에서 활성화합니다.
 
-참고로, RainbowMage 버전이나 hibiyasleep 버전이 아니라
-반드시 [ngld](https://github.com/ngld) 버전 OverlayPlugin을 사용해야 합니다.
+참고로, RainbowMage 버전이나 hibiyasleep 버전, ngld 버전이 아니라
+반드시 [가장 최신 버전](https://github.com/OverlayPlugin/OverlayPlugin) OverlayPlugin을 사용해야 합니다.
 
 ### cactbot 설치
 
@@ -187,7 +187,7 @@ cactbot은 테스트 UI를 기본으로 제공합니다.
 1. `Advanced Combat Tracker.exe`를 `cactbot/plugin/ThirdParty/ACT/`에 압축 해제하세요.
 1. <https://github.com/ravahn/FFXIV_ACT_Plugin/>에서 최신 SDK Zip 파일을 받으세요. (파일 이름에 SDK라는 문구가 포함되어 있는지 반드시 확인하세요)
 1. `FFXIV_ACT_Plugin.dll`를 포함해서 `SDK folder`를 `cactbot/plugin/ThirdParty/FFXIV_ACT/`에 압축 해제하세요.
-1. <https://github.com/ngld/OverlayPlugin/releases/>에서 최신 Zip 파일을 다운로드 하세요.
+1. <https://github.com/OverlayPlugin/OverlayPlugin/releases/>에서 최신 Zip 파일을 다운로드 하세요.
 1. `OverlayPlugin.dll`를 포함해서 `libs folder`를 `cactbot/plugin/ThirdParty/OverlayPlugin/`에 압축 해제하세요.
 1. **빌드하는 단계**로 이동하세요.
 
