@@ -64,7 +64,7 @@ Options.Triggers.push({
       id: 'Barbariccia Void Aero III',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '75B7', source: 'Barbariccia' }),
-      response: Responses.tankBuster(),
+      response: Responses.sharedTankBuster(),
     },
     {
       id: 'Barbariccia Deadly Twist',
