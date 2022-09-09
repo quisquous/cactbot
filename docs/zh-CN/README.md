@@ -16,7 +16,7 @@
 
 ## 关于
 
-cactbot是一个ACT悬浮窗，可为 [Final Fantasy XIV](http://www.finalfantasyxiv.com/)提供战斗辅助。 该项目是 [ngld的OverlayPlugin](https://github.com/ngld/OverlayPlugin) 的悬浮窗插件，而OverlayPlugin是 [Advanced Combat Tracker](http://advancedcombattracker.com/)的插件。
+cactbot是一个ACT悬浮窗，可为 [Final Fantasy XIV](http://www.finalfantasyxiv.com/)提供战斗辅助。 该项目是 [OverlayPlugin](https://github.com/OverlayPlugin/OverlayPlugin) 的悬浮窗插件，而OverlayPlugin是 [Advanced Combat Tracker](http://advancedcombattracker.com/)的插件。
 
 cactbot提供以下模块：
 
@@ -73,7 +73,7 @@ cactbot提供以下模块：
 * [fflogs video guide](https://www.fflogs.com/help/start/)
 * [TomRichter guide](https://gist.github.com/TomRichter/e044a3dff5c50024cf514ffb20a201a9#installing-act--ffxiv-plugin)
 
-### 安装ngld OverlayPlugin
+### 安装OverlayPlugin
 
 此时，如果选择 `插件` 标签，然后切换至 `插件列表`， 您的插件列表中应当如下所示：
 
@@ -85,9 +85,9 @@ cactbot提供以下模块：
 
 ![悬浮窗插件选择屏幕截图](../../screenshots/get_plugins_overlayplugin.png)
 
-这会将ngld OverlayPlugin下载到 `%APPDATA%\Advanced Combat Tracker\Plugins\OverlayPlugin` 文件夹中， 并自动在插件列表中启用 `OverlayPlugin.dll`。
+这会将OverlayPlugin下载到 `%APPDATA%\Advanced Combat Tracker\Plugins\OverlayPlugin` 文件夹中， 并自动在插件列表中启用 `OverlayPlugin.dll`。
 
-注意，您必须使用 [ngld](https://github.com/ngld) 版本的OverlayPlugin， 而不是原本RainbowMage的版本或hibiyasleep的fork版本。
+注意，您必须使用 [当前最新](https://github.com/OverlayPlugin/OverlayPlugin) 版本的OverlayPlugin， 而不是原本RainbowMage的版本或hibiyasleep的fork版本。
 
 ### 安装cactbot
 
@@ -151,7 +151,7 @@ cactbot提供以下模块：
 1. 将 `Advanced Combat Tracker.exe` 解压到 `cactbot/plugin/ThirdParty/ACT/` 下
 1. 请从 [https://github.com/ravahn/FFXIV_ACT_Plugin/](https://github.com/ravahn/FFXIV_ACT_Plugin/) 下载最新的SDK Zip文件（确保文件名称中包含SDK字样）
 1. 解压 `SDK文件夹` 和 `FFXIV_ACT_Plugin.dll` 到 `cactbot/plugin/ThirdParty/FFXIV_ACT/` 下
-1. 请从 <https://github.com/ngld/OverlayPlugin/releases/>下载最新的Zip文件。
+1. 请从 <https://github.com/OverlayPlugin/OverlayPlugin/releases/>下载最新的Zip文件。
 1. 解压 `libs文件夹` 和 `OverlayPlugin.dll` 到 `cactbot/plugin/ThirdParty/OverlayPlugin/` 下
 1. 下转 **构建步骤**
 
