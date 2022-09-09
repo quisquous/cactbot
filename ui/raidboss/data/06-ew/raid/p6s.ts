@@ -80,7 +80,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Geteilter Tankbuster',
           fr: 'Séparez les Tankbusters',
           ja: '2人同時タンク強攻撃',
-          cn: '双T分散死刑',
+          cn: '分散死刑',
           ko: '따로맞는 탱버',
         },
       },
