@@ -780,6 +780,11 @@ const triggerSet: TriggerSet<Data> = {
       // data may be incorrect on one of the 7953 mobs.
       netRegex: NetRegexes.startsUsing({ id: '7952' }),
       condition: (data) => data.flareTargets.length === 0,
+      // For some reason the position data does not appear to be correct for either
+      // 7952 or 7953.  Add a delay to hope that it gets up to date.
+      // 7952/7953 is the real damage.  We could also try looking for 7950/7951, which is
+      // a different mob with the Sunforge cast bar.  This might be in the correct place.
+      delaySeconds: 0.3,
       promise: async (data, matches) => {
         data.combatantData = [];
 
@@ -794,7 +799,7 @@ const triggerSet: TriggerSet<Data> = {
         if (combatant === undefined || data.combatantData.length !== 1)
           return;
 
-        // We are looking for "7953"
+        // This trigger finds the snake, so call the opposite.
         const dir = positionTo8Dir(combatant);
         if (dir === 0 || dir === 4)
           return output.eastWest!();
