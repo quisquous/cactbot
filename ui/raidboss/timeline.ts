@@ -505,6 +505,8 @@ export class TimelineUI {
     if (this.timerlist) {
       this.timerlist.style.gridTemplateRows =
         `repeat(${this.options.MaxNumberOfTimerBars}, min-content)`;
+      if (this.options.ReverseTimeline)
+        this.timerlist.classList.add('reversed');
     }
 
     this.activeBars = {};
@@ -596,8 +598,10 @@ export class TimelineUI {
       div?.parentNode?.removeChild(div);
     }
 
-    if (e.sortKey)
-      div.style.order = e.sortKey.toString();
+    if (e.sortKey) {
+      // Invert the order if the timer bars should "grow" in the reverse direction
+      div.style.order = ((this.options.ReverseTimeline ? -1 : 1) * e.sortKey).toString();
+    }
     div.id = e.id.toString();
     this.timerlist?.appendChild(div);
     this.activeBars[e.id] = bar;
@@ -699,6 +703,9 @@ export class TimelineUI {
       this.debugFightTimer.stylefill = 'fill';
       this.debugFightTimer.bg = 'transparent';
       this.debugFightTimer.fg = 'transparent';
+      // Align it to the 'first' item in the timeline container
+      if (this.options.ReverseTimeline)
+        this.debugElement.classList.add('reversed');
       this.debugElement.appendChild(this.debugFightTimer);
     }
 

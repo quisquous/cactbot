@@ -94,6 +94,7 @@ const defaultRaidbossConfigOptions = {
   KeepExpiredTimerBarsForSeconds: 0.7,
   BarExpiresSoonSeconds: 6,
   MaxNumberOfTimerBars: 6,
+  ReverseTimeline: false,
   DisplayAlarmTextForSeconds: 3,
   DisplayAlertTextForSeconds: 3,
   DisplayInfoTextForSeconds: 3,
