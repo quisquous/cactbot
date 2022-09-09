@@ -141,18 +141,23 @@ const triggerSet: TriggerSet<Data> = {
           south: Outputs.south,
           twoPlatforms: {
             en: '${platform1} / ${platform2}',
+            ko: '${platform1} / ${platform2}',
           },
           orientation: {
             en: 'Line Bull: ${location}',
+            ko: '줄 달린 소: ${location}',
           },
           famineOrientation: {
             en: 'Minotaurs without Bird: ${location}',
+            ko: '새 없는 곳: ${location}',
           },
           deathOrientation: {
             en: 'Lightning Bull: ${location}',
+            ko: '줄 안달린 소: ${location}',
           },
           warOrientation: {
             en: 'Bird with Minotaurs: ${location}',
+            ko: '새 + 미노타우로스: ${location}',
           },
         };
 
