@@ -44,6 +44,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Tank Autos',
+          ko: '탱커 평타',
         },
       },
     },
@@ -505,15 +506,19 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           firstGaze: {
             en: 'First Gaze (w/ ${player})',
+            ko: '첫번째 석화 (+ ${player})',
           },
           secondGaze: {
             en: 'Second Gaze (w/ ${player})',
+            ko: '두번째 석화 (+ ${player})',
           },
           firstPoison: {
             en: 'First Poison (w/ ${player})',
+            ko: '첫번째 독장판 (+ ${player})',
           },
           secondPoison: {
             en: 'Second Poison (w/ ${player})',
+            ko: '두번째 독장판 (+ ${player})',
           },
           unknown: Outputs.unknown,
         };
@@ -582,18 +587,23 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           firstGaze: {
             en: 'First Gaze',
+            ko: '첫번째 석화',
           },
           secondGaze: {
             en: 'Second Gaze',
+            ko: '두번째 석화',
           },
           shriek: {
             en: 'Shriek later (with ${player})',
+            ko: '나중에 마안 (+ ${player})',
           },
           stack: {
             en: 'Stack later (with ${player})',
+            ko: '나중에 쉐어 (+ ${player})',
           },
           noDebuff: {
             en: 'No debuff (w/ ${player1}, ${player2}, ${player3})',
+            ko: '디버프 없음 (+ ${player1}, ${player2}, ${player3})',
           },
         };
         const isGazeFirst = data.secondSnakeGazeFirst[data.me];
@@ -920,9 +930,11 @@ Options.Triggers.push({
       outputStrings: {
         northSouth: {
           en: 'North / South',
+          ko: '남/북쪽',
         },
         eastWest: {
           en: 'East / West',
+          ko: '동/서쪽',
         },
         north: Outputs.north,
         east: Outputs.east,
@@ -976,9 +988,11 @@ Options.Triggers.push({
         right: Outputs.right,
         rightAndSpread: {
           en: 'Right + Spread',
+          ko: '오른쪽 + 산개',
         },
         rightAndStack: {
           en: 'Right + Stack',
+          ko: '오른쪽 + 쉐어',
         },
       },
     },
@@ -998,9 +1012,11 @@ Options.Triggers.push({
         left: Outputs.left,
         leftAndSpread: {
           en: 'Left + Spread',
+          ko: '왼쪽 + 산개',
         },
         leftAndStack: {
           en: 'Left + Stack',
+          ko: '왼쪽 + 쉐어',
         },
       },
     },
@@ -1028,6 +1044,7 @@ Options.Triggers.push({
       outputStrings: {
         reversed: {
           en: '${player} reversed',
+          ko: '${player} 반전',
         },
       },
     },
@@ -1043,6 +1060,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Alignment on YOU',
+          ko: '원판 대상자',
         },
       },
     },
@@ -1062,6 +1080,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Alignment on ${player1}, ${player2}',
+          ko: '${player1}, ${player2} 원판',
         },
       },
     },
@@ -1075,21 +1094,27 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           ice: {
             en: 'Ice Groups First',
+            ko: '얼음 쉐어 먼저',
           },
           fire: {
             en: 'Fire Partners First',
+            ko: '불 2인쉐어 먼저',
           },
           stack: {
             en: 'Stack First',
+            ko: '쉐어 먼저',
           },
           spread: {
             en: 'Spread First',
+            ko: '산개 먼저',
           },
           baitAndStack: {
             en: 'Bait => Stack',
+            ko: '장판 유도 => 쉐어',
           },
           baitAndSpread: {
             en: 'Bait => Spread',
+            ko: '장판 유도 => 산개',
           },
         };
         const isReversed = data.inverseMagics[matches.target] === true;
@@ -1160,9 +1185,11 @@ Options.Triggers.push({
         spread: Outputs.spread,
         ice: {
           en: 'Ice Groups',
+          ko: '얼음 그룹 쉐어',
         },
         fire: {
           en: 'Fire Partners',
+          ko: '불 2인 쉐어',
         },
       },
     },
@@ -1205,42 +1232,55 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           noDebuff: {
             en: 'No Debuff',
+            ko: '디버프 없음',
           },
           shortAlpha: {
             en: 'Short Alpha',
+            ko: '짧은 알파',
           },
           longAlpha: {
             en: 'Long Alpha',
+            ko: '긴 알파',
           },
           longAlphaSplicer: {
             en: 'Long Alpha + ${splicer}',
+            ko: '긴 알파 + ${splicer}',
           },
           shortBeta: {
             en: 'Short Beta',
+            ko: '짧은 베타',
           },
           longBeta: {
             en: 'Long Beta',
+            ko: '긴 베타',
           },
           longBetaSplicer: {
             en: 'Long Beta + ${splicer}',
+            ko: '긴 베타 + ${splicer}',
           },
           shortGamma: {
             en: 'Short Gamma',
+            ko: '짧은 감마',
           },
           longGamma: {
             en: 'Long Gamma',
+            ko: '긴 감마',
           },
           longGammaSplicer: {
             en: 'Long Gamma + ${splicer}',
+            ko: '긴 감마 + ${splicer}',
           },
           soloSplice: {
             en: 'Solo Stack',
+            ko: '1인징',
           },
           multiSplice: {
             en: 'Two Stack',
+            ko: '2인징',
           },
           superSplice: {
             en: 'Three Stack',
+            ko: '3인징',
           },
         };
         // General thought here: alarm => EXPLOSION GO, alert/info => go to safe corner
@@ -1303,6 +1343,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'big aoe + bleed',
+          ko: '아픈 전체공격 + 도트',
         },
       },
     },
