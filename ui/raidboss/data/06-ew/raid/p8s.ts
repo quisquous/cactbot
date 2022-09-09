@@ -28,7 +28,7 @@ export interface Data extends RaidbossData {
   torches: NetMatches['StartsUsing'][];
   flareTargets: string[];
   upliftCounter: number;
-  ventIds: string[];
+  ventIds?: string[];
   illusory?: 'bird' | 'snake';
   seenSnakeIllusoryCreation?: boolean;
   firstSnakeOrder: { [name: string]: 1 | 2 };
@@ -68,7 +68,6 @@ const triggerSet: TriggerSet<Data> = {
       torches: [],
       flareTargets: [],
       upliftCounter: 0,
-      ventIds: [],
       firstSnakeOrder: {},
       firstSnakeDebuff: {},
       secondSnakeGazeFirst: {},
@@ -870,23 +869,32 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P8S Abyssal Fires',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7954', source: 'Hephaistos', capture: false }),
+      // Sometimes the vent ids that get added at the start of the fight get included here.
+      // Initialize this here to make sure we only see the two real ones.
+      run: (data) => data.ventIds = [],
+    },
+    {
       id: 'P8S Suneater Cthonic Vent Add',
       type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '11404' }),
-      run: (data, matches) => data.ventIds.push(matches.id),
-    },
-    {
-      id: 'P8S Suneater Cthonic Vent Initial',
-      type: 'StartsUsing',
-      // TODO: vents #2 and #3 are hard, but the first vent cast has a ~5s cast time.
-      netRegex: NetRegexes.startsUsing({ id: '7925', capture: false }),
-      suppressSeconds: 1,
+      preRun: (data, matches) => {
+        // Don't consider this add until we've seen Abyssal Fires.
+        if (data.ventIds)
+          data.ventIds.push(matches.id);
+      },
       promise: async (data: Data) => {
         data.combatantData = [];
-        if (data.ventIds.length !== 2)
+        const ventIds = data.ventIds;
+        if (ventIds === undefined)
           return;
 
-        const ids = data.ventIds.map((id) => parseInt(id, 16));
+        if (ventIds.length !== 2)
+          return;
+
+        const ids = ventIds.map((id) => parseInt(id, 16));
         data.combatantData = (await callOverlayHandler({
           call: 'getCombatants',
           ids: ids,
