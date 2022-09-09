@@ -1336,6 +1336,37 @@ Options.Triggers.push({
       run: (data) => data.deformationTargets = [],
     },
     {
+      id: 'P8S Orogenic Deformation Hit',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '79DB', source: 'Hephaistos' }),
+      preRun: (data, matches) => data.deformationTargets.push(matches.target),
+      infoText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Second Towers',
+        },
+      },
+    },
+    {
+      id: 'P8S Orogenic Deformation Not Hit',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '79DB', source: 'Hephaistos', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        if (!data.deformationTargets.includes(data.me))
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'First Towers',
+        },
+      },
+    },
+    {
       id: 'P8S Aionagonia',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7A22', source: 'Hephaistos', capture: false }),
