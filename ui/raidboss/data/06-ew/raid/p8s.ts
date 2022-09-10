@@ -865,12 +865,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P8S Blazing Footfalls Second Trailblaze Reminder',
-      // Reminder after first Trailblaze + Impact/Crush
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['793C', '793D'], source: 'Hephaistos', capture: false }),
-      delaySeconds: 12.3, // Duration from tell cast to first Impact/Crush cast
-      durationSeconds: 6, // Keep up until Impact/Crush
-      suppressSeconds: 4.4, // Duration between second tell and last tell
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['7106', '7107'], source: 'Hephaistos', capture: false }),
+      condition: (data) => data.trailblazeCount === 1,
+      durationSeconds: 3.9, // Keep up until Trailblaze
       infoText: (data, _matches, output) => {
         if (data.footfallsDirs[1] !== undefined && data.footfallsOrder[1] !== undefined) {
           // Check if have valid dirs
