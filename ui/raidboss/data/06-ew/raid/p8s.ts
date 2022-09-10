@@ -808,37 +808,48 @@ const triggerSet: TriggerSet<Data> = {
       },
       durationSeconds: 9,
       infoText: (data, _matches, output) => {
+        const dirToCard: { [dir: number]: string } = {
+          0: output.north!(),
+          1: output.east!(),
+          2: output.south!(),
+          3: output.west!(),
+        };
+        const validDirs = [0, 1, 2, 3];
+
+        // Output first push direction
         if (
           data.footfallsDirs[0] !== undefined &&
-          data.footfallsDirs[1] !== undefined &&
           data.footfallsOrder[0] !== undefined &&
-          data.footfallsOrder[1] !== undefined
+          data.footfallsDirs[1] === undefined &&
+          data.footfallsOrder[1] === undefined
         ) {
-          // Check if have valid dirs
-          const validDirs = [0, 1, 2, 3];
-          if (!validDirs.includes(data.footfallsDirs[0]) || !validDirs.includes(data.footfallsDirs[1])) {
-            console.error(`Blazing Footfalls: Unexpected dirs, got ${data.footfallsDirs[0]} and ${data.footfallsDirs[1]}`);
+          if (!validDirs.includes(data.footfallsDirs[0])) {
+            console.error(`Blazing Footfalls: Unexpected dirs, got ${data.footfallsDirs[0]}}`);
             return;
           }
 
-          const dirToCard: { [dir: number]: string } = {
-            0: output.north!(),
-            1: output.east!(),
-            2: output.south!(),
-            3: output.west!(),
-          };
+          return output.directions!({
+            dir: dirToCard[data.footfallsDirs[0]],
+            action: output[data.footfallsOrder[0]]!(),
+          });
+        }
+
+        // Output second push direction
+        if (data.footfallsDirs[1] !== undefined && data.footfallsOrder[1] !== undefined) {
+          if (!validDirs.includes(data.footfallsDirs[1])) {
+            console.error(`Blazing Footfalls: Unexpected dirs, got ${data.footfallsDirs[1]}}`);
+            return;
+          }
 
           return output.directions!({
-            dir1: dirToCard[data.footfallsDirs[0]],
-            action1: output[data.footfallsOrder[0]]!(),
-            dir2: dirToCard[data.footfallsDirs[1]],
-            action2: output[data.footfallsOrder[1]]!(),
+            dir: dirToCard[data.footfallsDirs[1]],
+            action: output[data.footfallsOrder[1]]!(),
           });
         }
       },
       outputStrings: {
         directions: {
-          en: 'Get pushed ${dir1} => ${action1} => Get pushed ${dir2} => ${action2}',
+          en: 'Push to ${dir} => ${action}',
         },
         crush: {
           en: 'Crush',
