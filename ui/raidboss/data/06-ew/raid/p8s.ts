@@ -802,8 +802,10 @@ const triggerSet: TriggerSet<Data> = {
           data.footfallsOrder.push('impact');
           data.footfallsDirs.push(dir);
         }
-        data.footfallsOrder.push('crush');
-        data.footfallsDirs.push((dir + 2) % 4);
+        else {
+          data.footfallsOrder.push('crush');
+          data.footfallsDirs.push((dir + 2) % 4);
+        }
       },
       durationSeconds: 9,
       infoText: (data, _matches, output) => {
