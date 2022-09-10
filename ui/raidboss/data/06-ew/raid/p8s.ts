@@ -12,7 +12,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: call out gorgon spawn locations
 // TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
-// TODO: crush/impact directions during 2nd beast phase
 // TODO: make the torch call say left/right during 2nd beast
 // TODO: better vent callouts
 // TODO: initial tank auto call on final boss as soon as boss pulled
@@ -31,6 +30,7 @@ export interface Data extends RaidbossData {
   ventIds: string[];
   illusory?: 'bird' | 'snake';
   seenSnakeIllusoryCreation?: boolean;
+  crushImpactSafeZone?: string;
   firstSnakeOrder: { [name: string]: 1 | 2 };
   firstSnakeDebuff: { [name: string]: 'gaze' | 'poison' };
   firstSnakeCalled?: boolean;
@@ -753,10 +753,65 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P8S Quadrupedal Impact/Crush Direction',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['7A04', '7A05'], source: 'Hephaistos', capture: false }),
+      delaySeconds: 0.5,
+      promise: async (data, matches, output) => {
+        // select the Hephaistoss with same source id
+        let hephaistosData = null;
+        hephaistosData = await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (hephaistosData === null) {
+          console.error(`Hephaistos: null data`);
+          return;
+        }
+        if (hephaistosData.combatants.length !== 1) {
+          console.error(`Hephaistos: expected 1, got ${hephaistosData.combatants.length}`);
+          return;
+        }
+
+        const hephaistos = hephaistosData.combatants[0];
+        if (!hephaistos)
+          return;
+
+        // Snap heading to closest card and add 2 for opposite direction
+        // N = 0, E = 1, S = 2, W = 3
+        const isCrush = (matches.id === '7A05' ? 2 : 0);
+        const cardinal = ((2 - Math.round(hephaistos.Heading * 4 / Math.PI) / 2) + isCrush) % 4;
+
+        const dirs: { [dir: number]: string } = {
+          0: output.north!(),
+          1: output.east!(),
+          2: output.south!(),
+          3: output.west!(),
+        };
+
+        data.crushImpactSafeZone = dirs[cardinal];
+      },
+      outputStrings: {
+        unknown: Outputs.unknown,
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
       id: 'P8S Quadrupedal Impact',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7A04', source: 'Hephaistos', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
+      delaySeconds: 0.5,
+      alertText: (data, _matches, output) => {
+        if (data.crushImpactSafeZone)
+          return output.knockbackDir!({ dir: data.crushImpactSafeZone });
+        return output.text!()
+      },
       outputStrings: {
         text: {
           en: 'Follow Jump',
@@ -764,19 +819,30 @@ const triggerSet: TriggerSet<Data> = {
           ja: '近づく',
           ko: '보스 따라가기',
         },
+        knobackDir: {
+          en: '${dir} (Knockback)',
+        },
       },
     },
     {
       id: 'P8S Quadrupedal Crush',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7A05', source: 'Hephaistos', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
+      delaySeconds: 0.5,
+      alertText: (data, _matches, output) => {
+        if (data.crushImpactSafeZone)
+          return output.impactDir!({ dir: data.crushImpactSafeZone });
+        return output.text!()
+      },
       outputStrings: {
         text: {
           en: 'Away From Jump',
           de: 'Weg vom Sprung',
           ja: '離れる',
           ko: '멀리 떨어지기',
+        },
+        impactDir: {
+          en: '${dir} (Away From Jump)',
         },
       },
     },
