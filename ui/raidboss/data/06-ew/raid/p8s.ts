@@ -755,7 +755,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Quadrupedal Impact/Crush Direction',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['7A04', '7A05'], source: 'Hephaistos', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: ['7A04', '7A05'], source: 'Hephaistos' }),
       delaySeconds: 0.5,
       promise: async (data, matches, output) => {
         // select the Hephaistoss with same source id
@@ -819,7 +819,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '近づく',
           ko: '보스 따라가기',
         },
-        knobackDir: {
+        knockbackDir: {
           en: '${dir} (Knockback)',
         },
       },
