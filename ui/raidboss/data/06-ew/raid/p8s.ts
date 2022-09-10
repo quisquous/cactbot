@@ -753,7 +753,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P8S Quadrupedal Impact/Crush Direction',
+      id: 'P8S Quadrupedal Impact/Crush',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['7A04', '7A05'], source: 'Hephaistos' }),
       delaySeconds: 0.5,
@@ -787,65 +787,46 @@ const triggerSet: TriggerSet<Data> = {
 
         data.crushImpactSafeZone = cardinal;
       },
-    },
-    {
-      id: 'P8S Quadrupedal Impact',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7A04', source: 'Hephaistos', capture: false }),
-      delaySeconds: 0.5,
-      alertText: (data, _matches, output) => {
+      infoText: (data, matches, output) => {
         const dirs: { [dir: number]: string } = {
-          0: output.north!(),
-          1: output.east!(),
-          2: output.south!(),
-          3: output.west!(),
+          0: 'north',
+          1: 'east',
+          2: 'south',
+          3: 'west',
         };
-        if (data.crushImpactSafeZone !== undefined)
-          return output.knockbackDir!({ dir: dirs[data.crushImpactSafeZone] });
-        return output.text!();
+        if (data.crushImpactSafeZone === undefined)
+          return;
+
+        // Check if dir is valid, else output generic
+        const dir = dirs[data.crushImpactSafeZone];
+        if (dir === undefined) {
+          if (matches.id === '7A05')
+            return output.crush!();
+          return output.impact!();
+        }
+
+        if (matches.id === '7A05')
+          return output.crushDir!({ dir: output[dir]!() });
+        return output.impactDir!({ dir: output[dir]!() });
       },
       outputStrings: {
-        text: {
-          en: 'Follow Jump',
-          de: 'Sprung folgen',
-          ja: '近づく',
-          ko: '보스 따라가기',
-        },
-        knockbackDir: {
+        impactDir: {
           en: '${dir} (Knockback)',
         },
-        unknown: Outputs.unknown,
-        north: Outputs.north,
-        east: Outputs.east,
-        south: Outputs.south,
-        west: Outputs.west,
-      },
-    },
-    {
-      id: 'P8S Quadrupedal Crush',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7A05', source: 'Hephaistos', capture: false }),
-      delaySeconds: 0.5,
-      alertText: (data, _matches, output) => {
-        const dirs: { [dir: number]: string } = {
-          0: output.north!(),
-          1: output.east!(),
-          2: output.south!(),
-          3: output.west!(),
-        };
-        if (data.crushImpactSafeZone !== undefined)
-          return output.impactDir!({ dir: dirs[data.crushImpactSafeZone] });
-        return output.text!();
-      },
-      outputStrings: {
-        text: {
+        crushDir: {
+          en: '${dir} (Away)',
+        },
+        crush: {
           en: 'Away From Jump',
           de: 'Weg vom Sprung',
           ja: '離れる',
           ko: '멀리 떨어지기',
         },
-        impactDir: {
-          en: '${dir} (Away From Jump)',
+        impact: {
+          en: 'Follow Jump',
+          de: 'Sprung folgen',
+          ja: '近づく',
+          ko: '보스 따라가기',
         },
         unknown: Outputs.unknown,
         north: Outputs.north,
