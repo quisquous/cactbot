@@ -893,7 +893,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         directions: {
-          en: 'Get pushed ${dir} => ${action}',
+          en: '${dir} Line => ${action}',
         },
         crush: {
           en: 'Crush',
