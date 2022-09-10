@@ -810,7 +810,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         if (data.crushImpactSafeZone)
           return output.knockbackDir!({ dir: data.crushImpactSafeZone });
-        return output.text!()
+        return output.text!();
       },
       outputStrings: {
         text: {
@@ -832,7 +832,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         if (data.crushImpactSafeZone)
           return output.impactDir!({ dir: data.crushImpactSafeZone });
-        return output.text!()
+        return output.text!();
       },
       outputStrings: {
         text: {
