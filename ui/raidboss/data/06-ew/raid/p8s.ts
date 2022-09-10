@@ -12,7 +12,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: call out gorgon spawn locations
 // TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
-// TODO: crush/impact directions during 2nd beast phase
 // TODO: make the torch call say left/right during 2nd beast
 // TODO: better vent callouts
 // TODO: initial tank auto call on final boss as soon as boss pulled
@@ -31,6 +30,8 @@ export interface Data extends RaidbossData {
   ventIds: string[];
   illusory?: 'bird' | 'snake';
   seenSnakeIllusoryCreation?: boolean;
+  footfallsDirs: number[];
+  footfallsOrder: string[];
   firstSnakeOrder: { [name: string]: 1 | 2 };
   firstSnakeDebuff: { [name: string]: 'gaze' | 'poison' };
   firstSnakeCalled?: boolean;
@@ -69,6 +70,8 @@ const triggerSet: TriggerSet<Data> = {
       flareTargets: [],
       upliftCounter: 0,
       ventIds: [],
+      footfallsDirs: [];
+      footfallsOrder: [];
       firstSnakeOrder: {},
       firstSnakeDebuff: {},
       secondSnakeGazeFirst: {},
@@ -778,6 +781,116 @@ const triggerSet: TriggerSet<Data> = {
           ja: '離れる',
           ko: '멀리 떨어지기',
         },
+      },
+    },
+    {
+      id: 'P8S Blazing Footfalls',
+      // 793B Trailblaze Shown
+      // 793D Quadrupedal Crush Shown
+      // 793C Quadrpedal Impact Shown
+      // These are shown in the span of 8.5s
+      // Blazing Footfalls takes 14.5s to complete +4s to resolve Torch Flames
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['793C', '793D'], source: 'Hephaistos' }),
+      preRun: (data, matches) => {
+        const x = parseInt(matches.targetX) - 100;
+        const y = parseInt(matches.targetY) - 100;
+        // 0 = N, 1 = E, etc
+        const dir = Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
+
+        if (matches.id === '793C') {
+            data.footfallsOrder.push('impact');
+            data.footfallsDirs.push(dir);
+        }
+        data.footfallsOrder.push('crush');
+        data.footfallsDirs.push((dir + 2) % 4);
+      },
+      durationSeconds: 9,
+      infoText: (data, _matches, output) => {
+        if (
+          data.footfallsDirs[0] !== undefined &&
+          data.footfallsDirs[1] !== undefined &&
+          data.footfallsOrder[0] !== undefined &&
+          data.footfallsOrder[1] !== undefined
+        ) {
+          // Check if have valid dirs
+          const validDirs = [0, 1, 2, 3];
+          if (!validDirs.includes(data.footfallsDirs[0]) || !validDirs.includes(data.footfallsDirs[1])) {
+            console.error(`Blazing Footfalls: Unexpected dirs, got ${data.footfallsDirs[0]} and ${data.footfallsDirs[1]}`);
+            return;
+          }
+
+          const dirToCard: { [dir: number]: string } = {
+            0: output.north!(),
+            1: output.east!(),
+            2: output.south!(),
+            3: output.west!(),
+          };
+
+          return output.directions!({
+            dir1: dirToCard[data.footfallsDirs[0]],
+            action1: output[data.footfallsOrder[0]]!(),
+            dir2: dirToCard[data.footfallsDirs[1]],
+            action2: output[data.footfallsOrder[1]]!(),
+          });
+        }
+      },
+      outputStrings: {
+        directions: {
+          en: 'Get pushed ${dir1} => ${action1} => Get pushed ${dir2} => ${action2}',
+        },
+        crush: {
+          en: 'Crush',
+        },
+        impact: Outputs.knockback,
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
+      id: 'P8S Blazing Footfalls Reminder',
+      // Reminder after first Trailblaze + Impact/Crush
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['793C', '793D'], source: 'Hephaistos', capture: false}),
+      delaySeconds: 12.3, // Duration between second tell and second mechanic
+      durationSeconds: 6, // Duration between second mechanic and fourth mechanic
+      suppressSeconds: 4.4, // Duration between second tell and last tell
+      infoText: (data, _matches, output) => {
+        if (data.footfallsDirs[1] !== undefined && data.footfallsOrder[1] !== undefined) {
+          // Check if have valid dirs
+          const validDirs = [0, 1, 2, 3];
+          if (!validDirs.includes(data.footfallsDirs[1])) {
+            console.error(`Blazing Footfalls Reminder: Unexpected dirs, got ${data.footfallsDirs[1]}`);
+            return;
+          }
+
+          const dirToCard: { [dir: number]: string } = {
+            0: output.north!(),
+            1: output.east!(),
+            2: output.south!(),
+            3: output.west!(),
+          };
+
+          return output.directions!({
+            dir: dirToCard[data.footfallsDirs[1]],
+            action: output[data.footfallsOrder[1]]!(),
+          });
+        }
+      },
+      outputStrings: {
+        directions: {
+          en: 'Get pushed ${dir} => ${action}',
+        },
+        crush: {
+          en: 'Crush',
+        },
+        impact: Outputs.knockback,
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
       },
     },
     {
