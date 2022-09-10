@@ -32,6 +32,7 @@ export interface Data extends RaidbossData {
   seenSnakeIllusoryCreation?: boolean;
   footfallsDirs: number[];
   footfallsOrder: string[];
+  trailblazeCount: number;
   firstSnakeOrder: { [name: string]: 1 | 2 };
   firstSnakeDebuff: { [name: string]: 'gaze' | 'poison' };
   firstSnakeCalled?: boolean;
@@ -72,6 +73,7 @@ const triggerSet: TriggerSet<Data> = {
       ventIds: [],
       footfallsDirs: [],
       footfallsOrder: [],
+      trailblazeCount: 0,
       firstSnakeOrder: {},
       firstSnakeDebuff: {},
       secondSnakeGazeFirst: {},
@@ -862,7 +864,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P8S Blazing Footfalls Reminder',
+      id: 'P8S Blazing Footfalls Second Trailblaze Reminder',
       // Reminder after first Trailblaze + Impact/Crush
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['793C', '793D'], source: 'Hephaistos', capture: false }),
@@ -904,6 +906,65 @@ const triggerSet: TriggerSet<Data> = {
         south: Outputs.south,
         west: Outputs.west,
       },
+    },
+    {
+      id: 'P8S Blazing Footfalls Crush/Impact Reminder',
+      // Reminder after Trailblaze for Impact/Crush Movement
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['793E'], source: 'Hephaistos' }),
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime),
+      durationSeconds: 4,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          directionsPush: {
+            en: '${dir}',
+          },
+          directionsKnockback: {
+            en: '${dir} Knockback',
+          },
+          north: Outputs.north,
+          east: Outputs.east,
+          south: Outputs.south,
+          west: Outputs.west,
+        };
+        if (
+          data.footfallsDirs[0] !== undefined &&
+          data.footfallsOrder[0] !== undefined &&
+          data.footfallsDirs[1] !== undefined &&
+          data.footfallsOrder[1] !== undefined
+        ) {
+          // Check if have valid dirs
+          const validDirs = [0, 1, 2, 3];
+          const dir = data.footfallsDirs[data.trailblazeCount];
+          if (dir === undefined) {
+            console.error(`Blazing Footfalls Crush/Impact Reminder: Unable to retreive direction.`);
+            return;
+          }
+          if (!validDirs.includes(dir)) {
+            if (data.trailblazeCount === 0)
+              console.error(`Blazing Footfalls Crush/Impact Reminder: Unexpected dirs, got ${data.footfallsDirs[0]}`);
+            console.error(`Blazing Footfalls Crush/Impact Reminder: Unexpected dirs, got ${data.footfallsDirs[1]}`);
+            return;
+          }
+
+          const dirToCard: { [dir: number]: string } = {
+            0: output.north!(),
+            1: output.east!(),
+            2: output.south!(),
+            3: output.west!(),
+          };
+
+          // Call move to next push back side if Crush
+          // Only need to call this out if there is an upcoming pushback
+          if (data.trailblazeCount === 0 && data.footfallsOrder[data.trailblazeCount] === 'crush')
+            return { infoText: output.directionsPush!({ dir: dirToCard[data.footfallsDirs[1]] }) };
+          // Call Knockback direction if Impact
+          if (data.footfallsOrder[data.trailblazeCount] === 'impact')
+            return { alertText: output.directionsKnockback!({ dir: dirToCard[dir] }) };
+        }
+      },
+      run: (data) => data.trailblazeCount++,
     },
     {
       id: 'P8S Illusory Hephaistos Scorched Pinion First',
