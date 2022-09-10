@@ -800,7 +800,7 @@ const triggerSet: TriggerSet<Data> = {
           2: output.south!(),
           3: output.west!(),
         };
-        if (data.crushImpactSafeZone)
+        if (data.crushImpactSafeZone !== undefined)
           return output.knockbackDir!({ dir: dirs[data.crushImpactSafeZone] });
         return output.text!();
       },
@@ -833,7 +833,7 @@ const triggerSet: TriggerSet<Data> = {
           2: output.south!(),
           3: output.west!(),
         };
-        if (data.crushImpactSafeZone)
+        if (data.crushImpactSafeZone !== undefined)
           return output.impactDir!({ dir: dirs[data.crushImpactSafeZone] });
         return output.text!();
       },
