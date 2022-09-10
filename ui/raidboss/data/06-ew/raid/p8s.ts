@@ -30,7 +30,7 @@ export interface Data extends RaidbossData {
   ventIds: string[];
   illusory?: 'bird' | 'snake';
   seenSnakeIllusoryCreation?: boolean;
-  crushImpactSafeZone?: string;
+  crushImpactSafeZone?: number;
   firstSnakeOrder: { [name: string]: 1 | 2 };
   firstSnakeDebuff: { [name: string]: 'gaze' | 'poison' };
   firstSnakeCalled?: boolean;
@@ -757,7 +757,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['7A04', '7A05'], source: 'Hephaistos' }),
       delaySeconds: 0.5,
-      promise: async (data, matches, output) => {
+      promise: async (data, matches) => {
         // select the Hephaistoss with same source id
         let hephaistosData = null;
         hephaistosData = await callOverlayHandler({
@@ -785,21 +785,7 @@ const triggerSet: TriggerSet<Data> = {
         const isCrush = (matches.id === '7A05' ? 2 : 0);
         const cardinal = ((2 - Math.round(hephaistos.Heading * 4 / Math.PI) / 2) + isCrush) % 4;
 
-        const dirs: { [dir: number]: string } = {
-          0: output.north!(),
-          1: output.east!(),
-          2: output.south!(),
-          3: output.west!(),
-        };
-
-        data.crushImpactSafeZone = dirs[cardinal];
-      },
-      outputStrings: {
-        unknown: Outputs.unknown,
-        north: Outputs.north,
-        east: Outputs.east,
-        south: Outputs.south,
-        west: Outputs.west,
+        data.crushImpactSafeZone = cardinal;
       },
     },
     {
@@ -808,8 +794,14 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '7A04', source: 'Hephaistos', capture: false }),
       delaySeconds: 0.5,
       alertText: (data, _matches, output) => {
+        const dirs: { [dir: number]: string } = {
+          0: output.north!(),
+          1: output.east!(),
+          2: output.south!(),
+          3: output.west!(),
+        };
         if (data.crushImpactSafeZone)
-          return output.knockbackDir!({ dir: data.crushImpactSafeZone });
+          return output.knockbackDir!({ dir: dirs[data.crushImpactSafeZone] });
         return output.text!();
       },
       outputStrings: {
@@ -822,6 +814,11 @@ const triggerSet: TriggerSet<Data> = {
         knockbackDir: {
           en: '${dir} (Knockback)',
         },
+        unknown: Outputs.unknown,
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
       },
     },
     {
@@ -830,8 +827,14 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '7A05', source: 'Hephaistos', capture: false }),
       delaySeconds: 0.5,
       alertText: (data, _matches, output) => {
+        const dirs: { [dir: number]: string } = {
+          0: output.north!(),
+          1: output.east!(),
+          2: output.south!(),
+          3: output.west!(),
+        };
         if (data.crushImpactSafeZone)
-          return output.impactDir!({ dir: data.crushImpactSafeZone });
+          return output.impactDir!({ dir: dirs[data.crushImpactSafeZone] });
         return output.text!();
       },
       outputStrings: {
@@ -844,6 +847,11 @@ const triggerSet: TriggerSet<Data> = {
         impactDir: {
           en: '${dir} (Away From Jump)',
         },
+        unknown: Outputs.unknown,
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
       },
     },
     {
