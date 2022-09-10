@@ -866,8 +866,8 @@ const triggerSet: TriggerSet<Data> = {
       // Reminder after first Trailblaze + Impact/Crush
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['793C', '793D'], source: 'Hephaistos', capture: false }),
-      delaySeconds: 12.3, // Duration between second tell and second mechanic
-      durationSeconds: 6, // Duration between second mechanic and fourth mechanic
+      delaySeconds: 12.3, // Duration from tell cast to first Impact/Crush cast
+      durationSeconds: 6, // Keep up until Impact/Crush
       suppressSeconds: 4.4, // Duration between second tell and last tell
       infoText: (data, _matches, output) => {
         if (data.footfallsDirs[1] !== undefined && data.footfallsOrder[1] !== undefined) {
