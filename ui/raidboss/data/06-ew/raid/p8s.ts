@@ -70,8 +70,8 @@ const triggerSet: TriggerSet<Data> = {
       flareTargets: [],
       upliftCounter: 0,
       ventIds: [],
-      footfallsDirs: [];
-      footfallsOrder: [];
+      footfallsDirs: [],
+      footfallsOrder: [],
       firstSnakeOrder: {},
       firstSnakeDebuff: {},
       secondSnakeGazeFirst: {},
