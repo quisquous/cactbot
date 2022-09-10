@@ -801,8 +801,7 @@ const triggerSet: TriggerSet<Data> = {
         if (matches.id === '793C') {
           data.footfallsOrder.push('impact');
           data.footfallsDirs.push(dir);
-        }
-        else {
+        } else {
           data.footfallsOrder.push('crush');
           data.footfallsDirs.push((dir + 2) % 4);
         }
