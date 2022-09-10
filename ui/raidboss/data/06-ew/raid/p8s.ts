@@ -799,8 +799,8 @@ const triggerSet: TriggerSet<Data> = {
         const dir = Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
 
         if (matches.id === '793C') {
-            data.footfallsOrder.push('impact');
-            data.footfallsDirs.push(dir);
+          data.footfallsOrder.push('impact');
+          data.footfallsDirs.push(dir);
         }
         data.footfallsOrder.push('crush');
         data.footfallsDirs.push((dir + 2) % 4);
@@ -853,7 +853,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8S Blazing Footfalls Reminder',
       // Reminder after first Trailblaze + Impact/Crush
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['793C', '793D'], source: 'Hephaistos', capture: false}),
+      netRegex: NetRegexes.ability({ id: ['793C', '793D'], source: 'Hephaistos', capture: false }),
       delaySeconds: 12.3, // Duration between second tell and second mechanic
       durationSeconds: 6, // Duration between second mechanic and fourth mechanic
       suppressSeconds: 4.4, // Duration between second tell and last tell
