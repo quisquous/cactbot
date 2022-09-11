@@ -2,16 +2,20 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
+import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 
-// TODO: Tether plant locations via OverlayPlugin X, Y and bird headings?
+// TODO: Tether locations, and/or additional egg locations
 
 export interface Data extends RaidbossData {
   decOffset?: number;
+  fruitCount: number;
+  unhatchedEggs?: PluginCombatantState[];
   bondsDebuff?: string;
   rootsCount: number;
   tetherCollect: string[];
@@ -39,6 +43,19 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
+// Calculate combatant position in an all 8 cards/intercards
+const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
+  // Positions are moved up 100 and right 100
+  const y = combatant.PosY - 100;
+  const x = combatant.PosX - 100;
+
+  // Majority of mechanics center around three circles:
+  // NW at 0, NE at 2, South at 5
+  // Map NW = 0, N = 1, ..., W = 7
+
+  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+};
+
 // effect ids for inviolate purgation
 const effectIdToOutputStringKey: { [effectId: string]: string } = {
   'CEE': 'spread',
@@ -55,6 +72,7 @@ const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheSeventhCircleSavage,
   timelineFile: 'p7s.txt',
   initData: () => ({
+    fruitCount: 0,
     rootsCount: 0,
     tetherCollect: [],
     purgationDebuffs: { 'dps': {}, 'support': {} },
@@ -70,6 +88,202 @@ const triggerSet: TriggerSet<Data> = {
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => {
         getHeadmarkerId(data, matches);
+      },
+    },
+    {
+      id: 'P7S Egg Tracker',
+      // Collects combatantData of the eggs
+      // combatant.BNpcNameID Mapping:
+      //   11375 => Immature Io
+      //   11376 => Immature Stymphalide
+      //   11377 => Immature Minotaur
+      // unhatchedEggs Mapping:
+      //   0-5 are Minotaurs
+      //   6-9 are Birds
+      //   10-12 are Ios
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7811', source: 'Agdistis', capture: false }),
+      preRun: (data) => data.fruitCount = data.fruitCount + 1,
+      delaySeconds: 0.5,
+      promise: async (data) => {
+        const fruitLocaleNames: LocaleText = {
+          en: 'Forbidden Fruit',
+        };
+
+        // Select the Forbidden Fruits
+        const combatantNameFruits = [fruitLocaleNames[data.parserLang] ?? fruitLocaleNames['en']];
+        const combatantData = await callOverlayHandler({
+          call: 'getCombatants',
+          names: combatantNameFruits,
+        });
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (combatantData === null) {
+          console.error(`Forbidden Fruit: null data`);
+          return;
+        }
+        const combatantDataLength = combatantData.combatants.length;
+        if (combatantDataLength < 13) {
+          console.error(`Forbidden Fruit: expected at least 13 combatants got ${combatantDataLength}`);
+          return;
+        }
+
+        // Sort the combatants for parsing its role in the encounter
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
+        const sortedCombatantData = combatantData.combatants.sort(sortCombatants);
+        data.unhatchedEggs = sortedCombatantData;
+      },
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          left: Outputs.left,
+          right: Outputs.right,
+          south: Outputs.south,
+          twoPlatforms: {
+            en: '${platform1} / ${platform2}',
+            ko: '${platform1} / ${platform2}',
+          },
+          orientation: {
+            en: 'Line Bull: ${location}',
+            ko: '줄 달린 소: ${location}',
+          },
+          famineOrientation: {
+            en: 'Minotaurs without Bird: ${location}',
+            ko: '새 없는 곳: ${location}',
+          },
+          deathOrientation: {
+            en: 'Lightning Bull: ${location}',
+            ko: '줄 안달린 소: ${location}',
+          },
+          warOrientation: {
+            en: 'Bird with Minotaurs: ${location}',
+            ko: '새 + 미노타우로스: ${location}',
+          },
+        };
+
+        // Map of dirs to Platform locations
+        // Note: Eggs may spawn in additional cardinals/intercardinals
+        const dirToPlatform: { [dir: number]: string } = {
+          0: 'left',
+          2: 'right',
+          3: 'right',
+          5: 'south',
+          7: 'left',
+        };
+
+        // Platforms array used to filter for new platforms
+        const platforms = ['right', 'left', 'south'];
+
+        if (data.fruitCount === 1) {
+          // Find location of the north-most bird
+          // Forbidden Fruit 1 uses last two birds
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined || data.unhatchedEggs[9] === undefined) {
+            console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
+            return;
+          }
+          const bird1 = data.unhatchedEggs[8];
+          const bird2 = data.unhatchedEggs[9];
+
+          // Lower PosY = more north
+          const northBird = (bird1.PosY < bird2.PosY ? bird1 : bird2);
+
+          // Check north bird's side
+          if (northBird.PosX < 100)
+            return { alertText: output.left!() };
+          return { alertText: output.right!() };
+        }
+
+        if (data.fruitCount === 4 || data.fruitCount === 6) {
+          // Check where bull is
+          // Forbidden Fruit 4 and 6 use last bull
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[12] === undefined) {
+            console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
+            return;
+          }
+          const bullDir = matchedPositionTo8Dir(data.unhatchedEggs[12]);
+          const platform = dirToPlatform[bullDir];
+
+          if (data.fruitCount === 4) {
+            // Call out orientation based on bull's platform
+            if (platform !== undefined)
+              return { infoText: output.orientation!({ location: output[platform]!() }) };
+          }
+          if (data.fruitCount === 6) {
+            // Callout where bull is not
+            // Remove platform from platforms
+            const newPlatforms = platforms.filter((val) => val !== platform);
+
+            if (newPlatforms.length === 2) {
+              const safePlatform1 = newPlatforms[0];
+              const safePlatform2 = newPlatforms[1];
+              if (safePlatform1 !== undefined && safePlatform2 !== undefined)
+                return { infoText: output.twoPlatforms!({ platform1: output[safePlatform1]!(), platform2: output[safePlatform2]!() }) };
+            }
+          }
+          console.error(`Forbidden Fruit ${data.fruitCount}: Invalid positions.`);
+        }
+
+        if (data.fruitCount === 10) {
+          // Check where minotaurs are to determine middle bird
+          // Forbidden Fruit 10 uses last two minotaurs
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[4] === undefined || data.unhatchedEggs[5] === undefined) {
+            console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
+            return;
+          }
+          const minotaurDir1 = matchedPositionTo8Dir(data.unhatchedEggs[4]);
+          const minotaurDir2 = matchedPositionTo8Dir(data.unhatchedEggs[5]);
+
+          // Return if received bad data
+          const validDirs = [1, 4, 6];
+          if (!validDirs.includes(minotaurDir1) || !validDirs.includes(minotaurDir2)) {
+            console.error(`Forbidden Fruit ${data.fruitCount}: Expected minotaurs at 1, 4, or 6. Got ${minotaurDir1} and ${minotaurDir2}.`);
+            return;
+          }
+
+          // Add the two positions to calculate platform between
+          // Minotaurs spawn at dirs 1 (N), 4 (SE), or 6 (SW)
+          const bridgeDirsToPlatform: { [dir: number]: string } = {
+            5: 'right', // N + SE
+            7: 'left', // N + SW
+            10: 'south', // SE + SW
+          };
+
+          const platform = bridgeDirsToPlatform[minotaurDir1 + minotaurDir2];
+          if (platform !== undefined)
+            return { infoText: output.warOrientation!({ location: output[platform]!() }) };
+        }
+
+        if (data.fruitCount > 6 && data.fruitCount < 10) {
+          // Check each location for bird, call out where there is no bird
+          // Forbidden Fruit 7 - 10 use last two birds
+          if (data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined || data.unhatchedEggs[9] === undefined) {
+            console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
+            return;
+          }
+          const birdDir1 = matchedPositionTo8Dir(data.unhatchedEggs[8]);
+          const birdDir2 = matchedPositionTo8Dir(data.unhatchedEggs[9]);
+
+          const birdPlatform1 = dirToPlatform[birdDir1];
+          const birdPlatform2 = dirToPlatform[birdDir2];
+
+          // Remove platform from platforms
+          const newPlatforms = platforms.filter((val) => val !== birdPlatform1 && val !== birdPlatform2);
+
+          if (newPlatforms.length === 1) {
+            const platform = newPlatforms[0];
+            if (platform !== undefined) {
+              switch (data.fruitCount) {
+                case 7:
+                  return { infoText: output[platform]!() };
+                case 8:
+                  return { infoText: output.famineOrientation!({ location: output[platform]!() }) };
+                case 9:
+                  return { infoText: output.deathOrientation!({ location: output[platform]!() }) };
+              }
+            }
+            console.error(`Forbidden Fruit ${data.fruitCount}: Invalid positions.`);
+          }
+        }
       },
     },
     {
@@ -101,6 +315,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Split Tankbusters',
           de: 'Geteilter Tankbuster',
+          fr: 'Séparez des Tankbusters',
           ja: '2人同時タンク強攻撃',
           ko: '따로맞는 탱버',
         },
@@ -127,6 +342,10 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitSoon: {
           en: 'Bait on Empty Platform Soon',
+          de: 'Bald auf freier Plattform ködern',
+          fr: 'Déposez sur une plateforme vide bientôt',
+          ja: '果実がない空きの円盤へ移動',
+          ko: '빈 플랫폼에서 장판 유도 준비',
         },
       },
     },
@@ -140,6 +359,10 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         separateHealerGroups: {
           en: 'Healer Group Platforms',
+          de: 'Heiler-Gruppen Plattformen',
+          fr: 'Groupes heals Plateforme',
+          ja: '円盤の内でヒーラーと頭割り',
+          ko: '힐러 그룹별로 플랫폼',
         },
       },
     },
@@ -178,8 +401,9 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'aoe + bleed',
           de: 'AoE + Blutung',
+          fr: 'AoE + Saignement',
           ja: 'AOE + 出血',
-          ko: '전체 공격 + 출혈',
+          ko: '전체 공격 + 도트',
         },
       },
     },
@@ -228,30 +452,66 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           bullTether: {
             en: 'Bull Tether (Line AoE)',
+            de: 'Stier-Verbindung (Linien AoE)',
+            fr: 'Lien Taureau (AoE en ligne)',
+            ja: '牛から直線',
+            ko: '소 (직선 장판)',
           },
           deathBullTether: {
             en: 'Bull Tether (Line AoE)',
+            de: 'Stier-Verbindung (Linien AoE)',
+            fr: 'Lien Taureau (AoE en ligne)',
+            ja: '牛から直線',
+            ko: '소 (직선 장판)',
           },
           warBullTether: {
             en: 'Bull Tether (Line AoE)',
+            de: 'Stier-Verbindung (Linien AoE)',
+            fr: 'Lien Taureau (AoE en ligne)',
+            ja: '牛から直線',
+            ko: '소 (직선 장판)',
           },
           minotaurTether: {
             en: 'Minotaur Tether (Big Cleave)',
+            de: 'Minotaurus-Verbindung (Große Kegel-AoE)',
+            fr: 'Lien Minotaure (Gros Cleave)',
+            ja: 'ミノから扇',
+            ko: '미노타우로스 (부채꼴 장판)',
           },
           famineMinotaurTether: {
             en: 'Cross Minotaur Tethers (Big Cleave)',
+            de: 'Überkreuze Minotaurus-Verbindung (Große Kegel-AoE)',
+            fr: 'Lien Minotaure en croix (Gros Cleave)',
+            ja: 'ミノからの扇を交える',
+            ko: '미노타우로스 선 교차하기 (부채꼴 장판)',
           },
           warMinotaurTether: {
             en: 'Minotaur Tether (Big Cleave)',
+            de: 'Minotaurus-Verbindung (Große Kegel-AoE)',
+            fr: 'Lien Minotaure (Gros Cleave)',
+            ja: 'ミノから扇',
+            ko: '미노타우로스 (부채꼴 장판)',
           },
           warBirdTether: {
             en: 'Bird Tether',
+            de: 'Vogel-Verbindung',
+            fr: 'Lien Oiseau',
+            ja: '鳥から線',
+            ko: '새',
           },
           noTether: {
             en: 'No Tether, Bait Minotaur Cleave (Middle)',
+            de: 'Keine Verbindung, Minotaurus-Verbindung ködern (Mitte)',
+            fr: 'Aucun lien, encaissez le cleave du Minotaure (Milieu)',
+            ja: '線なし、中央で扇を誘導',
+            ko: '선 없음, 미노타우로스 유도 (중앙)',
           },
           famineNoTether: {
             en: 'No Tether, Bait Minotaur Cleave',
+            de: 'Keine Verbindung, Minotaurus-Verbindung ködern',
+            fr: 'Aucun lien, encaissez le cleave du Minotaure',
+            ja: '線なし、ミノからの扇を誘導',
+            ko: '선 없음, 미노타우로스 유도',
           },
         };
 

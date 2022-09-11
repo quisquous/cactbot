@@ -18,7 +18,7 @@
 ## About
 
 cactbot is an ACT overlay that provides raiding tools for [Final Fantasy XIV](http://www.finalfantasyxiv.com/). This project is an overlay plugin for
-[ngld's OverlayPlugin](https://github.com/ngld/OverlayPlugin)
+[OverlayPlugin](https://github.com/OverlayPlugin/OverlayPlugin)
 which itself is a plugin for
 [Advanced Combat Tracker](http://advancedcombattracker.com/).
 
@@ -84,7 +84,7 @@ Alternative FFXIV Plugin Guides:
 * [fflogs video guide](https://www.fflogs.com/help/start/)
 * [TomRichter guide](https://gist.github.com/TomRichter/e044a3dff5c50024cf514ffb20a201a9#installing-act--ffxiv-plugin)
 
-### Install ngld OverlayPlugin
+### Install OverlayPlugin
 
 At this point, if you select the `Plugins` tab and go to the `Plugin Listing`,
 your list of plugins should look something like this:
@@ -97,12 +97,12 @@ Select `Overlay Plugin` and then click `Download and Enable`.
 
 ![overlay plugin selection screenshot](screenshots/get_plugins_overlayplugin.png)
 
-This will download the ngld OverlayPlugin into
+This will download OverlayPlugin into
 `%APPDATA%\Advanced Combat Tracker\Plugins\OverlayPlugin`
 and enable `OverlayPlugin.dll` in the list of plugins.
 
-As a note, you must use the [ngld](https://github.com/ngld) version of
-OverlayPlugin and not the original RainbowMage version or the hibiyasleep fork.
+As a note, you must use the [most current fork](https://github.com/OverlayPlugin/OverlayPlugin) of
+OverlayPlugin and not the original RainbowMage version or the hibiyasleep fork or the ngld fork.
 
 ### Installing cactbot
 
@@ -191,7 +191,7 @@ To install dependencies there are 2 methods: **per script** and **manually**
 1. Extract the `Advanced Combat Tracker.exe` to `cactbot/plugin/ThirdParty/ACT/`
 1. Please download the latest SDK Zip file from <https://github.com/ravahn/FFXIV_ACT_Plugin/> (make sure the file says SDK in its name)
 1. Extract the `SDK folder` as well as the `FFXIV_ACT_Plugin.dll` to `cactbot/plugin/ThirdParty/FFXIV_ACT/`
-1. Please download the latest Zip file from <https://github.com/ngld/OverlayPlugin/releases/>
+1. Please download the latest Zip file from <https://github.com/OverlayPlugin/OverlayPlugin/releases/>
 1. Extract the `libs folder` as well as the `OverlayPlugin.dll` to `cactbot/plugin/ThirdParty/OverlayPlugin/`
 1. Continue with **Steps to build**
 

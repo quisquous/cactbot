@@ -11,6 +11,7 @@ export interface Data extends RaidbossData {
   decOffset?: number;
   pathogenicCellsNumber?: number;
   pathogenicCellsDelay?: number;
+  pathogenicCellsCounter: number;
   secondExocleavers?: boolean;
   aetheronecrosisDuration: number;
   predationCount: number;
@@ -38,6 +39,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'p6s.txt',
   initData: () => {
     return {
+      pathogenicCellsCounter: 0,
       aetheronecrosisDuration: 0,
       predationCount: 0,
     };
@@ -78,7 +80,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Geteilter Tankbuster',
           fr: 'Séparez les Tankbusters',
           ja: '2人同時タンク強攻撃',
-          cn: '坦克分摊死刑',
+          cn: '分散死刑',
           ko: '따로맞는 탱버',
         },
       },
@@ -153,7 +155,7 @@ const triggerSet: TriggerSet<Data> = {
         // show the number until you are done.
         return data.pathogenicCellsDelay;
       },
-      infoText: (data, _matches, output) => output.text!({ num: data.pathogenicCellsNumber }),
+      alertText: (data, _matches, output) => output.text!({ num: data.pathogenicCellsNumber }),
       outputStrings: {
         text: {
           en: '#${num}',
@@ -162,6 +164,26 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${num}番',
           cn: '#${num}',
           ko: '${num}번째',
+        },
+      },
+    },
+    {
+      id: 'P6S Pathogenic Cells Counter',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7865', source: 'Hegemone', capture: false }),
+      preRun: (data, _matches) => data.pathogenicCellsCounter++,
+      suppressSeconds: 1,
+      sound: '',
+      infoText: (data, _matches, output) => output.text!({ num: data.pathogenicCellsCounter }),
+      tts: null,
+      outputStrings: {
+        text: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
         },
       },
     },
@@ -204,7 +226,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Spread Corner',
           de: 'In Ecken Verteilen',
           fr: 'Écartez-vous dans le coin',
-          ja: '角で散会',
+          ja: '隅で散会',
           cn: '去角落',
           ko: '구석으로 산개',
         },
@@ -219,7 +241,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait Circles',
           de: 'Kreise ködern',
-          fr: 'Posez les cercles',
+          fr: 'Déposez les cercles',
           ja: 'ゆか誘導',
           cn: '集合放圈',
           ko: '장판 유도',

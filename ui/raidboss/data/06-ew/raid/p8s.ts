@@ -10,7 +10,19 @@ import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: call out gorgon spawn locations
+// TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
+// TODO: crush/impact directions during 2nd beast phase
+// TODO: make the torch call say left/right during 2nd beast
+// TODO: better vent callouts
+// TODO: initial tank auto call on final boss as soon as boss pulled
+// TODO: figure out how to handle towers during HC1/HC2
+
+export type InitialConcept = 'shortalpha' | 'longalpha' | 'shortbeta' | 'longbeta' | 'shortgamma' | 'longgamma';
+export type Splicer = 'solosplice' | 'multisplice' | 'supersplice';
+
 export interface Data extends RaidbossData {
+  // Door Boss
   conceptual?: 'octa' | 'tetra' | 'di';
   combatantData: PluginCombatantState[];
   torches: NetMatches['StartsUsing'][];
@@ -18,6 +30,22 @@ export interface Data extends RaidbossData {
   upliftCounter: number;
   ventIds: string[];
   illusory?: 'bird' | 'snake';
+  seenSnakeIllusoryCreation?: boolean;
+  firstSnakeOrder: { [name: string]: 1 | 2 };
+  firstSnakeDebuff: { [name: string]: 'gaze' | 'poison' };
+  firstSnakeCalled?: boolean;
+  secondSnakeGazeFirst: { [name: string]: boolean };
+  secondSnakeDebuff: { [name: string]: 'nothing' | 'shriek' | 'stack' };
+
+  // Final Boss
+  seenFirstTankAutos?: boolean;
+  firstAlignmentSecondAbility?: 'stack' | 'spread';
+  seenFirstAlignmentStackSpread?: boolean;
+  concept: { [name: string]: InitialConcept };
+  splicer: { [name: string]: Splicer };
+  alignmentTargets: string[];
+  inverseMagics: { [name: string]: boolean };
+  deformationTargets: string[];
 }
 
 const centerX = 100;
@@ -41,8 +69,39 @@ const triggerSet: TriggerSet<Data> = {
       flareTargets: [],
       upliftCounter: 0,
       ventIds: [],
+      firstSnakeOrder: {},
+      firstSnakeDebuff: {},
+      secondSnakeGazeFirst: {},
+      secondSnakeDebuff: {},
+      concept: {},
+      splicer: {},
+      alignmentTargets: [],
+      inverseMagics: {},
+      deformationTargets: [],
     };
   },
+  timelineTriggers: [
+    {
+      id: 'P8S Tank Cleave Autos',
+      regex: /--auto--/,
+      beforeSeconds: 8,
+      suppressSeconds: 20,
+      alertText: (data, _matches, output) => {
+        // TODO: because of how the timeline starts in a doorboss fight, this call occurs
+        // somewhere after the first few autos and so feels really weird.  Ideally, figure
+        // out some way to call this out immediately when combat starts?? Maybe off engage?
+        if (data.seenFirstTankAutos)
+          return output.text!();
+      },
+      run: (data) => data.seenFirstTankAutos = true,
+      outputStrings: {
+        text: {
+          en: 'Tank Autos',
+          ko: '탱커 평타',
+        },
+      },
+    },
+  ],
   triggers: [
     // ---------------- Part 1 ----------------
     {
@@ -206,7 +265,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Out + Stacks',
           de: 'Raus + Sammeln',
           ja: '外側 + 頭割り',
-          ko: '밖으로 +쉐어',
+          ko: '밖으로 + 쉐어',
         },
         stacks: {
           en: 'Partner Stacks',
@@ -371,31 +430,31 @@ const triggerSet: TriggerSet<Data> = {
         insideSquare: {
           en: 'Inside Square',
           de: 'Inneres Viereck',
-          ja: '内側の四角',
+          ja: '内側の四角の中',
           ko: '중앙',
         },
         cornerNW: {
           en: 'NW Corner',
           de: 'NW Ecke',
-          ja: '北西の角',
+          ja: '北西の隅',
           ko: '북서쪽 구석',
         },
         cornerNE: {
           en: 'NE Corner',
           de: 'NO Ecke',
-          ja: '北東の角',
+          ja: '北東の隅',
           ko: '북동쪽 구석',
         },
         cornerSE: {
           en: 'SE Corner',
           de: 'SO Ecke',
-          ja: '南東の角',
+          ja: '南東の隅',
           ko: '남동쪽 구석',
         },
         cornerSW: {
           en: 'SW Corner',
           de: 'SW Ecke',
-          ja: '南西の角',
+          ja: '南西の隅',
           ko: '남서쪽 구석',
         },
         outsideNorth: {
@@ -403,56 +462,56 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Norden raus',
           fr: 'Nord Extérieur',
           ja: '北の外側',
-          ko: '북쪽, 바깥',
+          ko: '북쪽 바깥',
         },
         insideNorth: {
           en: 'Inside North',
           de: 'Im Norden rein',
           fr: 'Nord Intérieur',
           ja: '北の内側',
-          ko: '북쪽, 안',
+          ko: '북쪽 안',
         },
         outsideEast: {
           en: 'Outside East',
           de: 'Im Osten raus',
           fr: 'Est Extérieur',
           ja: '東の外側',
-          ko: '동쪽, 바깥',
+          ko: '동쪽 바깥',
         },
         insideEast: {
           en: 'Inside East',
           de: 'Im Osten rein',
           fr: 'Est Intérieur',
           ja: '東の内側',
-          ko: '동쪽, 안',
+          ko: '동쪽 안',
         },
         outsideSouth: {
           en: 'Outside South',
           de: 'Im Süden raus',
           fr: 'Sud Extérieur',
           ja: '南の外側',
-          ko: '남쪽, 바깥',
+          ko: '남쪽 바깥',
         },
         insideSouth: {
           en: 'Inside South',
           de: 'Im Süden rein',
           fr: 'Sud Intérieur',
           ja: '南の内側',
-          ko: '남쪽, 안',
+          ko: '남쪽 안',
         },
         outsideWest: {
           en: 'Outside West',
           de: 'Im Westen raus',
           fr: 'Ouest Extérieur',
           ja: '西の外側',
-          ko: '서쪽, 바깥',
+          ko: '서쪽 바깥',
         },
         insideWest: {
           en: 'Inside West',
           de: 'Im Westen rein',
           fr: 'Ouest Intérieur',
           ja: '西の内側',
-          ko: '서쪽, 안',
+          ko: '서쪽 안',
         },
       },
     },
@@ -478,12 +537,185 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getOut(),
     },
     {
+      id: 'P8S First Snake Debuff Collect',
+      // BBC = First in Line
+      // BBD = Second in Line,
+      // D17 = Eye of the Gorgon
+      // D18 = Crown of the Gorgon
+      // CFE = Blood of the Gorgon
+      // CFF = Breath of the Gorgon
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['BB[CD]', 'D17', 'CFE'] }),
+      condition: (data) => !data.firstSnakeCalled,
+      run: (data, matches) => {
+        const id = matches.effectId;
+        if (id === 'BBC')
+          data.firstSnakeOrder[matches.target] = 1;
+        else if (id === 'BBD')
+          data.firstSnakeOrder[matches.target] = 2;
+        else if (id === 'D17')
+          data.firstSnakeDebuff[matches.target] = 'gaze';
+        else if (id === 'CFE')
+          data.firstSnakeDebuff[matches.target] = 'poison';
+      },
+    },
+    {
+      id: 'P8S First Snake Debuff Initial Call',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['BB[CD]', 'D17', 'CFE'], capture: false }),
+      condition: (data) => !data.firstSnakeCalled,
+      delaySeconds: 0.3,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          firstGaze: {
+            en: 'First Gaze (w/ ${player})',
+            ko: '첫번째 석화 (+ ${player})',
+          },
+          secondGaze: {
+            en: 'Second Gaze (w/ ${player})',
+            ko: '두번째 석화 (+ ${player})',
+          },
+          firstPoison: {
+            en: 'First Poison (w/ ${player})',
+            ko: '첫번째 독장판 (+ ${player})',
+          },
+          secondPoison: {
+            en: 'Second Poison (w/ ${player})',
+            ko: '두번째 독장판 (+ ${player})',
+          },
+          unknown: Outputs.unknown,
+        };
+
+        const myNumber = data.firstSnakeOrder[data.me];
+        if (myNumber === undefined)
+          return;
+        const myDebuff = data.firstSnakeDebuff[data.me];
+        if (myDebuff === undefined)
+          return;
+
+        let partner = output.unknown!();
+        for (const [name, theirDebuff] of Object.entries(data.firstSnakeDebuff)) {
+          if (myDebuff !== theirDebuff || name === data.me)
+            continue;
+          const theirNumber = data.firstSnakeOrder[name];
+          if (myNumber === theirNumber) {
+            partner = data.ShortName(name);
+            break;
+          }
+        }
+
+        if (myNumber === 1) {
+          if (myDebuff === 'gaze')
+            return { alertText: output.firstGaze!({ player: partner }) };
+          return { alertText: output.firstPoison!({ player: partner }) };
+        }
+        if (myDebuff === 'gaze')
+          return { infoText: output.secondGaze!({ player: partner }) };
+        return { infoText: output.secondPoison!({ player: partner }) };
+      },
+      run: (data) => data.firstSnakeCalled = true,
+    },
+    {
+      id: 'P8S Second Snake Debuff Collect',
+      // D17 = Eye of the Gorgon (gaze)
+      // D18 = Crown of the Gorgon (shriek)
+      // CFE = Blood of the Gorgon (small poison)
+      // CFF = Breath of the Gorgon (stack poison)
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D1[78]', 'CFF'] }),
+      condition: (data) => data.firstSnakeCalled,
+      run: (data, matches) => {
+        const id = matches.effectId;
+
+        if (id === 'D17') {
+          // 23s short, 29s long
+          const duration = parseFloat(matches.duration);
+          data.secondSnakeGazeFirst[matches.target] = duration < 24;
+          data.secondSnakeDebuff[matches.target] ??= 'nothing';
+        } else if (id === 'D18') {
+          data.secondSnakeDebuff[matches.target] = 'shriek';
+        } else if (id === 'CFF') {
+          data.secondSnakeDebuff[matches.target] = 'stack';
+        }
+      },
+    },
+    {
+      id: 'P8S Second Snake Debuff Initial Call',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D1[78]', 'CFF'], capture: false }),
+      condition: (data) => data.firstSnakeCalled,
+      delaySeconds: 0.3,
+      durationSeconds: 6,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          firstGaze: {
+            en: 'First Gaze',
+            ko: '첫번째 석화',
+          },
+          secondGaze: {
+            en: 'Second Gaze',
+            ko: '두번째 석화',
+          },
+          shriek: {
+            en: 'Shriek later (with ${player})',
+            ko: '나중에 마안 (+ ${player})',
+          },
+          stack: {
+            en: 'Stack later (with ${player})',
+            ko: '나중에 쉐어 (+ ${player})',
+          },
+          noDebuff: {
+            en: 'No debuff (w/ ${player1}, ${player2}, ${player3})',
+            ko: '디버프 없음 (+ ${player1}, ${player2}, ${player3})',
+          },
+        };
+
+        const isGazeFirst = data.secondSnakeGazeFirst[data.me];
+        const myDebuff = data.secondSnakeDebuff[data.me];
+        if (isGazeFirst === undefined || myDebuff === undefined)
+          return;
+
+        const friends = [];
+        for (const [name, theirDebuff] of Object.entries(data.secondSnakeDebuff)) {
+          if (myDebuff === theirDebuff && name !== data.me)
+            friends.push(data.ShortName(name));
+        }
+
+        const gazeAlert = isGazeFirst ? output.firstGaze!() : output.secondGaze!();
+        if (myDebuff === 'nothing') {
+          return {
+            alertText: gazeAlert,
+            infoText: output.noDebuff!({ player1: friends[0], player2: friends[1], player3: friends[2] }),
+          };
+        }
+
+        if (myDebuff === 'shriek') {
+          return {
+            alertText: gazeAlert,
+            infoText: output.shriek!({ player: friends[0] }),
+          };
+        }
+
+        if (myDebuff === 'stack') {
+          return {
+            alertText: gazeAlert,
+            infoText: output.stack!({ player: friends[0] }),
+          };
+        }
+      },
+    },
+    {
       id: 'P8S Uplift Counter',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7935', source: 'Hephaistos', capture: false }),
       // Count in a separate trigger so that we can suppress it, but still call out for
       // both people hit.
       preRun: (data, _matches) => data.upliftCounter++,
+      durationSeconds: 1.7,
       suppressSeconds: 1,
       sound: '',
       infoText: (data, _matches, output) => output.text!({ num: data.upliftCounter }),
@@ -551,10 +783,18 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Illusory Hephaistos Scorched Pinion First',
       type: 'StartsUsing',
-      // This is "Illusory Hephaistos" but sometimes it says "Gorgon".
-      netRegex: NetRegexes.startsUsing({ id: '7953' }),
+      // This is "Illusory Hephaistos" but sometimes it says "Gorgon", so drop the name.
+      // This trigger calls out the Scorched Pinion location (7953), but is looking
+      // for the Scorching Fang (7952) ability.  The reason for this is that there are
+      // two casts of 7953 and only one 7952, and there's some suspicion that position
+      // data may be incorrect on one of the 7953 mobs.
+      netRegex: NetRegexes.startsUsing({ id: '7952' }),
       condition: (data) => data.flareTargets.length === 0,
-      suppressSeconds: 1,
+      // For some reason the position data does not appear to be correct for either
+      // 7952 or 7953.  Add a delay to hope that it gets up to date.
+      // 7952/7953 is the real damage.  We could also try looking for 7950/7951, which is
+      // a different mob with the Sunforge cast bar.  This might be in the correct place.
+      delaySeconds: 0.3,
       promise: async (data, matches) => {
         data.combatantData = [];
 
@@ -569,11 +809,12 @@ const triggerSet: TriggerSet<Data> = {
         if (combatant === undefined || data.combatantData.length !== 1)
           return;
 
+        // This trigger finds the snake, so call the opposite.
         const dir = positionTo8Dir(combatant);
         if (dir === 0 || dir === 4)
-          return output.northSouth!();
-        if (dir === 2 || dir === 6)
           return output.eastWest!();
+        if (dir === 2 || dir === 6)
+          return output.northSouth!();
       },
       outputStrings: {
         northSouth: {
@@ -620,6 +861,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '(avoid proteans)',
           de: '(weiche Himmelsrichtungen aus)',
           ja: '(回避)',
+          ko: '(피하기)',
         },
       },
     },
@@ -638,6 +880,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'In for Protean',
           de: 'rein für Himmelsrichtungen',
           ja: '内側で散会',
+          ko: '안에서 장판 유도',
         },
       },
     },
@@ -651,7 +894,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8S Suneater Cthonic Vent Initial',
       type: 'StartsUsing',
       // TODO: vents #2 and #3 are hard, but the first vent cast has a ~5s cast time.
-      netRegex: NetRegexes.startsUsing({ id: '7925', source: 'Suneater', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '7925', capture: false }),
       suppressSeconds: 1,
       promise: async (data: Data) => {
         data.combatantData = [];
@@ -709,6 +952,8 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         comboDir: {
           en: '${dir1} / ${dir2}',
+          de: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
         },
         north: Outputs.north,
         east: Outputs.east,
@@ -719,6 +964,75 @@ const triggerSet: TriggerSet<Data> = {
         dirSW: Outputs.dirSW,
         dirNW: Outputs.dirNW,
         unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'P8S Snake 2 Illusory Creation',
+      type: 'StartsUsing',
+      // Illusory Creation happens elsewhere, but this id only in Snake 2.
+      // This is used to differentiate the 4x 7932 Gorgospit from the 1x 7932 Gorgospit that
+      // (ideally) kills two Gorgons.
+      netRegex: NetRegexes.startsUsing({ id: '7931', source: 'Hephaistos', capture: false }),
+      run: (data) => data.seenSnakeIllusoryCreation = true,
+    },
+    {
+      id: 'P8S Gorgospit Location',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7932' }),
+      condition: (data) => data.seenSnakeIllusoryCreation,
+      promise: async (data, matches) => {
+        data.combatantData = [];
+
+        const id = parseInt(matches.sourceId, 16);
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [id],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        const combatant = data.combatantData[0];
+        if (combatant === undefined || data.combatantData.length !== 1)
+          return;
+
+        // If Gorgons on cardinals, clone is (100, 100+/-20) or (100+/-20, 100).
+        // If Gorgons on intercards, clone is (100+/-10, 100+/ 20) or (100+/-20, 100+/-10).
+        // Also sometimes it's +/-11 and not +/-10 (???)
+
+        const x = combatant.PosX;
+        const y = combatant.PosY;
+
+        // Add a little slop to find positions, just in case.  See note above about 11 vs 10.
+        const epsilon = 3;
+
+        // Handle 4x potential locations for line hitting cardinal Gorgons.
+        if (Math.abs(x - 100) < epsilon)
+          return output.eastWest!();
+        if (Math.abs(y - 100) < epsilon)
+          return output.northSouth!();
+
+        // Handle 8x potential locations for line hitting intercard Gorgons.
+        if (Math.abs(x - 90) < epsilon)
+          return output.east!();
+        if (Math.abs(x - 110) < epsilon)
+          return output.west!();
+        if (Math.abs(y - 90) < epsilon)
+          return output.south!();
+        if (Math.abs(y - 110) < epsilon)
+          return output.north!();
+      },
+      outputStrings: {
+        northSouth: {
+          en: 'North / South',
+          ko: '남/북쪽',
+        },
+        eastWest: {
+          en: 'East / West',
+          ko: '동/서쪽',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        west: Outputs.west,
+        south: Outputs.south,
       },
     },
     // ---------------- Part 2 ----------------
@@ -732,7 +1046,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'aoe + bleed',
           de: 'AoE + Blutung',
           ja: 'AOE + 出血',
-          ko: '전체 공격 + 출혈',
+          ko: '전체 공격 + 도트',
         },
       },
     },
@@ -748,6 +1062,424 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Geteilter Tankbuster',
           ja: '2人同時タンク強攻撃',
           ko: '따로맞는 탱버',
+        },
+      },
+    },
+    {
+      id: 'P8S Ashing Blaze Right',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '79D7', source: 'Hephaistos', capture: false }),
+      alertText: (data, _matches, output) => {
+        if (data.firstAlignmentSecondAbility === 'stack')
+          return output.rightAndStack!();
+        if (data.firstAlignmentSecondAbility === 'spread')
+          return output.rightAndSpread!();
+        return output.right!();
+      },
+      run: (data) => delete data.firstAlignmentSecondAbility,
+      outputStrings: {
+        right: Outputs.right,
+        rightAndSpread: {
+          en: 'Right + Spread',
+          ko: '오른쪽 + 산개',
+        },
+        rightAndStack: {
+          en: 'Right + Stack',
+          ko: '오른쪽 + 쉐어',
+        },
+      },
+    },
+    {
+      id: 'P8S Ashing Blaze Left',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '79D8', source: 'Hephaistos', capture: false }),
+      alertText: (data, _matches, output) => {
+        if (data.firstAlignmentSecondAbility === 'stack')
+          return output.leftAndStack!();
+        if (data.firstAlignmentSecondAbility === 'spread')
+          return output.leftAndSpread!();
+        return output.left!();
+      },
+      run: (data) => delete data.firstAlignmentSecondAbility,
+      outputStrings: {
+        left: Outputs.left,
+        leftAndSpread: {
+          en: 'Left + Spread',
+          ko: '왼쪽 + 산개',
+        },
+        leftAndStack: {
+          en: 'Left + Stack',
+          ko: '왼쪽 + 쉐어',
+        },
+      },
+    },
+    {
+      id: 'P8S High Concept',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '79AC', source: 'Hephaistos', capture: false }),
+      response: Responses.bigAoe(),
+      run: (data) => {
+        data.concept = {};
+        data.splicer = {};
+      },
+    },
+    {
+      id: 'P8S Inverse Magics',
+      type: 'GainsEffect',
+      // This gets recast a lot on the same people, but shouldn't cause an issue.
+      // This also only happens once on the second time through, so no need to reset.
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D15' }),
+      infoText: (data, matches, output) => {
+        if (!data.inverseMagics[matches.target])
+          return output.reversed!({ player: data.ShortName(matches.target) });
+      },
+      run: (data, matches) => data.inverseMagics[matches.target] = true,
+      outputStrings: {
+        reversed: {
+          en: '${player} reversed',
+          ko: '${player} 반전',
+        },
+      },
+    },
+    {
+      id: 'P8S Natural Alignment Purple on You',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: '9F8', count: '209' }),
+      preRun: (data, matches) => data.alignmentTargets.push(matches.target),
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.text!();
+      },
+      outputStrings: {
+        text: {
+          en: 'Alignment on YOU',
+          ko: '원판 대상자',
+        },
+      },
+    },
+    {
+      id: 'P8S Natural Alignment Purple Targets',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: '9F8', count: '209', capture: false }),
+      delaySeconds: 0.3,
+      suppressSeconds: 5,
+      sound: '',
+      infoText: (data, _matches, output) => {
+        const [name1, name2] = data.alignmentTargets.sort();
+        return output.text!({ player1: data.ShortName(name1), player2: data.ShortName(name2) });
+      },
+      tts: null,
+      run: (data) => data.alignmentTargets = [],
+      outputStrings: {
+        text: {
+          en: 'Alignment on ${player1}, ${player2}',
+          ko: '${player1}, ${player2} 원판',
+        },
+      },
+    },
+    {
+      id: 'P8S Natural Alignment First',
+      type: 'GainsEffect',
+      // This is a magic effectId with a statusloopvfx count, like 808 elsewhere.
+      netRegex: NetRegexes.gainsEffect({ effectId: '9F8' }),
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          ice: {
+            en: 'Ice Groups First',
+            ko: '얼음 쉐어 먼저',
+          },
+          fire: {
+            en: 'Fire Partners First',
+            ko: '불 2인쉐어 먼저',
+          },
+          stack: {
+            en: 'Stack First',
+            ko: '쉐어 먼저',
+          },
+          spread: {
+            en: 'Spread First',
+            ko: '산개 먼저',
+          },
+          baitAndStack: {
+            en: 'Bait => Stack',
+            ko: '장판 유도 => 쉐어',
+          },
+          baitAndSpread: {
+            en: 'Bait => Spread',
+            ko: '장판 유도 => 산개',
+          },
+        };
+        const isReversed = data.inverseMagics[matches.target] === true;
+        const id = matches.count;
+
+        // Huge credit to Aya for this.  Also note `209` is the purple swirl.
+        const ids = {
+          fireThenIce: '1DC',
+          iceThenFire: '1DE',
+          stackThenSpread: '1E0',
+          spreadThenStack: '1E2',
+        } as const;
+
+        // The first time through, use the "bait" version to avoid people running off
+        // as soon as they hear the beepy boops.
+        if (!data.seenFirstAlignmentStackSpread) {
+          // The first one can't be reversed.
+          // Store the follow-up ability so it can be used with the left/right Ashing Blaze.
+          if (id === ids.stackThenSpread) {
+            data.firstAlignmentSecondAbility = 'spread';
+            return { alertText: output.baitAndStack!() };
+          }
+          if (id === ids.stackThenSpread) {
+            data.firstAlignmentSecondAbility = 'stack';
+            return { alertText: output.baitAndSpread!() };
+          }
+        }
+
+        const key = isReversed ? 'alarmText' : 'alertText';
+        if (!isReversed && id === ids.fireThenIce || isReversed && id === ids.iceThenFire)
+          return { [key]: output.fire!() };
+        if (!isReversed && id === ids.iceThenFire || isReversed && id === ids.fireThenIce)
+          return { [key]: output.ice!() };
+        if (!isReversed && id === ids.spreadThenStack || isReversed && id === ids.stackThenSpread)
+          return { [key]: output.spread!() };
+        if (!isReversed && id === ids.stackThenSpread || isReversed && id === ids.spreadThenStack)
+          return { [key]: output.stack!() };
+      },
+    },
+    {
+      id: 'P8S Natural Alignment Second',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['79C0', '79BF', '79BD', '79BE'], source: 'Hephaistos' }),
+      suppressSeconds: 8,
+      alertText: (data, matches, output) => {
+        // Due to the way suppress works, put this check here and not in the condition field.
+        // This callout will get merged with the left/right which happens at the same time.
+        if (!data.seenFirstAlignmentStackSpread)
+          return;
+
+        const id = matches.id;
+        const ids = {
+          spread: '79C0',
+          stack: '79BF',
+          fire: '79BD',
+          ice: '79BE',
+        } as const;
+
+        // TODO: Should the left/right call (or some future "front row"/"2nd row") call be combined
+        // with the followup here?
+        if (id === ids.spread)
+          return output.stack!();
+        if (id === ids.stack)
+          return output.spread!();
+        if (id === ids.ice)
+          return output.fire!();
+        if (id === ids.fire)
+          return output.ice!();
+      },
+      run: (data) => data.seenFirstAlignmentStackSpread = true,
+      outputStrings: {
+        stack: Outputs.stackMarker,
+        spread: Outputs.spread,
+        ice: {
+          en: 'Ice Groups',
+          ko: '얼음 그룹 쉐어',
+        },
+        fire: {
+          en: 'Fire Partners',
+          ko: '불 2인 쉐어',
+        },
+      },
+    },
+    {
+      id: 'P8S High Concept Collect',
+      // D02 = Imperfection Alpha
+      // D03 = Imperfection Beta
+      // D04 = Imperfection Gamma
+      // D11 = Solosplice
+      // D12 = Multisplice
+      // D13 = Supersplice
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D0[2-4]', 'D1[1-3]'] }),
+      run: (data, matches) => {
+        const id = matches.effectId;
+        // 8 and 26s second debuffs.
+        const isLong = parseFloat(matches.duration) > 10;
+        if (id === 'D02')
+          data.concept[matches.target] = isLong ? 'longalpha' : 'shortalpha';
+        else if (id === 'D03')
+          data.concept[matches.target] = isLong ? 'longbeta' : 'shortbeta';
+        else if (id === 'D04')
+          data.concept[matches.target] = isLong ? 'longgamma' : 'shortgamma';
+        else if (id === 'D11')
+          data.splicer[matches.target] = 'solosplice';
+        else if (id === 'D12')
+          data.splicer[matches.target] = 'multisplice';
+        else if (id === 'D13')
+          data.splicer[matches.target] = 'supersplice';
+      },
+    },
+    {
+      id: 'P8S High Concept Debuffs',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D0[2-4]', 'D1[1-3]'], capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          noDebuff: {
+            en: 'No Debuff',
+            ko: '디버프 없음',
+          },
+          shortAlpha: {
+            en: 'Short Alpha',
+            ko: '짧은 알파',
+          },
+          longAlpha: {
+            en: 'Long Alpha',
+            ko: '긴 알파',
+          },
+          longAlphaSplicer: {
+            en: 'Long Alpha + ${splicer}',
+            ko: '긴 알파 + ${splicer}',
+          },
+          shortBeta: {
+            en: 'Short Beta',
+            ko: '짧은 베타',
+          },
+          longBeta: {
+            en: 'Long Beta',
+            ko: '긴 베타',
+          },
+          longBetaSplicer: {
+            en: 'Long Beta + ${splicer}',
+            ko: '긴 베타 + ${splicer}',
+          },
+          shortGamma: {
+            en: 'Short Gamma',
+            ko: '짧은 감마',
+          },
+          longGamma: {
+            en: 'Long Gamma',
+            ko: '긴 감마',
+          },
+          longGammaSplicer: {
+            en: 'Long Gamma + ${splicer}',
+            ko: '긴 감마 + ${splicer}',
+          },
+          soloSplice: {
+            en: 'Solo Stack',
+            ko: '1인징',
+          },
+          multiSplice: {
+            en: 'Two Stack',
+            ko: '2인징',
+          },
+          superSplice: {
+            en: 'Three Stack',
+            ko: '3인징',
+          },
+        };
+
+        // General thought here: alarm => EXPLOSION GO, alert/info => go to safe corner
+
+        const concept = data.concept[data.me];
+        const splicer = data.splicer[data.me];
+
+        const singleConceptMap: { [key in InitialConcept]: string } = {
+          shortalpha: output.shortAlpha!(),
+          longalpha: output.longAlpha!(),
+          shortbeta: output.shortBeta!(),
+          longbeta: output.longBeta!(),
+          shortgamma: output.shortGamma!(),
+          longgamma: output.longGamma!(),
+        };
+
+        if (splicer === undefined) {
+          if (concept === undefined)
+            return { alarmText: output.noDebuff!() };
+
+          const isShort = concept === 'shortalpha' || concept === 'shortbeta' || concept === 'shortgamma';
+          const conceptStr = singleConceptMap[concept];
+          if (isShort)
+            return { alarmText: conceptStr };
+          return { alertText: conceptStr };
+        }
+
+        const splicerMap: { [key in Splicer]: string } = {
+          solosplice: output.soloSplice!(),
+          multisplice: output.multiSplice!(),
+          supersplice: output.superSplice!(),
+        };
+        const splicerStr = splicerMap[splicer];
+        if (concept === undefined)
+          return { infoText: splicerStr };
+        else if (concept === 'longalpha')
+          return { alertText: output.longAlphaSplicer!({ splicer: splicerStr }) };
+        else if (concept === 'longbeta')
+          return { alertText: output.longBetaSplicer!({ splicer: splicerStr }) };
+        else if (concept === 'longgamma')
+          return { alertText: output.longGammaSplicer!({ splicer: splicerStr }) };
+
+        // If we get here then we have a short concept with a splicer which shouldn't be possible,
+        // but at least return *something* just in case.
+        return { alarmText: singleConceptMap[concept] };
+      },
+    },
+    {
+      id: 'P8S Limitless Desolation',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '75ED', source: 'Hephaistos', capture: false }),
+      response: Responses.spread('alert'),
+    },
+    {
+      id: 'P8S Dominion',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '79D9', source: 'Hephaistos', capture: false }),
+      response: Responses.spread('alert'),
+      run: (data) => data.deformationTargets = [],
+    },
+    {
+      id: 'P8S Orogenic Deformation Hit',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '79DB', source: 'Hephaistos' }),
+      preRun: (data, matches) => data.deformationTargets.push(matches.target),
+      infoText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.text!();
+      },
+      outputStrings: {
+        text: {
+          en: 'Second Towers',
+        },
+      },
+    },
+    {
+      id: 'P8S Orogenic Deformation Not Hit',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '79DB', source: 'Hephaistos', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        if (!data.deformationTargets.includes(data.me))
+          return output.text!();
+      },
+      outputStrings: {
+        text: {
+          en: 'First Towers',
+        },
+      },
+    },
+    {
+      id: 'P8S Aionagonia',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7A22', source: 'Hephaistos', capture: false }),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'big aoe + bleed',
+          ko: '아픈 전체공격 + 도트',
         },
       },
     },
@@ -773,32 +1505,248 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
-        'Gorgon': 'Gorgone',
         '(?<!Illusory )Hephaistos': 'Hephaistos',
+        'Gorgon': 'Gorgone',
         'Illusory Hephaistos': 'Hephaistos-Phantom',
         'Suneater': 'Schlund des Phoinix',
+      },
+      'replaceText': {
+        '--auto--': '--auto--',
+        'Abyssal Fires': 'Feuersturm',
+        'Aionagonia': 'Eiserne Agonie',
+        'Aioniopyr': 'Aioniopyr',
+        'Arcane Channel': 'Zirkelimpuls',
+        'Arcane Control': 'Beleben des Kreises',
+        'Ashing Blaze': 'Aschelodern',
+        'Blazing Footfalls': 'Fackelnde Füße',
+        'Blood of the Gorgon': 'Gorgons Schlangengift',
+        'Breath of the Gorgon': 'Gorgons Übelgift',
+        'Burst': 'Explosion',
+        'Conceptual Diflare': 'Konzeptionelle Diflare',
+        'Conceptual Octaflare': 'Konzeptionelle Oktaflare',
+        'Conceptual Shift': 'Konzeptänderung',
+        'Conceptual Tetraflare': 'Konzeptionelle Tetraflare',
+        'Creation on Command': 'Schöpfungsauftrag',
+        'Crown of the Gorgon': 'Gorgons Steinlicht',
+        'Cthonic Vent': 'Lodernde Schlange',
+        'Deconceptualize': 'Konzepttilgung',
+        'Dominion': 'Schlag des Herrschers',
+        'Ego Death': 'Egotod',
+        'Ektothermos': 'Ektothermos',
+        'Emergent Diflare': 'Steigende Diflare',
+        'Emergent Octaflare': 'Steigende Oktaflare',
+        'Emergent Tetraflare': 'Steigende Tetraflare',
+        'End of Days': 'Ende aller Tage',
+        'Everburn': 'Phoinix-Erschaffung',
+        'Eye of the Gorgon': 'Gorgons Steinauge',
+        '(?<!Nest of )Flameviper': 'Flammenviper',
+        'Footprint': 'Fußschock',
+        'Forcible Difreeze': 'Erzwungenes Di-Einfrieren',
+        'Forcible Fire II(?!I)': 'Erzwungenes Feura',
+        'Forcible Fire III': 'Erzwungenes Feuga',
+        'Forcible Trifire': 'Erzwungenes Trifeuer',
+        'Fourfold Fires': 'Vierfacher Feuersturm',
+        'Genesis of Flame': 'Flammende Genesis',
+        'Gorgomanteia': 'Gorgons Fluch',
+        'Gorgospit': 'Gorgons Speichel',
+        'Hemitheos\'s Flare': 'Hemitheos-Flare',
+        'High Concept': 'Konzeptkontrolle',
+        'Illusory Creation': 'Illusionsschatten',
+        'Into the Shadows': 'In die Schatten',
+        'Inverse Magicks': 'Magische Umkehr',
+        'Limitless Desolation': 'Kosmische Verkohlung',
+        'Manifold Flames': 'Mannigfaltige Flammen',
+        'Natural Alignment': 'Rituelle Anpassung',
+        'Nest of Flamevipers': 'Ausbreitende Viper',
+        '(?<! )Octaflare': 'Oktaflare',
+        'Orogenic Deformation': 'Gewaltige Bodenhebung',
+        'Orogenic Shift': 'Bodenhebung',
+        'Petrifaction': 'Versteinerung',
+        'Quadrupedal Crush': 'Fußmalmer',
+        'Quadrupedal Impact': 'Fußstampfer',
+        'Reforged Reflection': 'Mutierte Schöpfung',
+        'Scorched Pinion': 'Versengte Schwinge',
+        'Scorching Fang': 'Flammender Zahn',
+        'Snaking Kick': 'Natterntritt',
+        'Splicer': 'Konzeptreflektion',
+        'Stomp Dead': 'Fataler Stampfer',
+        'Sun\'s Pinion': 'Schwelende Schwinge',
+        'Sunforge': 'Flammenreigen der Schöpfung',
+        '(?<! )Tetraflare': 'Tetraflare',
+        'Torch Flame': 'Glutfeuer',
+        'Trailblaze': 'Flammender Pfad',
+        'Twist Nature': 'Zwangsbeschwörung',
+        'Tyrant\'s Fire III': 'Feuga des Tyrannen',
+        'Tyrant\'s Flare(?! II)': 'Flare des Tyrannen',
+        'Tyrant\'s Flare II': 'Flare des Tyrannen II',
+        'Tyrant\'s Unholy Darkness': 'Unheiliges Dunkel des Tyrannen',
+        'Uplift': 'Erhöhung',
+        'Volcanic Torches': 'Vulkanfackel',
       },
     },
     {
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Gorgon': 'gorgone',
         '(?<!Illusory )Hephaistos': 'Héphaïstos',
+        'Gorgon': 'gorgone',
         'Illusory Hephaistos': 'spectre d\'Héphaïstos',
         'Suneater': 'serpent en flammes',
+      },
+      'replaceText': {
+        'Abyssal Fires': 'Tempête enflammée',
+        'Aionagonia': 'Aion agonia',
+        'Aioniopyr': 'Aion pur',
+        'Arcane Channel': 'Vague arcanique',
+        'Arcane Control': 'Activation arcanique',
+        'Ashing Blaze': 'Enfer cendreux',
+        'Blazing Footfalls': 'Pas ardents',
+        'Blood of the Gorgon': 'Venin reptilien de gorgone',
+        'Breath of the Gorgon': 'Poison insidieux de gorgone',
+        'Burst': 'Explosion',
+        'Conceptual Diflare': 'Dibrasier conceptuel',
+        'Conceptual Octaflare': 'Octobrasier conceptuel',
+        'Conceptual Shift': 'Bascule conceptuelle',
+        'Conceptual Tetraflare': 'Tetrabrasier conceptuel',
+        'Creation on Command': 'Ordre de création',
+        'Crown of the Gorgon': 'Lueur pétrifiante de gorgone',
+        'Cthonic Vent': 'Serpents de flammes ascendants',
+        'Deconceptualize': 'Effacement conceptuel',
+        'Dominion': 'Poing du maître',
+        'Ego Death': 'Destruction de l\'ego',
+        'Ektothermos': 'Vague d\'énergie explosive',
+        'Emergent Diflare': 'Dibrasier émergent',
+        'Emergent Octaflare': 'Octobrasier émergent',
+        'Emergent Tetraflare': 'Tetrabrasier émergent',
+        'End of Days': 'Flamme de Megiddo',
+        'Everburn': 'Oiseau immortel',
+        'Eye of the Gorgon': 'Œil pétrifiant de gorgone',
+        '(?<!Nest of )Flameviper': 'Serpent-canon',
+        'Footprint': 'Choc quadrupède',
+        'Forcible Difreeze': 'Di Gel forcé',
+        'Forcible Fire II(?!I)': 'Extra Feu forcé',
+        'Forcible Fire III': 'Méga Feu forcé',
+        'Forcible Trifire': 'Tri Feu forcé',
+        'Fourfold Fires': 'Quadruple tempête enflammée',
+        'Genesis of Flame': 'Flammes de la création',
+        'Gorgomanteia': 'Malédiction de gorgone',
+        'Gorgospit': 'Crachat de gorgone',
+        'Hemitheos\'s Flare': 'Brasier d\'hémithéos',
+        'High Concept': 'Manipulation conceptuelle',
+        'Illusory Creation': 'Création d\'ombres',
+        'Into the Shadows': 'Dans l\'ombre',
+        'Inverse Magicks': 'Inversion magique',
+        'Limitless Desolation': 'Cendrage universel',
+        'Manifold Flames': 'Flammes orientées multiples',
+        'Natural Alignment': 'Description rituelle',
+        'Nest of Flamevipers': 'Vipère élancée',
+        '(?<! )Octaflare': 'Octobrasier',
+        'Orogenic Deformation': 'Grande surrection',
+        'Orogenic Shift': 'Surrection',
+        'Petrifaction': 'Pétrification',
+        'Quadrupedal Crush': 'Écrasement quadrupède',
+        'Quadrupedal Impact': 'Impact quadrupède',
+        'Reforged Reflection': 'Mutation corporelle',
+        'Scorched Pinion': 'Aile embrasante',
+        'Scorching Fang': 'Crocs embrasants',
+        'Snaking Kick': 'Coup de pied du serpent',
+        'Splicer': 'Réaction conceptuelle',
+        'Stomp Dead': 'Piétinement mortel',
+        'Sun\'s Pinion': 'Ailes étincelantes',
+        'Sunforge': 'Bête enflammée',
+        '(?<! )Tetraflare': 'Tetrabrasier',
+        'Torch Flame': 'Explosion de braises',
+        'Trailblaze': 'Traînée ardente',
+        'Twist Nature': 'Incantation forcée',
+        'Tyrant\'s Fire III': 'Méga Feu de tyran',
+        'Tyrant\'s Flare(?! II)': 'Brasier de tyran',
+        'Tyrant\'s Flare II': 'Brasier de tyran II',
+        'Tyrant\'s Unholy Darkness': 'Miracle ténébreux de tyran',
+        'Uplift': 'Exhaussement',
+        'Volcanic Torches': 'Boutefeux magiques',
       },
     },
     {
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Gorgon': 'ゴルゴン',
         '(?<!Illusory )Hephaistos': 'ヘファイストス',
+        'Gorgon': 'ゴルゴン',
         'Illusory Hephaistos': 'ヘファイストスの幻影',
         'Suneater': '炎霊蛇',
+      },
+      'replaceText': {
+        'Abyssal Fires': '炎嵐',
+        'Aionagonia': 'アイオンアゴニア',
+        'Aioniopyr': 'アイオンピュール',
+        'Arcane Channel': '魔陣波動',
+        'Arcane Control': '魔法陣起動',
+        'Ashing Blaze': 'アッシュブレイズ',
+        'Blazing Footfalls': 'ブレイジングフィート',
+        'Blood of the Gorgon': 'ゴルゴンの蛇毒',
+        'Breath of the Gorgon': 'ゴルゴンの邪毒',
+        'Burst': '爆発',
+        'Conceptual Diflare': 'ディフレア・コンシーヴ',
+        'Conceptual Octaflare': 'オクタフレア・コンシーヴ',
+        'Conceptual Shift': '概念変異',
+        'Conceptual Tetraflare': 'テトラフレア・コンシーヴ',
+        'Creation on Command': '創造命令',
+        'Crown of the Gorgon': 'ゴルゴンの石光',
+        'Cthonic Vent': '噴炎昇蛇',
+        'Deconceptualize': '概念消去',
+        'Dominion': '支配者の一撃',
+        'Ego Death': '自己概念崩壊',
+        'Ektothermos': '爆炎波動',
+        'Emergent Diflare': 'エマージ・ディフレア',
+        'Emergent Octaflare': 'エマージ・オクタフレア',
+        'Emergent Tetraflare': 'エマージ・テトラフレア',
+        'End of Days': 'メギドフレイム',
+        'Everburn': '不死鳥創造',
+        'Eye of the Gorgon': 'ゴルゴンの石眼',
+        '(?<!Nest of )Flameviper': '炎蛇砲',
+        'Footprint': 'フィートショック',
+        'Forcible Difreeze': 'フォースド・ディフリーズ',
+        'Forcible Fire II(?!I)': 'フォースド・ファイラ',
+        'Forcible Fire III': 'フォースド・ファイガ',
+        'Forcible Trifire': 'フォースド・トリファイア',
+        'Fourfold Fires': '四重炎嵐',
+        'Genesis of Flame': '創世の真炎',
+        'Gorgomanteia': 'ゴルゴンの呪詛',
+        'Gorgospit': 'ゴルゴンスピット',
+        'Hemitheos\'s Flare': 'ヘーミテオス・フレア',
+        'High Concept': '概念支配',
+        'Illusory Creation': '幻影創造',
+        'Into the Shadows': 'イントゥシャドウ',
+        'Inverse Magicks': 'マジックインヴァージョン',
+        'Limitless Desolation': '万象灰燼',
+        'Manifold Flames': '多重操炎',
+        'Natural Alignment': '術式記述',
+        'Nest of Flamevipers': 'スプレッドヴァイパー',
+        '(?<! )Octaflare': 'オクタフレア',
+        'Orogenic Deformation': '地盤大隆起',
+        'Orogenic Shift': '地盤隆起',
+        'Petrifaction': 'ペトリファクション',
+        'Quadrupedal Crush': 'フィートクラッシュ',
+        'Quadrupedal Impact': 'フィートインパクト',
+        'Reforged Reflection': '変異創身',
+        'Scorched Pinion': '炎の翼',
+        'Scorching Fang': '炎の牙',
+        'Snaking Kick': 'スネークキック',
+        'Splicer': '概念反発',
+        'Stomp Dead': 'フェイタルストンプ',
+        'Sun\'s Pinion': '陽炎の翼',
+        'Sunforge': '創獣炎舞',
+        '(?<! )Tetraflare': 'テトラフレア',
+        'Torch Flame': '熾炎',
+        'Trailblaze': 'トレイルブレイズ',
+        'Twist Nature': '強制詠唱',
+        'Tyrant\'s Fire III': 'タイラント・ファイガ',
+        'Tyrant\'s Flare(?! II)': 'タイラント・フレア',
+        'Tyrant\'s Flare II': 'タイラント・フレアII',
+        'Tyrant\'s Unholy Darkness': 'タイラント・ダークホーリー',
+        'Uplift': '隆起',
+        'Volcanic Torches': '熾炎創火',
       },
     },
   ],
