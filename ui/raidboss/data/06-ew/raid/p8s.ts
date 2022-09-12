@@ -1293,9 +1293,12 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P8S High Concept Collect',
-      // D02 = Imperfection Alpha
-      // D03 = Imperfection Beta
-      // D04 = Imperfection Gamma
+      // D02 = Imperfection: Alpha
+      // D03 = Imperfection: Beta
+      // D04 = Imperfection: Gamma
+      // D05 = Perfection: Alpha
+      // D06 = Perfection: Beta
+      // D07 = Perfection: Gamma
       // D11 = Solosplice
       // D12 = Multisplice
       // D13 = Supersplice
@@ -1425,6 +1428,45 @@ const triggerSet: TriggerSet<Data> = {
         // If we get here then we have a short concept with a splicer which shouldn't be possible,
         // but at least return *something* just in case.
         return { alarmText: singleConceptMap[concept] };
+      },
+    },
+    {
+      id: 'P8S Perfected Alpha',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D05' }),
+      condition: Conditions.targetIsYou(),
+      // TODO: it'd be nice to know the tower here so this could just say
+      // "take tower" or "avoid tower" with different severity or even
+      // who to merge with (!), but without that this is the best we got.
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Green/Blue Tower',
+        },
+      },
+    },
+    {
+      id: 'P8S Perfected Beta',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D06' }),
+      condition: Conditions.targetIsYou(),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Green/Purple Tower',
+        },
+      },
+    },
+    {
+      id: 'P8S Perfected Gamma',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D07' }),
+      condition: Conditions.targetIsYou(),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Purple/Blue Tower',
+        },
       },
     },
     {
