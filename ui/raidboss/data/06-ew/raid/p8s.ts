@@ -811,10 +811,10 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         impactDir: {
-          en: '${dir} (Knockback)',
+          en: 'Follow to ${dir} (Knockback)',
         },
         crushDir: {
-          en: '${dir} (Away)',
+          en: 'Away to ${dir}',
         },
         crush: {
           en: 'Away From Jump',
