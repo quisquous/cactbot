@@ -1,5 +1,11 @@
 const centerX = 100;
 const centerY = 100;
+const positionMatchesTo8Dir = (combatant) => {
+  const x = parseFloat(combatant.x) - centerX;
+  const y = parseFloat(combatant.y) - centerY;
+  // Dirs: N = 0, NE = 1, ..., NW = 7
+  return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+};
 const positionTo8Dir = (combatant) => {
   const x = combatant.PosX - centerX;
   const y = combatant.PosY - centerY;
@@ -16,6 +22,8 @@ Options.Triggers.push({
       flareTargets: [],
       upliftCounter: 0,
       ventIds: [],
+      gorgons: [],
+      gorgonCount: 0,
       firstSnakeOrder: {},
       firstSnakeDebuff: {},
       secondSnakeGazeFirst: {},
@@ -470,6 +478,82 @@ Options.Triggers.push({
       // This is the Reforged Reflection cast.
       netRegex: NetRegexes.startsUsing({ id: '794C', source: 'Hephaistos', capture: false }),
       response: Responses.getOut(),
+    },
+    {
+      id: 'P8S Gorgon Collect',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '11517', npcBaseId: '15052' }),
+      // We could technically call WAY ahead of time here.
+      run: (data, matches) => data.gorgons.push(matches),
+    },
+    {
+      id: 'P8S Gorgon Location',
+      type: 'StartsUsing',
+      // We could call the very first one out immediately on the Added Combatant line,
+      // but then we'd have to duplicate this.
+      netRegex: NetRegexes.startsUsing({ id: '792B', capture: false }),
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        data.gorgonCount++;
+        // Gorgons fire in order of actor id (highest first), but are added in any order.
+        // Sort from lowest id to highest, so we can pull off the end.
+        data.gorgons.sort((a, b) => a.id.localeCompare(b.id));
+        const gorgons = [];
+        if (data.gorgonCount === 1 || data.gorgonCount === 2) {
+          // For Snake 1, all positions are known ahead of time, so do 2 at a time.
+          const g0 = data.gorgons.pop();
+          const g1 = data.gorgons.pop();
+          if (g0 === undefined || g1 === undefined)
+            return;
+          gorgons.push(g0);
+          gorgons.push(g1);
+        } else {
+          // For Snake 2, just call all at once.
+          gorgons.push(...data.gorgons);
+          data.gorgons = [];
+        }
+        if (gorgons.length !== 2 && gorgons.length !== 4)
+          return;
+        const dirs = gorgons.map(positionMatchesTo8Dir).sort();
+        const [d0, d1] = dirs;
+        if (d0 === undefined || d1 === undefined)
+          return;
+        if (dirs.length === 4)
+          return d0 === 0 ? output.intercards() : output.cardinals();
+        const outputMap = {
+          0: output.dirN(),
+          1: output.dirNE(),
+          2: output.dirE(),
+          3: output.dirSE(),
+          4: output.dirS(),
+          5: output.dirSW(),
+          6: output.dirW(),
+          7: output.dirNW(),
+        };
+        const dir1 = outputMap[d0] ?? output.unknown();
+        const dir2 = outputMap[d1] ?? output.unknown();
+        return output.gorgons({ dir1: dir1, dir2: dir2 });
+      },
+      outputStrings: {
+        cardinals: {
+          en: 'Look Cardinals',
+        },
+        intercards: {
+          en: 'Look Intercards',
+        },
+        gorgons: {
+          en: '${dir1}/${dir2} Gorgons',
+        },
+        dirN: Outputs.dirN,
+        dirNE: Outputs.dirNE,
+        dirE: Outputs.dirE,
+        dirSE: Outputs.dirSE,
+        dirS: Outputs.dirS,
+        dirSW: Outputs.dirSW,
+        dirW: Outputs.dirW,
+        dirNW: Outputs.dirNW,
+        unknown: Outputs.unknown,
+      },
     },
     {
       id: 'P8S First Snake Debuff Collect',
