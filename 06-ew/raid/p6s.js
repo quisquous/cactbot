@@ -286,6 +286,7 @@ Options.Triggers.push({
           de: 'Links (Flügel-Seite)',
           fr: 'Gauche (Côté Aile)',
           ja: '左 (翼)',
+          cn: '左 (翅膀)',
           ko: '왼쪽 (날개쪽)',
         },
         right: {
@@ -293,6 +294,7 @@ Options.Triggers.push({
           de: 'Rechts (Schlangen-Seite)',
           fr: 'Droite (Côté Serpent)',
           ja: '右 (蛇)',
+          cn: '右 (蛇)',
           ko: '오른쪽 (뱀쪽)',
         },
         firstBait: {
@@ -300,6 +302,7 @@ Options.Triggers.push({
           de: 'Köder als 1. (20s)',
           fr: 'Dépose en 1er (20s)',
           ja: '1番目 (20秒)',
+          cn: '1组引导 (20秒)',
           ko: '유도 1번 (20초)',
         },
         secondBait: {
@@ -307,6 +310,7 @@ Options.Triggers.push({
           de: 'Köder als 2. (8s)',
           fr: 'Dépose en 2ème (8s)',
           ja: '2番目 (8秒)',
+          cn: '2组引导 (8秒)',
           ko: '유도 2번 (8초)',
         },
         thirdBait: {
@@ -314,6 +318,7 @@ Options.Triggers.push({
           de: 'Köder als 3. (12s)',
           fr: 'Dépose en 3ème (12s)',
           ja: '3番目 (12秒)',
+          cn: '3组引导 (12秒)',
           ko: '유도 3번 (12초)',
         },
         fourthBait: {
@@ -321,6 +326,7 @@ Options.Triggers.push({
           de: 'Köder als 4. (16s)',
           fr: 'Dépose en 4ème (16s)',
           ja: '4番目 (16秒)',
+          cn: '4组引导 (16秒)',
           ko: '유도 4번 (16초)',
         },
       },
@@ -340,6 +346,7 @@ Options.Triggers.push({
           de: 'Rein (Köder als 1.)',
           fr: 'À l\'intérieur (1er)',
           ja: '内側へ (1番目)',
+          cn: '内侧引导 (第1组)',
           ko: '안으로 (유도 1번)',
         },
       },
@@ -382,6 +389,7 @@ Options.Triggers.push({
           de: 'Rein (Köder als 2.)',
           fr: 'À l\'intérieur (2ème)',
           ja: '内側へ (2番目)',
+          cn: '内侧引导 (第2组)',
           ko: '안으로 (유도 2번)',
         },
         inThirdBait: {
@@ -389,6 +397,7 @@ Options.Triggers.push({
           de: 'Rein (Köder als 3.)',
           fr: 'À l\'intérieur (3ème)',
           ja: '内側へ (3番目)',
+          cn: '内侧引导 (第3组)',
           ko: '안으로 (유도 3번)',
         },
         inFourthBait: {
@@ -396,6 +405,7 @@ Options.Triggers.push({
           de: 'Rein (Köder als 4.)',
           fr: 'À l\'intérieur (4ème)',
           ja: '内側へ (4番目)',
+          cn: '内侧引导 (第4组)',
           ko: '안으로 (유도 4번)',
         },
       },
@@ -421,6 +431,7 @@ Options.Triggers.push({
           de: 'Links (Flügel-Seite)',
           fr: 'Gauche (Côté Aile)',
           ja: '左 (翼)',
+          cn: '左 (翅膀)',
           ko: '왼쪽 (날개쪽)',
         },
         right: {
@@ -428,6 +439,7 @@ Options.Triggers.push({
           de: 'Rechts (Schlangen-Seite)',
           fr: 'Droite (Côté Serpent)',
           ja: '右 (蛇)',
+          cn: '右 (蛇)',
           ko: '오른쪽 (뱀쪽)',
         },
       },
