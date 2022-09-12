@@ -8,7 +8,7 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
+import { Output, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
 // TODO: make the torch call say left/right during 2nd beast
@@ -55,7 +55,7 @@ export interface Data extends RaidbossData {
 const centerX = 100;
 const centerY = 100;
 
-const positionMatchesTo8Dir = (combatant: NetMatches['AddedCombatant']) => {
+export const positionMatchesTo8Dir = (combatant: NetMatches['AddedCombatant']) => {
   const x = parseFloat(combatant.x) - centerX;
   const y = parseFloat(combatant.y) - centerY;
 
@@ -63,7 +63,7 @@ const positionMatchesTo8Dir = (combatant: NetMatches['AddedCombatant']) => {
   return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
-const positionTo8Dir = (combatant: PluginCombatantState) => {
+export const positionTo8Dir = (combatant: PluginCombatantState) => {
   const x = combatant.PosX - centerX;
   const y = combatant.PosY - centerY;
 
@@ -71,9 +71,68 @@ const positionTo8Dir = (combatant: PluginCombatantState) => {
   return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
-const headingTo4Dir = (heading: number) => {
+export const headingTo4Dir = (heading: number) => {
   // N = 0, E = 1, etc
   return Math.round(2 - 2 * heading / Math.PI) % 4;
+};
+
+export const ventOutputStrings = {
+  comboDir: {
+    en: '${dir1} / ${dir2}',
+    de: '${dir1} / ${dir2}',
+    fr: '${dir1} / ${dir2}',
+    ja: '${dir1} / ${dir2}',
+    cn: '${dir1} / ${dir2}',
+    ko: '${dir1} / ${dir2}',
+  },
+  north: Outputs.north,
+  east: Outputs.east,
+  south: Outputs.south,
+  west: Outputs.west,
+  dirNE: Outputs.dirNE,
+  dirSE: Outputs.dirSE,
+  dirSW: Outputs.dirSW,
+  dirNW: Outputs.dirNW,
+  unknown: Outputs.unknown,
+} as const;
+
+// Shared alertText for vent triggers, using `ventOutputStrings` above.
+export const ventOutput = (unsafeSpots: number[], output: Output) => {
+  const [unsafe0, unsafe1] = [...unsafeSpots].sort();
+  if (unsafe0 === undefined || unsafe1 === undefined)
+    throw new UnreachableCode();
+
+  // edge case wraparound
+  if (unsafe0 === 1 && unsafe1 === 7)
+    return output.south!();
+
+  // adjacent unsafe spots, cardinal is safe
+  if (unsafe1 - unsafe0 === 2) {
+    // this average is safe to do because wraparound was taken care of above.
+    const unsafeCard = Math.floor((unsafe0 + unsafe1) / 2);
+
+    const safeDirMap: { [dir: number]: string } = {
+      0: output.south!(), // this won't happen, but here for completeness
+      2: output.west!(),
+      4: output.north!(),
+      6: output.east!(),
+    } as const;
+    return safeDirMap[unsafeCard] ?? output.unknown!();
+  }
+
+  // two intercards are safe, they are opposite each other,
+  // so we can pick the intercard counterclock of each unsafe spot.
+  // e.g. 1/5 are unsafe (NE and SW), so SE and NW are safe.
+  const safeIntercardMap: { [dir: number]: string } = {
+    1: output.dirNW!(),
+    3: output.dirNE!(),
+    5: output.dirSE!(),
+    7: output.dirSW!(),
+  } as const;
+
+  const safeStr0 = safeIntercardMap[unsafe0] ?? output.unknown!();
+  const safeStr1 = safeIntercardMap[unsafe1] ?? output.unknown!();
+  return output.comboDir!({ dir1: safeStr0, dir2: safeStr1 });
 };
 
 const triggerSet: TriggerSet<Data> = {
@@ -1123,61 +1182,11 @@ const triggerSet: TriggerSet<Data> = {
         if (data.combatantData.length === 0)
           return;
 
-        const unsafeSpots = data.combatantData.map((c) => positionTo8Dir(c)).sort();
-
-        const [unsafe0, unsafe1] = unsafeSpots;
-        if (unsafe0 === undefined || unsafe1 === undefined)
-          throw new UnreachableCode();
-
-        // edge case wraparound
-        if (unsafe0 === 1 && unsafe1 === 7)
-          return output.south!();
-
-        // adjacent unsafe spots, cardinal is safe
-        if (unsafe1 - unsafe0 === 2) {
-          // this average is safe to do because wraparound was taken care of above.
-          const unsafeCard = Math.floor((unsafe0 + unsafe1) / 2);
-
-          const safeDirMap: { [dir: number]: string } = {
-            0: output.south!(), // this won't happen, but here for completeness
-            2: output.west!(),
-            4: output.north!(),
-            6: output.east!(),
-          } as const;
-          return safeDirMap[unsafeCard] ?? output.unknown!();
-        }
-
-        // two intercards are safe, they are opposite each other,
-        // so we can pick the intercard counterclock of each unsafe spot.
-        // e.g. 1/5 are unsafe (NE and SW), so SE and NW are safe.
-        const safeIntercardMap: { [dir: number]: string } = {
-          1: output.dirNW!(),
-          3: output.dirNE!(),
-          5: output.dirSE!(),
-          7: output.dirSW!(),
-        } as const;
-
-        const safeStr0 = safeIntercardMap[unsafe0] ?? output.unknown!();
-        const safeStr1 = safeIntercardMap[unsafe1] ?? output.unknown!();
-        return output.comboDir!({ dir1: safeStr0, dir2: safeStr1 });
+        const unsafeSpots = data.combatantData.map((c) => positionTo8Dir(c));
+        return ventOutput(unsafeSpots, output);
       },
       run: (data) => data.ventCasts = [],
-      outputStrings: {
-        comboDir: {
-          en: '${dir1} / ${dir2}',
-          de: '${dir1} / ${dir2}',
-          ko: '${dir1} / ${dir2}',
-        },
-        north: Outputs.north,
-        east: Outputs.east,
-        south: Outputs.south,
-        west: Outputs.west,
-        dirNE: Outputs.dirNE,
-        dirSE: Outputs.dirSE,
-        dirSW: Outputs.dirSW,
-        dirNW: Outputs.dirNW,
-        unknown: Outputs.unknown,
-      },
+      outputStrings: ventOutputStrings,
     },
     {
       id: 'P8S Suneater Cthonic Vent Later',
@@ -1231,63 +1240,10 @@ const triggerSet: TriggerSet<Data> = {
           }
         }
 
-        const [unsafe0, unsafe1] = unsafeSpots.sort();
-        if (unsafe0 === undefined || unsafe1 === undefined)
-          return;
-
-        // TODO: maybe we should share this logic with the above vent trigger.
-
-        // edge case wraparound
-        if (unsafe0 === 1 && unsafe1 === 7)
-          return output.south!();
-
-        // adjacent unsafe spots, cardinal is safe
-        if (unsafe1 - unsafe0 === 2) {
-          // this average is safe to do because wraparound was taken care of above.
-          const unsafeCard = Math.floor((unsafe0 + unsafe1) / 2);
-
-          const safeDirMap: { [dir: number]: string } = {
-            0: output.south!(), // this won't happen, but here for completeness
-            2: output.west!(),
-            4: output.north!(),
-            6: output.east!(),
-          } as const;
-          return safeDirMap[unsafeCard] ?? output.unknown!();
-        }
-
-        // two intercards are safe, they are opposite each other,
-        // so we can pick the intercard counterclock of each unsafe spot.
-        // e.g. 1/5 are unsafe (NE and SW), so SE and NW are safe.
-        const safeIntercardMap: { [dir: number]: string } = {
-          1: output.dirNW!(),
-          3: output.dirNE!(),
-          5: output.dirSE!(),
-          7: output.dirSW!(),
-        } as const;
-
-        const safeStr0 = safeIntercardMap[unsafe0] ?? output.unknown!();
-        const safeStr1 = safeIntercardMap[unsafe1] ?? output.unknown!();
-        return output.comboDir!({ dir1: safeStr0, dir2: safeStr1 });
+        return ventOutput(unsafeSpots, output);
       },
       run: (data) => data.ventCasts = [],
-      outputStrings: {
-        comboDir: {
-          en: '${dir1} / ${dir2}',
-          de: '${dir1} / ${dir2}',
-          fr: '${dir1} / ${dir2}',
-          ja: '${dir1} / ${dir2}',
-          ko: '${dir1} / ${dir2}',
-        },
-        north: Outputs.north,
-        east: Outputs.east,
-        south: Outputs.south,
-        west: Outputs.west,
-        dirNE: Outputs.dirNE,
-        dirSE: Outputs.dirSE,
-        dirSW: Outputs.dirSW,
-        dirNW: Outputs.dirNW,
-        unknown: Outputs.unknown,
-      },
+      outputStrings: ventOutputStrings,
     },
     {
       id: 'P8S Snake 2 Illusory Creation',
