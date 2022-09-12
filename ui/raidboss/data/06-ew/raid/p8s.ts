@@ -1230,7 +1230,7 @@ const triggerSet: TriggerSet<Data> = {
             data.firstAlignmentSecondAbility = 'spread';
             return { alertText: output.baitAndStack!() };
           }
-          if (id === ids.stackThenSpread) {
+          if (id === ids.spreadThenStack) {
             data.firstAlignmentSecondAbility = 'stack';
             return { alertText: output.baitAndSpread!() };
           }
