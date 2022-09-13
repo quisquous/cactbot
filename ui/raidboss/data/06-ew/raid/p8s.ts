@@ -756,7 +756,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8S Quadrupedal Impact/Crush',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['7A04', '7A05'], source: 'Hephaistos' }),
-      delaySeconds: 0.5,
       promise: async (data, matches) => {
         // select the Hephaistoss with same source id
         let hephaistosData = null;
