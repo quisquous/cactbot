@@ -10,7 +10,6 @@ import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: call out gorgon spawn locations
 // TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
 // TODO: make the torch call say left/right during 2nd beast
 // TODO: better vent callouts
@@ -29,6 +28,8 @@ export interface Data extends RaidbossData {
   upliftCounter: number;
   ventIds: string[];
   illusory?: 'bird' | 'snake';
+  gorgons: NetMatches['AddedCombatant'][];
+  gorgonCount: number;
   seenSnakeIllusoryCreation?: boolean;
   footfallsDirs: number[];
   footfallsOrder: string[];
@@ -53,6 +54,14 @@ export interface Data extends RaidbossData {
 const centerX = 100;
 const centerY = 100;
 
+const positionMatchesTo8Dir = (combatant: NetMatches['AddedCombatant']) => {
+  const x = parseFloat(combatant.x) - centerX;
+  const y = parseFloat(combatant.y) - centerY;
+
+  // Dirs: N = 0, NE = 1, ..., NW = 7
+  return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+};
+
 const positionTo8Dir = (combatant: PluginCombatantState) => {
   const x = combatant.PosX - centerX;
   const y = combatant.PosY - centerY;
@@ -74,6 +83,8 @@ const triggerSet: TriggerSet<Data> = {
       footfallsDirs: [],
       footfallsOrder: [],
       trailblazeCount: 0,
+      gorgons: [],
+      gorgonCount: 0,
       firstSnakeOrder: {},
       firstSnakeDebuff: {},
       secondSnakeGazeFirst: {},
@@ -540,6 +551,86 @@ const triggerSet: TriggerSet<Data> = {
       // This is the Reforged Reflection cast.
       netRegex: NetRegexes.startsUsing({ id: '794C', source: 'Hephaistos', capture: false }),
       response: Responses.getOut(),
+    },
+    {
+      id: 'P8S Gorgon Collect',
+      type: 'AddedCombatant',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '11517', npcBaseId: '15052' }),
+      // We could technically call WAY ahead of time here.
+      run: (data, matches) => data.gorgons.push(matches),
+    },
+    {
+      id: 'P8S Gorgon Location',
+      type: 'StartsUsing',
+      // We could call the very first one out immediately on the Added Combatant line,
+      // but then we'd have to duplicate this.
+      netRegex: NetRegexes.startsUsing({ id: '792B', capture: false }),
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        data.gorgonCount++;
+
+        // Gorgons fire in order of actor id (highest first), but are added in any order.
+        // Sort from lowest id to highest, so we can pull off the end.
+        data.gorgons.sort((a, b) => a.id.localeCompare(b.id));
+
+        const gorgons: NetMatches['AddedCombatant'][] = [];
+        if (data.gorgonCount === 1 || data.gorgonCount === 2) {
+          // For Snake 1, all positions are known ahead of time, so do 2 at a time.
+          const g0 = data.gorgons.pop();
+          const g1 = data.gorgons.pop();
+          if (g0 === undefined || g1 === undefined)
+            return;
+          gorgons.push(g0);
+          gorgons.push(g1);
+        } else {
+          // For Snake 2, just call all at once.
+          gorgons.push(...data.gorgons);
+          data.gorgons = [];
+        }
+        if (gorgons.length !== 2 && gorgons.length !== 4)
+          return;
+
+        const dirs = gorgons.map(positionMatchesTo8Dir).sort();
+        const [d0, d1] = dirs;
+        if (d0 === undefined || d1 === undefined)
+          return;
+        if (dirs.length === 4)
+          return d0 === 0 ? output.intercards!() : output.cardinals!();
+
+        const outputMap: { [dir: number]: string } = {
+          0: output.dirN!(),
+          1: output.dirNE!(),
+          2: output.dirE!(),
+          3: output.dirSE!(),
+          4: output.dirS!(),
+          5: output.dirSW!(),
+          6: output.dirW!(),
+          7: output.dirNW!(),
+        };
+        const dir1 = outputMap[d0] ?? output.unknown!();
+        const dir2 = outputMap[d1] ?? output.unknown!();
+        return output.gorgons!({ dir1: dir1, dir2: dir2 });
+      },
+      outputStrings: {
+        cardinals: {
+          en: 'Look Cardinals',
+        },
+        intercards: {
+          en: 'Look Intercards',
+        },
+        gorgons: {
+          en: '${dir1}/${dir2} Gorgons',
+        },
+        dirN: Outputs.dirN,
+        dirNE: Outputs.dirNE,
+        dirE: Outputs.dirE,
+        dirSE: Outputs.dirSE,
+        dirS: Outputs.dirS,
+        dirSW: Outputs.dirSW,
+        dirW: Outputs.dirW,
+        dirNW: Outputs.dirNW,
+        unknown: Outputs.unknown,
+      },
     },
     {
       id: 'P8S First Snake Debuff Collect',
@@ -1416,7 +1507,7 @@ const triggerSet: TriggerSet<Data> = {
             data.firstAlignmentSecondAbility = 'spread';
             return { alertText: output.baitAndStack!() };
           }
-          if (id === ids.stackThenSpread) {
+          if (id === ids.spreadThenStack) {
             data.firstAlignmentSecondAbility = 'stack';
             return { alertText: output.baitAndSpread!() };
           }
@@ -1479,9 +1570,12 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P8S High Concept Collect',
-      // D02 = Imperfection Alpha
-      // D03 = Imperfection Beta
-      // D04 = Imperfection Gamma
+      // D02 = Imperfection: Alpha
+      // D03 = Imperfection: Beta
+      // D04 = Imperfection: Gamma
+      // D05 = Perfection: Alpha
+      // D06 = Perfection: Beta
+      // D07 = Perfection: Gamma
       // D11 = Solosplice
       // D12 = Multisplice
       // D13 = Supersplice
@@ -1611,6 +1705,45 @@ const triggerSet: TriggerSet<Data> = {
         // If we get here then we have a short concept with a splicer which shouldn't be possible,
         // but at least return *something* just in case.
         return { alarmText: singleConceptMap[concept] };
+      },
+    },
+    {
+      id: 'P8S Perfected Alpha',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D05' }),
+      condition: Conditions.targetIsYou(),
+      // TODO: it'd be nice to know the tower here so this could just say
+      // "take tower" or "avoid tower" with different severity or even
+      // who to merge with (!), but without that this is the best we got.
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Green/Blue Tower',
+        },
+      },
+    },
+    {
+      id: 'P8S Perfected Beta',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D06' }),
+      condition: Conditions.targetIsYou(),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Green/Purple Tower',
+        },
+      },
+    },
+    {
+      id: 'P8S Perfected Gamma',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D07' }),
+      condition: Conditions.targetIsYou(),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Purple/Blue Tower',
+        },
       },
     },
     {
