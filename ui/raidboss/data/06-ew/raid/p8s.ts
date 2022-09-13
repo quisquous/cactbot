@@ -31,6 +31,7 @@ export interface Data extends RaidbossData {
   gorgons: NetMatches['AddedCombatant'][];
   gorgonCount: number;
   seenSnakeIllusoryCreation?: boolean;
+  footfallsConcept?: string;
   footfallsDirs: number[];
   footfallsOrder: string[];
   trailblazeCount: number;
@@ -198,6 +199,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '7917', source: 'Hephaistos', capture: false }),
       durationSeconds: 20,
       infoText: (_data, _matches, output) => output.healerGroups!(),
+      run: (data, _matches, output) => data.footfallsConcept = output.text!(),
       outputStrings: {
         healerGroups: Outputs.healerGroups,
       },
@@ -210,6 +212,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '7916', source: 'Hephaistos', capture: false }),
       durationSeconds: 20,
       infoText: (_data, _matches, output) => output.text!(),
+      run: (data, _matches, output) => data.footfallsConcept = output.text!(),
       outputStrings: {
         text: {
           en: 'Partner Stacks',
@@ -921,8 +924,9 @@ const triggerSet: TriggerSet<Data> = {
             return;
           }
 
-          return output.directions!({
+          return output.firstTrailblaze!({
             dir: dirToCard[data.footfallsDirs[0]],
+            concept: data.footfallsConcept,
             action: output[data.footfallsOrder[0]]!(),
           });
         }
@@ -934,15 +938,18 @@ const triggerSet: TriggerSet<Data> = {
             return;
           }
 
-          return output.directions!({
+          return output.secondTrailblaze!({
             dir: dirToCard[data.footfallsDirs[1]],
             action: output[data.footfallsOrder[1]]!(),
           });
         }
       },
       outputStrings: {
-        directions: {
-          en: 'Push to ${dir} => ${action}',
+        firstTrailblaze: {
+          en: '${dir} Black Line => ${concept} => ${action}',
+        },
+        secondTrailblaze: {
+          en: '${dir} Black Line => ${action}',
         },
         crush: {
           en: 'Crush',
@@ -976,15 +983,15 @@ const triggerSet: TriggerSet<Data> = {
             3: output.west!(),
           };
 
-          return output.directions!({
+          return output.trailblaze!({
             dir: dirToCard[data.footfallsDirs[1]],
             action: output[data.footfallsOrder[1]]!(),
           });
         }
       },
       outputStrings: {
-        directions: {
-          en: '${dir} Line => ${action}',
+        trailblaze: {
+          en: '${dir} Black Line => ${action}',
         },
         crush: {
           en: 'Crush',
@@ -1006,10 +1013,10 @@ const triggerSet: TriggerSet<Data> = {
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
-          directionsPush: {
+          trailblaze: {
             en: '${dir}',
           },
-          directionsKnockback: {
+          trailblazeKnockback: {
             en: 'Knockback ${dir1} to ${dir2}',
           },
           north: Outputs.north,
@@ -1047,11 +1054,11 @@ const triggerSet: TriggerSet<Data> = {
           // Call move to next push back side if Crush
           // Only need to call this out if there is an upcoming pushback
           if (data.trailblazeCount === 0 && data.footfallsOrder[data.trailblazeCount] === 'crush')
-            return { infoText: output.directionsPush!({ dir: dirToCard[data.footfallsDirs[1]] }) };
+            return { infoText: output.trailblaze!({ dir: dirToCard[data.footfallsDirs[1]] }) };
           // Call Knockback direction if Impact
           if (data.footfallsOrder[data.trailblazeCount] === 'impact') {
             const knockbackTo = (dir + 2) % 4;
-            return { alertText: output.directionsKnockback!({ dir1: dirToCard[dir], dir2: dirToCard[knockbackTo] }) };
+            return { alertText: output.trailblazeKnockback!({ dir1: dirToCard[dir], dir2: dirToCard[knockbackTo] }) };
           }
         }
       },
