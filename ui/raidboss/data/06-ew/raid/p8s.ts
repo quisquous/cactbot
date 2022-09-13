@@ -919,7 +919,7 @@ const triggerSet: TriggerSet<Data> = {
             en: '${dir}',
           },
           directionsKnockback: {
-            en: '${dir} Knockback',
+            en: 'Knockback ${dir1} to ${dir2}',
           },
           north: Outputs.north,
           east: Outputs.east,
@@ -958,8 +958,10 @@ const triggerSet: TriggerSet<Data> = {
           if (data.trailblazeCount === 0 && data.footfallsOrder[data.trailblazeCount] === 'crush')
             return { infoText: output.directionsPush!({ dir: dirToCard[data.footfallsDirs[1]] }) };
           // Call Knockback direction if Impact
-          if (data.footfallsOrder[data.trailblazeCount] === 'impact')
-            return { alertText: output.directionsKnockback!({ dir: dirToCard[dir] }) };
+          if (data.footfallsOrder[data.trailblazeCount] === 'impact') {
+            const knockbackTo = (dir + 2) % 4;
+            return { alertText: output.directionsKnockback!({ dir1: dirToCard[dir], dir2: dirToCard[knockbackTo] }) };
+          }
         }
       },
       run: (data) => data.trailblazeCount++,
