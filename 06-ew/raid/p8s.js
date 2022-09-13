@@ -1314,6 +1314,32 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'P8S Illusory Hephaistos End of Days',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7A8B' }),
+      infoText: (_data, matches, output) => {
+        // Illusory Hephaistos are at x=(80 or 120), y=(85 or 95 or 105 or 115).
+        // Either the first or second row is always free.
+        const y = parseFloat(matches.y);
+        const epsilon = 2;
+        const row1y = 85;
+        const row2y = 95;
+        // TODO: combine this with the ice/fire/stack/spread calls too?
+        if (Math.abs(y - row1y) < epsilon)
+          return output.row2();
+        if (Math.abs(y - row2y) < epsilon)
+          return output.row1();
+      },
+      outputStrings: {
+        row1: {
+          en: 'Front Row',
+        },
+        row2: {
+          en: 'Second Row',
+        },
+      },
+    },
+    {
       id: 'P8S High Concept Collect',
       // D02 = Imperfection: Alpha
       // D03 = Imperfection: Beta
