@@ -52,6 +52,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Tank Autos',
+          ja: 'タンクへのオートアタック',
           ko: '탱커 평타',
         },
       },
@@ -82,13 +83,13 @@ Options.Triggers.push({
         outAndSpread: {
           en: 'Out + Spread',
           de: 'Raus + Verteilen',
-          ja: '外側 + 散会',
+          ja: '黒線の外側 + 散会',
           ko: '밖으로 + 산개',
         },
         outAndStacks: {
           en: 'Out + Stacks',
           de: 'Raus + Sammeln',
-          ja: '内側 + 頭割り',
+          ja: '黒線の外側 + 2人頭割り',
           ko: '밖으로 + 쉐어',
         },
       },
@@ -112,13 +113,13 @@ Options.Triggers.push({
         inAndSpread: {
           en: 'In + Spread',
           de: 'Rein + Verteilen',
-          ja: '内側 + 散会',
+          ja: '黒線の内側 + 散会',
           ko: '안으로 + 산개',
         },
         inAndStacks: {
           en: 'In + Stacks',
           de: 'Rein + Sammeln',
-          ja: '内側 + 頭割り',
+          ja: '黒線の内側 + 2人頭割り',
           ko: '안으로 + 쉐어',
         },
       },
@@ -213,13 +214,13 @@ Options.Triggers.push({
         inAndStacks: {
           en: 'In + Stacks',
           de: 'Rein + Sammeln',
-          ja: '内側 + 頭割り',
+          ja: '黒線の内側 + 2人頭割り',
           ko: '안으로 + 쉐어',
         },
         outAndStacks: {
           en: 'Out + Stacks',
           de: 'Raus + Sammeln',
-          ja: '外側 + 頭割り',
+          ja: '黒線の外側 + 2人頭割り',
           ko: '밖으로 + 쉐어',
         },
         stacks: {
@@ -248,13 +249,13 @@ Options.Triggers.push({
         inAndProtean: {
           en: 'In + Protean',
           de: 'Rein + Himmelsrichtung',
-          ja: '内側 + 散会',
+          ja: '黒線の内側 + 基本散会',
           ko: '안으로 + 산개',
         },
         outAndProtean: {
           en: 'Out + Protean',
           de: 'Raus + Himmelsrichtung',
-          ja: '外側 + 散会',
+          ja: '黒線の外側 + 散会',
           ko: '밖으로 + 산개',
         },
         protean: {
@@ -537,12 +538,15 @@ Options.Triggers.push({
       outputStrings: {
         cardinals: {
           en: 'Look Cardinals',
+          ja: '視線を斜めに',
         },
         intercards: {
           en: 'Look Intercards',
+          ja: '視線を十字に',
         },
         gorgons: {
           en: '${dir1}/${dir2} Gorgons',
+          ja: 'ゴルゴン：${dir1}/${dir2}',
         },
         dirN: Outputs.dirN,
         dirNE: Outputs.dirNE,
@@ -590,18 +594,22 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           firstGaze: {
             en: 'First Gaze (w/ ${player})',
+            ja: '先の石化 (+${player})',
             ko: '첫번째 석화 (+ ${player})',
           },
           secondGaze: {
             en: 'Second Gaze (w/ ${player})',
+            ja: '後の石化 (+${player})',
             ko: '두번째 석화 (+ ${player})',
           },
           firstPoison: {
             en: 'First Poison (w/ ${player})',
+            ja: '先の毒 (+${player})',
             ko: '첫번째 독장판 (+ ${player})',
           },
           secondPoison: {
             en: 'Second Poison (w/ ${player})',
+            ja: '後の毒 (+${player})',
             ko: '두번째 독장판 (+ ${player})',
           },
           unknown: Outputs.unknown,
@@ -671,22 +679,27 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           firstGaze: {
             en: 'First Gaze',
+            ja: '先の石化',
             ko: '첫번째 석화',
           },
           secondGaze: {
             en: 'Second Gaze',
+            ja: '後の石化',
             ko: '두번째 석화',
           },
           shriek: {
             en: 'Shriek later (with ${player})',
+            ja: '自分に全体石化 (+${player})',
             ko: '나중에 마안 (+ ${player})',
           },
           stack: {
             en: 'Stack later (with ${player})',
+            ja: '自分に頭割り (+${player})',
             ko: '나중에 쉐어 (+ ${player})',
           },
           noDebuff: {
             en: 'No debuff (w/ ${player1}, ${player2}, ${player3})',
+            ja: '無職 (${player1}, ${player2}, ${player3})',
             ko: '디버프 없음 (+ ${player1}, ${player2}, ${player3})',
           },
         };
@@ -870,7 +883,7 @@ Options.Triggers.push({
         text: {
           en: '(avoid proteans)',
           de: '(weiche Himmelsrichtungen aus)',
-          ja: '(回避)',
+          ja: '(回避、離れる)',
           ko: '(피하기)',
         },
       },
@@ -889,7 +902,7 @@ Options.Triggers.push({
         text: {
           en: 'In for Protean',
           de: 'rein für Himmelsrichtungen',
-          ja: '内側で散会',
+          ja: '近づく、内側で誘導',
           ko: '안에서 장판 유도',
         },
       },
@@ -955,6 +968,7 @@ Options.Triggers.push({
         comboDir: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          ja: '${dir1} / ${dir2}',
           ko: '${dir1} / ${dir2}',
         },
         north: Outputs.north,
@@ -1019,10 +1033,12 @@ Options.Triggers.push({
       outputStrings: {
         northSouth: {
           en: 'North / South',
+          ja: '南・北',
           ko: '남/북쪽',
         },
         eastWest: {
           en: 'East / West',
+          ja: '東・西',
           ko: '동/서쪽',
         },
         north: Outputs.north,
@@ -1077,10 +1093,12 @@ Options.Triggers.push({
         right: Outputs.right,
         rightAndSpread: {
           en: 'Right + Spread',
+          ja: '右 + 散会',
           ko: '오른쪽 + 산개',
         },
         rightAndStack: {
           en: 'Right + Stack',
+          ja: '右 + 頭割り',
           ko: '오른쪽 + 쉐어',
         },
       },
@@ -1101,10 +1119,12 @@ Options.Triggers.push({
         left: Outputs.left,
         leftAndSpread: {
           en: 'Left + Spread',
+          ja: '左 + 散会',
           ko: '왼쪽 + 산개',
         },
         leftAndStack: {
           en: 'Left + Stack',
+          ja: '左 + 頭割り',
           ko: '왼쪽 + 쉐어',
         },
       },
@@ -1133,6 +1153,7 @@ Options.Triggers.push({
       outputStrings: {
         reversed: {
           en: '${player} reversed',
+          ja: 'マジックインヴァージョン：${player}',
           ko: '${player} 반전',
         },
       },
@@ -1149,6 +1170,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Alignment on YOU',
+          ja: '自分に術式',
           ko: '원판 대상자',
         },
       },
@@ -1169,6 +1191,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Alignment on ${player1}, ${player2}',
+          ja: '術式：${player1}, ${player2}',
           ko: '${player1}, ${player2} 원판',
         },
       },
@@ -1183,26 +1206,32 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           ice: {
             en: 'Ice Groups First',
+            ja: '氷の頭割りから',
             ko: '얼음 쉐어 먼저',
           },
           fire: {
             en: 'Fire Partners First',
+            ja: '火の2人頭割りから',
             ko: '불 2인쉐어 먼저',
           },
           stack: {
             en: 'Stack First',
+            ja: '頭割りから',
             ko: '쉐어 먼저',
           },
           spread: {
             en: 'Spread First',
+            ja: '散会から',
             ko: '산개 먼저',
           },
           baitAndStack: {
             en: 'Bait => Stack',
+            ja: '誘導 => 頭割り',
             ko: '장판 유도 => 쉐어',
           },
           baitAndSpread: {
             en: 'Bait => Spread',
+            ja: '誘導 => 散会',
             ko: '장판 유도 => 산개',
           },
         };
@@ -1274,10 +1303,12 @@ Options.Triggers.push({
         spread: Outputs.spread,
         ice: {
           en: 'Ice Groups',
+          ja: '氷の頭割り',
           ko: '얼음 그룹 쉐어',
         },
         fire: {
           en: 'Fire Partners',
+          ja: '火の2人頭割り',
           ko: '불 2인 쉐어',
         },
       },
@@ -1324,54 +1355,67 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           noDebuff: {
             en: 'No Debuff',
+            ja: '無職',
             ko: '디버프 없음',
           },
           shortAlpha: {
             en: 'Short Alpha',
+            ja: '短いアルファ',
             ko: '짧은 알파',
           },
           longAlpha: {
             en: 'Long Alpha',
+            ja: '長いアルファ',
             ko: '긴 알파',
           },
           longAlphaSplicer: {
             en: 'Long Alpha + ${splicer}',
+            ja: '長いアルファ + ${splicer}',
             ko: '긴 알파 + ${splicer}',
           },
           shortBeta: {
             en: 'Short Beta',
+            ja: '短いベータ',
             ko: '짧은 베타',
           },
           longBeta: {
             en: 'Long Beta',
+            ja: '長いベータ',
             ko: '긴 베타',
           },
           longBetaSplicer: {
             en: 'Long Beta + ${splicer}',
+            ja: '長いベータ + ${splicer}',
             ko: '긴 베타 + ${splicer}',
           },
           shortGamma: {
             en: 'Short Gamma',
+            ja: '短いガンマ',
             ko: '짧은 감마',
           },
           longGamma: {
             en: 'Long Gamma',
+            ja: '長いガンマ',
             ko: '긴 감마',
           },
           longGammaSplicer: {
             en: 'Long Gamma + ${splicer}',
+            ja: '長いガンマ + ${splicer}',
             ko: '긴 감마 + ${splicer}',
           },
           soloSplice: {
             en: 'Solo Stack',
+            ja: '1人受け',
             ko: '1인징',
           },
           multiSplice: {
             en: 'Two Stack',
+            ja: '2人頭割り',
             ko: '2인징',
           },
           superSplice: {
             en: 'Three Stack',
+            ja: '3人頭割り',
             ko: '3인징',
           },
         };
@@ -1426,6 +1470,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Green/Blue Tower',
+          ja: '緑・青の塔',
         },
       },
     },
@@ -1438,6 +1483,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Green/Purple Tower',
+          ja: '緑・紫の塔',
         },
       },
     },
@@ -1450,6 +1496,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Purple/Blue Tower',
+          ja: '紫・青の塔',
         },
       },
     },
@@ -1478,6 +1525,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Second Towers',
+          ja: '2回目の塔',
         },
       },
     },
@@ -1494,6 +1542,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'First Towers',
+          ja: '1回目の塔',
         },
       },
     },
@@ -1505,6 +1554,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'big aoe + bleed',
+          ja: '全体攻撃 + 出血',
           ko: '아픈 전체공격 + 도트',
         },
       },
