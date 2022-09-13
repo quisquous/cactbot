@@ -778,31 +778,79 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'P8S Quadrupedal Impact',
+      id: 'P8S Quadrupedal Impact/Crush',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7A04', source: 'Hephaistos', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Follow Jump',
-          de: 'Sprung folgen',
-          ja: '近づく',
-          ko: '보스 따라가기',
-        },
+      netRegex: NetRegexes.startsUsing({ id: ['7A04', '7A05'], source: 'Hephaistos' }),
+      promise: async (data, matches) => {
+        // select the Hephaistoss with same source id
+        let hephaistosData = null;
+        hephaistosData = await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (hephaistosData === null) {
+          console.error(`Hephaistos: null data`);
+          return;
+        }
+        if (hephaistosData.combatants.length !== 1) {
+          console.error(`Hephaistos: expected 1, got ${hephaistosData.combatants.length}`);
+          return;
+        }
+        const hephaistos = hephaistosData.combatants[0];
+        if (!hephaistos)
+          return;
+        // Snap heading to closest card and add 2 for opposite direction
+        // N = 0, E = 1, S = 2, W = 3
+        const isCrush = (matches.id === '7A05' ? 2 : 0);
+        const cardinal = ((2 - Math.round(hephaistos.Heading * 4 / Math.PI) / 2) + isCrush) % 4;
+        data.crushImpactSafeZone = cardinal;
       },
-    },
-    {
-      id: 'P8S Quadrupedal Crush',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7A05', source: 'Hephaistos', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      infoText: (data, matches, output) => {
+        const dirs = {
+          0: 'north',
+          1: 'east',
+          2: 'south',
+          3: 'west',
+        };
+        if (data.crushImpactSafeZone === undefined)
+          return;
+        // Check if dir is valid, else output generic
+        const dir = dirs[data.crushImpactSafeZone];
+        if (dir === undefined) {
+          if (matches.id === '7A05')
+            return output.crush();
+          return output.impact();
+        }
+        if (matches.id === '7A05')
+          return output.crushDir({ dir: output[dir]() });
+        return output.impactDir({ dir: output[dir]() });
+      },
       outputStrings: {
-        text: {
+        impactDir: {
+          en: 'Follow to ${dir} (Knockback)',
+        },
+        crushDir: {
+          en: 'Away to ${dir}',
+        },
+        crush: {
           en: 'Away From Jump',
           de: 'Weg vom Sprung',
           ja: '離れる',
           ko: '멀리 떨어지기',
         },
+        impact: {
+          en: 'Follow Jump',
+          de: 'Sprung folgen',
+          ja: '近づく',
+          ko: '보스 따라가기',
+        },
+        unknown: Outputs.unknown,
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
       },
     },
     {
