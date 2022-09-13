@@ -199,7 +199,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '7917', source: 'Hephaistos', capture: false }),
       durationSeconds: 20,
       infoText: (_data, _matches, output) => output.healerGroups!(),
-      run: (data, _matches, output) => data.footfallsConcept = output.text!(),
+      run: (data, _matches, output) => data.footfallsConcept = output.healerGroups!(),
       outputStrings: {
         healerGroups: Outputs.healerGroups,
       },
