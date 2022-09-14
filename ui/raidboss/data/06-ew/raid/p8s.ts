@@ -906,9 +906,9 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => {
         if (data.crushImpactSafeZone === undefined) {
           // Failed to get data, return generic result
-           if (matches.id === '7A05')
+          if (matches.id === '7A05')
             return output.crush!();
-           return output.impact!();
+          return output.impact!();
         }
 
         // Boss casts 7108 which teleports him middle with heading North
