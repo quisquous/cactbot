@@ -68,12 +68,12 @@ hideall "--sync--"
 305.1 "Choros Ixou 2" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
 311.8 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
 317.6 "Cachexia" sync / 1[56]:[^:]*:Hegemone:7876:/ window 30,30
-326.6 "Aetheronecrosis 1" sync / 1[56]:[^:]*:Hegemone:7877:/
-330.6 "Aetheronecrosis 2" sync / 1[56]:[^:]*:Hegemone:7877:/
-334.6 "Aetheronecrosis 3" sync / 1[56]:[^:]*:Hegemone:7877:/
+326.6 "Aetheronecrosis 1" #sync / 1[56]:[^:]*:Hegemone:7877:/
+330.6 "Aetheronecrosis 2" #sync / 1[56]:[^:]*:Hegemone:7877:/
+334.6 "Aetheronecrosis 3" #sync / 1[56]:[^:]*:Hegemone:7877:/
 334.8 "Dual Predation" sync / 1[56]:[^:]*:Hegemone:7878:/
 335.8 "Predation 1" sync / 1[56]:[^:]*:Hegemone:(787A|787B):/
-338.7 "Aetheronecrosis 4" sync / 1[56]:[^:]*:Hegemone:7877:/
+338.7 "Aetheronecrosis 4" #sync / 1[56]:[^:]*:Hegemone:7877:/
 339.9 "Predation 2" sync / 1[56]:[^:]*:Hegemone:(787A|787B):/
 343.9 "Predation 3" sync / 1[56]:[^:]*:Hegemone:(787A|787B):/
 347.9 "Predation 4" sync / 1[56]:[^:]*:Hegemone:(787A|787B):/
