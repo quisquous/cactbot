@@ -97,6 +97,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Tank Autos',
+          de: 'Tank Auto-Angriffe',
           ko: '탱커 평타',
         },
       },
@@ -571,18 +572,22 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           firstGaze: {
             en: 'First Gaze (w/ ${player})',
+            de: 'Erster Blick (+ ${player})',
             ko: '첫번째 석화 (+ ${player})',
           },
           secondGaze: {
             en: 'Second Gaze (w/ ${player})',
+            de: 'Zweiter Blick (+ ${player})',
             ko: '두번째 석화 (+ ${player})',
           },
           firstPoison: {
             en: 'First Poison (w/ ${player})',
+            de: 'Erstes Gift (+ ${player})',
             ko: '첫번째 독장판 (+ ${player})',
           },
           secondPoison: {
             en: 'Second Poison (w/ ${player})',
+            de: 'Zweites Gift (+ ${player})',
             ko: '두번째 독장판 (+ ${player})',
           },
           unknown: Outputs.unknown,
@@ -654,22 +659,27 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           firstGaze: {
             en: 'First Gaze',
+            de: 'Erster Blick',
             ko: '첫번째 석화',
           },
           secondGaze: {
             en: 'Second Gaze',
+            de: 'Zweiter Blick',
             ko: '두번째 석화',
           },
           shriek: {
             en: 'Shriek later (with ${player})',
+            de: 'Schrei später (mit ${player})',
             ko: '나중에 마안 (+ ${player})',
           },
           stack: {
             en: 'Stack later (with ${player})',
+            de: 'Später sammeln (mit ${player})',
             ko: '나중에 쉐어 (+ ${player})',
           },
           noDebuff: {
             en: 'No debuff (w/ ${player1}, ${player2}, ${player3})',
+            de: 'Kein Debuff (+ ${player1}, ${player2}, ${player3})',
             ko: '디버프 없음 (+ ${player1}, ${player2}, ${player3})',
           },
         };
@@ -1023,10 +1033,12 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         northSouth: {
           en: 'North / South',
+          de: 'Norden / Süden',
           ko: '남/북쪽',
         },
         eastWest: {
           en: 'East / West',
+          de: 'Osten / Westen',
           ko: '동/서쪽',
         },
         north: Outputs.north,
@@ -1081,10 +1093,12 @@ const triggerSet: TriggerSet<Data> = {
         right: Outputs.right,
         rightAndSpread: {
           en: 'Right + Spread',
+          de: 'Rechts + Verteilen',
           ko: '오른쪽 + 산개',
         },
         rightAndStack: {
           en: 'Right + Stack',
+          de: 'Rechts + Sammeln',
           ko: '오른쪽 + 쉐어',
         },
       },
@@ -1105,10 +1119,12 @@ const triggerSet: TriggerSet<Data> = {
         left: Outputs.left,
         leftAndSpread: {
           en: 'Left + Spread',
+          de: 'Links + Verteilen',
           ko: '왼쪽 + 산개',
         },
         leftAndStack: {
           en: 'Left + Stack',
+          de: 'Links + Sammeln',
           ko: '왼쪽 + 쉐어',
         },
       },
@@ -1137,6 +1153,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         reversed: {
           en: '${player} reversed',
+          de: '${player} umgekehrt',
           ko: '${player} 반전',
         },
       },
@@ -1153,6 +1170,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Alignment on YOU',
+          de: 'Anpassung auf DIR',
           ko: '원판 대상자',
         },
       },
@@ -1173,6 +1191,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Alignment on ${player1}, ${player2}',
+          de: 'Anpassung auf ${player1}, ${player2}',
           ko: '${player1}, ${player2} 원판',
         },
       },
@@ -1187,26 +1206,32 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           ice: {
             en: 'Ice Groups First',
+            de: 'Eis Gruppen zuerst',
             ko: '얼음 쉐어 먼저',
           },
           fire: {
             en: 'Fire Partners First',
+            de: 'Feuer Partner zuerst',
             ko: '불 2인쉐어 먼저',
           },
           stack: {
             en: 'Stack First',
+            de: 'Zuerst sammeln',
             ko: '쉐어 먼저',
           },
           spread: {
             en: 'Spread First',
+            de: 'Zuerst verteilen',
             ko: '산개 먼저',
           },
           baitAndStack: {
             en: 'Bait => Stack',
+            de: 'Ködern => Sammeln',
             ko: '장판 유도 => 쉐어',
           },
           baitAndSpread: {
             en: 'Bait => Spread',
+            de: 'Ködern => Verteilen',
             ko: '장판 유도 => 산개',
           },
         };
@@ -1283,10 +1308,12 @@ const triggerSet: TriggerSet<Data> = {
         spread: Outputs.spread,
         ice: {
           en: 'Ice Groups',
+          de: 'Eis Gruppen',
           ko: '얼음 그룹 쉐어',
         },
         fire: {
           en: 'Fire Partners',
+          de: 'Feuer Partner',
           ko: '불 2인 쉐어',
         },
       },
@@ -1330,54 +1357,67 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           noDebuff: {
             en: 'No Debuff',
+            de: 'Kein Debuff',
             ko: '디버프 없음',
           },
           shortAlpha: {
             en: 'Short Alpha',
+            de: 'kurzes Alpha',
             ko: '짧은 알파',
           },
           longAlpha: {
             en: 'Long Alpha',
+            de: 'langes Alpha',
             ko: '긴 알파',
           },
           longAlphaSplicer: {
             en: 'Long Alpha + ${splicer}',
+            de: 'langes Alpha + ${splicer}',
             ko: '긴 알파 + ${splicer}',
           },
           shortBeta: {
             en: 'Short Beta',
+            de: 'kurzes Beta',
             ko: '짧은 베타',
           },
           longBeta: {
             en: 'Long Beta',
+            de: 'langes Beta',
             ko: '긴 베타',
           },
           longBetaSplicer: {
             en: 'Long Beta + ${splicer}',
+            de: 'langes Beta + ${splicer}',
             ko: '긴 베타 + ${splicer}',
           },
           shortGamma: {
             en: 'Short Gamma',
+            de: 'kurzes Gamma',
             ko: '짧은 감마',
           },
           longGamma: {
             en: 'Long Gamma',
+            de: 'langes Gamma',
             ko: '긴 감마',
           },
           longGammaSplicer: {
             en: 'Long Gamma + ${splicer}',
+            de: 'langes Gamma + ${splicer}',
             ko: '긴 감마 + ${splicer}',
           },
           soloSplice: {
             en: 'Solo Stack',
+            de: 'Einzelnes Sammeln',
             ko: '1인징',
           },
           multiSplice: {
             en: 'Two Stack',
+            de: 'Zwei sammeln',
             ko: '2인징',
           },
           superSplice: {
             en: 'Three Stack',
+            de: 'Drei sammeln',
             ko: '3인징',
           },
         };
@@ -1452,6 +1492,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Second Towers',
+          de: 'Zweite Türme',
         },
       },
     },
@@ -1468,6 +1509,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'First Towers',
+          de: 'Erste Türme',
         },
       },
     },
@@ -1479,6 +1521,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'big aoe + bleed',
+          de: 'große AoE + Blutung',
           ko: '아픈 전체공격 + 도트',
         },
       },

@@ -108,6 +108,7 @@ const triggerSet: TriggerSet<Data> = {
       promise: async (data) => {
         const fruitLocaleNames: LocaleText = {
           en: 'Forbidden Fruit',
+          de: 'Frucht des Lebens',
         };
 
         // Select the Forbidden Fruits
@@ -141,22 +142,27 @@ const triggerSet: TriggerSet<Data> = {
           south: Outputs.south,
           twoPlatforms: {
             en: '${platform1} / ${platform2}',
+            de: '${platform1} / ${platform2}',
             ko: '${platform1} / ${platform2}',
           },
           orientation: {
             en: 'Line Bull: ${location}',
+            de: 'Bullen-Linie: ${location}',
             ko: '줄 달린 소: ${location}',
           },
           famineOrientation: {
             en: 'Minotaurs without Bird: ${location}',
+            de: 'Minotauren ohne Vögel: ${location}',
             ko: '새 없는 곳: ${location}',
           },
           deathOrientation: {
             en: 'Lightning Bull: ${location}',
+            de: 'Blitz-Bulle: ${location}',
             ko: '줄 안달린 소: ${location}',
           },
           warOrientation: {
             en: 'Bird with Minotaurs: ${location}',
+            de: 'Vögel mit Minotauren : ${location}',
             ko: '새 + 미노타우로스: ${location}',
           },
         };
