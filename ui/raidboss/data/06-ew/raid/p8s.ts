@@ -108,6 +108,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Tank Autos',
+          de: 'Tank Auto-Angriffe',
           ja: 'タンクへのオートアタック',
           ko: '탱커 평타',
         },
@@ -610,14 +611,17 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         cardinals: {
           en: 'Look Cardinals',
+          de: 'Schaue Kardinal',
           ja: '視線を斜めに',
         },
         intercards: {
           en: 'Look Intercards',
+          de: 'Schaue Interkardinal',
           ja: '視線を十字に',
         },
         gorgons: {
           en: '${dir1}/${dir2} Gorgons',
+          de: '${dir1}/${dir2} Gorgone',
           ja: 'ゴルゴン：${dir1}/${dir2}',
         },
         dirN: Outputs.dirN,
@@ -666,21 +670,25 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           firstGaze: {
             en: 'First Gaze (w/ ${player})',
+            de: 'Erster Blick (+ ${player})',
             ja: '先の石化 (+${player})',
             ko: '첫번째 석화 (+ ${player})',
           },
           secondGaze: {
             en: 'Second Gaze (w/ ${player})',
+            de: 'Zweiter Blick (+ ${player})',
             ja: '後の石化 (+${player})',
             ko: '두번째 석화 (+ ${player})',
           },
           firstPoison: {
             en: 'First Poison (w/ ${player})',
+            de: 'Erstes Gift (+ ${player})',
             ja: '先の毒 (+${player})',
             ko: '첫번째 독장판 (+ ${player})',
           },
           secondPoison: {
             en: 'Second Poison (w/ ${player})',
+            de: 'Zweites Gift (+ ${player})',
             ja: '後の毒 (+${player})',
             ko: '두번째 독장판 (+ ${player})',
           },
@@ -753,26 +761,31 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           firstGaze: {
             en: 'First Gaze',
+            de: 'Erster Blick',
             ja: '先の石化',
             ko: '첫번째 석화',
           },
           secondGaze: {
             en: 'Second Gaze',
+            de: 'Zweiter Blick',
             ja: '後の石化',
             ko: '두번째 석화',
           },
           shriek: {
             en: 'Shriek later (with ${player})',
+            de: 'Schrei später (mit ${player})',
             ja: '自分に全体石化 (+${player})',
             ko: '나중에 마안 (+ ${player})',
           },
           stack: {
             en: 'Stack later (with ${player})',
+            de: 'Später sammeln (mit ${player})',
             ja: '自分に頭割り (+${player})',
             ko: '나중에 쉐어 (+ ${player})',
           },
           noDebuff: {
             en: 'No debuff (w/ ${player1}, ${player2}, ${player3})',
+            de: 'Kein Debuff (+ ${player1}, ${player2}, ${player3})',
             ja: '無職 (${player1}, ${player2}, ${player3})',
             ko: '디버프 없음 (+ ${player1}, ${player2}, ${player3})',
           },
@@ -915,9 +928,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         impactDir: {
           en: 'Follow to ${dir} (Knockback)',
+          de: 'Nach ${dir} folgen (Knockback)',
         },
         crushDir: {
           en: 'Away to ${dir}',
+          de: 'Geh weg nach ${dir}',
         },
         crush: {
           en: 'Away From Jump',
@@ -1182,11 +1197,13 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         northSouth: {
           en: 'North / South',
+          de: 'Norden / Süden',
           ja: '南・北',
           ko: '남/북쪽',
         },
         eastWest: {
           en: 'East / West',
+          de: 'Osten / Westen',
           ja: '東・西',
           ko: '동/서쪽',
         },
@@ -1220,7 +1237,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Split Tankbusters',
-          de: 'Geteilter Tankbuster',
+          de: 'getrennte Tankbuster',
           ja: '2人同時タンク強攻撃',
           ko: '따로맞는 탱버',
         },
@@ -1242,11 +1259,13 @@ const triggerSet: TriggerSet<Data> = {
         right: Outputs.right,
         rightAndSpread: {
           en: 'Right + Spread',
+          de: 'Rechts + Verteilen',
           ja: '右 + 散会',
           ko: '오른쪽 + 산개',
         },
         rightAndStack: {
           en: 'Right + Stack',
+          de: 'Rechts + Sammeln',
           ja: '右 + 頭割り',
           ko: '오른쪽 + 쉐어',
         },
@@ -1268,11 +1287,13 @@ const triggerSet: TriggerSet<Data> = {
         left: Outputs.left,
         leftAndSpread: {
           en: 'Left + Spread',
+          de: 'Links + Verteilen',
           ja: '左 + 散会',
           ko: '왼쪽 + 산개',
         },
         leftAndStack: {
           en: 'Left + Stack',
+          de: 'Links + Sammeln',
           ja: '左 + 頭割り',
           ko: '왼쪽 + 쉐어',
         },
@@ -1302,6 +1323,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         reversed: {
           en: '${player} reversed',
+          de: '${player} umgekehrt',
           ja: 'マジックインヴァージョン：${player}',
           ko: '${player} 반전',
         },
@@ -1319,6 +1341,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Alignment on YOU',
+          de: 'Anpassung auf DIR',
           ja: '自分に術式',
           ko: '원판 대상자',
         },
@@ -1340,6 +1363,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Alignment on ${player1}, ${player2}',
+          de: 'Anpassung auf ${player1}, ${player2}',
           ja: '術式：${player1}, ${player2}',
           ko: '${player1}, ${player2} 원판',
         },
@@ -1355,31 +1379,37 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           ice: {
             en: 'Ice Groups First',
+            de: 'Eis Gruppen zuerst',
             ja: '氷の頭割りから',
             ko: '얼음 쉐어 먼저',
           },
           fire: {
             en: 'Fire Partners First',
+            de: 'Feuer Partner zuerst',
             ja: '火の2人頭割りから',
             ko: '불 2인쉐어 먼저',
           },
           stack: {
             en: 'Stack First',
+            de: 'Zuerst sammeln',
             ja: '頭割りから',
             ko: '쉐어 먼저',
           },
           spread: {
             en: 'Spread First',
+            de: 'Zuerst verteilen',
             ja: '散会から',
             ko: '산개 먼저',
           },
           baitAndStack: {
             en: 'Bait => Stack',
+            de: 'Ködern => Sammeln',
             ja: '誘導 => 頭割り',
             ko: '장판 유도 => 쉐어',
           },
           baitAndSpread: {
             en: 'Bait => Spread',
+            de: 'Ködern => Verteilen',
             ja: '誘導 => 散会',
             ko: '장판 유도 => 산개',
           },
@@ -1457,11 +1487,13 @@ const triggerSet: TriggerSet<Data> = {
         spread: Outputs.spread,
         ice: {
           en: 'Ice Groups',
+          de: 'Eis Gruppen',
           ja: '氷の頭割り',
           ko: '얼음 그룹 쉐어',
         },
         fire: {
           en: 'Fire Partners',
+          de: 'Feuer Partner',
           ja: '火の2人頭割り',
           ko: '불 2인 쉐어',
         },
@@ -1488,9 +1520,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         row1: {
           en: 'Front Row',
+          de: 'Vordere Reihe',
         },
         row2: {
           en: 'Second Row',
+          de: 'Zweite Reihe',
         },
       },
     },
@@ -1536,66 +1570,79 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           noDebuff: {
             en: 'No Debuff',
+            de: 'Kein Debuff',
             ja: '無職',
             ko: '디버프 없음',
           },
           shortAlpha: {
             en: 'Short Alpha',
+            de: 'kurzes Alpha',
             ja: '短いアルファ',
             ko: '짧은 알파',
           },
           longAlpha: {
             en: 'Long Alpha',
+            de: 'langes Alpha',
             ja: '長いアルファ',
             ko: '긴 알파',
           },
           longAlphaSplicer: {
             en: 'Long Alpha + ${splicer}',
+            de: 'langes Alpha + ${splicer}',
             ja: '長いアルファ + ${splicer}',
             ko: '긴 알파 + ${splicer}',
           },
           shortBeta: {
             en: 'Short Beta',
+            de: 'kurzes Beta',
             ja: '短いベータ',
             ko: '짧은 베타',
           },
           longBeta: {
             en: 'Long Beta',
+            de: 'langes Beta',
             ja: '長いベータ',
             ko: '긴 베타',
           },
           longBetaSplicer: {
             en: 'Long Beta + ${splicer}',
+            de: 'langes Beta + ${splicer}',
             ja: '長いベータ + ${splicer}',
             ko: '긴 베타 + ${splicer}',
           },
           shortGamma: {
             en: 'Short Gamma',
+            de: 'kurzes Gamma',
             ja: '短いガンマ',
             ko: '짧은 감마',
           },
           longGamma: {
             en: 'Long Gamma',
+            de: 'langes Gamma',
             ja: '長いガンマ',
             ko: '긴 감마',
           },
           longGammaSplicer: {
             en: 'Long Gamma + ${splicer}',
+            de: 'langes Gamma + ${splicer}',
             ja: '長いガンマ + ${splicer}',
             ko: '긴 감마 + ${splicer}',
           },
           soloSplice: {
             en: 'Solo Stack',
+            de: 'Einzelnes Sammeln',
             ja: '1人受け',
             ko: '1인징',
           },
           multiSplice: {
             en: 'Two Stack',
+            de: 'Zwei sammeln',
             ja: '2人頭割り',
             ko: '2인징',
           },
           superSplice: {
             en: 'Three Stack',
+            de: 'Drei sammeln',
             ja: '3人頭割り',
             ko: '3인징',
           },
@@ -1658,6 +1705,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Green/Blue Tower',
+          de: 'Grüner/Blauer Turm',
           ja: '緑・青の塔',
         },
       },
@@ -1671,6 +1719,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Green/Purple Tower',
+          de: 'Grüner/Lilaner Turm',
           ja: '緑・紫の塔',
         },
       },
@@ -1684,6 +1733,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Purple/Blue Tower',
+          de: 'Lilaner/Blauer Turm',
           ja: '紫・青の塔',
         },
       },
@@ -1713,6 +1763,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Second Towers',
+          de: 'Zweite Türme',
           ja: '2回目の塔',
         },
       },
@@ -1730,6 +1781,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'First Towers',
+          de: 'Erste Türme',
           ja: '1回目の塔',
         },
       },
@@ -1742,6 +1794,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'big aoe + bleed',
+          de: 'große AoE + Blutung',
           ja: '全体攻撃 + 出血',
           ko: '아픈 전체공격 + 도트',
         },
@@ -1776,6 +1829,7 @@ const triggerSet: TriggerSet<Data> = {
         'Suneater': 'Schlund des Phoinix',
       },
       'replaceText': {
+        'line': 'Linie',
         '--auto--': '--auto--',
         'Abyssal Fires': 'Feuersturm',
         'Aionagonia': 'Eiserne Agonie',
