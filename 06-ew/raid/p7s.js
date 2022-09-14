@@ -74,6 +74,7 @@ Options.Triggers.push({
       promise: async (data) => {
         const fruitLocaleNames = {
           en: 'Forbidden Fruit',
+          de: 'Frucht des Lebens',
         };
         // Select the Forbidden Fruits
         const combatantNameFruits = [fruitLocaleNames[data.parserLang] ?? fruitLocaleNames['en']];
@@ -105,22 +106,27 @@ Options.Triggers.push({
           south: Outputs.south,
           twoPlatforms: {
             en: '${platform1} / ${platform2}',
+            de: '${platform1} / ${platform2}',
             ko: '${platform1} / ${platform2}',
           },
           orientation: {
             en: 'Line Bull: ${location}',
+            de: 'Bullen-Linie: ${location}',
             ko: '줄 달린 소: ${location}',
           },
           famineOrientation: {
             en: 'Minotaurs without Bird: ${location}',
+            de: 'Minotauren ohne Vögel: ${location}',
             ko: '새 없는 곳: ${location}',
           },
           deathOrientation: {
             en: 'Lightning Bull: ${location}',
+            de: 'Blitz-Bulle: ${location}',
             ko: '줄 안달린 소: ${location}',
           },
           warOrientation: {
             en: 'Bird with Minotaurs: ${location}',
+            de: 'Vögel mit Minotauren : ${location}',
             ko: '새 + 미노타우로스: ${location}',
           },
         };
@@ -262,7 +268,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Split Tankbusters',
-          de: 'Geteilter Tankbuster',
+          de: 'getrennte Tankbuster',
           fr: 'Séparez des Tankbusters',
           ja: '2人同時タンク強攻撃',
           ko: '따로맞는 탱버',
