@@ -611,14 +611,17 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         cardinals: {
           en: 'Look Cardinals',
+          de: 'Schaue Kardinal',
           ja: '視線を斜めに',
         },
         intercards: {
           en: 'Look Intercards',
+          de: 'Schaue Interkardinal',
           ja: '視線を十字に',
         },
         gorgons: {
           en: '${dir1}/${dir2} Gorgons',
+          de: '${dir1}/${dir2} Gorgone',
           ja: 'ゴルゴン：${dir1}/${dir2}',
         },
         dirN: Outputs.dirN,
@@ -1234,7 +1237,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Split Tankbusters',
-          de: 'Geteilter Tankbuster',
+          de: 'getrennte Tankbuster',
           ja: '2人同時タンク強攻撃',
           ko: '따로맞는 탱버',
         },

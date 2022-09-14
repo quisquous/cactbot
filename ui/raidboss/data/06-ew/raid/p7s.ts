@@ -320,7 +320,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Split Tankbusters',
-          de: 'Geteilter Tankbuster',
+          de: 'getrennte Tankbuster',
           fr: 'Séparez des Tankbusters',
           ja: '2人同時タンク強攻撃',
           ko: '따로맞는 탱버',
