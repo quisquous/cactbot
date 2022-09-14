@@ -904,31 +904,17 @@ const triggerSet: TriggerSet<Data> = {
         data.crushImpactSafeZone = cardinal;
       },
       infoText: (data, matches, output) => {
-        const dirs: { [dir: number]: string } = {
-          0: 'north',
-          1: 'east',
-          2: 'south',
-          3: 'west',
-        };
-        if (data.crushImpactSafeZone === undefined)
-          return;
-
-        // BEGIN TEMPORARY HACK
-        // This trigger calls out the wrong directions sometimes, so disable until
-        // it can be fixed.
-        if (matches.id === '7A05')
-          return output.crush!();
-        else if (matches.id === '7A04')
-          return output.impact!();
-        // END TEMPORARY HACK
-
-        // Check if dir is valid, else output generic
-        const dir = dirs[data.crushImpactSafeZone];
-        if (dir === undefined) {
-          if (matches.id === '7A05')
+        if (data.crushImpactSafeZone === undefined) {
+          // Failed to get data, return generic result
+           if (matches.id === '7A05')
             return output.crush!();
           return output.impact!();
         }
+
+        // Boss casts 7108 which teleports him middle with heading North
+        // Boss then does not turn until or after Crush/Impact cast, thus
+        // if heading is not 0, then he is turning south
+        const dir = (data.crushImpactSafeZone === 0 ? 'north' : 'south');
 
         if (matches.id === '7A05')
           return output.crushDir!({ dir: output[dir]!() });
@@ -955,11 +941,8 @@ const triggerSet: TriggerSet<Data> = {
           ja: '近づく',
           ko: '보스 따라가기',
         },
-        unknown: Outputs.unknown,
         north: Outputs.north,
-        east: Outputs.east,
         south: Outputs.south,
-        west: Outputs.west,
       },
     },
     {
