@@ -829,6 +829,14 @@ Options.Triggers.push({
         };
         if (data.crushImpactSafeZone === undefined)
           return;
+        // BEGIN TEMPORARY HACK
+        // This trigger calls out the wrong directions sometimes, so disable until
+        // it can be fixed.
+        if (matches.id === '7A05')
+          return output.crush();
+        else if (matches.id === '7A04')
+          return output.impact();
+        // END TEMPORARY HACK
         // Check if dir is valid, else output generic
         const dir = dirs[data.crushImpactSafeZone];
         if (dir === undefined) {
