@@ -1829,6 +1829,7 @@ const triggerSet: TriggerSet<Data> = {
         'Suneater': 'Schlund des Phoinix',
       },
       'replaceText': {
+        'line': 'Linie',
         '--auto--': '--auto--',
         'Abyssal Fires': 'Feuersturm',
         'Aionagonia': 'Eiserne Agonie',
