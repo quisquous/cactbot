@@ -1085,7 +1085,7 @@ const triggerSet: TriggerSet<Data> = {
             en: '${dir}',
           },
           trailblazeKnockback: {
-            en: 'Knockback ${dir1} to ${dir2}',
+            en: '${dir1} Knockback to ${dir2}',
           },
           north: Outputs.north,
           east: Outputs.east,
