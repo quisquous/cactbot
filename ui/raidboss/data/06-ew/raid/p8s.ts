@@ -1005,10 +1005,6 @@ const triggerSet: TriggerSet<Data> = {
         firstTrailblaze: {
           en: '${dir} Black Line => ${concept}',
         },
-        crush: {
-          en: 'Crush',
-        },
-        impact: Outputs.knockback,
         north: Outputs.north,
         east: Outputs.east,
         south: Outputs.south,
