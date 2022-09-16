@@ -31,7 +31,7 @@ export interface Data extends RaidbossData {
   gorgons: NetMatches['AddedCombatant'][];
   gorgonCount: number;
   seenSnakeIllusoryCreation?: boolean;
-  crushImpactSafeZone?: number;
+  crushImpactSafeZone?: string;
   firstSnakeOrder: { [name: string]: 1 | 2 };
   firstSnakeDebuff: { [name: string]: 'gaze' | 'poison' };
   firstSnakeCalled?: boolean;
@@ -871,6 +871,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P8S Quadrupedal Impact/Crush',
+      // 7A04 Quadrupedal Impact
+      // 7A05 Quadrupedal Crush
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['7A04', '7A05'], source: 'Hephaistos' }),
       promise: async (data, matches) => {
@@ -896,38 +898,30 @@ const triggerSet: TriggerSet<Data> = {
         if (!hephaistos)
           return;
 
-        // Snap heading to closest card and add 2 for opposite direction
-        // N = 0, E = 1, S = 2, W = 3
-        const isCrush = (matches.id === '7A05' ? 2 : 0);
-        const cardinal = ((2 - Math.round(hephaistos.Heading * 4 / Math.PI) / 2) + isCrush) % 4;
-
-        data.crushImpactSafeZone = cardinal;
+        // Boss faces 3.14159274 when North
+        // Flip callout if crush (7A05)
+        if (hephaistos.Heading >= 3.14)
+          data.crushImpactSafeZone = (matches.id === '7A05' ? 'south' : 'north');
+        else // Boss will be facing South
+          data.crushImpactSafeZone = (matches.id === '7A05' ? 'north' : 'south');
       },
       infoText: (data, matches, output) => {
         if (data.crushImpactSafeZone === undefined) {
-          // Failed to get data, return generic result
           if (matches.id === '7A05')
             return output.crush!();
           return output.impact!();
         }
 
-        // Boss casts 7108 which teleports him middle with heading North
-        // Boss then does not turn until or after Crush/Impact cast, thus
-        // if heading is not 0, then he is turning south
-        const dir = (data.crushImpactSafeZone === 0 ? 'north' : 'south');
-
         if (matches.id === '7A05')
-          return output.crushDir!({ dir: output[dir]!() });
-        return output.impactDir!({ dir: output[dir]!() });
+          return output.crushDir!({ dir: output[data.crushImpactSafeZone]!() });
+        return output.impactDir!({ dir: output[data.crushImpactSafeZone]!() });
       },
       outputStrings: {
         impactDir: {
           en: 'Follow to ${dir} (Knockback)',
-          de: 'Nach ${dir} folgen (Knockback)',
         },
         crushDir: {
           en: 'Away to ${dir}',
-          de: 'Geh weg nach ${dir}',
         },
         crush: {
           en: 'Away From Jump',
