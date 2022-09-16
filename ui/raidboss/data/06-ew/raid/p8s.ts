@@ -1101,14 +1101,23 @@ const triggerSet: TriggerSet<Data> = {
             3: output.west!(),
           };
 
-          // Call move to next push back side if Crush
-          // Only need to call this out if there is an upcoming pushback
-          if (data.trailblazeCount === 0 && data.footfallsOrder[data.trailblazeCount] === 'crush')
-            return { infoText: output.trailblaze!({ dir: dirToCard[data.footfallsDirs[1]] }) };
-          // Call Knockback direction if Impact
+          // First trailblaze may require moving to new cardinal during Crush/Impact
+          if (data.trailblazeCount === 0) {
+            // Call move to next push back side if Crush
+            // Only need to call this out if there is an upcoming pushback
+            if (data.footfallsOrder[data.trailblazeCount] === 'crush')
+              return { infoText: output.directionsPush!({ dir: dirToCard[data.footfallsDirs[1]] }) };
+
+            // Call future push location if knockback
+            if (data.footfallsOrder[data.trailblazeCount] === 'impact')
+              return { infoText: output.directionsKnockback!({ dir1: dirToCard[dir], dir: dirToCard[data.footfallsDirs[1]] }) };
+          }
+
+          // Second trailblze should call torch location
           if (data.footfallsOrder[data.trailblazeCount] === 'impact') {
+            // TODO: Fix this to be where torch safe spot is
             const knockbackTo = (dir + 2) % 4;
-            return { alertText: output.trailblazeKnockback!({ dir1: dirToCard[dir], dir2: dirToCard[knockbackTo] }) };
+            return { alertText: output.directionsKnockback!({ dir1: dirToCard[dir], dir2: dirToCard[knockbackTo] }) };
           }
         }
       },
