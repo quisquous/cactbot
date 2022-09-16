@@ -1012,7 +1012,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P8S Blazing Footfalls Second Trailblaze Reminder',
+      id: 'P8S Blazing Footfalls Trailblaze 2',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['7106', '7107'], source: 'Hephaistos', capture: false }),
       condition: (data) => data.trailblazeCount === 1,
