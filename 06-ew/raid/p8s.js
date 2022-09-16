@@ -792,6 +792,8 @@ Options.Triggers.push({
     },
     {
       id: 'P8S Quadrupedal Impact/Crush',
+      // 7A04 Quadrupedal Impact
+      // 7A05 Quadrupedal Crush
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['7A04', '7A05'], source: 'Hephaistos' }),
       promise: async (data, matches) => {
@@ -814,48 +816,31 @@ Options.Triggers.push({
         const hephaistos = hephaistosData.combatants[0];
         if (!hephaistos)
           return;
-        // Snap heading to closest card and add 2 for opposite direction
-        // N = 0, E = 1, S = 2, W = 3
-        const isCrush = (matches.id === '7A05' ? 2 : 0);
-        const cardinal = ((2 - Math.round(hephaistos.Heading * 4 / Math.PI) / 2) + isCrush) % 4;
-        data.crushImpactSafeZone = cardinal;
+        // Boss faces 3.14159274 when North
+        // Flip callout if crush (7A05)
+        const epsilon = 0.1;
+        if (Math.abs(hephaistos.Heading - 3.14) < epsilon)
+          data.crushImpactSafeZone = (matches.id === '7A05' ? 'south' : 'north');
+        // Boss will be facing South
+        else
+          data.crushImpactSafeZone = (matches.id === '7A05' ? 'north' : 'south');
       },
       infoText: (data, matches, output) => {
-        const dirs = {
-          0: 'north',
-          1: 'east',
-          2: 'south',
-          3: 'west',
-        };
-        if (data.crushImpactSafeZone === undefined)
-          return;
-        // BEGIN TEMPORARY HACK
-        // This trigger calls out the wrong directions sometimes, so disable until
-        // it can be fixed.
-        if (matches.id === '7A05')
-          return output.crush();
-        else if (matches.id === '7A04')
-          return output.impact();
-        // END TEMPORARY HACK
-        // Check if dir is valid, else output generic
-        const dir = dirs[data.crushImpactSafeZone];
-        if (dir === undefined) {
+        if (data.crushImpactSafeZone === undefined) {
           if (matches.id === '7A05')
             return output.crush();
           return output.impact();
         }
         if (matches.id === '7A05')
-          return output.crushDir({ dir: output[dir]() });
-        return output.impactDir({ dir: output[dir]() });
+          return output.crushDir({ dir: output[data.crushImpactSafeZone]() });
+        return output.impactDir({ dir: output[data.crushImpactSafeZone]() });
       },
       outputStrings: {
         impactDir: {
           en: 'Follow to ${dir} (Knockback)',
-          de: 'Nach ${dir} folgen (Knockback)',
         },
         crushDir: {
           en: 'Away to ${dir}',
-          de: 'Geh weg nach ${dir}',
         },
         crush: {
           en: 'Away From Jump',
@@ -869,11 +854,8 @@ Options.Triggers.push({
           ja: '近づく',
           ko: '보스 따라가기',
         },
-        unknown: Outputs.unknown,
         north: Outputs.north,
-        east: Outputs.east,
         south: Outputs.south,
-        west: Outputs.west,
       },
     },
     {
