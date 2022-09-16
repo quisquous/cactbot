@@ -172,6 +172,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7865', source: 'Hegemone', capture: false }),
       preRun: (data, _matches) => data.pathogenicCellsCounter++,
+      durationSeconds: 1.5,
       suppressSeconds: 1,
       sound: '',
       infoText: (data, _matches, output) => output.text!({ num: data.pathogenicCellsCounter }),
