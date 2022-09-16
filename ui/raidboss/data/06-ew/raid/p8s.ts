@@ -903,7 +903,8 @@ const triggerSet: TriggerSet<Data> = {
         const epsilon = 0.1;
         if (Math.abs(hephaistos.Heading - 3.14) < epsilon)
           data.crushImpactSafeZone = (matches.id === '7A05' ? 'south' : 'north');
-        else // Boss will be facing South
+        // Boss will be facing South
+        else
           data.crushImpactSafeZone = (matches.id === '7A05' ? 'north' : 'south');
       },
       infoText: (data, matches, output) => {
