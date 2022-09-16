@@ -387,6 +387,44 @@ export default class TimerBar extends HTMLElement {
           z-index: 2;
         }
 
+        :host-context(.skin-jwidea) .timerbar-root {
+          border: none;
+        }
+
+        :host-context(.skin-jwidea) .timerbar-bg {
+          height: 13px !important;
+          border-radius: 0px;
+          background-color: #40444b !important;
+          border: 1px solid #1a1a1c !important;
+          box-shadow: 0 0 8px 0 #1a1a1c;
+          opacity: 1.0;
+          z-index: 0;
+        }
+
+        :host-context(.skin-jwidea) .timerbar-fg {
+          height: 13px !important;
+          top: 0px;
+          left: 0px;
+          background-color: #724ed0 !important;
+          box-shadow: 0 0 2px 0 #8860f0 !important;
+          text-align: center;
+          margin: 1px;
+          z-index: 1;
+          opacity: 1.0;
+        }
+
+        :host-context(.skin-jwidea) .text {
+          text-shadow:
+            0 0 3px #545552,
+            0 1px 3px #545552,
+            0 -1px 3px #545552;
+        }
+
+        :host-context(.skin-jwidea) .text-container {
+          top: 0px;
+          z-index: 2;
+        }
+
         :host-context(.just-a-number) .timerbar-root {
           border: none;
         }

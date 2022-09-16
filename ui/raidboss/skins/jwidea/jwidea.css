@@ -1,0 +1,50 @@
+#timeline {
+  position: absolute;
+  z-index: 0;
+}
+
+#popup-text-container {
+  position: absolute;
+  z-index: 1;
+}
+
+.info-text {
+  color: rgba(255, 255, 255, 1);
+  text-shadow:
+    -1px 0 rgb(82,190,87),
+    0 -1px rgb(82,190,87),
+    1px 0 rgb(82,190,87),
+    0 1px rgb(82,190,87),
+    0 0 10px rgb(82,190,87);
+  font-size: 100%;
+  will-change: transform;
+}
+
+.alert-text {
+  color: rgba(255, 255, 255, 1);
+  text-shadow:
+    -1px 0 rgb(250,150,110),
+    0 -1px rgb(250,150,110),
+    1px 0 rgb(250,150,110),
+    0 1px rgb(250,150,110),
+    0 0 10px rgb(250,150,110);
+  font-size: 100%;
+  will-change: transform;
+}
+
+.alarm-text {
+  color: rgba(255, 255, 255, 1);
+  text-shadow:
+    -1px 0 rgb(210,0,0),
+    0 -1px rgb(210,0,0),
+    1px 0 rgb(210,0,0),
+    0 1px rgb(210,0,0),
+    0 0 10px rgb(210,0,0);
+  font-size: 150%;
+  will-change: transform;
+}
+
+.animate-timer-bar-removed {
+  /* disable timer-bar-removed animation */
+  animation: none;
+}
