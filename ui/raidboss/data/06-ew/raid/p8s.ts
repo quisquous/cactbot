@@ -11,7 +11,6 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
-// TODO: make the torch call say left/right during 2nd beast
 // TODO: better vent callouts
 // TODO: initial tank auto call on final boss as soon as boss pulled
 // TODO: figure out how to handle towers during HC1/HC2
@@ -36,6 +35,7 @@ export interface Data extends RaidbossData {
   footfallsDirs: number[];
   footfallsOrder: string[];
   trailblazeCount: number;
+  trailblazeTorchSafeZone?: string;
   firstSnakeOrder: { [name: string]: 1 | 2 };
   firstSnakeDebuff: { [name: string]: 'gaze' | 'poison' };
   firstSnakeCalled?: boolean;
@@ -420,6 +420,16 @@ const triggerSet: TriggerSet<Data> = {
         // Unexpectedly zero safe zones.
         if (safe0 === undefined)
           return;
+
+        // Blazing Foothills will have 4 safe spots
+        // However, it will only be East or West
+        if (data.trailblazeCount == 1) {
+          if (safe2 === 'outsideEast')
+            data.trailblazeTorchSafeZone = 'east';
+          if (safe2 === 'outsideWest')
+            data.trailblazeTorchSafeZone = 'west';
+          return;
+        }
 
         // Special case inner four squares.
         if (
@@ -1113,12 +1123,27 @@ const triggerSet: TriggerSet<Data> = {
               return { infoText: output.trailblazeKnockback!({ dir1: dirToCard[dir], dir2: dirToCard[data.footfallsDirs[1]] }) };
           }
 
+          // First trailblaze may require moving to new cardinal during Crush/Impact
+          if (data.trailblazeCount === 0) {
+            // Call move to next push back side if Crush
+            // Only need to call this out if there is an upcoming pushback
+            if (data.footfallsOrder[data.trailblazeCount] === 'crush')
+              return { infoText: output.trailblaze!({ dir: dirToCard[data.footfallsDirs[1]] }) };
+
+            // Call future push location if knockback
+            if (data.footfallsOrder[data.trailblazeCount] === 'impact')
+              return { infoText: output.trailblazeKnockback!({ dir1: dirToCard[dir], dir2: dirToCard[data.footfallsDirs[1]] }) };
+          }
+
           // Second trailblze should call torch location
           if (data.footfallsOrder[data.trailblazeCount] === 'impact') {
-            // TODO: Fix this to be where torch safe spot is
-            const knockbackTo = (dir + 2) % 4;
-            return { alertText: output.trailblazeKnockback!({ dir1: dirToCard[dir], dir2: dirToCard[knockbackTo] }) };
+            // If missing torch data, target to the middle
+            const knockbackTo = (data.trailblazeTorchSafeZone ? output[data.trailblazeTorchSafeZone]!() : dirToCard[(dir + 2) % 4]);
+            return { alertText: output.trailblazeKnockback!({ dir1: dirToCard[dir], dir2: knockbackTo }) };
           }
+          // Output torch location during crush
+          if (data.footfallsOrder[data.trailblazeCount] === 'crush' && data.trailblazeTorchSafeZone)
+            return { infoText: output[data.trailblazeTorchSafeZone]!() };
         }
       },
       run: (data) => data.trailblazeCount++,
