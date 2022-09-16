@@ -1000,26 +1000,10 @@ const triggerSet: TriggerSet<Data> = {
             concept: data.footfallsConcept,
           });
         }
-
-        // Output second push direction
-        if (data.footfallsDirs[1] !== undefined && data.footfallsOrder[1] !== undefined) {
-          if (!validDirs.includes(data.footfallsDirs[1])) {
-            console.error(`Blazing Footfalls: Unexpected dirs, got ${data.footfallsDirs[1]}}`);
-            return;
-          }
-
-          return output.secondTrailblaze!({
-            dir: dirToCard[data.footfallsDirs[1]],
-            action: output[data.footfallsOrder[1]]!(),
-          });
-        }
       },
       outputStrings: {
         firstTrailblaze: {
           en: '${dir} Black Line => ${concept}',
-        },
-        secondTrailblaze: {
-          en: '${dir} Black Line => ${action}',
         },
         crush: {
           en: 'Crush',
