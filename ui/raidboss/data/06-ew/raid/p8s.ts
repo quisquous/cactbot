@@ -199,7 +199,7 @@ const triggerSet: TriggerSet<Data> = {
       // 7915 normally
       // 7916 during Blazing Footfalls
       netRegex: NetRegexes.startsUsing({ id: '7917', source: 'Hephaistos', capture: false }),
-      durationSeconds: 20,
+      durationSeconds: 12,
       infoText: (_data, _matches, output) => output.healerGroups!(),
       run: (data, _matches, output) => data.footfallsConcept = output.healerGroups!(),
       outputStrings: {
@@ -212,7 +212,7 @@ const triggerSet: TriggerSet<Data> = {
       // 7915 normally
       // 7916 during Blazing Footfalls
       netRegex: NetRegexes.startsUsing({ id: '7916', source: 'Hephaistos', capture: false }),
-      durationSeconds: 20,
+      durationSeconds: 12,
       infoText: (_data, _matches, output) => output.text!(),
       run: (data, _matches, output) => data.footfallsConcept = output.text!(),
       outputStrings: {
