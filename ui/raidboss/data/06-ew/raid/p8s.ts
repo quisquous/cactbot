@@ -423,7 +423,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // Blazing Foothills will have 4 safe spots
         // However, it will only be East or West
-        if (data.trailblazeCount == 1) {
+        if (data.trailblazeCount === 1) {
           if (safe2 === 'outsideEast')
             data.trailblazeTorchSafeZone = 'east';
           if (safe2 === 'outsideWest')
