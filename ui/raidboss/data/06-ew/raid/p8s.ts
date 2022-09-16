@@ -1077,8 +1077,13 @@ const triggerSet: TriggerSet<Data> = {
             en: '${dir}',
           },
           trailblazeKnockback: {
+            en: '${dir} Knockback',
+          },
+          trailblazeKnockbackTo: {
             en: '${dir1} Knockback to ${dir2}',
           },
+          left: Outputs.left,
+          right: Outputs.right,
           north: Outputs.north,
           east: Outputs.east,
           south: Outputs.south,
@@ -1137,13 +1142,35 @@ const triggerSet: TriggerSet<Data> = {
 
           // Second trailblze should call torch location
           if (data.footfallsOrder[data.trailblazeCount] === 'impact') {
-            // If missing torch data, target to the middle
-            const knockbackTo = (data.trailblazeTorchSafeZone ? output[data.trailblazeTorchSafeZone]!() : dirToCard[(dir + 2) % 4]);
-            return { alertText: output.trailblazeKnockback!({ dir1: dirToCard[dir], dir2: knockbackTo }) };
+            if (
+              (data.trailblazeTorchSafeZone === 'east' && dir === 0) ||
+              (data.trailblazeTorchSafeZone === 'west' && dir === 2)
+            )
+              return { alertText: output.trailblazeKnockbackTo!({ dir1: dirToCard[dir], dir2: output.left!() }) };
+            if (
+              (data.trailblazeTorchSafeZone === 'west' && dir === 0) ||
+              (data.trailblazeTorchSafeZone === 'east' && dir === 2)
+            )
+              return { alertText: output.trailblazeKnockbackTo!({ dir1: dirToCard[dir], dir2: output.right!() }) };
+
+            // Unable to determine direction, output only knockback
+            return { alertText: output.trailblazeKnockback!({ dir1: dirToCard[dir] }) };
           }
+
           // Output torch location during crush
-          if (data.footfallsOrder[data.trailblazeCount] === 'crush' && data.trailblazeTorchSafeZone)
-            return { infoText: output[data.trailblazeTorchSafeZone]!() };
+          if (data.footfallsOrder[data.trailblazeCount] === 'crush' && data.trailblazeTorchSafeZone) {
+            if (
+              (data.trailblazeTorchSafeZone === 'east' && dir === 0) ||
+              (data.trailblazeTorchSafeZone === 'west' && dir === 2)
+            )
+              return { infoText: output.right!() };
+            if (
+              (data.trailblazeTorchSafeZone === 'west' && dir === 0) ||
+              (data.trailblazeTorchSafeZone === 'east' && dir === 2)
+            )
+              return { infoText: output.left!() };
+            // Unable to determine direction, no output
+          }
         }
       },
       run: (data) => data.trailblazeCount++,
