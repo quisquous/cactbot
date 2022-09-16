@@ -951,7 +951,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8S Blazing Footfalls',
       // 793B Trailblaze Shown
       // 793D Quadrupedal Crush Shown
-      // 793C Quadrpedal Impact Shown
+      // 793C Quadrupedal Impact Shown
       // These are shown in the span of 8.5s
       // Blazing Footfalls takes 14.5s to complete +4s to resolve Torch Flames
       type: 'Ability',
@@ -995,7 +995,6 @@ const triggerSet: TriggerSet<Data> = {
           return output.firstTrailblaze!({
             dir: dirToCard[data.footfallsDirs[0]],
             concept: data.footfallsConcept,
-            action: output[data.footfallsOrder[0]]!(),
           });
         }
 
@@ -1014,7 +1013,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         firstTrailblaze: {
-          en: '${dir} Black Line => ${concept} => ${action}',
+          en: '${dir} Black Line => ${concept}',
         },
         secondTrailblaze: {
           en: '${dir} Black Line => ${action}',
