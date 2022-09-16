@@ -1110,7 +1110,7 @@ const triggerSet: TriggerSet<Data> = {
 
             // Call future push location if knockback
             if (data.footfallsOrder[data.trailblazeCount] === 'impact')
-              return { infoText: output.trailblazeKnockback!({ dir1: dirToCard[dir], dir: dirToCard[data.footfallsDirs[1]] }) };
+              return { infoText: output.trailblazeKnockback!({ dir1: dirToCard[dir], dir2: dirToCard[data.footfallsDirs[1]] }) };
           }
 
           // Second trailblze should call torch location
