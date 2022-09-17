@@ -612,13 +612,13 @@ const triggerSet: TriggerSet<Data> = {
         cardinals: {
           en: 'Look Cardinals',
           de: 'Schaue Kardinal',
-          ja: '視線を斜めに',
+          ja: '視線を十字に',
           ko: '시선을 동서남북쪽으로',
         },
         intercards: {
           en: 'Look Intercards',
           de: 'Schaue Interkardinal',
-          ja: '視線を十字に',
+          ja: '視線を斜めに',
           ko: '시선을 대각선쪽으로',
         },
         gorgons: {
