@@ -612,17 +612,20 @@ const triggerSet: TriggerSet<Data> = {
         cardinals: {
           en: 'Look Cardinals',
           de: 'Schaue Kardinal',
-          ja: '視線を斜めに',
+          ja: '視線を十字に',
+          ko: '시선을 동서남북쪽으로',
         },
         intercards: {
           en: 'Look Intercards',
           de: 'Schaue Interkardinal',
-          ja: '視線を十字に',
+          ja: '視線を斜めに',
+          ko: '시선을 대각선쪽으로',
         },
         gorgons: {
           en: '${dir1}/${dir2} Gorgons',
           de: '${dir1}/${dir2} Gorgone',
           ja: 'ゴルゴン：${dir1}/${dir2}',
+          ko: '${dir1}/${dir2} 고르곤',
         },
         dirN: Outputs.dirN,
         dirNE: Outputs.dirNE,
@@ -921,9 +924,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         impactDir: {
           en: 'Follow to ${dir} (Knockback)',
+          ko: '${dir}으로 따라가기 (넉백)',
         },
         crushDir: {
           en: 'Away to ${dir}',
+          ko: '${dir}으로 피하기',
         },
         crush: {
           en: 'Away From Jump',
@@ -1509,10 +1514,12 @@ const triggerSet: TriggerSet<Data> = {
         row1: {
           en: 'Front Row',
           de: 'Vordere Reihe',
+          ko: '첫번째 줄',
         },
         row2: {
           en: 'Second Row',
           de: 'Zweite Reihe',
+          ko: '두번째 줄',
         },
       },
     },
@@ -1695,6 +1702,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Green/Blue Tower',
           de: 'Grüner/Blauer Turm',
           ja: '緑・青の塔',
+          ko: '초록/파랑 기둥',
         },
       },
     },
@@ -1709,6 +1717,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Green/Purple Tower',
           de: 'Grüner/Lilaner Turm',
           ja: '緑・紫の塔',
+          ko: '초록/보라 기둥',
         },
       },
     },
@@ -1723,6 +1732,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Purple/Blue Tower',
           de: 'Lilaner/Blauer Turm',
           ja: '紫・青の塔',
+          ko: '보라/파랑 기둥',
         },
       },
     },
@@ -1753,6 +1763,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Second Towers',
           de: 'Zweite Türme',
           ja: '2回目の塔',
+          ko: '두번째 기둥',
         },
       },
     },
@@ -1771,6 +1782,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'First Towers',
           de: 'Erste Türme',
           ja: '1回目の塔',
+          ko: '첫번째 기둥',
         },
       },
     },

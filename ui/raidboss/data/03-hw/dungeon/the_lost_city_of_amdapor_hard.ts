@@ -400,7 +400,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Achamoth': '아카모트',
         'Dark Wings': '흑풍',
