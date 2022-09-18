@@ -1134,7 +1134,7 @@ const triggerSet: TriggerSet<Data> = {
             (data.trailblazeTorchSafeZone === 'east' && dir === 0) ||
             (data.trailblazeTorchSafeZone === 'west' && dir === 2)
           ) {
-           if (data.footfallsOrder[data.trailblazeCount] === 'impact')
+            if (data.footfallsOrder[data.trailblazeCount] === 'impact')
               return { alertText: output.trailblazeKnockbackTo!({ dir1: dirToCard[dir], dir2: output.left!() }) };
             if (data.footfallsOrder[data.trailblazeCount] === 'crush')
               return { infoText: output.left!() };
