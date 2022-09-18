@@ -1,3 +1,41 @@
+timer-bar::part(timerbar-root) {
+  border: none;
+}
+
+timer-bar::part(timerbar-bg) {
+  height: 5px !important;
+  border-radius: 1px;
+  background-color: #312008 !important;
+  border: 1px solid #AA6E03 !important;
+  box-shadow: 0 0 8px 0 #AA6E03;
+  opacity: 1.0;
+  z-index: 0;
+}
+
+timer-bar::part(timerbar-fg) {
+  height: 5px !important;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 1) !important;
+  box-shadow: 0 0 2px 0 rgba(255, 255, 255, 1) !important;
+  text-align: center;
+  margin: 1px;
+  z-index: 1;
+  opacity: 1.0;
+}
+
+timer-bar::part(text) {
+  text-shadow:
+    0 0 3px #AA6E03,
+    0 1px 3px #AA6E03,
+    0 -1px 3px #AA6E03;
+}
+
+timer-bar::part(text-container) {
+  top: 0px;
+  z-index: 2;
+}
+
 #timeline {
   position: absolute;
   z-index: 0;
