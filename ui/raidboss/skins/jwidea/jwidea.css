@@ -1,3 +1,41 @@
+timer-bar::part(timerbar-root) {
+  border: none;
+}
+
+timer-bar::part(timerbar-bg) {
+  height: 13px !important;
+  border-radius: 0;
+  background-color: #40444b !important;
+  border: 1px solid #1a1a1c !important;
+  box-shadow: 0 0 8px 0 #1a1a1c;
+  opacity: 1;
+  z-index: 0;
+}
+
+timer-bar::part(timerbar-fg) {
+  height: 13px !important;
+  top: 0;
+  left: 0;
+  background-color: #724ed0 !important;
+  box-shadow: 0 0 2px 0 #8860f0 !important;
+  text-align: center;
+  margin: 1px;
+  z-index: 1;
+  opacity: 1;
+}
+
+timer-bar::part(text) {
+  text-shadow:
+    0 0 3px #545552,
+    0 1px 3px #545552,
+    0 -1px 3px #545552;
+}
+
+timer-bar::part(text-container) {
+  top: 0;
+  z-index: 2;
+}
+
 #timeline {
   position: absolute;
   z-index: 0;
@@ -9,37 +47,37 @@
 }
 
 .info-text {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(255 255 255 100%);
   text-shadow:
-    -1px 0 rgb(82,190,87),
-    0 -1px rgb(82,190,87),
-    1px 0 rgb(82,190,87),
-    0 1px rgb(82,190,87),
-    0 0 10px rgb(82,190,87);
+    -1px 0 rgb(82 190 87),
+    0 -1px rgb(82 190 87),
+    1px 0 rgb(82 190 87),
+    0 1px rgb(82 190 87),
+    0 0 10 rgb(82 190 87);
   font-size: 100%;
   will-change: transform;
 }
 
 .alert-text {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(255 255 255 100%);
   text-shadow:
-    -1px 0 rgb(250,150,110),
-    0 -1px rgb(250,150,110),
-    1px 0 rgb(250,150,110),
-    0 1px rgb(250,150,110),
-    0 0 10px rgb(250,150,110);
+    -1px 0 rgb(250 150 110),
+    0 -1px rgb(250 150 110),
+    1px 0 rgb(250 150 110),
+    0 1px rgb(250 150 110),
+    0 0 10 rgb(250 150 110);
   font-size: 100%;
   will-change: transform;
 }
 
 .alarm-text {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(255 255 255 100%);
   text-shadow:
-    -1px 0 rgb(210,0,0),
-    0 -1px rgb(210,0,0),
-    1px 0 rgb(210,0,0),
-    0 1px rgb(210,0,0),
-    0 0 10px rgb(210,0,0);
+    -1px 0 rgb(210 0 0),
+    0 -1px rgb(210 0 0),
+    1px 0 rgb(210 0 0),
+    0 1px rgb(210 0 0),
+    0 0 10 rgb(210 0 0);
   font-size: 150%;
   will-change: transform;
 }
