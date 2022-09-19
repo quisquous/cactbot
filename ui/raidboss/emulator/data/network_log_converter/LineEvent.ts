@@ -15,8 +15,10 @@ const unknownLogMessagePrefix = 'Unknown';
 
 const logMessagePrefix: { [type: string]: string } = {};
 const logDefsGeneric: LogDefinitionMap = logDefinitions;
-for (const def of Object.values(logDefsGeneric))
-  logMessagePrefix[def.type] = def.messageType;
+for (const def of Object.values(logDefsGeneric)) {
+  if (def.messageType !== undefined)
+    logMessagePrefix[def.type] = def.messageType;
+}
 
 /**
  * Generic class to track an FFXIV log line
@@ -47,6 +49,7 @@ export default class LineEvent {
 
   prefix(): string {
     const timeString = DTFuncs.timeToTimeString(this.timestamp, this.tzOffsetMillis, true);
+    // TODO: should raidemulator not convert lines that don't come from the ffxiv plugin?
     const logMessageName = logMessagePrefix[this.decEventStr] ?? unknownLogMessagePrefix;
     return `[${timeString}] ${logMessageName} ${this.hexEvent}:`;
   }
