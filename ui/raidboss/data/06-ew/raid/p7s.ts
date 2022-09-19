@@ -109,6 +109,7 @@ const triggerSet: TriggerSet<Data> = {
         const fruitLocaleNames: LocaleText = {
           en: 'Forbidden Fruit',
           de: 'Frucht des Lebens',
+          fr: 'Fruits de la vie',
         };
 
         // Select the Forbidden Fruits
@@ -143,26 +144,31 @@ const triggerSet: TriggerSet<Data> = {
           twoPlatforms: {
             en: '${platform1} / ${platform2}',
             de: '${platform1} / ${platform2}',
+            fr: '${platform1} / ${platform2}',
             ko: '${platform1} / ${platform2}',
           },
           orientation: {
             en: 'Line Bull: ${location}',
             de: 'Bullen-Linie: ${location}',
+            fr: 'Taureau Ligne : ${location}',
             ko: '줄 달린 소: ${location}',
           },
           famineOrientation: {
             en: 'Minotaurs without Bird: ${location}',
             de: 'Minotauren ohne Vögel: ${location}',
+            fr: 'Minotaure sans oiseau : ${location}',
             ko: '새 없는 곳: ${location}',
           },
           deathOrientation: {
             en: 'Lightning Bull: ${location}',
             de: 'Blitz-Bulle: ${location}',
+            fr: 'Taureau éclair : ${location}',
             ko: '줄 안달린 소: ${location}',
           },
           warOrientation: {
             en: 'Bird with Minotaurs: ${location}',
             de: 'Vögel mit Minotauren : ${location}',
+            fr: 'Oiseau sans Minotaure : ${location}',
             ko: '새 + 미노타우로스: ${location}',
           },
         };
@@ -766,9 +772,9 @@ const triggerSet: TriggerSet<Data> = {
       'missingTranslations': true,
       'replaceSync': {
         'Agdistis': 'Agdistis',
-        'Immature Io': 'io immature',
-        'Immature Minotaur': 'minotaure immature',
-        'Immature Stymphalide': 'stymphalide immature',
+        'Immature Io': 'Io immature',
+        'Immature Minotaur': 'Minotaure immature',
+        'Immature Stymphalide': 'Stymphalide immature',
       },
       'replaceText': {
         'Blades of Attis': 'Lames d\'Attis',
