@@ -901,10 +901,10 @@ const triggerSet: TriggerSet<Data> = {
         if (!hephaistos)
           return;
 
-        // Boss faces 3.14159274 when North
+        // Boss faces 3.14159274 or -3.13727832 when North
         // Flip callout if crush (7A05)
         const epsilon = 0.1;
-        if (Math.abs(hephaistos.Heading - 3.14) < epsilon)
+        if (Math.abs(Math.abs(hephaistos.Heading) - 3.14) < epsilon)
           data.crushImpactSafeZone = (matches.id === '7A05' ? 'south' : 'north');
         // Boss will be facing South
         else
