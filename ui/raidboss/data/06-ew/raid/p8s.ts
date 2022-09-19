@@ -634,18 +634,21 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Schaue Kardinal',
           fr: 'Regardez en cardinal',
           ja: '視線を斜めに',
+          ko: '시선을 동서남북쪽으로',
         },
         intercards: {
           en: 'Look Intercards',
           de: 'Schaue Interkardinal',
           fr: 'Regardez en intercardinal',
           ja: '視線を十字に',
+          ko: '시선을 대각선쪽으로',
         },
         gorgons: {
           en: '${dir1}/${dir2} Gorgons',
           de: '${dir1}/${dir2} Gorgone',
           fr: '${dir1}/${dir2} Gorgone',
           ja: 'ゴルゴン：${dir1}/${dir2}',
+          ko: '${dir1}/${dir2} 고르곤',
         },
         dirN: Outputs.dirN,
         dirNE: Outputs.dirNE,
@@ -930,10 +933,10 @@ const triggerSet: TriggerSet<Data> = {
         if (!hephaistos)
           return;
 
-        // Boss faces 3.14159274 when North
+        // Boss faces 3.14159274 or -3.13727832 when North
         // Flip callout if crush (7A05)
         const epsilon = 0.1;
-        if (Math.abs(hephaistos.Heading - 3.14) < epsilon)
+        if (Math.abs(Math.abs(hephaistos.Heading) - 3.14) < epsilon)
           data.crushImpactSafeZone = (matches.id === '7A05' ? 'south' : 'north');
         // Boss will be facing South
         else
@@ -954,10 +957,12 @@ const triggerSet: TriggerSet<Data> = {
         impactDir: {
           en: 'Follow to ${dir} (Knockback)',
           fr: 'Allez vers ${dir} (Poussée)',
+          ko: '${dir}으로 따라가기 (넉백)',
         },
         crushDir: {
           en: 'Away to ${dir}',
           fr: 'Loin de ${dir}',
+          ko: '${dir}으로 피하기',
         },
         crush: {
           en: 'Away From Jump',
@@ -1570,11 +1575,13 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Front Row',
           de: 'Vordere Reihe',
           fr: 'Première rangée',
+          ko: '첫번째 줄',
         },
         row2: {
           en: 'Second Row',
           de: 'Zweite Reihe',
           fr: 'Deuxième rangée',
+          ko: '두번째 줄',
         },
       },
     },
@@ -1771,6 +1778,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Grüner/Blauer Turm',
           fr: 'Tour Verte/Bleue',
           ja: '緑・青の塔',
+          ko: '초록/파랑 기둥',
         },
       },
     },
@@ -1786,6 +1794,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Grüner/Lilaner Turm',
           fr: 'Tour Verte/Violette',
           ja: '緑・紫の塔',
+          ko: '초록/보라 기둥',
         },
       },
     },
@@ -1801,6 +1810,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Lilaner/Blauer Turm',
           fr: 'Tour Violette/Bleue',
           ja: '紫・青の塔',
+          ko: '보라/파랑 기둥',
         },
       },
     },
@@ -1832,6 +1842,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Zweite Türme',
           fr: 'Secondes tours',
           ja: '2回目の塔',
+          ko: '두번째 기둥',
         },
       },
     },
@@ -1851,6 +1862,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Erste Türme',
           fr: 'Premières tours',
           ja: '1回目の塔',
+          ko: '첫번째 기둥',
         },
       },
     },
