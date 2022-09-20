@@ -953,7 +953,7 @@ Options.Triggers.push({
     {
       id: 'P8S Illusory Hephaistos Scorched Pinion Second',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7953', source: 'Illusory Hephaistos', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '7953', capture: false }),
       condition: (data) => data.flareTargets.length > 0,
       suppressSeconds: 1,
       run: (data) => data.illusory = 'bird',
@@ -961,7 +961,7 @@ Options.Triggers.push({
     {
       id: 'P8S Illusory Hephaistos Scorching Fang Second',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7952', source: 'Illusory Hephaistos', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '7952', capture: false }),
       condition: (data) => data.flareTargets.length > 0,
       suppressSeconds: 1,
       run: (data) => data.illusory = 'snake',
