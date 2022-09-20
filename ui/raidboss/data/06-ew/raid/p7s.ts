@@ -1,6 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
-import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -12,6 +11,8 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Tether locations, and/or additional egg locations
 
+export type PurgationDebuff = 'stack' | 'spread';
+
 export interface Data extends RaidbossData {
   decOffset?: number;
   fruitCount: number;
@@ -21,9 +22,8 @@ export interface Data extends RaidbossData {
   tetherCollect: string[];
   stopTethers?: boolean;
   tetherCollectPhase?: string;
-  purgationDebuffs: { [role: string]: { [name: string]: number } };
-  purgationDebuffCount: number;
-  purgationEffects?: string[];
+  purgationDebuffs: [PurgationDebuff, PurgationDebuff, PurgationDebuff, PurgationDebuff];
+  seenInviolatePurgation?: boolean;
   purgationEffectIndex: number;
 }
 
@@ -57,7 +57,7 @@ const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
 };
 
 // effect ids for inviolate purgation
-const effectIdToOutputStringKey: { [effectId: string]: string } = {
+const effectIdToOutputStringKey: { [effectId: string]: PurgationDebuff } = {
   'CEE': 'spread',
   'D3F': 'spread',
   'D40': 'spread',
@@ -75,7 +75,7 @@ const triggerSet: TriggerSet<Data> = {
     fruitCount: 0,
     rootsCount: 0,
     tetherCollect: [],
-    purgationDebuffs: { 'dps': {}, 'support': {} },
+    purgationDebuffs: ['stack', 'stack', 'stack', 'stack'],
     purgationDebuffCount: 0,
     purgationEffectIndex: 0,
   }),
@@ -599,10 +599,11 @@ const triggerSet: TriggerSet<Data> = {
       // These happen 6s before cast
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
+      condition: (data) => !data.seenInviolatePurgation,
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         const correctedMatch = getHeadmarkerId(data, matches);
-        if (correctedMatch === '00A6' && data.purgationDebuffCount === 0 && data.bondsDebuff)
+        if (correctedMatch === '00A6' && data.bondsDebuff)
           return output[data.bondsDebuff]!();
       },
       run: (data) => data.bondsDebuff = (data.bondsDebuff === 'spread' ? 'stackMarker' : 'spread'),
@@ -612,7 +613,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P7S Inviolate Purgation',
+      id: 'P7S Inviolate Purgation Collect',
       type: 'GainsEffect',
       // CEE = Purgatory Winds I
       // D3F = Purgatory Winds II
@@ -623,34 +624,39 @@ const triggerSet: TriggerSet<Data> = {
       // D43 = Holy Purgation III
       // D44 = Holy Purgation IV
       netRegex: NetRegexes.gainsEffect({ effectId: ['CE[EF]', 'D3F', 'D4[01234]'] }),
-      preRun: (data, matches) => {
-        data.purgationDebuffCount += 1;
-
-        const role = data.party.isDPS(matches.target) ? 'dps' : 'support';
-        const debuff = data.purgationDebuffs[role];
-        if (!debuff)
+      run: (data, matches) => {
+        data.seenInviolatePurgation = true;
+        if (data.me !== matches.target)
           return;
-        debuff[matches.effectId.toUpperCase()] = parseFloat(matches.duration);
+
+        const effectId = matches.effectId.toUpperCase();
+        const duration = parseFloat(matches.duration);
+
+        const effectStr = effectIdToOutputStringKey[effectId];
+        if (effectStr === undefined)
+          return;
+
+        if (duration < 11)
+          data.purgationDebuffs[0] = effectStr;
+        else if (duration < 26)
+          data.purgationDebuffs[1] = effectStr;
+        else if (duration < 41)
+          data.purgationDebuffs[2] = effectStr;
+        else if (duration < 56)
+          data.purgationDebuffs[3] = effectStr;
+        else
+          console.log(`Invalid purg debuff duration ${duration}`);
       },
+    },
+    {
+      id: 'P7S Inviolate Purgation',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['CE[EF]', 'D3F', 'D4[01234]'], capture: false }),
+      delaySeconds: 0.5,
       durationSeconds: 55,
+      suppressSeconds: 10,
       infoText: (data, _matches, output) => {
-        if (data.purgationDebuffCount !== 20)
-          return;
-
-        // Sort effects ascending by duration
-        const role = data.role === 'dps' ? 'dps' : 'support';
-        const unsortedDebuffs = Object.keys(data.purgationDebuffs[role] ?? {});
-        const sortedDebuffs = unsortedDebuffs.sort((a, b) => (data.purgationDebuffs[role]?.[a] ?? 0) - (data.purgationDebuffs[role]?.[b] ?? 0));
-
-        // get stack or spread from effectId
-        const effects = sortedDebuffs.map((effectId) => effectIdToOutputStringKey[effectId]);
-
-        const [effect1, effect2, effect3, effect4] = effects;
-        if (!effect1 || !effect2 || !effect3 || !effect4)
-          throw new UnreachableCode();
-
-        // Store effects for reminders later
-        data.purgationEffects = [effect1, effect2, effect3, effect4];
+        const [effect1, effect2, effect3, effect4] = data.purgationDebuffs;
 
         return output.comboText!({
           effect1: output[effect1]!(),
@@ -677,15 +683,16 @@ const triggerSet: TriggerSet<Data> = {
       // These happen 6s before cast
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
+      condition: (data) => data.seenInviolatePurgation,
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         // Return if we are missing effects
-        if (data.purgationEffects === undefined)
+        if (data.purgationDebuffs === undefined)
           return;
 
         const correctedMatch = getHeadmarkerId(data, matches);
-        if (correctedMatch === '00A6' && data.purgationDebuffCount !== 0) {
-          const text = data.purgationEffects[data.purgationEffectIndex];
+        if (correctedMatch === '00A6') {
+          const text = data.purgationDebuffs[data.purgationEffectIndex];
           data.purgationEffectIndex = data.purgationEffectIndex + 1;
           if (text === undefined)
             return;
