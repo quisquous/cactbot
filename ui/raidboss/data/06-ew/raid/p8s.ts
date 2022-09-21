@@ -1084,6 +1084,9 @@ const triggerSet: TriggerSet<Data> = {
           trailblazeKnockbackTo: {
             en: '${dir1} Knockback to ${dir2}',
           },
+          trailblazeCrush: {
+            en: 'Run ${dir}',
+          },
           left: Outputs.left,
           right: Outputs.right,
           north: Outputs.north,
@@ -1139,7 +1142,7 @@ const triggerSet: TriggerSet<Data> = {
             if (data.footfallsOrder[data.trailblazeCount] === 'impact')
               return { alertText: output.trailblazeKnockbackTo!({ dir1: dirToCard[dir], dir2: output.left!() }) };
             if (data.footfallsOrder[data.trailblazeCount] === 'crush')
-              return { infoText: output.left!() };
+              return { infoText: output.trailblazeCrush!({ dir: output.left!() }) };
           }
           if (
             (data.trailblazeTorchSafeZone === 'west' && dir === 0) ||
@@ -1148,7 +1151,7 @@ const triggerSet: TriggerSet<Data> = {
             if (data.footfallsOrder[data.trailblazeCount] === 'impact')
               return { alertText: output.trailblazeKnockbackTo!({ dir1: dirToCard[dir], dir2: output.right!() }) };
             if (data.footfallsOrder[data.trailblazeCount] === 'crush')
-              return { infoText: output.right!() };
+              return { infoText: output.trailblazeCrush!({ dir: output.right!() }) };
           }
           // Unable to determine direction, output only knockback
           if (data.footfallsOrder[data.trailblazeCount] === 'impact')
