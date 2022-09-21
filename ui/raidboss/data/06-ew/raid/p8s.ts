@@ -1076,7 +1076,7 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           trailblaze: {
-            en: '${dir}',
+            en: 'Wait => ${dir}',
           },
           trailblazeKnockback: {
             en: '${dir} Knockback',
