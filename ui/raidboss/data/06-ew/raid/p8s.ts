@@ -1169,6 +1169,9 @@ const triggerSet: TriggerSet<Data> = {
         data.ventCasts.push(matches);
         return data.ventCasts.length === 2;
       },
+      // Sometimes these initial positions are incorrect, so compensate with some delay.
+      // TODO: can we detect/ignore these incorrect initial positions??
+      delaySeconds: 0.5,
       promise: async (data: Data) => {
         data.combatantData = [];
 
@@ -1196,6 +1199,9 @@ const triggerSet: TriggerSet<Data> = {
         data.ventCasts.push(matches);
         return data.ventCasts.length === 2;
       },
+      // Sometimes these initial positions are incorrect, so compensate with some delay.
+      // TODO: can we detect/ignore these incorrect initial positions??
+      delaySeconds: 0.5,
       promise: async (data: Data) => {
         data.combatantData = [];
 
