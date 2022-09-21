@@ -1084,6 +1084,9 @@ const triggerSet: TriggerSet<Data> = {
           trailblazeKnockbackTo: {
             en: '${dir1} Knockback to ${dir2}',
           },
+          trailblazeKnockbackSide: {
+            en: 'Knockback ${dir}',
+          },
           trailblazeCrush: {
             en: 'Run ${dir}',
           },
@@ -1140,7 +1143,7 @@ const triggerSet: TriggerSet<Data> = {
             (data.trailblazeTorchSafeZone === 'west' && dir === 2)
           ) {
             if (data.footfallsOrder[data.trailblazeCount] === 'impact')
-              return { alertText: output.trailblazeKnockbackTo!({ dir1: dirToCard[dir], dir2: output.left!() }) };
+              return { alertText: output.trailblazeKnockbackSide!({ dir: output.left!() }) };
             if (data.footfallsOrder[data.trailblazeCount] === 'crush')
               return { infoText: output.trailblazeCrush!({ dir: output.left!() }) };
           }
@@ -1149,7 +1152,7 @@ const triggerSet: TriggerSet<Data> = {
             (data.trailblazeTorchSafeZone === 'east' && dir === 2)
           ) {
             if (data.footfallsOrder[data.trailblazeCount] === 'impact')
-              return { alertText: output.trailblazeKnockbackTo!({ dir1: dirToCard[dir], dir2: output.right!() }) };
+              return { alertText: output.trailblazeKnockbackSide!({ dir: output.right!() }) };
             if (data.footfallsOrder[data.trailblazeCount] === 'crush')
               return { infoText: output.trailblazeCrush!({ dir: output.right!() }) };
           }
