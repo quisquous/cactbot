@@ -1081,13 +1081,13 @@ const triggerSet: TriggerSet<Data> = {
           trailblazeKnockback: {
             en: '${dir} Knockback',
           },
-          trailblazeKnockbackTo: {
-            en: '${dir1} Knockback to ${dir2}',
+          trailblazeKnockbackToDir: {
+            en: '${dir1} Knockback ${dir2}',
           },
           trailblazeKnockbackSide: {
             en: 'Knockback ${dir}',
           },
-          trailblazeCrush: {
+          trailblazeCrushSide: {
             en: 'Run ${dir}',
           },
           left: Outputs.left,
@@ -1133,7 +1133,7 @@ const triggerSet: TriggerSet<Data> = {
 
             // Call future push location if knockback
             if (data.footfallsOrder[data.trailblazeCount] === 'impact')
-              return { infoText: output.trailblazeKnockbackTo!({ dir1: dirToCard[dir], dir2: dirToCard[data.footfallsDirs[1]] }) };
+              return { infoText: output.trailblazeKnockbackToDir!({ dir1: dirToCard[dir], dir2: dirToCard[data.footfallsDirs[1]] }) };
           }
 
           // Second trailblaze should call torch location
@@ -1145,7 +1145,7 @@ const triggerSet: TriggerSet<Data> = {
             if (data.footfallsOrder[data.trailblazeCount] === 'impact')
               return { alertText: output.trailblazeKnockbackSide!({ dir: output.left!() }) };
             if (data.footfallsOrder[data.trailblazeCount] === 'crush')
-              return { infoText: output.trailblazeCrush!({ dir: output.left!() }) };
+              return { infoText: output.trailblazeCrushSide!({ dir: output.left!() }) };
           }
           if (
             (data.trailblazeTorchSafeZone === 'west' && dir === 0) ||
@@ -1154,7 +1154,7 @@ const triggerSet: TriggerSet<Data> = {
             if (data.footfallsOrder[data.trailblazeCount] === 'impact')
               return { alertText: output.trailblazeKnockbackSide!({ dir: output.right!() }) };
             if (data.footfallsOrder[data.trailblazeCount] === 'crush')
-              return { infoText: output.trailblazeCrush!({ dir: output.right!() }) };
+              return { infoText: output.trailblazeCrushSide!({ dir: output.right!() }) };
           }
           // Unable to determine direction, output only knockback
           if (data.footfallsOrder[data.trailblazeCount] === 'impact')
