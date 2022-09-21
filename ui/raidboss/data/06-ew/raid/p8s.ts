@@ -1742,7 +1742,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '75F0', source: 'Hephaistos', capture: false }),
       preRun: (data) => data.burstCounter++,
-      durationSeconds: 3,
+      durationSeconds: 2,
       suppressSeconds: 1,
       sound: '',
       infoText: (data, _matches, output) => output.text!({ num: data.burstCounter }),
