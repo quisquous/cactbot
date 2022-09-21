@@ -1764,11 +1764,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: '75F0', source: 'Hephaistos' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 7.9,
-      infoText: (data, _matches, output) => output.text!({ num: data.burstCounter }),
+      alertText: (data, _matches, output) => output.text!({ num: data.burstCounter }),
       run: (data) => data.myTower = data.burstCounter,
       outputStrings: {
         text: {
-          en: '${num}: Bait near Tower ${num}',
+          en: '${num}',
         },
       },
     },
