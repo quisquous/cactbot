@@ -71,7 +71,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P8S Eye of the Gorgon': '792D', // cursed voice petrification
     'P8S Illusory Hephaistos Scorched Pinion': '7953', // bird from clone
     'P8S Illusory Hephaistos Scorching Fang': '7952', // snake from clone
-    'P8S Nest of Flamevipers': '7920', // protean line aoes
     'P8S Cthonic Vent 1': '7925', // Vent circle explosions
     'P8S Cthonic Vent 2': '7926', // Vent circle explosions
     'P8S Cthonic Vent 3': '794E', // Vent circle explosions
@@ -94,7 +93,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P8S Petrification': 'BBF',
   },
   shareWarn: {
-    'P8S Nest of Flamevipers': '7920', // protean
+    'P8S Nest of Flamevipers': '7920', // protean line aoes
     'P8S Emergent Octaflare': '7918', // stored spread
   },
   shareFail: {
