@@ -31,6 +31,8 @@ Options.Triggers.push({
       concept: {},
       splicer: {},
       alignmentTargets: [],
+      burstCounter: 0,
+      flareCounter: 0,
       inverseMagics: {},
       deformationTargets: [],
     };
@@ -1711,6 +1713,57 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '75ED', source: 'Hephaistos', capture: false }),
       response: Responses.spread('alert'),
+    },
+    {
+      id: 'P8S Tyrant\'s Fire III Counter',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '75F0', source: 'Hephaistos', capture: false }),
+      preRun: (data) => data.burstCounter++,
+      durationSeconds: 2,
+      suppressSeconds: 1,
+      sound: '',
+      infoText: (data, _matches, output) => output.text({ num: data.burstCounter }),
+      tts: null,
+      outputStrings: {
+        text: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
+      },
+    },
+    {
+      id: 'P8S Tyrant\'s Fire III Bait then Tower',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '75F0', source: 'Hephaistos' }),
+      condition: Conditions.targetIsYou(),
+      durationSeconds: 7.9,
+      alertText: (data, _matches, output) => output.text({ num: data.burstCounter }),
+      run: (data) => data.myTower = data.burstCounter,
+      outputStrings: {
+        text: {
+          en: '${num}',
+        },
+      },
+    },
+    {
+      id: 'P8S Tyrant\'s Flare II Soak Tower',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7A88', source: 'Hephaistos', capture: false }),
+      preRun: (data) => data.flareCounter++,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        if (data.flareCounter === data.myTower)
+          return output.text({ num: data.myTower });
+      },
+      outputStrings: {
+        text: {
+          en: 'Soak Tower ${num}',
+        },
+      },
     },
     {
       id: 'P8S Dominion',
