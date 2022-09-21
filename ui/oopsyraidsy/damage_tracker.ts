@@ -36,6 +36,7 @@ import {
   kFieldFlags,
   kShiftFlagValues,
   playerDamageFields,
+  playerTargetFields,
   ShortNamify,
   Translate,
   UnscrambleDamage,
@@ -535,7 +536,7 @@ export class DamageTracker {
       const trigger: OopsyTrigger<OopsyData> = {
         id: key,
         type: 'GainsEffect',
-        netRegex: NetRegexes.gainsEffect({ effectId: id }),
+        netRegex: NetRegexes.gainsEffect({ effectId: id, ...playerTargetFields }),
         mistake: (_data, matches) => {
           return {
             type: type,
