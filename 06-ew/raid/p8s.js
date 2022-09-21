@@ -22,6 +22,9 @@ Options.Triggers.push({
       flareTargets: [],
       upliftCounter: 0,
       ventIds: [],
+      footfallsDirs: [],
+      footfallsOrder: [],
+      trailblazeCount: 0,
       gorgons: [],
       gorgonCount: 0,
       firstSnakeOrder: {},
@@ -144,8 +147,9 @@ Options.Triggers.push({
       // 7915 normally
       // 7916 during Blazing Footfalls
       netRegex: NetRegexes.startsUsing({ id: '7917', source: 'Hephaistos', capture: false }),
-      durationSeconds: 20,
+      durationSeconds: 12,
       infoText: (_data, _matches, output) => output.healerGroups(),
+      run: (data, _matches, output) => data.footfallsConcept = output.healerGroups(),
       outputStrings: {
         healerGroups: Outputs.healerGroups,
       },
@@ -156,8 +160,9 @@ Options.Triggers.push({
       // 7915 normally
       // 7916 during Blazing Footfalls
       netRegex: NetRegexes.startsUsing({ id: '7916', source: 'Hephaistos', capture: false }),
-      durationSeconds: 20,
+      durationSeconds: 12,
       infoText: (_data, _matches, output) => output.text(),
+      run: (data, _matches, output) => data.footfallsConcept = output.text(),
       outputStrings: {
         text: {
           en: 'Partner Stacks',
@@ -362,6 +367,17 @@ Options.Triggers.push({
         // Unexpectedly zero safe zones.
         if (safe0 === undefined)
           return;
+        // Blazing Foothills will have 4 safe spots
+        // However, it will only be East or West
+        if (data.trailblazeCount === 1) {
+          if (safeKeys.length !== 3)
+            return;
+          if (safe0 === 'cornerNE' && safe1 === 'cornerSE' && safe2 === 'outsideEast')
+            data.trailblazeTorchSafeZone = 'east';
+          if (safe0 === 'cornerNW' && safe1 === 'cornerSW' && safe2 === 'outsideWest')
+            data.trailblazeTorchSafeZone = 'west';
+          return;
+        }
         // Special case inner four squares.
         if (
           safeKeys.length === 4 &&
@@ -902,6 +918,198 @@ Options.Triggers.push({
         north: Outputs.north,
         south: Outputs.south,
       },
+    },
+    {
+      id: 'P8S Blazing Footfalls',
+      // 793B Trailblaze Shown
+      // 793D Quadrupedal Crush Shown
+      // 793C Quadrupedal Impact Shown
+      // These are shown in the span of 8.5s
+      // Blazing Footfalls takes 14.5s to complete +4s to resolve Torch Flames
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['793C', '793D'], source: 'Hephaistos' }),
+      preRun: (data, matches) => {
+        const x = parseInt(matches.targetX) - 100;
+        const y = parseInt(matches.targetY) - 100;
+        // 0 = N, 1 = E, etc
+        const dir = Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
+        if (matches.id === '793C') {
+          data.footfallsOrder.push('impact');
+          data.footfallsDirs.push(dir);
+        } else {
+          data.footfallsOrder.push('crush');
+          data.footfallsDirs.push((dir + 2) % 4);
+        }
+      },
+      durationSeconds: 9,
+      infoText: (data, _matches, output) => {
+        const dirToCard = {
+          0: output.north(),
+          1: output.east(),
+          2: output.south(),
+          3: output.west(),
+        };
+        const validDirs = [0, 1, 2, 3];
+        // Output first push direction
+        if (
+          data.footfallsDirs[0] !== undefined &&
+          data.footfallsOrder[0] !== undefined &&
+          data.footfallsDirs[1] === undefined &&
+          data.footfallsOrder[1] === undefined
+        ) {
+          if (!validDirs.includes(data.footfallsDirs[0])) {
+            console.error(`Blazing Footfalls: Unexpected dirs, got ${data.footfallsDirs[0]}}`);
+            return;
+          }
+          return output.firstTrailblaze({
+            dir: dirToCard[data.footfallsDirs[0]],
+            concept: data.footfallsConcept,
+          });
+        }
+      },
+      outputStrings: {
+        firstTrailblaze: {
+          en: '${dir} Black Line => ${concept}',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
+      id: 'P8S Blazing Footfalls Trailblaze 2',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['7106', '7107'], source: 'Hephaistos', capture: false }),
+      condition: (data) => data.trailblazeCount === 1,
+      durationSeconds: 3.9,
+      infoText: (data, _matches, output) => {
+        if (data.footfallsDirs[1] !== undefined && data.footfallsOrder[1] !== undefined) {
+          // Check if have valid dirs
+          const validDirs = [0, 1, 2, 3];
+          if (!validDirs.includes(data.footfallsDirs[1])) {
+            console.error(`Blazing Footfalls Reminder: Unexpected dirs, got ${data.footfallsDirs[1]}`);
+            return;
+          }
+          const dirToCard = {
+            0: output.north(),
+            1: output.east(),
+            2: output.south(),
+            3: output.west(),
+          };
+          return output.trailblaze({
+            dir: dirToCard[data.footfallsDirs[1]],
+            action: output[data.footfallsOrder[1]](),
+          });
+        }
+      },
+      outputStrings: {
+        trailblaze: {
+          en: '${dir} Black Line => ${action}',
+        },
+        crush: {
+          en: 'Crush',
+        },
+        impact: Outputs.knockback,
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
+      id: 'P8S Blazing Footfalls Crush/Impact Reminder',
+      // Reminder after Trailblaze for Impact/Crush Movement
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['793E'], source: 'Hephaistos' }),
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime),
+      durationSeconds: 4,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          trailblaze: {
+            en: 'Wait => ${dir}',
+          },
+          trailblazeKnockback: {
+            en: '${dir} Knockback',
+          },
+          trailblazeKnockbackToDir: {
+            en: '${dir1} Knockback ${dir2}',
+          },
+          trailblazeKnockbackSide: {
+            en: 'Knockback ${dir}',
+          },
+          trailblazeCrushSide: {
+            en: 'Run ${dir}',
+          },
+          left: Outputs.left,
+          right: Outputs.right,
+          north: Outputs.north,
+          east: Outputs.east,
+          south: Outputs.south,
+          west: Outputs.west,
+        };
+        if (
+          data.footfallsDirs[0] !== undefined &&
+          data.footfallsOrder[0] !== undefined &&
+          data.footfallsDirs[1] !== undefined &&
+          data.footfallsOrder[1] !== undefined
+        ) {
+          // Check if have valid dirs
+          const validDirs = [0, 1, 2, 3];
+          const dir = data.footfallsDirs[data.trailblazeCount];
+          if (dir === undefined) {
+            console.error(`Blazing Footfalls Crush/Impact Reminder: Unable to retreive direction.`);
+            return;
+          }
+          if (!validDirs.includes(dir)) {
+            if (data.trailblazeCount === 0)
+              console.error(`Blazing Footfalls Crush/Impact Reminder: Unexpected dirs, got ${data.footfallsDirs[0]}`);
+            console.error(`Blazing Footfalls Crush/Impact Reminder: Unexpected dirs, got ${data.footfallsDirs[1]}`);
+            return;
+          }
+          const dirToCard = {
+            0: output.north(),
+            1: output.east(),
+            2: output.south(),
+            3: output.west(),
+          };
+          // First trailblaze may require moving to new cardinal during Crush/Impact
+          if (data.trailblazeCount === 0) {
+            // Call move to next push back side if Crush
+            // Only need to call this out if there is an upcoming pushback
+            if (data.footfallsOrder[data.trailblazeCount] === 'crush')
+              return { infoText: output.trailblaze({ dir: dirToCard[data.footfallsDirs[1]] }) };
+            // Call future push location if knockback
+            if (data.footfallsOrder[data.trailblazeCount] === 'impact')
+              return { infoText: output.trailblazeKnockbackToDir({ dir1: dirToCard[dir], dir2: dirToCard[data.footfallsDirs[1]] }) };
+          }
+          // Second trailblaze should call torch location
+          // Dir is flipped for crush, thus matching knockback direction
+          if (
+            (data.trailblazeTorchSafeZone === 'east' && dir === 0) ||
+            (data.trailblazeTorchSafeZone === 'west' && dir === 2)
+          ) {
+            if (data.footfallsOrder[data.trailblazeCount] === 'impact')
+              return { alertText: output.trailblazeKnockbackSide({ dir: output.left() }) };
+            if (data.footfallsOrder[data.trailblazeCount] === 'crush')
+              return { infoText: output.trailblazeCrushSide({ dir: output.left() }) };
+          }
+          if (
+            (data.trailblazeTorchSafeZone === 'west' && dir === 0) ||
+            (data.trailblazeTorchSafeZone === 'east' && dir === 2)
+          ) {
+            if (data.footfallsOrder[data.trailblazeCount] === 'impact')
+              return { alertText: output.trailblazeKnockbackSide({ dir: output.right() }) };
+            if (data.footfallsOrder[data.trailblazeCount] === 'crush')
+              return { infoText: output.trailblazeCrushSide({ dir: output.right() }) };
+          }
+          // Unable to determine direction, output only knockback
+          if (data.footfallsOrder[data.trailblazeCount] === 'impact')
+            return { alertText: output.trailblazeKnockback({ dir1: dirToCard[dir] }) };
+        }
+      },
+      run: (data) => data.trailblazeCount++,
     },
     {
       id: 'P8S Illusory Hephaistos Scorched Pinion First',
