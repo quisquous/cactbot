@@ -1128,7 +1128,7 @@ const triggerSet: TriggerSet<Data> = {
               return { infoText: output.trailblazeKnockback!({ dir1: dirToCard[dir], dir2: dirToCard[data.footfallsDirs[1]] }) };
           }
 
-          // Second trailblze should call torch location
+          // Second trailblaze should call torch location
           // Dir is flipped for crush, thus matching knockback direction
           if (
             (data.trailblazeTorchSafeZone === 'east' && dir === 0) ||
