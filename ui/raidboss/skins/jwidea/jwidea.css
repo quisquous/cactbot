@@ -47,7 +47,7 @@ timer-bar::part(text-container) {
 }
 
 .info-text {
-  color: rgba(255 255 255 100%);
+  color: rgba(255 255 255 / 100%);
   text-shadow:
     -1px 0 rgb(82 190 87),
     0 -1px rgb(82 190 87),
@@ -59,7 +59,7 @@ timer-bar::part(text-container) {
 }
 
 .alert-text {
-  color: rgba(255 255 255 100%);
+  color: rgba(255 255 255 / 100%);
   text-shadow:
     -1px 0 rgb(250 150 110),
     0 -1px rgb(250 150 110),
@@ -71,7 +71,7 @@ timer-bar::part(text-container) {
 }
 
 .alarm-text {
-  color: rgba(255 255 255 100%);
+  color: rgba(255 255 255 / 100%);
   text-shadow:
     -1px 0 rgb(210 0 0),
     0 -1px rgb(210 0 0),
