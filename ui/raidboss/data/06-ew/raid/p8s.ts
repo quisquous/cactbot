@@ -1,3 +1,4 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
@@ -5,10 +6,8 @@ import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
 // TODO: better vent callouts
@@ -18,7 +17,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type InitialConcept = 'shortalpha' | 'longalpha' | 'shortbeta' | 'longbeta' | 'shortgamma' | 'longgamma';
 export type Splicer = 'solosplice' | 'multisplice' | 'supersplice';
 
-export interface Data extends RaidbossData {
+export interface Data {
   // Door Boss
   conceptual?: 'octa' | 'tetra' | 'di';
   combatantData: PluginCombatantState[];
@@ -75,7 +74,7 @@ const positionTo8Dir = (combatant: PluginCombatantState) => {
   return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.AbyssosTheEighthCircleSavage,
   timelineFile: 'p8s.txt',
   initData: () => {
@@ -2431,6 +2430,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

@@ -1,15 +1,14 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: The second middle/sides laser after Astral Eclipse should be
 // called only after the first goes off.
 
-export interface Data extends RaidbossData {
+export interface Data {
   activeSigils: { x: number; y: number; typeId: string; npcId: string }[];
   activeFrontSigils: { x: number; y: number; typeId: string; npcId: string }[];
   paradeigmaCounter: number;
@@ -34,7 +33,7 @@ const fetchCombatantsById = async (id: string[]) => {
   return callData.combatants;
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.TheMinstrelsBalladZodiarksFall,
   timelineFile: 'zodiark-ex.txt',
   initData: () => ({
@@ -565,6 +564,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

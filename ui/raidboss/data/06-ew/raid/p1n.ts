@@ -1,16 +1,13 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Intemperance calls out a 4th time; should only call out three
 // TODO: Right/Left + Fire/Light happen at the same time later; collect these together
 
-export type Data = RaidbossData;
-
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet({
   zoneId: ZoneId.AsphodelosTheFirstCircle,
   timelineFile: 'p1n.txt',
   triggers: [
@@ -260,6 +257,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

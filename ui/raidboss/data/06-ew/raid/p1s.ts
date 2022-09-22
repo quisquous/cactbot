@@ -1,19 +1,12 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Fixup Intemperance callouts
 // TODO: Add Aetherflail callouts to Powerful Light/Fire
-
-export interface Data extends RaidbossData {
-  companionship?: string;
-  loneliness?: string;
-  safeColor?: string;
-}
 
 const flailDirections = {
   l: Outputs.left,
@@ -47,7 +40,11 @@ const fireLightOutputStrings = {
   },
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  companionship?: string;
+  loneliness?: string;
+  safeColor?: string;
+}>({
   zoneId: ZoneId.AsphodelosTheFirstCircleSavage,
   timelineFile: 'p1s.txt',
   timelineTriggers: [
@@ -668,6 +665,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

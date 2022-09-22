@@ -1,19 +1,19 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
-import { Output, OutputStrings, TriggerSet } from '../../../../../types/trigger';
+import { Output, OutputStrings } from '../../../../../types/trigger';
 
 // @TODO:
 // Interstellar - Test the timing more. Seems OK but the delaySeconds timing might be too tight depending on latency?
 // Add phase triggers
 // Final phase triggers
 
-export interface Data extends RaidbossData {
+export interface Data {
   storedStars: { [name: string]: PluginCombatantState };
   phase: 1 | 2;
   storedBoss?: PluginCombatantState;
@@ -45,7 +45,7 @@ const getOrbSafeDir = (data: Data, id: string, output: Output): string | undefin
   return output.nw!();
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.TheFinalDay,
   timelineFile: 'endsinger.txt',
   initData: () => {
@@ -477,6 +477,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

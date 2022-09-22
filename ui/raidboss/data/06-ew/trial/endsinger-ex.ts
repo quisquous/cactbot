@@ -1,3 +1,4 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
@@ -7,7 +8,7 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { Output, OutputStrings, TriggerField, TriggerOutput, TriggerSet } from '../../../../../types/trigger';
+import { Output, OutputStrings, TriggerField, TriggerOutput } from '../../../../../types/trigger';
 
 export type Mechanic = 'aoe' | 'donut' | 'safeN' | 'safeE' | 'safeS' | 'safeW' | 'unknown';
 
@@ -32,7 +33,7 @@ const echoesOutputStrings = {
   },
 } as const;
 
-export interface Data extends RaidbossData {
+export interface Data {
   headPhase?: 5 | 6;
   starMechanicCounter: number;
   storedHeads: {
@@ -98,7 +99,7 @@ const getStarPositionFromHeading = (heading: string) => {
   }[dir] ?? [];
 };
 
-const getStarText: TriggerField<Data, NetMatches['Ability' | 'StartsUsing'], TriggerOutput<Data, NetMatches['Ability' | 'StartsUsing']>> = (_data, matches, output) => {
+const getStarText: TriggerField<Data & RaidbossData, NetMatches['Ability' | 'StartsUsing'], TriggerOutput<Data & RaidbossData, NetMatches['Ability' | 'StartsUsing']>> = (_data, matches, output) => {
   let posX: number | undefined;
   let posY: number | undefined;
 
@@ -129,7 +130,7 @@ const getStarText: TriggerField<Data, NetMatches['Ability' | 'StartsUsing'], Tri
   return;
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.TheMinstrelsBalladEndsingersAria,
   timelineFile: 'endsinger-ex.txt',
   initData: () => {
@@ -770,6 +771,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

@@ -1,13 +1,12 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // Part Two
 // TODO: Better Dark Design/tether break callouts
@@ -16,7 +15,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Heart Stake is tankbuster with DoT, does it need to be output differrently?
 // TODO: Curtain Call tank swap
 
-export interface Data extends RaidbossData {
+export interface Data {
   actingRole?: string;
   decOffset?: number;
   tetherRole?: string[];
@@ -120,7 +119,7 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker'], firstDec
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.AsphodelosTheFourthCircleSavage,
   timelineFile: 'p4s.txt',
   initData: () => {
@@ -1561,6 +1560,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

@@ -1,20 +1,13 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: how to call out crystal LOS???
 // TODO: call Chakram stack locations / direction to run
 // TODO: call out intercard to run to in the final phase
 // TODO: Lightwave has different ids, do these mean anything?
-
-export interface Data extends RaidbossData {
-  brightSpectrumStack?: string[];
-  crystallize?: 'spread' | 'groups' | 'stack';
-  parhelion?: boolean;
-}
 
 const storedMechanicsOutputStrings = {
   spread: Outputs.spread,
@@ -60,7 +53,11 @@ const comboOutputStrings = {
   },
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  brightSpectrumStack?: string[];
+  crystallize?: 'spread' | 'groups' | 'stack';
+  parhelion?: boolean;
+}>({
   zoneId: ZoneId.TheMinstrelsBalladHydaelynsCall,
   timelineFile: 'hydaelyn-ex.txt',
   timelineTriggers: [
@@ -623,6 +620,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

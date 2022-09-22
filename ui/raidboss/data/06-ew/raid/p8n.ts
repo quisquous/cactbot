@@ -1,3 +1,4 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
@@ -5,10 +6,8 @@ import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Cthonic Vent is tricky; the initial cast is ~5s, but the next two explosions are ~2s.
 //       There's no map events.  There's two Suneater adds that are added immediately before
@@ -17,12 +16,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 //       It's possible there's some other hidden combatants moving around, or this is
 //       just a case of missing some animation data in network logs that would tell us.
 // TODO: how to detect/what to say for Blazing Footfalls knockbacks?
-
-export interface Data extends RaidbossData {
-  combatantData: PluginCombatantState[];
-  ventIds: string[];
-  torches: NetMatches['StartsUsing'][];
-}
 
 // TODO: how to detect/what to say for Blazing Footfalls knockbacks?
 
@@ -37,7 +30,11 @@ const positionTo8Dir = (combatant: PluginCombatantState) => {
   return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  combatantData: PluginCombatantState[];
+  ventIds: string[];
+  torches: NetMatches['StartsUsing'][];
+}>({
   zoneId: ZoneId.AbyssosTheEighthCircle,
   timelineFile: 'p8n.txt',
   initData: () => {
@@ -125,7 +122,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '78F5', source: 'Suneater', capture: false }),
       suppressSeconds: 1,
-      promise: async (data: Data) => {
+      promise: async (data) => {
         data.combatantData = [];
         if (data.ventIds.length !== 2)
           return;
@@ -215,7 +212,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '78F8', source: 'Hephaistos', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 1,
-      promise: async (data: Data) => {
+      promise: async (data) => {
         data.combatantData = [];
 
         const ids = data.torches.map((torch) => parseInt(torch.sourceId, 16));
@@ -459,6 +456,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

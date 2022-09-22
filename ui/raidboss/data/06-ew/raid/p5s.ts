@@ -1,10 +1,9 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Callout safe quadrant/half for Venom Pool with Crystals
 
@@ -15,14 +14,14 @@ const directions = {
   'NW': true,
 };
 
-export interface Data extends RaidbossData {
+export interface Data {
   target?: string;
   topazClusterCombatantIdToAbilityId: { [id: number]: string };
   topazRays: { [time: number]: (keyof typeof directions)[] };
   clawCount: number;
 }
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.AbyssosTheFifthCircleSavage,
   timelineFile: 'p5s.txt',
   initData: () => {
@@ -417,6 +416,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

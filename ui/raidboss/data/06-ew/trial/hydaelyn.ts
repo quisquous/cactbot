@@ -1,17 +1,11 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Lightwave has different ids, do these mean anything?
-
-export interface Data extends RaidbossData {
-  crystallize?: 'spread' | 'stack';
-  isEquinox?: boolean;
-}
 
 const storedMechanicsOutputStrings = {
   spread: Outputs.spread,
@@ -50,7 +44,10 @@ const comboOutputStrings = {
 };
 
 // Hydaelyn Normal Mode
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  crystallize?: 'spread' | 'stack';
+  isEquinox?: boolean;
+}>({
   zoneId: ZoneId.TheMothercrystal,
   timelineFile: 'hydaelyn.txt',
   triggers: [
@@ -416,6 +413,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

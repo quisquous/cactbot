@@ -1,18 +1,17 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Callout cardinal for Spoken Cataract
 // TODO: Debuff collect for Marks and callouts for those without debuff
 // TODO: Add cardinal to Channeling Flow
 // TODO: Fix headmarker ids for Kampeos Harma Callouts
 
-export interface Data extends RaidbossData {
+export interface Data {
   flareTarget?: string;
   decOffset?: number;
   avarice?: NetMatches['GainsEffect'][];
@@ -34,7 +33,7 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.AsphodelosTheSecondCircleSavage,
   timelineFile: 'p2s.txt',
   triggers: [
@@ -549,6 +548,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

@@ -1,19 +1,16 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Lyssa Frostbite and Seek
 // TODO: Ladon Lord cleave directions
 // TODO: Hermes correct meteor
 // TODO: Hermes mirror dodge direction
 
-export interface Data extends RaidbossData {
+export default defineTriggerSet<{
   isHermes?: boolean;
-}
-
-const triggerSet: TriggerSet<Data> = {
+}>({
   zoneId: ZoneId.KtisisHyperboreia,
   timelineFile: 'ktisis_hyperboreia.txt',
   triggers: [
@@ -307,6 +304,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

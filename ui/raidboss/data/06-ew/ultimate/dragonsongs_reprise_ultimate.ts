@@ -1,3 +1,4 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
@@ -5,10 +6,9 @@ import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { LocaleObject, LocaleText, TriggerSet } from '../../../../../types/trigger';
+import { LocaleObject, LocaleText } from '../../../../../types/trigger';
 
 // TODO: Ser Adelphel left/right movement after initial charge
 // TODO: Meteor "run" call?
@@ -21,7 +21,7 @@ type Phase = 'doorboss' | 'thordan' | 'nidhogg' | 'haurchefant' | 'thordan2' | '
 const playstationMarkers = ['circle', 'cross', 'triangle', 'square'] as const;
 type PlaystationMarker = typeof playstationMarkers[number];
 
-export interface Data extends RaidbossData {
+export interface Data {
   combatantData: PluginCombatantState[];
   phase: Phase;
   decOffset?: number;
@@ -153,7 +153,7 @@ const matchedPositionTo4Dir = (combatant: PluginCombatantState) => {
   return (Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4);
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.DragonsongsRepriseUltimate,
   timelineFile: 'dragonsongs_reprise_ultimate.txt',
   initData: () => {
@@ -3271,6 +3271,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

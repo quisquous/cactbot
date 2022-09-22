@@ -1,16 +1,11 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Does Mustard Bomb cleave? Should it be tankCleave() instead?
-
-export interface Data extends RaidbossData {
-  lastBoss: boolean;
-}
 
 const limitCutNumberMap: { [id: string]: number } = {
   '004F': 1,
@@ -19,7 +14,9 @@ const limitCutNumberMap: { [id: string]: number } = {
   '0052': 4,
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  lastBoss: boolean;
+}>({
   zoneId: ZoneId.TheStigmaDreamscape,
   timelineFile: 'stigma_dreamscape.txt',
   initData: () => {
@@ -528,6 +525,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

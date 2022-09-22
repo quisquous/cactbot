@@ -1,8 +1,7 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: how to call out Astral Flow rotations? Behemoths can be adjacent/catty corner
 // TODO: Esoteric Ray has only one id for starting mid / starting sides (maybe startsUsing pos?)
@@ -11,9 +10,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: in the last phase, is the Exoterikos always Sect during Triple Esoteric Ray?
 // TODO: heal to full for Kokytos
 
-export type Data = RaidbossData;
-
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet({
   zoneId: ZoneId.TheDarkInside,
   timelineFile: 'zodiark.txt',
   triggers: [
@@ -218,6 +215,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

@@ -1,22 +1,21 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Better Topaz Stones guidance
 // TODO: Better Starving Stampede guidance
 
-export interface Data extends RaidbossData {
+export interface Data {
   seenStones?: boolean;
   numStones?: number;
   acid?: boolean;
   topazRayDirections: (string | undefined)[];
 }
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.AbyssosTheFifthCircle,
   timelineFile: 'p5n.txt',
   initData: () => {
@@ -279,6 +278,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});
