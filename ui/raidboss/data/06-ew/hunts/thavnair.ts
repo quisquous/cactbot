@@ -207,7 +207,6 @@ const triggerSet: TriggerSet<Data> = {
           'B16': ['left', 'right'],
         };
         const dirs = map[matches.effectId];
-        console.log(`BEARING: ${dirs?.toString() ?? 'undefined'}`);
         if (dirs === undefined)
           return;
 
@@ -215,18 +214,11 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'Hunt Sphatika Lickwhip Debug',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6BE8', source: 'Sphatika', capture: false }),
-      run: (data) => console.log(`FINAL BEARING: ${JSON.stringify(data.sphatikaBearing)}`),
-    },
-    {
       id: 'Hunt Sphatika Whiplick Reverse',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '6BE9', source: 'Sphatika', capture: false }),
       run: (data) => {
         // Whiplick does the directions in reverse, so reverse here so we can have a single logic path.
-        console.log(`PREVIOUS BEARING: ${JSON.stringify(data.sphatikaBearing)}`);
         data.sphatikaBearing = data.sphatikaBearing.map((x) => {
           if (x === 'front')
             return 'back';
@@ -236,7 +228,6 @@ const triggerSet: TriggerSet<Data> = {
             return 'right';
           return 'left';
         });
-        console.log(`FINAL BEARING: ${JSON.stringify(data.sphatikaBearing)}`);
       },
     },
     {
@@ -251,9 +242,8 @@ const triggerSet: TriggerSet<Data> = {
         const [dir1, dir2, dir3, dir4] = data.sphatikaBearing;
         if (dir1 === undefined || dir2 === undefined || dir3 === undefined || dir4 === undefined)
           return;
-        console.log(data.inCombat);
-        // if (!data.inCombat)
-        //  return;
+        if (!data.inCombat)
+          return;
         return output.text!({ dir1: dir1, dir2: dir2, dir3: dir3, dir4: dir4 });
       },
       tts: null,
@@ -277,9 +267,8 @@ const triggerSet: TriggerSet<Data> = {
         const key = data.sphatikaBearing.shift();
         if (key === undefined)
           return;
-        console.log(data.inCombat);
-        // if (!data.inCombat)
-        //  return;
+        if (!data.inCombat)
+          return;
         return output[key]!();
       },
       outputStrings: {
@@ -299,9 +288,8 @@ const triggerSet: TriggerSet<Data> = {
         const key = data.sphatikaBearing.shift();
         if (key === undefined)
           return;
-        console.log(data.inCombat);
-        // if (!data.inCombat)
-        //  return;
+        if (!data.inCombat)
+          return;
         return output[key]!();
       },
       outputStrings: {
