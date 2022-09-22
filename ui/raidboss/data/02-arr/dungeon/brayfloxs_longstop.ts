@@ -1,18 +1,13 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
-  pelicanPoisons: string[];
-}
-
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet({
   zoneId: ZoneId.BrayfloxsLongstop,
   initData: () => {
     return {
-      pelicanPoisons: [],
+      pelicanPoisons: [] as string[],
     };
   },
   triggers: [
@@ -244,6 +239,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

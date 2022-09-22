@@ -1,22 +1,10 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  beganMonitoringHp?: boolean;
-  garotte?: boolean;
-  seenFinalPhase: boolean;
-  dragons?: number[];
-  tetherCount: number;
-  naelDiveMarkerCount: number;
-  naelMarks?: string[];
-  safeZone?: string;
-}
 
 const diveDirections = {
   unknown: Outputs.unknown,
@@ -30,7 +18,16 @@ const diveDirections = {
   northwest: Outputs.dirNW,
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  beganMonitoringHp?: boolean;
+  garotte?: boolean;
+  seenFinalPhase: boolean;
+  dragons?: number[];
+  tetherCount: number;
+  naelDiveMarkerCount: number;
+  naelMarks?: string[];
+  safeZone?: string;
+}>({
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn4,
   timelineFile: 't9.txt',
   initData: () => {
@@ -693,6 +690,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});
