@@ -1,16 +1,14 @@
+import { defineTriggerSet } from '../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../resources/netregexes';
 import ZoneId from '../../../../resources/zone_id';
 import { RaidbossData } from '../../../../types/data';
-import { TriggerSet } from '../../../../types/trigger';
-
-export type Data = RaidbossData;
 
 const caresAboutTankStuff = (data: RaidbossData) => {
   return data.role === 'tank' || data.role === 'healer' || data.job === 'BLU';
 };
 
 // Triggers for all occasions and zones.
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet({
   zoneId: ZoneId.MatchAll,
   triggers: [
     {
@@ -261,6 +259,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

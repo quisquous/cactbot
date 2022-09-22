@@ -1,9 +1,9 @@
+import { defineTriggerSet } from '../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../resources/netregexes';
 import outputs from '../../../../resources/outputs';
 import Util from '../../../../resources/util';
 import ZoneId from '../../../../resources/zone_id';
-import { RaidbossData } from '../../../../types/data';
-import { LocaleText, TriggerSet } from '../../../../types/trigger';
+import { LocaleText } from '../../../../types/trigger';
 
 const strikingDummyNames: LocaleText = {
   en: 'Striking Dummy',
@@ -14,13 +14,7 @@ const strikingDummyNames: LocaleText = {
   ko: '나무인형',
 };
 
-export interface Data extends RaidbossData {
-  delayedDummyTimestampBefore: number;
-  delayedDummyTimestampAfter: number;
-  pokes: number;
-}
-
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet({
   zoneId: ZoneId.MiddleLaNoscea,
   timelineFile: 'test.txt',
   // timeline here is additions to the timeline.  They can
@@ -426,6 +420,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});
