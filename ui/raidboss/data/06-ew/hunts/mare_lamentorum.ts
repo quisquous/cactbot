@@ -1,13 +1,24 @@
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-export type Data = RaidbossData;
+type ChitinousTrace = 'out' | 'in';
+
+export interface Data extends RaidbossData {
+  chitinous: ChitinousTrace[];
+}
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.MareLamentorum,
+  resetWhenOutOfCombat: false,
+  initData: () => {
+    return {
+      chitinous: [],
+    };
+  },
   triggers: [
     {
       id: 'Hunt Lunatender Queen Away With You',
@@ -145,10 +156,129 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.inCombat,
       response: Responses.outOfMelee(),
     },
+    {
+      // Note: "out" here means "get out", and "in" means "get in"
+      // There's a Trace cast, followed by a number of indicators,
+      // then an Advance/Reversal cast (which is the first set of damage)
+      // followed by several instant damage casts, e.g.
+      //
+      //   68FA/68FC/68FD/68FC/68FC => 6923/6637/6638/6637
+      //   ... means the following:
+      //   68FA (trace, first out), 68FC (out), 68FD (in), 68FC (out), 68FC (in)
+      //   6923 (reversal cast/in) -> 6637 (out) -> 6638 (in) -> 6637 (out)
+      //
+      // Casts:
+      // 68FA = chitinous trace, first indicator is out (68FC)
+      // 68FB = chitinous trace, first indicator is in (68FD)
+      // 68FC = "get out" indicator
+      // 68FD = "get in" indicator
+      //
+      // Casts that do damage:
+      // 68FE = chitinous advance out first
+      // 68FF = chitinous advance in first
+      // 6923 = chitinous reversal out first
+      // 6924 = chitinous reversal in first
+      //
+      // Instant Abilities:
+      // 6637 = out (reversal)
+      // 6638 = in (reversal)
+      // 6900 = out (advance)
+      // 6901 = in (advance)
+      id: 'Hunt Ruminator Chitinous Trace',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['68FA', '68FB'], source: 'Ruminator', capture: false }),
+      run: (data) => data.chitinous = [],
+    },
+    {
+      id: 'Hunt Ruminator Chitinous Trace Out',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '68FC', source: 'Ruminator', capture: false }),
+      run: (data) => data.chitinous.push('out'),
+    },
+    {
+      id: 'Hunt Ruminator Chitinous Trace In',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '68FD', source: 'Ruminator', capture: false }),
+      run: (data) => data.chitinous.push('in'),
+    },
+    {
+      id: 'Hunt Ruminator Chitinous Reversal',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['6923', '6924'], source: 'Ruminator', capture: false }),
+      run: (data) => data.chitinous.reverse(),
+    },
+    {
+      id: 'Hunt Ruminator Chitinous All Dirs',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['68FE', '68FF', '6923', '6924'], source: 'Ruminator', capture: false }),
+      // TODO: maybe figure out the duration from the length?
+      durationSeconds: 5,
+      sound: '',
+      infoText: (data, _matches, output) => {
+        if (data.chitinous.length === 0)
+          return;
+        if (!data.inCombat)
+          return;
+        return data.chitinous.map((x) => output[x]!()).join(output.joiner!());
+      },
+      tts: null,
+      outputStrings: {
+        out: Outputs.out,
+        in: Outputs.in,
+        joiner: {
+          en: ' => ',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'Hunt Ruminator Chitinous Initial',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['68FE', '68FF', '6923', '6924'], source: 'Ruminator', capture: false }),
+      alertText: (data, _matches, output) => {
+        // TODO: should we verify that 68FE/6923 are out and 68FF/6924 are in?
+        const key = data.chitinous.shift() ?? 'unknown';
+        if (!data.inCombat)
+          return;
+        return output[key]!();
+      },
+      outputStrings: {
+        out: Outputs.out,
+        in: Outputs.in,
+        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'Hunt Ruminator Chitinous Step',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['68FE', '68FF', '6923', '6924', '6637', '6638', '6900', '6901'], source: 'Ruminator', capture: false }),
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        // Skip the last one.
+        const key = data.chitinous.shift();
+        if (!key)
+          return;
+        if (!data.inCombat)
+          return;
+        return output[key]!();
+      },
+      outputStrings: {
+        out: Outputs.out,
+        in: Outputs.in,
+      },
+    },
+    {
+      id: 'Hunt Ruminator Stygian Vapor',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6902', source: 'Ruminator', capture: false }),
+      condition: (data) => data.inCombat,
+      response: Responses.aoe(),
+    },
   ],
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Lunatender Queen': 'Lunatender-Königin',
         'Mousse Princess': 'Mousse-Prinzessin',
@@ -156,6 +286,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Lunatender Queen': 'pampa sélénienne reine',
         'Mousse Princess': 'princesse mousse',
@@ -163,6 +294,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Lunatender Queen': 'ルナテンダー・クイーン',
         'Mousse Princess': 'ムースプリンセス',
@@ -170,6 +302,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Lunatender Queen': '月面仙人刺女王',
         'Mousse Princess': '慕斯公主',
@@ -177,6 +310,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Lunatender Queen': '루나텐더 여왕',
         'Mousse Princess': '무스 공주',
