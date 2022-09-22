@@ -116,6 +116,10 @@ const getTarget = (matches: TargetedMatches) => {
   // Consider this as "not having a target".
   if (matches.target === matches.source)
     return;
+  // In hunts, sometimes there are too many people for the target
+  // to have a name.  Treat this as "no target".
+  if (matches.target === '')
+    return;
   return matches.target;
 };
 
@@ -427,6 +431,7 @@ export const Responses = {
   getOutThenIn: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.outThenIn),
   getBackThenFront: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.backThenFront),
   getFrontThenBack: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.frontThenBack),
+  goFront: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.goFront),
   goMiddle: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.goIntoMiddle),
   goRight: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.right),
   goLeft: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.left),
