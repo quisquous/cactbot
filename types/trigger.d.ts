@@ -187,14 +187,11 @@ export type BaseTriggerSet<Data extends RaidbossData> = {
 };
 
 // If Data contains required properties that are not on RaidbossData, require initData
-export type TriggerSet<Data extends RaidbossData> =
+export type TriggerSet<Data extends RaidbossData = RaidbossData> =
   & BaseTriggerSet<Data>
-  & (RequiredFieldsAsUnion<Data> extends RequiredFieldsAsUnion<RaidbossData> ? {
+  & {
     initData?: DataInitializeFunc<Data>;
-  }
-    : {
-      initData: DataInitializeFunc<Data>;
-    });
+  };
 
 // Less strict type for user triggers + built-in triggers, including deprecated fields.
 export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
