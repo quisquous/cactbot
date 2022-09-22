@@ -1,3 +1,11 @@
+// TODO: Narrow-rift Continual Meddling
+// Continual Meddling = 6AC0, applies two of these, one 7 one 10 second, about ~1s before Empty Refrain cast:
+//   7A6 = Forward March
+//   7A7 = About Face
+//   7A8 = Left Face
+//   7A9 = Right Face
+// Empty Refrain = 6AC3 / 6AC9, 12 second cast followed by 1 second cast of the other
+//   damage is the same ability id
 Options.Triggers.push({
   zoneId: ZoneId.UltimaThule,
   triggers: [
@@ -78,10 +86,37 @@ Options.Triggers.push({
       condition: (data) => data.inCombat,
       response: Responses.awayFromFront(),
     },
+    {
+      id: 'Hunt Fan Ail Death Sentence',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AF3', source: 'Fan Ail' }),
+      condition: (data) => data.inCombat,
+      response: Responses.tankBuster('info'),
+    },
+    {
+      id: 'Hunt Narrow-rift Empty Promise Donut',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6B60', source: 'Narrow-rift', capture: false }),
+      response: Responses.getIn(),
+    },
+    {
+      id: 'Hunt Narrow-rift Empty Promise Circle',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6B5F', source: 'Narrow-rift', capture: false }),
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Hunt Narrow-rift Vanishing Ray',
+      type: 'Ability',
+      // An unknown single-target ability that preceeds Vanishing Ray with no cast bar.
+      netRegex: NetRegexes.ability({ id: '6AC5', source: 'Narrow-rift', capture: false }),
+      response: Responses.getBehind(),
+    },
   ],
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Arch-Eta': 'Erz-Eta',
         'Fan Ail': 'Fan Ail',
@@ -89,6 +124,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Arch-Eta': 'Arch-Êta',
         'Fan Ail': 'Fan Ail',
@@ -96,6 +132,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Arch-Eta': 'アーチイータ',
         'Fan Ail': 'ファン・アイル',
@@ -103,6 +140,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Arch-Eta': '伊塔总领',
         'Fan Ail': '凡·艾尔',
@@ -110,6 +148,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Arch-Eta': '아치 에타',
         'Fan Ail': '판 아일',

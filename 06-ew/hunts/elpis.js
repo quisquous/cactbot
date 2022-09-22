@@ -92,10 +92,72 @@ Options.Triggers.push({
         return { alertText: output.waterMarker() };
       },
     },
+    {
+      id: 'Hunt Ophioneus Scratch',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AD4', source: 'Ophioneus' }),
+      condition: (data) => data.inCombat,
+      response: Responses.tankBuster('info'),
+    },
+    {
+      id: 'Hunt Ophioneus Right Maw',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AD6', source: 'Ophioneus', capture: false }),
+      condition: (data) => data.inCombat,
+      response: Responses.goLeft(),
+    },
+    {
+      id: 'Hunt Ophioneus Left Maw',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AD7', source: 'Ophioneus', capture: false }),
+      condition: (data) => data.inCombat,
+      response: Responses.goRight(),
+    },
+    {
+      id: 'Hunt Ophioneus Pyric Circle',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AD8', source: 'Ophioneus', capture: false }),
+      condition: (data) => data.inCombat,
+      response: Responses.getUnder(),
+    },
+    {
+      id: 'Hunt Ophioneus Pyric Burst',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AD9', source: 'Ophioneus', capture: false }),
+      condition: (data) => data.inCombat,
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Hunt Ophioneus Leaping Pyric Circle',
+      type: 'StartsUsing',
+      // Followed by a 6AD2 fast cast.
+      netRegex: NetRegexes.startsUsing({ id: '6ACD', source: 'Ophioneus', capture: false }),
+      condition: (data) => data.inCombat,
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Follow Jump => Under',
+        },
+      },
+    },
+    {
+      id: 'Hunt Ophioneus Leaping Pyric Burst',
+      type: 'StartsUsing',
+      // Followed by a 6AD3 fast cast.
+      netRegex: NetRegexes.startsUsing({ id: '6ACE', source: 'Ophioneus', capture: false }),
+      condition: (data) => data.inCombat,
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away From Jump',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Gurangatch': 'Gurangatch',
         'Petalodus': 'Petalodus',
@@ -103,6 +165,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Gurangatch': 'Gurangatch',
         'Petalodus': 'petalodus',
@@ -110,6 +173,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Gurangatch': 'グランガチ',
         'Petalodus': 'ペタロドゥス',
@@ -117,6 +181,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Gurangatch': '固兰盖奇',
         'Petalodus': '瓣齿鲨',
@@ -124,6 +189,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Gurangatch': '구랑가치',
         'Petalodus': '페탈로두스',
