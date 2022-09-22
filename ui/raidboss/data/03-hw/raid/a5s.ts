@@ -1,17 +1,9 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
-
-// export type Data = RaidbossData;
-export interface Data extends RaidbossData {
-  bombCount: number;
-  boostCount: number;
-  boostBombs?: { x: number; y: number }[];
-}
 
 // TODO: do the gobcut and gobstraight really alternate?
 // if so, then maybe we could call out which was coming.
@@ -34,7 +26,11 @@ const bombLocation = (matches: NetMatches['AddedCombatant']) => {
   };
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  bombCount: number;
+  boostCount: number;
+  boostBombs?: { x: number; y: number }[];
+}>({
   zoneId: ZoneId.AlexanderTheFistOfTheSonSavage,
   timelineFile: 'a5s.txt',
   initData: () => {
@@ -613,6 +609,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

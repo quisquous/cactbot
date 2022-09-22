@@ -1,12 +1,12 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { Output, TriggerSet } from '../../../../../types/trigger';
+import { Output } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
+export interface Data {
   cloneSpots?: { [id: string]: string };
   scaleSophias?: string[];
   quasarTethers?: string[];
@@ -82,7 +82,7 @@ const tiltOutputStrings = {
   },
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.ContainmentBayP1T6Extreme,
   timelineFile: 'sophia-ex.txt',
   timelineTriggers: [
@@ -715,6 +715,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

@@ -1,20 +1,9 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  seenLinkUp?: boolean;
-  lightning?: string;
-  longNeedleStack?: string;
-  longNeedlePrey: string[];
-  verdictMin?: string;
-  verdictMax?: string;
-  water?: string;
-}
 
 // TODO: Final Punishment stack counts are in the network log, but not in ACT log :C
 // e.g. 4 stacks:
@@ -22,7 +11,15 @@ export interface Data extends RaidbossData {
 //   39.95|E0000000||1068E9CB|Potato Chippy|04|19062|||0bd20f2b57d49b17a19caa10e1fb8734
 // TODO: chakram safe spots lol?
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  seenLinkUp?: boolean;
+  lightning?: string;
+  longNeedleStack?: string;
+  longNeedlePrey: string[];
+  verdictMin?: string;
+  verdictMax?: string;
+  water?: string;
+}>({
   zoneId: ZoneId.AlexanderTheBurdenOfTheSonSavage,
   timelineFile: 'a8s.txt',
   initData: () => {
@@ -1213,6 +1210,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

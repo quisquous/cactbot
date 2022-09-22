@@ -1,15 +1,9 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  charges: string[];
-  seenBrighteyes?: boolean;
-}
 
 // Notes:
 // Ignoring Gobsway Rumblerocks (1AA0) aoe trigger, as it is small and frequent.
@@ -29,7 +23,10 @@ const chargeOutputStrings = {
   unknown: Outputs.unknown,
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  charges: string[];
+  seenBrighteyes?: boolean;
+}>({
   zoneId: ZoneId.AlexanderTheBreathOfTheCreatorSavage,
   timelineFile: 'a10s.txt',
   initData: () => {
@@ -539,6 +536,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

@@ -1,15 +1,8 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  phase: number;
-  grabbed: string[];
-  stickyloom?: string;
-}
 
 // TODO: stun call for True Heart sprint ability?
 
@@ -50,7 +43,11 @@ export interface Data extends RaidbossData {
 //     red tether / white prey
 //     green tether / purple prey
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  phase: number;
+  grabbed: string[];
+  stickyloom?: string;
+}>({
   zoneId: ZoneId.AlexanderTheArmOfTheSonSavage,
   timelineNeedsFixing: true,
   timelineFile: 'a7s.txt',
@@ -399,6 +396,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

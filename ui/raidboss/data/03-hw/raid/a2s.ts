@@ -1,12 +1,7 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  bangyzoom?: boolean;
-}
 
 // TODO: could consider keeping track of the gobbie driver?
 // Nothing in the logs for when you get in, other than removing combatanat.
@@ -15,7 +10,9 @@ export interface Data extends RaidbossData {
 // There aren't many triggers, so maybe worth just keeping the global callouts
 // for bombs and stuns.
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  bangyzoom?: boolean;
+}>({
   zoneId: ZoneId.AlexanderTheCuffOfTheFatherSavage,
   timelineFile: 'a2s.txt',
   timelineTriggers: [
@@ -295,6 +292,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});
