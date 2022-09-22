@@ -1,21 +1,18 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
+// Titania Extreme
+export default defineTriggerSet<{
   seenMistRune?: boolean;
   seenFlameRune?: boolean;
   pummelCount?: number;
   bomb?: { [name: string]: boolean };
   thunderCount?: number;
-}
-
-// Titania Extreme
-const triggerSet: TriggerSet<Data> = {
+}>({
   zoneId: ZoneId.TheDancingPlagueExtreme,
   timelineFile: 'titania-ex.txt',
   triggers: [
@@ -541,6 +538,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

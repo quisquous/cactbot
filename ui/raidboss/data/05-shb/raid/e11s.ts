@@ -1,12 +1,13 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
-import { Output, TriggerSet } from '../../../../../types/trigger';
+import { Output } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
+export interface Data {
   tethers?: { [name: string]: string };
 }
 
@@ -24,7 +25,7 @@ export interface Data extends RaidbossData {
 // burnout = burnt strike lightning out
 // shining blade = burnt strike light bait
 
-const boundOfFaithFireTetherResponse = (data: Data, _matches: unknown, output: Output) => {
+const boundOfFaithFireTetherResponse = (data: Data & RaidbossData, _matches: unknown, output: Output) => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
     stackOnYou: Outputs.stackOnYou,
@@ -40,7 +41,7 @@ const boundOfFaithFireTetherResponse = (data: Data, _matches: unknown, output: O
   return { alertText: output.stackOnPlayer!({ player: data.ShortName(targets[0]) }) };
 };
 
-const boundOfFaithLightningTetherResponse = (data: Data, _matches: unknown, output: Output) => {
+const boundOfFaithLightningTetherResponse = (data: Data & RaidbossData, _matches: unknown, output: Output) => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
     onYou: {
@@ -70,7 +71,7 @@ const boundOfFaithLightningTetherResponse = (data: Data, _matches: unknown, outp
   return { infoText: output.tetherInfo!({ player: target }) };
 };
 
-const boundOfFaithHolyTetherResponse = (data: Data, _matches: unknown, output: Output) => {
+const boundOfFaithHolyTetherResponse = (data: Data & RaidbossData, _matches: unknown, output: Output) => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
     awayFromGroup: Outputs.awayFromGroup,
@@ -86,7 +87,7 @@ const boundOfFaithHolyTetherResponse = (data: Data, _matches: unknown, output: O
   return { infoText: output.awayFromPlayer!({ player: data.ShortName(targets[0]) }) };
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet({
   zoneId: ZoneId.EdensPromiseAnamorphosisSavage,
   timelineFile: 'e11s.txt',
   triggers: [
@@ -810,6 +811,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

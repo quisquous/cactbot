@@ -1,3 +1,4 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
@@ -6,9 +7,8 @@ import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
+export interface Data {
   calledSeekerSwords?: boolean;
   seekerSwords?: string[];
   splitterDist?: number;
@@ -32,7 +32,7 @@ const avowedCenterX = -272;
 const avowedCenterY = -82;
 
 // TODO: promote something like this to Conditions?
-const tankBusterOnParty = (data: Data, matches: NetMatches['StartsUsing']) => {
+const tankBusterOnParty = (data: Data & RaidbossData, matches: NetMatches['StartsUsing']) => {
   if (matches.target === data.me)
     return true;
   if (data.role !== 'healer')
@@ -40,7 +40,7 @@ const tankBusterOnParty = (data: Data, matches: NetMatches['StartsUsing']) => {
   return data.party.inParty(matches.target);
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.DelubrumReginae,
   timelineFile: 'delubrum_reginae.txt',
   triggers: [
@@ -1915,6 +1915,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

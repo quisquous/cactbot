@@ -1,12 +1,12 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
+export interface Data {
   decOffset?: number;
   phase?: number;
 }
@@ -19,7 +19,7 @@ export interface Data extends RaidbossData {
 // P2 buster is 00F3
 // P3 Shrapnal tracking AoE is 00C5
 const firstHeadmarker = parseInt('0057', 16);
-const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
+const getHeadmarkerId = (data: Data & RaidbossData, matches: NetMatches['HeadMarker']) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 0057.
   // (This makes the offset 0, and !0 is true.)
   if (typeof data.decOffset === 'undefined')
@@ -30,7 +30,7 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.TheCloudDeckExtreme,
   timelineFile: 'diamond_weapon-ex.txt',
   triggers: [
@@ -501,6 +501,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

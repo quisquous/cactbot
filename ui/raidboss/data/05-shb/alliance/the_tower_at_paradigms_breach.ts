@@ -1,10 +1,9 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // Object representing a "Deploy Armaments" attack.
 interface DeployArmaments {
@@ -13,7 +12,7 @@ interface DeployArmaments {
   finishedTime: number;
 }
 
-export interface Data extends RaidbossData {
+export interface Data {
   busterTargets?: string[];
   cloneLunge?: boolean;
   seedTargets?: string[];
@@ -34,7 +33,7 @@ export interface Data extends RaidbossData {
 //   Her Inflorescence Distortion
 //   Her Inflorescence Pillar Impact
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.TheTowerAtParadigmsBreach,
   timelineFile: 'the_tower_at_paradigms_breach.txt',
   triggers: [
@@ -1281,6 +1280,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

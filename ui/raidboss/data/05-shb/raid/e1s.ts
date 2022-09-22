@@ -1,17 +1,15 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { LocaleObject, TriggerSet } from '../../../../../types/trigger';
+import { LocaleObject } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
+export default defineTriggerSet<{
   viceCount?: number;
   vice?: string;
   paradise?: boolean;
-}
-
-const triggerSet: TriggerSet<Data> = {
+}>({
   zoneId: ZoneId.EdensGateResurrectionSavage,
   timelineFile: 'e1s.txt',
   timeline: [
@@ -539,6 +537,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

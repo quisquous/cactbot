@@ -1,22 +1,19 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
+// TODO: some sort of warning about extra tank damage during bow phase?
+// TODO: should the post-staff "spread" happen unconditionally prior to marker?
+
+export default defineTriggerSet<{
   currentTank?: string;
   blunt?: { [name: string]: boolean };
   slashing?: { [name: string]: boolean };
   soonAfterWeaponChange?: boolean;
   seenDiamondDust?: boolean;
-}
-
-// TODO: some sort of warning about extra tank damage during bow phase?
-// TODO: should the post-staff "spread" happen unconditionally prior to marker?
-
-const triggerSet: TriggerSet<Data> = {
+}>({
   zoneId: ZoneId.TheAkhAfahAmphitheatreUnreal,
   timelineFile: 'shiva-un.txt',
   timelineTriggers: [
@@ -420,6 +417,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

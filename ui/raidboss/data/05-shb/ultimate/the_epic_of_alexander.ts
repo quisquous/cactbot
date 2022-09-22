@@ -1,3 +1,4 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
@@ -5,9 +6,9 @@ import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
-import { Output, TriggerSet } from '../../../../../types/trigger';
+import { Output } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
+export interface Data {
   phase?: string;
   decOffset?: number;
   nisiMap?: { [name: string]: number };
@@ -274,7 +275,7 @@ const nisiPassOutputStrings = {
 };
 
 // Convenience function called for third and fourth nisi passes.
-const namedNisiPass = (data: Data, output: Output) => {
+const namedNisiPass = (data: Data & RaidbossData, output: Output) => {
   const finalNisiMap = data.finalNisiMap;
   const nisiMap = data.nisiMap;
   if (!finalNisiMap || !nisiMap)
@@ -349,7 +350,7 @@ const betaInstructions = (idx: number | undefined, output: Output) => {
   return output.unknown!();
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.TheEpicOfAlexanderUltimate,
   timelineFile: 'the_epic_of_alexander.txt',
   timelineTriggers: [
@@ -3188,6 +3189,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

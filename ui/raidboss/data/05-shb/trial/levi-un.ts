@@ -1,17 +1,10 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  diveCounter?: number;
-  converter?: boolean;
-  slamLevis?: PluginCombatantState[];
-}
 
 // TODO: we could consider a timeline trigger for the Tidal Roar raidwide,
 // but it barely does 25% health, has no startsUsing, and the timeline for
@@ -24,7 +17,11 @@ export interface Data extends RaidbossData {
 // positions (+/-7, +/-20) and so more work would need to be done to tell
 // them apart.
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  diveCounter?: number;
+  converter?: boolean;
+  slamLevis?: PluginCombatantState[];
+}>({
   zoneId: ZoneId.TheWhorleaterUnreal,
   timelineFile: 'levi-un.txt',
   triggers: [
@@ -412,6 +409,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

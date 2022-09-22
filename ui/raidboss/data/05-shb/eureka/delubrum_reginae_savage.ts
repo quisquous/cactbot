@@ -1,3 +1,4 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
@@ -8,9 +9,9 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { LocaleText, TriggerSet } from '../../../../../types/trigger';
+import { LocaleText } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
+export interface Data {
   decOffset?: number;
   firstUnknownHeadmarker?: string;
   gloryOfBozjaCount?: number;
@@ -68,7 +69,7 @@ const avowedCenterX = -272;
 const avowedCenterY = -82;
 
 // TODO: promote something like this to Conditions?
-const tankBusterOnParty = (data: Data, matches: NetMatches['StartsUsing']) => {
+const tankBusterOnParty = (data: Data & RaidbossData, matches: NetMatches['StartsUsing']) => {
   if (matches.target === data.me)
     return true;
   if (data.role !== 'healer')
@@ -79,7 +80,7 @@ const tankBusterOnParty = (data: Data, matches: NetMatches['StartsUsing']) => {
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
-const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
+const getHeadmarkerId = (data: Data & RaidbossData, matches: NetMatches['HeadMarker']) => {
   if (data.decOffset === undefined) {
     // If we don't know, return garbage to avoid accidentally running other triggers.
     if (!data.firstUnknownHeadmarker)
@@ -92,7 +93,7 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   return `000${hexId}`.slice(-4);
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.DelubrumReginaeSavage,
   timelineFile: 'delubrum_reginae_savage.txt',
   timelineTriggers: [
@@ -3676,6 +3677,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

@@ -1,26 +1,23 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  waterDarkMarker?: boolean;
-  freeze?: boolean;
-  flame?: boolean;
-  sphereCount?: number;
-  brand?: string;
-  netherBlast?: boolean;
-}
 
 // Hades Extreme
 
 // TODO: call out direction for safe spot
 // TODO: fire/ice tethers (0060|0061)
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  waterDarkMarker?: boolean;
+  freeze?: boolean;
+  flame?: boolean;
+  sphereCount?: number;
+  brand?: string;
+  netherBlast?: boolean;
+}>({
   zoneId: ZoneId.TheMinstrelsBalladHadessElegy,
   timelineFile: 'hades-ex.txt',
   timelineTriggers: [
@@ -1036,6 +1033,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

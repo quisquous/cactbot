@@ -1,12 +1,11 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: is there a way to know if a Tertius Terminus Est sword is X or +?
 // 55CD has no heading.
@@ -16,7 +15,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: handle mechanized maneuver with GetCombatnats?
 // TODO: handle divebombs during mechanized maneuver with GetCombatants?
 
-export interface Data extends RaidbossData {
+export interface Data {
   seenMines?: boolean;
   orbs?: NetMatches['AddedCombatant'][];
   primusPlayers?: string[];
@@ -37,7 +36,7 @@ const sharedOutputStrings = {
   },
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.CastrumMarinumExtreme,
   timelineFile: 'emerald_weapon-ex.txt',
   timelineTriggers: [
@@ -655,6 +654,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

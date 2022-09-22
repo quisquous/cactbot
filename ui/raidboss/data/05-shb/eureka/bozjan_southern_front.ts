@@ -1,3 +1,4 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
@@ -6,9 +7,7 @@ import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
+export interface Data {
   ce?: string;
   helldiver?: boolean;
   energyCount?: number;
@@ -131,7 +130,7 @@ const orbOutputStrings = {
 
 // TODO: promote something like this to Conditions?
 const tankBusterOnParty = (ceName?: string) =>
-  (data: Data, matches: NetMatches['StartsUsing']) => {
+  (data: Data & RaidbossData, matches: NetMatches['StartsUsing']) => {
     if (ceName && data.ce !== ceName)
       return false;
     if (matches.target === data.me)
@@ -141,7 +140,7 @@ const tankBusterOnParty = (ceName?: string) =>
     return data.party.inParty(matches.target);
   };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.TheBozjanSouthernFront,
   timelineFile: 'bozjan_southern_front.txt',
   timeline: [
@@ -1130,6 +1129,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

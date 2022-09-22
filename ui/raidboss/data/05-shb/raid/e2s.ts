@@ -1,22 +1,19 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  spell?: { [name: string]: string };
-  waiting?: boolean;
-  hellWind?: boolean;
-}
 
 // TODO
 // better callouts for cycle
 // tank provoke messages when cotank has flare
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  spell?: { [name: string]: string };
+  waiting?: boolean;
+  hellWind?: boolean;
+}>({
   zoneId: ZoneId.EdensGateDescentSavage,
   timelineFile: 'e2s.txt',
   timelineTriggers: [
@@ -682,6 +679,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});
