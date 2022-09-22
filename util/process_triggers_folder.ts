@@ -45,8 +45,8 @@ const removeExportOnDeclarations = (lines: string[]) => {
 const changeExportToPush = (lines: string[]) => {
   // User files are not modules and so push onto a global Options variable rather than
   // exporting, so modify these files so that they can be used directly as user files.
-  const exportRegex = /^(?:export default {|const triggerSet = {)\s*/;
-  const closingRegex = /^};\s*$/;
+  const exportRegex = /^(?:export default defineTriggerSet\({|const triggerSet = {)\s*/;
+  const closingRegex = /^}\);\s*$/;
 
   let replacedExportCount = 0;
   let replacedClosingCount = 0;
