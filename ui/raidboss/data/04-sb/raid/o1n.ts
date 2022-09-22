@@ -1,13 +1,10 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export type Data = RaidbossData;
 
 // O1S - Deltascape 1.0 Normal
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet({
   zoneId: ZoneId.DeltascapeV10,
   timelineFile: 'o1n.txt',
   timelineTriggers: [
@@ -196,6 +193,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

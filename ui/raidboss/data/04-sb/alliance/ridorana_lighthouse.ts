@@ -1,16 +1,10 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { Output, TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  playerMap?: { [name: string]: boolean };
-  accelerateSpreadOnMe?: boolean;
-  mathBaseValue?: number;
-}
+import { Output } from '../../../../../types/trigger';
 
 const mathDirection = (mathBaseValue: number | undefined, correctMath: number[], output: Output) => {
   if (mathBaseValue === undefined)
@@ -76,7 +70,11 @@ const mathOutputStrings = {
   },
 };
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  playerMap?: { [name: string]: boolean };
+  accelerateSpreadOnMe?: boolean;
+  mathBaseValue?: number;
+}>({
   zoneId: ZoneId.TheRidoranaLighthouse,
   timelineFile: 'ridorana_lighthouse.txt',
   timelineTriggers: [
@@ -805,6 +803,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

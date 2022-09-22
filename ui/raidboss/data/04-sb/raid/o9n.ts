@@ -1,17 +1,14 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  stackMarker?: string[];
-}
 
 // O9N - Alphascape 1.0
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  stackMarker?: string[];
+}>({
   zoneId: ZoneId.AlphascapeV10,
   timelineFile: 'o9n.txt',
   triggers: [
@@ -283,6 +280,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

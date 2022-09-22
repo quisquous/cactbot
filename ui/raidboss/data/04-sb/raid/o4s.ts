@@ -1,12 +1,11 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
+export interface Data {
   thunderCount?: number;
   flareTargets?: string[];
   phase?: string;
@@ -39,7 +38,7 @@ const shouldDieOnLaser = (data: Data) => {
 };
 
 // O4S - Deltascape 4.0 Savage
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.DeltascapeV40Savage,
   timelineFile: 'o4s.txt',
   timelineTriggers: [
@@ -1286,6 +1285,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

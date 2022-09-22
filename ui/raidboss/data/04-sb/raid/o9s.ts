@@ -1,22 +1,19 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
+// O9S - Alphascape 1.0 Savage
+export default defineTriggerSet<{
   primordialCrust?: boolean;
   entropyCount?: number;
   phaseType?: string;
   wind?: string;
   head?: string;
   blazeCount?: number;
-}
-
-// O9S - Alphascape 1.0 Savage
-const triggerSet: TriggerSet<Data> = {
+}>({
   zoneId: ZoneId.AlphascapeV10Savage,
   timelineFile: 'o9s.txt',
   triggers: [
@@ -655,6 +652,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

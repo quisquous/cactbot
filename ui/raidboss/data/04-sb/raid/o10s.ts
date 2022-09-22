@@ -1,13 +1,8 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  lastSpinWasHorizontal?: boolean;
-}
 
 // TODO: fix tail end (seemed to not work??)
 // TODO: add phase tracking (so death from above/below can tell you to swap or not)
@@ -17,7 +12,9 @@ export interface Data extends RaidbossData {
 // TODO: stack head markers
 
 // O10S - Alphascape 2.0 Savage
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  lastSpinWasHorizontal?: boolean;
+}>({
   zoneId: ZoneId.AlphascapeV20Savage,
   timelineFile: 'o10s.txt',
   triggers: [
@@ -383,6 +380,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

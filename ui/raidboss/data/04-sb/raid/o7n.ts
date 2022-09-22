@@ -1,15 +1,12 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: kill adds from failed Demon Simulation?
 
-export type Data = RaidbossData;
-
 // O7N - Sigmascape 3.0 Normal
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet({
   zoneId: ZoneId.SigmascapeV30,
   timelineFile: 'o7n.txt',
   timelineTriggers: [
@@ -299,6 +296,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

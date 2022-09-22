@@ -1,16 +1,13 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export type Data = RaidbossData;
 
 // Note: no warning for Roar (2CC3, 285D).
 
 // Rathalos Extreme
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet({
   zoneId: ZoneId.TheGreatHuntExtreme,
   // Mechanics are random, no timeline is possible.
   hasNoTimeline: true,
@@ -185,6 +182,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

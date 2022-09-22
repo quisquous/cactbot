@@ -1,16 +1,13 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  lastKiss?: string;
-}
 
 // O6S - Sigmascape 2.0 Savage
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  lastKiss?: string;
+}>({
   zoneId: ZoneId.SigmascapeV20Savage,
   timelineFile: 'o6s.txt',
   triggers: [
@@ -301,6 +298,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

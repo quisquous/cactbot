@@ -1,20 +1,17 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  agriasGhostCleanse?: boolean;
-  halidom?: string[];
-}
 
 // TODO: grand cross "plummet" attacks have locations,
 // so it should be possible to tell people where to go.
 // This is not true for Mustadio's Maintenance.
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  agriasGhostCleanse?: boolean;
+  halidom?: string[];
+}>({
   zoneId: ZoneId.TheOrbonneMonastery,
   timelineFile: 'orbonne_monastery.txt',
   timelineTriggers: [
@@ -1166,6 +1163,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

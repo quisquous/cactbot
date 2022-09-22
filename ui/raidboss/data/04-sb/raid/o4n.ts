@@ -1,16 +1,13 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  battleCount?: number;
-}
 
 // O4N - Deltascape 4.0 Normal
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  battleCount?: number;
+}>({
   zoneId: ZoneId.DeltascapeV40,
   timelineFile: 'o4n.txt',
   triggers: [
@@ -278,6 +275,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

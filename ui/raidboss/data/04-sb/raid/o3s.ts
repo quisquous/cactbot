@@ -1,3 +1,4 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
@@ -5,10 +6,10 @@ import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
-import { ResponseOutput, TriggerSet } from '../../../../../types/trigger';
+import { ResponseOutput } from '../../../../../types/trigger';
 
 // export type Data = RaidbossData;
-export interface Data extends RaidbossData {
+export interface Data {
   phase?: number;
   seenHolyThisPhase?: boolean;
   holyTargets?: string[];
@@ -19,7 +20,7 @@ export interface Data extends RaidbossData {
 }
 
 // O3S - Deltascape 3.0 Savage
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.DeltascapeV30Savage,
   timelineFile: 'o3s.txt',
   timelineTriggers: [
@@ -120,7 +121,7 @@ const triggerSet: TriggerSet<Data> = {
 
         const stackTarget = data.holyTargets[1];
 
-        const ret: ResponseOutput<Data, NetMatches['HeadMarker']> = {};
+        const ret: ResponseOutput<Data & RaidbossData, NetMatches['HeadMarker']> = {};
         if (data.me === stackTarget) {
           ret.alarmText = output.stackOnYou!();
         } else {
@@ -765,6 +766,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

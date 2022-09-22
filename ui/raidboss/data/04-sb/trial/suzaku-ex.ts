@@ -1,14 +1,11 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export type Data = RaidbossData;
 
 // Suzaku Extreme
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet({
   zoneId: ZoneId.HellsKierExtreme,
   timelineFile: 'suzaku-ex.txt',
   triggers: [
@@ -222,6 +219,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

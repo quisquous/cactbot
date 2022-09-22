@@ -1,17 +1,14 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
 // Note: To avoid too many alert-level triggers here, all of the "out of front"
 // ones are info, under the assumption that you should never be in front.
 
-export type Data = RaidbossData;
-
 // Rathalos Extreme
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet({
   zoneId: ZoneId.TheGreatHunt,
   // Mechanics are random, no timeline is possible.
   hasNoTimeline: true,
@@ -168,6 +165,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

@@ -1,20 +1,9 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  truths?: boolean;
-  antics?: boolean;
-  lastFire?: string;
-  lastThunder?: string;
-  lastIceDir?: string;
-  manaReleaseText?: string;
-  fireMarker?: string;
-}
 
 const strings = {
   typeAndDir: {
@@ -85,7 +74,15 @@ const strings = {
 };
 
 // O8S - Sigmascape 4.0 Savage
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  truths?: boolean;
+  antics?: boolean;
+  lastFire?: string;
+  lastThunder?: string;
+  lastIceDir?: string;
+  manaReleaseText?: string;
+  fireMarker?: string;
+}>({
   zoneId: ZoneId.SigmascapeV40Savage,
   timelineFile: 'o8s.txt',
   triggers: [
@@ -831,6 +828,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

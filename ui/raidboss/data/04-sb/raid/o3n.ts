@@ -1,11 +1,11 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
+// O3 - Deltascape 3.0 Normal
+export default defineTriggerSet<{
   holyTargets?: string[];
   holyCounter: number;
   gameCount: number;
@@ -15,10 +15,7 @@ export interface Data extends RaidbossData {
   // 2: Cave phase with Uplifts.
   // 3: Post-intermission, with good and bad frogs.
   phaseNumber: number;
-}
-
-// O3 - Deltascape 3.0 Normal
-const triggerSet: TriggerSet<Data> = {
+}>({
   zoneId: ZoneId.DeltascapeV30,
   timelineFile: 'o3n.txt',
   initData: () => {
@@ -484,6 +481,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

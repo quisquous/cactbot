@@ -1,16 +1,13 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export interface Data extends RaidbossData {
-  lastSpinWasHorizontal?: boolean;
-}
 
 // O10N - Alphascape 2.0
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<{
+  lastSpinWasHorizontal?: boolean;
+}>({
   zoneId: ZoneId.AlphascapeV20,
   timelineFile: 'o10n.txt',
   triggers: [
@@ -318,6 +315,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});

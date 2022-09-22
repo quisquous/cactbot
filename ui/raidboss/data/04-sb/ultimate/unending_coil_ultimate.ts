@@ -1,13 +1,12 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
 
-export interface Data extends RaidbossData {
+export interface Data {
   // TODO: replace partyList with data.party
   partyList: { [name: string]: boolean };
   hpThresholds: number[];
@@ -172,7 +171,7 @@ export const findDragonMarks = (array: number[]): undefined | { wideThirdDive: b
 // End copy and paste.
 
 // UCU - The Unending Coil Of Bahamut (Ultimate)
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet<Data>({
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
   timelineFile: 'unending_coil_ultimate.txt',
   initData: () => {
@@ -2033,6 +2032,4 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
-};
-
-export default triggerSet;
+});
