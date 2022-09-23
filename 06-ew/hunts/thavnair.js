@@ -237,6 +237,7 @@ Options.Triggers.push({
         right: Outputs.right,
         text: {
           en: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
+          de: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
         },
       },
     },
@@ -286,40 +287,40 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
+        'Sphatika': 'Sphatika',
         'Sugriva': 'Sugriva',
         'Yilan': 'Yilan',
       },
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
+        'Sphatika': 'Sphatika',
         'Sugriva': 'Sugriva',
         'Yilan': 'yilan',
       },
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
+        'Sphatika': 'スパティカ',
         'Sugriva': 'スグリーヴァ',
         'Yilan': 'ユラン',
       },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
+        'Sphatika': '颇胝迦',
         'Sugriva': '须羯里婆',
         'Yilan': '尤兰',
       },
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
+        'Sphatika': '스파티카',
         'Sugriva': '수그리바',
         'Yilan': '윌란',
       },

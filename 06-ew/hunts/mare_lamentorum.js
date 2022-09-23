@@ -214,6 +214,7 @@ Options.Triggers.push({
         in: Outputs.in,
         joiner: {
           en: ' => ',
+          de: ' => ',
         },
         unknown: Outputs.unknown,
       },
@@ -265,42 +266,42 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Lunatender Queen': 'Lunatender-Königin',
         'Mousse Princess': 'Mousse-Prinzessin',
+        'Ruminator': 'Grübler',
       },
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Lunatender Queen': 'pampa sélénienne reine',
         'Mousse Princess': 'princesse mousse',
+        'Ruminator': 'ruminateur',
       },
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Lunatender Queen': 'ルナテンダー・クイーン',
         'Mousse Princess': 'ムースプリンセス',
+        'Ruminator': 'ルミネイター',
       },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Lunatender Queen': '月面仙人刺女王',
         'Mousse Princess': '慕斯公主',
+        'Ruminator': '沉思之物',
       },
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Lunatender Queen': '루나텐더 여왕',
         'Mousse Princess': '무스 공주',
+        'Ruminator': '되새기는 자',
       },
     },
   ],

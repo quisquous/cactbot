@@ -69,4 +69,36 @@ Options.Triggers.push({
       response: Responses.goRight(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Ker': 'Ker',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Ker': 'Kèr',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Ker': 'ケール',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Ker': '克尔',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Ker': '케르',
+      },
+    },
+  ],
 });
