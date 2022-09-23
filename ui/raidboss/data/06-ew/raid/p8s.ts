@@ -1138,7 +1138,7 @@ const triggerSet: TriggerSet<Data> = {
           trailblazeKnockback: {
             en: '${dir} Knockback',
             de: '${dir} Rückstoß',
-            fr: '$(dir) Poussée',
+            fr: '${dir} Poussée',
           },
           trailblazeKnockbackToDir: {
             en: '${dir1} Knockback ${dir2}',
