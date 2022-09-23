@@ -1,17 +1,14 @@
+import { defineTriggerSet } from '../../../../../resources/api_define_trigger_set';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
-export type Data = RaidbossData;
 
 // TODO:
 // Ancient Flare is probably 6FB6?, Pyretic debuff effect is ?
 // Whispered Incantation + Whispers Manifest
 // Handle Mirrored Incantation + Interments
 
-const triggerSet: TriggerSet<Data> = {
+export default defineTriggerSet({
   zoneId: [
     ZoneId.Labyrinthos,
     ZoneId.Thavnair,
@@ -78,6 +75,4 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.goRight(),
     },
   ],
-};
-
-export default triggerSet;
+});
