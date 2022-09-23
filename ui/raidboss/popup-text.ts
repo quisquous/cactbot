@@ -530,7 +530,7 @@ export class PopupText {
       this.OnChangeZone(e);
     });
     addOverlayListener('onInCombatChangedEvent', (e) => {
-      this.OnInCombatChange(e.detail.inGameCombat);
+      this.SetInCombat(e.detail.inGameCombat);
     });
     addOverlayListener('onLogEvent', (e) => {
       this.OnLog(e);
@@ -827,23 +827,19 @@ export class PopupText {
     this.ReloadTimelines();
   }
 
-  OnInCombatChange(inCombat: boolean): void {
+  SetInCombat(inCombat: boolean): void {
     if (this.inCombat === inCombat)
       return;
 
-    if (this.resetWhenOutOfCombat)
-      this.SetInCombat(inCombat);
-  }
+    this.inCombat = inCombat;
 
-  SetInCombat(inCombat: boolean): void {
-    if (this.inCombat === inCombat)
+    if (!this.resetWhenOutOfCombat)
       return;
 
     // Stop timers when stopping combat to stop any active timers that
     // are delayed.  However, also reset when starting combat.
     // This prevents late attacks from affecting |data| which
     // throws off the next run, potentially.
-    this.inCombat = inCombat;
     if (!this.inCombat) {
       this.StopTimers();
       this.timelineLoader.StopCombat();
