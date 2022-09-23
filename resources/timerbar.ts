@@ -457,8 +457,8 @@ export default class TimerBar extends HTMLElement {
     if (!this._connected)
       return;
 
-    this.backgroundElement.style.backgroundColor = this._bg;
-    this.foregroundElement.style.backgroundColor = this._fg;
+    this.backgroundElement.style.background = this._bg;
+    this.foregroundElement.style.background = this._fg;
     this.rootElement.style.width = this._width;
     this.rootElement.style.height = this._height;
 

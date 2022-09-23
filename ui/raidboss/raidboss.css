@@ -152,11 +152,11 @@
 }
 
 .timeline-bar-color {
-  background-color: #88f;
+  background: #88f;
 }
 
 .timeline-bar-color.soon {
-  background-color: #f88;
+  background: #f88;
 }
 
 #timeline-debug {
