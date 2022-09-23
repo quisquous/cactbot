@@ -214,6 +214,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         // Also sure this could just be in shareFail, but it fits with the other splicers.
         en: 'Single Splicer',
         de: 'Einzelne Konzeptreflektion',
+        fr: 'Réaction conceptuelle simple',
       }),
     },
     {
@@ -223,6 +224,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       mistake: stackMistake('fail', 1, {
         en: 'Double Splicer',
         de: 'Doppelte Konzeptreflektion',
+        fr: 'Réaction conceptuelle double',
       }),
     },
     {
@@ -232,6 +234,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       mistake: stackMistake('fail', 1, {
         en: 'Triple Splicer',
         de: 'Dreifache Konzeptreflektion',
+        fr: 'Réaction conceptuelle triple',
       }),
     },
   ],

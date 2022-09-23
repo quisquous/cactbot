@@ -1067,6 +1067,7 @@ const triggerSet: TriggerSet<Data> = {
         firstTrailblaze: {
           en: '${dir} Black Line => ${concept}',
           de: '${dir} Schwarze Linie => ${concept}',
+          fr: '${dir} Ligne noire -> ${concept}',
         },
         north: Outputs.north,
         east: Outputs.east,
@@ -1106,6 +1107,7 @@ const triggerSet: TriggerSet<Data> = {
         trailblaze: {
           en: '${dir} Black Line => ${action}',
           de: '${dir} Schwarze Linie => ${action}',
+          fr: '${dir} Ligne noire -> ${action}',
         },
         crush: {
           en: 'Crush',
@@ -1131,22 +1133,27 @@ const triggerSet: TriggerSet<Data> = {
           trailblaze: {
             en: 'Wait => ${dir}',
             de: 'Warte => ${dir}',
+            fr: 'Attendez -> ${dir}',
           },
           trailblazeKnockback: {
             en: '${dir} Knockback',
             de: '${dir} Rückstoß',
+            fr: '$(dir) Poussée',
           },
           trailblazeKnockbackToDir: {
             en: '${dir1} Knockback ${dir2}',
             de: '${dir1} Rückstoß ${dir2}',
+            fr: '${dir1} Poussée ${dir2}',
           },
           trailblazeKnockbackSide: {
             en: 'Knockback ${dir}',
             de: 'Rückstoß ${dir}',
+            fr: 'Poussée ${dir}',
           },
           trailblazeCrushSide: {
             en: 'Run ${dir}',
             de: 'Renne nach ${dir}',
+            fr: 'Courez ${dir}',
           },
           left: Outputs.left,
           right: Outputs.right,
@@ -2094,6 +2101,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${num}',
           de: '${num}',
+          fr: '${num}',
         },
       },
     },
@@ -2111,6 +2119,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Soak Tower ${num}',
           de: 'Turm ${num} nehmen',
+          fr: 'Prenez la tour ${num}',
         },
       },
     },
