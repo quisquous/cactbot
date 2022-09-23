@@ -8,7 +8,7 @@ export function defineTriggerSet<InitData>(
       Record<string, never> extends InitData ? Record<never, never>
         : { initData: () => InitData }
     ),
-): TriggerSet<RaidbossData>;
+): TriggerSet<RaidbossData & InitData>;
 
 export function defineTriggerSet(
   set: Omit<TriggerSet<RaidbossData>, 'initData'>,
