@@ -149,6 +149,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Follow Jump => Under',
+          de: 'Sprung folgen => Unter den Boss',
         },
       },
     },
@@ -162,6 +163,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away From Jump',
+          de: 'Weg vom Sprung',
         },
       },
     },
@@ -169,41 +171,41 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Gurangatch': 'Gurangatch',
+        'Ophioneus': 'Ophioneus',
         'Petalodus': 'Petalodus',
       },
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Gurangatch': 'Gurangatch',
+        'Ophioneus': 'Ophion',
         'Petalodus': 'petalodus',
       },
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Gurangatch': 'グランガチ',
+        'Ophioneus': 'オピオネウス',
         'Petalodus': 'ペタロドゥス',
       },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Gurangatch': '固兰盖奇',
+        'Ophioneus': '俄菲翁尼厄斯',
         'Petalodus': '瓣齿鲨',
       },
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Gurangatch': '구랑가치',
+        'Ophioneus': '오피오네우스',
         'Petalodus': '페탈로두스',
       },
     },

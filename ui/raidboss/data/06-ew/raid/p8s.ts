@@ -982,12 +982,14 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         impactDir: {
           en: 'Follow to ${dir} (Knockback)',
+          de: 'Nach ${dir} folgen (Rückstoß)',
           fr: 'Allez vers ${dir} (Poussée)',
           ja: '${dir}に近づく (ノックバック)',
           ko: '${dir}으로 따라가기 (넉백)',
         },
         crushDir: {
           en: 'Away to ${dir}',
+          de: 'Weg von ${dir}',
           fr: 'Loin de ${dir}',
           ja: '${dir}が安置 (クラッシュ)',
           ko: '${dir}으로 피하기',
@@ -1064,6 +1066,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         firstTrailblaze: {
           en: '${dir} Black Line => ${concept}',
+          de: '${dir} Schwarze Linie => ${concept}',
         },
         north: Outputs.north,
         east: Outputs.east,
@@ -1102,9 +1105,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         trailblaze: {
           en: '${dir} Black Line => ${action}',
+          de: '${dir} Schwarze Linie => ${action}',
         },
         crush: {
           en: 'Crush',
+          de: 'Zerquetschen',
         },
         impact: Outputs.knockback,
         north: Outputs.north,
@@ -1125,18 +1130,23 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           trailblaze: {
             en: 'Wait => ${dir}',
+            de: 'Warte => ${dir}',
           },
           trailblazeKnockback: {
             en: '${dir} Knockback',
+            de: '${dir} Rückstoß',
           },
           trailblazeKnockbackToDir: {
             en: '${dir1} Knockback ${dir2}',
+            de: '${dir1} Rückstoß ${dir2}',
           },
           trailblazeKnockbackSide: {
             en: 'Knockback ${dir}',
+            de: 'Rückstoß ${dir}',
           },
           trailblazeCrushSide: {
             en: 'Run ${dir}',
+            de: 'Renne nach ${dir}',
           },
           left: Outputs.left,
           right: Outputs.right,
@@ -2083,6 +2093,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${num}',
+          de: '${num}',
         },
       },
     },
@@ -2099,6 +2110,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Soak Tower ${num}',
+          de: 'Turm ${num} nehmen',
         },
       },
     },
