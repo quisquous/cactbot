@@ -238,6 +238,7 @@ Options.Triggers.push({
         text: {
           en: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
           de: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
+          ko: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
         },
       },
     },
