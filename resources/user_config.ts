@@ -401,15 +401,8 @@ class UserConfig {
   handleSkin(skinName: string) {
     if (!skinName || skinName === 'default')
       return;
-
-    let basePath = document.location.toString();
-    const slashIdx = basePath.lastIndexOf('/');
-    if (slashIdx !== -1)
-      basePath = basePath.substr(0, slashIdx);
-    if (basePath.slice(-1) !== '/')
-      basePath += '/';
-    const skinHref = basePath + 'skins/' + skinName + '/' + skinName + '.css';
-    this.appendCSSLink(skinHref);
+    const skinCSSRelativeHref = `skins/${skinName}/${skinName}.css`;
+    this.appendCSSLink(skinCSSRelativeHref);
   }
   appendJSLink(src: string) {
     const userJS = document.createElement('script');
