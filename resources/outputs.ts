@@ -380,9 +380,11 @@ export default {
   },
   front: {
     en: 'Front',
+    ko: '앞',
   },
   back: {
     en: 'Back',
+    ko: '뒤',
   },
   right: {
     en: 'Right',

@@ -40,6 +40,7 @@ const purpleMistake = (): OopsyFunc<Data, NetMatches['Ability'], OopsyMistake> =
       text: {
         en: `${matches.ability} (purple)`,
         de: `${matches.ability} (lila)`,
+        ko: `${matches.ability} (보라)`,
       },
     };
   };
@@ -215,6 +216,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         en: 'Single Splicer',
         de: 'Einzelne Konzeptreflektion',
         fr: 'Réaction conceptuelle simple',
+        ko: '1인징',
       }),
     },
     {
@@ -225,6 +227,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         en: 'Double Splicer',
         de: 'Doppelte Konzeptreflektion',
         fr: 'Réaction conceptuelle double',
+        ko: '2인징',
       }),
     },
     {
@@ -235,6 +238,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         en: 'Triple Splicer',
         de: 'Dreifache Konzeptreflektion',
         fr: 'Réaction conceptuelle triple',
+        ko: '3인징',
       }),
     },
   ],
