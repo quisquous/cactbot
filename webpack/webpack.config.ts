@@ -189,11 +189,7 @@ export default (
         },
         {
           test: /data[\\\/](?!\w*_manifest\.txt).*\.txt$/,
-          use: [
-            {
-              loader: 'raw-loader',
-            },
-          ],
+          type: 'asset/source',
         },
       ],
     },
