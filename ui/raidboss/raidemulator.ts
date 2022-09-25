@@ -170,7 +170,7 @@ const raidEmulatorOnLoad = async () => {
   const emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
   emulatedWebSocket.connected = websocketConnected;
   const logConverterWorker = new Worker(
-    /* webpackChunkName: "emulator.worker" */
+    /* webpackChunkName: "ui/raidboss/emulator.worker" */
     new URL('./emulator/data/NetworkLogConverter.worker.ts', import.meta.url),
   );
 
