@@ -193,9 +193,6 @@ export default (
             {
               loader: 'raw-loader',
             },
-            {
-              loader: './webpack/loaders/timeline-loader.ts',
-            },
           ],
         },
       ],
