@@ -189,14 +189,7 @@ export default (
         },
         {
           test: /data[\\\/](?!\w*_manifest\.txt).*\.txt$/,
-          use: [
-            {
-              loader: 'raw-loader',
-            },
-            {
-              loader: './webpack/loaders/timeline-loader.ts',
-            },
-          ],
+          type: 'asset/source',
         },
       ],
     },
