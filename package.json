@@ -91,7 +91,7 @@
     "stylelint": "^14.8.2",
     "stylelint-config-standard": "^25.0.0",
     "tar-fs": "^2.1.1",
-    "ts-loader": "^8.0.17",
+    "ts-loader": "^9.3.0",
     "ts-node": "^10.8.0",
     "tsconfig-paths": "^3.9.0",
     "ttypescript": "^1.5.12",
