@@ -92,6 +92,7 @@ Options.Triggers.push({
           de: 'Raus + Verteilen',
           fr: 'Extérieur + Écartez-vous',
           ja: '黒線の外側 + 散会',
+          cn: '黑线外侧 + 分散',
           ko: '밖으로 + 산개',
         },
         outAndStacks: {
@@ -99,6 +100,7 @@ Options.Triggers.push({
           de: 'Raus + Sammeln',
           fr: 'Extérieur + Package',
           ja: '黒線の外側 + 2人頭割り',
+          cn: '黑线外侧 + 2人分摊',
           ko: '밖으로 + 쉐어',
         },
       },
@@ -124,6 +126,7 @@ Options.Triggers.push({
           de: 'Rein + Verteilen',
           fr: 'Intérieur + Écartez-vous',
           ja: '黒線の内側 + 散会',
+          cn: '黑线内侧 + 分散',
           ko: '안으로 + 산개',
         },
         inAndStacks: {
@@ -131,6 +134,7 @@ Options.Triggers.push({
           de: 'Rein + Sammeln',
           fr: 'Intérieur + Package',
           ja: '黒線の内側 + 2人頭割り',
+          cn: '黑线内侧 + 2人分摊',
           ko: '안으로 + 쉐어',
         },
       },
@@ -169,6 +173,7 @@ Options.Triggers.push({
           de: 'Mit Partner sammeln',
           fr: 'Package avec votre partenaire',
           ja: '2人頭割り',
+          cn: '2人分摊',
           ko: '2인 쉐어',
         },
       },
@@ -187,6 +192,7 @@ Options.Triggers.push({
           de: '(Partner-Stacks, für später)',
           fr: '(Package partenaire, pour après)',
           ja: '(後で2人頭割り)',
+          cn: '(稍后 2人分摊)',
           ko: '(곧 2인 쉐어)',
         },
       },
@@ -203,6 +209,7 @@ Options.Triggers.push({
           de: '(Verteilen, für später)',
           fr: '(Écartez-vous, pour après)',
           ja: '(後で散会)',
+          cn: '(稍后 分散)',
           ko: '(곧 산개)',
         },
       },
@@ -232,6 +239,7 @@ Options.Triggers.push({
           de: 'Rein + Sammeln',
           fr: 'Intérieur + Package',
           ja: '黒線の内側 + 2人頭割り',
+          cn: '黑线内侧 + 2人分摊',
           ko: '안으로 + 쉐어',
         },
         outAndStacks: {
@@ -239,6 +247,7 @@ Options.Triggers.push({
           de: 'Raus + Sammeln',
           fr: 'Extérieur + Package',
           ja: '黒線の外側 + 2人頭割り',
+          cn: '黑线外侧 + 2人分摊',
           ko: '밖으로 + 쉐어',
         },
         stacks: {
@@ -246,6 +255,7 @@ Options.Triggers.push({
           de: 'Mit Partner sammeln',
           fr: 'Package avec votre partenaire',
           ja: '2人頭割り',
+          cn: '2人分摊',
           ko: '2인 쉐어',
         },
       },
@@ -270,6 +280,7 @@ Options.Triggers.push({
           de: 'Rein + Himmelsrichtung',
           fr: 'Intérieur + Positions',
           ja: '黒線の内側 + 基本散会',
+          cn: '黑线内侧 + 分散引导',
           ko: '안으로 + 산개',
         },
         outAndProtean: {
@@ -277,6 +288,7 @@ Options.Triggers.push({
           de: 'Raus + Himmelsrichtung',
           fr: 'Extérieur + Positions',
           ja: '黒線の外側 + 散会',
+          cn: '黑线外侧 + 分散引导',
           ko: '밖으로 + 산개',
         },
         protean: {
@@ -284,6 +296,7 @@ Options.Triggers.push({
           de: 'Himmelsrichtung',
           fr: 'Positions',
           ja: '散会',
+          cn: '分散',
           ko: '산개',
         },
       },
@@ -410,6 +423,7 @@ Options.Triggers.push({
           de: 'Inneres Viereck',
           fr: 'Intérieur carré',
           ja: '内側の四角の中',
+          cn: '场中',
           ko: '중앙',
         },
         cornerNW: {
@@ -417,6 +431,7 @@ Options.Triggers.push({
           de: 'NW Ecke',
           fr: 'Coin NO',
           ja: '北西の隅',
+          cn: '西北 (左上)',
           ko: '북서쪽 구석',
         },
         cornerNE: {
@@ -424,6 +439,7 @@ Options.Triggers.push({
           de: 'NO Ecke',
           fr: 'Coin NE',
           ja: '北東の隅',
+          cn: '东北 (右上)',
           ko: '북동쪽 구석',
         },
         cornerSE: {
@@ -431,6 +447,7 @@ Options.Triggers.push({
           de: 'SO Ecke',
           fr: 'Coin SE',
           ja: '南東の隅',
+          cn: '东南 (右下)',
           ko: '남동쪽 구석',
         },
         cornerSW: {
@@ -438,6 +455,7 @@ Options.Triggers.push({
           de: 'SW Ecke',
           fr: 'Coin SO',
           ja: '南西の隅',
+          cn: '西南 (左下)',
           ko: '남서쪽 구석',
         },
         outsideNorth: {
@@ -445,6 +463,7 @@ Options.Triggers.push({
           de: 'Im Norden raus',
           fr: 'Nord Extérieur',
           ja: '北の外側',
+          cn: '北 外侧',
           ko: '북쪽 바깥',
         },
         insideNorth: {
@@ -452,6 +471,7 @@ Options.Triggers.push({
           de: 'Im Norden rein',
           fr: 'Nord Intérieur',
           ja: '北の内側',
+          cn: '北 内侧',
           ko: '북쪽 안',
         },
         outsideEast: {
@@ -459,6 +479,7 @@ Options.Triggers.push({
           de: 'Im Osten raus',
           fr: 'Est Extérieur',
           ja: '東の外側',
+          cn: '东 外侧',
           ko: '동쪽 바깥',
         },
         insideEast: {
@@ -466,6 +487,7 @@ Options.Triggers.push({
           de: 'Im Osten rein',
           fr: 'Est Intérieur',
           ja: '東の内側',
+          cn: '东 内侧',
           ko: '동쪽 안',
         },
         outsideSouth: {
@@ -473,6 +495,7 @@ Options.Triggers.push({
           de: 'Im Süden raus',
           fr: 'Sud Extérieur',
           ja: '南の外側',
+          cn: '南 外侧',
           ko: '남쪽 바깥',
         },
         insideSouth: {
@@ -480,6 +503,7 @@ Options.Triggers.push({
           de: 'Im Süden rein',
           fr: 'Sud Intérieur',
           ja: '南の内側',
+          cn: '南 内侧',
           ko: '남쪽 안',
         },
         outsideWest: {
@@ -487,6 +511,7 @@ Options.Triggers.push({
           de: 'Im Westen raus',
           fr: 'Ouest Extérieur',
           ja: '西の外側',
+          cn: '西 外侧',
           ko: '서쪽 바깥',
         },
         insideWest: {
@@ -494,6 +519,7 @@ Options.Triggers.push({
           de: 'Im Westen rein',
           fr: 'Ouest Intérieur',
           ja: '西の内側',
+          cn: '西 内侧',
           ko: '서쪽 안',
         },
       },
@@ -580,6 +606,7 @@ Options.Triggers.push({
           de: 'Schaue Kardinal',
           fr: 'Regardez en cardinal',
           ja: '視線を十字に',
+          cn: '看正点',
           ko: '시선을 동서남북쪽으로',
         },
         intercards: {
@@ -587,6 +614,7 @@ Options.Triggers.push({
           de: 'Schaue Interkardinal',
           fr: 'Regardez en intercardinal',
           ja: '視線を斜めに',
+          cn: '看斜点',
           ko: '시선을 대각선쪽으로',
         },
         gorgons: {
@@ -594,6 +622,7 @@ Options.Triggers.push({
           de: '${dir1}/${dir2} Gorgone',
           fr: '${dir1}/${dir2} Gorgone',
           ja: 'ゴルゴン：${dir1}/${dir2}',
+          cn: '蛇: ${dir1}/${dir2}',
           ko: '${dir1}/${dir2} 고르곤',
         },
         dirN: Outputs.dirN,
@@ -645,6 +674,7 @@ Options.Triggers.push({
             de: 'Erster Blick (+ ${player})',
             fr: 'Premier Regard (+ ${player})',
             ja: '先の石化 (+${player})',
+            cn: '1组 石化 (+ ${player})',
             ko: '첫번째 석화 (+ ${player})',
           },
           secondGaze: {
@@ -652,6 +682,7 @@ Options.Triggers.push({
             de: 'Zweiter Blick (+ ${player})',
             fr: 'Second Regard (+ ${player})',
             ja: '後の石化 (+${player})',
+            cn: '2组 石化 (+ ${player})',
             ko: '두번째 석화 (+ ${player})',
           },
           firstPoison: {
@@ -659,6 +690,7 @@ Options.Triggers.push({
             de: 'Erstes Gift (+ ${player})',
             fr: 'Premier Poison (+ ${player})',
             ja: '先の毒 (+${player})',
+            cn: '1组 毒 (+ ${player})',
             ko: '첫번째 독장판 (+ ${player})',
           },
           secondPoison: {
@@ -666,6 +698,7 @@ Options.Triggers.push({
             de: 'Zweites Gift (+ ${player})',
             fr: 'Second Poison (+ ${player})',
             ja: '後の毒 (+${player})',
+            cn: '2组 毒 (+ ${player})',
             ko: '두번째 독장판 (+ ${player})',
           },
           unknown: Outputs.unknown,
@@ -738,6 +771,7 @@ Options.Triggers.push({
             de: 'Erster Blick',
             fr: 'Premier Regard',
             ja: '先の石化',
+            cn: '1组 石化',
             ko: '첫번째 석화',
           },
           secondGaze: {
@@ -745,6 +779,7 @@ Options.Triggers.push({
             de: 'Zweiter Blick',
             fr: 'Second Regard',
             ja: '後の石化',
+            cn: '2组 石化',
             ko: '두번째 석화',
           },
           shriek: {
@@ -752,6 +787,7 @@ Options.Triggers.push({
             de: 'Schrei später (mit ${player})',
             fr: 'Cri plus tard (avec ${player})',
             ja: '自分に全体石化 (+${player})',
+            cn: '石化点名 (+ ${player}',
             ko: '나중에 마안 (+ ${player})',
           },
           stack: {
@@ -766,6 +802,7 @@ Options.Triggers.push({
             de: 'Kein Debuff (+ ${player1}, ${player2}, ${player3})',
             fr: 'Aucun debuff (+ ${player1}, ${player2}, ${player3})',
             ja: '無職 (${player1}, ${player2}, ${player3})',
+            cn: '无Debuff (+ ${player1}, ${player2}, ${player3})',
             ko: '디버프 없음 (+ ${player1}, ${player2}, ${player3})',
           },
         };
@@ -894,6 +931,7 @@ Options.Triggers.push({
           de: 'Nach ${dir} folgen (Rückstoß)',
           fr: 'Allez vers ${dir} (Poussée)',
           ja: '${dir}に近づく (ノックバック)',
+          cn: '去 ${dir} 被击退',
           ko: '${dir}으로 따라가기 (넉백)',
         },
         crushDir: {
@@ -901,6 +939,7 @@ Options.Triggers.push({
           de: 'Weg von ${dir}',
           fr: 'Loin de ${dir}',
           ja: '${dir}が安置 (クラッシュ)',
+          cn: '去 ${dir}',
           ko: '${dir}으로 피하기',
         },
         crush: {
@@ -908,6 +947,7 @@ Options.Triggers.push({
           de: 'Weg vom Sprung',
           fr: 'Éloignez-vous du saut',
           ja: '離れる',
+          cn: '远离跳的方向',
           ko: '멀리 떨어지기',
         },
         impact: {
@@ -915,6 +955,7 @@ Options.Triggers.push({
           de: 'Sprung folgen',
           fr: 'Suivez le saut',
           ja: '近づく',
+          cn: '靠近跳的方向',
           ko: '보스 따라가기',
         },
         north: Outputs.north,
@@ -1175,6 +1216,7 @@ Options.Triggers.push({
           de: 'Norden/Süden Vogel',
           fr: 'Oiseau Nord/Sud',
           ja: '南北フェニックス',
+          cn: '南北 凤凰',
           ko: '새 남/북쪽',
         },
         eastWest: {
@@ -1182,6 +1224,7 @@ Options.Triggers.push({
           de: 'Osten/Westen Vogel',
           fr: 'Oiseau Est/Ouest',
           ja: '東西フェニックス',
+          cn: '东西 凤凰',
           ko: '새 동/서쪽',
         },
       },
@@ -1217,6 +1260,7 @@ Options.Triggers.push({
           de: '(weiche Himmelsrichtungen aus)',
           fr: '(évitez les positions)',
           ja: '(回避、離れる)',
+          cn: '(远离回避)',
           ko: '(피하기)',
         },
       },
@@ -1237,6 +1281,7 @@ Options.Triggers.push({
           de: 'rein für Himmelsrichtungen',
           fr: 'Intérieur pour les positions',
           ja: '近づく、内側で誘導',
+          cn: '靠近引导',
           ko: '안에서 장판 유도',
         },
       },
