@@ -15,6 +15,7 @@
     "alwaysStrict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
+    "skipLibCheck": false,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     //    "noPropertyAccessFromIndexSignature": false, // used by trigger output strings
@@ -25,10 +26,10 @@
     "./types",
     "./resources",
     "./util",
-    "./test",
-    "./webpack"
+    "./test"
   ],
   "exclude": [
+    "./webpack",
     "./eslint",
     "./.eslintrc.cjs",
     "./dist",
