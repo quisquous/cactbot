@@ -144,7 +144,7 @@ export type EnmityTargetCombatant = {
   MonsterType: number;
   Status: number;
   ModelStatus: number;
-  AggressionStatus;
+  AggressionStatus: number;
   TargetID: number;
   IsTargetable: boolean;
 
@@ -334,7 +334,7 @@ export type LogEvent = {
 
 export type EventType = keyof EventMap;
 
-interface SystemInfo {
+export interface SystemInfo {
   cactbotVersion: string;
   overlayPluginVersion: string;
   ffxivPluginVersion: string;
@@ -342,7 +342,7 @@ interface SystemInfo {
   gameRegion: 'International' | 'Chinese' | 'Korean';
 }
 
-interface CactbotLoadUserRet extends SystemInfo {
+export interface CactbotLoadUserRet extends SystemInfo {
   userLocation: string;
   localUserFiles: { [filename: string]: string } | null;
   parserLanguage: Lang;
@@ -393,7 +393,7 @@ type PlayerChangedBase = {
   debugJob: string;
 };
 
-type PlayerChangedRet = Job extends infer T
+export type PlayerChangedRet = Job extends infer T
   ? T extends Job ? PlayerChangedJobDetails<T> & PlayerChangedBase : never
   : never;
 

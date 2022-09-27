@@ -92,7 +92,7 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
 ```javascript
 {
   id: 'id string',
-  // Note: netRegex only, see `NetFields` from [net_fields.d.ts](https://github.com/quisquous/cactbot/blob/main/types/net_fields.d.ts)
+  // Note: netRegex only, see `NetFields` from [net_fields.ts](https://github.com/quisquous/cactbot/blob/main/types/net_fields.ts)
   type: 'StartsUsing',
   disabled: false,
   // Note: use the regex helpers from [netregexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts)
