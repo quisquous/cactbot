@@ -27,7 +27,7 @@ jobs:
     needs: check-gh-pages
     if: needs.check-gh-pages.outputs.found == 'true'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v2
         with:
           node-version: '16'

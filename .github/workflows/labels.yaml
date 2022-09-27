@@ -8,8 +8,11 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
+      - uses: actions/checkout@v3
+        with:
+          # force to ci checkout main repo to avoid
+          # unexpected PR code to be executed with out github token
+          ref: main
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
