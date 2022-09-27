@@ -8,7 +8,7 @@ import { LooseOopsyTriggerSet } from '../types/oopsy';
 import { LooseTriggerSet } from '../types/trigger';
 import { oopsyTriggerSetFields } from '../ui/oopsyraidsy/oopsy_fields';
 
-import { Coverage, CoverageEntry, CoverageTotals } from './coverage/coverage.d';
+import { Coverage, CoverageEntry, CoverageTotals } from './coverage/coverage';
 
 // Paths are relative to current file.
 // We can't import the manifest directly from util/ because that's webpack magic,
