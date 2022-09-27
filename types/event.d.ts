@@ -7,6 +7,7 @@ declare global {
     'onOverlayStateUpdate': CustomEvent<{ isLocked: boolean }>;
   }
 }
+
 export interface Party {
   id: string;
   name: string;
@@ -353,9 +354,14 @@ interface CactbotLoadUserRet extends SystemInfo {
 }
 
 // Structured JSON data saved in OverlayPlugin config files.
-export type SavedConfigEntry = string | number | boolean | [SavedConfigEntry] | {
-  [nestedName: string]: SavedConfigEntry;
-};
+export type SavedConfigEntry =
+  | string
+  | number
+  | boolean
+  | [SavedConfigEntry]
+  | {
+    [nestedName: string]: SavedConfigEntry;
+  };
 export type SavedConfig = {
   [overlayName: string]: SavedConfigEntry;
 };

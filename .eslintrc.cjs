@@ -214,6 +214,7 @@ const rules = {
 
 // TypeScript rule overrides.
 const tsOverrides = {
+  'excludedFiles': './webpack/**/*.ts',
   'extends': [
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
@@ -270,9 +271,21 @@ const tsOverrides = {
   },
 };
 
+const webpackOverrides = {
+  ...tsOverrides,
+  'excludedFiles': undefined,
+  'files': ['./webpack/**/*.ts'],
+  'parser': '@typescript-eslint/parser',
+  'parserOptions': {
+    'project': ['./tsconfig-for-webpack.json'],
+    'tsconfigRootDir': __dirname,
+  },
+};
+
 // Other overrides.
 const overrides = [
   tsOverrides,
+  webpackOverrides,
   {
     'files': ['*.cjs'],
     'parserOptions': {
