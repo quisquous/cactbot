@@ -142,7 +142,7 @@ export default (
                 [
                   '@babel/preset-env',
                   {
-                    targets: { chrome: '75' },
+                    targets: { chrome: '95' },
                   },
                 ],
                 [
