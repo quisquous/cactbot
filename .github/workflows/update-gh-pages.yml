@@ -28,19 +28,8 @@ jobs:
     if: needs.check-gh-pages.outputs.found == 'true'
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-      - name: Cache Dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          npm ci --ignore-scripts
+      - uses: ./.github/actions/setup-js
+
       - name: Build
         run: |
           npm run coverage-report

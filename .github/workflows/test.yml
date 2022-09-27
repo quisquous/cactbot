@@ -26,25 +26,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      - name: Cache Dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
+      - uses: ./.github/actions/setup-js
 
       - uses: actions/setup-python@v3
         with:
           python-version: '3.7'
-
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          npm ci --ignore-scripts
 
       - name: npm test
         run: |

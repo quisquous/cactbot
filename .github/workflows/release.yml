@@ -18,21 +18,8 @@ jobs:
           fetch-depth: 0
       - name: Set up msbuild
         uses: microsoft/setup-msbuild@v1.1.1
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
 
-      - uses: actions/cache@v3
-        id: npm-cache
-        with:
-          path: ~/.npm
-          key: modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Fetch NPM Dependencies
-        # TODO: fix cache@v2 to cache node_modules
-        # if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: |
-          npm ci --ignore-scripts
+      - uses: ./.github/actions/setup-js
 
       # Gets the numerical output of the git tag and assigns it to an environment variable
       - name: Get Tag Version
