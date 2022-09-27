@@ -4,7 +4,6 @@ import process from 'process';
 import * as url from 'url';
 
 import eslint from 'eslint';
-// import ts from 'typescript';
 import * as tsNode from 'ts-node';
 
 import UserConfig from '../resources/user_config';
@@ -17,6 +16,8 @@ const __filename = url.fileURLToPath(new URL('.', import.meta.url));
 const __dirname = path.basename(__filename);
 const root = path.join(__dirname, '../ui/raidboss/data/');
 const distRoot = path.join(__dirname, '../dist/triggers/ui/raidboss/data/');
+
+fs.rmSync(distRoot, { recursive: true, force: true });
 
 // Probably we could do this more cleanly with babel, but we'll just regex for simplicitly.
 const removeImports = (lines: string[]) => {
@@ -37,6 +38,10 @@ const removeExportOnDeclarations = (lines: string[]) => {
       return line;
     return line.replace(/^export /, '');
   });
+};
+
+const removeSourceMap = (lines: string[]) => {
+  return lines.filter((line) => !line.startsWith('//# sourceMappingURL'));
 };
 
 const changeExportToPush = (lines: string[]) => {
@@ -112,9 +117,12 @@ const lint = async (filename: string, lines: string[]) => {
 
 const tsc = tsNode.create({
   transpileOnly: true,
-  compilerOptions: {
-    target: 'ES2020',
-  },
+  project: path.join(__dirname, '../tsconfig.json'),
+  // compilerOptions: {
+  //   target: 'ES2020',
+  //   declaration: false,
+  //   declarationMap: false,
+  // },
 });
 
 const processFile = async (originalFilename: string) => {
@@ -124,11 +132,11 @@ const processFile = async (originalFilename: string) => {
     originalFilename,
   );
   const distFilePath = path.join(distRoot, path.relative(root, originalFilename));
-
   let lines = transpiledContents.split(/[\r\n]+/);
 
   lines = removeImports(lines);
   lines = changeExportToPush(lines);
+  lines = removeSourceMap(lines);
   lines = removeExportOnDeclarations(lines);
   const lintResult = await lint(originalFilename.replace('.ts', '.js'), lines);
   if (!lintResult) {
