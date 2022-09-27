@@ -171,7 +171,7 @@ const processFile = async (filename: string) => {
   const importPath = path.join(
     '..',
     originalFilename.replace(path.extname(originalFilename), '.ts'),
-  );
+  ).replace('\\', '/');
   // Dynamic imports don't have a type, so add type assertion.
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const triggerSet = (await import(importPath)).default as LooseTriggerSet;

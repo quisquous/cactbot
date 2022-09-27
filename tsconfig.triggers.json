@@ -9,6 +9,6 @@
   },
   "include": [
     "./ui/raidboss/data/",
-    "./types/manifest.d.ts"
+    "./types/manifest.ts"
   ]
 }
