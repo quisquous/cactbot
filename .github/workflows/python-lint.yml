@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v3
         with:
           python-version: '3.7'
 
@@ -31,7 +31,7 @@ jobs:
         run: |
           echo "::set-output name=dir::$(pip cache dir)"
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ${{ steps.pip-dir.outputs.dir }}
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
@@ -51,7 +51,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v3
         with:
           python-version: '3.7'
 
@@ -66,7 +66,7 @@ jobs:
         run: |
           echo "::set-output name=dir::$(pip cache dir)"
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ${{ steps.pip-dir.outputs.dir }}
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}

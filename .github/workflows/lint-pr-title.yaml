@@ -13,11 +13,11 @@ jobs:
           # force to ci checkout main repo to avoid
           # unexpected PR code to be executed with out github token
           ref: main
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: '16'
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}

@@ -17,12 +17,12 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up msbuild
-        uses: microsoft/setup-msbuild@v1.0.2
-      - uses: actions/setup-node@v2
+        uses: microsoft/setup-msbuild@v1.1.1
+      - uses: actions/setup-node@v3
         with:
           node-version: '16'
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         id: npm-cache
         with:
           path: ~/.npm
@@ -41,7 +41,7 @@ jobs:
         shell: bash
       - name: Check dependencies cache
         id: cache-dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ./plugin/ThirdParty
           key: ${{ runner.os }}-cactbot-${{ hashFiles('./util/fetch_deps.ts', './util/DEPS.json5') }}
