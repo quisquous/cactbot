@@ -28,7 +28,7 @@ jobs:
     if: needs.check-gh-pages.outputs.found == 'true'
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-js
+      - uses: ./.github/actions/setup-js-env
 
       - name: Build
         run: |

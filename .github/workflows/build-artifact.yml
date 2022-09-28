@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-js
+      - uses: ./.github/actions/setup-js-env
 
       - name: Set artifact name
         shell: bash

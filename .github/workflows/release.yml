@@ -19,7 +19,7 @@ jobs:
       - name: Set up msbuild
         uses: microsoft/setup-msbuild@v1.1.1
 
-      - uses: ./.github/actions/setup-js
+      - uses: ./.github/actions/setup-js-env
 
       # Gets the numerical output of the git tag and assigns it to an environment variable
       - name: Get Tag Version

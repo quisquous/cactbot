@@ -13,7 +13,7 @@ jobs:
           # force to ci checkout main repo to avoid
           # unexpected PR code to be executed with out github token
           ref: main
-      - uses: ./.github/actions/setup-js
+      - uses: ./.github/actions/setup-js-env
 
       - name: Run Label Script
         run: |
