@@ -34,7 +34,6 @@
     "./webpack"
   ],
   "exclude": [
-    "./node_modules",
     "./eslint",
     "./.eslintrc.cjs",
     "./dist",
