@@ -13,7 +13,9 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Set up msbuild
         uses: microsoft/setup-msbuild@v1.0.2
       - uses: actions/setup-node@v2

@@ -26,7 +26,7 @@ jobs:
     needs: check-triggers
     if: needs.check-triggers.outputs.found == 'true'
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
