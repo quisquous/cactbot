@@ -39,6 +39,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          force_orphan: true
           user_name: "github-actions"
           user_email: "github-actions@github.com"
           commit_message: "gh-pages build: ${{ github.event.head_commit.message }}"
