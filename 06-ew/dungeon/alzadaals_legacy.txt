@@ -20,7 +20,7 @@ hideall "--sync--"
 
 47.6 "Tentacle Dig" sync / 1[56]:[^:]*:Ambujam:6F59:/
 59.8 "--sync--" sync / 1[56]:[^:]*:Scarlet Tentacle:6F5B:/
-60.2 "Corrosive Venom/Toxic Shower" sync / 1[56]:[^:]*:Ambujam:(6F5C|71E6):/
+60.2 "Corrosive Venom/Toxin Shower" sync / 1[56]:[^:]*:Ambujam:(6F5C|71E6):/
 66.0 "--sync--" sync / 1[56]:[^:]*:Ambujam:6F5A:/ window 66,20
 76.3 "Corrosive Fountain/Toxic Fountain 1" sync / 1[56]:[^:]*:Ambujam:(731A|731B|7374):/
 79.3 "Corrosive Fountain/Toxic Fountain 2" sync / 1[56]:[^:]*:Ambujam:(731A|731B|7374):/
@@ -28,7 +28,7 @@ hideall "--sync--"
 104.4 "Big Wave" sync / 1[56]:[^:]*:Ambujam:6F60:/
 
 113.8 "Tentacle Dig" sync / 1[56]:[^:]*:Ambujam:6F59:/ window 30,30 jump 47.6
-126.4 "Corrosive Venom/Toxic Shower"
+126.4 "Corrosive Venom/Toxin Shower"
 142.5 "Corrosive Fountain/Toxic Fountain 1"
 145.5 "Corrosive Fountain/Toxic Fountain 2"
 146.8 "Corrosive Fountain/Toxic Fountain 3"

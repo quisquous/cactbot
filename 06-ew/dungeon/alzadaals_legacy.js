@@ -316,6 +316,7 @@ Options.Triggers.push({
         'Spin Out': '사방팔방 팽이돌리기',
         'Tentacle Dig': '촉수 잠행',
         'Toxin Shower': '독액 뿌리기',
+        'Toxic Fountain': '독액 분출',
         'Wild Weave': '마력천 산개',
       },
     },
