@@ -28,7 +28,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'SephirotUn Tiferet',
       regex: /Tiferet/,
       beforeSeconds: 4,
-      suppressSeconds: 2, // Timeline syncs can otherwise make this extra-noisy
+      suppressSeconds: 5, // Timeline syncs can otherwise make this extra-noisy
       response: Responses.aoe(),
     },
     {
@@ -55,7 +55,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Ein Sof Ratzon',
       regex: /Ein Sof \(1 puddle\)/,
-      infoText: (_data, _matches, output) => output.text!(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bait toward puddle',
@@ -208,21 +208,38 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.moveAway('alarm'), // This *will* kill if a non-tank takes 2+.
     },
     {
-      // 3ED is Force Against Might orange, 3EE is Force Against Magic, green.
-      id: 'SephirotUn Force Against Gain',
+      id: 'SephirotUn Force Against Might',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['3ED', '3EE'] }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '3ED' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => output.text!({ force: matches.effect }),
       run: (data, matches) => data.force = matches.effectId,
       outputStrings: {
         text: {
-          en: '${force} on you',
-          de: '${force} auf dir',
-          fr: '${force} sur vous',
-          ja: '自分に${force}',
-          cn: '${force}点名',
-          ko: '나에게 ${force}',
+          en: 'Orange (${force})',
+          de: '${force} auf dir', // FIXME
+          fr: '${force} sur vous', // FIXME
+          ja: '自分に${force}', // FIXME
+          cn: '${force}点名', // FIXME
+          ko: '나에게 ${force}', // FIXME
+        },
+      },
+    },
+    {
+      id: 'SephirotUn Force Against Magic',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: '3EE' }),
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, matches, output) => output.text!({ force: matches.effect }),
+      run: (data, matches) => data.force = matches.effectId,
+      outputStrings: {
+        text: {
+          en: 'Green (${force})',
+          de: '${force} auf dir', // FIXME
+          fr: '${force} sur vous', // FIXME
+          ja: '自分に${force}', // FIXME
+          cn: '${force}点名', // FIXME
+          ko: '나에게 ${force}', // FIXME
         },
       },
     },
@@ -339,6 +356,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0028', capture: false }),
       delaySeconds: 0.5,
+      suppressSeconds: 1,
       alertText: (data, _matches, output) => {
         if (data.shakerTargets?.includes(data.me))
           return output.shakerTarget!();
@@ -377,7 +395,7 @@ const triggerSet: TriggerSet<Data> = {
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Kill Storm of Words or die',
+          en: 'Kill Storm of Words',
           de: 'Wörtersturm besiegen',
           fr: 'Tuez Tempête de mots ou mourrez',
           ja: 'ストーム・オブ・ワードから攻撃',
