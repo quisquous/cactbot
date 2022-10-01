@@ -4,6 +4,8 @@
 //   7A7 = About Face
 //   7A8 = Left Face
 //   7A9 = Right Face
+// Empty Refrain = 6AC3 / 6AC9, 12 second cast followed by 1 second cast of the other
+//   damage is the same ability id
 Options.Triggers.push({
   zoneId: ZoneId.UltimaThule,
   triggers: [
@@ -109,34 +111,6 @@ Options.Triggers.push({
       // An unknown single-target ability that preceeds Vanishing Ray with no cast bar.
       netRegex: NetRegexes.ability({ id: '6AC5', source: 'Narrow-rift', capture: false }),
       response: Responses.getBehind(),
-    },
-    {
-      id: 'Hunt Narrow-rift Empty Refrain Out First',
-      type: 'StartsUsing',
-      // This is followed by a very short 6AC9 castbar.
-      netRegex: NetRegexes.startsUsing({ id: '6AC3', source: 'Narrow-rift', capture: false }),
-      response: Responses.getOutThenIn(),
-    },
-    {
-      id: 'Hunt Narrow-rift Empty Refrain In Second',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6AC3', source: 'Narrow-rift', capture: false }),
-      suppressSeconds: 1,
-      response: Responses.getIn('info'),
-    },
-    {
-      id: 'Hunt Narrow-rift Empty Refrain In First',
-      type: 'StartsUsing',
-      // This is followed by a very short 6AC7 castbar.
-      netRegex: NetRegexes.startsUsing({ id: '6AC4', source: 'Narrow-rift', capture: false }),
-      response: Responses.getInThenOut(),
-    },
-    {
-      id: 'Hunt Narrow-rift Empty Refrain Out Second',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6AC4', source: 'Narrow-rift', capture: false }),
-      suppressSeconds: 1,
-      response: Responses.getOut('info'),
     },
   ],
   timelineReplace: [
