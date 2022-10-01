@@ -118,11 +118,6 @@ const lint = async (filename: string, lines: string[]) => {
 const tsc = tsNode.create({
   transpileOnly: true,
   project: path.join(__dirname, '../tsconfig.json'),
-  // compilerOptions: {
-  //   target: 'ES2020',
-  //   declaration: false,
-  //   declarationMap: false,
-  // },
 });
 
 const processFile = async (originalFilename: string) => {
