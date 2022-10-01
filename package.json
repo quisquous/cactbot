@@ -1,6 +1,6 @@
 {
   "name": "cactbot",
-  "version": "0.27.12",
+  "version": "0.27.14",
   "license": "Apache-2.0",
   "type": "module",
   "types": "./types",
@@ -46,7 +46,7 @@
     "@types/markdown-magic": "^1.0.1",
     "@types/mini-css-extract-plugin": "^1.4.3",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^15.12.2",
+    "@types/node": "^18.7.23",
     "@types/node-fetch": "^2.5.10",
     "@types/tar-fs": "^2.0.0",
     "@types/webpack": "^5.28.0",

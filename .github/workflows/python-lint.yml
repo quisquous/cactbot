@@ -18,25 +18,12 @@ jobs:
   black:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v3
         with:
           python-version: '3.7'
-
-      # Cache pip dependencies
-      # See also: https://github.com/actions/cache/blob/main/examples.md#python---pip
-      - name: Get pip cache dir
-        id: pip-dir
-        run: |
-          echo "::set-output name=dir::$(pip cache dir)"
-
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.pip-dir.outputs.dir }}
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          cache: 'pip'
 
       - name: Install Dependencies
         run: |
@@ -49,29 +36,16 @@ jobs:
   pylint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v3
         with:
           python-version: '3.7'
+          cache: 'pip'
 
       - name: Add Custom Problem Matcher
         run: |
           echo "::add-matcher::.github/matchers/${{ github.job }}.json"
-
-      # Cache pip dependencies
-      # See also: https://github.com/actions/cache/blob/main/examples.md#python---pip
-      - name: Get pip cache dir
-        id: pip-dir
-        run: |
-          echo "::set-output name=dir::$(pip cache dir)"
-
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.pip-dir.outputs.dir }}
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
 
       - name: Install Dependencies
         run: |

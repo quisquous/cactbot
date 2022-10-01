@@ -8,22 +8,12 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
         with:
-          node-version: '16'
-
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install Dependencies
-        run: |
-          npm ci
+          # force to ci checkout main repo to avoid
+          # unexpected PR code to be executed with out github token
+          ref: main
+      - uses: ./.github/actions/setup-js-env
 
       - name: Run Label Script
         run: |

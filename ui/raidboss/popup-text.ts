@@ -833,6 +833,9 @@ export class PopupText {
 
     this.inCombat = inCombat;
 
+    // Update in combat
+    this.data = this.getDataObject();
+
     if (!this.resetWhenOutOfCombat)
       return;
 
