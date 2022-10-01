@@ -539,7 +539,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Norden raus',
           fr: 'Nord Extérieur',
           ja: '北の外側',
-          cn: '北 外侧',
+          cn: '北 外侧',
           ko: '북쪽 바깥',
         },
         insideNorth: {
