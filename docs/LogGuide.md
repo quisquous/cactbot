@@ -2123,17 +2123,21 @@ ACT Log Line Examples:
 The `instance` parameter is identical to `instance` in [actor control line)](#line33). 
 See above for more information.
 
-The `id` parameter identifies the visual effect that will be rendered in the game.  For example,
+The `id` parameter identifies the visual effect that will be rendered in the game.
+For example,
 in P6S, id '00020001' equates to a '+'-shaped tile and id '00400020' equates to an 'x'-shaped tile.  
-Ids do not appear to be unique across multiple instances: as the above examples illustrate, id 
-'00020001' is used in both P5S and P6S to render completely different visual effects.
+Ids do not appear to be unique across multiple instances:
+as the above examples illustrate
+id '00020001' is used in both P5S and P6S to render completely different visual effects.
 
-That said, it does appear from initial analysis that when a map effect is rendered, a second MapEffect
-line with an id of '00080004' is sent at the conclusion of the effect, which may correspond to removal
-of the effect.  This appears to be consistent behavior across several fights so far, but more information
-is needed.
+That said,
+it does appear from initial analysis that when a map effect is rendered,
+a second MapEffect line with an id of '00080004' is sent at the conclusion of the effect,
+which may correspond to removal of the effect.
+This appears to be consistent behavior across several fights so far,
+but more information is needed.
 
-The `location` parameter indicates the location in the current instance where the effect will be
-rendered.  Locations are not consistent across instances and appear to be unique to each instance.
-E.g., a location of '05' in P6S corresponds to one of the 16 tiles on the map floor, whereas the '05'
-location in P5S appears to correspond to different map coordinates.
+The `location` parameter indicates the location in the current instance where the effect will be rendered.
+Locations are not consistent across instances and appear to be unique to each instance.
+E.g., a location of '05' in P6S corresponds to one of the 16 tiles on the map floor,
+whereas the '05' location in P5S appears to correspond to different map coordinates.
