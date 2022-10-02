@@ -2072,13 +2072,13 @@ These are lines emitted directly by the ffxiv plugin when something goes wrong.
 
 ### Line 257 (0x101): MapEffect
 
-This message is sent to cause a specific visual effect to render 
+This message is sent to cause a specific visual effect to render
 in the game client during instanced content.
 MapEffect lines are not tied to any particular actor or action
 but may provide visual-based information about how an upcoming mechanic will resolve.
 
 For example,
-after Aetheric Polyominoid or Polyominoid Sigma casts in P6S, 
+after Aetheric Polyominoid or Polyominoid Sigma casts in P6S,
 MapEffect messages are sent to cause the game client to render  '+' and 'x' effects on specific map tiles,
 indicating to the player which tiles will later be rendered unsafe by Polyominous Dark IV.
 
@@ -2120,12 +2120,12 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END (logLines:type=MapEffect&lang=en-US) -->
 
-The `instance` parameter is identical to `instance` in [actor control line)](#line33). 
+The `instance` parameter is identical to `instance` in [actor control line)](#line33).
 See above for more information.
 
 The `id` parameter identifies the visual effect that will be rendered in the game.
 For example,
-in P6S, id '00020001' equates to a '+'-shaped tile and id '00400020' equates to an 'x'-shaped tile.  
+in P6S, id '00020001' equates to a '+'-shaped tile and id '00400020' equates to an 'x'-shaped tile.
 Ids do not appear to be unique across multiple instances:
 as the above examples illustrate
 id '00020001' is used in both P5S and P6S to render completely different visual effects.
