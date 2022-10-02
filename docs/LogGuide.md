@@ -2073,14 +2073,14 @@ These are lines emitted directly by the ffxiv plugin when something goes wrong.
 ### Line 257 (0x101): MapEffect
 
 This message is sent to cause a specific visual effect to render 
-in the game client during instanced content. MapEffect lines are not 
-tied to any particular actor or action, but may provide visual-based 
-information about how an upcoming mechanic will resolve.
+in the game client during instanced content.
+MapEffect lines are not tied to any particular actor or action
+but may provide visual-based information about how an upcoming mechanic will resolve.
 
-For example, after Aetheric Polyominoid or Polyominoid Sigma casts in P6S, 
-MapEffect messages are sent to cause the game client to render  '+' and 'x' 
-effects on specific map tiles, indicating to the player which tiles will 
-later be rendered unsafe by Polyominous Dark IV.
+For example,
+after Aetheric Polyominoid or Polyominoid Sigma casts in P6S, 
+MapEffect messages are sent to cause the game client to render  '+' and 'x' effects on specific map tiles,
+indicating to the player which tiles will later be rendered unsafe by Polyominous Dark IV.
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=MapEffect&lang=en-US) -->
 
