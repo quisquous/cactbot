@@ -9,7 +9,8 @@ for folks who want to write ACT triggers for ff14.
 This guide was last updated for:
 
 - [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 5.58
-- [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) Patch 2.6.1.6
+- [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) Patch 2.6.6.7
+- [OverlayPlugin](https://github.com/OverlayPlugin/OverlayPlugin/releases) Patch 0.19.5
 
 ## TOC
 
@@ -342,7 +343,7 @@ so this link will give you more information about it:
 
 This works for both players and enemies, abilities and spells.
 
-## ACT Log Line Overview
+### ACT Log Line Overview
 
 Here's an example of a typical ACT log line:
 `[12:01:48.293] 21:80034E29:40000001:E10:00:00:00`.
@@ -359,6 +360,8 @@ See the following sections that describe each line.
 
 Many line types can have missing combatant names.
 [ChangePrimaryPlayer](#line02) and [AddCombatant](#line03) lines should always have combatant names.
+
+## FFXIV Plugin Log Lines
 
 <a name="line00"></a>
 
@@ -2068,6 +2071,23 @@ ACT log lines are blank for this type.
 
 These are lines emitted directly by the ffxiv plugin when something goes wrong.
 
+## OverlayPlugin Log Lines
+
+If you are using OverlayPlugin,
+it will emit extra log lines that are not part of the ffxiv plugin.
+The ids of these lines start at 256 and go up.
+Any id between 0-255 is reserved for the ffxiv plugin.
+
+<a name="line256"></a>
+
+### Line 256 (0x100): LineRegistration
+
+This line is emitted into logs when any custom logs are registered with OverlayPlugin.
+This is so that it is obvious which log lines and versions to expect for a given log file.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=LineRegistration&lang=en-US) -->
+<!-- AUTO-GENERATED-CONTENT:END (logLines:type=LineRegistration&lang=en-US) -->
+
 <a name="line257"></a>
 
 ### Line 257 (0x101): MapEffect
@@ -2081,6 +2101,12 @@ For example,
 after Aetheric Polyominoid or Polyominoid Sigma casts in P6S,
 MapEffect messages are sent to cause the game client to render  '+' and 'x' effects on specific map tiles,
 indicating to the player which tiles will later be rendered unsafe by Polyominous Dark IV.
+
+This can also include things like:
+
+- meteor graphics / bridges breaking in Amaurot
+- the eye location in DSR
+- P8S torch effects
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=MapEffect&lang=en-US) -->
 
@@ -2141,3 +2167,25 @@ The `location` parameter indicates the location in the current instance where th
 Locations are not consistent across instances and appear to be unique to each instance.
 E.g., a location of '05' in P6S corresponds to one of the 16 tiles on the map floor,
 whereas the '05' location in P5S appears to correspond to different map coordinates.
+
+<a name="line258"></a>
+
+### Line 258 (0x102): FateDirector
+
+This line indicates changes in fates on the map.
+This includes when fates are added,
+removed,
+or their progress has changed.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=FateDirector&lang=en-US) -->
+<!-- AUTO-GENERATED-CONTENT:END (logLines:type=FateDirector&lang=en-US) -->
+
+<a name="line259"></a>
+
+### Line 259 (0x103): CEDirector
+
+This line is like [FateControl](#line258),
+but is for Critical Engagements in Bozja.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=CEDirector&lang=en-US) -->
+<!-- AUTO-GENERATED-CONTENT:END (logLines:type=CEDirector&lang=en-US) -->
