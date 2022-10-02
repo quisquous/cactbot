@@ -915,7 +915,8 @@ const latestLogDefinitions = {
       data0: 5,
       data1: 6,
     },
-    isUnknown: true,
+    canAnonymize: true,
+    isUnknown: false,
     firstOptionalField: undefined,
   },
   None: {
