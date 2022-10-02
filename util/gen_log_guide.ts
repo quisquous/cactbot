@@ -451,6 +451,19 @@ const lineDocs: LineDocs = {
       ],
     },
   },
+  MapEffect: {
+    regexes: {
+      network: NetRegexes.mapEffect({ capture: true }).source,
+      logLine: Regexes.mapEffect({ capture: true }).source,
+    },
+    examples: {
+      'en-US': [
+        '257|2022-09-27T18:03:45.2834013-07:00|800375A9|00020001|09|F3|0000|de00c57494e85e79',
+        '257|2022-09-27T18:06:07.7744035-07:00|800375A9|00400020|01|00|0000|72933fe583158786',
+        '257|2022-09-29T20:07:48.7330170-07:00|800375A5|00020001|05|00|0000|28c0449a8d0efa7d',
+      ],
+    },
+  },
 } as const;
 
 type LogGuideOptions = {

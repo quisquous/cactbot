@@ -393,6 +393,13 @@ export default class Regexes {
   }
 
   /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-257-0x101-mapeffect
+   */
+  static mapEffect(params?: NetParams['MapEffect']): CactbotBaseRegExp<'MapEffect'> {
+    return parseHelper(params, 'MapEffect', defaultParams('MapEffect', Regexes.logVersion));
+  }
+
+  /**
    * Helper function for building named capture group
    */
   static maybeCapture(

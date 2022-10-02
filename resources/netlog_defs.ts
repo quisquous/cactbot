@@ -896,6 +896,27 @@ const latestLogDefinitions = {
     canAnonymize: false,
     firstOptionalField: undefined,
   },
+  MapEffect: {
+    type: '257',
+    name: 'MapEffect',
+    source: 'OverlayPlugin',
+    messageType: '257',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      instance: 2,
+      id: 3,
+      // values for the location field seem to vary between instances
+      // (e.g. a location of '08' in P5S does not appear to be the same location in P5S as in P6S)
+      // but this field does appear to consistently contain position info for the effect rendering
+      location: 4,
+      data0: 5,
+      data1: 6,
+    },
+    canAnonymize: true,
+    isUnknown: false,
+    firstOptionalField: undefined,
+  },
   None: {
     type: '[0-9]+',
     name: 'None',

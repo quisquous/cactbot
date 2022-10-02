@@ -141,6 +141,10 @@ This guide was last updated for:
   - [Line 252 (0xFC): PacketDump](#line-252-0xfc-packetdump)
   - [Line 253 (0xFD): Version](#line-253-0xfd-version)
   - [Line 254 (0xFE): Error](#line-254-0xfe-error)
+  - [Line 257 (0x100): MapEffect](#line-257-0x101-mapeffect)
+    - [Structure](#structure-27)
+    - [Regexes](#regexes-18)
+    - [Examples](#examples-27)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Data Flow
@@ -2063,3 +2067,77 @@ ACT log lines are blank for this type.
 ### Line 254 (0xFE): Error
 
 These are lines emitted directly by the ffxiv plugin when something goes wrong.
+
+<a name="line257"></a>
+
+### Line 257 (0x101): MapEffect
+
+This message is sent to cause a specific visual effect to render
+in the game client during instanced content.
+MapEffect lines are not tied to any particular actor or action
+but may provide visual-based information about how an upcoming mechanic will resolve.
+
+For example,
+after Aetheric Polyominoid or Polyominoid Sigma casts in P6S,
+MapEffect messages are sent to cause the game client to render  '+' and 'x' effects on specific map tiles,
+indicating to the player which tiles will later be rendered unsafe by Polyominous Dark IV.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=MapEffect&lang=en-US) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+257|[timestamp]|[instance]|[id]|[location]|[data0]|[data1]
+
+ACT Log Line Structure:
+[timestamp] 257 101:[instance]:[id]:[location]:[data0]:[data1]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>257)\|(?<timestamp>[^|]*)\|(?<instance>[^|]*)\|(?<id>[^|]*)\|(?<location>[^|]*)\|(?<data0>[^|]*)\|(?<data1>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) 257 (?<type>101):(?<instance>[^:]*):(?<id>[^:]*):(?<location>[^:]*):(?<data0>[^:]*):(?<data1>[^:]*)(?:$|:)
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+257|2022-09-27T18:03:45.2834013-07:00|800375A9|00020001|09|F3|0000|de00c57494e85e79
+257|2022-09-27T18:06:07.7744035-07:00|800375A9|00400020|01|00|0000|72933fe583158786
+257|2022-09-29T20:07:48.7330170-07:00|800375A5|00020001|05|00|0000|28c0449a8d0efa7d
+
+ACT Log Line Examples:
+[18:03:45.283] 257 101:800375A9:00020001:09:F3:0000
+[18:06:07.774] 257 101:800375A9:00400020:01:00:0000
+[20:07:48.733] 257 101:800375A5:00020001:05:00:0000
+```
+
+<!-- AUTO-GENERATED-CONTENT:END (logLines:type=MapEffect&lang=en-US) -->
+
+The `instance` parameter is identical to `instance` in [actor control line)](#line33).
+See above for more information.
+
+The `id` parameter identifies the visual effect that will be rendered in the game.
+For example,
+in P6S, id '00020001' equates to a '+'-shaped tile and id '00400020' equates to an 'x'-shaped tile.
+Ids do not appear to be unique across multiple instances:
+as the above examples illustrate
+id '00020001' is used in both P5S and P6S to render completely different visual effects.
+
+That said,
+it does appear from initial analysis that when a map effect is rendered,
+a second MapEffect line with an id of '00080004' is sent at the conclusion of the effect,
+which may correspond to removal of the effect.
+This appears to be consistent behavior across several fights so far,
+but more information is needed.
+
+The `location` parameter indicates the location in the current instance where the effect will be rendered.
+Locations are not consistent across instances and appear to be unique to each instance.
+E.g., a location of '05' in P6S corresponds to one of the 16 tiles on the map floor,
+whereas the '05' location in P5S appears to correspond to different map coordinates.
