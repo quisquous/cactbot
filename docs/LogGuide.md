@@ -141,7 +141,7 @@ This guide was last updated for:
   - [Line 252 (0xFC): PacketDump](#line-252-0xfc-packetdump)
   - [Line 253 (0xFD): Version](#line-253-0xfd-version)
   - [Line 254 (0xFE): Error](#line-254-0xfe-error)
-    - [Line 257 (0x100): MapEffect](#line-257-0x101-mapeffect)
+  - [Line 257 (0x100): MapEffect](#line-257-0x101-mapeffect)
     - [Structure](#structure-27)
     - [Regexes](#regexes-18)
     - [Examples](#examples-27)
@@ -2128,7 +2128,7 @@ in P6S, id '00020001' equates to a '+'-shaped tile and id '00400020' equates to 
 Ids do not appear to be unique across multiple instances: as the above examples illustrate, id 
 '00020001' is used in both P5S and P6S to render completely different visual effects.
 
-That said, it does appear from early analysis that when a map effect is rendered, a second MapEffect
+That said, it does appear from initial analysis that when a map effect is rendered, a second MapEffect
 line with an id of '00080004' is sent at the conclusion of the effect, which may correspond to removal
 of the effect.  This appears to be consistent behavior across several fights so far, but more information
 is needed.
@@ -2136,4 +2136,4 @@ is needed.
 The `location` parameter indicates the location in the current instance where the effect will be
 rendered.  Locations are not consistent across instances and appear to be unique to each instance.
 E.g., a location of '05' in P6S corresponds to one of the 16 tiles on the map floor, whereas the '05'
-location in P5S appears to be at different map coordinates.
+location in P5S appears to correspond to different map coordinates.
