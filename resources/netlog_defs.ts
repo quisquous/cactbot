@@ -899,7 +899,7 @@ const latestLogDefinitions = {
   MapEffect: {
     type: '257',
     name: 'MapEffect',
-    source: 'FFXIV_ACT_Plugin',
+    source: 'OverlayPlugin',
     // in the 2.6.6.7 beta, ACT appears to post these messages with the int value instead of
     // a string for messageType, but need to confirm once build is final.
     messageType: '257',
