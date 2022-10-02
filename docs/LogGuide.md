@@ -27,7 +27,8 @@ This guide was last updated for:
   - [Object/Actor/Entity/Mob/Combatant](#objectactorentitymobcombatant)
   - [Object ID](#object-id)
   - [Ability ID](#ability-id)
-- [ACT Log Line Overview](#act-log-line-overview)
+  - [ACT Log Line Overview](#act-log-line-overview)
+- [FFXIV Plugin Log Lines](#ffxiv-plugin-log-lines)
   - [Line 00 (0x00): LogLine](#line-00-0x00-logline)
     - [Structure](#structure)
     - [Regexes](#regexes)
@@ -142,10 +143,20 @@ This guide was last updated for:
   - [Line 252 (0xFC): PacketDump](#line-252-0xfc-packetdump)
   - [Line 253 (0xFD): Version](#line-253-0xfd-version)
   - [Line 254 (0xFE): Error](#line-254-0xfe-error)
-  - [Line 257 (0x100): MapEffect](#line-257-0x101-mapeffect)
+- [OverlayPlugin Log Lines](#overlayplugin-log-lines)
+  - [Line 256 (0x100): LineRegistration](#line-256-0x100-lineregistration)
     - [Structure](#structure-27)
-    - [Regexes](#regexes-18)
     - [Examples](#examples-27)
+  - [Line 257 (0x101): MapEffect](#line-257-0x101-mapeffect)
+    - [Structure](#structure-28)
+    - [Regexes](#regexes-18)
+    - [Examples](#examples-28)
+  - [Line 258 (0x102): FateDirector](#line-258-0x102-fatedirector)
+    - [Structure](#structure-29)
+    - [Examples](#examples-29)
+  - [Line 259 (0x103): CEDirector](#line-259-0x103-cedirector)
+    - [Structure](#structure-30)
+    - [Examples](#examples-30)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Data Flow
@@ -2086,6 +2097,31 @@ This line is emitted into logs when any custom logs are registered with OverlayP
 This is so that it is obvious which log lines and versions to expect for a given log file.
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=LineRegistration&lang=en-US) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+256|[timestamp]|[id]|[source]|[version]
+
+ACT Log Line Structure:
+[timestamp] 256 100:[id]:[source]:[version]
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+256|2022-10-02T10:15:31.5635165-07:00|257|OverlayPlugin|MapEffect|1|594b867ee2199369
+256|2022-10-02T10:15:31.5645159-07:00|258|OverlayPlugin|FateDirector|1|102a238b2495bfd0
+256|2022-10-02T10:15:31.5655143-07:00|259|OverlayPlugin|CEDirector|1|35546b48906c41b2
+
+ACT Log Line Examples:
+[10:15:31.563] 256 100:257:OverlayPlugin:MapEffect:1
+[10:15:31.564] 256 100:258:OverlayPlugin:FateDirector:1
+[10:15:31.565] 256 100:259:OverlayPlugin:CEDirector:1
+```
+
 <!-- AUTO-GENERATED-CONTENT:END (logLines:type=LineRegistration&lang=en-US) -->
 
 <a name="line257"></a>
@@ -2178,6 +2214,31 @@ removed,
 or their progress has changed.
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=FateDirector&lang=en-US) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+258|[timestamp]|[category]|[?]|[param1]|[param2]|[param3]|[param4]|[param5]|[param6]
+
+ACT Log Line Structure:
+[timestamp] 258 102:[category]:[?]:[param1]:[param2]:[param3]:[param4]:[param5]:[param6]
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+258|2022-09-19T17:25:59.5582137-07:00|Add|E601|000000DE|00000000|00000000|00000000|00000000|00000000|00000000|c7fd9f9aa7f56d4d
+258|2022-08-13T19:46:54.6179420-04:00|Update|203A|00000287|00000000|00000000|00000000|00000000|00000000|6E756F63|bd60bac0189b571e
+258|2022-09-24T12:51:47.5867309-07:00|Remove|0000|000000E2|00000000|00000000|00000000|00000000|00000000|00007FF9|043b821dbfe608c5
+
+ACT Log Line Examples:
+[17:25:59.558] 258 102:Add:E601:000000DE:00000000:00000000:00000000:00000000:00000000:00000000
+[19:46:54.617] 258 102:Update:203A:00000287:00000000:00000000:00000000:00000000:00000000:6E756F63
+[12:51:47.586] 258 102:Remove:0000:000000E2:00000000:00000000:00000000:00000000:00000000:00007FF9
+```
+
 <!-- AUTO-GENERATED-CONTENT:END (logLines:type=FateDirector&lang=en-US) -->
 
 <a name="line259"></a>
@@ -2188,4 +2249,29 @@ This line is like [FateControl](#line258),
 but is for Critical Engagements in Bozja.
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=CEDirector&lang=en-US) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+259|[timestamp]|[popTime]|[timeRemaining]|[?]|[numPlayers]|[status]|[?]|[progress]
+
+ACT Log Line Structure:
+[timestamp] 259 103:[popTime]:[timeRemaining]:[?]:[numPlayers]:[status]:[?]:[progress]
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+259|2022-09-19T18:09:35.7012951-07:00|632912D5|0000|0000|07|01|02|00|00|7F|00|00|4965d513cc7a6dd3
+259|2022-09-19T18:09:39.9541413-07:00|63291786|04B0|0000|07|01|03|00|00|00|00|00|6c18aa16678911ca
+259|2022-09-19T18:09:46.7556709-07:00|63291786|04AA|0000|07|01|03|00|02|7F|00|00|5bf224d56535513a
+
+ACT Log Line Examples:
+[18:09:35.701] 259 103:632912D5:0000:0000:07:01:02:00:00:7F:00:00
+[18:09:39.954] 259 103:63291786:04B0:0000:07:01:03:00:00:00:00:00
+[18:09:46.755] 259 103:63291786:04AA:0000:07:01:03:00:02:7F:00:00
+```
+
 <!-- AUTO-GENERATED-CONTENT:END (logLines:type=CEDirector&lang=en-US) -->
