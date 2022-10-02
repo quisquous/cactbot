@@ -896,6 +896,28 @@ const latestLogDefinitions = {
     canAnonymize: false,
     firstOptionalField: undefined,
   },
+  MapEffect: {
+    type: '257',
+    name: 'MapEffect',
+    source: 'FFXIV_ACT_Plugin',
+    // in the 2.7.7.7 beta, ACT appears to post these messages with the int value instead of
+    // a string for messageType, but need to confirm once build is final
+    messageType: '257',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      instance: 2,
+      id: 3,
+      // values for the location field seem to vary between instances
+      // (e.g. a location of '08' in P5S does not appear to be the same location in P5S as in P6S)
+      // but this field does appear to consistently contain position info for the effect rendering
+      location: 4,
+      data0: 5,
+      data1: 6,
+    },
+    isUnknown: true,
+    firstOptionalField: undefined,
+  },
   None: {
     type: '[0-9]+',
     name: 'None',
