@@ -2245,7 +2245,7 @@ ACT Log Line Examples:
 
 ### Line 259 (0x103): CEDirector
 
-This line is like [FateControl](#line258),
+This line is like [FateDirector](#line258),
 but is for Critical Engagements in Bozja.
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=CEDirector&lang=en-US) -->
