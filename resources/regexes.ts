@@ -99,9 +99,12 @@ const parseHelper = <T extends LogDefinitionTypes>(
 
   // Build the regex from the fields.
   const prefix = defKey !== 'Ability' ? logDefinitions[defKey].messageType : abilityMessageType;
-  const hexCode = defKey !== 'Ability'
-    ? `00${parseInt(logDefinitions[defKey].type).toString(16)}`.slice(-2).toUpperCase()
-    : abilityHexCode;
+
+  // Hex codes are a minimum of two characters.  Abilities are special because
+  // they need to support both 0x15 and 0x16.
+  const typeAsHex = parseInt(logDefinitions[defKey].type).toString(16).toUpperCase();
+  const defaultHexCode = typeAsHex.length < 2 ? `00${typeAsHex}`.slice(-2) : typeAsHex;
+  const hexCode = defKey !== 'Ability' ? defaultHexCode : abilityHexCode;
 
   let str = '';
   if (capture)
