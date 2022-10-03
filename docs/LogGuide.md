@@ -2232,20 +2232,20 @@ This can also include things like:
 
 ```log
 Network Log Line Structure:
-257|[timestamp]|[instance]|[id]|[location]|[data0]|[data1]
+257|[timestamp]|[instance]|[flags]|[location]|[data0]|[data1]
 
 ACT Log Line Structure:
-[timestamp] 257 101:[instance]:[id]:[location]:[data0]:[data1]
+[timestamp] 257 101:[instance]:[flags]:[location]:[data0]:[data1]
 ```
 
 #### Regexes
 
 ```log
 Network Log Line Regex:
-^(?<type>257)\|(?<timestamp>[^|]*)\|(?<instance>[^|]*)\|(?<id>[^|]*)\|(?<location>[^|]*)\|(?<data0>[^|]*)\|(?<data1>[^|]*)\|
+^(?<type>257)\|(?<timestamp>[^|]*)\|(?<instance>[^|]*)\|(?<flags>[^|]*)\|(?<location>[^|]*)\|(?<data0>[^|]*)\|(?<data1>[^|]*)\|
 
 ACT Log Line Regex:
-(?<timestamp>^.{14}) 257 (?<type>101):(?<instance>[^:]*):(?<id>[^:]*):(?<location>[^:]*):(?<data0>[^:]*):(?<data1>[^:]*)(?:$|:)
+(?<timestamp>^.{14}) 257 (?<type>101):(?<instance>[^:]*):(?<flags>[^:]*):(?<location>[^:]*):(?<data0>[^:]*):(?<data1>[^:]*)(?:$|:)
 ```
 
 #### Examples
