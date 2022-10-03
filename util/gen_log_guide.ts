@@ -3,7 +3,7 @@ import path from 'path';
 import markdownMagic from 'markdown-magic';
 
 import logDefinitions, { LogDefinitionTypes } from '../resources/netlog_defs';
-import NetRegexes from '../resources/netregexes';
+import NetRegexes, { buildRegex } from '../resources/netregexes';
 import { UnreachableCode } from '../resources/not_reached';
 import Regexes from '../resources/regexes';
 import LogRepository from '../ui/raidboss/emulator/data/network_log_converter/LogRepository';
@@ -49,12 +49,14 @@ type ExcludedLineDocs =
 
 type LineDocTypes = Exclude<LogDefinitionTypes, ExcludedLineDocs>;
 
+type LineDocRegex = {
+  network: string;
+  logLine?: string;
+};
+
 type LineDocType = {
   // We can generate `network` type automatically for everything but regex
-  regexes?: {
-    network: string;
-    logLine?: string;
-  };
+  regexes?: LineDocRegex;
   examples: LocaleObject<readonly string[]>;
 };
 
@@ -575,7 +577,10 @@ const config: markdownMagic.Configuration = {
         return line?.convertedLine;
       }).join('\n') ?? '';
 
-      const regexes = lineDoc.regexes;
+      const autoRegex: LineDocRegex = {
+        network: buildRegex(lineType, { capture: true }).source,
+      };
+      const regexes = lineDoc.regexes ?? autoRegex;
 
       ret += `
 #### ${translate(language, titles.structure)}
@@ -589,22 +594,20 @@ ${structureLog}
 \`\`\`
 `;
 
-      if (regexes) {
-        ret += `
+      ret += `
 #### ${translate(language, titles.regexes)}
 
 \`\`\`log
 ${translate(language, titles.networkLogLineRegexes)}
 ${regexes.network}
 `;
-        if (regexes.logLine !== undefined) {
-          ret += `
+      if (regexes.logLine !== undefined) {
+        ret += `
 ${translate(language, titles.actLogLineRegexes)}
 ${regexes.logLine}
 `;
-        }
-        ret += '```\n';
       }
+      ret += '```\n';
 
       ret += `
 #### ${translate(language, titles.examples)}
