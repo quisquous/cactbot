@@ -9,7 +9,8 @@ for folks who want to write ACT triggers for ff14.
 This guide was last updated for:
 
 - [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 5.58
-- [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) Patch 2.6.1.6
+- [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) Patch 2.6.6.7
+- [OverlayPlugin](https://github.com/OverlayPlugin/OverlayPlugin/releases) Patch 0.19.5
 
 ## TOC
 
@@ -26,7 +27,8 @@ This guide was last updated for:
   - [Object/Actor/Entity/Mob/Combatant](#objectactorentitymobcombatant)
   - [Object ID](#object-id)
   - [Ability ID](#ability-id)
-- [ACT Log Line Overview](#act-log-line-overview)
+  - [ACT Log Line Overview](#act-log-line-overview)
+- [FFXIV Plugin Log Lines](#ffxiv-plugin-log-lines)
   - [Line 00 (0x00): LogLine](#line-00-0x00-logline)
     - [Structure](#structure)
     - [Regexes](#regexes)
@@ -38,29 +40,31 @@ This guide was last updated for:
     - [Examples](#examples-1)
   - [Line 02 (0x02): ChangePrimaryPlayer](#line-02-0x02-changeprimaryplayer)
     - [Structure](#structure-2)
+    - [Regexes](#regexes-2)
     - [Examples](#examples-2)
   - [Line 03 (0x03): AddCombatant](#line-03-0x03-addcombatant)
     - [Structure](#structure-3)
-    - [Regexes](#regexes-2)
+    - [Regexes](#regexes-3)
     - [Examples](#examples-3)
   - [Line 04 (0x04): RemoveCombatant](#line-04-0x04-removecombatant)
     - [Structure](#structure-4)
-    - [Regexes](#regexes-3)
+    - [Regexes](#regexes-4)
     - [Examples](#examples-4)
   - [Line 11 (0x0B): PartyList](#line-11-0x0b-partylist)
     - [Structure](#structure-5)
+    - [Regexes](#regexes-5)
     - [Examples](#examples-5)
   - [Line 12 (0x0C): PlayerStats](#line-12-0x0c-playerstats)
     - [Structure](#structure-6)
-    - [Regexes](#regexes-4)
+    - [Regexes](#regexes-6)
     - [Examples](#examples-6)
   - [Line 20 (0x14): NetworkStartsCasting](#line-20-0x14-networkstartscasting)
     - [Structure](#structure-7)
-    - [Regexes](#regexes-5)
+    - [Regexes](#regexes-7)
     - [Examples](#examples-7)
   - [Line 21 (0x15): NetworkAbility](#line-21-0x15-networkability)
     - [Structure](#structure-8)
-    - [Regexes](#regexes-6)
+    - [Regexes](#regexes-8)
     - [Examples](#examples-8)
     - [Ability Flags](#ability-flags)
     - [Ability Damage](#ability-damage)
@@ -69,82 +73,102 @@ This guide was last updated for:
   - [Line 22 (0x16): NetworkAOEAbility](#line-22-0x16-networkaoeability)
   - [Line 23 (0x17): NetworkCancelAbility](#line-23-0x17-networkcancelability)
     - [Structure](#structure-9)
+    - [Regexes](#regexes-9)
     - [Examples](#examples-9)
   - [Line 24 (0x18): NetworkDoT](#line-24-0x18-networkdot)
     - [Structure](#structure-10)
-    - [Regexes](#regexes-7)
+    - [Regexes](#regexes-10)
     - [Examples](#examples-10)
   - [Line 25 (0x19): NetworkDeath](#line-25-0x19-networkdeath)
     - [Structure](#structure-11)
-    - [Regexes](#regexes-8)
+    - [Regexes](#regexes-11)
     - [Examples](#examples-11)
   - [Line 26 (0x1A): NetworkBuff](#line-26-0x1a-networkbuff)
     - [Structure](#structure-12)
-    - [Regexes](#regexes-9)
+    - [Regexes](#regexes-12)
     - [Examples](#examples-12)
   - [Line 27 (0x1B): NetworkTargetIcon (Head Marker)](#line-27-0x1b-networktargeticon-head-marker)
     - [Structure](#structure-13)
-    - [Regexes](#regexes-10)
+    - [Regexes](#regexes-13)
     - [Examples](#examples-13)
     - [Head Marker IDs](#head-marker-ids)
   - [Line 28 (0x1C): NetworkRaidMarker (Floor Marker)](#line-28-0x1c-networkraidmarker-floor-marker)
     - [Structure](#structure-14)
+    - [Regexes](#regexes-14)
     - [Examples](#examples-14)
     - [Combatant Marker Codes](#combatant-marker-codes)
   - [Line 29 (0x1D): NetworkTargetMarker (Player Marker)](#line-29-0x1d-networktargetmarker-player-marker)
     - [Structure](#structure-15)
+    - [Regexes](#regexes-15)
     - [Examples](#examples-15)
     - [Floor Marker Codes](#floor-marker-codes)
   - [Line 30 (0x1E): NetworkBuffRemove](#line-30-0x1e-networkbuffremove)
     - [Structure](#structure-16)
-    - [Regexes](#regexes-11)
+    - [Regexes](#regexes-16)
     - [Examples](#examples-16)
   - [Line 31 (0x1F): NetworkGauge](#line-31-0x1f-networkgauge)
     - [Structure](#structure-17)
+    - [Regexes](#regexes-17)
     - [Examples](#examples-17)
   - [Line 32 (0x20): NetworkWorld](#line-32-0x20-networkworld)
   - [Line 33 (0x21): Network6D (Actor Control)](#line-33-0x21-network6d-actor-control)
     - [Structure](#structure-18)
-    - [Regexes](#regexes-12)
+    - [Regexes](#regexes-18)
     - [Examples](#examples-18)
   - [Line 34 (0x22): NetworkNameToggle](#line-34-0x22-networknametoggle)
     - [Structure](#structure-19)
-    - [Regexes](#regexes-13)
+    - [Regexes](#regexes-19)
     - [Examples](#examples-19)
   - [Line 35 (0x23): NetworkTether](#line-35-0x23-networktether)
     - [Structure](#structure-20)
-    - [Regexes](#regexes-14)
+    - [Regexes](#regexes-20)
     - [Examples](#examples-20)
   - [Line 36 (0x24): LimitBreak](#line-36-0x24-limitbreak)
     - [Structure](#structure-21)
+    - [Regexes](#regexes-21)
     - [Examples](#examples-21)
   - [Line 37 (0x25): NetworkActionSync](#line-37-0x25-networkactionsync)
   - [Line 38 (0x26): NetworkStatusEffects](#line-38-0x26-networkstatuseffects)
     - [Structure](#structure-22)
-    - [Regexes](#regexes-15)
+    - [Regexes](#regexes-22)
     - [Examples](#examples-22)
   - [Line 39 (0x27): NetworkUpdateHP](#line-39-0x27-networkupdatehp)
     - [Structure](#structure-23)
+    - [Regexes](#regexes-23)
     - [Examples](#examples-23)
   - [Line 40 (0x28): Map](#line-40-0x28-map)
     - [Structure](#structure-24)
-    - [Regexes](#regexes-16)
+    - [Regexes](#regexes-24)
     - [Examples](#examples-24)
   - [Line 41 (0x29): SystemLogMessage](#line-41-0x29-systemlogmessage)
     - [Structure](#structure-25)
-    - [Regexes](#regexes-17)
+    - [Regexes](#regexes-25)
     - [Examples](#examples-25)
   - [Line 42 (0x2A): StatusList3](#line-42-0x2a-statuslist3)
     - [Structure](#structure-26)
+    - [Regexes](#regexes-26)
     - [Examples](#examples-26)
   - [Line 251 (0xFB): Debug](#line-251-0xfb-debug)
   - [Line 252 (0xFC): PacketDump](#line-252-0xfc-packetdump)
   - [Line 253 (0xFD): Version](#line-253-0xfd-version)
   - [Line 254 (0xFE): Error](#line-254-0xfe-error)
-  - [Line 257 (0x100): MapEffect](#line-257-0x101-mapeffect)
+- [OverlayPlugin Log Lines](#overlayplugin-log-lines)
+  - [Line 256 (0x100): LineRegistration](#line-256-0x100-lineregistration)
     - [Structure](#structure-27)
-    - [Regexes](#regexes-18)
+    - [Regexes](#regexes-27)
     - [Examples](#examples-27)
+  - [Line 257 (0x101): MapEffect](#line-257-0x101-mapeffect)
+    - [Structure](#structure-28)
+    - [Regexes](#regexes-28)
+    - [Examples](#examples-28)
+  - [Line 258 (0x102): FateDirector](#line-258-0x102-fatedirector)
+    - [Structure](#structure-29)
+    - [Regexes](#regexes-29)
+    - [Examples](#examples-29)
+  - [Line 259 (0x103): CEDirector](#line-259-0x103-cedirector)
+    - [Structure](#structure-30)
+    - [Regexes](#regexes-30)
+    - [Examples](#examples-30)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Data Flow
@@ -342,7 +366,7 @@ so this link will give you more information about it:
 
 This works for both players and enemies, abilities and spells.
 
-## ACT Log Line Overview
+### ACT Log Line Overview
 
 Here's an example of a typical ACT log line:
 `[12:01:48.293] 21:80034E29:40000001:E10:00:00:00`.
@@ -359,6 +383,8 @@ See the following sections that describe each line.
 
 Many line types can have missing combatant names.
 [ChangePrimaryPlayer](#line02) and [AddCombatant](#line03) lines should always have combatant names.
+
+## FFXIV Plugin Log Lines
 
 <a name="line00"></a>
 
@@ -498,6 +524,13 @@ ACT Log Line Structure:
 [timestamp] ChangePrimaryPlayer 02:[id]:[name]
 ```
 
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>02)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|
+```
+
 #### Examples
 
 ```log
@@ -634,6 +667,13 @@ Network Log Line Structure:
 
 ACT Log Line Structure:
 [timestamp] PartyList 0B:[partyCount]:[id0]:[id1]:[id2]:[id3]:[id4]:[id5]:[id6]:[id7]:[id8]:[id9]:[id10]:[id11]:[id12]:[id13]:[id14]:[id15]:[id16]:[id17]:[id18]:[id19]:[id20]:[id21]:[id22]:[id23]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>11)\|(?<timestamp>[^|]*)\|(?<partyCount>[^|]*)\|
 ```
 
 #### Examples
@@ -966,6 +1006,13 @@ ACT Log Line Structure:
 [timestamp] CancelAction 17:[sourceId]:[source]:[id]:[name]:[reason]
 ```
 
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>23)\|(?<timestamp>[^|]*)\|(?<sourceId>[^|]*)\|(?<source>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<reason>[^|]*)\|
+```
+
 #### Examples
 
 ```log
@@ -1270,6 +1317,13 @@ ACT Log Line Structure:
 [timestamp] WaymarkMarker 1C:[operation]:[waymark]:[id]:[name]:[x]:[y]:[z]
 ```
 
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>28)\|(?<timestamp>[^|]*)\|(?<operation>[^|]*)\|(?<waymark>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|
+```
+
 #### Examples
 
 ```log
@@ -1313,6 +1367,13 @@ Network Log Line Structure:
 
 ACT Log Line Structure:
 [timestamp] SignMarker 1D:[operation]:[waymark]:[id]:[name]:[targetId]:[targetName]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>29)\|(?<timestamp>[^|]*)\|(?<operation>[^|]*)\|(?<waymark>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<targetId>[^|]*)\|(?<targetName>[^|]*)\|
 ```
 
 #### Examples
@@ -1409,6 +1470,13 @@ Network Log Line Structure:
 
 ACT Log Line Structure:
 [timestamp] Gauge 1F:[id]:[data0]:[data1]:[data2]:[data3]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>31)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<data0>[^|]*)\|(?<data1>[^|]*)\|(?<data2>[^|]*)\|(?<data3>[^|]*)\|
 ```
 
 #### Examples
@@ -1689,6 +1757,13 @@ ACT Log Line Structure:
 [timestamp] LimitBreak 24:[valueHex]:[bars]
 ```
 
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>36)\|(?<timestamp>[^|]*)\|(?<valueHex>[^|]*)\|(?<bars>[^|]*)\|
+```
+
 #### Examples
 
 ```log
@@ -1808,6 +1883,13 @@ Network Log Line Structure:
 
 ACT Log Line Structure:
 [timestamp] UpdateHp 27:[id]:[name]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>39)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<currentHp>[^|]*)\|(?<maxHp>[^|]*)\|(?<currentMp>[^|]*)\|(?<maxMp>[^|]*)\|(?:[^|]*\|){2}(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|(?<heading>[^|]*)\|
 ```
 
 #### Examples
@@ -2016,6 +2098,13 @@ ACT Log Line Structure:
 [timestamp] StatusList3 2A:[id]:[name]
 ```
 
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>42)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|
+```
+
 #### Examples
 
 ```log
@@ -2068,6 +2157,55 @@ ACT log lines are blank for this type.
 
 These are lines emitted directly by the ffxiv plugin when something goes wrong.
 
+## OverlayPlugin Log Lines
+
+If you are using OverlayPlugin,
+it will emit extra log lines that are not part of the ffxiv plugin.
+The ids of these lines start at 256 and go up.
+Any id between 0-255 is reserved for the ffxiv plugin.
+
+<a name="line256"></a>
+
+### Line 256 (0x100): LineRegistration
+
+This line is emitted into logs when any custom logs are registered with OverlayPlugin.
+This is so that it is obvious which log lines and versions to expect for a given log file.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=LineRegistration&lang=en-US) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+256|[timestamp]|[id]|[source]|[version]
+
+ACT Log Line Structure:
+[timestamp] 256 100:[id]:[source]:[version]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>256)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<source>[^|]*)\|(?<version>[^|]*)\|
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+256|2022-10-02T10:15:31.5635165-07:00|257|OverlayPlugin|MapEffect|1|594b867ee2199369
+256|2022-10-02T10:15:31.5645159-07:00|258|OverlayPlugin|FateDirector|1|102a238b2495bfd0
+256|2022-10-02T10:15:31.5655143-07:00|259|OverlayPlugin|CEDirector|1|35546b48906c41b2
+
+ACT Log Line Examples:
+[10:15:31.563] 256 100:257:OverlayPlugin:MapEffect:1
+[10:15:31.564] 256 100:258:OverlayPlugin:FateDirector:1
+[10:15:31.565] 256 100:259:OverlayPlugin:CEDirector:1
+```
+
+<!-- AUTO-GENERATED-CONTENT:END (logLines:type=LineRegistration&lang=en-US) -->
+
 <a name="line257"></a>
 
 ### Line 257 (0x101): MapEffect
@@ -2081,6 +2219,12 @@ For example,
 after Aetheric Polyominoid or Polyominoid Sigma casts in P6S,
 MapEffect messages are sent to cause the game client to render  '+' and 'x' effects on specific map tiles,
 indicating to the player which tiles will later be rendered unsafe by Polyominous Dark IV.
+
+This can also include things like:
+
+- meteor graphics / bridges breaking in Amaurot
+- the eye location in DSR
+- P8S torch effects
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=MapEffect&lang=en-US) -->
 
@@ -2141,3 +2285,89 @@ The `location` parameter indicates the location in the current instance where th
 Locations are not consistent across instances and appear to be unique to each instance.
 E.g., a location of '05' in P6S corresponds to one of the 16 tiles on the map floor,
 whereas the '05' location in P5S appears to correspond to different map coordinates.
+
+<a name="line258"></a>
+
+### Line 258 (0x102): FateDirector
+
+This line indicates changes in fates on the map.
+This includes when fates are added,
+removed,
+or their progress has changed.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=FateDirector&lang=en-US) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+258|[timestamp]|[category]|[?]|[param1]|[param2]|[param3]|[param4]|[param5]|[param6]
+
+ACT Log Line Structure:
+[timestamp] 258 102:[category]:[?]:[param1]:[param2]:[param3]:[param4]:[param5]:[param6]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>258)\|(?<timestamp>[^|]*)\|(?<category>[^|]*)\|(?:[^|]*\|)(?<param1>[^|]*)\|(?<param2>[^|]*)\|(?<param3>[^|]*)\|(?<param4>[^|]*)\|(?<param5>[^|]*)\|(?<param6>[^|]*)\|
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+258|2022-09-19T17:25:59.5582137-07:00|Add|E601|000000DE|00000000|00000000|00000000|00000000|00000000|00000000|c7fd9f9aa7f56d4d
+258|2022-08-13T19:46:54.6179420-04:00|Update|203A|00000287|00000000|00000000|00000000|00000000|00000000|6E756F63|bd60bac0189b571e
+258|2022-09-24T12:51:47.5867309-07:00|Remove|0000|000000E2|00000000|00000000|00000000|00000000|00000000|00007FF9|043b821dbfe608c5
+
+ACT Log Line Examples:
+[17:25:59.558] 258 102:Add:E601:000000DE:00000000:00000000:00000000:00000000:00000000:00000000
+[19:46:54.617] 258 102:Update:203A:00000287:00000000:00000000:00000000:00000000:00000000:6E756F63
+[12:51:47.586] 258 102:Remove:0000:000000E2:00000000:00000000:00000000:00000000:00000000:00007FF9
+```
+
+<!-- AUTO-GENERATED-CONTENT:END (logLines:type=FateDirector&lang=en-US) -->
+
+<a name="line259"></a>
+
+### Line 259 (0x103): CEDirector
+
+This line is like [FateDirector](#line258),
+but is for Critical Engagements in Bozja.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=CEDirector&lang=en-US) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+259|[timestamp]|[popTime]|[timeRemaining]|[?]|[numPlayers]|[status]|[?]|[progress]
+
+ACT Log Line Structure:
+[timestamp] 259 103:[popTime]:[timeRemaining]:[?]:[numPlayers]:[status]:[?]:[progress]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>259)\|(?<timestamp>[^|]*)\|(?<popTime>[^|]*)\|(?<timeRemaining>[^|]*)\|(?:[^|]*\|)(?<numPlayers>[^|]*)\|(?<status>[^|]*)\|(?:[^|]*\|)(?<progress>[^|]*)\|
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+259|2022-09-19T18:09:35.7012951-07:00|632912D5|0000|0000|07|01|02|00|00|7F|00|00|4965d513cc7a6dd3
+259|2022-09-19T18:09:39.9541413-07:00|63291786|04B0|0000|07|01|03|00|00|00|00|00|6c18aa16678911ca
+259|2022-09-19T18:09:46.7556709-07:00|63291786|04AA|0000|07|01|03|00|02|7F|00|00|5bf224d56535513a
+
+ACT Log Line Examples:
+[18:09:35.701] 259 103:632912D5:0000:0000:07:01:02:00:00:7F:00:00
+[18:09:39.954] 259 103:63291786:04B0:0000:07:01:03:00:00:00:00:00
+[18:09:46.755] 259 103:63291786:04AA:0000:07:01:03:00:02:7F:00:00
+```
+
+<!-- AUTO-GENERATED-CONTENT:END (logLines:type=CEDirector&lang=en-US) -->

@@ -3,7 +3,7 @@ import path from 'path';
 import markdownMagic from 'markdown-magic';
 
 import logDefinitions, { LogDefinitionTypes } from '../resources/netlog_defs';
-import NetRegexes from '../resources/netregexes';
+import NetRegexes, { buildRegex } from '../resources/netregexes';
 import { UnreachableCode } from '../resources/not_reached';
 import Regexes from '../resources/regexes';
 import LogRepository from '../ui/raidboss/emulator/data/network_log_converter/LogRepository';
@@ -49,12 +49,14 @@ type ExcludedLineDocs =
 
 type LineDocTypes = Exclude<LogDefinitionTypes, ExcludedLineDocs>;
 
+type LineDocRegex = {
+  network: string;
+  logLine?: string;
+};
+
 type LineDocType = {
   // We can generate `network` type automatically for everything but regex
-  regexes?: {
-    network: string;
-    logLine?: string;
-  };
+  regexes?: LineDocRegex;
   examples: LocaleObject<readonly string[]>;
 };
 
@@ -451,6 +453,15 @@ const lineDocs: LineDocs = {
       ],
     },
   },
+  LineRegistration: {
+    examples: {
+      'en-US': [
+        '256|2022-10-02T10:15:31.5635165-07:00|257|OverlayPlugin|MapEffect|1|594b867ee2199369',
+        '256|2022-10-02T10:15:31.5645159-07:00|258|OverlayPlugin|FateDirector|1|102a238b2495bfd0',
+        '256|2022-10-02T10:15:31.5655143-07:00|259|OverlayPlugin|CEDirector|1|35546b48906c41b2',
+      ],
+    },
+  },
   MapEffect: {
     regexes: {
       network: NetRegexes.mapEffect({ capture: true }).source,
@@ -461,6 +472,24 @@ const lineDocs: LineDocs = {
         '257|2022-09-27T18:03:45.2834013-07:00|800375A9|00020001|09|F3|0000|de00c57494e85e79',
         '257|2022-09-27T18:06:07.7744035-07:00|800375A9|00400020|01|00|0000|72933fe583158786',
         '257|2022-09-29T20:07:48.7330170-07:00|800375A5|00020001|05|00|0000|28c0449a8d0efa7d',
+      ],
+    },
+  },
+  FateDirector: {
+    examples: {
+      'en-US': [
+        '258|2022-09-19T17:25:59.5582137-07:00|Add|E601|000000DE|00000000|00000000|00000000|00000000|00000000|00000000|c7fd9f9aa7f56d4d',
+        '258|2022-08-13T19:46:54.6179420-04:00|Update|203A|00000287|00000000|00000000|00000000|00000000|00000000|6E756F63|bd60bac0189b571e',
+        '258|2022-09-24T12:51:47.5867309-07:00|Remove|0000|000000E2|00000000|00000000|00000000|00000000|00000000|00007FF9|043b821dbfe608c5',
+      ],
+    },
+  },
+  CEDirector: {
+    examples: {
+      'en-US': [
+        '259|2022-09-19T18:09:35.7012951-07:00|632912D5|0000|0000|07|01|02|00|00|7F|00|00|4965d513cc7a6dd3',
+        '259|2022-09-19T18:09:39.9541413-07:00|63291786|04B0|0000|07|01|03|00|00|00|00|00|6c18aa16678911ca',
+        '259|2022-09-19T18:09:46.7556709-07:00|63291786|04AA|0000|07|01|03|00|02|7F|00|00|5bf224d56535513a',
       ],
     },
   },
@@ -548,7 +577,10 @@ const config: markdownMagic.Configuration = {
         return line?.convertedLine;
       }).join('\n') ?? '';
 
-      const regexes = lineDoc.regexes;
+      const autoRegex: LineDocRegex = {
+        network: buildRegex(lineType, { capture: true }).source,
+      };
+      const regexes = lineDoc.regexes ?? autoRegex;
 
       ret += `
 #### ${translate(language, titles.structure)}
@@ -562,22 +594,20 @@ ${structureLog}
 \`\`\`
 `;
 
-      if (regexes) {
-        ret += `
+      ret += `
 #### ${translate(language, titles.regexes)}
 
 \`\`\`log
 ${translate(language, titles.networkLogLineRegexes)}
 ${regexes.network}
 `;
-        if (regexes.logLine !== undefined) {
-          ret += `
+      if (regexes.logLine !== undefined) {
+        ret += `
 ${translate(language, titles.actLogLineRegexes)}
 ${regexes.logLine}
 `;
-        }
-        ret += '```\n';
       }
+      ret += '```\n';
 
       ret += `
 #### ${translate(language, titles.examples)}
