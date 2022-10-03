@@ -1,9 +1,11 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
@@ -16,6 +18,10 @@ export interface Data extends RaidbossData {
   aetheronecrosisDuration: number;
   predationCount: number;
   predationDebuff?: string;
+  polyInstance: number;
+  tileTethers: NetMatches['Tether'][];
+  mapEffects: NetMatches['MapEffect'][];
+  combatantData: PluginCombatantState[];
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -42,6 +48,10 @@ const triggerSet: TriggerSet<Data> = {
       pathogenicCellsCounter: 0,
       aetheronecrosisDuration: 0,
       predationCount: 0,
+      polyInstance: 0,
+      tileTethers: [],
+      mapEffects: [],
+      combatantData: [],
     };
   },
   triggers: [
@@ -85,6 +95,269 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'P6S Polyominoid Tether Collect',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '00CF' }),
+      run: (data, matches) => {
+        data.tileTethers.push(matches);
+      },
+    },
+    {
+      id: 'P6S Polyominoid MapEffect Collect',
+      type: 'MapEffect',
+      netRegex: NetRegexes.mapEffect({ id: ['00020001', '00400020'], capture: false }),
+      run: (data, matches) => {
+        // location '00' is center/mapwide and won't be used 
+        // for determining mechanic resolution
+        if (matches.location !== '00')
+          data.mapEffects.push(matches);
+      },
+    },
+    {
+      // Use a single trigger for Aetherial Polyominod (7866) and
+      // Polyominoid Sigma (7868).  Both use MapEffects, but only
+      // 7868 uses tethers to hidden actors to "swap" tiles.
+      id: 'P6S Polyominoid All',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '786[68]', source: 'Hegemone', capture: false }),
+      delaySeconds: 2.5, // mapeffect and trigger lines sometimes take a bit to show up
+      durationSeconds: 8, // leave the output up while overlapping mechanics resolve
+      promise: async (data) => {
+        data.combatantData = [];
+        const ids = [];
+        if (data.tileTethers.length !== 0) {
+          for (const tether of data.tileTethers) {
+            ids.push(parseInt(tether.sourceId, 16), parseInt(tether.targetId, 16));
+          }
+          data.combatantData = (await callOverlayHandler({
+            call: 'getCombatants',
+            ids: ids,
+          })).combatants;
+        }
+      },
+      infoText: (data, _matches, output) => {
+        data.polyInstance++;
+
+        if (data.tileTethers.length > 0 && data.combatantData.length === 0)
+          return;
+        if (data.mapEffects.length < 2)
+          return;
+
+        const safe: {[tile: string]: boolean } = {
+          // This ordering matters for certain Poly instances.
+          insideNW: true,
+          insideNE: true,
+          insideSW: true,
+          insideSE: true,
+          cornerNW: true,
+          outsideNNW: true,
+          outsideNNE: true,
+          cornerNE: true,
+          outsideWNW: true,
+          outsideENE: true,
+          outsideWSW: true,
+          outsideESE: true,
+          cornerSW: true,
+          outsideSSW: true,
+          outsideSSE: true,
+          cornerSE: true,
+        };
+
+        // Tile index mapped to arrays containing the MapEffect location code
+        // for that tile and the corresponding tile name in safe[].
+        const unsafeMap: { [idx: number]: [location: string, tile: string] } = {
+          0: ['01', 'cornerNW'],
+          1: ['02', 'outsideNNW'],
+          2: ['03', 'outsideNNE'],
+          3: ['04', 'cornerNE'],
+
+          10: ['0F', 'outsideWNW'],
+          11: ['05', 'insideNW'],
+          12: ['06', 'insideNE'],
+          13: ['10', 'outsideENE'],
+
+          20: ['0D', 'outsideWSW'],
+          21: ['07', 'insideSW'],
+          22: ['08', 'insideSE'],
+          23: ['0E', 'outsideESE'],
+
+          30: ['09', 'cornerSW'],
+          31: ['0A', 'outsideSSW'],
+          32: ['0B', 'outsideSSE'],
+          33: ['0C', 'cornerSE'],
+        };
+
+        const mapLookup: { [location: string]: number } = Object.fromEntries(Object.entries(unsafeMap).map(([tile, [location,]]) => [location, parseInt(tile,10)]));
+
+        // Polys 2, 3, 5, and 6 involve tethers. We only care about which
+        // tiles have tethers, not which tiles are tethered together.
+        // This is because there are only two types of tiles, and swaps 
+        // are only done between tiles of opposite types.
+        const tetheredTiles = [];
+        if (data.tileTethers.length >= 1) {
+          for (const tile of data.combatantData) {
+            // x, y = 85, 95, 105, 115 (with a little variance)
+            // map to ([0, 1, 2, 3] and [0, 10, 20, 30]
+            const x = Math.floor((tile.PosX - 83) / 10); // add in a -2/+8 buffer in case of goofy pos data
+            const y = Math.floor((tile.PosY - 83) / 10) * 10; // add in a -2/+8 buffer in case of goofy pos data
+            const idx = x + y;
+            if (unsafeMap[idx] === undefined)
+              return;
+            tetheredTiles.push(idx);
+          }
+        }
+
+        // modifiers used to calculate unsafeMap indexes to be removed for each type of tile
+        const relCrossTiles = new Int8Array([-30, -20, -10, -3, -2, -1, 1, 2, 3, 10, 20, 30]);
+        const relDiagonalTiles = new Int8Array([-33, -27, -22, -18, -11, -9, 9, 11, 18, 22, 27, 33]);
+
+        for (const effect of data.mapEffects) {
+          if (mapLookup[effect.location] === undefined)
+            return;
+
+          const startTile: number = mapLookup[effect.location]!;
+          // delete tile where effect appears, as it will always be unsafe
+          if (unsafeMap[startTile] !== undefined)
+            delete safe[unsafeMap[startTile]![1]];
+          if ((effect.id === '00020001' && !tetheredTiles.includes(startTile)) ||
+            (effect.id === '00400020' && tetheredTiles.includes(startTile))) {
+            //untethered cross (+) or tethered diagonal (x) tile
+            relCrossTiles.forEach((tileMod) => {
+              const deleteTile: number = startTile + tileMod;
+              if (unsafeMap[deleteTile] !== undefined)
+                delete safe[unsafeMap[deleteTile]![1]];
+            });
+          } else if ((effect.id === '00400020' && !tetheredTiles.includes(startTile)) ||
+            (effect.id === '00020001' && tetheredTiles.includes(startTile))) {
+            //untethered diagonal (x) or tethered cross (+) tile
+            relDiagonalTiles.forEach((tileMod) => {
+              const deleteTile: number = startTile + tileMod;
+              if(unsafeMap[deleteTile] !== undefined)
+                delete safe[unsafeMap[deleteTile]![1]];
+            });
+          } else {
+            return;
+          }
+        }
+
+        const safeTiles: string[] = Object.keys(safe);
+        const [safe0, safe1] = safeTiles;
+
+        if (safe0 === undefined)
+          return;
+
+        switch (data.polyInstance) {
+          case 1: // four safe spots: two inside, two outside.  call only the inside ones.
+            if (safeTiles.length !== 4 || safe1 === undefined)
+              return;
+            return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
+            break;
+          case 2: // one inside safe spot
+            if (safeTiles.length !== 1)
+              return;
+            return output.single!({ dir1: output[safe0]!() });
+            break;
+          case 3: // two inside safe spots
+            if (safeTiles.length !== 2 || safe1 === undefined)
+              return;
+            return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
+            break;
+          case 4: // lots of safe spots, so give generic warning
+            return output.polyAvoid!();
+            break;
+          case 5: // two outside safe spots (reduced to one by Chorus Ixou)
+            if (safeTiles.length !== 2 || safe1 === undefined)
+              return;
+            // TODO: Maybe call only a single tile, and only once Chorus Ixou direction is known?
+            return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
+            break;
+          case 6: // Cachexia 2 - four safe spots that form corners of a 3x3 tile sub-grid, so just call the center
+            if (safeTiles.length !== 4)
+              return;
+            const poly6Map: { [l: string]: string} = {
+              insideNW: 'insideSE',
+              insideNE: 'insideSW',
+              insideSE: 'insideNW',
+              insideSW: 'insideNE',
+            }
+            if (poly6Map[safe0] === undefined)
+              return;
+            return output.polyCachexia!({ dir1: output[poly6Map[safe0]!]!() });
+            break;
+          case 7: // one inside safe spot
+            if (safeTiles.length !== 1)
+              return;
+            return output.single!({ dir1: output[safe0]!() });
+            break;
+          case 8: // four safe spots, two inside two outside.  call only the inside ones.
+            if (safeTiles.length !== 4 || safe1 === undefined)
+              return;
+            return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
+            break;
+          default:
+            return;
+        }
+      },
+      run: (data) => {
+        data.tileTethers = [];
+        data.mapEffects = [];
+        data.combatantData = [];
+      },
+      outputStrings: {
+        combo: {
+          en: 'Safe Tiles: ${dir1} / ${dir2}',
+        },
+        single: {
+          en: 'Safe Tile: ${dir1}',
+        },
+        polyCachexia: {
+          en: 'Safe Tiles: Intercards of ${dir1}',
+        },
+        polyAvoid: {
+          en: 'Avoid Unsafe Tiles',
+        },
+        insideNW: {
+          en: 'Inside NW',
+        },
+        insideNE: {
+          en: 'Inside NE',
+        },
+        insideSE: {
+          en: 'Inside SE',
+        },
+        insideSW: {
+          en: 'Inside SW',
+        },
+        // Corner tiles will never be safe for any version of Poly, 
+        // so no output strings needed. But the outside tile strings 
+        // (used for Poly 5) are kludge and should be improved upon.
+        outsideNNW: {
+          en: 'Outside NNW',
+        },
+        outsideNNE: {
+          en: 'Outside NNE',
+        },
+        outsideWNW: {
+          en: 'Outside WNW',
+        },
+        outsideENE: {
+          en: 'Outside ENE',
+        },
+        outsideWSW: {
+          en: 'Outside WSW',
+        },
+        outsideESE: {
+          en: 'Outside ESE',
+        },
+        outsideSSW: {
+          en: 'Outside SSW',
+        },
+        outsideSSE: {
+          en: 'Outside SSE',
+        },
+      },
+    }, 
     {
       id: 'P6S Exocleaver Healer Groups',
       // Unholy Darkness stack headmarkers are same time as first Exocleaver
