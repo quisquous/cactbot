@@ -106,9 +106,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Polyominoid MapEffect Collect',
       type: 'MapEffect',
-      netRegex: NetRegexes.mapEffect({ id: ['00020001', '00400020'], capture: false }),
+      netRegex: NetRegexes.mapEffect({ id: ['00020001', '00400020'] }),
       run: (data, matches) => {
-        // location '00' is center/mapwide and won't be used 
+        // location '00' is center/mapwide and won't be used
         // for determining mechanic resolution
         if (matches.location !== '00')
           data.mapEffects.push(matches);
@@ -127,9 +127,8 @@ const triggerSet: TriggerSet<Data> = {
         data.combatantData = [];
         const ids = [];
         if (data.tileTethers.length !== 0) {
-          for (const tether of data.tileTethers) {
+          for (const tether of data.tileTethers)
             ids.push(parseInt(tether.sourceId, 16), parseInt(tether.targetId, 16));
-          }
           data.combatantData = (await callOverlayHandler({
             call: 'getCombatants',
             ids: ids,
@@ -144,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.mapEffects.length < 2)
           return;
 
-        const safe: {[tile: string]: boolean } = {
+        const safe: { [tile: string]: boolean } = {
           // This ordering matters for certain Poly instances.
           insideNW: true,
           insideNE: true,
@@ -188,11 +187,11 @@ const triggerSet: TriggerSet<Data> = {
           33: ['0C', 'cornerSE'],
         };
 
-        const mapLookup: { [location: string]: number } = Object.fromEntries(Object.entries(unsafeMap).map(([tile, [location,]]) => [location, parseInt(tile,10)]));
+        const mapLookup: { [location: string]: number } = Object.fromEntries(Object.entries(unsafeMap).map(([tile, [location]]) => [location, parseInt(tile, 10)]));
 
         // Polys 2, 3, 5, and 6 involve tethers. We only care about which
         // tiles have tethers, not which tiles are tethered together.
-        // This is because there are only two types of tiles, and swaps 
+        // This is because there are only two types of tiles, and swaps
         // are only done between tiles of opposite types.
         const tetheredTiles = [];
         if (data.tileTethers.length >= 1) {
@@ -220,20 +219,18 @@ const triggerSet: TriggerSet<Data> = {
           // delete tile where effect appears, as it will always be unsafe
           if (unsafeMap[startTile] !== undefined)
             delete safe[unsafeMap[startTile]![1]];
-          if ((effect.id === '00020001' && !tetheredTiles.includes(startTile)) ||
-            (effect.id === '00400020' && tetheredTiles.includes(startTile))) {
-            //untethered cross (+) or tethered diagonal (x) tile
+          if ((effect.id === '00020001' && !tetheredTiles.includes(startTile)) || (effect.id === '00400020' && tetheredTiles.includes(startTile))) {
+            // untethered cross (+) or tethered diagonal (x) tile
             relCrossTiles.forEach((tileMod) => {
               const deleteTile: number = startTile + tileMod;
               if (unsafeMap[deleteTile] !== undefined)
                 delete safe[unsafeMap[deleteTile]![1]];
             });
-          } else if ((effect.id === '00400020' && !tetheredTiles.includes(startTile)) ||
-            (effect.id === '00020001' && tetheredTiles.includes(startTile))) {
-            //untethered diagonal (x) or tethered cross (+) tile
+          } else if ((effect.id === '00400020' && !tetheredTiles.includes(startTile)) || (effect.id === '00020001' && tetheredTiles.includes(startTile))) {
+            // untethered diagonal (x) or tethered cross (+) tile
             relDiagonalTiles.forEach((tileMod) => {
               const deleteTile: number = startTile + tileMod;
-              if(unsafeMap[deleteTile] !== undefined)
+              if (unsafeMap[deleteTile] !== undefined)
                 delete safe[unsafeMap[deleteTile]![1]];
             });
           } else {
@@ -247,54 +244,47 @@ const triggerSet: TriggerSet<Data> = {
         if (safe0 === undefined)
           return;
 
+        const poly6Map: { [l: string]: string } = {
+          insideNW: 'insideSE',
+          insideNE: 'insideSW',
+          insideSE: 'insideNW',
+          insideSW: 'insideNE',
+        };
+
         switch (data.polyInstance) {
           case 1: // four safe spots: two inside, two outside.  call only the inside ones.
             if (safeTiles.length !== 4 || safe1 === undefined)
               return;
             return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
-            break;
           case 2: // one inside safe spot
             if (safeTiles.length !== 1)
               return;
             return output.single!({ dir1: output[safe0]!() });
-            break;
           case 3: // two inside safe spots
             if (safeTiles.length !== 2 || safe1 === undefined)
               return;
             return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
-            break;
           case 4: // lots of safe spots, so give generic warning
             return output.polyAvoid!();
-            break;
           case 5: // two outside safe spots (reduced to one by Chorus Ixou)
             if (safeTiles.length !== 2 || safe1 === undefined)
               return;
             // TODO: Maybe call only a single tile, and only once Chorus Ixou direction is known?
             return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
-            break;
           case 6: // Cachexia 2 - four safe spots that form corners of a 3x3 tile sub-grid, so just call the center
             if (safeTiles.length !== 4)
               return;
-            const poly6Map: { [l: string]: string} = {
-              insideNW: 'insideSE',
-              insideNE: 'insideSW',
-              insideSE: 'insideNW',
-              insideSW: 'insideNE',
-            }
             if (poly6Map[safe0] === undefined)
               return;
             return output.polyCachexia!({ dir1: output[poly6Map[safe0]!]!() });
-            break;
           case 7: // one inside safe spot
             if (safeTiles.length !== 1)
               return;
             return output.single!({ dir1: output[safe0]!() });
-            break;
           case 8: // four safe spots, two inside two outside.  call only the inside ones.
             if (safeTiles.length !== 4 || safe1 === undefined)
               return;
             return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
-            break;
           default:
             return;
         }
@@ -329,8 +319,8 @@ const triggerSet: TriggerSet<Data> = {
         insideSW: {
           en: 'Inside SW',
         },
-        // Corner tiles will never be safe for any version of Poly, 
-        // so no output strings needed. But the outside tile strings 
+        // Corner tiles will never be safe for any version of Poly,
+        // so no output strings needed. But the outside tile strings
         // (used for Poly 5) are kludge and should be improved upon.
         outsideNNW: {
           en: 'Outside NNW',
@@ -357,7 +347,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Outside SSE',
         },
       },
-    }, 
+    },
     {
       id: 'P6S Exocleaver Healer Groups',
       // Unholy Darkness stack headmarkers are same time as first Exocleaver
