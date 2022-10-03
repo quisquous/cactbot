@@ -2264,19 +2264,20 @@ ACT Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END (logLines:type=MapEffect&lang=en-US) -->
 
-The `instance` parameter is identical to `instance` in [actor control line)](#line33).
+The `instance` parameter is identical to `instance` in an [actor control line](#line33).
 See above for more information.
 
-The `id` parameter identifies the visual effect that will be rendered in the game.
+The `flags` parameter identifies the visual effect that will be rendered in the game.
 For example,
-in P6S, id '00020001' equates to a '+'-shaped tile and id '00400020' equates to an 'x'-shaped tile.
-Ids do not appear to be unique across multiple instances:
+in P6S, `00020001` flags equates to a `+`-shaped tile and
+`00400020` flags equates to an `x`-shaped tile.
+Flags do not appear to be unique across multiple instances:
 as the above examples illustrate
-id '00020001' is used in both P5S and P6S to render completely different visual effects.
+the flags `00020001` are used in both P5S and P6S to render completely different visual effects.
 
 That said,
 it does appear from initial analysis that when a map effect is rendered,
-a second MapEffect line with an id of '00080004' is sent at the conclusion of the effect,
+a second MapEffect line with `00080004` flags is sent at the conclusion of the effect,
 which may correspond to removal of the effect.
 This appears to be consistent behavior across several fights so far,
 but more information is needed.
