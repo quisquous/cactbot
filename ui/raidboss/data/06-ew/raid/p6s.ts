@@ -106,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Polyominoid MapEffect Collect',
       type: 'MapEffect',
-      netRegex: NetRegexes.mapEffect({ id: ['00020001', '00400020'] }),
+      netRegex: NetRegexes.mapEffect({ flags: ['00020001', '00400020'] }),
       run: (data, matches) => {
         // location '00' is center/mapwide and won't be used
         // for determining mechanic resolution
@@ -219,14 +219,14 @@ const triggerSet: TriggerSet<Data> = {
           // delete tile where effect appears, as it will always be unsafe
           if (unsafeMap[startTile] !== undefined)
             delete safe[unsafeMap[startTile]![1]];
-          if ((effect.id === '00020001' && !tetheredTiles.includes(startTile)) || (effect.id === '00400020' && tetheredTiles.includes(startTile))) {
+          if ((effect.flags === '00020001' && !tetheredTiles.includes(startTile)) || (effect.flags === '00400020' && tetheredTiles.includes(startTile))) {
             // untethered cross (+) or tethered diagonal (x) tile
             relCrossTiles.forEach((tileMod) => {
               const deleteTile: number = startTile + tileMod;
               if (unsafeMap[deleteTile] !== undefined)
                 delete safe[unsafeMap[deleteTile]![1]];
             });
-          } else if ((effect.id === '00400020' && !tetheredTiles.includes(startTile)) || (effect.id === '00020001' && tetheredTiles.includes(startTile))) {
+          } else if ((effect.flags === '00400020' && !tetheredTiles.includes(startTile)) || (effect.flags === '00020001' && tetheredTiles.includes(startTile))) {
             // untethered diagonal (x) or tethered cross (+) tile
             relDiagonalTiles.forEach((tileMod) => {
               const deleteTile: number = startTile + tileMod;
