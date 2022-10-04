@@ -80,7 +80,7 @@ namespace Cactbot {
       [FieldOffset(0x1D)]
       public byte level;
     }
-    public FFXIVProcessCn(ILogger logger) : base(logger) { }
+    public FFXIVProcessKo(ILogger logger) : base(logger) { }
 
     // TODO: all of this could be refactored into structures of some sort
     // instead of just being loose variables everywhere.
