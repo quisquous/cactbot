@@ -933,7 +933,7 @@ const latestLogDefinitions = {
       type: 0,
       timestamp: 1,
       instance: 2,
-      id: 3,
+      flags: 3,
       // values for the location field seem to vary between instances
       // (e.g. a location of '08' in P5S does not appear to be the same location in P5S as in P6S)
       // but this field does appear to consistently contain position info for the effect rendering
