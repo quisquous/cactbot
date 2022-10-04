@@ -529,6 +529,9 @@ ACT Log Line Structure:
 ```log
 Network Log Line Regex:
 ^(?<type>02)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) ChangePrimaryPlayer (?<type>02):(?<id>[^:]*):(?<name>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -674,6 +677,9 @@ ACT Log Line Structure:
 ```log
 Network Log Line Regex:
 ^(?<type>11)\|(?<timestamp>[^|]*)\|(?<partyCount>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) PartyList (?<type>0B):(?<partyCount>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1011,6 +1017,9 @@ ACT Log Line Structure:
 ```log
 Network Log Line Regex:
 ^(?<type>23)\|(?<timestamp>[^|]*)\|(?<sourceId>[^|]*)\|(?<source>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<reason>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) CancelAction (?<type>17):(?<sourceId>[^:]*):(?<source>[^:]*):(?<id>[^:]*):(?<name>[^:]*):(?<reason>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1322,6 +1331,9 @@ ACT Log Line Structure:
 ```log
 Network Log Line Regex:
 ^(?<type>28)\|(?<timestamp>[^|]*)\|(?<operation>[^|]*)\|(?<waymark>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) WaymarkMarker (?<type>1C):(?<operation>[^:]*):(?<waymark>[^:]*):(?<id>[^:]*):(?<name>[^:]*):(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1374,6 +1386,9 @@ ACT Log Line Structure:
 ```log
 Network Log Line Regex:
 ^(?<type>29)\|(?<timestamp>[^|]*)\|(?<operation>[^|]*)\|(?<waymark>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<targetId>[^|]*)\|(?<targetName>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) SignMarker (?<type>1D):(?<operation>[^:]*):(?<waymark>[^:]*):(?<id>[^:]*):(?<name>[^:]*):(?<targetId>[^:]*):(?<targetName>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1477,6 +1492,9 @@ ACT Log Line Structure:
 ```log
 Network Log Line Regex:
 ^(?<type>31)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<data0>[^|]*)\|(?<data1>[^|]*)\|(?<data2>[^|]*)\|(?<data3>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) Gauge (?<type>1F):(?<id>[^:]*):(?<data0>[^:]*):(?<data1>[^:]*):(?<data2>[^:]*):(?<data3>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1762,6 +1780,9 @@ ACT Log Line Structure:
 ```log
 Network Log Line Regex:
 ^(?<type>36)\|(?<timestamp>[^|]*)\|(?<valueHex>[^|]*)\|(?<bars>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) LimitBreak (?<type>24):(?<valueHex>[^:]*):(?<bars>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -1890,6 +1911,9 @@ ACT Log Line Structure:
 ```log
 Network Log Line Regex:
 ^(?<type>39)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<currentHp>[^|]*)\|(?<maxHp>[^|]*)\|(?<currentMp>[^|]*)\|(?<maxMp>[^|]*)\|(?:[^|]*\|){2}(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|(?<heading>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) UpdateHp (?<type>27):(?<id>[^:]*):(?<name>[^:]*):(?<currentHp>[^:]*):(?<maxHp>[^:]*):(?<currentMp>[^:]*):(?<maxMp>[^:]*)(?::[^:]*){2}:(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*):(?<heading>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -2103,6 +2127,9 @@ ACT Log Line Structure:
 ```log
 Network Log Line Regex:
 ^(?<type>42)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) StatusList3 (?<type>2A):(?<id>[^:]*):(?<name>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -2188,6 +2215,9 @@ ACT Log Line Structure:
 ```log
 Network Log Line Regex:
 ^(?<type>256)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<source>[^|]*)\|(?<version>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) 256 (?<type>100):(?<id>[^:]*):(?<source>[^:]*):(?<version>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -2313,6 +2343,9 @@ ACT Log Line Structure:
 ```log
 Network Log Line Regex:
 ^(?<type>258)\|(?<timestamp>[^|]*)\|(?<category>[^|]*)\|(?:[^|]*\|)(?<param1>[^|]*)\|(?<param2>[^|]*)\|(?<param3>[^|]*)\|(?<param4>[^|]*)\|(?<param5>[^|]*)\|(?<param6>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) 258 (?<type>102):(?<category>[^:]*):[^:]*:(?<param1>[^:]*):(?<param2>[^:]*):(?<param3>[^:]*):(?<param4>[^:]*):(?<param5>[^:]*):(?<param6>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -2355,6 +2388,9 @@ ACT Log Line Structure:
 ```log
 Network Log Line Regex:
 ^(?<type>259)\|(?<timestamp>[^|]*)\|(?<popTime>[^|]*)\|(?<timeRemaining>[^|]*)\|(?:[^|]*\|)(?<numPlayers>[^|]*)\|(?<status>[^|]*)\|(?:[^|]*\|)(?<progress>[^|]*)\|
+
+ACT Log Line Regex:
+(?<timestamp>^.{14}) 259 (?<type>103):(?<popTime>[^:]*):(?<timeRemaining>[^:]*):[^:]*:(?<numPlayers>[^:]*):(?<status>[^:]*):[^:]*:(?<progress>[^:]*)(?:$|:)
 ```
 
 #### Examples
