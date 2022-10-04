@@ -186,7 +186,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: '${force} sur vous', // FIXME
           ja: '自分に${force}', // FIXME
           cn: '${force}点名', // FIXME
-          ko: '나에게 ${force}', // FIXME
+          ko: '노랑 (${force})',
         },
       },
     },
@@ -204,7 +204,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: '${force} sur vous', // FIXME
           ja: '自分に${force}', // FIXME
           cn: '${force}点名', // FIXME
-          ko: '나에게 ${force}', // FIXME
+          ko: '초록 (${force})',
         },
       },
     },
@@ -506,10 +506,13 @@ const triggerSet: TriggerSet<Data> = {
         'puddle(?:s)?': '장판',
         'Adds Spawn': '쫄 등장',
         'Ascension': '승천',
-        'Chesed': '헤세드',
-        'Da\'at': '다아트',
+        'Chesed(?! Gevurah)': '헤세드',
+        'Chesed Gevurah': '헤세드 게부라',
+        'Da\'at spread': '다아트 산개',
+        'Da\'at Tethers': '다아트 선',
         'Earth Shaker': '요동치는 대지',
-        'Ein Sof': '아인 소프',
+        'Ein Sof(?! Ohr)': '아인 소프',
+        'Ein Sof Ohr': '아인 소프 오르',
         'Fiendish Rage': '마신의 분노',
         'Fiendish Wail': '마신의 탄식',
         'Force Field': '역장',
