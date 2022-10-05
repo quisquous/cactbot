@@ -40,6 +40,9 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
+const crossTileFlags = '00020001'; // mapEffect flags for '+' tile effect
+const diagonalTileFlags = '00400020'; // mapEffect flags for 'x' tile effect
+
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheSixthCircleSavage,
   timelineFile: 'p6s.txt',
@@ -106,10 +109,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Polyominoid MapEffect Collect',
       type: 'MapEffect',
-      netRegex: NetRegexes.mapEffect({ flags: ['00020001', '00400020'] }),
+      netRegex: NetRegexes.mapEffect({ flags: [crossTileFlags, diagonalTileFlags] }),
       run: (data, matches) => {
-        // location '00' is center/mapwide and won't be used
-        // for determining mechanic resolution
+        // location '00' won't be used for determining mechanic resolution
         if (matches.location !== '00')
           data.mapEffects.push(matches);
       },
@@ -216,18 +218,17 @@ const triggerSet: TriggerSet<Data> = {
             return;
 
           const startTile: number = mapLookup[effect.location]!;
-          // delete tile where effect appears, as it will always be unsafe
+          const isTethered: boolean = tetheredTiles.includes(startTile);
+          
           if (unsafeMap[startTile] !== undefined)
-            delete safe[unsafeMap[startTile]![1]];
-          if ((effect.flags === '00020001' && !tetheredTiles.includes(startTile)) || (effect.flags === '00400020' && tetheredTiles.includes(startTile))) {
-            // untethered cross (+) or tethered diagonal (x) tile
+            delete safe[unsafeMap[startTile]![1]]; // delete tile where effect appears, as it will always be unsafe
+          if ((effect.flags === crossTileFlags && !isTethered) || (effect.flags === diagonalTileFlags && isTethered)) {
             relCrossTiles.forEach((tileMod) => {
               const deleteTile: number = startTile + tileMod;
               if (unsafeMap[deleteTile] !== undefined)
                 delete safe[unsafeMap[deleteTile]![1]];
             });
-          } else if ((effect.flags === '00400020' && !tetheredTiles.includes(startTile)) || (effect.flags === '00020001' && tetheredTiles.includes(startTile))) {
-            // untethered diagonal (x) or tethered cross (+) tile
+          } else if ((effect.flags === diagonalTileFlags && !isTethered) || (effect.flags === crossTileFlags && isTethered)) {
             relDiagonalTiles.forEach((tileMod) => {
               const deleteTile: number = startTile + tileMod;
               if (unsafeMap[deleteTile] !== undefined)
@@ -319,9 +320,11 @@ const triggerSet: TriggerSet<Data> = {
         insideSW: {
           en: 'Inside SW',
         },
-        // Corner tiles will never be safe for any version of Poly,
-        // so no output strings needed. But the outside tile strings
-        // (used for Poly 5) are kludge and should be improved upon.
+        // Corner tiles will never be output to the user as a safe location,
+        // so no output strings needed for those.
+        // TO-DO: Outside tiles below are only safe/called during Poly 5, and only
+        // one is ever safe because of Chorus Ixou.  Should have the Chorus Ixou
+        // triggers call the safe outside tile during Poly 5.
         outsideNNW: {
           en: 'Outside NNW',
         },
