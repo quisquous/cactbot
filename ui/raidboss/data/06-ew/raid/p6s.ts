@@ -22,6 +22,8 @@ export interface Data extends RaidbossData {
   tileTethers: NetMatches['Tether'][];
   mapEffects: NetMatches['MapEffect'][];
   combatantData: PluginCombatantState[];
+  poly5FrontBackTile?: string;
+  poly5SideTile?: string;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -42,6 +44,8 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 
 const crossTileFlags = '00020001'; // mapEffect flags for '+' tile effect
 const diagonalTileFlags = '00400020'; // mapEffect flags for 'x' tile effect
+const outsideFrontBackTiles = ['outsideNNW', 'outsideNNE', 'outsideSSW', 'outsideSSE'];
+const outsideSideTiles = ['outsideWNW', 'outsideENE', 'outsideWSW', 'outsideESE'];
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheSixthCircleSavage,
@@ -151,17 +155,17 @@ const triggerSet: TriggerSet<Data> = {
           insideNE: true,
           insideSW: true,
           insideSE: true,
-          cornerNW: true,
           outsideNNW: true,
           outsideNNE: true,
-          cornerNE: true,
+          outsideSSW: true,
+          outsideSSE: true,
           outsideWNW: true,
           outsideENE: true,
           outsideWSW: true,
           outsideESE: true,
+          cornerNW: true,
+          cornerNE: true,
           cornerSW: true,
-          outsideSSW: true,
-          outsideSSE: true,
           cornerSE: true,
         };
 
@@ -219,7 +223,7 @@ const triggerSet: TriggerSet<Data> = {
 
           const startTile: number = mapLookup[effect.location]!;
           const isTethered: boolean = tetheredTiles.includes(startTile);
-          
+
           if (unsafeMap[startTile] !== undefined)
             delete safe[unsafeMap[startTile]![1]]; // delete tile where effect appears, as it will always be unsafe
           if ((effect.flags === crossTileFlags && !isTethered) || (effect.flags === diagonalTileFlags && isTethered)) {
@@ -254,15 +258,15 @@ const triggerSet: TriggerSet<Data> = {
 
         switch (data.polyInstance) {
           case 1: // four safe spots: two inside, two outside.  call only the inside ones.
-            if (safeTiles.length !== 4 || safe1 === undefined)
+            if (safeTiles.length !== 4 || safe1 === undefined || output[safe0] === undefined || output[safe1] === undefined)
               return;
             return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
           case 2: // one inside safe spot
-            if (safeTiles.length !== 1)
+            if (safeTiles.length !== 1 || output[safe0] === undefined)
               return;
             return output.single!({ dir1: output[safe0]!() });
           case 3: // two inside safe spots
-            if (safeTiles.length !== 2 || safe1 === undefined)
+            if (safeTiles.length !== 2 || safe1 === undefined || output[safe0] === undefined || output[safe1] === undefined)
               return;
             return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
           case 4: // lots of safe spots, so give generic warning
@@ -270,20 +274,22 @@ const triggerSet: TriggerSet<Data> = {
           case 5: // two outside safe spots (reduced to one by Chorus Ixou)
             if (safeTiles.length !== 2 || safe1 === undefined)
               return;
-            // TODO: Maybe call only a single tile, and only once Chorus Ixou direction is known?
-            return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
+            if ((outsideFrontBackTiles.includes(safe0)) && (outsideSideTiles.includes(safe1))) { // should be always true because of ordering
+              data.poly5FrontBackTile = safe0;
+              data.poly5SideTile = safe1;
+              return; // success - output will be handled by Chorus Ixou trigger
+            }
+            return output.polyAvoid!();
           case 6: // Cachexia 2 - four safe spots that form corners of a 3x3 tile sub-grid, so just call the center
-            if (safeTiles.length !== 4)
-              return;
-            if (poly6Map[safe0] === undefined)
+            if (safeTiles.length !== 4 || poly6Map[safe0] === undefined)
               return;
             return output.polyCachexia!({ dir1: output[poly6Map[safe0]!]!() });
           case 7: // one inside safe spot
-            if (safeTiles.length !== 1)
+            if (safeTiles.length !== 1 || output[safe0] === undefined)
               return;
             return output.single!({ dir1: output[safe0]!() });
           case 8: // four safe spots, two inside two outside.  call only the inside ones.
-            if (safeTiles.length !== 4 || safe1 === undefined)
+            if (safeTiles.length !== 4 || safe1 === undefined || output[safe0] === undefined || output[safe1] === undefined)
               return;
             return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
           default:
@@ -321,34 +327,8 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Inside SW',
         },
         // Corner tiles will never be output to the user as a safe location,
-        // so no output strings needed for those.
-        // TO-DO: Outside tiles below are only safe/called during Poly 5, and only
-        // one is ever safe because of Chorus Ixou.  Should have the Chorus Ixou
-        // triggers call the safe outside tile during Poly 5.
-        outsideNNW: {
-          en: 'Outside NNW',
-        },
-        outsideNNE: {
-          en: 'Outside NNE',
-        },
-        outsideWNW: {
-          en: 'Outside WNW',
-        },
-        outsideENE: {
-          en: 'Outside ENE',
-        },
-        outsideWSW: {
-          en: 'Outside WSW',
-        },
-        outsideESE: {
-          en: 'Outside ESE',
-        },
-        outsideSSW: {
-          en: 'Outside SSW',
-        },
-        outsideSSE: {
-          en: 'Outside SSE',
-        },
+        // and outside tiles will only be output by the Chorus Ixou triggers
+        // during Poly 5, so no output strings needed for those here.
       },
     },
     {
@@ -375,13 +355,57 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P6S Choros Ixou Front Back',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7883', source: 'Hegemone', capture: false }),
-      response: Responses.goFrontBack(),
+      alertText: (data, _matches, output) => {
+        if (data.polyInstance === 5 && data.poly5FrontBackTile !== undefined)
+          return output.goFrontBackPoly5!({ tile: output[data.poly5FrontBackTile]!() });
+        return output.goFrontBack!();
+      },
+      outputStrings: {
+        goFrontBack: Outputs.goFrontBack,
+        goFrontBackPoly5: {
+          en: 'Go Front/Back (${tile})',
+        },
+        outsideNNW: {
+          en: 'Outside NNW',
+        },
+        outsideNNE: {
+          en: 'Outside NNE',
+        },
+        outsideSSW: {
+          en: 'Outside SSW',
+        },
+        outsideSSE: {
+          en: 'Outside SSE',
+        },
+      },
     },
     {
       id: 'P6S Choros Ixou Sides',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7881', source: 'Hegemone', capture: false }),
-      response: Responses.goSides(),
+      alertText: (data, _matches, output) => {
+        if (data.polyInstance === 5 && data.poly5SideTile !== undefined)
+          return output.goSidesPoly5!({ tile: output[data.poly5SideTile]!() });
+        return output.goSides!();
+      },
+      outputStrings: {
+        goSides: Outputs.sides,
+        goSidesPoly5: {
+          en: 'Sides (${tile})',
+        },
+        outsideWNW: {
+          en: 'Outside WNW',
+        },
+        outsideENE: {
+          en: 'Outside ENE',
+        },
+        outsideWSW: {
+          en: 'Outside WSW',
+        },
+        outsideESE: {
+          en: 'Outside ESE',
+        },
+      },
     },
     {
       id: 'P6S Pathogenic Cells Numbers',
