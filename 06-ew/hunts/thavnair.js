@@ -169,31 +169,36 @@ Options.Triggers.push({
     {
       id: 'Hunt Sphatika Brace Init',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6BE4', '6BE5', '6BE6', '6BE7'], source: 'Sphatika', capture: false }),
-      run: (data) => data.sphatikaBearing = [],
-    },
-    {
-      id: 'Hunt Sphatika Bearing Collect',
-      type: 'GainsEffect',
-      // B13 = Forward Bearing (down arrow)
-      // B14 = Backward Bearing (up arrow)
-      // B15 = Leftward Bearing (right arrow)
-      // B16 = Rightward Bearing (left arrow)
-      // The general strategy here is you read the arrow directions (not the bearing names) left to right.
+      // brace ability ids:
+      //   6BE4 = Forward Bearing => Backward Bearing
+      //   6BE5 = Forward Bearing => Leftward Bearing
+      //   6BE6 = Backward Bearing => Rightward Bearing
+      //   6BE7 = Leftward Bearing => Rightward Bearing
+      //
+      // effect ids:
+      //   B13 = Forward Bearing (down arrow)
+      //   B14 = Backward Bearing (up arrow)
+      //   B15 = Leftward Bearing (right arrow)
+      //   B16 = Rightward Bearing (left arrow)
+      //
+      // The order of effect id lines in the log is not the same as the order of them applying.
+      // It is somewhat non-deterministic and could be in either ordering.
+      // However, it seems that the effect ids are sorted lowest->highest on the buff bar,
+      // so that the lowest id will always go off first.
+      //
+      // The strategy is to read arrow images (not bearing names) left to right on the buff bar.
       // First arrow dir, then first arrow opposite, then second arrow dir, then second arrow opposite.
-      // If it is Whiplick, then you do the reverse the directions of the arrows.
-      netRegex: NetRegexes.gainsEffect({ effectId: ['B13', 'B14', 'B15', 'B16'], source: 'Sphatika' }),
+      // If it is Whiplick, then you do the reverse of the directions of the arrow images.
+      // See: https://www.twitch.tv/asinametra/clip/ExquisiteNurturingPeanutBIRB-i4NMmHjZNjai5xP-
+      netRegex: NetRegexes.startsUsing({ id: ['6BE4', '6BE5', '6BE6', '6BE7'], source: 'Sphatika' }),
       run: (data, matches) => {
-        const map = {
-          'B13': ['back', 'front'],
-          'B14': ['front', 'back'],
-          'B15': ['right', 'left'],
-          'B16': ['left', 'right'],
+        const bearingMap = {
+          '6BE4': ['back', 'front', 'front', 'back'],
+          '6BE5': ['back', 'front', 'right', 'left'],
+          '6BE6': ['front', 'back', 'left', 'right'],
+          '6BE7': ['right', 'left', 'left', 'right'],
         };
-        const dirs = map[matches.effectId];
-        if (dirs === undefined)
-          return;
-        data.sphatikaBearing.push(...dirs);
+        data.sphatikaBearing = bearingMap[matches.id] ?? [];
       },
     },
     {

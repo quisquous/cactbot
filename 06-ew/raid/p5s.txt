@@ -12,7 +12,7 @@ hideall "--sync--"
 0.0 "--sync--" sync /Engage!/ window 0,1
 9.9 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7720:/ window 20,20
 14.9 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:7720:/
-22.0 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
+22.0 "Ruby Glow 1" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
 29.1 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76FD:/
 29.1 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76FE:/
 42.7 "Topaz Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:79FE:/
@@ -24,7 +24,7 @@ hideall "--sync--"
 101.3 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:784A:/
 
 # Double Rush
-115.6 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
+115.6 "Ruby Glow 2" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
 122.7 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76FD:/
 122.7 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76FE:/
 125.9 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76F5:/
@@ -36,7 +36,7 @@ hideall "--sync--"
 146.4 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:7720:/
 
 # Topaz Stones Memory Dodge
-159.6 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
+159.6 "Ruby Glow 3" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
 165.7 "Topaz Cluster" sync / 1[56]:[^:]*:Proto-Carbuncle:7702:/
 165.7 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:7703:/
 168.1 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:7704:/
@@ -86,7 +86,7 @@ hideall "--sync--"
 # 2/3 Topaz Stones + stacks to break them
 280.6 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7720:/ window 50,10
 285.6 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:7720:/
-292.7 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
+292.7 "Ruby Glow 4" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
 298.8 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76FD:/
 298.8 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76FE:/
 305.9 "Venom Pool" sync / 1[56]:[^:]*:Proto-Carbuncle:79E2:/
@@ -99,7 +99,7 @@ hideall "--sync--"
 # Light party splits
 332.1 "Venomous Mass" sync / 1[56]:[^:]*:Proto-Carbuncle:771D:/
 339.2 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:784A:/
-352.6 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
+352.6 "Ruby Glow 5" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
 359.7 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76FD:/
 359.7 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76FE:/
 373.3 "Topaz Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:79FE:/
@@ -118,7 +118,7 @@ hideall "--sync--"
 435.4 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:7720:/
 
 # Break Topaz Stones with poison stacks again
-442.5 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
+442.5 "Ruby Glow 6" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/
 448.6 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76FD:/
 448.6 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76FE:/
 455.7 "Venom Pool" sync / 1[56]:[^:]*:Proto-Carbuncle:79E2:/
