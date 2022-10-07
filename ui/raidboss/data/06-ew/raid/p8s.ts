@@ -2168,22 +2168,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P8S Arcane Channel Collect',
-      type: 'MapEffect',
-      netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags }),
-      condition: (data) => data.seenFirstTankAutos,
-      run: (data, matches) => {
-        const colorInt = parseInt(matches.location, 16);
-
-        if (colorInt >= 0x1A && colorInt <= 0x23)
-          data.arcaneChannelColor['purple'] = true;
-        if (colorInt >= 0x24 && colorInt <= 0x2D)
-          data.arcaneChannelColor['blue'] = true;
-        if (colorInt >= 0x2E && colorInt <= 0x37)
-          data.arcaneChannelColor['green'] = true;
-      },
-    },
-    {
       id: 'P8S Arcane Channel Color',
       type: 'MapEffect',
       netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags }),
@@ -2307,6 +2291,22 @@ const triggerSet: TriggerSet<Data> = {
           data.perfectionLong = {};
           data.perfectionShort = {};
         }
+      },
+    },
+    {
+      id: 'P8S Arcane Channel Collect',
+      type: 'MapEffect',
+      netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags }),
+      condition: (data) => data.seenFirstTankAutos,
+      run: (data, matches) => {
+        const colorInt = parseInt(matches.location, 16);
+
+        if (colorInt >= 0x1A && colorInt <= 0x23)
+          data.arcaneChannelColor['purple'] = true;
+        if (colorInt >= 0x24 && colorInt <= 0x2D)
+          data.arcaneChannelColor['blue'] = true;
+        if (colorInt >= 0x2E && colorInt <= 0x37)
+          data.arcaneChannelColor['green'] = true;
       },
     },
     {
