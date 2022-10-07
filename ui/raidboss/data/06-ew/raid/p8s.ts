@@ -13,7 +13,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
 // TODO: better vent callouts
 // TODO: initial tank auto call on final boss as soon as boss pulled
-// TODO: figure out how to handle towers during HC1/HC2
 
 export type InitialConcept = 'shortalpha' | 'longalpha' | 'shortbeta' | 'longbeta' | 'shortgamma' | 'longgamma';
 export type Splicer = 'solosplice' | 'multisplice' | 'supersplice';
@@ -48,6 +47,10 @@ export interface Data extends RaidbossData {
   seenFirstAlignmentStackSpread?: boolean;
   concept: { [name: string]: InitialConcept };
   splicer: { [name: string]: Splicer };
+  perfectionLong: { [name: string]: string};
+  perfectionShort: { [name: string]: string};
+  arcaneChannelCount: number;
+  arcaneChannelColor: { [color: string]: boolean };
   alignmentTargets: string[];
   burstCounter: number;
   myTower?: number;
@@ -75,6 +78,8 @@ const positionTo8Dir = (combatant: PluginCombatantState) => {
   return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
+const arcaneChannelFlags = '00020001'; // mapEffect flags for tower tile effect
+
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheEighthCircleSavage,
   timelineFile: 'p8s.txt',
@@ -96,6 +101,10 @@ const triggerSet: TriggerSet<Data> = {
       secondSnakeDebuff: {},
       concept: {},
       splicer: {},
+      perfectionLong: {},
+      perfectionShort: {},
+      arcaneChannelCount: 0,
+      arcaneChannelColor: {},
       alignmentTargets: [],
       burstCounter: 0,
       flareCounter: 0,
@@ -1904,10 +1913,25 @@ const triggerSet: TriggerSet<Data> = {
         const isLong = parseFloat(matches.duration) > 10;
         if (id === 'D02')
           data.concept[matches.target] = isLong ? 'longalpha' : 'shortalpha';
-        else if (id === 'D03')
+          if (isLong)
+            data.perfectionLong[matches.target] = 'alpha';
+          else
+            data.perfectionShort[matches.target] = 'alpha';
+        }
+        else if (id === 'D03') {
           data.concept[matches.target] = isLong ? 'longbeta' : 'shortbeta';
-        else if (id === 'D04')
+          if (isLong)
+            data.perfectionLong[matches.target] = 'beta';
+          else
+            data.perfectionShort[matches.target] = 'beta';
+        }
+        else if (id === 'D04') {
           data.concept[matches.target] = isLong ? 'longgamma' : 'shortgamma';
+          if (isLong)
+            data.perfectionLong[matches.target] = 'gamma';
+          else
+            data.perfectionShort[matches.target] = 'gamma';
+        }
         else if (id === 'D11')
           data.splicer[matches.target] = 'solosplice';
         else if (id === 'D12')
@@ -2065,9 +2089,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P8S Perfected Alpha',
+      // Trigger will likely be removed once HC2 Towers callout is available
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D05' }),
-      condition: Conditions.targetIsYou(),
+      condition: (data, matches) => (data.me === matches.target && data.arcaneChannelCount > 1),
       // TODO: it'd be nice to know the tower here so this could just say
       // "take tower" or "avoid tower" with different severity or even
       // who to merge with (!), but without that this is the best we got.
@@ -2084,9 +2109,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P8S Perfected Beta',
+      // Trigger will likely be removed once HC2 Towers callout is available
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D06' }),
-      condition: Conditions.targetIsYou(),
+      condition: (data, matches) => (data.me === matches.target && data.arcaneChannelCount > 1),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -2100,9 +2126,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P8S Perfected Gamma',
+      // Trigger will likely be removed once HC2 Towers callout is available
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D07' }),
-      condition: Conditions.targetIsYou(),
+      condition: (data, matches) => (data.me === matches.target && data.arcaneChannelCount > 1),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -2112,6 +2139,214 @@ const triggerSet: TriggerSet<Data> = {
           ja: '紫・青',
           ko: '보라/파랑 기둥',
         },
+      },
+    },
+    {
+      id: 'P8S Perfection Splicer Collect',
+      // Record what the splicers chose as they will marge with unused short player
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D05', 'D06', 'D07'] }),
+      condition: (data, matches) => {
+        // Ignore Imperfection players
+        return (!data.perfectionLong[matches.target] || !data.perfectionShort[matches.target]);
+      },
+      run: (data, matches) => {
+        let letter;
+        if (matches.effectId === 'D05')
+          letter = 'alpha';
+        else if (matches.effectId === 'D06')
+          letter = 'beta';
+        else
+          letter = 'gamma';
+
+        data.perfectionShort[matches.target] = letter;
+      },
+    },
+    {
+      id: 'P8S Perfection Remove',
+      // Remove player from perfection lists when they merge
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D09', 'D0A', 'D0B', 'D0C'] }),
+      run: (data, matches) => {
+        delete data.perfectionLong[matches.target];
+        delete data.perfectionShort[matches.target];
+      },
+    },
+    {
+      id: 'P8S Arcane Channel Collect',
+      type: 'MapEffect',
+      netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags }),
+      condition: (data) => data.seenFirstTankAutos,
+      run: (data, matches) => {
+        const colorInt = parseInt(matches.location, 16);
+
+        if (colorInt >= 0x1A && colorInt <= 0x23)
+          data.arcaneChannelColor['purple'] = true;
+        if (colorInt >= 0x24 && colorInt <= 0x2D)
+          data.arcaneChannelColor['blue'] = true;
+        if (colorInt >= 0x2E && colorInt <= 0x37)
+          data.arcaneChannelColor['green'] = true;
+      },
+    },
+    {
+      id: 'P8S Arcane Channel Color',
+      type: 'MapEffect',
+      netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags }),
+      condition: (data, matches) => {
+        if (data.seenFirstTankAutos) {
+          const colorInt = parseInt(matches.location, 16);
+          if (colorInt >= 0x1A && colorInt <= 0x37)
+            return true;
+        }
+        return false;
+      },
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          colorTower1MergePlayer: {
+            en: '${color} Tower, Merge with ${player}',
+          },
+          colorTower1MergeLetter: {
+            en: '${color} Tower, Missing ${letter}',
+          },
+          colorTowerAvoid: {
+            en: 'Avoid ${color} Towers',
+          },
+          colorTower: {
+            en: '${color} Towers',
+          },
+          colorTowers: {
+            en: '${color1}/${color2} Towers',
+          },
+          alpha: {
+            en: 'Alpha',
+          },
+          beta: {
+            en: 'Beta',
+          },
+          gamma: {
+            en: 'Gamma',
+          },
+          purple: {
+            en: 'Purple',
+          },
+          blue: {
+            en: 'Blue',
+          },
+          green: {
+            en: 'Green',
+          },
+        };
+
+        // Get the player with corresponding perfection
+        const getMergePlayer = (perfectionList: { [name: string]: string},perfection: string) => {
+          let mergePlayer;
+          Object.entries(perfectionList).find(([key, value]) => {
+            if (value === perfection) {
+              mergePlayer = key;
+              return;
+            }
+            return false;
+          });
+          return mergePlayer;
+        };
+
+        let perfectionList;
+        let mergePerfection;
+        let towerColor;
+
+        // High Concept 1
+        if (data.arcaneChannelCount >= 0 && data.arcaneChannelCount < 2) {
+          // Uses Shorts with Splicers and Longs with Longs priority
+          // High Concept 1 Second Towers could use long or short player
+          if (data.arcaneChannelCount !== 1)
+            perfectionList = data.perfectionShort;
+          else {
+            // Check which list we belong to, if any
+            if (data.perfectionShort[data.me])
+              perfectionList = data.perfectionShort;
+            if (data.perfectionLong[data.me])
+              perfectionList = data.perfectionLong;
+          }
+
+          // Narrow down to single player
+          if (data.arcaneChannelColor['purple']) {
+            // Gamma/Beta Players
+            if (perfectionList !== undefined) {
+                if (perfectionList[data.me] === 'gamma')
+                  mergePerfection = 'beta';
+                if (perfectionList[data.me] === 'beta')
+                  mergePerfection = 'gamma';
+            }
+            towerColor = 'purple';
+          } else if (data.arcaneChannelColor['blue']) {
+            // Alpha/Gamma Players
+            if (perfectionList !== undefined) {
+              if (perfectionList[data.me] === 'alpha')
+                mergePerfection = 'gamma';
+              if (perfectionList[data.me] === 'gamma')
+                mergePerfection = 'alpha';
+            }
+            towerColor = 'blue';
+          } else if (data.arcaneChannelColor['green']) {
+            // Alpha/Beta Players
+            if (perfectionList !== undefined) {
+              if (perfectionList[data.me] === 'alpha')
+                mergePerfection = 'beta';
+              if (perfectionList[data.me] === 'beta')
+                mergePerfection = 'alpha';
+            }
+            towerColor = 'green';
+          }
+          else {
+            // Failed to determine color of tower
+            return;
+          }
+          if (mergePerfection && perfectionList !== undefined) {
+            const mergePlayer = getMergePlayer(perfectionList, mergePerfection);
+            if (mergePlayer && towerColor !== undefined)
+              return { alertText: output.colorTower1MergePlayer!({ color: output[towerColor]!(), player: mergePlayer }) };
+          }
+        }
+        
+        // High Concept 2 Tower 1
+        if (data.arcaneChannelCount >= 2) {
+          let towerColors = [];
+          // Need to implement handling of non-debuff players first
+          if (data.arcaneChannelColor['purple'])
+            towerColors.push('purple');
+          if (data.arcaneChannelColor['blue'])
+            towerColors.push('blue');
+          if (data.arcaneChannelColor['green'])
+            towerColors.push('green');
+          
+          if (towerColors[0] && towerColors[1])
+            return { infoText: output.colorTowers!({ color1: output[towerColors[0]]!(), color2: output[towerColors[1]]!() }) };
+          if (towerColors[0])
+            return { infoText: output.colorTower!({ color: output[towerColors[0]]!() }) };
+            
+          // Failed to find color of tower
+          return;
+        }
+
+        if (towerColor !== undefined) {
+          // Failed to find player to merge with
+          if (mergePerfection)
+            return { infoText: output.colorTower1MergeLetter!({ color: output[towerColor]!(), letter: output[mergePerfection]!() }) };
+          // Avoid tower
+          return { infoText: output.colorTowerAvoid!({ color: output[towerColor]!() }) };
+        }
+      },
+      run: (data, matches) => {
+        data.arcaneChannelColor = {};
+
+        // Reset unused perfections between HC1 and HC2 after second channel
+        data.arcaneChannelCount = data.arcaneChannelCount + 1;
+        if (data.arcaneChannelCount === 2) {
+          data.perfectionLong = {};
+          data.perfectionShort = {};
+        }
       },
     },
     {
