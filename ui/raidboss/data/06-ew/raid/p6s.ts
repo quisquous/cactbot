@@ -148,6 +148,8 @@ const triggerSet: TriggerSet<Data> = {
           return;
         if (data.mapEffects.length < 2)
           return;
+        if (data.polyInstance === 4)  // lots of safe spots, doesn't need a trigger response
+          return;
 
         const safe: { [tile: string]: boolean } = {
           // This ordering matters for certain Poly instances.
@@ -269,8 +271,8 @@ const triggerSet: TriggerSet<Data> = {
             if (safeTiles.length !== 2 || safe1 === undefined || output[safe0] === undefined || output[safe1] === undefined)
               return;
             return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
-          case 4: // lots of safe spots, so give generic warning
-            return output.polyAvoid!();
+          case 4: // here for completeness, but should never be run
+            return;
           case 5: // two outside safe spots (reduced to one by Chorus Ixou)
             if (safeTiles.length !== 2 || safe1 === undefined)
               return;
@@ -279,7 +281,7 @@ const triggerSet: TriggerSet<Data> = {
               data.poly5SideTile = safe1;
               return; // success - output will be handled by Chorus Ixou trigger
             }
-            return output.polyAvoid!();
+            return;
           case 6: // Cachexia 2 - four safe spots that form corners of a 3x3 tile sub-grid, so just call the center
             if (safeTiles.length !== 4 || poly6Map[safe0] === undefined)
               return;
@@ -310,9 +312,6 @@ const triggerSet: TriggerSet<Data> = {
         },
         polyCachexia: {
           en: 'Safe Tiles: Intercards of ${dir1}',
-        },
-        polyAvoid: {
-          en: 'Avoid Unsafe Tiles',
         },
         insideNW: {
           en: 'Inside NW',
