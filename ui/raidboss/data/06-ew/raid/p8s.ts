@@ -1917,27 +1917,25 @@ const triggerSet: TriggerSet<Data> = {
             data.perfectionLong[matches.target] = 'alpha';
           else
             data.perfectionShort[matches.target] = 'alpha';
-        }
-        else if (id === 'D03') {
+        } else if (id === 'D03') {
           data.concept[matches.target] = isLong ? 'longbeta' : 'shortbeta';
           if (isLong)
             data.perfectionLong[matches.target] = 'beta';
           else
             data.perfectionShort[matches.target] = 'beta';
-        }
-        else if (id === 'D04') {
+        } else if (id === 'D04') {
           data.concept[matches.target] = isLong ? 'longgamma' : 'shortgamma';
           if (isLong)
             data.perfectionLong[matches.target] = 'gamma';
           else
             data.perfectionShort[matches.target] = 'gamma';
-        }
-        else if (id === 'D11')
+        } else if (id === 'D11') {
           data.splicer[matches.target] = 'solosplice';
-        else if (id === 'D12')
+        } else if (id === 'D12') {
           data.splicer[matches.target] = 'multisplice';
-        else if (id === 'D13')
+        } else if (id === 'D13') {
           data.splicer[matches.target] = 'supersplice';
+        }
       },
     },
     {
@@ -2210,12 +2208,6 @@ const triggerSet: TriggerSet<Data> = {
           colorTowerAvoid: {
             en: 'Avoid ${color} Towers',
           },
-          colorTower: {
-            en: '${color} Towers',
-          },
-          colorTowers: {
-            en: '${color1}/${color2} Towers',
-          },
           alpha: {
             en: 'Alpha',
           },
@@ -2304,34 +2296,6 @@ const triggerSet: TriggerSet<Data> = {
             if (mergePlayer === undefined && towerColor !== undefined)
               return { alertText: output.colorTower1MergePlayer!({ color: output[towerColor]!(), player: mergePlayer }) };
           }
-        }
-
-        // High Concept 2 Tower 1
-        if (data.arcaneChannelCount >= 2) {
-          const towerColors = [];
-          // Need to implement handling of non-debuff players first
-          if (data.arcaneChannelColor['purple'])
-            towerColors.push('purple');
-          if (data.arcaneChannelColor['blue'])
-            towerColors.push('blue');
-          if (data.arcaneChannelColor['green'])
-            towerColors.push('green');
-
-          if (towerColors[0] && towerColors[1])
-            return { infoText: output.colorTowers!({ color1: output[towerColors[0]]!(), color2: output[towerColors[1]]!() }) };
-          if (towerColors[0])
-            return { infoText: output.colorTower!({ color: output[towerColors[0]]!() }) };
-
-          // Failed to find color of tower
-          return;
-        }
-
-        if (towerColor !== undefined) {
-          // Failed to find player to merge with
-          if (mergePerfection)
-            return { infoText: output.colorTower1MergeLetter!({ color: output[towerColor]!(), letter: output[mergePerfection]!() }) };
-          // Avoid tower
-          return { infoText: output.colorTowerAvoid!({ color: output[towerColor]!() }) };
         }
       },
       run: (data) => {
