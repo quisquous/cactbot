@@ -47,8 +47,8 @@ export interface Data extends RaidbossData {
   seenFirstAlignmentStackSpread?: boolean;
   concept: { [name: string]: InitialConcept };
   splicer: { [name: string]: Splicer };
-  perfectionLong: { [name: string]: string};
-  perfectionShort: { [name: string]: string};
+  perfectionLong: { [name: string]: string };
+  perfectionShort: { [name: string]: string };
   arcaneChannelCount: number;
   arcaneChannelColor: { [color: string]: boolean };
   alignmentTargets: string[];
@@ -2093,9 +2093,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D05' }),
       condition: (data, matches) => (data.me === matches.target && data.arcaneChannelCount > 1),
-      // TODO: it'd be nice to know the tower here so this could just say
-      // "take tower" or "avoid tower" with different severity or even
-      // who to merge with (!), but without that this is the best we got.
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -2240,7 +2237,7 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         // Get the player with corresponding perfection
-        const getMergePlayer = (perfectionList: { [name: string]: string},perfection: string) => {
+        const getMergePlayer = (perfectionList: { [name: string]: string }, perfection: string) => {
           let mergePlayer;
           Object.entries(perfectionList).find(([key, value]) => {
             if (value === perfection) {
@@ -2260,9 +2257,9 @@ const triggerSet: TriggerSet<Data> = {
         if (data.arcaneChannelCount >= 0 && data.arcaneChannelCount < 2) {
           // Uses Shorts with Splicers and Longs with Longs priority
           // High Concept 1 Second Towers could use long or short player
-          if (data.arcaneChannelCount !== 1)
+          if (data.arcaneChannelCount !== 1) {
             perfectionList = data.perfectionShort;
-          else {
+          } else {
             // Check which list we belong to, if any
             if (data.perfectionShort[data.me])
               perfectionList = data.perfectionShort;
@@ -2274,10 +2271,10 @@ const triggerSet: TriggerSet<Data> = {
           if (data.arcaneChannelColor['purple']) {
             // Gamma/Beta Players
             if (perfectionList !== undefined) {
-                if (perfectionList[data.me] === 'gamma')
-                  mergePerfection = 'beta';
-                if (perfectionList[data.me] === 'beta')
-                  mergePerfection = 'gamma';
+              if (perfectionList[data.me] === 'gamma')
+                mergePerfection = 'beta';
+              if (perfectionList[data.me] === 'beta')
+                mergePerfection = 'gamma';
             }
             towerColor = 'purple';
           } else if (data.arcaneChannelColor['blue']) {
@@ -2298,21 +2295,20 @@ const triggerSet: TriggerSet<Data> = {
                 mergePerfection = 'alpha';
             }
             towerColor = 'green';
-          }
-          else {
+          } else {
             // Failed to determine color of tower
             return;
           }
           if (mergePerfection && perfectionList !== undefined) {
             const mergePlayer = getMergePlayer(perfectionList, mergePerfection);
-            if (mergePlayer && towerColor !== undefined)
+            if (mergePlayer === undefined && towerColor !== undefined)
               return { alertText: output.colorTower1MergePlayer!({ color: output[towerColor]!(), player: mergePlayer }) };
           }
         }
-        
+
         // High Concept 2 Tower 1
         if (data.arcaneChannelCount >= 2) {
-          let towerColors = [];
+          const towerColors = [];
           // Need to implement handling of non-debuff players first
           if (data.arcaneChannelColor['purple'])
             towerColors.push('purple');
@@ -2320,12 +2316,12 @@ const triggerSet: TriggerSet<Data> = {
             towerColors.push('blue');
           if (data.arcaneChannelColor['green'])
             towerColors.push('green');
-          
+
           if (towerColors[0] && towerColors[1])
             return { infoText: output.colorTowers!({ color1: output[towerColors[0]]!(), color2: output[towerColors[1]]!() }) };
           if (towerColors[0])
             return { infoText: output.colorTower!({ color: output[towerColors[0]]!() }) };
-            
+
           // Failed to find color of tower
           return;
         }
@@ -2338,7 +2334,7 @@ const triggerSet: TriggerSet<Data> = {
           return { infoText: output.colorTowerAvoid!({ color: output[towerColor]!() }) };
         }
       },
-      run: (data, matches) => {
+      run: (data) => {
         data.arcaneChannelColor = {};
 
         // Reset unused perfections between HC1 and HC2 after second channel
