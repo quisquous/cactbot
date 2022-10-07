@@ -1911,7 +1911,7 @@ const triggerSet: TriggerSet<Data> = {
         const id = matches.effectId;
         // 8 and 26s second debuffs.
         const isLong = parseFloat(matches.duration) > 10;
-        if (id === 'D02')
+        if (id === 'D02') {
           data.concept[matches.target] = isLong ? 'longalpha' : 'shortalpha';
           if (isLong)
             data.perfectionLong[matches.target] = 'alpha';
