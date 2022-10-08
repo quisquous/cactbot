@@ -936,7 +936,7 @@ Options.Triggers.push({
         },
         crushDir: {
           en: 'Away to ${dir}',
-          de: 'Weg von ${dir}',
+          de: 'Weg nach ${dir}',
           fr: 'Loin de ${dir}',
           ja: '${dir}が安置 (クラッシュ)',
           cn: '去 ${dir}',
