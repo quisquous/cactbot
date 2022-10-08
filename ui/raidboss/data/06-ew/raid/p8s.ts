@@ -2135,7 +2135,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P8S Arcane Channel Tower Colors',
+      id: 'P8S Arcane Channel Color',
       type: 'MapEffect',
       netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags }),
       condition: (data, matches) => {
@@ -2199,6 +2199,9 @@ const triggerSet: TriggerSet<Data> = {
         let perfectionList;
         let finalTowers;
         let mergePerfection;
+        let color;
+        let letter;
+        let mergePlayer;
         const towerColors = [];
 
         if (data.arcaneChannelCount === 1) {
@@ -2274,11 +2277,12 @@ const triggerSet: TriggerSet<Data> = {
         // Find corresponding player(s) or perfection in HC1 and HC2 First Towers
         if (mergePerfection !== undefined && perfectionList !== undefined) {
           // HC1 Towers and HC2 First Towers
-          const mergePlayer = getMergePlayer(perfectionList, mergePerfection);
-          if (mergePlayer !== undefined)
-            return { alertText: output.colorTower1MergePlayer!({ color: output[towerColors[0]]!(), player: mergePlayer }) };
-          // Failed to find player, output the corresponding perfection
-          return { alertText: output.colorTower1MergeLetter!({ color: output[towerColors[0]]!(), letter: output[mergePerfection]!() }) };
+          mergePlayer = getMergePlayer(perfectionList, mergePerfection);
+          color = towerColors[0];
+
+          // If fail to find player, output the corresponding perfection
+          if (mergePlayer === undefined)
+            letter = mergePerfection;
         }
 
         // HC2 Second Towers
@@ -2288,43 +2292,55 @@ const triggerSet: TriggerSet<Data> = {
 
           // Find corresponding player, else corresponding letters
           if (Object.keys(finalTowers).length === 1 && Object.keys(finalTowers)[0] !== undefined) {
-            const mergePlayer = Object.keys(finalTowers)[0];
+            mergePlayer = Object.keys(finalTowers)[0];
             if (mergePlayer === undefined)
               return;
 
             // Long alpha and long beta are always partners and green
             if (data.perfectionLong[mergePlayer] === 'alpha' || data.perfectionLong[mergePlayer] === 'beta')
-              return { alertText: output.colorTower1MergePlayer!({ color: output['green']!(), player: mergePlayer }) };
+              color = 'green';
 
-            // Short and Gamma are Blue/Purple
+            // Short and Gamma are Blue/Purple, short player determines the color
             if (data.perfectionShort[mergePlayer] === 'alpha' || data.perfectionShort[data.me] === 'alpha')
-              return { alertText: output.colorTower1MergePlayer!({ color: output['blue']!(), player: mergePlayer }) };
+              color = 'blue';
             if (data.perfectionShort[mergePlayer] === 'beta' || data.perfectionShort[data.me] === 'beta')
-              return { alertText: output.colorTower1MergePlayer!({ color: output['purple']!(), player: mergePlayer }) };
+              color = 'purple';
           }
 
           // Failed to find a corresponding player, output corresponding perfections instead
           const shortPlayerPerfection = data.perfectionShort[data.me];
           // Unused short is always alpha or beta because wind is not created in first and we thus match with gamma
           if (shortPlayerPerfection !== undefined) {
-            if (shortPlayerPerfection === 'alpha')
-              return { alertText: output.colorTower1MergeLetter!({ color: output['blue']!(), letter: output['gamma']!() }) };
-            if (shortPlayerPerfection === 'beta')
-              return { alertText: output.colorTower1MergeLetter!({ color: output['purple']!(), letter: output['gamma']!() }) };
+            color = (shortPlayerPerfection === 'alpha' ? 'blue' : 'purple');
+            letter = 'gamma';
           }
 
           const longPlayerPerfection = data.perfectionLong[data.me];
           if (longPlayerPerfection === 'gamma') {
-            if (towerColors[0] === 'blue' || towerColors[1] === 'blue')
-              return { alertText: output.colorTower1MergeLetter!({ color: output['blue']!(), letter: output['alpha']!() }) };
-            if (towerColors[0] === 'purple' || towerColors[1] === 'purple')
-              return { alertText: output.colorTower1MergeLetter!({ color: output['purple']!(), letter: output['beta']!() }) };
+            if (towerColors[0] === 'blue' || towerColors[1] === 'blue') {
+              color = 'blue';
+              letter = 'alpha';
+            }
+            if (towerColors[0] === 'purple' || towerColors[1] === 'purple') {
+              color = 'purple';
+              letter = 'beta';
+            }
           }
-          if (longPlayerPerfection === 'beta')
-            return { alertText: output.colorTower1MergeLetter!({ color: output['green']!(), letter: output['alpha']!() }) };
-          if (longPlayerPerfection === 'alpha')
-            return { alertText: output.colorTower1MergeLetter!({ color: output['green']!(), letter: output['beta']!() }) };
+          if (longPlayerPerfection === 'beta') {
+            color = 'green';
+            letter = 'alpha';
+          }
+          if (longPlayerPerfection === 'alpha') {
+            color = 'green';
+            letter = 'beta';
+          }
         }
+
+        if (color !== undefined && letter !== undefined)
+          return { alertText: output.colorTower1MergeLetter!({ color: output[color]!(), letter: output[letter]!() }) };
+
+        if (color !== undefined && mergePlayer !== undefined)
+          return { alertText: output.colorTower1MergePlayer!({ color: output[color]!(), player: data.ShortName(mergePlayer) }) };
 
         // Avoid tower(s)
         if (data.arcaneChannelCount !== 3)
