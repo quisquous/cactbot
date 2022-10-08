@@ -22,12 +22,11 @@ This guide was last updated for:
 - [Glossary of Terms](#glossary-of-terms)
   - [Network Data](#network-data)
   - [Network Log Lines](#network-log-lines)
-  - [ACT Log Lines](#act-log-lines)
+  - [Parsed Log Lines](#parsed-log-lines)
   - [Game Log Lines](#game-log-lines)
   - [Object/Actor/Entity/Mob/Combatant](#objectactorentitymobcombatant)
   - [Object ID](#object-id)
   - [Ability ID](#ability-id)
-  - [ACT Log Line Overview](#act-log-line-overview)
 - [FFXIV Plugin Log Lines](#ffxiv-plugin-log-lines)
   - [Line 00 (0x00): LogLine](#line-00-0x00-logline)
     - [Structure](#structure)
@@ -203,7 +202,7 @@ data_flow
 If you have ACT open during a fight, then it will generate logs.
 These logs will be trimmed to the start and end of combat.
 
-To see the logs, click on the **Main** tab,
+To see the parsed version of these logs, click on the **Main** tab,
 expand the zone you care about,
 right click on the encounter you want,
 then select **View Logs**.
@@ -213,8 +212,8 @@ then select **View Logs**.
 The **All** entry includes all the encounters in a zone and cannot be viewed.
 You must view individual encounters.
 
-The window that pops up has the text that triggers can be made against.
-This is usually the best way to search through and find the text that you want to make a trigger for.
+The window that pops up has the parsed log lines that triggers can be made against.
+This is one way to search through and find the text that you want to make a trigger for.
 
 ### Importing an old fight
 
@@ -281,9 +280,9 @@ Here are some example network log lines:
 Data on network log lines is separated by vertical braces, i.e. `|`.
 Network log lines also contain the hash of that line at the end.
 The log line type itself is in decimal, e.g. aoe abilities are on lines that begin with `22|`.
-The equivalent [ACT log line](#act-log-lines) would be written as the hex type `0x16`, i.e. `NetworkAOEAbility`.
+The equivalent [parsed log line](#parsed-log-lines) would be written as the hex type `0x16`, i.e. `NetworkAOEAbility`.
 
-The ffxiv plugin does not write the ACT log lines that plugins interact with
+The ffxiv plugin does not write the parsed log lines that plugins interact with
 to disk.
 
 The network log lines are used by some tools, such as:
@@ -293,21 +292,23 @@ The network log lines are used by some tools, such as:
 - cactbot make_timeline utility
 
 In the past,
-cactbot used to use [ACT log lines](#act-log-lines) for all triggers
+cactbot used to use [parsed log lines](#parsed-log-lines) for all triggers
 but has switched to using network log lines instead
 as they have more information.
-Timelines still use ACT log lines for syncing (for now).
+Timelines still use parsed log lines for syncing (for now).
 
 If you [import a network log file into ACT](#importing-an-old-fight),
-then it you can view the ACT log lines in the fight.
+then you can view the parsed log lines for in the fight.
 
-### ACT Log Lines
+### Parsed Log Lines
 
 These are the log lines that come out of the ffxiv plugin at runtime and are
 also exposed to plugins for triggers.
 These are what the [View Logs](#viewing-logs-after-a-fight) option in ACT shows.
+Most cactbot triggers used network log lines,
+but ACT custom triggers use parsed log lines.
 
-Data in ACT log lines is separated by colons, i.e. `:`.
+Data in parsed log lines is separated by colons, i.e. `:`.
 The log line type is in hex.
 
 Here is an example:
@@ -316,9 +317,16 @@ Here is an example:
 [21:16:44.288] 15:10532971:Potato Chippy:9C:Scathe:40001299:Striking Dummy:750003:90D0000:1C:9C8000:0:0:0:0:0:0:0:0:0:0:0:0:2778:2778:0:0:1000:1000:-653.9767:-807.7275:31.99997:26945:28784:6720:15480:1000:1000:-631.5208:-818.5244:31.95173:
 ```
 
+Parsed log lines lines always start with the time in square brackets.
+This time is formatted to be in your local time zone.
+The time is followed with a hex value (in this case 0x15) that indicates the type of the line it is.
+
+The rest of the data in the line needs to be interpreted based on what type it is.
+See the following sections that describe each line.
+
 ### Game Log Lines
 
-A game log line is a specific type of ACT log line with type `00`.
+A game log line is a specific type of log line with type `00`.
 These log lines also appear directly in your chat windows in game,
 possibly in the Battle Log tab.
 Try to [avoid writing triggers](#dont-write-triggers-against-game-log-lines) using these lines.
@@ -365,24 +373,6 @@ so this link will give you more information about it:
 <https://xivapi.com/action/3577?columns=ID,Name,Description,ClassJobCategory.Name>
 
 This works for both players and enemies, abilities and spells.
-
-### ACT Log Line Overview
-
-Here's an example of a typical ACT log line:
-`[12:01:48.293] 21:80034E29:40000001:E10:00:00:00`.
-This log line happens to be the [actor control line](#line33) (type=`0x21`) for commencing Titan Extreme.
-
-ACT log lines lines always start with the time in square brackets.
-This time is formatted to be in your local time zone.
-The time is followed with a hex value (in this case 0x21) that indicates the type of the line it is.
-These types are internal to the ffxiv plugin
-and represent its conversion of network data and memory data into discrete events.
-
-The rest of the data in the line needs to be interpreted based on what type it is.
-See the following sections that describe each line.
-
-Many line types can have missing combatant names.
-[ChangePrimaryPlayer](#line02) and [AddCombatant](#line03) lines should always have combatant names.
 
 ## FFXIV Plugin Log Lines
 
