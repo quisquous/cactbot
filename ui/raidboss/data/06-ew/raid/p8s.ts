@@ -2143,7 +2143,9 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: ['D05', 'D06', 'D07'] }),
       condition: (data, matches) => {
         // Ignore Imperfection players
-        return (!data.perfectionLong[matches.target] || !data.perfectionShort[matches.target]);
+        if (data.perfectionLong[matches.target] || data.perfectionShort[matches.target])
+          return false;
+        return true;
       },
       run: (data, matches) => {
         let letter;
