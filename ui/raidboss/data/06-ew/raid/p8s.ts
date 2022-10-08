@@ -2090,7 +2090,7 @@ const triggerSet: TriggerSet<Data> = {
       // Trigger will likely be removed once HC2 Towers callout is available
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D05' }),
-      condition: (data, matches) => (data.me === matches.target && data.arcaneChannelCount > 1),
+      condition: (data, matches) => (data.me === matches.target && data.arcaneChannelCount > 2),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -2107,7 +2107,7 @@ const triggerSet: TriggerSet<Data> = {
       // Trigger will likely be removed once HC2 Towers callout is available
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D06' }),
-      condition: (data, matches) => (data.me === matches.target && data.arcaneChannelCount > 1),
+      condition: (data, matches) => (data.me === matches.target && data.arcaneChannelCount > 2),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -2124,7 +2124,7 @@ const triggerSet: TriggerSet<Data> = {
       // Trigger will likely be removed once HC2 Towers callout is available
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D07' }),
-      condition: (data, matches) => (data.me === matches.target && data.arcaneChannelCount > 1),
+      condition: (data, matches) => (data.me === matches.target && data.arcaneChannelCount > 2),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -2142,8 +2142,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['D05', 'D06', 'D07'] }),
       condition: (data, matches) => {
-        // Ignore Imperfection players
-        if (data.perfectionLong[matches.target] || data.perfectionShort[matches.target])
+        // Ignore Imperfection players, and do not collect on HC2
+        if (data.perfectionLong[matches.target] || data.perfectionShort[matches.target] || data.arcaneChannelCount > 1)
           return false;
         return true;
       },
@@ -2248,8 +2248,8 @@ const triggerSet: TriggerSet<Data> = {
         let mergePerfection;
         let towerColor;
 
-        // High Concept 1
-        if (data.arcaneChannelCount >= 0 && data.arcaneChannelCount < 2) {
+        // High Concept 1 Towers and High Concept 2 First Tower
+        if (data.arcaneChannelCount >= 0 && data.arcaneChannelCount < 3) {
           // Uses Shorts with Splicers and Longs with Longs priority
           // High Concept 1 Second Towers could use long or short player
           if (data.arcaneChannelCount !== 1) {
