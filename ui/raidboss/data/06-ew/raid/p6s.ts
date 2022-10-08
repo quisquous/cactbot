@@ -16,6 +16,7 @@ export interface Data extends RaidbossData {
   aetheronecrosisDuration: number;
   predationCount: number;
   predationDebuff?: string;
+  transmissionAlertDelay: number;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -42,6 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       pathogenicCellsCounter: 0,
       aetheronecrosisDuration: 0,
       predationCount: 0,
+      transmissionAlertDelay: 0,
     };
   },
   triggers: [
@@ -468,6 +470,34 @@ const triggerSet: TriggerSet<Data> = {
           ja: '右 (蛇)',
           cn: '右 (蛇)',
           ko: '오른쪽 (뱀쪽)',
+        },
+      },
+    },
+    {
+      id: 'P6S Transmission',
+      type: 'GainsEffect',
+      // CF3 Chelomorph (Wing icon - cleave behind player)
+      // D48 Glossomorph (Snake icon - cleave in front of player)
+      netRegex: NetRegexes.gainsEffect({ effectId: ['CF3', 'D48'] }),
+      condition: Conditions.targetIsYou(),
+      preRun: (data, matches) => {
+        // 1st transmission has 11s duration, 2nd has 25s duration
+        // in either case, trigger should fire 3s before debuff expires
+        const duration = parseFloat(matches.duration);
+        data.transmissionAlertDelay = duration > 3 ? duration - 3 : 0;
+      },
+      delaySeconds: (data) => {
+        return data.transmissionAlertDelay;
+      },
+      infoText: (_data, matches, output) => {
+        return matches.effectId === 'D48' ? output.forwardCleave!() : output.backwardCleave!();
+      },
+      outputStrings: {
+        forwardCleave: {
+          en: 'Cleave in Front (Look Away)'
+        },
+        backwardCleave: {
+          en: 'Cleave Behind (Face Boss)',
         },
       },
     },
