@@ -46,8 +46,6 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 
 const crossTileFlags = '00020001'; // mapEffect flags for '+' tile effect
 const diagonalTileFlags = '00400020'; // mapEffect flags for 'x' tile effect
-const outsideFrontBackTiles = ['outsideNNW', 'outsideNNE', 'outsideSSW', 'outsideSSE'];
-const outsideSideTiles = ['outsideWNW', 'outsideENE', 'outsideWSW', 'outsideESE'];
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheSixthCircleSavage,
@@ -254,6 +252,8 @@ const triggerSet: TriggerSet<Data> = {
         if (safe0 === undefined)
           return;
 
+        const outsideFrontBackTiles = ['outsideNNW', 'outsideNNE', 'outsideSSW', 'outsideSSE'];
+        const outsideSideTiles = ['outsideWNW', 'outsideENE', 'outsideWSW', 'outsideESE'];
         // establishes pairs of east/west tiles that will be safe during Poly 6
         const poly6Pairs: { [anchor: keyof typeof safe]: keyof typeof safe } = {
           insideNW: 'outsideSSW',
