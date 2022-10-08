@@ -494,10 +494,10 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         forwardCleave: {
-          en: 'Cleave in Front (Look Away)',
+          en: 'Front Cleave',
         },
         backwardCleave: {
-          en: 'Cleave Behind (Face Boss)',
+          en: 'Rear Cleave',
         },
       },
     },
