@@ -442,7 +442,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '7892', source: 'Hegemone', capture: false }),
       // Should not be fired during Poly 1, since the Unholy Darkness headmarkers there
       // are handled by P6S Exocleaver Healer Groups.
-      condition: (data) => data.polyInstance === 3 || data.polyInstance === 8,
+      condition: (data) => data.polyInstance === 3,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.healerGroups!(),
       outputStrings: {
