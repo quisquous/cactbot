@@ -832,9 +832,7 @@ export class PopupText {
       return;
 
     this.inCombat = inCombat;
-
-    // Update in combat
-    this.data = this.getDataObject();
+    this.data.inCombat = inCombat;
 
     if (!this.resetWhenOutOfCombat)
       return;
@@ -874,20 +872,6 @@ export class PopupText {
     this.data = this.getDataObject();
     this.StopTimers();
     this.triggerSuppress = {};
-
-    for (const initObj of this.dataInitializers) {
-      const init = initObj.func;
-      const data = init();
-      if (typeof data === 'object') {
-        this.data = {
-          ...data,
-          ...this.data,
-        };
-      } else {
-        console.log(`Error in file: ${initObj.file}: these triggers may not work;
-        initData function returned invalid object: ${init.toString()}`);
-      }
-    }
   }
 
   StopTimers(): void {
@@ -1477,7 +1461,7 @@ export class PopupText {
 
     // TODO: make a breaking change at some point and
     // make all this style consistent, sorry.
-    return {
+    let data: RaidbossData = {
       me: this.me,
       job: this.job,
       role: this.role,
@@ -1498,6 +1482,22 @@ export class PopupText {
       CanFeint: () => Util.canFeint(this.job),
       CanAddle: () => Util.canAddle(this.job),
     };
+
+    for (const initObj of this.dataInitializers) {
+      const init = initObj.func;
+      const initData = init();
+      if (typeof initData === 'object') {
+        data = {
+          ...data,
+          ...initData,
+        };
+      } else {
+        console.log(`Error in file: ${initObj.file}: these triggers may not work;
+        initData function returned invalid object: ${init.toString()}`);
+      }
+    }
+
+    return data;
   }
 }
 
