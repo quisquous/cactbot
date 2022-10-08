@@ -2300,6 +2300,14 @@ const triggerSet: TriggerSet<Data> = {
               return { alertText: output.colorTower1MergePlayer!({ color: output[towerColor]!(), player: mergePlayer }) };
           }
         }
+
+        if (towerColor !== undefined) {
+          // Failed to find player to merge with
+          if (mergePerfection)
+            return { infoText: output.colorTower1MergeLetter!({ color: output[towerColor]!(), letter: output[mergePerfection]!() }) };
+          // Avoid tower
+          return { infoText: output.colorTowerAvoid!({ color: output[towerColor]!() }) };
+        }
       },
       run: (data) => {
         data.arcaneChannelColor = {};
