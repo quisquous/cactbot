@@ -2296,7 +2296,7 @@ const triggerSet: TriggerSet<Data> = {
           }
           if (mergePerfection && perfectionList !== undefined) {
             const mergePlayer = getMergePlayer(perfectionList, mergePerfection);
-            if (mergePlayer === undefined && towerColor !== undefined)
+            if (mergePlayer !== undefined && towerColor !== undefined)
               return { alertText: output.colorTower1MergePlayer!({ color: output[towerColor]!(), player: mergePlayer }) };
           }
         }
