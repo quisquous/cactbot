@@ -183,7 +183,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Orange (${force})',
           de: 'Orange (${force})',
-          fr: '${force} sur vous', // FIXME
+          fr: '${force} Orange',
           ja: '自分に${force}', // FIXME
           cn: '${force}点名', // FIXME
           ko: '노랑 (${force})',
@@ -201,7 +201,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Green (${force})',
           de: 'Grün (${force})',
-          fr: '${force} sur vous', // FIXME
+          fr: '${force} Vert',
           ja: '自分に${force}', // FIXME
           cn: '${force}点名', // FIXME
           ko: '초록 (${force})',
