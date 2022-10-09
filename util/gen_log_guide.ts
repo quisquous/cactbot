@@ -91,10 +91,10 @@ const titles: Titles = {
     'zh-TW': '網路日誌行結構：',
   },
   actLogLineStructure: {
-    'en-US': 'ACT Log Line Structure:',
-    'ja-JP': 'ACTログライン構造：',
-    'zh-CN': 'ACT日志行结构：',
-    'zh-TW': 'ACT日誌行結構：',
+    'en-US': 'Parsed Log Line Structure:',
+    'ja-JP': 'ACTログライン構造：', // FIXME
+    'zh-CN': 'ACT日志行结构：', // FIXME
+    'zh-TW': 'ACT日誌行結構：', // FIXME
   },
   regexes: {
     'en-US': 'Regexes',
@@ -109,10 +109,10 @@ const titles: Titles = {
     'zh-TW': '網路日誌行正規表示式：',
   },
   actLogLineRegexes: {
-    'en-US': 'ACT Log Line Regex:',
-    'ja-JP': 'ACTログライン正規表現：',
-    'zh-CN': 'ACT日志行正则表达式：',
-    'zh-TW': 'ACT日誌行正規表示式：',
+    'en-US': 'Parsed Log Line Regex:',
+    'ja-JP': 'ACTログライン正規表現：', // FIXME
+    'zh-CN': 'ACT日志行正则表达式：', // FIXME
+    'zh-TW': 'ACT日誌行正規表示式：', // FIXME
   },
   examples: {
     'en-US': 'Examples',
@@ -127,10 +127,10 @@ const titles: Titles = {
     'zh-TW': '網路日誌行示例：',
   },
   actLogLineExamples: {
-    'en-US': 'ACT Log Line Examples:',
-    'ja-JP': 'ACTログライン例：',
-    'zh-CN': 'ACT日志行示例：',
-    'zh-TW': 'ACT日誌行示例：',
+    'en-US': 'Parsed Log Line Examples:',
+    'ja-JP': 'ACTログライン例：', // FIXME
+    'zh-CN': 'ACT日志行示例：', // FIXME
+    'zh-TW': 'ACT日誌行示例：', // FIXME
   },
 };
 
