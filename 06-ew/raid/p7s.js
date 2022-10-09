@@ -320,7 +320,7 @@ Options.Triggers.push({
         separateHealerGroups: {
           en: 'Healer Group Platforms',
           de: 'Heiler-Gruppen Plattformen',
-          fr: 'Groupes heals Plateforme',
+          fr: 'Groupes heals sur les plateformes',
           ja: '円盤の内でヒーラーと頭割り',
           ko: '힐러 그룹별로 플랫폼',
         },

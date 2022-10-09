@@ -166,7 +166,7 @@ Options.Triggers.push({
         text: {
           en: 'Orange (${force})',
           de: 'Orange (${force})',
-          fr: '${force} sur vous',
+          fr: '${force} Orange',
           ja: '自分に${force}',
           cn: '${force}点名',
           ko: '노랑 (${force})',
@@ -184,7 +184,7 @@ Options.Triggers.push({
         text: {
           en: 'Green (${force})',
           de: 'Grün (${force})',
-          fr: '${force} sur vous',
+          fr: '${force} Vert',
           ja: '自分に${force}',
           cn: '${force}点名',
           ko: '초록 (${force})',
