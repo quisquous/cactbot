@@ -561,6 +561,18 @@ const triggerSet: TriggerSet<Data> = {
         dir: strings.getOut,
       },
     },
+    {
+      id: 'O8S Ultima Upsurge',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '28E7', source: 'Kefka', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'O8S Ultima',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '2911', source: 'Kefka', capture: false }),
+      response: Responses.aoe(),
+    },
   ],
   timelineReplace: [
     {

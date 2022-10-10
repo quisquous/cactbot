@@ -77,7 +77,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Split Tankbusters',
-          de: 'Geteilter Tankbuster',
+          de: 'getrennte Tankbuster',
           fr: 'Séparez les Tankbusters',
           ja: '2人同時タンク強攻撃',
           cn: '分散死刑',
@@ -172,6 +172,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7865', source: 'Hegemone', capture: false }),
       preRun: (data, _matches) => data.pathogenicCellsCounter++,
+      durationSeconds: 1.5,
       suppressSeconds: 1,
       sound: '',
       infoText: (data, _matches, output) => output.text!({ num: data.pathogenicCellsCounter }),

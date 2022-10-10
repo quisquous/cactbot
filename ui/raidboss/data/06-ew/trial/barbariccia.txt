@@ -12,7 +12,7 @@ hideall "Brush with Death"
 0.0 "--sync--" sync /Engage!/ window 0,1
 
 # Intro
-15.1 "Void Aero IV" sync / 1[56]:[^:]*:Barbariccia:75B6:/ window 10,10
+15.1 "Void Aero IV" sync / 1[56]:[^:]*:Barbariccia:75B6:/ window 16,10
 22.3 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7381:/
 34.6 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:75C1:/ window 10,10
 41.6 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:75C2:/

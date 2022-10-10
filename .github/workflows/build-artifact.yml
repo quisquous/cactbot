@@ -30,7 +30,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-js-env
 
       - name: Set artifact name
         shell: bash
@@ -40,29 +41,12 @@ jobs:
 
       - name: Check dependencies cache
         id: cache-dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ./plugin/ThirdParty
           key: ${{ runner.os }}-cactbot-${{ hashFiles('./util/fetch_deps.ts', './util/DEPS.json5') }}
           restore-keys: |
             ${{ runner.os }}-cactbot-
-
-      # Fetch dependencies only if cache-hit is false
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-
-      - name: Cache Dependencies
-        id: cache
-        uses: actions/cache@v2
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Install Node Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          npm ci --ignore-scripts
 
       - name: Fetch dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
