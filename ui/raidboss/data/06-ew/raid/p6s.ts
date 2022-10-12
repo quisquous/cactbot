@@ -16,7 +16,6 @@ export interface Data extends RaidbossData {
   aetheronecrosisDuration: number;
   predationCount: number;
   predationDebuff?: string;
-  transmissionAlertDelay: number;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -43,7 +42,6 @@ const triggerSet: TriggerSet<Data> = {
       pathogenicCellsCounter: 0,
       aetheronecrosisDuration: 0,
       predationCount: 0,
-      transmissionAlertDelay: 0,
     };
   },
   triggers: [
@@ -480,7 +478,7 @@ const triggerSet: TriggerSet<Data> = {
       // D48 Glossomorph (Snake icon - cleave in front of player)
       netRegex: NetRegexes.gainsEffect({ effectId: ['CF3', 'D48'] }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (data, matches) => {
+      delaySeconds: (_data, matches) => {
         // 1st transmission has 11s duration, 2nd has 25s duration
         // in either case, trigger should fire 3s before debuff expires
         return parseFloat(matches.duration) - 3;
