@@ -71,9 +71,9 @@ export const positionTo8Dir = (combatant: PluginCombatantState) => {
   return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
-export const headingTo4Dir = (heading: number) => {
-  // N = 0, E = 1, etc
-  return Math.round(2 - 2 * heading / Math.PI) % 4;
+export const headingTo8Dir = (heading: number) => {
+  // Dirs: N = 0, N = 1, ..., W = 7
+  return ((2 - Math.round(heading * 8 / Math.PI) / 2) + 2) % 8;
 };
 
 export const ventOutputStrings = {
@@ -1199,8 +1199,6 @@ const triggerSet: TriggerSet<Data> = {
         data.ventCasts.push(matches);
         return data.ventCasts.length === 2;
       },
-      // Sometimes these initial positions are incorrect, so compensate with some delay.
-      // TODO: can we detect/ignore these incorrect initial positions??
       delaySeconds: 0.5,
       promise: async (data: Data) => {
         data.combatantData = [];
@@ -1215,32 +1213,23 @@ const triggerSet: TriggerSet<Data> = {
         if (data.combatantData.length !== 2)
           return;
 
-        const abilityIds = data.ventCasts.map((m) => m.id);
         const unsafeSpots = [];
         for (const c of data.combatantData) {
-          const ability = abilityIds.shift();
-          if (ability === undefined)
-            return;
-          const isDiagonal = ability === '7923';
           const originalPos = positionTo8Dir(c);
-          if (isDiagonal) {
-            unsafeSpots.push((originalPos + 4) % 8);
-            continue;
-          }
+          const heading = headingTo8Dir(c.Heading);
 
-          const heading = headingTo4Dir(c.Heading);
           // There's maybe some way to do this more generally, but I don't see it.
           // Also, if this fails for some reason, it will just not call anything below.
-          if (originalPos === 7 && heading === 1 || originalPos === 3 && heading === 0) {
+          if ((originalPos === 7 && heading === 2) || (originalPos === 3 && heading === 0) || (originalPos === 5 && heading === 1)) {
             // Going towards NE
             unsafeSpots.push(1);
-          } else if (originalPos === 1 && heading === 2 || originalPos === 5 && heading === 1) {
+          } else if ((originalPos === 1 && heading === 4) || (originalPos === 5 && heading === 2) || (originalPos === 7 && heading === 3)) {
             // Going towards SE
             unsafeSpots.push(3);
-          } else if (originalPos === 3 && heading === 3 || originalPos === 7 && heading === 2) {
+          } else if ((originalPos === 3 && heading === 6) || (originalPos === 1 && heading === 5) || (originalPos === 7 && heading === 4)) {
             // Going towards SW
             unsafeSpots.push(5);
-          } else if (originalPos === 5 && heading === 0 || originalPos === 1 && heading === 3) {
+          } else if ((originalPos === 5 && heading === 0) || (originalPos === 1 && heading === 6) || (originalPos === 3 && heading === 7)) {
             // Going towards NW
             unsafeSpots.push(7);
           }
