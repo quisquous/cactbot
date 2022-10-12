@@ -7,8 +7,8 @@ export type LogDefinition = {
   name: string;
   // The plugin that generates this log.
   source: 'FFXIV_ACT_Plugin' | 'OverlayPlugin';
-  // Parsed ACT log line type.  This is `undefined` if source is not `FFXIV_ACT_Plugin`.
-  messageType?: string;
+  // Parsed ACT log line type.  OverlayPlugin lines use the `type` as a string.
+  messageType: string;
   // If true, always include this line when splitting logs (e.g. FFXIV plugin version).
   globalInclude?: boolean;
   // If true, always include the last instance of this line when splitting logs (e.g. ChangeZone).
@@ -906,6 +906,85 @@ const latestLogDefinitions = {
       timestamp: 1,
     },
     isUnknown: true,
+    firstOptionalField: undefined,
+  },
+  // OverlayPlugin log lines
+  LineRegistration: {
+    type: '256',
+    name: 'LineRegistration',
+    source: 'OverlayPlugin',
+    messageType: '256',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      id: 2,
+      source: 3,
+      version: 4,
+    },
+    canAnonymize: true,
+    firstOptionalField: undefined,
+  },
+  MapEffect: {
+    type: '257',
+    name: 'MapEffect',
+    source: 'OverlayPlugin',
+    messageType: '257',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      instance: 2,
+      flags: 3,
+      // values for the location field seem to vary between instances
+      // (e.g. a location of '08' in P5S does not appear to be the same location in P5S as in P6S)
+      // but this field does appear to consistently contain position info for the effect rendering
+      location: 4,
+      data0: 5,
+      data1: 6,
+    },
+    canAnonymize: true,
+    firstOptionalField: undefined,
+  },
+  FateDirector: {
+    type: '258',
+    name: 'FateDirector',
+    source: 'OverlayPlugin',
+    messageType: '258',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      category: 2,
+      // padding0: 3,
+      param1: 4,
+      param2: 5,
+      param3: 6,
+      param4: 7,
+      param5: 8,
+      param6: 9,
+      // padding1: 10,
+    },
+    canAnonymize: true,
+    firstOptionalField: undefined,
+  },
+  CEDirector: {
+    type: '259',
+    name: 'CEDirector',
+    source: 'OverlayPlugin',
+    messageType: '259',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      popTime: 2,
+      timeRemaining: 3,
+      // unknown0: 4,
+      numPlayers: 5,
+      status: 6,
+      // unknown1: 7,
+      progress: 8,
+      // unknown2: 9,
+      // unknown3: 10,
+      // unknown4: 11,
+    },
+    canAnonymize: true,
     firstOptionalField: undefined,
   },
 } as const;

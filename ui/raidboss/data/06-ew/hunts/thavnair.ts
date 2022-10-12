@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -7,10 +8,20 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Yilan Bog Bomb (6A61) untelegraphed circle on a random target (can this be called?)
 
-export type Data = RaidbossData;
+export type Bearing = 'front' | 'back' | 'left' | 'right';
+
+export interface Data extends RaidbossData {
+  sphatikaBearing: Bearing[];
+}
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.Thavnair,
+  resetWhenOutOfCombat: false,
+  initData: () => {
+    return {
+      sphatikaBearing: [],
+    };
+  },
   triggers: [
     {
       id: 'Hunt Sugriva Spark',
@@ -157,11 +168,150 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.inCombat,
       response: Responses.getOut(),
     },
+    {
+      id: 'Hunt Sphatika Gnaw',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6BE1', source: 'Sphatika' }),
+      condition: (data) => data.inCombat,
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Hunt Sphatika Caterwaul',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6BE3', source: 'Sphatika', capture: false }),
+      condition: (data) => data.inCombat,
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Hunt Sphatika Brace Init',
+      type: 'StartsUsing',
+      // brace ability ids:
+      //   6BE4 = Forward Bearing => Backward Bearing
+      //   6BE5 = Forward Bearing => Leftward Bearing
+      //   6BE6 = Backward Bearing => Rightward Bearing
+      //   6BE7 = Leftward Bearing => Rightward Bearing
+      //
+      // effect ids:
+      //   B13 = Forward Bearing (down arrow)
+      //   B14 = Backward Bearing (up arrow)
+      //   B15 = Leftward Bearing (right arrow)
+      //   B16 = Rightward Bearing (left arrow)
+      //
+      // The order of effect id lines in the log is not the same as the order of them applying.
+      // It is somewhat non-deterministic and could be in either ordering.
+      // However, it seems that the effect ids are sorted lowest->highest on the buff bar,
+      // so that the lowest id will always go off first.
+      //
+      // The strategy is to read arrow images (not bearing names) left to right on the buff bar.
+      // First arrow dir, then first arrow opposite, then second arrow dir, then second arrow opposite.
+      // If it is Whiplick, then you do the reverse of the directions of the arrow images.
+      // See: https://www.twitch.tv/asinametra/clip/ExquisiteNurturingPeanutBIRB-i4NMmHjZNjai5xP-
+      netRegex: NetRegexes.startsUsing({ id: ['6BE4', '6BE5', '6BE6', '6BE7'], source: 'Sphatika' }),
+      run: (data, matches) => {
+        const bearingMap: { [id: string]: Bearing[] } = {
+          '6BE4': ['back', 'front', 'front', 'back'],
+          '6BE5': ['back', 'front', 'right', 'left'],
+          '6BE6': ['front', 'back', 'left', 'right'],
+          '6BE7': ['right', 'left', 'left', 'right'],
+        };
+
+        data.sphatikaBearing = bearingMap[matches.id] ?? [];
+      },
+    },
+    {
+      id: 'Hunt Sphatika Whiplick Reverse',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6BE9', source: 'Sphatika', capture: false }),
+      run: (data) => {
+        // Whiplick does the directions in reverse, so reverse here so we can have a single logic path.
+        data.sphatikaBearing = data.sphatikaBearing.map((x) => {
+          if (x === 'front')
+            return 'back';
+          if (x === 'back')
+            return 'front';
+          if (x === 'left')
+            return 'right';
+          return 'left';
+        });
+      },
+    },
+    {
+      id: 'Hunt Sphatika Stance All Dirs',
+      type: 'StartsUsing',
+      // 6BE8 = Lickwhip Stance
+      // 6BE9 = Whiplick Stance
+      netRegex: NetRegexes.startsUsing({ id: ['6BE8', '6BE9'], source: 'Sphatika', capture: false }),
+      durationSeconds: 10,
+      sound: '',
+      infoText: (data, _matches, output) => {
+        const [dir1, dir2, dir3, dir4] = data.sphatikaBearing;
+        if (dir1 === undefined || dir2 === undefined || dir3 === undefined || dir4 === undefined)
+          return;
+        if (!data.inCombat)
+          return;
+        return output.text!({ dir1: dir1, dir2: dir2, dir3: dir3, dir4: dir4 });
+      },
+      tts: null,
+      outputStrings: {
+        front: Outputs.front,
+        back: Outputs.back,
+        left: Outputs.left,
+        right: Outputs.right,
+        text: {
+          en: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
+          de: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
+          ko: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
+        },
+      },
+    },
+    {
+      id: 'Hunt Sphatika Stance Initial',
+      type: 'StartsUsing',
+      // 6BE8 = Lickwhip Stance
+      // 6BE9 = Whiplick Stance
+      netRegex: NetRegexes.startsUsing({ id: ['6BE8', '6BE9'], source: 'Sphatika', capture: false }),
+      alertText: (data, _matches, output) => {
+        const key = data.sphatikaBearing.shift();
+        if (key === undefined)
+          return;
+        if (!data.inCombat)
+          return;
+        return output[key]!();
+      },
+      outputStrings: {
+        front: Outputs.front,
+        back: Outputs.back,
+        left: Outputs.left,
+        right: Outputs.right,
+      },
+    },
+    {
+      id: 'Hunt Sphatika Stance Step',
+      type: 'StartsUsing',
+      // 6BEE, 6BEF, 6BF0, 6BF1, 6C43 = Hind Whip
+      // 6BEA, 6BEB, 6BEC, 6BED, 6C42 = Long Lick
+      netRegex: NetRegexes.startsUsing({ id: ['6BE[A-F]', '6BF[01]', '6C4[23]'], source: 'Sphatika', capture: false }),
+      alertText: (data, _matches, output) => {
+        const key = data.sphatikaBearing.shift();
+        if (key === undefined)
+          return;
+        if (!data.inCombat)
+          return;
+        return output[key]!();
+      },
+      outputStrings: {
+        front: Outputs.front,
+        back: Outputs.back,
+        left: Outputs.left,
+        right: Outputs.right,
+      },
+    },
   ],
   timelineReplace: [
     {
       'locale': 'de',
       'replaceSync': {
+        'Sphatika': 'Sphatika',
         'Sugriva': 'Sugriva',
         'Yilan': 'Yilan',
       },
@@ -169,6 +319,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
+        'Sphatika': 'Sphatika',
         'Sugriva': 'Sugriva',
         'Yilan': 'yilan',
       },
@@ -176,6 +327,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ja',
       'replaceSync': {
+        'Sphatika': 'スパティカ',
         'Sugriva': 'スグリーヴァ',
         'Yilan': 'ユラン',
       },
@@ -183,6 +335,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'cn',
       'replaceSync': {
+        'Sphatika': '颇胝迦',
         'Sugriva': '须羯里婆',
         'Yilan': '尤兰',
       },
@@ -190,6 +343,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ko',
       'replaceSync': {
+        'Sphatika': '스파티카',
         'Sugriva': '수그리바',
         'Yilan': '윌란',
       },

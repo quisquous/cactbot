@@ -378,6 +378,14 @@ export default {
     cn: '去中间',
     ko: '중앙으로',
   },
+  front: {
+    en: 'Front',
+    ko: '앞',
+  },
+  back: {
+    en: 'Back',
+    ko: '뒤',
+  },
   right: {
     en: 'Right',
     de: 'Rechts',

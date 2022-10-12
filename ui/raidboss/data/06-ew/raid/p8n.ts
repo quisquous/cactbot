@@ -51,7 +51,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8N Genesis of Flame',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7095', source: 'Hephaistos', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '7905', source: 'Hephaistos', capture: false }),
       response: Responses.aoe(),
     },
     {

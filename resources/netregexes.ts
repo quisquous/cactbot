@@ -401,4 +401,11 @@ export default class NetRegexes {
   ): CactbotBaseRegExp<'SystemLogMessage'> {
     return buildRegex('SystemLogMessage', params);
   }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-257-0x101-mapeffect
+   */
+  static mapEffect(params?: NetParams['MapEffect']): CactbotBaseRegExp<'MapEffect'> {
+    return buildRegex('MapEffect', params);
+  }
 }

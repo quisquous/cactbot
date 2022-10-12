@@ -16,8 +16,8 @@ timer-bar::part(timerbar-fg) {
   height: 5px !important;
   top: 0;
   left: 0;
-  background-color: rgba(255 255 255 100%) !important;
-  box-shadow: 0 0 2px 0 rgba(255 255 255 100%) !important;
+  background-color: rgba(255 255 255 / 100%) !important;
+  box-shadow: 0 0 2px 0 rgba(255 255 255 / 100%) !important;
   text-align: center;
   margin: 1px;
   z-index: 1;
@@ -47,7 +47,7 @@ timer-bar::part(text-container) {
 }
 
 .info-text {
-  color: rgba(255 255 255 100%);
+  color: rgba(255 255 255 / 100%);
   text-shadow:
     -1px 0 rgb(117 153 87),
     0 -1px rgb(117 153 87),
@@ -59,7 +59,7 @@ timer-bar::part(text-container) {
 }
 
 .alert-text {
-  color: rgba(255 255 255 100%);
+  color: rgba(255 255 255 / 100%);
   text-shadow:
     -1px 0 rgb(170 110 3),
     0 -1px rgb(170 110 3),
@@ -72,7 +72,7 @@ timer-bar::part(text-container) {
 }
 
 .alarm-text {
-  color: rgba(255 255 255 100%);
+  color: rgba(255 255 255 / 100%);
   text-shadow:
     -1px 0 rgb(247 120 120),
     0 -1px rgb(247 120 120),

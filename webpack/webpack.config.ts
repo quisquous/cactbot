@@ -142,7 +142,7 @@ export default (
                 [
                   '@babel/preset-env',
                   {
-                    targets: { chrome: '75' },
+                    targets: { chrome: '95' },
                   },
                 ],
                 [
@@ -189,14 +189,7 @@ export default (
         },
         {
           test: /data[\\\/](?!\w*_manifest\.txt).*\.txt$/,
-          use: [
-            {
-              loader: 'raw-loader',
-            },
-            {
-              loader: './webpack/loaders/timeline-loader.ts',
-            },
-          ],
+          type: 'asset/source',
         },
       ],
     },

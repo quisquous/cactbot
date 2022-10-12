@@ -530,7 +530,7 @@ export class PopupText {
       this.OnChangeZone(e);
     });
     addOverlayListener('onInCombatChangedEvent', (e) => {
-      this.OnInCombatChange(e.detail.inGameCombat);
+      this.SetInCombat(e.detail.inGameCombat);
     });
     addOverlayListener('onLogEvent', (e) => {
       this.OnLog(e);
@@ -827,23 +827,20 @@ export class PopupText {
     this.ReloadTimelines();
   }
 
-  OnInCombatChange(inCombat: boolean): void {
+  SetInCombat(inCombat: boolean): void {
     if (this.inCombat === inCombat)
       return;
 
-    if (this.resetWhenOutOfCombat)
-      this.SetInCombat(inCombat);
-  }
+    this.inCombat = inCombat;
+    this.data.inCombat = inCombat;
 
-  SetInCombat(inCombat: boolean): void {
-    if (this.inCombat === inCombat)
+    if (!this.resetWhenOutOfCombat)
       return;
 
     // Stop timers when stopping combat to stop any active timers that
     // are delayed.  However, also reset when starting combat.
     // This prevents late attacks from affecting |data| which
     // throws off the next run, potentially.
-    this.inCombat = inCombat;
     if (!this.inCombat) {
       this.StopTimers();
       this.timelineLoader.StopCombat();
@@ -875,20 +872,6 @@ export class PopupText {
     this.data = this.getDataObject();
     this.StopTimers();
     this.triggerSuppress = {};
-
-    for (const initObj of this.dataInitializers) {
-      const init = initObj.func;
-      const data = init();
-      if (typeof data === 'object') {
-        this.data = {
-          ...data,
-          ...this.data,
-        };
-      } else {
-        console.log(`Error in file: ${initObj.file}: these triggers may not work;
-        initData function returned invalid object: ${init.toString()}`);
-      }
-    }
   }
 
   StopTimers(): void {
@@ -1478,7 +1461,7 @@ export class PopupText {
 
     // TODO: make a breaking change at some point and
     // make all this style consistent, sorry.
-    return {
+    let data: RaidbossData = {
       me: this.me,
       job: this.job,
       role: this.role,
@@ -1499,6 +1482,22 @@ export class PopupText {
       CanFeint: () => Util.canFeint(this.job),
       CanAddle: () => Util.canAddle(this.job),
     };
+
+    for (const initObj of this.dataInitializers) {
+      const init = initObj.func;
+      const initData = init();
+      if (typeof initData === 'object') {
+        data = {
+          ...data,
+          ...initData,
+        };
+      } else {
+        console.log(`Error in file: ${initObj.file}: these triggers may not work;
+        initData function returned invalid object: ${init.toString()}`);
+      }
+    }
+
+    return data;
   }
 }
 

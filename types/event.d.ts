@@ -144,7 +144,7 @@ export type EnmityTargetCombatant = {
   MonsterType: number;
   Status: number;
   ModelStatus: number;
-  AggressionStatus;
+  AggressionStatus: number;
   TargetID: number;
   IsTargetable: boolean;
 

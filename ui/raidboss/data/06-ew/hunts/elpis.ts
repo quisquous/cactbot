@@ -104,12 +104,78 @@ const triggerSet: TriggerSet<Data> = {
         return { alertText: output.waterMarker!() };
       },
     },
+    {
+      id: 'Hunt Ophioneus Scratch',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AD4', source: 'Ophioneus' }),
+      condition: (data) => data.inCombat,
+      response: Responses.tankBuster('info'),
+    },
+    {
+      id: 'Hunt Ophioneus Right Maw',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AD6', source: 'Ophioneus', capture: false }),
+      condition: (data) => data.inCombat,
+      response: Responses.goLeft(),
+    },
+    {
+      id: 'Hunt Ophioneus Left Maw',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AD7', source: 'Ophioneus', capture: false }),
+      condition: (data) => data.inCombat,
+      response: Responses.goRight(),
+    },
+    {
+      id: 'Hunt Ophioneus Pyric Circle',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AD8', source: 'Ophioneus', capture: false }),
+      condition: (data) => data.inCombat,
+      response: Responses.getUnder(),
+    },
+    {
+      id: 'Hunt Ophioneus Pyric Burst',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '6AD9', source: 'Ophioneus', capture: false }),
+      condition: (data) => data.inCombat,
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Hunt Ophioneus Leaping Pyric Circle',
+      type: 'StartsUsing',
+      // Followed by a 6AD2 fast cast.
+      netRegex: NetRegexes.startsUsing({ id: '6ACD', source: 'Ophioneus', capture: false }),
+      condition: (data) => data.inCombat,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Follow Jump => Under',
+          de: 'Sprung folgen => Unter den Boss',
+          ko: '점프 따라가기 => 보스 아래로',
+        },
+      },
+    },
+    {
+      id: 'Hunt Ophioneus Leaping Pyric Burst',
+      type: 'StartsUsing',
+      // Followed by a 6AD3 fast cast.
+      netRegex: NetRegexes.startsUsing({ id: '6ACE', source: 'Ophioneus', capture: false }),
+      condition: (data) => data.inCombat,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Away From Jump',
+          de: 'Weg vom Sprung',
+          ko: '점프뛴 곳에서 멀리 떨어지기',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
       'locale': 'de',
       'replaceSync': {
         'Gurangatch': 'Gurangatch',
+        'Ophioneus': 'Ophioneus',
         'Petalodus': 'Petalodus',
       },
     },
@@ -117,6 +183,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'fr',
       'replaceSync': {
         'Gurangatch': 'Gurangatch',
+        'Ophioneus': 'Ophion',
         'Petalodus': 'petalodus',
       },
     },
@@ -124,6 +191,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'ja',
       'replaceSync': {
         'Gurangatch': 'グランガチ',
+        'Ophioneus': 'オピオネウス',
         'Petalodus': 'ペタロドゥス',
       },
     },
@@ -131,6 +199,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'cn',
       'replaceSync': {
         'Gurangatch': '固兰盖奇',
+        'Ophioneus': '俄菲翁尼厄斯',
         'Petalodus': '瓣齿鲨',
       },
     },
@@ -138,6 +207,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'ko',
       'replaceSync': {
         'Gurangatch': '구랑가치',
+        'Ophioneus': '오피오네우스',
         'Petalodus': '페탈로두스',
       },
     },
