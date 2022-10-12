@@ -480,14 +480,10 @@ const triggerSet: TriggerSet<Data> = {
       // D48 Glossomorph (Snake icon - cleave in front of player)
       netRegex: NetRegexes.gainsEffect({ effectId: ['CF3', 'D48'] }),
       condition: Conditions.targetIsYou(),
-      preRun: (data, matches) => {
+      delaySeconds: (data, matches) => {
         // 1st transmission has 11s duration, 2nd has 25s duration
         // in either case, trigger should fire 3s before debuff expires
-        const duration = parseFloat(matches.duration);
-        data.transmissionAlertDelay = duration > 3 ? duration - 3 : 0;
-      },
-      delaySeconds: (data) => {
-        return data.transmissionAlertDelay;
+        return parseFloat(matches.duration) - 3;
       },
       infoText: (_data, matches, output) => {
         return matches.effectId === 'D48' ? output.forwardCleave!() : output.backwardCleave!();
