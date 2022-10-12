@@ -75,7 +75,6 @@ export const positionTo8Dir = (combatant: PluginCombatantState) => {
   return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
-
 export const headingTo8Dir = (heading: number) => {
   // Dirs: N = 0, N = 1, ..., W = 7
   return ((2 - Math.round(heading * 8 / Math.PI) / 2) + 2) % 8;
