@@ -193,7 +193,7 @@ export default {
   doritoStack: {
     en: 'Dorito Stack',
     de: 'Mit Marker sammeln',
-    fr: 'Packez les marquages',
+    fr: 'Packez les marques',
     ja: 'マーカー付けた人と集合',
     cn: '点名集合',
     ko: '징끼리 모이기',
@@ -380,11 +380,13 @@ export default {
   },
   front: {
     en: 'Front',
+    fr: 'Devant',
     cn: '前',
     ko: '앞',
   },
   back: {
     en: 'Back',
+    fr: 'Derrière',
     cn: '后',
     ko: '뒤',
   },
@@ -545,7 +547,7 @@ export default {
   stopEverything: {
     en: 'Stop Everything!',
     de: 'Stoppe Alles!',
-    fr: 'Arrêtez TOUT !',
+    fr: 'Arrêtez tout !',
     ja: '行動禁止！',
     cn: '停止行动！',
     ko: '행동 멈추기!',
