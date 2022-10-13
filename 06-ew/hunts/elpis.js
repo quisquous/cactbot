@@ -138,6 +138,7 @@ Options.Triggers.push({
         text: {
           en: 'Follow Jump => Under',
           de: 'Sprung folgen => Unter den Boss',
+          cn: '跟随跳跃 => 脚下',
           ko: '점프 따라가기 => 보스 아래로',
         },
       },
@@ -153,6 +154,7 @@ Options.Triggers.push({
         text: {
           en: 'Away From Jump',
           de: 'Weg vom Sprung',
+          cn: '远离跳跃',
           ko: '점프뛴 곳에서 멀리 떨어지기',
         },
       },
