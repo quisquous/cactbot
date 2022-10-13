@@ -76,7 +76,7 @@ export const positionTo8Dir = (combatant: PluginCombatantState) => {
 };
 
 export const headingTo8Dir = (heading: number) => {
-  // Dirs: N = 0, N = 1, ..., W = 7
+  // Dirs: N = 0, NE = 1, ..., W = 7
   return ((2 - Math.round(heading * 8 / Math.PI) / 2) + 2) % 8;
 };
 
