@@ -2122,6 +2122,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8S Arcane Channel Collect',
       type: 'MapEffect',
       netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags }),
+      // Flags exist in phase 1, only execute trigger if phase 2
       condition: (data) => data.seenFirstTankAutos,
       run: (data, matches) => {
         const colorInt = parseInt(matches.location, 16);
