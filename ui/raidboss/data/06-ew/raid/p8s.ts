@@ -2087,7 +2087,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P8S Perfection Splicer Collect',
-      // Record what the splicers chose as they will marge with unused short player
+      // Record what the splicers chose as they will merge with unused short player
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['D05', 'D06', 'D07'] }),
       condition: (data, matches) => {
