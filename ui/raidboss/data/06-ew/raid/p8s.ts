@@ -2220,8 +2220,8 @@ const triggerSet: TriggerSet<Data> = {
           colorTowerAvoid: {
             en: 'Avoid ${color} Towers',
           },
-          colorTowersAvoid: {
-            en: 'Avoid ${color1}/${color2} Towers',
+          cloneTether: {
+            en: 'Get clone tether',
           },
           alpha: {
             en: 'Alpha',
@@ -2398,7 +2398,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.arcaneChannelCount !== 3)
           return { infoText: output.colorTowerAvoid!({ color: output[towerColors[0]]!() }) };
         if (towerColors[1] !== undefined)
-          return { infoText: output.colorTowersAvoid!({ color1: output[towerColors[0]]!(), color2: output[towerColors[1]]!() }) };
+          return { alertText: output.cloneTether!() };
       },
       run: (data) => {
         data.arcaneChannelColor = {};
