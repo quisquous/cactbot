@@ -2186,15 +2186,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // Get the player with corresponding perfection
         const getMergePlayer = (perfectionList: { [name: string]: string }, perfection: string) => {
-          let mergePlayer;
-          Object.entries(perfectionList).find(([key, value]) => {
-            if (value === perfection) {
-              mergePlayer = key;
-              return;
-            }
-            return false;
-          });
-          return mergePlayer;
+          return Object.keys(perfectionList).find((key) => perfectionList[key] === perfection);
         };
 
         let perfectionList;
