@@ -8,7 +8,7 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
+import { Output, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
 // TODO: better vent callouts
@@ -24,7 +24,7 @@ export interface Data extends RaidbossData {
   torches: NetMatches['StartsUsing'][];
   flareTargets: string[];
   upliftCounter: number;
-  ventIds: string[];
+  ventCasts: (NetMatches['StartsUsing'] | NetMatches['Ability'])[];
   illusory?: 'bird' | 'snake';
   gorgons: NetMatches['AddedCombatant'][];
   gorgonCount: number;
@@ -62,7 +62,7 @@ export interface Data extends RaidbossData {
 const centerX = 100;
 const centerY = 100;
 
-const positionMatchesTo8Dir = (combatant: NetMatches['AddedCombatant']) => {
+export const positionMatchesTo8Dir = (combatant: NetMatches['AddedCombatant']) => {
   const x = parseFloat(combatant.x) - centerX;
   const y = parseFloat(combatant.y) - centerY;
 
@@ -70,12 +70,76 @@ const positionMatchesTo8Dir = (combatant: NetMatches['AddedCombatant']) => {
   return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
-const positionTo8Dir = (combatant: PluginCombatantState) => {
+export const positionTo8Dir = (combatant: PluginCombatantState) => {
   const x = combatant.PosX - centerX;
   const y = combatant.PosY - centerY;
 
   // Dirs: N = 0, NE = 1, ..., NW = 7
   return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+};
+
+export const headingTo8Dir = (heading: number) => {
+  // Dirs: N = 0, NE = 1, ..., NW = 7
+  return ((2 - Math.round(heading * 8 / Math.PI) / 2) + 2) % 8;
+};
+
+export const ventOutputStrings = {
+  comboDir: {
+    en: '${dir1} / ${dir2}',
+    de: '${dir1} / ${dir2}',
+    fr: '${dir1} / ${dir2}',
+    ja: '${dir1} / ${dir2}',
+    cn: '${dir1} / ${dir2}',
+    ko: '${dir1} / ${dir2}',
+  },
+  north: Outputs.north,
+  east: Outputs.east,
+  south: Outputs.south,
+  west: Outputs.west,
+  dirNE: Outputs.dirNE,
+  dirSE: Outputs.dirSE,
+  dirSW: Outputs.dirSW,
+  dirNW: Outputs.dirNW,
+  unknown: Outputs.unknown,
+} as const;
+
+// Shared alertText for vent triggers, using `ventOutputStrings` above.
+export const ventOutput = (unsafeSpots: number[], output: Output) => {
+  const [unsafe0, unsafe1] = [...unsafeSpots].sort();
+  if (unsafe0 === undefined || unsafe1 === undefined)
+    throw new UnreachableCode();
+
+  // edge case wraparound
+  if (unsafe0 === 1 && unsafe1 === 7)
+    return output.south!();
+
+  // adjacent unsafe spots, cardinal is safe
+  if (unsafe1 - unsafe0 === 2) {
+    // this average is safe to do because wraparound was taken care of above.
+    const unsafeCard = Math.floor((unsafe0 + unsafe1) / 2);
+
+    const safeDirMap: { [dir: number]: string } = {
+      0: output.south!(), // this won't happen, but here for completeness
+      2: output.west!(),
+      4: output.north!(),
+      6: output.east!(),
+    } as const;
+    return safeDirMap[unsafeCard] ?? output.unknown!();
+  }
+
+  // two intercards are safe, they are opposite each other,
+  // so we can pick the intercard counterclock of each unsafe spot.
+  // e.g. 1/5 are unsafe (NE and SW), so SE and NW are safe.
+  const safeIntercardMap: { [dir: number]: string } = {
+    1: output.dirNW!(),
+    3: output.dirNE!(),
+    5: output.dirSE!(),
+    7: output.dirSW!(),
+  } as const;
+
+  const safeStr0 = safeIntercardMap[unsafe0] ?? output.unknown!();
+  const safeStr1 = safeIntercardMap[unsafe1] ?? output.unknown!();
+  return output.comboDir!({ dir1: safeStr0, dir2: safeStr1 });
 };
 
 const arcaneChannelFlags = '00020001'; // mapEffect flags for tower tile effect
@@ -89,10 +153,10 @@ const triggerSet: TriggerSet<Data> = {
       torches: [],
       flareTargets: [],
       upliftCounter: 0,
-      ventIds: [],
       footfallsDirs: [],
       footfallsOrder: [],
       trailblazeCount: 0,
+      ventCasts: [],
       gorgons: [],
       gorgonCount: 0,
       firstSnakeOrder: {},
@@ -1036,7 +1100,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         crushDir: {
           en: 'Away to ${dir}',
-          de: 'Weg von ${dir}',
+          de: 'Weg nach ${dir}',
           fr: 'Loin de ${dir}',
           ja: '${dir}が安置 (クラッシュ)',
           cn: '去 ${dir}',
@@ -1398,23 +1462,20 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P8S Suneater Cthonic Vent Add',
-      type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '11404' }),
-      run: (data, matches) => data.ventIds.push(matches.id),
-    },
-    {
       id: 'P8S Suneater Cthonic Vent Initial',
       type: 'StartsUsing',
-      // TODO: vents #2 and #3 are hard, but the first vent cast has a ~5s cast time.
-      netRegex: NetRegexes.startsUsing({ id: '7925', capture: false }),
-      suppressSeconds: 1,
+      netRegex: NetRegexes.startsUsing({ id: '7925' }),
+      condition: (data, matches) => {
+        data.ventCasts.push(matches);
+        return data.ventCasts.length === 2;
+      },
+      // Sometimes these initial positions are incorrect, so compensate with some delay.
+      // TODO: can we detect/ignore these incorrect initial positions??
+      delaySeconds: 0.5,
       promise: async (data: Data) => {
         data.combatantData = [];
-        if (data.ventIds.length !== 2)
-          return;
 
-        const ids = data.ventIds.map((id) => parseInt(id, 16));
+        const ids = data.ventCasts.map((m) => parseInt(m.sourceId, 16));
         data.combatantData = (await callOverlayHandler({
           call: 'getCombatants',
           ids: ids,
@@ -1424,62 +1485,60 @@ const triggerSet: TriggerSet<Data> = {
         if (data.combatantData.length === 0)
           return;
 
-        const unsafeSpots = data.combatantData.map((c) => positionTo8Dir(c)).sort();
+        const unsafeSpots = data.combatantData.map((c) => positionTo8Dir(c));
+        return ventOutput(unsafeSpots, output);
+      },
+      run: (data) => data.ventCasts = [],
+      outputStrings: ventOutputStrings,
+    },
+    {
+      id: 'P8S Suneater Cthonic Vent Later',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['7923', '7924'] }),
+      condition: (data, matches) => {
+        data.ventCasts.push(matches);
+        return data.ventCasts.length === 2;
+      },
+      delaySeconds: 0.5,
+      promise: async (data: Data) => {
+        data.combatantData = [];
 
-        const [unsafe0, unsafe1] = unsafeSpots;
-        if (unsafe0 === undefined || unsafe1 === undefined)
-          throw new UnreachableCode();
+        const ids = data.ventCasts.map((m) => parseInt(m.sourceId, 16));
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        if (data.combatantData.length !== 2)
+          return;
 
-        // edge case wraparound
-        if (unsafe0 === 1 && unsafe1 === 7)
-          return output.south!();
+        const unsafeSpots = [];
+        for (const c of data.combatantData) {
+          const originalPos = positionTo8Dir(c);
+          const heading = headingTo8Dir(c.Heading);
 
-        // adjacent unsafe spots, cardinal is safe
-        if (unsafe1 - unsafe0 === 2) {
-          // this average is safe to do because wraparound was taken care of above.
-          const unsafeCard = Math.floor((unsafe0 + unsafe1) / 2);
-
-          const safeDirMap: { [dir: number]: string } = {
-            0: output.south!(), // this won't happen, but here for completeness
-            2: output.west!(),
-            4: output.north!(),
-            6: output.east!(),
-          } as const;
-          return safeDirMap[unsafeCard] ?? output.unknown!();
+          // There's maybe some way to do this more generally, but I don't see it.
+          // Also, if this fails for some reason, it will just not call anything below.
+          if ((originalPos === 7 && heading === 2) || (originalPos === 3 && heading === 0) || (originalPos === 5 && heading === 1)) {
+            // Going towards NE
+            unsafeSpots.push(1);
+          } else if ((originalPos === 1 && heading === 4) || (originalPos === 5 && heading === 2) || (originalPos === 7 && heading === 3)) {
+            // Going towards SE
+            unsafeSpots.push(3);
+          } else if ((originalPos === 3 && heading === 6) || (originalPos === 1 && heading === 5) || (originalPos === 7 && heading === 4)) {
+            // Going towards SW
+            unsafeSpots.push(5);
+          } else if ((originalPos === 5 && heading === 0) || (originalPos === 1 && heading === 6) || (originalPos === 3 && heading === 7)) {
+            // Going towards NW
+            unsafeSpots.push(7);
+          }
         }
 
-        // two intercards are safe, they are opposite each other,
-        // so we can pick the intercard counterclock of each unsafe spot.
-        // e.g. 1/5 are unsafe (NE and SW), so SE and NW are safe.
-        const safeIntercardMap: { [dir: number]: string } = {
-          1: output.dirNW!(),
-          3: output.dirNE!(),
-          5: output.dirSE!(),
-          7: output.dirSW!(),
-        } as const;
-
-        const safeStr0 = safeIntercardMap[unsafe0] ?? output.unknown!();
-        const safeStr1 = safeIntercardMap[unsafe1] ?? output.unknown!();
-        return output.comboDir!({ dir1: safeStr0, dir2: safeStr1 });
+        return ventOutput(unsafeSpots, output);
       },
-      outputStrings: {
-        comboDir: {
-          en: '${dir1} / ${dir2}',
-          de: '${dir1} / ${dir2}',
-          fr: '${dir1} / ${dir2}',
-          ja: '${dir1} / ${dir2}',
-          ko: '${dir1} / ${dir2}',
-        },
-        north: Outputs.north,
-        east: Outputs.east,
-        south: Outputs.south,
-        west: Outputs.west,
-        dirNE: Outputs.dirNE,
-        dirSE: Outputs.dirSE,
-        dirSW: Outputs.dirSW,
-        dirNW: Outputs.dirNW,
-        unknown: Outputs.unknown,
-      },
+      run: (data) => data.ventCasts = [],
+      outputStrings: ventOutputStrings,
     },
     {
       id: 'P8S Snake 2 Illusory Creation',
