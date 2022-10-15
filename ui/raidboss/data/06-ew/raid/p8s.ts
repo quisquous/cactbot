@@ -2229,7 +2229,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // Object is passed by reference, to avoid altering original list, clone is made
         const filterPerfections = (perfectionList: { [name: string]: InitialConcept }, includes: string) => {
-          const newPerfectionList = JSON.parse(JSON.stringify(perfectionList));
+          const newPerfectionList = strcturedClone(perfectionList);
           Object.keys(newPerfectionList).forEach((key) => {
             if ((newPerfectionList[key] ?? '').includes(includes))
               delete newPerfectionList[key];
