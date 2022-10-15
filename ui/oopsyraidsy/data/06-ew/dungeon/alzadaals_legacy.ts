@@ -5,7 +5,7 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 export type Data = OopsyData;
 
 const triggerSet: OopsyTriggerSet<Data> = {
-  zoneId: ZoneId.KtisisHyperboreia,
+  zoneId: ZoneId.AlzadaalsLegacy,
   damageWarn: {
     'Alzadaal Alzadaal\'s Qutrub Whirling Slash': '703E', // Circle AoE, before boss 1
     'Alzadaal Alzadaal\'s Qutrub Leaping Cleave': '7040', // Circle AoE, before boss 1
@@ -32,7 +32,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Alzadaal Alzadaal\'s Guardian Dominion Slash': '7052', // Large frontal cone AoE, after boss 2
     'Alzadaal Mystic Weapon Smite of Rage': '7053', // Line AoE, after boss 2
     'Alzadaal Mystic Weapon Whirl of Rage': '7054', // Centered circle AoE, after boss 2
-    'Alzadaal Alzadaal\'s  Mimic Deathtrap': '7055', // Centered circle AoE, after boss 2
+    'Alzadaal Alzadaal\'s Mimic Deathtrap': '7055', // Centered circle AoE, after boss 2
 
     'Alzadaal Kapikulu Basting Blade': '6F68', // Large Rectangle AoE, boss 3
     'Alzadaal Kapikulu Mana Explosion': '6F6B', // Power Serge explosion circles, boss 3
