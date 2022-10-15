@@ -2255,8 +2255,9 @@ const triggerSet: TriggerSet<Data> = {
         } else if (data.arcaneChannelCount === 3) {
           // Unused Short merge with gamma
           if ((data.concept[data.me] ?? '').includes('short') || data.concept[data.me] === 'longgamma') {
-            // Need to make a clone to avoid missing a merge player during second set of towers
-            const newConcept = JSON.parse(JSON.stringify(data.concept));
+            // Need to make a copy to avoid missing a merge player during second set of towers
+            const newConcept = data.concept;
+
             // Remove players matching alpha and beta from long list
             const alphaPlayer = getMergePlayer(perfectionLong, 'alpha');
             const betaPlayer = getMergePlayer(perfectionLong, 'beta');
