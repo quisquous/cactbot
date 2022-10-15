@@ -2390,7 +2390,7 @@ const triggerSet: TriggerSet<Data> = {
           return { alertText: output.colorTowerMergeLetter!({ color: output[color]!(), letter: output[letter]!() }) };
 
         if (color !== undefined && mergePlayer !== undefined && mergePlayer2 !== undefined)
-          return { alertText: output.colorTower1MergePlayers!({ color: output[color]!(), player1: data.ShortName(mergePlayer), player2: data.ShortName(mergePlayer2) }) };
+          return { alertText: output.colorTowerMergePlayers!({ color: output[color]!(), player1: data.ShortName(mergePlayer), player2: data.ShortName(mergePlayer2) }) };
 
         if (color !== undefined && mergePlayer !== undefined)
           return { alertText: output.colorTowerMergePlayer!({ color: output[color]!(), player: data.ShortName(mergePlayer) }) };
