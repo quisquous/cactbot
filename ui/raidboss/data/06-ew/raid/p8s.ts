@@ -2268,7 +2268,7 @@ const triggerSet: TriggerSet<Data> = {
             finalTowers = newConcept;
           }
           if (data.concept[data.me] === 'longalpha' || data.concept[data.me] === 'longbeta') {
-            const tempLong = JSON.parse(JSON.stringify(perfectionLong));
+            const tempLong = perfectionLong;
             // Remove player matching gamma value from long list
             const gammaPlayer = getMergePlayer(perfectionLong, 'gamma');
             if (gammaPlayer !== undefined)
