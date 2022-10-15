@@ -2229,7 +2229,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // Object is passed by reference, to avoid altering original list, clone is made
         const filterPerfections = (perfectionList: { [name: string]: InitialConcept }, includes: string) => {
-          const newPerfectionList = structuredClone(perfectionList);
+          const newPerfectionList = JSON.parse(JSON.stringify(perfectionList));
           Object.keys(newPerfectionList).forEach((key) => {
             if ((newPerfectionList[key] ?? '').includes(includes))
               delete newPerfectionList[key];
@@ -2256,7 +2256,7 @@ const triggerSet: TriggerSet<Data> = {
           // Unused Short merge with gamma
           if ((data.concept[data.me] ?? '').includes('short') || data.concept[data.me] === 'longgamma') {
             // Need to make a clone to avoid missing a merge player during second set of towers
-            const newConcept = structuredClone(data.concept);
+            const newConcept = JSON.parse(JSON.stringify(data.concept));
             // Remove players matching alpha and beta from long list
             const alphaPlayer = getMergePlayer(perfectionLong, 'alpha');
             const betaPlayer = getMergePlayer(perfectionLong, 'beta');
@@ -2268,7 +2268,7 @@ const triggerSet: TriggerSet<Data> = {
             finalTowers = newConcept;
           }
           if (data.concept[data.me] === 'longalpha' || data.concept[data.me] === 'longbeta') {
-            const tempLong = structuredClone(perfectionLong);
+            const tempLong = JSON.parse(JSON.stringify(perfectionLong));
             // Remove player matching gamma value from long list
             const gammaPlayer = getMergePlayer(perfectionLong, 'gamma');
             if (gammaPlayer !== undefined)
