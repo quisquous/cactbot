@@ -2133,7 +2133,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.gainsEffect({ effectId: ['D05', 'D06', 'D07'] }),
       condition: (data, matches) => {
         // Ignore Imperfection players, and do not collect on HC2
-        if (data.perfectionLong[matches.target] || data.perfectionShort[matches.target] || data.arcaneChannelCount > 1)
+        if (data.concept[matches.target] || data.arcaneChannelCount > 1)
           return false;
         return true;
       },
