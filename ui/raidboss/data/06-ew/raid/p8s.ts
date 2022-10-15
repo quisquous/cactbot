@@ -163,8 +163,6 @@ const triggerSet: TriggerSet<Data> = {
       secondSnakeDebuff: {},
       concept: {},
       splicer: {},
-      perfectionLong: {},
-      perfectionShort: {},
       arcaneChannelCount: 0,
       arcaneChannelColor: {},
       alignmentTargets: [],
@@ -1968,19 +1966,18 @@ const triggerSet: TriggerSet<Data> = {
         const id = matches.effectId;
         // 8 and 26s second debuffs.
         const isLong = parseFloat(matches.duration) > 10;
-        if (id === 'D02') {
+        if (id === 'D02')
           data.concept[matches.target] = isLong ? 'longalpha' : 'shortalpha';
-        } else if (id === 'D03') {
+        else if (id === 'D03')
           data.concept[matches.target] = isLong ? 'longbeta' : 'shortbeta';
-        } else if (id === 'D04') {
+        else if (id === 'D04')
           data.concept[matches.target] = isLong ? 'longgamma' : 'shortgamma';
-        } else if (id === 'D11') {
+        else if (id === 'D11')
           data.splicer[matches.target] = 'solosplice';
-        } else if (id === 'D12') {
+        else if (id === 'D12')
           data.splicer[matches.target] = 'multisplice';
-        } else if (id === 'D13') {
+        else if (id === 'D13')
           data.splicer[matches.target] = 'supersplice';
-        }
       },
     },
     {
@@ -2155,7 +2152,7 @@ const triggerSet: TriggerSet<Data> = {
       // Remove player from perfection lists when they merge
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: ['D09', 'D0A', 'D0B', 'D0C'] }),
-      run: (data, matches) => delete data.concept[matches.target];,
+      run: (data, matches) => delete data.concept[matches.target],
     },
     {
       id: 'P8S Arcane Channel Collect',
