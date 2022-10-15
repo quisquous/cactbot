@@ -2187,11 +2187,14 @@ const triggerSet: TriggerSet<Data> = {
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
-          colorTower1MergePlayer: {
+          colorTowerMergePlayer: {
             en: '${color} Tower, Merge with ${player}',
           },
-          colorTower1MergeLetter: {
+          colorTowerMergeLetter: {
             en: '${color} Tower, Merge with ${letter}',
+          },
+          colorTowerMergePlayers: {
+            en: '${color} Tower, Merge with ${player1} or ${player2}',
           },
           colorTowerAvoid: {
             en: 'Avoid ${color} Towers',
@@ -2220,8 +2223,8 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         // Get the player with corresponding perfection
-        const getMergePlayer = (perfectionList: { [name: string]: InitialConcept }, perfection: string) => {
-          return Object.keys(perfectionList).find((key) => (perfectionList[key] ?? '').replace(/long|short/, '') === perfection);
+        const getMergePlayer = (perfectionList: { [name: string]: InitialConcept }, perfection: string, replace?: RegExp) => {
+          return Object.keys(perfectionList).find((key) => (perfectionList[key] ?? '').replace(replace ?? '', '') === perfection);
         };
 
         // Object is passed by reference, to avoid altering original list, clone is made
@@ -2247,10 +2250,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.arcaneChannelCount === 1) {
           // HC1 Second Towers could use long or short player
           // with short players including the splicers and unused short
-          if ((data.concept[data.me] ?? '').includes('short'))
-            perfectionList = perfectionShort;
-          if ((data.concept[data.me] ?? '').includes('long'))
-            perfectionList = perfectionLong;
+          perfectionList = data.concept;
         } else if (data.arcaneChannelCount === 3) {
           // Unused Short merge with gamma
           if ((data.concept[data.me] ?? '').includes('short') || data.concept[data.me] === 'longgamma') {
@@ -2318,12 +2318,19 @@ const triggerSet: TriggerSet<Data> = {
         // Find corresponding player(s) or perfection in HC1 and HC2 First Towers
         if (mergePerfection !== undefined && perfectionList !== undefined) {
           // HC1 Towers and HC2 First Towers
-          mergePlayer = getMergePlayer(perfectionList, mergePerfection);
+          mergePlayer = getMergePlayer(perfectionList, mergePerfection, /long|short/);
           color = towerColors[0];
 
           // If fail to find player, output the corresponding perfection
           if (mergePlayer === undefined)
             letter = mergePerfection;
+        }
+
+        // Check for second possible merge during HC1 Second Towers
+        if (data.arcaneChannelCount === 1 && mergePlayer !== undefined && mergePerfection !== undefined) {
+          // Simple check on the other list, opposite of what was before
+          delete data.concept[mergePlayer];
+          mergePlayer2 = getMergePlayer(data.concept, mergePerfection, /long|short/);
         }
 
         // HC2 Second Towers
@@ -2379,10 +2386,13 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         if (color !== undefined && letter !== undefined)
-          return { alertText: output.colorTower1MergeLetter!({ color: output[color]!(), letter: output[letter]!() }) };
+          return { alertText: output.colorTowerMergeLetter!({ color: output[color]!(), letter: output[letter]!() }) };
+
+        if (color !== undefined && mergePlayer !== undefined && mergePlayer2 !== undefined)
+          return { alertText: output.colorTower1MergePlayers!({ color: output[color]!(), player1: data.ShortName(mergePlayer), player2: data.ShortName(mergePlayer2) }) };
 
         if (color !== undefined && mergePlayer !== undefined)
-          return { alertText: output.colorTower1MergePlayer!({ color: output[color]!(), player: data.ShortName(mergePlayer) }) };
+          return { alertText: output.colorTowerMergePlayer!({ color: output[color]!(), player: data.ShortName(mergePlayer) }) };
 
         // Avoid tower(s)
         if (data.arcaneChannelCount !== 3)
