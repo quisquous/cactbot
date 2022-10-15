@@ -2243,6 +2243,7 @@ const triggerSet: TriggerSet<Data> = {
         let color;
         let letter;
         let mergePlayer;
+        let mergePlayer2;
         const towerColors = [];
         const perfectionShort = filterPerfections(data.concept, 'long');
         const perfectionLong = filterPerfections(data.concept, 'short');
