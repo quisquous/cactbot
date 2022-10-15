@@ -2227,16 +2227,6 @@ const triggerSet: TriggerSet<Data> = {
           return Object.keys(perfectionList).find((key) => (perfectionList[key] ?? '').replace(replace ?? '', '') === perfection);
         };
 
-        // Object is passed by reference, to avoid altering original list, clone is made
-        const filterPerfections = (perfectionList: { [name: string]: InitialConcept }, includes: string) => {
-          const newPerfectionList = strcturedClone(perfectionList);
-          Object.keys(newPerfectionList).forEach((key) => {
-            if ((newPerfectionList[key] ?? '').includes(includes))
-              delete newPerfectionList[key];
-          });
-          return newPerfectionList;
-        };
-
         let perfectionList;
         let finalTowers;
         let mergePerfection;
@@ -2245,8 +2235,6 @@ const triggerSet: TriggerSet<Data> = {
         let mergePlayer;
         let mergePlayer2;
         const towerColors = [];
-        const perfectionShort = filterPerfections(data.concept, 'long');
-        const perfectionLong = filterPerfections(data.concept, 'short');
 
         if (data.arcaneChannelCount === 1) {
           // HC1 Second Towers could use long or short player
@@ -2255,30 +2243,49 @@ const triggerSet: TriggerSet<Data> = {
         } else if (data.arcaneChannelCount === 3) {
           // Unused Short merge with gamma
           if ((data.concept[data.me] ?? '').includes('short') || data.concept[data.me] === 'longgamma') {
-            // Need to make a copy to avoid missing a merge player during second set of towers
-            const newConcept = data.concept;
+            // Exclude players matching longalpha and longbeta from list
+            const alphaPlayer = getMergePlayer(data.concept, 'shortalpha');
+            const betaPlayer = getMergePlayer(data.concept, 'shortbeta');
+            const gammaPlayer = getMergePlayer(data.concept, 'longgamma');
 
-            // Remove players matching alpha and beta from long list
-            const alphaPlayer = getMergePlayer(perfectionLong, 'alpha');
-            const betaPlayer = getMergePlayer(perfectionLong, 'beta');
+            const tempList: Record<string, InitialConcept> = {};
             if (alphaPlayer !== undefined)
-              delete newConcept[alphaPlayer];
+              tempList[alphaPlayer] = 'shortalpha';
             if (betaPlayer !== undefined)
-              delete newConcept[betaPlayer];
+              tempList[betaPlayer] = 'shortbeta';
+            if (gammaPlayer !== undefined)
+              tempList[gammaPlayer] = 'longgamma';
 
-            finalTowers = newConcept;
+            finalTowers = tempList;
           }
           if (data.concept[data.me] === 'longalpha' || data.concept[data.me] === 'longbeta') {
-            const tempLong = perfectionLong;
-            // Remove player matching gamma value from long list
-            const gammaPlayer = getMergePlayer(perfectionLong, 'gamma');
-            if (gammaPlayer !== undefined)
-              delete tempLong[gammaPlayer];
-            finalTowers = tempLong;
+            // Exclude player matching longgamma value from list
+            const alphaPlayer = getMergePlayer(data.concept, 'longalpha');
+            const betaPlayer = getMergePlayer(data.concept, 'longbeta');
+
+            const tempList: Record<string, InitialConcept> = {};
+            if (alphaPlayer !== undefined)
+              tempList[alphaPlayer] = 'longalpha';
+            if (betaPlayer !== undefined)
+              tempList[betaPlayer] = 'longbeta';
+
+            finalTowers = tempList;
           }
         } else {
           // HC1 and HC2 First Towers use short debuffs
-          perfectionList = perfectionShort;
+          const alphaPlayer = getMergePlayer(data.concept, 'shortalpha');
+          const betaPlayer = getMergePlayer(data.concept, 'shortbeta');
+          const gammaPlayer = getMergePlayer(data.concept, 'shortgamma');
+
+          const tempList: Record<string, InitialConcept> = {};
+          if (alphaPlayer !== undefined)
+            tempList[alphaPlayer] = 'shortalpha';
+          if (betaPlayer !== undefined)
+            tempList[betaPlayer] = 'shortbeta';
+          if (gammaPlayer !== undefined)
+            tempList[gammaPlayer] = 'shortgamma';
+
+          perfectionList = tempList;
         }
 
         // Narrow down to single player
@@ -2359,10 +2366,9 @@ const triggerSet: TriggerSet<Data> = {
 
           // Failed to find a corresponding player, output corresponding perfections instead
           if (color === undefined) {
-            const shortPlayerPerfection = perfectionShort[data.me];
             // Unused short is always alpha or beta because wind is not created in first and we thus match with gamma
-            if (shortPlayerPerfection !== undefined) {
-              color = (shortPlayerPerfection === 'shortalpha' ? 'blue' : 'purple');
+            if (data.concept[data.me] === 'shortalpha' || data.concept[data.me] === 'shortbeta') {
+              color = (data.concept[data.me] === 'shortalpha' ? 'blue' : 'purple');
               letter = 'gamma';
             }
 
