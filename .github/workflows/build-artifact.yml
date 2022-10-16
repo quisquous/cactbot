@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - '.github/actions/setup-js-env/'
       - '.github/workflows/build-artifact.yml'
       - 'plugin/**'
       - 'package.json'
@@ -17,6 +18,7 @@ on:
       - reopened
       - synchronize
     paths:
+      - '.github/actions/setup-js-env/'
       - '.github/workflows/build-artifact.yml'
       - 'plugin/**'
       - 'package.json'
