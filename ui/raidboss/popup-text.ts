@@ -434,7 +434,7 @@ const isWipe = (line: string): boolean => {
     wipeCactbotEcho.test(line) ||
     wipeEndEcho.test(line) ||
     wipeFadeIn.test(line)
-  )
+    )
     return true;
   return false;
 };
