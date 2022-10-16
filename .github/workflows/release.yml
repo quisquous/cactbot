@@ -85,7 +85,7 @@ jobs:
       - run: npx tsc --declaration
 
       - run: |
-          cp -r types/./ npm-package/
+          cp -r types/./ npm-package/types/
           cp -r ./dist/ui/./ npm-package/ui/
           cp -r ./dist/resources/./ npm-package/resources/
 
