@@ -84,11 +84,10 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 0.3, // allow collector to finish
       infoText: (data, _matches, output) => {
         const safeQuadrants = Object.assign({}, directions);
-        for (const stone of data.ruby1TopazStones) {
+        for (const stone of data.ruby1TopazStones)
           delete safeQuadrants[convertCoordinatesToDirection(parseFloat(stone.targetX), parseFloat(stone.targetY))];
-        }
-        let safe: string[] = Object.keys(safeQuadrants);
-        let [safe0, safe1] = safe;
+        const safe: string[] = Object.keys(safeQuadrants);
+        const [safe0, safe1] = safe;
         if (safe1 !== undefined) // too many safe quadrants
           return;
         else if (safe0 !== undefined) // one safe quadrant, we're done
@@ -100,9 +99,8 @@ const triggerSet: TriggerSet<Data> = {
         for (const stone of data.ruby1TopazStones) {
           const stoneX = parseFloat(stone.targetX);
           const stoneY = parseFloat(stone.targetY);
-          if (Math.abs(stoneX - 100) < 5 && Math.abs(stoneY - 100) < 5) {
-            return output.safeCorner!({ dir1: output[convertCoordinatesToDirection(stoneX, stoneY)]!() })
-          }
+          if (Math.abs(stoneX - 100) < 5 && Math.abs(stoneY - 100) < 5)
+            return output.safeCorner!({ dir1: output[convertCoordinatesToDirection(stoneX, stoneY)]!() });
         }
         return;
       },
