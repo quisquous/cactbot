@@ -66,3 +66,34 @@ jobs:
           artifactContentType: application/zip
           draft: true
           generateReleaseNotes: true
+
+  create-npm-package:
+    runs-on: windows-latest
+    if: ${{ github.repository == 'quisquous/cactbot' }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-js-env
+
+      - run: mkdir npm-package
+
+      - name: Build JavaScript UI Module Bundles
+        run: npm run build
+
+      - run: mv dist npm-package/
+
+      - run: npx tsc --declaration
+
+      - run: |
+          cp -r types/./ npm-package/
+          cp -r ./dist/ui/./ npm-package/ui/
+          cp -r ./dist/resources/./ npm-package/resources/
+
+      - run: cat package.json | jq '{name, version, license, repository, files}' | tee npm-package/package.json
+
+      - run: npm publish
+        working-directory: npm-package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+

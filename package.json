@@ -8,6 +8,13 @@
     "type": "git",
     "url": "https://github.com/quisquous/cactbot"
   },
+  "files": [
+    "./dist",
+    "./ui",
+    "./types",
+    "./resources",
+    "package.json"
+  ],
   "scripts": {
     "build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --progress --config webpack/webpack.prod.ts",
     "build-gh-pages": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.ghpages.ts",
