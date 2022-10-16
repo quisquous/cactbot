@@ -341,78 +341,128 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         combo: {
           en: '${dir1} / ${dir2}',
+          fr: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
         },
         single: {
           en: '${dir1}',
+          fr: '${dir1}',
+          ko: '${dir1}',
         },
         poly6: {
           en: '${dir1}: ${dir2} / ${dir3}',
+          fr: '${dir1}: ${dir2} / ${dir3}',
+          ko: '${dir1}: ${dir2} / ${dir3}',
         },
         left: {
           en: 'Left (Wing Side)',
+          fr: 'Gauche (Côté aile)',
+          ko: '왼쪽 (날개쪽)',
         },
         right: {
           en: 'Right (Snake Side)',
+          fr: 'Droite (Côté serpent)',
+          ko: '오른쪽 (뱀쪽)',
         },
         insideWest: {
           en: 'Inside West',
+          fr: 'Intérieur Ouest',
+          ko: '안 서쪽',
         },
         insideEast: {
           en: 'Inside East',
+          fr: 'Intérieur Est',
+          ko: '안 동쪽',
         },
         outsideWest: {
           en: 'Outside West',
+          fr: 'Extérieur Ouest',
+          ko: '바깥 서쪽',
         },
         outsideEast: {
           en: 'Outside East',
+          fr: 'Extérieur Est',
+          ko: '바깥 동쪽',
         },
         insideNW: {
           en: 'Inside NW',
+          fr: 'Intérieur NO',
+          ko: '안 북서쪽',
         },
         insideNE: {
           en: 'Inside NE',
+          fr: 'Intérieur NE',
+          ko: '안 북동쪽',
         },
         insideSE: {
           en: 'Inside SE',
+          fr: 'Intérieur SE',
+          ko: '안 남동쪽',
         },
         insideSW: {
           en: 'Inside SW',
+          fr: 'Intérieur SO',
+          ko: '안 남서쪽',
         },
         outsideNNW: {
           en: 'Outside NNW',
+          fr: 'Extérieur NNO',
+          ko: '바깥 북쪽 왼칸',
         },
         outsideNNE: {
           en: 'Outside NNE',
+          fr: 'Extérieur NNE',
+          ko: '바깥 북쪽 오른칸',
         },
         outsideSSW: {
           en: 'Outside SSW',
+          fr: 'Extérieur SSO',
+          ko: '바깥 남쪽 왼칸',
         },
         outsideSSE: {
           en: 'Outside SSE',
+          fr: 'Extérieur SSE',
+          ko: '바깥 남쪽 오른칸',
         },
         outsideWNW: {
           en: 'Outside WNW',
+          fr: 'Extérieur ONO',
+          ko: '바깥 서쪽 위칸',
         },
         outsideENE: {
           en: 'Outside ENE',
+          fr: 'Extérieur ENE',
+          ko: '바깥 동쪽 위칸',
         },
         outsideWSW: {
           en: 'Outside WSW',
+          fr: 'Extérieur OSO',
+          ko: '바깥 서쪽 아래칸',
         },
         outsideESE: {
           en: 'Outside ESE',
+          fr: 'Extérieur ESE',
+          ko: '바깥 동쪽 아래칸',
         },
         cornerNW: {
           en: 'NW Corner',
+          fr: 'Coin NO',
+          ko: '북서쪽 구석',
         },
         cornerNE: {
           en: 'NE Corner',
+          fr: 'Coin NE',
+          ko: '북동쪽 구석',
         },
         cornerSE: {
           en: 'SE Corner',
+          fr: 'Coin SE',
+          ko: '남동쪽 구석',
         },
         cornerSW: {
           en: 'SW Corner',
+          fr: 'Coin SO',
+          ko: '남서쪽 구석',
         },
       },
     },
@@ -462,6 +512,8 @@ const triggerSet: TriggerSet<Data> = {
         goFrontBack: Outputs.goFrontBack,
         goFrontBackPoly5: {
           en: 'Go Front/Back (${tile})',
+          fr: 'Allez Devant/Derrière (${tile})',
+          ko: '앞/뒤로 (${tile})',
         },
       },
     },
@@ -478,6 +530,8 @@ const triggerSet: TriggerSet<Data> = {
         goSides: Outputs.sides,
         goSidesPoly5: {
           en: 'Sides (${tile})',
+          fr: 'Côté (${tile})',
+          ko: '옆으로 (${tile})',
         },
       },
     },
@@ -837,6 +891,32 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P6S Transmission',
+      type: 'GainsEffect',
+      // CF3 Chelomorph (Wing icon - cleave behind player)
+      // D48 Glossomorph (Snake icon - cleave in front of player)
+      netRegex: NetRegexes.gainsEffect({ effectId: ['CF3', 'D48'] }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => {
+        // 1st transmission has 11s duration, 2nd has 25s duration
+        // in either case, trigger should fire 3s before debuff expires
+        return parseFloat(matches.duration) - 3;
+      },
+      infoText: (_data, matches, output) => {
+        return matches.effectId === 'D48' ? output.forwardCleave!() : output.backwardCleave!();
+      },
+      outputStrings: {
+        forwardCleave: {
+          en: 'Front Cleave',
+          fr: 'Cleave Avant',
+        },
+        backwardCleave: {
+          en: 'Rear Cleave',
+          fr: 'Cleave Arrière',
+        },
+      },
+    },
+    {
       id: 'P6S Dark Spheres Collect',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7880', source: 'Hegemone' }),
@@ -860,9 +940,13 @@ const triggerSet: TriggerSet<Data> = {
         stack: Outputs.stackMarker,
         spreadSide: {
           en: 'Spread ${dir1}',
+          fr: 'Dispersion ${dir1}',
+          ko: '산개 ${dir1}',
         },
         stackSide: {
           en: 'Stack ${dir1}',
+          fr: 'Package ${dir1}',
+          ko: '쉐어 ${dir1}',
         },
       },
     },
