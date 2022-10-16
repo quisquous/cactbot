@@ -837,6 +837,30 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P6S Transmission',
+      type: 'GainsEffect',
+      // CF3 Chelomorph (Wing icon - cleave behind player)
+      // D48 Glossomorph (Snake icon - cleave in front of player)
+      netRegex: NetRegexes.gainsEffect({ effectId: ['CF3', 'D48'] }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => {
+        // 1st transmission has 11s duration, 2nd has 25s duration
+        // in either case, trigger should fire 3s before debuff expires
+        return parseFloat(matches.duration) - 3;
+      },
+      infoText: (_data, matches, output) => {
+        return matches.effectId === 'D48' ? output.forwardCleave!() : output.backwardCleave!();
+      },
+      outputStrings: {
+        forwardCleave: {
+          en: 'Front Cleave',
+        },
+        backwardCleave: {
+          en: 'Rear Cleave',
+        },
+      },
+    },
+    {
       id: 'P6S Dark Spheres Collect',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7880', source: 'Hegemone' }),
