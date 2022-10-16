@@ -68,7 +68,7 @@ jobs:
           generateReleaseNotes: true
 
   create-npm-package:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     if: ${{ github.repository == 'quisquous/cactbot' }}
     steps:
       - name: Checkout Code
