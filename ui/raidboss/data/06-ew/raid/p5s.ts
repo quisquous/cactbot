@@ -22,6 +22,7 @@ export interface Data extends RaidbossData {
   topazRays: { [time: number]: (keyof typeof directions)[] };
   clawCount: number;
   ruby1TopazStones: NetMatches['Ability'][];
+  isRuby1Done: boolean;
 }
 
 export const convertCoordinatesToDirection = (x: number, y: number): keyof typeof directions => {
@@ -39,6 +40,7 @@ const triggerSet: TriggerSet<Data> = {
       topazRays: {},
       clawCount: 0,
       ruby1TopazStones: [],
+      isRuby1Done: false,
     };
   },
   triggers: [
@@ -73,6 +75,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P5S Ruby 1 Topaz Stone Collect',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '76FE', source: 'Proto-Carbuncle' }),
+      condition: (data) => !data.isRuby1Done,
       run: (data, matches) => {
         data.ruby1TopazStones.push(matches);
       },
@@ -81,13 +84,17 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P5S Ruby 1 Topaz Stones',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '76FD', source: 'Proto-Carbuncle', capture: false }),
+      condition: (data) => !data.isRuby1Done,
       delaySeconds: 0.3, // allow collector to finish
       infoText: (data, _matches, output) => {
         const safeQuadrants = Object.assign({}, directions);
         for (const stone of data.ruby1TopazStones)
           delete safeQuadrants[convertCoordinatesToDirection(parseFloat(stone.targetX), parseFloat(stone.targetY))];
+
         const safe: string[] = Object.keys(safeQuadrants);
         const [safe0, safe1] = safe;
+        data.isRuby1Done = true;
+
         if (safe1 !== undefined) // too many safe quadrants
           return;
         else if (safe0 !== undefined) // one safe quadrant, we're done
