@@ -341,78 +341,103 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         combo: {
           en: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
         },
         single: {
           en: '${dir1}',
+          ko: '${dir1}',
         },
         poly6: {
           en: '${dir1}: ${dir2} / ${dir3}',
+          ko: '${dir1}: ${dir2} / ${dir3}',
         },
         left: {
           en: 'Left (Wing Side)',
+          ko: '왼쪽 (날개쪽)',
         },
         right: {
           en: 'Right (Snake Side)',
+          ko: '오른쪽 (뱀쪽)',
         },
         insideWest: {
           en: 'Inside West',
+          ko: '안 서쪽',
         },
         insideEast: {
           en: 'Inside East',
+          ko: '안 동쪽',
         },
         outsideWest: {
           en: 'Outside West',
+          ko: '바깥 서쪽',
         },
         outsideEast: {
           en: 'Outside East',
+          ko: '바깥 동쪽',
         },
         insideNW: {
           en: 'Inside NW',
+          ko: '안 북서쪽',
         },
         insideNE: {
           en: 'Inside NE',
+          ko: '안 북동쪽',
         },
         insideSE: {
           en: 'Inside SE',
+          ko: '안 남동쪽',
         },
         insideSW: {
           en: 'Inside SW',
+          ko: '안 남서쪽',
         },
         outsideNNW: {
           en: 'Outside NNW',
+          ko: '바깥 북쪽 왼칸',
         },
         outsideNNE: {
           en: 'Outside NNE',
+          ko: '바깥 북쪽 오른칸',
         },
         outsideSSW: {
           en: 'Outside SSW',
+          ko: '바깥 남쪽 왼칸',
         },
         outsideSSE: {
           en: 'Outside SSE',
+          ko: '바깥 남쪽 오른칸',
         },
         outsideWNW: {
           en: 'Outside WNW',
+          ko: '바깥 서쪽 위칸',
         },
         outsideENE: {
           en: 'Outside ENE',
+          ko: '바깥 동쪽 위칸',
         },
         outsideWSW: {
           en: 'Outside WSW',
+          ko: '바깥 서쪽 아래칸',
         },
         outsideESE: {
           en: 'Outside ESE',
+          ko: '바깥 동쪽 아래칸',
         },
         cornerNW: {
           en: 'NW Corner',
+          ko: '북서쪽 구석',
         },
         cornerNE: {
           en: 'NE Corner',
+          ko: '북동쪽 구석',
         },
         cornerSE: {
           en: 'SE Corner',
+          ko: '남동쪽 구석',
         },
         cornerSW: {
           en: 'SW Corner',
+          ko: '남서쪽 구석',
         },
       },
     },
@@ -462,6 +487,7 @@ const triggerSet: TriggerSet<Data> = {
         goFrontBack: Outputs.goFrontBack,
         goFrontBackPoly5: {
           en: 'Go Front/Back (${tile})',
+          ko: '앞/뒤로 (${tile})',
         },
       },
     },
@@ -478,6 +504,7 @@ const triggerSet: TriggerSet<Data> = {
         goSides: Outputs.sides,
         goSidesPoly5: {
           en: 'Sides (${tile})',
+          ko: '옆으로 (${tile})',
         },
       },
     },
@@ -884,9 +911,11 @@ const triggerSet: TriggerSet<Data> = {
         stack: Outputs.stackMarker,
         spreadSide: {
           en: 'Spread ${dir1}',
+          ko: '산개 ${dir1}',
         },
         stackSide: {
           en: 'Stack ${dir1}',
+          ko: '쉐어 ${dir1}',
         },
       },
     },
