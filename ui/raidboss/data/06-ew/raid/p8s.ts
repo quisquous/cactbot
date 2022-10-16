@@ -13,8 +13,12 @@ import { Output, TriggerSet } from '../../../../../types/trigger';
 // TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
 // TODO: initial tank auto call on final boss as soon as boss pulled
 
-export type InitialConcept = 'shortalpha' | 'longalpha' | 'shortbeta' | 'longbeta' | 'shortgamma' | 'longgamma';
+export type Concept = 'shortalpha' | 'longalpha' | 'shortbeta' | 'longbeta' | 'shortgamma' | 'longgamma' | 'alpha' | 'beta' | 'gamma' | 'animal';
 export type Splicer = 'solosplice' | 'multisplice' | 'supersplice';
+export const towerColors = ['green', 'blue', 'purple'] as const;
+export type TowerColor = typeof towerColors[number];
+export const perfectedConcepts = ['alpha', 'beta', 'gamma'] as const;
+export type PerfectedConcept = typeof perfectedConcepts[number];
 
 export interface Data extends RaidbossData {
   // Door Boss
@@ -44,10 +48,10 @@ export interface Data extends RaidbossData {
   seenFirstTankAutos?: boolean;
   firstAlignmentSecondAbility?: 'stack' | 'spread';
   seenFirstAlignmentStackSpread?: boolean;
-  concept: { [name: string]: InitialConcept };
+  concept: { [name: string]: Concept };
   splicer: { [name: string]: Splicer };
   arcaneChannelCount: number;
-  arcaneChannelColor: { [color: string]: boolean };
+  arcaneChannelColor: Set<TowerColor>;
   alignmentTargets: string[];
   burstCounter: number;
   myTower?: number;
@@ -163,7 +167,7 @@ const triggerSet: TriggerSet<Data> = {
       concept: {},
       splicer: {},
       arcaneChannelCount: 0,
-      arcaneChannelColor: {},
+      arcaneChannelColor: new Set(),
       alignmentTargets: [],
       burstCounter: 0,
       flareCounter: 0,
@@ -1956,11 +1960,21 @@ const triggerSet: TriggerSet<Data> = {
       // D05 = Perfection: Alpha
       // D06 = Perfection: Beta
       // D07 = Perfection: Gamma
+      // D08 = Inconceivable (temporary after merging)
+      // D09 = Winged Conception (alpha + beta)
+      // D0A = Aquatic Conception (alpha + gamma)
+      // D0B = Shocking Conception (beta + gamma)
+      // D0C = Fiery Conception (ifrits, alpha + alpha)
+      // D0D = Toxic Conception (snake, beta + beta)
+      // D0E = Growing Conception (tree together, gamma + gamma)
+      // D0F = Immortal Spark (feather)
+      // D10 = Immortal Conception (phoenix)
       // D11 = Solosplice
       // D12 = Multisplice
       // D13 = Supersplice
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['D0[2-4]', 'D1[1-3]'] }),
+      // Ignore D08 in the regex here.
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D0[2-79A-F]', 'D1[0-3]'] }),
       run: (data, matches) => {
         const id = matches.effectId;
         // 8 and 26s second debuffs.
@@ -1971,12 +1985,20 @@ const triggerSet: TriggerSet<Data> = {
           data.concept[matches.target] = isLong ? 'longbeta' : 'shortbeta';
         else if (id === 'D04')
           data.concept[matches.target] = isLong ? 'longgamma' : 'shortgamma';
+        else if (id === 'D05')
+          data.concept[matches.target] = 'alpha';
+        else if (id === 'D06')
+          data.concept[matches.target] = 'beta';
+        else if (id === 'D07')
+          data.concept[matches.target] = 'gamma';
         else if (id === 'D11')
           data.splicer[matches.target] = 'solosplice';
         else if (id === 'D12')
           data.splicer[matches.target] = 'multisplice';
         else if (id === 'D13')
           data.splicer[matches.target] = 'supersplice';
+        else
+          data.concept[matches.target] = 'animal';
       },
     },
     {
@@ -2086,7 +2108,7 @@ const triggerSet: TriggerSet<Data> = {
         const concept = data.concept[data.me];
         const splicer = data.splicer[data.me];
 
-        const singleConceptMap: { [key in InitialConcept]: string } = {
+        const singleConceptMap: { [key in Concept]?: string } = {
           shortalpha: output.shortAlpha!(),
           longalpha: output.longAlpha!(),
           shortbeta: output.shortBeta!(),
@@ -2127,33 +2149,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P8S Perfection Splicer Collect',
-      // Record what the splicers chose as they will merge with unused short player
-      type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['D05', 'D06', 'D07'] }),
-      condition: (data, matches) => {
-        // Ignore Imperfection players, and do not collect on HC2
-        if (data.concept[matches.target] || data.arcaneChannelCount > 1)
-          return false;
-        return true;
-      },
-      run: (data, matches) => {
-        if (matches.effectId === 'D05')
-          data.concept[matches.target] = 'shortalpha';
-        else if (matches.effectId === 'D06')
-          data.concept[matches.target] = 'shortbeta';
-        else
-          data.concept[matches.target] = 'shortgamma';
-      },
-    },
-    {
-      id: 'P8S Perfection Remove',
-      // Remove player from perfection lists when they merge
-      type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['D09', 'D0A', 'D0B', 'D0C'] }),
-      run: (data, matches) => delete data.concept[matches.target],
-    },
-    {
       id: 'P8S Arcane Channel Collect',
       type: 'MapEffect',
       netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags }),
@@ -2163,38 +2158,37 @@ const triggerSet: TriggerSet<Data> = {
         const colorInt = parseInt(matches.location, 16);
 
         if (colorInt >= 0x1A && colorInt <= 0x23)
-          data.arcaneChannelColor['purple'] = true;
+          data.arcaneChannelColor.add('purple');
         if (colorInt >= 0x24 && colorInt <= 0x2D)
-          data.arcaneChannelColor['blue'] = true;
+          data.arcaneChannelColor.add('blue');
         if (colorInt >= 0x2E && colorInt <= 0x37)
-          data.arcaneChannelColor['green'] = true;
+          data.arcaneChannelColor.add('green');
       },
     },
     {
       id: 'P8S Arcane Channel Color',
       type: 'MapEffect',
-      netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags }),
-      condition: (data, matches) => {
-        if (data.seenFirstTankAutos) {
-          const colorInt = parseInt(matches.location, 16);
-          if (colorInt >= 0x1A && colorInt <= 0x37)
-            return true;
-        }
-        return false;
-      },
+      netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags, capture: false }),
+      condition: (data) => data.arcaneChannelColor.size > 0,
       delaySeconds: 0.1,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           colorTowerMergePlayer: {
-            en: '${color} Tower, Merge with ${player}',
+            en: '${color} Tower (with ${player})',
           },
           colorTowerMergeLetter: {
-            en: '${color} Tower, Merge with ${letter}',
+            en: '${color} Tower (with ${letter})',
           },
           colorTowerMergePlayers: {
-            en: '${color} Tower, Merge with ${player1} or ${player2}',
+            en: '${color} Tower (with ${player1} or ${player2})',
+          },
+          towerMergeLetters: {
+            en: 'Tower (with ${letter1} or ${letter2})',
+          },
+          towerMergePlayers: {
+            en: 'Tower (with ${player1} or ${player2})',
           },
           colorTowerAvoid: {
             en: 'Avoid ${color} Towers',
@@ -2222,195 +2216,83 @@ const triggerSet: TriggerSet<Data> = {
           },
         };
 
-        // Get the player with corresponding perfection
-        const getMergePlayer = (perfectionList: { [name: string]: InitialConcept }, perfection: string, replace?: RegExp) => {
-          return Object.keys(perfectionList).find((key) => (perfectionList[key] ?? '').replace(replace ?? '', '') === perfection);
-        };
-
-        let perfectionList;
-        let finalTowers;
-        let mergePerfection;
-        let color;
-        let letter;
-        let mergePlayer;
-        let mergePlayer2;
-        const towerColors = [];
-
-        if (data.arcaneChannelCount === 1) {
-          // HC1 Second Towers could use long or short player
-          // with short players including the splicers and unused short
-          perfectionList = data.concept;
-        } else if (data.arcaneChannelCount === 3) {
-          // Unused Short merge with gamma
-          if ((data.concept[data.me] ?? '').includes('short') || data.concept[data.me] === 'longgamma') {
-            // Exclude players matching longalpha and longbeta from list
-            const alphaPlayer = getMergePlayer(data.concept, 'shortalpha');
-            const betaPlayer = getMergePlayer(data.concept, 'shortbeta');
-            const gammaPlayer = getMergePlayer(data.concept, 'longgamma');
-
-            const tempList: Record<string, InitialConcept> = {};
-            if (alphaPlayer !== undefined)
-              tempList[alphaPlayer] = 'shortalpha';
-            if (betaPlayer !== undefined)
-              tempList[betaPlayer] = 'shortbeta';
-            if (gammaPlayer !== undefined)
-              tempList[gammaPlayer] = 'longgamma';
-
-            finalTowers = tempList;
-          }
-          if (data.concept[data.me] === 'longalpha' || data.concept[data.me] === 'longbeta') {
-            // Exclude player matching longgamma value from list
-            const alphaPlayer = getMergePlayer(data.concept, 'longalpha');
-            const betaPlayer = getMergePlayer(data.concept, 'longbeta');
-
-            const tempList: Record<string, InitialConcept> = {};
-            if (alphaPlayer !== undefined)
-              tempList[alphaPlayer] = 'longalpha';
-            if (betaPlayer !== undefined)
-              tempList[betaPlayer] = 'longbeta';
-
-            finalTowers = tempList;
-          }
-        } else {
-          // HC1 and HC2 First Towers use short debuffs
-          const alphaPlayer = getMergePlayer(data.concept, 'shortalpha');
-          const betaPlayer = getMergePlayer(data.concept, 'shortbeta');
-          const gammaPlayer = getMergePlayer(data.concept, 'shortgamma');
-
-          const tempList: Record<string, InitialConcept> = {};
-          if (alphaPlayer !== undefined)
-            tempList[alphaPlayer] = 'shortalpha';
-          if (betaPlayer !== undefined)
-            tempList[betaPlayer] = 'shortbeta';
-          if (gammaPlayer !== undefined)
-            tempList[gammaPlayer] = 'shortgamma';
-
-          perfectionList = tempList;
-        }
-
-        // Narrow down to single player
-        if (data.arcaneChannelColor['purple']) {
-          // Gamma/Beta Players
-          if (perfectionList !== undefined) {
-            if ((perfectionList[data.me] ?? '').includes('gamma'))
-              mergePerfection = 'beta';
-            if ((perfectionList[data.me] ?? '').includes('beta'))
-              mergePerfection = 'gamma';
-          }
-          towerColors.push('purple');
-        }
-        if (data.arcaneChannelColor['blue']) {
-          // Alpha/Gamma Players
-          if (perfectionList !== undefined) {
-            if ((perfectionList[data.me] ?? '').includes('alpha'))
-              mergePerfection = 'gamma';
-            if ((perfectionList[data.me] ?? '').includes('gamma'))
-              mergePerfection = 'alpha';
-          }
-          towerColors.push('blue');
-        }
-        if (data.arcaneChannelColor['green']) {
-          // Alpha/Beta Players
-          if (perfectionList !== undefined) {
-            if ((perfectionList[data.me] ?? '').includes('alpha'))
-              mergePerfection = 'beta';
-            if ((perfectionList[data.me] ?? '').includes('beta'))
-              mergePerfection = 'alpha';
-          }
-          towerColors.push('green');
-        }
-
-        // Failed to find tower color
-        if (towerColors[0] === undefined)
+        const towerColors = Array.from(data.arcaneChannelColor.keys());
+        const [tower1, tower2] = towerColors;
+        if (tower1 === undefined)
           return;
 
-        // Find corresponding player(s) or perfection in HC1 and HC2 First Towers
-        if (mergePerfection !== undefined && perfectionList !== undefined) {
-          // HC1 Towers and HC2 First Towers
-          mergePlayer = getMergePlayer(perfectionList, mergePerfection, /long|short/);
-          color = towerColors[0];
-
-          // If fail to find player, output the corresponding perfection
-          if (mergePlayer === undefined)
-            letter = mergePerfection;
+        const myConcept = data.concept[data.me];
+        if (myConcept !== 'alpha' && myConcept !== 'beta' && myConcept !== 'gamma') {
+          if (data.arcaneChannelCount !== 3)
+            return { infoText: output.colorTowerAvoid!({ color: output[tower1]!() }) };
+          if (tower2 !== undefined && myConcept === 'animal')
+            return { alertText: output.cloneTether!() };
+          // Likely not solveable anymore.
+          return;
         }
 
-        // Check for second possible merge during HC1 Second Towers
-        if (data.arcaneChannelCount === 1 && mergePlayer !== undefined && mergePerfection !== undefined) {
-          // Simple check on the other list, opposite of what was before
-          delete data.concept[mergePlayer];
-          mergePlayer2 = getMergePlayer(data.concept, mergePerfection, /long|short/);
+        const towerToConcept: { [key in TowerColor]: PerfectedConcept[] } = {
+          'green': ['alpha', 'beta'],
+          'blue': ['alpha', 'gamma'],
+          'purple': ['beta', 'gamma'],
+        };
+
+        const conceptToPlayers: { [key in PerfectedConcept]: string[] } = {
+          'alpha': [],
+          'beta': [],
+          'gamma': [],
+        };
+        for (const [name, concept] of Object.entries(data.concept)) {
+          if (concept === 'alpha' || concept === 'beta' || concept === 'gamma')
+            conceptToPlayers[concept].push(name);
         }
 
-        // HC2 Second Towers
-        if (finalTowers !== undefined) {
-          // Remove self from list to get partner info
-          delete finalTowers[data.me];
-
-          // Find corresponding player, else corresponding letters
-          if (Object.keys(finalTowers).length === 1 && Object.keys(finalTowers)[0] !== undefined) {
-            mergePlayer = Object.keys(finalTowers)[0];
-            if (mergePlayer === undefined)
-              return;
-
-            // Long alpha and long beta are always partners and green
-            if (data.concept[mergePlayer] === 'longalpha' || data.concept[mergePlayer] === 'longbeta')
-              color = 'green';
-
-            // Short and Gamma are Blue/Purple, short player determines the color
-            if (data.concept[mergePlayer] === 'shortalpha' || data.concept[data.me] === 'shortalpha')
-              color = 'blue';
-            if (data.concept[mergePlayer] === 'shortbeta' || data.concept[data.me] === 'shortbeta')
-              color = 'purple';
-          }
-
-          // Failed to find a corresponding player, output corresponding perfections instead
-          if (color === undefined) {
-            // Unused short is always alpha or beta because wind is not created in first and we thus match with gamma
-            if (data.concept[data.me] === 'shortalpha' || data.concept[data.me] === 'shortbeta') {
-              color = (data.concept[data.me] === 'shortalpha' ? 'blue' : 'purple');
-              letter = 'gamma';
-            }
-
-            if (data.concept[data.me] === 'longgamma') {
-              if (towerColors[0] === 'blue' || towerColors[1] === 'blue') {
-                color = 'blue';
-                letter = 'alpha';
-              }
-              if (towerColors[0] === 'purple' || towerColors[1] === 'purple') {
-                color = 'purple';
-                letter = 'beta';
-              }
-            }
-            if (data.concept[data.me] === 'longbeta') {
-              color = 'green';
-              letter = 'alpha';
-            }
-            if (data.concept[data.me] === 'longalpha') {
-              color = 'green';
-              letter = 'beta';
-            }
-          }
+        // HC1 (both parts), HC2 (initial tower)
+        if (tower2 === undefined) {
+          const color = output[tower1]!();
+          const concepts = towerToConcept[tower1];
+          if (!concepts.includes(myConcept))
+            return { infoText: output.colorTowerAvoid!({ color: color }) };
+          const [otherConcept] = [...concepts].filter((x) => x !== myConcept);
+          if (otherConcept === undefined)
+            throw new UnreachableCode();
+          const [name1, name2] = conceptToPlayers[otherConcept].map((x) => data.ShortName(x));
+          if (name1 === undefined)
+            return { alertText: output.colorTowerMergeLetter!({ color: color, letter: output[otherConcept]!() }) };
+          if (name2 === undefined)
+            return { alertText: output.colorTowerMergePlayer!({ color: color, player: name1 }) };
+          return { alertText: output.colorTowerMergePlayers!({ color: color, player1: name1, player2: name2 }) };
         }
 
-        if (color !== undefined && letter !== undefined)
-          return { alertText: output.colorTowerMergeLetter!({ color: output[color]!(), letter: output[letter]!() }) };
+        // HC2 (final towers), in order to solve this, you need a 2nd beta or gamma
+        const [doubled, doub2] = perfectedConcepts.filter((x) => conceptToPlayers[x].length === 2);
+        if (doub2 !== undefined || doubled === undefined)
+          return;
 
-        if (color !== undefined && mergePlayer !== undefined && mergePlayer2 !== undefined)
-          return { alertText: output.colorTowerMergePlayers!({ color: output[color]!(), player1: data.ShortName(mergePlayer), player2: data.ShortName(mergePlayer2) }) };
+        // If doubled, merge with somebody who doesn't have your debuff.
+        if (myConcept === doubled) {
+          const [concept1, concept2] = [...perfectedConcepts].filter((x) => x !== myConcept);
+          if (concept1 === undefined || concept2 === undefined)
+            throw new UnreachableCode();
+          const [name1, name2] = [...conceptToPlayers[concept1], ...conceptToPlayers[concept2]].map((x) => data.ShortName(x));
+          if (name1 === undefined || name2 === undefined)
+            return { alertText: output.towerMergeLetters!({ letter1: output[concept1]!(), letter2: output[concept2]!() }) };
+          return { alertText: output.towerMergePlayers!({ player1: name1, player2: name2 }) };
+        }
 
-        if (color !== undefined && mergePlayer !== undefined)
-          return { alertText: output.colorTowerMergePlayer!({ color: output[color]!(), player: data.ShortName(mergePlayer) }) };
-
-        // Avoid tower(s)
-        if (data.arcaneChannelCount !== 3)
-          return { infoText: output.colorTowerAvoid!({ color: output[towerColors[0]]!() }) };
-        if (towerColors[1] !== undefined)
-          return { alertText: output.cloneTether!() };
+        // If not doubled, merge with one of the doubled folks (because they can't merge together).
+        const [name1, name2] = conceptToPlayers[doubled].map((x) => data.ShortName(x));
+        const [tower] = towerColors.filter((x) => towerToConcept[x].includes(myConcept));
+        if (tower === undefined)
+          throw new UnreachableCode();
+        const color = output[tower]!();
+        if (name1 === undefined || name2 === undefined)
+          return { alertText: output.colorTowerMergeLetter!({ color: color, letter: output[doubled]!() }) };
+        return { alertText: output.colorTowerMergePlayers!({ color: color, player1: name1, player2: name2 }) };
       },
       run: (data) => {
-        data.arcaneChannelColor = {};
-        data.arcaneChannelCount = data.arcaneChannelCount + 1;
+        data.arcaneChannelColor.clear();
+        data.arcaneChannelCount++;
       },
     },
     {
