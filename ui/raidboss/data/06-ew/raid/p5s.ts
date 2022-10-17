@@ -9,23 +9,19 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Callout safe quadrant/half for Venom Pool with Crystals
 
-const directions = {
-  'NE': true,
-  'SE': true,
-  'SW': true,
-  'NW': true,
-};
+export const directions = ['NW', 'NE', 'SE', 'SW'] as const;
+export type IntercardDir = typeof directions[number];
 
 export interface Data extends RaidbossData {
   target?: string;
   topazClusterCombatantIdToAbilityId: { [id: number]: string };
-  topazRays: { [time: number]: (keyof typeof directions)[] };
+  topazRays: { [time: number]: IntercardDir[] };
   clawCount: number;
   ruby1TopazStones: NetMatches['Ability'][];
   isRuby1Done: boolean;
 }
 
-export const convertCoordinatesToDirection = (x: number, y: number): keyof typeof directions => {
+export const convertCoordinatesToDirection = (x: number, y: number): IntercardDir => {
   if (x > 100)
     return y < 100 ? 'NE' : 'SE';
   return y < 100 ? 'NW' : 'SW';
@@ -83,15 +79,16 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Ruby 1 Topaz Stones',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '76FD', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: NetRegexes.ability({ id: '76FE', source: 'Proto-Carbuncle', capture: false }),
       condition: (data) => !data.isRuby1Done,
       delaySeconds: 0.3, // allow collector to finish
+      suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        const safeQuadrants = Object.assign({}, directions);
+        const safeQuadrants = new Set(directions);
         for (const stone of data.ruby1TopazStones)
-          delete safeQuadrants[convertCoordinatesToDirection(parseFloat(stone.targetX), parseFloat(stone.targetY))];
+          safeQuadrants.delete(convertCoordinatesToDirection(parseFloat(stone.targetX), parseFloat(stone.targetY)));
 
-        const safe: string[] = Object.keys(safeQuadrants);
+        const safe = Array.from(safeQuadrants);
         const [safe0, safe1] = safe;
         data.isRuby1Done = true;
 
@@ -206,11 +203,11 @@ const triggerSet: TriggerSet<Data> = {
         }
       },
       infoText: (data, _matches, output) => {
-        const remainingDirections: { [index: string]: Set<keyof typeof directions> } = {};
-        for (const [index, directions] of Object.entries(data.topazRays)) {
-          remainingDirections[index] = new Set(['NE', 'SE', 'SW', 'NW']);
-          for (const direction of directions)
-            remainingDirections[index]?.delete(direction);
+        const remainingDirections: { [index: string]: Set<IntercardDir> } = {};
+        for (const [index, dirs] of Object.entries(data.topazRays)) {
+          remainingDirections[index] = new Set(directions);
+          for (const dir of dirs)
+            remainingDirections[index]?.delete(dir);
         }
 
         // 770[34] cast 2 times, 770[56] cast 3 times
