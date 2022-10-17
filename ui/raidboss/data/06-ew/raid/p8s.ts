@@ -2223,7 +2223,7 @@ const triggerSet: TriggerSet<Data> = {
 
         const myConcept = data.concept[data.me];
         if (myConcept !== 'alpha' && myConcept !== 'beta' && myConcept !== 'gamma') {
-          // Long debuff, splicers, and no debuffs avoid first towers
+          // Long debuff and splicers avoid first towers
           if (data.arcaneChannelCount !== 3)
             return { infoText: output.colorTowerAvoid!({ color: output[tower1]!() }) };
 
