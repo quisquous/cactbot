@@ -53,7 +53,7 @@ const endsWith = (s: string, suffix: Iterable<string>): boolean => {
 
 const downloadFile = async (url: string, localPath: string): Promise<void> => {
   const res = await fetch(url, { agent: ProxyAgent() });
-  await fs.writeFile(localPath, await res.buffer());
+  await fs.writeFile(localPath, new Buffer(await res.arrayBuffer()));
 };
 
 const waitStream = (stream: { on: (event: 'finish', cb: VoidFunction) => void }): Promise<void> => {

@@ -12,22 +12,22 @@
     "build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --progress --config webpack/webpack.prod.ts",
     "build-gh-pages": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.ghpages.ts",
     "start": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack serve --config webpack/webpack.dev.ts",
-    "fetch-deps": "ts-node ./util/fetch_deps.ts",
+    "fetch-deps": "cross-env TS_NODE_PROJECT=\"tsconfig.node.json\" NODE_OPTIONS=\"--experimental-specifier-resolution=node --loader=ts-node/esm\" node ./util/fetch_deps.ts",
     "tsc-no-emit": "tsc --noEmit",
     "lint": "eslint --max-warnings=0 ./",
     "lintfix": "eslint --max-warnings=0 --fix ./",
     "stylelint": "stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "stylelintfix": "stylelint --fix resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "markdownlint": "markdownlint . --ignore node_modules --ignore publish --ignore plugin/ThirdParty",
-    "test": "mocha",
+    "test": "cross-env TS_NODE_PROJECT=\"tsconfig.node.json\" mocha",
     "lint-staged": "lint-staged",
-    "coverage-report": "ts-node util/gen_coverage_report.ts",
-    "util": "ts-node -r jsdom-global/register util/index.ts",
+    "coverage-report": "cross-env NODE_OPTIONS=\"--experimental-specifier-resolution=node --loader=ts-node/esm\" node util/gen_coverage_report.ts",
+    "util": "cross-env NODE_OPTIONS=\"--experimental-specifier-resolution=node --loader=ts-node/esm\" node -r jsdom-global/register util/index.ts",
     "find-translations": "npm run util -- findTranslations",
     "translate-timeline": "npm run util -- translateTimeline",
     "generate": "npm run util -- generate",
-    "process-triggers": "ts-node util/process_triggers_folder.ts",
-    "generate-log-guide": "ts-node util/gen_log_guide.ts",
+    "process-triggers": "cross-env NODE_OPTIONS=\"--experimental-specifier-resolution=node --loader=ts-node/esm\" node util/process_triggers_folder.ts",
+    "generate-log-guide": "cross-env NODE_OPTIONS=\"--experimental-specifier-resolution=node --loader=ts-node/esm\" node util/gen_log_guide.ts",
     "version": "node util/sync_version.cjs && git add -u"
   },
   "devDependencies": {
@@ -52,7 +52,6 @@
     "@types/webpack": "^5.28.0",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
-    "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
     "babel-loader": "^8.2.2",
     "chai": "^4.3.6",
     "chalk": "^2.4.2",
@@ -94,7 +93,6 @@
     "ts-loader": "^9.3.0",
     "ts-node": "^10.8.0",
     "tsconfig-paths": "^3.9.0",
-    "ttypescript": "^1.5.12",
     "typescript": "^4.6.4",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
@@ -102,7 +100,7 @@
     "webpack-merge": "^5.8.0"
   },
   "engines": {
-    "node": "^16.12.0 || >=18.10.0"
+    "node": ">=18.10.0"
   },
   "stylelint": {
     "extends": "stylelint-config-standard"

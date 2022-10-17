@@ -1,11 +1,5 @@
 {
   "compilerOptions": {
-    "plugins": [
-      {
-        "transform": "@zoltu/typescript-transformer-append-js-extension/output/index.js",
-        "after": true
-      }
-    ],
     // Thanks to babel-loader, we don't need to set it as ES2019.
     // But we need to set it as ES2020 to ensure mocha can run correctly.
     "target": "ES2020",

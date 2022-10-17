@@ -1,9 +1,5 @@
 {
   "extends": "./tsconfig.base.json",
-  "ts-node": {
-    "compiler": "ttypescript",
-    "esm": true
-  },
   "compilerOptions": {
     "checkJs": false,
     "sourceMap": true,

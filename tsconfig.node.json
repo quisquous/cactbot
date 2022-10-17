@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "moduleResolution": "Node",
+    "outDir": "./dist",
+    "module": "ES2022"
+  },
+  "include": [
+    "./ui",
+    "./types",
+    "./resources",
+    "./util",
+    "./test",
+    "./webpack"
+  ],
+  "exclude": [
+    "./eslint",
+    "./.eslintrc.cjs",
+    "./dist",
+    "**/*.spec.ts"
+  ]
+}
