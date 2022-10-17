@@ -2223,8 +2223,10 @@ const triggerSet: TriggerSet<Data> = {
 
         const myConcept = data.concept[data.me];
         if (myConcept !== 'alpha' && myConcept !== 'beta' && myConcept !== 'gamma') {
+          // Long debuff, splicers, and no debuffs avoid first towers
           if (data.arcaneChannelCount !== 3)
             return { infoText: output.colorTowerAvoid!({ color: output[tower1]!() }) };
+
           if (tower2 !== undefined && myConcept === 'animal')
             return { alertText: output.cloneTether!() };
           // Likely not solveable anymore.
@@ -2251,8 +2253,11 @@ const triggerSet: TriggerSet<Data> = {
         if (tower2 === undefined) {
           const color = output[tower1]!();
           const concepts = towerToConcept[tower1];
+
+          // Unused concept avoids tower
           if (!concepts.includes(myConcept))
             return { infoText: output.colorTowerAvoid!({ color: color }) };
+
           const [otherConcept] = [...concepts].filter((x) => x !== myConcept);
           if (otherConcept === undefined)
             throw new UnreachableCode();
