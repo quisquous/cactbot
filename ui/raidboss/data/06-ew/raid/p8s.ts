@@ -13,7 +13,7 @@ import { Output, TriggerSet } from '../../../../../types/trigger';
 // TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
 // TODO: initial tank auto call on final boss as soon as boss pulled
 
-export type Concept = 'shortalpha' | 'longalpha' | 'shortbeta' | 'longbeta' | 'shortgamma' | 'longgamma' | 'alpha' | 'beta' | 'gamma' | 'animal';
+export type Concept = 'shortalpha' | 'longalpha' | 'shortbeta' | 'longbeta' | 'shortgamma' | 'longgamma' | 'alpha' | 'beta' | 'gamma' | 'primal';
 export type Splicer = 'solosplice' | 'multisplice' | 'supersplice';
 export const towerColors = ['green', 'blue', 'purple'] as const;
 export type TowerColor = typeof towerColors[number];
@@ -1998,7 +1998,7 @@ const triggerSet: TriggerSet<Data> = {
         else if (id === 'D13')
           data.splicer[matches.target] = 'supersplice';
         else
-          data.concept[matches.target] = 'animal';
+          data.concept[matches.target] = 'primal';
       },
     },
     {
@@ -2223,11 +2223,12 @@ const triggerSet: TriggerSet<Data> = {
 
         const myConcept = data.concept[data.me];
         if (myConcept !== 'alpha' && myConcept !== 'beta' && myConcept !== 'gamma') {
-          // Long debuff and splicers avoid first towers
+          // Long debuffs, splicers, and primals avoid towers
           if (data.arcaneChannelCount !== 3)
             return { infoText: output.colorTowerAvoid!({ color: output[tower1]!() }) };
 
-          if (tower2 !== undefined && myConcept === 'animal')
+          // Primals on HC2 Second Towers get clones
+          if (tower2 !== undefined && myConcept === 'primal')
             return { alertText: output.cloneTether!() };
           // Likely not solveable anymore.
           return;
