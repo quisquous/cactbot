@@ -8,7 +8,7 @@ for folks who want to write ACT triggers for ff14.
 
 This guide was last updated for:
 
-- [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 5.58
+- [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 6.2
 - [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) Patch 2.6.6.7
 - [OverlayPlugin](https://github.com/OverlayPlugin/OverlayPlugin/releases) Patch 0.19.5
 
@@ -907,14 +907,14 @@ Damage bitmasks:
 - 0x05 = blocked damage
 - 0x06 = parried damage
 - 0x33 = instant death
-- 0x100 = crit damage
-- 0x200 = direct hit damage
-- 0x300 = crit direct hit damage
+- 0x2000 = crit damage
+- 0x4000 = direct hit damage
+- 0x6000 = crit direct hit damage
 
 Heal bitmasks:
 
-- 0x00004 = heal
-- 0x10004 = crit heal
+- 0x000004 = heal
+- 0x200004 = crit heal
 
 Other bitmasks appear on particular abilities, and can indicate whether bane
 missed or hit recipients.  However, these all appear ability-specific.
@@ -923,11 +923,9 @@ Some of these flags also indicate whether the ability is part of a combo or not
 and whether the positional was hit.
 However, these values do not seem to be consistent between jobs.
 
-For example, the flags for successful trick attack are `28710.03`.
-The `.` here represents 0-3 as the trick may crit, dh, both, or neither.
-The flags for a missed trick attack are `710.03`.
-Thus, there's a `0x28700000` mask applied here when the positional is correct,
-which was determined via experimentation.
+For example, the flags for successful rear trick attack are `1971.003`.
+The `.` here represents 2, 4, or 6 as the trick may crit, dh, both, or neither.
+The flags for a missed trick attack positional are `714.003`.
 
 If you care about specific ability flags, you likely have to do this research yourself.
 Please send pull requests to this document so it can be shared!
@@ -935,7 +933,7 @@ Please send pull requests to this document so it can be shared!
 #### Ability Damage
 
 Damage bitmasks:
-    0x1000 = hallowed, no damage
+    0x10000 = hallowed or bolide, no damage (this can be blocked too)
     0x4000 = "a lot" of damage
 
 The damage value in an ability usage is not the literal damage, because that would be too easy.
