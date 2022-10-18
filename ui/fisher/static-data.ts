@@ -1226,6 +1226,9 @@ const data: FisherData = {
       '36519': '额外维度实体-9318',
       '36520': '未受生魂',
       '36521': '法拉伊那',
+      '36660': '种蛙',
+      '36662': '圣洁绒球',
+      '36663': '灰白珊瑚',
       '36679': '电吉他鱼',
       '36680': '巨身锯盖鱼',
       '36681': '捂耳太阳鱼',
@@ -19825,6 +19828,27 @@ const data: FisherData = {
       36520,
       36521,
     ],
+    '4191': [
+      36501,
+      36503,
+    ],
+    '4192': [
+      36499,
+      36503,
+    ],
+    '4193': [
+      36501,
+      36503,
+    ],
+    '4194': [
+      36503,
+      36505,
+    ],
+    '4195': [
+      36499,
+      36503,
+      36505,
+    ],
   },
   'places': {
     'cn': {
@@ -21252,8 +21276,8 @@ const data: FisherData = {
         'an der Quell der Reue',
       ],
       '4080': [
-        'Elegeia',
-        'in Elegeia',
+        'Domizil der Ea',
+        'im Domizil der Ea',
       ],
       '4081': [
         'Limne 18',
@@ -21266,6 +21290,26 @@ const data: FisherData = {
       '4083': [
         'Limne 3-β',
         'in Limne 3-β',
+      ],
+      '4191': [
+        'Elysischer Agrarsektor',
+        'im Elysischen Agrarsektor',
+      ],
+      '4192': [
+        'Elysischer Meeressektor α',
+        'im Elysischen Meeressektor α',
+      ],
+      '4193': [
+        'Elysischer Meeressektor β',
+        'im Elysischen Meeressektor β',
+      ],
+      '4194': [
+        'Elysischer Vergnügungssektorα',
+        'im Elysischen Vergnügungssektor α',
+      ],
+      '4195': [
+        'Elysischer Vergnügungssektorβ',
+        'im Elysischen Vergnügungssektor β',
       ],
     },
     'en': {
@@ -21553,10 +21597,15 @@ const data: FisherData = {
       '4077': 'apohelos 18-β',
       '4078': 'apohelos 18-α',
       '4079': 'wellspring of regret',
-      '4080': 'Elegeia',
+      '4080': 'abode of the Ea',
       '4081': 'limne 18',
       '4082': 'limne 3-α',
       '4083': 'limne 3-β',
+      '4191': 'Elysian Fields',
+      '4192': 'Elysian Seas α',
+      '4193': 'Elysian Seas β',
+      '4194': 'Elysian Playgrounds α',
+      '4195': 'Elysian Playgrounds β',
     },
     'fr': {
       '28': 'Limsa Lominsa - Le Tillac',
@@ -21843,10 +21892,15 @@ const data: FisherData = {
       '4077': 'Hélos Dékaokto β',
       '4078': 'Hélos Dékaokto α',
       '4079': 'Source des Velléitaires',
-      '4080': 'Cippes élégiaques',
+      '4080': 'Demeure des Éas',
       '4081': 'Limné Dékaokto',
       '4082': 'Limné Tria α',
       '4083': 'Limné Tria β',
+      '4191': 'Champs élyséens',
+      '4192': 'Mers élyséennes α',
+      '4193': 'Mers élyséennes β',
+      '4194': 'Terrains de jeu élyséens α',
+      '4195': 'Terrains de jeu élyséens β',
     },
     'ja': {
       '28': 'リムサ・ロミンサ：上甲板層',
@@ -22133,10 +22187,15 @@ const data: FisherData = {
       '4077': 'ヘロス・デカオクトβ',
       '4078': 'ヘロス・デカオクトα',
       '4079': '逡巡の泉',
-      '4080': '辞世の連句碑',
+      '4080': 'イーアの里',
       '4081': 'リムニ・デカオクト',
       '4082': 'リムニ・トゥリアα',
       '4083': 'リムニ・トゥリアβ',
+      '4191': 'エリュシオン農業区画',
+      '4192': 'エリュシオン海洋区画α',
+      '4193': 'エリュシオン海洋区画β',
+      '4194': 'エリュシオン遊園区画α',
+      '4195': 'エリュシオン遊園区画β',
     },
     'ko': {
       '28': '림사 로민사 상층 갑판',
