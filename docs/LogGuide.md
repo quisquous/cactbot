@@ -8,7 +8,7 @@ for folks who want to write ACT triggers for ff14.
 
 This guide was last updated for:
 
-- [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 5.58
+- [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 6.2
 - [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) Patch 2.6.6.7
 - [OverlayPlugin](https://github.com/OverlayPlugin/OverlayPlugin/releases) Patch 0.19.5
 
@@ -27,6 +27,7 @@ This guide was last updated for:
   - [Object/Actor/Entity/Mob/Combatant](#objectactorentitymobcombatant)
   - [Object ID](#object-id)
   - [Ability ID](#ability-id)
+  - [Instance Content ID](#instance-content-id)
 - [FFXIV Plugin Log Lines](#ffxiv-plugin-log-lines)
   - [Line 00 (0x00): LogLine](#line-00-0x00-logline)
     - [Structure](#structure)
@@ -373,6 +374,19 @@ so this link will give you more information about it:
 <https://xivapi.com/action/3577?columns=ID,Name,Description,ClassJobCategory.Name>
 
 This works for both players and enemies, abilities and spells.
+
+### Instance Content ID
+
+Some lines like the [actor control line](#line33) and [SystemLogMessage](#line41)
+have a field called `instance`.
+This field is a four byte field with two parts,
+The first two bytes are the update type (e.g. `8003` is the update type for instanced content,
+and `8004` is the same content but with trusts).
+The second two bytes are the `InstanceContentType`,
+from the [InstanceContent table](https://github.com/xivapi/ffxiv-datamining/blob/master/csv/InstanceContent.csv).
+
+For example, if `instance` is `80034E6C` then `0x4E6C` is the `InstanceContentType`.
+`0x4E6C` is 20076 in decimal, and corresponds to Diamond Weapon (Savage): <https://xivapi.com/InstanceContent/20076?pretty=true>.
 
 ## FFXIV Plugin Log Lines
 
@@ -893,14 +907,14 @@ Damage bitmasks:
 - 0x05 = blocked damage
 - 0x06 = parried damage
 - 0x33 = instant death
-- 0x100 = crit damage
-- 0x200 = direct hit damage
-- 0x300 = crit direct hit damage
+- 0x2000 = crit damage
+- 0x4000 = direct hit damage
+- 0x6000 = crit direct hit damage
 
 Heal bitmasks:
 
-- 0x00004 = heal
-- 0x10004 = crit heal
+- 0x000004 = heal
+- 0x200004 = crit heal
 
 Other bitmasks appear on particular abilities, and can indicate whether bane
 missed or hit recipients.  However, these all appear ability-specific.
@@ -909,11 +923,9 @@ Some of these flags also indicate whether the ability is part of a combo or not
 and whether the positional was hit.
 However, these values do not seem to be consistent between jobs.
 
-For example, the flags for successful trick attack are `28710.03`.
-The `.` here represents 0-3 as the trick may crit, dh, both, or neither.
-The flags for a missed trick attack are `710.03`.
-Thus, there's a `0x28700000` mask applied here when the positional is correct,
-which was determined via experimentation.
+For example, the flags for successful rear trick attack are `1971.003`.
+The `.` here represents 2, 4, or 6 as the trick may crit, dh, both, or neither.
+The flags for a missed trick attack positional are `714.003`.
 
 If you care about specific ability flags, you likely have to do this research yourself.
 Please send pull requests to this document so it can be shared!
@@ -921,7 +933,7 @@ Please send pull requests to this document so it can be shared!
 #### Ability Damage
 
 Damage bitmasks:
-    0x1000 = hallowed, no damage
+    0x10000 = hallowed or bolide, no damage (this can be blocked too)
     0x4000 = "a lot" of damage
 
 The damage value in an ability usage is not the literal damage, because that would be too easy.
@@ -1599,13 +1611,7 @@ Parsed Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-`instance` is 4 bytes made up of two internal fields.
-The first two bytes are the update type (e.g. `8003` is the update type for instanced content).
-The second two bytes are the `InstanceContentType`,
-from the [InstanceContent table](https://github.com/xivapi/ffxiv-datamining/blob/master/csv/InstanceContent.csv).
-For example, if `instance` is `80034E6C` then `0x4E6C` is the `InstanceContentType`.
-`0x4E6C` is 20076 in decimal, and corresponds to Diamond Weapon (Savage):
-<https://xivapi.com/InstanceContent/20076?pretty=true>.
+See [Instance Content ID](#instance-content-id) for more details about the `instance` parameter.
 
 Wipes on most raids and primals these days can be detected via this regex in 6.2:
 `21:........:4000000F:`.
@@ -2032,10 +2038,6 @@ Parsed Log Line Examples:
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-The `instance` parameter is identical to `instance` in [actor control line)](#line33).
-The first two bytes are the update type
-and the second two bytes are ids in the [InstanceContent table](https://github.com/xivapi/ffxiv-datamining/blob/master/csv/InstanceContent.csv).
-
 The `id` parameter is an id into the [LogMessage table](https://github.com/xivapi/ffxiv-datamining/blob/master/csv/LogMessage.csv).
 
 id (hex) | Link | Shortened Message
@@ -2057,11 +2059,8 @@ Here are two network log lines:
 00|2022-01-11T16:28:50.0000000-08:00|0839||The shell mound will be sealed off in 15 seconds!|3a0befeef04e203b^M
 ```
 
-`80030054` is the instance.
-`8003` means instanced content.
-(`8004` means trust content.)
-`0054` is the [InstanceContent](https://xivapi.com/InstanceContent/84?pretty=true) id,
-so this is The Dead Ends.
+See [Instance Content ID](#instance-content-id) for more details about the `instance` parameter.
+`00830054` represents instanced content for [The Dead Ends](https://xivapi.com/InstanceContent/84?pretty=true).
 
 `7DC` is the `id`, which [corresponds](https://xivapi.com/LogMessage/2012?pretty=true) to:
 `"<Clickable(<SheetEn(PlaceName,2,IntegerParameter(1),2,1)\/>)\/> will be sealed off in <Value>IntegerParameter(2)<\/Value> <If(Equal(IntegerParameter(2),1))>second<Else\/>seconds<\/If>!"`
