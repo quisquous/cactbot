@@ -1461,7 +1461,7 @@ export class PopupText {
 
     // TODO: make a breaking change at some point and
     // make all this style consistent, sorry.
-    let data: RaidbossData = {
+    const data: RaidbossData = {
       me: this.me,
       job: this.job,
       role: this.role,
@@ -1483,12 +1483,14 @@ export class PopupText {
       CanAddle: () => Util.canAddle(this.job),
     };
 
+    let triggerData = {};
+
     for (const initObj of this.dataInitializers) {
       const init = initObj.func;
       const initData = init();
       if (typeof initData === 'object') {
-        data = {
-          ...data,
+        triggerData = {
+          ...triggerData,
           ...initData,
         };
       } else {
@@ -1497,7 +1499,7 @@ export class PopupText {
       }
     }
 
-    return data;
+    return { ...triggerData, ...data };
   }
 }
 
