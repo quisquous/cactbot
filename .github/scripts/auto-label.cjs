@@ -55,7 +55,7 @@ const regexLabelMap = {
 };
 
 /**
- * @typedef {ReturnType<typeof import("@actions/github").getOctokit>} GitHub
+ * @typedef {ReturnType<typeof import('@actions/github').getOctokit>} GitHub
  */
 
 /**
@@ -67,7 +67,7 @@ const regexLabelMap = {
  * @param {string} owner
  * @param {string} repo
  * @param {number} pullNumber
- * @returns {string[]}
+ * @returns {Promise<string[]>}
  */
 const getLabels = async (github, owner, repo, pullNumber) => {
   /**
