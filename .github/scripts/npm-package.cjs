@@ -26,17 +26,12 @@ async function main() {
   fsExtra.copySync('types', 'npm-package/types', {});
   fs.renameSync('dist/resources', 'npm-package/resources');
 
-  fs.writeFileSync(
-    'npm-package/package.json',
-    JSON.stringify(
-      {
-        ...lodash.pick(pkg, ['name', 'version', 'license', 'repository', 'files']),
-        type: 'module',
-      },
-      null,
-      2,
-    ),
-  );
+  const newPackageJSON = {
+    type: 'module',
+    ...lodash.pick(pkg, ['name', 'version', 'license', 'repository', 'files']),
+  };
+
+  fs.writeFileSync('npm-package/package.json', JSON.stringify(newPackageJSON, null, 2));
 }
 
 main().catch((e) => {
