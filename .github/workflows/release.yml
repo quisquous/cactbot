@@ -75,21 +75,7 @@ jobs:
         uses: actions/checkout@v3
       - uses: ./.github/actions/setup-js-env
 
-      - run: mkdir npm-package
-
-      - name: Build JavaScript UI Module Bundles
-        run: npm run build
-
-      - run: mv dist npm-package/
-
-      - run: npx tsc --declaration
-
-      - run: |
-          cp -r types/./ npm-package/types/
-          cp -r ./dist/ui/./ npm-package/ui/
-          cp -r ./dist/resources/./ npm-package/resources/
-
-      - run: cat package.json | jq '{name, version, license, repository, files}' | tee npm-package/package.json
+      - run: node .github/scripts/npm-package.cjs
 
       - run: npm publish
         working-directory: npm-package
