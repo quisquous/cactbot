@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 
+const lodash = require('lodash');
 const fsExtra = require('fs-extra');
 const { exec } = require('@actions/exec');
 
@@ -29,12 +30,8 @@ async function main() {
     'npm-package/package.json',
     JSON.stringify(
       {
-        name: pkg.name,
+        ...lodash.pick(pkg, ['name', 'version', 'license', 'repository', 'files']),
         type: 'module',
-        version: pkg.version,
-        license: pkg.license,
-        repository: pkg.repository,
-        files: pkg.files,
       },
       null,
       2,
