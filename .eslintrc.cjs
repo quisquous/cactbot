@@ -114,6 +114,7 @@ const rules = {
       'caseSensitive': true,
     },
   ],
+  'import/no-useless-path-segments': 'error',
   'import/no-webpack-loader-syntax': 'error',
   // Handled by dprint.
   'indent': 'off',

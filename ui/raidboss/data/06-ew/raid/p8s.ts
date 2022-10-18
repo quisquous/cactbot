@@ -11,12 +11,14 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { Output, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
-// TODO: better vent callouts
 // TODO: initial tank auto call on final boss as soon as boss pulled
-// TODO: figure out how to handle towers during HC1/HC2
 
-export type InitialConcept = 'shortalpha' | 'longalpha' | 'shortbeta' | 'longbeta' | 'shortgamma' | 'longgamma';
+export type Concept = 'shortalpha' | 'longalpha' | 'shortbeta' | 'longbeta' | 'shortgamma' | 'longgamma' | 'alpha' | 'beta' | 'gamma' | 'primal';
 export type Splicer = 'solosplice' | 'multisplice' | 'supersplice';
+export const towerColors = ['green', 'blue', 'purple'] as const;
+export type TowerColor = typeof towerColors[number];
+export const perfectedConcepts = ['alpha', 'beta', 'gamma'] as const;
+export type PerfectedConcept = typeof perfectedConcepts[number];
 
 export interface Data extends RaidbossData {
   // Door Boss
@@ -46,8 +48,10 @@ export interface Data extends RaidbossData {
   seenFirstTankAutos?: boolean;
   firstAlignmentSecondAbility?: 'stack' | 'spread';
   seenFirstAlignmentStackSpread?: boolean;
-  concept: { [name: string]: InitialConcept };
+  concept: { [name: string]: Concept };
   splicer: { [name: string]: Splicer };
+  arcaneChannelCount: number;
+  arcaneChannelColor: Set<TowerColor>;
   alignmentTargets: string[];
   burstCounter: number;
   myTower?: number;
@@ -139,6 +143,8 @@ export const ventOutput = (unsafeSpots: number[], output: Output) => {
   return output.comboDir!({ dir1: safeStr0, dir2: safeStr1 });
 };
 
+const arcaneChannelFlags = '00020001'; // mapEffect flags for tower tile effect
+
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheEighthCircleSavage,
   timelineFile: 'p8s.txt',
@@ -160,6 +166,8 @@ const triggerSet: TriggerSet<Data> = {
       secondSnakeDebuff: {},
       concept: {},
       splicer: {},
+      arcaneChannelCount: 0,
+      arcaneChannelColor: new Set(),
       alignmentTargets: [],
       burstCounter: 0,
       flareCounter: 0,
@@ -1952,11 +1960,21 @@ const triggerSet: TriggerSet<Data> = {
       // D05 = Perfection: Alpha
       // D06 = Perfection: Beta
       // D07 = Perfection: Gamma
+      // D08 = Inconceivable (temporary after merging)
+      // D09 = Winged Conception (alpha + beta)
+      // D0A = Aquatic Conception (alpha + gamma)
+      // D0B = Shocking Conception (beta + gamma)
+      // D0C = Fiery Conception (ifrits, alpha + alpha)
+      // D0D = Toxic Conception (snake, beta + beta)
+      // D0E = Growing Conception (tree together, gamma + gamma)
+      // D0F = Immortal Spark (feather)
+      // D10 = Immortal Conception (phoenix)
       // D11 = Solosplice
       // D12 = Multisplice
       // D13 = Supersplice
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['D0[2-4]', 'D1[1-3]'] }),
+      // Ignore D08 in the regex here.
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D0[2-79A-F]', 'D1[0-3]'] }),
       run: (data, matches) => {
         const id = matches.effectId;
         // 8 and 26s second debuffs.
@@ -1967,12 +1985,20 @@ const triggerSet: TriggerSet<Data> = {
           data.concept[matches.target] = isLong ? 'longbeta' : 'shortbeta';
         else if (id === 'D04')
           data.concept[matches.target] = isLong ? 'longgamma' : 'shortgamma';
+        else if (id === 'D05')
+          data.concept[matches.target] = 'alpha';
+        else if (id === 'D06')
+          data.concept[matches.target] = 'beta';
+        else if (id === 'D07')
+          data.concept[matches.target] = 'gamma';
         else if (id === 'D11')
           data.splicer[matches.target] = 'solosplice';
         else if (id === 'D12')
           data.splicer[matches.target] = 'multisplice';
         else if (id === 'D13')
           data.splicer[matches.target] = 'supersplice';
+        else
+          data.concept[matches.target] = 'primal';
       },
     },
     {
@@ -2082,7 +2108,7 @@ const triggerSet: TriggerSet<Data> = {
         const concept = data.concept[data.me];
         const splicer = data.splicer[data.me];
 
-        const singleConceptMap: { [key in InitialConcept]: string } = {
+        const singleConceptMap: { [key in Concept]?: string } = {
           shortalpha: output.shortAlpha!(),
           longalpha: output.longAlpha!(),
           shortbeta: output.shortBeta!(),
@@ -2123,54 +2149,156 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P8S Perfected Alpha',
-      type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D05' }),
-      condition: Conditions.targetIsYou(),
-      // TODO: it'd be nice to know the tower here so this could just say
-      // "take tower" or "avoid tower" with different severity or even
-      // who to merge with (!), but without that this is the best we got.
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Green/Blue Tower',
-          de: 'Grüner/Blauer Turm',
-          fr: 'Tour Verte/Bleue',
-          ja: '緑・青',
-          ko: '초록/파랑 기둥',
-        },
+      id: 'P8S Arcane Channel Collect',
+      type: 'MapEffect',
+      netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags }),
+      // Flags exist in phase 1, only execute trigger if phase 2
+      condition: (data) => data.seenFirstTankAutos,
+      run: (data, matches) => {
+        const colorInt = parseInt(matches.location, 16);
+
+        if (colorInt >= 0x1A && colorInt <= 0x23)
+          data.arcaneChannelColor.add('purple');
+        if (colorInt >= 0x24 && colorInt <= 0x2D)
+          data.arcaneChannelColor.add('blue');
+        if (colorInt >= 0x2E && colorInt <= 0x37)
+          data.arcaneChannelColor.add('green');
       },
     },
     {
-      id: 'P8S Perfected Beta',
-      type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D06' }),
-      condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Green/Purple Tower',
-          de: 'Grüner/Lilaner Turm',
-          fr: 'Tour Verte/Violette',
-          ja: '緑・紫',
-          ko: '초록/보라 기둥',
-        },
+      id: 'P8S Arcane Channel Color',
+      type: 'MapEffect',
+      netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags, capture: false }),
+      condition: (data) => data.arcaneChannelColor.size > 0,
+      delaySeconds: 0.1,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          colorTowerMergePlayer: {
+            en: '${color} Tower (with ${player})',
+          },
+          colorTowerMergeLetter: {
+            en: '${color} Tower (with ${letter})',
+          },
+          colorTowerMergePlayers: {
+            en: '${color} Tower (with ${player1} or ${player2})',
+          },
+          towerMergeLetters: {
+            en: 'Tower (with ${letter1} or ${letter2})',
+          },
+          towerMergePlayers: {
+            en: 'Tower (with ${player1} or ${player2})',
+          },
+          colorTowerAvoid: {
+            en: 'Avoid ${color} Towers',
+          },
+          cloneTether: {
+            en: 'Get clone tether',
+          },
+          alpha: {
+            en: 'Alpha',
+          },
+          beta: {
+            en: 'Beta',
+          },
+          gamma: {
+            en: 'Gamma',
+          },
+          purple: {
+            en: 'Purple',
+          },
+          blue: {
+            en: 'Blue',
+          },
+          green: {
+            en: 'Green',
+          },
+        };
+
+        const towerColors = Array.from(data.arcaneChannelColor.keys());
+        const [tower1, tower2] = towerColors;
+        if (tower1 === undefined)
+          return;
+
+        const myConcept = data.concept[data.me];
+        if (myConcept !== 'alpha' && myConcept !== 'beta' && myConcept !== 'gamma') {
+          // Long debuffs, splicers, and primals avoid towers
+          if (data.arcaneChannelCount !== 3)
+            return { infoText: output.colorTowerAvoid!({ color: output[tower1]!() }) };
+
+          // Primals on HC2 Second Towers get clones
+          if (tower2 !== undefined && myConcept === 'primal')
+            return { alertText: output.cloneTether!() };
+          // Likely not solveable anymore.
+          return;
+        }
+
+        const towerToConcept: { [key in TowerColor]: PerfectedConcept[] } = {
+          'green': ['alpha', 'beta'],
+          'blue': ['alpha', 'gamma'],
+          'purple': ['beta', 'gamma'],
+        };
+
+        const conceptToPlayers: { [key in PerfectedConcept]: string[] } = {
+          'alpha': [],
+          'beta': [],
+          'gamma': [],
+        };
+        for (const [name, concept] of Object.entries(data.concept)) {
+          if (concept === 'alpha' || concept === 'beta' || concept === 'gamma')
+            conceptToPlayers[concept].push(name);
+        }
+
+        // HC1 (both parts), HC2 (initial tower)
+        if (tower2 === undefined) {
+          const color = output[tower1]!();
+          const concepts = towerToConcept[tower1];
+
+          // Unused concept avoids tower
+          if (!concepts.includes(myConcept))
+            return { infoText: output.colorTowerAvoid!({ color: color }) };
+
+          const [otherConcept] = [...concepts].filter((x) => x !== myConcept);
+          if (otherConcept === undefined)
+            throw new UnreachableCode();
+          const [name1, name2] = conceptToPlayers[otherConcept].map((x) => data.ShortName(x));
+          if (name1 === undefined)
+            return { alertText: output.colorTowerMergeLetter!({ color: color, letter: output[otherConcept]!() }) };
+          if (name2 === undefined)
+            return { alertText: output.colorTowerMergePlayer!({ color: color, player: name1 }) };
+          return { alertText: output.colorTowerMergePlayers!({ color: color, player1: name1, player2: name2 }) };
+        }
+
+        // HC2 (final towers), in order to solve this, you need a 2nd beta or gamma
+        const [doubled, doub2] = perfectedConcepts.filter((x) => conceptToPlayers[x].length === 2);
+        if (doub2 !== undefined || doubled === undefined)
+          return;
+
+        // If doubled, merge with somebody who doesn't have your debuff.
+        if (myConcept === doubled) {
+          const [concept1, concept2] = [...perfectedConcepts].filter((x) => x !== myConcept);
+          if (concept1 === undefined || concept2 === undefined)
+            throw new UnreachableCode();
+          const [name1, name2] = [...conceptToPlayers[concept1], ...conceptToPlayers[concept2]].map((x) => data.ShortName(x));
+          if (name1 === undefined || name2 === undefined)
+            return { alertText: output.towerMergeLetters!({ letter1: output[concept1]!(), letter2: output[concept2]!() }) };
+          return { alertText: output.towerMergePlayers!({ player1: name1, player2: name2 }) };
+        }
+
+        // If not doubled, merge with one of the doubled folks (because they can't merge together).
+        const [name1, name2] = conceptToPlayers[doubled].map((x) => data.ShortName(x));
+        const [tower] = towerColors.filter((x) => towerToConcept[x].includes(myConcept));
+        if (tower === undefined)
+          throw new UnreachableCode();
+        const color = output[tower]!();
+        if (name1 === undefined || name2 === undefined)
+          return { alertText: output.colorTowerMergeLetter!({ color: color, letter: output[doubled]!() }) };
+        return { alertText: output.colorTowerMergePlayers!({ color: color, player1: name1, player2: name2 }) };
       },
-    },
-    {
-      id: 'P8S Perfected Gamma',
-      type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D07' }),
-      condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Purple/Blue Tower',
-          de: 'Lilaner/Blauer Turm',
-          fr: 'Tour Violette/Bleue',
-          ja: '紫・青',
-          ko: '보라/파랑 기둥',
-        },
+      run: (data) => {
+        data.arcaneChannelColor.clear();
+        data.arcaneChannelCount++;
       },
     },
     {
