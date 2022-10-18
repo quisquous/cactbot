@@ -380,6 +380,11 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.AbyssosTheSeventhCircleSavage,
   ZoneId.AbyssosTheEighthCircleSavage,
 
+  // Variant & Criterion Dungeons
+  ZoneId.TheSildihnSubterrane,
+  ZoneId.AnotherSildihnSubterrane,
+  ZoneId.AnotherSildihnSubterraneSavage,
+
   // Ultimate Raids
   ZoneId.TheUnendingCoilOfBahamutUltimate,
   ZoneId.TheWeaponsRefrainUltimate,
