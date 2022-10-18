@@ -8,7 +8,6 @@ const { exec } = require('@actions/exec');
 const pkg = require('../../package.json');
 
 const projectRoot = path.join(__dirname, '..', '..');
-console.log(projectRoot);
 
 async function main() {
   // force pwd to at .../cactbot/
@@ -28,14 +27,18 @@ async function main() {
 
   fs.writeFileSync(
     'npm-package/package.json',
-    JSON.stringify({
-      name: pkg.name,
-      type: 'module',
-      version: pkg.version,
-      license: pkg.license,
-      repository: pkg.repository,
-      files: pkg.files,
-    }),
+    JSON.stringify(
+      {
+        name: pkg.name,
+        type: 'module',
+        version: pkg.version,
+        license: pkg.license,
+        repository: pkg.repository,
+        files: pkg.files,
+      },
+      null,
+      2,
+    ),
   );
 }
 
