@@ -1,5 +1,5 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
-import { RaidbossOptions } from '../../../../ui/raidboss/raidboss_options';
+import { RaidbossOptions } from '../../raidboss_options';
 import { TimelineUI } from '../../timeline';
 import { Event } from '../../timeline_parser';
 import RaidEmulator from '../data/RaidEmulator';
