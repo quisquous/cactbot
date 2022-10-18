@@ -55,7 +55,7 @@ const regexLabelMap = {
 };
 
 /**
- * @typedef {ReturnType<typeof import('@actions/github').getOctokit>} GitHub
+ * @typedef {ReturnType<typeof import("@actions/github").getOctokit>} GitHub
  */
 
 /**
