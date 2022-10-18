@@ -6,7 +6,8 @@ import { RaidbossOptions } from '../../raidboss_options';
 import { TimelineLoader } from '../../timeline';
 import LineEvent from '../data/network_log_converter/LineEvent';
 import RaidEmulator from '../data/RaidEmulator';
-import StubbedPopupText from '../overrides/StubbedPopupText';
+
+import StubbedPopupText from './StubbedPopupText';
 
 type DisplayedText = {
   element: HTMLElement;
