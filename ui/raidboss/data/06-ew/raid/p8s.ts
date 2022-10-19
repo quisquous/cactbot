@@ -2177,42 +2177,55 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           colorTowerMergePlayer: {
             en: '${color} Tower (with ${player})',
+            de: '${color} Turm (mit ${player})',
           },
           colorTowerMergeLetter: {
             en: '${color} Tower (with ${letter})',
+            de: '${color} Turm (mit ${letter})',
           },
           colorTowerMergePlayers: {
             en: '${color} Tower (with ${player1} or ${player2})',
+            de: '${color} Turm (mit ${player1} oder ${player2})',
           },
           towerMergeLetters: {
             en: 'Tower (with ${letter1} or ${letter2})',
+            de: 'Turm (mit ${letter1} oder ${letter2})',
           },
           towerMergePlayers: {
             en: 'Tower (with ${player1} or ${player2})',
+            de: 'Turm (mit ${player1} oder ${player2})',
           },
           colorTowerAvoid: {
             en: 'Avoid ${color} Towers',
+            de: 'Vermeide ${color} Turm',
           },
           cloneTether: {
             en: 'Get clone tether',
+            de: 'Nimm Klon Verbindung',
           },
           alpha: {
             en: 'Alpha',
+            de: 'Alpha',
           },
           beta: {
             en: 'Beta',
+            de: 'Beta',
           },
           gamma: {
             en: 'Gamma',
+            de: 'Gamma',
           },
           purple: {
             en: 'Purple',
+            de: 'Lila',
           },
           blue: {
             en: 'Blue',
+            de: 'Blau',
           },
           green: {
             en: 'Green',
+            de: 'Grün',
           },
         };
 
