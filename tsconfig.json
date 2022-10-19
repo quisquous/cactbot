@@ -1,5 +1,4 @@
 {
-  "extends": "./tsconfig.base.json",
   "ts-node": {
     "compiler": "ttypescript",
     "moduleTypes": {
@@ -10,6 +9,26 @@
     "esm": true
   },
   "compilerOptions": {
+    "plugins": [
+      {
+        "transform": "@zoltu/typescript-transformer-append-js-extension/output/index.js",
+        "after": true
+      }
+    ],
+
+    "target": "ES2020",
+    "module": "ES2020",
+    "allowJs": true,
+    "strict": true,
+    "declaration": false,
+    "declarationMap": false,
+    "types": [
+      "node"
+    ],
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "rootDir": "./",
     "checkJs": false,
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
@@ -20,7 +39,6 @@
     "alwaysStrict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
-    "skipLibCheck": false,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     //    "noPropertyAccessFromIndexSignature": false, // used by trigger output strings
