@@ -408,4 +408,9 @@ export default class NetRegexes {
   static mapEffect(params?: NetParams['MapEffect']): CactbotBaseRegExp<'MapEffect'> {
     return buildRegex('MapEffect', params);
   }
+
+  static common = {
+    // TODO: remove 40000010 after patch 6.2 is released in all server
+    wipe: NetRegexes.network6d({ command: ['40000010', '4000000F'] }),
+  } as const;
 }

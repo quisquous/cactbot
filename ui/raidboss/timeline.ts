@@ -732,7 +732,7 @@ export class TimelineController {
 
     // Used to suppress any Engage! if there's a wipe between /countdown and Engage!.
     this.suppressNextEngage = false;
-    this.wipeRegex = NetRegexes.network6d({ command: ['40000010', '4000000F'] });
+    this.wipeRegex = NetRegexes.common.wipe;
   }
 
   public SetPopupTextInterface(popupText: PopupTextGenerator): void {
