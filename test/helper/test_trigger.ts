@@ -636,6 +636,9 @@ const testTriggerFile = (file: string) => {
           if ('name' in trigger.netRegex && trigger.netRegex.name !== undefined)
             fieldHasTranslation(trigger.netRegex.name, 'name');
 
+          if ('line' in trigger.netRegex && trigger.netRegex.line !== undefined)
+            fieldHasTranslation(trigger.netRegex.line, 'line');
+
           continue;
         }
 

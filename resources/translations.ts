@@ -285,6 +285,9 @@ export const translateRegexBuildParam = <T extends NetParams[keyof NetProps]>(
   if ('name' in param)
     param.name = translateField(param.name, replaceLang, replacements);
 
+  if ('line' in param)
+    param.line = translateField(param.line, replaceLang, replacements);
+
   return param;
 };
 
