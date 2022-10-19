@@ -223,7 +223,7 @@ class PullCounter {
   private bosses: Boss[] = [];
   private resetRegex = NetRegexes.echo({ line: '.*pullcounter reset.*?' });
   private wipeEndRegex = NetRegexes.echo({ line: 'end' });
-  private wipeFadeInRegex = NetRegexes.common.wipe;
+  private wipeFadeInRegex = NetRegexes.network6d({ command: ['40000010', '4000000F'] });
   private countdownEngageRegex: RegExp;
   private pullCounts: { [bossId: string]: number } = {};
 
