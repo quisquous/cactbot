@@ -1072,10 +1072,10 @@ const triggerSet: TriggerSet<Data> = {
         // Flip callout if crush (7A05)
         const epsilon = 0.1;
         if (Math.abs(Math.abs(hephaistos.Heading) - 3.14) < epsilon)
-          data.crushImpactSafeZone = (matches.id === '7A05' ? 'south' : 'north');
+          data.crushImpactSafeZone = matches.id === '7A05' ? 'south' : 'north';
         // Boss will be facing South
         else
-          data.crushImpactSafeZone = (matches.id === '7A05' ? 'north' : 'south');
+          data.crushImpactSafeZone = matches.id === '7A05' ? 'north' : 'south';
       },
       infoText: (data, matches, output) => {
         if (data.crushImpactSafeZone === undefined) {

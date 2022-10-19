@@ -273,9 +273,9 @@ class Fisher {
     // We can only know data for both of these
     if (!this.place || !this.getActiveBait()) {
       return new Promise(
-        ((resolve, reject) => {
+        (resolve, reject) => {
           resolve();
-        }),
+        },
       );
     }
 
@@ -290,7 +290,7 @@ class Fisher {
     let queue = this.placeFish.length * 2;
 
     return new Promise(
-      ((resolve, reject) => {
+      (resolve, reject) => {
         for (const index in _this.placeFish) {
           const fish = _this.placeFish[index];
 
@@ -315,7 +315,7 @@ class Fisher {
             }
           });
         }
-      }),
+      },
     );
   }
 

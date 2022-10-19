@@ -87,7 +87,7 @@ export default class FisherUI {
           bar.duration = (max - min) / 1000;
           timeouts.push(window.setTimeout(() => {
             row.style.opacity = 0.5;
-          }, (max - min)));
+          }, max - min));
         }, min));
       } else {
         bar.duration = 0;

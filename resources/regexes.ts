@@ -491,7 +491,7 @@ export default class Regexes {
     const regex = Regexes.parse(regexpString);
     let modifiers = 'gi';
     if (regexpString instanceof RegExp)
-      modifiers += (regexpString.multiline ? 'm' : '');
+      modifiers += regexpString.multiline ? 'm' : '';
     return new RegExp(regex.source, modifiers);
   }
 

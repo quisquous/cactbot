@@ -435,7 +435,7 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         // Store debuff for reminders
-        data.bondsDebuff = (matches.effectId === 'CEC' ? 'spread' : 'stackMarker');
+        data.bondsDebuff = matches.effectId === 'CEC' ? 'spread' : 'stackMarker';
 
         const longTimer = parseFloat(matches.duration) > 9;
         if (longTimer)
@@ -606,7 +606,7 @@ const triggerSet: TriggerSet<Data> = {
         if (correctedMatch === '00A6' && data.bondsDebuff)
           return output[data.bondsDebuff]!();
       },
-      run: (data) => data.bondsDebuff = (data.bondsDebuff === 'spread' ? 'stackMarker' : 'spread'),
+      run: (data) => data.bondsDebuff = data.bondsDebuff === 'spread' ? 'stackMarker' : 'spread',
       outputStrings: {
         spread: Outputs.spread,
         stackMarker: Outputs.stackMarker,

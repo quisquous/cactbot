@@ -1,0 +1,29 @@
+{
+  "$schema": "https://dprint.dev/schemas/v0.json",
+  "incremental": true,
+  "includes": [
+    "**/*.{ts,tsx,js,jsx,json}"
+  ],
+  "excludes": [
+    "**/node_modules",
+    "**/ui/raidboss/data",
+    "**/ui/oopsyraidsy/data",
+    "**/*-lock.json"
+  ],
+  "useTabs": false,
+  "indentWidth": 2,
+  "newLineKind": "crlf",
+  "lineWidth": 100,
+  "typescript": {
+    "bracePosition": "maintain",
+    "nextControlFlowPosition": "sameLine",
+    "operatorPosition": "maintain",
+    "quoteStyle": "alwaysSingle",
+    "module.sortImportDeclarations": "maintain",
+    "useBraces": "maintain",
+    "conditionalExpression.operatorPosition": "nextLine"
+  },
+  "plugins": [
+    "https://plugins.dprint.dev/typescript-0.75.0.wasm"
+  ]
+}

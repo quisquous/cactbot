@@ -59,7 +59,6 @@ const ruleModule = {
     };
 
     /**
-     *
      * @param node {t.ObjectExpression}
      */
     const extractTemplate = function(node) {
@@ -96,7 +95,6 @@ const ruleModule = {
 
     return {
       /**
-       *
        * @param node {t.ObjectExpression}
        */
       'Program > VariableDeclaration > VariableDeclarator > ObjectExpression'(node) {
@@ -134,7 +132,6 @@ const ruleModule = {
         }
       },
       /**
-       *
        * @param node {t.MemberExpression}
        */
       [

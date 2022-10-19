@@ -324,8 +324,10 @@ export class TimelineParser {
         }
       }
       if (!found) {
-        const text = `No match for timeline trigger ${trigger.regex?.source ??
-          ''} in ${trigger.id ?? ''}`;
+        const text = `No match for timeline trigger ${
+          trigger.regex?.source ??
+            ''
+        } in ${trigger.id ?? ''}`;
         this.errors.push({ error: text });
         console.error(`*** ERROR: ${text}`);
       }

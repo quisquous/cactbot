@@ -80,7 +80,7 @@ export type ResponseFunc<Data extends RaidbossData, MatchType extends NetAnyMatc
   data: Data,
   matches: MatchType,
   output: Output,
-) => (ResponseOutput<Data, MatchType> | ResponseFunc<Data, MatchType>);
+) => ResponseOutput<Data, MatchType> | ResponseFunc<Data, MatchType>;
 
 export type ResponseField<Data extends RaidbossData, MatchType extends NetAnyMatches> =
   | ResponseFunc<Data, MatchType>
@@ -190,8 +190,8 @@ export type BaseTriggerSet<Data extends RaidbossData> = {
 export type TriggerSet<Data extends RaidbossData> =
   & BaseTriggerSet<Data>
   & (RequiredFieldsAsUnion<Data> extends RequiredFieldsAsUnion<RaidbossData> ? {
-    initData?: DataInitializeFunc<Data>;
-  }
+      initData?: DataInitializeFunc<Data>;
+    }
     : {
       initData: DataInitializeFunc<Data>;
     });

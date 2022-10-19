@@ -326,8 +326,10 @@ const testTriggerFile = (file: string) => {
             continue;
           if (thisIdx <= lastIdx) {
             assert.fail(
-              `in ${trigger.id}, field '${keys[lastIdx] ?? '???'}' must precede '${keys[thisIdx] ??
-                '???'}'`,
+              `in ${trigger.id}, field '${keys[lastIdx] ?? '???'}' must precede '${
+                keys[thisIdx] ??
+                  '???'
+              }'`,
             );
           }
 

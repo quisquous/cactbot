@@ -61,7 +61,10 @@ export class GNBComponent extends BaseComponent {
       case kAbility.NoMercy: {
         this.noMercyBox.duration = 20;
         this.noMercyBox.threshold = 1000;
-        this.noMercyBox.fg = computeBackgroundColorFrom(this.noMercyBox, 'gnb-color-nomercy.active');
+        this.noMercyBox.fg = computeBackgroundColorFrom(
+          this.noMercyBox,
+          'gnb-color-nomercy.active',
+        );
         this.tid1 = window.setTimeout(() => {
           this.noMercyBox.duration = 40;
           this.noMercyBox.threshold = this.player.gcdSkill + 1;

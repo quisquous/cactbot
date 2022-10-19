@@ -123,10 +123,13 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
     const $progLeft = $progress.querySelector('.timer-bar-left-label');
     const $progRight = $progress.querySelector('.timer-bar-right-label');
 
-    if (!(
-      $progBar instanceof HTMLDivElement &&
-      $progLeft instanceof HTMLElement &&
-      $progRight instanceof HTMLElement))
+    if (
+      !(
+        $progBar instanceof HTMLDivElement &&
+        $progLeft instanceof HTMLElement &&
+        $progRight instanceof HTMLElement
+      )
+    )
       throw new UnreachableCode();
 
     const bar: EmulatorTimerBar = {

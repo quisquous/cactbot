@@ -7,17 +7,6 @@ const path = require('path');
 const rulesDirPlugin = require('eslint-plugin-rulesdir');
 rulesDirPlugin.RULES_DIR = path.join(__dirname, 'eslint');
 
-// lineWidth specified depending on file location.
-const dprintConfig = {
-  'bracePosition': 'maintain',
-  'indentWidth': 2,
-  'newLineKind': 'crlf',
-  'nextControlFlowPosition': 'maintain',
-  'operatorPosition': 'maintain',
-  'quoteStyle': 'alwaysSingle',
-  'useBraces': 'maintain',
-};
-
 const settings = {
   'env': {
     'browser': true,
@@ -46,7 +35,6 @@ const settings = {
     'sourceType': 'module',
   },
   'plugins': [
-    'dprint',
     'import',
     'rulesdir',
   ],
@@ -64,23 +52,9 @@ const settings = {
   },
 };
 
-const dprintRule = (width) => {
-  return {
-    'dprint/dprint': [
-      'warn',
-      {
-        config: {
-          ...dprintConfig,
-          'lineWidth': width,
-        },
-      },
-    ],
-  };
-};
 
 // General rules for all files.
 const rules = {
-  ...dprintRule(100),
   'arrow-spacing': [
     'warn',
     {
@@ -97,9 +71,9 @@ const rules = {
   // Handled by dprint.
   'comma-dangle': 'off',
   'curly': [
-    'warn',
-    'multi-or-nest',
-    'consistent',
+    'off',
+    // 'multi-or-nest',
+    // 'consistent',
   ],
   'eqeqeq': 'error',
   'guard-for-in': 'off',
@@ -289,7 +263,6 @@ const overrides = [
   {
     'files': ['**/oopsyraidsy/data/**/*.ts', '**/raidboss/data/**/*.ts'],
     'rules': {
-      ...dprintRule(300),
       // Raidboss data files always export a trigger set, and explicit types are noisy.
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       // Only meant to be used for `output` parameters!
@@ -318,7 +291,6 @@ const overrides = [
       // dprint is VERY slow on unformatted files, but quick when there is nothing to do.
       // In general however, we don't want to specify both dprint and indent together,
       // as these rules fight against each other.
-      ...dprintRule(300),
       'indent': [
         'warn',
         2,
