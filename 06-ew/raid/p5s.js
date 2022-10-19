@@ -1,9 +1,9 @@
 // TODO: Callout safe quadrant/half for Venom Pool with Crystals
-const directions = {
-  'NE': true,
-  'SE': true,
-  'SW': true,
-  'NW': true,
+const directions = ['NW', 'NE', 'SE', 'SW'];
+const convertCoordinatesToDirection = (x, y) => {
+  if (x > 100)
+    return y < 100 ? 'NE' : 'SE';
+  return y < 100 ? 'NW' : 'SW';
 };
 Options.Triggers.push({
   zoneId: ZoneId.AbyssosTheFifthCircleSavage,
@@ -13,6 +13,8 @@ Options.Triggers.push({
       topazClusterCombatantIdToAbilityId: {},
       topazRays: {},
       clawCount: 0,
+      ruby1TopazStones: [],
+      isRuby1Done: false,
     };
   },
   triggers: [
@@ -42,6 +44,54 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '76F3', source: 'Proto-Carbuncle', capture: false }),
       response: Responses.aoe(),
+    },
+    {
+      id: 'P5S Ruby 1 Topaz Stone Collect',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '76FE', source: 'Proto-Carbuncle' }),
+      condition: (data) => !data.isRuby1Done,
+      run: (data, matches) => {
+        data.ruby1TopazStones.push(matches);
+      },
+    },
+    {
+      id: 'P5S Ruby 1 Topaz Stones',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '76FE', source: 'Proto-Carbuncle', capture: false }),
+      condition: (data) => !data.isRuby1Done,
+      delaySeconds: 0.3,
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        const safeQuadrants = new Set(directions);
+        for (const stone of data.ruby1TopazStones)
+          safeQuadrants.delete(convertCoordinatesToDirection(parseFloat(stone.targetX), parseFloat(stone.targetY)));
+        const safe = Array.from(safeQuadrants);
+        const [safe0, safe1] = safe;
+        data.isRuby1Done = true;
+        if (safe1 !== undefined) // too many safe quadrants
+          return;
+        else if (safe0 !== undefined) // one safe quadrant, we're done
+          return output[safe0]();
+        // no safe quadrants - find the one with a stone closest to center (x100,y100)
+        // magic stones will always have an x/y center offset of 7.5/1.0 or 1.0/7.5
+        // poison stone closest to center will always have an x/y center offset of 4.0/4.0
+        for (const stone of data.ruby1TopazStones) {
+          const stoneX = parseFloat(stone.targetX);
+          const stoneY = parseFloat(stone.targetY);
+          if (Math.abs(stoneX - 100) < 5 && Math.abs(stoneY - 100) < 5)
+            return output.safeCorner({ dir1: output[convertCoordinatesToDirection(stoneX, stoneY)]() });
+        }
+        return;
+      },
+      outputStrings: {
+        NE: Outputs.dirNE,
+        SE: Outputs.dirSE,
+        SW: Outputs.dirSW,
+        NW: Outputs.dirNW,
+        safeCorner: {
+          en: '${dir1} Corner (avoid poison)',
+        },
+      },
     },
     {
       id: 'P5S Venomous Mass',
@@ -89,14 +139,14 @@ Options.Triggers.push({
     },
     {
       // Collect CombatantIds for the Topaz Stone Proto-Carbuncles
-      id: 'P5S Topaz Cluster Collect',
+      id: 'P5S Ruby 3 Topaz Cluster Collect',
       type: 'StartsUsing',
       // 7703: 3.7s, 7704: 6.2s, 7705: 8.7s, 7706: 11.2s
       netRegex: NetRegexes.startsUsing({ id: '770[3456]', source: 'Proto-Carbuncle' }),
       run: (data, matches) => data.topazClusterCombatantIdToAbilityId[parseInt(matches.sourceId, 16)] = matches.id,
     },
     {
-      id: 'P5S Topaz Cluster',
+      id: 'P5S Ruby 3 Topaz Cluster',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7702', source: 'Proto-Carbuncle', capture: false }),
       durationSeconds: 12,
@@ -119,21 +169,16 @@ Options.Triggers.push({
           const index = parseInt(abilityId, 16) - parseInt('7703', 16);
           (_a = data.topazRays)[index] ?? (_a[index] = []);
           // Map from coordinate position to intercardinal quadrant
-          const convertCoordinatesToDirection = (x, y) => {
-            if (x > 100)
-              return y < 100 ? 'NE' : 'SE';
-            return y < 100 ? 'NW' : 'SW';
-          };
           const direction = convertCoordinatesToDirection(combatant.PosX, combatant.PosY);
           data.topazRays[index]?.push(direction);
         }
       },
       infoText: (data, _matches, output) => {
         const remainingDirections = {};
-        for (const [index, directions] of Object.entries(data.topazRays)) {
-          remainingDirections[index] = new Set(['NE', 'SE', 'SW', 'NW']);
-          for (const direction of directions)
-            remainingDirections[index]?.delete(direction);
+        for (const [index, dirs] of Object.entries(data.topazRays)) {
+          remainingDirections[index] = new Set(directions);
+          for (const dir of dirs)
+            remainingDirections[index]?.delete(dir);
         }
         // 770[34] cast 2 times, 770[56] cast 3 times
         const expectedLengths = [2, 2, 1, 1];
