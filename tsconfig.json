@@ -26,7 +26,7 @@
       "node"
     ],
     "moduleResolution": "node",
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "esModuleInterop": true,
     "rootDir": "./",
     "checkJs": false,
