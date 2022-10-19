@@ -1,5 +1,5 @@
-import { defaultOptions, InitDpsModule } from '../dps_common';
 import UserConfig from '../../../resources/user_config';
+import { defaultOptions, InitDpsModule } from '../dps_common';
 
 import '../../../resources/defaults.css';
 import './dps.css';

@@ -2,9 +2,9 @@ import logDefinitions from '../../resources/netlog_defs';
 import NetRegexes from '../../resources/netregexes';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 
+import UserConfig from '../../resources/user_config';
 import FisherUI from './fisher-ui';
 import SeaBase from './seabase';
-import UserConfig from '../../resources/user_config';
 
 import '../../resources/defaults.css';
 import './fisher.css';

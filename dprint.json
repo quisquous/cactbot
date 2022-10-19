@@ -19,7 +19,6 @@
     "nextControlFlowPosition": "sameLine",
     "operatorPosition": "maintain",
     "quoteStyle": "alwaysSingle",
-    "module.sortImportDeclarations": "maintain",
     "useBraces": "maintain",
     "conditionalExpression.operatorPosition": "nextLine"
   },
