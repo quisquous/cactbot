@@ -2,6 +2,11 @@
   "extends": "./tsconfig.base.json",
   "ts-node": {
     "compiler": "ttypescript",
+    "moduleTypes": {
+      "webpack/*": "cjs",
+      // Globs are also supported with the same behavior as tsconfig "include"
+      "webpack/**/*": "cjs"
+    },
     "esm": true
   },
   "compilerOptions": {
