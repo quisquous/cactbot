@@ -55,11 +55,9 @@ export class EncounterFinder {
     this.haveWon = false;
     this.haveSeenSeals = false;
   }
-
   initializeFight(): void {
     this.currentFight = {};
   }
-
   constructor() {
     this.regex = {
       changeZone: NetRegexes.changeZone(),
@@ -155,14 +153,14 @@ export class EncounterFinder {
     const cW = this.regex.cactbotWipe.exec(line)?.groups;
     if (cW) {
       if (this.currentFight.startTime && !this.haveSeenSeals)
-        this.onEndFight(line, cW, 'Wipe');
+      this.onEndFight(line, cW, 'Wipe');
       return;
     }
 
     const wipe = this.regex.wipe.exec(line)?.groups;
     if (wipe) {
       if (this.currentFight.startTime && !this.haveSeenSeals)
-        this.onEndFight(line, wipe, 'Wipe');
+      this.onEndFight(line, wipe, 'Wipe');
       return;
     }
 
@@ -195,7 +193,7 @@ export class EncounterFinder {
     if (!(this.currentFight.startTime || this.haveWon || this.haveSeenSeals)) {
       let a = this.regex.playerAttackingMob.exec(line);
       if (!a)
-        // TODO: This regex catches faerie healing and could potentially give false positives!
+      // TODO: This regex catches faerie healing and could potentially give false positives!
         a = this.regex.mobAttackingPlayer.exec(line);
       if (a?.groups) {
         this.onStartFight(line, this.currentZone.zoneName, a.groups);
@@ -216,7 +214,6 @@ export class EncounterFinder {
       startTime: TLFuncs.dateFromMatches(matches),
     };
   }
-
   onStartFight(line: string, fightName: string, matches: NetMatches['Ability' | 'GameLog']): void {
     this.currentFight = {
       fightName: fightName,
@@ -250,7 +247,6 @@ class EncounterCollector extends EncounterFinder {
   zones: Array<ZoneEncInfo> = [];
   fights: Array<FightEncInfo> = [];
   lastSeal?: string;
-
   constructor() {
     super();
   }
@@ -308,7 +304,6 @@ class TLFuncs {
       throw new UnreachableCode();
     return new Date(Date.parse(matches.timestamp));
   }
-
   static timeFromDate(date?: Date): string {
     if (date) {
       const wholeTime = date.toLocaleTimeString('en-US', { hour12: false });
@@ -357,7 +352,6 @@ class TLFuncs {
       wipeStr = fightOrZone.endType === 'Wipe' ? '_wipe' : '';
     return `${zoneName}${seal}_${dateStr}_${timeStr}_${duration}${wipeStr}.log`;
   }
-
 // For an array of arrays, return an array where each value is the max length at that index
 // among all of the inner arrays, e.g. find the max length per field of an array of rows.
   static maxLengthPerIndex(outputRows: Array<Array<string>>): Array<number> {
@@ -368,7 +362,7 @@ class TLFuncs {
         if (indexed !== undefined)
           return Math.max(val, indexed);
         return val;
-      });
+     });
     });
   }
 }

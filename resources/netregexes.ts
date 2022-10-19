@@ -28,11 +28,10 @@ const keysThatRequireTranslation = [
   'line',
 ];
 
-const defaultParams = <T extends LogDefinitionTypes, V extends LogDefinitionVersions>(
-  type: T,
-  version: V,
-  include?: string[],
-): Partial<ParseHelperFields<T>> => {
+const defaultParams = <
+  T extends LogDefinitionTypes,
+  V extends LogDefinitionVersions,
+>(type: T, version: V, include?: string[]): Partial<ParseHelperFields<T>> => {
   include ??= Object.keys(logDefinitionsVersions[version][type].fields);
   const params: { [index: number]: { field: string; value?: string; optional: boolean } } = {};
   const firstOptionalField = logDefinitionsVersions[version][type].firstOptionalField;
@@ -168,11 +167,9 @@ export default class NetRegexes {
   static logVersion: LogDefinitionVersions = 'latest';
 
   static flagTranslationsNeeded = false;
-
   static setFlagTranslationsNeeded(value: boolean): void {
     NetRegexes.flagTranslationsNeeded = value;
   }
-
   static doesNetRegexNeedTranslation(regex: RegExp | string): boolean {
     // Need to `setFlagTranslationsNeeded` before calling this function.
     console.assert(NetRegexes.flagTranslationsNeeded);
