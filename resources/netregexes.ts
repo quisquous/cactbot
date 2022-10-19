@@ -28,11 +28,10 @@ const keysThatRequireTranslation = [
   'line',
 ];
 
-const defaultParams = <T extends LogDefinitionTypes, V extends LogDefinitionVersions>(
-  type: T,
-  version: V,
-  include?: string[],
-): Partial<ParseHelperFields<T>> => {
+const defaultParams = <
+  T extends LogDefinitionTypes,
+  V extends LogDefinitionVersions,
+>(type: T, version: V, include?: string[]): Partial<ParseHelperFields<T>> => {
   include ??= Object.keys(logDefinitionsVersions[version][type].fields);
   const params: { [index: number]: { field: string; value?: string; optional: boolean } } = {};
   const firstOptionalField = logDefinitionsVersions[version][type].firstOptionalField;
@@ -410,13 +409,3 @@ export default class NetRegexes {
     return buildRegex('MapEffect', params);
   }
 }
-
-export const mayNeedBuildRegex = <T extends keyof NetParams>(
-  type: T,
-  r: ParseHelperType<T> | CactbotBaseRegExp<T>,
-): CactbotBaseRegExp<T> => {
-  if (r instanceof RegExp)
-    return r;
-
-  return buildRegex<T>(type, r);
-};

@@ -128,12 +128,6 @@ export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = 
   outputStrings?: OutputStrings;
 };
 
-// legacy trigger type, netRegex is a regex
-// type LegacyPartialNetRegexTrigger<T extends TriggerTypes> = {
-//   type?: T;
-//   netRegex: CactbotBaseRegExp<T>;
-// };
-
 // new trigger type, regex is build by core.
 type PartialNetRegexTrigger<T extends TriggerTypes> = {
   type?: T;
