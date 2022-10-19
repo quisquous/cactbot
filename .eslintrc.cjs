@@ -280,28 +280,6 @@ const overrides = [
     },
   },
   {
-    // These are for the triggers branch only.
-    'files': [
-      '**/oopsyraidsy/data/**/*.js',
-      '**/raidboss/data/**/*.js',
-    ],
-    'rules': {
-      // This is a bit awkward, but see process_trigger_folders.ts.
-      // It runs once without dprint using the indent rule, and then once with dprint.
-      // dprint is VERY slow on unformatted files, but quick when there is nothing to do.
-      // In general however, we don't want to specify both dprint and indent together,
-      // as these rules fight against each other.
-      'indent': [
-        'warn',
-        2,
-        {
-          'ignoreComments': false,
-          'SwitchCase': 1,
-        },
-      ],
-    },
-  },
-  {
     'files': ['**/raidboss/data/**/*'],
     'rules': {
       'rulesdir/cactbot-trigger-property-order': ['warn', { 'module': 'raidboss' }],
