@@ -10,4 +10,4 @@ runs:
 
     - name: Install Dependencies
       shell: bash
-      run: npm ci --ignore-scripts
+      run: npm ci
