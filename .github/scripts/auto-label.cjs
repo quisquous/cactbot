@@ -67,7 +67,7 @@ const regexLabelMap = {
  * @param {string} owner
  * @param {string} repo
  * @param {number} pullNumber
- * @returns {string[]}
+ * @returns {Promise<string[]>}
  */
 const getLabels = async (github, owner, repo, pullNumber) => {
   /**

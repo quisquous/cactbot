@@ -1,9 +1,11 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
@@ -16,6 +18,14 @@ export interface Data extends RaidbossData {
   aetheronecrosisDuration: number;
   predationCount: number;
   predationDebuff?: string;
+  polyInstance: number;
+  tileTethers: NetMatches['Tether'][];
+  mapEffects: NetMatches['MapEffect'][];
+  combatantData: PluginCombatantState[];
+  poly5FrontBackTile?: string;
+  poly5SideTile?: string;
+  darkSpheres: NetMatches['StartsUsing'][];
+  poly6SafeSide?: string;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -34,6 +44,9 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
+const crossTileFlags = '00020001'; // mapEffect flags for '+' tile effect
+const diagonalTileFlags = '00400020'; // mapEffect flags for 'x' tile effect
+
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheSixthCircleSavage,
   timelineFile: 'p6s.txt',
@@ -42,6 +55,11 @@ const triggerSet: TriggerSet<Data> = {
       pathogenicCellsCounter: 0,
       aetheronecrosisDuration: 0,
       predationCount: 0,
+      polyInstance: 0,
+      tileTethers: [],
+      mapEffects: [],
+      combatantData: [],
+      darkSpheres: [],
     };
   },
   triggers: [
@@ -86,6 +104,369 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P6S Polyominoid Tether Collect',
+      type: 'Tether',
+      netRegex: NetRegexes.tether({ id: '00CF' }),
+      run: (data, matches) => {
+        data.tileTethers.push(matches);
+      },
+    },
+    {
+      id: 'P6S Polyominoid MapEffect Collect',
+      type: 'MapEffect',
+      netRegex: NetRegexes.mapEffect({ flags: [crossTileFlags, diagonalTileFlags] }),
+      run: (data, matches) => {
+        // location '00' won't be used for determining mechanic resolution
+        if (matches.location !== '00')
+          data.mapEffects.push(matches);
+      },
+    },
+    {
+      // Use a single trigger for Aetherial Polyominod (7866) and
+      // Polyominoid Sigma (7868).  Both use MapEffects, but only
+      // 7868 uses tethers to hidden actors to "swap" tiles.
+      id: 'P6S Polyominoid All',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '786[68]', source: 'Hegemone', capture: false }),
+      delaySeconds: 2, // relevant mapeffect and trigger lines are consistently sent ~1.83s after the cast
+      durationSeconds: 10, // leave the output up while overlapping mechanics resolve
+      promise: async (data) => {
+        data.combatantData = [];
+        const ids = [];
+        if (data.tileTethers.length !== 0) {
+          for (const tether of data.tileTethers)
+            ids.push(parseInt(tether.sourceId, 16), parseInt(tether.targetId, 16));
+          data.combatantData = (await callOverlayHandler({
+            call: 'getCombatants',
+            ids: ids,
+          })).combatants;
+        }
+      },
+      infoText: (data, _matches, output) => {
+        data.polyInstance++;
+
+        if (data.tileTethers.length > 0 && data.combatantData.length === 0)
+          return;
+        if (data.mapEffects.length < 2)
+          return;
+        if (data.polyInstance === 4) // lots of safe spots, doesn't need a trigger response
+          return;
+
+        const safe: { [tile: string]: boolean } = {
+          // This ordering matters for most Poly instances.
+          insideNW: true,
+          insideNE: true,
+          insideSW: true,
+          insideSE: true,
+          cornerNW: true,
+          cornerNE: true,
+          cornerSW: true,
+          cornerSE: true,
+          outsideNNW: true,
+          outsideNNE: true,
+          outsideSSW: true,
+          outsideSSE: true,
+          outsideWNW: true,
+          outsideENE: true,
+          outsideWSW: true,
+          outsideESE: true,
+        };
+
+        // Tile index mapped to arrays containing the MapEffect location code
+        // for that tile and the corresponding tile name in safe[].
+        const unsafeMap: { [idx: number]: [location: string, tile: string] } = {
+          0: ['01', 'cornerNW'],
+          1: ['02', 'outsideNNW'],
+          2: ['03', 'outsideNNE'],
+          3: ['04', 'cornerNE'],
+
+          10: ['0F', 'outsideWNW'],
+          11: ['05', 'insideNW'],
+          12: ['06', 'insideNE'],
+          13: ['10', 'outsideENE'],
+
+          20: ['0D', 'outsideWSW'],
+          21: ['07', 'insideSW'],
+          22: ['08', 'insideSE'],
+          23: ['0E', 'outsideESE'],
+
+          30: ['09', 'cornerSW'],
+          31: ['0A', 'outsideSSW'],
+          32: ['0B', 'outsideSSE'],
+          33: ['0C', 'cornerSE'],
+        };
+
+        const mapLookup: { [location: string]: number } = Object.fromEntries(Object.entries(unsafeMap).map(([tile, [location]]) => [location, parseInt(tile, 10)]));
+
+        // Polys 2, 3, 5, and 6 involve tethers. We only care about which
+        // tiles have tethers, not which tiles are tethered together.
+        // This is because there are only two types of tiles, and swaps
+        // are only done between tiles of opposite types.
+        const tetheredTiles = [];
+        if (data.tileTethers.length >= 1) {
+          for (const tile of data.combatantData) {
+            // x, y = 85, 95, 105, 115 (with a little variance)
+            // map to ([0, 1, 2, 3] and [0, 10, 20, 30]
+            const x = Math.floor((tile.PosX - 83) / 10); // add in a -2/+8 buffer in case of goofy pos data
+            const y = Math.floor((tile.PosY - 83) / 10) * 10; // add in a -2/+8 buffer in case of goofy pos data
+            const idx = x + y;
+            if (unsafeMap[idx] === undefined)
+              return;
+            tetheredTiles.push(idx);
+          }
+        }
+
+        // modifiers used to calculate unsafeMap indexes to be removed for each type of tile
+        const relCrossTiles = new Int8Array([-30, -20, -10, -3, -2, -1, 1, 2, 3, 10, 20, 30]);
+        const relDiagonalTiles = new Int8Array([-33, -27, -22, -18, -11, -9, 9, 11, 18, 22, 27, 33]);
+
+        for (const effect of data.mapEffects) {
+          if (mapLookup[effect.location] === undefined)
+            return;
+
+          const startTile: number = mapLookup[effect.location]!;
+          const isTethered: boolean = tetheredTiles.includes(startTile);
+
+          if (unsafeMap[startTile] !== undefined)
+            delete safe[unsafeMap[startTile]![1]]; // delete tile where effect appears, as it will always be unsafe
+          if ((effect.flags === crossTileFlags && !isTethered) || (effect.flags === diagonalTileFlags && isTethered)) {
+            relCrossTiles.forEach((tileMod) => {
+              const deleteTile: number = startTile + tileMod;
+              if (unsafeMap[deleteTile] !== undefined)
+                delete safe[unsafeMap[deleteTile]![1]];
+            });
+          } else if ((effect.flags === diagonalTileFlags && !isTethered) || (effect.flags === crossTileFlags && isTethered)) {
+            relDiagonalTiles.forEach((tileMod) => {
+              const deleteTile: number = startTile + tileMod;
+              if (unsafeMap[deleteTile] !== undefined)
+                delete safe[unsafeMap[deleteTile]![1]];
+            });
+          } else {
+            return;
+          }
+        }
+
+        const safeTiles: string[] = Object.keys(safe);
+        const [safe0, safe1] = safeTiles;
+
+        if (safe0 === undefined)
+          return;
+
+        const outsideFrontBackTiles = ['outsideNNW', 'outsideNNE', 'outsideSSW', 'outsideSSE'];
+        const outsideSideTiles = ['outsideWNW', 'outsideENE', 'outsideWSW', 'outsideESE'];
+        // establishes pairs of east/west tiles that will be safe during Poly 6
+        const poly6Pairs: { [anchor: keyof typeof safe]: keyof typeof safe } = {
+          insideNW: 'outsideSSW',
+          insideNE: 'outsideSSE',
+          insideSW: 'outsideNNW',
+          insideSE: 'outsideNNE',
+          cornerNW: 'outsideWSW',
+          cornerNE: 'outsideESE',
+          cornerSE: 'outsideENE',
+          cornerSW: 'outsideWNW',
+        };
+
+        switch (data.polyInstance) {
+          case 1: // four safe spots: two inside (east or west pair) and two outside (opposite east or west pair)
+            if (safeTiles.length !== 4)
+              return;
+            if (safe0 === 'insideNW')
+              return output.combo!({ dir1: output.insideWest!(), dir2: output.outsideEast!() });
+            else if (safe0 === 'insideNE')
+              return output.combo!({ dir1: output.insideEast!(), dir2: output.outsideWest!() });
+            return;
+          case 2: // one inside safe spot
+            if (safeTiles.length !== 1 || output[safe0] === undefined)
+              return;
+            return output.single!({ dir1: output[safe0]!() });
+          case 3: // two inside safe spots
+            if (safeTiles.length !== 2 || safe1 === undefined || output[safe0] === undefined || output[safe1] === undefined)
+              return;
+            return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
+          case 4: // here for completeness, but should never be run
+            return;
+          case 5: // two outside safe spots (reduced to one by Chorus Ixou)
+            if (safeTiles.length !== 2 || safe1 === undefined)
+              return;
+            if ((outsideFrontBackTiles.includes(safe0)) && (outsideSideTiles.includes(safe1))) { // should be always true because of ordering
+              data.poly5FrontBackTile = output[safe0]!();
+              data.poly5SideTile = output[safe1]!();
+              return; // success - output will be handled by Chorus Ixou trigger
+            }
+            return;
+          case 6: // Cachexia 2 - four safe spots that form corners of a 3x3 tile sub-grid
+            if (safeTiles.length !== 4 || safe1 === undefined || data.predationDebuff === undefined)
+              return;
+            // data.predationDebuff should be set by P6S Predation Debuff Collect
+            // - CF7 Glossal Resistance Down (Snake Icon) (Left/west safe)
+            // - CF8 Chelic Resistance Down (Wing Icon) (right/east safe)
+            // for pol6, safe0 should always be an inside tile, and safe1 should always be a corner tile
+            if (data.predationDebuff === 'CF7') {
+              data.poly6SafeSide = output.left!();
+              if (safe0 === 'insideNW' || safe0 === 'insideSW') // inside + wall tile safe
+                return output.poly6!({ dir1: output.left!(), dir2: output[safe0]!(), dir3: output[poly6Pairs[safe0]!]!() });
+              else if (safe1 === 'cornerNW' || safe1 === 'cornerSW')
+                return output.poly6!({ dir1: output.left!(), dir2: output[safe1]!(), dir3: output[poly6Pairs[safe1]!]!() });
+              return;
+            } else if (data.predationDebuff === 'CF8') {
+              data.poly6SafeSide = output.right!();
+              if (safe0 === 'insideNE' || safe0 === 'insideSE') // inside + wall tile safe
+                return output.poly6!({ dir1: output.right!(), dir2: output[safe0]!(), dir3: output[poly6Pairs[safe0]!]!() });
+              else if (safe1 === 'cornerNE' || safe1 === 'cornerSE')
+                return output.poly6!({ dir1: output.right!(), dir2: output[safe1]!(), dir3: output[poly6Pairs[safe1]!]!() });
+              return;
+            }
+            return;
+          case 7: // one inside safe spot
+            if (safeTiles.length !== 1 || output[safe0] === undefined)
+              return;
+            return output.single!({ dir1: output[safe0]!() });
+          case 8: // four safe spots: two inside (east or west pair) and two outside (opposite east or west pair)
+            if (safeTiles.length !== 4)
+              return;
+            if (safe0 === 'insideNW')
+              return output.combo!({ dir1: output.insideWest!(), dir2: output.outsideEast!() });
+            else if (safe0 === 'insideNE')
+              return output.combo!({ dir1: output.insideEast!(), dir2: output.outsideWest!() });
+            return;
+          default:
+            return;
+        }
+      },
+      run: (data) => {
+        data.tileTethers = [];
+        data.mapEffects = [];
+        data.combatantData = [];
+      },
+      outputStrings: {
+        combo: {
+          en: '${dir1} / ${dir2}',
+          fr: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
+        },
+        single: {
+          en: '${dir1}',
+          fr: '${dir1}',
+          ko: '${dir1}',
+        },
+        poly6: {
+          en: '${dir1}: ${dir2} / ${dir3}',
+          fr: '${dir1}: ${dir2} / ${dir3}',
+          ko: '${dir1}: ${dir2} / ${dir3}',
+        },
+        left: {
+          en: 'Left (Wing Side)',
+          fr: 'Gauche (Côté aile)',
+          ko: '왼쪽 (날개쪽)',
+        },
+        right: {
+          en: 'Right (Snake Side)',
+          fr: 'Droite (Côté serpent)',
+          ko: '오른쪽 (뱀쪽)',
+        },
+        insideWest: {
+          en: 'Inside West',
+          fr: 'Intérieur Ouest',
+          ko: '안 서쪽',
+        },
+        insideEast: {
+          en: 'Inside East',
+          fr: 'Intérieur Est',
+          ko: '안 동쪽',
+        },
+        outsideWest: {
+          en: 'Outside West',
+          fr: 'Extérieur Ouest',
+          ko: '바깥 서쪽',
+        },
+        outsideEast: {
+          en: 'Outside East',
+          fr: 'Extérieur Est',
+          ko: '바깥 동쪽',
+        },
+        insideNW: {
+          en: 'Inside NW',
+          fr: 'Intérieur NO',
+          ko: '안 북서쪽',
+        },
+        insideNE: {
+          en: 'Inside NE',
+          fr: 'Intérieur NE',
+          ko: '안 북동쪽',
+        },
+        insideSE: {
+          en: 'Inside SE',
+          fr: 'Intérieur SE',
+          ko: '안 남동쪽',
+        },
+        insideSW: {
+          en: 'Inside SW',
+          fr: 'Intérieur SO',
+          ko: '안 남서쪽',
+        },
+        outsideNNW: {
+          en: 'Outside NNW',
+          fr: 'Extérieur NNO',
+          ko: '바깥 북쪽 왼칸',
+        },
+        outsideNNE: {
+          en: 'Outside NNE',
+          fr: 'Extérieur NNE',
+          ko: '바깥 북쪽 오른칸',
+        },
+        outsideSSW: {
+          en: 'Outside SSW',
+          fr: 'Extérieur SSO',
+          ko: '바깥 남쪽 왼칸',
+        },
+        outsideSSE: {
+          en: 'Outside SSE',
+          fr: 'Extérieur SSE',
+          ko: '바깥 남쪽 오른칸',
+        },
+        outsideWNW: {
+          en: 'Outside WNW',
+          fr: 'Extérieur ONO',
+          ko: '바깥 서쪽 위칸',
+        },
+        outsideENE: {
+          en: 'Outside ENE',
+          fr: 'Extérieur ENE',
+          ko: '바깥 동쪽 위칸',
+        },
+        outsideWSW: {
+          en: 'Outside WSW',
+          fr: 'Extérieur OSO',
+          ko: '바깥 서쪽 아래칸',
+        },
+        outsideESE: {
+          en: 'Outside ESE',
+          fr: 'Extérieur ESE',
+          ko: '바깥 동쪽 아래칸',
+        },
+        cornerNW: {
+          en: 'NW Corner',
+          fr: 'Coin NO',
+          ko: '북서쪽 구석',
+        },
+        cornerNE: {
+          en: 'NE Corner',
+          fr: 'Coin NE',
+          ko: '북동쪽 구석',
+        },
+        cornerSE: {
+          en: 'SE Corner',
+          fr: 'Coin SE',
+          ko: '남동쪽 구석',
+        },
+        cornerSW: {
+          en: 'SW Corner',
+          fr: 'Coin SO',
+          ko: '남서쪽 구석',
+        },
+      },
+    },
+    {
       id: 'P6S Exocleaver Healer Groups',
       // Unholy Darkness stack headmarkers are same time as first Exocleaver
       type: 'StartsUsing',
@@ -106,16 +487,53 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.moveAway(),
     },
     {
+      id: 'P6S Polyominoid Healer Groups',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7892', source: 'Hegemone', capture: false }),
+      // Should not be fired during Poly 1, since the Unholy Darkness headmarkers there
+      // are handled by P6S Exocleaver Healer Groups.
+      condition: (data) => data.polyInstance === 3,
+      suppressSeconds: 1,
+      alertText: (_data, _matches, output) => output.healerGroups!(),
+      outputStrings: {
+        healerGroups: Outputs.healerGroups,
+      },
+    },
+    {
       id: 'P6S Choros Ixou Front Back',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7883', source: 'Hegemone', capture: false }),
-      response: Responses.goFrontBack(),
+      alertText: (data, _matches, output) => {
+        if (data.polyInstance === 5 && data.poly5FrontBackTile !== undefined)
+          return output.goFrontBackPoly5!({ tile: data.poly5FrontBackTile });
+        return output.goFrontBack!();
+      },
+      outputStrings: {
+        goFrontBack: Outputs.goFrontBack,
+        goFrontBackPoly5: {
+          en: 'Go Front/Back (${tile})',
+          fr: 'Allez Devant/Derrière (${tile})',
+          ko: '앞/뒤로 (${tile})',
+        },
+      },
     },
     {
       id: 'P6S Choros Ixou Sides',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7881', source: 'Hegemone', capture: false }),
-      response: Responses.goSides(),
+      alertText: (data, _matches, output) => {
+        if (data.polyInstance === 5 && data.poly5SideTile !== undefined)
+          return output.goSidesPoly5!({ tile: data.poly5SideTile });
+        return output.goSides!();
+      },
+      outputStrings: {
+        goSides: Outputs.sides,
+        goSidesPoly5: {
+          en: 'Sides (${tile})',
+          fr: 'Côté (${tile})',
+          ko: '옆으로 (${tile})',
+        },
+      },
     },
     {
       id: 'P6S Pathogenic Cells Numbers',
@@ -451,6 +869,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P6S Ptera Ixou',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '787C', source: 'Hegemone', capture: false }),
+      condition: (data) => data.polyInstance !== 6, // do not run during Poly 6/Cachexia 2 - this is handled by P6S Cachexia 2 Dark Spheres
       infoText: (data, _matches, output) => data.predationDebuff === 'CF7' ? output.left!() : output.right!(),
       outputStrings: {
         left: {
@@ -468,6 +887,66 @@ const triggerSet: TriggerSet<Data> = {
           ja: '右 (蛇)',
           cn: '右 (蛇)',
           ko: '오른쪽 (뱀쪽)',
+        },
+      },
+    },
+    {
+      id: 'P6S Transmission',
+      type: 'GainsEffect',
+      // CF3 Chelomorph (Wing icon - cleave behind player)
+      // D48 Glossomorph (Snake icon - cleave in front of player)
+      netRegex: NetRegexes.gainsEffect({ effectId: ['CF3', 'D48'] }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => {
+        // 1st transmission has 11s duration, 2nd has 25s duration
+        // in either case, trigger should fire 3s before debuff expires
+        return parseFloat(matches.duration) - 3;
+      },
+      infoText: (_data, matches, output) => {
+        return matches.effectId === 'D48' ? output.forwardCleave!() : output.backwardCleave!();
+      },
+      outputStrings: {
+        forwardCleave: {
+          en: 'Front Cleave',
+          fr: 'Cleave Avant',
+        },
+        backwardCleave: {
+          en: 'Rear Cleave',
+          fr: 'Cleave Arrière',
+        },
+      },
+    },
+    {
+      id: 'P6S Dark Spheres Collect',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7880', source: 'Hegemone' }),
+      run: (data, matches) => data.darkSpheres.push(matches),
+    },
+    {
+      id: 'P6S Cachexia 2 Dark Spheres',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7880', source: 'Hegemone', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        for (const darkSphere of data.darkSpheres) {
+          if (data.me === darkSphere.target)
+            return data.poly6SafeSide === undefined ? output.spread!() : output.spreadSide!({ dir1: data.poly6SafeSide });
+          return data.poly6SafeSide === undefined ? output.stack!() : output.stackSide!({ dir1: data.poly6SafeSide });
+        }
+      },
+      outputStrings: {
+        spread: Outputs.spread,
+        stack: Outputs.stackMarker,
+        spreadSide: {
+          en: 'Spread ${dir1}',
+          fr: 'Dispersion ${dir1}',
+          ko: '산개 ${dir1}',
+        },
+        stackSide: {
+          en: 'Stack ${dir1}',
+          fr: 'Package ${dir1}',
+          ko: '쉐어 ${dir1}',
         },
       },
     },

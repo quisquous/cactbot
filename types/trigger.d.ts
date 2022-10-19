@@ -1,8 +1,8 @@
 import { Lang, NonEnLang } from '../resources/languages';
-import { NetAnyMatches, NetMatches } from '../types/net_matches';
 import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline_parser';
 
 import { RaidbossData } from './data';
+import { NetAnyMatches, NetMatches } from './net_matches';
 import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
 
 // TargetedMatches can be used for generic functions in responses or conditions

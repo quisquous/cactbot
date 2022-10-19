@@ -8,15 +8,17 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { TriggerSet } from '../../../../../types/trigger';
+import { Output, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: call out shriek specifically again when debuff soon? (or maybe even gaze/poison/stack too?)
-// TODO: better vent callouts
 // TODO: initial tank auto call on final boss as soon as boss pulled
-// TODO: figure out how to handle towers during HC1/HC2
 
-export type InitialConcept = 'shortalpha' | 'longalpha' | 'shortbeta' | 'longbeta' | 'shortgamma' | 'longgamma';
+export type Concept = 'shortalpha' | 'longalpha' | 'shortbeta' | 'longbeta' | 'shortgamma' | 'longgamma' | 'alpha' | 'beta' | 'gamma' | 'primal';
 export type Splicer = 'solosplice' | 'multisplice' | 'supersplice';
+export const towerColors = ['green', 'blue', 'purple'] as const;
+export type TowerColor = typeof towerColors[number];
+export const perfectedConcepts = ['alpha', 'beta', 'gamma'] as const;
+export type PerfectedConcept = typeof perfectedConcepts[number];
 
 export interface Data extends RaidbossData {
   // Door Boss
@@ -25,7 +27,7 @@ export interface Data extends RaidbossData {
   torches: NetMatches['StartsUsing'][];
   flareTargets: string[];
   upliftCounter: number;
-  ventIds: string[];
+  ventCasts: (NetMatches['StartsUsing'] | NetMatches['Ability'])[];
   illusory?: 'bird' | 'snake';
   gorgons: NetMatches['AddedCombatant'][];
   gorgonCount: number;
@@ -46,8 +48,10 @@ export interface Data extends RaidbossData {
   seenFirstTankAutos?: boolean;
   firstAlignmentSecondAbility?: 'stack' | 'spread';
   seenFirstAlignmentStackSpread?: boolean;
-  concept: { [name: string]: InitialConcept };
+  concept: { [name: string]: Concept };
   splicer: { [name: string]: Splicer };
+  arcaneChannelCount: number;
+  arcaneChannelColor: Set<TowerColor>;
   alignmentTargets: string[];
   burstCounter: number;
   myTower?: number;
@@ -59,7 +63,7 @@ export interface Data extends RaidbossData {
 const centerX = 100;
 const centerY = 100;
 
-const positionMatchesTo8Dir = (combatant: NetMatches['AddedCombatant']) => {
+export const positionMatchesTo8Dir = (combatant: NetMatches['AddedCombatant']) => {
   const x = parseFloat(combatant.x) - centerX;
   const y = parseFloat(combatant.y) - centerY;
 
@@ -67,13 +71,79 @@ const positionMatchesTo8Dir = (combatant: NetMatches['AddedCombatant']) => {
   return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
-const positionTo8Dir = (combatant: PluginCombatantState) => {
+export const positionTo8Dir = (combatant: PluginCombatantState) => {
   const x = combatant.PosX - centerX;
   const y = combatant.PosY - centerY;
 
   // Dirs: N = 0, NE = 1, ..., NW = 7
   return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
+
+export const headingTo8Dir = (heading: number) => {
+  // Dirs: N = 0, NE = 1, ..., NW = 7
+  return ((2 - Math.round(heading * 8 / Math.PI) / 2) + 2) % 8;
+};
+
+export const ventOutputStrings = {
+  comboDir: {
+    en: '${dir1} / ${dir2}',
+    de: '${dir1} / ${dir2}',
+    fr: '${dir1} / ${dir2}',
+    ja: '${dir1} / ${dir2}',
+    cn: '${dir1} / ${dir2}',
+    ko: '${dir1} / ${dir2}',
+  },
+  north: Outputs.north,
+  east: Outputs.east,
+  south: Outputs.south,
+  west: Outputs.west,
+  dirNE: Outputs.dirNE,
+  dirSE: Outputs.dirSE,
+  dirSW: Outputs.dirSW,
+  dirNW: Outputs.dirNW,
+  unknown: Outputs.unknown,
+} as const;
+
+// Shared alertText for vent triggers, using `ventOutputStrings` above.
+export const ventOutput = (unsafeSpots: number[], output: Output) => {
+  const [unsafe0, unsafe1] = [...unsafeSpots].sort();
+  if (unsafe0 === undefined || unsafe1 === undefined)
+    throw new UnreachableCode();
+
+  // edge case wraparound
+  if (unsafe0 === 1 && unsafe1 === 7)
+    return output.south!();
+
+  // adjacent unsafe spots, cardinal is safe
+  if (unsafe1 - unsafe0 === 2) {
+    // this average is safe to do because wraparound was taken care of above.
+    const unsafeCard = Math.floor((unsafe0 + unsafe1) / 2);
+
+    const safeDirMap: { [dir: number]: string } = {
+      0: output.south!(), // this won't happen, but here for completeness
+      2: output.west!(),
+      4: output.north!(),
+      6: output.east!(),
+    } as const;
+    return safeDirMap[unsafeCard] ?? output.unknown!();
+  }
+
+  // two intercards are safe, they are opposite each other,
+  // so we can pick the intercard counterclock of each unsafe spot.
+  // e.g. 1/5 are unsafe (NE and SW), so SE and NW are safe.
+  const safeIntercardMap: { [dir: number]: string } = {
+    1: output.dirNW!(),
+    3: output.dirNE!(),
+    5: output.dirSE!(),
+    7: output.dirSW!(),
+  } as const;
+
+  const safeStr0 = safeIntercardMap[unsafe0] ?? output.unknown!();
+  const safeStr1 = safeIntercardMap[unsafe1] ?? output.unknown!();
+  return output.comboDir!({ dir1: safeStr0, dir2: safeStr1 });
+};
+
+const arcaneChannelFlags = '00020001'; // mapEffect flags for tower tile effect
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AbyssosTheEighthCircleSavage,
@@ -84,10 +154,10 @@ const triggerSet: TriggerSet<Data> = {
       torches: [],
       flareTargets: [],
       upliftCounter: 0,
-      ventIds: [],
       footfallsDirs: [],
       footfallsOrder: [],
       trailblazeCount: 0,
+      ventCasts: [],
       gorgons: [],
       gorgonCount: 0,
       firstSnakeOrder: {},
@@ -96,6 +166,8 @@ const triggerSet: TriggerSet<Data> = {
       secondSnakeDebuff: {},
       concept: {},
       splicer: {},
+      arcaneChannelCount: 0,
+      arcaneChannelColor: new Set(),
       alignmentTargets: [],
       burstCounter: 0,
       flareCounter: 0,
@@ -1389,23 +1461,20 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P8S Suneater Cthonic Vent Add',
-      type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '11404' }),
-      run: (data, matches) => data.ventIds.push(matches.id),
-    },
-    {
       id: 'P8S Suneater Cthonic Vent Initial',
       type: 'StartsUsing',
-      // TODO: vents #2 and #3 are hard, but the first vent cast has a ~5s cast time.
-      netRegex: NetRegexes.startsUsing({ id: '7925', capture: false }),
-      suppressSeconds: 1,
+      netRegex: NetRegexes.startsUsing({ id: '7925' }),
+      condition: (data, matches) => {
+        data.ventCasts.push(matches);
+        return data.ventCasts.length === 2;
+      },
+      // Sometimes these initial positions are incorrect, so compensate with some delay.
+      // TODO: can we detect/ignore these incorrect initial positions??
+      delaySeconds: 0.5,
       promise: async (data: Data) => {
         data.combatantData = [];
-        if (data.ventIds.length !== 2)
-          return;
 
-        const ids = data.ventIds.map((id) => parseInt(id, 16));
+        const ids = data.ventCasts.map((m) => parseInt(m.sourceId, 16));
         data.combatantData = (await callOverlayHandler({
           call: 'getCombatants',
           ids: ids,
@@ -1415,62 +1484,60 @@ const triggerSet: TriggerSet<Data> = {
         if (data.combatantData.length === 0)
           return;
 
-        const unsafeSpots = data.combatantData.map((c) => positionTo8Dir(c)).sort();
+        const unsafeSpots = data.combatantData.map((c) => positionTo8Dir(c));
+        return ventOutput(unsafeSpots, output);
+      },
+      run: (data) => data.ventCasts = [],
+      outputStrings: ventOutputStrings,
+    },
+    {
+      id: 'P8S Suneater Cthonic Vent Later',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['7923', '7924'] }),
+      condition: (data, matches) => {
+        data.ventCasts.push(matches);
+        return data.ventCasts.length === 2;
+      },
+      delaySeconds: 0.5,
+      promise: async (data: Data) => {
+        data.combatantData = [];
 
-        const [unsafe0, unsafe1] = unsafeSpots;
-        if (unsafe0 === undefined || unsafe1 === undefined)
-          throw new UnreachableCode();
+        const ids = data.ventCasts.map((m) => parseInt(m.sourceId, 16));
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        if (data.combatantData.length !== 2)
+          return;
 
-        // edge case wraparound
-        if (unsafe0 === 1 && unsafe1 === 7)
-          return output.south!();
+        const unsafeSpots = [];
+        for (const c of data.combatantData) {
+          const originalPos = positionTo8Dir(c);
+          const heading = headingTo8Dir(c.Heading);
 
-        // adjacent unsafe spots, cardinal is safe
-        if (unsafe1 - unsafe0 === 2) {
-          // this average is safe to do because wraparound was taken care of above.
-          const unsafeCard = Math.floor((unsafe0 + unsafe1) / 2);
-
-          const safeDirMap: { [dir: number]: string } = {
-            0: output.south!(), // this won't happen, but here for completeness
-            2: output.west!(),
-            4: output.north!(),
-            6: output.east!(),
-          } as const;
-          return safeDirMap[unsafeCard] ?? output.unknown!();
+          // There's maybe some way to do this more generally, but I don't see it.
+          // Also, if this fails for some reason, it will just not call anything below.
+          if ((originalPos === 7 && heading === 2) || (originalPos === 3 && heading === 0) || (originalPos === 5 && heading === 1)) {
+            // Going towards NE
+            unsafeSpots.push(1);
+          } else if ((originalPos === 1 && heading === 4) || (originalPos === 5 && heading === 2) || (originalPos === 7 && heading === 3)) {
+            // Going towards SE
+            unsafeSpots.push(3);
+          } else if ((originalPos === 3 && heading === 6) || (originalPos === 1 && heading === 5) || (originalPos === 7 && heading === 4)) {
+            // Going towards SW
+            unsafeSpots.push(5);
+          } else if ((originalPos === 5 && heading === 0) || (originalPos === 1 && heading === 6) || (originalPos === 3 && heading === 7)) {
+            // Going towards NW
+            unsafeSpots.push(7);
+          }
         }
 
-        // two intercards are safe, they are opposite each other,
-        // so we can pick the intercard counterclock of each unsafe spot.
-        // e.g. 1/5 are unsafe (NE and SW), so SE and NW are safe.
-        const safeIntercardMap: { [dir: number]: string } = {
-          1: output.dirNW!(),
-          3: output.dirNE!(),
-          5: output.dirSE!(),
-          7: output.dirSW!(),
-        } as const;
-
-        const safeStr0 = safeIntercardMap[unsafe0] ?? output.unknown!();
-        const safeStr1 = safeIntercardMap[unsafe1] ?? output.unknown!();
-        return output.comboDir!({ dir1: safeStr0, dir2: safeStr1 });
+        return ventOutput(unsafeSpots, output);
       },
-      outputStrings: {
-        comboDir: {
-          en: '${dir1} / ${dir2}',
-          de: '${dir1} / ${dir2}',
-          fr: '${dir1} / ${dir2}',
-          ja: '${dir1} / ${dir2}',
-          ko: '${dir1} / ${dir2}',
-        },
-        north: Outputs.north,
-        east: Outputs.east,
-        south: Outputs.south,
-        west: Outputs.west,
-        dirNE: Outputs.dirNE,
-        dirSE: Outputs.dirSE,
-        dirSW: Outputs.dirSW,
-        dirNW: Outputs.dirNW,
-        unknown: Outputs.unknown,
-      },
+      run: (data) => data.ventCasts = [],
+      outputStrings: ventOutputStrings,
     },
     {
       id: 'P8S Snake 2 Illusory Creation',
@@ -1893,11 +1960,21 @@ const triggerSet: TriggerSet<Data> = {
       // D05 = Perfection: Alpha
       // D06 = Perfection: Beta
       // D07 = Perfection: Gamma
+      // D08 = Inconceivable (temporary after merging)
+      // D09 = Winged Conception (alpha + beta)
+      // D0A = Aquatic Conception (alpha + gamma)
+      // D0B = Shocking Conception (beta + gamma)
+      // D0C = Fiery Conception (ifrits, alpha + alpha)
+      // D0D = Toxic Conception (snake, beta + beta)
+      // D0E = Growing Conception (tree together, gamma + gamma)
+      // D0F = Immortal Spark (feather)
+      // D10 = Immortal Conception (phoenix)
       // D11 = Solosplice
       // D12 = Multisplice
       // D13 = Supersplice
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['D0[2-4]', 'D1[1-3]'] }),
+      // Ignore D08 in the regex here.
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D0[2-79A-F]', 'D1[0-3]'] }),
       run: (data, matches) => {
         const id = matches.effectId;
         // 8 and 26s second debuffs.
@@ -1908,12 +1985,20 @@ const triggerSet: TriggerSet<Data> = {
           data.concept[matches.target] = isLong ? 'longbeta' : 'shortbeta';
         else if (id === 'D04')
           data.concept[matches.target] = isLong ? 'longgamma' : 'shortgamma';
+        else if (id === 'D05')
+          data.concept[matches.target] = 'alpha';
+        else if (id === 'D06')
+          data.concept[matches.target] = 'beta';
+        else if (id === 'D07')
+          data.concept[matches.target] = 'gamma';
         else if (id === 'D11')
           data.splicer[matches.target] = 'solosplice';
         else if (id === 'D12')
           data.splicer[matches.target] = 'multisplice';
         else if (id === 'D13')
           data.splicer[matches.target] = 'supersplice';
+        else
+          data.concept[matches.target] = 'primal';
       },
     },
     {
@@ -2023,7 +2108,7 @@ const triggerSet: TriggerSet<Data> = {
         const concept = data.concept[data.me];
         const splicer = data.splicer[data.me];
 
-        const singleConceptMap: { [key in InitialConcept]: string } = {
+        const singleConceptMap: { [key in Concept]?: string } = {
           shortalpha: output.shortAlpha!(),
           longalpha: output.longAlpha!(),
           shortbeta: output.shortBeta!(),
@@ -2064,54 +2149,156 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P8S Perfected Alpha',
-      type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D05' }),
-      condition: Conditions.targetIsYou(),
-      // TODO: it'd be nice to know the tower here so this could just say
-      // "take tower" or "avoid tower" with different severity or even
-      // who to merge with (!), but without that this is the best we got.
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Green/Blue Tower',
-          de: 'Grüner/Blauer Turm',
-          fr: 'Tour Verte/Bleue',
-          ja: '緑・青',
-          ko: '초록/파랑 기둥',
-        },
+      id: 'P8S Arcane Channel Collect',
+      type: 'MapEffect',
+      netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags }),
+      // Flags exist in phase 1, only execute trigger if phase 2
+      condition: (data) => data.seenFirstTankAutos,
+      run: (data, matches) => {
+        const colorInt = parseInt(matches.location, 16);
+
+        if (colorInt >= 0x1A && colorInt <= 0x23)
+          data.arcaneChannelColor.add('purple');
+        if (colorInt >= 0x24 && colorInt <= 0x2D)
+          data.arcaneChannelColor.add('blue');
+        if (colorInt >= 0x2E && colorInt <= 0x37)
+          data.arcaneChannelColor.add('green');
       },
     },
     {
-      id: 'P8S Perfected Beta',
-      type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D06' }),
-      condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Green/Purple Tower',
-          de: 'Grüner/Lilaner Turm',
-          fr: 'Tour Verte/Violette',
-          ja: '緑・紫',
-          ko: '초록/보라 기둥',
-        },
+      id: 'P8S Arcane Channel Color',
+      type: 'MapEffect',
+      netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags, capture: false }),
+      condition: (data) => data.arcaneChannelColor.size > 0,
+      delaySeconds: 0.1,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          colorTowerMergePlayer: {
+            en: '${color} Tower (with ${player})',
+          },
+          colorTowerMergeLetter: {
+            en: '${color} Tower (with ${letter})',
+          },
+          colorTowerMergePlayers: {
+            en: '${color} Tower (with ${player1} or ${player2})',
+          },
+          towerMergeLetters: {
+            en: 'Tower (with ${letter1} or ${letter2})',
+          },
+          towerMergePlayers: {
+            en: 'Tower (with ${player1} or ${player2})',
+          },
+          colorTowerAvoid: {
+            en: 'Avoid ${color} Towers',
+          },
+          cloneTether: {
+            en: 'Get clone tether',
+          },
+          alpha: {
+            en: 'Alpha',
+          },
+          beta: {
+            en: 'Beta',
+          },
+          gamma: {
+            en: 'Gamma',
+          },
+          purple: {
+            en: 'Purple',
+          },
+          blue: {
+            en: 'Blue',
+          },
+          green: {
+            en: 'Green',
+          },
+        };
+
+        const towerColors = Array.from(data.arcaneChannelColor.keys());
+        const [tower1, tower2] = towerColors;
+        if (tower1 === undefined)
+          return;
+
+        const myConcept = data.concept[data.me];
+        if (myConcept !== 'alpha' && myConcept !== 'beta' && myConcept !== 'gamma') {
+          // Long debuffs, splicers, and primals avoid towers
+          if (data.arcaneChannelCount !== 3)
+            return { infoText: output.colorTowerAvoid!({ color: output[tower1]!() }) };
+
+          // Primals on HC2 Second Towers get clones
+          if (tower2 !== undefined && myConcept === 'primal')
+            return { alertText: output.cloneTether!() };
+          // Likely not solveable anymore.
+          return;
+        }
+
+        const towerToConcept: { [key in TowerColor]: PerfectedConcept[] } = {
+          'green': ['alpha', 'beta'],
+          'blue': ['alpha', 'gamma'],
+          'purple': ['beta', 'gamma'],
+        };
+
+        const conceptToPlayers: { [key in PerfectedConcept]: string[] } = {
+          'alpha': [],
+          'beta': [],
+          'gamma': [],
+        };
+        for (const [name, concept] of Object.entries(data.concept)) {
+          if (concept === 'alpha' || concept === 'beta' || concept === 'gamma')
+            conceptToPlayers[concept].push(name);
+        }
+
+        // HC1 (both parts), HC2 (initial tower)
+        if (tower2 === undefined) {
+          const color = output[tower1]!();
+          const concepts = towerToConcept[tower1];
+
+          // Unused concept avoids tower
+          if (!concepts.includes(myConcept))
+            return { infoText: output.colorTowerAvoid!({ color: color }) };
+
+          const [otherConcept] = [...concepts].filter((x) => x !== myConcept);
+          if (otherConcept === undefined)
+            throw new UnreachableCode();
+          const [name1, name2] = conceptToPlayers[otherConcept].map((x) => data.ShortName(x));
+          if (name1 === undefined)
+            return { alertText: output.colorTowerMergeLetter!({ color: color, letter: output[otherConcept]!() }) };
+          if (name2 === undefined)
+            return { alertText: output.colorTowerMergePlayer!({ color: color, player: name1 }) };
+          return { alertText: output.colorTowerMergePlayers!({ color: color, player1: name1, player2: name2 }) };
+        }
+
+        // HC2 (final towers), in order to solve this, you need a 2nd beta or gamma
+        const [doubled, doub2] = perfectedConcepts.filter((x) => conceptToPlayers[x].length === 2);
+        if (doub2 !== undefined || doubled === undefined)
+          return;
+
+        // If doubled, merge with somebody who doesn't have your debuff.
+        if (myConcept === doubled) {
+          const [concept1, concept2] = [...perfectedConcepts].filter((x) => x !== myConcept);
+          if (concept1 === undefined || concept2 === undefined)
+            throw new UnreachableCode();
+          const [name1, name2] = [...conceptToPlayers[concept1], ...conceptToPlayers[concept2]].map((x) => data.ShortName(x));
+          if (name1 === undefined || name2 === undefined)
+            return { alertText: output.towerMergeLetters!({ letter1: output[concept1]!(), letter2: output[concept2]!() }) };
+          return { alertText: output.towerMergePlayers!({ player1: name1, player2: name2 }) };
+        }
+
+        // If not doubled, merge with one of the doubled folks (because they can't merge together).
+        const [name1, name2] = conceptToPlayers[doubled].map((x) => data.ShortName(x));
+        const [tower] = towerColors.filter((x) => towerToConcept[x].includes(myConcept));
+        if (tower === undefined)
+          throw new UnreachableCode();
+        const color = output[tower]!();
+        if (name1 === undefined || name2 === undefined)
+          return { alertText: output.colorTowerMergeLetter!({ color: color, letter: output[doubled]!() }) };
+        return { alertText: output.colorTowerMergePlayers!({ color: color, player1: name1, player2: name2 }) };
       },
-    },
-    {
-      id: 'P8S Perfected Gamma',
-      type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D07' }),
-      condition: Conditions.targetIsYou(),
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Purple/Blue Tower',
-          de: 'Lilaner/Blauer Turm',
-          fr: 'Tour Violette/Bleue',
-          ja: '紫・青',
-          ko: '보라/파랑 기둥',
-        },
+      run: (data) => {
+        data.arcaneChannelColor.clear();
+        data.arcaneChannelCount++;
       },
     },
     {
