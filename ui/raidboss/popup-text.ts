@@ -731,7 +731,8 @@ export class PopupText {
               orderedTriggers.push(trigger);
               found = true;
             } else if (defaultNetRegex) {
-              const trans = translateRegex(defaultNetRegex, this.parserLang, set.timelineReplace);
+              // todo: build regex
+              const trans = translateRegex(defaultNetRegex as RegExp, this.parserLang, set.timelineReplace);
               trigger.localNetRegex = Regexes.parse(trans);
               orderedTriggers.push(trigger);
               found = true;

@@ -1264,7 +1264,8 @@ class RaidbossConfigurator {
       const regex = trig[baseField];
       if (regex === undefined)
         return;
-      return Regexes.parse(translateRegex(regex, lang, set.timelineReplace));
+      // todo: build regex
+      return Regexes.parse(translateRegex(regex as RegExp, lang, set.timelineReplace));
     };
 
     if (trig.isTimelineTrigger) {
