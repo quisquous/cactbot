@@ -1,3 +1,4 @@
+import { NetParams, NetProps } from '../types/net_props';
 import { CactbotBaseRegExp } from '../types/net_trigger';
 import {
   backCompatParsedSyncReplace,
@@ -271,3 +272,32 @@ export const translateText = (
   replaceLang: Lang,
   replacements?: TimelineReplacement[],
 ): string => translateWithReplacements(text, 'replaceText', replaceLang, replacements).text;
+
+// Translates a timeline or trigger regex for a given language.
+export const translateRegexBuildParam = <T extends NetParams[keyof NetProps]>(
+  param: T,
+  replaceLang: Lang,
+  replacements?: TimelineReplacement[],
+): T => {
+  if ('source' in param)
+    param.source = translateField(param.source, replaceLang, replacements);
+
+  if ('name' in param)
+    param.name = translateField(param.name, replaceLang, replacements);
+
+  return param;
+};
+
+const translateField = (
+  v: string | string[] | undefined,
+  replaceLang: Lang,
+  replacements?: TimelineReplacement[],
+): string | string[] | undefined => {
+  if (v === undefined)
+    return undefined;
+
+  if (typeof v === 'string')
+    return translateWithReplacements(v, 'replaceSync', replaceLang, replacements).text;
+
+  return v.map((x) => translateWithReplacements(x, 'replaceSync', replaceLang, replacements).text);
+};

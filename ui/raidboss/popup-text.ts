@@ -1,17 +1,21 @@
 import { Lang } from '../../resources/languages';
-import NetRegexes from '../../resources/netregexes';
+import NetRegexes, { buildRegex } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import PartyTracker from '../../resources/party';
-import { addPlayerChangedOverrideListener, PlayerChangedDetail } from '../../resources/player_override';
+import {
+  addPlayerChangedOverrideListener,
+  PlayerChangedDetail,
+} from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
-import { translateRegex } from '../../resources/translations';
+import { translateRegex, translateRegexBuildParam } from '../../resources/translations';
 import Util from '../../resources/util';
 import ZoneId from '../../resources/zone_id';
 import { RaidbossData } from '../../types/data';
 import { EventResponses, LogEvent } from '../../types/event';
 import { Job, Role } from '../../types/job';
 import { Matches } from '../../types/net_matches';
+import { TriggerTypes } from '../../types/net_trigger';
 import {
   LooseTrigger, OutputStrings, TimelineField, TimelineFunc, LooseTriggerSet,
   ResponseField, TriggerAutoConfig, TriggerField, TriggerOutput,
@@ -31,14 +35,14 @@ const isRaidbossLooseTimelineTrigger =
   };
 
 export const isNetRegexTrigger = (trigger?: LooseTrigger):
-    trigger is Partial<GeneralNetRegexTrigger<RaidbossData, 'None'>> => {
+  trigger is Partial<GeneralNetRegexTrigger<RaidbossData, TriggerTypes>> => {
   if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'netRegex' in trigger;
   return false;
 };
 
 export const isRegexTrigger = (trigger?: LooseTrigger):
-    trigger is Partial<RegexTrigger<RaidbossData>> => {
+  trigger is Partial<RegexTrigger<RaidbossData>> => {
   if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'regex' in trigger;
   return false;
@@ -434,7 +438,7 @@ const isWipe = (line: string): boolean => {
     wipeCactbotEcho.test(line) ||
     wipeEndEcho.test(line) ||
     wipeFadeIn.test(line)
-    )
+  )
     return true;
   return false;
 };
@@ -632,7 +636,7 @@ export class PopupText {
       if (haveZoneId && set.zoneId === undefined) {
         const filename = set.filename ? `'${set.filename}'` : '(user file)';
         console.error(`Trigger set has zoneId, but with nothing specified in ${filename}.  ` +
-                      `Did you misspell the ZoneId.ZoneName?`);
+          `Did you misspell the ZoneId.ZoneName?`);
         continue;
       }
 
@@ -727,15 +731,31 @@ export class PopupText {
             const defaultNetRegex = trigger.netRegex;
             const localeNetRegex = triggerObject[netRegexParserLang];
             if (localeNetRegex instanceof RegExp) {
+              // localized regex don't need to handle net-regex auto build
               trigger.localNetRegex = Regexes.parse(localeNetRegex);
               orderedTriggers.push(trigger);
               found = true;
             } else if (defaultNetRegex) {
-              // todo: build regex
-              const trans = translateRegex(defaultNetRegex as RegExp, this.parserLang, set.timelineReplace);
-              trigger.localNetRegex = Regexes.parse(trans);
-              orderedTriggers.push(trigger);
-              found = true;
+              // simple netRegex trigger, need to build netRegex and translate
+              if (defaultNetRegex instanceof RegExp) {
+                const trans = translateRegex(defaultNetRegex, this.parserLang, set.timelineReplace);
+                trigger.localNetRegex = Regexes.parse(trans);
+                orderedTriggers.push(trigger);
+                found = true;
+              } else {
+                if (trigger.type === undefined) {
+                  console.error(`Trigger ${id}: without type property need RegExp as netRegex`);
+                  continue;
+                }
+
+                const re = buildRegex(
+                  trigger.type,
+                  translateRegexBuildParam(defaultNetRegex, this.parserLang, set.timelineReplace),
+                );
+                trigger.localNetRegex = Regexes.parse(re);
+                orderedTriggers.push(trigger);
+                found = true;
+              }
             }
           }
 
@@ -1298,8 +1318,8 @@ export class PopupText {
 
   _onTriggerInternalPlayAudio(triggerHelper: TriggerHelper): void {
     if (triggerHelper.trigger.sound !== undefined &&
-        triggerHelper.soundUrl &&
-        soundStrs.includes(triggerHelper.soundUrl)) {
+      triggerHelper.soundUrl &&
+      soundStrs.includes(triggerHelper.soundUrl)) {
       const namedSound = triggerHelper.soundUrl + 'Sound';
       const namedSoundVolume = triggerHelper.soundUrl + 'SoundVolume';
       const sound = this.options[namedSound];
@@ -1510,38 +1530,38 @@ export class PopupTextGenerator {
 
   Info(text: string, currentTime: number): void {
     this.popupText.OnTrigger({
-      infoText: text,
-      tts: text,
-    },
-    null,
-    currentTime);
+        infoText: text,
+        tts: text,
+      },
+      null,
+      currentTime);
   }
 
   Alert(text: string, currentTime: number): void {
     this.popupText.OnTrigger({
-      alertText: text,
-      tts: text,
-    },
-    null,
-    currentTime);
+        alertText: text,
+        tts: text,
+      },
+      null,
+      currentTime);
   }
 
   Alarm(text: string, currentTime: number): void {
     this.popupText.OnTrigger({
-      alarmText: text,
-      tts: text,
-    },
-    null,
-    currentTime);
+        alarmText: text,
+        tts: text,
+      },
+      null,
+      currentTime);
   }
 
   TTS(text: string, currentTime: number): void {
     this.popupText.OnTrigger({
-      infoText: text,
-      tts: text,
-    },
-    null,
-    currentTime);
+        infoText: text,
+        tts: text,
+      },
+      null,
+      currentTime);
   }
 
   Trigger(trigger: ProcessedTrigger, matches: RegExpExecArray | null, currentTime: number): void {

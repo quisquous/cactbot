@@ -588,6 +588,57 @@ const testTriggerFile = (file: string) => {
 
       const triggers = triggerSet.triggers;
       for (const trigger of triggers ?? []) {
+        if (trigger.netRegex === undefined)
+          continue;
+
+        if (trigger.type === undefined) {
+          if (trigger.netRegex instanceof RegExp) {
+            assert.fail(
+              `${trigger.id} doesn't have type property and doesn't have a RegExp netRegex`,
+            );
+          }
+          continue;
+        }
+
+        if (!(trigger.netRegex instanceof RegExp)) {
+          // plain object netRegex
+          if (trigger.disabled)
+            continue;
+
+          const textHasTranslation = (text: string): boolean => {
+            return translateWithReplacements(
+              text,
+              'replaceSync',
+              locale,
+              translations,
+            ).wasTranslated;
+          };
+
+          const fieldHasTranslation = (field: string | string[], fieldName: string) => {
+            if (typeof field === 'string') {
+              assert.isTrue(
+                textHasTranslation(field),
+                `${trigger.id}:locale ${locale}:missing timelineReplace replaceSync for ${fieldName} '${field}'`,
+              );
+            } else {
+              for (const s of field) {
+                assert.isTrue(
+                  textHasTranslation(s),
+                  `${trigger.id}:locale ${locale}:missing timelineReplace replaceSync for ${fieldName} '${s}'`,
+                );
+              }
+            }
+          };
+
+          if ('source' in trigger.netRegex && trigger.netRegex.source !== undefined)
+            fieldHasTranslation(trigger.netRegex.source, 'source');
+
+          if ('name' in trigger.netRegex && trigger.netRegex.name !== undefined)
+            fieldHasTranslation(trigger.netRegex.name, 'name');
+
+          continue;
+        }
+
         const origRegex = trigger.netRegex?.source?.toLowerCase();
         if (origRegex === undefined)
           continue;
