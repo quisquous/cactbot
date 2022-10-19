@@ -14,7 +14,7 @@
     "start": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack serve --config webpack/webpack.dev.ts",
     "fetch-deps": "ts-node ./util/fetch_deps.ts",
     "tsc-no-emit": "tsc --noEmit",
-    "lint": "run-a lint:**",
+    "lint": "run-s lint:**",
     "lint:dprint": "dprint check",
     "lint:dprint:trigger": "dprint --config=dprint.trigger.json check",
     "lint:eslint": "eslint --max-warnings=0 ./",
