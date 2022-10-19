@@ -592,9 +592,9 @@ const testTriggerFile = (file: string) => {
           continue;
 
         if (trigger.type === undefined) {
-          if (trigger.netRegex instanceof RegExp) {
+          if (!(trigger.netRegex instanceof RegExp)) {
             assert.fail(
-              `${trigger.id} doesn't have type property and doesn't have a RegExp netRegex`,
+              `${trigger.id} doesn't have 'type' property and doesn't have a RegExp netRegex`,
             );
           }
           continue;
