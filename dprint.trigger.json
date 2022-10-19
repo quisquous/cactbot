@@ -4,18 +4,8 @@
     "./ui/oopsyraidsy/data/**/*.{ts,tsx,js,jsx,json}",
     "./ui/raidboss/data/**/*.{ts,tsx,js,jsx,json}"
   ],
+  "extends": "./dprint.base.json",
   "lineWidth": 300,
-  "useTabs": false,
-  "indentWidth": 2,
-  "newLineKind": "crlf",
-  "typescript": {
-    "bracePosition": "maintain",
-    "nextControlFlowPosition": "sameLine",
-    "operatorPosition": "maintain",
-    "quoteStyle": "alwaysSingle",
-    "useBraces": "maintain",
-    "conditionalExpression.operatorPosition": "nextLine"
-  },
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.75.0.wasm"
   ]

@@ -1,0 +1,13 @@
+{
+  "useTabs": false,
+  "indentWidth": 2,
+  "newLineKind": "crlf",
+  "typescript": {
+    "bracePosition": "maintain",
+    "nextControlFlowPosition": "sameLine",
+    "operatorPosition": "maintain",
+    "quoteStyle": "alwaysSingle",
+    "useBraces": "maintain",
+    "conditionalExpression.operatorPosition": "nextLine"
+  }
+}

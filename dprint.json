@@ -10,18 +10,8 @@
     "**/ui/oopsyraidsy/data",
     "**/*-lock.json"
   ],
-  "useTabs": false,
-  "indentWidth": 2,
-  "newLineKind": "crlf",
+  "extends": "./dprint.base.json",
   "lineWidth": 100,
-  "typescript": {
-    "bracePosition": "maintain",
-    "nextControlFlowPosition": "sameLine",
-    "operatorPosition": "maintain",
-    "quoteStyle": "alwaysSingle",
-    "useBraces": "maintain",
-    "conditionalExpression.operatorPosition": "nextLine"
-  },
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.75.0.wasm"
   ]
