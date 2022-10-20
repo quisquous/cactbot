@@ -61,7 +61,7 @@ export class EncounterFinder {
   constructor() {
     this.regex = {
       changeZone: NetRegexes.changeZone(),
-      cactbotWipe: NetRegexes.echo({ line: 'cactbot wipe.*?' }),
+      cactbotWipe: commonNetRegex.cactbotWipeEcho,
       win: NetRegexes.network6d({ command: '40000003' }),
       wipe: commonNetRegex.wipe,
       commence: NetRegexes.network6d({ command: '4000000[16]' }),
