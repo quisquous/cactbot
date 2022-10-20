@@ -411,7 +411,7 @@ export default class NetRegexes {
 }
 
 export const commonNetRegex = {
-  // TODO: remove 40000010 after patch 6.2 is released in all server
+  // TODO(6.2): remove 40000010 after everybody is on 6.2.
   wipe: NetRegexes.network6d({ command: ['40000010', '4000000F'] }),
   cactbotWipeEcho: NetRegexes.echo({ line: 'cactbot wipe.*?' }),
   userWipeEcho: NetRegexes.echo({ line: 'end' }),

@@ -467,7 +467,7 @@ export const partialCommonTriggerReplacementKeys = [
 ];
 
 export const backCompatParsedSyncReplace: { [replaceKey: string]: string } = {
-  // TODO: remove this (and all other 40000010 refs) after everybody is on 6.2.
+  // TODO(6.2): remove this (and all other 40000010 refs) after everybody is on 6.2.
   // Because 4000000F was only used in triple triad, it should be safe to
   // do this replacement for everybody.
   '21:\.\.\.\.\.\.\.\.:4000000F:': '21:\.\.\.\.\.\.\.\.:(4000000F|40000010):',
