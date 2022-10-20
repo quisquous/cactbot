@@ -409,3 +409,8 @@ export default class NetRegexes {
     return buildRegex('MapEffect', params);
   }
 }
+
+export const commonNetRegex = {
+  // TODO: remove 40000010 after patch 6.2 is released in all server
+  wipe: NetRegexes.network6d({ command: ['40000010', '4000000F'] }),
+} as const;

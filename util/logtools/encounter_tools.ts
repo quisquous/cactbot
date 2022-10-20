@@ -1,6 +1,6 @@
 import ContentType from '../../resources/content_type';
 import DTFuncs from '../../resources/datetime';
-import NetRegexes from '../../resources/netregexes';
+import NetRegexes, { commonNetRegex } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import StringFuncs from '../../resources/stringhandlers';
 import ZoneInfo from '../../resources/zone_info';
@@ -63,7 +63,7 @@ export class EncounterFinder {
       changeZone: NetRegexes.changeZone(),
       cactbotWipe: NetRegexes.echo({ line: 'cactbot wipe.*?' }),
       win: NetRegexes.network6d({ command: '40000003' }),
-      wipe: NetRegexes.network6d({ command: ['40000010', '4000000F'] }),
+      wipe: commonNetRegex.wipe,
       commence: NetRegexes.network6d({ command: '4000000[16]' }),
       playerAttackingMob: NetRegexes.ability({ sourceId: '1.{7}', targetId: '4.{7}' }),
       mobAttackingPlayer: NetRegexes.ability({ sourceId: '4.{7}', targetId: '1.{7}' }),

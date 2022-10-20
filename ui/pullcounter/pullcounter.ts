@@ -1,6 +1,6 @@
 import { Lang } from '../../resources/languages';
 import logDefinitions from '../../resources/netlog_defs';
-import NetRegexes from '../../resources/netregexes';
+import NetRegexes, { commonNetRegex } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import { addOverlayListener, callOverlayHandler } from '../../resources/overlay_plugin_api';
 import { LocaleNetRegex } from '../../resources/translations';
@@ -223,7 +223,7 @@ class PullCounter {
   private bosses: Boss[] = [];
   private resetRegex = NetRegexes.echo({ line: '.*pullcounter reset.*?' });
   private wipeEndRegex = NetRegexes.echo({ line: 'end' });
-  private wipeFadeInRegex = NetRegexes.network6d({ command: ['40000010', '4000000F'] });
+  private wipeFadeInRegex = commonNetRegex.wipe;
   private countdownEngageRegex: RegExp;
   private pullCounts: { [bossId: string]: number } = {};
 
