@@ -2039,54 +2039,67 @@ Options.Triggers.push({
           colorTowerMergePlayer: {
             en: '${color} Tower (with ${player})',
             de: '${color} Turm (mit ${player})',
+            ko: '${color} 기둥 (${player})',
           },
           colorTowerMergeLetter: {
             en: '${color} Tower (with ${letter})',
             de: '${color} Turm (mit ${letter})',
+            ko: '${color} 기둥 (${letter})',
           },
           colorTowerMergePlayers: {
             en: '${color} Tower (with ${player1} or ${player2})',
             de: '${color} Turm (mit ${player1} oder ${player2})',
+            ko: '${color} 기둥 (${player1} 또는 ${player2})',
           },
           towerMergeLetters: {
             en: 'Tower (with ${letter1} or ${letter2})',
             de: 'Turm (mit ${letter1} oder ${letter2})',
+            ko: '기둥 (${letter1} 또는 ${letter2})',
           },
           towerMergePlayers: {
             en: 'Tower (with ${player1} or ${player2})',
             de: 'Turm (mit ${player1} oder ${player2})',
+            ko: '기둥 (${player1} 또는 ${player2})',
           },
           colorTowerAvoid: {
             en: 'Avoid ${color} Towers',
             de: 'Vermeide ${color} Turm',
+            ko: '${color} 기둥 피하기',
           },
           cloneTether: {
             en: 'Get clone tether',
             de: 'Nimm Klon Verbindung',
+            ko: '선 가져가기',
           },
           alpha: {
             en: 'Alpha',
             de: 'Alpha',
+            ko: '알파',
           },
           beta: {
             en: 'Beta',
             de: 'Beta',
+            ko: '베타',
           },
           gamma: {
             en: 'Gamma',
             de: 'Gamma',
+            ko: '감마',
           },
           purple: {
             en: 'Purple',
             de: 'Lila',
+            ko: '보라',
           },
           blue: {
             en: 'Blue',
             de: 'Blau',
+            ko: '파랑',
           },
           green: {
             en: 'Green',
             de: 'Grün',
+            ko: '초록',
           },
         };
         const towerColors = Array.from(data.arcaneChannelColor.keys());
