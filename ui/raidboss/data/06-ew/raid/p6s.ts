@@ -829,7 +829,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone', capture: false }),
       durationSeconds: 4,
       suppressSeconds: 1,
-      infoText: (data, _matches, output) => {
+      alertText: (data, _matches, output) => {
         data.predationCount = data.predationCount + 1;
         let countMap;
 
@@ -886,7 +886,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P6S Predation Out',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone' }),
-      condition: Conditions.targetIsYou(),
+      // Don't bother calling "out" for the final person.
+      condition: (data, matches) => data.me === matches.target && data.aetheronecrosisDuration <= 12,
       infoText: (_data, _matches, output) => output.out!(),
       outputStrings: {
         out: Outputs.out,
