@@ -42,7 +42,7 @@ const settings = {
     'resources/lib/',
   ],
   'parserOptions': {
-    'ecmaVersion': 2022,
+    'ecmaVersion': 2020,
     'sourceType': 'module',
   },
   'plugins': [
