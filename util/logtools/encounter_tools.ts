@@ -104,6 +104,7 @@ export class EncounterFinder {
       ContentType.Trials,
       ContentType.UltimateRaids,
       ContentType.DeepDungeons,
+      ContentType.VCDungeonFinder,
     ];
 
     return !keepTypes.includes(content);
