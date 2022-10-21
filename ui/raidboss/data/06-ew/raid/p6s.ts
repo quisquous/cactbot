@@ -937,11 +937,13 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Front Cleave',
           de: 'Kegel Aoe nach Vorne',
           fr: 'Cleave Avant',
+          ko: '전방 부채꼴 장판',
         },
         backwardCleave: {
           en: 'Rear Cleave',
           de: 'Kegel Aoe nach Hinten',
           fr: 'Cleave Arrière',
+          ko: '후방 부채꼴 장판',
         },
       },
     },
