@@ -8139,6 +8139,7 @@ const data: ZoneInfoType = {
       'en': 'Dragonsong\'s Reprise (Ultimate)',
       'fr': 'La Guerre du chant des dragons (fatal)',
       'ja': '絶竜詩戦争',
+      'ko': '절 용시전쟁',
     },
     'offsetX': -100,
     'offsetY': -100,
