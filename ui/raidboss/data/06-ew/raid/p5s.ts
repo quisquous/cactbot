@@ -115,6 +115,7 @@ const triggerSet: TriggerSet<Data> = {
         NW: Outputs.dirNW,
         safeCorner: {
           en: '${dir1} Corner (avoid poison)',
+          ko: '${dir1} 구석 (독 피하기)',
         },
       },
     },
