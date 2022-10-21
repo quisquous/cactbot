@@ -35,13 +35,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sohm Al Myath Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Sohm Al Myath Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AE' }),
+      netRegex: NetRegexes.headMarker({ id: '008C' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
