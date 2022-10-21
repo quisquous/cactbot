@@ -1,5 +1,5 @@
 import logDefinitions from '../../resources/netlog_defs';
-import NetRegexes from '../../resources/netregexes';
+import NetRegexes, { commonNetRegex } from '../../resources/netregexes';
 import { PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
 import { LocaleNetRegex } from '../../resources/translations';
@@ -136,8 +136,8 @@ export class DamageTracker {
     this.countdownStartRegex = LocaleNetRegex.countdownStart[lang];
     this.countdownCancelRegex = LocaleNetRegex.countdownCancel[lang];
     this.abilityFullRegex = NetRegexes.abilityFull();
-    this.wipeCactbotEcho = NetRegexes.echo({ line: 'cactbot wipe.*?' });
-    this.wipeEndEcho = NetRegexes.echo({ line: 'end' });
+    this.wipeCactbotEcho = commonNetRegex.cactbotWipeEcho;
+    this.wipeEndEcho = commonNetRegex.userWipeEcho;
 
     this.data = this.GetDataObject();
     this.Reset();

@@ -1,5 +1,5 @@
 import { Lang } from '../../resources/languages';
-import NetRegexes from '../../resources/netregexes';
+import { commonNetRegex } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import PartyTracker from '../../resources/party';
@@ -425,9 +425,9 @@ export interface TriggerHelper {
   output: Output;
 }
 
-const wipeCactbotEcho = NetRegexes.echo({ line: 'cactbot wipe.*?' });
-const wipeEndEcho = NetRegexes.echo({ line: 'end' });
-const wipeFadeIn = NetRegexes.network6d({ command: ['40000010', '4000000F'] });
+const wipeCactbotEcho = commonNetRegex.cactbotWipeEcho;
+const wipeEndEcho = commonNetRegex.userWipeEcho;
+const wipeFadeIn = commonNetRegex.wipe;
 
 const isWipe = (line: string): boolean => {
   if (
