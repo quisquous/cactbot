@@ -9,7 +9,6 @@
     "url": "https://github.com/quisquous/cactbot"
   },
   "files": [
-    "./dist",
     "./ui",
     "./types",
     "./resources",
