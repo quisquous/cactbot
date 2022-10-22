@@ -8,7 +8,10 @@ import path from 'path';
 
 import chai from 'chai';
 
-import NetRegexes from '../../resources/netregexes';
+import NetRegexes, {
+  KeysThatRequireTranslation,
+  keysThatRequireTranslation,
+} from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import Regexes from '../../resources/regexes';
 import {
@@ -630,14 +633,18 @@ const testTriggerFile = (file: string) => {
             }
           };
 
-          if ('source' in trigger.netRegex && trigger.netRegex.source !== undefined)
-            fieldHasTranslation(trigger.netRegex.source, 'source');
-
-          if ('name' in trigger.netRegex && trigger.netRegex.name !== undefined)
-            fieldHasTranslation(trigger.netRegex.name, 'name');
-
-          if ('line' in trigger.netRegex && trigger.netRegex.line !== undefined)
-            fieldHasTranslation(trigger.netRegex.line, 'line');
+          // TODO(ts): make it type safe
+          for (const key of (keysThatRequireTranslation as KeysThatRequireTranslation[])) {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            const value = trigger?.netRegex?.[key];
+            if (value !== undefined)
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+              fieldHasTranslation(value, key);
+          }
 
           continue;
         }

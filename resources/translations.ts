@@ -1,5 +1,5 @@
-import { NetParams, NetProps } from '../types/net_props';
-import { CactbotBaseRegExp } from '../types/net_trigger';
+import { NetParams } from '../types/net_props';
+import { CactbotBaseRegExp, TriggerTypes } from '../types/net_trigger';
 import {
   backCompatParsedSyncReplace,
   commonReplacement,
@@ -9,7 +9,7 @@ import {
 import { TimelineReplacement } from '../ui/raidboss/timeline_parser';
 
 import { Lang } from './languages';
-import NetRegexes from './netregexes';
+import NetRegexes, { KeysThatRequireTranslation, keysThatRequireTranslation } from './netregexes';
 import Regexes from './regexes';
 
 // Fill in LocaleRegex so that things like LocaleRegex.countdownStart.de is a valid regex.
@@ -274,19 +274,20 @@ export const translateText = (
 ): string => translateWithReplacements(text, 'replaceText', replaceLang, replacements).text;
 
 // Translates a timeline or trigger regex for a given language.
-export const translateRegexBuildParam = <T extends NetParams[keyof NetProps]>(
-  param: T,
+// TODO(ts): make it type safe
+export const translateRegexBuildParam = <T extends TriggerTypes>(
+  param: NetParams[T],
   replaceLang: Lang,
   replacements?: TimelineReplacement[],
-): T => {
-  if ('source' in param)
-    param.source = translateField(param.source, replaceLang, replacements);
-
-  if ('name' in param)
-    param.name = translateField(param.name, replaceLang, replacements);
-
-  if ('line' in param)
-    param.line = translateField(param.line, replaceLang, replacements);
+): NetParams[T] => {
+  for (const key of (keysThatRequireTranslation as KeysThatRequireTranslation[])) {
+    if (key in param) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      param[key] = translateField(param[key], replaceLang, replacements);
+    }
+  }
 
   return param;
 };

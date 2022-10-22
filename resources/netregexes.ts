@@ -20,7 +20,9 @@ const matchDefault = '[^|]*';
 // If issue #1306 is ever resolved, we can remove this.
 const magicTranslationString = `^^`;
 const magicStringRegex = /^\^\^/;
-const keysThatRequireTranslation = [
+// make sure keep type and value sync
+export type KeysThatRequireTranslation = 'ability' | 'name' | 'source' | 'target' | 'line';
+export const keysThatRequireTranslation = [
   'ability',
   'name',
   'source',
