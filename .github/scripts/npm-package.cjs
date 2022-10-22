@@ -18,10 +18,7 @@ async function main() {
   fs.rmSync('dist', { recursive: true, force: true });
   fs.mkdirSync('npm-package');
 
-  await exec('npm run build', undefined, { env: { CI: '1' } });
-  fs.renameSync('dist', 'npm-package/dist');
-
-  await exec('npx tsc --declaration');
+  await exec('npx ttsc --declaration');
   fs.renameSync('dist/ui', 'npm-package/ui');
   fsExtra.copySync('types', 'npm-package/types', {});
   fs.renameSync('dist/resources', 'npm-package/resources');
