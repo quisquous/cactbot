@@ -19,7 +19,7 @@ import {
   triggerFunctions,
   triggerTextOutputFunctions,
 } from '../../resources/responses';
-import { translateWithReplacements } from '../../resources/translations';
+import { needTranslateParam, translateWithReplacements } from '../../resources/translations';
 import { RaidbossData } from '../../types/data';
 import { Matches } from '../../types/net_matches';
 import {
@@ -633,17 +633,12 @@ const testTriggerFile = (file: string) => {
             }
           };
 
-          // TODO(ts): make it type safe
-          for (const key of (keysThatRequireTranslation as KeysThatRequireTranslation[])) {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            const value = trigger?.netRegex?.[key];
-            if (value !== undefined)
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-              fieldHasTranslation(value, key);
+          if (needTranslateParam(trigger.netRegex)) {
+            for (const key of (keysThatRequireTranslation as KeysThatRequireTranslation[])) {
+              const value = trigger.netRegex[key];
+              if (value !== undefined)
+                fieldHasTranslation(value, key);
+            }
           }
 
           continue;

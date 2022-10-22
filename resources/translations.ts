@@ -274,22 +274,32 @@ export const translateText = (
 ): string => translateWithReplacements(text, 'replaceText', replaceLang, replacements).text;
 
 // Translates a timeline or trigger regex for a given language.
-// TODO(ts): make it type safe
 export const translateRegexBuildParam = <T extends TriggerTypes>(
   param: NetParams[T],
   replaceLang: Lang,
   replacements?: TimelineReplacement[],
 ): NetParams[T] => {
-  for (const key of (keysThatRequireTranslation as KeysThatRequireTranslation[])) {
-    if (key in param) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      param[key] = translateField(param[key], replaceLang, replacements);
+  if (needTranslateParam(param)) {
+    for (const key of (keysThatRequireTranslation as KeysThatRequireTranslation[])) {
+      if (key in param)
+        param[key] = translateField(param[key], replaceLang, replacements);
     }
+
+    return param;
   }
 
   return param;
+};
+
+export const needTranslateParam = <T extends TriggerTypes>(
+  param: NetParams[T],
+): param is { [keys in KeysThatRequireTranslation]?: string | undefined | string[] } => {
+  for (const key of Object.keys(param)) {
+    if (keysThatRequireTranslation.includes(key))
+      return true;
+  }
+
+  return false;
 };
 
 const translateField = (
