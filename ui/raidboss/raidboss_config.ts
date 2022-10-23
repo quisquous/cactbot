@@ -504,9 +504,7 @@ class DoNothingFuncProxy {
       },
 
       get(_target, _name) {
-        return () => {
-          /* noop */
-        };
+        return () => {/* noop */};
       },
     });
   }

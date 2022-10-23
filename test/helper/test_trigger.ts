@@ -8,10 +8,7 @@ import path from 'path';
 
 import chai from 'chai';
 
-import NetRegexes, {
-  KeysThatRequireTranslation,
-  keysThatRequireTranslation,
-} from '../../resources/netregexes';
+import NetRegexes, { keysThatRequireTranslation } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import Regexes from '../../resources/regexes';
 import {
@@ -19,7 +16,7 @@ import {
   triggerFunctions,
   triggerTextOutputFunctions,
 } from '../../resources/responses';
-import { needTranslateParam, translateWithReplacements } from '../../resources/translations';
+import { translateWithReplacements } from '../../resources/translations';
 import { RaidbossData } from '../../types/data';
 import { Matches } from '../../types/net_matches';
 import {
@@ -617,7 +614,7 @@ const testTriggerFile = (file: string) => {
             ).wasTranslated;
           };
 
-          const fieldHasTranslation = (field: string | string[], fieldName: string) => {
+          const checkIfFieldHasTranslation = (field: string | string[], fieldName: string) => {
             if (typeof field === 'string') {
               assert.isTrue(
                 textHasTranslation(field),
@@ -638,7 +635,7 @@ const testTriggerFile = (file: string) => {
             const anonTriggerFields: AnonymousParams = trigger.netRegex;
             const value = anonTriggerFields[key];
             if (value !== undefined && typeof value !== 'boolean')
-              fieldHasTranslation(value, key);
+              checkIfFieldHasTranslation(value, key);
           }
 
           continue;
