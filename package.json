@@ -1,6 +1,6 @@
 {
   "name": "cactbot",
-  "version": "0.27.16",
+  "version": "0.27.17",
   "license": "Apache-2.0",
   "type": "module",
   "types": "./types",
@@ -9,9 +9,9 @@
     "url": "https://github.com/quisquous/cactbot"
   },
   "scripts": {
-    "build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --progress --config webpack/webpack.prod.ts",
-    "build-gh-pages": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.ghpages.ts",
-    "start": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack serve --config webpack/webpack.dev.ts",
+    "build": "webpack --progress --config webpack/webpack.prod.ts",
+    "build-gh-pages": " webpack --config webpack/webpack.ghpages.ts",
+    "start": "webpack serve --config webpack/webpack.dev.ts",
     "fetch-deps": "ts-node ./util/fetch_deps.ts",
     "tsc-no-emit": "tsc --noEmit",
     "lint": "run-s lint:**",

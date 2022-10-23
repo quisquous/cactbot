@@ -1,5 +1,5 @@
 import { Lang, langToLocale } from '../../resources/languages';
-import NetRegexes from '../../resources/netregexes';
+import { commonNetRegex } from '../../resources/netregexes';
 import TimerBar from '../../resources/timerbar';
 import { LocaleRegex } from '../../resources/translations';
 import { LogEvent } from '../../types/event';
@@ -732,7 +732,7 @@ export class TimelineController {
 
     // Used to suppress any Engage! if there's a wipe between /countdown and Engage!.
     this.suppressNextEngage = false;
-    this.wipeRegex = NetRegexes.network6d({ command: ['40000010', '4000000F'] });
+    this.wipeRegex = commonNetRegex.wipe;
   }
 
   public SetPopupTextInterface(popupText: PopupTextGenerator): void {

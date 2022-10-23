@@ -341,126 +341,151 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         combo: {
           en: '${dir1} / ${dir2}',
+          de: '${dir1} / ${dir2}',
           fr: '${dir1} / ${dir2}',
           ko: '${dir1} / ${dir2}',
         },
         single: {
           en: '${dir1}',
+          de: '${dir1}',
           fr: '${dir1}',
           ko: '${dir1}',
         },
         poly6: {
           en: '${dir1}: ${dir2} / ${dir3}',
+          de: '${dir1}: ${dir2} / ${dir3}',
           fr: '${dir1}: ${dir2} / ${dir3}',
           ko: '${dir1}: ${dir2} / ${dir3}',
         },
         left: {
           en: 'Left (Wing Side)',
+          de: 'Links (Flügel-Seite)',
           fr: 'Gauche (Côté aile)',
           ko: '왼쪽 (날개쪽)',
         },
         right: {
           en: 'Right (Snake Side)',
+          de: 'Rechts (Schlangen-Seite)',
           fr: 'Droite (Côté serpent)',
           ko: '오른쪽 (뱀쪽)',
         },
         insideWest: {
           en: 'Inside West',
+          de: 'Westen innen',
           fr: 'Intérieur Ouest',
           ko: '안 서쪽',
         },
         insideEast: {
           en: 'Inside East',
+          de: 'Osten innen',
           fr: 'Intérieur Est',
           ko: '안 동쪽',
         },
         outsideWest: {
           en: 'Outside West',
+          de: 'Westen außen',
           fr: 'Extérieur Ouest',
           ko: '바깥 서쪽',
         },
         outsideEast: {
           en: 'Outside East',
+          de: 'Osten außen',
           fr: 'Extérieur Est',
           ko: '바깥 동쪽',
         },
         insideNW: {
           en: 'Inside NW',
+          de: 'NW innen',
           fr: 'Intérieur NO',
           ko: '안 북서쪽',
         },
         insideNE: {
           en: 'Inside NE',
+          de: 'NO innen',
           fr: 'Intérieur NE',
           ko: '안 북동쪽',
         },
         insideSE: {
           en: 'Inside SE',
+          de: 'SO innen',
           fr: 'Intérieur SE',
           ko: '안 남동쪽',
         },
         insideSW: {
           en: 'Inside SW',
+          de: 'SW innen',
           fr: 'Intérieur SO',
           ko: '안 남서쪽',
         },
         outsideNNW: {
           en: 'Outside NNW',
+          de: 'NNW außen',
           fr: 'Extérieur NNO',
           ko: '바깥 북쪽 왼칸',
         },
         outsideNNE: {
           en: 'Outside NNE',
+          de: 'NNO außen',
           fr: 'Extérieur NNE',
           ko: '바깥 북쪽 오른칸',
         },
         outsideSSW: {
           en: 'Outside SSW',
+          de: 'SSW außen',
           fr: 'Extérieur SSO',
           ko: '바깥 남쪽 왼칸',
         },
         outsideSSE: {
           en: 'Outside SSE',
+          de: 'SSO außen',
           fr: 'Extérieur SSE',
           ko: '바깥 남쪽 오른칸',
         },
         outsideWNW: {
           en: 'Outside WNW',
+          de: 'WNW außen',
           fr: 'Extérieur ONO',
           ko: '바깥 서쪽 위칸',
         },
         outsideENE: {
           en: 'Outside ENE',
+          de: 'ONO außen',
           fr: 'Extérieur ENE',
           ko: '바깥 동쪽 위칸',
         },
         outsideWSW: {
           en: 'Outside WSW',
+          de: 'WSW außen',
           fr: 'Extérieur OSO',
           ko: '바깥 서쪽 아래칸',
         },
         outsideESE: {
           en: 'Outside ESE',
+          de: 'OSO außen',
           fr: 'Extérieur ESE',
           ko: '바깥 동쪽 아래칸',
         },
         cornerNW: {
           en: 'NW Corner',
+          de: 'NW Ecke',
           fr: 'Coin NO',
           ko: '북서쪽 구석',
         },
         cornerNE: {
           en: 'NE Corner',
+          de: 'NO Ecke',
           fr: 'Coin NE',
           ko: '북동쪽 구석',
         },
         cornerSE: {
           en: 'SE Corner',
+          de: 'SO Ecke',
           fr: 'Coin SE',
           ko: '남동쪽 구석',
         },
         cornerSW: {
           en: 'SW Corner',
+          de: 'SW Ecke',
           fr: 'Coin SO',
           ko: '남서쪽 구석',
         },
@@ -512,6 +537,7 @@ const triggerSet: TriggerSet<Data> = {
         goFrontBack: Outputs.goFrontBack,
         goFrontBackPoly5: {
           en: 'Go Front/Back (${tile})',
+          de: 'Gehe nach Vorne/Hinten (${tile})',
           fr: 'Allez Devant/Derrière (${tile})',
           ko: '앞/뒤로 (${tile})',
         },
@@ -530,6 +556,7 @@ const triggerSet: TriggerSet<Data> = {
         goSides: Outputs.sides,
         goSidesPoly5: {
           en: 'Sides (${tile})',
+          de: 'Seiten (${tile})',
           fr: 'Côté (${tile})',
           ko: '옆으로 (${tile})',
         },
@@ -802,7 +829,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone', capture: false }),
       durationSeconds: 4,
       suppressSeconds: 1,
-      infoText: (data, _matches, output) => {
+      alertText: (data, _matches, output) => {
         data.predationCount = data.predationCount + 1;
         let countMap;
 
@@ -859,7 +886,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P6S Predation Out',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone' }),
-      condition: Conditions.targetIsYou(),
+      // Don't bother calling "out" for the final person.
+      condition: (data, matches) => data.me === matches.target && data.aetheronecrosisDuration <= 12,
       infoText: (_data, _matches, output) => output.out!(),
       outputStrings: {
         out: Outputs.out,
@@ -908,11 +936,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         forwardCleave: {
           en: 'Front Cleave',
+          de: 'Kegel Aoe nach Vorne',
           fr: 'Cleave Avant',
+          ko: '전방 부채꼴 장판',
         },
         backwardCleave: {
           en: 'Rear Cleave',
+          de: 'Kegel Aoe nach Hinten',
           fr: 'Cleave Arrière',
+          ko: '후방 부채꼴 장판',
         },
       },
     },
@@ -940,11 +972,13 @@ const triggerSet: TriggerSet<Data> = {
         stack: Outputs.stackMarker,
         spreadSide: {
           en: 'Spread ${dir1}',
+          de: 'Verteilen ${dir1}',
           fr: 'Dispersion ${dir1}',
           ko: '산개 ${dir1}',
         },
         stackSide: {
           en: 'Stack ${dir1}',
+          de: 'Sammeln ${dir1}',
           fr: 'Package ${dir1}',
           ko: '쉐어 ${dir1}',
         },
