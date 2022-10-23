@@ -8,6 +8,8 @@
     "operatorPosition": "maintain",
     "quoteStyle": "alwaysSingle",
     "useBraces": "maintain",
+    "variableStatement.preferHanging": true,
+    "arguments.preferHanging": true,
     "conditionalExpression.operatorPosition": "nextLine"
   }
 }
