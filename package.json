@@ -120,7 +120,10 @@
   },
   "lint-staged": {
     "*.css": "stylelint",
-    "*.{js,cjs,mjs}": "eslint --max-warnings=0",
+    "*.{js,cjs,mjs}": [
+      "dprint check",
+      "eslint --max-warnings=0"
+    ],
     "**/!(raidboss/data|oopsyraidsy/data)/*.ts": [
       "dprint check"
     ],
