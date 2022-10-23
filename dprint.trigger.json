@@ -1,8 +1,8 @@
 {
   "$schema": "https://dprint.dev/schemas/v0.json",
   "includes": [
-    "./ui/oopsyraidsy/data/**/*.{ts,tsx,js,jsx,json}",
-    "./ui/raidboss/data/**/*.{ts,tsx,js,jsx,json}"
+    "./ui/oopsyraidsy/data/**/*.{ts,cjs,mjs,js}",
+    "./ui/raidboss/data/**/*.{ts,cjs,mjs,js}"
   ],
   "extends": "./dprint.base.json",
   "lineWidth": 300,

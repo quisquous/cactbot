@@ -52,7 +52,6 @@ const settings = {
   },
 };
 
-
 // General rules for all files.
 const rules = {
   'arrow-spacing': [
