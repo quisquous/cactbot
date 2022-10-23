@@ -633,12 +633,12 @@ const testTriggerFile = (file: string) => {
             }
           };
 
-          if (needTranslateParam(trigger.netRegex)) {
-            for (const key of (keysThatRequireTranslation as KeysThatRequireTranslation[])) {
-              const value = trigger.netRegex[key];
-              if (value !== undefined)
-                fieldHasTranslation(value, key);
-            }
+          for (const key of keysThatRequireTranslation) {
+            type AnonymousParams = { [name: string]: string | string[] | boolean | undefined };
+            const anonTriggerFields: AnonymousParams = trigger.netRegex;
+            const value = anonTriggerFields[key];
+            if (value !== undefined && typeof value !== 'boolean')
+              fieldHasTranslation(value, key);
           }
 
           continue;
