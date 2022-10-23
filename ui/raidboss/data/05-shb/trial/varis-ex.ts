@@ -309,7 +309,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'VarisEx Fortius',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: 'Varis Yae Galvus',
+        id: '4CE[56]',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

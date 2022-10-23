@@ -88,7 +88,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E10N Left Right Shadow Slash',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: 'Shadowkeeper' }),
-      alertText: (_data, matches, output) => matches.id === '56AF' ? output.left!() : output.right!(),
+      alertText: (_data, matches, output) =>
+        matches.id === '56AF' ? output.left!() : output.right!(),
       outputStrings: {
         left: {
           en: 'Go Left of Shadows',

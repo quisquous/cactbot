@@ -103,7 +103,11 @@ const triggerSet: TriggerSet<Data> = {
       // 16 if it doesn't hit anybody, 15 if it does.
       // Also, some log lines are inconsistent here and don't always list
       // Midgardsormr's name and are sometimes blank.
-      netRegex: NetRegexes.ability({ id: '31B[2345]', source: ['Midgardsormr', ''], capture: false }),
+      netRegex: NetRegexes.ability({
+        id: '31B[2345]',
+        source: ['Midgardsormr', ''],
+        capture: false,
+      }),
       run: (data) => delete data.lastSpinWasHorizontal,
     },
     {

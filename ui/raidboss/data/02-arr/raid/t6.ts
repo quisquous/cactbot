@@ -191,7 +191,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T6 Swarm',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
-      condition: (data, matches) => data.me === matches.target || data.role === 'healer' || data.job === 'BLU',
+      condition: (data, matches) =>
+        data.me === matches.target || data.role === 'healer' || data.job === 'BLU',
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.swarmOnYou!();

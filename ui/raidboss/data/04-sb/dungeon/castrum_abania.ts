@@ -33,7 +33,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'CastrumAbania Magna Roader Mark XLIII Mini Cannon',
       type: 'NameToggle',
-      netRegex: NetRegexes.nameToggle({ name: 'Mark XLIII Mini Cannon', toggle: '01', capture: false }),
+      netRegex: NetRegexes.nameToggle({
+        name: 'Mark XLIII Mini Cannon',
+        toggle: '01',
+        capture: false,
+      }),
       // There's two cannons, so only say something when the first one is targetable.
       condition: (data) => !data.calledUseCannon,
       delaySeconds: 6,

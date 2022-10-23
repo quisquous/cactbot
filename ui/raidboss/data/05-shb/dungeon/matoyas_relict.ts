@@ -172,7 +172,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Matoyas Porxie Sprite Explosion',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4E34', source: 'aeolian cave sprite', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '4E34',
+        source: 'aeolian cave sprite',
+        capture: false,
+      }),
       delaySeconds: 5,
       alertText: (_data, _matches, output) => output.goBoss!(),
       outputStrings: {

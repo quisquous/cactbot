@@ -100,7 +100,10 @@ const triggerSet: TriggerSet<Data> = {
         if (!data.isEquinox)
           return;
         if (data.crystallize)
-          return output.combo!({ first: output.intercards!(), second: output[data.crystallize]!() });
+          return output.combo!({
+            first: output.intercards!(),
+            second: output[data.crystallize]!(),
+          });
         return output.intercards!();
       },
       run: (data) => {
@@ -123,7 +126,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Marker Anthelion',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8E1', source: 'Hydaelyn', count: '1B5', capture: false }),
+      netRegex: NetRegexes.gainsEffect({
+        effectId: '8E1',
+        source: 'Hydaelyn',
+        count: '1B5',
+        capture: false,
+      }),
       // Example timeline:
       //     t=0 StartsCasting Crystallize
       //     t=4 ActionEffect Crystalize
@@ -155,7 +163,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Marker Highest Holy',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8E1', source: 'Hydaelyn', count: '1B4', capture: false }),
+      netRegex: NetRegexes.gainsEffect({
+        effectId: '8E1',
+        source: 'Hydaelyn',
+        count: '1B4',
+        capture: false,
+      }),
       preRun: (data) => data.isEquinox = false,
       delaySeconds: 2.5,
       durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,

@@ -266,12 +266,7 @@ const overrides = [
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       // Only meant to be used for `output` parameters!
       '@typescript-eslint/no-non-null-assertion': 'off',
-      'max-len': [
-        'warn',
-        {
-          'code': 300,
-        },
-      ],
+      'max-len': 'off',
       'prefer-arrow/prefer-arrow-functions': 'warn',
       'rulesdir/cactbot-output-strings': 'error',
       'rulesdir/cactbot-response-default-severities': 'error',

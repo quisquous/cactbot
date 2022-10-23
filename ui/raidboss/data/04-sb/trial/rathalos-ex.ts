@@ -64,7 +64,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RathEx Flaming Recoil',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2859', '285B'], source: 'Rathalos', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['2859', '285B'],
+        source: 'Rathalos',
+        capture: false,
+      }),
       // This can one-shot, so alarm.
       // It seems to be 180 degrees in front, so "Get Behind" rather than "Away From Front".
       response: Responses.getBehind('alarm'),
@@ -72,7 +76,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RathEx Rush',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['2856', '2861'],
+        source: 'Rathalos',
+        capture: false,
+      }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

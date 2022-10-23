@@ -18,7 +18,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tower Of Babil Ground And Pound',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'Barnabas', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['6247', '62EA'],
+        source: 'Barnabas',
+        capture: false,
+      }),
       response: Responses.awayFromFront(),
     },
     {
@@ -42,7 +46,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tower Of Babil Dynamic Scrapline',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'Barnabas', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['6246', '62F0'],
+        source: 'Barnabas',
+        capture: false,
+      }),
       delaySeconds: 0.5, // Ensure we have markers stored.
       infoText: (data, _matches, output) => {
         if ([data.barnabasNegative, data.playerNegative].includes(undefined))
@@ -84,7 +92,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tower Of Babil Dynamic Pound',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['6245', '62EE'],
+        source: 'Barnabas',
+        capture: false,
+      }),
       delaySeconds: 0.5, // Ensure we have markers stored.
       infoText: (data, _matches, output) => {
         if ([data.barnabasNegative, data.playerNegative].includes(undefined))

@@ -87,7 +87,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Angra Mainyu Mortal Gaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['CD1', 'DAB'], source: 'Angra Mainyu', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['CD1', 'DAB'],
+        source: 'Angra Mainyu',
+        capture: false,
+      }),
       suppressSeconds: 0.1,
       response: Responses.lookAway('alert'),
     },

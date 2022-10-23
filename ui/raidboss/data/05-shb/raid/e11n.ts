@@ -166,7 +166,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11N Burnt Strike Lightning Clone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker\'s Image', id: '5645', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: 'Fatebreaker\'s Image',
+        id: '5645',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -182,7 +186,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11N Burnt Strike Fire Clone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker\'s Image', id: '5643', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: 'Fatebreaker\'s Image',
+        id: '5643',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

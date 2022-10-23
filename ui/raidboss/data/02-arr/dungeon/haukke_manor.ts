@@ -13,7 +13,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Haukke Normal Dark Mist Stun',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2C1', source: ['Manor Maidservant', 'Manor Claviger', 'Lady Amandine'] }),
+      netRegex: NetRegexes.startsUsing({
+        id: '2C1',
+        source: ['Manor Maidservant', 'Manor Claviger', 'Lady Amandine'],
+      }),
       condition: (data) => data.CanStun(),
       suppressSeconds: 2,
       response: Responses.stun('info'),
@@ -51,7 +54,10 @@ const triggerSet: TriggerSet<Data> = {
       // Void Lamp Spawn
       id: 'Haukke Normal Void Lamps',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'The void lamps have begun emitting an eerie glow', capture: false }),
+      netRegex: NetRegexes.message({
+        line: 'The void lamps have begun emitting an eerie glow',
+        capture: false,
+      }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -101,7 +107,8 @@ const triggerSet: TriggerSet<Data> = {
         'Manor Claviger': 'Herrenhaus-Schlüsselträgerin',
         'Lady Amandine': 'Lady Amandine',
         'Manor Steward': 'Seneschall',
-        'The void lamps have begun emitting an eerie glow': 'Die düsteren Lampen flackern unheilvoll auf',
+        'The void lamps have begun emitting an eerie glow':
+          'Die düsteren Lampen flackern unheilvoll auf',
       },
     },
     {
@@ -111,7 +118,8 @@ const triggerSet: TriggerSet<Data> = {
         'Manor Claviger': 'clavière du manoir',
         'Lady Amandine': 'dame Amandine',
         'Manor Steward': 'intendant du manoir',
-        'The void lamps have begun emitting an eerie glow': 'La lanterne sinistre luit d\'un éclat lugubre',
+        'The void lamps have begun emitting an eerie glow':
+          'La lanterne sinistre luit d\'un éclat lugubre',
       },
     },
     {

@@ -27,7 +27,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '775', source: 'Ranting Ranks Gremlin' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: (data, matches, output) => output.comfort!({ name: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) =>
+        output.comfort!({ name: data.ShortName(matches.target) }),
       outputStrings: {
         comfort: {
           en: '/comfort ${name}',

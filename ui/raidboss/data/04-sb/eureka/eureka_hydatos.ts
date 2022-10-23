@@ -79,13 +79,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Falling Asleep',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
+      netRegex: NetRegexes.gameLog({
+        line: '7 minutes have elapsed since your last activity..*?',
+        capture: false,
+      }),
       response: Responses.wakeUp(),
     },
     {
       id: 'BA Saved By Rememberance',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'The memories of heroes past live on again.*?', capture: false }),
+      netRegex: NetRegexes.gameLog({
+        line: 'The memories of heroes past live on again.*?',
+        capture: false,
+      }),
       sound: 'Long',
     },
     {
@@ -111,14 +117,24 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA West Side',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
+      netRegex: NetRegexes.abilityFull({
+        id: '3956',
+        source: 'Art',
+        target: '[^:]+',
+        capture: false,
+      }),
       suppressSeconds: 1000,
       run: (data) => data.side = 'west',
     },
     {
       id: 'BA East Side',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
+      netRegex: NetRegexes.abilityFull({
+        id: '3957',
+        source: 'Owain',
+        target: '[^:]+',
+        capture: false,
+      }),
       suppressSeconds: 1000,
       run: (data) => data.side = 'east',
     },
@@ -498,7 +514,10 @@ const triggerSet: TriggerSet<Data> = {
       // Ideally parser logic could be added for this case, but this is where we are.
       id: 'BA AV Eidos Relative Virtue Astral',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false }),
+      netRegex: NetRegexes.gameLog({
+        line: 'Relative Virtue gains the effect of Astral Essence.*?',
+        capture: false,
+      }),
       condition: (data) => data.sealed,
       run: (data) => {
         // RV clones get buffs in the reverse order that they do their attacks in.
@@ -510,7 +529,10 @@ const triggerSet: TriggerSet<Data> = {
       // See note above for `BA AV Eidos Relative Virtue Astral`.
       id: 'BA AV Eidos Relative Virtue Umbral',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false }),
+      netRegex: NetRegexes.gameLog({
+        line: 'Relative Virtue gains the effect of Umbral Essence.*?',
+        capture: false,
+      }),
       condition: (data) => data.sealed,
       run: (data) => {
         // RV clones get buffs in the reverse order that they do their attacks in.
@@ -579,7 +601,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Ozma Sphere Form',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: ['37B3', '37A5', '379F'], capture: false }),
+      netRegex: NetRegexes.ability({
+        source: 'Proto Ozma',
+        id: ['37B3', '37A5', '379F'],
+        capture: false,
+      }),
       condition: (data) => data.sealed,
       preRun: (data) => {
         data.blackHoleCount = (data.blackHoleCount ?? 0) + 1;
@@ -829,7 +855,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
-        '7 minutes have elapsed since your last activity..*?': 'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
+        '7 minutes have elapsed since your last activity..*?':
+          'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
         'Absolute Virtue': 'Absolut(?:e|er|es|en) Tugend',
         'Arsenal Centaur': 'Arsenal-Zentaur',
         'Art': 'Art',
@@ -845,15 +872,19 @@ const triggerSet: TriggerSet<Data> = {
         'Relative Virtue(?! gains)': 'Relative Tugend',
         'Shadow': 'Proto-Yadis-Schatten',
         'Streak Lightning': 'Blitzladung',
-        '5 minutes have elapsed since your last activity': 'Seit deiner letzten Aktivität sind 5 Minuten vergangen',
-        'The memories of heroes past live on again': 'Das Vermächtnis vergangener Helden lebt von Neuem auf',
+        '5 minutes have elapsed since your last activity':
+          'Seit deiner letzten Aktivität sind 5 Minuten vergangen',
+        'The memories of heroes past live on again':
+          'Das Vermächtnis vergangener Helden lebt von Neuem auf',
         'Munderg, turn flesh to ash': 'Munderg, entfessele den Flammeneid',
         'Munderg, turn blood to ice': 'Munderg, das Eis der Ewigkeit soll sie für Äonen bannen',
         'The Shin-Zantetsuken Containment Unit': 'Shin-Zantetsuken-Quarantäneblock',
         'The Lance of Virtue Containment Unit': 'Lanze der Tugend-Quarantäneblock',
         'The Proto Ozma Containment Unit': 'Proto-Yadis-Quarantäneblock',
-        'Relative Virtue gains the effect of Astral Essence': 'Die Relative Tugend erhält den Effekt von.*?Arm der Lichts',
-        'Relative Virtue gains the effect of Umbral Essence': 'Die Relative Tugend erhält den Effekt von.*?Arm der Dunkelheit',
+        'Relative Virtue gains the effect of Astral Essence':
+          'Die Relative Tugend erhält den Effekt von.*?Arm der Lichts',
+        'Relative Virtue gains the effect of Umbral Essence':
+          'Die Relative Tugend erhält den Effekt von.*?Arm der Dunkelheit',
       },
       'replaceText': {
         '\\(Stack\\)': '(Sammeln)',
@@ -922,7 +953,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
-        '7 minutes have elapsed since your last activity.': 'Votre personnage est inactif depuis 7 minutes',
+        '7 minutes have elapsed since your last activity.':
+          'Votre personnage est inactif depuis 7 minutes',
         'Absolute Virtue': 'Vertu absolue',
         'Arsenal Centaur': 'Centaure de l\'Arsenal',
         'Art': 'Art',
@@ -938,12 +970,16 @@ const triggerSet: TriggerSet<Data> = {
         'Proto Ozma(?! containment)': 'Proto-Ozma',
         'Raiden': 'Raiden',
         'Relative Virtue(?! gains)': 'Vertu relative',
-        'Relative Virtue gains the effect of Astral Essence': 'Vertu relative bénéficie de l\'effet.*?Bras de Lumière',
-        'Relative Virtue gains the effect of Umbral Essence': 'Vertu relative bénéficie de l\'effet.*?Bras de Ténèbres',
+        'Relative Virtue gains the effect of Astral Essence':
+          'Vertu relative bénéficie de l\'effet.*?Bras de Lumière',
+        'Relative Virtue gains the effect of Umbral Essence':
+          'Vertu relative bénéficie de l\'effet.*?Bras de Ténèbres',
         'Shadow': 'Ombre de Proto-Ozma',
         'Streak Lightning': 'Éclair chargeant',
-        'The Lance of Virtue Containment Unit': 'l\'enceinte de confinement de la lance de la vertu',
-        'The memories of heroes past live on again': 'L\'égide des héros vaillants vous a ressuscité',
+        'The Lance of Virtue Containment Unit':
+          'l\'enceinte de confinement de la lance de la vertu',
+        'The memories of heroes past live on again':
+          'L\'égide des héros vaillants vous a ressuscité',
         'The Proto Ozma Containment Unit': 'l\'enceinte de confinement de Proto-Ozma',
         'The Shin-Zantetsuken Containment Unit': 'l\'enceinte de confinement de Shin-Zantetsuken',
       },

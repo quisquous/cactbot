@@ -85,7 +85,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T1 Slime Timer First',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'The Allagan megastructure will be sealed off.*?', capture: false }),
+      netRegex: NetRegexes.message({
+        line: 'The Allagan megastructure will be sealed off.*?',
+        capture: false,
+      }),
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),

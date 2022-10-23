@@ -118,7 +118,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P6N Strophe Ixou',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['00A7', '00A8'] }),
-      infoText: (_data, matches, output) => matches.id === '00A7' ? output.left!() : output.right!(),
+      infoText: (_data, matches, output) =>
+        matches.id === '00A7' ? output.left!() : output.right!(),
       outputStrings: {
         left: {
           en: 'Rotate left',

@@ -35,13 +35,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Cosmos Immortal Anathema',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '49A3', source: 'Seeker Of Solitude', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '49A3',
+        source: 'Seeker Of Solitude',
+        capture: false,
+      }),
       response: Responses.aoe(),
     },
     {
       id: 'Cosmos Tribulation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '476B', source: 'Seeker Of Solitude', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '476B',
+        source: 'Seeker Of Solitude',
+        capture: false,
+      }),
       delaySeconds: 8,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

@@ -25,7 +25,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Eureka Pyros Falling Asleep',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
+      netRegex: NetRegexes.gameLog({
+        line: '7 minutes have elapsed since your last activity..*?',
+        capture: false,
+      }),
       response: Responses.wakeUp(),
     },
   ],

@@ -125,13 +125,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Empty Hate',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E59', source: 'The Hand Of Erebos', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '3E59',
+        source: 'The Hand Of Erebos',
+        capture: false,
+      }),
       response: Responses.knockback('info'),
     },
     {
       id: 'E2S Empty Rage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E6B', source: 'The Hand Of Erebos', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '3E6B',
+        source: 'The Hand Of Erebos',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -281,7 +289,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E2S Countdown Marker Shadoweye Me',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => data.spell?.[matches.target] === 'eye' && matches.target === data.me,
+      condition: (data, matches) =>
+        data.spell?.[matches.target] === 'eye' && matches.target === data.me,
       delaySeconds: 2,
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
@@ -300,7 +309,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E2S Countdown Marker Shadoweye Other',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => data.spell?.[matches.target] === 'eye' && data.spell?.[data.me] !== 'eye',
+      condition: (data, matches) =>
+        data.spell?.[matches.target] === 'eye' && data.spell?.[data.me] !== 'eye',
       delaySeconds: 2,
       suppressSeconds: 10,
       // Let's just assume these people are stacked.

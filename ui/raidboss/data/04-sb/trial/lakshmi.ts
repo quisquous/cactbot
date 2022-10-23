@@ -92,7 +92,11 @@ const triggerSet: TriggerSet<Data> = {
       // so this should be perfectly safe.
       id: 'Lakshmi Headmarker Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2486', '2487', '2488'], source: 'Lakshmi', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['2486', '2487', '2488'],
+        source: 'Lakshmi',
+        capture: false,
+      }),
       run: (data) => delete data.avoidStack,
     },
     {

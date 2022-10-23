@@ -226,7 +226,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
-        'Destroy! Destroy! Destroy! I will destroy it all!': 'Nichts wird mir standhalten, nichts! Alles will ich vernichten!',
+        'Destroy! Destroy! Destroy! I will destroy it all!':
+          'Nichts wird mir standhalten, nichts! Alles will ich vernichten!',
         'Graven Image': 'heilig(?:e|er|es|en) Statue',
         'Kefka': 'Kefka',
       },
@@ -250,7 +251,8 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'fr',
       'replaceSync': {
         'Graven Image': 'Statue divine',
-        'Destroy! Destroy! Destroy! I will destroy it all!': 'Je détruirai le monde entier ! Plus personne ne pourra rêver !',
+        'Destroy! Destroy! Destroy! I will destroy it all!':
+          'Je détruirai le monde entier ! Plus personne ne pourra rêver !',
         'Kefka': 'Kefka',
       },
       'replaceText': {
@@ -272,7 +274,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ja',
       'replaceSync': {
-        'Destroy! Destroy! Destroy! I will destroy it all!': 'どれもこれもゼ～ンブ、ハカイ、ハカイ、ハカイ！\\s*ゼ～ンブ、ハカイだ！！',
+        'Destroy! Destroy! Destroy! I will destroy it all!':
+          'どれもこれもゼ～ンブ、ハカイ、ハカイ、ハカイ！\\s*ゼ～ンブ、ハカイだ！！',
         'Graven Image': '神々の像',
         'Kefka': 'ケフカ',
       },

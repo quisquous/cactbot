@@ -293,7 +293,10 @@ const triggerSet: TriggerSet<Data> = {
       // 6724, 7400 = Great Dragon
       // 6056, 7401 = Apanda
       // There are a bunch of 6056, 7404 Apandas that get added at the beginning.
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['5626', '6724', '6056'], npcBaseId: ['7399', '7400', '7401'] }),
+      netRegex: NetRegexes.addedCombatantFull({
+        npcNameId: ['5626', '6724', '6056'],
+        npcBaseId: ['7399', '7400', '7401'],
+      }),
       infoText: (_data, matches, output) => output.kill!({ name: matches.name }),
       outputStrings: {
         kill: {

@@ -13,13 +13,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aitiascope Livia Frustration',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6448', source: 'Livia the Undeterred', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '6448',
+        source: 'Livia the Undeterred',
+        capture: false,
+      }),
       response: Responses.aoe(),
     },
     {
       id: 'Aitiascope Livia Aglaea Climb NE/SW',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6442', source: 'Livia the Undeterred', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '6442',
+        source: 'Livia the Undeterred',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -35,7 +43,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aitiascope Livia Aglaea Climb NW/SE',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6443', source: 'Livia the Undeterred', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '6443',
+        source: 'Livia the Undeterred',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -63,13 +75,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aitiascope Rhitahtyn Tartarean Impact',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6455', source: 'Rhitahtyn the Unshakable', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '6455',
+        source: 'Rhitahtyn the Unshakable',
+        capture: false,
+      }),
       response: Responses.aoe(),
     },
     {
       id: 'Aitiascope Rhitahtyn Shield Skewer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6450', source: 'Rhitahtyn the Unshakable', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '6450',
+        source: 'Rhitahtyn the Unshakable',
+        capture: false,
+      }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -85,7 +105,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aitiascope Rhitahtyn Shrapnel Shell',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6452', source: 'Rhitahtyn the Unshakable', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '6452',
+        source: 'Rhitahtyn the Unshakable',
+        capture: false,
+      }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

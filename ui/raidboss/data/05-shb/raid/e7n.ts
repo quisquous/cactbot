@@ -16,7 +16,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7N Empty Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C52', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: 'The Idol Of Darkness',
+        id: '4C52',
+        capture: false,
+      }),
       response: Responses.aoe(),
     },
     {
@@ -175,7 +179,11 @@ const triggerSet: TriggerSet<Data> = {
       // Safety in case the user dies during Dark/Light Course.
       id: 'E7N Away With Thee Color Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C39', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: 'The Idol Of Darkness',
+        id: '4C39',
+        capture: false,
+      }),
       run: (data) => delete data.colorCount,
     },
   ],

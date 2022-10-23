@@ -104,7 +104,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shinryu Normal Hypernova',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: 'Right Wing', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['1F99', '1F9A'],
+        source: 'Right Wing',
+        capture: false,
+      }),
       durationSeconds: 7,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

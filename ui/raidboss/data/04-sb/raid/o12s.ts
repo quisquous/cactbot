@@ -195,7 +195,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O12S Solar Ray Not You',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'], capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['3350', '3351'],
+        source: ['Omega', 'Omega-M'],
+        capture: false,
+      }),
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
@@ -210,7 +214,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O12S Shield Blades Setup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'], capture: false }),
+      netRegex: NetRegexes.ability({
+        id: ['3350', '3351'],
+        source: ['Omega', 'Omega-M'],
+        capture: false,
+      }),
       condition: (data) => data.role === 'tank' || data.job === 'BLU',
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
@@ -871,7 +879,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O12S Archive Peripheral',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ target: 'Right Arm Unit', id: ['009C', '009D'], capture: false }),
+      netRegex: NetRegexes.headMarker({
+        target: 'Right Arm Unit',
+        id: ['009C', '009D'],
+        capture: false,
+      }),
       condition: (data) => data.numArms === 3,
       alertText: (data, _matches, output) => {
         if (!data.armValue || !(data.armValue >= 0) || data.armValue > 7)

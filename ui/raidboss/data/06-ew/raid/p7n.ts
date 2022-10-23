@@ -152,7 +152,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7N Stymphalian Strike',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7803', source: 'Immature Stymphalide', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '7803',
+        source: 'Immature Stymphalide',
+        capture: false,
+      }),
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

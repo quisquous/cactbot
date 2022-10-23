@@ -120,7 +120,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Equal Concentration',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: ['Liquid Limb', 'Living Liquid'], id: 'F09', capture: false }),
+      netRegex: NetRegexes.ability({
+        source: ['Liquid Limb', 'Living Liquid'],
+        id: 'F09',
+        capture: false,
+      }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

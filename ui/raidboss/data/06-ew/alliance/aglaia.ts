@@ -92,13 +92,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Rhalgr\'s Emissary Destructive Static',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70E0', source: 'Rhalgr\'s Emissary', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '70E0',
+        source: 'Rhalgr\'s Emissary',
+        capture: false,
+      }),
       response: Responses.getBehind(),
     },
     {
       id: 'Aglaia Rhalgr\'s Emissary Bolts from the Blue',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70E3', source: 'Rhalgr\'s Emissary', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '70E3',
+        source: 'Rhalgr\'s Emissary',
+        capture: false,
+      }),
       response: Responses.aoe(),
     },
     {
@@ -250,7 +258,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Lions Double Immolation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7177', source: ['Lion of Aglaia', 'Lioness of Aglaia'], capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '7177',
+        source: ['Lion of Aglaia', 'Lioness of Aglaia'],
+        capture: false,
+      }),
       response: Responses.aoe(),
     },
     {
@@ -354,7 +366,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Nald\'thal As Above, So Below',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['70E8', '70E9'], source: 'Nald\'thal', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['70E8', '70E9'],
+        source: 'Nald\'thal',
+        capture: false,
+      }),
       response: Responses.aoe(),
     },
     {
@@ -511,7 +527,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 73BF = starts blue, swaps orange
       // 741D = starts orange, stays orange
-      netRegex: NetRegexes.startsUsing({ id: ['73BF', '741D'], source: 'Nald\'thal', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['73BF', '741D'],
+        source: 'Nald\'thal',
+        capture: false,
+      }),
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.naldLastColor = 'orange',
@@ -531,7 +551,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 73C0 = starts blue, stays blue
       // 741C = starts orange, swaps blue
-      netRegex: NetRegexes.startsUsing({ id: ['73C0', '741C'], source: 'Nald\'thal', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['73C0', '741C'],
+        source: 'Nald\'thal',
+        capture: false,
+      }),
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.naldLastColor = 'blue',
@@ -615,7 +639,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 73CA = start blue, stay blue
       // 73CC = start orange, swap blue
-      netRegex: NetRegexes.startsUsing({ id: ['73CA', '73CC'], source: 'Nald\'thal', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['73CA', '73CC'],
+        source: 'Nald\'thal',
+        capture: false,
+      }),
       durationSeconds: 6,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
@@ -654,7 +682,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 73CB = orange, unknown if swap
       // 741B = orange, unknown if swap
-      netRegex: NetRegexes.startsUsing({ id: ['73CB', '741B'], source: 'Nald\'thal', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['73CB', '741B'],
+        source: 'Nald\'thal',
+        capture: false,
+      }),
       durationSeconds: 6,
       // Use info here to not conflict with the 73AC line stack trigger.
       infoText: (data, _matches, output) => {

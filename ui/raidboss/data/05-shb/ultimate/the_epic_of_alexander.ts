@@ -709,7 +709,8 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => {
         // Here and elsewhere, it's probably best to check for whether the user is the target first,
         // as that should short-circuit more often.
-        return data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
+        return data.me === matches.target &&
+          (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
       preRun: (data, matches) => {
         const correctedMatch = getHeadmarkerId(data, matches);
@@ -769,7 +770,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Limit Cut Knockback',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)),
+      condition: (data, matches) =>
+        data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)),
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: (data) => data.limitCutDelay !== undefined ? data.limitCutDelay - 5 : 0,
       alertText: (data, matches, output) => {
@@ -879,7 +881,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Ice Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0043',
+      condition: (data, matches) =>
+        data.me === matches.target && getHeadmarkerId(data, matches) === '0043',
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -914,7 +917,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Enumeration YOU',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0041',
+      condition: (data, matches) =>
+        data.me === matches.target && getHeadmarkerId(data, matches) === '0041',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1377,7 +1381,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Judgment Crystal',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0060',
+      condition: (data, matches) =>
+        data.me === matches.target && getHeadmarkerId(data, matches) === '0060',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

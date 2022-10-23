@@ -72,7 +72,10 @@ const triggerSet: TriggerSet<Data> = {
       durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,
       alertText: (data, _matches, output) => {
         if (data.crystallize)
-          return output.combo!({ first: output.intercards!(), second: output[data.crystallize]!() });
+          return output.combo!({
+            first: output.intercards!(),
+            second: output[data.crystallize]!(),
+          });
         return output.intercards!();
       },
       run: (data) => delete data.crystallize,
@@ -169,7 +172,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HydaelynEx Marker Anthelion',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8E1', source: 'Hydaelyn', count: '1B5', capture: false }),
+      netRegex: NetRegexes.gainsEffect({
+        effectId: '8E1',
+        source: 'Hydaelyn',
+        count: '1B5',
+        capture: false,
+      }),
       // Example timeline:
       //     t=0 StartsCasting Crystallize
       //     t=4 ActionEffect Crystalize
@@ -200,7 +208,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HydaelynEx Marker Highest Holy',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8E1', source: 'Hydaelyn', count: '1B4', capture: false }),
+      netRegex: NetRegexes.gainsEffect({
+        effectId: '8E1',
+        source: 'Hydaelyn',
+        count: '1B4',
+        capture: false,
+      }),
       delaySeconds: 2.5,
       durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,
       alertText: (data, _matches, output) => {
@@ -217,7 +230,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HydaelynEx Aureole',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6C91', '6F11'], source: 'Hydaelyn', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['6C91', '6F11'],
+        source: 'Hydaelyn',
+        capture: false,
+      }),
       // Late in the fight there is a Crystallize -> Aureole combo.
       alertText: (data, _matches, output) => {
         if (data.crystallize)
@@ -233,7 +250,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HydaelynEx Lateral Aureole',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['65C5', '6F13'], source: 'Hydaelyn', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['65C5', '6F13'],
+        source: 'Hydaelyn',
+        capture: false,
+      }),
       alertText: (data, _matches, output) => {
         if (data.crystallize)
           return output.combo!({ first: output.frontBack!(), second: output[data.crystallize]!() });

@@ -88,7 +88,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Aegis Beam Cannons',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '813P-Operated Aegis Unit', id: '5073', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: '813P-Operated Aegis Unit',
+        id: '5073',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -121,7 +125,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Aegis Refraction Cannons 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '813P-Operated Aegis Unit', id: '5080', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: '813P-Operated Aegis Unit',
+        id: '5080',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -137,7 +145,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Aegis Refraction Cannons 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '813P-Operated Aegis Unit', id: '507F', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: '813P-Operated Aegis Unit',
+        id: '507F',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -154,13 +166,21 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Puppet Aegis High-Powered Laser',
       type: 'StartsUsing',
       // This is also head marker 003E, but since there's three stacks, just say "stack".
-      netRegex: NetRegexes.startsUsing({ source: '813P-Operated Aegis Unit', id: '508F', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: '813P-Operated Aegis Unit',
+        id: '508F',
+        capture: false,
+      }),
       response: Responses.stackMarker(),
     },
     {
       id: 'Puppet Aegis Life\'s Last Song',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '813P-Operated Aegis Unit', id: '53B3', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: '813P-Operated Aegis Unit',
+        id: '53B3',
+        capture: false,
+      }),
       // This is more a "if you haven't done this ever or in a while, here's a reminder."
       // Tell it once, but as this repeats nearly continously forever, only say it once.
       suppressSeconds: 9999,
@@ -215,7 +235,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Light Maneuver Martial Arm Healer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Light Artillery Unit', id: '5213', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: 'Light Artillery Unit',
+        id: '5213',
+        capture: false,
+      }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
@@ -412,13 +436,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Heavy Volt Array',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '5006', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: '905P-Operated Heavy Artillery Unit',
+        id: '5006',
+        capture: false,
+      }),
       response: Responses.aoe(),
     },
     {
       id: 'Puppet Heavy Active Laser Turret Initial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '4FED', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: '905P-Operated Heavy Artillery Unit',
+        id: '4FED',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -434,7 +466,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Heavy Active Laser Turret Move',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '5086', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: '905P-Operated Heavy Artillery Unit',
+        id: '5086',
+        capture: false,
+      }),
       delaySeconds: 5.3,
       suppressSeconds: 5,
       response: Responses.moveAway(),
@@ -459,14 +495,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Heavy Revolving Laser',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '5000', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: '905P-Operated Heavy Artillery Unit',
+        id: '5000',
+        capture: false,
+      }),
       response: Responses.getIn(),
     },
     {
       id: 'Puppet Heavy High-Powered Laser',
       type: 'StartsUsing',
       // There's only one starts using, but it targets all the tanks sequentially.
-      netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '5001' }),
+      netRegex: NetRegexes.startsUsing({
+        source: '905P-Operated Heavy Artillery Unit',
+        id: '5001',
+      }),
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -496,7 +539,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Heavy Support Pod',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '4FE9', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: '905P-Operated Heavy Artillery Unit',
+        id: '4FE9',
+        capture: false,
+      }),
       // This is approximately when the pods appear.
       delaySeconds: 6,
       alertText: (data, _matches, output) => {
@@ -532,7 +579,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Heavy Synthesize Compound',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '4FEC', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: '905P-Operated Heavy Artillery Unit',
+        id: '4FEC',
+        capture: false,
+      }),
       // TODO: should this say "towers"? or...something else to indicate variable people needed?
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -593,19 +644,31 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Compound 2P Prime Blade Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: ['541F', '5198'], capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: 'Compound 2P',
+        id: ['541F', '5198'],
+        capture: false,
+      }),
       response: Responses.getOut(),
     },
     {
       id: 'Puppet Compound 2P Prime Blade Behind',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: ['5420', '5199'], capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: 'Compound 2P',
+        id: ['5420', '5199'],
+        capture: false,
+      }),
       response: Responses.getBehind(),
     },
     {
       id: 'Puppet Compound 2P Prime Blade In',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: ['5421', '519A'], capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: 'Compound 2P',
+        id: ['5421', '519A'],
+        capture: false,
+      }),
       response: Responses.getIn(),
     },
     {
@@ -885,9 +948,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
-        '724P-Operated Superior Flight Unit \\(A-Lpha\\)': '724P : avec module de vol renforcé [A-lpha]',
-        '767P-Operated Superior Flight Unit \\(B-Eta\\)': '767P : avec module de vol renforcé [B-êta]',
-        '772P-Operated Superior Flight Unit \\(C-Hi\\)': '772P : avec module de vol renforcé [C-hi]',
+        '724P-Operated Superior Flight Unit \\(A-Lpha\\)':
+          '724P : avec module de vol renforcé [A-lpha]',
+        '767P-Operated Superior Flight Unit \\(B-Eta\\)':
+          '767P : avec module de vol renforcé [B-êta]',
+        '772P-Operated Superior Flight Unit \\(C-Hi\\)':
+          '772P : avec module de vol renforcé [C-hi]',
         '813P-Operated Aegis Unit': '813P : avec unité rempart',
         '905P-Operated Heavy Artillery Unit': '905P : avec unité terrestre lourde',
         'Compound 2P': '2P : amalgame',

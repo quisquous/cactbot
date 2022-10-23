@@ -54,7 +54,12 @@ const triggerSet: TriggerSet<Data> = {
       // lightning attached to it.
       id: 'SusEx Thundercloud Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2041', source: 'Thunderhead', target: 'Thunderhead', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '2041',
+        source: 'Thunderhead',
+        target: 'Thunderhead',
+        capture: false,
+      }),
       run: (data) => data.cloud = false,
     },
     {

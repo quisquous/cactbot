@@ -74,26 +74,42 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Heroes Gauntlet Chaos Storm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4F60', source: 'Spectral Necromancer', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '4F60',
+        source: 'Spectral Necromancer',
+        capture: false,
+      }),
       response: Responses.aoe(),
     },
     {
       id: 'Heroes Gauntlet Beastly Fury',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '520C', source: 'Spectral Berserker', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '520C',
+        source: 'Spectral Berserker',
+        capture: false,
+      }),
       response: Responses.aoe(),
     },
     {
       // Both two and three uses of Slice can happen.
       id: 'Heroes Gauntlet Raging Slice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['520A', '520B'], source: 'Spectral Berserker', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['520A', '520B'],
+        source: 'Spectral Berserker',
+        capture: false,
+      }),
       response: Responses.awayFromFront(),
     },
     {
       id: 'Heroes Gauntlet Wild Rampage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5206', source: 'Spectral Berserker', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '5206',
+        source: 'Spectral Berserker',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -109,7 +125,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Heroes Gauntlet Wild Rage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['5202', '5203', '5204'], source: 'Spectral Berserker', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['5202', '5203', '5204'],
+        source: 'Spectral Berserker',
+        capture: false,
+      }),
       suppressSeconds: 5,
       response: Responses.knockback(),
     },

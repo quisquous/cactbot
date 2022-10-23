@@ -81,7 +81,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Gulg Typhoon Wing 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D0[12]', source: 'Forgiven Cruelty', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '3D0[12]',
+        source: 'Forgiven Cruelty',
+        capture: false,
+      }),
       suppressSeconds: 5,
       response: Responses.outOfMelee(),
     },
@@ -129,7 +133,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Gulg Orison Fortissimo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D14', source: 'Forgiven Obscenity', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '3D14',
+        source: 'Forgiven Obscenity',
+        capture: false,
+      }),
       response: Responses.aoe(),
     },
     {
@@ -142,7 +150,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Gulg Divine Diminuendo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D18', source: 'Forgiven Obscenity', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '3D18',
+        source: 'Forgiven Obscenity',
+        capture: false,
+      }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -158,7 +170,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Gulg Conviction Marcato',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D1A', source: 'Forgiven Obscenity', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '3D1A',
+        source: 'Forgiven Obscenity',
+        capture: false,
+      }),
       response: Responses.getBehind('info'),
     },
   ],

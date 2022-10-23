@@ -140,7 +140,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sohm Al Hard Deadly Thrust',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['Lava Scorpion', 'The Scorpion\'s Tail'] }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['1C40', '1C48'],
+        source: ['Lava Scorpion', 'The Scorpion\'s Tail'],
+      }),
       response: Responses.tankBuster(),
     },
     {

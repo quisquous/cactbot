@@ -20,7 +20,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Wanderer\'s Palace Hard Doom',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
-      alertText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      alertText: (data, matches, output) =>
+        output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Heal ${player} to full',

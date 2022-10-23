@@ -26,7 +26,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Swipe Servo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2AE5', source: 'Servomechanical Minotaur', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '2AE5',
+        source: 'Servomechanical Minotaur',
+        capture: false,
+      }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -42,7 +46,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Swipe Bio',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '29A2', source: 'Biomanufactured Minotaur', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '29A2',
+        source: 'Biomanufactured Minotaur',
+        capture: false,
+      }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -58,7 +66,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Swing Servo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2AE4', source: 'Servomechanical Minotaur', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '2AE4',
+        source: 'Servomechanical Minotaur',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -74,7 +86,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Swing Bio',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '29A1', source: 'Biomanufactured Minotaur', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '29A1',
+        source: 'Biomanufactured Minotaur',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -90,7 +106,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Dragon Voice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '861', source: 'Servomechanical Chimera', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '861',
+        source: 'Servomechanical Chimera',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -106,7 +126,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Ram Voice Servo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '860', source: 'Servomechanical Chimera', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '860',
+        source: 'Servomechanical Chimera',
+        capture: false,
+      }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -150,13 +174,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Citadel Buster Warrior',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2792', source: 'The Ultima Warrior', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '2792',
+        source: 'The Ultima Warrior',
+        capture: false,
+      }),
       response: Responses.awayFromFront(),
     },
     {
       id: 'Fractal Hard Ceruleum Vent',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2794', source: 'The Ultima Warrior', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: '2794',
+        source: 'The Ultima Warrior',
+        capture: false,
+      }),
       response: Responses.knockback(),
     },
     {
@@ -265,13 +297,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Death Spin',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['27AD', '27AE'], source: 'The Ultima Beast', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['27AD', '27AE'],
+        source: 'The Ultima Beast',
+        capture: false,
+      }),
       response: Responses.outOfMelee(),
     },
     {
       id: 'Fractal Hard Aether Bend',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['27AF', '27B0'], source: 'The Ultima Beast', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['27AF', '27B0'],
+        source: 'The Ultima Beast',
+        capture: false,
+      }),
       response: Responses.getIn(),
     },
     {
@@ -305,7 +345,8 @@ const triggerSet: TriggerSet<Data> = {
         'The Ultima Beast': 'ultimativ(?:e|er|es|en) Bestie',
         'The Ultima Warrior': 'ultimativ(?:e|er|es|en) Krieger',
         'The reality augmentation bay': 'Dilatationskammer',
-        'This humanoid prototype can perfectly replicate': 'Als Referenz wurde die Kraft der Ikonen herangezogen',
+        'This humanoid prototype can perfectly replicate':
+          'Als Referenz wurde die Kraft der Ikonen herangezogen',
         'Utilizing our data on Sophia': 'Nun folgt die Emulierung von Sophia',
         'Vocal Guidance System': 'Stimmleitsystem',
         'Servomechanical Minotaur': 'servomechanisch(?:e|er|es|en) Minotaurus',
@@ -349,8 +390,10 @@ const triggerSet: TriggerSet<Data> = {
         'The Ultima Beast': 'Ultima-monstre',
         'The Ultima Warrior': 'Ultima-guerrier',
         'The reality augmentation bay': 'Salle de distorsion de la réalité',
-        'This humanoid prototype can perfectly replicate': 'Ce modèle exceptionnel est basé sur les non moins exceptionnelles divinités guerrières',
-        'Utilizing our data on Sophia': 'Quoi de mieux pour dominer les divinités guerrières que de retourner leur puissance contre elles?♪',
+        'This humanoid prototype can perfectly replicate':
+          'Ce modèle exceptionnel est basé sur les non moins exceptionnelles divinités guerrières',
+        'Utilizing our data on Sophia':
+          'Quoi de mieux pour dominer les divinités guerrières que de retourner leur puissance contre elles?♪',
         'Vocal Guidance System': 'système de guidage vocal',
         'Servomechanical Minotaur': 'minotaure servomécanique',
         'Servomechanical Chimera': 'chimère servomécanique',

@@ -241,7 +241,11 @@ const triggerSet: TriggerSet<Data> = {
           if (numRight === 3 && numLeft === 2)
             return output.left!();
 
-          console.error(`Titan Bury: bad counts: ${JSON.stringify(data.titanBury)}, ${idx}, ${numLeft}, ${numRight}`);
+          console.error(
+            `Titan Bury: bad counts: ${
+              JSON.stringify(data.titanBury)
+            }, ${idx}, ${numLeft}, ${numRight}`,
+          );
           return;
         }
 
@@ -325,7 +329,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Gaol Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
+      netRegex: NetRegexes.ability({
+        id: ['2B6C', '2B6B'],
+        source: ['Garuda', 'Titan'],
+        capture: false,
+      }),
       delaySeconds: 15,
       run: (data) => delete data.titanGaols,
     },
@@ -453,7 +461,8 @@ const triggerSet: TriggerSet<Data> = {
         'Bomb Boulder': 'Bomber-Brocken',
         'Chirada': 'Chirada',
         'Garuda': 'Garuda',
-        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'Nun, ihr Würmer! Ihr wollt die Macht des Windes spüren?',
+        'Heehee HAHA hahaha HEEHEE haha HEEEEEE':
+          'Nun, ihr Würmer! Ihr wollt die Macht des Windes spüren?',
         'Ifrit': 'Ifrit',
         'Lahabrea': 'Lahabrea',
         'Spiny Plume': 'dornig(?:e|er|es|en) Federsturm',

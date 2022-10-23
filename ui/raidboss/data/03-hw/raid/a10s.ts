@@ -139,13 +139,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Charge 1',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A9[789]', capture: false }),
+      netRegex: NetRegexes.ability({
+        source: 'Lamebrix Strikebocks',
+        id: '1A9[789]',
+        capture: false,
+      }),
       run: (data) => data.charges.shift(),
     },
     {
       id: 'A10S Charge Double Triple',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A9[ABCE]', capture: false }),
+      netRegex: NetRegexes.ability({
+        source: 'Lamebrix Strikebocks',
+        id: '1A9[ABCE]',
+        capture: false,
+      }),
       suppressSeconds: 0.5,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
@@ -162,7 +170,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Charge Clear',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A9[789]', capture: false }),
+      netRegex: NetRegexes.ability({
+        source: 'Lamebrix Strikebocks',
+        id: '1A9[789]',
+        capture: false,
+      }),
       delaySeconds: 10,
       run: (data) => {
         // Cleanup just in case.
@@ -216,7 +228,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Gobsnick Leghops',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Lamebrix Strikebocks', id: '1AA4', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: 'Lamebrix Strikebocks',
+        id: '1AA4',
+        capture: false,
+      }),
       response: Responses.stopEverything(),
     },
     {
@@ -277,7 +293,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Gobslice Mooncrops',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Lamebrix Strikebocks', id: '1A92', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: 'Lamebrix Strikebocks',
+        id: '1A92',
+        capture: false,
+      }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -293,7 +313,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Gobslice Mooncrops Cast',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Lamebrix Strikebocks', id: '1A8F', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        source: 'Lamebrix Strikebocks',
+        id: '1A8F',
+        capture: false,
+      }),
       response: Responses.getOut('info'),
     },
     {
