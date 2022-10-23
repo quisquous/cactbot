@@ -58,9 +58,7 @@ const testTriggerFile = (file: string) => {
   });
 
   // Dummy test so that failures in before show up with better text.
-  it('should load properly', () => {
-    /* noop */
-  });
+  it('should load properly', () => {/* noop */});
 
   it('should not use Regexes', () => {
     const regexes = /(?:(?:regex)(?:|Cn|De|Fr|Ko|Ja)\w*\s*:\w*\s*Regexes\.)/g;
