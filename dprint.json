@@ -7,7 +7,6 @@
   "excludes": [
     "**/node_modules",
     "**/ui/raidboss/data",
-    "**/ui/dps",
     "**/ui/oopsyraidsy/data",
     "**/*-lock.json"
   ],

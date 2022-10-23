@@ -1,5 +1,5 @@
-import { LocaleNetRegex } from '../../../resources/translations';
 import NetRegexes from '../../../resources/netregexes';
+import { LocaleNetRegex } from '../../../resources/translations';
 
 const kTestPhaseStart = NetRegexes.gameLog({ line: '.*?cactbot phase start.*?', capture: false });
 const kTestPhaseEnd = NetRegexes.gameLog({ line: '.*?cactbot phase end.*?', capture: false });

@@ -1,8 +1,8 @@
 import { addOverlayListener } from '../../../resources/overlay_plugin_api';
 
-import DpsPhaseTracker from './dps_phase_tracker';
-import { defaultOptions, InitDpsModule } from '../dps_common';
 import UserConfig from '../../../resources/user_config';
+import { defaultOptions, InitDpsModule } from '../dps_common';
+import DpsPhaseTracker from './dps_phase_tracker';
 
 import '../../../resources/defaults.css';
 import './xephero.css';
