@@ -9,7 +9,7 @@ import {
 import { TimelineReplacement } from '../ui/raidboss/timeline_parser';
 
 import { Lang } from './languages';
-import NetRegexes, { KeysThatRequireTranslation, keysThatRequireTranslation } from './netregexes';
+import NetRegexes, { keysThatRequireTranslation } from './netregexes';
 import Regexes from './regexes';
 
 // Fill in LocaleRegex so that things like LocaleRegex.countdownStart.de is a valid regex.
