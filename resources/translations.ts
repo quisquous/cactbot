@@ -273,45 +273,37 @@ export const translateText = (
   replacements?: TimelineReplacement[],
 ): string => translateWithReplacements(text, 'replaceText', replaceLang, replacements).text;
 
-// Translates a timeline or trigger regex for a given language.
+// Translates timeline or trigger regex params for a given language.
 export const translateRegexBuildParam = <T extends TriggerTypes>(
-  param: NetParams[T],
+  params: NetParams[T],
   replaceLang: Lang,
   replacements?: TimelineReplacement[],
 ): NetParams[T] => {
-  if (needTranslateParam(param)) {
-    for (const key of (keysThatRequireTranslation as KeysThatRequireTranslation[])) {
-      if (key in param)
-        param[key] = translateField(param[key], replaceLang, replacements);
+  type AnonymousParams = { [name: string]: string | string[] | boolean | undefined };
+  const anonParams: AnonymousParams = params;
+  for (const key of keysThatRequireTranslation) {
+    const value = anonParams[key];
+    if (typeof value === 'boolean' || value === undefined)
+      continue;
+    // TODO: ideally, it'd be nice to assign directly back to params[key] instead of
+    // cheating and assigning back through anonParams.  The reason this is mostly
+    // ok is that if params[key] is a string it only gets assigned a string,
+    // and if it is a string[] it only gets assigned a string[], so the type can't
+    // change.  It might be possible to assign to params[key] if we make
+    // timestamp a string | string[]?
+    if (typeof value === 'string') {
+      anonParams[key] = translateWithReplacements(
+        value,
+        'replaceSync',
+        replaceLang,
+        replacements,
+      ).text;
+    } else {
+      anonParams[key] = value.map((x) => {
+        return translateWithReplacements(x, 'replaceSync', replaceLang, replacements).text;
+      });
     }
-
-    return param;
   }
 
-  return param;
-};
-
-export const needTranslateParam = <T extends TriggerTypes>(
-  param: NetParams[T],
-): param is { [keys in KeysThatRequireTranslation]?: string | undefined | string[] } => {
-  for (const key of Object.keys(param)) {
-    if (keysThatRequireTranslation.includes(key))
-      return true;
-  }
-
-  return false;
-};
-
-const translateField = (
-  v: string | string[] | undefined,
-  replaceLang: Lang,
-  replacements?: TimelineReplacement[],
-): string | string[] | undefined => {
-  if (v === undefined)
-    return undefined;
-
-  if (typeof v === 'string')
-    return translateWithReplacements(v, 'replaceSync', replaceLang, replacements).text;
-
-  return v.map((x) => translateWithReplacements(x, 'replaceSync', replaceLang, replacements).text);
+  return params;
 };
