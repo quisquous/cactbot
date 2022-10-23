@@ -9,7 +9,8 @@
     "quoteStyle": "alwaysSingle",
     "useBraces": "maintain",
     "variableStatement.preferHanging": true,
-    "arguments.preferHanging": true,
+    "objectPattern.preferSingleLine": true,
+    "arrowFunction.useParentheses": "force",
     "conditionalExpression.operatorPosition": "nextLine"
   }
 }
