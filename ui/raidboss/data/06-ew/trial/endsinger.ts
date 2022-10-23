@@ -58,11 +58,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Endsinger Doomed Stars AoE',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['662E', '6634'],
-        source: 'Doomed Stars',
-        capture: true,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['662E', '6634'], source: 'Doomed Stars', capture: true }),
       delaySeconds: 0.5,
       promise: async (data, matches) => {
         const starData = await callOverlayHandler({
@@ -85,11 +81,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Endsinger Elegeia',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['662C', '6682'],
-        source: 'The Endsinger',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['662C', '6682'], source: 'The Endsinger', capture: false }),
       response: Responses.aoe(),
     },
     {

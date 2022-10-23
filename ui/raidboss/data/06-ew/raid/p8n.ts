@@ -200,11 +200,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8N Volcanic Torches Cleanup',
       type: 'StartsUsing',
       // This always precedes 78F8 Torch Flame casts.
-      netRegex: NetRegexes.startsUsing({
-        id: ['78F7', '71DE'],
-        source: 'Hephaistos',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['78F7', '71DE'], source: 'Hephaistos', capture: false }),
       run: (data) => data.torches = [],
     },
     {

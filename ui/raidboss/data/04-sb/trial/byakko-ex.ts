@@ -42,12 +42,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ByaEx Distant Clap',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '27DD',
-        source: 'Byakko',
-        target: 'Byakko',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -197,10 +192,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ByaEx Tiger Add',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
-        line: '[^:]*:Twofold is my wrath, twice-cursed my foes!.*?',
-        capture: false,
-      }),
+      netRegex: NetRegexes.dialog({ line: '[^:]*:Twofold is my wrath, twice-cursed my foes!.*?', capture: false }),
       condition: (data) => data.role === 'tank',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

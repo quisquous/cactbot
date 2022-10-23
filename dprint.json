@@ -6,22 +6,11 @@
   ],
   "excludes": [
     "**/node_modules",
+    "**/ui/raidboss/data",
+    "**/ui/oopsyraidsy/data",
     "**/*-lock.json"
   ],
-  "useTabs": false,
-  "indentWidth": 2,
-  "newLineKind": "crlf",
-  "typescript": {
-    "bracePosition": "maintain",
-    "nextControlFlowPosition": "sameLine",
-    "operatorPosition": "maintain",
-    "quoteStyle": "alwaysSingle",
-    "useBraces": "maintain",
-    "variableStatement.preferHanging": true,
-    "objectPattern.preferSingleLine": true,
-    "arrowFunction.useParentheses": "force",
-    "conditionalExpression.operatorPosition": "nextLine"
-  },
+  "extends": "./dprint.base.json",
   "lineWidth": 100,
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.75.0.wasm"

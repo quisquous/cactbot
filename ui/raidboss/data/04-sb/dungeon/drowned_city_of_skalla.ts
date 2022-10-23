@@ -70,11 +70,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Skalla Tail Drive',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '2663',
-        source: 'Hrodric Poisontongue',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '2663', source: 'Hrodric Poisontongue', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -90,11 +86,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Skalla The Spin',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '2664',
-        source: 'Hrodric Poisontongue',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '2664', source: 'Hrodric Poisontongue', capture: false }),
       response: Responses.getOut(),
     },
     {
@@ -141,21 +133,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Skalla Eye Of The Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '2665',
-        source: 'Hrodric Poisontongue',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '2665', source: 'Hrodric Poisontongue', capture: false }),
       response: Responses.lookAway(),
     },
     {
       id: 'Skalla Words Of Woe',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '2662',
-        source: 'Hrodric Poisontongue',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '2662', source: 'Hrodric Poisontongue', capture: false }),
       response: Responses.awayFromFront(),
     },
   ],

@@ -69,12 +69,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '4BB7', ...playerDamageFields }),
       condition: (data, matches) => !data.hasOrb || !data.hasOrb[matches.target],
       mistake: (_data, matches) => {
-        return {
-          type: 'fail',
-          blame: matches.target,
-          reportId: matches.targetId,
-          text: noOrb(matches.ability),
-        };
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: noOrb(matches.ability) };
       },
     },
     {
@@ -83,12 +78,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '4BC3', ...playerDamageFields }),
       condition: (data, matches) => !data.hasOrb || !data.hasOrb[matches.target],
       mistake: (_data, matches) => {
-        return {
-          type: 'fail',
-          blame: matches.target,
-          reportId: matches.targetId,
-          text: noOrb(matches.ability),
-        };
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: noOrb(matches.ability) };
       },
     },
     {
@@ -97,12 +87,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '4BB2', ...playerDamageFields }),
       condition: (data, matches) => !data.hasOrb || !data.hasOrb[matches.target],
       mistake: (_data, matches) => {
-        return {
-          type: 'fail',
-          blame: matches.target,
-          reportId: matches.targetId,
-          text: noOrb(matches.ability),
-        };
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: noOrb(matches.ability) };
       },
     },
     {
@@ -119,12 +104,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return false;
       },
       mistake: (_data, matches) => {
-        return {
-          type: 'warn',
-          blame: matches.target,
-          reportId: matches.targetId,
-          text: matches.ability,
-        };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
     {

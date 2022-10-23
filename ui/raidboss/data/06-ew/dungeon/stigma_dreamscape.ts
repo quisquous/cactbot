@@ -201,11 +201,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dreamscape Rush',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '642D',
-        source: 'Proto-rocket Punch',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '642D', source: 'Proto-rocket Punch', capture: false }),
       suppressSeconds: 5, // All five Punches use it at the same time
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

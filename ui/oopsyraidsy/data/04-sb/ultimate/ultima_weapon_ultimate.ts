@@ -56,12 +56,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'EB' }),
       mistake: (_data, matches) => {
-        return {
-          type: 'warn',
-          blame: matches.target,
-          reportId: matches.targetId,
-          text: matches.effect,
-        };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.effect };
       },
     },
     {
@@ -72,12 +67,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '2B43', ...playerDamageFields }),
       suppressSeconds: 5,
       mistake: (_data, matches) => {
-        return {
-          type: 'fail',
-          blame: matches.target,
-          reportId: matches.targetId,
-          text: matches.source,
-        };
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.source };
       },
     },
   ],

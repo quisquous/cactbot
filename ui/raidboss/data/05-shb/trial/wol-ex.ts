@@ -302,11 +302,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'WOLEx Fatal Cleave / Blade Of Shadow',
       type: 'StartsUsing',
       // Either tank buster, but don't be too noisy
-      netRegex: NetRegexes.startsUsing({
-        source: ['Spectral Warrior', 'Spectral Dark Knight'],
-        id: '515[47]',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Spectral Warrior', 'Spectral Dark Knight'], id: '515[47]', capture: false }),
       suppressSeconds: 2,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -316,11 +312,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Berserk / Deep Darkside',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: ['Spectral Warrior', 'Spectral Dark Knight'],
-        id: '515[68]',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Spectral Warrior', 'Spectral Dark Knight'], id: '515[68]', capture: false }),
       condition: (data) => data.CanSilence(),
       suppressSeconds: 2,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -418,11 +410,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'WOLEx Summoner / Warrior',
       type: 'StartsUsing',
       // Imbued Fire/Ice tell.
-      netRegex: NetRegexes.startsUsing({
-        source: 'Warrior Of Light',
-        id: '4EF[34]',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4EF[34]', capture: false }),
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
       alertText: (_data, _matches, output) => output.text!(),
@@ -441,11 +429,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'WOLEx Spectral Bard / Dark Knight',
       type: 'StartsUsing',
       // To The Limit before Specter Of Light tell.
-      netRegex: NetRegexes.startsUsing({
-        source: 'Warrior Of Light',
-        id: '4F3[456]',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F3[456]', capture: false }),
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
       alertText: (_data, _matches, output) => output.text!(),
@@ -464,11 +448,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'WOLEx Spectral Ninja',
       type: 'StartsUsing',
       // Imbued Stone/Holy tell.
-      netRegex: NetRegexes.startsUsing({
-        source: 'Warrior Of Light',
-        id: '4EF[56]',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4EF[56]', capture: false }),
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
       alertText: (_data, _matches, output) => output.text!(),
@@ -495,11 +475,7 @@ const triggerSet: TriggerSet<Data> = {
       // Katon: San and Absolute Holy share markers
       id: 'WOLEx Spectral Ninja Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: ['Warrior Of Light', 'Spectral Ninja'],
-        id: '4EFD',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Warrior Of Light', 'Spectral Ninja'], id: '4EFD', capture: false }),
       delaySeconds: 30,
       run: (data) => delete data.ninja,
     },
@@ -508,11 +484,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // It's possible for this cast to originate from the Warrior of Light instead.
       // Allow for either so the callout isn't missed.
-      netRegex: NetRegexes.startsUsing({
-        source: ['Warrior Of Light', 'Spectral Ninja'],
-        id: '4EFD',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Warrior Of Light', 'Spectral Ninja'], id: '4EFD', capture: false }),
       delaySeconds: 7,
       response: Responses.knockback(),
     },
@@ -632,11 +604,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Quintuplecast Individual',
       type: 'Ability',
-      netRegex: NetRegexes.ability({
-        source: 'Warrior Of Light',
-        id: ['4EEF', '4EF0'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: ['4EEF', '4EF0'], capture: false }),
       durationSeconds: 3,
       alertText: (data, _matches, output) => {
         const next = data.quintuplecasts?.shift();

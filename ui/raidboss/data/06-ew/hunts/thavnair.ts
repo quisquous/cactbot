@@ -206,10 +206,7 @@ const triggerSet: TriggerSet<Data> = {
       // First arrow dir, then first arrow opposite, then second arrow dir, then second arrow opposite.
       // If it is Whiplick, then you do the reverse of the directions of the arrow images.
       // See: https://www.twitch.tv/asinametra/clip/ExquisiteNurturingPeanutBIRB-i4NMmHjZNjai5xP-
-      netRegex: NetRegexes.startsUsing({
-        id: ['6BE4', '6BE5', '6BE6', '6BE7'],
-        source: 'Sphatika',
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['6BE4', '6BE5', '6BE6', '6BE7'], source: 'Sphatika' }),
       run: (data, matches) => {
         const bearingMap: { [id: string]: Bearing[] } = {
           '6BE4': ['back', 'front', 'front', 'back'],
@@ -243,11 +240,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 6BE8 = Lickwhip Stance
       // 6BE9 = Whiplick Stance
-      netRegex: NetRegexes.startsUsing({
-        id: ['6BE8', '6BE9'],
-        source: 'Sphatika',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['6BE8', '6BE9'], source: 'Sphatika', capture: false }),
       durationSeconds: 10,
       sound: '',
       infoText: (data, _matches, output) => {
@@ -276,11 +269,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 6BE8 = Lickwhip Stance
       // 6BE9 = Whiplick Stance
-      netRegex: NetRegexes.startsUsing({
-        id: ['6BE8', '6BE9'],
-        source: 'Sphatika',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['6BE8', '6BE9'], source: 'Sphatika', capture: false }),
       alertText: (data, _matches, output) => {
         const key = data.sphatikaBearing.shift();
         if (key === undefined)
@@ -301,11 +290,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 6BEE, 6BEF, 6BF0, 6BF1, 6C43 = Hind Whip
       // 6BEA, 6BEB, 6BEC, 6BED, 6C42 = Long Lick
-      netRegex: NetRegexes.startsUsing({
-        id: ['6BE[A-F]', '6BF[01]', '6C4[23]'],
-        source: 'Sphatika',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['6BE[A-F]', '6BF[01]', '6C4[23]'], source: 'Sphatika', capture: false }),
       alertText: (data, _matches, output) => {
         const key = data.sphatikaBearing.shift();
         if (key === undefined)

@@ -67,11 +67,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2S Spoken Cataract',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['6817', '6811', '6812', '6813'],
-        source: 'Hippokampos',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['6817', '6811', '6812', '6813'], source: 'Hippokampos', capture: false }),
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.directions!(),
       outputStrings: {
@@ -88,11 +84,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2S Winged Cataract',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['6814', '6815', '6818', '6816'],
-        source: 'Hippokampos',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['6814', '6815', '6818', '6816'], source: 'Hippokampos', capture: false }),
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.directions!(),
       outputStrings: {

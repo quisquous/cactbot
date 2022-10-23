@@ -180,21 +180,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SophiaEX Divine Spark',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '19B6',
-        source: 'The Second Demiurge',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '19B6', source: 'The Second Demiurge', capture: false }),
       response: Responses.lookAway(),
     },
     {
       id: 'SophiaEX Gnostic Rant',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '19B8',
-        source: 'The Third Demiurge',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '19B8', source: 'The Third Demiurge', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

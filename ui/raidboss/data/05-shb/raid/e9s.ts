@@ -153,12 +153,7 @@ const convertBossHeadingToClonePosition = (boss: PluginCombatantState): PluginCo
   };
 };
 
-const calculateSummonSafeZone = (
-  boss: PluginCombatantState,
-  clone1: PluginCombatantState,
-  clone2: PluginCombatantState,
-  abilityId: string,
-): string => {
+const calculateSummonSafeZone = (boss: PluginCombatantState, clone1: PluginCombatantState, clone2: PluginCombatantState, abilityId: string): string => {
   // Convert coordinates to 8 cardinal / intercardinal positions:
   // N at 0, NE at 1, ... NW at 7
   const b = Math.round(4 - 4 * Math.atan2(boss.PosX - 100, boss.PosY - 100) / Math.PI);
@@ -216,11 +211,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S The Art Of Darkness Protean',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['5B45', '55FB'],
-        source: 'Cloud Of Darkness',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: 'Cloud Of Darkness', capture: false }),
       durationSeconds: (data) => data.phase === 'empty' ? 8 : 4,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: { text: artOfDarknessOutputStrings.protean },
@@ -228,11 +219,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S The Art Of Darkness Partner Stacks',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['5B46', '55FE'],
-        source: 'Cloud Of Darkness',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: 'Cloud Of Darkness', capture: false }),
       durationSeconds: (data) => data.phase === 'empty' ? 8 : 4,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: { text: artOfDarknessOutputStrings.stackWithPartner },
@@ -328,11 +315,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Anti-Air Phaser Unlimited List',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '561[23]',
-        source: 'Cloud Of Darkness',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
       preRun: (data) => {
         if (data.role === 'tank')
           data.phaserOutputs = ['out', 'tankSpread', 'sides'];
@@ -340,19 +323,14 @@ const triggerSet: TriggerSet<Data> = {
           data.phaserOutputs = ['out', 'healerStacks', 'sides'];
       },
       durationSeconds: 15,
-      infoText: (data, _matches, output) =>
-        data.phaserOutputs?.map((key) => output[key]!()).join(' -> '),
+      infoText: (data, _matches, output) => data.phaserOutputs?.map((key) => output[key]!()).join(' -> '),
       run: (data) => data.phaserOutputs?.shift(),
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Anti-Air Phaser Unlimited 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '561[23]',
-        source: 'Cloud Of Darkness',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
       delaySeconds: 7,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
@@ -364,11 +342,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Anti-Air Phaser Unlimited 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '561[23]',
-        source: 'Cloud Of Darkness',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
       delaySeconds: 12,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
@@ -380,11 +354,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Wide-Angle Phaser Unlimited List',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '560[DE]',
-        source: 'Cloud Of Darkness',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
       preRun: (data) => {
         if (data.role === 'tank')
           data.phaserOutputs = ['sides', 'tankLaser', 'out'];
@@ -392,19 +362,14 @@ const triggerSet: TriggerSet<Data> = {
           data.phaserOutputs = ['sides', 'healerStacks', 'out'];
       },
       durationSeconds: 15,
-      infoText: (data, _matches, output) =>
-        data.phaserOutputs?.map((key) => output[key]!()).join(' -> '),
+      infoText: (data, _matches, output) => data.phaserOutputs?.map((key) => output[key]!()).join(' -> '),
       run: (data) => data.phaserOutputs?.shift(),
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Wide-Angle Phaser Unlimited 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '560[DE]',
-        source: 'Cloud Of Darkness',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
       delaySeconds: 8,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
@@ -416,11 +381,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Wide-Angle Phaser Unlimited 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '560[DE]',
-        source: 'Cloud Of Darkness',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
       delaySeconds: 12,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
@@ -518,8 +479,7 @@ const triggerSet: TriggerSet<Data> = {
         const output = data.artOfDarknessIdMap[matches.id];
         return output === 'goRight' || output === 'goLeft';
       },
-      run: (data, matches) =>
-        data.artOfDarkness?.push(data.artOfDarknessIdMap?.[matches.id] ?? 'unknown'),
+      run: (data, matches) => data.artOfDarkness?.push(data.artOfDarknessIdMap?.[matches.id] ?? 'unknown'),
     },
     {
       // Fire the trigger on stack or protean since we want the callout as soon as possible.
@@ -532,8 +492,7 @@ const triggerSet: TriggerSet<Data> = {
         const output = data.artOfDarknessIdMap[matches.id];
         return output === 'stackWithPartner' || output === 'protean';
       },
-      preRun: (data, matches) =>
-        data.artOfDarkness?.push(data.artOfDarknessIdMap?.[matches.id] ?? 'unknown'),
+      preRun: (data, matches) => data.artOfDarkness?.push(data.artOfDarknessIdMap?.[matches.id] ?? 'unknown'),
       durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
       alertText: (data, _matches, output) => {
         // Perform the callout now, regardless if it's The Second or Third Art Of Darkness

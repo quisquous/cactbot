@@ -988,9 +988,7 @@ const triggerSet: TriggerSet<Data> = {
         if (!data.smallLions || data.smallLions.length === 0)
           return;
 
-        const lion = data.smallLions?.find((l) =>
-          l.id.toUpperCase() === matches.sourceId.toUpperCase()
-        );
+        const lion = data.smallLions?.find((l) => l.id.toUpperCase() === matches.sourceId.toUpperCase());
         if (!lion) {
           console.error('Unable to locate a valid lion.');
           return { alertText: output.lionTetherOnYou!() };
@@ -1015,11 +1013,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Oracle Shockwave Pulsar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Oracle Of Darkness',
-        id: '58F0',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58F0', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -1039,52 +1033,32 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Oracle Basic Relativity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Oracle Of Darkness',
-        id: '58E0',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E0', capture: false }),
       response: Responses.bigAoe(),
     },
     {
       id: 'E12S Oracle Intermediate Relativity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Oracle Of Darkness',
-        id: '58E1',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E1', capture: false }),
       response: Responses.bigAoe(),
     },
     {
       id: 'E12S Oracle Advanced Relativity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Oracle Of Darkness',
-        id: '58E2',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E2', capture: false }),
       response: Responses.bigAoe(),
     },
     {
       id: 'E12S Oracle Terminal Relativity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Oracle Of Darkness',
-        id: '58E3',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E3', capture: false }),
       response: Responses.bigAoe(),
     },
     {
       id: 'E12S Oracle Darkest Dance',
       type: 'StartsUsing',
       // Darkest and Somber Dance both.
-      netRegex: NetRegexes.startsUsing({
-        source: 'Oracle Of Darkness',
-        id: ['58BE', '58BD'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: ['58BE', '58BD'], capture: false }),
       infoText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.tankBait!();
@@ -1194,11 +1168,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Shell Crusher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Oracle Of Darkness',
-        id: '58C3',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
       response: Responses.getTogether(),
     },
     {
@@ -1317,9 +1287,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         // Sort effect ids descending by duration.
-        const sortedIds = unsortedIds.sort((a, b) =>
-          (data.debuffs?.[b] ?? 0) - (data.debuffs?.[a] ?? 0)
-        );
+        const sortedIds = unsortedIds.sort((a, b) => (data.debuffs?.[b] ?? 0) - (data.debuffs?.[a] ?? 0));
         const keys = sortedIds.map((effectId) => effectIdToOutputStringKey[effectId]);
 
         const [key0, key1, key2] = keys;

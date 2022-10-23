@@ -114,12 +114,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O4N Black Hole',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '24C8',
-        source: 'Exdeath',
-        target: 'Exdeath',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '24C8', source: 'Exdeath', target: 'Exdeath', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -135,12 +130,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O4N Vacuum Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '24B8',
-        source: 'Exdeath',
-        target: 'Exdeath',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '24B8', source: 'Exdeath', target: 'Exdeath', capture: false }),
       response: Responses.knockback(),
     },
     {

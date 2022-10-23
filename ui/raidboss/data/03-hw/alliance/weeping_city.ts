@@ -83,10 +83,7 @@ const triggerSet: TriggerSet<Data> = {
       // only when that boss is in progress.
       id: 'Weeping City HeadMarker Arachne',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
-        line: 'The Queen\'s Room will be sealed off.*?',
-        capture: false,
-      }),
+      netRegex: NetRegexes.message({ line: 'The Queen\'s Room will be sealed off.*?', capture: false }),
       run: (data) => data.arachneStarted = true,
     },
     {
@@ -101,10 +98,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City HeadMarker Calofisteri',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
-        line: 'The Tomb Of The Nullstone will be sealed off.*?',
-        capture: false,
-      }),
+      netRegex: NetRegexes.message({ line: 'The Tomb Of The Nullstone will be sealed off.*?', capture: false }),
       run: (data) => {
         data.ozmaStarted = false;
         data.calStarted = true;

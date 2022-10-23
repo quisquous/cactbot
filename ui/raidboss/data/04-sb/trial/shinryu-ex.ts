@@ -146,11 +146,7 @@ const triggerSet: TriggerSet<Data> = {
       // Probably the phase conditional could get removed if it did.
       id: 'ShinryuEx Hypernova',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['271F', '25E8'],
-        source: 'Right Wing',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: 'Right Wing', capture: false }),
       durationSeconds: 7,
       alertText: (data, _matches, output) => {
         if (data.phase === 3)
@@ -197,12 +193,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Levinbolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['25EA', '2720', '2725'],
-        source: 'Right Wing',
-        target: 'Right Wing',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Right Wing', target: 'Right Wing', capture: false }),
       durationSeconds: 7,
       alertText: (data, _matches, output) => {
         if (data.phase === 3)
@@ -232,12 +223,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Levinbolt Phase 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['25EA', '2720', '2725'],
-        source: 'Right Wing',
-        target: 'Right Wing',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Right Wing', target: 'Right Wing', capture: false }),
       condition: (data) => data.phase === 3,
       delaySeconds: 9.5,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -257,8 +243,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '25EF', source: 'Icicle' }),
       condition: (_data, matches) => {
-        return Math.round(parseFloat(matches.x)) === -30 &&
-          Math.round(parseFloat(matches.y)) === -15;
+        return Math.round(parseFloat(matches.x)) === -30 && Math.round(parseFloat(matches.y)) === -15;
       },
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -277,8 +262,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '25EF', source: 'Icicle' }),
       condition: (_data, matches) => {
-        return Math.round(parseFloat(matches.x)) === -30 &&
-          Math.round(parseFloat(matches.y)) === -25;
+        return Math.round(parseFloat(matches.x)) === -30 && Math.round(parseFloat(matches.y)) === -25;
       },
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -369,11 +353,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: can't find the id of this, so using all of them.
       id: 'ShinryuEx Divebomb',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['1FA8', '1FF4', '2603'],
-        source: 'Shinryu',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: 'Shinryu', capture: false }),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

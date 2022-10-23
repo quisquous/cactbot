@@ -129,18 +129,12 @@ const triggerSet: TriggerSet<Data> = {
           return output.farShacklesOn!({ far: data.ShortName(data.loneliness) });
         if (data.loneliness === data.me)
           return output.closeShacklesOn!({ close: data.ShortName(data.companionship) });
-        return output.shacklesOn!({
-          close: data.ShortName(data.companionship),
-          far: data.ShortName(data.loneliness),
-        });
+        return output.shacklesOn!({ close: data.ShortName(data.companionship), far: data.ShortName(data.loneliness) });
       },
       tts: (data, _matches, output) => {
         if (data.companionship === data.me || data.loneliness === data.me)
           return null;
-        return output.shacklesOn!({
-          close: data.ShortName(data.companionship),
-          far: data.ShortName(data.loneliness),
-        });
+        return output.shacklesOn!({ close: data.ShortName(data.companionship), far: data.ShortName(data.loneliness) });
       },
       run: (data) => {
         delete data.companionship;
@@ -189,26 +183,20 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P1S Gaoler\'s Flail Left => Right',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '65F6', source: 'Erichthonios', capture: false }),
-      alertText: (_data, _matches, output) =>
-        output.combo!({ first: output.l!(), second: output.r!() }),
+      alertText: (_data, _matches, output) => output.combo!({ first: output.l!(), second: output.r!() }),
       outputStrings: flailDirections,
     },
     {
       id: 'P1S Gaoler\'s Flail Right => Left',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '65F7', source: 'Erichthonios', capture: false }),
-      alertText: (_data, _matches, output) =>
-        output.combo!({ first: output.r!(), second: output.l!() }),
+      alertText: (_data, _matches, output) => output.combo!({ first: output.r!(), second: output.l!() }),
       outputStrings: flailDirections,
     },
     {
       id: 'P1S Gaoler\'s Flail Out => In',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['65F8', '65F9'],
-        source: 'Erichthonios',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['65F8', '65F9'], source: 'Erichthonios', capture: false }),
       alertText: (_data, _matches, output) => output.outThenIn!(),
       outputStrings: {
         outThenIn: Outputs.outThenIn,
@@ -217,11 +205,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Gaoler\'s Flail In => Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['65FA', '65FB'],
-        source: 'Erichthonios',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['65FA', '65FB'], source: 'Erichthonios', capture: false }),
       alertText: (_data, _matches, output) => output.inThenOut!(),
       outputStrings: {
         inThenOut: Outputs.inThenOut,

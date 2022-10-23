@@ -64,11 +64,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Empty Hate',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '3E46',
-        source: 'The Hand Of Erebos',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '3E46', source: 'The Hand Of Erebos', capture: false }),
       response: Responses.knockback('info'),
     },
     {

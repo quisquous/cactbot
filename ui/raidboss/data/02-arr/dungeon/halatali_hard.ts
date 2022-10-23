@@ -26,11 +26,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hataliti Hard Standstill',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '84F',
-        source: 'Mumuepo the Beholden',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '84F', source: 'Mumuepo the Beholden', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

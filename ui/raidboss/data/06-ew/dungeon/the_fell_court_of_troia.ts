@@ -14,11 +14,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Troia Evil Dreamer Dark Vision',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Evil Dreamer',
-        id: ['73BB', '73B8'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Evil Dreamer', id: ['73BB', '73B8'], capture: false }),
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

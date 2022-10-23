@@ -21,11 +21,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Strike Spark',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: ['Ifrit', 'Raktapaksa'],
-        id: '4BD3',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
       delaySeconds: 11,
       promise: async (data, _matches, output) => {
         const ifritLocaleNames = {
@@ -73,9 +69,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // we need to filter for the Ifrit with the highest ID
         // since that one is always the safe spot.
-        const currentHighestCombatant = combatantData.combatants.sort((a, b) =>
-          (a.ID ?? 0) - (b.ID ?? 0)
-        ).pop();
+        const currentHighestCombatant = combatantData.combatants.sort((a, b) => (a.ID ?? 0) - (b.ID ?? 0)).pop();
 
         // all variation ranges for all the 9 ball positions for the kicking actors
         // north      x: 96-104   y: 85-93
@@ -148,11 +142,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Ferostorm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: ['Garuda', 'Raktapaksa'],
-        id: ['4BF[EF]', '4C0[45]'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -204,22 +194,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Inferno Howl',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: ['Ifrit', 'Raktapaksa'],
-        id: '4C14',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false }),
       response: Responses.aoe(),
     },
     {
       // Save ability state since the generic tether used has multiple uses in this fight
       id: 'E6S Hands of Flame Start',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: ['Ifrit', 'Raktapaksa'],
-        id: '4D00',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
       preRun: (data) => data.handsOfFlame = true,
     },
     {
@@ -265,11 +247,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Meteor Strike',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: ['Ifrit', 'Raktapaksa'],
-        id: '4C0F',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false }),
       response: Responses.awayFromFront(),
     },
     {

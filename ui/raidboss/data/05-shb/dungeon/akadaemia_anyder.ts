@@ -84,11 +84,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Anyder Marine Mayhem',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '3E06',
-        source: ['Cladoselache', 'Doliodus'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '3E06', source: ['Cladoselache', 'Doliodus'], capture: false }),
       response: Responses.aoe(),
     },
     {

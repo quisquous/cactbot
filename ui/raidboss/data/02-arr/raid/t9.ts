@@ -436,8 +436,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 3,
       durationSeconds: 6,
       suppressSeconds: 20,
-      infoText: (data, _matches, output) =>
-        output.safeZone!({ dir: output[data.safeZone ?? 'unknown']!() }),
+      infoText: (data, _matches, output) => output.safeZone!({ dir: output[data.safeZone ?? 'unknown']!() }),
       outputStrings: {
         ...diveDirections,
         safeZone: {

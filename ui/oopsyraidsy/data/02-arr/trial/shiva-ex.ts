@@ -44,12 +44,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return parseFloat(matches.duration) > 20;
       },
       mistake: (_data, matches) => {
-        return {
-          type: 'fail',
-          blame: matches.target,
-          reportId: matches.targetId,
-          text: matches.effect,
-        };
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.effect };
       },
     },
   ],

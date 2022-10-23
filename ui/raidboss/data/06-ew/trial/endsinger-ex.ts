@@ -7,13 +7,7 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import {
-  Output,
-  OutputStrings,
-  TriggerField,
-  TriggerOutput,
-  TriggerSet,
-} from '../../../../../types/trigger';
+import { Output, OutputStrings, TriggerField, TriggerOutput, TriggerSet } from '../../../../../types/trigger';
 
 export type Mechanic = 'aoe' | 'donut' | 'safeN' | 'safeE' | 'safeS' | 'safeW' | 'unknown';
 
@@ -104,11 +98,7 @@ const getStarPositionFromHeading = (heading: string) => {
   }[dir] ?? [];
 };
 
-const getStarText: TriggerField<
-  Data,
-  NetMatches['Ability' | 'StartsUsing'],
-  TriggerOutput<Data, NetMatches['Ability' | 'StartsUsing']>
-> = (_data, matches, output) => {
+const getStarText: TriggerField<Data, NetMatches['Ability' | 'StartsUsing'], TriggerOutput<Data, NetMatches['Ability' | 'StartsUsing']>> = (_data, matches, output) => {
   let posX: number | undefined;
   let posY: number | undefined;
 
@@ -125,11 +115,7 @@ const getStarText: TriggerField<
   }
 
   if (posX === undefined || posY === undefined) {
-    console.error(
-      `EndsingerEx getStarText: Could not resolve star position from heading ${
-        parseFloat(matches.heading)
-      }`,
-    );
+    console.error(`EndsingerEx getStarText: Could not resolve star position from heading ${parseFloat(matches.heading)}`);
     return;
   }
 
@@ -217,11 +203,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Eironeia',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['702F', '7030'],
-        source: 'The Endsinger',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['702F', '7030'], source: 'The Endsinger', capture: false }),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.groups!(),
       outputStrings: {
@@ -345,11 +327,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx 5Head Mechanics Collector',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['6FFC', '7006', '7009', '700A'],
-        source: 'The Endsinger',
-        capture: true,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['6FFC', '7006', '7009', '700A'], source: 'The Endsinger', capture: true }),
       condition: (data) => data.headPhase === 5,
       // Do not need delaySeconds here, heads have been spawned for 5+ seconds
       promise: async (data, matches) => {
@@ -389,8 +367,7 @@ const triggerSet: TriggerSet<Data> = {
         } else {
           // Snap heading to closest card and add 2 for opposite direction
           // N = 0, E = 1, S = 2, W = 3
-          const cardinal = ((2 - Math.round(parseFloat(matches.heading) * 4 / Math.PI) / 2) + 2) %
-            4;
+          const cardinal = ((2 - Math.round(parseFloat(matches.heading) * 4 / Math.PI) / 2) + 2) % 4;
           const safeDir: { [dir: number]: Mechanic } = {
             0: 'safeN',
             1: 'safeE',
@@ -402,11 +379,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // If we have the same count of mechanics stored for all 5 heads, resolve safe spot
         const heads = Object.values(data.storedHeads);
-        if (
-          heads.length ===
-            heads.filter((h) => h.mechanics.length === head.mechanics.length).length &&
-          heads.length === 5
-        ) {
+        if (heads.length === heads.filter((h) => h.mechanics.length === head.mechanics.length).length && heads.length === 5) {
           const lastMechanic = head.mechanics.length - 1;
 
           const safeDirHead = heads.find((h) => h.mechanics[0]?.includes('safe'));

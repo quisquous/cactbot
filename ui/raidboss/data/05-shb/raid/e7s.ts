@@ -42,11 +42,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Empty Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Idol Of Darkness',
-        id: '4C8A',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C8A', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -58,11 +54,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Betwixt Worlds',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Idol Of Darkness',
-        id: '4CFD',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4CFD', capture: false }),
       run: (data) => data.phase = 'betwixtWorlds',
     },
     {
@@ -193,11 +185,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S False Midnight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Idol Of Darkness',
-        id: '4C99',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C99', capture: false }),
       run: (data) => data.phase = 'falseMidnight',
     },
     {
@@ -319,11 +307,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Empty Flood',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Idol Of Darkness',
-        id: '(?:4C8[BC]|4E5[56])',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
@@ -389,22 +373,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Boundless Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Unforgiven Idolatry',
-        id: '4C5[CD]',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]', capture: false }),
       delaySeconds: 20,
       run: (data) => delete data.boundless,
     },
     {
       id: 'E7S Words of Night',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Unforgiven Idolatry',
-        id: '(?:4C2C|4C65)',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '(?:4C2C|4C65)', capture: false }),
       alertText: (data, _matches, output) => {
         if (!data.color)
           return;
@@ -428,11 +404,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S False Dawn',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Idol Of Darkness',
-        id: '4C9A',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C9A', capture: false }),
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -449,11 +421,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Crusade',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Idol Of Darkness',
-        id: '4C76',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C76', capture: false }),
       // Can't use knockback prevention for this, so say where to get knocked back.
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -512,11 +480,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Threefold Grace',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Idol Of Darkness',
-        id: '4C7E',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C7E', capture: false }),
       alertText: (data, _matches, output) => {
         if (!data.color)
           return;

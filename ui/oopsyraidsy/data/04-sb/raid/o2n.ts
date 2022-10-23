@@ -27,12 +27,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // There's no point in notifying for that.
       suppressSeconds: 10,
       mistake: (_data, matches) => {
-        return {
-          type: 'warn',
-          blame: matches.target,
-          reportId: matches.targetId,
-          text: matches.effect,
-        };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.effect };
       },
     },
     {
@@ -42,12 +37,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // This deals damage only to non-floating targets.
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return {
-          type: 'warn',
-          blame: matches.target,
-          reportId: matches.targetId,
-          text: matches.ability,
-        };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
   ],

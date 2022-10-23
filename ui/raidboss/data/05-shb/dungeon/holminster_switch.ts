@@ -14,11 +14,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Holminster Path of Light',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '3DC5',
-        source: 'Forgiven Dissonance',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '3DC5', source: 'Forgiven Dissonance', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -36,21 +32,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Holminster Bridle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '3DD0',
-        source: 'Tesleen, The Forgiven',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '3DD0', source: 'Tesleen, The Forgiven', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Holminster Flagellation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '3DD5',
-        source: 'Tesleen, The Forgiven',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '3DD5', source: 'Tesleen, The Forgiven', capture: false }),
       response: Responses.spread(),
     },
     {

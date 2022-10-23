@@ -598,11 +598,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Ultima Ultimate Illusion Healer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '3895',
-        source: 'Ultima, The High Seraph',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '3895', source: 'Ultima, The High Seraph', capture: false }),
       condition: (data) => data.role === 'healer',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -619,11 +615,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Ultima Ultimate Illusion',
       type: 'Ability',
-      netRegex: NetRegexes.ability({
-        id: '3895',
-        source: 'Ultima, The High Seraph',
-        capture: false,
-      }),
+      netRegex: NetRegexes.ability({ id: '3895', source: 'Ultima, The High Seraph', capture: false }),
       condition: (data) => data.role !== 'healer',
       // zzz
       delaySeconds: 23.5,

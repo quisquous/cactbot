@@ -14,11 +14,13 @@
     "start": "webpack serve --config webpack/webpack.dev.ts",
     "fetch-deps": "ts-node ./util/fetch_deps.ts",
     "tsc-no-emit": "tsc --noEmit",
-    "lint": "run-s lint:*",
+    "lint": "run-s lint:**",
     "lint:dprint": "dprint check",
+    "lint:dprint:trigger": "dprint --config=dprint.trigger.json check",
     "lint:eslint": "eslint --max-warnings=0 ./",
-    "lintfix": "run-s lintfix:*",
+    "lintfix": "run-s lintfix:**",
     "lintfix:dprint": "dprint fmt",
+    "lintfix:dprint:trigger": "dprint --config=dprint.trigger.json fmt",
     "lintfix:eslint": "eslint --max-warnings=0 --fix ./",
     "stylelint": "stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "stylelintfix": "stylelint --fix resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
@@ -118,14 +120,22 @@
     }
   },
   "lint-staged": {
-    "*.{ts,js,cjs,mjs,json}": "dprint check",
     "*.css": "stylelint",
-    "*.{js,cjs,mjs}": "eslint --max-warnings=0",
-    "*.ts": "eslint --max-warnings=0 --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]'",
+    "*.{js,cjs,mjs}": [
+      "dprint check",
+      "eslint --max-warnings=0"
+    ],
+    "**/!(raidboss/data|oopsyraidsy/data)/*.ts": [
+      "dprint check"
+    ],
+    "*.ts": [
+      "eslint --max-warnings=0 --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]'"
+    ],
     "*.md": "markdownlint",
     "*.py": "python -m pylint --errors-only",
     "ui/(raidboss|oopsyraidsy)/data/**": [
-      "ts-node test/test_raidboss_data.ts"
+      "ts-node test/test_raidboss_data.ts",
+      "dprint --config=dprint.trigger.json check"
     ]
   },
   "dependencies": {

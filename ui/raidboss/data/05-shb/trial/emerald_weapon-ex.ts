@@ -64,21 +64,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Optimized Ultima',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: ['55B1', '5B10'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: ['55B1', '5B10'], capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'EmeraldEx Aetheroplasm Production',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: '55AA',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55AA', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -145,11 +137,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Aire Tam Storm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: ['558F', '55D0'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: ['558F', '55D0'], capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -164,11 +152,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Magitek Magnetism',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: '5594',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5594', capture: false }),
       delaySeconds: 9,
       durationSeconds: 6,
       alertText: (data, _matches, output) => {
@@ -192,11 +176,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Divide Et Impera P1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: '5537',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5537', capture: false }),
       alertText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.sharedTankStack!();
@@ -244,21 +224,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Expire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: '55[D9]1',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55[D9]1', capture: false }),
       response: Responses.getOut(),
     },
     {
       id: 'EmeraldEx Divide Et Impera P2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: '555B',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '555B', capture: false }),
       alertText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.sharedTankStack!();
@@ -333,11 +305,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Tertius Terminus Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: '55CC',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55CC', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => delete data.tertius,
       outputStrings: {
@@ -376,14 +344,7 @@ const triggerSet: TriggerSet<Data> = {
         // We know that the swords will land in all 4 corners plus twice in
         // the center areas. Predict the last two swords by removing the
         // ones we've already gotten.
-        const spawns: string[] = [
-          output.dirNE!(),
-          output.dirNW!(),
-          output.dirSE!(),
-          output.dirSW!(),
-          output.middle!(),
-          output.middle!(),
-        ];
+        const spawns: string[] = [output.dirNE!(), output.dirNW!(), output.dirSE!(), output.dirSW!(), output.middle!(), output.middle!()];
 
         const [s4, s5] = spawns.filter((x) => ![s0, s1, s2, s3].includes(x));
 
@@ -423,31 +384,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Sidescathe Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: '55D5',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D5', capture: false }),
       response: Responses.goLeft(),
     },
     {
       id: 'EmeraldEx Sidescathe Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: '55D4',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D4', capture: false }),
       response: Responses.goRight(),
     },
     {
       id: 'EmeraldEx Emerald Crusher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: '55D6',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D6', capture: false }),
       // Don't collide with Tertius Terminus Est alert, and this is important.
       response: Responses.knockback('alarm'),
     },
@@ -492,11 +441,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Full Rank',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Black Wolf\'s Image',
-        id: '55C0',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Black Wolf\'s Image', id: '55C0', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

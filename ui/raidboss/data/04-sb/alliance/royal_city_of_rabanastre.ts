@@ -17,11 +17,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Mateus Aqua Sphere',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '2633',
-        source: 'Mateus, The Corrupt',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '2633', source: 'Mateus, The Corrupt', capture: false }),
       delaySeconds: 11,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -71,11 +67,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Mateus Blizzard IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '263D',
-        source: 'Mateus, The Corrupt',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '263D', source: 'Mateus, The Corrupt', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -91,21 +83,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Hashmal Quake IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '25D8',
-        source: 'Hashmal, Bringer Of Order',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '25D8', source: 'Hashmal, Bringer Of Order', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Rab Hashmal Extreme Edge Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '25D0',
-        source: 'Hashmal, Bringer Of Order',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '25D0', source: 'Hashmal, Bringer Of Order', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -121,11 +105,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Hashmal Extreme Edge Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '25CE',
-        source: 'Hashmal, Bringer Of Order',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '25CE', source: 'Hashmal, Bringer Of Order', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -147,11 +127,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Hashmal Falling Boulder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '25D2',
-        source: 'Hashmal, Bringer Of Order',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '25D2', source: 'Hashmal, Bringer Of Order', capture: false }),
       // There's three of these, so just say stack.
       suppressSeconds: 1,
       response: Responses.stackMarker(),
@@ -166,11 +142,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Hashmal Earth Hammer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '25CB',
-        source: 'Hashmal, Bringer Of Order',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '25CB', source: 'Hashmal, Bringer Of Order', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -186,11 +158,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Hashmal Golems',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '25D4',
-        source: 'Hashmal, Bringer Of Order',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '25D4', source: 'Hashmal, Bringer Of Order', capture: false }),
       delaySeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -213,11 +181,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Trash Ram Voice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['D0F', '273B'],
-        source: 'Archaeolion',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: 'Archaeolion', capture: false }),
       response: Responses.getOut(),
     },
     {

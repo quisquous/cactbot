@@ -91,11 +91,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9N Wide-Angle Phaser',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['55DF', '55E[01]'],
-        source: 'Cloud Of Darkness',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['55DF', '55E[01]'], source: 'Cloud Of Darkness', capture: false }),
       durationSeconds: 5,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),

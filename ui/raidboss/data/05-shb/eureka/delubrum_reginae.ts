@@ -63,10 +63,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Seeker Mercy Swords',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({
-        target: ['Trinity Seeker', 'Seeker Avatar'],
-        effectId: '808',
-      }),
+      netRegex: NetRegexes.gainsEffect({ target: ['Trinity Seeker', 'Seeker Avatar'], effectId: '808' }),
       durationSeconds: 10,
       alertText: (data, matches, output) => {
         if (data.calledSeekerSwords)
@@ -876,10 +873,7 @@ const triggerSet: TriggerSet<Data> = {
       // 5970 = left cleave, cold+1
       id: 'Delubrum Avowed Hot And Cold Cleaves',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Trinity Avowed',
-        id: ['5B6[5-8]', '596[DEF]', '5970'],
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: ['5B6[5-8]', '596[DEF]', '5970'] }),
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -999,9 +993,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
         if (unseenData.combatants.length !== unseenIds.length) {
-          console.error(
-            `Gleaming Arrow: expected ${unseenIds.length}, got ${unseenData.combatants.length}`,
-          );
+          console.error(`Gleaming Arrow: expected ${unseenIds.length}, got ${unseenData.combatants.length}`);
           return;
         }
 

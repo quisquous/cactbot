@@ -209,11 +209,7 @@ const triggerSet: TriggerSet<Data> = {
       // Skip: 2773
       // Retrieve: 2774
       // Paste: 2776
-      netRegex: NetRegexes.startsUsing({
-        id: ['275C', '2773', '2774', '2776'],
-        source: 'Guardian',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Guardian', capture: false }),
       alertText: (data, _matches, output) => {
         data.loadCount = (data.loadCount ?? 0) + 1;
 

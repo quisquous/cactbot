@@ -135,7 +135,7 @@ const processAllFiles = async (root: string) => {
       await processFile(filename);
   });
 
-  await exec('npx dprint fmt ./dist/**/*.js');
+  await exec('npx dprint --config=dprint.trigger.json fmt ./dist/**/*.js');
 
   process.exit(0);
 };

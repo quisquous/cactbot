@@ -71,11 +71,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T5 Liquid Hell',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Scourge Of Meracydia',
-        id: '4DB',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Scourge Of Meracydia', id: '4DB', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

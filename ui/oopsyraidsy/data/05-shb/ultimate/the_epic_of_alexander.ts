@@ -129,12 +129,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '4827', ...playerDamageFields }),
       condition: (data, matches) => !data.party.isTank(matches.target),
       mistake: (_data, matches) => {
-        return {
-          type: 'fail',
-          name: matches.target,
-          reportId: matches.targetId,
-          text: matches.ability,
-        };
+        return { type: 'fail', name: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
     {
@@ -180,12 +175,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '482A', ...playerDamageFields }),
       suppressSeconds: 5,
       mistake: (_data, matches) => {
-        return {
-          type: 'fail',
-          blame: matches.target,
-          reportId: matches.targetId,
-          text: matches.source,
-        };
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.source };
       },
     },
   ],

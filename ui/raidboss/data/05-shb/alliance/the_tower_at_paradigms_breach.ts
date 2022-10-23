@@ -277,11 +277,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paradigm Hansel/Gretel Wail',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '5C7[67]',
-        source: ['Hansel', 'Gretel'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '5C7[67]', source: ['Hansel', 'Gretel'], capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -332,11 +328,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paradigm Hansel/Gretel Lamentation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '5C7[34]',
-        source: ['Hansel', 'Gretel'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '5C7[34]', source: ['Hansel', 'Gretel'], capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -444,11 +436,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paradigm Meng-Zi/Xun-Zi Universal Assault',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '5C06',
-        source: ['Meng-Zi', 'Xun-Zi'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '5C06', source: ['Meng-Zi', 'Xun-Zi'], capture: false }),
       suppressSeconds: 5,
       response: Responses.aoe(),
     },

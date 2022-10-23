@@ -109,10 +109,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Falling Asleep',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({
-        line: '7 minutes have elapsed since your last activity..*?',
-        capture: false,
-      }),
+      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
       response: Responses.wakeUp(),
     },
     {
@@ -321,11 +318,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Grave Blight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: '4th-Make Shemhazai',
-        id: '5E1E',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: '5E1E', capture: false }),
       condition: (data) => data.ce === 'grave',
       response: Responses.aoe(),
     },
@@ -369,10 +362,7 @@ const triggerSet: TriggerSet<Data> = {
       // 872 = About Face
       // 873 = Left Face
       // 874 = Right Face
-      netRegex: NetRegexes.gainsEffect({
-        source: '4th-Make Shemhazai',
-        effectId: ['871', '872', '873', '874'],
-      }),
+      netRegex: NetRegexes.gainsEffect({ source: '4th-Make Shemhazai', effectId: ['871', '872', '873', '874'] }),
       condition: (data, matches) => data.ce === 'grave' && data.me === matches.target,
       alertText: (_data, matches, output) => {
         const effectId = matches.effectId.toUpperCase();
@@ -970,21 +960,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Sartauvoir Pyrokinesis',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Sartauvoir The Inferno',
-        id: '5E7D',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E7D', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Sartauvoir Time Eruption',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Sartauvoir The Inferno',
-        id: ['5E6C', '5E83'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: ['5E6C', '5E83'], capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -999,11 +981,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Sartauvoir Reverse Time Eruption',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Sartauvoir The Inferno',
-        id: ['5E6D', '5E84'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: ['5E6D', '5E84'], capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1018,11 +996,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Sartauvoir Phenex',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Sartauvoir The Inferno',
-        id: ['5E72', '5E85'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: ['5E72', '5E85'], capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1037,11 +1011,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Sartauvoir Hyperpyroplexy',
       type: 'Ability',
-      netRegex: NetRegexes.ability({
-        source: 'Sartauvoir The Inferno',
-        id: '5E76',
-        capture: false,
-      }),
+      netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E76', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1099,11 +1069,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // Triggered after Burning Blade.
       // TODO: does this ever happen again??
-      netRegex: NetRegexes.ability({
-        source: 'Sartauvoir The Inferno',
-        id: '5E90',
-        capture: false,
-      }),
+      netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E90', capture: false }),
       suppressSeconds: 999999,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1119,21 +1085,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Sartauvoir Mannatheihwon Flame',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Sartauvoir The Inferno',
-        id: '5E87',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E87', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Sartauvoir Mannatheihwon Flame Away',
       type: 'Ability',
-      netRegex: NetRegexes.ability({
-        source: 'Sartauvoir The Inferno',
-        id: '5E87',
-        capture: false,
-      }),
+      netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E87', capture: false }),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1149,41 +1107,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Sartauvoir Left Brand',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Sartauvoir The Inferno',
-        id: '5E8C',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8C', capture: false }),
       response: Responses.goRight(),
     },
     {
       id: 'Zadnor Sartauvoir Right Brand',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Sartauvoir The Inferno',
-        id: '5E8B',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8B', capture: false }),
       response: Responses.goLeft(),
     },
     {
       id: 'Zadnor Blackburn Magitek Rays',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: '4th Legion Blackburn',
-        id: '5F12',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: '4th Legion Blackburn', id: '5F12', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Blackburn Analysis',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: '4th Legion Blackburn',
-        id: '5F0F',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: '4th Legion Blackburn', id: '5F0F', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1272,10 +1214,7 @@ const triggerSet: TriggerSet<Data> = {
       // 872 = About Face
       // 873 = Left Face
       // 874 = Right Face
-      netRegex: NetRegexes.gainsEffect({
-        source: '4th-Make Cuchulainn',
-        effectId: ['871', '872', '873', '874'],
-      }),
+      netRegex: NetRegexes.gainsEffect({ source: '4th-Make Cuchulainn', effectId: ['871', '872', '873', '874'] }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         const effectId = matches.effectId.toUpperCase();
@@ -1329,21 +1268,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Cuchulainn Putrified Soul',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: '4th-Make Cuchulainn',
-        id: '5C8F',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C8F', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Cuchulainn Fleshy Necromass',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: '4th-Make Cuchulainn',
-        id: '5C82',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C82', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1358,11 +1289,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Cuchulainn Necrotic Billow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: '4th-Make Cuchulainn',
-        id: '5C86',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C86', capture: false }),
       // Normally wouldn't call out ground markers, but this can look a lot like Ambient Pulsation.
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1378,11 +1305,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Cuchulainn Ambient Pulsation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: '4th-Make Cuchulainn',
-        id: '5C8E',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C8E', capture: false }),
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1433,11 +1356,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Saunion Mobile Halo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Saunion',
-        id: ['5DB9', '5DBA', '5DBB', '5DBC'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DB9', '5DBA', '5DBB', '5DBC'], capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1452,11 +1371,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Saunion Mobile Crossray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Saunion',
-        id: ['5DBD', '5DBE', '5DBF', '5DC0'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DBD', '5DBE', '5DBF', '5DC0'], capture: false }),
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1561,33 +1476,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Diablo Aetheric Explosion',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Diablo Armament',
-        id: '5CC6',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CC6', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Diablo Ultimate Psuedoterror',
       type: 'StartsUsing',
       // This is triggered on Diabolic Gate with a delay, so it gives an extra +4 seconds.
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Diablo Armament',
-        id: '5C9F',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5C9F', capture: false }),
       delaySeconds: 37,
       response: Responses.getUnder(),
     },
     {
       id: 'Zadnor Diablo Advanced Death IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Diablo Armament',
-        id: '5CAF',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CAF', capture: false }),
       // Circles appear at the end of the cast.
       delaySeconds: 4,
       alertText: (_data, _matches, output) => output.text!(),
@@ -1604,11 +1507,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Diablo Advanced Death IV Followup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Diablo Armament',
-        id: '5CAF',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CAF', capture: false }),
       delaySeconds: 12,
       // TODO: or "Avoid Growing Circles (again lol)"?
       response: Responses.moveAway(),
@@ -1616,21 +1515,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Diablo Aetheric Boom Raidwide',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Diablo Armament',
-        id: '5CB3',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CB3', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Diablo Aetheric Boom Balloons',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Diablo Armament',
-        id: '5CB3',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CB3', capture: false }),
       // Don't warn people to preposition here, because they probably need
       // heals after the initial hit before popping these.
       delaySeconds: 5.5,
@@ -1675,11 +1566,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Diablo Void Systems Overload',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Diablo Armament',
-        id: '5CB7',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CB7', capture: false }),
       response: Responses.bigAoe(),
     },
     {
@@ -1793,8 +1680,7 @@ const triggerSet: TriggerSet<Data> = {
         '4Th-Make Cuchulainn': 'Cuchulainn der IV\\. Legion',
         '4th-Make Hashmal': 'Hashmallim der IV\\. Legion',
         '4th-Make Shemhazai': 'Shemhazai der IV\\. Legion',
-        '7 minutes have elapsed since your last activity.':
-          'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
+        '7 minutes have elapsed since your last activity.': 'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
         '(?<!4Th Legion )Blackburn': 'Schwarzbrand',
         'Clibanarius': 'Clibanarius',
         'Dawon The Younger': 'Dawon junior',
@@ -1923,8 +1809,7 @@ const triggerSet: TriggerSet<Data> = {
         '4Th-Make Cuchulainn': 'cúchulainn de la 4e légion',
         '4th-Make Hashmal': 'Hashmal de la 4e légion',
         '4th-Make Shemhazai': 'Shemhazai de la 4e légion',
-        '7 minutes have elapsed since your last activity..*?':
-          'Votre personnage est inactif depuis 7 minutes',
+        '7 minutes have elapsed since your last activity..*?': 'Votre personnage est inactif depuis 7 minutes',
         '(?<!4Th Legion )Blackburn': 'Escarre',
         'Clibanarius': 'Clibanarius',
         'Dawon The Younger': 'Dawon junior',

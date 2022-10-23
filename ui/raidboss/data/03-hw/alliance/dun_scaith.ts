@@ -35,11 +35,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Void Death Circle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['1C7F', '1C90'],
-        source: 'Deathgaze Hollow',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['1C7F', '1C90'], source: 'Deathgaze Hollow', capture: false }),
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -59,11 +55,7 @@ const triggerSet: TriggerSet<Data> = {
       // This would allow for notifying who needs cleansing directly, but might be spammy
       id: 'Dun Scaith Doom',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['1C84', '1C85'],
-        source: 'Deathgaze Hollow',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['1C84', '1C85'], source: 'Deathgaze Hollow', capture: false }),
       condition: (data) => data.CanCleanse(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -126,11 +118,7 @@ const triggerSet: TriggerSet<Data> = {
       // Mechanically the handling is the same
       id: 'Dun Scaith Aero 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['1C7B', '1C8D'],
-        source: 'Deathgaze Hollow',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['1C7B', '1C8D'], source: 'Deathgaze Hollow', capture: false }),
       suppressSeconds: 5,
       response: Responses.knockback(),
     },
@@ -140,11 +128,7 @@ const triggerSet: TriggerSet<Data> = {
       // and neither seems to target players directly.
       id: 'Dun Scaith Void Death Squares',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['1C82', '1C83'],
-        source: 'Deathgaze Hollow',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['1C82', '1C83'], source: 'Deathgaze Hollow', capture: false }),
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -362,11 +346,7 @@ const triggerSet: TriggerSet<Data> = {
       // Covers both 1E52 Aetherochemical Flare and 1D9D Supernova. Response to both is the same.
       id: 'Dun Scaith Proto-Ultima Raid Damage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['1E52', '1D9D'],
-        source: 'Proto Ultima',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: 'Proto Ultima', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -535,11 +515,7 @@ const triggerSet: TriggerSet<Data> = {
       // This trigger is common to both Scathach and Diabolos, since handling is 100% identical.
       id: 'Dun Scaith Shadethrust',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['1D23', '1C1A'],
-        source: ['Scathach', 'Diabolos Hollow'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['1D23', '1C1A'], source: ['Scathach', 'Diabolos Hollow'], capture: false }),
       response: Responses.awayFromFront(),
     },
     // DIABOLOS
@@ -575,11 +551,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Ruinous Omen',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['1C10', '1C11'],
-        source: 'Diabolos',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: 'Diabolos', capture: false }),
       suppressSeconds: 5,
       response: Responses.aoe(),
     },
@@ -638,11 +610,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Hollow Omen',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['1C22', '1C23'],
-        source: 'Diabolos Hollow',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: 'Diabolos Hollow', capture: false }),
       suppressSeconds: 5,
       response: Responses.bigAoe(),
     },

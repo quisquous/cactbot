@@ -366,11 +366,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8S Akh Morn Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: ['Shiva', 'Great Wyrm'],
-        id: ['4D98', '4D79'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Shiva', 'Great Wyrm'], id: ['4D98', '4D79'], capture: false }),
       delaySeconds: 15,
       run: (data) => delete data.akhMornTargets,
     },

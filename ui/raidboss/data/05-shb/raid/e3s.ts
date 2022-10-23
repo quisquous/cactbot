@@ -274,8 +274,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E3S Hydrothermal Vent',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '005A', target: 'Leviathan', capture: false }),
-      condition: (data) =>
-        data.vent && data.vent.length === 2 && !data.vent.includes(data.me) && data.role !== 'tank',
+      condition: (data) => data.vent && data.vent.length === 2 && !data.vent.includes(data.me) && data.role !== 'tank',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

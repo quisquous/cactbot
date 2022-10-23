@@ -160,10 +160,7 @@ const triggerSet: TriggerSet<Data> = {
       // There's no "starts using" here.  She pushes at 35% to this ability.
       // This happens after 2nd meteors naturally, but if dps is good
       // then this could push unexpectedly earlier (or paired with buster).
-      netRegex: NetRegexes.dialog({
-        line: '[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\..*?',
-        capture: false,
-      }),
+      netRegex: NetRegexes.dialog({ line: '[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\..*?', capture: false }),
       response: Responses.aoe(),
     },
     {

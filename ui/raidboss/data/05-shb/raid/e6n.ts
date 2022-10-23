@@ -34,11 +34,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6N Ferostorm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: ['Garuda', 'Raktapaksa'],
-        id: ['4BD[DEF]', '4BE[345]'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -84,22 +80,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6N Inferno Howl',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: ['Ifrit', 'Raktapaksa'],
-        id: '4BF1',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BF1', capture: false }),
       response: Responses.aoe(),
     },
     {
       // Save ability state since the generic tether used has multiple uses in this fight
       id: 'E6N Hands of Flame Start',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: ['Ifrit', 'Raktapaksa'],
-        id: '4CFE',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4CFE', capture: false }),
       preRun: (data) => data.handsOfFlame = true,
     },
     {

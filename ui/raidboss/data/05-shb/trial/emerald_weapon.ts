@@ -22,21 +22,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Emerald Optimized Ultima',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: ['5555', '5556', '5B0F'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: ['5555', '5556', '5B0F'], capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Emerald Magitek Magnetism',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: '5B0[56]',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5B0[56]', capture: false }),
       condition: (data) => data.seenMines || data.role !== 'tank',
       delaySeconds: 9,
       durationSeconds: 6,
@@ -56,31 +48,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Emerald Sidescathe Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: ['553F', '5540'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: ['553F', '5540'], capture: false }),
       response: Responses.goLeft(),
     },
     {
       id: 'Emerald Sidescathe Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: ['5541', '5542'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: ['5541', '5542'], capture: false }),
       response: Responses.goRight(),
     },
     {
       id: 'Emerald Emerald Crusher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Emerald Weapon',
-        id: ['553C', '553D'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: ['553C', '553D'], capture: false }),
       // ~7s cast time.
       delaySeconds: 2,
       response: Responses.knockback(),

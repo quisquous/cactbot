@@ -171,10 +171,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Falling Asleep',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({
-        line: '7 minutes have elapsed since your last activity..*?',
-        capture: false,
-      }),
+      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
       response: Responses.wakeUp(),
     },
     {
@@ -226,11 +223,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Helldiver MRV Missile',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: '4th Legion Helldiver',
-        id: '51FC',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51FC', capture: false }),
       // This won't play the first time, but that seems better than a false positive for the top.
       condition: (data) => data.helldiver,
       response: Responses.aoe(),
@@ -238,11 +231,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Helldiver Lateral Dive',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: '4th Legion Helldiver',
-        id: '51EA',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51EA', capture: false }),
       condition: (data) => data.helldiver,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -266,11 +255,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Helldiver Infrared Blast',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: '4th Legion Helldiver',
-        id: '51EC',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51EC', capture: false }),
       condition: (data) => data.helldiver,
       delaySeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
@@ -288,11 +273,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Helldiver Joint Attack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: '4th Legion Helldiver',
-        id: '51F2',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51F2', capture: false }),
       condition: (data) => data.helldiver,
       response: Responses.killAdds(),
     },
@@ -384,11 +365,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Albeleo Baleful Gaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Albeleo\'s Monstrosity',
-        id: '5404',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Albeleo\'s Monstrosity', id: '5404', capture: false }),
       suppressSeconds: 3,
       response: Responses.lookAway(),
     },
@@ -682,10 +659,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Lyon Passage',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({
-        line: 'Lyon the Beast King would do battle at Majesty\'s Place.*?',
-        capture: false,
-      }),
+      netRegex: NetRegexes.gameLog({ line: 'Lyon the Beast King would do battle at Majesty\'s Place.*?', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -708,21 +682,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Lyon King\'s Notice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Lyon The Beast King',
-        id: '516E',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Lyon The Beast King', id: '516E', capture: false }),
       response: Responses.lookAway(),
     },
     {
       id: 'Bozja South Castrum Lyon Taste of Blood',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Lyon The Beast King',
-        id: '5173',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Lyon The Beast King', id: '5173', capture: false }),
       response: Responses.getBehind(),
     },
   ],
@@ -730,14 +696,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
-        'Lyon the Beast King would do battle at Majesty\'s Place':
-          'Der Bestienkönig will einen Kampf auf seinem Podest',
+        'Lyon the Beast King would do battle at Majesty\'s Place': 'Der Bestienkönig will einen Kampf auf seinem Podest',
         'Red Comet': 'Rot(?:e|er|es|en) Meteor',
         'Albeleo\'s Monstrosity': 'Albeleos Biest',
         'Albeleo\'s Hrodvitnir': 'Hrodvitnir',
         'Electric Charge': 'Blitz',
-        '7 minutes have elapsed since your last activity..*?':
-          'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
+        '7 minutes have elapsed since your last activity..*?': 'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
         '4Th Legion Helldiver': 'Höllentaucher der IV\\. Legion',
         'Adrammelech': 'Adrammelech',
         'Bladesmeet': 'Hauptplatz der Wachen',
@@ -819,14 +783,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
-        'Lyon the Beast King would do battle at Majesty\'s Place':
-          'Lyon attend des adversaires à sa taille sur la tribune des Souverains',
+        'Lyon the Beast King would do battle at Majesty\'s Place': 'Lyon attend des adversaires à sa taille sur la tribune des Souverains',
         'Red Comet': 'Comète Rouge',
         'Albeleo\'s Monstrosity': 'Bête D\'Albeleo',
         'Albeleo\'s Hrodvitnir': 'Hródvitnir',
         'Electric Charge': 'Boule D\'Énergie',
-        '7 minutes have elapsed since your last activity..*?':
-          'Votre personnage est inactif depuis 7 minutes',
+        '7 minutes have elapsed since your last activity..*?': 'Votre personnage est inactif depuis 7 minutes',
         '4Th Legion Helldiver': 'plongeur infernal de la 4e légion',
         'Adrammelech': 'Adrammelech',
         'Bladesmeet': 'Hall des Lames',

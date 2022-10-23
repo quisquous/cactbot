@@ -29,12 +29,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Stone Curse
       netRegex: NetRegexes.gainsEffect({ effectId: '589' }),
       mistake: (_data, matches) => {
-        return {
-          type: 'fail',
-          blame: matches.target,
-          reportId: matches.targetId,
-          text: matches.effect,
-        };
+        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.effect };
       },
     },
     {

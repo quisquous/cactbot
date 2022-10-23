@@ -129,11 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hypercompressed Other',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: 'E4A',
-        source: ['Oppressor', 'Oppressor 0\\.5'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
       delaySeconds: 0.3,
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {
@@ -148,11 +144,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hypercompressed Delete',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: 'E4A',
-        source: ['Oppressor', 'Oppressor 0\\.5'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
       delaySeconds: 10,
       run: (data) => data.hyper = [],
     },

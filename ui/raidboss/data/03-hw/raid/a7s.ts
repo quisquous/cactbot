@@ -101,11 +101,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S Sizzlespark',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Quickthinx Allthoughts',
-        id: '16F8',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Quickthinx Allthoughts', id: '16F8', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -172,11 +168,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S Zoomdoom Clear',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Quickthinx Allthoughts',
-        id: '16F4',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Quickthinx Allthoughts', id: '16F4', capture: false }),
       run: (data) => {
         data.grabbed = [];
         delete data.stickyloom;

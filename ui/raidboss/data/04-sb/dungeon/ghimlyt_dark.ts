@@ -45,11 +45,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ghimlyt Dark Ceruleum Vent',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '3773',
-        source: 'Mark III-B Magitek Colossus',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '3773', source: 'Mark III-B Magitek Colossus', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -63,8 +59,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Ghimlyt Dark Magitek Slash',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: ['00A7', '00A8'] }),
-      infoText: (_data, matches, output) =>
-        matches.id === '00A7' ? output.left!() : output.right!(),
+      infoText: (_data, matches, output) => matches.id === '00A7' ? output.left!() : output.right!(),
       outputStrings: {
         left: {
           en: 'Rotate left',

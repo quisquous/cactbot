@@ -54,11 +54,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5N Ruby Glow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '76D[45]',
-        source: 'Proto-Carbuncle',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '76D[45]', source: 'Proto-Carbuncle', capture: false }),
       suppressSeconds: 1,
       response: Responses.aoe(),
     },

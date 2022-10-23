@@ -40,12 +40,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '4CB4', ...playerDamageFields }),
       suppressSeconds: 1,
       mistake: (_data, matches) => {
-        return {
-          type: 'warn',
-          blame: matches.target,
-          reportId: matches.targetId,
-          text: matches.ability,
-        };
+        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
       },
     },
   ],

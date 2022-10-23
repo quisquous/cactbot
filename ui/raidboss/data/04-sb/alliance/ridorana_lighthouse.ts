@@ -12,11 +12,7 @@ export interface Data extends RaidbossData {
   mathBaseValue?: number;
 }
 
-const mathDirection = (
-  mathBaseValue: number | undefined,
-  correctMath: number[],
-  output: Output,
-) => {
+const mathDirection = (mathBaseValue: number | undefined, correctMath: number[], output: Output) => {
   if (mathBaseValue === undefined)
     return;
   if (mathBaseValue < 1 || mathBaseValue > 9) {
@@ -101,11 +97,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Famfrit Tsunami 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '2C50',
-        source: 'Famfrit, The Darkening Cloud',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
       delaySeconds: 4.5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -122,11 +114,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Famfrit Tsunami 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '2C50',
-        source: 'Famfrit, The Darkening Cloud',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
       delaySeconds: 16.5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -143,11 +131,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Famfrit Tsunami 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '2C50',
-        source: 'Famfrit, The Darkening Cloud',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
       delaySeconds: 28.5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -354,11 +338,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Construct Dispose',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['2C5F', '2CE9'],
-        source: 'Construct 7',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['2C5F', '2CE9'], source: 'Construct 7', capture: false }),
       response: Responses.getBehind(),
     },
     {

@@ -301,11 +301,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // Lunar Dynamo = 4EB0
       // Iron Chariot = 4EB1
-      netRegex: NetRegexes.startsUsing({
-        source: 'Raven\'s Image',
-        id: ['4EB0', '4EB1'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Raven\'s Image', id: ['4EB0', '4EB1'], capture: false }),
       delaySeconds: 0.1,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
@@ -502,8 +498,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '00(?:C[A-F]|D0|D1)' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, matches, output) =>
-        output.text!({ num: parseInt(matches.id, 16) - parseInt('00CA', 16) + 1 }),
+      infoText: (_data, matches, output) => output.text!({ num: parseInt(matches.id, 16) - parseInt('00CA', 16) + 1 }),
       outputStrings: {
         text: {
           en: '${num}',

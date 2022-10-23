@@ -33,21 +33,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diamond Diamond Rain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Diamond Weapon',
-        id: '5FA7',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA7', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Diamond Claw Swipe East',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Diamond Weapon',
-        id: '5F9A',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9A', capture: false }),
       durationSeconds: 10,
       alertText: (_data, _matches, output) => output.teleportWest!(),
       outputStrings: sharedOutputStrings,
@@ -55,11 +47,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diamond Claw Swipe West',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Diamond Weapon',
-        id: '5F9B',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9B', capture: false }),
       durationSeconds: 10,
       alertText: (_data, _matches, output) => output.teleportEast!(),
       outputStrings: sharedOutputStrings,
@@ -92,11 +80,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diamond Auri Cyclone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Diamond Weapon',
-        id: '5FE6',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FE6', capture: false }),
       delaySeconds: 0.5,
       durationSeconds: 6,
       response: Responses.knockback(),
@@ -104,11 +88,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diamond Outrage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Diamond Weapon',
-        id: '5FD7',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FD7', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -120,11 +100,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diamond Vertical Cleave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'The Diamond Weapon',
-        id: '5FE5',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FE5', capture: false }),
       durationSeconds: 5,
       response: Responses.knockback(),
     },
