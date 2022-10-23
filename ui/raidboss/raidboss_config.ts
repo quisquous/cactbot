@@ -1280,7 +1280,7 @@ class RaidbossConfigurator {
       if (trig.type === undefined) {
         if (!(regex instanceof RegExp))
           return /!!Bad Trigger!!/;
-        return Regexes.parse(translateRegex(regex as RegExp, lang, set.timelineReplace));
+        return Regexes.parse(translateRegex(regex, lang, set.timelineReplace));
       }
 
       return Regexes.parse(
