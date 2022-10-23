@@ -1,9 +1,9 @@
-import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import process from 'process';
 import * as url from 'url';
 
+import { exec } from '@actions/exec';
 import * as tsNode from 'ts-node';
 
 import UserConfig from '../resources/user_config';
@@ -135,7 +135,7 @@ const processAllFiles = async (root: string) => {
       await processFile(filename);
   });
 
-  execSync('npx dprint --config=dprint.trigger.json fmt ./dist/**/*.js');
+  await exec('npx dprint fmt ./dist/**/*.js');
 
   process.exit(0);
 };

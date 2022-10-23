@@ -35,6 +35,7 @@
     "version": "node util/sync_version.cjs && git add -u"
   },
   "devDependencies": {
+    "@actions/exec": "^1.1.1",
     "@actions/github": "^5.0.0",
     "@actions/http-client": "^1.0.11",
     "@babel/core": "^7.14.5",
