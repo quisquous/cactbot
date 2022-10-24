@@ -294,6 +294,29 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'ASS Ring of Might',
+      // There are 6 spells:
+      //   Ring 1: 765D (9.7s) / 7660 (11.7s)
+      //   Ring 2: 765E (9.7s) / 7661 (11.7s)
+      //   Ring 3: 765F (9.7s) / 7662 (11.7s)
+      // Only tracking the 11.7s spell
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['7660', '7661', '7662'], source: 'Gladiator of Sil\'dih' }),
+      infoText: (_data, matches, output) => {
+        let ring = 3;
+        if (matches.id === '7660')
+          ring = 1;
+        if (matches.id === '7661')
+          ring = 2;
+        return output.text!({ ring: ring });
+      },
+      outputStrings: {
+        text: {
+          en: 'Outside Ring #${ring}',
+        },
+      },
+    },
+    {
       id: 'ASS Echoes of the Fallen Reminder',
       // CDA Echoes of the Fallen (Spread)
       type: 'GainsEffect',
