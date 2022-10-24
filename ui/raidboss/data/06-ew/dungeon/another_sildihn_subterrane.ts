@@ -106,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'cardinals',
+          en: 'Cardinals',
         },
       },
     },
@@ -288,7 +288,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'aoe + get in',
+          en: 'aoe + In',
         },
       },
     },
