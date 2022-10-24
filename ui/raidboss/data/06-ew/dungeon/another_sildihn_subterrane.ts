@@ -100,6 +100,17 @@ const triggerSet: TriggerSet<Data> = {
     },
     // ---------------- Silkie ----------------
     {
+      id: 'ASS Soap\'s Up',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '775A', source: 'Silkie', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'cardinals',
+        },
+      },
+    },
+    {
       id: 'ASS Dust Bluster',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '776C', source: 'Silkie', capture: false }),
