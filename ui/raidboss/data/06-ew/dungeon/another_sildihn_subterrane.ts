@@ -478,7 +478,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Firesteel Fracture',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '74AD', source: 'Shadowcaster Zeless Gah', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '74AD', source: 'Shadowcaster Zeless Gah' }),
       response: Responses.tankCleave(),
     },
   ],
