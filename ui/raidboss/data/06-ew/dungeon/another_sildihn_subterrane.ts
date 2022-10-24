@@ -248,6 +248,45 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    // ---------------- second trash ----------------
+    {
+      id: 'ASS Infernal Pain',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7969', source: 'Sil\'dihn Dullahan', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'aoe + bleed',
+          de: 'AoE + Blutung',
+          fr: 'AoE + Saignement',
+          ja: 'AOE + 出血',
+          ko: '전체 공격 + 도트',
+        },
+      },
+    },
+    {
+      id: 'ASS Blighted Gloom',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7966', source: 'Sil\'dihn Dullahan', capture: false }),
+      response: Responses.getOut(),
+    },
+    {
+      id: 'ASS Infernal Weight',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '796B', source: 'Aqueduct Armor', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'aoe + get in',
+        },
+      },
+    },
+    {
+      id: 'ASS Dominion Slash',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '796A', source: 'Aqueduct Armor', capture: false }),
+      response: Responses.getBehind(),
+    },
     // ---------------- Gladiator of Sil'dih ----------------
     {
       id: 'ASS Flash of Steel',
