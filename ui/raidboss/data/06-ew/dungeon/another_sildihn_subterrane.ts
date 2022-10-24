@@ -365,7 +365,7 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`Rush of Might 1: Failed to determine line from ${x1} or ${x2}`);
           return;
         }
-        
+
         const line = line1 > line2 ? line1 : line2;
 
         // Get Intercard and greatest relative x value
