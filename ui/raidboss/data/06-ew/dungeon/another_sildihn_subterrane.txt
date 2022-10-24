@@ -35,7 +35,8 @@ hideall "--sync--"
 112.1 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:7766:/
 123.1 "Puff and Tumble" duration 0.7 #sync / 1[56]:[^:]*:Silken Puff:7771:/
 129.5 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:7767:/
-129.5 "Fizzling Duster x2 and Chilling Duster x2" #sync / 1[56]:[^:]*:Silken Puff:(776A|7768):/
+129.5 "Fizzling Duster x2" #sync / 1[56]:[^:]*:Silken Puff:776A:/
+129.5 "Chilling Duster x2" #sync / 1[56]:[^:]*:Silken Puff:7768:/
 134.6 "Fizzling Suds" sync / 1[56]:[^:]*:Silkie:7759:/
 136.7 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
 141.7 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:775E:/
