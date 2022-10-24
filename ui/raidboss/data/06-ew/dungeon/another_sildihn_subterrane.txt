@@ -105,12 +105,14 @@ hideall "--sync--"
 1131.5 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
 1136.6 "Hateful Visage" sync / 1[56]:[^:]*:Gladiator of Sil'dih:766E:/
 1141.7 "Wrath of Ruin" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7663:/
-1150.7 "Gold Flame and Silver Flame" sync / 1[56]:[^:]*:Hateful Visage:(766F|7670):/
+1150.7 "Gold Flame x4" sync / 1[56]:[^:]*:Hateful Visage:766F:/
+1150.7 "Silver Flame x4" #sync / 1[56]:[^:]*:Hateful Visage:7670:/
 1152.3 "Nothing beside Remains" sync / 1[56]:[^:]*:Gladiator of Sil'dih:(768B|768C):/
 1161.4 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7671:/
 1171.6 "Accursed Visage" sync / 1[56]:[^:]*:Gladiator of Sil'dih:768D:/
 1176.7 "Wrath of Ruin" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7663:/
-1185.7 "Gold Flame and Silver Flame" sync / 1[56]:[^:]*:Hateful Visage:(766F|7670):/
+1185.7 "Gold Flame x4" sync / 1[56]:[^:]*:Hateful Visage:766F:/
+1185.7 "Silver Flame x4" #sync / 1[56]:[^:]*:Hateful Visage:7670:/
 1187.3 "Nothing beside Remains" sync / 1[56]:[^:]*:Gladiator of Sil'dih:(768B|768C):/
 1196.4 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7671:/
 1206.6 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
@@ -150,7 +152,7 @@ hideall "--sync--"
 2030.9 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7494:/
 2042.0 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B0:/
 2042.4 "Firesteel Strike 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B1:/
-2043.5 "Burn" sync / 1[56]:[^:]*:Ball of Fire:7490:/
+2043.5 "Burn x4" sync / 1[56]:[^:]*:Ball of Fire:7490:/
 2043.8 "Firesteel Strike 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B2:/
 2064.5 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AD:/
 2112.8 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7494:/
@@ -162,7 +164,7 @@ hideall "--sync--"
 2136.3 "Blessed Beacon 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B5:/
 2146.6 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AD:/
 2158.8 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/ duration 12
-ter Zeless Gah:74B6:/ duration 12
+2170.2 "Cryptic Flames" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B6:/ duration 12
 2177.1 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
 2183.6 "Blazing Benifice" sync / 1[56]:[^:]*:Arcane Font:74A6:/
 2184.2 "Cast Shadow" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749A:/
