@@ -88,11 +88,11 @@ hideall "--sync--"
 1006.8 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7671:/ window 1007.3,5
 1011.5 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7671:/
 1023.6 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7673:/
-1038.3 "Rush of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765B:/
-1040.4 "Rush of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
+1038.3 "Rush of Might 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765B:/
+1040.4 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
 1042.8 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7673:/
-1057.5 "Rush of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765B:/
-1059.6 "Rush of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
+1057.5 "Rush of Might 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765B:/
+1059.6 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
 1062.0 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:6854:/
 1067.0 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:766C:/
 1067.3 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:79F3:/
@@ -130,11 +130,11 @@ hideall "--sync--"
 1237.8 "Explosion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:766A:/
 1245.0 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7671:/
 1259.2 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7673:/
-1273.9 "Rush of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765B:/
-1276.0 "Rush of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
+1273.9 "Rush of Might 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765B:/
+1276.0 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
 1278.3 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7673:/
-1293.0 "Rush of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765B:/
-1295.1 "Rush of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
+1293.0 "Rush of Might 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765B:/
+1295.1 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
 1297.5 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:6854:/
 1260.0 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:766C:/
 1260.3 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:79F3:/
