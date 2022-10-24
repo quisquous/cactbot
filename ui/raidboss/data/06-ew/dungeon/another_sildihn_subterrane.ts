@@ -476,7 +476,7 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
-      id: 'ASildihn Firesteel Fracture',
+      id: 'ASS Firesteel Fracture',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '74AD', source: 'Shadowcaster Zeless Gah', capture: false }),
       response: Responses.tankCleave(),
