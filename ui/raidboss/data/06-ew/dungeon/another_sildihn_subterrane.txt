@@ -89,7 +89,7 @@ hideall "--sync--"
 # -ii 765B 765C 766F 7670 7676 7677 77BF 7660
 
 1000.0 "--sync--" sync / 00:0839::The Trial of Might will be sealed off/ window 1000,1
-1006.8 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7671:/window 1007.3,5
+1006.8 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7671:/ window 1007.3,5
 1011.5 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7671:/
 1023.6 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7673:/
 1042.8 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7673:/
@@ -138,8 +138,8 @@ hideall "--sync--"
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 2000.0 "--sync--" sync / 00:0839::The Trial of Balance will be sealed off/ window 2000,1
-2006.8 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74AF:/window 1007.3,5
-2011.5 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AF:/ window 2012,5
+2006.8 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74AF:/ window 1007.3,5
+2011.5 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AF:/
 2023.7 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
 2030.9 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7494:/
 2042.0 "Firesteel Strike" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B0:/
