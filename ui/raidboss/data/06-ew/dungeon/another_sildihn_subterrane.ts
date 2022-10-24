@@ -186,6 +186,39 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '7671', source: 'Gladiator of Sil\'dih', capture: false }),
       response: Responses.aoe(),
     },
+    {
+      id: 'ASS Sculptor\'s Passion',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '6854', source: 'Gladiator of Sil\'dih' }),
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
+          return output.chargeOnYou!();
+        if (data.role === 'tank')
+          return output.chargeOnFront!();
+        return output.chargeOn!({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        chargeOn: {
+          en: 'Charge on ${player}',
+          de: 'Ansturm auf ${player}',
+          fr: 'Charge sur ${player}',
+          ja: '${player}にワイルドチャージ',
+          cn: '蓝球点${player}',
+          ko: '"${player}" 야성의 돌진 대상',
+        },
+        chargeOnYou: {
+          en: 'Charge on YOU',
+          de: 'Ansturm auf DIR',
+          fr: 'Charge sur VOUS',
+          ja: '自分にワイルドチャージ',
+          cn: '蓝球点名',
+          ko: '야성의 돌진 대상자',
+        },
+        chargeOnFront: {
+          en: 'Charge on ${player}, be in front',
+        },
+      },
+    },
     // ---------------- Shadowcaster Zeless Gah ----------------
     {
       id: 'ASS Show of Strength',
