@@ -1,3 +1,4 @@
+import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -17,6 +18,8 @@ export interface Data extends RaidbossData {
   suds?: string;
   soapCounter: number;
   beaterCounter: number;
+  hasLingering?: boolean;
+  thunderousEchoPlayer?: string;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -188,13 +191,12 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'ASS Sculptor\'s Passion',
+      // This is a wild charge, player in front takes most damage
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '6854', source: 'Gladiator of Sil\'dih' }),
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.chargeOnYou!();
-        if (data.role === 'tank')
-          return output.chargeOnFront!();
         return output.chargeOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -214,9 +216,109 @@ const triggerSet: TriggerSet<Data> = {
           cn: '蓝球点名',
           ko: '야성의 돌진 대상자',
         },
-        chargeOnFront: {
-          en: 'Charge on ${player}, be in front',
+      },
+    },
+    {
+      id: 'ASS Mighty Smite',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7672', source: 'Gladiator of Sil\'dih' }),
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'ASS Lingering Echoes',
+      // CDC Lingering Echoes (Spread + Move)
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'CDC' }),
+      condition: Conditions.targetIsYou(),
+      preRun: (data) => data.hasLingering = true,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 2,
+      response: Responses.moveAway(),
+    },
+    {
+      id: 'ASS Thunderous Echo Collect',
+      // CDD Thunderous Echo (Stack)
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'CDD' }),
+      preRun: (data, matches) => data.thunderousEchoPlayer = matches.target,
+    },
+    {
+      id: 'ASS Curse of the Fallen',
+      // CDA Echoes of the Fallen (Spread)
+      // Two players will not have a second debuff, so check CDA
+      // 14s = first
+      // 17s = second
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'CDA' }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: 0.1,
+      durationSeconds: 10,
+      infoText: (data, matches, output) => {
+        if (data.hasLingering)
+          return output.spreadThenSpread!();
+
+        const duration = parseFloat(matches.duration);
+
+        // Check if spread first
+        if (duration < 16) {
+          if (data.me === data.thunderousEchoPlayer)
+            return output.spreadThenStackOnYou!();
+          if (data.thunderousEchoPlayer === undefined)
+            return output.spreadThenStack!();
+          return output.spreadThenStackOn!({ player: data.ShortName(data.thunderousEchoPlayer) });
+        }
+
+        if (data.me === data.thunderousEchoPlayer)
+          return output.stackOnYouThenSpread!();
+        if (data.thunderousEchoPlayer === undefined)
+          return output.stackThenSpread!();
+        return output.stackOnThenSpread!({ player: data.ShortName(data.thunderousEchoPlayer) });
+      },
+      outputStrings: {
+        stackThenSpread: Outputs.stackThenSpread,
+        stackOnThenSpread: {
+          en: 'Stack on ${player} => Spread',
         },
+        stackOnYouThenSpread: {
+          en: 'Stack on YOU => Spread',
+        },
+        spreadThenStack: Outputs.spreadThenStack,
+        spreadThenStackOn: {
+          en: 'Spread => Stack on ${player}',
+        },
+        spreadThenStackOnYou: {
+          en: 'Spread => Stack on YOU',
+        },
+        spreadThenSpread: {
+          en: 'Spread => Spread',
+        },
+      },
+    },
+    {
+      id: 'ASS Echoes of the Fallen Reminder',
+      // CDA Echoes of the Fallen (Spread)
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'CDA' }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
+      response: Responses.spread(),
+    },
+    {
+      id: 'ASS Thunderous Echo Reminder',
+      // CDA Thunderous Echo (Stack)
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'CDD' }),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
+      infoText: (data, matches, output) => {
+        if (data.hasLingering)
+          return output.spread!();
+        if (matches.target === data.me)
+          return output.stackOnYou!();
+        return output.stackOn!({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        spread: Outputs.spread,
+        stackOnYou: Outputs.stackOnYou,
+        stackOn: Outputs.stackOnPlayer,
       },
     },
     // ---------------- Shadowcaster Zeless Gah ----------------
