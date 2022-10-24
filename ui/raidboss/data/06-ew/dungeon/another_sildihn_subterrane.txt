@@ -9,7 +9,7 @@ hideall "--sync--"
 # SILKIE #
 #~~~~~~~~#
 
-# -ii 77ED 7762 7768 7769 776A
+# -ii 77ED 7760 7762 7768 7769 776A
 
 0.0 "--sync--" sync / 00:0839::The Trial of Knowledge is sealed off/ window 0,1
 12.2 "--sync--" sync / 14:[^:]*:Silkie:7759:/ window 15,15
@@ -26,7 +26,6 @@ hideall "--sync--"
 61.9 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:7758:/
 64.0 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
 69.0 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:775E:/
-69.4 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:7760:/
 73.0 "Chilling Duster" sync / 1[56]:[^:]*:Silkie:7763:/
 80.6 "Carpet Beater" sync / 1[56]:[^:]*:Silkie:774F:/
 89.7 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:7767:/
@@ -53,7 +52,6 @@ hideall "--sync--"
 202.3 "Carpet Beater" sync / 1[56]:[^:]*:Silkie:774F:/
 204.4 "--sync--" sync / 1[56]:[^:]*:Eastern Ewer:79FB:/
 209.4 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:775E:/
-209.8 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:7760:/
 213.4 "Chilling Duster" sync / 1[56]:[^:]*:Silkie:7763:/
 225.9 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:7757:/
 233.0 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:7767:/
@@ -72,12 +70,10 @@ hideall "--sync--"
 292.3 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:7758:/
 294.4 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
 299.4 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:775E:/
-299.9 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:7760:/
 303.5 "Chilling Duster" sync / 1[56]:[^:]*:Silkie:7763:/
 309.0 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:7758:/
 311.1 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
 316.1 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:775E:/
-316.4 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:7760:/
 320.0 "Chilling Duster" sync / 1[56]:[^:]*:Silkie:7763:/
 332.9 "Total Wash (enrage)" sync / 1[56]:[^:]*:Silkie:79E0:/
 338.1 "Total Wash (enrage)" sync / 1[56]:[^:]*:Silkie:79F9:/
