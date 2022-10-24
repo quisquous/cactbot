@@ -579,6 +579,12 @@ const triggerSet: TriggerSet<Data> = {
         stackOn: Outputs.stackOnPlayer,
       },
     },
+    {
+      id: 'ASS Curse of the Monument',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7666', source: 'Gladiator of Sil\'dih', capture: false }),
+      response: Responses.breakChains(),
+    },
     // ---------------- Shadowcaster Zeless Gah ----------------
     {
       id: 'ASS Show of Strength',
