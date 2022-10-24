@@ -60,7 +60,6 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Slippery Soap',
       // Happens 5 times in the encounter
-      // Only first,
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '79FB', source: 'Silkie' }),
       preRun: (data) => data.soapCounter++,
