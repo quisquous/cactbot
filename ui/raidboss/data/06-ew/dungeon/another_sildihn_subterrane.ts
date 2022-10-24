@@ -297,7 +297,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Rush of Might 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '765C', source: 'Gladiator of Sil\'dih' }),
+      netRegex: NetRegexes.ability({ id: '765B', source: 'Gladiator of Sil\'dih' }),
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         if (data.mightDir === undefined)
