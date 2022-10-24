@@ -21,6 +21,7 @@ export interface Data extends RaidbossData {
   soapCounter: number;
   beaterCounter: number;
   mightCasts: (NetMatches['StartsUsing'])[];
+  mightDir?: string;
   hasLingering?: boolean;
   thunderousEchoPlayer?: string;
 }
@@ -200,7 +201,7 @@ const triggerSet: TriggerSet<Data> = {
       preRun: (data, matches) => data.mightCasts.push(matches),
     },
     {
-      id: 'ASS Rush of Might',
+      id: 'ASS Rush of Might 1',
       // Boss casts 765C (12.2s) and 765B (10.2s), twice
       // Gladiator of Mirage casts 7659, 7658, 765A, these target the environment but are not reliable
       // North
@@ -257,10 +258,12 @@ const triggerSet: TriggerSet<Data> = {
           // Get the x value of farthest north mirage
           const x = y1 < y2 ? x1 : x2;
           intercard = x < -35 ? 'northwest' : 'northeast';
+          data.mightDir = 'north';
         } else {
           // Get the x value of farthest south mirage
           const x = y1 > y2 ? x1 : x2;
           intercard = x < -35 ? 'southwest' : 'southeast';
+          data.mightDir = 'south';
         }
 
         let side;
@@ -289,6 +292,25 @@ const triggerSet: TriggerSet<Data> = {
         northeast: Outputs.northeast,
         southeast: Outputs.southeast,
         southwest: Outputs.southwest,
+      },
+    },
+    {
+      id: 'ASS Rush of Might 2',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '765C', source: 'Gladiator of Sil\'dih' }),
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        if (data.mightDir === undefined)
+          return output.move!();
+        return output.text!({ dir: output[data.mightDir]!() });
+      },
+      outputStrings: {
+        text: {
+          en: 'Move ${dir}',
+        },
+        north: Outputs.north,
+        south: Outputs.south,
+        move: Outputs.moveAway,
       },
     },
     {
