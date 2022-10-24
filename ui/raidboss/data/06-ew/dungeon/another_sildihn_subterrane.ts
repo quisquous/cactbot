@@ -580,6 +580,23 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'ASS Sundered Remainds',
+      // Using 7666 Curse of the Monument
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7666', source: 'Gladiator of Sil\'dih', capture: false }),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Get Middle, Shiva Circles',
+          de: 'In die Mitte, Shiva Kreise',
+          fr: 'Allez au milieu, cercles de Shiva',
+          ja: 'シヴァの輪っか',
+          cn: '中间集合, 九连环',
+          ko: '시바 얼음 장판',
+        },
+      },
+    },
+    {
       id: 'ASS Curse of the Monument',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7666', source: 'Gladiator of Sil\'dih', capture: false }),
