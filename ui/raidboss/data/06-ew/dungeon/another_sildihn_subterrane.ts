@@ -147,8 +147,8 @@ const triggerSet: TriggerSet<Data> = {
         if (data.suds === '7757') {
           // Does not happen on first or third Slippery Soap
           if (matches.target === data.me)
-            return output.getInFrontOfPlayerKnockback!({ player: data.ShortName(matches.target) });
-          return output.getBehindPartyKnockback!();
+            return output.getBehindPartyKnockback!();
+          return output.getInFrontOfPlayerKnockback!({ player: data.ShortName(matches.target) });
         }
         if (matches.target === data.me) {
           if (data.soapCounter === 1)
@@ -538,16 +538,21 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: ['7660', '7661', '7662'], source: 'Gladiator of Sil\'dih' }),
       infoText: (_data, matches, output) => {
-        let ring = 3;
         if (matches.id === '7660')
-          ring = 1;
+          return output.outsideInner!();
         if (matches.id === '7661')
-          ring = 2;
-        return output.text!({ ring: ring });
+          return output.outsideMiddle!();
+        return output.outsideOuter!();
       },
       outputStrings: {
-        text: {
-          en: 'Outside Ring #${ring}',
+        oustideInner: {
+          en: 'Outside Inner Ring',
+        },
+        outsideMiddle: {
+          en: 'Outside Middle Ring',
+        },
+        outsideOuter: {
+          en: 'Outside Outer Ring',
         },
       },
     },
@@ -562,7 +567,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'ASS Thunderous Echo Reminder',
-      // CDA Thunderous Echo (Stack)
+      // CDD Thunderous Echo (Stack)
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: 'CDD' }),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
