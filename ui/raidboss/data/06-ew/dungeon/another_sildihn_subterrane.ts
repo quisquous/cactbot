@@ -356,11 +356,16 @@ const triggerSet: TriggerSet<Data> = {
             return 2;
           else if (x > -37 && x < -33)
             return 1;
-          return x;
+          return undefined;
         };
 
         const line1 = getLine(x1);
         const line2 = getLine(x2);
+        if (line1 === undefined || line2 === undefined) {
+          console.error(`Rush of Might 1: Failed to determine line from ${x1} or ${x2}`);
+          return;
+        }
+        
         const line = line1 > line2 ? line1 : line2;
 
         // Get Intercard and greatest relative x value
@@ -545,7 +550,7 @@ const triggerSet: TriggerSet<Data> = {
         return output.outsideOuter!();
       },
       outputStrings: {
-        oustideInner: {
+        outsideInner: {
           en: 'Outside Inner Ring',
         },
         outsideMiddle: {
