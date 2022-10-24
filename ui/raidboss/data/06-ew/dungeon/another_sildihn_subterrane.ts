@@ -14,9 +14,9 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Shadowcaster triggers and timeline to enrage
 
 export interface Data extends RaidbossData {
-  suds?: string,
-  soapCounter: number,
-  beaterCounter: number,
+  suds?: string;
+  soapCounter: number;
+  beaterCounter: number;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -54,7 +54,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Slippery Soap',
       // Happens 5 times in the encounter
-      // Only first, 
+      // Only first,
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '79FB', source: 'Silkie' }),
       preRun: (data) => data.soapCounter++,
@@ -100,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '775E', source: 'Silkie' }),
       condition: (data) => data.suds === '7758',
-      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 1,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 1,
       response: Responses.moveAround(),
     },
     {
@@ -152,7 +152,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Tank Buster on YOU, East/West Between Puffs ',
           },
         };
-        
+
         if (matches.target === data.me) {
           if (data.beaterCounter === 2)
             return { alertText: output.busterOnYouPuffs!() };
@@ -195,8 +195,7 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
   ],
-  timelineReplace: [
-  ],
+  timelineReplace: [],
 };
 
 export default triggerSet;
