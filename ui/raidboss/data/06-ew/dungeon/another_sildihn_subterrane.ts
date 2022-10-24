@@ -475,6 +475,12 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.startsUsing({ id: '74AF', source: 'Shadowcaster Zeless Gah', capture: false }),
       response: Responses.aoe(),
     },
+    {
+      id: 'ASildihn Firesteel Fracture',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '74AD', source: 'Shadowcaster Zeless Gah', capture: false }),
+      response: Responses.tankCleave(),
+    },
   ],
   timelineReplace: [],
 };
