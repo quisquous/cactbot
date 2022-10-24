@@ -31,6 +31,12 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     // ---------------- Silkie ----------------
     {
+      id: 'ASS Dust Bluster',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '776C', source: 'Silkie', capture: false }),
+      response: Responses.knockback(),
+    },
+    {
       id: 'ASS Squeaky Clean Right',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7755', source: 'Silkie', capture: false }),
@@ -131,12 +137,6 @@ const triggerSet: TriggerSet<Data> = {
           ko: '대각선 쪽으로',
         },
       },
-    },
-    {
-      id: 'ASS Dust Bluster',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '776C', source: 'Silkie', capture: false }),
-      response: Responses.knockback(),
     },
     {
       id: 'ASS Carpet Beater',
