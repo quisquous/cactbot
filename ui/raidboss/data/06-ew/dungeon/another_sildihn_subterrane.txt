@@ -86,7 +86,7 @@ hideall "--sync--"
 # Gladiator of Sil'dih #
 #~~~~~~~~~~~~~~~~~~~~~~#
 
-# -ii 765B 765C 766F 7670 7676 7677 77BF 7660
+# -ii 766F 7670 7676 7677 77BF 7660
 
 1000.0 "--sync--" sync / 00:0839::The Trial of Might will be sealed off/ window 1000,1
 1006.8 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7671:/ window 1007.3,5
