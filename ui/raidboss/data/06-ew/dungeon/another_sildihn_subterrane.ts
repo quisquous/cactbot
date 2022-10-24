@@ -1,9 +1,11 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Silkie specify which puff to get behind in first Slipper Soap
@@ -18,6 +20,7 @@ export interface Data extends RaidbossData {
   suds?: string;
   soapCounter: number;
   beaterCounter: number;
+  mightCasts: (NetMatches['StartsUsing'])[];
   hasLingering?: boolean;
   thunderousEchoPlayer?: string;
 }
@@ -29,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
     return {
       soapCounter: 0,
       beaterCounter: 0,
+      mightCasts: [],
     };
   },
   triggers: [
@@ -188,6 +192,104 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7671', source: 'Gladiator of Sil\'dih', capture: false }),
       response: Responses.aoe(),
+    },
+    {
+      id: 'ASS Rush of Might Collect',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['765C', '765B'], source: 'Gladiator of Sil\'dih' }),
+      preRun: (data, matches) => data.mightCasts.push(matches),
+    },
+    {
+      id: 'ASS Rush of Might',
+      // Boss casts 765C (12.2s) and 765B (10.2s), twice
+      // Gladiator of Mirage casts 7659, 7658, 765A, these target the environment but are not reliable
+      // North
+      //                East               West
+      //   Line 1: (-34.14, -270.14) (-35.86, -270.14)
+      //   Line 2: (-39.45, -275.45) (-30.55, -275.45)
+      //   Line 3: (-44.75, -280.75) (-25.25, -280.75)
+      // South
+      //                East               West
+      //   Line 1: (-34.14, -271.86) (-35.86, -271.86)
+      //   Line 2: (-39.45, -266.55) (-30.55, -266.55)
+      //   Line 3: (-44.75, -261.25) (-25.25, -261.25)
+      // Center is at (-35, -271)
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: ['765C', '765B'], source: 'Gladiator of Sil\'dih', capture: false }),
+      delaySeconds: 0.1,
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        if (data.mightCasts.length !== 4)
+          return;
+
+        const mirage1 = data.mightCasts[0];
+        const unfilteredMirage2 = data.mightCasts[1];
+        const unfilteredMirage3 = data.mightCasts[2];
+
+        if (mirage1 === undefined || unfilteredMirage2 === undefined || unfilteredMirage3 === undefined)
+          throw new UnreachableCode();
+
+        // Filter for unique
+        const mirage2 = (mirage1.x === unfilteredMirage2.x && mirage1.y === unfilteredMirage2.y) ? unfilteredMirage3 : unfilteredMirage2;
+
+        const x1 = parseFloat(mirage1.x);
+        const y1 = parseFloat(mirage1.y);
+        const x2 = parseFloat(mirage2.x);
+        const y2 = parseFloat(mirage2.y);
+
+        const getLine = (x: number) => {
+          if ((x > -46 && x < -43) || (x > -27 && x < -24))
+            return 3;
+          else if ((x > -41 && x < -38) || (x > -32 && x < -29))
+            return 2;
+          else if (x > -37 && x < -33)
+            return 1;
+          return x;
+        };
+
+        const line1 = getLine(x1);
+        const line2 = getLine(x2);
+        const line = line1 > line2 ? line1 : line2;
+
+        // Get Intercard and greatest relative x value
+        let intercard;
+        if (y1 < -271) {
+          // Get the x value of farthest north mirage
+          const x = y1 < y2 ? x1 : x2;
+          intercard = x < -35 ? 'northwest' : 'northeast';
+        } else {
+          // Get the x value of farthest south mirage
+          const x = y1 > y2 ? x1 : x2;
+          intercard = x < -35 ? 'southwest' : 'southeast';
+        }
+
+        let side;
+        if ((line1 === 2 && line2 === 3) || line1 === 3 && line2 === 2) {
+          // Get side of line for case when one is 2 and one is 3
+          if (intercard === 'northwest' || intercard === 'southwest')
+            side = 'east';
+          else
+            side = 'west';
+        } else {
+          if (intercard === 'northwest' || intercard === 'southwest')
+            side = 'west';
+          else
+            side = 'east';
+        }
+        return output.text!({ intercard: output[intercard]!(), side: output[side]!(), line: line });
+      },
+      run: (data) => data.mightCasts = [],
+      outputStrings: {
+        text: {
+          en: '${intercard}, ${side} of line #${line}',
+        },
+        east: Outputs.east,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        northeast: Outputs.northeast,
+        southeast: Outputs.southeast,
+        southwest: Outputs.southwest,
+      },
     },
     {
       id: 'ASS Sculptor\'s Passion',
