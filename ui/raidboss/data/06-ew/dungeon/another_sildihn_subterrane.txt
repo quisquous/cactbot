@@ -19,7 +19,7 @@ hideall "--sync--"
 32.2 "Dust Bluster" sync / 1[56]:[^:]*:Silkie:776C:/
 38.4 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:7766:/
 43.5 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:7757:/
-50.1 "Squeaky Clean" sync / 1[56]:[^:]*:Silkie:(7751|7752):/
+50.1 "--sync--" sync / 1[56]:[^:]*:Silkie:(7751|7752):/
 51.6 "Squeaky Clean 1" sync / 1[56]:[^:]*:Silkie:7753:/
 53.3 "Squeaky Clean 2" sync / 1[56]:[^:]*:Silkie:7754:/
 54.8 "Squeaky Clean 3" sync / 1[56]:[^:]*:Silkie:(7755|7756):/
@@ -61,7 +61,7 @@ hideall "--sync--"
 244.2 "Dust Bluster" sync / 1[56]:[^:]*:Silkie:776C:/
 249.6 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:7757:/
 255.7 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:7766:/
-262.3 "Squeaky Clean" sync / 1[56]:[^:]*:Silkie:(7751|7752):/
+262.3 "--sync--" sync / 1[56]:[^:]*:Silkie:(7751|7752):/
 263.8 "Squeaky Clean 1" sync / 1[56]:[^:]*:Silkie:7753:/
 265.5 "Squeaky Clean 2" sync / 1[56]:[^:]*:Silkie:7754:/
 266.9 "Puff and Tumble" #sync / 1[56]:[^:]*:Silken Puff:7771:/
@@ -119,11 +119,11 @@ hideall "--sync--"
 1196.4 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7671:/
 1206.6 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
 1212.7 "Curse of the Monument" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7666:/
-1219.9 "Sundered Remains" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
-1220.5 "Sundered Remains" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
-1221.1 "Sundered Remains" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
-1221.7 "Sundered Remains" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
-1222.3 "Sundered Remains" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
+1219.9 "Sundered Remains 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
+1220.5 "Sundered Remains 2" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
+1221.1 "Sundered Remains 3" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
+1221.7 "Sundered Remains 4" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
+1222.3 "Sundered Remains 5" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
 1224.9 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
 1232.9 "Scream of the Fallen" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7678:/
 1233.3 "Colossal Wreck" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7669:/
@@ -145,34 +145,29 @@ hideall "--sync--"
 # Shadowcaster Zeless Gah #
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
 
+# -ii 74B7 74B8
+
 2000.0 "--sync--" sync / 00:0839::The Trial of Balance will be sealed off/ window 2000,1
 2006.8 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74AF:/ window 1007.3,5
 2011.5 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AF:/
 2023.7 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
 2030.9 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7494:/
-2042.0 "Firesteel Strike" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B0:/
-2042.4 "Firesteel Strike" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B1:/
-2043.8 "Firesteel Strike" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B2:/
-2051.8 "Blessed Beacon" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B3:/
-2052.2 "Blessed Beacon" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B4:/
-2054.3 "Blessed Beacon" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B5:/
+2042.0 "--sync-- sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B0:/
+2042.4 "Firesteel Strike 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B1:/
+2043.5 "Burn" sync / 1[56]:[^:]*:Ball of Fire:7490:/
+2043.8 "Firesteel Strike 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B2:/
 2064.5 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AD:/
 2112.8 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7494:/
-2123.9 "Firesteel Strike" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B0:/
-2124.3 "Firesteel Strike" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B1:/
-2125.7 "Firesteel Strike" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B2:/
-2133.7 "Blessed Beacon" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B3:/
-2134.1 "Blessed Beacon" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B4:/
-2136.3 "Blessed Beacon" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B5:/
+2123.9 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B0:/
+2124.3 "Firesteel Strike 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B1:/
+2125.7 "Firesteel Strike 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B2:/
+2133.7 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B3:/
+2134.1 "Blessed Beacon 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B4:/
+2136.3 "Blessed Beacon 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B5:/
 2146.6 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AD:/
-2158.8 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
-2170.2 "Cryptic Flames" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B6:/
-2173.3 "Cryptic Flames" sync / 1[56]:[^:]*:Infern Brand:74B7:/
-2174.8 "Cryptic Flames" sync / 1[56]:[^:]*:Infern Brand:74B7:/
-2175.7 "Cryptic Flames" sync / 1[56]:[^:]*:Infern Brand:74B7:/
+2158.8 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/ duration 12
+ter Zeless Gah:74B6:/ duration 12
 2177.1 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
-2178.4 "Cryptic Flames" sync / 1[56]:[^:]*:Infern Brand:74B7:/
-2181.1 "Cryptic Flames" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B8:/
 2183.6 "Blazing Benifice" sync / 1[56]:[^:]*:Arcane Font:74A6:/
 2184.2 "Cast Shadow" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749A:/
 2184.9 "Cast Shadow" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749C:/
