@@ -37,6 +37,67 @@ const triggerSet: TriggerSet<Data> = {
     };
   },
   triggers: [
+    // ---------------- first trash ----------------
+    {
+      id: 'ASS Atropine Spore',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7960', source: 'Aqueduct Belladonna', capture: false }),
+      response: Responses.getIn(),
+    },
+    {
+      id: 'ASS Frond Affront',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7961', source: 'Aqueduct Belladonna', capture: false }),
+      response: Responses.lookAway(),
+    },
+    {
+      id: 'ASS Deracinator',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7962', source: 'Aqueduct Belladonna' }),
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'ASS Left Sweep',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7964', source: 'Aqueduct Kaluk', capture: false }),
+      response: Responses.goRight(),
+    },
+    {
+      id: 'ASS Right Sweep',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7963', source: 'Aqueduct Kaluk', capture: false }),
+      response: Responses.goLeft(),
+    },
+    {
+      id: 'ASS Creeping Ivy',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7965', source: 'Aqueduct Kaluk', capture: false }),
+      response: Responses.getBehind(),
+    },
+    {
+      id: 'ASS Honeyed Left',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '795B', source: 'Aqueduct Udumbara', capture: false }),
+      response: Responses.goRight(),
+    },
+    {
+      id: 'ASS Honeyed Right',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '795C', source: 'Aqueduct Udumbara', capture: false }),
+      response: Responses.goLeft(),
+    },
+    {
+      id: 'ASS Honeyed Front',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '795D', source: 'Aqueduct Udumbara', capture: false }),
+      response: Responses.getBehind(),
+    },
+    {
+      id: 'ASS Arboreal Storm',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7957', source: 'Aqueduct Dryad', capture: false }),
+      response: Responses.getOut(),
+    },
     // ---------------- Silkie ----------------
     {
       id: 'ASS Dust Bluster',
