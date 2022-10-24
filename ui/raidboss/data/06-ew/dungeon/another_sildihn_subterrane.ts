@@ -308,7 +308,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Rush of Might Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['765C', '765B'], source: 'Gladiator of Sil\'dih' }),
+      netRegex: NetRegexes.startsUsing({ id: '765C', source: 'Gladiator of Sil\'dih' }),
       preRun: (data, matches) => data.mightCasts.push(matches),
     },
     {
@@ -327,22 +327,18 @@ const triggerSet: TriggerSet<Data> = {
       //   Line 3: (-44.75, -261.25) (-25.25, -261.25)
       // Center is at (-35, -271)
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['765C', '765B'], source: 'Gladiator of Sil\'dih', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '765C', source: 'Gladiator of Sil\'dih', capture: false }),
       delaySeconds: 0.1,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        if (data.mightCasts.length !== 4)
+        if (data.mightCasts.length !== 2)
           return;
 
         const mirage1 = data.mightCasts[0];
-        const unfilteredMirage2 = data.mightCasts[1];
-        const unfilteredMirage3 = data.mightCasts[2];
+        const mirage2 = data.mightCasts[1];
 
-        if (mirage1 === undefined || unfilteredMirage2 === undefined || unfilteredMirage3 === undefined)
+        if (mirage1 === undefined || mirage2 === undefined)
           throw new UnreachableCode();
-
-        // Filter for unique
-        const mirage2 = (mirage1.x === unfilteredMirage2.x && mirage1.y === unfilteredMirage2.y) ? unfilteredMirage3 : unfilteredMirage2;
 
         const x1 = parseFloat(mirage1.x);
         const y1 = parseFloat(mirage1.y);
@@ -370,7 +366,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // Get Intercard and greatest relative x value
         let intercard;
-        if (y1 < -271) {
+        if (y1 < -273 || (y1 > -271 && y1 < -269)) {
           // Get the x value of farthest north mirage
           const x = y1 < y2 ? x1 : x2;
           intercard = x < -35 ? 'northwest' : 'northeast';
