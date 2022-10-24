@@ -406,6 +406,7 @@
 06-ew/hunts/garlemald.ts
 06-ew/hunts/labyrinthos.ts
 06-ew/hunts/mare_lamentorum.ts
+06-ew/hunts/ss_rank.ts
 06-ew/hunts/thavnair.ts
 06-ew/hunts/ultima_thule.ts
 06-ew/trial/barbariccia.ts
