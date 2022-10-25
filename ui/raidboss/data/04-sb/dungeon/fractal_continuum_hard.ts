@@ -26,7 +26,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Swipe Servo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2AE5', source: 'Servomechanical Minotaur', capture: false }),
+      netRegex: { id: '2AE5', source: 'Servomechanical Minotaur', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -42,7 +42,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Swipe Bio',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '29A2', source: 'Biomanufactured Minotaur', capture: false }),
+      netRegex: { id: '29A2', source: 'Biomanufactured Minotaur', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -58,7 +58,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Swing Servo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2AE4', source: 'Servomechanical Minotaur', capture: false }),
+      netRegex: { id: '2AE4', source: 'Servomechanical Minotaur', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -74,7 +74,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Swing Bio',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '29A1', source: 'Biomanufactured Minotaur', capture: false }),
+      netRegex: { id: '29A1', source: 'Biomanufactured Minotaur', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -90,7 +90,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Dragon Voice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '861', source: 'Servomechanical Chimera', capture: false }),
+      netRegex: { id: '861', source: 'Servomechanical Chimera', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -106,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Ram Voice Servo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '860', source: 'Servomechanical Chimera', capture: false }),
+      netRegex: { id: '860', source: 'Servomechanical Chimera', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -122,7 +122,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Ram Voice Proto',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '860', source: 'Proto-Chimera', capture: false }),
+      netRegex: { id: '860', source: 'Proto-Chimera', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -138,25 +138,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Citadel Buster Motherbit',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '27A5', source: 'Motherbit', capture: false }),
+      netRegex: { id: '27A5', source: 'Motherbit', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'Fractal Hard Aetheroplasm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2793', source: 'The Ultima Warrior' }),
+      netRegex: { id: '2793', source: 'The Ultima Warrior' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Fractal Hard Citadel Buster Warrior',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2792', source: 'The Ultima Warrior', capture: false }),
+      netRegex: { id: '2792', source: 'The Ultima Warrior', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'Fractal Hard Ceruleum Vent',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2794', source: 'The Ultima Warrior', capture: false }),
+      netRegex: { id: '2794', source: 'The Ultima Warrior', capture: false },
       response: Responses.knockback(),
     },
     {
@@ -265,25 +265,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Death Spin',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['27AD', '27AE'], source: 'The Ultima Beast', capture: false }),
+      netRegex: { id: ['27AD', '27AE'], source: 'The Ultima Beast', capture: false },
       response: Responses.outOfMelee(),
     },
     {
       id: 'Fractal Hard Aether Bend',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['27AF', '27B0'], source: 'The Ultima Beast', capture: false }),
+      netRegex: { id: ['27AF', '27B0'], source: 'The Ultima Beast', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'Fractal Hard Allagan Gravity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '27B5', source: 'The Ultima Beast', capture: false }),
+      netRegex: { id: '27B5', source: 'The Ultima Beast', capture: false },
       response: Responses.spread(),
     },
     {
       id: 'Fractal Hard Demi Ultima',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '27B2', source: 'The Ultima Beast', capture: false }),
+      netRegex: { id: '27B2', source: 'The Ultima Beast', capture: false },
       response: Responses.aoe(),
     },
     {

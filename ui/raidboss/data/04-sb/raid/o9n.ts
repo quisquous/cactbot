@@ -18,13 +18,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9N Chaotic Dispersion',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '314F', source: 'Chaos' }),
+      netRegex: { id: '314F', source: 'Chaos' },
       response: Responses.tankBuster(),
     },
     {
       id: 'O9N Orbs Fiend',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '315C', source: 'Chaos', capture: false }),
+      netRegex: { id: '315C', source: 'Chaos', capture: false },
       condition: (data) => data.role === 'tank',
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -72,31 +72,31 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9N Blaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3165', source: 'Chaos', capture: false }),
+      netRegex: { id: '3165', source: 'Chaos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O9N Tsunami',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3166', source: 'Chaos', capture: false }),
+      netRegex: { id: '3166', source: 'Chaos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O9N Cyclone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3167', source: 'Chaos', capture: false }),
+      netRegex: { id: '3167', source: 'Chaos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O9N Earthquake',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3168', source: 'Chaos', capture: false }),
+      netRegex: { id: '3168', source: 'Chaos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O9N Bowels of Agony',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3169', source: 'Chaos', capture: false }),
+      netRegex: { id: '3169', source: 'Chaos', capture: false },
       response: Responses.bigAoe(),
     },
     {
@@ -151,13 +151,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9N Earthquake Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3148', source: 'Chaos', capture: false }),
+      netRegex: { id: '3148', source: 'Chaos', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'O9N Cyclone Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '316D', source: 'Chaos', capture: false }),
+      netRegex: { id: '316D', source: 'Chaos', capture: false },
       response: Responses.knockback(),
     },
   ],

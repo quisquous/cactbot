@@ -12,7 +12,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Wanderer\'s Palace Hard Firespit',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'C91', source: 'Slithy Zolool Ja' }),
+      netRegex: { id: 'C91', source: 'Slithy Zolool Ja' },
       response: Responses.tankBuster(),
     },
     {
@@ -34,7 +34,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Wanderer\'s Palace Hard Soul Douse',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'C9E', source: 'Slithy Zolool Ja', capture: false }),
+      netRegex: { id: 'C9E', source: 'Slithy Zolool Ja', capture: false },
       response: Responses.lookAway(),
     },
   ],

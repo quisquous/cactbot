@@ -37,7 +37,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Gubal Hard Bibliocide',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1945', source: 'Liquid Flame', capture: false }),
+      netRegex: { id: '1945', source: 'Liquid Flame', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -133,7 +133,7 @@ const triggerSet: TriggerSet<Data> = {
       // This inflicts a vulnerability stack on the tank if not interrupted
       id: 'Gubal Hard Condensed Libra',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '198D', source: 'Mechanoscribe', capture: false }),
+      netRegex: { id: '198D', source: 'Mechanoscribe', capture: false },
       infoText: (data, _matches, output) => {
         if (data.CanSilence())
           return output.interruptMechanoscribe!();
@@ -163,7 +163,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Gubal Hard Properties of Quakes',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
+      netRegex: { id: '1956', source: 'Strix', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -179,7 +179,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Gubal Hard Properties of Tornadoes',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
+      netRegex: { id: '1957', source: 'Strix', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -195,7 +195,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Gubal Hard Properties of Imps',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
+      netRegex: { id: '1959', source: 'Strix', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -211,19 +211,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Gubal Hard Properties of Thunder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
+      netRegex: { id: '195A', source: 'Strix', capture: false },
       response: Responses.spread(),
     },
     {
       id: 'Gubal Hard Properties of Darkness II',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
+      netRegex: { id: '1955', source: 'Strix', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Gubal Hard Ecliptic Meteor',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '195D', source: 'Behemoth Ward', capture: false }),
+      netRegex: { id: '195D', source: 'Behemoth Ward', capture: false },
       delaySeconds: 14, // Leaving about 10s warning to complete the LoS
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

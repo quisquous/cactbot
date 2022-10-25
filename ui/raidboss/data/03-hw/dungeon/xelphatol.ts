@@ -39,17 +39,17 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'Xelphatol Long Burst',
-      netRegex: NetRegexes.startsUsing({ id: '19C8', source: 'Nuzal Hueloc', capture: false }),
+      netRegex: { id: '19C8', source: 'Nuzal Hueloc', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Xelphatol Hot Blast',
-      netRegex: NetRegexes.startsUsing({ id: '19CC', source: 'Floating Turret', capture: false }),
+      netRegex: { id: '19CC', source: 'Floating Turret', capture: false },
       response: Responses.getUnder(),
     },
     {
       id: 'Xelphatol On High',
-      netRegex: NetRegexes.startsUsing({ id: '19CF', source: 'Dotoli Ciloc', capture: false }),
+      netRegex: { id: '19CF', source: 'Dotoli Ciloc', capture: false },
       response: Responses.knockback(),
     },
     {
@@ -71,7 +71,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Xelphatol Ixali Aero AOE',
-      netRegex: NetRegexes.startsUsing({ id: '19D5', source: 'Tozol Huatotl', capture: false }),
+      netRegex: { id: '19D5', source: 'Tozol Huatotl', capture: false },
       response: Responses.aoe(),
     },
     {

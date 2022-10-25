@@ -55,13 +55,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'The Vault Holiest of Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '101E', source: 'Ser Adelphel', capture: false }),
+      netRegex: { id: '101E', source: 'Ser Adelphel', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'The Vault Holy Shield Bash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '101F', source: 'Ser Adelphel' }),
+      netRegex: { id: '101F', source: 'Ser Adelphel' },
       condition: (data) => data.role === 'healer',
       alertText: (data, matches, output) => {
         return output.text!({ player: data.ShortName(matches.target) });
@@ -86,14 +86,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'The Vault Black Nebula',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1042', source: 'Face Of The Hero' }),
+      netRegex: { id: '1042', source: 'Face Of The Hero' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
       id: 'The Vault Faith Unmoving',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1027', source: 'Ser Grinnaux', capture: false }),
+      netRegex: { id: '1027', source: 'Ser Grinnaux', capture: false },
       response: Responses.knockback(),
     },
     {
@@ -117,7 +117,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'The Vault Altar Pyre',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1035', source: 'Ser Charibert', capture: false }),
+      netRegex: { id: '1035', source: 'Ser Charibert', capture: false },
       response: Responses.aoe(),
     },
     {

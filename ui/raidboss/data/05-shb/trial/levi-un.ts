@@ -31,7 +31,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Dive Counter Tidal Wave Reset',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '5CDE', capture: false }),
+      netRegex: { source: 'Leviathan', id: '5CDE', capture: false },
       run: (data) => {
         // There's always a slam after Tidal Wave.
         data.diveCounter = 1;
@@ -43,7 +43,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Dive Counter Body Slam Reset',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '5CD2', capture: false }),
+      netRegex: { source: 'Leviathan', id: '5CD2', capture: false },
       // Redundant, but this will keep things on track if anything goes awry.
       run: (data) => data.diveCounter = 1,
     },
@@ -100,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Veil of the Whorl',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '5CE5', capture: false }),
+      netRegex: { source: 'Leviathan', id: '5CE5', capture: false },
       condition: (data) => Util.isCasterDpsJob(data.job) || Util.isHealerJob(data.job),
       suppressSeconds: 9999,
       infoText: (_data, _matches, output) => output.text!(),
@@ -118,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Mantle of the Whorl',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Leviathan\'s Tail', id: '5CE4', capture: false }),
+      netRegex: { source: 'Leviathan\'s Tail', id: '5CE4', capture: false },
       condition: (data) => Util.isRangedDpsJob(data.job),
       suppressSeconds: 9999,
       infoText: (_data, _matches, output) => output.text!(),

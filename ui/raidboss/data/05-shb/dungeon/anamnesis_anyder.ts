@@ -14,13 +14,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AnAnyder Fetid Fang',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: ['4B69', '4B72'] }),
+      netRegex: { source: 'Unknown', id: ['4B69', '4B72'] },
       response: Responses.tankBuster(),
     },
     {
       id: 'AnAnyder Scrutiny',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: '4E25', capture: false }),
+      netRegex: { source: 'Unknown', id: '4E25', capture: false },
       delaySeconds: 3,
       durationSeconds: 7,
       infoText: (_data, _matches, output) => output.text!(),
@@ -38,43 +38,43 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AnAnyder Inscrutability',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: '4B6A', capture: false }),
+      netRegex: { source: 'Unknown', id: '4B6A', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'AnAnyder Luminous Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: '4E2[67]', capture: false }),
+      netRegex: { source: 'Unknown', id: '4E2[67]', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'AnAnyder The Final Verse',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B58', capture: false }),
+      netRegex: { source: 'Kyklops', id: '4B58', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'AnAnyder 2,000-Mina Swing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B55', capture: false }),
+      netRegex: { source: 'Kyklops', id: '4B55', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'AnAnyder Eye Of The Cyclone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B57', capture: false }),
+      netRegex: { source: 'Kyklops', id: '4B57', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'AnAnyder 2,000-Mina Swipe',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B54', capture: false }),
+      netRegex: { source: 'Kyklops', id: '4B54', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'AnAnyder Raging Glower',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Kyklops', id: '4B56', capture: false }),
+      netRegex: { source: 'Kyklops', id: '4B56', capture: false },
       response: Responses.awayFromFront(),
     },
     {
@@ -86,20 +86,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AnAnyder Bonebreaker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B8C' }),
+      netRegex: { source: 'Rukshs Dheem', id: '4B8C' },
       response: Responses.tankBuster(),
     },
     {
       id: 'AnAnyder Falling Water',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B7E' }),
+      netRegex: { source: 'Rukshs Dheem', id: '4B7E' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'AnAnyder Depth Grip',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Rukshs Dheem', id: '4B84', capture: false }),
+      netRegex: { source: 'Rukshs Dheem', id: '4B84', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

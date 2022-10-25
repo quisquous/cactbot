@@ -28,7 +28,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Kugane Castle Kenki Release',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1E93', source: 'Zuiko-Maru', capture: false }),
+      netRegex: { id: '1E93', source: 'Zuiko-Maru', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -66,7 +66,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Kugane Castle Gratuity',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1EAE', source: 'Kageyama', capture: false }),
+      netRegex: { id: '1EAE', source: 'Kageyama', capture: false },
       suppressSeconds: 15, // No point in notifying repeatedly
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -83,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Kugane Castle Dragons Lair',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1EA6', source: 'Yojimbo', capture: false }),
+      netRegex: { id: '1EA6', source: 'Yojimbo', capture: false },
       response: Responses.killAdds(),
     },
   ],

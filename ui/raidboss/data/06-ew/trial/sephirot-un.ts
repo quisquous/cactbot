@@ -111,7 +111,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Main Tank',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '368', source: 'Sephirot' }),
+      netRegex: { id: '368', source: 'Sephirot' },
       // We make this conditional to avoid constant noise in the raid emulator.
       condition: (data, matches) => data.mainTank !== matches.target,
       run: (data, matches) => data.mainTank = matches.target,
@@ -119,13 +119,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Chesed Buster',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7694', source: 'Sephirot' }),
+      netRegex: { id: '7694', source: 'Sephirot' },
       response: Responses.tankBuster(),
     },
     {
       id: 'SephirotUn Ein',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7696', source: 'Sephirot', capture: false }),
+      netRegex: { id: '7696', source: 'Sephirot', capture: false },
 
       response: Responses.getBehind(),
     },
@@ -191,19 +191,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Da\'at Spread',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '769F', source: 'Sephirot', capture: false }),
+      netRegex: { id: '769F', source: 'Sephirot', capture: false },
       response: Responses.spread(),
     },
     {
       id: 'SephirotUn Malkuth',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76AF', source: 'Sephirot', capture: false }),
+      netRegex: { id: '76AF', source: 'Sephirot', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'SephirotUn Yesod Move',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76AB', source: 'Sephirot', capture: false }),
+      netRegex: { id: '76AB', source: 'Sephirot', capture: false },
       suppressSeconds: 2,
       response: Responses.moveAway('alarm'), // This *will* kill if a non-tank takes 2+.
     },
@@ -247,7 +247,7 @@ const triggerSet: TriggerSet<Data> = {
       // Orange left, Green right. Match color to Force debuff.
       id: 'SephirotUn Gevurah Chesed',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76A5', capture: false }),
+      netRegex: { id: '76A5', capture: false },
       alertText: (data, _matches, output) => {
         // Here and for Chesed Gevurah, if the player doesn't have a color debuff,
         // they just take moderate AoE damage.
@@ -267,7 +267,7 @@ const triggerSet: TriggerSet<Data> = {
       // Green left, Orange right. Match color to Force debuff.
       id: 'SephirotUn Chesed Gevurah',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76A6', capture: false }),
+      netRegex: { id: '76A6', capture: false },
       alertText: (data, _matches, output) => {
         if (data.force)
           return data.force === '3EE' ? output.left!() : output.right!();
@@ -282,7 +282,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Fiendish Wail',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '76A2', source: 'Sephirot', capture: false }),
+      netRegex: { id: '76A2', source: 'Sephirot', capture: false },
       alertText: (data, _matches, output) => {
         if (data.force === '3ED' || (!data.force && data.role === 'tank'))
           return output.getTower!();
@@ -391,7 +391,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Storm of Words Revelation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7680', source: 'Storm of Words', capture: false }),
+      netRegex: { id: '7680', source: 'Storm of Words', capture: false },
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

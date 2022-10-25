@@ -39,19 +39,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaHm Glacier Bash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '9A1', capture: false }),
+      netRegex: { id: '9A1', capture: false },
       response: Responses.getBehind('info'),
     },
     {
       id: 'ShivaHm Permafrost',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '999', capture: false }),
+      netRegex: { id: '999', capture: false },
       response: Responses.stopMoving('alert'),
     },
     {
       id: 'ShivaHm Ice Boulder',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '9A3' }),
+      netRegex: { id: '9A3' },
       condition: Conditions.targetIsNotYou(),
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {

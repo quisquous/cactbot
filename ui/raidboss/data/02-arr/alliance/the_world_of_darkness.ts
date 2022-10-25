@@ -55,7 +55,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Angra Mainyu Double Vision',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'CC8', source: 'Angra Mainyu', capture: false }),
+      netRegex: { id: 'CC8', source: 'Angra Mainyu', capture: false },
       alertText: (data, _matches, output) => {
         if (data.sullenDebuff) {
           // Stand behind boss in the red half to switch to Ireful
@@ -87,7 +87,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Angra Mainyu Mortal Gaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['CD1', 'DAB'], source: 'Angra Mainyu', capture: false }),
+      netRegex: { id: ['CD1', 'DAB'], source: 'Angra Mainyu', capture: false },
       suppressSeconds: 0.1,
       response: Responses.lookAway('alert'),
     },

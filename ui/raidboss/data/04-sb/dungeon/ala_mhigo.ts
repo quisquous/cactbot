@@ -22,25 +22,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ala Mhigo Electromagnetic Field',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '204D', source: 'Magitek Scorpion', capture: false }),
+      netRegex: { id: '204D', source: 'Magitek Scorpion', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Ala Mhigo Mana Burst',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '204F', source: 'Aulus Mal Asina', capture: false }),
+      netRegex: { id: '204F', source: 'Aulus Mal Asina', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Ala Mhigo Demimagicks',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '205D', source: 'Aulus Mal Asina', capture: false }),
+      netRegex: { id: '205D', source: 'Aulus Mal Asina', capture: false },
       response: Responses.spread(),
     },
     {
       id: 'Ala Mhigo Storm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2066', '2587'], source: 'Zenos Yae Galvus', capture: false }),
+      netRegex: { id: ['2066', '2587'], source: 'Zenos Yae Galvus', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -56,13 +56,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ala Mhigo Swell',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2065', '2586'], source: 'Zenos Yae Galvus', capture: false }),
+      netRegex: { id: ['2065', '2586'], source: 'Zenos Yae Galvus', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'Ala Mhigo Sword',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2068', '2588'], source: 'Zenos Yae Galvus', capture: false }),
+      netRegex: { id: ['2068', '2588'], source: 'Zenos Yae Galvus', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -95,7 +95,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ala Mhigo Concentrativity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '206D', source: 'Zenos Yae Galvus', capture: false }),
+      netRegex: { id: '206D', source: 'Zenos Yae Galvus', capture: false },
       response: Responses.aoe(),
     },
   ],

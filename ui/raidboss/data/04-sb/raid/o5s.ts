@@ -22,19 +22,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O5S Doom Strike',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28B1', source: 'Phantom Train' }),
+      netRegex: { id: '28B1', source: 'Phantom Train' },
       response: Responses.tankBuster(),
     },
     {
       id: 'O5S Head On',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28A4', source: 'Phantom Train', capture: false }),
+      netRegex: { id: '28A4', source: 'Phantom Train', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'O5S Diabolic Headlamp',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28B2', source: 'Phantom Train', capture: false }),
+      netRegex: { id: '28B2', source: 'Phantom Train', capture: false },
       response: Responses.stackMiddle(),
     },
     {

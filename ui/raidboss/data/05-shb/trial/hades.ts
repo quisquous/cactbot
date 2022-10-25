@@ -19,13 +19,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Phase Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
+      netRegex: { id: '4180', source: 'Hades', capture: false },
       run: (data) => data.neoHades = true,
     },
     {
       id: 'Hades Ravenous Assault',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4158', source: 'Hades' }),
+      netRegex: { id: '4158', source: 'Hades' },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.tankBusterOnYou!();
@@ -54,19 +54,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Bad Faith Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4149', source: 'Hades', capture: false }),
+      netRegex: { id: '4149', source: 'Hades', capture: false },
       response: Responses.goLeft('info'),
     },
     {
       id: 'Hades Bad Faith Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '414A', source: 'Hades', capture: false }),
+      netRegex: { id: '414A', source: 'Hades', capture: false },
       response: Responses.goRight('info'),
     },
     {
       id: 'Hades Broken Faith',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '414D', source: 'Hades', capture: false }),
+      netRegex: { id: '414D', source: 'Hades', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -82,31 +82,31 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Echo Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4164', source: 'Hades', capture: false }),
+      netRegex: { id: '4164', source: 'Hades', capture: false },
       response: Responses.goRight('info'),
     },
     {
       id: 'Hades Echo Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4163', source: 'Hades', capture: false }),
+      netRegex: { id: '4163', source: 'Hades', capture: false },
       response: Responses.goLeft('info'),
     },
     {
       id: 'Hades Titanomachy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
+      netRegex: { id: '4180', source: 'Hades', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Hades Shadow Stream',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '415C', source: 'Hades', capture: false }),
+      netRegex: { id: '415C', source: 'Hades', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'Hades Purgation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4170', source: 'Hades', capture: false }),
+      netRegex: { id: '4170', source: 'Hades', capture: false },
       response: Responses.goMiddle(),
     },
     {
@@ -129,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Wail of the Lost Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4166', source: 'Hades', capture: false }),
+      netRegex: { id: '4166', source: 'Hades', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -145,7 +145,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Wail of the Lost Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4165', source: 'Hades', capture: false }),
+      netRegex: { id: '4165', source: 'Hades', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -161,7 +161,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Dual Strike Healer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4161', source: 'Hades', capture: false }),
+      netRegex: { id: '4161', source: 'Hades', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: Outputs.tankBusters,
@@ -221,13 +221,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Life In Captivity',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '4175', source: 'Hades', capture: false }),
+      netRegex: { id: '4175', source: 'Hades', capture: false },
       run: (data) => data.seenLifeInCaptivity = true,
     },
     {
       id: 'Hades Gaol',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '417F', source: 'Hades', capture: false }),
+      netRegex: { id: '417F', source: 'Hades', capture: false },
       condition: (data) => {
         // There can be multiple gaols (if the phase loops), but ability also
         // gets used during the finall phase transition.  Ignore that one.

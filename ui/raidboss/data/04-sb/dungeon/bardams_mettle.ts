@@ -41,7 +41,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bardam\'s Mettle War Cry',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1EFA', source: 'Garula', capture: false }),
+      netRegex: { id: '1EFA', source: 'Garula', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -55,13 +55,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bardam\'s Mettle Empty Gaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1F04', source: 'Hunter Of Bardam', capture: false }),
+      netRegex: { id: '1F04', source: 'Hunter Of Bardam', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'Bardam\'s Mettle Sacrifice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1F01', source: 'Bardam', capture: false }),
+      netRegex: { id: '1F01', source: 'Bardam', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -80,7 +80,7 @@ const triggerSet: TriggerSet<Data> = {
       // but 257D is used only once. The others are 257E.
       id: 'Bardam\'s Mettle Comet',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '257D', source: 'Bardam', capture: false }),
+      netRegex: { id: '257D', source: 'Bardam', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -97,7 +97,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bardam\'s Mettle Meteor Impact',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2582', source: 'Looming Shadow' }),
+      netRegex: { id: '2582', source: 'Looming Shadow' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 7,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -114,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bardam\'s Mettle Wind Unbound',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1F0A', source: 'Yol', capture: false }),
+      netRegex: { id: '1F0A', source: 'Yol', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -127,7 +127,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bardam\'s Mettle Eye Of The Fierce',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1F0D', source: 'Yol', capture: false }),
+      netRegex: { id: '1F0D', source: 'Yol', capture: false },
       response: Responses.lookAway(),
     },
     {

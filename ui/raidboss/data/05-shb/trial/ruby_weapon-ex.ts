@@ -59,19 +59,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Optimized Ultima',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4ABE', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4ABE', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'RubyEx Stamp',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B03' }),
+      netRegex: { source: 'The Ruby Weapon', id: '4B03' },
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'RubyEx Ravensclaw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4ACC', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4ACC', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -87,7 +87,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Undermine',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD0', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AD0', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -103,7 +103,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Liquefaction',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4ACF', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4ACF', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -119,7 +119,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Liquefaction Ravensflight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AEC', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AEC', capture: false },
       alertText: (data, _matches, output) => {
         if (data.seenFlight)
           return output.outOfMiddle!();
@@ -141,19 +141,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Ruby Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B02', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4B02', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'RubyEx Cut And Run',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B05', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4B05', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'RubyEx High-Powered Homing Lasers',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD8', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AD8', capture: false },
       suppressSeconds: 1,
       response: Responses.stackMarker(),
     },
@@ -162,7 +162,7 @@ const triggerSet: TriggerSet<Data> = {
       // Give a friendly reminder to pop LB3 if you haven't already
       id: 'RubyEx Optimized Ultima Enrage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B2D', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4B2D', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -249,7 +249,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Ruby Claw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Raven\'s Image', id: '4AFF' }),
+      netRegex: { source: 'Raven\'s Image', id: '4AFF' },
       condition: (data, matches) => {
         if (data.role !== 'healer' && data.role !== 'tank')
           return false;
@@ -290,7 +290,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // Lunar Dynamo = 4EB0
       // Iron Chariot = 4EB1
-      netRegex: NetRegexes.startsUsing({ source: 'Raven\'s Image', id: ['4EB0', '4EB1'] }),
+      netRegex: { source: 'Raven\'s Image', id: ['4EB0', '4EB1'] },
       run: (data, matches) => {
         data.imageIdToAction ??= {};
         data.imageIdToAction[matches.sourceId] = matches.id;
@@ -301,7 +301,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // Lunar Dynamo = 4EB0
       // Iron Chariot = 4EB1
-      netRegex: NetRegexes.startsUsing({ source: 'Raven\'s Image', id: ['4EB0', '4EB1'], capture: false }),
+      netRegex: { source: 'Raven\'s Image', id: ['4EB0', '4EB1'], capture: false },
       delaySeconds: 0.1,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
@@ -394,7 +394,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Change of Heart',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Ruby Weapon', id: '4AFC', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AFC', capture: false },
       preRun: (data) => {
         data.ravens ??= {};
 
@@ -490,7 +490,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Negative Aura',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AFE', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AFE', capture: false },
       response: Responses.lookAway('alert'),
     },
     {
@@ -513,13 +513,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Screech',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AEE', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AEE', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'RubyEx Magitek Meteor Burst',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AF0', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AF0', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -535,7 +535,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Mark II Magitek Comet Tank',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AB6', capture: false },
       condition: (data) => data.role === 'tank',
       delaySeconds: 11.5,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -553,7 +553,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Mark II Magitek Comet Other',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AB6', capture: false },
       condition: (data) => data.role !== 'tank',
       delaySeconds: 13,
       alertText: (_data, _matches, output) => output.text!(),
@@ -620,7 +620,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Outrage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B04', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4B04', capture: false },
       response: Responses.aoe(),
     },
   ],

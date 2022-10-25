@@ -21,7 +21,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T6 Phase 2',
       type: 'Ability',
       // Bloody Caress.
-      netRegex: NetRegexes.ability({ id: '797', source: 'Rafflesia' }),
+      netRegex: { id: '797', source: 'Rafflesia' },
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
       promise: (_data, matches) =>
@@ -47,7 +47,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Thorn Whip',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
+      netRegex: { id: '879', source: 'Rafflesia' },
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         const partners = data.thornMap?.[data.me] ?? [];
@@ -161,13 +161,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Blighted',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
+      netRegex: { id: '79D', source: 'Rafflesia', capture: false },
       response: Responses.stopEverything(),
     },
     {
       id: 'T6 Phase 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
+      netRegex: { id: '79E', source: 'Rafflesia', capture: false },
       condition: (data) => !data.seenLeafstorm,
       sound: 'Long',
       run: (data) => data.seenLeafstorm = true,
@@ -175,7 +175,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Swarm Stack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
+      netRegex: { id: '86C', source: 'Rafflesia', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -190,7 +190,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Swarm',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
+      netRegex: { id: '7A0', source: 'Rafflesia' },
       condition: (data, matches) => data.me === matches.target || data.role === 'healer' || data.job === 'BLU',
       alertText: (data, matches, output) => {
         if (matches.target === data.me)

@@ -232,21 +232,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Decollation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A09', source: 'Hesperos', capture: false }),
+      netRegex: { id: '6A09', source: 'Hesperos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P4S Bloodrake',
       // AoE hits tethered players in first one, the non-tethered in second
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69D8', source: 'Hesperos', capture: false }),
+      netRegex: { id: '69D8', source: 'Hesperos', capture: false },
       preRun: (data) => data.bloodrakeCounter = (data.bloodrakeCounter ?? 0) + 1,
       response: Responses.aoe(),
     },
     {
       id: 'P4S Bloodrake Store',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '69D8', source: 'Hesperos' }),
+      netRegex: { id: '69D8', source: 'Hesperos' },
       condition: (data) => (data.bloodrakeCounter ?? 0) < 3,
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
@@ -291,7 +291,7 @@ const triggerSet: TriggerSet<Data> = {
       // 69DE is No Tank/Healer Belone Coils
       // 69DF is No DPS Belone Coils
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['69DE', '69DF', '69E0', '69E1'], source: 'Hesperos' }),
+      netRegex: { id: ['69DE', '69DF', '69E0', '69E1'], source: 'Hesperos' },
       preRun: (data) => {
         if (!data.beloneCoilsTwo) {
           delete data.debuffRole;
@@ -383,7 +383,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Director\'s Belone',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '69E6', source: 'Hesperos', capture: false }),
+      netRegex: { id: '69E6', source: 'Hesperos', capture: false },
       // Delay callout until debuffs are out
       delaySeconds: 1.4,
       alertText: (data, _matches, output) => {
@@ -406,7 +406,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4S Inversive Chlamys',
       // Possible a player still has not yet passed debuff
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69ED', source: 'Hesperos', capture: false }),
+      netRegex: { id: '69ED', source: 'Hesperos', capture: false },
       condition: (data) => !data.ignoreChlamys,
       alertText: (data, _matches, output) => {
         const dps = (data.tetherRole ??= []).includes('dps');
@@ -428,14 +428,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4S Elegant Evisceration',
       // This one does an aoe around the tank
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A08', source: 'Hesperos' }),
+      netRegex: { id: '6A08', source: 'Hesperos' },
       response: Responses.tankBusterSwap('alert'),
     },
     {
       id: 'P4S Levinstrike Pinax',
       // Strong proximity Aoe
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69D7', source: 'Hesperos', capture: false }),
+      netRegex: { id: '69D7', source: 'Hesperos', capture: false },
       preRun: (data) => data.pinaxCount = (data.pinaxCount ?? 0) + 1,
       durationSeconds: 6,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -453,7 +453,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Well Pinax',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos', capture: false }),
+      netRegex: { id: '69D6', source: 'Hesperos', capture: false },
       preRun: (data) => data.pinaxCount = (data.pinaxCount ?? 0) + 1,
       infoText: (data, _matches, output) => {
         if ((data.pinaxCount ?? 0) % 2)
@@ -483,7 +483,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Well Pinax Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69D6', source: 'Hesperos' }),
+      netRegex: { id: '69D6', source: 'Hesperos' },
       delaySeconds: (data, matches) => {
         // Delay for for Directional Shift on Even Well/Levinstrike Pinax Count
         if ((data.pinaxCount ?? 0) % 2)
@@ -513,13 +513,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Acid Pinax',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69D4', source: 'Hesperos', capture: false }),
+      netRegex: { id: '69D4', source: 'Hesperos', capture: false },
       response: Responses.spread('alert'),
     },
     {
       id: 'P4S Lava Pinax',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69D5', source: 'Hesperos', capture: false }),
+      netRegex: { id: '69D5', source: 'Hesperos', capture: false },
       infoText: (_data, _matches, output) => output.groups!(),
       outputStrings: {
         groups: {
@@ -535,7 +535,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Northerly Shift Slash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A02', source: 'Hesperos', capture: false }),
+      netRegex: { id: '6A02', source: 'Hesperos', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -551,7 +551,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Easterly Shift Slash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A04', source: 'Hesperos', capture: false }),
+      netRegex: { id: '6A04', source: 'Hesperos', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -567,7 +567,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Southerly Shift Slash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A03', source: 'Hesperos', capture: false }),
+      netRegex: { id: '6A03', source: 'Hesperos', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -583,7 +583,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Westerly Shift Slash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A05', source: 'Hesperos', capture: false }),
+      netRegex: { id: '6A05', source: 'Hesperos', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -599,7 +599,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Northerly Shift Cape',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69FD', source: 'Hesperos', capture: false }),
+      netRegex: { id: '69FD', source: 'Hesperos', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -615,7 +615,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Easterly Shift Cape',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69FF', source: 'Hesperos', capture: false }),
+      netRegex: { id: '69FF', source: 'Hesperos', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -631,7 +631,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Southerly Shift Cape',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69FE', source: 'Hesperos', capture: false }),
+      netRegex: { id: '69FE', source: 'Hesperos', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -647,7 +647,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Westerly Shift Cape',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A00', source: 'Hesperos', capture: false }),
+      netRegex: { id: '6A00', source: 'Hesperos', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -664,7 +664,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4S Directional Shift Knockback',
       // Callout Knockback during Levinstrike + Shift
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['69FD', '69FE', '69FF', '6A00'], source: 'Hesperos' }),
+      netRegex: { id: ['69FD', '69FE', '69FF', '6A00'], source: 'Hesperos' },
       condition: (data) => !data.wellShiftKnockback,
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),
@@ -714,7 +714,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Belone Bursts',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69D9', source: 'Hesperos', capture: false }),
+      netRegex: { id: '69D9', source: 'Hesperos', capture: false },
       infoText: (_data, _matches, output) => output.rolePositions!(),
       outputStrings: {
         rolePositions: {
@@ -730,7 +730,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Periaktoi',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['69F5', '69F6', '69F7', '69F8'], source: 'Hesperos' }),
+      netRegex: { id: ['69F5', '69F6', '69F7', '69F8'], source: 'Hesperos' },
       alertText: (_data, matches, output) => {
         const pinax: { [id: string]: string } = {
           '69F5': output.acid!(),
@@ -786,13 +786,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Searing Stream',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A2D', source: 'Hesperos', capture: false }),
+      netRegex: { id: '6A2D', source: 'Hesperos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P4S Act Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6A0C', '6EB[4-7]', '6A36'], source: 'Hesperos' }),
+      netRegex: { id: ['6A0C', '6EB[4-7]', '6A36'], source: 'Hesperos' },
       run: (data, matches) => {
         const actMap: { [id: string]: string } = {
           '6A0C': '1',
@@ -809,7 +809,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Thorns Collector',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A0C', source: 'Hesperos' }),
+      netRegex: { id: '6A0C', source: 'Hesperos' },
       promise: async (data, matches, _output) => {
         // Collect all Hesperos entities up front
         let combatantName = null;
@@ -879,7 +879,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Nearsight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A26', source: 'Hesperos', capture: false }),
+      netRegex: { id: '6A26', source: 'Hesperos', capture: false },
       alertText: (data, _matches, output) => data.role === 'tank' ? output.tankbustersIn!() : output.getOut!(),
       outputStrings: {
         tankbustersIn: {
@@ -896,7 +896,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Farsight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A27', source: 'Hesperos', capture: false }),
+      netRegex: { id: '6A27', source: 'Hesperos', capture: false },
       alertText: (data, _matches, output) => data.role === 'tank' ? output.tankbustersOut!() : output.getIn!(),
       outputStrings: {
         tankbustersOut: {
@@ -913,7 +913,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Demigod Double',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6E78', source: 'Hesperos' }),
+      netRegex: { id: '6E78', source: 'Hesperos' },
       condition: Conditions.caresAboutPhysical(),
       response: Responses.sharedTankBuster(),
     },
@@ -1117,7 +1117,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Ultimate Impulse',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A2C', source: 'Hesperos', capture: false }),
+      netRegex: { id: '6A2C', source: 'Hesperos', capture: false },
       response: Responses.bigAoe(),
     },
     {
@@ -1161,14 +1161,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Heart Stake',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A2B', source: 'Hesperos' }),
+      netRegex: { id: '6A2B', source: 'Hesperos' },
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
     {
       id: 'P4S Wreath of Thorns 5',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A34', source: 'Hesperos', capture: false }),
+      netRegex: { id: '6A34', source: 'Hesperos', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1184,7 +1184,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Fleeting Impulse',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6A1C', source: 'Hesperos' }),
+      netRegex: { id: '6A1C', source: 'Hesperos' },
       preRun: (data, _matches) => {
         data.fleetingImpulseCounter = (data.fleetingImpulseCounter ?? 0) + 1;
       },
@@ -1255,7 +1255,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Hell\'s Sting',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6A1E', source: 'Hesperos', capture: false }),
+      netRegex: { id: '6A1E', source: 'Hesperos', capture: false },
       infoText: (_data, _matches, output) => output.protean!(),
       outputStrings: {
         protean: {

@@ -120,7 +120,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Equal Concentration',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: ['Liquid Limb', 'Living Liquid'], id: 'F09', capture: false }),
+      netRegex: { source: ['Liquid Limb', 'Living Liquid'], id: 'F09', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -191,7 +191,7 @@ const triggerSet: TriggerSet<Data> = {
       // From logs, it appears that tethers, then headmarkers, then starts casting occurs.
       id: 'A3S Ferrofluid',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: 'F01' }),
+      netRegex: { source: 'Living Liquid', id: 'F01' },
       alertText: (data, matches, output) => {
         data.ferroTether ??= {};
         data.ferroMarker ??= {};
@@ -228,14 +228,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Cascade',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: 'EFE', capture: false }),
+      netRegex: { source: 'Living Liquid', id: 'EFE', capture: false },
       response: Responses.aoe(),
     },
     {
       // aka Liquid Gaol
       id: 'A3S Throttle',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Liquid Rage', id: 'F1A' }),
+      netRegex: { source: 'Liquid Rage', id: 'F1A' },
       condition: (data) => data.CanCleanse(),
       alertText: (data, matches, output) => {
         return output.text!({ player: data.ShortName(matches.target) });
@@ -286,7 +286,7 @@ const triggerSet: TriggerSet<Data> = {
       // aka Pressurize
       id: 'A3S Embolus',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Living Liquid', id: 'F1B', capture: false }),
+      netRegex: { source: 'Living Liquid', id: 'F1B', capture: false },
       condition: (data) => data.role === 'tank' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

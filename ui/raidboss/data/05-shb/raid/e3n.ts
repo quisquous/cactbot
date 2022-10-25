@@ -14,7 +14,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3N Tidal Roar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FC4', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FC4', source: 'Leviathan', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -26,7 +26,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3N Tidal Wave Look',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FD2', source: 'Leviathan', capture: false },
       delaySeconds: 3,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -43,7 +43,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3N Tidal Wave Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FD2', source: 'Leviathan', capture: false },
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
@@ -52,7 +52,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3N Undersea Quake Outside',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FD0', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FD0', source: 'Leviathan', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -68,13 +68,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3N Undersea Quake Inside',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FCF', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FCF', source: 'Leviathan', capture: false },
       response: Responses.goSides('alarm'),
     },
     {
       id: 'E3N Maelstrom',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FD8', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FD8', source: 'Leviathan', capture: false },
       delaySeconds: 8,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -98,7 +98,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3N Tsunami',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FD4', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FD4', source: 'Leviathan', capture: false },
       response: Responses.aoe(),
     },
     {

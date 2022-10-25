@@ -40,7 +40,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3N Phase Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2304', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2304', source: 'Halicarnassus', capture: false },
       run: (data) => data.phaseNumber += 1,
     },
     {
@@ -111,7 +111,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3N The Queen\'s Waltz: Crystal Square',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2471', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2471', source: 'Halicarnassus', capture: false },
       infoText: (_data, _matches, output) => output.getOnCrystalSquare!(),
       tts: (_data, _matches, output) => output.blueSquare!(),
       outputStrings: {
@@ -153,13 +153,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3N Game Counter Initialize',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2304', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2304', source: 'Halicarnassus', capture: false },
       run: (data) => data.gameCount = 1,
     },
     {
       id: 'O3N Good Ribbit',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2466', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2466', source: 'Halicarnassus', capture: false },
       condition: (data) => data.phaseNumber === 3 && data.gameCount % 2 === 0,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -176,14 +176,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3N Bad Ribbit',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2466', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2466', source: 'Halicarnassus', capture: false },
       condition: (data) => !(data.phaseNumber === 3 && data.gameCount % 2 === 0),
       response: Responses.awayFromFront(),
     },
     {
       id: 'O3N The Game',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '246D', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '246D', source: 'Halicarnassus', capture: false },
       // No point in checking whether the user has the frog debuff,
       // if they didn't get it, or got it when they shouldn't have, there's no fixing things.
       infoText: (data, _matches, output) => {
@@ -239,7 +239,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3N Mindjack Forward',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2467', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2467', source: 'Halicarnassus', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -255,7 +255,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3N Mindjack Backward',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2468', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2468', source: 'Halicarnassus', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -271,7 +271,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3N Mindjack Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2469', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2469', source: 'Halicarnassus', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -287,7 +287,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3N Mindjack Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '246A', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '246A', source: 'Halicarnassus', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

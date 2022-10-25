@@ -32,14 +32,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Mind Blast',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster', id: '15F3' }),
+      netRegex: { source: 'Blaster', id: '15F3' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
       id: 'A6S Hidden Minefield',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster', id: '15F7', capture: false }),
+      netRegex: { source: 'Blaster', id: '15F7', capture: false },
       infoText: (data, _matches, output) => {
         if (data.role === 'tank' && !data.magicVulnerability)
           return output.getMines!();
@@ -68,7 +68,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Supercharge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '15FB', capture: false }),
+      netRegex: { source: 'Blaster Mirage', id: '15FB', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -85,7 +85,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Blinder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '15FC' }),
+      netRegex: { source: 'Blaster Mirage', id: '15FC' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -102,7 +102,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Power Tackle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '15FD' }),
+      netRegex: { source: 'Blaster Mirage', id: '15FD' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -155,20 +155,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Bio-arithmeticks',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Swindler', id: '1610', capture: false }),
+      netRegex: { source: 'Swindler', id: '1610', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'A6S Midan Hardhelm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Midan Hardhelm', id: '1612' }),
+      netRegex: { source: 'Midan Hardhelm', id: '1612' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
       id: 'A6S Midan Hardmind',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Midan Hardhelm', id: '1613' }),
+      netRegex: { source: 'Midan Hardhelm', id: '1613' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
@@ -195,13 +195,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Super Cyclone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '1627', capture: false }),
+      netRegex: { source: 'Vortexer', id: '1627', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'A6S Ultra Flash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '161A', capture: false }),
+      netRegex: { source: 'Vortexer', id: '161A', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

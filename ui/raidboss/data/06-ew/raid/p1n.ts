@@ -18,32 +18,32 @@ const triggerSet: TriggerSet<Data> = {
       // Also happens during Aetherflail Right (65DF)
       id: 'P1N Gaoler\'s Flail Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6DA2', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '6DA2', source: 'Erichthonios', capture: false },
       response: Responses.goLeft(),
     },
     {
       // Also happens during Aetherflail Left (65E0)
       id: 'P1N Gaoler\'s Flail Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6DA3', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '6DA3', source: 'Erichthonios', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'P1N Warder\'s Wrath',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65F4', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '65F4', source: 'Erichthonios', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P1N Shining Cells',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65E9', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '65E9', source: 'Erichthonios', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P1N Slam Shut',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65EA', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '65EA', source: 'Erichthonios', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -89,7 +89,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1N Heavy Hand',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65F3', source: 'Erichthonios' }),
+      netRegex: { id: '65F3', source: 'Erichthonios' },
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },

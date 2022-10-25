@@ -17,7 +17,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Heroes Gauntlet Spectral Dream',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4FCB', source: 'Spectral Thief' }),
+      netRegex: { id: '4FCB', source: 'Spectral Thief' },
       response: Responses.tankBuster(),
     },
     {
@@ -30,7 +30,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Heroes Gauntlet Spectral Whirlwind',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4FCC', source: 'Spectral Thief', capture: false }),
+      netRegex: { id: '4FCC', source: 'Spectral Thief', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -54,7 +54,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Heroes Gauntlet Spectral White Mage Absolute Protect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '524D', source: 'Spectral White Mage' }),
+      netRegex: { id: '524D', source: 'Spectral White Mage' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
@@ -68,32 +68,32 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Heroes Gauntlet Twisted Touch',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4F5E', source: 'Spectral Necromancer' }),
+      netRegex: { id: '4F5E', source: 'Spectral Necromancer' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Heroes Gauntlet Chaos Storm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4F60', source: 'Spectral Necromancer', capture: false }),
+      netRegex: { id: '4F60', source: 'Spectral Necromancer', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Heroes Gauntlet Beastly Fury',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '520C', source: 'Spectral Berserker', capture: false }),
+      netRegex: { id: '520C', source: 'Spectral Berserker', capture: false },
       response: Responses.aoe(),
     },
     {
       // Both two and three uses of Slice can happen.
       id: 'Heroes Gauntlet Raging Slice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['520A', '520B'], source: 'Spectral Berserker', capture: false }),
+      netRegex: { id: ['520A', '520B'], source: 'Spectral Berserker', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'Heroes Gauntlet Wild Rampage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5206', source: 'Spectral Berserker', capture: false }),
+      netRegex: { id: '5206', source: 'Spectral Berserker', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -109,7 +109,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Heroes Gauntlet Wild Rage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['5202', '5203', '5204'], source: 'Spectral Berserker', capture: false }),
+      netRegex: { id: ['5202', '5203', '5204'], source: 'Spectral Berserker', capture: false },
       suppressSeconds: 5,
       response: Responses.knockback(),
     },

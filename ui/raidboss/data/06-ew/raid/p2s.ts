@@ -49,25 +49,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2S Murky Depths',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6833', source: 'Hippokampos', capture: false }),
+      netRegex: { id: '6833', source: 'Hippokampos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P2S Doubled Impact',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6832', source: 'Hippokampos' }),
+      netRegex: { id: '6832', source: 'Hippokampos' },
       response: Responses.sharedTankBuster(),
     },
     {
       id: 'P2S Sewage Deluge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6810', source: 'Hippokampos', capture: false }),
+      netRegex: { id: '6810', source: 'Hippokampos', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'P2S Spoken Cataract',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6817', '6811', '6812', '6813'], source: 'Hippokampos', capture: false }),
+      netRegex: { id: ['6817', '6811', '6812', '6813'], source: 'Hippokampos', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.directions!(),
       outputStrings: {
@@ -84,7 +84,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2S Winged Cataract',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6814', '6815', '6818', '6816'], source: 'Hippokampos', capture: false }),
+      netRegex: { id: ['6814', '6815', '6818', '6816'], source: 'Hippokampos', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.directions!(),
       outputStrings: {
@@ -101,7 +101,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2S Ominous Bubbling',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '682B', source: 'Hippokampos', capture: false }),
+      netRegex: { id: '682B', source: 'Hippokampos', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.groups!(),
       outputStrings: {
@@ -224,7 +224,7 @@ const triggerSet: TriggerSet<Data> = {
       // Aoe from head outside the arena
       id: 'P2S Dissociation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '682E', source: 'Hippokampos' }),
+      netRegex: { id: '682E', source: 'Hippokampos' },
       alertText: (_data, matches, output) => {
         const xCoord = parseFloat(matches.x);
         if (xCoord > 100)
@@ -241,7 +241,7 @@ const triggerSet: TriggerSet<Data> = {
       // Spread aoe marker on some players, not all
       id: 'P2S Tainted Flood',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6838', source: 'Hippokampos' }),
+      netRegex: { id: '6838', source: 'Hippokampos' },
       condition: (data, matches) => matches.target === data.me,
       response: Responses.spread(),
     },
@@ -267,7 +267,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2S Coherence Stack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '681B', source: 'Hippokampos' }),
+      netRegex: { id: '681B', source: 'Hippokampos' },
       condition: (data) => data.flareTarget !== data.me,
       // 12 second cast, delay for tether to settle
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
@@ -299,7 +299,7 @@ const triggerSet: TriggerSet<Data> = {
       // Raidwide knockback -> dont get knocked into slurry
       id: 'P2S Shockwave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '682F', source: 'Hippokampos' }),
+      netRegex: { id: '682F', source: 'Hippokampos' },
       // 7.7 cast time, delay for proper arm's length
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),

@@ -37,7 +37,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shisui Ruby Princess Seduce',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Ruby Princess', id: '1F7A', capture: false }),
+      netRegex: { source: 'Ruby Princess', id: '1F7A', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -77,7 +77,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shisui Shisui Yohi Mad Stare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shisui Yohi', id: '1F82', capture: false }),
+      netRegex: { source: 'Shisui Yohi', id: '1F82', capture: false },
       response: Responses.lookAway(),
     },
   ],

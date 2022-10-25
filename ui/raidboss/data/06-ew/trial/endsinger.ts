@@ -58,7 +58,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Endsinger Doomed Stars AoE',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['662E', '6634'], source: 'Doomed Stars', capture: true }),
+      netRegex: { id: ['662E', '6634'], source: 'Doomed Stars', capture: true },
       delaySeconds: 0.5,
       promise: async (data, matches) => {
         const starData = await callOverlayHandler({
@@ -81,7 +81,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Endsinger Elegeia',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['662C', '6682'], source: 'The Endsinger', capture: false }),
+      netRegex: { id: ['662C', '6682'], source: 'The Endsinger', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -97,37 +97,37 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Endsinger Galaxias',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6C69', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '6C69', source: 'The Endsinger', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'Endsinger Elenchos Middle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6644', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '6644', source: 'The Endsinger', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'Endsinger Elenchos Outsides',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6642', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '6642', source: 'The Endsinger', capture: false },
       response: Responses.goMiddle(),
     },
     {
       id: 'Endsinger Death\'s Embrace',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6649', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '6649', source: 'The Endsinger', capture: false },
       response: Responses.spread(),
     },
     {
       id: 'Endsinger Death\'s Embrace Feathers',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6649', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '6649', source: 'The Endsinger', capture: false },
       response: Responses.moveAway(),
     },
     {
       id: 'Endsinger Death\'s Aporrhoia',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '663D', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '663D', source: 'The Endsinger', capture: false },
       infoText: (_data, _matches, output) => {
         return output.avoidLasers!();
       },
@@ -145,13 +145,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Endsinger Hubris',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6652', source: 'The Endsinger', capture: true }),
+      netRegex: { id: '6652', source: 'The Endsinger', capture: true },
       response: Responses.tankCleave(),
     },
     {
       id: 'Endsinger Epigonoi',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6646', source: 'The Endsinger', capture: true }),
+      netRegex: { id: '6646', source: 'The Endsinger', capture: true },
       condition: (_data, matches) => {
         // Find one head that's not dead center
         return parseFloat(matches.x) !== 100 || parseFloat(matches.y) !== 100;
@@ -270,20 +270,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Endsinger Planetes',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6B58', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '6B58', source: 'The Endsinger', capture: false },
       run: (data) => data.phase = 2,
     },
     {
       id: 'Endsinger Nemesis',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '664E', source: 'The Endsinger', capture: true }),
+      netRegex: { id: '664E', source: 'The Endsinger', capture: true },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Endsinger Ultimate Fate',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6B59', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '6B59', source: 'The Endsinger', capture: false },
       alarmText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.text!();

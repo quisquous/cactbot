@@ -35,7 +35,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A12S Punishing Heat',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19E9' }),
+      netRegex: { source: 'Alexander Prime', id: '19E9' },
       response: Responses.tankBuster(),
     },
     {
@@ -104,7 +104,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A12S Mega Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19EE', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '19EE', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -116,7 +116,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A12S Laser Sacrament',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19EB', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '19EB', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -132,7 +132,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A12S Radiant Sacrament',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19ED', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '19ED', capture: false },
       response: Responses.getUnder('alert'),
     },
     {
@@ -229,7 +229,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A12S Holy Scourge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1A0B', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '1A0B', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -245,7 +245,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A12S Chastening Heat',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1A0D' }),
+      netRegex: { source: 'Alexander Prime', id: '1A0D' },
       response: Responses.tankBusterSwap(),
     },
     {

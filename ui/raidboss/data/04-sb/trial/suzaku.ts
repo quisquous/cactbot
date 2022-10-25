@@ -15,13 +15,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Suzaku Cremate',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3220', source: 'Suzaku' }),
+      netRegex: { id: '3220', source: 'Suzaku' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Suzaku Screams Of The Damned',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3221', source: 'Suzaku', capture: false }),
+      netRegex: { id: '3221', source: 'Suzaku', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -45,12 +45,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Suzaku Southron Star',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3234', source: 'Suzaku', capture: false }),
+      netRegex: { id: '3234', source: 'Suzaku', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Suzaku Phantom Flurry',
-      netRegex: NetRegexes.startsUsing({ id: '3231', source: 'Suzaku' }),
+      netRegex: { id: '3231', source: 'Suzaku' },
       response: Responses.tankBuster(),
     },
     {
@@ -61,7 +61,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Suzaku Ruthless Refrain',
-      netRegex: NetRegexes.startsUsing({ id: '3230', source: 'Suzaku', capture: false }),
+      netRegex: { id: '3230', source: 'Suzaku', capture: false },
       response: Responses.knockback(),
     },
   ],

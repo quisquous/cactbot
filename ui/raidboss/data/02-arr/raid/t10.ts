@@ -13,13 +13,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T10 Phase Change',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
+      netRegex: { id: 'B5D', source: 'Imdugud', capture: false },
       sound: 'Long',
     },
     {
       id: 'T10 Heat Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
+      netRegex: { id: 'B5F', source: 'Imdugud', capture: false },
       response: Responses.spread(),
     },
     {

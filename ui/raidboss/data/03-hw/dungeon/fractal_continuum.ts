@@ -33,28 +33,28 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'Fractal Rapid Sever',
-      netRegex: NetRegexes.startsUsing({ id: 'F7A', source: 'Phantom Ray' }),
+      netRegex: { id: 'F7A', source: 'Phantom Ray' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Fractal Slash',
-      netRegex: NetRegexes.startsUsing({ id: 'F83', source: 'Minotaur', capture: false }),
+      netRegex: { id: 'F83', source: 'Minotaur', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'Fractal Swipe',
-      netRegex: NetRegexes.startsUsing({ id: 'F81', source: 'Minotaur', capture: false }),
+      netRegex: { id: 'F81', source: 'Minotaur', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'Fractal Small Swing',
-      netRegex: NetRegexes.startsUsing({ id: 'F82', source: 'Minotaur', capture: false }),
+      netRegex: { id: 'F82', source: 'Minotaur', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'Fractal Big Swing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'F87', source: 'Minotaur', capture: false }),
+      netRegex: { id: 'F87', source: 'Minotaur', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

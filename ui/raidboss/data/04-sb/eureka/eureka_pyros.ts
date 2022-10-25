@@ -13,13 +13,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Eureka Pyros Skoll Hoarhound Halo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '36E0', source: 'Skoll', capture: false }),
+      netRegex: { id: '36E0', source: 'Skoll', capture: false },
       response: Responses.goFrontOrSides(),
     },
     {
       id: 'Eureka Pyros Skoll Heavensward Howl',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '46BD', source: 'Skoll', capture: false }),
+      netRegex: { id: '46BD', source: 'Skoll', capture: false },
       response: Responses.awayFromFront(),
     },
     {

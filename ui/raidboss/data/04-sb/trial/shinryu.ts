@@ -17,7 +17,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shinryu Normal Akh Morn',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FA4', source: 'Shinryu' }),
+      netRegex: { id: '1FA4', source: 'Shinryu' },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.akhMornOnYou!();
@@ -62,7 +62,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shinryu Normal Diamond Dust',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FAD', source: 'Shinryu' }),
+      netRegex: { id: '1FAD', source: 'Shinryu' },
       // Here and elsewhere, timings aren't always completely usable. Instead we give the user
       // a quasi-standard amount of time when notifying.
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
@@ -71,7 +71,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shinryu Normal Dragonfist',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '24EF', source: 'Shinryu', capture: false }),
+      netRegex: { id: '24EF', source: 'Shinryu', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -87,7 +87,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shinryu Normal Hellfire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FAB', source: 'Shinryu', capture: false }),
+      netRegex: { id: '1FAB', source: 'Shinryu', capture: false },
       durationSeconds: 7,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -104,7 +104,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shinryu Normal Hypernova',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: 'Right Wing', capture: false }),
+      netRegex: { id: ['1F99', '1F9A'], source: 'Right Wing', capture: false },
       durationSeconds: 7,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -121,7 +121,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shinryu Normal Judgement Bolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FAC', source: 'Shinryu', capture: false }),
+      netRegex: { id: '1FAC', source: 'Shinryu', capture: false },
       durationSeconds: 7,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -138,7 +138,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shinryu Normal Levinbolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1F9B', source: 'Right Wing', capture: false }),
+      netRegex: { id: '1F9B', source: 'Right Wing', capture: false },
       durationSeconds: 7,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -155,7 +155,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shinryu Normal Tidal Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FAA', source: 'Shinryu' }),
+      netRegex: { id: '1FAA', source: 'Shinryu' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
       durationSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
@@ -173,14 +173,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shinryu Normal Ice Storm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FA2', source: 'Left Wing' }),
+      netRegex: { id: '1FA2', source: 'Left Wing' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
       response: Responses.aoe(),
     },
     {
       id: 'Shinryu Normal Tail Slap',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1F93', source: 'Tail', capture: false }),
+      netRegex: { id: '1F93', source: 'Tail', capture: false },
       delaySeconds: 2,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -198,14 +198,14 @@ const triggerSet: TriggerSet<Data> = {
       // Re-using the Gyre Charge triggers since they're convenient and already translated.
       id: 'Shinryu Normal Akh Rai Activation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
+      netRegex: { id: '1FF4', source: 'Shinryu', capture: false },
       condition: (data) => !data.finalPhase,
       run: (data) => data.finalPhase = true,
     },
     {
       id: 'Shinryu Normal Divebomb',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
+      netRegex: { id: '1FF4', source: 'Shinryu', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

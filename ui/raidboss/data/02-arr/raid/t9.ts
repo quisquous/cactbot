@@ -160,7 +160,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T9 Phase 2',
       type: 'Ability',
       // Ravensclaw
-      netRegex: NetRegexes.ability({ id: '7D5', source: 'Nael Deus Darnus' }),
+      netRegex: { id: '7D5', source: 'Nael Deus Darnus' },
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
       promise: (_data, matches) =>
@@ -176,7 +176,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Earthshock',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7F5', source: 'Dalamud Spawn', capture: false }),
+      netRegex: { id: '7F5', source: 'Dalamud Spawn', capture: false },
       condition: (data) => data.CanSilence(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -193,7 +193,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Heavensfall',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
+      netRegex: { id: '83B', source: 'Nael Deus Darnus', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -227,7 +227,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Ghost Death',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7FA', source: 'The Ghost Of Meracydia', capture: false }),
+      netRegex: { id: '7FA', source: 'The Ghost Of Meracydia', capture: false },
       condition: (data) => data.garotte,
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -251,7 +251,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Final Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      netRegex: { id: '7E6', source: 'Nael Deus Darnus', capture: false },
       condition: (data) => !data.seenFinalPhase,
       sound: 'Long',
       run: (data) => data.seenFinalPhase = true,
@@ -295,7 +295,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Final Phase Reset',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      netRegex: { id: '7E6', source: 'Nael Deus Darnus', capture: false },
       run: (data) => {
         data.tetherCount = 0;
         data.naelDiveMarkerCount = 0;
@@ -338,7 +338,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Dragon Marks',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      netRegex: { id: '7E6', source: 'Nael Deus Darnus', capture: false },
       durationSeconds: 12,
       infoText: (data, _matches, output) =>
         output.marks!({
@@ -415,7 +415,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Thunder',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Thunderwing', id: '7FD' }),
+      netRegex: { source: 'Thunderwing', id: '7FD' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {

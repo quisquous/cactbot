@@ -27,7 +27,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T7 Meluseine Phase Change Watcher',
       type: 'Ability',
       // On Tail Slap.
-      netRegex: NetRegexes.ability({ id: '7A8', source: 'Melusine' }),
+      netRegex: { id: '7A8', source: 'Melusine' },
       condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
       promise: (data, matches) =>
@@ -48,7 +48,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T7 Ram',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '860', source: 'Proto-Chimera', capture: false }),
+      netRegex: { id: '860', source: 'Proto-Chimera', capture: false },
       // TODO: is this silenceable in 5.0?
       condition: (data) => data.CanStun() || data.CanSilence(),
       infoText: (_data, _matches, output) => output.text!(),
@@ -66,7 +66,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T7 Dragon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '861', source: 'Proto-Chimera', capture: false }),
+      netRegex: { id: '861', source: 'Proto-Chimera', capture: false },
       // TODO: is this silenceable in 5.0?
       condition: (data) => data.CanStun() || data.CanSilence(),
       infoText: (_data, _matches, output) => output.text!(),
@@ -84,7 +84,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T7 Tail Slap',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7A8', source: 'Melusine' }),
+      netRegex: { id: '7A8', source: 'Melusine' },
       condition: (data, matches) => data.me === matches.target && data.job === 'BLU',
       delaySeconds: 6,
       suppressSeconds: 5,
@@ -200,19 +200,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T7 Petrifaction 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7BB', source: 'Lamia Prosector', capture: false }),
+      netRegex: { id: '7BB', source: 'Lamia Prosector', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'T7 Petrifaction 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7B1', source: 'Melusine', capture: false }),
+      netRegex: { id: '7B1', source: 'Melusine', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'T7 Tail',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7B2', source: 'Melusine', capture: false }),
+      netRegex: { id: '7B2', source: 'Melusine', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

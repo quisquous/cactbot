@@ -37,7 +37,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6N Minefield',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster', id: '170D', capture: false }),
+      netRegex: { source: 'Blaster', id: '170D', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.avoidMines!(),
       outputStrings: {
@@ -54,7 +54,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6N Supercharge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '1713', capture: false }),
+      netRegex: { source: 'Blaster Mirage', id: '1713', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -107,7 +107,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6N Bio-arithmeticks',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Swindler', id: '171F', capture: false }),
+      netRegex: { source: 'Swindler', id: '171F', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -133,13 +133,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6N Super Cyclone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '1728', capture: false }),
+      netRegex: { source: 'Vortexer', id: '1728', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'A6N Ultra Flash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '1722', capture: false }),
+      netRegex: { source: 'Vortexer', id: '1722', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

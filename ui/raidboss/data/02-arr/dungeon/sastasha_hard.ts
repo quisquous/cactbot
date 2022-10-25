@@ -29,7 +29,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sastasha Hard Tail Screw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'BF4', source: 'Karlabos' }),
+      netRegex: { id: 'BF4', source: 'Karlabos' },
       alertText: (data, matches, output) => {
         if (data.CanStun())
           return output.stun!({ name: matches.source });

@@ -26,7 +26,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A11S Left Laser Sword',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A7A', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A7A', capture: false },
       // Sorry tanks.
       // We could figure out who is tanking and then do the opposite,
       // but probably that could get confusing too?
@@ -36,13 +36,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A11S Right Laser Sword',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A79', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A79', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'A11S Optical Sight Clock',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A6C', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A6C', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -58,13 +58,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A11S Optical Sight Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A6D', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A6D', capture: false },
       response: Responses.getOut('info'),
     },
     {
       id: 'A11S Optical Sight Bait',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A6E', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A6E', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -87,13 +87,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A11S Whirlwind',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A84', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A84', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'A11S Spin Crusher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A85', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A85', capture: false },
       response: Responses.awayFromFront('info'),
     },
     {
@@ -132,7 +132,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A11S GA-100',
       type: 'StartsUsing',
       // Note: 0057 headmarker, but starts using occurs 3 seconds earlier.
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A77' }),
+      netRegex: { source: 'Cruise Chaser', id: '1A77' },
       // TODO: maybe we need a Responses.abilityOn()
       alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
@@ -273,7 +273,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A11S Limit Cut Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Cruise Chaser', id: '1A80', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A80', capture: false },
       delaySeconds: 30,
       run: (data) => {
         delete data.limitCutDelay;
@@ -284,7 +284,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A11S Laser X Sword',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A7F' }),
+      netRegex: { source: 'Cruise Chaser', id: '1A7F' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.sharedTankbusterOnYou!();
@@ -314,7 +314,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A11S Propeller Wind',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A7F', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A7F', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -354,7 +354,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A11S Blassty Charge',
       type: 'StartsUsing',
       // The single post-shield charge.  Not "super" blassty charge during limit cut.
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A83' }),
+      netRegex: { source: 'Cruise Chaser', id: '1A83' },
       alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;

@@ -47,7 +47,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O2S Phase Probe Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '235A', source: 'Catastrophe', capture: false },
       run: (data) => {
         data.probeCount = (data.probeCount ?? 0) + 1;
         data.dpsProbe = data.probeCount === 2 || data.probeCount === 4;
@@ -71,7 +71,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O2S Evilsphere',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2371', source: 'Catastrophe' }),
+      netRegex: { id: '2371', source: 'Catastrophe' },
       response: Responses.tankBusterSwap(),
     },
     {
@@ -114,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O2S -100Gs',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '235E', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '235E', source: 'Catastrophe', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -130,13 +130,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O2S Death\'s Gaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '236F', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '236F', source: 'Catastrophe', capture: false },
       response: Responses.lookAway('alert'),
     },
     {
       id: 'O2S Earthquake',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2374', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '2374', source: 'Catastrophe', capture: false },
       alertText: (data, _matches, output) => {
         if (!data.levitating)
           return output.earthquakeLevitate!();
@@ -220,13 +220,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O2S Gravitational Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2372', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '2372', source: 'Catastrophe', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O2S Maniacal Probe',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '235A', source: 'Catastrophe', capture: false },
       condition: (data) => data.job !== 'BLU',
       alertText: (data, _matches, output) => {
         if (data.myProbe) {

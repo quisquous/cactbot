@@ -46,7 +46,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Shadow Spread 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
+      netRegex: { id: '47A8', source: 'Hades', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -62,26 +62,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Shadow Spread 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
+      netRegex: { id: '47A8', source: 'Hades', capture: false },
       delaySeconds: 5.5,
       response: Responses.moveAway('alert'),
     },
     {
       id: 'HadesEx Ravenous Assault',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47A6', source: 'Hades' }),
+      netRegex: { id: '47A6', source: 'Hades' },
       response: Responses.tankBuster(),
     },
     {
       id: 'HadesEx Bad Faith Left 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
+      netRegex: { id: '47AB', source: 'Hades', capture: false },
       response: Responses.goLeft('info'),
     },
     {
       id: 'HadesEx Bad Faith Left 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
+      netRegex: { id: '47AB', source: 'Hades', capture: false },
       delaySeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -98,13 +98,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Bad Faith Right 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
+      netRegex: { id: '47AC', source: 'Hades', capture: false },
       response: Responses.goRight('info'),
     },
     {
       id: 'HadesEx Bad Faith Right 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
+      netRegex: { id: '47AC', source: 'Hades', capture: false },
       delaySeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -157,7 +157,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Quake III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47B8', source: 'Nabriales\'s Shade', capture: false }),
+      netRegex: { id: '47B8', source: 'Nabriales\'s Shade', capture: false },
       delaySeconds: 25,
       response: Responses.aoe(),
     },
@@ -254,7 +254,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Spheres',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47BD', source: 'Igeyorhm\'s Shade', capture: false }),
+      netRegex: { id: '47BD', source: 'Igeyorhm\'s Shade', capture: false },
       condition: (data) => data.role === 'tank',
       infoText: (data, _matches, output) => {
         if (!data.sphereCount)
@@ -278,7 +278,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Annihilation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47BF', source: 'Lahabrea\'s And Igeyorhm\'s Shades', capture: false }),
+      netRegex: { id: '47BF', source: 'Lahabrea\'s And Igeyorhm\'s Shades', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -320,21 +320,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Blizzard IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47C3', source: 'Igeyorhm\'s Shade' }),
+      netRegex: { id: '47C3', source: 'Igeyorhm\'s Shade' },
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'HadesEx Fire IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47C2', source: 'Lahabrea\'s Shade' }),
+      netRegex: { id: '47C2', source: 'Lahabrea\'s Shade' },
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'HadesEx Healers Blizzard/Fire IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false }),
+      netRegex: { id: ['47C3', '47C2'], source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false },
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -424,7 +424,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Blight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47CC', source: 'Ascian Prime\'s Shade', capture: false }),
+      netRegex: { id: '47CC', source: 'Ascian Prime\'s Shade', capture: false },
       delaySeconds: 12,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -441,7 +441,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Height Of Chaos',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47D1', source: 'Ascian Prime\'s Shade' }),
+      netRegex: { id: '47D1', source: 'Ascian Prime\'s Shade' },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.tankBusterOnYou!();
@@ -467,7 +467,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Megiddo Flame',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47CD', source: 'Ascian Prime\'s Shade', capture: false }),
+      netRegex: { id: '47CD', source: 'Ascian Prime\'s Shade', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -484,7 +484,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Shadow Flare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47D0', source: 'Ascian Prime\'s Shade', capture: false }),
+      netRegex: { id: '47D0', source: 'Ascian Prime\'s Shade', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -549,7 +549,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Wail Of The Lost',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47E1', source: 'Hades', capture: false }),
+      netRegex: { id: '47E1', source: 'Hades', capture: false },
       condition: (data) => !data.flame && !data.freeze,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -584,7 +584,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Bident',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47E3', source: 'Hades', capture: false }),
+      netRegex: { id: '47E3', source: 'Hades', capture: false },
       condition: (data) => !data.netherBlast,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -601,13 +601,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Shadow Stream',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47EA', source: 'Hades', capture: false }),
+      netRegex: { id: '47EA', source: 'Hades', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'HadesEx Polydegmon\'s Purgation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47EB', source: 'Hades', capture: false }),
+      netRegex: { id: '47EB', source: 'Hades', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -623,7 +623,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Dark Current',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47F1', source: 'Hades', capture: false }),
+      netRegex: { id: '47F1', source: 'Hades', capture: false },
       durationSeconds: 12,
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
@@ -641,19 +641,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Gigantomachy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47F3', source: 'Hades', capture: false }),
+      netRegex: { id: '47F3', source: 'Hades', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'HadesEx Quadrastrike 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47F4', source: 'Hades', capture: false }),
+      netRegex: { id: '47F4', source: 'Hades', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'HadesEx Quadrastrike 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47F6', source: 'Hades', capture: false }),
+      netRegex: { id: '47F6', source: 'Hades', capture: false },
       condition: (data) => data.role === 'tank' || data.role === 'healer',
       suppressSeconds: 2,
       alarmText: (data, _matches, output) => {
@@ -679,7 +679,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Quadrastrike 3',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '47F6', source: 'Hades', capture: false }),
+      netRegex: { id: '47F6', source: 'Hades', capture: false },
       // After tanks take tower damage
       delaySeconds: 2,
       suppressSeconds: 2,
@@ -698,7 +698,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Enrage Gigantomachy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '47F9', source: 'Hades', capture: false }),
+      netRegex: { id: '47F9', source: 'Hades', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

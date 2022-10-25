@@ -71,13 +71,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SeiryuEx Aramitama Tracking',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '37E4', source: 'Seiryu', capture: false }),
+      netRegex: { id: '37E4', source: 'Seiryu', capture: false },
       run: (data) => data.blazing = true,
     },
     {
       id: 'SeiryuEx Cursekeeper',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryu' }),
+      netRegex: { id: '37D2', source: 'Seiryu' },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.tankSwap!();
@@ -100,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SeiryuEx Infirm Soul',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '37D2', source: 'Seiryu', capture: false }),
+      netRegex: { id: '37D2', source: 'Seiryu', capture: false },
       condition: (data) => {
         // TODO: it'd be nice to figure out who the tanks are so this
         // could also apply to the person Cursekeeper was on.
@@ -122,13 +122,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SeiryuEx Ascending Tracking',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
+      netRegex: { id: '3C25', source: 'Seiryu', capture: false },
       run: (data) => data.markers = [],
     },
     {
       id: 'SeiryuEx Ascending Stack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
+      netRegex: { id: '3C25', source: 'Seiryu', capture: false },
       delaySeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -219,19 +219,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SeiryuEx Handprint East',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '37E5', source: 'Yama-No-Shiki', capture: false }),
+      netRegex: { id: '37E5', source: 'Yama-No-Shiki', capture: false },
       response: Responses.goEast(),
     },
     {
       id: 'SeiryuEx Handprint West',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '37E6', source: 'Yama-No-Shiki', capture: false }),
+      netRegex: { id: '37E6', source: 'Yama-No-Shiki', capture: false },
       response: Responses.goWest(),
     },
     {
       id: 'SeiryuEx Find Sneks',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '37F7', source: 'Seiryu', capture: false }),
+      netRegex: { id: '37F7', source: 'Seiryu', capture: false },
       alarmText: (data, _matches, output) => {
         if (data.withForce === undefined)
           return output.goToSnakes!();
@@ -261,7 +261,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SeiryuEx Silence',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '37F4', source: 'Numa-No-Shiki' }),
+      netRegex: { id: '37F4', source: 'Numa-No-Shiki' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
@@ -299,39 +299,39 @@ const triggerSet: TriggerSet<Data> = {
       // but it's still 2.5s of warning if you've fallen asleep.
       id: 'SeiryuEx Sigil Single Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3A01', source: 'Seiryu', capture: false }),
+      netRegex: { id: '3A01', source: 'Seiryu', capture: false },
       response: Responses.getOut('info'),
     },
     {
       id: 'SeiryuEx Sigil In Out 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
+      netRegex: { id: '3A05', source: 'Seiryu', capture: false },
       response: Responses.getInThenOut(),
     },
     {
       id: 'SeiryuEx Sigil In Out 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
+      netRegex: { id: '3A05', source: 'Seiryu', capture: false },
       delaySeconds: 2.7,
       response: Responses.getOut('info'),
     },
     {
       id: 'SeiryuEx Sigil Out In 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
+      netRegex: { id: '3A03', source: 'Seiryu', capture: false },
       response: Responses.getOutThenIn(),
     },
     {
       id: 'SeiryuEx Sigil Out In 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
+      netRegex: { id: '3A03', source: 'Seiryu', capture: false },
       delaySeconds: 2.7,
       response: Responses.getIn('info'),
     },
     {
       id: 'SeiryuEx Swim Lessons',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '37CB', source: 'Seiryu', capture: false }),
+      netRegex: { id: '37CB', source: 'Seiryu', capture: false },
       delaySeconds: 28,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

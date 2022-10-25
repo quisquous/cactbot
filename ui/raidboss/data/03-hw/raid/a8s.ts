@@ -96,7 +96,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Megabeam Onslaughter',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Onslaughter', id: '162E', capture: false }),
+      netRegex: { source: 'Onslaughter', id: '162E', capture: false },
       // Insert sound effect from Arthars here.
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -113,7 +113,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Megabeam Brute Justice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1664', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '1664', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -129,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Execution',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Onslaughter', id: '1632', capture: false }),
+      netRegex: { source: 'Onslaughter', id: '1632', capture: false },
       condition: (data) => data.role === 'dps' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -146,7 +146,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Perpetual Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Onslaughter', id: '162B' }),
+      netRegex: { source: 'Onslaughter', id: '162B' },
       response: Responses.tankBusterSwap(),
     },
     {
@@ -189,7 +189,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Mind Blast',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster', id: '1639' }),
+      netRegex: { source: 'Blaster', id: '1639' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt('alarm'),
     },
@@ -235,13 +235,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Bio-Arithmeticks',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Swindler', id: '164A', capture: false }),
+      netRegex: { source: 'Swindler', id: '164A', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'A8S Super Cyclone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '1657', capture: false }),
+      netRegex: { source: 'Vortexer', id: '1657', capture: false },
       response: Responses.knockback('alarm'),
     },
     {
@@ -327,7 +327,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Double Rocket Punch',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1663' }),
+      netRegex: { source: 'Brute Justice', id: '1663' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.sharedTankbusterOnYou!();
@@ -369,13 +369,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Short Needle',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1668', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '1668', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'A8S Long Needle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '166A', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '166A', capture: false },
       condition: (data) => data.longNeedleStack !== undefined && data.longNeedlePrey.length !== 0,
       suppressSeconds: 10,
       alarmText: (data, _matches, output) => {
@@ -411,7 +411,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Super Jump',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1665' }),
+      netRegex: { source: 'Brute Justice', id: '1665' },
       alertText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
@@ -480,7 +480,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // 165E used in both intermission and in final phase
       // 165C only used for intermission
-      netRegex: NetRegexes.ability({ source: 'Hidden Mine', id: '165E', capture: false }),
+      netRegex: { source: 'Hidden Mine', id: '165E', capture: false },
       condition: (data) => !data.seenLinkUp,
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
@@ -498,7 +498,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Mirage Blinder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '165A' }),
+      netRegex: { source: 'Blaster Mirage', id: '165A' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -515,7 +515,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Mirage Power Tackle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '165B' }),
+      netRegex: { source: 'Blaster Mirage', id: '165B' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -532,7 +532,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Link Up',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1673', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '1673', capture: false },
       run: (data) => data.seenLinkUp = true,
     },
     {
@@ -813,14 +813,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Final Punch',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '170C' }),
+      netRegex: { source: 'Brute Justice', id: '170C' },
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'A8S Final Beam',
       type: 'Ability',
       // id is for Final Apocalypse Ability
-      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1716', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '1716', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

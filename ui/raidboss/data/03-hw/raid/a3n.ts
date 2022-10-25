@@ -43,13 +43,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3N Wash Away',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '12FF', source: 'Living Liquid', capture: false }),
+      netRegex: { id: '12FF', source: 'Living Liquid', capture: false },
       response: Responses.goMiddle(),
     },
     {
       id: 'A3N Cascade',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '12F7', source: 'Living Liquid', capture: false }),
+      netRegex: { id: '12F7', source: 'Living Liquid', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -73,7 +73,7 @@ const triggerSet: TriggerSet<Data> = {
       // To avoid spam, we cue this off Wash Away instead.
       id: 'A3N Fluid Strike 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '12FF', source: 'Living Liquid', capture: false }),
+      netRegex: { id: '12FF', source: 'Living Liquid', capture: false },
       delaySeconds: 5,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
@@ -160,7 +160,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3N Ferrofluid Call',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1306', source: 'Living Liquid' }),
+      netRegex: { id: '1306', source: 'Living Liquid' },
       alertText: (data, matches, output) => {
         data.ferroTether ??= {};
         data.ferroMarker ??= {};
@@ -197,7 +197,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3N FerrofluidCleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1306', source: 'Living Liquid', capture: false }),
+      netRegex: { id: '1306', source: 'Living Liquid', capture: false },
       delaySeconds: 5,
       run: (data) => {
         delete data.ferroMarker;

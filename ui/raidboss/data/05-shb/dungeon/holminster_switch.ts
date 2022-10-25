@@ -14,31 +14,31 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Holminster Path of Light',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DC5', source: 'Forgiven Dissonance', capture: false }),
+      netRegex: { id: '3DC5', source: 'Forgiven Dissonance', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Holminster Pillory',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DC4', source: 'Forgiven Dissonance' }),
+      netRegex: { id: '3DC4', source: 'Forgiven Dissonance' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Holminster Tickler',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DCF', source: 'Tesleen, The Forgiven' }),
+      netRegex: { id: '3DCF', source: 'Tesleen, The Forgiven' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Holminster Bridle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DD0', source: 'Tesleen, The Forgiven', capture: false }),
+      netRegex: { id: '3DD0', source: 'Tesleen, The Forgiven', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Holminster Flagellation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DD5', source: 'Tesleen, The Forgiven', capture: false }),
+      netRegex: { id: '3DD5', source: 'Tesleen, The Forgiven', capture: false },
       response: Responses.spread(),
     },
     {
@@ -50,13 +50,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Holminster Scavenger',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
+      netRegex: { id: '3DD8', source: 'Philia', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Holminster Head Crusher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DD7', source: 'Philia' }),
+      netRegex: { id: '3DD7', source: 'Philia' },
       response: Responses.tankBuster(),
     },
     {
@@ -86,7 +86,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Holminster Into The Light',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
+      netRegex: { id: '4350', source: 'Philia', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -102,13 +102,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Holminster Left Knout',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
+      netRegex: { id: '3DE7', source: 'Philia', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'Holminster Right Knout',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),
+      netRegex: { id: '3DE6', source: 'Philia', capture: false },
       response: Responses.goLeft(),
     },
   ],

@@ -95,13 +95,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11N Burnished Glory',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5650', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5650', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E11N Powder Mark',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '564E' }),
+      netRegex: { source: 'Fatebreaker', id: '564E' },
       response: Responses.tankBuster(),
     },
     {
@@ -118,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11N Burnt Strike Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '562C', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '562C', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -134,7 +134,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11N Burnt Strike Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '562E', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '562E', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -150,7 +150,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11N Burnt Strike Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5630', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5630', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -166,7 +166,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11N Burnt Strike Lightning Clone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker\'s Image', id: '5645', capture: false }),
+      netRegex: { source: 'Fatebreaker\'s Image', id: '5645', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -182,7 +182,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11N Burnt Strike Fire Clone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker\'s Image', id: '5643', capture: false }),
+      netRegex: { source: 'Fatebreaker\'s Image', id: '5643', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -214,25 +214,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11N Bound Of Faith Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '4B18', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '4B18', capture: false },
       response: boundOfFaithFireTetherResponse,
     },
     {
       id: 'E11N Bound Of Faith Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '4B19', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '4B19', capture: false },
       response: boundOfFaithLightningTetherResponse,
     },
     {
       id: 'E11N Bound Of Faith Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '4B1B', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '4B1B', capture: false },
       response: boundOfFaithHolyTetherResponse,
     },
     {
       id: 'E11N Turn of the Heavens Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5639', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5639', capture: false },
       durationSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -249,7 +249,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11N Turn of the Heavens Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '563A', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '563A', capture: false },
       durationSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

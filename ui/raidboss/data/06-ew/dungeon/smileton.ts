@@ -26,7 +26,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Smileton Face Off My Lawn',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '673E', source: 'Face', capture: false }),
+      netRegex: { id: '673E', source: 'Face', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -42,13 +42,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Smileton Face Temper\'s Flare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6743', source: 'Face', capture: false }),
+      netRegex: { id: '6743', source: 'Face', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Smileton Face Heart on Fire IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6742', source: 'Face' }),
+      netRegex: { id: '6742', source: 'Face' },
       response: Responses.tankBuster(),
     },
     {
@@ -82,7 +82,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Smileton Face MixedFeelings',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6738', source: 'Face', capture: false }),
+      netRegex: { id: '6738', source: 'Face', capture: false },
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         if (data.smileyFace)
@@ -121,50 +121,50 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Smileton Frameworker Circular Saw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6745', source: 'Frameworker', capture: false }),
+      netRegex: { id: '6745', source: 'Frameworker', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Smileton Frameworker Steel Beam',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6744', source: 'Frameworker' }),
+      netRegex: { id: '6744', source: 'Frameworker' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Smileton The Big Cheese Violent Discharge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6752', source: 'The Big Cheese', capture: false }),
+      netRegex: { id: '6752', source: 'The Big Cheese', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Smileton The Big Cheese Right Disassembler',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '674F', source: 'The Big Cheese', capture: false }),
+      netRegex: { id: '674F', source: 'The Big Cheese', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'Smileton The Big Cheese Left Disassembler',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6750', source: 'The Big Cheese', capture: false }),
+      netRegex: { id: '6750', source: 'The Big Cheese', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'Smileton The Big Cheese Piercing Missile',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6751', source: 'The Big Cheese' }),
+      netRegex: { id: '6751', source: 'The Big Cheese' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Smileton The Big Cheese Leveling Missile',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6755', source: 'The Big Cheese' }),
+      netRegex: { id: '6755', source: 'The Big Cheese' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Smileton The Big Cheese Electric Arc',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6753', source: 'The Big Cheese' }),
+      netRegex: { id: '6753', source: 'The Big Cheese' },
       response: Responses.stackMarkerOn(),
     },
   ],

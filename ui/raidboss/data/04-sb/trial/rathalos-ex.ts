@@ -23,7 +23,7 @@ const triggerSet: TriggerSet<Data> = {
       // call this out as "right flank" as "right or front left" is hard to parse.
       id: 'RathEx Mangle Phase 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2853', source: 'Rathalos', capture: false }),
+      netRegex: { id: '2853', source: 'Rathalos', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -38,7 +38,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RathEx Mangle Phase 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2863', source: 'Rathalos', capture: false }),
+      netRegex: { id: '2863', source: 'Rathalos', capture: false },
       response: Responses.awayFromFront('info'),
     },
     {
@@ -46,7 +46,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'RathEx Tail Swing',
       type: 'Ability',
       // No starts using for this.
-      netRegex: NetRegexes.ability({ id: '2855', source: 'Rathalos', capture: false }),
+      netRegex: { id: '2855', source: 'Rathalos', capture: false },
       // This hits multiple people.
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
@@ -64,7 +64,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RathEx Flaming Recoil',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2859', '285B'], source: 'Rathalos', capture: false }),
+      netRegex: { id: ['2859', '285B'], source: 'Rathalos', capture: false },
       // This can one-shot, so alarm.
       // It seems to be 180 degrees in front, so "Get Behind" rather than "Away From Front".
       response: Responses.getBehind('alarm'),
@@ -72,7 +72,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RathEx Rush',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
+      netRegex: { id: ['2856', '2861'], source: 'Rathalos', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -142,7 +142,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'RathEx Sweeping Flames',
       type: 'Ability',
       // No starts using for this.
-      netRegex: NetRegexes.ability({ id: '2862', source: 'Rathalos', capture: false }),
+      netRegex: { id: '2862', source: 'Rathalos', capture: false },
       // This hits multiple people.
       suppressSeconds: 1,
       response: Responses.awayFromFront('info'),

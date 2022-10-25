@@ -14,13 +14,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tsukuyomi Torment Unto Death',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2BE3', source: 'Tsukuyomi' }),
+      netRegex: { id: '2BE3', source: 'Tsukuyomi' },
       response: Responses.tankCleave(),
     },
     {
       id: 'Tsukuyomi Reprimand',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2BE2', source: 'Tsukuyomi', capture: false }),
+      netRegex: { id: '2BE2', source: 'Tsukuyomi', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -32,7 +32,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tsukuyomi Lead Of The Underworld',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2BE6', source: 'Tsukuyomi' }),
+      netRegex: { id: '2BE6', source: 'Tsukuyomi' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.lineStackOnYou!();
@@ -60,7 +60,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tsukuyomi Nightbloom',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2CB0', source: 'Tsukuyomi', capture: false }),
+      netRegex: { id: '2CB0', source: 'Tsukuyomi', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -116,7 +116,7 @@ const triggerSet: TriggerSet<Data> = {
       // 2BFD is an unnamed ability that happens ~5 seconds before Dance Of The Dead.
       // Dance Of The Dead has no castbar.
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '2BFD', source: 'Tsukuyomi', capture: false }),
+      netRegex: { id: '2BFD', source: 'Tsukuyomi', capture: false },
       response: Responses.aoe(),
     },
   ],

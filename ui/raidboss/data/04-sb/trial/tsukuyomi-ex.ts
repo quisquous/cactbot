@@ -20,19 +20,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TsukuyomiEx Nightfall Gun',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
+      netRegex: { id: '2BBC', source: 'Tsukuyomi', capture: false },
       response: Responses.stackMarker(),
     },
     {
       id: 'TsukuyomiEx Nightfall Spear',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
+      netRegex: { id: '2BBD', source: 'Tsukuyomi', capture: false },
       response: Responses.spread(),
     },
     {
       id: 'TsukuyomiEx Torment',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
+      netRegex: { id: ['2BBB', '2EB2'], source: 'Tsukuyomi' },
       alarmText: (data, matches, output) => {
         if (matches.target === data.me || data.role !== 'tank')
           return;
@@ -81,7 +81,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TsukuyomiEx Dark Blade',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
+      netRegex: { id: '2BDA', source: 'Tsukuyomi', capture: false },
       infoText: (data, _matches, output) => {
         if (data.moonIsOut)
           return output.leftAndOut!();
@@ -109,7 +109,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TsukuyomiEx Bright Blade',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
+      netRegex: { id: '2BDB', source: 'Tsukuyomi', capture: false },
       infoText: (data, _matches, output) => {
         if (data.moonIsOut)
           return output.rightAndOut!();
@@ -166,7 +166,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TsukuyomiEx Supreme Selenomancy',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
+      netRegex: { source: 'Tsukuyomi', id: '2EB0', capture: false },
       suppressSeconds: 5,
       run: (data) => {
         delete data.moonlitCount;

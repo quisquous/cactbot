@@ -69,26 +69,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Entropy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E6F', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E6F', source: 'Voidwalker', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E2S Quietus',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E71', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E71', source: 'Voidwalker', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E2S Shadowflame Tank',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E6[12]', source: 'Voidwalker' }),
+      netRegex: { id: '3E6[12]', source: 'Voidwalker' },
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'E2S Shadowflame Healer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E61', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E61', source: 'Voidwalker', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: Outputs.tankBusters,
@@ -97,7 +97,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Doomvoid Cleaver',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E63', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E63', source: 'Voidwalker', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -113,25 +113,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Doomvoid Guillotine',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E4F', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E4F', source: 'Voidwalker', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'E2S Doomvoid Slicer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E50', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E50', source: 'Voidwalker', capture: false },
       response: Responses.getUnder(),
     },
     {
       id: 'E2S Empty Hate',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E59', source: 'The Hand Of Erebos', capture: false }),
+      netRegex: { id: '3E59', source: 'The Hand Of Erebos', capture: false },
       response: Responses.knockback('info'),
     },
     {
       id: 'E2S Empty Rage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E6B', source: 'The Hand Of Erebos', capture: false }),
+      netRegex: { id: '3E6B', source: 'The Hand Of Erebos', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -498,7 +498,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: add callouts for each of these
       id: 'E2S Cycle of Retribution',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4659', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '4659', source: 'Voidwalker', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -514,7 +514,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Cycle of Chaos',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '40B9', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '40B9', source: 'Voidwalker', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

@@ -166,44 +166,44 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Elegeia',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6FF6', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '6FF6', source: 'The Endsinger', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'EndsingerEx Telos',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '702E', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '702E', source: 'The Endsinger', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'EndsingerEx Elenchos Middle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7022', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '7022', source: 'The Endsinger', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'EndsingerEx Elenchos Outsides',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7020', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '7020', source: 'The Endsinger', capture: false },
       response: Responses.goMiddle(),
     },
     {
       id: 'EndsingerEx Hubris',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '702C', source: 'The Endsinger', capture: true }),
+      netRegex: { id: '702C', source: 'The Endsinger', capture: true },
       response: Responses.tankCleave(),
     },
     {
       id: 'EndsingerEx Single Star',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6FFA', '6FFB'], capture: true }),
+      netRegex: { id: ['6FFA', '6FFB'], capture: true },
       alertText: getStarText,
       outputStrings: orbOutputStrings,
     },
     {
       id: 'EndsingerEx Eironeia',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['702F', '7030'], source: 'The Endsinger', capture: false }),
+      netRegex: { id: ['702F', '7030'], source: 'The Endsinger', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.groups!(),
       outputStrings: {
@@ -220,7 +220,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Star Order Resolver',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['6FFE', '6FFF', '7000', '7001'] }),
+      netRegex: { id: ['6FFE', '6FFF', '7000', '7001'] },
       delaySeconds: (data, matches) => {
         ++data.starMechanicCounter;
         const offset = data.starMechanicCounter > 1 ? 2 : 0;
@@ -241,7 +241,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Star Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['6FFE', '6FFF', '7000', '7001'], capture: false }),
+      netRegex: { id: ['6FFE', '6FFF', '7000', '7001'], capture: false },
       delaySeconds: 30,
       run: (data) => {
         data.starMechanicCounter = 0;
@@ -250,7 +250,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Head Phase Detector',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['7007', '72B1'] }),
+      netRegex: { id: ['7007', '72B1'] },
       run: (data, matches) => {
         switch (matches.id) {
           case '7007':
@@ -265,7 +265,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Head Phase Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['7007', '72B1'], capture: false }),
+      netRegex: { id: ['7007', '72B1'], capture: false },
       delaySeconds: 50,
       run: (data) => {
         data.headPhase = undefined;
@@ -327,7 +327,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx 5Head Mechanics Collector',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6FFC', '7006', '7009', '700A'], source: 'The Endsinger', capture: true }),
+      netRegex: { id: ['6FFC', '7006', '7009', '700A'], source: 'The Endsinger', capture: true },
       condition: (data) => data.headPhase === 5,
       // Do not need delaySeconds here, heads have been spawned for 5+ seconds
       promise: async (data, matches) => {

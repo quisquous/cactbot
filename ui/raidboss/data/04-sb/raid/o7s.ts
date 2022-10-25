@@ -67,7 +67,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7S Magitek Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2788', source: 'Guardian', capture: false }),
+      netRegex: { id: '2788', source: 'Guardian', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -83,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7S Arm And Hammer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2789', source: 'Guardian' }),
+      netRegex: { id: '2789', source: 'Guardian' },
       response: Responses.tankBuster(),
     },
     {
@@ -199,7 +199,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7S Stoneskin',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
+      netRegex: { id: '2AB5', source: 'Ultros' },
       response: Responses.interrupt('alarm'),
     },
     {
@@ -209,7 +209,7 @@ const triggerSet: TriggerSet<Data> = {
       // Skip: 2773
       // Retrieve: 2774
       // Paste: 2776
-      netRegex: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Guardian', capture: false }),
+      netRegex: { id: ['275C', '2773', '2774', '2776'], source: 'Guardian', capture: false },
       alertText: (data, _matches, output) => {
         data.loadCount = (data.loadCount ?? 0) + 1;
 
@@ -291,7 +291,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7S Run',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '276F', source: 'Guardian', capture: false }),
+      netRegex: { id: '276F', source: 'Guardian', capture: false },
       infoText: (data, _matches, output) => {
         data.runCount = (data.runCount ?? 0) + 1;
 

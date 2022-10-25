@@ -150,7 +150,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Bomb Direction',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Ratfinx Twinkledinks', id: '1590', capture: false }),
+      netRegex: { source: 'Ratfinx Twinkledinks', id: '1590', capture: false },
       preRun: (data) => data.bombCount++,
       // We could give directions here, but "into / opposite spikey" is pretty succinct.
       infoText: (data, _matches, output) => {
@@ -181,7 +181,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Boost Count',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Ratfinx Twinkledinks', id: '16A6', capture: false }),
+      netRegex: { source: 'Ratfinx Twinkledinks', id: '16A6', capture: false },
       run: (data) => {
         data.boostCount++;
         data.boostBombs = [];
@@ -312,7 +312,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Steel Scales',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Glassy-Eyed Cobra', id: '16A2' }),
+      netRegex: { source: 'Glassy-Eyed Cobra', id: '16A2' },
       condition: (data) => data.CanStun(),
       suppressSeconds: 60,
       response: Responses.stun(),
@@ -342,7 +342,7 @@ const triggerSet: TriggerSet<Data> = {
       // FIXME: this is a case where the tether is part of the added combatant network data,
       // but isn't exposed as a separate tether line.  Instead, just assume the first auto
       // is going to hit the tethered person, and suppress everything else.
-      netRegex: NetRegexes.ability({ source: 'Gobbledygroper', id: '366' }),
+      netRegex: { source: 'Gobbledygroper', id: '366' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 100,
       alertText: (_data, _matches, output) => output.text!(),
@@ -360,7 +360,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Oogle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Gobbledygawker', id: '169C', capture: false }),
+      netRegex: { source: 'Gobbledygawker', id: '169C', capture: false },
       // These seem to come within ~2s of each other, so just have one trigger.
       suppressSeconds: 5,
       response: Responses.lookAway('alert'),

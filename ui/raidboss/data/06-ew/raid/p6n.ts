@@ -25,19 +25,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6N Hemitheos Dark IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '784E', source: 'Hegemone', capture: false }),
+      netRegex: { id: '784E', source: 'Hegemone', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P6N Choros Ixou Sides',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7858', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7858', source: 'Hegemone', capture: false },
       response: Responses.goFrontBack(),
     },
     {
       id: 'P6N Choros Ixou Front Back',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7857', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7857', source: 'Hegemone', capture: false },
       response: Responses.goSides(),
     },
     {
@@ -148,7 +148,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6N Aetherial Exchange',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '784D', source: 'Hegemone', capture: false }),
+      netRegex: { id: '784D', source: 'Hegemone', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

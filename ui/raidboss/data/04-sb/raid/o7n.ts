@@ -34,25 +34,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7N Diffractive Plasma',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '276E', source: 'Guardian', capture: false }),
+      netRegex: { id: '276E', source: 'Guardian', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O7N Magitek Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '276B', source: 'Guardian', capture: false }),
+      netRegex: { id: '276B', source: 'Guardian', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'O7N Arm And Hammer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '276C', source: 'Guardian' }),
+      netRegex: { id: '276C', source: 'Guardian' },
       response: Responses.tankBuster(),
     },
     {
       id: 'O7N Shockwave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2766', source: 'Guardian', capture: false }),
+      netRegex: { id: '2766', source: 'Guardian', capture: false },
       response: Responses.knockback(),
     },
     {
@@ -73,7 +73,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7N Bomb Deployment',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2762', source: 'Guardian', capture: false }),
+      netRegex: { id: '2762', source: 'Guardian', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -88,7 +88,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7N Demon Simulation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2752', source: 'Guardian', capture: false }),
+      netRegex: { id: '2752', source: 'Guardian', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

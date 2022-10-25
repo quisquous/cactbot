@@ -32,20 +32,20 @@ const triggerSet: TriggerSet<Data> = {
       // 2492 is normal, 2493 is under Chanchala
       id: 'Lakshmi Pull of Light',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2492', '2493'], source: 'Lakshmi' }),
+      netRegex: { id: ['2492', '2493'], source: 'Lakshmi' },
       response: Responses.tankBuster('info'),
     },
     {
       id: 'Lakshmi Stotram',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '249E', source: 'Lakshmi', capture: false }),
+      netRegex: { id: '249E', source: 'Lakshmi', capture: false },
       response: Responses.aoe(),
     },
     {
       // Intermission ability. The user WILL die if they don't use Vril.
       id: 'Lakshmi Jagadishwari',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '2342', source: 'Lakshmi', capture: false }),
+      netRegex: { id: '2342', source: 'Lakshmi', capture: false },
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -61,7 +61,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Lakshmi Divine Denial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2485', source: 'Lakshmi', capture: false }),
+      netRegex: { id: '2485', source: 'Lakshmi', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -92,7 +92,7 @@ const triggerSet: TriggerSet<Data> = {
       // so this should be perfectly safe.
       id: 'Lakshmi Headmarker Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2486', '2487', '2488'], source: 'Lakshmi', capture: false }),
+      netRegex: { id: ['2486', '2487', '2488'], source: 'Lakshmi', capture: false },
       run: (data) => delete data.avoidStack,
     },
     {

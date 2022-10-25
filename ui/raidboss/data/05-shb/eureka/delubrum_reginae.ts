@@ -48,13 +48,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Seeker Verdant Tempest',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AB6', capture: false }),
+      netRegex: { source: 'Trinity Seeker', id: '5AB6', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Delubrum Seeker Sword Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5B5D', capture: false }),
+      netRegex: { source: 'Trinity Seeker', id: '5B5D', capture: false },
       run: (data) => {
         delete data.calledSeekerSwords;
         delete data.seekerSwords;
@@ -213,13 +213,13 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Delubrum Seeker Baleful Swath',
       type: 'StartsUsing',
       // This is an early warning for casters for Baleful Swath on the Verdant Path cast.
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5A98', capture: false }),
+      netRegex: { source: 'Trinity Seeker', id: '5A98', capture: false },
       response: Responses.goFrontBack('info'),
     },
     {
       id: 'Delubrum Seeker Baleful Blade Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA1', capture: false }),
+      netRegex: { source: 'Trinity Seeker', id: '5AA1', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -236,7 +236,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Delubrum Seeker Baleful Blade Knockback',
       type: 'StartsUsing',
       // We could call this on Phantom Edge 5AA0, but maybe that's too early?
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA2', capture: false }),
+      netRegex: { source: 'Trinity Seeker', id: '5AA2', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -259,7 +259,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Seeker Iron Impact',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5ADB', capture: false }),
+      netRegex: { source: 'Trinity Seeker', id: '5ADB', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -275,7 +275,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Seeker Iron Splitter',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA3' }),
+      netRegex: { source: 'Trinity Seeker', id: '5AA3' },
       promise: async (data, matches) => {
         const seekerData = await callOverlayHandler({
           call: 'getCombatants',
@@ -371,7 +371,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Delubrum Seeker Merciful Moon',
       type: 'StartsUsing',
       // 3 second warning to match savage timings.
-      netRegex: NetRegexes.startsUsing({ source: 'Aetherial Orb', id: '5AAC', capture: false }),
+      netRegex: { source: 'Aetherial Orb', id: '5AAC', capture: false },
       delaySeconds: 1,
       alertText: (_data, _matches, output) => output.lookAway!(),
       outputStrings: {
@@ -389,7 +389,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Delubrum Seeker Merciful Blooms',
       type: 'Ability',
       // Call this on the ability of Merciful Moon, it starts casting much earlier.
-      netRegex: NetRegexes.ability({ source: 'Aetherial Orb', id: '5AAC', capture: false }),
+      netRegex: { source: 'Aetherial Orb', id: '5AAC', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.awayFromPurple!(),
       outputStrings: {
@@ -407,7 +407,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Dahu Shockwave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: ['5760', '5761', '5762', '5763'] }),
+      netRegex: { source: 'Dahu', id: ['5760', '5761', '5762', '5763'] },
       // There's a 3s slow windup on the first, then a 1s opposite cast.
       suppressSeconds: 10,
       alertText: (_data, matches, output) => {
@@ -438,7 +438,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: is this true if you see a Feral Howl #4 and onward?
       id: 'Delubrum Dahu Feral Howl',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5755', capture: false }),
+      netRegex: { source: 'Dahu', id: '5755', capture: false },
       alertText: (data, _matches, output) => {
         if (data.seenFeralHowl)
           return output.knockbackAvoid!();
@@ -469,7 +469,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Dahu Hot Charge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5764', capture: false }),
+      netRegex: { source: 'Dahu', id: '5764', capture: false },
       // This happens twice in a row
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -487,20 +487,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Dahu Heat Breath',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5766' }),
+      netRegex: { source: 'Dahu', id: '5766' },
       response: Responses.tankCleave(),
     },
     {
       id: 'Delubrum Dahu Ripper Claw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '575D', capture: false }),
+      netRegex: { source: 'Dahu', id: '575D', capture: false },
       response: Responses.awayFromFront(),
     },
     // *** Queen's Guard ***
     {
       id: 'Delubrum Guard Secrets Revealed',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5B6E', capture: false }),
+      netRegex: { source: 'Queen\'s Soldier', id: '5B6E', capture: false },
       infoText: (data, _matches, output) => {
         if (data.seenSecretsRevealed)
           return output.followUntethered!();
@@ -529,27 +529,27 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Guard Rapid Sever Soldier',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5809' }),
+      netRegex: { source: 'Queen\'s Soldier', id: '5809' },
       condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
     {
       id: 'Delubrum Guard Blood And Bone Soldier',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5808', capture: false }),
+      netRegex: { source: 'Queen\'s Soldier', id: '5808', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Delubrum Guard Shot In The Dark',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '5811' }),
+      netRegex: { source: 'Queen\'s Gunner', id: '5811' },
       condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
     {
       id: 'Delubrum Guard Automatic Turret',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '580B', capture: false }),
+      netRegex: { source: 'Queen\'s Gunner', id: '580B', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -565,13 +565,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Guard Queen\'s Shot',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '5810', capture: false }),
+      netRegex: { source: 'Queen\'s Gunner', id: '5810', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Delubrum Guard Reversal Of Forces',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '57FF', capture: false }),
+      netRegex: { source: 'Queen\'s Warrior', id: '57FF', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.reversalOfForces = true,
       outputStrings: {
@@ -588,7 +588,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Guard Above Board',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '57FC', capture: false }),
+      netRegex: { source: 'Queen\'s Warrior', id: '57FC', capture: false },
       alertText: (data, _matches, output) => {
         if (data.reversalOfForces)
           return;
@@ -609,39 +609,39 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Guard Blood And Bone Warrior',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '5800', capture: false }),
+      netRegex: { source: 'Queen\'s Warrior', id: '5800', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Delubrum Guard Shield Omen',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57F1', capture: false }),
+      netRegex: { source: 'Queen\'s Knight', id: '57F1', capture: false },
       response: Responses.getUnder(),
     },
     {
       id: 'Delubrum Guard Sword Omen',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57F0', capture: false }),
+      netRegex: { source: 'Queen\'s Knight', id: '57F0', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'Delubrum Guard Rapid Sever Knight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57FB' }),
+      netRegex: { source: 'Queen\'s Knight', id: '57FB' },
       condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
     {
       id: 'Delubrum Guard Blood And Bone Knight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57FA', capture: false }),
+      netRegex: { source: 'Queen\'s Knight', id: '57FA', capture: false },
       response: Responses.aoe(),
     },
     // *** Bozjan Phantom
     {
       id: 'Delubrum Phantom Weave Miasma',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57A3', capture: false }),
+      netRegex: { source: 'Bozjan Phantom', id: '57A3', capture: false },
       preRun: (data) => data.weaveMiasmaCount = (data.weaveMiasmaCount || 0) + 1,
       delaySeconds: 3,
       infoText: (data, _matches, output) => {
@@ -671,7 +671,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Phantom Malediction Of Agony',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57AF', capture: false }),
+      netRegex: { source: 'Bozjan Phantom', id: '57AF', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -679,7 +679,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // "57AB Summon" is used here to avoid an additional name to translate.
       // "57AC Undying Hatred" is from Stuffy Wraith.
-      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57AB', capture: false }),
+      netRegex: { source: 'Bozjan Phantom', id: '57AB', capture: false },
       delaySeconds: 5,
       // This is covered by Weave Miasma after the first "learn how this works" action.
       suppressSeconds: 9999,
@@ -698,7 +698,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Phantom Excruciation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '5809' }),
+      netRegex: { source: 'Bozjan Phantom', id: '5809' },
       condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
@@ -706,13 +706,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Avowed Wrath Of Bozja',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5975' }),
+      netRegex: { source: 'Trinity Avowed', id: '5975' },
       response: Responses.tankCleave('alert'),
     },
     {
       id: 'Delubrum Avowed Glory Of Bozja',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5976', capture: false }),
+      netRegex: { source: 'Trinity Avowed', id: '5976', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -740,7 +740,7 @@ const triggerSet: TriggerSet<Data> = {
       // Arguably, the Elemental Impact (meteor falling) has different ids depending on orb type,
       // e.g. 5960, 5962, 4F55, 4556, 4F99, 4F9A.
       // So we could give directions here, but probably that's just more confusing.
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '597C', capture: false }),
+      netRegex: { source: 'Trinity Avowed', id: '597C', capture: false },
       delaySeconds: 10,
       alertText: (data, _matches, output) => {
         switch (data.avowedTemperature) {
@@ -803,7 +803,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Delubrum Avowed Shimmering Shot',
       type: 'StartsUsing',
       // See comments on Freedom Of Bozja above.
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '597F', capture: false }),
+      netRegex: { source: 'Trinity Avowed', id: '597F', capture: false },
       delaySeconds: 3,
       alertText: (data, _matches, output) => {
         switch (data.avowedTemperature) {
@@ -873,7 +873,7 @@ const triggerSet: TriggerSet<Data> = {
       // 5970 = left cleave, cold+1
       id: 'Delubrum Avowed Hot And Cold Cleaves',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: ['5B6[5-8]', '596[DEF]', '5970'] }),
+      netRegex: { source: 'Trinity Avowed', id: ['5B6[5-8]', '596[DEF]', '5970'] },
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -967,7 +967,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Avowed Gleaming Arrow Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '5974' }),
+      netRegex: { source: 'Avowed Avatar', id: '5974' },
       run: (data, matches) => {
         data.unseenIds ??= [];
         data.unseenIds.push(parseInt(matches.sourceId, 16));
@@ -976,7 +976,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Avowed Gleaming Arrow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '5974', capture: false }),
+      netRegex: { source: 'Avowed Avatar', id: '5974', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 10,
       promise: async (data) => {
@@ -1056,21 +1056,21 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Delubrum Avowed Fury Of Bozja',
       type: 'StartsUsing',
       // Allegiant Arsenal 5987 = staff (out), followed up with Fury of Bozja 5973
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5987', capture: false }),
+      netRegex: { source: 'Trinity Avowed', id: '5987', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'Delubrum Avowed Flashvane',
       type: 'StartsUsing',
       // Allegiant Arsenal 5986 = bow (get behind), followed up by Flashvane 5972
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5986', capture: false }),
+      netRegex: { source: 'Trinity Avowed', id: '5986', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'Delubrum Avowed Infernal Slash',
       type: 'StartsUsing',
       // Allegiant Arsenal 5985 = sword (get front), followed up by Infernal Slash 5971
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5985', capture: false }),
+      netRegex: { source: 'Trinity Avowed', id: '5985', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1087,13 +1087,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Queen Empyrean Iniquity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C8', capture: false }),
+      netRegex: { source: 'The Queen', id: '59C8', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Delubrum Queen Cleansing Slash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C5' }),
+      netRegex: { source: 'The Queen', id: '59C5' },
       condition: tankBusterOnParty,
       // Probably this is where you swap, but maybe that's not something you can
       // count on in an alliance raid, where there might not even be another tank.
@@ -1102,7 +1102,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Queen Cleansing Slash Bleed',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C5' }),
+      netRegex: { source: 'The Queen', id: '59C5' },
       condition: (data) => data.CanCleanse(),
       delaySeconds: 5,
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
@@ -1120,7 +1120,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Queen Northswain\'s Glow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C3', capture: false }),
+      netRegex: { source: 'The Queen', id: '59C3', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       // Technically, this is "away from where the moving lines intersect each other"
       // but "away from orbs" also will do the trick here.
@@ -1138,7 +1138,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Queen Automatic Turret',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '59DE', capture: false }),
+      netRegex: { source: 'Queen\'s Gunner', id: '59DE', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1154,7 +1154,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Queen Reversal Of Forces',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '59D4', capture: false }),
+      netRegex: { source: 'Queen\'s Warrior', id: '59D4', capture: false },
       run: (data) => data.reversalOfForces = true,
     },
     {
@@ -1165,7 +1165,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // This is used sometimes by The Queen and sometimes by The Queen's Gunner (?!).
       // This could just be stale parser data though, as the name changes for the actual usage.
-      netRegex: NetRegexes.startsUsing({ id: '59C7', capture: false }),
+      netRegex: { id: '59C7', capture: false },
       alertText: (data, _matches, output) => {
         if (!data.seenHeavensWrath)
           return output.getKnockedTowardsMiddle!();
@@ -1207,7 +1207,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Queen Judgment Blade Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C2', capture: false }),
+      netRegex: { source: 'The Queen', id: '59C2', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1223,7 +1223,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Queen Judgment Blade Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C1', capture: false }),
+      netRegex: { source: 'The Queen', id: '59C1', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1239,13 +1239,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Queen Gods Save The Queen',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C9', capture: false }),
+      netRegex: { source: 'The Queen', id: '59C9', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Delubrum Queen Secrets Revealed',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5B8A', capture: false }),
+      netRegex: { source: 'Queen\'s Soldier', id: '5B8A', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1261,14 +1261,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Queen Shield Omen',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '59CB', capture: false }),
+      netRegex: { source: 'Queen\'s Knight', id: '59CB', capture: false },
       delaySeconds: 2.5,
       response: Responses.getUnder('alarm'),
     },
     {
       id: 'Delubrum Queen Sword Omen',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '59CA', capture: false }),
+      netRegex: { source: 'Queen\'s Knight', id: '59CA', capture: false },
       delaySeconds: 2.5,
       response: Responses.getOut(),
     },

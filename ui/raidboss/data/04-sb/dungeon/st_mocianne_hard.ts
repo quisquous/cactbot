@@ -33,14 +33,14 @@ const triggerSet: TriggerSet<Data> = {
       // Trash mob gaze attack
       id: 'St Mocianne Hard Frond Fatale',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '31A4', source: 'Withered Belladonna' }),
+      netRegex: { id: '31A4', source: 'Withered Belladonna' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
       id: 'St Mocianne Hard Vine Whip',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2E48', source: 'Nullchu' }),
+      netRegex: { id: '2E48', source: 'Nullchu' },
       response: Responses.tankBuster(),
     },
     {
@@ -77,7 +77,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'St Mocianne Hard Devour',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2E4F', source: 'Nullchu', capture: false }),
+      netRegex: { id: '2E4F', source: 'Nullchu', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -93,19 +93,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'St Mocianne Hard Stone II',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '312A', source: 'Lakhamu' }),
+      netRegex: { id: '312A', source: 'Lakhamu' },
       response: Responses.tankBuster(),
     },
     {
       id: 'St Mocianne Hard Tectonics',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '312C', source: 'Lakhamu', capture: false }),
+      netRegex: { id: '312C', source: 'Lakhamu', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'St Mocianne Hard Landslip',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3132', source: 'Silt Golem' }),
+      netRegex: { id: '3132', source: 'Silt Golem' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -129,13 +129,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'St Mocianne Empty Gaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '312B', source: 'Lakhamu' }),
+      netRegex: { id: '312B', source: 'Lakhamu' },
       response: Responses.lookAwayFromSource(),
     },
     {
       id: 'St Mocianne Mudsling',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3135', source: 'Tokkapchi' }),
+      netRegex: { id: '3135', source: 'Tokkapchi' },
       response: Responses.tankBuster(),
     },
     {
@@ -158,7 +158,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'St Mocianne Hard Mud Pie',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3137', source: 'Tokkapchi', capture: false }),
+      netRegex: { id: '3137', source: 'Tokkapchi', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -174,7 +174,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'St Mocianne Hard Feculent Flood',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '313C', source: 'Tokkapchi', capture: false }),
+      netRegex: { id: '313C', source: 'Tokkapchi', capture: false },
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

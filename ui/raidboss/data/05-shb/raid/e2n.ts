@@ -36,13 +36,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Shadowflame Tank',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E4D', source: 'Voidwalker' }),
+      netRegex: { id: '3E4D', source: 'Voidwalker' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E2N Shadowflame Healer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E4D', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E4D', source: 'Voidwalker', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -52,25 +52,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Entropy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E6D', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E6D', source: 'Voidwalker', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E2N Doomvoid Slicer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E3C', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E3C', source: 'Voidwalker', capture: false },
       response: Responses.getUnder(),
     },
     {
       id: 'E2N Empty Hate',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E46', source: 'The Hand Of Erebos', capture: false }),
+      netRegex: { id: '3E46', source: 'The Hand Of Erebos', capture: false },
       response: Responses.knockback('info'),
     },
     {
       id: 'E2N Darkfire Counter',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E42', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E42', source: 'Voidwalker', capture: false },
       run: (data) => data.fireCount = (data.fireCount ?? 0) + 1,
     },
     {

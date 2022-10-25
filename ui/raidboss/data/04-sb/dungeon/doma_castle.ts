@@ -22,7 +22,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Doma Castle Magitek Hexadrone Magitek Missiles',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Magitek Hexadrone', id: '20A4', capture: false }),
+      netRegex: { source: 'Magitek Hexadrone', id: '20A4', capture: false },
       infoText: (data, _matches, output) => {
         return data.seenTowers ? output.getTowers!() : output.getTower!();
       },

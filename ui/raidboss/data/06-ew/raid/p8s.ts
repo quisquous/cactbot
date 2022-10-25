@@ -205,13 +205,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Genesis of Flame',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7944', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7944', source: 'Hephaistos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P8S Scorching Fang',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7912', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7912', source: 'Hephaistos', capture: false },
       alertText: (data, _matches, output) => {
         if (data.conceptual === 'octa')
           return output.outAndSpread!();
@@ -243,7 +243,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Sun\'s Pinion',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7913', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7913', source: 'Hephaistos', capture: false },
       // There are two casts, one for each side.
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
@@ -277,7 +277,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Flameviper',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7945', source: 'Hephaistos' }),
+      netRegex: { id: '7945', source: 'Hephaistos' },
       response: Responses.tankBusterSwap(),
     },
     {
@@ -285,7 +285,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 7915 normally
       // 7916 during Blazing Footfalls
-      netRegex: NetRegexes.startsUsing({ id: '7917', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7917', source: 'Hephaistos', capture: false },
       durationSeconds: 12,
       infoText: (_data, _matches, output) => output.healerGroups!(),
       run: (data, _matches, output) => data.footfallsConcept = output.healerGroups!(),
@@ -298,7 +298,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 7915 normally
       // 7916 during Blazing Footfalls
-      netRegex: NetRegexes.startsUsing({ id: '7916', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7916', source: 'Hephaistos', capture: false },
       durationSeconds: 12,
       infoText: (_data, _matches, output) => output.text!(),
       run: (data, _matches, output) => data.footfallsConcept = output.text!(),
@@ -318,7 +318,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 7915 normally
       // 7916 during Blazing Footfalls
-      netRegex: NetRegexes.startsUsing({ id: '7915', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7915', source: 'Hephaistos', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.conceptual = 'tetra',
       outputStrings: {
@@ -335,7 +335,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Conceptual Octaflare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7914', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7914', source: 'Hephaistos', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.conceptual = 'octa',
       outputStrings: {
@@ -352,14 +352,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Octaflare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '791D', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '791D', source: 'Hephaistos', capture: false },
       response: Responses.spread('alarm'),
     },
     {
       id: 'P8S Tetraflare',
       type: 'StartsUsing',
       // During vents and also during clones.
-      netRegex: NetRegexes.startsUsing({ id: '791E', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '791E', source: 'Hephaistos', capture: false },
       alertText: (data, _matches, output) => {
         if (data.illusory === 'bird')
           return output.inAndStacks!();
@@ -399,7 +399,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8S Nest of Flamevipers',
       type: 'StartsUsing',
       // During clones.
-      netRegex: NetRegexes.startsUsing({ id: '791F', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '791F', source: 'Hephaistos', capture: false },
       alertText: (data, _matches, output) => {
         if (data.illusory === 'bird')
           return output.inAndProtean!();
@@ -439,13 +439,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Torch Flame Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7927', source: 'Hephaistos' }),
+      netRegex: { id: '7927', source: 'Hephaistos' },
       run: (data, matches) => data.torches.push(matches),
     },
     {
       id: 'P8S Torch Flame',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7927', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7927', source: 'Hephaistos', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       promise: async (data) => {
@@ -675,14 +675,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Ektothermos',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79EA', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '79EA', source: 'Hephaistos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P8S Footprint',
       type: 'Ability',
       // There is 6.4 seconds between this Reforged Reflection ability and the Footprint (7109) ability.
-      netRegex: NetRegexes.ability({ id: '794B', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '794B', source: 'Hephaistos', capture: false },
       delaySeconds: 1.5,
       response: Responses.knockback(),
     },
@@ -690,7 +690,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8S Snaking Kick',
       type: 'StartsUsing',
       // This is the Reforged Reflection cast.
-      netRegex: NetRegexes.startsUsing({ id: '794C', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '794C', source: 'Hephaistos', capture: false },
       response: Responses.getOut(),
     },
     {
@@ -705,7 +705,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // We could call the very first one out immediately on the Added Combatant line,
       // but then we'd have to duplicate this.
-      netRegex: NetRegexes.startsUsing({ id: '792B', capture: false }),
+      netRegex: { id: '792B', capture: false },
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         data.gorgonCount++;
@@ -998,7 +998,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Uplift Counter',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7935', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7935', source: 'Hephaistos', capture: false },
       // Count in a separate trigger so that we can suppress it, but still call out for
       // both people hit.
       preRun: (data, _matches) => data.upliftCounter++,
@@ -1021,7 +1021,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Uplift Number',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7935', source: 'Hephaistos' }),
+      netRegex: { id: '7935', source: 'Hephaistos' },
       condition: Conditions.targetIsYou(),
       // ~12.8 seconds between #1 Uplift (7935) to #1 Stomp Dead (7937)
       // ~13.8 seconds between #4 Uplift (7935) to #4 Stomp Dead (7937).
@@ -1044,7 +1044,7 @@ const triggerSet: TriggerSet<Data> = {
       // 7A04 Quadrupedal Impact
       // 7A05 Quadrupedal Crush
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['7A04', '7A05'], source: 'Hephaistos' }),
+      netRegex: { id: ['7A04', '7A05'], source: 'Hephaistos' },
       promise: async (data, matches) => {
         // select the Hephaistoss with same source id
         let hephaistosData = null;
@@ -1133,7 +1133,7 @@ const triggerSet: TriggerSet<Data> = {
       // These are shown in the span of 8.5s
       // Blazing Footfalls takes 14.5s to complete +4s to resolve Torch Flames
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['793C', '793D'], source: 'Hephaistos' }),
+      netRegex: { id: ['793C', '793D'], source: 'Hephaistos' },
       preRun: (data, matches) => {
         const x = parseInt(matches.targetX) - 100;
         const y = parseInt(matches.targetY) - 100;
@@ -1192,7 +1192,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Blazing Footfalls Trailblaze 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['7106', '7107'], source: 'Hephaistos', capture: false }),
+      netRegex: { id: ['7106', '7107'], source: 'Hephaistos', capture: false },
       condition: (data) => data.trailblazeCount === 1,
       durationSeconds: 3.9, // Keep up until Trailblaze
       infoText: (data, _matches, output) => {
@@ -1239,7 +1239,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8S Blazing Footfalls Crush/Impact Reminder',
       // Reminder after Trailblaze for Impact/Crush Movement
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['793E'], source: 'Hephaistos' }),
+      netRegex: { id: ['793E'], source: 'Hephaistos' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime),
       durationSeconds: 4,
       response: (data, _matches, output) => {
@@ -1356,7 +1356,7 @@ const triggerSet: TriggerSet<Data> = {
       // for the Scorching Fang (7952) ability.  The reason for this is that there are
       // two casts of 7953 and only one 7952, and there's some suspicion that position
       // data may be incorrect on one of the 7953 mobs.
-      netRegex: NetRegexes.startsUsing({ id: '7952' }),
+      netRegex: { id: '7952' },
       condition: (data) => data.flareTargets.length === 0,
       // For some reason the position data does not appear to be correct for either
       // 7952 or 7953.  Add a delay to hope that it gets up to date.
@@ -1406,7 +1406,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Illusory Hephaistos Scorched Pinion Second',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7953', capture: false }),
+      netRegex: { id: '7953', capture: false },
       condition: (data) => data.flareTargets.length > 0,
       suppressSeconds: 1,
       run: (data) => data.illusory = 'bird',
@@ -1414,7 +1414,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Illusory Hephaistos Scorching Fang Second',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7952', capture: false }),
+      netRegex: { id: '7952', capture: false },
       condition: (data) => data.flareTargets.length > 0,
       suppressSeconds: 1,
       run: (data) => data.illusory = 'snake',
@@ -1422,7 +1422,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Hemitheos\'s Flare Hit',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '72CE', source: 'Hephaistos' }),
+      netRegex: { id: '72CE', source: 'Hephaistos' },
       preRun: (data, matches) => data.flareTargets.push(matches.target),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -1442,7 +1442,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Hemitheos\'s Flare Not Hit',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '72CE', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '72CE', source: 'Hephaistos', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
@@ -1463,7 +1463,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Suneater Cthonic Vent Initial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7925' }),
+      netRegex: { id: '7925' },
       condition: (data, matches) => {
         data.ventCasts.push(matches);
         return data.ventCasts.length === 2;
@@ -1493,7 +1493,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Suneater Cthonic Vent Later',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['7923', '7924'] }),
+      netRegex: { id: ['7923', '7924'] },
       condition: (data, matches) => {
         data.ventCasts.push(matches);
         return data.ventCasts.length === 2;
@@ -1545,13 +1545,13 @@ const triggerSet: TriggerSet<Data> = {
       // Illusory Creation happens elsewhere, but this id only in Snake 2.
       // This is used to differentiate the 4x 7932 Gorgospit from the 1x 7932 Gorgospit that
       // (ideally) kills two Gorgons.
-      netRegex: NetRegexes.startsUsing({ id: '7931', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7931', source: 'Hephaistos', capture: false },
       run: (data) => data.seenSnakeIllusoryCreation = true,
     },
     {
       id: 'P8S Gorgospit Location',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7932' }),
+      netRegex: { id: '7932' },
       condition: (data) => data.seenSnakeIllusoryCreation,
       promise: async (data, matches) => {
         data.combatantData = [];
@@ -1618,7 +1618,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Aioniopyr',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79DF', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '79DF', source: 'Hephaistos', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1634,7 +1634,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8S Tyrant\'s Unholy Darkness',
       type: 'StartsUsing',
       // Untargeted, with 79DE damage after.
-      netRegex: NetRegexes.startsUsing({ id: '79DD', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '79DD', source: 'Hephaistos', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1649,7 +1649,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Ashing Blaze Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79D7', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '79D7', source: 'Hephaistos', capture: false },
       alertText: (data, _matches, output) => {
         if (data.firstAlignmentSecondAbility === 'stack')
           return output.rightAndStack!();
@@ -1679,7 +1679,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Ashing Blaze Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79D8', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '79D8', source: 'Hephaistos', capture: false },
       alertText: (data, _matches, output) => {
         if (data.firstAlignmentSecondAbility === 'stack')
           return output.leftAndStack!();
@@ -1709,7 +1709,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S High Concept',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79AC', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '79AC', source: 'Hephaistos', capture: false },
       response: Responses.bigAoe(),
       run: (data) => {
         data.concept = {};
@@ -1870,7 +1870,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Natural Alignment Second',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['79C0', '79BF', '79BD', '79BE'], source: 'Hephaistos' }),
+      netRegex: { id: ['79C0', '79BF', '79BD', '79BE'], source: 'Hephaistos' },
       suppressSeconds: 8,
       alertText: (data, matches, output) => {
         // Due to the way suppress works, put this check here and not in the condition field.
@@ -1920,7 +1920,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Illusory Hephaistos End of Days',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7A8B' }),
+      netRegex: { id: '7A8B' },
       infoText: (_data, matches, output) => {
         // Illusory Hephaistos are at x=(80 or 120), y=(85 or 95 or 105 or 115).
         // Either the first or second row is always free.
@@ -2330,13 +2330,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Limitless Desolation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75ED', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '75ED', source: 'Hephaistos', capture: false },
       response: Responses.spread('alert'),
     },
     {
       id: 'P8S Tyrant\'s Fire III Counter',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '75F0', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '75F0', source: 'Hephaistos', capture: false },
       preRun: (data) => data.burstCounter++,
       durationSeconds: 2,
       suppressSeconds: 1,
@@ -2357,7 +2357,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Tyrant\'s Fire III Bait then Tower',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '75F0', source: 'Hephaistos' }),
+      netRegex: { id: '75F0', source: 'Hephaistos' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 7.9,
       alertText: (data, _matches, output) => output.text!({ num: data.burstCounter }),
@@ -2374,7 +2374,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Tyrant\'s Flare II Soak Tower',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7A88', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7A88', source: 'Hephaistos', capture: false },
       preRun: (data) => data.flareCounter++,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
@@ -2393,14 +2393,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Dominion',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79D9', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '79D9', source: 'Hephaistos', capture: false },
       response: Responses.spread('alert'),
       run: (data) => data.deformationTargets = [],
     },
     {
       id: 'P8S Orogenic Deformation Hit',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '79DB', source: 'Hephaistos' }),
+      netRegex: { id: '79DB', source: 'Hephaistos' },
       preRun: (data, matches) => data.deformationTargets.push(matches.target),
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -2419,7 +2419,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Orogenic Deformation Not Hit',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '79DB', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '79DB', source: 'Hephaistos', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
@@ -2439,7 +2439,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Aionagonia',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7A22', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7A22', source: 'Hephaistos', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

@@ -51,21 +51,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8N Genesis of Flame',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7905', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7905', source: 'Hephaistos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P8N Scorching Fang',
       type: 'StartsUsing',
       // has 78EC Sunforge castbar
-      netRegex: NetRegexes.startsUsing({ id: '78EE', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '78EE', source: 'Hephaistos', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'P8N Sun\'s Pinion',
       type: 'StartsUsing',
       // also has 78EC Sunforge castbar
-      netRegex: NetRegexes.startsUsing({ id: '78EF', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '78EF', source: 'Hephaistos', capture: false },
       // There are two casts, one for each side.
       suppressSeconds: 1,
       response: Responses.goMiddle(),
@@ -73,14 +73,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8N Flameviper',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7908', source: 'Hephaistos' }),
+      netRegex: { id: '7908', source: 'Hephaistos' },
       // This is a "line" tank cleave that leaves a bleed.
       response: Responses.tankCleave(),
     },
     {
       id: 'P8N Petrifaction',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78FC', source: 'Gorgon', capture: false }),
+      netRegex: { id: '78FC', source: 'Gorgon', capture: false },
       // There are two casts, one for each Gorgon.
       suppressSeconds: 1,
       response: Responses.lookAway(),
@@ -90,20 +90,20 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // We could use addedCombatant({ npcNameId: '11517' }), but this also fires on the
       // spawn of the lookaway eyeballs.
-      netRegex: NetRegexes.ability({ id: '78FC', source: 'Gorgon', capture: false }),
+      netRegex: { id: '78FC', source: 'Gorgon', capture: false },
       suppressSeconds: 1,
       response: Responses.killAdds(),
     },
     {
       id: 'P8N Ektothermos',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78FE', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '78FE', source: 'Hephaistos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P8N Abyssal Fires',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78F1', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '78F1', source: 'Hephaistos', capture: false },
       // There are four of these, one for each fire.
       suppressSeconds: 1,
       response: Responses.goMiddle(),
@@ -111,7 +111,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8N Rearing Rampage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79AB', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '79AB', source: 'Hephaistos', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -123,7 +123,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8N Suneater Cthonic Vent Initial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78F5', source: 'Suneater', capture: false }),
+      netRegex: { id: '78F5', source: 'Suneater', capture: false },
       suppressSeconds: 1,
       promise: async (data: Data) => {
         data.combatantData = [];
@@ -200,19 +200,19 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8N Volcanic Torches Cleanup',
       type: 'StartsUsing',
       // This always precedes 78F8 Torch Flame casts.
-      netRegex: NetRegexes.startsUsing({ id: ['78F7', '71DE'], source: 'Hephaistos', capture: false }),
+      netRegex: { id: ['78F7', '71DE'], source: 'Hephaistos', capture: false },
       run: (data) => data.torches = [],
     },
     {
       id: 'P8N Torch Flame Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78F8', source: 'Hephaistos' }),
+      netRegex: { id: '78F8', source: 'Hephaistos' },
       run: (data, matches) => data.torches.push(matches),
     },
     {
       id: 'P8N Torch Flame',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78F8', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '78F8', source: 'Hephaistos', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       promise: async (data: Data) => {
@@ -353,7 +353,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8N Hemitheos\'s Flare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7907', source: 'Hephaistos' }),
+      netRegex: { id: '7907', source: 'Hephaistos' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

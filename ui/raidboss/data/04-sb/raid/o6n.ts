@@ -17,13 +17,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O6N Demonic Howl',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '282C', source: 'Demon Chadarnook', capture: false }),
+      netRegex: { id: '282C', source: 'Demon Chadarnook', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O6N Demonic Shear',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '282A', source: 'Demon Chadarnook' }),
+      netRegex: { id: '282A', source: 'Demon Chadarnook' },
       response: Responses.tankBuster(),
     },
     {

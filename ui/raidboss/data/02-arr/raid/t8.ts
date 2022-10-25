@@ -43,7 +43,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T8 Landmine Explosion',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7D1', source: 'Allagan Mine' }),
+      netRegex: { id: '7D1', source: 'Allagan Mine' },
       infoText: (data, matches, output) => {
         if (matches.target in data.landmines)
           return;
@@ -101,7 +101,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T8 Brainjack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7C3', source: 'The Avatar' }),
+      netRegex: { id: '7C3', source: 'The Avatar' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.brainjackOnYou!();
@@ -132,7 +132,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T8 Allagan Field',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7C4', source: 'The Avatar' }),
+      netRegex: { id: '7C4', source: 'The Avatar' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.allaganFieldOnYou!();

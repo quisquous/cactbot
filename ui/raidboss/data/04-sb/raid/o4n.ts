@@ -17,7 +17,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O4N Doom',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '24B7', source: 'Exdeath', capture: false }),
+      netRegex: { id: '24B7', source: 'Exdeath', capture: false },
       condition: (data) => data.CanCleanse(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -34,20 +34,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O4N Standard Thunder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '24BD', source: 'Exdeath' }),
+      netRegex: { id: '24BD', source: 'Exdeath' },
       response: Responses.tankCleave(),
     },
     {
       id: 'O4N Standard Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '24BA', source: 'Exdeath', capture: false }),
+      netRegex: { id: '24BA', source: 'Exdeath', capture: false },
       suppressSeconds: 5,
       response: Responses.spread(),
     },
     {
       id: 'O4N Empowered Blizzard',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '24C0', source: 'Exdeath', capture: false }),
+      netRegex: { id: '24C0', source: 'Exdeath', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -63,19 +63,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O4N Empowered Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '24BF', source: 'Exdeath', capture: false }),
+      netRegex: { id: '24BF', source: 'Exdeath', capture: false },
       response: Responses.stopEverything(),
     },
     {
       id: 'O4N Empowered Thunder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '24C1', source: 'Exdeath', capture: false }),
+      netRegex: { id: '24C1', source: 'Exdeath', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'O4N Decisive Battle ',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2408', source: 'Exdeath', capture: false }),
+      netRegex: { id: '2408', source: 'Exdeath', capture: false },
       condition: (data) => {
         // Without a condition, this notifies on the first one, where it's meaningless.
         data.battleCount = (data.battleCount ?? 0) + 1;
@@ -97,7 +97,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O4N Zombie Breath',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '240A', source: 'Exdeath', capture: false }),
+      netRegex: { id: '240A', source: 'Exdeath', capture: false },
       delaySeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -114,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O4N Black Hole',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '24C8', source: 'Exdeath', target: 'Exdeath', capture: false }),
+      netRegex: { id: '24C8', source: 'Exdeath', target: 'Exdeath', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -130,7 +130,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O4N Vacuum Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '24B8', source: 'Exdeath', target: 'Exdeath', capture: false }),
+      netRegex: { id: '24B8', source: 'Exdeath', target: 'Exdeath', capture: false },
       response: Responses.knockback(),
     },
     {
@@ -159,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O4N Meteor',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '24C6', source: 'Exdeath', capture: false }),
+      netRegex: { id: '24C6', source: 'Exdeath', capture: false },
       response: Responses.bigAoe(),
     },
   ],

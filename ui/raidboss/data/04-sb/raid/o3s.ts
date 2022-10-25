@@ -43,7 +43,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S Panel Swap Phase Counter',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2304', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2304', source: 'Halicarnassus', capture: false },
       run: (data) => {
         data.phase = (data.phase ?? 0) + 1;
         delete data.seenHolyThisPhase;
@@ -52,14 +52,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S Critical Hit',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '22EB', source: 'Halicarnassus' }),
+      netRegex: { id: '22EB', source: 'Halicarnassus' },
       // "Use Awareness!! <se.6>"
       response: Responses.tankBuster(),
     },
     {
       id: 'O3S Dimensional Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '22F6', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '22F6', source: 'Halicarnassus', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -67,7 +67,7 @@ const triggerSet: TriggerSet<Data> = {
       // books message in the library phase can be ignored.
       id: 'O3S Spellblade Holy Counter',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '22EF', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '22EF', source: 'Halicarnassus', capture: false },
       run: (data) => {
         // In case something went awry, clean up any holy targets
         // so the next spellblade holy can start afresh.
@@ -270,19 +270,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S Ribbit',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '22F7', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '22F7', source: 'Halicarnassus', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'O3S Oink',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '22F9', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '22F9', source: 'Halicarnassus', capture: false },
       response: Responses.doritoStack(),
     },
     {
       id: 'O3S Squelch',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '22F8', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '22F8', source: 'Halicarnassus', capture: false },
       response: Responses.lookAway(),
     },
     {
@@ -324,7 +324,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S The Queen\'s Waltz: Books',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '230E', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '230E', source: 'Halicarnassus', capture: false },
       condition: (data) => {
         // Deliberately skip printing the waltz message for the
         // spellblade holy -> waltz that ends the library phase.
@@ -357,7 +357,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S The Queen\'s Waltz: Clock',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2306', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2306', source: 'Halicarnassus', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -373,7 +373,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S The Queen\'s Waltz: Crystal Square',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '230A', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '230A', source: 'Halicarnassus', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -389,7 +389,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S The Queen\'s Waltz: Tethers',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2308', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2308', source: 'Halicarnassus', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

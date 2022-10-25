@@ -20,7 +20,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T11 Secondary Head',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B73' }),
+      netRegex: { source: 'Kaliya', id: 'B73' },
       alertText: (data, matches, output) => {
         return output.text!({ player: data.ShortName(matches.target) });
       },
@@ -38,7 +38,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T11 Seed River First',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
+      netRegex: { source: 'Kaliya', id: 'B74', capture: false },
       condition: (data) => !data.firstSeed,
       response: Responses.spreadThenStack(),
       run: (data) => {
@@ -49,7 +49,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T11 Seed Sea First',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
+      netRegex: { id: 'B75', source: 'Kaliya', capture: false },
       condition: (data) => !data.firstSeed,
       response: Responses.stackThenSpread(),
       run: (data) => {
@@ -60,7 +60,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T11 Seed River Second',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
+      netRegex: { id: 'B76', source: 'Kaliya', capture: false },
       condition: (data) => !data.firstSeed,
       response: Responses.stackMarker(),
       run: (data) => delete data.firstSeed,
@@ -68,7 +68,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T11 Seed Sea Second',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
+      netRegex: { id: 'B77', source: 'Kaliya', capture: false },
       condition: (data) => !data.firstSeed,
       response: Responses.spread(),
       run: (data) => delete data.firstSeed,
@@ -77,7 +77,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T11 Phase 2',
       type: 'Ability',
       // Barofield
-      netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B6F' }),
+      netRegex: { source: 'Kaliya', id: 'B6F' },
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
       promise: (_data, matches) =>
@@ -104,7 +104,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T11 Forked Lightning',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'B85', source: 'Electric Node' }),
+      netRegex: { id: 'B85', source: 'Electric Node' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -121,7 +121,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T11 Phase 3',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
+      netRegex: { id: 'B78', source: 'Kaliya', capture: false },
       sound: 'Long',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -214,7 +214,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T11 Tether Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
+      netRegex: { id: 'B7B', source: 'Kaliya', capture: false },
       run: (data) => {
         delete data.tetherA;
         delete data.tetherB;

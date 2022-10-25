@@ -28,13 +28,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5N Searing Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76D7', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '76D7', source: 'Proto-Carbuncle', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'P5N Searing Ray Reflected',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76D8', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '76D8', source: 'Proto-Carbuncle', capture: false },
       alertText: (data, _matches, output) => {
         if (data.acid && data.numStones)
           return output.goFrontAvoid!();
@@ -54,26 +54,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5N Ruby Glow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76D[45]', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '76D[45]', source: 'Proto-Carbuncle', capture: false },
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
     {
       id: 'P5N Crunch',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76F0', source: 'Proto-Carbuncle' }),
+      netRegex: { id: '76F0', source: 'Proto-Carbuncle' },
       response: Responses.tankBuster(),
     },
     {
       id: 'P5N Topaz Stones Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76DF', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '76DF', source: 'Proto-Carbuncle', capture: false },
       preRun: (data) => data.numStones = (data.numStones || 0) + 1,
     },
     {
       id: 'P5N Topaz Stones',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '76DE', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '76DE', source: 'Proto-Carbuncle', capture: false },
       infoText: (data, _matches, output) => {
         if (!data.seenStones || !data.numStones)
           return; // First time is just floor AoEs
@@ -108,7 +108,7 @@ const triggerSet: TriggerSet<Data> = {
       // Delay cleanup for a while for Topaz Stone + Searing Ray combo
       id: 'P5N Topaz Stones Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '76DE', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '76DE', source: 'Proto-Carbuncle', capture: false },
       delaySeconds: 9,
       run: (data) => data.numStones = 0,
     },
@@ -118,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
       // 76E[7-A] are casts from the Topaz Stone placeholders
       // 76E7 is 3.7s, 76EA is 9.7s
       // Callout will call to start at 76EA -> move to 76E7
-      netRegex: NetRegexes.startsUsing({ id: '76E[7A]', source: 'Proto-Carbuncle' }),
+      netRegex: { id: '76E[7A]', source: 'Proto-Carbuncle' },
       durationSeconds: 7,
       infoText: (data, matches, output) => {
         // Coordinates range from [92.5, 107.5]
@@ -167,25 +167,25 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P5N Topaz Cluster Cleanup',
       type: 'Ability',
       // 76E6 comes from the main Proto-Carbuncle
-      netRegex: NetRegexes.ability({ id: '76E6', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '76E6', source: 'Proto-Carbuncle', capture: false },
       run: (data) => data.topazRayDirections = [undefined, undefined],
     },
     {
       id: 'P5N Sonic Howl',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76F2', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '76F2', source: 'Proto-Carbuncle', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P5N Acidic Slaver',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78EB', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '78EB', source: 'Proto-Carbuncle', capture: false },
       run: (data) => data.acid = true,
     },
     {
       id: 'P5N Toxic Crunch',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76F1', source: 'Proto-Carbuncle' }),
+      netRegex: { id: '76F1', source: 'Proto-Carbuncle' },
       response: Responses.tankBuster(),
     },
     {
@@ -204,7 +204,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5N Starving Stampede',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79E9', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '79E9', source: 'Proto-Carbuncle', capture: false },
       delaySeconds: 2,
       durationSeconds: 5,
       suppressSeconds: 5,

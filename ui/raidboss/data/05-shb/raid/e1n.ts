@@ -14,25 +14,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1N Eden\'s Gravity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D94', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D94', source: 'Eden Prime', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E1N Fragor Maximus',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DA4', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3DA4', source: 'Eden Prime', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E1N Dimensional Shift',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D9C', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D9C', source: 'Eden Prime', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E1N Eden\'s Flare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D97', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D97', source: 'Eden Prime', capture: false },
       response: Responses.getUnder('alert'),
     },
     {
@@ -55,7 +55,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1N Spear Of Paradise',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DA1', source: 'Eden Prime' }),
+      netRegex: { id: '3DA1', source: 'Eden Prime' },
       response: Responses.tankBuster(),
     },
     {
@@ -79,7 +79,7 @@ const triggerSet: TriggerSet<Data> = {
       // 10.5 second cast, maybe warn 6 seconds ahead so that folks bait outside.
       id: 'E1N Pure Light',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DA3', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3DA3', source: 'Eden Prime', capture: false },
       delaySeconds: 4.5,
       response: Responses.getBehind(),
     },

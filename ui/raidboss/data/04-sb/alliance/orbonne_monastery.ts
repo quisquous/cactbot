@@ -58,26 +58,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Harpy Devitalize',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3778', source: 'Harpy', capture: false }),
+      netRegex: { id: '3778', source: 'Harpy', capture: false },
       suppressSeconds: 10,
       response: Responses.lookAway(),
     },
     {
       id: 'Orbonne Mustadio Right Handgonne',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '373E', source: 'Mustadio', capture: false }),
+      netRegex: { id: '373E', source: 'Mustadio', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'Orbonne Mustadio Left Handgonne',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '373F', source: 'Mustadio', capture: false }),
+      netRegex: { id: '373F', source: 'Mustadio', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'Orbonne Mustadio Last Testament',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3737', source: 'Mustadio', capture: false }),
+      netRegex: { id: '3737', source: 'Mustadio', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -93,7 +93,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Mustadio Arm Shot',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3739', source: 'Mustadio' }),
+      netRegex: { id: '3739', source: 'Mustadio' },
       response: Responses.tankBuster(),
     },
     {
@@ -123,13 +123,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Thunder Slash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3866', source: 'Agrias' }),
+      netRegex: { id: '3866', source: 'Agrias' },
       response: Responses.tankCleave(),
     },
     {
       id: 'Orbonne Agrias Cleansing Strike',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3854', source: 'Agrias', capture: false }),
+      netRegex: { id: '3854', source: 'Agrias', capture: false },
       preRun: (data) => data.halidom = [],
       delaySeconds: 50,
       run: (data) => delete data.agriasGhostCleanse,
@@ -144,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Consecration',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3850', source: 'Agrias', capture: false }),
+      netRegex: { id: '3850', source: 'Agrias', capture: false },
       condition: (data) => !data.agriasGhostCleanse,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -161,7 +161,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Halidom Inside',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3851', source: 'Halidom' }),
+      netRegex: { id: '3851', source: 'Halidom' },
       run: (data, matches) => {
         data.halidom ??= [];
         data.halidom.push(matches.target);
@@ -170,7 +170,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Halidom Outside',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3851', source: 'Halidom', capture: false }),
+      netRegex: { id: '3851', source: 'Halidom', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 10,
       alertText: (data, _matches, output) => {
@@ -209,7 +209,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Adds Phase',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '385D', source: 'Agrias', capture: false }),
+      netRegex: { id: '385D', source: 'Agrias', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -225,7 +225,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Mortal Blow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '385E', source: 'Sword Knight', capture: false }),
+      netRegex: { id: '385E', source: 'Sword Knight', capture: false },
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -259,7 +259,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Judgment Blade',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3857', source: 'Agrias', capture: false }),
+      netRegex: { id: '3857', source: 'Agrias', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -275,7 +275,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Divine Ruination',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3858', source: 'Agrias', capture: false }),
+      netRegex: { id: '3858', source: 'Agrias', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -291,14 +291,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Crush Helm Healer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3752', source: 'The Thunder God' }),
+      netRegex: { id: '3752', source: 'The Thunder God' },
       condition: (data) => data.role === 'healer',
       response: Responses.tankBuster('info'),
     },
     {
       id: 'Orbonne Cid Crush Helm Feint',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3752', source: 'The Thunder God', capture: false }),
+      netRegex: { id: '3752', source: 'The Thunder God', capture: false },
       condition: (data) => data.CanFeint(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -315,14 +315,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Crush Helm Tank',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3753', source: 'The Thunder God' }),
+      netRegex: { id: '3753', source: 'The Thunder God' },
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Orbonne Cid Crush Armor Tank',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3758', source: 'The Thunder God', capture: false }),
+      netRegex: { id: '3758', source: 'The Thunder God', capture: false },
       condition: (data) => data.role === 'tank',
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -339,7 +339,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Crush Armor',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3759', source: 'The Thunder God' }),
+      netRegex: { id: '3759', source: 'The Thunder God' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -356,7 +356,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Crush Accessory',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '375A', source: 'The Thunder God', capture: false }),
+      netRegex: { id: '375A', source: 'The Thunder God', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -372,7 +372,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Cleansing Strike',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3751', source: 'The Thunder God', capture: false }),
+      netRegex: { id: '3751', source: 'The Thunder God', capture: false },
       condition: (data) => data.role === 'healer',
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -390,7 +390,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Shadowblade Pads',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3761', source: 'The Thunder God', capture: false }),
+      netRegex: { id: '3761', source: 'The Thunder God', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -471,31 +471,31 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Holy Sword In',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3750', source: 'The Thunder God', capture: false }),
+      netRegex: { id: '3750', source: 'The Thunder God', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'Orbonne Cid Holy Sword Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '374F', source: 'The Thunder God', capture: false }),
+      netRegex: { id: '374F', source: 'The Thunder God', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'Orbonne Cid Holy Sword Thunder Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3749', source: 'The Thunder God', capture: false }),
+      netRegex: { id: '3749', source: 'The Thunder God', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'Orbonne Cid Holy Sword Thunder Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '374A', source: 'The Thunder God', capture: false }),
+      netRegex: { id: '374A', source: 'The Thunder God', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'Orbonne Cid Holy Sword Three 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '374C', source: 'The Thunder God', capture: false }),
+      netRegex: { id: '374C', source: 'The Thunder God', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -512,7 +512,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Holy Sword Three 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '374D', source: 'The Thunder God', capture: false }),
+      netRegex: { id: '374D', source: 'The Thunder God', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -529,7 +529,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Ultima Redemption',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '38AA', source: 'Ultima, The High Seraph' }),
+      netRegex: { id: '38AA', source: 'Ultima, The High Seraph' },
       response: Responses.tankBuster(),
     },
     {
@@ -566,7 +566,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Ultima Time Eruption',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '38CF', source: 'Demi-Belias', capture: false }),
+      netRegex: { id: '38CF', source: 'Demi-Belias', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -582,7 +582,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Ultima Extreme Edge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '38DA', source: 'Demi-Hashmal', capture: false }),
+      netRegex: { id: '38DA', source: 'Demi-Hashmal', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -598,7 +598,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Ultima Ultimate Illusion Healer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3895', source: 'Ultima, The High Seraph', capture: false }),
+      netRegex: { id: '3895', source: 'Ultima, The High Seraph', capture: false },
       condition: (data) => data.role === 'healer',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -615,7 +615,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Ultima Ultimate Illusion',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3895', source: 'Ultima, The High Seraph', capture: false }),
+      netRegex: { id: '3895', source: 'Ultima, The High Seraph', capture: false },
       condition: (data) => data.role !== 'healer',
       // zzz
       delaySeconds: 23.5,

@@ -13,7 +13,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Haukke Normal Dark Mist Stun',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2C1', source: ['Manor Maidservant', 'Manor Claviger', 'Lady Amandine'] }),
+      netRegex: { id: '2C1', source: ['Manor Maidservant', 'Manor Claviger', 'Lady Amandine'] },
       condition: (data) => data.CanStun(),
       suppressSeconds: 2,
       response: Responses.stun('info'),
@@ -21,7 +21,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Haukke Normal Steward Soul Drain Stun',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '35C', source: 'Manor Steward' }),
+      netRegex: { id: '35C', source: 'Manor Steward' },
       condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
@@ -29,21 +29,21 @@ const triggerSet: TriggerSet<Data> = {
       // Particle and spell effects make this particular Dark Mist hard to see.
       id: 'Haukke Normal Amandine Dark Mist Dodge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine', capture: false }),
+      netRegex: { id: '2C1', source: 'Lady Amandine', capture: false },
       condition: (data) => !data.CanStun(),
       response: Responses.outOfMelee('alert'),
     },
     {
       id: 'Haukke Normal Amandine Void Fire III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '356', source: 'Lady Amandine' }),
+      netRegex: { id: '356', source: 'Lady Amandine' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt('info'),
     },
     {
       id: 'Haukke Normal Amandine Void Thunder III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '358', source: 'Lady Amandine' }),
+      netRegex: { id: '358', source: 'Lady Amandine' },
       condition: Conditions.targetIsYou(),
       response: Responses.getBehind('info'),
     },

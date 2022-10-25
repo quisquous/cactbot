@@ -131,13 +131,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A9S Stockpile Count',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A38', capture: false }),
+      netRegex: { source: 'Refurbisher 0', id: '1A38', capture: false },
       run: (data) => data.stockpileCount++,
     },
     {
       id: 'A9S Scrapline',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A3C', capture: false }),
+      netRegex: { source: 'Refurbisher 0', id: '1A3C', capture: false },
       alertText: (data, _matches, output) => {
         if (data.mainTank === data.me)
           return;
@@ -170,7 +170,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A9S Double Scrapline',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A3D', capture: false }),
+      netRegex: { source: 'Refurbisher 0', id: '1A3D', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -236,7 +236,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A9S Auto',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Refurbisher 0', id: '1AFE' }),
+      netRegex: { source: 'Refurbisher 0', id: '1AFE' },
       run: (data, matches) => data.mainTank = matches.target,
     },
     {

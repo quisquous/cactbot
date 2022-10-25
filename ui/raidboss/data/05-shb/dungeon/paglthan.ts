@@ -27,13 +27,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paglthan Critical Rip',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5C4E', source: 'Amhuluk' }),
+      netRegex: { id: '5C4E', source: 'Amhuluk' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Paglthan Electric Burst',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5C4D', source: 'Amhuluk', capture: false }),
+      netRegex: { id: '5C4D', source: 'Amhuluk', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -63,19 +63,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paglthan Ballistic',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5C97', source: 'Magitek Fortress', capture: false }),
+      netRegex: { id: '5C97', source: 'Magitek Fortress', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'Paglthan Defensive Reaction',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5C9E', source: 'Magitek Core', capture: false }),
+      netRegex: { id: '5C9E', source: 'Magitek Core', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Paglthan Twisted Scream',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5B47', source: 'Lunar Bahamut', capture: false }),
+      netRegex: { id: '5B47', source: 'Lunar Bahamut', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -94,7 +94,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paglthan Mega Flare Move',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '5B4D', source: 'Lunar Bahamut' }),
+      netRegex: { id: '5B4D', source: 'Lunar Bahamut' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -128,7 +128,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paglthan Kan Rhai Move',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '5B4F', source: 'Lunar Bahamut', capture: false }),
+      netRegex: { id: '5B4F', source: 'Lunar Bahamut', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -144,20 +144,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paglthan Lunar Flare Reset',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '5B49', source: 'Lunar Bahamut', capture: false }),
+      netRegex: { id: '5B49', source: 'Lunar Bahamut', capture: false },
       run: (data) => data.lunarFlares = 0,
     },
     {
       id: 'Paglthan Lunar Flare Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Lunar Bahamut', capture: false }),
+      netRegex: { id: '5B4[AB]', source: 'Lunar Bahamut', capture: false },
       run: (data) => data.lunarFlares = (data.lunarFlares ?? 0) + 1,
     },
     {
       // Get middle is 4x5B4A and 4x5B4B, get outside is 5x5B4A
       id: 'Paglthan Lunar Flare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Lunar Bahamut', capture: false }),
+      netRegex: { id: '5B4[AB]', source: 'Lunar Bahamut', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
@@ -188,13 +188,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paglthan Flatten',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5B58', source: 'Lunar Bahamut' }),
+      netRegex: { id: '5B58', source: 'Lunar Bahamut' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Paglthan Giga Flare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5B57', source: 'Lunar Bahamut', capture: false }),
+      netRegex: { id: '5B57', source: 'Lunar Bahamut', capture: false },
       response: Responses.aoe(),
     },
   ],

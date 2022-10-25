@@ -47,7 +47,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10N Frost Laser Trap',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB1', capture: false }),
+      netRegex: { source: 'Lamebrix Strikebocks', id: '1AB1', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -63,7 +63,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10N Ceiling Weight Trap',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB0', capture: false }),
+      netRegex: { source: 'Lamebrix Strikebocks', id: '1AB0', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -79,19 +79,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10N Single Charge In',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1AB8', source: 'Lamebrix Strikebocks', capture: false }),
+      netRegex: { id: '1AB8', source: 'Lamebrix Strikebocks', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'A10N Single Charge Out',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1AB9', source: 'Lamebrix Strikebocks', capture: false }),
+      netRegex: { id: '1AB9', source: 'Lamebrix Strikebocks', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'A10N Gobrush Rushgob',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Lamebrix Strikebocks', id: '1ACF' }),
+      netRegex: { source: 'Lamebrix Strikebocks', id: '1ACF' },
       response: Responses.tankBuster(),
     },
     {

@@ -101,7 +101,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S Sizzlespark',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Quickthinx Allthoughts', id: '16F8', capture: false }),
+      netRegex: { source: 'Quickthinx Allthoughts', id: '16F8', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -161,14 +161,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S Kugelblitz',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Sturm Doll', id: '16FE' }),
+      netRegex: { source: 'Sturm Doll', id: '16FE' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
       id: 'A7S Zoomdoom Clear',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Quickthinx Allthoughts', id: '16F4', capture: false }),
+      netRegex: { source: 'Quickthinx Allthoughts', id: '16F4', capture: false },
       run: (data) => {
         data.grabbed = [];
         delete data.stickyloom;
@@ -177,13 +177,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S Gobbie Grab',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Quickthinx Allthoughts', id: '15C0' }),
+      netRegex: { source: 'Quickthinx Allthoughts', id: '15C0' },
       run: (data, matches) => data.grabbed.push(matches.target),
     },
     {
       id: 'A7S Stickyloom',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Boomtype Magitek Gobwalker G-VII', id: '16F2' }),
+      netRegex: { source: 'Boomtype Magitek Gobwalker G-VII', id: '16F2' },
       run: (data, matches) => data.stickyloom = matches.target,
     },
     {
@@ -209,7 +209,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S True Heart',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Shanoa', id: '15EC', capture: false }),
+      netRegex: { source: 'Shanoa', id: '15EC', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

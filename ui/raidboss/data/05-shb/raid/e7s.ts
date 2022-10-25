@@ -42,7 +42,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Empty Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C8A', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C8A', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -54,7 +54,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Betwixt Worlds',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4CFD', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4CFD', capture: false },
       run: (data) => data.phase = 'betwixtWorlds',
     },
     {
@@ -185,7 +185,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S False Midnight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C99', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C99', capture: false },
       run: (data) => data.phase = 'falseMidnight',
     },
     {
@@ -238,7 +238,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Advent Of Light',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C6E' }),
+      netRegex: { source: 'Idolatry', id: '4C6E' },
       condition: (data) => data.CanSilence(),
       suppressSeconds: 1,
       response: Responses.interrupt('alarm'),
@@ -276,13 +276,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Insatiable Light',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Idolatry', id: '4C6D', capture: false }),
+      netRegex: { source: 'Idolatry', id: '4C6D', capture: false },
       run: (data) => data.insatiableLightStack = [],
     },
     {
       id: 'E7S Strength in Numbers',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C70', capture: false }),
+      netRegex: { source: 'Idolatry', id: '4C70', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -299,7 +299,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Unearned Envy',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Blasphemy', id: '4C74', capture: false }),
+      netRegex: { source: 'Blasphemy', id: '4C74', capture: false },
       durationSeconds: 7,
       suppressSeconds: 15,
       response: Responses.aoe(),
@@ -307,7 +307,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Empty Flood',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '(?:4C8[BC]|4E5[56])', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '(?:4C8[BC]|4E5[56])', capture: false },
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
@@ -328,7 +328,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Boundless Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]' }),
+      netRegex: { source: 'Unforgiven Idolatry', id: '4C5[CD]' },
       run: (data, matches) => {
         data.boundless ??= {};
         const oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
@@ -338,7 +338,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Boundless Light Dark Stack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]' }),
+      netRegex: { source: 'Unforgiven Idolatry', id: '4C5[CD]' },
       condition: (data, matches) => {
         if (Object.keys(data.boundless ?? {}).length !== 2)
           return false;
@@ -373,14 +373,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Boundless Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]', capture: false }),
+      netRegex: { source: 'Unforgiven Idolatry', id: '4C5[CD]', capture: false },
       delaySeconds: 20,
       run: (data) => delete data.boundless,
     },
     {
       id: 'E7S Words of Night',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '(?:4C2C|4C65)', capture: false }),
+      netRegex: { source: 'Unforgiven Idolatry', id: '(?:4C2C|4C65)', capture: false },
       alertText: (data, _matches, output) => {
         if (!data.color)
           return;
@@ -404,7 +404,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S False Dawn',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C9A', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C9A', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -421,7 +421,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Crusade',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C76', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C76', capture: false },
       // Can't use knockback prevention for this, so say where to get knocked back.
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -438,7 +438,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Unjoined Aspect P3',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Idol Of Darkness', id: '4C7A', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C7A', capture: false },
       // Color buffs go out immediately after the cast
       delaySeconds: 0.1,
       infoText: (data, _matches, output) => {
@@ -480,7 +480,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Threefold Grace',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C7E', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C7E', capture: false },
       alertText: (data, _matches, output) => {
         if (!data.color)
           return;

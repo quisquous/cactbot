@@ -33,13 +33,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diamond Diamond Rain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA7', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FA7', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Diamond Claw Swipe East',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9A', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5F9A', capture: false },
       durationSeconds: 10,
       alertText: (_data, _matches, output) => output.teleportWest!(),
       outputStrings: sharedOutputStrings,
@@ -47,7 +47,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diamond Claw Swipe West',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9B', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5F9B', capture: false },
       durationSeconds: 10,
       alertText: (_data, _matches, output) => output.teleportEast!(),
       outputStrings: sharedOutputStrings,
@@ -73,14 +73,14 @@ const triggerSet: TriggerSet<Data> = {
       // There is no head marker for this mechanic, instead Unknown_5779 creates the indicator
       id: 'Diamond Diamond Flash',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Diamond Weapon', id: '5779' }),
+      netRegex: { source: 'The Diamond Weapon', id: '5779' },
       durationSeconds: 5,
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Diamond Auri Cyclone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FE6', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FE6', capture: false },
       delaySeconds: 0.5,
       durationSeconds: 6,
       response: Responses.knockback(),
@@ -88,19 +88,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diamond Outrage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FD7', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FD7', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Diamond Auri Doomstead',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FD8' }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FD8' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Diamond Vertical Cleave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FE5', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FE5', capture: false },
       durationSeconds: 5,
       response: Responses.knockback(),
     },
@@ -125,7 +125,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diamond Articulated Bits',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Diamond Weapon', id: '5FA9', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FA9', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -141,7 +141,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diamond Adamant Sphere',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Diamond Weapon', id: '6144', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '6144', capture: false },
       durationSeconds: 8,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -159,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
       // Diamond Weapon starts using this Adamant Purge ~10 seconds before the head markers
       id: 'Diamond Homing Laser',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Diamond Weapon', id: '5F9C', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5F9C', capture: false },
       delaySeconds: 3,
       durationSeconds: 7,
       response: Responses.spread(),

@@ -42,7 +42,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A12N Punishing Heat',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1AE4' }),
+      netRegex: { source: 'Alexander Prime', id: '1AE4' },
       response: Responses.tankBuster(),
     },
     {
@@ -55,7 +55,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A12N Mega Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1AE7', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '1AE7', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -103,7 +103,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A12N Laser Sacrament',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1AE5', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '1AE5', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

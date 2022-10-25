@@ -17,27 +17,27 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DeadEnds Grebuloff Miasmata',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '653C', source: 'Caustic Grebuloff', capture: false }),
+      netRegex: { id: '653C', source: 'Caustic Grebuloff', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'DeadEnds Grebuloff Certain Solitude',
       type: 'Ability',
       // Corresponds with 0037 headmarker that comes out ~0.5s later.
-      netRegex: NetRegexes.ability({ id: '6EBD', source: 'Caustic Grebuloff' }),
+      netRegex: { id: '6EBD', source: 'Caustic Grebuloff' },
       condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'DeadEnds Grebuloff Blighted Water',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6542', source: 'Caustic Grebuloff' }),
+      netRegex: { id: '6542', source: 'Caustic Grebuloff' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'DeadEnds Grebuloff Befoulment',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6544', source: 'Caustic Grebuloff' }),
+      netRegex: { id: '6544', source: 'Caustic Grebuloff' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -61,33 +61,33 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DeadEnds Pox Flail',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6540', source: 'Caustic Grebuloff' }),
+      netRegex: { id: '6540', source: 'Caustic Grebuloff' },
       response: Responses.tankBuster(),
     },
     {
       id: 'DeadEnds Peacekeeper Decimation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6550', source: 'Peacekeeper', capture: false }),
+      netRegex: { id: '6550', source: 'Peacekeeper', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'DeadEnds Peacekeeper Infantry Deterrent',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6EC7', source: 'Peacekeeper' }),
+      netRegex: { id: '6EC7', source: 'Peacekeeper' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'DeadEnds Peacekeeper No Future Spread',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6548', source: 'Peacekeeper' }),
+      netRegex: { id: '6548', source: 'Peacekeeper' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'DeadEnds Peacekeeper Order To Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6EBF', source: 'Peacekeeper', capture: false }),
+      netRegex: { id: '6EBF', source: 'Peacekeeper', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -103,13 +103,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DeadEnds Peacekeeper Eclipsing Exhaust',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '654B', source: 'Peacekeeper', capture: false }),
+      netRegex: { id: '654B', source: 'Peacekeeper', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'DeadEnds Peacekeeper Elimination',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '654F', source: 'Peacekeeper' }),
+      netRegex: { id: '654F', source: 'Peacekeeper' },
       // TODO: this is maybe worth promoting to responses?
       response: (data, matches, output) => {
         // cactbot-builtin-response
@@ -150,19 +150,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DeadEnds Ra-La Warm Glow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '655E', source: 'Ra-la', capture: false }),
+      netRegex: { id: '655E', source: 'Ra-la', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'DeadEnds Ra-La Pity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '655D', source: 'Ra-la' }),
+      netRegex: { id: '655D', source: 'Ra-la' },
       response: Responses.tankBuster(),
     },
     {
       id: 'DeadEnds Ra-la Benevolence',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '655A', source: 'Ra-la' }),
+      netRegex: { id: '655A', source: 'Ra-la' },
       response: Responses.stackMarkerOn(),
     },
     {
@@ -172,7 +172,7 @@ const triggerSet: TriggerSet<Data> = {
       // so give a left/right call to the safe side.  The remaining Loving Embrace casts are when
       // the boss has jumped all the way to an edge and the players are (probably) facing it and so
       // reverse the calls here.
-      netRegex: NetRegexes.startsUsing({ id: '6557', source: 'Ra-la', capture: false }),
+      netRegex: { id: '6557', source: 'Ra-la', capture: false },
       alertText: (data, _matches, output) => data.seenLovingEmbrace ? output.right!() : output.left!(),
       run: (data) => data.seenLovingEmbrace = true,
       outputStrings: {
@@ -183,7 +183,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DeadEnds Ra-la Loving Embrace Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6558', source: 'Ra-la', capture: false }),
+      netRegex: { id: '6558', source: 'Ra-la', capture: false },
       alertText: (data, _matches, output) => data.seenLovingEmbrace ? output.left!() : output.right!(),
       run: (data) => data.seenLovingEmbrace = true,
       outputStrings: {
@@ -194,7 +194,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DeadEnds Ra-la Still Embrace',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '655C', source: 'Ra-la' }),
+      netRegex: { id: '655C', source: 'Ra-la' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

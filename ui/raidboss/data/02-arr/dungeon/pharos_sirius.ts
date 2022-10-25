@@ -13,13 +13,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Pharos Sirius Deathly Cadenza',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5CF', source: 'Siren', capture: false }),
+      netRegex: { id: '5CF', source: 'Siren', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'Pharos Sirius Feral Lunge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5CC', source: 'Siren', capture: false }),
+      netRegex: { id: '5CC', source: 'Siren', capture: false },
       response: Responses.getOut(),
     },
     {

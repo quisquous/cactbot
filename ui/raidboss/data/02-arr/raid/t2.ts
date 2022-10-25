@@ -15,14 +15,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T2 High Voltage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4C0' }),
+      netRegex: { id: '4C0' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
       id: 'T2 Ballast',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4C5', capture: false }),
+      netRegex: { id: '4C5', capture: false },
       suppressSeconds: 3,
       response: Responses.getBehind(),
     },

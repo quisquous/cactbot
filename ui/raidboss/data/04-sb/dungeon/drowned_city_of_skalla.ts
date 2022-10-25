@@ -39,19 +39,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Skalla Rising Seas',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2650', source: 'Kelpie', capture: false }),
+      netRegex: { id: '2650', source: 'Kelpie', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Skalla Hydro Pull',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2651', source: 'Kelpie', capture: false }),
+      netRegex: { id: '2651', source: 'Kelpie', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'Skalla Hydro Push',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2652', source: 'Kelpie', capture: false }),
+      netRegex: { id: '2652', source: 'Kelpie', capture: false },
       response: Responses.knockback(),
     },
     {
@@ -64,13 +64,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Skalla Rusting Claw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2661', source: 'Hrodric Poisontongue' }),
+      netRegex: { id: '2661', source: 'Hrodric Poisontongue' },
       response: Responses.tankCleave(),
     },
     {
       id: 'Skalla Tail Drive',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2663', source: 'Hrodric Poisontongue', capture: false }),
+      netRegex: { id: '2663', source: 'Hrodric Poisontongue', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -86,7 +86,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Skalla The Spin',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2664', source: 'Hrodric Poisontongue', capture: false }),
+      netRegex: { id: '2664', source: 'Hrodric Poisontongue', capture: false },
       response: Responses.getOut(),
     },
     {
@@ -133,13 +133,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Skalla Eye Of The Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2665', source: 'Hrodric Poisontongue', capture: false }),
+      netRegex: { id: '2665', source: 'Hrodric Poisontongue', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'Skalla Words Of Woe',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2662', source: 'Hrodric Poisontongue', capture: false }),
+      netRegex: { id: '2662', source: 'Hrodric Poisontongue', capture: false },
       response: Responses.awayFromFront(),
     },
   ],

@@ -31,25 +31,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dreamscape Side Cannons Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6320', source: 'Proto-Omega', capture: false }),
+      netRegex: { id: '6320', source: 'Proto-Omega', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'Dreamscape Side Cannons Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6321', source: 'Proto-Omega', capture: false }),
+      netRegex: { id: '6321', source: 'Proto-Omega', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'Dreamscape Forward Interceptors',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6322', source: 'Proto-Omega', capture: false }),
+      netRegex: { id: '6322', source: 'Proto-Omega', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'Dreamscape Rear Interceptors',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6324', source: 'Proto-Omega', capture: false }),
+      netRegex: { id: '6324', source: 'Proto-Omega', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -117,13 +117,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dreamscape Mustard Bomb',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '632B', source: 'Proto-Omega' }),
+      netRegex: { id: '632B', source: 'Proto-Omega' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Dreamscape Assault Cannon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63AB', source: 'Arch-Lambda', capture: false }),
+      netRegex: { id: '63AB', source: 'Arch-Lambda', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -159,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dreamscape Wheel',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63B5', source: 'Arch-Lambda' }),
+      netRegex: { id: '63B5', source: 'Arch-Lambda' },
       response: Responses.tankBuster(),
     },
     {
@@ -168,13 +168,13 @@ const triggerSet: TriggerSet<Data> = {
       // 6435 is Plasmafodder, Stigma-4's auto-attack.
       id: 'Dreamscape Last Boss',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6435', source: 'Stigma-4', capture: false }),
+      netRegex: { id: '6435', source: 'Stigma-4', capture: false },
       run: (data) => data.lastBoss = true,
     },
     {
       id: 'Dreamscape Atomic Flame',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63B4', source: 'Arch-Lambda', capture: false }),
+      netRegex: { id: '63B4', source: 'Arch-Lambda', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -201,7 +201,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dreamscape Rush',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '642D', source: 'Proto-rocket Punch', capture: false }),
+      netRegex: { id: '642D', source: 'Proto-rocket Punch', capture: false },
       suppressSeconds: 5, // All five Punches use it at the same time
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -218,27 +218,27 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dreamscape Electromagnetic Release Circle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6434', source: 'Stigma-4' }),
+      netRegex: { id: '6434', source: 'Stigma-4' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4, // Full cast is 9.7s.
       response: Responses.getOut(),
     },
     {
       id: 'Dreamscape Electromagnetic Release Donut',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6432', source: 'Stigma-4' }),
+      netRegex: { id: '6432', source: 'Stigma-4' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4, // Full cast is 9.7s.
       response: Responses.getIn(),
     },
     {
       id: 'Dreamscape Proto-wave Cannons Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '642A', source: 'Omega Frame', capture: false }),
+      netRegex: { id: '642A', source: 'Omega Frame', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'Dreamscape Proto-wave Cannons Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '642B', source: 'Omega Frame', capture: false }),
+      netRegex: { id: '642B', source: 'Omega Frame', capture: false },
       response: Responses.goRight(),
     },
     {

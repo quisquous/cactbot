@@ -72,7 +72,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Warder\'s Wrath',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '662A', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '662A', source: 'Erichthonios', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -170,33 +170,33 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Shining Cells',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6616', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '6616', source: 'Erichthonios', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P1S Slam Shut',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6617', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '6617', source: 'Erichthonios', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P1S Gaoler\'s Flail Left => Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65F6', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '65F6', source: 'Erichthonios', capture: false },
       alertText: (_data, _matches, output) => output.combo!({ first: output.l!(), second: output.r!() }),
       outputStrings: flailDirections,
     },
     {
       id: 'P1S Gaoler\'s Flail Right => Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65F7', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '65F7', source: 'Erichthonios', capture: false },
       alertText: (_data, _matches, output) => output.combo!({ first: output.r!(), second: output.l!() }),
       outputStrings: flailDirections,
     },
     {
       id: 'P1S Gaoler\'s Flail Out => In',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['65F8', '65F9'], source: 'Erichthonios', capture: false }),
+      netRegex: { id: ['65F8', '65F9'], source: 'Erichthonios', capture: false },
       alertText: (_data, _matches, output) => output.outThenIn!(),
       outputStrings: {
         outThenIn: Outputs.outThenIn,
@@ -205,7 +205,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Gaoler\'s Flail In => Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['65FA', '65FB'], source: 'Erichthonios', capture: false }),
+      netRegex: { id: ['65FA', '65FB'], source: 'Erichthonios', capture: false },
       alertText: (_data, _matches, output) => output.inThenOut!(),
       outputStrings: {
         inThenOut: Outputs.inThenOut,
@@ -214,14 +214,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Heavy Hand',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6629', source: 'Erichthonios' }),
+      netRegex: { id: '6629', source: 'Erichthonios' },
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
     {
       id: 'P1S Pitiless Flail of Grace',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '660E', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '660E', source: 'Erichthonios', capture: false },
       alertText: (_data, _matches, output) => output.directions!(),
       outputStrings: {
         directions: {
@@ -237,7 +237,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Pitiless Flail of Purgation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '660F', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '660F', source: 'Erichthonios', capture: false },
       alertText: (_data, _matches, output) => output.directions!(),
       outputStrings: {
         directions: {
@@ -253,7 +253,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Intemperate Torment Bottom',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '661F', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '661F', source: 'Erichthonios', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -269,7 +269,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Intemperate Torment Top',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6620', source: 'Erichthonios', capture: false }),
+      netRegex: { id: '6620', source: 'Erichthonios', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

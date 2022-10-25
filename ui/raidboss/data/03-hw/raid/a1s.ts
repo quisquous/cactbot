@@ -99,7 +99,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Resin Bomb',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'E46', source: 'Oppressor', capture: false }),
+      netRegex: { id: 'E46', source: 'Oppressor', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -115,13 +115,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hypercompressed Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
+      netRegex: { id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] },
       run: (data, matches) => data.hyper.push(matches.target),
     },
     {
       id: 'A1S Hypercompressed You',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
+      netRegex: { id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 2,
       response: Responses.tankBuster('alarm'),
@@ -129,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hypercompressed Other',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
+      netRegex: { id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false },
       delaySeconds: 0.3,
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {
@@ -144,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hypercompressed Delete',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
+      netRegex: { id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false },
       delaySeconds: 10,
       run: (data) => data.hyper = [],
     },

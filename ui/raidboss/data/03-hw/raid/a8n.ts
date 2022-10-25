@@ -57,7 +57,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N Megabeam Onslaughter',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Onslaughter', id: '1732', capture: false }),
+      netRegex: { source: 'Onslaughter', id: '1732', capture: false },
       // Insert sound effect from Arthars here.
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -74,7 +74,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N Megabeam Brute Justice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '174F', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '174F', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -90,7 +90,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N Execution',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Onslaughter', id: '1632', capture: false }),
+      netRegex: { source: 'Onslaughter', id: '1632', capture: false },
       condition: (data) => data.role === 'dps' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -107,7 +107,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N Perpetual Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Onslaughter', id: '1730' }),
+      netRegex: { source: 'Onslaughter', id: '1730' },
       response: Responses.tankBuster(),
     },
     {
@@ -152,7 +152,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N Super Cyclone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '1747', capture: false }),
+      netRegex: { source: 'Vortexer', id: '1747', capture: false },
       response: Responses.knockback(),
     },
     {
@@ -178,7 +178,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N Double Rocket Punch',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '174E' }),
+      netRegex: { source: 'Brute Justice', id: '174E' },
       response: Responses.tankBuster(),
     },
     {
@@ -187,7 +187,7 @@ const triggerSet: TriggerSet<Data> = {
       // in order to warn them not to stack.
       id: 'A8N Brute Active Tank',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '174C' }),
+      netRegex: { source: 'Brute Justice', id: '174C' },
       run: (data, matches) => data.bruteTank = matches.target,
     },
     {
@@ -200,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
       // 1750 is Super Jump, 1756 is J-Kick.
       id: 'A8N Long Needle Toggle',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: ['1750', '1756'] }),
+      netRegex: { source: 'Brute Justice', id: ['1750', '1756'] },
       suppressSeconds: 5,
       run: (data, matches) => data.bruteTankOut = matches.id === '1756',
     },
@@ -231,13 +231,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N Apocalyptic Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1751', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '1751', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'A8N Super Jump',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1750' }),
+      netRegex: { source: 'Brute Justice', id: '1750' },
       alertText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
@@ -304,7 +304,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N Mirage Supercharge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '1749', capture: false }),
+      netRegex: { source: 'Blaster Mirage', id: '1749', capture: false },
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

@@ -92,14 +92,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O8S Shockwave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28DB', source: 'Graven Image', capture: false }),
+      netRegex: { id: '28DB', source: 'Graven Image', capture: false },
       delaySeconds: 5,
       response: Responses.knockback(),
     },
     {
       id: 'O8S Indolent Will',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28E4', source: 'Graven Image', capture: false }),
+      netRegex: { id: '28E4', source: 'Graven Image', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -115,19 +115,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O8S Intemperate Will',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28DF', source: 'Graven Image', capture: false }),
+      netRegex: { id: '28DF', source: 'Graven Image', capture: false },
       response: Responses.goWest(),
     },
     {
       id: 'O8S Gravitational Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28DE', source: 'Graven Image', capture: false }),
+      netRegex: { id: '28DE', source: 'Graven Image', capture: false },
       response: Responses.goEast(),
     },
     {
       id: 'O8S Ave Maria',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28E3', source: 'Graven Image', capture: false }),
+      netRegex: { id: '28E3', source: 'Graven Image', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -143,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O8S Pasts Forgotten',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28F1', source: 'Kefka', capture: false }),
+      netRegex: { id: '28F1', source: 'Kefka', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -159,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O8S Futures Numbered',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28EE', source: 'Kefka', capture: false }),
+      netRegex: { id: '28EE', source: 'Kefka', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -176,7 +176,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: not sure if this cast is 7 or 8.
       id: 'O8S Past\'s End',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28F[78]', source: 'Kefka', capture: false }),
+      netRegex: { id: '28F[78]', source: 'Kefka', capture: false },
       condition: (data) => data.role === 'tank' || data.role === 'healer',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -194,7 +194,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: not sure if this cast is 4 or 5.
       id: 'O8S Future\'s End',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28F[45]', source: 'Kefka', capture: false }),
+      netRegex: { id: '28F[45]', source: 'Kefka', capture: false },
       condition: (data) => data.role === 'tank' || data.role === 'healer',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -211,14 +211,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O8S Pulse Wave You',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28DD', source: 'Graven Image' }),
+      netRegex: { id: '28DD', source: 'Graven Image' },
       condition: Conditions.targetIsYou(),
       response: Responses.knockbackOn(),
     },
     {
       id: 'O8S Wings of Destruction',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2900', source: 'Kefka', capture: false }),
+      netRegex: { id: '2900', source: 'Kefka', capture: false },
       alarmText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.wingsBeNearFar!();
@@ -249,7 +249,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O8S Single Wing of Destruction',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28F[EF]', source: 'Kefka', capture: false }),
+      netRegex: { id: '28F[EF]', source: 'Kefka', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -265,7 +265,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O8S Ultimate Embrace',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2910', source: 'Kefka' }),
+      netRegex: { id: '2910', source: 'Kefka' },
       alertText: (data, matches, output) => {
         if (matches.target !== data.me)
           return;
@@ -301,13 +301,13 @@ const triggerSet: TriggerSet<Data> = {
       // 28E8: clown hyperdrive, 2912: god hyperdrive
       id: 'O8S Hyperdrive',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['28E8', '2912'], source: 'Kefka' }),
+      netRegex: { id: ['28E8', '2912'], source: 'Kefka' },
       response: Responses.tankBuster(),
     },
     {
       id: 'O8S Indulgent Will',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28E5', source: 'Graven Image' }),
+      netRegex: { id: '28E5', source: 'Graven Image' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -324,7 +324,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O8S Idyllic Will',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28E6', source: 'Graven Image' }),
+      netRegex: { id: '28E6', source: 'Graven Image' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -367,7 +367,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O8S Mana Charge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28D1', source: 'Kefka', capture: false }),
+      netRegex: { id: '28D1', source: 'Kefka', capture: false },
       run: (data) => {
         delete data.lastFire;
         delete data.lastThunder;
@@ -378,7 +378,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O8S Mana Release',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28D2', source: 'Kefka', capture: false }),
+      netRegex: { id: '28D2', source: 'Kefka', capture: false },
       infoText: (data, _matches, output) => {
         if (data.lastFire)
           return output[data.lastFire]!();
@@ -427,7 +427,7 @@ const triggerSet: TriggerSet<Data> = {
       // 2B32: damage from mana release
       id: 'O8S Fire Spread',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
+      netRegex: { id: '28CE', source: 'Kefka', capture: false },
       condition: (data) => {
         const isTrueSpread = data.truths && data.fireMarker === 'spread';
         const isFakeStack = data.antics && data.fireMarker === 'stack';
@@ -445,7 +445,7 @@ const triggerSet: TriggerSet<Data> = {
       // 2B33: damage from mana release
       id: 'O8S Fire Stack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
+      netRegex: { id: '28CE', source: 'Kefka', capture: false },
       condition: (data) => {
         const isFakeSpread = data.antics && data.fireMarker === 'spread';
         const isTrueStack = data.truths && data.fireMarker === 'stack';
@@ -463,7 +463,7 @@ const triggerSet: TriggerSet<Data> = {
       // 2B31: mana release
       id: 'O8S Thrumming Thunder Real',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['28CD', '2B31'], source: 'Kefka', capture: false }),
+      netRegex: { id: ['28CD', '2B31'], source: 'Kefka', capture: false },
       preRun: (data) => data.lastThunder = 'trueThunder',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => output.text!(),
@@ -477,7 +477,7 @@ const triggerSet: TriggerSet<Data> = {
       // 2B2F, 2B30: mana release
       id: 'O8S Thrumming Thunder Fake',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['28CC', '2B30'], source: 'Kefka', capture: false }),
+      netRegex: { id: ['28CC', '2B30'], source: 'Kefka', capture: false },
       preRun: (data) => data.lastThunder = 'fakeThunder',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => output.text!(),
@@ -491,7 +491,7 @@ const triggerSet: TriggerSet<Data> = {
       // 2B2B, 2B2E: mana release
       id: 'O8S Blizzard Fake Donut',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['28C5', '2B2B'], source: 'Kefka', capture: false }),
+      netRegex: { id: ['28C5', '2B2B'], source: 'Kefka', capture: false },
       preRun: (data) => data.lastIceDir = 'getOut',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => {
@@ -510,7 +510,7 @@ const triggerSet: TriggerSet<Data> = {
       // 2B2E: mana release
       id: 'O8S Blizzard True Donut',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['28C9', '2B2E'], source: 'Kefka', capture: false }),
+      netRegex: { id: ['28C9', '2B2E'], source: 'Kefka', capture: false },
       preRun: (data) => data.lastIceDir = 'getIn',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => {
@@ -529,7 +529,7 @@ const triggerSet: TriggerSet<Data> = {
       // 2B29, 2B2A: mana release
       id: 'O8S Blizzard Fake Near',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['28C4', '2B2A'], source: 'Kefka', capture: false }),
+      netRegex: { id: ['28C4', '2B2A'], source: 'Kefka', capture: false },
       preRun: (data) => data.lastIceDir = 'getIn',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => {
@@ -548,7 +548,7 @@ const triggerSet: TriggerSet<Data> = {
       // 2B2D: mana release
       id: 'O8S Blizzard True Near',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['28C8', '2B2D'], source: 'Kefka', capture: false }),
+      netRegex: { id: ['28C8', '2B2D'], source: 'Kefka', capture: false },
       preRun: (data) => data.lastIceDir = 'getOut',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => {
@@ -564,13 +564,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O8S Ultima Upsurge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28E7', source: 'Kefka', capture: false }),
+      netRegex: { id: '28E7', source: 'Kefka', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O8S Ultima',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2911', source: 'Kefka', capture: false }),
+      netRegex: { id: '2911', source: 'Kefka', capture: false },
       response: Responses.aoe(),
     },
   ],

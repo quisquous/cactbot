@@ -29,7 +29,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T13 Gigaflare Phase Change',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'BB9', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: 'BB9', source: 'Bahamut Prime', capture: false },
       // Only the first two gigas are phase changes, the rest are in final phase.
       condition: (data) => data.gigaflare <= 2,
       sound: 'Long',
@@ -52,7 +52,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T13 Flatten',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'BAE', source: 'Bahamut Prime' }),
+      netRegex: { id: 'BAE', source: 'Bahamut Prime' },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.flattenOnYou!();
@@ -124,7 +124,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T13 Akh Morn',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'BC2', source: 'Bahamut Prime' }),
+      netRegex: { id: 'BC2', source: 'Bahamut Prime' },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.akhMornOnYou!();

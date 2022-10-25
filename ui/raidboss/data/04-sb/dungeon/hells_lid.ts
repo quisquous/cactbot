@@ -45,7 +45,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hells Lid Swing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '27BE', source: 'Otake-Maru', capture: false }),
+      netRegex: { id: '27BE', source: 'Otake-Maru', capture: false },
       response: Responses.getOut(),
     },
     {
@@ -79,19 +79,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hells Lid Circling Winds',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '27C8', source: 'Kamaitachi', capture: false }),
+      netRegex: { id: '27C8', source: 'Kamaitachi', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'Hells Lid Rolling Winds',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '27C9', source: 'Kamaitachi', capture: false }),
+      netRegex: { id: '27C9', source: 'Kamaitachi', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'Hells Lid Sinister Tide',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '27D4', source: 'Genbu', capture: false }),
+      netRegex: { id: '27D4', source: 'Genbu', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -114,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hells Lid Hell Of Waves',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '27D3', source: 'Genbu', capture: false }),
+      netRegex: { id: '27D3', source: 'Genbu', capture: false },
       response: Responses.knockback(),
     },
   ],

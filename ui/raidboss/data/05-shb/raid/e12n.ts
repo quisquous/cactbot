@@ -117,19 +117,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12N Intermission Completion',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '4B48', source: 'Eden\'s Promise', capture: false }),
+      netRegex: { id: '4B48', source: 'Eden\'s Promise', capture: false },
       run: (data) => data.seenIntermission = true,
     },
     {
       id: 'E12N Maleficium',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5872', source: 'Eden\'s Promise', capture: false }),
+      netRegex: { id: '5872', source: 'Eden\'s Promise', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E12N Formless Judgment',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5873', source: 'Eden\'s Promise' }),
+      netRegex: { id: '5873', source: 'Eden\'s Promise' },
       response: Responses.tankCleave(),
     },
     {
@@ -153,7 +153,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12N Boulders Impact',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '586E', source: 'Titanic Bomb Boulder', capture: false }),
+      netRegex: { id: '586E', source: 'Titanic Bomb Boulder', capture: false },
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
         // Whichever direction has two  Titanic Bombs, the safe spot is opposite.
@@ -174,7 +174,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12N Boulders Explosion',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '586F', source: 'Titanic Bomb Boulder', capture: false }),
+      netRegex: { id: '586F', source: 'Titanic Bomb Boulder', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -236,13 +236,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12N Diamond Dust Mitigate',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5864', source: 'Eden\'s Promise', capture: false }),
+      netRegex: { id: '5864', source: 'Eden\'s Promise', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E12N Diamond Dust Stop',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5864', source: 'Eden\'s Promise', capture: false }),
+      netRegex: { id: '5864', source: 'Eden\'s Promise', capture: false },
       delaySeconds: 1, // Avoiding collision with the spread call
       response: Responses.stopMoving('alert'),
     },
@@ -265,7 +265,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12N Cast Release',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'], capture: false }),
+      netRegex: { id: ['4E2C', '585B', '5861'], capture: false },
       preRun: (data) => data.tethers = data.tethers?.sort(),
       delaySeconds: 0.5, // Tethers should be first in the log, but let's be SURE
       alertText: (data, _matches, output) => {
@@ -294,7 +294,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12N Tether Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'], capture: false }),
+      netRegex: { id: ['4E2C', '585B', '5861'], capture: false },
       delaySeconds: 5,
       run: (data) => delete data.tethers,
     },

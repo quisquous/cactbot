@@ -25,20 +25,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Mirrors Active',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DD4', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DD4', capture: false },
       run: (data) => data.mirrorsActive = true,
     },
     {
       id: 'E8N Biting Frost',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDB', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DDB', capture: false },
       condition: (data) => !data.mirrorsActive,
       response: Responses.getBehind(),
     },
     {
       id: 'E8N Driving Frost',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDC', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DDC', capture: false },
       condition: (data) => !data.mirrorsActive,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -55,20 +55,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Axe Kick',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE2', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DE2', capture: false },
       condition: (data) => !data.mirrorsActive,
       response: Responses.getOut(),
     },
     {
       id: 'E8N Scythe Kick',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE3', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DE3', capture: false },
       response: Responses.getUnder(),
     },
     {
       id: 'E8N Biting Frost With Mirror',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDB', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DDB', capture: false },
       condition: (data) => data.mirrorsActive,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -85,7 +85,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Driving Frost With Mirror',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDC', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DDC', capture: false },
       condition: (data) => data.mirrorsActive,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -102,14 +102,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Axe Kick With Mirror',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE2', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DE2', capture: false },
       condition: (data) => data.mirrorsActive,
       response: Responses.getOutThenIn(),
     },
     {
       id: 'E8N Reflected Scythe Kick',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Frozen Mirror', id: '4E01', capture: false }),
+      netRegex: { source: 'Frozen Mirror', id: '4E01', capture: false },
       suppressSeconds: 3,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -126,7 +126,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Mirror Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Frozen Mirror', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
+      netRegex: { source: 'Frozen Mirror', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false },
       // Maybe not necessary to delay here, but just to be safe.
       delaySeconds: 5,
       run: (data) => data.mirrorsActive = false,
@@ -134,19 +134,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Absolute Zero',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DD7', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DD7', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E8N Double Slap',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDA' }),
+      netRegex: { source: 'Shiva', id: '4DDA' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E8N Diamond Frost',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE1', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DE1', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -193,13 +193,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DEC', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DEC', capture: false },
       response: Responses.getOut('info'),
     },
     {
       id: 'E8N Holy Divided',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DED', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DED', capture: false },
       response: Responses.getIn(),
     },
     {
@@ -245,37 +245,37 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Light Rampant Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Shiva', id: '4E0B', capture: false }),
+      netRegex: { source: 'Shiva', id: '4E0B', capture: false },
       run: (data) => delete data.rampant,
     },
     {
       id: 'E8N Heavenly Strike',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DD8', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DD8', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'E8N Twin Stillness',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDD', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DDD', capture: false },
       response: Responses.getBackThenFront('alert'),
     },
     {
       id: 'E8N Twin Silence',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DDE', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DDE', capture: false },
       response: Responses.getFrontThenBack('alert'),
     },
     {
       id: 'E8N Spiteful Dance',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE4', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DE4', capture: false },
       response: Responses.getOutThenIn(),
     },
     {
       id: 'E8N Embittered Dance',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shiva', id: '4DE5', capture: false }),
+      netRegex: { source: 'Shiva', id: '4DE5', capture: false },
       response: Responses.getInThenOut(),
     },
   ],

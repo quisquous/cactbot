@@ -46,21 +46,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Suppression Phase',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
+      netRegex: { source: 'The Ultima Weapon', id: '2D4D', capture: false },
       run: (data) => data.phase = 'suppression',
     },
     {
       // Wait after suppression for primal triggers at the end.
       id: 'UWU Finale Phase',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
+      netRegex: { source: 'The Ultima Weapon', id: '2D4D', capture: false },
       delaySeconds: 74,
       run: (data) => data.phase = 'finale',
     },
     {
       id: 'UWU Garuda Slipstream',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
+      netRegex: { id: '2B53', source: 'Garuda', capture: false },
       condition: (data) => data.role === 'tank',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -147,7 +147,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Searing Wind',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
+      netRegex: { id: '2B5B', source: 'Ifrit' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -255,7 +255,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Titan Gaols',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
+      netRegex: { id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] },
       preRun: (data, matches) => {
         data.titanGaols ??= [];
         data.titanGaols.push(matches.target);
@@ -303,7 +303,7 @@ const triggerSet: TriggerSet<Data> = {
       // If anybody dies to bombs (WHY) and a rock is on them, then glhf.
       id: 'UWU Titan Bomb Failure',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '2B6A', source: 'Bomb Boulder' }),
+      netRegex: { id: '2B6A', source: 'Bomb Boulder' },
       infoText: (data, matches, output) => {
         if (!data.titanGaols)
           return;
@@ -325,14 +325,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Gaol Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
+      netRegex: { id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false },
       delaySeconds: 15,
       run: (data) => delete data.titanGaols,
     },
     {
       id: 'UWU Suppression Gaol',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '2B6B', source: 'Titan' }),
+      netRegex: { id: '2B6B', source: 'Titan' },
       condition: (data, matches) => data.phase === 'suppression' && data.me === matches.target,
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -349,7 +349,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Aetherochemical Laser Middle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ultima Weapon', id: '2B84', capture: false }),
+      netRegex: { source: 'The Ultima Weapon', id: '2B84', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -365,7 +365,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Aetherochemical Laser Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ultima Weapon', id: '2B85', capture: false }),
+      netRegex: { source: 'The Ultima Weapon', id: '2B85', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -381,7 +381,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Aetherochemical Laser Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ultima Weapon', id: '2B86', capture: false }),
+      netRegex: { source: 'The Ultima Weapon', id: '2B86', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -397,7 +397,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Garuda Finale',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2CD3', capture: false }),
+      netRegex: { source: 'The Ultima Weapon', id: '2CD3', capture: false },
       condition: (data) => data.phase === 'finale',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -414,7 +414,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Ifrit Finale',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2CD4', capture: false }),
+      netRegex: { source: 'The Ultima Weapon', id: '2CD4', capture: false },
       condition: (data) => data.phase === 'finale',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -431,7 +431,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Titan Finale',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2CD5', capture: false }),
+      netRegex: { source: 'The Ultima Weapon', id: '2CD5', capture: false },
       condition: (data) => data.phase === 'finale',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

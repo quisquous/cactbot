@@ -80,13 +80,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O2N Evilsphere',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '250F', source: 'Catastrophe' }),
+      netRegex: { id: '250F', source: 'Catastrophe' },
       response: Responses.tankBuster(),
     },
     {
       id: 'O2N -100Gs',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '24FF', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '24FF', source: 'Catastrophe', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -102,13 +102,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O2N Demon Eye',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '250D', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '250D', source: 'Catastrophe', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'O2N Earthquake',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2512', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '2512', source: 'Catastrophe', capture: false },
       alertText: (data, _matches, output) => {
         if (!data.levitating)
           return output.levitate!();
@@ -139,7 +139,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O2N Gravitational Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2510', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '2510', source: 'Catastrophe', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -188,7 +188,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O2N Antilight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2502', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '2502', source: 'Catastrophe', capture: false },
       preRun: (data) => data.antiCounter ??= 0,
       durationSeconds: (data) => {
         if (data.antiCounter === 0 && data.levitating)

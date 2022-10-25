@@ -39,25 +39,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7N Bough Of Attis Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '77F9', source: 'Agdistis', capture: false }),
+      netRegex: { id: '77F9', source: 'Agdistis', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'P7N Bough Of Attis In',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '77FE', source: 'Agdistis', capture: false }),
+      netRegex: { id: '77FE', source: 'Agdistis', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'P7N Bough Of Attis Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '77FC', source: 'Agdistis', capture: false }),
+      netRegex: { id: '77FC', source: 'Agdistis', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'P7N Bough Of Attis Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '77FB', source: 'Agdistis', capture: false }),
+      netRegex: { id: '77FB', source: 'Agdistis', capture: false },
       response: Responses.goRight(),
     },
     {
@@ -70,7 +70,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7N Hemitheos Glare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79FA', source: 'Agdistis', capture: false }),
+      netRegex: { id: '79FA', source: 'Agdistis', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -86,7 +86,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7N Immortals Obol',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '77F5', source: 'Agdistis', capture: false }),
+      netRegex: { id: '77F5', source: 'Agdistis', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -130,13 +130,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7N Spark Of Life',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '780B', source: 'Agdistis', capture: false }),
+      netRegex: { id: '780B', source: 'Agdistis', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P7N Static Moon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7802', source: 'Immature Io', capture: false }),
+      netRegex: { id: '7802', source: 'Immature Io', capture: false },
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -152,7 +152,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7N Stymphalian Strike',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7803', source: 'Immature Stymphalide', capture: false }),
+      netRegex: { id: '7803', source: 'Immature Stymphalide', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -168,7 +168,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7N Blades Of Attis',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7805', source: 'Agdistis', capture: false }),
+      netRegex: { id: '7805', source: 'Agdistis', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -184,7 +184,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7N Hemitheos Aero IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7840', source: 'Agdistis' }),
+      netRegex: { id: '7840', source: 'Agdistis' },
       // The cast time is slightly longer than Arm's Length/Surecast's duration.
       // Don't risk someone being too fast.
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,

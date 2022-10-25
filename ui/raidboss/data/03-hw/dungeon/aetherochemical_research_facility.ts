@@ -39,13 +39,13 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'Facility Petrifaction',
-      netRegex: NetRegexes.startsUsing({ id: '10EB', source: 'Harmachis', capture: false }),
+      netRegex: { id: '10EB', source: 'Harmachis', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'Facility Inertia Stream',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '10ED', source: 'Harmachis' }),
+      netRegex: { id: '10ED', source: 'Harmachis' },
       condition: (data) => {
         // Tanks technically shouldn't assist with this mechanic
         return data.role !== 'tank';
@@ -54,23 +54,23 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Facility Dark Orb',
-      netRegex: NetRegexes.startsUsing({ id: '10FC', source: ['Igeyorhm', 'Lahabrea'] }),
+      netRegex: { id: '10FC', source: ['Igeyorhm', 'Lahabrea'] },
       response: Responses.tankBuster(),
     },
     {
       id: 'Facility Shadow Flare',
-      netRegex: NetRegexes.startsUsing({ id: '1109', source: 'Ascian Prime', capture: false }),
+      netRegex: { id: '1109', source: 'Ascian Prime', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Facility Annihilation',
-      netRegex: NetRegexes.startsUsing({ id: '110A', source: 'Ascian Prime', capture: false }),
+      netRegex: { id: '110A', source: 'Ascian Prime', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Facility Universal Manipulation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1105', source: 'Ascian Prime' }),
+      netRegex: { id: '1105', source: 'Ascian Prime' },
       // The cast is ~10s, but it takes about 2s for correct execution to register
       // 6s to execute is *usually* enough time
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,

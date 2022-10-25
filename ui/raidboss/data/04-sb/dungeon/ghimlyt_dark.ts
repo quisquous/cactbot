@@ -32,7 +32,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ghimlyt Dark Jarring Blow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '376E', source: 'Mark III-B Magitek Colossus' }),
+      netRegex: { id: '376E', source: 'Mark III-B Magitek Colossus' },
       response: Responses.tankBuster(),
     },
     {
@@ -45,7 +45,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ghimlyt Dark Ceruleum Vent',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3773', source: 'Mark III-B Magitek Colossus', capture: false }),
+      netRegex: { id: '3773', source: 'Mark III-B Magitek Colossus', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -82,38 +82,38 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ghimlyt Dark Nitrospin',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3455', source: 'Prometheus', capture: false }),
+      netRegex: { id: '3455', source: 'Prometheus', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Ghimlyt Dark Cermet Drill',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3459', source: 'Prometheus' }),
+      netRegex: { id: '3459', source: 'Prometheus' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Ghimlyt Dark Freezing Missile',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '345C', source: 'Prometheus', capture: false }),
+      netRegex: { id: '345C', source: 'Prometheus', capture: false },
       suppressSeconds: 5,
       response: Responses.goMiddle(),
     },
     {
       id: 'Ghimlyt Dark Artifical Plasma',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3727', source: 'Julia Quo Soranus', capture: false }),
+      netRegex: { id: '3727', source: 'Julia Quo Soranus', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Ghimlyt Dark Innocence',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3729', source: 'Julia Quo Soranus' }),
+      netRegex: { id: '3729', source: 'Julia Quo Soranus' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Ghimlyt Dark Delta Trance',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '372A', source: 'Annia Quo Soranus' }),
+      netRegex: { id: '372A', source: 'Annia Quo Soranus' },
       response: Responses.tankBuster(),
     },
     {
@@ -127,7 +127,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ghimlyt Dark Order To Bombard',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3710', source: 'Annia Quo Soranus', capture: false }),
+      netRegex: { id: '3710', source: 'Annia Quo Soranus', capture: false },
       response: Responses.knockback(),
     },
     {

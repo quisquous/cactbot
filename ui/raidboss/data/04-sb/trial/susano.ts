@@ -45,13 +45,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Susano Ukehi',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Susano', id: '2026', capture: false }),
+      netRegex: { source: 'Susano', id: '2026', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Susano Stormsplitter',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Susano', id: '2023' }),
+      netRegex: { source: 'Susano', id: '2023' },
       response: Responses.tankCleave('alert'),
     },
   ],

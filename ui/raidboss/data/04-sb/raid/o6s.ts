@@ -17,7 +17,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O6S Demonic Shear',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2829', source: 'Demon Chadarnook' }),
+      netRegex: { id: '2829', source: 'Demon Chadarnook' },
       response: Responses.tankBuster(),
     },
     {

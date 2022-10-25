@@ -64,7 +64,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amaurot Final Sky',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3CCB', source: 'The First Beast', capture: false }),
+      netRegex: { id: '3CCB', source: 'The First Beast', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -80,13 +80,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amaurot Shadow Wreck',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
+      netRegex: { id: '3CE3', source: 'Therion', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Amaurot Apokalypsis',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
+      netRegex: { id: '3CD7', source: 'Therion', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

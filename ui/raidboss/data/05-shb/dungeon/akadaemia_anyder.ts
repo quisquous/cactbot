@@ -46,13 +46,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Anyder Puncture',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E04', source: ['Cladoselache', 'Doliodus'] }),
+      netRegex: { id: '3E04', source: ['Cladoselache', 'Doliodus'] },
       response: Responses.tankBuster(),
     },
     {
       id: 'Anyder Tidal Guillotine',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E0A', source: 'Cladoselache', capture: false }),
+      netRegex: { id: '3E0A', source: 'Cladoselache', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -68,7 +68,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Anyder Pelagic Cleaver',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E0B', source: 'Doliodus', capture: false }),
+      netRegex: { id: '3E0B', source: 'Doliodus', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -84,7 +84,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Anyder Marine Mayhem',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E06', source: ['Cladoselache', 'Doliodus'], capture: false }),
+      netRegex: { id: '3E06', source: ['Cladoselache', 'Doliodus'], capture: false },
       response: Responses.aoe(),
     },
     {
@@ -97,32 +97,32 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Anyder Arbor Storm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E17', source: 'Morbol Marquis', capture: false }),
+      netRegex: { id: '3E17', source: 'Morbol Marquis', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Anyder Noahionto',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '430C', source: 'Evil Armor' }),
+      netRegex: { id: '430C', source: 'Evil Armor' },
       condition: (data) => data.CanStun() || data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
       id: 'Anyder Shockbolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E23', source: 'Quetzalcoatl' }),
+      netRegex: { id: '3E23', source: 'Quetzalcoatl' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Anyder Thunderbolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E24', source: 'Quetzalcoatl', capture: false }),
+      netRegex: { id: '3E24', source: 'Quetzalcoatl', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Anyder Thunderstorm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E1A', source: 'Quetzalcoatl', capture: false }),
+      netRegex: { id: '3E1A', source: 'Quetzalcoatl', capture: false },
       delaySeconds: 4.7,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

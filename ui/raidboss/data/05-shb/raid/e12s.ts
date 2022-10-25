@@ -544,7 +544,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Promise Palm Of Temperance SE',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Guardian Of Eden', id: '58B4', capture: false }),
+      netRegex: { source: 'Guardian Of Eden', id: '58B4', capture: false },
       durationSeconds: 10,
       infoText: (_data, _matches, output) => output.knockback!(),
       outputStrings: {
@@ -561,7 +561,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Promise Palm Of Temperance SW',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Guardian Of Eden', id: '58B5', capture: false }),
+      netRegex: { source: 'Guardian Of Eden', id: '58B5', capture: false },
       durationSeconds: 10,
       infoText: (_data, _matches, output) => output.knockback!(),
       outputStrings: {
@@ -578,7 +578,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Promise Statue 2nd/3rd/4th Laser',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3', capture: false }),
+      netRegex: { source: 'Chiseled Sculpture', id: '58B3', capture: false },
 
       condition: (data) => !data.statueLaserCount || data.statueLaserCount < 4,
       durationSeconds: 3,
@@ -648,7 +648,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Promise Weight Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A5', capture: false }),
+      netRegex: { source: 'Eden\'s Promise', id: '58A5', capture: false },
       run: (data) => {
         delete data.weightTargets;
         data.seenFirstBombs = true;
@@ -657,7 +657,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Promise Formless Judgment',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A9', capture: false }),
+      netRegex: { source: 'Eden\'s Promise', id: '58A9', capture: false },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -691,7 +691,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Promise Rapturous Reach Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58AD', capture: false }),
+      netRegex: { source: 'Eden\'s Promise', id: '58AD', capture: false },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -736,7 +736,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Promise Rapturous Reach Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58AE', capture: false }),
+      netRegex: { source: 'Eden\'s Promise', id: '58AE', capture: false },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -781,7 +781,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Promise Maleficium',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A8', capture: false }),
+      netRegex: { source: 'Eden\'s Promise', id: '58A8', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -867,7 +867,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Promise Stock',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '5892', capture: false }),
+      netRegex: { source: 'Eden\'s Promise', id: '5892', capture: false },
       infoText: (data, _matches, output) => {
         data.stockedTethers = data.tethers;
         delete data.tethers;
@@ -882,7 +882,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Promise Cast Release',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: ['4E43', '5893'] }),
+      netRegex: { source: 'Eden\'s Promise', id: ['4E43', '5893'] },
       preRun: (data) => data.castCount = (data.castCount ?? 0) + 1,
       // The pattern is cast - cast - release - release - cast - release.
       // #4 (the 2nd release) starts casting just before the second lion fire breath.
@@ -917,7 +917,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Promise Tether Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['4E43', '5892', '5893'], capture: false }),
+      netRegex: { id: ['4E43', '5892', '5893'], capture: false },
       delaySeconds: 10,
       run: (data) => delete data.tethers,
     },
@@ -925,7 +925,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Plunging Ice',
       type: 'StartsUsing',
       // This has a 9 second cast. :eyes:
-      netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '589D', capture: false }),
+      netRegex: { source: 'Eden\'s Promise', id: '589D', capture: false },
       delaySeconds: 4,
       response: Responses.knockback(),
     },
@@ -1013,13 +1013,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Oracle Shockwave Pulsar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58F0', capture: false }),
+      netRegex: { source: 'Oracle Of Darkness', id: '58F0', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E12S Relativity Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E[0-3]' }),
+      netRegex: { source: 'Oracle Of Darkness', id: '58E[0-3]' },
       run: (data, matches) => {
         const phaseMap: { [id: string]: string } = {
           '58E0': 'basic',
@@ -1033,32 +1033,32 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Oracle Basic Relativity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E0', capture: false }),
+      netRegex: { source: 'Oracle Of Darkness', id: '58E0', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'E12S Oracle Intermediate Relativity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E1', capture: false }),
+      netRegex: { source: 'Oracle Of Darkness', id: '58E1', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'E12S Oracle Advanced Relativity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E2', capture: false }),
+      netRegex: { source: 'Oracle Of Darkness', id: '58E2', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'E12S Oracle Terminal Relativity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E3', capture: false }),
+      netRegex: { source: 'Oracle Of Darkness', id: '58E3', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'E12S Oracle Darkest Dance',
       type: 'StartsUsing',
       // Darkest and Somber Dance both.
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: ['58BE', '58BD'], capture: false }),
+      netRegex: { source: 'Oracle Of Darkness', id: ['58BE', '58BD'], capture: false },
       infoText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.tankBait!();
@@ -1087,7 +1087,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Oracle Somber Dance',
       type: 'Ability',
       // Call for second hit of somber dance after first hit lands.
-      netRegex: NetRegexes.ability({ source: 'Oracle Of Darkness', id: '58BD', capture: false }),
+      netRegex: { source: 'Oracle Of Darkness', id: '58BD', capture: false },
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
         if (data.role === 'tank')
@@ -1116,7 +1116,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Oracle Cataclysm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C2' }),
+      netRegex: { source: 'Oracle Of Darkness', id: '58C2' },
       delaySeconds: 0.5,
       promise: async (data, matches, output) => {
         // select the Oracle Of Darkness with same source id
@@ -1168,7 +1168,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Shell Crusher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
+      netRegex: { source: 'Oracle Of Darkness', id: '58C3', capture: false },
       response: Responses.getTogether(),
     },
     {
@@ -1176,14 +1176,14 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // Spirit Taker always comes after Shell Crusher, so trigger on Shell Crusher damage
       // to warn people a second or two earlier than `starts using Spirit Taker` would occur.
-      netRegex: NetRegexes.ability({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
+      netRegex: { source: 'Oracle Of Darkness', id: '58C3', capture: false },
       suppressSeconds: 1,
       response: Responses.spread(),
     },
     {
       id: 'E12S Black Halo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C7' }),
+      netRegex: { source: 'Oracle Of Darkness', id: '58C7' },
       response: Responses.tankBuster(),
     },
     {

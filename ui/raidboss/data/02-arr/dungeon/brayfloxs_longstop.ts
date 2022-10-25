@@ -19,7 +19,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Brayflox Normal Numbing Breath',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FA', source: 'Great Yellow Pelican' }),
+      netRegex: { id: '1FA', source: 'Great Yellow Pelican' },
       condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
@@ -78,7 +78,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Brayflox Normal Ashdrake Burning Cyclone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '205', source: 'Ashdrake' }),
+      netRegex: { id: '205', source: 'Ashdrake' },
       condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
@@ -92,7 +92,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Brayflox Normal Inferno Drake Burning Cyclone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D8', source: 'Inferno Drake' }),
+      netRegex: { id: '3D8', source: 'Inferno Drake' },
       condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
@@ -100,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
       // Hellbender Bubble
       id: 'Brayflox Normal Hellbender Effluvium',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3D3', source: 'Hellbender' }),
+      netRegex: { id: '3D3', source: 'Hellbender' },
       infoText: (data, matches, output) => {
         if (matches.target !== data.me)
           return output.breakBubbleOn!({ player: data.ShortName(matches.target) });
@@ -131,7 +131,7 @@ const triggerSet: TriggerSet<Data> = {
       // Stunnable Line Attack
       id: 'Brayflox Normal Aiatar Dragon Breath',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '22F', source: 'Aiatar' }),
+      netRegex: { id: '22F', source: 'Aiatar' },
       condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
@@ -188,7 +188,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Brayflox Normal Aiatar Salivous Snap',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6FF3', source: 'Aiatar' }),
+      netRegex: { id: '6FF3', source: 'Aiatar' },
       response: Responses.tankBuster(),
     },
   ],

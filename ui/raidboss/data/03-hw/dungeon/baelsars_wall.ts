@@ -28,26 +28,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Baelsar Magitek Claw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CB2', source: 'Magitek Predator' }),
+      netRegex: { id: '1CB2', source: 'Magitek Predator' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Baelsar Magitek Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CB3', source: 'Magitek Predator', capture: false }),
+      netRegex: { id: '1CB3', source: 'Magitek Predator', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'Baelsar Needle Burst',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1DC8', source: 'Magitek Vanguard D-1' }),
+      netRegex: { id: '1DC8', source: 'Magitek Vanguard D-1' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
       id: 'Baelsar Launcher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CBC', source: 'Magitek Predator', capture: false }),
+      netRegex: { id: '1CBC', source: 'Magitek Predator', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -60,19 +60,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Baelsar Griffin Beak',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CC3', source: 'The Griffin', capture: false }),
+      netRegex: { id: '1CC3', source: 'The Griffin', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Baelsar Flash Powder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CC4', source: 'The Griffin' }),
+      netRegex: { id: '1CC4', source: 'The Griffin' },
       response: Responses.lookAwayFromSource(),
     },
     {
       id: 'Baelsar Griffin Claw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CC2', source: 'The Griffin' }),
+      netRegex: { id: '1CC2', source: 'The Griffin' },
       response: Responses.tankBuster(),
     },
     {
@@ -85,7 +85,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Baelsar Restraint Collar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CC8', source: 'The Griffin' }),
+      netRegex: { id: '1CC8', source: 'The Griffin' },
       condition: Conditions.targetIsNotYou(),
       alertText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {

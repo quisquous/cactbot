@@ -37,31 +37,31 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Seiryu Fifth Element',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Seiryu', id: '37FE', capture: false }),
+      netRegex: { source: 'Seiryu', id: '37FE', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Seiryu Serpent-Eye Sigil',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Seiryu', id: '3A08', capture: false }),
+      netRegex: { source: 'Seiryu', id: '3A08', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'Seiryu Onmyo Sigil',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Seiryu', id: '3A07', capture: false }),
+      netRegex: { source: 'Seiryu', id: '3A07', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'Seiryu Infirm Soul',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Seiryu', id: '37FD' }),
+      netRegex: { source: 'Seiryu', id: '37FD' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Seiryu Serpent Ascending Towers',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Seiryu', id: '3C25', capture: false }),
+      netRegex: { source: 'Seiryu', id: '3C25', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -141,13 +141,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Seiryu Handprint East',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Yama-No-Shiki', id: '37E5', capture: false }),
+      netRegex: { source: 'Yama-No-Shiki', id: '37E5', capture: false },
       response: Responses.goEast(),
     },
     {
       id: 'Seiryu Handprint West',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Yama-No-Shiki', id: '37E6', capture: false }),
+      netRegex: { source: 'Yama-No-Shiki', id: '37E6', capture: false },
       response: Responses.goWest(),
     },
   ],

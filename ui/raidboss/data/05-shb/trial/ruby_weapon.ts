@@ -50,19 +50,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ruby Optimized Ultima',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AA8', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AA8', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Ruby Stamp',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AC7' }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AC7' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Ruby Undermine',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4A97', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4A97', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -78,7 +78,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ruby Liquefaction',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4A96', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4A96', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -94,20 +94,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ruby Ruby Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AC6', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AC6', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'Ruby High-Powered Homing Lasers You',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AC5' }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AC5' },
       condition: Conditions.targetIsYou(),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Ruby High-Powered Homing Lasers',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AC5' }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AC5' },
       condition: Conditions.targetIsNotYou(),
       suppressSeconds: 1,
       response: Responses.stackMarker('info'),
@@ -115,7 +115,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ruby Dynamics',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AA0', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AA0', capture: false },
       response: Responses.getUnder(),
     },
     {
@@ -130,7 +130,7 @@ const triggerSet: TriggerSet<Data> = {
       // Give a friendly reminder to pop LB3 if you haven't already
       id: 'Ruby Optimized Ultima Enrage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AA9', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AA9', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -153,7 +153,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ruby Ruby Claw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Raven\'s Image', id: '4ABF' }),
+      netRegex: { source: 'Raven\'s Image', id: '4ABF' },
       condition: (data, matches) => {
         if (data.role !== 'healer' && data.role !== 'tank')
           return false;
@@ -183,7 +183,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ruby Outrage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AC8', capture: false }),
+      netRegex: { source: 'The Ruby Weapon', id: '4AC8', capture: false },
       response: Responses.aoe(),
     },
   ],

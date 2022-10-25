@@ -26,7 +26,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LakshmiEx Chanchala Gain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
+      netRegex: { id: '2148', source: 'Lakshmi', capture: false },
       run: (data) => data.chanchala = true,
     },
     {
@@ -38,20 +38,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LakshmiEx Pull of Light Tank',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
+      netRegex: { id: '215E', source: 'Lakshmi' },
       response: Responses.tankBuster('info'),
     },
     {
       id: 'LakshmiEx Pull of Light Unexpected',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
+      netRegex: { id: '215E', source: 'Lakshmi' },
       condition: (data) => data.role !== 'tank' && data.role !== 'healer',
       response: Responses.tankBuster('alarm'),
     },
     {
       id: 'LakshmiEx Divine Denial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2149', source: 'Lakshmi', capture: false }),
+      netRegex: { id: '2149', source: 'Lakshmi', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -67,7 +67,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LakshmiEx Divine Desire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '214B', source: 'Lakshmi', capture: false }),
+      netRegex: { id: '214B', source: 'Lakshmi', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -83,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LakshmiEx Divine Doubt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '214A', source: 'Lakshmi', capture: false }),
+      netRegex: { id: '214A', source: 'Lakshmi', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -149,7 +149,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LakshmiEx Stotram',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2147', source: 'Lakshmi', capture: false }),
+      netRegex: { id: '2147', source: 'Lakshmi', capture: false },
       condition: (data) => data.chanchala,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

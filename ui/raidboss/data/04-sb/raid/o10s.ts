@@ -24,7 +24,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O10S Tail End',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
+      netRegex: { id: '31AA', source: 'Midgardsormr' },
       response: Responses.tankBuster(),
     },
     {
@@ -103,13 +103,13 @@ const triggerSet: TriggerSet<Data> = {
       // 16 if it doesn't hit anybody, 15 if it does.
       // Also, some log lines are inconsistent here and don't always list
       // Midgardsormr's name and are sometimes blank.
-      netRegex: NetRegexes.ability({ id: '31B[2345]', source: ['Midgardsormr', ''], capture: false }),
+      netRegex: { id: '31B[2345]', source: ['Midgardsormr', ''], capture: false },
       run: (data) => delete data.lastSpinWasHorizontal,
     },
     {
       id: 'O10S Horizontal Spin 1',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
+      netRegex: { id: '31AC', source: 'Midgardsormr', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.lastSpinWasHorizontal = true,
       outputStrings: {
@@ -126,7 +126,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O10S Vertical Spin 1',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
+      netRegex: { id: '31AD', source: 'Midgardsormr', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.lastSpinWasHorizontal = false,
       outputStrings: {
@@ -143,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O10S Horizontal Spin 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
+      netRegex: { id: '31AE', source: 'Midgardsormr', capture: false },
       condition: (data) => data.lastSpinWasHorizontal !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastSpinWasHorizontal)
@@ -173,7 +173,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O10S Vertical Spin 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
+      netRegex: { id: '31B0', source: 'Midgardsormr', capture: false },
       condition: (data) => data.lastSpinWasHorizontal !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastSpinWasHorizontal)

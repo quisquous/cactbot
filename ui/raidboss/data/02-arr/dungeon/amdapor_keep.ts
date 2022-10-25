@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -12,19 +11,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amdapor Keep Liquefy Middle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '415', source: 'Demon Wall', capture: false }),
+      netRegex: { id: '415', source: 'Demon Wall', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'Amdapor Keep Liquefy Sides',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '416', source: 'Demon Wall', capture: false }),
+      netRegex: { id: '416', source: 'Demon Wall', capture: false },
       response: Responses.goMiddle(),
     },
     {
       id: 'Amdapor Keep Repel',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '417', source: 'Demon Wall', capture: false }),
+      netRegex: { id: '417', source: 'Demon Wall', capture: false },
       response: Responses.knockback(),
     },
   ],

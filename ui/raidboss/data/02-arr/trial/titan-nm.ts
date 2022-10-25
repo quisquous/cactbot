@@ -22,7 +22,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TitanNm Tumult',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '282', source: 'Titan', capture: false }),
+      netRegex: { id: '282', source: 'Titan', capture: false },
       suppressSeconds: 2,
       response: Responses.aoe(),
     },

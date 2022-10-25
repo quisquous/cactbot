@@ -30,13 +30,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E5N Crippling Blow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4BA3', source: 'Ramuh' }),
+      netRegex: { id: '4BA3', source: 'Ramuh' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E5N Stratospear Summons',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '4B8D', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4B8D', source: 'Ramuh', capture: false },
       delaySeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -53,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E5N Tribunal Summons',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4B91', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4B91', source: 'Ramuh', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -69,7 +69,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E5N Fury\'s Bolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4B90', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4B90', source: 'Ramuh', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -85,13 +85,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E5N Judgment Volts',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['4B98', '4B9A'], source: 'Ramuh', capture: false }),
+      netRegex: { id: ['4B98', '4B9A'], source: 'Ramuh', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E5N Divine Judgment Volts',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4B9A', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4B9A', source: 'Ramuh', capture: false },
       condition: (data) => !data.surgeProtection,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

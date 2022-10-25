@@ -53,19 +53,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Tidal Roar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FDC', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FDC', source: 'Leviathan', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E3S Tidal Rage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FDE', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FDE', source: 'Leviathan', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E3S Tidal Wave Look',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FF1', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FF1', source: 'Leviathan', capture: false },
       delaySeconds: 3,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -82,7 +82,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Tidal Wave Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FF1', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FF1', source: 'Leviathan', capture: false },
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
@@ -113,7 +113,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Undersea Quake Outside',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FEF', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FEF', source: 'Leviathan', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -129,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Undersea Quake Inside',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FEE', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FEE', source: 'Leviathan', capture: false },
       response: Responses.goSides('alarm'),
     },
     {
@@ -152,7 +152,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Drenching Pulse',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FE2', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FE2', source: 'Leviathan', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -168,7 +168,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Drenching Pulse Puddles',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FE2', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FE2', source: 'Leviathan', capture: false },
       delaySeconds: 2.9,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -185,7 +185,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Roiling Pulse',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FE4', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FE4', source: 'Leviathan', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -201,7 +201,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Roiling Pulse Abilities',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FE4', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FE4', source: 'Leviathan', capture: false },
       delaySeconds: 2.9,
       infoText: (data, _matches, output) => {
         if (data.role === 'tank')
@@ -231,7 +231,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Stormy Horizon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FFE', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FFE', source: 'Leviathan', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -452,13 +452,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Refreshed',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '400F', source: 'Leviathan', capture: false }),
+      netRegex: { id: '400F', source: 'Leviathan', capture: false },
       run: (data) => data.refreshed = true,
     },
     {
       id: 'E3S Front Left Temporary Current',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FEB', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FEB', source: 'Leviathan', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -474,7 +474,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Front Right Temporary Current',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FEA', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FEA', source: 'Leviathan', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -494,7 +494,7 @@ const triggerSet: TriggerSet<Data> = {
       // the next one.
       id: 'E3S Front Left Temporary Current 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FEA', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FEA', source: 'Leviathan', capture: false },
       condition: (data) => data.refreshed,
       delaySeconds: 6.2,
       alertText: (_data, _matches, output) => output.text!(),
@@ -512,7 +512,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Front Right Temporary Current 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FEB', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FEB', source: 'Leviathan', capture: false },
       condition: (data) => data.refreshed,
       delaySeconds: 6.2,
       alertText: (_data, _matches, output) => output.text!(),

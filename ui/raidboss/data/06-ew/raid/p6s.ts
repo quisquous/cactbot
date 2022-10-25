@@ -76,13 +76,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Hemitheos\'s Dark IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7860', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7860', source: 'Hegemone', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P6S Chelic Synergy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '788A', source: 'Hegemone' }),
+      netRegex: { id: '788A', source: 'Hegemone' },
       response: Responses.sharedTankBuster(),
     },
     {
@@ -90,7 +90,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // There are 7889 individual starts using casts on the two tanks as well,
       // if this trigger wanted to be more complicated.
-      netRegex: NetRegexes.startsUsing({ id: '7887', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7887', source: 'Hegemone', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -127,7 +127,7 @@ const triggerSet: TriggerSet<Data> = {
       // 7868 uses tethers to hidden actors to "swap" tiles.
       id: 'P6S Polyominoid All',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '786[68]', source: 'Hegemone', capture: false }),
+      netRegex: { id: '786[68]', source: 'Hegemone', capture: false },
       delaySeconds: 2, // relevant mapeffect and trigger lines are consistently sent ~1.83s after the cast
       durationSeconds: 10, // leave the output up while overlapping mechanics resolve
       promise: async (data) => {
@@ -495,7 +495,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P6S Exocleaver Healer Groups',
       // Unholy Darkness stack headmarkers are same time as first Exocleaver
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
+      netRegex: { id: ['7869', '786B'], source: 'Hegemone', capture: false },
       condition: (data) => !data.secondExocleavers,
       alertText: (_data, _matches, output) => output.healerGroups!(),
       run: (data) => data.secondExocleavers = true,
@@ -506,7 +506,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Exocleaver Move',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
+      netRegex: { id: ['7869', '786B'], source: 'Hegemone', capture: false },
       // Supress until after second Exocleaver in the set
       suppressSeconds: 4,
       response: Responses.moveAway(),
@@ -514,7 +514,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Polyominoid Healer Groups',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7892', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7892', source: 'Hegemone', capture: false },
       // Should not be fired during Poly 1, since the Unholy Darkness headmarkers there
       // are handled by P6S Exocleaver Healer Groups.
       condition: (data) => data.polyInstance === 3,
@@ -527,7 +527,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Choros Ixou Front Back',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7883', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7883', source: 'Hegemone', capture: false },
       alertText: (data, _matches, output) => {
         if (data.polyInstance === 5 && data.poly5FrontBackTile !== undefined)
           return output.goFrontBackPoly5!({ tile: data.poly5FrontBackTile });
@@ -546,7 +546,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Choros Ixou Sides',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7881', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7881', source: 'Hegemone', capture: false },
       alertText: (data, _matches, output) => {
         if (data.polyInstance === 5 && data.poly5SideTile !== undefined)
           return output.goSidesPoly5!({ tile: data.poly5SideTile });
@@ -615,7 +615,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Pathogenic Cells Counter',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7865', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7865', source: 'Hegemone', capture: false },
       preRun: (data, _matches) => data.pathogenicCellsCounter++,
       durationSeconds: 1.5,
       suppressSeconds: 1,
@@ -681,7 +681,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Dark Dome Bait',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '788B', source: 'Hegemone', capture: false }),
+      netRegex: { id: '788B', source: 'Hegemone', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -697,7 +697,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Dark Dome Move',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '788B', source: 'Hegemone', capture: false }),
+      netRegex: { id: '788B', source: 'Hegemone', capture: false },
       response: Responses.moveAway(),
     },
     {
@@ -806,7 +806,7 @@ const triggerSet: TriggerSet<Data> = {
       // Using Dual Predation (7878)
       // Delayed to give roughly same notice interval as other bait reminders
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7878', source: 'Hegemone' }),
+      netRegex: { id: '7878', source: 'Hegemone' },
       condition: (data) => data.aetheronecrosisDuration > 16,
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
       infoText: (_data, _matches, output) => output.inFirstBait!(),
@@ -826,7 +826,7 @@ const triggerSet: TriggerSet<Data> = {
       // Using Chelic Predation (787B) and Glossal Predation (787A)
       // Player could get hit at wrong time and still get this trigger
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone', capture: false }),
+      netRegex: { id: ['787A', '787B'], source: 'Hegemone', capture: false },
       durationSeconds: 4,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
@@ -885,7 +885,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Predation Out',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone' }),
+      netRegex: { id: ['787A', '787B'], source: 'Hegemone' },
       // Don't bother calling "out" for the final person.
       condition: (data, matches) => data.me === matches.target && data.aetheronecrosisDuration <= 12,
       infoText: (_data, _matches, output) => output.out!(),
@@ -896,7 +896,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Ptera Ixou',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '787C', source: 'Hegemone', capture: false }),
+      netRegex: { id: '787C', source: 'Hegemone', capture: false },
       condition: (data) => data.polyInstance !== 6, // do not run during Poly 6/Cachexia 2 - this is handled by P6S Cachexia 2 Dark Spheres
       infoText: (data, _matches, output) => data.predationDebuff === 'CF7' ? output.left!() : output.right!(),
       outputStrings: {
@@ -951,13 +951,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Dark Spheres Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7880', source: 'Hegemone' }),
+      netRegex: { id: '7880', source: 'Hegemone' },
       run: (data, matches) => data.darkSpheres.push(matches),
     },
     {
       id: 'P6S Cachexia 2 Dark Spheres',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7880', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7880', source: 'Hegemone', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
