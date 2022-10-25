@@ -15,7 +15,6 @@ import { RaidbossData } from '../../types/data';
 import { EventResponses, LogEvent } from '../../types/event';
 import { Job, Role } from '../../types/job';
 import { Matches } from '../../types/net_matches';
-import { TriggerTypes } from '../../types/net_trigger';
 import {
   LooseTrigger, OutputStrings, TimelineField, TimelineFunc, LooseTriggerSet,
   ResponseField, TriggerAutoConfig, TriggerField, TriggerOutput,
@@ -35,7 +34,7 @@ const isRaidbossLooseTimelineTrigger =
   };
 
 export const isNetRegexTrigger = (trigger?: LooseTrigger):
-  trigger is Partial<GeneralNetRegexTrigger<RaidbossData, TriggerTypes>> => {
+  trigger is Partial<GeneralNetRegexTrigger<RaidbossData, 'None'>> => {
   if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'netRegex' in trigger;
   return false;

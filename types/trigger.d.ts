@@ -203,9 +203,9 @@ export type TriggerSet<Data extends RaidbossData> =
 export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
 
 export type LooseTrigger = Partial<
-  & BaseTrigger<RaidbossData, TriggerTypes>
+  & BaseTrigger<RaidbossData, 'None'>
   & PartialRegexTrigger
-  & PartialNetRegexTrigger<TriggerTypes>
+  & PartialNetRegexTrigger<'None'>
 >;
 
 export type LooseTriggerSet =
