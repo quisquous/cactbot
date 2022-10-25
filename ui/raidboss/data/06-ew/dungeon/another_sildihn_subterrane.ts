@@ -501,10 +501,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'en',
       'replaceText': {
+        'Bracing Duster / Chilling Duster / Fizzling Duster': 'Duster',
         'Chilling Duster / Fizzling Duster': 'Chilling/Fizzling Duster',
         'Bracing Suds / Fizzling Suds': 'Bracing/Fizzling Suds',
         'Bracing Duster / Fizzling Duster': 'Bracing/Fizzling Duster',
-        'Bracing Duster / Chilling Duster / Fizzling Duster': 'Duster',
         'Bracing Suds / Chilling Suds / Fizzling Suds': 'Suds',
       },
     },
