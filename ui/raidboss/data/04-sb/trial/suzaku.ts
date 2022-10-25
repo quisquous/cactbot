@@ -48,11 +48,9 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
-      // TODO: HeadMarker trigger
       id: 'Suzaku Phantom Flurry',
-      type: 'HeadMarker',
-      // netRegex: { id: '3231', source: 'Suzaku' },
-      netRegex: { id: '3231' },
+      type: 'StartsUsing',
+      netRegex: { id: '3231', source: 'Suzaku' },
       response: Responses.tankBuster(),
     },
     {
