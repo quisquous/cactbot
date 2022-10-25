@@ -296,7 +296,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
-  static echo(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
+  static echo(params?: Omit<NetParams['GameLog'], 'code'>): CactbotBaseRegExp<'GameLog'> {
     if (typeof params === 'undefined')
       params = {};
     Regexes.validateParams(
@@ -304,14 +304,14 @@ export default class NetRegexes {
       'Echo',
       ['type', 'timestamp', 'code', 'name', 'line', 'capture'],
     );
-    params.code = '0038';
-    return NetRegexes.gameLog(params);
+
+    return NetRegexes.gameLog({ ...params, code: '0038' });
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
-  static dialog(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
+  static dialog(params?: Omit<NetParams['GameLog'], 'code'>): CactbotBaseRegExp<'GameLog'> {
     if (typeof params === 'undefined')
       params = {};
     Regexes.validateParams(
@@ -319,14 +319,14 @@ export default class NetRegexes {
       'Dialog',
       ['type', 'timestamp', 'code', 'name', 'line', 'capture'],
     );
-    params.code = '0044';
-    return NetRegexes.gameLog(params);
+
+    return NetRegexes.gameLog({ ...params, code: '0044' });
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
-  static message(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
+  static message(params?: Omit<NetParams['GameLog'], 'code'>): CactbotBaseRegExp<'GameLog'> {
     if (typeof params === 'undefined')
       params = {};
     Regexes.validateParams(
@@ -334,8 +334,8 @@ export default class NetRegexes {
       'Message',
       ['type', 'timestamp', 'code', 'name', 'line', 'capture'],
     );
-    params.code = '0839';
-    return NetRegexes.gameLog(params);
+
+    return NetRegexes.gameLog({ ...params, code: '0839' });
   }
 
   /**
