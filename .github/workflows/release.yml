@@ -77,7 +77,6 @@ jobs:
 
       - run: node .github/scripts/npm-package.cjs
 
-      - run: cp .npmrc ./npm-package/
       - run: npm publish
         working-directory: npm-package
         env:
