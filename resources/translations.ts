@@ -1,4 +1,5 @@
-import { CactbotBaseRegExp } from '../types/net_trigger';
+import { NetParams } from '../types/net_props';
+import { CactbotBaseRegExp, TriggerTypes } from '../types/net_trigger';
 import {
   backCompatParsedSyncReplace,
   commonReplacement,
@@ -8,7 +9,7 @@ import {
 import { TimelineReplacement } from '../ui/raidboss/timeline_parser';
 
 import { Lang } from './languages';
-import NetRegexes from './netregexes';
+import NetRegexes, { keysThatRequireTranslation } from './netregexes';
 import Regexes from './regexes';
 
 // Fill in LocaleRegex so that things like LocaleRegex.countdownStart.de is a valid regex.
@@ -271,3 +272,38 @@ export const translateText = (
   replaceLang: Lang,
   replacements?: TimelineReplacement[],
 ): string => translateWithReplacements(text, 'replaceText', replaceLang, replacements).text;
+
+// Translates timeline or trigger regex params for a given language.
+export const translateRegexBuildParam = <T extends TriggerTypes>(
+  params: NetParams[T],
+  replaceLang: Lang,
+  replacements?: TimelineReplacement[],
+): NetParams[T] => {
+  type AnonymousParams = { [name: string]: string | string[] | boolean | undefined };
+  const anonParams: AnonymousParams = params;
+  for (const key of keysThatRequireTranslation) {
+    const value = anonParams[key];
+    if (typeof value === 'boolean' || value === undefined)
+      continue;
+    // TODO: ideally, it'd be nice to assign directly back to params[key] instead of
+    // cheating and assigning back through anonParams.  The reason this is mostly
+    // ok is that if params[key] is a string it only gets assigned a string,
+    // and if it is a string[] it only gets assigned a string[], so the type can't
+    // change.  It might be possible to assign to params[key] if we make
+    // timestamp a string | string[]?
+    if (typeof value === 'string') {
+      anonParams[key] = translateWithReplacements(
+        value,
+        'replaceSync',
+        replaceLang,
+        replacements,
+      ).text;
+    } else {
+      anonParams[key] = value.map((x) => {
+        return translateWithReplacements(x, 'replaceSync', replaceLang, replacements).text;
+      });
+    }
+  }
+
+  return params;
+};
