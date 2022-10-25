@@ -9,7 +9,7 @@ hideall "--sync--"
 # SILKIE #
 #~~~~~~~~#
 
-# -ii 77ED 7760 7761 7762 7768 7769 776A
+# -ii 7760 7761 7762 7768 7769 776A 77ED
 
 0.0 "--sync--" sync / 00:0839::The Trial of Knowledge is sealed off/ window 0,1
 12.2 "--sync--" sync / 14:[^:]*:Silkie:7759:/ window 15,15
@@ -43,7 +43,6 @@ hideall "--sync--"
 136.7 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
 141.7 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:775E:/
 145.7 "Bracing Duster / Fizzling Duster" sync / 1[56]:[^:]*:Silkie:(7764|7765):/
-146.0 "Soapsud Static?" #sync / 1[56]:[^:]*:Silkie:77ED:/
 160.1 "Total Wash" sync / 1[56]:[^:]*:Silkie:7750:/
 166.2 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:7766:/
 172.3 "Eastern Ewers" sync / 1[56]:[^:]*:Silkie:776D:/
@@ -77,7 +76,6 @@ hideall "--sync--"
 294.4 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
 299.4 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:775E:/
 303.5 "Bracing Duster / Chilling Duster / Fizzling Duster" sync / 1[56]:[^:]*:Silkie:(7764|7763|7765):/
-303.8 "Soapsud Static?" #sync / 1[56]:[^:]*:Silken Puff:77ED:/
 309.0 "Bracing Suds / Chilling Suds / Fizzling Suds" sync / 1[56]:[^:]*:Silkie:(7757|7758|7759):/
 311.1 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
 316.1 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:775E:/
