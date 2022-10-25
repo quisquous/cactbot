@@ -3,7 +3,8 @@ import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline_pars
 
 import { RaidbossData } from './data';
 import { NetAnyMatches, NetMatches } from './net_matches';
-import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
+import { NetParams } from './net_props';
+import type { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
 
 // TargetedMatches can be used for generic functions in responses or conditions
 // that use matches from any number of Regex or NetRegex functions.
@@ -127,13 +128,15 @@ export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = 
   outputStrings?: OutputStrings;
 };
 
+// new trigger type, regex is build by core.
 type PartialNetRegexTrigger<T extends TriggerTypes> = {
   type?: T;
-  netRegex: CactbotBaseRegExp<T>;
+  netRegex: NetParams[T] | CactbotBaseRegExp<T>;
 };
 
 export type NetRegexTrigger<Data extends RaidbossData> = TriggerTypes extends infer T
-  ? T extends TriggerTypes ? (BaseTrigger<Data, T> & PartialNetRegexTrigger<T>) : never
+  ? T extends TriggerTypes ? (BaseTrigger<Data, T> & PartialNetRegexTrigger<T>)
+  : never
   : never;
 
 export type GeneralNetRegexTrigger<Data extends RaidbossData, T extends TriggerTypes> =

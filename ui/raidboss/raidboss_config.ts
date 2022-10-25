@@ -1,9 +1,10 @@
 import { isLang, Lang } from '../../resources/languages';
+import { buildRegex } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
 import Regexes from '../../resources/regexes';
 import { triggerOutputFunctions } from '../../resources/responses';
-import { translateRegex } from '../../resources/translations';
+import { translateRegex, translateRegexBuildParam } from '../../resources/translations';
 import UserConfig, {
   ConfigValue,
   OptionsTemplate,
@@ -1260,18 +1261,34 @@ class RaidbossConfigurator {
     // Should we show them in the parser language instead?
     const lang = this.base.lang;
 
-    const getRegex = (baseField: 'regex' | 'netRegex') => {
-      const regex = trig[baseField];
+    const getRegex = () => {
+      const regex = trig.regex;
       if (regex === undefined)
         return;
       return Regexes.parse(translateRegex(regex, lang, set.timelineReplace));
     };
 
+    const getNetRegex = () => {
+      const regex = trig.netRegex;
+      if (regex === undefined)
+        return;
+
+      if (trig.type === undefined) {
+        if (!(regex instanceof RegExp))
+          return;
+        return Regexes.parse(translateRegex(regex, lang, set.timelineReplace));
+      }
+
+      return Regexes.parse(
+        buildRegex(trig.type, translateRegexBuildParam(regex, lang, set.timelineReplace)),
+      );
+    };
+
     if (trig.isTimelineTrigger) {
-      trig.timelineRegex = getRegex('regex');
+      trig.timelineRegex = getRegex();
     } else {
-      trig.triggerRegex = getRegex('regex');
-      trig.triggerNetRegex = getRegex('netRegex');
+      trig.triggerRegex = getRegex();
+      trig.triggerNetRegex = getNetRegex();
     }
 
     return trig;

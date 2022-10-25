@@ -8,7 +8,7 @@ import path from 'path';
 
 import chai from 'chai';
 
-import NetRegexes from '../../resources/netregexes';
+import NetRegexes, { keysThatRequireTranslation } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import Regexes from '../../resources/regexes';
 import {
@@ -588,7 +588,60 @@ const testTriggerFile = (file: string) => {
 
       const triggers = triggerSet.triggers;
       for (const trigger of triggers ?? []) {
-        const origRegex = trigger.netRegex?.source.toLowerCase();
+        if (trigger.netRegex === undefined)
+          continue;
+
+        if (trigger.type === undefined) {
+          if (!(trigger.netRegex instanceof RegExp)) {
+            assert.fail(
+              `${trigger.id} doesn't have 'type' property and doesn't have a RegExp netRegex`,
+            );
+          }
+          continue;
+        }
+
+        if (!(trigger.netRegex instanceof RegExp)) {
+          // plain object netRegex
+          if (trigger.disabled)
+            continue;
+
+          const textHasTranslation = (text: string): boolean => {
+            return translateWithReplacements(
+              text,
+              'replaceSync',
+              locale,
+              translations,
+            ).wasTranslated;
+          };
+
+          const checkIfFieldHasTranslation = (field: string | string[], fieldName: string) => {
+            if (typeof field === 'string') {
+              assert.isTrue(
+                textHasTranslation(field),
+                `${trigger.id}:locale ${locale}:missing timelineReplace replaceSync for ${fieldName} '${field}'`,
+              );
+            } else {
+              for (const s of field) {
+                assert.isTrue(
+                  textHasTranslation(s),
+                  `${trigger.id}:locale ${locale}:missing timelineReplace replaceSync for ${fieldName} '${s}'`,
+                );
+              }
+            }
+          };
+
+          for (const key of keysThatRequireTranslation) {
+            type AnonymousParams = { [name: string]: string | string[] | boolean | undefined };
+            const anonTriggerFields: AnonymousParams = trigger.netRegex;
+            const value = anonTriggerFields[key];
+            if (value !== undefined && typeof value !== 'boolean')
+              checkIfFieldHasTranslation(value, key);
+          }
+
+          continue;
+        }
+
+        const origRegex = trigger.netRegex?.source?.toLowerCase();
         if (origRegex === undefined)
           continue;
 
