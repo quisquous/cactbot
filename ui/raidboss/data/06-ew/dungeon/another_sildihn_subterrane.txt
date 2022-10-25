@@ -90,7 +90,7 @@ hideall "--sync--"
 # Gladiator of Sil'dih #
 #~~~~~~~~~~~~~~~~~~~~~~#
 
-# -ii 766F 7670 7676 7677 77BF 7660
+# -ii 766F 7670 7676 7677 77BF 7660 79F3
 
 1000.0 "--sync--" sync / 00:0839::The Trial of Might will be sealed off/ window 1000,1
 1006.8 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7671:/ window 1007.3,5
@@ -103,7 +103,6 @@ hideall "--sync--"
 1059.6 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
 1062.0 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:6854:/
 1067.0 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:766C:/
-1067.3 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:79F3:/
 1082.4 "Mighty Smite" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7672:/
 1095.5 "Curse of the Fallen" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7674:/
 1097.6 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
@@ -145,7 +144,6 @@ hideall "--sync--"
 1295.1 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
 1297.5 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:6854:/
 1260.0 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:766C:/
-1260.3 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:79F3:/
 1268.8 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
 1276.1 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7671:/
 1278.2 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7679:/ window 15,5
