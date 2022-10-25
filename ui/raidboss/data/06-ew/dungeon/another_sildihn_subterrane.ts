@@ -10,7 +10,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Silkie specify where to point puff's tether
 // TODO: Silkie call puff to go to for safety
 // TODO: Silkie call when to go to boss for safety
-// TODO: Better duster handling for Silkie timeline?
 // TODO: Additional Gladiator triggers and adjustments to timeline
 // TODO: Additional Shadowcaster triggers and adjustments to timeline
 
