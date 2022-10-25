@@ -22,6 +22,7 @@ async function main() {
   fs.renameSync('dist/ui', 'npm-package/ui');
   fsExtra.copySync('types', 'npm-package/types', {});
   fs.renameSync('dist/resources', 'npm-package/resources');
+  fs.renameSync('dist/util', 'npm-package/util');
 
   const newPackageJSON = {
     type: 'module',
