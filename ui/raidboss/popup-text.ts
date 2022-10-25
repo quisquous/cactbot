@@ -34,14 +34,14 @@ const isRaidbossLooseTimelineTrigger =
   };
 
 export const isNetRegexTrigger = (trigger?: LooseTrigger):
-  trigger is Partial<GeneralNetRegexTrigger<RaidbossData, 'None'>> => {
+    trigger is Partial<GeneralNetRegexTrigger<RaidbossData, 'None'>> => {
   if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'netRegex' in trigger;
   return false;
 };
 
 export const isRegexTrigger = (trigger?: LooseTrigger):
-  trigger is Partial<RegexTrigger<RaidbossData>> => {
+    trigger is Partial<RegexTrigger<RaidbossData>> => {
   if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'regex' in trigger;
   return false;
@@ -437,7 +437,7 @@ const isWipe = (line: string): boolean => {
     wipeCactbotEcho.test(line) ||
     wipeEndEcho.test(line) ||
     wipeFadeIn.test(line)
-  )
+    )
     return true;
   return false;
 };
@@ -635,7 +635,7 @@ export class PopupText {
       if (haveZoneId && set.zoneId === undefined) {
         const filename = set.filename ? `'${set.filename}'` : '(user file)';
         console.error(`Trigger set has zoneId, but with nothing specified in ${filename}.  ` +
-          `Did you misspell the ZoneId.ZoneName?`);
+                      `Did you misspell the ZoneId.ZoneName?`);
         continue;
       }
 
@@ -1317,8 +1317,8 @@ export class PopupText {
 
   _onTriggerInternalPlayAudio(triggerHelper: TriggerHelper): void {
     if (triggerHelper.trigger.sound !== undefined &&
-      triggerHelper.soundUrl &&
-      soundStrs.includes(triggerHelper.soundUrl)) {
+        triggerHelper.soundUrl &&
+        soundStrs.includes(triggerHelper.soundUrl)) {
       const namedSound = triggerHelper.soundUrl + 'Sound';
       const namedSoundVolume = triggerHelper.soundUrl + 'SoundVolume';
       const sound = this.options[namedSound];
@@ -1529,38 +1529,38 @@ export class PopupTextGenerator {
 
   Info(text: string, currentTime: number): void {
     this.popupText.OnTrigger({
-        infoText: text,
-        tts: text,
-      },
-      null,
-      currentTime);
+      infoText: text,
+      tts: text,
+    },
+    null,
+    currentTime);
   }
 
   Alert(text: string, currentTime: number): void {
     this.popupText.OnTrigger({
-        alertText: text,
-        tts: text,
-      },
-      null,
-      currentTime);
+      alertText: text,
+      tts: text,
+    },
+    null,
+    currentTime);
   }
 
   Alarm(text: string, currentTime: number): void {
     this.popupText.OnTrigger({
-        alarmText: text,
-        tts: text,
-      },
-      null,
-      currentTime);
+      alarmText: text,
+      tts: text,
+    },
+    null,
+    currentTime);
   }
 
   TTS(text: string, currentTime: number): void {
     this.popupText.OnTrigger({
-        infoText: text,
-        tts: text,
-      },
-      null,
-      currentTime);
+      infoText: text,
+      tts: text,
+    },
+    null,
+    currentTime);
   }
 
   Trigger(trigger: ProcessedTrigger, matches: RegExpExecArray | null, currentTime: number): void {
