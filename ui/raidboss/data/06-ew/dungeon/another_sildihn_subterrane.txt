@@ -127,7 +127,7 @@ hideall "--sync--"
 1196.4 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7671:/
 1206.6 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
 1212.7 "Curse of the Monument" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7666:/
-1219.9 "Sundered Remains 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
+1219.9 "Sundered Remains 1" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
 1220.5 "Sundered Remains 2" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
 1221.1 "Sundered Remains 3" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
 1221.7 "Sundered Remains 4" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
