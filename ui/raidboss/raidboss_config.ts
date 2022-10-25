@@ -1117,9 +1117,7 @@ class RaidbossConfigurator {
       options: this.base.configOptions,
       inCombat: true,
       ShortName: (x?: string) => x ?? '???',
-      StopCombat: () => {
-        /* noop */
-      },
+      StopCombat: () => {/* noop */},
       ParseLocaleFloat: parseFloat,
       CanStun: () => false,
       CanSilence: () => false,
