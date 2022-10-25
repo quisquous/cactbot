@@ -11,6 +11,7 @@
   "files": [
     "./ui",
     "./types",
+    "./util",
     "./resources",
     "package.json"
   ],
