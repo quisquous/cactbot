@@ -1,12 +1,9 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
-import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
-import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
-import { PluginCombatantState } from '../../../../../types/event';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Silkie specify which puff to get behind in first Slipper Soap
@@ -21,8 +18,6 @@ export interface Data extends RaidbossData {
   suds?: string;
   soapCounter: number;
   beaterCounter: number;
-  mightCasts: PluginCombatantState[];
-  mightDir?: string;
   hasLingering?: boolean;
   thunderousEchoPlayer?: string;
 }
@@ -34,7 +29,6 @@ const triggerSet: TriggerSet<Data> = {
     return {
       soapCounter: 0,
       beaterCounter: 0,
-      mightCasts: [],
     };
   },
   triggers: [
@@ -305,157 +299,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7671', source: 'Gladiator of Sil\'dih', capture: false }),
       response: Responses.aoe(),
-    },
-    {
-      id: 'ASS Rush of Might 1',
-      // Boss casts 765C (12.2s) and 765B (10.2s), twice
-      // Gladiator of Mirage casts 7659, 7658, 765A, these target the environment but are not reliable
-      // North
-      //                East               West
-      //   Line 1: (-34.14, -270.14) (-35.86, -270.14)
-      //   Line 2: (-39.45, -275.45) (-30.55, -275.45)
-      //   Line 3: (-44.75, -280.75) (-25.25, -280.75)
-      // South
-      //                East               West
-      //   Line 1: (-34.14, -271.86) (-35.86, -271.86)
-      //   Line 2: (-39.45, -266.55) (-30.55, -266.55)
-      //   Line 3: (-44.75, -261.25) (-25.25, -261.25)
-      // Center is at (-35, -271)
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '765C', source: 'Gladiator of Sil\'dih' }),
-      delaySeconds: 0.5,
-      promise: async (data, matches) => {
-        if (data.mightCasts.length === 2)
-          data.mightCasts = [];
-
-        // select the Hephaistoss with same source id
-        let gladiatorData = null;
-        gladiatorData = await callOverlayHandler({
-          call: 'getCombatants',
-          ids: [parseInt(matches.sourceId, 16)],
-        });
-
-        // if we could not retrieve combatant data, the
-        // trigger will not work, so just resume promise here
-        if (gladiatorData === null) {
-          console.error(`Gladiator of Sil'dih: null data`);
-          return;
-        }
-        if (gladiatorData.combatants.length !== 1) {
-          console.error(`Gladiator of Sil'dih: expected 1, got ${gladiatorData.combatants.length}`);
-          return;
-        }
-
-        const gladiator = gladiatorData.combatants[0];
-        if (!gladiator)
-          return;
-        data.mightCasts.push(gladiator);
-      },
-      infoText: (data, _matches, output) => {
-        if (data.mightCasts.length !== 2)
-          return;
-
-        const mirage1 = data.mightCasts[0];
-        const mirage2 = data.mightCasts[1];
-
-        if (mirage1 === undefined || mirage2 === undefined)
-          throw new UnreachableCode();
-
-        const x1 = mirage1.PosX;
-        const y1 = mirage1.PosY;
-        const x2 = mirage2.PosX;
-        const y2 = mirage2.PosY;
-
-        const getLine = (x: number) => {
-          // Round values to be easier to read:
-          //   1    2    3
-          // [-35, -40, -45]
-          // [-35, -30, -25]
-          const roundX = Math.round(x / 5) * 5;
-          if (roundX === -45 || roundX === -25)
-            return 3;
-          else if (roundX === -40 || roundX === -30)
-            return 2;
-          else if (roundX === -35)
-            return 1;
-          return undefined;
-        };
-        const line1 = getLine(x1);
-        const line2 = getLine(x2);
-        if (line1 === undefined || line2 === undefined) {
-          console.error(`Rush of Might 1: Failed to determine line from ${x1} or ${x2}`);
-          return;
-        }
-
-        const line = line1 > line2 ? line1 : line2;
-
-        // Get Intercard and greatest relative x value
-        let intercard;
-        const roundY = Math.round(y1 / 3) * 3;
-        // Round values to be easier to read:
-        //          1     2     3
-        // North [-270, -276, -282]
-        // South [-204, -201, -195]
-        if (roundY === -270 || roundY === -276 || roundY === -282) {
-          // Get the x value of farthest north mirage
-          const x = y1 < y2 ? x1 : x2;
-          intercard = x < -35 ? 'northwest' : 'northeast';
-          data.mightDir = 'north';
-        } else if (roundY === -204 || roundY === -201 || roundY === -195) {
-          // Get the x value of farthest south mirage
-          const x = y1 > y2 ? x1 : x2;
-          intercard = x < -35 ? 'southwest' : 'southeast';
-          data.mightDir = 'south';
-        } else {
-          console.error(`Rush of Might 1: Failed to determine intercard from ${y1}`);
-          return;
-        }
-
-        let side;
-        if ((line1 === 2 && line2 === 3) || line1 === 3 && line2 === 2) {
-          // Get side of line for case when one is 2 and one is 3
-          if (intercard === 'northwest' || intercard === 'southwest')
-            side = 'east';
-          else
-            side = 'west';
-        } else {
-          if (intercard === 'northwest' || intercard === 'southwest')
-            side = 'west';
-          else
-            side = 'east';
-        }
-        return output.text!({ intercard: output[intercard]!(), side: output[side]!(), line: line });
-      },
-      outputStrings: {
-        text: {
-          en: '${intercard}, ${side} of line #${line}',
-        },
-        east: Outputs.east,
-        west: Outputs.west,
-        northwest: Outputs.northwest,
-        northeast: Outputs.northeast,
-        southeast: Outputs.southeast,
-        southwest: Outputs.southwest,
-      },
-    },
-    {
-      id: 'ASS Rush of Might 2',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '765B', source: 'Gladiator of Sil\'dih', capture: false }),
-      suppressSeconds: 1,
-      infoText: (data, _matches, output) => {
-        if (data.mightDir === undefined)
-          return output.move!();
-        return output.text!({ dir: output[data.mightDir]!() });
-      },
-      outputStrings: {
-        text: {
-          en: 'Move ${dir}',
-        },
-        north: Outputs.north,
-        south: Outputs.south,
-        move: Outputs.moveAway,
-      },
     },
     {
       id: 'ASS Sculptor\'s Passion',

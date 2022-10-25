@@ -49,8 +49,8 @@ hideall "--sync--"
 172.3 "Eastern Ewers" sync / 1[56]:[^:]*:Silkie:776D:/
 178.6 "Rinse" sync / 1[56]:[^:]*:Eastern Ewer:776F:/ duration 7.3
 188.1 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:7767:/
-188.1 "Bracing Duster?" #sync / 1[56]:[^:]*:Silken Puff:7769:/
-188.1 "Fizzling Duster?" #sync / 1[56]:[^:]*:Silken Puff:776A:/
+188.1 "Bracing Duster / Chilling Duster / Fizzling Duster" #sync / 1[56]:[^:]*:Silken Puff:(7769|7768|776A):/
+188.1 "Fizzling Duster" #sync / 1[56]:[^:]*:Silken Puff:776A:/
 195.2 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:7758:/
 202.3 "Carpet Beater" sync / 1[56]:[^:]*:Silkie:774F:/
 204.4 "--sync--" sync / 1[56]:[^:]*:Eastern Ewer:79FB:/
