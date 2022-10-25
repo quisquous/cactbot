@@ -224,26 +224,18 @@ export default class NetRegexes {
     return parseHelper(
       params,
       'AddedCombatant',
-      defaultParams('AddedCombatant', NetRegexes.logVersion, [
-        'type',
-        'timestamp',
-        'id',
-        'name',
-      ]),
+      defaultParams('AddedCombatant', NetRegexes.logVersion),
     );
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-03-0x03-addcombatant
+   * @deprecated Use `addedCombatant` instead
    */
   static addedCombatantFull(
     params?: NetParams['AddedCombatant'],
   ): CactbotBaseRegExp<'AddedCombatant'> {
-    return parseHelper(
-      params,
-      'AddedCombatantFull',
-      defaultParams('AddedCombatant', NetRegexes.logVersion),
-    );
+    return NetRegexes.addedCombatant(params);
   }
 
   /**
