@@ -3240,7 +3240,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Darkscale': '검은미늘',
         'Dragon-king Thordan': '기룡신 토르당',
@@ -3269,6 +3268,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceText': {
         'Empty Dimension/Full Dimension': '공허한/충만한 차원',
         'Lash and Gnash/Gnash and Lash': '꼬리이빨/이빨꼬리 연속 회전',
+        'Ice of Ascalon/Flames of Ascalon': '아스칼론의 불꽃/얼음',
         'Aetheric Burst': '에테르 분출',
         'Akh Afah': '아크 아파',
         'Akh Morn(?!\'s Edge)': '아크 몬',
