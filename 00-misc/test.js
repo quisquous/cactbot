@@ -88,13 +88,12 @@ Options.Triggers.push({
       delaySeconds: 10,
       promise: (data) => {
         data.delayedDummyTimestampBefore = Date.now();
-        const p = new Promise((res) => {
+        return new Promise((res) => {
           window.setTimeout(() => {
             data.delayedDummyTimestampAfter = Date.now();
             res();
           }, 3000);
         });
-        return p;
       },
       infoText: (data, _matches, output) => {
         const elapsed = data.delayedDummyTimestampAfter - data.delayedDummyTimestampBefore;
@@ -116,7 +115,7 @@ Options.Triggers.push({
     {
       id: 'Test Poke',
       type: 'GameLog',
-      netRegex: NetRegexes.gameNameLog({ line: 'You poke the striking dummy.*?', capture: false }),
+      netRegex: { line: 'You poke the striking dummy.*?', capture: false },
       preRun: (data) => ++data.pokes,
       infoText: (data, _matches, output) => output.poke({ numPokes: data.pokes }),
       outputStrings: {
@@ -133,7 +132,7 @@ Options.Triggers.push({
     {
       id: 'Test Psych',
       type: 'GameLog',
-      netRegex: NetRegexes.gameNameLog({ line: 'You psych yourself up alongside the striking dummy.*?', capture: false }),
+      netRegex: { line: 'You psych yourself up alongside the striking dummy.*?', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       tts: {
         en: 'psych',
@@ -157,7 +156,7 @@ Options.Triggers.push({
     {
       id: 'Test Laugh',
       type: 'GameLog',
-      netRegex: NetRegexes.gameNameLog({ line: 'You burst out laughing at the striking dummy.*?', capture: false }),
+      netRegex: { line: 'You burst out laughing at the striking dummy.*?', capture: false },
       suppressSeconds: 5,
       alarmText: (_data, _matches, output) => output.text(),
       tts: {
@@ -182,7 +181,7 @@ Options.Triggers.push({
     {
       id: 'Test Clap',
       type: 'GameLog',
-      netRegex: NetRegexes.gameNameLog({ line: 'You clap for the striking dummy.*?', capture: false }),
+      netRegex: { line: 'You clap for the striking dummy.*?', capture: false },
       sound: '../../resources/sounds/freesound/power_up.webm',
       soundVolume: 0.3,
       tts: (_data, _matches, output) => output.text(),
@@ -201,7 +200,7 @@ Options.Triggers.push({
       id: 'Test Lang',
       type: 'GameLog',
       // In game: /echo cactbot lang
-      netRegex: NetRegexes.echo({ line: 'cactbot lang.*?', capture: false }),
+      netRegex: { line: 'cactbot lang.*?', capture: false },
       infoText: (data, _matches, output) => output.text({ lang: data.parserLang }),
       outputStrings: {
         text: {
@@ -217,7 +216,7 @@ Options.Triggers.push({
     {
       id: 'Test Response',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
+      netRegex: { line: 'cactbot test response.*?', capture: false },
       response: (_data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -237,7 +236,7 @@ Options.Triggers.push({
     {
       id: 'Test Watch',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
+      netRegex: { line: 'cactbot test watch.*?', capture: false },
       promise: (data) =>
         Util.watchCombatant({
           names: [
