@@ -138,5 +138,8 @@
     "inquirer": "^8.1.1",
     "inquirer-fuzzy-path": "^2.3.0",
     "lodash": "^4.14.170"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
