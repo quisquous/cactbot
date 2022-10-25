@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -30,7 +29,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O6N Demonic Pain',
       type: 'Tether',
       // 0001 = far enough, 0039 = too close
-      netRegex: NetRegexes.tether({ id: ['0001', '0039'] }),
+      netRegex: { id: ['0001', '0039'] },
       condition: (data, matches) => data.me === matches.target || data.me === matches.source,
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -47,7 +46,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O6N Demonic Stone',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

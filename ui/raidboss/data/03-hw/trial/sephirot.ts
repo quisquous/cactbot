@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -13,13 +12,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sephirot Fiendish Rage',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0048' }),
+      netRegex: { id: '0048' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Sephirot Ratzon',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0046' }),
+      netRegex: { id: '0046' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -32,7 +31,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sephirot Earth Shaker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },

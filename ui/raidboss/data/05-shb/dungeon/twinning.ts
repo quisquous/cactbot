@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -36,7 +35,7 @@ const triggerSet: TriggerSet<Data> = {
       // The handling for these mechanics is similar enough it makes sense to combine the trigger
       id: 'Twinning Impact + Pounce',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['003[2-5]', '005A'], capture: false }),
+      netRegex: { id: ['003[2-5]', '005A'], capture: false },
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -65,7 +64,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Twinning Charge Eradicated',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005D' }),
+      netRegex: { id: '005D' },
       response: Responses.stackMarkerOn(),
     },
     {

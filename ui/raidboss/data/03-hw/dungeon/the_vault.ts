@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -80,7 +79,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'The Vault Execution',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0020' }),
+      netRegex: { id: '0020' },
       response: Responses.awayFrom(),
     },
     {
@@ -99,7 +98,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'The Vault Dimensional Torsion',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0001', source: 'Aetherial Tear' }),
+      netRegex: { id: '0001', source: 'Aetherial Tear' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -123,7 +122,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'The Vault Holy Chains',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0061' }),
+      netRegex: { id: '0061' },
       condition: Conditions.targetIsYou(),
       response: Responses.breakChains(),
     },
@@ -131,14 +130,14 @@ const triggerSet: TriggerSet<Data> = {
       // This prevents out-of-combat activation for the March trigger during Charibert's spawn-in.
       id: 'The Vault Knights Activation',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0061', capture: false }),
+      netRegex: { id: '0061', capture: false },
       condition: (data) => !data.knightsActive,
       run: (data) => data.knightsActive = true,
     },
     {
       id: 'The Vault Knights March',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: ['Dawn Knight', 'Dusk Knight'], capture: false }),
+      netRegex: { name: ['Dawn Knight', 'Dusk Knight'], capture: false },
       condition: (data) => data.knightsActive,
       suppressSeconds: 4,
       infoText: (_data, _matches, output) => output.text!(),

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -131,7 +130,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9S Entropy Spread',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
+      netRegex: { effectId: '640' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
         data.entropyCount = (data.entropyCount ?? 0) + 1;
@@ -178,7 +177,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9S Entropy Avoid Hit',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
+      netRegex: { effectId: '640' },
       condition: (data, matches) => matches.target === data.me && data.phaseType === 'fire',
       delaySeconds: (_data, matches) => {
         // Folks get either the 24 second or the 10 second.
@@ -234,7 +233,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9S Dynamic Fluid 1',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
+      netRegex: { effectId: '641', capture: false },
       condition: (data) => data.phaseType === 'water',
       delaySeconds: 5,
       suppressSeconds: 1,
@@ -254,7 +253,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9S Dynamic Fluid 2',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
+      netRegex: { effectId: '641', capture: false },
       condition: (data) => data.phaseType === 'water',
       // T/H get 10s & DPS get 17s
       delaySeconds: 12,
@@ -274,7 +273,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9S Dynamic Fluid 3',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
+      netRegex: { effectId: '641', capture: false },
       condition: (data) => data.phaseType === 'enrage',
       // enrage -> 6s
       delaySeconds: 1,
@@ -294,7 +293,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9S Knock Down Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: Conditions.targetIsYou(),
       alertText: (data, _matches, output) => {
         if (data.phaseType === 'water')
@@ -334,14 +333,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9S Headwind',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '642' }),
+      netRegex: { effectId: '642' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.wind = 'head',
     },
     {
       id: 'O9S Tailwind',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '643' }),
+      netRegex: { effectId: '643' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.wind = 'tail',
     },
@@ -389,7 +388,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9S Accretion',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '644', capture: false }),
+      netRegex: { effectId: '644', capture: false },
       condition: (data) => data.role === 'healer',
       suppressSeconds: 10,
       infoText: (data, _matches, output) => {
@@ -420,7 +419,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9S Primordial Crust',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
+      netRegex: { effectId: '645' },
       condition: (data, matches) => data.me === matches.target && data.phaseType !== 'orb',
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.primordialCrust = true,
@@ -438,7 +437,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9S Primordial Crust Cleanup',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
+      netRegex: { effectId: '645' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 30,
       run: (data) => delete data.primordialCrust,
@@ -446,7 +445,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9S Earth Stack Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      netRegex: { id: '003E', capture: false },
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -471,7 +470,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9S Orb Entropy',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
+      netRegex: { effectId: '640' },
       condition: (data, matches) => matches.target !== data.me && data.phaseType === 'orb',
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       suppressSeconds: 10,
@@ -494,7 +493,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O9S Orb Dynamic Fluid',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '641' }),
+      netRegex: { effectId: '641' },
       condition: (data, matches) => matches.target === data.me && data.phaseType === 'orb',
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (_data, _matches, output) => output.text!(),

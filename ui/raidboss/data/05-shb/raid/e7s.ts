@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -48,7 +47,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Unshadowed Stake',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'The Idol Of Darkness', id: '0025' }),
+      netRegex: { source: 'The Idol Of Darkness', id: '0025' },
       response: Responses.tankBuster(),
     },
     {
@@ -60,7 +59,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Betwixt Worlds Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'The Idol Of Darkness', id: '0011' }),
+      netRegex: { source: 'The Idol Of Darkness', id: '0011' },
       condition: (data) => data.phase === 'betwixtWorlds',
       preRun: (data, matches) => {
         data.betwixtWorldsTethers ??= [];
@@ -84,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Betwixt Worlds Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0064' }),
+      netRegex: { id: '0064' },
       condition: (data) => data.phase === 'betwixtWorlds',
       preRun: (data, matches) => {
         data.betwixtWorldsStack ??= [];
@@ -117,7 +116,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Left With Thee',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
+      netRegex: { effectId: '8C2' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -134,7 +133,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Right With Thee',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
+      netRegex: { effectId: '8C3' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -151,7 +150,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Forward With Thee',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
+      netRegex: { effectId: '8C0' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -168,7 +167,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Back With Thee',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
+      netRegex: { effectId: '8C1' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -191,7 +190,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Silver Shot',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0065' }),
+      netRegex: { id: '0065' },
       condition: (data) => data.phase === 'falseMidnight',
       preRun: (data, matches) => {
         data.falseMidnightSpread ??= [];
@@ -208,7 +207,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Silver Sledge',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0064' }),
+      netRegex: { id: '0064' },
       condition: (data) => data.phase === 'falseMidnight',
       // The stack marker is in the middle of spreads,
       // so delay a tiny bit to call out stack so that
@@ -231,7 +230,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Adds',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Blasphemy', capture: false }),
+      netRegex: { name: 'Blasphemy', capture: false },
       suppressSeconds: 1,
       run: (data) => data.phase = 'adds',
     },
@@ -246,7 +245,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Insatiable Light Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0064' }),
+      netRegex: { id: '0064' },
       condition: (data) => data.phase === 'adds',
       preRun: (data, matches) => {
         data.insatiableLightStack ??= [];
@@ -314,14 +313,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Astral Effect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
+      netRegex: { effectId: '8BE' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.color = 'light',
     },
     {
       id: 'E7S Umbral Effect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
+      netRegex: { effectId: '8BF' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.color = 'dark',
     },

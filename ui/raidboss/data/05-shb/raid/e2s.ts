@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -57,13 +56,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Spell In Waiting Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: 'Voidwalker', effectId: '710', capture: false }),
+      netRegex: { target: 'Voidwalker', effectId: '710', capture: false },
       run: (data) => data.waiting = true,
     },
     {
       id: 'E2S Spell In Waiting Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ target: 'Voidwalker', effectId: '710', capture: false }),
+      netRegex: { target: 'Voidwalker', effectId: '710', capture: false },
       run: (data) => data.waiting = false,
     },
     {
@@ -147,14 +146,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Unholy Darkness No Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       condition: (data) => !data.waiting,
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'E2S Unholy Darkness Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       condition: (data) => data.waiting,
       run: (data, matches) => {
         data.spell ??= {};
@@ -164,7 +163,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Unholy Darkness Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       condition: (data, matches) => data.waiting && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -181,21 +180,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Countdown Marker Unholy Darkness',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       condition: (data, matches) => !data.hellWind && data.spell?.[matches.target] === 'stack',
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'E2S Dark Fire No Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '004C' }),
+      netRegex: { id: '004C' },
       condition: (data, matches) => !data.waiting && data.me === matches.target,
       response: Responses.spread('alert'),
     },
     {
       id: 'E2S Dark Fire Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '004C' }),
+      netRegex: { id: '004C' },
       condition: (data) => data.waiting,
       run: (data, matches) => {
         data.spell ??= {};
@@ -205,7 +204,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Dark Fire Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '004C' }),
+      netRegex: { id: '004C' },
       condition: (data, matches) => data.waiting && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -222,21 +221,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Countdown Marker Fire',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       condition: (data, matches) => data.me === matches.target && data.spell?.[data.me] === 'fire',
       response: Responses.spread('alert'),
     },
     {
       id: 'E2S Shadoweye No Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B3' }),
+      netRegex: { id: '00B3' },
       condition: (data) => !data.waiting,
       response: Responses.lookAwayFromTarget(),
     },
     {
       id: 'E2S Shadoweye No Waiting You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B3' }),
+      netRegex: { id: '00B3' },
       condition: (data, matches) => !data.waiting && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -253,7 +252,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Shadoweye Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B3' }),
+      netRegex: { id: '00B3' },
       condition: (data) => data.waiting,
       run: (data, matches) => {
         data.spell ??= {};
@@ -263,7 +262,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Shadoweye Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B3' }),
+      netRegex: { id: '00B3' },
       condition: (data, matches) => data.waiting && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -280,7 +279,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Countdown Marker Shadoweye Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       condition: (data, matches) => data.spell?.[matches.target] === 'eye' && matches.target === data.me,
       delaySeconds: 2,
       suppressSeconds: 10,
@@ -299,7 +298,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Countdown Marker Shadoweye Other',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       condition: (data, matches) => data.spell?.[matches.target] === 'eye' && data.spell?.[data.me] !== 'eye',
       delaySeconds: 2,
       suppressSeconds: 10,
@@ -310,7 +309,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Flare No Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: (data, matches) => !data.waiting && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -327,7 +326,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Flare Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: (data) => data.waiting,
       run: (data, matches) => {
         data.spell ??= {};
@@ -337,7 +336,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Flare Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: (data, matches) => data.waiting && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -354,7 +353,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Countdown Marker Flare',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       condition: (data, matches) => data.me === matches.target && data.spell?.[data.me] === 'flare',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -371,7 +370,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Countdown Marker Flare Healer',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       condition: (data, matches) => {
         if (data.role !== 'healer')
           return;
@@ -393,7 +392,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Hell Wind No Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       condition: (data, matches) => !data.waiting && data.me === matches.target,
       // The "no waiting" version comes paired with a stack.
       alarmText: (_data, _matches, output) => output.text!(),
@@ -412,7 +411,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Hell Wind Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       condition: (data, matches) => !data.waiting && data.me === matches.target,
       delaySeconds: 15,
       run: (data) => delete data.hellWind,
@@ -420,7 +419,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Hell Wind Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       condition: (data) => data.waiting,
       run: (data, matches) => {
         data.spell ??= {};
@@ -430,7 +429,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Hell Wind Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       condition: (data, matches) => data.waiting && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -447,7 +446,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Countdown Marker Hell Wind',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       condition: (data, matches) => {
         if (data.role === 'healer')
           return false;
@@ -468,7 +467,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Countdown Marker Hell Wind Healer',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       condition: (data, matches) => {
         if (data.role !== 'healer')
           return;
@@ -490,7 +489,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2S Countdown Marker Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       delaySeconds: 10,
       run: (data, matches) => delete data.spell?.[matches.target],
     },

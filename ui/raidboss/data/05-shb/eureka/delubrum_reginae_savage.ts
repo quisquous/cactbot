@@ -206,7 +206,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Seeker Mercy Swords',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: ['Trinity Seeker', 'Seeker Avatar'], effectId: '808' }),
+      netRegex: { target: ['Trinity Seeker', 'Seeker Avatar'], effectId: '808' },
       condition: (data) => !data.calledSeekerSwords,
       durationSeconds: 10,
       alertText: (data, matches, output) => {
@@ -541,7 +541,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DelubrumSav Seeker Dead Iron',
       type: 'Tether',
       // Headmarkers are randomized, so use the tether instead.
-      netRegex: NetRegexes.tether({ target: 'Trinity Seeker', id: '01DB' }),
+      netRegex: { target: 'Trinity Seeker', id: '01DB' },
       condition: (data, matches) => matches.source === data.me,
       alarmText: (_data, _matches, output) => output.earthshaker!(),
       outputStrings: {
@@ -769,7 +769,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Seeker Burning Chains Move',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '301' }),
+      netRegex: { effectId: '301' },
       condition: Conditions.targetIsYou(),
       response: Responses.breakChains(),
     },
@@ -1018,7 +1018,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Guard Yellow Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Queen\'s Warrior', target: 'Queen\'s Knight', id: '0088', capture: false }),
+      netRegex: { source: 'Queen\'s Warrior', target: 'Queen\'s Knight', id: '0088', capture: false },
       // Yellow tether between Knight and Warrior gives them a Physical Vulnerability Down debuff.
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1035,7 +1035,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Guard Purple Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Queen\'s Warrior', target: 'Queen\'s Knight', id: '0089', capture: false }),
+      netRegex: { source: 'Queen\'s Warrior', target: 'Queen\'s Knight', id: '0089', capture: false },
       // Yellow tether between Knight and Warrior gives them a Physical Vulnerability Down debuff.
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1091,14 +1091,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Guard/Queen Bomb Reversal',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ target: 'Queen\'s Warrior', id: '0010', capture: false }),
+      netRegex: { target: 'Queen\'s Warrior', id: '0010', capture: false },
       suppressSeconds: 1,
       run: (data) => data.tetherOnBomb = true,
     },
     {
       id: 'DelubrumSav Guard/Queen Personal Reversal',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ target: 'Queen\'s Warrior', id: '0087' }),
+      netRegex: { target: 'Queen\'s Warrior', id: '0087' },
       condition: (data, matches) => matches.source === data.me,
       run: (data) => data.tetherOnSelf = true,
     },
@@ -1315,7 +1315,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'AddedCombatant',
       // Spawns after 57BA Summon, either North (-403.5) or South (-344.5)
       // Casts 57C2 Undying Hatred
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9756' }),
+      netRegex: { npcNameId: '9756' },
       durationSeconds: 5,
       suppressSeconds: 1,
       response: (_data, matches, output) => {
@@ -1455,7 +1455,7 @@ const triggerSet: TriggerSet<Data> = {
       // 8DC Running Cold: -1
       // 8E2 Running Cold: -2
       // 8A4 Running Hot: +2
-      netRegex: NetRegexes.gainsEffect({ effectId: ['89C', '89D', '8DC', '8E2', '8A4'] }),
+      netRegex: { effectId: ['89C', '89D', '8DC', '8E2', '8A4'] },
       condition: Conditions.targetIsYou(),
       run: (data, matches) => {
         const temperature: { [id: string]: number } = {
@@ -1476,7 +1476,7 @@ const triggerSet: TriggerSet<Data> = {
       // 8F3 Hot Brand: +2
       // 8F4 Cold Brand: +1
       // 8F8 Cold Brand: +2
-      netRegex: NetRegexes.gainsEffect({ effectId: ['8E5', '8F3', '8F4', '8F8'] }),
+      netRegex: { effectId: ['8E5', '8F3', '8F4', '8F8'] },
       condition: Conditions.targetIsYou(),
       run: (data, matches) => {
         const brand: { [id: string]: number } = {
@@ -1495,7 +1495,7 @@ const triggerSet: TriggerSet<Data> = {
       // 50E About Face
       // 50F Left Face
       // 510 Right Face
-      netRegex: NetRegexes.gainsEffect({ effectId: ['50D', '50E', '50F', '510'] }),
+      netRegex: { effectId: ['50D', '50E', '50F', '510'] },
       condition: Conditions.targetIsYou(),
       run: (data, matches) => data.forcedMarch = matches.effectId.toUpperCase(),
     },
@@ -1803,7 +1803,7 @@ const triggerSet: TriggerSet<Data> = {
       // Trigger delayed until after Blade Of Entropy happens about ~100ms after
       // to get left/right cleave info
       // Ignoring Trinity Avowed due to Environment 'randomly' refreshing its buff
-      netRegex: NetRegexes.gainsEffect({ target: 'Avowed Avatar', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
+      netRegex: { target: 'Avowed Avatar', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false },
       delaySeconds: 0.5,
       durationSeconds: 9.5,
       suppressSeconds: 1,
@@ -2286,7 +2286,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       // 97E: Wanderer's Fate, Pushes outward on Fateful Word cast
       // 97F: Sacrifice's Fate, Pulls to middle on Fateful Word cast
-      netRegex: NetRegexes.gainsEffect({ effectId: '97[EF]' }),
+      netRegex: { effectId: '97[EF]' },
       condition: Conditions.targetIsYou(),
       preRun: (data, matches) => {
         data.labyrinthineFate = matches.effectId.toUpperCase();
@@ -2417,7 +2417,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DelubrumSav Queen Cleansing Slash Doom',
       type: 'GainsEffect',
       // Each Cleansing Slash applies a cleansable Doom (38E), if damage is taken
-      netRegex: NetRegexes.gainsEffect({ source: 'The Queen', effectId: '38E' }),
+      netRegex: { source: 'The Queen', effectId: '38E' },
       condition: (data) => data.CanCleanse(),
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
@@ -2436,7 +2436,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       // Players with Dispel should Dispel all the buffs on The Queen.
       // Critical Strikes = 705 is the first one.
-      netRegex: NetRegexes.gainsEffect({ target: 'The Queen', effectId: '705', capture: false }),
+      netRegex: { target: 'The Queen', effectId: '705', capture: false },
       condition: (data) => {
         data.queenDispelCount = (data.queenDispelCount || 0) + 1;
         // The third time she gains this effect is the enrage, and there's no need to dispel.
@@ -2458,7 +2458,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DelubrumSav Queen Ball Lightning',
       type: 'AddedCombatant',
       // Players with Reflect should destroy one for party to stand in the shield left behind
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7974', capture: false }),
+      netRegex: { npcNameId: '7974', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -2475,7 +2475,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Queen Ball Lightning Bubble',
       type: 'WasDefeated',
-      netRegex: NetRegexes.wasDefeated({ target: 'Ball Lightning', capture: false }),
+      netRegex: { target: 'Ball Lightning', capture: false },
       suppressSeconds: 20,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

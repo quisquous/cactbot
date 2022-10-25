@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -87,7 +86,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EmeraldEx Aetheroplasm Rotate',
       type: 'AddedCombatant',
       // 9705 = Ceruleum Sphere, 9706 = Nitrosphere
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9706' }),
+      netRegex: { npcNameId: '9706' },
       condition: (data, matches) => {
         (data.orbs ??= []).push(matches);
         return data.orbs.length === 4;
@@ -190,7 +189,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Magitek Magnetism Flare',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -207,7 +206,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Magitek Magnetism Bait',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -251,7 +250,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Primus Terminus Est',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00F[9ABC]' }),
+      netRegex: { id: '00F[9ABC]' },
       condition: (data, matches) => {
         (data.primusPlayers ??= []).push(matches.target);
         return data.me === matches.target;
@@ -284,7 +283,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Primus Terminus Est Dodge',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00F[9ABC]', capture: false }),
+      netRegex: { id: '00F[9ABC]', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
@@ -403,7 +402,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Secundus Terminus Est Plus',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00FD' }),
+      netRegex: { id: '00FD' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -419,7 +418,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EmeraldEx Secundus Terminus Est Cross',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00FE' }),
+      netRegex: { id: '00FE' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

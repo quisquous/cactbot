@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -37,7 +36,7 @@ const triggerSet: TriggerSet<Data> = {
       // 7201 is Tengu Ember.
       id: 'Swallows Compass Ember Spawn',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7201', capture: false }),
+      netRegex: { npcNameId: '7201', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -83,14 +82,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Swallows Compass Mountain Falls',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0087' }),
+      netRegex: { id: '0087' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Swallows Compass Mirage',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -113,7 +112,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Swallows Compass Six Fulms Under',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
+      netRegex: { effectId: '237' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 2, // If the user stays in, they will get more reminders.
       alarmText: (_data, _matches, output) => output.text!(),
@@ -189,7 +188,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Swallows Compass Five Fingered Punishment',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn('info'), // Info rather than alert to avoid collision with Both Ends.
     },
     {
@@ -207,7 +206,7 @@ const triggerSet: TriggerSet<Data> = {
       // We have to handle both possibilities, so we collect targets first for later analysis.
       id: 'Swallows Compass Long End Collect',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0029' }),
+      netRegex: { id: '0029' },
       run: (data, matches) => {
         data.tethers ??= [];
         data.tethers.push(matches.target);
@@ -216,7 +215,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Swallows Compass Long End Call',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0029', capture: false }),
+      netRegex: { id: '0029', capture: false },
       delaySeconds: 0.5,
       alertText: (data, _matches, output) => {
         if (data.tethers?.includes(data.me)) {

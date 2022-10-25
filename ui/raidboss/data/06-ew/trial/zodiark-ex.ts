@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -107,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Blue Cone Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '00A4', source: 'Zodiark' }),
+      netRegex: { id: '00A4', source: 'Zodiark' },
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsById([matches.targetId]);
         for (const actor of portalActors) {
@@ -166,7 +165,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Red Box Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '00AB', source: 'Zodiark' }),
+      netRegex: { id: '00AB', source: 'Zodiark' },
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsById([matches.targetId]);
         for (const actor of portalActors) {
@@ -201,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Roiling Darkness Spawn',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Roiling Darkness', capture: false }),
+      netRegex: { name: 'Roiling Darkness', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

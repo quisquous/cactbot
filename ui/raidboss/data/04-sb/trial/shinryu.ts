@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -221,7 +220,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shinryu Normal Tethers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0061' }),
+      netRegex: { id: '0061' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 3.8,
       response: Responses.breakChains(),
@@ -232,7 +231,7 @@ const triggerSet: TriggerSet<Data> = {
       // However, it *seems* that the tail attacks from the side the target is on.
       id: 'Shinryu Normal Slap Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0062' }),
+      netRegex: { id: '0062' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

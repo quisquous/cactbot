@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -48,13 +47,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hydrothermal Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       run: (data, matches) => data.hydro.push(matches.target),
     },
     {
       id: 'A1S Hydrothermal You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -71,7 +70,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hydrothermal Healer',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
+      netRegex: { id: '001E', capture: false },
       suppressSeconds: 2,
       infoText: (data, _matches, output) => {
         if (data.hydro.length === 0)
@@ -92,7 +91,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hydrothermal Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
+      netRegex: { id: '001E', capture: false },
       delaySeconds: 10,
       run: (data) => data.hydro = [],
     },

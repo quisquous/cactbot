@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -50,7 +49,7 @@ const triggerSet: TriggerSet<Data> = {
       // The actual effect being checked here is Heavy.
       id: 'Sohm Al Hard Excretion',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '0E' }),
+      netRegex: { effectId: '0E' },
       condition: (data) => data.CanCleanse(),
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {

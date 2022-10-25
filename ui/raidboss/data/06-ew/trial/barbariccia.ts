@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -81,13 +80,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Barbariccia Deadly Twist',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Barbariccia Hair Spray',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0175' }),
+      netRegex: { id: '0175' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -102,7 +101,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Barbariccia Boulder',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0160' }),
+      netRegex: { id: '0160' },
       condition: Conditions.targetIsYou(),
       response: Responses.awayFrom(),
     },
@@ -140,7 +139,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Barbariccia Trample',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0064' }),
+      netRegex: { id: '0064' },
       condition: (data) => data.boldBoulderTarget !== data.me,
       delaySeconds: 0.5,
       response: Responses.stackMarkerOn(),

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -57,7 +56,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Skalla Bloody Puddle',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '002B' }),
+      netRegex: { id: '002B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -92,7 +91,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Skalla Ring Of Chaos',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0079' }),
+      netRegex: { id: '0079' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -109,7 +108,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Skalla Cross Of Chaos',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '007A' }),
+      netRegex: { id: '007A' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -126,7 +125,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Skalla Circle Of Chaos',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001C' }),
+      netRegex: { id: '001C' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

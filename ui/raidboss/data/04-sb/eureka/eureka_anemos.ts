@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -156,7 +155,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Eureka Wraith Count',
       type: 'WasDefeated',
-      netRegex: NetRegexes.wasDefeated({ target: 'Shadow Wraith', capture: false }),
+      netRegex: { target: 'Shadow Wraith', capture: false },
       soundVolume: 0,
       infoText: (data, _matches, output) => {
         data.wraithCount = (data.wraithCount ?? 0) + 1;
@@ -176,13 +175,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Eureka Pazuzu Pop',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Pazuzu', capture: false }),
+      netRegex: { name: 'Pazuzu', capture: false },
       run: (data) => data.wraithCount = 0,
     },
     {
       id: 'Eureka Falling Asleep',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
+      netRegex: { line: '7 minutes have elapsed since your last activity..*?', capture: false },
       response: Responses.wakeUp(),
     },
   ],

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -22,7 +21,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'The Burn Hailfire',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0002', capture: false }),
+      netRegex: { id: '0002', capture: false },
       condition: (data) => !data.hedetet,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -39,7 +38,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'The Burn Shardstrike',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0060' }),
+      netRegex: { id: '0060' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -99,7 +98,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'The Burn Aetherochemical Residue',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0002' }),
+      netRegex: { id: '0002' },
       condition: (data, matches) => data.me === matches.target && data.hedetet,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -117,7 +116,7 @@ const triggerSet: TriggerSet<Data> = {
       // The NPC here is Mining Drone.
       id: 'The Burn Throttle',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7670', capture: false }),
+      netRegex: { npcNameId: '7670', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -158,7 +157,7 @@ const triggerSet: TriggerSet<Data> = {
       // Also handles Chilling Aspiration, which is randomly targeted.
       id: 'The Burn Frost Breath',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['001A', '000E'] }),
+      netRegex: { id: ['001A', '000E'] },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.puddleCleaveOnYou!();

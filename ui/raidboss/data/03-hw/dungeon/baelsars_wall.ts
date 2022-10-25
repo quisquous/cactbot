@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -53,7 +52,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Baelsar Dynamic Sensory Jammer',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '46C' }),
+      netRegex: { effectId: '46C' },
       condition: Conditions.targetIsYou(),
       response: Responses.stopEverything(),
     },
@@ -78,7 +77,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Baelsar Big Boot',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '1CC4' }),
+      netRegex: { id: '1CC4' },
       condition: Conditions.targetIsYou(),
       response: Responses.knockbackOn(),
     },

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -43,7 +42,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Gubal Hard Ferrofluid',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
+      netRegex: { id: ['0030', '0031'] },
       condition: (data, matches) => data.me === matches.target || matches.targetId.slice(0, 1) === '4',
       preRun: (data, matches) => {
         data.markers ??= [];
@@ -81,7 +80,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Gubal Hard Slosh',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0039', source: 'Liquid Flame' }),
+      netRegex: { id: '0039', source: 'Liquid Flame' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -98,7 +97,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Gubal Hard Sunseal',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '46F' }),
+      netRegex: { effectId: '46F' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -115,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Gubal Hard Moonseal',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '470' }),
+      netRegex: { effectId: '470' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

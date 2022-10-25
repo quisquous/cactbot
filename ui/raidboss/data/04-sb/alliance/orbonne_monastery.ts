@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -99,7 +98,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Mustadio Searchlight',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A4' }),
+      netRegex: { id: '00A4' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -116,7 +115,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Spread Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -137,7 +136,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Vacuum',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A5' }),
+      netRegex: { id: '00A5' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.agriasGhostCleanse = true,
     },
@@ -192,7 +191,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Hallowed Bolt',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A6' }),
+      netRegex: { id: '00A6' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -242,7 +241,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Extra Adds',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Emblazoned Shield', capture: false }),
+      netRegex: { name: 'Emblazoned Shield', capture: false },
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -406,7 +405,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Shadowblade Bubble',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AA' }),
+      netRegex: { id: '00AA' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -423,7 +422,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Hallowed Bolt',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -440,21 +439,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Crush Weapon',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005C' }),
+      netRegex: { id: '005C' },
       condition: Conditions.targetIsYou(),
       response: Responses.getOut('alarm'),
     },
     {
       id: 'Orbonne Cid Hallowed Bolt Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      netRegex: { id: '003E', capture: false },
       suppressSeconds: 10,
       response: Responses.stackMarker(),
     },
     {
       id: 'Orbonne Cid Divine Ruination',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '006E' }),
+      netRegex: { id: '006E' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -535,14 +534,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Ultima Dark Cannonade',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0037' }),
+      netRegex: { id: '0037' },
       condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'Orbonne Ultima Eruption',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0066' }),
+      netRegex: { id: '0066' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -559,7 +558,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Ultima Flare IV',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: Conditions.targetIsYou(),
       response: Responses.getOut('alarm'),
     },
@@ -634,7 +633,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Ultima Acceleration Bomb',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '430' }),
+      netRegex: { effectId: '430' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 1,
       response: Responses.stopEverything(),

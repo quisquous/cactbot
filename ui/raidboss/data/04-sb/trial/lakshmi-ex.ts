@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -32,7 +31,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LakshmiEx Chanchala Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
+      netRegex: { target: 'Lakshmi', effectId: '582', capture: false },
       run: (data) => data.chanchala = false,
     },
     {
@@ -99,7 +98,7 @@ const triggerSet: TriggerSet<Data> = {
     { // Stack marker
       id: 'LakshmiEx Pall of Light',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       alertText: (data, matches, output) => {
         if (!data.chanchala)
           return;
@@ -167,7 +166,7 @@ const triggerSet: TriggerSet<Data> = {
       // Offtank cleave
       id: 'LakshmiEx Path of Light Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000E' }),
+      netRegex: { id: '000E' },
       condition: Conditions.targetIsYou(),
       alarmText: (data, _matches, output) => {
         if (data.chanchala)
@@ -198,7 +197,7 @@ const triggerSet: TriggerSet<Data> = {
       // Cross aoe
       id: 'LakshmiEx Hand of Grace',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '006B' }),
+      netRegex: { id: '006B' },
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.chanchala)
@@ -229,7 +228,7 @@ const triggerSet: TriggerSet<Data> = {
       // Flower marker (healers)
       id: 'LakshmiEx Hand of Beauty',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '006D' }),
+      netRegex: { id: '006D' },
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.chanchala)
@@ -260,7 +259,7 @@ const triggerSet: TriggerSet<Data> = {
       // Red marker during add phase
       id: 'LakshmiEx Water III',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       // Soloing can get you two of these.
       suppressSeconds: 1,

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -158,7 +157,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Air Bump',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00D3' }),
+      netRegex: { id: '00D3' },
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -209,7 +208,7 @@ const triggerSet: TriggerSet<Data> = {
       // Break tether if you're the target during Ifrit+Garuda phase
       id: 'E6S Hands of Flame Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0068' }),
+      netRegex: { id: '0068' },
       condition: (data) => data.handsOfFlame,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -253,7 +252,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Hands of Hell',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0016' }),
+      netRegex: { id: '0016' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -276,7 +275,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Hated of the Vortex Effect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8BB' }),
+      netRegex: { effectId: '8BB' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -293,7 +292,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Hated of the Embers Effect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8BC' }),
+      netRegex: { effectId: '8BC' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -344,7 +343,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Irons Of Purgatory',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '006C' }),
+      netRegex: { id: '006C' },
       condition: (data, matches) => data.me === matches.target || data.me === matches.source,
       alertText: (data, matches, output) => {
         if (data.me === matches.source)

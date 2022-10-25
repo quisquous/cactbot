@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -114,7 +113,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8N Low Arithmeticks',
       type: 'GainsEffect',
       // Note: both high and low use '0025' headmarker
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
+      netRegex: { effectId: '3FD' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
@@ -133,7 +132,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N High Arithmeticks',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
+      netRegex: { effectId: '3FE' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
@@ -158,7 +157,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N Enumeration',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
+      netRegex: { id: ['0040', '0041', '0042'] },
       infoText: (data, matches, output) => {
         // 0040 = 2, 0041 = 3, 0042 = 4
         const count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
@@ -207,14 +206,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N Long Needle Party',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       condition: (data) => !(data.me === data.bruteTank && data.bruteTankOut),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'A8N Long Needle Active Tank',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      netRegex: { id: '003E', capture: false },
       condition: (data) => data.me === data.bruteTank && data.bruteTankOut,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -270,7 +269,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N Mirage Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0008' }),
+      netRegex: { id: '0008' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -287,7 +286,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N Ice Missile Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0043' }),
+      netRegex: { id: '0043' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

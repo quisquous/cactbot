@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -140,7 +139,7 @@ const triggerSet: TriggerSet<Data> = {
       // NE X: 11.31371 Y: -86.3137
       id: 'E12N Bomb Collect',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9816' }),
+      netRegex: { npcNameId: '9816' },
       run: (data, matches) => {
         const bomb = {
           north: parseFloat(matches.y) + 70 < 0,
@@ -191,7 +190,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12N Rapturous Reach Double',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       condition: (data) => !data.seenIntermission,
       preRun: (data, matches) => {
         data.stacks ??= [];
@@ -222,14 +221,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12N Rapturous Reach Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      netRegex: { id: '003E', capture: false },
       delaySeconds: 10,
       run: (data) => delete data.stacks,
     },
     {
       id: 'E12N Rapturous Reach Single',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       condition: (data) => data.seenIntermission,
       response: Responses.stackMarkerOn(),
     },
@@ -249,14 +248,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12N Frigid Stone',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0060' }),
+      netRegex: { id: '0060' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'E12N Tether Collect',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: tetherIds }),
+      netRegex: { id: tetherIds },
       run: (data, matches) => {
         data.tethers ??= [];
         data.tethers.push(matches.id);

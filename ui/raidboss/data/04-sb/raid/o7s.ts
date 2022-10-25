@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -23,21 +22,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7S Aether Rot Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
+      netRegex: { effectId: '5C3' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.rot = true,
     },
     {
       id: 'O7S Aether Rot Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '5C3' }),
+      netRegex: { effectId: '5C3' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.rot = false,
     },
     {
       id: 'O7S Dadaluma Simulation',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D3', capture: false }),
+      netRegex: { target: 'Guardian', effectId: '5D3', capture: false },
       condition: (data) => !data.first || data.seenVirus && !data.second,
       run: (data) => {
         if (data.seenVirus)
@@ -49,7 +48,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7S Bibliotaph Simulation',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D4', capture: false }),
+      netRegex: { target: 'Guardian', effectId: '5D4', capture: false },
       condition: (data) => !data.first || data.seenVirus && !data.second,
       run: (data) => {
         if (data.seenVirus)
@@ -61,7 +60,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7S Virus Tracker',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D5', capture: false }),
+      netRegex: { target: 'Guardian', effectId: '5D5', capture: false },
       run: (data) => data.seenVirus = true,
     },
     {
@@ -89,7 +88,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7S Orb Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -106,7 +105,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7S Blue Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000E' }),
+      netRegex: { id: '000E' },
       alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
@@ -139,20 +138,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7S Prey',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       response: Responses.preyOn('info'),
     },
     {
       id: 'O7S Searing Wind',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '178' }),
+      netRegex: { effectId: '178' },
       condition: Conditions.targetIsYou(),
       response: Responses.getOut(),
     },
     {
       id: 'O7S Abandonment',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '58A' }),
+      netRegex: { effectId: '58A' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -170,7 +169,7 @@ const triggerSet: TriggerSet<Data> = {
       // Aether Rot
       id: 'O7S Rot',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
+      netRegex: { effectId: '5C3' },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.rotOnYou!();

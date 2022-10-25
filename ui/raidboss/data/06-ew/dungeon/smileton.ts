@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -54,28 +53,28 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Smileton Face Smiley Face Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'ACB', source: 'Relatively Small Face' }),
+      netRegex: { effectId: 'ACB', source: 'Relatively Small Face' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.smileyFace = true,
     },
     {
       id: 'Smileton Face Smiley Face Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: 'ACB', source: 'Relatively Small Face' }),
+      netRegex: { effectId: 'ACB', source: 'Relatively Small Face' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.smileyFace = false,
     },
     {
       id: 'Smileton Face Frowny Face Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'ACC', source: 'Relatively Small Face' }),
+      netRegex: { effectId: 'ACC', source: 'Relatively Small Face' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.frownyFace = true,
     },
     {
       id: 'Smileton Face Frowny Face Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: 'ACC', source: 'Relatively Small Face' }),
+      netRegex: { effectId: 'ACC', source: 'Relatively Small Face' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.frownyFace = false,
     },

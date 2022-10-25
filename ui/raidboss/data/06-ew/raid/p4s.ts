@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -220,7 +219,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Headmarker Tracker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => {
@@ -354,7 +353,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Role Call',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AF2', 'AF3'], capture: true }),
+      netRegex: { effectId: ['AF2', 'AF3'], capture: true },
       condition: Conditions.targetIsYou(),
       infoText: (data, matches, output) => {
         const debuffRole = (data.debuffRole ??= []).includes(data.role);
@@ -673,7 +672,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Acting Role',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['B6D', 'B6E', 'B6F'], capture: true }),
+      netRegex: { effectId: ['B6D', 'B6E', 'B6F'], capture: true },
       condition: Conditions.targetIsYou(),
       infoText: (data, matches, output) => {
         const actingRoles: { [effectId: string]: string } = {
@@ -847,7 +846,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Act One Safe Spots',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegex: { id: '00AD', source: 'Hesperos' },
       condition: (data) => data.act === '1',
       // Tethers come out Cardinals (0 seconds), (3s) Towers, (6s) Other Cardinals
       suppressSeconds: 7,
@@ -920,7 +919,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Act Two Safe Spots',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegex: { id: '00AD', source: 'Hesperos' },
       condition: (data) => data.act === '2',
       // Tethers come out Cardinals (0 seconds), (3s) Other Cardinals
       suppressSeconds: 4,
@@ -956,7 +955,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Act Headmarker Collector',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.act !== undefined,
       run: (data, matches) => {
         data.actHeadmarkers[matches.target] = getHeadmarkerId(data, matches, orangeMarker);
@@ -965,7 +964,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Act 2 Color Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '00AC' }),
+      netRegex: { id: '00AC' },
       condition: (data) => data.act === '2',
       alertText: (data, matches, output) => {
         if (matches.target !== data.me && matches.source !== data.me)
@@ -1017,7 +1016,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4S Act 4 Color Tether',
       type: 'Tether',
       // Tether comes after the headmarker color.
-      netRegex: NetRegexes.tether({ id: '00A[CD]', source: 'Hesperos' }),
+      netRegex: { id: '00A[CD]', source: 'Hesperos' },
       condition: (data, matches) => data.act === '4' && matches.target === data.me,
       durationSeconds: (data, matches) => data.actHeadmarkers[matches.target] === '012D' ? 12 : 9,
       suppressSeconds: 9999,
@@ -1123,7 +1122,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Act Three Bait Order',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '00AD', source: 'Hesperos' }),
+      netRegex: { id: '00AD', source: 'Hesperos' },
       condition: (data) => data.act === '3',
       // Tethers come out East or West (0 seconds), (3s) Middle knockack, (6) Opposite Cardinal
       suppressSeconds: 7,
@@ -1211,7 +1210,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4S Curtain Call Debuffs',
       // Durations could be 12s, 22s, 32s, and 42s
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AF4', capture: true }),
+      netRegex: { effectId: 'AF4', capture: true },
       condition: (data, matches) => {
         return (data.me === matches.target && data.act === 'curtain');
       },
@@ -1230,7 +1229,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P4S Curtain Call Reminders',
       // Alarms for the other groups
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B7D', capture: true }),
+      netRegex: { effectId: 'B7D', capture: true },
       condition: (data) => data.act === 'curtain',
       preRun: (data) => data.curtainCallTracker = (data.curtainCallTracker ?? 0) + 1,
       delaySeconds: (_data, matches) => parseFloat(matches.duration),

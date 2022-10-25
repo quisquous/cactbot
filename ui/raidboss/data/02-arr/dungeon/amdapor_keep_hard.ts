@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -19,7 +18,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amdapor Keep Hard Boss2 Headmarker on YOU',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000F' }),
+      netRegex: { id: '000F' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -50,7 +49,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amdapor Keep Hard Imobilize',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['29B', '260'], capture: false }),
+      netRegex: { effectId: ['29B', '260'], capture: false },
       response: Responses.killAdds(),
     },
   ],

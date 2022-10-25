@@ -28,7 +28,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Generic Stack-up',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     // DEATHGAZE
@@ -81,7 +81,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Void Sprite',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5508', capture: false }),
+      netRegex: { npcNameId: '5508', capture: false },
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -98,7 +98,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Aero 2',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0046' }),
+      netRegex: { id: '0046' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -146,7 +146,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Scythe Drop',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
@@ -175,7 +175,7 @@ const triggerSet: TriggerSet<Data> = {
       // To avoid this, we store the IDs of Atomos for later comparison.
       id: 'Dun Scaith Atomos Setup',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['5510', '5511'] }),
+      netRegex: { npcNameId: ['5510', '5511'] },
       run: (data, matches) => {
         data.cursing ??= [];
         data.wailing ??= [];
@@ -309,7 +309,7 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/Status/1137
       id: 'Dun Scaith Debilitator Fire',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '471', capture: false }),
+      netRegex: { effectId: '471', capture: false },
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -327,7 +327,7 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/Status/1157
       id: 'Dun Scaith Debilitator Water',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '485', capture: false }),
+      netRegex: { effectId: '485', capture: false },
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -352,7 +352,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Prey Markers',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '232' }),
+      netRegex: { effectId: '232' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -371,7 +371,7 @@ const triggerSet: TriggerSet<Data> = {
       // The cast time on Aetheromodulator is under 3 seconds
       id: 'Dun Scaith Bit Circles',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '3782', capture: false }),
+      netRegex: { npcNameId: '3782', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -388,7 +388,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Aether Collectors',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '3781', capture: false }),
+      netRegex: { npcNameId: '3781', capture: false },
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -462,7 +462,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Shadow Limb Spawn',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5516', capture: false }),
+      netRegex: { npcNameId: '5516', capture: false },
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -496,7 +496,7 @@ const triggerSet: TriggerSet<Data> = {
       // This trigger is common to both Scathach and Diabolos, since handling is 100% identical.
       id: 'Dun Scaith Nox Orbs',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005C' }),
+      netRegex: { id: '005C' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
@@ -534,7 +534,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Noctoshield',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: 'Diabolos', effectId: '1AA', capture: false }),
+      netRegex: { target: 'Diabolos', effectId: '1AA', capture: false },
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -558,7 +558,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Deathgates',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5523', capture: false }),
+      netRegex: { npcNameId: '5523', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -581,7 +581,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Hollow Night',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005B' }),
+      netRegex: { id: '005B' },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.gazeStackOnYou!();
@@ -618,13 +618,13 @@ const triggerSet: TriggerSet<Data> = {
       // This is the tank version of the stack marker. It has minimal circular bordering
       id: 'Dun Scaith Blindside',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005D' }),
+      netRegex: { id: '005D' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Dun Scaith Earth Shaker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },

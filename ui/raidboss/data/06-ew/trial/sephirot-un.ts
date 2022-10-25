@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -132,7 +131,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Ratzon Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0046', '0047'] }),
+      netRegex: { id: ['0046', '0047'] },
       condition: Conditions.targetIsYou(),
       infoText: (_data, matches, output) => {
         if (matches.id === '0046')
@@ -161,7 +160,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Fiendish Rage',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0048', capture: false }),
+      netRegex: { id: '0048', capture: false },
       condition: (data) => data.phase === 1,
       suppressSeconds: 10,
       alertText: (data, _matches, output) => {
@@ -210,7 +209,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Force Against Might',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3ED' }),
+      netRegex: { effectId: '3ED' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => output.text!({ force: matches.effect }),
       run: (data, matches) => data.force = matches.effectId,
@@ -228,7 +227,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Force Against Magic',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3EE' }),
+      netRegex: { effectId: '3EE' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => output.text!({ force: matches.effect }),
       run: (data, matches) => data.force = matches.effectId,
@@ -310,7 +309,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Da\'at Tethers',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0030', capture: false }),
+      netRegex: { id: '0030', capture: false },
       suppressSeconds: 30, // The tethers jump around a lot
       alertText: (data, _matches, output) => {
         if (data.force === '3EE')
@@ -339,13 +338,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Force Against Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: ['3ED', '3EE'], capture: false }),
+      netRegex: { effectId: ['3ED', '3EE'], capture: false },
       run: (data) => delete data.force,
     },
     {
       id: 'SephirotUn Earth Shaker Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       run: (data, matches) => {
         data.shakerTargets = data.shakerTargets ??= [];
         data.shakerTargets.push(matches.target);
@@ -354,7 +353,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Earth Shaker Call',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028', capture: false }),
+      netRegex: { id: '0028', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
@@ -384,7 +383,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Earth Shaker Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028', capture: false }),
+      netRegex: { id: '0028', capture: false },
       delaySeconds: 5,
       run: (data) => delete data.shakerTargets,
     },
@@ -407,7 +406,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Ascension',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      netRegex: { id: '003E', capture: false },
       response: Responses.stackMarker(),
     },
   ],

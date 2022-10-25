@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -81,7 +80,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Yilan Forward March',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '7A6', source: 'Yilan' }),
+      netRegex: { effectId: '7A6', source: 'Yilan' },
       condition: Conditions.targetIsYou(),
       // t=0.0 gain effect (this line)
       // t=6.3 Mini Light starts casting
@@ -104,7 +103,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Yilan About Face',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '7A7', source: 'Yilan' }),
+      netRegex: { effectId: '7A7', source: 'Yilan' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
       alertText: (_data, _matches, output) => output.text!(),
@@ -122,7 +121,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Yilan Left Face',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '7A8', source: 'Yilan' }),
+      netRegex: { effectId: '7A8', source: 'Yilan' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -139,7 +138,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Yilan Right Face',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '7A9', source: 'Yilan' }),
+      netRegex: { effectId: '7A9', source: 'Yilan' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

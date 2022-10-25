@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -67,7 +66,7 @@ const triggerSet: TriggerSet<Data> = {
       // At 5 stacks of Viscous Aetheroplasm, the target begins taking massive damage.
       id: 'Ultima Unreal Viscous Aetheroplasm',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '171', count: '04', capture: false }),
+      netRegex: { effectId: '171', count: '04', capture: false },
       condition: (data) => data.role === 'tank',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

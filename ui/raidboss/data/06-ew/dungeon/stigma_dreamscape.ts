@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -65,14 +64,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dreamscape Chemical Missile',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Dreamscape Electric Slide',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0121' }),
+      netRegex: { id: '0121' },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.target!();
@@ -100,7 +99,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dreamscape Guided Missile',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011' }),
+      netRegex: { id: '0011' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -139,7 +138,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dreamscape Sniper Cannon',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['004F', '0050', '0051', '0052'] }),
+      netRegex: { id: ['004F', '0050', '0051', '0052'] },
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         const limitCutNumber = limitCutNumberMap[matches.id];
@@ -184,7 +183,7 @@ const triggerSet: TriggerSet<Data> = {
       // they are likely to be hit.
       id: 'Dreamscape Touchdown',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ name: 'Hybrid Dragon' }),
+      netRegex: { name: 'Hybrid Dragon' },
       condition: (data) => data.lastBoss,
       infoText: (_data, matches, output) => {
         // The arena is a 50x50 square, with (0,0) in the exact center.
@@ -244,7 +243,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dreamscape Forward March',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '7A6' }),
+      netRegex: { effectId: '7A6' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -261,7 +260,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dreamscape About Face',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '7A7' }),
+      netRegex: { effectId: '7A7' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -278,7 +277,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dreamscape Left Face',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '7A8' }),
+      netRegex: { effectId: '7A8' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -295,7 +294,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dreamscape Right Face',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '7A9' }),
+      netRegex: { effectId: '7A9' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -63,7 +62,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Seeker Mercy Swords',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: ['Trinity Seeker', 'Seeker Avatar'], effectId: '808' }),
+      netRegex: { target: ['Trinity Seeker', 'Seeker Avatar'], effectId: '808' },
       durationSeconds: 10,
       alertText: (data, matches, output) => {
         if (data.calledSeekerSwords)
@@ -253,7 +252,7 @@ const triggerSet: TriggerSet<Data> = {
       // There is no castbar for 5AB7, only this headmarker.
       id: 'Delubrum Seeker Merciful Arc',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00F3' }),
+      netRegex: { id: '00F3' },
       response: Responses.tankBuster(),
     },
     {
@@ -337,7 +336,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Seeker Burning Chains',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00EE' }),
+      netRegex: { id: '00EE' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -355,7 +354,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: the FFXIV parser plugin does not include this as a "gains effect" line.
       id: 'Delubrum Seeker Burning Chains Move',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00EE' }),
+      netRegex: { id: '00EE' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 4,
       response: Responses.breakChains(),
@@ -363,7 +362,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Delubrum Seeker Dead Iron',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00ED' }),
+      netRegex: { id: '00ED' },
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },
@@ -722,7 +721,7 @@ const triggerSet: TriggerSet<Data> = {
       // 8A4: Running Hot: +2
       // 8DC: Running Cold: -1
       // 8E2: Running Cold: -2
-      netRegex: NetRegexes.gainsEffect({ effectId: ['89D', '8A4', '8DC', '8E2'] }),
+      netRegex: { effectId: ['89D', '8A4', '8DC', '8E2'] },
       condition: Conditions.targetIsYou(),
       run: (data, matches) => {
         const tempMap: { [id: string]: number } = {

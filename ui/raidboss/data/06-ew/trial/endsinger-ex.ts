@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -274,7 +273,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx 5Head Initial Direction',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '891', capture: true }),
+      netRegex: { effectId: '891', capture: true },
       condition: (data) => data.headPhase === 5,
       delaySeconds: 0.5,
       promise: async (data, matches) => {
@@ -417,7 +416,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx 5Head Mechanics Rewind Collector',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '808', target: 'The Endsinger', capture: true }),
+      netRegex: { effectId: '808', target: 'The Endsinger', capture: true },
       condition: (data) => data.headPhase === 5,
       infoText: (data, matches, output) => {
         const head = data.storedHeads[matches.targetId];
@@ -489,7 +488,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx 6 Head Collector',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: ['00BD', '00B5'], target: 'The Endsinger', capture: true }),
+      netRegex: { id: ['00BD', '00B5'], target: 'The Endsinger', capture: true },
       condition: (data) => data.headPhase === 6,
       delaySeconds: 0.5,
       promise: async (data, matches) => {
@@ -558,7 +557,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Echoes of Benevolence',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'BB0' }),
+      netRegex: { effectId: 'BB0' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 60,
       infoText: (data, _matches, output) => {
@@ -573,7 +572,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Echoes of Nausea',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'BAD' }),
+      netRegex: { effectId: 'BAD' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 60,
       infoText: (data, _matches, output) => {
@@ -588,7 +587,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Echoes of the Future',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'BAF' }),
+      netRegex: { effectId: 'BAF' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 60,
       infoText: (data, _matches, output) => {
@@ -603,7 +602,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Echoes of Befoulment',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'BAE' }),
+      netRegex: { effectId: 'BAE' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 60,
       infoText: (data, _matches, output) => {
@@ -618,7 +617,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Echoes Rewind',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '95D' }),
+      netRegex: { effectId: '95D' },
       condition: Conditions.targetIsYou(),
       infoText: (data, matches, output) => {
         const mechanicIndex: 1 | 2 | 3 | undefined = ({

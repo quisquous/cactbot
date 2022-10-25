@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -40,7 +39,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TitaniaEx Mist Failure',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Spirit Of Dew', capture: false }),
+      netRegex: { name: 'Spirit Of Dew', capture: false },
       response: Responses.killExtraAdd(),
     },
     {
@@ -212,7 +211,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TitaniaEx Uplift Markers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -247,7 +246,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TitaniaEx Peasebomb',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008D' }),
+      netRegex: { id: '008D' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
       run: (data) => {
@@ -264,7 +263,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TitaniaEx Adds Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A1' }),
+      netRegex: { id: '00A1' },
       delaySeconds: 0.25,
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -283,7 +282,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TitaniaEx Thunder Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0054', source: 'Titania', capture: false }),
+      netRegex: { id: '0054', source: 'Titania', capture: false },
       suppressSeconds: 60,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -22,13 +21,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Cosmos Dark Pulse',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn('info'),
     },
     {
       id: 'Cosmos Dark Well Far Winds',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0060' }),
+      netRegex: { id: '0060' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -114,14 +113,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Cosmos Black Flame 1',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0019' }),
+      netRegex: { id: '0019' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Black Flame 2',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0019' }),
+      netRegex: { id: '0019' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 4,
       infoText: (_data, _matches, output) => output.text!(),
@@ -139,14 +138,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Cosmos Mortal Flame 1',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00C3' }),
+      netRegex: { id: '00C3' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Mortal Flame 2',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00C3' }),
+      netRegex: { id: '00C3' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 5.5,
       infoText: (_data, _matches, output) => output.text!(),
@@ -176,7 +175,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Cosmos Fire\'s Domain',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003[2345]' }),
+      netRegex: { id: '003[2345]' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
         data.firesDomain = (data.firesDomain ?? 0) + 1;

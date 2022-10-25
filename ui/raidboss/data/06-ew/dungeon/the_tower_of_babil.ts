@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -28,7 +27,7 @@ const triggerSet: TriggerSet<Data> = {
       // rather than using the player head marker as a trigger log line.
       id: 'Tower Of Babil Dynamic Player Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['00A2', '00A3'] }),
+      netRegex: { id: ['00A2', '00A3'] },
       condition: Conditions.targetIsYou(),
       run: (data, matches) => data.playerNegative = matches.id === '00A3',
     },
@@ -36,7 +35,7 @@ const triggerSet: TriggerSet<Data> = {
       // 0122 is negative, 0123 is positive.
       id: 'Tower Of Babil Dynamic Scrapline Barnabas Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'Barnabas' }),
+      netRegex: { id: ['0122', '0123'], target: 'Barnabas' },
       run: (data, matches) => data.barnabasNegative = matches.id === '0122',
     },
     {
@@ -123,7 +122,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tower Of Babil Shocking Force',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
@@ -238,7 +237,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tower Of Babil Coffin Scratch',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00C5' }),
+      netRegex: { id: '00C5' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {

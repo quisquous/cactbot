@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -25,7 +24,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T10 Wild Charge',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001F' }),
+      netRegex: { id: '001F' },
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.chargeOnYou!();
@@ -56,13 +55,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T10 Prey',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       response: Responses.preyOn(),
     },
     {
       id: 'T10 Cyclonic Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
+      netRegex: { id: '0015', source: 'Imdugud' },
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.cyclonicOnYou!();

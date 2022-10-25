@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -50,7 +49,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6N Air Bump',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00D3' }),
+      netRegex: { id: '00D3' },
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -95,7 +94,7 @@ const triggerSet: TriggerSet<Data> = {
       // Break tether if you're the target during Ifrit+Garuda phase
       id: 'E6N Hands of Flame Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0068' }),
+      netRegex: { id: '0068' },
       condition: (data) => data.handsOfFlame,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -133,7 +132,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6N Hands of Hell',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0016' }),
+      netRegex: { id: '0016' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

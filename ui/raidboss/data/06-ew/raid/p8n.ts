@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -117,7 +116,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8N Suneater Cthonic Vent Add',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '11404' }),
+      netRegex: { npcNameId: '11404' },
       run: (data, matches) => data.ventIds.push(matches.id),
     },
     {

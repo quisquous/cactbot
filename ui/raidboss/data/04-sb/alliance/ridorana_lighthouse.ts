@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -148,21 +147,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Famfrit Dark Cannonade',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0037' }),
+      netRegex: { id: '0037' },
       condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'Ridorana Famfrit Briny Cannonade',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Ridorana Famfrit Dark Rain',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Dark Rain', capture: false }),
+      netRegex: { name: 'Dark Rain', capture: false },
       suppressSeconds: 10,
       response: Responses.killAdds(),
     },
@@ -192,7 +191,7 @@ const triggerSet: TriggerSet<Data> = {
       // Burns effect.
       id: 'Ridorana Belias Hand of Time',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '212' }),
+      netRegex: { effectId: '212' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -225,7 +224,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Belias Gigas',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Gigas', capture: false }),
+      netRegex: { name: 'Gigas', capture: false },
       suppressSeconds: 10,
       response: Responses.killAdds(),
     },
@@ -238,7 +237,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Construct Accelerate Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008A' }),
+      netRegex: { id: '008A' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => data.accelerateSpreadOnMe = true,
       response: Responses.spread(),
@@ -246,7 +245,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Construct Accelerate Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0064' }),
+      netRegex: { id: '0064' },
       condition: (data) => !data.accelerateSpreadOnMe,
       response: Responses.stackMarkerOn(),
     },
@@ -266,7 +265,7 @@ const triggerSet: TriggerSet<Data> = {
       // Hp Penalty effect.
       id: 'Ridorana Construct Math HP Check 1',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '615' }),
+      netRegex: { effectId: '615' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
         if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
@@ -280,7 +279,7 @@ const triggerSet: TriggerSet<Data> = {
       // overwriting any results from t=0 if that was valid.
       id: 'Ridorana Construct Math HP Check 2',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '615' }),
+      netRegex: { effectId: '615' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
         if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
@@ -344,7 +343,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Construct Acceleration Bomb',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '568' }),
+      netRegex: { effectId: '568' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 2,
       response: Responses.stopEverything(),
@@ -370,7 +369,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Yiazmat Magnetic Negative',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '60F' }),
+      netRegex: { effectId: '60F' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -387,7 +386,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Yiazmat Magnetic Positive',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '60E' }),
+      netRegex: { effectId: '60E' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -404,14 +403,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Yiazmat Archaeodemon',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Archaeodemon', capture: false }),
+      netRegex: { name: 'Archaeodemon', capture: false },
       suppressSeconds: 10,
       response: Responses.killAdds(),
     },
     {
       id: 'Ridorana Yiazmat Heart',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Heart Of The Dragon', capture: false }),
+      netRegex: { name: 'Heart Of The Dragon', capture: false },
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

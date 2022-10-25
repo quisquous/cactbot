@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -19,7 +18,7 @@ const triggerSet: TriggerSet<Data> = {
       // Not 100% sure if there's a better way to handle the callout
       id: 'Wanderer\'s Palace Hard Doom',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
+      netRegex: { effectId: 'D2' },
       alertText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {

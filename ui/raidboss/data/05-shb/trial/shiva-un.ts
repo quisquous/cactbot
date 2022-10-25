@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -130,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Slashing Resistance Down Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '23C' }),
+      netRegex: { effectId: '23C' },
       run: (data, matches) => {
         data.slashing ??= {};
         data.slashing[matches.target] = true;
@@ -139,7 +138,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Slashing Resistance Down Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '23C' }),
+      netRegex: { effectId: '23C' },
       run: (data, matches) => {
         data.slashing ??= {};
         data.slashing[matches.target] = false;
@@ -148,7 +147,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Blunt Resistance Down Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '23D' }),
+      netRegex: { effectId: '23D' },
       run: (data, matches) => {
         data.blunt ??= {};
         data.blunt[matches.target] = true;
@@ -157,7 +156,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Blunt Resistance Down Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '23D' }),
+      netRegex: { effectId: '23D' },
       run: (data, matches) => {
         data.blunt ??= {};
         data.blunt[matches.target] = false;
@@ -172,7 +171,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Hailstorm Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001D' }),
+      netRegex: { id: '001D' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
@@ -207,7 +206,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Avalanche Marker Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001A' }),
+      netRegex: { id: '001A' },
       condition: Conditions.targetIsYou(),
       // Responses.knockback does not quite give the 'laser cleave' aspect here.
       alarmText: (_data, _matches, output) => output.text!(),
@@ -225,7 +224,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Avalanche Marker Other',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001A' }),
+      netRegex: { id: '001A' },
       condition: Conditions.targetIsNotYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

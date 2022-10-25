@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
@@ -299,7 +298,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shadow Servant Cleave Drop',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '97[3456]' }),
+      netRegex: { effectId: '97[3456]' },
       condition: Conditions.targetIsYou(),
       run: (data, matches) => {
         data.gigaSlashCleaveDebuffId = matches.effectId;
@@ -309,7 +308,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shadow Servant Get In',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '9D6', capture: false }),
+      netRegex: { effectId: '9D6', capture: false },
       // The effect lasts two seconds, use the difference of the two
       // instead of telling the bound people to get in instantly.
       delaySeconds: 1,
@@ -339,7 +338,7 @@ const triggerSet: TriggerSet<Data> = {
       // a job of 0 (player died), then return '?' for the affected players.
       id: 'E10S Shadow Of A Hero',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ name: 'Shadow Of A Hero' }),
+      netRegex: { name: 'Shadow Of A Hero' },
       condition: (data) => data.clones,
       run: (data, matches) => {
         data.myClone ??= [];
@@ -351,7 +350,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shadow Of A Hero Head Marker Map',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ target: 'Shadow Of A Hero' }),
+      netRegex: { target: 'Shadow Of A Hero' },
       condition: (data) => !data.shadowMarkerMap,
       suppressSeconds: 1,
       run: (data, matches) => {
@@ -366,7 +365,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shadow Of A Hero Head Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ target: 'Shadow Of A Hero' }),
+      netRegex: { target: 'Shadow Of A Hero' },
       condition: (data) => !data.headMarkerTriggered,
       durationSeconds: 7,
       alertText: (data, matches, output) => {
@@ -640,7 +639,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shackled Apart',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0082' }),
+      netRegex: { id: '0082' },
       condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       alertText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
@@ -653,7 +652,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shackled Together',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0081' }),
+      netRegex: { id: '0081' },
       condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       alertText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;

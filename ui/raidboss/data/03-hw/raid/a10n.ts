@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -97,20 +96,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10N Critical Wrath',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0019' }),
+      netRegex: { id: '0019' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'A10N Bomb Toss',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'A10N Gobslash Slicetops',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.target!();

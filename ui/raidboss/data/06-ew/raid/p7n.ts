@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -63,7 +62,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7N Hemitheos Holy Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0137' }),
+      netRegex: { id: '0137' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -101,13 +100,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7N Hemitheos Aero II Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '016C' }),
+      netRegex: { id: '016C' },
       run: (data, matches) => data.busterTargets.push(matches.target),
     },
     {
       id: 'P7N Hemitheos Aero II Call',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '016C', capture: false }),
+      netRegex: { id: '016C', capture: false },
       delaySeconds: 0.3,
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {
@@ -123,7 +122,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7N Hemitheos Aero II Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '016C', capture: false }),
+      netRegex: { id: '016C', capture: false },
       delaySeconds: 5,
       run: (data) => data.busterTargets = [],
     },

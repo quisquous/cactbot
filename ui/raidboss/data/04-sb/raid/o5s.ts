@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -16,7 +15,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O5S Stop Combat',
       type: 'RemovedCombatant',
-      netRegex: NetRegexes.removingCombatant({ name: 'Phantom Train', capture: false }),
+      netRegex: { name: 'Phantom Train', capture: false },
       run: (data) => data.StopCombat(),
     },
     {
@@ -40,7 +39,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O5S Diabolic Light',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -57,7 +56,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O5S Diabolic Wind',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0046' }),
+      netRegex: { id: '0046' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -74,7 +73,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O5S Remorse',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Remorse', capture: false }),
+      netRegex: { name: 'Remorse', capture: false },
       response: Responses.knockback(),
     },
   ],

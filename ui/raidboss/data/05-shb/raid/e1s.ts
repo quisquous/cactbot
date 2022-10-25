@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -93,13 +92,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Paradise Regained',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: 'Eden Prime', effectId: '7B6', capture: false }),
+      netRegex: { target: 'Eden Prime', effectId: '7B6', capture: false },
       run: (data) => data.paradise = true,
     },
     {
       id: 'E1S Paradise Regained But Lost',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ target: 'Eden Prime', effectId: '7B6', capture: false }),
+      netRegex: { target: 'Eden Prime', effectId: '7B6', capture: false },
       run: (data) => data.paradise = false,
     },
     {
@@ -244,7 +243,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Vice and Virtue DPS 1',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AE' }),
+      netRegex: { id: '00AE' },
       condition: (data, matches) => !data.paradise && data.vice === 'dps' && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -277,7 +276,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Vice and Virtue Tank Mark',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AE' }),
+      netRegex: { id: '00AE' },
       condition: (data, matches) => data.vice === 'tank' && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -311,7 +310,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Vice and Virtue Healer Mark YOU',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '840' }),
+      netRegex: { effectId: '840' },
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.paradise)
@@ -341,7 +340,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Vice and Virtue Healer Mark Not You',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '840', capture: false }),
+      netRegex: { effectId: '840', capture: false },
       condition: (data) => {
         if (data.role === 'dps')
           return data.paradise;

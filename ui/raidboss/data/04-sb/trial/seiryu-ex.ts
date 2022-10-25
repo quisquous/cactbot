@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -145,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SeiryuEx Ascending Marker Tracking',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A9' }),
+      netRegex: { id: '00A9' },
       condition: (data) => data.blazing,
       run: (data, matches) => {
         data.markers ??= [];
@@ -155,7 +154,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SeiryuEx Ascending Marker You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A9' }),
+      netRegex: { id: '00A9' },
       condition: (data, matches) => data.blazing && matches.target === data.me,
       infoText: (data, _matches, output) => {
         if (data.role === 'tank' || data.role === 'healer')
@@ -185,7 +184,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SeiryuEx Ascending Tower You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A9', capture: false }),
+      netRegex: { id: '00A9', capture: false },
       condition: (data) => {
         if (!data.blazing || data.markers?.length !== 4)
           return false;
@@ -268,7 +267,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SeiryuEx Stack',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Ao-No-Shiki', capture: false }),
+      netRegex: { name: 'Ao-No-Shiki', capture: false },
       infoText: (data, _matches, output) => {
         if (data.role === 'tank' || data.role === 'healer')
           return output.stackSouth!();

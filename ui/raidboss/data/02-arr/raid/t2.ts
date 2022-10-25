@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -30,7 +29,7 @@ const triggerSet: TriggerSet<Data> = {
       // Allagan Rot
       id: 'T2 Rot',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
+      netRegex: { effectId: '14D' },
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.rotOnYou!();
@@ -59,7 +58,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T2 Pass Rot',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
+      netRegex: { effectId: '14D' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => data.rot = true,
       delaySeconds: 11,
@@ -81,7 +80,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T2 Lost Rot',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '14D' }),
+      netRegex: { effectId: '14D' },
       condition: Conditions.targetIsYou(),
       run: (data) => delete data.rot,
     },

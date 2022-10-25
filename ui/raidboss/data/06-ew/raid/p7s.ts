@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -83,7 +82,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Headmarker Tracker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => {
@@ -301,7 +300,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Hemitheos\'s Holy III Healer Groups',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         const correctedMatch = getHeadmarkerId(data, matches);
@@ -397,7 +396,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Immature Stymphalide Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011', source: 'Immature Stymphalide', capture: false }),
+      netRegex: { id: '0011', source: 'Immature Stymphalide', capture: false },
       // ~9s between tether and Bronze Bellows (no cast) in all cases.
       delaySeconds: 4,
       // Just give this to everyone.  People in towers or elsewhere can be safe.
@@ -424,7 +423,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       // CEC/D45 = Inviolate Winds
       // CED/D56 = Holy Bonds
-      netRegex: NetRegexes.gainsEffect({ effectId: ['CEC', 'D45'] }),
+      netRegex: { effectId: ['CEC', 'D45'] },
       condition: Conditions.targetIsYou(),
       durationSeconds: 20,
       response: (data, matches, output) => {
@@ -455,7 +454,7 @@ const triggerSet: TriggerSet<Data> = {
       // War: 4 Bull Tethers, 2 Minotaur Tethers, 2 Bird Tethers
       // TODO: Get locations with OverlayPlugin via X, Y and bird headings?
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: ['0001', '0006', '0039', '0011'] }),
+      netRegex: { id: ['0001', '0006', '0039', '0011'] },
       condition: (data) => !data.stopTethers,
       preRun: (data, matches) => data.tetherCollect.push(matches.target),
       delaySeconds: 0.1,
@@ -568,7 +567,7 @@ const triggerSet: TriggerSet<Data> = {
       // to 0039 possibly reapplying. This trigger is used to only collect tethers
       // during a defined window.
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: ['0006', '0039'], capture: false }),
+      netRegex: { id: ['0006', '0039'], capture: false },
       delaySeconds: 0.2,
       suppressSeconds: 6,
       run: (data) => data.stopTethers = true,
@@ -598,7 +597,7 @@ const triggerSet: TriggerSet<Data> = {
       // First trigger is ~4s after debuffs callout
       // These happen 6s before cast
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => !data.seenInviolatePurgation,
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
@@ -623,7 +622,7 @@ const triggerSet: TriggerSet<Data> = {
       // D42 = Holy Purgation II
       // D43 = Holy Purgation III
       // D44 = Holy Purgation IV
-      netRegex: NetRegexes.gainsEffect({ effectId: ['CE[EF]', 'D3F', 'D4[01234]'] }),
+      netRegex: { effectId: ['CE[EF]', 'D3F', 'D4[01234]'] },
       run: (data, matches) => {
         data.seenInviolatePurgation = true;
         if (data.me !== matches.target)
@@ -651,7 +650,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Inviolate Purgation',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['CE[EF]', 'D3F', 'D4[01234]'], capture: false }),
+      netRegex: { effectId: ['CE[EF]', 'D3F', 'D4[01234]'], capture: false },
       delaySeconds: 0.5,
       durationSeconds: 55,
       suppressSeconds: 10,
@@ -682,7 +681,7 @@ const triggerSet: TriggerSet<Data> = {
       // First trigger is ~4s after debuffs callout
       // These happen 6s before cast
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.seenInviolatePurgation,
       suppressSeconds: 1,
       infoText: (data, matches, output) => {

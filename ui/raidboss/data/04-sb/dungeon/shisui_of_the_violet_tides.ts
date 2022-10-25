@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -14,7 +13,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shisui Amikiri Kamikiri Add',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '6238' }),
+      netRegex: { npcNameId: '6238' },
       alertText: (_data, matches, output) => output.kill!({ name: matches.name }),
       outputStrings: {
         kill: {
@@ -30,7 +29,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shisui Amikiri Digestive Fluid',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000E' }),
+      netRegex: { id: '000E' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -54,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
       // This is what it's called!
       id: 'Shisui Ruby Princess Geothermal Flatulence',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -71,7 +70,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shisui Shisui Yohi Naishi-No-Kami',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '6244', capture: false }),
+      netRegex: { npcNameId: '6244', capture: false },
       response: Responses.killAdds(),
     },
     {

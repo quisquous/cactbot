@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -59,7 +58,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O7N Diffractive Laser',
       type: 'GainsEffect',
       // Air Force Simulation effect happens ~3 seconds before Diffractive Laser (2761) starts casting.
-      netRegex: NetRegexes.gainsEffect({ effectId: '5D2', capture: false }),
+      netRegex: { effectId: '5D2', capture: false },
       // All of the various hidden Guardian adds all get this effect.
       suppressSeconds: 5,
       response: Responses.getOut(),
@@ -67,7 +66,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O7N Prey',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       response: Responses.preyOn('info'),
     },
     {
@@ -107,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       // 7110 = Dadaluma
       // 7111 = Ultros
       // 7113 = Bibliotaph
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['7018', '7110', '7111', '7113'] }),
+      netRegex: { npcNameId: ['7018', '7110', '7111', '7113'] },
       infoText: (_data, matches, output) => {
         return output.kill!({ name: matches.name });
       },

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -282,7 +281,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Absolute Flash',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B3' }),
+      netRegex: { id: '00B3' },
       suppressSeconds: 5,
       response: Responses.lookAwayFromTarget(),
     },
@@ -330,7 +329,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Adds Deluge of Death Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: (data, matches) => !data.ultimateSeen && data.me === matches.target,
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -347,7 +346,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Spectral Egi Flare Breath',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Spectral Egi', id: '0054' }),
+      netRegex: { source: 'Spectral Egi', id: '0054' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 4,
       infoText: (_data, _matches, output) => output.text!(),
@@ -491,7 +490,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Katon: San',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A1', capture: false }),
+      netRegex: { id: '00A1', capture: false },
       condition: (data) => data.ultimateSeen && data.ninja || data.isAddPhase,
       suppressSeconds: 2,
       response: Responses.stackMarker(),
@@ -499,7 +498,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Perfect Decimation',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -516,7 +515,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Brimstone Earth',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0067' }),
+      netRegex: { id: '0067' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -533,7 +532,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Deluge of Death Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: (data, matches) => data.ultimateSeen && data.me === matches.target,
       alarmText: (_data, _matches, output) => output.text!(),
       run: (data) => data.deluge = true,
@@ -551,7 +550,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Absolute Holy',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A1' }),
+      netRegex: { id: '00A1' },
       condition: (data) => !data.ninja && !data.isAddPhase,
       // This stack marker comes before the deluge markers.
       delaySeconds: (data, matches) => matches.target !== data.me ? 0.4 : 0,
@@ -617,7 +616,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Quintuplecast Blizzard',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00E2', capture: false }),
+      netRegex: { id: '00E2', capture: false },
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
@@ -630,7 +629,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Quintuplecast Holy',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00DD', capture: false }),
+      netRegex: { id: '00DD', capture: false },
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
@@ -643,7 +642,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Quintuplecast Stone',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00DE', capture: false }),
+      netRegex: { id: '00DE', capture: false },
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
@@ -656,7 +655,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Quintuplecast Fire',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00E4', capture: false }),
+      netRegex: { id: '00E4', capture: false },
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
@@ -669,7 +668,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Quintuplecast Flash',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00DF', capture: false }),
+      netRegex: { id: '00DF', capture: false },
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,

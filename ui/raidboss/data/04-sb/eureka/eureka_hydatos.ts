@@ -79,13 +79,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Falling Asleep',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
+      netRegex: { line: '7 minutes have elapsed since your last activity..*?', capture: false },
       response: Responses.wakeUp(),
     },
     {
       id: 'BA Saved By Rememberance',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'The memories of heroes past live on again.*?', capture: false }),
+      netRegex: { line: 'The memories of heroes past live on again.*?', capture: false },
       sound: 'Long',
     },
     {
@@ -111,14 +111,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA West Side',
       type: 'Ability',
-      netRegex: { id: '3956', source: 'Art', target: '[^:]+', capture: false },
+      netRegex: NetRegexes.ability({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
       suppressSeconds: 1000,
       run: (data) => data.side = 'west',
     },
     {
       id: 'BA East Side',
       type: 'Ability',
-      netRegex: { id: '3957', source: 'Owain', target: '[^:]+', capture: false },
+      netRegex: NetRegexes.ability({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
       suppressSeconds: 1000,
       run: (data) => data.side = 'east',
     },
@@ -139,7 +139,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Art Orb Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005C' }),
+      netRegex: { id: '005C' },
       condition: (data) => data.side === 'west',
       alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
@@ -173,7 +173,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Art Piercing Dark Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: (data, matches) => data.side === 'west' && data.me === matches.target,
       response: Responses.spread(),
     },
@@ -227,14 +227,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Owain Piercing Light Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: (data, matches) => data.side === 'east' && data.me === matches.target,
       response: Responses.spread(),
     },
     {
       id: 'BA Owain Dorito Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: (data, matches) => data.side === 'east' && data.me === matches.target,
       response: Responses.doritoStack(),
     },
@@ -321,7 +321,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Raiden Lancing Bolt',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008A' }),
+      netRegex: { id: '008A' },
       condition: (data, matches) => data.sealed && data.me === matches.target,
       response: Responses.spread(),
     },
@@ -498,7 +498,7 @@ const triggerSet: TriggerSet<Data> = {
       // Ideally parser logic could be added for this case, but this is where we are.
       id: 'BA AV Eidos Relative Virtue Astral',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false }),
+      netRegex: { line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false },
       condition: (data) => data.sealed,
       run: (data) => {
         // RV clones get buffs in the reverse order that they do their attacks in.
@@ -510,7 +510,7 @@ const triggerSet: TriggerSet<Data> = {
       // See note above for `BA AV Eidos Relative Virtue Astral`.
       id: 'BA AV Eidos Relative Virtue Umbral',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false }),
+      netRegex: { line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false },
       condition: (data) => data.sealed,
       run: (data) => {
         // RV clones get buffs in the reverse order that they do their attacks in.
@@ -820,7 +820,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Ozma Meteor',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0039' }),
+      netRegex: { id: '0039' },
       condition: (data, matches) => data.sealed && data.me === matches.target,
       response: Responses.meteorOnYou(),
     },

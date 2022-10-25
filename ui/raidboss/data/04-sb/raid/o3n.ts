@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -52,7 +51,7 @@ const triggerSet: TriggerSet<Data> = {
       //   (3) prey marker
       id: 'O3N Spellblade Holy Standard',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
+      netRegex: { id: ['0064', '0065'] },
       condition: (data, matches) => {
         // Cave phase has no stack markers.
         if (data.phaseNumber === 2)
@@ -89,14 +88,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3N Spellblade Holy Cave',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0065' }),
+      netRegex: { id: '0065' },
       condition: (data, matches) => data.phaseNumber === 2 && data.me === matches.target,
       response: Responses.spread(),
     },
     {
       id: 'O3N Spellblade Holy Mindjack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0064' }),
+      netRegex: { id: '0064' },
       condition: (data) => {
         if (data.phaseNumber < 3)
           return false;
@@ -136,7 +135,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3N Great Dragon',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Great Dragon', capture: false }),
+      netRegex: { name: 'Great Dragon', capture: false },
       condition: (data) => data.role === 'tank',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

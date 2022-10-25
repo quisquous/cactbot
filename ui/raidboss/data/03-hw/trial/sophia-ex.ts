@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -257,7 +256,7 @@ const triggerSet: TriggerSet<Data> = {
       // 9. Clones disappear
       id: 'SophiaEX Clone Collect',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
+      netRegex: { name: 'Aion Teleos' },
       run: (data, matches) => {
         data.cloneSpots ??= {};
         const x = parseFloat(matches.x);
@@ -279,7 +278,7 @@ const triggerSet: TriggerSet<Data> = {
       // we have to separate out the "seen Thunder" logic.
       id: 'SophiaEX Duplicate Collect',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '002D' }),
+      netRegex: { id: '002D' },
       run: (data, matches) => {
         const spot = data.cloneSpots?.[matches.sourceId];
         if (!spot)
@@ -309,7 +308,7 @@ const triggerSet: TriggerSet<Data> = {
       // our best way to call the mechanic is to check whether clones are active.
       id: 'SophiaEX Clones Active',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
+      netRegex: { name: 'Aion Teleos', capture: false },
       run: (data) => data.clonesActive = true,
     },
     {
@@ -452,7 +451,7 @@ const triggerSet: TriggerSet<Data> = {
       // There will always be exactly one blue Quasar, unless the split is 4/2.
       id: 'SophiaEX Quasar Tether Collect',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011' }),
+      netRegex: { id: '0011' },
       condition: (data) => {
         // We shouldn't run this while Aion Teleos mechanics are active.
         return !data.clonesActive;
@@ -465,7 +464,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SophiaEX Tilt Via Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011', capture: false }),
+      netRegex: { id: '0011', capture: false },
       condition: (data) => {
         // No platform tilts if clones are up.
         return !data.clonesActive;

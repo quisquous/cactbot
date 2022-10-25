@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -39,23 +38,26 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'Xelphatol Long Burst',
+      type: 'StartsUsing',
       netRegex: { id: '19C8', source: 'Nuzal Hueloc', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Xelphatol Hot Blast',
+      type: 'StartsUsing',
       netRegex: { id: '19CC', source: 'Floating Turret', capture: false },
       response: Responses.getUnder(),
     },
     {
       id: 'Xelphatol On High',
+      type: 'StartsUsing',
       netRegex: { id: '19CF', source: 'Dotoli Ciloc', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'Xelphatol Dark Wings',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -71,20 +73,21 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Xelphatol Ixali Aero AOE',
+      type: 'StartsUsing',
       netRegex: { id: '19D5', source: 'Tozol Huatotl', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Xelphatol Bill',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0046' }),
+      netRegex: { id: '0046' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Xelphatol Hawk',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
   ],

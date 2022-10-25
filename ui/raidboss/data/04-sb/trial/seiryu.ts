@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -77,14 +76,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Seiryu Serpent Descending',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A9' }),
+      netRegex: { id: '00A9' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Seiryu Blue Bolt',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Ao-No-Shiki', id: '0011' }),
+      netRegex: { source: 'Ao-No-Shiki', id: '0011' },
       delaySeconds: 0.5,
       infoText: (data, matches, output) => {
         if (data.redRush?.includes(data.me))
@@ -102,7 +101,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Seiryu Red Rush',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Aka-No-Shiki', id: '0011' }),
+      netRegex: { source: 'Aka-No-Shiki', id: '0011' },
       alertText: (data, matches, output) => {
         // If targeted by two, skip.
         if (data.redRush?.includes(data.me))
@@ -124,7 +123,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Seiryu Kanabo',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Iwa-No-Shiki', id: '0011' }),
+      netRegex: { source: 'Iwa-No-Shiki', id: '0011' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
       alarmText: (_data, _matches, output) => output.text!(),

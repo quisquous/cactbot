@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -23,7 +22,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Heroes Gauntlet Spectral Gust',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A9' }),
+      netRegex: { id: '00A9' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -37,7 +36,7 @@ const triggerSet: TriggerSet<Data> = {
       // Spectral Thief tethers to the locations where it will attack.
       id: 'Heroes Gauntlet Spectral Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '000C', capture: false }),
+      netRegex: { id: '000C', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -61,7 +60,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Heroes Gauntlet Large Zombie Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '004F' }),
+      netRegex: { id: '004F' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -119,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
       // Otherwise they stack on the rock they drop.
       id: 'Heroes Gauntlet Wild Anguish Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005D' }),
+      netRegex: { id: '005D' },
       run: (data, matches) => {
         data.anguish ??= [];
         data.anguish.push(matches.target);
@@ -128,7 +127,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Heroes Gauntlet Wild Anguish Resolve',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005D' }),
+      netRegex: { id: '005D' },
       delaySeconds: 1,
       suppressSeconds: 5,
       alertText: (data, matches, output) => {
@@ -157,7 +156,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Heroes Gauntlet Wild Anguish Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005E' }),
+      netRegex: { id: '005E' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

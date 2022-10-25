@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -44,7 +43,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Holminster Exorcise Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
@@ -62,7 +61,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Holminster Chain Down',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005C' }),
+      netRegex: { id: '005C' },
       condition: Conditions.targetIsNotYou(),
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
@@ -79,7 +78,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Holminster Taphephobia',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

@@ -68,7 +68,7 @@ const triggerSet: TriggerSet<Data> = {
       // Lady's Candle Spawn
       id: 'Haukke Normal Ladys Candle',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '425', capture: false }),
+      netRegex: { npcNameId: '425', capture: false },
       response: Responses.killAdds(),
     },
     {
@@ -78,7 +78,7 @@ const triggerSet: TriggerSet<Data> = {
       // Suppression included since 2 Handmaiden's spawn at the same time
       id: 'Haukke Normal Ladys Handmaiden',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '424', capture: false }),
+      netRegex: { npcNameId: '424', capture: false },
       suppressSeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

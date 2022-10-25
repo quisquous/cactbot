@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -123,7 +122,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Marker Anthelion',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8E1', source: 'Hydaelyn', count: '1B5', capture: false }),
+      netRegex: { effectId: '8E1', source: 'Hydaelyn', count: '1B5', capture: false },
       // Example timeline:
       //     t=0 StartsCasting Crystallize
       //     t=4 ActionEffect Crystalize
@@ -155,7 +154,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Marker Highest Holy',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8E1', source: 'Hydaelyn', count: '1B4', capture: false }),
+      netRegex: { effectId: '8E1', source: 'Hydaelyn', count: '1B4', capture: false },
       preRun: (data) => data.isEquinox = false,
       delaySeconds: 2.5,
       durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,

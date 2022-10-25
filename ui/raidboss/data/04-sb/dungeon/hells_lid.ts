@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -51,7 +50,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hells Lid Targeted Leap',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.targetText!();
@@ -107,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hells Lid Hell Of Waste',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '002B' }),
+      netRegex: { id: '002B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

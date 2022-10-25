@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -19,7 +18,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Heart Cleanup',
       type: 'RemovedCombatant',
-      netRegex: NetRegexes.removingCombatant({ name: 'Shinryu', capture: false }),
+      netRegex: { name: 'Shinryu', capture: false },
       run: (data) => {
         // Explicitly clear so ugly heart message doesn't appear after wipe.
         delete data.phase;
@@ -331,7 +330,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Heart',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'The Worm\'s Heart', capture: false }),
+      netRegex: { name: 'The Worm\'s Heart', capture: false },
       condition: (data) => {
         // Prevent ugly heart message on wipe.
         return data.phase === 1;
@@ -466,7 +465,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Tethers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0061' }),
+      netRegex: { id: '0061' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 3.8,
       infoText: (data, _matches, output) => {
@@ -497,7 +496,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Tail Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '007E' }),
+      netRegex: { id: '007E' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -514,7 +513,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Shakers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       condition: (data, matches) => {
         data.shakerTargets ??= [];
         data.shakerTargets.push(matches.target);
@@ -551,7 +550,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Cocoon Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0039' }),
+      netRegex: { id: '0039' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

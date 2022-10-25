@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -84,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T13 Megaflare Share',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027' }),
+      netRegex: { id: '0027' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -100,14 +99,15 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T13 Earthshaker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      type: 'HeadMarker',
+      netRegex: { id: '0028' },
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },
     {
       id: 'T13 Tempest Wing',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0004', target: 'Bahamut Prime' }),
+      netRegex: { id: '0004', target: 'Bahamut Prime' },
       condition: (data, matches) => data.me === matches.source,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

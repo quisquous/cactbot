@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -68,13 +67,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Emerald Divide Et Impera Tankbuster',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00DA' }),
+      netRegex: { id: '00DA' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Emerald Primus Terminus Est',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00F5' }),
+      netRegex: { id: '00F5' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -91,7 +90,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Emerald Secundus Terminus Est X',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00FE' }),
+      netRegex: { id: '00FE' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -108,7 +107,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Emerald Secundus Terminus Est Plus',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00FD' }),
+      netRegex: { id: '00FD' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

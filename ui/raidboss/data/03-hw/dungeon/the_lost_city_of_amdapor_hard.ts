@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -56,7 +55,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Achamoth Toxic Squama',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001', capture: false }),
+      netRegex: { id: '0001', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -90,7 +89,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Winged Lion Wind Resist Down II Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '41C' }),
+      netRegex: { effectId: '41C' },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text!();
@@ -109,13 +108,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Winged Lion Wind Resist Down II Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '41C' }),
+      netRegex: { effectId: '41C' },
       run: (data, matches) => data.windResistDown[matches.target] = false,
     },
     {
       id: 'LostCityHard Winged Lion Earth Resist Down II Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '41D' }),
+      netRegex: { effectId: '41D' },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text!();
@@ -134,7 +133,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Winged Lion Earth Resist Down II Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '41D' }),
+      netRegex: { effectId: '41D' },
       run: (data, matches) => data.earthResistDown[matches.target] = false,
     },
     {
@@ -252,7 +251,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Kuribu Cure III',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '004A' }),
+      netRegex: { id: '004A' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

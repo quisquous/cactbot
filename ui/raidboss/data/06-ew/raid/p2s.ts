@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -41,7 +40,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2S Headmarker Tracker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => getHeadmarkerId(data, matches),
@@ -119,13 +118,13 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P2S Mark of the Tides Collect',
       type: 'GainsEffect',
       // Status goes out with Predatory Avarice (6827).
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AD0' }),
+      netRegex: { effectId: 'AD0' },
       run: (data, matches) => (data.avarice ??= []).push(matches),
     },
     {
       id: 'P2S Mark of the Tides',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AD0', capture: false }),
+      netRegex: { effectId: 'AD0', capture: false },
       delaySeconds: (data) => data.avarice?.length === 2 ? 0 : 0.5,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
@@ -170,7 +169,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2S Mark of the Tides Move',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AD0' }),
+      netRegex: { effectId: 'AD0' },
       condition: Conditions.targetIsYou(),
       // 23 second duration, safe to move ~16.7s for first time, ~15s for the second.
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
@@ -182,7 +181,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2S Mark of the Depths',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AD1' }),
+      netRegex: { effectId: 'AD1' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.stackOnYou!(),
       outputStrings: {
@@ -192,7 +191,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2S Channeling Flow',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AD2', 'AD3', 'AD4', 'AD5'] }),
+      netRegex: { effectId: ['AD2', 'AD3', 'AD4', 'AD5'] },
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         const t = parseFloat(matches.duration);
@@ -249,7 +248,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P2S Coherence Flare',
       type: 'Tether',
       // Whoever has tether when cast of 681B ends will be flared
-      netRegex: NetRegexes.tether({ id: '0054', source: 'Hippokampos' }),
+      netRegex: { id: '0054', source: 'Hippokampos' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       run: (data, matches) => data.flareTarget = matches.target,
@@ -307,7 +306,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P2S Kampeos Harma Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: Conditions.targetIsYou(),
       response: (data, matches, output) => {
         // cactbot-builtin-response

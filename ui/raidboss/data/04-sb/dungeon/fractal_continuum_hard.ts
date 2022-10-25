@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -162,7 +161,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Ratzon',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0046' }),
+      netRegex: { id: '0046' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -179,7 +178,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Dischord Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['004D', '004E'] }),
+      netRegex: { id: ['004D', '004E'] },
       run: (data, matches) => {
         data.dischord ??= {};
         data.dischord[matches.id] = matches.target;
@@ -188,7 +187,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Dischord Resolve',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['004D', '004E'] }),
+      netRegex: { id: ['004D', '004E'] },
       condition: Conditions.targetIsYou(),
       delaySeconds: 0.5,
       infoText: (data, matches, output) => {
@@ -213,7 +212,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Dischord Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['004D', '004F'], capture: false }),
+      netRegex: { id: ['004D', '004F'], capture: false },
       delaySeconds: 2,
       suppressSeconds: 2,
       run: (data) => {
@@ -223,14 +222,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Mass Aetheroplasm',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       // 477 is Infinite Fire, 478 is Infinite Ice
       id: 'Fractal Hard Infinite Elements',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['477', '478'] }),
+      netRegex: { effectId: ['477', '478'] },
       condition: Conditions.targetIsYou(),
       // The circles don't come up until the Ceruleum Vent cast.
       // Rather than doing collection nonsense to be used on the Ceruleum cast,
@@ -289,7 +288,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Hard Allagan Flare',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       response: Responses.awayFrom(),
     },
   ],

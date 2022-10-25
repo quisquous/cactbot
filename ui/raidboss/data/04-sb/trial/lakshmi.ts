@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -19,13 +18,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Lakshmi Chanchala Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
+      netRegex: { target: 'Lakshmi', effectId: '582', capture: false },
       run: (data) => data.chanchala = true,
     },
     {
       id: 'Lakshmi Chanchala Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
+      netRegex: { target: 'Lakshmi', effectId: '582', capture: false },
       run: (data) => data.chanchala = false,
     },
     {
@@ -78,7 +77,7 @@ const triggerSet: TriggerSet<Data> = {
       // Nobody with a different marker should be told to stack.
       id: 'Lakshmi Headmarker Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       run: (data, matches) => {
         data.avoidStack ??= [];
         if (matches.id !== '003E')
@@ -99,7 +98,7 @@ const triggerSet: TriggerSet<Data> = {
       // Stack marker
       id: 'Lakshmi Pall of Light',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       delaySeconds: 0.5,
       alertText: (data, _matches, output) => {
         if (!data.avoidStack || !data.avoidStack.includes(data.me))
@@ -130,14 +129,14 @@ const triggerSet: TriggerSet<Data> = {
       // Off-tank cleave
       id: 'Lakshmi Path of Light',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000E' }),
+      netRegex: { id: '000E' },
       response: Responses.tankCleave(),
     },
     {
       // Cross aoe
       id: 'Lakshmi Hand of Grace',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '006B' }),
+      netRegex: { id: '006B' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -155,7 +154,7 @@ const triggerSet: TriggerSet<Data> = {
       // Circle
       id: 'Lakshmi Hand of Beauty',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '006D' }),
+      netRegex: { id: '006D' },
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.chanchala)

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -112,7 +111,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Doom',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
+      netRegex: { effectId: 'D2' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -170,7 +169,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Dual Strike',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0060' }),
+      netRegex: { id: '0060' },
       condition: (data, matches) => data.neoHades && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -187,7 +186,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Hellborn Yawp',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -204,7 +203,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Fetters',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0078' }),
+      netRegex: { id: '0078' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -249,14 +248,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Nether Blast / Dark Eruption',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'Hades Ancient Darkness',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0060' }),
+      netRegex: { id: '0060' },
       condition: (data, matches) => !data.neoHades && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -273,14 +272,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Ancient Water III',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       condition: Conditions.targetIsYou(),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Hades Ancient Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0060', '003E'] }),
+      netRegex: { id: ['0060', '003E'] },
       condition: (data) => !data.neoHades,
       run: (data, matches) => {
         data.ancient ??= {};
@@ -290,7 +289,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Ancient No Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      netRegex: { id: '003E', capture: false },
       delaySeconds: 0.5,
       infoText: (data, _matches, output) => {
         if (!data.ancient || !data.ancient[data.me])
@@ -305,7 +304,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Ancient Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      netRegex: { id: '003E', capture: false },
       delaySeconds: 10,
       run: (data) => delete data.ancient,
     },

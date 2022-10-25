@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
@@ -37,7 +36,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Thorn Whip Collect',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0012' }),
+      netRegex: { id: '0012' },
       run: (data, matches) => {
         data.thornMap ??= {};
         (data.thornMap[matches.source] ??= []).push(matches.target);
@@ -102,21 +101,21 @@ const triggerSet: TriggerSet<Data> = {
       // Honey-Glazed
       id: 'T6 Honey On',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1BE' }),
+      netRegex: { effectId: '1BE' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.honey = true,
     },
     {
       id: 'T6 Honey Off',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '1BE' }),
+      netRegex: { effectId: '1BE' },
       condition: Conditions.targetIsYou(),
       run: (data) => delete data.honey,
     },
     {
       id: 'T6 Flower',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000D' }),
+      netRegex: { id: '000D' },
       alarmText: (data, _matches, output) => {
         if (data.honey)
           return output.getEaten!();
@@ -220,7 +219,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Rotten Stench',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000E' }),
+      netRegex: { id: '000E' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.shareLaserOnYou!();

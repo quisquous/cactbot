@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -27,7 +26,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Suzaku Primary Target',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '699' }),
+      netRegex: { effectId: '699' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
@@ -49,18 +48,24 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
+      // TODO: HeadMarker trigger
       id: 'Suzaku Phantom Flurry',
-      netRegex: { id: '3231', source: 'Suzaku' },
+      type: 'HeadMarker',
+      // netRegex: { id: '3231', source: 'Suzaku' },
+      netRegex: { id: '3231' },
       response: Responses.tankBuster(),
     },
     {
+      // TODO: fix HeadMarker
       id: 'Suzaku Rekindle',
-      netRegex: NetRegexes.headMarker({ id: '3230' }),
+      type: 'HeadMarker',
+      netRegex: { id: '3230' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Suzaku Ruthless Refrain',
+      type: 'StartsUsing',
       netRegex: { id: '3230', source: 'Suzaku', capture: false },
       response: Responses.knockback(),
     },

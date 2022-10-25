@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -78,7 +77,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ala Mhigo Lightless Spark',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
+      netRegex: { id: '0029', source: 'Zenos Yae Galvus' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

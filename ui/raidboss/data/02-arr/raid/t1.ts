@@ -50,7 +50,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T1 Split',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Caduceus', capture: false }),
+      netRegex: { name: 'Caduceus', capture: false },
       condition: (data) => data.started,
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
@@ -102,7 +102,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T1 Slime Timer',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Dark Matter Slime', capture: false }),
+      netRegex: { name: 'Dark Matter Slime', capture: false },
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),

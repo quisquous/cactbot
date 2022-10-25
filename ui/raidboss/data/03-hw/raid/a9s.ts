@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -186,7 +185,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A9S Scrap Rock',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -203,7 +202,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A9S Scrap Burst',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
+      netRegex: { id: '0017', capture: false },
       delaySeconds: 5,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
@@ -221,7 +220,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A9S Scrap Bomb Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       // TODO: dubious to tell the person tanking to do it here.
       // But maybe fine to inform.
       response: Responses.stackMarkerOn(),
@@ -229,7 +228,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A9S Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000E' }),
+      netRegex: { id: '000E' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -242,7 +241,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A9S Power Generator Add Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011', capture: false }),
+      netRegex: { id: '0011', capture: false },
 
       suppressSeconds: 30,
       infoText: (data, _matches, output) => {

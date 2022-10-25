@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import Regexes from '../../../../../resources/regexes';
 import { Responses } from '../../../../../resources/responses';
@@ -172,13 +171,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Falling Asleep',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
+      netRegex: { line: '7 minutes have elapsed since your last activity..*?', capture: false },
       response: Responses.wakeUp(),
     },
     {
       id: 'Bozja South Critical Engagement',
       type: 'ActorControl',
-      netRegex: NetRegexes.network6d({ command: '80000014' }),
+      netRegex: { command: '80000014' },
       run: (data, matches) => {
         // This fires when you win, lose, or teleport out.
         if (matches.data0 === '00') {
@@ -411,7 +410,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Adrammelech Orb Collector',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '944[3-8]' }),
+      netRegex: { npcNameId: '944[3-8]' },
       run: (data, matches) => {
         data.orbs ??= {};
         data.orbs[matches.id.toUpperCase()] = matches.npcNameId;
@@ -510,7 +509,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Adrammelech Electric Charge Collector',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9449' }),
+      netRegex: { npcNameId: '9449' },
       run: (data, matches) => {
         data.warped ??= {};
         data.warped[matches.id.toUpperCase()] = {
@@ -523,7 +522,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Bozja South Castrum Adrammelech Shock',
       type: 'Tether',
       // This is the first Electric Charge tether.
-      netRegex: NetRegexes.tether({ source: 'Adrammelech', target: 'Electric Charge' }),
+      netRegex: { source: 'Adrammelech', target: 'Electric Charge' },
       alertText: (data, matches, output) => {
         if (!data.warped)
           return output.unknown!();
@@ -660,7 +659,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Lyon Passage',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'Lyon the Beast King would do battle at Majesty\'s Place.*?', capture: false }),
+      netRegex: { line: 'Lyon the Beast King would do battle at Majesty\'s Place.*?', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

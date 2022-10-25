@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -43,20 +42,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Matoyas Mudman Falling Rock',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Matoyas Mudman Sputter',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Matoyas Nixie Crash-smash',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00E6' }),
+      netRegex: { id: '00E6' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.tankBuster!();
@@ -149,7 +148,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Matoyas Porxie Sucked In',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '9B6' }),
+      netRegex: { effectId: '9B6' },
       suppressSeconds: (_data, matches) => parseFloat(matches.duration),
       alarmText: (_data, _matches, output) => output.runAway!(),
       outputStrings: {

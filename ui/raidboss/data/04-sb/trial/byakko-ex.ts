@@ -124,7 +124,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ByaEx Bubble',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0065' }),
+      netRegex: { id: '0065' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -141,7 +141,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ByaEx Ominous Wind',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '5C9' }),
+      netRegex: { effectId: '5C9' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -158,7 +158,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ByaEx Puddle Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0004' }),
+      netRegex: { id: '0004' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -175,7 +175,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ByaEx G100',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

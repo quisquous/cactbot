@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -48,7 +47,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A12N Blazing Scourge',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -61,7 +60,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A12N Aggravated Assault',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0010' }),
+      netRegex: { id: '0010' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       // If the user is targeted for Assault, we need to ensure the stack trigger knows.
@@ -81,7 +80,7 @@ const triggerSet: TriggerSet<Data> = {
       // Both Incinerating Heat and Shared Sentence use the same stack marker.
       id: 'A12N Heat And Solidarity',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       delaySeconds: 0.5,
       alertText: (data, matches, output) => {
         // If the user was targeted for Assault, they shouldn't stack.
@@ -119,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A12N Communion Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
+      netRegex: { source: 'Alexander', id: '0036' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

@@ -297,7 +297,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Headmarker Tracker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => {
@@ -386,7 +386,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Adelphel KB Direction',
       type: 'NameToggle',
-      netRegex: NetRegexes.nameToggle({ toggle: '01' }),
+      netRegex: { toggle: '01' },
       condition: (data, matches) => data.phase === 'doorboss' && matches.id === data.adelphelId && data.firstAdelphelJump,
       // Delay 0.1s here to prevent any race condition issues with getCombatants
       delaySeconds: 0.1,
@@ -529,7 +529,7 @@ const triggerSet: TriggerSet<Data> = {
       // 631A Skyblind (2.2s cast) is a targeted ground aoe where A65 Skyblind
       // effect expired on the player.
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'A65' }),
+      netRegex: { effectId: 'A65' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration),
       response: Responses.moveAway(),
@@ -1082,7 +1082,7 @@ const triggerSet: TriggerSet<Data> = {
       // AC3 = High Jump Target
       // AC4 = Spineshatter Dive Target
       // AC5 = Elusive Jump Target
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
+      netRegex: { effectId: ['AC3', 'AC4', 'AC5'] },
       run: (data, matches) => {
         if (matches.effectId === 'AC4' || matches.effectId === 'AC5') {
           const duration = parseFloat(matches.duration);
@@ -1114,7 +1114,7 @@ const triggerSet: TriggerSet<Data> = {
       // AC3 = High Jump Target
       // AC4 = Spineshatter Dive Target
       // AC5 = Elusive Jump Target
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
+      netRegex: { effectId: ['AC3', 'AC4', 'AC5'] },
       condition: Conditions.targetIsYou(),
       delaySeconds: 0.5,
       durationSeconds: 5,
@@ -1684,7 +1684,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Right Eye Blue Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0033' }),
+      netRegex: { id: '0033' },
       condition: (data, matches) => matches.source === data.me,
       // Have blue/red be different alert/info to differentiate.
       // Since dives are usually blue people dropping off their blue tether
@@ -1704,7 +1704,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Left Eye Red tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0034' }),
+      netRegex: { id: '0034' },
       condition: (data, matches) => matches.source === data.me,
       // See note above on Right Eye Blue Tether.
       infoText: (_data, _matches, output) => output.text!(),
@@ -1821,7 +1821,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Wrath Spiral Pierce',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0005' }),
+      netRegex: { id: '0005' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1931,7 +1931,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Doom Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'BA0' }),
+      netRegex: { effectId: 'BA0' },
       preRun: (data, matches) => data.hasDoom[matches.target] = true,
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -2342,7 +2342,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Mortal Vow Collect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B50' }),
+      netRegex: { effectId: 'B50' },
       suppressSeconds: 1,
       run: (data, matches) => data.mortalVowPlayer = data.ShortName(matches.target),
     },
@@ -2370,7 +2370,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Adds Phase Nidhogg',
       type: 'AddedCombatant',
       // There are many Nidhoggs, but the real one (and the one that moves for cauterize) is npcBaseId=12612.
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '3458', npcBaseId: '12612' }),
+      netRegex: { npcNameId: '3458', npcBaseId: '12612' },
       run: (data, matches) => data.addsPhaseNidhoggId = matches.id,
     },
     {
@@ -2538,7 +2538,7 @@ const triggerSet: TriggerSet<Data> = {
       // B53 = Freezing
       // TODO: Get cardinal of the dragon to stand in
       // TODO: Adjust delay to when the bosses jump to cardinal
-      netRegex: NetRegexes.gainsEffect({ effectId: ['B52', 'B53'] }),
+      netRegex: { effectId: ['B52', 'B53'] },
       condition: Conditions.targetIsYou(),
       // Lasts 10.96s, but bosses do not cast Cauterize until 7.5s after debuff
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
@@ -2570,7 +2570,7 @@ const triggerSet: TriggerSet<Data> = {
       // B52 = Boiling
       // When Boiling expires, Pyretic (3C0) will apply
       // Pyretic will cause damage on movement
-      netRegex: NetRegexes.gainsEffect({ effectId: ['B52'] }),
+      netRegex: { effectId: ['B52'] },
       condition: Conditions.targetIsYou(),
       // Boiling lasts 10.96s, after which Pyretic is applied provide warning
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 1,
@@ -2591,7 +2591,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Spreading/Entangled Flame',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AC6', 'AC7'] }),
+      netRegex: { effectId: ['AC6', 'AC7'] },
       preRun: (data, matches) => {
         if (matches.effectId === 'AC6')
           data.spreadingFlame.push(matches.target);
@@ -2638,13 +2638,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Flames of Ascalon',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '808', count: '12A', capture: false }),
+      netRegex: { effectId: '808', count: '12A', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'DSR Ice of Ascalon',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '808', count: '12B', capture: false }),
+      netRegex: { effectId: '808', count: '12B', capture: false },
       response: Responses.getIn(),
     },
     {

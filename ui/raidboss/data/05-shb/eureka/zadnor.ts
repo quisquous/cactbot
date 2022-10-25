@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -110,13 +109,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Falling Asleep',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
+      netRegex: { line: '7 minutes have elapsed since your last activity..*?', capture: false },
       response: Responses.wakeUp(),
     },
     {
       id: 'Zadnor Critical Engagement',
       type: 'ActorControl',
-      netRegex: NetRegexes.network6d({ command: '80000014' }),
+      netRegex: { command: '80000014' },
       run: (data, matches) => {
         // This fires when you win, lose, or teleport out.
         if (matches.data0 === '00') {
@@ -210,7 +209,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Feeling Chain Cannon You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A4' }),
+      netRegex: { id: '00A4' },
       condition: (data, matches) => data.ce === 'feeling' && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -226,7 +225,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Feeling Chain Cannon Not You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A4', capture: false }),
+      netRegex: { id: '00A4', capture: false },
       condition: (data) => data.ce === 'feeling',
       delaySeconds: 3,
       suppressSeconds: 1,
@@ -326,7 +325,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Grave Crimson Blade',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9934', capture: false }),
+      netRegex: { npcNameId: '9934', capture: false },
       condition: (data) => data.ce === 'grave',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -342,7 +341,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Grave War Wraith',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9933', capture: false }),
+      netRegex: { npcNameId: '9933', capture: false },
       condition: (data) => data.ce === 'grave',
       // They hang out on the outside for a bit and then become targetable.
       delaySeconds: 11.5,
@@ -363,7 +362,7 @@ const triggerSet: TriggerSet<Data> = {
       // 872 = About Face
       // 873 = Left Face
       // 874 = Right Face
-      netRegex: NetRegexes.gainsEffect({ source: '4th-Make Shemhazai', effectId: ['871', '872', '873', '874'] }),
+      netRegex: { source: '4th-Make Shemhazai', effectId: ['871', '872', '873', '874'] },
       condition: (data, matches) => data.ce === 'grave' && data.me === matches.target,
       alertText: (_data, matches, output) => {
         const effectId = matches.effectId.toUpperCase();
@@ -425,7 +424,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Diremite Hailfire You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: limitCutHeadmarkers }),
+      netRegex: { id: limitCutHeadmarkers },
       condition: (data, matches) => data.ce === 'diremite' && data.me === matches.target,
       preRun: (data, matches) => {
         data.diremiteHailfire ??= [];
@@ -456,7 +455,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Diremite Hailfire Not You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: limitCutHeadmarkers, capture: false }),
+      netRegex: { id: limitCutHeadmarkers, capture: false },
       condition: (data) => data.ce === 'diremite',
       delaySeconds: 0.5,
       suppressSeconds: 1,
@@ -1215,7 +1214,7 @@ const triggerSet: TriggerSet<Data> = {
       // 872 = About Face
       // 873 = Left Face
       // 874 = Right Face
-      netRegex: NetRegexes.gainsEffect({ source: '4th-Make Cuchulainn', effectId: ['871', '872', '873', '874'] }),
+      netRegex: { source: '4th-Make Cuchulainn', effectId: ['871', '872', '873', '874'] },
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         const effectId = matches.effectId.toUpperCase();
@@ -1323,7 +1322,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Cuchulainn Fell Flow',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       condition: (data, matches) => data.ce === 'dalriadaCuchulainn' && data.me === matches.target,
       response: Responses.earthshaker(),
     },
@@ -1446,7 +1445,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Diablo Advanced Death Ray',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00E6' }),
+      netRegex: { id: '00E6' },
       condition: (data) => data.ce === 'dalriadaDiablo',
       // TODO: this is maybe worth promoting to responses?
       response: (data, matches, output) => {
@@ -1574,7 +1573,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Zadnor Diablo Pillar Of Shamash Spread',
       type: 'HeadMarker',
       // 5CBC damage
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: (data) => data.ce === 'dalriadaDiablo',
       preRun: (data, matches) => {
         data.diabloPillar ??= [];
@@ -1598,7 +1597,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Zadnor Diablo Pillar Of Shamash Stack',
       type: 'HeadMarker',
       // 5CBE damage (no headmarker???)
-      netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
+      netRegex: { id: '0017', capture: false },
       condition: (data) => data.ce === 'dalriadaDiablo',
       delaySeconds: 3,
       suppressSeconds: 5,
@@ -1621,7 +1620,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Diablo Acceleration Bomb Dodge',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'A61' }),
+      netRegex: { effectId: 'A61' },
       condition: Conditions.targetIsYou(),
       durationSeconds: (_data, matches) => parseFloat(matches.duration) - 4,
       infoText: (_data, matches, output) => {
@@ -1649,7 +1648,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Diablo Acceleration Bomb Stop',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'A61' }),
+      netRegex: { effectId: 'A61' },
       condition: Conditions.targetIsYou(),
       // TODO: this could be better timed to be later for the dodge -> stop version and earlier
       // for the stop -> dodge.

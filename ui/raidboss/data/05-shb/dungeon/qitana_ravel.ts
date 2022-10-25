@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -109,7 +108,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Qitana Hound Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0039', source: 'Eros' }),
+      netRegex: { id: '0039', source: 'Eros' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -126,7 +125,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Qitana Viper Poison',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AB' }),
+      netRegex: { id: '00AB' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -143,7 +142,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Qitana Confession of Faith Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {

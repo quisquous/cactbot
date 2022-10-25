@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -23,7 +22,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A4S Discord Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AE' }),
+      netRegex: { id: '00AE' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.orbsOnYou!();
@@ -55,7 +54,7 @@ const triggerSet: TriggerSet<Data> = {
       // Stun Resistance.
       id: 'A4S Stun Leg',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '27' }),
+      netRegex: { effectId: '27' },
       condition: (data) => data.CanStun(),
       alertText: (_data, matches, output) => output.text!({ name: matches.target }),
       outputStrings: {

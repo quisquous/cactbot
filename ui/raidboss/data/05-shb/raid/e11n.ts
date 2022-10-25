@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -107,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11N Powder Mark Explosion',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ source: 'Fatebreaker', effectId: '993' }),
+      netRegex: { source: 'Fatebreaker', effectId: '993' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
       alertText: (_data, _matches, output) => output.awayFromGroup!(),
@@ -198,7 +197,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11N Bound Of Faith Tether Collector',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: tetherIds }),
+      netRegex: { id: tetherIds },
       run: (data, matches) => {
         data.tethers ??= {};
         data.tethers[matches.target] = matches.sourceId;
@@ -207,7 +206,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11N Bound Of Faith Tether Collector Cleanup',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: tetherIds, capture: false }),
+      netRegex: { id: tetherIds, capture: false },
       delaySeconds: 20,
       run: (data) => delete data.tethers,
     },

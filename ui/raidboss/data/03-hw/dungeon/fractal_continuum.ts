@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -33,21 +32,25 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'Fractal Rapid Sever',
+      type: 'StartsUsing',
       netRegex: { id: 'F7A', source: 'Phantom Ray' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Fractal Slash',
+      type: 'StartsUsing',
       netRegex: { id: 'F83', source: 'Minotaur', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'Fractal Swipe',
+      type: 'StartsUsing',
       netRegex: { id: 'F81', source: 'Minotaur', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'Fractal Small Swing',
+      type: 'StartsUsing',
       netRegex: { id: 'F82', source: 'Minotaur', capture: false },
       response: Responses.getOut(),
     },
@@ -70,7 +73,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Fractal Aetherochemical Bomb',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '2D3', capture: false }),
+      netRegex: { effectId: '2D3', capture: false },
       condition: (data) => data.CanCleanse(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -86,7 +89,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Fractal Alarums',
-      netRegex: NetRegexes.addedCombatant({ name: 'Clockwork Alarum', capture: false }),
+      type: 'AddedCombatant',
+      netRegex: { name: 'Clockwork Alarum', capture: false },
       suppressSeconds: 5,
       response: Responses.killAdds(),
     },

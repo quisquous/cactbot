@@ -152,7 +152,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BarbaricciaEx Brittle Boulder',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '016D', capture: false }),
+      netRegex: { id: '016D', capture: false },
       suppressSeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -171,7 +171,7 @@ const triggerSet: TriggerSet<Data> = {
       // but if people are dead anybody can get these.
       id: 'BarbaricciaEx Brutal Rush',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011' }),
+      netRegex: { id: '0011' },
       condition: (data, matches) => matches.source === data.me,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

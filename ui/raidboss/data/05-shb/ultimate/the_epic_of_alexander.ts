@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -645,7 +644,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Drainage Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Liquid Rage', id: '0003' }),
+      netRegex: { source: 'Liquid Rage', id: '0003' },
       condition: Conditions.targetIsYou(),
       // Even if folks have the right tethers, this happens repeatedly.
       suppressSeconds: 5,
@@ -686,7 +685,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Throttle',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '2BC', capture: false }),
+      netRegex: { effectId: '2BC', capture: false },
       condition: (data) => data.CanCleanse(),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
@@ -705,7 +704,7 @@ const triggerSet: TriggerSet<Data> = {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Numbers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => {
         // Here and elsewhere, it's probably best to check for whether the user is the target first,
         // as that should short-circuit more often.
@@ -768,7 +767,7 @@ const triggerSet: TriggerSet<Data> = {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Knockback',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)),
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: (data) => data.limitCutDelay !== undefined ? data.limitCutDelay - 5 : 0,
@@ -878,7 +877,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Ice Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0043',
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -913,7 +912,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Enumeration YOU',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0041',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -930,7 +929,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Enumeration Everyone',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => getHeadmarkerId(data, matches) === '0041',
       preRun: (data, matches) => {
         data.enumerations ??= [];
@@ -973,7 +972,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Compressed Water Initial',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
+      netRegex: { effectId: '85E' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -990,7 +989,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Compressed Water Explode',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
+      netRegex: { effectId: '85E' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
@@ -1012,7 +1011,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Compressed Lightning Initial',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
+      netRegex: { effectId: '85F' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1029,7 +1028,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Compressed Lightning Explode',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
+      netRegex: { effectId: '85F' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
@@ -1102,7 +1101,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Decree Nisi Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: kDecreeNisi }),
+      netRegex: { effectId: kDecreeNisi },
       run: (data, matches) => {
         const num = kDecreeNisi.indexOf(matches.effectId.toUpperCase());
         data.nisiMap ??= {};
@@ -1112,7 +1111,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Decree Nisi Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: kDecreeNisi }),
+      netRegex: { effectId: kDecreeNisi },
       run: (data, matches) => {
         data.nisiMap ??= {};
         delete data.nisiMap[matches.target];
@@ -1121,7 +1120,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Final Judgment Nisi Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: kFinalJudgementNisi }),
+      netRegex: { effectId: kFinalJudgementNisi },
       run: (data, matches) => {
         const num = kFinalJudgementNisi.indexOf(matches.effectId.toUpperCase());
         data.finalNisiMap ??= {};
@@ -1131,7 +1130,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Final Judgment Nisi Verdict',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['8B0', '8B1', '85B', '85C'] }),
+      netRegex: { effectId: ['8B0', '8B1', '85B', '85C'] },
       condition: Conditions.targetIsYou(),
       // This keeps refreshing forever, so only alert once.
       suppressSeconds: 10000,
@@ -1221,7 +1220,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Buff Collection',
       type: 'GainsEffect',
       // Aggravated Assault, Shared Sentence, House Arrest, Restraining Order.
-      netRegex: NetRegexes.gainsEffect({ effectId: '46[1234]' }),
+      netRegex: { effectId: '46[1234]' },
       run: (data, matches) => {
         data.buffMap ??= {};
         // The values are for debugging; the logic is just about presence in the map.
@@ -1232,7 +1231,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Temporal Stasis No Buff',
       type: 'GainsEffect',
       // This id is "restraining order".
-      netRegex: NetRegexes.gainsEffect({ effectId: '464', capture: false }),
+      netRegex: { effectId: '464', capture: false },
       condition: (data) => {
         // NOTE: due to timings the "temporal" phase does not start until after debuffs are out.
         // So consider the "temporal" no debuff to be "brute" no debuff here.
@@ -1260,7 +1259,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Restraining Order',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '464' }),
+      netRegex: { effectId: '464' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -1278,7 +1277,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA House Arrest',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '463' }),
+      netRegex: { effectId: '463' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -1296,7 +1295,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Shared Sentence',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
+      netRegex: { effectId: '462' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -1314,7 +1313,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Shared Sentence Inception',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
+      netRegex: { effectId: '462' },
       condition: (data) => data.phase === 'inception',
       delaySeconds: 3,
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
@@ -1332,7 +1331,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Aggravated Assault',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '461' }),
+      netRegex: { effectId: '461' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -1376,7 +1375,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Judgment Crystal',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0060',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1428,7 +1427,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Inception Vuln Collection',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '2B7' }),
+      netRegex: { effectId: '2B7' },
       condition: (data) => data.phase === 'inception',
       run: (data, matches) => {
         data.vuln ??= {};
@@ -1543,7 +1542,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Cactbot Wormhole Strat',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => {
         if (data.options.cactbotWormholeStrat !== true)
           return false;
@@ -1674,7 +1673,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Incinerating Heat',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => getHeadmarkerId(data, matches) === '005D',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1751,7 +1750,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Perfect Optical Sight Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => getHeadmarkerId(data, matches) === '003E',
       preRun: (data, matches) => {
         data.opticalStack ??= [];
@@ -1816,7 +1815,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Contact Prohibition',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '868' }),
+      netRegex: { effectId: '868' },
       condition: (data, matches) => data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       tts: {
@@ -1841,7 +1840,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Contact Regulation',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '869' }),
+      netRegex: { effectId: '869' },
       condition: (data, matches) => data.me === matches.target,
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1858,7 +1857,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Escape Prohibition',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '86A' }),
+      netRegex: { effectId: '86A' },
       condition: (data, matches) => data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       tts: {
@@ -1883,7 +1882,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Escape Detection',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '86B' }),
+      netRegex: { effectId: '86B' },
       condition: (data, matches) => data.me === matches.target,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1900,7 +1899,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Fate Tether Bois',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0062' }),
+      netRegex: { id: '0062' },
       run: (data, matches) => {
         data.tetherBois ??= {};
         data.tetherBois[matches.targetId] = matches.source;
@@ -1909,7 +1908,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Alpha Instructions',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
+      netRegex: { id: '0062', capture: false },
       condition: (data) => data.phase === 'alpha',
       delaySeconds: 1,
       suppressSeconds: 10,
@@ -1931,7 +1930,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Alpha Instructions Callout',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
+      netRegex: { id: '0062', capture: false },
       condition: (data) => data.phase === 'alpha',
       delaySeconds: 2,
       durationSeconds: 28,
@@ -2223,7 +2222,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Beta Instructions',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
+      netRegex: { id: '0062', capture: false },
       condition: (data) => data.phase === 'beta',
       delaySeconds: 1,
       suppressSeconds: 10,
@@ -2242,7 +2241,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Beta Instructions Callout',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
+      netRegex: { id: '0062', capture: false },
       condition: (data) => data.phase === 'beta',
       delaySeconds: 2,
       durationSeconds: 35,

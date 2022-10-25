@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -77,7 +76,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Garuda Mistral Song Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0010' }),
+      netRegex: { id: '0010' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -94,7 +93,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Garuda Mistral Song Tank',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0010', capture: false }),
+      netRegex: { id: '0010', capture: false },
       condition: (data) => data.role === 'tank',
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
@@ -112,7 +111,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Garuda Spiny Plume',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Spiny Plume', capture: false }),
+      netRegex: { name: 'Spiny Plume', capture: false },
       condition: (data) => data.role === 'tank',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -129,7 +128,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Ifrit Fetters',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '179' }),
+      netRegex: { effectId: '179' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 45,
       infoText: (_data, _matches, output) => output.text!(),
@@ -164,7 +163,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Ifrit Flaming Crush',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0075', capture: false }),
+      netRegex: { id: '0075', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -180,25 +179,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UWU Garuda Woken',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: 'Garuda', effectId: '5F9', capture: false }),
+      netRegex: { target: 'Garuda', effectId: '5F9', capture: false },
       sound: 'Long',
     },
     {
       id: 'UWU Ifrit Woken',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: 'Ifrit', effectId: '5F9', capture: false }),
+      netRegex: { target: 'Ifrit', effectId: '5F9', capture: false },
       sound: 'Long',
     },
     {
       id: 'UWU Titan Woken',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: 'Titan', effectId: '5F9', capture: false }),
+      netRegex: { target: 'Titan', effectId: '5F9', capture: false },
       sound: 'Long',
     },
     {
       id: 'UWU Titan Bury Direction',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '1803' }),
+      netRegex: { npcNameId: '1803' },
       condition: (data, matches) => {
         (data.titanBury ??= []).push(matches);
         return data.titanBury.length === 5;

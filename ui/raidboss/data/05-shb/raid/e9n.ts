@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -67,7 +66,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9N Stygian Tether',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000C' }),
+      netRegex: { id: '000C' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -84,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9N Stygian Break Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0012' }),
+      netRegex: { id: '0012' },
       condition: Conditions.targetIsYou(),
       response: Responses.breakChains(),
     },

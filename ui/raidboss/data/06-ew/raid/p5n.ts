@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -191,14 +190,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5N Venom Rain',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0178' }),
+      netRegex: { id: '0178' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'P5N Venom Pool',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0064' }),
+      netRegex: { id: '0064' },
       response: Responses.stackMarkerOn(),
     },
     {

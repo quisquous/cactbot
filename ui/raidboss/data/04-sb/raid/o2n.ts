@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -27,21 +26,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O2N Levitation Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
+      netRegex: { effectId: '556' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.levitating = true,
     },
     {
       id: 'O2N Levitation Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '556' }),
+      netRegex: { effectId: '556' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.levitating = false,
     },
     {
       id: 'O2N Gravitational Manipulation Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0071' }),
+      netRegex: { id: '0071' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.stackMarkerOnYou!();
@@ -63,7 +62,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O2N Gravitational Manipulation Float',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0071' }),
+      netRegex: { id: '0071' },
       condition: (data, matches) => !data.levitating && Conditions.targetIsNotYou()(data, matches),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -145,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O2N Six Fulms Under',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
+      netRegex: { effectId: '237' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 5,
       suppressSeconds: 10,

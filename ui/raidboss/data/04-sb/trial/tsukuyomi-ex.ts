@@ -69,13 +69,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TsukuyomiEx Full Moon',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '5FF', capture: false }),
+      netRegex: { target: 'Tsukuyomi', effectId: '5FF', capture: false },
       run: (data) => data.moonIsOut = true,
     },
     {
       id: 'TsukuyomiEx New Moon',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '600', capture: false }),
+      netRegex: { target: 'Tsukuyomi', effectId: '600', capture: false },
       run: (data) => data.moonIsOut = false,
     },
     {
@@ -137,20 +137,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TsukuyomiEx Meteor Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0083' }),
+      netRegex: { id: '0083' },
       condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
       id: 'TsukuyomiEx Lunacy',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      netRegex: { id: '003E', capture: false },
       response: Responses.stackMarker(),
     },
     {
       id: 'TsukuyomiEx Hagetsu',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -176,7 +176,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TsukuyomiEx Moonlit Debuff Logic',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
+      netRegex: { effectId: '602' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
@@ -193,7 +193,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TsukuyomiEx Moonlit Debuff',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
+      netRegex: { effectId: '602' },
       condition: (data, matches) => {
         if (matches.target !== data.me)
           return false;
@@ -214,7 +214,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TsukuyomiEx Moonshadowed Debuff Logic',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
+      netRegex: { effectId: '603' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
@@ -231,7 +231,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TsukuyomiEx Moonshadowed Debuff',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
+      netRegex: { effectId: '603' },
       condition: (data, matches) => {
         if (matches.target !== data.me)
           return false;

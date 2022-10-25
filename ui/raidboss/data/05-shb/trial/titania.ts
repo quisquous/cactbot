@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -33,7 +32,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Titania Mist Failure',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Spirit Of Dew', capture: false }),
+      netRegex: { name: 'Spirit Of Dew', capture: false },
       response: Responses.killExtraAdd(),
     },
     {
@@ -124,21 +123,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Titania Uplift Markers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Titania Peasebomb Markers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00BD' }),
+      netRegex: { id: '00BD' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Titania Pucks Breath Markers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A1' }),
+      netRegex: { id: '00A1' },
       response: Responses.stackMarkerOn(),
     },
     {

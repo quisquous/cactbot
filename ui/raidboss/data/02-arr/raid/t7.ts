@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
@@ -103,7 +102,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T7 Renaud',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Renaud', capture: false }),
+      netRegex: { name: 'Renaud', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -119,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T7 Cursed Voice',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1C3' }),
+      netRegex: { effectId: '1C3' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       alertText: (_data, _matches, output) => output.text!(),
@@ -137,7 +136,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T7 Cursed Shriek',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegex: { effectId: '1C4' },
       durationSeconds: 3,
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -169,7 +168,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T7 Cursed Shriek Reminder',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegex: { effectId: '1C4' },
       delaySeconds: 7,
       durationSeconds: 3,
       infoText: (data, matches, output) => {

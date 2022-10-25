@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -68,7 +67,7 @@ const triggerSet: TriggerSet<Data> = {
       // Doesn't seem like this happens twice, but let's be safe.
       id: 'TitanUn Rock Throw',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0007' }),
+      netRegex: { id: '0007' },
       suppressSeconds: 1,
       alertText: (data, matches, output) => {
         if (matches.source === data.me || matches.target === data.me)

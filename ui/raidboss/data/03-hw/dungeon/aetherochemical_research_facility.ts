@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -39,6 +38,7 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'Facility Petrifaction',
+      type: 'StartsUsing',
       netRegex: { id: '10EB', source: 'Harmachis', capture: false },
       response: Responses.lookAway(),
     },
@@ -54,16 +54,19 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Facility Dark Orb',
+      type: 'StartsUsing',
       netRegex: { id: '10FC', source: ['Igeyorhm', 'Lahabrea'] },
       response: Responses.tankBuster(),
     },
     {
       id: 'Facility Shadow Flare',
+      type: 'StartsUsing',
       netRegex: { id: '1109', source: 'Ascian Prime', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Facility Annihilation',
+      type: 'StartsUsing',
       netRegex: { id: '110A', source: 'Ascian Prime', capture: false },
       response: Responses.aoe(),
     },
@@ -89,7 +92,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Facility Chaosphere',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Chaosphere', capture: false }),
+      netRegex: { name: 'Chaosphere', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

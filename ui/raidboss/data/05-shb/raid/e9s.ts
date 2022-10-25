@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -307,7 +306,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Stygian Break Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0012' }),
+      netRegex: { id: '0012' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
       response: Responses.breakChains(),
@@ -443,7 +442,7 @@ const triggerSet: TriggerSet<Data> = {
       // charge is always left or right, and we can solve the rest from there.
       id: 'E9S The Second / Third Art Of Darkness Charge Solver',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
+      netRegex: { target: 'Cloud Of Darkness' },
       condition: (data) => !data.artOfDarknessIdMap,
       run: (data, matches) => {
         data.artOfDarknessIdMap = {};
@@ -472,7 +471,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S The Second / Third Art Of Darkness Left / Right Charge',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
+      netRegex: { target: 'Cloud Of Darkness' },
       condition: (data, matches) => {
         if (!data.artOfDarkness || !data.artOfDarknessIdMap)
           return false;
@@ -485,7 +484,7 @@ const triggerSet: TriggerSet<Data> = {
       // Fire the trigger on stack or protean since we want the callout as soon as possible.
       id: 'E9S The Second / Third Art Of Darkness Callout',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
+      netRegex: { target: 'Cloud Of Darkness' },
       condition: (data, matches) => {
         if (!data.artOfDarkness || !data.artOfDarknessIdMap)
           return false;
@@ -531,7 +530,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Curse Of Darkness',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '953' }),
+      netRegex: { effectId: '953' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       alertText: (_data, _matches, output) => output.text!(),

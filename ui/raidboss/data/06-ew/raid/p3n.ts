@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -64,7 +63,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3N Darkened Fire Aoe',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '010[C-F]' }),
+      netRegex: { id: '010[C-F]' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => {
         return output.text!();
@@ -114,7 +113,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3N Sunbird Spawn',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Sunbird', capture: false }),
+      netRegex: { name: 'Sunbird', capture: false },
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
         if (data.role === 'tank')
@@ -223,7 +222,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3N Spread Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

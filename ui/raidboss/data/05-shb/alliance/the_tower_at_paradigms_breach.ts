@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -117,14 +116,14 @@ const triggerSet: TriggerSet<Data> = {
       // Also applies for Red Girl Manipulate Energy
       id: 'Paradigm Knave Magic Artillery Beta You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00DA' }),
+      netRegex: { id: '00DA' },
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Paradigm Knave Magic Artillery Beta Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00DA' }),
+      netRegex: { id: '00DA' },
       run: (data, matches) => {
         data.busterTargets ??= [];
         data.busterTargets.push(matches.target);
@@ -133,7 +132,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paradigm Knave Magic Artillery Beta',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00DA', capture: false }),
+      netRegex: { id: '00DA', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
@@ -163,7 +162,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paradigm Knave Magic Artillery Alpha Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A9' }),
+      netRegex: { id: '00A9' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -290,7 +289,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paradigm Hansel/Gretel Seed Of Magic Alpha',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0060' }),
+      netRegex: { id: '0060' },
       preRun: (data, matches) => {
         data.seedTargets ??= [];
         data.seedTargets.push(matches.target);
@@ -306,7 +305,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paradigm Hansel/Gretel Riot Of Magic',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       delaySeconds: 0.5,
       infoText: (data, matches, output) => {
         if (!data.seedTargets)
@@ -615,7 +614,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paradigm False Idol Lighter Note',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -632,14 +631,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paradigm False Idol Darker Note You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Paradigm False Idol Darker Note Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       run: (data, matches) => {
         data.busterTargets ??= [];
         data.busterTargets.push(matches.target);
@@ -648,7 +647,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paradigm False Idol Darker Note',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B', capture: false }),
+      netRegex: { id: '008B', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
@@ -708,7 +707,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paradigm Her Inflorescence Recreate Signal Collect',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0036', target: 'Her Inflorescence', capture: false }),
+      netRegex: { id: '0036', target: 'Her Inflorescence', capture: false },
       preRun: (data) => data.signalCount = (data.signalCount ?? 0) + 1,
       durationSeconds: 5,
       alertText: (data, _matches, output) => {

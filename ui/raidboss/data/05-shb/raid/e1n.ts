@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -38,7 +37,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1N Vice of Vanity You',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011', target: 'Eden Prime' }),
+      netRegex: { id: '0011', target: 'Eden Prime' },
       condition: (data, matches) => data.me === matches.source,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -61,7 +60,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1N Vice of Apathy Mark',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001C' }),
+      netRegex: { id: '001C' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

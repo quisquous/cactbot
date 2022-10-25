@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
@@ -138,7 +137,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T11 Tether Accumulate A',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '001C', target: 'Kaliya' }),
+      netRegex: { id: '001C', target: 'Kaliya' },
       run: (data, matches) => {
         (data.tetherA ??= []).push(matches.source);
       },
@@ -146,7 +145,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T11 Tether Accumulate B',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '001D', target: 'Kaliya' }),
+      netRegex: { id: '001D', target: 'Kaliya' },
       run: (data, matches) => {
         (data.tetherB ??= []).push(matches.source);
       },
@@ -154,7 +153,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T11 Tether A',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
+      netRegex: { id: '001C', target: 'Kaliya', capture: false },
       condition: (data) => data.tetherA?.length === 2,
       alarmText: (data, _matches, output) => {
         let partner;
@@ -184,7 +183,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T11 Tether B',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
+      netRegex: { id: '001D', target: 'Kaliya', capture: false },
       condition: (data) => data.tetherB?.length === 2,
       alarmText: (data, _matches, output) => {
         let partner;

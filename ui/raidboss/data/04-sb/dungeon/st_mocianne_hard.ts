@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -46,7 +45,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'St Mocianne Hard Sludge Bomb',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -63,14 +62,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'St Mocianne Hard Fault Warren',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       suppressSeconds: 5, // There are two (!!) simultaneous head markers on the same target here.
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'St Mocianne Hard Taproot',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008D' }),
+      netRegex: { id: '008D' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -122,7 +121,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'St Mocianne Hard Eath Shaker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },
@@ -141,7 +140,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'St Mocianne Hard Quagmire',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

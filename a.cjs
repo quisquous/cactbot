@@ -33,6 +33,7 @@ async function main() {
   }
 }
 
+
 const method = [
   'startsUsing',
   'ability',
@@ -50,10 +51,9 @@ const method = [
   'gameLog', 'gameNameLog',
 
   'statChange', 'changeZone', 'network6d', 'nameToggle', 'map', 'systemLogMessage', 'mapEffect',
-
 ].join('|');
 
-const pattern = new RegExp(`netRegex: NetRegexes\.(${method})\({(.*)}\),`, 'g');
+const pattern = new RegExp(String.raw`netRegex: NetRegexes\.(${method})\(\{(.*)\}\),`, 'g');
 
 
 main().catch(e => {

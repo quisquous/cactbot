@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -160,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P2N Coherence Flare',
       type: 'HeadMarker',
       // This always comes before 6D14 below for the line stack marker.
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       run: (data, matches) => data.flareTarget = matches.target,

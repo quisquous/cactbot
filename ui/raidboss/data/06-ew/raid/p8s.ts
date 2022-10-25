@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -696,7 +695,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Gorgon Collect',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '11517', npcBaseId: '15052' }),
+      netRegex: { npcNameId: '11517', npcBaseId: '15052' },
       // We could technically call WAY ahead of time here.
       run: (data, matches) => data.gorgons.push(matches),
     },
@@ -797,7 +796,7 @@ const triggerSet: TriggerSet<Data> = {
       // CFE = Blood of the Gorgon
       // CFF = Breath of the Gorgon
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['BB[CD]', 'D17', 'CFE'] }),
+      netRegex: { effectId: ['BB[CD]', 'D17', 'CFE'] },
       condition: (data) => !data.firstSnakeCalled,
       run: (data, matches) => {
         const id = matches.effectId;
@@ -814,7 +813,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S First Snake Debuff Initial Call',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['BB[CD]', 'D17', 'CFE'], capture: false }),
+      netRegex: { effectId: ['BB[CD]', 'D17', 'CFE'], capture: false },
       condition: (data) => !data.firstSnakeCalled,
       delaySeconds: 0.3,
       suppressSeconds: 1,
@@ -892,7 +891,7 @@ const triggerSet: TriggerSet<Data> = {
       // CFE = Blood of the Gorgon (small poison)
       // CFF = Breath of the Gorgon (stack poison)
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['D1[78]', 'CFF'] }),
+      netRegex: { effectId: ['D1[78]', 'CFF'] },
       condition: (data) => data.firstSnakeCalled,
       run: (data, matches) => {
         const id = matches.effectId;
@@ -912,7 +911,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Second Snake Debuff Initial Call',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['D1[78]', 'CFF'], capture: false }),
+      netRegex: { effectId: ['D1[78]', 'CFF'], capture: false },
       condition: (data) => data.firstSnakeCalled,
       delaySeconds: 0.3,
       durationSeconds: 6,
@@ -1721,7 +1720,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       // This gets recast a lot on the same people, but shouldn't cause an issue.
       // This also only happens once on the second time through, so no need to reset.
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D15' }),
+      netRegex: { effectId: 'D15' },
       infoText: (data, matches, output) => {
         if (!data.inverseMagics[matches.target])
           return output.reversed!({ player: data.ShortName(matches.target) });
@@ -1740,7 +1739,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Natural Alignment Purple on You',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '9F8', count: '209' }),
+      netRegex: { effectId: '9F8', count: '209' },
       preRun: (data, matches) => data.alignmentTargets.push(matches.target),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -1759,7 +1758,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Natural Alignment Purple Targets',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '9F8', count: '209', capture: false }),
+      netRegex: { effectId: '9F8', count: '209', capture: false },
       delaySeconds: 0.3,
       suppressSeconds: 5,
       sound: '',
@@ -1783,7 +1782,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8S Natural Alignment First',
       type: 'GainsEffect',
       // This is a magic effectId with a statusloopvfx count, like 808 elsewhere.
-      netRegex: NetRegexes.gainsEffect({ effectId: '9F8' }),
+      netRegex: { effectId: '9F8' },
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -1974,7 +1973,7 @@ const triggerSet: TriggerSet<Data> = {
       // D13 = Supersplice
       type: 'GainsEffect',
       // Ignore D08 in the regex here.
-      netRegex: NetRegexes.gainsEffect({ effectId: ['D0[2-79A-F]', 'D1[0-3]'] }),
+      netRegex: { effectId: ['D0[2-79A-F]', 'D1[0-3]'] },
       run: (data, matches) => {
         const id = matches.effectId;
         // 8 and 26s second debuffs.
@@ -2004,7 +2003,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S High Concept Debuffs',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['D0[2-4]', 'D1[1-3]'], capture: false }),
+      netRegex: { effectId: ['D0[2-4]', 'D1[1-3]'], capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
@@ -2151,7 +2150,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Arcane Channel Collect',
       type: 'MapEffect',
-      netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags }),
+      netRegex: { flags: arcaneChannelFlags },
       // Flags exist in phase 1, only execute trigger if phase 2
       condition: (data) => data.seenFirstTankAutos,
       run: (data, matches) => {
@@ -2168,7 +2167,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Arcane Channel Color',
       type: 'MapEffect',
-      netRegex: NetRegexes.mapEffect({ flags: arcaneChannelFlags, capture: false }),
+      netRegex: { flags: arcaneChannelFlags, capture: false },
       condition: (data) => data.arcaneChannelColor.size > 0,
       delaySeconds: 0.1,
       suppressSeconds: 1,

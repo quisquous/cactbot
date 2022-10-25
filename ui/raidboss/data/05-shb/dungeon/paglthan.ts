@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -39,7 +38,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paglthan Lightning Rod Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'A0E' }),
+      netRegex: { effectId: 'A0E' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -56,7 +55,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paglthan Lightning Rod Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: 'A0E' }),
+      netRegex: { effectId: 'A0E' },
       condition: Conditions.targetIsYou(),
       response: Responses.goMiddle(),
     },
@@ -81,13 +80,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paglthan Akh Morn',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005D' }),
+      netRegex: { id: '005D' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Paglthan Mega Flare Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -111,7 +110,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paglthan Kan Rhai Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0104' }),
+      netRegex: { id: '0104' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

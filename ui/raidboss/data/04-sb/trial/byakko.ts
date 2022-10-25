@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -34,13 +33,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Byakko White Herald',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       response: Responses.awayFrom(),
     },
     {
       id: 'Byakko Bombogenesis',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0065' }),
+      netRegex: { id: '0065' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

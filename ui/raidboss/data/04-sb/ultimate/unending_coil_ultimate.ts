@@ -221,28 +221,28 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Firescorched Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1D0' }),
+      netRegex: { effectId: '1D0' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.fireDebuff = true,
     },
     {
       id: 'UCU Firescorched Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '1D0' }),
+      netRegex: { effectId: '1D0' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.fireDebuff = false,
     },
     {
       id: 'UCU Icebitten Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1D1' }),
+      netRegex: { effectId: '1D1' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.iceDebuff = true,
     },
     {
       id: 'UCU Icebitten Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '1D1' }),
+      netRegex: { effectId: '1D1' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.iceDebuff = false,
     },
@@ -338,7 +338,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Hatch Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0076' }),
+      netRegex: { id: '0076' },
       run: (data, matches) => {
         data.hatch ??= [];
         data.hatch.push(matches.target);
@@ -347,7 +347,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Hatch Marker YOU',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0076' }),
+      netRegex: { id: '0076' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -364,7 +364,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Hatch Callouts',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0076', capture: false }),
+      netRegex: { id: '0076', capture: false },
       delaySeconds: 0.25,
       infoText: (data, _matches, output) => {
         if (!data.hatch)
@@ -387,7 +387,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Hatch Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0076', capture: false }),
+      netRegex: { id: '0076', capture: false },
       delaySeconds: 5,
       run: (data) => delete data.hatch,
     },
@@ -701,7 +701,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Your Doom',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
+      netRegex: { effectId: 'D2' },
       condition: (data, matches) => {
         return data.me === matches.target;
       },
@@ -769,7 +769,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Doom Init',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
+      netRegex: { effectId: 'D2' },
       run: (data, matches) => {
         data.dooms ??= [null, null, null];
         let order = null;
@@ -789,7 +789,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Doom Cleanup',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D2', capture: false }),
+      netRegex: { effectId: 'D2', capture: false },
       delaySeconds: 20,
       run: (data) => {
         delete data.dooms;
@@ -1064,7 +1064,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Dragon Dive Marker Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014' }),
+      netRegex: { id: '0014' },
       condition: (data) => !data.trio,
       alarmText: (data, matches, output) => {
         if (matches.target !== data.me)
@@ -1095,7 +1095,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Dragon Dive Marker Others',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014' }),
+      netRegex: { id: '0014' },
       condition: (data) => !data.trio,
       infoText: (data, matches, output) => {
         if (matches.target === data.me)
@@ -1117,7 +1117,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Dragon Dive Marker Counter',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014', capture: false }),
+      netRegex: { id: '0014', capture: false },
       condition: (data) => !data.trio,
       run: (data) => data.naelDiveMarkerCount++,
     },
@@ -1125,7 +1125,7 @@ const triggerSet: TriggerSet<Data> = {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
       id: 'UCU Octet Marker Tracking',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0077', '0014', '0029'] }),
+      netRegex: { id: ['0077', '0014', '0029'] },
       condition: (data) => data.trio === 'octet',
       run: (data, matches) => {
         data.octetMarker.push(matches.target);
@@ -1168,7 +1168,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Octet Nael Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0077' }),
+      netRegex: { id: '0077' },
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
         const num = data.octetMarker.length;
@@ -1188,7 +1188,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Octet Dragon Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014' }),
+      netRegex: { id: '0014' },
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
         const num = data.octetMarker.length;
@@ -1208,7 +1208,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Octet Baha Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0029' }),
+      netRegex: { id: '0029' },
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
         const num = data.octetMarker.length;
@@ -1228,7 +1228,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Octet Twin Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0029', capture: false }),
+      netRegex: { id: '0029', capture: false },
       condition: (data) => data.trio === 'octet',
       delaySeconds: 0.5,
       alarmText: (data, _matches, output) => {
@@ -1319,7 +1319,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Megaflare Stack Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027' }),
+      netRegex: { id: '0027' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1336,13 +1336,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Megaflare Stack Tracking',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027' }),
+      netRegex: { id: '0027' },
       run: (data, matches) => data.megaStack.push(matches.target),
     },
     {
       id: 'UCU Megaflare Tower',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027', capture: false }),
+      netRegex: { id: '0027', capture: false },
       infoText: (data, _matches, output) => {
         if (data.trio !== 'blackfire' && data.trio !== 'octet' || data.megaStack.length !== 4)
           return;
@@ -1403,7 +1403,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Megaflare Twin Tower',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027', capture: false }),
+      netRegex: { id: '0027', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
@@ -1440,20 +1440,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Earthshaker Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker('alarm'),
     },
     {
       id: 'UCU Earthshaker Tracking',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       run: (data, matches) => data.shakers.push(matches.target),
     },
     {
       id: 'UCU Earthshaker Not Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028', capture: false }),
+      netRegex: { id: '0028', capture: false },
       alertText: (data, _matches, output) => {
         if (data.trio !== 'quickmarch')
           return;

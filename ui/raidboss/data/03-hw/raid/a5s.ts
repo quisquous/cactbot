@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -122,13 +121,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Gobcut Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'A5S Concussion',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3E4' }),
+      netRegex: { effectId: '3E4' },
       condition: (data, matches) => {
         if (data.me !== matches.target)
           return false;
@@ -139,7 +138,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Concussion BLU',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3E4' }),
+      netRegex: { effectId: '3E4' },
       condition: (data, matches) => {
         if (data.me !== matches.target)
           return false;
@@ -190,7 +189,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Bomb',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ name: 'Bomb' }),
+      netRegex: { name: 'Bomb' },
       preRun: (data, matches) => {
         data.boostBombs ??= [];
         data.boostBombs.push(bombLocation(matches));
@@ -254,7 +253,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Prey',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -271,7 +270,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Prey Healer',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       condition: (data) => data.role === 'healer',
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
@@ -288,7 +287,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Glupgloop',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -305,7 +304,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Snake Adds',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Glassy-Eyed Cobra', capture: false }),
+      netRegex: { name: 'Glassy-Eyed Cobra', capture: false },
       suppressSeconds: 5,
       response: Responses.killAdds(),
     },
@@ -320,7 +319,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Anti-Coagulant Cleanse',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3EC' }),
+      netRegex: { effectId: '3EC' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       suppressSeconds: 30,

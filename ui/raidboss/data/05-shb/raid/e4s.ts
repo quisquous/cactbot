@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -55,7 +54,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E4S Pulse of the Land',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B9' }),
+      netRegex: { id: '00B9' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
@@ -79,7 +78,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E4S Force of the Land',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00BA' }),
+      netRegex: { id: '00BA' },
       condition: Conditions.targetIsYou(),
       response: Responses.stackMarker(),
     },
@@ -136,7 +135,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E4S Crumbling Down',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -340,14 +339,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E4S Weight of the World',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00BB' }),
+      netRegex: { id: '00BB' },
       condition: Conditions.targetIsYou(),
       response: Responses.getOut(),
     },
     {
       id: 'E4S Megalith',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005D' }),
+      netRegex: { id: '005D' },
       alertText: (data, matches, output) => {
         if (data.role !== 'tank')
           return output.awayFromTanks!();
@@ -373,7 +372,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E4S Granite Gaol',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00BF' }),
+      netRegex: { id: '00BF' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

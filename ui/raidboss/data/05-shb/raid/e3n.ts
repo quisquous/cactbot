@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -20,7 +19,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3N Rip Current',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       response: Responses.tankBuster(),
     },
     {
@@ -91,7 +90,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3N Drenching Pulse Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A9' }),
+      netRegex: { id: '00A9' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -105,26 +104,26 @@ const triggerSet: TriggerSet<Data> = {
       // Crashing Pulse and Smothering Waters
       id: 'E3N Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'E3N Surging Waters Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AD' }),
+      netRegex: { id: '00AD' },
       response: Responses.knockbackOn(),
     },
     {
       id: 'E3N Splashing Waters Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0082' }),
+      netRegex: { id: '0082' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'E3N Swirling Waters Donut',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0099' }),
+      netRegex: { id: '0099' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

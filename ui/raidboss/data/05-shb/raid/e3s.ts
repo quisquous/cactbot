@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -91,7 +90,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Rip Current',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       suppressSeconds: 10,
       alarmText: (data, matches, output) => {
         if (matches.target !== data.me && data.role === 'tank')
@@ -135,7 +134,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Flare',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -247,7 +246,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Hydrothermal Vent Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '005A', target: 'Leviathan' }),
+      netRegex: { id: '005A', target: 'Leviathan' },
       condition: (data, matches) => data.me === matches.source,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -264,7 +263,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Hydrothermal Vent Collect',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '005A', target: 'Leviathan' }),
+      netRegex: { id: '005A', target: 'Leviathan' },
       run: (data, matches) => {
         data.vent ??= [];
         data.vent.push(matches.source);
@@ -273,7 +272,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Hydrothermal Vent',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '005A', target: 'Leviathan', capture: false }),
+      netRegex: { id: '005A', target: 'Leviathan', capture: false },
       condition: (data) => data.vent && data.vent.length === 2 && !data.vent.includes(data.me) && data.role !== 'tank',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -290,7 +289,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Surging Waters',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '73A' }),
+      netRegex: { effectId: '73A' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -309,7 +308,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO maybe tell other people about stacking for knockbacks
       id: 'E3S Sundering Waters',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '73E' }),
+      netRegex: { effectId: '73E' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         const seconds = parseFloat(matches.duration);
@@ -349,7 +348,7 @@ const triggerSet: TriggerSet<Data> = {
       // 29 seconds
       id: 'E3S Scouring Waters Defamation',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
+      netRegex: { effectId: '765' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -366,7 +365,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Scouring Waters Avoid Knockback',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
+      netRegex: { effectId: '765' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 22,
       infoText: (_data, _matches, output) => output.text!(),
@@ -384,7 +383,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Smothering Waters',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '73D' }),
+      netRegex: { effectId: '73D' },
       condition: (data, matches) => {
         // first tsunami stack is 25 seconds
         // second tsunami stack is 13 seconds
@@ -398,7 +397,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Scouring Waters',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
+      netRegex: { effectId: '765' },
       condition: Conditions.targetIsNotYou(),
       delaySeconds: 25,
       infoText: (_data, _matches, output) => output.text!(),
@@ -416,7 +415,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Sweeping Waters Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '73F' }),
+      netRegex: { effectId: '73F' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -433,7 +432,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Sweeping Waters',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '73F' }),
+      netRegex: { effectId: '73F' },
       condition: (data, matches) => data.me === matches.target || data.role === 'tank',
       delaySeconds: 13,
       suppressSeconds: 1,

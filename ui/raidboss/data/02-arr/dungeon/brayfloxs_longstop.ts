@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -26,14 +25,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Brayflox Normal Pelican Poison Collect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '12' }),
+      netRegex: { effectId: '12' },
       condition: (data) => data.CanCleanse(),
       run: (data, matches) => data.pelicanPoisons.push(matches.target),
     },
     {
       id: 'Brayflox Normal Pelican Poison Healer',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '12', capture: false }),
+      netRegex: { effectId: '12', capture: false },
       condition: (data) => data.CanCleanse(),
       delaySeconds: 1,
       suppressSeconds: 2,
@@ -71,7 +70,7 @@ const triggerSet: TriggerSet<Data> = {
       // from activating early when you pick up the Headgate Key and the boss and adds spawn.
       id: 'Brayflox Normal Pelican Adds',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '1283', capture: false }),
+      netRegex: { npcNameId: '1283', capture: false },
       suppressSeconds: 2,
       response: Responses.killAdds(),
     },
@@ -86,7 +85,7 @@ const triggerSet: TriggerSet<Data> = {
       // Tempest Biast Spawn
       id: 'Brayflox Normal Tempest Biast',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '1285', capture: false }),
+      netRegex: { npcNameId: '1285', capture: false },
       response: Responses.killAdds(),
     },
     {
@@ -139,7 +138,7 @@ const triggerSet: TriggerSet<Data> = {
       // Move Aiatar out of Puddles
       id: 'Brayflox Normal Aiatar Toxic Vomit Tank',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '117', capture: false }),
+      netRegex: { effectId: '117', capture: false },
       condition: (data) => data.role === 'tank',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -158,7 +157,7 @@ const triggerSet: TriggerSet<Data> = {
       // This triggers on both Salivous Snap and Puddle Poison Application
       id: 'Brayflox Normal Aiatar Poison Healer',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '113' }),
+      netRegex: { effectId: '113' },
       condition: (data) => data.CanCleanse(),
       alertText: (data, matches, output) => {
         if (matches.target !== data.me)

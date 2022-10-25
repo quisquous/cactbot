@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -44,7 +43,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DeadEnds Grebuloff Necrosis',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B95' }),
+      netRegex: { effectId: 'B95' },
       condition: (data) => data.CanCleanse(),
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
@@ -201,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DeadEnds Ra-la Doom Cleanse',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '6E9' }),
+      netRegex: { effectId: '6E9' },
       condition: (data) => data.CanCleanse(),
       alertText: (data, matches, output) => output.cleanse!({ player: data.ShortName(matches.target) }),
       outputStrings: {

@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -72,7 +71,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Mousse Princess Rightward Whimsy',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B18', source: 'Mousse Princess', capture: false }),
+      netRegex: { effectId: 'B18', source: 'Mousse Princess', capture: false },
       condition: (data) => data.inCombat,
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
@@ -90,7 +89,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Mousse Princess Backward Whimsy',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B1A', source: 'Mousse Princess', capture: false }),
+      netRegex: { effectId: 'B1A', source: 'Mousse Princess', capture: false },
       condition: (data) => data.inCombat,
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
@@ -108,7 +107,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Mousse Princess Leftward Whimsy',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B19', source: 'Mousse Princess', capture: false }),
+      netRegex: { effectId: 'B19', source: 'Mousse Princess', capture: false },
       condition: (data) => data.inCombat,
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
@@ -126,7 +125,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Mousse Princess Forward Whimsy',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B8E', source: 'Mousse Princess', capture: false }),
+      netRegex: { effectId: 'B8E', source: 'Mousse Princess', capture: false },
       condition: (data) => data.inCombat,
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),

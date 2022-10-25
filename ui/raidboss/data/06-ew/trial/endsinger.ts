@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -87,7 +86,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Endsinger Doomed Stars Fatalism Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'The Endsinger', id: '00A6' }),
+      netRegex: { source: 'The Endsinger', id: '00A6' },
       delaySeconds: 10,
       alertText: (data, matches, output) => {
         return getOrbSafeDir(data, matches.targetId, output);
@@ -186,7 +185,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Endsinger Interstellar Toggle',
       type: 'NameToggle',
-      netRegex: NetRegexes.nameToggle({ toggle: '00', name: 'The Endsinger', capture: true }),
+      netRegex: { toggle: '00', name: 'The Endsinger', capture: true },
       condition: (data) => data.phase === 1,
       delaySeconds: 4,
       promise: async (data, matches) => {

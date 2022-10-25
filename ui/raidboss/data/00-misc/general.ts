@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../resources/netregexes';
 import ZoneId from '../../../../resources/zone_id';
 import { RaidbossData } from '../../../../types/data';
 import { TriggerSet } from '../../../../types/trigger';
@@ -176,7 +175,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'General Walking',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '32B' }),
+      netRegex: { effectId: '32B' },
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -199,7 +198,8 @@ const triggerSet: TriggerSet<Data> = {
       // the message is sent to this channel; when a ready check is invoked by others, then it
       // would be sent to the 0239 channel.  (Sometimes this is also sent to 0139, unknown why?)
       id: 'General Ready Check',
-      netRegex: NetRegexes.gameLog({ line: '(?:You have commenced a ready check|\\y{Name} has initiated a ready check).*?', code: ['0039', '0139', '0239'], capture: false }),
+      type: 'GameLog',
+      netRegex: { line: '(?:You have commenced a ready check|\\y{Name} has initiated a ready check).*?', code: ['0039', '0139', '0239'], capture: false },
       sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.webm',
       soundVolume: 0.6,
     },

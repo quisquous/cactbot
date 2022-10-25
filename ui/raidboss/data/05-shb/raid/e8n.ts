@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -152,7 +151,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Frigid Water',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -169,14 +168,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Icicle Impact',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0060' }),
+      netRegex: { id: '0060' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'E8N Puddle Chase',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00C5' }),
+      netRegex: { id: '00C5' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -205,7 +204,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Light Rampant Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       run: (data, matches) => {
         data.rampant ??= {};
         data.rampant[matches.target] = matches.id;
@@ -214,7 +213,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Light Rampant',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
+      netRegex: { id: '0017', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {

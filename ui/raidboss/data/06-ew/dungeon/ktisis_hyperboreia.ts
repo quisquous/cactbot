@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -64,7 +63,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Ktisis Hermes True Tornado',
       // StartsUsing line is self-targeted.
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00DA' }),
+      netRegex: { id: '00DA' },
       // This headmarker is used for the first two bosses but only Hermes cleaves.
       condition: (data) => data.isHermes,
       response: Responses.tankCleave('alert'),

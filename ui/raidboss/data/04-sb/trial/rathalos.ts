@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -89,7 +88,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rathalos Garula Add',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '6173', capture: false }),
+      netRegex: { npcNameId: '6173', capture: false },
       // Garula stuns and then puts down the telegraph from the east.
       // We could be like "go somewhere other than east", but "go west" is clearer.
       response: Responses.goWest(),
@@ -97,7 +96,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rathalos Garula Targetable',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '6173', capture: false }),
+      netRegex: { npcNameId: '6173', capture: false },
       delaySeconds: 15,
       // This is obnoxious to have as an alarm, but it will cause a wipe if nobody does this.
       alarmText: (_data, _matches, output) => output.text!(),
@@ -115,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rathalos Fire Breath',
       type: 'HeadMarker',
       // Corresponds with 28CE/2CBD ability.
-      netRegex: NetRegexes.headMarker({ id: '0081' }),
+      netRegex: { id: '0081' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -123,7 +122,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rathalos Fireball',
       type: 'HeadMarker',
       // Corresponds with 2876/2CBA ability.
-      netRegex: NetRegexes.headMarker({ id: '005D' }),
+      netRegex: { id: '005D' },
       response: Responses.stackMarkerOn(),
     },
     {

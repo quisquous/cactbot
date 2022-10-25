@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -234,7 +233,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Deluge of Death Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       run: (data, matches) => data.deluge = matches.target,
@@ -252,7 +251,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Deluge of Death Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057', capture: false }),
+      netRegex: { id: '0057', capture: false },
       delaySeconds: 10,
       run: (data) => {
         // Clean this up so it doesn't apply during Katon San.
@@ -263,7 +262,7 @@ const triggerSet: TriggerSet<Data> = {
       // Both for Absolute Holy and Katon San
       id: 'WOL Absolute Holy Katon San',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A1' }),
+      netRegex: { id: '00A1' },
       condition: (data) => data.deluge !== data.me,
       delaySeconds: 0.5,
       response: Responses.stackMarkerOn(),
@@ -271,7 +270,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Radiant Braver',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00EA' }),
+      netRegex: { id: '00EA' },
       response: Responses.earthshaker(),
     },
     {
@@ -295,7 +294,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Radiant Meteor',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00E9' }),
+      netRegex: { id: '00E9' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -319,7 +318,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Spectral Egi Flare Breath',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Spectral Egi', id: '0011' }),
+      netRegex: { source: 'Spectral Egi', id: '0011' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

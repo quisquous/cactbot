@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -121,7 +120,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ruby Homing Laser',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -146,7 +145,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ruby Meteor Stream',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00E0' }),
+      netRegex: { id: '00E0' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -166,7 +165,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ruby Bradamante',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

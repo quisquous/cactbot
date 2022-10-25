@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -152,7 +151,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Blaster Mirage',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Blaster Mirage', capture: false }),
+      netRegex: { name: 'Blaster Mirage', capture: false },
       suppressSeconds: 99999,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -169,7 +168,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Discoid',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0023' }),
+      netRegex: { id: '0023' },
       condition: (data, matches) => {
         // Verdict comes with the same headmarker.
         return data.me === matches.target && !data.seenLinkUp;
@@ -197,7 +196,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Low Arithmeticks',
       type: 'GainsEffect',
       // Note: both high and low use '0025' headmarker
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
+      netRegex: { effectId: '3FD' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
@@ -216,7 +215,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S High Arithmeticks',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
+      netRegex: { effectId: '3FE' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
@@ -248,7 +247,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'A8S Compressed Lightning',
       type: 'GainsEffect',
       // Note: also the 0045 headmarker.
-      netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
+      netRegex: { effectId: '400' },
       // TODO: do we need a Responses.effectOn() that uses matches.effect?
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -281,13 +280,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Compressed Lightning Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '400', capture: false }),
+      netRegex: { effectId: '400', capture: false },
       run: (data) => delete data.lightning,
     },
     {
       id: 'A8S Compressed Lightning Soon',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
+      netRegex: { effectId: '400' },
       condition: (data) => !!data.lightning,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {
@@ -307,7 +306,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Enumeration',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
+      netRegex: { id: ['0040', '0041', '0042'] },
       infoText: (data, matches, output) => {
         // 0040 = 2, 0041 = 3, 0042 = 4
         const count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
@@ -357,13 +356,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Long Needle Stack Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       run: (data, matches) => data.longNeedleStack = matches.target,
     },
     {
       id: 'A8S Long Needle Prey Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       run: (data, matches) => data.longNeedlePrey.push(matches.target),
     },
     {
@@ -444,7 +443,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Mirage Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0008' }),
+      netRegex: { id: '0008' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -461,7 +460,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Ice Missile Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0043' }),
+      netRegex: { id: '0043' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -538,7 +537,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Verdict Min HP',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
+      netRegex: { effectId: '408' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       alertText: (_data, _matches, output) => output.text!(),
@@ -556,13 +555,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Verdict Min HP Collect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
+      netRegex: { effectId: '408' },
       run: (data, matches) => data.verdictMin = matches.target,
     },
     {
       id: 'A8S Verdict Min HP Tornado',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
+      netRegex: { effectId: '408' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 27,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -580,13 +579,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Verdict Max HP Collect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
+      netRegex: { effectId: '407' },
       run: (data, matches) => data.verdictMax = matches.target,
     },
     {
       id: 'A8S Verdict Max HP',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
+      netRegex: { effectId: '407' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -604,7 +603,7 @@ const triggerSet: TriggerSet<Data> = {
       // Final Punishment effect falling off due to auto.
       id: 'A8S Verdict Max HP Provoke',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '403' }),
+      netRegex: { effectId: '403' },
       condition: (data, matches) => {
         return matches.target === data.verdictMin && data.me === data.verdictMax;
       },
@@ -623,7 +622,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Verdict Max HP Blu Devour',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
+      netRegex: { effectId: '407' },
       condition: (data, matches) => data.me === matches.target && data.job === 'BLU',
       delaySeconds: 27,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -641,7 +640,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Verdict Penalty 1',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '409' }),
+      netRegex: { effectId: '409' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       // TODO: we could say who to share north orbs with?
@@ -661,7 +660,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Verdict Penalty 2',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '40A' }),
+      netRegex: { effectId: '40A' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -678,7 +677,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Verdict Penalty 3',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '40B' }),
+      netRegex: { effectId: '40B' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -695,7 +694,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Verdict Penalty 3 Orb',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '40B' }),
+      netRegex: { effectId: '40B' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 28,
       // TODO: we could collect who else has penalty 3 to share the orb with?
@@ -715,7 +714,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Verdict Nisi A',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '40C' }),
+      netRegex: { effectId: '40C' },
       condition: Conditions.targetIsYou(),
       // TODO: we could say east or west here after the regulators spawn?
       // TODO: we could also say who to share north orb with.
@@ -735,7 +734,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Verdict Nisi B',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '40D' }),
+      netRegex: { effectId: '40D' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -752,7 +751,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Compressed Water',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
+      netRegex: { effectId: '3FF' },
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.waterOnYou!();
@@ -784,7 +783,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Compressed Water Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '3FF', capture: false }),
+      netRegex: { effectId: '3FF', capture: false },
       run: (data) => {
         // rip, valiant mine sac
         delete data.water;
@@ -793,7 +792,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Compressed Water Soon',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
+      netRegex: { effectId: '3FF' },
       condition: (data) => !!data.water,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {

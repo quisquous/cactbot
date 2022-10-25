@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -78,7 +77,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Shackles of Companionship',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AB6' }),
+      netRegex: { effectId: 'AB6' },
       preRun: (data, matches) => data.companionship = matches.target,
       durationSeconds: (_data, matches) => parseFloat(matches.duration) - 2,
       alertText: (data, matches, output) => {
@@ -99,7 +98,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Shackles of Loneliness',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AB7' }),
+      netRegex: { effectId: 'AB7' },
       preRun: (data, matches) => data.loneliness = matches.target,
       durationSeconds: (_data, matches) => parseFloat(matches.duration) - 2,
       alertText: (data, matches, output) => {
@@ -121,7 +120,7 @@ const triggerSet: TriggerSet<Data> = {
       // Callout the other shackle(s) at info level
       id: 'P1S Aetherial Shackles Callout',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AB[67]' }),
+      netRegex: { effectId: 'AB[67]' },
       condition: (data) => data.companionship !== undefined && data.loneliness !== undefined,
       durationSeconds: (_data, matches) => parseFloat(matches.duration) - 2,
       infoText: (data, _matches, output) => {
@@ -286,7 +285,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Hot/Cold Spell',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AB3', 'AB4'] }),
+      netRegex: { effectId: ['AB3', 'AB4'] },
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         return matches.effectId === 'AB3' ? output.red!() : output.blue!();
@@ -313,7 +312,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Powerful Light/Fire',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '893' }),
+      netRegex: { effectId: '893' },
       preRun: (data, matches) => {
         data.safeColor = matches.count === '14C' ? 'light' : 'fire';
       },
@@ -323,7 +322,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Shackles of Time',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AB5' }),
+      netRegex: { effectId: 'AB5' },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.oppositeParty!();
@@ -351,7 +350,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Fourfold Shackles of Companionship 1',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B45' }),
+      netRegex: { effectId: 'B45' },
       condition: Conditions.targetIsYou(),
       durationSeconds: (_data, matches) => parseFloat(matches.duration),
       alertText: (_data, _matches, output) => output.text!(),
@@ -369,7 +368,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Fourfold Shackles of Companionship 2',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B46' }),
+      netRegex: { effectId: 'B46' },
       condition: Conditions.targetIsYou(),
       durationSeconds: (_data, matches) => parseFloat(matches.duration),
       alertText: (_data, _matches, output) => output.text!(),
@@ -387,7 +386,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Fourfold Shackles of Companionship 3',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B47' }),
+      netRegex: { effectId: 'B47' },
       condition: Conditions.targetIsYou(),
       durationSeconds: (_data, matches) => parseFloat(matches.duration),
       alertText: (_data, _matches, output) => output.text!(),
@@ -405,7 +404,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Fourfold Shackles of Companionship 4',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B6B' }),
+      netRegex: { effectId: 'B6B' },
       condition: Conditions.targetIsYou(),
       durationSeconds: (_data, matches) => parseFloat(matches.duration),
       alertText: (_data, _matches, output) => output.text!(),
@@ -423,7 +422,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Fourfold Shackles of Loneliness 1',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B48' }),
+      netRegex: { effectId: 'B48' },
       condition: Conditions.targetIsYou(),
       durationSeconds: (_data, matches) => parseFloat(matches.duration),
       alertText: (_data, _matches, output) => output.text!(),
@@ -441,7 +440,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Fourfold Shackles of Loneliness 2',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B49' }),
+      netRegex: { effectId: 'B49' },
       condition: Conditions.targetIsYou(),
       durationSeconds: (_data, matches) => parseFloat(matches.duration),
       alertText: (_data, _matches, output) => output.text!(),
@@ -459,7 +458,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Fourfold Shackles of Loneliness 3',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B4A' }),
+      netRegex: { effectId: 'B4A' },
       condition: Conditions.targetIsYou(),
       durationSeconds: (_data, matches) => parseFloat(matches.duration),
       alertText: (_data, _matches, output) => output.text!(),
@@ -477,7 +476,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P1S Fourfold Shackles of Loneliness 4',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B6C' }),
+      netRegex: { effectId: 'B6C' },
       condition: Conditions.targetIsYou(),
       durationSeconds: (_data, matches) => parseFloat(matches.duration),
       alertText: (_data, _matches, output) => output.text!(),

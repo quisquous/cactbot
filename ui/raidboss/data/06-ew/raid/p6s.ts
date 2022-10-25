@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -66,7 +65,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Headmarker Tracker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => {
@@ -106,7 +105,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Polyominoid Tether Collect',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '00CF' }),
+      netRegex: { id: '00CF' },
       run: (data, matches) => {
         data.tileTethers.push(matches);
       },
@@ -114,7 +113,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Polyominoid MapEffect Collect',
       type: 'MapEffect',
-      netRegex: NetRegexes.mapEffect({ flags: [crossTileFlags, diagonalTileFlags] }),
+      netRegex: { flags: [crossTileFlags, diagonalTileFlags] },
       run: (data, matches) => {
         // location '00' won't be used for determining mechanic resolution
         if (matches.location !== '00')
@@ -565,7 +564,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Pathogenic Cells Numbers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => {
         return data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
@@ -639,7 +638,7 @@ const triggerSet: TriggerSet<Data> = {
       // Therefore, there is no need to keep track of tethers as well.
       id: 'P6S Exchange of Agonies Markers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: Conditions.targetIsYou(),
       infoText: (data, matches, output) => {
         const correctedMatch = getHeadmarkerId(data, matches);
@@ -705,7 +704,7 @@ const triggerSet: TriggerSet<Data> = {
       // CF7 Glossal Resistance Down (Snake Icon)
       // CF8 Chelic Resistance Down (Wing Icon)
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['CF7', 'CF8'] }),
+      netRegex: { effectId: ['CF7', 'CF8'] },
       condition: Conditions.targetIsYou(),
       run: (data, matches) => data.predationDebuff = matches.effectId,
     },
@@ -714,7 +713,7 @@ const triggerSet: TriggerSet<Data> = {
       // Using Aetheronecrosis (CF9)
       // These come out as 20s, 16s, 12s, or 8s
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'CF9' }),
+      netRegex: { effectId: 'CF9' },
       condition: Conditions.targetIsYou(),
       preRun: (data, matches) => data.aetheronecrosisDuration = parseFloat(matches.duration),
       delaySeconds: 0.1,
@@ -923,7 +922,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       // CF3 Chelomorph (Wing icon - cleave behind player)
       // D48 Glossomorph (Snake icon - cleave in front of player)
-      netRegex: NetRegexes.gainsEffect({ effectId: ['CF3', 'D48'] }),
+      netRegex: { effectId: ['CF3', 'D48'] },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => {
         // 1st transmission has 11s duration, 2nd has 25s duration

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -178,7 +177,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Slicetops Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Lamebrix Strikebocks', id: '0039' }),
+      netRegex: { source: 'Lamebrix Strikebocks', id: '0039' },
       alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
@@ -239,7 +238,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Brighteyes Prey Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0029' }),
+      netRegex: { id: '0029' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -256,7 +255,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Brighteyes Prey Marker Pass',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0029' }),
+      netRegex: { id: '0029' },
       condition: (data, matches) => {
         // Only need to pass on the first one.
         return data.me === matches.target && !data.seenBrighteyes;

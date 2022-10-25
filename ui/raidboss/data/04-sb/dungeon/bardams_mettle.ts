@@ -24,7 +24,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bardam\'s Mettle Rush',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0039' }),
+      netRegex: { id: '0039' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -120,7 +120,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bardam\'s Mettle Flutterfall',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: (data, matches) => data.me === matches.target && data.deadBardam,
       response: Responses.spread(),
     },
@@ -133,7 +133,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bardam\'s Mettle Wingbeat You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0010' }),
+      netRegex: { id: '0010' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -150,7 +150,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bardam\'s Mettle Wingbeat Others',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0010' }),
+      netRegex: { id: '0010' },
       condition: Conditions.targetIsNotYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

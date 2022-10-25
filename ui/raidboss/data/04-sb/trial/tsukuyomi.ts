@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -26,7 +25,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tsukuyomi Midnight Haze',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7230', capture: false }),
+      netRegex: { npcNameId: '7230', capture: false },
       response: Responses.killAdds(),
     },
     {
@@ -66,13 +65,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tsukuyomi Lunacy',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Tsukuyomi Moonlit Debuff',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
+      netRegex: { effectId: '602' },
       condition: (data, matches) => {
         if (matches.target !== data.me)
           return false;
@@ -93,7 +92,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tsukuyomi Moonshadowed Debuff',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
+      netRegex: { effectId: '603' },
       condition: (data, matches) => {
         if (matches.target !== data.me)
           return false;

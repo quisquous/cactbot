@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -277,7 +276,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DiamondEx Headmarker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       durationSeconds: 25,
       infoText: (data, matches, output) => {
         // Always get the headmarker ID, so that decOffset can be defined properly

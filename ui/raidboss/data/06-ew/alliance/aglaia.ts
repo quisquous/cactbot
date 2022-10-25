@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -376,7 +375,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Nald\'thal Smelting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00ED' }),
+      netRegex: { id: '00ED' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text!();
@@ -422,7 +421,7 @@ const triggerSet: TriggerSet<Data> = {
       // happen even if they are fake (because it is orange or blue, respectively).
       id: 'Aglaia Nald\'thal Deepest Pit Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0154' }),
+      netRegex: { id: '0154' },
       run: (data, matches) => data.naldArrowMarker.push(matches.target),
     },
     {

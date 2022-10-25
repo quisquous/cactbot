@@ -107,14 +107,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Sticky Wicket',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003C', capture: false }),
+      netRegex: { id: '003C', capture: false },
       suppressSeconds: 10,
       response: Responses.spread(),
     },
     {
       id: 'Weeping City Shadow Burst',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       condition: (data) => data.arachneStarted,
       response: Responses.stackMarkerOn(),
     },
@@ -127,7 +127,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Arachne Web',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: (data, matches) => data.arachneStarted && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -144,14 +144,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Brand Of The Fallen',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0037' }),
+      netRegex: { id: '0037' },
       condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'Weeping City Dark Eruption',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0019' }),
+      netRegex: { id: '0019' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -205,7 +205,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Meteor Impact',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0039' }),
+      netRegex: { id: '0039' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -284,7 +284,7 @@ const triggerSet: TriggerSet<Data> = {
       // Failing to pop an orb means it will explode, dealing damage with 1808 Aethernova.
       id: 'Weeping City Flare Star Orbs',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcBaseId: '4889', capture: false }),
+      netRegex: { npcBaseId: '4889', capture: false },
       condition: (data) => data.role === 'tank' || data.role === 'healer',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -301,7 +301,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Acceleration Bomb',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '430' }),
+      netRegex: { effectId: '430' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       response: Responses.stopEverything(),
@@ -316,7 +316,7 @@ const triggerSet: TriggerSet<Data> = {
       // Each party gets a stack marker, so this is the best we can do.
       id: 'Weeping City Meteor Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      netRegex: { id: '003E', capture: false },
       condition: (data) => data.ozmaStarted,
       suppressSeconds: 5,
       response: Responses.stackMarker(),
@@ -341,7 +341,7 @@ const triggerSet: TriggerSet<Data> = {
       // Bulbs do a circle AoE surrounding them, while axes are a donut.
       id: 'Weeping City Living Lock Axes',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['4899', '4900'], capture: false }),
+      netRegex: { npcNameId: ['4899', '4900'], capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -358,7 +358,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Living Lock Scythes',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '4898', capture: false }),
+      netRegex: { npcNameId: '4898', capture: false },
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -376,7 +376,7 @@ const triggerSet: TriggerSet<Data> = {
       // These adds are the purple circles waiting to grab people and Garrotte them.
       id: 'Weeping City Entanglement',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '4904', capture: false }),
+      netRegex: { npcNameId: '4904', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -402,7 +402,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Particle Beam',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: (data) => data.calStarted,
       alertText: (data, matches, output) => {
         if (data.me === matches.target)

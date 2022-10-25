@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -16,7 +15,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amaurot Meteor',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0039' }),
+      netRegex: { id: '0039' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => data.meteor = (data.meteor ?? 0) + 1,
       infoText: (data, _matches, output) => {
@@ -57,7 +56,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amaurot Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

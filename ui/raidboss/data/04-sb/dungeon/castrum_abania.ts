@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -33,7 +32,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'CastrumAbania Magna Roader Mark XLIII Mini Cannon',
       type: 'NameToggle',
-      netRegex: NetRegexes.nameToggle({ name: 'Mark XLIII Mini Cannon', toggle: '01', capture: false }),
+      netRegex: { name: 'Mark XLIII Mini Cannon', toggle: '01', capture: false },
       // There's two cannons, so only say something when the first one is targetable.
       condition: (data) => !data.calledUseCannon,
       delaySeconds: 6,
@@ -109,13 +108,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'CastrumAbania Inferno Adds',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '6270', capture: false }),
+      netRegex: { npcNameId: '6270', capture: false },
       response: Responses.killAdds(),
     },
     {
       id: 'CastrumAbania Inferno Rahu Ray',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '004A' }),
+      netRegex: { id: '004A' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

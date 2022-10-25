@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -38,7 +37,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ghimlyt Dark Wild Fire Beam',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -51,14 +50,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ghimlyt Dark Magitek Ray',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       // 00A7 is the orange clockwise indicator. 00A8 is the blue counterclockwise one.
       id: 'Ghimlyt Dark Magitek Slash',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['00A7', '00A8'] }),
+      netRegex: { id: ['00A7', '00A8'] },
       infoText: (_data, matches, output) => matches.id === '00A7' ? output.left!() : output.right!(),
       outputStrings: {
         left: {
@@ -120,7 +119,7 @@ const triggerSet: TriggerSet<Data> = {
       // This head marker is used on players and NPCs, so we have to exclude NPCs explicitly.
       id: 'Ghimlyt Dark Heirsbane',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: (_data, matches) => matches.targetId[0] !== '4',
       response: Responses.tankBuster(),
     },
@@ -133,7 +132,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ghimlyt Dark Covering Fire',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0078' }),
+      netRegex: { id: '0078' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

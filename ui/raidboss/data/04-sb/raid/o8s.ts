@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -342,7 +341,7 @@ const triggerSet: TriggerSet<Data> = {
       // Precedes fake abilities
       id: 'O8S Jester\'s Antics',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '5CE', capture: false }),
+      netRegex: { effectId: '5CE', capture: false },
       suppressSeconds: 1, // Every Kefka entity gains this at once.
       run: (data) => data.antics = true,
     },
@@ -350,14 +349,14 @@ const triggerSet: TriggerSet<Data> = {
       // Precedes real abilities
       id: 'O8S Jester\'s Truths',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '5CF', capture: false }),
+      netRegex: { effectId: '5CF', capture: false },
       suppressSeconds: 1, // Every Kefka entity gains this at once.
       run: (data) => data.truths = true,
     },
     {
       id: 'O8S Jester Cleanup',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: ['5CE', '5CF'], capture: false }),
+      netRegex: { effectId: ['5CE', '5CF'], capture: false },
       suppressSeconds: 1,
       run: (data) => {
         delete data.antics;
@@ -414,7 +413,7 @@ const triggerSet: TriggerSet<Data> = {
       // 007F is the spread marker, 0080 is the stack marker
       id: 'O8S Fire Head Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['007F', '0080'] }),
+      netRegex: { id: ['007F', '0080'] },
       suppressSeconds: 2,
       run: (data, matches) => data.fireMarker = matches.id === '007F' ? 'spread' : 'stack',
     },

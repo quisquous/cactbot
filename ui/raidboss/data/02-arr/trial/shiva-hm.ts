@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -32,7 +31,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaHm Hailstorm Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001D' }),
+      netRegex: { id: '001D' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },

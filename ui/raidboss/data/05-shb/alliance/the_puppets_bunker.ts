@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -42,14 +41,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Aegis Anti-Personnel Laser You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00C6' }),
+      netRegex: { id: '00C6' },
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Puppet Aegis Anti-Personnel Laser Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00C6' }),
+      netRegex: { id: '00C6' },
       run: (data, matches) => {
         data.busterTargets ??= [];
         data.busterTargets.push(matches.target);
@@ -58,7 +57,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Aegis Anti-Personnel Laser Not You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00C6', capture: false }),
+      netRegex: { id: '00C6', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
@@ -104,7 +103,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Aegis Aerial Support Surface Laser',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: (data, matches) => data.me === matches.target && data.phase !== 'superior',
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -192,7 +191,7 @@ const triggerSet: TriggerSet<Data> = {
       // Homing Missile (Light Artillery)
       // Mechanical Contusion (The Compound)
       // R012: Laser (Compound 2P)
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -251,7 +250,7 @@ const triggerSet: TriggerSet<Data> = {
       // This is for Maneuver: Incendiary Bombing and Maneuver: Area Bombardment.
       id: 'Puppet Superior Incendiary Bombing',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: (data, matches) => data.me === matches.target && data.phase === 'superior',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -442,7 +441,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Heavy Unconventional Voltage',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AC' }),
+      netRegex: { id: '00AC' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -549,7 +548,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Hallway Targeted Laser',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A4' }),
+      netRegex: { id: '00A4' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -612,7 +611,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Puppet Compound 2P R012: Laser You',
       type: 'HeadMarker',
       // R012: Laser also puts out 008B headmarkers on non-tanks.
-      netRegex: NetRegexes.headMarker({ id: '00DA' }),
+      netRegex: { id: '00DA' },
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
       run: (data, matches) => {
@@ -623,7 +622,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Compound 2P R012: Laser Not You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00DA', capture: false }),
+      netRegex: { id: '00DA', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {
@@ -645,14 +644,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Compound 2P Three Parts Disdain',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       condition: (data) => data.phase === 'compound',
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Puppet Compound 2P Three Parts Disdain Knockback',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      netRegex: { id: '003E', capture: false },
       condition: (data) => data.phase === 'compound',
       // Knockback prevention is 6 seconds long, and there's ~9.6s between marker and final hit.
       delaySeconds: 3.6,
@@ -661,7 +660,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Compound 2P Four Parts Resolve',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['004F', '0050', '0051', '0052'] }),
+      netRegex: { id: ['004F', '0050', '0051', '0052'] },
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         const fourPartsMap: { [id: string]: string } = {

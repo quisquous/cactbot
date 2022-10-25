@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -34,7 +33,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Mateus Breathless',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
+      netRegex: { effectId: '595' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, matches, output) => {
         if (parseInt(matches.count) === 6)
@@ -196,7 +195,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Rofocale Chariot',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       response: Responses.getIn('alarm'),
     },
@@ -259,7 +258,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Argath Command Scatter',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '007B' }),
+      netRegex: { id: '007B' },
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.maskValue)
@@ -275,7 +274,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Argath Command Turn',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '007C' }),
+      netRegex: { id: '007C' },
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.maskValue)

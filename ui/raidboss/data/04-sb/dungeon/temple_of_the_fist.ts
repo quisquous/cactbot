@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -46,7 +45,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Temple Moonseal',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0059' }),
+      netRegex: { id: '0059' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -63,7 +62,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Temple Sunseal',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0058' }),
+      netRegex: { id: '0058' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
