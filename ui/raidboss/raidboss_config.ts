@@ -1273,11 +1273,11 @@ class RaidbossConfigurator {
       if (regex === undefined)
         return;
 
-      if (trig.type === undefined) {
-        if (!(regex instanceof RegExp))
-          return;
+      if (regex instanceof RegExp)
         return Regexes.parse(translateRegex(regex, lang, set.timelineReplace));
-      }
+
+      if (trig.type === undefined)
+        return;
 
       return Regexes.parse(
         buildRegex(trig.type, translateRegexBuildParam(regex, lang, set.timelineReplace)),
