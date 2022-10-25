@@ -67,7 +67,7 @@ hideall "--sync--"
 262.3 "--sync--" sync / 1[56]:[^:]*:Silkie:(7751|7752):/
 263.8 "Squeaky Clean 1" sync / 1[56]:[^:]*:Silkie:7753:/
 265.5 "Squeaky Clean 2" sync / 1[56]:[^:]*:Silkie:7754:/
-266.9 "Puff and Tumble x4" #sync / 1[56]:[^:]*:Silken Puff:7771:/
+266.9 "Puff and Tumble x4" duration 0.7 #sync / 1[56]:[^:]*:Silken Puff:7771:/
 266.9 "Squeaky Clean 3" sync / 1[56]:[^:]*:Silkie:(7755|7756):/
 276.0 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:7767:/
 276.0 "Chilling Duster x4?" #sync / 1[56]:[^:]*:Silken Puff:7768:/
@@ -83,7 +83,7 @@ hideall "--sync--"
 309.0 "Bracing Suds / Chilling Suds / Fizzling Suds" sync / 1[56]:[^:]*:Silkie:(7757|7758|7759):/
 311.1 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
 316.1 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:775E:/
-320.0 "Bracing Duster / Chilling Duster | Fizzling Duster" sync / 1[56]:[^:]*:Silkie:(7764|7763|7765):/
+320.0 "Bracing Duster / Chilling Duster / Fizzling Duster" sync / 1[56]:[^:]*:Silkie:(7764|7763|7765):/
 322.9 "--sync--" sync / 14:[^:]*:Silkie:79E0:/ window 15,5
 332.9 "Total Wash (enrage)" sync / 1[56]:[^:]*:Silkie:79E0:/
 338.1 "Total Wash (enrage)" sync / 1[56]:[^:]*:Silkie:79F9:/
