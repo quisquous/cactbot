@@ -223,5 +223,3 @@ hideall "--sync--"
 2328.6 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74BF:/ window 15,5
 2338.6 "Show of Strength (enrage)" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BF:/
 2341.7 "Show of Strength (enrage)" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:73C9:/
-
-
