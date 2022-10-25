@@ -72,8 +72,6 @@ hideall "--sync--"
 276.0 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:7767:/
 276.0 "Chilling Duster x4?" #sync / 1[56]:[^:]*:Silken Puff:7768:/
 276.0 "Bracing Duster" #sync / 1[56]:[^:]*:Silkie:7769:/
-# 276.0 "Fizzling Duster?" #sync / 1[56]:[^:]*:Silken Puff:776A:/ # Possible here, but means a mechanic failed
-# 276.0 "Bracing Duster?" sync / 1[56]:[^:]*:Silken Puff:7769:/ # Possible here, but means a mechanic failed
 283.1 "Total Wash" sync / 1[56]:[^:]*:Silkie:7750:/
 292.3 "Bracing Suds / Chilling Suds / Fizzling Suds" sync / 1[56]:[^:]*:Silkie:(7757|7758|7759):/
 294.4 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
