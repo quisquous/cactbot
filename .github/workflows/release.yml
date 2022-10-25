@@ -66,3 +66,20 @@ jobs:
           artifactContentType: application/zip
           draft: true
           generateReleaseNotes: true
+
+  create-npm-package:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'quisquous/cactbot' }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-js-env
+
+      - run: node .github/scripts/npm-package.cjs
+
+      - run: npm publish
+        working-directory: npm-package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+

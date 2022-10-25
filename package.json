@@ -8,6 +8,13 @@
     "type": "git",
     "url": "https://github.com/quisquous/cactbot"
   },
+  "files": [
+    "./ui",
+    "./types",
+    "./util",
+    "./resources",
+    "package.json"
+  ],
   "scripts": {
     "build": "webpack --progress --config webpack/webpack.prod.ts",
     "build-gh-pages": " webpack --config webpack/webpack.ghpages.ts",
@@ -31,6 +38,7 @@
     "version": "node util/sync_version.cjs && git add -u"
   },
   "devDependencies": {
+    "@actions/exec": "^1.1.1",
     "@actions/github": "^5.0.0",
     "@actions/http-client": "^1.0.11",
     "@babel/core": "^7.14.5",
@@ -72,6 +80,7 @@
     "eslint-plugin-tsc": "^2.0.0",
     "fast-levenshtein": "^3.0.0",
     "fork-ts-checker-webpack-plugin": "^7.2.11",
+    "fs-extra": "^10.1.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^4.2.5",
     "is-ci": "^3.0.1",
