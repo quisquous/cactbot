@@ -10,6 +10,8 @@ const pkg = require('../../package.json');
 
 const projectRoot = path.join(__dirname, '..', '..');
 
+const npmrc = '//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}\nalways-auth=true';
+
 async function main() {
   // force pwd to at .../cactbot/
   process.chdir(projectRoot);
@@ -23,6 +25,8 @@ async function main() {
   fsExtra.copySync('types', 'npm-package/types', {});
   fs.renameSync('dist/resources', 'npm-package/resources');
   fs.renameSync('dist/util', 'npm-package/util');
+
+  fs.writeFileSync('npm-package/.npmrc', npmrc);
 
   const newPackageJSON = {
     type: 'module',
