@@ -20,13 +20,17 @@ const matchDefault = '[^|]*';
 // If issue #1306 is ever resolved, we can remove this.
 const magicTranslationString = `^^`;
 const magicStringRegex = /^\^\^/;
-const keysThatRequireTranslation = [
+
+// can't simply export this, see https://github.com/quisquous/cactbot/pull/4957#discussion_r1002590589
+const keysThatRequireTranslationAsConst = [
   'ability',
   'name',
   'source',
   'target',
   'line',
-];
+] as const;
+export const keysThatRequireTranslation: readonly string[] = keysThatRequireTranslationAsConst;
+export type KeysThatRequireTranslation = typeof keysThatRequireTranslationAsConst[number];
 
 const defaultParams = <
   T extends LogDefinitionTypes,
