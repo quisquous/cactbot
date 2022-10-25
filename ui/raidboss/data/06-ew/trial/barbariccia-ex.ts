@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -297,7 +296,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BarbaricciaEx Playstation Hair Chains',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         switch (matches.id) {

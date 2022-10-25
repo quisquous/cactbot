@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -748,7 +747,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Seeker Burning Chains',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => {
         if (data.me !== matches.target)
           return false;
@@ -776,7 +775,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Seeker Merciful Arc',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => getHeadmarkerId(data, matches) === headmarker.mercifulArc,
       response: Responses.tankCleave(),
     },
@@ -846,7 +845,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Dahu Spit Flame',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => {
         if (data.me !== matches.target)
           return false;
@@ -891,7 +890,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Dahu Flare',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => {
         if (data.me !== matches.target)
           return false;
@@ -2263,7 +2262,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Lord Rapid Bolts',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => {
         if (data.me !== matches.target)
           return false;

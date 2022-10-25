@@ -358,7 +358,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Hyperdimensional Slash Headmarker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => data.phase === 'doorboss' && data.me === matches.target,
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -449,7 +449,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Playstation Fire Chains',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => data.phase === 'doorboss' && data.me === matches.target,
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -763,7 +763,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Skyward Leap',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => data.phase === 'thordan' && data.me === matches.target,
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -880,7 +880,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Sanctity of the Ward Swords',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => data.phase === 'thordan' && data.me === matches.target,
       alarmText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -909,7 +909,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Sanctity of the Ward Sword Names',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data) => data.phase === 'thordan',
       sound: '',
       infoText: (data, matches, output) => {
@@ -950,7 +950,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Sanctity of the Ward Meteor Role',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data) => data.phase === 'thordan',
       // Keep this up through the first tower.
       durationSeconds: 10,
@@ -1001,7 +1001,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Sanctity of the Ward Meteor You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => data.phase === 'thordan' && data.me === matches.target,
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -1046,7 +1046,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Dive From Grace Number',
       // This comes out ~5s before symbols.
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       infoText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
         if (id === headmarkers.dot1) {
@@ -1837,7 +1837,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Wrath Skyward Leap',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: Conditions.targetIsYou(),
       alarmText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -1911,7 +1911,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Wrath Cauterize Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: Conditions.targetIsYou(),
       alarmText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -1963,7 +1963,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Playstation2 Fire Chains',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data) => data.phase === 'thordan2',
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -2072,7 +2072,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: should we run this on Playstation1 as well (and consolidate triggers?)
       id: 'DSR Playstation2 Fire Chains No Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => data.phase === 'thordan2' && playstationHeadmarkerIds.includes(getHeadmarkerId(data, matches)),
       delaySeconds: 0.5,
       suppressSeconds: 5,
@@ -2173,7 +2173,7 @@ const triggerSet: TriggerSet<Data> = {
       // with the "No Marker" trigger above.
       id: 'DSR Playstation2 Fire Chains Unexpected Pair',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => {
         if (data.phase !== 'thordan2')
           return false;
