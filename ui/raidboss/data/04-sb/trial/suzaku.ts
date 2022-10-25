@@ -54,7 +54,6 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
     {
-      // TODO: fix HeadMarker
       id: 'Suzaku Rekindle',
       type: 'HeadMarker',
       netRegex: { id: '3230' },
