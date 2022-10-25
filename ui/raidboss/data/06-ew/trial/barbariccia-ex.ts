@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -38,7 +37,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BarbaricciaEx Void Aero IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7570', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '7570', source: 'Barbariccia', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -48,13 +47,13 @@ const triggerSet: TriggerSet<Data> = {
       // 8.8 duration: 7575 (out, paired with donut), 757B (out, paired with line)
       id: 'BarbaricciaEx Savage Barbery Donut',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7574', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '7574', source: 'Barbariccia', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'BarbaricciaEx Savage Barbery Line',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '757A', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '757A', source: 'Barbariccia', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -76,13 +75,13 @@ const triggerSet: TriggerSet<Data> = {
       // 7.7 duration (Deadly Twist): 75A7
       id: 'BarbaricciaEx Hair Raid Donut',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '757E', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '757E', source: 'Barbariccia', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'BarbaricciaEx Hair Raid Wall',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '757C', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '757C', source: 'Barbariccia', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -98,14 +97,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'BarbaricciaEx Hair Spray',
       type: 'StartsUsing',
       // This spread mechanic is used later in other phases of the fight as well.
-      netRegex: NetRegexes.startsUsing({ id: '75A6', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '75A6', source: 'Barbariccia', capture: false },
       suppressSeconds: 1,
       response: Responses.spread(),
     },
     {
       id: 'BarbaricciaEx Deadly Twist',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75A7', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '75A7', source: 'Barbariccia', capture: false },
       suppressSeconds: 2,
       infoText: (_data, _matches, output) => output.groups!(),
       outputStrings: {
@@ -122,14 +121,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BarbaricciaEx Void Aero III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7571', source: 'Barbariccia' }),
+      netRegex: { id: '7571', source: 'Barbariccia' },
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'BarbaricciaEx Secret Breeze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7580', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '7580', source: 'Barbariccia', capture: false },
       durationSeconds: 3,
       alertText: (_data, _matches, output) => output.protean!(),
       outputStrings: {
@@ -146,13 +145,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BarbaricciaEx Boulder Break',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7383', source: 'Barbariccia' }),
+      netRegex: { id: '7383', source: 'Barbariccia' },
       response: Responses.sharedTankBuster(),
     },
     {
       id: 'BarbaricciaEx Brittle Boulder',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '016D', capture: false }),
+      netRegex: { id: '016D', capture: false },
       suppressSeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -171,7 +170,7 @@ const triggerSet: TriggerSet<Data> = {
       // but if people are dead anybody can get these.
       id: 'BarbaricciaEx Brutal Rush',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011' }),
+      netRegex: { id: '0011' },
       condition: (data, matches) => matches.source === data.me,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -189,14 +188,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'BarbaricciaEx Brutal Rush Move',
       type: 'Ability',
       // When the Brutal Rush hits you, the follow-up Brutal Gust has locked in.
-      netRegex: NetRegexes.ability({ id: '7583', source: 'Barbariccia' }),
+      netRegex: { id: '7583', source: 'Barbariccia' },
       condition: Conditions.targetIsYou(),
       response: Responses.moveAway(),
     },
     {
       id: 'BarbaricciaEx Hair Flay',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7413', source: 'Barbariccia' }),
+      netRegex: { id: '7413', source: 'Barbariccia' },
       alertText: (data, matches, output) => {
         data.hairFlayUpbraidTargets.push(matches.target);
         if (data.me === matches.target)
@@ -209,7 +208,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BarbaricciaEx Upbraid',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75A8', source: 'Barbariccia' }),
+      netRegex: { id: '75A8', source: 'Barbariccia' },
       alertText: (data, matches, output) => {
         data.hairFlayUpbraidTargets.push(matches.target);
         if (data.me === matches.target)
@@ -228,7 +227,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BarbaricciaEx Upbraid Untargeted',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75A8', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '75A8', source: 'Barbariccia', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {
@@ -250,7 +249,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BarbaricciaEx Bold Boulder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '759B', source: 'Barbariccia' }),
+      netRegex: { id: '759B', source: 'Barbariccia' },
       infoText: (data, matches, output) => {
         data.boldBoulderTargets.push(matches.target);
         if (data.me === matches.target)
@@ -272,7 +271,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // There's no castbar for Trample, so use Bold Boulder and collect flares.
       // There's also an 0064 stack headmarker, but that's used elsewhere.
-      netRegex: NetRegexes.startsUsing({ id: '759B', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '759B', source: 'Barbariccia', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       // info to match spread and flare to not conflict during knockback
@@ -289,7 +288,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BarbaricciaEx Impact',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75A0', source: 'Barbariccia' }),
+      netRegex: { id: '75A0', source: 'Barbariccia' },
       // Could also have used 75A1, full cast time is 5.9s
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),
@@ -297,7 +296,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BarbaricciaEx Playstation Hair Chains',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         switch (matches.id) {

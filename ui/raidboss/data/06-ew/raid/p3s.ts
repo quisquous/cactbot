@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -45,7 +44,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3S Headmarker Tracker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => getHeadmarkerId(data, matches),
@@ -53,13 +52,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3S Scorched Exaltation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6706', source: 'Phoinix', capture: false }),
+      netRegex: { id: '6706', source: 'Phoinix', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P3S Darkened Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66B9', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66B9', source: 'Phoinix', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -75,7 +74,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3S Heat of Condemnation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6700', source: 'Phoinix', capture: false }),
+      netRegex: { id: '6700', source: 'Phoinix', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -91,7 +90,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3S Experimental Fireplume Rotating Cast',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66C0', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66C0', source: 'Phoinix', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -107,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3S Experimental Fireplume Out Cast',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66BE', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66BE', source: 'Phoinix', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -123,26 +122,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3S Experimental Fireplume Out Marker',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '66BE', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66BE', source: 'Phoinix', capture: false },
       // goldfish brain needs an extra "get out" call
       response: Responses.getOut(),
     },
     {
       id: 'P3S Right Cinderwing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6702', source: 'Phoinix', capture: false }),
+      netRegex: { id: '6702', source: 'Phoinix', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'P3S Left Cinderwing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6703', source: 'Phoinix', capture: false }),
+      netRegex: { id: '6703', source: 'Phoinix', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'P3S Flare of Condemnation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66FB', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66FB', source: 'Phoinix', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -158,7 +157,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3S Spark of Condemnation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66FC', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66FC', source: 'Phoinix', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -174,7 +173,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3S Bright Fire Marker and Fledgling Flights',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: Conditions.targetIsYou(),
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -214,14 +213,14 @@ const triggerSet: TriggerSet<Data> = {
       // 0039 when pink, 0001 when stretched purple.
       // TODO: in general, it seems like the tethers are picked to start unstretched,
       // but plausibly you could create a scenario where one starts stretched?
-      netRegex: NetRegexes.tether({ source: 'Sunbird', id: ['0039', '0001'] }),
+      netRegex: { source: 'Sunbird', id: ['0039', '0001'] },
       run: (data, matches) => data.sunbirdTethers.push(matches),
     },
     {
       id: 'P3S Sunbird Collector',
       type: 'AddedCombatant',
       // Small birds are 13633, and big birds are 13635.
-      netRegex: NetRegexes.addedCombatantFull({ npcBaseId: '13635' }),
+      netRegex: { npcBaseId: '13635' },
       run: (data, matches) => data.sunbirds.push(matches),
     },
     {
@@ -235,7 +234,7 @@ const triggerSet: TriggerSet<Data> = {
       // ...therefore if this tether has the current player as a target, then we
       // will have seen the Sunbird => Player tether previously if it exists in the
       // Sunbird Tether Collector line.
-      netRegex: NetRegexes.tether({ id: ['0039', '0001'] }),
+      netRegex: { id: ['0039', '0001'] },
       condition: Conditions.targetIsYou(),
       // There are additional tether lines when you stretch/unstretch the tether, and
       // adds will re-tether somebody new if somebody dies right before dashing.  Only call once.
@@ -309,14 +308,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3S Dead Rebirth',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66E4', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66E4', source: 'Phoinix', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'P3S Experimental Gloryplume Rotate Cast',
       type: 'StartsUsing',
       // 66CA (self) -> 66CB (rotating) -> etc
-      netRegex: NetRegexes.startsUsing({ id: '66CA', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66CA', source: 'Phoinix', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -333,7 +332,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P3S Experimental Gloryplume Out Cast',
       type: 'StartsUsing',
       // 66C6 (self) -> 66C7 (middle) -> etc
-      netRegex: NetRegexes.startsUsing({ id: '66C6', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66C6', source: 'Phoinix', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -350,7 +349,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P3S Experimental Gloryplume Out',
       type: 'Ability',
       // 66C6 (self) -> 66C7 (middle) -> etc
-      netRegex: NetRegexes.ability({ id: '66C6', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66C6', source: 'Phoinix', capture: false },
       // If you hang around to wait for the spread/stack, you will get killed.
       // It's easy to get complacement by the end of the fight, so make this loud.
       response: Responses.getOut('alarm'),
@@ -360,7 +359,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // 66CA (self) -> 66CB (rotating) -> 66CC (instant) -> 66CD (stacks)
       // 66C6 (self) -> 66C7 (middle) -> 66CC (instant) -> 66CD (stacks)
-      netRegex: NetRegexes.ability({ id: '66CC', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66CC', source: 'Phoinix', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -378,7 +377,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // 66CA (self) -> 66CB (rotating) -> 66C8 (instant) -> 66C9 (spread)
       // 66C6 (self) -> 66C7 (middle) -> 66C8 (instant) -> 66C9 (spread)
-      netRegex: NetRegexes.ability({ id: '66C8', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66C8', source: 'Phoinix', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -394,7 +393,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3S Sun\'s Pinion',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '007A',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -411,14 +410,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3S Firestorms of Asphodelos',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66F0', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66F0', source: 'Phoinix', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'P3S Experimental Ashplume Stacks',
       type: 'Ability',
       // 66C2 cast -> 66C3 stacks damage
-      netRegex: NetRegexes.ability({ id: '66C2', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66C2', source: 'Phoinix', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -435,7 +434,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P3S Experimental Ashplume Spread',
       type: 'Ability',
       // 66C4 cast -> 66C5 spread damage
-      netRegex: NetRegexes.ability({ id: '66C4', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66C4', source: 'Phoinix', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -451,7 +450,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3S Death\'s Toll Number',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['ACA'], capture: true }),
+      netRegex: { effectId: ['ACA'], capture: true },
       // Force this to only run once without Conditions.targetIsYou()
       // in case user is dead but needs to place fledgling flight properly
       preRun: (data) => data.deathsToll = true,

@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -101,25 +100,25 @@ const triggerSet: TriggerSet<Data> = {
       id: 'VarisEx Phase 2',
       type: 'Ability',
       // 4CCC: Vivere Militare Est
-      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CCC', capture: false }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CCC', capture: false },
       run: (data) => data.phase = 2,
     },
     {
       id: 'VarisEx Phase 5',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CE2', capture: false }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CE2', capture: false },
       run: (data) => data.phase = 5,
     },
     {
       id: 'VarisEx Clones',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Phantom Varis', id: '4CB3', capture: false }),
+      netRegex: { source: 'Phantom Varis', id: '4CB3', capture: false },
       run: (data) => data.clonesActive = true,
     },
     {
       id: 'VarisEx Altius',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CCA', capture: false }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CCA', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -135,7 +134,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'VarisEx Citius',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CF0' }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CF0' },
       alertText: (data, matches, output) => {
         const target = matches.target;
         if (data.me === target)
@@ -155,7 +154,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'VarisEx Alea Iacta Est',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CD2', capture: false }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CD2', capture: false },
       response: Responses.getBehind(),
     },
     {
@@ -163,7 +162,7 @@ const triggerSet: TriggerSet<Data> = {
       // The player should go front to avoid the fifth one, which hits back.
       id: 'VarisEx Alea Iacta Est Front',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD5', capture: false }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CD5', capture: false },
       // Multiple people getting hit by this can cause double triggers.
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
@@ -181,14 +180,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'VarisEx Electrified Gunshield',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD7', capture: false }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CD7', capture: false },
       delaySeconds: 21.5,
       response: Responses.knockback(),
     },
     {
       id: 'VarisEx Reinforced Gunshield',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CD9', capture: false },
       delaySeconds: (data) => data.phase === 2 ? 20 : 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -205,20 +204,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'VarisEx Reinforced Gunshield Sides',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CDC', capture: false },
       response: Responses.goFrontBack('info'),
     },
     {
       id: 'VarisEx Reinforced Gunshield Front',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CDB', capture: false },
       response: Responses.goSides('info'),
     },
     {
       id: 'VarisEx Loaded Gunshield Final Warning',
       type: 'Ability',
       // This ability id occurs ~3 seconds before the Magitek Burst spread damage.
-      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDE', capture: false }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CDE', capture: false },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -232,7 +231,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'VarisEx Reinforcements',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CEA', capture: false }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CEA', capture: false },
       infoText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.grabTethers!();
@@ -262,14 +261,14 @@ const triggerSet: TriggerSet<Data> = {
       // The warning is taken care of above with a timeline trigger.  See notes.
       id: 'VarisEx Festina Lente Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CC9', capture: false }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CC9', capture: false },
       delaySeconds: 10,
       run: (data) => delete data.suppressDodgeCloneCall,
     },
     {
       id: 'VarisEx Terminus Est Clones',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
+      netRegex: { source: 'Terminus Est', id: '4CB4', capture: false },
       condition: (data) => data.clonesActive,
       infoText: (data, _matches, output) => {
         // Sometimes this is called out with the stack mechanic.
@@ -295,13 +294,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'VarisEx Magitek Torch',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Gunshield', id: '4E4F', capture: false }),
+      netRegex: { source: 'Gunshield', id: '4E4F', capture: false },
       response: Responses.stackMarker('info'),
     },
     {
       id: 'VarisEx Magitek Spark',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Gunshield', id: '4E50', capture: false }),
+      netRegex: { source: 'Gunshield', id: '4E50', capture: false },
       // TODO: This is technicallly a spread, but it's more like "protean" spread?
       // Not sure how to make this more clear.
       response: Responses.spread('alert'),
@@ -309,7 +308,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'VarisEx Fortius',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
+      netRegex: { source: 'Varis Yae Galvus', id: '4CE[56]', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

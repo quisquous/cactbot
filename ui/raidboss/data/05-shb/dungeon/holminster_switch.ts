@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -14,55 +13,55 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Holminster Path of Light',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DC5', source: 'Forgiven Dissonance', capture: false }),
+      netRegex: { id: '3DC5', source: 'Forgiven Dissonance', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Holminster Pillory',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DC4', source: 'Forgiven Dissonance' }),
+      netRegex: { id: '3DC4', source: 'Forgiven Dissonance' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Holminster Tickler',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DCF', source: 'Tesleen, The Forgiven' }),
+      netRegex: { id: '3DCF', source: 'Tesleen, The Forgiven' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Holminster Bridle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DD0', source: 'Tesleen, The Forgiven', capture: false }),
+      netRegex: { id: '3DD0', source: 'Tesleen, The Forgiven', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Holminster Flagellation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DD5', source: 'Tesleen, The Forgiven', capture: false }),
+      netRegex: { id: '3DD5', source: 'Tesleen, The Forgiven', capture: false },
       response: Responses.spread(),
     },
     {
       id: 'Holminster Exorcise Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Holminster Scavenger',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
+      netRegex: { id: '3DD8', source: 'Philia', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Holminster Head Crusher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DD7', source: 'Philia' }),
+      netRegex: { id: '3DD7', source: 'Philia' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Holminster Chain Down',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005C' }),
+      netRegex: { id: '005C' },
       condition: Conditions.targetIsNotYou(),
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
@@ -79,14 +78,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Holminster Taphephobia',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Holminster Into The Light',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
+      netRegex: { id: '4350', source: 'Philia', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -102,13 +101,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Holminster Left Knout',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
+      netRegex: { id: '3DE7', source: 'Philia', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'Holminster Right Knout',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),
+      netRegex: { id: '3DE6', source: 'Philia', capture: false },
       response: Responses.goLeft(),
     },
   ],

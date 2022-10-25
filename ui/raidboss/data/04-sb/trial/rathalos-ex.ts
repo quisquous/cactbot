@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -23,7 +22,7 @@ const triggerSet: TriggerSet<Data> = {
       // call this out as "right flank" as "right or front left" is hard to parse.
       id: 'RathEx Mangle Phase 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2853', source: 'Rathalos', capture: false }),
+      netRegex: { id: '2853', source: 'Rathalos', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -38,7 +37,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RathEx Mangle Phase 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2863', source: 'Rathalos', capture: false }),
+      netRegex: { id: '2863', source: 'Rathalos', capture: false },
       response: Responses.awayFromFront('info'),
     },
     {
@@ -46,7 +45,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'RathEx Tail Swing',
       type: 'Ability',
       // No starts using for this.
-      netRegex: NetRegexes.ability({ id: '2855', source: 'Rathalos', capture: false }),
+      netRegex: { id: '2855', source: 'Rathalos', capture: false },
       // This hits multiple people.
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
@@ -64,7 +63,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RathEx Flaming Recoil',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2859', '285B'], source: 'Rathalos', capture: false }),
+      netRegex: { id: ['2859', '285B'], source: 'Rathalos', capture: false },
       // This can one-shot, so alarm.
       // It seems to be 180 degrees in front, so "Get Behind" rather than "Away From Front".
       response: Responses.getBehind('alarm'),
@@ -72,7 +71,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RathEx Rush',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
+      netRegex: { id: ['2856', '2861'], source: 'Rathalos', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -88,14 +87,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RathEx Adds',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Steppe Sheep', capture: false }),
+      netRegex: { name: 'Steppe Sheep', capture: false },
       suppressSeconds: 5,
       response: Responses.killAdds(),
     },
     {
       id: 'RathEx Garula Add',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '6173', capture: false }),
+      netRegex: { npcNameId: '6173', capture: false },
       // Garula stuns and then puts down the telegraph from the east.
       // We could be like "go somewhere other than east", but "go west" is clearer.
       response: Responses.goWest(),
@@ -103,7 +102,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RathEx Garula Targetable',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '6173', capture: false }),
+      netRegex: { npcNameId: '6173', capture: false },
       delaySeconds: 15,
       // This is obnoxious to have as an alarm, but it will cause a wipe if nobody does this.
       alarmText: (_data, _matches, output) => output.text!(),
@@ -120,7 +119,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RathEx Fire Breath',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0081' }),
+      netRegex: { id: '0081' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -128,21 +127,21 @@ const triggerSet: TriggerSet<Data> = {
       // First fireball.
       id: 'RathEx Fireball Initial',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005D' }),
+      netRegex: { id: '005D' },
       response: Responses.stackMarkerOn(),
     },
     {
       // Second and third fireball.
       id: 'RathEx Fireball',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0084'] }),
+      netRegex: { id: ['0084'] },
       response: Responses.stackMarkerOn('info'),
     },
     {
       id: 'RathEx Sweeping Flames',
       type: 'Ability',
       // No starts using for this.
-      netRegex: NetRegexes.ability({ id: '2862', source: 'Rathalos', capture: false }),
+      netRegex: { id: '2862', source: 'Rathalos', capture: false },
       // This hits multiple people.
       suppressSeconds: 1,
       response: Responses.awayFromFront('info'),

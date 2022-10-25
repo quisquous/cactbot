@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import Regexes from '../../../../../resources/regexes';
 import { Responses } from '../../../../../resources/responses';
@@ -171,13 +170,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Falling Asleep',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
+      netRegex: { line: '7 minutes have elapsed since your last activity..*?', capture: false },
       response: Responses.wakeUp(),
     },
     {
       id: 'Bozja South Critical Engagement',
       type: 'ActorControl',
-      netRegex: NetRegexes.network6d({ command: '80000014' }),
+      netRegex: { command: '80000014' },
       run: (data, matches) => {
         // This fires when you win, lose, or teleport out.
         if (matches.data0 === '00') {
@@ -208,7 +207,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Choctober Choco Slash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Red Comet', id: '506C' }),
+      netRegex: { source: 'Red Comet', id: '506C' },
       condition: tankBusterOnParty('choctober'),
       response: Responses.tankBuster(),
     },
@@ -216,14 +215,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Bozja South Castrum Bottom Check',
       type: 'Ability',
       // TODO: netRegex could take (data) => {} here so we could do a target: data.me?
-      netRegex: NetRegexes.ability({ source: '4th Legion Helldiver', id: '51FD' }),
+      netRegex: { source: '4th Legion Helldiver', id: '51FD' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.helldiver = true,
     },
     {
       id: 'Bozja South Castrum Helldiver MRV Missile',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51FC', capture: false }),
+      netRegex: { source: '4th Legion Helldiver', id: '51FC', capture: false },
       // This won't play the first time, but that seems better than a false positive for the top.
       condition: (data) => data.helldiver,
       response: Responses.aoe(),
@@ -231,7 +230,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Helldiver Lateral Dive',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51EA', capture: false }),
+      netRegex: { source: '4th Legion Helldiver', id: '51EA', capture: false },
       condition: (data) => data.helldiver,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -248,14 +247,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Helldiver Magitek Missiles',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51FF' }),
+      netRegex: { source: '4th Legion Helldiver', id: '51FF' },
       condition: tankBusterOnParty(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Bozja South Castrum Helldiver Infrared Blast',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51EC', capture: false }),
+      netRegex: { source: '4th Legion Helldiver', id: '51EC', capture: false },
       condition: (data) => data.helldiver,
       delaySeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
@@ -273,35 +272,35 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Helldiver Joint Attack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: '4th Legion Helldiver', id: '51F2', capture: false }),
+      netRegex: { source: '4th Legion Helldiver', id: '51F2', capture: false },
       condition: (data) => data.helldiver,
       response: Responses.killAdds(),
     },
     {
       id: 'Bozja South Castrum Brionac Electric Anvil',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brionac', id: '51DD' }),
+      netRegex: { source: 'Brionac', id: '51DD' },
       condition: tankBusterOnParty(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Bozja South Castrum Brionac False Thunder Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brionac', id: '51CE', capture: false }),
+      netRegex: { source: 'Brionac', id: '51CE', capture: false },
       condition: (data) => !data.helldiver,
       response: Responses.goLeft(),
     },
     {
       id: 'Bozja South Castrum Brionac False Thunder Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brionac', id: '51CF', capture: false }),
+      netRegex: { source: 'Brionac', id: '51CF', capture: false },
       condition: (data) => !data.helldiver,
       response: Responses.goRight(),
     },
     {
       id: 'Bozja South Castrum Brionac Anti-Warmachina Weaponry',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brionac', id: '51CD', capture: false }),
+      netRegex: { source: 'Brionac', id: '51CD', capture: false },
       condition: (data) => !data.helldiver,
       delaySeconds: 6.5,
       infoText: (_data, _matches, output) => output.text!(),
@@ -319,7 +318,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Brionac Energy Generation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brionac', id: '51D0', capture: false }),
+      netRegex: { source: 'Brionac', id: '51D0', capture: false },
       condition: (data) => !data.helldiver,
       preRun: (data) => data.energyCount = (data.energyCount ?? 0) + 1,
       infoText: (data, _matches, output) => {
@@ -365,27 +364,27 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Albeleo Baleful Gaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Albeleo\'s Monstrosity', id: '5404', capture: false }),
+      netRegex: { source: 'Albeleo\'s Monstrosity', id: '5404', capture: false },
       suppressSeconds: 3,
       response: Responses.lookAway(),
     },
     {
       id: 'Bozja South Castrum Albeleo Abyssal Cry',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Albeleo\'s Hrodvitnir', id: '5406' }),
+      netRegex: { source: 'Albeleo\'s Hrodvitnir', id: '5406' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
       id: 'Bozja South Castrum Adrammelech Holy IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F96', capture: false }),
+      netRegex: { source: 'Adrammelech', id: '4F96', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Bozja South Castrum Adrammelech Flare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F95' }),
+      netRegex: { source: 'Adrammelech', id: '4F95' },
       // TODO: this is probably magical.
       condition: tankBusterOnParty(),
       response: Responses.tankBuster(),
@@ -393,7 +392,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Adrammelech Meteor',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F92', capture: false }),
+      netRegex: { source: 'Adrammelech', id: '4F92', capture: false },
       delaySeconds: 4.5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -410,7 +409,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Adrammelech Orb Collector',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '944[3-8]' }),
+      netRegex: { npcNameId: '944[3-8]' },
       run: (data, matches) => {
         data.orbs ??= {};
         data.orbs[matches.id.toUpperCase()] = matches.npcNameId;
@@ -420,7 +419,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Bozja South Castrum Adrammelech Curse of the Fiend Orbs',
       type: 'StartsUsing',
       // TODO: We could probably move this right after the orbs appear?
-      netRegex: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F7B', capture: false }),
+      netRegex: { source: 'Adrammelech', id: '4F7B', capture: false },
       // Mini-timeline:
       //  0.0: Adrammelech starts using Curse Of The Fiend
       //  3.0: Adrammelech uses Curse Of The Fiend
@@ -478,7 +477,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // This ability happens once per pair of orbs (with the same timings).
       // So use these two triggers to handle the single, pair, and two pairs of orbs cases.
-      netRegex: NetRegexes.ability({ source: 'Adrammelech', id: '4F7B', capture: false }),
+      netRegex: { source: 'Adrammelech', id: '4F7B', capture: false },
       // 5 seconds warning.
       delaySeconds: 7.2 - 5,
       durationSeconds: 4.5,
@@ -494,7 +493,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Adrammelech Accursed Becoming Orb 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Adrammelech', id: '4F7B', capture: false }),
+      netRegex: { source: 'Adrammelech', id: '4F7B', capture: false },
       // 2.5 seconds warning, as it's weird if this shows up way before the first orb.
       delaySeconds: 9 - 2.5,
       alertText: (data, _matches, output) => {
@@ -509,7 +508,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Adrammelech Electric Charge Collector',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9449' }),
+      netRegex: { npcNameId: '9449' },
       run: (data, matches) => {
         data.warped ??= {};
         data.warped[matches.id.toUpperCase()] = {
@@ -522,7 +521,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Bozja South Castrum Adrammelech Shock',
       type: 'Tether',
       // This is the first Electric Charge tether.
-      netRegex: NetRegexes.tether({ source: 'Adrammelech', target: 'Electric Charge' }),
+      netRegex: { source: 'Adrammelech', target: 'Electric Charge' },
       alertText: (data, matches, output) => {
         if (!data.warped)
           return output.unknown!();
@@ -598,13 +597,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Dawon Molting Plumage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Dawon', id: '517A', capture: false }),
+      netRegex: { source: 'Dawon', id: '517A', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Bozja South Castrum Dawon Molting Plumage Orbs',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Dawon', id: '517A', capture: false }),
+      netRegex: { source: 'Dawon', id: '517A', capture: false },
       delaySeconds: 5,
       alertText: (data, _matches, output) => {
         // Only the first plumage orbs have no wind.
@@ -635,14 +634,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Dawon Scratch',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Dawon', id: '517B' }),
+      netRegex: { source: 'Dawon', id: '517B' },
       condition: tankBusterOnParty(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Bozja South Castrum Dawon Swooping Frenzy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Dawon', id: '5175', capture: false }),
+      netRegex: { source: 'Dawon', id: '5175', capture: false },
       suppressSeconds: 9999,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -659,7 +658,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Lyon Passage',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'Lyon the Beast King would do battle at Majesty\'s Place.*?', capture: false }),
+      netRegex: { line: 'Lyon the Beast King would do battle at Majesty\'s Place.*?', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -675,20 +674,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Lyon Twin Agonies',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Lyon The Beast King', id: '5174' }),
+      netRegex: { source: 'Lyon The Beast King', id: '5174' },
       condition: tankBusterOnParty(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Bozja South Castrum Lyon King\'s Notice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Lyon The Beast King', id: '516E', capture: false }),
+      netRegex: { source: 'Lyon The Beast King', id: '516E', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'Bozja South Castrum Lyon Taste of Blood',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Lyon The Beast King', id: '5173', capture: false }),
+      netRegex: { source: 'Lyon The Beast King', id: '5173', capture: false },
       response: Responses.getBehind(),
     },
   ],

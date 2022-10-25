@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -15,7 +14,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Gurangatch Left Hammer Slammer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6B65', source: 'Gurangatch', capture: false }),
+      netRegex: { id: '6B65', source: 'Gurangatch', capture: false },
       condition: (data) => data.inCombat,
       alarmText: (_data, _matches, output) => output.rightThenLeft!(),
       outputStrings: {
@@ -32,7 +31,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Gurangatch Right Hammer Slammer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6B66', source: 'Gurangatch', capture: false }),
+      netRegex: { id: '6B66', source: 'Gurangatch', capture: false },
       condition: (data) => data.inCombat,
       alarmText: (_data, _matches, output) => output.leftThenRight!(),
       outputStrings: {
@@ -49,35 +48,35 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Gurangatch Bone Shaker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6B78', source: 'Gurangatch', capture: false }),
+      netRegex: { id: '6B78', source: 'Gurangatch', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.aoe(),
     },
     {
       id: 'Hunt Petalodus Marine Mayhem',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69B7', source: 'Petalodus' }),
+      netRegex: { id: '69B7', source: 'Petalodus' },
       condition: (data) => data.inCombat && data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
       id: 'Hunt Petalodus Tidal Guillotine',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69BC', source: 'Petalodus', capture: false }),
+      netRegex: { id: '69BC', source: 'Petalodus', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getOut(),
     },
     {
       id: 'Hunt Petalodus Ancient Blizzard',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69BD', source: 'Petalodus', capture: false }),
+      netRegex: { id: '69BD', source: 'Petalodus', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.awayFromFront(),
     },
     {
       id: 'Hunt Petalodus Waterga IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '69BB', source: 'Petalodus' }),
+      netRegex: { id: '69BB', source: 'Petalodus' },
       condition: (data) => data.inCombat,
       response: (data, matches, output) => {
         // cactbot-builtin-response
@@ -107,35 +106,35 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Ophioneus Scratch',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AD4', source: 'Ophioneus' }),
+      netRegex: { id: '6AD4', source: 'Ophioneus' },
       condition: (data) => data.inCombat,
       response: Responses.tankBuster('info'),
     },
     {
       id: 'Hunt Ophioneus Right Maw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AD6', source: 'Ophioneus', capture: false }),
+      netRegex: { id: '6AD6', source: 'Ophioneus', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.goLeft(),
     },
     {
       id: 'Hunt Ophioneus Left Maw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AD7', source: 'Ophioneus', capture: false }),
+      netRegex: { id: '6AD7', source: 'Ophioneus', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.goRight(),
     },
     {
       id: 'Hunt Ophioneus Pyric Circle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AD8', source: 'Ophioneus', capture: false }),
+      netRegex: { id: '6AD8', source: 'Ophioneus', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getUnder(),
     },
     {
       id: 'Hunt Ophioneus Pyric Burst',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AD9', source: 'Ophioneus', capture: false }),
+      netRegex: { id: '6AD9', source: 'Ophioneus', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getOut(),
     },
@@ -143,7 +142,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Ophioneus Leaping Pyric Circle',
       type: 'StartsUsing',
       // Followed by a 6AD2 fast cast.
-      netRegex: NetRegexes.startsUsing({ id: '6ACD', source: 'Ophioneus', capture: false }),
+      netRegex: { id: '6ACD', source: 'Ophioneus', capture: false },
       condition: (data) => data.inCombat,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -159,7 +158,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Ophioneus Leaping Pyric Burst',
       type: 'StartsUsing',
       // Followed by a 6AD3 fast cast.
-      netRegex: NetRegexes.startsUsing({ id: '6ACE', source: 'Ophioneus', capture: false }),
+      netRegex: { id: '6ACE', source: 'Ophioneus', capture: false },
       condition: (data) => data.inCombat,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

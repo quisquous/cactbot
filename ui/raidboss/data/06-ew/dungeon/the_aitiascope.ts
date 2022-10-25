@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -13,13 +12,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aitiascope Livia Frustration',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6448', source: 'Livia the Undeterred', capture: false }),
+      netRegex: { id: '6448', source: 'Livia the Undeterred', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Aitiascope Livia Aglaea Climb NE/SW',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6442', source: 'Livia the Undeterred', capture: false }),
+      netRegex: { id: '6442', source: 'Livia the Undeterred', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -35,7 +34,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aitiascope Livia Aglaea Climb NW/SE',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6443', source: 'Livia the Undeterred', capture: false }),
+      netRegex: { id: '6443', source: 'Livia the Undeterred', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -51,25 +50,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aitiascope Livia Aglaea Bite',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6449', source: 'Livia the Undeterred' }),
+      netRegex: { id: '6449', source: 'Livia the Undeterred' },
       response: Responses.tankCleave('alert'),
     },
     {
       id: 'Aitiascope Livia Ignis Odi',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '644D', source: 'Livia the Undeterred' }),
+      netRegex: { id: '644D', source: 'Livia the Undeterred' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Aitiascope Rhitahtyn Tartarean Impact',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6455', source: 'Rhitahtyn the Unshakable', capture: false }),
+      netRegex: { id: '6455', source: 'Rhitahtyn the Unshakable', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Aitiascope Rhitahtyn Shield Skewer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6450', source: 'Rhitahtyn the Unshakable', capture: false }),
+      netRegex: { id: '6450', source: 'Rhitahtyn the Unshakable', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -85,7 +84,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aitiascope Rhitahtyn Shrapnel Shell',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6452', source: 'Rhitahtyn the Unshakable', capture: false }),
+      netRegex: { id: '6452', source: 'Rhitahtyn the Unshakable', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -101,26 +100,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aitiascope Rhitahtyn Anvil of Tartarus',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6456', source: 'Rhitahtyn the Unshakable' }),
+      netRegex: { id: '6456', source: 'Rhitahtyn the Unshakable' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Aitiascope Sinking Regret Lost Opportunity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6B1F', source: 'Sinking Regret' }),
+      netRegex: { id: '6B1F', source: 'Sinking Regret' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
       id: 'Aitiascope Amon Dark Forte',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6464', source: 'Amon the Undying' }),
+      netRegex: { id: '6464', source: 'Amon the Undying' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Aitiascope Amon Ysayle\'s Spirit Dreams of Ice',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6C6C', source: 'Ysayle\'s Spirit', capture: false }),
+      netRegex: { id: '6C6C', source: 'Ysayle\'s Spirit', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -136,19 +135,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aitiascope Amon Entr\'acte',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6465', source: 'Amon the Undying', capture: false }),
+      netRegex: { id: '6465', source: 'Amon the Undying', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Aitiascope Amon Right Firaga Forte',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6460', source: 'Amon the Undying', capture: false }),
+      netRegex: { id: '6460', source: 'Amon the Undying', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'Aitiascope Amon Left Firaga Forte',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6461', source: 'Amon the Undying', capture: false }),
+      netRegex: { id: '6461', source: 'Amon the Undying', capture: false },
       response: Responses.goLeft(),
     },
   ],

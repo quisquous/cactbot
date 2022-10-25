@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -93,7 +92,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Elemental Break Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5663', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5663', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -109,7 +108,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Elemental Break Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5666', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5666', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -125,7 +124,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Elemental Break Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5668', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5668', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -141,7 +140,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Burnt Strike Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5652', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5652', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -157,7 +156,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Burnt Strike Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5654', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5654', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -173,7 +172,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Burnt Strike Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5656', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5656', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -189,7 +188,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Bound Of Faith Tether Collector',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011' }),
+      netRegex: { id: '0011' },
       run: (data, matches) => {
         data.tethers ??= {};
         data.tethers[matches.target] = matches.sourceId;
@@ -198,26 +197,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Bound Of Faith Tether Collector Cleanup',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011', capture: false }),
+      netRegex: { id: '0011', capture: false },
       delaySeconds: 20,
       run: (data) => delete data.tethers,
     },
     {
       id: 'E11S Bound Of Faith Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5658', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5658', capture: false },
       response: boundOfFaithFireTetherResponse,
     },
     {
       id: 'E11S Bound Of Faith Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '565B', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '565B', capture: false },
       response: boundOfFaithLightningTetherResponse,
     },
     {
       id: 'E11S Bound Of Faith Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '565F', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '565F', capture: false },
       response: boundOfFaithHolyTetherResponse,
     },
     {
@@ -227,7 +226,7 @@ const triggerSet: TriggerSet<Data> = {
       // After Sundered Sky, there's a fire (567F) and holy (5BC5) Bound Of Faith from Images.
       // These are the only time these Images appear and cast Bound Of Faith,
       // catch the first via 5682 and the second via 5BC5 and call two tethers with one trigger.
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker\'s Image', id: '5682' }),
+      netRegex: { source: 'Fatebreaker\'s Image', id: '5682' },
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -297,7 +296,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Bound Of Faith Sundered Sky',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker\'s Image', id: '5BC5' }),
+      netRegex: { source: 'Fatebreaker\'s Image', id: '5BC5' },
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -360,19 +359,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Burnished Glory',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '56A4', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '56A4', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'E11S Powder Mark',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '56A2' }),
+      netRegex: { source: 'Fatebreaker', id: '56A2' },
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'E11S Powder Mark Explosion',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ source: 'Fatebreaker', effectId: '993' }),
+      netRegex: { source: 'Fatebreaker', effectId: '993' },
 
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
@@ -384,7 +383,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Turn of the Heavens Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '566A', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '566A', capture: false },
       durationSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -401,7 +400,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Turn of the Heavens Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '566B', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '566B', capture: false },
       durationSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -418,7 +417,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Shifting Sky Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5675', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5675', capture: false },
       durationSeconds: 17,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -435,7 +434,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Shifting Sky Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5676', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5676', capture: false },
       durationSeconds: 17,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -452,7 +451,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Right Of The Heavens Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '566E', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '566E', capture: false },
       durationSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -469,7 +468,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Right Of The Heavens Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '566F', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '566F', capture: false },
       durationSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -486,7 +485,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Sundered Sky Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5677', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5677', capture: false },
       durationSeconds: 16,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -503,7 +502,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Sundered Sky Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5678', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5678', capture: false },
       durationSeconds: 16,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -520,7 +519,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Cycle of Faith Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '568A', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '568A', capture: false },
       durationSeconds: 12,
       infoText: (_data, _matches, output) => output.text!(),
       tts: (_data, _matches, output) => output.ttsText!(),
@@ -546,14 +545,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Cycle of Faith Fire Tether',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '568A', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '568A', capture: false },
       delaySeconds: 16.5,
       response: boundOfFaithFireTetherResponse,
     },
     {
       id: 'E11S Cycle of Faith Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5692', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5692', capture: false },
       durationSeconds: 12,
       infoText: (_data, _matches, output) => output.text!(),
       tts: (_data, _matches, output) => output.ttsText!(),
@@ -579,14 +578,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Cycle of Faith Lightning Tether',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5692', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '5692', capture: false },
       delaySeconds: 16.5,
       response: boundOfFaithLightningTetherResponse,
     },
     {
       id: 'E11S Cycle of Faith Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '569A', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '569A', capture: false },
       durationSeconds: 12,
       infoText: (_data, _matches, output) => output.text!(),
       tts: (_data, _matches, output) => output.ttsText!(),
@@ -612,7 +611,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E11S Cycle of Faith Holy Tether',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '569A', capture: false }),
+      netRegex: { source: 'Fatebreaker', id: '569A', capture: false },
       delaySeconds: 16.5,
       response: boundOfFaithHolyTetherResponse,
     },

@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -45,32 +44,32 @@ const triggerSet: TriggerSet<Data> = {
       // keep track of who the boss is auto attacking.
       id: 'P5S Attack',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7A0E', source: 'Proto-Carbuncle' }),
+      netRegex: { id: '7A0E', source: 'Proto-Carbuncle' },
       run: (data, matches) => data.target = matches.target,
     },
     {
       // Update target whenever Provoke is used.
       id: 'P5S Provoke',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1D6D' }),
+      netRegex: { id: '1D6D' },
       run: (data, matches) => data.target = matches.source,
     },
     {
       id: 'P5S Sonic Howl',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7720', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '7720', source: 'Proto-Carbuncle', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P5S Ruby Glow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76F3', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '76F3', source: 'Proto-Carbuncle', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P5S Ruby 1 Topaz Stone Collect',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '76FE', source: 'Proto-Carbuncle' }),
+      netRegex: { id: '76FE', source: 'Proto-Carbuncle' },
       condition: (data) => !data.isRuby1Done,
       run: (data, matches) => {
         data.ruby1TopazStones.push(matches);
@@ -79,7 +78,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Ruby 1 Topaz Stones',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '76FE', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '76FE', source: 'Proto-Carbuncle', capture: false },
       condition: (data) => !data.isRuby1Done,
       delaySeconds: 0.3, // allow collector to finish
       suppressSeconds: 1,
@@ -122,7 +121,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Venomous Mass',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '771D', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '771D', source: 'Proto-Carbuncle', capture: false },
       alarmText: (data, _matches, output) => {
         if (data.role === 'tank' && data.target !== data.me)
           return output.tankSwap!();
@@ -144,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Toxic Crunch',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '784A', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '784A', source: 'Proto-Carbuncle', capture: false },
       infoText: (data, _matches, output) => {
         if (data.role === 'tank' && data.target !== data.me)
           return;
@@ -161,7 +160,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Double Rush',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '771B', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '771B', source: 'Proto-Carbuncle', capture: false },
       delaySeconds: 3,
       response: Responses.knockback(),
     },
@@ -170,13 +169,13 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P5S Ruby 3 Topaz Cluster Collect',
       type: 'StartsUsing',
       // 7703: 3.7s, 7704: 6.2s, 7705: 8.7s, 7706: 11.2s
-      netRegex: NetRegexes.startsUsing({ id: '770[3456]', source: 'Proto-Carbuncle' }),
+      netRegex: { id: '770[3456]', source: 'Proto-Carbuncle' },
       run: (data, matches) => data.topazClusterCombatantIdToAbilityId[parseInt(matches.sourceId, 16)] = matches.id,
     },
     {
       id: 'P5S Ruby 3 Topaz Cluster',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7702', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '7702', source: 'Proto-Carbuncle', capture: false },
       durationSeconds: 12,
       promise: async (data) => {
         // Log position data can be stale, call OverlayPlugin
@@ -251,7 +250,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Venom Squall/Surge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '771[67]', source: 'Proto-Carbuncle' }),
+      netRegex: { id: '771[67]', source: 'Proto-Carbuncle' },
       durationSeconds: 5,
       alertText: (_data, matches, output) => {
         const spread = output.spread!();
@@ -277,7 +276,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P5S Venom Pool with Crystals',
       // TODO: Callout safe quadrant/half
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79E2', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '79E2', source: 'Proto-Carbuncle', capture: false },
       infoText: (_data, _matches, output) => {
         return output.groups!();
       },
@@ -294,14 +293,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Tail to Claw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7712', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '7712', source: 'Proto-Carbuncle', capture: false },
       durationSeconds: 5,
       response: Responses.getFrontThenBack(),
     },
     {
       id: 'P5S Raging Tail Move',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7A0C', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '7A0C', source: 'Proto-Carbuncle', capture: false },
       infoText: (_data, _matches, output) => output.moveBehind!(),
       outputStrings: {
         moveBehind: {
@@ -316,14 +315,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Claw to Tail',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '770E', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '770E', source: 'Proto-Carbuncle', capture: false },
       durationSeconds: 5,
       response: Responses.getBackThenFront(),
     },
     {
       id: 'P5S Raging Claw Move',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7710', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '7710', source: 'Proto-Carbuncle', capture: false },
       condition: (data) => {
         data.clawCount = data.clawCount + 1;
         return data.clawCount === 6;
@@ -345,7 +344,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Searing Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76[DF]7', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '76[DF]7', source: 'Proto-Carbuncle', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: Outputs.goFront,
@@ -354,7 +353,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Raging Claw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '76FA', source: 'Proto-Carbuncle', capture: false }),
+      netRegex: { id: '76FA', source: 'Proto-Carbuncle', capture: false },
       response: Responses.getBehind(),
     },
   ],

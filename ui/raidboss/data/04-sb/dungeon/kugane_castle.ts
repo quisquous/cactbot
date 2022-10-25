@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -28,13 +27,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Kugane Castle Kenki Release',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1E93', source: 'Zuiko-Maru', capture: false }),
+      netRegex: { id: '1E93', source: 'Zuiko-Maru', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Kugane Castle Helm Crack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
@@ -42,7 +41,7 @@ const triggerSet: TriggerSet<Data> = {
       // but the Harakiri Koshu uses Cordage on the tether target after about 4 seconds.
       id: 'Kugane Castle Cordage',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011' }),
+      netRegex: { id: '0011' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -59,14 +58,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Kugane Castle Clockwork Raiton',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005F' }),
+      netRegex: { id: '005F' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Kugane Castle Gratuity',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1EAE', source: 'Kageyama', capture: false }),
+      netRegex: { id: '1EAE', source: 'Kageyama', capture: false },
       suppressSeconds: 15, // No point in notifying repeatedly
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -83,7 +82,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Kugane Castle Dragons Lair',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1EA6', source: 'Yojimbo', capture: false }),
+      netRegex: { id: '1EA6', source: 'Yojimbo', capture: false },
       response: Responses.killAdds(),
     },
   ],

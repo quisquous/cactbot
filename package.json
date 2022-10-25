@@ -1,6 +1,6 @@
 {
   "name": "cactbot",
-  "version": "0.27.17",
+  "version": "0.27.19",
   "license": "Apache-2.0",
   "type": "module",
   "types": "./types",
@@ -155,5 +155,8 @@
     "inquirer": "^8.1.1",
     "inquirer-fuzzy-path": "^2.3.0",
     "lodash": "^4.14.170"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
