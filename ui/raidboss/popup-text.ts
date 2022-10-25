@@ -3,10 +3,7 @@ import { buildRegex, commonNetRegex } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import { addOverlayListener, callOverlayHandler } from '../../resources/overlay_plugin_api';
 import PartyTracker from '../../resources/party';
-import {
-  addPlayerChangedOverrideListener,
-  PlayerChangedDetail,
-} from '../../resources/player_override';
+import { addPlayerChangedOverrideListener, PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
 import { translateRegex, translateRegexBuildParam } from '../../resources/translations';
 import Util from '../../resources/util';
@@ -234,8 +231,7 @@ class OrderedTriggerList {
         throw new UnreachableCode();
 
       // TODO: be verbose now while this is fresh, but hide this output behind debug flags later.
-      const triggerFile = (trigger: ProcessedTrigger) =>
-        trigger.filename ? `'${trigger.filename}'` : 'user override';
+      const triggerFile = (trigger: ProcessedTrigger) => trigger.filename ? `'${trigger.filename}'` : 'user override';
       const oldFile = triggerFile(oldTrigger);
       const newFile = triggerFile(trigger);
       console.log(`Overriding '${trigger.id}' from ${oldFile} with ${newFile}.`);

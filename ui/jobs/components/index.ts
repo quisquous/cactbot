@@ -337,8 +337,7 @@ export class ComponentManager {
       return;
 
     // Hide CP Bar when not crafting
-    const anyRegexMatched = (line: string, array: RegExp[]) =>
-      array.some((regex) => regex.test(line));
+    const anyRegexMatched = (line: string, array: RegExp[]) => array.some((regex) => regex.test(line));
 
     // if the current player is crafting, show the bars;
     // otherwise, hide them

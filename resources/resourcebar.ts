@@ -536,8 +536,7 @@ export default class ResourceBar extends HTMLElement {
     const extraUnderPercent = Math.min(this._maxValue - this._value, this._extraValue) /
       this._maxValue;
     const valueWidth = percent * this.foregroundElement.clientWidth * (this._towardRight ? 1 : -1);
-    this.extraUnderElement.style.transform =
-      `translate(${valueWidth}px,0px) scale(${extraUnderPercent},1)`;
+    this.extraUnderElement.style.transform = `translate(${valueWidth}px,0px) scale(${extraUnderPercent},1)`;
 
     let extraOverPercent = Math.max(this._extraValue + this._value - this._maxValue, 0) /
       this._maxValue;

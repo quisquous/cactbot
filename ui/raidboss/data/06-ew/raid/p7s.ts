@@ -189,7 +189,10 @@ const triggerSet: TriggerSet<Data> = {
         if (data.fruitCount === 1) {
           // Find location of the north-most bird
           // Forbidden Fruit 1 uses last two birds
-          if (data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined || data.unhatchedEggs[9] === undefined) {
+          if (
+            data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined ||
+            data.unhatchedEggs[9] === undefined
+          ) {
             console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
             return;
           }
@@ -229,7 +232,12 @@ const triggerSet: TriggerSet<Data> = {
               const safePlatform1 = newPlatforms[0];
               const safePlatform2 = newPlatforms[1];
               if (safePlatform1 !== undefined && safePlatform2 !== undefined)
-                return { infoText: output.twoPlatforms!({ platform1: output[safePlatform1]!(), platform2: output[safePlatform2]!() }) };
+                return {
+                  infoText: output.twoPlatforms!({
+                    platform1: output[safePlatform1]!(),
+                    platform2: output[safePlatform2]!(),
+                  }),
+                };
             }
           }
           console.error(`Forbidden Fruit ${data.fruitCount}: Invalid positions.`);
@@ -238,7 +246,10 @@ const triggerSet: TriggerSet<Data> = {
         if (data.fruitCount === 10) {
           // Check where minotaurs are to determine middle bird
           // Forbidden Fruit 10 uses last two minotaurs
-          if (data.unhatchedEggs === undefined || data.unhatchedEggs[4] === undefined || data.unhatchedEggs[5] === undefined) {
+          if (
+            data.unhatchedEggs === undefined || data.unhatchedEggs[4] === undefined ||
+            data.unhatchedEggs[5] === undefined
+          ) {
             console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
             return;
           }
@@ -248,7 +259,9 @@ const triggerSet: TriggerSet<Data> = {
           // Return if received bad data
           const validDirs = [1, 4, 6];
           if (!validDirs.includes(minotaurDir1) || !validDirs.includes(minotaurDir2)) {
-            console.error(`Forbidden Fruit ${data.fruitCount}: Expected minotaurs at 1, 4, or 6. Got ${minotaurDir1} and ${minotaurDir2}.`);
+            console.error(
+              `Forbidden Fruit ${data.fruitCount}: Expected minotaurs at 1, 4, or 6. Got ${minotaurDir1} and ${minotaurDir2}.`,
+            );
             return;
           }
 
@@ -268,7 +281,10 @@ const triggerSet: TriggerSet<Data> = {
         if (data.fruitCount > 6 && data.fruitCount < 10) {
           // Check each location for bird, call out where there is no bird
           // Forbidden Fruit 7 - 10 use last two birds
-          if (data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined || data.unhatchedEggs[9] === undefined) {
+          if (
+            data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined ||
+            data.unhatchedEggs[9] === undefined
+          ) {
             console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
             return;
           }

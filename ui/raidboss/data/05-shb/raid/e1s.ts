@@ -186,7 +186,11 @@ const triggerSet: TriggerSet<Data> = {
       // 3D7D: healer2
       id: 'E1S Vice and Virtue Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Eden Prime', capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'],
+        source: 'Eden Prime',
+        capture: false,
+      }),
       run: (data) => {
         // Note: this happens *after* the marks, so is setting up vice for the next marks.
         data.viceCount = (data.viceCount ?? 0) + 1;

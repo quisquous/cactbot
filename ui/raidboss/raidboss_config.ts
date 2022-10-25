@@ -5,11 +5,7 @@ import PartyTracker from '../../resources/party';
 import Regexes from '../../resources/regexes';
 import { triggerOutputFunctions } from '../../resources/responses';
 import { translateRegex, translateRegexBuildParam } from '../../resources/translations';
-import UserConfig, {
-  ConfigValue,
-  OptionsTemplate,
-  UserFileCallback,
-} from '../../resources/user_config';
+import UserConfig, { ConfigValue, OptionsTemplate, UserFileCallback } from '../../resources/user_config';
 import { BaseOptions, RaidbossData } from '../../types/data';
 import { SavedConfigEntry } from '../../types/event';
 import { Job, Role } from '../../types/job';
@@ -773,8 +769,7 @@ class RaidbossConfigurator {
             ['triggers', trigId, optionKey, key],
             '',
           );
-          const setFunc = () =>
-            this.base.setOption('raidboss', ['triggers', trigId, optionKey, key], input.value);
+          const setFunc = () => this.base.setOption('raidboss', ['triggers', trigId, optionKey, key], input.value);
           input.onchange = setFunc;
           input.oninput = setFunc;
 

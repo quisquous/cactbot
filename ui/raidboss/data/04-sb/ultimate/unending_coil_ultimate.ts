@@ -78,7 +78,9 @@ export const badSpots = (mark: number, dragon: number) => {
   return bad;
 };
 
-export const findDragonMarks = (array: number[]): undefined | { wideThirdDive: boolean; unsafeThirdMark: boolean; marks: number[] } => {
+export const findDragonMarks = (
+  array: number[],
+): undefined | { wideThirdDive: boolean; unsafeThirdMark: boolean; marks: number[] } => {
   const marks = [-1, -1, -1];
   let isWideThirdDive = false;
 
@@ -535,7 +537,10 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6501?pretty=true
       id: 'UCU Nael Quote 7',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'Fleeting light! \'Neath the red moon, scorch you the earth.*?', capture: false }),
+      netRegex: NetRegexes.dialog({
+        line: 'Fleeting light! \'Neath the red moon, scorch you the earth.*?',
+        capture: false,
+      }),
       delaySeconds: 4,
       durationSeconds: 6,
       // Make this alert so it doesn't overlap with the dive infoText occuring here.
@@ -555,7 +560,10 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6500?pretty=true
       id: 'UCU Nael Quote 8',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'Fleeting light! Amid a rain of stars, exalt you the red moon.*?', capture: false }),
+      netRegex: NetRegexes.dialog({
+        line: 'Fleeting light! Amid a rain of stars, exalt you the red moon.*?',
+        capture: false,
+      }),
       delaySeconds: 4,
       durationSeconds: 6,
       // Make this alert so it doesn't overlap with the dive infoText occuring here.
@@ -593,7 +601,10 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6503?pretty=true
       id: 'UCU Nael Quote 10',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'From hallowed moon I descend, a rain of stars to bring.*?', capture: false }),
+      netRegex: NetRegexes.dialog({
+        line: 'From hallowed moon I descend, a rain of stars to bring.*?',
+        capture: false,
+      }),
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -611,7 +622,10 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6507?pretty=true
       id: 'UCU Nael Quote 11',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'From hallowed moon I bare iron, in my descent to wield.*?', capture: false }),
+      netRegex: NetRegexes.dialog({
+        line: 'From hallowed moon I bare iron, in my descent to wield.*?',
+        capture: false,
+      }),
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -629,7 +643,10 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6506?pretty=true
       id: 'UCU Nael Quote 12',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'From hallowed moon I descend, upon burning earth to tread.*?', capture: false }),
+      netRegex: NetRegexes.dialog({
+        line: 'From hallowed moon I descend, upon burning earth to tread.*?',
+        capture: false,
+      }),
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -978,7 +995,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Dragon Tracker',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      netRegex: NetRegexes.abilityFull({
+        source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'],
+        id: ['26C6', '26C7', '26CA', '26C9', '26C5'],
+      }),
       condition: (data, matches) => !(matches.source in data.seenDragon),
       run: (data, matches) => {
         data.seenDragon[matches.source] = true;
@@ -1157,7 +1177,9 @@ const triggerSet: TriggerSet<Data> = {
         });
         if (remainingPlayers.length !== 1) {
           // This could happen if the party list wasn't unique.
-          console.error('Octet error: failed to find player, ' + JSON.stringify(partyList) + ' ' + JSON.stringify(data.octetMarker));
+          console.error(
+            'Octet error: failed to find player, ' + JSON.stringify(partyList) + ' ' + JSON.stringify(data.octetMarker),
+          );
           return;
         }
 
@@ -1593,13 +1615,19 @@ const triggerSet: TriggerSet<Data> = {
         'Blazing path, lead me to iron rule': 'Umloderter Pfad, führe mich zur Herrschaft',
         'O hallowed moon, take fire and scorch my foes': 'O roter Mond! Umlodere meinen Pfad',
         'O hallowed moon, shine you the iron path': 'O roter Mond! Führe mich zur Herrschaft',
-        'Fleeting light! \'Neath the red moon, scorch you the earth': 'Neues Gestirn! Glühe herab und umlodere meinen Pfad',
+        'Fleeting light! \'Neath the red moon, scorch you the earth':
+          'Neues Gestirn! Glühe herab und umlodere meinen Pfad',
         'Fleeting light! Amid a rain of stars, exalt you the red moon': 'Neues Gestirn! Überstrahle jede Sternschnuppe',
-        'From on high I descend, the moon and stars to bring': 'Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich',
-        'From hallowed moon I descend, a rain of stars to bring': 'O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich',
-        'From hallowed moon I bare iron, in my descent to wield': 'O roter Mond, als Künder deiner Herrschaft stieg ich herab',
-        'From hallowed moon I descend, upon burning earth to tread': 'O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen',
-        'Unbending iron, take fire and descend': 'Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab',
+        'From on high I descend, the moon and stars to bring':
+          'Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich',
+        'From hallowed moon I descend, a rain of stars to bring':
+          'O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich',
+        'From hallowed moon I bare iron, in my descent to wield':
+          'O roter Mond, als Künder deiner Herrschaft stieg ich herab',
+        'From hallowed moon I descend, upon burning earth to tread':
+          'O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen',
+        'Unbending iron, take fire and descend':
+          'Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab',
         'Unbending iron, descend with fiery edge': 'Zur Herrschaft steige ich herab, auf umlodertem Pfad',
       },
       'replaceText': {
@@ -1672,11 +1700,14 @@ const triggerSet: TriggerSet<Data> = {
         'Blazing path, lead me to iron rule': 'La voie marquée par l\'incandescence mène à la domination',
         'Fang of Light': 'croc de lumière',
         'Firehorn': 'corne-de-feu',
-        'Fleeting light! Amid a rain of stars, exalt you the red moon': 'Supernova, brille de tout ton feu et glorifie la lune rouge',
-        'Fleeting light! \'Neath the red moon, scorch you the earth': 'Supernova, brille de tout ton feu et irradie la terre rougie',
+        'Fleeting light! Amid a rain of stars, exalt you the red moon':
+          'Supernova, brille de tout ton feu et glorifie la lune rouge',
+        'Fleeting light! \'Neath the red moon, scorch you the earth':
+          'Supernova, brille de tout ton feu et irradie la terre rougie',
         'From hallowed moon I bare iron, in my descent to wield': 'De la lune je m\'arme d\'acier et descends',
         'From hallowed moon I descend, a rain of stars to bring': 'Depuis la lune, j\'invoque une pluie d\'étoiles',
-        'From hallowed moon I descend, upon burning earth to tread': 'De la lune, je descends et marche sur la terre ardente',
+        'From hallowed moon I descend, upon burning earth to tread':
+          'De la lune, je descends et marche sur la terre ardente',
         'From on high I descend, the hallowed moon to call': 'Des cieux je vais descendre et révérer la lune',
         'From on high I descend, the iron path to walk': 'Du haut des cieux, je vais descendre pour conquérir',
         'From on high I descend, the moon and stars to bring': 'Du haut des cieux, j\'appelle une pluie d\'étoiles',

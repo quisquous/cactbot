@@ -2,12 +2,7 @@ import { Lang } from '../../resources/languages';
 import UserConfig from '../../resources/user_config';
 import { BaseOptions, RaidbossData } from '../../types/data';
 import { Matches } from '../../types/net_matches';
-import {
-  LooseTriggerSet,
-  TriggerAutoConfig,
-  TriggerField,
-  TriggerOutput,
-} from '../../types/trigger';
+import { LooseTriggerSet, TriggerAutoConfig, TriggerField, TriggerOutput } from '../../types/trigger';
 
 // This file defines the base options that raidboss expects to see.
 
@@ -117,8 +112,7 @@ const defaultRaidbossConfigOptions = {
 };
 type RaidbossConfigOptions = typeof defaultRaidbossConfigOptions;
 
-export interface RaidbossOptions
-  extends BaseOptions, RaidbossNonConfigOptions, RaidbossConfigOptions {}
+export interface RaidbossOptions extends BaseOptions, RaidbossNonConfigOptions, RaidbossConfigOptions {}
 
 // See user/raidboss-example.js for documentation.
 const Options: RaidbossOptions = {

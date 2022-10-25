@@ -8,14 +8,7 @@ import { LooseTimelineTrigger, RaidbossFileData } from '../../types/trigger';
 
 import { PopupTextGenerator } from './popup-text';
 import { RaidbossOptions } from './raidboss_options';
-import {
-  Event,
-  Sync,
-  Text,
-  TimelineParser,
-  TimelineReplacement,
-  TimelineStyle,
-} from './timeline_parser';
+import { Event, Sync, Text, TimelineParser, TimelineReplacement, TimelineStyle } from './timeline_parser';
 
 const kBig = 1000000000; // Something bigger than any fight length in seconds.
 
@@ -503,8 +496,7 @@ export class TimelineUI {
 
     this.timerlist = document.getElementById('timeline');
     if (this.timerlist) {
-      this.timerlist.style.gridTemplateRows =
-        `repeat(${this.options.MaxNumberOfTimerBars}, min-content)`;
+      this.timerlist.style.gridTemplateRows = `repeat(${this.options.MaxNumberOfTimerBars}, min-content)`;
     }
 
     this.activeBars = {};

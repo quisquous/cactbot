@@ -50,7 +50,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegexJa: NetRegexes.gainsEffect({ source: 'シャドウフレイム', effectId: '82C' }),
       netRegexCn: NetRegexes.gainsEffect({ source: '影烈火', effectId: '82C' }),
       mistake: (_data, matches) => {
-        return { type: 'damage', blame: matches.target, reportId: matches.targetId, text: `${matches.effect} (partial stack)` };
+        return {
+          type: 'damage',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: `${matches.effect} (partial stack)`,
+        };
       },
     },
     {

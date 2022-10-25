@@ -5,10 +5,7 @@ import { Lang } from '../resources/languages';
 import NetRegexes from '../resources/netregexes';
 import Regexes from '../resources/regexes';
 import { LooseTriggerSet } from '../types/trigger';
-import {
-  commonReplacement,
-  partialCommonTimelineReplacementKeys,
-} from '../ui/raidboss/common_replacement';
+import { commonReplacement, partialCommonTimelineReplacementKeys } from '../ui/raidboss/common_replacement';
 import { TimelineParser, TimelineReplacement } from '../ui/raidboss/timeline_parser';
 
 // Set a global flag to mark regexes for NetRegexes.doesNetRegexNeedTranslation.

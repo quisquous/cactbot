@@ -85,25 +85,25 @@ module.exports = {
       ],
     };
     return {
-      'Property[key.name=\'response\'] > CallExpression[callee.object.name=\'Responses\'][arguments.length!=0]':
-        (node) => {
-          const responseSeverity = node.arguments.map((arg) => arg.value).join(', ');
-          const defaultSeverity = defaultSeverityResponseMap[responseSeverity];
-          if (defaultSeverity && defaultSeverity.includes(node.callee.property.name)) {
-            context.report({
-              node,
-              message:
-                'Use default severity in cases where the severity override matches the response default',
+      'Property[key.name=\'response\'] > CallExpression[callee.object.name=\'Responses\'][arguments.length!=0]': (
+        node,
+      ) => {
+        const responseSeverity = node.arguments.map((arg) => arg.value).join(', ');
+        const defaultSeverity = defaultSeverityResponseMap[responseSeverity];
+        if (defaultSeverity && defaultSeverity.includes(node.callee.property.name)) {
+          context.report({
+            node,
+            message: 'Use default severity in cases where the severity override matches the response default',
 
-              fix: (fixer) => {
-                return fixer.replaceTextRange(
-                  [node.arguments[0].range[0], node.arguments[node.arguments.length - 1].range[1]],
-                  '',
-                );
-              },
-            });
-          }
-        },
+            fix: (fixer) => {
+              return fixer.replaceTextRange(
+                [node.arguments[0].range[0], node.arguments[node.arguments.length - 1].range[1]],
+                '',
+              );
+            },
+          });
+        }
+      },
     };
   },
 };

@@ -1,9 +1,5 @@
 import { UnreachableCode } from '../../../resources/not_reached';
-import {
-  badSpots,
-  findDragonMarks,
-  modDistance,
-} from '../data/04-sb/ultimate/unending_coil_ultimate';
+import { badSpots, findDragonMarks, modDistance } from '../data/04-sb/ultimate/unending_coil_ultimate';
 
 // TODO: move this into test, use mocha and chai instead of console.assert.
 

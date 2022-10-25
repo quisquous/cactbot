@@ -13,11 +13,7 @@ import Encounter from './emulator/data/Encounter';
 import LineEvent from './emulator/data/network_log_converter/LineEvent';
 import Persistor from './emulator/data/Persistor';
 import RaidEmulator from './emulator/data/RaidEmulator';
-import {
-  getTemplateChild,
-  querySelectorAllSafe,
-  querySelectorSafe,
-} from './emulator/EmulatorCommon';
+import { getTemplateChild, querySelectorAllSafe, querySelectorSafe } from './emulator/EmulatorCommon';
 import RaidEmulatorOverlayApiHook from './emulator/overrides/RaidEmulatorOverlayApiHook';
 import RaidEmulatorPopupText from './emulator/overrides/RaidEmulatorPopupText';
 import RaidEmulatorTimelineController from './emulator/overrides/RaidEmulatorTimelineController';
@@ -332,8 +328,7 @@ const raidEmulatorOnLoad = async () => {
             {
               const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
               bar.style.width = percent + '%';
-              label.innerText =
-                `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
+              label.innerText = `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
             }
             break;
           case 'encounter':

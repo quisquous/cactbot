@@ -548,8 +548,7 @@ export const Responses = {
   // move around (e.g. jumping) to avoid being frozen
   moveAround: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.moveAround),
   breakChains: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.breakChains),
-  moveChainsTogether: (sev?: Severity) =>
-    staticResponse(defaultInfoText(sev), Outputs.moveChainsTogether),
+  moveChainsTogether: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.moveChainsTogether),
   earthshaker: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
     // cactbot-builtin-response
     output.responseOutputStrings = {

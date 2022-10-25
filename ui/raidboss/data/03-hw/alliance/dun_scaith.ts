@@ -515,7 +515,11 @@ const triggerSet: TriggerSet<Data> = {
       // This trigger is common to both Scathach and Diabolos, since handling is 100% identical.
       id: 'Dun Scaith Shadethrust',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['1D23', '1C1A'], source: ['Scathach', 'Diabolos Hollow'], capture: false }),
+      netRegex: NetRegexes.startsUsing({
+        id: ['1D23', '1C1A'],
+        source: ['Scathach', 'Diabolos Hollow'],
+        capture: false,
+      }),
       response: Responses.awayFromFront(),
     },
     // DIABOLOS

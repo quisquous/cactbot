@@ -769,7 +769,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Limit Cut Knockback',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)),
+      condition: (data, matches) =>
+        data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)),
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: (data) => data.limitCutDelay !== undefined ? data.limitCutDelay - 5 : 0,
       alertText: (data, matches, output) => {

@@ -1,9 +1,5 @@
 import { setOverlayHandlerOverride } from '../../../../resources/overlay_plugin_api';
-import {
-  OverlayHandlerRequests,
-  OverlayHandlerResponses,
-  PluginCombatantState,
-} from '../../../../types/event';
+import { OverlayHandlerRequests, OverlayHandlerResponses, PluginCombatantState } from '../../../../types/event';
 import AnalyzedEncounter from '../data/AnalyzedEncounter';
 import LineEvent from '../data/network_log_converter/LineEvent';
 import RaidEmulator from '../data/RaidEmulator';

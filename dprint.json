@@ -6,12 +6,12 @@
   ],
   "excludes": [
     "**/node_modules",
-    "**/ui/raidboss/data",
-    "**/ui/oopsyraidsy/data",
+//    "**/ui/raidboss/data",
+//    "**/ui/oopsyraidsy/data",
     "**/*-lock.json"
   ],
   "extends": "./dprint.base.json",
-  "lineWidth": 100,
+  "lineWidth": 120,
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.75.0.wasm"
   ]

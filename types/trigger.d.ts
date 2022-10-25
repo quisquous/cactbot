@@ -99,9 +99,9 @@ export type TriggerAutoConfig = {
 
 // Note: functions like run or preRun need to be defined as void-only as (confusingly)
 // it is not possible to assign `(d: Data) => boolean` to a void | undefined, only to void.
-export type TriggerField<Data extends RaidbossData, MatchType extends NetAnyMatches, Return> =
-  [Return] extends [void] ? TriggerFunc<Data, MatchType, void>
-    : TriggerFunc<Data, MatchType, Return> | Return;
+export type TriggerField<Data extends RaidbossData, MatchType extends NetAnyMatches, Return> = [Return] extends [void] ?
+  TriggerFunc<Data, MatchType, void>
+  : TriggerFunc<Data, MatchType, Return> | Return;
 
 // This trigger type is what we expect cactbot triggers to be written as,
 // in other words `id` is not technically required for triggers but for

@@ -153,7 +153,12 @@ const convertBossHeadingToClonePosition = (boss: PluginCombatantState): PluginCo
   };
 };
 
-const calculateSummonSafeZone = (boss: PluginCombatantState, clone1: PluginCombatantState, clone2: PluginCombatantState, abilityId: string): string => {
+const calculateSummonSafeZone = (
+  boss: PluginCombatantState,
+  clone1: PluginCombatantState,
+  clone2: PluginCombatantState,
+  abilityId: string,
+): string => {
   // Convert coordinates to 8 cardinal / intercardinal positions:
   // N at 0, NE at 1, ... NW at 7
   const b = Math.round(4 - 4 * Math.atan2(boss.PosX - 100, boss.PosY - 100) / Math.PI);

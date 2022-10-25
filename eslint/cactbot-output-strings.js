@@ -66,9 +66,7 @@ const ruleModule = {
         return;
       const outputTemplateKey = {};
       for (
-        const outputString of node.properties.filter((s) =>
-          !t.isSpreadElement(s) && !t.isMemberExpression(s.value)
-        )
+        const outputString of node.properties.filter((s) => !t.isSpreadElement(s) && !t.isMemberExpression(s.value))
       ) {
         // For each outputString...
         const properties = outputString.value.properties;
@@ -112,9 +110,8 @@ const ruleModule = {
           stack.outputProperties = t.isIdentifier(outputValue)
             ? (globalVars.get(outputValue.name) || [])
             : getAllKeys(outputValue.properties);
-          stack.triggerID = node.parent.parent.properties.find((prop) =>
-            prop.key && prop.key.name === 'id'
-          )?.value?.value;
+          stack.triggerID = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id')?.value
+            ?.value;
           return;
         }
         context.report({
@@ -135,9 +132,7 @@ const ruleModule = {
        * @param node {t.MemberExpression}
        */
       [
-        `Property[key.name=/${
-          textProps.join('|')
-        }/] > :function[params.length=3] CallExpression > MemberExpression`
+        `Property[key.name=/${textProps.join('|')}/] > :function[params.length=3] CallExpression > MemberExpression`
       ](node) {
         if (
           node.object.name === stack.outputParam &&

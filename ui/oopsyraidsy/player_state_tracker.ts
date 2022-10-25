@@ -2,34 +2,14 @@ import logDefinitions from '../../resources/netlog_defs';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
 import { Party } from '../../types/event';
-import {
-  DeathReportData,
-  OopsyDeathReason,
-  OopsyMistake,
-  OopsyMistakeType,
-} from '../../types/oopsy';
+import { DeathReportData, OopsyDeathReason, OopsyMistake, OopsyMistakeType } from '../../types/oopsy';
 
-import {
-  MissableAbility,
-  MissableEffect,
-  missedAbilityBuffMap,
-  missedEffectBuffMap,
-} from './buff_map';
+import { MissableAbility, MissableEffect, missedAbilityBuffMap, missedEffectBuffMap } from './buff_map';
 import { ProcessedOopsyTriggerSet } from './damage_tracker';
 import { DeathReport } from './death_report';
-import {
-  CollectedBuff,
-  MissedBuffCollector,
-  RequestTimestampCallback,
-} from './missed_buff_collector';
+import { CollectedBuff, MissedBuffCollector, RequestTimestampCallback } from './missed_buff_collector';
 import { MistakeCollector } from './mistake_collector';
-import {
-  GetShareMistakeText,
-  GetSoloMistakeText,
-  IsPlayerId,
-  ShortNamify,
-  Translate,
-} from './oopsy_common';
+import { GetShareMistakeText, GetSoloMistakeText, IsPlayerId, ShortNamify, Translate } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
 const emptyId = 'E0000000';

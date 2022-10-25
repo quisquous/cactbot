@@ -82,8 +82,7 @@ export const doesJobNeedMPBar = (job: Job): boolean =>
   Util.isCasterDpsJob(job) || Util.isHealerJob(job) || kMeleeWithMpJobs.includes(job);
 
 /** compute greased lightning stacks by player's level */
-const getLightningStacksByLevel = (level: number): number =>
-  level < 20 ? 1 : level < 40 ? 2 : level < 76 ? 3 : 4;
+const getLightningStacksByLevel = (level: number): number => level < 20 ? 1 : level < 40 ? 2 : level < 76 ? 3 : 4;
 
 type PlayerLike = {
   job: Job;

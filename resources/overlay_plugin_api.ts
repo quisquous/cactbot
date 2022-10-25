@@ -1,12 +1,6 @@
 // OverlayPlugin API setup
 
-import {
-  EventMap,
-  EventType,
-  IOverlayHandler,
-  OverlayHandlerFuncs,
-  OverlayHandlerTypes,
-} from '../types/event';
+import { EventMap, EventType, IOverlayHandler, OverlayHandlerFuncs, OverlayHandlerTypes } from '../types/event';
 
 type BaseResponse = { rseq?: number; '$error'?: boolean };
 
