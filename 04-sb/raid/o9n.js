@@ -6,13 +6,13 @@ Options.Triggers.push({
     {
       id: 'O9N Chaotic Dispersion',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '314F', source: 'Chaos' }),
+      netRegex: { id: '314F', source: 'Chaos' },
       response: Responses.tankBuster(),
     },
     {
       id: 'O9N Orbs Fiend',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '315C', source: 'Chaos', capture: false }),
+      netRegex: { id: '315C', source: 'Chaos', capture: false },
       condition: (data) => data.role === 'tank',
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -30,7 +30,7 @@ Options.Triggers.push({
       id: 'O9N Entropy',
       type: 'GainsEffect',
       // This corresponds with an 0060 headmarker.
-      netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
+      netRegex: { effectId: '640' },
       condition: Conditions.targetIsYou(),
       // Entropy comes out with 8 and 14 seconds during the Fire phase, for two sets of spreads.
       // During the midphase, it is only 14.  To make this less complicated, add a delay that
@@ -42,7 +42,7 @@ Options.Triggers.push({
       id: 'O9N Dynamic Fluid',
       type: 'GainsEffect',
       // This corresponds with an 0099 headmarker.
-      netRegex: NetRegexes.gainsEffect({ effectId: '641' }),
+      netRegex: { effectId: '641' },
       // Dynamic Fluid is 8 and 14 seconds during the Water phase.  During midphase, it is 20.
       // However, in all cases, there's no reason not to pre-position the donut stack.
       condition: Conditions.targetIsYou(),
@@ -60,37 +60,37 @@ Options.Triggers.push({
     {
       id: 'O9N Blaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3165', source: 'Chaos', capture: false }),
+      netRegex: { id: '3165', source: 'Chaos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O9N Tsunami',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3166', source: 'Chaos', capture: false }),
+      netRegex: { id: '3166', source: 'Chaos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O9N Cyclone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3167', source: 'Chaos', capture: false }),
+      netRegex: { id: '3167', source: 'Chaos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O9N Earthquake',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3168', source: 'Chaos', capture: false }),
+      netRegex: { id: '3168', source: 'Chaos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O9N Bowels of Agony',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3169', source: 'Chaos', capture: false }),
+      netRegex: { id: '3169', source: 'Chaos', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'O9N Knockdown',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -109,14 +109,14 @@ Options.Triggers.push({
     {
       id: 'O9N Stack Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       // these stack markers come out in pairs, so collect them.
       run: (data, matches) => (data.stackMarker ?? (data.stackMarker = [])).push(matches.target),
     },
     {
       id: 'O9N Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      netRegex: { id: '003E', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
@@ -139,13 +139,13 @@ Options.Triggers.push({
     {
       id: 'O9N Earthquake Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3148', source: 'Chaos', capture: false }),
+      netRegex: { id: '3148', source: 'Chaos', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'O9N Cyclone Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '316D', source: 'Chaos', capture: false }),
+      netRegex: { id: '316D', source: 'Chaos', capture: false },
       response: Responses.knockback(),
     },
   ],

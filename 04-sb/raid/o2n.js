@@ -14,21 +14,21 @@ Options.Triggers.push({
     {
       id: 'O2N Levitation Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
+      netRegex: { effectId: '556' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.levitating = true,
     },
     {
       id: 'O2N Levitation Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '556' }),
+      netRegex: { effectId: '556' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.levitating = false,
     },
     {
       id: 'O2N Gravitational Manipulation Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0071' }),
+      netRegex: { id: '0071' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.stackMarkerOnYou();
@@ -49,7 +49,7 @@ Options.Triggers.push({
     {
       id: 'O2N Gravitational Manipulation Float',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0071' }),
+      netRegex: { id: '0071' },
       condition: (data, matches) => !data.levitating && Conditions.targetIsNotYou()(data, matches),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -66,13 +66,13 @@ Options.Triggers.push({
     {
       id: 'O2N Evilsphere',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '250F', source: 'Catastrophe' }),
+      netRegex: { id: '250F', source: 'Catastrophe' },
       response: Responses.tankBuster(),
     },
     {
       id: 'O2N -100Gs',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '24FF', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '24FF', source: 'Catastrophe', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -88,13 +88,13 @@ Options.Triggers.push({
     {
       id: 'O2N Demon Eye',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '250D', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '250D', source: 'Catastrophe', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'O2N Earthquake',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2512', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '2512', source: 'Catastrophe', capture: false },
       alertText: (data, _matches, output) => {
         if (!data.levitating)
           return output.levitate();
@@ -125,13 +125,13 @@ Options.Triggers.push({
     {
       id: 'O2N Gravitational Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2510', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '2510', source: 'Catastrophe', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O2N Six Fulms Under',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
+      netRegex: { effectId: '237' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 5,
       suppressSeconds: 10,
@@ -174,7 +174,7 @@ Options.Triggers.push({
     {
       id: 'O2N Antilight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2502', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '2502', source: 'Catastrophe', capture: false },
       preRun: (data) => data.antiCounter ?? (data.antiCounter = 0),
       durationSeconds: (data) => {
         if (data.antiCounter === 0 && data.levitating)

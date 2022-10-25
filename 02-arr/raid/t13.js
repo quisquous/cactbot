@@ -18,7 +18,7 @@ Options.Triggers.push({
     {
       id: 'T13 Gigaflare Phase Change',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'BB9', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: 'BB9', source: 'Bahamut Prime', capture: false },
       // Only the first two gigas are phase changes, the rest are in final phase.
       condition: (data) => data.gigaflare <= 2,
       sound: 'Long',
@@ -41,7 +41,7 @@ Options.Triggers.push({
     {
       id: 'T13 Flatten',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'BAE', source: 'Bahamut Prime' }),
+      netRegex: { id: 'BAE', source: 'Bahamut Prime' },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.flattenOnYou();
@@ -73,7 +73,7 @@ Options.Triggers.push({
     {
       id: 'T13 Megaflare Share',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027' }),
+      netRegex: { id: '0027' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -89,14 +89,15 @@ Options.Triggers.push({
     },
     {
       id: 'T13 Earthshaker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      type: 'HeadMarker',
+      netRegex: { id: '0028' },
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },
     {
       id: 'T13 Tempest Wing',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0004', target: 'Bahamut Prime' }),
+      netRegex: { id: '0004', target: 'Bahamut Prime' },
       condition: (data, matches) => data.me === matches.source,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -113,7 +114,7 @@ Options.Triggers.push({
     {
       id: 'T13 Akh Morn',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'BC2', source: 'Bahamut Prime' }),
+      netRegex: { id: 'BC2', source: 'Bahamut Prime' },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.akhMornOnYou();

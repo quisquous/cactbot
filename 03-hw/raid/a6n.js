@@ -28,7 +28,7 @@ Options.Triggers.push({
     {
       id: 'A6N Minefield',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster', id: '170D', capture: false }),
+      netRegex: { source: 'Blaster', id: '170D', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.avoidMines(),
       outputStrings: {
@@ -45,7 +45,7 @@ Options.Triggers.push({
     {
       id: 'A6N Supercharge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '1713', capture: false }),
+      netRegex: { source: 'Blaster Mirage', id: '1713', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -62,7 +62,7 @@ Options.Triggers.push({
     {
       id: 'A6N Low Arithmeticks',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
+      netRegex: { effectId: '3FD' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text(),
@@ -80,7 +80,7 @@ Options.Triggers.push({
     {
       id: 'A6N High Arithmeticks',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
+      netRegex: { effectId: '3FE' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text(),
@@ -98,13 +98,13 @@ Options.Triggers.push({
     {
       id: 'A6N Bio-arithmeticks',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Swindler', id: '171F', capture: false }),
+      netRegex: { source: 'Swindler', id: '171F', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'A6N Enumeration',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
+      netRegex: { id: ['0040', '0041', '0042'] },
       infoText: (data, matches, output) => {
         // 0040 = 2, 0041 = 3, 0042 = 4
         const count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
@@ -124,13 +124,13 @@ Options.Triggers.push({
     {
       id: 'A6N Super Cyclone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '1728', capture: false }),
+      netRegex: { source: 'Vortexer', id: '1728', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'A6N Ultra Flash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '1722', capture: false }),
+      netRegex: { source: 'Vortexer', id: '1722', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -146,7 +146,7 @@ Options.Triggers.push({
     {
       id: 'A6N Ice Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0043' }),
+      netRegex: { id: '0043' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -163,7 +163,7 @@ Options.Triggers.push({
     {
       id: 'A6N Compressed Water Initial',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
+      netRegex: { effectId: '3FF' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -180,7 +180,7 @@ Options.Triggers.push({
     {
       id: 'A6N Compressed Water Explode',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
+      netRegex: { effectId: '3FF' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (_data, _matches, output) => {

@@ -6,7 +6,7 @@ Options.Triggers.push({
     {
       id: 'Tower Of Babil Ground And Pound',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6247', '62EA'], source: 'Barnabas', capture: false }),
+      netRegex: { id: ['6247', '62EA'], source: 'Barnabas', capture: false },
       response: Responses.awayFromFront(),
     },
     {
@@ -16,7 +16,7 @@ Options.Triggers.push({
       // rather than using the player head marker as a trigger log line.
       id: 'Tower Of Babil Dynamic Player Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['00A2', '00A3'] }),
+      netRegex: { id: ['00A2', '00A3'] },
       condition: Conditions.targetIsYou(),
       run: (data, matches) => data.playerNegative = matches.id === '00A3',
     },
@@ -24,13 +24,13 @@ Options.Triggers.push({
       // 0122 is negative, 0123 is positive.
       id: 'Tower Of Babil Dynamic Scrapline Barnabas Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0122', '0123'], target: 'Barnabas' }),
+      netRegex: { id: ['0122', '0123'], target: 'Barnabas' },
       run: (data, matches) => data.barnabasNegative = matches.id === '0122',
     },
     {
       id: 'Tower Of Babil Dynamic Scrapline',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6246', '62F0'], source: 'Barnabas', capture: false }),
+      netRegex: { id: ['6246', '62F0'], source: 'Barnabas', capture: false },
       delaySeconds: 0.5,
       infoText: (data, _matches, output) => {
         if ([data.barnabasNegative, data.playerNegative].includes(undefined))
@@ -66,13 +66,13 @@ Options.Triggers.push({
       // 6245 is negative, 62EE is positive.
       id: 'Tower Of Babil Dynamic Pound Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas' }),
+      netRegex: { id: ['6245', '62EE'], source: 'Barnabas' },
       run: (data, matches) => data.barnabasNegative = matches.id === '6245',
     },
     {
       id: 'Tower Of Babil Dynamic Pound',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6245', '62EE'], source: 'Barnabas', capture: false }),
+      netRegex: { id: ['6245', '62EE'], source: 'Barnabas', capture: false },
       delaySeconds: 0.5,
       infoText: (data, _matches, output) => {
         if ([data.barnabasNegative, data.playerNegative].includes(undefined))
@@ -105,19 +105,19 @@ Options.Triggers.push({
     {
       id: 'Tower Of Babil Rolling Scrapline',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62EB', source: 'Barnabas', capture: false }),
+      netRegex: { id: '62EB', source: 'Barnabas', capture: false },
       response: Responses.outOfMelee(),
     },
     {
       id: 'Tower Of Babil Shocking Force',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Tower Of Babil Magitek Chakram',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '62F3', source: 'Lugae', capture: false }),
+      netRegex: { id: '62F3', source: 'Lugae', capture: false },
       suppressSeconds: 10,
       infoText: (_data, _matches, outputs) => outputs.text(),
       outputStrings: {
@@ -134,7 +134,7 @@ Options.Triggers.push({
     {
       id: 'Tower Of Babil Downpour',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '62F5', source: 'Lugae', capture: false }),
+      netRegex: { id: '62F5', source: 'Lugae', capture: false },
       infoText: (_data, _matches, outputs) => outputs.text(),
       outputStrings: {
         text: {
@@ -150,13 +150,13 @@ Options.Triggers.push({
     {
       id: 'Tower Of Babil Thermal Suppression',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62FA', source: 'Lugae', capture: false }),
+      netRegex: { id: '62FA', source: 'Lugae', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Tower Of Babil Magitek Explosive',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '62F8', source: 'Lugae', capture: false }),
+      netRegex: { id: '62F8', source: 'Lugae', capture: false },
       infoText: (_data, _matches, outputs) => outputs.text(),
       outputStrings: {
         text: {
@@ -173,7 +173,7 @@ Options.Triggers.push({
       // Locations are (-19.50, -160), (-19.50, -199), (19.50, -160), (19.50, -199)
       id: 'Tower Of Babil Lunar Nail Warning',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '62FE', source: 'Anima', capture: false }),
+      netRegex: { id: '62FE', source: 'Anima', capture: false },
       infoText: (_data, _matches, outputs) => outputs.text(),
       outputStrings: {
         text: {
@@ -188,14 +188,14 @@ Options.Triggers.push({
     {
       id: 'Tower Of Babil Mega Graviton',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6300', source: 'Anima', capture: false }),
+      netRegex: { id: '6300', source: 'Anima', capture: false },
       response: Responses.aoe(),
     },
     {
       // TODO: Math the Graviton locations so we can call a safe direction.
       id: 'Tower Of Babil Aetherial Pull',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6301', source: 'Mega-graviton' }),
+      netRegex: { id: '6301', source: 'Mega-graviton' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, outputs) => outputs.text(),
       outputStrings: {
@@ -211,7 +211,7 @@ Options.Triggers.push({
     {
       id: 'Tower Of Babil Boundless Pain',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6303', source: 'Anima', capture: false }),
+      netRegex: { id: '6303', source: 'Anima', capture: false },
       alertText: (_data, _matches, outputs) => outputs.text(),
       outputStrings: {
         text: {
@@ -226,7 +226,7 @@ Options.Triggers.push({
     {
       id: 'Tower Of Babil Coffin Scratch',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00C5' }),
+      netRegex: { id: '00C5' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, outputs) => outputs.text(),
       outputStrings: {

@@ -13,7 +13,7 @@ Options.Triggers.push({
     {
       id: 'A11S Left Laser Sword',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A7A', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A7A', capture: false },
       // Sorry tanks.
       // We could figure out who is tanking and then do the opposite,
       // but probably that could get confusing too?
@@ -23,13 +23,13 @@ Options.Triggers.push({
     {
       id: 'A11S Right Laser Sword',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A79', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A79', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'A11S Optical Sight Clock',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A6C', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A6C', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -45,13 +45,13 @@ Options.Triggers.push({
     {
       id: 'A11S Optical Sight Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A6D', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A6D', capture: false },
       response: Responses.getOut('info'),
     },
     {
       id: 'A11S Optical Sight Bait',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A6E', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A6E', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -67,26 +67,26 @@ Options.Triggers.push({
     {
       id: 'A11S Super Hawk Blaster',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005A' }),
+      netRegex: { id: '005A' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'A11S Whirlwind',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A84', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A84', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'A11S Spin Crusher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A85', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A85', capture: false },
       response: Responses.awayFromFront('info'),
     },
     {
       id: 'A11S EDD Add',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'E\\.D\\.D\\.', capture: false }),
+      netRegex: { name: 'E\\.D\\.D\\.', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -102,7 +102,7 @@ Options.Triggers.push({
     {
       id: 'A11S Armored Pauldron Add',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Armored Pauldron', capture: false }),
+      netRegex: { name: 'Armored Pauldron', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -119,7 +119,7 @@ Options.Triggers.push({
       id: 'A11S GA-100',
       type: 'StartsUsing',
       // Note: 0057 headmarker, but starts using occurs 3 seconds earlier.
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A77' }),
+      netRegex: { source: 'Cruise Chaser', id: '1A77' },
       // TODO: maybe we need a Responses.abilityOn()
       alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
@@ -153,7 +153,7 @@ Options.Triggers.push({
     {
       id: 'A11S Limit Cut Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
+      netRegex: { id: '00(?:4F|5[0-6])' },
       run: (data, matches) => {
         const limitCutNumberMap = {
           '004F': 1,
@@ -190,7 +190,7 @@ Options.Triggers.push({
     {
       id: 'A11S Limit Cut Number',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
+      netRegex: { id: '00(?:4F|5[0-6])' },
       condition: Conditions.targetIsYou(),
       durationSeconds: (data) => data.limitCutDelay ?? 0,
       infoText: (data, _matches, output) => output.text({ num: data.limitCutNumber }),
@@ -208,7 +208,7 @@ Options.Triggers.push({
     {
       id: 'A11S Limit Cut Mechanic',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
+      netRegex: { id: '00(?:4F|5[0-6])' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (data) => (data.limitCutDelay ?? 0) - 5,
       alertText: (data, _matches, output) => {
@@ -256,7 +256,7 @@ Options.Triggers.push({
     {
       id: 'A11S Limit Cut Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Cruise Chaser', id: '1A80', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A80', capture: false },
       delaySeconds: 30,
       run: (data) => {
         delete data.limitCutDelay;
@@ -267,7 +267,7 @@ Options.Triggers.push({
     {
       id: 'A11S Laser X Sword',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A7F' }),
+      netRegex: { source: 'Cruise Chaser', id: '1A7F' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.sharedTankbusterOnYou();
@@ -296,7 +296,7 @@ Options.Triggers.push({
     {
       id: 'A11S Propeller Wind',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A7F', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '1A7F', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -312,7 +312,7 @@ Options.Triggers.push({
     {
       id: 'A11S Plasma Shield',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Plasma Shield', capture: false }),
+      netRegex: { name: 'Plasma Shield', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -328,14 +328,14 @@ Options.Triggers.push({
     {
       id: 'A11S Plasma Shield Shattered',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'The plasma shield is shattered.*?', capture: false }),
+      netRegex: { line: 'The plasma shield is shattered.*?', capture: false },
       response: Responses.spread(),
     },
     {
       id: 'A11S Blassty Charge',
       type: 'StartsUsing',
       // The single post-shield charge.  Not "super" blassty charge during limit cut.
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '1A83' }),
+      netRegex: { source: 'Cruise Chaser', id: '1A83' },
       alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;

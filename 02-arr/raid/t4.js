@@ -5,7 +5,7 @@ Options.Triggers.push({
     {
       id: 'T4 Gravity Thrust',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Spinner-Rook', id: '4D4' }),
+      netRegex: { source: 'Spinner-Rook', id: '4D4' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -21,7 +21,7 @@ Options.Triggers.push({
     {
       id: 'T4 Pox',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Spinner-Rook', id: '4D5' }),
+      netRegex: { source: 'Spinner-Rook', id: '4D5' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -37,7 +37,7 @@ Options.Triggers.push({
     {
       id: 'T4 Reminder',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Clockwork Knight', capture: false }),
+      netRegex: { name: 'Clockwork Knight', capture: false },
       suppressSeconds: 100000,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {

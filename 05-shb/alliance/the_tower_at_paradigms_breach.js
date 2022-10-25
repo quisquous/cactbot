@@ -16,20 +16,20 @@ Options.Triggers.push({
     {
       id: 'Paradigm Knave Roar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5EB5', source: 'Knave Of Hearts', capture: false }),
+      netRegex: { id: '5EB5', source: 'Knave Of Hearts', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Paradigm Knave Colossal Impact Sides',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5EA4', source: 'Knave Of Hearts', capture: false }),
+      netRegex: { id: '5EA4', source: 'Knave Of Hearts', capture: false },
       durationSeconds: 5,
       response: Responses.goMiddle(),
     },
     {
       id: 'Paradigm Copied Knave Colossal Impact Sides',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5EA4', source: 'Copied Knave', capture: false }),
+      netRegex: { id: '5EA4', source: 'Copied Knave', capture: false },
       // Cast time of 8 seconds, clones start casting 6 seconds into the cast.
       delaySeconds: 2.1,
       durationSeconds: 5,
@@ -38,7 +38,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm Knave Colossal Impact Middle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5EA7', source: 'Knave Of Hearts', capture: false }),
+      netRegex: { id: '5EA7', source: 'Knave Of Hearts', capture: false },
       durationSeconds: 5,
       alertText: (_data, _matches, output) => output.text(),
       tts: (_data, _matches, output) => output.ttsText(),
@@ -64,7 +64,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm Copied Knave Colossal Impact Middle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5EA7', source: 'Copied Knave', capture: false }),
+      netRegex: { id: '5EA7', source: 'Copied Knave', capture: false },
       delaySeconds: 2.1,
       durationSeconds: 5,
       alertText: (_data, _matches, output) => output.text(),
@@ -92,14 +92,14 @@ Options.Triggers.push({
       // Also applies for Red Girl Manipulate Energy
       id: 'Paradigm Knave Magic Artillery Beta You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00DA' }),
+      netRegex: { id: '00DA' },
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Paradigm Knave Magic Artillery Beta Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00DA' }),
+      netRegex: { id: '00DA' },
       run: (data, matches) => {
         data.busterTargets ?? (data.busterTargets = []);
         data.busterTargets.push(matches.target);
@@ -108,7 +108,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm Knave Magic Artillery Beta',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00DA', capture: false }),
+      netRegex: { id: '00DA', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
@@ -136,14 +136,14 @@ Options.Triggers.push({
     {
       id: 'Paradigm Knave Magic Artillery Alpha Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A9' }),
+      netRegex: { id: '00A9' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Paradigm Knave Lunge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5EB1', source: 'Knave of Hearts' }),
+      netRegex: { id: '5EB1', source: 'Knave of Hearts' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
       durationSeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
@@ -161,7 +161,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm Copied Knave Lunge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5EB1', source: 'Copied Knave' }),
+      netRegex: { id: '5EB1', source: 'Copied Knave' },
       condition: (data) => !data.cloneLunge,
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
       durationSeconds: 5,
@@ -181,7 +181,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm Copied Knave Lunge Get Middle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '60C7', source: 'Knave of Hearts' }),
+      netRegex: { id: '60C7', source: 'Knave of Hearts' },
       // Half a second longer cast time than the Lunge itself
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6.5,
       durationSeconds: 5,
@@ -200,7 +200,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm Copied Knave Lunge Out of Middle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '60C8', source: 'Knave of Hearts' }),
+      netRegex: { id: '60C8', source: 'Knave of Hearts' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6.5,
       durationSeconds: 5,
       alertText: (_data, _matches, output) => output.text(),
@@ -218,7 +218,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm Gretel Upgraded Shield',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5C69', source: 'Gretel', capture: false }),
+      netRegex: { id: '5C69', source: 'Gretel', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -234,7 +234,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm Hansel Upgraded Shield',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5C6B', source: 'Hansel', capture: false }),
+      netRegex: { id: '5C6B', source: 'Hansel', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -250,20 +250,20 @@ Options.Triggers.push({
     {
       id: 'Paradigm Hansel/Gretel Wail',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5C7[67]', source: ['Hansel', 'Gretel'], capture: false }),
+      netRegex: { id: '5C7[67]', source: ['Hansel', 'Gretel'], capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Paradigm Hansel/Gretel Crippling Blow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5C7[89]', source: ['Hansel', 'Gretel'] }),
+      netRegex: { id: '5C7[89]', source: ['Hansel', 'Gretel'] },
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Paradigm Hansel/Gretel Seed Of Magic Alpha',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0060' }),
+      netRegex: { id: '0060' },
       preRun: (data, matches) => {
         data.seedTargets ?? (data.seedTargets = []);
         data.seedTargets.push(matches.target);
@@ -279,7 +279,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm Hansel/Gretel Riot Of Magic',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       delaySeconds: 0.5,
       infoText: (data, matches, output) => {
         if (!data.seedTargets)
@@ -299,13 +299,13 @@ Options.Triggers.push({
     {
       id: 'Paradigm Hansel/Gretel Lamentation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5C7[34]', source: ['Hansel', 'Gretel'], capture: false }),
+      netRegex: { id: '5C7[34]', source: ['Hansel', 'Gretel'], capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Paradigm Hansel/Gretel Bloody Sweep',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5C5[4567]', source: ['Hansel', 'Gretel'] }),
+      netRegex: { id: '5C5[4567]', source: ['Hansel', 'Gretel'] },
       durationSeconds: 5,
       suppressSeconds: 1,
       alertText: (_data, matches, output) => {
@@ -360,13 +360,13 @@ Options.Triggers.push({
     {
       id: 'Paradigm Red Girl Cruelty',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '601[23]', source: 'Red Girl', capture: false }),
+      netRegex: { id: '601[23]', source: 'Red Girl', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Paradigm Red Sphere Wave: White',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '618D', source: 'Red Sphere', capture: false }),
+      netRegex: { id: '618D', source: 'Red Sphere', capture: false },
       infoText: (data, _matches, output) => {
         // Skip the first callout, since you're still zoning in
         if (data.seenSphere)
@@ -387,7 +387,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm Red Sphere Wave: Black',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '618E', source: 'Red Sphere', capture: false }),
+      netRegex: { id: '618E', source: 'Red Sphere', capture: false },
       infoText: (data, _matches, output) => {
         if (data.seenSphere)
           return output.text();
@@ -407,7 +407,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm Meng-Zi/Xun-Zi Universal Assault',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5C06', source: ['Meng-Zi', 'Xun-Zi'], capture: false }),
+      netRegex: { id: '5C06', source: ['Meng-Zi', 'Xun-Zi'], capture: false },
       suppressSeconds: 5,
       response: Responses.aoe(),
     },
@@ -437,7 +437,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['5C00', '5C01', '5C03', '5C04'] }),
+      netRegex: { id: ['5C00', '5C01', '5C03', '5C04'] },
       run: (data, matches) => {
         data.deployArmaments ?? (data.deployArmaments = []);
         // Convert the heading into 0=N, 1=E, 2=S, 3=W
@@ -453,7 +453,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm Meng-Zi/Xun-Zi Deploy Armaments Trigger',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['5C00', '5C01', '5C03', '5C04'] }),
+      netRegex: { id: ['5C00', '5C01', '5C03', '5C04'] },
       delaySeconds: 0.25,
       durationSeconds: 5,
       suppressSeconds: 1,
@@ -560,27 +560,27 @@ Options.Triggers.push({
     {
       id: 'Paradigm False Idol Screaming Score',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5BDD', source: 'False Idol', capture: false }),
+      netRegex: { id: '5BDD', source: 'False Idol', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Paradigm False Idol Made Magic Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5BD6', source: 'False Idol', capture: false }),
+      netRegex: { id: '5BD6', source: 'False Idol', capture: false },
       durationSeconds: 5,
       response: Responses.goRight(),
     },
     {
       id: 'Paradigm False Idol Made Magic Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5BD7', source: 'False Idol', capture: false }),
+      netRegex: { id: '5BD7', source: 'False Idol', capture: false },
       durationSeconds: 5,
       response: Responses.goLeft(),
     },
     {
       id: 'Paradigm False Idol Lighter Note',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -597,14 +597,14 @@ Options.Triggers.push({
     {
       id: 'Paradigm False Idol Darker Note You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Paradigm False Idol Darker Note Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       run: (data, matches) => {
         data.busterTargets ?? (data.busterTargets = []);
         data.busterTargets.push(matches.target);
@@ -613,7 +613,7 @@ Options.Triggers.push({
     {
       id: 'Paradigm False Idol Darker Note',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B', capture: false }),
+      netRegex: { id: '008B', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
@@ -641,14 +641,14 @@ Options.Triggers.push({
     {
       id: 'Paradigm Her Inflorescence Screaming Score',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5BF5', source: 'Her Inflorescence', capture: false }),
+      netRegex: { id: '5BF5', source: 'Her Inflorescence', capture: false },
       response: Responses.aoe(),
     },
     {
       // startsUsing callout is too early, instead callout when the cast has finished
       id: 'Paradigm Her Inflorescence Recreate Structure',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '5BE1', source: 'Her Inflorescence', capture: false }),
+      netRegex: { id: '5BE1', source: 'Her Inflorescence', capture: false },
       durationSeconds: 5,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -665,13 +665,13 @@ Options.Triggers.push({
     {
       id: 'Paradigm Her Inflorescence Recreate Signal',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5BE3', source: 'Her Inflorescence', capture: false }),
+      netRegex: { id: '5BE3', source: 'Her Inflorescence', capture: false },
       run: (data) => data.signalCount = 0,
     },
     {
       id: 'Paradigm Her Inflorescence Recreate Signal Collect',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0036', target: 'Her Inflorescence', capture: false }),
+      netRegex: { id: '0036', target: 'Her Inflorescence', capture: false },
       preRun: (data) => data.signalCount = (data.signalCount ?? 0) + 1,
       durationSeconds: 5,
       alertText: (data, _matches, output) => {
@@ -692,13 +692,13 @@ Options.Triggers.push({
     {
       id: 'Paradigm Her Inflorescence Heavy Arms Middle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5BED', source: 'Her Inflorescence', capture: false }),
+      netRegex: { id: '5BED', source: 'Her Inflorescence', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'Paradigm Her Inflorescence Heavy Arms Sides',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5BEF', source: 'Her Inflorescence', capture: false }),
+      netRegex: { id: '5BEF', source: 'Her Inflorescence', capture: false },
       suppressSeconds: 1,
       response: Responses.goFrontBack(),
     },

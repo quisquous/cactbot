@@ -4,7 +4,7 @@ Options.Triggers.push({
     {
       id: 'Bismarck Sharp Gust',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'FAF', source: 'Bismarck', capture: false }),
+      netRegex: { id: 'FAF', source: 'Bismarck', capture: false },
       response: Responses.knockback(),
     },
   ],

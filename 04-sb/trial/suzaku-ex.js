@@ -6,13 +6,13 @@ Options.Triggers.push({
     {
       id: 'SuzEx Cremate',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '32D1', source: 'Suzaku' }),
+      netRegex: { id: '32D1', source: 'Suzaku' },
       response: Responses.tankBuster(),
     },
     {
       id: 'SuzEx Phantom Flurry',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '32DC', source: 'Suzaku', capture: false }),
+      netRegex: { id: '32DC', source: 'Suzaku', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: Outputs.tankBuster,
@@ -21,7 +21,7 @@ Options.Triggers.push({
     {
       id: 'SuzEx Mesmerizing Melody',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '32DA', source: 'Suzaku', capture: false }),
+      netRegex: { id: '32DA', source: 'Suzaku', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -37,7 +37,7 @@ Options.Triggers.push({
     {
       id: 'SuzEx Ruthless Refrain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '32DB', source: 'Suzaku', capture: false }),
+      netRegex: { id: '32DB', source: 'Suzaku', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

@@ -31,7 +31,7 @@ Options.Triggers.push({
     {
       id: 'O2S Phase Probe Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '235A', source: 'Catastrophe', capture: false },
       run: (data) => {
         data.probeCount = (data.probeCount ?? 0) + 1;
         data.dpsProbe = data.probeCount === 2 || data.probeCount === 4;
@@ -41,27 +41,27 @@ Options.Triggers.push({
     {
       id: 'O2S Levitation Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
+      netRegex: { effectId: '556' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.levitating = true,
     },
     {
       id: 'O2S Levitation Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '556' }),
+      netRegex: { effectId: '556' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.levitating = false,
     },
     {
       id: 'O2S Evilsphere',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2371', source: 'Catastrophe' }),
+      netRegex: { id: '2371', source: 'Catastrophe' },
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'O2S 100Gs',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0069' }),
+      netRegex: { id: '0069' },
       preRun: (data, matches) => {
         data.blueCircle ?? (data.blueCircle = []);
         data.blueCircle.push(matches.target);
@@ -96,7 +96,7 @@ Options.Triggers.push({
     {
       id: 'O2S -100Gs',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '235E', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '235E', source: 'Catastrophe', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -112,13 +112,13 @@ Options.Triggers.push({
     {
       id: 'O2S Death\'s Gaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '236F', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '236F', source: 'Catastrophe', capture: false },
       response: Responses.lookAway('alert'),
     },
     {
       id: 'O2S Earthquake',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2374', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '2374', source: 'Catastrophe', capture: false },
       alertText: (data, _matches, output) => {
         if (!data.levitating)
           return output.earthquakeLevitate();
@@ -161,7 +161,7 @@ Options.Triggers.push({
     {
       id: 'O2S Elevated',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '54E', capture: false }),
+      netRegex: { effectId: '54E', capture: false },
       condition: (data) => data.job !== 'BLU',
       alarmText: (data, _matches, output) => {
         if (data.role.startsWith('dps') && !data.levitating)
@@ -202,13 +202,13 @@ Options.Triggers.push({
     {
       id: 'O2S Gravitational Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2372', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '2372', source: 'Catastrophe', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O2S Maniacal Probe',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
+      netRegex: { id: '235A', source: 'Catastrophe', capture: false },
       condition: (data) => data.job !== 'BLU',
       alertText: (data, _matches, output) => {
         if (data.myProbe) {
@@ -267,7 +267,7 @@ Options.Triggers.push({
     {
       id: 'O2S Maniacal Probe You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0005 ' }),
+      netRegex: { id: '0005 ' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -283,7 +283,7 @@ Options.Triggers.push({
     {
       id: 'O2S Unstable Gravity',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '550' }),
+      netRegex: { effectId: '550' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -299,7 +299,7 @@ Options.Triggers.push({
     {
       id: 'O2S Unstable Gravity Delayed',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '550' }),
+      netRegex: { effectId: '550' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 9,
       alertText: (_data, _matches, output) => output.text(),
@@ -316,7 +316,7 @@ Options.Triggers.push({
     {
       id: 'O2S 6 Fulms Under Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
+      netRegex: { effectId: '237' },
       condition: (data, matches) => !data.under && matches.target === data.me,
       delaySeconds: 5,
       alertText: (data, _matches, output) => {
@@ -359,7 +359,7 @@ Options.Triggers.push({
     {
       id: 'O2S 6 Fulms Under Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '237' }),
+      netRegex: { effectId: '237' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.under = false,
     },

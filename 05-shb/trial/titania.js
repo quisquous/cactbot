@@ -6,31 +6,31 @@ Options.Triggers.push({
     {
       id: 'Titania Bright Sabbath',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D5C', source: 'Titania', capture: false }),
+      netRegex: { id: '3D5C', source: 'Titania', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Titania Phantom Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D5D', source: 'Titania', capture: false }),
+      netRegex: { id: '3D5D', source: 'Titania', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'Titania Phantom In',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D5E', source: 'Titania', capture: false }),
+      netRegex: { id: '3D5E', source: 'Titania', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'Titania Mist Failure',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Spirit Of Dew', capture: false }),
+      netRegex: { name: 'Spirit Of Dew', capture: false },
       response: Responses.killExtraAdd(),
     },
     {
       id: 'Titania Mist',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D45', source: 'Titania', capture: false }),
+      netRegex: { id: '3D45', source: 'Titania', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -46,7 +46,7 @@ Options.Triggers.push({
     {
       id: 'Titania Flame',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D47', source: 'Titania', capture: false }),
+      netRegex: { id: '3D47', source: 'Titania', capture: false },
       delaySeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -63,13 +63,13 @@ Options.Triggers.push({
     {
       id: 'Titania Divination',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D5B', source: 'Titania' }),
+      netRegex: { id: '3D5B', source: 'Titania' },
       response: Responses.tankCleave(),
     },
     {
       id: 'Titania Frost Rune 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      netRegex: { id: '3D2A', source: 'Titania', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -85,21 +85,21 @@ Options.Triggers.push({
     {
       id: 'Titania Frost Rune 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      netRegex: { id: '3D2A', source: 'Titania', capture: false },
       delaySeconds: 6.5,
       response: Responses.getOut('info'),
     },
     {
       id: 'Titania Frost Rune 3',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3D4E', source: 'Titania', capture: false }),
+      netRegex: { id: '3D4E', source: 'Titania', capture: false },
       suppressSeconds: 60,
       response: Responses.getIn('info'),
     },
     {
       id: 'Titania Growth Rune',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D2E', source: 'Titania', capture: false }),
+      netRegex: { id: '3D2E', source: 'Titania', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -115,27 +115,27 @@ Options.Triggers.push({
     {
       id: 'Titania Uplift Markers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Titania Peasebomb Markers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00BD' }),
+      netRegex: { id: '00BD' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Titania Pucks Breath Markers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A1' }),
+      netRegex: { id: '00A1' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Titania Knockback',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3D42', source: 'Puck', capture: false }),
+      netRegex: { id: '3D42', source: 'Puck', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -151,7 +151,7 @@ Options.Triggers.push({
     {
       id: 'Titania Mini Add Phase',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3D31', source: 'Titania', capture: false }),
+      netRegex: { id: '3D31', source: 'Titania', capture: false },
       infoText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.groupAddsEastOnMustardseed();

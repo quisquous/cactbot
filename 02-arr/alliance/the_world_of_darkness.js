@@ -14,35 +14,35 @@ Options.Triggers.push({
     {
       id: 'Angra Mainyu Gain Sullen',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '27c' }),
+      netRegex: { effectId: '27c' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.sullenDebuff = true,
     },
     {
       id: 'Angra Mainyu Lose Sullen',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '27c' }),
+      netRegex: { effectId: '27c' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.sullenDebuff = false,
     },
     {
       id: 'Angra Mainyu Gain Ireful',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '27d' }),
+      netRegex: { effectId: '27d' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.irefulDebuff = true,
     },
     {
       id: 'Angra Mainyu Lose Ireful',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '27d' }),
+      netRegex: { effectId: '27d' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.irefulDebuff = false,
     },
     {
       id: 'Angra Mainyu Double Vision',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'CC8', source: 'Angra Mainyu', capture: false }),
+      netRegex: { id: 'CC8', source: 'Angra Mainyu', capture: false },
       alertText: (data, _matches, output) => {
         if (data.sullenDebuff) {
           // Stand behind boss in the red half to switch to Ireful
@@ -74,14 +74,14 @@ Options.Triggers.push({
     {
       id: 'Angra Mainyu Mortal Gaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['CD1', 'DAB'], source: 'Angra Mainyu', capture: false }),
+      netRegex: { id: ['CD1', 'DAB'], source: 'Angra Mainyu', capture: false },
       suppressSeconds: 0.1,
       response: Responses.lookAway('alert'),
     },
     {
       id: 'Angra Mainyu Gain Doom',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'd2' }),
+      netRegex: { effectId: 'd2' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.cleanse(),
       outputStrings: {
@@ -98,14 +98,14 @@ Options.Triggers.push({
     {
       id: 'Angra Mainyu Level 100 Flare Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '002C' }),
+      netRegex: { id: '002C' },
       condition: Conditions.targetIsNotYou(),
       response: Responses.awayFrom(),
     },
     {
       id: 'Angra Mainyu Level 150 Death Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '002D' }),
+      netRegex: { id: '002D' },
       condition: Conditions.targetIsNotYou(),
       response: Responses.awayFrom(),
     },

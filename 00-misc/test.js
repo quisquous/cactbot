@@ -200,7 +200,7 @@ Options.Triggers.push({
       id: 'Test Lang',
       type: 'GameLog',
       // In game: /echo cactbot lang
-      netRegex: { line: 'cactbot lang.*?', capture: false },
+      netRegex: NetRegexes.echo({ line: 'cactbot lang.*?', capture: false }),
       infoText: (data, _matches, output) => output.text({ lang: data.parserLang }),
       outputStrings: {
         text: {
@@ -216,7 +216,7 @@ Options.Triggers.push({
     {
       id: 'Test Response',
       type: 'GameLog',
-      netRegex: { line: 'cactbot test response.*?', capture: false },
+      netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
       response: (_data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -236,7 +236,7 @@ Options.Triggers.push({
     {
       id: 'Test Watch',
       type: 'GameLog',
-      netRegex: { line: 'cactbot test watch.*?', capture: false },
+      netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
       promise: (data) =>
         Util.watchCombatant({
           names: [

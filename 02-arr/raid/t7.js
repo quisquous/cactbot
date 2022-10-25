@@ -13,7 +13,7 @@ Options.Triggers.push({
       id: 'T7 Meluseine Phase Change Watcher',
       type: 'Ability',
       // On Tail Slap.
-      netRegex: NetRegexes.ability({ id: '7A8', source: 'Melusine' }),
+      netRegex: { id: '7A8', source: 'Melusine' },
       condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
       promise: (data, matches) =>
@@ -34,7 +34,7 @@ Options.Triggers.push({
     {
       id: 'T7 Ram',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '860', source: 'Proto-Chimera', capture: false }),
+      netRegex: { id: '860', source: 'Proto-Chimera', capture: false },
       // TODO: is this silenceable in 5.0?
       condition: (data) => data.CanStun() || data.CanSilence(),
       infoText: (_data, _matches, output) => output.text(),
@@ -52,7 +52,7 @@ Options.Triggers.push({
     {
       id: 'T7 Dragon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '861', source: 'Proto-Chimera', capture: false }),
+      netRegex: { id: '861', source: 'Proto-Chimera', capture: false },
       // TODO: is this silenceable in 5.0?
       condition: (data) => data.CanStun() || data.CanSilence(),
       infoText: (_data, _matches, output) => output.text(),
@@ -70,7 +70,7 @@ Options.Triggers.push({
     {
       id: 'T7 Tail Slap',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7A8', source: 'Melusine' }),
+      netRegex: { id: '7A8', source: 'Melusine' },
       condition: (data, matches) => data.me === matches.target && data.job === 'BLU',
       delaySeconds: 6,
       suppressSeconds: 5,
@@ -89,7 +89,7 @@ Options.Triggers.push({
     {
       id: 'T7 Renaud',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Renaud', capture: false }),
+      netRegex: { name: 'Renaud', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -105,7 +105,7 @@ Options.Triggers.push({
     {
       id: 'T7 Cursed Voice',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1C3' }),
+      netRegex: { effectId: '1C3' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       alertText: (_data, _matches, output) => output.text(),
@@ -123,7 +123,7 @@ Options.Triggers.push({
     {
       id: 'T7 Cursed Shriek',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegex: { effectId: '1C4' },
       durationSeconds: 3,
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -155,7 +155,7 @@ Options.Triggers.push({
     {
       id: 'T7 Cursed Shriek Reminder',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegex: { effectId: '1C4' },
       delaySeconds: 7,
       durationSeconds: 3,
       infoText: (data, matches, output) => {
@@ -185,19 +185,19 @@ Options.Triggers.push({
     {
       id: 'T7 Petrifaction 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7BB', source: 'Lamia Prosector', capture: false }),
+      netRegex: { id: '7BB', source: 'Lamia Prosector', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'T7 Petrifaction 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7B1', source: 'Melusine', capture: false }),
+      netRegex: { id: '7B1', source: 'Melusine', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'T7 Tail',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7B2', source: 'Melusine', capture: false }),
+      netRegex: { id: '7B2', source: 'Melusine', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

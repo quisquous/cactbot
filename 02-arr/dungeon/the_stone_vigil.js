@@ -4,7 +4,7 @@ Options.Triggers.push({
     {
       id: 'Stone Vigil Swinge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '387', source: 'Chudo-Yudo', capture: false }),
+      netRegex: { id: '387', source: 'Chudo-Yudo', capture: false },
       response: Responses.awayFromFront(),
     },
   ],

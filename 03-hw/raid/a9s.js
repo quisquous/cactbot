@@ -119,13 +119,13 @@ Options.Triggers.push({
     {
       id: 'A9S Stockpile Count',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A38', capture: false }),
+      netRegex: { source: 'Refurbisher 0', id: '1A38', capture: false },
       run: (data) => data.stockpileCount++,
     },
     {
       id: 'A9S Scrapline',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A3C', capture: false }),
+      netRegex: { source: 'Refurbisher 0', id: '1A3C', capture: false },
       alertText: (data, _matches, output) => {
         if (data.mainTank === data.me)
           return;
@@ -158,7 +158,7 @@ Options.Triggers.push({
     {
       id: 'A9S Double Scrapline',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A3D', capture: false }),
+      netRegex: { source: 'Refurbisher 0', id: '1A3D', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -174,7 +174,7 @@ Options.Triggers.push({
     {
       id: 'A9S Scrap Rock',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -191,7 +191,7 @@ Options.Triggers.push({
     {
       id: 'A9S Scrap Burst',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
+      netRegex: { id: '0017', capture: false },
       delaySeconds: 5,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
@@ -209,7 +209,7 @@ Options.Triggers.push({
     {
       id: 'A9S Scrap Bomb Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       // TODO: dubious to tell the person tanking to do it here.
       // But maybe fine to inform.
       response: Responses.stackMarkerOn(),
@@ -217,20 +217,20 @@ Options.Triggers.push({
     {
       id: 'A9S Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000E' }),
+      netRegex: { id: '000E' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'A9S Auto',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Refurbisher 0', id: '1AFE' }),
+      netRegex: { source: 'Refurbisher 0', id: '1AFE' },
       run: (data, matches) => data.mainTank = matches.target,
     },
     {
       id: 'A9S Power Generator Add Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011', capture: false }),
+      netRegex: { id: '0011', capture: false },
       suppressSeconds: 30,
       infoText: (data, _matches, output) => {
         // Some of the last phases have multiple options.

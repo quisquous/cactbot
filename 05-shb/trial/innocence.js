@@ -6,13 +6,13 @@ Options.Triggers.push({
     {
       id: 'Inno Realmrazer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E9A', source: 'Innocence', capture: false }),
+      netRegex: { id: '3E9A', source: 'Innocence', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Inno Enthrall',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E99', source: 'Innocence', capture: false }),
+      netRegex: { id: '3E99', source: 'Innocence', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -28,7 +28,7 @@ Options.Triggers.push({
     {
       id: 'Inno Reprobation Swords 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
+      netRegex: { id: '3EDC', source: 'Innocence', capture: false },
       // 3 seconds cast time + 9.5 seconds until next sword.
       delaySeconds: 9.5,
       infoText: (_data, _matches, output) => output.text(),
@@ -46,19 +46,19 @@ Options.Triggers.push({
     {
       id: 'Inno Shadowreaver',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
+      netRegex: { id: '3EEA', source: 'Innocence', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Inno Righteous Bolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EA3', source: 'Innocence' }),
+      netRegex: { id: '3EA3', source: 'Innocence' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Inno Charge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EC7', source: 'Innocence', capture: false }),
+      netRegex: { id: '3EC7', source: 'Innocence', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -74,7 +74,7 @@ Options.Triggers.push({
     {
       id: 'Inno Light Pillar',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '38FC', source: 'Innocence', capture: false }),
+      netRegex: { id: '38FC', source: 'Innocence', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -90,7 +90,7 @@ Options.Triggers.push({
     {
       id: 'Inno Winged Drop Of Light',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008A' }),
+      netRegex: { id: '008A' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -108,7 +108,7 @@ Options.Triggers.push({
       // TODO: is there a left, or do all normal modes rotate right??
       id: 'Inno Soul And Body Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EB1', source: 'Innocence', capture: false }),
+      netRegex: { id: '3EB1', source: 'Innocence', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {

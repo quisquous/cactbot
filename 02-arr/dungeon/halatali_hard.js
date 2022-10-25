@@ -4,7 +4,7 @@ Options.Triggers.push({
     {
       id: 'Hataliti Hard Demon Eye',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '833', source: 'Catoblepas', capture: false }),
+      netRegex: { id: '833', source: 'Catoblepas', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -19,7 +19,7 @@ Options.Triggers.push({
     {
       id: 'Hataliti Hard Standstill',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '84F', source: 'Mumuepo the Beholden', capture: false }),
+      netRegex: { id: '84F', source: 'Mumuepo the Beholden', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

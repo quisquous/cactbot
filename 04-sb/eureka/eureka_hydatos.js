@@ -63,13 +63,13 @@ Options.Triggers.push({
     {
       id: 'BA Falling Asleep',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
+      netRegex: { line: '7 minutes have elapsed since your last activity..*?', capture: false },
       response: Responses.wakeUp(),
     },
     {
       id: 'BA Saved By Rememberance',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'The memories of heroes past live on again.*?', capture: false }),
+      netRegex: { line: 'The memories of heroes past live on again.*?', capture: false },
       sound: 'Long',
     },
     {
@@ -95,35 +95,35 @@ Options.Triggers.push({
     {
       id: 'BA West Side',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
+      netRegex: NetRegexes.ability({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
       suppressSeconds: 1000,
       run: (data) => data.side = 'west',
     },
     {
       id: 'BA East Side',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
+      netRegex: NetRegexes.ability({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
       suppressSeconds: 1000,
       run: (data) => data.side = 'east',
     },
     {
       id: 'BA Art Mythcall',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3927', source: 'Art', capture: false }),
+      netRegex: { id: '3927', source: 'Art', capture: false },
       condition: (data) => data.side === 'west',
       run: (data) => data.mythcall = true,
     },
     {
       id: 'BA Art Tankbuster',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3934', source: 'Art' }),
+      netRegex: { id: '3934', source: 'Art' },
       condition: (data) => data.side === 'west',
       response: Responses.tankBuster(),
     },
     {
       id: 'BA Art Orb Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005C' }),
+      netRegex: { id: '005C' },
       condition: (data) => data.side === 'west',
       alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
@@ -157,28 +157,28 @@ Options.Triggers.push({
     {
       id: 'BA Art Piercing Dark Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: (data, matches) => data.side === 'west' && data.me === matches.target,
       response: Responses.spread(),
     },
     {
       id: 'BA Art Legendcarver',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      netRegex: { id: '3928', source: 'Art', capture: false },
       condition: (data) => data.side === 'west',
       response: Responses.getOut(),
     },
     {
       id: 'BA Art Legendspinner',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      netRegex: { id: '3929', source: 'Art', capture: false },
       condition: (data) => data.side === 'west',
       response: Responses.getIn(),
     },
     {
       id: 'BA Art Mythcall Legendcarver',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      netRegex: { id: '3928', source: 'Art', capture: false },
       condition: (data) => data.side === 'west' && data.mythcall,
       delaySeconds: 3.5,
       response: Responses.getUnder(),
@@ -186,7 +186,7 @@ Options.Triggers.push({
     {
       id: 'BA Art Mythcall Legendspinner',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      netRegex: { id: '3929', source: 'Art', capture: false },
       condition: (data) => data.side === 'west' && data.mythcall,
       delaySeconds: 3.5,
       infoText: (_data, _matches, output) => output.text(),
@@ -204,21 +204,21 @@ Options.Triggers.push({
     {
       id: 'BA Owain Tankbuster',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3945', source: 'Owain' }),
+      netRegex: { id: '3945', source: 'Owain' },
       condition: (data) => data.side === 'west',
       response: Responses.tankBuster(),
     },
     {
       id: 'BA Owain Piercing Light Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: (data, matches) => data.side === 'east' && data.me === matches.target,
       response: Responses.spread(),
     },
     {
       id: 'BA Owain Dorito Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: (data, matches) => data.side === 'east' && data.me === matches.target,
       response: Responses.doritoStack(),
     },
@@ -277,84 +277,84 @@ Options.Triggers.push({
     {
       id: 'BA Owain Ivory Palm',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3941', source: 'Ivory Palm' }),
+      netRegex: { id: '3941', source: 'Ivory Palm' },
       condition: (data, matches) => data.side === 'east' && data.me === matches.target,
       response: Responses.doritoStack(),
     },
     {
       id: 'BA Owain Pitfall',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '394D', source: 'Owain', capture: false }),
+      netRegex: { id: '394D', source: 'Owain', capture: false },
       condition: (data) => data.side === 'east',
       response: Responses.getOut(),
     },
     {
       id: 'BA Silence Centaur',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3BFE', source: 'Arsenal Centaur' }),
+      netRegex: { id: '3BFE', source: 'Arsenal Centaur' },
       condition: (data) => data.CanSleep(),
       response: Responses.sleep(),
     },
     {
       id: 'BA Raiden Tankbuster',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '387B', source: 'Raiden' }),
+      netRegex: { id: '387B', source: 'Raiden' },
       condition: (data) => data.sealed,
       response: Responses.tankBuster(),
     },
     {
       id: 'BA Raiden Lancing Bolt',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008A' }),
+      netRegex: { id: '008A' },
       condition: (data, matches) => data.sealed && data.me === matches.target,
       response: Responses.spread(),
     },
     {
       id: 'BA Raiden Ame',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3868', source: 'Raiden', capture: false }),
+      netRegex: { id: '3868', source: 'Raiden', capture: false },
       condition: (data) => data.sealed,
       response: Responses.getOut(),
     },
     {
       id: 'BA Raiden Whirling',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '386A', source: 'Raiden', capture: false }),
+      netRegex: { id: '386A', source: 'Raiden', capture: false },
       condition: (data) => data.sealed,
       response: Responses.getUnder(),
     },
     {
       id: 'BA Raiden For Honor',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '387C', source: 'Raiden', capture: false }),
+      netRegex: { id: '387C', source: 'Raiden', capture: false },
       condition: (data) => data.sealed,
       response: Responses.getOut(),
     },
     {
       id: 'BA Raiden Lateral 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '386C', source: 'Raiden', capture: false }),
+      netRegex: { id: '386C', source: 'Raiden', capture: false },
       condition: (data) => data.sealed,
       response: Responses.goLeft(),
     },
     {
       id: 'BA Raiden Lateral 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '386B', source: 'Raiden', capture: false }),
+      netRegex: { id: '386B', source: 'Raiden', capture: false },
       condition: (data) => data.sealed,
       response: Responses.goRight(),
     },
     {
       id: 'BA AV Tankbuster',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '379A', source: 'Absolute Virtue' }),
+      netRegex: { id: '379A', source: 'Absolute Virtue' },
       condition: (data) => data.sealed,
       response: Responses.tankBuster(),
     },
     {
       id: 'BA AV Eidos Dark Bracelets',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3787', source: 'Absolute Virtue', capture: false }),
+      netRegex: { id: '3787', source: 'Absolute Virtue', capture: false },
       condition: (data) => data.sealed,
       infoText: (_data, _matches, output) => output.text(),
       run: (data) => data.bracelets = 'dark',
@@ -372,7 +372,7 @@ Options.Triggers.push({
     {
       id: 'BA AV Eidos Light Bracelets',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3786', source: 'Absolute Virtue', capture: false }),
+      netRegex: { id: '3786', source: 'Absolute Virtue', capture: false },
       condition: (data) => data.sealed,
       infoText: (_data, _matches, output) => output.text(),
       run: (data) => data.bracelets = 'light',
@@ -390,7 +390,7 @@ Options.Triggers.push({
     {
       id: 'BA AV Eidos Hostile Aspect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '378B', source: 'Absolute Virtue', capture: false }),
+      netRegex: { id: '378B', source: 'Absolute Virtue', capture: false },
       condition: (data) => data.sealed,
       alertText: (data, _matches, output) => {
         if (!data.seenHostile) {
@@ -444,7 +444,7 @@ Options.Triggers.push({
     {
       id: 'BA AV Eidos Impact Stream',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3788', source: 'Absolute Virtue', capture: false }),
+      netRegex: { id: '3788', source: 'Absolute Virtue', capture: false },
       condition: (data) => data.sealed,
       alertText: (data, _matches, output) => {
         if (data.bracelets === 'light')
@@ -478,7 +478,7 @@ Options.Triggers.push({
       // Ideally parser logic could be added for this case, but this is where we are.
       id: 'BA AV Eidos Relative Virtue Astral',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false }),
+      netRegex: { line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false },
       condition: (data) => data.sealed,
       run: (data) => {
         // RV clones get buffs in the reverse order that they do their attacks in.
@@ -490,7 +490,7 @@ Options.Triggers.push({
       // See note above for `BA AV Eidos Relative Virtue Astral`.
       id: 'BA AV Eidos Relative Virtue Umbral',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false }),
+      netRegex: { line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false },
       condition: (data) => data.sealed,
       run: (data) => {
         // RV clones get buffs in the reverse order that they do their attacks in.
@@ -501,7 +501,7 @@ Options.Triggers.push({
     {
       id: 'BA AV Triple Impact Stream',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3797', source: 'Absolute Virtue', capture: false }),
+      netRegex: { id: '3797', source: 'Absolute Virtue', capture: false },
       condition: (data) => data.sealed,
       alertText: (data, _matches, output) => {
         if (!data.clones)
@@ -534,7 +534,7 @@ Options.Triggers.push({
     {
       id: 'BA AV Eidos Turbulent Aether',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3790', source: 'Absolute Virtue', capture: false }),
+      netRegex: { id: '3790', source: 'Absolute Virtue', capture: false },
       condition: (data) => data.sealed,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -551,14 +551,14 @@ Options.Triggers.push({
     {
       id: 'BA AV Call Wyvern',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3798', source: 'Absolute Virtue', capture: false }),
+      netRegex: { id: '3798', source: 'Absolute Virtue', capture: false },
       condition: (data) => data.sealed,
       response: Responses.killAdds(),
     },
     {
       id: 'BA Ozma Sphere Form',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: ['37B3', '37A5', '379F'], capture: false }),
+      netRegex: { source: 'Proto Ozma', id: ['37B3', '37A5', '379F'], capture: false },
       condition: (data) => data.sealed,
       preRun: (data) => {
         data.blackHoleCount = (data.blackHoleCount ?? 0) + 1;
@@ -592,7 +592,7 @@ Options.Triggers.push({
     {
       id: 'BA Ozma Pyramid Form',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '37A4', capture: false }),
+      netRegex: { source: 'Proto Ozma', id: '37A4', capture: false },
       condition: (data) => data.sealed,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -609,7 +609,7 @@ Options.Triggers.push({
     {
       id: 'BA Ozma Pyramid Form 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '37A4', capture: false }),
+      netRegex: { source: 'Proto Ozma', id: '37A4', capture: false },
       condition: (data) => data.sealed,
       delaySeconds: 9,
       infoText: (_data, _matches, output) => output.text(),
@@ -627,7 +627,7 @@ Options.Triggers.push({
     {
       id: 'BA Ozma Star Form',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '37B2', capture: false }),
+      netRegex: { source: 'Proto Ozma', id: '37B2', capture: false },
       condition: (data) => data.sealed,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -644,7 +644,7 @@ Options.Triggers.push({
     {
       id: 'BA Ozma Star Form 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '37B2', capture: false }),
+      netRegex: { source: 'Proto Ozma', id: '37B2', capture: false },
       condition: (data) => data.sealed,
       delaySeconds: 9,
       infoText: (data, _matches, output) => {
@@ -676,7 +676,7 @@ Options.Triggers.push({
     {
       id: 'BA Ozma Cube Form',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '379E', capture: false }),
+      netRegex: { source: 'Proto Ozma', id: '379E', capture: false },
       condition: (data) => data.sealed,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -693,7 +693,7 @@ Options.Triggers.push({
     {
       id: 'BA Ozma Cube Form 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '379E', capture: false }),
+      netRegex: { source: 'Proto Ozma', id: '379E', capture: false },
       condition: (data) => data.sealed,
       delaySeconds: 9,
       alertText: (data, _matches, output) => {
@@ -728,7 +728,7 @@ Options.Triggers.push({
     {
       id: 'BA Ozma Pyramid Shade',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: ['Ozmashade', 'Shadow'], id: '37A4', capture: false }),
+      netRegex: { source: ['Ozmashade', 'Shadow'], id: '37A4', capture: false },
       condition: (data) => data.sealed,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
@@ -746,7 +746,7 @@ Options.Triggers.push({
     {
       id: 'BA Ozma Star Shade',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: ['Ozmashade', 'Shadow'], id: '37B2', capture: false }),
+      netRegex: { source: ['Ozmashade', 'Shadow'], id: '37B2', capture: false },
       condition: (data) => data.sealed,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
@@ -764,7 +764,7 @@ Options.Triggers.push({
     {
       id: 'BA Ozma Cube Shade',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: ['Ozmashade', 'Shadow'], id: '379E', capture: false }),
+      netRegex: { source: ['Ozmashade', 'Shadow'], id: '379E', capture: false },
       condition: (data) => data.sealed,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
@@ -782,7 +782,7 @@ Options.Triggers.push({
     {
       id: 'BA Ozma Adds',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Arsenal Urolith', id: '37B0', capture: false }),
+      netRegex: { source: 'Arsenal Urolith', id: '37B0', capture: false },
       condition: (data) => data.sealed,
       delaySeconds: 2,
       suppressSeconds: 1,
@@ -791,14 +791,14 @@ Options.Triggers.push({
     {
       id: 'BA Ozma Acceleration Bomb',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '37AA', source: 'Proto Ozma' }),
+      netRegex: { id: '37AA', source: 'Proto Ozma' },
       condition: (data, matches) => data.sealed && data.me === matches.target,
       response: Responses.stopEverything(),
     },
     {
       id: 'BA Ozma Meteor',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0039' }),
+      netRegex: { id: '0039' },
       condition: (data, matches) => data.sealed && data.me === matches.target,
       response: Responses.meteorOnYou(),
     },

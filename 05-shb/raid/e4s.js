@@ -16,7 +16,7 @@ Options.Triggers.push({
     {
       id: 'E4S Earthen Gauntlets',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
+      netRegex: { id: '40E6', source: 'Titan', capture: false },
       run: (data) => {
         data.phase = 'landslide';
         delete data.printedBury;
@@ -25,7 +25,7 @@ Options.Triggers.push({
     {
       id: 'E4S Earthen Armor',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['40E7', '40E9'], source: 'Titan', capture: false }),
+      netRegex: { id: ['40E7', '40E9'], source: 'Titan', capture: false },
       run: (data) => {
         data.phase = 'armor';
         delete data.printedBury;
@@ -34,7 +34,7 @@ Options.Triggers.push({
     {
       id: 'E4S Stonecrusher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4116', source: 'Titan' }),
+      netRegex: { id: '4116', source: 'Titan' },
       // As this seems to usually seems to be invulned,
       // don't make a big deal out of it.
       response: Responses.tankBuster('info'),
@@ -42,14 +42,14 @@ Options.Triggers.push({
     {
       id: 'E4S Pulse of the Land',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B9' }),
+      netRegex: { id: '00B9' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'E4S Evil Earth',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '410C', source: 'Titan', capture: false }),
+      netRegex: { id: '410C', source: 'Titan', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -66,26 +66,26 @@ Options.Triggers.push({
     {
       id: 'E4S Force of the Land',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00BA' }),
+      netRegex: { id: '00BA' },
       condition: Conditions.targetIsYou(),
       response: Responses.stackMarker(),
     },
     {
       id: 'E4S Voice of the Land',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4114', source: 'Titan', capture: false }),
+      netRegex: { id: '4114', source: 'Titan', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E4S Geocrush',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4113', source: 'Titan', capture: false }),
+      netRegex: { id: '4113', source: 'Titan', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'E4S Massive Landslide - Front',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
+      netRegex: { id: '40E6', source: 'Titan', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -101,13 +101,13 @@ Options.Triggers.push({
     {
       id: 'E4S Massive Landslide - Sides',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '4117', source: 'Titan', capture: false }),
+      netRegex: { id: '4117', source: 'Titan', capture: false },
       response: Responses.goSides('info'),
     },
     {
       id: 'E4S Landslide',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '411A', source: 'Titan', capture: false }),
+      netRegex: { id: '411A', source: 'Titan', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -123,7 +123,7 @@ Options.Triggers.push({
     {
       id: 'E4S Crumbling Down',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -142,7 +142,7 @@ Options.Triggers.push({
       // Note: as these may hit multiple people, there may be multiple lines for the same bomb.
       id: 'E4S Bury Directions',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '4142', source: 'Bomb Boulder' }),
+      netRegex: { id: '4142', source: 'Bomb Boulder' },
       condition: (data) => !data.printedBury,
       durationSeconds: 7,
       alertText: (data, matches, output) => {
@@ -211,7 +211,7 @@ Options.Triggers.push({
     {
       id: 'E4S Fault Line - Sides',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '40E8', source: 'Titan', capture: false }),
+      netRegex: { id: '40E8', source: 'Titan', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -227,7 +227,7 @@ Options.Triggers.push({
     {
       id: 'E4S Fault Line - Front',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '411F', source: 'Titan', capture: false }),
+      netRegex: { id: '411F', source: 'Titan', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -243,19 +243,19 @@ Options.Triggers.push({
     {
       id: 'E4S Magnitude 5.0',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4121', source: 'Titan', capture: false }),
+      netRegex: { id: '4121', source: 'Titan', capture: false },
       response: Responses.getUnder('alert'),
     },
     {
       id: 'E4S Earthen Fury',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4124', source: 'Titan Maximum', capture: false }),
+      netRegex: { id: '4124', source: 'Titan Maximum', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'E4S Earthen Fist - Left/Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '412F', source: 'Titan Maximum', capture: false }),
+      netRegex: { id: '412F', source: 'Titan Maximum', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -271,7 +271,7 @@ Options.Triggers.push({
     {
       id: 'E4S Earthen Fist - Right/Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4130', source: 'Titan Maximum', capture: false }),
+      netRegex: { id: '4130', source: 'Titan Maximum', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -287,7 +287,7 @@ Options.Triggers.push({
     {
       id: 'E4S Earthen Fist - 2x Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4131', source: 'Titan Maximum', capture: false }),
+      netRegex: { id: '4131', source: 'Titan Maximum', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -303,7 +303,7 @@ Options.Triggers.push({
     {
       id: 'E4S Earthen Fist - 2x Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4132', source: 'Titan Maximum', capture: false }),
+      netRegex: { id: '4132', source: 'Titan Maximum', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -319,20 +319,20 @@ Options.Triggers.push({
     {
       id: 'E4S Dual Earthen Fists',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4135', source: 'Titan Maximum', capture: false }),
+      netRegex: { id: '4135', source: 'Titan Maximum', capture: false },
       response: Responses.knockback('info'),
     },
     {
       id: 'E4S Weight of the World',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00BB' }),
+      netRegex: { id: '00BB' },
       condition: Conditions.targetIsYou(),
       response: Responses.getOut(),
     },
     {
       id: 'E4S Megalith',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005D' }),
+      netRegex: { id: '005D' },
       alertText: (data, matches, output) => {
         if (data.role !== 'tank')
           return output.awayFromTanks();
@@ -356,7 +356,7 @@ Options.Triggers.push({
     {
       id: 'E4S Granite Gaol',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00BF' }),
+      netRegex: { id: '00BF' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -379,7 +379,7 @@ Options.Triggers.push({
       // keep track of which it has seen.
       id: 'E4S Plate Fracture - Front Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4125', source: 'Titan Maximum', capture: false }),
+      netRegex: { id: '4125', source: 'Titan Maximum', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -395,7 +395,7 @@ Options.Triggers.push({
     {
       id: 'E4S Plate Fracture - Back Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4126', source: 'Titan Maximum', capture: false }),
+      netRegex: { id: '4126', source: 'Titan Maximum', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -411,7 +411,7 @@ Options.Triggers.push({
     {
       id: 'E4S Plate Fracture - Back Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4127', source: 'Titan Maximum', capture: false }),
+      netRegex: { id: '4127', source: 'Titan Maximum', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -427,7 +427,7 @@ Options.Triggers.push({
     {
       id: 'E4S Plate Fracture - Front Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4128', source: 'Titan Maximum', capture: false }),
+      netRegex: { id: '4128', source: 'Titan Maximum', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -443,7 +443,7 @@ Options.Triggers.push({
     {
       id: 'E4S Tumult',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '412A', source: 'Titan Maximum', capture: false }),
+      netRegex: { id: '412A', source: 'Titan Maximum', capture: false },
       response: Responses.aoe(),
     },
   ],

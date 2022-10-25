@@ -5,7 +5,7 @@ Options.Triggers.push({
     {
       id: 'Shatter Big Ice Center',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'The icebound tomelith A1 activates and begins to emit heat.*?', capture: false }),
+      netRegex: { line: 'The icebound tomelith A1 activates and begins to emit heat.*?', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -21,7 +21,7 @@ Options.Triggers.push({
     {
       id: 'Shatter Big Ice North',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'The icebound tomelith A2 activates and begins to emit heat.*?', capture: false }),
+      netRegex: { line: 'The icebound tomelith A2 activates and begins to emit heat.*?', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -37,7 +37,7 @@ Options.Triggers.push({
     {
       id: 'Shatter Big Ice Southeast',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'The icebound tomelith A3 activates and begins to emit heat.*?', capture: false }),
+      netRegex: { line: 'The icebound tomelith A3 activates and begins to emit heat.*?', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -53,7 +53,7 @@ Options.Triggers.push({
     {
       id: 'Shatter Big Ice Southwest',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'The icebound tomelith A4 activates and begins to emit heat.*?', capture: false }),
+      netRegex: { line: 'The icebound tomelith A4 activates and begins to emit heat.*?', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

@@ -44,13 +44,13 @@ Options.Triggers.push({
     {
       id: 'The Vault Holiest of Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '101E', source: 'Ser Adelphel', capture: false }),
+      netRegex: { id: '101E', source: 'Ser Adelphel', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'The Vault Holy Shield Bash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '101F', source: 'Ser Adelphel' }),
+      netRegex: { id: '101F', source: 'Ser Adelphel' },
       condition: (data) => data.role === 'healer',
       alertText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.target) });
@@ -69,26 +69,26 @@ Options.Triggers.push({
     {
       id: 'The Vault Execution',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0020' }),
+      netRegex: { id: '0020' },
       response: Responses.awayFrom(),
     },
     {
       id: 'The Vault Black Nebula',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1042', source: 'Face Of The Hero' }),
+      netRegex: { id: '1042', source: 'Face Of The Hero' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
       id: 'The Vault Faith Unmoving',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1027', source: 'Ser Grinnaux', capture: false }),
+      netRegex: { id: '1027', source: 'Ser Grinnaux', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'The Vault Dimensional Torsion',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0001', source: 'Aetherial Tear' }),
+      netRegex: { id: '0001', source: 'Aetherial Tear' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
       alarmText: (_data, _matches, output) => output.text(),
@@ -106,13 +106,13 @@ Options.Triggers.push({
     {
       id: 'The Vault Altar Pyre',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1035', source: 'Ser Charibert', capture: false }),
+      netRegex: { id: '1035', source: 'Ser Charibert', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'The Vault Holy Chains',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0061' }),
+      netRegex: { id: '0061' },
       condition: Conditions.targetIsYou(),
       response: Responses.breakChains(),
     },
@@ -120,14 +120,14 @@ Options.Triggers.push({
       // This prevents out-of-combat activation for the March trigger during Charibert's spawn-in.
       id: 'The Vault Knights Activation',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0061', capture: false }),
+      netRegex: { id: '0061', capture: false },
       condition: (data) => !data.knightsActive,
       run: (data) => data.knightsActive = true,
     },
     {
       id: 'The Vault Knights March',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: ['Dawn Knight', 'Dusk Knight'], capture: false }),
+      netRegex: { name: ['Dawn Knight', 'Dusk Knight'], capture: false },
       condition: (data) => data.knightsActive,
       suppressSeconds: 4,
       infoText: (_data, _matches, output) => output.text(),

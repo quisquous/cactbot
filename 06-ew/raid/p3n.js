@@ -5,7 +5,7 @@ Options.Triggers.push({
     {
       id: 'P3N Experimental Fireplume Rotating',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6698', source: 'Phoinix', capture: false }),
+      netRegex: { id: '6698', source: 'Phoinix', capture: false },
       infoText: (_data, _matches, output) => output.startMiddle(),
       outputStrings: {
         startMiddle: {
@@ -22,7 +22,7 @@ Options.Triggers.push({
       id: 'P3N Experimental Fireplume Out',
       type: 'StartsUsing',
       // This is Experimental Fireplume (6696) into Fireplume (6697), which is an 11s warning.
-      netRegex: NetRegexes.startsUsing({ id: '6696', source: 'Phoinix', capture: false }),
+      netRegex: { id: '6696', source: 'Phoinix', capture: false },
       durationSeconds: 8,
       infoText: (_data, _matches, output) => output.outOfMiddle(),
       outputStrings: {
@@ -39,20 +39,20 @@ Options.Triggers.push({
     {
       id: 'P3N Scorched Exaltation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66B8', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66B8', source: 'Phoinix', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P3N Heat of Condemnation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66B2', source: 'Phoinix' }),
+      netRegex: { id: '66B2', source: 'Phoinix' },
       suppressSeconds: 1,
       response: Responses.tankCleave('alert'),
     },
     {
       id: 'P3N Darkened Fire Aoe',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '010[C-F]' }),
+      netRegex: { id: '010[C-F]' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => {
         return output.text();
@@ -71,20 +71,20 @@ Options.Triggers.push({
     {
       id: 'P3N Right Cinderwing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66B4', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66B4', source: 'Phoinix', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'P3N Left Cinderwing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66B5', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66B5', source: 'Phoinix', capture: false },
       response: Responses.goRight(),
     },
     {
       // Could check the log line's x y coordinate to determine from where to where it charges, npc at charge target casts 66AF?
       id: 'P3N Trail of Condemnation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66AD', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66AD', source: 'Phoinix', capture: false },
       alertText: (_data, _matches, output) => {
         return output.avoidCharge();
       },
@@ -102,7 +102,7 @@ Options.Triggers.push({
     {
       id: 'P3N Sunbird Spawn',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Sunbird', capture: false }),
+      netRegex: { name: 'Sunbird', capture: false },
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
         if (data.role === 'tank')
@@ -124,13 +124,13 @@ Options.Triggers.push({
     {
       id: 'P3N Dead Rebirth',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66A9', source: 'Phoinix', capture: false }),
+      netRegex: { id: '66A9', source: 'Phoinix', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P3N Ashen Eye',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '66AB', source: 'Sparkfledged' }),
+      netRegex: { id: '66AB', source: 'Sparkfledged' },
       alertText: (data, matches, output) => {
         if (!data.ashenEyeDirections)
           data.ashenEyeDirections = [];
@@ -193,7 +193,7 @@ Options.Triggers.push({
     {
       id: 'P3N Devouring Brand',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '669E', source: 'Phoinix', capture: false }),
+      netRegex: { id: '669E', source: 'Phoinix', capture: false },
       alertText: (_data, _matches, output) => {
         return output.text();
       },
@@ -211,7 +211,7 @@ Options.Triggers.push({
     {
       id: 'P3N Spread Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },

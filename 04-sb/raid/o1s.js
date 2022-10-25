@@ -6,13 +6,13 @@ Options.Triggers.push({
     {
       id: 'O1S Blaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1EDD', source: 'Alte Roite', capture: false }),
+      netRegex: { id: '1EDD', source: 'Alte Roite', capture: false },
       response: Responses.stackMarker(),
     },
     {
       id: 'O1S Breath Wing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1ED6', source: 'Alte Roite', capture: false }),
+      netRegex: { id: '1ED6', source: 'Alte Roite', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -28,25 +28,25 @@ Options.Triggers.push({
     {
       id: 'O1S Clamp',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1EDE', source: 'Alte Roite', capture: false }),
+      netRegex: { id: '1EDE', source: 'Alte Roite', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'O1S Downburst',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
+      netRegex: { id: '1ED8', source: 'Alte Roite', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'O1S Roar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1ED4', source: 'Alte Roite', capture: false }),
+      netRegex: { id: '1ED4', source: 'Alte Roite', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O1S Charybdis',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1ED3', source: 'Alte Roite', capture: false }),
+      netRegex: { id: '1ED3', source: 'Alte Roite', capture: false },
       response: Responses.aoe(),
     },
   ],

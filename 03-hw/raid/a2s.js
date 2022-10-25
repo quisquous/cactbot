@@ -30,7 +30,7 @@ Options.Triggers.push({
     {
       id: 'A2S Bomb',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Bomb', capture: false }),
+      netRegex: { name: 'Bomb', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -46,7 +46,7 @@ Options.Triggers.push({
     {
       id: 'A2S Prey',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
+      netRegex: { source: 'Magitek Gobwidow G-IX', id: '1413' },
       condition: (data) => data.role === 'healer' || data.job === 'BLU',
       suppressSeconds: 10,
       infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
@@ -64,7 +64,7 @@ Options.Triggers.push({
     {
       id: 'A2S Prey You',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
+      netRegex: { source: 'Magitek Gobwidow G-IX', id: '1413' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text(),
@@ -82,13 +82,13 @@ Options.Triggers.push({
     {
       id: 'A2S Soldier Spawn',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Gordian Soldier', capture: false }),
+      netRegex: { name: 'Gordian Soldier', capture: false },
       run: (data) => delete data.bangyzoom,
     },
     {
       id: 'A2S Bangyzoom',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'FD9', target: 'Gordian Soldier', capture: false }),
+      netRegex: { id: 'FD9', target: 'Gordian Soldier', capture: false },
       condition: (data) => !data.bangyzoom,
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),

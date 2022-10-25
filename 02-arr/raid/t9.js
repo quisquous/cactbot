@@ -64,7 +64,7 @@ Options.Triggers.push({
     {
       id: 'T9 Raven Blight You',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
+      netRegex: { effectId: '1CA' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       durationSeconds: 5,
@@ -83,7 +83,7 @@ Options.Triggers.push({
     {
       id: 'T9 Raven Blight Not You',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
+      netRegex: { effectId: '1CA' },
       condition: Conditions.targetIsNotYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       durationSeconds: 5,
@@ -102,21 +102,21 @@ Options.Triggers.push({
     {
       id: 'T9 Meteor',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000[7A9]' }),
+      netRegex: { id: '000[7A9]' },
       condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
       id: 'T9 Meteor Stream',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0008' }),
+      netRegex: { id: '0008' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'T9 Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000F' }),
+      netRegex: { id: '000F' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.thermoOnYou();
@@ -138,7 +138,7 @@ Options.Triggers.push({
       id: 'T9 Phase 2',
       type: 'Ability',
       // Ravensclaw
-      netRegex: NetRegexes.ability({ id: '7D5', source: 'Nael Deus Darnus' }),
+      netRegex: { id: '7D5', source: 'Nael Deus Darnus' },
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
       promise: (_data, matches) =>
@@ -154,7 +154,7 @@ Options.Triggers.push({
     {
       id: 'T9 Earthshock',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7F5', source: 'Dalamud Spawn', capture: false }),
+      netRegex: { id: '7F5', source: 'Dalamud Spawn', capture: false },
       condition: (data) => data.CanSilence(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -171,7 +171,7 @@ Options.Triggers.push({
     {
       id: 'T9 Heavensfall',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
+      netRegex: { id: '83B', source: 'Nael Deus Darnus', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -187,7 +187,7 @@ Options.Triggers.push({
     {
       id: 'T9 Garotte Twist Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1CE' }),
+      netRegex: { effectId: '1CE' },
       condition: (data, matches) => data.me === matches.target && !data.garotte,
       infoText: (_data, _matches, output) => output.text(),
       run: (data) => data.garotte = true,
@@ -205,7 +205,7 @@ Options.Triggers.push({
     {
       id: 'T9 Ghost Death',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7FA', source: 'The Ghost Of Meracydia', capture: false }),
+      netRegex: { id: '7FA', source: 'The Ghost Of Meracydia', capture: false },
       condition: (data) => data.garotte,
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -222,14 +222,14 @@ Options.Triggers.push({
     {
       id: 'T9 Garotte Twist Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '1CE' }),
+      netRegex: { effectId: '1CE' },
       condition: (data, matches) => data.me === matches.target && data.garotte,
       run: (data) => delete data.garotte,
     },
     {
       id: 'T9 Final Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      netRegex: { id: '7E6', source: 'Nael Deus Darnus', capture: false },
       condition: (data) => !data.seenFinalPhase,
       sound: 'Long',
       run: (data) => data.seenFinalPhase = true,
@@ -237,7 +237,7 @@ Options.Triggers.push({
     {
       id: 'T9 Dragon Locations',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ name: ['Firehorn', 'Iceclaw', 'Thunderwing'] }),
+      netRegex: { name: ['Firehorn', 'Iceclaw', 'Thunderwing'] },
       run: (data, matches) => {
         // Lowercase all of the names here for case insensitive matching.
         const allNames = {
@@ -269,7 +269,7 @@ Options.Triggers.push({
     {
       id: 'T9 Final Phase Reset',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      netRegex: { id: '7E6', source: 'Nael Deus Darnus', capture: false },
       run: (data) => {
         data.tetherCount = 0;
         data.naelDiveMarkerCount = 0;
@@ -308,7 +308,7 @@ Options.Triggers.push({
     {
       id: 'T9 Dragon Marks',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      netRegex: { id: '7E6', source: 'Nael Deus Darnus', capture: false },
       durationSeconds: 12,
       infoText: (data, _matches, output) =>
         output.marks({
@@ -330,7 +330,7 @@ Options.Triggers.push({
     {
       id: 'T9 Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0005', source: 'Firehorn' }),
+      netRegex: { id: '0005', source: 'Firehorn' },
       preRun: (data) => {
         data.tetherCount++;
       },
@@ -384,7 +384,7 @@ Options.Triggers.push({
     {
       id: 'T9 Thunder',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Thunderwing', id: '7FD' }),
+      netRegex: { source: 'Thunderwing', id: '7FD' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -401,7 +401,7 @@ Options.Triggers.push({
     {
       id: 'T9 Dragon Safe Zone',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014', capture: false }),
+      netRegex: { id: '0014', capture: false },
       delaySeconds: 3,
       durationSeconds: 6,
       suppressSeconds: 20,
@@ -421,7 +421,7 @@ Options.Triggers.push({
     {
       id: 'T9 Dragon Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014' }),
+      netRegex: { id: '0014' },
       condition: Conditions.targetIsYou(),
       alarmText: (data, matches, output) => {
         data.naelDiveMarkerCount ?? (data.naelDiveMarkerCount = 0);

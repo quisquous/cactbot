@@ -24,7 +24,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx Diamond Rain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA7', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FA7', capture: false },
       response: Responses.aoe(),
       run: (data) => data.phase = data.phase ?? 1,
     },
@@ -39,7 +39,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx Adamant Purge West Diamond Rain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9B', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5F9B', capture: false },
       durationSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -56,7 +56,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx Adamant Purge East Diamond Rain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9A', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5F9A', capture: false },
       durationSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -73,7 +73,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx Adamant Purge West Diamond Flash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA5', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FA5', capture: false },
       durationSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -90,7 +90,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx Adamant Purge East Diamond Flash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA4', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FA4', capture: false },
       durationSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -107,7 +107,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx Adamant Purge West Homing Laser',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA3', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FA3', capture: false },
       durationSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -124,7 +124,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx Adamant Purge East Homing Laser',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA2', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FA2', capture: false },
       durationSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -142,7 +142,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx Photon Burst',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA8', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FA8', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -159,27 +159,27 @@ Options.Triggers.push({
     {
       id: 'DiamondEx Code Chi-Xi-Stigma',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAD', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FAD', capture: false },
       run: (data) => data.phase = 2,
     },
     // Phase 2
     {
       id: 'DiamondEx Outrage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FBC', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FBC', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'DiamondEx Auri Doomstead',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FBD' }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FBD' },
       response: Responses.tankBusterSwap(),
     },
     // @TODO: Get boss facing and bits position, call out adjust?
     {
       id: 'DiamondEx P2 Zig-Zag',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAF', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FAF', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -196,7 +196,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx P2 Zig-Zag Jump',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FB2', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FB2', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -213,7 +213,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx P2 North/South Jump',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FB5', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FB5', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -230,7 +230,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx P2 Vertical Cleave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FB7', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FB7', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -246,7 +246,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx P2 Articulated Bits',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FC1', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FC1', capture: false },
       durationSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -263,7 +263,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx Headmarker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       durationSeconds: 25,
       infoText: (data, matches, output) => {
         // Always get the headmarker ID, so that decOffset can be defined properly
@@ -293,7 +293,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx P3 Articulated Bits',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA9', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FA9', capture: false },
       durationSeconds: 20,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -310,7 +310,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx Diamond Shrapnel',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAC', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FAC', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -326,7 +326,7 @@ Options.Triggers.push({
     {
       id: 'DiamondEx Burst',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FAC', capture: false }),
+      netRegex: { source: 'The Diamond Weapon', id: '5FAC', capture: false },
       delaySeconds: 15,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {

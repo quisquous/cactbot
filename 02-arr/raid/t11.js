@@ -5,7 +5,7 @@ Options.Triggers.push({
     {
       id: 'T11 Secondary Head',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B73' }),
+      netRegex: { source: 'Kaliya', id: 'B73' },
       alertText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.target) });
       },
@@ -23,7 +23,7 @@ Options.Triggers.push({
     {
       id: 'T11 Seed River First',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
+      netRegex: { source: 'Kaliya', id: 'B74', capture: false },
       condition: (data) => !data.firstSeed,
       response: Responses.spreadThenStack(),
       run: (data) => {
@@ -34,7 +34,7 @@ Options.Triggers.push({
     {
       id: 'T11 Seed Sea First',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
+      netRegex: { id: 'B75', source: 'Kaliya', capture: false },
       condition: (data) => !data.firstSeed,
       response: Responses.stackThenSpread(),
       run: (data) => {
@@ -45,7 +45,7 @@ Options.Triggers.push({
     {
       id: 'T11 Seed River Second',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
+      netRegex: { id: 'B76', source: 'Kaliya', capture: false },
       condition: (data) => !data.firstSeed,
       response: Responses.stackMarker(),
       run: (data) => delete data.firstSeed,
@@ -53,7 +53,7 @@ Options.Triggers.push({
     {
       id: 'T11 Seed Sea Second',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
+      netRegex: { id: 'B77', source: 'Kaliya', capture: false },
       condition: (data) => !data.firstSeed,
       response: Responses.spread(),
       run: (data) => delete data.firstSeed,
@@ -62,7 +62,7 @@ Options.Triggers.push({
       id: 'T11 Phase 2',
       type: 'Ability',
       // Barofield
-      netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B6F' }),
+      netRegex: { source: 'Kaliya', id: 'B6F' },
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
       promise: (_data, matches) =>
@@ -89,7 +89,7 @@ Options.Triggers.push({
     {
       id: 'T11 Forked Lightning',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'B85', source: 'Electric Node' }),
+      netRegex: { id: 'B85', source: 'Electric Node' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -106,7 +106,7 @@ Options.Triggers.push({
     {
       id: 'T11 Phase 3',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
+      netRegex: { id: 'B78', source: 'Kaliya', capture: false },
       sound: 'Long',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -123,7 +123,7 @@ Options.Triggers.push({
     {
       id: 'T11 Tether Accumulate A',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '001C', target: 'Kaliya' }),
+      netRegex: { id: '001C', target: 'Kaliya' },
       run: (data, matches) => {
         (data.tetherA ?? (data.tetherA = [])).push(matches.source);
       },
@@ -131,7 +131,7 @@ Options.Triggers.push({
     {
       id: 'T11 Tether Accumulate B',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '001D', target: 'Kaliya' }),
+      netRegex: { id: '001D', target: 'Kaliya' },
       run: (data, matches) => {
         (data.tetherB ?? (data.tetherB = [])).push(matches.source);
       },
@@ -139,7 +139,7 @@ Options.Triggers.push({
     {
       id: 'T11 Tether A',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
+      netRegex: { id: '001C', target: 'Kaliya', capture: false },
       condition: (data) => data.tetherA?.length === 2,
       alarmText: (data, _matches, output) => {
         let partner;
@@ -168,7 +168,7 @@ Options.Triggers.push({
     {
       id: 'T11 Tether B',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
+      netRegex: { id: '001D', target: 'Kaliya', capture: false },
       condition: (data) => data.tetherB?.length === 2,
       alarmText: (data, _matches, output) => {
         let partner;
@@ -197,7 +197,7 @@ Options.Triggers.push({
     {
       id: 'T11 Tether Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
+      netRegex: { id: 'B7B', source: 'Kaliya', capture: false },
       run: (data) => {
         delete data.tetherA;
         delete data.tetherB;

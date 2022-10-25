@@ -30,19 +30,19 @@ Options.Triggers.push({
     {
       id: 'A3N Wash Away',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '12FF', source: 'Living Liquid', capture: false }),
+      netRegex: { id: '12FF', source: 'Living Liquid', capture: false },
       response: Responses.goMiddle(),
     },
     {
       id: 'A3N Cascade',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '12F7', source: 'Living Liquid', capture: false }),
+      netRegex: { id: '12F7', source: 'Living Liquid', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'A3N Sluice',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001A' }),
+      netRegex: { id: '001A' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -60,7 +60,7 @@ Options.Triggers.push({
       // To avoid spam, we cue this off Wash Away instead.
       id: 'A3N Fluid Strike 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '12FF', source: 'Living Liquid', capture: false }),
+      netRegex: { id: '12FF', source: 'Living Liquid', capture: false },
       delaySeconds: 5,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
@@ -77,7 +77,7 @@ Options.Triggers.push({
     {
       id: 'A3N Fluid Strike 3',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Liquid Limb', capture: false }),
+      netRegex: { name: 'Liquid Limb', capture: false },
       suppressSeconds: 60,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -93,7 +93,7 @@ Options.Triggers.push({
     {
       id: 'A3N Drainage You',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0005', target: 'Living Liquid' }),
+      netRegex: { id: '0005', target: 'Living Liquid' },
       condition: (data, matches) => matches.source === data.me,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -110,7 +110,7 @@ Options.Triggers.push({
     {
       id: 'A3N Drainage Tank',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0005', target: 'Living Liquid', capture: false }),
+      netRegex: { id: '0005', target: 'Living Liquid', capture: false },
       condition: (data) => data.role === 'tank',
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
@@ -128,7 +128,7 @@ Options.Triggers.push({
     {
       id: 'A3N Ferrofluid Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0026' }),
+      netRegex: { id: '0026' },
       run: (data, matches) => {
         data.ferroTether ?? (data.ferroTether = {});
         data.ferroTether[matches.source] = matches.target;
@@ -138,7 +138,7 @@ Options.Triggers.push({
     {
       id: 'A3N Ferrofluid Signs',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
+      netRegex: { id: ['0030', '0031'] },
       run: (data, matches) => {
         data.ferroMarker ?? (data.ferroMarker = {});
         data.ferroMarker[matches.target] = matches.id;
@@ -147,7 +147,7 @@ Options.Triggers.push({
     {
       id: 'A3N Ferrofluid Call',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1306', source: 'Living Liquid' }),
+      netRegex: { id: '1306', source: 'Living Liquid' },
       alertText: (data, matches, output) => {
         data.ferroTether ?? (data.ferroTether = {});
         data.ferroMarker ?? (data.ferroMarker = {});
@@ -182,7 +182,7 @@ Options.Triggers.push({
     {
       id: 'A3N FerrofluidCleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1306', source: 'Living Liquid', capture: false }),
+      netRegex: { id: '1306', source: 'Living Liquid', capture: false },
       delaySeconds: 5,
       run: (data) => {
         delete data.ferroMarker;

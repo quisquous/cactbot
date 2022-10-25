@@ -59,7 +59,7 @@ Options.Triggers.push({
       // Doesn't seem like this happens twice, but let's be safe.
       id: 'TitanUn Rock Throw',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0007' }),
+      netRegex: { id: '0007' },
       suppressSeconds: 1,
       alertText: (data, matches, output) => {
         if (matches.source === data.me || matches.target === data.me)
@@ -92,7 +92,7 @@ Options.Triggers.push({
       id: 'TitanUn Upheaval',
       type: 'StartsUsing',
       // Five second cast time.
-      netRegex: NetRegexes.startsUsing({ source: 'Titan', id: '58F9', capture: false }),
+      netRegex: { source: 'Titan', id: '58F9', capture: false },
       response: Responses.knockback('info'),
     },
   ],

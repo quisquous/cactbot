@@ -23,25 +23,25 @@ Options.Triggers.push({
     {
       id: 'E7S Empty Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C8A', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C8A', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E7S Unshadowed Stake',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'The Idol Of Darkness', id: '0025' }),
+      netRegex: { source: 'The Idol Of Darkness', id: '0025' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E7S Betwixt Worlds',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4CFD', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4CFD', capture: false },
       run: (data) => data.phase = 'betwixtWorlds',
     },
     {
       id: 'E7S Betwixt Worlds Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'The Idol Of Darkness', id: '0011' }),
+      netRegex: { source: 'The Idol Of Darkness', id: '0011' },
       condition: (data) => data.phase === 'betwixtWorlds',
       preRun: (data, matches) => {
         data.betwixtWorldsTethers ?? (data.betwixtWorldsTethers = []);
@@ -65,7 +65,7 @@ Options.Triggers.push({
     {
       id: 'E7S Betwixt Worlds Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0064' }),
+      netRegex: { id: '0064' },
       condition: (data) => data.phase === 'betwixtWorlds',
       preRun: (data, matches) => {
         data.betwixtWorldsStack ?? (data.betwixtWorldsStack = []);
@@ -97,7 +97,7 @@ Options.Triggers.push({
     {
       id: 'E7S Left With Thee',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
+      netRegex: { effectId: '8C2' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -114,7 +114,7 @@ Options.Triggers.push({
     {
       id: 'E7S Right With Thee',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
+      netRegex: { effectId: '8C3' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -131,7 +131,7 @@ Options.Triggers.push({
     {
       id: 'E7S Forward With Thee',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
+      netRegex: { effectId: '8C0' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -148,7 +148,7 @@ Options.Triggers.push({
     {
       id: 'E7S Back With Thee',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
+      netRegex: { effectId: '8C1' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -165,13 +165,13 @@ Options.Triggers.push({
     {
       id: 'E7S False Midnight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C99', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C99', capture: false },
       run: (data) => data.phase = 'falseMidnight',
     },
     {
       id: 'E7S Silver Shot',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0065' }),
+      netRegex: { id: '0065' },
       condition: (data) => data.phase === 'falseMidnight',
       preRun: (data, matches) => {
         data.falseMidnightSpread ?? (data.falseMidnightSpread = []);
@@ -188,7 +188,7 @@ Options.Triggers.push({
     {
       id: 'E7S Silver Sledge',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0064' }),
+      netRegex: { id: '0064' },
       condition: (data) => data.phase === 'falseMidnight',
       // The stack marker is in the middle of spreads,
       // so delay a tiny bit to call out stack so that
@@ -210,14 +210,14 @@ Options.Triggers.push({
     {
       id: 'E7S Adds',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Blasphemy', capture: false }),
+      netRegex: { name: 'Blasphemy', capture: false },
       suppressSeconds: 1,
       run: (data) => data.phase = 'adds',
     },
     {
       id: 'E7S Advent Of Light',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C6E' }),
+      netRegex: { source: 'Idolatry', id: '4C6E' },
       condition: (data) => data.CanSilence(),
       suppressSeconds: 1,
       response: Responses.interrupt('alarm'),
@@ -225,7 +225,7 @@ Options.Triggers.push({
     {
       id: 'E7S Insatiable Light Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0064' }),
+      netRegex: { id: '0064' },
       condition: (data) => data.phase === 'adds',
       preRun: (data, matches) => {
         data.insatiableLightStack ?? (data.insatiableLightStack = []);
@@ -254,13 +254,13 @@ Options.Triggers.push({
     {
       id: 'E7S Insatiable Light',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Idolatry', id: '4C6D', capture: false }),
+      netRegex: { source: 'Idolatry', id: '4C6D', capture: false },
       run: (data) => data.insatiableLightStack = [],
     },
     {
       id: 'E7S Strength in Numbers',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C70', capture: false }),
+      netRegex: { source: 'Idolatry', id: '4C70', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -277,7 +277,7 @@ Options.Triggers.push({
     {
       id: 'E7S Unearned Envy',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Blasphemy', id: '4C74', capture: false }),
+      netRegex: { source: 'Blasphemy', id: '4C74', capture: false },
       durationSeconds: 7,
       suppressSeconds: 15,
       response: Responses.aoe(),
@@ -285,28 +285,28 @@ Options.Triggers.push({
     {
       id: 'E7S Empty Flood',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '(?:4C8[BC]|4E5[56])', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '(?:4C8[BC]|4E5[56])', capture: false },
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
     {
       id: 'E7S Astral Effect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
+      netRegex: { effectId: '8BE' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.color = 'light',
     },
     {
       id: 'E7S Umbral Effect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
+      netRegex: { effectId: '8BF' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.color = 'dark',
     },
     {
       id: 'E7S Boundless Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]' }),
+      netRegex: { source: 'Unforgiven Idolatry', id: '4C5[CD]' },
       run: (data, matches) => {
         data.boundless ?? (data.boundless = {});
         const oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
@@ -316,7 +316,7 @@ Options.Triggers.push({
     {
       id: 'E7S Boundless Light Dark Stack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]' }),
+      netRegex: { source: 'Unforgiven Idolatry', id: '4C5[CD]' },
       condition: (data, matches) => {
         if (Object.keys(data.boundless ?? {}).length !== 2)
           return false;
@@ -349,14 +349,14 @@ Options.Triggers.push({
     {
       id: 'E7S Boundless Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]', capture: false }),
+      netRegex: { source: 'Unforgiven Idolatry', id: '4C5[CD]', capture: false },
       delaySeconds: 20,
       run: (data) => delete data.boundless,
     },
     {
       id: 'E7S Words of Night',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '(?:4C2C|4C65)', capture: false }),
+      netRegex: { source: 'Unforgiven Idolatry', id: '(?:4C2C|4C65)', capture: false },
       alertText: (data, _matches, output) => {
         if (!data.color)
           return;
@@ -380,7 +380,7 @@ Options.Triggers.push({
     {
       id: 'E7S False Dawn',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C9A', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C9A', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -397,7 +397,7 @@ Options.Triggers.push({
     {
       id: 'E7S Crusade',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C76', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C76', capture: false },
       // Can't use knockback prevention for this, so say where to get knocked back.
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -414,7 +414,7 @@ Options.Triggers.push({
     {
       id: 'E7S Unjoined Aspect P3',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'The Idol Of Darkness', id: '4C7A', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C7A', capture: false },
       // Color buffs go out immediately after the cast
       delaySeconds: 0.1,
       infoText: (data, _matches, output) => {
@@ -454,7 +454,7 @@ Options.Triggers.push({
     {
       id: 'E7S Threefold Grace',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C7E', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C7E', capture: false },
       alertText: (data, _matches, output) => {
         if (!data.color)
           return;

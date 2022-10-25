@@ -5,19 +5,19 @@ Options.Triggers.push({
     {
       id: 'T10 Phase Change',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
+      netRegex: { id: 'B5D', source: 'Imdugud', capture: false },
       sound: 'Long',
     },
     {
       id: 'T10 Heat Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
+      netRegex: { id: 'B5F', source: 'Imdugud', capture: false },
       response: Responses.spread(),
     },
     {
       id: 'T10 Wild Charge',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001F' }),
+      netRegex: { id: '001F' },
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.chargeOnYou();
@@ -48,13 +48,13 @@ Options.Triggers.push({
     {
       id: 'T10 Prey',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       response: Responses.preyOn(),
     },
     {
       id: 'T10 Cyclonic Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
+      netRegex: { id: '0015', source: 'Imdugud' },
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.cyclonicOnYou();

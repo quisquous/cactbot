@@ -13,21 +13,21 @@ Options.Triggers.push({
     {
       id: 'E5S Surge Protection Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
+      netRegex: { effectId: '8B4' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.surgeProtection = true,
     },
     {
       id: 'E5S Surge Protection Loss',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
+      netRegex: { effectId: '8B4' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.surgeProtection = false,
     },
     {
       id: 'E5S Stratospear Summons',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '4BA5', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4BA5', source: 'Ramuh', capture: false },
       condition: (data) => !data.seenFirstSpear,
       delaySeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
@@ -46,7 +46,7 @@ Options.Triggers.push({
     {
       id: 'E5S Tribunal Summons',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4BAC', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4BAC', source: 'Ramuh', capture: false },
       infoText: (data, _matches, output) => {
         if (data.seenFirstAdd)
           return output.lookForAdds();
@@ -85,7 +85,7 @@ Options.Triggers.push({
     {
       id: 'E5S Fury\'s Bolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4BAA', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4BAA', source: 'Ramuh', capture: false },
       alertText: (data, _matches, output) => {
         // Fury's Bolt + Stepped Leader doesn't require an orb
         if (!data.surgeProtection && !data.steppedLeaderNext)
@@ -105,19 +105,19 @@ Options.Triggers.push({
     {
       id: 'E5S Fury\'s Bolt Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8B7', capture: false }),
+      netRegex: { effectId: '8B7', capture: false },
       run: (data) => data.furysBoltActive = true,
     },
     {
       id: 'E5S Fury\'s Bolt Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '8B7', capture: false }),
+      netRegex: { effectId: '8B7', capture: false },
       run: (data) => data.furysBoltActive = false,
     },
     {
       id: 'E5S Fury\'s Fourteen',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4BAB', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4BAB', source: 'Ramuh', capture: false },
       condition: (data) => !data.furysFourteenCounter || data.furysFourteenCounter < 2,
       alertText: (data, _matches, output) => {
         if (!data.surgeProtection)
@@ -138,13 +138,13 @@ Options.Triggers.push({
     {
       id: 'E5S Judgment Volts',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4BB5', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4BB5', source: 'Ramuh', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E5S Stepped Leader',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4BC6', source: 'Ramuh', capture: false },
       alertText: (data, _matches, output) => {
         // Fury's Bolt + Stepped Leader is a donut AoE instead
         if (!data.furysBoltActive)
@@ -173,7 +173,7 @@ Options.Triggers.push({
     {
       id: 'E5S Stepped Leader Spread',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4BC6', source: 'Ramuh', capture: false },
       condition: (data) => !data.furysBoltActive,
       delaySeconds: 3,
       response: Responses.moveAway('alarm'),
@@ -181,19 +181,19 @@ Options.Triggers.push({
     {
       id: 'E5S Stepped Leader Cast',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4BC6', source: 'Ramuh', capture: false },
       run: (data) => data.steppedLeaderNext = false,
     },
     {
       id: 'E5S Crippling Blow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4BCA', source: 'Ramuh' }),
+      netRegex: { id: '4BCA', source: 'Ramuh' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E5S Stormcloud Summons',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4BB8', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4BB8', source: 'Ramuh', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -210,7 +210,7 @@ Options.Triggers.push({
       // Hated of Levin debuff
       id: 'E5S Stormcloud Cleanse',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00D2' }),
+      netRegex: { id: '00D2' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -227,7 +227,7 @@ Options.Triggers.push({
     {
       id: 'E5S Stormcloud Drop',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '006E' }),
+      netRegex: { id: '006E' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -244,7 +244,7 @@ Options.Triggers.push({
     {
       id: 'E5S Centaur\'s Charge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4BAD', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4BAD', source: 'Ramuh', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -260,7 +260,7 @@ Options.Triggers.push({
     {
       id: 'E5S Chain Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4BC4', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4BC4', source: 'Ramuh', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -276,7 +276,7 @@ Options.Triggers.push({
     {
       id: 'E5S Levinforce',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4BCC', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4BCC', source: 'Ramuh', capture: false },
       response: Responses.knockback(),
     },
   ],

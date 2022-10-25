@@ -30,23 +30,26 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Xelphatol Long Burst',
-      netRegex: NetRegexes.startsUsing({ id: '19C8', source: 'Nuzal Hueloc', capture: false }),
+      type: 'StartsUsing',
+      netRegex: { id: '19C8', source: 'Nuzal Hueloc', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Xelphatol Hot Blast',
-      netRegex: NetRegexes.startsUsing({ id: '19CC', source: 'Floating Turret', capture: false }),
+      type: 'StartsUsing',
+      netRegex: { id: '19CC', source: 'Floating Turret', capture: false },
       response: Responses.getUnder(),
     },
     {
       id: 'Xelphatol On High',
-      netRegex: NetRegexes.startsUsing({ id: '19CF', source: 'Dotoli Ciloc', capture: false }),
+      type: 'StartsUsing',
+      netRegex: { id: '19CF', source: 'Dotoli Ciloc', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'Xelphatol Dark Wings',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -62,20 +65,21 @@ Options.Triggers.push({
     },
     {
       id: 'Xelphatol Ixali Aero AOE',
-      netRegex: NetRegexes.startsUsing({ id: '19D5', source: 'Tozol Huatotl', capture: false }),
+      type: 'StartsUsing',
+      netRegex: { id: '19D5', source: 'Tozol Huatotl', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Xelphatol Bill',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0046' }),
+      netRegex: { id: '0046' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Xelphatol Hawk',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
   ],

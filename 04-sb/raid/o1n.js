@@ -14,13 +14,13 @@ Options.Triggers.push({
     {
       id: 'O1N Blaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '23E1', source: 'Alte Roite' }),
+      netRegex: { id: '23E1', source: 'Alte Roite' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'O1N Breath Wing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '23DE', source: 'Alte Roite', capture: false }),
+      netRegex: { id: '23DE', source: 'Alte Roite', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -36,26 +36,26 @@ Options.Triggers.push({
     {
       id: 'O1N Clamp',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '23E2', source: 'Alte Roite', capture: false }),
+      netRegex: { id: '23E2', source: 'Alte Roite', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       // Knockback immunities don't work.
       id: 'O1N Downburst',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
+      netRegex: { id: '1ED8', source: 'Alte Roite', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'O1N Roar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '23DC', source: 'Alte Roite', capture: false }),
+      netRegex: { id: '23DC', source: 'Alte Roite', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O1N Charybdis',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '23DB', source: 'Alte Roite', capture: false }),
+      netRegex: { id: '23DB', source: 'Alte Roite', capture: false },
       condition: (data) => data.role === 'healer',
       // Alert rather than info, as any further raid damage is lethal if unhealed.
       response: Responses.aoe('alert'),
@@ -63,7 +63,7 @@ Options.Triggers.push({
     {
       id: 'O1N Twin Bolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '23D7', source: 'Alte Roite' }),
+      netRegex: { id: '23D7', source: 'Alte Roite' },
       response: Responses.tankBuster(),
     },
     {
@@ -72,7 +72,7 @@ Options.Triggers.push({
       // with 23DA.
       id: 'O1N Levinbolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '23D9', source: 'Alte Roite', capture: false }),
+      netRegex: { id: '23D9', source: 'Alte Roite', capture: false },
       response: Responses.spread(),
     },
   ],

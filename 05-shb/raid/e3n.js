@@ -5,19 +5,19 @@ Options.Triggers.push({
     {
       id: 'E3N Tidal Roar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FC4', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FC4', source: 'Leviathan', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E3N Rip Current',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E3N Tidal Wave Look',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FD2', source: 'Leviathan', capture: false },
       delaySeconds: 3,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -34,7 +34,7 @@ Options.Triggers.push({
     {
       id: 'E3N Tidal Wave Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FD2', source: 'Leviathan', capture: false },
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
@@ -43,7 +43,7 @@ Options.Triggers.push({
     {
       id: 'E3N Undersea Quake Outside',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FD0', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FD0', source: 'Leviathan', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -59,13 +59,13 @@ Options.Triggers.push({
     {
       id: 'E3N Undersea Quake Inside',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FCF', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FCF', source: 'Leviathan', capture: false },
       response: Responses.goSides('alarm'),
     },
     {
       id: 'E3N Maelstrom',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FD8', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FD8', source: 'Leviathan', capture: false },
       delaySeconds: 8,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -82,40 +82,40 @@ Options.Triggers.push({
     {
       id: 'E3N Drenching Pulse Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A9' }),
+      netRegex: { id: '00A9' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'E3N Tsunami',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FD4', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FD4', source: 'Leviathan', capture: false },
       response: Responses.aoe(),
     },
     {
       // Crashing Pulse and Smothering Waters
       id: 'E3N Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'E3N Surging Waters Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AD' }),
+      netRegex: { id: '00AD' },
       response: Responses.knockbackOn(),
     },
     {
       id: 'E3N Splashing Waters Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0082' }),
+      netRegex: { id: '0082' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'E3N Swirling Waters Donut',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0099' }),
+      netRegex: { id: '0099' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {

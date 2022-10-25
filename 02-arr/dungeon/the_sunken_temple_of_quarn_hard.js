@@ -4,7 +4,7 @@ Options.Triggers.push({
     {
       id: 'Sunken Quarn Hard Light of Anathema',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'C26', source: 'Vicegerent to the Warden', capture: false }),
+      netRegex: { id: 'C26', source: 'Vicegerent to the Warden', capture: false },
       response: Responses.awayFromFront(),
     },
   ],

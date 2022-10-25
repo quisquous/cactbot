@@ -12,7 +12,7 @@ Options.Triggers.push({
     {
       id: 'T5 Twintania Phase Change Watcher',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Twintania' }),
+      netRegex: { source: 'Twintania' },
       condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
       promise: (data, matches) =>
@@ -34,13 +34,13 @@ Options.Triggers.push({
     {
       id: 'T5 Death Sentence',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Twintania', id: '5B2' }),
+      netRegex: { source: 'Twintania', id: '5B2' },
       response: Responses.tankBuster(),
     },
     {
       id: 'T5 Death Sentence Warning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Twintania', id: '5B2', capture: false }),
+      netRegex: { source: 'Twintania', id: '5B2', capture: false },
       delaySeconds: 30,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
@@ -58,7 +58,7 @@ Options.Triggers.push({
     {
       id: 'T5 Liquid Hell',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Scourge Of Meracydia', id: '4DB', capture: false }),
+      netRegex: { source: 'The Scourge Of Meracydia', id: '4DB', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -74,7 +74,7 @@ Options.Triggers.push({
     {
       id: 'T5 Fireball',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5AC' }),
+      netRegex: { source: 'Twintania', id: '5AC' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.fireballOnYou();
@@ -105,7 +105,7 @@ Options.Triggers.push({
     {
       id: 'T5 Conflagration',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5AB' }),
+      netRegex: { source: 'Twintania', id: '5AB' },
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.conflagOnYou();
@@ -136,7 +136,7 @@ Options.Triggers.push({
     {
       id: 'T5 Divebomb',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
+      netRegex: { source: 'Twintania', id: '5B0', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -152,7 +152,7 @@ Options.Triggers.push({
     {
       id: 'T5 Divebomb Set Two',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
+      netRegex: { source: 'Twintania', id: '5B0', capture: false },
       delaySeconds: 60,
       suppressSeconds: 5000,
       infoText: (_data, _matches, output) => output.text(),
@@ -171,7 +171,7 @@ Options.Triggers.push({
       // Unwoven Will
       id: 'T5 Dreadknight',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Twintania', id: '4E3' }),
+      netRegex: { source: 'Twintania', id: '4E3' },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.knightOnYou();
@@ -199,7 +199,7 @@ Options.Triggers.push({
     {
       id: 'T5 Twister',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Twintania', id: '4E1', capture: false }),
+      netRegex: { source: 'Twintania', id: '4E1', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -215,7 +215,7 @@ Options.Triggers.push({
     {
       id: 'T5 Hatch',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5AD' }),
+      netRegex: { source: 'Twintania', id: '5AD' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.hatchOnYou();

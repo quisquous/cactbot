@@ -19,7 +19,7 @@ Options.Triggers.push({
     {
       id: 'Barbariccia Void Aero IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75B6', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '75B6', source: 'Barbariccia', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -29,13 +29,13 @@ Options.Triggers.push({
       // 9.8 duration: 75BB (out, paired with donut), 75C1 (out, paired with line)
       id: 'Barbariccia Savage Barbery Donut',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75BA', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '75BA', source: 'Barbariccia', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'Barbariccia Savage Barbery Line',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75C0', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '75C0', source: 'Barbariccia', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -49,7 +49,7 @@ Options.Triggers.push({
     {
       id: 'Barbariccia Hair Raid Wall',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75C2', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '75C2', source: 'Barbariccia', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -63,19 +63,19 @@ Options.Triggers.push({
     {
       id: 'Barbariccia Void Aero III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75B7', source: 'Barbariccia' }),
+      netRegex: { id: '75B7', source: 'Barbariccia' },
       response: Responses.sharedTankBuster(),
     },
     {
       id: 'Barbariccia Deadly Twist',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Barbariccia Hair Spray',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0175' }),
+      netRegex: { id: '0175' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -83,21 +83,21 @@ Options.Triggers.push({
       id: 'Barbariccia Brutal Rush Move',
       type: 'Ability',
       // When the Brutal Rush hits you, the follow-up Brutal Gust has locked in.
-      netRegex: NetRegexes.ability({ id: '75C6', source: 'Barbariccia' }),
+      netRegex: { id: '75C6', source: 'Barbariccia' },
       condition: Conditions.targetIsYou(),
       response: Responses.moveAway(),
     },
     {
       id: 'Barbariccia Boulder',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0160' }),
+      netRegex: { id: '0160' },
       condition: Conditions.targetIsYou(),
       response: Responses.awayFrom(),
     },
     {
       id: 'Barbariccia Boulder Break Tankbuster',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '73CF', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '73CF', source: 'Voidwalker', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -107,7 +107,7 @@ Options.Triggers.push({
     {
       id: 'Barbariccia Bold Boulder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75D6', source: 'Barbariccia' }),
+      netRegex: { id: '75D6', source: 'Barbariccia' },
       infoText: (data, matches, output) => {
         data.boldBoulderTarget = matches.target;
         if (data.me === matches.target)
@@ -128,7 +128,7 @@ Options.Triggers.push({
     {
       id: 'Barbariccia Trample',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0064' }),
+      netRegex: { id: '0064' },
       condition: (data) => data.boldBoulderTarget !== data.me,
       delaySeconds: 0.5,
       response: Responses.stackMarkerOn(),
@@ -136,14 +136,14 @@ Options.Triggers.push({
     {
       id: 'Barbariccia Touchdown',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '746D', source: 'Barbariccia' }),
+      netRegex: { id: '746D', source: 'Barbariccia' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),
     },
     {
       id: 'Barbariccia Impact',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75D8', source: 'Barbariccia' }),
+      netRegex: { id: '75D8', source: 'Barbariccia' },
       // Could also have used 75D9, full cast time is 5.9s
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback('info'), // probably used on Touchdown

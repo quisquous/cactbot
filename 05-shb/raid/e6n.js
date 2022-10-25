@@ -14,13 +14,13 @@ Options.Triggers.push({
     {
       id: 'E6N Superstorm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Garuda', id: '4BD7', capture: false }),
+      netRegex: { source: 'Garuda', id: '4BD7', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E6N Ferostorm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
+      netRegex: { source: ['Garuda', 'Raktapaksa'], id: ['4BD[DEF]', '4BE[345]'], capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -36,7 +36,7 @@ Options.Triggers.push({
     {
       id: 'E6N Air Bump',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00D3' }),
+      netRegex: { id: '00D3' },
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -65,14 +65,14 @@ Options.Triggers.push({
     {
       id: 'E6N Inferno Howl',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BF1', capture: false }),
+      netRegex: { source: ['Ifrit', 'Raktapaksa'], id: '4BF1', capture: false },
       response: Responses.aoe(),
     },
     {
       // Save ability state since the generic tether used has multiple uses in this fight
       id: 'E6N Hands of Flame Start',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4CFE', capture: false }),
+      netRegex: { source: ['Ifrit', 'Raktapaksa'], id: '4CFE', capture: false },
       preRun: (data) => data.handsOfFlame = true,
     },
     {
@@ -80,7 +80,7 @@ Options.Triggers.push({
       // Break tether if you're the target during Ifrit+Garuda phase
       id: 'E6N Hands of Flame Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0068' }),
+      netRegex: { id: '0068' },
       condition: (data) => data.handsOfFlame,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -104,20 +104,20 @@ Options.Triggers.push({
     {
       id: 'E6N Hands of Flame Cast',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4BE9', capture: false }),
+      netRegex: { source: ['Ifrit', 'Raktapaksa'], id: '4BE9', capture: false },
       preRun: (data) => data.handsOfFlame = false,
       suppressSeconds: 1,
     },
     {
       id: 'E6N Instant Incineration',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BED' }),
+      netRegex: { source: ['Ifrit', 'Raktapaksa'], id: '4BED' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E6N Hands of Hell',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0016' }),
+      netRegex: { id: '0016' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -134,7 +134,7 @@ Options.Triggers.push({
     {
       id: 'E6N Strike Spark',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Ifrit', id: '4F98', capture: false }),
+      netRegex: { source: 'Ifrit', id: '4F98', capture: false },
       // Run only once, because Ifrit's other jumps are not important.
       condition: (data) => !data.seenSpark,
       alertText: (_data, _matches, output) => output.text(),
@@ -154,7 +154,7 @@ Options.Triggers.push({
       id: 'E6N Storm Of Fury',
       type: 'StartsUsing',
       // Garuda uses this ability without eruptions alongside, so she needs no warnings.
-      netRegex: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4BE6', capture: false }),
+      netRegex: { source: 'Raktapaksa', id: '4BE6', capture: false },
       response: Responses.stackThenSpread(),
     },
   ],

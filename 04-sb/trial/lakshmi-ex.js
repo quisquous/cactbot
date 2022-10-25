@@ -14,32 +14,32 @@ Options.Triggers.push({
     {
       id: 'LakshmiEx Chanchala Gain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
+      netRegex: { id: '2148', source: 'Lakshmi', capture: false },
       run: (data) => data.chanchala = true,
     },
     {
       id: 'LakshmiEx Chanchala Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
+      netRegex: { target: 'Lakshmi', effectId: '582', capture: false },
       run: (data) => data.chanchala = false,
     },
     {
       id: 'LakshmiEx Pull of Light Tank',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
+      netRegex: { id: '215E', source: 'Lakshmi' },
       response: Responses.tankBuster('info'),
     },
     {
       id: 'LakshmiEx Pull of Light Unexpected',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
+      netRegex: { id: '215E', source: 'Lakshmi' },
       condition: (data) => data.role !== 'tank' && data.role !== 'healer',
       response: Responses.tankBuster('alarm'),
     },
     {
       id: 'LakshmiEx Divine Denial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2149', source: 'Lakshmi', capture: false }),
+      netRegex: { id: '2149', source: 'Lakshmi', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -55,7 +55,7 @@ Options.Triggers.push({
     {
       id: 'LakshmiEx Divine Desire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '214B', source: 'Lakshmi', capture: false }),
+      netRegex: { id: '214B', source: 'Lakshmi', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -71,7 +71,7 @@ Options.Triggers.push({
     {
       id: 'LakshmiEx Divine Doubt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '214A', source: 'Lakshmi', capture: false }),
+      netRegex: { id: '214A', source: 'Lakshmi', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -87,7 +87,7 @@ Options.Triggers.push({
     {
       id: 'LakshmiEx Pall of Light',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       alertText: (data, matches, output) => {
         if (!data.chanchala)
           return;
@@ -133,7 +133,7 @@ Options.Triggers.push({
     {
       id: 'LakshmiEx Stotram',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2147', source: 'Lakshmi', capture: false }),
+      netRegex: { id: '2147', source: 'Lakshmi', capture: false },
       condition: (data) => data.chanchala,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -151,7 +151,7 @@ Options.Triggers.push({
       // Offtank cleave
       id: 'LakshmiEx Path of Light Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000E' }),
+      netRegex: { id: '000E' },
       condition: Conditions.targetIsYou(),
       alarmText: (data, _matches, output) => {
         if (data.chanchala)
@@ -181,7 +181,7 @@ Options.Triggers.push({
       // Cross aoe
       id: 'LakshmiEx Hand of Grace',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '006B' }),
+      netRegex: { id: '006B' },
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.chanchala)
@@ -211,7 +211,7 @@ Options.Triggers.push({
       // Flower marker (healers)
       id: 'LakshmiEx Hand of Beauty',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '006D' }),
+      netRegex: { id: '006D' },
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.chanchala)
@@ -241,7 +241,7 @@ Options.Triggers.push({
       // Red marker during add phase
       id: 'LakshmiEx Water III',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       // Soloing can get you two of these.
       suppressSeconds: 1,

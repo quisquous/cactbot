@@ -24,14 +24,14 @@ Options.Triggers.push({
     {
       id: 'A12S Punishing Heat',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19E9' }),
+      netRegex: { source: 'Alexander Prime', id: '19E9' },
       response: Responses.tankBuster(),
     },
     {
       // Applies to both holy and blazing scourge.
       id: 'A12S Holy Blazing Scourge You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       condition: (data, matches) => {
         // Ignore Holy Scourge later in the fight.
         if (data.scourge.length > 2)
@@ -53,13 +53,13 @@ Options.Triggers.push({
     {
       id: 'A12S Blazing Scourge Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       run: (data, matches) => data.scourge.push(matches.target),
     },
     {
       id: 'A12S Blazing Scourge Report',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
+      netRegex: { id: '001E', capture: false },
       condition: (data) => {
         // Ignore Holy Scourge later in the fight.
         if (data.scourge.length > 2)
@@ -91,19 +91,19 @@ Options.Triggers.push({
     {
       id: 'A12S Mega Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19EE', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '19EE', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'A12S Incinerating Heat',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'A12S Laser Sacrament',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19EB', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '19EB', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -119,13 +119,13 @@ Options.Triggers.push({
     {
       id: 'A12S Radiant Sacrament',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19ED', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '19ED', capture: false },
       response: Responses.getUnder('alert'),
     },
     {
       id: 'A12S House Arrest',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '001C' }),
+      netRegex: { id: '001C' },
       condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       infoText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
@@ -145,7 +145,7 @@ Options.Triggers.push({
     {
       id: 'A12S Restraining Order',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '001D' }),
+      netRegex: { id: '001D' },
       condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       alertText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
@@ -165,7 +165,7 @@ Options.Triggers.push({
     {
       id: 'A12S Shared Sentence',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
+      netRegex: { effectId: '462' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -182,7 +182,7 @@ Options.Triggers.push({
     {
       id: 'A12S Defamation',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '460' }),
+      netRegex: { effectId: '460' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -199,7 +199,7 @@ Options.Triggers.push({
     {
       id: 'A12S Judgment Crystal',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -216,7 +216,7 @@ Options.Triggers.push({
     {
       id: 'A12S Holy Scourge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1A0B', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '1A0B', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -232,13 +232,13 @@ Options.Triggers.push({
     {
       id: 'A12S Chastening Heat',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1A0D' }),
+      netRegex: { source: 'Alexander Prime', id: '1A0D' },
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'A12S Communion Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
+      netRegex: { source: 'Alexander', id: '0036' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {

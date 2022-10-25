@@ -5,19 +5,19 @@ Options.Triggers.push({
     {
       id: 'P2N Murky Depths',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '680F', source: 'Hippokampos', capture: false }),
+      netRegex: { id: '680F', source: 'Hippokampos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P2N Doubled Impact',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '680E', source: 'Hippokampos' }),
+      netRegex: { id: '680E', source: 'Hippokampos' },
       response: Responses.sharedTankBuster(),
     },
     {
       id: 'P2N Spoken Cataract',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['67F8', '67F7', '67F9'], source: 'Hippokampos' }),
+      netRegex: { id: ['67F8', '67F7', '67F9'], source: 'Hippokampos' },
       delaySeconds: 1,
       promise: async (data) => {
         const callData = await callOverlayHandler({
@@ -122,21 +122,21 @@ Options.Triggers.push({
     {
       id: 'P2N Sewage Deluge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '67F6', source: 'Hippokampos', capture: false }),
+      netRegex: { id: '67F6', source: 'Hippokampos', capture: false },
       response: Responses.aoe(),
     },
     {
       // Spread aoe marker on some players, not all
       id: 'P2N Tainted Flood',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6809', source: 'Hippokampos' }),
+      netRegex: { id: '6809', source: 'Hippokampos' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'P2N Predatory Sight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '680A', source: 'Hippokampos', capture: false }),
+      netRegex: { id: '680A', source: 'Hippokampos', capture: false },
       delaySeconds: 3,
       response: Responses.doritoStack(),
     },
@@ -144,7 +144,7 @@ Options.Triggers.push({
       id: 'P2N Coherence Flare',
       type: 'HeadMarker',
       // This always comes before 6D14 below for the line stack marker.
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       run: (data, matches) => data.flareTarget = matches.target,
@@ -163,7 +163,7 @@ Options.Triggers.push({
       id: 'P2N Coherence Stack',
       // Coherence (6801) cast has an unknown (6D14) ability with the target before it.
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6D14' }),
+      netRegex: { id: '6D14' },
       condition: (data) => data.flareTarget !== data.me,
       alertText: (data, matches, output) => output.lineStackOn({ player: data.ShortName(matches.target) }),
       outputStrings: {
@@ -181,14 +181,14 @@ Options.Triggers.push({
       // Raidwide knockback -> dont get knocked into slurry
       id: 'P2N Shockwave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6807', source: 'Hippokampos', capture: false }),
+      netRegex: { id: '6807', source: 'Hippokampos', capture: false },
       response: Responses.knockback(),
     },
     {
       // Aoe from head outside the arena
       id: 'P2N Dissociation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6806', source: 'Hippokampos' }),
+      netRegex: { id: '6806', source: 'Hippokampos' },
       alertText: (_data, matches, output) => {
         const xCoord = parseFloat(matches.x);
         if (xCoord > 100)

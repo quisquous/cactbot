@@ -20,7 +20,7 @@ Options.Triggers.push({
     {
       id: 'P2S Headmarker Tracker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => getHeadmarkerId(data, matches),
@@ -28,25 +28,25 @@ Options.Triggers.push({
     {
       id: 'P2S Murky Depths',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6833', source: 'Hippokampos', capture: false }),
+      netRegex: { id: '6833', source: 'Hippokampos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P2S Doubled Impact',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6832', source: 'Hippokampos' }),
+      netRegex: { id: '6832', source: 'Hippokampos' },
       response: Responses.sharedTankBuster(),
     },
     {
       id: 'P2S Sewage Deluge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6810', source: 'Hippokampos', capture: false }),
+      netRegex: { id: '6810', source: 'Hippokampos', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'P2S Spoken Cataract',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6817', '6811', '6812', '6813'], source: 'Hippokampos', capture: false }),
+      netRegex: { id: ['6817', '6811', '6812', '6813'], source: 'Hippokampos', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.directions(),
       outputStrings: {
@@ -63,7 +63,7 @@ Options.Triggers.push({
     {
       id: 'P2S Winged Cataract',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6814', '6815', '6818', '6816'], source: 'Hippokampos', capture: false }),
+      netRegex: { id: ['6814', '6815', '6818', '6816'], source: 'Hippokampos', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.directions(),
       outputStrings: {
@@ -80,7 +80,7 @@ Options.Triggers.push({
     {
       id: 'P2S Ominous Bubbling',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '682B', source: 'Hippokampos', capture: false }),
+      netRegex: { id: '682B', source: 'Hippokampos', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.groups(),
       outputStrings: {
@@ -98,13 +98,13 @@ Options.Triggers.push({
       id: 'P2S Mark of the Tides Collect',
       type: 'GainsEffect',
       // Status goes out with Predatory Avarice (6827).
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AD0' }),
+      netRegex: { effectId: 'AD0' },
       run: (data, matches) => (data.avarice ?? (data.avarice = [])).push(matches),
     },
     {
       id: 'P2S Mark of the Tides',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AD0', capture: false }),
+      netRegex: { effectId: 'AD0', capture: false },
       delaySeconds: (data) => data.avarice?.length === 2 ? 0 : 0.5,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
@@ -146,7 +146,7 @@ Options.Triggers.push({
     {
       id: 'P2S Mark of the Tides Move',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AD0' }),
+      netRegex: { effectId: 'AD0' },
       condition: Conditions.targetIsYou(),
       // 23 second duration, safe to move ~16.7s for first time, ~15s for the second.
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
@@ -158,7 +158,7 @@ Options.Triggers.push({
     {
       id: 'P2S Mark of the Depths',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'AD1' }),
+      netRegex: { effectId: 'AD1' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.stackOnYou(),
       outputStrings: {
@@ -168,7 +168,7 @@ Options.Triggers.push({
     {
       id: 'P2S Channeling Flow',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AD2', 'AD3', 'AD4', 'AD5'] }),
+      netRegex: { effectId: ['AD2', 'AD3', 'AD4', 'AD5'] },
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         const t = parseFloat(matches.duration);
@@ -200,7 +200,7 @@ Options.Triggers.push({
       // Aoe from head outside the arena
       id: 'P2S Dissociation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '682E', source: 'Hippokampos' }),
+      netRegex: { id: '682E', source: 'Hippokampos' },
       alertText: (_data, matches, output) => {
         const xCoord = parseFloat(matches.x);
         if (xCoord > 100)
@@ -217,7 +217,7 @@ Options.Triggers.push({
       // Spread aoe marker on some players, not all
       id: 'P2S Tainted Flood',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6838', source: 'Hippokampos' }),
+      netRegex: { id: '6838', source: 'Hippokampos' },
       condition: (data, matches) => matches.target === data.me,
       response: Responses.spread(),
     },
@@ -225,7 +225,7 @@ Options.Triggers.push({
       id: 'P2S Coherence Flare',
       type: 'Tether',
       // Whoever has tether when cast of 681B ends will be flared
-      netRegex: NetRegexes.tether({ id: '0054', source: 'Hippokampos' }),
+      netRegex: { id: '0054', source: 'Hippokampos' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       run: (data, matches) => data.flareTarget = matches.target,
@@ -243,7 +243,7 @@ Options.Triggers.push({
     {
       id: 'P2S Coherence Stack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '681B', source: 'Hippokampos' }),
+      netRegex: { id: '681B', source: 'Hippokampos' },
       condition: (data) => data.flareTarget !== data.me,
       // 12 second cast, delay for tether to settle
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
@@ -275,7 +275,7 @@ Options.Triggers.push({
       // Raidwide knockback -> dont get knocked into slurry
       id: 'P2S Shockwave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '682F', source: 'Hippokampos' }),
+      netRegex: { id: '682F', source: 'Hippokampos' },
       // 7.7 cast time, delay for proper arm's length
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),
@@ -283,7 +283,7 @@ Options.Triggers.push({
     {
       id: 'P2S Kampeos Harma Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: Conditions.targetIsYou(),
       response: (data, matches, output) => {
         // cactbot-builtin-response

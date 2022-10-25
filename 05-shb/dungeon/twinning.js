@@ -5,21 +5,21 @@ Options.Triggers.push({
     {
       id: 'Twinning Main Head',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DBC', source: 'Surplus Kaliya' }),
+      netRegex: { id: '3DBC', source: 'Surplus Kaliya' },
       condition: (data) => data.CanStun() || data.CanSilence(),
       response: Responses.stun(),
     },
     {
       id: 'Twinning Berserk',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DC0', source: 'Vitalized Reptoid' }),
+      netRegex: { id: '3DC0', source: 'Vitalized Reptoid' },
       condition: (data) => data.CanStun() || data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
       id: 'Twinning 128 Tonze Swing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DBA', source: 'Servomechanical Minotaur' }),
+      netRegex: { id: '3DBA', source: 'Servomechanical Minotaur' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
@@ -27,7 +27,7 @@ Options.Triggers.push({
       // The handling for these mechanics is similar enough it makes sense to combine the trigger
       id: 'Twinning Impact + Pounce',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['003[2-5]', '005A'], capture: false }),
+      netRegex: { id: ['003[2-5]', '005A'], capture: false },
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -44,39 +44,39 @@ Options.Triggers.push({
     {
       id: 'Twinning Beastly Roar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D64', source: 'Alpha Zaghnal', capture: false }),
+      netRegex: { id: '3D64', source: 'Alpha Zaghnal', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Twinning Augurium',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D65', source: 'Alpha Zaghnal' }),
+      netRegex: { id: '3D65', source: 'Alpha Zaghnal' },
       response: Responses.tankCleave(),
     },
     {
       id: 'Twinning Charge Eradicated',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '005D' }),
+      netRegex: { id: '005D' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Twinning Thunder Beam',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DED', source: 'Mithridates' }),
+      netRegex: { id: '3DED', source: 'Mithridates' },
       response: Responses.tankBuster(),
     },
     {
       // Alternatively, we could use 1B:\y{ObjectId}:(\y{Name}):....:....:00A0
       id: 'Twinning Allagan Thunder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DEF', source: 'Mithridates' }),
+      netRegex: { id: '3DEF', source: 'Mithridates' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Twinning Magitek Crossray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DF8', source: 'The Tycoon', capture: false }),
+      netRegex: { id: '3DF8', source: 'The Tycoon', capture: false },
       suppressSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -93,7 +93,7 @@ Options.Triggers.push({
     {
       id: 'Twinning Defensive Array',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DF2', source: 'The Tycoon', capture: false }),
+      netRegex: { id: '3DF2', source: 'The Tycoon', capture: false },
       suppressSeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -110,20 +110,20 @@ Options.Triggers.push({
     {
       id: 'Twinning Rail Cannon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DFB', source: 'The Tycoon' }),
+      netRegex: { id: '3DFB', source: 'The Tycoon' },
       response: Responses.tankBuster(),
     },
     {
       // An alternative is 1B:\y{ObjectId}:\y{Name}:....:....:00A9
       id: 'Twinning Magicrystal',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E0C', source: 'The Tycoon', capture: false }),
+      netRegex: { id: '3E0C', source: 'The Tycoon', capture: false },
       response: Responses.spread('alert'),
     },
     {
       id: 'Twinning Discharger',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DFC', source: 'The Tycoon', capture: false }),
+      netRegex: { id: '3DFC', source: 'The Tycoon', capture: false },
       response: Responses.aoe(),
     },
   ],

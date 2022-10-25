@@ -13,19 +13,19 @@ Options.Triggers.push({
     {
       id: 'E10N Deepshadow Nova',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56E5', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56E5', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E10N Forward Implosion',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56B4', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56B4', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'E10N Backward Implosion',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56B7', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56B7', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: Outputs.goFront,
@@ -34,7 +34,7 @@ Options.Triggers.push({
     {
       id: 'E10N Forward Shadow Implosion',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56B5', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56B5', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -50,7 +50,7 @@ Options.Triggers.push({
     {
       id: 'E10N Backward Shadow Implosion',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56B8', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56B8', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -66,19 +66,19 @@ Options.Triggers.push({
     {
       id: 'E10N Left Giga Slash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '56B1', source: 'Shadowkeeper', capture: false }),
+      netRegex: { id: '56B1', source: 'Shadowkeeper', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'E10N Right Giga Slash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '56AE', source: 'Shadowkeeper', capture: false }),
+      netRegex: { id: '56AE', source: 'Shadowkeeper', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'E10N Left Right Shadow Slash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: 'Shadowkeeper' }),
+      netRegex: { id: ['56AF', '56B2'], source: 'Shadowkeeper' },
       alertText: (_data, matches, output) => matches.id === '56AF' ? output.left() : output.right(),
       outputStrings: {
         left: {
@@ -102,13 +102,13 @@ Options.Triggers.push({
     {
       id: 'E10N Shadow\'s Edge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B0B' }),
+      netRegex: { source: 'Shadowkeeper', id: '5B0B' },
       response: Responses.tankCleave(),
     },
     {
       id: 'E10N Voidgate',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56DD', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56DD', capture: false },
       delaySeconds: 10,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -125,7 +125,7 @@ Options.Triggers.push({
     {
       id: 'E10N Shadow Warrior',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56E2', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56E2', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -141,7 +141,7 @@ Options.Triggers.push({
     {
       id: 'E10N Cloak of Shadows ',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B11', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5B11', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -161,7 +161,7 @@ Options.Triggers.push({
       // it's too late to get out if the player is inside the boss's hitbox.
       id: 'E10N Throne Of Shadow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56C7', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56C7', capture: false },
       response: Responses.getOut(),
     },
     {
@@ -169,7 +169,7 @@ Options.Triggers.push({
       // Best to make sure the user is reminded.
       id: 'E10N Distant Scream',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56C6', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56C6', capture: false },
       response: Responses.knockback(),
     },
   ],

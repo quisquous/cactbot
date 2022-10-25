@@ -15,7 +15,7 @@ Options.Triggers.push({
       // occurs between 1C30 and 1C31.
       id: 'Sohm Al Hard Inflammable Fumes',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1C30', source: 'The Leightonward', capture: false }),
+      netRegex: { id: '1C30', source: 'The Leightonward', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -23,7 +23,7 @@ Options.Triggers.push({
       // However, it's not the same ability.
       id: 'Sohm Al Hard Glorious Blaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1C32', source: 'Spore Sac', capture: false }),
+      netRegex: { id: '1C32', source: 'Spore Sac', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -41,7 +41,7 @@ Options.Triggers.push({
       // The actual effect being checked here is Heavy.
       id: 'Sohm Al Hard Excretion',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '0E' }),
+      netRegex: { effectId: '0E' },
       condition: (data) => data.CanCleanse(),
       infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
       outputStrings: {
@@ -61,7 +61,7 @@ Options.Triggers.push({
       // leaves a tornado at the target location on completion.
       id: 'Sohm Al Hard Ripper Claw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1C37', source: 'Gowrow', capture: false }),
+      netRegex: { id: '1C37', source: 'Gowrow', capture: false },
       response: Responses.awayFromFront(),
     },
     {
@@ -70,7 +70,7 @@ Options.Triggers.push({
       // AND if Gowrow is not empowered.
       id: 'Sohm Al Hard Tail Smash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1C35', source: 'Gowrow', capture: false }),
+      netRegex: { id: '1C35', source: 'Gowrow', capture: false },
       response: Responses.goFrontOrSides(),
     },
     {
@@ -78,35 +78,35 @@ Options.Triggers.push({
       // Used only if Gowrow is empowered.
       id: 'Sohm Al Hard Tail Swing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1C36', source: 'Gowrow', capture: false }),
+      netRegex: { id: '1C36', source: 'Gowrow', capture: false },
       response: Responses.getOut(),
     },
     {
       // Used only if Gowrow is not empowered.
       id: 'Sohm Al Hard Wild Charge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1C39', source: 'Gowrow', capture: false }),
+      netRegex: { id: '1C39', source: 'Gowrow', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       // Used only if Gowrow is empowered.
       id: 'Sohm Al Hard Hot Charge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1C3A', source: 'Gowrow', capture: false }),
+      netRegex: { id: '1C3A', source: 'Gowrow', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       // Used only if Gowrow is not empowered.
       id: 'Sohm Al Hard Fireball',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1C3B', source: 'Gowrow', capture: false }),
+      netRegex: { id: '1C3B', source: 'Gowrow', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       // Used only if Gowrow is empowered.
       id: 'Sohm Al Hard Lava Flow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1C3C', source: 'Gowrow', capture: false }),
+      netRegex: { id: '1C3C', source: 'Gowrow', capture: false },
       response: Responses.awayFromFront(),
     },
     {
@@ -114,7 +114,7 @@ Options.Triggers.push({
       // We use the cast line for this trigger because the timing is the same.
       id: 'Sohm Al Hard Flying Press',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1C3E', source: 'Lava Scorpion' }),
+      netRegex: { id: '1C3E', source: 'Lava Scorpion' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -131,13 +131,13 @@ Options.Triggers.push({
     {
       id: 'Sohm Al Hard Deadly Thrust',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['Lava Scorpion', 'The Scorpion\'s Tail'] }),
+      netRegex: { id: ['1C40', '1C48'], source: ['Lava Scorpion', 'The Scorpion\'s Tail'] },
       response: Responses.tankBuster(),
     },
     {
       id: 'Sohm Al Hard Hiss',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1C45', source: 'Lava Scorpion', capture: false }),
+      netRegex: { id: '1C45', source: 'Lava Scorpion', capture: false },
       response: Responses.killAdds(),
     },
   ],

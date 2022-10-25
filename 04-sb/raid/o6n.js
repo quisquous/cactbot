@@ -7,20 +7,20 @@ Options.Triggers.push({
     {
       id: 'O6N Demonic Howl',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '282C', source: 'Demon Chadarnook', capture: false }),
+      netRegex: { id: '282C', source: 'Demon Chadarnook', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O6N Demonic Shear',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '282A', source: 'Demon Chadarnook' }),
+      netRegex: { id: '282A', source: 'Demon Chadarnook' },
       response: Responses.tankBuster(),
     },
     {
       id: 'O6N Demonic Pain',
       type: 'Tether',
       // 0001 = far enough, 0039 = too close
-      netRegex: NetRegexes.tether({ id: ['0001', '0039'] }),
+      netRegex: { id: ['0001', '0039'] },
       condition: (data, matches) => data.me === matches.target || data.me === matches.source,
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text(),
@@ -37,7 +37,7 @@ Options.Triggers.push({
     {
       id: 'O6N Demonic Stone',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {

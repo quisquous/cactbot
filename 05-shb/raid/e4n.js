@@ -5,13 +5,13 @@ Options.Triggers.push({
     {
       id: 'E4N Voice of the Land',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '40F7', source: 'Titan', capture: false }),
+      netRegex: { id: '40F7', source: 'Titan', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E4N Earthen Fury',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '40F8', source: 'Titan', capture: false }),
+      netRegex: { id: '40F8', source: 'Titan', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -27,13 +27,13 @@ Options.Triggers.push({
     {
       id: 'E4N Stonecrusher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '40F9', source: 'Titan' }),
+      netRegex: { id: '40F9', source: 'Titan' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E4N Massive Landslide',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '40FA', source: 'Titan', capture: false }),
+      netRegex: { id: '40FA', source: 'Titan', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -49,7 +49,7 @@ Options.Triggers.push({
     {
       id: 'E4N Seismic Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '40F2', source: 'Massive Boulder', capture: false }),
+      netRegex: { id: '40F2', source: 'Massive Boulder', capture: false },
       delaySeconds: 6,
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text(),
@@ -67,13 +67,13 @@ Options.Triggers.push({
     {
       id: 'E4N Geocrush',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '40F6', source: 'Titan', capture: false }),
+      netRegex: { id: '40F6', source: 'Titan', capture: false },
       response: Responses.knockback('info'),
     },
     {
       id: 'E4N Fault Zone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4102', source: 'Titan', capture: false }),
+      netRegex: { id: '4102', source: 'Titan', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

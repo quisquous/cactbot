@@ -14,13 +14,13 @@ Options.Triggers.push({
     {
       id: 'Susano Brightstorm',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Susano Seasplitter',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -36,13 +36,13 @@ Options.Triggers.push({
     {
       id: 'Susano Ukehi',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Susano', id: '2026', capture: false }),
+      netRegex: { source: 'Susano', id: '2026', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Susano Stormsplitter',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Susano', id: '2023' }),
+      netRegex: { source: 'Susano', id: '2023' },
       response: Responses.tankCleave('alert'),
     },
   ],

@@ -27,19 +27,19 @@ Options.Triggers.push({
     {
       id: 'ZodiarkEx Ania',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6B63', source: 'Zodiark' }),
+      netRegex: { id: '6B63', source: 'Zodiark' },
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'ZodiarkEx Kokytos',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6C60', source: 'Zodiark', capture: false }),
+      netRegex: { id: '6C60', source: 'Zodiark', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'ZodiarkEx Paradeigma',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '67BF', source: 'Zodiark', capture: false }),
+      netRegex: { id: '67BF', source: 'Zodiark', capture: false },
       alertText: (data, _matches, output) => {
         ++data.paradeigmaCounter;
         if (data.paradeigmaCounter === 1)
@@ -58,7 +58,7 @@ Options.Triggers.push({
     {
       id: 'ZodiarkEx Styx',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '67F3', source: 'Zodiark', capture: false }),
+      netRegex: { id: '67F3', source: 'Zodiark', capture: false },
       alertText: (data, _matches, output) => output.text({ num: data.styxCount }),
       run: (data) => data.styxCount = Math.min(data.styxCount + 1, 9),
       outputStrings: {
@@ -74,7 +74,7 @@ Options.Triggers.push({
     {
       id: 'ZodiarkEx Arcane Sigil End',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' }),
+      netRegex: { id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' },
       run: (data, matches, _output) => {
         for (let i = 0; i < data.activeSigils.length; ++i) {
           const sig = data.activeSigils[i];
@@ -86,7 +86,7 @@ Options.Triggers.push({
     {
       id: 'ZodiarkEx Blue Cone Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '00A4', source: 'Zodiark' }),
+      netRegex: { id: '00A4', source: 'Zodiark' },
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsById([matches.targetId]);
         for (const actor of portalActors) {
@@ -142,7 +142,7 @@ Options.Triggers.push({
     {
       id: 'ZodiarkEx Red Box Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '00AB', source: 'Zodiark' }),
+      netRegex: { id: '00AB', source: 'Zodiark' },
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsById([matches.targetId]);
         for (const actor of portalActors) {
@@ -174,7 +174,7 @@ Options.Triggers.push({
     {
       id: 'ZodiarkEx Roiling Darkness Spawn',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Roiling Darkness', capture: false }),
+      netRegex: { name: 'Roiling Darkness', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -190,7 +190,7 @@ Options.Triggers.push({
     {
       id: 'ZodiarkEx Arcane Sigil Start',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' }),
+      netRegex: { id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' },
       run: (data, matches, _output) => {
         if (parseFloat(matches.y) < 100)
           data.activeFrontSigils.push({ x: parseFloat(matches.x), y: parseFloat(matches.y), typeId: matches.id, npcId: matches.sourceId });
@@ -199,7 +199,7 @@ Options.Triggers.push({
     {
       id: 'ZodiarkEx Arcane Sigil',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil', capture: false }),
+      netRegex: { id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil', capture: false },
       delaySeconds: 0.2,
       suppressSeconds: 0.5,
       alertText: (data, _matches, output) => {
@@ -272,7 +272,7 @@ Options.Triggers.push({
       // 67EC is leaning left, 67ED is leaning right
       id: 'ZodiarkEx Algedon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: 'Zodiark' }),
+      netRegex: { id: ['67EC', '67ED'], source: 'Zodiark' },
       alertText: (_data, matches, output) => {
         if (matches.id === '67EC') {
           // NE/SW
@@ -300,7 +300,7 @@ Options.Triggers.push({
     {
       id: 'ZodiarkEx Adikia',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63A9', source: 'Zodiark', capture: false }),
+      netRegex: { id: '63A9', source: 'Zodiark', capture: false },
       alertText: (data, _matches, output) => {
         return data.seenAdikia ? output.adikia2() : output.adikia1();
       },
@@ -325,7 +325,7 @@ Options.Triggers.push({
     {
       id: 'ZodiarkEx Phobos',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '67F0', source: 'Zodiark', capture: false }),
+      netRegex: { id: '67F0', source: 'Zodiark', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

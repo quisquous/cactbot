@@ -24,32 +24,32 @@ Options.Triggers.push({
     {
       id: 'O7N Diffractive Plasma',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '276E', source: 'Guardian', capture: false }),
+      netRegex: { id: '276E', source: 'Guardian', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O7N Magitek Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '276B', source: 'Guardian', capture: false }),
+      netRegex: { id: '276B', source: 'Guardian', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'O7N Arm And Hammer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '276C', source: 'Guardian' }),
+      netRegex: { id: '276C', source: 'Guardian' },
       response: Responses.tankBuster(),
     },
     {
       id: 'O7N Shockwave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2766', source: 'Guardian', capture: false }),
+      netRegex: { id: '2766', source: 'Guardian', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'O7N Diffractive Laser',
       type: 'GainsEffect',
       // Air Force Simulation effect happens ~3 seconds before Diffractive Laser (2761) starts casting.
-      netRegex: NetRegexes.gainsEffect({ effectId: '5D2', capture: false }),
+      netRegex: { effectId: '5D2', capture: false },
       // All of the various hidden Guardian adds all get this effect.
       suppressSeconds: 5,
       response: Responses.getOut(),
@@ -57,13 +57,13 @@ Options.Triggers.push({
     {
       id: 'O7N Prey',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       response: Responses.preyOn('info'),
     },
     {
       id: 'O7N Bomb Deployment',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2762', source: 'Guardian', capture: false }),
+      netRegex: { id: '2762', source: 'Guardian', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -78,7 +78,7 @@ Options.Triggers.push({
     {
       id: 'O7N Demon Simulation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2752', source: 'Guardian', capture: false }),
+      netRegex: { id: '2752', source: 'Guardian', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -97,7 +97,7 @@ Options.Triggers.push({
       // 7110 = Dadaluma
       // 7111 = Ultros
       // 7113 = Bibliotaph
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['7018', '7110', '7111', '7113'] }),
+      netRegex: { npcNameId: ['7018', '7110', '7111', '7113'] },
       infoText: (_data, matches, output) => {
         return output.kill({ name: matches.name });
       },

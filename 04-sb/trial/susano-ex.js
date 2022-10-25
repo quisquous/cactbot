@@ -30,7 +30,7 @@ Options.Triggers.push({
     {
       id: 'SusEx Thundercloud Tracker',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Thunderhead', capture: false }),
+      netRegex: { name: 'Thunderhead', capture: false },
       run: (data) => data.cloud = true,
     },
     {
@@ -40,13 +40,13 @@ Options.Triggers.push({
       // lightning attached to it.
       id: 'SusEx Thundercloud Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2041', source: 'Thunderhead', target: 'Thunderhead', capture: false }),
+      netRegex: { id: '2041', source: 'Thunderhead', target: 'Thunderhead', capture: false },
       run: (data) => data.cloud = false,
     },
     {
       id: 'SusEx Churning Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '4F6', capture: false }),
+      netRegex: { effectId: '4F6', capture: false },
       condition: (data) => !data.churning,
       run: (data) => data.churning = true,
     },
@@ -56,21 +56,21 @@ Options.Triggers.push({
       // while having churning, but is probably ok in most cases.
       id: 'SusEx Churning Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '4F6', capture: false }),
+      netRegex: { effectId: '4F6', capture: false },
       condition: (data) => data.churning,
       run: (data) => data.churning = false,
     },
     {
       id: 'SusEx Stormsplitter',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Susano', id: '2033' }),
+      netRegex: { source: 'Susano', id: '2033' },
       response: Responses.tankBusterSwap('alert', 'info'),
     },
     {
       // Red knockback marker indicator
       id: 'SusEx Knockback',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       alertText: (data, _matches, output) => {
         if (data.cloud)
@@ -126,13 +126,13 @@ Options.Triggers.push({
     {
       id: 'SusEx Brightstorm Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'SusEx Levinbolt',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '006E' }),
+      netRegex: { id: '006E' },
       condition: Conditions.targetIsYou(),
       alertText: (data, _matches, output) => {
         if (data.cloud)
@@ -182,7 +182,7 @@ Options.Triggers.push({
     {
       id: 'SusEx Levinbolt Stun',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '006F' }),
+      netRegex: { id: '006F' },
       infoText: (data, matches, output) => {
         // It's sometimes hard for tanks to see the line, so just give a
         // sound indicator for jumping rope back and forth.
@@ -203,7 +203,7 @@ Options.Triggers.push({
     {
       id: 'SusEx Churning',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '4F6' }),
+      netRegex: { effectId: '4F6' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       response: Responses.stopEverything('alert'),

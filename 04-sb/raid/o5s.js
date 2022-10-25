@@ -7,31 +7,31 @@ Options.Triggers.push({
     {
       id: 'O5S Stop Combat',
       type: 'RemovedCombatant',
-      netRegex: NetRegexes.removingCombatant({ name: 'Phantom Train', capture: false }),
+      netRegex: { name: 'Phantom Train', capture: false },
       run: (data) => data.StopCombat(),
     },
     {
       id: 'O5S Doom Strike',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28B1', source: 'Phantom Train' }),
+      netRegex: { id: '28B1', source: 'Phantom Train' },
       response: Responses.tankBuster(),
     },
     {
       id: 'O5S Head On',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28A4', source: 'Phantom Train', capture: false }),
+      netRegex: { id: '28A4', source: 'Phantom Train', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'O5S Diabolic Headlamp',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28B2', source: 'Phantom Train', capture: false }),
+      netRegex: { id: '28B2', source: 'Phantom Train', capture: false },
       response: Responses.stackMiddle(),
     },
     {
       id: 'O5S Diabolic Light',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -48,7 +48,7 @@ Options.Triggers.push({
     {
       id: 'O5S Diabolic Wind',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0046' }),
+      netRegex: { id: '0046' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -65,7 +65,7 @@ Options.Triggers.push({
     {
       id: 'O5S Remorse',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Remorse', capture: false }),
+      netRegex: { name: 'Remorse', capture: false },
       response: Responses.knockback(),
     },
   ],

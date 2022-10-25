@@ -8,7 +8,7 @@ Options.Triggers.push({
     {
       id: 'General Provoke',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1D6D' }),
+      netRegex: { id: '1D6D' },
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -29,7 +29,7 @@ Options.Triggers.push({
     {
       id: 'General Frog Legs',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '4783' }),
+      netRegex: { id: '4783' },
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -63,7 +63,7 @@ Options.Triggers.push({
     {
       id: 'General Shirk',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1D71' }),
+      netRegex: { id: '1D71' },
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -84,7 +84,7 @@ Options.Triggers.push({
     {
       id: 'General Holmgang',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '2B' }),
+      netRegex: { id: '2B' },
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -105,7 +105,7 @@ Options.Triggers.push({
     {
       id: 'General Hallowed',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1E' }),
+      netRegex: { id: '1E' },
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -126,7 +126,7 @@ Options.Triggers.push({
     {
       id: 'General Superbolide',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3F18' }),
+      netRegex: { id: '3F18' },
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -147,7 +147,7 @@ Options.Triggers.push({
     {
       id: 'General Living',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'E36' }),
+      netRegex: { id: 'E36' },
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -168,7 +168,7 @@ Options.Triggers.push({
     {
       id: 'General Walking',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '32B' }),
+      netRegex: { effectId: '32B' },
       condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -191,7 +191,8 @@ Options.Triggers.push({
       // the message is sent to this channel; when a ready check is invoked by others, then it
       // would be sent to the 0239 channel.  (Sometimes this is also sent to 0139, unknown why?)
       id: 'General Ready Check',
-      netRegex: NetRegexes.gameLog({ line: '(?:You have commenced a ready check|\\y{Name} has initiated a ready check).*?', code: ['0039', '0139', '0239'], capture: false }),
+      type: 'GameLog',
+      netRegex: { line: '(?:You have commenced a ready check|\\y{Name} has initiated a ready check).*?', code: ['0039', '0139', '0239'], capture: false },
       sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.webm',
       soundVolume: 0.6,
     },

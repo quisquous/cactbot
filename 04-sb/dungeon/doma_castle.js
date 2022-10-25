@@ -5,13 +5,13 @@ Options.Triggers.push({
     {
       id: 'Doma Castle Magitek Hexadrone 2-Tonze Magitek Missile',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Doma Castle Magitek Hexadrone Magitek Missiles',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Magitek Hexadrone', id: '20A4', capture: false }),
+      netRegex: { source: 'Magitek Hexadrone', id: '20A4', capture: false },
       infoText: (data, _matches, output) => {
         return data.seenTowers ? output.getTowers() : output.getTower();
       },
@@ -38,7 +38,7 @@ Options.Triggers.push({
     {
       id: 'Doma Castle Hypertuned Grynewaht Delay-Action Charge',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0063' }),
+      netRegex: { id: '0063' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -46,7 +46,7 @@ Options.Triggers.push({
       id: 'Doma Castle Hypertuned Grynewaht Thermobaric Charge',
       type: 'GainsEffect',
       // There's no 0x1B line or 0x14/0x15 target for this prox marker, only the Prey debuff.
-      netRegex: NetRegexes.gainsEffect({ effectId: '4E5' }),
+      netRegex: { effectId: '4E5' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {

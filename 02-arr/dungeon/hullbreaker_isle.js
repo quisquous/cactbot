@@ -4,13 +4,13 @@ Options.Triggers.push({
     {
       id: 'Hullbreaker Isle Stool Pelt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '89E', source: 'Sasquatch', capture: false }),
+      netRegex: { id: '89E', source: 'Sasquatch', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Hullbreaker Isle Chest Thump',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '89F', source: 'Sasquatch', capture: false }),
+      netRegex: { id: '89F', source: 'Sasquatch', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
