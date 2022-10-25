@@ -12,7 +12,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Silkie call when to go to boss for safety
 // TODO: Better duster handling for Silkie timeline?
 // TODO: Additional Gladiator triggers and adjustments to timeline
-// TODO: Additional Shadowcaster triggers and timeline to enrage
+// TODO: Additional Shadowcaster triggers and adjustments to timeline
 
 export interface Data extends RaidbossData {
   suds?: string;
