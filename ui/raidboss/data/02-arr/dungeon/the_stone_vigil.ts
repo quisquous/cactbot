@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -12,7 +11,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Stone Vigil Swinge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '387', source: 'Chudo-Yudo', capture: false }),
+      netRegex: { id: '387', source: 'Chudo-Yudo', capture: false },
       response: Responses.awayFromFront(),
     },
   ],

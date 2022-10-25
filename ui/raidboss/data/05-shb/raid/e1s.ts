@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -82,7 +81,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Initial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D70', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D70', source: 'Eden Prime', capture: false },
       run: (data) => {
         if (!data.viceCount) {
           data.viceCount = 1;
@@ -93,49 +92,49 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Paradise Regained',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ target: 'Eden Prime', effectId: '7B6', capture: false }),
+      netRegex: { target: 'Eden Prime', effectId: '7B6', capture: false },
       run: (data) => data.paradise = true,
     },
     {
       id: 'E1S Paradise Regained But Lost',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ target: 'Eden Prime', effectId: '7B6', capture: false }),
+      netRegex: { target: 'Eden Prime', effectId: '7B6', capture: false },
       run: (data) => data.paradise = false,
     },
     {
       id: 'E1S Eden\'s Gravity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D70', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D70', source: 'Eden Prime', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E1S Fragor Maximus',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D8B', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D8B', source: 'Eden Prime', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E1S Dimensional Shift',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D7F', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D7F', source: 'Eden Prime', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E1S Spear Of Paradise',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D88', source: 'Eden Prime' }),
+      netRegex: { id: '3D88', source: 'Eden Prime' },
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'E1S Eden\'s Flare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D73', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D73', source: 'Eden Prime', capture: false },
       response: Responses.getUnder('alert'),
     },
     {
       id: 'E1S Delta Attack 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '44F4', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '44F4', source: 'Eden Prime', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -151,7 +150,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Delta Attack 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '44F8', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '44F8', source: 'Eden Prime', capture: false },
       alertText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.getInSpread!();
@@ -186,7 +185,7 @@ const triggerSet: TriggerSet<Data> = {
       // 3D7D: healer2
       id: 'E1S Vice and Virtue Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Eden Prime', capture: false }),
+      netRegex: { id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Eden Prime', capture: false },
       run: (data) => {
         // Note: this happens *after* the marks, so is setting up vice for the next marks.
         data.viceCount = (data.viceCount ?? 0) + 1;
@@ -214,37 +213,37 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Vice and Virtue DPS 2 Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D7A', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D7A', source: 'Eden Prime', capture: false },
       run: (data) => data.vice = 'dps',
     },
     {
       id: 'E1S Vice and Virtue Tank 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '44EE', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '44EE', source: 'Eden Prime', capture: false },
       run: (data) => data.vice = 'healer',
     },
     {
       id: 'E1S Vice and Virtue Tank 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D78', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D78', source: 'Eden Prime', capture: false },
       run: (data) => data.vice = 'dps',
     },
     {
       id: 'E1S Vice and Virtue Healer 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '44F0', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '44F0', source: 'Eden Prime', capture: false },
       run: (data) => data.vice = 'tank',
     },
     {
       id: 'E1S Vice and Virtue Healer 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D7D', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D7D', source: 'Eden Prime', capture: false },
       run: (data) => data.vice = 'tank',
     },
     {
       id: 'E1S Vice and Virtue DPS 1',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AE' }),
+      netRegex: { id: '00AE' },
       condition: (data, matches) => !data.paradise && data.vice === 'dps' && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -261,7 +260,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Vice and Virtue DPS 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D7A', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D7A', source: 'Eden Prime', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -277,7 +276,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Vice and Virtue Tank Mark',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AE' }),
+      netRegex: { id: '00AE' },
       condition: (data, matches) => data.vice === 'tank' && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -294,7 +293,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Vice and Virtue Tank Stack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D78', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D78', source: 'Eden Prime', capture: false },
       condition: (data) => data.role !== 'tank',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -311,7 +310,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Vice and Virtue Healer Mark YOU',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '840' }),
+      netRegex: { effectId: '840' },
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.paradise)
@@ -341,7 +340,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Vice and Virtue Healer Mark Not You',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '840', capture: false }),
+      netRegex: { effectId: '840', capture: false },
       condition: (data) => {
         if (data.role === 'dps')
           return data.paradise;
@@ -365,7 +364,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Mana Boost',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D8D', source: 'Guardian Of Paradise' }),
+      netRegex: { id: '3D8D', source: 'Guardian Of Paradise' },
       condition: (data) => data.CanSilence(),
       suppressSeconds: 1,
       response: Responses.interrupt(),
@@ -373,13 +372,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Pure Light',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D8A', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D8A', source: 'Eden Prime', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'E1S Pure Beam 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D80', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D80', source: 'Eden Prime', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -395,7 +394,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1S Pure Beam 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D82', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D82', source: 'Eden Prime', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

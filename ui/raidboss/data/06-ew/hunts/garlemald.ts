@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -15,7 +14,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Aegeiros Leafstorm',
       type: 'StartsUsing',
       // This always precedes Rimestorm (6C3D).
-      netRegex: NetRegexes.startsUsing({ id: '6C3C', source: 'Aegeiros', capture: false }),
+      netRegex: { id: '6C3C', source: 'Aegeiros', capture: false },
       condition: (data) => data.inCombat,
       // Alarm text mostly because this one kills so many people.
       alarmText: (_data, _matches, output) => output.outAndBehind!(),
@@ -33,7 +32,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Aegeiros Backhand Blow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6C40', source: 'Aegeiros', capture: false }),
+      netRegex: { id: '6C40', source: 'Aegeiros', capture: false },
       condition: (data) => data.inCombat,
       alertText: (_data, _matches, output) => output.getFront!(),
       outputStrings: {
@@ -50,7 +49,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Minerva Anti-personnel Build Ballistic Missile',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6B7D', source: 'Minerva' }),
+      netRegex: { id: '6B7D', source: 'Minerva' },
       condition: (data) => data.inCombat,
       response: (data, matches, output) => {
         // cactbot-builtin-response
@@ -81,7 +80,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Minerva Ring Build Ballistic Missile',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6B7E', source: 'Minerva' }),
+      netRegex: { id: '6B7E', source: 'Minerva' },
       condition: (data) => data.inCombat,
       response: (data, matches, output) => {
         // cactbot-builtin-response

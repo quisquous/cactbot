@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -12,7 +11,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sastasha Hard Slime',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '239' }),
+      netRegex: { effectId: '239' },
       condition: (data) => data.CanCleanse(),
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
@@ -29,7 +28,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sastasha Hard Tail Screw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'BF4', source: 'Karlabos' }),
+      netRegex: { id: 'BF4', source: 'Karlabos' },
       alertText: (data, matches, output) => {
         if (data.CanStun())
           return output.stun!({ name: matches.source });

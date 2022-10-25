@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -14,31 +13,31 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1N Eden\'s Gravity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D94', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D94', source: 'Eden Prime', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E1N Fragor Maximus',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DA4', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3DA4', source: 'Eden Prime', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E1N Dimensional Shift',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D9C', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D9C', source: 'Eden Prime', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E1N Eden\'s Flare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3D97', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3D97', source: 'Eden Prime', capture: false },
       response: Responses.getUnder('alert'),
     },
     {
       id: 'E1N Vice of Vanity You',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011', target: 'Eden Prime' }),
+      netRegex: { id: '0011', target: 'Eden Prime' },
       condition: (data, matches) => data.me === matches.source,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -55,13 +54,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E1N Spear Of Paradise',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DA1', source: 'Eden Prime' }),
+      netRegex: { id: '3DA1', source: 'Eden Prime' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E1N Vice of Apathy Mark',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001C' }),
+      netRegex: { id: '001C' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -79,7 +78,7 @@ const triggerSet: TriggerSet<Data> = {
       // 10.5 second cast, maybe warn 6 seconds ahead so that folks bait outside.
       id: 'E1N Pure Light',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3DA3', source: 'Eden Prime', capture: false }),
+      netRegex: { id: '3DA3', source: 'Eden Prime', capture: false },
       delaySeconds: 4.5,
       response: Responses.getBehind(),
     },

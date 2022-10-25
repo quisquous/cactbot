@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -13,7 +12,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T4 Gravity Thrust',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Spinner-Rook', id: '4D4' }),
+      netRegex: { source: 'Spinner-Rook', id: '4D4' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -29,7 +28,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T4 Pox',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Spinner-Rook', id: '4D5' }),
+      netRegex: { source: 'Spinner-Rook', id: '4D5' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -45,7 +44,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T4 Reminder',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Clockwork Knight', capture: false }),
+      netRegex: { name: 'Clockwork Knight', capture: false },
       suppressSeconds: 100000,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

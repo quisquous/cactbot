@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -48,13 +47,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hydrothermal Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       run: (data, matches) => data.hydro.push(matches.target),
     },
     {
       id: 'A1S Hydrothermal You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E' }),
+      netRegex: { id: '001E' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -71,7 +70,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hydrothermal Healer',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
+      netRegex: { id: '001E', capture: false },
       suppressSeconds: 2,
       infoText: (data, _matches, output) => {
         if (data.hydro.length === 0)
@@ -92,14 +91,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hydrothermal Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
+      netRegex: { id: '001E', capture: false },
       delaySeconds: 10,
       run: (data) => data.hydro = [],
     },
     {
       id: 'A1S Resin Bomb',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'E46', source: 'Oppressor', capture: false }),
+      netRegex: { id: 'E46', source: 'Oppressor', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -115,13 +114,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hypercompressed Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
+      netRegex: { id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] },
       run: (data, matches) => data.hyper.push(matches.target),
     },
     {
       id: 'A1S Hypercompressed You',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
+      netRegex: { id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 2,
       response: Responses.tankBuster('alarm'),
@@ -129,7 +128,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hypercompressed Other',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
+      netRegex: { id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false },
       delaySeconds: 0.3,
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {
@@ -144,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A1S Hypercompressed Delete',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
+      netRegex: { id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false },
       delaySeconds: 10,
       run: (data) => data.hyper = [],
     },

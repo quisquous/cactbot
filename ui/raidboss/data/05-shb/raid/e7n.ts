@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -16,19 +15,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7N Empty Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C52', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C52', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E7N Unshadowed Stake',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'The Idol Of Darkness', id: '0025' }),
+      netRegex: { source: 'The Idol Of Darkness', id: '0025' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E7N Left With Thee',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
+      netRegex: { effectId: '8C2' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -45,7 +44,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7N Right With Thee',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
+      netRegex: { effectId: '8C3' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -62,7 +61,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7N Forward With Thee',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
+      netRegex: { effectId: '8C0' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -79,7 +78,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7N Back With Thee',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
+      netRegex: { effectId: '8C1' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -96,7 +95,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7N Strength In Numbers Donut',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C4C', capture: false }),
+      netRegex: { source: 'Idolatry', id: '4C4C', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -115,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
       // markers just before this, so it might be difficult to see.
       id: 'E7N Strength In Numbers Circle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C4D', capture: false }),
+      netRegex: { source: 'Idolatry', id: '4C4D', capture: false },
       suppressSeconds: 1,
       response: Responses.getOut(),
     },
@@ -124,7 +123,7 @@ const triggerSet: TriggerSet<Data> = {
       // will be struck by a color before their debuff expires.
       id: 'E7N Astral Effect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
+      netRegex: { effectId: '8BE' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
       infoText: (data, _matches, output) => {
@@ -149,7 +148,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7N Umbral Effect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
+      netRegex: { effectId: '8BF' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
       infoText: (data, _matches, output) => {
@@ -175,7 +174,7 @@ const triggerSet: TriggerSet<Data> = {
       // Safety in case the user dies during Dark/Light Course.
       id: 'E7N Away With Thee Color Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C39', capture: false }),
+      netRegex: { source: 'The Idol Of Darkness', id: '4C39', capture: false },
       run: (data) => delete data.colorCount,
     },
   ],

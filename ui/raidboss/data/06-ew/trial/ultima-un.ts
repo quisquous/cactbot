@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -60,14 +59,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ultima Unreal Tank Purge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6EF9', source: 'The Ultima Weapon', capture: false }),
+      netRegex: { id: '6EF9', source: 'The Ultima Weapon', capture: false },
       response: Responses.bigAoe(),
     },
     {
       // At 5 stacks of Viscous Aetheroplasm, the target begins taking massive damage.
       id: 'Ultima Unreal Viscous Aetheroplasm',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '171', count: '04', capture: false }),
+      netRegex: { effectId: '171', count: '04', capture: false },
       condition: (data) => data.role === 'tank',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -77,7 +76,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ultima Unreal Homing Aetheroplasm Collect',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6F07' }),
+      netRegex: { id: '6F07' },
       run: (data, matches) => {
         data.plasmTargets = data.plasmTargets ??= [];
         data.plasmTargets.push(matches.target);
@@ -88,7 +87,7 @@ const triggerSet: TriggerSet<Data> = {
       // These lines are sent by entities with no name and no 03/04 lines.
       id: 'Ultima Unreal Homing Aetheroplasm Call',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6F07', capture: false }),
+      netRegex: { id: '6F07', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
@@ -116,7 +115,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ultima Unreal Homing Aetheroplasm Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6F07', capture: false }),
+      netRegex: { id: '6F07', capture: false },
       delaySeconds: 5,
       suppressSeconds: 5,
       run: (data) => delete data.plasmTargets,
@@ -126,7 +125,7 @@ const triggerSet: TriggerSet<Data> = {
       // and we want to warn players as early as possible.
       id: 'Ultima Unreal Aetheric Boom Orbs',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6EF6', source: 'The Ultima Weapon', capture: false }),
+      netRegex: { id: '6EF6', source: 'The Ultima Weapon', capture: false },
       alarmText: (data, _matches, output) => output[`boom${data.boomCounter}`]!(),
       run: (data) => data.boomCounter += 1,
       outputStrings: {
@@ -156,7 +155,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ultima Unreal Aetheric Boom Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6EF6', source: 'The Ultima Weapon', capture: false }),
+      netRegex: { id: '6EF6', source: 'The Ultima Weapon', capture: false },
       response: Responses.knockback(),
     },
   ],

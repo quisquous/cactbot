@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -25,31 +24,31 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6N Hemitheos Dark IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '784E', source: 'Hegemone', capture: false }),
+      netRegex: { id: '784E', source: 'Hegemone', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P6N Choros Ixou Sides',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7858', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7858', source: 'Hegemone', capture: false },
       response: Responses.goFrontBack(),
     },
     {
       id: 'P6N Choros Ixou Front Back',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7857', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7857', source: 'Hegemone', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'P6N Synergy Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0157' }),
+      netRegex: { id: '0157' },
       run: (data, matches) => data.busterTargets.push(matches.target),
     },
     {
       id: 'P6N Synergy Call',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0157', capture: false }),
+      netRegex: { id: '0157', capture: false },
       delaySeconds: 0.3,
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {
@@ -65,14 +64,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6N Synergy Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0157', capture: false }),
+      netRegex: { id: '0157', capture: false },
       delaySeconds: 5,
       run: (data) => data.busterTargets = [],
     },
     {
       id: 'P6N Glossomorph Initial',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'CF2' }),
+      netRegex: { effectId: 'CF2' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, matches, output) => {
         if (parseFloat(matches.duration) > 15)
@@ -99,7 +98,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6N Glossomorph Call',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'CF2' }),
+      netRegex: { effectId: 'CF2' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
       alertText: (_data, _matches, output) => output.text!(),
@@ -117,7 +116,7 @@ const triggerSet: TriggerSet<Data> = {
       // 00A7 is the orange clockwise indicator. 00A8 is the blue counterclockwise one.
       id: 'P6N Strophe Ixou',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['00A7', '00A8'] }),
+      netRegex: { id: ['00A7', '00A8'] },
       infoText: (_data, matches, output) => matches.id === '00A7' ? output.left!() : output.right!(),
       outputStrings: {
         left: {
@@ -141,14 +140,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6N Dark Ashes',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0065' }),
+      netRegex: { id: '0065' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'P6N Aetherial Exchange',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '784D', source: 'Hegemone', capture: false }),
+      netRegex: { id: '784D', source: 'Hegemone', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
