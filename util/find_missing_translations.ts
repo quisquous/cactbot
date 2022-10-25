@@ -178,13 +178,15 @@ type FindMissingTranslationsNamespaceInterface = {
   'locale': string | null;
 };
 
-class FindMissingTranslationsNamespace extends Namespace implements FindMissingTranslationsNamespaceInterface {
+class FindMissingTranslationsNamespace extends Namespace
+  implements FindMissingTranslationsNamespaceInterface {
   'filter': string | null;
   'locale': string | null;
 }
 
 type FindMissingTranslationsInquirerType = {
-  [name in keyof FindMissingTranslationsNamespaceInterface]: FindMissingTranslationsNamespaceInterface[name];
+  [name in keyof FindMissingTranslationsNamespaceInterface]:
+    FindMissingTranslationsNamespaceInterface[name];
 };
 
 const findMissingTranslationsFunc = (args: Namespace): Promise<void> => {

@@ -95,7 +95,8 @@ class Fisher {
         }),
         quit: NetRegexes.gameLog({
           code: '08c3',
-          line: '(?:(?:[\\w\']\\.?)(?:[\\w\'\\s]+\\.?)? put(?:s?) away (?:your|his|her) rod\\.|Fishing canceled).*?',
+          line:
+            '(?:(?:[\\w\']\\.?)(?:[\\w\'\\s]+\\.?)? put(?:s?) away (?:your|his|her) rod\\.|Fishing canceled).*?',
         }),
         discovered: NetRegexes.gameLog({
           code: '08c3',
@@ -137,7 +138,8 @@ class Fisher {
         undiscovered: /Zone de pêche inconnue/,
         cast: NetRegexes.gameLog({
           code: '08c3',
-          line: 'Vous commencez à pêcher. Point de pêche: (?<place>[\\w\\s\\-\'\\(\\)\u00b0\u00c0-\u017fαβγ]+).*?',
+          line:
+            'Vous commencez à pêcher. Point de pêche: (?<place>[\\w\\s\\-\'\\(\\)\u00b0\u00c0-\u017fαβγ]+).*?',
         }),
         bite: NetRegexes.gameLog({ code: '08c3', line: 'Vous avez une touche!.*?' }),
         catch: NetRegexes.gameLog({
@@ -182,7 +184,8 @@ class Fisher {
         }),
         quit: NetRegexes.gameLog({
           code: '08c3',
-          line: '(?:[\\w\\s-\']+)?(?:は釣りを終えた。|戦闘不能になったため、釣りが中断されました。|は釣りを終えた。|敵から攻撃を受けたため、釣りが中断されました。).*?',
+          line:
+            '(?:[\\w\\s-\']+)?(?:は釣りを終えた。|戦闘不能になったため、釣りが中断されました。|は釣りを終えた。|敵から攻撃を受けたため、釣りが中断されました。).*?',
         }),
         discovered: NetRegexes.gameLog({
           code: '08c3',
@@ -213,7 +216,8 @@ class Fisher {
         }),
         quit: NetRegexes.gameLog({
           code: '08c3',
-          line: '(?:[\\w\\s-\'\u4e00-\u9fa5·]+)?(?:收回了鱼线。|陷入了战斗不能状态，钓鱼中断。|收回了鱼线。|受到了敌人的攻击，钓鱼中断。).*?',
+          line:
+            '(?:[\\w\\s-\'\u4e00-\u9fa5·]+)?(?:收回了鱼线。|陷入了战斗不能状态，钓鱼中断。|收回了鱼线。|受到了敌人的攻击，钓鱼中断。).*?',
         }),
         discovered: NetRegexes.gameLog({
           code: '08c3',
@@ -229,7 +233,8 @@ class Fisher {
         bite: NetRegexes.gameLog({ code: '08c3', line: '낚싯대를 낚아챘습니다!.*?' }),
         catch: NetRegexes.gameLog({
           code: '0843',
-          line: '(?:[\\w\'가-힣]+) 님이 (?<fish>[\\s\\w\'\\-\\.\\(\\)\?:가-힣]+)\\(?:\\d+\\.\\d일름\\)[을를] 낚았습니다.*?',
+          line:
+            '(?:[\\w\'가-힣]+) 님이 (?<fish>[\\s\\w\'\\-\\.\\(\\)\?:가-힣]+)\\(?:\\d+\\.\\d일름\\)[을를] 낚았습니다.*?',
         }),
         nocatch: NetRegexes.gameLog({
           code: '08c3',
@@ -238,11 +243,13 @@ class Fisher {
         }),
         mooch: NetRegexes.gameLog({
           code: '08c3',
-          line: '(?:[\\w\'가-힣]+) 님이 방금 낚은 (?:[\\s\\w\'\\-\\.\\(\\)\?:가-힣]+)[을를] 조심스럽게 물에 넣고 생미끼 낚시를 시도합니다\\..*?',
+          line:
+            '(?:[\\w\'가-힣]+) 님이 방금 낚은 (?:[\\s\\w\'\\-\\.\\(\\)\?:가-힣]+)[을를] 조심스럽게 물에 넣고 생미끼 낚시를 시도합니다\\..*?',
         }),
         quit: NetRegexes.gameLog({
           code: '08c3',
-          line: '(?:(?:[\\w\'가-힣]+) 님이 낚시를 마쳤습니다.|전투불능이 되어 낚시가 중단되었습니다\.|적의 공격을 받아 낚시가 중단되었습니다\.).*?',
+          line:
+            '(?:(?:[\\w\'가-힣]+) 님이 낚시를 마쳤습니다.|전투불능이 되어 낚시가 중단되었습니다\.|적의 공격을 받아 낚시가 중단되었습니다\.).*?',
         }),
         discovered: NetRegexes.gameLog({
           code: '08c3',

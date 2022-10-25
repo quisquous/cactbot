@@ -2,7 +2,11 @@ import { Lang } from '../../../resources/languages';
 import NetRegexes, { commonNetRegex } from '../../../resources/netregexes';
 import { UnreachableCode } from '../../../resources/not_reached';
 import { LocaleNetRegex } from '../../../resources/translations';
-import { CactbotBaseRegExp, CactbotRegExpExecArray, TriggerTypes } from '../../../types/net_trigger';
+import {
+  CactbotBaseRegExp,
+  CactbotRegExpExecArray,
+  TriggerTypes,
+} from '../../../types/net_trigger';
 
 // Disable no-explicit-any for cloneData as it needs to work on raw objects for performance reasons.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

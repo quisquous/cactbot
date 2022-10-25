@@ -837,10 +837,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // the lowest eight Hesperos IDs are the thorns that tether the boss
         const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
-        const sortedCombatantData = combatantData.combatants.sort(sortCombatants).splice(
-          combatantDataLength - 8,
-          combatantDataLength,
-        );
+        const sortedCombatantData = combatantData.combatants.sort(sortCombatants).splice(combatantDataLength - 8, combatantDataLength);
 
         sortedCombatantData.forEach((combatant: PluginCombatantState) => {
           (data.thornIds ??= []).push(combatant.ID ?? 0);

@@ -83,31 +83,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dohn Mheg Imp Choir',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '34F0',
-        source: 'Aenc Thon, Lord Of The Lengthsome Gait',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '34F0', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
       response: Responses.lookAway('alert'),
     },
     {
       id: 'Dohn Mheg Toad Choir',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '34EF',
-        source: 'Aenc Thon, Lord Of The Lengthsome Gait',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '34EF', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
       id: 'Dohn Mheg Virtuosic Cappriccio',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: '358C',
-        source: 'Aenc Thon, Lord Of The Lengthsome Gait',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: '358C', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
       response: Responses.aoe(),
     },
   ],

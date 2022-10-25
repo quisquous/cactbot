@@ -196,9 +196,7 @@ const triggerSet: TriggerSet<Data> = {
           33: ['0C', 'cornerSE'],
         };
 
-        const mapLookup: { [location: string]: number } = Object.fromEntries(
-          Object.entries(unsafeMap).map(([tile, [location]]) => [location, parseInt(tile, 10)]),
-        );
+        const mapLookup: { [location: string]: number } = Object.fromEntries(Object.entries(unsafeMap).map(([tile, [location]]) => [location, parseInt(tile, 10)]));
 
         // Polys 2, 3, 5, and 6 involve tethers. We only care about which
         // tiles have tethers, not which tiles are tethered together.
@@ -237,9 +235,7 @@ const triggerSet: TriggerSet<Data> = {
               if (unsafeMap[deleteTile] !== undefined)
                 delete safe[unsafeMap[deleteTile]![1]];
             });
-          } else if (
-            (effect.flags === diagonalTileFlags && !isTethered) || (effect.flags === crossTileFlags && isTethered)
-          ) {
+          } else if ((effect.flags === diagonalTileFlags && !isTethered) || (effect.flags === crossTileFlags && isTethered)) {
             relDiagonalTiles.forEach((tileMod) => {
               const deleteTile: number = startTile + tileMod;
               if (unsafeMap[deleteTile] !== undefined)
@@ -284,10 +280,7 @@ const triggerSet: TriggerSet<Data> = {
               return;
             return output.single!({ dir1: output[safe0]!() });
           case 3: // two inside safe spots
-            if (
-              safeTiles.length !== 2 || safe1 === undefined || output[safe0] === undefined ||
-              output[safe1] === undefined
-            )
+            if (safeTiles.length !== 2 || safe1 === undefined || output[safe0] === undefined || output[safe1] === undefined)
               return;
             return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
           case 4: // here for completeness, but should never be run
@@ -311,32 +304,16 @@ const triggerSet: TriggerSet<Data> = {
             if (data.predationDebuff === 'CF7') {
               data.poly6SafeSide = output.left!();
               if (safe0 === 'insideNW' || safe0 === 'insideSW') // inside + wall tile safe
-                return output.poly6!({
-                  dir1: output.left!(),
-                  dir2: output[safe0]!(),
-                  dir3: output[poly6Pairs[safe0]!]!(),
-                });
+                return output.poly6!({ dir1: output.left!(), dir2: output[safe0]!(), dir3: output[poly6Pairs[safe0]!]!() });
               else if (safe1 === 'cornerNW' || safe1 === 'cornerSW')
-                return output.poly6!({
-                  dir1: output.left!(),
-                  dir2: output[safe1]!(),
-                  dir3: output[poly6Pairs[safe1]!]!(),
-                });
+                return output.poly6!({ dir1: output.left!(), dir2: output[safe1]!(), dir3: output[poly6Pairs[safe1]!]!() });
               return;
             } else if (data.predationDebuff === 'CF8') {
               data.poly6SafeSide = output.right!();
               if (safe0 === 'insideNE' || safe0 === 'insideSE') // inside + wall tile safe
-                return output.poly6!({
-                  dir1: output.right!(),
-                  dir2: output[safe0]!(),
-                  dir3: output[poly6Pairs[safe0]!]!(),
-                });
+                return output.poly6!({ dir1: output.right!(), dir2: output[safe0]!(), dir3: output[poly6Pairs[safe0]!]!() });
               else if (safe1 === 'cornerNE' || safe1 === 'cornerSE')
-                return output.poly6!({
-                  dir1: output.right!(),
-                  dir2: output[safe1]!(),
-                  dir3: output[poly6Pairs[safe1]!]!(),
-                });
+                return output.poly6!({ dir1: output.right!(), dir2: output[safe1]!(), dir3: output[poly6Pairs[safe1]!]!() });
               return;
             }
             return;
@@ -986,9 +963,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         for (const darkSphere of data.darkSpheres) {
           if (data.me === darkSphere.target)
-            return data.poly6SafeSide === undefined
-              ? output.spread!()
-              : output.spreadSide!({ dir1: data.poly6SafeSide });
+            return data.poly6SafeSide === undefined ? output.spread!() : output.spreadSide!({ dir1: data.poly6SafeSide });
           return data.poly6SafeSide === undefined ? output.stack!() : output.stackSide!({ dir1: data.poly6SafeSide });
         }
       },

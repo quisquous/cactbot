@@ -1,6 +1,12 @@
 import { EventEmitter } from 'eventemitter3';
 
-import { kComboActions, kComboBreakers, kComboBreakersCn, kComboBreakersKo, kComboDelay } from './constants';
+import {
+  kComboActions,
+  kComboBreakers,
+  kComboBreakersCn,
+  kComboBreakersKo,
+  kComboDelay,
+} from './constants';
 import { FfxivRegion } from './jobs';
 import { Player } from './player';
 

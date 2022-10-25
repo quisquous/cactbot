@@ -387,8 +387,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Adelphel KB Direction',
       type: 'NameToggle',
       netRegex: NetRegexes.nameToggle({ toggle: '01' }),
-      condition: (data, matches) =>
-        data.phase === 'doorboss' && matches.id === data.adelphelId && data.firstAdelphelJump,
+      condition: (data, matches) => data.phase === 'doorboss' && matches.id === data.adelphelId && data.firstAdelphelJump,
       // Delay 0.1s here to prevent any race condition issues with getCombatants
       delaySeconds: 0.1,
       promise: async (data, matches) => {
@@ -2074,8 +2073,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Playstation2 Fire Chains No Marker',
       type: 'HeadMarker',
       netRegex: NetRegexes.headMarker(),
-      condition: (data, matches) =>
-        data.phase === 'thordan2' && playstationHeadmarkerIds.includes(getHeadmarkerId(data, matches)),
+      condition: (data, matches) => data.phase === 'thordan2' && playstationHeadmarkerIds.includes(getHeadmarkerId(data, matches)),
       delaySeconds: 0.5,
       suppressSeconds: 5,
       alarmText: (data, _matches, output) => {

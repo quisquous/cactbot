@@ -1,6 +1,12 @@
 import chai from 'chai';
 
-import { builtInResponseStr, Responses, severityList, severityMap, triggerFunctions } from '../../resources/responses';
+import {
+  builtInResponseStr,
+  Responses,
+  severityList,
+  severityMap,
+  triggerFunctions,
+} from '../../resources/responses';
 import { RaidbossData } from '../../types/data';
 import { Matches } from '../../types/net_matches';
 import { Output, ResponseFunc, ResponseOutput } from '../../types/trigger';

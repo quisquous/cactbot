@@ -142,11 +142,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Ferostorm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: ['Garuda', 'Raktapaksa'],
-        id: ['4BF[EF]', '4C0[45]'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

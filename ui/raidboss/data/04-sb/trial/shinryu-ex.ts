@@ -193,12 +193,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Levinbolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['25EA', '2720', '2725'],
-        source: 'Right Wing',
-        target: 'Right Wing',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Right Wing', target: 'Right Wing', capture: false }),
       durationSeconds: 7,
       alertText: (data, _matches, output) => {
         if (data.phase === 3)
@@ -228,12 +223,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Levinbolt Phase 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['25EA', '2720', '2725'],
-        source: 'Right Wing',
-        target: 'Right Wing',
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Right Wing', target: 'Right Wing', capture: false }),
       condition: (data) => data.phase === 3,
       delaySeconds: 9.5,
       alarmText: (_data, _matches, output) => output.text!(),

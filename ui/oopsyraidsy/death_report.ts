@@ -2,7 +2,13 @@ import { Lang } from '../../resources/languages';
 import logDefinitions from '../../resources/netlog_defs';
 import { DeathReportData, OopsyMistake } from '../../types/oopsy';
 
-import { kAttackFlags, kHealFlags, kShiftFlagValues, Translate, UnscrambleDamage } from './oopsy_common';
+import {
+  kAttackFlags,
+  kHealFlags,
+  kShiftFlagValues,
+  Translate,
+  UnscrambleDamage,
+} from './oopsy_common';
 import {
   TrackedDeathReasonEvent,
   TrackedEvent,

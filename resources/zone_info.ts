@@ -1772,7 +1772,8 @@ const data: ZoneInfoType = {
       'cn': '突破所有关门，讨伐最深处的敌人！',
       'de': 'Sturmkommando',
       'en': 'Basic Training: Enemy Strongholds',
-      'fr': 'Entraînement<Indent/>: in<SoftHyphen/>fil<SoftHyphen/>tra<SoftHyphen/>tion en base ennemie',
+      'fr':
+        'Entraînement<Indent/>: in<SoftHyphen/>fil<SoftHyphen/>tra<SoftHyphen/>tion en base ennemie',
       'ja': '全関門を突破し、最深部の敵を討て！',
       'ko': '관문을 돌파하고 최심부의 적을 쓰러뜨려라!',
     },

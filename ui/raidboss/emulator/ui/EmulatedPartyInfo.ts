@@ -261,7 +261,9 @@ export default class EmulatedPartyInfo extends EventBus {
       throw new UnreachableCode();
 
     this.currentPerspective = id;
-    this.$triggerInfo.querySelectorAll('.playerTriggerInfo').forEach((r) => r.classList.add('d-none'));
+    this.$triggerInfo.querySelectorAll('.playerTriggerInfo').forEach((r) =>
+      r.classList.add('d-none')
+    );
     display.$triggerElem.classList.remove('d-none');
     this.$partyInfo.querySelectorAll('.player-info-row').forEach((r) => {
       r.classList.remove('border');

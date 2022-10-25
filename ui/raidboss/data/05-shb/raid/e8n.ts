@@ -126,11 +126,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Mirror Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        source: 'Frozen Mirror',
-        id: ['4DFE', '4DFF', '4E00', '4E01'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ source: 'Frozen Mirror', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
       // Maybe not necessary to delay here, but just to be safe.
       delaySeconds: 5,
       run: (data) => data.mirrorsActive = false,

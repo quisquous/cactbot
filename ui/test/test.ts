@@ -76,7 +76,8 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
       jobInfo.innerText =
         `${detail.jobDetail.umbralStacks} (${detail.jobDetail.umbralMilliseconds}) | ${detail.jobDetail.umbralHearts} | ${detail.jobDetail.polyglot} ${detail.jobDetail.enochian.toString()} (${detail.jobDetail.nextPolyglotMilliseconds}) | ${detail.jobDetail.paradox.toString()}`;
     } else if (detail.job === 'THM' && detail.jobDetail) {
-      jobInfo.innerText = `${detail.jobDetail.umbralStacks} (${detail.jobDetail.umbralMilliseconds})`;
+      jobInfo.innerText =
+        `${detail.jobDetail.umbralStacks} (${detail.jobDetail.umbralMilliseconds})`;
     } else if (detail.job === 'WHM' && detail.jobDetail) {
       jobInfo.innerText =
         `${detail.jobDetail.lilyStacks} (${detail.jobDetail.lilyMilliseconds}) | ${detail.jobDetail.bloodlilyStacks}`;
@@ -119,7 +120,9 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
 
   const pos = document.getElementById('pos');
   if (pos) {
-    pos.innerText = `${e.detail.pos.x.toFixed(2)},${e.detail.pos.y.toFixed(2)},${e.detail.pos.z.toFixed(2)}`;
+    pos.innerText = `${e.detail.pos.x.toFixed(2)},${e.detail.pos.y.toFixed(2)},${
+      e.detail.pos.z.toFixed(2)
+    }`;
   }
   const rotation = document.getElementById('rotation');
   if (rotation)

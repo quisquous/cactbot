@@ -13,7 +13,8 @@ export const syncKeys = {
   //   parsed log lines: 00:0839::Something will be sealed off
   //   network log lines: 00|timestamp|0839||Something will be sealed off
   //   NetRegexes: ^^00\|[^|]*\|0839\|[^|]*\|Something will be sealed off.*?\|
-  seal: `(?<=${parsedLB}|${networkLB}|${netRegexLB})([^|]*) will be sealed off(?: in (?:[0-9]+ seconds)?)?`,
+  seal:
+    `(?<=${parsedLB}|${networkLB}|${netRegexLB})([^|]*) will be sealed off(?: in (?:[0-9]+ seconds)?)?`,
   unseal: 'is no longer sealed',
   engage: 'Engage!',
 };
@@ -58,7 +59,8 @@ export const commonReplacement: CommonReplacement = {
   replaceSync: {
     [syncKeys.seal]: {
       en: '$1 will be sealed off',
-      de: 'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?$1 schließt',
+      de:
+        'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?$1 schließt',
       fr: 'Fermeture d(?:e|u|es) (?:l\'|la |les? )?$1 dans',
       ja: '$1の封鎖まであと',
       cn: '距$1被封锁还有',

@@ -829,8 +829,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
-        '7 minutes have elapsed since your last activity..*?':
-          'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
+        '7 minutes have elapsed since your last activity..*?': 'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
         'Absolute Virtue': 'Absolut(?:e|er|es|en) Tugend',
         'Arsenal Centaur': 'Arsenal-Zentaur',
         'Art': 'Art',
@@ -853,10 +852,8 @@ const triggerSet: TriggerSet<Data> = {
         'The Shin-Zantetsuken Containment Unit': 'Shin-Zantetsuken-Quarantäneblock',
         'The Lance of Virtue Containment Unit': 'Lanze der Tugend-Quarantäneblock',
         'The Proto Ozma Containment Unit': 'Proto-Yadis-Quarantäneblock',
-        'Relative Virtue gains the effect of Astral Essence':
-          'Die Relative Tugend erhält den Effekt von.*?Arm der Lichts',
-        'Relative Virtue gains the effect of Umbral Essence':
-          'Die Relative Tugend erhält den Effekt von.*?Arm der Dunkelheit',
+        'Relative Virtue gains the effect of Astral Essence': 'Die Relative Tugend erhält den Effekt von.*?Arm der Lichts',
+        'Relative Virtue gains the effect of Umbral Essence': 'Die Relative Tugend erhält den Effekt von.*?Arm der Dunkelheit',
       },
       'replaceText': {
         '\\(Stack\\)': '(Sammeln)',

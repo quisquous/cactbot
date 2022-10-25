@@ -57,9 +57,13 @@ const testFile = async (
   }
   const allLines = fs.readFileSync(logFilePath).toString().split('\n');
   const repo = new LogRepository();
-  const lineEvents = allLines.map((line) => ParseLine.parse(repo, line)).filter((l) => l !== undefined) as LineEvent[];
+  const lineEvents = allLines.map((line) => ParseLine.parse(repo, line)).filter((l) =>
+    l !== undefined
+  ) as LineEvent[];
   return await testLineEvents(
-    lineEvents.filter((l) => l.timestamp >= startDate.getTime() && l.timestamp <= endDate.getTime()),
+    lineEvents.filter((l) =>
+      l.timestamp >= startDate.getTime() && l.timestamp <= endDate.getTime()
+    ),
     timelineName,
     driftWarn,
     driftFail,
@@ -73,7 +77,9 @@ const testLineArray = async (
   driftFail: number,
 ): Promise<void> => {
   const repo = new LogRepository();
-  const lineEvents = lines.map((line) => ParseLine.parse(repo, line)).filter((l) => l !== undefined) as LineEvent[];
+  const lineEvents = lines.map((line) => ParseLine.parse(repo, line)).filter((l) =>
+    l !== undefined
+  ) as LineEvent[];
   return await testLineEvents(lineEvents, timelineName, driftWarn, driftFail);
 };
 
@@ -431,7 +437,8 @@ export const registerTestTimeline = (
       nargs: '?',
       constant: -1,
       type: 'int',
-      help: 'Encounter in log to use, e.g. \'1\'. If no number is specified, returns a list of encounters.',
+      help:
+        'Encounter in log to use, e.g. \'1\'. If no number is specified, returns a list of encounters.',
     },
   );
 
@@ -566,7 +573,9 @@ class TestTimelineUI extends TimelineUI {
     matches: RegExpExecArray,
     currentTime: number,
   ): void {
-    const foundText = this.timeline.texts.find((text) => text.type === 'trigger' && text.trigger === trigger);
+    const foundText = this.timeline.texts.find((text) =>
+      text.type === 'trigger' && text.trigger === trigger
+    );
     if (!foundText) {
       console.error(chalk.red(`Trigger fired ${trigger.id ?? '???'} with no matched texts entry!`));
       return;

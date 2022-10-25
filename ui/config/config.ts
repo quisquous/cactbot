@@ -7,7 +7,13 @@ import UserConfig, { ConfigEntry, ConfigValue, OptionsTemplate } from '../../res
 import ZoneInfo from '../../resources/zone_info';
 import { SavedConfig, SavedConfigEntry } from '../../types/event';
 import { LooseOopsyTrigger, LooseOopsyTriggerSet } from '../../types/oopsy';
-import { LocaleObject, LocaleText, LooseTimelineTrigger, LooseTrigger, LooseTriggerSet } from '../../types/trigger';
+import {
+  LocaleObject,
+  LocaleText,
+  LooseTimelineTrigger,
+  LooseTrigger,
+  LooseTriggerSet,
+} from '../../types/trigger';
 
 import defaultOptions, { ConfigOptions } from './config_options';
 

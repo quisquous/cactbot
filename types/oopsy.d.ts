@@ -66,9 +66,9 @@ export type OopsyFunc<Data extends OopsyData, MatchType extends NetAnyMatches, R
   matches: MatchType,
 ) => Return;
 
-export type OopsyTriggerField<Data extends OopsyData, MatchType extends NetAnyMatches, Return> = [Return] extends
-  [void] ? OopsyFunc<Data, MatchType, void>
-  : OopsyFunc<Data, MatchType, Return | undefined> | Return | undefined;
+export type OopsyTriggerField<Data extends OopsyData, MatchType extends NetAnyMatches, Return> =
+  [Return] extends [void] ? OopsyFunc<Data, MatchType, void>
+    : OopsyFunc<Data, MatchType, Return | undefined> | Return | undefined;
 
 export type BaseOopsyTrigger<Data extends OopsyData, Type extends TriggerTypes> = {
   id: string;

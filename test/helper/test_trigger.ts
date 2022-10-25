@@ -11,7 +11,11 @@ import chai from 'chai';
 import NetRegexes, { keysThatRequireTranslation } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import Regexes from '../../resources/regexes';
-import { builtInResponseStr, triggerFunctions, triggerTextOutputFunctions } from '../../resources/responses';
+import {
+  builtInResponseStr,
+  triggerFunctions,
+  triggerTextOutputFunctions,
+} from '../../resources/responses';
 import { translateWithReplacements } from '../../resources/translations';
 import { RaidbossData } from '../../types/data';
 import { Matches } from '../../types/net_matches';

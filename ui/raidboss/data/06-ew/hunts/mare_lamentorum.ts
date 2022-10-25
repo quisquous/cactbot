@@ -253,11 +253,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Ruminator Chitinous Step',
       type: 'Ability',
-      netRegex: NetRegexes.ability({
-        id: ['68FE', '68FF', '6923', '6924', '6637', '6638', '6900', '6901'],
-        source: 'Ruminator',
-        capture: false,
-      }),
+      netRegex: NetRegexes.ability({ id: ['68FE', '68FF', '6923', '6924', '6637', '6638', '6900', '6901'], source: 'Ruminator', capture: false }),
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         // Skip the last one.

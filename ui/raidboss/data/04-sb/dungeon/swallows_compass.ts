@@ -138,11 +138,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Swallows Compass Mount Huaguo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['2BAA', '2D08'],
-        source: ['Qitian Dasheng', 'Shadow Of The Sage'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['2BAA', '2D08'], source: ['Qitian Dasheng', 'Shadow Of The Sage'], capture: false }),
       suppressSeconds: 5,
       response: Responses.aoe(),
     },
@@ -155,22 +151,14 @@ const triggerSet: TriggerSet<Data> = {
       // In order to avoid collisions and confusion, we collect first.
       id: 'Swallows Compass Both Ends Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['2BA9', '2BAF'],
-        source: ['Qitian Dasheng', 'Shadow Of The Sage'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['2BA9', '2BAF'], source: ['Qitian Dasheng', 'Shadow Of The Sage'], capture: false }),
       run: (data) => data.dynamo = true,
     },
     {
       // 2BA8,2BAE is red, chariot, 2BA9,2BAF is blue, dynamo.
       id: 'Swallows Compass Both Ends Call',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({
-        id: ['2BA8', '2BA9', '2BAE', '2BAF'],
-        source: ['Qitian Dasheng', 'Shadow Of The Sage'],
-        capture: false,
-      }),
+      netRegex: NetRegexes.startsUsing({ id: ['2BA8', '2BA9', '2BAE', '2BAF'], source: ['Qitian Dasheng', 'Shadow Of The Sage'], capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {

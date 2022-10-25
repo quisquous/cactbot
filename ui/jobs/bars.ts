@@ -8,7 +8,14 @@ import WidgetList, { Toward } from '../../resources/widget_list';
 import { Job } from '../../types/job';
 
 import { ShouldShow } from './components/base';
-import { kMPCombatRate, kMPNormalRate, kMPTickInterval, kMPUI1Rate, kMPUI2Rate, kMPUI3Rate } from './constants';
+import {
+  kMPCombatRate,
+  kMPNormalRate,
+  kMPTickInterval,
+  kMPUI1Rate,
+  kMPUI2Rate,
+  kMPUI3Rate,
+} from './constants';
 import { JobsEventEmitter } from './event_emitter';
 import './jobs_config';
 import { JobsOptions } from './jobs_options';

@@ -349,10 +349,8 @@ const triggerSet: TriggerSet<Data> = {
         'The Ultima Beast': 'Ultima-monstre',
         'The Ultima Warrior': 'Ultima-guerrier',
         'The reality augmentation bay': 'Salle de distorsion de la réalité',
-        'This humanoid prototype can perfectly replicate':
-          'Ce modèle exceptionnel est basé sur les non moins exceptionnelles divinités guerrières',
-        'Utilizing our data on Sophia':
-          'Quoi de mieux pour dominer les divinités guerrières que de retourner leur puissance contre elles?♪',
+        'This humanoid prototype can perfectly replicate': 'Ce modèle exceptionnel est basé sur les non moins exceptionnelles divinités guerrières',
+        'Utilizing our data on Sophia': 'Quoi de mieux pour dominer les divinités guerrières que de retourner leur puissance contre elles?♪',
         'Vocal Guidance System': 'système de guidage vocal',
         'Servomechanical Minotaur': 'minotaure servomécanique',
         'Servomechanical Chimera': 'chimère servomécanique',

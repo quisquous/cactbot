@@ -659,10 +659,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Lyon Passage',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({
-        line: 'Lyon the Beast King would do battle at Majesty\'s Place.*?',
-        capture: false,
-      }),
+      netRegex: NetRegexes.gameLog({ line: 'Lyon the Beast King would do battle at Majesty\'s Place.*?', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -699,14 +696,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
-        'Lyon the Beast King would do battle at Majesty\'s Place':
-          'Der Bestienkönig will einen Kampf auf seinem Podest',
+        'Lyon the Beast King would do battle at Majesty\'s Place': 'Der Bestienkönig will einen Kampf auf seinem Podest',
         'Red Comet': 'Rot(?:e|er|es|en) Meteor',
         'Albeleo\'s Monstrosity': 'Albeleos Biest',
         'Albeleo\'s Hrodvitnir': 'Hrodvitnir',
         'Electric Charge': 'Blitz',
-        '7 minutes have elapsed since your last activity..*?':
-          'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
+        '7 minutes have elapsed since your last activity..*?': 'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
         '4Th Legion Helldiver': 'Höllentaucher der IV\\. Legion',
         'Adrammelech': 'Adrammelech',
         'Bladesmeet': 'Hauptplatz der Wachen',
@@ -788,8 +783,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
-        'Lyon the Beast King would do battle at Majesty\'s Place':
-          'Lyon attend des adversaires à sa taille sur la tribune des Souverains',
+        'Lyon the Beast King would do battle at Majesty\'s Place': 'Lyon attend des adversaires à sa taille sur la tribune des Souverains',
         'Red Comet': 'Comète Rouge',
         'Albeleo\'s Monstrosity': 'Bête D\'Albeleo',
         'Albeleo\'s Hrodvitnir': 'Hródvitnir',

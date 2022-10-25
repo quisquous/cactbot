@@ -16,7 +16,8 @@ module.exports = {
         (node) =>
           context.report({
             node,
-            message: 'timelineTrigger regex has to be a regular expression literal, such as /^Ability Name$/',
+            message:
+              'timelineTrigger regex has to be a regular expression literal, such as /^Ability Name$/',
           }),
       'Property[key.name=\'timelineTriggers\'] > ArrayExpression > ObjectExpression > Property[key.name=/(?:netRegex.{0,2}|regex.{2})/]':
         (node) =>

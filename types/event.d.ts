@@ -393,7 +393,8 @@ type PlayerChangedBase = {
   debugJob: string;
 };
 
-type PlayerChangedRet = Job extends infer T ? T extends Job ? PlayerChangedJobDetails<T> & PlayerChangedBase : never
+type PlayerChangedRet = Job extends infer T
+  ? T extends Job ? PlayerChangedJobDetails<T> & PlayerChangedBase : never
   : never;
 
 // Member names taken from OverlayPlugin's MiniParse.cs
@@ -522,6 +523,7 @@ export type OverlayHandlerFuncs = {
 };
 
 // Thanks, https://stackoverflow.com/a/50375286.
-type UnionToIntersection<U> = (U extends U ? (k: U) => void : never) extends ((k: infer I) => void) ? I
+type UnionToIntersection<U> = (U extends U ? (k: U) => void : never) extends ((k: infer I) => void)
+  ? I
   : never;
 export type IOverlayHandler = UnionToIntersection<OverlayHandlerFuncs[OverlayHandlerTypes]>;

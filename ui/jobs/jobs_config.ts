@@ -226,7 +226,8 @@ UserConfig.registerOptions('jobs', {
     {
       id: 'NotifyExpiredProcsInCombat',
       name: {
-        en: 'Flash procs boxes of inactive dots/etc. up to n times while in combat. (-1: disabled, 0: infinite)',
+        en:
+          'Flash procs boxes of inactive dots/etc. up to n times while in combat. (-1: disabled, 0: infinite)',
         de:
           'Dot/etc. boxen blinken bis zu n mal wenn im Kampf und dot ist nicht aktiv. (-1: deaktiviert, 0: ohne Limit)',
         fr: 'Faire clignoter n fois les DoT/Buffs inactifs en combat (-1 : désactivé, 0 : infini)',
