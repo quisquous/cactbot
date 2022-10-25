@@ -8,7 +8,7 @@ import path from 'path';
 
 import chai from 'chai';
 
-import NetRegexes, { keysThatRequireTranslation } from '../../resources/netregexes';
+import NetRegexes, { buildRegex, keysThatRequireTranslation } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import Regexes from '../../resources/regexes';
 import {
@@ -172,8 +172,24 @@ const testTriggerFile = (file: string) => {
 
       let captures = 0;
       const currentNetRegex = currentTrigger.netRegex;
+
       if (currentNetRegex !== undefined && currentNetRegex !== null) {
-        const capture = new RegExp(`(?:${currentNetRegex.toString()})?`).exec('');
+        let netRegexRegex: RegExp;
+
+        if (currentNetRegex instanceof RegExp) {
+          netRegexRegex = currentNetRegex;
+        } else {
+          if (currentTrigger.type === undefined) {
+            assert.fail(
+              `netTrigger "${currentTrigger.id}" without type and non-regex netRegex property`,
+            );
+            continue;
+          }
+          // TODO: we can check it from keys of `currentNetRegex`.
+          netRegexRegex = buildRegex(currentTrigger.type, currentNetRegex);
+        }
+
+        const capture = new RegExp(`(?:${netRegexRegex.toString()})?`).exec('');
         if (!capture)
           throw new UnreachableCode();
         captures = capture.length - 1;
