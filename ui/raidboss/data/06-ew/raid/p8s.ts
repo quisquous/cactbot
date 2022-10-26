@@ -1238,7 +1238,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8S Blazing Footfalls Crush/Impact Reminder',
       // Reminder after Trailblaze for Impact/Crush Movement
       type: 'StartsUsing',
-      netRegex: { id: ['793E'], source: 'Hephaistos' },
+      netRegex: { id: '793E', source: 'Hephaistos' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime),
       durationSeconds: 4,
       response: (data, _matches, output) => {
