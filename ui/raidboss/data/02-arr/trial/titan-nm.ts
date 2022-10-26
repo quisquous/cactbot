@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -22,7 +21,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TitanNm Tumult',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '282', source: 'Titan', capture: false }),
+      netRegex: { id: '282', source: 'Titan', capture: false },
       suppressSeconds: 2,
       response: Responses.aoe(),
     },
@@ -30,7 +29,7 @@ const triggerSet: TriggerSet<Data> = {
       // Gaol callout for both yourself and others
       id: 'TitanNm Gaols',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '124' }),
+      netRegex: { effectId: '124' },
       alertText: (data, matches, output) => {
         if (matches.target !== data.me)
           return output.breakGaolOn!({ player: data.ShortName(matches.target) });

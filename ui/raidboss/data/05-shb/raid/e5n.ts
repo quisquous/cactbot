@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -16,27 +15,27 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E5N Surge Protection Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
+      netRegex: { effectId: '8B4' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.surgeProtection = true,
     },
     {
       id: 'E5N Surge Protection Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
+      netRegex: { effectId: '8B4' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.surgeProtection = false,
     },
     {
       id: 'E5N Crippling Blow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4BA3', source: 'Ramuh' }),
+      netRegex: { id: '4BA3', source: 'Ramuh' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E5N Stratospear Summons',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '4B8D', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4B8D', source: 'Ramuh', capture: false },
       delaySeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -53,7 +52,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E5N Tribunal Summons',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4B91', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4B91', source: 'Ramuh', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -69,7 +68,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E5N Fury\'s Bolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4B90', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4B90', source: 'Ramuh', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -85,13 +84,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E5N Judgment Volts',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['4B98', '4B9A'], source: 'Ramuh', capture: false }),
+      netRegex: { id: ['4B98', '4B9A'], source: 'Ramuh', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E5N Divine Judgment Volts',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4B9A', source: 'Ramuh', capture: false }),
+      netRegex: { id: '4B9A', source: 'Ramuh', capture: false },
       condition: (data) => !data.surgeProtection,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -108,7 +107,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E5N Stormcloud',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '006E' }),
+      netRegex: { id: '006E' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

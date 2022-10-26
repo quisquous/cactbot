@@ -1084,7 +1084,7 @@ class RaidbossConfigurator {
     matches: Matches,
     output: Output,
   ): RaidbossTriggerOutput {
-    const result = (typeof f === 'function') ? f(data, matches, output) : f;
+    const result = typeof f === 'function' ? f(data, matches, output) : f;
     if (result !== Object(result))
       return result;
     if (typeof result !== 'object' || result === null)
@@ -1273,11 +1273,11 @@ class RaidbossConfigurator {
       if (regex === undefined)
         return;
 
-      if (trig.type === undefined) {
-        if (!(regex instanceof RegExp))
-          return;
+      if (regex instanceof RegExp)
         return Regexes.parse(translateRegex(regex, lang, set.timelineReplace));
-      }
+
+      if (trig.type === undefined)
+        return;
 
       return Regexes.parse(
         buildRegex(trig.type, translateRegexBuildParam(regex, lang, set.timelineReplace)),

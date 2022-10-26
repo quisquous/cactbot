@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -53,7 +52,7 @@ const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
   // NW at 0, NE at 2, South at 5
   // Map NW = 0, N = 1, ..., W = 7
 
-  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+  return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
 // effect ids for inviolate purgation
@@ -83,7 +82,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Headmarker Tracker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => {
@@ -102,7 +101,7 @@ const triggerSet: TriggerSet<Data> = {
       //   6-9 are Birds
       //   10-12 are Ios
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7811', source: 'Agdistis', capture: false }),
+      netRegex: { id: '7811', source: 'Agdistis', capture: false },
       preRun: (data) => data.fruitCount = data.fruitCount + 1,
       delaySeconds: 0.5,
       promise: async (data) => {
@@ -197,7 +196,7 @@ const triggerSet: TriggerSet<Data> = {
           const bird2 = data.unhatchedEggs[9];
 
           // Lower PosY = more north
-          const northBird = (bird1.PosY < bird2.PosY ? bird1 : bird2);
+          const northBird = bird1.PosY < bird2.PosY ? bird1 : bird2;
 
           // Check north bird's side
           if (northBird.PosX < 100)
@@ -301,7 +300,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Hemitheos\'s Holy III Healer Groups',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         const correctedMatch = getHeadmarkerId(data, matches);
@@ -315,13 +314,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Condensed Aero II',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7836', source: 'Agdistis' }),
+      netRegex: { id: '7836', source: 'Agdistis' },
       response: Responses.sharedTankBuster(),
     },
     {
       id: 'P7S Dispersed Aero II',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7835', source: 'Agdistis', capture: false }),
+      netRegex: { id: '7835', source: 'Agdistis', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -336,19 +335,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Bough of Attis Left Arrows',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7824', source: 'Agdistis', capture: false }),
+      netRegex: { id: '7824', source: 'Agdistis', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'P7S Bough of Attis Right Arrows',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7823', source: 'Agdistis', capture: false }),
+      netRegex: { id: '7823', source: 'Agdistis', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'P7S Roots of Attis 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      netRegex: { id: '780E', source: 'Agdistis', capture: false },
       condition: (data) => data.rootsCount === 2,
       infoText: (_data, _matches, output) => output.baitSoon!(),
       outputStrings: {
@@ -364,7 +363,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Roots of Attis 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      netRegex: { id: '780E', source: 'Agdistis', capture: false },
       condition: (data) => data.rootsCount === 1,
       infoText: (_data, _matches, output) => output.separateHealerGroups!(),
       run: (data) => data.rootsCount = data.rootsCount + 1,
@@ -384,20 +383,20 @@ const triggerSet: TriggerSet<Data> = {
       // Third breaks all bridges, Bait on Empty Platform
       id: 'P7S Roots of Attis 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      netRegex: { id: '780E', source: 'Agdistis', capture: false },
       condition: (data) => data.rootsCount === 0,
       run: (data) => data.rootsCount = data.rootsCount + 1,
     },
     {
       id: 'P7S Hemitheos\'s Aero IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7A0B', source: 'Agdistis', capture: false }),
+      netRegex: { id: '7A0B', source: 'Agdistis', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'P7S Immature Stymphalide Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011', source: 'Immature Stymphalide', capture: false }),
+      netRegex: { id: '0011', source: 'Immature Stymphalide', capture: false },
       // ~9s between tether and Bronze Bellows (no cast) in all cases.
       delaySeconds: 4,
       // Just give this to everyone.  People in towers or elsewhere can be safe.
@@ -407,7 +406,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Spark of Life',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7839', source: 'Agdistis', capture: false }),
+      netRegex: { id: '7839', source: 'Agdistis', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -424,7 +423,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       // CEC/D45 = Inviolate Winds
       // CED/D56 = Holy Bonds
-      netRegex: NetRegexes.gainsEffect({ effectId: ['CEC', 'D45'] }),
+      netRegex: { effectId: ['CEC', 'D45'] },
       condition: Conditions.targetIsYou(),
       durationSeconds: 20,
       response: (data, matches, output) => {
@@ -435,7 +434,7 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         // Store debuff for reminders
-        data.bondsDebuff = (matches.effectId === 'CEC' ? 'spread' : 'stackMarker');
+        data.bondsDebuff = matches.effectId === 'CEC' ? 'spread' : 'stackMarker';
 
         const longTimer = parseFloat(matches.duration) > 9;
         if (longTimer)
@@ -455,7 +454,7 @@ const triggerSet: TriggerSet<Data> = {
       // War: 4 Bull Tethers, 2 Minotaur Tethers, 2 Bird Tethers
       // TODO: Get locations with OverlayPlugin via X, Y and bird headings?
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: ['0001', '0006', '0039', '0011'] }),
+      netRegex: { id: ['0001', '0006', '0039', '0011'] },
       condition: (data) => !data.stopTethers,
       preRun: (data, matches) => data.tetherCollect.push(matches.target),
       delaySeconds: 0.1,
@@ -568,7 +567,7 @@ const triggerSet: TriggerSet<Data> = {
       // to 0039 possibly reapplying. This trigger is used to only collect tethers
       // during a defined window.
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: ['0006', '0039'], capture: false }),
+      netRegex: { id: ['0006', '0039'], capture: false },
       delaySeconds: 0.2,
       suppressSeconds: 6,
       run: (data) => data.stopTethers = true,
@@ -576,7 +575,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Harvest Phase Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['7A4F', '7A50', '7A51'] }),
+      netRegex: { id: ['7A4F', '7A50', '7A51'] },
       run: (data, matches) => {
         data.stopTethers = false;
         data.tetherCollect = [];
@@ -598,7 +597,7 @@ const triggerSet: TriggerSet<Data> = {
       // First trigger is ~4s after debuffs callout
       // These happen 6s before cast
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => !data.seenInviolatePurgation,
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
@@ -606,7 +605,7 @@ const triggerSet: TriggerSet<Data> = {
         if (correctedMatch === '00A6' && data.bondsDebuff)
           return output[data.bondsDebuff]!();
       },
-      run: (data) => data.bondsDebuff = (data.bondsDebuff === 'spread' ? 'stackMarker' : 'spread'),
+      run: (data) => data.bondsDebuff = data.bondsDebuff === 'spread' ? 'stackMarker' : 'spread',
       outputStrings: {
         spread: Outputs.spread,
         stackMarker: Outputs.stackMarker,
@@ -623,7 +622,7 @@ const triggerSet: TriggerSet<Data> = {
       // D42 = Holy Purgation II
       // D43 = Holy Purgation III
       // D44 = Holy Purgation IV
-      netRegex: NetRegexes.gainsEffect({ effectId: ['CE[EF]', 'D3F', 'D4[01234]'] }),
+      netRegex: { effectId: ['CE[EF]', 'D3F', 'D4[01234]'] },
       run: (data, matches) => {
         data.seenInviolatePurgation = true;
         if (data.me !== matches.target)
@@ -651,7 +650,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Inviolate Purgation',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['CE[EF]', 'D3F', 'D4[01234]'], capture: false }),
+      netRegex: { effectId: ['CE[EF]', 'D3F', 'D4[01234]'], capture: false },
       delaySeconds: 0.5,
       durationSeconds: 55,
       suppressSeconds: 10,
@@ -682,7 +681,7 @@ const triggerSet: TriggerSet<Data> = {
       // First trigger is ~4s after debuffs callout
       // These happen 6s before cast
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.seenInviolatePurgation,
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
@@ -707,7 +706,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Light of Life',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78E2', source: 'Agdistis', capture: false }),
+      netRegex: { id: '78E2', source: 'Agdistis', capture: false },
       // ~5s castTime, but boss cancels it and ability goes off 26s after start
       delaySeconds: 21,
       alertText: (_data, _matches, output) => output.bigAoEMiddle!(),

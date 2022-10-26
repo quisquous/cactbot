@@ -154,7 +154,7 @@ const testLineEvents = async (
     // Only include events with a time greater than 0, excludes "Start"/"--Reset--"/etc
     event.time > 0 &&
     // Only include events that are within the fight's timebase based on start/end lines
-    (event.time * 1000) <= lastLogTimestamp - testTimeline.timebase &&
+    event.time * 1000 <= lastLogTimestamp - testTimeline.timebase &&
     // Only include events that have a sync/jump
     testTimeline.syncEnds.find((sync) => sync.id === event.id)
   );
@@ -182,7 +182,7 @@ const testLineEvents = async (
     if (missedEvents.length) {
       sortedMissedEvents = sortedMissedEvents.filter((e) => !missedEvents.includes(e));
       for (const missedEvent of missedEvents) {
-        const lineNumber = (missedEvent.event.lineNumber ?? -1);
+        const lineNumber = missedEvent.event.lineNumber ?? -1;
         console.log(
           chalk.red(`      Missed | %s | %s`),
           `${lineNumber}`.padStart(4),
@@ -190,16 +190,16 @@ const testLineEvents = async (
         );
       }
     }
-    const lineNumber = (firedEvent.event.lineNumber ?? -1);
+    const lineNumber = firedEvent.event.lineNumber ?? -1;
     const lineStr = linesString[lineNumber - 1] ?? '';
-    const delta = ((firedEvent.timestamp - firedEvent.timebase) / 1000) - firedEvent.event.time;
+    const delta = (firedEvent.timestamp - firedEvent.timebase) / 1000 - firedEvent.event.time;
     const invertedDelta = delta * -1;
     const sign = invertedDelta > 0 ? '+' : ' ';
     const lowWindow = firedEvent.sync.start - firedEvent.sync.time;
     const highWindow = firedEvent.sync.end - firedEvent.sync.time;
     const color =
-      (delta < lowWindow - driftFail || delta > highWindow + driftFail) ? 'red'
-      : ((delta < lowWindow - driftWarn || delta > highWindow + driftWarn) ? 'redBright' : 'green');
+      delta < lowWindow - driftFail || delta > highWindow + driftFail ? 'red'
+      : delta < lowWindow - driftWarn || delta > highWindow + driftWarn ? 'redBright' : 'green';
     console.log(
       chalk[color](`%s | %s | %s`),
       `${sign}${invertedDelta.toFixed(3)}`.padStart(12),
@@ -209,7 +209,7 @@ const testLineEvents = async (
 
   if (sortedMissedEvents.length) {
     for (const missedEvent of sortedMissedEvents) {
-      const lineNumber = (missedEvent.event.lineNumber ?? -1);
+      const lineNumber = missedEvent.event.lineNumber ?? -1;
       console.log(
         chalk.red(`      Missed | %s | %s`),
         `${lineNumber}`.padStart(4),
@@ -221,7 +221,7 @@ const testLineEvents = async (
   console.log('Triggers:');
 
   for (const trigger of ui.triggers) {
-    const delta = ((trigger.timestamp - trigger.timebase) / 1000) - trigger.text.time;
+    const delta = (trigger.timestamp - trigger.timebase) / 1000 - trigger.text.time;
     const invertedDelta = delta * -1;
     const sign = invertedDelta > 0 ? '+' : ' ';
     console.log(
@@ -363,7 +363,7 @@ const testTimelineFunc = (args: Namespace): Promise<void> => {
         name: 'FFLogs Report',
         value: 'report',
       }],
-      default: args.file !== null ? 'file' : (args.report !== null ? 'report' : ''),
+      default: args.file !== null ? 'file' : args.report !== null ? 'report' : '',
       when: () => typeof args.file !== 'string' && typeof args.report !== 'string',
     },
   ] as const;

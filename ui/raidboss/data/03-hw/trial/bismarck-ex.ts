@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -12,7 +11,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bismarck Sharp Gust',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'FAF', source: 'Bismarck', capture: false }),
+      netRegex: { id: 'FAF', source: 'Bismarck', capture: false },
       response: Responses.knockback(),
     },
   ],

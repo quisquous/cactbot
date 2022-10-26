@@ -107,27 +107,27 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Sticky Wicket',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003C', capture: false }),
+      netRegex: { id: '003C', capture: false },
       suppressSeconds: 10,
       response: Responses.spread(),
     },
     {
       id: 'Weeping City Shadow Burst',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       condition: (data) => data.arachneStarted,
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Weeping City Frond Affeared',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '183A', source: 'Arachne Eve', capture: false }),
+      netRegex: { id: '183A', source: 'Arachne Eve', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'Weeping City Arachne Web',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: (data, matches) => data.arachneStarted && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -144,14 +144,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Brand Of The Fallen',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0037' }),
+      netRegex: { id: '0037' },
       condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'Weeping City Dark Eruption',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0019' }),
+      netRegex: { id: '0019' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -168,20 +168,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Beguiling Mist',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '17CE', source: 'Summoned Succubus' }),
+      netRegex: { id: '17CE', source: 'Summoned Succubus' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
       id: 'Weeping City Mortal Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '17D4', source: 'Summoned Haagenti' }),
+      netRegex: { id: '17D4', source: 'Summoned Haagenti' },
       response: Responses.lookAwayFromSource(),
     },
     {
       id: 'Weeping City Hell Wind',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '17CB', source: 'Forgall', capture: false }),
+      netRegex: { id: '17CB', source: 'Forgall', capture: false },
       // Hell Wind sets HP to single digits, so mitigations don't work. Don't notify non-healers.
       condition: (data) => data.role === 'healer',
       response: Responses.aoe(),
@@ -189,7 +189,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Mega Death',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '17CA', source: 'Forgall', capture: false }),
+      netRegex: { id: '17CA', source: 'Forgall', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -205,7 +205,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Meteor Impact',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0039' }),
+      netRegex: { id: '0039' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -224,7 +224,7 @@ const triggerSet: TriggerSet<Data> = {
       // Execration follows this up almost immediately.
       id: 'Weeping City Execration',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1826', source: 'Ozma', capture: false }),
+      netRegex: { id: '1826', source: 'Ozma', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -242,7 +242,7 @@ const triggerSet: TriggerSet<Data> = {
       // Flare Star and tank lasers follow shortly.
       id: 'Weeping City Flare Star Ring',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1803', source: 'Ozma', capture: false }),
+      netRegex: { id: '1803', source: 'Ozma', capture: false },
       response: Responses.getIn(),
     },
     {
@@ -251,7 +251,7 @@ const triggerSet: TriggerSet<Data> = {
       // This continues until the next Sphere form, whether by time or by HP push.
       id: 'Weeping City Tank Lasers',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1803', source: 'Ozma', capture: false }),
+      netRegex: { id: '1803', source: 'Ozma', capture: false },
       // Delaying here to avoid colliding with other Flare Star triggers.
       delaySeconds: 4,
       alertText: (data, _matches, output) => {
@@ -284,7 +284,7 @@ const triggerSet: TriggerSet<Data> = {
       // Failing to pop an orb means it will explode, dealing damage with 1808 Aethernova.
       id: 'Weeping City Flare Star Orbs',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcBaseId: '4889', capture: false }),
+      netRegex: { npcBaseId: '4889', capture: false },
       condition: (data) => data.role === 'tank' || data.role === 'healer',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -301,7 +301,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Acceleration Bomb',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '430' }),
+      netRegex: { effectId: '430' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       response: Responses.stopEverything(),
@@ -309,14 +309,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Assimilation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1802', source: 'Ozmashade', capture: false }),
+      netRegex: { id: '1802', source: 'Ozmashade', capture: false },
       response: Responses.lookAway(),
     },
     {
       // Each party gets a stack marker, so this is the best we can do.
       id: 'Weeping City Meteor Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      netRegex: { id: '003E', capture: false },
       condition: (data) => data.ozmaStarted,
       suppressSeconds: 5,
       response: Responses.stackMarker(),
@@ -327,13 +327,13 @@ const triggerSet: TriggerSet<Data> = {
       // It's not a very obvious visual cue unless the player knows to look for it.
       id: 'Weeping City Coif Change Left',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '180A', source: 'Calofisteri', capture: false }),
+      netRegex: { id: '180A', source: 'Calofisteri', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'Weeping City Coif Change Right',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '180E', source: 'Calofisteri', capture: false }),
+      netRegex: { id: '180E', source: 'Calofisteri', capture: false },
       response: Responses.goLeft(),
     },
     {
@@ -341,7 +341,7 @@ const triggerSet: TriggerSet<Data> = {
       // Bulbs do a circle AoE surrounding them, while axes are a donut.
       id: 'Weeping City Living Lock Axes',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['4899', '4900'], capture: false }),
+      netRegex: { npcNameId: ['4899', '4900'], capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -358,7 +358,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City Living Lock Scythes',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '4898', capture: false }),
+      netRegex: { npcNameId: '4898', capture: false },
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -376,7 +376,7 @@ const triggerSet: TriggerSet<Data> = {
       // These adds are the purple circles waiting to grab people and Garrotte them.
       id: 'Weeping City Entanglement',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '4904', capture: false }),
+      netRegex: { npcNameId: '4904', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -395,14 +395,14 @@ const triggerSet: TriggerSet<Data> = {
       // The actual ability here is an Unknown ability, but it begins slightly before Garrotte.
       id: 'Weeping City Garrotte',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '181D', source: 'Entanglement', capture: false }),
+      netRegex: { id: '181D', source: 'Entanglement', capture: false },
       suppressSeconds: 5,
       response: Responses.killExtraAdd(),
     },
     {
       id: 'Weeping City Particle Beam',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: (data) => data.calStarted,
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -434,19 +434,19 @@ const triggerSet: TriggerSet<Data> = {
       // Dancing Mad follows this up closely enough to make this the best time to notify.
       id: 'Weeping City Dancing Mad',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1819', source: 'Calofisteri', capture: false }),
+      netRegex: { id: '1819', source: 'Calofisteri', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Weeping City Penetration',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1822', source: 'Calofisteri', capture: false }),
+      netRegex: { id: '1822', source: 'Calofisteri', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'Weeping City Depth Charge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1820', source: 'Calofisteri', capture: false }),
+      netRegex: { id: '1820', source: 'Calofisteri', capture: false },
       response: Responses.awayFromFront(),
     },
   ],

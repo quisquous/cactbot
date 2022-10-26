@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
@@ -36,13 +35,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Deepshadow Nova',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '573E', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '573E', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E10S Implosion Howl',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F0', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56F0', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -58,7 +57,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Implosion Tail',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F3', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56F3', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -74,13 +73,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Throne Of Shadow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5717', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5717', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'E10S Giga Slash Shadow Single Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56EA', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56EA', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -96,7 +95,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Giga Slash Shadow Single Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56ED', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56ED', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -112,7 +111,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Giga Slash Shadow Quadruple Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F4', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56F4', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -128,7 +127,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Giga Slash Shadow Quadruple Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F8', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56F8', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -144,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Umbra Smash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5BAA' }),
+      netRegex: { source: 'Shadowkeeper', id: '5BAA' },
       // Although this is a swap, use `tankBuster` here to give the off tank a warning and a chance
       // to shield the main tank.  The offtank swap is delayed into the swap trigger below.
       response: Responses.tankBuster(),
@@ -153,7 +152,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Umbra Smash Offtank Swap',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5BAA' }),
+      netRegex: { source: 'Shadowkeeper', id: '5BAA' },
       condition: (data, matches) => data.role === 'tank' && matches.target !== data.me,
       // This is a four hit tankbuster with a wind-up castbar.
       // If you provoke in between the four hits, you can end up taking a hit, so the offtank
@@ -171,7 +170,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E10S Darkness Unleashed',
       type: 'StartsUsing',
       // Cast on self, with no player target.
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B0E', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5B0E', capture: false },
       alertText: (data, _matches, output) => {
         if (data.me === data.umbraTarget)
           return output.avoidStack!();
@@ -193,13 +192,13 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E10S Shadow\'s Edge',
       type: 'StartsUsing',
       // Cast on self, with no player target.
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B0C' }),
+      netRegex: { source: 'Shadowkeeper', id: '5B0C' },
       response: Responses.tankCleave(),
     },
     {
       id: 'E10S Giga Slash Shadow Drop Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B2D', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5B2D', capture: false },
       durationSeconds: (data) => data.gigaSlashCleaveDebuffDuration,
       alertText: (data, _matches, output) => {
         let ret = '';
@@ -249,7 +248,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Giga Slash Shadow Drop Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B2C', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5B2C', capture: false },
       durationSeconds: (data) => data.gigaSlashCleaveDebuffDuration,
       alertText: (data, _matches, output) => {
         let ret = '';
@@ -299,7 +298,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shadow Servant Cleave Drop',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '97[3456]' }),
+      netRegex: { effectId: '97[3456]' },
       condition: Conditions.targetIsYou(),
       run: (data, matches) => {
         data.gigaSlashCleaveDebuffId = matches.effectId;
@@ -309,7 +308,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shadow Servant Get In',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '9D6', capture: false }),
+      netRegex: { effectId: '9D6', capture: false },
       // The effect lasts two seconds, use the difference of the two
       // instead of telling the bound people to get in instantly.
       delaySeconds: 1,
@@ -319,7 +318,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shadow Cleave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5718', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5718', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.clones = true,
       outputStrings: {
@@ -339,7 +338,7 @@ const triggerSet: TriggerSet<Data> = {
       // a job of 0 (player died), then return '?' for the affected players.
       id: 'E10S Shadow Of A Hero',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ name: 'Shadow Of A Hero' }),
+      netRegex: { name: 'Shadow Of A Hero' },
       condition: (data) => data.clones,
       run: (data, matches) => {
         data.myClone ??= [];
@@ -351,7 +350,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shadow Of A Hero Head Marker Map',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ target: 'Shadow Of A Hero' }),
+      netRegex: { target: 'Shadow Of A Hero' },
       condition: (data) => !data.shadowMarkerMap,
       suppressSeconds: 1,
       run: (data, matches) => {
@@ -366,7 +365,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shadow Of A Hero Head Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ target: 'Shadow Of A Hero' }),
+      netRegex: { target: 'Shadow Of A Hero' },
       condition: (data) => !data.headMarkerTriggered,
       durationSeconds: 7,
       alertText: (data, matches, output) => {
@@ -389,7 +388,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Dualspell 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '573A', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '573A', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -405,7 +404,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Dualspell 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '573A', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '573A', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -421,7 +420,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Dualspell 3',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '573A', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '573A', capture: false },
       delaySeconds: 3,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -438,7 +437,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shadowkeeper 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5720', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5720', capture: false },
       suppressSeconds: 99999,
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => delete data.clones,
@@ -456,20 +455,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Swath of Silence',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadow Of A Hero', id: '5BBF', capture: false }),
+      netRegex: { source: 'Shadow Of A Hero', id: '5BBF', capture: false },
       suppressSeconds: 3,
       response: Responses.moveAway(),
     },
     {
       id: 'E10S Distant Scream',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5716', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5716', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'E10S Umbral Orbs',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5731', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5731', capture: false },
       // TODO: maybe 4?
       delaySeconds: 3.5,
       infoText: (_data, _matches, output) => output.text!(),
@@ -487,7 +486,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shadow Warrior',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5739', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5739', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -504,7 +503,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E10S Fade To Shadow',
       type: 'StartsUsing',
       // Fade To Shadow starts well before the Cloak of Shadows, so use that instead for initial.
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '572B', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '572B', capture: false },
       delaySeconds: 4,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -525,7 +524,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // 5B13/5B14 Cloak Of Shadows both start casting at the same time but go off separately.
       // So, use the initial 5B13 hit to time the move away trigger.
-      netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '5B13', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5B13', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -544,7 +543,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: are the double implosions always the same??
       id: 'E10S Quadruple Implosion Howl',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56FC', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '56FC', capture: false },
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -561,7 +560,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Quadruple Implosion Tail',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5700', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5700', capture: false },
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -578,7 +577,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Voidgate',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5734', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5734', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -594,7 +593,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Voidgate Second Tower',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5734', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5734', capture: false },
       delaySeconds: 23.3,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -611,7 +610,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Pitch Bog',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5721', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5721', capture: false },
       infoText: (data, _matches, output) => {
         if (data.seenPitchBog)
           return output.secondPitchBog!();
@@ -640,7 +639,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shackled Apart',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0082' }),
+      netRegex: { id: '0082' },
       condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       alertText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
@@ -653,7 +652,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Shackled Together',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0081' }),
+      netRegex: { id: '0081' },
       condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       alertText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
@@ -667,7 +666,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: this mechanic needs a lot more love
       id: 'E10S Voidgate Amplifier',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5BCF', capture: false }),
+      netRegex: { source: 'Shadowkeeper', id: '5BCF', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

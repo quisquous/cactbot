@@ -168,7 +168,7 @@ export class CoinachWriter {
       return obj;
 
     const out = Object
-      .keys((obj))
+      .keys(obj)
       .sort()
       .reduce((acc: typeof obj, key) => {
         const nested = obj[key];

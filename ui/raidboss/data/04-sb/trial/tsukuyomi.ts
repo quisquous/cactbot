@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -14,25 +13,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tsukuyomi Torment Unto Death',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2BE3', source: 'Tsukuyomi' }),
+      netRegex: { id: '2BE3', source: 'Tsukuyomi' },
       response: Responses.tankCleave(),
     },
     {
       id: 'Tsukuyomi Reprimand',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2BE2', source: 'Tsukuyomi', capture: false }),
+      netRegex: { id: '2BE2', source: 'Tsukuyomi', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Tsukuyomi Midnight Haze',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7230', capture: false }),
+      netRegex: { npcNameId: '7230', capture: false },
       response: Responses.killAdds(),
     },
     {
       id: 'Tsukuyomi Lead Of The Underworld',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2BE6', source: 'Tsukuyomi' }),
+      netRegex: { id: '2BE6', source: 'Tsukuyomi' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.lineStackOnYou!();
@@ -60,19 +59,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tsukuyomi Nightbloom',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2CB0', source: 'Tsukuyomi', capture: false }),
+      netRegex: { id: '2CB0', source: 'Tsukuyomi', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Tsukuyomi Lunacy',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Tsukuyomi Moonlit Debuff',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
+      netRegex: { effectId: '602' },
       condition: (data, matches) => {
         if (matches.target !== data.me)
           return false;
@@ -93,7 +92,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tsukuyomi Moonshadowed Debuff',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
+      netRegex: { effectId: '603' },
       condition: (data, matches) => {
         if (matches.target !== data.me)
           return false;
@@ -116,7 +115,7 @@ const triggerSet: TriggerSet<Data> = {
       // 2BFD is an unnamed ability that happens ~5 seconds before Dance Of The Dead.
       // Dance Of The Dead has no castbar.
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '2BFD', source: 'Tsukuyomi', capture: false }),
+      netRegex: { id: '2BFD', source: 'Tsukuyomi', capture: false },
       response: Responses.aoe(),
     },
   ],

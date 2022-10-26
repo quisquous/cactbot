@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -52,7 +51,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Sluice',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '001A' }),
+      netRegex: { id: '001A' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -69,7 +68,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Digititis Tank',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0025' }),
+      netRegex: { id: '0025' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -86,7 +85,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Digititis Healer',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0022' }),
+      netRegex: { id: '0022' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -103,7 +102,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Digititis Damage',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0024' }),
+      netRegex: { id: '0024' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -120,7 +119,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Equal Concentration',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: ['Liquid Limb', 'Living Liquid'], id: 'F09', capture: false }),
+      netRegex: { source: ['Liquid Limb', 'Living Liquid'], id: 'F09', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -136,7 +135,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Drainage You',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0005', target: 'Living Liquid' }),
+      netRegex: { id: '0005', target: 'Living Liquid' },
       condition: (data, matches) => matches.source === data.me,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -153,7 +152,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Drainage Tank',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0005', target: 'Living Liquid', capture: false }),
+      netRegex: { id: '0005', target: 'Living Liquid', capture: false },
       condition: (data) => data.role === 'tank',
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
@@ -171,7 +170,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Ferrofluid Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0026' }),
+      netRegex: { id: '0026' },
       run: (data, matches) => {
         data.ferroTether ??= {};
         data.ferroTether[matches.source] = matches.target;
@@ -181,7 +180,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Ferrofluid Signs',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
+      netRegex: { id: ['0030', '0031'] },
       run: (data, matches) => {
         data.ferroMarker ??= {};
         data.ferroMarker[matches.target] = matches.id;
@@ -191,7 +190,7 @@ const triggerSet: TriggerSet<Data> = {
       // From logs, it appears that tethers, then headmarkers, then starts casting occurs.
       id: 'A3S Ferrofluid',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: 'F01' }),
+      netRegex: { source: 'Living Liquid', id: 'F01' },
       alertText: (data, matches, output) => {
         data.ferroTether ??= {};
         data.ferroMarker ??= {};
@@ -228,14 +227,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Cascade',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: 'EFE', capture: false }),
+      netRegex: { source: 'Living Liquid', id: 'EFE', capture: false },
       response: Responses.aoe(),
     },
     {
       // aka Liquid Gaol
       id: 'A3S Throttle',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Liquid Rage', id: 'F1A' }),
+      netRegex: { source: 'Liquid Rage', id: 'F1A' },
       condition: (data) => data.CanCleanse(),
       alertText: (data, matches, output) => {
         return output.text!({ player: data.ShortName(matches.target) });
@@ -254,7 +253,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A3S Fluid Claw',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0010' }),
+      netRegex: { id: '0010' },
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.clawOnYou!();
@@ -286,7 +285,7 @@ const triggerSet: TriggerSet<Data> = {
       // aka Pressurize
       id: 'A3S Embolus',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Living Liquid', id: 'F1B', capture: false }),
+      netRegex: { source: 'Living Liquid', id: 'F1B', capture: false },
       condition: (data) => data.role === 'tank' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

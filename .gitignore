@@ -28,3 +28,4 @@ __pycache__
 .venv
 env/
 venv/
+npm-package/

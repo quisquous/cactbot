@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -14,13 +13,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Big Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F60', source: 'Ambujam', capture: false }),
+      netRegex: { id: '6F60', source: 'Ambujam', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Alzadaal Tentacle Dig',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6F55', '6559'], source: 'Ambujam', capture: false }),
+      netRegex: { id: ['6F55', '6559'], source: 'Ambujam', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -36,7 +35,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Fountain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '731A', source: 'Ambujam', capture: false }),
+      netRegex: { id: '731A', source: 'Ambujam', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -52,19 +51,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Diffusion Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F1E', source: 'Armored Chariot', capture: false }),
+      netRegex: { id: '6F1E', source: 'Armored Chariot', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Alzadaal Rail Cannon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F1F', source: 'Armored Chariot' }),
+      netRegex: { id: '6F1F', source: 'Armored Chariot' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Alzadaal Articulated Bits',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F19', source: 'Armored Chariot', capture: false }),
+      netRegex: { id: '6F19', source: 'Armored Chariot', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -81,7 +80,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Graviton Cannon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7373', source: 'Armored Chariot' }),
+      netRegex: { id: '7373', source: 'Armored Chariot' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
       response: Responses.spread(),
@@ -89,13 +88,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Billowing Bolts',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F70', source: 'Kapikulu', capture: false }),
+      netRegex: { id: '6F70', source: 'Kapikulu', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Alzadaal Spin Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F63', source: 'Kapikulu', capture: false }),
+      netRegex: { id: '6F63', source: 'Kapikulu', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -111,7 +110,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Power Serge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F6A', source: 'Kapikulu', capture: false }),
+      netRegex: { id: '6F6A', source: 'Kapikulu', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -127,20 +126,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Magnitude Opus',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A1' }),
+      netRegex: { id: '00A1' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Alzadaal Rotary Gale',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0060' }),
+      netRegex: { id: '0060' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Alzadaal Crewel Slice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F72', source: 'Kapikulu' }),
+      netRegex: { id: '6F72', source: 'Kapikulu' },
       response: Responses.tankBuster(),
     },
   ],

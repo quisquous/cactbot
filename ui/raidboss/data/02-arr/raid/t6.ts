@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
@@ -21,7 +20,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T6 Phase 2',
       type: 'Ability',
       // Bloody Caress.
-      netRegex: NetRegexes.ability({ id: '797', source: 'Rafflesia' }),
+      netRegex: { id: '797', source: 'Rafflesia' },
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
       promise: (_data, matches) =>
@@ -37,7 +36,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Thorn Whip Collect',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0012' }),
+      netRegex: { id: '0012' },
       run: (data, matches) => {
         data.thornMap ??= {};
         (data.thornMap[matches.source] ??= []).push(matches.target);
@@ -47,7 +46,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Thorn Whip',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
+      netRegex: { id: '879', source: 'Rafflesia' },
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         const partners = data.thornMap?.[data.me] ?? [];
@@ -102,21 +101,21 @@ const triggerSet: TriggerSet<Data> = {
       // Honey-Glazed
       id: 'T6 Honey On',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1BE' }),
+      netRegex: { effectId: '1BE' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.honey = true,
     },
     {
       id: 'T6 Honey Off',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '1BE' }),
+      netRegex: { effectId: '1BE' },
       condition: Conditions.targetIsYou(),
       run: (data) => delete data.honey,
     },
     {
       id: 'T6 Flower',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000D' }),
+      netRegex: { id: '000D' },
       alarmText: (data, _matches, output) => {
         if (data.honey)
           return output.getEaten!();
@@ -161,13 +160,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Blighted',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
+      netRegex: { id: '79D', source: 'Rafflesia', capture: false },
       response: Responses.stopEverything(),
     },
     {
       id: 'T6 Phase 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
+      netRegex: { id: '79E', source: 'Rafflesia', capture: false },
       condition: (data) => !data.seenLeafstorm,
       sound: 'Long',
       run: (data) => data.seenLeafstorm = true,
@@ -175,7 +174,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Swarm Stack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
+      netRegex: { id: '86C', source: 'Rafflesia', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -190,7 +189,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Swarm',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
+      netRegex: { id: '7A0', source: 'Rafflesia' },
       condition: (data, matches) => data.me === matches.target || data.role === 'healer' || data.job === 'BLU',
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
@@ -220,7 +219,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Rotten Stench',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000E' }),
+      netRegex: { id: '000E' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.shareLaserOnYou!();

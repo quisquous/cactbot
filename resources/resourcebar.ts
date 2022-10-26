@@ -483,8 +483,8 @@ export default class ResourceBar extends HTMLElement {
     updateBar(extraOverStyle);
 
     const halfHeight = (this._height - this.kBorderSize * 2) * this._scale * 0.5;
-    extraOverStyle.height = (halfHeight).toString();
-    extraOverStyle.top = (halfHeight + (this.kBorderSize * this._scale)).toString();
+    extraOverStyle.height = halfHeight.toString();
+    extraOverStyle.top = (halfHeight + this.kBorderSize * this._scale).toString();
 
     const widthPadding = this.kBorderSize * 4 + this.kTextLeftRightEdgePadding * 2;
     lTextStyle.width = ((this._width - widthPadding) * this._scale).toString();
