@@ -6,10 +6,9 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: Silkie specify which puff to get behind in first Slipper Soap
+// TODO: Silkie specify which puff to get behind in first Slippery Soap
 // TODO: Silkie specify where to point puff's tether
 // TODO: Silkie call puff to go to for safety
-// TODO: Silkie call when to go to boss for safety
 // TODO: Additional Gladiator triggers and adjustments to timeline
 // TODO: Additional Shadowcaster triggers and adjustments to timeline
 
