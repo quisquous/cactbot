@@ -1212,13 +1212,13 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'AF4', capture: true },
       condition: (data, matches) => {
-        return (data.me === matches.target && data.act === 'curtain');
+        return data.me === matches.target && data.act === 'curtain';
       },
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = curtainCallOutputStrings;
 
-        data.curtainCallGroup = Math.ceil(((parseFloat(matches.duration)) - 2) / 10);
+        data.curtainCallGroup = Math.ceil((parseFloat(matches.duration) - 2) / 10);
 
         if (data.curtainCallGroup === 1)
           return { alarmText: output.group!({ num: data.curtainCallGroup }) };
@@ -1236,9 +1236,9 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         if (
-          (data.curtainCallGroup === 2 && data.curtainCallTracker === 2) ||
-          (data.curtainCallGroup === 3 && data.curtainCallTracker === 4) ||
-          (data.curtainCallGroup === 4 && data.curtainCallTracker === 6)
+          data.curtainCallGroup === 2 && data.curtainCallTracker === 2 ||
+          data.curtainCallGroup === 3 && data.curtainCallTracker === 4 ||
+          data.curtainCallGroup === 4 && data.curtainCallTracker === 6
         )
           return output.group!({ num: data.curtainCallGroup });
       },

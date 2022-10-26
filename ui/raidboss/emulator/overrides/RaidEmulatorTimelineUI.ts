@@ -87,7 +87,7 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
 
   updateBar(bar: EmulatorTimerBar, currentLogTime: number): void {
     const barElapsed = currentLogTime - bar.start;
-    let barProg = Math.min((barElapsed / bar.duration) * 100, 100);
+    let barProg = Math.min(barElapsed / bar.duration * 100, 100);
     if (bar.style === 'empty')
       barProg = 100 - barProg;
 
@@ -113,8 +113,8 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
     if (!this.timeline)
       throw new UnreachableCode();
 
-    const end = this.timeline.timebase + (e.time * 1000);
-    const start = end - (this.options.ShowTimerBarsAtSeconds * 1000);
+    const end = this.timeline.timebase + e.time * 1000;
+    const start = end - this.options.ShowTimerBarsAtSeconds * 1000;
     const $progress = this.$progressTemplate.cloneNode(true);
     if (!($progress instanceof HTMLElement))
       throw new UnreachableCode();

@@ -142,7 +142,7 @@ export const calcGCDFromStat = (player: PlayerLike, stat: number, actionDelay = 
   const gcdMs = Math.floor(1000 - Math.floor(130 * (stat - mod[0]) / mod[1])) * actionDelay / 1000;
   const a = (100 - type1Buffs) / 100;
   const b = (100 - type2Buffs) / 100;
-  const gcdC = Math.floor(Math.floor((a * b) * gcdMs / 10) * astralUmbralMod / 100);
+  const gcdC = Math.floor(Math.floor(a * b * gcdMs / 10) * astralUmbralMod / 100);
   return gcdC / 100;
 };
 

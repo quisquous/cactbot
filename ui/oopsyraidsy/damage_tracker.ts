@@ -338,7 +338,7 @@ export class DamageTracker {
       this.firstPuller = '???';
 
     if (this.engageTime) {
-      const seconds = ((Date.now() - this.engageTime) / 1000);
+      const seconds = (Date.now() - this.engageTime) / 1000;
       if (seconds >= this.options.MinimumTimeForPullMistake) {
         const mistakeStr = Translate(this.options.DisplayLanguage, latePullText) ?? '';
         const text = `${mistakeStr} (${seconds.toFixed(1)}s)`;
@@ -400,7 +400,7 @@ export class DamageTracker {
       f: OopsyTriggerField<OopsyData, Matches, OopsyField>,
       matches: Matches,
     ) => {
-      return (typeof f === 'function') ? f(this.data, matches) : f;
+      return typeof f === 'function' ? f(this.data, matches) : f;
     };
 
     if ('condition' in trigger) {
@@ -421,9 +421,9 @@ export class DamageTracker {
       ? ValueOrFunction(trigger.suppressSeconds, matches)
       : 0;
     if (trigger.id && typeof suppress === 'number' && suppress > 0)
-      this.triggerSuppress[trigger.id] = triggerTime + (suppress * 1000);
+      this.triggerSuppress[trigger.id] = triggerTime + suppress * 1000;
 
-    const f = (() => {
+    const f = () => {
       if ('mistake' in trigger) {
         const m = ValueOrFunction(trigger.mistake, matches);
         if (typeof m === 'object') {
@@ -445,7 +445,7 @@ export class DamageTracker {
       }
       if ('run' in trigger)
         ValueOrFunction(trigger.run, matches);
-    });
+    };
 
     if (delaySeconds <= 0)
       f();

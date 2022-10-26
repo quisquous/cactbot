@@ -215,7 +215,7 @@ export class ComponentManager {
         if (id === EffectId.WellFed) {
           const seconds = parseFloat(matches.duration ?? '0');
           const now = Date.now(); // This is in ms.
-          this.foodBuffExpiresTimeMs = now + (seconds * 1000);
+          this.foodBuffExpiresTimeMs = now + seconds * 1000;
           this._updateFoodBuff();
         }
       });
@@ -362,7 +362,7 @@ export class ComponentManager {
       return;
     }
 
-    const showAtMs = this.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
+    const showAtMs = this.foodBuffExpiresTimeMs - this.options.HideWellFedAboveSeconds * 1000;
     const showMs = showAtMs - Date.now();
 
     window.clearTimeout(this.foodBuffTimer);

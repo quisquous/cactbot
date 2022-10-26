@@ -112,7 +112,7 @@ const ruleModule = {
           ).value;
           stack.outputTemplates = extractTemplate(outputValue);
           stack.outputProperties = t.isIdentifier(outputValue)
-            ? (globalVars.get(outputValue.name) || [])
+            ? globalVars.get(outputValue.name) || []
             : getAllKeys(outputValue.properties);
           stack.triggerID = node.parent.parent.properties.find((prop) =>
             prop.key && prop.key.name === 'id'

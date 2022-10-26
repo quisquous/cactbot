@@ -164,7 +164,7 @@ export default class TimerBar extends HTMLElement {
     if (!this._start)
       return this._duration;
     const elapsedMs = Date.now() - this._start;
-    return Math.max(0, this._duration - (elapsedMs / 1000));
+    return Math.max(0, this._duration - elapsedMs / 1000);
   }
 
   // The elapsed time.
@@ -550,7 +550,7 @@ export default class TimerBar extends HTMLElement {
 
   setvalue(remainSec: number): void {
     const elapsedSec = Math.max(0, this._duration - remainSec);
-    this._start = Date.now() - (elapsedSec * 1000);
+    this._start = Date.now() - elapsedSec * 1000;
 
     if (!this._connected)
       return;

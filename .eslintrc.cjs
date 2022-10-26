@@ -172,6 +172,7 @@ const rules = {
       'allowAllPropertiesOnSameLine': true,
     },
   ],
+  'no-extra-parens': ['error', 'all'],
   'operator-linebreak': 'error',
   'prefer-arrow-callback': 'error',
   'prefer-const': 'error',
@@ -250,6 +251,7 @@ const tsOverrides = {
     }],
     '@typescript-eslint/method-signature-style': ['error', 'property'],
     '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-extra-parens': ['error'],
     '@typescript-eslint/no-invalid-this': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
     '@typescript-eslint/no-unsafe-argument': 'error',
@@ -267,6 +269,7 @@ const tsOverrides = {
       { 'alphabetize': { 'caseInsensitive': true, 'order': 'asc' }, 'newlines-between': 'always' },
     ],
     'no-invalid-this': 'off',
+    'no-extra-parens': 'off',
     'object-shorthand': ['error', 'consistent'],
   },
 };

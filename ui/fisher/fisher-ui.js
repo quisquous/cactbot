@@ -34,11 +34,11 @@ export default class FisherUI {
   }
 
   draw() {
-    const timeMs = (new Date() - this.castStart);
+    const timeMs = new Date() - this.castStart;
     const time = (timeMs / 1000).toFixed(1);
 
     this.timeEl.innerHTML = time;
-    this.arrowEl.style.top = (timeMs / 600) + '%';
+    this.arrowEl.style.top = timeMs / 600 + '%';
 
     this.animationFrame = requestAnimationFrame(this.draw.bind(this));
   }
@@ -75,7 +75,7 @@ export default class FisherUI {
       bar.centertext = row.getAttribute('data-fish');
 
       // Step one: fill until the minimum time
-      if ((min && min !== 'undefined') && (max && max !== 'undefined')) {
+      if (min && min !== 'undefined' && (max && max !== 'undefined')) {
         row.opacity = 0.8;
         bar.duration = min / 1000;
         bar.stylefill = 'fill';
@@ -87,7 +87,7 @@ export default class FisherUI {
           bar.duration = (max - min) / 1000;
           timeouts.push(window.setTimeout(() => {
             row.style.opacity = 0.5;
-          }, (max - min)));
+          }, max - min));
         }, min));
       } else {
         bar.duration = 0;
