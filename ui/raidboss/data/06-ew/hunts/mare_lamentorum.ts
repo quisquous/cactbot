@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -23,56 +22,56 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Lunatender Queen Away With You',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AE5', source: 'Lunatender Queen', capture: false }),
+      netRegex: { id: '6AE5', source: 'Lunatender Queen', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getOut(),
     },
     {
       id: 'Hunt Lunatender Queen Away With You Whim',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AEB', source: 'Lunatender Queen', capture: false }),
+      netRegex: { id: '6AEB', source: 'Lunatender Queen', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getUnder(),
     },
     {
       id: 'Hunt Lunatender Queen You May Approach',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AE4', source: 'Lunatender Queen', capture: false }),
+      netRegex: { id: '6AE4', source: 'Lunatender Queen', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getUnder(),
     },
     {
       id: 'Hunt Lunatender Queen You May Approach Whim',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AEA', source: 'Lunatender Queen', capture: false }),
+      netRegex: { id: '6AEA', source: 'Lunatender Queen', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getOut(),
     },
     {
       id: 'Hunt Lunatender Queen Avert Your Eyes',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AE3', source: 'Lunatender Queen', capture: false }),
+      netRegex: { id: '6AE3', source: 'Lunatender Queen', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.lookAway(),
     },
     {
       id: 'Hunt Lunatender Queen Avert Your Eyes Whim',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AE9', source: 'Lunatender Queen', capture: false }),
+      netRegex: { id: '6AE9', source: 'Lunatender Queen', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.lookTowards(),
     },
     {
       id: 'Hunt Lunatender Queen 999,000 Needles',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AE6', source: 'Lunatender Queen', capture: false }),
+      netRegex: { id: '6AE6', source: 'Lunatender Queen', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.outOfMelee(),
     },
     {
       id: 'Hunt Mousse Princess Rightward Whimsy',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B18', source: 'Mousse Princess', capture: false }),
+      netRegex: { effectId: 'B18', source: 'Mousse Princess', capture: false },
       condition: (data) => data.inCombat,
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
@@ -90,7 +89,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Mousse Princess Backward Whimsy',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B1A', source: 'Mousse Princess', capture: false }),
+      netRegex: { effectId: 'B1A', source: 'Mousse Princess', capture: false },
       condition: (data) => data.inCombat,
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
@@ -108,7 +107,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Mousse Princess Leftward Whimsy',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B19', source: 'Mousse Princess', capture: false }),
+      netRegex: { effectId: 'B19', source: 'Mousse Princess', capture: false },
       condition: (data) => data.inCombat,
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
@@ -126,7 +125,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Mousse Princess Forward Whimsy',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B8E', source: 'Mousse Princess', capture: false }),
+      netRegex: { effectId: 'B8E', source: 'Mousse Princess', capture: false },
       condition: (data) => data.inCombat,
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
@@ -144,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Mousse Princess Banish',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6ABB', source: 'Mousse Princess' }),
+      netRegex: { id: '6ABB', source: 'Mousse Princess' },
       condition: (data) => data.inCombat,
       // Doesn't cleave (I think?).
       response: Responses.tankBuster('info'),
@@ -152,7 +151,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Mousse Princess Amorphic Flail',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6AB9', source: 'Mousse Princess', capture: false }),
+      netRegex: { id: '6AB9', source: 'Mousse Princess', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.outOfMelee(),
     },
@@ -186,31 +185,31 @@ const triggerSet: TriggerSet<Data> = {
       // 6901 = in (advance)
       id: 'Hunt Ruminator Chitinous Trace',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['68FA', '68FB'], source: 'Ruminator', capture: false }),
+      netRegex: { id: ['68FA', '68FB'], source: 'Ruminator', capture: false },
       run: (data) => data.chitinous = [],
     },
     {
       id: 'Hunt Ruminator Chitinous Trace Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '68FC', source: 'Ruminator', capture: false }),
+      netRegex: { id: '68FC', source: 'Ruminator', capture: false },
       run: (data) => data.chitinous.push('out'),
     },
     {
       id: 'Hunt Ruminator Chitinous Trace In',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '68FD', source: 'Ruminator', capture: false }),
+      netRegex: { id: '68FD', source: 'Ruminator', capture: false },
       run: (data) => data.chitinous.push('in'),
     },
     {
       id: 'Hunt Ruminator Chitinous Reversal',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6923', '6924'], source: 'Ruminator', capture: false }),
+      netRegex: { id: ['6923', '6924'], source: 'Ruminator', capture: false },
       run: (data) => data.chitinous.reverse(),
     },
     {
       id: 'Hunt Ruminator Chitinous All Dirs',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['68FE', '68FF', '6923', '6924'], source: 'Ruminator', capture: false }),
+      netRegex: { id: ['68FE', '68FF', '6923', '6924'], source: 'Ruminator', capture: false },
       // TODO: maybe figure out the duration from the length?
       durationSeconds: 5,
       sound: '',
@@ -236,7 +235,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Ruminator Chitinous Initial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['68FE', '68FF', '6923', '6924'], source: 'Ruminator', capture: false }),
+      netRegex: { id: ['68FE', '68FF', '6923', '6924'], source: 'Ruminator', capture: false },
       alertText: (data, _matches, output) => {
         // TODO: should we verify that 68FE/6923 are out and 68FF/6924 are in?
         const key = data.chitinous.shift() ?? 'unknown';
@@ -253,7 +252,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Ruminator Chitinous Step',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['68FE', '68FF', '6923', '6924', '6637', '6638', '6900', '6901'], source: 'Ruminator', capture: false }),
+      netRegex: { id: ['68FE', '68FF', '6923', '6924', '6637', '6638', '6900', '6901'], source: 'Ruminator', capture: false },
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         // Skip the last one.
@@ -272,7 +271,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Ruminator Stygian Vapor',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6902', source: 'Ruminator', capture: false }),
+      netRegex: { id: '6902', source: 'Ruminator', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.aoe(),
     },

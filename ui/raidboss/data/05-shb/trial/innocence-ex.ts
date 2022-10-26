@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -20,7 +19,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Starbirth Count',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
+      netRegex: { id: '3EEF', source: 'Innocence', capture: false },
       run: (data) => {
         data.starbirthCount = (data.starbirthCount ?? 0) + 1;
         data.starbirthActive = true;
@@ -29,7 +28,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Reprobation Swords 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
+      netRegex: { id: '3EDC', source: 'Innocence', capture: false },
       // 3 seconds cast time + 7 seconds until next sword.
       delaySeconds: 7,
       infoText: (_data, _matches, output) => output.text!(),
@@ -47,7 +46,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Starbirth Warning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
+      netRegex: { id: '3EEF', source: 'Innocence', capture: false },
       infoText: (data, _matches, output) => {
         if (data.starbirthCount === 1)
           return output.starbirthCorner!();
@@ -108,19 +107,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Shadowreaver',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
+      netRegex: { id: '3EEA', source: 'Innocence', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'InnoEx Righteous Bolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3ECD', source: 'Innocence' }),
+      netRegex: { id: '3ECD', source: 'Innocence' },
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'InnoEx Holy Sword Healer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EC9', source: 'Forgiven Venery', capture: false }),
+      netRegex: { id: '3EC9', source: 'Forgiven Venery', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -130,14 +129,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Holy Sword Me',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EC9', source: 'Forgiven Venery' }),
+      netRegex: { id: '3EC9', source: 'Forgiven Venery' },
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'InnoEx Charge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EEE', source: 'Innocence', capture: false }),
+      netRegex: { id: '3EEE', source: 'Innocence', capture: false },
       alertText: (data, _matches, output) => {
         if (data.starbirthActive)
           return output.avoidChargeAndOrbs!();
@@ -166,7 +165,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Starbirth Avoid',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
+      netRegex: { id: '3EEF', source: 'Innocence', capture: false },
       condition: (data) => data.starbirthCount === 1,
       delaySeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
@@ -184,7 +183,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Adds',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '42B0', source: 'Innocence', capture: false }),
+      netRegex: { id: '42B0', source: 'Innocence', capture: false },
       condition: (data) => data.role === 'tank',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -201,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Light Pillar',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '38FC', source: 'Innocence' }),
+      netRegex: { id: '38FC', source: 'Innocence' },
       preRun: (data) => data.lightPillar = (data.lightPillar ?? 0) + 1,
       alarmText: (data, matches, output) => {
         if (matches.target !== data.me)
@@ -247,7 +246,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Starbirth Explode',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3F3E', source: 'Innocence', capture: false }),
+      netRegex: { id: '3F3E', source: 'Innocence', capture: false },
       condition: (data) => data.lightPillar === 3,
       delaySeconds: 6.5,
       alertText: (_data, _matches, output) => output.text!(),
@@ -265,7 +264,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Winged Reprobation Tether',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AC' }),
+      netRegex: { id: '00AC' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -282,7 +281,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Winged Drop Of Light',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008A' }),
+      netRegex: { id: '008A' },
       condition: Conditions.targetIsYou(),
       alertText: (data, _matches, output) => {
         if (data.starbirthActive)
@@ -312,7 +311,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx God Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EE[456]', source: 'Innocence', capture: false }),
+      netRegex: { id: '3EE[456]', source: 'Innocence', capture: false },
       suppressSeconds: 15,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -329,19 +328,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Starbirth End 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
+      netRegex: { id: '3EEA', source: 'Innocence', capture: false },
       run: (data) => delete data.starbirthActive,
     },
     {
       id: 'InnoEx Starbirth End 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3EEE', source: 'Innocence', capture: false }),
+      netRegex: { id: '3EEE', source: 'Innocence', capture: false },
       run: (data) => delete data.starbirthActive,
     },
     {
       id: 'InnoEx Soul And Body Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3ED7', source: 'Innocence', capture: false }),
+      netRegex: { id: '3ED7', source: 'Innocence', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -358,7 +357,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Soul And Body Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3ED9', source: 'Innocence', capture: false }),
+      netRegex: { id: '3ED9', source: 'Innocence', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -375,7 +374,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Rood Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3ED3', source: 'Innocence', capture: false }),
+      netRegex: { id: '3ED3', source: 'Innocence', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -392,7 +391,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Rood Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3ED5', source: 'Innocence', capture: false }),
+      netRegex: { id: '3ED5', source: 'Innocence', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

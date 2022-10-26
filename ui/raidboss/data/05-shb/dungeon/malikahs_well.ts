@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -13,19 +12,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Malikah Stone Flail',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3CE5', source: 'Greater Armadillo' }),
+      netRegex: { id: '3CE5', source: 'Greater Armadillo' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Malikah Head Toss Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Malikah Right Round',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3CE7', source: 'Greater Armadillo', capture: false }),
+      netRegex: { id: '3CE7', source: 'Greater Armadillo', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -41,32 +40,32 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Malikah Deep Draught',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4188', source: 'Pack Armadillo' }),
+      netRegex: { id: '4188', source: 'Pack Armadillo' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt('info'),
     },
     {
       id: 'Malikah Efface',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3CEB', source: 'Amphibious Talos' }),
+      netRegex: { id: '3CEB', source: 'Amphibious Talos' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Malikah High Pressure',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3CEC', source: 'Amphibious Talos', capture: false }),
+      netRegex: { id: '3CEC', source: 'Amphibious Talos', capture: false },
       response: Responses.knockback('info'),
     },
     {
       id: 'Malikah Swift Spill',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3CEF', source: 'Amphibious Talos', capture: false }),
+      netRegex: { id: '3CEF', source: 'Amphibious Talos', capture: false },
       response: Responses.getBehind('info'),
     },
     {
       id: 'Malikah Intestinal Crank',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3CF1', source: 'Storge', capture: false }),
+      netRegex: { id: '3CF1', source: 'Storge', capture: false },
       response: Responses.aoe(),
     },
   ],

@@ -220,7 +220,7 @@ export default class TimerBox extends HTMLElement {
     if (!this._start)
       return this._duration;
     const elapsedMs = Date.now() - this._start;
-    return Math.max(0, this._duration - (elapsedMs / 1000));
+    return Math.max(0, this._duration - elapsedMs / 1000);
   }
 
   // The elapsed time.

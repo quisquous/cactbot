@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -24,7 +23,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Zot Minduruva Bio',
       type: 'StartsUsing',
       // 62CA in the final phase.
-      netRegex: NetRegexes.startsUsing({ id: ['62A9', '62CA'], source: 'Minduruva' }),
+      netRegex: { id: ['62A9', '62CA'], source: 'Minduruva' },
       response: Responses.tankBuster(),
     },
     {
@@ -34,7 +33,7 @@ const triggerSet: TriggerSet<Data> = {
       // 631B = Transmute Blizzard III
       // 631C = Transmute Thunder III
       // 631D = Transmute Bio III
-      netRegex: NetRegexes.startsUsing({ id: ['629A', '631[BCD]'], source: 'Minduruva' }),
+      netRegex: { id: ['629A', '631[BCD]'], source: 'Minduruva' },
       run: (data, matches) => {
         const transmuteFire = '629A';
         const transmuteBio = '631D';
@@ -55,7 +54,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6292 = Manusya Blizzard III
       // 6293 = Manusya Thunder III
       // 6294 = Manusya Bio III
-      netRegex: NetRegexes.startsUsing({ id: ['629[1-4]'], source: 'Minduruva' }),
+      netRegex: { id: ['629[1-4]'], source: 'Minduruva' },
       durationSeconds: (data) => {
         // Based on network log data analysis, the first orb will finish
         // 8 seconds after this cast started, while the second orb will
@@ -130,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zot Minduruva Dhrupad Reset',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '629C', source: 'Minduruva', capture: false }),
+      netRegex: { id: '629C', source: 'Minduruva', capture: false },
       // There's a Dhrupad cast after every transmute sequence.
       run: (data) => {
         data.orbCount = 0;
@@ -141,14 +140,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Zot Sanduruva Isitva Siddhi',
       type: 'StartsUsing',
       // 62A9 is 2nd boss, 62C0 is 3rd boss.
-      netRegex: NetRegexes.startsUsing({ id: ['62A9', '62C0'], source: 'Sanduruva' }),
+      netRegex: { id: ['62A9', '62C0'], source: 'Sanduruva' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Zot Sanduruva Manusya Berserk',
       type: 'Ability',
       // 62A1 is 2nd boss, 62BC in the 3rd boss.
-      netRegex: NetRegexes.ability({ id: ['62A1', '62BC'], source: 'Sanduruva', capture: false }),
+      netRegex: { id: ['62A1', '62BC'], source: 'Sanduruva', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -164,7 +163,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zot Sanduruva Manusya Confuse',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62A5', source: 'Sanduruva', capture: false }),
+      netRegex: { id: '62A5', source: 'Sanduruva', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -180,19 +179,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zot Cinduruva Samsara',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62B9', source: 'Cinduruva', capture: false }),
+      netRegex: { id: '62B9', source: 'Cinduruva', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Zot Cinduruva Isitva Siddhi',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62A9', source: 'Cinduruva' }),
+      netRegex: { id: '62A9', source: 'Cinduruva' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Zot Cinduruva Delta Thunder III Stack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62B8', source: 'Cinduruva' }),
+      netRegex: { id: '62B8', source: 'Cinduruva' },
       response: Responses.stackMarkerOn(),
     },
   ],

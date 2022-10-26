@@ -221,35 +221,35 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Firescorched Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1D0' }),
+      netRegex: { effectId: '1D0' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.fireDebuff = true,
     },
     {
       id: 'UCU Firescorched Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '1D0' }),
+      netRegex: { effectId: '1D0' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.fireDebuff = false,
     },
     {
       id: 'UCU Icebitten Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1D1' }),
+      netRegex: { effectId: '1D1' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.iceDebuff = true,
     },
     {
       id: 'UCU Icebitten Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '1D1' }),
+      netRegex: { effectId: '1D1' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.iceDebuff = false,
     },
     {
       id: 'UCU Fireball Counter',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '26C5', source: 'Firehorn' }),
+      netRegex: { id: '26C5', source: 'Firehorn' },
       run: (data, matches) => {
         (data.fireballs[data.naelFireballCount] ??= []).push(matches.target);
       },
@@ -257,43 +257,43 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Quickmarch Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26E2', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26E2', source: 'Bahamut Prime', capture: false },
       run: (data) => resetTrio(data, 'quickmarch'),
     },
     {
       id: 'UCU Blackfire Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26E3', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26E3', source: 'Bahamut Prime', capture: false },
       run: (data) => resetTrio(data, 'blackfire'),
     },
     {
       id: 'UCU Fellruin Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26E4', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26E4', source: 'Bahamut Prime', capture: false },
       run: (data) => resetTrio(data, 'fellruin'),
     },
     {
       id: 'UCU Heavensfall Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26E5', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26E5', source: 'Bahamut Prime', capture: false },
       run: (data) => resetTrio(data, 'heavensfall'),
     },
     {
       id: 'UCU Tenstrike Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26E6', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26E6', source: 'Bahamut Prime', capture: false },
       run: (data) => resetTrio(data, 'tenstrike'),
     },
     {
       id: 'UCU Octet Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26E7', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26E7', source: 'Bahamut Prime', capture: false },
       run: (data) => resetTrio(data, 'octet'),
     },
     {
       id: 'UCU Ragnarok Party Tracker',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '26B8', source: 'Ragnarok' }),
+      netRegex: { id: '26B8', source: 'Ragnarok' },
       run: (data, matches) => {
         // This happens once during the nael transition and again during
         // the heavensfall trio.  This should proooobably hit all 8
@@ -306,7 +306,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Twisters',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      netRegex: { id: '26AA', source: 'Twintania', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -322,7 +322,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Death Sentence',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
+      netRegex: { id: '26A9', source: 'Twintania', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -338,7 +338,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Hatch Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0076' }),
+      netRegex: { id: '0076' },
       run: (data, matches) => {
         data.hatch ??= [];
         data.hatch.push(matches.target);
@@ -347,7 +347,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Hatch Marker YOU',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0076' }),
+      netRegex: { id: '0076' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -364,7 +364,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Hatch Callouts',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0076', capture: false }),
+      netRegex: { id: '0076', capture: false },
       delaySeconds: 0.25,
       infoText: (data, _matches, output) => {
         if (!data.hatch)
@@ -387,7 +387,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Hatch Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0076', capture: false }),
+      netRegex: { id: '0076', capture: false },
       delaySeconds: 5,
       run: (data) => delete data.hatch,
     },
@@ -395,7 +395,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UCU Twintania Phase Change Watcher',
       type: 'StartsUsing',
       // On Twister or Generate.
-      netRegex: NetRegexes.startsUsing({ id: '26A[AE]', source: 'Twintania' }),
+      netRegex: { id: '26A[AE]', source: 'Twintania' },
       condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
       promise: (data, matches) =>
@@ -684,7 +684,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
-      netRegex: NetRegexes.ability({ source: 'Thunderwing', id: '26C7' }),
+      netRegex: { source: 'Thunderwing', id: '26C7' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -701,7 +701,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Your Doom',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
+      netRegex: { effectId: 'D2' },
       condition: (data, matches) => {
         return data.me === matches.target;
       },
@@ -769,7 +769,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Doom Init',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
+      netRegex: { effectId: 'D2' },
       run: (data, matches) => {
         data.dooms ??= [null, null, null];
         let order = null;
@@ -789,7 +789,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Doom Cleanup',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D2', capture: false }),
+      netRegex: { effectId: 'D2', capture: false },
       delaySeconds: 20,
       run: (data) => {
         delete data.dooms;
@@ -799,7 +799,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Cleanse Callout',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Fang Of Light', id: '26CA', capture: false }),
+      netRegex: { source: 'Fang Of Light', id: '26CA', capture: false },
       infoText: (data, _matches, output) => {
         data.doomCount ??= 0;
         let name;
@@ -823,7 +823,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Fireball 1',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegex: { source: 'Ragnarok', id: '26B8', capture: false },
       delaySeconds: 35,
       suppressSeconds: 99999,
       infoText: (_data, _matches, output) => output.text!(),
@@ -842,7 +842,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Fireball 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegex: { source: 'Ragnarok', id: '26B8', capture: false },
       delaySeconds: 51,
       suppressSeconds: 99999,
       alertText: (data, _matches, output) => {
@@ -881,7 +881,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Fireball 3',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegex: { source: 'Ragnarok', id: '26B8', capture: false },
       delaySeconds: 77,
       suppressSeconds: 99999,
       alertText: (data, _matches, output) => {
@@ -934,7 +934,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Fireball 4',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegex: { source: 'Ragnarok', id: '26B8', capture: false },
       delaySeconds: 98,
       suppressSeconds: 99999,
       alertText: (data, _matches, output) => {
@@ -978,7 +978,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Dragon Tracker',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      netRegex: { source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] },
       condition: (data, matches) => !(matches.source in data.seenDragon),
       run: (data, matches) => {
         data.seenDragon[matches.source] = true;
@@ -1012,14 +1012,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Ravensbeak',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
+      netRegex: { source: 'Nael deus Darnus', id: '26B6' },
       response: Responses.tankBusterSwap('alert'),
     },
     {
       // Called out after the 1st Ravensbeak.
       id: 'UCU Nael Dragon Placement',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
+      netRegex: { source: 'Nael deus Darnus', id: '26B6', capture: false },
       condition: (data) => data.naelMarks && !data.calledNaelDragons,
       durationSeconds: 10,
       infoText: (data, _matches, output) => {
@@ -1064,7 +1064,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Dragon Dive Marker Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014' }),
+      netRegex: { id: '0014' },
       condition: (data) => !data.trio,
       alarmText: (data, matches, output) => {
         if (matches.target !== data.me)
@@ -1095,7 +1095,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Dragon Dive Marker Others',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014' }),
+      netRegex: { id: '0014' },
       condition: (data) => !data.trio,
       infoText: (data, matches, output) => {
         if (matches.target === data.me)
@@ -1117,7 +1117,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Dragon Dive Marker Counter',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014', capture: false }),
+      netRegex: { id: '0014', capture: false },
       condition: (data) => !data.trio,
       run: (data) => data.naelDiveMarkerCount++,
     },
@@ -1125,7 +1125,7 @@ const triggerSet: TriggerSet<Data> = {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
       id: 'UCU Octet Marker Tracking',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0077', '0014', '0029'] }),
+      netRegex: { id: ['0077', '0014', '0029'] },
       condition: (data) => data.trio === 'octet',
       run: (data, matches) => {
         data.octetMarker.push(matches.target);
@@ -1168,7 +1168,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Octet Nael Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0077' }),
+      netRegex: { id: '0077' },
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
         const num = data.octetMarker.length;
@@ -1188,7 +1188,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Octet Dragon Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014' }),
+      netRegex: { id: '0014' },
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
         const num = data.octetMarker.length;
@@ -1208,7 +1208,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Octet Baha Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0029' }),
+      netRegex: { id: '0029' },
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
         const num = data.octetMarker.length;
@@ -1228,7 +1228,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Octet Twin Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0029', capture: false }),
+      netRegex: { id: '0029', capture: false },
       condition: (data) => data.trio === 'octet',
       delaySeconds: 0.5,
       alarmText: (data, _matches, output) => {
@@ -1286,7 +1286,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Twister Dives',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
+      netRegex: { source: 'Twintania', id: '26B2', capture: false },
       suppressSeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1303,7 +1303,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Bahamut Gigaflare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26D6', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26D6', source: 'Bahamut Prime', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1319,7 +1319,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Megaflare Stack Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027' }),
+      netRegex: { id: '0027' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1336,13 +1336,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Megaflare Stack Tracking',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027' }),
+      netRegex: { id: '0027' },
       run: (data, matches) => data.megaStack.push(matches.target),
     },
     {
       id: 'UCU Megaflare Tower',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027', capture: false }),
+      netRegex: { id: '0027', capture: false },
       infoText: (data, _matches, output) => {
         if (data.trio !== 'blackfire' && data.trio !== 'octet' || data.megaStack.length !== 4)
           return;
@@ -1403,7 +1403,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Megaflare Twin Tower',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027', capture: false }),
+      netRegex: { id: '0027', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
@@ -1440,20 +1440,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Earthshaker Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker('alarm'),
     },
     {
       id: 'UCU Earthshaker Tracking',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       run: (data, matches) => data.shakers.push(matches.target),
     },
     {
       id: 'UCU Earthshaker Not Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028', capture: false }),
+      netRegex: { id: '0028', capture: false },
       alertText: (data, _matches, output) => {
         if (data.trio !== 'quickmarch')
           return;
@@ -1507,7 +1507,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Morn Afah',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26EC', source: 'Bahamut Prime' }),
+      netRegex: { id: '26EC', source: 'Bahamut Prime' },
       preRun: (data) => data.mornAfahCount++,
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
@@ -1539,7 +1539,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Akh Morn',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26EA', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26EA', source: 'Bahamut Prime', capture: false },
       preRun: (data) => {
         data.akhMornCount++;
       },
@@ -1558,7 +1558,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Exaflare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26EF', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26EF', source: 'Bahamut Prime', capture: false },
       preRun: (data) => data.exaflareCount++,
       infoText: (data, _matches, output) => output.text!({ num: data.exaflareCount }),
       outputStrings: {

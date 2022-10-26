@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -36,13 +35,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Shadowflame Tank',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E4D', source: 'Voidwalker' }),
+      netRegex: { id: '3E4D', source: 'Voidwalker' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E2N Shadowflame Healer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E4D', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E4D', source: 'Voidwalker', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -52,50 +51,50 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Entropy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E6D', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E6D', source: 'Voidwalker', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E2N Doomvoid Slicer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E3C', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E3C', source: 'Voidwalker', capture: false },
       response: Responses.getUnder(),
     },
     {
       id: 'E2N Empty Hate',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E46', source: 'The Hand Of Erebos', capture: false }),
+      netRegex: { id: '3E46', source: 'The Hand Of Erebos', capture: false },
       response: Responses.knockback('info'),
     },
     {
       id: 'E2N Darkfire Counter',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3E42', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '3E42', source: 'Voidwalker', capture: false },
       run: (data) => data.fireCount = (data.fireCount ?? 0) + 1,
     },
     {
       id: 'E2N Dark Fire No Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '004C' }),
+      netRegex: { id: '004C' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'E2N Unholy Darkness No Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'E2N Shadoweye No Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B3' }),
+      netRegex: { id: '00B3' },
       response: Responses.lookAwayFromTarget(),
     },
     {
       id: 'E2N Dark Fire Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B5' }),
+      netRegex: { id: '00B5' },
       run: (data, matches) => {
         data.spell ??= {};
         data.spell[matches.target] = 'fire';
@@ -104,7 +103,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Dark Fire Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B5' }),
+      netRegex: { id: '00B5' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -121,7 +120,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Countdown Marker Fire',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       condition: (data, matches) => data.me === matches.target && data.spell?.[data.me] === 'fire',
       alertText: (data, _matches, output) => {
         if (data.fireCount === 3)
@@ -144,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Unholy Darkness Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B4' }),
+      netRegex: { id: '00B4' },
       run: (data, matches) => {
         data.spell ??= {};
         data.spell[matches.target] = 'stack';
@@ -153,7 +152,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Unholy Darkness Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B4' }),
+      netRegex: { id: '00B4' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -170,7 +169,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Countdown Marker Unholy Darkness',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       condition: (data, matches) => {
         // The third fire coincides with stack.
         // These people should avoid.
@@ -183,7 +182,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Shadoweye Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B7' }),
+      netRegex: { id: '00B7' },
       run: (data, matches) => {
         data.spell ??= {};
         data.spell[matches.target] = 'eye';
@@ -192,7 +191,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Shadoweye Waiting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B7' }),
+      netRegex: { id: '00B7' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -209,7 +208,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Countdown Marker Shadoweye',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       condition: (data, matches) => data.spell?.[matches.target] === 'eye',
       delaySeconds: 2,
       response: Responses.lookAwayFromTarget('alarm'),
@@ -217,7 +216,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Countdown Marker Shadoweye You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       condition: (data, matches) => {
         return data.me === matches.target && data.spell?.[matches.target] === 'eye';
       },
@@ -237,7 +236,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E2N Countdown Marker Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00B8' }),
+      netRegex: { id: '00B8' },
       delaySeconds: 10,
       run: (data, matches) => delete data.spell?.[matches.target],
     },

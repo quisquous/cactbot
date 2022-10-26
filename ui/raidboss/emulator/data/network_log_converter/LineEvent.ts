@@ -44,7 +44,7 @@ export default class LineEvent {
     this.timestamp = new Date(timestampString).getTime();
     this.checksum = parts.slice(-1)[0] ?? '';
     repo.updateTimestamp(this.timestamp);
-    this.convertedLine = this.prefix() + (parts.slice(2, -1).join(':')).replace('|', ':');
+    this.convertedLine = this.prefix() + parts.slice(2, -1).join(':').replace('|', ':');
   }
 
   prefix(): string {
@@ -78,7 +78,7 @@ export default class LineEvent {
       return parseInt(parts.slice(0, 2).reverse().join(''), 16);
 
     return parseInt(
-      (parts[3] + parts[0]) +
+      parts[3] + parts[0] +
         (parseInt(parts[1], 16) - parseInt(parts[3], 16)).toString(16),
       16,
     );

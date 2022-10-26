@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -14,19 +13,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Qitana Stonefist',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3C89', source: 'Lozatl' }),
+      netRegex: { id: '3C89', source: 'Lozatl' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Qitana Scorn',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
+      netRegex: { id: '3C8B', source: 'Lozatl', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Qitana Eerie Pillar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
+      netRegex: { id: '3C8B', source: 'Lozatl', capture: false },
       delaySeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -43,7 +42,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Qitana Heat Up Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3C8D', source: 'Lozatl', capture: false }),
+      netRegex: { id: '3C8D', source: 'Lozatl', capture: false },
       delaySeconds: 6,
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
@@ -61,7 +60,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Qitana Heat Up Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3C8E', source: 'Lozatl', capture: false }),
+      netRegex: { id: '3C8E', source: 'Lozatl', capture: false },
       delaySeconds: 6,
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
@@ -79,37 +78,37 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Qitana Ripper Fang',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3C91', source: 'Batsquatch' }),
+      netRegex: { id: '3C91', source: 'Batsquatch' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Qitana Soundwave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3C92', source: 'Batsquatch', capture: false }),
+      netRegex: { id: '3C92', source: 'Batsquatch', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Qitana Subsonics',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3C93', source: 'Batsquatch', capture: false }),
+      netRegex: { id: '3C93', source: 'Batsquatch', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Qitana Rend',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3C99', source: 'Eros' }),
+      netRegex: { id: '3C99', source: 'Eros' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Qitana Glossolalia',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3C9B', source: 'Eros', capture: false }),
+      netRegex: { id: '3C9B', source: 'Eros', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Qitana Hound Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0039', source: 'Eros' }),
+      netRegex: { id: '0039', source: 'Eros' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -126,7 +125,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Qitana Viper Poison',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AB' }),
+      netRegex: { id: '00AB' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -143,13 +142,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Qitana Confession of Faith Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Qitana Confession of Faith Spread',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3CA1', source: 'Eros', capture: false }),
+      netRegex: { id: '3CA1', source: 'Eros', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

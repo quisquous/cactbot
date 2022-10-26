@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -16,7 +15,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amaurot Meteor',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0039' }),
+      netRegex: { id: '0039' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => data.meteor = (data.meteor ?? 0) + 1,
       infoText: (data, _matches, output) => {
@@ -57,14 +56,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amaurot Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Amaurot Final Sky',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3CCB', source: 'The First Beast', capture: false }),
+      netRegex: { id: '3CCB', source: 'The First Beast', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -80,13 +79,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Amaurot Shadow Wreck',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
+      netRegex: { id: '3CE3', source: 'Therion', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Amaurot Apokalypsis',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
+      netRegex: { id: '3CD7', source: 'Therion', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

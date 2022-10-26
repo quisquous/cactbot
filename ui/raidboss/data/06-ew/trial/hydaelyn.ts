@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -57,19 +56,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Heros\'s Radiance',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65D7', source: 'Hydaelyn', capture: false }),
+      netRegex: { id: '65D7', source: 'Hydaelyn', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Hydaelyn Magos\'s Raidance',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65D8', source: 'Hydaelyn', capture: false }),
+      netRegex: { id: '65D8', source: 'Hydaelyn', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Hydaelyn Crystallize Ice',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '659C', source: 'Hydaelyn', capture: false }),
+      netRegex: { id: '659C', source: 'Hydaelyn', capture: false },
       infoText: (_data, _matches, output) => output.crystallize!({ name: output.spread!() }),
       run: (data) => data.crystallize = 'spread',
       outputStrings: crystallizeOutputStrings,
@@ -77,7 +76,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Crystallize Stone',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '659E', source: 'Hydaelyn', capture: false }),
+      netRegex: { id: '659E', source: 'Hydaelyn', capture: false },
       infoText: (_data, _matches, output) => output.crystallize!({ name: output.stack!() }),
       run: (data) => data.crystallize = 'stack',
       outputStrings: crystallizeOutputStrings,
@@ -90,7 +89,7 @@ const triggerSet: TriggerSet<Data> = {
       // it is used randomly and not in fixed places, and so it can't just be a timeline trigger.
       // However, in normal mode, Dawn Mantle is always cast prior to the marker appearing,
       // so assume any Dawn Mantle is Equinox unless we figure out otherwise.
-      netRegex: NetRegexes.startsUsing({ id: '6C0C', source: 'Hydaelyn', capture: false }),
+      netRegex: { id: '6C0C', source: 'Hydaelyn', capture: false },
       preRun: (data) => data.isEquinox = true,
       // Dawn Mantle is a 4.9s cast, plus the normal 2.5s delay.  (See Anthelion comment below.)
       delaySeconds: 2.5 + 4.9,
@@ -123,7 +122,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Marker Anthelion',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8E1', source: 'Hydaelyn', count: '1B5', capture: false }),
+      netRegex: { effectId: '8E1', source: 'Hydaelyn', count: '1B5', capture: false },
       // Example timeline:
       //     t=0 StartsCasting Crystallize
       //     t=4 ActionEffect Crystalize
@@ -155,7 +154,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Marker Highest Holy',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8E1', source: 'Hydaelyn', count: '1B4', capture: false }),
+      netRegex: { effectId: '8E1', source: 'Hydaelyn', count: '1B4', capture: false },
       preRun: (data) => data.isEquinox = false,
       delaySeconds: 2.5,
       durationSeconds: (data) => data.crystallize ? 6.5 : 3.5,
@@ -173,13 +172,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Mousa\'s Scorn',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65D6', source: 'Hydaelyn' }),
+      netRegex: { id: '65D6', source: 'Hydaelyn' },
       response: Responses.sharedTankBuster(),
     },
     {
       id: 'Hydaelyn Exodus',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '65BB', source: 'Hydaelyn', capture: false }),
+      netRegex: { id: '65BB', source: 'Hydaelyn', capture: false },
       // 14.8 seconds from this ability (no cast) to 662B raidwide.
       delaySeconds: 5,
       response: Responses.aoe(),
@@ -187,20 +186,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Radiant Halo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65D0', source: 'Hydaelyn', capture: false }),
+      netRegex: { id: '65D0', source: 'Hydaelyn', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Hydaelyn Heros\'s Sundering',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65D5', source: 'Hydaelyn' }),
+      netRegex: { id: '65D5', source: 'Hydaelyn' },
       response: Responses.tankCleave('alert'),
     },
     {
       id: 'Hydaelyn Echo Crystaline Stone III',
       type: 'StartsUsing',
       // Midphase stack.
-      netRegex: NetRegexes.startsUsing({ id: '6C59', source: 'Echo of Hydaelyn', capture: false }),
+      netRegex: { id: '6C59', source: 'Echo of Hydaelyn', capture: false },
       alertText: (_data, _matches, output) => output.stack!(),
       outputStrings: {
         stack: crystallizeOutputStrings.stack,
@@ -210,7 +209,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hydaelyn Echo Crystaline Blizzard III',
       type: 'StartsUsing',
       // Midphase spread.
-      netRegex: NetRegexes.startsUsing({ id: '6C5A', source: 'Echo of Hydaelyn' }),
+      netRegex: { id: '6C5A', source: 'Echo of Hydaelyn' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.spread!(),
       outputStrings: {
@@ -220,7 +219,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Parhelic Circle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65AC', source: 'Hydaelyn', capture: false }),
+      netRegex: { id: '65AC', source: 'Hydaelyn', capture: false },
       durationSeconds: 9,
       alertText: (_data, _matches, output) => output.avoid!(),
       run: (data) => delete data.crystallize,
@@ -238,7 +237,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Echoes',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '65B[567]', source: 'Hydaelyn', capture: false }),
+      netRegex: { id: '65B[567]', source: 'Hydaelyn', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -53,7 +52,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Terror Unleashed',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: '4F27', capture: false }),
+      netRegex: { source: 'Warrior Of Light', id: '4F27', capture: false },
       condition: (data) => data.role === 'healer',
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
@@ -71,44 +70,44 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Coruscant Saber In',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F11', capture: false }),
+      netRegex: { source: 'Warrior Of Light', id: '4F11', capture: false },
       response: Responses.getUnder(),
     },
     {
       id: 'WOL Coruscant Saber Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F10', capture: false }),
+      netRegex: { source: 'Warrior Of Light', id: '4F10', capture: false },
       response: Responses.getOut('info'),
     },
     {
       id: 'WOL Absolute Blizzard III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F2D', capture: false }),
+      netRegex: { source: 'Warrior Of Light', id: '4F2D', capture: false },
       response: Responses.moveAround('alert'),
     },
     {
       id: 'WOL Absolute Fire III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F2E', capture: false }),
+      netRegex: { source: 'Warrior Of Light', id: '4F2E', capture: false },
       // I mean, stop if you want, I guess?
       response: Responses.stopEverything('info'),
     },
     {
       id: 'WOL Imbued Absolute Blizzard III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F13', capture: false }),
+      netRegex: { source: 'Warrior Of Light', id: '4F13', capture: false },
       run: (data) => data.imbued = 'blizzard',
     },
     {
       id: 'WOL Imbued Absolute Fire III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F12', capture: false }),
+      netRegex: { source: 'Warrior Of Light', id: '4F12', capture: false },
       run: (data) => data.imbued = 'fire',
     },
     {
       id: 'WOL Imbued Coruscance Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F4B', capture: false }),
+      netRegex: { source: 'Warrior Of Light', id: '4F4B', capture: false },
       alertText: (data, _matches, output) => {
         if (data.imbued === 'blizzard')
           return output.outMove!();
@@ -147,7 +146,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Imbued Coruscance In',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F4C', capture: false }),
+      netRegex: { source: 'Warrior Of Light', id: '4F4C', capture: false },
       alertText: (data, _matches, output) => {
         if (data.imbued === 'blizzard')
           return output.underMove!();
@@ -186,7 +185,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Sword Of Light',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F42', capture: false }),
+      netRegex: { source: 'Warrior Of Light', id: '4F42', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -202,7 +201,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Summon Wyrm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F41', capture: false }),
+      netRegex: { source: 'Warrior Of Light', id: '4F41', capture: false },
       delaySeconds: 6,
       // This applies to both phases.  We could say something like "go side without wyrm" and
       // "go to corner without wyrm", but "avoid wyrm dash" covers both.  Hopefully it's obvious
@@ -222,19 +221,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Bitter End',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F28' }),
+      netRegex: { source: 'Warrior Of Light', id: '4F28' },
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'WOL Elddragon Dive',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F29', capture: false }),
+      netRegex: { source: 'Warrior Of Light', id: '4F29', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'WOL Deluge of Death Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       run: (data, matches) => data.deluge = matches.target,
@@ -252,7 +251,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Deluge of Death Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057', capture: false }),
+      netRegex: { id: '0057', capture: false },
       delaySeconds: 10,
       run: (data) => {
         // Clean this up so it doesn't apply during Katon San.
@@ -263,7 +262,7 @@ const triggerSet: TriggerSet<Data> = {
       // Both for Absolute Holy and Katon San
       id: 'WOL Absolute Holy Katon San',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A1' }),
+      netRegex: { id: '00A1' },
       condition: (data) => data.deluge !== data.me,
       delaySeconds: 0.5,
       response: Responses.stackMarkerOn(),
@@ -271,7 +270,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Radiant Braver',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00EA' }),
+      netRegex: { id: '00EA' },
       response: Responses.earthshaker(),
     },
     {
@@ -279,7 +278,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // There are two single target 4F46 lines to indicate who the stacks
       // are on, that come slightly after this starts casting.
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '515D', capture: false }),
+      netRegex: { source: 'Warrior Of Light', id: '515D', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -295,7 +294,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Radiant Meteor',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00E9' }),
+      netRegex: { id: '00E9' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -312,14 +311,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Suiton San',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Spectral Ninja', id: '4F38', capture: false }),
+      netRegex: { source: 'Spectral Ninja', id: '4F38', capture: false },
       delaySeconds: 5,
       response: Responses.knockback(),
     },
     {
       id: 'WOL Spectral Egi Flare Breath',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Spectral Egi', id: '0011' }),
+      netRegex: { source: 'Spectral Egi', id: '0011' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

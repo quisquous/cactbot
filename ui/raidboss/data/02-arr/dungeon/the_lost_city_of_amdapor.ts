@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -13,13 +12,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Lost City Amdapor Devour',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '736', source: 'Chudo-Yudo', capture: false }),
+      netRegex: { id: '736', source: 'Chudo-Yudo', capture: false },
       response: Responses.killAdds(),
     },
     {
       id: 'Lost City Amdapor Graviball',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '762', source: 'Diabolos' }),
+      netRegex: { id: '762', source: 'Diabolos' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -34,7 +33,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Lost City Amdapor Ultimate Terror',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '766', source: 'Diabolos', capture: false }),
+      netRegex: { id: '766', source: 'Diabolos', capture: false },
       response: Responses.getIn(),
     },
   ],

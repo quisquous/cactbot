@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -43,7 +42,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S Panel Swap Phase Counter',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2304', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2304', source: 'Halicarnassus', capture: false },
       run: (data) => {
         data.phase = (data.phase ?? 0) + 1;
         delete data.seenHolyThisPhase;
@@ -52,14 +51,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S Critical Hit',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '22EB', source: 'Halicarnassus' }),
+      netRegex: { id: '22EB', source: 'Halicarnassus' },
       // "Use Awareness!! <se.6>"
       response: Responses.tankBuster(),
     },
     {
       id: 'O3S Dimensional Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '22F6', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '22F6', source: 'Halicarnassus', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -67,7 +66,7 @@ const triggerSet: TriggerSet<Data> = {
       // books message in the library phase can be ignored.
       id: 'O3S Spellblade Holy Counter',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '22EF', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '22EF', source: 'Halicarnassus', capture: false },
       run: (data) => {
         // In case something went awry, clean up any holy targets
         // so the next spellblade holy can start afresh.
@@ -87,7 +86,7 @@ const triggerSet: TriggerSet<Data> = {
       // So, #2 is the person everybody should stack on.
       id: 'O3S Spellblade Holy',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
+      netRegex: { id: ['0064', '0065'] },
       condition: (data, matches) => {
         // Library phase stack markers behave differently.
         if (data.phase === 3)
@@ -139,7 +138,7 @@ const triggerSet: TriggerSet<Data> = {
       // Library phase spellblade holy with 2 stacks / 4 preys / 2 unmarked.
       id: 'O3S Library Spellblade',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
+      netRegex: { id: ['0064', '0065'] },
       condition: (data, matches) => {
         // This is only for library phase.
         if (data.phase !== 3)
@@ -198,7 +197,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S Right Face',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '510' }),
+      netRegex: { effectId: '510' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       infoText: (_data, _matches, output) => output.text!(),
@@ -216,7 +215,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S Forward March',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '50D' }),
+      netRegex: { effectId: '50D' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       infoText: (_data, _matches, output) => output.text!(),
@@ -234,7 +233,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S Left Face',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '50F' }),
+      netRegex: { effectId: '50F' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       infoText: (_data, _matches, output) => output.text!(),
@@ -252,7 +251,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S About Face',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '50E' }),
+      netRegex: { effectId: '50E' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       infoText: (_data, _matches, output) => output.text!(),
@@ -270,19 +269,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S Ribbit',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '22F7', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '22F7', source: 'Halicarnassus', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'O3S Oink',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '22F9', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '22F9', source: 'Halicarnassus', capture: false },
       response: Responses.doritoStack(),
     },
     {
       id: 'O3S Squelch',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '22F8', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '22F8', source: 'Halicarnassus', capture: false },
       response: Responses.lookAway(),
     },
     {
@@ -293,7 +292,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6724, 7400 = Great Dragon
       // 6056, 7401 = Apanda
       // There are a bunch of 6056, 7404 Apandas that get added at the beginning.
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['5626', '6724', '6056'], npcBaseId: ['7399', '7400', '7401'] }),
+      netRegex: { npcNameId: ['5626', '6724', '6056'], npcBaseId: ['7399', '7400', '7401'] },
       infoText: (_data, matches, output) => output.kill!({ name: matches.name }),
       outputStrings: {
         kill: {
@@ -309,7 +308,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O3S Iron Giant',
       type: 'AddedCombatant',
       // 5636 = Iron Giant
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5636', capture: false }),
+      netRegex: { npcNameId: '5636', capture: false },
       infoText: (_data, _matches, output) => output.kill!(),
       outputStrings: {
         kill: {
@@ -324,7 +323,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S The Queen\'s Waltz: Books',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '230E', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '230E', source: 'Halicarnassus', capture: false },
       condition: (data) => {
         // Deliberately skip printing the waltz message for the
         // spellblade holy -> waltz that ends the library phase.
@@ -357,7 +356,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S The Queen\'s Waltz: Clock',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2306', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2306', source: 'Halicarnassus', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -373,7 +372,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S The Queen\'s Waltz: Crystal Square',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '230A', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '230A', source: 'Halicarnassus', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -389,7 +388,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S The Queen\'s Waltz: Tethers',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2308', source: 'Halicarnassus', capture: false }),
+      netRegex: { id: '2308', source: 'Halicarnassus', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -405,7 +404,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S The Queen\'s Waltz: Tethers You',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0012' }),
+      netRegex: { id: '0012' },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.breakTether!({ player: data.ShortName(matches.source) });
@@ -425,7 +424,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O3S Soul Reaper',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5634' }),
+      netRegex: { npcNameId: '5634' },
       alertText: (data, matches, output) => {
         data.reapers ??= [];
         data.reapers.push(matches);
