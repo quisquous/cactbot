@@ -1,5 +1,5 @@
 import { isLang, Lang } from '../../resources/languages';
-import { buildRegex } from '../../resources/netregexes';
+import { buildNetRegexForTrigger } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
 import Regexes from '../../resources/regexes';
@@ -1280,7 +1280,10 @@ class RaidbossConfigurator {
         return;
 
       return Regexes.parse(
-        buildRegex(trig.type, translateRegexBuildParam(regex, lang, set.timelineReplace)),
+        buildNetRegexForTrigger(
+          trig.type,
+          translateRegexBuildParam(regex, lang, set.timelineReplace),
+        ),
       );
     };
 
