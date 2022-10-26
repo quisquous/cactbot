@@ -8,7 +8,10 @@ import path from 'path';
 
 import chai from 'chai';
 
-import NetRegexes, { buildRegex, keysThatRequireTranslation } from '../../resources/netregexes';
+import NetRegexes, {
+  buildNetRegexForTrigger,
+  keysThatRequireTranslation,
+} from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import Regexes from '../../resources/regexes';
 import {
@@ -186,7 +189,7 @@ const testTriggerFile = (file: string) => {
             continue;
           }
           // TODO: we can check it from keys of `currentNetRegex`.
-          netRegexRegex = buildRegex(currentTrigger.type, currentNetRegex);
+          netRegexRegex = buildNetRegexForTrigger(currentTrigger.type, currentNetRegex);
         }
 
         const capture = new RegExp(`(?:${netRegexRegex.toString()})?`).exec('');
