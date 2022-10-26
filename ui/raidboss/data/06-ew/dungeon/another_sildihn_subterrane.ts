@@ -184,12 +184,11 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'ASS Slippery Soap After',
+      // Boss does not cast the donut version of Bracing Duster with Slippery Soap
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '775E', source: 'Silkie', capture: false }),
       infoText: (data, _matches, output) => {
         switch (data.suds) {
-          case '7757':
-            return output.getUnder!();
           case '7758':
             return output.intercards!();
           case '7759':
@@ -197,7 +196,6 @@ const triggerSet: TriggerSet<Data> = {
         }
       },
       outputStrings: {
-        getUnder: Outputs.getUnder,
         spreadCardinals: {
           en: 'Spread Cardinals',
         },
@@ -236,6 +234,31 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         return { infoText: output.busterOnTarget!({ player: data.ShortName(matches.target) }) };
+      },
+    },
+    {
+      id: 'ASS Soaping Spree',
+      // Boss does not cast Fizzling Duster with Soaping Spree
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7767', source: 'Silkie', capture: false }),
+      infoText: (data, _matches, output) => {
+        switch (data.suds) {
+          case '7757':
+            return output.getUnder!();
+          case '7758':
+            return output.intercards!();
+        }
+      },
+      outputStrings: {
+        getUnder: Outputs.getUnder,
+        intercards: {
+          en: 'Intercards',
+          de: 'Interkardinal',
+          fr: 'Intercardinal',
+          ja: '斜めへ',
+          cn: '四角',
+          ko: '대각선 쪽으로',
+        },
       },
     },
     {
@@ -501,6 +524,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'en',
       'replaceText': {
         '(?<!/ )Chilling Duster / Fizzling Duster': 'Chilling/Fizzling Duster',
+        'Bracing Suds / Chilling Suds(?! )': 'Bracing/Chilling Suds',
         'Bracing Duster / Chilling Duster(?! )': 'Bracing/Chilling Duster',
         'Bracing Suds / Fizzling Suds': 'Bracing/Fizzling Suds',
         'Bracing Duster / Fizzling Duster': 'Bracing/Fizzling Duster',
