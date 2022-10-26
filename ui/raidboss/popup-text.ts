@@ -1,5 +1,5 @@
 import { Lang } from '../../resources/languages';
-import { buildRegex, commonNetRegex } from '../../resources/netregexes';
+import { buildNetRegexForTrigger, commonNetRegex } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import PartyTracker from '../../resources/party';
@@ -747,7 +747,7 @@ export class PopupText {
                   continue;
                 }
 
-                const re = buildRegex(
+                const re = buildNetRegexForTrigger(
                   trigger.type,
                   translateRegexBuildParam(defaultNetRegex, this.parserLang, set.timelineReplace),
                 );

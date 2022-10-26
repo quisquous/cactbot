@@ -412,3 +412,14 @@ export const commonNetRegex = {
   cactbotWipeEcho: NetRegexes.echo({ line: 'cactbot wipe.*?' }),
   userWipeEcho: NetRegexes.echo({ line: 'end' }),
 } as const;
+
+export const buildNetRegexForTrigger = <T extends keyof NetParams>(
+  type: T,
+  params?: ParseHelperType<T>,
+): CactbotBaseRegExp<T> => {
+  if (type === 'Ability')
+    // ts can't narrow T to `Ability` here, need casting.
+    return NetRegexes.ability(params) as CactbotBaseRegExp<T>;
+
+  return buildRegex<T>(type, params);
+};
