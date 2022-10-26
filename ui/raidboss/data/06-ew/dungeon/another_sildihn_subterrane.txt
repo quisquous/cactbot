@@ -33,7 +33,7 @@ hideall "--sync--"
 89.7 "Bracing Duster" #sync / 1[56]:[^:]*:Silken Puff:7769:/
 89.7 "Chilling Duster" #sync / 1[56]:[^:]*:Silken Puff:7768:/
 100.9 "Total Wash" sync / 1[56]:[^:]*:Silkie:7750:/
-106.0 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:7758:/
+106.0 "Bracing Suds / Chilling Suds" sync / 1[56]:[^:]*:Silkie:(7757/7758):/
 112.1 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:7766:/
 123.1 "Puff and Tumble" duration 0.7 #sync / 1[56]:[^:]*:Silken Puff:7771:/
 129.5 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:7767:/
