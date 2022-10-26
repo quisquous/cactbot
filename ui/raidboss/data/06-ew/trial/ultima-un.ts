@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -76,7 +77,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ultima Unreal Homing Aetheroplasm Collect',
       type: 'Ability',
-      netRegex: { id: '6F07' },
+      netRegex: NetRegexes.ability({ id: '6F07' }),
       run: (data, matches) => {
         data.plasmTargets = data.plasmTargets ??= [];
         data.plasmTargets.push(matches.target);
@@ -87,7 +88,7 @@ const triggerSet: TriggerSet<Data> = {
       // These lines are sent by entities with no name and no 03/04 lines.
       id: 'Ultima Unreal Homing Aetheroplasm Call',
       type: 'Ability',
-      netRegex: { id: '6F07', capture: false },
+      netRegex: NetRegexes.ability({ id: '6F07', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
@@ -115,7 +116,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ultima Unreal Homing Aetheroplasm Cleanup',
       type: 'Ability',
-      netRegex: { id: '6F07', capture: false },
+      netRegex: NetRegexes.ability({ id: '6F07', capture: false }),
       delaySeconds: 5,
       suppressSeconds: 5,
       run: (data) => delete data.plasmTargets,

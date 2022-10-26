@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -577,7 +578,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Promise Statue 2nd/3rd/4th Laser',
       type: 'Ability',
-      netRegex: { source: 'Chiseled Sculpture', id: '58B3', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3', capture: false }),
 
       condition: (data) => !data.statueLaserCount || data.statueLaserCount < 4,
       durationSeconds: 3,

@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
@@ -83,7 +84,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T7 Tail Slap',
       type: 'Ability',
-      netRegex: { id: '7A8', source: 'Melusine' },
+      netRegex: NetRegexes.ability({ id: '7A8', source: 'Melusine' }),
       condition: (data, matches) => data.me === matches.target && data.job === 'BLU',
       delaySeconds: 6,
       suppressSeconds: 5,

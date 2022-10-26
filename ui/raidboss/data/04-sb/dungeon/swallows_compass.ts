@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -106,7 +107,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Swallows Compass Mythmaker',
       type: 'Ability',
-      netRegex: { id: '2BA3', source: 'Daidarabotchi', capture: false },
+      netRegex: NetRegexes.ability({ id: '2BA3', source: 'Daidarabotchi', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -198,7 +199,7 @@ const triggerSet: TriggerSet<Data> = {
       // The ability use here is unnamed, the teleport to the center to begin the intermission.
       id: 'Swallows Compass Intermission Tracking',
       type: 'Ability',
-      netRegex: { id: '2CC7', source: 'Qitian Dasheng', capture: false },
+      netRegex: NetRegexes.ability({ id: '2CC7', source: 'Qitian Dasheng', capture: false }),
       run: (data) => data.seenIntermission = true,
     },
     {

@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -856,7 +857,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Face Hammer Round',
       type: 'Ability',
-      netRegex: { source: '4th-Make Hashmal', id: '5D10', capture: false },
+      netRegex: NetRegexes.ability({ source: '4th-Make Hashmal', id: '5D10', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1011,7 +1012,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Sartauvoir Hyperpyroplexy',
       type: 'Ability',
-      netRegex: { source: 'Sartauvoir The Inferno', id: '5E76', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E76', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1091,7 +1092,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Sartauvoir Mannatheihwon Flame Away',
       type: 'Ability',
-      netRegex: { source: 'Sartauvoir The Inferno', id: '5E87', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E87', capture: false }),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1147,7 +1148,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Zadnor Augur Pyroplexy',
       type: 'Ability',
-      netRegex: { source: '4th Legion Augur', id: '5F1B', capture: false },
+      netRegex: NetRegexes.ability({ source: '4th Legion Augur', id: '5F1B', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

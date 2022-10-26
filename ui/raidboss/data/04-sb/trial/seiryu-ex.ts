@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -218,13 +219,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SeiryuEx Handprint East',
       type: 'Ability',
-      netRegex: { id: '37E5', source: 'Yama-No-Shiki', capture: false },
+      netRegex: NetRegexes.ability({ id: '37E5', source: 'Yama-No-Shiki', capture: false }),
       response: Responses.goEast(),
     },
     {
       id: 'SeiryuEx Handprint West',
       type: 'Ability',
-      netRegex: { id: '37E6', source: 'Yama-No-Shiki', capture: false },
+      netRegex: NetRegexes.ability({ id: '37E6', source: 'Yama-No-Shiki', capture: false }),
       response: Responses.goWest(),
     },
     {

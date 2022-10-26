@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -323,7 +324,7 @@ const triggerSet: TriggerSet<Data> = {
       // We provide more time by using logic to predict where the last two
       // swords will drop.
       type: 'Ability',
-      netRegex: { source: 'BitBlade', id: '55CD' },
+      netRegex: NetRegexes.ability({ source: 'BitBlade', id: '55CD' }),
       durationSeconds: 9,
       alertText: (data, matches, output) => {
         (data.tertius ??= []).push(matches);

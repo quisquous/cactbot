@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -147,7 +148,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6N Aetherial Exchange',
       type: 'Ability',
-      netRegex: { id: '784D', source: 'Hegemone', capture: false },
+      netRegex: NetRegexes.ability({ id: '784D', source: 'Hegemone', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

@@ -380,7 +380,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Adelphel ID Tracker',
       // 62D2 Is Ser Adelphel's Holy Bladedance, casted once during the encounter
       type: 'Ability',
-      netRegex: { id: '62D2', source: 'Ser Adelphel' },
+      netRegex: NetRegexes.ability({ id: '62D2', source: 'Ser Adelphel' }),
       run: (data, matches) => data.adelphelId = matches.sourceId,
     },
     {
@@ -519,7 +519,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Brightwing Move',
       type: 'Ability',
-      netRegex: { id: '6319', source: 'Ser Charibert' },
+      netRegex: NetRegexes.ability({ id: '6319', source: 'Ser Charibert' }),
       condition: Conditions.targetIsYou(),
       // Once hit, drop your Skyblind puddle somewhere else.
       response: Responses.moveAway('alert'),
@@ -545,7 +545,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Spiral Thrust Safe Spots',
       // 63D3 Strength of the Ward
       type: 'Ability',
-      netRegex: { id: '63D3', source: 'King Thordan', capture: false },
+      netRegex: NetRegexes.ability({ id: '63D3', source: 'King Thordan', capture: false }),
       condition: (data) => data.phase === 'thordan',
       // It appears that these adds can be in place at ~4.5s, but with latency this may fail for some.
       delaySeconds: 5,
@@ -674,7 +674,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Dragon\'s Rage',
       type: 'Ability',
-      netRegex: { id: '63D7', source: 'Ser Guerrique', capture: false },
+      netRegex: NetRegexes.ability({ id: '63D7', source: 'Ser Guerrique', capture: false }),
       durationSeconds: 7,
       promise: async (data) => {
         // These are the first actions these actors take, so can't easily get their ids earlier.
@@ -796,7 +796,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Sanctity of the Ward Direction',
       type: 'Ability',
-      netRegex: { id: '63E1', source: 'King Thordan', capture: false },
+      netRegex: NetRegexes.ability({ id: '63E1', source: 'King Thordan', capture: false }),
       condition: (data) => data.phase === 'thordan',
       delaySeconds: 4.7,
       // Keep message up until knights are done dashing
@@ -1385,7 +1385,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6710 Dark Elusive Jump
       // Collect players hit by dive
       type: 'Ability',
-      netRegex: { id: ['670E', '670F', '6710'], source: 'Nidhogg' },
+      netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
       run: (data, matches) => {
         const posX = parseFloat(matches.targetX);
         data.diveFromGracePositions[matches.target] = posX;
@@ -1395,7 +1395,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Dive From Grace Post Stack',
       // Triggered on first instance of Eye of the Tyrant (6714)
       type: 'Ability',
-      netRegex: { id: '6714', source: 'Nidhogg', capture: false },
+      netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
       // Ignore targetIsYou() incase player misses stack
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
@@ -1539,7 +1539,7 @@ const triggerSet: TriggerSet<Data> = {
       //   High Jump South if solo, no assignment if all circle
       //   Assumes North Party Stack
       type: 'Ability',
-      netRegex: { id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false },
+      netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false }),
       preRun: (data) => data.diveFromGraceTowerCounter = (data.diveFromGraceTowerCounter ?? 0) + 1,
       delaySeconds: 0.2,
       suppressSeconds: 1,
@@ -1613,7 +1613,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Darkdragon Dive Single Tower',
       type: 'Ability',
-      netRegex: { id: '6711', source: 'Nidhogg' },
+      netRegex: NetRegexes.ability({ id: '6711', source: 'Nidhogg' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
@@ -1804,7 +1804,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Twisting Dive',
       type: 'Ability',
-      netRegex: { id: '6B8B', source: 'Vedrfolnir', capture: false },
+      netRegex: NetRegexes.ability({ id: '6B8B', source: 'Vedrfolnir', capture: false }),
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1861,7 +1861,7 @@ const triggerSet: TriggerSet<Data> = {
       // This is effectId B11, but the timing is somewhat inconsistent based on statuses rolling out.
       // Use the Chain Lightning ability instead.
       type: 'Ability',
-      netRegex: { id: '6B8F', source: 'Darkscale' },
+      netRegex: NetRegexes.ability({ id: '6B8F', source: 'Darkscale' }),
       // Call this after, which is ~2.3s after this ability.
       // This avoids people with itchy feet running when they hear something.
       delaySeconds: 2.5,
@@ -1883,7 +1883,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Wrath Thunderstruck Targets',
       type: 'Ability',
-      netRegex: { id: '6B8F', source: 'Darkscale', capture: false },
+      netRegex: NetRegexes.ability({ id: '6B8F', source: 'Darkscale', capture: false }),
       delaySeconds: 2.8,
       suppressSeconds: 1,
       // This is just pure extra info, no need to make noise for people.

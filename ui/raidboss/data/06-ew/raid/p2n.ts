@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -178,7 +179,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P2N Coherence Stack',
       // Coherence (6801) cast has an unknown (6D14) ability with the target before it.
       type: 'Ability',
-      netRegex: { id: '6D14' },
+      netRegex: NetRegexes.ability({ id: '6D14' }),
       condition: (data) => data.flareTarget !== data.me,
       alertText: (data, matches, output) => output.lineStackOn!({ player: data.ShortName(matches.target) }),
       outputStrings: {

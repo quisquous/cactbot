@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -160,7 +161,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Halidom Inside',
       type: 'Ability',
-      netRegex: { id: '3851', source: 'Halidom' },
+      netRegex: NetRegexes.ability({ id: '3851', source: 'Halidom' }),
       run: (data, matches) => {
         data.halidom ??= [];
         data.halidom.push(matches.target);
@@ -169,7 +170,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Halidom Outside',
       type: 'Ability',
-      netRegex: { id: '3851', source: 'Halidom', capture: false },
+      netRegex: NetRegexes.ability({ id: '3851', source: 'Halidom', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 10,
       alertText: (data, _matches, output) => {
@@ -208,7 +209,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Agrias Adds Phase',
       type: 'Ability',
-      netRegex: { id: '385D', source: 'Agrias', capture: false },
+      netRegex: NetRegexes.ability({ id: '385D', source: 'Agrias', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -314,7 +315,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Crush Helm Tank',
       type: 'Ability',
-      netRegex: { id: '3753', source: 'The Thunder God' },
+      netRegex: NetRegexes.ability({ id: '3753', source: 'The Thunder God' }),
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
@@ -338,7 +339,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Crush Armor',
       type: 'Ability',
-      netRegex: { id: '3759', source: 'The Thunder God' },
+      netRegex: NetRegexes.ability({ id: '3759', source: 'The Thunder God' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -371,7 +372,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Cid Cleansing Strike',
       type: 'Ability',
-      netRegex: { id: '3751', source: 'The Thunder God', capture: false },
+      netRegex: NetRegexes.ability({ id: '3751', source: 'The Thunder God', capture: false }),
       condition: (data) => data.role === 'healer',
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -614,7 +615,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Orbonne Ultima Ultimate Illusion',
       type: 'Ability',
-      netRegex: { id: '3895', source: 'Ultima, The High Seraph', capture: false },
+      netRegex: NetRegexes.ability({ id: '3895', source: 'Ultima, The High Seraph', capture: false }),
       condition: (data) => data.role !== 'healer',
       // zzz
       delaySeconds: 23.5,

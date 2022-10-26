@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -55,7 +56,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Staff Phase',
       type: 'Ability',
-      netRegex: { source: 'Shiva', id: '5367', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Shiva', id: '5367', capture: false }),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -89,7 +90,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Sword Phase',
       type: 'Ability',
-      netRegex: { source: 'Shiva', id: '5366', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Shiva', id: '5366', capture: false }),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -122,7 +123,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Weapon Change Delayed',
       type: 'Ability',
-      netRegex: { source: 'Shiva', id: ['5366', '5367'], capture: false },
+      netRegex: NetRegexes.ability({ source: 'Shiva', id: ['5366', '5367'], capture: false }),
       delaySeconds: 30,
       run: (data) => data.soonAfterWeaponChange = false,
     },
@@ -165,7 +166,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Current Tank',
       type: 'Ability',
-      netRegex: { source: 'Shiva', id: '5365' },
+      netRegex: NetRegexes.ability({ source: 'Shiva', id: '5365' }),
       run: (data, matches) => data.currentTank = matches.target,
     },
     {
@@ -190,13 +191,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Diamond Dust',
       type: 'Ability',
-      netRegex: { source: 'Shiva', id: '536C', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Shiva', id: '536C', capture: false }),
       run: (data) => data.seenDiamondDust = true,
     },
     {
       id: 'ShivaUn Frost Bow',
       type: 'Ability',
-      netRegex: { source: 'Shiva', id: '5368', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Shiva', id: '5368', capture: false }),
       response: Responses.getBehind('alarm'),
       run: (data) => {
         // Just in case ACT has crashed or something, make sure this state is correct.
@@ -241,7 +242,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Shiva Circles',
       type: 'Ability',
-      netRegex: { source: 'Shiva', id: '537B' },
+      netRegex: NetRegexes.ability({ source: 'Shiva', id: '537B' }),
       condition: (data, matches) => {
         // Ignore other middle circles and try to only target the Icicle Impact x9.
         if (!data.seenDiamondDust || data.soonAfterWeaponChange)
@@ -264,7 +265,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShivaUn Ice Boulder',
       type: 'Ability',
-      netRegex: { id: '537A' },
+      netRegex: NetRegexes.ability({ id: '537A' }),
       condition: Conditions.targetIsNotYou(),
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {

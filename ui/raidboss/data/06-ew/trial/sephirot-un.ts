@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -110,7 +111,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Main Tank',
       type: 'Ability',
-      netRegex: { id: '368', source: 'Sephirot' },
+      netRegex: NetRegexes.ability({ id: '368', source: 'Sephirot' }),
       // We make this conditional to avoid constant noise in the raid emulator.
       condition: (data, matches) => data.mainTank !== matches.target,
       run: (data, matches) => data.mainTank = matches.target,
@@ -281,7 +282,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SephirotUn Fiendish Wail',
       type: 'Ability',
-      netRegex: { id: '76A2', source: 'Sephirot', capture: false },
+      netRegex: NetRegexes.ability({ id: '76A2', source: 'Sephirot', capture: false }),
       alertText: (data, _matches, output) => {
         if (data.force === '3ED' || !data.force && data.role === 'tank')
           return output.getTower!();

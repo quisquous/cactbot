@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -240,7 +241,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Icicle Left',
       type: 'Ability',
-      netRegex: { id: '25EF', source: 'Icicle' },
+      netRegex: NetRegexes.ability({ id: '25EF', source: 'Icicle' }),
       condition: (_data, matches) => {
         return Math.round(parseFloat(matches.x)) === -30 && Math.round(parseFloat(matches.y)) === -15;
       },
@@ -259,7 +260,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Icicle Right',
       type: 'Ability',
-      netRegex: { id: '25EF', source: 'Icicle' },
+      netRegex: NetRegexes.ability({ id: '25EF', source: 'Icicle' }),
       condition: (_data, matches) => {
         return Math.round(parseFloat(matches.x)) === -30 && Math.round(parseFloat(matches.y)) === -25;
       },

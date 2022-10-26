@@ -224,7 +224,7 @@ const triggerSet: TriggerSet<Data> = {
       // Execration follows this up almost immediately.
       id: 'Weeping City Execration',
       type: 'Ability',
-      netRegex: { id: '1826', source: 'Ozma', capture: false },
+      netRegex: NetRegexes.ability({ id: '1826', source: 'Ozma', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -242,7 +242,7 @@ const triggerSet: TriggerSet<Data> = {
       // Flare Star and tank lasers follow shortly.
       id: 'Weeping City Flare Star Ring',
       type: 'Ability',
-      netRegex: { id: '1803', source: 'Ozma', capture: false },
+      netRegex: NetRegexes.ability({ id: '1803', source: 'Ozma', capture: false }),
       response: Responses.getIn(),
     },
     {
@@ -251,7 +251,7 @@ const triggerSet: TriggerSet<Data> = {
       // This continues until the next Sphere form, whether by time or by HP push.
       id: 'Weeping City Tank Lasers',
       type: 'Ability',
-      netRegex: { id: '1803', source: 'Ozma', capture: false },
+      netRegex: NetRegexes.ability({ id: '1803', source: 'Ozma', capture: false }),
       // Delaying here to avoid colliding with other Flare Star triggers.
       delaySeconds: 4,
       alertText: (data, _matches, output) => {
@@ -327,13 +327,13 @@ const triggerSet: TriggerSet<Data> = {
       // It's not a very obvious visual cue unless the player knows to look for it.
       id: 'Weeping City Coif Change Left',
       type: 'Ability',
-      netRegex: { id: '180A', source: 'Calofisteri', capture: false },
+      netRegex: NetRegexes.ability({ id: '180A', source: 'Calofisteri', capture: false }),
       response: Responses.goRight(),
     },
     {
       id: 'Weeping City Coif Change Right',
       type: 'Ability',
-      netRegex: { id: '180E', source: 'Calofisteri', capture: false },
+      netRegex: NetRegexes.ability({ id: '180E', source: 'Calofisteri', capture: false }),
       response: Responses.goLeft(),
     },
     {
@@ -395,7 +395,7 @@ const triggerSet: TriggerSet<Data> = {
       // The actual ability here is an Unknown ability, but it begins slightly before Garrotte.
       id: 'Weeping City Garrotte',
       type: 'Ability',
-      netRegex: { id: '181D', source: 'Entanglement', capture: false },
+      netRegex: NetRegexes.ability({ id: '181D', source: 'Entanglement', capture: false }),
       suppressSeconds: 5,
       response: Responses.killExtraAdd(),
     },
@@ -434,7 +434,7 @@ const triggerSet: TriggerSet<Data> = {
       // Dancing Mad follows this up closely enough to make this the best time to notify.
       id: 'Weeping City Dancing Mad',
       type: 'Ability',
-      netRegex: { id: '1819', source: 'Calofisteri', capture: false },
+      netRegex: NetRegexes.ability({ id: '1819', source: 'Calofisteri', capture: false }),
       response: Responses.aoe(),
     },
     {

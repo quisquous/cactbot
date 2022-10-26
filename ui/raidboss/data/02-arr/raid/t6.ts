@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
@@ -46,7 +47,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Thorn Whip',
       type: 'Ability',
-      netRegex: { id: '879', source: 'Rafflesia' },
+      netRegex: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         const partners = data.thornMap?.[data.me] ?? [];
@@ -189,7 +190,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T6 Swarm',
       type: 'Ability',
-      netRegex: { id: '7A0', source: 'Rafflesia' },
+      netRegex: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
       condition: (data, matches) => data.me === matches.target || data.role === 'healer' || data.job === 'BLU',
       alertText: (data, matches, output) => {
         if (matches.target === data.me)

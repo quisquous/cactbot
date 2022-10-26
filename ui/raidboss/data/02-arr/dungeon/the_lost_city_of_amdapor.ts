@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -12,7 +13,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Lost City Amdapor Devour',
       type: 'Ability',
-      netRegex: { id: '736', source: 'Chudo-Yudo', capture: false },
+      netRegex: NetRegexes.ability({ id: '736', source: 'Chudo-Yudo', capture: false }),
       response: Responses.killAdds(),
     },
     {

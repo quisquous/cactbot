@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -133,7 +134,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8S Reflected Frost 1',
       type: 'Ability',
-      netRegex: { source: 'Frozen Mirror', id: '4DB[78]', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Frozen Mirror', id: '4DB[78]', capture: false }),
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -204,7 +205,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8S Icicle Impact',
       type: 'Ability',
-      netRegex: { source: 'Shiva', id: '4DA0' },
+      netRegex: NetRegexes.ability({ source: 'Shiva', id: '4DA0' }),
       suppressSeconds: 20,
       infoText: (_data, matches, output) => {
         const x = parseFloat(matches.x);
@@ -235,7 +236,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8S Diamond Frost Cleanse',
       type: 'Ability',
-      netRegex: { source: 'Shiva', id: '4D6C', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Shiva', id: '4D6C', capture: false }),
       condition: (data) => data.CanCleanse(),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
@@ -505,13 +506,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8S Drachen Armor',
       type: 'Ability',
-      netRegex: { source: 'Shiva', id: '4DD2', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Shiva', id: '4DD2', capture: false }),
       response: Responses.moveAway('alert'),
     },
     {
       id: 'E8S Reflected Drachen Armor',
       type: 'Ability',
-      netRegex: { source: 'Frozen Mirror', id: '4DC2', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Frozen Mirror', id: '4DC2', capture: false }),
       response: Responses.moveAway('alert'),
     },
     {
@@ -553,7 +554,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8S Icelit Dragonsong Cleanse',
       type: 'Ability',
-      netRegex: { source: 'Shiva', id: '4D7D', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
       condition: (data) => data.CanCleanse(),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),

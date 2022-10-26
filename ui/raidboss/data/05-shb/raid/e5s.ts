@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -42,7 +43,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E5S Stratospear Summons',
       type: 'Ability',
-      netRegex: { id: '4BA5', source: 'Ramuh', capture: false },
+      netRegex: NetRegexes.ability({ id: '4BA5', source: 'Ramuh', capture: false }),
       condition: (data) => !data.seenFirstSpear,
       delaySeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
@@ -199,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E5S Stepped Leader Cast',
       type: 'Ability',
-      netRegex: { id: '4BC6', source: 'Ramuh', capture: false },
+      netRegex: NetRegexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
       run: (data) => data.steppedLeaderNext = false,
     },
     {

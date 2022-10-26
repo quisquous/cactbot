@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -44,14 +45,14 @@ const triggerSet: TriggerSet<Data> = {
       // keep track of who the boss is auto attacking.
       id: 'P5S Attack',
       type: 'Ability',
-      netRegex: { id: '7A0E', source: 'Proto-Carbuncle' },
+      netRegex: NetRegexes.ability({ id: '7A0E', source: 'Proto-Carbuncle' }),
       run: (data, matches) => data.target = matches.target,
     },
     {
       // Update target whenever Provoke is used.
       id: 'P5S Provoke',
       type: 'Ability',
-      netRegex: { id: '1D6D' },
+      netRegex: NetRegexes.ability({ id: '1D6D' }),
       run: (data, matches) => data.target = matches.source,
     },
     {
@@ -69,7 +70,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Ruby 1 Topaz Stone Collect',
       type: 'Ability',
-      netRegex: { id: '76FE', source: 'Proto-Carbuncle' },
+      netRegex: NetRegexes.ability({ id: '76FE', source: 'Proto-Carbuncle' }),
       condition: (data) => !data.isRuby1Done,
       run: (data, matches) => {
         data.ruby1TopazStones.push(matches);
@@ -78,7 +79,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Ruby 1 Topaz Stones',
       type: 'Ability',
-      netRegex: { id: '76FE', source: 'Proto-Carbuncle', capture: false },
+      netRegex: NetRegexes.ability({ id: '76FE', source: 'Proto-Carbuncle', capture: false }),
       condition: (data) => !data.isRuby1Done,
       delaySeconds: 0.3, // allow collector to finish
       suppressSeconds: 1,
@@ -175,7 +176,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Ruby 3 Topaz Cluster',
       type: 'Ability',
-      netRegex: { id: '7702', source: 'Proto-Carbuncle', capture: false },
+      netRegex: NetRegexes.ability({ id: '7702', source: 'Proto-Carbuncle', capture: false }),
       durationSeconds: 12,
       promise: async (data) => {
         // Log position data can be stale, call OverlayPlugin
@@ -300,7 +301,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Raging Tail Move',
       type: 'Ability',
-      netRegex: { id: '7A0C', source: 'Proto-Carbuncle', capture: false },
+      netRegex: NetRegexes.ability({ id: '7A0C', source: 'Proto-Carbuncle', capture: false }),
       infoText: (_data, _matches, output) => output.moveBehind!(),
       outputStrings: {
         moveBehind: {
@@ -322,7 +323,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5S Raging Claw Move',
       type: 'Ability',
-      netRegex: { id: '7710', source: 'Proto-Carbuncle', capture: false },
+      netRegex: NetRegexes.ability({ id: '7710', source: 'Proto-Carbuncle', capture: false }),
       condition: (data) => {
         data.clawCount = data.clawCount + 1;
         return data.clawCount === 6;

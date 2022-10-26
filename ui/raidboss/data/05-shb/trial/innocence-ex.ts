@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -183,7 +184,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Adds',
       type: 'Ability',
-      netRegex: { id: '42B0', source: 'Innocence', capture: false },
+      netRegex: NetRegexes.ability({ id: '42B0', source: 'Innocence', capture: false }),
       condition: (data) => data.role === 'tank',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -200,7 +201,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'InnoEx Light Pillar',
       type: 'Ability',
-      netRegex: { id: '38FC', source: 'Innocence' },
+      netRegex: NetRegexes.ability({ id: '38FC', source: 'Innocence' }),
       preRun: (data) => data.lightPillar = (data.lightPillar ?? 0) + 1,
       alarmText: (data, matches, output) => {
         if (matches.target !== data.me)

@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -120,7 +121,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Endsinger Death\'s Embrace Feathers',
       type: 'Ability',
-      netRegex: { id: '6649', source: 'The Endsinger', capture: false },
+      netRegex: NetRegexes.ability({ id: '6649', source: 'The Endsinger', capture: false }),
       response: Responses.moveAway(),
     },
     {

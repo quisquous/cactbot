@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
@@ -24,7 +25,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T5 Twintania Phase Change Watcher',
       type: 'Ability',
-      netRegex: { source: 'Twintania' },
+      netRegex: NetRegexes.ability({ source: 'Twintania' }),
       condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
       promise: (data, matches) =>
@@ -86,7 +87,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T5 Fireball',
       type: 'Ability',
-      netRegex: { source: 'Twintania', id: '5AC' },
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5AC' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.fireballOnYou!();
@@ -117,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T5 Conflagration',
       type: 'Ability',
-      netRegex: { source: 'Twintania', id: '5AB' },
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5AB' }),
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.conflagOnYou!();
@@ -148,7 +149,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T5 Divebomb',
       type: 'Ability',
-      netRegex: { source: 'Twintania', id: '5B0', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -164,7 +165,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T5 Divebomb Set Two',
       type: 'Ability',
-      netRegex: { source: 'Twintania', id: '5B0', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
       delaySeconds: 60,
       suppressSeconds: 5000,
       infoText: (_data, _matches, output) => output.text!(),
@@ -183,7 +184,7 @@ const triggerSet: TriggerSet<Data> = {
       // Unwoven Will
       id: 'T5 Dreadknight',
       type: 'Ability',
-      netRegex: { source: 'Twintania', id: '4E3' },
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '4E3' }),
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.knightOnYou!();
@@ -228,7 +229,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T5 Hatch',
       type: 'Ability',
-      netRegex: { source: 'Twintania', id: '5AD' },
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5AD' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.hatchOnYou!();

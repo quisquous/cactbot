@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -45,7 +46,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Facility Inertia Stream',
       type: 'Ability',
-      netRegex: { id: '10ED', source: 'Harmachis' },
+      netRegex: NetRegexes.ability({ id: '10ED', source: 'Harmachis' }),
       condition: (data) => {
         // Tanks technically shouldn't assist with this mechanic
         return data.role !== 'tank';

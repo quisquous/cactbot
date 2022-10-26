@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -220,13 +221,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hades Life In Captivity',
       type: 'Ability',
-      netRegex: { id: '4175', source: 'Hades', capture: false },
+      netRegex: NetRegexes.ability({ id: '4175', source: 'Hades', capture: false }),
       run: (data) => data.seenLifeInCaptivity = true,
     },
     {
       id: 'Hades Gaol',
       type: 'Ability',
-      netRegex: { id: '417F', source: 'Hades', capture: false },
+      netRegex: NetRegexes.ability({ id: '417F', source: 'Hades', capture: false }),
       condition: (data) => {
         // There can be multiple gaols (if the phase loops), but ability also
         // gets used during the finall phase transition.  Ignore that one.

@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -392,7 +393,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Puppet Superior Sliding Swipe Others',
       type: 'Ability',
-      netRegex: { id: ['4FA[CD]', '550[DEF]', '5510'], capture: false },
+      netRegex: NetRegexes.ability({ id: ['4FA[CD]', '550[DEF]', '5510'], capture: false }),
       alertText: (data, _matches, output) => {
         if (!data.swipe)
           return;

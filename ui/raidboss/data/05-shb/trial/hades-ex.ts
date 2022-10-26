@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -678,7 +679,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Quadrastrike 3',
       type: 'Ability',
-      netRegex: { id: '47F6', source: 'Hades', capture: false },
+      netRegex: NetRegexes.ability({ id: '47F6', source: 'Hades', capture: false }),
       // After tanks take tower damage
       delaySeconds: 2,
       suppressSeconds: 2,

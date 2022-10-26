@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
@@ -404,7 +405,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Dualspell 2',
       type: 'Ability',
-      netRegex: { source: 'Shadowkeeper', id: '573A', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '573A', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -420,7 +421,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E10S Dualspell 3',
       type: 'Ability',
-      netRegex: { source: 'Shadowkeeper', id: '573A', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '573A', capture: false }),
       delaySeconds: 3,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

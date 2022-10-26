@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -684,7 +685,7 @@ const triggerSet: TriggerSet<Data> = {
       // startsUsing callout is too early, instead callout when the cast has finished
       id: 'Paradigm Her Inflorescence Recreate Structure',
       type: 'Ability',
-      netRegex: { id: '5BE1', source: 'Her Inflorescence', capture: false },
+      netRegex: NetRegexes.ability({ id: '5BE1', source: 'Her Inflorescence', capture: false }),
       durationSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

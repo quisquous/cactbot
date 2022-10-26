@@ -249,7 +249,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Fireball Counter',
       type: 'Ability',
-      netRegex: { id: '26C5', source: 'Firehorn' },
+      netRegex: NetRegexes.ability({ id: '26C5', source: 'Firehorn' }),
       run: (data, matches) => {
         (data.fireballs[data.naelFireballCount] ??= []).push(matches.target);
       },
@@ -293,7 +293,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Ragnarok Party Tracker',
       type: 'Ability',
-      netRegex: { id: '26B8', source: 'Ragnarok' },
+      netRegex: NetRegexes.ability({ id: '26B8', source: 'Ragnarok' }),
       run: (data, matches) => {
         // This happens once during the nael transition and again during
         // the heavensfall trio.  This should proooobably hit all 8
@@ -799,7 +799,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Cleanse Callout',
       type: 'Ability',
-      netRegex: { source: 'Fang Of Light', id: '26CA', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Fang Of Light', id: '26CA', capture: false }),
       infoText: (data, _matches, output) => {
         data.doomCount ??= 0;
         let name;
@@ -823,7 +823,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Fireball 1',
       type: 'Ability',
-      netRegex: { source: 'Ragnarok', id: '26B8', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 99999,
       infoText: (_data, _matches, output) => output.text!(),
@@ -842,7 +842,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Fireball 2',
       type: 'Ability',
-      netRegex: { source: 'Ragnarok', id: '26B8', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
       delaySeconds: 51,
       suppressSeconds: 99999,
       alertText: (data, _matches, output) => {
@@ -881,7 +881,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Fireball 3',
       type: 'Ability',
-      netRegex: { source: 'Ragnarok', id: '26B8', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
       delaySeconds: 77,
       suppressSeconds: 99999,
       alertText: (data, _matches, output) => {
@@ -934,7 +934,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Fireball 4',
       type: 'Ability',
-      netRegex: { source: 'Ragnarok', id: '26B8', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
       delaySeconds: 98,
       suppressSeconds: 99999,
       alertText: (data, _matches, output) => {
@@ -978,7 +978,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Dragon Tracker',
       type: 'Ability',
-      netRegex: { source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] },
+      netRegex: NetRegexes.ability({ source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       condition: (data, matches) => !(matches.source in data.seenDragon),
       run: (data, matches) => {
         data.seenDragon[matches.source] = true;
@@ -1019,7 +1019,7 @@ const triggerSet: TriggerSet<Data> = {
       // Called out after the 1st Ravensbeak.
       id: 'UCU Nael Dragon Placement',
       type: 'Ability',
-      netRegex: { source: 'Nael deus Darnus', id: '26B6', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
       condition: (data) => data.naelMarks && !data.calledNaelDragons,
       durationSeconds: 10,
       infoText: (data, _matches, output) => {
@@ -1286,7 +1286,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Twister Dives',
       type: 'Ability',
-      netRegex: { source: 'Twintania', id: '26B2', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
       suppressSeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

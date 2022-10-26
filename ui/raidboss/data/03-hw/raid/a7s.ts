@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -176,13 +177,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S Gobbie Grab',
       type: 'Ability',
-      netRegex: { source: 'Quickthinx Allthoughts', id: '15C0' },
+      netRegex: NetRegexes.ability({ source: 'Quickthinx Allthoughts', id: '15C0' }),
       run: (data, matches) => data.grabbed.push(matches.target),
     },
     {
       id: 'A7S Stickyloom',
       type: 'Ability',
-      netRegex: { source: 'Boomtype Magitek Gobwalker G-VII', id: '16F2' },
+      netRegex: NetRegexes.ability({ source: 'Boomtype Magitek Gobwalker G-VII', id: '16F2' }),
       run: (data, matches) => data.stickyloom = matches.target,
     },
     {
@@ -208,7 +209,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S True Heart',
       type: 'Ability',
-      netRegex: { source: 'Shanoa', id: '15EC', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Shanoa', id: '15EC', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

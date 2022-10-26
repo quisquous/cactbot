@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -997,7 +998,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Uplift Counter',
       type: 'Ability',
-      netRegex: { id: '7935', source: 'Hephaistos', capture: false },
+      netRegex: NetRegexes.ability({ id: '7935', source: 'Hephaistos', capture: false }),
       // Count in a separate trigger so that we can suppress it, but still call out for
       // both people hit.
       preRun: (data, _matches) => data.upliftCounter++,
@@ -1020,7 +1021,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Uplift Number',
       type: 'Ability',
-      netRegex: { id: '7935', source: 'Hephaistos' },
+      netRegex: NetRegexes.ability({ id: '7935', source: 'Hephaistos' }),
       condition: Conditions.targetIsYou(),
       // ~12.8 seconds between #1 Uplift (7935) to #1 Stomp Dead (7937)
       // ~13.8 seconds between #4 Uplift (7935) to #4 Stomp Dead (7937).
@@ -1132,7 +1133,7 @@ const triggerSet: TriggerSet<Data> = {
       // These are shown in the span of 8.5s
       // Blazing Footfalls takes 14.5s to complete +4s to resolve Torch Flames
       type: 'Ability',
-      netRegex: { id: ['793C', '793D'], source: 'Hephaistos' },
+      netRegex: NetRegexes.ability({ id: ['793C', '793D'], source: 'Hephaistos' }),
       preRun: (data, matches) => {
         const x = parseInt(matches.targetX) - 100;
         const y = parseInt(matches.targetY) - 100;
@@ -1421,7 +1422,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Hemitheos\'s Flare Hit',
       type: 'Ability',
-      netRegex: { id: '72CE', source: 'Hephaistos' },
+      netRegex: NetRegexes.ability({ id: '72CE', source: 'Hephaistos' }),
       preRun: (data, matches) => data.flareTargets.push(matches.target),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -1441,7 +1442,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Hemitheos\'s Flare Not Hit',
       type: 'Ability',
-      netRegex: { id: '72CE', source: 'Hephaistos', capture: false },
+      netRegex: NetRegexes.ability({ id: '72CE', source: 'Hephaistos', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
@@ -1492,7 +1493,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Suneater Cthonic Vent Later',
       type: 'Ability',
-      netRegex: { id: ['7923', '7924'] },
+      netRegex: NetRegexes.ability({ id: ['7923', '7924'] }),
       condition: (data, matches) => {
         data.ventCasts.push(matches);
         return data.ventCasts.length === 2;
@@ -1869,7 +1870,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Natural Alignment Second',
       type: 'Ability',
-      netRegex: { id: ['79C0', '79BF', '79BD', '79BE'], source: 'Hephaistos' },
+      netRegex: NetRegexes.ability({ id: ['79C0', '79BF', '79BD', '79BE'], source: 'Hephaistos' }),
       suppressSeconds: 8,
       alertText: (data, matches, output) => {
         // Due to the way suppress works, put this check here and not in the condition field.
@@ -2335,7 +2336,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Tyrant\'s Fire III Counter',
       type: 'Ability',
-      netRegex: { id: '75F0', source: 'Hephaistos', capture: false },
+      netRegex: NetRegexes.ability({ id: '75F0', source: 'Hephaistos', capture: false }),
       preRun: (data) => data.burstCounter++,
       durationSeconds: 2,
       suppressSeconds: 1,
@@ -2356,7 +2357,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Tyrant\'s Fire III Bait then Tower',
       type: 'Ability',
-      netRegex: { id: '75F0', source: 'Hephaistos' },
+      netRegex: NetRegexes.ability({ id: '75F0', source: 'Hephaistos' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 7.9,
       alertText: (data, _matches, output) => output.text!({ num: data.burstCounter }),
@@ -2399,7 +2400,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Orogenic Deformation Hit',
       type: 'Ability',
-      netRegex: { id: '79DB', source: 'Hephaistos' },
+      netRegex: NetRegexes.ability({ id: '79DB', source: 'Hephaistos' }),
       preRun: (data, matches) => data.deformationTargets.push(matches.target),
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -2418,7 +2419,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8S Orogenic Deformation Not Hit',
       type: 'Ability',
-      netRegex: { id: '79DB', source: 'Hephaistos', capture: false },
+      netRegex: NetRegexes.ability({ id: '79DB', source: 'Hephaistos', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {

@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -76,7 +77,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O12S Beyond Defense Vuln',
       type: 'Ability',
-      netRegex: { id: '332C', source: 'Omega-M' },
+      netRegex: NetRegexes.ability({ id: '332C', source: 'Omega-M' }),
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text!();
@@ -99,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O12S Beyond Defense Stack',
       type: 'Ability',
-      netRegex: { id: '332C', source: 'Omega-M', capture: false },
+      netRegex: NetRegexes.ability({ id: '332C', source: 'Omega-M', capture: false }),
       delaySeconds: 0.5,
       // Sometimes multiple people get hit.
       suppressSeconds: 1,
@@ -209,7 +210,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O12S Shield Blades Setup',
       type: 'Ability',
-      netRegex: { id: ['3350', '3351'], source: ['Omega', 'Omega-M'], capture: false },
+      netRegex: NetRegexes.ability({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'], capture: false }),
       condition: (data) => data.role === 'tank' || data.job === 'BLU',
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
@@ -246,7 +247,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O12S Blades Superliminal Steel',
       type: 'Ability',
-      netRegex: { id: '332F', source: 'Omega', capture: false },
+      netRegex: NetRegexes.ability({ id: '332F', source: 'Omega', capture: false }),
       condition: (data) => data.weaponPhase === 'blades',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

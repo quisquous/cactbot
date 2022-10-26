@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -23,7 +24,7 @@ const triggerSet: TriggerSet<Data> = {
       // occurs between 1C30 and 1C31.
       id: 'Sohm Al Hard Inflammable Fumes',
       type: 'Ability',
-      netRegex: { id: '1C30', source: 'The Leightonward', capture: false },
+      netRegex: NetRegexes.ability({ id: '1C30', source: 'The Leightonward', capture: false }),
       response: Responses.aoe(),
     },
     {

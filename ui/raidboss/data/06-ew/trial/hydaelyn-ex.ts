@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -135,7 +136,7 @@ const triggerSet: TriggerSet<Data> = {
       // During Parhelion, there's a Crystallize Water with no mechanic in between.
       id: 'HydaelynEx Crystallize Water Parhelion',
       type: 'Ability',
-      netRegex: { id: ['659A', '6ED5'], source: 'Hydaelyn', capture: false },
+      netRegex: NetRegexes.ability({ id: ['659A', '6ED5'], source: 'Hydaelyn', capture: false }),
       condition: (data) => data.parhelion,
       // There's 10 seconds between Crystallize Water ability and action in this one case.
       // Subparhelion occurs ~2s before, but that's too soon.
@@ -152,7 +153,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HydaelynEx Crystallize Ice',
       type: 'Ability',
-      netRegex: { id: ['659C', '659D'], source: 'Hydaelyn', capture: false },
+      netRegex: NetRegexes.ability({ id: ['659C', '659D'], source: 'Hydaelyn', capture: false }),
       infoText: (_data, _matches, output) => output.crystallize!({ name: output.spread!() }),
       run: (data) => data.crystallize = 'spread',
       outputStrings: crystallizeOutputStrings,
@@ -160,7 +161,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HydaelynEx Crystallize Stone',
       type: 'Ability',
-      netRegex: { id: ['659B', '659E'], source: 'Hydaelyn', capture: false },
+      netRegex: NetRegexes.ability({ id: ['659B', '659E'], source: 'Hydaelyn', capture: false }),
       infoText: (_data, _matches, output) => output.crystallize!({ name: output.stack!() }),
       run: (data) => data.crystallize = 'stack',
       outputStrings: crystallizeOutputStrings,
@@ -253,7 +254,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HydaelynEx Crystal of Light',
       type: 'Ability',
-      netRegex: { id: '65BE', source: 'Crystal of Light', capture: true },
+      netRegex: NetRegexes.ability({ id: '65BE', source: 'Crystal of Light', capture: true }),
       // Each of the three adds fires every 1.1s or so until about Exodus or their death
       suppressSeconds: 60,
       infoText: (data, matches, output) => {
@@ -286,7 +287,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HydaelynEx Exodus',
       type: 'Ability',
-      netRegex: { id: '6B55', source: 'Hydaelyn', capture: false },
+      netRegex: NetRegexes.ability({ id: '6B55', source: 'Hydaelyn', capture: false }),
       // 14.8 seconds from this ability (no cast) to 662B raidwide.
       delaySeconds: 5,
       response: Responses.aoe(),

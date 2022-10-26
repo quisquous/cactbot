@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -99,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
       // Hellbender Bubble
       id: 'Brayflox Normal Hellbender Effluvium',
       type: 'Ability',
-      netRegex: { id: '3D3', source: 'Hellbender' },
+      netRegex: NetRegexes.ability({ id: '3D3', source: 'Hellbender' }),
       infoText: (data, matches, output) => {
         if (matches.target !== data.me)
           return output.breakBubbleOn!({ player: data.ShortName(matches.target) });

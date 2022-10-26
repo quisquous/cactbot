@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -233,7 +234,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Hands of Flame Cast',
       type: 'Ability',
-      netRegex: { source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false },
+      netRegex: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
       preRun: (data) => data.handsOfFlame = false,
       suppressSeconds: 1,
     },
@@ -309,7 +310,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Raktapaksa Spawn',
       type: 'Ability',
-      netRegex: { source: 'Raktapaksa', id: '4D55', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Raktapaksa', id: '4D55', capture: false }),
       run: (data) => data.phase = 'raktapaksa',
     },
     {

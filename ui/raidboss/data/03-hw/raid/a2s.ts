@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -56,7 +57,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A2S Prey',
       type: 'Ability',
-      netRegex: { source: 'Magitek Gobwidow G-IX', id: '1413' },
+      netRegex: NetRegexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
       condition: (data) => data.role === 'healer' || data.job === 'BLU',
       suppressSeconds: 10,
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
@@ -74,7 +75,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A2S Prey You',
       type: 'Ability',
-      netRegex: { source: 'Magitek Gobwidow G-IX', id: '1413' },
+      netRegex: NetRegexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -98,7 +99,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A2S Bangyzoom',
       type: 'Ability',
-      netRegex: { id: 'FD9', target: 'Gordian Soldier', capture: false },
+      netRegex: NetRegexes.ability({ id: 'FD9', target: 'Gordian Soldier', capture: false }),
       condition: (data) => !data.bangyzoom,
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),

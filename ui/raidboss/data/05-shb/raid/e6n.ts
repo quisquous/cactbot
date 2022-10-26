@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -119,7 +120,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6N Hands of Flame Cast',
       type: 'Ability',
-      netRegex: { source: ['Ifrit', 'Raktapaksa'], id: '4BE9', capture: false },
+      netRegex: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4BE9', capture: false }),
       preRun: (data) => data.handsOfFlame = false,
       suppressSeconds: 1,
     },
@@ -149,7 +150,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6N Strike Spark',
       type: 'Ability',
-      netRegex: { source: 'Ifrit', id: '4F98', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Ifrit', id: '4F98', capture: false }),
       // Run only once, because Ifrit's other jumps are not important.
       condition: (data) => !data.seenSpark,
       alertText: (_data, _matches, output) => output.text!(),

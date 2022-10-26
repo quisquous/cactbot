@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -20,7 +21,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Matoyas Mudman Peat Pelt',
       type: 'Ability',
-      netRegex: { id: '5482', source: 'Mudman', capture: false },
+      netRegex: NetRegexes.ability({ id: '5482', source: 'Mudman', capture: false }),
       alertText: (_data, _matches, output) => output.pullOrb!(),
       outputStrings: {
         pullOrb: {
@@ -92,7 +93,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Matoyas Nixie Pitter-patter',
       type: 'Ability',
-      netRegex: { id: '5988', source: 'Nixie', capture: false },
+      netRegex: NetRegexes.ability({ id: '5988', source: 'Nixie', capture: false }),
       delaySeconds: 3,
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.stepIn!(),

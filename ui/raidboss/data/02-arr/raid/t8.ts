@@ -43,7 +43,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T8 Landmine Explosion',
       type: 'Ability',
-      netRegex: { id: '7D1', source: 'Allagan Mine' },
+      netRegex: NetRegexes.ability({ id: '7D1', source: 'Allagan Mine' }),
       infoText: (data, matches, output) => {
         if (matches.target in data.landmines)
           return;

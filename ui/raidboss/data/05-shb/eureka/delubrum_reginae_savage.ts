@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -199,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Seeker First Mercy',
       type: 'Ability',
-      netRegex: { source: ['Trinity Seeker', 'Seeker Avatar'], id: '5B61' },
+      netRegex: NetRegexes.ability({ source: ['Trinity Seeker', 'Seeker Avatar'], id: '5B61' }),
       run: (data, matches) => data.seekerFirstMercy = matches,
     },
     {
@@ -619,7 +620,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Seeker Baleful Comet Direction',
       type: 'Ability',
-      netRegex: { source: 'Seeker Avatar', id: '5AD7' },
+      netRegex: NetRegexes.ability({ source: 'Seeker Avatar', id: '5AD7' }),
       condition: (data, matches) => {
         data.seekerCometIds ??= [];
         data.seekerCometIds.push(parseInt(matches.sourceId, 16));
@@ -739,7 +740,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Seeker Baleful Comet Cleanup',
       type: 'Ability',
-      netRegex: { source: 'Seeker Avatar', id: '5AD7', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Seeker Avatar', id: '5AD7', capture: false }),
       delaySeconds: 10,
       suppressSeconds: 10,
       run: (data) => delete data.seekerCometIds,
@@ -1241,7 +1242,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Guard Queen\'s Shot Followup',
       type: 'Ability',
-      netRegex: { source: 'Queen\'s Gunner', id: ['584C', '5A2D'], capture: false },
+      netRegex: NetRegexes.ability({ source: 'Queen\'s Gunner', id: ['584C', '5A2D'], capture: false }),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

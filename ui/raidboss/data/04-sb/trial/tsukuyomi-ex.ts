@@ -166,7 +166,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TsukuyomiEx Supreme Selenomancy',
       type: 'Ability',
-      netRegex: { source: 'Tsukuyomi', id: '2EB0', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
       suppressSeconds: 5,
       run: (data) => {
         delete data.moonlitCount;

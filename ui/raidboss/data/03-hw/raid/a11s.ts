@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -272,7 +273,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A11S Limit Cut Cleanup',
       type: 'Ability',
-      netRegex: { source: 'Cruise Chaser', id: '1A80', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Cruise Chaser', id: '1A80', capture: false }),
       delaySeconds: 30,
       run: (data) => {
         delete data.limitCutDelay;

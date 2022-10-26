@@ -456,7 +456,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Copied Engels Reverse-Jointed Goliaths',
       type: 'Ability',
-      netRegex: { id: '473F', source: 'Engels', capture: false },
+      netRegex: NetRegexes.ability({ id: '473F', source: 'Engels', capture: false }),
       durationSeconds: 4,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -579,7 +579,7 @@ const triggerSet: TriggerSet<Data> = {
       // also triggers on the first boss.
       id: 'Copied 9S Serial-Jointed Service Models',
       type: 'Ability',
-      netRegex: { id: '48EA', source: '9S-Operated Walking Fortress', capture: false },
+      netRegex: NetRegexes.ability({ id: '48EA', source: '9S-Operated Walking Fortress', capture: false }),
       response: Responses.killAdds(),
     },
     {

@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -126,7 +127,7 @@ const triggerSet: TriggerSet<Data> = {
       // 7868 uses tethers to hidden actors to "swap" tiles.
       id: 'P6S Polyominoid All',
       type: 'Ability',
-      netRegex: { id: '786[68]', source: 'Hegemone', capture: false },
+      netRegex: NetRegexes.ability({ id: '786[68]', source: 'Hegemone', capture: false }),
       delaySeconds: 2, // relevant mapeffect and trigger lines are consistently sent ~1.83s after the cast
       durationSeconds: 10, // leave the output up while overlapping mechanics resolve
       promise: async (data) => {
@@ -505,7 +506,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Exocleaver Move',
       type: 'Ability',
-      netRegex: { id: ['7869', '786B'], source: 'Hegemone', capture: false },
+      netRegex: NetRegexes.ability({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
       // Supress until after second Exocleaver in the set
       suppressSeconds: 4,
       response: Responses.moveAway(),
@@ -614,7 +615,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Pathogenic Cells Counter',
       type: 'Ability',
-      netRegex: { id: '7865', source: 'Hegemone', capture: false },
+      netRegex: NetRegexes.ability({ id: '7865', source: 'Hegemone', capture: false }),
       preRun: (data, _matches) => data.pathogenicCellsCounter++,
       durationSeconds: 1.5,
       suppressSeconds: 1,
@@ -696,7 +697,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Dark Dome Move',
       type: 'Ability',
-      netRegex: { id: '788B', source: 'Hegemone', capture: false },
+      netRegex: NetRegexes.ability({ id: '788B', source: 'Hegemone', capture: false }),
       response: Responses.moveAway(),
     },
     {
@@ -825,7 +826,7 @@ const triggerSet: TriggerSet<Data> = {
       // Using Chelic Predation (787B) and Glossal Predation (787A)
       // Player could get hit at wrong time and still get this trigger
       type: 'Ability',
-      netRegex: { id: ['787A', '787B'], source: 'Hegemone', capture: false },
+      netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone', capture: false }),
       durationSeconds: 4,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
@@ -884,7 +885,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Predation Out',
       type: 'Ability',
-      netRegex: { id: ['787A', '787B'], source: 'Hegemone' },
+      netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone' }),
       // Don't bother calling "out" for the final person.
       condition: (data, matches) => data.me === matches.target && data.aetheronecrosisDuration <= 12,
       infoText: (_data, _matches, output) => output.out!(),

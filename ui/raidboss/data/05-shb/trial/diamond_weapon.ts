@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -72,7 +73,7 @@ const triggerSet: TriggerSet<Data> = {
       // There is no head marker for this mechanic, instead Unknown_5779 creates the indicator
       id: 'Diamond Diamond Flash',
       type: 'Ability',
-      netRegex: { source: 'The Diamond Weapon', id: '5779' },
+      netRegex: NetRegexes.ability({ source: 'The Diamond Weapon', id: '5779' }),
       durationSeconds: 5,
       response: Responses.stackMarkerOn(),
     },
@@ -124,7 +125,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diamond Articulated Bits',
       type: 'Ability',
-      netRegex: { source: 'The Diamond Weapon', id: '5FA9', capture: false },
+      netRegex: NetRegexes.ability({ source: 'The Diamond Weapon', id: '5FA9', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -140,7 +141,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diamond Adamant Sphere',
       type: 'Ability',
-      netRegex: { source: 'The Diamond Weapon', id: '6144', capture: false },
+      netRegex: NetRegexes.ability({ source: 'The Diamond Weapon', id: '6144', capture: false }),
       durationSeconds: 8,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -158,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
       // Diamond Weapon starts using this Adamant Purge ~10 seconds before the head markers
       id: 'Diamond Homing Laser',
       type: 'Ability',
-      netRegex: { source: 'The Diamond Weapon', id: '5F9C', capture: false },
+      netRegex: NetRegexes.ability({ source: 'The Diamond Weapon', id: '5F9C', capture: false }),
       delaySeconds: 3,
       durationSeconds: 7,
       response: Responses.spread(),

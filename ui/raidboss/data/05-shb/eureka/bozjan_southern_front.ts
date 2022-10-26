@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import Regexes from '../../../../../resources/regexes';
 import { Responses } from '../../../../../resources/responses';
@@ -494,7 +495,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bozja South Castrum Adrammelech Accursed Becoming Orb 2',
       type: 'Ability',
-      netRegex: { source: 'Adrammelech', id: '4F7B', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Adrammelech', id: '4F7B', capture: false }),
       // 2.5 seconds warning, as it's weird if this shows up way before the first orb.
       delaySeconds: 9 - 2.5,
       alertText: (data, _matches, output) => {

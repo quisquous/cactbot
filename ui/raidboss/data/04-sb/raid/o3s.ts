@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -66,7 +67,7 @@ const triggerSet: TriggerSet<Data> = {
       // books message in the library phase can be ignored.
       id: 'O3S Spellblade Holy Counter',
       type: 'Ability',
-      netRegex: { id: '22EF', source: 'Halicarnassus', capture: false },
+      netRegex: NetRegexes.ability({ id: '22EF', source: 'Halicarnassus', capture: false }),
       run: (data) => {
         // In case something went awry, clean up any holy targets
         // so the next spellblade holy can start afresh.

@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -68,7 +69,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Crystallize Ice',
       type: 'Ability',
-      netRegex: { id: '659C', source: 'Hydaelyn', capture: false },
+      netRegex: NetRegexes.ability({ id: '659C', source: 'Hydaelyn', capture: false }),
       infoText: (_data, _matches, output) => output.crystallize!({ name: output.spread!() }),
       run: (data) => data.crystallize = 'spread',
       outputStrings: crystallizeOutputStrings,
@@ -76,7 +77,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Crystallize Stone',
       type: 'Ability',
-      netRegex: { id: '659E', source: 'Hydaelyn', capture: false },
+      netRegex: NetRegexes.ability({ id: '659E', source: 'Hydaelyn', capture: false }),
       infoText: (_data, _matches, output) => output.crystallize!({ name: output.stack!() }),
       run: (data) => data.crystallize = 'stack',
       outputStrings: crystallizeOutputStrings,
@@ -178,7 +179,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hydaelyn Exodus',
       type: 'Ability',
-      netRegex: { id: '65BB', source: 'Hydaelyn', capture: false },
+      netRegex: NetRegexes.ability({ id: '65BB', source: 'Hydaelyn', capture: false }),
       // 14.8 seconds from this ability (no cast) to 662B raidwide.
       delaySeconds: 5,
       response: Responses.aoe(),

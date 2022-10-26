@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -72,7 +73,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P5N Topaz Stones',
       type: 'Ability',
-      netRegex: { id: '76DE', source: 'Proto-Carbuncle', capture: false },
+      netRegex: NetRegexes.ability({ id: '76DE', source: 'Proto-Carbuncle', capture: false }),
       infoText: (data, _matches, output) => {
         if (!data.seenStones || !data.numStones)
           return; // First time is just floor AoEs
@@ -107,7 +108,7 @@ const triggerSet: TriggerSet<Data> = {
       // Delay cleanup for a while for Topaz Stone + Searing Ray combo
       id: 'P5N Topaz Stones Cleanup',
       type: 'Ability',
-      netRegex: { id: '76DE', source: 'Proto-Carbuncle', capture: false },
+      netRegex: NetRegexes.ability({ id: '76DE', source: 'Proto-Carbuncle', capture: false }),
       delaySeconds: 9,
       run: (data) => data.numStones = 0,
     },

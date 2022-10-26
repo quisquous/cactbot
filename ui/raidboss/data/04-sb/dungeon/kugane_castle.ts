@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -65,7 +66,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Kugane Castle Gratuity',
       type: 'Ability',
-      netRegex: { id: '1EAE', source: 'Kageyama', capture: false },
+      netRegex: NetRegexes.ability({ id: '1EAE', source: 'Kageyama', capture: false }),
       suppressSeconds: 15, // No point in notifying repeatedly
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -82,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Kugane Castle Dragons Lair',
       type: 'Ability',
-      netRegex: { id: '1EA6', source: 'Yojimbo', capture: false },
+      netRegex: NetRegexes.ability({ id: '1EA6', source: 'Yojimbo', capture: false }),
       response: Responses.killAdds(),
     },
   ],

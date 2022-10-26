@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -139,7 +140,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Winged Lion Ancient Stone',
       type: 'Ability',
-      netRegex: { id: '15D2', source: 'Winged Lion', capture: false },
+      netRegex: NetRegexes.ability({ id: '15D2', source: 'Winged Lion', capture: false }),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -165,7 +166,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Winged Lion Ancient Aero',
       type: 'Ability',
-      netRegex: { id: '15CE', source: 'Winged Lion', capture: false },
+      netRegex: NetRegexes.ability({ id: '15CE', source: 'Winged Lion', capture: false }),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -191,7 +192,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Winged Lion Ancient Holy',
       type: 'Ability',
-      netRegex: { id: '15CA', source: 'Winged Lion', capture: false },
+      netRegex: NetRegexes.ability({ id: '15CA', source: 'Winged Lion', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

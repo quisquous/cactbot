@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -116,7 +117,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12N Intermission Completion',
       type: 'Ability',
-      netRegex: { id: '4B48', source: 'Eden\'s Promise', capture: false },
+      netRegex: NetRegexes.ability({ id: '4B48', source: 'Eden\'s Promise', capture: false }),
       run: (data) => data.seenIntermission = true,
     },
     {
@@ -152,7 +153,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12N Boulders Impact',
       type: 'Ability',
-      netRegex: { id: '586E', source: 'Titanic Bomb Boulder', capture: false },
+      netRegex: NetRegexes.ability({ id: '586E', source: 'Titanic Bomb Boulder', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
         // Whichever direction has two  Titanic Bombs, the safe spot is opposite.
@@ -173,7 +174,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12N Boulders Explosion',
       type: 'Ability',
-      netRegex: { id: '586F', source: 'Titanic Bomb Boulder', capture: false },
+      netRegex: NetRegexes.ability({ id: '586F', source: 'Titanic Bomb Boulder', capture: false }),
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

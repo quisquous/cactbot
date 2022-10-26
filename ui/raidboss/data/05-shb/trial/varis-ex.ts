@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -106,13 +107,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'VarisEx Phase 5',
       type: 'Ability',
-      netRegex: { source: 'Varis Yae Galvus', id: '4CE2', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CE2', capture: false }),
       run: (data) => data.phase = 5,
     },
     {
       id: 'VarisEx Clones',
       type: 'Ability',
-      netRegex: { source: 'Phantom Varis', id: '4CB3', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Phantom Varis', id: '4CB3', capture: false }),
       run: (data) => data.clonesActive = true,
     },
     {
@@ -162,7 +163,7 @@ const triggerSet: TriggerSet<Data> = {
       // The player should go front to avoid the fifth one, which hits back.
       id: 'VarisEx Alea Iacta Est Front',
       type: 'Ability',
-      netRegex: { source: 'Varis Yae Galvus', id: '4CD5', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD5', capture: false }),
       // Multiple people getting hit by this can cause double triggers.
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
@@ -180,14 +181,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'VarisEx Electrified Gunshield',
       type: 'Ability',
-      netRegex: { source: 'Varis Yae Galvus', id: '4CD7', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD7', capture: false }),
       delaySeconds: 21.5,
       response: Responses.knockback(),
     },
     {
       id: 'VarisEx Reinforced Gunshield',
       type: 'Ability',
-      netRegex: { source: 'Varis Yae Galvus', id: '4CD9', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
       delaySeconds: (data) => data.phase === 2 ? 20 : 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -204,13 +205,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'VarisEx Reinforced Gunshield Sides',
       type: 'Ability',
-      netRegex: { source: 'Varis Yae Galvus', id: '4CDC', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
       response: Responses.goFrontBack('info'),
     },
     {
       id: 'VarisEx Reinforced Gunshield Front',
       type: 'Ability',
-      netRegex: { source: 'Varis Yae Galvus', id: '4CDB', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
       response: Responses.goSides('info'),
     },
     {
@@ -231,7 +232,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'VarisEx Reinforcements',
       type: 'Ability',
-      netRegex: { source: 'Varis Yae Galvus', id: '4CEA', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CEA', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.grabTethers!();
@@ -261,7 +262,7 @@ const triggerSet: TriggerSet<Data> = {
       // The warning is taken care of above with a timeline trigger.  See notes.
       id: 'VarisEx Festina Lente Cleanup',
       type: 'Ability',
-      netRegex: { source: 'Varis Yae Galvus', id: '4CC9', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CC9', capture: false }),
       delaySeconds: 10,
       run: (data) => delete data.suppressDodgeCloneCall,
     },

@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -59,7 +60,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Paradeigma',
       type: 'Ability',
-      netRegex: { id: '67BF', source: 'Zodiark', capture: false },
+      netRegex: NetRegexes.ability({ id: '67BF', source: 'Zodiark', capture: false }),
       alertText: (data, _matches, output) => {
         ++data.paradeigmaCounter;
         if (data.paradeigmaCounter === 1)
@@ -94,7 +95,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Arcane Sigil End',
       type: 'Ability',
-      netRegex: { id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' },
+      netRegex: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' }),
       run: (data, matches, _output) => {
         for (let i = 0; i < data.activeSigils.length; ++i) {
           const sig = data.activeSigils[i];

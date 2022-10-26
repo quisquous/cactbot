@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -235,7 +236,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A9S Auto',
       type: 'Ability',
-      netRegex: { source: 'Refurbisher 0', id: '1AFE' },
+      netRegex: NetRegexes.ability({ source: 'Refurbisher 0', id: '1AFE' }),
       run: (data, matches) => data.mainTank = matches.target,
     },
     {

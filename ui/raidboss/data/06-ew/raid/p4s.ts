@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -245,7 +246,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Bloodrake Store',
       type: 'Ability',
-      netRegex: { id: '69D8', source: 'Hesperos' },
+      netRegex: NetRegexes.ability({ id: '69D8', source: 'Hesperos' }),
       condition: (data) => (data.bloodrakeCounter ?? 0) < 3,
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
@@ -382,7 +383,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Director\'s Belone',
       type: 'Ability',
-      netRegex: { id: '69E6', source: 'Hesperos', capture: false },
+      netRegex: NetRegexes.ability({ id: '69E6', source: 'Hesperos', capture: false }),
       // Delay callout until debuffs are out
       delaySeconds: 1.4,
       alertText: (data, _matches, output) => {
@@ -1183,7 +1184,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P4S Fleeting Impulse',
       type: 'Ability',
-      netRegex: { id: '6A1C', source: 'Hesperos' },
+      netRegex: NetRegexes.ability({ id: '6A1C', source: 'Hesperos' }),
       preRun: (data, _matches) => {
         data.fleetingImpulseCounter = (data.fleetingImpulseCounter ?? 0) + 1;
       },

@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -79,7 +80,7 @@ const triggerSet: TriggerSet<Data> = {
       // Head marker 0002 is used in both the first two encounters.
       id: 'The Burn Dead Hedetet',
       type: 'Ability',
-      netRegex: { id: '368', source: 'Defective Drone', capture: false },
+      netRegex: NetRegexes.ability({ id: '368', source: 'Defective Drone', capture: false }),
       condition: (data) => !data.hedetet,
       run: (data) => data.hedetet = true,
     },

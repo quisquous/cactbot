@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -244,7 +245,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E8N Light Rampant Cleanup',
       type: 'Ability',
-      netRegex: { source: 'Shiva', id: '4E0B', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Shiva', id: '4E0B', capture: false }),
       run: (data) => delete data.rampant,
     },
     {

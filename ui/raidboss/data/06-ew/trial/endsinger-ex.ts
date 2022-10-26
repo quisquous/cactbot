@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -165,7 +166,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Elegeia',
       type: 'Ability',
-      netRegex: { id: '6FF6', source: 'The Endsinger', capture: false },
+      netRegex: NetRegexes.ability({ id: '6FF6', source: 'The Endsinger', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -219,7 +220,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Star Order Resolver',
       type: 'Ability',
-      netRegex: { id: ['6FFE', '6FFF', '7000', '7001'] },
+      netRegex: NetRegexes.ability({ id: ['6FFE', '6FFF', '7000', '7001'] }),
       delaySeconds: (data, matches) => {
         ++data.starMechanicCounter;
         const offset = data.starMechanicCounter > 1 ? 2 : 0;
@@ -240,7 +241,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Star Cleanup',
       type: 'Ability',
-      netRegex: { id: ['6FFE', '6FFF', '7000', '7001'], capture: false },
+      netRegex: NetRegexes.ability({ id: ['6FFE', '6FFF', '7000', '7001'], capture: false }),
       delaySeconds: 30,
       run: (data) => {
         data.starMechanicCounter = 0;
@@ -249,7 +250,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Head Phase Detector',
       type: 'Ability',
-      netRegex: { id: ['7007', '72B1'] },
+      netRegex: NetRegexes.ability({ id: ['7007', '72B1'] }),
       run: (data, matches) => {
         switch (matches.id) {
           case '7007':
@@ -264,7 +265,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Head Phase Cleanup',
       type: 'Ability',
-      netRegex: { id: ['7007', '72B1'], capture: false },
+      netRegex: NetRegexes.ability({ id: ['7007', '72B1'], capture: false }),
       delaySeconds: 50,
       run: (data) => {
         data.headPhase = undefined;

@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -485,7 +486,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Nald\'thal Far-flung Fire',
       type: 'Ability',
-      netRegex: { id: '73AC', source: 'Nald' },
+      netRegex: NetRegexes.ability({ id: '73AC', source: 'Nald' }),
       // 73AC sometimes comes before the Far Above, Deep Below cast.
       // It has the exact same network log time, but is just sometimes ordered wrong.
       // Add a slight delay here so the calls end up being correct.

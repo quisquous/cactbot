@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -71,7 +72,7 @@ const triggerSet: TriggerSet<Data> = {
       // So, just trigger on first auto.
       id: 'Cosmos Direct Seeding Mistake',
       type: 'Ability',
-      netRegex: { id: '368', source: 'Lover\'s Ring', capture: false },
+      netRegex: NetRegexes.ability({ id: '368', source: 'Lover\'s Ring', capture: false }),
       suppressSeconds: 60,
       response: Responses.killExtraAdd(),
     },

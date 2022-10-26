@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -186,7 +187,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Rofocale Crush Helm',
       type: 'Ability',
-      netRegex: { id: '2681', source: 'Rofocale' },
+      netRegex: NetRegexes.ability({ id: '2681', source: 'Rofocale' }),
       suppressSeconds: 10,
       // 2680 is on Rofocale with a castbar, then multiple 2681 and a final 2682 ability.
       // TODO: should this say "multi-hit tankbuster?"
@@ -230,7 +231,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Argath Trepidation',
       type: 'Ability',
-      netRegex: { source: 'Argath Thadalfus', id: '2622', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Argath Thadalfus', id: '2622', capture: false }),
       infoText: (_data, _matches, output) => output.getTowers!(),
       outputStrings: {
         getTowers: {
@@ -246,13 +247,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Argath Mask of Truth',
       type: 'Ability',
-      netRegex: { source: 'Argath Thadalfus', id: '261A', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
       run: (data) => data.maskValue = true,
     },
     {
       id: 'Rab Argath Mask of Lies',
       type: 'Ability',
-      netRegex: { source: 'Argath Thadalfus', id: '2619', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
       run: (data) => data.maskValue = false,
     },
     {

@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -318,7 +319,7 @@ const triggerSet: TriggerSet<Data> = {
       // Instead, we warn the user when Barbelo separates from Sophia, which is 1983.
       id: 'SophiaEX Light Dew',
       type: 'Ability',
-      netRegex: { id: '1983', source: 'Sophia', capture: false },
+      netRegex: NetRegexes.ability({ id: '1983', source: 'Sophia', capture: false }),
       condition: (data) => data.clonesActive,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -380,7 +381,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SophiaEX Clone Cleanup',
       type: 'Ability',
-      netRegex: { id: '19AA', source: 'Sophia', capture: false },
+      netRegex: NetRegexes.ability({ id: '19AA', source: 'Sophia', capture: false }),
       delaySeconds: 5,
       run: (data) => {
         delete data.aeroClones;
@@ -407,7 +408,7 @@ const triggerSet: TriggerSet<Data> = {
       // Because of this, we need only see one entity use a 21 log line and we can find the rest.
       id: 'SophiaEX Quasar Setup',
       type: 'Ability',
-      netRegex: { id: '19A[89]' },
+      netRegex: NetRegexes.ability({ id: '19A[89]' }),
       condition: (data) => !data.scaleSophias,
       // We *really* shouldn't have to suppress this...
       suppressSeconds: 5,
@@ -522,7 +523,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'SophiaEX Quasar Cleanup',
       type: 'Ability',
-      netRegex: { id: '19A9', capture: false },
+      netRegex: NetRegexes.ability({ id: '19A9', capture: false }),
       run: (data) => {
         delete data.quasarTethers;
         delete data.sadTethers;

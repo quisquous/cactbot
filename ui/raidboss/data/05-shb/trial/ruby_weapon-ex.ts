@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -393,7 +394,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Change of Heart',
       type: 'Ability',
-      netRegex: { source: 'The Ruby Weapon', id: '4AFC', capture: false },
+      netRegex: NetRegexes.ability({ source: 'The Ruby Weapon', id: '4AFC', capture: false }),
       preRun: (data) => {
         data.ravens ??= {};
 
@@ -534,7 +535,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Mark II Magitek Comet Tank',
       type: 'Ability',
-      netRegex: { source: 'The Ruby Weapon', id: '4AB6', capture: false },
+      netRegex: NetRegexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
       condition: (data) => data.role === 'tank',
       delaySeconds: 11.5,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -552,7 +553,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubyEx Mark II Magitek Comet Other',
       type: 'Ability',
-      netRegex: { source: 'The Ruby Weapon', id: '4AB6', capture: false },
+      netRegex: NetRegexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
       condition: (data) => data.role !== 'tank',
       delaySeconds: 13,
       alertText: (_data, _matches, output) => output.text!(),

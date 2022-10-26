@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
@@ -226,7 +227,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Ghost Death',
       type: 'Ability',
-      netRegex: { id: '7FA', source: 'The Ghost Of Meracydia', capture: false },
+      netRegex: NetRegexes.ability({ id: '7FA', source: 'The Ghost Of Meracydia', capture: false }),
       condition: (data) => data.garotte,
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -414,7 +415,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Thunder',
       type: 'Ability',
-      netRegex: { source: 'Thunderwing', id: '7FD' },
+      netRegex: NetRegexes.ability({ source: 'Thunderwing', id: '7FD' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {

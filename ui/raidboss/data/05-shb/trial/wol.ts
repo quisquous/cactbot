@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -52,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Terror Unleashed',
       type: 'Ability',
-      netRegex: { source: 'Warrior Of Light', id: '4F27', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: '4F27', capture: false }),
       condition: (data) => data.role === 'healer',
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
@@ -311,7 +312,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOL Suiton San',
       type: 'Ability',
-      netRegex: { source: 'Spectral Ninja', id: '4F38', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Spectral Ninja', id: '4F38', capture: false }),
       delaySeconds: 5,
       response: Responses.knockback(),
     },

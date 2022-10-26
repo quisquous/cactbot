@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -10,7 +11,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tam-Tara Hard Inhumanity',
       type: 'Ability',
-      netRegex: { id: '956', source: 'Liavinne', capture: false },
+      netRegex: NetRegexes.ability({ id: '956', source: 'Liavinne', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

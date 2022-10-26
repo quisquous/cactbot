@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -28,7 +29,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E4S Earthen Gauntlets',
       type: 'Ability',
-      netRegex: { id: '40E6', source: 'Titan', capture: false },
+      netRegex: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
       run: (data) => {
         data.phase = 'landslide';
         delete data.printedBury;
@@ -37,7 +38,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E4S Earthen Armor',
       type: 'Ability',
-      netRegex: { id: ['40E7', '40E9'], source: 'Titan', capture: false },
+      netRegex: NetRegexes.ability({ id: ['40E7', '40E9'], source: 'Titan', capture: false }),
       run: (data) => {
         data.phase = 'armor';
         delete data.printedBury;
@@ -97,7 +98,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E4S Massive Landslide - Front',
       type: 'Ability',
-      netRegex: { id: '40E6', source: 'Titan', capture: false },
+      netRegex: NetRegexes.ability({ id: '40E6', source: 'Titan', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -113,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E4S Massive Landslide - Sides',
       type: 'Ability',
-      netRegex: { id: '4117', source: 'Titan', capture: false },
+      netRegex: NetRegexes.ability({ id: '4117', source: 'Titan', capture: false }),
       response: Responses.goSides('info'),
     },
     {
@@ -154,7 +155,7 @@ const triggerSet: TriggerSet<Data> = {
       // Note: as these may hit multiple people, there may be multiple lines for the same bomb.
       id: 'E4S Bury Directions',
       type: 'Ability',
-      netRegex: { id: '4142', source: 'Bomb Boulder' },
+      netRegex: NetRegexes.ability({ id: '4142', source: 'Bomb Boulder' }),
       condition: (data) => !data.printedBury,
       durationSeconds: 7,
       alertText: (data, matches, output) => {
@@ -225,7 +226,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E4S Fault Line - Sides',
       type: 'Ability',
-      netRegex: { id: '40E8', source: 'Titan', capture: false },
+      netRegex: NetRegexes.ability({ id: '40E8', source: 'Titan', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -241,7 +242,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E4S Fault Line - Front',
       type: 'Ability',
-      netRegex: { id: '411F', source: 'Titan', capture: false },
+      netRegex: NetRegexes.ability({ id: '411F', source: 'Titan', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

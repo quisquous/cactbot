@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -149,7 +150,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Bomb Direction',
       type: 'Ability',
-      netRegex: { source: 'Ratfinx Twinkledinks', id: '1590', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Ratfinx Twinkledinks', id: '1590', capture: false }),
       preRun: (data) => data.bombCount++,
       // We could give directions here, but "into / opposite spikey" is pretty succinct.
       infoText: (data, _matches, output) => {
@@ -180,7 +181,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A5S Boost Count',
       type: 'Ability',
-      netRegex: { source: 'Ratfinx Twinkledinks', id: '16A6', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Ratfinx Twinkledinks', id: '16A6', capture: false }),
       run: (data) => {
         data.boostCount++;
         data.boostBombs = [];

@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -128,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Narrow-rift Empty Refrain In Second',
       type: 'Ability',
-      netRegex: { id: '6AC3', source: 'Narrow-rift', capture: false },
+      netRegex: NetRegexes.ability({ id: '6AC3', source: 'Narrow-rift', capture: false }),
       suppressSeconds: 1,
       response: Responses.getIn('info'),
     },
@@ -142,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Narrow-rift Empty Refrain Out Second',
       type: 'Ability',
-      netRegex: { id: '6AC4', source: 'Narrow-rift', capture: false },
+      netRegex: NetRegexes.ability({ id: '6AC4', source: 'Narrow-rift', capture: false }),
       suppressSeconds: 1,
       response: Responses.getOut('info'),
     },

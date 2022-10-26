@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -89,7 +90,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8N Execution',
       type: 'Ability',
-      netRegex: { source: 'Onslaughter', id: '1632', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Onslaughter', id: '1632', capture: false }),
       condition: (data) => data.role === 'dps' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -186,7 +187,7 @@ const triggerSet: TriggerSet<Data> = {
       // in order to warn them not to stack.
       id: 'A8N Brute Active Tank',
       type: 'Ability',
-      netRegex: { source: 'Brute Justice', id: '174C' },
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '174C' }),
       run: (data, matches) => data.bruteTank = matches.target,
     },
     {
@@ -199,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
       // 1750 is Super Jump, 1756 is J-Kick.
       id: 'A8N Long Needle Toggle',
       type: 'Ability',
-      netRegex: { source: 'Brute Justice', id: ['1750', '1756'] },
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: ['1750', '1756'] }),
       suppressSeconds: 5,
       run: (data, matches) => data.bruteTankOut = matches.id === '1756',
     },

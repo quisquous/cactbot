@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -93,7 +94,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paglthan Mega Flare Move',
       type: 'Ability',
-      netRegex: { id: '5B4D', source: 'Lunar Bahamut' },
+      netRegex: NetRegexes.ability({ id: '5B4D', source: 'Lunar Bahamut' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -127,7 +128,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paglthan Kan Rhai Move',
       type: 'Ability',
-      netRegex: { id: '5B4F', source: 'Lunar Bahamut', capture: false },
+      netRegex: NetRegexes.ability({ id: '5B4F', source: 'Lunar Bahamut', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -143,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Paglthan Lunar Flare Reset',
       type: 'Ability',
-      netRegex: { id: '5B49', source: 'Lunar Bahamut', capture: false },
+      netRegex: NetRegexes.ability({ id: '5B49', source: 'Lunar Bahamut', capture: false }),
       run: (data) => data.lunarFlares = 0,
     },
     {

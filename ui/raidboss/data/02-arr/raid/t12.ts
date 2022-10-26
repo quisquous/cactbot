@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -19,7 +20,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T12 Phase 3',
       type: 'Ability',
-      netRegex: { id: 'B96', source: 'Phoenix', capture: false },
+      netRegex: NetRegexes.ability({ id: 'B96', source: 'Phoenix', capture: false }),
       sound: 'Long',
       run: (data) => data.phase = 3,
     },

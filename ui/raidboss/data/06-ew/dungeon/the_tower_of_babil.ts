@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -128,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tower Of Babil Magitek Chakram',
       type: 'Ability',
-      netRegex: { id: '62F3', source: 'Lugae', capture: false },
+      netRegex: NetRegexes.ability({ id: '62F3', source: 'Lugae', capture: false }),
       suppressSeconds: 10,
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
@@ -145,7 +146,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tower Of Babil Downpour',
       type: 'Ability',
-      netRegex: { id: '62F5', source: 'Lugae', capture: false },
+      netRegex: NetRegexes.ability({ id: '62F5', source: 'Lugae', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
@@ -167,7 +168,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tower Of Babil Magitek Explosive',
       type: 'Ability',
-      netRegex: { id: '62F8', source: 'Lugae', capture: false },
+      netRegex: NetRegexes.ability({ id: '62F8', source: 'Lugae', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
@@ -184,7 +185,7 @@ const triggerSet: TriggerSet<Data> = {
       // Locations are (-19.50, -160), (-19.50, -199), (19.50, -160), (19.50, -199)
       id: 'Tower Of Babil Lunar Nail Warning',
       type: 'Ability',
-      netRegex: { id: '62FE', source: 'Anima', capture: false },
+      netRegex: NetRegexes.ability({ id: '62FE', source: 'Anima', capture: false }),
       infoText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {
@@ -222,7 +223,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Tower Of Babil Boundless Pain',
       type: 'Ability',
-      netRegex: { id: '6303', source: 'Anima', capture: false },
+      netRegex: NetRegexes.ability({ id: '6303', source: 'Anima', capture: false }),
       alertText: (_data, _matches, outputs) => outputs.text!(),
       outputStrings: {
         text: {

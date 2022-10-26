@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -134,7 +135,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Terror Unleashed',
       type: 'Ability',
-      netRegex: { source: 'Warrior Of Light', id: '4F09', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: '4F09', capture: false }),
       condition: (data) => data.role === 'healer',
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
@@ -590,7 +591,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Quintuplecast List',
       type: 'Ability',
-      netRegex: { source: 'Warrior Of Light', id: '4EEF', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: '4EEF', capture: false }),
       durationSeconds: 18.5,
       infoText: (data, _matches, output) => {
         const strings = data.quintuplecasts?.map((key) => output[key]!());
@@ -603,7 +604,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Quintuplecast Individual',
       type: 'Ability',
-      netRegex: { source: 'Warrior Of Light', id: ['4EEF', '4EF0'], capture: false },
+      netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: ['4EEF', '4EF0'], capture: false }),
       durationSeconds: 3,
       alertText: (data, _matches, output) => {
         const next = data.quintuplecasts?.shift();

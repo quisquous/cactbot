@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -101,7 +102,7 @@ const triggerSet: TriggerSet<Data> = {
       //   6-9 are Birds
       //   10-12 are Ios
       type: 'Ability',
-      netRegex: { id: '7811', source: 'Agdistis', capture: false },
+      netRegex: NetRegexes.ability({ id: '7811', source: 'Agdistis', capture: false }),
       preRun: (data) => data.fruitCount = data.fruitCount + 1,
       delaySeconds: 0.5,
       promise: async (data) => {

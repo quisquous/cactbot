@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -44,7 +45,7 @@ const triggerSet: TriggerSet<Data> = {
       // Intermission ability. The user WILL die if they don't use Vril.
       id: 'Lakshmi Jagadishwari',
       type: 'Ability',
-      netRegex: { id: '2342', source: 'Lakshmi', capture: false },
+      netRegex: NetRegexes.ability({ id: '2342', source: 'Lakshmi', capture: false }),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

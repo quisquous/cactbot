@@ -28,13 +28,13 @@ const triggerSet: TriggerSet<Data> = {
       // Indiscriminate Hood Swing
       id: 'T1 Initiated',
       type: 'Ability',
-      netRegex: { source: 'Caduceus', id: '4B8.*?', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),
       run: (data) => data.started = true,
     },
     {
       id: 'T1 Regorge',
       type: 'Ability',
-      netRegex: { source: 'Caduceus', id: '4BA' },
+      netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4BA' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -67,7 +67,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T1 Hood Swing',
       type: 'Ability',
-      netRegex: { source: 'Caduceus', id: '4B8' },
+      netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4B8' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 8,
       suppressSeconds: 5,

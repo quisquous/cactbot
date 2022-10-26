@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -100,7 +101,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Titania Frost Rune 3',
       type: 'Ability',
-      netRegex: { id: '3D4E', source: 'Titania', capture: false },
+      netRegex: NetRegexes.ability({ id: '3D4E', source: 'Titania', capture: false }),
       suppressSeconds: 60,
       response: Responses.getIn('info'),
     },
@@ -143,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Titania Knockback',
       type: 'Ability',
-      netRegex: { id: '3D42', source: 'Puck', capture: false },
+      netRegex: NetRegexes.ability({ id: '3D42', source: 'Puck', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -159,7 +160,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Titania Mini Add Phase',
       type: 'Ability',
-      netRegex: { id: '3D31', source: 'Titania', capture: false },
+      netRegex: NetRegexes.ability({ id: '3D31', source: 'Titania', capture: false }),
       infoText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.groupAddsEastOnMustardseed!();

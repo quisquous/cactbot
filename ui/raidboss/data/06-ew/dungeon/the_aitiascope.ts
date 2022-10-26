@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -119,7 +120,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aitiascope Amon Ysayle\'s Spirit Dreams of Ice',
       type: 'Ability',
-      netRegex: { id: '6C6C', source: 'Ysayle\'s Spirit', capture: false },
+      netRegex: NetRegexes.ability({ id: '6C6C', source: 'Ysayle\'s Spirit', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

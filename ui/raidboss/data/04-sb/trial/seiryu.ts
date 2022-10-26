@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -60,7 +61,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Seiryu Serpent Ascending Towers',
       type: 'Ability',
-      netRegex: { source: 'Seiryu', id: '3C25', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Seiryu', id: '3C25', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -140,13 +141,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Seiryu Handprint East',
       type: 'Ability',
-      netRegex: { source: 'Yama-No-Shiki', id: '37E5', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Yama-No-Shiki', id: '37E5', capture: false }),
       response: Responses.goEast(),
     },
     {
       id: 'Seiryu Handprint West',
       type: 'Ability',
-      netRegex: { source: 'Yama-No-Shiki', id: '37E6', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Yama-No-Shiki', id: '37E6', capture: false }),
       response: Responses.goWest(),
     },
   ],

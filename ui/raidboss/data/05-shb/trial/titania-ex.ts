@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -136,7 +137,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TitaniaEx Bramble Knockback',
       type: 'Ability',
-      netRegex: { id: '3D42', source: 'Puck', capture: false },
+      netRegex: NetRegexes.ability({ id: '3D42', source: 'Puck', capture: false }),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -188,7 +189,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TitaniaEx Frost Rune 3',
       type: 'Ability',
-      netRegex: { id: '3D2B', source: 'Titania', capture: false },
+      netRegex: NetRegexes.ability({ id: '3D2B', source: 'Titania', capture: false }),
       suppressSeconds: 60,
       response: Responses.getIn('info'),
     },
@@ -257,7 +258,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TitaniaEx Peasebomb Use',
       type: 'Ability',
-      netRegex: { id: '3D3F', source: 'Peaseblossom', capture: false },
+      netRegex: NetRegexes.ability({ id: '3D3F', source: 'Peaseblossom', capture: false }),
       run: (data) => delete data.bomb,
     },
     {
@@ -299,7 +300,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TitaniaEx Thunder Rune',
       type: 'Ability',
-      netRegex: { id: '3D29', source: 'Titania', capture: false },
+      netRegex: NetRegexes.ability({ id: '3D29', source: 'Titania', capture: false }),
       preRun: (data) => data.thunderCount = (data.thunderCount ?? 0) + 1,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => output.text!({ num: data.thunderCount }),

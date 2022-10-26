@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -84,7 +85,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ktisis Hermes Meteor Cosmic Kiss',
       type: 'Ability',
-      netRegex: { id: '6523', source: 'Meteor', capture: false },
+      netRegex: NetRegexes.ability({ id: '6523', source: 'Meteor', capture: false }),
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
@@ -122,7 +123,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P3S Experimental Fireplume Out Marker',
       type: 'Ability',
-      netRegex: { id: '66BE', source: 'Phoinix', capture: false },
+      netRegex: NetRegexes.ability({ id: '66BE', source: 'Phoinix', capture: false }),
       // goldfish brain needs an extra "get out" call
       response: Responses.getOut(),
     },

@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -126,7 +127,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ghimlyt Dark Order To Bombard',
       type: 'Ability',
-      netRegex: { id: '3710', source: 'Annia Quo Soranus', capture: false },
+      netRegex: NetRegexes.ability({ id: '3710', source: 'Annia Quo Soranus', capture: false }),
       response: Responses.knockback(),
     },
     {

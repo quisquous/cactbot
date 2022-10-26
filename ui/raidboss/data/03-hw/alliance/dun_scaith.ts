@@ -281,7 +281,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Atomos Cleanup',
       type: 'Ability',
-      netRegex: { id: ['1CA1', '1CA2'], capture: false },
+      netRegex: NetRegexes.ability({ id: ['1CA1', '1CA2'], capture: false }),
       run: (data) => {
         delete data.cursing;
         delete data.wailing;
@@ -424,7 +424,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Dun Scaith Thirty Thorns',
       type: 'Ability',
-      netRegex: { id: ['1D1B', '1D2B'], source: 'Scathach', capture: false },
+      netRegex: NetRegexes.ability({ id: ['1D1B', '1D2B'], source: 'Scathach', capture: false }),
       suppressSeconds: 5,
       response: Responses.outOfMelee(),
     },

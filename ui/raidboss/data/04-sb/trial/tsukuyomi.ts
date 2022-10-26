@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -115,7 +116,7 @@ const triggerSet: TriggerSet<Data> = {
       // 2BFD is an unnamed ability that happens ~5 seconds before Dance Of The Dead.
       // Dance Of The Dead has no castbar.
       type: 'Ability',
-      netRegex: { id: '2BFD', source: 'Tsukuyomi', capture: false },
+      netRegex: NetRegexes.ability({ id: '2BFD', source: 'Tsukuyomi', capture: false }),
       response: Responses.aoe(),
     },
   ],

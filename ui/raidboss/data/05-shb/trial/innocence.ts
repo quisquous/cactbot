@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -83,7 +84,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Inno Light Pillar',
       type: 'Ability',
-      netRegex: { id: '38FC', source: 'Innocence', capture: false },
+      netRegex: NetRegexes.ability({ id: '38FC', source: 'Innocence', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

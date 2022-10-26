@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -130,7 +131,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Temple Coeurl Heads',
       type: 'Ability',
-      netRegex: { id: '1FE9', source: 'Ivon Coeurlfist', capture: false },
+      netRegex: NetRegexes.ability({ id: '1FE9', source: 'Ivon Coeurlfist', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

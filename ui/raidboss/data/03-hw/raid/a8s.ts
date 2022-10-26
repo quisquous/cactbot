@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -128,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Execution',
       type: 'Ability',
-      netRegex: { source: 'Onslaughter', id: '1632', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Onslaughter', id: '1632', capture: false }),
       condition: (data) => data.role === 'dps' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -368,7 +369,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Short Needle',
       type: 'Ability',
-      netRegex: { source: 'Brute Justice', id: '1668', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1668', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -531,7 +532,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A8S Link Up',
       type: 'Ability',
-      netRegex: { source: 'Brute Justice', id: '1673', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1673', capture: false }),
       run: (data) => data.seenLinkUp = true,
     },
     {

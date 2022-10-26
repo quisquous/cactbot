@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -66,7 +67,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Floor Spike Trap',
       type: 'Ability',
-      netRegex: { source: 'Lamebrix Strikebocks', id: '1AB2', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB2', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -82,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Frost Laser Trap',
       type: 'Ability',
-      netRegex: { source: 'Lamebrix Strikebocks', id: '1AB1', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB1', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -98,7 +99,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Ceiling Weight Trap',
       type: 'Ability',
-      netRegex: { source: 'Lamebrix Strikebocks', id: '1AB0', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB0', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -138,13 +139,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Charge 1',
       type: 'Ability',
-      netRegex: { source: 'Lamebrix Strikebocks', id: '1A9[789]', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A9[789]', capture: false }),
       run: (data) => data.charges.shift(),
     },
     {
       id: 'A10S Charge Double Triple',
       type: 'Ability',
-      netRegex: { source: 'Lamebrix Strikebocks', id: '1A9[ABCE]', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A9[ABCE]', capture: false }),
       suppressSeconds: 0.5,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
@@ -161,7 +162,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Charge Clear',
       type: 'Ability',
-      netRegex: { source: 'Lamebrix Strikebocks', id: '1A9[789]', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A9[789]', capture: false }),
       delaySeconds: 10,
       run: (data) => {
         // Cleanup just in case.
@@ -221,7 +222,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Brighteyes Tracker',
       type: 'Ability',
-      netRegex: { source: 'Lamebrix Strikebocks', id: '1AA9', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AA9', capture: false }),
       run: (data) => {
         // This comes out 0.1s before every '0029' prey marker.
         data.seenBrighteyes = true;
@@ -230,7 +231,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Brighteyes Cleanup',
       type: 'Ability',
-      netRegex: { source: 'Lamebrix Strikebocks', id: '1AA9', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1AA9', capture: false }),
       delaySeconds: 20,
       suppressSeconds: 20,
       run: (data) => delete data.seenBrighteyes,
@@ -298,7 +299,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A10S Gobspin Zoomdrops',
       type: 'Ability',
-      netRegex: { source: 'Lamebrix Strikebocks', id: '1A8F', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Lamebrix Strikebocks', id: '1A8F', capture: false }),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

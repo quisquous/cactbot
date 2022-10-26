@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -275,7 +276,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Insatiable Light',
       type: 'Ability',
-      netRegex: { source: 'Idolatry', id: '4C6D', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Idolatry', id: '4C6D', capture: false }),
       run: (data) => data.insatiableLightStack = [],
     },
     {
@@ -298,7 +299,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Unearned Envy',
       type: 'Ability',
-      netRegex: { source: 'Blasphemy', id: '4C74', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Blasphemy', id: '4C74', capture: false }),
       durationSeconds: 7,
       suppressSeconds: 15,
       response: Responses.aoe(),
@@ -437,7 +438,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E7S Unjoined Aspect P3',
       type: 'Ability',
-      netRegex: { source: 'The Idol Of Darkness', id: '4C7A', capture: false },
+      netRegex: NetRegexes.ability({ source: 'The Idol Of Darkness', id: '4C7A', capture: false }),
       // Color buffs go out immediately after the cast
       delaySeconds: 0.1,
       infoText: (data, _matches, output) => {

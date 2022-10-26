@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -167,7 +168,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6435 is Plasmafodder, Stigma-4's auto-attack.
       id: 'Dreamscape Last Boss',
       type: 'Ability',
-      netRegex: { id: '6435', source: 'Stigma-4', capture: false },
+      netRegex: NetRegexes.ability({ id: '6435', source: 'Stigma-4', capture: false }),
       run: (data) => data.lastBoss = true,
     },
     {

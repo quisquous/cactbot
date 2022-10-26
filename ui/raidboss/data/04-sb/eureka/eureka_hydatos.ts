@@ -293,7 +293,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Owain Ivory Palm',
       type: 'Ability',
-      netRegex: { id: '3941', source: 'Ivory Palm' },
+      netRegex: NetRegexes.ability({ id: '3941', source: 'Ivory Palm' }),
       condition: (data, matches) => data.side === 'east' && data.me === matches.target,
       response: Responses.doritoStack(),
     },
@@ -555,7 +555,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA AV Eidos Turbulent Aether',
       type: 'Ability',
-      netRegex: { id: '3790', source: 'Absolute Virtue', capture: false },
+      netRegex: NetRegexes.ability({ id: '3790', source: 'Absolute Virtue', capture: false }),
       condition: (data) => data.sealed,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -572,14 +572,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA AV Call Wyvern',
       type: 'Ability',
-      netRegex: { id: '3798', source: 'Absolute Virtue', capture: false },
+      netRegex: NetRegexes.ability({ id: '3798', source: 'Absolute Virtue', capture: false }),
       condition: (data) => data.sealed,
       response: Responses.killAdds(),
     },
     {
       id: 'BA Ozma Sphere Form',
       type: 'Ability',
-      netRegex: { source: 'Proto Ozma', id: ['37B3', '37A5', '379F'], capture: false },
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: ['37B3', '37A5', '379F'], capture: false }),
       condition: (data) => data.sealed,
       preRun: (data) => {
         data.blackHoleCount = (data.blackHoleCount ?? 0) + 1;
@@ -613,7 +613,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Ozma Pyramid Form',
       type: 'Ability',
-      netRegex: { source: 'Proto Ozma', id: '37A4', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '37A4', capture: false }),
       condition: (data) => data.sealed,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -630,7 +630,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Ozma Pyramid Form 2',
       type: 'Ability',
-      netRegex: { source: 'Proto Ozma', id: '37A4', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '37A4', capture: false }),
       condition: (data) => data.sealed,
       delaySeconds: 9,
       infoText: (_data, _matches, output) => output.text!(),
@@ -648,7 +648,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Ozma Star Form',
       type: 'Ability',
-      netRegex: { source: 'Proto Ozma', id: '37B2', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '37B2', capture: false }),
       condition: (data) => data.sealed,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -665,7 +665,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Ozma Star Form 2',
       type: 'Ability',
-      netRegex: { source: 'Proto Ozma', id: '37B2', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '37B2', capture: false }),
       condition: (data) => data.sealed,
       delaySeconds: 9,
       infoText: (data, _matches, output) => {
@@ -698,7 +698,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Ozma Cube Form',
       type: 'Ability',
-      netRegex: { source: 'Proto Ozma', id: '379E', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '379E', capture: false }),
       condition: (data) => data.sealed,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -715,7 +715,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Ozma Cube Form 2',
       type: 'Ability',
-      netRegex: { source: 'Proto Ozma', id: '379E', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '379E', capture: false }),
       condition: (data) => data.sealed,
       delaySeconds: 9,
       alertText: (data, _matches, output) => {
@@ -750,7 +750,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Ozma Pyramid Shade',
       type: 'Ability',
-      netRegex: { source: ['Ozmashade', 'Shadow'], id: '37A4', capture: false },
+      netRegex: NetRegexes.ability({ source: ['Ozmashade', 'Shadow'], id: '37A4', capture: false }),
       condition: (data) => data.sealed,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
@@ -768,7 +768,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Ozma Star Shade',
       type: 'Ability',
-      netRegex: { source: ['Ozmashade', 'Shadow'], id: '37B2', capture: false },
+      netRegex: NetRegexes.ability({ source: ['Ozmashade', 'Shadow'], id: '37B2', capture: false }),
       condition: (data) => data.sealed,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
@@ -786,7 +786,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Ozma Cube Shade',
       type: 'Ability',
-      netRegex: { source: ['Ozmashade', 'Shadow'], id: '379E', capture: false },
+      netRegex: NetRegexes.ability({ source: ['Ozmashade', 'Shadow'], id: '379E', capture: false }),
       condition: (data) => data.sealed,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
@@ -804,7 +804,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Ozma Adds',
       type: 'Ability',
-      netRegex: { source: 'Arsenal Urolith', id: '37B0', capture: false },
+      netRegex: NetRegexes.ability({ source: 'Arsenal Urolith', id: '37B0', capture: false }),
       condition: (data) => data.sealed,
       delaySeconds: 2,
       suppressSeconds: 1,
@@ -813,7 +813,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Ozma Acceleration Bomb',
       type: 'Ability',
-      netRegex: { id: '37AA', source: 'Proto Ozma' },
+      netRegex: NetRegexes.ability({ id: '37AA', source: 'Proto Ozma' }),
       condition: (data, matches) => data.sealed && data.me === matches.target,
       response: Responses.stopEverything(),
     },
