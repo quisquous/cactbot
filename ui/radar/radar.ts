@@ -125,7 +125,7 @@ class Point2D {
 
   // Calculates vector length (magnitude)
   length() {
-    return Math.sqrt((this.x) * (this.x) + (this.y) * (this.y));
+    return Math.sqrt(this.x * this.x + this.y * this.y);
   }
 
   // Calculate delta vector

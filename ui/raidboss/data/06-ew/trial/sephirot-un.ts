@@ -283,7 +283,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '76A2', source: 'Sephirot', capture: false },
       alertText: (data, _matches, output) => {
-        if (data.force === '3ED' || (!data.force && data.role === 'tank'))
+        if (data.force === '3ED' || !data.force && data.role === 'tank')
           return output.getTower!();
         return output.avoidTower!();
       },

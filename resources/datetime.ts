@@ -23,7 +23,7 @@ export default class DateTimeFuncs {
       return defaultOffset;
     const hours = parseInt(hoursString);
     const minutes = parseInt(minutesString);
-    const tzOffset = (((hours * 60) + minutes) * 60 * 1000) * (operator === '-' ? -1 : 1);
+    const tzOffset = (hours * 60 + minutes) * 60 * 1000 * (operator === '-' ? -1 : 1);
     tzOffsetMap[timezoneOffsetString] = tzOffset;
     return tzOffset;
   }
@@ -32,11 +32,11 @@ export default class DateTimeFuncs {
     const negative = time < 0 ? '-' : '';
     time = Math.abs(time);
     const millisNum = time % 1000;
-    const secsNum = ((time % (60 * 1000)) - millisNum) / 1000;
+    const secsNum = (time % (60 * 1000) - millisNum) / 1000;
     // Milliseconds
     const millis = `00${millisNum}`.substr(-3);
     const secs = `0${secsNum}`.substr(-2);
-    const mins = `0${((((time % (60 * 60 * 1000)) - millisNum) / 1000) - secsNum) / 60}`.substr(-2);
+    const mins = `0${((time % (60 * 60 * 1000) - millisNum) / 1000 - secsNum) / 60}`.substr(-2);
     return negative + mins + ':' + secs + (includeMillis ? '.' + millis : '');
   }
 

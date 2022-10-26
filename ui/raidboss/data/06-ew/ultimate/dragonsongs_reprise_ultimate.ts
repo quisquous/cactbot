@@ -136,7 +136,7 @@ const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
   //
   // Map NW = 0, N = 1, ..., W = 7
 
-  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+  return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
 // Calculate combatant position in 4 cardinals
@@ -150,7 +150,7 @@ const matchedPositionTo4Dir = (combatant: PluginCombatantState) => {
   //
   // N = 0, E = 1, S = 2, W = 3
 
-  return (Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4);
+  return Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
 };
 
 const triggerSet: TriggerSet<Data> = {
@@ -1370,7 +1370,7 @@ const triggerSet: TriggerSet<Data> = {
             return { alertText: output.inOutAndBait!({ inout: inout }) };
           }
         } else if (data.eyeOfTheTyrantCounter === 2) {
-          if (num === 2 || (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle'))
+          if (num === 2 || num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle')
             return { alertText: output.inOutAndBait!({ inout: inout }) };
         }
 
@@ -2409,7 +2409,7 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`Hallowed: unexpected number of Nidhoggs: ${JSON.stringify(data.combatantData)}`);
       },
       alertText: (data, matches, output) => {
-        const wings = (matches.id === '6D23' || matches.id === '6D24') ? output.left!() : output.right!();
+        const wings = matches.id === '6D23' || matches.id === '6D24' ? output.left!() : output.right!();
         let head;
         const isHeadDown = matches.id === '6D23' || matches.id === '6D26';
         if (isHeadDown)

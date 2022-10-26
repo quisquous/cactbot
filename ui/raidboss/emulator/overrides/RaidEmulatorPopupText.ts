@@ -189,7 +189,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     duration: number): void {
     const textElementClass = textType + '-text';
     const e = this._makeTextElement(triggerHelper, text, textElementClass);
-    this.addDisplayText(e, this.emulatedOffset + (duration * 1000));
+    this.addDisplayText(e, this.emulatedOffset + duration * 1000);
   }
 
   override _onTriggerInternalDelaySeconds(triggerHelper: TriggerHelper): Promise<void> | undefined {
@@ -204,7 +204,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     // eslint-disable-next-line prefer-const
     ret = new Promise<void>((res, rej) => {
       this.scheduledTriggers.push({
-        expires: this.emulatedOffset + (delay * 1000),
+        expires: this.emulatedOffset + delay * 1000,
         promise: ret,
         resolver: res,
         rejecter: rej,
