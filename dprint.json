@@ -6,6 +6,8 @@
   ],
   "excludes": [
     "**/node_modules",
+    "./dist/",
+    "./npm-package/",
     "**/ui/raidboss/data",
     "**/ui/oopsyraidsy/data",
     "**/*-lock.json"
