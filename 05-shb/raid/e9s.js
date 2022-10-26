@@ -148,7 +148,7 @@ const calculateSummonSafeZone = (boss, clone1, clone2, abilityId) => {
       // Swiping her right
       if (abilityId === '561E') {
         // Off by 1 here, since N is 0 for the Clone but NNE for the safe spot
-        newPosition = ((position - i % 8) + 7) % 8;
+        newPosition = (position - i % 8 + 7) % 8;
       } else {
         newPosition = (position + i) % 8;
       }

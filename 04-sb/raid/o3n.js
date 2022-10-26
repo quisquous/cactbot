@@ -79,7 +79,7 @@ Options.Triggers.push({
       condition: (data) => {
         if (data.phaseNumber < 3)
           return false;
-        return (data.holyCounter % 2 === 0);
+        return data.holyCounter % 2 === 0;
       },
       response: Responses.stackMarkerOn(),
       run: (data) => {

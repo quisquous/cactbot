@@ -16,7 +16,7 @@ const positionTo8Dir = (combatant) => {
 };
 const headingTo8Dir = (heading) => {
   // Dirs: N = 0, NE = 1, ..., NW = 7
-  return ((2 - Math.round(heading * 8 / Math.PI) / 2) + 2) % 8;
+  return (2 - Math.round(heading * 8 / Math.PI) / 2 + 2) % 8;
 };
 const ventOutputStrings = {
   comboDir: {
@@ -971,10 +971,10 @@ Options.Triggers.push({
         // Flip callout if crush (7A05)
         const epsilon = 0.1;
         if (Math.abs(Math.abs(hephaistos.Heading) - 3.14) < epsilon)
-          data.crushImpactSafeZone = (matches.id === '7A05' ? 'south' : 'north');
+          data.crushImpactSafeZone = matches.id === '7A05' ? 'south' : 'north';
         // Boss will be facing South
         else
-          data.crushImpactSafeZone = (matches.id === '7A05' ? 'north' : 'south');
+          data.crushImpactSafeZone = matches.id === '7A05' ? 'north' : 'south';
       },
       infoText: (data, matches, output) => {
         if (data.crushImpactSafeZone === undefined) {
@@ -1213,8 +1213,8 @@ Options.Triggers.push({
           // Second trailblaze should call torch location
           // Dir is flipped for crush, thus matching knockback direction
           if (
-            (data.trailblazeTorchSafeZone === 'east' && dir === 0) ||
-            (data.trailblazeTorchSafeZone === 'west' && dir === 2)
+            data.trailblazeTorchSafeZone === 'east' && dir === 0 ||
+            data.trailblazeTorchSafeZone === 'west' && dir === 2
           ) {
             if (data.footfallsOrder[data.trailblazeCount] === 'impact')
               return { alertText: output.trailblazeKnockbackSide({ dir: output.left() }) };
@@ -1222,8 +1222,8 @@ Options.Triggers.push({
               return { infoText: output.trailblazeCrushSide({ dir: output.left() }) };
           }
           if (
-            (data.trailblazeTorchSafeZone === 'west' && dir === 0) ||
-            (data.trailblazeTorchSafeZone === 'east' && dir === 2)
+            data.trailblazeTorchSafeZone === 'west' && dir === 0 ||
+            data.trailblazeTorchSafeZone === 'east' && dir === 2
           ) {
             if (data.footfallsOrder[data.trailblazeCount] === 'impact')
               return { alertText: output.trailblazeKnockbackSide({ dir: output.right() }) };
@@ -1401,16 +1401,16 @@ Options.Triggers.push({
           const heading = headingTo8Dir(c.Heading);
           // There's maybe some way to do this more generally, but I don't see it.
           // Also, if this fails for some reason, it will just not call anything below.
-          if ((originalPos === 7 && heading === 2) || (originalPos === 3 && heading === 0) || (originalPos === 5 && heading === 1)) {
+          if (originalPos === 7 && heading === 2 || originalPos === 3 && heading === 0 || originalPos === 5 && heading === 1) {
             // Going towards NE
             unsafeSpots.push(1);
-          } else if ((originalPos === 1 && heading === 4) || (originalPos === 5 && heading === 2) || (originalPos === 7 && heading === 3)) {
+          } else if (originalPos === 1 && heading === 4 || originalPos === 5 && heading === 2 || originalPos === 7 && heading === 3) {
             // Going towards SE
             unsafeSpots.push(3);
-          } else if ((originalPos === 3 && heading === 6) || (originalPos === 1 && heading === 5) || (originalPos === 7 && heading === 4)) {
+          } else if (originalPos === 3 && heading === 6 || originalPos === 1 && heading === 5 || originalPos === 7 && heading === 4) {
             // Going towards SW
             unsafeSpots.push(5);
-          } else if ((originalPos === 5 && heading === 0) || (originalPos === 1 && heading === 6) || (originalPos === 3 && heading === 7)) {
+          } else if (originalPos === 5 && heading === 0 || originalPos === 1 && heading === 6 || originalPos === 3 && heading === 7) {
             // Going towards NW
             unsafeSpots.push(7);
           }

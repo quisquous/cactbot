@@ -45,7 +45,7 @@ const getAoEOrbSafeDir = (posX, posY, output) => {
   return output.nw();
 };
 const getStarPositionFromHeading = (heading) => {
-  const dir = ((2 - Math.round(parseFloat(heading) * 8 / Math.PI) / 2) + 2) % 8;
+  const dir = (2 - Math.round(parseFloat(heading) * 8 / Math.PI) / 2 + 2) % 8;
   return {
     1: [114, 86],
     3: [114, 114],
@@ -251,7 +251,7 @@ Options.Triggers.push({
         }
         // Snap heading to closest card and add 2 for opposite direction
         // N = 0, E = 1, S = 2, W = 3
-        const cardinal = ((2 - Math.round(headCombatant.state.Heading * 4 / Math.PI) / 2) + 2) % 4;
+        const cardinal = (2 - Math.round(headCombatant.state.Heading * 4 / Math.PI) / 2 + 2) % 4;
         const dirs = {
           0: output.north(),
           1: output.east(),
@@ -308,7 +308,7 @@ Options.Triggers.push({
         } else {
           // Snap heading to closest card and add 2 for opposite direction
           // N = 0, E = 1, S = 2, W = 3
-          const cardinal = ((2 - Math.round(parseFloat(matches.heading) * 4 / Math.PI) / 2) + 2) % 4;
+          const cardinal = (2 - Math.round(parseFloat(matches.heading) * 4 / Math.PI) / 2 + 2) % 4;
           const safeDir = {
             0: 'safeN',
             1: 'safeE',

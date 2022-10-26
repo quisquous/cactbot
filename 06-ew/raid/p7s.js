@@ -21,7 +21,7 @@ const matchedPositionTo8Dir = (combatant) => {
   // Majority of mechanics center around three circles:
   // NW at 0, NE at 2, South at 5
   // Map NW = 0, N = 1, ..., W = 7
-  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+  return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 // effect ids for inviolate purgation
 const effectIdToOutputStringKey = {
@@ -157,7 +157,7 @@ Options.Triggers.push({
           const bird1 = data.unhatchedEggs[8];
           const bird2 = data.unhatchedEggs[9];
           // Lower PosY = more north
-          const northBird = (bird1.PosY < bird2.PosY ? bird1 : bird2);
+          const northBird = bird1.PosY < bird2.PosY ? bird1 : bird2;
           // Check north bird's side
           if (northBird.PosX < 100)
             return { alertText: output.left() };
@@ -382,7 +382,7 @@ Options.Triggers.push({
           spreadThenStack: Outputs.spreadThenStack,
         };
         // Store debuff for reminders
-        data.bondsDebuff = (matches.effectId === 'CEC' ? 'spread' : 'stackMarker');
+        data.bondsDebuff = matches.effectId === 'CEC' ? 'spread' : 'stackMarker';
         const longTimer = parseFloat(matches.duration) > 9;
         if (longTimer)
           return { infoText: output.stackThenSpread() };
@@ -548,7 +548,7 @@ Options.Triggers.push({
         if (correctedMatch === '00A6' && data.bondsDebuff)
           return output[data.bondsDebuff]();
       },
-      run: (data) => data.bondsDebuff = (data.bondsDebuff === 'spread' ? 'stackMarker' : 'spread'),
+      run: (data) => data.bondsDebuff = data.bondsDebuff === 'spread' ? 'stackMarker' : 'spread',
       outputStrings: {
         spread: Outputs.spread,
         stackMarker: Outputs.stackMarker,

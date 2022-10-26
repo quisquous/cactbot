@@ -66,7 +66,7 @@ const matchedPositionTo8Dir = (combatant) => {
   // NE = (116.26, 83.74), SE = (116.26, 116.26), SW = (83.74, 116.26), NW = (83.74, 83.74)
   //
   // Map NW = 0, N = 1, ..., W = 7
-  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+  return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 // Calculate combatant position in 4 cardinals
 const matchedPositionTo4Dir = (combatant) => {
@@ -77,7 +77,7 @@ const matchedPositionTo4Dir = (combatant) => {
   // N = (100, 78), E = (122, 100), S = (100, 122), W = (78, 100)
   //
   // N = 0, E = 1, S = 2, W = 3
-  return (Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4);
+  return Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
 };
 Options.Triggers.push({
   zoneId: ZoneId.DragonsongsRepriseUltimate,
@@ -1257,7 +1257,7 @@ Options.Triggers.push({
             return { alertText: output.inOutAndBait({ inout: inout }) };
           }
         } else if (data.eyeOfTheTyrantCounter === 2) {
-          if (num === 2 || (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle'))
+          if (num === 2 || num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle')
             return { alertText: output.inOutAndBait({ inout: inout }) };
         }
         // Otherwise, just tell the remaining people the dodge.
@@ -2271,7 +2271,7 @@ Options.Triggers.push({
           console.error(`Hallowed: unexpected number of Nidhoggs: ${JSON.stringify(data.combatantData)}`);
       },
       alertText: (data, matches, output) => {
-        const wings = (matches.id === '6D23' || matches.id === '6D24') ? output.left() : output.right();
+        const wings = matches.id === '6D23' || matches.id === '6D24' ? output.left() : output.right();
         let head;
         const isHeadDown = matches.id === '6D23' || matches.id === '6D26';
         if (isHeadDown)

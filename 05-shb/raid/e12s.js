@@ -206,7 +206,7 @@ const matchedPositionToDir = (matches) => {
   // Starting with northwest to favor sorting between north and south for
   // Advanced Relativity party splits.
   // Map NW = 0, N = 1, ..., W = 7
-  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+  return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 // Convert dir to Output
 const dirToOutput = (dir, output) => {
@@ -351,7 +351,7 @@ Options.Triggers.push({
         if (id >= firstLaserMarker && id <= lastLaserMarker) {
           // ids are sequential: #1 square, #2 square, #3 square, #4 square, #1 triangle etc
           const decOffset = parseInt(id, 16) - parseInt(firstLaserMarker, 16);
-          data.statueTetherNumber = (decOffset % 4) + 1;
+          data.statueTetherNumber = decOffset % 4 + 1;
         }
       },
     },
@@ -1051,7 +1051,7 @@ Options.Triggers.push({
           return;
         // Snap heading to closest card and add 2 for opposite direction
         // N = 0, E = 1, S = 2, W = 3
-        const cardinal = ((2 - Math.round(oracle.Heading * 4 / Math.PI) / 2) + 2) % 4;
+        const cardinal = (2 - Math.round(oracle.Heading * 4 / Math.PI) / 2 + 2) % 4;
         const dirs = {
           0: output.north(),
           1: output.east(),
