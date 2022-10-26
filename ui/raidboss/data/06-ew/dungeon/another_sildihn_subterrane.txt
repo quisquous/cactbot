@@ -39,6 +39,7 @@ hideall "--sync--"
 129.5 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:7767:/
 129.5 "Fizzling Duster x2" #sync / 1[56]:[^:]*:Silken Puff:776A:/
 129.5 "Chilling Duster x2" #sync / 1[56]:[^:]*:Silken Puff:7768:/
+129.5 "Bracing Duster / Chilling Duster" sync / 1[56]:[^:]*:Silkie:(7769|7768):/
 134.6 "Bracing Suds / Fizzling Suds" sync / 1[56]:[^:]*:Silkie:(7757|7759):/ 
 136.7 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
 141.7 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:775E:/
