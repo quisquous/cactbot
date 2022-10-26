@@ -92,6 +92,7 @@
 }
 
 #label-time > div,
+#label-portal-timer > div,
 #label-weather-container > div > div {
   display: inline-block;
 }
@@ -265,6 +266,15 @@
 #label-time {
   padding-bottom: 5px;
   border-bottom: 2px dashed rgb(255 255 255 / 30%);
+}
+
+#portal-timer-container {
+  position: absolute;
+  right: 0;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 5px;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
 }
 
 .aspect-ratio-anemos #label-container {

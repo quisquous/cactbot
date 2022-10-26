@@ -928,8 +928,8 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       y: 8.2,
       isCritical: true,
       ceKey: 0,
-      // TODO: this needs a 60 minute respawn *after* it finishes.
-      // respawnMinutes: 60,
+      respawnMinutes: 60,
+      startTimerOnKill: true,
     },
     onserpentswings: {
       label: {

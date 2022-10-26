@@ -53,6 +53,8 @@ type NMInfo = {
   x: number;
   y: number;
   respawnMinutes?: number;
+  respawnMinutesFailed?: number;
+  startTimerOnKill?: boolean;
 
   // Modified
   element?: HTMLElement;
@@ -119,6 +121,8 @@ type EurekaConfigOptions = typeof defaultEurekaConfigOptions;
 export type EurekaTimeStrings = {
   weatherFor: LocaleObject<WeatherForFunc>;
   weatherIn: LocaleObject<WeatherInFunc>;
+  portalFor: LocaleObject<WeatherInFunc>;
+  portalIn: LocaleObject<WeatherInFunc>;
   timeFor: LocaleObject<WeatherTimeForFunc>;
   minute: LocaleText;
 };
@@ -214,6 +218,8 @@ const gWeatherIcons: { [weather: string]: string } = {
 } as const;
 const gNightIcon = '&#x1F319;';
 const gDayIcon = '&#x263C;';
+const gBluePortalIcon = '&#x1F535;';
+const gRedPortalIcon = '&#x1F534;';
 // ✭ for rarity for field notes listing
 const gRarityIcon = '&#x272D;';
 
@@ -223,6 +229,8 @@ class EurekaTracker {
   private updateTimesHandle?: number;
   private fateQueue: EventResponses['onFateEvent'][] = [];
   private CEQueue: EventResponses['onCEEvent'][] = [];
+
+  private lastBAFateTimeMs?: number;
 
   private playerElement?: HTMLElement;
   private fairyRegex?: CactbotBaseRegExp<'AddedCombatant'>;
@@ -464,6 +472,8 @@ class EurekaTracker {
 
   RespawnTime(nm: NMInfo) {
     let respawnTimeMs = 120 * 60 * 1000;
+    if (nm.respawnMinutesFailed && nm.progressElement && nm.progressElement.innerText !== '100%')
+      respawnTimeMs = nm.respawnMinutesFailed * 60 * 1000;
     if (nm.respawnMinutes)
       respawnTimeMs = nm.respawnMinutes * 60 * 1000;
     return respawnTimeMs + +new Date();
@@ -487,7 +497,8 @@ class EurekaTracker {
     classList.remove('nm-hidden');
     classList.remove('nm-down');
     classList.remove('critical-down');
-    fate.respawnTimeMsLocal = this.RespawnTime(fate);
+    if (!fate.startTimerOnKill)
+      fate.respawnTimeMsLocal = this.RespawnTime(fate);
 
     if (fate.bunny) {
       const shouldPlay = this.options.PopNoiseForBunny;
@@ -524,7 +535,16 @@ class EurekaTracker {
 
   OnFateKill(fate: NMInfo) {
     this.DebugPrint(`OnFateKill: ${this.TransByDispLang(fate.label)}`);
+
+    if (fate.fateID === 1424 || fate.fateID === 1422) {
+      if (fate.progressElement && fate.progressElement.innerText === '100%')
+        this.lastBAFateTimeMs = +Date.now();
+    }
+
+    if (fate.startTimerOnKill)
+      fate.respawnTimeMsLocal = this.RespawnTime(fate);
     this.UpdateTimes();
+
     if (fate.element?.classList.contains('nm-pop')) {
       if (this.zoneInfo?.onlyShowInactiveWithExplicitRespawns && !fate.respawnMinutes)
         fate.element.classList.add('nm-hidden');
@@ -650,6 +670,53 @@ class EurekaTracker {
     timeIconElem.innerHTML = timeIcon;
     timeTextElem.innerHTML = timeStr;
     labelTrackerElem.innerHTML = this.currentTracker;
+
+    if (zoneId === ZoneId.TheForbiddenLandEurekaHydatos) {
+      const portalContainer = document.getElementById('portal-timer-container');
+      const portalIconElem = document.getElementById('label-portal-timer-icon');
+      const portalTextElem = document.getElementById('label-portal-timer-text');
+      if (!portalContainer || !portalIconElem || !portalTextElem)
+        throw new UnreachableCode();
+
+      // Ovni/Tristitia is killed
+      // <3 minutes>
+      // blue portals spawn
+      // <3 minutes>
+      // blue portals despawn & red portals spawn
+      // <4 minutes>
+      // red portals despawn
+      if (this.lastBAFateTimeMs) {
+        const lastBAFateTimePlus10Ms = this.lastBAFateTimeMs + (10 * 1000 * 60);
+        const lastBAFateTimePlus6Ms = this.lastBAFateTimeMs + (6 * 1000 * 60);
+        const lastBAFateTimePlus3Ms = this.lastBAFateTimeMs + (3 * 1000 * 60);
+        if (nowMs < lastBAFateTimePlus10Ms) {
+          if (nowMs < lastBAFateTimePlus3Ms) {
+            portalIconElem.innerHTML = gBluePortalIcon;
+            portalTextElem.innerHTML = this.TransByDispLang(this.options.timeStrings.portalIn)(
+              nowMs,
+              lastBAFateTimePlus3Ms,
+            );
+          } else if (nowMs < lastBAFateTimePlus6Ms) {
+            portalIconElem.innerHTML = gBluePortalIcon;
+            portalTextElem.innerHTML = this.TransByDispLang(this.options.timeStrings.portalFor)(
+              nowMs,
+              lastBAFateTimePlus6Ms,
+            );
+          } else {
+            portalIconElem.innerHTML = gRedPortalIcon;
+            portalTextElem.innerHTML = this.TransByDispLang(this.options.timeStrings.portalFor)(
+              nowMs,
+              lastBAFateTimePlus10Ms,
+            );
+          }
+
+          portalContainer.classList.remove('hide');
+        } else {
+          if (!portalContainer.classList.contains('hide'))
+            portalContainer.classList.add('hide');
+        }
+      }
+    }
 
     for (const nm of Object.values(this.nms)) {
       let respawnMs = 0;
