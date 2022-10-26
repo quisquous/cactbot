@@ -123,21 +123,27 @@ export class SMNComponent extends BaseComponent {
     // Arcanum and Attunement Guage
     this._addActiveOnStacks(
       this.rubyStacks,
-      (jobDetail.activePrimal === 'Ifrit')
+      jobDetail.activePrimal === 'Ifrit'
         ? jobDetail.attunement
-        : (jobDetail.usableArcanum.includes('Ruby') ? 2 : 0),
+        : jobDetail.usableArcanum.includes('Ruby')
+        ? 2
+        : 0,
     );
     this._addActiveOnStacks(
       this.topazStacks,
-      (jobDetail.activePrimal === 'Titan')
+      jobDetail.activePrimal === 'Titan'
         ? jobDetail.attunement
-        : (jobDetail.usableArcanum.includes('Topaz') ? 4 : 0),
+        : jobDetail.usableArcanum.includes('Topaz')
+        ? 4
+        : 0,
     );
     this._addActiveOnStacks(
       this.emeraldStacks,
-      (jobDetail.activePrimal === 'Garuda')
+      jobDetail.activePrimal === 'Garuda'
         ? jobDetail.attunement
-        : (jobDetail.usableArcanum.includes('Emerald') ? 4 : 0),
+        : jobDetail.usableArcanum.includes('Emerald')
+        ? 4
+        : 0,
     );
 
     // dynamically change threshold of tranceBox, let user know you should use arcanum quickly

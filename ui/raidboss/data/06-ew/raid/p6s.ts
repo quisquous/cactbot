@@ -228,13 +228,13 @@ const triggerSet: TriggerSet<Data> = {
 
           if (unsafeMap[startTile] !== undefined)
             delete safe[unsafeMap[startTile]![1]]; // delete tile where effect appears, as it will always be unsafe
-          if ((effect.flags === crossTileFlags && !isTethered) || (effect.flags === diagonalTileFlags && isTethered)) {
+          if (effect.flags === crossTileFlags && !isTethered || effect.flags === diagonalTileFlags && isTethered) {
             relCrossTiles.forEach((tileMod) => {
               const deleteTile: number = startTile + tileMod;
               if (unsafeMap[deleteTile] !== undefined)
                 delete safe[unsafeMap[deleteTile]![1]];
             });
-          } else if ((effect.flags === diagonalTileFlags && !isTethered) || (effect.flags === crossTileFlags && isTethered)) {
+          } else if (effect.flags === diagonalTileFlags && !isTethered || effect.flags === crossTileFlags && isTethered) {
             relDiagonalTiles.forEach((tileMod) => {
               const deleteTile: number = startTile + tileMod;
               if (unsafeMap[deleteTile] !== undefined)
@@ -287,7 +287,7 @@ const triggerSet: TriggerSet<Data> = {
           case 5: // two outside safe spots (reduced to one by Chorus Ixou)
             if (safeTiles.length !== 2 || safe1 === undefined)
               return;
-            if ((outsideFrontBackTiles.includes(safe0)) && (outsideSideTiles.includes(safe1))) { // should be always true because of ordering
+            if (outsideFrontBackTiles.includes(safe0) && outsideSideTiles.includes(safe1)) { // should be always true because of ordering
               data.poly5FrontBackTile = output[safe0]!();
               data.poly5SideTile = output[safe1]!();
               return; // success - output will be handled by Chorus Ixou trigger

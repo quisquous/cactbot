@@ -382,8 +382,8 @@ class Fisher {
         'bait': this.getActiveBait().id,
         'place': this.place.id,
         'castTimestamp': +this.castStart,
-        'hookTime': (this.castEnd - this.castStart),
-        'reelTime': (this.castGet - this.castEnd),
+        'hookTime': this.castEnd - this.castStart,
+        'reelTime': this.castGet - this.castEnd,
         'chum': this.chumOnCatch ? 1 : 0,
         'snagging': this.snagging,
       });

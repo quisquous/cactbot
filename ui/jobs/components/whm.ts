@@ -77,13 +77,13 @@ export class WHMComponent extends BaseComponent {
       this.lilysecondBox.innerText = lily === 3 ? '' : (20 - lilysecond).toString();
       this.lilysecondBox.parentNode.classList.toggle(
         'full',
-        (lily === 2 && 20 - lilysecond <= 5) || lily === 3,
+        lily === 2 && 20 - lilysecond <= 5 || lily === 3,
       );
     } else {
       this.lilysecondBox.innerText = lily === 3 ? '' : (30 - lilysecond).toString();
       this.lilysecondBox.parentNode.classList.toggle(
         'full',
-        (lily === 2 && 30 - lilysecond <= 5) || lily === 3,
+        lily === 2 && 30 - lilysecond <= 5 || lily === 3,
       );
     }
     this._addActiveOnStacks(this.lilyStacks, jobDetail.lilyStacks);

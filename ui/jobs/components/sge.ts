@@ -114,7 +114,7 @@ export class SGEComponent extends BaseComponent {
     this.adderTimerBox.innerText = jobDetail.addersgall === 3 ? '' : adderCountdown.toString();
     this.adderTimerBox.parentNode.classList.toggle(
       'exceed',
-      (jobDetail.addersgall === 2 && adderCountdown < 6) || jobDetail.addersgall === 3,
+      jobDetail.addersgall === 2 && adderCountdown < 6 || jobDetail.addersgall === 3,
     );
   }
 

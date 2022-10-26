@@ -266,7 +266,7 @@ class EurekaTracker {
 
     const scale = sizeFactor / 100;
     const val = (coord + offset) * scale;
-    return ((41 / scale) * ((val + 1024) / 2048)) + 1;
+    return 41 / scale * ((val + 1024) / 2048) + 1;
   }
 
   EntityToMapX(x: number) {
@@ -466,7 +466,7 @@ class EurekaTracker {
     let respawnTimeMs = 120 * 60 * 1000;
     if (nm.respawnMinutes)
       respawnTimeMs = nm.respawnMinutes * 60 * 1000;
-    return respawnTimeMs + (+new Date());
+    return respawnTimeMs + +new Date();
   }
 
   DebugPrint(str: string) {
@@ -754,7 +754,7 @@ class EurekaTracker {
         throw new UnreachableCode();
       const nm = trackerToNM[name.toLowerCase()];
       if (nm)
-        nm.respawnTimeMsTracker = (parseFloat(time) * 60 * 1000) + (+new Date());
+        nm.respawnTimeMsTracker = parseFloat(time) * 60 * 1000 + +new Date();
       else
         console.error(`Invalid NM Import: ${name}`);
     }

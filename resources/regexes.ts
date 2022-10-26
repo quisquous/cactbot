@@ -496,7 +496,7 @@ export default class Regexes {
   }
 
   static trueIfUndefined(value?: boolean): boolean {
-    if (typeof (value) === 'undefined')
+    if (typeof value === 'undefined')
       return true;
     return !!value;
   }

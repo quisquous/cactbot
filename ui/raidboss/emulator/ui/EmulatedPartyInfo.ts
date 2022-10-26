@@ -232,7 +232,7 @@ export default class EmulatedPartyInfo extends EventBus {
 
         const $e = cloneSafe(this.$triggerItemTemplate);
         const adjustedOffset = trigger.resolvedOffset - encounter.encounter.initialOffset;
-        $e.style.left = ((adjustedOffset / trimmedDuration) * 100).toString() + '%';
+        $e.style.left = (adjustedOffset / trimmedDuration * 100).toString() + '%';
         const triggerId = trigger.triggerHelper.trigger.id ?? 'Unknown Trigger';
         this.tooltips.push(new Tooltip($e, 'bottom', triggerId));
         bar.append($e);
@@ -291,15 +291,15 @@ export default class EmulatedPartyInfo extends EventBus {
     if (!display)
       throw new UnreachableCode();
 
-    const hpProg = (State.hp / State.maxHp) * 100;
+    const hpProg = State.hp / State.maxHp * 100;
     let hpLabel = `${State.hp}/${State.maxHp}`;
-    hpLabel = SFuncs.leftExtendStr(hpLabel, (State.maxHp.toString().length * 2) + 1, ' ');
+    hpLabel = SFuncs.leftExtendStr(hpLabel, State.maxHp.toString().length * 2 + 1, ' ');
     display.$hpProgElem.style.width = `${hpProg}%`;
     display.$hpLabelElem.textContent = hpLabel;
 
-    const mpProg = (State.mp / State.maxMp) * 100;
+    const mpProg = State.mp / State.maxMp * 100;
     let mpLabel = `${State.mp}/${State.maxMp}`;
-    mpLabel = SFuncs.leftExtendStr(mpLabel, (State.maxMp.toString().length * 2) + 1, ' ');
+    mpLabel = SFuncs.leftExtendStr(mpLabel, State.maxMp.toString().length * 2 + 1, ' ');
     display.$mpProgElem.style.width = `${mpProg}%`;
     display.$mpLabelElem.textContent = mpLabel;
   }
@@ -472,7 +472,7 @@ export default class EmulatedPartyInfo extends EventBus {
         $wrapper.classList.remove('d-none');
       else
         $wrapper.classList.add('d-none');
-      typeof (params.onclick) === 'function' && params.onclick();
+      typeof params.onclick === 'function' && params.onclick();
     });
     $wrapper.append(params.$obj);
     return $ret;

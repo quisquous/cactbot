@@ -30,7 +30,7 @@ export default class ProgressBar {
         const trimmedDuration = emulator.currentEncounter.encounter.duration -
           emulator.currentEncounter.encounter.initialOffset;
         const time = Math.floor(trimmedDuration * percent);
-        this.$progressBarTooltip.offset.x = e.offsetX - (target.offsetWidth / 2);
+        this.$progressBarTooltip.offset.x = e.offsetX - target.offsetWidth / 2;
         this.$progressBarTooltip.setText(DTFuncs.timeToString(time));
         this.$progressBarTooltip.show();
       }
@@ -60,7 +60,7 @@ export default class ProgressBar {
         throw new UnreachableCode();
       const currentOffset = currentLogTime - curEnc.encounter.initialTimestamp;
       const trimmedDuration = curEnc.encounter.duration - curEnc.encounter.initialOffset;
-      const progPercent = (currentOffset / trimmedDuration) * 100;
+      const progPercent = currentOffset / trimmedDuration * 100;
       const progValue = currentLogTime - curEnc.encounter.initialTimestamp;
       this.$progressBarCurrent.textContent = DTFuncs.timeToString(progValue, false);
       this.$progressBar.style.width = `${progPercent}%`;

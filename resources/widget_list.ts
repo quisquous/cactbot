@@ -347,14 +347,14 @@ export default class WidgetList extends HTMLElement {
       container.style.left = x.toString();
       container.style.top = y.toString();
 
-      x = x + (this._xinc1 * this._elementwidth);
-      y = y + (this._yinc1 * this._elementheight);
+      x = x + this._xinc1 * this._elementwidth;
+      y = y + this._yinc1 * this._elementheight;
       rowColIndex = rowColIndex + 1;
       if (rowColIndex === this._rowcolsize) {
-        x = x - (this._xinc1 * this._elementwidth) * rowColIndex;
-        y = y - (this._yinc1 * this._elementheight) * rowColIndex;
-        x = x + (this._xinc2 * this._elementwidth);
-        y = y + (this._yinc2 * this._elementheight);
+        x = x - this._xinc1 * this._elementwidth * rowColIndex;
+        y = y - this._yinc1 * this._elementheight * rowColIndex;
+        x = x + this._xinc2 * this._elementwidth;
+        y = y + this._yinc2 * this._elementheight;
         rowColIndex = 0;
       }
     });

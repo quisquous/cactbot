@@ -284,8 +284,8 @@ export class TimelineParser {
                 sync.start = seconds - parseFloat(windowCommand.start);
                 sync.end = seconds + parseFloat(windowCommand.end);
               } else {
-                sync.start = seconds - (parseFloat(windowCommand.end) / 2);
-                sync.end = seconds + (parseFloat(windowCommand.end) / 2);
+                sync.start = seconds - parseFloat(windowCommand.end) / 2;
+                sync.end = seconds + parseFloat(windowCommand.end) / 2;
               }
             }
             argMatch = regexes.jumpCommand.exec(syncCommand.args);

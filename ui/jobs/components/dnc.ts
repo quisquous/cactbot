@@ -73,11 +73,11 @@ export class DNCComponent extends BaseComponent {
         case EffectId.FlourishingFlow:
         case EffectId.ThreefoldFanDance:
         case EffectId.FourfoldFanDance: {
-          if (!(this.flourishEffect.includes(effect)))
+          if (!this.flourishEffect.includes(effect))
             this.flourishEffect.push(effect);
           if (
-            (this.flourishEffect.length === 4 && this.flourishIsActive) ||
-            (this.player.level < 86 && this.flourishEffect.length === 3 && this.flourishIsActive)
+            this.flourishEffect.length === 4 && this.flourishIsActive ||
+            this.player.level < 86 && this.flourishEffect.length === 3 && this.flourishIsActive
           ) {
             this.flourish.duration = 60 - this.flourish.elapsed;
             this.flourishIsActive = false;
@@ -93,11 +93,11 @@ export class DNCComponent extends BaseComponent {
         case EffectId.SilkenFlow: //  6.0 names FlourishingXXX, name changed but id not.
         case EffectId.ThreefoldFanDance:
         case EffectId.FourfoldFanDance: {
-          if (!(this.flourishEffect.includes(effect)))
+          if (!this.flourishEffect.includes(effect))
             this.flourishEffect.push(effect);
           if (
-            (this.flourishEffect.length === 4 && this.flourishIsActive) ||
-            (this.player.level < 86 && this.flourishEffect.length === 3 && this.flourishIsActive)
+            this.flourishEffect.length === 4 && this.flourishIsActive ||
+            this.player.level < 86 && this.flourishEffect.length === 3 && this.flourishIsActive
           ) {
             this.flourish.duration = 60 - this.flourish.elapsed;
             this.flourishIsActive = false;

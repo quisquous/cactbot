@@ -79,7 +79,7 @@ export default class Encounter {
         } else if (isLineEventSource(line) && isLineEventTarget(line)) {
           if (
             line.id.startsWith('1') ||
-            (line.id.startsWith('4') && isPetName(line.name, this.language))
+            line.id.startsWith('4') && isPetName(line.name, this.language)
           ) {
             // Player or pet ability
             if (line.targetId.startsWith('4') && !isPetName(line.targetName, this.language)) {

@@ -1968,8 +1968,8 @@ const triggerSet: TriggerSet<Data> = {
         let safeZone = null;
         let adjacentZones: { [dir: number]: number } = {};
         if (
-          (northCombatantFacing === dirNum.north && bladeSides[northCombatantBlade]) ||
-          (northCombatantFacing === dirNum.south && !bladeSides[northCombatantBlade])
+          northCombatantFacing === dirNum.north && bladeSides[northCombatantBlade] ||
+          northCombatantFacing === dirNum.south && !bladeSides[northCombatantBlade]
         ) {
           // North clone cleaving inside east (and therefore east clone cleaving north).
           safeZone = output.southwest!();
@@ -1980,8 +1980,8 @@ const triggerSet: TriggerSet<Data> = {
             [dirNum.west]: westCombatantBladeValue,
           };
         } else if (
-          (northCombatantFacing === dirNum.north && !bladeSides[northCombatantBlade]) ||
-          (northCombatantFacing === dirNum.south && bladeSides[northCombatantBlade])
+          northCombatantFacing === dirNum.north && !bladeSides[northCombatantBlade] ||
+          northCombatantFacing === dirNum.south && bladeSides[northCombatantBlade]
         ) {
           // North clone cleaving inside west (and therefore west clone cleaving north).
           safeZone = output.southeast!();
@@ -1992,8 +1992,8 @@ const triggerSet: TriggerSet<Data> = {
             [dirNum.west]: northCombatantBladeValue,
           };
         } else if (
-          (southCombatantFacing === dirNum.south && bladeSides[southCombatantBlade]) ||
-          (southCombatantFacing === dirNum.north && !bladeSides[southCombatantBlade])
+          southCombatantFacing === dirNum.south && bladeSides[southCombatantBlade] ||
+          southCombatantFacing === dirNum.north && !bladeSides[southCombatantBlade]
         ) {
           // South clone cleaving inside west (and therefore west clone cleaving south).
           safeZone = output.northeast!();
@@ -2004,8 +2004,8 @@ const triggerSet: TriggerSet<Data> = {
             [dirNum.west]: southCombatantBladeValue,
           };
         } else if (
-          (southCombatantFacing === dirNum.north && bladeSides[southCombatantBlade]) ||
-          (southCombatantFacing === dirNum.south && !bladeSides[southCombatantBlade])
+          southCombatantFacing === dirNum.north && bladeSides[southCombatantBlade] ||
+          southCombatantFacing === dirNum.south && !bladeSides[southCombatantBlade]
         ) {
           // South clone cleaving inside east (and therefore east clone cleaving south).
           safeZone = output.northwest!();

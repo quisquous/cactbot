@@ -52,7 +52,7 @@ const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
   // NW at 0, NE at 2, South at 5
   // Map NW = 0, N = 1, ..., W = 7
 
-  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+  return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
 // effect ids for inviolate purgation
@@ -196,7 +196,7 @@ const triggerSet: TriggerSet<Data> = {
           const bird2 = data.unhatchedEggs[9];
 
           // Lower PosY = more north
-          const northBird = (bird1.PosY < bird2.PosY ? bird1 : bird2);
+          const northBird = bird1.PosY < bird2.PosY ? bird1 : bird2;
 
           // Check north bird's side
           if (northBird.PosX < 100)

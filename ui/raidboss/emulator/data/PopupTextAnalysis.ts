@@ -221,7 +221,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   async checkResolved(logObj: LineEvent): Promise<void> {
     const unresolved: Resolver[] = [];
     for (const res of this.triggerResolvers) {
-      if (!(await res.isResolved(logObj)))
+      if (!await res.isResolved(logObj))
         unresolved.push(res);
     }
     this.triggerResolvers = unresolved;
@@ -247,7 +247,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
         triggerHelper.resolver.status.delay = delay;
       if (!delay || delay <= 0)
         return;
-      return triggerHelper.resolver?.setDelay(triggerHelper.now + (delay * 1000));
+      return triggerHelper.resolver?.setDelay(triggerHelper.now + delay * 1000);
     }
   }
 

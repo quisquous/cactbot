@@ -11,9 +11,9 @@ addOverlayListener('ChangeZone', (e) => {
 addOverlayListener('onInCombatChangedEvent', (e) => {
   const inCombat = document.getElementById('inCombat');
   if (inCombat) {
-    inCombat.innerText = `inCombat: act: ${
-      e.detail.inACTCombat ? 'yes' : 'no'
-    } game: ${(e.detail.inGameCombat ? 'yes' : 'no')}`;
+    inCombat.innerText = `inCombat: act: ${e.detail.inACTCombat ? 'yes' : 'no'} game: ${
+      e.detail.inGameCombat ? 'yes' : 'no'
+    }`;
   }
 });
 
