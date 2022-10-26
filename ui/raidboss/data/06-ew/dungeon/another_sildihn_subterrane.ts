@@ -183,11 +183,12 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'ASS Slippery Soap After',
-      // Boss does not cast the donut version of Bracing Duster with Slippery Soap
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '775E', source: 'Silkie', capture: false }),
       infoText: (data, _matches, output) => {
         switch (data.suds) {
+          case '7757':
+            return output.getUnder!();
           case '7758':
             return output.intercards!();
           case '7759':
@@ -195,6 +196,7 @@ const triggerSet: TriggerSet<Data> = {
         }
       },
       outputStrings: {
+        getUnder: Outputs.getUnder,
         spreadCardinals: {
           en: 'Spread Cardinals',
         },
