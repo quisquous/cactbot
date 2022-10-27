@@ -834,7 +834,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // Check if we still need to delay for Magic Vulnerability Up to expire
         // Magic Vulnerability Up lasts 7.96 from last cut
-        const delay = (7.96 - (Date.parse(matches.timestamp) - data.myLastCut) / 1000);
+        const delay = 7.96 - (Date.parse(matches.timestamp) - data.myLastCut) / 1000;
         if (delay > 0)
           return delay;
         return 0;
