@@ -258,7 +258,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '774F', source: 'Silkie' },
       condition: (data) => data.soapCounter === 2,
-      run: (data) => data.beaterCounter++,
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.getBehindPuffs!();
@@ -274,6 +273,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Sei vor ${player}',
         },
       },
+      run: (data) => data.beaterCounter++,
     },
     {
       id: 'ASS Soaping Spree',
