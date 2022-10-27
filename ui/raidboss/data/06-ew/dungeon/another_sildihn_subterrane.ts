@@ -535,15 +535,14 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: ['766F', '7670'], source: 'Hateful Visage', capture: false },
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        if (data.gildedCounter > 0)
+        if (data.gildedCounter > 0) {
           if (data.silveredCounter > 0)
             return output.bothFates!();
-          else
-            return output.gildedFate!();
-        else if (data.silveredCounter > 0)
+          return output.gildedFate!();
+        }
+        if (data.silveredCounter > 0)
           return output.silveredFate!();
-        else
-          return output.neitherFate!();
+        return output.neitherFate!();
       },
       outputStrings: {
         bothFates: {
@@ -592,7 +591,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'BB[CD]' },
       condition: Conditions.targetIsYou(),
-      infoText: (data, matches, output) => {
+      infoText: (_data, matches, output) => {
         const id = matches.effectId;
         if (id === 'BBD')
           return output.soakThenSpread!();
