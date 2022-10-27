@@ -67,7 +67,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '6BFB', source: 'Ker', capture: false },
       condition: (data) => data.inCombat,
-      response: Responses.goRight(),
+      response: Responses.goLeft(),
     },
     {
       id: 'Hunt Ker Left Interment',
