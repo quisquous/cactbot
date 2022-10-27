@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -19,6 +20,11 @@ export interface Data extends RaidbossData {
   thunderousEchoPlayer?: string;
   gildedCounter: number;
   silveredCounter: number;
+  arcaneFontCounter: number;
+  myFlame?: number;
+  brandEffects: { [effectId: number]: string };
+  brandCounter: number;
+  flameCounter: number;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -30,6 +36,10 @@ const triggerSet: TriggerSet<Data> = {
       beaterCounter: 0,
       gildedCounter: 0,
       silveredCounter: 0,
+      arcaneFontCounter: 0,
+      brandEffects: {},
+      brandCounter: 0,
+      flameCounter: 0,
     };
   },
   triggers: [
@@ -617,6 +627,237 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '74AD', source: 'Shadowcaster Zeless Gah' },
       response: Responses.tankCleave(),
+    },
+    {
+      id: 'ASS Infern Brand Counter',
+      type: 'StartsUsing',
+      netRegex: { id: '7491', source: 'Shadowcaster Zeless Gah', capture: false },
+      run: (data) => {
+        data.brandCounter++;
+        data.arcaneFontCounter = 0;
+      },
+    },
+    {
+      id: 'ASS Arcane Font Tracker',
+      type: 'AddedCombatant',
+      netRegex: { name: 'Arcane Font', capture: false },
+      // Only run this trigger for second Infern Band, first set of portals
+      condition: (data) => data.myFlame === undefined,
+      run: (data) => data.arcaneFontCounter++,
+    },
+    {
+      id: 'ASS Infern Brand Collect',
+      // Count field on 95D on Infern Brand indicates Brand's number:
+      //   1C2 - IC5, Orange 1 - 4
+      //   1C6 - 1C9, Blue 1 - 4
+      type: 'GainsEffect',
+      netRegex: { effectId: '95D', target: 'Infern Brand' },
+      run: (data, matches) => data.brandEffects[parseInt(matches.targetId, 16)] = matches.count,
+    },
+    {
+      id: 'ASS Infern Brand 2 Starting Corner',
+      // CC4 First Brand
+      // CC5 Second Brand
+      // CC6 Third Brand
+      // CC7 Fourth Brand
+      type: 'GainsEffect',
+      netRegex: { effectId: ['CC4', 'CC5', 'CC6', 'CC7'] },
+      condition: (data, matches) => data.me === matches.target && data.brandCounter === 2,
+      delaySeconds: 0.1, // Delay to collect all Infern Brand Effects
+      durationSeconds: (_data, matches) => parseFloat(matches.duration) - 0.1,
+      infoText: (data, matches, output) => {
+        const brandMap: { [effectId: string]: number } = {
+          'CC4': 1,
+          'CC5': 2,
+          'CC6': 3,
+          'CC7': 4,
+        };
+        const myNum = brandMap[matches.effectId];
+        if (myNum === undefined)
+          throw new UnreachableCode();
+
+        // Store for later trigger
+        data.myFlame = myNum;
+
+        if (Object.keys(data.brandEffects).length !== 8) {
+          // Missing Infern Brands, output number
+          return output.brandNum!({ num: myNum });
+        }
+
+        // Brands are located along East and South wall and in order by id
+        // Blue N/S:
+        //   304.00, -108.00, Used for NW/NE, 0 north
+        //   304.00, -106.00, Used for NW/NE, 1 north
+        //   304.00, -104.00, Used for SW/SE, 2 south
+        //   304.00, -102.00, Used for SW/SE, 3 south
+        // Orange E/W:
+        //   286.00, -85.00, Used for SW/NW, 4 west
+        //   288.00, -85.00, Used for SW/NW, 5 west
+        //   290.00, -85.00, Used for SE/NE, 6 east
+        //   292.00, -85.00, Used for SE/NE, 7 east
+        // Set brandEffects to descending order to match
+        const brandEffects = Object.entries(data.brandEffects).sort((a, b) => a[0] > b[0] ? -1 : 1);
+
+        // Get just the effectIds
+        const effectIds = brandEffects.map((value) => {
+          return value.slice(1, 2)[0];
+        });
+
+        // Split the results
+        const blueBrands = effectIds.slice(0, 4);
+        const orangeBrands = effectIds.slice(4, 8);
+
+        const myNumToBlue: { [num: number]: string } = {
+          4: '1C9',
+          3: '1C8',
+          2: '1C7',
+          1: '1C6',
+        };
+        const myNumToOrange: { [num: number]: string } = {
+          4: '1C5',
+          3: '1C4',
+          2: '1C3',
+          1: '1C2',
+        };
+
+        // Find where our numbers are in each set of brands
+        const x = orangeBrands.indexOf(myNumToOrange[myNum]);
+        const y = blueBrands.indexOf(myNumToBlue[myNum]) + 4;
+        const indexToCardinal: { [num: number]: string } = {
+          0: 'north',
+          1: 'north',
+          2: 'south',
+          3: 'south',
+          4: 'west',
+          5: 'west',
+          6: 'east',
+          7: 'east',
+        };
+
+        const cardX = indexToCardinal[x];
+        const cardY = indexToCardinal[y];
+
+        // Not able to be undefined as values determined from array that only has 8 indices
+        if (cardX === undefined || cardY === undefined)
+          throw new UnreachableCode();
+
+        return output.text!({ num: myNum, corner: output[cardX + cardY]!() });
+      },
+      run: (data) => data.brandEffects = {},
+      outputStrings: {
+        text: {
+          en: 'Brand ${num}: ${corner} corner',
+        },
+        brandNum: {
+          en: 'Brand ${num}',
+        },
+        northwest: Outputs.northwest,
+        northeast: Outputs.northeast,
+        southeast: Outputs.southeast,
+        southwest: Outputs.southwest,
+      },
+    },
+    {
+      id: 'ASS Infern Brand 2 First Flame',
+      // CC8 First Flame
+      // CC9 Second Flame
+      // CCA Third Flame
+      // CCB Fourth Flame
+      type: 'GainsEffect',
+      netRegex: { effectId: 'CC8' },
+      condition: (data, matches) => data.me === matches.target && data.brandCounter === 2,
+      alertText: (data, _matches, output) => {
+        // Blue lines cut when three (West)
+        if (data.arcaneFontCounter === 3) {
+          // Set to two for 5th cut's color
+          data.arcaneFontCounter = 2;
+          return output.cutBlueOne!();
+        }
+
+        // Orange lines cut when two (North)
+        if (data.arcaneFontCounter === 2) {
+          // Set to three for 5th cut's color
+          data.arcaneFontCounter = 3;
+          return output.cutOrangeOne!();
+        }
+        return output.firstCut!();
+      },
+      outputStrings: {
+        cutBlueOne: {
+          en: 'Cut Blue 1',
+        },
+        cutOrangeOne: {
+          en: 'Cut Orange 1',
+        },
+        firstCut: {
+          en: 'First Cut',
+        },
+      },
+    },
+    {
+      id: 'ASS Infern Brand 2 First Cuts',
+      // This method works safely for cuts 2,3 and 4 by tracking Infern Brand losing debuff
+      // Player receives Magic Vulnerability Up afterward which we need to wait on for safety
+      // However, it is also possible to receive the same Magic Vulnerability Up for Cast Shadow
+      // Alternative method would use Cryptic Flames hit +8s to trigger second cut callout, which is safe
+      // but may be unreliable if cuts are made out of order
+      type: 'LosesEffect',
+      netRegex: { effectId: '95D', target: 'Infern Brand', count: '1C[2-9]' },
+      condition: (data) => data.myFlame !== undefined && data.brandCounter === 2,
+      preRun: (data) => data.flameCounter++,
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          cutOrangeNum: {
+            en: 'Cut Orange ${num}',
+          },
+          cutBlueNum: {
+            en: 'Cut Blue ${num}',
+          },
+          orangeNum: {
+            en: 'Orange ${num}',
+          },
+          blueNum: {
+            en: 'Blue ${num}',
+          },
+        };
+
+        const countToNum: { [count: string]: number } = {
+          '1C9': 4,
+          '1C8': 3,
+          '1C7': 2,
+          '1C6': 1,
+          '1C5': 4,
+          '1C4': 3,
+          '1C3': 2,
+          '1C2': 1,
+        };
+
+        const flameCut = countToNum[matches.count];
+        if (flameCut === undefined)
+          return;
+
+        // Wraparound and add 1 as we need next flame to cut
+        if (flameCut % 4 + 1 !== data.myFlame)
+          return;
+
+        if (data.arcaneFontCounter === 3 && matches.count.match(/1C[6-9]/)) {
+          // Expected Blue and count is Blue
+          data.arcaneFontCounter = 2;
+          if (data.flameCounter < 4)
+            return { alertText: output.cutBlueNum!({ num: data.myFlame }) };
+          return { infoText: output.blueNum!({ num: data.myFlame }) };
+        }
+        if (data.arcaneFontCounter === 2 && matches.count.match(/1C[2-5]/)) {
+          // Expected Orange and count is Orange
+          data.arcaneFontCounter = 3;
+          if (data.flameCounter < 4)
+            return { alertText: output.cutOrangeNum!({ num: data.myFlame }) };
+          return { infoText: output.orangeNum!({ num: data.myFlame }) };
+        }
+        // Unexpected result, mechanic is likely failed at this point
+      },
+      run: (data) => data.brandEffects = {},
     },
   ],
   timelineReplace: [
