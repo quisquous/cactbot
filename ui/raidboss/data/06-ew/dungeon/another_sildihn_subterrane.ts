@@ -720,7 +720,7 @@ const triggerSet: TriggerSet<Data> = {
       // Alternative method would use Cryptic Flames hit +8s to trigger second cut callout, which is safe
       // but may be unreliable if cuts are made out of order
       type: 'LosesEffect',
-      netRegex: { effectId: '95D', target: 'Infern Brand', count: '1C[2-9]' },
+      netRegex: { effectId: '95D', target: 'Infern Brand', count: ['1C2', '1C3', '1C4', '1C5', '1C6', '1C7', '1C8', '1C9'] },
       condition: (data) => data.myFlame !== undefined && data.brandCounter === 2,
       preRun: (data) => data.flameCounter++,
       response: (data, matches, output) => {
