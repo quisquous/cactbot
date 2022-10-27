@@ -5,6 +5,8 @@ Options.Triggers.push({
     return {
       soapCounter: 0,
       beaterCounter: 0,
+      gildedCounter: 0,
+      silveredCounter: 0,
     };
   },
   triggers: [
@@ -474,6 +476,60 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'ASS Nothing beside Remains',
+      type: 'StartsUsing',
+      netRegex: { id: '768C', source: 'Gladiator of Sil\'dih', capture: false },
+      suppressSeconds: 1,
+      response: Responses.spread(),
+    },
+    {
+      id: 'ASS Accursed Visage Collect',
+      // CDF = Gilded Fate
+      // CE0 = Silvered Fate
+      type: 'GainsEffect',
+      netRegex: { effectId: ['CDF', 'CE0'] },
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        const id = matches.effectId;
+        if (id === 'CDF')
+          ++data.gildedCounter;
+        else if (id === 'CE0')
+          ++data.silveredCounter;
+      },
+    },
+    {
+      id: 'ASS Golden/Silver Flame',
+      // 766F = Golden Flame
+      // 7670 = Silver Flame
+      type: 'StartsUsing',
+      netRegex: { id: ['766F', '7670'], source: 'Hateful Visage', capture: false },
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        if (data.gildedCounter > 0) {
+          if (data.silveredCounter > 0)
+            return output.bothFates();
+          return output.gildedFate();
+        }
+        if (data.silveredCounter > 0)
+          return output.silveredFate();
+        return output.neitherFate();
+      },
+      outputStrings: {
+        bothFates: {
+          en: 'Get hit by silver and gold',
+        },
+        gildedFate: {
+          en: 'Get hit by two silver',
+        },
+        silveredFate: {
+          en: 'Get hit by two gold',
+        },
+        neitherFate: {
+          en: 'Avoid silver and gold',
+        },
+      },
+    },
+    {
       id: 'ASS Sundered Remainds',
       // Using 7666 Curse of the Monument
       type: 'StartsUsing',
@@ -495,6 +551,30 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7666', source: 'Gladiator of Sil\'dih', capture: false }),
       response: Responses.breakChains(),
+    },
+    {
+      id: 'ASS Scream of the Fallen',
+      // CDB = Scream of the Fallen (defamation)
+      // BBC = First in Line
+      // BBD = Second in Line
+      // First/Second in Line are only used once all dungeon so we can just trigger off of them
+      type: 'GainsEffect',
+      netRegex: { effectId: 'BB[CD]' },
+      condition: Conditions.targetIsYou(),
+      infoText: (_data, matches, output) => {
+        const id = matches.effectId;
+        if (id === 'BBD')
+          return output.soakThenSpread();
+        return output.spreadThenSoak();
+      },
+      outputStrings: {
+        soakThenSpread: {
+          en: 'Soak first towers => Spread',
+        },
+        spreadThenSoak: {
+          en: 'Spread => Soak second towers',
+        },
+      },
     },
     // ---------------- Shadowcaster Zeless Gah ----------------
     {
