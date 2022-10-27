@@ -147,7 +147,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ASS Slippery Soap',
       // Happens 5 times in the encounter
       type: 'Ability',
-      netRegex: { id: '79FB', source: 'Silkie' },
+      netRegex: { id: '79FB', source: ['Silkie', 'Eastern Ewer'] },
       preRun: (data) => data.soapCounter++,
       alertText: (data, matches, output) => {
         if (data.suds === 'CE1') {
@@ -159,6 +159,8 @@ const triggerSet: TriggerSet<Data> = {
         if (matches.target === data.me) {
           if (data.soapCounter === 1)
             return output.getBehindPuff!();
+          if (data.soapCounter === 3)
+            return output.getBehindPuffs!();
           return output.getBehindParty!();
         }
         return output.getInFrontOfPlayer!({ player: data.ShortName(matches.target) });
@@ -167,6 +169,10 @@ const triggerSet: TriggerSet<Data> = {
         getBehindPuff: {
           en: 'Behind puff and party',
           de: 'Hinter Puschel und Gruppe',
+        },
+        getBehindPuffs: {
+          en: 'Behind puffs and party (East/West)',
+          de: 'Hinter Puschel und Gruppe (Osten/Westen)',
         },
         getBehindParty: {
           en: 'Behind party',
@@ -250,29 +256,6 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         return { infoText: output.busterOnTarget!({ player: data.ShortName(matches.target) }) };
-      },
-    },
-    {
-      id: 'ASS Slippery Soap 3',
-      // trigger off of second Carpet Beater since 79FB is not used for this instance only
-      type: 'Ability',
-      netRegex: { id: '774F', source: 'Silkie' },
-      condition: (data) => data.soapCounter === 2,
-      alertText: (data, matches, output) => {
-        if (matches.target === data.me)
-          return output.getBehindPuffs!();
-        return output.getInFrontOfPlayer!({ player: data.ShortName(matches.target) });
-      },
-      run: (data) => data.soapCounter++,
-      outputStrings: {
-        getBehindPuffs: {
-          en: 'Behind puffs and party (East/West)',
-          de: 'Hinter Puschel und Gruppe (Osten/Westen)',
-        },
-        getInFrontOfPlayer: {
-          en: 'In front of ${player}',
-          de: 'Sei vor ${player}',
-        },
       },
     },
     {
