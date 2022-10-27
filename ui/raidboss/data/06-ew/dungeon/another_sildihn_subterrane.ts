@@ -131,7 +131,7 @@ const triggerSet: TriggerSet<Data> = {
       // CE2 Chilling Suds (Ice / Cardinal)
       // CE3 Fizzling Suds (Lightning / Intercardinal)
       type: 'GainsEffect',
-      netRegex: { effectId: ['CE[1-3]'], target: 'Silkie' },
+      netRegex: { effectId: 'CE[1-3]', target: 'Silkie' },
       run: (data, matches) => data.suds = matches.effectId,
     },
     {
@@ -140,7 +140,7 @@ const triggerSet: TriggerSet<Data> = {
       // CE2 Chilling Suds (Ice / Cardinal)
       // CE3 Fizzling Suds (Lightning / Intercardinal)
       type: 'LosesEffect',
-      netRegex: { effectId: ['CE[1-3]'], target: 'Silkie' },
+      netRegex: { effectId: 'CE[1-3]', target: 'Silkie' },
       run: (data, _matches) => data.suds = '',
     },
     {
