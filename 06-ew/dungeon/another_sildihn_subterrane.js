@@ -14,68 +14,68 @@ Options.Triggers.push({
     {
       id: 'ASS Atropine Spore',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7960', source: 'Aqueduct Belladonna', capture: false }),
+      netRegex: { id: '7960', source: 'Aqueduct Belladonna', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'ASS Frond Affront',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7961', source: 'Aqueduct Belladonna', capture: false }),
+      netRegex: { id: '7961', source: 'Aqueduct Belladonna', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'ASS Deracinator',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7962', source: 'Aqueduct Belladonna' }),
+      netRegex: { id: '7962', source: 'Aqueduct Belladonna' },
       response: Responses.tankBuster(),
     },
     {
       id: 'ASS Left Sweep',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7964', source: 'Aqueduct Kaluk', capture: false }),
+      netRegex: { id: '7964', source: 'Aqueduct Kaluk', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'ASS Right Sweep',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7963', source: 'Aqueduct Kaluk', capture: false }),
+      netRegex: { id: '7963', source: 'Aqueduct Kaluk', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'ASS Creeping Ivy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7965', source: 'Aqueduct Kaluk', capture: false }),
+      netRegex: { id: '7965', source: 'Aqueduct Kaluk', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'ASS Honeyed Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '795B', source: 'Aqueduct Udumbara', capture: false }),
+      netRegex: { id: '795B', source: 'Aqueduct Udumbara', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'ASS Honeyed Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '795C', source: 'Aqueduct Udumbara', capture: false }),
+      netRegex: { id: '795C', source: 'Aqueduct Udumbara', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'ASS Honeyed Front',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '795D', source: 'Aqueduct Udumbara', capture: false }),
+      netRegex: { id: '795D', source: 'Aqueduct Udumbara', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'ASS Arboreal Storm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7957', source: 'Aqueduct Dryad', capture: false }),
+      netRegex: { id: '7957', source: 'Aqueduct Dryad', capture: false },
       response: Responses.getOut(),
     },
     // ---------------- Silkie ----------------
     {
       id: 'ASS Soap\'s Up',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '775A', source: 'Silkie', capture: false }),
+      netRegex: { id: '775A', source: 'Silkie', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -87,19 +87,19 @@ Options.Triggers.push({
     {
       id: 'ASS Dust Bluster',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '776C', source: 'Silkie', capture: false }),
+      netRegex: { id: '776C', source: 'Silkie', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'ASS Squeaky Clean Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7755', source: 'Silkie', capture: false }),
+      netRegex: { id: '7755', source: 'Silkie', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'ASS Squeaky Clean Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7756', source: 'Silkie', capture: false }),
+      netRegex: { id: '7756', source: 'Silkie', capture: false },
       response: Responses.goRight(),
     },
     {
@@ -108,14 +108,14 @@ Options.Triggers.push({
       // 7758 Chilling Suds (Ice / Cardinal)
       // 7759 Fizzling Suds (Lightning / Intercardinal)
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['7757', '7758', '7759'], source: 'Silkie' }),
+      netRegex: { id: ['7757', '7758', '7759'], source: 'Silkie' },
       run: (data, matches) => data.suds = matches.id,
     },
     {
       id: 'ASS Slippery Soap',
       // Happens 5 times in the encounter
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '79FB', source: 'Silkie' }),
+      netRegex: { id: '79FB', source: 'Silkie' },
       preRun: (data) => data.soapCounter++,
       alertText: (data, matches, output) => {
         if (data.suds === '7757') {
@@ -163,7 +163,7 @@ Options.Triggers.push({
     {
       id: 'ASS Slippery Soap with Chilling Suds',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '775E', source: 'Silkie' }),
+      netRegex: { id: '775E', source: 'Silkie' },
       condition: (data) => data.suds === '7758',
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 1,
       response: Responses.moveAround(),
@@ -171,7 +171,7 @@ Options.Triggers.push({
     {
       id: 'ASS Slippery Soap After',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '775E', source: 'Silkie', capture: false }),
+      netRegex: { id: '775E', source: 'Silkie', capture: false },
       infoText: (data, _matches, output) => {
         switch (data.suds) {
           case '7757':
@@ -201,7 +201,7 @@ Options.Triggers.push({
     {
       id: 'ASS Carpet Beater',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '774F', source: 'Silkie' }),
+      netRegex: { id: '774F', source: 'Silkie' },
       preRun: (data) => data.beaterCounter++,
       response: (data, matches, output) => {
         // cactbot-builtin-response
@@ -227,7 +227,7 @@ Options.Triggers.push({
       id: 'ASS Soaping Spree',
       // Boss does not cast Fizzling Duster with Soaping Spree
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7767', source: 'Silkie', capture: false }),
+      netRegex: { id: '7767', source: 'Silkie', capture: false },
       infoText: (data, _matches, output) => {
         switch (data.suds) {
           case '7757':
@@ -251,7 +251,7 @@ Options.Triggers.push({
     {
       id: 'ASS Total Wash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7750', source: 'Silkie', capture: false }),
+      netRegex: { id: '7750', source: 'Silkie', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -267,7 +267,7 @@ Options.Triggers.push({
     {
       id: 'ASS Infernal Pain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7969', source: 'Sil\'dihn Dullahan', capture: false }),
+      netRegex: { id: '7969', source: 'Sil\'dihn Dullahan', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -282,13 +282,13 @@ Options.Triggers.push({
     {
       id: 'ASS Blighted Gloom',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7966', source: 'Sil\'dihn Dullahan', capture: false }),
+      netRegex: { id: '7966', source: 'Sil\'dihn Dullahan', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'ASS Infernal Weight',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '796B', source: 'Aqueduct Armor', capture: false }),
+      netRegex: { id: '796B', source: 'Aqueduct Armor', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -300,21 +300,21 @@ Options.Triggers.push({
     {
       id: 'ASS Dominion Slash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '796A', source: 'Aqueduct Armor', capture: false }),
+      netRegex: { id: '796A', source: 'Aqueduct Armor', capture: false },
       response: Responses.getBehind(),
     },
     // ---------------- Gladiator of Sil'dih ----------------
     {
       id: 'ASS Flash of Steel',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7671', source: 'Gladiator of Sil\'dih', capture: false }),
+      netRegex: { id: '7671', source: 'Gladiator of Sil\'dih', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'ASS Sculptor\'s Passion',
       // This is a wild charge, player in front takes most damage
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6854', source: 'Gladiator of Sil\'dih' }),
+      netRegex: { id: '6854', source: 'Gladiator of Sil\'dih' },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.chargeOnYou();
@@ -342,14 +342,14 @@ Options.Triggers.push({
     {
       id: 'ASS Mighty Smite',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7672', source: 'Gladiator of Sil\'dih' }),
+      netRegex: { id: '7672', source: 'Gladiator of Sil\'dih' },
       response: Responses.tankBuster(),
     },
     {
       id: 'ASS Lingering Echoes',
       // CDC Lingering Echoes (Spread + Move)
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'CDC' }),
+      netRegex: { effectId: 'CDC' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => data.hasLingering = true,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 2,
@@ -359,7 +359,7 @@ Options.Triggers.push({
       id: 'ASS Thunderous Echo Collect',
       // CDD Thunderous Echo (Stack)
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'CDD' }),
+      netRegex: { effectId: 'CDD' },
       preRun: (data, matches) => data.thunderousEchoPlayer = matches.target,
     },
     {
@@ -369,7 +369,7 @@ Options.Triggers.push({
       // 14s = first
       // 17s = second
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'CDA' }),
+      netRegex: { effectId: 'CDA' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 0.1,
       durationSeconds: 10,
@@ -424,7 +424,7 @@ Options.Triggers.push({
       //   Ring 3: 765F (9.7s) / 7662 (11.7s)
       // Only tracking the 11.7s spell
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['7660', '7661', '7662'], source: 'Gladiator of Sil\'dih' }),
+      netRegex: { id: ['7660', '7661', '7662'], source: 'Gladiator of Sil\'dih' },
       infoText: (_data, matches, output) => {
         if (matches.id === '7660')
           return output.outsideInner();
@@ -451,7 +451,7 @@ Options.Triggers.push({
       id: 'ASS Echoes of the Fallen Reminder',
       // CDA Echoes of the Fallen (Spread)
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'CDA' }),
+      netRegex: { effectId: 'CDA' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
       response: Responses.spread(),
@@ -460,7 +460,7 @@ Options.Triggers.push({
       id: 'ASS Thunderous Echo Reminder',
       // CDD Thunderous Echo (Stack)
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'CDD' }),
+      netRegex: { effectId: 'CDD' },
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
       infoText: (data, matches, output) => {
         if (data.hasLingering)
@@ -533,7 +533,7 @@ Options.Triggers.push({
       id: 'ASS Sundered Remainds',
       // Using 7666 Curse of the Monument
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7666', source: 'Gladiator of Sil\'dih', capture: false }),
+      netRegex: { id: '7666', source: 'Gladiator of Sil\'dih', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -549,7 +549,7 @@ Options.Triggers.push({
     {
       id: 'ASS Curse of the Monument',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7666', source: 'Gladiator of Sil\'dih', capture: false }),
+      netRegex: { id: '7666', source: 'Gladiator of Sil\'dih', capture: false },
       response: Responses.breakChains(),
     },
     {
@@ -580,13 +580,13 @@ Options.Triggers.push({
     {
       id: 'ASS Show of Strength',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '74AF', source: 'Shadowcaster Zeless Gah', capture: false }),
+      netRegex: { id: '74AF', source: 'Shadowcaster Zeless Gah', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'ASS Firesteel Fracture',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '74AD', source: 'Shadowcaster Zeless Gah' }),
+      netRegex: { id: '74AD', source: 'Shadowcaster Zeless Gah' },
       response: Responses.tankCleave(),
     },
   ],
