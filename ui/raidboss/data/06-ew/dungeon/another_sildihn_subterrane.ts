@@ -141,7 +141,7 @@ const triggerSet: TriggerSet<Data> = {
       // CE3 Fizzling Suds (Lightning / Intercardinal)
       type: 'LosesEffect',
       netRegex: { effectId: ['CE[1-3]'], target: 'Silkie' },
-      run: (data, matches) => data.suds = '',
+      run: (data, _matches) => data.suds = '',
     },
     {
       id: 'ASS Slippery Soap',
@@ -289,7 +289,7 @@ const triggerSet: TriggerSet<Data> = {
           default:
             if (data.soapCounter === 1)
               return output.underPuff!();
-          return output.avoidPuffs!();
+            return output.avoidPuffs!();
         }
       },
       outputStrings: {
