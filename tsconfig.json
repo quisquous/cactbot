@@ -41,6 +41,7 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
+    "inlineSources": true,
     //    "noPropertyAccessFromIndexSignature": false, // used by trigger output strings
     "forceConsistentCasingInFileNames": true
   },
