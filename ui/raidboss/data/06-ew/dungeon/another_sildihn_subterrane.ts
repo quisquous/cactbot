@@ -263,7 +263,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.getBehindPuffs!();
         return output.getInFrontOfPlayer!({ player: data.ShortName(matches.target) });
       },
-      run: (data) => data.beaterCounter++,
+      run: (data) => data.soapCounter++,
       outputStrings: {
         getBehindPuffs: {
           en: 'Behind puffs and party (East/West)',
