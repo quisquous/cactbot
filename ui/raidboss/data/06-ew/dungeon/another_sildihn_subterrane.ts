@@ -24,7 +24,7 @@ export interface Data extends RaidbossData {
   myFlame?: number;
   brandEffects: { [effectId: number]: string };
   brandCounter: number;
-  flameCounter: number;
+  myLastCut?: number;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -795,69 +795,80 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Infern Brand 2 First Cuts',
-      // This method works safely for cuts 2,3 and 4 by tracking Infern Brand losing debuff
-      // Player receives Magic Vulnerability Up afterward which we need to wait on for safety
-      // However, it is also possible to receive the same Magic Vulnerability Up for Cast Shadow
-      // Alternative method would use Cryptic Flames hit +8s to trigger second cut callout, which is safe
-      // but may be unreliable if cuts are made out of order
+      id: 'ASS Infern Brand 2 Remaining Flames',
+      // Player receives Magic Vulnerability Up from Cryptic Flame for 7.96s after cutting
+      // Trigger will delay for this Magic Vulnerability Up for safety
+      // No exception for time remaining on debuff to sacrafice to cut the line
       type: 'LosesEffect',
       netRegex: { effectId: '95D', target: 'Infern Brand', count: '1C[2-9]' },
-      condition: (data) => data.myFlame !== undefined && data.brandCounter === 2,
-      preRun: (data) => data.flameCounter++,
-      response: (data, matches, output) => {
-        // cactbot-builtin-response
-        output.responseOutputStrings = {
-          cutOrangeNum: {
-            en: 'Cut Orange ${num}',
-          },
-          cutBlueNum: {
-            en: 'Cut Blue ${num}',
-          },
-          orangeNum: {
-            en: 'Orange ${num}',
-          },
-          blueNum: {
-            en: 'Blue ${num}',
-          },
-        };
+      condition: (data, matches) => {
+        if (data.myFlame !== undefined && data.brandCounter === 2) {
+          const countToNum: { [count: string]: number } = {
+            '1C9': 4,
+            '1C8': 3,
+            '1C7': 2,
+            '1C6': 1,
+            '1C5': 4,
+            '1C4': 3,
+            '1C3': 2,
+            '1C2': 1,
+          };
 
-        const countToNum: { [count: string]: number } = {
-          '1C9': 4,
-          '1C8': 3,
-          '1C7': 2,
-          '1C6': 1,
-          '1C5': 4,
-          '1C4': 3,
-          '1C3': 2,
-          '1C2': 1,
-        };
+          // Check which flame order this is
+          const flameCut = countToNum[matches.count];
+          if (flameCut === undefined)
+            return false;
 
-        const flameCut = countToNum[matches.count];
-        if (flameCut === undefined)
-          return;
+          // Wraparound and add 1 as we need next flame to cut
+          // Check if not our turn to cut
+          if (flameCut % 4 + 1 !== data.myFlame)
+            return false;
 
-        // Wraparound and add 1 as we need next flame to cut
-        if (flameCut % 4 + 1 !== data.myFlame)
-          return;
+          return true;
+        }
+        return false;
+      },
+      delaySeconds: (data, matches) => {
+        if (data.myLastCut === undefined)
+          return 0;
 
+        // Check if we still need to delay for Magic Vulnerability Up to expire
+        // Magic Vulnerability Up lasts 7.96 from last cut
+        const delay = (7.96 - (Date.parse(matches.timestamp) - data.myLastCut) / 1000);
+        if (delay > 0)
+          return delay;
+        return 0;
+      },
+      alertText: (data, matches, output) => {
         if (data.arcaneFontCounter === 3 && matches.count.match(/1C[6-9]/)) {
           // Expected Blue and count is Blue
           data.arcaneFontCounter = 2;
-          if (data.flameCounter < 4)
-            return { alertText: output.cutBlueNum!({ num: data.myFlame }) };
-          return { infoText: output.blueNum!({ num: data.myFlame }) };
+          return output.cutBlueNum!({ num: data.myFlame });
         }
         if (data.arcaneFontCounter === 2 && matches.count.match(/1C[2-5]/)) {
           // Expected Orange and count is Orange
           data.arcaneFontCounter = 3;
-          if (data.flameCounter < 4)
-            return { alertText: output.cutOrangeNum!({ num: data.myFlame }) };
-          return { infoText: output.orangeNum!({ num: data.myFlame }) };
+          return output.cutOrangeNum!({ num: data.myFlame });
         }
         // Unexpected result, mechanic is likely failed at this point
       },
       run: (data) => data.brandEffects = {},
+      outputStrings: {
+        cutOrangeNum: {
+          en: 'Cut Orange ${num}',
+        },
+        cutBlueNum: {
+          en: 'Cut Blue ${num}',
+        },
+      },
+    },
+    {
+      id: 'ASS Infern Brand Cryptic Flame Colllect',
+      // Collect timestamp for when last cut flame
+      type: 'Ability',
+      netRegex: { id: '74B7', source: 'Infern Brand' },
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => data.myLastCut = Date.parse(matches.timestamp),
     },
   ],
   timelineReplace: [
