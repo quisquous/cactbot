@@ -557,6 +557,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: ['CC4', 'CC5', 'CC6', 'CC7'] },
       condition: (data, matches) => data.me === matches.target && data.brandCounter === 2,
       delaySeconds: 0.1,
+      durationSeconds: (_data, matches) => parseFloat(matches.duration) - 0.1,
       infoText: (data, matches, output) => {
         const brandMap: { [effectId: string]: number } = {
           'CC4': 1,
