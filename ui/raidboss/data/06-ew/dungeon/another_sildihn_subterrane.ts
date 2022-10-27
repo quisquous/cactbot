@@ -138,7 +138,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ASS Slippery Soap',
       // Happens 5 times in the encounter
       type: 'Ability',
-      netRegex: { id: '79FB', source: ['Silkie', 'Eastern Ewer' },
+      netRegex: { id: '79FB', source: ['Silkie', 'Eastern Ewer'] },
       preRun: (data) => data.soapCounter++,
       alertText: (data, matches, output) => {
         if (data.suds === '7757') {
