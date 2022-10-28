@@ -28,6 +28,7 @@
     "conditionalExpression.operatorPosition": "nextLine"
   },
   "plugins": [
-    "https://plugins.dprint.dev/typescript-0.75.0.wasm"
+    "./node_modules/@dprint/typescript/plugin.wasm",
+    "https://plugins.dprint.dev/json-0.15.6.wasm"
   ]
 }
