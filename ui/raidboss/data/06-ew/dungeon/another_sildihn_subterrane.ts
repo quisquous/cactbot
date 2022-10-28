@@ -872,9 +872,9 @@ const triggerSet: TriggerSet<Data> = {
 
         // Exception for First Flame on second set
         if (data.myFlame === 1) {
-          if (data.arcaneFontCounter === 3 && matches.count.match(/1C5/))
+          if (data.arcaneFontCounter === 3 && matches.count === '1C5')
             return output.cutBlueNum!({ num: data.myFlame });
-          if (data.arcaneFontCounter === 2 && matches.count.match(/1C9/))
+          if (data.arcaneFontCounter === 2 && matches.count === '1C9')
             return output.cutOrangeNum!({ num: data.myFlame });
         }
         // Unexpected result, mechanic is likely failed at this point
