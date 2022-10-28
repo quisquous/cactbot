@@ -28,6 +28,9 @@
       */
     "editor.formatOnSaveMode": "file"
   },
+  "[typescript]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
   "typescript.tsdk": "node_modules/typescript/lib",
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
