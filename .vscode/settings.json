@@ -28,6 +28,9 @@
       */
     "editor.formatOnSaveMode": "file"
   },
+  "[javascript]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
   "[typescript]": {
     "editor.defaultFormatter": "dprint.dprint"
   },
