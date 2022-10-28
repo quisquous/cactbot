@@ -588,7 +588,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Sundered Remainds',
+      id: 'ASS Sundered Remains',
       // Using 7666 Curse of the Monument
       type: 'StartsUsing',
       netRegex: { id: '7666', source: 'Gladiator of Sil\'dih', capture: false },
@@ -667,7 +667,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Infern Brand Collect',
       // Count field on 95D on Infern Brand indicates Brand's number:
-      //   1C2 - IC5, Orange 1 - 4
+      //   1C2 - 1C5, Orange 1 - 4
       //   1C6 - 1C9, Blue 1 - 4
       type: 'GainsEffect',
       netRegex: { effectId: '95D', target: 'Infern Brand' },
@@ -882,7 +882,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Infern Brand Cryptic Flame Colllect',
+      id: 'ASS Infern Brand Cryptic Flame Collect',
       // Collect timestamp for when last cut flame
       type: 'Ability',
       netRegex: { id: '74B7', source: 'Infern Brand' },
