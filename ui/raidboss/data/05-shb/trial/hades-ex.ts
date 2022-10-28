@@ -235,7 +235,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Shades Too Close',
       type: 'Tether',
-      netRegex: { id: '000E', source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], target: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false },
+      netRegex: {
+        id: '000E',
+        source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'],
+        target: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'],
+        capture: false,
+      },
       condition: (data) => data.role === 'tank',
       suppressSeconds: 10,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -333,7 +338,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'HadesEx Healers Blizzard/Fire IV',
       type: 'StartsUsing',
-      netRegex: { id: ['47C3', '47C2'], source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false },
+      netRegex: {
+        id: ['47C3', '47C2'],
+        source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'],
+        capture: false,
+      },
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

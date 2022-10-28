@@ -105,10 +105,12 @@ const triggerSet: TriggerSet<Data> = {
         'Teag Gye': 'Taeg Gye',
         'The Atelier': 'Griaules Revier',
         'The throne room': 'Garten des Kronsaal',
-        'Aenc Thon, Lord of the Lingering Gaze': 'Aenc Thon (?:der|die|das) Glupschäugig(?:e|er|es|en)',
+        'Aenc Thon, Lord of the Lingering Gaze':
+          'Aenc Thon (?:der|die|das) Glupschäugig(?:e|er|es|en)',
         'Griaule': 'Griaule',
         'Painted Sapling': 'Griaules Sämling',
-        'Aenc Thon, Lord of the Lengthsome Gait': 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)',
+        'Aenc Thon, Lord of the Lengthsome Gait':
+          'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)',
         'Shade of Fear': 'Schatten der Angst',
         'Dohnfast Fuath': 'Dohn-Fuath',
         'Dohnfast Basket': 'Dohn-Blumenkorb',

@@ -86,7 +86,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '1CC8', source: 'The Griffin' },
       condition: Conditions.targetIsNotYou(),
-      alertText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      alertText: (data, matches, output) =>
+        output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Break chain on ${player}',

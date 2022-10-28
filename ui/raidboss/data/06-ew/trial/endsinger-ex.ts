@@ -6,7 +6,13 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { Output, OutputStrings, TriggerField, TriggerOutput, TriggerSet } from '../../../../../types/trigger';
+import {
+  Output,
+  OutputStrings,
+  TriggerField,
+  TriggerOutput,
+  TriggerSet,
+} from '../../../../../types/trigger';
 
 export type Mechanic = 'aoe' | 'donut' | 'safeN' | 'safeE' | 'safeS' | 'safeW' | 'unknown';
 
@@ -97,7 +103,11 @@ const getStarPositionFromHeading = (heading: string) => {
   }[dir] ?? [];
 };
 
-const getStarText: TriggerField<Data, NetMatches['Ability' | 'StartsUsing'], TriggerOutput<Data, NetMatches['Ability' | 'StartsUsing']>> = (_data, matches, output) => {
+const getStarText: TriggerField<
+  Data,
+  NetMatches['Ability' | 'StartsUsing'],
+  TriggerOutput<Data, NetMatches['Ability' | 'StartsUsing']>
+> = (_data, matches, output) => {
   let posX: number | undefined;
   let posY: number | undefined;
 
@@ -114,7 +124,11 @@ const getStarText: TriggerField<Data, NetMatches['Ability' | 'StartsUsing'], Tri
   }
 
   if (posX === undefined || posY === undefined) {
-    console.error(`EndsingerEx getStarText: Could not resolve star position from heading ${parseFloat(matches.heading)}`);
+    console.error(
+      `EndsingerEx getStarText: Could not resolve star position from heading ${
+        parseFloat(matches.heading)
+      }`,
+    );
     return;
   }
 
@@ -378,7 +392,11 @@ const triggerSet: TriggerSet<Data> = {
 
         // If we have the same count of mechanics stored for all 5 heads, resolve safe spot
         const heads = Object.values(data.storedHeads);
-        if (heads.length === heads.filter((h) => h.mechanics.length === head.mechanics.length).length && heads.length === 5) {
+        if (
+          heads.length ===
+            heads.filter((h) => h.mechanics.length === head.mechanics.length).length &&
+          heads.length === 5
+        ) {
           const lastMechanic = head.mechanics.length - 1;
 
           const safeDirHead = heads.find((h) => h.mechanics[0]?.includes('safe'));

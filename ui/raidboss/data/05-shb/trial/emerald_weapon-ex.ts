@@ -343,7 +343,14 @@ const triggerSet: TriggerSet<Data> = {
         // We know that the swords will land in all 4 corners plus twice in
         // the center areas. Predict the last two swords by removing the
         // ones we've already gotten.
-        const spawns: string[] = [output.dirNE!(), output.dirNW!(), output.dirSE!(), output.dirSW!(), output.middle!(), output.middle!()];
+        const spawns: string[] = [
+          output.dirNE!(),
+          output.dirNW!(),
+          output.dirSE!(),
+          output.dirSW!(),
+          output.middle!(),
+          output.middle!(),
+        ];
 
         const [s4, s5] = spawns.filter((x) => ![s0, s1, s2, s3].includes(x));
 
