@@ -39,7 +39,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: '280B' }),
       condition: (data, matches) => !data.hasFireResist?.[matches.target],
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
       },
     },
   ],

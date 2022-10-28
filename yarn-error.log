@@ -1,0 +1,188 @@
+Arguments: 
+  C:\Users\Trim21\scoop\apps\nodejs-lts\current\node.exe C:\Users\Trim21\scoop\apps\nodejs-lts\current\bin\node_modules\yarn\bin\yarn.js run --silent husky-run pre-commit
+
+PATH: 
+  C:\Program Files\Git\mingw64\libexec\git-core;C:\Program Files\Git\mingw64\libexec\git-core;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Trim21\bin;C:\Users\Trim21\scoop\apps\python\current\Scripts;C:\Users\Trim21\scoop\apps\python\current;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\mingw-w64\x86_64-8.1.0-win32-seh-rt_v6-rev0\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\Polyspace\R2020a\runtime\win64;C:\Program Files\Polyspace\R2020a\bin;C:\Program Files\Polyspace\R2020a\polyspace\bin;C:\Users\Trim21\scoop\apps\go\go1.17.8\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Trim21\scoop\apps\nodejs-lts\current\bin;C:\Users\Trim21\scoop\apps\nodejs-lts\current;C:\Users\Trim21\scoop\apps\openjdk8-redhat\current\bin;C:\Users\Trim21\scoop\apps\maven\current\bin;C:\Users\Trim21\scoop\persist\g\g\go\bin;C:\Users\Trim21\.g\go\bin;C:\Users\Trim21\scoop\apps\gcc\current\bin;C:\Users\Trim21\AppData\Local\Programs\Python\Launcher;C:\Users\Trim21\AppData\Roaming\bvm\shims;C:\Users\Trim21\.bvm\bin;C:\Users\Trim21\scoop\apps\python38\current\scripts;C:\Users\Trim21\scoop\shims;C:\Users\Trim21\AppData\Local\Microsoft\WindowsApps;C:\Users\Trim21\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Trim21\.local\bin;C:\Users\Trim21\AppData\Local\Programs\MiKTeX\miktex\bin\x64;C:\Users\Trim21\.local\gdalwin32\bin;C:\Users\Trim21\go\bin;C:\Users\Trim21\AppData\Local\JetBrains\Toolbox\scripts;C:\Users\Trim21\.dotnet\tools;C:\Program Files\Multipass\bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.12.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: C:\Users\Trim21\proj\cactbot\package.json: Unexpected token ] in JSON at position 4739
+      at JSON.parse (<anonymous>)
+      at C:\Users\Trim21\scoop\persist\nodejs-lts\bin\node_modules\yarn\lib\cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\Trim21\scoop\persist\nodejs-lts\bin\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\Trim21\scoop\persist\nodejs-lts\bin\node_modules\yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "cactbot",
+    "version": "0.27.19",
+    "license": "Apache-2.0",
+    "type": "module",
+    "types": "./types",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/quisquous/cactbot"
+    },
+    "files": [
+      "./ui",
+      "./types",
+      "./util",
+      "./resources",
+      "package.json"
+    ],
+    "scripts": {
+      "build": "webpack --progress --config webpack/webpack.prod.ts",
+      "build-gh-pages": " webpack --config webpack/webpack.ghpages.ts",
+      "start": "webpack serve --config webpack/webpack.dev.ts",
+      "fetch-deps": "ts-node ./util/fetch_deps.ts",
+      "tsc-no-emit": "tsc --noEmit",
+      "lint": "run-s lint:**",
+      "lint:dprint": "dprint check",
+      "lint:eslint": "eslint --max-warnings=0 ./",
+      "lintfix": "run-s lintfix:**",
+      "lintfix:dprint": "dprint fmt",
+      "lintfix:eslint": "eslint --max-warnings=0 --fix ./",
+      "stylelint": "stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
+      "stylelintfix": "stylelint --fix resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
+      "markdownlint": "markdownlint . --ignore node_modules --ignore publish --ignore plugin/ThirdParty",
+      "test": "mocha",
+      "lint-staged": "lint-staged",
+      "coverage-report": "ts-node util/gen_coverage_report.ts",
+      "util": "ts-node -r jsdom-global/register util/index.ts",
+      "find-translations": "npm run util -- findTranslations",
+      "translate-timeline": "npm run util -- translateTimeline",
+      "generate": "npm run util -- generate",
+      "process-triggers": "ts-node util/process_triggers_folder.ts",
+      "generate-log-guide": "ts-node util/gen_log_guide.ts",
+      "version": "node util/sync_version.cjs && git add -u"
+    },
+    "devDependencies": {
+      "@actions/exec": "^1.1.1",
+      "@actions/github": "^5.0.0",
+      "@actions/http-client": "^1.0.11",
+      "@babel/core": "^7.14.5",
+      "@babel/preset-env": "^7.14.5",
+      "@babel/preset-typescript": "^7.14.5",
+      "@babel/types": "^7.16.0",
+      "@types/argparse": "^1.0.38",
+      "@types/chai": "^4.3.1",
+      "@types/inquirer": "^7.3.2",
+      "@types/inquirer-fuzzy-path": "^2.3.0",
+      "@types/is-ci": "^3.0.0",
+      "@types/lodash": "^4.14.170",
+      "@types/markdown-magic": "^1.0.1",
+      "@types/mini-css-extract-plugin": "^1.4.3",
+      "@types/mocha": "^9.1.1",
+      "@types/node": "^18.7.23",
+      "@types/node-fetch": "^2.5.10",
+      "@types/tar-fs": "^2.0.0",
+      "@types/webpack": "^5.28.0",
+      "@typescript-eslint/eslint-plugin": "^5.16.0",
+      "@typescript-eslint/parser": "^5.16.0",
+      "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
+      "babel-loader": "^8.2.2",
+      "chai": "^4.3.6",
+      "chalk": "^2.4.2",
+      "clean-webpack-plugin": "^4.0.0",
+      "copy-webpack-plugin": "^10.2.4",
+      "cross-env": "^7.0.3",
+      "css-loader": "^6.5.1",
+      "css-minimizer-webpack-plugin": "^3.4.1",
+      "dprint": "^0.32.1",
+      "eslint": "^7.14.0",
+      "eslint-config-google": "^0.9.1",
+      "eslint-import-resolver-typescript": "^2.4.0",
+      "eslint-plugin-import": "^2.22.1",
+      "eslint-plugin-prefer-arrow": "^1.2.3",
+      "eslint-plugin-rulesdir": "^0.1.0",
+      "eslint-plugin-tsc": "^2.0.0",
+      "fast-levenshtein": "^3.0.0",
+      "fork-ts-checker-webpack-plugin": "^7.2.11",
+      "fs-extra": "^10.1.0",
+      "html-webpack-plugin": "^5.5.0",
+      "husky": "^4.2.5",
+      "is-ci": "^3.0.1",
+      "jsdom-global": "^3.0.2",
+      "json5": "^2.2.0",
+      "jszip": "^3.7.1",
+      "lint-staged": "^10.0.8",
+      "markdown-magic": "^2.5.2",
+      "markdownlint-cli": "^0.31.1",
+      "mini-css-extract-plugin": "^1.6.0",
+      "mocha": "^9.2.2",
+      "node-fetch": "^3.2.10",
+      "npm-run-all": "^4.1.5",
+      "postcss": "^8.3.5",
+      "proxy-agent": "^5.0.0",
+      "recast": "^0.20.4",
+      "style-loader": "^3.3.1",
+      "stylelint": "^14.8.2",
+      "stylelint-config-standard": "^25.0.0",
+      "tar-fs": "^2.1.1",
+      "ts-loader": "^9.3.0",
+      "ts-node": "^10.8.0",
+      "tsconfig-paths": "^3.9.0",
+      "ttypescript": "^1.5.12",
+      "typescript": "^4.6.4",
+      "webpack": "^5.72.0",
+      "webpack-cli": "^4.9.2",
+      "webpack-dev-server": "^4.9.0",
+      "webpack-merge": "^5.8.0"
+    },
+    "engines": {
+      "node": ">=18.10.0"
+    },
+    "stylelint": {
+      "extends": "stylelint-config-standard"
+    },
+    "husky": {
+      "hooks": {
+        "pre-commit": "npm run lint-staged"
+      }
+    },
+    "lint-staged": {
+      "*.css": "stylelint",
+      "*.{js,cjs,mjs,json}": [
+        "dprint check"
+      ],
+      "*.{js,cjs,mjs}": [
+        "eslint --max-warnings=0"
+      ],
+      "*.ts": [
+        "eslint --max-warnings=0 --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]'"
+      ],
+      "*.md": "markdownlint",
+      "*.py": "python -m pylint --errors-only",
+      "ui/(raidboss|oopsyraidsy)/data/**": [
+        "ts-node test/test_raidboss_data.ts",
+      ]
+    },
+    "dependencies": {
+      "@fast-csv/parse": "^4.3.6",
+      "argparse": "^1.0.10",
+      "dexie": "^3.0.3",
+      "dexie-export-import": "^1.0.0",
+      "eventemitter3": "^4.0.7",
+      "inquirer": "^8.1.1",
+      "inquirer-fuzzy-path": "^2.3.0",
+      "lodash": "^4.14.170"
+    },
+    "publishConfig": {
+      "access": "public"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

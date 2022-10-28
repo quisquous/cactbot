@@ -987,7 +987,9 @@ const triggerSet: TriggerSet<Data> = {
         if (!data.smallLions || data.smallLions.length === 0)
           return;
 
-        const lion = data.smallLions?.find((l) => l.id.toUpperCase() === matches.sourceId.toUpperCase());
+        const lion = data.smallLions?.find((l) =>
+          l.id.toUpperCase() === matches.sourceId.toUpperCase()
+        );
         if (!lion) {
           console.error('Unable to locate a valid lion.');
           return { alertText: output.lionTetherOnYou!() };
@@ -1286,7 +1288,9 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         // Sort effect ids descending by duration.
-        const sortedIds = unsortedIds.sort((a, b) => (data.debuffs?.[b] ?? 0) - (data.debuffs?.[a] ?? 0));
+        const sortedIds = unsortedIds.sort((a, b) =>
+          (data.debuffs?.[b] ?? 0) - (data.debuffs?.[a] ?? 0)
+        );
         const keys = sortedIds.map((effectId) => effectIdToOutputStringKey[effectId]);
 
         const [key0, key1, key2] = keys;

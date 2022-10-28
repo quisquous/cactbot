@@ -935,7 +935,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 5831 from Queen's Warrior
       // 5821 from Queen's Knight
-      netRegex: { source: ['Queen\'s Warrior', 'Queen\'s Knight'], id: ['5831', '5821'], capture: false },
+      netRegex: {
+        source: ['Queen\'s Warrior', 'Queen\'s Knight'],
+        id: ['5831', '5821'],
+        capture: false,
+      },
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
@@ -944,7 +948,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 5854 from Queen's Gunner
       // 5841 from Queen's Soldier
-      netRegex: { source: ['Queen\'s Gunner', 'Queen\'s Soldier'], id: ['5854', '5841'], capture: false },
+      netRegex: {
+        source: ['Queen\'s Gunner', 'Queen\'s Soldier'],
+        id: ['5854', '5841'],
+        capture: false,
+      },
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
@@ -1017,7 +1025,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Guard Yellow Tether',
       type: 'Tether',
-      netRegex: { source: 'Queen\'s Warrior', target: 'Queen\'s Knight', id: '0088', capture: false },
+      netRegex: {
+        source: 'Queen\'s Warrior',
+        target: 'Queen\'s Knight',
+        id: '0088',
+        capture: false,
+      },
       // Yellow tether between Knight and Warrior gives them a Physical Vulnerability Down debuff.
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1034,7 +1047,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DelubrumSav Guard Purple Tether',
       type: 'Tether',
-      netRegex: { source: 'Queen\'s Warrior', target: 'Queen\'s Knight', id: '0089', capture: false },
+      netRegex: {
+        source: 'Queen\'s Warrior',
+        target: 'Queen\'s Knight',
+        id: '0089',
+        capture: false,
+      },
       // Yellow tether between Knight and Warrior gives them a Physical Vulnerability Down debuff.
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1524,7 +1542,10 @@ const triggerSet: TriggerSet<Data> = {
       // 595B = left cleave cold (2) paired with 595D
       // 595C = left cleave heat (2) paired with 595A
       // 595D = left cleave cold (2) paired with 595B
-      netRegex: { source: ['Trinity Avowed', 'Avowed Avatar'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] },
+      netRegex: {
+        source: ['Trinity Avowed', 'Avowed Avatar'],
+        id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'],
+      },
       run: (data, matches) => {
         data.blades ??= {};
         data.blades[parseInt(matches.sourceId, 16)] = matches.id.toUpperCase();
@@ -1859,7 +1880,9 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
         if (combatantDataAvatars.combatants.length < 3) {
-          console.error(`Avowed Avatar: expected at least 3 combatants got ${combatantDataAvatars.combatants.length}`);
+          console.error(
+            `Avowed Avatar: expected at least 3 combatants got ${combatantDataAvatars.combatants.length}`,
+          );
           delete data.safeZone;
           return;
         }
@@ -1886,12 +1909,15 @@ const triggerSet: TriggerSet<Data> = {
         // we need to filter for the Trinity Avowed with the lowest ID
         // that one is always cleaving on one of the cardinals
         // Trinity Avowed is always East (-267, -87)
-        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) =>
+          (a.ID ?? 0) - (b.ID ?? 0);
         const eastCombatant = combatantDataBoss.combatants.sort(sortCombatants).shift();
 
         // we need to filter for the three Avowed Avatars with the lowest IDs
         // as they cast cleave at the different cardinals
-        const [avatarOne, avatarTwo, avatarThree] = combatantDataAvatars.combatants.sort(sortCombatants);
+        const [avatarOne, avatarTwo, avatarThree] = combatantDataAvatars.combatants.sort(
+          sortCombatants,
+        );
         if (!avatarOne || !avatarTwo || !avatarThree)
           throw new UnreachableCode();
 
@@ -2035,7 +2061,9 @@ const triggerSet: TriggerSet<Data> = {
         let adjacentZone = null;
         if (effectiveTemperature !== 0) {
           // Find the adjacent zone that gets closest to 0
-          const calculatedZones = Object.values(adjacentZones).map((i: number) => Math.abs(effectiveTemperature + i));
+          const calculatedZones = Object.values(adjacentZones).map((i: number) =>
+            Math.abs(effectiveTemperature + i)
+          );
 
           // Use zone closest to zero as output
           const dirs = {
@@ -2121,7 +2149,9 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
         if (unseenData.combatants.length !== unseenIds.length) {
-          console.error(`Gleaming Arrow: expected ${unseenIds.length}, got ${unseenData.combatants.length}`);
+          console.error(
+            `Gleaming Arrow: expected ${unseenIds.length}, got ${unseenData.combatants.length}`,
+          );
           return;
         }
 
@@ -2548,7 +2578,11 @@ const triggerSet: TriggerSet<Data> = {
       // Set 1 Double AoE, 3 seconds later Double AoE
       // Set 2 5 seconds later, Double AoE, 3 seconds later Double AoE, 3 seconds later AoE + Bleed
       // Set 3 1.3 seconds later, Single AoEs every 3 seconds all while bleed from set 2 persists
-      netRegex: { source: ['Queen\'s Warrior', 'Queen\'s Knight', 'Queen\'s Gunner', 'Queen\'s Soldier'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false },
+      netRegex: {
+        source: ['Queen\'s Warrior', 'Queen\'s Knight', 'Queen\'s Gunner', 'Queen\'s Soldier'],
+        id: ['5A16', '5A08', '5A35', '5A23'],
+        capture: false,
+      },
       // Only call out the beginning of a set of two casts
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),

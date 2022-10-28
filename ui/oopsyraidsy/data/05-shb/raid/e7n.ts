@@ -82,30 +82,56 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E7N Light\'s Course',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: ['4C3E', '4C40', '4C22', '4C3C', '4E63'], ...playerDamageFields }),
+      netRegex: NetRegexes.abilityFull({
+        id: ['4C3E', '4C40', '4C22', '4C3C', '4E63'],
+        ...playerDamageFields,
+      }),
       condition: (data, matches) => {
         return !data.hasUmbral || !data.hasUmbral[matches.target];
       },
       mistake: (data, matches) => {
         if (data.hasAstral && data.hasAstral[matches.target])
-          return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: wrongBuff(matches.ability) };
-        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: noBuff(matches.ability) };
+          return {
+            type: 'fail',
+            blame: matches.target,
+            reportId: matches.targetId,
+            text: wrongBuff(matches.ability),
+          };
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: noBuff(matches.ability),
+        };
       },
     },
     {
       id: 'E7N Darks\'s Course',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: ['4C3D', '4C23', '4C41', '4C43'], ...playerDamageFields }),
+      netRegex: NetRegexes.abilityFull({
+        id: ['4C3D', '4C23', '4C41', '4C43'],
+        ...playerDamageFields,
+      }),
       condition: (data, matches) => {
         return !data.hasAstral || !data.hasAstral[matches.target];
       },
       mistake: (data, matches) => {
         if (data.hasUmbral && data.hasUmbral[matches.target])
-          return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: wrongBuff(matches.ability) };
+          return {
+            type: 'fail',
+            blame: matches.target,
+            reportId: matches.targetId,
+            text: wrongBuff(matches.ability),
+          };
         // This case is probably impossible, as the debuff ticks after death,
         // but leaving it here in case there's some rez or disconnect timing
         // that could lead to this.
-        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: noBuff(matches.ability) };
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: noBuff(matches.ability),
+        };
       },
     },
   ],

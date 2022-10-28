@@ -49,7 +49,10 @@ const triggerSet: TriggerSet<Data> = {
       // If we're in the Yol encounter, we're obviously not fighting Bardam.
       id: 'Bardam\'s Mettle Dead Bardam',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'Voiceless Muse will be sealed off.*?', capture: false }),
+      netRegex: NetRegexes.message({
+        line: 'Voiceless Muse will be sealed off.*?',
+        capture: false,
+      }),
       run: (data) => data.deadBardam = true,
     },
     {

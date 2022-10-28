@@ -280,7 +280,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E2S Countdown Marker Shadoweye Me',
       type: 'HeadMarker',
       netRegex: { id: '00B8' },
-      condition: (data, matches) => data.spell?.[matches.target] === 'eye' && matches.target === data.me,
+      condition: (data, matches) =>
+        data.spell?.[matches.target] === 'eye' && matches.target === data.me,
       delaySeconds: 2,
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
@@ -299,7 +300,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E2S Countdown Marker Shadoweye Other',
       type: 'HeadMarker',
       netRegex: { id: '00B8' },
-      condition: (data, matches) => data.spell?.[matches.target] === 'eye' && data.spell?.[data.me] !== 'eye',
+      condition: (data, matches) =>
+        data.spell?.[matches.target] === 'eye' && data.spell?.[data.me] !== 'eye',
       delaySeconds: 2,
       suppressSeconds: 10,
       // Let's just assume these people are stacked.
