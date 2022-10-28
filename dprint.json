@@ -8,6 +8,8 @@
     "**/node_modules",
     "./dist/",
     "./npm-package/",
+    "./plugin/ThirdParty/",
+    "./publish/",
     "**/ui/raidboss/data",
     "**/ui/oopsyraidsy/data",
     "**/*-lock.json"
