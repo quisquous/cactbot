@@ -743,14 +743,14 @@ const triggerSet: TriggerSet<Data> = {
         const x = orangeBrands.indexOf(myNumToOrange[myNum]);
         const y = blueBrands.indexOf(myNumToBlue[myNum]) + 4;
         const indexToCardinal: { [num: number]: string } = {
-          0: 'north',
-          1: 'north',
-          2: 'south',
-          3: 'south',
-          4: 'west',
-          5: 'west',
-          6: 'east',
-          7: 'east',
+          0: 'south',
+          1: 'south',
+          2: 'north',
+          3: 'north',
+          4: 'east',
+          5: 'east',
+          6: 'west',
+          7: 'west',
         };
 
         const cardX = indexToCardinal[x];
