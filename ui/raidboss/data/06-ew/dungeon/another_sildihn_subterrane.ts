@@ -297,9 +297,11 @@ const triggerSet: TriggerSet<Data> = {
         },
         underPuff: {
           en: 'Under green puff',
+          de: 'Unter grünem Puschel',
         },
         avoidPuffs: {
           en: 'Avoid puff aoes',
+          de: 'Weiche den Puschel AoEs aus',
         },
       },
     },
@@ -575,15 +577,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         bothFates: {
           en: 'Get hit by silver and gold',
+          de: 'Von Silber und Gold treffen lassen',
         },
         gildedFate: {
           en: 'Get hit by two silver',
+          de: 'Von 2 Silber treffen lassen',
         },
         silveredFate: {
           en: 'Get hit by two gold',
+          de: 'Von 2 Gold treffen lassen',
         },
         neitherFate: {
           en: 'Avoid silver and gold',
+          de: 'Vermeide Silber und Gold',
         },
       },
     },
@@ -628,9 +634,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         soakThenSpread: {
           en: 'Soak first towers => Spread',
+          de: 'Türme zuerst nehmen => verteilen',
         },
         spreadThenSoak: {
           en: 'Spread => Soak second towers',
+          de: 'Verteilen => zweite Türme nehmen',
         },
       },
     },
@@ -766,9 +774,12 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Brand ${num}: ${corner} corner',
+          de: 'Kryptogramm ${num}: ${corner} Ecke',
         },
         brandNum: {
           en: 'Brand ${num}',
+          de: 'Kryptogramm ${num}',
+
         },
         northwest: Outputs.northwest,
         northeast: Outputs.northeast,
@@ -804,12 +815,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         cutBlueOne: {
           en: 'Cut Blue 1',
+          de: 'Blau 1 durchtrennen',
         },
         cutOrangeOne: {
           en: 'Cut Orange 1',
+          de: 'Orange 1 durchtrennen',
         },
         firstCut: {
           en: 'First Cut',
+          de: 'Als Erster durchtrennen',
         },
       },
     },
@@ -875,9 +889,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         cutOrangeNum: {
           en: 'Cut Orange ${num}',
+          de: 'Orange ${num} durchtrennen',
         },
         cutBlueNum: {
           en: 'Cut Blue ${num}',
+          de: 'Blau ${num} durchtrennen',
         },
       },
     },
