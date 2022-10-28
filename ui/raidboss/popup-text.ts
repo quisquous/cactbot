@@ -1,7 +1,7 @@
 import { Lang } from '../../resources/languages';
 import { buildNetRegexForTrigger, commonNetRegex } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
+import { addOverlayListener, callOverlayHandler } from '../../resources/overlay_plugin_api';
 import PartyTracker from '../../resources/party';
 import {
   addPlayerChangedOverrideListener,
@@ -16,10 +16,22 @@ import { EventResponses, LogEvent } from '../../types/event';
 import { Job, Role } from '../../types/job';
 import { Matches } from '../../types/net_matches';
 import {
-  LooseTrigger, OutputStrings, TimelineField, TimelineFunc, LooseTriggerSet,
-  ResponseField, TriggerAutoConfig, TriggerField, TriggerOutput,
-  Output, RaidbossFileData, ResponseOutput, PartialTriggerOutput, DataInitializeFunc,
-  GeneralNetRegexTrigger, RegexTrigger,
+  DataInitializeFunc,
+  GeneralNetRegexTrigger,
+  LooseTrigger,
+  LooseTriggerSet,
+  Output,
+  OutputStrings,
+  PartialTriggerOutput,
+  RaidbossFileData,
+  RegexTrigger,
+  ResponseField,
+  ResponseOutput,
+  TimelineField,
+  TimelineFunc,
+  TriggerAutoConfig,
+  TriggerField,
+  TriggerOutput,
 } from '../../types/trigger';
 
 import AutoplayHelper from './autoplay_helper';
@@ -28,20 +40,23 @@ import { PerTriggerAutoConfig, PerTriggerOption, RaidbossOptions } from './raidb
 import { TimelineLoader } from './timeline';
 import { TimelineReplacement } from './timeline_parser';
 
-const isRaidbossLooseTimelineTrigger =
-  (trigger: LooseTrigger): trigger is ProcessedTimelineTrigger => {
-    return 'isTimelineTrigger' in trigger;
-  };
+const isRaidbossLooseTimelineTrigger = (
+  trigger: LooseTrigger,
+): trigger is ProcessedTimelineTrigger => {
+  return 'isTimelineTrigger' in trigger;
+};
 
-export const isNetRegexTrigger = (trigger?: LooseTrigger):
-    trigger is Partial<GeneralNetRegexTrigger<RaidbossData, 'None'>> => {
+export const isNetRegexTrigger = (
+  trigger?: LooseTrigger,
+): trigger is Partial<GeneralNetRegexTrigger<RaidbossData, 'None'>> => {
   if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'netRegex' in trigger;
   return false;
 };
 
-export const isRegexTrigger = (trigger?: LooseTrigger):
-    trigger is Partial<RegexTrigger<RaidbossData>> => {
+export const isRegexTrigger = (
+  trigger?: LooseTrigger,
+): trigger is Partial<RegexTrigger<RaidbossData>> => {
   if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'regex' in trigger;
   return false;
@@ -164,7 +179,7 @@ type TextMap = {
     rumbleDuration: `${TextUpper}RumbleDuration`;
     rumbleWeak: `${TextUpper}RumbleWeak`;
     rumbleStrong: `${TextUpper}RumbleStrong`;
-  }
+  };
 };
 
 const textMap: TextMap = {
@@ -219,8 +234,8 @@ class OrderedTriggerList {
         throw new UnreachableCode();
 
       // TODO: be verbose now while this is fresh, but hide this output behind debug flags later.
-      const triggerFile =
-        (trigger: ProcessedTrigger) => trigger.filename ? `'${trigger.filename}'` : 'user override';
+      const triggerFile = (trigger: ProcessedTrigger) =>
+        trigger.filename ? `'${trigger.filename}'` : 'user override';
       const oldFile = triggerFile(oldTrigger);
       const newFile = triggerFile(trigger);
       console.log(`Overriding '${trigger.id}' from ${oldFile} with ${newFile}.`);
@@ -254,7 +269,8 @@ class TriggerOutputProxy {
   private constructor(
     public trigger: ProcessedTrigger,
     public displayLang: Lang,
-    public perTriggerAutoConfig?: PerTriggerAutoConfig) {
+    public perTriggerAutoConfig?: PerTriggerAutoConfig,
+  ) {
     this.outputStrings = trigger.outputStrings ?? {};
 
     if (trigger.id && perTriggerAutoConfig) {
@@ -290,7 +306,9 @@ class TriggerOutputProxy {
             target[property] = value;
             return true;
           }
-          console.error(`Invalid responseOutputStrings on trigger ${target.trigger.id ?? 'Unknown'}`);
+          console.error(
+            `Invalid responseOutputStrings on trigger ${target.trigger.id ?? 'Unknown'}`,
+          );
           return false;
         }
 
@@ -378,20 +396,21 @@ class TriggerOutputProxy {
   static makeOutput(
     trigger: ProcessedTrigger,
     displayLang: Lang,
-    perTriggerAutoConfig?: PerTriggerAutoConfig): Output {
+    perTriggerAutoConfig?: PerTriggerAutoConfig,
+  ): Output {
     // `Output` is the common type used for the trigger data interface to support arbitrary
     // string keys and always returns a string. However, TypeScript doesn't have good support
     // for the Proxy representing this structure so we need to cast Proxy => unknown => Output
-    return new TriggerOutputProxy(trigger, displayLang,
-      perTriggerAutoConfig) as unknown as Output;
+    return new TriggerOutputProxy(trigger, displayLang, perTriggerAutoConfig) as unknown as Output;
   }
 }
 
 export type RaidbossTriggerField =
-  TriggerField<RaidbossData, Matches, TriggerOutput<RaidbossData, Matches>> |
-  TriggerField<RaidbossData, Matches, PartialTriggerOutput<RaidbossData, Matches>>;
-export type RaidbossTriggerOutput = TriggerOutput<RaidbossData, Matches> |
-  PartialTriggerOutput<RaidbossData, Matches>;
+  | TriggerField<RaidbossData, Matches, TriggerOutput<RaidbossData, Matches>>
+  | TriggerField<RaidbossData, Matches, PartialTriggerOutput<RaidbossData, Matches>>;
+export type RaidbossTriggerOutput =
+  | TriggerOutput<RaidbossData, Matches>
+  | PartialTriggerOutput<RaidbossData, Matches>;
 
 const defaultOutput = TriggerOutputProxy.makeOutput({}, 'en');
 
@@ -437,7 +456,7 @@ const isWipe = (line: string): boolean => {
     wipeCactbotEcho.test(line) ||
     wipeEndEcho.test(line) ||
     wipeFadeIn.test(line)
-    )
+  )
     return true;
   return false;
 };
@@ -475,7 +494,8 @@ export class PopupText {
   constructor(
     protected options: RaidbossOptions,
     protected timelineLoader: TimelineLoader,
-    protected raidbossDataFiles: RaidbossFileData) {
+    protected raidbossDataFiles: RaidbossFileData,
+  ) {
     this.options = options;
     this.timelineLoader = timelineLoader;
     this.ProcessDataFiles(raidbossDataFiles);
@@ -485,7 +505,8 @@ export class PopupText {
     this.alarmText = document.getElementById('popup-text-alarm');
 
     this.parserLang = this.options.ParserLanguage ?? 'en';
-    this.displayLang = this.options.AlertsLanguage ?? this.options.DisplayLanguage ?? this.options.ParserLanguage ?? 'en';
+    this.displayLang = this.options.AlertsLanguage ?? this.options.DisplayLanguage ??
+      this.options.ParserLanguage ?? 'en';
 
     if (this.options.IsRemoteRaidboss) {
       this.ttsEngine = new BrowserTTSEngine(this.displayLang);
@@ -634,18 +655,25 @@ export class PopupText {
       }
       if (haveZoneId && set.zoneId === undefined) {
         const filename = set.filename ? `'${set.filename}'` : '(user file)';
-        console.error(`Trigger set has zoneId, but with nothing specified in ${filename}.  ` +
-                      `Did you misspell the ZoneId.ZoneName?`);
+        console.error(
+          `Trigger set has zoneId, but with nothing specified in ${filename}.  ` +
+            `Did you misspell the ZoneId.ZoneName?`,
+        );
         continue;
       }
 
       if (set.zoneId !== undefined) {
-        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId)))
+        if (
+          set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId &&
+          !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId))
+        )
           continue;
       } else if (set.zoneRegex) {
         let zoneRegex = set.zoneRegex;
         if (typeof zoneRegex !== 'object') {
-          console.error('zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex));
+          console.error(
+            'zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex),
+          );
           continue;
         } else if (!(zoneRegex instanceof RegExp)) {
           const parserLangRegex = zoneRegex[this.parserLang];
@@ -836,8 +864,11 @@ export class PopupText {
     delete trigger.localRegex;
     delete trigger.localNetRegex;
 
-    trigger.output = TriggerOutputProxy.makeOutput(trigger, this.options.DisplayLanguage,
-      this.options.PerTriggerAutoConfig);
+    trigger.output = TriggerOutputProxy.makeOutput(
+      trigger,
+      this.options.DisplayLanguage,
+      this.options.PerTriggerAutoConfig,
+    );
   }
 
   OnJobChange(e: PlayerChangedDetail): void {
@@ -937,7 +968,8 @@ export class PopupText {
   OnTrigger(
     trigger: ProcessedTrigger,
     matches: RegExpExecArray | null,
-    currentTime: number): void {
+    currentTime: number,
+  ): void {
     try {
       this.OnTriggerInternal(trigger, matches, currentTime);
     } catch (e) {
@@ -948,7 +980,8 @@ export class PopupText {
   OnTriggerInternal(
     trigger: ProcessedTrigger,
     matches: RegExpExecArray | null,
-    currentTime: number): void {
+    currentTime: number,
+  ): void {
     if (this._onTriggerInternalCheckSuppressed(trigger, currentTime))
       return;
 
@@ -1037,7 +1070,8 @@ export class PopupText {
   _onTriggerInternalGetHelper(
     trigger: ProcessedTrigger,
     matches: Matches,
-    now: number): TriggerHelper {
+    now: number,
+  ): TriggerHelper {
     const id = trigger.id;
     let options: PerTriggerOption = {};
     let config: TriggerAutoConfig = {};
@@ -1122,22 +1156,22 @@ export class PopupText {
   // other trigger functions running)
   _onTriggerInternalHelperDefaults(triggerHelper: TriggerHelper): void {
     // Load settings from triggerAutoConfig if they're set
-    triggerHelper.textAlertsEnabled =
-      triggerHelper.triggerAutoConfig.TextAlertsEnabled ?? triggerHelper.textAlertsEnabled;
-    triggerHelper.soundAlertsEnabled =
-      triggerHelper.triggerAutoConfig.SoundAlertsEnabled ?? triggerHelper.soundAlertsEnabled;
-    triggerHelper.spokenAlertsEnabled =
-      triggerHelper.triggerAutoConfig.SpokenAlertsEnabled ?? triggerHelper.spokenAlertsEnabled;
+    triggerHelper.textAlertsEnabled = triggerHelper.triggerAutoConfig.TextAlertsEnabled ??
+      triggerHelper.textAlertsEnabled;
+    triggerHelper.soundAlertsEnabled = triggerHelper.triggerAutoConfig.SoundAlertsEnabled ??
+      triggerHelper.soundAlertsEnabled;
+    triggerHelper.spokenAlertsEnabled = triggerHelper.triggerAutoConfig.SpokenAlertsEnabled ??
+      triggerHelper.spokenAlertsEnabled;
 
     // Load settings from triggerOptions if they're set
-    triggerHelper.textAlertsEnabled =
-      triggerHelper.triggerOptions.TextAlert ?? triggerHelper.textAlertsEnabled;
-    triggerHelper.soundAlertsEnabled =
-      triggerHelper.triggerOptions.SoundAlert ?? triggerHelper.soundAlertsEnabled;
-    triggerHelper.spokenAlertsEnabled =
-      triggerHelper.triggerOptions.SpeechAlert ?? triggerHelper.spokenAlertsEnabled;
-    triggerHelper.groupSpokenAlertsEnabled =
-      triggerHelper.triggerOptions.GroupSpeechAlert ?? triggerHelper.groupSpokenAlertsEnabled;
+    triggerHelper.textAlertsEnabled = triggerHelper.triggerOptions.TextAlert ??
+      triggerHelper.textAlertsEnabled;
+    triggerHelper.soundAlertsEnabled = triggerHelper.triggerOptions.SoundAlert ??
+      triggerHelper.soundAlertsEnabled;
+    triggerHelper.spokenAlertsEnabled = triggerHelper.triggerOptions.SpeechAlert ??
+      triggerHelper.spokenAlertsEnabled;
+    triggerHelper.groupSpokenAlertsEnabled = triggerHelper.triggerOptions.GroupSpeechAlert ??
+      triggerHelper.groupSpokenAlertsEnabled;
 
     // If the user has suppressed all output for the trigger, reflect that here
     if (triggerHelper.userSuppressedOutput) {
@@ -1159,11 +1193,14 @@ export class PopupText {
     triggerHelper.trigger?.preRun?.(
       this.data,
       triggerHelper.matches,
-      triggerHelper.output);
+      triggerHelper.output,
+    );
   }
 
   _onTriggerInternalDelaySeconds(triggerHelper: TriggerHelper): Promise<void> | undefined {
-    const delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
+    const delay = 'delaySeconds' in triggerHelper.trigger
+      ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds)
+      : 0;
     if (delay === undefined || delay === null || delay <= 0 || typeof delay !== 'number')
       return;
 
@@ -1194,7 +1231,9 @@ export class PopupText {
   }
 
   _onTriggerInternalSuppressSeconds(triggerHelper: TriggerHelper): void {
-    const suppress = 'suppressSeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.suppressSeconds) : 0;
+    const suppress = 'suppressSeconds' in triggerHelper.trigger
+      ? triggerHelper.valueOrFunction(triggerHelper.trigger.suppressSeconds)
+      : 0;
     if (typeof suppress !== 'number')
       return;
     if (triggerHelper.trigger.id && suppress > 0)
@@ -1209,7 +1248,8 @@ export class PopupText {
         promise = triggerHelper.trigger.promise(
           this.data,
           triggerHelper.matches,
-          triggerHelper.output);
+          triggerHelper.output,
+        );
 
         // Make sure we actually get a Promise back from the function
         if (Promise.resolve(promise) !== promise) {
@@ -1316,9 +1356,11 @@ export class PopupText {
   }
 
   _onTriggerInternalPlayAudio(triggerHelper: TriggerHelper): void {
-    if (triggerHelper.trigger.sound !== undefined &&
-        triggerHelper.soundUrl &&
-        soundStrs.includes(triggerHelper.soundUrl)) {
+    if (
+      triggerHelper.trigger.sound !== undefined &&
+      triggerHelper.soundUrl &&
+      soundStrs.includes(triggerHelper.soundUrl)
+    ) {
       const namedSound = triggerHelper.soundUrl + 'Sound';
       const namedSoundVolume = triggerHelper.soundUrl + 'SoundVolume';
       const sound = this.options[namedSound];
@@ -1365,8 +1407,10 @@ export class PopupText {
         cn: '然后',
         ko: ' 그리고 ',
       };
-      triggerHelper.ttsText = triggerHelper.ttsText.replace(/\s*(<[-=]|[=-]>)\s*/g,
-        arrowReplacement[this.displayLang]);
+      triggerHelper.ttsText = triggerHelper.ttsText.replace(
+        /\s*(<[-=]|[=-]>)\s*/g,
+        arrowReplacement[this.displayLang],
+      );
       this.ttsSay(triggerHelper.ttsText);
     } else if (triggerHelper.soundUrl && triggerHelper.soundAlertsEnabled) {
       this._playAudioFile(triggerHelper, triggerHelper.soundUrl, triggerHelper.soundVol);
@@ -1377,7 +1421,8 @@ export class PopupText {
     triggerHelper.trigger?.run?.(
       this.data,
       triggerHelper.matches,
-      triggerHelper.output);
+      triggerHelper.output,
+    );
   }
 
   _createTextFor(
@@ -1385,7 +1430,8 @@ export class PopupText {
     text: string,
     textType: Text,
     lowerTextKey: TextText,
-    duration: number): void {
+    duration: number,
+  ): void {
     // info-text
     const textElementClass = textType + '-text';
     if (textType !== 'info')
@@ -1417,8 +1463,7 @@ export class PopupText {
     // InfoSoundVolume
     const upperSoundVolume = textMap[textType].upperSoundVolume;
 
-    let textObj: RaidbossTriggerOutput =
-      triggerHelper.triggerOptions[upperTextKey];
+    let textObj: RaidbossTriggerOutput = triggerHelper.triggerOptions[upperTextKey];
     if (textObj === undefined && triggerHelper.trigger[lowerTextKey] !== undefined)
       textObj = triggerHelper.trigger[lowerTextKey];
     if (textObj === undefined && triggerHelper.response !== undefined)
@@ -1528,39 +1573,47 @@ export class PopupTextGenerator {
   }
 
   Info(text: string, currentTime: number): void {
-    this.popupText.OnTrigger({
-      infoText: text,
-      tts: text,
-    },
-    null,
-    currentTime);
+    this.popupText.OnTrigger(
+      {
+        infoText: text,
+        tts: text,
+      },
+      null,
+      currentTime,
+    );
   }
 
   Alert(text: string, currentTime: number): void {
-    this.popupText.OnTrigger({
-      alertText: text,
-      tts: text,
-    },
-    null,
-    currentTime);
+    this.popupText.OnTrigger(
+      {
+        alertText: text,
+        tts: text,
+      },
+      null,
+      currentTime,
+    );
   }
 
   Alarm(text: string, currentTime: number): void {
-    this.popupText.OnTrigger({
-      alarmText: text,
-      tts: text,
-    },
-    null,
-    currentTime);
+    this.popupText.OnTrigger(
+      {
+        alarmText: text,
+        tts: text,
+      },
+      null,
+      currentTime,
+    );
   }
 
   TTS(text: string, currentTime: number): void {
-    this.popupText.OnTrigger({
-      infoText: text,
-      tts: text,
-    },
-    null,
-    currentTime);
+    this.popupText.OnTrigger(
+      {
+        infoText: text,
+        tts: text,
+      },
+      null,
+      currentTime,
+    );
   }
 
   Trigger(trigger: ProcessedTrigger, matches: RegExpExecArray | null, currentTime: number): void {

@@ -90,16 +90,15 @@ const ceIds = {
 const limitCutHeadmarkers = ['004F', '0050', '0051', '0052'];
 
 // TODO: promote something like this to Conditions?
-const tankBusterOnParty = (ceName?: string) =>
-  (data: Data, matches: NetMatches['StartsUsing']) => {
-    if (ceName && data.ce !== ceName)
-      return false;
-    if (matches.target === data.me)
-      return true;
-    if (data.role !== 'healer')
-      return false;
-    return data.party.inParty(matches.target);
-  };
+const tankBusterOnParty = (ceName?: string) => (data: Data, matches: NetMatches['StartsUsing']) => {
+  if (ceName && data.ce !== ceName)
+    return false;
+  if (matches.target === data.me)
+    return true;
+  if (data.role !== 'healer')
+    return false;
+  return data.party.inParty(matches.target);
+};
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.Zadnor,

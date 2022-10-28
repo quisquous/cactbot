@@ -65,7 +65,7 @@ export class PLDComponent extends BaseComponent {
     this.reset();
   }
 
-  override onJobDetailUpdate(jobDetail: JobDetail['PLD']):void {
+  override onJobDetailUpdate(jobDetail: JobDetail['PLD']): void {
     const oath = jobDetail.oath.toString();
     if (this.oathBox.innerText === oath)
       return;
@@ -118,11 +118,17 @@ export class PLDComponent extends BaseComponent {
       case kAbility.FightOrFlight:
         this.fightOrFlightBox.duration = 25;
         this.fightOrFlightBox.threshold = 1000;
-        this.fightOrFlightBox.fg = computeBackgroundColorFrom(this.fightOrFlightBox, 'pld-color-fightorflight.active');
+        this.fightOrFlightBox.fg = computeBackgroundColorFrom(
+          this.fightOrFlightBox,
+          'pld-color-fightorflight.active',
+        );
         this.tid1 = window.setTimeout(() => {
           this.fightOrFlightBox.duration = 35;
           this.fightOrFlightBox.threshold = this.player.gcdSkill * 2 + 1;
-          this.fightOrFlightBox.fg = computeBackgroundColorFrom(this.fightOrFlightBox, 'pld-color-fightorflight');
+          this.fightOrFlightBox.fg = computeBackgroundColorFrom(
+            this.fightOrFlightBox,
+            'pld-color-fightorflight',
+          );
         }, 25000);
         break;
     }
@@ -149,7 +155,7 @@ export class PLDComponent extends BaseComponent {
     }
   }
 
-  override onStatChange({ gcdSkill } : { gcdSkill: number }): void {
+  override onStatChange({ gcdSkill }: { gcdSkill: number }): void {
     this.goreBox.valuescale = gcdSkill;
     this.goreBox.threshold = gcdSkill * 3 + 0.3;
     this.expiacionBox.valuescale = gcdSkill;
@@ -163,11 +169,13 @@ export class PLDComponent extends BaseComponent {
     this.expiacionBox.duration = 0;
     this.fightOrFlightBox.duration = 0;
     this.fightOrFlightBox.threshold = this.player.gcdSkill * 2 + 1;
-    this.fightOrFlightBox.fg = computeBackgroundColorFrom(this.fightOrFlightBox, 'pld-color-fightorflight');
+    this.fightOrFlightBox.fg = computeBackgroundColorFrom(
+      this.fightOrFlightBox,
+      'pld-color-fightorflight',
+    );
     window.clearTimeout(this.tid1);
     this.setAtonement(this.atonementBox, 0);
     this.setRequiescat(0);
     this.stacksContainer.classList.add('hide');
   }
 }
-

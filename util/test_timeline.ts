@@ -66,7 +66,7 @@ const testFile = async (
     ),
     timelineName,
     driftWarn,
-    driftFail
+    driftFail,
   );
 };
 
@@ -74,7 +74,7 @@ const testLineArray = async (
   lines: string[],
   timelineName: string,
   driftWarn: number,
-  driftFail: number
+  driftFail: number,
 ): Promise<void> => {
   const repo = new LogRepository();
   const lineEvents = lines.map((line) => ParseLine.parse(repo, line)).filter((l) =>
@@ -90,7 +90,7 @@ const testLineEvents = async (
   lines: LineEvent[],
   timelineName: string,
   driftWarn: number,
-  driftFail: number
+  driftFail: number,
 ): Promise<void> => {
   const triggersFile = findTriggersFile(timelineName);
   if (triggersFile === undefined) {
@@ -162,11 +162,11 @@ const testLineEvents = async (
   console.log('Timeline:');
 
   const sortedEvents = [
-    ...ui.events
+    ...ui.events,
   ].sort((l, r) => l.timestamp - r.timestamp);
 
   let sortedMissedEvents = [
-    ...allMissedEvents
+    ...allMissedEvents,
   ].sort((l, r) => l.time - r.time).map((event) => {
     return {
       sync: testTimeline.syncEnds.find((sync) => sync.id === event.id),
@@ -186,7 +186,7 @@ const testLineEvents = async (
         console.log(
           chalk.red(`      Missed | %s | %s`),
           `${lineNumber}`.padStart(4),
-          linesString[lineNumber - 1] ?? ''
+          linesString[lineNumber - 1] ?? '',
         );
       }
     }
@@ -197,14 +197,17 @@ const testLineEvents = async (
     const sign = invertedDelta > 0 ? '+' : ' ';
     const lowWindow = firedEvent.sync.start - firedEvent.sync.time;
     const highWindow = firedEvent.sync.end - firedEvent.sync.time;
-    const color =
-      delta < lowWindow - driftFail || delta > highWindow + driftFail ? 'red'
-      : delta < lowWindow - driftWarn || delta > highWindow + driftWarn ? 'redBright' : 'green';
+    const color = delta < lowWindow - driftFail || delta > highWindow + driftFail
+      ? 'red'
+      : delta < lowWindow - driftWarn || delta > highWindow + driftWarn
+      ? 'redBright'
+      : 'green';
     console.log(
       chalk[color](`%s | %s | %s`),
       `${sign}${invertedDelta.toFixed(3)}`.padStart(12),
       `${lineNumber}`.padStart(4),
-      lineStr);
+      lineStr,
+    );
   }
 
   if (sortedMissedEvents.length) {
@@ -213,7 +216,7 @@ const testLineEvents = async (
       console.log(
         chalk.red(`      Missed | %s | %s`),
         `${lineNumber}`.padStart(4),
-        linesString[lineNumber - 1] ?? ''
+        linesString[lineNumber - 1] ?? '',
       );
     }
   }
@@ -227,7 +230,8 @@ const testLineEvents = async (
     console.log(
       chalk.green(`%s | %s`),
       `${sign}${invertedDelta.toFixed(3)}`.padStart(12),
-      trigger.trigger.id);
+      trigger.trigger.id,
+    );
   }
 };
 
@@ -341,7 +345,7 @@ const testTimelineFileFunc = (args: TestTimelineNamespace): Promise<void> => {
         typeof start === 'string' && typeof end === 'string'
       )
         return testFile(file, start, end, timeline, driftWarn, driftFail);
-  });
+    });
 };
 
 const testTimelineReportFunc = (_args: TestTimelineNamespace): Promise<void> => {
@@ -370,11 +374,11 @@ const testTimelineFunc = (args: Namespace): Promise<void> => {
 
   return inquirer.prompt<FileOrReportInquirerType>(questions)
     .then((answers) => {
-    if (answers.fileOrReport === 'file' || args.file !== null)
-      return testTimelineFileFunc(args);
+      if (answers.fileOrReport === 'file' || args.file !== null)
+        return testTimelineFileFunc(args);
 
-    return testTimelineReportFunc(args);
-  });
+      return testTimelineReportFunc(args);
+    });
 };
 
 export const registerTestTimeline = (
@@ -394,71 +398,82 @@ export const registerTestTimeline = (
   const group = parser.addMutuallyExclusiveGroup();
   group.addArgument(['-r', '--report'], { help: 'The ID of an FFLogs report' });
   group.addArgument(
-      ['-f',
-      '--file'],
-      {
+    ['-f', '--file'],
+    {
       type: 'string',
       help: 'The path of the log file',
-      }
+    },
   );
 
   // Report arguments
   parser.addArgument(
-      ['-k',
-      '--key'], {
+    ['-k', '--key'],
+    {
       help: 'The FFLogs API key to use, from https://www.fflogs.com/accounts/changeuser',
       type: 'string',
-  });
+    },
+  );
   parser.addArgument(
-      ['-rf',
-      '--fight'], {
+    ['-rf', '--fight'],
+    {
       type: 'int',
       help: 'Fight ID of the report to use. Defaults to longest in the report',
-  });
+    },
+  );
 
   // Log file arguments
   parser.addArgument(
-      ['-s',
-      '--start'], {
-        type: 'string',
+    ['-s', '--start'],
+    {
+      type: 'string',
       help: 'Timestamp of the start, e.g. \'12:34:56.789',
-  });
+    },
+  );
   parser.addArgument(
-      ['-e', '--end'], { type: 'string', help: 'Timestamp of the end, e.g. \'12:34:56.789' });
+    ['-e', '--end'],
+    { type: 'string', help: 'Timestamp of the end, e.g. \'12:34:56.789' },
+  );
   parser.addArgument(
-      ['-lf',
-      '--search_fights'], {
+    ['-lf', '--search_fights'],
+    {
       nargs: '?',
       constant: -1,
       type: 'int',
-      help: 'Encounter in log to use, e.g. \'1\'. If no number is specified, returns a list of encounters.',
-  });
+      help:
+        'Encounter in log to use, e.g. \'1\'. If no number is specified, returns a list of encounters.',
+    },
+  );
 
   // Filtering arguments
   parser.addArgument(
-      ['-t',
-      '--timeline'], {
-        type: 'string',
+    ['-t', '--timeline'],
+    {
+      type: 'string',
       help: 'The filename of the timeline to test against, e.g. ultima_weapon_ultimate',
-  });
+    },
+  );
 
   // Output Format arguments
   parser.addArgument(
-      ['-df',
-      '--drift_failure'], {
+    ['-df', '--drift_failure'],
+    {
       nargs: '?',
       defaultValue: 1,
       type: 'float',
-      help: 'If an entry misses its timestamp by more than this value in seconds, it is displayed in red. Defaults to 1.',
-  });
+      help:
+        'If an entry misses its timestamp by more than this value in seconds, it is displayed in red. Defaults to 1.',
+    },
+  );
   parser.addArgument(
-      ['-dw',
-      '--drift_warning'], {
+    ['-dw', '--drift_warning'],
+    {
       nargs: '?',
       defaultValue: 0.2,
       type: 'float',
-      help: 'If an entry misses its timestamp by more than this value in seconds, it is displayed in yellow. Defaults to 0.2.',
-  });
+      help:
+        'If an entry misses its timestamp by more than this value in seconds, it is displayed in yellow. Defaults to 0.2.',
+    },
+  );
 };
 
 class TestTimeline extends Timeline {
@@ -485,8 +500,10 @@ class TestTimeline extends Timeline {
     // Because TS won't allow the if below to narrow the type, since it's not const
     const syncMatchTyped = syncMatch;
 
-    if (syncMatchTyped !== undefined &&
-      this.ui !== undefined) {
+    if (
+      syncMatchTyped !== undefined &&
+      this.ui !== undefined
+    ) {
       const origEvent = this.events.find((e) => e.id === syncMatchTyped.id);
 
       // Make sure we don't log multiple syncs for the same event ID and timestamp
@@ -558,7 +575,9 @@ class TestTimelineUI extends TimelineUI {
     matches: RegExpExecArray,
     currentTime: number,
   ): void {
-    const foundText = this.timeline.texts.find((text) => text.type === 'trigger' && text.trigger === trigger);
+    const foundText = this.timeline.texts.find((text) =>
+      text.type === 'trigger' && text.trigger === trigger
+    );
     if (!foundText) {
       console.error(chalk.red(`Trigger fired ${trigger.id ?? '???'} with no matched texts entry!`));
       return;

@@ -193,8 +193,8 @@ export type BaseTriggerSet<Data extends RaidbossData> = {
 export type TriggerSet<Data extends RaidbossData> =
   & BaseTriggerSet<Data>
   & (RequiredFieldsAsUnion<Data> extends RequiredFieldsAsUnion<RaidbossData> ? {
-    initData?: DataInitializeFunc<Data>;
-  }
+      initData?: DataInitializeFunc<Data>;
+    }
     : {
       initData: DataInitializeFunc<Data>;
     });

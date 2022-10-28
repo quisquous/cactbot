@@ -1445,7 +1445,7 @@ const flattenTimeline = (
 const userFileHandler: UserFileCallback = (
   name: string,
   files: { [filename: string]: string },
-  baseOptions: (BaseOptions & Partial<RaidbossOptions>),
+  baseOptions: BaseOptions & Partial<RaidbossOptions>,
   basePath: string,
 ) => {
   // TODO: Rewrite user_config to be templated on option type so that this function knows

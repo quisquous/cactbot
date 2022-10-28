@@ -2,7 +2,7 @@ import { UnreachableCode } from '../../../../resources/not_reached';
 import { EventResponses, LogEvent } from '../../../../types/event';
 import { Matches } from '../../../../types/net_matches';
 import { LooseTrigger, RaidbossFileData } from '../../../../types/trigger';
-import { TriggerHelper, Text, TextText, ProcessedTrigger } from '../../popup-text';
+import { ProcessedTrigger, Text, TextText, TriggerHelper } from '../../popup-text';
 import { RaidbossOptions } from '../../raidboss_options';
 import { TimelineLoader } from '../../timeline';
 import EmulatorCommon, { DataType } from '../EmulatorCommon';
@@ -92,17 +92,20 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
   regexCache: LineRegExpCache;
 
-  public callback?: (log: LineEvent,
+  public callback?: (
+    log: LineEvent,
     triggerHelper: EmulatorTriggerHelper | undefined,
     currentTriggerStatus: ResolverStatus,
-    finalData: DataType) => void;
+    finalData: DataType,
+  ) => void;
 
   constructor(
     options: RaidbossOptions,
     timelineLoader: TimelineLoader,
-    raidbossFileData: RaidbossFileData) {
+    raidbossFileData: RaidbossFileData,
+  ) {
     super(options, timelineLoader, raidbossFileData);
-    this.regexCache = new Map;
+    this.regexCache = new Map();
     this.ttsSay = (_text: string) => {
       return;
     };
@@ -128,7 +131,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   async onEmulatorLog(logs: LineEvent[], getCurrentLogLine: () => LineEvent): Promise<void> {
     for (const logObj of logs) {
       if (!this.regexCache.has(logObj))
-        this.regexCache.set(logObj, new Map);
+        this.regexCache.set(logObj, new Map());
       const lineCache = this.regexCache.get(logObj);
       if (!lineCache)
         continue;
@@ -236,7 +239,9 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   ): Promise<void> | undefined {
     // Can't inherit the default logic for delay since we don't
     // want to delay for mass processing of the timeline
-    const delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
+    const delay = 'delaySeconds' in triggerHelper.trigger
+      ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds)
+      : 0;
     if (typeof delay === 'number') {
       if (triggerHelper.resolver)
         triggerHelper.resolver.status.delay = delay;
@@ -261,9 +266,11 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
   override _onTriggerInternalTTS(triggerHelper: EmulatorTriggerHelper): void {
     super._onTriggerInternalTTS(triggerHelper);
-    if (triggerHelper.ttsText !== undefined &&
+    if (
+      triggerHelper.ttsText !== undefined &&
       triggerHelper.resolver &&
-      triggerHelper.resolver.status.responseType === undefined) {
+      triggerHelper.resolver.status.responseType === undefined
+    ) {
       triggerHelper.resolver.status.responseType = 'tts';
       triggerHelper.resolver.status.responseLabel = triggerHelper.ttsText;
     }
@@ -277,19 +284,23 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     });
   }
 
-  override _makeTextElement(triggerHelper: EmulatorTriggerHelper,
+  override _makeTextElement(
+    triggerHelper: EmulatorTriggerHelper,
     text: string,
-    _className: string): HTMLElement {
+    _className: string,
+  ): HTMLElement {
     if (triggerHelper.resolver)
       triggerHelper.resolver.status.result ??= text;
     return document.createElement('div');
   }
 
-  override _createTextFor(triggerHelper: EmulatorTriggerHelper,
+  override _createTextFor(
+    triggerHelper: EmulatorTriggerHelper,
     text: string,
     textType: Text,
     _lowerTextKey: TextText,
-    _duration: number): void {
+    _duration: number,
+  ): void {
     // No-op for functionality, but store off this info for feedback
     if (triggerHelper.resolver) {
       triggerHelper.resolver.status.responseType = textType;
@@ -297,9 +308,11 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     }
   }
 
-  override _playAudioFile(triggerHelper: EmulatorTriggerHelper,
+  override _playAudioFile(
+    triggerHelper: EmulatorTriggerHelper,
     url: string,
-    _volume: number): void {
+    _volume: number,
+  ): void {
     // No-op for functionality, but store off this info for feedback
 
     if (triggerHelper.resolver) {
@@ -307,7 +320,8 @@ export default class PopupTextAnalysis extends StubbedPopupText {
       if (triggerHelper.resolver.status.responseType) {
         if (
           ['info', 'alert', 'alarm'].includes(triggerHelper.resolver.status.responseType) &&
-          [this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound].includes(url))
+          [this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound].includes(url)
+        )
           return;
       }
       triggerHelper.resolver.status.responseType = 'audiofile';
@@ -318,7 +332,8 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   override _onTriggerInternalGetHelper(
     trigger: ProcessedTrigger,
     matches: Matches,
-    now: number): EmulatorTriggerHelper {
+    now: number,
+  ): EmulatorTriggerHelper {
     const ret: EmulatorTriggerHelper = {
       ...super._onTriggerInternalGetHelper(trigger, matches, now),
     };

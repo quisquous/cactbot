@@ -34,7 +34,7 @@ export type LogDefinition = {
   // A list of fields that are ok to be blank (or have invalid ids).
   blankFields?: readonly number[];
   // This field and any field after will be treated as optional when creating capturing regexes.
-  firstOptionalField: (number | undefined);
+  firstOptionalField: number | undefined;
 };
 export type LogDefinitionMap = { [name: string]: LogDefinition };
 type LogDefinitionVersionMap = { [version: string]: LogDefinitionMap };

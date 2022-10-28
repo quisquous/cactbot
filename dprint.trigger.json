@@ -1,0 +1,12 @@
+{
+  "$schema": "https://dprint.dev/schemas/v0.json",
+  "includes": [
+    "./ui/oopsyraidsy/data/**/*.{ts,cjs,mjs,js}",
+    "./ui/raidboss/data/**/*.{ts,cjs,mjs,js}"
+  ],
+  "extends": "./dprint.base.json",
+  "lineWidth": 300,
+  "plugins": [
+    "https://plugins.dprint.dev/typescript-0.75.0.wasm"
+  ]
+}
