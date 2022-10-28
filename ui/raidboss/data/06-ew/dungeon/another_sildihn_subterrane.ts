@@ -979,7 +979,7 @@ const triggerSet: TriggerSet<Data> = {
       // Using Call of the Portal (CCC) expiration for trigger
       type: 'LosesEffect',
       netRegex: { effectId: 'CCC' },
-      condition: Conditions.targetIsYou!(),
+      condition: Conditions.targetIsYou(),
       delaySeconds: 0.75, // Delay for animation lock from teleport to complete
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -989,14 +989,14 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Banishment Second Ward',
+      id: 'ASS Banishment Bait Second Ward',
       // After the second teleport and stun expiring, there is 2s before the
       // the last ward casts Infern Wave that must be baited
       // Rite of Passage (CCD) debuff is tied to the player's teleport going
       // off
       type: 'LosesEffect',
       netRegex: { effectId: 'CCD' },
-      condition: Conditions.targetIsYou!(),
+      condition: Conditions.targetIsYou(),
       delaySeconds: 2, // Delay for stun to complete
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
