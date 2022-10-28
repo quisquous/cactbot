@@ -1,24 +1,24 @@
 Options.Triggers.push({
-    zoneId: ZoneId.TheForbiddenLandEurekaPyros,
-    resetWhenOutOfCombat: false,
-    triggers: [
-        {
-            id: 'Eureka Pyros Skoll Hoarhound Halo',
-            type: 'StartsUsing',
-            netRegex: { id: '36E0', source: 'Skoll', capture: false },
-            response: Responses.goFrontOrSides(),
-        },
-        {
-            id: 'Eureka Pyros Skoll Heavensward Howl',
-            type: 'StartsUsing',
-            netRegex: { id: '46BD', source: 'Skoll', capture: false },
-            response: Responses.awayFromFront(),
-        },
-        {
-            id: 'Eureka Pyros Falling Asleep',
-            type: 'GameLog',
-            netRegex: { line: '7 minutes have elapsed since your last activity..*?', capture: false },
-            response: Responses.wakeUp(),
-        },
-    ],
+  zoneId: ZoneId.TheForbiddenLandEurekaPyros,
+  resetWhenOutOfCombat: false,
+  triggers: [
+    {
+      id: 'Eureka Pyros Skoll Hoarhound Halo',
+      type: 'StartsUsing',
+      netRegex: { id: '36E0', source: 'Skoll', capture: false },
+      response: Responses.goFrontOrSides(),
+    },
+    {
+      id: 'Eureka Pyros Skoll Heavensward Howl',
+      type: 'StartsUsing',
+      netRegex: { id: '46BD', source: 'Skoll', capture: false },
+      response: Responses.awayFromFront(),
+    },
+    {
+      id: 'Eureka Pyros Falling Asleep',
+      type: 'GameLog',
+      netRegex: { line: '7 minutes have elapsed since your last activity..*?', capture: false },
+      response: Responses.wakeUp(),
+    },
+  ],
 });
