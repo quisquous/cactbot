@@ -58,7 +58,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Ghimlyt Dark Magitek Slash',
       type: 'HeadMarker',
       netRegex: { id: ['00A7', '00A8'] },
-      infoText: (_data, matches, output) => matches.id === '00A7' ? output.left!() : output.right!(),
+      infoText: (_data, matches, output) =>
+        matches.id === '00A7' ? output.left!() : output.right!(),
       outputStrings: {
         left: {
           en: 'Rotate left',

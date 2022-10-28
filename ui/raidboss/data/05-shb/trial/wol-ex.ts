@@ -301,7 +301,11 @@ const triggerSet: TriggerSet<Data> = {
       id: 'WOLEx Fatal Cleave / Blade Of Shadow',
       type: 'StartsUsing',
       // Either tank buster, but don't be too noisy
-      netRegex: { source: ['Spectral Warrior', 'Spectral Dark Knight'], id: '515[47]', capture: false },
+      netRegex: {
+        source: ['Spectral Warrior', 'Spectral Dark Knight'],
+        id: '515[47]',
+        capture: false,
+      },
       suppressSeconds: 2,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -311,7 +315,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'WOLEx Berserk / Deep Darkside',
       type: 'StartsUsing',
-      netRegex: { source: ['Spectral Warrior', 'Spectral Dark Knight'], id: '515[68]', capture: false },
+      netRegex: {
+        source: ['Spectral Warrior', 'Spectral Dark Knight'],
+        id: '515[68]',
+        capture: false,
+      },
       condition: (data) => data.CanSilence(),
       suppressSeconds: 2,
       alarmText: (_data, _matches, output) => output.text!(),

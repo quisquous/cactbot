@@ -884,9 +884,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
-        '724P-Operated Superior Flight Unit \\(A-Lpha\\)': '724P : avec module de vol renforcé [A-lpha]',
-        '767P-Operated Superior Flight Unit \\(B-Eta\\)': '767P : avec module de vol renforcé [B-êta]',
-        '772P-Operated Superior Flight Unit \\(C-Hi\\)': '772P : avec module de vol renforcé [C-hi]',
+        '724P-Operated Superior Flight Unit \\(A-Lpha\\)':
+          '724P : avec module de vol renforcé [A-lpha]',
+        '767P-Operated Superior Flight Unit \\(B-Eta\\)':
+          '767P : avec module de vol renforcé [B-êta]',
+        '772P-Operated Superior Flight Unit \\(C-Hi\\)':
+          '772P : avec module de vol renforcé [C-hi]',
         '813P-Operated Aegis Unit': '813P : avec unité rempart',
         '905P-Operated Heavy Artillery Unit': '905P : avec unité terrestre lourde',
         'Compound 2P': '2P : amalgame',

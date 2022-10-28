@@ -85,7 +85,9 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         const safeQuadrants = new Set(directions);
         for (const stone of data.ruby1TopazStones)
-          safeQuadrants.delete(convertCoordinatesToDirection(parseFloat(stone.targetX), parseFloat(stone.targetY)));
+          safeQuadrants.delete(
+            convertCoordinatesToDirection(parseFloat(stone.targetX), parseFloat(stone.targetY)),
+          );
 
         const safe = Array.from(safeQuadrants);
         const [safe0, safe1] = safe;
@@ -103,7 +105,9 @@ const triggerSet: TriggerSet<Data> = {
           const stoneX = parseFloat(stone.targetX);
           const stoneY = parseFloat(stone.targetY);
           if (Math.abs(stoneX - 100) < 5 && Math.abs(stoneY - 100) < 5)
-            return output.safeCorner!({ dir1: output[convertCoordinatesToDirection(stoneX, stoneY)]!() });
+            return output.safeCorner!({
+              dir1: output[convertCoordinatesToDirection(stoneX, stoneY)]!(),
+            });
         }
         return;
       },
@@ -171,7 +175,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 7703: 3.7s, 7704: 6.2s, 7705: 8.7s, 7706: 11.2s
       netRegex: { id: '770[3456]', source: 'Proto-Carbuncle' },
-      run: (data, matches) => data.topazClusterCombatantIdToAbilityId[parseInt(matches.sourceId, 16)] = matches.id,
+      run: (data, matches) =>
+        data.topazClusterCombatantIdToAbilityId[parseInt(matches.sourceId, 16)] = matches.id,
     },
     {
       id: 'P5S Ruby 3 Topaz Cluster',
@@ -232,7 +237,12 @@ const triggerSet: TriggerSet<Data> = {
 
         if (safeDirs.length !== 4)
           return;
-        return output.text!({ dir1: safeDirs[0], dir2: safeDirs[1], dir3: safeDirs[2], dir4: safeDirs[3] });
+        return output.text!({
+          dir1: safeDirs[0],
+          dir2: safeDirs[1],
+          dir3: safeDirs[2],
+          dir4: safeDirs[3],
+        });
       },
       outputStrings: {
         NE: Outputs.dirNE,

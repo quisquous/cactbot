@@ -497,7 +497,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: { id: '00(?:C[A-F]|D0|D1)' },
       condition: Conditions.targetIsYou(),
-      infoText: (_data, matches, output) => output.text!({ num: parseInt(matches.id, 16) - parseInt('00CA', 16) + 1 }),
+      infoText: (_data, matches, output) =>
+        output.text!({ num: parseInt(matches.id, 16) - parseInt('00CA', 16) + 1 }),
       outputStrings: {
         text: {
           en: '${num}',

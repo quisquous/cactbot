@@ -68,7 +68,9 @@ const triggerSet: TriggerSet<Data> = {
 
         // we need to filter for the Ifrit with the highest ID
         // since that one is always the safe spot.
-        const currentHighestCombatant = combatantData.combatants.sort((a, b) => (a.ID ?? 0) - (b.ID ?? 0)).pop();
+        const currentHighestCombatant = combatantData.combatants.sort((a, b) =>
+          (a.ID ?? 0) - (b.ID ?? 0)
+        ).pop();
 
         // all variation ranges for all the 9 ball positions for the kicking actors
         // north      x: 96-104   y: 85-93
