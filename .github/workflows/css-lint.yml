@@ -8,13 +8,11 @@ on:
       - '*.json'
       - '**/*.css'
       - '.github/workflows/css-lint.yml'
-      - '.github/actions/setup-js-env/'
   pull_request:
     paths:
       - '*.json'
       - '**/*.css'
       - '.github/workflows/css-lint.yml'
-      - '.github/actions/setup-js-env/'
 
 jobs:
   stylelint:

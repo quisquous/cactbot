@@ -10,7 +10,6 @@ on:
       - 'ui/oopsyraidsy/**'
       - 'util/**'
       - '.github/workflows/post-process.yml'
-      - '.github/actions/setup-js-env/'
   pull_request:
     paths:
       - 'resources/**'
@@ -18,7 +17,6 @@ on:
       - 'ui/oopsyraidsy/**'
       - 'util/**'
       - '.github/workflows/post-process.yml'
-      - '.github/actions/setup-js-env/'
 
 jobs:
   postprocess:
