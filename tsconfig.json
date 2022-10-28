@@ -42,6 +42,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "inlineSources": true,
+    "useDefineForClassFields": false,
     //    "noPropertyAccessFromIndexSignature": false, // used by trigger output strings
     "forceConsistentCasingInFileNames": true
   },
