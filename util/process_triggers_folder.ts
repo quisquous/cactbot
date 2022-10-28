@@ -1,9 +1,9 @@
+import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import process from 'process';
 import * as url from 'url';
 
-import eslint from 'eslint';
 import * as tsNode from 'ts-node';
 
 import UserConfig from '../resources/user_config';
@@ -75,46 +75,6 @@ const changeExportToPush = (lines: string[]) => {
   return lines;
 };
 
-const lint = async (filename: string, lines: string[]) => {
-  const dprintLinter = new eslint.ESLint({ fix: true });
-
-  const config = JSON.parse(
-    JSON.stringify(await dprintLinter.calculateConfigForFile(filename)),
-  ) as eslint.Linter.Config<eslint.Linter.RulesRecord>;
-  config.plugins = config.plugins?.filter((p) => p !== 'dprint');
-  delete config?.rules?.['dprint/dprint'];
-
-  // Run without dprint first, because dprint is slow on unformatted files.
-  const linter = new eslint.ESLint({
-    fix: true,
-    useEslintrc: false,
-    baseConfig: config,
-  });
-  const contents = lines.join('\n');
-  const eslintResults = await linter.lintText(contents, { filePath: filename });
-  const eslintLintResult = eslintResults[0];
-  if (
-    eslintLintResult === undefined ||
-    eslintLintResult.output === undefined ||
-    eslintLintResult.output.length === 0 ||
-    eslintLintResult.errorCount > 0
-  ) {
-    console.error('Lint (eslint) ran with errors, aborting.');
-    return eslintLintResult;
-  }
-
-  // Run again with dprint to get a finalized version.
-  const results = await dprintLinter.lintText(eslintLintResult.output, { filePath: filename });
-  const lintResult = results[0];
-  // If dprint didn't have anything to change, the output is undefined, so return the results
-  // of the previous lint.
-  if (lintResult?.output === undefined || lintResult?.output.length === 0)
-    return eslintLintResult;
-
-  // There's only one result from lintText, as per documentation.
-  return lintResult;
-};
-
 const tsc = tsNode.create({
   transpileOnly: true,
   project: path.join(__dirname, '../tsconfig.json'),
@@ -133,41 +93,8 @@ const processFile = async (originalFilename: string) => {
   lines = changeExportToPush(lines);
   lines = removeSourceMap(lines);
   lines = removeExportOnDeclarations(lines);
-  const lintResult = await lint(originalFilename.replace('.ts', '.js'), lines);
-  if (!lintResult) {
-    console.error('${filename}: No result from linting?');
-    process.exit(2);
-  }
 
-  const ignoreRules = [
-    // ES2020 -> ES2019 rewriting of optional chaining (i.e. `?.`) turns into this.
-    'no-cond-assign',
-    // Often tsc will combine lines (even across existing linebreaks) violating this.
-    'max-len',
-  ];
-  const messages = lintResult.messages.filter((message) => {
-    if (message.ruleId === null)
-      return true;
-    return !ignoreRules.includes(message.ruleId);
-  });
-
-  // lintResult.errorCount exists, but we need a recount after ignoring some rules.
-  const numErrors = messages.filter((x) => x.severity === 2).length;
-  const numWarnings = messages.filter((x) => x.severity === 1).length;
-
-  if (numErrors > 0) {
-    console.error(`${originalFilename}: Lint ran with errors: ${JSON.stringify(messages)}`);
-    process.exit(3);
-  } else if (numWarnings > 0) {
-    // Print warnings, but don't stop.
-    console.error(`${originalFilename}: Lint ran with warnings: ${JSON.stringify(messages)}`);
-  }
-
-  const contents = lintResult.output;
-  if (contents === undefined) {
-    console.error(`${originalFilename}: Lint returned no contents`);
-    process.exit(4);
-  }
+  const contents = lines.join('\n');
 
   // Validate that our regex search/replace created a valid user file that can be eval'd.
   try {
@@ -207,6 +134,9 @@ const processAllFiles = async (root: string) => {
     if (filename.endsWith('.js') || filename.endsWith('.ts'))
       await processFile(filename);
   });
+
+  execSync('npx dprint fmt ./dist/**/*.js');
+
   process.exit(0);
 };
 
