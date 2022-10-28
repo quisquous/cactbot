@@ -743,14 +743,14 @@ const triggerSet: TriggerSet<Data> = {
         const x = orangeBrands.indexOf(myNumToOrange[myNum]);
         const y = blueBrands.indexOf(myNumToBlue[myNum]) + 4;
         const indexToCardinal: { [num: number]: string } = {
-          0: 'north',
-          1: 'north',
-          2: 'south',
-          3: 'south',
-          4: 'west',
-          5: 'west',
-          6: 'east',
-          7: 'east',
+          0: 'south',
+          1: 'south',
+          2: 'north',
+          3: 'north',
+          4: 'east',
+          5: 'east',
+          6: 'west',
+          7: 'west',
         };
 
         const cardX = indexToCardinal[x];
@@ -859,15 +859,23 @@ const triggerSet: TriggerSet<Data> = {
         return 0;
       },
       alertText: (data, matches, output) => {
-        if (data.arcaneFontCounter === 3 && matches.count.match(/1C[6-9]/)) {
+        if (data.arcaneFontCounter === 3 && matches.count.match(/1C[6-8]/)) {
           // Expected Blue and count is Blue
           data.arcaneFontCounter = 2;
           return output.cutBlueNum!({ num: data.myFlame });
         }
-        if (data.arcaneFontCounter === 2 && matches.count.match(/1C[2-5]/)) {
+        if (data.arcaneFontCounter === 2 && matches.count.match(/1C[2-4]/)) {
           // Expected Orange and count is Orange
           data.arcaneFontCounter = 3;
           return output.cutOrangeNum!({ num: data.myFlame });
+        }
+
+        // Exception for First Flame on second set
+        if (data.myFlame === 1) {
+          if (data.arcaneFontCounter === 3 && matches.count === '1C5')
+            return output.cutBlueNum!({ num: data.myFlame });
+          if (data.arcaneFontCounter === 2 && matches.count === '1C9')
+            return output.cutOrangeNum!({ num: data.myFlame });
         }
         // Unexpected result, mechanic is likely failed at this point
       },
