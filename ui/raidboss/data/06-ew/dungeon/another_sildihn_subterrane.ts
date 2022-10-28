@@ -414,12 +414,10 @@ const triggerSet: TriggerSet<Data> = {
         if (!gladiator)
           return;
         data.mightCasts.push(gladiator);
-        console.error(`Rush of Might 1: Added Combatant at (${gladiator.PosX}, ${gladiator.PosY})`);
       },
       infoText: (data, _matches, output) => {
         if (data.mightCasts.length !== 2)
           return;
-        console.error(`Rush of Might 1: Received two gladiators, executing.`);
         const mirage1 = data.mightCasts[0];
         const mirage2 = data.mightCasts[1];
 
