@@ -141,7 +141,7 @@ const triggerSet: TriggerSet<Data> = {
       // CE3 Fizzling Suds (Lightning / Intercardinal)
       type: 'LosesEffect',
       netRegex: { effectId: 'CE[1-3]', target: 'Silkie', capture: false },
-      run: (data, _matches) => delete data.suds,
+      run: (data) => delete data.suds,
     },
     {
       id: 'ASS Slippery Soap',
