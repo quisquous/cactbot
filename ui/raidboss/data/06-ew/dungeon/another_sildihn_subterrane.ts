@@ -779,7 +779,6 @@ const triggerSet: TriggerSet<Data> = {
         brandNum: {
           en: 'Brand ${num}',
           de: 'Kryptogramm ${num}',
-
         },
         northwest: Outputs.northwest,
         northeast: Outputs.northeast,
