@@ -144,7 +144,7 @@ hideall "--sync--"
 1302.6 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:766C:/
 1311.5 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
 1318.9 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7671:/
-1321.0 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7679:/ window 15,5 
+1321.0 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7679:/ window 15,5
 1331.0 "Flash of Steel (enrage)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7679:/
 # There's probably a second, instant cast enrage version of the enrage after
 
