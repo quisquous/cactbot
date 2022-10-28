@@ -103,22 +103,31 @@ Options.Triggers.push({
             response: Responses.goRight(),
         },
         {
-            id: 'ASS Suds Collect',
-            // 7757 Bracing Suds (Wind / Donut)
-            // 7758 Chilling Suds (Ice / Cardinal)
-            // 7759 Fizzling Suds (Lightning / Intercardinal)
-            type: 'StartsUsing',
-            netRegex: { id: ['7757', '7758', '7759'], source: 'Silkie' },
-            run: (data, matches) => data.suds = matches.id,
+            id: 'ASS Suds Gain',
+            // CE1 Bracing Suds (Wind / Donut)
+            // CE2 Chilling Suds (Ice / Cardinal)
+            // CE3 Fizzling Suds (Lightning / Intercardinal)
+            type: 'GainsEffect',
+            netRegex: { effectId: 'CE[1-3]', target: 'Silkie' },
+            run: (data, matches) => data.suds = matches.effectId,
+        },
+        {
+            id: 'ASS Suds Lose',
+            // CE1 Bracing Suds (Wind / Donut)
+            // CE2 Chilling Suds (Ice / Cardinal)
+            // CE3 Fizzling Suds (Lightning / Intercardinal)
+            type: 'LosesEffect',
+            netRegex: { effectId: 'CE[1-3]', target: 'Silkie', capture: false },
+            run: (data) => delete data.suds,
         },
         {
             id: 'ASS Slippery Soap',
             // Happens 5 times in the encounter
             type: 'Ability',
-            netRegex: { id: '79FB', source: 'Silkie' },
+            netRegex: { id: '79FB', source: ['Silkie', 'Eastern Ewer'] },
             preRun: (data) => data.soapCounter++,
             alertText: (data, matches, output) => {
-                if (data.suds === '7757') {
+                if (data.suds === 'CE1') {
                     // Does not happen on first or third Slippery Soap
                     if (matches.target === data.me)
                         return output.getBehindPartyKnockback();
@@ -164,7 +173,7 @@ Options.Triggers.push({
             id: 'ASS Slippery Soap with Chilling Suds',
             type: 'StartsUsing',
             netRegex: { id: '775E', source: 'Silkie' },
-            condition: (data) => data.suds === '7758',
+            condition: (data) => data.suds === 'CE2',
             delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 1,
             response: Responses.moveAround(),
         },
@@ -174,11 +183,11 @@ Options.Triggers.push({
             netRegex: { id: '775E', source: 'Silkie', capture: false },
             infoText: (data, _matches, output) => {
                 switch (data.suds) {
-                    case '7757':
+                    case 'CE1':
                         return output.getUnder();
-                    case '7758':
+                    case 'CE2':
                         return output.intercards();
-                    case '7759':
+                    case 'CE3':
                         return output.spreadCardinals();
                 }
             },
@@ -230,10 +239,14 @@ Options.Triggers.push({
             netRegex: { id: '7767', source: 'Silkie', capture: false },
             infoText: (data, _matches, output) => {
                 switch (data.suds) {
-                    case '7757':
+                    case 'CE1':
                         return output.getUnder();
-                    case '7758':
+                    case 'CE2':
                         return output.intercards();
+                    default:
+                        if (data.soapCounter === 1)
+                            return output.underPuff();
+                        return output.avoidPuffs();
                 }
             },
             outputStrings: {
@@ -245,6 +258,12 @@ Options.Triggers.push({
                     ja: '斜めへ',
                     cn: '四角',
                     ko: '대각선 쪽으로',
+                },
+                underPuff: {
+                    en: 'Under green puff',
+                },
+                avoidPuffs: {
+                    en: 'Avoid puff aoes',
                 },
             },
         },
