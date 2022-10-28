@@ -8,11 +8,13 @@ on:
       - '*.json'
       - '**/*.md'
       - '.github/workflows/markdown-lint.yml'
+      - '.github/actions/setup-js-env/'
   pull_request:
     paths:
       - '*.json'
       - '**/*.md'
       - '.github/workflows/markdown-lint.yml'
+      - '.github/actions/setup-js-env/'
 
 jobs:
   markdownlint:

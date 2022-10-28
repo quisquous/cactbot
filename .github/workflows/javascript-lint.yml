@@ -11,6 +11,7 @@ on:
       - '**/*.mjs'
       - '**/*.json'
       - '.github/workflows/javascript-lint.yml'
+      - '.github/actions/setup-js-env/'
   pull_request:
     paths:
       - '**/*.js'
@@ -19,6 +20,7 @@ on:
       - '**/*.mjs'
       - '**/*.json'
       - '.github/workflows/javascript-lint.yml'
+      - '.github/actions/setup-js-env/'
 
 jobs:
   eslint:
