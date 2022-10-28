@@ -135,7 +135,8 @@ const processAllFiles = async (root: string) => {
       await processFile(filename);
   });
 
-  await exec('npx dprint fmt ./dist/**/*.js');
+  // the --excludes here is to override excludes in config file, doesn't have any meanings.
+  await exec('npx dprint fmt ./dist/**/*.js --excludes **/data');
 
   process.exit(0);
 };
