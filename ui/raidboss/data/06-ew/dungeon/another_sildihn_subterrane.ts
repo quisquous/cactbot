@@ -458,7 +458,7 @@ const triggerSet: TriggerSet<Data> = {
         // Round values to be easier to read:
         //          1     2     3
         // North [-270, -276, -282]
-        // South [-273, -267, -261] 
+        // South [-273, -267, -261]
         if (roundY === -270 || roundY === -276 || roundY === -282) {
           // Get the x value of farthest north mirage
           const x = y1 < y2 ? x1 : x2;
