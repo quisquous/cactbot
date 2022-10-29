@@ -2769,7 +2769,10 @@ const triggerSet: TriggerSet<Data> = {
             break;
         }
 
-        if (data.firstGigaflare !== undefined && data.secondGigaflare !== undefined && data.centerGigaflare !== undefined) {
+        if (
+          data.firstGigaflare !== undefined && data.secondGigaflare !== undefined &&
+          data.centerGigaflare !== undefined
+        ) {
           // Store temporary copies and remove data for next run
           const first = data.firstGigaflare;
           const second = data.secondGigaflare;
@@ -2799,7 +2802,11 @@ const triggerSet: TriggerSet<Data> = {
           // Get rotation of first gigaflare relative to boss
           let start;
           // Case for if Front since data for heading is not exact
-          if (((Math.round((Math.abs(center[2]) + Math.abs(Math.atan2(first[0], first[1]))) * 180 / Math.PI)) % 180) === 0) {
+          if (
+            ((Math.round(
+              (Math.abs(center[2]) + Math.abs(Math.atan2(first[0], first[1]))) * 180 / Math.PI
+            )) % 180) === 0
+          ) {
             start = output.front!();
           } else {
             // Gigaflare was not in line with boss facing,
