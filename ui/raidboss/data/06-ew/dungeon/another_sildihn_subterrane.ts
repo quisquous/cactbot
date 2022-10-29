@@ -479,12 +479,10 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
 
-        if (line1 === 2 && line2 === 3 || line1 === 3 && line2 === 2) {
-          // When one is 2 and one is 3 we need to be inside (towards middle)
+        // When one is 2 and one is 3 we need to be inside (towards middle)
+        if (line1 === 2 && line2 === 3 || line1 === 3 && line2 === 2)
           return output.insideLine!({ card: output[card]!() });
-        } else {
-          return output.outsideLine!({ card: output[card]!(), line: line });
-        }
+        return output.outsideLine!({ card: output[card]!(), line: line });
       },
       outputStrings: {
         outsideLine: {
