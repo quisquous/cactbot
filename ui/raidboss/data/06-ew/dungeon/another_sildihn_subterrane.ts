@@ -245,7 +245,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Carpet Beater',
       type: 'StartsUsing',
-      netRegex: { id: '774F', source: 'Silkie', capture: false },
+      netRegex: { id: '774F', source: 'Silkie' },
       preRun: (data) => data.beaterCounter++,
       response: (data, matches, output) => {
         // cactbot-builtin-response
@@ -274,7 +274,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ASS Soaping Spree',
       // Boss does not cast Fizzling Duster with Soaping Spree
       type: 'StartsUsing',
-      netRegex: { id: '7767', source: 'Silkie' },
+      netRegex: { id: '7767', source: 'Silkie', capture: false },
       preRun: (data) => ++data.spreeCounter,
       infoText: (data, _matches, output) => {
         switch (data.suds) {
