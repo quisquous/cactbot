@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -2699,10 +2698,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Trinity Tank Dark Resistance',
       type: 'GainsEffect',
       // C40 = Dark Resistance Down, highest enmity target
-      netRegex: NetRegexes.gainsEffect({
+      netRegex: {
         effectId: 'C40',
         count: '02',
-      }),
+      },
       condition: (data, matches) => data.me === matches.target && data.role === 'tank',
       alertText: (_data, matches, output) => {
         if (parseFloat(matches.duration) > 10)
@@ -2723,10 +2722,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Trinity Tank Light Resistance',
       type: 'GainsEffect',
       // C3F = Light Resistance Down, 2nd highest enmity target
-      netRegex: NetRegexes.gainsEffect({
+      netRegex: {
         effectId: 'C3F',
         count: '02',
-      }),
+      },
       condition: (data, matches) => data.me === matches.target && data.role === 'tank',
       // To prevent boss rotating around before Exaflare
       delaySeconds: 2.5,
@@ -2750,7 +2749,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6D99 is cast by boss at the center
       // Only need to compare the rotation of 6D9A to 6DD2
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6D99', '6D9A', '6DD2'], source: 'Dragon-king Thordan' }),
+      netRegex: { id: ['6D99', '6D9A', '6DD2'], source: 'Dragon-king Thordan' },
       durationSeconds: 10,
       infoText: (data, matches, output) => {
         // Positions are moved up 100 and right 100
