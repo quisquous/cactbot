@@ -68,7 +68,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Stun
       netRegex: NetRegexes.gainsEffect({ effectId: '95' }),
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.effect };
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.effect,
+        };
       },
     },
     {

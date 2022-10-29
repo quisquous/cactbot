@@ -20,13 +20,17 @@ const matchDefault = '[^|]*';
 // If issue #1306 is ever resolved, we can remove this.
 const magicTranslationString = `^^`;
 const magicStringRegex = /^\^\^/;
-const keysThatRequireTranslation = [
+
+// can't simply export this, see https://github.com/quisquous/cactbot/pull/4957#discussion_r1002590589
+const keysThatRequireTranslationAsConst = [
   'ability',
   'name',
   'source',
   'target',
   'line',
-];
+] as const;
+export const keysThatRequireTranslation: readonly string[] = keysThatRequireTranslationAsConst;
+export type KeysThatRequireTranslation = typeof keysThatRequireTranslationAsConst[number];
 
 const defaultParams = <
   T extends LogDefinitionTypes,
@@ -156,6 +160,13 @@ const parseHelper = <T extends LogDefinitionTypes>(
   return Regexes.parse(str) as CactbotBaseRegExp<T>;
 };
 
+export const buildRegex = <T extends keyof NetParams>(
+  type: T,
+  params?: ParseHelperType<T>,
+): CactbotBaseRegExp<T> => {
+  return parseHelper(params, type, defaultParams(type, NetRegexes.logVersion));
+};
+
 export default class NetRegexes {
   static logVersion: LogDefinitionVersions = 'latest';
 
@@ -174,7 +185,7 @@ export default class NetRegexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-20-0x14-networkstartscasting
    */
   static startsUsing(params?: NetParams['StartsUsing']): CactbotBaseRegExp<'StartsUsing'> {
-    return parseHelper(params, 'startsUsing', defaultParams('StartsUsing', NetRegexes.logVersion));
+    return buildRegex('StartsUsing', params);
   }
 
   /**
@@ -182,7 +193,7 @@ export default class NetRegexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-22-0x16-networkaoeability
    */
   static ability(params?: NetParams['Ability']): CactbotBaseRegExp<'Ability'> {
-    return parseHelper(params, 'ability', {
+    return parseHelper(params, 'Ability', {
       ...defaultParams('Ability', NetRegexes.logVersion),
       // Override type
       0: { field: 'type', value: '2[12]', optional: false },
@@ -203,7 +214,7 @@ export default class NetRegexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-27-0x1b-networktargeticon-head-marker
    */
   static headMarker(params?: NetParams['HeadMarker']): CactbotBaseRegExp<'HeadMarker'> {
-    return parseHelper(params, 'headMarker', defaultParams('HeadMarker', NetRegexes.logVersion));
+    return buildRegex('HeadMarker', params);
   }
 
   /**
@@ -212,27 +223,19 @@ export default class NetRegexes {
   static addedCombatant(params?: NetParams['AddedCombatant']): CactbotBaseRegExp<'AddedCombatant'> {
     return parseHelper(
       params,
-      'addedCombatant',
-      defaultParams('AddedCombatant', NetRegexes.logVersion, [
-        'type',
-        'timestamp',
-        'id',
-        'name',
-      ]),
+      'AddedCombatant',
+      defaultParams('AddedCombatant', NetRegexes.logVersion),
     );
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-03-0x03-addcombatant
+   * @deprecated Use `addedCombatant` instead
    */
   static addedCombatantFull(
     params?: NetParams['AddedCombatant'],
   ): CactbotBaseRegExp<'AddedCombatant'> {
-    return parseHelper(
-      params,
-      'addedCombatantFull',
-      defaultParams('AddedCombatant', NetRegexes.logVersion),
-    );
+    return NetRegexes.addedCombatant(params);
   }
 
   /**
@@ -241,18 +244,14 @@ export default class NetRegexes {
   static removingCombatant(
     params?: NetParams['RemovedCombatant'],
   ): CactbotBaseRegExp<'RemovedCombatant'> {
-    return parseHelper(
-      params,
-      'removingCombatant',
-      defaultParams('RemovedCombatant', NetRegexes.logVersion),
-    );
+    return buildRegex('RemovedCombatant', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-26-0x1a-networkbuff
    */
   static gainsEffect(params?: NetParams['GainsEffect']): CactbotBaseRegExp<'GainsEffect'> {
-    return parseHelper(params, 'gainsEffect', defaultParams('GainsEffect', NetRegexes.logVersion));
+    return buildRegex('GainsEffect', params);
   }
 
   /**
@@ -262,25 +261,21 @@ export default class NetRegexes {
   static statusEffectExplicit(
     params?: NetParams['StatusEffect'],
   ): CactbotBaseRegExp<'StatusEffect'> {
-    return parseHelper(
-      params,
-      'statusEffectExplicit',
-      defaultParams('StatusEffect', NetRegexes.logVersion),
-    );
+    return buildRegex('StatusEffect', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-30-0x1e-networkbuffremove
    */
   static losesEffect(params?: NetParams['LosesEffect']): CactbotBaseRegExp<'LosesEffect'> {
-    return parseHelper(params, 'losesEffect', defaultParams('LosesEffect', NetRegexes.logVersion));
+    return buildRegex('LosesEffect', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-35-0x23-networktether
    */
   static tether(params?: NetParams['Tether']): CactbotBaseRegExp<'Tether'> {
-    return parseHelper(params, 'tether', defaultParams('Tether', NetRegexes.logVersion));
+    return buildRegex('Tether', params);
   }
 
   /**
@@ -288,59 +283,59 @@ export default class NetRegexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-25-0x19-networkdeath
    */
   static wasDefeated(params?: NetParams['WasDefeated']): CactbotBaseRegExp<'WasDefeated'> {
-    return parseHelper(params, 'wasDefeated', defaultParams('WasDefeated', NetRegexes.logVersion));
+    return buildRegex('WasDefeated', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-24-0x18-networkdot
    */
   static networkDoT(params?: NetParams['NetworkDoT']): CactbotBaseRegExp<'NetworkDoT'> {
-    return parseHelper(params, 'networkDoT', defaultParams('NetworkDoT', NetRegexes.logVersion));
+    return buildRegex('NetworkDoT', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
-  static echo(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
+  static echo(params?: Omit<NetParams['GameLog'], 'code'>): CactbotBaseRegExp<'GameLog'> {
     if (typeof params === 'undefined')
       params = {};
     Regexes.validateParams(
       params,
-      'echo',
+      'Echo',
       ['type', 'timestamp', 'code', 'name', 'line', 'capture'],
     );
-    params.code = '0038';
-    return NetRegexes.gameLog(params);
+
+    return NetRegexes.gameLog({ ...params, code: '0038' });
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
-  static dialog(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
+  static dialog(params?: Omit<NetParams['GameLog'], 'code'>): CactbotBaseRegExp<'GameLog'> {
     if (typeof params === 'undefined')
       params = {};
     Regexes.validateParams(
       params,
-      'dialog',
+      'Dialog',
       ['type', 'timestamp', 'code', 'name', 'line', 'capture'],
     );
-    params.code = '0044';
-    return NetRegexes.gameLog(params);
+
+    return NetRegexes.gameLog({ ...params, code: '0044' });
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
-  static message(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
+  static message(params?: Omit<NetParams['GameLog'], 'code'>): CactbotBaseRegExp<'GameLog'> {
     if (typeof params === 'undefined')
       params = {};
     Regexes.validateParams(
       params,
-      'message',
+      'Message',
       ['type', 'timestamp', 'code', 'name', 'line', 'capture'],
     );
-    params.code = '0839';
-    return NetRegexes.gameLog(params);
+
+    return NetRegexes.gameLog({ ...params, code: '0839' });
   }
 
   /**
@@ -348,7 +343,7 @@ export default class NetRegexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
   static gameLog(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
-    return parseHelper(params, 'gameLog', defaultParams('GameLog', NetRegexes.logVersion));
+    return buildRegex('GameLog', params);
   }
 
   /**
@@ -363,35 +358,35 @@ export default class NetRegexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-12-0x0c-playerstats
    */
   static statChange(params?: NetParams['PlayerStats']): CactbotBaseRegExp<'PlayerStats'> {
-    return parseHelper(params, 'statChange', defaultParams('PlayerStats', NetRegexes.logVersion));
+    return buildRegex('PlayerStats', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-01-0x01-changezone
    */
   static changeZone(params?: NetParams['ChangeZone']): CactbotBaseRegExp<'ChangeZone'> {
-    return parseHelper(params, 'changeZone', defaultParams('ChangeZone', NetRegexes.logVersion));
+    return buildRegex('ChangeZone', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-33-0x21-network6d-actor-control
    */
   static network6d(params?: NetParams['ActorControl']): CactbotBaseRegExp<'ActorControl'> {
-    return parseHelper(params, 'network6d', defaultParams('ActorControl', NetRegexes.logVersion));
+    return buildRegex('ActorControl', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-34-0x22-networknametoggle
    */
   static nameToggle(params?: NetParams['NameToggle']): CactbotBaseRegExp<'NameToggle'> {
-    return parseHelper(params, 'nameToggle', defaultParams('NameToggle', NetRegexes.logVersion));
+    return buildRegex('NameToggle', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-40-0x28-map
    */
   static map(params?: NetParams['Map']): CactbotBaseRegExp<'Map'> {
-    return parseHelper(params, 'map', defaultParams('Map', NetRegexes.logVersion));
+    return buildRegex('Map', params);
   }
 
   /**
@@ -400,10 +395,31 @@ export default class NetRegexes {
   static systemLogMessage(
     params?: NetParams['SystemLogMessage'],
   ): CactbotBaseRegExp<'SystemLogMessage'> {
-    return parseHelper(
-      params,
-      'systemLogMessage',
-      defaultParams('SystemLogMessage', NetRegexes.logVersion),
-    );
+    return buildRegex('SystemLogMessage', params);
+  }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-257-0x101-mapeffect
+   */
+  static mapEffect(params?: NetParams['MapEffect']): CactbotBaseRegExp<'MapEffect'> {
+    return buildRegex('MapEffect', params);
   }
 }
+
+export const commonNetRegex = {
+  // TODO(6.2): remove 40000010 after everybody is on 6.2.
+  wipe: NetRegexes.network6d({ command: ['40000010', '4000000F'] }),
+  cactbotWipeEcho: NetRegexes.echo({ line: 'cactbot wipe.*?' }),
+  userWipeEcho: NetRegexes.echo({ line: 'end' }),
+} as const;
+
+export const buildNetRegexForTrigger = <T extends keyof NetParams>(
+  type: T,
+  params?: ParseHelperType<T>,
+): CactbotBaseRegExp<T> => {
+  if (type === 'Ability')
+    // ts can't narrow T to `Ability` here, need casting.
+    return NetRegexes.ability(params) as CactbotBaseRegExp<T>;
+
+  return buildRegex<T>(type, params);
+};

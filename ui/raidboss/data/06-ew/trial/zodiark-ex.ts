@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -48,19 +47,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Ania',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6B63', source: 'Zodiark' }),
+      netRegex: { id: '6B63', source: 'Zodiark' },
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'ZodiarkEx Kokytos',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6C60', source: 'Zodiark', capture: false }),
+      netRegex: { id: '6C60', source: 'Zodiark', capture: false },
       response: Responses.bigAoe(),
     },
     {
       id: 'ZodiarkEx Paradeigma',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '67BF', source: 'Zodiark', capture: false }),
+      netRegex: { id: '67BF', source: 'Zodiark', capture: false },
       alertText: (data, _matches, output) => {
         ++data.paradeigmaCounter;
         if (data.paradeigmaCounter === 1)
@@ -70,6 +69,7 @@ const triggerSet: TriggerSet<Data> = {
         underQuetz: {
           en: 'Under NW Quetzalcoatl',
           de: 'Unter NW Quetzalcoatl',
+          ja: '北東の鳥の下',
           cn: '站在左上 (西北) 鸟',
           ko: '북동쪽 새 밑으로', // This is northeast. Because Korean folks go there.
         },
@@ -78,13 +78,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Styx',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '67F3', source: 'Zodiark', capture: false }),
+      netRegex: { id: '67F3', source: 'Zodiark', capture: false },
       alertText: (data, _matches, output) => output.text!({ num: data.styxCount }),
       run: (data) => data.styxCount = Math.min(data.styxCount + 1, 9),
       outputStrings: {
         text: {
           en: 'Stack x${num}',
           de: 'Sammeln x${num}',
+          ja: '頭割り x${num}',
           cn: '${num}次分摊',
           ko: '쉐어 ${num}번',
         },
@@ -93,7 +94,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Arcane Sigil End',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' }),
+      netRegex: { id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' },
       run: (data, matches, _output) => {
         for (let i = 0; i < data.activeSigils.length; ++i) {
           const sig = data.activeSigils[i];
@@ -105,12 +106,17 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Blue Cone Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '00A4', source: 'Zodiark' }),
+      netRegex: { id: '00A4', source: 'Zodiark' },
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsById([matches.targetId]);
         for (const actor of portalActors) {
           if (actor.ID)
-            data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: sigil.blueCone, npcId: actor.ID.toString(16).toUpperCase() });
+            data.activeSigils.push({
+              x: actor.PosX,
+              y: actor.PosY,
+              typeId: sigil.blueCone,
+              npcId: actor.ID.toString(16).toUpperCase(),
+            });
         }
       },
       alertText: (data, matches, output) => {
@@ -134,24 +140,28 @@ const triggerSet: TriggerSet<Data> = {
         northCone: {
           en: 'North Cone',
           de: 'Nördliche Kegel-AoE',
+          ja: '北のさんかく',
           cn: '上 (北) 扇形',
           ko: '북쪽 삼각형',
         },
         eastCone: {
           en: 'East Cone',
           de: 'Östliche Kegel-AoE',
+          ja: '東のさんかく',
           cn: '右 (东) 扇形',
           ko: '동쪽 삼각형',
         },
         westCone: {
           en: 'West Cone',
           de: 'Westliche Kegel-AoE',
+          ja: '西のさんかく',
           cn: '左 (西) 扇形',
           ko: '서쪽 삼각형',
         },
         southCone: {
           en: 'South Cone',
           de: 'Südliche Kegel-AoE',
+          ja: '南のさんかく',
           cn: '下 (南) 扇形',
           ko: '남쪽 삼각형',
         },
@@ -160,12 +170,17 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Red Box Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '00AB', source: 'Zodiark' }),
+      netRegex: { id: '00AB', source: 'Zodiark' },
       promise: async (data, matches) => {
         const portalActors = await fetchCombatantsById([matches.targetId]);
         for (const actor of portalActors) {
           if (actor.ID)
-            data.activeSigils.push({ x: actor.PosX, y: actor.PosY, typeId: sigil.redBox, npcId: actor.ID.toString(16).toUpperCase() });
+            data.activeSigils.push({
+              x: actor.PosX,
+              y: actor.PosY,
+              typeId: sigil.redBox,
+              npcId: actor.ID.toString(16).toUpperCase(),
+            });
         }
       },
       alertText: (data, matches, output) => {
@@ -195,13 +210,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Roiling Darkness Spawn',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Roiling Darkness', capture: false }),
+      netRegex: { name: 'Roiling Darkness', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: Outputs.killAdds.en + '(back first)',
           de: Outputs.killAdds.de + '(hinten zuerst)',
+          ja: Outputs.killAdds.ja + '(下の雑魚から)',
           cn: Outputs.killAdds.cn + '(先打后方的)',
           ko: Outputs.killAdds.ko + '(아래쪽 먼저)',
         },
@@ -210,16 +226,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Arcane Sigil Start',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' }),
+      netRegex: { id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil' },
       run: (data, matches, _output) => {
         if (parseFloat(matches.y) < 100)
-          data.activeFrontSigils.push({ x: parseFloat(matches.x), y: parseFloat(matches.y), typeId: matches.id, npcId: matches.sourceId });
+          data.activeFrontSigils.push({
+            x: parseFloat(matches.x),
+            y: parseFloat(matches.y),
+            typeId: matches.id,
+            npcId: matches.sourceId,
+          });
       },
     },
     {
       id: 'ZodiarkEx Arcane Sigil',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: [sigil.greenBeam, sigil.redBox, sigil.blueCone], source: 'Arcane Sigil', capture: false }),
+      netRegex: {
+        id: [sigil.greenBeam, sigil.redBox, sigil.blueCone],
+        source: 'Arcane Sigil',
+        capture: false,
+      },
       delaySeconds: 0.2,
       suppressSeconds: 0.5,
       alertText: (data, _matches, output) => {
@@ -231,7 +256,10 @@ const triggerSet: TriggerSet<Data> = {
           return output.south!();
         if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.blueCone)
           return output.north!();
-        if (activeFrontSigils.length === 2 && activeFrontSigils[0]?.typeId === sigil.greenBeam && activeFrontSigils[1]?.typeId === sigil.greenBeam)
+        if (
+          activeFrontSigils.length === 2 && activeFrontSigils[0]?.typeId === sigil.greenBeam &&
+          activeFrontSigils[1]?.typeId === sigil.greenBeam
+        )
           return output.middle!();
         if (activeFrontSigils.length === 3) {
           for (const sig of activeFrontSigils) {
@@ -253,12 +281,14 @@ const triggerSet: TriggerSet<Data> = {
         frontsides: {
           en: 'front sides',
           de: 'Vorne Seiten',
+          ja: '前の横側',
           cn: '前方两边',
           ko: '앞쪽 양옆',
         },
         backmiddle: {
           en: 'back middle',
           de: 'Hinten Mitte',
+          ja: '後ろの真ん中',
           cn: '后方中间',
           ko: '뒤쪽 중앙',
         },
@@ -273,12 +303,14 @@ const triggerSet: TriggerSet<Data> = {
           // Similarly, there's a algodon knockback call too.
           en: 'sides (for laser)',
           de: 'Seiten (für die Laser)',
+          ja: '横側 (レーザー回避)',
           cn: '两边 (躲避激光)',
           ko: '양옆 (레이저 피하기)',
         },
         middle: {
           en: 'middle (for laser)',
           de: 'Mitte (für die Laser)',
+          ja: '真ん中 (レーザー回避)',
           cn: '中间 (躲避激光)',
           ko: '중앙 (레이저 피하기)',
         },
@@ -288,7 +320,7 @@ const triggerSet: TriggerSet<Data> = {
       // 67EC is leaning left, 67ED is leaning right
       id: 'ZodiarkEx Algedon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['67EC', '67ED'], source: 'Zodiark' }),
+      netRegex: { id: ['67EC', '67ED'], source: 'Zodiark' },
       alertText: (_data, matches, output) => {
         if (matches.id === '67EC') {
           // NE/SW
@@ -307,6 +339,7 @@ const triggerSet: TriggerSet<Data> = {
         combo: {
           en: 'Go ${first} / ${second} (knockback)',
           de: 'Geh ${first} / ${second} (Rückstoß)',
+          ja: '${first} / ${second} (ノックバック)',
           cn: '去 ${first} / ${second} (击退)',
           ko: '${first} / ${second} (넉백)',
         },
@@ -315,7 +348,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Adikia',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63A9', source: 'Zodiark', capture: false }),
+      netRegex: { id: '63A9', source: 'Zodiark', capture: false },
       alertText: (data, _matches, output) => {
         return data.seenAdikia ? output.adikia2!() : output.adikia1!();
       },
@@ -324,12 +357,14 @@ const triggerSet: TriggerSet<Data> = {
         adikia1: {
           en: 'Double fists (look for pythons)',
           de: 'Doppel-Fäuste (halt Ausschau nach den Pythons)',
+          ja: 'ダブルフィスト (ヘビー確認)',
           cn: '双拳 (找蛇)',
           ko: '양 옆 큰 원형 장판 (뱀 위치 확인)',
         },
         adikia2: {
           en: 'Double fists',
           de: 'Doppel-Fäuste',
+          ja: 'ダブルフィスト',
           cn: '双拳',
           ko: '양 옆 큰 원형 장판',
         },
@@ -338,12 +373,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZodiarkEx Phobos',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '67F0', source: 'Zodiark', capture: false }),
+      netRegex: { id: '67F0', source: 'Zodiark', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Heavy DoT',
           de: 'Starker DoT',
+          ja: '痛いDOT',
           cn: '超痛流血AOE',
           ko: '아픈 도트딜',
         },

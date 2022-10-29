@@ -120,7 +120,7 @@ def is_encounter_end_code(line_fields):
         return False
     if not line_fields[0] == "33":
         return False
-    return line_fields[3] in ("40000010", "40000003")
+    return line_fields[3] in ("40000010", "4000000F", "40000003")
 
 
 def find_fights_in_file(file):

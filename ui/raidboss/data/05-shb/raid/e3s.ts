@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -53,19 +52,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Tidal Roar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FDC', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FDC', source: 'Leviathan', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E3S Tidal Rage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FDE', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FDE', source: 'Leviathan', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'E3S Tidal Wave Look',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FF1', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FF1', source: 'Leviathan', capture: false },
       delaySeconds: 3,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -82,7 +81,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Tidal Wave Knockback',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FF1', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FF1', source: 'Leviathan', capture: false },
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
@@ -91,7 +90,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Rip Current',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       suppressSeconds: 10,
       alarmText: (data, matches, output) => {
         if (matches.target !== data.me && data.role === 'tank')
@@ -113,7 +112,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Undersea Quake Outside',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FEF', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FEF', source: 'Leviathan', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -129,13 +128,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Undersea Quake Inside',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FEE', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FEE', source: 'Leviathan', capture: false },
       response: Responses.goSides('alarm'),
     },
     {
       id: 'E3S Flare',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0057' }),
+      netRegex: { id: '0057' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -152,7 +151,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Drenching Pulse',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FE2', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FE2', source: 'Leviathan', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -168,7 +167,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Drenching Pulse Puddles',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FE2', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FE2', source: 'Leviathan', capture: false },
       delaySeconds: 2.9,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -185,7 +184,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Roiling Pulse',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FE4', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FE4', source: 'Leviathan', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -201,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Roiling Pulse Abilities',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FE4', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FE4', source: 'Leviathan', capture: false },
       delaySeconds: 2.9,
       infoText: (data, _matches, output) => {
         if (data.role === 'tank')
@@ -231,7 +230,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Stormy Horizon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FFE', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FFE', source: 'Leviathan', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -247,7 +246,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Hydrothermal Vent Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '005A', target: 'Leviathan' }),
+      netRegex: { id: '005A', target: 'Leviathan' },
       condition: (data, matches) => data.me === matches.source,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -264,7 +263,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Hydrothermal Vent Collect',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '005A', target: 'Leviathan' }),
+      netRegex: { id: '005A', target: 'Leviathan' },
       run: (data, matches) => {
         data.vent ??= [];
         data.vent.push(matches.source);
@@ -273,8 +272,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Hydrothermal Vent',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '005A', target: 'Leviathan', capture: false }),
-      condition: (data) => data.vent && data.vent.length === 2 && !data.vent.includes(data.me) && data.role !== 'tank',
+      netRegex: { id: '005A', target: 'Leviathan', capture: false },
+      condition: (data) =>
+        data.vent && data.vent.length === 2 && !data.vent.includes(data.me) && data.role !== 'tank',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -290,7 +290,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Surging Waters',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '73A' }),
+      netRegex: { effectId: '73A' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -309,7 +309,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO maybe tell other people about stacking for knockbacks
       id: 'E3S Sundering Waters',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '73E' }),
+      netRegex: { effectId: '73E' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         const seconds = parseFloat(matches.duration);
@@ -349,7 +349,7 @@ const triggerSet: TriggerSet<Data> = {
       // 29 seconds
       id: 'E3S Scouring Waters Defamation',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
+      netRegex: { effectId: '765' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -366,7 +366,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Scouring Waters Avoid Knockback',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
+      netRegex: { effectId: '765' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 22,
       infoText: (_data, _matches, output) => output.text!(),
@@ -384,7 +384,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Smothering Waters',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '73D' }),
+      netRegex: { effectId: '73D' },
       condition: (data, matches) => {
         // first tsunami stack is 25 seconds
         // second tsunami stack is 13 seconds
@@ -398,7 +398,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Scouring Waters',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
+      netRegex: { effectId: '765' },
       condition: Conditions.targetIsNotYou(),
       delaySeconds: 25,
       infoText: (_data, _matches, output) => output.text!(),
@@ -416,7 +416,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Sweeping Waters Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '73F' }),
+      netRegex: { effectId: '73F' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -433,7 +433,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Sweeping Waters',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '73F' }),
+      netRegex: { effectId: '73F' },
       condition: (data, matches) => data.me === matches.target || data.role === 'tank',
       delaySeconds: 13,
       suppressSeconds: 1,
@@ -452,13 +452,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Refreshed',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '400F', source: 'Leviathan', capture: false }),
+      netRegex: { id: '400F', source: 'Leviathan', capture: false },
       run: (data) => data.refreshed = true,
     },
     {
       id: 'E3S Front Left Temporary Current',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FEB', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FEB', source: 'Leviathan', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -474,7 +474,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Front Right Temporary Current',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FEA', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FEA', source: 'Leviathan', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -494,7 +494,7 @@ const triggerSet: TriggerSet<Data> = {
       // the next one.
       id: 'E3S Front Left Temporary Current 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FEA', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FEA', source: 'Leviathan', capture: false },
       condition: (data) => data.refreshed,
       delaySeconds: 6.2,
       alertText: (_data, _matches, output) => output.text!(),
@@ -512,7 +512,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E3S Front Right Temporary Current 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3FEB', source: 'Leviathan', capture: false }),
+      netRegex: { id: '3FEB', source: 'Leviathan', capture: false },
       condition: (data) => data.refreshed,
       delaySeconds: 6.2,
       alertText: (_data, _matches, output) => output.text!(),

@@ -1,9 +1,10 @@
 import { Lang, NonEnLang } from '../resources/languages';
-import { NetAnyMatches, NetMatches } from '../types/net_matches';
 import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline_parser';
 
 import { RaidbossData } from './data';
-import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
+import { NetAnyMatches, NetMatches } from './net_matches';
+import { NetParams } from './net_props';
+import type { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
 
 // TargetedMatches can be used for generic functions in responses or conditions
 // that use matches from any number of Regex or NetRegex functions.
@@ -80,7 +81,7 @@ export type ResponseFunc<Data extends RaidbossData, MatchType extends NetAnyMatc
   data: Data,
   matches: MatchType,
   output: Output,
-) => (ResponseOutput<Data, MatchType> | ResponseFunc<Data, MatchType>);
+) => ResponseOutput<Data, MatchType> | ResponseFunc<Data, MatchType>;
 
 export type ResponseField<Data extends RaidbossData, MatchType extends NetAnyMatches> =
   | ResponseFunc<Data, MatchType>
@@ -127,13 +128,15 @@ export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = 
   outputStrings?: OutputStrings;
 };
 
+// new trigger type, regex is build by core.
 type PartialNetRegexTrigger<T extends TriggerTypes> = {
   type?: T;
-  netRegex: CactbotBaseRegExp<T>;
+  netRegex: NetParams[T] | CactbotBaseRegExp<T>;
 };
 
 export type NetRegexTrigger<Data extends RaidbossData> = TriggerTypes extends infer T
-  ? T extends TriggerTypes ? (BaseTrigger<Data, T> & PartialNetRegexTrigger<T>) : never
+  ? T extends TriggerTypes ? (BaseTrigger<Data, T> & PartialNetRegexTrigger<T>)
+  : never
   : never;
 
 export type GeneralNetRegexTrigger<Data extends RaidbossData, T extends TriggerTypes> =
@@ -190,8 +193,8 @@ export type BaseTriggerSet<Data extends RaidbossData> = {
 export type TriggerSet<Data extends RaidbossData> =
   & BaseTriggerSet<Data>
   & (RequiredFieldsAsUnion<Data> extends RequiredFieldsAsUnion<RaidbossData> ? {
-    initData?: DataInitializeFunc<Data>;
-  }
+      initData?: DataInitializeFunc<Data>;
+    }
     : {
       initData: DataInitializeFunc<Data>;
     });

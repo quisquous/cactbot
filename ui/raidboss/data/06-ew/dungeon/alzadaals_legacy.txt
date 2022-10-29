@@ -12,7 +12,7 @@ hideall "--sync--"
 # -ii 71E5
 
 0.0 "--sync--" sync / 00:0839::The Undersea Entrance will be sealed off/ window 0,1
-11.0 "Big Wave" sync / 1[56]:[^:]*:Ambujam:6F60:/
+11.0 "Big Wave" sync / 1[56]:[^:]*:Ambujam:6F60:/ window 11,5
 20.8 "Tentacle Dig" sync / 1[56]:[^:]*:Ambujam:6F55:/ window 20.8
 33.0 "--sync--" sync / 1[56]:[^:]*:Scarlet Tentacle:6F5B:/
 33.4 "Toxin Shower" sync / 1[56]:[^:]*:Ambujam:6F5C:/
@@ -20,7 +20,7 @@ hideall "--sync--"
 
 47.6 "Tentacle Dig" sync / 1[56]:[^:]*:Ambujam:6F59:/
 59.8 "--sync--" sync / 1[56]:[^:]*:Scarlet Tentacle:6F5B:/
-60.2 "Corrosive Venom/Toxic Shower" sync / 1[56]:[^:]*:Ambujam:(6F5C|71E6):/
+60.2 "Corrosive Venom/Toxin Shower" sync / 1[56]:[^:]*:Ambujam:(6F5C|71E6):/
 66.0 "--sync--" sync / 1[56]:[^:]*:Ambujam:6F5A:/ window 66,20
 76.3 "Corrosive Fountain/Toxic Fountain 1" sync / 1[56]:[^:]*:Ambujam:(731A|731B|7374):/
 79.3 "Corrosive Fountain/Toxic Fountain 2" sync / 1[56]:[^:]*:Ambujam:(731A|731B|7374):/
@@ -28,7 +28,7 @@ hideall "--sync--"
 104.4 "Big Wave" sync / 1[56]:[^:]*:Ambujam:6F60:/
 
 113.8 "Tentacle Dig" sync / 1[56]:[^:]*:Ambujam:6F59:/ window 30,30 jump 47.6
-126.4 "Corrosive Venom/Toxic Shower"
+126.4 "Corrosive Venom/Toxin Shower"
 142.5 "Corrosive Fountain/Toxic Fountain 1"
 145.5 "Corrosive Fountain/Toxic Fountain 2"
 146.8 "Corrosive Fountain/Toxic Fountain 3"
@@ -44,7 +44,7 @@ hideall "--sync--"
 # -ii 71CC 6F1A 6F1C 6F1D 6F26 6F27
 
 1000.0 "--sync--" sync / 00:0839::The Threshold Of Bounty will be sealed off/ window 1000,1
-1011.0 "Articulated Bits" sync / 1[56]:[^:]*:Armored Chariot:6F19:/
+1011.0 "Articulated Bits" sync / 1[56]:[^:]*:Armored Chariot:6F19:/ window 1011,0
 1013.2 "Assail" sync / 1[56]:[^:]*:Armored Chariot:6F29:/
 1015.3 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F20|6F21):/
 1021.9 "Assault Cannon" sync / 1[56]:[^:]*:Armored Drudge:6F1B:/ duration 5
@@ -107,7 +107,7 @@ hideall "--sync--"
 # -ii 6F71 6F64 6F65 6F66 6F67 6F6D 6F6F
 
 2000.0 "--sync--" sync / 00:0839::Weaver'S Warding will be sealed off/ window 2000,1
-2015.2 "Billowing Bolts" sync / 1[56]:[^:]*:Kapikulu:6F70:/
+2015.2 "Billowing Bolts" sync / 1[56]:[^:]*:Kapikulu:6F70:/ window 2016,5
 2023.4 "--sync--" sync / 1[56]:[^:]*:Kapikulu:6F62:/
 2027.8 "Spin Out" sync / 1[56]:[^:]*:Kapikulu:6F63:/
 2044.1 "--sync--" sync / 1[56]:[^:]*:Kapikulu:6F62:/

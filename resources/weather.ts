@@ -27,16 +27,16 @@ const getWeatherChanceValue = (timeMs: number) => {
   // Get Eorzea hour for weather start
   const bell = unix / 175;
   // Do the magic 'cause for calculations 16:00 is 0, 00:00 is 8 and 08:00 is 16
-  const increment = (bell + 8 - (bell % 8)) % 24;
+  const increment = (bell + 8 - bell % 8) % 24;
 
   // Take Eorzea days since unix epoch
-  const totalDays = (unix / 4200) >>> 0;
+  const totalDays = unix / 4200 >>> 0;
 
   // The following math all needs to be done as unsigned integers.
-  const calcBase = ((totalDays * 0x64) + increment) >>> 0;
+  const calcBase = totalDays * 0x64 + increment >>> 0;
 
-  const step1 = ((calcBase << 0xB) ^ calcBase) >>> 0;
-  const step2 = ((step1 >>> 8) ^ step1) >>> 0;
+  const step1 = (calcBase << 0xB ^ calcBase) >>> 0;
+  const step2 = (step1 >>> 8 ^ step1) >>> 0;
 
   return step2 % 0x64;
 };
@@ -97,7 +97,7 @@ export const findNextDay = (timeMs: number): number => {
 };
 
 export const isNightTime = (timeMs: number): boolean => {
-  const hour = (timeMs / 1000 / 175) % 24;
+  const hour = timeMs / 1000 / 175 % 24;
   return hour < 6 || hour > 19;
 };
 

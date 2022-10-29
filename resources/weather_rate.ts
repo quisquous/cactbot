@@ -1905,6 +1905,76 @@ const data: WeatherRateType = {
       'Transcendence',
     ],
   },
+  148: {
+    'rates': [
+      25,
+      70,
+      80,
+      90,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Clear Skies',
+      'Fair Skies',
+      'Clouds',
+      'Rain',
+      'Fog',
+      'Showers',
+    ],
+  },
+  149: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Vacuity',
+    ],
+  },
+  150: {
+    'rates': [],
+    'weathers': [],
+  },
+  151: {
+    'rates': [],
+    'weathers': [],
+  },
+  152: {
+    'rates': [],
+    'weathers': [],
+  },
+  153: {
+    'rates': [],
+    'weathers': [],
+  },
+  154: {
+    'rates': [],
+    'weathers': [],
+  },
+  155: {
+    'rates': [],
+    'weathers': [],
+  },
+  156: {
+    'rates': [],
+    'weathers': [],
+  },
+  157: {
+    'rates': [],
+    'weathers': [],
+  },
+  158: {
+    'rates': [],
+    'weathers': [],
+  },
+  159: {
+    'rates': [],
+    'weathers': [],
+  },
+  160: {
+    'rates': [],
+    'weathers': [],
+  },
 };
 
 export default data;

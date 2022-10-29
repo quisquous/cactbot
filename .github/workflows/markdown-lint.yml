@@ -8,37 +8,24 @@ on:
       - '*.json'
       - '**/*.md'
       - '.github/workflows/markdown-lint.yml'
+      - '.github/actions/setup-js-env/'
   pull_request:
     paths:
       - '*.json'
       - '**/*.md'
       - '.github/workflows/markdown-lint.yml'
+      - '.github/actions/setup-js-env/'
 
 jobs:
   markdownlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-
-      - name: Cache Dependencies
-        id: cache
-        uses: actions/cache@v2
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-js-env
 
       - name: Add Custom Problem Matcher
         run: |
           echo "::add-matcher::.github/matchers/${{ github.job }}.json"
-
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          npm ci --ignore-scripts
 
       - name: npm run markdownlint
         run: |

@@ -2,9 +2,18 @@
 
 import { Lang, NonEnLang } from '../../resources/languages';
 
+// The seal key is kind of a hack because we use it in a lot of different
+// contexts and need to correctly grab the name of the zone that is sealed.
+// These are some various lookbehinds for those different contexts:
+
+// Regexes for a parsed ACT log line
 const parsedLB = '00:0839::';
+// Regexes for a network log line
 const networkLB = '00\\|[^|]*\\|0839\\|\\|';
+// Regex for a regex for a network log line.  <_<
 const netRegexLB = '\\\\\\|0839\\\\\\|\\[\\^\\|\\]\\*\\\\\\|';
+// A bare parameter (e.g. `X will be sealed off` via `netRegex: { line: 'X will be sealed off' },`)
+const paramLB = '^';
 
 // It's awkward to refer to these string keys, so name them as replaceSync[keys.sealKey].
 export const syncKeys = {
@@ -14,7 +23,7 @@ export const syncKeys = {
   //   network log lines: 00|timestamp|0839||Something will be sealed off
   //   NetRegexes: ^^00\|[^|]*\|0839\|[^|]*\|Something will be sealed off.*?\|
   seal:
-    `(?<=${parsedLB}|${networkLB}|${netRegexLB})([^|]*) will be sealed off(?: in (?:[0-9]+ seconds)?)?`,
+    `(?<=${parsedLB}|${networkLB}|${netRegexLB}|${paramLB})([^|]*) will be sealed off(?: in (?:[0-9]+ seconds)?)?`,
   unseal: 'is no longer sealed',
   engage: 'Engage!',
 };
@@ -465,3 +474,10 @@ export const partialCommonTriggerReplacementKeys = [
   // Because the zone name needs to be translated here, this is partial.
   syncKeys.seal,
 ];
+
+export const backCompatParsedSyncReplace: { [replaceKey: string]: string } = {
+  // TODO(6.2): remove this (and all other 40000010 refs) after everybody is on 6.2.
+  // Because 4000000F was only used in triple triad, it should be safe to
+  // do this replacement for everybody.
+  '21:\.\.\.\.\.\.\.\.:4000000F:': '21:\.\.\.\.\.\.\.\.:(4000000F|40000010):',
+};

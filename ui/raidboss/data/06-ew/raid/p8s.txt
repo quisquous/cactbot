@@ -1,0 +1,403 @@
+### P8N: Abyssos: The Eighth Circle (Savage)
+#
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+### P8S Part 1
+# -p 7944:12.1
+# -ii 7947 7923 7933 7934 7935 7951 7104 7105
+# -it Hephaistos
+
+# Two paths:
+# Human1 -> Snake1 -> Human2 -> Beast1 -> Human3 -> Snake2 -> Beast2 -> Human4
+# Human1 -> Beast1 -> Human2 -> Snake1 -> Human3 -> Beast2 -> Snake2 -> Human4
+
+# instant auto @_@;;
+0.0 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7947:/ window 1,0
+7.1 "--sync--" sync / 14:[^:]*:Hephaistos:7944:/ window 20,20
+12.1 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7944:/
+18.2 "Conceptual Octaflare/Conceptual Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(7914|7915):/
+24.4 "Volcanic Torches" sync / 1[56]:[^:]*:Hephaistos:78F7:/
+30.6 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+38.5 "Torch Flame" sync / 1[56]:[^:]*:Hephaistos:7927:/
+
+# Human 1
+39.9 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:7911:/
+40.9 "Scorching Fang/Sun\'s Pinion" sync / 1[56]:[^:]*:Hephaistos:(7912|7913):/
+41.1 "Emergent Octaflare/Emergent Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(7918|7919):/
+48.3 "Flameviper 1" sync / 1[56]:[^:]*:Hephaistos:7945:/
+51.5 "Flameviper 2" sync / 1[56]:[^:]*:Hephaistos:7946:/
+
+58.7 "--sync--" #sync / 1[56]:[^:]*:Hephaistos:7108:/
+63.9 "Reforged Reflection"
+
+# => Snake first branch
+58.7 "--sync--" #sync / 1[56]:[^:]*:Hephaistos:7108:/
+63.9 "--sync--" sync / 1[56]:[^:]*:Hephaistos:794C:/ window 100,100 jump 163.9
+71.2 "Snaking Kick?" #sync / 1[56]:[^:]*:Hephaistos:7929:/
+77.3 "Gorgomanteia?" #sync / 1[56]:[^:]*:Hephaistos:791A:/
+83.4 "Into the Shadows?" #sync / 1[56]:[^:]*:Hephaistos:792A:/
+
+# => Beast first branch
+58.7 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+63.9 "--sync--" sync / 1[56]:[^:]*:Hephaistos:794B:/ window 100,100 jump 1163.9
+70.3 "Footprint?" #sync / 1[56]:[^:]*:Hephaistos:7109:/
+77.2 "Uplift 1?" #sync / 1[56]:[^:]*:Hephaistos:7935:/
+79.3 "Uplift 2?" #sync / 1[56]:[^:]*:Hephaistos:7935:/
+81.5 "Uplift 3?" #sync / 1[56]:[^:]*:Hephaistos:7935:/
+83.6 "Uplift 4?" #sync / 1[56]:[^:]*:Hephaistos:7935:/
+
+
+# Snake 1 (Snake first)
+158.7 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+163.9 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794C:/
+171.2 "Snaking Kick" sync / 1[56]:[^:]*:Hephaistos:7929:/
+177.3 "Gorgomanteia" sync / 1[56]:[^:]*:Hephaistos:791A:/
+183.4 "Into the Shadows" sync / 1[56]:[^:]*:Hephaistos:792A:/
+197.5 "--sync--" sync / 1[56]:[^:]*:Gorgon:792B:/
+198.6 "Petrifaction 1" sync / 1[56]:[^:]*:Gorgon:6724:/
+201.1 "Eye of the Gorgon 1" sync / 1[56]:[^:]*:Hephaistos:792D:/
+204.2 "Blood of the Gorgon 1" sync / 1[56]:[^:]*:Hephaistos:792F:/
+205.5 "--sync--" sync / 1[56]:[^:]*:Gorgon:792B:/
+206.7 "Petrifaction 2" sync / 1[56]:[^:]*:Gorgon:6724:/
+209.2 "Eye of the Gorgon 2" sync / 1[56]:[^:]*:Hephaistos:792D:/
+212.2 "Blood of the Gorgon 2" sync / 1[56]:[^:]*:Hephaistos:792F:/
+216.8 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7949:/
+221.8 "Ektothermos" sync / 1[56]:[^:]*:Hephaistos:79EA:/
+
+# Human 2 (Snake first)
+224.8 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7949:/
+240.2 "Illusory Creation" sync / 1[56]:[^:]*:Hephaistos:791C:/
+246.3 "Creation on Command" sync / 1[56]:[^:]*:Hephaistos:794F:/
+254.1 "Sunforge" sync / 1[56]:[^:]*:Illusory Hephaistos:7950:/
+254.5 "Manifold Flames" sync / 1[56]:[^:]*:Hephaistos:7921:/
+255.1 "Scorching Fang" sync / 1[56]:[^:]*:Illusory Hephaistos:7952:/
+255.1 "Scorched Pinion" sync / 1[56]:[^:]*:Illusory Hephaistos:7953:/
+255.3 "Hemitheos's Flare" sync / 1[56]:[^:]*:Hephaistos:72CE:/
+258.7 "Manifold Flames" sync / 1[56]:[^:]*:Hephaistos:7922:/
+259.5 "Nest of Flamevipers" sync / 1[56]:[^:]*:Hephaistos:7920:/
+266.2 "Sunforge" sync / 1[56]:[^:]*:Illusory Hephaistos:(7950|7951):/
+266.8 "Tetraflare/Nest of Flamevipers" sync / 1[56]:[^:]*:Hephaistos:(791E|791F):/
+267.2 "Scorching Fang/Scorched Pinion" sync / 1[56]:[^:]*:Illusory Hephaistos:(7952|7953):/
+267.6 "Emergent Octaflare/Emergent Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(7918|7919):/
+279.8 "Torch Flame" sync / 1[56]:[^:]*:Hephaistos:7927:/
+283.9 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7944:/
+
+# Beast 1 (Snake first)
+291.1 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+296.4 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794B:/
+302.8 "Footprint" sync / 1[56]:[^:]*:Hephaistos:7109:/
+309.7 "Uplift 1" #sync / 1[56]:[^:]*:Hephaistos:7935:/
+311.8 "Uplift 2" #sync / 1[56]:[^:]*:Hephaistos:7935:/
+314.0 "Uplift 3" #sync / 1[56]:[^:]*:Hephaistos:7935:/
+316.1 "Uplift 4" #sync / 1[56]:[^:]*:Hephaistos:7935:/
+322.3 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7936:/
+322.5 "Stomp Dead 1" #sync / 1[56]:[^:]*:Hephaistos:7937:/
+324.8 "Stomp Dead 2" #sync / 1[56]:[^:]*:Hephaistos:7937:/
+327.1 "Stomp Dead 3" #sync / 1[56]:[^:]*:Hephaistos:7937:/
+329.3 "Stomp Dead 4" #sync / 1[56]:[^:]*:Hephaistos:7937:/
+
+# Human 3 (Snake first)
+346.7 "Conceptual Octaflare/Conceptual Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(7914|7915):/
+352.8 "Fourfold Fires" sync / 1[56]:[^:]*:Hephaistos:78F2:/ window 300,10
+358.6 "Abyssal Fires" sync / 1[56]:[^:]*:Hephaistos:7954:/
+362.0 "--sync--" sync / 1[56]:[^:]*:Hephaistos:78F0:/
+367.9 "Cthonic Vent 1" sync / 1[56]:[^:]*:Suneater:7925:/
+376.9 "Cthonic Vent 2" sync / 1[56]:[^:]*:Suneater:794E:/
+377.2 "Tetraflare/Octaflare" sync / 1[56]:[^:]*:Hephaistos:(791E|791D):/
+381.4 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+385.9 "Cthonic Vent 3" sync / 1[56]:[^:]*:Suneater:7926:/
+390.6 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:(7910|7911):/
+391.6 "Scorching Fang/Sun\'s Pinion" sync / 1[56]:[^:]*:Hephaistos:(7912|7913):/
+391.8 "Emergent Octaflare/Emergent Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(7918|7919):/
+399.0 "Flameviper 1" sync / 1[56]:[^:]*:Hephaistos:7945:/
+402.2 "Flameviper 2" sync / 1[56]:[^:]*:Hephaistos:7946:/
+
+# Snake 2 (Snake first)
+409.4 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+414.6 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794C:/
+421.9 "Snaking Kick" sync / 1[56]:[^:]*:Hephaistos:7929:/
+428.0 "Gorgomanteia" sync / 1[56]:[^:]*:Hephaistos:791A:/
+434.1 "Into the Shadows" sync / 1[56]:[^:]*:Hephaistos:792A:/
+448.1 "--sync--" sync / 1[56]:[^:]*:Gorgon:792B:/
+449.3 "Petrifaction" sync / 1[56]:[^:]*:Gorgon:6724:/
+450.3 "Gorgospit (outside)" sync / 1[56]:[^:]*:Illusory Hephaistos:7932:/
+451.8 "Blood of the Gorgon 1" sync / 1[56]:[^:]*:Hephaistos:792F:/
+451.8 "Eye of the Gorgon 1" sync / 1[56]:[^:]*:Hephaistos:792D:/
+456.4 "Illusory Creation" sync / 1[56]:[^:]*:Hephaistos:7931:/
+457.8 "Blood of the Gorgon 2" sync / 1[56]:[^:]*:Hephaistos:792F:/
+457.8 "Eye of the Gorgon 2" sync / 1[56]:[^:]*:Hephaistos:792D:/
+465.3 "Gorgospit (line)" sync / 1[56]:[^:]*:Illusory Hephaistos:7932:/
+466.9 "Crown of the Gorgon" sync / 1[56]:[^:]*:Hephaistos:792E:/
+467.8 "Breath of the Gorgon" sync / 1[56]:[^:]*:Hephaistos:7930:/
+481.0 "Flameviper 1" sync / 1[56]:[^:]*:Hephaistos:7945:/
+484.2 "Flameviper 2" sync / 1[56]:[^:]*:Hephaistos:7946:/
+
+# Beast 2 (Snake first)
+491.4 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+496.6 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794B:/
+503.1 "Footprint" sync / 1[56]:[^:]*:Hephaistos:7109:/
+509.4 "Quadrupedal Impact/Quadrupedal Crush" sync / 1[56]:[^:]*:Hephaistos:(7A04|7A05):/
+515.8 "Conceptual Diflare/Conceptual Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(7917|7916):/
+522.0 "--sync--" sync / 1[56]:[^:]*:Hephaistos:793B:/
+524.2 "--sync--" sync / 1[56]:[^:]*:Hephaistos:793D:/
+526.4 "--sync--" sync / 1[56]:[^:]*:Hephaistos:793B:/
+528.6 "--sync--" sync / 1[56]:[^:]*:Hephaistos:793C:/
+531.0 "--untargetable--"
+531.0 "Blazing Footfalls" sync / 1[56]:[^:]*:Hephaistos:7938:/
+531.6 "Trailblaze 1" sync / 1[56]:[^:]*:Hephaistos:793E:/
+532.8 "Emergent Diflare/Emergent Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(791B|7919):/
+535.7 "--sync--" sync / 1[56]:[^:]*:Hephaistos:793F:/
+536.6 "Quadrupedal Impact/Quadrupedal Crush" sync / 1[56]:[^:]*:Hephaistos:7107:/
+539.5 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7939:/
+540.2 "Trailblaze 2" sync / 1[56]:[^:]*:Hephaistos:793E:/
+542.2 "--sync--" sync / 1[56]:[^:]*:Hephaistos:793A:/
+543.1 "Quadrupedal Impact/Quadrupedal Crush" sync / 1[56]:[^:]*:Hephaistos:7106:/
+546.5 "Torch Flame" sync / 1[56]:[^:]*:Hephaistos:7927:/
+547.4 "--targetable--"
+
+# Human 4 (Snake first)
+552.6 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+559.9 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7944:/
+568.1 "--untargetable--"
+573.1 "Genesis of Flame (enrage)" sync / 1[56]:[^:]*:Hephaistos:794A:/
+
+
+# Beast 1 (Beast first)
+1158.7 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+1163.9 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794B:/
+1170.3 "Footprint" sync / 1[56]:[^:]*:Hephaistos:7109:/ window 100,100
+1177.2 "Uplift 1" #sync / 1[56]:[^:]*:Hephaistos:7935:/
+1179.3 "Uplift 2" #sync / 1[56]:[^:]*:Hephaistos:7935:/
+1181.5 "Uplift 3" #sync / 1[56]:[^:]*:Hephaistos:7935:/
+1183.6 "Uplift 4" #sync / 1[56]:[^:]*:Hephaistos:7935:/
+1189.8 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7936:/
+1190.0 "Stomp Dead 1" #sync / 1[56]:[^:]*:Hephaistos:7937:/
+1192.3 "Stomp Dead 2" #sync / 1[56]:[^:]*:Hephaistos:7937:/
+1194.6 "Stomp Dead 3" #sync / 1[56]:[^:]*:Hephaistos:7937:/
+1196.8 "Stomp Dead 4" #sync / 1[56]:[^:]*:Hephaistos:7937:/
+
+# Human 2 (Beast first)
+1214.1 "Illusory Creation" sync / 1[56]:[^:]*:Hephaistos:791C:/
+1220.2 "Creation on Command" sync / 1[56]:[^:]*:Hephaistos:794F:/
+1228.0 "Sunforge" sync / 1[56]:[^:]*:Illusory Hephaistos:7950:/
+1228.4 "Manifold Flames" sync / 1[56]:[^:]*:Hephaistos:7921:/
+1229.0 "Scorching Fang" sync / 1[56]:[^:]*:Illusory Hephaistos:7952:/
+1229.0 "Scorched Pinion" sync / 1[56]:[^:]*:Illusory Hephaistos:7953:/
+1229.2 "Hemitheos's Flare" sync / 1[56]:[^:]*:Hephaistos:72CE:/
+1232.6 "Manifold Flames" sync / 1[56]:[^:]*:Hephaistos:7922:/
+1233.4 "Nest of Flamevipers" sync / 1[56]:[^:]*:Hephaistos:7920:/
+1240.1 "Sunforge" sync / 1[56]:[^:]*:Illusory Hephaistos:(7950|7951):/
+1240.7 "Tetraflare/Nest of Flamevipers" sync / 1[56]:[^:]*:Hephaistos:(791E|791F):/
+1241.1 "Scorching Fang/Scorched Pinion" sync / 1[56]:[^:]*:Illusory Hephaistos:(7952|7953):/
+1241.5 "Emergent Octaflare/Emergent Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(7918|7919):/
+1253.7 "Torch Flame" sync / 1[56]:[^:]*:Hephaistos:7927:/
+1257.8 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7944:/
+
+# Snake 1 (Beast first)
+1265.0 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+1270.2 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794C:/
+1277.5 "Snaking Kick" sync / 1[56]:[^:]*:Hephaistos:7929:/
+1283.6 "Gorgomanteia" sync / 1[56]:[^:]*:Hephaistos:791A:/
+1289.7 "Into the Shadows" sync / 1[56]:[^:]*:Hephaistos:792A:/
+1303.8 "--sync--" sync / 1[56]:[^:]*:Gorgon:792B:/
+1304.9 "Petrifaction 1" sync / 1[56]:[^:]*:Gorgon:6724:/
+1307.4 "Eye of the Gorgon 1" sync / 1[56]:[^:]*:Hephaistos:792D:/
+1310.5 "Blood of the Gorgon 1" sync / 1[56]:[^:]*:Hephaistos:792F:/
+1311.8 "--sync--" sync / 1[56]:[^:]*:Gorgon:792B:/
+1313.0 "Petrifaction 2" sync / 1[56]:[^:]*:Gorgon:6724:/
+1315.5 "Eye of the Gorgon 2" sync / 1[56]:[^:]*:Hephaistos:792D:/
+1318.5 "Blood of the Gorgon 2" sync / 1[56]:[^:]*:Hephaistos:792F:/
+1323.1 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7949:/
+1328.1 "Ektothermos" sync / 1[56]:[^:]*:Hephaistos:79EA:/
+
+# Human 3 (Beast first)
+1331.1 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7949:/
+1346.5 "Conceptual Octaflare/Conceptual Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(7914|7915):/
+1352.6 "Fourfold Fires" sync / 1[56]:[^:]*:Hephaistos:78F2:/ window 300,10
+1358.4 "Abyssal Fires" sync / 1[56]:[^:]*:Hephaistos:7954:/
+1361.8 "--sync--" sync / 1[56]:[^:]*:Hephaistos:78F0:/
+1367.7 "Cthonic Vent 1" sync / 1[56]:[^:]*:Suneater:7925:/
+1376.7 "Cthonic Vent 2" sync / 1[56]:[^:]*:Suneater:794E:/
+1377.0 "Tetraflare/Octaflare" sync / 1[56]:[^:]*:Hephaistos:(791E|791D):/
+1381.2 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+1385.7 "Cthonic Vent 3" sync / 1[56]:[^:]*:Suneater:7926:/
+1390.4 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:(7910|7911):/
+1391.4 "Scorching Fang/Sun\'s Pinion" sync / 1[56]:[^:]*:Hephaistos:(7912|7913):/
+1391.6 "Emergent Octaflare/Emergent Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(7918|7919):/
+1398.8 "Flameviper 1" sync / 1[56]:[^:]*:Hephaistos:7945:/
+1402.0 "Flameviper 2" sync / 1[56]:[^:]*:Hephaistos:7946:/
+
+# Beast 2 (Beast first)
+1409.1 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+1414.3 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794B:/
+1420.8 "Footprint" sync / 1[56]:[^:]*:Hephaistos:7109:/
+1427.1 "Quadrupedal Impact/Quadrupedal Crush" sync / 1[56]:[^:]*:Hephaistos:(7A04|7A05):/
+1433.5 "Conceptual Diflare/Conceptual Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(7917|7916):/
+1439.7 "--sync--" sync / 1[56]:[^:]*:Hephaistos:793B:/
+1441.9 "--sync--" sync / 1[56]:[^:]*:Hephaistos:793D:/
+1444.1 "--sync--" sync / 1[56]:[^:]*:Hephaistos:793B:/
+1446.3 "--sync--" sync / 1[56]:[^:]*:Hephaistos:793C:/
+1448.7 "--untargetable--"
+1448.7 "Blazing Footfalls" sync / 1[56]:[^:]*:Hephaistos:7938:/
+1449.3 "Trailblaze 1" sync / 1[56]:[^:]*:Hephaistos:793E:/
+1450.5 "Emergent Diflare/Emergent Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(791B|7919):/
+1453.4 "--sync--" sync / 1[56]:[^:]*:Hephaistos:793F:/
+1454.3 "Quadrupedal Impact/Quadrupedal Crush" sync / 1[56]:[^:]*:Hephaistos:7107:/
+1457.2 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7939:/
+1457.9 "Trailblaze 2" sync / 1[56]:[^:]*:Hephaistos:793E:/
+1459.9 "--sync--" sync / 1[56]:[^:]*:Hephaistos:793A:/
+1460.8 "Quadrupedal Impact/Quadrupedal Crush" sync / 1[56]:[^:]*:Hephaistos:7106:/
+1464.2 "Torch Flame" sync / 1[56]:[^:]*:Hephaistos:7927:/
+1465.1 "--targetable--"
+1470.3 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+1477.7 "Flameviper 1" sync / 1[56]:[^:]*:Hephaistos:7945:/
+1480.9 "Flameviper 2" sync / 1[56]:[^:]*:Hephaistos:7946:/
+
+# Snake 2 (Beast first)
+1488.0 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
+1493.2 "Reforged Reflection" sync / 1[56]:[^:]*:Hephaistos:794C:/
+1500.5 "Snaking Kick" sync / 1[56]:[^:]*:Hephaistos:7929:/
+1506.6 "Gorgomanteia" sync / 1[56]:[^:]*:Hephaistos:791A:/
+1512.7 "Into the Shadows" sync / 1[56]:[^:]*:Hephaistos:792A:/
+1526.7 "--sync--" sync / 1[56]:[^:]*:Gorgon:792B:/
+1527.9 "Petrifaction" sync / 1[56]:[^:]*:Gorgon:6724:/
+1528.9 "Gorgospit (outside)" sync / 1[56]:[^:]*:Illusory Hephaistos:7932:/
+1530.4 "Blood of the Gorgon 1" sync / 1[56]:[^:]*:Hephaistos:792F:/
+1530.4 "Eye of the Gorgon 1" sync / 1[56]:[^:]*:Hephaistos:792D:/
+1535.0 "Illusory Creation" sync / 1[56]:[^:]*:Hephaistos:7931:/
+1536.4 "Blood of the Gorgon 2" sync / 1[56]:[^:]*:Hephaistos:792F:/
+1536.4 "Eye of the Gorgon 2" sync / 1[56]:[^:]*:Hephaistos:792D:/
+1543.9 "Gorgospit (line)" sync / 1[56]:[^:]*:Illusory Hephaistos:7932:/
+1545.5 "Crown of the Gorgon" sync / 1[56]:[^:]*:Hephaistos:792E:/
+1546.4 "Breath of the Gorgon" sync / 1[56]:[^:]*:Hephaistos:7930:/
+
+# Human 4 (Beast first)
+1559.4 "Genesis of Flame" sync / 1[56]:[^:]*:Hephaistos:7944:/
+1567.4 "--untargetable--"
+1572.4 "Genesis of Flame (enrage)" sync / 1[56]:[^:]*:Hephaistos:794A:/
+
+
+### P8S Part 2
+#
+# -p 72C2:5005 79DF:5016
+# -ii 79DE 79AE 79AF 79B0 79B2 79B4 7A86 7AA0 79B5
+# -it "Hephaistos"
+
+5000.0 "--sync--"
+5005.0 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5008.0 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5011.0 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5011.0 "--sync--" sync / 14:[^:]*:Hephaistos:79DF:/ window 6000,10
+5016.0 "Aioniopyr" sync / 1[56]:[^:]*:Hephaistos:79DF:/
+5019.0 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5022.0 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5027.2 "Tyrant's Unholy Darkness" sync / 1[56]:[^:]*:Hephaistos:79DD:/
+5032.2 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5035.3 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+
+5040.4 "Natural Alignment 1" sync / 1[56]:[^:]*:Hephaistos:79BB:/ window 20,20
+5049.5 "Twist Nature" sync / 1[56]:[^:]*:Hephaistos:79BC:/
+5055.6 "Tyrant's Flare" sync / 1[56]:[^:]*:Hephaistos:7A89:/
+5058.6 "Forcible Fire III/Forcible Fire II" sync / 1[56]:[^:]*:Hephaistos:(79BF|79C0):/
+5058.6 "Tyrant's Flare" sync / 1[56]:[^:]*:Hephaistos:7A8A:/
+5064.6 "Forcible Fire II/Forcible Fire III" sync / 1[56]:[^:]*:Hephaistos:(79C0|79BF):/
+
+5064.6 "Ashing Blaze" sync / 1[56]:[^:]*:Hephaistos:(79D7|79D8):/
+5076.4 "Forcible Trifire/Forcible Difreeze" sync / 1[56]:[^:]*:Hephaistos:(79BD|79BE):/
+5082.4 "Forcible Difreeze/Forcible Trifire" sync / 1[56]:[^:]*:Hephaistos:(79BE|79BD):/
+
+5088.7 "Aioniopyr" sync / 1[56]:[^:]*:Hephaistos:79DF:/ window 20,20
+5091.7 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5094.8 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5101.9 "Tyrant's Unholy Darkness" sync / 1[56]:[^:]*:Hephaistos:79DD:/
+5114.1 "--sync--" sync / 1[56]:[^:]*:Hephaistos:79AC:/
+5106.9 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5118.6 "High Concept 1" sync / 1[56]:[^:]*:Hephaistos:710A:/ window 20,20
+5118.6 "--untargetable--"
+5126.3 "Arcane Control" sync / 1[56]:[^:]*:Hephaistos:79B6:/
+5126.7 "Conceptual Shift" sync / 1[56]:[^:]*:Hephaistos:79AD:/
+5126.7 "Splicer" sync / 1[56]:[^:]*:Hephaistos:79B3:/
+5138.5 "Ashing Blaze" sync / 1[56]:[^:]*:Hephaistos:(79D7|79D8):/
+5138.5 "Arcane Channel" sync / 1[56]:[^:]*:Hephaistos:79B7:/
+5144.6 "Arcane Control" sync / 1[56]:[^:]*:Hephaistos:79B6:/
+5144.7 "Conceptual Shift" sync / 1[56]:[^:]*:Hephaistos:79AD:/
+5156.7 "Ashing Blaze" sync / 1[56]:[^:]*:Hephaistos:(79D7|79D8):/
+5156.7 "Arcane Channel" sync / 1[56]:[^:]*:Hephaistos:79B7:/
+5159.8 "--targetable--"
+5162.8 "Deconceptualize" sync / 1[56]:[^:]*:Hephaistos:7A8E:/
+
+5170.9 "Aioniopyr" sync / 1[56]:[^:]*:Hephaistos:79DF:/ window 20,20
+5174.0 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5177.1 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5180.1 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5185.3 "Limitless Desolation" sync / 1[56]:[^:]*:Hephaistos:75ED:/
+5186.5 "Tyrant's Fire III 1" sync / 1[56]:[^:]*:Hephaistos:75F0:/
+5189.5 "Tyrant's Fire III 2" sync / 1[56]:[^:]*:Hephaistos:75F0:/
+5192.5 "Tyrant's Fire III 3" sync / 1[56]:[^:]*:Hephaistos:75F0:/
+5195.5 "Tyrant's Fire III 4" sync / 1[56]:[^:]*:Hephaistos:75F0:/
+5197.5 "Tyrant's Flare II" sync / 1[56]:[^:]*:Hephaistos:7A88:/
+5197.5 "Burst 1" #sync / 1[56]:[^:]*:Hephaistos:79D5:/
+5200.4 "Tyrant's Flare II" #sync / 1[56]:[^:]*:Hephaistos:7A88:/
+5200.4 "Burst 2" #sync / 1[56]:[^:]*:Hephaistos:79D5:/
+5203.4 "Tyrant's Flare II" #sync / 1[56]:[^:]*:Hephaistos:7A88:/
+5203.4 "Burst 3" #sync / 1[56]:[^:]*:Hephaistos:79D5:/
+5206.3 "Tyrant's Flare II" #sync / 1[56]:[^:]*:Hephaistos:7A88:/
+5206.3 "Burst 4" #sync / 1[56]:[^:]*:Hephaistos:79D5:/
+
+5213.2 "Aioniopyr" sync / 1[56]:[^:]*:Hephaistos:79DF:/ window 20,20
+5216.3 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5219.3 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5226.3 "Tyrant's Unholy Darkness" sync / 1[56]:[^:]*:Hephaistos:79DD:/
+5231.4 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5234.4 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5241.5 "Natural Alignment 2" sync / 1[56]:[^:]*:Hephaistos:79BB:/
+5247.6 "Inverse Magicks" sync / 1[56]:[^:]*:Hephaistos:79C2:/
+5253.7 "Twist Nature" sync / 1[56]:[^:]*:Hephaistos:79BC:/
+5262.9 "Forcible Fire III/Forcible Fire II" sync / 1[56]:[^:]*:Hephaistos:(79BF|79C0):/
+5268.9 "Forcible Fire II/Forcible Fire III" sync / 1[56]:[^:]*:Hephaistos:(79C0|79BF):/
+5281.8 "Forcible Trifire/Forcible Difreeze" sync / 1[56]:[^:]*:Hephaistos:(79BD|79BE):/
+5287.9 "Forcible Difreeze/Forcible Trifire" sync / 1[56]:[^:]*:Hephaistos:(79BE|79BD):/
+5293.8 "Ashing Blaze" sync / 1[56]:[^:]*:Hephaistos:(79D7|79D8):/
+
+5301.9 "Aioniopyr" sync / 1[56]:[^:]*:Hephaistos:79DF:/ window 20,20
+5305.0 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5308.0 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+5315.0 "Tyrant's Unholy Darkness" sync / 1[56]:[^:]*:Hephaistos:79DD:/
+5320.2 "--auto--" #sync / 1[56]:[^:]*:Hephaistos:72C2:/
+
+5327.2 "--sync--" sync / 1[56]:[^:]*:Hephaistos:79AC:/
+5331.7 "High Concept 2" sync / 1[56]:[^:]*:Hephaistos:710A:/ window 20,20
+5331.7 "--untargetable--"
+5339.4 "Arcane Control" sync / 1[56]:[^:]*:Hephaistos:79B6:/
+5339.8 "Conceptual Shift" sync / 1[56]:[^:]*:Hephaistos:79AD:/
+5339.8 "Splicer" sync / 1[56]:[^:]*:Hephaistos:79B3:/
+5351.6 "Ashing Blaze" sync / 1[56]:[^:]*:Hephaistos:(79D7|79D8):/
+5351.6 "Arcane Channel" sync / 1[56]:[^:]*:Hephaistos:79B7:/
+5357.7 "Arcane Control" sync / 1[56]:[^:]*:Hephaistos:79B6:/
+5357.8 "Conceptual Shift" sync / 1[56]:[^:]*:Hephaistos:79AD:/
+5370.0 "End of Days" sync / 1[56]:[^:]*:Illusory Hephaistos:79B9:/
+5370.0 "Arcane Channel" sync / 1[56]:[^:]*:Hephaistos:79B7:/
+5373.9 "--targetable--"
+5390.0 "Ego Death" sync / 1[56]:[^:]*:Hephaistos:79BA:/
+5403.4 "--sync--" sync / 1[56]:[^:]*:Hephaistos:79F0:/
+
+5424.5 "Aionagonia 1" sync / 1[56]:[^:]*:Hephaistos:7A22:/ window 20,20
+5434.6 "Dominion" sync / 1[56]:[^:]*:Hephaistos:79D9:/
+5435.7 "Orogenic Deformation" sync / 1[56]:[^:]*:Hephaistos:79DB:/
+5442.7 "Orogenic Shift 1" sync / 1[56]:[^:]*:Hephaistos:79DC:/
+5448.7 "Orogenic Shift 2" sync / 1[56]:[^:]*:Hephaistos:79DC:/
+
+5453.8 "Aionagonia 2" sync / 1[56]:[^:]*:Hephaistos:7A22:/
+5463.9 "Dominion" sync / 1[56]:[^:]*:Hephaistos:79D9:/
+5465.0 "Orogenic Deformation" sync / 1[56]:[^:]*:Hephaistos:79DB:/
+5472.0 "Orogenic Shift 1" sync / 1[56]:[^:]*:Hephaistos:79DC:/
+5478.0 "Orogenic Shift 2" sync / 1[56]:[^:]*:Hephaistos:79DC:/
+
+5483.0 "Aionagonia 3" sync / 1[56]:[^:]*:Hephaistos:7A22:/ window 20,20
+
+5490.3 "--sync--" sync / 14:[^:]*:Hephaistos:79E4:/ window 50,50
+5506.3 "Ego Death (enrage)" sync / 1[56]:[^:]*:Hephaistos:79E4:/

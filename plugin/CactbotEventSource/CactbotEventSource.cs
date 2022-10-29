@@ -237,6 +237,12 @@ namespace Cactbot {
       act_version_ = versions.GetACTVersion();
       game_region_ = versions.GetGameRegion();
 
+      if (overlay_plugin_version_.CompareTo(new Version("0.19.0.0")) < 0) {
+          var str = String.Format("Old OverlayPlugin {0} detected.  To fix this, follow these instructions: https://overlayplugin.github.io/OverlayPlugin/fork_update.html (this url is also pinned in FFXIV ACT Discord #general)", overlay_plugin_version_.ToString());
+          MessageBox.Show(str, "cactbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          return;
+      }
+
       // Print out version strings and locations to help users debug.
       logger.Log(LogLevel.Info, Strings.CactbotBaseInfo, cactbot_version_.ToString(), versions.GetCactbotPluginLocation(), versions.GetCactbotDirectory());
       logger.Log(LogLevel.Info, Strings.OverlayPluginBaseInfo, overlay_plugin_version_.ToString(), versions.GetOverlayPluginLocation());

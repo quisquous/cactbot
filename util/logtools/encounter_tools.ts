@@ -1,10 +1,10 @@
 import ContentType from '../../resources/content_type';
 import DTFuncs from '../../resources/datetime';
-import NetRegexes from '../../resources/netregexes';
+import NetRegexes, { commonNetRegex } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import StringFuncs from '../../resources/stringhandlers';
 import ZoneInfo from '../../resources/zone_info';
-import { NetMatches, NetAnyMatches } from '../../types/net_matches';
+import { NetAnyMatches, NetMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 import { commonReplacement, syncKeys } from '../../ui/raidboss/common_replacement';
 
@@ -61,9 +61,9 @@ export class EncounterFinder {
   constructor() {
     this.regex = {
       changeZone: NetRegexes.changeZone(),
-      cactbotWipe: NetRegexes.echo({ line: 'cactbot wipe.*?' }),
+      cactbotWipe: commonNetRegex.cactbotWipeEcho,
       win: NetRegexes.network6d({ command: '40000003' }),
-      wipe: NetRegexes.network6d({ command: '40000010' }),
+      wipe: commonNetRegex.wipe,
       commence: NetRegexes.network6d({ command: '4000000[16]' }),
       playerAttackingMob: NetRegexes.ability({ sourceId: '1.{7}', targetId: '4.{7}' }),
       mobAttackingPlayer: NetRegexes.ability({ sourceId: '4.{7}', targetId: '1.{7}' }),
@@ -104,6 +104,7 @@ export class EncounterFinder {
       ContentType.Trials,
       ContentType.UltimateRaids,
       ContentType.DeepDungeons,
+      ContentType.VCDungeonFinder,
     ];
 
     return !keepTypes.includes(content);
@@ -153,14 +154,14 @@ export class EncounterFinder {
     const cW = this.regex.cactbotWipe.exec(line)?.groups;
     if (cW) {
       if (this.currentFight.startTime && !this.haveSeenSeals)
-      this.onEndFight(line, cW, 'Wipe');
+        this.onEndFight(line, cW, 'Wipe');
       return;
     }
 
     const wipe = this.regex.wipe.exec(line)?.groups;
     if (wipe) {
       if (this.currentFight.startTime && !this.haveSeenSeals)
-      this.onEndFight(line, wipe, 'Wipe');
+        this.onEndFight(line, wipe, 'Wipe');
       return;
     }
 
@@ -193,7 +194,7 @@ export class EncounterFinder {
     if (!(this.currentFight.startTime || this.haveWon || this.haveSeenSeals)) {
       let a = this.regex.playerAttackingMob.exec(line);
       if (!a)
-      // TODO: This regex catches faerie healing and could potentially give false positives!
+        // TODO: This regex catches faerie healing and could potentially give false positives!
         a = this.regex.mobAttackingPlayer.exec(line);
       if (a?.groups) {
         this.onStartFight(line, this.currentZone.zoneName, a.groups);
@@ -258,7 +259,11 @@ class EncounterCollector extends EncounterFinder {
     this.initializeZone();
   }
 
-  override onStartFight(line: string, fightName: string, matches: NetMatches['Ability' | 'GameLog']): void {
+  override onStartFight(
+    line: string,
+    fightName: string,
+    matches: NetMatches['Ability' | 'GameLog'],
+  ): void {
     this.currentFight = {
       fightName: fightName,
       zoneName: this.currentZone.zoneName,
@@ -352,8 +357,8 @@ class TLFuncs {
       wipeStr = fightOrZone.endType === 'Wipe' ? '_wipe' : '';
     return `${zoneName}${seal}_${dateStr}_${timeStr}_${duration}${wipeStr}.log`;
   }
-// For an array of arrays, return an array where each value is the max length at that index
-// among all of the inner arrays, e.g. find the max length per field of an array of rows.
+  // For an array of arrays, return an array where each value is the max length at that index
+  // among all of the inner arrays, e.g. find the max length per field of an array of rows.
   static maxLengthPerIndex(outputRows: Array<Array<string>>): Array<number> {
     const outputSizes = outputRows.map((row) => row.map((field) => field.length));
     return outputSizes.reduce((max, row) => {
@@ -362,9 +367,9 @@ class TLFuncs {
         if (indexed !== undefined)
           return Math.max(val, indexed);
         return val;
-     });
+      });
     });
   }
 }
 
-export { EncounterCollector, TLFuncs, ZoneEncInfo, FightEncInfo };
+export { EncounterCollector, FightEncInfo, TLFuncs, ZoneEncInfo };

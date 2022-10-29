@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -36,13 +35,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O11N Atomic Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3286', source: 'Omega', capture: false }),
+      netRegex: { id: '3286', source: 'Omega', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O11N Mustard Bomb',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3287', source: 'Omega' }),
+      netRegex: { id: '3287', source: 'Omega' },
       response: Responses.tankBuster('alarm'),
     },
     {
@@ -56,14 +55,14 @@ const triggerSet: TriggerSet<Data> = {
       // will at least say left/right for the second.
       id: 'O11N Cannon Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '328[13]', source: 'Omega', capture: false }),
+      netRegex: { id: '328[13]', source: 'Omega', capture: false },
       delaySeconds: 15,
       run: (data) => delete data.lastWasStarboard,
     },
     {
       id: 'O11N Starboard Cannon 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '328[12]', source: 'Omega', capture: false }),
+      netRegex: { id: '328[12]', source: 'Omega', capture: false },
       condition: (data) => data.lastWasStarboard === undefined,
       response: Responses.goLeft(),
       run: (data) => data.lastWasStarboard = true,
@@ -71,7 +70,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O11N Larboard Cannon 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '328[34]', source: 'Omega', capture: false }),
+      netRegex: { id: '328[34]', source: 'Omega', capture: false },
       condition: (data) => data.lastWasStarboard === undefined,
       response: Responses.goRight(),
       run: (data) => data.lastWasStarboard = false,
@@ -79,7 +78,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O11N Starboard Cannon 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3282', source: 'Omega', capture: false }),
+      netRegex: { id: '3282', source: 'Omega', capture: false },
       condition: (data) => data.lastWasStarboard !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastWasStarboard)
@@ -109,7 +108,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O11N Larboard Cannon 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3284', source: 'Omega', capture: false }),
+      netRegex: { id: '3284', source: 'Omega', capture: false },
       condition: (data) => data.lastWasStarboard !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastWasStarboard)
@@ -139,7 +138,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O11N Ballistic Missile',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0065' }),
+      netRegex: { id: '0065' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -155,13 +154,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O11N Electric Slide',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'O11N Delta Attack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '327B', source: 'Omega', capture: false }),
+      netRegex: { id: '327B', source: 'Omega', capture: false },
       delaySeconds: 3,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

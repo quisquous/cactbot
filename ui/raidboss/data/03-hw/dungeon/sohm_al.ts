@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -35,20 +34,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sohm Al Myath Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Sohm Al Myath Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00AE' }),
+      netRegex: { id: '008C' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Sohm Al Myath Chyme',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Chyme Of The Mountain', capture: false }),
+      netRegex: { name: 'Chyme Of The Mountain', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -64,7 +63,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sohm Al Tioman Meteor',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0007' }),
+      netRegex: { id: '0007' },
       condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },

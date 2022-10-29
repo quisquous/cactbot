@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -42,25 +41,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Byregot Ordeal of Thunder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7176', source: 'Byregot', capture: false }),
+      netRegex: { id: '7176', source: 'Byregot', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Aglaia Byregot Byregot\'s Strike',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '725A', source: 'Byregot', capture: false }),
+      netRegex: { id: '725A', source: 'Byregot', capture: false },
       response: Responses.knockback('info'),
     },
     {
       id: 'Aglaia Byregot Byregot\'s Strike Lightning',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7167', source: 'Byregot', capture: false }),
+      netRegex: { id: '7167', source: 'Byregot', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Knockback (with lightning)',
           de: 'Rückstoß (mit Blitzen)',
           fr: 'Poussée (avec éclair)',
+          ja: 'ノックバック (雷)',
           cn: '击退 (带闪电)',
           ko: '넉백 (번개 장판)',
         },
@@ -69,58 +69,59 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Byregot Byregot\'s Ward',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7175', source: 'Byregot' }),
+      netRegex: { id: '7175', source: 'Byregot' },
       response: Responses.tankCleave(),
     },
     {
       id: 'Aglaia Byregot Reproduce',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '716B', source: 'Byregot', capture: false }),
+      netRegex: { id: '716B', source: 'Byregot', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge normal -> glowing row',
           de: 'Normal ausweichen -> leuchtende Reihe',
           fr: 'Évitez normal -> ligne brillante',
+          ja: '安置 -> ひかり',
           cn: '去安全区 -> 发光行',
-          ko: '안전 지대 -> 빛나는 열 피하기',
+          ko: '안전 지대 -> 빛나는 열로 피하기',
         },
       },
     },
     {
       id: 'Aglaia Rhalgr\'s Emissary Destructive Static',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70E0', source: 'Rhalgr\'s Emissary', capture: false }),
+      netRegex: { id: '70E0', source: 'Rhalgr\'s Emissary', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'Aglaia Rhalgr\'s Emissary Bolts from the Blue',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70E3', source: 'Rhalgr\'s Emissary', capture: false }),
+      netRegex: { id: '70E3', source: 'Rhalgr\'s Emissary', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Aglaia Rhalgr\'s Emissary Destructive Strike',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70D9', source: 'Rhalgr\'s Emissary' }),
+      netRegex: { id: '70D9', source: 'Rhalgr\'s Emissary' },
       response: Responses.tankCleave(),
     },
     {
       id: 'Aglaia Rhalgr Lightning Reign',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70A5', source: 'Rhalgr', capture: false }),
+      netRegex: { id: '70A5', source: 'Rhalgr', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Aglaia Rhalgr Destructive Bolt Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70B4', source: 'Rhalgr' }),
+      netRegex: { id: '70B4', source: 'Rhalgr' },
       run: (data, matches) => data.tankbusters.push(matches.target),
     },
     {
       id: 'Aglaia Rhalgr Destructive Bolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70B4', source: 'Rhalgr', capture: false }),
+      netRegex: { id: '70B4', source: 'Rhalgr', capture: false },
       delaySeconds: 0.3,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
@@ -131,8 +132,9 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Avoid Tank Cleaves',
             de: 'Weiche Tank-Cleaves aus',
             fr: 'Évitez le cleave sur le tank',
+            ja: 'タンク範囲攻撃回避',
             cn: '躲避坦克顺劈',
-            ko: '광역 탱버',
+            ko: '광역 탱버 피하기',
           },
         };
 
@@ -145,7 +147,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Rhalgr Rhalgr\'s Beacon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70B8', source: 'Rhalgr', capture: false }),
+      netRegex: { id: '70B8', source: 'Rhalgr', capture: false },
       // 10 second cast.
       delaySeconds: 5,
       alertText: (data, _matches, output) => {
@@ -158,35 +160,36 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Knockback (avoid orbs)',
           de: 'Rückstoßs (weiche den Orbs aus)',
           fr: 'Poussée (évitez les orbes)',
+          ja: 'ノックバック (玉回避)',
           cn: '击退 (避开球)',
-          ko: '넉백 (오브 피하기)',
+          ko: '넉백 (구슬 피하기)',
         },
       },
     },
     {
       id: 'Aglaia Rhalgr Lightning Storm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70BA', source: 'Rhalgr' }),
+      netRegex: { id: '70BA', source: 'Rhalgr' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Aglaia Rhalgr Broken World',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70A6', source: 'Rhalgr', capture: false }),
+      netRegex: { id: '70A6', source: 'Rhalgr', capture: false },
       run: (data) => data.rhalgrBrokenWorldActive = true,
     },
     {
       id: 'Aglaia Rhalgr Broken World Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70A6', source: 'Rhalgr', capture: false }),
+      netRegex: { id: '70A6', source: 'Rhalgr', capture: false },
       delaySeconds: 20,
       run: (data) => data.rhalgrBrokenWorldActive = false,
     },
     {
       id: 'Aglaia Rhalgr Hand of the Destroyer Blue',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70A9', source: 'Rhalgr', capture: false }),
+      netRegex: { id: '70A9', source: 'Rhalgr', capture: false },
       alertText: (data, _matches, output) => {
         if (data.rhalgrBrokenWorldActive)
           return output.redSideAway!();
@@ -197,43 +200,47 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Be on red half',
           de: 'Geh zur roten Seite',
           fr: 'Placez-vous sur la moitié rouge',
+          ja: '赤い安置',
           cn: '站红色半场',
-          ko: '빨간 포탈쪽으로',
+          ko: '빨간색 쪽으로',
         },
         redSideAway: {
           en: 'Be on red half (away from portal)',
           de: 'Geh zur roten Seite (weg vom Portal)',
           fr: 'Placez-vous sur la moitié rouge (loin du portail)',
+          ja: '赤い安置 (ポータルから離れる)',
           cn: '站红色半场 (远离传送门)',
-          ko: '빨간 포탈쪽, 포탈에서 멀리 떨어지기',
+          ko: '빨간색 쪽, 포탈에서 멀리 떨어지기',
         },
       },
     },
     {
       id: 'Aglaia Rhalgr Hand of the Destroyer Red Initial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70A8', source: 'Rhalgr', capture: false }),
+      netRegex: { id: '70A8', source: 'Rhalgr', capture: false },
       alertText: (_data, _matches, output) => output.blueSide!(),
       outputStrings: {
         blueSide: {
           en: 'Be on blue half',
           de: 'Geh zur blauen Seite',
           fr: 'Placez-vous sur la moitié bleue',
+          ja: '青い安置',
           cn: '站蓝色半场',
-          ko: '파란 포탈쪽으로',
+          ko: '파란색 쪽으로',
         },
       },
     },
     {
       id: 'Aglaia Rhalgr Hand of the Destroyer Red',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70AC', source: 'Rhalgr', capture: false }),
+      netRegex: { id: '70AC', source: 'Rhalgr', capture: false },
       alertText: (_data, _matches, output) => output.nearRed!(),
       outputStrings: {
         nearRed: {
           en: 'Go near red portal',
           de: 'Geh zum roten Portal',
           fr: 'Allez sur le portail rouge',
+          ja: '赤いポータルへ',
           cn: '靠近红色传送门',
           ko: '빨간 포탈 근처로',
         },
@@ -242,61 +249,63 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Lions Double Immolation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7177', source: ['Lion of Aglaia', 'Lioness of Aglaia'], capture: false }),
+      netRegex: { id: '7177', source: ['Lion of Aglaia', 'Lioness of Aglaia'], capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Aglaia Lions Slash and Burn Lioness First',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '71D2', source: 'Lioness of Aglaia', capture: false }),
+      netRegex: { id: '71D2', source: 'Lioness of Aglaia', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Under Lioness => Out',
           de: 'Unter Löwin => Raus',
           fr: 'Sous la Lionne => Extérieur',
+          ja: 'ライオンの下 => 外へ',
           cn: '去雌狮 => 外面',
-          ko: '안 => 바깥으로',
+          ko: '보스 밑 => 바깥으로',
         },
       },
     },
     {
       id: 'Aglaia Lions Slash and Burn Lion First',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '71D0', source: 'Lion of Aglaia', capture: false }),
+      netRegex: { id: '71D0', source: 'Lion of Aglaia', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Out => Under Lioness',
           de: 'Raus => Unter Löwin',
           fr: 'Extérieur => Sous la lionne',
+          ja: '外 => ライオンの下へ',
           cn: '外面 => 去雌狮',
-          ko: '바깥 => 안으로',
+          ko: '바깥 => 보스 밑으로',
         },
       },
     },
     {
       id: 'Aglaia Azeyma Warden\'s Prominence',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '70A0', source: 'Azeyma', capture: false }),
+      netRegex: { id: '70A0', source: 'Azeyma', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Aglaia Azeyma Solar Wings',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7081', source: 'Azeyma', capture: false }),
+      netRegex: { id: '7081', source: 'Azeyma', capture: false },
       response: Responses.goFrontBack(),
     },
     {
       id: 'Aglaia Azeyma Warden\'s Warmth Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '709F', source: 'Azeyma' }),
+      netRegex: { id: '709F', source: 'Azeyma' },
       run: (data, matches) => data.tankbusters.push(matches.target),
     },
     {
       id: 'Aglaia Azeyma Warden\'s Warmth',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '709F', source: 'Azeyma', capture: false }),
+      netRegex: { id: '709F', source: 'Azeyma', capture: false },
       delaySeconds: 0.3,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
@@ -307,8 +316,9 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Avoid Tank Cleaves',
             de: 'Weiche Tank-Cleaves aus',
             fr: 'Évitez les cleaves sur le tank',
+            ja: 'タンク範囲攻撃回避',
             cn: '躲避坦克顺劈',
-            ko: '광역 탱버',
+            ko: '광역 탱버 피하기',
           },
         };
 
@@ -321,34 +331,35 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Azeyma Fleeting Spark',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '709C', source: 'Azeyma', capture: false }),
+      netRegex: { id: '709C', source: 'Azeyma', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'Aglaia Azeyma Sublime Sunset',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7098', source: 'Azeyma', capture: false }),
+      netRegex: { id: '7098', source: 'Azeyma', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Away from Orb',
           de: 'Weg vom Orb',
           fr: 'Éloignez-vous de l\'orbe',
+          ja: '玉から離れる',
           cn: '远离球',
-          ko: '오브 피하기',
+          ko: '구슬 피하기',
         },
       },
     },
     {
       id: 'Aglaia Nald\'thal As Above, So Below',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['70E8', '70E9'], source: 'Nald\'thal', capture: false }),
+      netRegex: { id: ['70E8', '70E9'], source: 'Nald\'thal', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Aglaia Nald\'thal Heat Above, Flames Below Orange Swap',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '73A4', source: 'Nald\'thal', capture: false }),
+      netRegex: { id: '73A4', source: 'Nald\'thal', capture: false },
       durationSeconds: 6,
       response: Responses.getOut(),
       run: (data) => data.naldLastColor = 'orange',
@@ -356,7 +367,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Nald\'thal Heat Above, Flames Below Blue',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '73A5', source: 'Nald\'thal', capture: false }),
+      netRegex: { id: '73A5', source: 'Nald\'thal', capture: false },
       durationSeconds: 6,
       response: Responses.getUnder(),
       run: (data) => data.naldLastColor = 'blue',
@@ -364,7 +375,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Nald\'thal Smelting',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00ED' }),
+      netRegex: { id: '00ED' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text!();
@@ -375,6 +386,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Protean Spread on YOU',
           de: 'Protean verteilen auf DIR',
           fr: 'Position sur VOUS',
+          ja: '自分に散会マーカー',
           cn: '万变水波点名',
           ko: '산개징 대상자',
         },
@@ -383,7 +395,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Nald\'thal Heavens\' Trial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '711F', source: ['Thal', 'Nald\'thal'] }),
+      netRegex: { id: '711F', source: ['Thal', 'Nald\'thal'] },
       alertText: (data, matches, output) => {
         if (data.naldSmeltingSpread.includes(data.me))
           return;
@@ -397,7 +409,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Nald\'thal Golden Tenet',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '711B', source: 'Nald\'thal' }),
+      netRegex: { id: '711B', source: 'Nald\'thal' },
       response: Responses.sharedTankBuster(),
     },
     {
@@ -409,13 +421,13 @@ const triggerSet: TriggerSet<Data> = {
       // happen even if they are fake (because it is orange or blue, respectively).
       id: 'Aglaia Nald\'thal Deepest Pit Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0154' }),
+      netRegex: { id: '0154' },
       run: (data, matches) => data.naldArrowMarker.push(matches.target),
     },
     {
       id: 'Aglaia Nald\'thal Far Above, Deep Below Blue',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '73AA', source: 'Nald\'thal', capture: false }),
+      netRegex: { id: '73AA', source: 'Nald\'thal', capture: false },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -423,15 +435,16 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Drop marker outside',
             de: 'Marker draußen ablegen',
             fr: 'Déposez les marqueurs à l\'extérieur',
+            ja: '外側で捨てる',
             cn: '人群外放置标记',
-            ko: '징 밖에서 처리',
+            ko: '밖에서 징 처리',
           },
           ignoreLineStack: {
             en: 'Ignore fake stack',
             de: 'Falsches Sammeln ignorieren',
             fr: 'Ignorez le faux marqueur de package',
             cn: '忽略假点名',
-            ko: '가짜 징 무시',
+            ko: '가짜 쉐어 무시',
           },
         };
 
@@ -449,7 +462,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Nald\'thal Far Above, Deep Below Orange',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '73AB', source: 'Nald\'thal', capture: false }),
+      netRegex: { id: '73AB', source: 'Nald\'thal', capture: false },
       infoText: (data, _matches, output) => {
         if (data.naldArrowMarker.includes(data.me))
           return output.ignoreArrow!();
@@ -463,15 +476,16 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Ignore fake arrow',
           de: 'Falschen Pfeil ignorieren',
           fr: 'Ignorez la fausse flèche',
+          ja: '矢印は偽物',
           cn: '忽略假箭头',
-          ko: '가짜 징 무시',
+          ko: '가짜 화살표징 무시',
         },
       },
     },
     {
       id: 'Aglaia Nald\'thal Far-flung Fire',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '73AC', source: 'Nald' }),
+      netRegex: { id: '73AC', source: 'Nald' },
       // 73AC sometimes comes before the Far Above, Deep Below cast.
       // It has the exact same network log time, but is just sometimes ordered wrong.
       // Add a slight delay here so the calls end up being correct.
@@ -496,7 +510,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 73BF = starts blue, swaps orange
       // 741D = starts orange, stays orange
-      netRegex: NetRegexes.startsUsing({ id: ['73BF', '741D'], source: 'Nald\'thal', capture: false }),
+      netRegex: { id: ['73BF', '741D'], source: 'Nald\'thal', capture: false },
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.naldLastColor = 'orange',
@@ -505,6 +519,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Go to Blue Quadrant',
           de: 'Geh zum blauen Quadrant',
           fr: 'Allez sur le quart bleu',
+          ja: '青い安置',
           cn: '前往蓝色区域',
           ko: '파랑 장판으로',
         },
@@ -515,7 +530,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 73C0 = starts blue, stays blue
       // 741C = starts orange, swaps blue
-      netRegex: NetRegexes.startsUsing({ id: ['73C0', '741C'], source: 'Nald\'thal', capture: false }),
+      netRegex: { id: ['73C0', '741C'], source: 'Nald\'thal', capture: false },
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.naldLastColor = 'blue',
@@ -524,6 +539,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Go to Orange Quadrant',
           de: 'Geh zum orangenen Quadrant',
           fr: 'Allez sur le quart orange',
+          ja: '赤い安置',
           cn: '前往橙色区域',
           ko: '주황 장판으로',
         },
@@ -532,13 +548,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Nald\'thal Hell of Fire Front',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '72B7', source: 'Nald\'thal', capture: false }),
+      netRegex: { id: '72B7', source: 'Nald\'thal', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'Aglaia Nald\'thal Hell of Fire Back',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '72B9', source: 'Nald\'thal', capture: false }),
+      netRegex: { id: '72B9', source: 'Nald\'thal', capture: false },
       alertText: (_data, _matches, output) => output.goFront!(),
       outputStrings: {
         goFront: Outputs.goFront,
@@ -547,7 +563,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Nald\'thal Soul Vessel Magmatic Spell',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '712D', source: 'Soul Vessel', capture: false }),
+      netRegex: { id: '712D', source: 'Soul Vessel', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -555,6 +571,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Stack groups',
           de: 'Sammel Gruppen',
           fr: 'Package en groupe',
+          ja: 'グループで頭割り',
           cn: '分组分摊',
           ko: '그룹별 쉐어',
         },
@@ -563,13 +580,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Nald\'thal Stygian Tenet Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '711D', source: 'Nald\'thal' }),
+      netRegex: { id: '711D', source: 'Nald\'thal' },
       run: (data, matches) => data.tankbusters.push(matches.target),
     },
     {
       id: 'Aglaia Nald\'thal Stygian Tenet',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '711D', source: 'Nald\'thal', capture: false }),
+      netRegex: { id: '711D', source: 'Nald\'thal', capture: false },
       delaySeconds: 0.3,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
@@ -580,8 +597,9 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Avoid Tank Cleaves',
             de: 'Weiche den Tank-Cleaves aus',
             fr: 'Évitez les cleaves sur le tank',
+            ja: 'タンク範囲攻撃回避',
             cn: '躲避坦克顺劈',
-            ko: '광역 탱버',
+            ko: '광역 탱버 피하기',
           },
         };
 
@@ -596,7 +614,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 73CA = start blue, stay blue
       // 73CC = start orange, swap blue
-      netRegex: NetRegexes.startsUsing({ id: ['73CA', '73CC'], source: 'Nald\'thal', capture: false }),
+      netRegex: { id: ['73CA', '73CC'], source: 'Nald\'thal', capture: false },
       durationSeconds: 6,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
@@ -605,15 +623,17 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Under => Drop marker outside',
             de: 'Unter ihn => Marker drausen ablegen',
             fr: 'Dessous => Déposez le marqueur à l\'extérieur',
+            ja: 'ボスの下 => 外側で捨てる',
             cn: 'BOSS身下 => 人群外放置标记',
-            ko: '보스 근처 => 징 밖에서 처리',
+            ko: '보스 밑 => 밖에서 화살표징 처리',
           },
           ignoreLineStack: {
             en: 'Under (ignore fake stack)',
             de: 'Unter ihn (falsches Sammeln ignorieren)',
             fr: 'Dessous (ignorez le faux package)',
+            ja: 'ボスの下 (頭割りは偽物)',
             cn: 'BOSS身下 (忽略假分摊)',
-            ko: '보스 근처 (가짜 징 무시)',
+            ko: '보스 밑 (가짜 쉐어 무시)',
           },
         };
 
@@ -633,7 +653,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 73CB = orange, unknown if swap
       // 741B = orange, unknown if swap
-      netRegex: NetRegexes.startsUsing({ id: ['73CB', '741B'], source: 'Nald\'thal', capture: false }),
+      netRegex: { id: ['73CB', '741B'], source: 'Nald\'thal', capture: false },
       durationSeconds: 6,
       // Use info here to not conflict with the 73AC line stack trigger.
       infoText: (data, _matches, output) => {
@@ -647,8 +667,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Out (ignore fake arrow)',
           de: 'Raus (falschen Pfeil ignorieren)',
           fr: 'Extérieur (ignorez la fausse flèche)',
+          ja: '外側へ (矢印は偽物)',
           cn: '去外面 (忽略假箭头)',
-          ko: '바깥으로 (가짜 징 무시)',
+          ko: '밖으로 (가짜 화살표징 무시)',
         },
         out: Outputs.out,
       },
@@ -656,7 +677,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aglaia Nald\'thal Hells\' Trial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7121', source: 'Nald\'thal', capture: false }),
+      netRegex: { id: '7121', source: 'Nald\'thal', capture: false },
       response: Responses.aoe(),
     },
   ],
@@ -1093,6 +1114,116 @@ const triggerSet: TriggerSet<Data> = {
         'Warden\'s Warmth': '神炎',
         'Wayward Soul': '死魂爆',
         'Wildfire Ward': '燎原之炎',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Azeyma(?!\')': '아제마',
+        'Azeyma\'s Heat': '아제마의 신기루',
+        'Byregot(?!\')': '비레고',
+        'Byregot\'s Avatar': '비레고의 분신',
+        'Ingenuity\'s Foothold': '기교궁',
+        'Lightning Orb': '번개 구체',
+        'Lion of Aglaia': '아글라이아 수사자',
+        'Lioness of Aglaia': '아글라이아 암사자',
+        'Nald(?!\')': '날 신',
+        'Nald\'thal': '날달',
+        'Prodigal Sun': '환영 태양',
+        'Rhalgr(?!\')': '랄거',
+        'Rhalgr\'s Emissary': '랄거의 특사',
+        'Soul Vessel': '혼의 그릇',
+        'Sunstorm': '태양 영기',
+        '(?<!\')Thal': '달 신',
+        'The Circle Of Inquiry': '심판궁',
+        'The Endless City': '웅장한 도시',
+        'The Monument To Destruction': '혜성궁',
+        'The Path': '인도의 회랑',
+        'The Twin Halls': '이면궁',
+      },
+      'replaceText': {
+        '--hammer--': '--망치--',
+        '\(fake\)': '가짜',
+        '\(proximity\)': '거리감쇠',
+        '\(summon\)': '소환',
+        'Advent of the Eighth': '혜성륜',
+        'As Above, So Below': '생사택일의 화염',
+        'Balance': '혼 청산',
+        'Bolts from the Blue': '천뢰',
+        'Boltloop': '고리번개',
+        'Bronze Lightning': '굉뢰',
+        'Bronze Work': '굉뢰의 지팡이',
+        'Broken World': '파괴의 혜성',
+        'Builder\'s Build': '비레고의 증강',
+        'Byregot\'s Spire': '비레고의 첨탑',
+        'Byregot\'s Strike': '비레고의 강타',
+        'Byregot\'s Ward': '비레고의 비호',
+        'Cloud to Ground': '습뢰',
+        'Dancing Flame': '줄불',
+        'Deepest Pit': '죽음의 폭격',
+        'Destructive Bolt': '파괴번개 일격',
+        'Destructive Charge': '파괴번개 구체',
+        'Destructive Static': '파괴번개 베기',
+        'Destructive Strike': '파괴신 베기',
+        'Double Immolation': '쌍염법',
+        'Equal Weight': '혼 가산',
+        'Fan Flames': '불부채 점화',
+        'Far Above, Deep Below': '생사택일: 포화',
+        'Far-flung Fire': '삶의 화포',
+        'Fired Up I(?!I)': '연화의 재물 하나',
+        'Fired Up II(?!I)': '연화의 재물 둘',
+        'Fired Up III': '연화의 재물 셋',
+        'Fleeting Spark': '열화의 돌려차기',
+        'Fortune\'s Flux': '연화 발양',
+        'Golden Tenet': '날 신의 불',
+        'Hand of the Destroyer': '파괴신 창환격',
+        'Haute Air': '부채질',
+        'Hearth Above, Flight Below': '생사택일: 섬호',
+        'Heat Above, Flames Below': '생사택일: 환화',
+        'Heavens\' Trial': '염천의 신성한 불',
+        'Hell of Fire': '염옥파',
+        'Hell of Lightning': '번개지옥 구체',
+        'Hells\' Trial': '염옥의 신성한 불',
+        'Illuminating Glimpse': '열화일섬',
+        'Levinforge': '뇌광',
+        'Lightning Bolt': '낙뢰',
+        'Lightning Reign': '신뢰굉천',
+        'Lightning Storm': '백뢰',
+        'Magmatic Spell': '마성암',
+        'Noble Dawn': '심판의 태양',
+        'Once Above, Ever Below': '생사택일: 습화',
+        'Ordeal of Thunder': '번개의 시련',
+        'Peal of the Hammer': '비레고의 망치',
+        'Radiant Finish': '불부채춤 마무리',
+        'Radiant Rhythm': '불부채춤',
+        'Rejuvenating Spark': '생명의 불',
+        'Reproduce': '분열체 생성',
+        'Rhalgr\'s Beacon': '파군의 유성',
+        'Roaring Blaze': '굉염법',
+        'Seventh Passage': '염천 충격',
+        'Shock': '방전',
+        'Slash and Burn': '화염 발톱',
+        'Smelting': '진동파',
+        'Solar Fans': '홍염 부채칼',
+        'Solar Flair': '홍염 폭발',
+        'Solar Fold': '홍염 베기',
+        'Solar Wings': '양익 홍염풍',
+        'Soul\'s Measure': '천칭의 시련',
+        'Spinning Slash': '원호 발톱',
+        'Striking Meteor': '소유성',
+        'Stygian Tenet': '달 신의 불',
+        'Sublime Sunset': '신의 기술: 떨어지는 해',
+        'Sun\'s Shine': '아지랑이',
+        'Sunbeam': '태양광',
+        '(?<! )Sunset': '떨어지는 해',
+        'The Builder\'s Forge': '비레고의 창조',
+        'Tipped Scales': '산명혼장',
+        'Trial by Fire': '화염법',
+        'Twingaze': '열섬',
+        'Warden\'s Prominence': '신불 태양',
+        'Warden\'s Warmth': '신의 불꽃',
+        'Wayward Soul': '사혼 폭발',
+        'Wildfire Ward': '요원의 불길',
       },
     },
   ],

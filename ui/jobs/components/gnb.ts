@@ -61,7 +61,10 @@ export class GNBComponent extends BaseComponent {
       case kAbility.NoMercy: {
         this.noMercyBox.duration = 20;
         this.noMercyBox.threshold = 1000;
-        this.noMercyBox.fg = computeBackgroundColorFrom(this.noMercyBox, 'gnb-color-nomercy.active');
+        this.noMercyBox.fg = computeBackgroundColorFrom(
+          this.noMercyBox,
+          'gnb-color-nomercy.active',
+        );
         this.tid1 = window.setTimeout(() => {
           this.noMercyBox.duration = 40;
           this.noMercyBox.threshold = this.player.gcdSkill + 1;
@@ -70,7 +73,10 @@ export class GNBComponent extends BaseComponent {
         break;
       }
       case kAbility.Bloodfest:
-        this.bloodfestBox.duration = 90;
+        if (this.ffxivRegion === 'intl')
+          this.bloodfestBox.duration = 120;
+        else
+          this.bloodfestBox.duration = 90;
         break;
       case kAbility.GnashingFang:
         this.gnashingFangBox.duration = this.bars.player.getActionCooldown(30000, 'skill');

@@ -1,5 +1,5 @@
 import logDefinitions from '../../resources/netlog_defs';
-import NetRegexes from '../../resources/netregexes';
+import NetRegexes, { commonNetRegex } from '../../resources/netregexes';
 import { PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
 import { LocaleNetRegex } from '../../resources/translations';
@@ -36,6 +36,7 @@ import {
   kFieldFlags,
   kShiftFlagValues,
   playerDamageFields,
+  playerTargetFields,
   ShortNamify,
   Translate,
   UnscrambleDamage,
@@ -43,7 +44,8 @@ import {
 import { OopsyOptions } from './oopsy_options';
 import { PlayerStateTracker } from './player_state_tracker';
 
-const actorControlFadeInCommand = '40000010';
+const actorControlFadeInCommandPre62 = '40000010';
+const actorControlFadeInCommand = '4000000F';
 
 const partyWipeText = {
   en: 'Party Wipe',
@@ -134,8 +136,8 @@ export class DamageTracker {
     this.countdownStartRegex = LocaleNetRegex.countdownStart[lang];
     this.countdownCancelRegex = LocaleNetRegex.countdownCancel[lang];
     this.abilityFullRegex = NetRegexes.abilityFull();
-    this.wipeCactbotEcho = NetRegexes.echo({ line: 'cactbot wipe.*?' });
-    this.wipeEndEcho = NetRegexes.echo({ line: 'end' });
+    this.wipeCactbotEcho = commonNetRegex.cactbotWipeEcho;
+    this.wipeEndEcho = commonNetRegex.userWipeEcho;
 
     this.data = this.GetDataObject();
     this.Reset();
@@ -275,7 +277,10 @@ export class DamageTracker {
         this.playerStateTracker.OnHoTDoT(line, splitLine);
         break;
       case logDefinitions.ActorControl.type:
-        if (splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommand) {
+        if (
+          splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommand ||
+          splitLine[logDefinitions.ActorControl.fields.command] === actorControlFadeInCommandPre62
+        ) {
           this.Wipe(this.lastTimestamp);
           this.playerStateTracker.OnWipe(line, splitLine);
         }
@@ -333,7 +338,7 @@ export class DamageTracker {
       this.firstPuller = '???';
 
     if (this.engageTime) {
-      const seconds = ((Date.now() - this.engageTime) / 1000);
+      const seconds = (Date.now() - this.engageTime) / 1000;
       if (seconds >= this.options.MinimumTimeForPullMistake) {
         const mistakeStr = Translate(this.options.DisplayLanguage, latePullText) ?? '';
         const text = `${mistakeStr} (${seconds.toFixed(1)}s)`;
@@ -395,7 +400,7 @@ export class DamageTracker {
       f: OopsyTriggerField<OopsyData, Matches, OopsyField>,
       matches: Matches,
     ) => {
-      return (typeof f === 'function') ? f(this.data, matches) : f;
+      return typeof f === 'function' ? f(this.data, matches) : f;
     };
 
     if ('condition' in trigger) {
@@ -416,9 +421,9 @@ export class DamageTracker {
       ? ValueOrFunction(trigger.suppressSeconds, matches)
       : 0;
     if (trigger.id && typeof suppress === 'number' && suppress > 0)
-      this.triggerSuppress[trigger.id] = triggerTime + (suppress * 1000);
+      this.triggerSuppress[trigger.id] = triggerTime + suppress * 1000;
 
-    const f = (() => {
+    const f = () => {
       if ('mistake' in trigger) {
         const m = ValueOrFunction(trigger.mistake, matches);
         if (typeof m === 'object') {
@@ -440,7 +445,7 @@ export class DamageTracker {
       }
       if ('run' in trigger)
         ValueOrFunction(trigger.run, matches);
-    });
+    };
 
     if (delaySeconds <= 0)
       f();
@@ -531,7 +536,7 @@ export class DamageTracker {
       const trigger: OopsyTrigger<OopsyData> = {
         id: key,
         type: 'GainsEffect',
-        netRegex: NetRegexes.gainsEffect({ effectId: id }),
+        netRegex: NetRegexes.gainsEffect({ effectId: id, ...playerTargetFields }),
         mistake: (_data, matches) => {
           return {
             type: type,

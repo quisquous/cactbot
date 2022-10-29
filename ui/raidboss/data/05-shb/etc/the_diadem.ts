@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -13,13 +12,17 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diadem Falling Asleep',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
+      netRegex: { line: '7 minutes have elapsed since your last activity..*?', capture: false },
       response: Responses.wakeUp(),
     },
     {
       id: 'Diadem Found Gather Point',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'You sense a grade .* clouded (?:mineral deposit|rocky outcrop|mature tree|lush vegetation patch).*?', capture: false }),
+      netRegex: {
+        line:
+          'You sense a grade .* clouded (?:mineral deposit|rocky outcrop|mature tree|lush vegetation patch).*?',
+        capture: false,
+      },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -35,7 +38,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Diadem Flag Alert',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: '.*\ue0bbThe Diadem *?', capture: false }),
+      netRegex: { line: '.*\ue0bbThe Diadem *?', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

@@ -158,6 +158,14 @@ export default {
     cn: '集合',
     ko: '모이기',
   },
+  healerGroups: {
+    en: 'Healer Groups',
+    de: 'Heiler-Gruppen',
+    fr: 'Groupes sur les heals',
+    ja: 'ヒラに頭割り',
+    cn: '治疗分摊组',
+    ko: '힐러 그룹 쉐어',
+  },
   stackOnYou: {
     en: 'Stack on YOU',
     de: 'Auf DIR sammeln',
@@ -185,7 +193,7 @@ export default {
   doritoStack: {
     en: 'Dorito Stack',
     de: 'Mit Marker sammeln',
-    fr: 'Packez les marquages',
+    fr: 'Packez les marques',
     ja: 'マーカー付けた人と集合',
     cn: '点名集合',
     ko: '징끼리 모이기',
@@ -370,6 +378,18 @@ export default {
     cn: '去中间',
     ko: '중앙으로',
   },
+  front: {
+    en: 'Front',
+    fr: 'Devant',
+    cn: '前',
+    ko: '앞',
+  },
+  back: {
+    en: 'Back',
+    fr: 'Derrière',
+    cn: '后',
+    ko: '뒤',
+  },
   right: {
     en: 'Right',
     de: 'Rechts',
@@ -527,7 +547,7 @@ export default {
   stopEverything: {
     en: 'Stop Everything!',
     de: 'Stoppe Alles!',
-    fr: 'Arrêtez TOUT !',
+    fr: 'Arrêtez tout !',
     ja: '行動禁止！',
     cn: '停止行动！',
     ko: '행동 멈추기!',

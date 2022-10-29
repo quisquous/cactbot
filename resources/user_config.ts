@@ -1,12 +1,12 @@
 // TODO: Fix import/order
 /* eslint-disable import/order */
-import { CactbotConfigurator } from '../ui/config/config';
-import { isLang, Lang, langToLocale } from './languages';
 import { BaseOptions } from '../types/data';
 import { CactbotLoadUserRet, SavedConfig, SavedConfigEntry } from '../types/event';
 import { LocaleObject, LocaleText } from '../types/trigger';
-import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
+import { CactbotConfigurator } from '../ui/config/config';
+import { isLang, Lang, langToLocale } from './languages';
 import { UnreachableCode } from './not_reached';
+import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
 
 // TODO:
 // The convention of "import X as _X; const X = _X;" is currently
@@ -231,7 +231,7 @@ class UserConfig {
     this.loadUserFiles(overlayName, options, callback);
   }
 
-  loadUserFiles(overlayName: string, options: BaseOptions, callback: () => void) {
+  loadUserFiles(overlayName: string, options: BaseOptions, callback: () => void, loadCss = true) {
     const readOptions = callOverlayHandler({
       call: 'cactbotLoadData',
       overlay: 'options',
@@ -331,7 +331,7 @@ class UserConfig {
         // localFiles may be null if there is no valid user directory.
         const sortedFiles = this.sortUserFiles(Object.keys(localFiles));
         const jsFiles = this.filterUserFiles(sortedFiles, overlayName, '.js');
-        const cssFiles = this.filterUserFiles(sortedFiles, overlayName, '.css');
+        const cssFiles = loadCss ? this.filterUserFiles(sortedFiles, overlayName, '.css') : [];
 
         for (const jsFile of jsFiles) {
           try {
@@ -401,15 +401,8 @@ class UserConfig {
   handleSkin(skinName: string) {
     if (!skinName || skinName === 'default')
       return;
-
-    let basePath = document.location.toString();
-    const slashIdx = basePath.lastIndexOf('/');
-    if (slashIdx !== -1)
-      basePath = basePath.substr(0, slashIdx);
-    if (basePath.slice(-1) !== '/')
-      basePath += '/';
-    const skinHref = basePath + 'skins/' + skinName + '/' + skinName + '.css';
-    this.appendCSSLink(skinHref);
+    const skinCSSRelativeHref = `skins/${skinName}/${skinName}.css`;
+    this.appendCSSLink(skinCSSRelativeHref);
   }
   appendJSLink(src: string) {
     const userJS = document.createElement('script');

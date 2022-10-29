@@ -67,7 +67,7 @@ const regexLabelMap = {
  * @param {string} owner
  * @param {string} repo
  * @param {number} pullNumber
- * @returns {string[]}
+ * @returns {Promise<string[]>}
  */
 const getLabels = async (github, owner, repo, pullNumber) => {
   /**
@@ -99,17 +99,15 @@ const getLabels = async (github, owner, repo, pullNumber) => {
    * @type {ChangedFileContent[]}
    */
   const changedFilesContent = await Promise.all(
-    changedFiles.map((f) =>
-      async () => {
-        const from = await httpClient.get(rawUrl(owner, repo, fromSha, f.filename));
-        const to = await httpClient.get(rawUrl(owner, repo, toSha, f.filename));
-        return {
-          filename: f.filename,
-          from: await readBody(from),
-          to: await readBody(to),
-        };
-      }
-    ).map((f) => f()),
+    changedFiles.map((f) => async () => {
+      const from = await httpClient.get(rawUrl(owner, repo, fromSha, f.filename));
+      const to = await httpClient.get(rawUrl(owner, repo, toSha, f.filename));
+      return {
+        filename: f.filename,
+        from: await readBody(from),
+        to: await readBody(to),
+      };
+    }).map((f) => f()),
   );
 
   const changedLang = getTimelineReplaceChanges(changedFilesContent);
@@ -163,7 +161,7 @@ const parseChangedLang = (patch) => {
     return [];
   const set = new Set();
   for (const lang of validLanguages) {
-    const pattern = new RegExp(String.raw `^\+\s*(?:${lang}|'${lang}'): `);
+    const pattern = new RegExp(String.raw`^\+\s*(?:${lang}|'${lang}'): `);
     for (const line of patch.split('\n')) {
       if (pattern.test(line)) {
         // TODO: it'd be nice to add the file/line number here.

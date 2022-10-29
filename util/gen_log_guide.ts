@@ -3,9 +3,9 @@ import path from 'path';
 import markdownMagic from 'markdown-magic';
 
 import logDefinitions, { LogDefinitionTypes } from '../resources/netlog_defs';
-import NetRegexes from '../resources/netregexes';
+import NetRegexes, { buildRegex as buildNetRegex } from '../resources/netregexes';
 import { UnreachableCode } from '../resources/not_reached';
-import Regexes from '../resources/regexes';
+import Regexes, { buildRegex } from '../resources/regexes';
 import LogRepository from '../ui/raidboss/emulator/data/network_log_converter/LogRepository';
 import ParseLine from '../ui/raidboss/emulator/data/network_log_converter/ParseLine';
 
@@ -49,12 +49,14 @@ type ExcludedLineDocs =
 
 type LineDocTypes = Exclude<LogDefinitionTypes, ExcludedLineDocs>;
 
+type LineDocRegex = {
+  network: string;
+  logLine: string;
+};
+
 type LineDocType = {
   // We can generate `network` type automatically for everything but regex
-  regexes?: {
-    network: string;
-    logLine?: string;
-  };
+  regexes?: Partial<LineDocRegex>;
   examples: LocaleObject<readonly string[]>;
 };
 
@@ -89,10 +91,10 @@ const titles: Titles = {
     'zh-TW': '網路日誌行結構：',
   },
   actLogLineStructure: {
-    'en-US': 'ACT Log Line Structure:',
-    'ja-JP': 'ACTログライン構造：',
-    'zh-CN': 'ACT日志行结构：',
-    'zh-TW': 'ACT日誌行結構：',
+    'en-US': 'Parsed Log Line Structure:',
+    'ja-JP': 'ACTログライン構造：', // FIXME
+    'zh-CN': 'ACT日志行结构：', // FIXME
+    'zh-TW': 'ACT日誌行結構：', // FIXME
   },
   regexes: {
     'en-US': 'Regexes',
@@ -107,10 +109,10 @@ const titles: Titles = {
     'zh-TW': '網路日誌行正規表示式：',
   },
   actLogLineRegexes: {
-    'en-US': 'ACT Log Line Regex:',
-    'ja-JP': 'ACTログライン正規表現：',
-    'zh-CN': 'ACT日志行正则表达式：',
-    'zh-TW': 'ACT日誌行正規表示式：',
+    'en-US': 'Parsed Log Line Regex:',
+    'ja-JP': 'ACTログライン正規表現：', // FIXME
+    'zh-CN': 'ACT日志行正则表达式：', // FIXME
+    'zh-TW': 'ACT日誌行正規表示式：', // FIXME
   },
   examples: {
     'en-US': 'Examples',
@@ -125,10 +127,10 @@ const titles: Titles = {
     'zh-TW': '網路日誌行示例：',
   },
   actLogLineExamples: {
-    'en-US': 'ACT Log Line Examples:',
-    'ja-JP': 'ACTログライン例：',
-    'zh-CN': 'ACT日志行示例：',
-    'zh-TW': 'ACT日誌行示例：',
+    'en-US': 'Parsed Log Line Examples:',
+    'ja-JP': 'ACTログライン例：', // FIXME
+    'zh-CN': 'ACT日志行示例：', // FIXME
+    'zh-TW': 'ACT日誌行示例：', // FIXME
   },
 };
 
@@ -353,7 +355,7 @@ const lineDocs: LineDocs = {
     },
     examples: {
       'en-US': [
-        '33|2021-04-26T17:23:28.6780000-04:00|80034E6C|40000010|B5D|00|00|00|f777621829447c53c82c9a24aa25348f',
+        '33|2021-04-26T17:23:28.6780000-04:00|80034E6C|4000000F|B5D|00|00|00|f777621829447c53c82c9a24aa25348f',
         '33|2021-04-26T14:17:31.6980000-04:00|80034E5B|8000000C|16|FFFFFFFF|00|00|b543f3c5c715e93d9de2aa65b8fe83ad',
         '33|2021-04-26T14:18:39.0120000-04:00|80034E5B|40000007|00|01|00|00|7a2b827bbc7a58ecc0c5edbdf14a2c14',
       ],
@@ -451,6 +453,46 @@ const lineDocs: LineDocs = {
       ],
     },
   },
+  LineRegistration: {
+    examples: {
+      'en-US': [
+        '256|2022-10-02T10:15:31.5635165-07:00|257|OverlayPlugin|MapEffect|1|594b867ee2199369',
+        '256|2022-10-02T10:15:31.5645159-07:00|258|OverlayPlugin|FateDirector|1|102a238b2495bfd0',
+        '256|2022-10-02T10:15:31.5655143-07:00|259|OverlayPlugin|CEDirector|1|35546b48906c41b2',
+      ],
+    },
+  },
+  MapEffect: {
+    regexes: {
+      network: NetRegexes.mapEffect({ capture: true }).source,
+      logLine: Regexes.mapEffect({ capture: true }).source,
+    },
+    examples: {
+      'en-US': [
+        '257|2022-09-27T18:03:45.2834013-07:00|800375A9|00020001|09|F3|0000|de00c57494e85e79',
+        '257|2022-09-27T18:06:07.7744035-07:00|800375A9|00400020|01|00|0000|72933fe583158786',
+        '257|2022-09-29T20:07:48.7330170-07:00|800375A5|00020001|05|00|0000|28c0449a8d0efa7d',
+      ],
+    },
+  },
+  FateDirector: {
+    examples: {
+      'en-US': [
+        '258|2022-09-19T17:25:59.5582137-07:00|Add|E601|000000DE|00000000|00000000|00000000|00000000|00000000|00000000|c7fd9f9aa7f56d4d',
+        '258|2022-08-13T19:46:54.6179420-04:00|Update|203A|00000287|00000000|00000000|00000000|00000000|00000000|6E756F63|bd60bac0189b571e',
+        '258|2022-09-24T12:51:47.5867309-07:00|Remove|0000|000000E2|00000000|00000000|00000000|00000000|00000000|00007FF9|043b821dbfe608c5',
+      ],
+    },
+  },
+  CEDirector: {
+    examples: {
+      'en-US': [
+        '259|2022-09-19T18:09:35.7012951-07:00|632912D5|0000|0000|07|01|02|00|00|7F|00|00|4965d513cc7a6dd3',
+        '259|2022-09-19T18:09:39.9541413-07:00|63291786|04B0|0000|07|01|03|00|00|00|00|00|6c18aa16678911ca',
+        '259|2022-09-19T18:09:46.7556709-07:00|63291786|04AA|0000|07|01|03|00|02|7F|00|00|5bf224d56535513a',
+      ],
+    },
+  },
 } as const;
 
 type LogGuideOptions = {
@@ -535,7 +577,10 @@ const config: markdownMagic.Configuration = {
         return line?.convertedLine;
       }).join('\n') ?? '';
 
-      const regexes = lineDoc.regexes;
+      const regexes: LineDocRegex = {
+        network: lineDoc.regexes?.network ?? buildNetRegex(lineType, { capture: true }).source,
+        logLine: lineDoc.regexes?.logLine ?? buildRegex(lineType, { capture: true }).source,
+      };
 
       ret += `
 #### ${translate(language, titles.structure)}
@@ -549,22 +594,19 @@ ${structureLog}
 \`\`\`
 `;
 
-      if (regexes) {
-        ret += `
+      ret += `
 #### ${translate(language, titles.regexes)}
 
 \`\`\`log
 ${translate(language, titles.networkLogLineRegexes)}
 ${regexes.network}
 `;
-        if (regexes.logLine !== undefined) {
-          ret += `
+
+      ret += `
 ${translate(language, titles.actLogLineRegexes)}
 ${regexes.logLine}
 `;
-        }
-        ret += '```\n';
-      }
+      ret += '```\n';
 
       ret += `
 #### ${translate(language, titles.examples)}
@@ -599,7 +641,7 @@ markdownMagic(
       const filePath = file.originalPath;
       // Figure out what language this file is by checking the path, default to 'en'
       const lang = languages.filter((lang) =>
-        RegExp(('[^\\w]' + lang + '[^\\w]')).exec(filePath.toLowerCase())
+        RegExp('[^\\w]' + lang + '[^\\w]').exec(filePath.toLowerCase())
       )[0] ?? 'en-US';
       const convertedLines = mappedLogLines[lang];
       for (const type in logDefinitions) {

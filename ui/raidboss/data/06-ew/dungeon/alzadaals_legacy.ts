@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -14,19 +13,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Big Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F60', source: 'Ambujam', capture: false }),
+      netRegex: { id: '6F60', source: 'Ambujam', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Alzadaal Tentacle Dig',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6F55', '6559'], source: 'Ambujam', capture: false }),
+      netRegex: { id: ['6F55', '6559'], source: 'Ambujam', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid tentacle explosions',
           de: 'Weiche Tentakel-Explosion aus',
           fr: 'Évitez les explostions des tentacules',
+          ja: '触手の爆発から離れる',
           cn: '躲避触手爆炸',
           ko: '문어다리가 멈춘 곳 멀리 피하기',
         },
@@ -35,13 +35,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Fountain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '731A', source: 'Ambujam', capture: false }),
+      netRegex: { id: '731A', source: 'Ambujam', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Dodge 3 to 1',
           de: 'Weiche von 3 auf 1 aus',
           fr: 'Esquivez de 3 vers 1',
+          ja: '3から1へ',
           cn: '3穿1躲避',
           ko: '3번째에서 1번째로',
         },
@@ -50,19 +51,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Diffusion Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F1E', source: 'Armored Chariot', capture: false }),
+      netRegex: { id: '6F1E', source: 'Armored Chariot', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Alzadaal Rail Cannon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F1F', source: 'Armored Chariot' }),
+      netRegex: { id: '6F1F', source: 'Armored Chariot' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Alzadaal Articulated Bits',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F19', source: 'Armored Chariot', capture: false }),
+      netRegex: { id: '6F19', source: 'Armored Chariot', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -70,15 +71,16 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Avoid bit lasers',
           de: 'Weiche Drohnen-Laser aus',
           fr: 'Évitez les lasers',
+          ja: 'レーザー回避',
           cn: '躲避浮游炮激光',
-          ko: '비트 레이저 피하기',
+          ko: '비트가 쏘는 레이저 피하기',
         },
       },
     },
     {
       id: 'Alzadaal Graviton Cannon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7373', source: 'Armored Chariot' }),
+      netRegex: { id: '7373', source: 'Armored Chariot' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
       response: Responses.spread(),
@@ -86,19 +88,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Billowing Bolts',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F70', source: 'Kapikulu', capture: false }),
+      netRegex: { id: '6F70', source: 'Kapikulu', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Alzadaal Spin Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F63', source: 'Kapikulu', capture: false }),
+      netRegex: { id: '6F63', source: 'Kapikulu', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Steer away from spikes',
           de: 'Weg von den Stacheln lenken',
           fr: 'Ne tournez pas dans les pics',
+          ja: 'スパイクのないマスへ移動',
           cn: '躲避针刺',
           ko: '가시 피하기',
         },
@@ -107,13 +110,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Power Serge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F6A', source: 'Kapikulu', capture: false }),
+      netRegex: { id: '6F6A', source: 'Kapikulu', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Avoid tethered color',
           de: 'Weiche der verbundenen Farbe aus',
           fr: 'Allez sous la couleur non liée',
+          ja: '逆の色へ',
           cn: '躲避连线颜色',
           ko: '보스가 연결한 색의 기둥 피하기',
         },
@@ -122,20 +126,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Magnitude Opus',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A1' }),
+      netRegex: { id: '00A1' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Alzadaal Rotary Gale',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0060' }),
+      netRegex: { id: '0060' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Alzadaal Crewel Slice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F72', source: 'Kapikulu' }),
+      netRegex: { id: '6F72', source: 'Kapikulu' },
       response: Responses.tankBuster(),
     },
   ],
@@ -286,6 +290,42 @@ const triggerSet: TriggerSet<Data> = {
         'Tentacle Dig': '触手潜行',
         'Toxin Shower': '泼洒毒液',
         'Wild Weave': '魔布散开',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Ambujam': '암부잠',
+        'Armored Chariot': '무장 전차',
+        'Armored Drudge': '무장 노예',
+        'Kapikulu': '카프쿨루',
+        'Scarlet Tentacle': '붉은 촉수',
+        'The Threshold Of Bounty': '풍요의 방',
+        'The Undersea Entrance': '무너진 방',
+        'Weaver\'S Warding': '봉인된 보물의 방',
+      },
+      'replaceText': {
+        'Articulated Bits': '핸드 비트',
+        'Assail': '공격 지시',
+        'Assault Cannon': '맹공포',
+        'Basting Blade': '인형 대검',
+        'Big Wave': '큰 파도',
+        'Billowing Bolts': '마법천 법진',
+        'Corrosive Fountain': '산액 분출',
+        'Corrosive Venom': '산성액 뿌리기',
+        'Crewel Slice': '인형 검기',
+        'Diffusion Ray': '확산 광선',
+        'Graviton Cannon': '중력자포',
+        'Magnitude Opus': '붕토',
+        'Mana Explosion': '마력 폭발',
+        'Power Serge': '마력천 주입',
+        'Rail Cannon': '전자기포',
+        'Rotary Gale': '각풍',
+        'Spin Out': '사방팔방 팽이돌리기',
+        'Tentacle Dig': '촉수 잠행',
+        'Toxin Shower': '독액 뿌리기',
+        'Toxic Fountain': '독액 분출',
+        'Wild Weave': '마력천 산개',
       },
     },
   ],

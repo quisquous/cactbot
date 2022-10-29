@@ -1,5 +1,5 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
-import { RaidbossOptions } from '../../../../ui/raidboss/raidboss_options';
+import { RaidbossOptions } from '../../raidboss_options';
 import { TimelineUI } from '../../timeline';
 import { Event } from '../../timeline_parser';
 import RaidEmulator from '../data/RaidEmulator';
@@ -87,7 +87,7 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
 
   updateBar(bar: EmulatorTimerBar, currentLogTime: number): void {
     const barElapsed = currentLogTime - bar.start;
-    let barProg = Math.min((barElapsed / bar.duration) * 100, 100);
+    let barProg = Math.min(barElapsed / bar.duration * 100, 100);
     if (bar.style === 'empty')
       barProg = 100 - barProg;
 
@@ -113,8 +113,8 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
     if (!this.timeline)
       throw new UnreachableCode();
 
-    const end = this.timeline.timebase + (e.time * 1000);
-    const start = end - (this.options.ShowTimerBarsAtSeconds * 1000);
+    const end = this.timeline.timebase + e.time * 1000;
+    const start = end - this.options.ShowTimerBarsAtSeconds * 1000;
     const $progress = this.$progressTemplate.cloneNode(true);
     if (!($progress instanceof HTMLElement))
       throw new UnreachableCode();
@@ -123,10 +123,13 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
     const $progLeft = $progress.querySelector('.timer-bar-left-label');
     const $progRight = $progress.querySelector('.timer-bar-right-label');
 
-    if (!(
-      $progBar instanceof HTMLDivElement &&
-      $progLeft instanceof HTMLElement &&
-      $progRight instanceof HTMLElement))
+    if (
+      !(
+        $progBar instanceof HTMLDivElement &&
+        $progLeft instanceof HTMLElement &&
+        $progRight instanceof HTMLElement
+      )
+    )
       throw new UnreachableCode();
 
     const bar: EmulatorTimerBar = {

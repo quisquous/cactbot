@@ -612,7 +612,12 @@ export class BuffTracker {
     };
 
     // Abilities that are different in Cn region.
-    const vCn = {
+    // const vCn = {
+
+    // };
+
+    // Abilities that are different in Ko region.
+    const vKo = {
       mug: {
         cooldownAbility: [kAbility.TrickAttack],
         mobGainsEffect: EffectId.VulnerabilityUp,
@@ -641,20 +646,15 @@ export class BuffTracker {
       },
     };
 
-    // Abilities that are different in Ko region.
-    const vKo = {
-      ...vCn,
-    };
-
     if (this.ffxivRegion === 'ko') {
       for (const [key, entry] of Object.entries(vKo))
         this.buffInfo[key] = entry;
     }
 
-    if (this.ffxivRegion === 'cn') {
-      for (const [key, entry] of Object.entries(vCn))
-        this.buffInfo[key] = entry;
-    }
+    // if (this.ffxivRegion === 'cn') {
+    //   for (const [key, entry] of Object.entries(vCn))
+    //     this.buffInfo[key] = entry;
+    // }
 
     this.gainEffectMap = {};
     this.loseEffectMap = {};

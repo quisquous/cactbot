@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -18,28 +17,28 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Magic Vulnerability Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '292' }),
+      netRegex: { effectId: '292' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.magicVulnerability = true,
     },
     {
       id: 'A6S Magic Vulnerability Loss',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '292' }),
+      netRegex: { effectId: '292' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.magicVulnerability = false,
     },
     {
       id: 'A6S Mind Blast',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster', id: '15F3' }),
+      netRegex: { source: 'Blaster', id: '15F3' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
       id: 'A6S Hidden Minefield',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster', id: '15F7', capture: false }),
+      netRegex: { source: 'Blaster', id: '15F7', capture: false },
       infoText: (data, _matches, output) => {
         if (data.role === 'tank' && !data.magicVulnerability)
           return output.getMines!();
@@ -68,7 +67,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Supercharge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '15FB', capture: false }),
+      netRegex: { source: 'Blaster Mirage', id: '15FB', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -85,7 +84,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Blinder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '15FC' }),
+      netRegex: { source: 'Blaster Mirage', id: '15FC' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -102,7 +101,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Power Tackle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '15FD' }),
+      netRegex: { source: 'Blaster Mirage', id: '15FD' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -119,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Low Arithmeticks',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
+      netRegex: { effectId: '3FD' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -137,7 +136,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S High Arithmeticks',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
+      netRegex: { effectId: '3FE' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -155,27 +154,27 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Bio-arithmeticks',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Swindler', id: '1610', capture: false }),
+      netRegex: { source: 'Swindler', id: '1610', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'A6S Midan Hardhelm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Midan Hardhelm', id: '1612' }),
+      netRegex: { source: 'Midan Hardhelm', id: '1612' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
       id: 'A6S Midan Hardmind',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Midan Hardhelm', id: '1613' }),
+      netRegex: { source: 'Midan Hardhelm', id: '1613' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
       id: 'A6S Enumeration',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
+      netRegex: { id: ['0040', '0041', '0042'] },
       infoText: (data, matches, output) => {
         // 0040 = 2, 0041 = 3, 0042 = 4
         const count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
@@ -195,13 +194,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Super Cyclone',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '1627', capture: false }),
+      netRegex: { source: 'Vortexer', id: '1627', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'A6S Ultra Flash',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '161A', capture: false }),
+      netRegex: { source: 'Vortexer', id: '161A', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -217,7 +216,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Ice Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0043' }),
+      netRegex: { id: '0043' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -234,7 +233,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Fire Beam',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0019' }),
+      netRegex: { id: '0019' },
       condition: Conditions.targetIsYou(),
       // TODO: maybe this should say "hit tornado / avoid ice" but that's wordy.
       infoText: (_data, _matches, output) => output.text!(),
@@ -252,7 +251,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Compressed Water Initial',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
+      netRegex: { effectId: '3FF' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.haveWater = true,
@@ -270,14 +269,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Compressed Water Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '3FF' }),
+      netRegex: { effectId: '3FF' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.haveWater = false,
     },
     {
       id: 'A6S Compressed Water Explode',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
+      netRegex: { effectId: '3FF' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
@@ -299,7 +298,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Compressed Lightning Initial',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
+      netRegex: { effectId: '400' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.haveLightning = true,
@@ -317,14 +316,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A6S Compressed Lightning Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '400' }),
+      netRegex: { effectId: '400' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.haveLightning = false,
     },
     {
       id: 'A6S Compressed Lightning Explode',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
+      netRegex: { effectId: '400' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {

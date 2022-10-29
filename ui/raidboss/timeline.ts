@@ -1,5 +1,5 @@
 import { Lang, langToLocale } from '../../resources/languages';
-import NetRegexes from '../../resources/netregexes';
+import { commonNetRegex } from '../../resources/netregexes';
 import TimerBar from '../../resources/timerbar';
 import { LocaleRegex } from '../../resources/translations';
 import { LogEvent } from '../../types/event';
@@ -80,13 +80,13 @@ const activeText = {
 };
 
 // TODO: Duplicated in 'jobs'
-const computeBackgroundColorFrom = (element: HTMLElement, classList: string): string => {
+const computeBackgroundFrom = (element: HTMLElement, classList: string): string => {
   const div = document.createElement('div');
   const classes = classList.split('.');
   for (const cls of classes)
     div.classList.add(cls);
   element.appendChild(div);
-  const color = window.getComputedStyle(div).backgroundColor;
+  const color = window.getComputedStyle(div).background;
   element.removeChild(div);
   return color;
 };
@@ -498,8 +498,8 @@ export class TimelineUI {
     if (this.options.Skin)
       this.root.classList.add(`skin-${this.options.Skin}`);
 
-    this.barColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color');
-    this.barExpiresSoonColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color.soon');
+    this.barColor = computeBackgroundFrom(this.root, 'timeline-bar-color');
+    this.barExpiresSoonColor = computeBackgroundFrom(this.root, 'timeline-bar-color.soon');
 
     this.timerlist = document.getElementById('timeline');
     if (this.timerlist) {
@@ -732,7 +732,7 @@ export class TimelineController {
 
     // Used to suppress any Engage! if there's a wipe between /countdown and Engage!.
     this.suppressNextEngage = false;
-    this.wipeRegex = NetRegexes.network6d({ command: '40000010' });
+    this.wipeRegex = commonNetRegex.wipe;
   }
 
   public SetPopupTextInterface(popupText: PopupTextGenerator): void {

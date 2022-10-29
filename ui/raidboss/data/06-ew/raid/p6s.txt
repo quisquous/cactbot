@@ -1,0 +1,133 @@
+### P6N: Abyssos: The Sixth Circle (Savage)
+# -ii 7865 786A 7870 7871 7872 7873 7875 7879 787D 787E 7885 7886 7888 7889 7890 7892 79EB 79EC 7A18
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+9.5 "--sync--" sync / 14:[^:]*:Hegemone:7860:/ window 10,5
+14.2 "Hemitheos's Dark IV" sync / 1[56]:[^:]*:Hegemone:7860:/
+28.0 "Synergy" sync / 1[56]:[^:]*:Hegemone:(7887|788A):/
+35.1 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
+42.0 "Aetheric Polyominoid" sync / 1[56]:[^:]*:Hegemone:7866:/ window 15,15
+42.0 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
+48.6 "Unholy Darkness" sync / 1[56]:[^:]*:Hegemone:(786D|786E|7891):/
+54.6 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7867:/
+54.7 "Exocleaver 1" sync / 1[56]:[^:]*:Hegemone:(7869|786B):/ window 2,2
+56.8 "Unholy Darkness" sync / 1[56]:[^:]*:Hegemone:7892:/
+57.2 "Exocleaver 2" sync / 1[56]:[^:]*:Hegemone:(7869|786B):/ window 2,2
+71.2 "--sync--" sync / 1[56]:[^:]*:Hegemone:7864:/
+71.7 "#1 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+73.6 "#2 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+75.6 "#3 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+77.5 "#4 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+79.5 "#5 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+81.4 "#6 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+83.4 "#7 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+85.3 "#8 Pathogenic Cells" #sync / 1[56]:[^:]*:Hegemone:7865:/
+
+91.9 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
+97.7 "Aetherial Exchange" sync / 1[56]:[^:]*:Hegemone:784D:/ window 100,30
+104.4 "Exchange Of Agonies" sync / 1[56]:[^:]*:Hegemone:786C:/
+111.6 "Choros Ixou 1" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
+112.3 "Unholy Darkness" sync / 1[56]:[^:]*:Hegemone:(786D|786E|7891):/
+114.7 "Choros Ixou 2" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
+128.5 "Synergy" sync / 1[56]:[^:]*:Hegemone:(7887|788A):/
+141.4 "Hemitheos's Dark IV" sync / 1[56]:[^:]*:Hegemone:7860:/ window 30,30
+153.2 "Transmission" sync / 1[56]:[^:]*:Hegemone:7861:/
+159.0 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
+166.1 "Choros Ixou 1" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
+168.0 "Chelic Claw/Reek Havoc" sync / 1[56]:[^:]*:Parasitos:(79EE|79EF):/
+169.2 "Choros Ixou 2" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
+179.0 "Aetherial Exchange" sync / 1[56]:[^:]*:Hegemone:784D:/
+185.7 "Polyominoid Sigma" sync / 1[56]:[^:]*:Hegemone:7868:/ window 30,30
+185.7 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
+195.3 "Dark Dome 1" sync / 1[56]:[^:]*:Hegemone:788B:/
+200.1 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7867:/
+200.1 "Dark Dome 2" sync / 1[56]:[^:]*:Hegemone:788C:/
+204.0 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
+209.8 "Aetherial Exchange" sync / 1[56]:[^:]*:Hegemone:784D:/
+216.5 "Exchange Of Agonies" sync / 1[56]:[^:]*:Hegemone:786C:/ window 30,30
+224.4 "Exocleaver 1" sync / 1[56]:[^:]*:Hegemone:(7869|786B):/ window 2,2
+224.4 "Unholy Darkness" sync / 1[56]:[^:]*:Hegemone:7A0F:/
+227.0 "Exocleaver 2" sync / 1[56]:[^:]*:Hegemone:(7869|786B):/ window 2,2
+239.3 "Synergy" sync / 1[56]:[^:]*:Hegemone:(7887|788A):/
+252.2 "Hemitheos's Dark IV" sync / 1[56]:[^:]*:Hegemone:7860:/ window 30,30
+262.0 "Aetherial Exchange" sync / 1[56]:[^:]*:Hegemone:784D:/
+268.7 "Polyominoid Sigma" sync / 1[56]:[^:]*:Hegemone:7868:/
+268.7 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
+275.3 "Unholy Darkness" sync / 1[56]:[^:]*:Hegemone:7892:/
+282.3 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7867:/ window 30,30
+287.3 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
+294.0 "Dark Ashes" sync / 1[56]:[^:]*:Hegemone:788D:/
+302.0 "Choros Ixou 1" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
+303.0 "Dark Ashes" sync / 1[56]:[^:]*:Hegemone:788E:/
+305.1 "Choros Ixou 2" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
+311.8 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
+317.6 "Cachexia" sync / 1[56]:[^:]*:Hegemone:7876:/ window 30,30
+326.6 "Aetheronecrosis 1" #sync / 1[56]:[^:]*:Hegemone:7877:/
+330.6 "Aetheronecrosis 2" #sync / 1[56]:[^:]*:Hegemone:7877:/
+334.6 "Aetheronecrosis 3" #sync / 1[56]:[^:]*:Hegemone:7877:/
+334.8 "Dual Predation" sync / 1[56]:[^:]*:Hegemone:7878:/
+335.8 "Predation 1" sync / 1[56]:[^:]*:Hegemone:(787A|787B):/
+338.7 "Aetheronecrosis 4" #sync / 1[56]:[^:]*:Hegemone:7877:/
+339.9 "Predation 2" sync / 1[56]:[^:]*:Hegemone:(787A|787B):/
+343.9 "Predation 3" sync / 1[56]:[^:]*:Hegemone:(787A|787B):/
+347.9 "Predation 4" sync / 1[56]:[^:]*:Hegemone:(787A|787B):/
+356.9 "Ptera Ixou" sync / 1[56]:[^:]*:Hegemone:787C:/
+372.2 "Synergy" sync / 1[56]:[^:]*:Hegemone:(7887|788A):/
+384.3 "Hemitheos's Dark IV" sync / 1[56]:[^:]*:Hegemone:7860:/ window 30,30
+395.0 "Aetheric Polyominoid" sync / 1[56]:[^:]*:Hegemone:7866:/
+395.0 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
+401.6 "Dark Sphere" sync / 1[56]:[^:]*:Hegemone:788F:/
+407.7 "Dark Dome 1" sync / 1[56]:[^:]*:Hegemone:788B:/
+408.6 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7867:/
+412.6 "Dark Dome 2" sync / 1[56]:[^:]*:Hegemone:788C:/
+417.5 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/ window 30,30
+423.4 "Aetherial Exchange" sync / 1[56]:[^:]*:Hegemone:784D:/
+430.1 "Exchange Of Agonies" sync / 1[56]:[^:]*:Hegemone:786C:/
+437.3 "Choros Ixou 1" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
+437.8 "Unholy Darkness" sync / 1[56]:[^:]*:Hegemone:(786D|786E|7891):/
+440.2 "Choros Ixou 2" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
+449.9 "Aetherial Exchange" sync / 1[56]:[^:]*:Hegemone:784D:/
+456.6 "Polyominoid Sigma" sync / 1[56]:[^:]*:Hegemone:7868:/
+456.6 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
+461.2 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
+468.3 "Choros Ixou 1" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
+469.2 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7867:/
+471.4 "Choros Ixou 2" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
+485.0 "Synergy" sync / 1[56]:[^:]*:Hegemone:(7887|788A):/
+497.1 "Hemitheos's Dark IV" sync / 1[56]:[^:]*:Hegemone:7860:/
+503.9 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
+509.7 "Cachexia" sync / 1[56]:[^:]*:Hegemone:7876:/
+517.4 "Transmission" sync / 1[56]:[^:]*:Hegemone:7861:/ window 30,30
+525.1 "Aetherial Exchange" sync / 1[56]:[^:]*:Hegemone:784D:/
+531.8 "Polyominoid Sigma" sync / 1[56]:[^:]*:Hegemone:7868:/
+531.8 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
+537.5 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
+545.3 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7867:/
+545.4 "Dark Sphere" sync / 1[56]:[^:]*:Hegemone:7880:/
+545.4 "Ptera Ixou" sync / 1[56]:[^:]*:Hegemone:787C:/ window 30,30
+545.4 "Unholy Darkness" sync / 1[56]:[^:]*:Hegemone:787F:/
+546.4 "Chelic Claw/Reek Havoc" sync / 1[56]:[^:]*:Parasitos:(79EE|79EF):/
+551.6 "--sync--" sync / 1[56]:[^:]*:Hegemone:7A19:/
+558.7 "Aetheric Polyominoid" sync / 1[56]:[^:]*:Hegemone:7866:/
+558.7 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
+567.3 "Dark Dome" sync / 1[56]:[^:]*:Hegemone:788B:/
+571.7 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7867:/
+572.1 "Dark Dome" sync / 1[56]:[^:]*:Hegemone:788C:/
+577.0 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
+583.7 "Aetheric Polyominoid" sync / 1[56]:[^:]*:Hegemone:7866:/
+583.7 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
+592.8 "Choros Ixou 1" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
+593.5 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7867:/
+595.9 "Choros Ixou 2" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
+608.9 "Synergy" sync / 1[56]:[^:]*:Hegemone:(7887|788A):/
+621.8 "Hemitheos's Dark IV" sync / 1[56]:[^:]*:Hegemone:7860:/
+
+# Enrage
+631.0 "--sync--" sync / 14:[^:]*:Hegemone:7893:/ window 1000,10
+640.7 "Hemitheos's Dark IV (enrage)" sync / 1[56]:[^:]*:Hegemone:7893:/

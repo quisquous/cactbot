@@ -94,7 +94,7 @@ export class SAMComponent extends BaseComponent {
     this.ka.classList.toggle('active', jobDetail.ka);
   }
 
-  override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>):void {
+  override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     if (id === EffectId.Fuka) {
       this.fuka.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
       this.player.speedBuffs.fuka = true;
@@ -102,7 +102,7 @@ export class SAMComponent extends BaseComponent {
     if (id === EffectId.Fugetsu)
       this.fugetsu.duration = parseFloat(matches.duration ?? '0') - 0.5; // -0.5s for log line delay
   }
-  override onYouLoseEffect(id: string):void {
+  override onYouLoseEffect(id: string): void {
     if (id === EffectId.Fuka) {
       this.fuka.duration = 0;
       this.player.speedBuffs.fuka = false;
@@ -111,7 +111,7 @@ export class SAMComponent extends BaseComponent {
       this.fugetsu.duration = 0;
   }
 
-  override onUseAbility(id: string, matches: PartialFieldMatches<'Ability'>) :void {
+  override onUseAbility(id: string, matches: PartialFieldMatches<'Ability'>): void {
     switch (id) {
       case kAbility.KaeshiHiganbana:
       case kAbility.KaeshiGoken:
@@ -130,12 +130,12 @@ export class SAMComponent extends BaseComponent {
     }
   }
 
-  override onMobGainsEffectFromYou(id:string) :void {
+  override onMobGainsEffectFromYou(id: string): void {
     if (id === EffectId.Higanbana)
       this.higanbana.duration = 60 - 0.5; // -0.5s for log line delay
   }
 
-  override onStatChange({ gcdSkill }:{ gcdSkill: number }): void {
+  override onStatChange({ gcdSkill }: { gcdSkill: number }): void {
     this.fuka.valuescale = gcdSkill;
     this.fuka.threshold = gcdSkill * 6;
     this.fugetsu.valuescale = gcdSkill;
@@ -154,4 +154,3 @@ export class SAMComponent extends BaseComponent {
     this.higanbana.duration = 0;
   }
 }
-

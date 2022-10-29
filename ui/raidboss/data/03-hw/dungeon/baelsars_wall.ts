@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -28,66 +27,67 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Baelsar Magitek Claw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CB2', source: 'Magitek Predator' }),
+      netRegex: { id: '1CB2', source: 'Magitek Predator' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Baelsar Magitek Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CB3', source: 'Magitek Predator', capture: false }),
+      netRegex: { id: '1CB3', source: 'Magitek Predator', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'Baelsar Needle Burst',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1DC8', source: 'Magitek Vanguard D-1' }),
+      netRegex: { id: '1DC8', source: 'Magitek Vanguard D-1' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
       id: 'Baelsar Launcher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CBC', source: 'Magitek Predator', capture: false }),
+      netRegex: { id: '1CBC', source: 'Magitek Predator', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Baelsar Dynamic Sensory Jammer',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '46C' }),
+      netRegex: { effectId: '46C' },
       condition: Conditions.targetIsYou(),
       response: Responses.stopEverything(),
     },
     {
       id: 'Baelsar Griffin Beak',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CC3', source: 'The Griffin', capture: false }),
+      netRegex: { id: '1CC3', source: 'The Griffin', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Baelsar Flash Powder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CC4', source: 'The Griffin' }),
+      netRegex: { id: '1CC4', source: 'The Griffin' },
       response: Responses.lookAwayFromSource(),
     },
     {
       id: 'Baelsar Griffin Claw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CC2', source: 'The Griffin' }),
+      netRegex: { id: '1CC2', source: 'The Griffin' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Baelsar Big Boot',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '1CC4' }),
+      netRegex: { id: '1CC4' },
       condition: Conditions.targetIsYou(),
       response: Responses.knockbackOn(),
     },
     {
       id: 'Baelsar Restraint Collar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CC8', source: 'The Griffin' }),
+      netRegex: { id: '1CC8', source: 'The Griffin' },
       condition: Conditions.targetIsNotYou(),
-      alertText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      alertText: (data, matches, output) =>
+        output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Break chain on ${player}',

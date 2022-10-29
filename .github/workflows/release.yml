@@ -13,24 +13,13 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Set up msbuild
         uses: microsoft/setup-msbuild@v1.0.2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
 
-      - uses: actions/cache@v2
-        id: npm-cache
-        with:
-          path: ~/.npm
-          key: modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Fetch NPM Dependencies
-        # TODO: fix cache@v2 to cache node_modules
-        # if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: |
-          npm ci --ignore-scripts
+      - uses: ./.github/actions/setup-js-env
 
       # Gets the numerical output of the git tag and assigns it to an environment variable
       - name: Get Tag Version
@@ -39,7 +28,7 @@ jobs:
         shell: bash
       - name: Check dependencies cache
         id: cache-dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ./plugin/ThirdParty
           key: ${{ runner.os }}-cactbot-${{ hashFiles('./util/fetch_deps.ts', './util/DEPS.json5') }}
@@ -66,24 +55,31 @@ jobs:
         run: |
           mkdir cactbot
           mv publish/cactbot-release/cactbot/ cactbot
-          compress-archive cactbot cactbot.zip
+          compress-archive cactbot cactbot-${{ env.RELEASE_VERSION }}.zip
         shell: pwsh
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: cactbot-${{ env.RELEASE_VERSION }}
-          body: |
-            Changes in this release:
-            - plugin
-            - raidboss
+          name: ${{ env.RELEASE_VERSION }}
+          tag: ${{ github.ref }}
+          artifacts: cactbot-${{ env.RELEASE_VERSION }}.zip
+          artifactContentType: application/zip
           draft: true
-          prerelease: false
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./cactbot.zip
-          asset_name: cactbot-${{ env.RELEASE_VERSION }}.zip
-          asset_content_type: application/zip
+          generateReleaseNotes: true
+
+  create-npm-package:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'quisquous/cactbot' }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-js-env
+
+      - run: node .github/scripts/npm-package.cjs
+
+      - run: npm publish
+        working-directory: npm-package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+

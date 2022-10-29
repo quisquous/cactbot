@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -21,7 +20,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Strike Spark',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
+      netRegex: { source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false },
       delaySeconds: 11,
       promise: async (data, _matches, output) => {
         const ifritLocaleNames = {
@@ -69,7 +68,9 @@ const triggerSet: TriggerSet<Data> = {
 
         // we need to filter for the Ifrit with the highest ID
         // since that one is always the safe spot.
-        const currentHighestCombatant = combatantData.combatants.sort((a, b) => (a.ID ?? 0) - (b.ID ?? 0)).pop();
+        const currentHighestCombatant = combatantData.combatants.sort((a, b) =>
+          (a.ID ?? 0) - (b.ID ?? 0)
+        ).pop();
 
         // all variation ranges for all the 9 ball positions for the kicking actors
         // north      x: 96-104   y: 85-93
@@ -135,14 +136,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Superstorm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Garuda', id: '4BF7', capture: false }),
+      netRegex: { source: 'Garuda', id: '4BF7', capture: false },
       response: Responses.aoe(),
       run: (data) => data.phase = 'garuda',
     },
     {
       id: 'E6S Ferostorm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
+      netRegex: { source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -158,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Air Bump',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00D3' }),
+      netRegex: { id: '00D3' },
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -188,20 +189,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Touchdown',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Ifrit', id: '4C09', capture: false }),
+      netRegex: { source: 'Ifrit', id: '4C09', capture: false },
       run: (data) => data.phase = 'ifrit',
     },
     {
       id: 'E6S Inferno Howl',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false }),
+      netRegex: { source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false },
       response: Responses.aoe(),
     },
     {
       // Save ability state since the generic tether used has multiple uses in this fight
       id: 'E6S Hands of Flame Start',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
+      netRegex: { source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false },
       preRun: (data) => data.handsOfFlame = true,
     },
     {
@@ -209,7 +210,7 @@ const triggerSet: TriggerSet<Data> = {
       // Break tether if you're the target during Ifrit+Garuda phase
       id: 'E6S Hands of Flame Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0068' }),
+      netRegex: { id: '0068' },
       condition: (data) => data.handsOfFlame,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -234,26 +235,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Hands of Flame Cast',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
+      netRegex: { source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false },
       preRun: (data) => data.handsOfFlame = false,
       suppressSeconds: 1,
     },
     {
       id: 'E6S Instant Incineration',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0E' }),
+      netRegex: { source: ['Ifrit', 'Raktapaksa'], id: '4C0E' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E6S Meteor Strike',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false }),
+      netRegex: { source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'E6S Hands of Hell',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0016' }),
+      netRegex: { id: '0016' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -270,13 +271,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Hated of the Vortex',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Garuda', id: '4F9F', capture: false }),
+      netRegex: { source: 'Garuda', id: '4F9F', capture: false },
       run: (data) => data.phase = 'both',
     },
     {
       id: 'E6S Hated of the Vortex Effect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8BB' }),
+      netRegex: { effectId: '8BB' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -293,7 +294,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Hated of the Embers Effect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '8BC' }),
+      netRegex: { effectId: '8BC' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -310,25 +311,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Raktapaksa Spawn',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Raktapaksa', id: '4D55', capture: false }),
+      netRegex: { source: 'Raktapaksa', id: '4D55', capture: false },
       run: (data) => data.phase = 'raktapaksa',
     },
     {
       id: 'E6S Downburst Knockback 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Garuda', id: '4BFB', capture: false }),
+      netRegex: { source: 'Garuda', id: '4BFB', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'E6S Downburst Knockback 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4BFC', capture: false }),
+      netRegex: { source: 'Raktapaksa', id: '4BFC', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'E6S Conflag Strike',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
+      netRegex: { source: 'Raktapaksa', id: '4C10', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -344,7 +345,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Irons Of Purgatory',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '006C' }),
+      netRegex: { id: '006C' },
       condition: (data, matches) => data.me === matches.target || data.me === matches.source,
       alertText: (data, matches, output) => {
         if (data.me === matches.source)
@@ -366,7 +367,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E6S Conflag Strike Behind',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
+      netRegex: { source: 'Raktapaksa', id: '4C10', capture: false },
       delaySeconds: 31,
       response: Responses.getBehind(),
     },

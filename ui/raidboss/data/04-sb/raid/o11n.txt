@@ -1,6 +1,6 @@
 # Omega - Alphascape V3.0 - O11N
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 hideall "--Reset--"
 hideall "--sync--"

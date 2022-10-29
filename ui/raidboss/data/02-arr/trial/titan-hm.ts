@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -41,7 +40,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TitanHm Damage Down',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3E' }),
+      netRegex: { effectId: '3E' },
       condition: (data) => data.CanCleanse(),
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {

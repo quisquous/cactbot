@@ -1,5 +1,5 @@
 import { Lang } from '../../../resources/languages';
-import NetRegexes from '../../../resources/netregexes';
+import NetRegexes, { commonNetRegex } from '../../../resources/netregexes';
 import { UnreachableCode } from '../../../resources/not_reached';
 import { LocaleNetRegex } from '../../../resources/translations';
 import {
@@ -200,7 +200,7 @@ export default class EmulatorCommon {
   static engageRegexes = LocaleNetRegex.countdownEngage;
   static countdownRegexes = LocaleNetRegex.countdownStart;
   static unsealRegexes = LocaleNetRegex.areaUnseal;
-  static wipeRegex = NetRegexes.network6d({ command: '40000010' });
+  static wipeRegex = commonNetRegex.wipe;
   static winRegex = NetRegexes.network6d({ command: '40000003' });
   static cactbotWipeRegex = NetRegexes.echo({ line: 'cactbot wipe.*?' });
 }

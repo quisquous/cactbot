@@ -1226,6 +1226,9 @@ const data: FisherData = {
       '36519': '额外维度实体-9318',
       '36520': '未受生魂',
       '36521': '法拉伊那',
+      '36660': '种蛙',
+      '36662': '圣洁绒球',
+      '36663': '灰白珊瑚',
       '36679': '电吉他鱼',
       '36680': '巨身锯盖鱼',
       '36681': '捂耳太阳鱼',
@@ -6227,6 +6230,34 @@ const data: FisherData = {
         'thavnairisches Tintenfische',
         'thavnairischer Tintenfische',
       ],
+      '37697': 'Mayapanzer',
+      '37845': [
+        'Großschwert-Snook',
+        'Großschwert-Snooks',
+      ],
+      '37846': [
+        'Schlammschlucker-Kahlhecht',
+        'Schlammschlucker-Kahlhechte',
+      ],
+      '37847': [
+        'Lalekrabbe',
+        'Lalekrabben',
+      ],
+      '37848': [
+        'Bicuda-Bruder',
+        'Bicuda-Brüder',
+      ],
+      '37849': 'Schattenkaiser',
+      '37850': [
+        'Verschwindarucu',
+        'Verschwindarucus',
+      ],
+      '37851': 'Sternenspäher',
+      '37852': [
+        'Argonauta Argo',
+        'Argonauta Argos',
+      ],
+      '37853': 'Planetes',
     },
     'en': {
       '4776': [
@@ -9436,8 +9467,8 @@ const data: FisherData = {
       ],
       '36421': 'Qeyiq sole',
       '36422': [
-        'Gwl crab',
-        'Gwl crabs',
+        'gwl crab',
+        'gwl crabs',
       ],
       '36423': [
         'pantherscale grouper',
@@ -9720,6 +9751,31 @@ const data: FisherData = {
         'forbiddingways',
       ],
       '36686': 'Thavnairian calamari',
+      '37697': [
+        'Mayashell',
+        'Mayashells',
+      ],
+      '37845': 'greatsword snook',
+      '37846': [
+        'swampsucker bowfin',
+        'swampsucker bowfins',
+      ],
+      '37847': [
+        'lale crab',
+        'lale crabs',
+      ],
+      '37848': 'bigcuda',
+      '37849': [
+        'sovereign shadow',
+        'sovereign shadows',
+      ],
+      '37850': 'disappirarucu',
+      '37851': [
+        'starscryer',
+        'starscryers',
+      ],
+      '37852': 'Argonauta argo',
+      '37853': 'planetes',
     },
     'fr': {
       '4776': [
@@ -12460,7 +12516,7 @@ const data: FisherData = {
       ],
       '27447': [
         'méduse-globule',
-        'méduses-globule',
+        'méduses-globules',
       ],
       '27448': [
         'flet kholusien',
@@ -14185,12 +14241,43 @@ const data: FisherData = {
         'orphie d\'Éblana',
         'orphies d\'Éblana',
       ],
-      '36684': 'Foun Ahlm ',
+      '36684': 'Foun Ahlm',
       '36685': 'Forbiddingway',
       '36686': [
         'calmar thavnairois',
         'calmars thavnairois',
       ],
+      '37697': [
+        'tortue éthérée de la Maya',
+        'tortues éthérées de la Maya',
+      ],
+      '37845': [
+        'snook-grande épée',
+        'snooks-grandes épées',
+      ],
+      '37846': [
+        'poisson-castor palustre',
+        'poissons-castors palustres',
+      ],
+      '37847': [
+        'crabe lale',
+        'crabes lale',
+      ],
+      '37848': 'bœuf-cuda',
+      '37849': [
+        'ombrecouronne',
+        'ombrecouronnes',
+      ],
+      '37850': [
+        'pirarucu imitation',
+        'pirarucus imitations',
+      ],
+      '37851': [
+        'scrutateur stellaire',
+        'scrutateurs stellaires',
+      ],
+      '37852': 'argonauta argo',
+      '37853': 'planetes',
     },
     'ja': {
       '4776': 'マルムケルプ',
@@ -15410,6 +15497,16 @@ const data: FisherData = {
       '36684': 'フォン・アールム',
       '36685': 'フォービディングウェイ',
       '36686': 'サベネアンカラマリ',
+      '37697': 'マーヤーの霊亀',
+      '37845': 'グレートソードスヌーク',
+      '37846': 'スワンプボウフィン',
+      '37847': 'ラーレギュルクラブ',
+      '37848': 'ビッグビックーダ',
+      '37849': '影なる帝冠',
+      '37850': 'イミテーションピラルク',
+      '37851': '破軍星の欠片',
+      '37852': 'アルゴノート・アルゴ',
+      '37853': '水面の恒星',
     },
     'ko': {
       '4776': '말름미역',
@@ -16995,6 +17092,14 @@ const data: FisherData = {
       '36585': '백표범어',
       '36586': '소금오징어',
       '36587': '백금 망치상어',
+      '36679': '전자기타고기',
+      '36680': '특대농어',
+      '36681': '귀막개복치',
+      '36682': '하마 개구리',
+      '36683': '서리꼬치고기',
+      '36684': '폰 알름',
+      '36685': '포비딩웨이',
+      '36686': '사베네어 칼라마리',
     },
   },
   'placefish': {
@@ -19494,6 +19599,7 @@ const data: FisherData = {
       36392,
       36393,
       36394,
+      37845,
     ],
     '4052': [
       36390,
@@ -19520,6 +19626,7 @@ const data: FisherData = {
       36398,
       36407,
       36408,
+      37846,
     ],
     '4056': [
       36397,
@@ -19546,6 +19653,7 @@ const data: FisherData = {
       36421,
       36422,
       36423,
+      37847,
     ],
     '4060': [
       36420,
@@ -19580,6 +19688,7 @@ const data: FisherData = {
       36441,
       36442,
       36660,
+      37848,
     ],
     '4065': [
       36436,
@@ -19593,6 +19702,7 @@ const data: FisherData = {
       36447,
       36448,
       36449,
+      37697,
     ],
     '4067': [
       36450,
@@ -19616,12 +19726,14 @@ const data: FisherData = {
       36460,
       36461,
       36462,
+      37849,
     ],
     '4070': [
       36463,
       36465,
       36466,
       36467,
+      37850,
     ],
     '4071': [
       36468,
@@ -19641,6 +19753,7 @@ const data: FisherData = {
       36478,
       36479,
       36480,
+      37853,
     ],
     '4074': [
       36476,
@@ -19679,6 +19792,7 @@ const data: FisherData = {
       36501,
       36502,
       36503,
+      37851,
     ],
     '4080': [
       36499,
@@ -19703,6 +19817,7 @@ const data: FisherData = {
       36515,
       36516,
       36517,
+      37852,
     ],
     '4083': [
       36506,
@@ -19712,6 +19827,27 @@ const data: FisherData = {
       36519,
       36520,
       36521,
+    ],
+    '4191': [
+      36501,
+      36503,
+    ],
+    '4192': [
+      36499,
+      36503,
+    ],
+    '4193': [
+      36501,
+      36503,
+    ],
+    '4194': [
+      36503,
+      36505,
+    ],
+    '4195': [
+      36499,
+      36503,
+      36505,
     ],
   },
   'places': {
@@ -21140,8 +21276,8 @@ const data: FisherData = {
         'an der Quell der Reue',
       ],
       '4080': [
-        'Elegeia',
-        'in Elegeia',
+        'Domizil der Ea',
+        'im Domizil der Ea',
       ],
       '4081': [
         'Limne 18',
@@ -21154,6 +21290,26 @@ const data: FisherData = {
       '4083': [
         'Limne 3-β',
         'in Limne 3-β',
+      ],
+      '4191': [
+        'Elysischer Agrarsektor',
+        'im Elysischen Agrarsektor',
+      ],
+      '4192': [
+        'Elysischer Meeressektor α',
+        'im Elysischen Meeressektor α',
+      ],
+      '4193': [
+        'Elysischer Meeressektor β',
+        'im Elysischen Meeressektor β',
+      ],
+      '4194': [
+        'Elysischer Vergnügungssektorα',
+        'im Elysischen Vergnügungssektor α',
+      ],
+      '4195': [
+        'Elysischer Vergnügungssektorβ',
+        'im Elysischen Vergnügungssektor β',
       ],
     },
     'en': {
@@ -21440,11 +21596,16 @@ const data: FisherData = {
       '4076': 'apohelos 18-γ',
       '4077': 'apohelos 18-β',
       '4078': 'apohelos 18-α',
-      '4079': 'Wellspring of Regret',
-      '4080': 'Elegeia',
+      '4079': 'wellspring of regret',
+      '4080': 'abode of the Ea',
       '4081': 'limne 18',
       '4082': 'limne 3-α',
       '4083': 'limne 3-β',
+      '4191': 'Elysian Fields',
+      '4192': 'Elysian Seas α',
+      '4193': 'Elysian Seas β',
+      '4194': 'Elysian Playgrounds α',
+      '4195': 'Elysian Playgrounds β',
     },
     'fr': {
       '28': 'Limsa Lominsa - Le Tillac',
@@ -21731,10 +21892,15 @@ const data: FisherData = {
       '4077': 'Hélos Dékaokto β',
       '4078': 'Hélos Dékaokto α',
       '4079': 'Source des Velléitaires',
-      '4080': 'Cippes élégiaques',
+      '4080': 'Demeure des Éas',
       '4081': 'Limné Dékaokto',
       '4082': 'Limné Tria α',
       '4083': 'Limné Tria β',
+      '4191': 'Champs élyséens',
+      '4192': 'Mers élyséennes α',
+      '4193': 'Mers élyséennes β',
+      '4194': 'Terrains de jeu élyséens α',
+      '4195': 'Terrains de jeu élyséens β',
     },
     'ja': {
       '28': 'リムサ・ロミンサ：上甲板層',
@@ -22021,10 +22187,15 @@ const data: FisherData = {
       '4077': 'ヘロス・デカオクトβ',
       '4078': 'ヘロス・デカオクトα',
       '4079': '逡巡の泉',
-      '4080': '辞世の連句碑',
+      '4080': 'イーアの里',
       '4081': 'リムニ・デカオクト',
       '4082': 'リムニ・トゥリアα',
       '4083': 'リムニ・トゥリアβ',
+      '4191': 'エリュシオン農業区画',
+      '4192': 'エリュシオン海洋区画α',
+      '4193': 'エリュシオン海洋区画β',
+      '4194': 'エリュシオン遊園区画α',
+      '4195': 'エリュシオン遊園区画β',
     },
     'ko': {
       '28': '림사 로민사 상층 갑판',
@@ -23509,6 +23680,7 @@ const data: FisherData = {
     '36417': 2,
     '36418': 2,
     '36419': 2,
+    '36422': 2,
     '36423': 2,
     '36425': 2,
     '36426': 2,
@@ -23591,6 +23763,14 @@ const data: FisherData = {
     '36683': 3,
     '36684': 3,
     '36685': 3,
+    '37845': 3,
+    '37846': 3,
+    '37847': 3,
+    '37848': 3,
+    '37849': 3,
+    '37850': 3,
+    '37851': 3,
+    '37853': 3,
   },
 };
 

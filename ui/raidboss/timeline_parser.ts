@@ -284,8 +284,8 @@ export class TimelineParser {
                 sync.start = seconds - parseFloat(windowCommand.start);
                 sync.end = seconds + parseFloat(windowCommand.end);
               } else {
-                sync.start = seconds - (parseFloat(windowCommand.end) / 2);
-                sync.end = seconds + (parseFloat(windowCommand.end) / 2);
+                sync.start = seconds - parseFloat(windowCommand.end) / 2;
+                sync.end = seconds + parseFloat(windowCommand.end) / 2;
               }
             }
             argMatch = regexes.jumpCommand.exec(syncCommand.args);
@@ -324,8 +324,10 @@ export class TimelineParser {
         }
       }
       if (!found) {
-        const text = `No match for timeline trigger ${trigger.regex?.source ??
-          ''} in ${trigger.id ?? ''}`;
+        const text = `No match for timeline trigger ${
+          trigger.regex?.source ??
+            ''
+        } in ${trigger.id ?? ''}`;
         this.errors.push({ error: text });
         console.error(`*** ERROR: ${text}`);
       }

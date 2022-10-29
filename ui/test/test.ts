@@ -11,9 +11,9 @@ addOverlayListener('ChangeZone', (e) => {
 addOverlayListener('onInCombatChangedEvent', (e) => {
   const inCombat = document.getElementById('inCombat');
   if (inCombat) {
-    inCombat.innerText = `inCombat: act: ${
-      e.detail.inACTCombat ? 'yes' : 'no'
-    } game: ${(e.detail.inGameCombat ? 'yes' : 'no')}`;
+    inCombat.innerText = `inCombat: act: ${e.detail.inACTCombat ? 'yes' : 'no'} game: ${
+      e.detail.inGameCombat ? 'yes' : 'no'
+    }`;
   }
 });
 
@@ -83,10 +83,10 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
         `${detail.jobDetail.lilyStacks} (${detail.jobDetail.lilyMilliseconds}) | ${detail.jobDetail.bloodlilyStacks}`;
     } else if (detail.job === 'SMN' && detail.jobDetail) {
       jobInfo.innerText =
-        `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.tranceMilliseconds} | ${detail.jobDetail.attunement} | ${detail.jobDetail.attunementMilliseconds} | ${detail
-          .jobDetail.activePrimal ?? '-'} | [${
-          detail.jobDetail.usableArcanum.join(', ')
-        }] | ${detail.jobDetail.nextSummoned}`;
+        `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.tranceMilliseconds} | ${detail.jobDetail.attunement} | ${detail.jobDetail.attunementMilliseconds} | ${
+          detail
+            .jobDetail.activePrimal ?? '-'
+        } | [${detail.jobDetail.usableArcanum.join(', ')}] | ${detail.jobDetail.nextSummoned}`;
     } else if (detail.job === 'SCH' && detail.jobDetail) {
       jobInfo.innerText =
         `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.fairyGauge} | ${detail.jobDetail.fairyStatus} (${detail.jobDetail.fairyMilliseconds})`;

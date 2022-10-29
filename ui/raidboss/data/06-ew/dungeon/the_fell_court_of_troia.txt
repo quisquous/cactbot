@@ -1,0 +1,154 @@
+# The Fell Court of Troia
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~~~~~~~~#
+# EVIL DREAMER(s) #
+#~~~~~~~~~~~~~~~~~#
+
+# -p 73B8:1208 73BA:1408 73BB:1608 73B6:1817 73BE:1860
+# -ii 73BD 73B5 73B7
+
+# Phase pushes here push when adds are all dead.
+# Hard to tell if there's a time based push, but have seen it push when some adds still alive?
+
+1000.0 "--sync--" sync / 00:0839::Penitence will be sealed off/ window 10000,0
+
+1200.0 "--sync--" sync / 14:[^:]*:Evil Dreamer:73B8:/ window 200,0
+1208.0 "Dark Vision" sync / 1[56]:[^:]*:Evil Dreamer:73B8:/
+
+1200.0 "--sync--" sync / 14:[^:]*:Evil Dreamer:73B8:/ window 200,0
+1408.0 "Dark Vision" sync / 1[56]:[^:]*:Evil Dreamer:73B8:/
+1408.0 "Void Gravity" sync / 1[56]:[^:]*:Evil Dreamer:73BA:/
+
+1600.0 "--sync--" sync / 14:[^:]*:Evil Dreamer:73BB:/ window 200,0
+1608.0 "Dark Vision" sync / 1[56]:[^:]*:Evil Dreamer:73BB:/
+1608.0 "Unite Mare" sync / 1[56]:[^:]*:Evil Dreamer:73BC:/
+
+1800.0 "--sync--" sync / 14:[^:]*:Evil Dreamer:73BE:/ window 200,0
+1817.0 "Unite Mare" sync / 1[56]:[^:]*:Evil Dreamer:73B6:/
+1828.0 "Unite Mare" sync / 1[56]:[^:]*:Evil Dreamer:73B6:/
+# guessing at these
+1839.0 "Unite Mare" sync / 1[56]:[^:]*:Evil Dreamer:73B6:/
+1850.0 "Unite Mare" sync / 1[56]:[^:]*:Evil Dreamer:73B6:/
+
+1860.0 "Endless Nightmare Enrage" sync / 14:[^:]*:Evil Dreamer:73BE:/
+
+
+#~~~~~~~~~~#
+# BEATRICE #
+#~~~~~~~~~~#
+
+# -p 747C:2011.3
+# -ii 79E7
+
+# TODO: Beatific Scorn is 747 + 5/8/4/7, or 3/8/6/7, are these directions??
+
+2000.0 "--sync--" sync / 00:0839::The Seat Of The Foremost will be sealed off/ window 10000,0
+2011.3 "--middle--" sync / 1[56]:[^:]*:Beatrice:747C:/
+2016.5 "Eye of Troia" sync / 1[56]:[^:]*:Beatrice:747A:/
+2022.5 "Death Foreseen" sync / 1[56]:[^:]*:Beatrice:747D:/
+2029.7 "Beatific Scorn x4" #sync / 1[56]:[^:]*:Beatrice:7475:/ # ???
+2040.5 "Beatific Scorn 1" #sync / 1[56]:[^:]*:Beatrice:7479:/
+2042.2 "Beatific Scorn 2" #sync / 1[56]:[^:]*:Beatrice:7479:/
+2043.8 "Beatific Scorn 3" #sync / 1[56]:[^:]*:Beatrice:7479:/
+2045.5 "Beatific Scorn 4" #sync / 1[56]:[^:]*:Beatrice:7479:/
+2048.4 "--sync--" sync / 1[56]:[^:]*:Beatrice:747B:/
+2060.6 "Hush" sync / 1[56]:[^:]*:Beatrice:7480:/
+
+2067.7 "--middle--" sync / 1[56]:[^:]*:Beatrice:747C:/
+2074.0 "Voidshaker" sync / 1[56]:[^:]*:Beatrice:747E:/
+2077.0 "Void Nail" sync / 1[56]:[^:]*:Beatrice:747F:/
+
+2084.2 "--middle--" sync / 1[56]:[^:]*:Beatrice:747C:/
+2089.4 "Eye of Troia" sync / 1[56]:[^:]*:Beatrice:747A:/
+2100.5 "Death Foreseen 1" sync / 1[56]:[^:]*:Beatrice:7484:/
+2100.5 "Toric Void" sync / 1[56]:[^:]*:Beatrice:7485:/
+2104.5 "Death Foreseen 2" sync / 1[56]:[^:]*:Beatrice:7484:/
+2104.6 "Toric Void" sync / 1[56]:[^:]*:Beatrice:79E6:/
+2107.4 "Void Nail" sync / 1[56]:[^:]*:Beatrice:747F:/
+
+2114.8 "--middle--" sync / 1[56]:[^:]*:Beatrice:747C:/
+2120.0 "Beatific Scorn x4" #sync / 1[56]:[^:]*:Beatrice:7473:/ # ???
+2122.9 "Antipressure" sync / 1[56]:[^:]*:Beatrice:79E8:/
+2130.7 "Beatific Scorn 1" #sync / 1[56]:[^:]*:Beatrice:7479:/
+2132.4 "Beatific Scorn 2" #sync / 1[56]:[^:]*:Beatrice:7479:/
+2134.0 "Beatific Scorn 3" #sync / 1[56]:[^:]*:Beatrice:7479:/
+2135.7 "Beatific Scorn 4" #sync / 1[56]:[^:]*:Beatrice:7479:/
+2138.6 "--sync--" sync / 1[56]:[^:]*:Beatrice:747B:/
+2150.8 "Hush" sync / 1[56]:[^:]*:Beatrice:7480:/
+
+# loop
+2157.9 "--middle--" sync / 1[56]:[^:]*:Beatrice:747C:/
+2164.2 "Voidshaker" sync / 1[56]:[^:]*:Beatrice:747E:/ window 80,80 jump 2074
+2167.2 "Void Nail" #sync / 1[56]:[^:]*:Beatrice:747F:/
+
+2174.4 "--middle--" #sync / 1[56]:[^:]*:Beatrice:747C:/
+2179.6 "Eye of Troia" #sync / 1[56]:[^:]*:Beatrice:747A:/
+2190.7 "Death Foreseen 1" #sync / 1[56]:[^:]*:Beatrice:7484:/
+2190.7 "Toric Void" #sync / 1[56]:[^:]*:Beatrice:7485:/
+2194.7 "Death Foreseen 2" #sync / 1[56]:[^:]*:Beatrice:7484:/
+2194.8 "Toric Void" #sync / 1[56]:[^:]*:Beatrice:79E6:/
+2197.6 "Void Nail" #sync / 1[56]:[^:]*:Beatrice:747F:/
+
+
+#~~~~~~~~~~~~~~#
+# SCARMIGLIONE #
+#~~~~~~~~~~~~~~#
+
+# -p 7631:3009.1 7625:3400
+# -ii 7632 7634 7618 7619 7637 7627 7628 7629
+# -it "Scarmiglione"
+
+3000.0 "--sync--" sync / 00:0839::The Garden Of Epopts will be sealed off/ window 10000,0
+3005.1 "--sync--" sync / 1[56]:[^:]*:Scarmiglione:7631:/ window 10,10
+3009.1 "Cursed Echo" sync / 1[56]:[^:]*:Scarmiglione:7631:/
+3016.3 "--sync--" sync / 1[56]:[^:]*:Scarmiglione:761D:/
+3027.1 "Rotten Rampage" sync / 1[56]:[^:]*:Scarmiglione:7617:/
+3034.2 "--sync--" sync / 1[56]:[^:]*:Scarmiglione:761A:/
+3041.6 "Blighted Bedevilment" sync / 1[56]:[^:]*:Scarmiglione:761B:/
+3042.2 "Vacuum Wave" sync / 1[56]:[^:]*:Scarmiglione:761C:/
+3048.3 "--sync--" sync / 1[56]:[^:]*:Scarmiglione:761D:/
+3061.5 "Blighted Bladework" sync / 1[56]:[^:]*:Scarmiglione:7633:/
+3072.5 "Blighted Sweep" sync / 1[56]:[^:]*:Scarmiglione:7635:/
+3083.6 "Firedamp" sync / 1[56]:[^:]*:Scarmiglione:7636:/
+3088.9 "--sync--" sync / 1[56]:[^:]*:Scarmiglione:761D:/
+3095.3 "Creeping Decay" sync / 1[56]:[^:]*:Scarmiglione:7620:/
+
+3098.4 "--sync--" sync / 1[56]:[^:]*:Scarmiglione:7624:/
+3098.4 "--untargetable--"
+3115.5 "Nox" sync / 1[56]:[^:]*:Scarmiglione:7621:/
+# These seem to be adjusted slightly in time based on which order they come in.
+3118.5 "Void Gravity/Void Vortex" #sync / 1[56]:[^:]*:Scarmiglione:(7622|7623):/
+3142.1 "Nox" sync / 1[56]:[^:]*:Scarmiglione:7621:/
+3148.1 "Void Vortex/Void Gravity" #sync / 1[56]:[^:]*:Scarmiglione:(7623|7622):/
+
+# natural enrage, if add phase is failed
+3191.8 "Corruptor's Pitch" sync / 1[56]:[^:]*:Scarmiglione:7625:/ duration 8 window 200,50
+
+3206.4 "--targetable--"
+
+3212.5 "--sync--" sync / 1[56]:[^:]*:Scarmiglione:761D:/
+3222.7 "Rotten Rampage" sync / 1[56]:[^:]*:Scarmiglione:7617:/
+3229.8 "--sync--" sync / 1[56]:[^:]*:Scarmiglione:761A:/
+3237.2 "Blighted Bedevilment" sync / 1[56]:[^:]*:Scarmiglione:761B:/
+3237.8 "Vacuum Wave" sync / 1[56]:[^:]*:Scarmiglione:761C:/
+3241.9 "--sync--" sync / 1[56]:[^:]*:Scarmiglione:762D:/
+3246.9 "Void Vortex" sync / 1[56]:[^:]*:Scarmiglione:762E:/
+3254.0 "--sync--" sync / 1[56]:[^:]*:Scarmiglione:761D:/
+3266.2 "Blighted Bladework" sync / 1[56]:[^:]*:Scarmiglione:7633:/
+3277.2 "Blighted Sweep" sync / 1[56]:[^:]*:Scarmiglione:7635:/
+3291.4 "Firedamp" sync / 1[56]:[^:]*:Scarmiglione:7636:/
+3301.5 "Cursed Echo" sync / 1[56]:[^:]*:Scarmiglione:7631:/
+
+# loop
+3308.7 "--sync--" sync / 1[56]:[^:]*:Scarmiglione:761D:/
+3318.9 "Rotten Rampage" sync / 1[56]:[^:]*:Scarmiglione:7617:/ window 50,50 jump 3222.7
+3326.0 "--sync--" #sync / 1[56]:[^:]*:Scarmiglione:761A:/
+3333.4 "Blighted Bedevilment" #sync / 1[56]:[^:]*:Scarmiglione:761B:/
+3334.0 "Vacuum Wave" #sync / 1[56]:[^:]*:Scarmiglione:761C:/
+3338.1 "--sync--" #sync / 1[56]:[^:]*:Scarmiglione:762D:/
+3343.1 "Void Vortex" #sync / 1[56]:[^:]*:Scarmiglione:762E:/
