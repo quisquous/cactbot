@@ -1211,7 +1211,7 @@ export class PopupText {
         if (this.timers[triggerID])
           res();
         else
-          rej();
+          rej(new Error('stopped'));
         delete this.timers[triggerID];
       }, delay * 1000);
     });
