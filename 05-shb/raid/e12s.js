@@ -249,7 +249,7 @@ Options.Triggers.push({
         // Track tankbuster targets, regardless if this is on you or not.
         // Use this to make more intelligent calls when the cast starts.
         if (id === '00DA') {
-          data.formlessTargets ?? (data.formlessTargets = []);
+          data.formlessTargets ??= [];
           data.formlessTargets.push(matches.target);
         }
         // From here on out, any response is for the current player.
@@ -313,7 +313,7 @@ Options.Triggers.push({
         };
         const id = getHeadmarkerId(data, matches);
         if (id === '00BB') {
-          data.weightTargets ?? (data.weightTargets = []);
+          data.weightTargets ??= [];
           data.weightTargets.push(matches.target);
           // Handle double blue titan on 2nd and 3rd iterations.
           if (data.seenFirstBombs && data.weightTargets.length === 2) {
@@ -362,7 +362,7 @@ Options.Triggers.push({
       run: (data, matches) => {
         // Collect both sculptures up front, so when we find the tether on the
         // current player we can look up both of them immediately.
-        data.statueIds ?? (data.statueIds = []);
+        data.statueIds ??= [];
         data.statueIds.push(parseInt(matches.id, 16));
       },
     },
@@ -772,7 +772,7 @@ Options.Triggers.push({
       type: 'Tether',
       netRegex: { id: tetherIds },
       run: (data, matches) => {
-        data.tethers ?? (data.tethers = []);
+        data.tethers ??= [];
         data.tethers.push(matches.id);
       },
     },
@@ -844,7 +844,7 @@ Options.Triggers.push({
       type: 'AddedCombatant',
       netRegex: { npcNameId: '9819' },
       run: (data, matches) => {
-        data.smallLions ?? (data.smallLions = []);
+        data.smallLions ??= [];
         data.smallLions.push(matches);
       },
     },
@@ -1179,7 +1179,7 @@ Options.Triggers.push({
       netRegex: { effectId: ['690', '99[68CEF]'] },
       condition: (data, matches) => data.phase === 'intermediate' && matches.target === data.me,
       preRun: (data, matches) => {
-        data.debuffs ?? (data.debuffs = {});
+        data.debuffs ??= {};
         data.debuffs[matches.effectId.toUpperCase()] = parseFloat(matches.duration);
       },
       durationSeconds: 20,
@@ -1253,7 +1253,7 @@ Options.Triggers.push({
       netRegex: { effectId: '998' },
       condition: (data) => data.phase === 'basic',
       run: (data, matches) => {
-        data.eyes ?? (data.eyes = []);
+        data.eyes ??= [];
         data.eyes.push(matches.target);
       },
     },
@@ -1351,7 +1351,7 @@ Options.Triggers.push({
       netRegex: { npcNameId: '9823' },
       run: (data, matches) => {
         const id = matches.id.toUpperCase();
-        data.sorrows ?? (data.sorrows = {});
+        data.sorrows ??= {};
         data.sorrows[id] = matchedPositionToDir(matches);
       },
     },
@@ -1492,7 +1492,7 @@ Options.Triggers.push({
       // In advanced, Aero comes in ~23 and ~31s flavors
       condition: (data, matches) => data.phase === 'advanced' && parseFloat(matches.duration) > 28,
       infoText: (data, matches, output) => {
-        data.doubleAero ?? (data.doubleAero = []);
+        data.doubleAero ??= [];
         data.doubleAero.push(data.ShortName(matches.target));
         if (data.doubleAero.length !== 2)
           return;

@@ -170,7 +170,7 @@ Options.Triggers.push({
       type: 'Tether',
       netRegex: { id: '0011' },
       run: (data, matches) => {
-        data.tethers ?? (data.tethers = {});
+        data.tethers ??= {};
         data.tethers[matches.target] = matches.sourceId;
       },
     },

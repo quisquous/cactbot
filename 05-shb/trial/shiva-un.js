@@ -113,7 +113,7 @@ Options.Triggers.push({
       type: 'GainsEffect',
       netRegex: { effectId: '23C' },
       run: (data, matches) => {
-        data.slashing ?? (data.slashing = {});
+        data.slashing ??= {};
         data.slashing[matches.target] = true;
       },
     },
@@ -122,7 +122,7 @@ Options.Triggers.push({
       type: 'LosesEffect',
       netRegex: { effectId: '23C' },
       run: (data, matches) => {
-        data.slashing ?? (data.slashing = {});
+        data.slashing ??= {};
         data.slashing[matches.target] = false;
       },
     },
@@ -131,7 +131,7 @@ Options.Triggers.push({
       type: 'GainsEffect',
       netRegex: { effectId: '23D' },
       run: (data, matches) => {
-        data.blunt ?? (data.blunt = {});
+        data.blunt ??= {};
         data.blunt[matches.target] = true;
       },
     },
@@ -140,7 +140,7 @@ Options.Triggers.push({
       type: 'LosesEffect',
       netRegex: { effectId: '23D' },
       run: (data, matches) => {
-        data.blunt ?? (data.blunt = {});
+        data.blunt ??= {};
         data.blunt[matches.target] = false;
       },
     },

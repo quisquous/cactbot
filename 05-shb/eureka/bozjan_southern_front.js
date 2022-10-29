@@ -384,7 +384,7 @@ Options.Triggers.push({
       type: 'AddedCombatant',
       netRegex: { npcNameId: '944[3-8]' },
       run: (data, matches) => {
-        data.orbs ?? (data.orbs = {});
+        data.orbs ??= {};
         data.orbs[matches.id.toUpperCase()] = matches.npcNameId;
       },
     },
@@ -450,7 +450,7 @@ Options.Triggers.push({
       delaySeconds: 7.2 - 5,
       durationSeconds: 4.5,
       alertText: (data, _matches, output) => {
-        data.orbOutput ?? (data.orbOutput = []);
+        data.orbOutput ??= [];
         const orb = data.orbOutput.shift();
         if (!orb)
           return;
@@ -465,7 +465,7 @@ Options.Triggers.push({
       // 2.5 seconds warning, as it's weird if this shows up way before the first orb.
       delaySeconds: 9 - 2.5,
       alertText: (data, _matches, output) => {
-        data.orbOutput ?? (data.orbOutput = []);
+        data.orbOutput ??= [];
         const orb = data.orbOutput.shift();
         if (!orb)
           return;
@@ -478,7 +478,7 @@ Options.Triggers.push({
       type: 'AddedCombatant',
       netRegex: { npcNameId: '9449' },
       run: (data, matches) => {
-        data.warped ?? (data.warped = {});
+        data.warped ??= {};
         data.warped[matches.id.toUpperCase()] = {
           x: parseFloat(matches.x),
           y: parseFloat(matches.y),

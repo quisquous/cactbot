@@ -99,7 +99,7 @@ Options.Triggers.push({
       type: 'GainsEffect',
       // Status goes out with Predatory Avarice (6827).
       netRegex: { effectId: 'AD0' },
-      run: (data, matches) => (data.avarice ?? (data.avarice = [])).push(matches),
+      run: (data, matches) => (data.avarice ??= []).push(matches),
     },
     {
       id: 'P2S Mark of the Tides',

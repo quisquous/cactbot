@@ -399,7 +399,7 @@ Options.Triggers.push({
       netRegex: { id: limitCutHeadmarkers },
       condition: (data, matches) => data.ce === 'diremite' && data.me === matches.target,
       preRun: (data, matches) => {
-        data.diremiteHailfire ?? (data.diremiteHailfire = []);
+        data.diremiteHailfire ??= [];
         data.diremiteHailfire.push(matches.target);
       },
       alertText: (_data, matches, output) => {
@@ -1007,7 +1007,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { source: 'Sartauvoir The Inferno', id: '5E8F' },
       preRun: (data, matches) => {
-        data.sartauvoirPyrocrisis ?? (data.sartauvoirPyrocrisis = []);
+        data.sartauvoirPyrocrisis ??= [];
         data.sartauvoirPyrocrisis.push(matches.target);
       },
       alertText: (data, matches, output) => {
@@ -1546,7 +1546,7 @@ Options.Triggers.push({
       netRegex: { id: '0017' },
       condition: (data) => data.ce === 'dalriadaDiablo',
       preRun: (data, matches) => {
-        data.diabloPillar ?? (data.diabloPillar = []);
+        data.diabloPillar ??= [];
         data.diabloPillar.push(matches.target);
       },
       alertText: (data, matches, output) => {

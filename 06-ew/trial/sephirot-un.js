@@ -330,7 +330,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '0028' },
       run: (data, matches) => {
-        data.shakerTargets = data.shakerTargets ?? (data.shakerTargets = []);
+        data.shakerTargets = data.shakerTargets ??= [];
         data.shakerTargets.push(matches.target);
       },
     },

@@ -262,7 +262,7 @@ Options.Triggers.push({
         // N = (0, -28), E = (28, 0), S = (0, 28), W = (-28, 0)
         // Map N = 0, NE = 1, ..., NW = 7
         const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
-        data.dragons ?? (data.dragons = [0, 0, 0]);
+        data.dragons ??= [0, 0, 0];
         data.dragons[idx] = dir;
       },
     },
@@ -425,7 +425,7 @@ Options.Triggers.push({
       netRegex: { id: '0014' },
       condition: Conditions.targetIsYou(),
       alarmText: (data, matches, output) => {
-        data.naelDiveMarkerCount ?? (data.naelDiveMarkerCount = 0);
+        data.naelDiveMarkerCount ??= 0;
         if (matches.target !== data.me)
           return;
         const marker = ['A', 'B', 'C'][data.naelDiveMarkerCount];
@@ -433,7 +433,7 @@ Options.Triggers.push({
         return output.goToMarkerInDir({ marker: marker, dir: dir });
       },
       tts: (data, matches, output) => {
-        data.naelDiveMarkerCount ?? (data.naelDiveMarkerCount = 0);
+        data.naelDiveMarkerCount ??= 0;
         if (matches.target !== data.me)
           return;
         return output.goToMarker({ marker: ['A', 'B', 'C'][data.naelDiveMarkerCount] });

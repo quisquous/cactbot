@@ -195,7 +195,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '0017' },
       run: (data, matches) => {
-        data.rampant ?? (data.rampant = {});
+        data.rampant ??= {};
         data.rampant[matches.target] = matches.id;
       },
     },

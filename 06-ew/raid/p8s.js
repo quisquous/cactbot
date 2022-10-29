@@ -801,13 +801,12 @@ Options.Triggers.push({
       netRegex: { effectId: ['D1[78]', 'CFF'] },
       condition: (data) => data.firstSnakeCalled,
       run: (data, matches) => {
-        var _a, _b;
         const id = matches.effectId;
         if (id === 'D17') {
           // 23s short, 29s long
           const duration = parseFloat(matches.duration);
           data.secondSnakeGazeFirst[matches.target] = duration < 24;
-          (_a = data.secondSnakeDebuff)[_b = matches.target] ?? (_a[_b] = 'nothing');
+          data.secondSnakeDebuff[matches.target] ??= 'nothing';
         } else if (id === 'D18') {
           data.secondSnakeDebuff[matches.target] = 'shriek';
         } else if (id === 'CFF') {

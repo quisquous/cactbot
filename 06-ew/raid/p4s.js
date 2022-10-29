@@ -214,24 +214,24 @@ Options.Triggers.push({
         // Second bloodrake = Debuffs later
         if ((data.bloodrakeCounter ?? 0) === 2) {
           if (roleRaked === 'dps') {
-            (data.debuffRole ?? (data.debuffRole = [])).push('healer');
+            (data.debuffRole ??= []).push('healer');
             data.debuffRole.push('tank');
           } else {
-            (data.debuffRole ?? (data.debuffRole = [])).push(roleOther);
+            (data.debuffRole ??= []).push(roleOther);
           }
           // May end up needing both tether and debuff
-          const tetherRole = data.tetherRole ?? (data.tetherRole = []);
-          const debuffRole = data.debuffRole ?? (data.debuffRole = []);
+          const tetherRole = data.tetherRole ??= [];
+          const debuffRole = data.debuffRole ??= [];
           if (tetherRole[0] === debuffRole[0])
             return output.roleEverything({ role: roles[roleOther] });
           return output.roleDebuffs({ role: roles[roleOther] });
         }
         // First bloodrake = Tethers later
         if (roleRaked === 'dps') {
-          (data.tetherRole ?? (data.tetherRole = [])).push('healer');
+          (data.tetherRole ??= []).push('healer');
           data.tetherRole.push('tank');
         } else {
-          (data.tetherRole ?? (data.tetherRole = [])).push(roleOther);
+          (data.tetherRole ??= []).push(roleOther);
         }
         return output.roleTethers({ role: roles[roleOther] });
       },
@@ -266,27 +266,27 @@ Options.Triggers.push({
         // Second Coils = Debuffs later
         if (data.beloneCoilsTwo) {
           if (roleTowers === 'dps') {
-            (data.debuffRole ?? (data.debuffRole = [])).push('healer');
+            (data.debuffRole ??= []).push('healer');
             data.debuffRole.push('tank');
           } else {
-            (data.debuffRole ?? (data.debuffRole = [])).push('dps');
+            (data.debuffRole ??= []).push('dps');
           }
           // For second coils, if you are not in the debuff list here you are tower
           if (!data.debuffRole.includes(data.role))
             return { ['alertText']: output.roleTowers({ role: roles[roleTowers] }) };
           // If you have tethers and debuff, you need everything
-          const tetherRole = data.tetherRole ?? (data.tetherRole = []);
-          const debuffRole = data.debuffRole ?? (data.debuffRole = []);
+          const tetherRole = data.tetherRole ??= [];
+          const debuffRole = data.debuffRole ??= [];
           if (debuffRole[0] === tetherRole[0])
             return { ['infoText']: output.roleEverything({ role: roles[roleOther] }) };
           return { ['infoText']: output.roleDebuffs({ role: roles[roleOther] }) };
         }
         // First Coils = Tethers later
         if (roleTowers === 'dps') {
-          (data.tetherRole ?? (data.tetherRole = [])).push('healer');
+          (data.tetherRole ??= []).push('healer');
           data.tetherRole.push('tank');
         } else {
-          (data.tetherRole ?? (data.tetherRole = [])).push('dps');
+          (data.tetherRole ??= []).push('dps');
         }
         // For first coils, there are tower and tethers
         if (data.tetherRole.includes(data.role))
@@ -301,7 +301,7 @@ Options.Triggers.push({
       netRegex: { effectId: ['AF2', 'AF3'], capture: true },
       condition: Conditions.targetIsYou(),
       infoText: (data, matches, output) => {
-        const debuffRole = (data.debuffRole ?? (data.debuffRole = [])).includes(data.role);
+        const debuffRole = (data.debuffRole ??= []).includes(data.role);
         if (matches.effectId === 'AF2') {
           // Call Pass Role Call if not in the debuff role
           if (!debuffRole)
@@ -330,7 +330,7 @@ Options.Triggers.push({
       // Delay callout until debuffs are out
       delaySeconds: 1.4,
       alertText: (data, _matches, output) => {
-        const debuffRole = (data.debuffRole ?? (data.debuffRole = [])).includes(data.role);
+        const debuffRole = (data.debuffRole ??= []).includes(data.role);
         if (!data.hasRoleCall && debuffRole)
           return output.text();
       },
@@ -352,7 +352,7 @@ Options.Triggers.push({
       netRegex: { id: '69ED', source: 'Hesperos', capture: false },
       condition: (data) => !data.ignoreChlamys,
       alertText: (data, _matches, output) => {
-        const dps = (data.tetherRole ?? (data.tetherRole = [])).includes('dps');
+        const dps = (data.tetherRole ??= []).includes('dps');
         if (dps)
           return output.roleTethers({ role: output.dps() });
         if (data.tetherRole.length)
@@ -781,7 +781,7 @@ Options.Triggers.push({
           combatantDataLength,
         );
         sortedCombatantData.forEach((combatant) => {
-          (data.thornIds ?? (data.thornIds = [])).push(combatant.ID ?? 0);
+          (data.thornIds ??= []).push(combatant.ID ?? 0);
         });
       },
     },
@@ -793,9 +793,7 @@ Options.Triggers.push({
       // Tethers come out Cardinals (0 seconds), (3s) Towers, (6s) Other Cardinals
       suppressSeconds: 7,
       infoText: (data, matches, output) => {
-        const thorn = (data.thornIds ?? (data.thornIds = [])).indexOf(
-          parseInt(matches.sourceId, 16),
-        );
+        const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
         const thornMap = {
           4: output.text({ dir1: output.north(), dir2: output.south() }),
           5: output.text({ dir1: output.north(), dir2: output.south() }),
@@ -870,9 +868,7 @@ Options.Triggers.push({
       // Tethers come out Cardinals (0 seconds), (3s) Other Cardinals
       suppressSeconds: 4,
       infoText: (data, matches, output) => {
-        const thorn = (data.thornIds ?? (data.thornIds = [])).indexOf(
-          parseInt(matches.sourceId, 16),
-        );
+        const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
         const thornMap = {
           0: output.text({ dir1: output.north(), dir2: output.south() }),
           1: output.text({ dir1: output.north(), dir2: output.south() }),
@@ -1066,9 +1062,7 @@ Options.Triggers.push({
       // Tethers come out East or West (0 seconds), (3s) Middle knockack, (6) Opposite Cardinal
       suppressSeconds: 7,
       infoText: (data, matches, output) => {
-        const thorn = (data.thornIds ?? (data.thornIds = [])).indexOf(
-          parseInt(matches.sourceId, 16),
-        );
+        const thorn = (data.thornIds ??= []).indexOf(parseInt(matches.sourceId, 16));
         const thornMapDirs = {
           0: 'east',
           1: 'east',
@@ -1080,7 +1074,7 @@ Options.Triggers.push({
           7: 'west',
         };
         data.jumpDir1 = thornMapDirs[thorn];
-        return output[thornMapDirs[thorn] ?? (thornMapDirs[thorn] = 'unknown')]();
+        return output[thornMapDirs[thorn] ??= 'unknown']();
       },
       outputStrings: {
         text: {

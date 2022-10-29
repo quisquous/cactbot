@@ -44,7 +44,7 @@ Options.Triggers.push({
       netRegex: { source: 'The Idol Of Darkness', id: '0011' },
       condition: (data) => data.phase === 'betwixtWorlds',
       preRun: (data, matches) => {
-        data.betwixtWorldsTethers ?? (data.betwixtWorldsTethers = []);
+        data.betwixtWorldsTethers ??= [];
         data.betwixtWorldsTethers.push(matches.target);
       },
       infoText: (data, matches, output) => {
@@ -68,11 +68,11 @@ Options.Triggers.push({
       netRegex: { id: '0064' },
       condition: (data) => data.phase === 'betwixtWorlds',
       preRun: (data, matches) => {
-        data.betwixtWorldsStack ?? (data.betwixtWorldsStack = []);
+        data.betwixtWorldsStack ??= [];
         data.betwixtWorldsStack.push(matches.target);
       },
       alertText: (data, matches, output) => {
-        data.betwixtWorldsTethers ?? (data.betwixtWorldsTethers = []);
+        data.betwixtWorldsTethers ??= [];
         if (data.betwixtWorldsTethers.includes(data.me))
           return;
         if (data.me === matches.target)
@@ -174,7 +174,7 @@ Options.Triggers.push({
       netRegex: { id: '0065' },
       condition: (data) => data.phase === 'falseMidnight',
       preRun: (data, matches) => {
-        data.falseMidnightSpread ?? (data.falseMidnightSpread = []);
+        data.falseMidnightSpread ??= [];
         data.falseMidnightSpread.push(matches.target);
       },
       infoText: (data, matches, output) => {
@@ -195,7 +195,7 @@ Options.Triggers.push({
       // it is not called out on spreads.
       delaySeconds: 0.5,
       alertText: (data, matches, output) => {
-        data.falseMidnightSpread ?? (data.falseMidnightSpread = []);
+        data.falseMidnightSpread ??= [];
         if (data.falseMidnightSpread.includes(data.me))
           return;
         if (data.me === matches.target)
@@ -228,7 +228,7 @@ Options.Triggers.push({
       netRegex: { id: '0064' },
       condition: (data) => data.phase === 'adds',
       preRun: (data, matches) => {
-        data.insatiableLightStack ?? (data.insatiableLightStack = []);
+        data.insatiableLightStack ??= [];
         data.insatiableLightStack.push(matches.target);
       },
       alertText: (data, matches, output) => {
@@ -308,7 +308,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { source: 'Unforgiven Idolatry', id: '4C5[CD]' },
       run: (data, matches) => {
-        data.boundless ?? (data.boundless = {});
+        data.boundless ??= {};
         const oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
         data.boundless[oppositeColor] = matches.target;
       },

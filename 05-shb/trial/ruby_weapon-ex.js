@@ -165,7 +165,7 @@ Options.Triggers.push({
         // 88,108 (west)
         // TODO: it's impossible to do anything with this now,
         // as there's no actor id in the startsUsing line.  T_T
-        data.ravens ?? (data.ravens = {});
+        data.ravens ??= {};
         if (parseFloat(matches.x) < 100)
           data.ravens.red = matches.id;
         else
@@ -182,7 +182,7 @@ Options.Triggers.push({
       },
       run: (data, matches) => {
         // data.colors is the color of the add you are attacking (this debuff is red).
-        data.colors ?? (data.colors = {});
+        data.colors ??= {};
         data.colors[matches.target] = 'blue';
       },
       outputStrings: {
@@ -206,7 +206,7 @@ Options.Triggers.push({
       },
       run: (data, matches) => {
         // data.colors is the color of the add you are attacking (this debuff is blue).
-        data.colors ?? (data.colors = {});
+        data.colors ??= {};
         data.colors[matches.target] = 'red';
       },
       outputStrings: {
@@ -262,7 +262,7 @@ Options.Triggers.push({
       netRegex: { effectId: ['8A0', '8A1'] },
       run: (data, matches) => {
         const isBlue = matches.effectId.toUpperCase() === '8A1';
-        data.colorToImageId ?? (data.colorToImageId = {});
+        data.colorToImageId ??= {};
         data.colorToImageId[isBlue ? 'blue' : 'red'] = matches.targetId;
       },
     },
@@ -273,7 +273,7 @@ Options.Triggers.push({
       // Iron Chariot = 4EB1
       netRegex: { source: 'Raven\'s Image', id: ['4EB0', '4EB1'] },
       run: (data, matches) => {
-        data.imageIdToAction ?? (data.imageIdToAction = {});
+        data.imageIdToAction ??= {};
         data.imageIdToAction[matches.sourceId] = matches.id;
       },
     },
@@ -370,7 +370,7 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { source: 'The Ruby Weapon', id: '4AFC', capture: false },
       preRun: (data) => {
-        data.ravens ?? (data.ravens = {});
+        data.ravens ??= {};
         const tmp = data.ravens.red;
         data.ravens.red = data.ravens.blue;
         data.ravens.blue = tmp;

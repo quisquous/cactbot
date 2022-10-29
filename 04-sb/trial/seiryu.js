@@ -98,7 +98,7 @@ Options.Triggers.push({
         if (data.me === matches.target)
           return output.text();
       },
-      run: (data, matches) => (data.redRush ?? (data.redRush = [])).push(matches.target),
+      run: (data, matches) => (data.redRush ??= []).push(matches.target),
       outputStrings: {
         text: {
           en: 'Point Knockback Tether Outside',

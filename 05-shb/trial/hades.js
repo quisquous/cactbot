@@ -268,7 +268,7 @@ Options.Triggers.push({
       netRegex: { id: ['0060', '003E'] },
       condition: (data) => !data.neoHades,
       run: (data, matches) => {
-        data.ancient ?? (data.ancient = {});
+        data.ancient ??= {};
         data.ancient[matches.target] = matches.id;
       },
     },

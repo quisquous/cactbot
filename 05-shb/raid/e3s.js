@@ -251,7 +251,7 @@ Options.Triggers.push({
       type: 'Tether',
       netRegex: { id: '005A', target: 'Leviathan' },
       run: (data, matches) => {
-        data.vent ?? (data.vent = []);
+        data.vent ??= [];
         data.vent.push(matches.source);
       },
     },

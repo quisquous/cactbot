@@ -172,7 +172,7 @@ Options.Triggers.push({
       type: 'AddedCombatant',
       netRegex: { name: 'Bomb' },
       preRun: (data, matches) => {
-        data.boostBombs ?? (data.boostBombs = []);
+        data.boostBombs ??= [];
         data.boostBombs.push(bombLocation(matches));
       },
       alertText: (data, _matches, output) => {

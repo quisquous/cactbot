@@ -357,8 +357,7 @@ Options.Triggers.push({
       id: 'HydaelynEx Bright Spectrum',
       type: 'StartsUsing',
       netRegex: { id: '65B9', source: 'Hydaelyn' },
-      preRun: (data, matches) =>
-        (data.brightSpectrumStack ?? (data.brightSpectrumStack = [])).push(matches.target),
+      preRun: (data, matches) => (data.brightSpectrumStack ??= []).push(matches.target),
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.spread();

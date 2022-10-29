@@ -72,7 +72,7 @@ Options.Triggers.push({
         // Library phase stack markers behave differently.
         if (data.phase === 3)
           return false;
-        data.holyTargets ?? (data.holyTargets = []);
+        data.holyTargets ??= [];
         data.holyTargets.push(matches.target);
         return true;
       },
@@ -398,7 +398,7 @@ Options.Triggers.push({
       type: 'AddedCombatant',
       netRegex: { npcNameId: '5634' },
       alertText: (data, matches, output) => {
-        data.reapers ?? (data.reapers = []);
+        data.reapers ??= [];
         data.reapers.push(matches);
         if (data.reapers.length !== 4)
           return;

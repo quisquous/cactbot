@@ -142,7 +142,7 @@ Options.Triggers.push({
       netRegex: { id: '003E' },
       condition: (data) => data.waiting,
       run: (data, matches) => {
-        data.spell ?? (data.spell = {});
+        data.spell ??= {};
         data.spell[matches.target] = 'stack';
       },
     },
@@ -183,7 +183,7 @@ Options.Triggers.push({
       netRegex: { id: '004C' },
       condition: (data) => data.waiting,
       run: (data, matches) => {
-        data.spell ?? (data.spell = {});
+        data.spell ??= {};
         data.spell[matches.target] = 'fire';
       },
     },
@@ -241,7 +241,7 @@ Options.Triggers.push({
       netRegex: { id: '00B3' },
       condition: (data) => data.waiting,
       run: (data, matches) => {
-        data.spell ?? (data.spell = {});
+        data.spell ??= {};
         data.spell[matches.target] = 'eye';
       },
     },
@@ -317,7 +317,7 @@ Options.Triggers.push({
       netRegex: { id: '0057' },
       condition: (data) => data.waiting,
       run: (data, matches) => {
-        data.spell ?? (data.spell = {});
+        data.spell ??= {};
         data.spell[matches.target] = 'flare';
       },
     },
@@ -410,7 +410,7 @@ Options.Triggers.push({
       netRegex: { id: '001E' },
       condition: (data) => data.waiting,
       run: (data, matches) => {
-        data.spell ?? (data.spell = {});
+        data.spell ??= {};
         data.spell[matches.target] = 'wind';
       },
     },

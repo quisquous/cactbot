@@ -168,7 +168,7 @@ Options.Triggers.push({
         const limitCutNumber = limitCutNumberMap[matches.id];
         if (!limitCutNumber)
           return;
-        data.limitCutMap ?? (data.limitCutMap = {});
+        data.limitCutMap ??= {};
         data.limitCutMap[limitCutNumber] = matches.target;
         if (matches.target === data.me) {
           data.limitCutNumber = limitCutNumber;

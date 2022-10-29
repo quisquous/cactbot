@@ -150,7 +150,7 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { id: '3851', source: 'Halidom' },
       run: (data, matches) => {
-        data.halidom ?? (data.halidom = []);
+        data.halidom ??= [];
         data.halidom.push(matches.target);
       },
     },

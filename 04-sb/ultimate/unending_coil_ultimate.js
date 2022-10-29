@@ -197,8 +197,7 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { id: '26C5', source: 'Firehorn' },
       run: (data, matches) => {
-        var _a, _b;
-        ((_a = data.fireballs)[_b = data.naelFireballCount] ?? (_a[_b] = [])).push(matches.target);
+        (data.fireballs[data.naelFireballCount] ??= []).push(matches.target);
       },
     },
     {
@@ -286,7 +285,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '0076' },
       run: (data, matches) => {
-        data.hatch ?? (data.hatch = []);
+        data.hatch ??= [];
         data.hatch.push(matches.target);
       },
     },
@@ -751,7 +750,7 @@ Options.Triggers.push({
       type: 'GainsEffect',
       netRegex: { effectId: 'D2' },
       run: (data, matches) => {
-        data.dooms ?? (data.dooms = [null, null, null]);
+        data.dooms ??= [null, null, null];
         let order = null;
         if (parseFloat(matches.duration) < 9)
           order = 0;
@@ -780,7 +779,7 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { source: 'Fang Of Light', id: '26CA', capture: false },
       infoText: (data, _matches, output) => {
-        data.doomCount ?? (data.doomCount = 0);
+        data.doomCount ??= 0;
         let name;
         if (data.dooms)
           name = data.dooms[data.doomCount];

@@ -543,11 +543,11 @@ Options.Triggers.push({
         // Remove null elements from the array to get remaining two dirNums
         dirNums.forEach((dirNum) => {
           if (dirNum !== null)
-            (data.spiralThrustSafeZones ?? (data.spiralThrustSafeZones = [])).push(dirNum);
+            (data.spiralThrustSafeZones ??= []).push(dirNum);
         });
       },
       infoText: (data, _matches, output) => {
-        data.spiralThrustSafeZones ?? (data.spiralThrustSafeZones = []);
+        data.spiralThrustSafeZones ??= [];
         if (data.spiralThrustSafeZones.length !== 2) {
           console.error(
             `Spiral Thrusts: expected 2 safe zones got ${data.spiralThrustSafeZones.length}`,

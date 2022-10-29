@@ -68,7 +68,7 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { id: '672' },
       run: (data, matches) => {
-        data.plasmTargets = data.plasmTargets ?? (data.plasmTargets = []);
+        data.plasmTargets = data.plasmTargets ??= [];
         data.plasmTargets.push(matches.target);
       },
     },

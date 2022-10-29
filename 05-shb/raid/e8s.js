@@ -143,7 +143,7 @@ Options.Triggers.push({
       netRegex: { source: 'Shiva', id: '4D67', capture: false },
       response: Responses.goFrontOrSides(),
       run: (data) => {
-        data.firstFrost ?? (data.firstFrost = 'driving');
+        data.firstFrost ??= 'driving';
       },
     },
     {
@@ -307,7 +307,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { source: ['Shiva', 'Great Wyrm'], id: ['4D98', '4D79'] },
       preRun: (data, matches) => {
-        data.akhMornTargets ?? (data.akhMornTargets = []);
+        data.akhMornTargets ??= [];
         data.akhMornTargets.push(matches.target);
       },
       response: (data, matches, output) => {

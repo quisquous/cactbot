@@ -67,7 +67,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: {},
       run: (data, matches) => {
-        data.avoidStack ?? (data.avoidStack = []);
+        data.avoidStack ??= [];
         if (matches.id !== '003E')
           data.avoidStack.push(matches.target);
       },

@@ -38,7 +38,7 @@ Options.Triggers.push({
         // Cave phase has no stack markers.
         if (data.phaseNumber === 2)
           return false;
-        data.holyTargets ?? (data.holyTargets = []);
+        data.holyTargets ??= [];
         data.holyTargets.push(matches.target);
         return data.holyTargets.length === 3;
       },

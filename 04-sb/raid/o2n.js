@@ -175,7 +175,7 @@ Options.Triggers.push({
       id: 'O2N Antilight',
       type: 'StartsUsing',
       netRegex: { id: '2502', source: 'Catastrophe', capture: false },
-      preRun: (data) => data.antiCounter ?? (data.antiCounter = 0),
+      preRun: (data) => data.antiCounter ??= 0,
       durationSeconds: (data) => {
         if (data.antiCounter === 0 && data.levitating)
           return 3;

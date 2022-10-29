@@ -101,7 +101,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '00DA' },
       run: (data, matches) => {
-        data.busterTargets ?? (data.busterTargets = []);
+        data.busterTargets ??= [];
         data.busterTargets.push(matches.target);
       },
     },
@@ -265,7 +265,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '0060' },
       preRun: (data, matches) => {
-        data.seedTargets ?? (data.seedTargets = []);
+        data.seedTargets ??= [];
         data.seedTargets.push(matches.target);
       },
       infoText: (data, matches, output) => {
@@ -439,7 +439,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: ['5C00', '5C01', '5C03', '5C04'] },
       run: (data, matches) => {
-        data.deployArmaments ?? (data.deployArmaments = []);
+        data.deployArmaments ??= [];
         // Convert the heading into 0=N, 1=E, 2=S, 3=W
         const direction = Math.round(2 - 2 * parseFloat(matches.heading) / Math.PI) % 4;
         const obj = {
@@ -606,7 +606,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '008B' },
       run: (data, matches) => {
-        data.busterTargets ?? (data.busterTargets = []);
+        data.busterTargets ??= [];
         data.busterTargets.push(matches.target);
       },
     },

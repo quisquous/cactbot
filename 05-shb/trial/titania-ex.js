@@ -211,7 +211,7 @@ Options.Triggers.push({
       netRegex: { id: '3D37', source: 'Puck', capture: false },
       condition: (data) => data.role === 'tank',
       preRun: (data) => {
-        data.pummelCount ?? (data.pummelCount = 0);
+        data.pummelCount ??= 0;
         data.pummelCount++;
       },
       infoText: (data, _matches, output) => output.text({ num: data.pummelCount }),
@@ -233,7 +233,7 @@ Options.Triggers.push({
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
       run: (data) => {
-        data.bomb ?? (data.bomb = {});
+        data.bomb ??= {};
         data.bomb[data.me] = true;
       },
     },

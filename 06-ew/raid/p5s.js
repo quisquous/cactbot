@@ -158,7 +158,6 @@ Options.Triggers.push({
       netRegex: { id: '7702', source: 'Proto-Carbuncle', capture: false },
       durationSeconds: 12,
       promise: async (data) => {
-        var _a;
         // Log position data can be stale, call OverlayPlugin
         const result = await callOverlayHandler({
           call: 'getCombatants',
@@ -174,7 +173,7 @@ Options.Triggers.push({
           // Convert from ability id to [0-3] index
           // 7703 is the Topaz Ray cast with the lowest cast time
           const index = parseInt(abilityId, 16) - parseInt('7703', 16);
-          (_a = data.topazRays)[index] ?? (_a[index] = []);
+          data.topazRays[index] ??= [];
           // Map from coordinate position to intercardinal quadrant
           const direction = convertCoordinatesToDirection(combatant.PosX, combatant.PosY);
           data.topazRays[index]?.push(direction);

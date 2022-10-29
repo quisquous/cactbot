@@ -161,7 +161,7 @@ Options.Triggers.push({
       type: 'Tether',
       netRegex: { id: '0026' },
       run: (data, matches) => {
-        data.ferroTether ?? (data.ferroTether = {});
+        data.ferroTether ??= {};
         data.ferroTether[matches.source] = matches.target;
         data.ferroTether[matches.target] = matches.source;
       },
@@ -171,7 +171,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: ['0030', '0031'] },
       run: (data, matches) => {
-        data.ferroMarker ?? (data.ferroMarker = {});
+        data.ferroMarker ??= {};
         data.ferroMarker[matches.target] = matches.id;
       },
     },
@@ -181,8 +181,8 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { source: 'Living Liquid', id: 'F01' },
       alertText: (data, matches, output) => {
-        data.ferroTether ?? (data.ferroTether = {});
-        data.ferroMarker ?? (data.ferroMarker = {});
+        data.ferroTether ??= {};
+        data.ferroMarker ??= {};
         const partner = data.ferroTether[data.me];
         const marker1 = data.ferroMarker[data.me];
         const marker2 = data.ferroMarker[partner ?? ''];

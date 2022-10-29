@@ -134,7 +134,7 @@ Options.Triggers.push({
       netRegex: { id: '00A9' },
       condition: (data) => data.blazing,
       run: (data, matches) => {
-        data.markers ?? (data.markers = []);
+        data.markers ??= [];
         data.markers.push(matches.target);
       },
     },

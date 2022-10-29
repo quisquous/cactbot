@@ -511,7 +511,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '0028' },
       condition: (data, matches) => {
-        data.shakerTargets ?? (data.shakerTargets = []);
+        data.shakerTargets ??= [];
         data.shakerTargets.push(matches.target);
         return data.shakerTargets.length === 2;
       },

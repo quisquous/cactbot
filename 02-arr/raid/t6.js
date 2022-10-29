@@ -24,10 +24,9 @@ Options.Triggers.push({
       type: 'Tether',
       netRegex: { id: '0012' },
       run: (data, matches) => {
-        var _a, _b, _c, _d;
-        data.thornMap ?? (data.thornMap = {});
-        ((_a = data.thornMap)[_b = matches.source] ?? (_a[_b] = [])).push(matches.target);
-        ((_c = data.thornMap)[_d = matches.target] ?? (_c[_d] = [])).push(matches.source);
+        data.thornMap ??= {};
+        (data.thornMap[matches.source] ??= []).push(matches.target);
+        (data.thornMap[matches.target] ??= []).push(matches.source);
       },
     },
     {

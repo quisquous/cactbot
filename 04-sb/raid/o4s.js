@@ -153,7 +153,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '2401', source: 'Exdeath' },
       condition: (data, matches) => {
-        data.flareTargets ?? (data.flareTargets = []);
+        data.flareTargets ??= [];
         data.flareTargets.push(matches.target);
         return data.flareTargets.length === 3;
       },
@@ -975,7 +975,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '2401', source: 'Neo Exdeath' },
       condition: (data, matches) => {
-        data.flareTargets ?? (data.flareTargets = []);
+        data.flareTargets ??= [];
         data.flareTargets.push(matches.target);
         return data.flareTargets.length === 3;
       },

@@ -315,7 +315,7 @@ Options.Triggers.push({
       netRegex: { name: 'Shadow Of A Hero' },
       condition: (data) => data.clones,
       run: (data, matches) => {
-        data.myClone ?? (data.myClone = []);
+        data.myClone ??= [];
         const clonesJob = parseInt(matches.job, 16);
         if (clonesJob === Util.jobToJobEnum(data.job))
           data.myClone.push(matches.id.toUpperCase());

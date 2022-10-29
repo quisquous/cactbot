@@ -234,7 +234,7 @@ Options.Triggers.push({
       type: 'AddedCombatant',
       netRegex: { name: 'Aion Teleos' },
       run: (data, matches) => {
-        data.cloneSpots ?? (data.cloneSpots = {});
+        data.cloneSpots ??= {};
         const x = parseFloat(matches.x);
         const y = parseFloat(matches.y);
         // We start with Y since it's a binary choice.
@@ -260,10 +260,10 @@ Options.Triggers.push({
         if (!spot)
           throw new UnreachableCode();
         if (data.seenThunder) {
-          data.aeroClones ?? (data.aeroClones = []);
+          data.aeroClones ??= [];
           data.aeroClones.push(spot);
         } else {
-          data.thunderClones ?? (data.thunderClones = []);
+          data.thunderClones ??= [];
           data.thunderClones.push(spot);
         }
       },
@@ -408,7 +408,7 @@ Options.Triggers.push({
           throw new UnreachableCode();
         const seqStart = parseInt(matches.sourceId, 16) - offset;
         for (let i = 0; i < 8; i++) {
-          data.scaleSophias ?? (data.scaleSophias = []);
+          data.scaleSophias ??= [];
           data.scaleSophias.push((seqStart + i).toString(16).toUpperCase());
         }
       },
@@ -430,7 +430,7 @@ Options.Triggers.push({
         return !data.clonesActive;
       },
       run: (data, matches) => {
-        data.quasarTethers ?? (data.quasarTethers = []);
+        data.quasarTethers ??= [];
         data.quasarTethers.push(matches.sourceId);
       },
     },

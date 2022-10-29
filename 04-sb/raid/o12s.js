@@ -57,7 +57,7 @@ Options.Triggers.push({
           return output.text();
       },
       run: (data, matches) => {
-        data.beyondDefenseVuln ?? (data.beyondDefenseVuln = []);
+        data.beyondDefenseVuln ??= [];
         data.beyondDefenseVuln.push(matches.target);
       },
       outputStrings: {
@@ -154,7 +154,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: ['3350', '3351'], source: ['Omega', 'Omega-M'] },
       run: (data, matches) => {
-        data.solarRayTargets ?? (data.solarRayTargets = []);
+        data.solarRayTargets ??= [];
         data.solarRayTargets.push(matches.target);
         data.seenSolarRay = true;
       },
@@ -696,7 +696,7 @@ Options.Triggers.push({
       netRegex: { effectId: ['680', '681', '682', '686'] },
       condition: (data) => !data.calledHelloNoMarker,
       run: (data, matches) => {
-        data.helloDebuffs ?? (data.helloDebuffs = {});
+        data.helloDebuffs ??= {};
         data.helloDebuffs[matches.target] = matches.effectId;
       },
     },
@@ -748,7 +748,7 @@ Options.Triggers.push({
       netRegex: { id: ['003E', '0060'] },
       condition: (data) => data.isFinalOmega,
       run: (data, matches) => {
-        data.archiveMarkers ?? (data.archiveMarkers = {});
+        data.archiveMarkers ??= {};
         data.archiveMarkers[matches.target] = matches.id;
       },
     },
@@ -828,8 +828,8 @@ Options.Triggers.push({
       run: (data, matches) => {
         // Create a 3 digit binary value, R = 0, B = 1.
         // e.g. BBR = 110 = 6
-        data.armValue ?? (data.armValue = 0);
-        data.numArms ?? (data.numArms = 0);
+        data.armValue ??= 0;
+        data.numArms ??= 0;
         data.armValue *= 2;
         if (matches.id === '009D')
           data.armValue += 1;

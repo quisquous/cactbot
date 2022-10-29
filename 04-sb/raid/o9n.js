@@ -111,7 +111,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '003E' },
       // these stack markers come out in pairs, so collect them.
-      run: (data, matches) => (data.stackMarker ?? (data.stackMarker = [])).push(matches.target),
+      run: (data, matches) => (data.stackMarker ??= []).push(matches.target),
     },
     {
       id: 'O9N Stack',

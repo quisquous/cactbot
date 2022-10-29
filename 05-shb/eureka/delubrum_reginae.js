@@ -39,7 +39,7 @@ Options.Triggers.push({
       alertText: (data, matches, output) => {
         if (data.calledSeekerSwords)
           return;
-        data.seekerSwords ?? (data.seekerSwords = []);
+        data.seekerSwords ??= [];
         data.seekerSwords.push(matches.count.toUpperCase());
         if (data.seekerSwords.length <= 1)
           return;
@@ -923,7 +923,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { source: 'Avowed Avatar', id: '5974' },
       run: (data, matches) => {
-        data.unseenIds ?? (data.unseenIds = []);
+        data.unseenIds ??= [];
         data.unseenIds.push(parseInt(matches.sourceId, 16));
       },
     },

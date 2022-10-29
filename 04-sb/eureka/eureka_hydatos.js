@@ -487,7 +487,7 @@ Options.Triggers.push({
       condition: (data) => data.sealed,
       run: (data) => {
         // RV clones get buffs in the reverse order that they do their attacks in.
-        data.clones ?? (data.clones = []);
+        data.clones ??= [];
         data.clones.push('astral');
       },
     },
@@ -499,7 +499,7 @@ Options.Triggers.push({
       condition: (data) => data.sealed,
       run: (data) => {
         // RV clones get buffs in the reverse order that they do their attacks in.
-        data.clones ?? (data.clones = []);
+        data.clones ??= [];
         data.clones.push('umbral');
       },
     },

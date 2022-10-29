@@ -185,7 +185,7 @@ Options.Triggers.push({
       type: 'AddedCombatant',
       netRegex: { npcNameId: '1803' },
       condition: (data, matches) => {
-        (data.titanBury ?? (data.titanBury = [])).push(matches);
+        (data.titanBury ??= []).push(matches);
         return data.titanBury.length === 5;
       },
       alertText: (data, _matches, output) => {
@@ -242,7 +242,7 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] },
       preRun: (data, matches) => {
-        data.titanGaols ?? (data.titanGaols = []);
+        data.titanGaols ??= [];
         data.titanGaols.push(matches.target);
         if (data.titanGaols.length === 3)
           data.titanGaols.sort();

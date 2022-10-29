@@ -125,7 +125,7 @@ Options.Triggers.push({
       type: 'Tether',
       netRegex: { id: '001C', target: 'Kaliya' },
       run: (data, matches) => {
-        (data.tetherA ?? (data.tetherA = [])).push(matches.source);
+        (data.tetherA ??= []).push(matches.source);
       },
     },
     {
@@ -133,7 +133,7 @@ Options.Triggers.push({
       type: 'Tether',
       netRegex: { id: '001D', target: 'Kaliya' },
       run: (data, matches) => {
-        (data.tetherB ?? (data.tetherB = [])).push(matches.source);
+        (data.tetherB ??= []).push(matches.source);
       },
     },
     {

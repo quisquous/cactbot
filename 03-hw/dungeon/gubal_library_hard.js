@@ -36,7 +36,7 @@ Options.Triggers.push({
       condition: (data, matches) =>
         data.me === matches.target || matches.targetId.slice(0, 1) === '4',
       preRun: (data, matches) => {
-        data.markers ?? (data.markers = []);
+        data.markers ??= [];
         data.markers.push(matches.id);
       },
       infoText: (data, _matches, output) => {

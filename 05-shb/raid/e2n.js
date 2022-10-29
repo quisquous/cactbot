@@ -84,7 +84,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '00B5' },
       run: (data, matches) => {
-        data.spell ?? (data.spell = {});
+        data.spell ??= {};
         data.spell[matches.target] = 'fire';
       },
     },
@@ -132,7 +132,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '00B4' },
       run: (data, matches) => {
-        data.spell ?? (data.spell = {});
+        data.spell ??= {};
         data.spell[matches.target] = 'stack';
       },
     },
@@ -171,7 +171,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '00B7' },
       run: (data, matches) => {
-        data.spell ?? (data.spell = {});
+        data.spell ??= {};
         data.spell[matches.target] = 'eye';
       },
     },

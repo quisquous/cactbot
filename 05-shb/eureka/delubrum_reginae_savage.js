@@ -161,7 +161,7 @@ Options.Triggers.push({
       condition: (data) => !data.calledSeekerSwords,
       durationSeconds: 10,
       alertText: (data, matches, output) => {
-        data.seekerSwords ?? (data.seekerSwords = []);
+        data.seekerSwords ??= [];
         data.seekerSwords.push(matches.count.toUpperCase());
         if (data.seekerSwords.length <= 1 || data.seekerSwords.length >= 4)
           return;
@@ -547,7 +547,7 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { source: 'Seeker Avatar', id: '5AD7' },
       condition: (data, matches) => {
-        data.seekerCometIds ?? (data.seekerCometIds = []);
+        data.seekerCometIds ??= [];
         data.seekerCometIds.push(parseInt(matches.sourceId, 16));
         return data.seekerCometIds.length === 2;
       },
@@ -1462,7 +1462,7 @@ Options.Triggers.push({
         id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'],
       },
       run: (data, matches) => {
-        data.blades ?? (data.blades = {});
+        data.blades ??= {};
         data.blades[parseInt(matches.sourceId, 16)] = matches.id.toUpperCase();
       },
     },
@@ -2012,7 +2012,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { source: 'Avowed Avatar', id: '594D' },
       run: (data, matches) => {
-        data.unseenIds ?? (data.unseenIds = []);
+        data.unseenIds ??= [];
         data.unseenIds.push(parseInt(matches.sourceId, 16));
       },
     },

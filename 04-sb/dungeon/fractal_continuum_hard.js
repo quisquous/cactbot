@@ -170,7 +170,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: ['004D', '004E'] },
       run: (data, matches) => {
-        data.dischord ?? (data.dischord = {});
+        data.dischord ??= {};
         data.dischord[matches.id] = matches.target;
       },
     },

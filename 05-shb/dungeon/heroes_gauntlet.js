@@ -109,7 +109,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '005D' },
       run: (data, matches) => {
-        data.anguish ?? (data.anguish = []);
+        data.anguish ??= [];
         data.anguish.push(matches.target);
       },
     },

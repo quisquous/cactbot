@@ -125,7 +125,7 @@ Options.Triggers.push({
           north: parseFloat(matches.y) + 70 < 0,
           east: parseFloat(matches.x) > 0,
         };
-        data.bombs ?? (data.bombs = []);
+        data.bombs ??= [];
         data.bombs.push(bomb);
       },
     },
@@ -172,7 +172,7 @@ Options.Triggers.push({
       netRegex: { id: '003E' },
       condition: (data) => !data.seenIntermission,
       preRun: (data, matches) => {
-        data.stacks ?? (data.stacks = []);
+        data.stacks ??= [];
         data.stacks.push(matches.target);
       },
       alertText: (data, matches, output) => {
@@ -236,7 +236,7 @@ Options.Triggers.push({
       type: 'Tether',
       netRegex: { id: tetherIds },
       run: (data, matches) => {
-        data.tethers ?? (data.tethers = []);
+        data.tethers ??= [];
         data.tethers.push(matches.id);
       },
     },

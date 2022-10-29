@@ -163,8 +163,8 @@ Options.Triggers.push({
       type: 'AddedCombatant',
       netRegex: { npcNameId: ['5510', '5511'] },
       run: (data, matches) => {
-        data.cursing ?? (data.cursing = []);
-        data.wailing ?? (data.wailing = []);
+        data.cursing ??= [];
+        data.wailing ??= [];
         const id = matches.id.toUpperCase();
         matches.npcNameId === '5510' ? data.wailing.push(id) : data.cursing.push(id);
       },
@@ -177,8 +177,8 @@ Options.Triggers.push({
       netRegex: { id: ['1C9F', '1CA0'] },
       delaySeconds: .5,
       run: (data, matches) => {
-        data.sphere ?? (data.sphere = []);
-        data.donut ?? (data.donut = []);
+        data.sphere ??= [];
+        data.donut ??= [];
         const target = data.wailing?.includes(matches.targetId) ? 'wailing' : 'cursing';
         if (matches.id === '1C9F')
           data.sphere.push(target);

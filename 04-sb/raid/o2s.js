@@ -63,7 +63,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '0069' },
       preRun: (data, matches) => {
-        data.blueCircle ?? (data.blueCircle = []);
+        data.blueCircle ??= [];
         data.blueCircle.push(matches.target);
       },
       delaySeconds: 0.3,
