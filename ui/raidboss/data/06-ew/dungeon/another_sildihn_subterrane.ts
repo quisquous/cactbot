@@ -245,7 +245,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Carpet Beater',
       type: 'StartsUsing',
-      netRegex: { id: '774F', source: 'Silkie' },
+      netRegex: { id: '774F', source: 'Silkie', capture: false },
       preRun: (data) => data.beaterCounter++,
       response: (data, matches, output) => {
         // cactbot-builtin-response
