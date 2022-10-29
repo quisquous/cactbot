@@ -487,7 +487,7 @@ const triggerSet: TriggerSet<Data> = {
         }
       },
       outputStrings: {
-        outsideline: {
+        outsideLine: {
           en: 'Outside ${card}, above line ${line}',
         },
         insideLine: {
