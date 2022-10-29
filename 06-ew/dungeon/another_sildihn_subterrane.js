@@ -5,6 +5,7 @@ Options.Triggers.push({
     return {
       soapCounter: 0,
       beaterCounter: 0,
+      spreeCounter: 0,
       gildedCounter: 0,
       silveredCounter: 0,
       arcaneFontCounter: 0,
@@ -241,6 +242,7 @@ Options.Triggers.push({
       // Boss does not cast Fizzling Duster with Soaping Spree
       type: 'StartsUsing',
       netRegex: { id: '7767', source: 'Silkie', capture: false },
+      preRun: (data) => ++data.spreeCounter,
       infoText: (data, _matches, output) => {
         switch (data.suds) {
           case 'CE1':
@@ -248,7 +250,7 @@ Options.Triggers.push({
           case 'CE2':
             return output.intercards();
           default:
-            if (data.soapCounter === 1)
+            if (data.spreeCounter === 1)
               return output.underPuff();
             return output.avoidPuffs();
         }
