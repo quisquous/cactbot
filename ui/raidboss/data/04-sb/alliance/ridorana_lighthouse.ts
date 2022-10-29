@@ -11,7 +11,11 @@ export interface Data extends RaidbossData {
   mathBaseValue?: number;
 }
 
-const mathDirection = (mathBaseValue: number | undefined, correctMath: number[], output: Output) => {
+const mathDirection = (
+  mathBaseValue: number | undefined,
+  correctMath: number[],
+  output: Output,
+) => {
   if (mathBaseValue === undefined)
     return;
   if (mathBaseValue < 1 || mathBaseValue > 9) {

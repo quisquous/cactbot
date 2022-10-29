@@ -992,7 +992,9 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
         if (unseenData.combatants.length !== unseenIds.length) {
-          console.error(`Gleaming Arrow: expected ${unseenIds.length}, got ${unseenData.combatants.length}`);
+          console.error(
+            `Gleaming Arrow: expected ${unseenIds.length}, got ${unseenData.combatants.length}`,
+          );
           return;
         }
 

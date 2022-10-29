@@ -394,7 +394,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P3S Sun\'s Pinion',
       type: 'HeadMarker',
       netRegex: {},
-      condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '007A',
+      condition: (data, matches) =>
+        data.me === matches.target && getHeadmarkerId(data, matches) === '007A',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

@@ -1,6 +1,6 @@
 {
   "name": "cactbot",
-  "version": "0.27.19",
+  "version": "0.27.20",
   "license": "Apache-2.0",
   "type": "module",
   "types": "./types",
@@ -23,11 +23,9 @@
     "tsc-no-emit": "tsc --noEmit",
     "lint": "run-s lint:**",
     "lint:dprint": "dprint check",
-    "lint:dprint:trigger": "dprint --config=dprint.trigger.json check",
     "lint:eslint": "eslint --max-warnings=0 ./",
     "lintfix": "run-s lintfix:**",
     "lintfix:dprint": "dprint fmt",
-    "lintfix:dprint:trigger": "dprint --config=dprint.trigger.json fmt",
     "lintfix:eslint": "eslint --max-warnings=0 --fix ./",
     "stylelint": "stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "stylelintfix": "stylelint --fix resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
@@ -51,6 +49,7 @@
     "@babel/preset-env": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
     "@babel/types": "^7.16.0",
+    "@dprint/typescript": "^0.75.0",
     "@types/argparse": "^1.0.38",
     "@types/chai": "^4.3.1",
     "@types/inquirer": "^7.3.2",
@@ -129,12 +128,11 @@
   },
   "lint-staged": {
     "*.css": "stylelint",
-    "*.{js,cjs,mjs}": [
-      "dprint check",
-      "eslint --max-warnings=0"
-    ],
-    "**/!(raidboss/data|oopsyraidsy/data)/*.ts": [
+    "*.{js,cjs,mjs,json}": [
       "dprint check"
+    ],
+    "*.{js,cjs,mjs}": [
+      "eslint --max-warnings=0"
     ],
     "*.ts": [
       "eslint --max-warnings=0 --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]'"
@@ -142,8 +140,7 @@
     "*.md": "markdownlint",
     "*.py": "python -m pylint --errors-only",
     "ui/(raidboss|oopsyraidsy)/data/**": [
-      "ts-node test/test_raidboss_data.ts",
-      "dprint --config=dprint.trigger.json check"
+      "ts-node test/test_raidboss_data.ts"
     ]
   },
   "dependencies": {

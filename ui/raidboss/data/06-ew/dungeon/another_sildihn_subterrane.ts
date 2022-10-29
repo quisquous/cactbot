@@ -302,9 +302,11 @@ const triggerSet: TriggerSet<Data> = {
         },
         underPuff: {
           en: 'Under green puff',
+          de: 'Unter grünem Puschel',
         },
         avoidPuffs: {
           en: 'Avoid puff aoes',
+          de: 'Weiche den Puschel AoEs aus',
         },
       },
     },
@@ -730,20 +732,24 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         bothFates: {
           en: 'Get hit by silver and gold',
+          de: 'Von Silber und Gold treffen lassen',
         },
         gildedFate: {
           en: 'Get hit by two silver',
+          de: 'Von 2 Silber treffen lassen',
         },
         silveredFate: {
           en: 'Get hit by two gold',
+          de: 'Von 2 Gold treffen lassen',
         },
         neitherFate: {
           en: 'Avoid silver and gold',
+          de: 'Vermeide Silber und Gold',
         },
       },
     },
     {
-      id: 'ASS Sundered Remainds',
+      id: 'ASS Sundered Remains',
       // Using 7666 Curse of the Monument
       type: 'StartsUsing',
       netRegex: { id: '7666', source: 'Gladiator of Sil\'dih', capture: false },
@@ -783,9 +789,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         soakThenSpread: {
           en: 'Soak first towers => Spread',
+          de: 'Türme zuerst nehmen => verteilen',
         },
         spreadThenSoak: {
           en: 'Spread => Soak second towers',
+          de: 'Verteilen => zweite Türme nehmen',
         },
       },
     },
@@ -822,7 +830,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Infern Brand Collect',
       // Count field on 95D on Infern Brand indicates Brand's number:
-      //   1C2 - IC5, Orange 1 - 4
+      //   1C2 - 1C5, Orange 1 - 4
       //   1C6 - 1C9, Blue 1 - 4
       type: 'GainsEffect',
       netRegex: { effectId: '95D', target: 'Infern Brand' },
@@ -898,14 +906,14 @@ const triggerSet: TriggerSet<Data> = {
         const x = orangeBrands.indexOf(myNumToOrange[myNum]);
         const y = blueBrands.indexOf(myNumToBlue[myNum]) + 4;
         const indexToCardinal: { [num: number]: string } = {
-          0: 'north',
-          1: 'north',
-          2: 'south',
-          3: 'south',
-          4: 'west',
-          5: 'west',
-          6: 'east',
-          7: 'east',
+          0: 'south',
+          1: 'south',
+          2: 'north',
+          3: 'north',
+          4: 'east',
+          5: 'east',
+          6: 'west',
+          7: 'west',
         };
 
         const cardX = indexToCardinal[x];
@@ -921,9 +929,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Brand ${num}: ${corner} corner',
+          de: 'Kryptogramm ${num}: ${corner} Ecke',
         },
         brandNum: {
           en: 'Brand ${num}',
+          de: 'Kryptogramm ${num}',
         },
         northwest: Outputs.northwest,
         northeast: Outputs.northeast,
@@ -959,12 +969,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         cutBlueOne: {
           en: 'Cut Blue 1',
+          de: 'Blau 1 durchtrennen',
         },
         cutOrangeOne: {
           en: 'Cut Orange 1',
+          de: 'Orange 1 durchtrennen',
         },
         firstCut: {
           en: 'First Cut',
+          de: 'Als Erster durchtrennen',
         },
       },
     },
@@ -1014,15 +1027,23 @@ const triggerSet: TriggerSet<Data> = {
         return 0;
       },
       alertText: (data, matches, output) => {
-        if (data.arcaneFontCounter === 3 && matches.count.match(/1C[6-9]/)) {
+        if (data.arcaneFontCounter === 3 && matches.count.match(/1C[6-8]/)) {
           // Expected Blue and count is Blue
           data.arcaneFontCounter = 2;
           return output.cutBlueNum!({ num: data.myFlame });
         }
-        if (data.arcaneFontCounter === 2 && matches.count.match(/1C[2-5]/)) {
+        if (data.arcaneFontCounter === 2 && matches.count.match(/1C[2-4]/)) {
           // Expected Orange and count is Orange
           data.arcaneFontCounter = 3;
           return output.cutOrangeNum!({ num: data.myFlame });
+        }
+
+        // Exception for First Flame on second set
+        if (data.myFlame === 1) {
+          if (data.arcaneFontCounter === 3 && matches.count === '1C5')
+            return output.cutBlueNum!({ num: data.myFlame });
+          if (data.arcaneFontCounter === 2 && matches.count === '1C9')
+            return output.cutOrangeNum!({ num: data.myFlame });
         }
         // Unexpected result, mechanic is likely failed at this point
       },
@@ -1030,14 +1051,16 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         cutOrangeNum: {
           en: 'Cut Orange ${num}',
+          de: 'Orange ${num} durchtrennen',
         },
         cutBlueNum: {
           en: 'Cut Blue ${num}',
+          de: 'Blau ${num} durchtrennen',
         },
       },
     },
     {
-      id: 'ASS Infern Brand Cryptic Flame Colllect',
+      id: 'ASS Infern Brand Cryptic Flame Collect',
       // Collect timestamp for when last cut flame
       type: 'Ability',
       netRegex: { id: '74B7', source: 'Infern Brand' },

@@ -199,7 +199,11 @@ const triggerSet: TriggerSet<Data> = {
       // would be sent to the 0239 channel.  (Sometimes this is also sent to 0139, unknown why?)
       id: 'General Ready Check',
       type: 'GameLog',
-      netRegex: { line: '(?:You have commenced a ready check|\\y{Name} has initiated a ready check).*?', code: ['0039', '0139', '0239'], capture: false },
+      netRegex: {
+        line: '(?:You have commenced a ready check|\\y{Name} has initiated a ready check).*?',
+        code: ['0039', '0139', '0239'],
+        capture: false,
+      },
       sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.webm',
       soundVolume: 0.6,
     },
@@ -211,7 +215,8 @@ const triggerSet: TriggerSet<Data> = {
         'has initiated a ready check': 'eine Bereitschaftsanfrage gestellt',
         'You have commenced a ready check': 'Du hast eine Bereitschaftsanfrage gestellt',
         'You poke the striking dummy': 'Du stupst die Trainingspuppe an',
-        'You psych yourself up alongside the striking dummy': 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
+        'You psych yourself up alongside the striking dummy':
+          'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
         'You burst out laughing at the striking dummy': 'Du lachst herzlich mit der Trainingspuppe',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
       },
@@ -221,9 +226,12 @@ const triggerSet: TriggerSet<Data> = {
       replaceSync: {
         ' has initiated a ready check': '',
         'You have commenced a ready check\\|': 'Un appel de préparation a été lancé par ',
-        'You poke the striking dummy': 'Vous touchez légèrement le mannequin d\'entraînement du doigt',
-        'You psych yourself up alongside the striking dummy': 'Vous vous motivez devant le mannequin d\'entraînement',
-        'You burst out laughing at the striking dummy': 'Vous vous esclaffez devant le mannequin d\'entraînement',
+        'You poke the striking dummy':
+          'Vous touchez légèrement le mannequin d\'entraînement du doigt',
+        'You psych yourself up alongside the striking dummy':
+          'Vous vous motivez devant le mannequin d\'entraînement',
+        'You burst out laughing at the striking dummy':
+          'Vous vous esclaffez devant le mannequin d\'entraînement',
         'You clap for the striking dummy': 'Vous applaudissez le mannequin d\'entraînement',
       },
     },

@@ -905,7 +905,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Beyond Death Delta Tank',
       type: 'GainsEffect',
       netRegex: { effectId: '566' },
-      condition: (data, matches) => data.phase === 'delta' && matches.target === data.me && data.role === 'tank',
+      condition: (data, matches) =>
+        data.phase === 'delta' && matches.target === data.me && data.role === 'tank',
       delaySeconds: 0.5,
       infoText: (data, _matches, output) => {
         // Something went awry, or maybe healers dead.  Just say stack on water anyway,
@@ -932,7 +933,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O4S Neo Beyond Death Delta Initial',
       type: 'GainsEffect',
       netRegex: { effectId: '566' },
-      condition: (data, matches) => data.phase === 'delta' && matches.target === data.me && data.role !== 'tank',
+      condition: (data, matches) =>
+        data.phase === 'delta' && matches.target === data.me && data.role !== 'tank',
       infoText: (_data, _matches, output) => output.beyondDeath!(),
       outputStrings: {
         beyondDeath: {

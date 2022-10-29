@@ -295,14 +295,16 @@ const triggerSet: TriggerSet<Data> = {
       locale: 'de',
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
-        'You bow courteously to the striking dummy': 'Du verbeugst dich hochachtungsvoll vor der Trainingspuppe',
+        'You bow courteously to the striking dummy':
+          'Du verbeugst dich hochachtungsvoll vor der Trainingspuppe',
         'test sync': 'test sync',
         'You burst out laughing at the striking dummy': 'Du lachst herzlich mit der Trainingspuppe',
         'cactbot lang': 'cactbot sprache',
         'cactbot test response': 'cactbot test antwort',
         'cactbot test watch': 'cactbot test beobachten',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
-        'You psych yourself up alongside the striking dummy': 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
+        'You psych yourself up alongside the striking dummy':
+          'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
         'You poke the striking dummy': 'Du stupst die Trainingspuppe an',
       },
       replaceText: {
@@ -323,12 +325,17 @@ const triggerSet: TriggerSet<Data> = {
         'cactbot lang': 'cactbot langue',
         'cactbot test response': 'cactbot test de réponse',
         'cactbot test watch': 'cactbot test d\'observation',
-        'You bid farewell to the striking dummy': 'Vous faites vos adieux au mannequin d\'entraînement',
-        'You bow courteously to the striking dummy': 'Vous vous inclinez devant le mannequin d\'entraînement',
-        'You burst out laughing at the striking dummy': 'Vous vous esclaffez devant le mannequin d\'entraînement',
+        'You bid farewell to the striking dummy':
+          'Vous faites vos adieux au mannequin d\'entraînement',
+        'You bow courteously to the striking dummy':
+          'Vous vous inclinez devant le mannequin d\'entraînement',
+        'You burst out laughing at the striking dummy':
+          'Vous vous esclaffez devant le mannequin d\'entraînement',
         'You clap for the striking dummy': 'Vous applaudissez le mannequin d\'entraînement',
-        'You poke the striking dummy': 'Vous touchez légèrement le mannequin d\'entraînement du doigt',
-        'You psych yourself up alongside the striking dummy': 'Vous vous motivez devant le mannequin d\'entraînement',
+        'You poke the striking dummy':
+          'Vous touchez légèrement le mannequin d\'entraînement du doigt',
+        'You psych yourself up alongside the striking dummy':
+          'Vous vous motivez devant le mannequin d\'entraînement',
         'test sync': 'test sync',
       },
       replaceText: {
