@@ -88,64 +88,64 @@ hideall "--sync--"
 # Gladiator of Sil'dih #
 #~~~~~~~~~~~~~~~~~~~~~~#
 
-# -ii 77B1 77B2 7676 7677 77BF 77A2 79F3
+# -ii 77B1 77B2 77B8 77B9 77BF 77A2 79F4
 
 1000.0 "--sync--" sync / 00:0839::The Trial of Might will be sealed off/ window 1000,1
 1006.8 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:77B3:/ window 1007.3,5
 1011.5 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B3:/
-1023.6 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7673:/
-1038.3 "Rush of Might 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765B:/
-1040.4 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
-1042.8 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7673:/
-1057.5 "Rush of Might 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765B:/
-1059.6 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
+1023.6 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B5:/
+1038.3 "Rush of Might 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:779D:/
+1040.4 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:779E:/
+1042.8 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B5:/
+1057.5 "Rush of Might 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:779D:/
+1059.6 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:779E:/
 1062.0 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:6854:/
-1067.0 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:766C:/
+1067.0 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77AE:/
 1082.4 "Mighty Smite" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B4:/
-1095.5 "Curse of the Fallen" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7674:/
+1095.5 "Curse of the Fallen" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B6:/
 1097.6 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
 1110.2 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77BF:/
-1113.6 "Echo of the Fallen" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7675:/
+1113.6 "Echo of the Fallen" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B7:/
 1121.3 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B3:/
 1131.5 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
-1136.6 "Hateful Visage" sync / 1[56]:[^:]*:Gladiator of Sil'dih:766E:/
-1141.7 "Wrath of Ruin" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7663:/
+1136.6 "Hateful Visage" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B0:/
+1141.7 "Wrath of Ruin" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77A5:/
 1150.7 "Gold Flame x4" sync / 1[56]:[^:]*:Hateful Visage:77B1:/
 1150.7 "Silver Flame x4" #sync / 1[56]:[^:]*:Hateful Visage:77B2:/
 1152.3 "Nothing beside Remains" sync / 1[56]:[^:]*:Gladiator of Sil'dih:(768B|77BC):/
 1161.4 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B3:/
-1171.6 "Accursed Visage" sync / 1[56]:[^:]*:Gladiator of Sil'dih:768D:/
-1176.7 "Wrath of Ruin" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7663:/
+1171.6 "Accursed Visage" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77BE:/
+1176.7 "Wrath of Ruin" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77A5:/
 1185.7 "Gold Flame x4" sync / 1[56]:[^:]*:Hateful Visage:77B1:/
 1185.7 "Silver Flame x4" #sync / 1[56]:[^:]*:Hateful Visage:77B2:/
 1187.3 "Nothing beside Remains" sync / 1[56]:[^:]*:Gladiator of Sil'dih:(768B|77BC):/
 1196.4 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B3:/
 1206.6 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
 1212.7 "Curse of the Monument" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77A8:/
-1219.9 "Sundered Remains 1" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
-1220.5 "Sundered Remains 2" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
-1221.1 "Sundered Remains 3" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
-1221.7 "Sundered Remains 4" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
-1222.3 "Sundered Remains 5" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7668:/
+1219.9 "Sundered Remains 1" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:77AA:/
+1220.5 "Sundered Remains 2" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:77AA:/
+1221.1 "Sundered Remains 3" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:77AA:/
+1221.7 "Sundered Remains 4" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:77AA:/
+1222.3 "Sundered Remains 5" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:77AA:/
 1224.9 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
-1232.9 "Scream of the Fallen" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7678:/
-1233.3 "Colossal Wreck" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7669:/
-1233.8 "Explosion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:766A:/
-1237.0 "Scream of the Fallen" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7678:/
-1237.8 "Explosion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:766A:/
+1232.9 "Scream of the Fallen" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77BA:/
+1233.3 "Colossal Wreck" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77AB:/
+1233.8 "Explosion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77AC:/
+1237.0 "Scream of the Fallen" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77BA:/
+1237.8 "Explosion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77AC:/
 1245.0 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B3:/
-1259.2 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7673:/
-1273.9 "Rush of Might 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765B:/
-1276.0 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
-1278.3 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7673:/
-1293.0 "Rush of Might 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765B:/
-1295.1 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:765C:/
+1259.2 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B5:/
+1273.9 "Rush of Might 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:779D:/
+1276.0 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:779E:/
+1278.3 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B5:/
+1293.0 "Rush of Might 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:779D:/
+1295.1 "Rush of Might 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:779E:/
 1297.5 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:6854:/
-1302.6 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:766C:/
+1302.6 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77AE:/
 1311.5 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
 1318.9 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77B3:/
-1321.0 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7679:/ window 15,5
-1331.0 "Flash of Steel (enrage)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7679:/
+1321.0 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:77BB:/ window 15,5
+1331.0 "Flash of Steel (enrage)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77BB:/
 # There's probably a second, instant cast enrage version of the enrage after
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~#
