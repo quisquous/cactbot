@@ -475,16 +475,16 @@ const triggerSet: TriggerSet<Data> = {
           card = x < -35 ? 'west' : 'east';
           data.mightDir = 'south';
         } else {
-          console.error(`Rush of Might 1: Failed to determine intercard from ${y1}`);
+          console.error(`Rush of Might 1: Failed to determine card from ${y1}`);
           return;
         }
 
         let side;
         if (line1 === 2 && line2 === 3 || line1 === 3 && line2 === 2) {
           // When one is 2 and one is 3 we need to be inside (towards middle)
-          return output.insideLine!({ intercard: output[intercard]!(), side: output[side]!(), line: line });
+          return output.insideLine!({ card: output[card]!(), line: line });
         } else {
-          return output.outsideLine!({ intercard: output[intercard]!(), side: output[side]!(), line: line });
+          return output.outsideLine!({ card: output[card]!(), line: line });
         }
         
       },
