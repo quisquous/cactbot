@@ -934,10 +934,10 @@ const triggerSet: TriggerSet<Data> = {
       // which should have been positioned to teleport across the laser to bait
       // the final ward away from other players
       //
-      // 1CD Blue (Counterclockwise) Teleporting West
-      // 1CE Orange (Clockwise) Teleporting East
-      // 1D2 Orange (Clockwise) Teleporting West
-      // 1D3 Blue (Counterclockwise) Teleporting East
+      // 1CD Blue (Counterclockwise) Teleporting East
+      // 1CE Orange (Clockwise) Teleporting West
+      // 1D2 Orange (Clockwise) Teleporting East
+      // 1D3 Blue (Counterclockwise) Teleporting West
       //
       // There are multiple strategies, so this only describes what you have,
       // from there you can create a personal call of where to go
@@ -947,13 +947,13 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, matches, output) => {
         switch (matches.count) {
           case '1CD':
-            return output.blueWest!();
-          case '1CE':
-            return output.orangeEast!();
-          case '1D2':
-            return output.orangeWest!();
-          case '1D3':
             return output.blueEast!();
+          case '1CE':
+            return output.orangeWest!();
+          case '1D2':
+            return output.orangeEast!();
+          case '1D3':
+            return output.blueWest!();
         }
       },
       outputStrings: {
