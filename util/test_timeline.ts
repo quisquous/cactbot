@@ -477,7 +477,7 @@ export const registerTestTimeline = (
 };
 
 class TestTimeline extends Timeline {
-  public override ui?: TestTimelineUI | undefined;
+  declare ui?: TestTimelineUI | undefined;
 
   protected override _ScheduleUpdate(_fightNow: number): void {
     /* noop */
