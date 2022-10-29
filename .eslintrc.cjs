@@ -145,7 +145,16 @@ const rules = {
       'allowAllPropertiesOnSameLine': true,
     },
   ],
-  'operator-linebreak': 'off',
+  'operator-linebreak': [
+    'error',
+    'after',
+    {
+      'overrides': {
+        ':': 'before',
+        '?': 'before',
+      },
+    },
+  ],
   'prefer-arrow-callback': 'error',
   'prefer-const': 'error',
   'prefer-promise-reject-errors': 'off',
