@@ -160,21 +160,21 @@ hideall "--sync--"
 2023.7 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
 2030.8 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7494:/
 2041.9 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B0:/
-2042.3 "Firesteel Strike 1" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B1:/
-2043.3 "Burn x4" sync / 1[56]:[^:]*:Ball of Fire:7490:/
-2043.7 "Firesteel Strike 2" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B2:/
+2042.3 "Firesteel Strike 1" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C6:/
+2043.3 "Burn x4" sync / 1[56]:[^:]*:Ball of Fire:76BB:/
+2043.7 "Firesteel Strike 2" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C7:/
 2051.6 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B3:/
-2052.0 "Blessed Beacon 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B4:/
-2054.1 "Blessed Beacon 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B5:/
+2052.0 "Blessed Beacon 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C8:/
+2054.1 "Blessed Beacon 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C9:/
 2064.4 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C4:/
 2076.6 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/ duration 12
 2088.0 "Cryptic Flames" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B6:/ duration 12
 2094.9 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
-2101.4 "Blazing Benifice 1" sync / 1[56]:[^:]*:Arcane Font:74A6:/
+2101.4 "Blazing Benifice 1" sync / 1[56]:[^:]*:Arcane Font:76C1:/
 2102.0 "Cast Shadow" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749A:/
-2102.7 "Cast Shadow" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749C:/
-2104.7 "Cast Shadow" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749E:/
-2113.5 "Blazing Benifice 2" sync / 1[56]:[^:]*:Arcane Font:74A6:/
+2102.7 "Cast Shadow" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76BD:/
+2104.7 "Cast Shadow" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76BE:/
+2113.5 "Blazing Benifice 2" sync / 1[56]:[^:]*:Arcane Font:76C1:/
 2117.7 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C4:/
 2126.8 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C5:/
 2139.0 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
@@ -185,33 +185,33 @@ hideall "--sync--"
 2163.7 "Infern Ward" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7496:/
 2164.5 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
 2165.0 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7497:/
-2171.5 "Infern Wave 1" sync / 1[56]:[^:]*:Infern Brand:74BB:/
-2179.5 "Infern Wave 2" sync / 1[56]:[^:]*:Infern Brand:74BB:/
+2171.5 "Infern Wave 1" sync / 1[56]:[^:]*:Infern Brand:76CD:/
+2179.5 "Infern Wave 2" sync / 1[56]:[^:]*:Infern Brand:76CD:/
 2187.9 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C4:/
 2200.1 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
 2207.2 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7494:/
 2218.3 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B0:/
-2218.6 "Firesteel Strike 1" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B1:/
-2219.7 "Blazing Benifice" sync / 1[56]:[^:]*:Arcane Font:74A6:/
-2220.1 "Firesteel Strike 2" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B2:/
+2218.6 "Firesteel Strike 1" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C6:/
+2219.7 "Blazing Benifice" sync / 1[56]:[^:]*:Arcane Font:76C1:/
+2220.1 "Firesteel Strike 2" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C7:/
 2228.1 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B3:/
-2228.5 "Blessed Beacon 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B4:/
-2230.7 "Blessed Beacon 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B5:/
+2228.5 "Blessed Beacon 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C8:/
+2230.7 "Blessed Beacon 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C9:/
 2240.8 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C5:/
 2253.0 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/ duration 12
 2261.2 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BA:/
 2262.0 "--sync--" sync / 1[56]:[^:]*:Infern Brand:7495:/
 2273.7 "Cryptic Flames" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74B6:/ duration 12
-2277.7 "Infern Wave 1" sync / 1[56]:[^:]*:Infern Brand:74BB:/
-2287.7 "Infern Wave 2" sync / 1[56]:[^:]*:Infern Brand:74BB:/
+2277.7 "Infern Wave 1" sync / 1[56]:[^:]*:Infern Brand:76CD:/
+2287.7 "Infern Wave 2" sync / 1[56]:[^:]*:Infern Brand:76CD:/
 2288.7 "Pure Fire" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749F:/
-2292.4 "Pure Fire" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A1:/
+2292.4 "Pure Fire" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76BF:/
 2294.8 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
-2297.6 "Infern Wave 3" sync / 1[56]:[^:]*:Infern Brand:74BB:/
+2297.6 "Infern Wave 3" sync / 1[56]:[^:]*:Infern Brand:76CD:/
 2302.0 "Cast Shadow" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749A:/
-2302.7 "Cast Shadow" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749C:/
-2304.7 "Cast Shadow" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749E:/
-2307.6 "Infern Wave 4" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BB:/
+2302.7 "Cast Shadow" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76BD:/
+2304.7 "Cast Shadow" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76BE:/
+2307.6 "Infern Wave 4" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76CD:/
 2314.5 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C4:/
 2323.6 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:76C5:/
 2328.6 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74BF:/ window 15,5
