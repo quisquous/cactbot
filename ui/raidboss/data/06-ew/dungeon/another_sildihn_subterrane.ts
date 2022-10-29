@@ -16,6 +16,7 @@ export interface Data extends RaidbossData {
   suds?: string;
   soapCounter: number;
   beaterCounter: number;
+  spreeCounter: number;
   hasLingering?: boolean;
   thunderousEchoPlayer?: string;
   gildedCounter: number;
@@ -34,6 +35,7 @@ const triggerSet: TriggerSet<Data> = {
     return {
       soapCounter: 0,
       beaterCounter: 0,
+      spreeCounter: 0,
       gildedCounter: 0,
       silveredCounter: 0,
       arcaneFontCounter: 0,
@@ -272,7 +274,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ASS Soaping Spree',
       // Boss does not cast Fizzling Duster with Soaping Spree
       type: 'StartsUsing',
-      netRegex: { id: '7767', source: 'Silkie', capture: false },
+      netRegex: { id: '7767', source: 'Silkie' },
+      preRun: (data) => ++data.spreeCounter,
       infoText: (data, _matches, output) => {
         switch (data.suds) {
           case 'CE1':
@@ -280,7 +283,7 @@ const triggerSet: TriggerSet<Data> = {
           case 'CE2':
             return output.intercards!();
           default:
-            if (data.soapCounter === 1)
+            if (data.spreeCounter === 1)
               return output.underPuff!();
             return output.avoidPuffs!();
         }
