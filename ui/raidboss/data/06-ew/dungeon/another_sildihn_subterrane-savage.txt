@@ -9,79 +9,79 @@ hideall "--sync--"
 # SILKIE #
 #~~~~~~~~#
 
-# -ii 7760 7761 7762 7768 7769 776A 77ED
+# -ii 7783 7784 7785 778B 778C 778D 77ED 77EE
 
 0.0 "--sync--" sync / 00:0839::The Trial of Knowledge is sealed off/ window 0,1
-12.2 "--sync--" sync / 14:[^:]*:Silkie:7759:/ window 15,15
-14.9 "Fizzling Suds" sync / 1[56]:[^:]*:Silkie:7759:/
-21.0 "Soap's Up" sync / 1[56]:[^:]*:Silkie:775A:/
-22.0 "Fizzling Duster" sync / 1[56]:[^:]*:Silkie:775D:/
+12.2 "--sync--" sync / 14:[^:]*:Silkie:777C:/ window 15,15
+14.9 "Fizzling Suds" sync / 1[56]:[^:]*:Silkie:777C:/
+21.0 "Soap's Up" sync / 1[56]:[^:]*:Silkie:777D:/
+22.0 "Fizzling Duster" sync / 1[56]:[^:]*:Silkie:7780:/
 32.2 "Dust Bluster" sync / 1[56]:[^:]*:Silkie:778F:/
-38.4 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:7766:/
-43.5 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:7757:/
-50.1 "--sync--" sync / 1[56]:[^:]*:Silkie:(7751|7752):/
-51.6 "Squeaky Clean 1" sync / 1[56]:[^:]*:Silkie:7753:/
-53.3 "Squeaky Clean 2" sync / 1[56]:[^:]*:Silkie:7754:/
+38.4 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:7789:/
+43.5 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:777A:/
+50.1 "--sync--" sync / 1[56]:[^:]*:Silkie:(7774|7775):/
+51.6 "Squeaky Clean 1" sync / 1[56]:[^:]*:Silkie:7776:/
+53.3 "Squeaky Clean 2" sync / 1[56]:[^:]*:Silkie:7777:/
 54.8 "Squeaky Clean 3" sync / 1[56]:[^:]*:Silkie:(7774|7775):/
-61.9 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:7758:/
+61.9 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:777B:/
 64.0 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
 69.0 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:7781:/
-73.0 "Chilling Duster" sync / 1[56]:[^:]*:Silkie:7763:/
+73.0 "Chilling Duster" sync / 1[56]:[^:]*:Silkie:7786:/
 80.6 "Carpet Beater" sync / 1[56]:[^:]*:Silkie:7772:/
 89.7 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:778A:/
-89.7 "Chilling Duster / Fizzling Duster" #sync / 1[56]:[^:]*:Silken Puff:(7768|776A):/
-89.7 "Bracing Duster" #sync / 1[56]:[^:]*:Silken Puff:7769:/
-89.7 "Chilling Duster" #sync / 1[56]:[^:]*:Silken Puff:7768:/
+89.7 "Chilling Duster / Fizzling Duster" #sync / 1[56]:[^:]*:Silken Puff:(778B|778D):/
+89.7 "Bracing Duster" #sync / 1[56]:[^:]*:Silken Puff:778C:/
+89.7 "Chilling Duster" #sync / 1[56]:[^:]*:Silken Puff:778B:/
 100.9 "Total Wash" sync / 1[56]:[^:]*:Silkie:7773:/
-106.0 "Bracing Suds / Chilling Suds" sync / 1[56]:[^:]*:Silkie:(7757|7758):/
-112.1 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:7766:/
-123.1 "Puff and Tumble" duration 0.7 #sync / 1[56]:[^:]*:Silken Puff:7771:/
+106.0 "Bracing Suds / Chilling Suds" sync / 1[56]:[^:]*:Silkie:(777A|777B):/
+112.1 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:7789:/
+123.1 "Puff and Tumble" duration 0.7 #sync / 1[56]:[^:]*:Silken Puff:7794:/
 129.5 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:778A:/
-129.5 "Fizzling Duster x2" #sync / 1[56]:[^:]*:Silken Puff:776A:/
-129.5 "Chilling Duster x2" #sync / 1[56]:[^:]*:Silken Puff:7768:/
-129.5 "Bracing Duster / Chilling Duster" #sync / 1[56]:[^:]*:Silkie:(7769|7768):/
-134.6 "Bracing Suds / Fizzling Suds" sync / 1[56]:[^:]*:Silkie:(7757|7759):/
+129.5 "Fizzling Duster x2" #sync / 1[56]:[^:]*:Silken Puff:778D:/
+129.5 "Chilling Duster x2" #sync / 1[56]:[^:]*:Silken Puff:778B:/
+129.5 "Bracing Duster / Chilling Duster" #sync / 1[56]:[^:]*:Silkie:(778C|778B):/
+134.6 "Bracing Suds / Fizzling Suds" sync / 1[56]:[^:]*:Silkie:(777A|777C):/
 136.7 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
 141.7 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:7781:/
-145.7 "Bracing Duster / Fizzling Duster" sync / 1[56]:[^:]*:Silkie:(7764|7765):/
+145.7 "Bracing Duster / Fizzling Duster" sync / 1[56]:[^:]*:Silkie:(7787|7788):/
 160.1 "Total Wash" sync / 1[56]:[^:]*:Silkie:7773:/
-166.2 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:7766:/
+166.2 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:7789:/
 172.3 "Eastern Ewers" sync / 1[56]:[^:]*:Silkie:7790:/
-178.6 "Rinse" sync / 1[56]:[^:]*:Eastern Ewer:776F:/ duration 7.3
+178.6 "Rinse" sync / 1[56]:[^:]*:Eastern Ewer:7792:/ duration 7.3
 188.1 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:778A:/
-188.1 "Bracing Duster / Chilling Duster / Fizzling Duster" #sync / 1[56]:[^:]*:Silken Puff:(7769|7768|776A):/
-188.1 "Fizzling Duster" #sync / 1[56]:[^:]*:Silken Puff:776A:/
-195.2 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:7758:/
+188.1 "Bracing Duster / Chilling Duster / Fizzling Duster" #sync / 1[56]:[^:]*:Silken Puff:(778C|778B|778D):/
+188.1 "Fizzling Duster" #sync / 1[56]:[^:]*:Silken Puff:778D:/
+195.2 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:777B:/
 202.3 "Carpet Beater" sync / 1[56]:[^:]*:Silkie:7772:/
 204.4 "--sync--" sync / 1[56]:[^:]*:Eastern Ewer:79FB:/
 209.4 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:7781:/
-213.4 "Chilling Duster" sync / 1[56]:[^:]*:Silkie:7763:/
-225.9 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:7757:/
+213.4 "Chilling Duster" sync / 1[56]:[^:]*:Silkie:7786:/
+225.9 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:777A:/
 233.0 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:778A:/
-233.0 "Chilling Duster x6" #sync / 1[56]:[^:]*:Silken Puff:7768:/
-233.0 "Bracing Duster" #sync / 1[56]:[^:]*:Silkie:7769:/
+233.0 "Chilling Duster x6" #sync / 1[56]:[^:]*:Silken Puff:778B:/
+233.0 "Bracing Duster" #sync / 1[56]:[^:]*:Silkie:778C:/
 244.2 "Dust Bluster" sync / 1[56]:[^:]*:Silkie:778F:/
-249.6 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:7757:/
-255.7 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:7766:/
-262.3 "--sync--" sync / 1[56]:[^:]*:Silkie:(7751|7752):/
-263.8 "Squeaky Clean 1" sync / 1[56]:[^:]*:Silkie:7753:/
-265.5 "Squeaky Clean 2" sync / 1[56]:[^:]*:Silkie:7754:/
-266.9 "Puff and Tumble x4" duration 0.7 #sync / 1[56]:[^:]*:Silken Puff:7771:/
+249.6 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:777A:/
+255.7 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:7789:/
+262.3 "--sync--" sync / 1[56]:[^:]*:Silkie:(7774|7775):/
+263.8 "Squeaky Clean 1" sync / 1[56]:[^:]*:Silkie:7776:/
+265.5 "Squeaky Clean 2" sync / 1[56]:[^:]*:Silkie:7777:/
+266.9 "Puff and Tumble x4" duration 0.7 #sync / 1[56]:[^:]*:Silken Puff:7794:/
 266.9 "Squeaky Clean 3" sync / 1[56]:[^:]*:Silkie:(7774|7775):/
 276.0 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:778A:/
-276.0 "Chilling Duster x4" #sync / 1[56]:[^:]*:Silken Puff:7768:/
-276.0 "Bracing Duster" #sync / 1[56]:[^:]*:Silkie:7769:/
+276.0 "Chilling Duster x4" #sync / 1[56]:[^:]*:Silken Puff:778B:/
+276.0 "Bracing Duster" #sync / 1[56]:[^:]*:Silkie:778C:/
 283.1 "Total Wash" sync / 1[56]:[^:]*:Silkie:7773:/
-292.3 "Bracing Suds / Chilling Suds / Fizzling Suds" sync / 1[56]:[^:]*:Silkie:(7757|7758|7759):/
+292.3 "Bracing Suds / Chilling Suds / Fizzling Suds" sync / 1[56]:[^:]*:Silkie:(777A|777B|777C):/
 294.4 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
 299.4 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:7781:/
-303.5 "Bracing Duster / Chilling Duster / Fizzling Duster" sync / 1[56]:[^:]*:Silkie:(7764|7763|7765):/
-309.0 "Bracing Suds / Chilling Suds / Fizzling Suds" sync / 1[56]:[^:]*:Silkie:(7757|7758|7759):/
+303.5 "Bracing Duster / Chilling Duster / Fizzling Duster" sync / 1[56]:[^:]*:Silkie:(7787|7786|7788):/
+309.0 "Bracing Suds / Chilling Suds / Fizzling Suds" sync / 1[56]:[^:]*:Silkie:(777A|777B|777C):/
 311.1 "--sync--" sync / 1[56]:[^:]*:Silkie:79FB:/
 316.1 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:7781:/
-320.0 "Bracing Duster / Chilling Duster / Fizzling Duster" sync / 1[56]:[^:]*:Silkie:(7764|7763|7765):/
-322.9 "--sync--" sync / 14:[^:]*:Silkie:79E0:/ window 15,5
-332.9 "Total Wash (enrage)" sync / 1[56]:[^:]*:Silkie:79E0:/
+320.0 "Bracing Duster / Chilling Duster / Fizzling Duster" sync / 1[56]:[^:]*:Silkie:(7787|7786|7788):/
+322.9 "--sync--" sync / 14:[^:]*:Silkie:79E1:/ window 15,5
+332.9 "Total Wash (enrage)" sync / 1[56]:[^:]*:Silkie:79E1:/
 338.1 "Total Wash (enrage)" sync / 1[56]:[^:]*:Silkie:79F9:/
 
 #~~~~~~~~~~~~~~~~~~~~~~#
