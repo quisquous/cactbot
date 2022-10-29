@@ -18,6 +18,7 @@ export interface Data extends RaidbossData {
   suds?: string;
   soapCounter: number;
   beaterCounter: number;
+  spreeCounter: number;
   mightCasts: PluginCombatantState[];
   mightDir?: string;
   hasLingering?: boolean;
@@ -38,6 +39,7 @@ const triggerSet: TriggerSet<Data> = {
     return {
       soapCounter: 0,
       beaterCounter: 0,
+      spreeCounter: 0,
       mightCasts: [],
       gildedCounter: 0,
       silveredCounter: 0,
@@ -278,6 +280,7 @@ const triggerSet: TriggerSet<Data> = {
       // Boss does not cast Fizzling Duster with Soaping Spree
       type: 'StartsUsing',
       netRegex: { id: '7767', source: 'Silkie', capture: false },
+      preRun: (data) => ++data.spreeCounter,
       infoText: (data, _matches, output) => {
         switch (data.suds) {
           case 'CE1':
@@ -285,7 +288,7 @@ const triggerSet: TriggerSet<Data> = {
           case 'CE2':
             return output.intercards!();
           default:
-            if (data.soapCounter === 1)
+            if (data.spreeCounter === 1)
               return output.underPuff!();
             return output.avoidPuffs!();
         }
@@ -1059,6 +1062,99 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '74B7', source: 'Infern Brand' },
       condition: Conditions.targetIsYou(),
       run: (data, matches) => data.myLastCut = Date.parse(matches.timestamp),
+    },
+    {
+      id: 'ASS Banishment',
+      // Players receive invisible effect that indicates rotation and direction
+      // of their teleport attached teleport pad
+      //
+      // At the same time, two teleports on North and South are also marked:
+      // one rotates outside the arena, the other rotates towards the inner rows
+      // Players have 12s to teleport using the safe teleports prior to Call of
+      // the Portal (CCC) expiration
+      //
+      // The first teleports occur at ~11.4s after these debuff go out
+      // After first teleport, lasers block rows but can be teleported over
+      // Hitting a laser results in stun and likely death
+      //
+      // Seconds after first teleport, two wards will go off that target the
+      // two nearest players. Players need to have teleported close enough
+      // to the ward to bait the ward away from other players
+      //
+      // Following the first set of baits, the player's teleport will go off
+      // which should have been positioned to teleport across the laser to bait
+      // the final ward away from other players
+      //
+      // 1CD Blue (Counterclockwise) Teleporting East
+      // 1CE Orange (Clockwise) Teleporting West
+      // 1D2 Orange (Clockwise) Teleporting East
+      // 1D3 Blue (Counterclockwise) Teleporting West
+      //
+      // There are multiple strategies, so this only describes what you have,
+      // from there you can create a personal call of where to go
+      type: 'GainsEffect',
+      netRegex: { effectId: 'B9A' },
+      condition: Conditions.targetIsYou(),
+      infoText: (_data, matches, output) => {
+        switch (matches.count) {
+          case '1CD':
+            return output.blueEast!();
+          case '1CE':
+            return output.orangeWest!();
+          case '1D2':
+            return output.orangeEast!();
+          case '1D3':
+            return output.blueWest!();
+        }
+      },
+      outputStrings: {
+        blueEast: {
+          en: 'Blue Teleporting East',
+        },
+        blueWest: {
+          en: 'Blue Teleporting West',
+        },
+        orangeEast: {
+          en: 'Orange Teleporting East',
+        },
+        orangeWest: {
+          en: 'Orange Teleporting West',
+        },
+      },
+    },
+    {
+      id: 'ASS Banishment First Ward',
+      // This debuff expires 4.7s before the first bait, but there is a slight
+      // animation lock from the teleport that occurs
+      // Repositioning may be required to bait the active ward's Infern Wave
+      // Using Call of the Portal (CCC) expiration for trigger
+      type: 'LosesEffect',
+      netRegex: { effectId: 'CCC' },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: 0.75, // Delay for animation lock from teleport to complete
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Bait First Ward',
+        },
+      },
+    },
+    {
+      id: 'ASS Banishment Bait Second Ward',
+      // After the second teleport and stun expiring, there is 2s before the
+      // the last ward casts Infern Wave that must be baited
+      // Rite of Passage (CCD) debuff is tied to the player's teleport going
+      // off
+      type: 'LosesEffect',
+      netRegex: { effectId: 'CCD' },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: 2, // Delay for stun to complete
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Bait Second Ward',
+        },
+      },
     },
   ],
   timelineReplace: [
