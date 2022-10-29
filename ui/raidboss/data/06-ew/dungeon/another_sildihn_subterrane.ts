@@ -1071,10 +1071,7 @@ const triggerSet: TriggerSet<Data> = {
           else if (matches.count === '1C5')
             data.firstColorCut = 'blue';
         } else if (data.flamesCutCounter === 4) {
-          if (matches.count === '1C4')
-            data.firstColorCut = 'orange';
-          else if (matches.count === '1C9')
-            data.firstColorCut = 'blue';
+          data.firstColorCut = data.firstColorCut === 'orange' ? 'blue' : 'orange';
         }
       },
       response: (data, _matches, output) => {
