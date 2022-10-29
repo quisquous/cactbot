@@ -454,8 +454,8 @@ const triggerSet: TriggerSet<Data> = {
 
         const line = line1 > line2 ? line1 : line2;
 
-        // Get Intercard and greatest relative x value
-        let intercard;
+        // Get card and greatest relative x value
+        let card;
         const roundY = Math.round(y1 / 3) * 3;
         // Round values to be easier to read:
         //          1     2     3
@@ -464,12 +464,12 @@ const triggerSet: TriggerSet<Data> = {
         if (roundY === -270 || roundY === -276 || roundY === -282) {
           // Get the x value of farthest north mirage
           const x = y1 < y2 ? x1 : x2;
-          intercard = x < -35 ? 'northwest' : 'northeast';
+          card = x < -35 ? 'west' : 'east';
           data.mightDir = 'north';
         } else if (roundY === -273 || roundY === -267 || roundY === -261) {
           // Get the x value of farthest south mirage
           const x = y1 > y2 ? x1 : x2;
-          intercard = x < -35 ? 'southwest' : 'southeast';
+          card = x < -35 ? 'west' : 'east';
           data.mightDir = 'south';
         } else {
           console.error(`Rush of Might 1: Failed to determine intercard from ${y1}`);
@@ -478,29 +478,22 @@ const triggerSet: TriggerSet<Data> = {
 
         let side;
         if (line1 === 2 && line2 === 3 || line1 === 3 && line2 === 2) {
-          // Get side of line for case when one is 2 and one is 3
-          if (intercard === 'northwest' || intercard === 'southwest')
-            side = 'east';
-          else
-            side = 'west';
+          // When one is 2 and one is 3 we need to be inside (towards middle)
+          return output.insideLine!({ intercard: output[intercard]!(), side: output[side]!(), line: line });
         } else {
-          if (intercard === 'northwest' || intercard === 'southwest')
-            side = 'west';
-          else
-            side = 'east';
+          return output.outsideLine!({ intercard: output[intercard]!(), side: output[side]!(), line: line });
         }
-        return output.text!({ intercard: output[intercard]!(), side: output[side]!(), line: line });
+        
       },
       outputStrings: {
-        text: {
-          en: '${intercard}, ${side} of line #${line}',
+        outsideline: {
+          en: 'Outside ${card}, above line #${line}',
+        },
+        insideLine: {
+          en: 'Inside ${card}, above line #${line}',
         },
         east: Outputs.east,
         west: Outputs.west,
-        northwest: Outputs.northwest,
-        northeast: Outputs.northeast,
-        southeast: Outputs.southeast,
-        southwest: Outputs.southwest,
       },
     },
     {
