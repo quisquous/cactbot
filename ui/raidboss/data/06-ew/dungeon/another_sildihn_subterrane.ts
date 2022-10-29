@@ -995,7 +995,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Infern Brand 5 Infern Wave Counter',
       type: 'Ability',
-      netRegex: { id: '74BB', source: 'Infern Brand' },
+      netRegex: { id: '74BB', source: 'Infern Brand', capture: false },
       condition: (data) => data.brandCounter === 5,
       preRun: (data) => data.waveCounter++,
       suppressSeconds: 1,
