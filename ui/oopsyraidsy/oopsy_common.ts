@@ -135,7 +135,7 @@ export const UnscrambleDamage = (field?: string): number => {
   // Check for third byte == 0x40.
   if (field[len - 4] === '4') {
     // Wrap in the 4th byte as extra damage.  See notes above.
-    const rightDamage = parseInt(field.substr(len - 2, 2), 16);
+    const rightDamage = parseInt(field.slice(len - 2, len), 16);
     damage = damage - rightDamage + (rightDamage << 16);
   }
   return damage;
