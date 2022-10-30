@@ -53,7 +53,7 @@ const endsWith = (s: string, suffix: Iterable<string>): boolean => {
 
 const downloadFile = async (url: string, localPath: string): Promise<void> => {
   const res = await fetch(url, { agent: ProxyAgent() });
-  await fs.writeFile(localPath, await res.buffer());
+  await fs.writeFile(localPath, new DataView(await res.arrayBuffer()));
 };
 
 const waitStream = (stream: { on: (event: 'finish', cb: VoidFunction) => void }): Promise<void> => {
@@ -165,7 +165,7 @@ export const main = async (updateHashes = false): Promise<void> => {
           await downloadFile(meta['url'], dlname);
           if (_.has(meta, 'hash')) {
             log('Hashing...');
-            const content = (await fs.readFile(dlname)).slice(0, 16 * 1024);
+            const content = (await fs.readFile(dlname));
             const h = hash(meta['hash'][0], content);
             if (updateHashes) {
               hashUpdateMap[meta['hash'][1]] = h;
