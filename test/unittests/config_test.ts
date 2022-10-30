@@ -1,8 +1,6 @@
-import chai from 'chai';
+import { assert } from 'chai';
 
 import UserConfig from '../../resources/user_config';
-
-const { assert } = chai;
 
 describe('config tests', () => {
   it('user files are sorted correctly', () => {

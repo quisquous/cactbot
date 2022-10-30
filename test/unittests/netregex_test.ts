@@ -1,9 +1,7 @@
-import chai from 'chai';
+import { assert } from 'chai';
 
 import NetRegexes from '../../resources/netregexes';
 import regexCaptureTest, { RegexUtilParams } from '../helper/regex_util';
-
-const { assert } = chai;
 
 describe('netregex tests', () => {
   it('startsUsing', () => {

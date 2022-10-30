@@ -6,7 +6,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import chai from 'chai';
+import { assert } from 'chai';
 
 import NetRegexes, {
   buildNetRegexForTrigger,
@@ -31,8 +31,6 @@ import {
   ResponseFunc,
   TriggerFunc,
 } from '../../types/trigger';
-
-const { assert } = chai;
 
 const isResponseFunc = (func: unknown): func is ResponseFunc<RaidbossData, Matches> => {
   return typeof func === 'function';

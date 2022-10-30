@@ -1,4 +1,4 @@
-import chai from 'chai';
+import { assert } from 'chai';
 
 import {
   builtInResponseStr,
@@ -11,7 +11,6 @@ import { RaidbossData } from '../../types/data';
 import { Matches } from '../../types/net_matches';
 import { Output, ResponseFunc, ResponseOutput } from '../../types/trigger';
 
-const { assert } = chai;
 // test_trigger.js will validate the field names, so no need to do that here.
 
 const outputStringSetterStr = 'output.responseOutputStrings = ';

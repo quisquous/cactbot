@@ -1,8 +1,6 @@
-import chai from 'chai';
+import { assert } from 'chai';
 
 import { UnreachableCode } from '../../resources/not_reached';
-
-const { assert } = chai;
 
 // Quite bogus.
 const bogusLine = 'using act is cheating';
