@@ -128,7 +128,7 @@
   },
   "lint-staged": {
     "*.css": "stylelint",
-    "*.{js,cjs,mjs,json}": [
+    "*.{ts,js,cjs,mjs,json}": [
       "dprint check"
     ],
     "*.{js,cjs,mjs}": [
