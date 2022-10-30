@@ -213,10 +213,10 @@ export const main = async (updateHashes = false): Promise<void> => {
     if (Object.keys(hashUpdateMap).length > 0) {
       console.log('Updating hashes...');
       console.log(hashUpdateMap);
-      const data = await readTextFile(depsPath);
+      let data = await readTextFile(depsPath);
 
       for (const [oldCache, newCache] of Object.entries(hashUpdateMap))
-        data.replace(oldCache, newCache);
+        data = data.replace(oldCache, newCache);
 
       await fs.writeFile(depsPath, data);
     }
