@@ -87,8 +87,8 @@ const writeFile = (
     const writer = fs.createWriteStream(outputFile, { flags: flags });
     writer.on('error', (err: string) => {
       errorFunc(err);
+      reject(new Error(err));
       process.exit(-1);
-      reject();
     });
 
     const splitter = new Splitter(startLine, endLine, notifier, true);

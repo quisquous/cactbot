@@ -157,7 +157,6 @@ const rules = {
   ],
   'prefer-arrow-callback': 'error',
   'prefer-const': 'error',
-  'prefer-promise-reject-errors': 'off',
   'prefer-regex-literals': 'error',
   'prefer-rest-params': 'off',
   'quotes': [
