@@ -5,7 +5,15 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-export type CatapultMech = 'standOnBlue' | 'knockback' | 'launch' | 'charge' | 'gigantomill' | 'launchOrSwing' | 'boulders' | 'loopStart';
+export type CatapultMech =
+  | 'standOnBlue'
+  | 'knockback'
+  | 'launch'
+  | 'charge'
+  | 'gigantomill'
+  | 'launchOrSwing'
+  | 'boulders'
+  | 'loopStart';
 
 export interface Data extends RaidbossData {
   catapultCount: number;
@@ -137,7 +145,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sildihn Geryon Seal Right Mechs',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'The Settling Basin will be sealed off.*?', capture: false }),
+      netRegex: NetRegexes.message({
+        line: 'The Settling Basin will be sealed off.*?',
+        capture: false,
+      }),
       // May be overwritten by Suddenly Sewage below.
       run: (data) => data.catapultMechs = rightDoorNoCeruleum,
     },
@@ -192,7 +203,9 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         // These are all handled elsewhere in other triggers.
-        if (mech === 'launch' || mech === 'charge' || mech === 'launchOrSwing' || mech === 'knockback')
+        if (
+          mech === 'launch' || mech === 'charge' || mech === 'launchOrSwing' || mech === 'knockback'
+        )
           return;
 
         if (mech === 'standOnBlue' || mech === 'gigantomill')
@@ -538,7 +551,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Reversed Slashburn',
         },
       },
-    }
+    },
   ],
   timelineReplace: [
     {

@@ -116,4 +116,3 @@ const triggerSet: OopsyTriggerSet<Data> = {
 };
 
 export default triggerSet;
-
