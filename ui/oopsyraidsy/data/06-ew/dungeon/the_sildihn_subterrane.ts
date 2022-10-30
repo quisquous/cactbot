@@ -4,8 +4,6 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
 export type Data = OopsyData;
 
-// TODO wind circle on middle Geryon that's not liftoff circle?
-
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.TheSildihnSubterrane,
   damageWarn: {
@@ -35,6 +33,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Sildihn Dullahan Cloudcover': '77DF', // targeted circle
     'Sildihn Hollow Dominion Slash': '77E2', // frontal conal
     'Sildihn Visage Dark Fire III': '77E3', // targeted circle
+    'Sildihn Python Regorge': '77EF', // targeted circle
+    'Sildihn Python Whip Back': '77E4', // backwards 90 degree conal
 
     // Various Geryon the Steer
     'Sildihn Geryon Powder Keg Explosion 1': '74D4', // blue/red barrel explosion
@@ -78,8 +78,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Sildihn Gladiator Sculptor\'s Passion': '764A', // front line
     'Sildihn Gladiator Regret Rack and Ruin': '7646', // checkerboard line aoes
 
-    'Sildihn Gladiator Biting Wind Small': '79F6', // initial wind circles
-    'Sildihn Gladiator Biting Wind Big': '79FD', // initial wind circle with big updraft
+    'Sildihn Gladiator Biting Wind Small Initial': '79F6', // initial wind circles
+    'Sildihn Gladiator Biting Wind Small': '79F7', // small wind circles (that should be avoided)
+    'Sildihn Gladiator Biting Wind Big Initial': '79FD', // initial wind circle with big updraft
     'Sildihn Gladiator Shattering Steel': '764B', // dodgeable roomwide aoe via wind/boulders
     'Sildihn Gladiator Hateful Visage Golden Flame': '7652', // statue line aoes
     'Sildihn Gladiator Hateful Visgae Silver Flame 1': '7653', // statue rotating line aoe

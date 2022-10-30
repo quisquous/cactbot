@@ -476,7 +476,7 @@ hideall "--sync--"
 
 # Puffs
 # Note: this is timed to the longest of all bridge sections
-7196.9 "--sync--" sync / 14:[^:]*:Silkie:773D:/ window 200,100
+7196.9 "--sync--" sync / 14:[^:]*:Silkie:773D:/ window 20,100
 7200.9 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:773D:/
 7210.3 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:7736:/
 7217.0 "Squeaky Left/Squeaky Right" sync / 1[56]:[^:]*:Silkie:(772E|772D):/
@@ -487,33 +487,23 @@ hideall "--sync--"
 7264.0 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:773A:/
 7267.6 "Bracing Duster / Chilling Duster" sync / 1[56]:[^:]*:Silkie:(773B|773C):/
 
-# Repeat Bracing -> Chilling forever
 7278.8 "Squeaky Left/Squeaky Right" sync / 1[56]:[^:]*:Silkie:(772E|772D):/
 7298.7 "Carpet Beater" sync / 1[56]:[^:]*:Silkie:772B:/
 7306.4 "Spot Remover" sync / 1[56]:[^:]*:Silkie:7742:/
 7315.5 "Dust Bluster" sync / 1[56]:[^:]*:Silkie:7744:/
 7326.6 "Total Wash" sync / 1[56]:[^:]*:Silkie:772C:/
-7337.7 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:7735:/
+7337.7 "Bracing Suds / Chilling Suds" sync / 1[56]:[^:]*:Silkie:(7735|7736):/
 7345.4 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:773A:/
-7348.8 "Bracing Duster" sync / 1[56]:[^:]*:Silkie:773C:/
+7348.8 "Bracing Duster / Chilling Duster" sync / 1[56]:[^:]*:Silkie:(773B|773C):/
 
-7359.9 "Squeaky Left/Squeaky Right" sync / 1[56]:[^:]*:Silkie:(772E|772D):/
-7379.8 "Carpet Beater" sync / 1[56]:[^:]*:Silkie:772B:/
-7387.5 "Spot Remover" sync / 1[56]:[^:]*:Silkie:7742:/
-7396.6 "Dust Bluster" sync / 1[56]:[^:]*:Silkie:7744:/
-7407.7 "Total Wash" sync / 1[56]:[^:]*:Silkie:772C:/
-7418.8 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:7736:/
-7426.6 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:773A:/
-7430.0 "Chilling Duster" sync / 1[56]:[^:]*:Silkie:773B:/
-
-7441.1 "Squeaky Left/Squeaky Right" sync / 1[56]:[^:]*:Silkie:(772E|772D):/ window 20,20 jump 7278.8
-7461.7 "Carpet Beater" #sync / 1[56]:[^:]*:Silkie:772B:/
-7469.4 "Spot Remover" #sync / 1[56]:[^:]*:Silkie:7742:/
-7478.5 "Dust Bluster" #sync / 1[56]:[^:]*:Silkie:7744:/
-7489.6 "Total Wash" #sync / 1[56]:[^:]*:Silkie:772C:/
-7500.7 "Bracing Suds" #sync / 1[56]:[^:]*:Silkie:7735:/
-7508.4 "Slippery Soap" #sync / 1[56]:[^:]*:Silkie:773A:/
-7511.8 "Bracing Duster" #sync / 1[56]:[^:]*:Silkie:773C:/
+7359.9 "Squeaky Left/Squeaky Right" sync / 1[56]:[^:]*:Silkie:(772E|772D):/ window 20,20 jump 7278.8
+7379.8 "Carpet Beater" #sync / 1[56]:[^:]*:Silkie:772B:/
+7387.5 "Spot Remover" #sync / 1[56]:[^:]*:Silkie:7742:/
+7396.6 "Dust Bluster" #sync / 1[56]:[^:]*:Silkie:7744:/
+7407.7 "Total Wash" #sync / 1[56]:[^:]*:Silkie:772C:/
+7418.8 "Bracing Suds / Chilling Suds" #sync / 1[56]:[^:]*:Silkie:(7735|7736):/
+7426.5 "Slippery Soap" #sync / 1[56]:[^:]*:Silkie:773A:/
+7429.9 "Bracing Duster / Chilling Duster" #sync / 1[56]:[^:]*:Silkie:(773B|773C):/
 
 
 ### Gladiator of Sil'dih
@@ -606,7 +596,7 @@ hideall "--sync--"
 8272.4 "Rush of Might (near)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:763D:/
 8274.4 "Rush of Might (far)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:763E:/
 
-8291.1 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7656:/ window 70,70 jump 8192.3
+8291.1 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7656:/ window 70,70 jump 8198.2
 8299.2 "Sundered Remains" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7648:/
 8307.3 "--middle--" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
 8311.3 "Sundered Remains (mid)" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7649:/

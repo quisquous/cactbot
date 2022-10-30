@@ -350,12 +350,22 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sildihn Silkie Chilling Duster',
       type: 'StartsUsing',
-      // 773B is with Slippery Soap, 7738 on its own
-      netRegex: { id: ['7738', '773B'], source: 'Silkie', capture: false },
+      netRegex: { id: '7738', source: 'Silkie', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Intercards',
+        },
+      },
+    },
+    {
+      id: 'Sildihn Silkie Chilling Duster Slippery',
+      type: 'StartsUsing',
+      netRegex: { id: '773B', source: 'Silkie', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Follow => Intercards',
         },
       },
     },
@@ -375,9 +385,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sildihn Silkie Bracing Duster',
       type: 'StartsUsing',
-      // 7739 is with Slippery Soap, 773C on its own
-      netRegex: { id: ['7739', '773C'], source: 'Silkie', capture: false },
+      netRegex: { id: '7739', source: 'Silkie', capture: false },
       response: Responses.getUnder(),
+    },
+    {
+      id: 'Sildihn Silkie Bracing Duster Slippery',
+      type: 'StartsUsing',
+      // No source here as sometimes the mob name is stale (!!) during the bridge section of the timeline.
+      netRegex: { id: '773C', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Follow => Under',
+        },
+      },
     },
     {
       id: 'Sildihn Gladiator Flash of Steel',
@@ -445,7 +466,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Sildihn Gladiator Ring of Might Followup',
-      type: 'StartsUsing',
+      type: 'Ability',
       netRegex: { id: ['763F', '7640', '7641'], source: 'Gladiator of Sil\'dih', capture: false },
       suppressSeconds: 1,
       response: Responses.getIn('info'),
@@ -485,7 +506,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Sildihn Gladiator Rush of Might Followup',
-      type: 'StartsUsing',
+      type: 'Ability',
       netRegex: { id: '763D', source: 'Gladiator of Sil\'dih', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
