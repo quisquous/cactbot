@@ -56,7 +56,7 @@ jobs:
           npm run fetch-deps
 
       - name: Set up msbuild
-        uses: microsoft/setup-msbuild@v1.0.2
+        uses: microsoft/setup-msbuild@v1.1.3
 
       - name: Add Custom Problem Matcher
         run: |
@@ -75,7 +75,7 @@ jobs:
         run: ./util/publish.sh
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: cactbot-${{ env.artifact_sha }}
           path: publish/cactbot-release/
