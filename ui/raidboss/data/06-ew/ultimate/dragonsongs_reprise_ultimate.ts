@@ -2801,12 +2801,13 @@ const triggerSet: TriggerSet<Data> = {
 
           // Get rotation of first gigaflare relative to boss
           let start;
-          // Case for if Front since data for heading is not exact
-          if (
-            ((Math.round(
-              (Math.abs(center[2]) + Math.abs(Math.atan2(first[0], first[1]))) * 180 / Math.PI
-            )) % 180) === 0
-          ) {
+
+          // Case for if front since data for heading is not exact
+          // To detect if front, added angles must match 180 degrees
+          const thetaFirstGigaflare = Math.abs(Math.atan2(first[0], first[1]));
+          const thetaCenterGigaflare = Math.abs(center[2]);
+          const thetaCenterPlusFirst = thetaFirstGigaflare + thetaCenterGigaflare;
+          if (Math.round(thetaCenterPlusFirst * 180 / Math.PI) % 180 === 0) {
             start = output.front!();
           } else {
             // Gigaflare was not in line with boss facing,
