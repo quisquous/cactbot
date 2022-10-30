@@ -68,10 +68,12 @@ const triggerSet: TriggerSet<Data> = {
           SW: 'NE',
         };
 
-        const tentacleFlag = data.tentacleEffects[0]!.flags;
-        if (tentacleFlag === undefined || scarletTentacleLocations[tentacleFlag] === undefined)
+        const tentacleFlag = data.tentacleEffects[0]?.flags;
+        if (tentacleFlag === undefined)
           return output.default!();
-        const tentacleLocation = scarletTentacleLocations[tentacleFlag]!;
+        const tentacleLocation = scarletTentacleLocations[tentacleFlag];
+        if (tentacleLocation === undefined)
+          return output.default!();
         const safeDir = safeMap[tentacleLocation];
         if (safeDir === undefined)
           return output.default!();
@@ -136,18 +138,18 @@ const triggerSet: TriggerSet<Data> = {
         for (const tentacle of data.tentacleEffects) {
           if (tentacle.location === '10') {
             if (cyanTentacleLocations[tentacle.flags] !== undefined)
-              cyanLoc = cyanTentacleLocations[tentacle.flags]!;
+              cyanLoc = cyanTentacleLocations[tentacle.flags];
           } else if (tentacle.location === '11') {
             if (scarletTentacleLocations[tentacle.flags] !== undefined)
-              scarletLoc = scarletTentacleLocations[tentacle.flags]!;
+              scarletLoc = scarletTentacleLocations[tentacle.flags];
           }
         }
-        if (
-          cyanLoc === undefined || scarletLoc === undefined ||
-          safeMap[cyanLoc][scarletLoc] === undefined
-        )
+        if (cyanLoc === undefined || scarletLoc === undefined)
           return output.default!();
-        const [safe0, safe1]: string[] = safeMap[cyanLoc][scarletLoc]!;
+        const safeArray = safeMap[cyanLoc][scarletLoc];
+        if (safeArray === undefined)
+          return output.default!();
+        const [safe0, safe1]: string[] = safeArray;
         return output.safe!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
       },
       run: (data) => data.tentacleEffects = [],
