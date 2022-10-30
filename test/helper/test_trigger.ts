@@ -269,7 +269,7 @@ const testTriggerFile = (file: string) => {
       // if prefix includes more than one word, just remove latter letters.
       if (prefix.includes(' '))
         prefix = prefix.slice(0, prefix.lastIndexOf(' ') + 1);
-      if (prefix[prefix.length - 1] !== ' ')
+      if (!prefix.endsWith(' '))
         assert.fail(`id prefix '${prefix}' is not a full word, must end in a space`);
     }
   });

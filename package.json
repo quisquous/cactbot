@@ -83,6 +83,7 @@
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-rulesdir": "^0.2.1",
     "eslint-plugin-tsc": "^2.0.0",
+    "eslint-plugin-unicorn": "^44.0.2",
     "fast-levenshtein": "^3.0.0",
     "fork-ts-checker-webpack-plugin": "^7.2.11",
     "fs-extra": "^10.1.0",

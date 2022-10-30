@@ -145,7 +145,7 @@ export default class Anonymizer {
       }
 
       // Ignore monsters.
-      if (playerId[0] === '4')
+      if (playerId.startsWith('4'))
         continue;
 
       // Replace the id at this index with a fake player id.

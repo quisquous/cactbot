@@ -298,7 +298,7 @@ class TLFuncs {
   // TODO: Replace the line argument with a NetAnyMatches once
   // we move the ParseLine logic out of the emulator.
   static getTZOffsetFromLogLine(line: string): number {
-    const time = line.substring(0, 3).includes('|') ? line.substring(3, 36) : line.substring(4, 37);
+    const time = line.slice(0, 3).includes('|') ? line.slice(3, 36) : line.slice(4, 37);
     return DTFuncs.getTimezoneOffsetMillis(time);
   }
 

@@ -148,7 +148,7 @@ const combineFuncs = function(
 };
 
 const isPlayerId = (id?: string) => {
-  return id !== undefined && id[0] !== '4';
+  return id !== undefined && !id.startsWith('4');
 };
 
 // For responses that unconditionally return static text.

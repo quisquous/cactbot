@@ -806,7 +806,7 @@ export class PopupText {
       // And set the timeline files/timelines from each set that matches.
       if (set.timelineFile) {
         if (set.filename) {
-          const dir = set.filename.substring(0, set.filename.lastIndexOf('/'));
+          const dir = set.filename.slice(0, Math.max(0, set.filename.lastIndexOf('/')));
           timelineFiles.push(dir + '/' + set.timelineFile);
         } else {
           // Note: For user files, this should get handled by raidboss_config.js,
