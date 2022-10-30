@@ -915,7 +915,7 @@ export class PopupText {
       return nick;
 
     const idx = name.indexOf(' ');
-    return idx < 0 ? name : name.substr(0, idx);
+    return idx < 0 ? name : name.slice(0, idx);
   }
 
   Reset(): void {

@@ -103,7 +103,7 @@ export const ShortNamify = (
     return nick;
 
   const idx = name.indexOf(' ');
-  return idx < 0 ? name : name.substr(0, idx);
+  return idx < 0 ? name : name.slice(0, idx);
 };
 
 export const Translate = (lang: Lang, obj?: LocaleText | string): string | undefined => {
@@ -131,7 +131,7 @@ export const UnscrambleDamage = (field?: string): number => {
   if (len <= 4)
     return 0;
   // Get the left two bytes as damage.
-  let damage = parseInt(field.substr(0, len - 4), 16);
+  let damage = parseInt(field.slice(0, len - 4), 16);
   // Check for third byte == 0x40.
   if (field[len - 4] === '4') {
     // Wrap in the 4th byte as extra damage.  See notes above.

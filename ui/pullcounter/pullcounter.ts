@@ -308,7 +308,7 @@ class PullCounter {
       const firstChar = word[0];
       if (firstChar === undefined)
         return '';
-      return firstChar.toUpperCase() + word.substr(1);
+      return firstChar.toUpperCase() + word.slice(1);
     }).join(' ');
 
     this.ReloadTriggers();

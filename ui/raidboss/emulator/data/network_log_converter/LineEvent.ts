@@ -68,10 +68,10 @@ export default class LineEvent {
 
     damage = SFuncs.zeroPad(damage, 8);
     const parts = [
-      damage.substr(0, 2),
-      damage.substr(2, 2),
-      damage.substr(4, 2),
-      damage.substr(6, 2),
+      damage.slice(0, 2),
+      damage.slice(2, 4),
+      damage.slice(4, 6),
+      damage.slice(6, 8),
     ] as const;
 
     if (!LineEvent.isDamageBig(damage))
