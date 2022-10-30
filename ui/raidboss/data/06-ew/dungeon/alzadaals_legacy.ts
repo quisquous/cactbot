@@ -68,13 +68,10 @@ const triggerSet: TriggerSet<Data> = {
           SW: 'NE',
         };
 
-        const tentacleFlag = data.tentacleEffects[0]!.flags as TentacleFlag;
-        if (tentacleFlag === undefined)
+        const tentacleFlag = data.tentacleEffects[0]!.flags;
+        if (tentacleFlag === undefined || scarletTentacleLocations[tentacleFlag] === undefined)
           return output.default!();
-        const tentacleLocation = scarletTentacleLocations[tentacleFlag]! as Intercard;
-        if (tentacleLocation === undefined)
-          return output.default!();
-
+        const tentacleLocation = scarletTentacleLocations[tentacleFlag]!;
         const safeDir = safeMap[tentacleLocation];
         if (safeDir === undefined)
           return output.default!();
