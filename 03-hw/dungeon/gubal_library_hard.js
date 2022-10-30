@@ -33,8 +33,7 @@ Options.Triggers.push({
       id: 'Gubal Hard Ferrofluid',
       type: 'HeadMarker',
       netRegex: { id: ['0030', '0031'] },
-      condition: (data, matches) =>
-        data.me === matches.target || matches.targetId.slice(0, 1) === '4',
+      condition: (data, matches) => data.me === matches.target || matches.targetId.startsWith('4'),
       preRun: (data, matches) => {
         data.markers ??= [];
         data.markers.push(matches.id);
