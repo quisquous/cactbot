@@ -1,11 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 
-import chai from 'chai';
+import { assert } from 'chai';
 
 import { walkDirSync } from '../../util/file_utils';
-
-const { assert } = chai;
 
 const testManifestFile = (file: string) => {
   let manifestLines: string[];

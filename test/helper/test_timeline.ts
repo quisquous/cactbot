@@ -1,15 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 
-import chai from 'chai';
+import { assert } from 'chai';
 
 import Regexes from '../../resources/regexes';
 import { translateWithReplacements } from '../../resources/translations';
 import { LooseTriggerSet } from '../../types/trigger';
 import { CommonReplacement, commonReplacement } from '../../ui/raidboss/common_replacement';
 import { TimelineParser, TimelineReplacement } from '../../ui/raidboss/timeline_parser';
-
-const { assert } = chai;
 
 const parseTimelineFileFromTriggerFile = (filepath: string) => {
   const fileContents = fs.readFileSync(filepath, 'utf8');
