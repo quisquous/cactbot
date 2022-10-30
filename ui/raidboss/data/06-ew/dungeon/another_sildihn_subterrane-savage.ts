@@ -59,68 +59,68 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     // ---------------- first trash ----------------
     {
-      id: 'ASS Atropine Spore',
+      id: 'ASSS Atropine Spore',
       type: 'StartsUsing',
       netRegex: { id: '7978', source: 'Aqueduct Belladonna', capture: false },
       response: Responses.getIn(),
     },
     {
-      id: 'ASS Frond Affront',
+      id: 'ASSS Frond Affront',
       type: 'StartsUsing',
       netRegex: { id: '7979', source: 'Aqueduct Belladonna', capture: false },
       response: Responses.lookAway(),
     },
     {
-      id: 'ASS Deracinator',
+      id: 'ASSS Deracinator',
       type: 'StartsUsing',
       netRegex: { id: '797A', source: 'Aqueduct Belladonna' },
       response: Responses.tankBuster(),
     },
     {
-      id: 'ASS Left Sweep',
+      id: 'ASSS Left Sweep',
       type: 'StartsUsing',
       netRegex: { id: '797C', source: 'Aqueduct Kaluk', capture: false },
       response: Responses.goRight(),
     },
     {
-      id: 'ASS Right Sweep',
+      id: 'ASSS Right Sweep',
       type: 'StartsUsing',
       netRegex: { id: '797B', source: 'Aqueduct Kaluk', capture: false },
       response: Responses.goLeft(),
     },
     {
-      id: 'ASS Creeping Ivy',
+      id: 'ASSS Creeping Ivy',
       type: 'StartsUsing',
       netRegex: { id: '797D', source: 'Aqueduct Kaluk', capture: false },
       response: Responses.getBehind(),
     },
     {
-      id: 'ASS Honeyed Left',
+      id: 'ASSS Honeyed Left',
       type: 'StartsUsing',
       netRegex: { id: '7973', source: 'Aqueduct Udumbara', capture: false },
       response: Responses.goRight(),
     },
     {
-      id: 'ASS Honeyed Right',
+      id: 'ASSS Honeyed Right',
       type: 'StartsUsing',
       netRegex: { id: '7974', source: 'Aqueduct Udumbara', capture: false },
       response: Responses.goLeft(),
     },
     {
-      id: 'ASS Honeyed Front',
+      id: 'ASSS Honeyed Front',
       type: 'StartsUsing',
       netRegex: { id: '7975', source: 'Aqueduct Udumbara', capture: false },
       response: Responses.getBehind(),
     },
     {
-      id: 'ASS Arboreal Storm',
+      id: 'ASSS Arboreal Storm',
       type: 'StartsUsing',
       netRegex: { id: '796F', source: 'Aqueduct Dryad', capture: false },
       response: Responses.getOut(),
     },
     // ---------------- Silkie ----------------
     {
-      id: 'ASS Soap\'s Up',
+      id: 'ASSS Soap\'s Up',
       type: 'StartsUsing',
       netRegex: { id: '777D', source: 'Silkie', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
@@ -132,25 +132,25 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Dust Bluster',
+      id: 'ASSS Dust Bluster',
       type: 'StartsUsing',
       netRegex: { id: '778F', source: 'Silkie', capture: false },
       response: Responses.knockback(),
     },
     {
-      id: 'ASS Squeaky Clean Right',
+      id: 'ASSS Squeaky Clean Right',
       type: 'StartsUsing',
       netRegex: { id: '7774', source: 'Silkie', capture: false },
       response: Responses.goLeft(),
     },
     {
-      id: 'ASS Squeaky Clean Left',
+      id: 'ASSS Squeaky Clean Left',
       type: 'StartsUsing',
       netRegex: { id: '7775', source: 'Silkie', capture: false },
       response: Responses.goRight(),
     },
     {
-      id: 'ASS Suds Gain',
+      id: 'ASSS Suds Gain',
       // CE1 Bracing Suds (Wind / Donut)
       // CE2 Chilling Suds (Ice / Cardinal)
       // CE3 Fizzling Suds (Lightning / Intercardinal)
@@ -159,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => data.suds = matches.effectId,
     },
     {
-      id: 'ASS Suds Lose',
+      id: 'ASSS Suds Lose',
       // CE1 Bracing Suds (Wind / Donut)
       // CE2 Chilling Suds (Ice / Cardinal)
       // CE3 Fizzling Suds (Lightning / Intercardinal)
@@ -168,7 +168,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => delete data.suds,
     },
     {
-      id: 'ASS Slippery Soap',
+      id: 'ASSS Slippery Soap',
       // Happens 5 times in the encounter
       type: 'Ability',
       netRegex: { id: '79FB', source: ['Silkie', 'Eastern Ewer'] },
@@ -217,7 +217,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Slippery Soap with Chilling Suds',
+      id: 'ASSS Slippery Soap with Chilling Suds',
       type: 'StartsUsing',
       netRegex: { id: '7781', source: 'Silkie' },
       condition: (data) => data.suds === 'CE2',
@@ -225,7 +225,7 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.moveAround(),
     },
     {
-      id: 'ASS Slippery Soap After',
+      id: 'ASSS Slippery Soap After',
       type: 'Ability',
       netRegex: { id: '7781', source: 'Silkie', capture: false },
       infoText: (data, _matches, output) => {
@@ -255,7 +255,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Carpet Beater',
+      id: 'ASSS Carpet Beater',
       type: 'StartsUsing',
       netRegex: { id: '7772', source: 'Silkie' },
       preRun: (data) => data.beaterCounter++,
@@ -283,7 +283,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Soaping Spree',
+      id: 'ASSS Soaping Spree',
       // Boss does not cast Fizzling Duster with Soaping Spree
       type: 'StartsUsing',
       netRegex: { id: '778A', source: 'Silkie', capture: false },
@@ -321,7 +321,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Total Wash',
+      id: 'ASSS Total Wash',
       type: 'StartsUsing',
       netRegex: { id: '7773', source: 'Silkie', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
@@ -337,7 +337,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     // ---------------- second trash ----------------
     {
-      id: 'ASS Infernal Pain',
+      id: 'ASSS Infernal Pain',
       type: 'StartsUsing',
       netRegex: { id: '7981', source: 'Sil\'dihn Dullahan', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
@@ -352,13 +352,13 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Blighted Gloom',
+      id: 'ASSS Blighted Gloom',
       type: 'StartsUsing',
       netRegex: { id: '797E', source: 'Sil\'dihn Dullahan', capture: false },
       response: Responses.getOut(),
     },
     {
-      id: 'ASS Infernal Weight',
+      id: 'ASSS Infernal Weight',
       type: 'StartsUsing',
       netRegex: { id: '7983', source: 'Aqueduct Armor', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
@@ -370,20 +370,20 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Dominion Slash',
+      id: 'ASSS Dominion Slash',
       type: 'StartsUsing',
       netRegex: { id: '7982', source: 'Aqueduct Armor', capture: false },
       response: Responses.getBehind(),
     },
     // ---------------- Gladiator of Sil'dih ----------------
     {
-      id: 'ASS Flash of Steel',
+      id: 'ASSS Flash of Steel',
       type: 'StartsUsing',
       netRegex: { id: '77B3', source: 'Gladiator of Sil\'dih', capture: false },
       response: Responses.aoe(),
     },
     {
-      id: 'ASS Rush of Might 1',
+      id: 'ASSS Rush of Might 1',
       // Boss casts 779E (12.2s) and 779D (10.2s), twice
       // Gladiator of Mirage casts 779B, 779A, 779C, these target the environment
       // North
@@ -503,7 +503,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Rush of Might 2',
+      id: 'ASSS Rush of Might 2',
       type: 'Ability',
       netRegex: { id: '779D', source: 'Gladiator of Sil\'dih', capture: false },
       suppressSeconds: 1,
@@ -522,7 +522,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Sculptor\'s Passion',
+      id: 'ASSS Sculptor\'s Passion',
       // This is a wild charge, player in front takes most damage
       type: 'Ability',
       netRegex: { id: '6854', source: 'Gladiator of Sil\'dih' },
@@ -551,13 +551,13 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Mighty Smite',
+      id: 'ASSS Mighty Smite',
       type: 'StartsUsing',
       netRegex: { id: '77B4', source: 'Gladiator of Sil\'dih' },
       response: Responses.tankBuster(),
     },
     {
-      id: 'ASS Lingering Echoes',
+      id: 'ASSS Lingering Echoes',
       // CDC Lingering Echoes (Spread + Move)
       type: 'GainsEffect',
       netRegex: { effectId: 'CDC' },
@@ -567,14 +567,14 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.moveAway(),
     },
     {
-      id: 'ASS Thunderous Echo Collect',
+      id: 'ASSS Thunderous Echo Collect',
       // CDD Thunderous Echo (Stack)
       type: 'GainsEffect',
       netRegex: { effectId: 'CDD' },
       preRun: (data, matches) => data.thunderousEchoPlayer = matches.target,
     },
     {
-      id: 'ASS Curse of the Fallen',
+      id: 'ASSS Curse of the Fallen',
       // CDA Echoes of the Fallen (Spread)
       // Two players will not have a second debuff, so check CDA
       // 14s = first
@@ -631,7 +631,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Ring of Might',
+      id: 'ASSS Ring of Might',
       // There are 6 spells:
       //   Ring 1: 779F (9.7s) / 77A2 (11.7s)
       //   Ring 2: 77A0 (9.7s) / 77A3 (11.7s)
@@ -662,7 +662,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Echoes of the Fallen Reminder',
+      id: 'ASSS Echoes of the Fallen Reminder',
       // CDA Echoes of the Fallen (Spread)
       type: 'GainsEffect',
       netRegex: { effectId: 'CDA' },
@@ -671,7 +671,7 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.spread(),
     },
     {
-      id: 'ASS Thunderous Echo Reminder',
+      id: 'ASSS Thunderous Echo Reminder',
       // CDD Thunderous Echo (Stack)
       type: 'GainsEffect',
       netRegex: { effectId: 'CDD' },
@@ -690,14 +690,14 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Nothing beside Remains',
+      id: 'ASSS Nothing beside Remains',
       type: 'StartsUsing',
       netRegex: { id: '77BC', source: 'Gladiator of Sil\'dih', capture: false },
       suppressSeconds: 1,
       response: Responses.spread(),
     },
     {
-      id: 'ASS Accursed Visage Collect',
+      id: 'ASSS Accursed Visage Collect',
       // CDF = Gilded Fate
       // CE0 = Silvered Fate
       type: 'GainsEffect',
@@ -712,7 +712,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Golden/Silver Flame',
+      id: 'ASSS Golden/Silver Flame',
       // 77B1 = Golden Flame
       // 77B2 = Silver Flame
       type: 'StartsUsing',
@@ -748,7 +748,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Sundered Remains',
+      id: 'ASSS Sundered Remains',
       // Using 77A8 Curse of the Monument
       type: 'StartsUsing',
       netRegex: { id: '77A8', source: 'Gladiator of Sil\'dih', capture: false },
@@ -765,13 +765,13 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Curse of the Monument',
+      id: 'ASSS Curse of the Monument',
       type: 'Ability',
       netRegex: { id: '77A8', source: 'Gladiator of Sil\'dih', capture: false },
       response: Responses.breakChains(),
     },
     {
-      id: 'ASS Scream of the Fallen',
+      id: 'ASSS Scream of the Fallen',
       // CDB = Scream of the Fallen (defamation)
       // BBC = First in Line
       // BBD = Second in Line
@@ -798,19 +798,19 @@ const triggerSet: TriggerSet<Data> = {
     },
     // ---------------- Shadowcaster Zeless Gah ----------------
     {
-      id: 'ASS Show of Strength',
+      id: 'ASSS Show of Strength',
       type: 'StartsUsing',
       netRegex: { id: '76C5', source: 'Shadowcaster Zeless Gah', capture: false },
       response: Responses.aoe(),
     },
     {
-      id: 'ASS Firesteel Fracture',
+      id: 'ASSS Firesteel Fracture',
       type: 'StartsUsing',
       netRegex: { id: '76C4', source: 'Shadowcaster Zeless Gah' },
       response: Responses.tankCleave(),
     },
     {
-      id: 'ASS Infern Brand Counter',
+      id: 'ASSS Infern Brand Counter',
       type: 'StartsUsing',
       netRegex: { id: '7491', source: 'Shadowcaster Zeless Gah', capture: false },
       run: (data) => {
@@ -819,7 +819,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Arcane Font Tracker',
+      id: 'ASSS Arcane Font Tracker',
       type: 'AddedCombatant',
       netRegex: { name: 'Arcane Font', capture: false },
       // Only run this trigger for second Infern Band, first set of portals
@@ -827,7 +827,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => data.arcaneFontCounter++,
     },
     {
-      id: 'ASS Infern Brand Collect',
+      id: 'ASSS Infern Brand Collect',
       // Count field on 95D on Infern Brand indicates Brand's number:
       //   1C2 - 1C5, Orange 1 - 4
       //   1C6 - 1C9, Blue 1 - 4
@@ -836,7 +836,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => data.brandEffects[parseInt(matches.targetId, 16)] = matches.count,
     },
     {
-      id: 'ASS Infern Brand 2 Starting Corner',
+      id: 'ASSS Infern Brand 2 Starting Corner',
       // CC4 First Brand
       // CC5 Second Brand
       // CC6 Third Brand
@@ -962,7 +962,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Infern Brand 2 First Flame',
+      id: 'ASSS Infern Brand 2 First Flame',
       // CC8 First Flame
       // CC9 Second Flame
       // CCA Third Flame
@@ -1002,7 +1002,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Infern Brand 2 Remaining Flames',
+      id: 'ASSS Infern Brand 2 Remaining Flames',
       // Player receives Magic Vulnerability Up from Cryptic Flame for 7.96s after cutting
       // Trigger will delay for this Magic Vulnerability Up for safety
       // No exception for time remaining on debuff to sacrafice to cut the line
@@ -1080,7 +1080,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Infern Brand Cryptic Flame Collect',
+      id: 'ASSS Infern Brand Cryptic Flame Collect',
       // Collect timestamp for when last cut flame
       type: 'Ability',
       netRegex: { id: '76CA', source: 'Infern Brand' },
@@ -1088,7 +1088,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => data.myLastCut = Date.parse(matches.timestamp),
     },
     {
-      id: 'ASS Banishment',
+      id: 'ASSS Banishment',
       // Players receive invisible effect that indicates rotation and direction
       // of their teleport attached teleport pad
       //
@@ -1147,7 +1147,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Banishment First Ward',
+      id: 'ASSS Banishment First Ward',
       // This debuff expires 4.7s before the first bait, but there is a slight
       // animation lock from the teleport that occurs
       // Repositioning may be required to bait the active ward's Infern Wave
@@ -1164,7 +1164,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Banishment Bait Second Ward',
+      id: 'ASSS Banishment Bait Second Ward',
       // After the second teleport and stun expiring, there is 2s before the
       // the last ward casts Infern Wave that must be baited
       // Rite of Passage (CCD) debuff is tied to the player's teleport going
@@ -1181,7 +1181,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Infern Brand 5 Starting Position',
+      id: 'ASSS Infern Brand 5 Starting Position',
       // CC4 First Brand
       // CC5 Second Brand
       // CC6 Third Brand
@@ -1239,7 +1239,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Infern Brand 5 First Flame',
+      id: 'ASSS Infern Brand 5 First Flame',
       // CC8 First Flame
       // CC9 Second Flame
       // CCA Third Flame
@@ -1257,7 +1257,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Infern Brand 5 Infern Wave Counter',
+      id: 'ASSS Infern Brand 5 Infern Wave Counter',
       type: 'Ability',
       netRegex: { id: '76CD', source: 'Infern Brand', capture: false },
       condition: (data) => data.brandCounter === 5,
@@ -1265,7 +1265,7 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 1,
     },
     {
-      id: 'ASS Infern Brand 5 Cuts after Baits',
+      id: 'ASSS Infern Brand 5 Cuts after Baits',
       // Utilizing 1.96s Magic Vulnerability Up (B7D) from Infern Wave to tell
       // when to start cutting after baiting the Infern Ward
       // Vulnerability expires after Pure Fire (749F) puddles, so no need to
@@ -1322,7 +1322,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Infern Brand 5 Remaining Flames',
+      id: 'ASSS Infern Brand 5 Remaining Flames',
       type: 'LosesEffect',
       netRegex: { effectId: '95D', target: 'Infern Brand', count: '1C[2-9]' },
       condition: (data) => data.brandCounter === 5,
