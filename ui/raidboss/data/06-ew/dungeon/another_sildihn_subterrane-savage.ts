@@ -1,22 +1,29 @@
 import Conditions from '../../../../../resources/conditions';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Silkie specify which puff to get behind in first Slippery Soap
 // TODO: Silkie specify where to point puff's tether
 // TODO: Silkie call puff to go to for safety
-// TODO: Additional Gladiator triggers and adjustments to timeline
-// TODO: Additional Shadowcaster triggers and adjustments to timeline
+// TODO: Gladiator triggers for gold/silver location using OverlayPlugin?
+// TODO: Gladiator adjustments to timeline
+// TODO: Shadowcaster Infern Brand 1 and 4 safe location triggers if possible
+// TODO: Shadowcaster adjustments to timeline
+// TODO: Automate keeping ASS and ASS(S) triggers/timeline in-sync
 
 export interface Data extends RaidbossData {
   suds?: string;
   soapCounter: number;
   beaterCounter: number;
   spreeCounter: number;
+  mightCasts: PluginCombatantState[];
+  mightDir?: string;
   hasLingering?: boolean;
   thunderousEchoPlayer?: string;
   gildedCounter: number;
@@ -26,6 +33,9 @@ export interface Data extends RaidbossData {
   brandEffects: { [effectId: number]: string };
   brandCounter: number;
   myLastCut?: number;
+  firstColorCut?: 'orange' | 'blue';
+  flamesCutCounter: number;
+  waveCounter: number;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -36,12 +46,14 @@ const triggerSet: TriggerSet<Data> = {
       soapCounter: 0,
       beaterCounter: 0,
       spreeCounter: 0,
+      mightCasts: [],
       gildedCounter: 0,
       silveredCounter: 0,
       arcaneFontCounter: 0,
       brandEffects: {},
       brandCounter: 0,
-      flameCounter: 0,
+      flamesCutCounter: 0,
+      waveCounter: 0,
     };
   },
   triggers: [
@@ -371,6 +383,145 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
+      id: 'ASS Rush of Might 1',
+      // Boss casts 779E (12.2s) and 779D (10.2s), twice
+      // Gladiator of Mirage casts 779B, 779A, 779C, these target the environment
+      // North
+      //                East               West
+      //   Line 1: (-34.14, -270.14) (-35.86, -270.14)
+      //   Line 2: (-39.45, -275.45) (-30.55, -275.45)
+      //   Line 3: (-44.75, -280.75) (-25.25, -280.75)
+      // South
+      //                East               West
+      //   Line 1: (-34.14, -271.86) (-35.86, -271.86)
+      //   Line 2: (-39.45, -266.55) (-30.55, -266.55)
+      //   Line 3: (-44.75, -261.25) (-25.25, -261.25)
+      // Center is at (-35, -271)
+      type: 'StartsUsing',
+      netRegex: { id: '779E', source: 'Gladiator of Sil\'dih' },
+      delaySeconds: 0.4,
+      promise: async (data, matches) => {
+        if (data.mightCasts.length === 2)
+          data.mightCasts = [];
+
+        // select the Gladiator with same source id
+        let gladiatorData = null;
+        gladiatorData = await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (gladiatorData === null) {
+          console.error(`Gladiator of Sil'dih: null data`);
+          return;
+        }
+        if (gladiatorData.combatants.length !== 1) {
+          console.error(`Gladiator of Sil'dih: expected 1, got ${gladiatorData.combatants.length}`);
+          return;
+        }
+
+        const gladiator = gladiatorData.combatants[0];
+        if (!gladiator)
+          return;
+        data.mightCasts.push(gladiator);
+      },
+      infoText: (data, _matches, output) => {
+        if (data.mightCasts.length !== 2)
+          return;
+        const mirage1 = data.mightCasts[0];
+        const mirage2 = data.mightCasts[1];
+
+        if (mirage1 === undefined || mirage2 === undefined)
+          throw new UnreachableCode();
+
+        const x1 = mirage1.PosX;
+        const y1 = mirage1.PosY;
+        const x2 = mirage2.PosX;
+        const y2 = mirage2.PosY;
+
+        const getLine = (x: number) => {
+          // Round values to be easier to read:
+          //   1    2    3
+          // [-35, -40, -45]
+          // [-35, -30, -25]
+          const roundX = Math.round(x / 5) * 5;
+          if (roundX === -45 || roundX === -25)
+            return 3;
+          else if (roundX === -40 || roundX === -30)
+            return 2;
+          else if (roundX === -35)
+            return 1;
+          return undefined;
+        };
+        const line1 = getLine(x1);
+        const line2 = getLine(x2);
+        if (line1 === undefined || line2 === undefined) {
+          console.error(`Rush of Might 1: Failed to determine line from ${x1} or ${x2}`);
+          return;
+        }
+
+        const line = line1 > line2 ? line1 : line2;
+
+        // Get card and greatest relative x value
+        let card;
+        const roundY = Math.round(y1 / 3) * 3;
+        // Round values to be easier to read:
+        //          1     2     3
+        // North [-270, -276, -282]
+        // South [-273, -267, -261]
+        if (roundY === -270 || roundY === -276 || roundY === -282) {
+          // Get the x value of farthest north mirage
+          const x = y1 < y2 ? x1 : x2;
+          card = x < -35 ? 'west' : 'east';
+          data.mightDir = 'north';
+        } else if (roundY === -273 || roundY === -267 || roundY === -261) {
+          // Get the x value of farthest south mirage
+          const x = y1 > y2 ? x1 : x2;
+          card = x < -35 ? 'west' : 'east';
+          data.mightDir = 'south';
+        } else {
+          console.error(`Rush of Might 1: Failed to determine card from ${y1}`);
+          return;
+        }
+
+        // When one is 2 and one is 3 we need to be inside (towards middle)
+        if (line1 === 2 && line2 === 3 || line1 === 3 && line2 === 2)
+          return output.insideLine!({ card: output[card]!() });
+        return output.outsideLine!({ card: output[card]!(), line: line });
+      },
+      outputStrings: {
+        outsideLine: {
+          en: 'Outside ${card}, above line ${line}',
+        },
+        insideLine: {
+          en: 'Inside ${card}, above line 3',
+        },
+        east: Outputs.east,
+        west: Outputs.west,
+      },
+    },
+    {
+      id: 'ASS Rush of Might 2',
+      type: 'Ability',
+      netRegex: { id: '779D', source: 'Gladiator of Sil\'dih', capture: false },
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        if (data.mightDir === undefined)
+          return output.move!();
+        return output.text!({ dir: output[data.mightDir]!() });
+      },
+      outputStrings: {
+        text: {
+          en: 'Move ${dir}',
+        },
+        north: Outputs.north,
+        south: Outputs.south,
+        move: Outputs.moveAway,
+      },
+    },
+    {
       id: 'ASS Sculptor\'s Passion',
       // This is a wild charge, player in front takes most damage
       type: 'Ability',
@@ -693,7 +844,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: ['CC4', 'CC5', 'CC6', 'CC7'] },
       condition: (data, matches) => data.me === matches.target && data.brandCounter === 2,
-      delaySeconds: 0.1, // Delay to collect all Infern Brand Effects
+      delaySeconds: 0.2, // Delay to collect all Infern Brand Effects
       durationSeconds: (_data, matches) => parseFloat(matches.duration) - 0.1,
       infoText: (data, matches, output) => {
         const brandMap: { [effectId: string]: number } = {
@@ -711,6 +862,10 @@ const triggerSet: TriggerSet<Data> = {
 
         if (Object.keys(data.brandEffects).length !== 8) {
           // Missing Infern Brands, output number
+          if (data.arcaneFontCounter === 3)
+            return output.blueBrandNum!({ num: myNum });
+          if (data.arcaneFontCounter === 2)
+            return output.orangeBrandNum!({ num: myNum });
           return output.brandNum!({ num: myNum });
         }
 
@@ -771,13 +926,30 @@ const triggerSet: TriggerSet<Data> = {
         if (cardX === undefined || cardY === undefined)
           throw new UnreachableCode();
 
-        return output.text!({ num: myNum, corner: output[cardX + cardY]!() });
+        // Check color of brand that will be cut
+        if (data.arcaneFontCounter === 3)
+          return output.blueBrandNumCorner!({ num: myNum, corner: output[cardX + cardY]!() });
+        if (data.arcaneFontCounter === 2)
+          return output.orangeBrandNumCorner!({ num: myNum, corner: output[cardX + cardY]!() });
+        return output.brandNumCorner!({ num: myNum, corner: output[cardX + cardY]!() });
       },
       run: (data) => data.brandEffects = {},
       outputStrings: {
-        text: {
+        blueBrandNumCorner: {
+          en: 'Blue Brand ${num}: ${corner} corner',
+        },
+        orangeBrandNumCorner: {
+          en: 'Orange Brand ${num}: ${corner} corner',
+        },
+        brandNumCorner: {
           en: 'Brand ${num}: ${corner} corner',
           de: 'Kryptogramm ${num}: ${corner} Ecke',
+        },
+        blueBrandNum: {
+          en: 'Blue Brand ${num}',
+        },
+        orangeBrandNum: {
+          en: 'Orange Brand ${num}',
         },
         brandNum: {
           en: 'Brand ${num}',
@@ -1006,6 +1178,231 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait Second Ward',
         },
+      },
+    },
+    {
+      id: 'ASS Infern Brand 5 Starting Position',
+      // CC4 First Brand
+      // CC5 Second Brand
+      // CC6 Third Brand
+      // CC7 Fourth Brand
+      // Although we can see where the 4 wards spawn, Does not seem to be a way
+      // to determine which one is animated which is required to tell which color
+      // to cut
+      type: 'GainsEffect',
+      netRegex: { effectId: ['CC4', 'CC5', 'CC6', 'CC7'] },
+      condition: (data, matches) => data.me === matches.target && data.brandCounter === 5,
+      delaySeconds: 0.1,
+      infoText: (data, matches, output) => {
+        const brandMap: { [effectId: string]: number } = {
+          'CC4': 1,
+          'CC5': 2,
+          'CC6': 3,
+          'CC7': 4,
+        };
+        const myNum = brandMap[matches.effectId];
+        if (myNum === undefined)
+          throw new UnreachableCode();
+
+        // Store for later trigger
+        data.myFlame = myNum;
+
+        // In Infern Brand 5, there are 4 wards in a + and blocked by 2 lines each
+        // This creates an opening in middle where First Brand + Second Brand
+        // while Third Brand and Fourth Brand need to bait the first ward
+        // Blue N/S:
+        //   (304.00, -110.00)
+        //   (304.00, -108.00)
+        //
+        //   (304.00, -102.00)
+        //   (304.00, -100.00)
+        // Orange E/W:
+        //   (284.00, -85.00)
+        //   (286.00, -85.00)
+        //
+        //   (292.00, -85.00)
+        //   (294.00, -85.00)
+
+        // Generic output unless we find a method to determine which way to cut
+        if (myNum === 1 || myNum === 2)
+          return output.middle!({ num: myNum });
+        return output.outThenBait!({ num: myNum });
+      },
+      run: (data) => data.brandEffects = {},
+      outputStrings: {
+        middle: {
+          en: 'Brand ${num}: Get Middle',
+        },
+        outThenBait: {
+          en: 'Brand ${num}: Out, Bait Ward',
+        },
+      },
+    },
+    {
+      id: 'ASS Infern Brand 5 First Flame',
+      // CC8 First Flame
+      // CC9 Second Flame
+      // CCA Third Flame
+      // CCB Fourth Flame
+      // Until we find a way to determine color, call cut order only
+      type: 'GainsEffect',
+      netRegex: { effectId: 'CC8' },
+      condition: (data, matches) => data.me === matches.target && data.brandCounter === 5,
+      alertText: (_data, _matches, output) => output.firstCut!(),
+      outputStrings: {
+        firstCut: {
+          en: 'First Cut',
+          de: 'Als Erster durchtrennen',
+        },
+      },
+    },
+    {
+      id: 'ASS Infern Brand 5 Infern Wave Counter',
+      type: 'Ability',
+      netRegex: { id: '76CD', source: 'Infern Brand', capture: false },
+      condition: (data) => data.brandCounter === 5,
+      preRun: (data) => data.waveCounter++,
+      suppressSeconds: 1,
+    },
+    {
+      id: 'ASS Infern Brand 5 Cuts after Baits',
+      // Utilizing 1.96s Magic Vulnerability Up (B7D) from Infern Wave to tell
+      // when to start cutting after baiting the Infern Ward
+      // Vulnerability expires after Pure Fire (749F) puddles, so no need to
+      // add additional delay for the puddle
+      type: 'GainsEffect',
+      netRegex: { effectId: 'B7D' },
+      condition: (data, matches) => {
+        const duration = parseFloat(matches.duration);
+        return data.me === matches.target && data.brandCounter === 5 && duration <= 2;
+      },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration),
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          cutOrangeNum: {
+            en: 'Cut Orange ${num}',
+            de: 'Orange ${num} durchtrennen',
+          },
+          cutBlueNum: {
+            en: 'Cut Blue ${num}',
+            de: 'Blau ${num} durchtrennen',
+          },
+          moveOrange: {
+            en: 'Move for Orange ${num}',
+          },
+          moveBlue: {
+            en: 'Move for Blue ${num}',
+          },
+        };
+
+        // Check for race condition with Second Flame after first bait
+        // or that it is the third bait that has no race
+        if (data.waveCounter === 1 && data.flamesCutCounter === 1 || data.waveCounter === 3) {
+          // Third and Fourth Flames need to move to cut across immediately after baiting
+          // Three can cut their flame if they have baited and 2 has cut
+          if (data.myFlame === 3) {
+            if (data.firstColorCut === 'blue')
+              return { alertText: output.cutBlueNum!({ num: data.myFlame }) };
+            return { alertText: output.cutOrangeNum!({ num: data.myFlame }) };
+          }
+          if (data.myFlame === 4) {
+            if (data.firstColorCut === 'blue')
+              return { infoText: output.moveBlue!({ num: data.myFlame }) };
+            return { infoText: output.moveOrange!({ num: data.myFlame }) };
+          }
+        }
+
+        // First Flame needs to cut after the second bait
+        if (data.waveCounter === 2 && data.myFlame === 1) {
+          if (data.firstColorCut === 'orange')
+            return { alertText: output.cutOrangeNum!({ num: data.myFlame }) };
+          return { alertText: output.cutBlueNum!({ num: data.myFlame }) };
+        }
+      },
+    },
+    {
+      id: 'ASS Infern Brand 5 Remaining Flames',
+      type: 'LosesEffect',
+      netRegex: { effectId: '95D', target: 'Infern Brand', count: '1C[2-9]' },
+      condition: (data) => data.brandCounter === 5,
+      preRun: (data, matches) => {
+        data.flamesCutCounter++;
+        // First and last of a set let us know what's being cut next
+        if (data.flamesCutCounter === 1) {
+          if (matches.count === '1C2')
+            data.firstColorCut = 'orange';
+          else if (matches.count === '1C5')
+            data.firstColorCut = 'blue';
+        } else if (data.flamesCutCounter === 4) {
+          data.firstColorCut = data.firstColorCut === 'orange' ? 'blue' : 'orange';
+        }
+      },
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          baitWardTwo: {
+            en: 'Bait Ward 2 => Bait Puddles',
+          },
+          baitWardThree: {
+            en: 'Bait Ward 3',
+          },
+          baitPuddles: {
+            en: 'Bait Puddles',
+          },
+          cutOrangeNum: {
+            en: 'Cut Orange ${num}',
+            de: 'Orange ${num} durchtrennen',
+          },
+          cutBlueNum: {
+            en: 'Cut Blue ${num}',
+            de: 'Blau ${num} durchtrennen',
+          },
+          moveOrangeNum: {
+            en: 'Move for Orange ${num}',
+          },
+          moveBlueNum: {
+            en: 'Move for Blue ${num}',
+          },
+        };
+
+        // Two can cut immediately after one
+        if (data.myFlame === 2 && (data.flamesCutCounter === 1 || data.flamesCutCounter === 6)) {
+          if (data.firstColorCut === 'blue')
+            return { alertText: output.cutBlueNum!({ num: data.myFlame }) };
+          return { alertText: output.cutOrangeNum!({ num: data.myFlame }) };
+        }
+
+        // Three can cut if they have baited their wave and two has cut
+        if (data.myFlame === 3 && data.flamesCutCounter === 2 && data.waveCounter === 1) {
+          if (data.firstColorCut === 'blue')
+            return { alertText: output.cutBlueNum!({ num: data.myFlame }) };
+          return { alertText: output.cutOrangeNum!({ num: data.myFlame }) };
+        }
+        // Four can follow three after they have baited and two has cut
+        if (data.myFlame === 4 && data.flamesCutCounter === 2 && data.waveCounter === 1) {
+          if (data.firstColorCut === 'blue')
+            return { infoText: output.moveBlueNum!({ num: data.myFlame }) };
+          return { infoText: output.moveOrangeNum!({ num: data.myFlame }) };
+        }
+
+        // Four can cut immediately after three
+        if (data.myFlame === 4 && (data.flamesCutCounter === 3 || data.flamesCutCounter === 7)) {
+          if (data.firstColorCut === 'blue')
+            return { alertText: output.cutBlueNum!({ num: data.myFlame }) };
+          return { alertText: output.cutOrangeNum!({ num: data.myFlame }) };
+        }
+
+        // Fourth Flame should open path for One and Two to bait second ward
+        if (data.flamesCutCounter === 4) {
+          if (data.myFlame === 1 || data.myFlame === 2)
+            return { alertText: output.baitWardTwo!() };
+          return { infoText: output.baitPuddles!() };
+        }
+
+        // Sixth Flame should open path for Three and Four to bait third ward
+        if (data.flamesCutCounter === 6 && (data.myFlame === 3 || data.myFlame === 4))
+          return { alertText: output.baitWardThree!() };
       },
     },
   ],

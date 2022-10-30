@@ -1299,7 +1299,7 @@ const triggerSet: TriggerSet<Data> = {
         // or that it is the third bait that has no race
         if (data.waveCounter === 1 && data.flamesCutCounter === 1 || data.waveCounter === 3) {
           // Third and Fourth Flames need to move to cut across immediately after baiting
-          // Three can cut there flame if they have baited and 2 has cut
+          // Three can cut their flame if they have baited and 2 has cut
           if (data.myFlame === 3) {
             if (data.firstColorCut === 'blue')
               return { alertText: output.cutBlueNum!({ num: data.myFlame }) };
