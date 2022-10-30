@@ -68,10 +68,10 @@ const triggerSet: TriggerSet<Data> = {
           SW: 'NE',
         };
 
-        const tentacleFlag: TentacleFlag = data.tentacleEffects[0]!.flags as TentacleFlag;
+        const tentacleFlag = data.tentacleEffects[0]!.flags as TentacleFlag;
         if (tentacleFlag === undefined)
           return output.default!();
-        const tentacleLocation: Intercard = scarletTentacleLocations[tentacleFlag]!;
+        const tentacleLocation = scarletTentacleLocations[tentacleFlag]! as Intercard;
         if (tentacleLocation === undefined)
           return output.default!();
 
@@ -133,16 +133,16 @@ const triggerSet: TriggerSet<Data> = {
           },
         };
 
-        var cyanLoc = undefined;
-        var scarletLoc = undefined;
+        let cyanLoc = undefined;
+        let scarletLoc = undefined;
         // location 10 = cyan tentacle path, location 11 = scarlet tentacle path
         for (const tentacle of data.tentacleEffects) {
           if (tentacle.location === '10') {
             if (cyanTentacleLocations[tentacle.flags] !== undefined)
-              cyanLoc = cyanTentacleLocations[tentacle.flags]! as Cardinal;
+              cyanLoc = cyanTentacleLocations[tentacle.flags]!;
           } else if (tentacle.location === '11') {
             if (scarletTentacleLocations[tentacle.flags] !== undefined)
-              scarletLoc = scarletTentacleLocations[tentacle.flags]! as Intercard;
+              scarletLoc = scarletTentacleLocations[tentacle.flags]!;
           }
         }
         if (
