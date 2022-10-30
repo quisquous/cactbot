@@ -34,9 +34,9 @@ export default class DateTimeFuncs {
     const millisNum = time % 1000;
     const secsNum = (time % (60 * 1000) - millisNum) / 1000;
     // Milliseconds
-    const millis = `00${millisNum}`.substr(-3);
-    const secs = `0${secsNum}`.substr(-2);
-    const mins = `0${((time % (60 * 60 * 1000) - millisNum) / 1000 - secsNum) / 60}`.substr(-2);
+    const millis = `00${millisNum}`.slice(-3);
+    const secs = `0${secsNum}`.slice(-2);
+    const mins = `0${((time % (60 * 60 * 1000) - millisNum) / 1000 - secsNum) / 60}`.slice(-2);
     return negative + mins + ':' + secs + (includeMillis ? '.' + millis : '');
   }
 
