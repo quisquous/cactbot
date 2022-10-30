@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -67,6 +66,9 @@ export interface Data extends RaidbossData {
   spreadingFlame: string[];
   entangledFlame: string[];
   mortalVowPlayer?: string;
+  firstGigaflare?: number[];
+  secondGigaflare?: number[];
+  centerGigaflare?: number[];
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -2696,10 +2698,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Trinity Tank Dark Resistance',
       type: 'GainsEffect',
       // C40 = Dark Resistance Down, highest enmity target
-      netRegex: NetRegexes.gainsEffect({
+      netRegex: {
         effectId: 'C40',
         count: '02',
-      }),
+      },
       condition: (data, matches) => data.me === matches.target && data.role === 'tank',
       alertText: (_data, matches, output) => {
         if (parseFloat(matches.duration) > 10)
@@ -2720,10 +2722,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Trinity Tank Light Resistance',
       type: 'GainsEffect',
       // C3F = Light Resistance Down, 2nd highest enmity target
-      netRegex: NetRegexes.gainsEffect({
+      netRegex: {
         effectId: 'C3F',
         count: '02',
-      }),
+      },
       condition: (data, matches) => data.me === matches.target && data.role === 'tank',
       // To prevent boss rotating around before Exaflare
       delaySeconds: 2.5,
@@ -2738,6 +2740,132 @@ const triggerSet: TriggerSet<Data> = {
           ja: '挑発',
           cn: '挑衅',
           ko: '도발',
+        },
+      },
+    },
+    {
+      id: 'DSR Gigaflare',
+      // 6D9A fires first, followed by 6DD2, then 6DD3
+      // 6D99 is cast by boss at the center
+      // Only need to compare the rotation of 6D9A to 6DD2
+      type: 'StartsUsing',
+      netRegex: { id: ['6D99', '6D9A', '6DD2'], source: 'Dragon-king Thordan' },
+      durationSeconds: 10,
+      infoText: (data, matches, output) => {
+        // Positions are moved up 100 and right 100
+        const x = parseFloat(matches.x) - 100;
+        const y = parseFloat(matches.y) - 100;
+
+        // Collect Gigaflare position
+        switch (matches.id) {
+          case '6D99':
+            data.centerGigaflare = [x, y, parseFloat(matches.heading)];
+            break;
+          case '6D9A':
+            data.firstGigaflare = [x, y];
+            break;
+          case '6DD2':
+            data.secondGigaflare = [x, y];
+            break;
+        }
+
+        if (
+          data.firstGigaflare !== undefined && data.secondGigaflare !== undefined &&
+          data.centerGigaflare !== undefined
+        ) {
+          // Store temporary copies and remove data for next run
+          const first = data.firstGigaflare;
+          const second = data.secondGigaflare;
+          const center = data.centerGigaflare;
+          delete data.firstGigaflare;
+          delete data.secondGigaflare;
+          delete data.centerGigaflare;
+
+          if (
+            first[0] === undefined || first[1] === undefined ||
+            second[0] === undefined || second[1] === undefined ||
+            center[0] === undefined || center[1] === undefined || center[2] === undefined
+          ) {
+            console.error(`Gigaflare: missing coordinates`);
+            return;
+          }
+
+          // Compute atan2 of determinant and dot product to get rotational direction
+          // Note: X and Y are flipped due to Y axis being reversed
+          const getRotation = (x1: number, y1: number, x2: number, y2: number) => {
+            return Math.atan2(y1 * x2 - x1 * y2, y1 * y2 + x1 * x2);
+          };
+
+          // Get rotation of first and second gigaflares
+          const rotation = getRotation(first[0], first[1], second[0], second[1]);
+
+          // Get rotation of first gigaflare relative to boss
+          let start;
+
+          // Case for if front since data for heading is not exact
+          // To detect if front, added angles must match 180 degrees
+          const thetaFirstGigaflare = Math.abs(Math.atan2(first[0], first[1]));
+          const thetaCenterGigaflare = Math.abs(center[2]);
+          const thetaCenterPlusFirst = thetaFirstGigaflare + thetaCenterGigaflare;
+          if (Math.round(thetaCenterPlusFirst * 180 / Math.PI) % 180 === 0) {
+            start = output.front!();
+          } else {
+            // Gigaflare was not in line with boss facing,
+            // Compute initial location relative to boss by
+            // calculating point on circle where boss is facing
+            const radius = Math.sqrt((center[0] - first[0]) ** 2 + (center[1] - first[1]) ** 2);
+            const relX = Math.round(radius * Math.sin(center[2]));
+            const relY = Math.round(radius * Math.cos(center[2]));
+
+            // Check rotation of boss facing to first gigaflare:
+            const startNum = getRotation(relX, relY, first[0], first[1]);
+            if (startNum < 0)
+              start = output.backLeft!();
+            else if (startNum > 0)
+              start = output.backRight!();
+            else
+              start = output.unknown!();
+          }
+
+          if (rotation < 0) {
+            return output.directions!({
+              start: start,
+              rotation: output.clockwise!(),
+            });
+          }
+          if (rotation > 0) {
+            return output.directions!({
+              start: start,
+              rotation: output.counterclock!(),
+            });
+          }
+        }
+      },
+      outputStrings: {
+        directions: {
+          en: '${start} => ${rotation}',
+        },
+        backLeft: {
+          en: 'Back left',
+        },
+        backRight: {
+          en: 'Back right',
+        },
+        front: {
+          en: 'Front',
+        },
+        unknown: Outputs.unknown,
+        clockwise: {
+          en: 'Clockwise',
+          de: 'Im Uhrzeigersinn',
+          ja: '時計回り',
+          ko: '시계방향',
+        },
+        counterclock: {
+          en: 'Counterclockwise',
+          de: 'Gegen den Uhrzeigersinn',
+          ja: '反時計回り',
+          ko: '반시계방향',
         },
       },
     },
