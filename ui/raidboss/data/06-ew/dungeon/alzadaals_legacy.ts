@@ -13,17 +13,16 @@ export interface Data extends RaidbossData {
 export type Cardinal = 'N' | 'E' | 'S' | 'W';
 export type Intercard = 'NW' | 'NE' | 'SE' | 'SW';
 export const tentacleFlags = ['00080004', '00200004', '00800004', '02000004'];
-export type TentacleFlag = typeof tentacleFlags[number];
 
 // flags are reused between both tentacles, but the final spot where the tentacle lands
 // is different for the cyan & scarlet tentacles
-const cyanTentacleLocations: { [key in TentacleFlag]: Cardinal } = {
+const cyanTentacleLocations: { [flags: string]: Cardinal } = {
   '00080004': 'S',
   '00200004': 'W',
   '00800004': 'N',
   '02000004': 'E',
 };
-const scarletTentacleLocations: { [key in TentacleFlag]: Intercard } = {
+const scarletTentacleLocations: { [flags: string]: Intercard } = {
   '00080004': 'NW',
   '00200004': 'NE',
   '00800004': 'SE',
