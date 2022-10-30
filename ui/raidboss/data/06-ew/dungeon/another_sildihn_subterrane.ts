@@ -693,7 +693,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: ['CC4', 'CC5', 'CC6', 'CC7'] },
       condition: (data, matches) => data.me === matches.target && data.brandCounter === 2,
-      delaySeconds: 0.1, // Delay to collect all Infern Brand Effects
+      delaySeconds: 0.2, // Delay to collect all Infern Brand Effects
       durationSeconds: (_data, matches) => parseFloat(matches.duration) - 0.1,
       infoText: (data, matches, output) => {
         const brandMap: { [effectId: string]: number } = {
@@ -711,6 +711,10 @@ const triggerSet: TriggerSet<Data> = {
 
         if (Object.keys(data.brandEffects).length !== 8) {
           // Missing Infern Brands, output number
+          if (data.arcaneFontCounter === 3)
+            return output.blueBrandNum!({ num: myNum });
+          if (data.arcaneFontCounter === 2)
+            return output.orangeBrandNum!({ num: myNum });
           return output.brandNum!({ num: myNum });
         }
 
@@ -771,13 +775,30 @@ const triggerSet: TriggerSet<Data> = {
         if (cardX === undefined || cardY === undefined)
           throw new UnreachableCode();
 
-        return output.text!({ num: myNum, corner: output[cardX + cardY]!() });
+        // Check color of brand that will be cut
+        if (data.arcaneFontCounter === 3)
+          return output.blueBrandNumCorner!({ num: myNum, corner: output[cardX + cardY]!() });
+        if (data.arcaneFontCounter === 2)
+          return output.orangeBrandNumCorner!({ num: myNum, corner: output[cardX + cardY]!() });
+        return output.brandNumCorner!({ num: myNum, corner: output[cardX + cardY]!() });
       },
       run: (data) => data.brandEffects = {},
       outputStrings: {
-        text: {
+        blueBrandNumCorner: {
+          en: 'Blue Brand ${num}: ${corner} corner',
+        },
+        orangeBrandNumCorner: {
+          en: 'Orange Brand ${num}: ${corner} corner',
+        },
+        brandNumCorner: {
           en: 'Brand ${num}: ${corner} corner',
           de: 'Kryptogramm ${num}: ${corner} Ecke',
+        },
+        blueBrandNum: {
+          en: 'Blue Brand ${num}',
+        },
+        orangeBrandNum: {
+          en: 'Orange Brand ${num}',
         },
         brandNum: {
           en: 'Brand ${num}',
