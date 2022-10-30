@@ -6,7 +6,7 @@ const tzOffsetMap: { [key: string]: number } = {};
 
 export default class DateTimeFuncs {
   static getTimezoneOffsetMillis(timeString: string): number {
-    const timezoneOffsetString = timeString.slice(timeString.length - 6);
+    const timezoneOffsetString = timeString.slice(-6);
     const mappedValue = tzOffsetMap[timezoneOffsetString];
     if (mappedValue)
       return mappedValue;

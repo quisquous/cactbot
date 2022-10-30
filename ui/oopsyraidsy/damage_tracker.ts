@@ -319,7 +319,7 @@ export class DamageTracker {
     }
 
     // Length 1 or 2.
-    let lowByte = matches.flags.slice(matches.flags.length - 2);
+    let lowByte = matches.flags.slice(-2);
     if (lowByte.length === 1)
       lowByte = '0' + lowByte;
 
