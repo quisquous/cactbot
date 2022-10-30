@@ -125,7 +125,7 @@ export default class Anonymizer {
       const playerId = field.toUpperCase();
 
       // Cutscenes get added combatant messages with ids such as 'FF000006' and no name.
-      const isCutsceneId = playerId.substr(0, 2) === 'FF';
+      const isCutsceneId = playerId.slice(0, 2) === 'FF';
 
       // Handle weirdly shaped ids.
       if (playerId.length !== 8 || isCutsceneId) {

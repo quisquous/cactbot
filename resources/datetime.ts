@@ -13,10 +13,10 @@ export default class DateTimeFuncs {
     const defaultOffset = new Date().getTimezoneOffset() * 1000;
     if (timezoneOffsetString === undefined)
       return defaultOffset;
-    const operator = timezoneOffsetString.substr(0, 1);
+    const operator = timezoneOffsetString[0];
     if (operator !== '+' && operator !== '-')
       return defaultOffset;
-    const timezoneOffsetParts = timezoneOffsetString.substr(1).split(':');
+    const timezoneOffsetParts = timezoneOffsetString.slice(1).split(':');
     const hoursString = timezoneOffsetParts[0];
     const minutesString = timezoneOffsetParts[1];
     if (hoursString === undefined || minutesString === undefined)
