@@ -29,6 +29,6 @@
   },
   "plugins": [
     "./node_modules/@dprint/typescript/plugin.wasm",
-    "https://plugins.dprint.dev/json-0.15.6.wasm"
+    "./node_modules/@dprint/json/plugin.wasm"
   ]
 }
