@@ -47,11 +47,11 @@ export class LineEvent0x26 extends LineEvent implements LineEventSource, LineEve
 
     const padded = SFuncs.zeroPad(this.jobLevelData, 8);
 
-    this.jobIdHex = padded.substr(6, 2).toUpperCase();
+    this.jobIdHex = padded.slice(6, 8).toUpperCase();
     this.jobId = parseInt(this.jobIdHex, 16);
     this.job = Util.jobEnumToJob(this.jobId);
 
-    this.level = parseInt(padded.substr(4, 2), 16);
+    this.level = parseInt(padded.slice(4, 6), 16);
   }
 }
 

@@ -52,7 +52,7 @@ const testManifestFile = (file: string) => {
   it('correct file types in manifest', () => {
     for (const file of manifestLines) {
       // All files must be .js/.ts and .txt.
-      if (/\.txt$/.test(file) || /\.[jt]s$/.test(file))
+      if (file.endsWith('.txt') || file.endsWith('.ts') || file.endsWith('.js'))
         continue;
       assert.fail(`${file} has invalid extension`);
     }

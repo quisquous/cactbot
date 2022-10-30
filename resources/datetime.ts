@@ -6,17 +6,17 @@ const tzOffsetMap: { [key: string]: number } = {};
 
 export default class DateTimeFuncs {
   static getTimezoneOffsetMillis(timeString: string): number {
-    const timezoneOffsetString = timeString.substr(-6);
+    const timezoneOffsetString = timeString.slice(-6);
     const mappedValue = tzOffsetMap[timezoneOffsetString];
     if (mappedValue)
       return mappedValue;
     const defaultOffset = new Date().getTimezoneOffset() * 1000;
     if (timezoneOffsetString === undefined)
       return defaultOffset;
-    const operator = timezoneOffsetString.substr(0, 1);
+    const operator = timezoneOffsetString[0];
     if (operator !== '+' && operator !== '-')
       return defaultOffset;
-    const timezoneOffsetParts = timezoneOffsetString.substr(1).split(':');
+    const timezoneOffsetParts = timezoneOffsetString.slice(1).split(':');
     const hoursString = timezoneOffsetParts[0];
     const minutesString = timezoneOffsetParts[1];
     if (hoursString === undefined || minutesString === undefined)
@@ -34,9 +34,9 @@ export default class DateTimeFuncs {
     const millisNum = time % 1000;
     const secsNum = (time % (60 * 1000) - millisNum) / 1000;
     // Milliseconds
-    const millis = `00${millisNum}`.substr(-3);
-    const secs = `0${secsNum}`.substr(-2);
-    const mins = `0${((time % (60 * 60 * 1000) - millisNum) / 1000 - secsNum) / 60}`.substr(-2);
+    const millis = `00${millisNum}`.slice(-3);
+    const secs = `0${secsNum}`.slice(-2);
+    const mins = `0${((time % (60 * 60 * 1000) - millisNum) / 1000 - secsNum) / 60}`.slice(-2);
     return negative + mins + ':' + secs + (includeMillis ? '.' + millis : '');
   }
 

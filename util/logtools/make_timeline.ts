@@ -313,7 +313,7 @@ const extractRawLinesFromLog = async (
   for await (const line of file) {
     // This will fail on lines with 3-digit identifiers,
     // but that's okay because those will never be start lines.
-    const lineTimeStamp = line.substring(14, 26);
+    const lineTimeStamp = line.slice(14, 26);
     if (start === lineTimeStamp && !started)
       started = start === lineTimeStamp;
     if (started)
@@ -354,7 +354,7 @@ const extractTLEntriesFromLog = (
     if (ability) {
       // Cull non-enemy lines
       // TODO: Handle this using the raid emulator's line parsing functionality.
-      if (ability.sourceId[0] !== '4')
+      if (!ability.sourceId.startsWith('4'))
         continue;
       const abilityEntry = parseAbilityToEntry(ability);
       entries.push(abilityEntry);

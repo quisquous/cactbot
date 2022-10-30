@@ -1427,7 +1427,7 @@ const flattenTimeline = (
   const lastIndex = Math.max(filename.lastIndexOf('/'), filename.lastIndexOf('\\'));
   // If lastIndex === -1, truncate name to the empty string.
   // if lastIndex > -1, truncate name after the final slash.
-  const dir = filename.substring(0, lastIndex + 1);
+  const dir = filename.slice(0, Math.max(0, lastIndex + 1));
 
   const timelineFile = `${dir}${set.timelineFile}`;
   delete set.timelineFile;

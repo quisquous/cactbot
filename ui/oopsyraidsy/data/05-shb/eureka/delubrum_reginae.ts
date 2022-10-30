@@ -87,7 +87,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         id: ['565A', '565B', '57FD', '57FE', '5B86', '5B87', '59D2', '5D93'],
         ...playerDamageFields,
       }),
-      condition: (_data, matches) => matches.flags.slice(-2) === '03',
+      condition: (_data, matches) => matches.flags.endsWith('03'),
       mistake: (_data, matches) => {
         return {
           type: 'warn',
