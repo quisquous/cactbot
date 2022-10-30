@@ -73,7 +73,7 @@ export const readCsvContent = async (
       .on('data', (row: string[]) => rows.push(row))
       .on('end', (rowCount: number) => {
         if (rowCount === 0)
-          reject(`csv reads no data`);
+          reject(new Error('csv read no data'));
 
         const keys = rows.shift() ?? [];
         rows.shift();
