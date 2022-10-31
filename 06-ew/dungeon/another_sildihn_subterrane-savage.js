@@ -315,6 +315,17 @@ Options.Triggers.push({
       response: Responses.getOut(),
     },
     {
+      id: 'ASSS King\'s Will',
+      type: 'StartsUsing',
+      netRegex: { id: '7980', source: 'Sil\'dihn Dullahan', capture: false },
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'big autos',
+        },
+      },
+    },
+    {
       id: 'ASSS Hells\' Nebula',
       type: 'StartsUsing',
       netRegex: { id: '7984', source: 'Aqueduct Armor', capture: false },
