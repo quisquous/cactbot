@@ -358,6 +358,31 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getOut(),
     },
     {
+      id: 'ASSS King\'s Will',
+      type: 'StartsUsing',
+      netRegex: { id: '7980', source: 'Sil\'dihn Dullahan' },
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          autosOnYou: {
+            en: 'big autos on YOU',
+          },
+          autosOnTarget: {
+            en: 'big autos on ${player}',
+          },
+        };
+
+        if (matches.target === data.me) {
+          return { infoText: output.autosOnYou!() };
+        }
+
+        if (data.role !== 'tank' && data.role !== 'healer')
+          return;
+
+        return { infoText: output.autosOnTarget!({ player: data.ShortName(matches.target) }) };
+      },
+    },
+    {
       id: 'ASSS Hells\' Nebula',
       type: 'StartsUsing',
       netRegex: { id: '7984', source: 'Aqueduct Armor', capture: false },
