@@ -347,7 +347,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Intérieur + Liens tanks',
           ja: '中へ + タンク線取り',
           cn: '中间 + 坦克接线',
-          ko: '안으로 + 탱커 선 가로채기',
+          ko: '안으로 + 탱커가 선 가로채기',
         },
         in: Outputs.in,
       },
@@ -2844,15 +2844,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         directions: {
           en: '${start} => ${rotation}',
+          ko: '${start} => ${rotation}',
         },
         backLeft: {
           en: 'Back left',
+          ko: '뒤 왼쪽',
         },
         backRight: {
           en: 'Back right',
+          ko: '뒤 오른쪽',
         },
         front: {
           en: 'Front',
+          ko: '앞',
         },
         unknown: Outputs.unknown,
         clockwise: {

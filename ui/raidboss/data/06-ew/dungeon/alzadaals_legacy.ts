@@ -86,6 +86,7 @@ const triggerSet: TriggerSet<Data> = {
         SW: Outputs.dirSW,
         safe: {
           en: 'Go ${dir1}',
+          ko: '${dir1}쪽으로',
         },
         default: {
           en: 'Avoid tentacle explosions',
@@ -163,6 +164,7 @@ const triggerSet: TriggerSet<Data> = {
         SW: Outputs.dirSW,
         safe: {
           en: 'Go ${dir1} / ${dir2}',
+          ko: '${dir1}/${dir2}쪽으로',
         },
         default: {
           en: 'Avoid tentacle explosions',
