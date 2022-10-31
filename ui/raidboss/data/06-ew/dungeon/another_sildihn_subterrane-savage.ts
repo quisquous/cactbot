@@ -366,7 +366,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'HP to 1',
-        }
+        },
       },
     },
     {
