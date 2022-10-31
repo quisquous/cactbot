@@ -141,13 +141,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASSS Squeaky Clean Right',
       type: 'StartsUsing',
-      netRegex: { id: '7774', source: 'Silkie', capture: false },
+      netRegex: { id: '7774', source: ['Silkie', 'Silken Puff'], capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'ASSS Squeaky Clean Left',
       type: 'StartsUsing',
-      netRegex: { id: '7775', source: 'Silkie', capture: false },
+      netRegex: { id: '7775', source: ['Silkie', 'Silken Puff'], capture: false },
       response: Responses.goRight(),
     },
     {
