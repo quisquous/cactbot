@@ -361,6 +361,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ASSS Hells\' Nebula',
       type: 'StartsUsing',
       netRegex: { id: '7984', source: 'Aqueduct Armor', capture: false },
+      condition: (data) => data.role === 'healer',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
