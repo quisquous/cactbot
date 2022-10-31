@@ -358,6 +358,17 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getOut(),
     },
     {
+      id: 'ASSS Hells\' Nebula',
+      type: 'StartsUsing',
+      netRegex: { id: '7984', source: 'Aqueduct Armor', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'HP to 1',
+        }
+      },
+    },
+    {
       id: 'ASSS Infernal Weight',
       type: 'StartsUsing',
       netRegex: { id: '7983', source: 'Aqueduct Armor', capture: false },
