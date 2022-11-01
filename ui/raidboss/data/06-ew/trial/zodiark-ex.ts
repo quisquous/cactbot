@@ -488,7 +488,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Astral Eclipse Initial',
       type: 'MapEffect',
       netRegex: { location: '0[678]', capture: false },
-      suppressSeconds: 20,
+      suppressSeconds: 30,
       alertText: (data, _matches, output) => {
         return output[eclipseOutput(0, data.eclipseFlags[0])]!();
       },
@@ -500,7 +500,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { location: '0[678]', capture: false },
       condition: (data) => data.eclipseFlags.length === 3,
       durationSeconds: 19,
-      suppressSeconds: 20,
+      suppressSeconds: 30,
       infoText: (data, _matches, output) => {
         const dir1 = eclipseOutput(0, data.eclipseFlags[0]);
         const dir2 = eclipseOutput(1, data.eclipseFlags[1]);
