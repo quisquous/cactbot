@@ -106,10 +106,10 @@ export type TriggerField<Data extends RaidbossData, MatchType extends NetAnyMatc
 // This trigger type is what we expect cactbot triggers to be written as,
 // in other words `id` is not technically required for triggers but for
 // built-in triggers it is.
-export type BaseTrigger<
-  Data extends RaidbossData,
-  Type extends TriggerTypes,
-> = Omit<BaseNetTrigger<Data, Type>, 'type' | 'netRegex'>;
+export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = Omit<
+  BaseNetTrigger<Data, Type>,
+  'type' | 'netRegex'
+>;
 
 type BaseNetTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
   id: string;
@@ -203,7 +203,7 @@ export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
 export type LooseTrigger = Partial<BaseNetTrigger<RaidbossData, 'None'> & PartialRegexTrigger>;
 
 export type LooseTriggerSet =
-  & Exclude<Partial<TriggerSet<RaidbossData>>, 'triggers' | 'timelineTriggers'>
+  & Omit<Partial<TriggerSet<RaidbossData>>, 'triggers' | 'timelineTriggers'>
   & {
     /** @deprecated Use zoneId instead */
     zoneRegex?:
