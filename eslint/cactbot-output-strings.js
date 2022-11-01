@@ -20,8 +20,6 @@ const ruleModule = {
       notFoundProperty: 'no \'{{prop}}\' in \'{{outputParam}}\'',
       notFoundTemplate: '`output.{{prop}}(...)` doesn\'t have template \'{{template}}\'.',
       missingTemplateValue: 'template \'{{prop}}\' is missing in function call',
-      tooManyParams: 'function `output.{{call}}()` takes only 1 parameter',
-      typeError: 'function `output.{{call}}(...) only takes an object as a parameter',
     },
   },
   create: function(context) {
@@ -116,7 +114,7 @@ const ruleModule = {
 
     return {
       /**
-       * @param node {t.ObjectExpression}
+       * @param node {t.ObjectExpression & {parent: t.VariableDeclarator}}
        */
       'Program > VariableDeclaration > VariableDeclarator > ObjectExpression'(node) {
         globalVars.set(node.parent.id.name, getAllKeys(node.properties));
@@ -153,7 +151,7 @@ const ruleModule = {
         }
       },
       /**
-       * @param node {t.MemberExpression}
+       * @param node {t.MemberExpression & {parent: {parent: t.CallExpression}}}
        */
       [
         `Property[key.name=/alarmText|alertTex|infoText|tts/] > :function[params.length=3] CallExpression > TSNonNullExpression > MemberExpression`
@@ -203,14 +201,6 @@ const ruleModule = {
                   },
                 });
               }
-            } else if (t.isLiteral(args[0])) {
-              context.report({
-                node,
-                messageId: 'typeError',
-                data: {
-                  call: node.property.name,
-                },
-              });
             }
 
             const keysInParams = getAllKeys(args[0].properties);
@@ -240,15 +230,6 @@ const ruleModule = {
                 }
               }
             }
-          } else {
-            // args.length > 1
-            context.report({
-              node,
-              messageId: 'tooManyParams',
-              data: {
-                call: node.property.name,
-              },
-            });
           }
         }
       },
