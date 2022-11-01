@@ -101,13 +101,13 @@ Options.Triggers.push({
     {
       id: 'ASS Squeaky Clean Right',
       type: 'StartsUsing',
-      netRegex: { id: '7755', source: 'Silkie', capture: false },
+      netRegex: { id: '7751', source: 'Silkie', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'ASS Squeaky Clean Left',
       type: 'StartsUsing',
-      netRegex: { id: '7756', source: 'Silkie', capture: false },
+      netRegex: { id: '7752', source: 'Silkie', capture: false },
       response: Responses.goRight(),
     },
     {
