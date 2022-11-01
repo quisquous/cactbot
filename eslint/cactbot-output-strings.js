@@ -76,8 +76,29 @@ const ruleModule = {
         if (!properties)
           return;
 
-        const values = properties.map((x) => x.value.value)
-          .filter((x) => x !== undefined) || [];
+        const values = properties.map((x) => x.value)
+          .map((x) => {
+            if (x.type === 'Literal') {
+              return x.value;
+            }
+
+            if (x.type === 'BinaryExpression') {
+              /*
+                  outputStrings: {
+                     text: {
+                       en: Outputs.killAdds.en + '(back first)',
+                       de: Outputs.killAdds.de + '(hinten zuerst)',
+                       ja: Outputs.killAdds.ja + '(下の雑魚から)',
+                       cn: Outputs.killAdds.cn + '(先打后方的)',
+                       ko: Outputs.killAdds.ko + '(아래쪽 먼저)',
+                     },
+                   },
+               */
+              return x.right.value;
+            }
+
+            throw new Error('unexpected outputStrings format', x.loc);
+          }).filter((x) => x !== undefined) || [];
 
         const templateIds = values
           .map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g)))
