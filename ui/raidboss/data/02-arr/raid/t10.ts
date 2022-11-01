@@ -40,7 +40,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Charge sur ${player}',
           ja: '${player}にワイルドチャージ',
           cn: '蓝球点${player}',
-          ko: '"${player}" 야성의 돌진 대상',
+          ko: '"${player}" 돌진 대상',
         },
         chargeOnYou: {
           en: 'Charge on YOU',
@@ -48,7 +48,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Charge sur VOUS',
           ja: '自分にワイルドチャージ',
           cn: '蓝球点名',
-          ko: '야성의 돌진 대상자',
+          ko: '돌진 대상자',
         },
       },
     },
