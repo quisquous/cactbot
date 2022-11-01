@@ -569,6 +569,7 @@ const triggerSet: TriggerSet<Data> = {
         safe: {
           en: '${safe}',
         },
+      },
     },
     // ---------------- second trash ----------------
     {
