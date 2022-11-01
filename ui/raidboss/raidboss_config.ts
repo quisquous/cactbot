@@ -1332,8 +1332,8 @@ class RaidbossConfigurator {
       if (triggerSet.timelineTriggers)
         rawTriggers.timeline.push(...triggerSet.timelineTriggers);
 
-      if (!triggerSet.isUserTriggerSet && triggerSet.filename)
-        flattenTimeline(triggerSet, triggerSet.filename, timelineFiles);
+      if (!triggerSet.loaded && triggerSet.filename)
+        flattenTimelinePlace(triggerSet, triggerSet.filename, timelineFiles);
 
       item.triggers = {};
       for (const [key, triggerArr] of Object.entries(rawTriggers)) {
@@ -1416,7 +1416,7 @@ class RaidbossConfigurator {
   }
 }
 
-const flattenTimeline = (
+const pureFlattenTimeline = (
   set: ConfigLooseTriggerSet,
   filename: string,
   files: { [filename: string]: string },
@@ -1438,7 +1438,19 @@ const flattenTimeline = (
   }
 
   // set.timeline is processed recursively.
-  set.timeline = [set.timeline, files[timelineFile]];
+  return [set.timeline, files[timelineFile]];
+};
+
+const flattenTimelinePlace = (
+  set: ConfigLooseTriggerSet,
+  filename: string,
+  files: { [filename: string]: string },
+) => {
+  const timeline = pureFlattenTimeline(set, filename, files);
+  if (timeline !== undefined) {
+    // set.timeline is processed recursively.
+    set.timeline = timeline;
+  }
 };
 
 // Raidboss needs to do some extra processing of user files.
@@ -1453,20 +1465,23 @@ const userFileHandler: UserFileCallback = (
   if (!baseOptions.Triggers)
     return;
 
+  baseOptions.Triggers ??= [];
+  baseOptions.LoadedTriggers ??= [];
+
   for (const baseTriggerSet of baseOptions.Triggers) {
     const set: ConfigLooseTriggerSet = baseTriggerSet;
 
-    // Annotate triggers with where they came from.  Note, options is passed in repeatedly
-    // as multiple sets of user files add triggers, so only process each file once.
-    if (set.isUserTriggerSet)
+    if (set.loaded) {
       continue;
+    }
 
-    // `filename` here is just cosmetic for better debug printing to make it more clear
-    // where a trigger or an override is coming from.
-    set.filename = `${basePath}${name}`;
-    set.isUserTriggerSet = true;
+    baseOptions.LoadedTriggers.push({
+      filename: `${basePath}${name}`,
+      ...baseTriggerSet,
+      timeline: pureFlattenTimeline(baseTriggerSet, name, files),
+    });
 
-    flattenTimeline(set, name, files);
+    set.loaded = true;
   }
 };
 

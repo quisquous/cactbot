@@ -18,6 +18,7 @@ import { Matches } from '../../types/net_matches';
 import {
   DataInitializeFunc,
   GeneralNetRegexTrigger,
+  LooseTimelineTrigger,
   LooseTrigger,
   LooseTriggerSet,
   Output,
@@ -40,16 +41,10 @@ import { PerTriggerAutoConfig, PerTriggerOption, RaidbossOptions } from './raidb
 import { TimelineLoader } from './timeline';
 import { TimelineReplacement } from './timeline_parser';
 
-const isRaidbossLooseTimelineTrigger = (
-  trigger: LooseTrigger,
-): trigger is ProcessedTimelineTrigger => {
-  return 'isTimelineTrigger' in trigger;
-};
-
 export const isNetRegexTrigger = (
   trigger?: LooseTrigger,
 ): trigger is Partial<GeneralNetRegexTrigger<RaidbossData, 'None'>> => {
-  if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
+  if (trigger)
     return 'netRegex' in trigger;
   return false;
 };
@@ -57,7 +52,7 @@ export const isNetRegexTrigger = (
 export const isRegexTrigger = (
   trigger?: LooseTrigger,
 ): trigger is Partial<RegexTrigger<RaidbossData>> => {
-  if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
+  if (trigger)
     return 'regex' in trigger;
   return false;
 };
@@ -69,14 +64,16 @@ export type ProcessedTrigger = LooseTrigger & {
   output?: Output;
 };
 
-type ProcessedTimelineTrigger = ProcessedTrigger & {
-  isTimelineTrigger?: true;
-};
+// a loaded and localized trigger
+export type LocalizedTrigger =
+  & LooseTrigger
+  & { id: string; filename: string; output?: Output }
+  & ({ localRegex: RegExp } | { localNetRegex: RegExp });
 
-type ProcessedTriggerSet = LooseTriggerSet & {
-  filename?: string;
-  timelineTriggers?: ProcessedTimelineTrigger[];
-  triggers?: ProcessedTrigger[];
+export type LoadedTriggerSet = LooseTriggerSet & {
+  filename: string;
+  timelineTriggers?: Omit<LooseTrigger, 'netRegex'>[];
+  triggers?: LooseTrigger[];
 };
 
 // There should be (at most) six lines of instructions.
@@ -222,10 +219,10 @@ const textMap: TextMap = {
 // JavaScript dictionaries are *almost* ordered automatically as we would want,
 // but want to handle missing ids and integer ids (you shouldn't, but just in case).
 class OrderedTriggerList {
-  triggers: ProcessedTrigger[] = [];
+  triggers: LocalizedTrigger[] = [];
   idToIndex: { [id: string]: number } = {};
 
-  push(trigger: ProcessedTrigger) {
+  push(trigger: LocalizedTrigger) {
     const idx = trigger.id !== undefined ? this.idToIndex[trigger.id] : undefined;
     if (idx !== undefined && trigger.id !== undefined) {
       const oldTrigger = this.triggers[idx];
@@ -267,7 +264,7 @@ class TriggerOutputProxy {
   public unknownValue = '???';
 
   private constructor(
-    public trigger: ProcessedTrigger,
+    public trigger: LooseTrigger,
     public displayLang: Lang,
     public perTriggerAutoConfig?: PerTriggerAutoConfig,
   ) {
@@ -394,7 +391,7 @@ class TriggerOutputProxy {
   }
 
   static makeOutput(
-    trigger: ProcessedTrigger,
+    trigger: LooseTrigger,
     displayLang: Lang,
     perTriggerAutoConfig?: PerTriggerAutoConfig,
   ): Output {
@@ -452,13 +449,9 @@ const wipeEndEcho = commonNetRegex.userWipeEcho;
 const wipeFadeIn = commonNetRegex.wipe;
 
 const isWipe = (line: string): boolean => {
-  if (
-    wipeCactbotEcho.test(line) ||
+  return wipeCactbotEcho.test(line) ||
     wipeEndEcho.test(line) ||
-    wipeFadeIn.test(line)
-  )
-    return true;
-  return false;
+    wipeFadeIn.test(line);
 };
 
 export class PopupText {
@@ -483,7 +476,10 @@ export class PopupText {
   protected me = '';
   protected job: Job = 'NONE';
   protected role: Role = 'none';
-  protected triggerSets: ProcessedTriggerSet[] = [];
+
+  protected collectedTriggerSets: LoadedTriggerSet[] = [];
+  // protected processedTriggerSets: ProcessedTriggerSet[] = [];
+
   protected zoneName = '';
   protected zoneId = -1;
   protected dataInitializers: {
@@ -498,7 +494,8 @@ export class PopupText {
   ) {
     this.options = options;
     this.timelineLoader = timelineLoader;
-    this.ProcessDataFiles(raidbossDataFiles);
+
+    this.collectedTriggerSets = this.ProcessDataFiles(raidbossDataFiles);
 
     this.infoText = document.getElementById('popup-text-info');
     this.alertText = document.getElementById('popup-text-alert');
@@ -570,33 +567,38 @@ export class PopupText {
     this.data.currentHP = e.detail.currentHP;
   }
 
-  ProcessDataFiles(files: RaidbossFileData): void {
-    this.triggerSets = [];
-    for (const [filename, json] of Object.entries(files)) {
+  ProcessDataFiles(files: RaidbossFileData): LoadedTriggerSet[] {
+    const triggerSets: LoadedTriggerSet[] = [];
+
+    for (const [filename, set] of Object.entries(files)) {
       if (!filename.endsWith('.js') && !filename.endsWith('.ts'))
         continue;
 
-      if (typeof json !== 'object') {
-        console.log('Unexpected JSON from ' + filename + ', expected an array');
+      if (typeof set !== 'object') {
+        console.log('Unexpected TriggerSet from ' + filename + ', expected an array');
         continue;
       }
-      if (!json.triggers) {
-        console.log('Unexpected JSON from ' + filename + ', expected a triggers');
+      if (!set.triggers) {
+        console.log('Unexpected TriggerSet from ' + filename + ', expected a triggers');
         continue;
       }
-      if (typeof json.triggers !== 'object' || !(json.triggers.length >= 0)) {
-        console.log('Unexpected JSON from ' + filename + ', expected triggers to be an array');
+      if (typeof set.triggers !== 'object' || !(set.triggers.length >= 0)) {
+        console.log(
+          'Unexpected TriggerSet from ' + filename + ', expected triggers to be an array',
+        );
         continue;
       }
-      const processedSet = {
-        filename: filename,
-        ...json,
-      };
-      this.triggerSets.push(processedSet);
+
+      triggerSets.push({
+        filename,
+        ...set,
+      });
     }
 
     // User triggers must come last so that they override built-in files.
-    this.triggerSets.push(...this.options.Triggers);
+    triggerSets.push(...this.options.LoadedTriggers);
+
+    return triggerSets;
   }
 
   OnChangeZone(e: EventResponses['ChangeZone']): void {
@@ -607,6 +609,7 @@ export class PopupText {
     }
   }
 
+  // this is expected to be called at job change or zone change.
   ReloadTimelines(): void {
     if (!this.me || !this.zoneName || !this.timelineLoader.IsReady())
       return;
@@ -640,160 +643,27 @@ export class PopupText {
       }
     }.bind(this);
 
-    // construct something like regexDe or regexFr.
-    const langSuffix = this.parserLang.charAt(0).toUpperCase() + this.parserLang.slice(1);
-    const regexParserLang = 'regex' + langSuffix;
-    const netRegexParserLang = 'netRegex' + langSuffix;
+    const timelineTriggers: ProcessedTrigger[] = [];
 
-    for (const set of this.triggerSets) {
-      // zoneRegex can be undefined, a regex, or translatable object of regex.
-      const haveZoneRegex = 'zoneRegex' in set;
-      const haveZoneId = 'zoneId' in set;
-      if (!haveZoneRegex && !haveZoneId || haveZoneRegex && haveZoneId) {
-        console.error(`Trigger set must include exactly one of zoneRegex or zoneId property`);
-        continue;
-      }
-      if (haveZoneId && set.zoneId === undefined) {
-        const filename = set.filename ? `'${set.filename}'` : '(user file)';
-        console.error(
-          `Trigger set has zoneId, but with nothing specified in ${filename}.  ` +
-            `Did you misspell the ZoneId.ZoneName?`,
-        );
+    for (const set of this.collectedTriggerSets) {
+      if (!this.TriggerSetEnabled(set)) {
         continue;
       }
 
-      if (set.zoneId !== undefined) {
-        if (
-          set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId &&
-          !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId))
-        )
-          continue;
-      } else if (set.zoneRegex) {
-        let zoneRegex = set.zoneRegex;
-        if (typeof zoneRegex !== 'object') {
-          console.error(
-            'zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex),
-          );
-          continue;
-        } else if (!(zoneRegex instanceof RegExp)) {
-          const parserLangRegex = zoneRegex[this.parserLang];
-          if (parserLangRegex) {
-            zoneRegex = parserLangRegex;
-          } else if (zoneRegex['en']) {
-            zoneRegex = zoneRegex['en'];
-          } else {
-            console.error('unknown zoneRegex parser language: ' + JSON.stringify(set.zoneRegex));
-            continue;
-          }
-
-          if (!(zoneRegex instanceof RegExp)) {
-            console.error('zoneRegex must be regexp: ' + JSON.stringify(set.zoneRegex));
-            continue;
-          }
-        }
-        if (this.zoneName.search(Regexes.parse(zoneRegex)) < 0)
-          continue;
+      const processed = this.LocalizeTriggerSet(set);
+      if (processed) {
+        processed.forEach((x) => orderedTriggers.push(x));
       }
 
-      if (this.options.Debug) {
-        if (set.filename)
-          console.log('Loading ' + set.filename);
-        else
-          console.log('Loading user triggers for zone');
-      }
-
-      const setFilename = set.filename ?? 'Unknown';
-
-      if (set.initData) {
-        this.dataInitializers.push({
-          file: setFilename,
-          func: set.initData,
-        });
-      }
-
-      // Adjust triggers for the parser language.
-      if (set.triggers && this.options.AlertsEnabled) {
-        for (const [index, tr] of set.triggers.entries()) {
-          const trigger: ProcessedTrigger = tr;
-          // Add an additional resolved regex here to save
-          // time later.  This will clobber each time we
-          // load this, but that's ok.
-          trigger.filename = setFilename;
-          const id = trigger.id ?? `${setFilename} trigger[${index}]`;
-
-          if (!isRegexTrigger(trigger) && !isNetRegexTrigger(trigger)) {
-            console.error(`Trigger ${id}: has no regex property specified`);
-            continue;
-          }
-
-          this.ProcessTrigger(trigger);
-
-          let found = false;
-
-          const triggerObject: { [key: string]: unknown } = trigger;
-
-          // `regex` and `regexDe` (etc) are deprecated, however they may still be used
-          // by user triggers, and so are still checked here.  `regexDe` and friends
-          // will never be auto-translated and are assumed to be correct.
-          // TODO: maybe we could consider removing these once timelines don't need parsed lines?
-          if (isRegexTrigger(trigger)) {
-            const defaultRegex = trigger.regex;
-            const localeRegex = triggerObject[regexParserLang];
-            if (localeRegex instanceof RegExp) {
-              trigger.localRegex = Regexes.parse(localeRegex);
-              orderedTriggers.push(trigger);
-              found = true;
-            } else if (defaultRegex) {
-              const trans = translateRegex(defaultRegex, this.parserLang, set.timelineReplace);
-              trigger.localRegex = Regexes.parse(trans);
-              orderedTriggers.push(trigger);
-              found = true;
-            }
-          }
-
-          // `netRegexDe` (etc) is also deprecated, but they also may still be used by
-          // user triggers.  If they exist, they will take precedence over `netRegex`.
-          // `netRegex` will be auto-translated into the parser language.  `netRegexDe`
-          // and friends will never be auto-translated and are assumed to be correct.
-          if (isNetRegexTrigger(trigger)) {
-            const defaultNetRegex = trigger.netRegex;
-            const localeNetRegex = triggerObject[netRegexParserLang];
-            if (localeNetRegex instanceof RegExp) {
-              // localized regex don't need to handle net-regex auto build
-              trigger.localNetRegex = Regexes.parse(localeNetRegex);
-              orderedTriggers.push(trigger);
-              found = true;
-            } else if (defaultNetRegex !== undefined) {
-              // simple netRegex trigger, need to build netRegex and translate
-              if (defaultNetRegex instanceof RegExp) {
-                const trans = translateRegex(defaultNetRegex, this.parserLang, set.timelineReplace);
-                trigger.localNetRegex = Regexes.parse(trans);
-                orderedTriggers.push(trigger);
-                found = true;
-              } else {
-                if (trigger.type === undefined) {
-                  console.error(`Trigger ${id}: without type property need RegExp as netRegex`);
-                  continue;
-                }
-
-                const re = buildNetRegexForTrigger(
-                  trigger.type,
-                  translateRegexBuildParam(defaultNetRegex, this.parserLang, set.timelineReplace),
-                );
-                trigger.localNetRegex = Regexes.parse(re);
-                orderedTriggers.push(trigger);
-                found = true;
-              }
-            }
-          }
-
-          if (!found) {
-            console.error(`Trigger ${id}: missing regex and netRegex`);
-          }
+      if (set.timelineTriggers) {
+        for (const trigger of set.timelineTriggers) {
+          // Timeline triggers are never translated.
+          timelineTriggers.push(this.ProcessTimelineTrigger(trigger));
         }
       }
 
       if (set.overrideTimelineFile) {
+        // TODO: set.filename won't be undefined
         const filename = set.filename ? `'${set.filename}'` : '(user file)';
         console.log(`Overriding timeline from ${filename}.`);
 
@@ -817,16 +687,10 @@ export class PopupText {
 
       if (set.timeline !== undefined)
         addTimeline(set.timeline);
+
       if (set.timelineReplace)
         replacements.push(...set.timelineReplace);
-      if (set.timelineTriggers) {
-        for (const trigger of set.timelineTriggers) {
-          // Timeline triggers are never translated.
-          this.ProcessTrigger(trigger);
-          trigger.isTimelineTrigger = true;
-          orderedTriggers.push(trigger);
-        }
-      }
+
       if (set.timelineStyles)
         timelineStyles.push(...set.timelineStyles);
       if (set.resetWhenOutOfCombat !== undefined)
@@ -834,12 +698,13 @@ export class PopupText {
     }
 
     // Store all the collected triggers in order, and filter out disabled triggers.
-    const filterEnabled = (trigger: LooseTrigger) => !('disabled' in trigger && trigger.disabled);
+    const filterEnabled = (trigger: { disabled?: boolean }) =>
+      !('disabled' in trigger && trigger.disabled);
+
     const allTriggers = orderedTriggers.asList().filter(filterEnabled);
 
     this.triggers = allTriggers.filter(isRegexTrigger);
     this.netTriggers = allTriggers.filter(isNetRegexTrigger);
-    const timelineTriggers = allTriggers.filter(isRaidbossLooseTimelineTrigger);
 
     this.Reset();
 
@@ -847,28 +712,209 @@ export class PopupText {
       timelineFiles,
       timelines,
       replacements,
-      timelineTriggers,
+      timelineTriggers.filter(filterEnabled),
       timelineStyles,
       this.zoneId,
     );
   }
 
-  ProcessTrigger(trigger: ProcessedTrigger | ProcessedTimelineTrigger): void {
-    // These properties are used internally by ReloadTimelines only and should
-    // not exist on user triggers.  However, the trigger objects themselves are
-    // reused when reloading pages, and so it is impossible to verify that
-    // these properties don't exist.  Therefore, just delete them silently.
-    if (isRaidbossLooseTimelineTrigger(trigger))
-      delete trigger.isTimelineTrigger;
+  TriggerSetEnabled(set: LoadedTriggerSet): boolean {
+    // zoneRegex can be undefined, a regex, or translatable object of regex.
+    const haveZoneRegex = 'zoneRegex' in set;
+    const haveZoneId = 'zoneId' in set;
+    if (!haveZoneRegex && !haveZoneId || haveZoneRegex && haveZoneId) {
+      console.error(`Trigger set must include exactly one of zoneRegex or zoneId property`);
+      return false;
+    }
 
-    delete trigger.localRegex;
-    delete trigger.localNetRegex;
+    if (haveZoneId && set.zoneId === undefined) {
+      // TODO: set.filename will never be undefined or null
+      const filename = set.filename ? `'${set.filename}'` : '(user file)';
+      console.error(
+        `Trigger set has zoneId, but with nothing specified in ${filename}.  Did you misspell the ZoneId.ZoneName?`,
+      );
+      return false;
+    }
 
-    trigger.output = TriggerOutputProxy.makeOutput(
-      trigger,
-      this.options.DisplayLanguage,
-      this.options.PerTriggerAutoConfig,
-    );
+    if (set.zoneId !== undefined) {
+      if (
+        set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId &&
+        !(Array.isArray(set.zoneId) && set.zoneId.includes(this.zoneId))
+      )
+        return false;
+    } else if (set.zoneRegex) {
+      let zoneRegex = set.zoneRegex;
+      if (typeof zoneRegex !== 'object') {
+        console.error(
+          'zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex),
+        );
+        return false;
+      }
+
+      if (!(zoneRegex instanceof RegExp)) {
+        const parserLangRegex = zoneRegex[this.parserLang];
+
+        if (parserLangRegex) {
+          zoneRegex = parserLangRegex;
+        } else if (zoneRegex['en']) {
+          zoneRegex = zoneRegex['en'];
+        } else {
+          console.error('unknown zoneRegex parser language: ' + JSON.stringify(set.zoneRegex));
+          return false;
+        }
+
+        if (!(zoneRegex instanceof RegExp)) {
+          console.error('zoneRegex must be regexp: ' + JSON.stringify(set.zoneRegex));
+          return false;
+        }
+      }
+
+      if (this.zoneName.search(Regexes.parse(zoneRegex)) < 0)
+        return false;
+    }
+
+    return true;
+  }
+
+  // process a zone-enabled trigger set
+  // return undefined for bad trigger Set
+  // process trigger based on current job, options and zone.
+  LocalizeTriggerSet(set: LoadedTriggerSet): undefined | LocalizedTrigger[] {
+    // construct something like regexDe or regexFr.
+    const langSuffix = this.parserLang.charAt(0).toUpperCase() + this.parserLang.slice(1);
+
+    const processedTriggers = [];
+
+    if (this.options.Debug) {
+      if (set.filename)
+        console.log('Loading ' + set.filename);
+      else
+        console.log('Loading user triggers for zone');
+    }
+
+    const setFilename = set.filename ?? 'Unknown';
+
+    if (set.initData) {
+      this.dataInitializers.push({
+        file: setFilename,
+        func: set.initData,
+      });
+    }
+
+    // Adjust triggers for the parser language.
+    if (set.triggers && this.options.AlertsEnabled) {
+      for (const [index, trigger] of set.triggers.entries()) {
+        const localized = this.LocalizeTrigger(trigger, set, index, langSuffix);
+        if (localized) {
+          processedTriggers.push(localized);
+        }
+      }
+    }
+
+    return processedTriggers;
+  }
+
+  LocalizeTrigger(
+    trigger: LooseTrigger,
+    set: LoadedTriggerSet,
+    triggerIndex: number,
+    langSuffix: string,
+  ): LocalizedTrigger | undefined {
+    const id: string = trigger.id ?? `${set.filename}.triggers[${triggerIndex}]`;
+
+    const processedTrigger = {
+      id: id,
+      filename: set.filename,
+      output: TriggerOutputProxy.makeOutput(
+        trigger,
+        this.options.DisplayLanguage,
+        this.options.PerTriggerAutoConfig,
+      ),
+    };
+
+    const triggerObject: { [key: string]: unknown } = trigger;
+
+    // `regex` and `regexDe` (etc) are deprecated, however they may still be used
+    // by user triggers, and so are still checked here.  `regexDe` and friends
+    // will never be auto-translated and are assumed to be correct.
+    // TODO: maybe we could consider removing these once timelines don't need parsed lines?
+    if (isRegexTrigger(trigger)) {
+      const defaultRegex = trigger.regex;
+      const localeRegex = triggerObject['regex' + langSuffix];
+      if (localeRegex instanceof RegExp) {
+        return {
+          ...processedTrigger,
+          localRegex: Regexes.parse(localeRegex),
+        };
+      } else if (defaultRegex) {
+        const trans = translateRegex(defaultRegex, this.parserLang, set.timelineReplace);
+
+        return {
+          ...processedTrigger,
+          localRegex: Regexes.parse(trans),
+        };
+      }
+    }
+
+    // `netRegexDe` (etc) is also deprecated, but they also may still be used by
+    // user triggers.  If they exist, they will take precedence over `netRegex`.
+    // `netRegex` will be auto-translated into the parser language.  `netRegexDe`
+    // and friends will never be auto-translated and are assumed to be correct.
+    if (isNetRegexTrigger(trigger)) {
+      const defaultNetRegex = trigger.netRegex;
+      const localeNetRegex = triggerObject['netRegex' + langSuffix];
+      if (localeNetRegex instanceof RegExp) {
+        // localized regex don't need to handle net-regex auto build
+        return {
+          ...processedTrigger,
+          localNetRegex: Regexes.parse(localeNetRegex),
+        };
+      }
+
+      // user write a trigger { netRegex: undefined }
+      if (defaultNetRegex === undefined) {
+        console.error(`Trigger ${id}: netRegex can't be undefined`);
+        return;
+      }
+
+      // simple netRegex trigger, need to build netRegex and translate
+      if (defaultNetRegex instanceof RegExp) {
+        const trans = translateRegex(defaultNetRegex, this.parserLang, set.timelineReplace);
+
+        return {
+          ...processedTrigger,
+          localNetRegex: Regexes.parse(trans),
+        };
+      }
+
+      if (trigger.type === undefined) {
+        console.error(`Trigger ${id}: without type property need RegExp as netRegex`);
+        return;
+      }
+
+      const re = buildNetRegexForTrigger(
+        trigger.type,
+        translateRegexBuildParam(defaultNetRegex, this.parserLang, set.timelineReplace),
+      );
+
+      return {
+        ...processedTrigger,
+        localNetRegex: Regexes.parse(re),
+      };
+    }
+
+    console.error(`Trigger ${id}: missing regex and netRegex`);
+  }
+
+  private ProcessTimelineTrigger(trigger: LooseTimelineTrigger): ProcessedTrigger {
+    return {
+      ...trigger,
+      output: TriggerOutputProxy.makeOutput(
+        trigger,
+        this.options.DisplayLanguage,
+        this.options.PerTriggerAutoConfig,
+      ),
+    };
   }
 
   OnJobChange(e: PlayerChangedDetail): void {

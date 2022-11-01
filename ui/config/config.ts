@@ -219,7 +219,7 @@ export type ConfigLooseTrigger = LooseTrigger & LooseTimelineTrigger & {
 
 export type ConfigLooseTriggerSet = LooseTriggerSet & {
   filename?: string;
-  isUserTriggerSet?: boolean;
+  loaded?: boolean;
 };
 
 export type ConfigLooseOopsyTrigger = LooseOopsyTrigger;

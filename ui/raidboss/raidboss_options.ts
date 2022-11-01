@@ -9,6 +9,8 @@ import {
   TriggerOutput,
 } from '../../types/trigger';
 
+import { LoadedTriggerSet } from './popup-text';
+
 // This file defines the base options that raidboss expects to see.
 
 // Backwards compat for this old style of overriding triggers.
@@ -50,7 +52,11 @@ type RaidbossNonConfigOptions = {
   PerTriggerAutoConfig: PerTriggerAutoConfig;
   PerTriggerOptions: PerTriggerOptions;
   PerZoneTimelineConfig: PerZoneTimelineConfig;
+
+  // loaded builtin triggers and user triggers
   Triggers: LooseTriggerSet[];
+  LoadedTriggers: LoadedTriggerSet[];
+
   PlayerNameOverride?: string;
   IsRemoteRaidboss: boolean;
   // Transforms text before passing it to TTS.
@@ -76,6 +82,7 @@ const defaultRaidbossNonConfigOptions: RaidbossNonConfigOptions = {
   PerZoneTimelineConfig: {},
 
   Triggers: [],
+  LoadedTriggers: [],
 
   IsRemoteRaidboss: false,
 
