@@ -166,6 +166,12 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
     {
+      id: 'Sildihn Geryon Subterranean Shudder',
+        type: 'StartsUsing',
+        netRegex: { id: '74D2', source: 'Geryon the Steer', capture: false },
+        response: Responses.aoe(),
+    },
+    {
       id: 'Sildihn Geryon Exploding Catapult',
       type: 'StartsUsing',
       netRegex: { id: '74C7', source: 'Geryon the Steer', capture: false },
