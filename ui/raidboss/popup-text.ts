@@ -762,7 +762,7 @@ export class PopupText {
               trigger.localNetRegex = Regexes.parse(localeNetRegex);
               orderedTriggers.push(trigger);
               found = true;
-            } else if (defaultNetRegex) {
+            } else if (defaultNetRegex !== undefined) {
               // simple netRegex trigger, need to build netRegex and translate
               if (defaultNetRegex instanceof RegExp) {
                 const trans = translateRegex(defaultNetRegex, this.parserLang, set.timelineReplace);
