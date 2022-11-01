@@ -190,7 +190,7 @@ export type BaseTriggerSet<Data extends RaidbossData> = {
 };
 
 // If Data contains required properties that are not on RaidbossData, require initData
-export type TriggerSet<Data extends RaidbossData> =
+export type TriggerSet<Data extends RaidbossData = RaidbossData> =
   & BaseTriggerSet<Data>
   & (RequiredFieldsAsUnion<Data> extends RequiredFieldsAsUnion<RaidbossData> ? {
       initData?: DataInitializeFunc<Data>;
@@ -209,7 +209,7 @@ export type LooseTrigger = Partial<
 >;
 
 export type LooseTriggerSet =
-  & Exclude<Partial<TriggerSet<RaidbossData>>, 'triggers' | 'timelineTriggers'>
+  & Omit<Partial<TriggerSet>, 'triggers' | 'timelineTriggers'>
   & {
     /** @deprecated Use zoneId instead */
     zoneRegex?:
