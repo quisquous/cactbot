@@ -43,7 +43,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 13.9,
       y: 21.9,
-      fateID: 1332,
+      fateId: 1332,
     },
     lord: {
       label: {
@@ -64,7 +64,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 29.7,
       y: 27.1,
-      fateID: 1348,
+      fateId: 1348,
     },
     teles: {
       label: {
@@ -85,7 +85,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 25.6,
       y: 27.4,
-      fateID: 1333,
+      fateId: 1333,
     },
     emperor: {
       label: {
@@ -106,7 +106,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 17.2,
       y: 22.2,
-      fateID: 1328,
+      fateId: 1328,
     },
     callisto: {
       label: {
@@ -128,7 +128,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       // 25.5, 22.3 from the tracker, but collides with number
       x: 26.2,
       y: 22.0,
-      fateID: 1344,
+      fateId: 1344,
     },
     number: {
       label: {
@@ -150,7 +150,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       // 23.5, 22.7 from the tracker, but collides with callisto
       x: 23.5,
       y: 23.4,
-      fateID: 1347,
+      fateId: 1347,
     },
     jaha: {
       label: {
@@ -171,7 +171,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 17.7,
       y: 18.6,
-      fateID: 1345,
+      fateId: 1345,
       weather: 'Gales',
     },
     amemet: {
@@ -193,7 +193,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 15.0,
       y: 15.6,
-      fateID: 1334,
+      fateId: 1334,
     },
     caym: {
       label: {
@@ -214,7 +214,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 13.8,
       y: 12.5,
-      fateID: 1335,
+      fateId: 1335,
     },
     bomb: {
       label: {
@@ -235,7 +235,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 28.3,
       y: 20.4,
-      fateID: 1336,
+      fateId: 1336,
       time: 'Night',
     },
     serket: {
@@ -257,7 +257,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 24.8,
       y: 17.9,
-      fateID: 1339,
+      fateId: 1339,
     },
     juli: {
       label: {
@@ -278,7 +278,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 21.9,
       y: 15.6,
-      fateID: 1346,
+      fateId: 1346,
     },
     rider: {
       label: {
@@ -299,7 +299,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 20.3,
       y: 13.0,
-      fateID: 1343,
+      fateId: 1343,
       time: 'Night',
     },
     poly: {
@@ -321,7 +321,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 26.4,
       y: 14.3,
-      fateID: 1337,
+      fateId: 1337,
     },
     strider: {
       label: {
@@ -342,7 +342,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 28.6,
       y: 13.0,
-      fateID: 1342,
+      fateId: 1342,
     },
     hazmat: {
       label: {
@@ -363,7 +363,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 35.3,
       y: 18.3,
-      fateID: 1341,
+      fateId: 1341,
     },
     fafnir: {
       label: {
@@ -384,7 +384,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 35.5,
       y: 21.5,
-      fateID: 1331,
+      fateId: 1331,
       time: 'Night',
     },
     amarok: {
@@ -406,7 +406,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 7.6,
       y: 18.2,
-      fateID: 1340,
+      fateId: 1340,
     },
     lama: {
       label: {
@@ -428,7 +428,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       // 7.7, 23.3 from the tracker but mobs are farther south.
       x: 7.7,
       y: 25.3,
-      fateID: 1338,
+      fateId: 1338,
       time: 'Night',
     },
     pazu: {
@@ -450,7 +450,7 @@ export const zoneInfoAnemos: EurekaZoneInfo = {
       },
       x: 7.4,
       y: 21.7,
-      fateID: 1329,
+      fateId: 1329,
       weather: 'Gales',
     },
   },

@@ -27,7 +27,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       label: bunnyLabel,
       x: 20.5,
       y: 21.5,
-      fateID: 1368,
+      fateId: 1368,
       bunny: true,
       respawnMinutes: 8,
     },
@@ -35,7 +35,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       label: bunnyLabel,
       x: 18.0,
       y: 27.5,
-      fateID: 1367,
+      fateId: 1367,
       bunny: true,
       respawnMinutes: 8,
     },
@@ -58,7 +58,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 21.5,
       y: 26.5,
-      fateID: 1351,
+      fateId: 1351,
     },
     taxim: {
       label: {
@@ -79,7 +79,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 25.5,
       y: 28.3,
-      fateID: 1369,
+      fateId: 1369,
       time: 'Night',
     },
     ashdragon: {
@@ -101,7 +101,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 29.7,
       y: 30.0,
-      fateID: 1353,
+      fateId: 1353,
     },
     glavoid: {
       label: {
@@ -122,7 +122,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 33.0,
       y: 28.0,
-      fateID: 1354,
+      fateId: 1354,
     },
     anapos: {
       label: {
@@ -143,7 +143,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 33.0,
       y: 21.5,
-      fateID: 1355,
+      fateId: 1355,
       weather: 'Fog',
     },
     hakutaku: {
@@ -165,7 +165,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 29.0,
       y: 22.5,
-      fateID: 1366,
+      fateId: 1366,
     },
     igloo: {
       label: {
@@ -186,7 +186,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 17,
       y: 16,
-      fateID: 1357,
+      fateId: 1357,
     },
     asag: {
       label: {
@@ -207,7 +207,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 11.3,
       y: 10.5,
-      fateID: 1356,
+      fateId: 1356,
     },
     surabhi: {
       label: {
@@ -228,7 +228,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 10.5,
       y: 20.5,
-      fateID: 1352,
+      fateId: 1352,
     },
     kingarthro: {
       label: {
@@ -249,7 +249,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 8.0,
       y: 15.2,
-      fateID: 1360,
+      fateId: 1360,
       weather: 'Fog',
     },
     minotaurs: {
@@ -271,7 +271,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 13.8,
       y: 18.4,
-      fateID: 1358,
+      fateId: 1358,
     },
     holycow: {
       label: {
@@ -292,7 +292,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 26,
       y: 16,
-      fateID: 1361,
+      fateId: 1361,
     },
     hadhayosh: {
       label: {
@@ -313,7 +313,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 30,
       y: 19,
-      fateID: 1362,
+      fateId: 1362,
       weather: 'Thunder',
     },
     horus: {
@@ -335,7 +335,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 26,
       y: 20,
-      fateID: 1359,
+      fateId: 1359,
       weather: 'Heat Waves',
     },
     mainyu: {
@@ -357,7 +357,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 25,
       y: 24,
-      fateID: 1363,
+      fateId: 1363,
     },
     cassie: {
       label: {
@@ -379,7 +379,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       weather: 'Blizzards',
       x: 22,
       y: 14,
-      fateID: 1365,
+      fateId: 1365,
     },
     louhi: {
       label: {
@@ -400,7 +400,7 @@ export const zoneInfoPagos: EurekaZoneInfo = {
       },
       x: 36,
       y: 18.5,
-      fateID: 1364,
+      fateId: 1364,
       time: 'Night',
     },
   },
