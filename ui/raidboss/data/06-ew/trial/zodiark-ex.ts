@@ -14,6 +14,8 @@ export interface Data extends RaidbossData {
   paradeigmaCounter: number;
   seenAdikia: boolean;
   styxCount: number;
+  eclipseFlags: string[];
+  eclipseExplosionCount: number;
 }
 
 const sigil = {
@@ -33,6 +35,69 @@ const fetchCombatantsById = async (id: string[]) => {
   return callData.combatants;
 };
 
+const eclipseOutputStrings = {
+  north: Outputs.north,
+  northeast: Outputs.northeast,
+  east: Outputs.east,
+  southeast: Outputs.southeast,
+  south: Outputs.south,
+  southwest: Outputs.southwest,
+  west: Outputs.west,
+  northwest: Outputs.northwest,
+  middle: Outputs.middle,
+  unknown: Outputs.unknown,
+} as const;
+
+// Because there are only six patterns, the third eclipse can be uniquely
+// determined by the first two.
+const getThirdEclipse = (flag1: string, flag2: string): string | undefined => {
+  const finalPattern: { [concatFlags: string]: string } = {
+    '00020001,00200010': '00800040',
+    '10000800,00800040': '00020001',
+    '00020001,10000800': '00200010',
+    '10000800,00200010': '00800040',
+    '00200010,10000800': '00800040',
+    '00200010,00800040': '00020001',
+  };
+  return finalPattern[`${flag1},${flag2}`];
+};
+
+const eclipseOutput = (idx: number, flags?: string): keyof typeof eclipseOutputStrings => {
+  // Astral Eclipse reference: https://twitter.com/xiv_stats/status/1469852444116996096
+
+  // pattern 1: W, mid, NE  (00020001, 00200010, 00800040)
+  // pattern 2: NW, W, N    (10000800, 00800040, 00020001)
+  // pattern 3: W, N, mid   (00020001, 10000800, 00200010)
+  // pattern 4: NW, mid, NE (10000800, 00200010, 00800040)
+  // pattern 5: NW, N, NE   (00200010, 10000800, 00800040)
+  // pattern 6: NW, W, N    (00200010, 00800040, 00020001)
+
+  // Note: it's likely that these flags are a bit pattern of the two holes, so we could
+  // solve this in some general sense, but you'd also have to rotate them all based
+  // on perspective etc etc.  Since there's only six patterns, we'll hardcode.
+
+  if (flags === undefined)
+    return 'unknown';
+
+  if (idx === 0) {
+    return flags === '00020001' ? 'west' : 'northwest';
+  } else if (idx === 1) {
+    if (flags === '00200010')
+      return 'middle';
+    else if (flags === '10000800')
+      return 'north';
+    return 'west';
+  } else if (idx === 2) {
+    if (flags === '00200010')
+      return 'middle';
+    else if (flags === '00020001')
+      return 'north';
+    return 'northeast';
+  }
+
+  return 'unknown';
+};
+
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheMinstrelsBalladZodiarksFall,
   timelineFile: 'zodiark-ex.txt',
@@ -42,6 +107,8 @@ const triggerSet: TriggerSet<Data> = {
     paradeigmaCounter: 0,
     seenAdikia: false,
     styxCount: 6,
+    eclipseFlags: [],
+    eclipseExplosionCount: 0,
   }),
   triggers: [
     {
@@ -374,7 +441,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Phobos',
       type: 'StartsUsing',
       netRegex: { id: '67F0', source: 'Zodiark', capture: false },
-      infoText: (_data, _matches, output) => output.text!(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Heavy DoT',
@@ -384,6 +451,82 @@ const triggerSet: TriggerSet<Data> = {
           ko: '아픈 도트딜',
         },
       },
+    },
+    {
+      id: 'ZodiarkEx Astral Eclipse Cleanup',
+      type: 'StartsUsing',
+      netRegex: { id: '67C3', source: 'Zodiark', capture: false },
+      run: (data) => {
+        data.eclipseFlags = [];
+        data.eclipseExplosionCount = 0;
+      },
+    },
+    {
+      id: 'ZodiarkEx Astral Eclipse Collect',
+      type: 'MapEffect',
+      // Note: there are more lines with these during the explosions, so ignore them.
+      // It's unclear what the flags are doing for those lines.
+      netRegex: { location: '0[678]' },
+      run: (data, matches) => {
+        if (data.eclipseFlags.length === 0) {
+          data.eclipseFlags.push(matches.flags);
+        } else if (data.eclipseFlags.length === 1) {
+          const second = matches.flags;
+          data.eclipseFlags.push(second);
+
+          const first = data.eclipseFlags[0];
+          if (first === undefined)
+            return;
+          // The third mark can be uniquely determined by the first two, so just call it.
+          const third = getThirdEclipse(first, second);
+          if (third !== undefined)
+            data.eclipseFlags.push(third);
+        }
+      },
+    },
+    {
+      id: 'ZodiarkEx Astral Eclipse Initial',
+      type: 'MapEffect',
+      netRegex: { location: '0[678]', capture: false },
+      suppressSeconds: 20,
+      alertText: (data, _matches, output) => {
+        return output[eclipseOutput(0, data.eclipseFlags[0])]!();
+      },
+      outputStrings: eclipseOutputStrings,
+    },
+    {
+      id: 'ZodiarkEx Astral Eclipse Instructions',
+      type: 'MapEffect',
+      netRegex: { location: '0[678]', capture: false },
+      condition: (data) => data.eclipseFlags.length === 3,
+      durationSeconds: 19,
+      suppressSeconds: 20,
+      infoText: (data, _matches, output) => {
+        const dir1 = eclipseOutput(0, data.eclipseFlags[0]);
+        const dir2 = eclipseOutput(1, data.eclipseFlags[1]);
+        const dir3 = eclipseOutput(2, data.eclipseFlags[2]);
+        return output.combo!({ dir1: dir1, dir2: dir2, dir3: dir3 });
+      },
+      outputStrings: {
+        combo: {
+          en: '${dir1} > ${dir2} > ${dir3}',
+        },
+        ...eclipseOutputStrings,
+      },
+    },
+    {
+      id: 'ZodiarkEx Astral Eclipse Step',
+      type: 'Ability',
+      netRegex: { id: '67E7', source: 'Zodiark', capture: false },
+      suppressSeconds: 2,
+      alertText: (data, _matches, output) => {
+        data.eclipseExplosionCount++;
+        if (data.eclipseExplosionCount >= 3)
+          return;
+        const flags = data.eclipseFlags[data.eclipseExplosionCount];
+        return output[eclipseOutput(data.eclipseExplosionCount, flags)]!();
+      },
+      outputStrings: eclipseOutputStrings,
     },
   ],
   timelineReplace: [

@@ -4,7 +4,6 @@ hideall "--Reset--"
 hideall "--sync--"
 # Useful for syncing, but just noisy.
 hideall "Exoterikos"
-hideall "Paradeigma"
 hideall "Triple Esoteric Ray"
 hideall "Infernal Stream"
 hideall "Infernal Torrent"
@@ -14,7 +13,7 @@ hideall "Infernal Torrent"
 0.0 "--sync--" sync /Engage!/ window 0,1
 1.8 "--sync--" sync / 1[56]:[^:]*:Zodiark:6C73:/ window 2.3,0
 10.8 "Kokytos" sync / 1[56]:[^:]*:Zodiark:6C60:/ window 11.3,5
-21.0 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+21.0 "Paradeigma 1" sync / 1[56]:[^:]*:Zodiark:67BF:/
 33.0 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
 37.1 "Styx x6" sync / 1[56]:[^:]*:Zodiark:67F3:/ duration 5.5
 50.4 "Ania" sync / 1[56]:[^:]*:Zodiark:67EF:/
@@ -22,20 +21,20 @@ hideall "Infernal Torrent"
 69.6 "Esoterikos 2" sync / 1[56]:[^:]*:Zodiark:67C0:/
 69.7 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
 
-81.8 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+81.8 "Paradeigma 2" sync / 1[56]:[^:]*:Zodiark:67BF:/
 93.8 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/
 93.9 "Algedon" sync / 1[56]:[^:]*:Zodiark:67E[CD]:/
 94.3 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67E2:/
 106.1 "Phobos" sync / 1[56]:[^:]*:Zodiark:67F0:/
 
-116.3 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+116.3 "Paradeigma 3" sync / 1[56]:[^:]*:Zodiark:67BF:/
 123.5 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
 135.6 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
 141.2 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
 141.8 "Opheos Eidolon" sync / 1[56]:[^:]*:python:67E3:/
 148.8 "Ania" sync / 1[56]:[^:]*:Zodiark:67EF:/
 
-155.9 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+155.9 "Paradeigma 4" sync / 1[56]:[^:]*:Zodiark:67BF:/
 166.0 "Adikia" sync / 1[56]:[^:]*:Zodiark:67F1:/
 167.4 "Opheos Eidolon" sync / 1[56]:[^:]*:python:67E3:/
 
@@ -71,7 +70,7 @@ hideall "Infernal Torrent"
 374.8 "Triple Esoteric Ray" sync / 1[56]:[^:]*:Zodiark:67C4:/
 374.9 "Esoteric Ray 1" sync / 1[56]:[^:]*:Arcane Sigil:67E4:/
 377.9 "Esoteric Ray 2" sync / 1[56]:[^:]*:Arcane Sigil:67E4:/
-390.9 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+390.9 "Paradeigma 5" sync / 1[56]:[^:]*:Zodiark:67BF:/
 406.1 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
 406.2 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
 407.2 "Infernal Torrent" #sync / 1[56]:[^:]*:Zodiark:67E0:/ duration 2
@@ -83,7 +82,7 @@ hideall "Infernal Torrent"
 446.4 "Algedon" sync / 1[56]:[^:]*:Zodiark:67E[CD]:/
 447.5 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
 
-460.6 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+460.6 "Paradeigma 6" sync / 1[56]:[^:]*:Zodiark:67BF:/
 475.8 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
 475.9 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
 476.9 "Infernal Torrent" #sync / 1[56]:[^:]*:Zodiark:67E0:/ duration 2
@@ -107,7 +106,7 @@ hideall "Infernal Torrent"
 565.3 "Algedon" sync / 1[56]:[^:]*:Zodiark:67E[CD]:/
 577.5 "Ania" sync / 1[56]:[^:]*:Zodiark:67EF:/
 
-587.6 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+587.6 "Paradeigma 7" sync / 1[56]:[^:]*:Zodiark:67BF:/
 594.7 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
 606.8 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
 606.9 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
@@ -123,7 +122,7 @@ hideall "Infernal Torrent"
 648.5 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67E[56]:/
 651.5 "Esoteric Ray 2" sync / 1[56]:[^:]*:Arcane Sigil:67E4:/
 
-659.6 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+659.6 "Paradeigma 8" sync / 1[56]:[^:]*:Zodiark:67BF:/
 666.7 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
 678.8 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
 678.9 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
@@ -140,7 +139,7 @@ hideall "Infernal Torrent"
 729.2 "Algedon" sync / 1[56]:[^:]*:Zodiark:67E[CD]:/
 738.4 "Styx x9" sync / 1[56]:[^:]*:Zodiark:67F3:/ duration 10
 
-751.8 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
+751.8 "Paradeigma 9" sync / 1[56]:[^:]*:Zodiark:67BF:/
 758.9 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
 771.0 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:666[23]:/
 771.1 "Infernal Stream" sync / 1[56]:[^:]*:Zodiark:52D1:/
