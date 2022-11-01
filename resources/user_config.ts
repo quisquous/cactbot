@@ -270,7 +270,7 @@ class UserConfig {
       // System Language
       if (e.detail.systemLocale) {
         options.SystemLocale = e.detail.systemLocale;
-        let shortLocale = e.detail.systemLocale.substring(0, 2);
+        let shortLocale = e.detail.systemLocale.slice(0, 2);
         if (shortLocale === 'zh')
           shortLocale = 'cn';
         if (isLang(shortLocale))

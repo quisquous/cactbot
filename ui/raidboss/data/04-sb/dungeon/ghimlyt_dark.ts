@@ -121,7 +121,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Ghimlyt Dark Heirsbane',
       type: 'HeadMarker',
       netRegex: { id: '0001' },
-      condition: (_data, matches) => matches.targetId[0] !== '4',
+      condition: (_data, matches) => !matches.targetId.startsWith('4'),
       response: Responses.tankBuster(),
     },
     {
