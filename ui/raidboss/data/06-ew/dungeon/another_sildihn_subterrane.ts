@@ -17,9 +17,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   suds?: string;
   puffCounter: number;
-  silkenPuffs: {
-    [id: string]: { effect: string, location?: string }
-  };
+  silkenPuffs: { [id: string]: { effect: string, location?: string } };
   freshPuff2SafeAlert?: string;
   soapCounter: number;
   beaterCounter: number;
@@ -156,8 +154,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'ASS Fresh Puff Tracker',
-      // Use this separate trigger to increment data.puffCounter, 
-      // since we have multiple triggers to handle different Fresh Puffs    
+      // Use this separate trigger to increment data.puffCounter,
+      // since we have multiple triggers to handle different Fresh Puffs
       type: 'StartsUsing',
       netRegex: { id: '7766', source: 'Silkie', capture: false },
       run: (data) => {
@@ -252,7 +250,7 @@ const triggerSet: TriggerSet<Data> = {
             return output.default!();
           stackDir = puffEffects.SW === 'CEA' ? 'SE' : 'N';
           safeDir = stackDir === 'SE' ? 'N' : 'SE';
-        } else if (matches.id === '7752') {  // Squeaky Clean Left - resolve based on SE puff's effect
+        } else if (matches.id === '7752') { // Squeaky Clean Left - resolve based on SE puff's effect
           if (puffEffects.SE === undefined)
             return output.default!();
           stackDir = puffEffects.SE === 'CEA' ? 'SW' : 'N';
@@ -464,7 +462,7 @@ const triggerSet: TriggerSet<Data> = {
           case 'CE2': // Intercards/wall safe
             silkieStatus = 'bossIce';
             break;
-          // never CE3 / lightning for this mechanic
+            // never CE3 / lightning for this mechanic
         }
         if (silkieStatus === '')
           return output.default!();
@@ -486,7 +484,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // set the output for the subsequent safe call here and pass the output to the followup trigger
         // this keeps all of the interrelated output strings in this trigger for ease of customization
-        data.freshPuff2SafeAlert = output[safeOutput]!(); 
+        data.freshPuff2SafeAlert = output[safeOutput]!();
         return output.bait!({ dir: puffDir, bait: output[baitOutput]!() });
       },
       outputStrings: {
@@ -502,43 +500,43 @@ const triggerSet: TriggerSet<Data> = {
           en: '${dir} ${bait}',
         },
         bossIcePuffIceCardinal: {
-          en: 'Ice Puff - Bait toward Wall'
+          en: 'Ice Puff - Bait toward wall',
         },
         // There is an uptime strat that has the lightning buffs both baited CW/CCW if boss = Ice and lightning puffs = cardinals
         // But it requires both players to rotate the same direction and does not seem to be as common or generally adopted
         // Regardless, doing output strings like this allows users to change these outputs if they want to use an alternate strat
         bossIcePuffLightningCardinal: {
-          en: 'Lightning Puff - Bait toward Wall'
+          en: 'Lightning Puff - Bait toward wall',
         },
         bossIcePuffCardinalSafe: {
-          en: 'Go to wall (near lightning puffs)'
+          en: 'Go to wall (near lightning puffs)',
         },
         bossIcePuffIceIntercard: {
-          en: 'Ice Puff - Bait toward Corner'
+          en: 'Ice Puff - Bait toward corner',
         },
         bossIcePuffLightningIntercard: {
-          en: 'Lightning Puff - Bait toward Corner'
+          en: 'Lightning Puff - Bait toward corner',
         },
         bossIcePuffIntercardSafe: {
-          en: 'Go to intercards (near lightning puffs)'
+          en: 'Go to intercards (near lightning puffs)',
         },
         bossWindPuffIceCardinal: {
-          en: 'Ice Puff - Bait sideways'
+          en: 'Ice Puff - Bait sideways',
         },
         bossWindPuffLightningCardinal: {
-          en: 'Lightning Puff - Bait toward Wall'
+          en: 'Lightning Puff - Bait toward wall',
         },
         bossWindPuffCardinalSafe: {
-          en: 'Go under boss'
+          en: 'Go under boss',
         },
         bossWindPuffIceIntercard: {
-          en: 'Ice Puff - Bait toward Wall'
+          en: 'Ice Puff - Bait toward wall',
         },
         bossWindPuffLightningIntercard: {
-          en: 'Ice Puff - Bait toward Corner'
+          en: 'Ice Puff - Bait toward corner',
         },
         bossWindPuffIntercardSafe: {
-          en: 'Go under boss'
+          en: 'Go under boss',
         },
         default: {
           en: 'Bait puff, move to safe area',
@@ -551,11 +549,15 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { source: 'Silken Puff' },
       condition: (data, matches) => matches.target === data.me && data.puffCounter === 2,
       delaySeconds: 6.5, // wait for bait alert to no longer display
-      alertText: (data) => {
+      alertText: (data, _matches, output) => {
         if (data.freshPuff2SafeAlert !== undefined)
-          return data.freshPuff2SafeAlert;
+          return output.safe!({ safe: data.freshPuff2SafeAlert });
         return;
       },
+      outputStrings: {
+        safe: {
+          en: '${safe}',
+        },
     },
     // ---------------- second trash ----------------
     {
