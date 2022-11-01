@@ -17,7 +17,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   suds?: string;
   puffCounter: number;
-  silkenPuffs: { [id: string]: { effect: string, location?: string } };
+  silkenPuffs: { [id: string]: { effect: string; location?: string } };
   freshPuff2SafeAlert?: string;
   soapCounter: number;
   beaterCounter: number;
