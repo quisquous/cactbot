@@ -35,6 +35,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Sildihn Visage Dark Fire III': '77E3', // targeted circle
     'Sildihn Python Regorge': '77EF', // targeted circle
     'Sildihn Python Whip Back': '77E4', // backwards 90 degree conal
+    'Sildihn Aqueduct Genomos Aquashatter': '77C4', // targeted circle
 
     // Various Geryon the Steer
     'Sildihn Geryon Powder Keg Explosion 1': '74D4', // blue/red barrel explosion
