@@ -106,10 +106,10 @@ export type TriggerField<Data extends RaidbossData, MatchType extends NetAnyMatc
 // This trigger type is what we expect cactbot triggers to be written as,
 // in other words `id` is not technically required for triggers but for
 // built-in triggers it is.
-export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = Omit<
-  BaseNetTrigger<Data, Type>,
-  'type' | 'netRegex'
->;
+export type BaseTrigger<
+  Data extends RaidbossData,
+  Type extends TriggerTypes,
+> = Omit<BaseNetTrigger<Data, Type>, 'type' | 'netRegex'>;
 
 type BaseNetTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
   id: string;
@@ -161,8 +161,6 @@ export type TimelineFunc = (data: RaidbossData) => TimelineField;
 export type TimelineField = string | TimelineFunc | undefined | TimelineField[];
 
 export type DataInitializeFunc<Data extends RaidbossData> = () => Omit<Data, keyof RaidbossData>;
-
-export type DisabledTrigger = { id: string; disabled: true };
 
 // This helper takes all of the properties in Type and checks to see if they can be assigned to a
 // blank object, and if so excludes them from the returned union. The `-?` syntax removes the
