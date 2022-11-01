@@ -113,7 +113,7 @@ export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = 
 
 type BaseNetTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
   id: string;
-  type?: Type;
+  type: Type;
   netRegex: NetParams[Type] | CactbotBaseRegExp<Type>;
   disabled?: boolean;
   condition?: TriggerField<Data, NetMatches[Type], boolean | undefined>;
