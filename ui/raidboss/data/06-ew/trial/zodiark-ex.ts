@@ -686,13 +686,19 @@ const triggerSet: TriggerSet<Data> = {
           // and they can choose to stand in the behemoth if they'd like.
         }
 
-        // between paradeigma 5 and 6, there's an Algedon with an Esoterikos.
+        // Between paradeigma 5 and 6, there's an Algedon with an Esoterikos.
+        // Call only the melee uptime spot if it is safe, otherwise call
+        // the unsafe uptime spot and the safe downtime spot.
         if (data.paradeigmaCounter === 5) {
-          // One of these might be in the path of Algedon, but that's normal for uptime.
-          if (data.lastSigilDir === 'east')
+          if (data.lastSigilDir === 'east') {
+            if (matches.id === '67EC')
+              return output.single!({ dir: output.dirNE!() });
             return output.combo!({ first: output.dirNE!(), second: output.dirSE!() });
-          else if (data.lastSigilDir === 'west')
+          } else if (data.lastSigilDir === 'west') {
+            if (matches.id === '67ED')
+              return output.single!({ dir: output.dirNW!() });
             return output.combo!({ first: output.dirNW!(), second: output.dirSW!() });
+          }
         }
 
         if (matches.id === '67EC') {
@@ -711,6 +717,9 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${first} / ${second} (ノックバック)',
           cn: '去 ${first} / ${second} (击退)',
           ko: '${first} / ${second} (넉백)',
+        },
+        single: {
+          en: 'Go ${dir} (knockback)',
         },
         ...paradeigmaLeanOutputStrings,
       },
