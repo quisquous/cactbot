@@ -637,7 +637,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 20.3,
       y: 26.8,
-      fateID: 1597,
+      fateId: 1597,
     },
     robots: {
       label: {
@@ -659,7 +659,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 24.8,
       y: 27.5,
-      fateID: 1598,
+      fateId: 1598,
     },
     beasts: {
       label: {
@@ -681,7 +681,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 20.3,
       y: 26.8,
-      fateID: 1599,
+      fateId: 1599,
     },
     unrest: {
       label: {
@@ -702,7 +702,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 24.8,
       y: 27.5,
-      fateID: 1600,
+      fateId: 1600,
     },
     machine: {
       label: {
@@ -725,7 +725,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 28.4,
       y: 29.3,
-      fateID: 1601,
+      fateId: 1601,
     },
     plants: {
       label: {
@@ -747,7 +747,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 34.4,
       y: 29.3,
-      fateID: 1602,
+      fateId: 1602,
     },
     seeq: {
       label: {
@@ -768,7 +768,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 28.9,
       y: 26.1,
-      fateID: 1603,
+      fateId: 1603,
     },
     pets: {
       label: {
@@ -791,7 +791,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 17.3,
       y: 26.6,
-      fateID: 1604,
+      fateId: 1604,
     },
     firstlaw: {
       label: {
@@ -813,7 +813,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 34.4,
       y: 29.3,
-      fateID: 1605,
+      fateId: 1605,
     },
     heal: {
       label: {
@@ -834,7 +834,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 28.9,
       y: 26.1,
-      fateID: 1606,
+      fateId: 1606,
     },
     mash: {
       label: {
@@ -856,7 +856,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 31.3,
       y: 22.0,
-      fateID: 1607,
+      fateId: 1607,
     },
     alert: {
       label: {
@@ -878,7 +878,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 27.3,
       y: 17.7,
-      fateID: 1608,
+      fateId: 1608,
     },
     unicorn: {
       label: {
@@ -901,7 +901,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 32.3,
       y: 17.0,
-      fateID: 1609,
+      fateId: 1609,
     },
     recreation: {
       label: {
@@ -922,7 +922,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 25.6,
       y: 22.6,
-      fateID: 1610,
+      fateId: 1610,
     },
     element: {
       label: {
@@ -943,7 +943,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 17.5,
       y: 23.4,
-      fateID: 1611,
+      fateId: 1611,
     },
     heavyboots: {
       label: {
@@ -965,7 +965,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 31.3,
       y: 22.0,
-      fateID: 1612,
+      fateId: 1612,
     },
     camping: {
       label: {
@@ -987,7 +987,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 17.5,
       y: 23.4,
-      fateID: 1613,
+      fateId: 1613,
     },
     scavengers: {
       label: {
@@ -1009,7 +1009,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 25.6,
       y: 22.6,
-      fateID: 1614,
+      fateId: 1614,
     },
     helpwanted: {
       label: {
@@ -1030,7 +1030,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 18.3,
       y: 20.7,
-      fateID: 1615,
+      fateId: 1615,
     },
     pyromancer: {
       label: {
@@ -1052,7 +1052,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 18.3,
       y: 20.7,
-      fateID: 1616,
+      fateId: 1616,
     },
     rainbow: {
       label: {
@@ -1074,7 +1074,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 25.1,
       y: 15.0,
-      fateID: 1617,
+      fateId: 1617,
     },
     wildbunch: {
       label: {
@@ -1095,7 +1095,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 21.0,
       y: 14.3,
-      fateID: 1618,
+      fateId: 1618,
     },
     familyotheranimals: {
       label: {
@@ -1116,7 +1116,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 11.0,
       y: 14.6,
-      fateID: 1619,
+      fateId: 1619,
     },
     mechanicalman: {
       label: {
@@ -1138,7 +1138,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 20.8,
       y: 17.7,
-      fateID: 1620,
+      fateId: 1620,
     },
     murder: {
       label: {
@@ -1160,7 +1160,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 14.0,
       y: 15.3,
-      fateID: 1621,
+      fateId: 1621,
     },
     seeking: {
       label: {
@@ -1181,7 +1181,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 24.8,
       y: 17.1,
-      fateID: 1622,
+      fateId: 1622,
     },
     suppliesparty: {
       label: {
@@ -1203,7 +1203,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 21.0,
       y: 14.3,
-      fateID: 1623,
+      fateId: 1623,
     },
     demonic: {
       label: {
@@ -1224,7 +1224,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 11.1,
       y: 20.2,
-      fateID: 1624,
+      fateId: 1624,
     },
     absentfriends: {
       label: {
@@ -1247,7 +1247,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       isCEPrecursor: true,
       x: 13.8,
       y: 18.3,
-      fateID: 1625,
+      fateId: 1625,
     },
     steelflame: {
       label: {
@@ -1270,7 +1270,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 13.8,
       y: 18.3,
-      fateID: 1626,
+      fateId: 1626,
     },
     dogsofwar: {
       label: {
@@ -1292,7 +1292,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 14.0,
       y: 15.3,
-      fateID: 1627,
+      fateId: 1627,
     },
     warmachines: {
       label: {
@@ -1314,7 +1314,7 @@ export const zoneInfoBozjaSouthern: EurekaZoneInfo = {
       },
       x: 11.1,
       y: 20.2,
-      fateID: 1628,
+      fateId: 1628,
     },
     castrumlacuslitore: {
       label: {
