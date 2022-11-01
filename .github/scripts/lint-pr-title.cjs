@@ -38,7 +38,7 @@ const validScope = [
   'resources', // code in resources/
   'test', // code in test/ or ui/test/
   'util', // code in util/
-  
+
   'type',
 ];
 
