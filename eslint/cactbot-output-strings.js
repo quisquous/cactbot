@@ -135,9 +135,7 @@ const ruleModule = {
        * @param node {t.MemberExpression}
        */
       [
-        `Property[key.name=/${
-          textProps.join('|')
-        }/] > :function[params.length=3] CallExpression > MemberExpression`
+        `Property[key.name=/alarmText|alertTex|infoText|tts/] > :function[params.length=3] CallExpression > TSNonNullExpression > MemberExpression`
       ](node) {
         if (
           node.object.name === stack.outputParam &&
@@ -155,7 +153,7 @@ const ruleModule = {
           });
         }
         if (t.isIdentifier(node.property) && stack.outputProperties.includes(node.property.name)) {
-          const args = node.parent.callee.parent.arguments;
+          const args = node.parent.parent.callee.parent.arguments;
           const outputOfTriggerId = stack.outputTemplates ?? {};
           const outputTemplate = outputOfTriggerId?.[node.property.name];
 
