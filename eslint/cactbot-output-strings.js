@@ -1,9 +1,27 @@
-const t = require('@babel/types');
+const { ASTUtils } = require('@typescript-eslint/utils');
+
 const textProps = ['alarmText', 'alertText', 'infoText', 'tts'];
 
-/**
- * @type {import('eslint').Rule.RuleModule}
- */
+const isSpreadElement = (node) => {
+  return node.type === 'SpreadElement';
+};
+
+const isMemberExpression = (node) => {
+  return node.type === 'MemberExpression';
+};
+
+const isObjectExpression = (node) => {
+  return node.type === 'ObjectExpression';
+};
+
+const isLiteral = (node) => {
+  return node.type === 'Literal';
+};
+
+const isBinaryExpression = (node) => {
+  return node.type === 'BinaryExpression';
+};
+
 const ruleModule = {
   meta: {
     type: 'problem',
@@ -22,6 +40,7 @@ const ruleModule = {
       missingTemplateValue: 'template \'{{prop}}\' is missing in function call',
     },
   },
+
   create: function(context) {
     const globalVars = new Map();
     const stack = {
@@ -29,80 +48,57 @@ const ruleModule = {
       outputProperties: [],
       inTriggerFunc: false,
     };
-    /**
-     * get all keys name from object literal expression
-     * @param {(t.Property|t.SpreadElement)[]} props
-     * @return {string[]}
-     */
+
     const getAllKeys = (props) => {
       const propKeys = [];
-
       if (!props)
         return propKeys;
-
       props.forEach((prop) => {
         if (prop.type === 'Property') {
-          if (t.isIdentifier(prop.key)) {
+          if (ASTUtils.isIdentifier(prop.key)) {
             propKeys.push(prop.key.name);
-          } else if (prop.key.type === 'Literal') {
-            propKeys.push(prop.key.value);
+          } else if (isLiteral(prop.key)) {
+            if (typeof prop.key.value === 'string') {
+              propKeys.push(prop.key.value);
+            } else {
+              throw new Error(`unexpected AST ${prop.key.value.toString()}`);
+            }
           }
-        } else if (t.isSpreadElement(prop)) {
-          if (t.isIdentifier(prop.argument)) {
-            (globalVars.get(prop.argument.name) || [])
-              .forEach((name) => propKeys.push(name));
+        } else {
+          if (isSpreadElement(prop)) {
+            if (ASTUtils.isIdentifier(prop.argument)) {
+              (globalVars.get(prop.argument.name) || []).forEach((name) => propKeys.push(name));
+            }
           }
         }
       });
       return propKeys;
     };
 
-    /**
-     * @param node {t.ObjectExpression}
-     */
     const extractTemplate = function(node) {
-      if (node.properties === undefined)
+      if (node.properties === void 0)
         return;
       const outputTemplateKey = {};
       for (
-        const outputString of node.properties.filter((s) =>
-          !t.isSpreadElement(s) && !t.isMemberExpression(s.value)
+        const outputString of node.properties.filter(
+          (s) => !isSpreadElement(s) && !isMemberExpression(s.value),
         )
       ) {
-        // For each outputString...
-        const properties = outputString.value.properties;
-        // This could just be a literal, e.g. `outputStrings: { text: 'string' }`.
+        const properties = outputString?.value?.properties;
         if (!properties)
           return;
-
-        const values = properties.map((x) => x.value)
-          .map((x) => {
-            if (x.type === 'Literal') {
-              return x.value;
-            }
-
-            if (x.type === 'BinaryExpression') {
-              /*
-                  outputStrings: {
-                     text: {
-                       en: Outputs.killAdds.en + '(back first)',
-                       de: Outputs.killAdds.de + '(hinten zuerst)',
-                       ja: Outputs.killAdds.ja + '(下の雑魚から)',
-                       cn: Outputs.killAdds.cn + '(先打后方的)',
-                       ko: Outputs.killAdds.ko + '(아래쪽 먼저)',
-                     },
-                   },
-               */
-              return x.right.value;
-            }
-
-            throw new Error('unexpected outputStrings format', x.loc);
-          }).filter((x) => x !== undefined) || [];
-
-        const templateIds = values
-          .map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g)))
-          .map((x) => x.length ? x.map((v) => v[1]) : null);
-
+        const values = properties.map((x) => x.value).map((x) => {
+          if (isLiteral(x)) {
+            return x.value;
+          }
+          if (isBinaryExpression(x)) {
+            return x.right.value;
+          }
+          throw new Error('unexpected outputStrings format', x.loc);
+        }).filter((x) => x !== void 0) || [];
+        const templateIds = values.map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g))).map((
+          x,
+        ) => x.length ? x.map((v) => v[1]) : null);
         if (arrayContainSameElement(templateIds))
           outputTemplateKey[outputString.key.name] = templateIds[0];
       }
@@ -114,9 +110,6 @@ const ruleModule = {
     };
 
     return {
-      /**
-       * @param node {t.ObjectExpression & {parent: t.VariableDeclarator}}
-       */
       'Program > VariableDeclaration > VariableDeclarator > ObjectExpression'(node) {
         globalVars.set(node.parent.id.name, getAllKeys(node.properties));
       },
@@ -125,15 +118,15 @@ const ruleModule = {
         if (props.find((prop) => prop === 'outputStrings')) {
           stack.inTriggerFunc = true;
           stack.outputParam = node.params[2] && node.params[2].name;
-          const outputValue = node.parent.parent.properties.find((prop) =>
-            prop.key && prop.key.name === 'outputStrings'
+          const outputValue = node.parent.parent.properties.find(
+            (prop) => prop.key && prop.key.name === 'outputStrings',
           ).value;
           stack.outputTemplates = extractTemplate(outputValue);
-          stack.outputProperties = t.isIdentifier(outputValue)
+          stack.outputProperties = ASTUtils.isIdentifier(outputValue)
             ? globalVars.get(outputValue.name) || []
             : getAllKeys(outputValue.properties);
-          stack.triggerID = node.parent.parent.properties.find((prop) =>
-            prop.key && prop.key.name === 'id'
+          stack.triggerID = node.parent.parent.properties.find(
+            (prop) => prop.key && prop.key.name === 'id',
           )?.value?.value;
           return;
         }
@@ -151,20 +144,17 @@ const ruleModule = {
           stack.outputTemplates = {};
         }
       },
-      /**
-       * @param node {t.MemberExpression & {parent: {parent: t.CallExpression}}}
-       */
-      [
-        `Property[key.name=/alarmText|alertTex|infoText|tts/] > :function[params.length=3] CallExpression > TSNonNullExpression > MemberExpression`
-      ](node) {
+      [`Property[key.name=/alarmText|alertTex|infoText|tts/] > :function[params.length=3] CallExpression > TSNonNullExpression > MemberExpression`](
+        node,
+      ) {
         if (
-          node.object.name === stack.outputParam &&
-          node.computed === false &&
-          t.isIdentifier(node.property) &&
+          ASTUtils.isIdentifier(node.object) &&
+          node.object.name === stack.outputParam && node.computed === false &&
+          ASTUtils.isIdentifier(node.property) &&
           !stack.outputProperties.includes(node.property.name)
         ) {
           context.report({
-            node: node,
+            node,
             messageId: 'notFoundProperty',
             data: {
               prop: node.property.name,
@@ -172,11 +162,13 @@ const ruleModule = {
             },
           });
         }
-        if (t.isIdentifier(node.property) && stack.outputProperties.includes(node.property.name)) {
+        if (
+          ASTUtils.isIdentifier(node.property) &&
+          stack.outputProperties.includes(node.property.name)
+        ) {
           const args = node.parent.parent.callee.parent.arguments;
           const outputOfTriggerId = stack.outputTemplates ?? {};
           const outputTemplate = outputOfTriggerId?.[node.property.name];
-
           if (args.length === 0) {
             if (node.property.name in outputOfTriggerId) {
               if (outputOfTriggerId[node.property.name] !== null) {
@@ -190,7 +182,7 @@ const ruleModule = {
               }
             }
           } else if (args.length === 1) {
-            if (t.isObjectExpression(args[0])) {
+            if (isObjectExpression(args[0])) {
               const passedKeys = getAllKeys(args[0].properties);
               if (outputTemplate === null && passedKeys.length !== 0) {
                 context.report({
@@ -203,11 +195,10 @@ const ruleModule = {
                 });
               }
             }
-
             const keysInParams = getAllKeys(args[0].properties);
-            if (outputTemplate !== null && outputTemplate !== undefined) {
+            if (outputTemplate !== null && outputTemplate !== void 0) {
               for (const key of outputTemplate) {
-                if (!t.isIdentifier(args[0]) && !keysInParams.includes(key)) {
+                if (!ASTUtils.isIdentifier(args?.[0]) && !keysInParams.includes(key)) {
                   context.report({
                     node,
                     messageId: 'missingTemplateValue',
@@ -217,7 +208,6 @@ const ruleModule = {
                   });
                 }
               }
-
               for (const key of keysInParams) {
                 if (!outputTemplate.includes(key)) {
                   context.report({
