@@ -244,30 +244,6 @@ const handleTriggerOverride = <T extends { id?: string }>(triggers: Array<T>): A
   return keep.reverse();
 };
 
-//   const idx = trigger.id !== undefined ? this.idToIndex[trigger.id] : undefined;
-//   if (idx !== undefined && trigger.id !== undefined) {
-//     const oldTrigger = this.triggers[idx];
-//
-//     if (oldTrigger === undefined)
-//       throw new UnreachableCode();
-//
-//     // TODO: be verbose now while this is fresh, but hide this output behind debug flags later.
-//     const triggerFile = (trigger: ProcessedTrigger) =>
-//       trigger.filename ? `'${trigger.filename}'` : 'user override';
-//     const oldFile = triggerFile(oldTrigger);
-//     const newFile = triggerFile(trigger);
-//     console.log(`Overriding '${trigger.id}' from ${oldFile} with ${newFile}.`);
-//
-//     this.triggers[idx] = trigger;
-//     return;
-//   }
-//
-//   // Normal case of a new trigger, with no overriding.
-//   if (trigger.id !== undefined)
-//     this.idToIndex[trigger.id] = this.triggers.length;
-//   this.triggers.push(trigger);
-// };
-
 const isObject = (x: unknown): x is { [key: string]: unknown } => x instanceof Object;
 
 // User trigger may pass anything as parameters
