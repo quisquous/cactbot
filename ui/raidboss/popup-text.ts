@@ -775,17 +775,12 @@ export class PopupText {
     const processedTriggers = [];
 
     if (this.options.Debug) {
-      if (set.filename)
-        console.log('Loading ' + set.filename);
-      else
-        console.log('Loading user triggers for zone');
+      console.log('Loading ' + set.filename);
     }
-
-    const setFilename = set.filename ?? 'Unknown';
 
     if (set.initData) {
       this.dataInitializers.push({
-        file: setFilename,
+        file: set.filename,
         func: set.initData,
       });
     }
