@@ -333,6 +333,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'big autos',
+          de: 'große Auto-Hits',
         },
       },
     },
@@ -345,6 +346,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'HP to 1',
+          de: 'HP auf 1',
         },
       },
     },
@@ -477,10 +479,12 @@ Options.Triggers.push({
       outputStrings: {
         outsideLine: {
           en: 'Outside ${card}, above line ${line}',
+          de: 'Außerhalb vom ${card}, über der Linie im ${line}',
           ko: '${card} 바깥, ${line}번 줄 위로',
         },
         insideLine: {
           en: 'Inside ${card}, above line 3',
+          de: 'Innerhalb vom ${card}, über der 3. Linie',
           ko: '${card} 안, 3번 줄 위로',
         },
         east: Outputs.east,
@@ -500,6 +504,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Move ${dir}',
+          de: 'Geh nach ${dir}',
           ko: '${dir}으로',
         },
         north: Outputs.north,
@@ -924,10 +929,12 @@ Options.Triggers.push({
       outputStrings: {
         blueBrandNumCorner: {
           en: 'Blue Brand ${num}: ${corner} corner',
+          de: 'Blaues Kryptogramm ${num}: ${corner} Ecke',
           ko: '파란색 선 ${num}: ${corner} 구석',
         },
         orangeBrandNumCorner: {
           en: 'Orange Brand ${num}: ${corner} corner',
+          de: 'Oranges Kryptogramm ${num}: ${corner} Ecke',
           ko: '주황색 선 ${num}: ${corner} 구석',
         },
         brandNumCorner: {
@@ -937,10 +944,12 @@ Options.Triggers.push({
         },
         blueBrandNum: {
           en: 'Blue Brand ${num}',
+          de: 'Blaues Kryptogramm ${num}',
           ko: '파란색 선 ${num}',
         },
         orangeBrandNum: {
           en: 'Orange Brand ${num}',
+          de: 'Oranges Kryptogramm ${num}',
           ko: '주황색 선 ${num}',
         },
         brandNum: {
@@ -1126,18 +1135,22 @@ Options.Triggers.push({
       outputStrings: {
         blueEast: {
           en: 'Blue Teleporting East',
+          de: 'Blau Teleport nach Osten',
           ko: '파란색 동쪽 텔레포트',
         },
         blueWest: {
           en: 'Blue Teleporting West',
+          de: 'Blau Teleport nach Westen',
           ko: '파란색 서쪽 텔레포트',
         },
         orangeEast: {
           en: 'Orange Teleporting East',
+          de: 'Orange Teleport nach Osten',
           ko: '주황색 동쪽 텔레포트',
         },
         orangeWest: {
           en: 'Orange Teleporting West',
+          de: 'Orange Teleport nach Westen',
           ko: '주황색 서쪽 텔레포트',
         },
       },
@@ -1156,6 +1169,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bait First Ward',
+          de: 'Köder erste Wehr',
           ko: '첫번째 지팡이 유도하기',
         },
       },
@@ -1174,6 +1188,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bait Second Ward',
+          de: 'Köder zweite Wehr',
           ko: '두번째 지팡이 유도하기',
         },
       },
@@ -1227,10 +1242,12 @@ Options.Triggers.push({
       outputStrings: {
         middle: {
           en: 'Brand ${num}: Get Middle',
+          de: 'Kryptogramm ${num}: Geh in die Mitte',
           ko: '선 ${num}: 중앙으로',
         },
         outThenBait: {
           en: 'Brand ${num}: Out, Bait Ward',
+          de: 'Kryptogramm ${num}: Wehr ködern',
           ko: '선 ${num}: 밖으로, 지팡이 유도',
         },
       },
@@ -1290,10 +1307,12 @@ Options.Triggers.push({
           },
           moveOrange: {
             en: 'Move for Orange ${num}',
+            de: 'Bewegen für Orange ${num}',
             ko: '주황색 ${num} 끊을 준비',
           },
           moveBlue: {
             en: 'Move for Blue ${num}',
+            de: 'Bewegen für Blau ${num}',
             ko: '파란색 ${num} 끊을 준비',
           },
         };
@@ -1343,14 +1362,17 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           baitWardTwo: {
             en: 'Bait Ward 2 => Bait Puddles',
+            de: 'Köder Wehr 2 => Köder Flächen',
             ko: '지팡이 2 유도 => 장판 유도',
           },
           baitWardThree: {
             en: 'Bait Ward 3',
+            de: 'Köder Wehr 3',
             ko: '지팡이 3 유도',
           },
           baitPuddles: {
             en: 'Bait Puddles',
+            de: 'Köder Flächen',
             ko: '장판 유도',
           },
           cutOrangeNum: {
@@ -1365,10 +1387,12 @@ Options.Triggers.push({
           },
           moveOrangeNum: {
             en: 'Move for Orange ${num}',
+            de: 'Bewegen für Orange ${num}',
             ko: '주황색 ${num} 끊을 준비',
           },
           moveBlueNum: {
             en: 'Move for Blue ${num}',
+            de: 'Bewegen für Blau ${num}',
             ko: '파란색 ${num} 끊을 준비',
           },
         };
