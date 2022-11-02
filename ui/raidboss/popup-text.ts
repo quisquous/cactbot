@@ -67,8 +67,8 @@ export type ProcessedTrigger = LooseTrigger & {
 // a loaded and localized trigger
 export type LocalizedTrigger =
   & LooseTrigger
-  & { id: string; filename: string; output?: Output }
-  & ({ localRegex: RegExp } | { localNetRegex: RegExp });
+  & { filename: string; output?: Output }
+  & ({ localRegex: RegExp } | { localNetRegex: RegExp } | { disabled: true });
 
 export type LoadedTriggerSet = LooseTriggerSet & {
   filename: string;
@@ -809,10 +809,16 @@ export class PopupText {
     triggerIndex: number,
     langSuffix: string,
   ): LocalizedTrigger | undefined {
-    const id: string = trigger.id ?? `${set.filename}.triggers[${triggerIndex}]`;
+    if ('disabled' in trigger && trigger.disabled) {
+      return { id: trigger.id, filename: set.filename, disabled: true };
+    }
+
+    // this ID is to log error message, not as final trigger ID.
+    const id: string = trigger.id ??
+      `${set.filename}.triggers[${triggerIndex}] (undefined id trigger)`;
 
     const processedTrigger = {
-      id: id,
+      id: trigger.id,
       filename: set.filename,
       output: TriggerOutputProxy.makeOutput(
         trigger,
