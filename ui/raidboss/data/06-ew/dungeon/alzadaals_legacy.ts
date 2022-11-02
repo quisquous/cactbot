@@ -1,29 +1,172 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-export type Data = RaidbossData;
+export interface Data extends RaidbossData {
+  tentacleEffects: NetMatches['MapEffect'][];
+}
+
+export type Cardinal = 'N' | 'E' | 'S' | 'W';
+export type Intercard = 'NW' | 'NE' | 'SE' | 'SW';
+export const tentacleFlags = ['00080004', '00200004', '00800004', '02000004'];
+
+// flags are reused between both tentacles, but the final spot where the tentacle lands
+// is different for the cyan & scarlet tentacles
+const cyanTentacleLocations: { [flags: string]: Cardinal } = {
+  '00080004': 'S',
+  '00200004': 'W',
+  '00800004': 'N',
+  '02000004': 'E',
+};
+const scarletTentacleLocations: { [flags: string]: Intercard } = {
+  '00080004': 'NW',
+  '00200004': 'NE',
+  '00800004': 'SE',
+  '02000004': 'SW',
+};
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AlzadaalsLegacy,
   timelineFile: 'alzadaals_legacy.txt',
+  initData: () => {
+    return {
+      tentacleEffects: [],
+    };
+  },
   triggers: [
     {
       id: 'Alzadaal Big Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F60', source: 'Ambujam', capture: false }),
+      netRegex: { id: '6F60', source: 'Ambujam', capture: false },
       response: Responses.aoe(),
     },
     {
-      id: 'Alzadaal Tentacle Dig',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6F55', '6559'], source: 'Ambujam', capture: false }),
-      infoText: (_data, _matches, output) => output.text!(),
+      id: 'Alzadaal Tentacle Dig Collect',
+      type: 'MapEffect',
+      netRegex: { flags: tentacleFlags },
+      run: (data, matches) => data.tentacleEffects.push(matches),
+    },
+    {
+      id: 'Alzadaal Tentacle Dig Single',
+      type: 'Ability',
+      netRegex: { id: '6F55', source: 'Ambujam', capture: false },
+      delaySeconds: 2.3,
+      infoText: (data, _matches, output) => {
+        // only one tentacle (scarlet) for the first use of Tentacle Dig
+        if (data.tentacleEffects.length !== 1)
+          return output.default!();
+
+        const safeMap: { [key in Intercard]: Intercard } = {
+          NW: 'SE',
+          NE: 'SW',
+          SE: 'NW',
+          SW: 'NE',
+        };
+
+        const tentacleFlag = data.tentacleEffects[0]?.flags;
+        if (tentacleFlag === undefined)
+          return output.default!();
+        const tentacleLocation = scarletTentacleLocations[tentacleFlag];
+        if (tentacleLocation === undefined)
+          return output.default!();
+        const safeDir = safeMap[tentacleLocation];
+        if (safeDir === undefined)
+          return output.default!();
+        return output.safe!({ dir1: output[safeDir]!() });
+      },
+      run: (data) => data.tentacleEffects = [],
       outputStrings: {
-        text: {
+        NW: Outputs.dirNW,
+        NE: Outputs.dirNE,
+        SE: Outputs.dirSE,
+        SW: Outputs.dirSW,
+        safe: {
+          en: 'Go ${dir1}',
+          ko: '${dir1}쪽으로',
+        },
+        default: {
+          en: 'Avoid tentacle explosions',
+          de: 'Weiche Tentakel-Explosion aus',
+          fr: 'Évitez les explostions des tentacules',
+          ja: '触手の爆発から離れる',
+          cn: '躲避触手爆炸',
+          ko: '문어다리가 멈춘 곳 멀리 피하기',
+        },
+      },
+    },
+    {
+      id: 'Alzadaal Tentacle Dig Multiple',
+      type: 'Ability',
+      netRegex: { id: '6F59', source: 'Ambujam', capture: false },
+      delaySeconds: 2.3,
+      infoText: (data, _matches, output) => {
+        // both tentacles for 2nd and all subsequent uses of Tentacle Dig
+        if (data.tentacleEffects.length !== 2)
+          return output.default!();
+
+        // cyan tentacle ends on cardinal, and scarlet tentacle ends on intercard opposite cyan
+        // safe wedge runs from the cardinal adjacent to through the unoccupied intercard opposite of the cyan tentacle
+        const safeMap: {
+          [key in Cardinal]: { [idx: string]: [safecard: Cardinal, safeintercard: Intercard] };
+        } = {
+          // Cyan location: {possible Scarlet locations: [safe dirs]}
+          N: {
+            SE: ['W', 'SW'],
+            SW: ['E', 'SE'],
+          },
+          E: {
+            NW: ['S', 'SW'],
+            SW: ['N', 'NW'],
+          },
+          S: {
+            NW: ['E', 'NE'],
+            NE: ['W', 'NW'],
+          },
+          W: {
+            NE: ['S', 'SE'],
+            SE: ['N', 'NE'],
+          },
+        };
+
+        let cyanLoc = undefined;
+        let scarletLoc = undefined;
+        // location 10 = cyan tentacle path, location 11 = scarlet tentacle path
+        for (const tentacle of data.tentacleEffects) {
+          if (tentacle.location === '10') {
+            if (cyanTentacleLocations[tentacle.flags] !== undefined)
+              cyanLoc = cyanTentacleLocations[tentacle.flags];
+          } else if (tentacle.location === '11') {
+            if (scarletTentacleLocations[tentacle.flags] !== undefined)
+              scarletLoc = scarletTentacleLocations[tentacle.flags];
+          }
+        }
+        if (cyanLoc === undefined || scarletLoc === undefined)
+          return output.default!();
+        const safeArray = safeMap[cyanLoc][scarletLoc];
+        if (safeArray === undefined)
+          return output.default!();
+        const [safe0, safe1]: string[] = safeArray;
+        return output.safe!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
+      },
+      run: (data) => data.tentacleEffects = [],
+      outputStrings: {
+        N: Outputs.dirN,
+        E: Outputs.dirE,
+        S: Outputs.dirS,
+        W: Outputs.dirW,
+        NW: Outputs.dirNW,
+        NE: Outputs.dirNE,
+        SE: Outputs.dirSE,
+        SW: Outputs.dirSW,
+        safe: {
+          en: 'Go ${dir1} / ${dir2}',
+          ko: '${dir1}/${dir2}쪽으로',
+        },
+        default: {
           en: 'Avoid tentacle explosions',
           de: 'Weiche Tentakel-Explosion aus',
           fr: 'Évitez les explostions des tentacules',
@@ -36,7 +179,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Fountain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '731A', source: 'Ambujam', capture: false }),
+      netRegex: { id: '731A', source: 'Ambujam', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -52,19 +195,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Diffusion Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F1E', source: 'Armored Chariot', capture: false }),
+      netRegex: { id: '6F1E', source: 'Armored Chariot', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Alzadaal Rail Cannon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F1F', source: 'Armored Chariot' }),
+      netRegex: { id: '6F1F', source: 'Armored Chariot' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Alzadaal Articulated Bits',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F19', source: 'Armored Chariot', capture: false }),
+      netRegex: { id: '6F19', source: 'Armored Chariot', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -81,7 +224,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Graviton Cannon',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7373', source: 'Armored Chariot' }),
+      netRegex: { id: '7373', source: 'Armored Chariot' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
       response: Responses.spread(),
@@ -89,13 +232,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Billowing Bolts',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F70', source: 'Kapikulu', capture: false }),
+      netRegex: { id: '6F70', source: 'Kapikulu', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Alzadaal Spin Out',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F63', source: 'Kapikulu', capture: false }),
+      netRegex: { id: '6F63', source: 'Kapikulu', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -111,7 +254,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Power Serge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F6A', source: 'Kapikulu', capture: false }),
+      netRegex: { id: '6F6A', source: 'Kapikulu', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -127,20 +270,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Alzadaal Magnitude Opus',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00A1' }),
+      netRegex: { id: '00A1' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Alzadaal Rotary Gale',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0060' }),
+      netRegex: { id: '0060' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Alzadaal Crewel Slice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6F72', source: 'Kapikulu' }),
+      netRegex: { id: '6F72', source: 'Kapikulu' },
       response: Responses.tankBuster(),
     },
   ],

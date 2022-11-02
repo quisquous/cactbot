@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -14,60 +13,60 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9N Ground-Razing Particle Beam',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '55ED', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '55ED', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 5,
       response: Responses.aoe(),
     },
     {
       id: 'E9N The Art Of Darkness Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5223', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5223', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 4,
       response: Responses.goLeft(),
     },
     {
       id: 'E9N The Art Of Darkness Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5224', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5224', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 4,
       response: Responses.goRight(),
     },
     {
       id: 'E9N Wide-Angle Particle Beam',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5AFF', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5AFF', source: 'Cloud Of Darkness', capture: false },
       response: Responses.awayFromFront('info'),
     },
     {
       id: 'E9N Zero-Form Particle Beam',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '55EB', source: 'Cloud Of Darkness' }),
+      netRegex: { id: '55EB', source: 'Cloud Of Darkness' },
       response: Responses.tankBuster(),
     },
     {
       id: 'E9N Empty Plane',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4FC6', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '4FC6', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 5,
       response: Responses.aoe(),
     },
     {
       id: 'E9N Obscure Woods',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4FA2', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '4FA2', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 5,
       response: Responses.aoe(),
     },
     {
       id: 'E9N Waste Away',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '55DE', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '55DE', source: 'Cloud Of Darkness', capture: false },
       response: Responses.knockback('info'),
     },
     {
       id: 'E9N Stygian Tether',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000C' }),
+      netRegex: { id: '000C' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -84,14 +83,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9N Stygian Break Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0012' }),
+      netRegex: { id: '0012' },
       condition: Conditions.targetIsYou(),
       response: Responses.breakChains(),
     },
     {
       id: 'E9N Wide-Angle Phaser',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['55DF', '55E[01]'], source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: ['55DF', '55E[01]'], source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 5,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
@@ -109,7 +108,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9N Rejuvenating Balm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '55E2', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '55E2', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -126,14 +125,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9N Deluge Of Darkness',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5155', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5155', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 5,
       response: Responses.aoe(),
     },
     {
       id: 'E9N Particle Concentration',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '55E8', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '55E8', source: 'Cloud Of Darkness', capture: false },
       delaySeconds: 4,
       durationSeconds: 4,
       infoText: (_data, _matches, output) => output.text!(),
@@ -151,7 +150,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9N Hypercharged Condensation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '532E', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '532E', source: 'Cloud Of Darkness', capture: false },
 
       delaySeconds: 2,
       durationSeconds: 5,
@@ -160,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9N Anti-Air Particle Beam',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '55DC', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '55DC', source: 'Cloud Of Darkness', capture: false },
       response: Responses.getOut('info'),
     },
   ],

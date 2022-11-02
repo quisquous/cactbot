@@ -139,12 +139,12 @@ const defaultWatchCombatant: WatchCombatantFunc = (params, func) => {
 
     const checkFunc = () => {
       if (shouldCancelWatch(params, entry)) {
-        rej();
+        rej(new Error('cancelled'));
         return;
       }
       void callOverlayHandler(call).then((response) => {
         if (entry.cancel) {
-          rej();
+          rej(new Error('was cancelled'));
           return;
         }
         if (func(response))

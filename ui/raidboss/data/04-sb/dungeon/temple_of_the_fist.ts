@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -28,25 +27,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Temple Electric Burst Sruti',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Sruti', capture: false }),
+      netRegex: { id: '1FD6', source: 'Coeurl Sruti', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Temple Electric Burst Smriti',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FD6', source: 'Coeurl Smriti', capture: false }),
+      netRegex: { id: '1FD6', source: 'Coeurl Smriti', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Temple Fourfold Shear',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FD9', source: 'Arbuda' }),
+      netRegex: { id: '1FD9', source: 'Arbuda' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Temple Moonseal',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0059' }),
+      netRegex: { id: '0059' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -63,7 +62,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Temple Sunseal',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0058' }),
+      netRegex: { id: '0058' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -80,19 +79,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Temple Port And Star',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FDC', source: 'Arbuda', capture: false }),
+      netRegex: { id: '1FDC', source: 'Arbuda', capture: false },
       response: Responses.goFrontBack(),
     },
     {
       id: 'Temple Fore And Aft',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FDB', source: 'Arbuda', capture: false }),
+      netRegex: { id: '1FDB', source: 'Arbuda', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'Temple Killer Instinct',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FDE', source: 'Arbuda', capture: false }),
+      netRegex: { id: '1FDE', source: 'Arbuda', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -108,13 +107,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Temple Spirit Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FE7', source: 'Ivon Coeurlfist', capture: false }),
+      netRegex: { id: '1FE7', source: 'Ivon Coeurlfist', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Temple Touch Of Slaughter',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FE6', source: 'Ivon Coeurlfist' }),
+      netRegex: { id: '1FE6', source: 'Ivon Coeurlfist' },
       condition: (data) => data.role === 'healer',
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
@@ -131,7 +130,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Temple Coeurl Heads',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '1FE9', source: 'Ivon Coeurlfist', capture: false }),
+      netRegex: { id: '1FE9', source: 'Ivon Coeurlfist', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -147,7 +146,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Temple Rhalgr\'s Piece',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FED', source: 'Ivon Coeurlfist', capture: false }),
+      netRegex: { id: '1FED', source: 'Ivon Coeurlfist', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -163,7 +162,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Temple Rose Of Destruction',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1FEE', source: 'Ivon Coeurlfist' }),
+      netRegex: { id: '1FEE', source: 'Ivon Coeurlfist' },
       response: Responses.stackMarkerOn(),
     },
   ],

@@ -27,37 +27,37 @@ export class DNCComponent extends BaseComponent {
   constructor(o: ComponentInterface) {
     super(o);
 
-  this.comboTimer = this.bars.addTimerBar({
-    id: 'dnc-timers-combo',
-    fgColor: 'combo-color',
-  });
+    this.comboTimer = this.bars.addTimerBar({
+      id: 'dnc-timers-combo',
+      fgColor: 'combo-color',
+    });
 
-  this.standardStep = this.bars.addProcBox({
-    id: 'dnc-procs-standardstep',
-    fgColor: 'dnc-color-standardstep',
-  });
+    this.standardStep = this.bars.addProcBox({
+      id: 'dnc-procs-standardstep',
+      fgColor: 'dnc-color-standardstep',
+    });
 
-  // TechnicalStep cooldown on begin dance, but effect appear when TechnicalFinish.
-  this.technicalStep = this.bars.addProcBox({
-    id: 'dnc-procs-technicalstep',
-    fgColor: 'dnc-color-technicalstep',
-  });
+    // TechnicalStep cooldown on begin dance, but effect appear when TechnicalFinish.
+    this.technicalStep = this.bars.addProcBox({
+      id: 'dnc-procs-technicalstep',
+      fgColor: 'dnc-color-technicalstep',
+    });
 
-  // When cast Flourish, show proc remain time until all procs have been used.
-  this.flourish = this.bars.addProcBox({
-    id: 'dnc-procs-flourish',
-    fgColor: 'dnc-color-flourish',
-  });
+    // When cast Flourish, show proc remain time until all procs have been used.
+    this.flourish = this.bars.addProcBox({
+      id: 'dnc-procs-flourish',
+      fgColor: 'dnc-color-flourish',
+    });
 
-  this.featherGauge = this.bars.addResourceBox({
-    classList: ['dnc-color-feather'],
-  });
-  this.espritGauge = this.bars.addResourceBox({
-    classList: ['dnc-color-esprit'],
-  });
+    this.featherGauge = this.bars.addResourceBox({
+      classList: ['dnc-color-feather'],
+    });
+    this.espritGauge = this.bars.addResourceBox({
+      classList: ['dnc-color-esprit'],
+    });
 
-  this.reset();
-}
+    this.reset();
+  }
   override onCombo(skill: string, combo: ComboTracker): void {
     this.comboTimer.duration = 0;
     if (combo.isFinalSkill)
@@ -73,10 +73,12 @@ export class DNCComponent extends BaseComponent {
         case EffectId.FlourishingFlow:
         case EffectId.ThreefoldFanDance:
         case EffectId.FourfoldFanDance: {
-          if (!(this.flourishEffect.includes(effect)))
+          if (!this.flourishEffect.includes(effect))
             this.flourishEffect.push(effect);
-          if ((this.flourishEffect.length === 4 && this.flourishIsActive) ||
-            (this.player.level < 86 && this.flourishEffect.length === 3 && this.flourishIsActive)) {
+          if (
+            this.flourishEffect.length === 4 && this.flourishIsActive ||
+            this.player.level < 86 && this.flourishEffect.length === 3 && this.flourishIsActive
+          ) {
             this.flourish.duration = 60 - this.flourish.elapsed;
             this.flourishIsActive = false;
             this.flourish.threshold = this.player.gcdSkill + 1;
@@ -91,10 +93,12 @@ export class DNCComponent extends BaseComponent {
         case EffectId.SilkenFlow: //  6.0 names FlourishingXXX, name changed but id not.
         case EffectId.ThreefoldFanDance:
         case EffectId.FourfoldFanDance: {
-          if (!(this.flourishEffect.includes(effect)))
+          if (!this.flourishEffect.includes(effect))
             this.flourishEffect.push(effect);
-          if ((this.flourishEffect.length === 4 && this.flourishIsActive) ||
-            (this.player.level < 86 && this.flourishEffect.length === 3 && this.flourishIsActive)) {
+          if (
+            this.flourishEffect.length === 4 && this.flourishIsActive ||
+            this.player.level < 86 && this.flourishEffect.length === 3 && this.flourishIsActive
+          ) {
             this.flourish.duration = 60 - this.flourish.elapsed;
             this.flourishIsActive = false;
             this.flourish.threshold = this.player.gcdSkill + 1;
@@ -131,7 +135,10 @@ export class DNCComponent extends BaseComponent {
         this.tid1 = window.setTimeout(() => {
           this.technicalStep.duration = 100 - this.elapsed;
           this.technicalStep.threshold = this.player.gcdSkill + 1;
-          this.technicalStep.fg = computeBackgroundColorFrom(this.technicalStep, 'dnc-color-technicalstep');
+          this.technicalStep.fg = computeBackgroundColorFrom(
+            this.technicalStep,
+            'dnc-color-technicalstep',
+          );
         }, this.technicalStep.duration * 1000);
         break;
       }
@@ -175,12 +182,15 @@ export class DNCComponent extends BaseComponent {
     this.standardStep.duration = 0;
     this.technicalStep.duration = 0;
     this.elapsed = 0;
-    this.technicalStep.threshold = this. player.gcdSkill + 1;
-    this.technicalStep.fg = computeBackgroundColorFrom(this.technicalStep, 'dnc-color-technicalstep');
+    this.technicalStep.threshold = this.player.gcdSkill + 1;
+    this.technicalStep.fg = computeBackgroundColorFrom(
+      this.technicalStep,
+      'dnc-color-technicalstep',
+    );
     this.flourish.duration = 0;
     this.flourishEffect = [];
     this.flourishIsActive = false;
-    this.flourish.threshold = this. player.gcdSkill + 1;
+    this.flourish.threshold = this.player.gcdSkill + 1;
     this.flourish.fg = computeBackgroundColorFrom(this.flourish, 'dnc-color-flourish');
     window.clearTimeout(this.tid1);
     window.clearTimeout(this.tid2);

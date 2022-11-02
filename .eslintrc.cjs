@@ -7,17 +7,6 @@ const path = require('path');
 const rulesDirPlugin = require('eslint-plugin-rulesdir');
 rulesDirPlugin.RULES_DIR = path.join(__dirname, 'eslint');
 
-// lineWidth specified depending on file location.
-const dprintConfig = {
-  'bracePosition': 'maintain',
-  'indentWidth': 2,
-  'newLineKind': 'crlf',
-  'nextControlFlowPosition': 'maintain',
-  'operatorPosition': 'maintain',
-  'quoteStyle': 'alwaysSingle',
-  'useBraces': 'maintain',
-};
-
 const settings = {
   'env': {
     'browser': true,
@@ -42,11 +31,10 @@ const settings = {
     'resources/lib/',
   ],
   'parserOptions': {
-    'ecmaVersion': 2020,
+    'ecmaVersion': 2022,
     'sourceType': 'module',
   },
   'plugins': [
-    'dprint',
     'import',
     'rulesdir',
   ],
@@ -64,23 +52,8 @@ const settings = {
   },
 };
 
-const dprintRule = (width) => {
-  return {
-    'dprint/dprint': [
-      'warn',
-      {
-        config: {
-          ...dprintConfig,
-          'lineWidth': width,
-        },
-      },
-    ],
-  };
-};
-
 // General rules for all files.
 const rules = {
-  ...dprintRule(100),
   'arrow-spacing': [
     'warn',
     {
@@ -97,9 +70,9 @@ const rules = {
   // Handled by dprint.
   'comma-dangle': 'off',
   'curly': [
-    'warn',
-    'multi-or-nest',
-    'consistent',
+    'off',
+    // 'multi-or-nest',
+    // 'consistent',
   ],
   'eqeqeq': 'error',
   'guard-for-in': 'off',
@@ -172,7 +145,16 @@ const rules = {
       'allowAllPropertiesOnSameLine': true,
     },
   ],
-  'operator-linebreak': 'error',
+  'operator-linebreak': [
+    'error',
+    'after',
+    {
+      'overrides': {
+        ':': 'before',
+        '?': 'before',
+      },
+    },
+  ],
   'prefer-arrow-callback': 'error',
   'prefer-const': 'error',
   'prefer-regex-literals': 'error',
@@ -210,6 +192,7 @@ const rules = {
     'error',
     'never',
   ],
+  'unicorn/prefer-string-slice': 'error',
   'valid-jsdoc': 'off',
 };
 
@@ -225,7 +208,7 @@ const tsOverrides = {
     'project': ['./tsconfig.json'],
     'tsconfigRootDir': __dirname,
   },
-  'plugins': ['@typescript-eslint', 'prefer-arrow'],
+  'plugins': ['@typescript-eslint', 'prefer-arrow', 'unicorn'],
   'rules': {
     '@typescript-eslint/consistent-type-assertions': [
       'error',
@@ -255,6 +238,7 @@ const tsOverrides = {
     '@typescript-eslint/no-unsafe-argument': 'error',
     '@typescript-eslint/no-unused-vars': ['warn', { 'args': 'all', 'argsIgnorePattern': '^_\\w?' }],
     '@typescript-eslint/object-curly-spacing': ['warn', 'always'],
+    '@typescript-eslint/prefer-string-starts-ends-with': 'error',
     '@typescript-eslint/strict-boolean-expressions': ['error', {
       // @TODO: Remove these keys over time, setting them back to default
       'allowNullableBoolean': true,
@@ -289,7 +273,6 @@ const overrides = [
   {
     'files': ['**/oopsyraidsy/data/**/*.ts', '**/raidboss/data/**/*.ts'],
     'rules': {
-      ...dprintRule(300),
       // Raidboss data files always export a trigger set, and explicit types are noisy.
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       // Only meant to be used for `output` parameters!
@@ -304,29 +287,6 @@ const overrides = [
       'rulesdir/cactbot-output-strings': 'error',
       'rulesdir/cactbot-response-default-severities': 'error',
       'rulesdir/cactbot-timeline-triggers': 'error',
-    },
-  },
-  {
-    // These are for the triggers branch only.
-    'files': [
-      '**/oopsyraidsy/data/**/*.js',
-      '**/raidboss/data/**/*.js',
-    ],
-    'rules': {
-      // This is a bit awkward, but see process_trigger_folders.ts.
-      // It runs once without dprint using the indent rule, and then once with dprint.
-      // dprint is VERY slow on unformatted files, but quick when there is nothing to do.
-      // In general however, we don't want to specify both dprint and indent together,
-      // as these rules fight against each other.
-      ...dprintRule(300),
-      'indent': [
-        'warn',
-        2,
-        {
-          'ignoreComments': false,
-          'SwitchCase': 1,
-        },
-      ],
     },
   },
   {

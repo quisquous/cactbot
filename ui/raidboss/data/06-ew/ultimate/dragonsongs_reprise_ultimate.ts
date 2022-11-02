@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -16,7 +15,14 @@ import { LocaleObject, LocaleText, TriggerSet } from '../../../../../types/trigg
 // TODO: Trigger for Hallowed Wings with Hot Tail/Hot Wings
 // TODO: Phase 6 Resentment callout?
 
-type Phase = 'doorboss' | 'thordan' | 'nidhogg' | 'haurchefant' | 'thordan2' | 'nidhogg2' | 'dragon-king';
+type Phase =
+  | 'doorboss'
+  | 'thordan'
+  | 'nidhogg'
+  | 'haurchefant'
+  | 'thordan2'
+  | 'nidhogg2'
+  | 'dragon-king';
 
 const playstationMarkers = ['circle', 'cross', 'triangle', 'square'] as const;
 type PlaystationMarker = typeof playstationMarkers[number];
@@ -60,6 +66,9 @@ export interface Data extends RaidbossData {
   spreadingFlame: string[];
   entangledFlame: string[];
   mortalVowPlayer?: string;
+  firstGigaflare?: number[];
+  secondGigaflare?: number[];
+  centerGigaflare?: number[];
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -108,7 +117,11 @@ const firstMarker = (phase: Phase) => {
   return phase === 'doorboss' ? headmarkers.hyperdimensionalSlash : headmarkers.skywardTriple;
 };
 
-const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker'], firstDecimalMarker?: number) => {
+const getHeadmarkerId = (
+  data: Data,
+  matches: NetMatches['HeadMarker'],
+  firstDecimalMarker?: number,
+) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
   // (This makes the offset 0, and !0 is true.)
   if (data.decOffset === undefined) {
@@ -136,7 +149,7 @@ const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
   //
   // Map NW = 0, N = 1, ..., W = 7
 
-  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+  return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
 // Calculate combatant position in 4 cardinals
@@ -150,7 +163,7 @@ const matchedPositionTo4Dir = (combatant: PluginCombatantState) => {
   //
   // N = 0, E = 1, S = 2, W = 3
 
-  return (Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4);
+  return Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
 };
 
 const triggerSet: TriggerSet<Data> = {
@@ -250,7 +263,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6708 = Final Chorus
       // 62E2 = Spear of the Fury
       // 6B86 = Incarnation
-      netRegex: NetRegexes.startsUsing({ id: ['62D4', '63C8', '6708', '62E2', '6B86'], capture: true }),
+      netRegex: { id: ['62D4', '63C8', '6708', '62E2', '6B86'], capture: true },
       run: (data, matches) => {
         // On the unlikely chance that somebody proceeds directly from the checkpoint into the next phase.
         data.brightwingCounter = 1;
@@ -281,7 +294,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // 6667 = unknown_6667
       // 71E4 = Shockwave
-      netRegex: NetRegexes.ability({ id: ['6667', '71E4'] }),
+      netRegex: { id: ['6667', '71E4'] },
       suppressSeconds: 1,
       run: (data, matches) => {
         switch (matches.id) {
@@ -297,7 +310,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Headmarker Tracker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => {
@@ -308,21 +321,23 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Holiest of Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62D4', source: 'Ser Adelphel', capture: false }),
+      netRegex: { id: '62D4', source: 'Ser Adelphel', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'DSR Holiest Hallowing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62D0', source: 'Ser Adelphel' }),
+      netRegex: { id: '62D0', source: 'Ser Adelphel' },
       response: Responses.interrupt(),
     },
     {
       id: 'DSR Empty Dimension',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62DA', source: 'Ser Grinnaux', capture: false }),
+      netRegex: { id: '62DA', source: 'Ser Grinnaux', capture: false },
       alertText: (data, _matches, output) => {
-        return data.phase !== 'doorboss' || data.seenEmptyDimension ? output.in!() : output.inAndTether!();
+        return data.phase !== 'doorboss' || data.seenEmptyDimension
+          ? output.in!()
+          : output.inAndTether!();
       },
       run: (data) => data.seenEmptyDimension = true,
       outputStrings: {
@@ -332,7 +347,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Intérieur + Liens tanks',
           ja: '中へ + タンク線取り',
           cn: '中间 + 坦克接线',
-          ko: '안으로 + 탱커 선 가로채기',
+          ko: '안으로 + 탱커가 선 가로채기',
         },
         in: Outputs.in,
       },
@@ -340,13 +355,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Full Dimension',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62DB', source: 'Ser Grinnaux', capture: false }),
+      netRegex: { id: '62DB', source: 'Ser Grinnaux', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'DSR Faith Unmoving',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62DC', source: 'Ser Grinnaux', capture: false }),
+      netRegex: { id: '62DC', source: 'Ser Grinnaux', capture: false },
       condition: (data) => {
         // Drop the knockback call during Playstation2 as there is too much going on.
         if (data.phase === 'thordan2')
@@ -358,7 +373,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Hyperdimensional Slash Headmarker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => data.phase === 'doorboss' && data.me === matches.target,
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -380,14 +395,15 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Adelphel ID Tracker',
       // 62D2 Is Ser Adelphel's Holy Bladedance, casted once during the encounter
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '62D2', source: 'Ser Adelphel' }),
+      netRegex: { id: '62D2', source: 'Ser Adelphel' },
       run: (data, matches) => data.adelphelId = matches.sourceId,
     },
     {
       id: 'DSR Adelphel KB Direction',
       type: 'NameToggle',
-      netRegex: NetRegexes.nameToggle({ toggle: '01' }),
-      condition: (data, matches) => data.phase === 'doorboss' && matches.id === data.adelphelId && data.firstAdelphelJump,
+      netRegex: { toggle: '01' },
+      condition: (data, matches) =>
+        data.phase === 'doorboss' && matches.id === data.adelphelId && data.firstAdelphelJump,
       // Delay 0.1s here to prevent any race condition issues with getCombatants
       delaySeconds: 0.1,
       promise: async (data, matches) => {
@@ -449,7 +465,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Playstation Fire Chains',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => data.phase === 'doorboss' && data.me === matches.target,
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -503,7 +519,7 @@ const triggerSet: TriggerSet<Data> = {
       // Visually, this comes from Ser Charibert.  However, ~30% of the time
       // the first set of Brightwing cleaves come from King Thordan/Ser Hermonst
       // entities.  This is likely just stale combatant data from the ffxiv plugin.
-      netRegex: NetRegexes.ability({ id: '6319', capture: false }),
+      netRegex: { id: '6319', capture: false },
       // One ability for each player hit (hopefully only two??)
       suppressSeconds: 1,
       infoText: (data, _matches, output) => output[`dive${data.brightwingCounter}`]!(),
@@ -519,7 +535,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Brightwing Move',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6319', source: 'Ser Charibert' }),
+      netRegex: { id: '6319', source: 'Ser Charibert' },
       condition: Conditions.targetIsYou(),
       // Once hit, drop your Skyblind puddle somewhere else.
       response: Responses.moveAway('alert'),
@@ -529,7 +545,7 @@ const triggerSet: TriggerSet<Data> = {
       // 631A Skyblind (2.2s cast) is a targeted ground aoe where A65 Skyblind
       // effect expired on the player.
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'A65' }),
+      netRegex: { effectId: 'A65' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration),
       response: Responses.moveAway(),
@@ -537,7 +553,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Ascalon\'s Mercy Concealed',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63C8', source: 'King Thordan', capture: true }),
+      netRegex: { id: '63C8', source: 'King Thordan', capture: true },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime),
       response: Responses.moveAway(),
     },
@@ -545,7 +561,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Spiral Thrust Safe Spots',
       // 63D3 Strength of the Ward
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '63D3', source: 'King Thordan', capture: false }),
+      netRegex: { id: '63D3', source: 'King Thordan', capture: false },
       condition: (data) => data.phase === 'thordan',
       // It appears that these adds can be in place at ~4.5s, but with latency this may fail for some.
       delaySeconds: 5,
@@ -580,8 +596,12 @@ const triggerSet: TriggerSet<Data> = {
 
         // Select the knights
         const combatantNameKnights: string[] = [];
-        combatantNameKnights.push(vellguineLocaleNames[data.parserLang] ?? vellguineLocaleNames['en']);
-        combatantNameKnights.push(paulecrainLocaleNames[data.parserLang] ?? paulecrainLocaleNames['en']);
+        combatantNameKnights.push(
+          vellguineLocaleNames[data.parserLang] ?? vellguineLocaleNames['en'],
+        );
+        combatantNameKnights.push(
+          paulecrainLocaleNames[data.parserLang] ?? paulecrainLocaleNames['en'],
+        );
         combatantNameKnights.push(ignasseLocaleNames[data.parserLang] ?? ignasseLocaleNames['en']);
 
         const spiralThrusts = [];
@@ -630,7 +650,9 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         data.spiralThrustSafeZones ??= [];
         if (data.spiralThrustSafeZones.length !== 2) {
-          console.error(`Spiral Thrusts: expected 2 safe zones got ${data.spiralThrustSafeZones.length}`);
+          console.error(
+            `Spiral Thrusts: expected 2 safe zones got ${data.spiralThrustSafeZones.length}`,
+          );
           return;
         }
         // Map of directions
@@ -674,7 +696,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Dragon\'s Rage',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '63D7', source: 'Ser Guerrique', capture: false }),
+      netRegex: { id: '63D7', source: 'Ser Guerrique', capture: false },
       durationSeconds: 7,
       promise: async (data) => {
         // These are the first actions these actors take, so can't easily get their ids earlier.
@@ -721,7 +743,9 @@ const triggerSet: TriggerSet<Data> = {
         // After the above adjustment to handle modular math wrapping,
         // d1 and d2 should be exactly two spaces apart.
         if (d2 - d1 !== 2 && d1 - d2 !== 2) {
-          console.error(`DragonsRage: bad dirs: ${d1}, ${d2}, ${JSON.stringify(data.combatantData)}`);
+          console.error(
+            `DragonsRage: bad dirs: ${d1}, ${d2}, ${JSON.stringify(data.combatantData)}`,
+          );
           return;
         }
 
@@ -763,7 +787,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Skyward Leap',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => data.phase === 'thordan' && data.me === matches.target,
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -784,19 +808,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Ancient Quaga',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63C6', source: 'King Thordan', capture: false }),
+      netRegex: { id: '63C6', source: 'King Thordan', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'DSR Heavenly Heel',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63C7', source: 'King Thordan' }),
+      netRegex: { id: '63C7', source: 'King Thordan' },
       response: Responses.tankBusterSwap('alert', 'alert'),
     },
     {
       id: 'DSR Sanctity of the Ward Direction',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '63E1', source: 'King Thordan', capture: false }),
+      netRegex: { id: '63E1', source: 'King Thordan', capture: false },
       condition: (data) => data.phase === 'thordan',
       delaySeconds: 4.7,
       // Keep message up until knights are done dashing
@@ -839,12 +863,15 @@ const triggerSet: TriggerSet<Data> = {
         }
         const combatantDataJanlenouxLength = combatantDataJanlenoux.combatants.length;
         if (combatantDataJanlenouxLength < 1) {
-          console.error(`Ser Janlenoux: expected at least 1 combatants got ${combatantDataJanlenouxLength}`);
+          console.error(
+            `Ser Janlenoux: expected at least 1 combatants got ${combatantDataJanlenouxLength}`,
+          );
           return;
         }
 
         // Sort to retreive last combatant in list
-        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) =>
+          (a.ID ?? 0) - (b.ID ?? 0);
         const combatantJanlenoux = combatantDataJanlenoux.combatants.sort(sortCombatants).shift();
         if (!combatantJanlenoux)
           throw new UnreachableCode();
@@ -880,7 +907,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Sanctity of the Ward Swords',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => data.phase === 'thordan' && data.me === matches.target,
       alarmText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -909,7 +936,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Sanctity of the Ward Sword Names',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data) => data.phase === 'thordan',
       sound: '',
       infoText: (data, matches, output) => {
@@ -943,14 +970,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Dragon\'s Gaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63D0', source: 'King Thordan', capture: false }),
+      netRegex: { id: '63D0', source: 'King Thordan', capture: false },
       durationSeconds: 5,
       response: Responses.lookAway('alert'),
     },
     {
       id: 'DSR Sanctity of the Ward Meteor Role',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data) => data.phase === 'thordan',
       // Keep this up through the first tower.
       durationSeconds: 10,
@@ -969,7 +996,10 @@ const triggerSet: TriggerSet<Data> = {
         if (p1dps && p2dps)
           return output.dpsMeteors!({ player1: data.ShortName(p1), player2: data.ShortName(p2) });
         if (!p1dps && !p2dps)
-          return output.tankHealerMeteors!({ player1: data.ShortName(p1), player2: data.ShortName(p2) });
+          return output.tankHealerMeteors!({
+            player1: data.ShortName(p1),
+            player2: data.ShortName(p2),
+          });
         return output.unknownMeteors!({ player1: data.ShortName(p1), player2: data.ShortName(p2) });
       },
       outputStrings: {
@@ -1001,7 +1031,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Sanctity of the Ward Meteor You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => data.phase === 'thordan' && data.me === matches.target,
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -1015,7 +1045,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Broad Swing Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63C0', source: 'King Thordan', capture: false }),
+      netRegex: { id: '63C0', source: 'King Thordan', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1030,7 +1060,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Broad Swing Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '63C1', source: 'King Thordan', capture: false }),
+      netRegex: { id: '63C1', source: 'King Thordan', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1046,7 +1076,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Dive From Grace Number',
       // This comes out ~5s before symbols.
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       infoText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
         if (id === headmarkers.dot1) {
@@ -1082,7 +1112,7 @@ const triggerSet: TriggerSet<Data> = {
       // AC3 = High Jump Target
       // AC4 = Spineshatter Dive Target
       // AC5 = Elusive Jump Target
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
+      netRegex: { effectId: ['AC3', 'AC4', 'AC5'] },
       run: (data, matches) => {
         if (matches.effectId === 'AC4' || matches.effectId === 'AC5') {
           const duration = parseFloat(matches.duration);
@@ -1114,7 +1144,7 @@ const triggerSet: TriggerSet<Data> = {
       // AC3 = High Jump Target
       // AC4 = Spineshatter Dive Target
       // AC5 = Elusive Jump Target
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AC3', 'AC4', 'AC5'] }),
+      netRegex: { effectId: ['AC3', 'AC4', 'AC5'] },
       condition: Conditions.targetIsYou(),
       delaySeconds: 0.5,
       durationSeconds: 5,
@@ -1170,7 +1200,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 6712 = Gnash and Lash (out then in)
       // 6713 = Lash and Gnash (in then out)
-      netRegex: NetRegexes.startsUsing({ id: ['6712', '6713'], source: 'Nidhogg' }),
+      netRegex: { id: ['6712', '6713'], source: 'Nidhogg' },
       durationSeconds: 5,
       alertText: (data, matches, output) => {
         const key = matches.id === '6712' ? 'out' : 'in';
@@ -1179,12 +1209,17 @@ const triggerSet: TriggerSet<Data> = {
 
         const num = data.diveFromGraceNum[data.me];
         if (num !== 1 && num !== 2 && num !== 3) {
-          console.error(`DSR Gnash and Lash: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(
+            `DSR Gnash and Lash: missing number: ${JSON.stringify(data.diveFromGraceNum)}`,
+          );
           return inout;
         }
 
         // Special case for side ones baiting the two towers.
-        if (data.eyeOfTheTyrantCounter === 1 && num === 1 && data.diveFromGracePreviousPosition[data.me] !== 'middle')
+        if (
+          data.eyeOfTheTyrantCounter === 1 && num === 1 &&
+          data.diveFromGracePreviousPosition[data.me] !== 'middle'
+        )
           return output.baitStackInOut!({ inout: inout });
 
         // Filter out anybody who needs to be stacking.
@@ -1308,7 +1343,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // 6715 = Gnashing Wheel
       // 6716 = Lashing Wheel
-      netRegex: NetRegexes.ability({ id: ['6715', '6716'], source: 'Nidhogg' }),
+      netRegex: { id: ['6715', '6716'], source: 'Nidhogg' },
       // These are ~3s apart.  Only call after the first (and ignore multiple people getting hit).
       suppressSeconds: 6,
       response: (data, matches, output) => {
@@ -1370,7 +1405,7 @@ const triggerSet: TriggerSet<Data> = {
             return { alertText: output.inOutAndBait!({ inout: inout }) };
           }
         } else if (data.eyeOfTheTyrantCounter === 2) {
-          if (num === 2 || (num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle'))
+          if (num === 2 || num === 1 && data.diveFromGracePreviousPosition[data.me] === 'middle')
             return { alertText: output.inOutAndBait!({ inout: inout }) };
         }
 
@@ -1385,7 +1420,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6710 Dark Elusive Jump
       // Collect players hit by dive
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg' }),
+      netRegex: { id: ['670E', '670F', '6710'], source: 'Nidhogg' },
       run: (data, matches) => {
         const posX = parseFloat(matches.targetX);
         data.diveFromGracePositions[matches.target] = posX;
@@ -1395,13 +1430,15 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Dive From Grace Post Stack',
       // Triggered on first instance of Eye of the Tyrant (6714)
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6714', source: 'Nidhogg', capture: false }),
+      netRegex: { id: '6714', source: 'Nidhogg', capture: false },
       // Ignore targetIsYou() incase player misses stack
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFG Tower 1 Reminder: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(
+            `DFG Tower 1 Reminder: missing number: ${JSON.stringify(data.diveFromGraceNum)}`,
+          );
           return;
         }
 
@@ -1539,14 +1576,16 @@ const triggerSet: TriggerSet<Data> = {
       //   High Jump South if solo, no assignment if all circle
       //   Assumes North Party Stack
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false }),
+      netRegex: { id: ['670E', '670F', '6710'], source: 'Nidhogg', capture: false },
       preRun: (data) => data.diveFromGraceTowerCounter = (data.diveFromGraceTowerCounter ?? 0) + 1,
       delaySeconds: 0.2,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFG Tower 1 and 2: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(
+            `DFG Tower 1 and 2: missing number: ${JSON.stringify(data.diveFromGraceNum)}`,
+          );
           return;
         }
 
@@ -1613,13 +1652,15 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Darkdragon Dive Single Tower',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6711', source: 'Nidhogg' }),
+      netRegex: { id: '6711', source: 'Nidhogg' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         const num = data.diveFromGraceNum[data.me];
         if (!num) {
-          console.error(`DFG Dive Single Tower: missing number: ${JSON.stringify(data.diveFromGraceNum)}`);
+          console.error(
+            `DFG Dive Single Tower: missing number: ${JSON.stringify(data.diveFromGraceNum)}`,
+          );
           return output.text!();
         }
         // To condense messages, two tower baiters get this call during the gnash and lash.
@@ -1643,7 +1684,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Geirskogul',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '670A', source: 'Nidhogg', capture: false }),
+      netRegex: { id: '670A', source: 'Nidhogg', capture: false },
       condition: (data) => data.waitingForGeirskogul,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
@@ -1677,14 +1718,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Drachenlance',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '670C', source: 'Nidhogg', capture: false }),
+      netRegex: { id: '670C', source: 'Nidhogg', capture: false },
       // This could be "out of front" as sides are safe but this is urgent, so be more clear.
       response: Responses.getBehind(),
     },
     {
       id: 'DSR Right Eye Blue Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0033' }),
+      netRegex: { id: '0033' },
       condition: (data, matches) => matches.source === data.me,
       // Have blue/red be different alert/info to differentiate.
       // Since dives are usually blue people dropping off their blue tether
@@ -1704,7 +1745,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Left Eye Red tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0034' }),
+      netRegex: { id: '0034' },
       condition: (data, matches) => matches.source === data.me,
       // See note above on Right Eye Blue Tether.
       infoText: (_data, _matches, output) => output.text!(),
@@ -1721,7 +1762,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Eyes Dive Cast',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '68C3', source: ['Right Eye', 'Left Eye'], capture: false }),
+      netRegex: { id: '68C3', source: ['Right Eye', 'Left Eye'], capture: false },
       // One cast for each dive.  68C3 is the initial cast/self-targeted ability.
       // 68C4 is the damage on players.
       suppressSeconds: 1,
@@ -1741,7 +1782,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // TODO: should this call out who it was on? some strats involve the
       // first dive targets swapping with the third dive targets.
-      netRegex: NetRegexes.ability({ id: '68C4', source: 'Nidhogg', capture: false }),
+      netRegex: { id: '68C4', source: 'Nidhogg', capture: false },
       // One ability for each player hit.
       suppressSeconds: 1,
       infoText: (data, _matches, output) => output[`dive${data.diveCounter}`]!(),
@@ -1756,7 +1797,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Eyes Steep in Rage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '68BD', source: ['Right Eye', 'Left Eye'], capture: false }),
+      netRegex: { id: '68BD', source: ['Right Eye', 'Left Eye'], capture: false },
       // Each of the eyes (if alive) will start this aoe.  It has the same id from each eye.
       suppressSeconds: 1,
       response: Responses.bigAoe('alert'),
@@ -1766,7 +1807,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // If the Right Eye is dead and the Left Eye gets the aoe off, then the Right Eye
       // will be revived and you shouldn't forget about it.
-      netRegex: NetRegexes.startsUsing({ id: '68BD', source: 'Left Eye' }),
+      netRegex: { id: '68BD', source: 'Left Eye' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1782,7 +1823,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Spear of the Fury Limit Break',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '62E2', source: 'Ser Zephirin', capture: false }),
+      netRegex: { id: '62E2', source: 'Ser Zephirin', capture: false },
       // This ability also happens in doorboss phase.
       condition: (data) => data.role === 'tank' && data.phase === 'haurchefant',
       // This is a 10 second cast, and (from video) my understanding is to
@@ -1804,7 +1845,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Twisting Dive',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6B8B', source: 'Vedrfolnir', capture: false }),
+      netRegex: { id: '6B8B', source: 'Vedrfolnir', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1821,7 +1862,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Wrath Spiral Pierce',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0005' }),
+      netRegex: { id: '0005' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1837,7 +1878,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Wrath Skyward Leap',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: Conditions.targetIsYou(),
       alarmText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -1861,7 +1902,7 @@ const triggerSet: TriggerSet<Data> = {
       // This is effectId B11, but the timing is somewhat inconsistent based on statuses rolling out.
       // Use the Chain Lightning ability instead.
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6B8F', source: 'Darkscale' }),
+      netRegex: { id: '6B8F', source: 'Darkscale' },
       // Call this after, which is ~2.3s after this ability.
       // This avoids people with itchy feet running when they hear something.
       delaySeconds: 2.5,
@@ -1883,7 +1924,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Wrath Thunderstruck Targets',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6B8F', source: 'Darkscale', capture: false }),
+      netRegex: { id: '6B8F', source: 'Darkscale', capture: false },
       delaySeconds: 2.8,
       suppressSeconds: 1,
       // This is just pure extra info, no need to make noise for people.
@@ -1911,7 +1952,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Wrath Cauterize Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: Conditions.targetIsYou(),
       alarmText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -1931,7 +1972,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Doom Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'BA0' }),
+      netRegex: { effectId: 'BA0' },
       preRun: (data, matches) => data.hasDoom[matches.target] = true,
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -1963,7 +2004,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Playstation2 Fire Chains',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data) => data.phase === 'thordan2',
       alertText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
@@ -2072,8 +2113,10 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: should we run this on Playstation1 as well (and consolidate triggers?)
       id: 'DSR Playstation2 Fire Chains No Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
-      condition: (data, matches) => data.phase === 'thordan2' && playstationHeadmarkerIds.includes(getHeadmarkerId(data, matches)),
+      netRegex: {},
+      condition: (data, matches) =>
+        data.phase === 'thordan2' &&
+        playstationHeadmarkerIds.includes(getHeadmarkerId(data, matches)),
       delaySeconds: 0.5,
       suppressSeconds: 5,
       alarmText: (data, _matches, output) => {
@@ -2173,7 +2216,7 @@ const triggerSet: TriggerSet<Data> = {
       // with the "No Marker" trigger above.
       id: 'DSR Playstation2 Fire Chains Unexpected Pair',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker(),
+      netRegex: {},
       condition: (data, matches) => {
         if (data.phase !== 'thordan2')
           return false;
@@ -2237,7 +2280,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Great Wyrmsbreath Hraesvelgr Not Glowing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6D34', source: 'Hraesvelgr', capture: false }),
+      netRegex: { id: '6D34', source: 'Hraesvelgr', capture: false },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -2265,14 +2308,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Great Wyrmsbreath Hraesvelgr Glowing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6D35', source: 'Hraesvelgr', capture: false }),
+      netRegex: { id: '6D35', source: 'Hraesvelgr', capture: false },
       condition: (data) => data.role === 'tank',
       run: (data) => data.hraesvelgrGlowing = true,
     },
     {
       id: 'DSR Great Wyrmsbreath Nidhogg Not Glowing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6D32', source: 'Nidhogg', capture: false }),
+      netRegex: { id: '6D32', source: 'Nidhogg', capture: false },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -2300,7 +2343,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Great Wyrmsbreath Nidhogg Glowing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6D33', source: 'Nidhogg', capture: false }),
+      netRegex: { id: '6D33', source: 'Nidhogg', capture: false },
       condition: (data) => data.role === 'tank',
       run: (data) => data.nidhoggGlowing = true,
     },
@@ -2313,7 +2356,7 @@ const triggerSet: TriggerSet<Data> = {
       // Hraesvelger and Nidhogg are different actors so can go in either order.
       id: 'DSR Great Wyrmsbreath Both Glowing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6D33', '6D35'], source: ['Hraesvelgr', 'Nidhogg'], capture: false }),
+      netRegex: { id: ['6D33', '6D35'], source: ['Hraesvelgr', 'Nidhogg'], capture: false },
       delaySeconds: 0.3,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
@@ -2342,7 +2385,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Mortal Vow Collect',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'B50' }),
+      netRegex: { effectId: 'B50' },
       suppressSeconds: 1,
       run: (data, matches) => data.mortalVowPlayer = data.ShortName(matches.target),
     },
@@ -2352,7 +2395,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6D43 Akh Afah from Nidhogg, and 6D44 is immediately after
       // Hits the two healers.  If a healer is dead, then the target is random.
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6D41', '6D43'], source: ['Hraesvelgr', 'Nidhogg'], capture: false }),
+      netRegex: { id: ['6D41', '6D43'], source: ['Hraesvelgr', 'Nidhogg'], capture: false },
       suppressSeconds: 2,
       alertText: (_data, _matches, output) => output.groups!(),
       outputStrings: {
@@ -2370,7 +2413,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Adds Phase Nidhogg',
       type: 'AddedCombatant',
       // There are many Nidhoggs, but the real one (and the one that moves for cauterize) is npcBaseId=12612.
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '3458', npcBaseId: '12612' }),
+      netRegex: { npcNameId: '3458', npcBaseId: '12612' },
       run: (data, matches) => data.addsPhaseNidhoggId = matches.id,
     },
     {
@@ -2383,7 +2426,7 @@ const triggerSet: TriggerSet<Data> = {
       // Head Up = Tanks Far
       // Head Down = Tanks Near
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6D23', '6D24', '6D26', '6D27'], source: 'Hraesvelgr' }),
+      netRegex: { id: ['6D23', '6D24', '6D26', '6D27'], source: 'Hraesvelgr' },
       preRun: (data) => data.hallowedWingsCount++,
       durationSeconds: 6,
       promise: async (data) => {
@@ -2406,10 +2449,14 @@ const triggerSet: TriggerSet<Data> = {
         if (data.combatantData.length === 0)
           console.error(`Hallowed: no Nidhoggs found`);
         else if (data.combatantData.length > 1)
-          console.error(`Hallowed: unexpected number of Nidhoggs: ${JSON.stringify(data.combatantData)}`);
+          console.error(
+            `Hallowed: unexpected number of Nidhoggs: ${JSON.stringify(data.combatantData)}`,
+          );
       },
       alertText: (data, matches, output) => {
-        const wings = (matches.id === '6D23' || matches.id === '6D24') ? output.left!() : output.right!();
+        const wings = matches.id === '6D23' || matches.id === '6D24'
+          ? output.left!()
+          : output.right!();
         let head;
         const isHeadDown = matches.id === '6D23' || matches.id === '6D26';
         if (isHeadDown)
@@ -2502,7 +2549,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Nidhogg Hot Wing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6D2B', source: 'Nidhogg', capture: false }),
+      netRegex: { id: '6D2B', source: 'Nidhogg', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -2519,7 +2566,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Nidhogg Hot Tail',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6D2D', source: 'Nidhogg', capture: false }),
+      netRegex: { id: '6D2D', source: 'Nidhogg', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -2538,7 +2585,7 @@ const triggerSet: TriggerSet<Data> = {
       // B53 = Freezing
       // TODO: Get cardinal of the dragon to stand in
       // TODO: Adjust delay to when the bosses jump to cardinal
-      netRegex: NetRegexes.gainsEffect({ effectId: ['B52', 'B53'] }),
+      netRegex: { effectId: ['B52', 'B53'] },
       condition: Conditions.targetIsYou(),
       // Lasts 10.96s, but bosses do not cast Cauterize until 7.5s after debuff
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
@@ -2570,7 +2617,7 @@ const triggerSet: TriggerSet<Data> = {
       // B52 = Boiling
       // When Boiling expires, Pyretic (3C0) will apply
       // Pyretic will cause damage on movement
-      netRegex: NetRegexes.gainsEffect({ effectId: ['B52'] }),
+      netRegex: { effectId: ['B52'] },
       condition: Conditions.targetIsYou(),
       // Boiling lasts 10.96s, after which Pyretic is applied provide warning
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 1,
@@ -2591,7 +2638,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Spreading/Entangled Flame',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['AC6', 'AC7'] }),
+      netRegex: { effectId: ['AC6', 'AC7'] },
       preRun: (data, matches) => {
         if (matches.effectId === 'AC6')
           data.spreadingFlame.push(matches.target);
@@ -2638,23 +2685,23 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'DSR Flames of Ascalon',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '808', count: '12A', capture: false }),
+      netRegex: { effectId: '808', count: '12A', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'DSR Ice of Ascalon',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '808', count: '12B', capture: false }),
+      netRegex: { effectId: '808', count: '12B', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'DSR Trinity Tank Dark Resistance',
       type: 'GainsEffect',
       // C40 = Dark Resistance Down, highest enmity target
-      netRegex: NetRegexes.gainsEffect({
+      netRegex: {
         effectId: 'C40',
         count: '02',
-      }),
+      },
       condition: (data, matches) => data.me === matches.target && data.role === 'tank',
       alertText: (_data, matches, output) => {
         if (parseFloat(matches.duration) > 10)
@@ -2675,10 +2722,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Trinity Tank Light Resistance',
       type: 'GainsEffect',
       // C3F = Light Resistance Down, 2nd highest enmity target
-      netRegex: NetRegexes.gainsEffect({
+      netRegex: {
         effectId: 'C3F',
         count: '02',
-      }),
+      },
       condition: (data, matches) => data.me === matches.target && data.role === 'tank',
       // To prevent boss rotating around before Exaflare
       delaySeconds: 2.5,
@@ -2693,6 +2740,136 @@ const triggerSet: TriggerSet<Data> = {
           ja: '挑発',
           cn: '挑衅',
           ko: '도발',
+        },
+      },
+    },
+    {
+      id: 'DSR Gigaflare',
+      // 6D9A fires first, followed by 6DD2, then 6DD3
+      // 6D99 is cast by boss at the center
+      // Only need to compare the rotation of 6D9A to 6DD2
+      type: 'StartsUsing',
+      netRegex: { id: ['6D99', '6D9A', '6DD2'], source: 'Dragon-king Thordan' },
+      durationSeconds: 10,
+      infoText: (data, matches, output) => {
+        // Positions are moved up 100 and right 100
+        const x = parseFloat(matches.x) - 100;
+        const y = parseFloat(matches.y) - 100;
+
+        // Collect Gigaflare position
+        switch (matches.id) {
+          case '6D99':
+            data.centerGigaflare = [x, y, parseFloat(matches.heading)];
+            break;
+          case '6D9A':
+            data.firstGigaflare = [x, y];
+            break;
+          case '6DD2':
+            data.secondGigaflare = [x, y];
+            break;
+        }
+
+        if (
+          data.firstGigaflare !== undefined && data.secondGigaflare !== undefined &&
+          data.centerGigaflare !== undefined
+        ) {
+          // Store temporary copies and remove data for next run
+          const first = data.firstGigaflare;
+          const second = data.secondGigaflare;
+          const center = data.centerGigaflare;
+          delete data.firstGigaflare;
+          delete data.secondGigaflare;
+          delete data.centerGigaflare;
+
+          if (
+            first[0] === undefined || first[1] === undefined ||
+            second[0] === undefined || second[1] === undefined ||
+            center[0] === undefined || center[1] === undefined || center[2] === undefined
+          ) {
+            console.error(`Gigaflare: missing coordinates`);
+            return;
+          }
+
+          // Compute atan2 of determinant and dot product to get rotational direction
+          // Note: X and Y are flipped due to Y axis being reversed
+          const getRotation = (x1: number, y1: number, x2: number, y2: number) => {
+            return Math.atan2(y1 * x2 - x1 * y2, y1 * y2 + x1 * x2);
+          };
+
+          // Get rotation of first and second gigaflares
+          const rotation = getRotation(first[0], first[1], second[0], second[1]);
+
+          // Get rotation of first gigaflare relative to boss
+          let start;
+
+          // Case for if front since data for heading is not exact
+          // To detect if front, added angles must match 180 degrees
+          const thetaFirstGigaflare = Math.abs(Math.atan2(first[0], first[1]));
+          const thetaCenterGigaflare = Math.abs(center[2]);
+          const thetaCenterPlusFirst = thetaFirstGigaflare + thetaCenterGigaflare;
+          if (Math.round(thetaCenterPlusFirst * 180 / Math.PI) % 180 === 0) {
+            start = output.front!();
+          } else {
+            // Gigaflare was not in line with boss facing,
+            // Compute initial location relative to boss by
+            // calculating point on circle where boss is facing
+            const radius = Math.sqrt((center[0] - first[0]) ** 2 + (center[1] - first[1]) ** 2);
+            const relX = Math.round(radius * Math.sin(center[2]));
+            const relY = Math.round(radius * Math.cos(center[2]));
+
+            // Check rotation of boss facing to first gigaflare:
+            const startNum = getRotation(relX, relY, first[0], first[1]);
+            if (startNum < 0)
+              start = output.backLeft!();
+            else if (startNum > 0)
+              start = output.backRight!();
+            else
+              start = output.unknown!();
+          }
+
+          if (rotation < 0) {
+            return output.directions!({
+              start: start,
+              rotation: output.clockwise!(),
+            });
+          }
+          if (rotation > 0) {
+            return output.directions!({
+              start: start,
+              rotation: output.counterclock!(),
+            });
+          }
+        }
+      },
+      outputStrings: {
+        directions: {
+          en: '${start} => ${rotation}',
+          ko: '${start} => ${rotation}',
+        },
+        backLeft: {
+          en: 'Back left',
+          ko: '뒤 왼쪽',
+        },
+        backRight: {
+          en: 'Back right',
+          ko: '뒤 오른쪽',
+        },
+        front: {
+          en: 'Front',
+          ko: '앞',
+        },
+        unknown: Outputs.unknown,
+        clockwise: {
+          en: 'Clockwise',
+          de: 'Im Uhrzeigersinn',
+          ja: '時計回り',
+          ko: '시계방향',
+        },
+        counterclock: {
+          en: 'Counterclockwise',
+          de: 'Gegen den Uhrzeigersinn',
+          ja: '反時計回り',
+          ko: '반시계방향',
         },
       },
     },
@@ -3240,16 +3417,17 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Darkscale': '검은미늘',
+        'Dragon-king Thordan': '기룡신 토르당',
         'Estinien': '에스티니앙',
         'Haurchefant': '오르슈팡',
         'Hraesvelgr': '흐레스벨그',
         '(?<!Dragon-)King Thordan': '기사신 토르당',
-        'Left Eye': '용의 왼눈',
+        'Left Eye': '사룡의 왼눈',
+        'Meteor Circle': '성스러운 별똥별 문양',
         'Nidhogg': '니드호그',
-        'Right Eye': '용의 오른눈',
+        'Right Eye': '사룡의 오른눈',
         'Ser Adelphel': '성기사 아델펠',
         'Ser Charibert': '성기사 샤리베르',
         'Ser Grinnaux': '성기사 그리노',
@@ -3260,14 +3438,114 @@ const triggerSet: TriggerSet<Data> = {
         'Ser Janlenoux': '성기사 장르누',
         'Ser Noudenet': '성기사 누데네',
         'Ser Zephirin': '성기사 제피랭',
+        'Spear of the Fury': '할로네의 창',
         'Vedrfolnir': '베드르폴니르',
+        'Ysayle': '이젤',
       },
       'replaceText': {
+        'Empty Dimension/Full Dimension': '공허한/충만한 차원',
+        'Lash and Gnash/Gnash and Lash': '꼬리이빨/이빨꼬리 연속 회전',
+        'Ice of Ascalon/Flames of Ascalon': '아스칼론의 불꽃/얼음',
         'Aetheric Burst': '에테르 분출',
+        'Akh Afah': '아크 아파',
+        'Akh Morn(?!\'s Edge)': '아크 몬',
+        'Akh Morn\'s Edge': '기룡검 아크 몬',
+        'Ancient Quaga': '에인션트 퀘이가',
+        'Alternative End': '또 다른 궁극의 종말',
+        'Altar Flare': '제단의 불길',
+        'Ascalon\'s Mercy Concealed': '아스칼론의 자비: 불가시',
+        'Ascalon\'s Mercy Revealed': '아스칼론의 자비: 계시',
+        'Ascalon\'s Might': '아스칼론의 권능',
+        'Brightblade\'s Steel': '미검의 각오',
+        'Brightwing(?!ed)': '광익섬',
+        'Brightwinged Flight': '창천의 광익',
+        'Broad Swing': '휘두르기',
+        'Cauterize': '인두질',
+        'Chain Lightning': '번개 사슬',
+        'Conviction': '눈보라 절벽',
+        'Dark Orb': '암흑 구체',
+        'Darkdragon Dive': '암룡 강타',
+        'Death of the Heavens': '지천의 진: 죽음',
+        'Deathstorm': '죽음의 폭풍',
+        'Dimensional Collapse': '차원 파괴',
+        'Dive from Grace': '타락한 천룡 강타',
+        'Drachenlance': '용창 가르기',
+        'Dread Wyrmsbreath': '사룡의 숨결',
+        'Empty Dimension(?!/)': '공허한 차원',
+        'Entangled Flames': '길동무 불꽃',
+        'Exaflare\'s Edge': '기룡검 엑사플레어',
+        'Execution': '집행',
+        'Eye of the Tyrant': '폭군의 눈동자',
+        'Faith Unmoving': '굳건한 신앙',
+        'Final Chorus': '종언의 용시',
+        'Flame Breath': '화염 숨결',
+        'Flare Nova': '타오르는 샛별',
+        'Flare Star': '타오르는 별',
+        '(?<!/)Full Dimension': '충만한 차원',
+        'Geirskogul': '게이르스코굴',
+        'Gigaflare\'s Edge': '기룡검 기가플레어',
+        'Great Wyrmsbreath': '성룡의 숨결',
+        'Hallowed Plume': '신성한 깃털',
         'Hallowed Wings': '신성한 날개',
+        'Hatebound': '사룡의 발톱이빨',
+        'Heavenly Heel': '천상의 발꿈치',
+        'Heavens\' Stake': '천상의 화형',
+        'Heavensblaze': '천상의 불',
+        'Heavensflame': '천상의 불꽃',
+        'Heavy Impact': '무거운 충격',
+        'Hiemal Storm': '동장군 폭풍',
+        'Holiest of Holy': '지고한 신성',
+        'Holy Bladedance': '신성한 검무',
+        'Holy Breath': '신성 숨결',
+        'Holy Comet': '신성한 혜성',
+        'Holy Meteor': '홀리 메테오',
+        'Holy Orb': '신성 구체',
+        'Holy Shield Bash': '성스러운 방패 강타',
         'Hot Tail': '뜨거운 꼬리',
+        'Hot Wing': '뜨거운 날개',
+        'Hyperdimensional Slash': '고차원',
+        'Ice Breath': '냉기 숨결',
+        'Incarnation': '성스러운 신도화',
+        'Knights of the Round': '나이츠 오브 라운드',
+        'Lightning Storm': '백뢰',
+        'Liquid Heaven': '천국의 늪',
         'Meteor Impact': '운석 낙하',
+        'Mirage Dive': '환영 강타',
+        'Mortal Vow': '멸살의 맹세',
+        'Morn Afah\'s Edge': '기룡검 몬 아파',
+        '(?<!Spiral )Pierce': '관통',
+        'Planar Prison': '차원 감옥',
+        'Pure of Heart': '정결한 마음',
+        'Resentment': '고통의 포효',
+        'Revenge of the Horde': '최후의 포효',
+        'Sacred Sever': '신성한 돌진',
+        'Sanctity of the Ward': '창천의 진: 지팡이',
+        'Shockwave': '충격파',
+        'Skyblind': '창천의 각인',
+        'Skyward Leap': '공중 도약',
+        'Soul Tether': '혼의 사슬',
+        'Soul of Devotion': '무녀의 넋',
+        'Soul of Friendship': '맹우의 넋',
+        'Spear of the Fury': '할로네의 창',
+        'Spiral Pierce': '나선 관통',
+        'Spiral Thrust': '나선 찌르기',
+        'Spreading Flames': '복수의 불꽃',
+        'Staggering Breath': '제압의 숨결',
+        'Steep in Rage': '분노의 파동',
+        'Strength of the Ward': '창천의 진: 번개창',
+        'Swirling Blizzard': '환형 눈보라',
+        'The Bull\'s Steel': '전쟁광의 각오',
+        'The Dragon\'s Eye': '용의 눈',
         'The Dragon\'s Gaze': '용의 마안',
+        'The Dragon\'s Glory': '사룡의 눈빛',
+        'The Dragon\'s Rage': '사룡의 마염',
+        'Tower': '기둥',
+        'Touchdown': '착지',
+        'Trinity': '삼위일체',
+        'Twisting Dive': '회오리 강하',
+        'Ultimate End': '궁극의 종말',
+        'Wrath of the Heavens': '지천의 진: 바람창',
+        'Wroth Flames': '사념의 불꽃',
       },
     },
   ],

@@ -29,7 +29,7 @@ export class RDMComponent extends BaseComponent {
     for (let i = 0; i < 100; i += incs) {
       const marker = document.createElement('div');
       marker.classList.add('marker');
-      marker.classList.add((i % 50 === 0) ? 'odd' : 'even');
+      marker.classList.add(i % 50 === 0 ? 'odd' : 'even');
       container.appendChild(marker);
       marker.style.left = `${i}%`;
       marker.style.width = `${incs}%`;
@@ -118,12 +118,18 @@ export class RDMComponent extends BaseComponent {
     if (this.whiteManaBox.innerText !== white) {
       this.whiteManaBox.innerText = white;
       this.whiteManaBox.parentNode.classList.toggle('dim', jobDetail.whiteMana < 50);
-      this.whiteManaBar.fg = computeBackgroundColorFrom(this.whiteManaBar, jobDetail.whiteMana < 50 ? 'rdm-color-white-mana.dim' : 'rdm-color-white-mana');
+      this.whiteManaBar.fg = computeBackgroundColorFrom(
+        this.whiteManaBar,
+        jobDetail.whiteMana < 50 ? 'rdm-color-white-mana.dim' : 'rdm-color-white-mana',
+      );
     }
     if (this.blackManaBox.innerText !== black) {
       this.blackManaBox.innerText = black;
       this.blackManaBox.parentNode.classList.toggle('dim', jobDetail.blackMana < 50);
-      this.blackManaBar.fg = computeBackgroundColorFrom(this.blackManaBar, jobDetail.blackMana < 50 ? 'rdm-color-black-mana.dim' : 'rdm-color-black-mana');
+      this.blackManaBar.fg = computeBackgroundColorFrom(
+        this.blackManaBar,
+        jobDetail.blackMana < 50 ? 'rdm-color-black-mana.dim' : 'rdm-color-black-mana',
+      );
     }
 
     this.stacksContainer.classList.toggle('hide', jobDetail.manaStacks === 0);
@@ -132,16 +138,18 @@ export class RDMComponent extends BaseComponent {
         this.manaStacks[i]?.classList.add('active');
       else
         this.manaStacks[i]?.classList.remove('active');
-      }
+    }
   }
 
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     if (id === EffectId.VerstoneReady)
-      this.whiteProc.duration = parseFloat(matches.duration ?? '0') - (this.player.gcdSpell * 0.8 - 0.5);
+      this.whiteProc.duration = parseFloat(matches.duration ?? '0') -
+        (this.player.gcdSpell * 0.8 - 0.5);
     if (id === EffectId.VerfireReady)
-      this.blackProc.duration = parseFloat(matches.duration ?? '0') - (this.player.gcdSpell * 0.8 - 0.5);
+      this.blackProc.duration = parseFloat(matches.duration ?? '0') -
+        (this.player.gcdSpell * 0.8 - 0.5);
   }
-  override onYouLoseEffect(id: string) :void {
+  override onYouLoseEffect(id: string): void {
     if (id === EffectId.VerstoneReady)
       this.whiteProc.duration = 0;
     if (id === EffectId.VerfireReady)

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -554,7 +553,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Brute Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '483E', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '483E', capture: false },
       run: (data) => {
         data.phase = 'brute';
         resetState(data);
@@ -563,7 +562,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Inception Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '486F', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '486F', capture: false },
       run: (data) => {
         data.phase = 'inception';
         resetState(data);
@@ -572,7 +571,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Wormhole Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '486E', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '486E', capture: false },
       run: (data) => {
         data.phase = 'wormhole';
         resetState(data);
@@ -581,7 +580,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Fate Alpha Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '487B', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '487B', capture: false },
       run: (data) => {
         data.phase = 'alpha';
         resetState(data);
@@ -590,7 +589,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Fate Beta Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '4B13', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '4B13', capture: false },
       run: (data) => {
         data.phase = 'beta';
         resetState(data);
@@ -599,37 +598,37 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Liquid Tank',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: 'Living Liquid', id: '4978' }),
+      netRegex: { source: 'Living Liquid', id: '4978' },
       run: (data, matches) => data.liquidTank = matches.target,
     },
     {
       id: 'TEA Hand Tank',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: 'Liquid Hand', id: '4979' }),
+      netRegex: { source: 'Liquid Hand', id: '4979' },
       run: (data, matches) => data.handTank = matches.target,
     },
     {
       id: 'TEA Cruise Chaser Tank',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: 'Cruise Chaser', id: '497A' }),
+      netRegex: { source: 'Cruise Chaser', id: '497A' },
       run: (data, matches) => data.cruiseTank = matches.target,
     },
     {
       id: 'TEA Brute Tank',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: 'Brute Justice', id: '497B' }),
+      netRegex: { source: 'Brute Justice', id: '497B' },
       run: (data, matches) => data.bruteTank = matches.target,
     },
     {
       id: 'TEA Cascade',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: '4826', capture: false }),
+      netRegex: { source: 'Living Liquid', id: '4826', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'TEA Protean Wave',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: '4822', capture: false }),
+      netRegex: { source: 'Living Liquid', id: '4822', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -645,7 +644,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Drainage Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Liquid Rage', id: '0003' }),
+      netRegex: { source: 'Liquid Rage', id: '0003' },
       condition: Conditions.targetIsYou(),
       // Even if folks have the right tethers, this happens repeatedly.
       suppressSeconds: 5,
@@ -664,7 +663,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Hand of Pain 5',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Liquid Hand', id: '482D', capture: false }),
+      netRegex: { source: 'Liquid Hand', id: '482D', capture: false },
       preRun: (data) => {
         data.handOfPainCount = (data.handOfPainCount || 0) + 1;
       },
@@ -686,7 +685,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Throttle',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '2BC', capture: false }),
+      netRegex: { effectId: '2BC', capture: false },
       condition: (data) => data.CanCleanse(),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
@@ -705,11 +704,12 @@ const triggerSet: TriggerSet<Data> = {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Numbers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => {
         // Here and elsewhere, it's probably best to check for whether the user is the target first,
         // as that should short-circuit more often.
-        return data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
+        return data.me === matches.target &&
+          (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
       preRun: (data, matches) => {
         const correctedMatch = getHeadmarkerId(data, matches);
@@ -768,8 +768,9 @@ const triggerSet: TriggerSet<Data> = {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Knockback',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)),
+      netRegex: {},
+      condition: (data, matches) =>
+        data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)),
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: (data) => data.limitCutDelay !== undefined ? data.limitCutDelay - 5 : 0,
       alertText: (data, matches, output) => {
@@ -818,7 +819,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Chakrams Out',
       type: 'Ability',
       // Link Up
-      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '483F', capture: false },
       condition: (data) => data.phase === 'brute',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -836,7 +837,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Chakrams In',
       type: 'Ability',
       // Optical Sight
-      netRegex: NetRegexes.ability({ source: 'Cruise Chaser', id: '482F', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '482F', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -853,13 +854,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Whirlwind',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '49C2', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '49C2', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'TEA Spin Crusher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '4A72', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '4A72', capture: false },
       // Nobody should be in front of cruise chaser but the tank, and this is close to
       // water thunder handling, so only tell the tank.
       condition: (data) => data.me === data.cruiseTank,
@@ -878,8 +879,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Ice Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0043',
+      netRegex: {},
+      condition: (data, matches) =>
+        data.me === matches.target && getHeadmarkerId(data, matches) === '0043',
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -895,7 +897,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Hidden Minefield',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '4851', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '4851', capture: false },
       condition: (data) => data.role === 'tank',
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
@@ -913,8 +915,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Enumeration YOU',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0041',
+      netRegex: {},
+      condition: (data, matches) =>
+        data.me === matches.target && getHeadmarkerId(data, matches) === '0041',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -930,7 +933,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Enumeration Everyone',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => getHeadmarkerId(data, matches) === '0041',
       preRun: (data, matches) => {
         data.enumerations ??= [];
@@ -956,7 +959,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Limit Cut Shield',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Cruise Chaser', id: '4833', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '4833', capture: false },
       delaySeconds: 2,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -973,7 +976,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Compressed Water Initial',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
+      netRegex: { effectId: '85E' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -990,7 +993,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Compressed Water Explode',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
+      netRegex: { effectId: '85E' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
@@ -1012,7 +1015,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Compressed Lightning Initial',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
+      netRegex: { effectId: '85F' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1029,7 +1032,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Compressed Lightning Explode',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
+      netRegex: { effectId: '85F' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
@@ -1052,7 +1055,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Pass Nisi 1',
       type: 'StartsUsing',
       // 4 seconds after Photon cast starts.
-      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '4836', capture: false }),
+      netRegex: { source: 'Cruise Chaser', id: '4836', capture: false },
       delaySeconds: 4,
       suppressSeconds: 10000,
       alertText: (_data, _matches, output) => output.text!(),
@@ -1072,7 +1075,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // 1 second after enumeration.
       // TODO: find a startsUsing instead of matching an action.
-      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '4850', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '4850', capture: false },
       // Ignore enumerations later in the fight.
       condition: (data) => data.phase === 'brute',
       delaySeconds: 1,
@@ -1093,7 +1096,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Pass Nisi 3',
       type: 'StartsUsing',
       // 8 seconds after Flarethrower cast starts.
-      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '4845', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '4845', capture: false },
       delaySeconds: 8,
       durationSeconds: 9,
       alertText: (data, _matches, output) => namedNisiPass(data, output),
@@ -1102,7 +1105,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Decree Nisi Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: kDecreeNisi }),
+      netRegex: { effectId: kDecreeNisi },
       run: (data, matches) => {
         const num = kDecreeNisi.indexOf(matches.effectId.toUpperCase());
         data.nisiMap ??= {};
@@ -1112,7 +1115,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Decree Nisi Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: kDecreeNisi }),
+      netRegex: { effectId: kDecreeNisi },
       run: (data, matches) => {
         data.nisiMap ??= {};
         delete data.nisiMap[matches.target];
@@ -1121,7 +1124,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Final Judgment Nisi Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: kFinalJudgementNisi }),
+      netRegex: { effectId: kFinalJudgementNisi },
       run: (data, matches) => {
         const num = kFinalJudgementNisi.indexOf(matches.effectId.toUpperCase());
         data.finalNisiMap ??= {};
@@ -1131,7 +1134,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Final Judgment Nisi Verdict',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['8B0', '8B1', '85B', '85C'] }),
+      netRegex: { effectId: ['8B0', '8B1', '85B', '85C'] },
       condition: Conditions.targetIsYou(),
       // This keeps refreshing forever, so only alert once.
       suppressSeconds: 10000,
@@ -1154,13 +1157,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Gavel',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '483C', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '483C', capture: false },
       run: (data) => data.seenGavel = true,
     },
     {
       id: 'TEA Double Rocket Punch',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '4847' }),
+      netRegex: { source: 'Brute Justice', id: '4847' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.sharedTankbusterOnYou!();
@@ -1203,7 +1206,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Brute Ray',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '484A', capture: false },
       condition: (data) => data.phase === 'brute',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1221,7 +1224,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Buff Collection',
       type: 'GainsEffect',
       // Aggravated Assault, Shared Sentence, House Arrest, Restraining Order.
-      netRegex: NetRegexes.gainsEffect({ effectId: '46[1234]' }),
+      netRegex: { effectId: '46[1234]' },
       run: (data, matches) => {
         data.buffMap ??= {};
         // The values are for debugging; the logic is just about presence in the map.
@@ -1232,7 +1235,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Temporal Stasis No Buff',
       type: 'GainsEffect',
       // This id is "restraining order".
-      netRegex: NetRegexes.gainsEffect({ effectId: '464', capture: false }),
+      netRegex: { effectId: '464', capture: false },
       condition: (data) => {
         // NOTE: due to timings the "temporal" phase does not start until after debuffs are out.
         // So consider the "temporal" no debuff to be "brute" no debuff here.
@@ -1260,7 +1263,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Restraining Order',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '464' }),
+      netRegex: { effectId: '464' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -1278,7 +1281,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA House Arrest',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '463' }),
+      netRegex: { effectId: '463' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -1296,7 +1299,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Shared Sentence',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
+      netRegex: { effectId: '462' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
@@ -1314,7 +1317,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Shared Sentence Inception',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
+      netRegex: { effectId: '462' },
       condition: (data) => data.phase === 'inception',
       delaySeconds: 3,
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
@@ -1332,7 +1335,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Aggravated Assault',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '461' }),
+      netRegex: { effectId: '461' },
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -1350,7 +1353,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Chastening Heat',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A80' }),
+      netRegex: { source: 'Alexander Prime', id: '4A80' },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.tankBusterOnYou!();
@@ -1376,8 +1379,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Judgment Crystal',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0060',
+      netRegex: {},
+      condition: (data, matches) =>
+        data.me === matches.target && getHeadmarkerId(data, matches) === '0060',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1393,7 +1397,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Judgment Crystal Placement',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '485C', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '485C', capture: false },
       suppressSeconds: 100,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1410,7 +1414,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Terashatter Flarethrower',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Judgment Crystal', id: '4A88', capture: false }),
+      netRegex: { source: 'Judgment Crystal', id: '4A88', capture: false },
       delaySeconds: 1,
       suppressSeconds: 100,
       infoText: (_data, _matches, output) => output.text!(),
@@ -1428,7 +1432,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Inception Vuln Collection',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '2B7' }),
+      netRegex: { effectId: '2B7' },
       condition: (data) => data.phase === 'inception',
       run: (data, matches) => {
         data.vuln ??= {};
@@ -1439,7 +1443,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Inception Alpha Sword',
       type: 'Ability',
       // Sacrament cast.
-      netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '485F', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '485F', capture: false },
       condition: (data) => data.phase === 'inception',
       alarmText: (data, _matches, output) => {
         data.vuln ??= {};
@@ -1514,7 +1518,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Wormhole',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '486E', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '486E', capture: false },
       infoText: (data, _matches, output) => {
         if (data.options.cactbotWormholeStrat === true)
           return output.baitChakramsWormholeStrat!();
@@ -1543,7 +1547,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Cactbot Wormhole Strat',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => {
         if (data.options.cactbotWormholeStrat !== true)
           return false;
@@ -1651,7 +1655,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Cactbot Wormhole 4 Super Jump',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
+      netRegex: { source: 'Brute Justice', id: '484A', capture: false },
       condition: (data) => {
         if (data.options.cactbotWormholeStrat !== true)
           return false;
@@ -1674,7 +1678,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Incinerating Heat',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => getHeadmarkerId(data, matches) === '005D',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1691,7 +1695,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Mega Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '4A83', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1707,7 +1711,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Summon Alexander',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A55', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '4A55', capture: false },
       delaySeconds: 10.4,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1724,7 +1728,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Divine Judgment',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '4879', capture: false }),
+      netRegex: { source: 'Alexander Prime', id: '4879', capture: false },
       condition: (data) => data.role === 'tank',
       delaySeconds: 6,
       alarmText: (_data, _matches, output) => output.text!(),
@@ -1742,7 +1746,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Perfect Optical Sight Spread',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '488A', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '488A', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: Outputs.spread,
@@ -1751,7 +1755,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Perfect Optical Sight Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => getHeadmarkerId(data, matches) === '003E',
       preRun: (data, matches) => {
         data.opticalStack ??= [];
@@ -1783,7 +1787,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Ordained Motion',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '487E', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '487E', capture: false },
       durationSeconds: 4,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1800,7 +1804,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Ordained Stillness',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '487F', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '487F', capture: false },
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1816,7 +1820,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Contact Prohibition',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '868' }),
+      netRegex: { effectId: '868' },
       condition: (data, matches) => data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       tts: {
@@ -1841,7 +1845,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Contact Regulation',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '869' }),
+      netRegex: { effectId: '869' },
       condition: (data, matches) => data.me === matches.target,
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1858,7 +1862,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Escape Prohibition',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '86A' }),
+      netRegex: { effectId: '86A' },
       condition: (data, matches) => data.me === matches.target,
       infoText: (_data, _matches, output) => output.text!(),
       tts: {
@@ -1883,7 +1887,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Escape Detection',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '86B' }),
+      netRegex: { effectId: '86B' },
       condition: (data, matches) => data.me === matches.target,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1900,7 +1904,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Fate Tether Bois',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0062' }),
+      netRegex: { id: '0062' },
       run: (data, matches) => {
         data.tetherBois ??= {};
         data.tetherBois[matches.targetId] = matches.source;
@@ -1909,7 +1913,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Alpha Instructions',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
+      netRegex: { id: '0062', capture: false },
       condition: (data) => data.phase === 'alpha',
       delaySeconds: 1,
       suppressSeconds: 10,
@@ -1931,7 +1935,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Alpha Instructions Callout',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
+      netRegex: { id: '0062', capture: false },
       condition: (data) => data.phase === 'alpha',
       delaySeconds: 2,
       durationSeconds: 28,
@@ -2021,7 +2025,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Alpha Ordained Motion 1',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B0D', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '4B0D', capture: false },
       durationSeconds: 8,
       suppressSeconds: 20,
       infoText: (_data, _matches, output) => output.motionFirst!(),
@@ -2033,7 +2037,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Alpha Ordained Stillness 1',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B0E', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '4B0E', capture: false },
       durationSeconds: 8,
       suppressSeconds: 20,
       infoText: (_data, _matches, output) => output.stillnessFirst!(),
@@ -2047,7 +2051,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Alpha Ordained Motion 2',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '4899', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '4899', capture: false },
       durationSeconds: 15,
       suppressSeconds: 20,
       infoText: (data, _matches, output) => {
@@ -2063,7 +2067,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Alpha Ordained Stillness 2',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '489A', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '489A', capture: false },
       durationSeconds: 15,
       suppressSeconds: 20,
       infoText: (data, _matches, output) => {
@@ -2080,7 +2084,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TEA Alpha Safe Spot',
       type: 'Ability',
       // The non-safe alexanders use 489F.
-      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '49AA' }),
+      netRegex: { source: 'Perfect Alexander', id: '49AA' },
       durationSeconds: 10,
       infoText: (data, matches, output) => {
         // TODO: this is overly complicated.
@@ -2161,7 +2165,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Alpha Resolve First Motion',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '487C', capture: false },
       // 5 seconds until mechanic
       delaySeconds: 2.2,
       alertText: (data, _matches, output) => {
@@ -2192,7 +2196,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Alpha Resolve Second Motion',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '487C', capture: false },
       // ~4 seconds until mechanic (to avoid overlapping with first)
       delaySeconds: 7.2,
       alertText: (data, _matches, output) => {
@@ -2223,7 +2227,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Beta Instructions',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
+      netRegex: { id: '0062', capture: false },
       condition: (data) => data.phase === 'beta',
       delaySeconds: 1,
       suppressSeconds: 10,
@@ -2242,7 +2246,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Beta Instructions Callout',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
+      netRegex: { id: '0062', capture: false },
       condition: (data) => data.phase === 'beta',
       delaySeconds: 2,
       durationSeconds: 35,
@@ -2350,7 +2354,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Beta Radiant',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '489E' }),
+      netRegex: { source: 'Perfect Alexander', id: '489E' },
       infoText: (data, matches, output) => {
         // Track which perfect alexander clone did this.
         data.radiantSourceId = matches.sourceId;
@@ -2359,7 +2363,7 @@ const triggerSet: TriggerSet<Data> = {
         const x = parseFloat(matches.x) - 100;
         const y = 100 - parseFloat(matches.y);
         // 0 = N, 1 = E, 2 = S, 3 = W
-        const idx = Math.round((Math.atan2(x, y) / Math.PI * 2 + 4)) % 4;
+        const idx = Math.round(Math.atan2(x, y) / Math.PI * 2 + 4) % 4;
         const outputMap: { [dir: number]: string } = {
           // North shouldn't be possible.
           // But, leaving this here in case my math is wrong.
@@ -2382,7 +2386,7 @@ const triggerSet: TriggerSet<Data> = {
       // Stack (two people) is 48A3.
       id: 'TEA Beta Optical Spread',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '48A0', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '48A0', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.betaIsOpticalStack = false,
       outputStrings: {
@@ -2399,7 +2403,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Beta Optical Stack',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '48A1', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '48A1', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.betaIsOpticalStack = true,
       outputStrings: {
@@ -2416,7 +2420,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Beta Optical Final',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '4B14', capture: false },
       delaySeconds: 12.2,
       alertText: (data, _matches, output) => {
         if (!data.betaIsOpticalStack)
@@ -2475,7 +2479,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Beta Radiant Final',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '4B14', capture: false },
       condition: (data) => !!data.radiantOutputStringKey,
       delaySeconds: 16,
       alertText: (data, _matches, output) => output[data.radiantOutputStringKey ?? 'unknown']!(),
@@ -2484,14 +2488,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Ordained Punishment',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '4891' }),
+      netRegex: { source: 'Perfect Alexander', id: '4891' },
       // Because this is two in a row, make this second one info.
       response: Responses.tankBusterSwap('info', 'alarm'),
     },
     {
       id: 'TEA Trine Get Middle',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '488E', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '488E', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -2507,7 +2511,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Trine Initial',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '488F' }),
+      netRegex: { source: 'Perfect Alexander', id: '488F' },
       alertText: (data, matches, output) => {
         // Looking for (100, 92), (100, 100), or (100, 108).
         const x = Math.round(parseFloat(matches.x));
@@ -2667,7 +2671,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Trine Second',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '4890', capture: false }),
+      netRegex: { source: 'Perfect Alexander', id: '4890', capture: false },
       suppressSeconds: 15,
       alertText: (data, _matches, output) => output[data.secondTrineResponse ?? 'unknown']!(),
       outputStrings: {
@@ -2689,7 +2693,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TEA Irresistible Grace',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '4894' }),
+      netRegex: { source: 'Perfect Alexander', id: '4894' },
       // Don't collide with trine.
       delaySeconds: 2,
       response: Responses.stackMarkerOn('info'),

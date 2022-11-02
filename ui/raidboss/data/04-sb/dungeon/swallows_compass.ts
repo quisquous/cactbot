@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -18,26 +17,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Swallows Compass Tengu Clout',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2B95', source: 'Otengu', capture: false }),
+      netRegex: { id: '2B95', source: 'Otengu', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Swallows Compass Tengu Might',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2B94', source: 'Otengu' }),
+      netRegex: { id: '2B94', source: 'Otengu' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Swallows Compass Tengu Wile',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2B97', source: 'Otengu', capture: false }),
+      netRegex: { id: '2B97', source: 'Otengu', capture: false },
       response: Responses.lookAway(),
     },
     {
       // 7201 is Tengu Ember.
       id: 'Swallows Compass Ember Spawn',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7201', capture: false }),
+      netRegex: { npcNameId: '7201', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -54,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Swallows Compass Flames Of Hate',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2898', source: 'Tengu Ember', capture: false }),
+      netRegex: { id: '2898', source: 'Tengu Ember', capture: false },
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -71,26 +70,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Swallows Compass Right Palm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2B9D', source: 'Daidarabotchi', capture: false }),
+      netRegex: { id: '2B9D', source: 'Daidarabotchi', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'Swallows Compass Left Palm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2B9E', source: 'Daidarabotchi', capture: false }),
+      netRegex: { id: '2B9E', source: 'Daidarabotchi', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'Swallows Compass Mountain Falls',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0087' }),
+      netRegex: { id: '0087' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Swallows Compass Mirage',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -107,13 +106,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Swallows Compass Mythmaker',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '2BA3', source: 'Daidarabotchi', capture: false }),
+      netRegex: { id: '2BA3', source: 'Daidarabotchi', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Swallows Compass Six Fulms Under',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
+      netRegex: { effectId: '237' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 2, // If the user stays in, they will get more reminders.
       alarmText: (_data, _matches, output) => output.text!(),
@@ -131,14 +130,18 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Swallows Compass Short End',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2BA6', '2D07'], source: ['Qitian Dasheng', 'Shadow Of The Sage'] }),
+      netRegex: { id: ['2BA6', '2D07'], source: ['Qitian Dasheng', 'Shadow Of The Sage'] },
       suppressSeconds: 5,
       response: Responses.tankBuster(),
     },
     {
       id: 'Swallows Compass Mount Huaguo',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2BAA', '2D08'], source: ['Qitian Dasheng', 'Shadow Of The Sage'], capture: false }),
+      netRegex: {
+        id: ['2BAA', '2D08'],
+        source: ['Qitian Dasheng', 'Shadow Of The Sage'],
+        capture: false,
+      },
       suppressSeconds: 5,
       response: Responses.aoe(),
     },
@@ -151,14 +154,22 @@ const triggerSet: TriggerSet<Data> = {
       // In order to avoid collisions and confusion, we collect first.
       id: 'Swallows Compass Both Ends Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2BA9', '2BAF'], source: ['Qitian Dasheng', 'Shadow Of The Sage'], capture: false }),
+      netRegex: {
+        id: ['2BA9', '2BAF'],
+        source: ['Qitian Dasheng', 'Shadow Of The Sage'],
+        capture: false,
+      },
       run: (data) => data.dynamo = true,
     },
     {
       // 2BA8,2BAE is red, chariot, 2BA9,2BAF is blue, dynamo.
       id: 'Swallows Compass Both Ends Call',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2BA8', '2BA9', '2BAE', '2BAF'], source: ['Qitian Dasheng', 'Shadow Of The Sage'], capture: false }),
+      netRegex: {
+        id: ['2BA8', '2BA9', '2BAE', '2BAF'],
+        source: ['Qitian Dasheng', 'Shadow Of The Sage'],
+        capture: false,
+      },
       delaySeconds: 0.5,
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {
@@ -189,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Swallows Compass Five Fingered Punishment',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn('info'), // Info rather than alert to avoid collision with Both Ends.
     },
     {
@@ -199,7 +210,7 @@ const triggerSet: TriggerSet<Data> = {
       // The ability use here is unnamed, the teleport to the center to begin the intermission.
       id: 'Swallows Compass Intermission Tracking',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '2CC7', source: 'Qitian Dasheng', capture: false }),
+      netRegex: { id: '2CC7', source: 'Qitian Dasheng', capture: false },
       run: (data) => data.seenIntermission = true,
     },
     {
@@ -207,7 +218,7 @@ const triggerSet: TriggerSet<Data> = {
       // We have to handle both possibilities, so we collect targets first for later analysis.
       id: 'Swallows Compass Long End Collect',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0029' }),
+      netRegex: { id: '0029' },
       run: (data, matches) => {
         data.tethers ??= [];
         data.tethers.push(matches.target);
@@ -216,7 +227,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Swallows Compass Long End Call',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0029', capture: false }),
+      netRegex: { id: '0029', capture: false },
       delaySeconds: 0.5,
       alertText: (data, _matches, output) => {
         if (data.tethers?.includes(data.me)) {

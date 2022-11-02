@@ -1,12 +1,12 @@
 // TODO: Fix import/order
 /* eslint-disable import/order */
-import { CactbotConfigurator } from '../ui/config/config';
-import { isLang, Lang, langToLocale } from './languages';
 import { BaseOptions } from '../types/data';
 import { CactbotLoadUserRet, SavedConfig, SavedConfigEntry } from '../types/event';
 import { LocaleObject, LocaleText } from '../types/trigger';
-import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
+import { CactbotConfigurator } from '../ui/config/config';
+import { isLang, Lang, langToLocale } from './languages';
 import { UnreachableCode } from './not_reached';
+import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
 
 // TODO:
 // The convention of "import X as _X; const X = _X;" is currently
@@ -270,7 +270,7 @@ class UserConfig {
       // System Language
       if (e.detail.systemLocale) {
         options.SystemLocale = e.detail.systemLocale;
-        let shortLocale = e.detail.systemLocale.substring(0, 2);
+        let shortLocale = e.detail.systemLocale.slice(0, 2);
         if (shortLocale === 'zh')
           shortLocale = 'cn';
         if (isLang(shortLocale))

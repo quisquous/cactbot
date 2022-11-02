@@ -2,7 +2,13 @@ import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
-import { OopsyDeathReason, OopsyFunc, OopsyMistake, OopsyMistakeType, OopsyTriggerSet } from '../../../../../types/oopsy';
+import {
+  OopsyDeathReason,
+  OopsyFunc,
+  OopsyMistake,
+  OopsyMistakeType,
+  OopsyTriggerSet,
+} from '../../../../../types/oopsy';
 import { LocaleText } from '../../../../../types/trigger';
 import { GetShareMistakeText, GetSoloMistakeText } from '../../../oopsy_common';
 
@@ -21,7 +27,11 @@ export interface Data extends OopsyData {
 }
 
 // TODO: we probably could use an oopsy utility library (and Data should be `any` here).
-const stackMistake = (type: OopsyMistakeType, expected: number, abilityText?: LocaleText): OopsyFunc<Data, NetMatches['Ability'], OopsyMistake | undefined> => {
+const stackMistake = (
+  type: OopsyMistakeType,
+  expected: number,
+  abilityText?: LocaleText,
+): OopsyFunc<Data, NetMatches['Ability'], OopsyMistake | undefined> => {
   return (_data, matches) => {
     const actual = parseFloat(matches.targetCount);
     if (actual === expected)

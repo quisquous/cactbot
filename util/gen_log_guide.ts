@@ -641,7 +641,7 @@ markdownMagic(
       const filePath = file.originalPath;
       // Figure out what language this file is by checking the path, default to 'en'
       const lang = languages.filter((lang) =>
-        RegExp(('[^\\w]' + lang + '[^\\w]')).exec(filePath.toLowerCase())
+        RegExp('[^\\w]' + lang + '[^\\w]').exec(filePath.toLowerCase())
       )[0] ?? 'en-US';
       const convertedLines = mappedLogLines[lang];
       for (const type in logDefinitions) {

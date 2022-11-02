@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -17,7 +16,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Mateus Aqua Sphere',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2633', source: 'Mateus, The Corrupt', capture: false }),
+      netRegex: { id: '2633', source: 'Mateus, The Corrupt', capture: false },
       delaySeconds: 11,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -34,7 +33,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Mateus Breathless',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
+      netRegex: { effectId: '595' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, matches, output) => {
         if (parseInt(matches.count) === 6)
@@ -67,7 +66,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Mateus Blizzard IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '263D', source: 'Mateus, The Corrupt', capture: false }),
+      netRegex: { id: '263D', source: 'Mateus, The Corrupt', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -83,13 +82,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Hashmal Quake IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '25D8', source: 'Hashmal, Bringer Of Order', capture: false }),
+      netRegex: { id: '25D8', source: 'Hashmal, Bringer Of Order', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Rab Hashmal Extreme Edge Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '25D0', source: 'Hashmal, Bringer Of Order', capture: false }),
+      netRegex: { id: '25D0', source: 'Hashmal, Bringer Of Order', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -105,7 +104,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Hashmal Extreme Edge Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '25CE', source: 'Hashmal, Bringer Of Order', capture: false }),
+      netRegex: { id: '25CE', source: 'Hashmal, Bringer Of Order', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -121,13 +120,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Hashmal Rock Cutter',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '25D7', source: 'Hashmal, Bringer Of Order' }),
+      netRegex: { id: '25D7', source: 'Hashmal, Bringer Of Order' },
       response: Responses.tankCleave(),
     },
     {
       id: 'Rab Hashmal Falling Boulder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '25D2', source: 'Hashmal, Bringer Of Order', capture: false }),
+      netRegex: { id: '25D2', source: 'Hashmal, Bringer Of Order', capture: false },
       // There's three of these, so just say stack.
       suppressSeconds: 1,
       response: Responses.stackMarker(),
@@ -135,14 +134,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Hashmal Falling Rock',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '25D3', source: 'Hashmal, Bringer Of Order' }),
+      netRegex: { id: '25D3', source: 'Hashmal, Bringer Of Order' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Rab Hashmal Earth Hammer',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '25CB', source: 'Hashmal, Bringer Of Order', capture: false }),
+      netRegex: { id: '25CB', source: 'Hashmal, Bringer Of Order', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -158,7 +157,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Hashmal Golems',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '25D4', source: 'Hashmal, Bringer Of Order', capture: false }),
+      netRegex: { id: '25D4', source: 'Hashmal, Bringer Of Order', capture: false },
       delaySeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -175,19 +174,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Trash Dragon Voice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'D10', source: 'Archaeolion', capture: false }),
+      netRegex: { id: 'D10', source: 'Archaeolion', capture: false },
       response: Responses.getUnder(),
     },
     {
       id: 'Rab Trash Ram Voice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: 'Archaeolion', capture: false }),
+      netRegex: { id: ['D0F', '273B'], source: 'Archaeolion', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'Rab Rofocale Crush Helm',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '2681', source: 'Rofocale' }),
+      netRegex: { id: '2681', source: 'Rofocale' },
       suppressSeconds: 10,
       // 2680 is on Rofocale with a castbar, then multiple 2681 and a final 2682 ability.
       // TODO: should this say "multi-hit tankbuster?"
@@ -196,14 +195,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Rofocale Chariot',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       response: Responses.getIn('alarm'),
     },
     {
       id: 'Rab Rofocale Trample',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2676', source: 'Rofocale', capture: false }),
+      netRegex: { id: '2676', source: 'Rofocale', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -219,19 +218,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Argath Fire IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Argath Thadalfus', id: '261A', capture: false }),
+      netRegex: { source: 'Argath Thadalfus', id: '261A', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Rab Argath Crippling Blow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Argath Thadalfus', id: '262D' }),
+      netRegex: { source: 'Argath Thadalfus', id: '262D' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Rab Argath Trepidation',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Argath Thadalfus', id: '2622', capture: false }),
+      netRegex: { source: 'Argath Thadalfus', id: '2622', capture: false },
       infoText: (_data, _matches, output) => output.getTowers!(),
       outputStrings: {
         getTowers: {
@@ -247,19 +246,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Argath Mask of Truth',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
+      netRegex: { source: 'Argath Thadalfus', id: '261A', capture: false },
       run: (data) => data.maskValue = true,
     },
     {
       id: 'Rab Argath Mask of Lies',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
+      netRegex: { source: 'Argath Thadalfus', id: '2619', capture: false },
       run: (data) => data.maskValue = false,
     },
     {
       id: 'Rab Argath Command Scatter',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '007B' }),
+      netRegex: { id: '007B' },
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.maskValue)
@@ -275,7 +274,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rab Argath Command Turn',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '007C' }),
+      netRegex: { id: '007C' },
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         if (data.maskValue)

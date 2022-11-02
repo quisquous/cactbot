@@ -1,11 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 
-import chai from 'chai';
+import { assert } from 'chai';
 
 import { walkDirSync } from '../../util/file_utils';
-
-const { assert } = chai;
 
 const testManifestFile = (file: string) => {
   let manifestLines: string[];
@@ -54,7 +52,7 @@ const testManifestFile = (file: string) => {
   it('correct file types in manifest', () => {
     for (const file of manifestLines) {
       // All files must be .js/.ts and .txt.
-      if (/\.txt$/.test(file) || /\.[jt]s$/.test(file))
+      if (file.endsWith('.txt') || file.endsWith('.ts') || file.endsWith('.js'))
         continue;
       assert.fail(`${file} has invalid extension`);
     }

@@ -20,7 +20,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T1 High Voltage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Ads', id: '5A7' }),
+      netRegex: { source: 'Ads', id: '5A7' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
@@ -28,13 +28,13 @@ const triggerSet: TriggerSet<Data> = {
       // Indiscriminate Hood Swing
       id: 'T1 Initiated',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),
+      netRegex: { source: 'Caduceus', id: '4B8.*?', capture: false },
       run: (data) => data.started = true,
     },
     {
       id: 'T1 Regorge',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4BA' }),
+      netRegex: { source: 'Caduceus', id: '4BA' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -50,7 +50,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T1 Split',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Caduceus', capture: false }),
+      netRegex: { name: 'Caduceus', capture: false },
       condition: (data) => data.started,
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
@@ -67,7 +67,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T1 Hood Swing',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4B8' }),
+      netRegex: { source: 'Caduceus', id: '4B8' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 8,
       suppressSeconds: 5,
@@ -85,7 +85,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T1 Slime Timer First',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'The Allagan megastructure will be sealed off.*?', capture: false }),
+      netRegex: NetRegexes.message({
+        line: 'The Allagan megastructure will be sealed off.*?',
+        capture: false,
+      }),
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
@@ -102,7 +105,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T1 Slime Timer',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Dark Matter Slime', capture: false }),
+      netRegex: { name: 'Dark Matter Slime', capture: false },
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),

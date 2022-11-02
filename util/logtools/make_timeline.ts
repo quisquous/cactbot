@@ -160,7 +160,7 @@ const printHelpAndExit = (errString: string): void => {
 // TODO: Revisit this logic when we re-add FFLogs support.
 if (
   args.file === null && args.report_id === null ||
-  (args.file !== null && args.report_id !== null)
+  args.file !== null && args.report_id !== null
 )
   printHelpAndExit('Error: Must specify exactly one of -f or -r\n');
 if (args.file !== null && !args.file?.includes('.log'))
@@ -313,7 +313,7 @@ const extractRawLinesFromLog = async (
   for await (const line of file) {
     // This will fail on lines with 3-digit identifiers,
     // but that's okay because those will never be start lines.
-    const lineTimeStamp = line.substring(14, 26);
+    const lineTimeStamp = line.slice(14, 26);
     if (start === lineTimeStamp && !started)
       started = start === lineTimeStamp;
     if (started)
@@ -354,7 +354,7 @@ const extractTLEntriesFromLog = (
     if (ability) {
       // Cull non-enemy lines
       // TODO: Handle this using the raid emulator's line parsing functionality.
-      if (ability.sourceId[0] !== '4')
+      if (!ability.sourceId.startsWith('4'))
         continue;
       const abilityEntry = parseAbilityToEntry(ability);
       entries.push(abilityEntry);
@@ -422,7 +422,7 @@ const findTimeDifferences = (lastTimeDiff: number): { diffSeconds: number; drift
   if (lastTimeDiff === 0)
     return { diffSeconds: 0, drift: 0 };
   let diffSeconds = Math.floor(lastTimeDiff / 1000);
-  const diffMilliSeconds = lastTimeDiff - (diffSeconds * 1000);
+  const diffMilliSeconds = lastTimeDiff - diffSeconds * 1000;
   let drift = 0;
 
   // Find the difference in tenths of a second.
@@ -456,7 +456,7 @@ const assembleTimelineStrings = (
   fight?: FightEncInfo,
 ): string[] => {
   const assembled: string[] = [];
-  let lastAbilityTime = (start.getTime());
+  let lastAbilityTime = start.getTime();
   let timelinePosition = 0;
   let lastEntry: TimelineEntry = { time: lastAbilityTime.toString(), lineType: 'None' };
   if (fight !== undefined && fight.sealName !== undefined) {
@@ -619,7 +619,7 @@ const makeTimeline = async () => {
     );
   }
   if (args.file !== null && args.file.length > 0) {
-    const store = (args.search_fights !== null && (args.search_fights > 0));
+    const store = args.search_fights !== null && args.search_fights > 0;
     const collector = await makeCollectorFromPrepass(args.file, store);
     if (args['search_fights'] === -1) {
       printCollectedFights(collector);

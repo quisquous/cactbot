@@ -1,9 +1,10 @@
 import { isLang, Lang } from '../../resources/languages';
+import { buildNetRegexForTrigger } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
 import Regexes from '../../resources/regexes';
 import { triggerOutputFunctions } from '../../resources/responses';
-import { translateRegex } from '../../resources/translations';
+import { translateRegex, translateRegexBuildParam } from '../../resources/translations';
 import UserConfig, {
   ConfigValue,
   OptionsTemplate,
@@ -1083,7 +1084,7 @@ class RaidbossConfigurator {
     matches: Matches,
     output: Output,
   ): RaidbossTriggerOutput {
-    const result = (typeof f === 'function') ? f(data, matches, output) : f;
+    const result = typeof f === 'function' ? f(data, matches, output) : f;
     if (result !== Object(result))
       return result;
     if (typeof result !== 'object' || result === null)
@@ -1260,18 +1261,37 @@ class RaidbossConfigurator {
     // Should we show them in the parser language instead?
     const lang = this.base.lang;
 
-    const getRegex = (baseField: 'regex' | 'netRegex') => {
-      const regex = trig[baseField];
+    const getRegex = () => {
+      const regex = trig.regex;
       if (regex === undefined)
         return;
       return Regexes.parse(translateRegex(regex, lang, set.timelineReplace));
     };
 
+    const getNetRegex = () => {
+      const regex = trig.netRegex;
+      if (regex === undefined)
+        return;
+
+      if (regex instanceof RegExp)
+        return Regexes.parse(translateRegex(regex, lang, set.timelineReplace));
+
+      if (trig.type === undefined)
+        return;
+
+      return Regexes.parse(
+        buildNetRegexForTrigger(
+          trig.type,
+          translateRegexBuildParam(regex, lang, set.timelineReplace),
+        ),
+      );
+    };
+
     if (trig.isTimelineTrigger) {
-      trig.timelineRegex = getRegex('regex');
+      trig.timelineRegex = getRegex();
     } else {
-      trig.triggerRegex = getRegex('regex');
-      trig.triggerNetRegex = getRegex('netRegex');
+      trig.triggerRegex = getRegex();
+      trig.triggerNetRegex = getNetRegex();
     }
 
     return trig;
@@ -1407,7 +1427,7 @@ const flattenTimeline = (
   const lastIndex = Math.max(filename.lastIndexOf('/'), filename.lastIndexOf('\\'));
   // If lastIndex === -1, truncate name to the empty string.
   // if lastIndex > -1, truncate name after the final slash.
-  const dir = filename.substring(0, lastIndex + 1);
+  const dir = filename.slice(0, Math.max(0, lastIndex + 1));
 
   const timelineFile = `${dir}${set.timelineFile}`;
   delete set.timelineFile;
@@ -1425,7 +1445,7 @@ const flattenTimeline = (
 const userFileHandler: UserFileCallback = (
   name: string,
   files: { [filename: string]: string },
-  baseOptions: (BaseOptions & Partial<RaidbossOptions>),
+  baseOptions: BaseOptions & Partial<RaidbossOptions>,
   basePath: string,
 ) => {
   // TODO: Rewrite user_config to be templated on option type so that this function knows

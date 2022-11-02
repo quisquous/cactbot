@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -153,7 +152,12 @@ const convertBossHeadingToClonePosition = (boss: PluginCombatantState): PluginCo
   };
 };
 
-const calculateSummonSafeZone = (boss: PluginCombatantState, clone1: PluginCombatantState, clone2: PluginCombatantState, abilityId: string): string => {
+const calculateSummonSafeZone = (
+  boss: PluginCombatantState,
+  clone1: PluginCombatantState,
+  clone2: PluginCombatantState,
+  abilityId: string,
+): string => {
   // Convert coordinates to 8 cardinal / intercardinal positions:
   // N at 0, NE at 1, ... NW at 7
   const b = Math.round(4 - 4 * Math.atan2(boss.PosX - 100, boss.PosY - 100) / Math.PI);
@@ -178,7 +182,7 @@ const calculateSummonSafeZone = (boss: PluginCombatantState, clone1: PluginComba
       // Swiping her right
       if (abilityId === '561E') {
         // Off by 1 here, since N is 0 for the Clone but NNE for the safe spot
-        newPosition = ((position - i % 8) + 7) % 8;
+        newPosition = (position - i % 8 + 7) % 8;
       } else {
         newPosition = (position + i) % 8;
       }
@@ -204,14 +208,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Ground-Razing Particle Beam',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5625', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5625', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 5,
       response: Responses.aoe(),
     },
     {
       id: 'E9S The Art Of Darkness Protean',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: ['5B45', '55FB'], source: 'Cloud Of Darkness', capture: false },
       durationSeconds: (data) => data.phase === 'empty' ? 8 : 4,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: { text: artOfDarknessOutputStrings.protean },
@@ -219,7 +223,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S The Art Of Darkness Partner Stacks',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: ['5B46', '55FE'], source: 'Cloud Of Darkness', capture: false },
       durationSeconds: (data) => data.phase === 'empty' ? 8 : 4,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: { text: artOfDarknessOutputStrings.stackWithPartner },
@@ -227,7 +231,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Zero-Form Devouring Dark',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5623', source: 'Cloud Of Darkness' }),
+      netRegex: { id: '5623', source: 'Cloud Of Darkness' },
       durationSeconds: 4,
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -260,14 +264,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Obscure Woods',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '55EE', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '55EE', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 5,
       response: Responses.aoe(),
     },
     {
       id: 'E9S Flood Of Obscurity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5907', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5907', source: 'Cloud Of Darkness', capture: false },
       delaySeconds: 3,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -284,13 +288,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Waste Away',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5617', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5617', source: 'Cloud Of Darkness', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'E9S Rejuvenating Balm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5618', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5618', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -307,7 +311,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Stygian Break Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0012' }),
+      netRegex: { id: '0012' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
       response: Responses.breakChains(),
@@ -315,7 +319,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Anti-Air Phaser Unlimited List',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '561[23]', source: 'Cloud Of Darkness', capture: false },
       preRun: (data) => {
         if (data.role === 'tank')
           data.phaserOutputs = ['out', 'tankSpread', 'sides'];
@@ -323,14 +327,15 @@ const triggerSet: TriggerSet<Data> = {
           data.phaserOutputs = ['out', 'healerStacks', 'sides'];
       },
       durationSeconds: 15,
-      infoText: (data, _matches, output) => data.phaserOutputs?.map((key) => output[key]!()).join(' -> '),
+      infoText: (data, _matches, output) =>
+        data.phaserOutputs?.map((key) => output[key]!()).join(' -> '),
       run: (data) => data.phaserOutputs?.shift(),
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Anti-Air Phaser Unlimited 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '561[23]', source: 'Cloud Of Darkness', capture: false },
       delaySeconds: 7,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
@@ -342,7 +347,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Anti-Air Phaser Unlimited 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '561[23]', source: 'Cloud Of Darkness', capture: false },
       delaySeconds: 12,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
@@ -354,7 +359,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Wide-Angle Phaser Unlimited List',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '560[DE]', source: 'Cloud Of Darkness', capture: false },
       preRun: (data) => {
         if (data.role === 'tank')
           data.phaserOutputs = ['sides', 'tankLaser', 'out'];
@@ -362,14 +367,15 @@ const triggerSet: TriggerSet<Data> = {
           data.phaserOutputs = ['sides', 'healerStacks', 'out'];
       },
       durationSeconds: 15,
-      infoText: (data, _matches, output) => data.phaserOutputs?.map((key) => output[key]!()).join(' -> '),
+      infoText: (data, _matches, output) =>
+        data.phaserOutputs?.map((key) => output[key]!()).join(' -> '),
       run: (data) => data.phaserOutputs?.shift(),
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Wide-Angle Phaser Unlimited 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '560[DE]', source: 'Cloud Of Darkness', capture: false },
       delaySeconds: 8,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
@@ -381,7 +387,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Wide-Angle Phaser Unlimited 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '560[DE]', source: 'Cloud Of Darkness', capture: false },
       delaySeconds: 12,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
@@ -393,7 +399,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S The Second Art Of Darkness Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5601', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5601', source: 'Cloud Of Darkness', capture: false },
       // The fight goes Second Art -> Third Art -> Second Art, so we want
       // to have this cleaned up before the second Second Art Of Darkness
       preRun: (data) => delete data.finalArtOfDarkness,
@@ -417,7 +423,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S The Second Art Of Darkness Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5602', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5602', source: 'Cloud Of Darkness', capture: false },
       // The fight goes Second Art -> Third Art -> Second Art, so we want
       // to have this cleaned up before the second Second Art Of Darkness
       preRun: (data) => delete data.finalArtOfDarkness,
@@ -443,7 +449,7 @@ const triggerSet: TriggerSet<Data> = {
       // charge is always left or right, and we can solve the rest from there.
       id: 'E9S The Second / Third Art Of Darkness Charge Solver',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
+      netRegex: { target: 'Cloud Of Darkness' },
       condition: (data) => !data.artOfDarknessIdMap,
       run: (data, matches) => {
         data.artOfDarknessIdMap = {};
@@ -472,27 +478,29 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S The Second / Third Art Of Darkness Left / Right Charge',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
+      netRegex: { target: 'Cloud Of Darkness' },
       condition: (data, matches) => {
         if (!data.artOfDarkness || !data.artOfDarknessIdMap)
           return false;
         const output = data.artOfDarknessIdMap[matches.id];
         return output === 'goRight' || output === 'goLeft';
       },
-      run: (data, matches) => data.artOfDarkness?.push(data.artOfDarknessIdMap?.[matches.id] ?? 'unknown'),
+      run: (data, matches) =>
+        data.artOfDarkness?.push(data.artOfDarknessIdMap?.[matches.id] ?? 'unknown'),
     },
     {
       // Fire the trigger on stack or protean since we want the callout as soon as possible.
       id: 'E9S The Second / Third Art Of Darkness Callout',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
+      netRegex: { target: 'Cloud Of Darkness' },
       condition: (data, matches) => {
         if (!data.artOfDarkness || !data.artOfDarknessIdMap)
           return false;
         const output = data.artOfDarknessIdMap[matches.id];
         return output === 'stackWithPartner' || output === 'protean';
       },
-      preRun: (data, matches) => data.artOfDarkness?.push(data.artOfDarknessIdMap?.[matches.id] ?? 'unknown'),
+      preRun: (data, matches) =>
+        data.artOfDarkness?.push(data.artOfDarknessIdMap?.[matches.id] ?? 'unknown'),
       durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
       alertText: (data, _matches, output) => {
         // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
@@ -507,7 +515,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Empty Plane',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '55EF', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '55EF', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 5,
       response: Responses.aoe(),
       run: (data) => data.phase = 'empty',
@@ -515,7 +523,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Flood Of Emptiness',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '55F0', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '55F0', source: 'Cloud Of Darkness', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -531,7 +539,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Curse Of Darkness',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '953' }),
+      netRegex: { effectId: '953' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       alertText: (_data, _matches, output) => output.text!(),
@@ -549,7 +557,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Hypercharged Condensation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '560C', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '560C', source: 'Cloud Of Darkness', capture: false },
       delaySeconds: 2,
       durationSeconds: 5,
       response: Responses.killAdds(),
@@ -557,7 +565,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S The Art Of Darkness Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5A95', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5A95', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 8,
       alertText: (data, _matches, output) => {
         if (!data.summon)
@@ -572,7 +580,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S The Art Of Darkness Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5A96', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5A96', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 8,
       alertText: (data, _matches, output) => {
         if (!data.summon)
@@ -587,7 +595,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Full-Perimeter Particle Beam',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5629', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5629', source: 'Cloud Of Darkness', capture: false },
       // Let Curse of Darkness trigger resolve first
       delaySeconds: 2,
       durationSeconds: 5,
@@ -596,7 +604,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Deluge Of Darkness',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '55F1', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '55F1', source: 'Cloud Of Darkness', capture: false },
       durationSeconds: 5,
       response: Responses.bigAoe('alert'),
       run: (data) => delete data.phase,
@@ -604,7 +612,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S The Third Art Of Darkness Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5603', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5603', source: 'Cloud Of Darkness', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => {
         data.artOfDarkness = [];
@@ -625,7 +633,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S The Third Art Of Darkness Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5604', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5604', source: 'Cloud Of Darkness', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => {
         data.artOfDarkness = [];
@@ -646,7 +654,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Particle Concentration',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '5620', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5620', source: 'Cloud Of Darkness', capture: false },
       delaySeconds: 6,
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
@@ -664,13 +672,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E9S Summon',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '5019', source: 'Cloud Of Darkness', capture: false }),
+      netRegex: { id: '5019', source: 'Cloud Of Darkness', capture: false },
       run: (data) => data.summon = true,
     },
     {
       id: 'E9S Clone The Art Of Darkness',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '561[EF]', source: 'Clone Of Darkness' }),
+      netRegex: { id: '561[EF]', source: 'Clone Of Darkness' },
       suppressSeconds: 1,
       promise: async (data) => {
         const cloudOfDarknessLocaleNames = {

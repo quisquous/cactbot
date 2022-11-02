@@ -220,7 +220,7 @@ export default class TimerBox extends HTMLElement {
     if (!this._start)
       return this._duration;
     const elapsedMs = Date.now() - this._start;
-    return Math.max(0, this._duration - (elapsedMs / 1000));
+    return Math.max(0, this._duration - elapsedMs / 1000);
   }
 
   // The elapsed time.
@@ -423,15 +423,18 @@ export default class TimerBox extends HTMLElement {
       .toString();
     smallBackgroundStyle.width = smallBackgroundStyle.height = (this.kSmallSize * this._scale)
       .toString();
-    largeForegroundStyle.width = largeForegroundStyle.height =
-      ((this.kLargeSize - this.kBorderSize * 2) * this._scale).toString();
-    smallForegroundStyle.width = smallForegroundStyle.height =
-      ((this.kSmallSize - this.kBorderSize * 2) * this._scale).toString();
+    largeForegroundStyle.width =
+      largeForegroundStyle.height =
+        ((this.kLargeSize - this.kBorderSize * 2) * this._scale).toString();
+    smallForegroundStyle.width =
+      smallForegroundStyle.height =
+        ((this.kSmallSize - this.kBorderSize * 2) * this._scale).toString();
 
     const sizeDiff = this.kLargeSize - this.kSmallSize;
     smallBackgroundStyle.left = smallBackgroundStyle.top = (sizeDiff * this._scale / 2).toString();
-    smallForegroundStyle.left = smallForegroundStyle.top =
-      (sizeDiff * this._scale / 2 + this.kBorderSize * this._scale).toString();
+    smallForegroundStyle.left =
+      smallForegroundStyle.top =
+        (sizeDiff * this._scale / 2 + this.kBorderSize * this._scale).toString();
     largeForegroundStyle.left = largeForegroundStyle.top = (this.kBorderSize * this._scale)
       .toString();
 

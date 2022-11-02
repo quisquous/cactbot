@@ -330,7 +330,7 @@ const raidEmulatorOnLoad = async () => {
         switch (msg.data.type) {
           case 'progress':
             {
-              const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
+              const percent = (msg.data.bytes / msg.data.totalBytes * 100).toFixed(2);
               bar.style.width = percent + '%';
               label.innerText =
                 `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;

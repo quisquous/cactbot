@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -12,7 +11,11 @@ export interface Data extends RaidbossData {
   mathBaseValue?: number;
 }
 
-const mathDirection = (mathBaseValue: number | undefined, correctMath: number[], output: Output) => {
+const mathDirection = (
+  mathBaseValue: number | undefined,
+  correctMath: number[],
+  output: Output,
+) => {
   if (mathBaseValue === undefined)
     return;
   if (mathBaseValue < 1 || mathBaseValue > 9) {
@@ -91,13 +94,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Famfrit Tide Pode',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2C3E', source: 'Famfrit, The Darkening Cloud' }),
+      netRegex: { id: '2C3E', source: 'Famfrit, The Darkening Cloud' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Ridorana Famfrit Tsunami 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
+      netRegex: { id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false },
       delaySeconds: 4.5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -114,7 +117,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Famfrit Tsunami 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
+      netRegex: { id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false },
       delaySeconds: 16.5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -131,7 +134,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Famfrit Tsunami 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
+      netRegex: { id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false },
       delaySeconds: 28.5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -148,34 +151,34 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Famfrit Dark Cannonade',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0037' }),
+      netRegex: { id: '0037' },
       condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'Ridorana Famfrit Briny Cannonade',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      netRegex: { id: '008B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Ridorana Famfrit Dark Rain',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Dark Rain', capture: false }),
+      netRegex: { name: 'Dark Rain', capture: false },
       suppressSeconds: 10,
       response: Responses.killAdds(),
     },
     {
       id: 'Ridorana Belias Fire',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2CDB', source: 'Belias, The Gigas' }),
+      netRegex: { id: '2CDB', source: 'Belias, The Gigas' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Ridorana Belias Time Eruption',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2CDE', source: 'Belias, The Gigas', capture: false }),
+      netRegex: { id: '2CDE', source: 'Belias, The Gigas', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -192,7 +195,7 @@ const triggerSet: TriggerSet<Data> = {
       // Burns effect.
       id: 'Ridorana Belias Hand of Time',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '212' }),
+      netRegex: { effectId: '212' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -209,7 +212,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Belias Time Bomb',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2CE6', source: 'Belias, The Gigas', capture: false }),
+      netRegex: { id: '2CE6', source: 'Belias, The Gigas', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -225,20 +228,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Belias Gigas',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Gigas', capture: false }),
+      netRegex: { name: 'Gigas', capture: false },
       suppressSeconds: 10,
       response: Responses.killAdds(),
     },
     {
       id: 'Ridorana Construct Destroy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2C5A', '2C71'], source: 'Construct 7' }),
+      netRegex: { id: ['2C5A', '2C71'], source: 'Construct 7' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Ridorana Construct Accelerate Spread',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '008A' }),
+      netRegex: { id: '008A' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => data.accelerateSpreadOnMe = true,
       response: Responses.spread(),
@@ -246,27 +249,27 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Construct Accelerate Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0064' }),
+      netRegex: { id: '0064' },
       condition: (data) => !data.accelerateSpreadOnMe,
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Ridorana Construct Accelerate Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2C65', source: 'Construct 7', capture: false }),
+      netRegex: { id: '2C65', source: 'Construct 7', capture: false },
       run: (data) => delete data.accelerateSpreadOnMe,
     },
     {
       id: 'Ridorana Construct Math Setup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2C6C', source: 'Construct 7', capture: false }),
+      netRegex: { id: '2C6C', source: 'Construct 7', capture: false },
       run: (data) => data.mathBaseValue = 0,
     },
     {
       // Hp Penalty effect.
       id: 'Ridorana Construct Math HP Check 1',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '615' }),
+      netRegex: { effectId: '615' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
         if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
@@ -280,7 +283,7 @@ const triggerSet: TriggerSet<Data> = {
       // overwriting any results from t=0 if that was valid.
       id: 'Ridorana Construct Math HP Check 2',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '615' }),
+      netRegex: { effectId: '615' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
         if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
@@ -291,7 +294,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Construct Divide By Five',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2CCD', source: 'Construct 7', capture: false }),
+      netRegex: { id: '2CCD', source: 'Construct 7', capture: false },
       alertText: (data, _matches, output) => {
         const correctMath = [-1, 4, 3, 2, 1, 0, 4, 3, 2, 1];
         return mathDirection(data.mathBaseValue, correctMath, output);
@@ -301,7 +304,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Construct Divide By Four',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2CCC', source: 'Construct 7', capture: false }),
+      netRegex: { id: '2CCC', source: 'Construct 7', capture: false },
       alertText: (data, _matches, output) => {
         const correctMath = [-1, 3, 2, 1, 0, 3, 2, 1, 0, 3];
         return mathDirection(data.mathBaseValue, correctMath, output);
@@ -311,7 +314,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Construct Divide By Three',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2CCA', source: 'Construct 7', capture: false }),
+      netRegex: { id: '2CCA', source: 'Construct 7', capture: false },
       alertText: (data, _matches, output) => {
         const correctMath = [-1, 2, 1, 0, 2, 1, 0, 2, 1, 0];
         return mathDirection(data.mathBaseValue, correctMath, output);
@@ -321,7 +324,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Construct Indivisible',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2CCE', source: 'Construct 7', capture: false }),
+      netRegex: { id: '2CCE', source: 'Construct 7', capture: false },
       alertText: (data, _matches, output) => {
         const correctMath = [-1, 1, 0, 0, 1, 0, 1, 0, 3, 2];
         return mathDirection(data.mathBaseValue, correctMath, output);
@@ -331,20 +334,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Construct Pulverize',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2C61', source: 'Construct 7', capture: false }),
+      netRegex: { id: '2C61', source: 'Construct 7', capture: false },
       // 16 yalms
       response: Responses.getOut(),
     },
     {
       id: 'Ridorana Construct Dispose',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2C5F', '2CE9'], source: 'Construct 7', capture: false }),
+      netRegex: { id: ['2C5F', '2CE9'], source: 'Construct 7', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'Ridorana Construct Acceleration Bomb',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '568' }),
+      netRegex: { effectId: '568' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 2,
       response: Responses.stopEverything(),
@@ -352,25 +355,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Yiazmat Rake Buster',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2D4E', source: 'Yiazmat' }),
+      netRegex: { id: '2D4E', source: 'Yiazmat' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Ridorana Yiazmat Rake Charge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2E32', source: 'Yiazmat', capture: false }),
+      netRegex: { id: '2E32', source: 'Yiazmat', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'Ridorana Yiazmat White Breath',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2C31', source: 'Yiazmat', capture: false }),
+      netRegex: { id: '2C31', source: 'Yiazmat', capture: false },
       response: Responses.getUnder(),
     },
     {
       id: 'Ridorana Yiazmat Magnetic Negative',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '60F' }),
+      netRegex: { effectId: '60F' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -387,7 +390,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Yiazmat Magnetic Positive',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '60E' }),
+      netRegex: { effectId: '60E' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -404,14 +407,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ridorana Yiazmat Archaeodemon',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Archaeodemon', capture: false }),
+      netRegex: { name: 'Archaeodemon', capture: false },
       suppressSeconds: 10,
       response: Responses.killAdds(),
     },
     {
       id: 'Ridorana Yiazmat Heart',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Heart Of The Dragon', capture: false }),
+      netRegex: { name: 'Heart Of The Dragon', capture: false },
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

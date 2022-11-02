@@ -6,9 +6,12 @@
 import fs from 'fs';
 import path from 'path';
 
-import chai from 'chai';
+import { assert } from 'chai';
 
-import NetRegexes from '../../resources/netregexes';
+import NetRegexes, {
+  buildNetRegexForTrigger,
+  keysThatRequireTranslation,
+} from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import Regexes from '../../resources/regexes';
 import {
@@ -28,8 +31,6 @@ import {
   ResponseFunc,
   TriggerFunc,
 } from '../../types/trigger';
-
-const { assert } = chai;
 
 const isResponseFunc = (func: unknown): func is ResponseFunc<RaidbossData, Matches> => {
   return typeof func === 'function';
@@ -172,8 +173,24 @@ const testTriggerFile = (file: string) => {
 
       let captures = 0;
       const currentNetRegex = currentTrigger.netRegex;
+
       if (currentNetRegex !== undefined && currentNetRegex !== null) {
-        const capture = new RegExp(`(?:${currentNetRegex.toString()})?`).exec('');
+        let netRegexRegex: RegExp;
+
+        if (currentNetRegex instanceof RegExp) {
+          netRegexRegex = currentNetRegex;
+        } else {
+          if (currentTrigger.type === undefined) {
+            assert.fail(
+              `netTrigger "${currentTrigger.id}" without type and non-regex netRegex property`,
+            );
+            continue;
+          }
+          // TODO: we can check it from keys of `currentNetRegex`.
+          netRegexRegex = buildNetRegexForTrigger(currentTrigger.type, currentNetRegex);
+        }
+
+        const capture = new RegExp(`(?:${netRegexRegex.toString()})?`).exec('');
         if (!capture)
           throw new UnreachableCode();
         captures = capture.length - 1;
@@ -239,7 +256,7 @@ const testTriggerFile = (file: string) => {
           brokenPrefixes = true;
           continue;
         }
-        prefix = prefix.substr(0, idx);
+        prefix = prefix.slice(0, idx);
       }
     }
 
@@ -251,8 +268,8 @@ const testTriggerFile = (file: string) => {
     if (ids.size > 1 && !brokenPrefixes && prefix !== null && prefix.length > 0) {
       // if prefix includes more than one word, just remove latter letters.
       if (prefix.includes(' '))
-        prefix = prefix.substr(0, prefix.lastIndexOf(' ') + 1);
-      if (prefix[prefix.length - 1] !== ' ')
+        prefix = prefix.slice(0, prefix.lastIndexOf(' ') + 1);
+      if (!prefix.endsWith(' '))
         assert.fail(`id prefix '${prefix}' is not a full word, must end in a space`);
     }
   });
@@ -326,8 +343,10 @@ const testTriggerFile = (file: string) => {
             continue;
           if (thisIdx <= lastIdx) {
             assert.fail(
-              `in ${trigger.id}, field '${keys[lastIdx] ?? '???'}' must precede '${keys[thisIdx] ??
-                '???'}'`,
+              `in ${trigger.id}, field '${keys[lastIdx] ?? '???'}' must precede '${
+                keys[thisIdx] ??
+                  '???'
+              }'`,
             );
           }
 
@@ -586,7 +605,60 @@ const testTriggerFile = (file: string) => {
 
       const triggers = triggerSet.triggers;
       for (const trigger of triggers ?? []) {
-        const origRegex = trigger.netRegex?.source.toLowerCase();
+        if (trigger.netRegex === undefined)
+          continue;
+
+        if (trigger.type === undefined) {
+          if (!(trigger.netRegex instanceof RegExp)) {
+            assert.fail(
+              `${trigger.id} doesn't have 'type' property and doesn't have a RegExp netRegex`,
+            );
+          }
+          continue;
+        }
+
+        if (!(trigger.netRegex instanceof RegExp)) {
+          // plain object netRegex
+          if (trigger.disabled)
+            continue;
+
+          const textHasTranslation = (text: string): boolean => {
+            return translateWithReplacements(
+              text,
+              'replaceSync',
+              locale,
+              translations,
+            ).wasTranslated;
+          };
+
+          const checkIfFieldHasTranslation = (field: string | string[], fieldName: string) => {
+            if (typeof field === 'string') {
+              assert.isTrue(
+                textHasTranslation(field),
+                `${trigger.id}:locale ${locale}:missing timelineReplace replaceSync for ${fieldName} '${field}'`,
+              );
+            } else {
+              for (const s of field) {
+                assert.isTrue(
+                  textHasTranslation(s),
+                  `${trigger.id}:locale ${locale}:missing timelineReplace replaceSync for ${fieldName} '${s}'`,
+                );
+              }
+            }
+          };
+
+          for (const key of keysThatRequireTranslation) {
+            type AnonymousParams = { [name: string]: string | string[] | boolean | undefined };
+            const anonTriggerFields: AnonymousParams = trigger.netRegex;
+            const value = anonTriggerFields[key];
+            if (value !== undefined && typeof value !== 'boolean')
+              checkIfFieldHasTranslation(value, key);
+          }
+
+          continue;
+        }
+
+        const origRegex = trigger.netRegex?.source?.toLowerCase();
         if (origRegex === undefined)
           continue;
 

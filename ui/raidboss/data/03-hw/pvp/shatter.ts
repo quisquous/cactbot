@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -12,7 +11,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shatter Big Ice Center',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'The icebound tomelith A1 activates and begins to emit heat.*?', capture: false }),
+      netRegex: {
+        line: 'The icebound tomelith A1 activates and begins to emit heat.*?',
+        capture: false,
+      },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -28,7 +30,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shatter Big Ice North',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'The icebound tomelith A2 activates and begins to emit heat.*?', capture: false }),
+      netRegex: {
+        line: 'The icebound tomelith A2 activates and begins to emit heat.*?',
+        capture: false,
+      },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -44,7 +49,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shatter Big Ice Southeast',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'The icebound tomelith A3 activates and begins to emit heat.*?', capture: false }),
+      netRegex: {
+        line: 'The icebound tomelith A3 activates and begins to emit heat.*?',
+        capture: false,
+      },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -60,7 +68,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Shatter Big Ice Southwest',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: 'The icebound tomelith A4 activates and begins to emit heat.*?', capture: false }),
+      netRegex: {
+        line: 'The icebound tomelith A4 activates and begins to emit heat.*?',
+        capture: false,
+      },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -78,19 +89,27 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
-        'The icebound tomelith A1 activates and begins to emit heat': 'Vereister Echolith A1 setzt sich in Betrieb und das Eis beginnt zu bröckeln',
-        'The icebound tomelith A2 activates and begins to emit heat': 'Vereister Echolith A2 setzt sich in Betrieb und das Eis beginnt zu bröckeln',
-        'The icebound tomelith A3 activates and begins to emit heat': 'Vereister Echolith A3 setzt sich in Betrieb und das Eis beginnt zu bröckeln',
-        'The icebound tomelith A4 activates and begins to emit heat': 'Vereister Echolith A4 setzt sich in Betrieb und das Eis beginnt zu bröckeln',
+        'The icebound tomelith A1 activates and begins to emit heat':
+          'Vereister Echolith A1 setzt sich in Betrieb und das Eis beginnt zu bröckeln',
+        'The icebound tomelith A2 activates and begins to emit heat':
+          'Vereister Echolith A2 setzt sich in Betrieb und das Eis beginnt zu bröckeln',
+        'The icebound tomelith A3 activates and begins to emit heat':
+          'Vereister Echolith A3 setzt sich in Betrieb und das Eis beginnt zu bröckeln',
+        'The icebound tomelith A4 activates and begins to emit heat':
+          'Vereister Echolith A4 setzt sich in Betrieb und das Eis beginnt zu bröckeln',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
-        'The icebound tomelith A1 activates and begins to emit heat': 'Mémolithe Congelé A1 e et la glace s\'est fragilisée',
-        'The icebound tomelith A2 activates and begins to emit heat': 'Mémolithe Congelé A2 e et la glace s\'est fragilisée',
-        'The icebound tomelith A3 activates and begins to emit heat': 'Mémolithe Congelé A3 e et la glace s\'est fragilisée',
-        'The icebound tomelith A4 activates and begins to emit heat': 'Mémolithe Congelé A4 e et la glace s\'est fragilisée',
+        'The icebound tomelith A1 activates and begins to emit heat':
+          'Mémolithe Congelé A1 e et la glace s\'est fragilisée',
+        'The icebound tomelith A2 activates and begins to emit heat':
+          'Mémolithe Congelé A2 e et la glace s\'est fragilisée',
+        'The icebound tomelith A3 activates and begins to emit heat':
+          'Mémolithe Congelé A3 e et la glace s\'est fragilisée',
+        'The icebound tomelith A4 activates and begins to emit heat':
+          'Mémolithe Congelé A4 e et la glace s\'est fragilisée',
       },
     },
     {
@@ -114,10 +133,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ko',
       'replaceSync': {
-        'The icebound tomelith A1 activates and begins to emit heat': '얼음탑 A1호기가 기동하여 표면이 녹기 시작합니다!',
-        'The icebound tomelith A2 activates and begins to emit heat': '얼음탑 A2호기가 기동하여 표면이 녹기 시작합니다!',
-        'The icebound tomelith A3 activates and begins to emit heat': '얼음탑 A3호기가 기동하여 표면이 녹기 시작합니다!',
-        'The icebound tomelith A4 activates and begins to emit heat': '얼음탑 A4호기가 기동하여 표면이 녹기 시작합니다!',
+        'The icebound tomelith A1 activates and begins to emit heat':
+          '얼음탑 A1호기가 기동하여 표면이 녹기 시작합니다!',
+        'The icebound tomelith A2 activates and begins to emit heat':
+          '얼음탑 A2호기가 기동하여 표면이 녹기 시작합니다!',
+        'The icebound tomelith A3 activates and begins to emit heat':
+          '얼음탑 A3호기가 기동하여 표면이 녹기 시작합니다!',
+        'The icebound tomelith A4 activates and begins to emit heat':
+          '얼음탑 A4호기가 기동하여 표면이 녹기 시작합니다!',
       },
     },
   ],

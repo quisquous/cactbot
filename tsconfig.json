@@ -1,10 +1,34 @@
 {
-  "extends": "./tsconfig.base.json",
   "ts-node": {
     "compiler": "ttypescript",
+    "moduleTypes": {
+      "webpack/*": "cjs",
+      // Globs are also supported with the same behavior as tsconfig "include"
+      "webpack/**/*": "cjs"
+    },
     "esm": true
   },
   "compilerOptions": {
+    "plugins": [
+      {
+        "transform": "@zoltu/typescript-transformer-append-js-extension/output/index.js",
+        "after": true
+      }
+    ],
+
+    "target": "ES2022",
+    "module": "ES2022",
+    "allowJs": true,
+    "strict": true,
+    "declaration": false,
+    "declarationMap": false,
+    "types": [
+      "node"
+    ],
+    "moduleResolution": "node",
+    "skipLibCheck": false,
+    "esModuleInterop": true,
+    "rootDir": "./",
     "checkJs": false,
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
@@ -15,9 +39,10 @@
     "alwaysStrict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
-    "skipLibCheck": false,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
+    "inlineSources": true,
+    "useDefineForClassFields": true,
     //    "noPropertyAccessFromIndexSignature": false, // used by trigger output strings
     "forceConsistentCasingInFileNames": true
   },

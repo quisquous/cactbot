@@ -152,7 +152,10 @@ export class MCHComponent extends BaseComponent {
       case kAbility.WildFire: {
         this.wildFireBox.duration = 10 + 0.9; // animation delay
         this.wildFireBox.threshold = 1000;
-        this.wildFireBox.fg = computeBackgroundColorFrom(this.wildFireBox, 'mch-color-wildfire.active');
+        this.wildFireBox.fg = computeBackgroundColorFrom(
+          this.wildFireBox,
+          'mch-color-wildfire.active',
+        );
         this.tid1 = window.setTimeout(() => {
           this.wildFireBox.duration = 110 - 0.9;
           this.wildFireBox.threshold = this.player.gcdSkill + 1;

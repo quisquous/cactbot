@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -12,7 +11,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sunken Quarn Hard Light of Anathema',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'C26', source: 'Vicegerent to the Warden', capture: false }),
+      netRegex: { id: 'C26', source: 'Vicegerent to the Warden', capture: false },
       response: Responses.awayFromFront(),
     },
   ],

@@ -126,19 +126,31 @@ export class RPRComponent extends BaseComponent {
       case kAbility.ArcaneCircle:
         this.arcaneCircleBox.duration = 20;
         this.arcaneCircleBox.threshold = 1000;
-        this.arcaneCircleBox.fg = computeBackgroundColorFrom(this.arcaneCircleBox, 'rpr-color-arcanecircle.active');
+        this.arcaneCircleBox.fg = computeBackgroundColorFrom(
+          this.arcaneCircleBox,
+          'rpr-color-arcanecircle.active',
+        );
         this.tid1 = window.setTimeout(() => {
           this.arcaneCircleBox.duration = 100;
           this.arcaneCircleBox.threshold = this.player.gcdSkill + 1;
-          this.arcaneCircleBox.fg = computeBackgroundColorFrom(this.arcaneCircleBox, 'rpr-color-arcanecircle');
+          this.arcaneCircleBox.fg = computeBackgroundColorFrom(
+            this.arcaneCircleBox,
+            'rpr-color-arcanecircle',
+          );
         }, 20000);
         // This block monitors unlock time of Plentiful Harvest.
         if (!(this.player.level < 88)) {
           this.arcaneCircleBox.duration = 6;
-          this.arcaneCircleBox.fg = computeBackgroundColorFrom(this.arcaneCircleBox, 'rpr-color-bloodsowncircle');
+          this.arcaneCircleBox.fg = computeBackgroundColorFrom(
+            this.arcaneCircleBox,
+            'rpr-color-bloodsowncircle',
+          );
           this.tid2 = window.setTimeout(() => {
             this.arcaneCircleBox.duration = 14;
-            this.arcaneCircleBox.fg = computeBackgroundColorFrom(this.arcaneCircleBox, 'rpr-color-arcanecircle.active');
+            this.arcaneCircleBox.fg = computeBackgroundColorFrom(
+              this.arcaneCircleBox,
+              'rpr-color-arcanecircle.active',
+            );
           }, 6000);
         }
         break;
@@ -170,7 +182,10 @@ export class RPRComponent extends BaseComponent {
     this.soulSliceBox.duration = 0;
     this.arcaneCircleBox.duration = 0;
     this.arcaneCircleBox.threshold = this.player.gcdSkill + 1;
-    this.arcaneCircleBox.fg = computeBackgroundColorFrom(this.arcaneCircleBox, 'rpr-color-arcanecircle');
+    this.arcaneCircleBox.fg = computeBackgroundColorFrom(
+      this.arcaneCircleBox,
+      'rpr-color-arcanecircle',
+    );
     window.clearTimeout(this.tid1);
     window.clearTimeout(this.tid2);
     this.comboTimer.duration = 0;

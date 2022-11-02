@@ -33,7 +33,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '171', count: '05' }),
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.effect };
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.effect,
+        };
       },
     },
   ],

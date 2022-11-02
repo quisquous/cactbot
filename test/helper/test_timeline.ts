@@ -1,15 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 
-import chai from 'chai';
+import { assert } from 'chai';
 
 import Regexes from '../../resources/regexes';
 import { translateWithReplacements } from '../../resources/translations';
 import { LooseTriggerSet } from '../../types/trigger';
 import { CommonReplacement, commonReplacement } from '../../ui/raidboss/common_replacement';
 import { TimelineParser, TimelineReplacement } from '../../ui/raidboss/timeline_parser';
-
-const { assert } = chai;
 
 const parseTimelineFileFromTriggerFile = (filepath: string) => {
   const fileContents = fs.readFileSync(filepath, 'utf8');
@@ -62,6 +60,7 @@ type TestCase = {
   type: keyof CommonReplacement;
   items: Set<string>;
   replace: ReplaceMap;
+  replaceWithoutCommon: ReplaceMap;
 };
 
 const getTestCases = (
@@ -80,12 +79,14 @@ const getTestCases = (
     {
       type: 'replaceSync',
       items: new Set(timeline.syncStarts.map((x) => x.regex.source)),
-      replace: syncMap,
+      replace: new Map(syncMap),
+      replaceWithoutCommon: new Map(syncMap),
     },
     {
       type: 'replaceText',
       items: new Set(timeline.events.map((x) => x.text)),
-      replace: textMap,
+      replace: new Map(textMap),
+      replaceWithoutCommon: new Map(textMap),
     },
   ];
 
@@ -295,7 +296,10 @@ const testTimelineFiles = (timelineFiles: string[]): void => {
             ].map((x) => Regexes.parse(x));
 
             for (const testCase of testCases) {
-              for (const regex of testCase.replace.keys()) {
+              // Don't test the common translations here, as some may include these characters.
+              // It's only regexes inside of `timelineReplace` in a trigger file that are
+              // the ones that need to be checked.
+              for (const regex of testCase.replaceWithoutCommon.keys()) {
                 for (const bad of badRegex) {
                   assert.isNull(
                     bad.exec(regex.source),

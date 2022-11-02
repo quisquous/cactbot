@@ -177,7 +177,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: ['63D1', '63D2'], ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
       },
     },
     {
@@ -262,7 +267,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: ['6D3E', '6D3F'], ...playerDamageFields }),
       condition: (data) => !data.seenWrothFlames,
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
       },
     },
     {

@@ -1,11 +1,9 @@
-import chai from 'chai';
+import { assert } from 'chai';
 
 import contentList from '../../resources/content_list';
 import ZoneId from '../../resources/zone_id';
 import ZoneInfo from '../../resources/zone_info';
 import { ZoneIdType } from '../../types/trigger';
-
-const { assert } = chai;
 
 const zoneIdToName = (() => {
   const zoneIdToName: { [zoneid: number]: string } = {};

@@ -10,11 +10,11 @@ import { computeBackgroundColorFrom } from '../utils';
 import { BaseComponent, ComponentInterface } from './base';
 
 export class MNKComponent extends BaseComponent {
-  formTimer: TimerBar
-  chakraBox: ResourceBox
-  dragonKickBox: TimerBox
-  twinSnakesBox: TimerBox
-  demolishBox: TimerBox
+  formTimer: TimerBar;
+  chakraBox: ResourceBox;
+  dragonKickBox: TimerBox;
+  twinSnakesBox: TimerBox;
+  demolishBox: TimerBox;
   perfectBalanceActive = false;
   lunarStacks: HTMLDivElement[];
   beastChakraStacks: HTMLDivElement[] = [];
@@ -23,72 +23,72 @@ export class MNKComponent extends BaseComponent {
   constructor(o: ComponentInterface) {
     super(o);
 
-  this.formTimer = this.bars.addTimerBar({
-    id: 'mnk-timers-combo',
-    fgColor: 'mnk-color-form',
-  });
+    this.formTimer = this.bars.addTimerBar({
+      id: 'mnk-timers-combo',
+      fgColor: 'mnk-color-form',
+    });
 
-  this.chakraBox = this.bars.addResourceBox({
-    classList: ['mnk-color-chakra'],
-  });
+    this.chakraBox = this.bars.addResourceBox({
+      classList: ['mnk-color-chakra'],
+    });
 
-  this.dragonKickBox = this.bars.addProcBox({
-    id: 'mnk-procs-dragonkick',
-    fgColor: 'mnk-color-dragonkick',
-    threshold: 6,
-  });
+    this.dragonKickBox = this.bars.addProcBox({
+      id: 'mnk-procs-dragonkick',
+      fgColor: 'mnk-color-dragonkick',
+      threshold: 6,
+    });
 
-  this.twinSnakesBox = this.bars.addProcBox({
-    id: 'mnk-procs-twinsnakes',
-    fgColor: 'mnk-color-twinsnakes',
-    threshold: 6,
-  });
+    this.twinSnakesBox = this.bars.addProcBox({
+      id: 'mnk-procs-twinsnakes',
+      fgColor: 'mnk-color-twinsnakes',
+      threshold: 6,
+    });
 
-  this.demolishBox = this.bars.addProcBox({
-    id: 'mnk-procs-demolish',
-    fgColor: 'mnk-color-demolish',
-    // Slightly shorter time, to make the box not pop right as
-    // you hit snap punch at t=6 (which is probably fine).
-    threshold: 5,
-  });
+    this.demolishBox = this.bars.addProcBox({
+      id: 'mnk-procs-demolish',
+      fgColor: 'mnk-color-demolish',
+      // Slightly shorter time, to make the box not pop right as
+      // you hit snap punch at t=6 (which is probably fine).
+      threshold: 5,
+    });
 
-  const stacksContainer = document.createElement('div');
-  stacksContainer.id = 'mnk-stacks';
-  stacksContainer.classList.add('stacks');
-  this.bars.addJobBarContainer().appendChild(stacksContainer);
+    const stacksContainer = document.createElement('div');
+    stacksContainer.id = 'mnk-stacks';
+    stacksContainer.classList.add('stacks');
+    this.bars.addJobBarContainer().appendChild(stacksContainer);
 
-  const lunarStacksContainer = document.createElement('div');
-  lunarStacksContainer.id = 'mnk-stacks-lunar';
-  stacksContainer.appendChild(lunarStacksContainer);
+    const lunarStacksContainer = document.createElement('div');
+    lunarStacksContainer.id = 'mnk-stacks-lunar';
+    stacksContainer.appendChild(lunarStacksContainer);
 
-  const beastChakraStacksContainer = document.createElement('div');
-  beastChakraStacksContainer.id = 'mnk-stacks-beastchakra';
-  stacksContainer.appendChild(beastChakraStacksContainer);
+    const beastChakraStacksContainer = document.createElement('div');
+    beastChakraStacksContainer.id = 'mnk-stacks-beastchakra';
+    stacksContainer.appendChild(beastChakraStacksContainer);
 
-  const solarStacksContainer = document.createElement('div');
-  solarStacksContainer.id = 'mnk-stacks-solar';
-  stacksContainer.appendChild(solarStacksContainer);
+    const solarStacksContainer = document.createElement('div');
+    solarStacksContainer.id = 'mnk-stacks-solar';
+    stacksContainer.appendChild(solarStacksContainer);
 
-  this.lunarStacks = [];
-  this.beastChakraStacks = [];
-  this.solarStacks = [];
+    this.lunarStacks = [];
+    this.beastChakraStacks = [];
+    this.solarStacks = [];
 
-  const lunarStack = document.createElement('div');
-  lunarStacksContainer.appendChild(lunarStack);
-  this.lunarStacks.push(lunarStack);
+    const lunarStack = document.createElement('div');
+    lunarStacksContainer.appendChild(lunarStack);
+    this.lunarStacks.push(lunarStack);
 
-  for (let i = 0; i < 3; i++) {
-    const beastChakraStack = document.createElement('div');
-    beastChakraStacksContainer.appendChild(beastChakraStack);
-    this.beastChakraStacks.push(beastChakraStack);
+    for (let i = 0; i < 3; i++) {
+      const beastChakraStack = document.createElement('div');
+      beastChakraStacksContainer.appendChild(beastChakraStack);
+      this.beastChakraStacks.push(beastChakraStack);
+    }
+
+    const solarStack = document.createElement('div');
+    solarStacksContainer.appendChild(solarStack);
+    this.solarStacks.push(solarStack);
+
+    this.reset();
   }
-
-  const solarStack = document.createElement('div');
-  solarStacksContainer.appendChild(solarStack);
-  this.solarStacks.push(solarStack);
-
-  this.reset();
-}
 
   override onJobDetailUpdate(jobDetail: JobDetail['MNK']): void {
     const chakra = jobDetail.chakraStacks.toString();
@@ -106,7 +106,6 @@ export class MNKComponent extends BaseComponent {
     this.lunarStacks[0]?.classList.toggle('active', jobDetail.lunarNadi);
     this.solarStacks[0]?.classList.toggle('active', jobDetail.solarNadi);
   }
-
 
   override onUseAbility(id: string): void {
     if (id === kAbility.Demolish) {

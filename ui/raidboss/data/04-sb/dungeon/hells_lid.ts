@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -45,13 +44,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hells Lid Swing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '27BE', source: 'Otake-Maru', capture: false }),
+      netRegex: { id: '27BE', source: 'Otake-Maru', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'Hells Lid Targeted Leap',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.targetText!();
@@ -79,19 +78,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hells Lid Circling Winds',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '27C8', source: 'Kamaitachi', capture: false }),
+      netRegex: { id: '27C8', source: 'Kamaitachi', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'Hells Lid Rolling Winds',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '27C9', source: 'Kamaitachi', capture: false }),
+      netRegex: { id: '27C9', source: 'Kamaitachi', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'Hells Lid Sinister Tide',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '27D4', source: 'Genbu', capture: false }),
+      netRegex: { id: '27D4', source: 'Genbu', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -107,14 +106,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hells Lid Hell Of Waste',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '002B' }),
+      netRegex: { id: '002B' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Hells Lid Hell Of Waves',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '27D3', source: 'Genbu', capture: false }),
+      netRegex: { id: '27D3', source: 'Genbu', capture: false },
       response: Responses.knockback(),
     },
   ],

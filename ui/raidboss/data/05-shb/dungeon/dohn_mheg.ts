@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -22,7 +21,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Dohn Mheg Watering Wheel',
       type: 'StartsUsing',
       // TODO: double check this with an import, is there a The??
-      netRegex: NetRegexes.startsUsing({ id: '3DAA', source: 'Dohnfast Fuath' }),
+      netRegex: { id: '3DAA', source: 'Dohnfast Fuath' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
@@ -30,7 +29,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Dohn Mheg Straight Punch',
       type: 'StartsUsing',
       // TODO: double check this with an import, is there a The??
-      netRegex: NetRegexes.startsUsing({ id: '3DAB', source: 'Dohnfast Basket' }),
+      netRegex: { id: '3DAB', source: 'Dohnfast Basket' },
       condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
@@ -38,7 +37,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Dohn Mheg Proboscis',
       type: 'StartsUsing',
       // TODO: double check this with an import, is there a The??
-      netRegex: NetRegexes.startsUsing({ id: '3DAF', source: 'Dohnfast Etainmoth' }),
+      netRegex: { id: '3DAF', source: 'Dohnfast Etainmoth' },
       condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
@@ -46,56 +45,56 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Dohn Mheg Torpedo',
       type: 'StartsUsing',
       // TODO: double check this with an import, is there a The??
-      netRegex: NetRegexes.startsUsing({ id: '3DB5', source: 'Dohnfast Kelpie' }),
+      netRegex: { id: '3DB5', source: 'Dohnfast Kelpie' },
       condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
     {
       id: 'Dohn Mheg Candy Cane',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2299', source: 'Aenc Thon, Lord Of The Lingering Gaze' }),
+      netRegex: { id: '2299', source: 'Aenc Thon, Lord Of The Lingering Gaze' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Dohn Mheg Landsblood',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1E8E', source: 'Aenc Thon, Lord Of The Lingering Gaze', capture: false }),
+      netRegex: { id: '1E8E', source: 'Aenc Thon, Lord Of The Lingering Gaze', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Dohn Mheg Leap Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Dohn Mheg Timber',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '22D3', source: 'Griaule', capture: false }),
+      netRegex: { id: '22D3', source: 'Griaule', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Dohn Mheg Crippling Blow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '35A4', source: 'Aenc Thon, Lord Of The Lengthsome Gait' }),
+      netRegex: { id: '35A4', source: 'Aenc Thon, Lord Of The Lengthsome Gait' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Dohn Mheg Imp Choir',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '34F0', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
+      netRegex: { id: '34F0', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false },
       response: Responses.lookAway('alert'),
     },
     {
       id: 'Dohn Mheg Toad Choir',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '34EF', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
+      netRegex: { id: '34EF', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'Dohn Mheg Virtuosic Cappriccio',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '358C', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
+      netRegex: { id: '358C', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false },
       response: Responses.aoe(),
     },
   ],
@@ -106,10 +105,12 @@ const triggerSet: TriggerSet<Data> = {
         'Teag Gye': 'Taeg Gye',
         'The Atelier': 'Griaules Revier',
         'The throne room': 'Garten des Kronsaal',
-        'Aenc Thon, Lord of the Lingering Gaze': 'Aenc Thon (?:der|die|das) Glupschäugig(?:e|er|es|en)',
+        'Aenc Thon, Lord of the Lingering Gaze':
+          'Aenc Thon (?:der|die|das) Glupschäugig(?:e|er|es|en)',
         'Griaule': 'Griaule',
         'Painted Sapling': 'Griaules Sämling',
-        'Aenc Thon, Lord of the Lengthsome Gait': 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)',
+        'Aenc Thon, Lord of the Lengthsome Gait':
+          'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)',
         'Shade of Fear': 'Schatten der Angst',
         'Dohnfast Fuath': 'Dohn-Fuath',
         'Dohnfast Basket': 'Dohn-Blumenkorb',

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -16,7 +15,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Eureka Garm Dragon Voice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2AD5', source: 'Void Garm', capture: false }),
+      netRegex: { id: '2AD5', source: 'Void Garm', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -32,13 +31,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Eureka Sabotender Stack Marker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '29EB', source: 'Sabotender Corrido' }),
+      netRegex: { id: '29EB', source: 'Sabotender Corrido' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Eureka Poly Swipe',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2A71', source: 'Polyphemus', capture: false }),
+      netRegex: { id: '2A71', source: 'Polyphemus', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -54,13 +53,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Eureka Poly Swing',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2A6E', source: 'Polyphemus', capture: false }),
+      netRegex: { id: '2A6E', source: 'Polyphemus', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'Eureka Poly Eye',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2A73', source: 'Polyphemus', capture: false }),
+      netRegex: { id: '2A73', source: 'Polyphemus', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -76,7 +75,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Eureka Poly Glower',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2A72', source: 'Polyphemus', capture: false }),
+      netRegex: { id: '2A72', source: 'Polyphemus', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -92,19 +91,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Eureka Caym Eye',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2A64', source: 'Caym', capture: false }),
+      netRegex: { id: '2A64', source: 'Caym', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'Eureka Fafnir Terror',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '29B7', source: 'Fafnir', capture: false }),
+      netRegex: { id: '29B7', source: 'Fafnir', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'Eureka Voidscale Ice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '29C3', source: 'Voidscale' }),
+      netRegex: { id: '29C3', source: 'Voidscale' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -121,26 +120,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Eureka Pazuzu Dread Wind',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2899', source: 'Pazuzu', capture: false }),
+      netRegex: { id: '2899', source: 'Pazuzu', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'Eureka Pazuzu Camisado',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '289F', source: 'Pazuzu' }),
+      netRegex: { id: '289F', source: 'Pazuzu' },
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Eureka Pazuzu Cloud of Locust',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2897', source: 'Pazuzu', capture: false }),
+      netRegex: { id: '2897', source: 'Pazuzu', capture: false },
       response: Responses.outOfMelee(),
     },
     {
       id: 'Eureka Pazuzu Plague of Locust',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2896', source: 'Pazuzu', capture: false }),
+      netRegex: { id: '2896', source: 'Pazuzu', capture: false },
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -156,7 +155,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Eureka Wraith Count',
       type: 'WasDefeated',
-      netRegex: NetRegexes.wasDefeated({ target: 'Shadow Wraith', capture: false }),
+      netRegex: { target: 'Shadow Wraith', capture: false },
       soundVolume: 0,
       infoText: (data, _matches, output) => {
         data.wraithCount = (data.wraithCount ?? 0) + 1;
@@ -176,13 +175,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Eureka Pazuzu Pop',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Pazuzu', capture: false }),
+      netRegex: { name: 'Pazuzu', capture: false },
       run: (data) => data.wraithCount = 0,
     },
     {
       id: 'Eureka Falling Asleep',
       type: 'GameLog',
-      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
+      netRegex: { line: '7 minutes have elapsed since your last activity..*?', capture: false },
       response: Responses.wakeUp(),
     },
   ],

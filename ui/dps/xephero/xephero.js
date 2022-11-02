@@ -1,8 +1,8 @@
 import { addOverlayListener } from '../../../resources/overlay_plugin_api';
 
-import DpsPhaseTracker from './dps_phase_tracker';
-import { defaultOptions, InitDpsModule } from '../dps_common';
 import UserConfig from '../../../resources/user_config';
+import { defaultOptions, InitDpsModule } from '../dps_common';
+import DpsPhaseTracker from './dps_phase_tracker';
 
 import '../../../resources/defaults.css';
 import './xephero.css';
@@ -50,7 +50,7 @@ function update(dps, tracker) {
 
   header.find('.name').text(tracker.title || '');
   header.find('.number').text(encounter.duration);
-  header.find('.bar').css('width', ((rdps / rdpsMax) * 100) + '%');
+  header.find('.bar').css('width', rdps / rdpsMax * 100 + '%');
 
   container.append(header);
 
@@ -75,7 +75,7 @@ function update(dps, tracker) {
     row.find('.name').text(combatant.Job.toUpperCase() + ' ' + combatant.name);
     row.find('.number').text(combatant.damage);
     row.find('.misses').text(combatant.misses > 0 ? '(' + combatant.misses + ')' : '');
-    row.find('.bar').css('width', ((parseFloat(combatant.encdps) / maxdps) * 100) + '%');
+    row.find('.bar').css('width', parseFloat(combatant.encdps) / maxdps * 100 + '%');
 
     container.append(row);
   }

@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -11,7 +10,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Snowcloak Lunar Cry',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: 'C1F', source: 'Fenrir', capture: false }),
+      netRegex: { id: 'C1F', source: 'Fenrir', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

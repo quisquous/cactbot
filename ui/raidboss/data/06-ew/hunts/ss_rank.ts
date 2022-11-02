@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -24,56 +23,56 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Ker Heliovoid',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6BF4', source: 'Ker', capture: false }),
+      netRegex: { id: '6BF4', source: 'Ker', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.outOfMelee(),
     },
     {
       id: 'Hunt Ker Ancient Blizzard III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6BF5', source: 'Ker', capture: false }),
+      netRegex: { id: '6BF5', source: 'Ker', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getUnder(),
     },
     {
       id: 'Hunt Ker Eternal Damnation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6BFF', source: 'Ker', capture: false }),
+      netRegex: { id: '6BFF', source: 'Ker', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.lookAway(),
     },
     {
       id: 'Hunt Ker Ancient Holy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6BFE', source: 'Ker', capture: false }),
+      netRegex: { id: '6BFE', source: 'Ker', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getOut(),
     },
     {
       id: 'Hunt Ker Fore Interment',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6BF9', source: 'Ker', capture: false }),
+      netRegex: { id: '6BF9', source: 'Ker', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getBehind(),
     },
     {
       id: 'Hunt Ker Rear Interment',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6BFA', source: 'Ker', capture: false }),
+      netRegex: { id: '6BFA', source: 'Ker', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.goFront(),
     },
     {
       id: 'Hunt Ker Right Interment',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6BFB', source: 'Ker', capture: false }),
+      netRegex: { id: '6BFB', source: 'Ker', capture: false },
       condition: (data) => data.inCombat,
-      response: Responses.goRight(),
+      response: Responses.goLeft(),
     },
     {
       id: 'Hunt Ker Left Interment',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '6BFC', source: 'Ker', capture: false }),
+      netRegex: { id: '6BFC', source: 'Ker', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.goRight(),
     },

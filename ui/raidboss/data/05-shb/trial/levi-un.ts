@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import Util from '../../../../../resources/util';
@@ -31,7 +30,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Dive Counter Tidal Wave Reset',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '5CDE', capture: false }),
+      netRegex: { source: 'Leviathan', id: '5CDE', capture: false },
       run: (data) => {
         // There's always a slam after Tidal Wave.
         data.diveCounter = 1;
@@ -43,14 +42,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Dive Counter Body Slam Reset',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '5CD2', capture: false }),
+      netRegex: { source: 'Leviathan', id: '5CD2', capture: false },
       // Redundant, but this will keep things on track if anything goes awry.
       run: (data) => data.diveCounter = 1,
     },
     {
       id: 'LeviUn Dive Counter Wave Spume Adjust',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
+      netRegex: { name: 'Wave Spume', capture: false },
       suppressSeconds: 5,
       // Usually the pattern is slam / dive / dive / slam, but after wave spumes appear,
       // there is a single dive then a slam.  Adjust for this one-off case here.
@@ -59,7 +58,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Slam Location',
       type: 'NameToggle',
-      netRegex: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
+      netRegex: { name: 'Leviathan', toggle: '00', capture: false },
       condition: (data) => {
         data.diveCounter = (data.diveCounter || 0) + 1;
         return data.diveCounter % 3 === 1;
@@ -100,7 +99,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Veil of the Whorl',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '5CE5', capture: false }),
+      netRegex: { source: 'Leviathan', id: '5CE5', capture: false },
       condition: (data) => Util.isCasterDpsJob(data.job) || Util.isHealerJob(data.job),
       suppressSeconds: 9999,
       infoText: (_data, _matches, output) => output.text!(),
@@ -118,7 +117,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Mantle of the Whorl',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Leviathan\'s Tail', id: '5CE4', capture: false }),
+      netRegex: { source: 'Leviathan\'s Tail', id: '5CE4', capture: false },
       condition: (data) => Util.isRangedDpsJob(data.job),
       suppressSeconds: 9999,
       infoText: (_data, _matches, output) => output.text!(),
@@ -136,7 +135,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Wavespine Sahagin Add',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Wavespine Sahagin', capture: false }),
+      netRegex: { name: 'Wavespine Sahagin', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -146,7 +145,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Wavetooth Sahagin Add',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Wavetooth Sahagin', capture: false }),
+      netRegex: { name: 'Wavetooth Sahagin', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -162,7 +161,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Wavetooth Sahagin Stun',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Wavetooth Sahagin' }),
+      netRegex: { name: 'Wavetooth Sahagin' },
       condition: (data) => data.CanStun(),
       delaySeconds: 5,
       alertText: (_data, matches, output) => output.text!({ name: matches.name }),
@@ -173,7 +172,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Gyre Spume',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Gyre Spume', capture: false }),
+      netRegex: { name: 'Gyre Spume', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -190,7 +189,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Wave Spume',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
+      netRegex: { name: 'Wave Spume', capture: false },
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -207,7 +206,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Wave Spume Explosion',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
+      netRegex: { name: 'Wave Spume', capture: false },
       // ~35.2 seconds from added combatant until :Aqua Burst:888: explosion.
       // Tell everybody because not much else going on in this fight,
       // and other people need to get away.
@@ -228,13 +227,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LeviUn Elemental Converter',
       type: 'NameToggle',
-      netRegex: NetRegexes.nameToggle({ name: 'Elemental Converter' }),
+      netRegex: { name: 'Elemental Converter' },
       run: (data, matches) => data.converter = !!parseInt(matches.toggle),
     },
     {
       id: 'LeviUn Hit The Button',
       type: 'NameToggle',
-      netRegex: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
+      netRegex: { name: 'Leviathan', toggle: '00', capture: false },
       // The best way to know if it's time to hit the button is if the converter is ready.
       // I think this is not true for hard mode, but is true (fingers crossed) for extreme.
       condition: (data) => data.converter,

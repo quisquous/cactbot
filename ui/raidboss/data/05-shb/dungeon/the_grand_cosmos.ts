@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -16,32 +15,32 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Cosmos Shadowbolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4769', source: 'Seeker Of Solitude' }),
+      netRegex: { id: '4769', source: 'Seeker Of Solitude' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Cosmos Dark Pulse',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn('info'),
     },
     {
       id: 'Cosmos Dark Well Far Winds',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0060' }),
+      netRegex: { id: '0060' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Immortal Anathema',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '49A3', source: 'Seeker Of Solitude', capture: false }),
+      netRegex: { id: '49A3', source: 'Seeker Of Solitude', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Cosmos Tribulation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '476B', source: 'Seeker Of Solitude', capture: false }),
+      netRegex: { id: '476B', source: 'Seeker Of Solitude', capture: false },
       delaySeconds: 8,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -58,13 +57,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Cosmos Storm of Color',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
+      netRegex: { id: '471B', source: 'Leannan Sith' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Cosmos Ode To Lost Love',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
+      netRegex: { id: '471C', source: 'Leannan Sith', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -72,14 +71,14 @@ const triggerSet: TriggerSet<Data> = {
       // So, just trigger on first auto.
       id: 'Cosmos Direct Seeding Mistake',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '368', source: 'Lover\'s Ring', capture: false }),
+      netRegex: { id: '368', source: 'Lover\'s Ring', capture: false },
       suppressSeconds: 60,
       response: Responses.killExtraAdd(),
     },
     {
       id: 'Cosmos Gardener\'s Hymn',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
+      netRegex: { id: '471E', source: 'Leannan Sith', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -95,33 +94,33 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Cosmos Ronkan Cure II',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4931', source: 'Ser Hamonth' }),
+      netRegex: { id: '4931', source: 'Ser Hamonth' },
       condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
     {
       id: 'Cosmos Captive Bolt',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4764', source: 'Lugus' }),
+      netRegex: { id: '4764', source: 'Lugus' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Cosmos Culling Blade',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
+      netRegex: { id: '4765', source: 'Lugus', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Cosmos Black Flame 1',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0019' }),
+      netRegex: { id: '0019' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Black Flame 2',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0019' }),
+      netRegex: { id: '0019' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 4,
       infoText: (_data, _matches, output) => output.text!(),
@@ -139,14 +138,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Cosmos Mortal Flame 1',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00C3' }),
+      netRegex: { id: '00C3' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Mortal Flame 2',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '00C3' }),
+      netRegex: { id: '00C3' },
       condition: Conditions.targetIsYou(),
       delaySeconds: 5.5,
       infoText: (_data, _matches, output) => output.text!(),
@@ -164,19 +163,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Cosmos Scorching Left',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
+      netRegex: { id: '4763', source: 'Lugus', capture: false },
       response: Responses.goRight('info'),
     },
     {
       id: 'Cosmos Scorching Right',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
+      netRegex: { id: '4762', source: 'Lugus', capture: false },
       response: Responses.goLeft('info'),
     },
     {
       id: 'Cosmos Fire\'s Domain',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003[2345]' }),
+      netRegex: { id: '003[2345]' },
       condition: Conditions.targetIsYou(),
       preRun: (data) => {
         data.firesDomain = (data.firesDomain ?? 0) + 1;

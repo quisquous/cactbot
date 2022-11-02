@@ -92,26 +92,59 @@ export class SMNComponent extends BaseComponent {
 
     // Demi-summoning Guage
     const time = Math.ceil(
-      Math.max(jobDetail.tranceMilliseconds, jobDetail.attunementMilliseconds
-        ) / 1000);
+      Math.max(jobDetail.tranceMilliseconds, jobDetail.attunementMilliseconds) / 1000,
+    );
     this.demiSummoningBox.innerText = '';
     if (time > 0)
       this.demiSummoningBox.innerText = time.toString();
 
-    this.demiSummoningBox.parentNode.classList.toggle('bahamutready', jobDetail.nextSummoned === 'Bahamut');
-    this.demiSummoningBox.parentNode.classList.toggle('firebirdready', jobDetail.nextSummoned === 'Phoenix');
-    this.demiSummoningBox.parentNode.classList.toggle('garuda', jobDetail.activePrimal === 'Garuda');
+    this.demiSummoningBox.parentNode.classList.toggle(
+      'bahamutready',
+      jobDetail.nextSummoned === 'Bahamut',
+    );
+    this.demiSummoningBox.parentNode.classList.toggle(
+      'firebirdready',
+      jobDetail.nextSummoned === 'Phoenix',
+    );
+    this.demiSummoningBox.parentNode.classList.toggle(
+      'garuda',
+      jobDetail.activePrimal === 'Garuda',
+    );
     this.demiSummoningBox.parentNode.classList.toggle('titan', jobDetail.activePrimal === 'Titan');
     this.demiSummoningBox.parentNode.classList.toggle('ifrit', jobDetail.activePrimal === 'Ifrit');
 
     this.tranceBox.fg = computeBackgroundColorFrom(this.tranceBox, 'smn-color-trance');
     if (jobDetail.nextSummoned === 'Phoenix')
-      this.tranceBox.fg = computeBackgroundColorFrom(this.tranceBox, 'smn-color-demisummon.firebirdready');
+      this.tranceBox.fg = computeBackgroundColorFrom(
+        this.tranceBox,
+        'smn-color-demisummon.firebirdready',
+      );
 
     // Arcanum and Attunement Guage
-    this._addActiveOnStacks(this.rubyStacks, (jobDetail.activePrimal === 'Ifrit') ? jobDetail.attunement : (jobDetail.usableArcanum.includes('Ruby') ? 2 : 0));
-    this._addActiveOnStacks(this.topazStacks, (jobDetail.activePrimal === 'Titan') ? jobDetail.attunement : (jobDetail.usableArcanum.includes('Topaz') ? 4 : 0));
-    this._addActiveOnStacks(this.emeraldStacks, (jobDetail.activePrimal === 'Garuda') ? jobDetail.attunement : (jobDetail.usableArcanum.includes('Emerald') ? 4 : 0));
+    this._addActiveOnStacks(
+      this.rubyStacks,
+      jobDetail.activePrimal === 'Ifrit'
+        ? jobDetail.attunement
+        : jobDetail.usableArcanum.includes('Ruby')
+        ? 2
+        : 0,
+    );
+    this._addActiveOnStacks(
+      this.topazStacks,
+      jobDetail.activePrimal === 'Titan'
+        ? jobDetail.attunement
+        : jobDetail.usableArcanum.includes('Topaz')
+        ? 4
+        : 0,
+    );
+    this._addActiveOnStacks(
+      this.emeraldStacks,
+      jobDetail.activePrimal === 'Garuda'
+        ? jobDetail.attunement
+        : jobDetail.usableArcanum.includes('Emerald')
+        ? 4
+        : 0,
+    );
 
     // dynamically change threshold of tranceBox, let user know you should use arcanum quickly
     this.tranceBox.threshold = this.player.gcdSpell * (jobDetail.usableArcanum.length * 3 + 1);
@@ -150,4 +183,3 @@ export class SMNComponent extends BaseComponent {
     this.tranceBox.fg = computeBackgroundColorFrom(this.tranceBox, 'smn-color-trance');
   }
 }
-

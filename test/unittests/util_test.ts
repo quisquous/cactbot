@@ -1,9 +1,7 @@
-import chai from 'chai';
+import { assert } from 'chai';
 
 import Util from '../../resources/util';
 import { Job, Role } from '../../types/job';
-
-const { assert } = chai;
 
 class JobInfo {
   constructor(public name: Job, public role: Role, public actions: string[] = []) {}

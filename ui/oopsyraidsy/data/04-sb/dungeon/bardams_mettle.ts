@@ -18,9 +18,14 @@ const abilityWarn = (args: { abilityId: string; id: string }): OopsyTrigger<Data
     id: args.id,
     type: 'Ability',
     netRegex: NetRegexes.abilityFull({ id: args.abilityId }),
-    condition: (_data, matches) => matches.flags.substr(-2) === '0E',
+    condition: (_data, matches) => matches.flags.endsWith('0E'),
     mistake: (_data, matches) => {
-      return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+      return {
+        type: 'warn',
+        blame: matches.target,
+        reportId: matches.targetId,
+        text: matches.ability,
+      };
     },
   };
   return trigger;

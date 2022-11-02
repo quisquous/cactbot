@@ -477,11 +477,11 @@ type CactbotSaveDataHandler = (msg: {
 type CactbotLoadDataHandler = (msg: {
   call: 'cactbotLoadData';
   overlay: string;
-}) => ({ data: SavedConfig } | undefined);
+}) => { data: SavedConfig } | undefined;
 
 type CactbotChooseDirectoryHandler = (msg: {
   call: 'cactbotChooseDirectory';
-}) => ({ data: string } | undefined);
+}) => { data: string } | undefined;
 
 export type OverlayHandlerAll = {
   'broadcast': BroadcastHandler;
