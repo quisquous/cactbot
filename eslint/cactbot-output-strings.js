@@ -49,6 +49,10 @@ const ruleModule = {
       inTriggerFunc: false,
     };
 
+    /**
+     * get all keys name from object literal expression
+     * @return {string[]}
+     */
     const getAllKeys = (props) => {
       const propKeys = [];
       if (!props)
@@ -80,11 +84,13 @@ const ruleModule = {
         return;
       const outputTemplateKey = {};
       for (
-        const outputString of node.properties.filter(
-          (s) => !isSpreadElement(s) && !isMemberExpression(s.value),
+        const outputString of node.properties.filter((s) =>
+          !isSpreadElement(s) && !isMemberExpression(s.value)
         )
       ) {
+        // For each outputString...
         const properties = outputString?.value?.properties;
+        // This could just be a literal, e.g. `outputStrings: { text: 'string' }`.
         if (!properties)
           return;
         const values = properties.map((x) => x.value).map((x) => {
@@ -96,9 +102,10 @@ const ruleModule = {
           }
           throw new Error('unexpected outputStrings format', x.loc);
         }).filter((x) => x !== undefined) || [];
-        const templateIds = values.map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g))).map((
-          x,
-        ) => x.length ? x.map((v) => v[1]) : null);
+        const templateIds = values
+          .map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g)))
+          .map((x) => x.length ? x.map((v) => v[1]) : null);
+
         if (arrayContainSameElement(templateIds))
           outputTemplateKey[outputString.key.name] = templateIds[0];
       }
@@ -118,15 +125,15 @@ const ruleModule = {
         if (props.find((prop) => prop === 'outputStrings')) {
           stack.inTriggerFunc = true;
           stack.outputParam = node.params[2] && node.params[2].name;
-          const outputValue = node.parent.parent.properties.find(
-            (prop) => prop.key && prop.key.name === 'outputStrings',
+          const outputValue = node.parent.parent.properties.find((prop) =>
+            prop.key && prop.key.name === 'outputStrings'
           ).value;
           stack.outputTemplates = extractTemplate(outputValue);
           stack.outputProperties = ASTUtils.isIdentifier(outputValue)
             ? globalVars.get(outputValue.name) || []
             : getAllKeys(outputValue.properties);
-          stack.triggerID = node.parent.parent.properties.find(
-            (prop) => prop.key && prop.key.name === 'id',
+          stack.triggerID = node.parent.parent.properties.find((prop) =>
+            prop.key && prop.key.name === 'id'
           )?.value?.value;
           return;
         }
@@ -144,9 +151,11 @@ const ruleModule = {
           stack.outputTemplates = {};
         }
       },
-      [`Property[key.name=/alarmText|alertTex|infoText|tts/] > :function[params.length=3] CallExpression > TSNonNullExpression > MemberExpression`](
-        node,
-      ) {
+      [
+        `Property[key.name=/${
+          textProps.join('|')
+        }/] > :function[params.length=3] CallExpression > MemberExpression`
+      ](node) {
         if (
           ASTUtils.isIdentifier(node.object) &&
           node.object.name === stack.outputParam && node.computed === false &&
@@ -154,7 +163,7 @@ const ruleModule = {
           !stack.outputProperties.includes(node.property.name)
         ) {
           context.report({
-            node,
+            node: node,
             messageId: 'notFoundProperty',
             data: {
               prop: node.property.name,
@@ -169,6 +178,7 @@ const ruleModule = {
           const args = node.parent.parent.callee.parent.arguments;
           const outputOfTriggerId = stack.outputTemplates ?? {};
           const outputTemplate = outputOfTriggerId?.[node.property.name];
+
           if (args.length === 0) {
             if (node.property.name in outputOfTriggerId) {
               if (outputOfTriggerId[node.property.name] !== null) {
@@ -195,6 +205,7 @@ const ruleModule = {
                 });
               }
             }
+
             const keysInParams = getAllKeys(args[0].properties);
             if (outputTemplate !== null && outputTemplate !== undefined) {
               for (const key of outputTemplate) {
@@ -208,6 +219,7 @@ const ruleModule = {
                   });
                 }
               }
+
               for (const key of keysInParams) {
                 if (!outputTemplate.includes(key)) {
                   context.report({
