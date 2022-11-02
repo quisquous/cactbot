@@ -1475,7 +1475,7 @@ const userFileHandler: UserFileCallback = (
     }
 
     baseOptions.LoadedTriggers.push({
-      filename: `${basePath}${name}`,
+      filename: set?.filename?.toString() ?? `${basePath}${name}`,
       ...baseTriggerSet,
       timeline: pureFlattenTimeline(baseTriggerSet, name, files),
     });
