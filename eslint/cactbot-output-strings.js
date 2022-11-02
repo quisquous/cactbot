@@ -70,7 +70,8 @@ const ruleModule = {
           }
         } else if (isSpreadElement(prop)) {
           if (ASTUtils.isIdentifier(prop.argument)) {
-            (globalVars.get(prop.argument.name) || []).forEach((name) => propKeys.push(name));
+            (globalVars.get(prop.argument.name) || [])
+              .forEach((name) => propKeys.push(name));
           }
         }
       });
