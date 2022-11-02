@@ -1,5 +1,4 @@
-const { ASTUtils } = require('@typescript-eslint/utils');
-
+const { ASTUtils: t } = require('@typescript-eslint/utils');
 const textProps = ['alarmText', 'alertText', 'infoText', 'tts'];
 
 const isSpreadElement = (node) => {
@@ -22,6 +21,9 @@ const isBinaryExpression = (node) => {
   return node.type === 'BinaryExpression';
 };
 
+/**
+ * @type {import('eslint').Rule.RuleModule}
+ */
 const ruleModule = {
   meta: {
     type: 'problem',
@@ -40,7 +42,6 @@ const ruleModule = {
       missingTemplateValue: 'template \'{{prop}}\' is missing in function call',
     },
   },
-
   create: function(context) {
     const globalVars = new Map();
     const stack = {
@@ -48,30 +49,26 @@ const ruleModule = {
       outputProperties: [],
       inTriggerFunc: false,
     };
-
     /**
      * get all keys name from object literal expression
+     * @param props
      * @return {string[]}
      */
     const getAllKeys = (props) => {
       const propKeys = [];
+
       if (!props)
         return propKeys;
+
       props.forEach((prop) => {
         if (prop.type === 'Property') {
-          if (ASTUtils.isIdentifier(prop.key)) {
+          if (t.isIdentifier(prop.key)) {
             propKeys.push(prop.key.name);
-          } else if (isLiteral(prop.key)) {
-            if (typeof prop.key.value === 'string') {
-              propKeys.push(prop.key.value);
-            } else if (typeof prop.key.value === 'number') {
-              propKeys.push(prop.key.value.toString());
-            } else {
-              throw new Error(`unexpected AST ${prop.key.value.toString()}`);
-            }
+          } else if (prop.key.type === 'Literal') {
+            propKeys.push(prop.key.value);
           }
         } else if (isSpreadElement(prop)) {
-          if (ASTUtils.isIdentifier(prop.argument)) {
+          if (t.isIdentifier(prop.argument)) {
             (globalVars.get(prop.argument.name) || [])
               .forEach((name) => propKeys.push(name));
           }
@@ -80,6 +77,9 @@ const ruleModule = {
       return propKeys;
     };
 
+    /**
+     * @param node {t.ObjectExpression}
+     */
     const extractTemplate = function(node) {
       if (node.properties === undefined)
         return;
@@ -90,19 +90,35 @@ const ruleModule = {
         )
       ) {
         // For each outputString...
-        const properties = outputString?.value?.properties;
+        const properties = outputString.value.properties;
         // This could just be a literal, e.g. `outputStrings: { text: 'string' }`.
         if (!properties)
           return;
-        const values = properties.map((x) => x.value).map((x) => {
-          if (isLiteral(x)) {
-            return x.value;
-          }
-          if (isBinaryExpression(x)) {
-            return x.right.value;
-          }
-          throw new Error('unexpected outputStrings format', x.loc);
-        }).filter((x) => x !== undefined) || [];
+
+        const values = properties.map((x) => x.value)
+          .map((x) => {
+            if (isLiteral(x)) {
+              return x.value;
+            }
+
+            if (isBinaryExpression(x)) {
+              /*
+                  outputStrings: {
+                     text: {
+                       en: Outputs.killAdds.en + '(back first)',
+                       de: Outputs.killAdds.de + '(hinten zuerst)',
+                       ja: Outputs.killAdds.ja + '(下の雑魚から)',
+                       cn: Outputs.killAdds.cn + '(先打后方的)',
+                       ko: Outputs.killAdds.ko + '(아래쪽 먼저)',
+                     },
+                   },
+               */
+              return x.right.value;
+            }
+
+            throw new Error('unexpected outputStrings format', x.loc);
+          }).filter((x) => x !== undefined) || [];
+
         const templateIds = values
           .map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g)))
           .map((x) => x.length ? x.map((v) => v[1]) : null);
@@ -130,7 +146,7 @@ const ruleModule = {
             prop.key && prop.key.name === 'outputStrings'
           ).value;
           stack.outputTemplates = extractTemplate(outputValue);
-          stack.outputProperties = ASTUtils.isIdentifier(outputValue)
+          stack.outputProperties = t.isIdentifier(outputValue)
             ? globalVars.get(outputValue.name) || []
             : getAllKeys(outputValue.properties);
           stack.triggerID = node.parent.parent.properties.find((prop) =>
@@ -152,15 +168,20 @@ const ruleModule = {
           stack.outputTemplates = {};
         }
       },
+
       [
-        `Property[key.name=/${
-          textProps.join('|')
-        }/] > :function[params.length=3] CallExpression > MemberExpression`
+        `Property[key.name=/alarmText|alertTex|infoText|tts/] > :function[params.length=3] CallExpression > ChainExpression > MemberExpression`
+      ](node) {
+        // TODO: raise a error about using `?.` to call output
+      },
+
+      [
+        `Property[key.name=/alarmText|alertTex|infoText|tts/] > :function[params.length=3] CallExpression > TSNonNullExpression > MemberExpression`
       ](node) {
         if (
-          ASTUtils.isIdentifier(node.object) &&
-          node.object.name === stack.outputParam && node.computed === false &&
-          ASTUtils.isIdentifier(node.property) &&
+          node.object.name === stack.outputParam &&
+          node.computed === false &&
+          t.isIdentifier(node.property) &&
           !stack.outputProperties.includes(node.property.name)
         ) {
           context.report({
@@ -172,10 +193,7 @@ const ruleModule = {
             },
           });
         }
-        if (
-          ASTUtils.isIdentifier(node.property) &&
-          stack.outputProperties.includes(node.property.name)
-        ) {
+        if (t.isIdentifier(node.property) && stack.outputProperties.includes(node.property.name)) {
           const args = node.parent.parent.callee.parent.arguments;
           const outputOfTriggerId = stack.outputTemplates ?? {};
           const outputTemplate = outputOfTriggerId?.[node.property.name];
@@ -210,7 +228,7 @@ const ruleModule = {
             const keysInParams = getAllKeys(args[0].properties);
             if (outputTemplate !== null && outputTemplate !== undefined) {
               for (const key of outputTemplate) {
-                if (!ASTUtils.isIdentifier(args?.[0]) && !keysInParams.includes(key)) {
+                if (!t.isIdentifier(args[0]) && !keysInParams.includes(key)) {
                   context.report({
                     node,
                     messageId: 'missingTemplateValue',

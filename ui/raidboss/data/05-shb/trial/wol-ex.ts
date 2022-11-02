@@ -564,9 +564,9 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: (data, matches) => matches.target !== data.me ? 0.4 : 0,
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
-          return output.stackOnYou!();
+          return output.stackOnYou?.();
         if (!data.deluge)
-          return output.stackOnTarget!({ player: data.ShortName(matches.target) });
+          return output.stackOnTarget?.({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         stackOnYou: Outputs.stackOnYou,
