@@ -64,6 +64,8 @@ const ruleModule = {
           } else if (isLiteral(prop.key)) {
             if (typeof prop.key.value === 'string') {
               propKeys.push(prop.key.value);
+            } else if (typeof prop.key.value === 'number') {
+              propKeys.push(prop.key.value.toString());
             } else {
               throw new Error(`unexpected AST ${prop.key.value.toString()}`);
             }
