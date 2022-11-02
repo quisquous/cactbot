@@ -68,11 +68,9 @@ const ruleModule = {
               throw new Error(`unexpected AST ${prop.key.value.toString()}`);
             }
           }
-        } else {
-          if (isSpreadElement(prop)) {
-            if (ASTUtils.isIdentifier(prop.argument)) {
-              (globalVars.get(prop.argument.name) || []).forEach((name) => propKeys.push(name));
-            }
+        } else if (isSpreadElement(prop)) {
+          if (ASTUtils.isIdentifier(prop.argument)) {
+            (globalVars.get(prop.argument.name) || []).forEach((name) => propKeys.push(name));
           }
         }
       });
