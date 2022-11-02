@@ -76,7 +76,7 @@ const ruleModule = {
     };
 
     const extractTemplate = function(node) {
-      if (node.properties === void 0)
+      if (node.properties === undefined)
         return;
       const outputTemplateKey = {};
       for (
@@ -95,7 +95,7 @@ const ruleModule = {
             return x.right.value;
           }
           throw new Error('unexpected outputStrings format', x.loc);
-        }).filter((x) => x !== void 0) || [];
+        }).filter((x) => x !== undefined) || [];
         const templateIds = values.map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g))).map((
           x,
         ) => x.length ? x.map((v) => v[1]) : null);
@@ -196,7 +196,7 @@ const ruleModule = {
               }
             }
             const keysInParams = getAllKeys(args[0].properties);
-            if (outputTemplate !== null && outputTemplate !== void 0) {
+            if (outputTemplate !== null && outputTemplate !== undefined) {
               for (const key of outputTemplate) {
                 if (!ASTUtils.isIdentifier(args?.[0]) && !keysInParams.includes(key)) {
                   context.report({
