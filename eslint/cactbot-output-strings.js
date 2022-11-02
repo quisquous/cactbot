@@ -20,6 +20,8 @@ const ruleModule = {
       notFoundProperty: 'no \'{{prop}}\' in \'{{outputParam}}\'',
       notFoundTemplate: '`output.{{prop}}(...)` doesn\'t have template \'{{template}}\'.',
       missingTemplateValue: 'template \'{{prop}}\' is missing in function call',
+      tooManyParams: 'function `output.{{call}}()` takes only 1 parameter',
+      typeError: 'function `output.{{call}}(...) only takes an object as a parameter',
     },
   },
   create: function(context) {
@@ -42,11 +44,10 @@ const ruleModule = {
 
       props.forEach((prop) => {
         if (prop.type === 'Property') {
-          if (t.isIdentifier(prop.key)) {
+          if (t.isIdentifier(prop.key))
             propKeys.push(prop.key.name);
-          } else if (prop.key.type === 'Literal') {
+          else if (t.isLiteral(prop.key))
             propKeys.push(prop.key.value);
-          }
         } else if (t.isSpreadElement(prop)) {
           if (t.isIdentifier(prop.argument)) {
             (globalVars.get(prop.argument.name) || [])
@@ -75,29 +76,8 @@ const ruleModule = {
         if (!properties)
           return;
 
-        const values = properties.map((x) => x.value)
-          .map((x) => {
-            if (x.type === 'Literal') {
-              return x.value;
-            }
-
-            if (x.type === 'BinaryExpression') {
-              /*
-                  outputStrings: {
-                     text: {
-                       en: Outputs.killAdds.en + '(back first)',
-                       de: Outputs.killAdds.de + '(hinten zuerst)',
-                       ja: Outputs.killAdds.ja + '(下の雑魚から)',
-                       cn: Outputs.killAdds.cn + '(先打后方的)',
-                       ko: Outputs.killAdds.ko + '(아래쪽 먼저)',
-                     },
-                   },
-               */
-              return x.right.value;
-            }
-
-            throw new Error('unexpected outputStrings format', x.loc);
-          }).filter((x) => x !== undefined) || [];
+        const values = properties.map((x) => x.value.value)
+          .filter((x) => x !== undefined) || [];
 
         const templateIds = values
           .map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g)))
@@ -115,7 +95,7 @@ const ruleModule = {
 
     return {
       /**
-       * @param node {t.ObjectExpression & {parent: t.VariableDeclarator}}
+       * @param node {t.ObjectExpression}
        */
       'Program > VariableDeclaration > VariableDeclarator > ObjectExpression'(node) {
         globalVars.set(node.parent.id.name, getAllKeys(node.properties));
@@ -152,10 +132,12 @@ const ruleModule = {
         }
       },
       /**
-       * @param node {t.MemberExpression & {parent: {parent: t.CallExpression}}}
+       * @param node {t.MemberExpression}
        */
       [
-        `Property[key.name=/alarmText|alertTex|infoText|tts/] > :function[params.length=3] CallExpression > TSNonNullExpression > MemberExpression`
+        `Property[key.name=/${
+          textProps.join('|')
+        }/] > :function[params.length=3] CallExpression > MemberExpression`
       ](node) {
         if (
           node.object.name === stack.outputParam &&
@@ -173,7 +155,7 @@ const ruleModule = {
           });
         }
         if (t.isIdentifier(node.property) && stack.outputProperties.includes(node.property.name)) {
-          const args = node.parent.parent.callee.parent.arguments;
+          const args = node.parent.callee.parent.arguments;
           const outputOfTriggerId = stack.outputTemplates ?? {};
           const outputTemplate = outputOfTriggerId?.[node.property.name];
 
@@ -202,6 +184,14 @@ const ruleModule = {
                   },
                 });
               }
+            } else if (t.isLiteral(args[0])) {
+              context.report({
+                node,
+                messageId: 'typeError',
+                data: {
+                  call: node.property.name,
+                },
+              });
             }
 
             const keysInParams = getAllKeys(args[0].properties);
@@ -231,6 +221,15 @@ const ruleModule = {
                 }
               }
             }
+          } else {
+            // args.length > 1
+            context.report({
+              node,
+              messageId: 'tooManyParams',
+              data: {
+                call: node.property.name,
+              },
+            });
           }
         }
       },
