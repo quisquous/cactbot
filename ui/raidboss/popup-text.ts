@@ -209,9 +209,12 @@ const textMap: TextMap = {
   },
 };
 
-// this is an O(n^2) looping but perf is not important here.
 const handleTriggerOverride = <T extends { id?: string }>(triggers: Array<T>): Array<T> => {
+  console.log('handleTriggerOverride');
   const keep: Array<T> = [];
+
+  // keep the triggers with id
+  const container = new Map<string, T & { id: string }>();
 
   // loop from new trigger to old trigger.
   // so if trigger with same id exists, just log Overriding and skip
@@ -221,16 +224,13 @@ const handleTriggerOverride = <T extends { id?: string }>(triggers: Array<T>): A
       continue;
     }
 
-    const sameID = keep.filter((x) => x.id === oldTrigger.id);
-    if (sameID.length === 0) {
+    // below, newTrigger and oldTrigger both have `id`
+
+    const newTrigger = container.get(oldTrigger.id);
+    if (newTrigger === undefined) {
       keep.push(oldTrigger);
+      container.set(oldTrigger.id, oldTrigger as T & { id: string });
       continue;
-    }
-
-    const newTrigger = sameID[0];
-
-    if (!newTrigger) {
-      throw new UnreachableCode();
     }
 
     const triggerFile = (trigger: ProcessedTrigger) =>
