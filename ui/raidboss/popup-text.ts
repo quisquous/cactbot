@@ -469,7 +469,6 @@ export class PopupText {
   protected role: Role = 'none';
 
   protected collectedTriggerSets: LoadedTriggerSet[] = [];
-  // protected processedTriggerSets: ProcessedTriggerSet[] = [];
 
   protected zoneName = '';
   protected zoneId = -1;
