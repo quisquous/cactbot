@@ -72,7 +72,7 @@ export type LocalizedTrigger =
 
 export type LoadedTriggerSet = LooseTriggerSet & {
   filename: string;
-  timelineTriggers?: Omit<LooseTrigger, 'netRegex'>[];
+  timelineTriggers?: LooseTimelineTrigger[];
   triggers?: LooseTrigger[];
 };
 
