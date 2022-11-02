@@ -210,7 +210,6 @@ const textMap: TextMap = {
 };
 
 const handleTriggerOverride = <T extends { id?: string }>(triggers: Array<T>): Array<T> => {
-  console.log('handleTriggerOverride');
   const keep: Array<T> = [];
 
   // keep the triggers with id
