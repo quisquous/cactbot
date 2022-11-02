@@ -209,48 +209,64 @@ const textMap: TextMap = {
   },
 };
 
-// Helper for handling trigger overrides.
-//
-// asList will return a list of triggers in the same order as append was called, except:
-// If a later trigger has the same id as a previous trigger, it will replace the previous trigger
-// and appear in the same order that the previous trigger appeared.
-// e.g. a, b1, c, b2 (where b1 and b2 share the same id) yields [a, b2, c] as the final list.
-//
-// JavaScript dictionaries are *almost* ordered automatically as we would want,
-// but want to handle missing ids and integer ids (you shouldn't, but just in case).
-class OrderedTriggerList {
-  triggers: LocalizedTrigger[] = [];
-  idToIndex: { [id: string]: number } = {};
+// this is an O(n^2) looping but perf is not important here.
+const handleTriggerOverride = <T extends { id?: string }>(triggers: Array<T>): Array<T> => {
+  const keep: Array<T> = [];
 
-  push(trigger: LocalizedTrigger) {
-    const idx = trigger.id !== undefined ? this.idToIndex[trigger.id] : undefined;
-    if (idx !== undefined && trigger.id !== undefined) {
-      const oldTrigger = this.triggers[idx];
-
-      if (oldTrigger === undefined)
-        throw new UnreachableCode();
-
-      // TODO: be verbose now while this is fresh, but hide this output behind debug flags later.
-      const triggerFile = (trigger: ProcessedTrigger) =>
-        trigger.filename ? `'${trigger.filename}'` : 'user override';
-      const oldFile = triggerFile(oldTrigger);
-      const newFile = triggerFile(trigger);
-      console.log(`Overriding '${trigger.id}' from ${oldFile} with ${newFile}.`);
-
-      this.triggers[idx] = trigger;
-      return;
+  // loop from new trigger to old trigger.
+  // so if trigger with same id exists, just log Overriding and skip
+  for (const oldTrigger of triggers.slice().reverse()) {
+    if (oldTrigger.id === undefined) {
+      keep.push(oldTrigger);
+      continue;
     }
 
-    // Normal case of a new trigger, with no overriding.
-    if (trigger.id !== undefined)
-      this.idToIndex[trigger.id] = this.triggers.length;
-    this.triggers.push(trigger);
+    const sameID = keep.filter((x) => x.id === oldTrigger.id);
+    if (sameID.length === 0) {
+      keep.push(oldTrigger);
+      continue;
+    }
+
+    const newTrigger = sameID[0];
+
+    if (!newTrigger) {
+      throw new UnreachableCode();
+    }
+
+    const triggerFile = (trigger: ProcessedTrigger) =>
+      trigger.filename ? `'${trigger.filename}'` : 'user override';
+    const oldFile = triggerFile(newTrigger);
+    const newFile = triggerFile(oldTrigger);
+
+    console.log(`Overriding '${oldTrigger.id}' from ${oldFile} with ${newFile}.`);
   }
 
-  asList() {
-    return this.triggers;
-  }
-}
+  return keep.reverse();
+};
+
+//   const idx = trigger.id !== undefined ? this.idToIndex[trigger.id] : undefined;
+//   if (idx !== undefined && trigger.id !== undefined) {
+//     const oldTrigger = this.triggers[idx];
+//
+//     if (oldTrigger === undefined)
+//       throw new UnreachableCode();
+//
+//     // TODO: be verbose now while this is fresh, but hide this output behind debug flags later.
+//     const triggerFile = (trigger: ProcessedTrigger) =>
+//       trigger.filename ? `'${trigger.filename}'` : 'user override';
+//     const oldFile = triggerFile(oldTrigger);
+//     const newFile = triggerFile(trigger);
+//     console.log(`Overriding '${trigger.id}' from ${oldFile} with ${newFile}.`);
+//
+//     this.triggers[idx] = trigger;
+//     return;
+//   }
+//
+//   // Normal case of a new trigger, with no overriding.
+//   if (trigger.id !== undefined)
+//     this.idToIndex[trigger.id] = this.triggers.length;
+//   this.triggers.push(trigger);
+// };
 
 const isObject = (x: unknown): x is { [key: string]: unknown } => x instanceof Object;
 
@@ -624,8 +640,6 @@ export class PopupText {
     const timelineStyles = [];
     this.resetWhenOutOfCombat = true;
 
-    const orderedTriggers = new OrderedTriggerList();
-
     // Some user timelines may rely on having valid init data
     // Don't use `this.Reset()` since that clears other things as well
     this.data = this.getDataObject();
@@ -644,6 +658,7 @@ export class PopupText {
     }.bind(this);
 
     const timelineTriggers: ProcessedTrigger[] = [];
+    const triggers: LocalizedTrigger[] = [];
 
     for (const set of this.collectedTriggerSets) {
       if (!this.TriggerSetEnabled(set)) {
@@ -652,7 +667,7 @@ export class PopupText {
 
       const processed = this.LocalizeTriggerSet(set);
       if (processed) {
-        processed.forEach((x) => orderedTriggers.push(x));
+        processed.forEach((x) => triggers.push(x));
       }
 
       if (set.timelineTriggers) {
@@ -701,10 +716,12 @@ export class PopupText {
     const filterEnabled = (trigger: { disabled?: boolean }) =>
       !('disabled' in trigger && trigger.disabled);
 
-    const allTriggers = orderedTriggers.asList().filter(filterEnabled);
+    const allTriggers = handleTriggerOverride(triggers).filter(filterEnabled);
 
     this.triggers = allTriggers.filter(isRegexTrigger);
     this.netTriggers = allTriggers.filter(isNetRegexTrigger);
+
+    const finalTimelineTriggers = handleTriggerOverride(timelineTriggers).filter(filterEnabled);
 
     this.Reset();
 
@@ -712,7 +729,7 @@ export class PopupText {
       timelineFiles,
       timelines,
       replacements,
-      timelineTriggers.filter(filterEnabled),
+      finalTimelineTriggers,
       timelineStyles,
       this.zoneId,
     );
