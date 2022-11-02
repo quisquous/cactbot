@@ -42,10 +42,11 @@ const ruleModule = {
 
       props.forEach((prop) => {
         if (prop.type === 'Property') {
-          if (t.isIdentifier(prop.key))
+          if (t.isIdentifier(prop.key)) {
             propKeys.push(prop.key.name);
-          else if (t.isLiteral(prop.key))
+          } else if (prop.key.type === 'Literal') {
             propKeys.push(prop.key.value);
+          }
         } else if (t.isSpreadElement(prop)) {
           if (t.isIdentifier(prop.argument)) {
             (globalVars.get(prop.argument.name) || [])
