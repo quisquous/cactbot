@@ -635,7 +635,7 @@ export class PopupText {
     const triggers: LocalizedTrigger[] = [];
 
     for (const set of this.collectedTriggerSets) {
-      if (!this.TriggerSetEnabled(set)) {
+      if (!this.IsTriggerSetEnabled(set)) {
         continue;
       }
 
@@ -652,9 +652,7 @@ export class PopupText {
       }
 
       if (set.overrideTimelineFile) {
-        // TODO: set.filename won't be undefined
-        const filename = set.filename ? `'${set.filename}'` : '(user file)';
-        console.log(`Overriding timeline from ${filename}.`);
+        console.log(`Overriding timeline from ${set.filename}.`);
 
         // If the timeline file override is set, all previously loaded timeline info is dropped.
         // Styles, triggers, and translations are kept, as they may still apply to the new one.
@@ -709,7 +707,7 @@ export class PopupText {
     );
   }
 
-  TriggerSetEnabled(set: LoadedTriggerSet): boolean {
+  IsTriggerSetEnabled(set: LoadedTriggerSet): boolean {
     // zoneRegex can be undefined, a regex, or translatable object of regex.
     const haveZoneRegex = 'zoneRegex' in set;
     const haveZoneId = 'zoneId' in set;

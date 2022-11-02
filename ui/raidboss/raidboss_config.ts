@@ -1417,7 +1417,7 @@ class RaidbossConfigurator {
 }
 
 const pureFlattenTimeline = (
-  set: ConfigLooseTriggerSet,
+  set: Readonly<ConfigLooseTriggerSet>,
   filename: string,
   files: { [filename: string]: string },
 ) => {
@@ -1430,7 +1430,6 @@ const pureFlattenTimeline = (
   const dir = filename.slice(0, Math.max(0, lastIndex + 1));
 
   const timelineFile = `${dir}${set.timelineFile}`;
-  delete set.timelineFile;
 
   if (!(timelineFile in files)) {
     console.log(`ERROR: '${filename}' specifies non-existent timeline file '${timelineFile}'.`);
