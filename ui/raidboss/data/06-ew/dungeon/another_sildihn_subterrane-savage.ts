@@ -383,7 +383,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASSS Hells\' Nebula',
       type: 'StartsUsing',
-      netRegex: { id: '7984', source: 'Aqueduct Armor', capture: false },
+      netRegex: { id: '7984', source: 'Sil\'dihn Armor', capture: false },
       condition: (data) => data.role === 'healer',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -396,7 +396,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASSS Infernal Weight',
       type: 'StartsUsing',
-      netRegex: { id: '7983', source: 'Aqueduct Armor', capture: false },
+      netRegex: { id: '7983', source: 'Sil\'dihn Armor', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -409,7 +409,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASSS Dominion Slash',
       type: 'StartsUsing',
-      netRegex: { id: '7982', source: 'Aqueduct Armor', capture: false },
+      netRegex: { id: '7982', source: 'Sil\'dihn Armor', capture: false },
       response: Responses.getBehind(),
     },
     // ---------------- Gladiator of Sil'dih ----------------
@@ -1529,7 +1529,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
-        'Aqueduct Armor': 'Aquädukt-Kampfmaschine',
+        'Sil\'dihn Armor': 'Aquädukt-Kampfmaschine',
         'Aqueduct Belladonna': 'Aquädukt-Belladonna',
         'Aqueduct Dryad': 'Aquädukt-Dryade',
         'Aqueduct Kaluk': 'Aquädukt-Kaluk',
@@ -1602,7 +1602,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
-        'Aqueduct Armor': 'armure maléfique des aqueducs',
+        'Sil\'dihn Armor': 'armure maléfique des aqueducs',
         'Aqueduct Belladonna': 'belladone des aqueducs',
         'Aqueduct Dryad': 'dryade des aqueducs',
         'Aqueduct Kaluk': 'kaluk des aqueducs',
@@ -1675,7 +1675,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ja',
       'replaceSync': {
-        'Aqueduct Armor': 'アクアダクト・イビルアーマー',
+        'Sil\'dihn Armor': 'アクアダクト・イビルアーマー',
         'Aqueduct Belladonna': 'アクアダクト・ベラドンナ',
         'Aqueduct Dryad': 'アクアダクト・ドライアド',
         'Aqueduct Kaluk': 'アクアダクト・カルク',
