@@ -382,7 +382,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Hells\' Nebula',
       type: 'StartsUsing',
-      netRegex: { id: '796C', source: ['Aqueduct Armor', 'Sil\'dihn Armor'], capture: false },
+      netRegex: { id: '796C', source: 'Sil\'dihn Armor', capture: false },
       condition: (data) => data.role === 'healer',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -395,7 +395,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Infernal Weight',
       type: 'StartsUsing',
-      netRegex: { id: '796B', source: ['Aqueduct Armor', 'Sil\'dihn Armor'], capture: false },
+      netRegex: { id: '796B', source: 'Sil\'dihn Armor', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -408,7 +408,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Dominion Slash',
       type: 'StartsUsing',
-      netRegex: { id: '796A', source: ['Aqueduct Armor', 'Sil\'dihn Armor'], capture: false },
+      netRegex: { id: '796A', source: 'Sil\'dihn Armor', capture: false },
       response: Responses.getBehind(),
     },
     // ---------------- Gladiator of Sil'dih ----------------
@@ -1527,9 +1527,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
-        'Aqueduct Armor': 'Aquädukt-Kampfmaschine',
         'Aqueduct Belladonna': 'Aquädukt-Belladonna',
         'Aqueduct Dryad': 'Aquädukt-Dryade',
         'Aqueduct Kaluk': 'Aquädukt-Kaluk',
@@ -1541,6 +1539,7 @@ const triggerSet: TriggerSet<Data> = {
         'Hateful Visage': 'Hassendes Haupt',
         'Infern Brand': 'Infernales Mal',
         'Shadowcaster Zeless Gah': 'Schattenwirker Zeless Gah',
+        'Sil\'dihn Armor': 'Sil\'dih-Kampfmaschine',
         'Sil\'dihn Dullahan': 'Sil\'dih-Dullahan',
         'Silkie': 'Silkie',
         'The Trial of Balance': 'Prüfung der Gerechtigkeit',
@@ -1601,9 +1600,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
-        'Aqueduct Armor': 'armure maléfique des aqueducs',
         'Aqueduct Belladonna': 'belladone des aqueducs',
         'Aqueduct Dryad': 'dryade des aqueducs',
         'Aqueduct Kaluk': 'kaluk des aqueducs',
@@ -1615,6 +1612,7 @@ const triggerSet: TriggerSet<Data> = {
         'Hateful Visage': 'Visage de haine',
         'Infern Brand': 'Étendard sacré',
         'Shadowcaster Zeless Gah': 'Zeless Gah la Flamme ombrée',
+        'Sil\'dihn Armor': 'armure maléfique sildien',
         'Sil\'dihn Dullahan': 'dullahan sildien',
         'Silkie': 'Silkie',
         'The Trial of Balance': 'Épreuve de la Justice',
@@ -1675,9 +1673,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
-        'Aqueduct Armor': 'アクアダクト・イビルアーマー',
         'Aqueduct Belladonna': 'アクアダクト・ベラドンナ',
         'Aqueduct Dryad': 'アクアダクト・ドライアド',
         'Aqueduct Kaluk': 'アクアダクト・カルク',
@@ -1689,6 +1685,7 @@ const triggerSet: TriggerSet<Data> = {
         'Hateful Visage': '呪像起動',
         'Infern Brand': '呪具設置',
         'Shadowcaster Zeless Gah': '影火のゼレズ・ガー',
+        'Sil\'dihn Armor': 'シラディハ・イビルアーマー',
         'Sil\'dihn Dullahan': 'シラディハ・デュラハン',
         'Silkie': 'シルキー',
         'The Trial of Balance': '参の試練',
