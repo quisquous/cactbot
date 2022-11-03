@@ -382,7 +382,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Hells\' Nebula',
       type: 'StartsUsing',
-      netRegex: { id: '796C', source: 'Aqueduct Armor', capture: false },
+      netRegex: { id: '796C', source: ['Aqueduct Armor', 'Sil\'dihn Armor'], capture: false },
       condition: (data) => data.role === 'healer',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -395,7 +395,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Infernal Weight',
       type: 'StartsUsing',
-      netRegex: { id: '796B', source: 'Aqueduct Armor', capture: false },
+      netRegex: { id: '796B', source: ['Aqueduct Armor', 'Sil\'dihn Armor'], capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -408,7 +408,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Dominion Slash',
       type: 'StartsUsing',
-      netRegex: { id: '796A', source: 'Aqueduct Armor', capture: false },
+      netRegex: { id: '796A', source: ['Aqueduct Armor', 'Sil\'dihn Armor'], capture: false },
       response: Responses.getBehind(),
     },
     // ---------------- Gladiator of Sil'dih ----------------
