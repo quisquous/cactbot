@@ -16,13 +16,14 @@ import { EventResponses, LogEvent } from '../../types/event';
 import { Job, Role } from '../../types/job';
 import { Matches } from '../../types/net_matches';
 import {
+  BaseNetTrigger,
   DataInitializeFunc,
-  GeneralNetRegexTrigger,
+  GeneralNetRegexTrigger, LegacyTrigger,
   LooseTimelineTrigger,
   LooseTrigger,
   LooseTriggerSet,
   Output,
-  OutputStrings,
+  OutputStrings, PartialRegexTrigger,
   PartialTriggerOutput,
   RaidbossFileData,
   RegexTrigger,
@@ -57,18 +58,24 @@ export const isRegexTrigger = (
   return false;
 };
 
-export type ProcessedTrigger = LooseTrigger & {
-  filename?: string;
-  localRegex?: RegExp;
-  localNetRegex?: RegExp;
-  output?: Output;
-};
-
 // a loaded and localized trigger
 export type LocalizedTrigger =
   & LooseTrigger
-  & { filename: string; output?: Output }
-  & ({ localRegex: RegExp } | { localNetRegex: RegExp } | { disabled: true });
+  & {
+  filename: string;
+  output?: Output;
+  localRegex?: RegExp;
+  localNetRegex?: RegExp;
+  disabled?: true;
+};
+
+export type ProcessedTrigger = Omit<LocalizedTrigger, keyof LegacyTrigger> & {
+  filename: string;
+  output?: Output;
+  localRegex?: RegExp;
+  localNetRegex?: RegExp;
+  disabled?: true;
+}
 
 export type LoadedTriggerSet = LooseTriggerSet & {
   filename: string;
@@ -209,7 +216,9 @@ const textMap: TextMap = {
   },
 };
 
-const handleTriggerOverride = <T extends { id?: string }>(triggers: Array<T>): Array<T> => {
+const handleTriggerOverride = <T extends { id?: string; filename?: string }>(
+  triggers: Array<T>,
+): Array<T> => {
   const keep: Array<T> = [];
 
   // keep the triggers with id
@@ -232,7 +241,7 @@ const handleTriggerOverride = <T extends { id?: string }>(triggers: Array<T>): A
       continue;
     }
 
-    const triggerFile = (trigger: ProcessedTrigger) =>
+    const triggerFile = (trigger: { filename?: string }) =>
       trigger.filename ? `'${trigger.filename}'` : 'user override';
     const oldFile = triggerFile(newTrigger);
     const newFile = triggerFile(oldTrigger);

@@ -4,6 +4,11 @@ export type Lang = typeof languages[number];
 
 export type NonEnLang = Exclude<Lang, 'en'>;
 
+/**
+ * @deprecated remove this after we don't support `netRegexCn` style triggers
+ */
+export type LegacyLangSuffix = 'En' | 'De' | 'Fr' | 'Ja' | 'Cn' | 'Ko';
+
 export const langMap: { [lang in Lang]: { [lang in Lang]: string } } = {
   en: {
     en: 'English',
