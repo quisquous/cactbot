@@ -27,7 +27,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       label: bunnyLabel,
       x: 25.0,
       y: 11.0,
-      fateID: 1408,
+      fateId: 1408,
       bunny: true,
       respawnMinutes: 8,
     },
@@ -35,7 +35,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       label: bunnyLabel,
       x: 24.5,
       y: 26.0,
-      fateID: 1407,
+      fateId: 1407,
       bunny: true,
       respawnMinutes: 8,
     },
@@ -58,7 +58,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 26.8,
       y: 26.3,
-      fateID: 1388,
+      fateId: 1388,
       time: 'Night',
     },
     flauros: {
@@ -80,7 +80,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 28.9,
       y: 29.2,
-      fateID: 1389,
+      fateId: 1389,
       weather: 'Thunder',
     },
     sophist: {
@@ -102,7 +102,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 31.8,
       y: 31.0,
-      fateID: 1390,
+      fateId: 1390,
     },
     graff: {
       label: {
@@ -123,7 +123,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 23.5,
       y: 37.2,
-      fateID: 1391,
+      fateId: 1391,
     },
     askala: {
       label: {
@@ -144,7 +144,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 19.3,
       y: 29.0,
-      fateID: 1392,
+      fateId: 1392,
       weather: 'Umbral Wind',
     },
     batym: {
@@ -166,7 +166,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 18.0,
       y: 14.1,
-      fateID: 1393,
+      fateId: 1393,
       time: 'Night',
     },
     aetolus: {
@@ -188,7 +188,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 10.0,
       y: 14.0,
-      fateID: 1394,
+      fateId: 1394,
     },
     lesath: {
       label: {
@@ -209,7 +209,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 13.2,
       y: 11.2,
-      fateID: 1395,
+      fateId: 1395,
     },
     eldthurs: {
       label: {
@@ -230,7 +230,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 15.3,
       y: 6.8,
-      fateID: 1396,
+      fateId: 1396,
     },
     iris: {
       label: {
@@ -251,7 +251,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 21.3,
       y: 12.0,
-      fateID: 1397,
+      fateId: 1397,
     },
     lamebrix: {
       label: {
@@ -272,7 +272,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 21.9,
       y: 8.3,
-      fateID: 1398,
+      fateId: 1398,
     },
     dux: {
       label: {
@@ -293,7 +293,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 27.4,
       y: 8.8,
-      fateID: 1399,
+      fateId: 1399,
       weather: 'Thunder',
     },
     jack: {
@@ -315,7 +315,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 30.1,
       y: 11.7,
-      fateID: 1400,
+      fateId: 1400,
     },
     glauko: {
       label: {
@@ -336,7 +336,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 32.3,
       y: 15.1,
-      fateID: 1401,
+      fateId: 1401,
     },
     yingyang: {
       label: {
@@ -357,7 +357,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 11.4,
       y: 34.1,
-      fateID: 1402,
+      fateId: 1402,
     },
     skoll: {
       label: {
@@ -378,7 +378,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 24.3,
       y: 30.1,
-      fateID: 1403,
+      fateId: 1403,
       weather: 'Blizzards',
     },
     penthe: {
@@ -400,7 +400,7 @@ export const zoneInfoPyros: EurekaZoneInfo = {
       },
       x: 35.7,
       y: 5.9,
-      fateID: 1404,
+      fateId: 1404,
       weather: 'Heat Waves',
     },
   },

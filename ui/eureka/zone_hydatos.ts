@@ -27,7 +27,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       label: bunnyLabel,
       x: 14.0,
       y: 21.5,
-      fateID: 1425,
+      fateId: 1425,
       bunny: true,
       respawnMinutes: 10.5,
     },
@@ -50,7 +50,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       },
       x: 11.1,
       y: 24.9,
-      fateID: 1412,
+      fateId: 1412,
     },
     stegodon: {
       label: {
@@ -71,7 +71,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       },
       x: 9.3,
       y: 18.2,
-      fateID: 1413,
+      fateId: 1413,
     },
     molech: {
       label: {
@@ -92,7 +92,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       },
       x: 7.8,
       y: 21.9,
-      fateID: 1414,
+      fateId: 1414,
     },
     piasa: {
       label: {
@@ -113,7 +113,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       },
       x: 7.1,
       y: 14.1,
-      fateID: 1415,
+      fateId: 1415,
     },
     frostmane: {
       label: {
@@ -134,7 +134,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       },
       x: 8.1,
       y: 26.4,
-      fateID: 1416,
+      fateId: 1416,
     },
     daphne: {
       label: {
@@ -155,7 +155,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       },
       x: 25.6,
       y: 16.2,
-      fateID: 1417,
+      fateId: 1417,
     },
     goldemar: {
       label: {
@@ -176,7 +176,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       },
       x: 28.9,
       y: 23.9,
-      fateID: 1418,
+      fateId: 1418,
       time: 'Night',
     },
     leuke: {
@@ -198,7 +198,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       },
       x: 37.3,
       y: 27.0,
-      fateID: 1419,
+      fateId: 1419,
     },
     barong: {
       label: {
@@ -219,7 +219,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       },
       x: 32.2,
       y: 24.2,
-      fateID: 1420,
+      fateId: 1420,
     },
     ceto: {
       label: {
@@ -240,7 +240,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       },
       x: 36.1,
       y: 13.4,
-      fateID: 1421,
+      fateId: 1421,
     },
     watcher: {
       label: {
@@ -261,7 +261,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       },
       x: 32.7,
       y: 19.5,
-      fateID: 1423,
+      fateId: 1423,
     },
     ovni: {
       label: {
@@ -274,7 +274,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       },
       x: 26.8,
       y: 29.0,
-      fateID: 1424,
+      fateId: 1424,
       respawnMinutes: 20,
     },
     tristitia: {
@@ -288,7 +288,7 @@ export const zoneInfoHydatos: EurekaZoneInfo = {
       },
       x: 18.7,
       y: 29.7,
-      fateID: 1422,
+      fateId: 1422,
       respawnMinutes: 20,
     },
   },

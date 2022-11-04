@@ -404,6 +404,20 @@ export default class NetRegexes {
   static mapEffect(params?: NetParams['MapEffect']): CactbotBaseRegExp<'MapEffect'> {
     return buildRegex('MapEffect', params);
   }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-258-0x102-fatedirector
+   */
+  static fateDirector(params?: NetParams['FateDirector']): CactbotBaseRegExp<'FateDirector'> {
+    return buildRegex('FateDirector', params);
+  }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-259-0x103-cedirector
+   */
+  static ceDirector(params?: NetParams['CEDirector']): CactbotBaseRegExp<'CEDirector'> {
+    return buildRegex('CEDirector', params);
+  }
 }
 
 export const commonNetRegex = {
