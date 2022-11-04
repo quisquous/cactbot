@@ -110,6 +110,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Excitatron Heart on Fire III',
+      // only hits 4 players?
       type: 'StartsUsing',
       netRegex: { id: '6D62', source: 'Lucky Face', capture: false },
       suppressSeconds: 1,
