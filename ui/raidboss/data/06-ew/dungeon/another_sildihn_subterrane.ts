@@ -8,7 +8,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: Silkie call puff to go to for safety
 // TODO: Gladiator triggers for gold/silver location using OverlayPlugin?
 // TODO: Gladiator adjustments to timeline
 // TODO: Shadowcaster Infern Brand 1 and 4 safe location triggers if possible
@@ -17,7 +16,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   suds?: string;
   puffCounter: number;
-  silkenPuffs: { [id: string]: { effect: string; location?: string } };
+  silkenPuffs: { [id: string]: { effect: string; location: string } };
   freshPuff2SafeAlert?: string;
   soapCounter: number;
   beaterCounter: number;
@@ -41,7 +40,6 @@ export interface Data extends RaidbossData {
 const dirs = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 const silkieCenterX = -335;
 const silkieCenterY = -155;
-const puffCounterTrackPuffs: number[] = [1, 2]; // only track Silken Puffs on these instances of Fresh Puff casts (tracked by puffCounter)
 
 const positionTo8Dir = (posX: number, posY: number, centerX: number, centerY: number) => {
   const relX = posX - centerX;
@@ -165,14 +163,14 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ASS Silken Puff Collect',
+      id: 'ASS Silken Puff Suds Gain',
       type: 'GainsEffect',
       // Silken Puffs:
       // CE9 Bracing Suds (Wind / Donut)
       // CEA Chilling Suds (Ice / Cardinal)
       // CEB Fizzling Suds (Lightning / Intercardinal)
       netRegex: { target: 'Silken Puff', effectId: 'CE[9AB]' },
-      condition: (data) => puffCounterTrackPuffs.includes(data.puffCounter),
+      condition: (data) => data.puffCounter < 4, // don't track for Fresh Puff 4
       delaySeconds: 0.2, // sometimes a small delay between effects and updated pos data
       promise: async (data, matches) => {
         let puffCombatantData = null;
@@ -190,10 +188,20 @@ const triggerSet: TriggerSet<Data> = {
         let puffX = Math.floor(puff.PosX);
         let puffY = Math.floor(puff.PosY);
         let puffLoc = dirs[positionTo8Dir(puffX, puffY, silkieCenterX, silkieCenterY)];
-        if (puffLoc !== undefined) {
+        if (puffLoc !== undefined)
           data.silkenPuffs[matches.targetId] = { effect: matches.effectId, location: puffLoc };
-        }
       },
+    },
+    {
+      id: 'ASS Silken Puff Suds Lose',
+      type: 'LosesEffect',
+      // Silken Puffs:
+      // CE9 Bracing Suds (Wind / Donut)
+      // CEA Chilling Suds (Ice / Cardinal)
+      // CEB Fizzling Suds (Lightning / Intercardinal)
+      netRegex: { target: 'Silken Puff', effectId: 'CE[9AB]' },
+      condition: (data) => data.puffCounter < 4, // don't track for Fresh Puff 4
+      run: (data, matches) => delete data.silkenPuffs[matches.targetId],
     },
     {
       id: 'ASS Squeaky Clean Right',
@@ -208,7 +216,8 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.goRight(),
     },
     {
-      id: 'ASS Suds Gain',
+      id: 'ASS Silkie Suds Gain',
+      // Silkie:
       // CE1 Bracing Suds (Wind / Donut)
       // CE2 Chilling Suds (Ice / Cardinal)
       // CE3 Fizzling Suds (Lightning / Intercardinal)
@@ -217,7 +226,8 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => data.suds = matches.effectId,
     },
     {
-      id: 'ASS Suds Lose',
+      id: 'ASS Silkie Suds Lose',
+      // Silkie:
       // CE1 Bracing Suds (Wind / Donut)
       // CE2 Chilling Suds (Ice / Cardinal)
       // CE3 Fizzling Suds (Lightning / Intercardinal)
@@ -230,31 +240,35 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // use 7751/7752 (Squeaky Clean Left/Right), rather than 7766 (Fresh Puff)
       // Squeaky Clean will change the effects of two puffs after the Fresh Puff cast
-      // so it is the easiest method to determine outcome
+      // so it is the easiest method to determine mechanic resolution
       netRegex: { id: '775[12]', source: 'Silkie' },
-      delaySeconds: 9, // delay alert until after Squeaky Clean Left/Right completes
+      condition: (data) => data.puffCounter === 1,
+      delaySeconds: 9, // delay alert until after Squeaky Clean Left/Right completes to collect Silken Puff effects
       durationSeconds: 8, // keep alert up until just before Slippery Soap trigger fires
       alertText: (data, matches, output) => {
         if (Object.keys(data.silkenPuffs).length !== 3)
           return output.default!();
-        const puffEffects: { [location: string]: string } = Object.fromEntries(
-          Object.entries(data.silkenPuffs).map(([effect, location]) => [location, effect]),
-        );
 
-        // See Silken Puff Collect trigger for list of Silken Puff effectIds
+        const puffsByLoc: { [location: string]: string } = {};
+        for (const puff of Object.values(data.silkenPuffs)) {
+          if (puff.location !== undefined)
+            puffsByLoc[puff.location] = puff.effect;
+        }
+
+        // See Silken Puff Suds Gain trigger for list of Silken Puff effectIds
         // By this point, Squeaky Clean Left/Right has changed the N puff and either the SW/SE puff to CE9 (Bracing Suds)
         // We only care about the unaffected puff's status effect (CEA/CEB) for resolving the mechanic.
         let stackDir = '';
         let safeDir = '';
         if (matches.id === '7751') { // Squeaky Clean Right - resolve based on SW puff's effect
-          if (puffEffects.SW === undefined)
+          if (puffsByLoc.SW === undefined)
             return output.default!();
-          stackDir = puffEffects.SW === 'CEA' ? 'SE' : 'N';
-          safeDir = stackDir === 'SE' ? 'N' : 'SE';
+          stackDir = puffsByLoc.SW === 'CEA' ? 'SE' : 'N';  // if SW is ice, SE stack (unsafe later); if SW is lightning, N stack (unsafe later)
+          safeDir = stackDir === 'SE' ? 'N' : 'SE'; // safeDir is the one we are not stacking at
         } else if (matches.id === '7752') { // Squeaky Clean Left - resolve based on SE puff's effect
-          if (puffEffects.SE === undefined)
+          if (puffsByLoc.SE === undefined)
             return output.default!();
-          stackDir = puffEffects.SE === 'CEA' ? 'SW' : 'N';
+          stackDir = puffsByLoc.SE === 'CEA' ? 'SW' : 'N';  // if SE is ice, SW stack (unsafe later); if SE is lightning, N stack (unsafe later)
           safeDir = stackDir === 'SW' ? 'N' : 'SW';
         } else {
           return output.default!();
@@ -266,7 +280,7 @@ const triggerSet: TriggerSet<Data> = {
         SE: Outputs.dirSE,
         SW: Outputs.dirSW,
         stacksafe: {
-          en: 'Stack ${dir1} (${dir2} safe later)',
+          en: 'Stack ${dir1} (${dir2} safe after)',
         },
         default: {
           en: 'Stack near unsafe green puff',
@@ -276,8 +290,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Slippery Soap',
       // Happens 5 times in the encounter
-      type: 'Ability',
-      netRegex: { id: '79FB', source: ['Silkie', 'Eastern Ewer'] },
+      type: 'StartsUsing',
+      // this was originally triggered by 79FB, which is an (unmapped) ability targeting a player used by Silkie or Eastern Ewer
+      // but it always happens at the same time that Silkie starts using 775E (the actual Slippery Soap cast)
+      // so it's more accurate to fire this trigger based off of Silkie's cast
+      netRegex: { id: '775E', source: 'Silkie' },
       preRun: (data) => data.soapCounter++,
       alertText: (data, matches, output) => {
         if (data.suds === 'CE1') {
@@ -403,8 +420,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '7767', source: 'Silkie', capture: false },
       condition: (data) => {
         ++data.spreeCounter; // increment regardless if condition ultimately returns true or false
-        // skip trigger on 2nd Soaping Spree/Fresh Puff combo - this is handled by Fresh Puff 2 triggers
-        return data.puffCounter !== 2;
+        // skip trigger on 2nd & 3rd Fresh Puff  - those are handled by separate Fresh Puff triggers because safe area can be more nuanced
+        return data.puffCounter !== 2 && data.puffCounter !== 3;
       },
       infoText: (data, _matches, output) => {
         switch (data.suds) {
@@ -462,18 +479,15 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => matches.target === data.me && data.puffCounter === 2,
       durationSeconds: 6,
       alertText: (data, matches, output) => {
-
         const dirCards = ['N', 'E', 'S', 'W'];
-
         let silkieStatus = '';
         switch (data.suds) {
           case 'CE1': // Middle Safe
             silkieStatus = 'bossWind';
             break;
-          case 'CE2': // Intercards/wall safe
+          case 'CE2': // Intercards Safe
             silkieStatus = 'bossIce';
-            break;
-            // never CE3 / lightning for this mechanic
+            // never CE3 (lightning) for this mechanic
         }
         if (silkieStatus === '')
           return output.default!();
@@ -482,21 +496,21 @@ const triggerSet: TriggerSet<Data> = {
         if (tetheredPuff === undefined)
           return;
 
-        // See Silken Puff Collect trigger for list of Silken Puff effectIds
-        // Puff must be either CEA (Ice / blue) or CEB (Lightning / ywllow) in this mechanci
-        const puffEffect = tetheredPuff.effect === 'CEA' ? 'Ice' : 'Lightning';
+        // See Silken Puff Suds Gain trigger for list of Silken Puff effectIds
+        // Puff must be either CEA (Ice / blue) or CEB (Lightning / yellow) in this mechanic
+        const puffEffect = tetheredPuff.effect === 'CEA' ? 'Blue' : 'Yellow';
         const puffDir = tetheredPuff.location;
         if (puffDir === undefined)
           return output.default!();
-        const puffLocs = dirCards.includes(puffDir) ? 'Cardinal' : 'Intercard';
 
-        const baitOutput: string = silkieStatus + 'Puff' + puffEffect + puffLocs;
-        const safeOutput: string = silkieStatus + 'Puff' + puffLocs + 'Safe';
+        const puffLocs = dirCards.includes(puffDir) ? 'Cardinal' : 'Intercard';
+        const baitOutput: string = silkieStatus + puffEffect + puffLocs + 'Puff';
+        const safeOutput: string = silkieStatus + 'Puffs' + puffLocs + 'SafeLater';
 
         // set the output for the subsequent safe call here and pass the output to the followup trigger
         // this keeps all of the interrelated output strings in this trigger for ease of customization
         data.freshPuff2SafeAlert = output[safeOutput]!();
-        return output.bait!({ dir: puffDir, bait: output[baitOutput]!() });
+        return output.bait!({ boss: output[silkieStatus]!(), dir: puffDir, puff: output[baitOutput]!() });
       },
       outputStrings: {
         N: Outputs.dirN,
@@ -508,49 +522,54 @@ const triggerSet: TriggerSet<Data> = {
         SE: Outputs.dirSE,
         SW: Outputs.dirSW,
         bait: {
-          en: '${dir} ${bait}',
+          en: '${boss} - ${dir} ${puff}',
         },
-        bossIcePuffIceCardinal: {
-          en: 'Ice Puff - Bait toward wall',
+        bossIce: {
+          en: 'Blue Tail',
         },
-        // There is an uptime strat that has the lightning buffs both baited CW/CCW if boss = Ice and lightning puffs = cardinals
-        // But it requires both players to rotate the same direction and does not seem to be as common or generally adopted
-        // Regardless, doing output strings like this allows users to change these outputs if they want to use an alternate strat
-        bossIcePuffLightningCardinal: {
-          en: 'Lightning Puff - Bait toward wall',
+        bossIcePuffsCardinalSafeLater: {
+          en: 'Intercard Safe',
         },
-        bossIcePuffCardinalSafe: {
-          en: 'Go to wall (near lightning puffs)',
+        bossIcePuffsIntercardSafeLater: {
+          en: 'Intercard Safe',
         },
-        bossIcePuffIceIntercard: {
-          en: 'Ice Puff - Bait toward corner',
+        bossWind: {
+          en: 'Green Tail',
         },
-        bossIcePuffLightningIntercard: {
-          en: 'Lightning Puff - Bait toward corner',
+        bossWindPuffsCardinalSafeLater: {
+          en: 'Middle Safe',
         },
-        bossIcePuffIntercardSafe: {
-          en: 'Go to intercards (near lightning puffs)',
+        bossWindPuffsIntercardSafeLater: {
+          en: 'Middle Safe',
         },
-        bossWindPuffIceCardinal: {
-          en: 'Ice Puff - Bait sideways',
+        // keep tethered puff info as separate outputStrings
+        // so users can customize for their particular strat
+        bossIceBlueCardinalPuff: {
+          en: 'Blue Puff',
         },
-        bossWindPuffLightningCardinal: {
-          en: 'Lightning Puff - Bait toward wall',
+        bossIceBlueIntercardPuff: {
+          en: 'Blue Puff',
         },
-        bossWindPuffCardinalSafe: {
-          en: 'Go under boss',
+        bossIceYellowCardinalPuff: {
+          en: 'Yellow Puff',
         },
-        bossWindPuffIceIntercard: {
-          en: 'Ice Puff - Bait toward wall',
+        bossIceYellowIntercardPuff: {
+          en: 'Yellow Puff',
         },
-        bossWindPuffLightningIntercard: {
-          en: 'Ice Puff - Bait toward corner',
+        bossWindBlueCardinalPuff: {
+          en: 'Blue Puff',
         },
-        bossWindPuffIntercardSafe: {
-          en: 'Go under boss',
+        bossWindBlueIntercardPuff: {
+          en: 'Blue Puff',
+        },
+        bossWindYellowCardinalPuff: {
+          en: 'Yellow Puff',
+        },
+        bossWindYellowIntercardPuff: {
+          en: 'Yellow Puff',
         },
         default: {
-          en: 'Bait puff, move to safe area',
+          en: 'Bait puff',
         },
       },
     },
@@ -568,6 +587,89 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         safe: {
           en: '${safe}',
+        },
+      },
+    },
+    {
+      id: 'ASS Brim Over',
+      type: 'Ability',
+      netRegex: { id: '776E', source: 'Eastern Ewer', capture: false },
+      suppressSeconds: 1,
+      alertText: (_data, _matches, output) => output.avoidEwers!(),
+      outputStrings: {
+        avoidEwers: {
+          en: 'Avoid Ewers',
+        },
+      },
+    },
+    {
+      // For Fresh Puff 3, there are eight Silken Puffs in two rows.  Six are then "rinsed" by Eastern Ewers.
+      // After suds effects are applied to all eight Silken Puffs, Silkie uses 'Eastern Ewers' (776D),
+      // followed by three (existing) Eastern Ewer combatants using 'Brim Over' (776E).
+      // ~1.6 seconds later, 3 new 'Eastern Ewer' combatants are added, who begin using 'Rinse' (776F).
+      // They repeat using the Rinse ability about ~0.85 seconds as they move N->S through the arena.
+      // On three of those recasts, they target the ability on Silken Puffs in their column (same ability ID, 776F):
+      // 1st targets the N-most Puff; 2nd targets both Puffs in the column (separate 21 lines for each Puff); and 3rd targets just the S Puff.
+      // As each Puff is targeted by a Rinse ability, it loses its Suds effect.
+      // This trigger fires off of the first targeted use of 'Rinse'.
+      id: 'ASS Fresh Puff 3',
+      type: 'Ability',
+      netRegex: { id: '776F', source: 'Eastern Ewer', target: 'Silken Puff' },
+      delaySeconds: 1.1, // wait for the Ewers to 'rinse' the six puffs, leaving 2 with status effects
+      durationSeconds: 6, // leave alert up while Ewers finish rinsing until Puffs detonate
+      suppressSeconds: 2,
+      alertText: (data, matches, output) => {
+        if (Object.keys(data.silkenPuffs).length !== 2)
+          return output.default!();
+
+        const puffEffects: string[] = [];
+        for (const puff of Object.values(data.silkenPuffs)) {
+          if (puff.effect !== undefined)
+            puffEffects.push(puff.effect);
+        }
+
+        const [puff0, puff1] = puffEffects.sort(); // sort to simplify switch statement later
+        if (puff0 === undefined || puff1 === undefined)
+          return output.default!();
+
+      // CE9 Bracing Suds (Wind / Donut)
+      // CEA Chilling Suds (Ice / Cardinal)
+      // CEB Fizzling Suds (Lightning / Intercardinal)
+        switch (puff0) {
+          case 'CE9':
+            if (puff1 === 'CEB')
+              return output.windAndLightning!();
+            return output.default!(); // should not ever have double-donut, or donut-ice combo
+          case 'CEA':
+            if (puff1 === 'CEA') {
+              return output.doubleIce!();
+            } else if (puff1 === 'CEB') {
+              return output.iceAndLightning!();
+            }
+            return output.default!();
+          case 'CEB':
+            if (puff1 === 'CEB')
+              return output.doubleLightning!();
+            return output.default!();
+          default:
+            return output.default!();
+        }
+      },
+      outputStrings: {
+        windAndLightning: {
+          en: 'Under green puff',
+        },
+        doubleIce: {
+          en: 'Intercards, away from puffs',
+        },
+        iceAndLightning: {
+          en: 'Sides of yellow puff',
+        },
+        doubleLightning: {
+          en: 'Between puffs',
+        },
+        default: {
+          en: 'Avoid puff AOEs',
         },
       },
     },
@@ -1729,6 +1831,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Aqueduct Armor': 'Aquädukt-Kampfmaschine',
         'Aqueduct Belladonna': 'Aquädukt-Belladonna',
@@ -1802,6 +1905,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Aqueduct Armor': 'armure maléfique des aqueducs',
         'Aqueduct Belladonna': 'belladone des aqueducs',
@@ -1875,6 +1979,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Aqueduct Armor': 'アクアダクト・イビルアーマー',
         'Aqueduct Belladonna': 'アクアダクト・ベラドンナ',
