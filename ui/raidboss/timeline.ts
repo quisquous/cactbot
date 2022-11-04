@@ -6,7 +6,7 @@ import { LogEvent } from '../../types/event';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 import { LooseTimelineTrigger, RaidbossFileData } from '../../types/trigger';
 
-import { PopupTextGenerator } from './popup-text';
+import { PopupTextGenerator, ProcessedTimelineTrigger, ProcessedTrigger } from './popup-text';
 import { RaidbossOptions } from './raidboss_options';
 import {
   Event,
@@ -670,7 +670,7 @@ export class TimelineUI {
   }
 
   public OnTrigger(
-    trigger: LooseTimelineTrigger,
+    trigger: ProcessedTrigger,
     matches: RegExpExecArray | null,
     currentTime: number,
   ): void {
@@ -777,7 +777,7 @@ export class TimelineController {
     timelineFiles: string[],
     timelines: string[],
     replacements: TimelineReplacement[],
-    triggers: LooseTimelineTrigger[],
+    triggers: ProcessedTimelineTrigger[],
     styles: TimelineStyle[],
     zoneId: number,
   ): void {
@@ -824,7 +824,7 @@ export class TimelineLoader {
     timelineFiles: string[],
     timelines: string[],
     replacements: TimelineReplacement[],
-    triggers: LooseTimelineTrigger[],
+    triggers: ProcessedTimelineTrigger[],
     styles: TimelineStyle[],
     zoneId: number,
   ): void {

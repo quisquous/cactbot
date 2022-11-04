@@ -16,14 +16,13 @@ import { EventResponses, LogEvent } from '../../types/event';
 import { Job, Role } from '../../types/job';
 import { Matches } from '../../types/net_matches';
 import {
-  BaseNetTrigger,
   DataInitializeFunc,
-  GeneralNetRegexTrigger, LegacyTrigger,
+  GeneralNetRegexTrigger,
+  LegacyTrigger,
   LooseTimelineTrigger,
   LooseTrigger,
-  LooseTriggerSet,
   Output,
-  OutputStrings, PartialRegexTrigger,
+  OutputStrings,
   PartialTriggerOutput,
   RaidbossFileData,
   RegexTrigger,
@@ -35,6 +34,7 @@ import {
   TriggerField,
   TriggerOutput,
 } from '../../types/trigger';
+import { ConfigLooseTriggerSet } from '../config/config';
 
 import AutoplayHelper from './autoplay_helper';
 import BrowserTTSEngine from './browser_tts_engine';
@@ -62,26 +62,25 @@ export const isRegexTrigger = (
 export type LocalizedTrigger =
   & LooseTrigger
   & {
-  filename: string;
+    filename?: string;
+    output?: Output;
+    localRegex?: RegExp;
+    localNetRegex?: RegExp;
+    disabled?: boolean;
+  };
+
+export type ProcessedTimelineTrigger = LooseTimelineTrigger & {
   output?: Output;
-  localRegex?: RegExp;
-  localNetRegex?: RegExp;
-  disabled?: true;
 };
 
 export type ProcessedTrigger = Omit<LocalizedTrigger, keyof LegacyTrigger> & {
-  filename: string;
+  filename?: string;
   output?: Output;
   localRegex?: RegExp;
   localNetRegex?: RegExp;
-  disabled?: true;
-}
-
-export type LoadedTriggerSet = LooseTriggerSet & {
-  filename: string;
-  timelineTriggers?: LooseTimelineTrigger[];
-  triggers?: LooseTrigger[];
 };
+
+type LoadedTriggerSet = ConfigLooseTriggerSet & { filename: string };
 
 // There should be (at most) six lines of instructions.
 const raidbossInstructions: { [lang in Lang]: string[] } = {
@@ -574,16 +573,16 @@ export class PopupText {
         continue;
 
       if (typeof set !== 'object') {
-        console.log('Unexpected TriggerSet from ' + filename + ', expected an array');
+        console.log(`Unexpected TriggerSet from ${filename}, expected an array`);
         continue;
       }
       if (!set.triggers) {
-        console.log('Unexpected TriggerSet from ' + filename + ', expected a triggers');
+        console.log(`Unexpected TriggerSet from ${filename}, expected a triggers`);
         continue;
       }
       if (typeof set.triggers !== 'object' || !(set.triggers.length >= 0)) {
         console.log(
-          'Unexpected TriggerSet from ' + filename + ', expected triggers to be an array',
+          `Unexpected TriggerSet from ${filename}, expected triggers to be an array`,
         );
         continue;
       }
@@ -595,7 +594,13 @@ export class PopupText {
     }
 
     // User triggers must come last so that they override built-in files.
-    triggerSets.push(...this.options.LoadedTriggers);
+    triggerSets.push(...this.options.Triggers.map((t) => {
+      // TODO: filename can't be undefined, but for type checking
+      return {
+        filename: t.filename ?? '(default-file-name)',
+        ...t,
+      };
+    }));
 
     return triggerSets;
   }
@@ -640,7 +645,7 @@ export class PopupText {
       }
     }.bind(this);
 
-    const timelineTriggers: ProcessedTrigger[] = [];
+    const timelineTriggers: ProcessedTimelineTrigger[] = [];
     const triggers: LocalizedTrigger[] = [];
 
     for (const set of this.collectedTriggerSets) {
@@ -903,7 +908,7 @@ export class PopupText {
     console.error(`Trigger ${id}: missing regex and netRegex`);
   }
 
-  private ProcessTimelineTrigger(trigger: LooseTimelineTrigger): ProcessedTrigger {
+  private ProcessTimelineTrigger(trigger: LooseTimelineTrigger): ProcessedTimelineTrigger {
     return {
       ...trigger,
       output: TriggerOutputProxy.makeOutput(

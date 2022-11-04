@@ -4,6 +4,7 @@ import Regexes from '../../resources/regexes';
 import { translateRegex, translateText } from '../../resources/translations';
 import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
 
+import { ProcessedTimelineTrigger } from './popup-text';
 import defaultOptions, { RaidbossOptions, TimelineConfig } from './raidboss_options';
 
 export type TimelineReplacement = {
@@ -59,7 +60,7 @@ type ParsedTriggerText = {
   secondsBefore?: number;
   text?: string;
   matches: RegExpExecArray | null;
-  trigger: LooseTimelineTrigger;
+  trigger: ProcessedTimelineTrigger;
 };
 
 export type ParsedText = ParsedPopupText | ParsedTriggerText;

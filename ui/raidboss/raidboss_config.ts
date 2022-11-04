@@ -1333,7 +1333,7 @@ class RaidbossConfigurator {
         rawTriggers.timeline.push(...triggerSet.timelineTriggers);
 
       if (!triggerSet.loaded && triggerSet.filename)
-        flattenTimelinePlace(triggerSet, triggerSet.filename, timelineFiles);
+        flattenTimeline(triggerSet, triggerSet.filename, timelineFiles);
 
       item.triggers = {};
       for (const [key, triggerArr] of Object.entries(rawTriggers)) {
@@ -1416,8 +1416,8 @@ class RaidbossConfigurator {
   }
 }
 
-const pureFlattenTimeline = (
-  set: Readonly<ConfigLooseTriggerSet>,
+const flattenTimeline = (
+  set: ConfigLooseTriggerSet,
   filename: string,
   files: { [filename: string]: string },
 ) => {
@@ -1430,6 +1430,7 @@ const pureFlattenTimeline = (
   const dir = filename.slice(0, Math.max(0, lastIndex + 1));
 
   const timelineFile = `${dir}${set.timelineFile}`;
+  delete set.timelineFile;
 
   if (!(timelineFile in files)) {
     console.log(`ERROR: '${filename}' specifies non-existent timeline file '${timelineFile}'.`);
@@ -1437,19 +1438,7 @@ const pureFlattenTimeline = (
   }
 
   // set.timeline is processed recursively.
-  return [set.timeline, files[timelineFile]];
-};
-
-const flattenTimelinePlace = (
-  set: ConfigLooseTriggerSet,
-  filename: string,
-  files: { [filename: string]: string },
-) => {
-  const timeline = pureFlattenTimeline(set, filename, files);
-  if (timeline !== undefined) {
-    // set.timeline is processed recursively.
-    set.timeline = timeline;
-  }
+  set.timeline = [set.timeline, files[timelineFile]];
 };
 
 // Raidboss needs to do some extra processing of user files.
@@ -1465,20 +1454,17 @@ const userFileHandler: UserFileCallback = (
     return;
 
   baseOptions.Triggers ??= [];
-  baseOptions.LoadedTriggers ??= [];
 
-  for (const baseTriggerSet of baseOptions.Triggers) {
-    const set: ConfigLooseTriggerSet = baseTriggerSet;
-
+  for (const set of baseOptions.Triggers) {
     if (set.loaded) {
       continue;
     }
 
-    baseOptions.LoadedTriggers.push({
-      ...baseTriggerSet,
-      filename: set?.filename?.toString() ?? `${basePath}${name}`,
-      timeline: pureFlattenTimeline(baseTriggerSet, name, files),
-    });
+    // `filename` here is just cosmetic for better debug printing to make it more clear
+    // where a trigger or an override is coming from.
+    set.filename ??= `${basePath}${name}`;
+
+    flattenTimeline(set, name, files);
 
     set.loaded = true;
   }

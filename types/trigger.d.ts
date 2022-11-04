@@ -25,8 +25,8 @@ export type LocaleObject<T> =
     en: T;
   }
   & {
-  [s in NonEnLang]?: T;
-};
+    [s in NonEnLang]?: T;
+  };
 
 export type LocaleText = LocaleObject<string>;
 
@@ -106,8 +106,10 @@ export type TriggerField<Data extends RaidbossData, MatchType extends NetAnyMatc
 // This trigger type is what we expect cactbot triggers to be written as,
 // in other words `id` is not technically required for triggers but for
 // built-in triggers it is.
-export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = Omit<BaseNetTrigger<Data, Type>,
-  'type' | 'netRegex'>;
+export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = Omit<
+  BaseNetTrigger<Data, Type>,
+  'type' | 'netRegex'
+>;
 
 type BaseNetTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
   id: string;
@@ -135,7 +137,7 @@ type BaseNetTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
 
 export type NetRegexTrigger<Data extends RaidbossData> = TriggerTypes extends infer T
   ? T extends TriggerTypes ? BaseNetTrigger<Data, T>
-    : never
+  : never
   : never;
 
 export type GeneralNetRegexTrigger<Data extends RaidbossData, T extends TriggerTypes> =
@@ -189,11 +191,11 @@ export type BaseTriggerSet<Data extends RaidbossData> = {
 export type TriggerSet<Data extends RaidbossData = RaidbossData> =
   & BaseTriggerSet<Data>
   & (RequiredFieldsAsUnion<Data> extends RequiredFieldsAsUnion<RaidbossData> ? {
-    initData?: DataInitializeFunc<Data>;
-  }
-  : {
-    initData: DataInitializeFunc<Data>;
-  });
+      initData?: DataInitializeFunc<Data>;
+    }
+    : {
+      initData: DataInitializeFunc<Data>;
+    });
 
 // Less strict type for user triggers + built-in triggers, including deprecated fields.
 export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
@@ -218,18 +220,18 @@ export type LegacyTrigger = {
   netRegexKo?: RegExp;
 };
 
-export type LooseTrigger = Partial<BaseNetTrigger<RaidbossData, 'None'> & PartialRegexTrigger>
+export type LooseTrigger = Partial<BaseNetTrigger<RaidbossData, 'None'> & PartialRegexTrigger>;
 
 export type LooseTriggerSet =
   & Omit<Partial<TriggerSet>, 'triggers' | 'timelineTriggers'>
   & {
-  /** @deprecated Use zoneId instead */
-  zoneRegex?:
-    | RegExp
-    | { [lang in Lang]?: RegExp };
-  triggers?: (LooseTrigger & LegacyTrigger)[];
-  timelineTriggers?: LooseTimelineTrigger[];
-};
+    /** @deprecated Use zoneId instead */
+    zoneRegex?:
+      | RegExp
+      | { [lang in Lang]?: RegExp };
+    triggers?: (LooseTrigger & LegacyTrigger)[];
+    timelineTriggers?: LooseTimelineTrigger[];
+  };
 
 export interface RaidbossFileData {
   [filename: string]: LooseTriggerSet | string;

@@ -2,14 +2,8 @@ import { Lang } from '../../resources/languages';
 import UserConfig from '../../resources/user_config';
 import { BaseOptions, RaidbossData } from '../../types/data';
 import { Matches } from '../../types/net_matches';
-import {
-  LooseTriggerSet,
-  TriggerAutoConfig,
-  TriggerField,
-  TriggerOutput,
-} from '../../types/trigger';
-
-import { LoadedTriggerSet } from './popup-text';
+import { TriggerAutoConfig, TriggerField, TriggerOutput } from '../../types/trigger';
+import { ConfigLooseTriggerSet } from '../config/config';
 
 // This file defines the base options that raidboss expects to see.
 
@@ -54,8 +48,7 @@ type RaidbossNonConfigOptions = {
   PerZoneTimelineConfig: PerZoneTimelineConfig;
 
   // loaded builtin triggers and user triggers
-  Triggers: LooseTriggerSet[];
-  LoadedTriggers: LoadedTriggerSet[];
+  Triggers: ConfigLooseTriggerSet[];
 
   PlayerNameOverride?: string;
   IsRemoteRaidboss: boolean;
@@ -82,7 +75,6 @@ const defaultRaidbossNonConfigOptions: RaidbossNonConfigOptions = {
   PerZoneTimelineConfig: {},
 
   Triggers: [],
-  LoadedTriggers: [],
 
   IsRemoteRaidboss: false,
 
