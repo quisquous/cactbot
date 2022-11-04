@@ -44,7 +44,7 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
-    // ---------------- final chamber boss Lucky Face ----------------
+    // ---------------- final chamber boss: Lucky Face ----------------
     {
       id: 'Excitatron Right in the Dark',
       type: 'StartsUsing',
@@ -117,7 +117,7 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.spread(),
     },
     // Temper's Flare (6D4E?, 6743?) - roomwide aoe?
-    // ---------------- final chamber boss Lucky Sphinx ----------------
+    // ---------------- alternate final chamber boss: Lucky Sphinx ----------------
     // Icewind Twister - donut aoe?
     // Lightning Bolt - aoes under 4? players?
     // Riddle of Flame - Pyretic on every player?
