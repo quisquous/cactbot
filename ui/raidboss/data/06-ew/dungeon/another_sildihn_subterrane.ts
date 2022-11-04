@@ -182,12 +182,12 @@ const triggerSet: TriggerSet<Data> = {
           return;
         if (puffCombatantData.combatants.length !== 1)
           return;
-        let puff = puffCombatantData.combatants[0];
+        const puff = puffCombatantData.combatants[0];
         if (!puff)
           return;
-        let puffX = Math.floor(puff.PosX);
-        let puffY = Math.floor(puff.PosY);
-        let puffLoc = dirs[positionTo8Dir(puffX, puffY, silkieCenterX, silkieCenterY)];
+        const puffX = Math.floor(puff.PosX);
+        const puffY = Math.floor(puff.PosY);
+        const puffLoc = dirs[positionTo8Dir(puffX, puffY, silkieCenterX, silkieCenterY)];
         if (puffLoc !== undefined)
           data.silkenPuffs[matches.targetId] = { effect: matches.effectId, location: puffLoc };
       },
@@ -492,7 +492,7 @@ const triggerSet: TriggerSet<Data> = {
         if (silkieStatus === '')
           return output.default!();
 
-        let tetheredPuff = data.silkenPuffs[matches.sourceId];
+        const tetheredPuff = data.silkenPuffs[matches.sourceId];
         if (tetheredPuff === undefined)
           return;
 
@@ -622,7 +622,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 1.1, // wait for the Ewers to 'rinse' the six puffs, leaving 2 with status effects
       durationSeconds: 6, // leave alert up while Ewers finish rinsing until Puffs detonate
       suppressSeconds: 2,
-      alertText: (data, matches, output) => {
+      alertText: (data, _matches, output) => {
         if (Object.keys(data.silkenPuffs).length !== 2)
           return output.default!();
 
