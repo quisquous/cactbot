@@ -488,7 +488,7 @@ const triggerSet: TriggerSet<Data> = {
             break;
           case 'CE2': // Intercards Safe
             silkieStatus = 'bossIce';
-          // never CE3 (lightning) for this mechanic
+            // never CE3 (lightning) for this mechanic
         }
         if (silkieStatus === '')
           return output.default!();
