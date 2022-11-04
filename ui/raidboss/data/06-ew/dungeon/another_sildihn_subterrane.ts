@@ -263,12 +263,12 @@ const triggerSet: TriggerSet<Data> = {
         if (matches.id === '7751') { // Squeaky Clean Right - resolve based on SW puff's effect
           if (puffsByLoc.SW === undefined)
             return output.default!();
-          stackDir = puffsByLoc.SW === 'CEA' ? 'SE' : 'N';  // if SW is ice, SE stack (unsafe later); if SW is lightning, N stack (unsafe later)
+          stackDir = puffsByLoc.SW === 'CEA' ? 'SE' : 'N'; // if SW is ice, SE stack (unsafe later); if SW is lightning, N stack (unsafe later)
           safeDir = stackDir === 'SE' ? 'N' : 'SE'; // safeDir is the one we are not stacking at
         } else if (matches.id === '7752') { // Squeaky Clean Left - resolve based on SE puff's effect
           if (puffsByLoc.SE === undefined)
             return output.default!();
-          stackDir = puffsByLoc.SE === 'CEA' ? 'SW' : 'N';  // if SE is ice, SW stack (unsafe later); if SE is lightning, N stack (unsafe later)
+          stackDir = puffsByLoc.SE === 'CEA' ? 'SW' : 'N'; // if SE is ice, SW stack (unsafe later); if SE is lightning, N stack (unsafe later)
           safeDir = stackDir === 'SW' ? 'N' : 'SW';
         } else {
           return output.default!();
@@ -510,7 +510,11 @@ const triggerSet: TriggerSet<Data> = {
         // set the output for the subsequent safe call here and pass the output to the followup trigger
         // this keeps all of the interrelated output strings in this trigger for ease of customization
         data.freshPuff2SafeAlert = output[safeOutput]!();
-        return output.bait!({ boss: output[silkieStatus]!(), dir: puffDir, puff: output[baitOutput]!() });
+        return output.bait!({
+          boss: output[silkieStatus]!(),
+          dir: puffDir,
+          puff: output[baitOutput]!(),
+        });
       },
       outputStrings: {
         N: Outputs.dirN,
@@ -632,9 +636,7 @@ const triggerSet: TriggerSet<Data> = {
         if (puff0 === undefined || puff1 === undefined)
           return output.default!();
 
-      // CE9 Bracing Suds (Wind / Donut)
-      // CEA Chilling Suds (Ice / Cardinal)
-      // CEB Fizzling Suds (Lightning / Intercardinal)
+        // See Silken Puff Suds Gain trigger for list of Silken Puff effectIds
         switch (puff0) {
           case 'CE9':
             if (puff1 === 'CEB')
