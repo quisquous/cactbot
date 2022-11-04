@@ -397,6 +397,7 @@
 06-ew/dungeon/the_aitiascope.txt
 06-ew/dungeon/the_dead_ends.ts
 06-ew/dungeon/the_dead_ends.txt
+06-ew/dungeon/the_excitatron_6000.ts
 06-ew/dungeon/the_fell_court_of_troia.ts
 06-ew/dungeon/the_fell_court_of_troia.txt
 06-ew/dungeon/the_sildihn_subterrane.ts
