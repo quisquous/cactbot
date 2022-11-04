@@ -512,7 +512,7 @@ const triggerSet: TriggerSet<Data> = {
         data.freshPuff2SafeAlert = output[safeOutput]!();
         return output.bait!({
           boss: output[silkieStatus]!(),
-          dir: puffDir,
+          dir: output[puffDir]!(),
           puff: output[baitOutput]!(),
         });
       },
