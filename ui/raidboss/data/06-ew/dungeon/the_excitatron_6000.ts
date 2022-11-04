@@ -44,7 +44,7 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
-    // ---------------- final chamber boss ----------------
+    // ---------------- final chamber boss Lucky Face ----------------
     {
       id: 'Excitatron Right in the Dark',
       type: 'StartsUsing',
@@ -57,7 +57,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '6D55', source: 'Lucky Face', capture: false },
       response: Responses.goRight(),
     },
-    // Heart on Fire II (6D54)- aoe under 4? players
+    // Heart on Fire II (6D54)- aoes under 4? players
     {
       id: 'Excitatron Heart on Fire IV',
       type: 'StartsUsing',
@@ -110,13 +110,23 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Excitatron Heart on Fire III',
-      // only hits 4 players?
+      // only hits 2 players?
       type: 'StartsUsing',
       netRegex: { id: '6D62', source: 'Lucky Face', capture: false },
       suppressSeconds: 1,
       response: Responses.spread(),
     },
-    // Temper's Flare (6D4E?, 6743?) - roomwide aoe
+    // Temper's Flare (6D4E?, 6743?) - roomwide aoe?
+    // ---------------- final chamber boss Lucky Sphinx ----------------
+    // Icewind Twister - donut aoe?
+    // Lightning Bolt - aoes under 4? players?
+    // Riddle of Flame - Pyretic on every player?
+    // Riddle of Frost - Deep Freeze if not moving, Freezing Up if moving?
+    // Icebomb Burst - point-blank aoe on boss + baited aoes on 4? players?
+    // Gold Thunder - stack donut? on 1 player, deals high damge outside donut aoe?
+    // Firedrop Blast - aoes under 4? players + aoe marker on 1 player, leaves burns on marked player if other players hit?
+    // Superheat - tankbuster?
+    // Crackling Current - roomwide aoe?
   ],
 };
 
