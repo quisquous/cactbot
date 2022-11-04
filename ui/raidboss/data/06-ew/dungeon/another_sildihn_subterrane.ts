@@ -618,7 +618,7 @@ const triggerSet: TriggerSet<Data> = {
       // This trigger fires off of the first targeted use of 'Rinse'.
       id: 'ASS Fresh Puff 3',
       type: 'Ability',
-      netRegex: { id: '776F', source: 'Eastern Ewer', target: 'Silken Puff' },
+      netRegex: { id: '776F', source: 'Eastern Ewer', target: 'Silken Puff', capture: false },
       delaySeconds: 1.1, // wait for the Ewers to 'rinse' the six puffs, leaving 2 with status effects
       durationSeconds: 6, // leave alert up while Ewers finish rinsing until Puffs detonate
       suppressSeconds: 2,
