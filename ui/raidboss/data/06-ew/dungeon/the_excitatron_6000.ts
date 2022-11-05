@@ -1,3 +1,4 @@
+import Conditions from '../../../../../resources/conditions';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -45,6 +46,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     // ---------------- final chamber boss: Lucky Face ----------------
+    // Heart on Fire II (6D54)- aoes under 4? players
     {
       id: 'Excitatron Right in the Dark',
       type: 'StartsUsing',
@@ -57,7 +59,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '6D55', source: 'Lucky Face', capture: false },
       response: Responses.goRight(),
     },
-    // Heart on Fire II (6D54)- aoes under 4? players
     {
       id: 'Excitatron Heart on Fire IV',
       type: 'StartsUsing',
@@ -110,10 +111,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Excitatron Heart on Fire III',
-      // only hits 2 players?
+      // baited aoe on 2? players
       type: 'StartsUsing',
       netRegex: { id: '6D62', source: 'Lucky Face', capture: false },
-      suppressSeconds: 1,
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     // Temper's Flare (6D4E?, 6743?) - roomwide aoe?
