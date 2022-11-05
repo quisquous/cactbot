@@ -113,7 +113,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Excitatron Heart on Fire III',
       // baited aoe on 2? players
       type: 'StartsUsing',
-      netRegex: { id: '6D62', source: 'Lucky Face', capture: false },
+      netRegex: { id: '6D62', source: 'Lucky Face' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
