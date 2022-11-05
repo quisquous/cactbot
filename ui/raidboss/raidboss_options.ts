@@ -47,7 +47,7 @@ type RaidbossNonConfigOptions = {
   PerTriggerOptions: PerTriggerOptions;
   PerZoneTimelineConfig: PerZoneTimelineConfig;
 
-  // loaded builtin triggers and user triggers
+  // user triggers
   Triggers: ConfigLooseTriggerSet[];
 
   PlayerNameOverride?: string;
