@@ -46,7 +46,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     // ---------------- final chamber boss: Lucky Face ----------------
-    // Heart on Fire II (6D54)- aoes under 4? players
+    // Heart on Fire II (6D54)- aoes under random players
     {
       id: 'Excitatron Right in the Dark',
       type: 'StartsUsing',
@@ -79,7 +79,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Excitatron Right in the Dark Reversed',
-      // when Lucky Face casts Merry Go-round (6D4F, 6D51) and gains the Revolutionary (B59) buff, all attacks are reversed
+      // when Lucky Face casts Merry Go-round (6D4F, 6D51) and gains the Revolutionary (B59) buff, certain attacks are reversed
       // reversed attacks have different ids so we don't need to check for the buff
       type: 'StartsUsing',
       netRegex: { id: '6D5B', source: 'Lucky Face', capture: false },
@@ -87,7 +87,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Excitatron Left in the Dark Reversed',
-      // when Lucky Face casts Merry Go-round (6D4F, 6D51) and gains the Revolutionary (B59) buff, all attacks are reversed
+      // when Lucky Face casts Merry Go-round (6D4F, 6D51) and gains the Revolutionary (B59) buff, certain attacks are reversed
       // reversed attacks have different ids so we don't need to check for the buff
       type: 'StartsUsing',
       netRegex: { id: '6D59', source: 'Lucky Face', capture: false },
@@ -95,23 +95,23 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Excitatron Quake Me Away Reversed',
-      // when Lucky Face casts Merry Go-round (6D4F, 6D51) and gains the Revolutionary (B59) buff, all attacks are reversed
+      // when Lucky Face casts Merry Go-round (6D4F, 6D51) and gains the Revolutionary (B59) buff, certain attacks are reversed
       // reversed attacks have different ids so we don't need to check for the buff
       type: 'StartsUsing',
-      netRegex: { id: '', source: 'Lucky Face', capture: false },
+      netRegex: { id: '6DBB', source: 'Lucky Face', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'Excitatron Quake in Your Boots Reversed',
-      // when Lucky Face casts Merry Go-round (6D4F, 6D51) and gains the Revolutionary (B59) buff, all attacks are reversed
+      // when Lucky Face casts Merry Go-round (6D4F, 6D51) and gains the Revolutionary (B59) buff, certain attacks are reversed
       // reversed attacks have different ids so we don't need to check for the buff
       type: 'StartsUsing',
-      netRegex: { id: '', source: 'Lucky Face', capture: false },
+      netRegex: { id: '6DBA', source: 'Lucky Face', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'Excitatron Heart on Fire III',
-      // baited aoe on 2? players
+      // baited aoe on 2 players
       type: 'StartsUsing',
       netRegex: { id: '6D62', source: 'Lucky Face' },
       condition: Conditions.targetIsYou(),
