@@ -110,6 +110,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback onto Blue',
           de: 'Rückstoß auf Blau',
+          ko: '파란색쪽으로 넉백',
         },
       },
     },
@@ -225,10 +226,12 @@ const triggerSet: TriggerSet<Data> = {
         standOnBlue: {
           en: 'Stand on Blue',
           de: 'Bei Blau stehen',
+          ko: '파란색쪽으로',
         },
         avoidBoulders: {
           en: 'Stand on Blue (avoid boulders)',
           de: 'Bei Blau stehen (vermeide Steine)',
+          ko: '파란색쪽으로 (바위 피하기)',
         },
       },
     },
@@ -248,6 +251,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback onto Blue',
           de: 'Rückstoß zu Blau',
+          ko: '파란색쪽으로 넉백',
         },
       },
     },
@@ -263,6 +267,7 @@ const triggerSet: TriggerSet<Data> = {
         getBehindOnBlue: {
           en: 'Get Behind on Blue',
           de: 'Geh hinter Blau',
+          ko: '보스 뒤 파란색쪽으로',
         },
       },
     },
@@ -275,6 +280,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand on Red',
           de: 'Bei Rot stehen',
+          ko: '빨간색쪽으로',
         },
       },
     },
@@ -287,6 +293,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand on Right Blue',
           de: 'Steh bei dem rechten Blau',
+          ko: '오른쪽 파란색쪽으로',
         },
       },
     },
@@ -299,6 +306,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand on Left Blue',
           de: 'Steh bei dem linken Blau',
+          ko: '왼쪽 파란색쪽으로',
         },
       },
     },
@@ -329,6 +337,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Back Left',
           de: 'Nach hinten links',
+          ko: '뒤 왼쪽',
         },
       },
     },
@@ -341,6 +350,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Back Right',
           de: 'Nach hinten rechts',
+          ko: '뒤 오른쪽',
         },
       },
     },
@@ -372,6 +382,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Intercards',
           de: 'Interkardinal',
+          ko: '대각선 쪽으로',
         },
       },
     },
@@ -384,6 +395,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Follow => Intercards',
           de: 'Folgen => Interkardinal',
+          ko: '따라가기 => 대각선 쪽으로',
         },
       },
     },
@@ -398,6 +410,7 @@ const triggerSet: TriggerSet<Data> = {
           // "Do the mechanic <se.6>"
           en: 'Avoid Crosses from Silkie and Puffs',
           de: 'Weiche den "+" von Silkie und den Puscheln aus',
+          ko: '보스와 구슬의 십자방향 피하기',
         },
       },
     },
@@ -417,6 +430,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Follow => Under',
           de: 'Folgen => Unter Ihn',
+          ko: '따라가기 => 밑으로',
         },
       },
     },
@@ -449,6 +463,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get in big wind circle',
           de: 'Geh in den großen Wind-Kreis',
+          ko: '큰 바람장판 안으로',
         },
       },
     },
@@ -461,6 +476,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Outside Inner Ring (1)',
           de: 'Außerhalb des inneren Ringes (1)',
+          ko: '안쪽 고리 밖으로 (1)',
         },
       },
     },
@@ -473,6 +489,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Outside Middle Ring (2)',
           de: 'Außerhalb des mittleren Ringes (2)',
+          ko: '중간 고리 밖으로 (1)',
         },
       },
     },
@@ -485,6 +502,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Outside Outer Ring (3)',
           de: 'Außerhalb des äußeren Ringes (3)',
+          ko: '바깥쪽 고리 밖으로 (1)',
         },
       },
     },
@@ -504,6 +522,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Behind Close Mark (1)',
           de: 'Hinter der nächsten Markierung (1)',
+          ko: '첫번째 선 뒤 (1)',
         },
       },
     },
@@ -516,6 +535,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Behind Middle Mark (2)',
           de: 'Hinter der mittleren Markierung (2)',
+          ko: '두번째 선 뒤 (1)',
         },
       },
     },
@@ -528,6 +548,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Behind Far Mark (3)',
           de: 'Hinter der entfernten Markierung (3)',
+          ko: '세번째 선 뒤 (1)',
         },
       },
     },
@@ -541,6 +562,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Move Through',
           de: 'Durchlaufen',
+          ko: '보스 통과하기',
         },
       },
     },
@@ -599,6 +621,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Reversed Slashburn',
           de: 'Umgekehrter Brandschlitzer',
+          ko: '장판 반전',
         },
       },
     },
