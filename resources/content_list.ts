@@ -385,6 +385,9 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.AnotherSildihnSubterrane,
   ZoneId.AnotherSildihnSubterraneSavage,
 
+  // Masked Carnivale
+  ZoneId.AllsWellThatStartsWell,
+
   // Ultimate Raids
   ZoneId.TheUnendingCoilOfBahamutUltimate,
   ZoneId.TheWeaponsRefrainUltimate,

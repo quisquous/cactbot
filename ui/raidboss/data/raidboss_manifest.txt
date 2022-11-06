@@ -271,6 +271,7 @@
 05-shb/dungeon/holminster_switch.txt
 05-shb/dungeon/malikahs_well.ts
 05-shb/dungeon/malikahs_well.txt
+05-shb/dungeon/masked_carnivale.ts
 05-shb/dungeon/matoyas_relict.ts
 05-shb/dungeon/matoyas_relict.txt
 05-shb/dungeon/mt_gulg.ts
