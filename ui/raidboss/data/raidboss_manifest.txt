@@ -150,6 +150,7 @@
 04-sb/dungeon/hells_lid.txt
 04-sb/dungeon/kugane_castle.ts
 04-sb/dungeon/kugane_castle.txt
+04-sb/dungeon/masked_carnivale.ts
 04-sb/dungeon/shisui_of_the_violet_tides.ts
 04-sb/dungeon/shisui_of_the_violet_tides.txt
 04-sb/dungeon/sirensong_sea.ts
@@ -271,7 +272,6 @@
 05-shb/dungeon/holminster_switch.txt
 05-shb/dungeon/malikahs_well.ts
 05-shb/dungeon/malikahs_well.txt
-05-shb/dungeon/masked_carnivale.ts
 05-shb/dungeon/matoyas_relict.ts
 05-shb/dungeon/matoyas_relict.txt
 05-shb/dungeon/mt_gulg.ts
