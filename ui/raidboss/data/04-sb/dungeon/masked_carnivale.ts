@@ -24,21 +24,85 @@ const triggerSet: TriggerSet<Data> = {
 
   triggers: [
     // ================ Stage 01 Act 1 ================
+    // intentionally blank
     // ================ Stage 02 Act 1 ================
+    // intentionally blank
     // ---------------- Stage 02 Act 2 ----------------
+    // intentionally blank
     // ================ Stage 03 Act 1 ================
+    {
+      id: 'Carnivale S03 A1 Zipacna Obliterate',
+      type: 'StartsUsing',
+      netRegex: { id: '381D', source: 'Zipacna' },
+      response: Responses.interrupt(),
+    },
     // ================ Stage 04 Act 1 ================
+    // intentionally blank
     // ---------------- Stage 04 Act 2 ----------------
+    {
+      id: 'Carnivale S04 A2 Kreios Magitek Field',
+      type: 'StartsUsing',
+      netRegex: { id: '3821', source: 'Kreios' },
+      response: Responses.interrupt(),
+    },
     // ================ Stage 05 Act 1 ================
+    // intentionally blank
     // ================ Stage 06 Act 1 ================
+    // intentionally blank
     // ---------------- Stage 06 Act 2 ----------------
+    // intentionally blank
     // ================ Stage 07 Act 1 ================
+    // intentionally blank
     // ---------------- Stage 07 Act 2 ----------------
+    // intentionally blank
     // ---------------- Stage 07 Act 3 ----------------
+    {
+      id: 'Carnivale S07 A3 Gladiatorial Node Low Voltage',
+      type: 'StartsUsing',
+      netRegex: { source: 'Gladiatorial Node', id: '3976' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 3,
+      suppressSeconds: 1,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Hide Behind Barricade',
+          de: 'Hinter den Barrikaden verstecken',
+          fr: 'Cachez-vous derrière la barricade',
+          ja: '柵の後ろに',
+          cn: '躲在栅栏后',
+          ko: '울타리 뒤에 숨기',
+        },
+      },
+    },
     // ================ Stage 08 Act 1 ================
+    // intentionally blank
     // ---------------- Stage 08 Act 2 ----------------
+    {
+      id: 'Carnivale S08 A2 Arena Progenitrix Burst',
+      type: 'StartsUsing',
+      netRegex: { id: '3958', source: 'Arena Progenitrix' },
+      response: Responses.interrupt(),
+    },
     // ================ Stage 09 Act 1 ================
+    {
+      id: 'Carnivale S09 A1 Guimauve Golden Tongue',
+      type: 'StartsUsing',
+      netRegex: { id: '37B9', source: 'Guimauve' },
+      response: Responses.interrupt(),
+    },
     // ================ Stage 10 Act 1 ================
+    {
+      id: 'Carnivale S10 A1 Crom Dubh King\'s Will',
+      type: 'StartsUsing',
+      netRegex: { id: '397F', source: 'Crom Dubh' },
+      response: Responses.interrupt(),
+    },
+    {
+      id: 'Carnivale S10 A1 Crom Dubh Black Nebula',
+      type: 'StartsUsing',
+      netRegex: { id: '3984', source: 'Crom Dubh' },
+      response: Responses.interrupt(),
+    },
     // ================ Stage 11 Act 1 ================
     // ---------------- Stage 11 Act 2 ----------------
     // ================ Stage 12 Act 1 ================
