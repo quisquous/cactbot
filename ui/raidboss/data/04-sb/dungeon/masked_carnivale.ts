@@ -1,3 +1,4 @@
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -109,7 +110,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Carnivale S11 A1-2 Arena Gas Bomb Fulmination',
       // Arena Gas Bombs (2x Act 1, 4x Act 2) channel a long cast (22.7s) which is lethal if completed
-      // this cast can be interrupted (immediate re-cast) by doing any damage to them; warn when this cast is about to finish
+      // this cast can be interrupted by doing any damage to them; warn when this cast is about to finish
       // TODO: this trigger is janky; trigger can overlap from multiple targets in unintended ways,
       //   and trigger still fires if target dies
       type: 'StartsUsing',
@@ -121,12 +122,111 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Stage 11 Act 2 ----------------
     // intentionally blank
     // ================ Stage 12 Act 1 ================
+    // intentionally blank
     // ---------------- Stage 12 Act 2 ----------------
+    {
+      id: 'Carnivale S12 A2 Hydnora Inflammable Fumes',
+      type: 'StartsUsing',
+      netRegex: { id: '39A1', source: 'Hydnora' },
+      response: Responses.stun(),
+    },
+    {
+      id: 'Carnivale S12 A2 Hydnora Spore Sac',
+      type: 'StartsUsing',
+      netRegex: { id: '39A0', source: 'Hydnora', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Arena Roselets spawning!',
+        },
+      },
+    },
     // ================ Stage 13 Act 1 ================
+    // intentionally blank
     // ---------------- Stage 13 Act 2 ----------------
+    {
+      id: 'Carnivale S13 A2 Carmilla Dark Sabbath',
+      type: 'StartsUsing',
+      netRegex: { id: '3A67', source: 'Carmilla' },
+      response: Responses.lookAway(),
+    },
+    {
+      id: 'Carnivale S13 A2 Carmilla Summon Darkness',
+      type: 'AddedCombatant',
+      netRegex: { name: 'Arena Succubus' },
+      infoText: (_data, matches, output) => output.kill!({ name: matches.name }),
+      outputStrings: {
+        kill: {
+          en: 'Kill ${name}',
+          de: 'Besiege ${name}',
+          fr: 'Tuez ${name}',
+          ja: '${name}を倒す',
+          cn: '击杀 ${name}',
+          ko: '${name} 처치',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S13 A2 Arena Succubus Beguiling Mist',
+      type: 'StartsUsing',
+      netRegex: { id: '3AC5', source: 'Arena Succubus' },
+      response: Responses.interrupt(),
+    },
     // ================ Stage 14 Act 1 ================
+    {
+      id: 'Carnivale S14 A1-2 Arena Jam The Last Song',
+      type: 'StartsUsing',
+      netRegex: { source: 'Arena Jam', id: '39A4' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 3,
+      suppressSeconds: 1,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Hide Behind Barricade',
+          de: 'Hinter den Barrikaden verstecken',
+          fr: 'Cachez-vous derrière la barricade',
+          ja: '柵の後ろに',
+          cn: '躲在栅栏后',
+          ko: '울타리 뒤에 숨기',
+        },
+      },
+    },
     // ---------------- Stage 14 Act 2 ----------------
+    // intentionally blank
     // ================ Stage 15 Act 1 ================
+    {
+      id: 'Carnivale S15 A1 Bestial Node High Voltage',
+      type: 'StartsUsing',
+      netRegex: { id: '3A2A', source: 'Bestial Node' },
+      response: Responses.interrupt(),
+    },
+    {
+      id: 'Carnivale S15 A1 Arena Shabti Spawn',
+      type: 'AddedCombatant',
+      netRegex: { name: 'Arena Shabti' },
+      alertText: (_data, matches, output) => output.sleep!({ name: matches.name }),
+      outputStrings: {
+        sleep: Outputs.sleepTarget,
+      },
+    },
+    {
+      id: 'Carnivale S15 A1 Bestial Node Superstorm',
+      type: 'StartsUsing',
+      netRegex: { id: '3A7B', source: 'Bestial Node', capture: false },
+      response: Responses.getIn(),
+    },
+    {
+      id: 'Carnivale S15 A1 Bestial Node Repelling Cannons',
+      type: 'StartsUsing',
+      netRegex: { id: '3A2C', source: 'Bestial Node', capture: false },
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Carnivale S15 A1 Bestial Node Ballast',
+      type: 'StartsUsing',
+      netRegex: { id: '3A2D', source: 'Bestial Node', capture: false },
+      response: Responses.getBehind(),
+    },
     // ================ Stage 16 Act 1 ================
     // ---------------- Stage 16 Act 2 ----------------
     // ================ Stage 17 Act 1 ================
