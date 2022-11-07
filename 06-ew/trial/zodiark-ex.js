@@ -1,3 +1,73 @@
+const mapEffectLoc = {
+  firebar: '05',
+  astralEclipse1: '06',
+  astralEclipse2: '07',
+  astralEclipse3: '08',
+  behemothNW: '09',
+  behemothNE: '0A',
+  behemothSW: '0B',
+  behemothSE: '0C',
+  snakesNorthOutsideWest: '0D',
+  snakesNorthOutsideEast: '0E',
+  snakesSouthOutsideWest: '0F',
+  snakesSouthOutsideEast: '10',
+  snakesWestOutsideNorth: '11',
+  snakesWestOutsideSouth: '12',
+  snakesEastOutsideNorth: '13',
+  snakesEastOutsideSouth: '14',
+  birdNW: '15',
+  birdNE: '16',
+  birdSW: '17',
+  birdSE: '18',
+};
+const clockwiseMap = {
+  // Included for completeness, but unused.  Pass through unchanged.
+  [mapEffectLoc.firebar]: mapEffectLoc.firebar,
+  [mapEffectLoc.astralEclipse1]: mapEffectLoc.astralEclipse1,
+  [mapEffectLoc.astralEclipse2]: mapEffectLoc.astralEclipse2,
+  [mapEffectLoc.astralEclipse3]: mapEffectLoc.astralEclipse3,
+  [mapEffectLoc.behemothNW]: mapEffectLoc.behemothNE,
+  [mapEffectLoc.behemothNE]: mapEffectLoc.behemothSE,
+  [mapEffectLoc.behemothSW]: mapEffectLoc.behemothNW,
+  [mapEffectLoc.behemothSE]: mapEffectLoc.behemothSW,
+  [mapEffectLoc.snakesNorthOutsideWest]: mapEffectLoc.snakesEastOutsideNorth,
+  [mapEffectLoc.snakesNorthOutsideEast]: mapEffectLoc.snakesEastOutsideSouth,
+  [mapEffectLoc.snakesSouthOutsideWest]: mapEffectLoc.snakesWestOutsideNorth,
+  [mapEffectLoc.snakesSouthOutsideEast]: mapEffectLoc.snakesWestOutsideSouth,
+  [mapEffectLoc.snakesWestOutsideNorth]: mapEffectLoc.snakesNorthOutsideEast,
+  [mapEffectLoc.snakesWestOutsideSouth]: mapEffectLoc.snakesNorthOutsideWest,
+  [mapEffectLoc.snakesEastOutsideNorth]: mapEffectLoc.snakesSouthOutsideEast,
+  [mapEffectLoc.snakesEastOutsideSouth]: mapEffectLoc.snakesSouthOutsideWest,
+  [mapEffectLoc.birdNW]: mapEffectLoc.birdNE,
+  [mapEffectLoc.birdNE]: mapEffectLoc.birdSE,
+  [mapEffectLoc.birdSW]: mapEffectLoc.birdNW,
+  [mapEffectLoc.birdSE]: mapEffectLoc.birdSW,
+};
+const counterclockwiseMap = {
+  // Included for completeness, but unused.  Pass through unchanged.
+  [mapEffectLoc.firebar]: mapEffectLoc.firebar,
+  [mapEffectLoc.astralEclipse1]: mapEffectLoc.astralEclipse1,
+  [mapEffectLoc.astralEclipse2]: mapEffectLoc.astralEclipse2,
+  [mapEffectLoc.astralEclipse3]: mapEffectLoc.astralEclipse3,
+  [mapEffectLoc.behemothNW]: mapEffectLoc.behemothSW,
+  [mapEffectLoc.behemothNE]: mapEffectLoc.behemothNW,
+  [mapEffectLoc.behemothSW]: mapEffectLoc.behemothSE,
+  [mapEffectLoc.behemothSE]: mapEffectLoc.behemothNE,
+  [mapEffectLoc.snakesNorthOutsideWest]: mapEffectLoc.snakesWestOutsideSouth,
+  [mapEffectLoc.snakesNorthOutsideEast]: mapEffectLoc.snakesWestOutsideNorth,
+  [mapEffectLoc.snakesSouthOutsideWest]: mapEffectLoc.snakesEastOutsideSouth,
+  [mapEffectLoc.snakesSouthOutsideEast]: mapEffectLoc.snakesEastOutsideNorth,
+  [mapEffectLoc.snakesWestOutsideNorth]: mapEffectLoc.snakesSouthOutsideWest,
+  [mapEffectLoc.snakesWestOutsideSouth]: mapEffectLoc.snakesSouthOutsideEast,
+  [mapEffectLoc.snakesEastOutsideNorth]: mapEffectLoc.snakesNorthOutsideWest,
+  [mapEffectLoc.snakesEastOutsideSouth]: mapEffectLoc.snakesNorthOutsideEast,
+  [mapEffectLoc.birdNW]: mapEffectLoc.birdSW,
+  [mapEffectLoc.birdNE]: mapEffectLoc.birdNW,
+  [mapEffectLoc.birdSW]: mapEffectLoc.birdSE,
+  [mapEffectLoc.birdSE]: mapEffectLoc.birdNE,
+};
+const firebarSWToNEFlags = '00020001';
+const firebarSEToNWFlags = '00400020';
 const sigil = {
   greenBeam: '67E4',
   redBox: '67E5',
@@ -12,6 +82,25 @@ const fetchCombatantsById = async (id) => {
     ids: decIds,
   });
   return callData.combatants;
+};
+const paradeigmaLeanOutputStrings = {
+  dirWithLean: {
+    en: '${dir} bird (lean ${lean})',
+  },
+  dirN: Outputs.dirN,
+  dirNE: Outputs.dirNE,
+  dirE: Outputs.dirE,
+  dirSE: Outputs.dirSE,
+  dirS: Outputs.dirS,
+  dirSW: Outputs.dirSW,
+  dirW: Outputs.dirW,
+  dirNW: Outputs.dirNW,
+  // Separate out "lean" here, as people might want to use markers for "dir",
+  // but that makes less sense for "lean".
+  leanNE: Outputs.dirNE,
+  leanSE: Outputs.dirSE,
+  leanSW: Outputs.dirSW,
+  leanNW: Outputs.dirNW,
 };
 const eclipseOutputStrings = {
   north: Outputs.north,
@@ -79,6 +168,7 @@ Options.Triggers.push({
     styxCount: 6,
     eclipseFlags: [],
     eclipseExplosionCount: 0,
+    paradeigmaCollect: [],
   }),
   triggers: [
     {
@@ -99,6 +189,10 @@ Options.Triggers.push({
       netRegex: { id: '67BF', source: 'Zodiark', capture: false },
       alertText: (data, _matches, output) => {
         ++data.paradeigmaCounter;
+        data.paradeigmaCollect = [];
+        // Search for "Paradeigma X" in this file to find where these are handled.
+        // They are moved to Algedon, Aldikia, and Astral Flow, depending on the Paradeigma.
+        // Paradeigma 1 (4 birds, static)
         if (data.paradeigmaCounter === 1)
           return output.underQuetz();
       },
@@ -111,6 +205,157 @@ Options.Triggers.push({
           ko: '북동쪽 새 밑으로', // This is northeast. Because Korean folks go there.
         },
       },
+    },
+    {
+      id: 'ZodiarkEx Paradeigma Animal Collect',
+      type: 'MapEffect',
+      netRegex: { flags: '00200010', location: ['0[9-F]', '1[0-8]'] },
+      run: (data, matches) => data.paradeigmaCollect.push(matches),
+    },
+    {
+      id: 'ZodiarkEx Paradeigma Firebar Collect',
+      type: 'MapEffect',
+      netRegex: { location: '05' },
+      run: (data, matches) => data.paradeigmaCollect.push(matches),
+    },
+    {
+      // https://github.com/quisquous/cactbot/issues/5057
+      /* eslint-disable rulesdir/cactbot-output-strings */
+      id: 'ZodiarkEx Astral Flow',
+      type: 'StartsUsing',
+      netRegex: { id: ['6662', '6663'], source: 'Zodiark' },
+      alertText: (data, matches, output) => {
+        const isClockwise = matches.id === '6662';
+        const origLocs = data.paradeigmaCollect.map((x) => x.location);
+        const firebar = data.paradeigmaCollect.find((x) => x.location === mapEffectLoc.firebar);
+        const firebarFlags = firebar?.flags;
+        const lastSigil = data.lastSigilDir;
+        data.paradeigmaCollect = [];
+        data.lastSigilDir = undefined;
+        const rotateMap = isClockwise
+          ? clockwiseMap
+          : counterclockwiseMap;
+        const locs = origLocs.map((x) => rotateMap[x]);
+        // Paradeigma 3 (2 snakes, portal, rotate)
+        // Paradeigma 7 (2 snakes, portal, firebar, rotate)
+        if (data.paradeigmaCounter === 3 || data.paradeigmaCounter === 7) {
+          // TODO: this ignores the firebar for Paradeigma 7, but it should be obvious given the portal/snake constraints.
+          // TODO: we could consider combining with the sigil call and say "outside north + west" or something
+          // but probably the player has already started moving when the sigil appeared, and so it's redundant.
+          const outsideNorthBad = locs.includes(mapEffectLoc.snakesWestOutsideNorth) ||
+            locs.includes(mapEffectLoc.snakesEastOutsideNorth);
+          const outsideSouthBad = locs.includes(mapEffectLoc.snakesWestOutsideSouth) ||
+            locs.includes(mapEffectLoc.snakesEastOutsideSouth);
+          if (outsideNorthBad)
+            return output.insideNorth();
+          if (outsideSouthBad)
+            return output.outsideNorth();
+          const outsideWestBad = locs.includes(mapEffectLoc.snakesNorthOutsideWest) ||
+            locs.includes(mapEffectLoc.snakesSouthOutsideWest);
+          const outsideEastBad = locs.includes(mapEffectLoc.snakesNorthOutsideEast) ||
+            locs.includes(mapEffectLoc.snakesSouthOutsideEast);
+          if (lastSigil === 'west' && outsideWestBad)
+            return output.insideWest();
+          if (lastSigil === 'west' && outsideEastBad)
+            return output.outsideWest();
+          if (lastSigil === 'east' && outsideWestBad)
+            return output.outsideEast();
+          if (lastSigil === 'east' && outsideEastBad)
+            return output.insideEast();
+          return;
+        }
+        // Firebar is either SW->NE or SE->NW.  No matter which way it rotates,
+        // it will either hit east/west in a cone or north/south in a cone.
+        const isFirebarEastWestSafe = firebarFlags === firebarSWToNEFlags && !isClockwise ||
+          firebarFlags === firebarSEToNWFlags && isClockwise;
+        // Paradeigma 5 (2 birds, 2 behemoth, firebar, rotate)
+        // Paradeigma 8 (2 birds, 2 behemoths, firebar, portal, rotate)
+        if (data.paradeigmaCounter === 5 || data.paradeigmaCounter === 8) {
+          // It shouldn't be possible for the sigil to be south for Paradeigma 8, but handle it just in case.
+          const sigil = data.paradeigmaCounter === 5 ? 'west' : lastSigil;
+          if (locs.includes(mapEffectLoc.birdNW) && (sigil === 'west' || sigil === 'north')) {
+            const lean = isFirebarEastWestSafe ? output.leanSW() : output.leanNE();
+            return output.dirWithLean({ dir: output.dirNW(), lean: lean });
+          } else if (
+            locs.includes(mapEffectLoc.birdNE) && (sigil === 'east' || sigil === 'north')
+          ) {
+            const lean = isFirebarEastWestSafe ? output.leanSE() : output.leanNW();
+            return output.dirWithLean({ dir: output.dirNE(), lean: lean });
+          } else if (
+            locs.includes(mapEffectLoc.birdSW) && (sigil === 'west' || sigil === 'south')
+          ) {
+            const lean = isFirebarEastWestSafe ? output.leanNW() : output.leanSE();
+            return output.dirWithLean({ dir: output.dirSW(), lean: lean });
+          } else if (
+            locs.includes(mapEffectLoc.birdSE) && (sigil === 'east' || sigil === 'south')
+          ) {
+            const lean = isFirebarEastWestSafe ? output.leanNE() : output.leanSW();
+            return output.dirWithLean({ dir: output.dirSE(), lean: lean });
+          }
+          return;
+        }
+        // Paradeigma 6 (4 birds, 2 snakes, firebar, rotate)
+        // Paradeigma 9 (4 birds, 2 snakes, firebar, portal, rotate)
+        if (data.paradeigmaCounter === 6 || data.paradeigmaCounter === 9) {
+          const sigil = data.paradeigmaCounter === 6 ? 'west' : lastSigil;
+          const outsideNorthBad = locs.includes(mapEffectLoc.snakesWestOutsideNorth) ||
+            locs.includes(mapEffectLoc.snakesEastOutsideNorth);
+          const outsideSouthBad = locs.includes(mapEffectLoc.snakesWestOutsideSouth) ||
+            locs.includes(mapEffectLoc.snakesEastOutsideSouth);
+          const outsideWestBad = locs.includes(mapEffectLoc.snakesNorthOutsideWest) ||
+            locs.includes(mapEffectLoc.snakesSouthOutsideWest);
+          const outsideEastBad = locs.includes(mapEffectLoc.snakesNorthOutsideEast) ||
+            locs.includes(mapEffectLoc.snakesSouthOutsideEast);
+          if (outsideNorthBad) {
+            if (sigil === 'west') {
+              const lean = isFirebarEastWestSafe ? output.leanSW() : output.leanSE();
+              return output.dirWithLean({ dir: output.dirNW(), lean: lean });
+            } else if (sigil === 'east') {
+              const lean = isFirebarEastWestSafe ? output.leanSE() : output.leanSW();
+              return output.dirWithLean({ dir: output.dirNE(), lean: lean });
+            }
+          } else if (outsideSouthBad) {
+            if (sigil === 'west') {
+              const lean = isFirebarEastWestSafe ? output.leanNW() : output.leanNE();
+              return output.dirWithLean({ dir: output.dirNW(), lean: lean });
+            } else if (sigil === 'east') {
+              const lean = isFirebarEastWestSafe ? output.leanNE() : output.leanNW();
+              return output.dirWithLean({ dir: output.dirNE(), lean: lean });
+            }
+          } else if (outsideWestBad) {
+            const dir = sigil === 'west' ? output.dirNW() : output.dirNE();
+            const lean = isFirebarEastWestSafe ? output.leanSE() : output.leanNE();
+            return output.dirWithLean({ dir: dir, lean: lean });
+          } else if (outsideEastBad) {
+            const dir = sigil === 'west' ? output.dirNW() : output.dirNE();
+            const lean = isFirebarEastWestSafe ? output.leanSW() : output.leanNW();
+            return output.dirWithLean({ dir: dir, lean: lean });
+          }
+        }
+      },
+      outputStrings: {
+        outsideNorth: {
+          en: 'Outside North',
+        },
+        insideNorth: {
+          en: 'Inside North',
+        },
+        outsideWest: {
+          en: 'Outside West',
+        },
+        insideWest: {
+          en: 'Inside West',
+        },
+        outsideEast: {
+          en: 'Outside East',
+        },
+        insideEast: {
+          en: 'Inside East',
+        },
+        ...paradeigmaLeanOutputStrings,
+      },
+      // https://github.com/quisquous/cactbot/issues/5057
+      /* eslint-enable rulesdir/cactbot-output-strings */
     },
     {
       id: 'ZodiarkEx Styx',
@@ -162,12 +407,19 @@ Options.Triggers.push({
           console.error(`Blue Tether: Missing target, ${JSON.stringify(matches)}`);
           return;
         }
-        if (target.x < 100)
+        if (target.x < 100) {
+          data.lastSigilDir = 'west';
           return output.westCone();
-        if (target.x > 100)
+        }
+        if (target.x > 100) {
+          data.lastSigilDir = 'east';
           return output.eastCone();
-        if (target.y < 100)
+        }
+        if (target.y < 100) {
+          data.lastSigilDir = 'north';
           return output.northCone();
+        }
+        data.lastSigilDir = 'south';
         return output.southCone();
       },
       outputStrings: {
@@ -223,12 +475,19 @@ Options.Triggers.push({
           console.error(`Red Tether: Missing target, ${JSON.stringify(matches)}`);
           return;
         }
-        if (target.x < 100)
+        if (target.x < 100) {
+          data.lastSigilDir = 'east';
           return output.east();
-        if (target.x > 100)
+        }
+        if (target.x > 100) {
+          data.lastSigilDir = 'west';
           return output.west();
-        if (target.y < 100)
+        }
+        if (target.y < 100) {
+          data.lastSigilDir = 'south';
           return output.south();
+        }
+        data.lastSigilDir = 'north';
         return output.north();
       },
       outputStrings: {
@@ -331,7 +590,7 @@ Options.Triggers.push({
         },
         sides: {
           // Specify "for laser" to disambiguate with the astral eclipse going on at the same time.
-          // Similarly, there's a algodon knockback call too.
+          // Similarly, there's a Algedon knockback call too.
           en: 'sides (for laser)',
           de: 'Seiten (für die Laser)',
           ja: '横側 (レーザー回避)',
@@ -348,39 +607,104 @@ Options.Triggers.push({
       },
     },
     {
-      // 67EC is leaning left, 67ED is leaning right
+      // https://github.com/quisquous/cactbot/issues/5057
+      /* eslint-disable rulesdir/cactbot-output-strings */
       id: 'ZodiarkEx Algedon',
       type: 'StartsUsing',
+      // 67EC is leaning left, 67ED is leaning right
       netRegex: { id: ['67EC', '67ED'], source: 'Zodiark' },
-      alertText: (_data, matches, output) => {
+      infoText: (data, matches, output) => {
+        // Paradeigma 2 (2 birds, 2 behemoth, algedon, static)
+        if (data.paradeigmaCounter === 2 && data.paradeigmaCollect.length > 0) {
+          const locs = data.paradeigmaCollect.map((x) => x.location);
+          data.paradeigmaCollect = [];
+          const isNWSafe = locs.includes(mapEffectLoc.birdNW);
+          const isNESafe = locs.includes(mapEffectLoc.birdNE);
+          // If there's a bird in melee range in the safe spot, call that exclusively.
+          // Otherwise, fall through to calling both and folks can take the vuln from behemoth.
+          if (matches.id === '67EC' && isNESafe)
+            return output.dirWithLean({ dir: output.dirNE(), lean: output.leanNE() });
+          if (matches.id === '67ED' && isNWSafe)
+            return output.dirWithLean({ dir: output.dirNW(), lean: output.leanNW() });
+          // North spots unsafe, but call them anyway.  Technically the second
+          // option requires a "lean" like the above, but that's too much text.
+          if (matches.id === '67EC' && isNWSafe)
+            return output.combo({ first: output.dirNW(), second: output.dirSW() });
+          if (matches.id === '67ED' && isNESafe)
+            return output.combo({ first: output.dirNE(), second: output.dirSE() });
+          // Otherwise, we're in a situation where both behemoths are north,
+          // so fall through to the normal logic to tell people to dodge Algedon,
+          // and they can choose to stand in the behemoth if they'd like.
+        }
+        // Between paradeigma 5 and 6, there's an Algedon with an Esoterikos.
+        // Call only the melee uptime spot if it is safe, otherwise call
+        // the unsafe uptime spot and the safe downtime spot.
+        if (data.paradeigmaCounter === 5) {
+          if (data.lastSigilDir === 'east') {
+            if (matches.id === '67EC')
+              return output.single({ dir: output.dirNE(), lean: output.leanNE() });
+            return output.combo({ first: output.dirNE(), second: output.dirSE() });
+          } else if (data.lastSigilDir === 'west') {
+            if (matches.id === '67ED')
+              return output.single({ dir: output.dirNW(), lean: output.leanNW() });
+            return output.combo({ first: output.dirNW(), second: output.dirSW() });
+          }
+        }
         if (matches.id === '67EC') {
           // NE/SW
-          return output.combo({ first: output.northeast(), second: output.southwest() });
+          return output.combo({ first: output.dirNE(), second: output.dirSW() });
         }
         if (matches.id === '67ED') {
           // NW/SE
-          return output.combo({ first: output.northwest(), second: output.southeast() });
+          return output.combo({ first: output.dirNW(), second: output.dirSE() });
         }
       },
       outputStrings: {
-        northeast: Outputs.dirNE,
-        northwest: Outputs.dirNW,
-        southeast: Outputs.dirSE,
-        southwest: Outputs.dirSW,
         combo: {
-          en: 'Go ${first} / ${second} (knockback)',
-          de: 'Geh ${first} / ${second} (Rückstoß)',
-          ja: '${first} / ${second} (ノックバック)',
-          cn: '去 ${first} / ${second} (击退)',
-          ko: '${first} / ${second} (넉백)',
+          en: 'Go ${first} / ${second}',
+          de: 'Geh ${first} / ${second}',
+          ja: '${first} / ${second}',
+          cn: '去 ${first} / ${second}',
+          ko: '${first} / ${second}',
         },
+        single: {
+          en: 'Go ${dir} (lean ${lean})',
+        },
+        ...paradeigmaLeanOutputStrings,
       },
+      // https://github.com/quisquous/cactbot/issues/5057
+      /* eslint-enable rulesdir/cactbot-output-strings */
+    },
+    {
+      id: 'ZodiarkEx Algedon Knockback',
+      type: 'StartsUsing',
+      netRegex: { id: '67EE', source: 'Zodiark', capture: false },
+      // Algedon the castbar (67EC/67ED) is a 7 second cast.  67EE the knockback is an 8 second cast.
+      delaySeconds: 3,
+      response: Responses.knockback(),
     },
     {
       id: 'ZodiarkEx Adikia',
       type: 'StartsUsing',
       netRegex: { id: '63A9', source: 'Zodiark', capture: false },
       alertText: (data, _matches, output) => {
+        // Paradeigma 4 (adikia, 2 snakes, static)
+        if (data.paradeigmaCollect.length > 0) {
+          const locs = data.paradeigmaCollect.map((x) => x.location);
+          data.paradeigmaCollect = [];
+          // These snakes always seem to be east or west.
+          if (
+            locs.includes(mapEffectLoc.snakesWestOutsideSouth) ||
+            locs.includes(mapEffectLoc.snakesEastOutsideSouth)
+          )
+            return output.adikia1OutsideNorth();
+          if (
+            locs.includes(mapEffectLoc.snakesWestOutsideNorth) ||
+            locs.includes(mapEffectLoc.snakesEastOutsideNorth)
+          )
+            return output.adikia1InsideNorth();
+          // Otherwise, fall back to generic answer if this has failed.
+        }
         return data.seenAdikia ? output.adikia2() : output.adikia1();
       },
       run: (data) => data.seenAdikia = true,
@@ -391,6 +715,12 @@ Options.Triggers.push({
           ja: 'ダブルフィスト (ヘビー確認)',
           cn: '双拳 (找蛇)',
           ko: '양 옆 큰 원형 장판 (뱀 위치 확인)',
+        },
+        adikia1OutsideNorth: {
+          en: 'Double fists (outside north)',
+        },
+        adikia1InsideNorth: {
+          en: 'Double fists (inside north)',
         },
         adikia2: {
           en: 'Double fists',
