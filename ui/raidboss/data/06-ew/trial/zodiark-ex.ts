@@ -502,9 +502,9 @@ const triggerSet: TriggerSet<Data> = {
       durationSeconds: 19,
       suppressSeconds: 30,
       infoText: (data, _matches, output) => {
-        const dir1 = eclipseOutput(0, data.eclipseFlags[0]);
-        const dir2 = eclipseOutput(1, data.eclipseFlags[1]);
-        const dir3 = eclipseOutput(2, data.eclipseFlags[2]);
+        const dir1 = output[eclipseOutput(0, data.eclipseFlags[0])]!();
+        const dir2 = output[eclipseOutput(1, data.eclipseFlags[1])]!();
+        const dir3 = output[eclipseOutput(2, data.eclipseFlags[2])]!();
         return output.combo!({ dir1: dir1, dir2: dir2, dir3: dir3 });
       },
       outputStrings: {
