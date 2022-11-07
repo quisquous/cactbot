@@ -25,17 +25,15 @@ const jobs: JobInfo[] = ((): JobInfo[] => {
   healerJobs.forEach((job) => jobs.push(new JobInfo(job, 'healer', ['Cleanse', 'Sleep'])));
   meleeDpsJobs.forEach((job) => jobs.push(new JobInfo(job, 'dps', ['Feint', 'Stun'])));
   rangedDpsJobs.forEach((job) => jobs.push(new JobInfo(job, 'dps', ['Silence'])));
-  casterDpsJobs.forEach((job) => jobs.push(new JobInfo(job, 'dps', ['Addle'])));
+  casterDpsJobs.forEach((job) => jobs.push(new JobInfo(job, 'dps', ['Addle', 'Sleep'])));
   craftingJobs.forEach((job) => jobs.push(new JobInfo(job, 'crafter')));
   gatheringJobs.forEach((job) => jobs.push(new JobInfo(job, 'gatherer')));
 
   // Special classes
   jobs.find((job: JobInfo) => job.name === 'BRD')?.actions.push('Cleanse');
-  jobs.find((job: JobInfo) => job.name === 'BLM')?.actions.push('Sleep');
   jobs.find((job: JobInfo) => job.name === 'BLU')?.actions.push(
     'Cleanse',
     'Silence',
-    'Sleep',
     'Stun',
   );
 

@@ -706,6 +706,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'big autos',
           de: 'große Auto-Hits',
+          ko: '평타 강화',
         },
       },
     },
@@ -719,6 +720,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'HP to 1',
           de: 'HP auf 1',
+          ko: 'HP 1',
         },
       },
     },

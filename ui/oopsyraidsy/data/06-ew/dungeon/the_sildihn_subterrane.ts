@@ -22,6 +22,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Sildihn Aqueduct Golem Acclaim': '7A34', // frontal 90 degree conal
     'Sildihn Aqueduct Leshy Creeping Ivy': '77C8', // frontal 90 degree conal
     'Sildihn Aqueduct Odqan Gelid Gale': '77C9', // targeted circle
+    'Sildihn Aqueduct Genomos Aquashatter': '77C4', // targeted circle
     'Sildihn Forgotten Drake Burning Cyclone': '77D6', // various Drakes frontal 90 degree conal
     'Sildihn Forgotten Wraith Dark': '77D7', //  targeted circle
     'Sildihn Forgotten Revenant Unending Woe': '77D8', // centered circle
@@ -35,7 +36,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Sildihn Visage Dark Fire III': '77E3', // targeted circle
     'Sildihn Python Regorge': '77EF', // targeted circle
     'Sildihn Python Whip Back': '77E4', // backwards 90 degree conal
-    'Sildihn Aqueduct Genomos Aquashatter': '77C4', // targeted circle
 
     // Various Geryon the Steer
     'Sildihn Geryon Powder Keg Explosion 1': '74D4', // blue/red barrel explosion
@@ -108,7 +108,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
   },
   gainsEffectWarn: {
     'Sildihn Sludge': 'B84', // puddles from not turning on the water pump
-    'Sildihn Dropsy': '827', // puddles during Silkie Dust Bluster knockback
+    'Sildihn Dropsy 1': '827', // puddles during Silkie Dust Bluster knockback
+    'Sildihn Dropsy 2': 'B69', // ceruleum Geryon squares
     'Sildihn Toxicosis': 'C0A', // standing outside arena 1 (C09 is the infinite duration effect)
     'Sildihn Bleeding': 'C06', // standing outside arena 2 (C05 is the infinite duration effect)
   },
