@@ -110,7 +110,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Carnivale S11 A1-2 Arena Gas Bomb Fulmination',
       // Arena Gas Bombs (2x Act 1, 4x Act 2) channel a long cast (22.7s) which is lethal if completed
-      // this cast can be interrupted by doing any damage to them; warn when this cast is about to finish
+      // this cast can be interrupted (immediate re-cast) by doing any damage to them; warn when this cast is about to finish
       // TODO: this trigger is janky; trigger can overlap from multiple targets in unintended ways,
       //   and trigger still fires if target dies
       type: 'StartsUsing',
