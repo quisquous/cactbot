@@ -6,10 +6,12 @@ import { TriggerSet } from '../../../../../types/trigger';
   // all Masked Carnivale Stages/Acts take place in the same zone
   // 01|2022-11-01T12:26:48.9250000-04:00|31C|All's Well That Starts Well|
   // 0x31C = 796 = ZoneId.AllsWellThatStartsWell
+  // default zone is Stage 01 - All's Well That Starts Well
+  // actual zone was Stage 03 - Waiting for Golem
   // there are unique Instance Content IDs for each Masked Carnivale Stage
   // first Instance Content ID appearance is an Actor Control (0x21 = 33) line
   // 33|2022-11-01T12:26:52.0770000-04:00|800388BB|40000001|708|00|00|00|
-  // 0x40000001 = Initial Commence, 0x708 = 1800s = 30m = lockout time
+  // 0x40000001 = Initial Commence, 0x708 = 1800s = 30m = instance timer
   // 0x8003 = instance content update, 0x88BB = 35003 = InstanceContentType
   // https://xivapi.com/InstanceContent/35003?pretty=true (Waiting for Golem)
   // Masked Carnivale missing from cactbot/resources/content_list.ts
@@ -104,7 +106,20 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.interrupt(),
     },
     // ================ Stage 11 Act 1 ================
+    {
+      id: 'Carnivale S11 A1-2 Arena Gas Bomb Fulmination',
+      // Arena Gas Bombs (2x Act 1, 4x Act 2) channel a long cast (22.7s) which is lethal if completed
+      // this cast can be interrupted (immediate re-cast) by doing any damage to them; warn when this cast is about to finish
+      // TODO: this trigger is janky; trigger can overlap from multiple targets in unintended ways,
+      //   and trigger still fires if target dies
+      type: 'StartsUsing',
+      netRegex: { id: '38F7', source: 'Arena Gas Bomb' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
+      suppressSeconds: 5,
+      response: Responses.stunOrInterruptIfPossible(),
+    },
     // ---------------- Stage 11 Act 2 ----------------
+    // intentionally blank
     // ================ Stage 12 Act 1 ================
     // ---------------- Stage 12 Act 2 ----------------
     // ================ Stage 13 Act 1 ================
