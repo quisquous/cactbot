@@ -62,7 +62,7 @@ const gatheringJobs: Job[] = ['MIN', 'BTN', 'FSH'];
 
 const stunJobs: Job[] = ['BLU', ...tankJobs, ...meleeDpsJobs];
 const silenceJobs: Job[] = ['BLU', ...tankJobs, ...rangedDpsJobs];
-const sleepJobs: Job[] = ['BLM', 'BLU', ...healerJobs];
+const sleepJobs: Job[] = [...casterDpsJobs, ...healerJobs];
 const feintJobs: Job[] = [...meleeDpsJobs];
 const addleJobs: Job[] = [...casterDpsJobs];
 const cleanseJobs: Job[] = ['BLU', 'BRD', ...healerJobs];
