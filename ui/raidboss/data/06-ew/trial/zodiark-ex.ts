@@ -8,6 +8,8 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: The second middle/sides laser after Astral Eclipse should be
 // called only after the first goes off.
+// TODO: should Paradeigma 6/9 call things like "lean ESE" instead of just
+// "lean SE" (implicit don't get hit by the obvious firebar)?
 
 export interface Data extends RaidbossData {
   activeSigils: { x: number; y: number; typeId: string; npcId: string }[];
@@ -263,6 +265,8 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => data.paradeigmaCollect.push(matches),
     },
     {
+      // https://github.com/quisquous/cactbot/issues/5057
+      /* eslint-disable rulesdir/cactbot-output-strings */
       id: 'ZodiarkEx Astral Flow',
       type: 'StartsUsing',
       netRegex: { id: ['6662', '6663'], source: 'Zodiark' },
@@ -286,25 +290,25 @@ const triggerSet: TriggerSet<Data> = {
           // TODO: this ignores the firebar for Paradeigma 7, but it should be obvious given the portal/snake constraints.
           // TODO: we could consider combining with the sigil call and say "outside north + west" or something
           // but probably the player has already started moving when the sigil appeared, and so it's redundant.
-          const outsideNorth = locs.includes(mapEffectLoc.snakesWestOutsideNorth) ||
+          const outsideNorthBad = locs.includes(mapEffectLoc.snakesWestOutsideNorth) ||
             locs.includes(mapEffectLoc.snakesEastOutsideNorth);
-          const outsideSouth = locs.includes(mapEffectLoc.snakesWestOutsideSouth) ||
+          const outsideSouthBad = locs.includes(mapEffectLoc.snakesWestOutsideSouth) ||
             locs.includes(mapEffectLoc.snakesEastOutsideSouth);
-          if (outsideNorth)
+          if (outsideNorthBad)
             return output.insideNorth!();
-          if (outsideSouth)
+          if (outsideSouthBad)
             return output.outsideNorth!();
-          const outsideWest = locs.includes(mapEffectLoc.snakesNorthOutsideWest) ||
+          const outsideWestBad = locs.includes(mapEffectLoc.snakesNorthOutsideWest) ||
             locs.includes(mapEffectLoc.snakesSouthOutsideWest);
-          const outsideEast = locs.includes(mapEffectLoc.snakesNorthOutsideEast) ||
+          const outsideEastBad = locs.includes(mapEffectLoc.snakesNorthOutsideEast) ||
             locs.includes(mapEffectLoc.snakesSouthOutsideEast);
-          if (lastSigil === 'west' && outsideWest)
+          if (lastSigil === 'west' && outsideWestBad)
             return output.insideWest!();
-          if (lastSigil === 'west' && outsideEast)
+          if (lastSigil === 'west' && outsideEastBad)
             return output.outsideWest!();
-          if (lastSigil === 'east' && outsideWest)
+          if (lastSigil === 'east' && outsideWestBad)
             return output.outsideEast!();
-          if (lastSigil === 'east' && outsideEast)
+          if (lastSigil === 'east' && outsideEastBad)
             return output.insideEast!();
 
           return;
@@ -318,17 +322,24 @@ const triggerSet: TriggerSet<Data> = {
         // Paradeigma 5 (2 birds, 2 behemoth, firebar, rotate)
         // Paradeigma 8 (2 birds, 2 behemoths, firebar, portal, rotate)
         if (data.paradeigmaCounter === 5 || data.paradeigmaCounter === 8) {
+          // It shouldn't be possible for the sigil to be south for Paradeigma 8, but handle it just in case.
           const sigil = data.paradeigmaCounter === 5 ? 'west' : lastSigil;
-          if (locs.includes(mapEffectLoc.birdNW) && sigil === 'west') {
-            const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanSE!();
+          if (locs.includes(mapEffectLoc.birdNW) && (sigil === 'west' || sigil === 'north')) {
+            const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanNE!();
             return output.dirWithLean!({ dir: output.dirNW!(), lean: lean });
-          } else if (locs.includes(mapEffectLoc.birdNE) && sigil === 'east') {
+          } else if (
+            locs.includes(mapEffectLoc.birdNE) && (sigil === 'east' || sigil === 'north')
+          ) {
             const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanNW!();
             return output.dirWithLean!({ dir: output.dirNE!(), lean: lean });
-          } else if (locs.includes(mapEffectLoc.birdSW) && sigil === 'west') {
-            const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanNW!();
+          } else if (
+            locs.includes(mapEffectLoc.birdSW) && (sigil === 'west' || sigil === 'south')
+          ) {
+            const lean = isFirebarEastWestSafe ? output.leanNW!() : output.leanSE!();
             return output.dirWithLean!({ dir: output.dirSW!(), lean: lean });
-          } else if (locs.includes(mapEffectLoc.birdSE) && sigil === 'east') {
+          } else if (
+            locs.includes(mapEffectLoc.birdSE) && (sigil === 'east' || sigil === 'south')
+          ) {
             const lean = isFirebarEastWestSafe ? output.leanNE!() : output.leanSW!();
             return output.dirWithLean!({ dir: output.dirSE!(), lean: lean });
           }
@@ -340,16 +351,16 @@ const triggerSet: TriggerSet<Data> = {
         // Paradeigma 9 (4 birds, 2 snakes, firebar, portal, rotate)
         if (data.paradeigmaCounter === 6 || data.paradeigmaCounter === 9) {
           const sigil = data.paradeigmaCounter === 6 ? 'west' : lastSigil;
-          const outsideNorth = locs.includes(mapEffectLoc.snakesWestOutsideNorth) ||
+          const outsideNorthBad = locs.includes(mapEffectLoc.snakesWestOutsideNorth) ||
             locs.includes(mapEffectLoc.snakesEastOutsideNorth);
-          const outsideSouth = locs.includes(mapEffectLoc.snakesWestOutsideSouth) ||
+          const outsideSouthBad = locs.includes(mapEffectLoc.snakesWestOutsideSouth) ||
             locs.includes(mapEffectLoc.snakesEastOutsideSouth);
-          const outsideWest = locs.includes(mapEffectLoc.snakesNorthOutsideWest) ||
+          const outsideWestBad = locs.includes(mapEffectLoc.snakesNorthOutsideWest) ||
             locs.includes(mapEffectLoc.snakesSouthOutsideWest);
-          const outsideEast = locs.includes(mapEffectLoc.snakesNorthOutsideEast) ||
+          const outsideEastBad = locs.includes(mapEffectLoc.snakesNorthOutsideEast) ||
             locs.includes(mapEffectLoc.snakesSouthOutsideEast);
 
-          if (outsideNorth) {
+          if (outsideNorthBad) {
             if (sigil === 'west') {
               const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanSE!();
               return output.dirWithLean!({ dir: output.dirNW!(), lean: lean });
@@ -357,19 +368,19 @@ const triggerSet: TriggerSet<Data> = {
               const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanSW!();
               return output.dirWithLean!({ dir: output.dirNE!(), lean: lean });
             }
-          } else if (outsideSouth) {
+          } else if (outsideSouthBad) {
             if (sigil === 'west') {
-              const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanSE!();
+              const lean = isFirebarEastWestSafe ? output.leanNW!() : output.leanNE!();
               return output.dirWithLean!({ dir: output.dirNW!(), lean: lean });
             } else if (sigil === 'east') {
-              const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanSW!();
+              const lean = isFirebarEastWestSafe ? output.leanNE!() : output.leanNW!();
               return output.dirWithLean!({ dir: output.dirNE!(), lean: lean });
             }
-          } else if (outsideWest) {
+          } else if (outsideWestBad) {
             const dir = sigil === 'west' ? output.dirNW!() : output.dirNE!();
             const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanNE!();
             return output.dirWithLean!({ dir: dir, lean: lean });
-          } else if (outsideEast) {
+          } else if (outsideEastBad) {
             const dir = sigil === 'west' ? output.dirNW!() : output.dirNE!();
             const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanNW!();
             return output.dirWithLean!({ dir: dir, lean: lean });
@@ -397,6 +408,8 @@ const triggerSet: TriggerSet<Data> = {
         },
         ...paradeigmaLeanOutputStrings,
       },
+      // https://github.com/quisquous/cactbot/issues/5057
+      /* eslint-enable rulesdir/cactbot-output-strings */
     },
     {
       id: 'ZodiarkEx Styx',
@@ -654,11 +667,13 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // 67EC is leaning left, 67ED is leaning right
+      // https://github.com/quisquous/cactbot/issues/5057
+      /* eslint-disable rulesdir/cactbot-output-strings */
       id: 'ZodiarkEx Algedon',
       type: 'StartsUsing',
+      // 67EC is leaning left, 67ED is leaning right
       netRegex: { id: ['67EC', '67ED'], source: 'Zodiark' },
-      alertText: (data, matches, output) => {
+      infoText: (data, matches, output) => {
         // Paradeigma 2 (2 birds, 2 behemoth, algedon, static)
         if (data.paradeigmaCounter === 2 && data.paradeigmaCollect.length > 0) {
           const locs = data.paradeigmaCollect.map((x) => x.location);
@@ -692,11 +707,11 @@ const triggerSet: TriggerSet<Data> = {
         if (data.paradeigmaCounter === 5) {
           if (data.lastSigilDir === 'east') {
             if (matches.id === '67EC')
-              return output.single!({ dir: output.dirNE!() });
+              return output.single!({ dir: output.dirNE!(), lean: output.leanNE!() });
             return output.combo!({ first: output.dirNE!(), second: output.dirSE!() });
           } else if (data.lastSigilDir === 'west') {
             if (matches.id === '67ED')
-              return output.single!({ dir: output.dirNW!() });
+              return output.single!({ dir: output.dirNW!(), lean: output.leanNW!() });
             return output.combo!({ first: output.dirNW!(), second: output.dirSW!() });
           }
         }
@@ -712,17 +727,27 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         combo: {
-          en: 'Go ${first} / ${second} (knockback)',
-          de: 'Geh ${first} / ${second} (Rückstoß)',
-          ja: '${first} / ${second} (ノックバック)',
-          cn: '去 ${first} / ${second} (击退)',
-          ko: '${first} / ${second} (넉백)',
+          en: 'Go ${first} / ${second}',
+          de: 'Geh ${first} / ${second}',
+          ja: '${first} / ${second}',
+          cn: '去 ${first} / ${second}',
+          ko: '${first} / ${second}',
         },
         single: {
-          en: 'Go ${dir} (knockback)',
+          en: 'Go ${dir} (lean ${lean})',
         },
         ...paradeigmaLeanOutputStrings,
       },
+      // https://github.com/quisquous/cactbot/issues/5057
+      /* eslint-enable rulesdir/cactbot-output-strings */
+    },
+    {
+      id: 'ZodiarkEx Algedon Knockback',
+      type: 'StartsUsing',
+      netRegex: { id: '67EE', source: 'Zodiark', capture: false },
+      // Algedon the castbar (67EC/67ED) is a 7 second cast.  67EE the knockback is an 8 second cast.
+      delaySeconds: 3,
+      response: Responses.knockback(),
     },
     {
       id: 'ZodiarkEx Adikia',
