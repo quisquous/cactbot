@@ -150,7 +150,6 @@
 04-sb/dungeon/hells_lid.txt
 04-sb/dungeon/kugane_castle.ts
 04-sb/dungeon/kugane_castle.txt
-04-sb/dungeon/masked_carnivale.ts
 04-sb/dungeon/shisui_of_the_violet_tides.ts
 04-sb/dungeon/shisui_of_the_violet_tides.txt
 04-sb/dungeon/sirensong_sea.ts
@@ -163,6 +162,7 @@
 04-sb/dungeon/temple_of_the_fist.txt
 04-sb/dungeon/the_burn.ts
 04-sb/dungeon/the_burn.txt
+04-sb/dungeon/the_masked_carnivale.ts
 04-sb/eureka/eureka_anemos.ts
 04-sb/eureka/eureka_hydatos.ts
 04-sb/eureka/eureka_hydatos.txt
