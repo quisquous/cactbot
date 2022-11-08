@@ -556,7 +556,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Carnivale S22 A2 Arena Gas Bomb Spawn',
       // The Forefather will cast Burst, a non-interruptable, lethal roomwide attack
       // Arena Gas Bombs cast Flashthoom, a small aoe which will interrupt Burst
-      // Arena Gas Bombs spawn on the edge of the room and need to be pulled in range of the boss
+      // Arena Gas Bombs spawn on the edge of the arena and need to be pulled in range of the boss
       type: 'AddedCombatant',
       netRegex: { name: 'Arena Gas Bomb' },
       alertText: (data, matches, output) => {
