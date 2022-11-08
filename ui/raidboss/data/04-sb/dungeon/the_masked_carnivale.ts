@@ -146,6 +146,7 @@ const triggerSet: TriggerSet<Data> = {
     // ================ Stage 10 Act 1 ================
     {
       id: 'Carnivale S10 A1 Crom Dubh King\'s Will',
+      // if attempting The Harder They Fall achievement, do not interrupt this cast
       type: 'StartsUsing',
       netRegex: { id: '397F', source: 'Crom Dubh' },
       response: Responses.interrupt(),
@@ -159,7 +160,7 @@ const triggerSet: TriggerSet<Data> = {
     // ================ Stage 11 Act 1 ================
     {
       id: 'Carnivale S11 A1-2 Arena Gas Bomb Fulmination',
-      // Arena Gas Bombs (2x Act 1, 4x Act 2) channel a long cast (22.7s) which is lethal if completed
+      // Arena Gas Bombs (x2 Act 1, x4 Act 2) channel a long cast (22.7s) which is lethal if completed
       // this cast can be interrupted (immediate re-cast) by doing any damage to them; warn when this cast is about to finish
       // TODO: this trigger is janky; trigger can overlap from multiple targets in unintended ways,
       //   and trigger still fires if target dies
@@ -182,6 +183,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Carnivale S12 A2 Hydnora Spore Sac',
+      // spawns several Arena Roselets which can be killed individually
+      // or can use Ice Spikes to reflect their attacks and kill them all at once
       type: 'StartsUsing',
       netRegex: { id: '39A0', source: 'Hydnora', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
@@ -202,6 +205,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Carnivale S13 A2 Carmilla Summon Darkness',
+      // add needs to be killed before Carmilla consumes it
+      // if not killed in time, Carmilla gains a Damage Up buff and kills the player
       type: 'AddedCombatant',
       netRegex: { name: 'Arena Succubus' },
       infoText: (_data, matches, output) => output.kill!({ name: matches.name }),
@@ -327,6 +332,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Carnivale S16 A2 Tikbalang 10-tonze Wave',
+      // front cleave with donut aoe
       type: 'StartsUsing',
       netRegex: { id: '3A1C', source: 'Tikbalang', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
