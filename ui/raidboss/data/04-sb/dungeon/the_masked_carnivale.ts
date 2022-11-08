@@ -23,6 +23,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   blind?: boolean;
+  act2?: boolean;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -376,7 +377,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Carnivale S18 A1-2 Arena Manticore Fireball',
-      // non-telegraphed ranged AoE
+      // non-telegraphed ranged aoe
       type: 'StartsUsing',
       netRegex: { id: '3ACB', source: 'Arena Manticore', capture: false },
       suppressSeconds: 1,
@@ -458,13 +459,179 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.knockback(),
     },
     // ================ Stage 21 Act 1 ================
+    {
+      id: 'Carnivale S21 A1-2 Arena Imp Void Blizzard',
+      type: 'StartsUsing',
+      netRegex: { id: '3AD7', source: 'Arena Imp' },
+      response: Responses.interrupt(),
+    },
     // ---------------- Stage 21 Act 2 ----------------
+    {
+      id: 'Carnivale S21 A2 Act Start',
+      // triggers off of the first autoattack in S21 A2
+      type: 'Ability',
+      netRegex: { id: '1961', source: 'Apademak', capture: false },
+      preRun: (data) => data.act2 = true,
+      suppressSeconds: 999999,
+    },
+    {
+      id: 'Carnivale S21 A2 Apademak The Ram\'s Voice',
+      type: 'StartsUsing',
+      netRegex: { id: '3AE7', source: 'Apademak', capture: false },
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Carnivale S21 A2 Apademak The Dragon\'s Voice',
+      type: 'StartsUsing',
+      netRegex: { id: '3AE8', source: 'Apademak', capture: false },
+      response: Responses.getIn(),
+    },
+    {
+      id: 'Carnivale S21 A2 Apademak The Ram\'s Keeper',
+      type: 'StartsUsing',
+      netRegex: { id: '3AE9', source: 'Apademak' },
+      response: Responses.interrupt(),
+    },
+    {
+      id: 'Carnivale S21 A2 Arena Imp Spawn',
+      // not necessary to kill add, but warn when spawned
+      type: 'AddedCombatant',
+      netRegex: { name: 'Arena Imp', capture: false },
+      infoText: (data, _matches, output) => {
+        if (data.act2)
+          return output.addSpawned!();
+      },
+      outputStrings: {
+        addSpawned: {
+          en: 'Add spawned!',
+        },
+      },
+    },
     // ================ Stage 22 Act 1 ================
+    // intentionally blank
     // ---------------- Stage 22 Act 2 ----------------
+    {
+      id: 'Carnivale S22 A2 Act Start',
+      // triggers off of the first autoattack in S22 A2
+      type: 'Ability',
+      netRegex: { id: '1963', source: 'The Forefather', capture: false },
+      preRun: (data) => data.act2 = true,
+      suppressSeconds: 999999,
+    },
+    {
+      id: 'Carnivale S22 A2 The Forefather Sap',
+      // aoe under the player, followed by several aoes around the room with one safe spot
+      type: 'Ability',
+      netRegex: { id: '3A3A', source: 'The Forefather', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Get to Safe Spot',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S22 A2 Arena Grenade Spawn',
+      // Arena Grenades spawn with Sleep; if they wake up they will do lethal damage
+      // Arena Grenades can be killed with a single standard (220p) attack spell
+      // Arena Grenades need to be killed before the boss casts Ignition (light roomwide attack, wakes Grenades)
+      type: 'AddedCombatant',
+      netRegex: { name: 'Arena Grenade' },
+      alertText: (data, matches, output) => {
+        if (data.act2)
+          return output.kill!({ name: matches.name });
+      },
+      outputStrings: {
+        kill: {
+          en: 'Kill ${name}',
+          de: 'Besiege ${name}',
+          fr: 'Tuez ${name}',
+          ja: '${name}を倒す',
+          cn: '击杀 ${name}',
+          ko: '${name} 처치',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S22 A2 Arena Gas Bomb Spawn',
+      // The Forefather will cast Burst, a non-interruptable, lethal roomwide attack
+      // Arena Gas Bombs cast Flashthoom, a small aoe which will interrupt Burst
+      // Arena Gas Bombs spawn on the edge of the room and need to be pulled in range of the boss
+      type: 'AddedCombatant',
+      netRegex: { name: 'Arena Gas Bomb' },
+      alertText: (data, matches, output) => {
+        if (data.act2)
+          return output.pullToBoss!({ name: matches.name });
+      },
+      outputStrings: {
+        pullToBoss: {
+          en: 'Pull ${name} to boss',
+        },
+      },
+    },
     // ================ Stage 23 Act 1 ================
+    {
+      id: 'Carnivale S23 A1 Kronprinz Behemoth Ecliptic Meteor',
+      // Ecliptic Meteor (9.7s cast) is lethal if not mitigated
+      // delay slightly so Diamondback doesn't run out too fast
+      type: 'StartsUsing',
+      netRegex: { id: '3B99', source: 'Kronprinz Behemoth', capture: false },
+      delaySeconds: 1,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Diamondback',
+        },
+      },
+    },
     // ================ Stage 24 Act 1 ================
+    // intentionally blank
     // ---------------- Stage 24 Act 2 ----------------
+    {
+      id: 'Carnivale S24 A2 Arena Scribe Silence',
+      type: 'StartsUsing',
+      netRegex: { id: '3BD9', source: 'Arena Scribe' },
+      response: Responses.interrupt(),
+    },
+    {
+      id: 'Carnivale S24 A2 Arena Scribe Condensed Libra',
+      // 38 = Physical Vulnerability Up
+      // will make next attack (Triple Hit, 3BD8) lethal
+      type: 'GainsEffect',
+      netRegex: { effectId: '38' },
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse vulnerability or mitigate',
+        },
+      },
+    },
     // ---------------- Stage 24 Act 3 ----------------
+    {
+      id: 'Carnivale S24 A3 Epilogi Page Tear',
+      type: 'StartsUsing',
+      netRegex: { id: '3BDC', source: 'Epilogi', capture: false },
+      response: Responses.awayFromFront(),
+    },
+    {
+      id: 'Carnivale S24 A3 Epilogi Head Down',
+      type: 'StartsUsing',
+      netRegex: { id: '3BDD', source: 'Epilogi', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Knockback into Safe Spot',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S24 A3 Epilogi Bone Shaker',
+      // aoe + spawns adds
+      type: 'Ability',
+      netRegex: { id: '3BDE', source: 'Epilogi', capture: false },
+      response: Responses.killAdds(),
+    },
     // ================ Stage 25 Act 1 ================
     // ---------------- Stage 25 Act 2 ----------------
     // ---------------- Stage 25 Act 3 ----------------
