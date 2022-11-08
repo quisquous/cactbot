@@ -197,7 +197,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Carnivale S13 A2 Carmilla Dark Sabbath',
       type: 'StartsUsing',
-      netRegex: { id: '3A67', source: 'Carmilla' },
+      netRegex: { id: '3A67', source: 'Carmilla', capture: false },
       response: Responses.lookAway(),
     },
     {
@@ -252,6 +252,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Carnivale S15 A1 Arena Shabti Spawn',
+      // Arena Shabti spawns with a Damage Up buff that makes its attacks very dangerous
+      // can Sleep the Arena Shabti until the buff expires
       type: 'AddedCombatant',
       netRegex: { name: 'Arena Shabti' },
       alertText: (_data, matches, output) => output.sleep!({ name: matches.name }),
@@ -278,16 +280,177 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getBehind(),
     },
     // ================ Stage 16 Act 1 ================
+    // intentionally blank
     // ---------------- Stage 16 Act 2 ----------------
+    {
+      id: 'Carnivale S16 A2 Tikbalang 10-tonze Slash',
+      type: 'StartsUsing',
+      netRegex: { id: '3A17', source: 'Tikbalang', capture: false },
+      response: Responses.awayFromFront(),
+    },
+    {
+      id: 'Carnivale S16 A2 Tikbalang 111-tonze Swing',
+      type: 'StartsUsing',
+      netRegex: { id: '3A18', source: 'Tikbalang', capture: false },
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Carnivale S16 A2 Tikbalang Cry of Rage',
+      type: 'StartsUsing',
+      netRegex: { id: '3A1B', source: 'Tikbalang', capture: false },
+      response: Responses.lookAway(),
+    },
+    {
+      id: 'Carnivale S16 A2 Tikbalang 1111-tonze Swing',
+      // Tikbalang casts The Bull's Voice (39BB) to give himself a Damage Up (122) buff,
+      // then uses Predatorial Instinct (395D) to give the player an uncleansable Heavy (F0) and draw them in,
+      // then begins casting 1111-tonze Swing (395E) which is lethal if not mitigated
+      type: 'StartsUsing',
+      netRegex: { id: '395E', source: 'Tikbalang', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Diamondback',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S16 A2 Tikbalang Zoom In',
+      type: 'StartsUsing',
+      netRegex: { id: '3A19', source: 'Tikbalang', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Charge + knockback',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S16 A2 Tikbalang 10-tonze Wave',
+      type: 'StartsUsing',
+      netRegex: { id: '3A1C', source: 'Tikbalang', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Away from front + in',
+        },
+      },
+    },
     // ================ Stage 17 Act 1 ================
+    // intentionally blank
     // ---------------- Stage 17 Act 2 ----------------
+    {
+      id: 'Carnivale S17 A2 Kreios Magitek Field',
+      // same name, different id from S04 A2
+      type: 'StartsUsing',
+      netRegex: { id: '3AC9', source: 'Kreios' },
+      response: Responses.interrupt(),
+    },
     // ================ Stage 18 Act 1 ================
+    {
+      id: 'Carnivale S18 A1-2 Arena Manticore Wild Charge',
+      // non-telegraphed charge + knockback
+      type: 'StartsUsing',
+      netRegex: { id: '3ACF', source: 'Arena Manticore', capture: false },
+      suppressSeconds: 1,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Charge + knockback',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S18 A1-2 Arena Manticore Ripper Claw',
+      // non-telegraphed front cleave
+      type: 'StartsUsing',
+      netRegex: { id: '3ACA', source: 'Arena Manticore', capture: false },
+      suppressSeconds: 1,
+      response: Responses.awayFromFront(),
+    },
+    {
+      id: 'Carnivale S18 A1-2 Arena Manticore Fireball',
+      // non-telegraphed ranged AoE
+      type: 'StartsUsing',
+      netRegex: { id: '3ACB', source: 'Arena Manticore', capture: false },
+      suppressSeconds: 1,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Fireball',
+        },
+      },
+    },
     // ---------------- Stage 18 Act 2 ----------------
+    // intentionally blank
     // ================ Stage 19 Act 1 ================
+    {
+      id: 'Carnivale S19 A1-2 Reflective Rebekkah Reflect',
+      // reflects all magic attacks
+      type: 'StartsUsing',
+      netRegex: { id: '3AE1', source: 'Reflective Rebekkah', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Magic reflect',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S19 A1-2 Reflective Rebekkah Offal Breath',
+      type: 'StartsUsing',
+      netRegex: { id: '3AE4', source: 'Reflective Rebekkah' },
+      response: Responses.interrupt(),
+    },
     // ---------------- Stage 19 Act 2 ----------------
+    {
+      id: 'Carnivale S19 A2 Reflective Rebekkah Schizocarps',
+      // spawns 8x Hot Hips around the arena that do a simultaneous gaze attack
+      // can either look away from all Hot Hips or Blind yourself to dodge the gazes
+      type: 'StartsUsing',
+      netRegex: { id: '3AE5', source: 'Reflective Rebekkah', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Blind yourself or Look Away',
+        },
+      },
+    },
     // ================ Stage 20 Act 1 ================
+    {
+      id: 'Carnivale S20 A1,3 Typhon Snort',
+      // Typhon casts Snort to knock the player back,
+      // then uses 3x un-telegraphed Fireballs that do very high damage if not mitigated
+      type: 'StartsUsing',
+      netRegex: { id: '3970', source: 'Typhon', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Diamondback',
+        },
+      },
+    },
     // ---------------- Stage 20 Act 2 ----------------
+    {
+      id: 'Carnivale S20 A2 Ultros Imp Song',
+      type: 'StartsUsing',
+      netRegex: { id: '3978', source: 'Ultros' },
+      response: Responses.interrupt(),
+    },
     // ---------------- Stage 20 Act 3 ----------------
+    {
+      id: 'Carnivale S20 A3 Ultros Imp Song',
+      // same name, different id from S20 A2
+      type: 'StartsUsing',
+      netRegex: { id: '3998', source: 'Ultros' },
+      response: Responses.interrupt(),
+    },
+    {
+      id: 'Carnivale S20 A3 Stylish Tentacle Clearout',
+      type: 'Ability',
+      netRegex: { id: '399D', source: 'Stylish Tentacle', capture: false },
+      response: Responses.knockback(),
+    },
     // ================ Stage 21 Act 1 ================
     // ---------------- Stage 21 Act 2 ----------------
     // ================ Stage 22 Act 1 ================
