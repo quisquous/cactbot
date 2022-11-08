@@ -385,14 +385,14 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.AnotherSildihnSubterrane,
   ZoneId.AnotherSildihnSubterraneSavage,
 
-  // Masked Carnivale
-  ZoneId.AllsWellThatStartsWell,
-
   // Ultimate Raids
   ZoneId.TheUnendingCoilOfBahamutUltimate,
   ZoneId.TheWeaponsRefrainUltimate,
   ZoneId.TheEpicOfAlexanderUltimate,
   ZoneId.DragonsongsRepriseUltimate,
+
+  // Masked Carnivale
+  ZoneId.AllsWellThatStartsWell,
 ];
 
 export default contentList;
