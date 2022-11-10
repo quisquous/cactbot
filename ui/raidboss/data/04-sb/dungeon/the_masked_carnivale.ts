@@ -1184,7 +1184,7 @@ const triggerSet: TriggerSet<Data> = {
       // followed by Gogo Blizzard III (5A4E), a point-blank aoe around the boss
       type: 'StartsUsing',
       netRegex: { id: '5A4D', source: 'Gogo, Master of Mimicry', capture: false },
-      alertText: (_data, matches, output) => output.text!(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Away from boss => Stop Everything',
