@@ -494,18 +494,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Carnivale S21 A2 Arena Imp Spawn',
-      // not necessary to kill add, but warn when spawned
       type: 'AddedCombatant',
       netRegex: { name: 'Arena Imp', capture: false },
-      infoText: (data, _matches, output) => {
-        if (data.act2)
-          return output.addSpawned!();
-      },
-      outputStrings: {
-        addSpawned: {
-          en: 'Add spawned!',
-        },
-      },
+      response: Responses.killAdds(),
     },
     // ================ Stage 22 Act 1 ================
     // intentionally blank
@@ -597,13 +588,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Carnivale S24 A2 Arena Scribe Condensed Libra',
       // 38 = Physical Vulnerability Up
       // will make next attack (Triple Hit, 3BD8) lethal
+      // can cleanse the debuff or mitigate the attack
       type: 'GainsEffect',
       netRegex: { effectId: '38' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Cleanse vulnerability or mitigate',
+          en: 'Cleanse debuff or mitigate',
         },
       },
     },
@@ -633,25 +625,401 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.killAdds(),
     },
     // ================ Stage 25 Act 1 ================
+    {
+      id: 'Carnivale S25 A1,3 Azulmagia Ice Spikes',
+      // reflects physical damage
+      type: 'StartsUsing',
+      netRegex: { id: '39AA', source: 'Azulmagia', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Physical reflect',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S25 A1-3 Azulmagia The Ram\'s Voice',
+      type: 'StartsUsing',
+      netRegex: { id: '39AB', source: 'Azulmagia', capture: false },
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Carnivale S25 A1-3 Azulmagia The Dragon\'s Voice',
+      type: 'StartsUsing',
+      netRegex: { id: '39AC', source: 'Azulmagia', capture: false },
+      response: Responses.getIn(),
+    },
     // ---------------- Stage 25 Act 2 ----------------
+    {
+      id: 'Carnivale S25 A2-3 Azulmagia Repelling Spray',
+      // reflects magic damage
+      type: 'StartsUsing',
+      netRegex: { id: '39B0', source: 'Azulmagia', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Magic reflect',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S25 A2 Azulmagia Blazing Angon',
+      type: 'AddedCombatant',
+      netRegex: { name: 'Blazing Angon', capture: false },
+      response: Responses.killAdds(),
+    },
     // ---------------- Stage 25 Act 3 ----------------
+    // intentionally blank
     // ================ Stage 26 Act 1 ================
+    {
+      id: 'Carnivale S26 A1 Arena Mirrorknight Alternate Plumage',
+      // 3F = Vulnerability Down, can be dispelled
+      type: 'GainsEffect',
+      netRegex: { effectId: '3F', target: 'Arena Mirrorknight' },
+      infoText: (_data, matches, output) => output.dispel!({ name: matches.target }),
+      outputStrings: {
+        dispel: {
+          en: 'Dispel ${name}',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S26 A1 Arena Mirrorknight Caber Toss',
+      type: 'StartsUsing',
+      netRegex: { id: '4900', source: 'Arena Mirrorknight' },
+      response: Responses.interrupt(),
+    },
     // ---------------- Stage 26 Act 2 ----------------
+    {
+      id: 'Carnivale S26 A2 Papa Humbaba Raw Instinct',
+      // 705 = Critical Strikes, can be dispelled
+      type: 'GainsEffect',
+      netRegex: { effectId: '705', target: 'Papa Humbaba' },
+      infoText: (_data, matches, output) => output.dispel!({ name: matches.target }),
+      outputStrings: {
+        dispel: {
+          en: 'Dispel ${name}',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S26 A2 Papa Humbaba Dad Joke',
+      // attack has a headmarker warning but no castbar
+      type: 'HeadMarker',
+      netRegex: { id: '0017' },
+      condition: Conditions.targetIsYou(),
+      response: Responses.knockback(),
+    },
+    {
+      id: 'Carnivale S26 A2 Papa Humbaba Void Thunder III',
+      // 10F = Electrocution, can be cleansed
+      type: 'GainsEffect',
+      netRegex: { effectId: '10F' },
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      outputStrings: {
+        text: {
+          en: 'Cleanse ${player}',
+          de: 'Reinige ${player}',
+          fr: 'Guérison sur ${player}',
+          ja: 'エスナ：${player}',
+          cn: '康复${player}',
+          ko: '"${player}" 에스나',
+        },
+      },
+    },
     // ================ Stage 27 Act 1 ================
+    // intentionally blank
     // ================ Stage 28 Act 1 ================
+    {
+      id: 'Carnivale S28 A1 Durinn Doom Impending',
+      // gives Doom (6E9) and Incurable (5D0)
+      // if not healed to full before debuffs applied, player will die
+      type: 'StartsUsing',
+      netRegex: { id: '4A6B', source: 'Durinn', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Heal To Full',
+          de: 'Vollheilen',
+          fr: 'Soignez complètement',
+          ja: '全員のHPを全回復',
+          cn: '奶满全队',
+          ko: '체력 풀피로',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S28 A1 Durinn March of the Draugar',
+      // summons different adds each wave
+      type: 'StartsUsing',
+      netRegex: { id: '4A71', source: 'Durinn' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime),
+      response: Responses.killAdds(),
+    },
+    {
+      id: 'Carnivale S28 A1 Durinn Cackle',
+      type: 'StartsUsing',
+      netRegex: { id: '4A6D', source: 'Durinn' },
+      response: Responses.interrupt(),
+    },
+    {
+      id: 'Carnivale S28 A1 Durinn Mega Death',
+      // if player does not have the Death Becomes You (895) debuff when cast finishes, they will die
+      type: 'StartsUsing',
+      netRegex: { id: '4A6F', source: 'Durinn', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Stand in one puddle',
+          de: 'In einer Fläche stehen',
+          fr: 'Placez-vous dans une zone au sol',
+          ja: '範囲に入る',
+          cn: '站在圈里',
+          ko: '장판 하나만 밟기',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S28 A1 Durinn Funeral Pyre',
+      // all undead in this stage take increased damage from fire attacks
+      // player counts as undead if they have the Death Becomes You (895) debuff
+      type: 'StartsUsing',
+      netRegex: { id: '4A70', source: 'Durinn', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Avoid puddles',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S28 A1 Durinn Brainstorm',
+      type: 'GainsEffect',
+      // 7A6 = Forward March
+      // 7A7 = About Face
+      // 7A8 = Left Face
+      // 7A9 = Right Face
+      netRegex: { effectId: '7A[6-9]' },
+      condition: Conditions.targetIsYou(),
+      infoText: (_data, matches, output) => {
+        const effectId = matches.effectId.toUpperCase();
+        if (effectId === '7A6')
+          return output.forward!();
+        if (effectId === '7A7')
+          return output.backward!();
+        if (effectId === '7A8')
+          return output.left!();
+        if (effectId === '7A9')
+          return output.right!();
+      },
+      outputStrings: {
+        forward: {
+          en: 'March Forward into safe spot',
+        },
+        backward: {
+          en: 'March Backward into safe spot',
+        },
+        left: {
+          en: 'March Left into safe spot',
+        },
+        right: {
+          en: 'March Right into safe spot',
+        },
+      },
+    },
     // ================ Stage 29 Act 1 ================
     {
-      id: 'Carnivale S29 A1 Pyre Fluid Swing',
+      id: 'Carnivale S29 A1 Shikigami of the Pyre Fluid Swing',
       type: 'StartsUsing',
       netRegex: { id: '4901', source: 'Shikigami of the Pyre' },
       response: Responses.interrupt(),
     },
+    {
+      id: 'Carnivale S29 A1 Shikigami of the Pyre Sea of Flames',
+      type: 'StartsUsing',
+      netRegex: { id: '4905', source: 'Shikigami of the Pyre', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Bait two Eruptions',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S29 A1 Shikigami of the Pyre Pyretic',
+      // the Pyretic cast (4903) gives the Pyretic debuff (3C0)
+      type: 'StartsUsing',
+      netRegex: { id: '4903', source: 'Shikigami of the Pyre', capture: false },
+      response: Responses.stopEverything(),
+    },
+    {
+      id: 'Carnivale S29 A1 Pyretic Lose',
+      // 3C0 = Pyretic
+      // Shikigami of the Pyre casts Fire II (4904) to bait the player into moving early
+      type: 'LosesEffect',
+      netRegex: { effectId: '3C0' },
+      condition: Conditions.targetIsYou(),
+      response: Responses.moveAway(),
+    },
+    {
+      id: 'Carnivale S29 A1 Shikigami of the Pyre Pillar of Flame 1',
+      // out then in pattern
+      type: 'StartsUsing',
+      netRegex: { id: '4907', source: 'Shikigami of the Pyre', capture: false },
+      response: Responses.getOutThenIn(),
+    },
+    {
+      id: 'Carnivale S29 A1 Shikigami of the Pyre Pillar of Flame 2',
+      // single safe spot pattern
+      type: 'StartsUsing',
+      netRegex: { id: '49CE', source: 'Shikigami of the Pyre', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Get to Safe Spot',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S29 A1 Shikigami of the Pyre Flare Star',
+      // proximity damage from center of the arena
+      type: 'StartsUsing',
+      netRegex: { id: '4909', source: 'Shikigami of the Pyre', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Get to edge',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S29 A1 Shikigami of the Pyre Rush',
+      type: 'StartsUsing',
+      netRegex: { id: '4902', source: 'Shikigami of the Pyre', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Run Away From Boss',
+          de: 'Renn weg vom Boss',
+          fr: 'Courez loin du boss',
+          ja: 'ボスから離れる',
+          cn: '远离Boss',
+          ko: '보스와 거리 벌리기',
+        },
+      },
+    },
     // ---------------- Stage 29 Act 2 ----------------
     {
-      id: 'Carnivale S29 A2 Undertow Fluid Swing',
+      id: 'Carnivale S29 A2 Shikigami of the Undertow Fluid Swing',
       type: 'StartsUsing',
       netRegex: { id: '4A11', source: 'Shikigami of the Undertow' },
       response: Responses.interrupt(),
+    },
+    {
+      id: 'Carnivale S29 A2 Shikigami of the Undertow Protean Wave',
+      type: 'StartsUsing',
+      netRegex: { id: '4A1B', source: 'Shikigami of the Undertow', capture: false },
+      response: Responses.awayFromFront(),
+    },
+    {
+      id: 'Carnivale S29 A2 Shikigami of the Undertow Throttle',
+      // 2BC = Throttle, lethal if not cleansed
+      type: 'GainsEffect',
+      netRegex: { effectId: '2BC' },
+      alertText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      outputStrings: {
+        text: {
+          en: 'Cleanse ${player}',
+          de: 'Reinige ${player}',
+          fr: 'Guérison sur ${player}',
+          ja: 'エスナ：${player}',
+          cn: '康复${player}',
+          ko: '"${player}" 에스나',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S29 A2 Shikigami of the Undertow Ferrofluid',
+      // 4A12 magnets with different polarity (will get pulled into boss)
+      // 4A13 magnets with same polarity (will get pushed away from boss)
+      type: 'StartsUsing',
+      netRegex: { id: '4A1[23]', source: 'Shikigami of the Undertow' },
+      infoText: (_data, matches, output) => {
+        if (matches.id === '4A12')
+          return output.far!();
+        return output.close!();
+      },
+      outputStrings: {
+        close: {
+          en: 'Close to boss',
+          de: 'Nahe am Boss',
+          fr: 'Allez près du boss',
+          ja: 'ボスに近づく',
+          cn: '靠近boss',
+          ko: '보스 가까이 붙기',
+        },
+        far: {
+          en: 'Away from boss',
+          de: 'Weg am Boss',
+          fr: 'Éloignez-vous du boss',
+          ja: 'ボスから離れる',
+          cn: '远离boss',
+          ko: '보스에게서 멀어지기',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S29 A2 Shikigami of the Undertow Fluid Ball',
+      type: 'StartsUsing',
+      netRegex: { id: '4A18', source: 'Shikigami of the Undertow', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Bait two aoes',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S29 A2 Shikigami of the Undertow Watery Grasp Warning',
+      type: 'StartsUsing',
+      netRegex: { id: '4A54', source: 'Shikigami of the Undertow', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Adds soon',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S29 A2 Shikigami of the Undertow Watery Grasp Adds',
+      type: 'Ability',
+      netRegex: { id: '4A54', source: 'Shikigami of the Undertow', capture: false },
+      response: Responses.killAdds(),
+    },
+    {
+      id: 'Carnivale S29 A2 Shikigami of the Undertow Big Splash',
+      // Big Splash (7.7s cast) is lethal if not mitigated
+      type: 'StartsUsing',
+      netRegex: { id: '4A15', source: 'Shikigami of the Undertow', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Diamondback',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S29 A2 Shikigami of the Undertow Unwind',
+      // proximity damage from 3x water tornadoes
+      type: 'StartsUsing',
+      netRegex: { id: '4A29', source: 'Shikigami of the Undertow', capture: false },
+      suppressSeconds: 1,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Away from water tornadoes',
+        },
+      },
     },
     // ================ Stage 30 Act 1 ================
     // ---------------- Stage 30 Act 2 ----------------
