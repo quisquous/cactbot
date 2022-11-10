@@ -28,12 +28,6 @@ export interface Data extends RaidbossData {
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AllsWellThatStartsWell,
-  // timelineFile: 'the_masked_carnivale.txt',
-  // initData: () => {
-  //   return {
-  //     blind: false,
-  //   };
-  // },
   triggers: [
     // ================ Stage 01 Act 1 ================
     // intentionally blank
@@ -590,7 +584,7 @@ const triggerSet: TriggerSet<Data> = {
       // will make next attack (Triple Hit, 3BD8) lethal
       // can cleanse the debuff or mitigate the attack
       type: 'GainsEffect',
-      netRegex: { effectId: '38' },
+      netRegex: { effectId: '38', source: 'Arena Scribe' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -714,7 +708,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Carnivale S26 A2 Papa Humbaba Void Thunder III',
       // 10F = Electrocution, can be cleansed
       type: 'GainsEffect',
-      netRegex: { effectId: '10F' },
+      netRegex: { effectId: '10F', source: 'Papa Humbaba' },
       infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
@@ -751,9 +745,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Carnivale S28 A1 Durinn March of the Draugar',
       // summons different adds each wave
-      type: 'StartsUsing',
-      netRegex: { id: '4A71', source: 'Durinn' },
-      delaySeconds: (_data, matches) => parseFloat(matches.castTime),
+      type: 'Ability',
+      netRegex: { id: '4A71', source: 'Durinn', capture: false},
       response: Responses.killAdds(),
     },
     {
@@ -794,12 +787,13 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Carnivale S28 A1 Durinn Brainstorm',
+      // Mindhack with ground aoes, single safe spot
       type: 'GainsEffect',
       // 7A6 = Forward March
       // 7A7 = About Face
       // 7A8 = Left Face
       // 7A9 = Right Face
-      netRegex: { effectId: '7A[6-9]' },
+      netRegex: { effectId: '7A[6-9]', source: 'Durinn' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, matches, output) => {
         const effectId = matches.effectId.toUpperCase();
@@ -814,22 +808,23 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         forward: {
-          en: 'March Forward into safe spot',
+          en: 'March Forward into Safe Spot',
         },
         backward: {
-          en: 'March Backward into safe spot',
+          en: 'March Backward into Safe Spot',
         },
         left: {
-          en: 'March Left into safe spot',
+          en: 'March Left into Safe Spot',
         },
         right: {
-          en: 'March Right into safe spot',
+          en: 'March Right into Safe Spot',
         },
       },
     },
     // ================ Stage 29 Act 1 ================
     {
       id: 'Carnivale S29 A1 Shikigami of the Pyre Fluid Swing',
+      // cleave + knockback if not interrupted
       type: 'StartsUsing',
       netRegex: { id: '4901', source: 'Shikigami of the Pyre' },
       response: Responses.interrupt(),
@@ -857,7 +852,7 @@ const triggerSet: TriggerSet<Data> = {
       // 3C0 = Pyretic
       // Shikigami of the Pyre casts Fire II (4904) to bait the player into moving early
       type: 'LosesEffect',
-      netRegex: { effectId: '3C0' },
+      netRegex: { effectId: '3C0', source: 'Shikigami of the Pyre' },
       condition: Conditions.targetIsYou(),
       response: Responses.moveAway(),
     },
@@ -894,6 +889,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Carnivale S29 A1 Shikigami of the Pyre Rush',
+      // charge from boss that does proximity-based damage
       type: 'StartsUsing',
       netRegex: { id: '4902', source: 'Shikigami of the Pyre', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
@@ -911,12 +907,14 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Stage 29 Act 2 ----------------
     {
       id: 'Carnivale S29 A2 Shikigami of the Undertow Fluid Swing',
+      // cleave + knockback if not interrupted
       type: 'StartsUsing',
       netRegex: { id: '4A11', source: 'Shikigami of the Undertow' },
       response: Responses.interrupt(),
     },
     {
       id: 'Carnivale S29 A2 Shikigami of the Undertow Protean Wave',
+      // cone from front of boss then cone baited on player
       type: 'StartsUsing',
       netRegex: { id: '4A1B', source: 'Shikigami of the Undertow', capture: false },
       response: Responses.awayFromFront(),
@@ -925,7 +923,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Carnivale S29 A2 Shikigami of the Undertow Throttle',
       // 2BC = Throttle, lethal if not cleansed
       type: 'GainsEffect',
-      netRegex: { effectId: '2BC' },
+      netRegex: { effectId: '2BC', source: 'Shikigami of the Undertow' },
       alertText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
@@ -1001,7 +999,7 @@ const triggerSet: TriggerSet<Data> = {
       // Big Splash (7.7s cast) is lethal if not mitigated
       type: 'StartsUsing',
       netRegex: { id: '4A15', source: 'Shikigami of the Undertow', capture: false },
-      infoText: (_data, _matches, output) => output.text!(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Diamondback',
@@ -1022,10 +1020,214 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     // ================ Stage 30 Act 1 ================
+    {
+      id: 'Carnivale S30 A1,3 Siegfried Magic Drain',
+      // reflects all magic attacks
+      type: 'StartsUsing',
+      netRegex: { id: '49CA', source: 'Siegfried', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Magic reflect',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S30 A1,3 Siegfried Ankle Graze',
+      // 234 = Bind
+      type: 'GainsEffect',
+      netRegex: { effectId: '234', source: 'Siegfried' },
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      outputStrings: {
+        text: {
+          en: 'Cleanse ${player}',
+          de: 'Reinige ${player}',
+          fr: 'Guérison sur ${player}',
+          ja: 'エスナ：${player}',
+          cn: '康复${player}',
+          ko: '"${player}" 에스나',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S30 A1,3 Siegfried Hyperdrive',
+      type: 'Ability',
+      netRegex: { id: '4994', source: 'Siegfried', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Bait three aoes',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S30 A1 Siegfried Rubber Bullet',
+      // TODO: is back-right from boss always safe?
+      type: 'StartsUsing',
+      netRegex: { id: '499F', source: 'Siegfried', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Knockback into Safe Spot',
+        },
+      },
+    },
     // ---------------- Stage 30 Act 2 ----------------
+    {
+      id: 'Carnivale S30 A2-3 Siegfried Swiftsteel',
+      // donut aoe with knockback
+      type: 'StartsUsing',
+      netRegex: { id: '499A', source: 'Siegfried', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Get in + Knockback',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S30 A2-3 Siegfried Shattersteel',
+      // single safe spot in gap between two ice blocks
+      type: 'StartsUsing',
+      netRegex: { id: '4A53', source: 'Siegfried', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Get to Safe Spot (between two ice)',
+        },
+      },
+    },
     // ---------------- Stage 30 Act 3 ----------------
+    // intentionally blank
     // ================ Stage 31 Act 1 ================
+    {
+      id: 'Carnivale S31 A1 Gogo, Master of Mimicry Mimic',
+      // Gogo counterattacks all attacks while Mimicry (992) is active
+      type: 'StartsUsing',
+      netRegex: { id: '5A39', source: 'Gogo, Master of Mimicry' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 1,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Stop attacking',
+          de: 'Angriffe stoppen',
+          fr: 'Arrêtez d\'attaquer',
+          ja: '攻撃禁止',
+          cn: '停止攻击',
+          ko: '공격 중지',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S31 A1 Gogo, Master of Mimicry Mimicked Sap',
+      // casts 3x, second and third casts are faster
+      // 5A40 = 3.2s, 5A41 = 1.2s
+      type: 'Ability',
+      netRegex: { id: '5A40', source: 'Gogo, Master of Mimicry', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Bait two aoes',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S31 A1 Gogo, Master of Mimicry Mimicked Imp Song',
+      type: 'StartsUsing',
+      netRegex: { id: '5A4A', source: 'Gogo, Master of Mimicry' },
+      response: Responses.interrupt(),
+    },
+    {
+      id: 'Carnivale S31 A1 Gogo, Master of Mimicry Mimicked Doom Impending',
+      // gives Doom (6E9) and Incurable (5D0)
+      // if not healed to full before debuffs applied, player will die
+      type: 'StartsUsing',
+      netRegex: { id: '5A49', source: 'Gogo, Master of Mimicry', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Heal To Full',
+          de: 'Vollheilen',
+          fr: 'Soignez complètement',
+          ja: '全員のHPを全回復',
+          cn: '奶满全队',
+          ko: '체력 풀피로',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S31 A1 Gogo, Master of Mimicry Mimicked Bunshin',
+      // spawns a clone that does a double cone while Gogo does a line aoe
+      type: 'StartsUsing',
+      netRegex: { id: '5A43', source: 'Gogo, Master of Mimicry', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Add soon',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S31 A1 Gogo, Master of Mimicry Mimicked Raw Instinct',
+      // 705 = Critical Strikes, can be dispelled
+      type: 'GainsEffect',
+      netRegex: { effectId: '705', target: 'Gogo, Master of Mimicry' },
+      infoText: (_data, matches, output) => output.dispel!({ name: matches.target }),
+      outputStrings: {
+        dispel: {
+          en: 'Dispel ${name}',
+        },
+      },
+    },
     // ---------------- Stage 31 Act 2 ----------------
+    {
+      id: 'Carnivale S31 A2 Gogo, Master of Mimicry Gogo Fire III',
+      // gives the Pyretic debuff (3C0)
+      // followed by Gogo Blizzard III (5A4E), a point-blank aoe around the boss
+      type: 'StartsUsing',
+      netRegex: { id: '5A4D', source: 'Gogo, Master of Mimicry', capture: false },
+      alertText: (_data, matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Away from boss => Stop Everything',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S31 A2 Gogo, Master of Mimicry Gogo Meteor',
+      // Gogo Meteor is a clusterfuck of random, baited, and proximity-damage aoes
+      // followed by one giant, roomwide meteor that is lethal if not mitigated
+      // multiple ids: 5A50, 5A51, 5A52, 5A53, 5A54, 5A59, 5A5B
+      // 5A54 is the giant, roomwide, lethal meteor at the end
+      type: 'StartsUsing',
+      netRegex: { id: '5A54', source: 'Gogo, Master of Mimicry', },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) / 2,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Diamondback',
+        },
+      },
+    },
+    {
+      id: 'Carnivale S31 A2 Gogo, Master of Mimicry Icestorm',
+      // Icestorm gives two debuffs: Frostbite (10C) and Heavy (453)
+      // both need to be cleansed so the following mechanics can be dodged
+      type: 'GainsEffect',
+      netRegex: { effectId: ['10C', '453'], source: 'Gogo, Master of Mimicry' },
+      suppressSeconds: 1,
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      outputStrings: {
+        text: {
+          en: 'Cleanse ${player}',
+          de: 'Reinige ${player}',
+          fr: 'Guérison sur ${player}',
+          ja: 'エスナ：${player}',
+          cn: '康复${player}',
+          ko: '"${player}" 에스나',
+        },
+      },
+    },
   ],
 };
 
