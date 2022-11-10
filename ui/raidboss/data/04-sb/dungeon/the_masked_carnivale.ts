@@ -490,7 +490,13 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Carnivale S21 A2 Arena Imp Spawn',
       type: 'AddedCombatant',
       netRegex: { name: 'Arena Imp', capture: false },
-      response: Responses.killAdds(),
+      infoText: (data, _matches, output) => {
+        if (data.act2)
+          return output.killAdds!();
+      },
+      outputStrings: {
+        killAdds: Outputs.killAdds,
+      },
     },
     // ================ Stage 22 Act 1 ================
     // intentionally blank
