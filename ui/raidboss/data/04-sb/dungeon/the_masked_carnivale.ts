@@ -525,7 +525,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Carnivale S22 A2 Arena Grenade Spawn',
       // Arena Grenades spawn with Sleep; if they wake up they will do lethal damage
       // Arena Grenades can be killed with a single standard (220p) attack spell
-      // Arena Grenades need to be killed before the boss casts Ignition (light roomwide attack, wakes Grenades)
+      // Arena Grenades need to be killed before the boss casts Ignition (3AC0, light roomwide attack, wakes Grenades)
       type: 'AddedCombatant',
       netRegex: { name: 'Arena Grenade' },
       alertText: (data, matches, output) => {
@@ -545,8 +545,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Carnivale S22 A2 Arena Gas Bomb Spawn',
-      // The Forefather will cast Burst, a non-interruptable, lethal roomwide attack
-      // Arena Gas Bombs cast Flashthoom, a small aoe which will interrupt Burst
+      // The Forefather will cast Burst (3A38), a non-interruptable, lethal roomwide attack
+      // Arena Gas Bombs cast Flashthoom (3A36), a small aoe which will interrupt Burst
       // Arena Gas Bombs spawn on the edge of the arena and need to be pulled in range of the boss
       type: 'AddedCombatant',
       netRegex: { name: 'Arena Gas Bomb' },
@@ -895,7 +895,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Carnivale S29 A1 Shikigami of the Pyre Rush',
-      // charge from boss that does proximity-based damage
+      // charge from boss that deals proximity-based damage
       type: 'StartsUsing',
       netRegex: { id: '4902', source: 'Shikigami of the Pyre', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
@@ -944,8 +944,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Carnivale S29 A2 Shikigami of the Undertow Ferrofluid',
-      // 4A12 magnets with different polarity (will get pulled into boss)
-      // 4A13 magnets with same polarity (will get pushed away from boss)
+      // 4A12 magnets with different polarity (will get pulled into boss + point-blank aoe under boss)
+      // 4A13 magnets with same polarity (will get pushed away from boss + donut aoe around boss)
       type: 'StartsUsing',
       netRegex: { id: '4A1[23]', source: 'Shikigami of the Undertow' },
       infoText: (_data, matches, output) => {
