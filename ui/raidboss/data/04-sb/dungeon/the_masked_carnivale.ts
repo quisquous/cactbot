@@ -97,7 +97,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Carnivale S07 A3 Gladiatorial Node Low Voltage',
       type: 'StartsUsing',
-      netRegex: { source: 'Gladiatorial Node', id: '3976' },
+      netRegex: { id: '3976', source: 'Gladiatorial Node' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 3,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
@@ -216,7 +216,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Carnivale S14 A1-2 Arena Jam The Last Song',
       type: 'StartsUsing',
-      netRegex: { source: 'Arena Jam', id: '39A4' },
+      netRegex: { id: '39A4', source: 'Arena Jam' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 3,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
@@ -742,7 +742,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Carnivale S28 A1 Durinn March of the Draugar',
       // summons different adds each wave
       type: 'Ability',
-      netRegex: { id: '4A71', source: 'Durinn', capture: false},
+      netRegex: { id: '4A71', source: 'Durinn', capture: false },
       response: Responses.killAdds(),
     },
     {
@@ -921,7 +921,8 @@ const triggerSet: TriggerSet<Data> = {
       // 2BC = Throttle, lethal if not cleansed
       type: 'GainsEffect',
       netRegex: { effectId: '2BC', source: 'Shikigami of the Undertow' },
-      alertText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      alertText: (data, matches, output) =>
+        output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Cleanse ${player}',
@@ -1197,7 +1198,7 @@ const triggerSet: TriggerSet<Data> = {
       // multiple ids: 5A50, 5A51, 5A52, 5A53, 5A54, 5A59, 5A5B
       // 5A54 is the giant, roomwide, lethal meteor at the end
       type: 'StartsUsing',
-      netRegex: { id: '5A54', source: 'Gogo, Master of Mimicry', },
+      netRegex: { id: '5A54', source: 'Gogo, Master of Mimicry' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) / 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
