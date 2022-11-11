@@ -41,7 +41,16 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Excitatron Exciting Mandragoras Spawn',
       type: 'AddedCombatant',
-      netRegex: { name: ['Exciting Tomato', 'Exciting Garlic', 'Exciting Queen', 'Exciting Onion', 'Exciting Egg'], capture: false },
+      netRegex: {
+        name: [
+          'Exciting Tomato',
+          'Exciting Garlic',
+          'Exciting Queen',
+          'Exciting Onion',
+          'Exciting Egg'
+        ],
+        capture: false
+      },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
