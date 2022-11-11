@@ -4,6 +4,9 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: id for Lucky Face Temper's Flare
+// TODO: all Lucky Sphinx abilities
+
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
@@ -15,6 +18,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Excitatron Rainbow Golem Spawn',
       type: 'AddedCombatant',
       netRegex: { name: 'Rainbow Golem', capture: false },
+      suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -26,6 +30,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Excitatron Golden Supporter Spawn',
       type: 'AddedCombatant',
       netRegex: { name: 'Golden Supporter', capture: false },
+      suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
