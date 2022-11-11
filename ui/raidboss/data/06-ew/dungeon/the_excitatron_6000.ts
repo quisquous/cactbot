@@ -7,6 +7,12 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: id for Lucky Face Temper's Flare
 // TODO: all Lucky Sphinx abilities
 
+const excitatronOutputStrings = {
+  spawn: {
+    en: '${name} spawned!',
+  },
+} as const;
+
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
@@ -16,41 +22,35 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- random treasure mobs ----------------
     {
       id: 'Excitatron Rainbow Golem Spawn',
+      // 10834 = Rainbow Golem
       type: 'AddedCombatant',
-      netRegex: { name: 'Rainbow Golem', capture: false },
+      netRegex: { npcNameId: '10834' },
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text!(),
+      infoText: (_data, matches, output) => output.spawn!({ name: matches.name }),
       outputStrings: {
-        text: {
-          en: 'Rainbow Golem spawned!',
-        },
+        spawn: excitatronOutputStrings.spawn,
       },
     },
     {
       id: 'Excitatron Golden Supporter Spawn',
+      // 10833 = Golden Supporter
       type: 'AddedCombatant',
-      netRegex: { name: 'Golden Supporter', capture: false },
+      netRegex: { npcNameId: '10833' },
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.text!(),
+      infoText: (_data, matches, output) => output.spawn!({ name: matches.name }),
       outputStrings: {
-        text: {
-          en: 'Golden Supporter spawned!',
-        },
+        spawn: excitatronOutputStrings.spawn,
       },
     },
     {
       id: 'Excitatron Exciting Mandragoras Spawn',
+      // 10838 = Exciting Tomato
+      // 10837 = Exciting Garlic
+      // 10839 = Exciting Queen
+      // 10835 = Exciting Onion
+      // 10836 = Exciting Egg
       type: 'AddedCombatant',
-      netRegex: {
-        name: [
-          'Exciting Tomato',
-          'Exciting Garlic',
-          'Exciting Queen',
-          'Exciting Onion',
-          'Exciting Egg',
-        ],
-        capture: false,
-      },
+      netRegex: { npcNameId: '1083[5-9]', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
