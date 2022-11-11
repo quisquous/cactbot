@@ -47,9 +47,9 @@ const triggerSet: TriggerSet<Data> = {
           'Exciting Garlic',
           'Exciting Queen',
           'Exciting Onion',
-          'Exciting Egg'
+          'Exciting Egg',
         ],
-        capture: false
+        capture: false,
       },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
