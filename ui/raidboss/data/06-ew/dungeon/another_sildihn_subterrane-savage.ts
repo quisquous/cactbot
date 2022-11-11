@@ -259,8 +259,8 @@ const triggerSet: TriggerSet<Data> = {
         // See Silken Puff Suds Gain trigger for list of Silken Puff effectIds
         // By this point, Squeaky Clean Left/Right has changed the N puff and either the SW/SE puff to CE9 (Bracing Suds)
         // We only care about the unaffected puff's status effect (CEA/CEB) for resolving the mechanic.
-        let stackDir = '';
-        let safeDir = '';
+        let stackDir;
+        let safeDir;
         if (matches.id === '7774') { // Squeaky Clean Right - resolve based on SW puff's effect
           if (puffsByLoc.SW === undefined)
             return output.default!();
