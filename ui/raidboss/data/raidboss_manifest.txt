@@ -162,6 +162,7 @@
 04-sb/dungeon/temple_of_the_fist.txt
 04-sb/dungeon/the_burn.ts
 04-sb/dungeon/the_burn.txt
+04-sb/dungeon/the_masked_carnivale.ts
 04-sb/eureka/eureka_anemos.ts
 04-sb/eureka/eureka_hydatos.ts
 04-sb/eureka/eureka_hydatos.txt

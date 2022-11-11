@@ -390,6 +390,9 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheWeaponsRefrainUltimate,
   ZoneId.TheEpicOfAlexanderUltimate,
   ZoneId.DragonsongsRepriseUltimate,
+
+  // Masked Carnivale
+  ZoneId.AllsWellThatStartsWell,
 ];
 
 export default contentList;
