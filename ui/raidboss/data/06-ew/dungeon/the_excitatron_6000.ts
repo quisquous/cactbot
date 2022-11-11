@@ -51,7 +51,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     // ---------------- final chamber boss: Lucky Face ----------------
-    // Heart on Fire II (6D54)- aoes under random players
     {
       id: 'Excitatron Right in the Dark',
       type: 'StartsUsing',
@@ -122,6 +121,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
+    // Heart on Fire II (6D54) - aoes under random players
     // Temper's Flare (6D4E?, 6743?) - roomwide aoe?
     // ---------------- alternate final chamber boss: Lucky Sphinx ----------------
     // Icewind Twister - donut aoe?
@@ -129,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     // Riddle of Flame - Pyretic on every player?
     // Riddle of Frost - Deep Freeze if not moving, Freezing Up if moving?
     // Icebomb Burst - point-blank aoe on boss + baited aoes on 4? players?
-    // Gold Thunder - stack donut? on 1 player, deals high damge outside donut aoe?
+    // Gold Thunder - stack donut? on 1 player, deals high damge outside donut center safe-spot?
     // Firedrop Blast - aoes under 4? players + aoe marker on 1 player, leaves burns on marked player if other players hit?
     // Superheat - tankbuster?
     // Crackling Current - roomwide aoe?

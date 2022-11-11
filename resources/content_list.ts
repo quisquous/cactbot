@@ -389,9 +389,6 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.AnotherSildihnSubterrane,
   ZoneId.AnotherSildihnSubterraneSavage,
 
-  // Treasure Map Dungeons
-  ZoneId.TheExcitatron6000,
-
   // Ultimate Raids
   ZoneId.TheUnendingCoilOfBahamutUltimate,
   ZoneId.TheWeaponsRefrainUltimate,
