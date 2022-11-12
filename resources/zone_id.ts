@@ -402,6 +402,7 @@ const data = {
   'TheLostCanalsOfUznair': 712,
   'TheLostCityOfAmdapor': 363,
   'TheLostCityOfAmdaporHard': 519,
+  'TheMaskedCarnivale': 796,
   'TheMinstrelsBalladEndsingersAria': 998,
   'TheMinstrelsBalladHadessElegy': 885,
   'TheMinstrelsBalladHydaelynsCall': 996,
