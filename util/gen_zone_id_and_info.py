@@ -31,6 +31,7 @@ synthetic_ids = {
     "TheNavelUnreal": 953,
     "TheWhorleaterUnreal": 972,
     "UltimasBaneUnreal": 1035,
+    "TheMaskedCarnivale": 796,
 }
 
 synthetic_zone_info = {
