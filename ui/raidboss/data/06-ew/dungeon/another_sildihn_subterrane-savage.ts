@@ -282,9 +282,11 @@ const triggerSet: TriggerSet<Data> = {
         SW: Outputs.dirSW,
         stacksafe: {
           en: 'Stack ${dir1} (${dir2} safe after)',
+          ko: '${dir1}쪽에서 쉐어 (이후 ${dir2}쪽이 안전)',
         },
         default: {
           en: 'Stack near unsafe green puff',
+          ko: '초록색 구슬에서 쉐어',
         },
       },
     },
@@ -528,53 +530,69 @@ const triggerSet: TriggerSet<Data> = {
         SW: Outputs.dirSW,
         bait: {
           en: '${boss} - ${dir} ${puff}',
+          ko: '${boss} - ${dir} ${puff}',
         },
         bossIce: {
           en: 'Blue Tail',
+          ko: '파란색 꼬리',
         },
         bossIcePuffsCardinalSafeLater: {
           en: 'Intercard Safe',
+          ko: '대각선이 안전',
         },
         bossIcePuffsIntercardSafeLater: {
           en: 'Intercard Safe',
+          ko: '대각선이 안전',
         },
         bossWind: {
           en: 'Green Tail',
+          ko: '초록색 꼬리',
         },
         bossWindPuffsCardinalSafeLater: {
           en: 'Middle Safe',
+          ko: '가운데가 안전',
         },
         bossWindPuffsIntercardSafeLater: {
           en: 'Middle Safe',
+          ko: '가운데가 안전',
         },
         // keep tethered puff info as separate outputStrings
         // so users can customize for their particular strat
         bossIceBlueCardinalPuff: {
           en: 'Blue Puff',
+          ko: '파란색 구슬',
         },
         bossIceBlueIntercardPuff: {
           en: 'Blue Puff',
+          ko: '파란색 구슬',
         },
         bossIceYellowCardinalPuff: {
           en: 'Yellow Puff',
+          ko: '노란색 구슬',
         },
         bossIceYellowIntercardPuff: {
           en: 'Yellow Puff',
+          ko: '노란색 구슬',
         },
         bossWindBlueCardinalPuff: {
           en: 'Blue Puff',
+          ko: '파란색 구슬',
         },
         bossWindBlueIntercardPuff: {
           en: 'Blue Puff',
+          ko: '파란색 구슬',
         },
         bossWindYellowCardinalPuff: {
           en: 'Yellow Puff',
+          ko: '노란색 구슬',
         },
         bossWindYellowIntercardPuff: {
           en: 'Yellow Puff',
+          ko: '노란색 구슬',
         },
         default: {
           en: 'Bait puff',
+          ko: '구슬 유도',
         },
       },
     },
@@ -592,6 +610,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         safe: {
           en: '${safe}',
+          ko: '${safe}',
         },
       },
     },
@@ -604,6 +623,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         avoidEwers: {
           en: 'Avoid Ewers',
+          ko: '항아리 피하기',
         },
       },
     },
@@ -661,18 +681,23 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         windAndLightning: {
           en: 'Under green puff',
+          ko: '초록 구슬 밑으로',
         },
         doubleIce: {
           en: 'Intercards, away from puffs',
+          ko: '대각선으로, 구슬에서 떨어지기',
         },
         iceAndLightning: {
           en: 'Sides of yellow puff',
+          ko: '노란 구슬 옆으로',
         },
         doubleLightning: {
           en: 'Between puffs',
+          ko: '구슬 사이로',
         },
         default: {
           en: 'Avoid puff AOEs',
+          ko: '구슬 장판 피하기',
         },
       },
     },

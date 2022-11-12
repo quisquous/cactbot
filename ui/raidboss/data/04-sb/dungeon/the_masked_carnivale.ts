@@ -176,6 +176,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Arena Roselets spawning!',
+          ko: '넝쿨장미 소환됨!',
         },
       },
     },
@@ -301,6 +302,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Diamondback',
+          ko: '초경화',
         },
       },
     },
@@ -312,6 +314,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Charge + knockback',
+          ko: '돌진 + 넉백',
         },
       },
     },
@@ -324,6 +327,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away from front + in',
+          ko: '보스 전방 피하기 + 안으로',
         },
       },
     },
@@ -348,6 +352,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Charge + knockback',
+          ko: '돌진 + 넉백',
         },
       },
     },
@@ -369,6 +374,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Fireball',
+          ko: '화염구',
         },
       },
     },
@@ -384,6 +390,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Magic reflect',
+          ko: '마법공격 반사됨',
         },
       },
     },
@@ -404,6 +411,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Blind yourself or Look Away',
+          ko: '나한테 실명걸기 또는 뒤돌기',
         },
       },
     },
@@ -418,6 +426,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Diamondback',
+          ko: '초경화',
         },
       },
     },
@@ -508,6 +517,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get to Safe Spot',
+          ko: '안전지대 찾기',
         },
       },
     },
@@ -547,6 +557,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         pullToBoss: {
           en: 'Pull ${name} to boss',
+          ko: '보스쪽으로 ${name} 끌고오기',
         },
       },
     },
@@ -562,6 +573,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Diamondback',
+          ko: '초경화',
         },
       },
     },
@@ -586,6 +598,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Cleanse debuff or mitigate',
+          ko: '디버프 해제 또는 생존기',
         },
       },
     },
@@ -604,6 +617,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback into Safe Spot',
+          ko: '안전지대로 넉백되기',
         },
       },
     },
@@ -624,6 +638,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Physical reflect',
+          ko: '물리공격 반사됨',
         },
       },
     },
@@ -649,6 +664,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Magic reflect',
+          ko: '마법공격 반사됨',
         },
       },
     },
@@ -670,6 +686,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         dispel: {
           en: 'Dispel ${name}',
+          ko: '${name} 버프 해제',
         },
       },
     },
@@ -689,6 +706,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         dispel: {
           en: 'Dispel ${name}',
+          ko: '${name} 버프 해제',
         },
       },
     },
@@ -710,6 +728,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Cleanse debuff',
+          ko: '디버프 해제',
         },
       },
     },
@@ -774,6 +793,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid puddles',
+          ko: '장판 피하기',
         },
       },
     },
@@ -801,15 +821,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         forward: {
           en: 'March Forward into Safe Spot',
+          ko: '강제 이동 앞',
         },
         backward: {
           en: 'March Backward into Safe Spot',
+          ko: '강제 이동 뒤',
         },
         left: {
           en: 'March Left into Safe Spot',
+          ko: '강제 이동 왼쪽',
         },
         right: {
           en: 'March Right into Safe Spot',
+          ko: '강제 이동 오른쪽',
         },
       },
     },
@@ -829,6 +853,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait two Eruptions',
+          ko: '장판 2개 유도',
         },
       },
     },
@@ -865,6 +890,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get to Safe Spot',
+          ko: '안전지대 찾기',
         },
       },
     },
@@ -877,6 +903,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get to edge',
+          ko: '외곽으로',
         },
       },
     },
@@ -922,6 +949,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Cleanse debuff',
+          ko: '디버프 해제',
         },
       },
     },
@@ -963,6 +991,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait two aoes',
+          ko: '장판 2개 유도',
         },
       },
     },
@@ -974,6 +1003,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Adds soon',
+          ko: '곧 쫄 나옴',
         },
       },
     },
@@ -992,6 +1022,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Diamondback',
+          ko: '초경화',
         },
       },
     },
@@ -1005,6 +1036,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away from water tornadoes',
+          ko: '물기둥에서 멀리 떨어지기',
         },
       },
     },
@@ -1018,6 +1050,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Magic reflect',
+          ko: '마법공격 반사됨',
         },
       },
     },
@@ -1031,6 +1064,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Cleanse debuff',
+          ko: '디버프 해제',
         },
       },
     },
@@ -1042,6 +1076,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait three aoes',
+          ko: '장판 3개 유도',
         },
       },
     },
@@ -1054,6 +1089,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback into Safe Spot',
+          ko: '안전지대로 넉백되기',
         },
       },
     },
@@ -1067,6 +1103,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get in + Knockback',
+          ko: '안으로 + 넉백',
         },
       },
     },
@@ -1079,6 +1116,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get to Safe Spot (between two ice)',
+          ko: '안전지대 찾기 (얼음 없는쪽)',
         },
       },
     },
@@ -1113,6 +1151,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait two aoes',
+          ko: '장판 2개 유도',
         },
       },
     },
@@ -1149,6 +1188,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Add soon',
+          ko: '분신 등장',
         },
       },
     },
@@ -1161,6 +1201,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         dispel: {
           en: 'Dispel ${name}',
+          ko: '${name} 버프 해제',
         },
       },
     },
@@ -1175,6 +1216,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away from boss => Stop Everything',
+          ko: '보스와 멀리 떨어지기 => 행동 멈추기',
         },
       },
     },
@@ -1191,6 +1233,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Diamondback',
+          ko: '초경화',
         },
       },
     },
@@ -1206,6 +1249,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Cleanse both debuffs',
+          ko: '디버프 둘다 해제',
         },
       },
     },
