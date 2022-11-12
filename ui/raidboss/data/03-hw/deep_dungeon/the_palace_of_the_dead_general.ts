@@ -1,3 +1,6 @@
+// import Conditions from '../../../../../resources/conditions';
+// import Outputs from '../../../../../resources/outputs';
+import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -31,6 +34,27 @@ const triggerSet: TriggerSet<Data> = {
   ],
 
   triggers: [
+    // ---------------- Floor Effects ----------------
+    // ---------------- Pomanders ----------------
+    // ---------------- Mimics ----------------
+    {
+      id: 'PotD General Mimic Spawned',
+      // 2566 = Mimic
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '2566' },
+      infoText: (_data, matches, output) => output.text!({ name: matches.name }),
+      outputStrings: {
+        text: {
+          en: '${name} spawned!',
+        },
+      },
+    },
+    {
+      id: 'PotD General Mimic Infatuation',
+      type: 'StartsUsing',
+      netRegex: { id: '18FD', source: 'Mimic' },
+      response: Responses.interrupt(),
+    },
   ],
 };
 
