@@ -2504,7 +2504,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Packez-vous au milieu pour Trine',
           ja: '大審判来るよ',
           cn: '大审判 中间集合',
-          ko: '대심판이 옵니다, 가운데로',
+          ko: '대심판 준비, 남쪽으로', // Stack South for Trine
         },
       },
     },
@@ -2596,6 +2596,19 @@ const triggerSet: TriggerSet<Data> = {
         // Call both out to start, then a separate trigger
         // once the first has happened.
 
+        // KO uses a different strategy, called almighty ㅁ.
+        // This uses four squares below:
+        //   g r y r g
+        //
+        //   y y r g r
+        //
+        //   r g G-G y
+        //       | |
+        //   y g Y-R r
+        //
+        //   g y r y g
+        // Y is the starting point.
+
         switch (threeOne) {
           case 'gr':
             data.secondTrineResponse = 'north';
@@ -2624,7 +2637,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Attendez au milieu, esquivez au Nord',
           ja: '中央から北へ',
           cn: '中间 -> 北',
-          ko: '가운데서 북쪽으로',
+          ko: '오른쪽위에서 아래로',
         },
         goNorthDodgeSouth: {
           en: 'Go 1 North, Dodge South',
@@ -2632,7 +2645,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Allez 1 au Nord, esquivez au Sud',
           ja: '北から中央へ',
           cn: '北 -> 中间',
-          ko: '북쪽에서 가운데로',
+          ko: '오른쪽에서 위로',
         },
         goNorthDodgeWest: {
           en: 'Go 1 North, Dodge West',
@@ -2640,7 +2653,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Allez 1 au Nord, esquivez à l\'Ouest',
           ja: '北から西へ',
           cn: '北 -> 西',
-          ko: '북쪽에서 서쪽으로',
+          ko: '오른쪽에서 왼쪽으로',
         },
         goSouthDodgeEast: {
           en: 'Go 1 South, Dodge East',
@@ -2648,7 +2661,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Allez 1 au Sud, esquivez à l\'Est',
           ja: '南から東へ',
           cn: '南 -> 东',
-          ko: '남쪽에서 동쪽으로',
+          ko: '가만있다가 오른쪽으로',
         },
         waitMiddleDodgeSouth: {
           en: 'Wait Middle, Dodge South',
@@ -2656,7 +2669,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Attendez au milieu, esquivez au Sud',
           ja: '中央から南へ',
           cn: '中间 -> 南',
-          ko: '가운데서 남쪽으로',
+          ko: '위에서 아래로',
         },
         goSouthDodgeNorth: {
           en: 'Go 1 South, Dodge North',
@@ -2664,7 +2677,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Allez 1 au Sud, esquivez au Nord',
           ja: '南から北へ',
           cn: '南 -> 北',
-          ko: '남쪽에서 북쪽으로',
+          ko: '가만있다가 위로',
         },
       },
     },
