@@ -414,7 +414,7 @@
 06-ew/hunts/ss_rank.ts
 06-ew/hunts/thavnair.ts
 06-ew/hunts/ultima_thule.ts
-06-ew/treasure_dungeon/the_excitatron_6000.ts
+06-ew/map/the_excitatron_6000.ts
 06-ew/trial/barbariccia.ts
 06-ew/trial/barbariccia.txt
 06-ew/trial/barbariccia-ex.ts
