@@ -153,6 +153,7 @@ Options.Triggers.push({
       id: 'SephirotEx Yesod Move',
       type: 'StartsUsing',
       netRegex: { id: '157E', source: 'Sephirot', capture: false },
+      suppressSeconds: 2,
       response: Responses.moveAway('alarm'), // This *will* kill if a non-tank takes 2+.
     },
     {
