@@ -86,6 +86,7 @@ const fetchCombatantsById = async (id) => {
 const paradeigmaLeanOutputStrings = {
   dirWithLean: {
     en: '${dir} bird (lean ${lean})',
+    ko: '${dir}쪽 새, (약간 ${lean}쪽으로)',
   },
   dirN: Outputs.dirN,
   dirNE: Outputs.dirNE,
@@ -336,21 +337,27 @@ Options.Triggers.push({
       outputStrings: {
         outsideNorth: {
           en: 'Outside North',
+          ko: '북쪽 바깥',
         },
         insideNorth: {
           en: 'Inside North',
+          ko: '북쪽 안',
         },
         outsideWest: {
           en: 'Outside West',
+          ko: '서쪽 바깥',
         },
         insideWest: {
           en: 'Inside West',
+          ko: '서쪽 안',
         },
         outsideEast: {
           en: 'Outside East',
+          ko: '동쪽 바깥',
         },
         insideEast: {
           en: 'Inside East',
+          ko: '동쪽 안',
         },
         ...paradeigmaLeanOutputStrings,
       },
@@ -669,6 +676,7 @@ Options.Triggers.push({
         },
         single: {
           en: 'Go ${dir} (lean ${lean})',
+          ko: '${dir}쪽으로, (약간 ${lean}쪽으로)',
         },
         ...paradeigmaLeanOutputStrings,
       },
@@ -718,9 +726,11 @@ Options.Triggers.push({
         },
         adikia1OutsideNorth: {
           en: 'Double fists (outside north)',
+          ko: '양 옆 큰 원형 장판 (북쪽 바깥)',
         },
         adikia1InsideNorth: {
           en: 'Double fists (inside north)',
+          ko: '양 옆 큰 원형 장판 (북쪽 안)',
         },
         adikia2: {
           en: 'Double fists',
@@ -803,6 +813,7 @@ Options.Triggers.push({
       outputStrings: {
         combo: {
           en: '${dir1} > ${dir2} > ${dir3}',
+          ko: '${dir1} > ${dir2} > ${dir3}',
         },
         ...eclipseOutputStrings,
       },
