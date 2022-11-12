@@ -148,7 +148,7 @@ timelineParse.parser.addArgument(['--include_targetable', '-it'], {
   help: 'Set this flag to include "34" log lines when making the timeline',
 });
 
-const args = new ExtendedArgsNamespace({});
+const args: Partial<ExtendedArgsNamespace> = new ExtendedArgsNamespace({});
 timelineParse.parser.parseArgs(undefined, args);
 
 const printHelpAndExit = (errString: string): void => {
@@ -157,25 +157,28 @@ const printHelpAndExit = (errString: string): void => {
   process.exit(-1);
 };
 
+const hasFile = typeof args.file === 'string' && args?.file !== '';
+const hasReport = typeof args.report_id === 'string' && args?.report_id !== '';
+
 // TODO: Revisit this logic when we re-add FFLogs support.
-if (
-  args.file === null && args.report_id === null ||
-  args.file !== null && args.report_id !== null
-)
+if (hasFile && hasReport || !hasFile && !hasReport)
   printHelpAndExit('Error: Must specify exactly one of -f or -r\n');
-if (args.file !== null && !args.file?.includes('.log'))
+if (hasFile && !args.file?.includes('.log'))
   printHelpAndExit('Error: Must specify an FFXIV ACT log file, as log.log\n');
-if (args.report_fight !== null && args.report_id === '')
+if (args.report_fight !== null && hasReport)
   printHelpAndExit('Error: Must specify a report ID.');
 let numExclusiveArgs = 0;
 const exclusiveArgs = ['search_fights', 'search_zones', 'report_fight'] as const;
 for (const opt of exclusiveArgs) {
-  if (args[opt] !== null)
+  if (args[opt] !== null && args[opt] !== undefined)
     numExclusiveArgs++;
 }
 if (numExclusiveArgs !== 1)
   printHelpAndExit('Error: Must specify exactly one of -lf, -lz, or -rf\n');
-if (args.report_id !== null && (args.report_fight === null || args.report_fight < 0))
+if (
+  typeof args.report_id === 'string' &&
+  (typeof args.report_fight !== 'number' || args.report_fight < 0)
+)
   printHelpAndExit('Error: Must specify a report fight index of 0 or greater');
 if (args.fight_regex === '-1')
   printHelpAndExit('Error: Timeline generation does not currently support -fr\n');
@@ -383,15 +386,15 @@ const extractTLEntriesFromLog = (
   }
 };
 
-const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): boolean => {
+const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: Partial<ExtendedArgs>): boolean => {
   const abilityName = entry.abilityName;
   const abilityId = entry.abilityId;
   const combatant = entry.combatant;
 
-  const ia = args.ignore_ability;
-  const ii = args.ignore_id;
-  const ic = args.ignore_combatant;
-  const oc = args.only_combatant;
+  const ia = args.ignore_ability ?? null;
+  const ii = args.ignore_id ?? null;
+  const ic = args.ignore_combatant ?? null;
+  const oc = args.only_combatant ?? null;
   // Ignore auto-attacks named "attack"
   if (abilityName?.toLowerCase() === 'attack')
     return true;
@@ -452,7 +455,7 @@ const assembleTimelineStrings = (
   entries: TimelineEntry[],
   abilityTimes: { [abilityId: string]: number[] },
   start: Date,
-  args: ExtendedArgs,
+  args: Partial<ExtendedArgs>,
   fight?: FightEncInfo,
 ): string[] => {
   const assembled: string[] = [];
@@ -470,7 +473,7 @@ const assembleTimelineStrings = (
   // If the user entered phase information,
   // process it and store it off.
   const phases: { [name: string]: number } = {};
-  if (args.phase !== null) {
+  if (typeof args.phase === 'string') {
     for (const phase of args.phase) {
       const ability = phase.split(':')[0];
       const time = phase.split(':')[1];
@@ -545,7 +548,11 @@ const assembleTimelineStrings = (
   return assembled;
 };
 
-const parseTimelineFromFile = async (args: ExtendedArgs, file: string, fight: FightEncInfo) => {
+const parseTimelineFromFile = async (
+  args: Partial<ExtendedArgs>,
+  file: string,
+  fight: FightEncInfo,
+) => {
   const startTime = fight.startTime;
   const endTime = fight.endTime;
   // All encounters on a collector will guaranteed have a start/end time,
@@ -567,7 +574,7 @@ const parseTimelineFromFile = async (args: ExtendedArgs, file: string, fight: Fi
   }
   const baseEntries = extractTLEntriesFromLog(
     lines,
-    args.include_targetable,
+    args?.include_targetable ?? null,
   );
   const assembled = assembleTimelineStrings(
     baseEntries.entries,
@@ -602,7 +609,10 @@ const writeTimelineToFile = (entryList: string[], fileName: string, force: boole
 
 const makeTimeline = async () => {
   let assembled: string[] = [];
-  if (args.report_id !== null && args.report_fight !== null && args.key !== null) {
+  if (
+    typeof args.report_id === 'string' && typeof args.report_fight === 'number' &&
+    typeof args.key === 'string'
+  ) {
     const rawEntries = await parseReport(args.report_id, args.report_fight, args.key);
     // Account for the possibility of a malformed response that somehow
     // ends up with a defined encounter but produces bogus or no entries.
@@ -618,8 +628,8 @@ const makeTimeline = async () => {
       args,
     );
   }
-  if (args.file !== null && args.file.length > 0) {
-    const store = args.search_fights !== null && args.search_fights > 0;
+  if (typeof args.file === 'string' && args.file.length > 0) {
+    const store = typeof args.search_fights === 'number' && args.search_fights > 0;
     const collector = await makeCollectorFromPrepass(args.file, store);
     if (args['search_fights'] === -1) {
       printCollectedFights(collector);
