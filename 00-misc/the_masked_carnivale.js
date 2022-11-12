@@ -1,5 +1,5 @@
 Options.Triggers.push({
-  zoneId: ZoneId.AllsWellThatStartsWell,
+  zoneId: ZoneId.TheMaskedCarnivale,
   triggers: [
     // ================ Stage 01 Act 1 ================
     // intentionally blank
