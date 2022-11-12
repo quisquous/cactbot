@@ -1,9 +1,9 @@
-import Conditions from '../../../../../resources/conditions';
-import Outputs from '../../../../../resources/outputs';
-import { Responses } from '../../../../../resources/responses';
-import ZoneId from '../../../../../resources/zone_id';
-import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
+import Conditions from '../../../../resources/conditions';
+import Outputs from '../../../../resources/outputs';
+import { Responses } from '../../../../resources/responses';
+import ZoneId from '../../../../resources/zone_id';
+import { RaidbossData } from '../../../../types/data';
+import { TriggerSet } from '../../../../types/trigger';
 
 // all Masked Carnivale Stages/Acts take place in the same zone
 // there are unique Instance Content IDs for each Masked Carnivale Stage
