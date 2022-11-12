@@ -7,6 +7,10 @@ import ZoneId from './zone_id';
 //
 // These are not things that cactbot necessarily supports, but things that it
 // theoretically could be supporting in the future with raidboss and oopsy.
+//
+// Miscellaneous things like maps, hunts, carnivale, pvp, eureka
+// should not be added here yet.
+// See: https://github.com/quisquous/cactbot/issues/5069
 
 const contentList: (ZoneIdType)[] = [
   // General (cactbot custom zone id)
@@ -390,9 +394,6 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheWeaponsRefrainUltimate,
   ZoneId.TheEpicOfAlexanderUltimate,
   ZoneId.DragonsongsRepriseUltimate,
-
-  // Masked Carnivale
-  ZoneId.AllsWellThatStartsWell,
 ];
 
 export default contentList;
