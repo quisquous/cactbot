@@ -22,10 +22,8 @@ import FFLogs, { ffLogsEventEntry } from './fflogs';
 
 // TODO: Add support for auto-generating loops.
 
-// TODO: Add FFLogs report parsing support.
-
-// TODO: Reinstate support for using raw start/end times
-// rather than force fight indexing.
+// TODO: We could consider re-adding `-s` and `-e` flags for manual start and end times,
+// but it would likely be better to just add support to `-lf` for any missing cases.
 
 // TODO: Add support for compiling log lines during the collector pre-pass.
 
@@ -42,19 +40,7 @@ type TimelineEntry = {
   lineComment?: string;
 };
 
-type ExtendedArgs = TimelineArgs & {
-  'output_file': string | null;
-  'start': string | null;
-  'end': string | null;
-  'ignore_id': string[] | null;
-  'ignore_ability': string[] | null;
-  'ignore_combatant': string[] | null;
-  'only_combatant': string[] | null;
-  'phase': string[] | null;
-  'include_targetable': string[] | null;
-};
-
-class ExtendedArgsNamespace extends Namespace implements ExtendedArgs {
+class ExtendedArgsRequired extends Namespace implements TimelineArgs {
   'file': string | null;
   'force': boolean | null;
   'search_fights': number | null;
@@ -74,6 +60,8 @@ class ExtendedArgsNamespace extends Namespace implements ExtendedArgs {
   'report_fight': number | null;
   'key': string | null;
 }
+
+type ExtendedArgs = Partial<ExtendedArgsRequired>;
 
 // Some NPCs can be picked up by our entry processor.
 // We list them out explicitly here so we can ignore them at will.
@@ -148,42 +136,44 @@ timelineParse.parser.addArgument(['--include_targetable', '-it'], {
   help: 'Set this flag to include "34" log lines when making the timeline',
 });
 
-const args: Partial<ExtendedArgsNamespace> = new ExtendedArgsNamespace({});
-timelineParse.parser.parseArgs(undefined, args);
-
 const printHelpAndExit = (errString: string): void => {
   console.error(errString);
   timelineParse.parser.printHelp();
   process.exit(-1);
 };
 
-const hasFile = typeof args.file === 'string' && args?.file !== '';
-const hasReport = typeof args.report_id === 'string' && args?.report_id !== '';
+const validateArgs = (args: ExtendedArgs): void => {
+  const hasFile = typeof args.file === 'string' && args?.file !== '';
+  const hasReport = typeof args.report_id === 'string' && args?.report_id !== '';
 
-// TODO: Revisit this logic when we re-add FFLogs support.
-if (hasFile && hasReport || !hasFile && !hasReport)
-  printHelpAndExit('Error: Must specify exactly one of -f or -r\n');
-if (hasFile && !args.file?.includes('.log'))
-  printHelpAndExit('Error: Must specify an FFXIV ACT log file, as log.log\n');
-if (hasReport && typeof args.report_id !== 'string')
-  printHelpAndExit('Error: Must specify a report ID.');
-let numExclusiveArgs = 0;
-const exclusiveArgs = ['search_fights', 'search_zones', 'report_fight'] as const;
-for (const opt of exclusiveArgs) {
-  if (args[opt] !== null && args[opt] !== undefined)
-    numExclusiveArgs++;
-}
-if (numExclusiveArgs !== 1)
-  printHelpAndExit('Error: Must specify exactly one of -lf, -lz, or -rf\n');
-if (
-  typeof args.report_id === 'string' &&
-  (typeof args.report_fight !== 'number' || args.report_fight < 0)
-)
-  printHelpAndExit('Error: Must specify a report fight index of 0 or greater');
-if (args.fight_regex === '-1')
-  printHelpAndExit('Error: Timeline generation does not currently support -fr\n');
-if (args.zone_regex === '-1')
-  printHelpAndExit('Error: Timeline generation does not currently support -zr\n');
+  if (hasFile && hasReport || !hasFile && !hasReport)
+    printHelpAndExit('Error: Must specify exactly one of -f or -r\n');
+
+  if (args.fight_regex === '-1')
+    printHelpAndExit('Error: Timeline generation does not currently support -fr\n');
+  if (args.zone_regex === '-1')
+    printHelpAndExit('Error: Timeline generation does not currently support -zr\n');
+
+  if (hasFile) {
+    if (!args.file?.includes('.log'))
+      printHelpAndExit('Error: Must specify an FFXIV ACT log file, as log.log\n');
+  } else if (hasReport) {
+    if (typeof args.report_id !== 'string')
+      printHelpAndExit('Error: Must specify a report ID.');
+    if (typeof args.report_fight !== 'number' || args.report_fight < 0)
+      printHelpAndExit('Error: Must specify a report fight index of 0 or greater');
+  }
+
+  let numExclusiveArgs = 0;
+  const exclusiveArgs = ['search_fights', 'search_zones', 'report_fight'] as const;
+  for (const opt of exclusiveArgs) {
+    if (args[opt] !== null && args[opt] !== undefined)
+      numExclusiveArgs++;
+  }
+
+  if (numExclusiveArgs !== 1)
+    printHelpAndExit('Error: Must specify exactly one of -lf, -lz, or -rf\n');
+};
 
 const makeCollectorFromPrepass = async (fileName: string, store: boolean) => {
   const collector = new EncounterCollector();
@@ -386,15 +376,11 @@ const extractTLEntriesFromLog = (
   }
 };
 
-const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: Partial<ExtendedArgs>): boolean => {
+const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): boolean => {
   const abilityName = entry.abilityName;
   const abilityId = entry.abilityId;
   const combatant = entry.combatant;
 
-  const ia = args.ignore_ability ?? null;
-  const ii = args.ignore_id ?? null;
-  const ic = args.ignore_combatant ?? null;
-  const oc = args.only_combatant ?? null;
   // Ignore auto-attacks named "attack"
   if (abilityName?.toLowerCase() === 'attack')
     return true;
@@ -404,19 +390,19 @@ const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: Partial<Extended
     return true;
 
   // Ignore abilities by name.
-  if (abilityName !== undefined && ia !== null && ia.includes(abilityName))
+  if (abilityName !== undefined && args.ignore_ability?.includes(abilityName))
     return true;
 
   // Ignore abilities by ID
-  if (abilityId !== undefined && ii !== null && ii.includes(abilityId))
+  if (abilityId !== undefined && args.ignore_id?.includes(abilityId))
     return true;
 
   // Ignore combatants by name
-  if (combatant !== undefined && ic !== null && ic.includes(combatant))
+  if (combatant !== undefined && args.ignore_combatant?.includes(combatant))
     return true;
 
   // If only-combatants was specified, ignore all combatants not in the list.
-  if (combatant !== undefined && oc !== null && !oc.includes(combatant))
+  if (combatant !== undefined && !args.only_combatant?.includes(combatant))
     return true;
   return false;
 };
@@ -455,7 +441,7 @@ const assembleTimelineStrings = (
   entries: TimelineEntry[],
   abilityTimes: { [abilityId: string]: number[] },
   start: Date,
-  args: Partial<ExtendedArgs>,
+  args: ExtendedArgs,
   fight?: FightEncInfo,
 ): string[] => {
   const assembled: string[] = [];
@@ -546,7 +532,7 @@ const assembleTimelineStrings = (
 };
 
 const parseTimelineFromFile = async (
-  args: Partial<ExtendedArgs>,
+  args: ExtendedArgs,
   file: string,
   fight: FightEncInfo,
 ) => {
@@ -606,6 +592,10 @@ const writeTimelineToFile = (entryList: string[], fileName: string, force: boole
 };
 
 const makeTimeline = async () => {
+  const args: ExtendedArgs = new ExtendedArgsRequired({});
+  timelineParse.parser.parseArgs(undefined, args);
+  validateArgs(args);
+
   let assembled: string[] = [];
   if (
     typeof args.report_id === 'string' && typeof args.report_fight === 'number' &&
