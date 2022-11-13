@@ -29,9 +29,6 @@ const activeText = {
 export class TimelineUI {
   protected timeline: Timeline | null = null;
 
-  constructor(protected options: RaidbossOptions) {
-  }
-
   protected Init(): void {
     /* noop */
   }

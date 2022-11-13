@@ -547,29 +547,13 @@ class TestTimelineUI extends TimelineUI {
   public fightNow = 0;
 
   public constructor(protected override timeline: TestTimeline) {
-    super(defaultRaidbossOptions);
+    super();
   }
+
   public override OnSyncTime(fightNow: number, _running: boolean): void {
     this.fightNow = fightNow;
   }
-  public override OnRemoveTimer(_e: Event, _expired: boolean, _force?: boolean): void {
-    /* noop */
-  }
-  public override OnAddTimer(_fightNow: number, _e: Event, _channeling: boolean): void {
-    /* noop */
-  }
-  public override OnShowInfoText(_text: string, _currentTime: number): void {
-    /* noop */
-  }
-  public override OnShowAlertText(_text: string, _currentTime: number): void {
-    /* noop */
-  }
-  public override OnShowAlarmText(_text: string, _currentTime: number): void {
-    /* noop */
-  }
-  public override OnSpeakTTS(_text: string, _currentTime: number): void {
-    /* noop */
-  }
+
   public override OnTrigger(
     trigger: Partial<TimelineTrigger<RaidbossData>>,
     matches: RegExpExecArray,

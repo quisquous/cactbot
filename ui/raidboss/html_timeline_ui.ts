@@ -73,7 +73,7 @@ const computeBackgroundFrom = (element: HTMLElement, classList: string): string 
 };
 
 export class HTMLTimelineUI extends TimelineUI {
-  private init: boolean;
+  private init = false;
   private lang: Lang;
 
   private root: HTMLElement | null = null;
@@ -89,9 +89,8 @@ export class HTMLTimelineUI extends TimelineUI {
 
   private popupText?: PopupTextGenerator;
 
-  constructor(protected override options: RaidbossOptions) {
-    super(options);
-    this.init = false;
+  constructor(protected options: RaidbossOptions) {
+    super();
     this.lang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
     this.AddDebugInstructions();
   }

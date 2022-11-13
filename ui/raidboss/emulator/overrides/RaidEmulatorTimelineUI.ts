@@ -23,8 +23,8 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
   emulatedStatus = 'pause';
   $barContainer: HTMLElement;
   $progressTemplate: HTMLElement;
-  constructor(options: RaidbossOptions) {
-    super(options);
+  constructor(protected options: RaidbossOptions) {
+    super();
     const container = document.querySelector('.timer-bar-container');
     if (!(container instanceof HTMLElement))
       throw new UnreachableCode();
