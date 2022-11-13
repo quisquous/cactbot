@@ -292,11 +292,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ASS Slippery Soap',
       // Happens 5 times in the encounter
-      type: 'StartsUsing',
-      // this was originally triggered by 79FB, which is an (unmapped) ability targeting a player used by Silkie or Eastern Ewer
-      // but it always happens at the same time that Silkie starts using 775E (the actual Slippery Soap cast)
-      // so it's more accurate to fire this trigger based off of Silkie's cast
-      netRegex: { id: '775E', source: 'Silkie' },
+      type: 'Ability',
+      // Silkie begins casting Slippery Soap (775E), and at the same time, either Silkie or an invisible actor will use 79FB on a player
+      // the 79FB ability appears to correspond to the stack marker on that player, so use that ability id instead
+      netRegex: { id: '79FB' },
       preRun: (data) => data.soapCounter++,
       alertText: (data, matches, output) => {
         if (data.suds === 'CE1') {
