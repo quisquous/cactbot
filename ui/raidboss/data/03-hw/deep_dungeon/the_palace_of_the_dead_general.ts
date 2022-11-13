@@ -60,7 +60,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'PotD General Mimic Spawn',
       // 2566 = Mimic
       // TODO: some Mimics may be spawned after transference between floors and get called early before being found
-      //   needs more testing
       type: 'AddedCombatant',
       netRegex: { npcNameId: '2566', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
@@ -123,16 +122,53 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'PotD General Accursed Hoard',
       // Accursed Hoard on this floor message: https://xivapi.com/LogMessage/7272?pretty=true
-      // it seems that this SystemLogMessage isn't sent if the Accursed Hoard message is sent
-      //   immediately after transference between floors
+      // it seems that this SystemLogMessage isn't sent if it occurs immediately after transference between floors
       // trigger off of the GameLog message instead
       // en: You sense the Accursed Hoard calling you...
       type: 'GameLog',
-      netRegex: { line: 'You sense the Accursed Hoard calling you\.\.\.', capture: false },
+      netRegex: { line: 'You sense the Accursed Hoard calling you\.\.\..*?', capture: false },
       infoText: (_data, matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Accursed Hoard on this floor',
+        },
+      },
+    },
+    {
+      id: 'PotD General Floor Enchantment',
+      // 440 = Blind (accuracy reduced)
+      // 441 = HP Penalty (maximum HP reduced)
+      // 442 = Damage Down (damage dealt reduced)
+      // 443 = Haste (weaponskill recast, spell recast, and auto-attack delay reduced)
+      // 444 = Amnesia (can't use abilities)
+      // 445 = HP & MP Boost (maximum HP & MP increased)
+      // 446 = Item Penalty (can't use items or pomanders)
+      // 447 = Sprint Penalty (can't use Sprint)
+      // 448 = Knockback Penalty (knockback and draw-in effects for enemies and players disabled)
+      // 449 = Auto-heal Penalty (out-of-combat passive HP regeneration disabled)
+      // TODO: trigger might overlap when multiple enchantments exist on the same floor
+      type: 'GainsEffect',
+      netRegex: { effectId: '44[0-9]' },
+      infoText: (_data, matches, output) => output.enchantment!({ enchantment: matches.effect }),
+      outputStrings: {
+        enchantment: {
+          en: '${enchantment}',
+        },
+      },
+    },
+    {
+      id: 'PotD General Gloom',
+      // Gloom on this floor message: https://xivapi.com/LogMessage/7240?pretty=true
+      // it seems that this SystemLogMessage isn't ever sent?
+      // possibly related to other SystemLogMessages not being sent if they occur immediately after transference between floors
+      // trigger off of the GameLog message instead
+      // en: The gathering gloom appears to invigorate the floor's denizens.
+      type: 'GameLog',
+      netRegex: { line: 'The gathering gloom appears to invigorate the floor\'s denizens\..*?', capture: false },
+      infoText: (_data, matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Gloom',
         },
       },
     },
