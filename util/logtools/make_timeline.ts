@@ -450,11 +450,10 @@ const assembleTimelineStrings = (
   let lastEntry: TimelineEntry = { time: lastAbilityTime.toString(), lineType: 'None' };
   if (fight !== undefined && fight.sealName !== undefined) {
     const zoneMessage = SFuncs.toProperCase(fight.sealName);
-    const tlString =
-      `0.0 "--sync--" sync / 00:0839::${zoneMessage} will be sealed off/ window 100000,0`;
+    const tlString = `0.0 "--sync--" sync / 00:0839::${zoneMessage} will be sealed off/ window 0,1`;
     assembled.push(tlString);
   } else {
-    assembled.push('0.0 "--sync--" sync /Engage!/ window 100000,0');
+    assembled.push('0.0 "--sync--" sync /Engage!/ window 0,1');
   }
 
   // If the user entered phase information,
