@@ -50,7 +50,7 @@ type ExtendedArgs = TimelineArgs & {
   'ignore_ability': string[] | null;
   'ignore_combatant': string[] | null;
   'only_combatant': string[] | null;
-  'phase': string | null;
+  'phase': string[] | null;
   'include_targetable': string[] | null;
 };
 
@@ -68,7 +68,7 @@ class ExtendedArgsNamespace extends Namespace implements ExtendedArgs {
   'ignore_ability': string[] | null;
   'ignore_combatant': string[] | null;
   'only_combatant': string[] | null;
-  'phase': string | null;
+  'phase': string[] | null;
   'include_targetable': string[] | null;
   'report_id': string | null;
   'report_fight': number | null;
@@ -165,7 +165,7 @@ if (hasFile && hasReport || !hasFile && !hasReport)
   printHelpAndExit('Error: Must specify exactly one of -f or -r\n');
 if (hasFile && !args.file?.includes('.log'))
   printHelpAndExit('Error: Must specify an FFXIV ACT log file, as log.log\n');
-if (args.report_fight !== null && hasReport)
+if (hasReport && typeof args.report_id !== 'string')
   printHelpAndExit('Error: Must specify a report ID.');
 let numExclusiveArgs = 0;
 const exclusiveArgs = ['search_fights', 'search_zones', 'report_fight'] as const;
@@ -473,13 +473,10 @@ const assembleTimelineStrings = (
   // If the user entered phase information,
   // process it and store it off.
   const phases: { [name: string]: number } = {};
-  if (typeof args.phase === 'string') {
-    for (const phase of args.phase) {
-      const ability = phase.split(':')[0];
-      const time = phase.split(':')[1];
-      if (ability !== undefined && time !== undefined)
-        phases[ability] = parseFloat(time);
-    }
+  for (const phase of args.phase ?? []) {
+    const [ability, time] = phase.split(':');
+    if (ability !== undefined && time !== undefined)
+      phases[ability] = parseFloat(time);
   }
 
   for (const entry of entries) {
@@ -498,7 +495,7 @@ const assembleTimelineStrings = (
     }
 
     // Ignore targetable lines if not specified
-    if (entry.lineType === 'targetable' && args.include_targetable === null)
+    if (entry.lineType === 'targetable' && !Array.isArray(args.include_targetable))
       continue;
 
     // Find out how long it's been since the last ability.
@@ -563,6 +560,7 @@ const parseTimelineFromFile = async (
   }
   // This logic can probably be split out once we re-enable support for raw start/end times.
   let lines: string[];
+
   if (fight.logLines !== undefined) {
     lines = fight.logLines;
   } else {
@@ -651,11 +649,11 @@ const makeTimeline = async () => {
     }
   }
   if (typeof args.output_file === 'string') {
-    const force = args.force !== null;
+    const force = typeof args.force === 'boolean' && args.force;
     writeTimelineToFile(assembled, args.output_file, force);
-  }
-  if (args.output_file === null)
+  } else {
     printTimelineToConsole(assembled);
+  }
   process.exit(0);
 };
 
