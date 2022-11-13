@@ -33,7 +33,7 @@
     "test": "mocha",
     "lint-staged": "lint-staged",
     "coverage-report": "ts-node util/gen_coverage_report.ts",
-    "util": "ts-node -r jsdom-global/register util/index.ts",
+    "util": "ts-node util/index.ts",
     "find-translations": "npm run util -- findTranslations",
     "translate-timeline": "npm run util -- translateTimeline",
     "generate": "npm run util -- generate",
