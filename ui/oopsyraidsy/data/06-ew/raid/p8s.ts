@@ -233,7 +233,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'P8S Multisplice',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '79B3' }),
-      mistake: stackMistake('fail', 1, {
+      mistake: stackMistake('fail', 2, {
         en: 'Double Splicer',
         de: 'Doppelte Konzeptreflektion',
         fr: 'Réaction conceptuelle double',
@@ -244,7 +244,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'P8S Supersplice',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '79B4' }),
-      mistake: stackMistake('fail', 1, {
+      mistake: stackMistake('fail', 3, {
         en: 'Triple Splicer',
         de: 'Dreifache Konzeptreflektion',
         fr: 'Réaction conceptuelle triple',
