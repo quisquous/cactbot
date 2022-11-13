@@ -195,12 +195,13 @@ const testLineEvents = async (
     const delta = (firedEvent.timestamp - firedEvent.timebase) / 1000 - firedEvent.event.time;
     const invertedDelta = delta * -1;
     const sign = invertedDelta > 0 ? '+' : ' ';
-    const lowWindow = firedEvent.sync.start - firedEvent.sync.time;
-    const highWindow = firedEvent.sync.end - firedEvent.sync.time;
-    const color = delta < lowWindow - driftFail || delta > highWindow + driftFail
+
+    const isDriftFail = Math.abs(delta) > driftFail;
+    const isDriftWarn = Math.abs(delta) > driftWarn;
+    const color = isDriftFail
       ? 'red'
-      : delta < lowWindow - driftWarn || delta > highWindow + driftWarn
-      ? 'redBright'
+      : isDriftWarn
+      ? 'yellow'
       : 'green';
     console.log(
       chalk[color](`%s | %s | %s`),
