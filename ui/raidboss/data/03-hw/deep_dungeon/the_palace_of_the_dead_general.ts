@@ -1,3 +1,4 @@
+import Conditions from '../../../../../resources/conditions';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -59,7 +60,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'PotD General Mimic Spawn',
       // 2566 = Mimic
-      // TODO: some Mimics may be spawned after transference between floors and get called early before being found
+      // TODO: some Mimics may spawn after transference between floors and get called early before being found
       type: 'AddedCombatant',
       netRegex: { npcNameId: '2566', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
@@ -149,6 +150,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: trigger might overlap when multiple enchantments exist on the same floor
       type: 'GainsEffect',
       netRegex: { effectId: '44[0-9]' },
+      condition: Conditions.targetIsYou(),
       infoText: (_data, matches, output) => output.enchantment!({ enchantment: matches.effect }),
       outputStrings: {
         enchantment: {
