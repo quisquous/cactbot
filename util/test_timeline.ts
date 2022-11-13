@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import readline from 'readline';
 
 import { Namespace, SubParser } from 'argparse';
 import chalk from 'chalk';
@@ -16,10 +17,15 @@ import { Timeline, TimelineUI } from '../ui/raidboss/timeline';
 import { Event, Sync, Text } from '../ui/raidboss/timeline_parser';
 
 import { walkDirSync } from './file_utils';
+import { printCollectedFights } from './logtools/encounter_printer';
+import { EncounterCollector } from './logtools/encounter_tools';
 
 import { ActionChoiceType } from '.';
 
 const rootDir = 'ui/raidboss/data';
+
+const defaultDriftWarn = 0.2;
+const defaultDriftFail = 1.0;
 
 const findTriggersFile = (shortName: string): string | undefined => {
   // strip extensions if provided.
@@ -33,46 +39,9 @@ const findTriggersFile = (shortName: string): string | undefined => {
   return found;
 };
 
-const testFile = async (
-  logFilePath: string,
-  start: string,
-  end: string,
-  timelineName: string,
-  driftWarn: number,
-  driftFail: number,
-): Promise<void> => {
-  if (!fs.existsSync(logFilePath)) {
-    console.error(`Couldn\'t find '${logFilePath}', aborting.`);
-    process.exit(-2);
-  }
-  const startDate = new Date(start);
-  if (isNaN(startDate.getTime())) {
-    console.error(`Invalid start datetime '${start}', aborting.`);
-    process.exit(-2);
-  }
-  const endDate = new Date(end);
-  if (isNaN(endDate.getTime())) {
-    console.error(`Invalid start datetime '${end}', aborting.`);
-    process.exit(-2);
-  }
-  const allLines = fs.readFileSync(logFilePath).toString().split('\n');
-  const repo = new LogRepository();
-  const lineEvents = allLines.map((line) => ParseLine.parse(repo, line)).filter((l) =>
-    l !== undefined
-  ) as LineEvent[];
-  return await testLineEvents(
-    lineEvents.filter((l) =>
-      l.timestamp >= startDate.getTime() && l.timestamp <= endDate.getTime()
-    ),
-    timelineName,
-    driftWarn,
-    driftFail,
-  );
-};
-
 const testLineArray = async (
   lines: string[],
-  timelineName: string,
+  timeline: string,
   driftWarn: number,
   driftFail: number,
 ): Promise<void> => {
@@ -80,11 +49,8 @@ const testLineArray = async (
   const lineEvents = lines.map((line) => ParseLine.parse(repo, line)).filter((l) =>
     l !== undefined
   ) as LineEvent[];
-  return await testLineEvents(lineEvents, timelineName, driftWarn, driftFail);
+  return await testLineEvents(lineEvents, timeline, driftWarn, driftFail);
 };
-
-// TODO: Temporary assert
-console.assert(testLineArray);
 
 const testLineEvents = async (
   lines: LineEvent[],
@@ -246,7 +212,7 @@ type TestTimelineNamespaceInterface = {
   'file': string | null;
   'start': string | null;
   'end': string | null;
-  'search_fights': string | null;
+  'search_fights': number | null;
 
   // Filtering params
   'timeline': string | null;
@@ -263,10 +229,10 @@ class TestTimelineNamespace extends Namespace implements TestTimelineNamespaceIn
   'file': string | null;
   'start': string | null;
   'end': string | null;
-  'search_fights': string | null;
+  'search_fights': number | null;
   'timeline': string | null;
-  'drift_failure' = 1;
-  'drift_warning' = 0.2;
+  'drift_failure' = defaultDriftFail;
+  'drift_warning' = defaultDriftWarn;
 }
 
 type TestTimelineInquirerType = {
@@ -277,7 +243,19 @@ type FileOrReportInquirerType = {
   fileOrReport: 'file' | 'report';
 };
 
-const testTimelineFileFunc = (args: TestTimelineNamespace): Promise<void> => {
+const makeCollectorFromPrepass = async (fileName: string, store: boolean) => {
+  const collector = new EncounterCollector();
+  const lineReader = readline.createInterface({
+    input: fs.createReadStream(fileName),
+  });
+  for await (const line of lineReader) {
+    // TODO: this could be more efficient if it stopped when it found the requested encounter.
+    collector.process(line, store);
+  }
+  return collector;
+};
+
+const testTimelineFileFunc = async (args: TestTimelineNamespace): Promise<void> => {
   const questions: QuestionCollection<TestTimelineInquirerType> = [
     {
       type: 'string',
@@ -307,46 +285,102 @@ const testTimelineFileFunc = (args: TestTimelineNamespace): Promise<void> => {
         return `Could not find trigger file ${input}`;
       },
     },
-    {
-      type: 'input',
-      name: 'start',
-      message: 'Input a start timestamp: ',
-      default: args.start,
-      when: () => {
-        const dateStr = args.start;
-        if (dateStr === null)
-          return true;
-        return isNaN(new Date(dateStr).getTime());
-      },
-    },
-    {
-      type: 'input',
-      name: 'end',
-      message: 'Input an end timestamp: ',
-      default: args.end,
-      when: () => {
-        const dateStr = args.end;
-        if (dateStr === null)
-          return true;
-        return isNaN(new Date(dateStr).getTime());
-      },
-    },
-  ] as const;
+  ];
 
-  return inquirer.prompt<TestTimelineInquirerType>(questions)
-    .then((answers) => {
-      const timeline = answers.timeline ?? args.timeline ?? '';
-      const file = answers.file ?? args.file ?? '';
-      const start = answers.start ?? args.start ?? '';
-      const end = answers.end ?? args.end ?? '';
-      const driftWarn = answers.drift_warning ?? args.drift_warning ?? '';
-      const driftFail = answers.drift_failure ?? args.drift_failure ?? '';
-      if (
-        typeof timeline === 'string' && typeof file === 'string' &&
-        typeof start === 'string' && typeof end === 'string'
-      )
-        return testFile(file, start, end, timeline, driftWarn, driftFail);
-    });
+  const answers = await inquirer.prompt<TestTimelineInquirerType>(questions);
+  const file = answers.file ?? args.file ?? '';
+  const timeline = answers.timeline ?? args.timeline ?? '';
+  const driftWarn = args.drift_warning ?? defaultDriftWarn;
+  const driftFail = args.drift_failure ?? defaultDriftFail;
+
+  if (typeof args.start === 'string' || typeof args.end === 'string') {
+    await testTimelineFileStartEnd(args, file, timeline);
+    return;
+  }
+
+  let searchFightsIdx = args['search_fights'];
+  const collector = await makeCollectorFromPrepass(file, true);
+
+  if (typeof searchFightsIdx !== 'number' || searchFightsIdx <= 0) {
+    printCollectedFights(collector);
+
+    // Passing `-lf` directly or an invalid index.
+    if (searchFightsIdx !== undefined)
+      return;
+
+    const questions: QuestionCollection<TestTimelineInquirerType> = [
+      {
+        type: 'number',
+        name: 'search_fights',
+        message: 'Input a fight index: ',
+        default: -1,
+        validate: (input: number) => input >= 1,
+      },
+    ];
+
+    const answers = await inquirer.prompt<TestTimelineInquirerType>(questions);
+    searchFightsIdx = answers['search_fights'];
+
+    if (searchFightsIdx === null)
+      return;
+  }
+
+  // All fights are 1-indexed on collectors,
+  // so we subtract 1 from the user's 1-indexed selection.
+  const fight = collector.fights[searchFightsIdx - 1];
+  if (fight === undefined) {
+    console.error(`No fight found at specified index ${searchFightsIdx}`);
+    return;
+  }
+
+  if (fight === undefined) {
+    console.error('Undefined fight');
+    return;
+  }
+
+  return testLineArray(fight.logLines ?? [], timeline, driftWarn, driftFail);
+};
+
+const testTimelineFileStartEnd = async (
+  args: TestTimelineNamespace,
+  logFilePath: string,
+  timeline: string,
+): Promise<void> => {
+  if (typeof args.start !== 'string') {
+    console.error(`Invalid start datetime '${args.start ?? 'null'}', aborting.`);
+    return;
+  }
+  if (typeof args.end !== 'string') {
+    console.error(`Invalid start datetime '${args.end ?? 'null'}', aborting.`);
+    return;
+  }
+  if (!fs.existsSync(logFilePath)) {
+    console.error(`Couldn\'t find '${logFilePath}', aborting.`);
+    process.exit(-2);
+  }
+  const startDate = new Date(args.start);
+  if (isNaN(startDate.getTime())) {
+    console.error(`Invalid start datetime '${args.start}', aborting.`);
+    process.exit(-2);
+  }
+  const endDate = new Date(args.end);
+  if (isNaN(endDate.getTime())) {
+    console.error(`Invalid start datetime '${args.end}', aborting.`);
+    process.exit(-2);
+  }
+  const allLines = fs.readFileSync(logFilePath).toString().split('\n');
+
+  const repo = new LogRepository();
+  const lineEvents = allLines.map((line) => ParseLine.parse(repo, line)).filter((l) => {
+    const timestamp = l?.timestamp;
+    if (timestamp === undefined)
+      return false;
+    return timestamp >= startDate.getTime() && timestamp <= endDate.getTime();
+  }) as LineEvent[];
+
+  const driftWarn = args.drift_warning ?? defaultDriftWarn;
+  const driftFail = args.drift_failure ?? defaultDriftFail;
+  return await testLineEvents(lineEvents, timeline, driftWarn, driftFail);
 };
 
 const testTimelineReportFunc = (_args: TestTimelineNamespace): Promise<void> => {
@@ -459,20 +493,24 @@ export const registerTestTimeline = (
     ['-df', '--drift_failure'],
     {
       nargs: '?',
-      defaultValue: 1,
+      defaultValue: defaultDriftFail,
       type: 'float',
       help:
-        'If an entry misses its timestamp by more than this value in seconds, it is displayed in red. Defaults to 1.',
+        `If an entry misses its timestamp by more than this value in seconds, it is displayed in red. Defaults to ${
+          defaultDriftFail.toFixed(1)
+        }.`,
     },
   );
   parser.addArgument(
     ['-dw', '--drift_warning'],
     {
       nargs: '?',
-      defaultValue: 0.2,
+      defaultValue: defaultDriftWarn,
       type: 'float',
       help:
-        'If an entry misses its timestamp by more than this value in seconds, it is displayed in yellow. Defaults to 0.2.',
+        `If an entry misses its timestamp by more than this value in seconds, it is displayed in yellow. Defaults to ${
+          defaultDriftWarn.toFixed(1)
+        }.`,
     },
   );
 };
@@ -492,7 +530,7 @@ class TestTimeline extends Timeline {
   public override OnLogLine(line: string, currentTime: number): void {
     let syncMatch: Sync | undefined = undefined;
     for (const sync of this.activeSyncs) {
-      if (line.search(sync.regex) >= 0) {
+      if (sync.regex.test(line)) {
         syncMatch = sync;
         break;
       }
