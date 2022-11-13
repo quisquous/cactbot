@@ -84,7 +84,7 @@ const triggerSet: TriggerSet<Data> = {
       // en: You return the pomander of ${pomander} to the coffer. You cannot carry any more of that item.
       type: 'SystemLogMessage',
       netRegex: { id: '1C36' },
-      infoText: (_data, matches, output) => output.duplicate!({ pomander: pomanders[ parseInt(matches.param1, 16) ] }),
+      infoText: (_data, matches, output) => output.duplicate!({ pomander: pomanders[ parseInt(matches.param1, 16) - 1 ] }),
       outputStrings: {
         duplicate: {
           en: '${pomander} duplicate',
