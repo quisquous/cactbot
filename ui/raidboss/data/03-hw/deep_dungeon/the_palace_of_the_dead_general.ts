@@ -59,6 +59,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'PotD General Mimic Spawn',
       // 2566 = Mimic
+      // TODO: some Mimics may be spawned after transference between floors and get called early before being found
+      //   needs more testing
       type: 'AddedCombatant',
       netRegex: { npcNameId: '2566', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
@@ -122,7 +124,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'PotD General Accursed Hoard',
       // Accursed Hoard on this floor message: https://xivapi.com/LogMessage/7272?pretty=true
       // it seems that this SystemLogMessage isn't sent if the Accursed Hoard message is sent
-      //   immediately after transference (transfer between floors)
+      //   immediately after transference between floors
       // trigger off of the GameLog message instead
       // en: You sense the Accursed Hoard calling you...
       type: 'GameLog',
