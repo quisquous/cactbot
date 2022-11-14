@@ -186,6 +186,15 @@ const kDirectoryToCategory = {
     cn: '绝境战',
     ko: '절 난이도',
   },
+  hunts: {
+    en: 'Hunts & FATEs',
+  },
+  map: {
+    en: 'Treasure Maps',
+  },
+  deep_dungeon: {
+    en: 'Deep Dungeon',
+  },
 };
 
 // TODO: maybe we should also sort all the filenames properly too?
@@ -750,6 +759,14 @@ export class CactbotConfigurator {
           title = this.translate(zoneInfo.name);
       }
 
+      let zoneLabel: LocaleText | undefined = undefined;
+
+      // if a zoneLabel is set, use that instead
+      if (typeof triggerSet.zoneLabel === 'string') {
+        zoneLabel = triggerSet.zoneLabel;
+        title = this.translate(zoneLabel);
+      }
+
       const fileKey = filename.replace(/\//g, '-').replace(/.[jt]s$/, '');
       map[fileKey] = {
         filename: filename,
@@ -777,7 +794,12 @@ export class CactbotConfigurator {
       // may also use zoneRegex or also have errors and not have either.
       let title = '???';
       let zoneId: number | undefined = undefined;
-      if (typeof triggerSet.zoneId === 'number') {
+      let zoneLabel: LocaleText | undefined = undefined;
+      // if a zoneLabel is set, use that first
+      if (typeof triggerSet.zoneLabel === 'string') {
+        zoneLabel = triggerSet.zoneLabel;
+        title = this.translate(zoneLabel);
+      } else if (typeof triggerSet.zoneId === 'number') {
         zoneId = triggerSet.zoneId;
         // Use the translatable zone info name, if possible.
         const zoneInfo = ZoneInfo[zoneId];
