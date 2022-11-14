@@ -77,6 +77,14 @@ export type fflogsEnemy = {
   type: string;
 };
 
+export type fflogsParsedEntry = {
+  timestamp: number;
+  combatant: string;
+  abilityId: string;
+  abilityName: string;
+  type: string;
+};
+
 const makeRequest = async (url: string, options: URLSearchParams) => {
   const requestUrl = `${url}?${options.toString()}`;
   const response = await fetch(requestUrl);
@@ -172,6 +180,67 @@ class FFLogs {
       eventOptionParams,
     ) as fflogsEventResponse;
     return eventData.events;
+  };
+
+  static parseFFLogsEvent = (
+    event: ffLogsEventEntry,
+    enemies: { [index: string]: string },
+    startTime: number,
+  ): fflogsParsedEntry => {
+    const timestamp = startTime + event.timestamp;
+
+    let combatant: string | undefined;
+    if (event.source !== undefined)
+      combatant = enemies[event.source.id];
+    else if (event.sourceID !== undefined)
+      combatant = enemies[event.sourceID];
+    combatant ??= 'Unknown';
+
+    const abilityId = event.ability.guid.toString(16).toUpperCase();
+    let ability = event.ability.name;
+    if (event.ability.name.toLowerCase().startsWith('unknown_'))
+      ability = '--sync--';
+
+    const entry: fflogsParsedEntry = {
+      timestamp: timestamp,
+      combatant: combatant,
+      abilityId: abilityId,
+      abilityName: ability,
+      type: event.type,
+    };
+    return entry;
+  };
+
+  static parseReport = async (
+    reportId: string,
+    fightIndex: number,
+    apiKey: string,
+  ): Promise<fflogsParsedEntry[]> => {
+    const rawReportData = await FFLogs.getFightInfo(reportId, apiKey);
+    const reportStartTime = rawReportData.start;
+    // First we verify that the user entered a valid index
+    let chosenFight;
+    for (const fight of rawReportData.fights) {
+      if (fight.id === fightIndex)
+        chosenFight = fight;
+    }
+    if (chosenFight === undefined)
+      throw new Error(`No encounter found in report ${reportId} at index ${fightIndex}`);
+
+    // Knowing that the encounter exists in the report,
+    // we next assemble the list of all hostile entities in the report.
+    // Unfortunately, entity data is not present in the data for individual encounters,
+    // so we have to do some matching magic.
+    const enemies = FFLogs.extractEnemiesFromReport(rawReportData);
+    const rawFightData = await FFLogs.getEventData(
+      reportId,
+      apiKey,
+      chosenFight.start_time,
+      chosenFight.end_time,
+    );
+
+    const startTime = chosenFight.start_time + reportStartTime;
+    return rawFightData.map((event) => this.parseFFLogsEvent(event, enemies, startTime));
   };
 }
 

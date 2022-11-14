@@ -11,7 +11,7 @@ import { NetMatches } from '../../types/net_matches';
 import { LogUtilArgParse, TimelineArgs } from './arg_parser';
 import { printCollectedFights, printCollectedZones } from './encounter_printer';
 import { EncounterCollector, FightEncInfo, TLFuncs } from './encounter_tools';
-import FFLogs, { ffLogsEventEntry } from './fflogs';
+import FFLogs from './fflogs';
 
 // TODO: Repeated abilities that need to be auto-commented may not get the comment marker
 // if there's an intervening entry between the repeated entries.
@@ -27,7 +27,7 @@ import FFLogs, { ffLogsEventEntry } from './fflogs';
 
 // TODO: Add support for compiling log lines during the collector pre-pass.
 
-type TimelineEntry = {
+export type TimelineEntry = {
   time: string;
   combatant?: string;
   abilityId?: string;
@@ -212,80 +212,34 @@ const parseAbilityToEntry = (matches: NetMatches['Ability']): TimelineEntry => {
   return entry;
 };
 
-const parseFFLogsEventToEntry = (
-  event: ffLogsEventEntry,
-  enemies: { [index: string]: string },
-  startTime: number,
-): TimelineEntry => {
-  const timestamp = startTime + event.timestamp;
-
-  let combatant: string | undefined;
-  if (event.source !== undefined)
-    combatant = enemies[event.source.id];
-  else if (event.sourceID !== undefined)
-    combatant = enemies[event.sourceID];
-  else
-    combatant = 'Unknown';
-
-  const abilityId = event.ability.guid.toString(16).toUpperCase();
-  let ability = event.ability.name;
-  if (event.ability.name.toLowerCase().startsWith('unknown_'))
-    ability = '--sync--';
-
-  const entry: TimelineEntry = {
-    time: new Date(timestamp).toISOString(),
-    combatant: combatant,
-    abilityId: abilityId,
-    abilityName: ability,
-    lineType: 'ability',
-  };
-  return entry;
-};
-
 const parseReport = async (
   reportId: string,
   fightIndex: number,
   apiKey: string,
 ): Promise<{ 'entries': TimelineEntry[]; 'abilityTimes': { [abilityId: string]: number[] } }> => {
-  const rawReportData = await FFLogs.getFightInfo(reportId, apiKey);
-  const reportStartTime = rawReportData.start;
-  // First we verify that the user entered a valid index
-  let chosenFight;
-  for (const fight of rawReportData.fights) {
-    if (fight.id === fightIndex)
-      chosenFight = fight;
-  }
-  if (chosenFight === undefined) {
-    console.error('No encounter found in the report at that fight index.');
-    process.exit(-2);
-  }
-
-  // Knowing that the encounter exists in the report,
-  // we next assemble the list of all hostile entities in the report.
-  // Unfortunately, entity data is not present in the data for individual encounters,
-  // so we have to do some matching magic.
-  const enemies = FFLogs.extractEnemiesFromReport(rawReportData);
-  const rawFightData = await FFLogs.getEventData(
-    reportId,
-    apiKey,
-    chosenFight.start_time,
-    chosenFight.end_time,
-  );
+  const rawEntries = await FFLogs.parseReport(reportId, fightIndex, apiKey);
 
   const entries: TimelineEntry[] = [];
   const abilityTimeMap: { [abilityId: string]: number[] } = {};
 
-  for (const event of rawFightData) {
+  for (const event of rawEntries) {
     // FFLogs mixes 14 StartsUsing lines in with 15/16 Ability lines.
     if (event.type !== 'cast')
       continue;
-    entries.push(parseFFLogsEventToEntry(event, enemies, chosenFight.start_time + reportStartTime));
+
+    entries.push({
+      time: new Date(event.timestamp).toISOString(),
+      combatant: event.combatant,
+      abilityId: event.abilityId,
+      abilityName: event.abilityName,
+      lineType: 'ability',
+    });
 
     // Store off exact times for each ability's usages for later sync commenting
-    const abilityId = event.ability.guid.toString(16).toUpperCase();
-    const abilityTimeStamp = chosenFight.start_time + reportStartTime + event.timestamp;
+    const abilityId = event.abilityId;
+    const abilityTimeStamp = event.timestamp;
     abilityTimeMap[abilityId] ??= [];
-    if (!abilityTimeMap[abilityId]?.includes(abilityTimeStamp))
+    if (!abilityTimeMap[abilityId]?.includes(event.timestamp))
       abilityTimeMap[abilityId]?.push(abilityTimeStamp);
   }
   return { entries: entries, abilityTimes: abilityTimeMap };
