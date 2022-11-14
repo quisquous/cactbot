@@ -356,7 +356,7 @@ const ignoreTimelineAbilityEntry = (entry: TimelineEntry, args: ExtendedArgs): b
     return true;
 
   // If only-combatants was specified, ignore all combatants not in the list.
-  if (combatant !== undefined && !args.only_combatant?.includes(combatant))
+  if (combatant !== undefined && args.only_combatant && !args.only_combatant?.includes(combatant))
     return true;
   return false;
 };
