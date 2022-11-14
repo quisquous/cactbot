@@ -85,7 +85,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'SystemLogMessage',
       netRegex: { id: '1C36' },
       infoText: (_data, matches, output) =>
-        output.duplicate!({ pomander: pomanders[parseInt(matches.param1,16) - 1] }),
+        output.duplicate!({ pomander: pomanders[parseInt(matches.param1, 16) - 1] }),
       outputStrings: {
         duplicate: {
           en: '${pomander} duplicate',
@@ -129,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
       // en: You sense the Accursed Hoard calling you...
       type: 'GameLog',
       netRegex: { line: 'You sense the Accursed Hoard calling you\.\.\..*?', capture: false },
-      infoText: (_data, matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Accursed Hoard on this floor',
@@ -169,9 +169,9 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'The gathering gloom appears to invigorate the floor\'s denizens\..*?',
-        capture: false
+        capture: false,
       },
-      infoText: (_data, matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Gloom',
