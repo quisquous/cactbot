@@ -97,8 +97,6 @@ const testLineEvents = async (
 
   const startTimestamp = lines[0]?.timestamp ?? 0;
 
-  const lastLogTimestamp = lines[lines.length - 1]?.timestamp ?? 0;
-
   testTimeline.timebase = startTimestamp;
   testTimeline._OnUpdateTimer(startTimestamp);
 
@@ -111,51 +109,21 @@ const testLineEvents = async (
     testTimeline._OnUpdateTimer(line.timestamp);
   }
 
-  const allMissedEvents = testTimeline.events.filter((event) =>
-    // Only include events that did not fire
-    ui.events.find((event2) => event.id === event2.event.id) === undefined &&
-    // Only include events with a time greater than 0, excludes "Start"/"--Reset--"/etc
-    event.time > 0 &&
-    // Only include events that are within the fight's timebase based on start/end lines
-    event.time * 1000 <= lastLogTimestamp - testTimeline.timebase &&
-    // Only include events that have a sync/jump
-    testTimeline.syncEnds.find((sync) => sync.id === event.id)
-  );
-
   console.log('Timeline:');
 
-  const sortedEvents = [
-    ...ui.events,
-  ].sort((l, r) => l.timestamp - r.timestamp);
-
-  let sortedMissedEvents = [
-    ...allMissedEvents,
-  ].sort((l, r) => l.time - r.time).map((event) => {
-    return {
-      sync: testTimeline.syncEnds.find((sync) => sync.id === event.id),
-      event: event,
-    };
-  });
-
-  for (const firedEvent of sortedEvents) {
-    const missedEvents = sortedMissedEvents.filter((event) =>
-      event.event.lineNumber !== undefined && firedEvent.event.lineNumber !== undefined &&
-      event.event.lineNumber < firedEvent.event.lineNumber
-    );
-    if (missedEvents.length) {
-      sortedMissedEvents = sortedMissedEvents.filter((e) => !missedEvents.includes(e));
-      for (const missedEvent of missedEvents) {
-        const lineNumber = missedEvent.event.lineNumber ?? -1;
-        console.log(
-          chalk.red(`      Missed | %s | %s`),
-          `${lineNumber}`.padStart(4),
-          linesString[lineNumber - 1] ?? '',
-        );
-      }
+  for (const record of ui.records) {
+    const lineNumber = record.event.lineNumber ?? -1;
+    if (record.type === 'missed') {
+      console.log(
+        chalk.redBright(`      Missed | %s | %s`),
+        `${lineNumber}`.padStart(4),
+        linesString[lineNumber - 1] ?? '',
+      );
+      continue;
     }
-    const lineNumber = firedEvent.event.lineNumber ?? -1;
+
     const lineStr = linesString[lineNumber - 1] ?? '';
-    const delta = (firedEvent.timestamp - firedEvent.timebase) / 1000 - firedEvent.event.time;
+    const delta = (record.timestamp - record.timebase) / 1000 - record.event.time;
     const invertedDelta = delta * -1;
     const sign = invertedDelta > 0 ? '+' : ' ';
 
@@ -174,28 +142,19 @@ const testLineEvents = async (
     );
   }
 
-  if (sortedMissedEvents.length) {
-    for (const missedEvent of sortedMissedEvents) {
-      const lineNumber = missedEvent.event.lineNumber ?? -1;
+  if (ui.triggers.length > 0) {
+    console.log('Triggers:');
+
+    for (const trigger of ui.triggers) {
+      const delta = (trigger.timestamp - trigger.timebase) / 1000 - trigger.text.time;
+      const invertedDelta = delta * -1;
+      const sign = invertedDelta > 0 ? '+' : ' ';
       console.log(
-        chalk.red(`      Missed | %s | %s`),
-        `${lineNumber}`.padStart(4),
-        linesString[lineNumber - 1] ?? '',
+        chalk.green(`%s | %s`),
+        `${sign}${invertedDelta.toFixed(3)}`.padStart(12),
+        trigger.trigger.id,
       );
     }
-  }
-
-  console.log('Triggers:');
-
-  for (const trigger of ui.triggers) {
-    const delta = (trigger.timestamp - trigger.timebase) / 1000 - trigger.text.time;
-    const invertedDelta = delta * -1;
-    const sign = invertedDelta > 0 ? '+' : ' ';
-    console.log(
-      chalk.green(`%s | %s`),
-      `${sign}${invertedDelta.toFixed(3)}`.padStart(12),
-      trigger.trigger.id,
-    );
   }
 };
 
@@ -389,33 +348,60 @@ class TestTimeline extends Timeline {
     /* noop */
   }
 
-  public override SyncTo(fightNow: number, currentTime: number, sync?: Sync): void {
-    if (sync !== undefined) {
-      const origEvent = this.events.find((e) => e.id === sync.id);
-      if (origEvent !== undefined) {
-        const event = {
-          event: origEvent,
-          sync: sync,
+  private AddRecords(currentTime: number, sync: Sync): void {
+    const ui = this.ui;
+    if (ui === undefined)
+      return;
+
+    const lastRecord = ui.records[ui.records.length - 1];
+    const lastEventIdx = lastRecord?.event.sortKey;
+    const currentEventIdx = sync.event.sortKey;
+
+    // Push records of any intermediate events that were skipped over.
+    if (lastEventIdx !== undefined && currentEventIdx !== undefined) {
+      // This naturally ignores jumps into the past.
+      for (let idx = lastEventIdx + 1; idx < currentEventIdx; ++idx) {
+        const event = this.events[idx];
+        if (event === undefined)
+          continue;
+        // Skip text events with no sync.
+        if (event.sync === undefined)
+          continue;
+
+        ui.records.push({
+          event: event,
           timebase: this.timebase,
           timestamp: currentTime,
-        };
-        this.ui?.events.push(event);
+          type: 'missed',
+        });
       }
     }
+
+    ui.records.push({
+      event: sync.event,
+      timebase: this.timebase,
+      timestamp: currentTime,
+      type: 'sync',
+    });
+  }
+
+  public override SyncTo(fightNow: number, currentTime: number, sync?: Sync): void {
+    if (sync !== undefined)
+      this.AddRecords(currentTime, sync);
 
     super.SyncTo(fightNow, currentTime, sync);
   }
 }
 
+type TimelineRecord = {
+  event: Event;
+  timestamp: number;
+  timebase: number;
+  type: 'sync' | 'missed';
+};
+
 class TestTimelineUI extends TimelineUI {
-  public events: {
-    event: Event;
-    sync: Sync;
-    timestamp: number;
-    timebase: number;
-    removed?: boolean;
-    expired?: boolean;
-  }[] = [];
+  public records: TimelineRecord[] = [];
 
   public triggers: {
     trigger: Partial<TimelineTrigger<RaidbossData>>;
