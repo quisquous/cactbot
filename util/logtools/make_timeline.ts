@@ -27,7 +27,7 @@ import FFLogs from './fflogs';
 
 // TODO: Add support for compiling log lines during the collector pre-pass.
 
-export type TimelineEntry = {
+type TimelineEntry = {
   time: string;
   combatant?: string;
   abilityId?: string;
