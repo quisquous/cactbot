@@ -2,11 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
 
-import { Namespace, SubParser } from 'argparse';
+import { Namespace } from 'argparse';
 import chalk from 'chalk';
-import inquirer, { QuestionCollection } from 'inquirer';
 
-import { UnreachableCode } from '../resources/not_reached';
 import { RaidbossData } from '../types/data';
 import { LooseTriggerSet, TimelineTrigger } from '../types/trigger';
 import LineEvent from '../ui/raidboss/emulator/data/network_log_converter/LineEvent';
@@ -17,10 +15,9 @@ import { Timeline, TimelineUI } from '../ui/raidboss/timeline';
 import { Event, Sync, Text } from '../ui/raidboss/timeline_parser';
 
 import { walkDirSync } from './file_utils';
+import { LogUtilArgParse } from './logtools/arg_parser';
 import { printCollectedFights } from './logtools/encounter_printer';
 import { EncounterCollector } from './logtools/encounter_tools';
-
-import { ActionChoiceType } from '.';
 
 const rootDir = 'ui/raidboss/data';
 
@@ -202,7 +199,7 @@ const testLineEvents = async (
   }
 };
 
-type TestTimelineNamespaceInterface = {
+class TestTimelineNamespace extends Namespace {
   // FFLogs params
   'report': string | null;
   'key': string | null;
@@ -220,28 +217,7 @@ type TestTimelineNamespaceInterface = {
   // Output format params
   'drift_failure': number;
   'drift_warning': number;
-};
-
-class TestTimelineNamespace extends Namespace implements TestTimelineNamespaceInterface {
-  'report': string | null;
-  'key': string | null;
-  'fight': string | null;
-  'file': string | null;
-  'start': string | null;
-  'end': string | null;
-  'search_fights': number | null;
-  'timeline': string | null;
-  'drift_failure' = defaultDriftFail;
-  'drift_warning' = defaultDriftWarn;
 }
-
-type TestTimelineInquirerType = {
-  [name in keyof TestTimelineNamespaceInterface]: TestTimelineNamespaceInterface[name];
-};
-
-type FileOrReportInquirerType = {
-  fileOrReport: 'file' | 'report';
-};
 
 const makeCollectorFromPrepass = async (fileName: string, store: boolean) => {
   const collector = new EncounterCollector();
@@ -256,40 +232,18 @@ const makeCollectorFromPrepass = async (fileName: string, store: boolean) => {
 };
 
 const testTimelineFileFunc = async (args: TestTimelineNamespace): Promise<void> => {
-  const questions: QuestionCollection<TestTimelineInquirerType> = [
-    {
-      type: 'string',
-      name: 'file',
-      message: 'Input a network log file path: ',
-      default: args.file,
-      when: () => typeof args.file !== 'string',
-      validate: (input: string) => {
-        if (fs.existsSync(input))
-          return true;
+  if (typeof args.file !== 'string' || !fs.existsSync(args.file)) {
+    console.error('Must pass a valid file with -f');
+    return;
+  }
 
-        return false;
-      },
-    },
-    {
-      type: 'fuzzypath',
-      name: 'timeline',
-      message: 'Input a valid trigger JavaScript filename: ',
-      rootPath: 'ui',
-      suggestOnly: true,
-      default: args.timeline ?? '',
-      when: () => typeof args.timeline !== 'string',
-      validate: (input: string) => {
-        if (findTriggersFile(input) !== undefined)
-          return true;
+  if (typeof args.timeline !== 'string' || findTriggersFile(args.timeline) === undefined) {
+    console.error('Must pass a valid timeline file with -t');
+    return;
+  }
 
-        return `Could not find trigger file ${input}`;
-      },
-    },
-  ];
-
-  const answers = await inquirer.prompt<TestTimelineInquirerType>(questions);
-  const file = answers.file ?? args.file ?? '';
-  const timeline = answers.timeline ?? args.timeline ?? '';
+  const file = args.file;
+  const timeline = args.timeline;
   const driftWarn = args.drift_warning ?? defaultDriftWarn;
   const driftFail = args.drift_failure ?? defaultDriftFail;
 
@@ -298,31 +252,12 @@ const testTimelineFileFunc = async (args: TestTimelineNamespace): Promise<void> 
     return;
   }
 
-  let searchFightsIdx = args['search_fights'];
+  const searchFightsIdx = args['search_fights'];
   const collector = await makeCollectorFromPrepass(file, true);
 
   if (typeof searchFightsIdx !== 'number' || searchFightsIdx <= 0) {
     printCollectedFights(collector);
-
-    // Passing `-lf` directly or an invalid index.
-    if (searchFightsIdx !== undefined)
-      return;
-
-    const questions: QuestionCollection<TestTimelineInquirerType> = [
-      {
-        type: 'number',
-        name: 'search_fights',
-        message: 'Input a fight index: ',
-        default: -1,
-        validate: (input: number) => input >= 1,
-      },
-    ];
-
-    const answers = await inquirer.prompt<TestTimelineInquirerType>(questions);
-    searchFightsIdx = answers['search_fights'];
-
-    if (searchFightsIdx === null)
-      return;
+    return;
   }
 
   // All fights are 1-indexed on collectors,
@@ -387,74 +322,18 @@ const testTimelineReportFunc = (_args: TestTimelineNamespace): Promise<void> => 
   throw new Error('FFLogs report testing is not implemented yet');
 };
 
-const testTimelineFunc = (args: Namespace): Promise<void> => {
-  if (!(args instanceof TestTimelineNamespace))
-    throw new UnreachableCode();
-  const questions = [
-    {
-      type: 'list',
-      name: 'fileOrReport',
-      message: 'Testing a network log file or an FFLogs report?',
-      choices: [{
-        name: 'Network Log File',
-        value: 'file',
-      }, {
-        name: 'FFLogs Report',
-        value: 'report',
-      }],
-      default: args.file !== null ? 'file' : args.report !== null ? 'report' : '',
-      when: () => typeof args.file !== 'string' && typeof args.report !== 'string',
-    },
-  ] as const;
+const testTimelineFunc = async (args: TestTimelineNamespace): Promise<void> => {
+  if (typeof args.file === 'string')
+    return testTimelineFileFunc(args);
+  if (typeof args.report === 'string')
+    return testTimelineReportFunc(args);
 
-  return inquirer.prompt<FileOrReportInquirerType>(questions)
-    .then((answers) => {
-      if (answers.fileOrReport === 'file' || args.file !== null)
-        return testTimelineFileFunc(args);
-
-      return testTimelineReportFunc(args);
-    });
+  console.error('Must pass either -f or -r');
 };
 
-export const registerTestTimeline = (
-  actionChoices: ActionChoiceType,
-  subparsers: SubParser,
-): void => {
-  actionChoices.testTimeline = {
-    name: 'Translate Raidboss timeline',
-    callback: testTimelineFunc,
-    namespace: TestTimelineNamespace,
-  };
-  const parser = subparsers.addParser('testTimeline', {
-    description: actionChoices.testTimeline.name,
-  });
-
-  // Add main input vector, fflogs report or network log file
-  const group = parser.addMutuallyExclusiveGroup();
-  group.addArgument(['-r', '--report'], { help: 'The ID of an FFLogs report' });
-  group.addArgument(
-    ['-f', '--file'],
-    {
-      type: 'string',
-      help: 'The path of the log file',
-    },
-  );
-
-  // Report arguments
-  parser.addArgument(
-    ['-k', '--key'],
-    {
-      help: 'The FFLogs API key to use, from https://www.fflogs.com/accounts/changeuser',
-      type: 'string',
-    },
-  );
-  parser.addArgument(
-    ['-rf', '--fight'],
-    {
-      type: 'int',
-      help: 'Fight ID of the report to use. Defaults to longest in the report',
-    },
-  );
+export const main = async (): Promise<void> => {
+  const timelineParse = new LogUtilArgParse();
+  const parser = timelineParse.parser;
 
   // Log file arguments
   parser.addArgument(
@@ -467,25 +346,6 @@ export const registerTestTimeline = (
   parser.addArgument(
     ['-e', '--end'],
     { type: 'string', help: 'Timestamp of the end, e.g. \'12:34:56.789' },
-  );
-  parser.addArgument(
-    ['-lf', '--search_fights'],
-    {
-      nargs: '?',
-      constant: -1,
-      type: 'int',
-      help:
-        'Encounter in log to use, e.g. \'1\'. If no number is specified, returns a list of encounters.',
-    },
-  );
-
-  // Filtering arguments
-  parser.addArgument(
-    ['-t', '--timeline'],
-    {
-      type: 'string',
-      help: 'The filename of the timeline to test against, e.g. ultima_weapon_ultimate',
-    },
   );
 
   // Output Format arguments
@@ -513,6 +373,12 @@ export const registerTestTimeline = (
         }.`,
     },
   );
+
+  // TODO: this needs to be Partial<>
+  const args: TestTimelineNamespace = new TestTimelineNamespace({});
+  timelineParse.parser.parseArgs(undefined, args);
+
+  return testTimelineFunc(args);
 };
 
 class TestTimeline extends Timeline {
@@ -614,3 +480,5 @@ class TestTimelineUI extends TimelineUI {
     });
   }
 }
+
+void main();
