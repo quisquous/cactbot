@@ -5,6 +5,7 @@ import readline from 'readline';
 import { Namespace } from 'argparse';
 import chalk from 'chalk';
 
+import { logDefinitionsVersions } from '../resources/netlog_defs';
 import { RaidbossData } from '../types/data';
 import { LooseTriggerSet, TimelineTrigger } from '../types/trigger';
 import LineEvent from '../ui/raidboss/emulator/data/network_log_converter/LineEvent';
@@ -18,11 +19,19 @@ import { walkDirSync } from './file_utils';
 import { LogUtilArgParse } from './logtools/arg_parser';
 import { printCollectedFights } from './logtools/encounter_printer';
 import { EncounterCollector } from './logtools/encounter_tools';
+import FFLogs, { FFLogsParsedEntry } from './logtools/fflogs';
 
 const rootDir = 'ui/raidboss/data';
 
 const defaultDriftWarn = 0.2;
 const defaultDriftFail = 1.0;
+
+const maxFieldId = (fields: { [fieldName: string]: number }): number => {
+  return Math.max(...Object.values(fields));
+};
+
+const maxAbilityFieldId = maxFieldId(logDefinitionsVersions.latest.Ability.fields);
+const maxStartsUsingFieldId = maxFieldId(logDefinitionsVersions.latest.StartsUsing.fields);
 
 const findTriggersFile = (shortName: string): string | undefined => {
   // strip extensions if provided.
@@ -38,7 +47,7 @@ const findTriggersFile = (shortName: string): string | undefined => {
 
 const testLineArray = async (
   lines: string[],
-  timeline: string,
+  timelineName: string,
   driftWarn: number,
   driftFail: number,
 ): Promise<void> => {
@@ -46,7 +55,7 @@ const testLineArray = async (
   const lineEvents = lines.map((line) => ParseLine.parse(repo, line)).filter((l) =>
     l !== undefined
   ) as LineEvent[];
-  return await testLineEvents(lineEvents, timeline, driftWarn, driftFail);
+  return await testLineEvents(lineEvents, timelineName, driftWarn, driftFail);
 };
 
 const testLineEvents = async (
@@ -95,18 +104,19 @@ const testLineEvents = async (
 
   testTimeline.ui = ui;
 
-  const startTimestamp = lines[0]?.timestamp ?? 0;
+  const startTimestamp = lines[0]?.timestamp;
+  if (lines.length === 0 || startTimestamp === undefined) {
+    console.error(`No lines to test`);
+    process.exit(-2);
+  }
 
   testTimeline.timebase = startTimestamp;
-  testTimeline._OnUpdateTimer(startTimestamp);
 
   for (const line of lines) {
-    testTimeline.OnLogLine(line.convertedLine, line.timestamp);
-    const baseTimestamp = testTimeline.timebase || startTimestamp || line.timestamp;
-    const fightNow = (line.timestamp - baseTimestamp) / 1000;
-
-    testTimeline.SyncTo(fightNow, line.timestamp);
+    // Update timer before the log line so that active syncs are up to date.
     testTimeline._OnUpdateTimer(line.timestamp);
+    // If this log line matches, it will OnSync and adjust the time as needed.
+    testTimeline.OnLogLine(line.convertedLine, line.timestamp);
   }
 
   console.log('Timeline:');
@@ -160,9 +170,9 @@ const testLineEvents = async (
 
 class TestTimelineNamespaceRequired extends Namespace {
   // FFLogs params
-  'report': string | null;
+  'report_id': string | null;
+  'report_fight': number | null;
   'key': string | null;
-  'fight': string | null;
 
   // Network log file params
   'file': string | null;
@@ -192,24 +202,21 @@ const makeCollectorFromPrepass = async (fileName: string, store: boolean) => {
   return collector;
 };
 
-const testTimelineFileFunc = async (args: TestTimelineNamespace): Promise<void> => {
+const testTimelineFileFunc = async (
+  args: TestTimelineNamespace,
+  timelineName: string,
+): Promise<void> => {
   if (typeof args.file !== 'string' || !fs.existsSync(args.file)) {
     console.error('Must pass a valid file with -f');
     return;
   }
 
-  if (typeof args.timeline !== 'string' || findTriggersFile(args.timeline) === undefined) {
-    console.error('Must pass a valid timeline file with -t');
-    return;
-  }
-
   const file = args.file;
-  const timeline = args.timeline;
   const driftWarn = args.drift_warning ?? defaultDriftWarn;
   const driftFail = args.drift_failure ?? defaultDriftFail;
 
   if (typeof args.start === 'string' || typeof args.end === 'string') {
-    await testTimelineFileStartEnd(args, file, timeline);
+    await testTimelineFileStartEnd(args, file, timelineName);
     return;
   }
 
@@ -234,13 +241,13 @@ const testTimelineFileFunc = async (args: TestTimelineNamespace): Promise<void> 
     return;
   }
 
-  return testLineArray(fight.logLines ?? [], timeline, driftWarn, driftFail);
+  return testLineArray(fight.logLines ?? [], timelineName, driftWarn, driftFail);
 };
 
 const testTimelineFileStartEnd = async (
   args: TestTimelineNamespace,
   logFilePath: string,
-  timeline: string,
+  timelineName: string,
 ): Promise<void> => {
   if (typeof args.start !== 'string') {
     console.error(`Invalid start datetime '${args.start ?? 'null'}', aborting.`);
@@ -276,18 +283,86 @@ const testTimelineFileStartEnd = async (
 
   const driftWarn = args.drift_warning ?? defaultDriftWarn;
   const driftFail = args.drift_failure ?? defaultDriftFail;
-  return await testLineEvents(lineEvents, timeline, driftWarn, driftFail);
+  return await testLineEvents(lineEvents, timelineName, driftWarn, driftFail);
 };
 
-const testTimelineReportFunc = (_args: TestTimelineNamespace): Promise<void> => {
-  throw new Error('FFLogs report testing is not implemented yet');
+const convertFFLogsEntryIntoNetworkLog = (entry: FFLogsParsedEntry): string => {
+  // Note: this is a simplified ISO timestamp (i.e. ending in Z, no timezone)
+  // which is not what ACT emits, but is easier to generate here, and works
+  // with the cactbot pipeline, so leaving it as-is rather than generating
+  // a more real line.
+  const timeStr = new Date(entry.timestamp).toISOString();
+  const enemyId = '40000000';
+
+  // Generate fake network log lines.  This generates enough information for a timeline
+  // line to match it, and has blanks for all of the other fields.
+  if (entry.type === 'cast') {
+    return [
+      '21',
+      timeStr,
+      enemyId,
+      entry.combatant,
+      entry.abilityId,
+      entry.abilityName,
+      ...Array<string>(maxAbilityFieldId).fill(''),
+    ].slice(0, maxAbilityFieldId).join('|');
+  } else if (entry.type === 'begincast') {
+    return [
+      '20',
+      timeStr,
+      enemyId,
+      entry.combatant,
+      entry.abilityId,
+      entry.abilityName,
+      ...Array<string>(maxStartsUsingFieldId).fill(''),
+    ].slice(0, maxStartsUsingFieldId).join('|');
+  }
+
+  // If some other type (for some reason), emit a fake debug line.
+  // No timelines will use this, but it might be helpful for debugging.
+  return [
+    '254',
+    timeStr,
+    JSON.stringify(entry),
+    '',
+  ].join('|');
+};
+
+const testTimelineReportFunc = async (
+  args: TestTimelineNamespace,
+  timelineName: string,
+): Promise<void> => {
+  if (typeof args.report_id !== 'string') {
+    console.error(`Invalid report id ${args.report_id ?? 'null'}`);
+    return;
+  }
+  if (typeof args.report_fight !== 'number') {
+    console.error(`Invalid report fight ${args.report_fight ?? 'null'}`);
+    return;
+  }
+  if (typeof args.key !== 'string') {
+    console.error(`Invalid report key ${args.key ?? 'null'}`);
+    return;
+  }
+
+  const entries = await FFLogs.parseReport(args.report_id, args.report_fight, args.key);
+
+  const lines = entries.map(convertFFLogsEntryIntoNetworkLog);
+  const driftWarn = args.drift_warning ?? defaultDriftWarn;
+  const driftFail = args.drift_failure ?? defaultDriftFail;
+  return await testLineArray(lines, timelineName, driftWarn, driftFail);
 };
 
 const testTimelineFunc = async (args: TestTimelineNamespace): Promise<void> => {
+  if (typeof args.timeline !== 'string' || findTriggersFile(args.timeline) === undefined) {
+    console.error('Must pass a valid timeline file with -t');
+    return;
+  }
+
   if (typeof args.file === 'string')
-    return testTimelineFileFunc(args);
-  if (typeof args.report === 'string')
-    return testTimelineReportFunc(args);
+    return testTimelineFileFunc(args, args.timeline);
+  if (typeof args.report_id === 'string')
+    return testTimelineReportFunc(args, args.timeline);
 
   console.error('Must pass either -f or -r');
 };
