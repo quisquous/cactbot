@@ -155,14 +155,14 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getOut('info'),
     },
     {
-      id: 'FATE Chi Assault Carapace (Donut)',
+      id: 'Hunt Chi Assault Carapace (Donut)',
       type: 'StartsUsing',
       netRegex: { id: '6561', source: 'Chi', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getUnder(),
     },
     {
-      id: 'FATE Chi Assault Carapace (Line)',
+      id: 'Hunt Chi Assault Carapace (Line)',
       // 6562 = 4.7s line
       // 6255 = 7.7s line (during Bunker Buster)
       type: 'StartsUsing',
@@ -171,35 +171,35 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.goSides(),
     },
     {
-      id: 'FATE Chi Rear Guns',
+      id: 'Hunt Chi Rear Guns',
       type: 'StartsUsing',
       netRegex: { id: '656A', source: 'Chi', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.goFront(),
     },
     {
-      id: 'FATE Chi Fore Arms',
+      id: 'Hunt Chi Fore Arms',
       type: 'StartsUsing',
       netRegex: { id: '679B', source: 'Chi', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getBehind(),
     },
     {
-      id: 'FATE Chi Rear Guns > Fore Arms 2.0',
+      id: 'Hunt Chi Rear Guns > Fore Arms 2.0',
       type: 'StartsUsing',
       netRegex: { id: '656B', source: 'Chi', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getFrontThenBack(),
     },
     // {
-    //   id: 'FATE Chi Fore Arms > Rear Guns 2.0',
+    //   id: 'Hunt Chi Fore Arms > Rear Guns 2.0',
     //   type: 'StartsUsing',
     //   netRegex: { id: '', source: 'Chi', capture: false },
     //   condition: (data) => data.inCombat,
     //   response: Responses.getBackThenFront(),
     // },
     {
-      id: 'FATE Chi Carapace > Fore Arms 2.0 (Donut)',
+      id: 'Hunt Chi Carapace > Fore Arms 2.0 (Donut)',
       type: 'StartsUsing',
       netRegex: { id: '6563', source: 'Chi', capture: false },
       condition: (data) => data.inCombat,
@@ -211,7 +211,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'FATE Chi Carapace > Fore Arms 2.0 (Line)',
+      id: 'Hunt Chi Carapace > Fore Arms 2.0 (Line)',
       type: 'StartsUsing',
       netRegex: { id: '6565', source: 'Chi', capture: false },
       condition: (data) => data.inCombat,
@@ -223,7 +223,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     // {
-    //   id: 'FATE Chi Carapace > Rear Guns 2.0 (Donut)',
+    //   id: 'Hunt Chi Carapace > Rear Guns 2.0 (Donut)',
     //   type: 'StartsUsing',
     //   netRegex: { id: '', source: 'Chi', capture: false },
     //   condition: (data) => data.inCombat,
@@ -235,7 +235,7 @@ const triggerSet: TriggerSet<Data> = {
     //   },
     // },
     // {
-    //   id: 'FATE Chi Carapace > Rear Guns 2.0 (Line)',
+    //   id: 'Hunt Chi Carapace > Rear Guns 2.0 (Line)',
     //   type: 'StartsUsing',
     //   netRegex: { id: '', source: 'Chi', capture: false },
     //   condition: (data) => data.inCombat,
