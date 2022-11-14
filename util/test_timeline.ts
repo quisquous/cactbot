@@ -199,7 +199,7 @@ const testLineEvents = async (
   }
 };
 
-class TestTimelineNamespace extends Namespace {
+class TestTimelineNamespaceRequired extends Namespace {
   // FFLogs params
   'report': string | null;
   'key': string | null;
@@ -218,6 +218,8 @@ class TestTimelineNamespace extends Namespace {
   'drift_failure': number;
   'drift_warning': number;
 }
+
+type TestTimelineNamespace = Partial<TestTimelineNamespaceRequired>;
 
 const makeCollectorFromPrepass = async (fileName: string, store: boolean) => {
   const collector = new EncounterCollector();
@@ -374,8 +376,7 @@ export const main = async (): Promise<void> => {
     },
   );
 
-  // TODO: this needs to be Partial<>
-  const args: TestTimelineNamespace = new TestTimelineNamespace({});
+  const args: TestTimelineNamespace = new TestTimelineNamespaceRequired({});
   timelineParse.parser.parseArgs(undefined, args);
 
   return testTimelineFunc(args);
