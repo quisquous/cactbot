@@ -186,7 +186,7 @@ export class Timeline {
     this.ui?.OnSyncTime(fightNow, false);
   }
 
-  protected SyncTo(fightNow: number, currentTime: number): void {
+  protected SyncTo(fightNow: number, currentTime: number, _sync?: Sync): void {
     // This records the actual time which aligns with "0" in the timeline.
     const newTimebase = new Date(currentTime - fightNow * 1000).valueOf();
     // Skip syncs that are too close.  Many syncs happen on abilities that
@@ -232,14 +232,16 @@ export class Timeline {
 
   public OnLogLine(line: string, currentTime: number): void {
     for (const sync of this.activeSyncs) {
-      if (line.search(sync.regex) >= 0) {
+      if (sync.regex.test(line)) {
         if ('jump' in sync) {
-          if (!sync.jump)
+          if (!sync.jump) {
+            this.SyncTo(0, currentTime, sync);
             this.Stop();
-          else
-            this.SyncTo(sync.jump, currentTime);
+          } else {
+            this.SyncTo(sync.jump, currentTime, sync);
+          }
         } else {
-          this.SyncTo(sync.time, currentTime);
+          this.SyncTo(sync.time, currentTime, sync);
         }
         break;
       }

@@ -389,38 +389,13 @@ class TestTimeline extends Timeline {
     /* noop */
   }
 
-  public override SyncTo(fightNow: number, currentTime: number): void {
-    super.SyncTo(fightNow, currentTime);
-  }
-
-  // TODO: Can't detect Sync events any other way, maybe OnSync should get the sync as a parameter?
-  public override OnLogLine(line: string, currentTime: number): void {
-    let syncMatch: Sync | undefined = undefined;
-    for (const sync of this.activeSyncs) {
-      if (sync.regex.test(line)) {
-        syncMatch = sync;
-        break;
-      }
-    }
-
-    // Because TS won't allow the if below to narrow the type, since it's not const
-    const syncMatchTyped = syncMatch;
-
-    if (
-      syncMatchTyped !== undefined &&
-      this.ui !== undefined
-    ) {
-      const origEvent = this.events.find((e) => e.id === syncMatchTyped.id);
-
-      // Make sure we don't log multiple syncs for the same event ID and timestamp
-      const foundEvent = this.ui?.events.find((uiEvent) => {
-        return uiEvent.event.id === origEvent?.id && uiEvent.timestamp === currentTime;
-      });
-
-      if (foundEvent === undefined && origEvent !== undefined) {
+  public override SyncTo(fightNow: number, currentTime: number, sync?: Sync): void {
+    if (sync !== undefined) {
+      const origEvent = this.events.find((e) => e.id === sync.id);
+      if (origEvent !== undefined) {
         const event = {
           event: origEvent,
-          sync: syncMatchTyped,
+          sync: sync,
           timebase: this.timebase,
           timestamp: currentTime,
         };
@@ -428,7 +403,7 @@ class TestTimeline extends Timeline {
       }
     }
 
-    super.OnLogLine(line, currentTime);
+    super.SyncTo(fightNow, currentTime, sync);
   }
 }
 
