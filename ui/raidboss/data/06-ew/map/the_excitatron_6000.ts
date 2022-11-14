@@ -44,11 +44,11 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Excitatron Exciting Mandragoras Spawn',
-      // 10838 = Exciting Tomato
-      // 10837 = Exciting Garlic
-      // 10839 = Exciting Queen
       // 10835 = Exciting Onion
       // 10836 = Exciting Egg
+      // 10837 = Exciting Garlic
+      // 10838 = Exciting Tomato
+      // 10839 = Exciting Queen
       type: 'AddedCombatant',
       netRegex: { npcNameId: '1083[5-9]', capture: false },
       suppressSeconds: 1,
@@ -131,17 +131,17 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.spread(),
     },
     // Heart on Fire II (6D54) - aoes under random players
-    // Temper's Flare (6D4E?, 6743?) - roomwide aoe?
+    // Temper's Flare (6D4E?, 6743?) - roomwide aoe
     // ---------------- alternate final chamber boss: Lucky Sphinx ----------------
-    // Icewind Twister - donut aoe?
-    // Lightning Bolt - aoes under 4? players?
-    // Riddle of Flame - Pyretic on every player?
-    // Riddle of Frost - Deep Freeze if not moving, Freezing Up if moving?
-    // Icebomb Burst - point-blank aoe on boss + baited aoes on 4? players?
-    // Gold Thunder - stack donut? on 1 player, deals high damge outside donut center safe-spot?
+    // Icewind Twister - donut aoe
+    // Lightning Bolt - aoes under 4? players
+    // Riddle of Flame - Pyretic on every player
+    // Riddle of Frost - Deep Freeze if not moving, Freezing Up if moving
+    // Icebomb Burst - point-blank aoe on boss + baited aoes on 4? players
+    // Gold Thunder - stack donut on 1 player, deals high damge outside center safe-spot
     // Firedrop Blast - aoes under 4? players + aoe marker on 1 player, leaves burns on marked player if other players hit?
-    // Superheat - tankbuster?
-    // Crackling Current - roomwide aoe?
+    // Superheat - tankbuster
+    // Crackling Current - roomwide aoe
   ],
 };
 
