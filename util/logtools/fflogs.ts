@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 // The FFLogs API returns more data than just this,
 // but it's only status information for source and target,
 // and currently nothing in the timeline utilities needs this.
-export type ffLogsEventEntry = {
+export type FFLogsEventEntry = {
   timestamp: number;
   type: string;
   sourceID?: number;
@@ -25,7 +25,7 @@ export type ffLogsEventEntry = {
   fight: number;
 };
 
-export type fflogsFightListEntry = {
+export type FFLogsFightListEntry = {
   id: number;
   boss: number;
   // eslint-disable-next-line camelcase
@@ -52,24 +52,24 @@ export type fflogsFightListEntry = {
   };
 };
 
-export type fflogsEventResponse = {
+export type FFLogsEventResponse = {
   count: number;
-  events: ffLogsEventEntry[];
+  events: FFLogsEventEntry[];
   nextPageTimestamp?: number;
 };
 
-export type fflogsFightResponse = {
+export type FFLogsFightResponse = {
   lang: 'en' | 'fr' | 'ja' | 'de' | 'cn';
   start: number;
   end: number;
-  fights: fflogsFightListEntry[];
+  fights: FFLogsFightListEntry[];
   title: string;
   zone: number;
-  enemies: fflogsEnemy[];
+  enemies: FFLogsEnemy[];
   nextPageTimestamp?: number;
 };
 
-export type fflogsEnemy = {
+export type FFLogsEnemy = {
   guid: number;
   icon: string;
   id: number;
@@ -77,7 +77,7 @@ export type fflogsEnemy = {
   type: string;
 };
 
-export type fflogsParsedEntry = {
+export type FFLogsParsedEntry = {
   timestamp: number;
   combatant: string;
   abilityId: string;
@@ -89,8 +89,8 @@ const makeRequest = async (url: string, options: URLSearchParams) => {
   const requestUrl = `${url}?${options.toString()}`;
   const response = await fetch(requestUrl);
   const responseText = JSON.parse(await response.text()) as
-    | fflogsFightResponse
-    | fflogsEventResponse;
+    | FFLogsFightResponse
+    | FFLogsEventResponse;
   return responseText;
 };
 
@@ -100,7 +100,7 @@ class FFLogs {
     reportId: string,
     prefix: 'www' | 'fr' | 'ja' | 'de' | 'cn',
     options: URLSearchParams,
-  ): Promise<fflogsEventResponse | fflogsFightResponse> => {
+  ): Promise<FFLogsEventResponse | FFLogsFightResponse> => {
     // The Event call requires specifying a View parameter.
     // There's a long list of these, but choosing "Summary"
     // permits us to filter more granularly via the option parameters.
@@ -119,13 +119,13 @@ class FFLogs {
       const nextOptions = new URLSearchParams();
       Object.assign(nextOptions, options);
       nextOptions.set('start', data.nextPageTimestamp.toString());
-      data = data as fflogsEventResponse;
+      data = data as FFLogsEventResponse;
       const nextData = await this.callFFLogs(
         'events',
         reportId,
         'www',
         nextOptions,
-      ) as fflogsEventResponse;
+      ) as FFLogsEventResponse;
       data.events = data.events.concat(nextData.events);
       data.count += nextData.count;
       data.nextPageTimestamp = nextData.nextPageTimestamp;
@@ -137,7 +137,7 @@ class FFLogs {
   static getFightInfo = async (
     reportId: string,
     key: string,
-  ): Promise<fflogsFightResponse> => {
+  ): Promise<FFLogsFightResponse> => {
     const fightOptions = new URLSearchParams();
     fightOptions.set('api_key', key);
     const fightListData = await FFLogs.callFFLogs(
@@ -145,12 +145,12 @@ class FFLogs {
       reportId,
       'www',
       fightOptions,
-    ) as fflogsFightResponse;
+    ) as FFLogsFightResponse;
     return fightListData;
   };
 
   static extractEnemiesFromReport = (
-    fightData: fflogsFightResponse,
+    fightData: FFLogsFightResponse,
   ): { [index: string]: string } => {
     const enemies: { [index: string]: string } = {};
     for (const enemy of fightData.enemies)
@@ -165,7 +165,7 @@ class FFLogs {
     endTime: number,
     filter = 'source.disposition="enemy" and type="cast"',
     translate = true,
-  ): Promise<ffLogsEventEntry[]> => {
+  ): Promise<FFLogsEventEntry[]> => {
     const eventOptionParams = new URLSearchParams({
       'api_key': key,
       'start': startTime.toString(),
@@ -178,15 +178,15 @@ class FFLogs {
       reportId,
       'www',
       eventOptionParams,
-    ) as fflogsEventResponse;
+    ) as FFLogsEventResponse;
     return eventData.events;
   };
 
   static parseFFLogsEvent = (
-    event: ffLogsEventEntry,
+    event: FFLogsEventEntry,
     enemies: { [index: string]: string },
     startTime: number,
-  ): fflogsParsedEntry => {
+  ): FFLogsParsedEntry => {
     const timestamp = startTime + event.timestamp;
 
     let combatant: string | undefined;
@@ -201,7 +201,7 @@ class FFLogs {
     if (event.ability.name.toLowerCase().startsWith('unknown_'))
       ability = '--sync--';
 
-    const entry: fflogsParsedEntry = {
+    const entry: FFLogsParsedEntry = {
       timestamp: timestamp,
       combatant: combatant,
       abilityId: abilityId,
@@ -215,7 +215,7 @@ class FFLogs {
     reportId: string,
     fightIndex: number,
     apiKey: string,
-  ): Promise<fflogsParsedEntry[]> => {
+  ): Promise<FFLogsParsedEntry[]> => {
     const rawReportData = await FFLogs.getFightInfo(reportId, apiKey);
     const reportStartTime = rawReportData.start;
     // First we verify that the user entered a valid index
