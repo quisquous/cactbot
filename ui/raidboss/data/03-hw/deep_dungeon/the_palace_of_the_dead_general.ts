@@ -84,7 +84,8 @@ const triggerSet: TriggerSet<Data> = {
       // en: You return the pomander of ${pomander} to the coffer. You cannot carry any more of that item.
       type: 'SystemLogMessage',
       netRegex: { id: '1C36' },
-      infoText: (_data, matches, output) => output.duplicate!({ pomander: pomanders[ parseInt(matches.param1, 16) - 1 ] }),
+      infoText: (_data, matches, output) =>
+        output.duplicate!({ pomander: pomanders[parseInt(matches.param1,16) - 1] }),
       outputStrings: {
         duplicate: {
           en: '${pomander} duplicate',
@@ -99,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
       // en: The Cairn of Return begins to glow!
       type: 'SystemLogMessage',
       netRegex: { id: '1C4A', capture: false },
-      infoText: (_data, matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Cairn of Return activated',
@@ -113,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
       // en: The Cairn of Passage is activated!
       type: 'SystemLogMessage',
       netRegex: { id: '1C4D', capture: false },
-      infoText: (_data, matches, output) => output.text!(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Cairn of Passage activated',
@@ -166,7 +167,10 @@ const triggerSet: TriggerSet<Data> = {
       // trigger off of the GameLog message instead
       // en: The gathering gloom appears to invigorate the floor's denizens.
       type: 'GameLog',
-      netRegex: { line: 'The gathering gloom appears to invigorate the floor\'s denizens\..*?', capture: false },
+      netRegex: {
+        line: 'The gathering gloom appears to invigorate the floor\'s denizens\..*?',
+        capture: false
+      },
       infoText: (_data, matches, output) => output.text!(),
       outputStrings: {
         text: {
