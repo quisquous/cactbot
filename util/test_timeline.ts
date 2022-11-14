@@ -1,11 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import readline from 'readline';
 
-import { Namespace, SubParser } from 'argparse';
+import { Namespace } from 'argparse';
 import chalk from 'chalk';
-import inquirer, { QuestionCollection } from 'inquirer';
 
-import { UnreachableCode } from '../resources/not_reached';
 import { RaidbossData } from '../types/data';
 import { LooseTriggerSet, TimelineTrigger } from '../types/trigger';
 import LineEvent from '../ui/raidboss/emulator/data/network_log_converter/LineEvent';
@@ -16,10 +15,14 @@ import { Timeline, TimelineUI } from '../ui/raidboss/timeline';
 import { Event, Sync, Text } from '../ui/raidboss/timeline_parser';
 
 import { walkDirSync } from './file_utils';
-
-import { ActionChoiceType } from '.';
+import { LogUtilArgParse } from './logtools/arg_parser';
+import { printCollectedFights } from './logtools/encounter_printer';
+import { EncounterCollector } from './logtools/encounter_tools';
 
 const rootDir = 'ui/raidboss/data';
+
+const defaultDriftWarn = 0.2;
+const defaultDriftFail = 1.0;
 
 const findTriggersFile = (shortName: string): string | undefined => {
   // strip extensions if provided.
@@ -33,46 +36,9 @@ const findTriggersFile = (shortName: string): string | undefined => {
   return found;
 };
 
-const testFile = async (
-  logFilePath: string,
-  start: string,
-  end: string,
-  timelineName: string,
-  driftWarn: number,
-  driftFail: number,
-): Promise<void> => {
-  if (!fs.existsSync(logFilePath)) {
-    console.error(`Couldn\'t find '${logFilePath}', aborting.`);
-    process.exit(-2);
-  }
-  const startDate = new Date(start);
-  if (isNaN(startDate.getTime())) {
-    console.error(`Invalid start datetime '${start}', aborting.`);
-    process.exit(-2);
-  }
-  const endDate = new Date(end);
-  if (isNaN(endDate.getTime())) {
-    console.error(`Invalid start datetime '${end}', aborting.`);
-    process.exit(-2);
-  }
-  const allLines = fs.readFileSync(logFilePath).toString().split('\n');
-  const repo = new LogRepository();
-  const lineEvents = allLines.map((line) => ParseLine.parse(repo, line)).filter((l) =>
-    l !== undefined
-  ) as LineEvent[];
-  return await testLineEvents(
-    lineEvents.filter((l) =>
-      l.timestamp >= startDate.getTime() && l.timestamp <= endDate.getTime()
-    ),
-    timelineName,
-    driftWarn,
-    driftFail,
-  );
-};
-
 const testLineArray = async (
   lines: string[],
-  timelineName: string,
+  timeline: string,
   driftWarn: number,
   driftFail: number,
 ): Promise<void> => {
@@ -80,11 +46,8 @@ const testLineArray = async (
   const lineEvents = lines.map((line) => ParseLine.parse(repo, line)).filter((l) =>
     l !== undefined
   ) as LineEvent[];
-  return await testLineEvents(lineEvents, timelineName, driftWarn, driftFail);
+  return await testLineEvents(lineEvents, timeline, driftWarn, driftFail);
 };
-
-// TODO: Temporary assert
-console.assert(testLineArray);
 
 const testLineEvents = async (
   lines: LineEvent[],
@@ -195,12 +158,13 @@ const testLineEvents = async (
     const delta = (firedEvent.timestamp - firedEvent.timebase) / 1000 - firedEvent.event.time;
     const invertedDelta = delta * -1;
     const sign = invertedDelta > 0 ? '+' : ' ';
-    const lowWindow = firedEvent.sync.start - firedEvent.sync.time;
-    const highWindow = firedEvent.sync.end - firedEvent.sync.time;
-    const color = delta < lowWindow - driftFail || delta > highWindow + driftFail
+
+    const isDriftFail = Math.abs(delta) > driftFail;
+    const isDriftWarn = Math.abs(delta) > driftWarn;
+    const color = isDriftFail
       ? 'red'
-      : delta < lowWindow - driftWarn || delta > highWindow + driftWarn
-      ? 'redBright'
+      : isDriftWarn
+      ? 'yellow'
       : 'green';
     console.log(
       chalk[color](`%s | %s | %s`),
@@ -235,7 +199,7 @@ const testLineEvents = async (
   }
 };
 
-type TestTimelineNamespaceInterface = {
+class TestTimelineNamespaceRequired extends Namespace {
   // FFLogs params
   'report': string | null;
   'key': string | null;
@@ -245,7 +209,7 @@ type TestTimelineNamespaceInterface = {
   'file': string | null;
   'start': string | null;
   'end': string | null;
-  'search_fights': string | null;
+  'search_fights': number | null;
 
   // Filtering params
   'timeline': string | null;
@@ -253,173 +217,125 @@ type TestTimelineNamespaceInterface = {
   // Output format params
   'drift_failure': number;
   'drift_warning': number;
-};
-
-class TestTimelineNamespace extends Namespace implements TestTimelineNamespaceInterface {
-  'report': string | null;
-  'key': string | null;
-  'fight': string | null;
-  'file': string | null;
-  'start': string | null;
-  'end': string | null;
-  'search_fights': string | null;
-  'timeline': string | null;
-  'drift_failure' = 1;
-  'drift_warning' = 0.2;
 }
 
-type TestTimelineInquirerType = {
-  [name in keyof TestTimelineNamespaceInterface]: TestTimelineNamespaceInterface[name];
+type TestTimelineNamespace = Partial<TestTimelineNamespaceRequired>;
+
+const makeCollectorFromPrepass = async (fileName: string, store: boolean) => {
+  const collector = new EncounterCollector();
+  const lineReader = readline.createInterface({
+    input: fs.createReadStream(fileName),
+  });
+  for await (const line of lineReader) {
+    // TODO: this could be more efficient if it stopped when it found the requested encounter.
+    collector.process(line, store);
+  }
+  return collector;
 };
 
-type FileOrReportInquirerType = {
-  fileOrReport: 'file' | 'report';
+const testTimelineFileFunc = async (args: TestTimelineNamespace): Promise<void> => {
+  if (typeof args.file !== 'string' || !fs.existsSync(args.file)) {
+    console.error('Must pass a valid file with -f');
+    return;
+  }
+
+  if (typeof args.timeline !== 'string' || findTriggersFile(args.timeline) === undefined) {
+    console.error('Must pass a valid timeline file with -t');
+    return;
+  }
+
+  const file = args.file;
+  const timeline = args.timeline;
+  const driftWarn = args.drift_warning ?? defaultDriftWarn;
+  const driftFail = args.drift_failure ?? defaultDriftFail;
+
+  if (typeof args.start === 'string' || typeof args.end === 'string') {
+    await testTimelineFileStartEnd(args, file, timeline);
+    return;
+  }
+
+  const searchFightsIdx = args['search_fights'];
+  const collector = await makeCollectorFromPrepass(file, true);
+
+  if (typeof searchFightsIdx !== 'number' || searchFightsIdx <= 0) {
+    printCollectedFights(collector);
+    return;
+  }
+
+  // All fights are 1-indexed on collectors,
+  // so we subtract 1 from the user's 1-indexed selection.
+  const fight = collector.fights[searchFightsIdx - 1];
+  if (fight === undefined) {
+    console.error(`No fight found at specified index ${searchFightsIdx}`);
+    return;
+  }
+
+  if (fight === undefined) {
+    console.error('Undefined fight');
+    return;
+  }
+
+  return testLineArray(fight.logLines ?? [], timeline, driftWarn, driftFail);
 };
 
-const testTimelineFileFunc = (args: TestTimelineNamespace): Promise<void> => {
-  const questions: QuestionCollection<TestTimelineInquirerType> = [
-    {
-      type: 'string',
-      name: 'file',
-      message: 'Input a network log file path: ',
-      default: args.file,
-      when: () => typeof args.file !== 'string',
-      validate: (input: string) => {
-        if (fs.existsSync(input))
-          return true;
+const testTimelineFileStartEnd = async (
+  args: TestTimelineNamespace,
+  logFilePath: string,
+  timeline: string,
+): Promise<void> => {
+  if (typeof args.start !== 'string') {
+    console.error(`Invalid start datetime '${args.start ?? 'null'}', aborting.`);
+    return;
+  }
+  if (typeof args.end !== 'string') {
+    console.error(`Invalid start datetime '${args.end ?? 'null'}', aborting.`);
+    return;
+  }
+  if (!fs.existsSync(logFilePath)) {
+    console.error(`Couldn\'t find '${logFilePath}', aborting.`);
+    process.exit(-2);
+  }
+  const startDate = new Date(args.start);
+  if (isNaN(startDate.getTime())) {
+    console.error(`Invalid start datetime '${args.start}', aborting.`);
+    process.exit(-2);
+  }
+  const endDate = new Date(args.end);
+  if (isNaN(endDate.getTime())) {
+    console.error(`Invalid start datetime '${args.end}', aborting.`);
+    process.exit(-2);
+  }
+  const allLines = fs.readFileSync(logFilePath).toString().split('\n');
 
-        return false;
-      },
-    },
-    {
-      type: 'fuzzypath',
-      name: 'timeline',
-      message: 'Input a valid trigger JavaScript filename: ',
-      rootPath: 'ui',
-      suggestOnly: true,
-      default: args.timeline ?? '',
-      when: () => typeof args.timeline !== 'string',
-      validate: (input: string) => {
-        if (findTriggersFile(input) !== undefined)
-          return true;
+  const repo = new LogRepository();
+  const lineEvents = allLines.map((line) => ParseLine.parse(repo, line)).filter((l) => {
+    const timestamp = l?.timestamp;
+    if (timestamp === undefined)
+      return false;
+    return timestamp >= startDate.getTime() && timestamp <= endDate.getTime();
+  }) as LineEvent[];
 
-        return `Could not find trigger file ${input}`;
-      },
-    },
-    {
-      type: 'input',
-      name: 'start',
-      message: 'Input a start timestamp: ',
-      default: args.start,
-      when: () => {
-        const dateStr = args.start;
-        if (dateStr === null)
-          return true;
-        return isNaN(new Date(dateStr).getTime());
-      },
-    },
-    {
-      type: 'input',
-      name: 'end',
-      message: 'Input an end timestamp: ',
-      default: args.end,
-      when: () => {
-        const dateStr = args.end;
-        if (dateStr === null)
-          return true;
-        return isNaN(new Date(dateStr).getTime());
-      },
-    },
-  ] as const;
-
-  return inquirer.prompt<TestTimelineInquirerType>(questions)
-    .then((answers) => {
-      const timeline = answers.timeline ?? args.timeline ?? '';
-      const file = answers.file ?? args.file ?? '';
-      const start = answers.start ?? args.start ?? '';
-      const end = answers.end ?? args.end ?? '';
-      const driftWarn = answers.drift_warning ?? args.drift_warning ?? '';
-      const driftFail = answers.drift_failure ?? args.drift_failure ?? '';
-      if (
-        typeof timeline === 'string' && typeof file === 'string' &&
-        typeof start === 'string' && typeof end === 'string'
-      )
-        return testFile(file, start, end, timeline, driftWarn, driftFail);
-    });
+  const driftWarn = args.drift_warning ?? defaultDriftWarn;
+  const driftFail = args.drift_failure ?? defaultDriftFail;
+  return await testLineEvents(lineEvents, timeline, driftWarn, driftFail);
 };
 
 const testTimelineReportFunc = (_args: TestTimelineNamespace): Promise<void> => {
   throw new Error('FFLogs report testing is not implemented yet');
 };
 
-const testTimelineFunc = (args: Namespace): Promise<void> => {
-  if (!(args instanceof TestTimelineNamespace))
-    throw new UnreachableCode();
-  const questions = [
-    {
-      type: 'list',
-      name: 'fileOrReport',
-      message: 'Testing a network log file or an FFLogs report?',
-      choices: [{
-        name: 'Network Log File',
-        value: 'file',
-      }, {
-        name: 'FFLogs Report',
-        value: 'report',
-      }],
-      default: args.file !== null ? 'file' : args.report !== null ? 'report' : '',
-      when: () => typeof args.file !== 'string' && typeof args.report !== 'string',
-    },
-  ] as const;
+const testTimelineFunc = async (args: TestTimelineNamespace): Promise<void> => {
+  if (typeof args.file === 'string')
+    return testTimelineFileFunc(args);
+  if (typeof args.report === 'string')
+    return testTimelineReportFunc(args);
 
-  return inquirer.prompt<FileOrReportInquirerType>(questions)
-    .then((answers) => {
-      if (answers.fileOrReport === 'file' || args.file !== null)
-        return testTimelineFileFunc(args);
-
-      return testTimelineReportFunc(args);
-    });
+  console.error('Must pass either -f or -r');
 };
 
-export const registerTestTimeline = (
-  actionChoices: ActionChoiceType,
-  subparsers: SubParser,
-): void => {
-  actionChoices.testTimeline = {
-    name: 'Translate Raidboss timeline',
-    callback: testTimelineFunc,
-    namespace: TestTimelineNamespace,
-  };
-  const parser = subparsers.addParser('testTimeline', {
-    description: actionChoices.testTimeline.name,
-  });
-
-  // Add main input vector, fflogs report or network log file
-  const group = parser.addMutuallyExclusiveGroup();
-  group.addArgument(['-r', '--report'], { help: 'The ID of an FFLogs report' });
-  group.addArgument(
-    ['-f', '--file'],
-    {
-      type: 'string',
-      help: 'The path of the log file',
-    },
-  );
-
-  // Report arguments
-  parser.addArgument(
-    ['-k', '--key'],
-    {
-      help: 'The FFLogs API key to use, from https://www.fflogs.com/accounts/changeuser',
-      type: 'string',
-    },
-  );
-  parser.addArgument(
-    ['-rf', '--fight'],
-    {
-      type: 'int',
-      help: 'Fight ID of the report to use. Defaults to longest in the report',
-    },
-  );
+export const main = async (): Promise<void> => {
+  const timelineParse = new LogUtilArgParse();
+  const parser = timelineParse.parser;
 
   // Log file arguments
   parser.addArgument(
@@ -433,47 +349,37 @@ export const registerTestTimeline = (
     ['-e', '--end'],
     { type: 'string', help: 'Timestamp of the end, e.g. \'12:34:56.789' },
   );
-  parser.addArgument(
-    ['-lf', '--search_fights'],
-    {
-      nargs: '?',
-      constant: -1,
-      type: 'int',
-      help:
-        'Encounter in log to use, e.g. \'1\'. If no number is specified, returns a list of encounters.',
-    },
-  );
-
-  // Filtering arguments
-  parser.addArgument(
-    ['-t', '--timeline'],
-    {
-      type: 'string',
-      help: 'The filename of the timeline to test against, e.g. ultima_weapon_ultimate',
-    },
-  );
 
   // Output Format arguments
   parser.addArgument(
     ['-df', '--drift_failure'],
     {
       nargs: '?',
-      defaultValue: 1,
+      defaultValue: defaultDriftFail,
       type: 'float',
       help:
-        'If an entry misses its timestamp by more than this value in seconds, it is displayed in red. Defaults to 1.',
+        `If an entry misses its timestamp by more than this value in seconds, it is displayed in red. Defaults to ${
+          defaultDriftFail.toFixed(1)
+        }.`,
     },
   );
   parser.addArgument(
     ['-dw', '--drift_warning'],
     {
       nargs: '?',
-      defaultValue: 0.2,
+      defaultValue: defaultDriftWarn,
       type: 'float',
       help:
-        'If an entry misses its timestamp by more than this value in seconds, it is displayed in yellow. Defaults to 0.2.',
+        `If an entry misses its timestamp by more than this value in seconds, it is displayed in yellow. Defaults to ${
+          defaultDriftWarn.toFixed(1)
+        }.`,
     },
   );
+
+  const args: TestTimelineNamespace = new TestTimelineNamespaceRequired({});
+  timelineParse.parser.parseArgs(undefined, args);
+
+  return testTimelineFunc(args);
 };
 
 class TestTimeline extends Timeline {
@@ -491,7 +397,7 @@ class TestTimeline extends Timeline {
   public override OnLogLine(line: string, currentTime: number): void {
     let syncMatch: Sync | undefined = undefined;
     for (const sync of this.activeSyncs) {
-      if (line.search(sync.regex) >= 0) {
+      if (sync.regex.test(line)) {
         syncMatch = sync;
         break;
       }
@@ -547,29 +453,13 @@ class TestTimelineUI extends TimelineUI {
   public fightNow = 0;
 
   public constructor(protected override timeline: TestTimeline) {
-    super(defaultRaidbossOptions);
+    super();
   }
+
   public override OnSyncTime(fightNow: number, _running: boolean): void {
     this.fightNow = fightNow;
   }
-  public override OnRemoveTimer(_e: Event, _expired: boolean, _force?: boolean): void {
-    /* noop */
-  }
-  public override OnAddTimer(_fightNow: number, _e: Event, _channeling: boolean): void {
-    /* noop */
-  }
-  public override OnShowInfoText(_text: string, _currentTime: number): void {
-    /* noop */
-  }
-  public override OnShowAlertText(_text: string, _currentTime: number): void {
-    /* noop */
-  }
-  public override OnShowAlarmText(_text: string, _currentTime: number): void {
-    /* noop */
-  }
-  public override OnSpeakTTS(_text: string, _currentTime: number): void {
-    /* noop */
-  }
+
   public override OnTrigger(
     trigger: Partial<TimelineTrigger<RaidbossData>>,
     matches: RegExpExecArray,
@@ -591,3 +481,5 @@ class TestTimelineUI extends TimelineUI {
     });
   }
 }
+
+void main();
