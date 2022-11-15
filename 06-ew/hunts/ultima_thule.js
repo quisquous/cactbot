@@ -201,6 +201,7 @@ Options.Triggers.push({
         text: {
           en: 'Under => Back',
           ja: '下 => 後ろ',
+          cn: '下方 => 背后',
         },
       },
     },
@@ -214,6 +215,7 @@ Options.Triggers.push({
         text: {
           en: 'Sides => Back',
           ja: '横 => 後ろ',
+          cn: '两侧 => 背后',
         },
       },
     },
@@ -227,6 +229,7 @@ Options.Triggers.push({
         text: {
           en: 'Under => Front',
           ja: '下 => 前',
+          cn: '下方 => 正面',
         },
       },
     },
@@ -240,6 +243,7 @@ Options.Triggers.push({
         text: {
           en: 'Sides => Front',
           ja: '横 => 前',
+          cn: '两侧 => 正面',
         },
       },
     },

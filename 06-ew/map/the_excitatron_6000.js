@@ -2,7 +2,7 @@
 // TODO: all Lucky Sphinx abilities
 const excitatronOutputStrings = {
   spawn: {
-    en: '${name} spawned!',
+    en: '正在生成 ${name}!',
   },
 };
 Options.Triggers.push({
@@ -46,6 +46,7 @@ Options.Triggers.push({
         text: {
           en: 'Exciting Mandragoras spawned, kill in order!',
           ja: 'マンドラゴラ！順番に倒して！',
+          cn: '已生成 惊奇蔓德拉战队, 依次击杀!',
         },
       },
     },

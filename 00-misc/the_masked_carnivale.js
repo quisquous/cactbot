@@ -158,6 +158,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Arena Roselets spawning!',
+          cn: '正在生成 斗场小红花!',
           ko: '넝쿨장미 소환됨!',
         },
       },
@@ -284,6 +285,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Diamondback',
+          cn: '超硬化',
           ko: '초경화',
         },
       },
@@ -296,6 +298,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Charge + knockback',
+          cn: '冲锋 + 击退',
           ko: '돌진 + 넉백',
         },
       },
@@ -309,6 +312,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Away from front + in',
+          cn: '避开正面 + 去下方',
           ko: '보스 전방 피하기 + 안으로',
         },
       },
@@ -334,6 +338,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Charge + knockback',
+          cn: '冲锋 + 击退',
           ko: '돌진 + 넉백',
         },
       },
@@ -356,6 +361,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Fireball',
+          cn: '火球',
           ko: '화염구',
         },
       },
@@ -372,6 +378,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Magic reflect',
+          cn: '反弹魔法伤害',
           ko: '마법공격 반사됨',
         },
       },
@@ -393,6 +400,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Blind yourself or Look Away',
+          cn: '致盲自己或看向其他方向',
           ko: '나한테 실명걸기 또는 뒤돌기',
         },
       },
@@ -408,6 +416,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Diamondback',
+          cn: '超硬化',
           ko: '초경화',
         },
       },
@@ -499,6 +508,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Get to Safe Spot',
+          cn: '去安全区',
           ko: '안전지대 찾기',
         },
       },
@@ -539,6 +549,7 @@ Options.Triggers.push({
       outputStrings: {
         pullToBoss: {
           en: 'Pull ${name} to boss',
+          cn: '将 ${name} 拉到BOSS处',
           ko: '보스쪽으로 ${name} 끌고오기',
         },
       },
@@ -555,6 +566,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Diamondback',
+          cn: '超硬化',
           ko: '초경화',
         },
       },
@@ -580,6 +592,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Cleanse debuff or mitigate',
+          cn: '驱散DEBUFF或减伤',
           ko: '디버프 해제 또는 생존기',
         },
       },
@@ -599,6 +612,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Knockback into Safe Spot',
+          cn: '击退到安全区',
           ko: '안전지대로 넉백되기',
         },
       },
@@ -620,6 +634,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Physical reflect',
+          cn: '反弹物理伤害',
           ko: '물리공격 반사됨',
         },
       },
@@ -646,6 +661,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Magic reflect',
+          cn: '反弹魔法伤害',
           ko: '마법공격 반사됨',
         },
       },
@@ -668,6 +684,7 @@ Options.Triggers.push({
       outputStrings: {
         dispel: {
           en: 'Dispel ${name}',
+          cn: '清除 ${name}',
           ko: '${name} 버프 해제',
         },
       },
@@ -688,6 +705,7 @@ Options.Triggers.push({
       outputStrings: {
         dispel: {
           en: 'Dispel ${name}',
+          cn: '清除 ${name}',
           ko: '${name} 버프 해제',
         },
       },
@@ -710,6 +728,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Cleanse debuff',
+          cn: '驱散DEBUFF',
           ko: '디버프 해제',
         },
       },
@@ -730,7 +749,7 @@ Options.Triggers.push({
           de: 'Vollheilen',
           fr: 'Soignez complètement',
           ja: '全員のHPを全回復',
-          cn: '奶满全队',
+          cn: '奶满自己',
           ko: '체력 풀피로',
         },
       },
@@ -775,6 +794,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Avoid puddles',
+          cn: '躲避圈圈',
           ko: '장판 피하기',
         },
       },
@@ -803,18 +823,22 @@ Options.Triggers.push({
       outputStrings: {
         forward: {
           en: 'March Forward into Safe Spot',
+          cn: '向前强制移动到安全区',
           ko: '강제 이동 앞',
         },
         backward: {
           en: 'March Backward into Safe Spot',
+          cn: '向后强制移动到安全区',
           ko: '강제 이동 뒤',
         },
         left: {
           en: 'March Left into Safe Spot',
+          cn: '向左强制移动到安全区',
           ko: '강제 이동 왼쪽',
         },
         right: {
           en: 'March Right into Safe Spot',
+          cn: '向右强制移动到安全区',
           ko: '강제 이동 오른쪽',
         },
       },
@@ -835,6 +859,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bait two Eruptions',
+          cn: '诱导2个地火',
           ko: '장판 2개 유도',
         },
       },
@@ -872,6 +897,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Get to Safe Spot',
+          cn: '去安全区',
           ko: '안전지대 찾기',
         },
       },
@@ -885,6 +911,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Get to edge',
+          cn: '去场边',
           ko: '외곽으로',
         },
       },
@@ -931,6 +958,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Cleanse debuff',
+          cn: '驱散DEBUFF',
           ko: '디버프 해제',
         },
       },
@@ -973,6 +1001,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bait two aoes',
+          cn: '诱导2个AOE',
           ko: '장판 2개 유도',
         },
       },
@@ -985,6 +1014,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Adds soon',
+          cn: '小怪即将出现',
           ko: '곧 쫄 나옴',
         },
       },
@@ -1004,6 +1034,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Diamondback',
+          cn: '超硬化',
           ko: '초경화',
         },
       },
@@ -1018,6 +1049,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Away from water tornadoes',
+          cn: '远离水龙卷',
           ko: '물기둥에서 멀리 떨어지기',
         },
       },
@@ -1032,6 +1064,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Magic reflect',
+          cn: '反弹魔法伤害',
           ko: '마법공격 반사됨',
         },
       },
@@ -1046,6 +1079,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Cleanse debuff',
+          cn: '驱散DEBUFF',
           ko: '디버프 해제',
         },
       },
@@ -1058,6 +1092,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bait three aoes',
+          cn: '诱导3个AOE',
           ko: '장판 3개 유도',
         },
       },
@@ -1071,6 +1106,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Knockback into Safe Spot',
+          cn: '击退到安全区',
           ko: '안전지대로 넉백되기',
         },
       },
@@ -1085,6 +1121,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Get in + Knockback',
+          cn: '去脚下 + 击退',
           ko: '안으로 + 넉백',
         },
       },
@@ -1098,6 +1135,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Get to Safe Spot (between two ice)',
+          cn: '去安全区 (两个冰之间)',
           ko: '안전지대 찾기 (얼음 없는쪽)',
         },
       },
@@ -1133,6 +1171,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bait two aoes',
+          cn: '诱导2个AOE',
           ko: '장판 2개 유도',
         },
       },
@@ -1156,7 +1195,7 @@ Options.Triggers.push({
           de: 'Vollheilen',
           fr: 'Soignez complètement',
           ja: '全員のHPを全回復',
-          cn: '奶满全队',
+          cn: '奶满自己',
           ko: '체력 풀피로',
         },
       },
@@ -1170,6 +1209,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Add soon',
+          cn: '小怪即将出现',
           ko: '분신 등장',
         },
       },
@@ -1183,6 +1223,7 @@ Options.Triggers.push({
       outputStrings: {
         dispel: {
           en: 'Dispel ${name}',
+          cn: '清除 ${name}',
           ko: '${name} 버프 해제',
         },
       },
@@ -1198,6 +1239,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Away from boss => Stop Everything',
+          cn: '远离BOSS => 停停停',
           ko: '보스와 멀리 떨어지기 => 행동 멈추기',
         },
       },
@@ -1215,6 +1257,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Diamondback',
+          cn: '超硬化',
           ko: '초경화',
         },
       },
@@ -1231,6 +1274,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Cleanse both debuffs',
+          cn: '驱散两个DEBUFF',
           ko: '디버프 둘다 해제',
         },
       },

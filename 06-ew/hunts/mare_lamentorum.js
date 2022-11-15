@@ -216,6 +216,7 @@ Options.Triggers.push({
           en: ' => ',
           de: ' => ',
           ja: ' => ',
+          cn: ' => ',
           ko: ' => ',
         },
         unknown: Outputs.unknown,
