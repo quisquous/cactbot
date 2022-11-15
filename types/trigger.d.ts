@@ -173,7 +173,7 @@ type RequiredFieldsAsUnion<Type> = {
 export type BaseTriggerSet<Data extends RaidbossData> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId: ZoneIdType | number[];
-  // label if the zoneId is an array or otherwise non-descriptive
+  // useful if the zoneId is an array or otherwise non-descriptive
   zoneLabel?: LocaleText;
   // If the timeline exists, but needs significant improvements and a rewrite.
   timelineNeedsFixing?: boolean;

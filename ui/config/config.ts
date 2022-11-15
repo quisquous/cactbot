@@ -190,7 +190,7 @@ const kDirectoryToCategory = {
     en: 'Hunts & FATEs',
   },
   map: {
-    en: 'Treasure Maps',
+    en: 'Treasure Map',
   },
   deep_dungeon: {
     en: 'Deep Dungeon',
@@ -761,8 +761,8 @@ export class CactbotConfigurator {
 
       let zoneLabel: LocaleText | undefined = undefined;
 
-      // if a zoneLabel is set, use that instead
-      if (typeof triggerSet.zoneLabel === 'string') {
+      // if a zoneLabel is set, use for the title
+      if (triggerSet.zoneLabel) {
         zoneLabel = triggerSet.zoneLabel;
         title = this.translate(zoneLabel);
       }
@@ -795,8 +795,8 @@ export class CactbotConfigurator {
       let title = '???';
       let zoneId: number | undefined = undefined;
       let zoneLabel: LocaleText | undefined = undefined;
-      // if a zoneLabel is set, use that first
-      if (typeof triggerSet.zoneLabel === 'string') {
+      // if a zoneLabel is set, use for the title
+      if (triggerSet.zoneLabel) {
         zoneLabel = triggerSet.zoneLabel;
         title = this.translate(zoneLabel);
       } else if (typeof triggerSet.zoneId === 'number') {
