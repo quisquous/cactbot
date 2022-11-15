@@ -9,7 +9,9 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 const excitatronOutputStrings = {
   spawn: {
-    en: '正在生成 ${name}!',
+    en: '${name} spawned!',
+    de: '${name} erscheint!',
+    cn: '正在生成 ${name}!',
   },
 } as const;
 
@@ -56,6 +58,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Exciting Mandragoras spawned, kill in order!',
+          de: 'Mandragoras erscheinen, in Reihenfolge besiegen!',
           ja: 'マンドラゴラ！順番に倒して！',
           cn: '已生成 惊奇蔓德拉战队, 依次击杀!',
         },
@@ -144,6 +147,38 @@ const triggerSet: TriggerSet<Data> = {
     // Firedrop Blast - aoes under 4? players + aoe marker on 1 player, leaves burns on marked player if other players hit?
     // Superheat - tankbuster
     // Crackling Current - roomwide aoe
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Lucky Face': 'Gesicht des Glücks',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Lucky Face': 'visage chanceux',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Lucky Face': 'ラッキー・フェイス',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Lucky Face': '幸运石面',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Lucky Face': '행운의 얼굴',
+      },
+    },
   ],
 };
 

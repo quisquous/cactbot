@@ -176,6 +176,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Arena Roselets spawning!',
+          de: 'Arena-Röslinge erscheinen!',
           cn: '正在生成 斗场小红花!',
           ko: '넝쿨장미 소환됨!',
         },
@@ -303,6 +304,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Diamondback',
+          de: 'Diamantrücken',
           cn: '超硬化',
           ko: '초경화',
         },
@@ -316,6 +318,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Charge + knockback',
+          de: 'Ansturm + Rückstoß',
           cn: '冲锋 + 击退',
           ko: '돌진 + 넉백',
         },
@@ -330,6 +333,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away from front + in',
+          de: 'Weg von Vorne + Rein',
           cn: '避开正面 + 去下方',
           ko: '보스 전방 피하기 + 안으로',
         },
@@ -356,6 +360,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Charge + knockback',
+          de: 'Ansturm + Rückstoß',
           cn: '冲锋 + 击退',
           ko: '돌진 + 넉백',
         },
@@ -379,6 +384,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Fireball',
+          de: 'Feuerball',
           cn: '火球',
           ko: '화염구',
         },
@@ -396,6 +402,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Magic reflect',
+          de: 'Magische Reflektion',
           cn: '反弹魔法伤害',
           ko: '마법공격 반사됨',
         },
@@ -418,6 +425,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Blind yourself or Look Away',
+          de: 'Erblinden oder schau weg',
           cn: '致盲自己或看向其他方向',
           ko: '나한테 실명걸기 또는 뒤돌기',
         },
@@ -434,6 +442,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Diamondback',
+          de: 'Diamantrücken',
           cn: '超硬化',
           ko: '초경화',
         },
@@ -526,6 +535,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get to Safe Spot',
+          de: 'Geh zur sicheren Stelle',
           cn: '去安全区',
           ko: '안전지대 찾기',
         },
@@ -567,6 +577,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         pullToBoss: {
           en: 'Pull ${name} to boss',
+          de: 'Ziehe ${name} zum Boss',
           cn: '将 ${name} 拉到BOSS处',
           ko: '보스쪽으로 ${name} 끌고오기',
         },
@@ -584,6 +595,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Diamondback',
+          de: 'Diamantrücken',
           cn: '超硬化',
           ko: '초경화',
         },
@@ -610,6 +622,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Cleanse debuff or mitigate',
+          de: 'Debuff entfernen oder mitigieren',
           cn: '驱散DEBUFF或减伤',
           ko: '디버프 해제 또는 생존기',
         },
@@ -630,6 +643,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback into Safe Spot',
+          de: 'Rückstoß zur sicheren Stelle',
           cn: '击退到安全区',
           ko: '안전지대로 넉백되기',
         },
@@ -652,6 +666,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Physical reflect',
+          de: 'Physische Reflektion',
           cn: '反弹物理伤害',
           ko: '물리공격 반사됨',
         },
@@ -679,6 +694,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Magic reflect',
+          de: 'Magische Reflektion',
           cn: '反弹魔法伤害',
           ko: '마법공격 반사됨',
         },
@@ -702,6 +718,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         dispel: {
           en: 'Dispel ${name}',
+          de: 'Entferne ${name}',
           cn: '清除 ${name}',
           ko: '${name} 버프 해제',
         },
@@ -723,6 +740,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         dispel: {
           en: 'Dispel ${name}',
+          de: 'Entferne ${name}',
           cn: '清除 ${name}',
           ko: '${name} 버프 해제',
         },
@@ -746,6 +764,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Cleanse debuff',
+          de: 'Debuff entfernen',
           cn: '驱散DEBUFF',
           ko: '디버프 해제',
         },
@@ -812,6 +831,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid puddles',
+          de: 'Vermeide Flächen',
           cn: '躲避圈圈',
           ko: '장판 피하기',
         },
@@ -841,21 +861,25 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         forward: {
           en: 'March Forward into Safe Spot',
+          de: 'marschiere Vorwärts in die sichere Stelle',
           cn: '向前强制移动到安全区',
           ko: '강제 이동 앞',
         },
         backward: {
           en: 'March Backward into Safe Spot',
+          de: 'marschiere Rückwärts in die sichere Stelle',
           cn: '向后强制移动到安全区',
           ko: '강제 이동 뒤',
         },
         left: {
           en: 'March Left into Safe Spot',
+          de: 'marschiere Links in die sichere Stelle',
           cn: '向左强制移动到安全区',
           ko: '강제 이동 왼쪽',
         },
         right: {
           en: 'March Right into Safe Spot',
+          de: 'marschiere Rechts in die sichere Stelle',
           cn: '向右强制移动到安全区',
           ko: '강제 이동 오른쪽',
         },
@@ -877,6 +901,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait two Eruptions',
+          de: 'Köder 2 Eruptionen',
           cn: '诱导2个地火',
           ko: '장판 2개 유도',
         },
@@ -915,6 +940,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get to Safe Spot',
+          de: 'Geh zur sicheren Stelle',
           cn: '去安全区',
           ko: '안전지대 찾기',
         },
@@ -929,6 +955,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get to edge',
+          de: 'Geh zu einem Rand',
           cn: '去场边',
           ko: '외곽으로',
         },
@@ -976,6 +1003,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Cleanse debuff',
+          de: 'Debuff entfernen',
           cn: '驱散DEBUFF',
           ko: '디버프 해제',
         },
@@ -1019,6 +1047,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait two aoes',
+          de: 'Köder 2 AoEs',
           cn: '诱导2个AOE',
           ko: '장판 2개 유도',
         },
@@ -1032,6 +1061,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Adds soon',
+          de: 'Bald Adds',
           cn: '小怪即将出现',
           ko: '곧 쫄 나옴',
         },
@@ -1052,6 +1082,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Diamondback',
+          de: 'Diamantrücken',
           cn: '超硬化',
           ko: '초경화',
         },
@@ -1067,6 +1098,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away from water tornadoes',
+          de: 'Weg von den Wassertornados',
           cn: '远离水龙卷',
           ko: '물기둥에서 멀리 떨어지기',
         },
@@ -1082,6 +1114,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Magic reflect',
+          de: 'Magische Reflektion',
           cn: '反弹魔法伤害',
           ko: '마법공격 반사됨',
         },
@@ -1097,6 +1130,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Cleanse debuff',
+          de: 'Debuff entfernen',
           cn: '驱散DEBUFF',
           ko: '디버프 해제',
         },
@@ -1110,6 +1144,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait three aoes',
+          de: 'Köder 3 AoEs',
           cn: '诱导3个AOE',
           ko: '장판 3개 유도',
         },
@@ -1124,6 +1159,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback into Safe Spot',
+          de: 'Rückstoß zur sicheren Stelle',
           cn: '击退到安全区',
           ko: '안전지대로 넉백되기',
         },
@@ -1139,6 +1175,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get in + Knockback',
+          de: 'Geh rein + Rückstoß',
           cn: '去脚下 + 击退',
           ko: '안으로 + 넉백',
         },
@@ -1153,6 +1190,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get to Safe Spot (between two ice)',
+          de: 'Geh zur sicheren Stelle (zwischen 2 Eis)',
           cn: '去安全区 (两个冰之间)',
           ko: '안전지대 찾기 (얼음 없는쪽)',
         },
@@ -1189,6 +1227,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait two aoes',
+          de: 'Köder 2 AoEs',
           cn: '诱导2个AOE',
           ko: '장판 2개 유도',
         },
@@ -1227,6 +1266,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Add soon',
+          de: 'Bald Add',
           cn: '小怪即将出现',
           ko: '분신 등장',
         },
@@ -1241,6 +1281,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         dispel: {
           en: 'Dispel ${name}',
+          de: 'Entferne ${name}',
           cn: '清除 ${name}',
           ko: '${name} 버프 해제',
         },
@@ -1257,6 +1298,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away from boss => Stop Everything',
+          de: 'Weg vom Boss => Stoppe alles',
           cn: '远离BOSS => 停停停',
           ko: '보스와 멀리 떨어지기 => 행동 멈추기',
         },
@@ -1275,6 +1317,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Diamondback',
+          de: 'Diamantrücken',
           cn: '超硬化',
           ko: '초경화',
         },
@@ -1292,9 +1335,222 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Cleanse both debuffs',
+          de: 'Entferne beide Debuffs',
           cn: '驱散两个DEBUFF',
           ko: '디버프 둘다 해제',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Apademak': 'Apademak',
+        'Arena Catoblepas': 'Arena-Catblepus',
+        'Arena Eye': 'Arena-Auge',
+        'Arena Gas Bomb': 'Arena-Gasbomber',
+        'Arena Grenade': 'Arena-Granate',
+        'Arena Imp': 'Arena-Imp',
+        'Arena Jam': 'Arena-Marmelade',
+        'Arena Manticore': 'Arena-Manticore',
+        'Arena Mirrorknight': 'Arena-Speglidae',
+        'Arena Progenitrix': 'Arena-Progenitrix',
+        'Arena Scribe': 'Arena-Scholar',
+        'Arena Shabti': 'Arena-Shabti',
+        'Arena Succubus': 'Arena-Sukkubus',
+        'Azulmagia': 'Azulmagia',
+        'Bestial Node': 'bestialisch(?:e|er|es|en) System',
+        'Blazing Angon': 'Glühender Ango',
+        'Carmilla': 'Carmilla',
+        'Crom Dubh': 'Crom Dubh',
+        'Durinn': 'Durinn',
+        'Epilogi': 'Epilogi',
+        'Gladiatorial Node': 'kämpferisch(?:e|er|es|en) System',
+        'Gogo, Master of Mimicry': 'Gogo (?:der|die|das) Mime',
+        'Guimauve': 'Guimauve',
+        'Hydnora': 'Hydnora',
+        'Kreios': 'Kreios',
+        'Kronprinz Behemoth': 'Kronprinz-Behemoth',
+        'Papa Humbaba': 'Hunbabas Papa',
+        'Reflective Rebekkah': 'Rebekkah Rotzeranke',
+        'Shikigami of the Pyre': 'Shikigami des Feuers',
+        'Shikigami of the Undertow': 'Shikigami des Wassers',
+        'Siegfried': 'Siegfried',
+        'Stylish Tentacle': 'elegant(?:e|er|es|en) Tentakel',
+        'The Forefather': 'Urgroßbomber',
+        'Tikbalang': 'Tikbalang',
+        'Typhon': 'Typhon',
+        'Ultros': 'Ultros',
+        'Zipacna': 'Zipacna',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Apademak': 'Apademak',
+        'Arena Catoblepas': 'catoblépas de l\'arène',
+        'Arena Eye': 'œil de l\'arène',
+        'Arena Gas Bomb': 'bombo à gaz de l\'arène',
+        'Arena Grenade': 'grenado de l\'arène',
+        'Arena Imp': 'imp de l\'arène',
+        'Arena Jam': 'confiture aigre',
+        'Arena Manticore': 'manticore de l\'arène',
+        'Arena Mirrorknight': 'chevalier miroir de l\'arène',
+        'Arena Progenitrix': 'maman bombo de l\'arène',
+        'Arena Scribe': 'scribe de l\'arène',
+        'Arena Shabti': 'chaouabti de l\'arène',
+        'Arena Succubus': 'succube de l\'arène',
+        'Azulmagia': 'Azulmagia',
+        'Bestial Node': 'sphère bestiale',
+        'Blazing Angon': 'Angon flamboyant',
+        'Carmilla': 'Carmilla',
+        'Crom Dubh': 'Crom Dubh',
+        'Durinn': 'Durinn',
+        'Epilogi': 'Epilogi',
+        'Gladiatorial Node': 'sphère gladiatrice',
+        'Gogo, Master of Mimicry': 'Gogo le mime',
+        'Guimauve': 'Guimauve',
+        'Hydnora': 'Hydnora',
+        'Kreios': 'Kreios',
+        'Kronprinz Behemoth': 'Kronprinz béhémoth',
+        'Papa Humbaba': 'Papa Humbaba',
+        'Reflective Rebekkah': 'Rebekkah l\'égocentrique',
+        'Shikigami of the Pyre': 'shikigami de feu',
+        'Shikigami of the Undertow': 'shikigami d\'eau',
+        'Siegfried': 'Siegfried',
+        'Stylish Tentacle': 'tentacule',
+        'The Forefather': 'Papi bombo',
+        'Tikbalang': 'Tikbalang',
+        'Typhon': 'Typhon',
+        'Ultros': 'Orthros',
+        'Zipacna': 'Zipacna',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Apademak': 'アペデマク',
+        'Arena Catoblepas': 'アリーナ・カトブレパス',
+        'Arena Eye': 'アリーナ・アイ',
+        'Arena Gas Bomb': 'アリーナ・ガスボム',
+        'Arena Grenade': 'アリーナ・グレネード',
+        'Arena Imp': 'アリーナ・インプ',
+        'Arena Jam': 'アリーナ・ポイズンジャム',
+        'Arena Manticore': 'アリーナ・マンティコア',
+        'Arena Mirrorknight': 'アリーナ・ミラーナイト',
+        'Arena Progenitrix': 'アリーナ・マザーボム',
+        'Arena Scribe': 'アリーナ・スクライブ',
+        'Arena Shabti': 'アリーナ・シュワブチ',
+        'Arena Succubus': 'アリーナ・サキュバス',
+        'Azulmagia': 'アポカリョープス',
+        'Bestial Node': '闘獣システム',
+        'Blazing Angon': 'ブレージングアンゴン',
+        'Carmilla': 'カーミラ',
+        'Crom Dubh': 'クロムドゥーブ',
+        'Durinn': 'ドゥリン',
+        'Epilogi': 'エペロギ',
+        'Gladiatorial Node': '闘技システム',
+        'Gogo, Master of Mimicry': 'ものまね士ゴゴ',
+        'Guimauve': 'ギモーヴ',
+        'Hydnora': 'ヒドノラ',
+        'Kreios': 'クレイオス',
+        'Kronprinz Behemoth': 'クロンプリンツ・ベヒーモス',
+        'Papa Humbaba': 'フンババ・パパ',
+        'Reflective Rebekkah': 'リフレクティブ・レベッカ',
+        'Shikigami of the Pyre': '火のシキガミ',
+        'Shikigami of the Undertow': '水のシキガミ',
+        'Siegfried': 'ジークフリード',
+        'Stylish Tentacle': 'タコ足',
+        'The Forefather': 'グランパボム',
+        'Tikbalang': 'ティクバラン',
+        'Typhon': 'テュポーン',
+        'Ultros': 'オルトロス',
+        'Zipacna': 'シパクナー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Apademak': '阿帕德马克',
+        'Arena Catoblepas': '斗场卡托布莱帕斯',
+        'Arena Eye': '斗场之眼',
+        'Arena Gas Bomb': '斗场瓦斯弹怪',
+        'Arena Grenade': '斗场榴弹怪',
+        'Arena Imp': '斗场小魔精',
+        'Arena Jam': '斗场剧毒果酱怪',
+        'Arena Manticore': '斗场曼提克',
+        'Arena Mirrorknight': '斗场镜骑士',
+        'Arena Progenitrix': '斗场爆弹之母',
+        'Arena Scribe': '斗场抄写员',
+        'Arena Shabti': '斗场沙布提',
+        'Arena Succubus': '斗场梦魔',
+        'Azulmagia': '启示者',
+        'Bestial Node': '斗兽系统',
+        'Blazing Angon': '烈火投枪',
+        'Carmilla': '卡蜜拉',
+        'Crom Dubh': '幽黑曲偶',
+        'Durinn': '都灵',
+        'Epilogi': '艾匹罗基',
+        'Gladiatorial Node': '斗技系统',
+        'Gogo, Master of Mimicry': '模仿师 格格',
+        'Guimauve': '棉花软糖',
+        'Hydnora': '火花草',
+        'Kreios': '克利俄斯',
+        'Kronprinz Behemoth': '贝希摩斯太子',
+        'Papa Humbaba': '洪巴巴之父',
+        'Reflective Rebekkah': '反射魔花瑞贝卡',
+        'Shikigami of the Pyre': '火之式神',
+        'Shikigami of the Undertow': '水之式神',
+        'Siegfried': '齐格弗里德',
+        'Stylish Tentacle': '章鱼触手',
+        'The Forefather': '爆弹之祖',
+        'Tikbalang': '迪克巴朗',
+        'Typhon': '提丰',
+        'Ultros': '奥尔特罗斯',
+        'Zipacna': '希帕克纳',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Apademak': '아페데마크',
+        'Arena Catoblepas': '투기장 카토블레파스',
+        'Arena Eye': '투기장 눈알',
+        'Arena Gas Bomb': '투기장 가스봄',
+        'Arena Grenade': '투기장 그레네이드',
+        'Arena Imp': '투기장 임프',
+        'Arena Jam': '투기장 독잼',
+        'Arena Manticore': '투기장 만티코어',
+        'Arena Mirrorknight': '투기장 거울기사',
+        'Arena Progenitrix': '투기장 엄마 봄',
+        'Arena Scribe': '투기장 서기',
+        'Arena Shabti': '투기장 샤브티',
+        'Arena Succubus': '투기장 서큐버스',
+        'Azulmagia': '아포칼리옵스',
+        'Bestial Node': '투기야수 시스템',
+        'Blazing Angon': '폭염 투창',
+        'Carmilla': '카밀라',
+        'Crom Dubh': '크롬 두브',
+        'Durinn': '두린',
+        'Epilogi': '에필로기',
+        'Gladiatorial Node': '투기 시스템',
+        'Gogo, Master of Mimicry': '흉내쟁이 고고',
+        'Guimauve': '기모브',
+        'Hydnora': '히드노라',
+        'Kreios': '크레이오스',
+        'Kronprinz Behemoth': '황태자 베히모스',
+        'Papa Humbaba': '아빠 훔바바',
+        'Reflective Rebekkah': '사색하는 레베카',
+        'Shikigami of the Pyre': '불의 사역귀',
+        'Shikigami of the Undertow': '물의 사역귀',
+        'Siegfried': '지크프리드',
+        'Stylish Tentacle': '문어발',
+        'The Forefather': '할아봄',
+        'Tikbalang': '틱발랑',
+        'Typhon': '티폰',
+        'Ultros': '오르트로스',
+        'Zipacna': '시파크나',
       },
     },
   ],
