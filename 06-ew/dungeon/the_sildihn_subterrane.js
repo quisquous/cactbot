@@ -626,7 +626,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Amalj\'aa Artillery Carriage': 'Amalj\'aa-Artillerie',
         'Antique Boulder': 'locker(?:e|er|es|en) Felsen',

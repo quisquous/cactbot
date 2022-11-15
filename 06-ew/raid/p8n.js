@@ -315,7 +315,6 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Gorgon': 'Gorgone',
         '(?<!Illusory )Hephaistos': 'Hephaistos',

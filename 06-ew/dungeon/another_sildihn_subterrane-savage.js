@@ -238,11 +238,13 @@ Options.Triggers.push({
         SW: Outputs.dirSW,
         stacksafe: {
           en: 'Stack ${dir1} (${dir2} safe after)',
+          de: 'Sammeln ${dir1} (${dir2} danach sicher)',
           ja: '${dir1}で頭割り (あとは${dir2}が安置)',
           ko: '${dir1}쪽에서 쉐어 (이후 ${dir2}쪽이 안전)',
         },
         default: {
           en: 'Stack near unsafe green puff',
+          de: 'Neben unsicherem grünen Puschel sammeln',
           ja: '緑の下で頭割り',
           ko: '초록색 구슬에서 쉐어',
         },
@@ -490,36 +492,43 @@ Options.Triggers.push({
         SW: Outputs.dirSW,
         bait: {
           en: '${boss} - ${dir} ${puff}',
+          de: '${boss} - ${dir} ${puff}',
           ja: '${boss} - ${dir} ${puff}',
           ko: '${boss} - ${dir} ${puff}',
         },
         bossIce: {
           en: 'Blue Tail',
+          de: 'Blauer Schweif',
           ja: '青しっぽ',
           ko: '파란색 꼬리',
         },
         bossIcePuffsCardinalSafeLater: {
           en: 'Intercard Safe',
+          de: 'Interkardinal sicher',
           ja: '斜め',
           ko: '대각선이 안전',
         },
         bossIcePuffsIntercardSafeLater: {
           en: 'Intercard Safe',
+          de: 'Interkardinal sicher',
           ja: '斜め',
           ko: '대각선이 안전',
         },
         bossWind: {
           en: 'Green Tail',
+          de: 'Grüner Schweif',
           ja: '緑しっぽ',
           ko: '초록색 꼬리',
         },
         bossWindPuffsCardinalSafeLater: {
           en: 'Middle Safe',
+          de: 'Mitte sicher',
           ja: '真ん中',
           ko: '가운데가 안전',
         },
         bossWindPuffsIntercardSafeLater: {
           en: 'Middle Safe',
+          de: 'Mitte sicher',
           ja: '真ん中',
           ko: '가운데가 안전',
         },
@@ -527,46 +536,55 @@ Options.Triggers.push({
         // so users can customize for their particular strat
         bossIceBlueCardinalPuff: {
           en: 'Blue Puff',
+          de: 'Blauer Puschel',
           ja: '青たま',
           ko: '파란색 구슬',
         },
         bossIceBlueIntercardPuff: {
           en: 'Blue Puff',
+          de: 'Blauer Puschel',
           ja: '青たま',
           ko: '파란색 구슬',
         },
         bossIceYellowCardinalPuff: {
           en: 'Yellow Puff',
+          de: 'Gelber Puschel',
           ja: '黄色たま',
           ko: '노란색 구슬',
         },
         bossIceYellowIntercardPuff: {
           en: 'Yellow Puff',
+          de: 'Gelber Puschel',
           ja: '黄色たま',
           ko: '노란색 구슬',
         },
         bossWindBlueCardinalPuff: {
           en: 'Blue Puff',
+          de: 'Blauer Puschel',
           ja: '青たま',
           ko: '파란색 구슬',
         },
         bossWindBlueIntercardPuff: {
           en: 'Blue Puff',
+          de: 'Blauer Puschel',
           ja: '青たま',
           ko: '파란색 구슬',
         },
         bossWindYellowCardinalPuff: {
           en: 'Yellow Puff',
+          de: 'Gelber Puschel',
           ja: '黄色たま',
           ko: '노란색 구슬',
         },
         bossWindYellowIntercardPuff: {
           en: 'Yellow Puff',
+          de: 'Gelber Puschel',
           ja: '黄色たま',
           ko: '노란색 구슬',
         },
         default: {
           en: 'Bait puff',
+          de: 'Puschel ködern',
           ja: 'たま誘導',
           ko: '구슬 유도',
         },
@@ -586,6 +604,7 @@ Options.Triggers.push({
       outputStrings: {
         safe: {
           en: '${safe}',
+          de: '${safe}',
           ja: '${safe}',
           ko: '${safe}',
         },
@@ -600,6 +619,7 @@ Options.Triggers.push({
       outputStrings: {
         avoidEwers: {
           en: 'Avoid Ewers',
+          de: 'Krug ausweichen',
           ja: '壺確認',
           ko: '항아리 피하기',
         },
@@ -656,26 +676,31 @@ Options.Triggers.push({
       outputStrings: {
         windAndLightning: {
           en: 'Under green puff',
+          de: 'Unter grünem Puschel',
           ja: '緑の下へ',
           ko: '초록 구슬 밑으로',
         },
         doubleIce: {
           en: 'Intercards, away from puffs',
+          de: 'Interkardinal, weg von den Puscheln',
           ja: '斜め、たまから離れる',
           ko: '대각선으로, 구슬에서 떨어지기',
         },
         iceAndLightning: {
           en: 'Sides of yellow puff',
+          de: 'Seitlich der gelben Puscheln',
           ja: '黄色の横へ',
           ko: '노란 구슬 옆으로',
         },
         doubleLightning: {
           en: 'Between puffs',
+          de: 'Zwischen Puscheln',
           ja: 'たまとたまの間',
           ko: '구슬 사이로',
         },
         default: {
           en: 'Avoid puff AOEs',
+          de: 'Puschel AoEs vermeiden',
           ja: 'たまのゆか回避',
           ko: '구슬 장판 피하기',
         },
@@ -1878,7 +1903,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Aqueduct Belladonna': 'Aquädukt-Belladonna',
         'Aqueduct Dryad': 'Aquädukt-Dryade',
@@ -1893,6 +1917,7 @@ Options.Triggers.push({
         'Shadowcaster Zeless Gah': 'Schattenwirker Zeless Gah',
         'Sil\'dihn Armor': 'Sil\'dih-Kampfmaschine',
         'Sil\'dihn Dullahan': 'Sil\'dih-Dullahan',
+        'Silken Puff': 'weich(?:e|er|es|en) Puschel',
         'Silkie': 'Silkie',
         'The Trial of Balance': 'Prüfung der Gerechtigkeit',
         'The Trial of Knowledge': 'Prüfung der Weisheit',
@@ -1967,6 +1992,7 @@ Options.Triggers.push({
         'Shadowcaster Zeless Gah': 'Zeless Gah la Flamme ombrée',
         'Sil\'dihn Armor': 'armure maléfique sildien',
         'Sil\'dihn Dullahan': 'dullahan sildien',
+        'Silken Puff': 'pompon de Silkie',
         'Silkie': 'Silkie',
         'The Trial of Balance': 'Épreuve de la Justice',
         'The Trial of Knowledge': 'Épreuve de la Sagesse',
@@ -2041,6 +2067,7 @@ Options.Triggers.push({
         'Shadowcaster Zeless Gah': '影火のゼレズ・ガー',
         'Sil\'dihn Armor': 'シラディハ・イビルアーマー',
         'Sil\'dihn Dullahan': 'シラディハ・デュラハン',
+        'Silken Puff': 'シルキーズ・ポンポン',
         'Silkie': 'シルキー',
         'The Trial of Balance': '参の試練',
         'The Trial of Knowledge': '壱の試練',

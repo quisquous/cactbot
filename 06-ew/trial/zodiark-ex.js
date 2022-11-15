@@ -86,6 +86,7 @@ const fetchCombatantsById = async (id) => {
 const paradeigmaLeanOutputStrings = {
   dirWithLean: {
     en: '${dir} bird (lean ${lean})',
+    de: '${dir} Vogel (nach ${lean} neigen)',
     ja: '${dir}の鳥 (すこし${lean})',
     cn: '${dir}鸟 (偏${lean})',
     ko: '${dir}쪽 새, (약간 ${lean}쪽으로)',
@@ -339,36 +340,42 @@ Options.Triggers.push({
       outputStrings: {
         outsideNorth: {
           en: 'Outside North',
+          de: 'Außen Norden',
           ja: '北の外側',
           cn: '上 (北) 外',
           ko: '북쪽 바깥',
         },
         insideNorth: {
           en: 'Inside North',
+          de: 'Innen Norden',
           ja: '北の内側',
           cn: '上 (北) 内',
           ko: '북쪽 안',
         },
         outsideWest: {
           en: 'Outside West',
+          de: 'Außen Westen',
           ja: '西の外側',
           cn: '左 (西) 外',
           ko: '서쪽 바깥',
         },
         insideWest: {
           en: 'Inside West',
+          de: 'Innen Westen',
           ja: '西の内側',
           cn: '左 (西) 内',
           ko: '서쪽 안',
         },
         outsideEast: {
           en: 'Outside East',
+          de: 'Außen Osten',
           ja: '東の外側',
           cn: '右 (东) 外',
           ko: '동쪽 바깥',
         },
         insideEast: {
           en: 'Inside East',
+          de: 'Innen Osten',
           ja: '東の内側',
           cn: '右 (东) 内',
           ko: '동쪽 안',
@@ -690,6 +697,7 @@ Options.Triggers.push({
         },
         single: {
           en: 'Go ${dir} (lean ${lean})',
+          de: 'Geh nach ${dir} (nach ${lean} neigen)',
           ja: '${dir}の鳥 (すこし${lean})',
           cn: '去 ${dir} (偏 ${lean})',
           ko: '${dir}쪽으로, (약간 ${lean}쪽으로)',
@@ -742,12 +750,14 @@ Options.Triggers.push({
         },
         adikia1OutsideNorth: {
           en: 'Double fists (outside north)',
+          de: 'Doppel-Fäuste (nördlich außen)',
           ja: 'ダブルフィスト (北の外側)',
           cn: '双拳 (上北外)',
           ko: '양 옆 큰 원형 장판 (북쪽 바깥)',
         },
         adikia1InsideNorth: {
           en: 'Double fists (inside north)',
+          de: 'Doppel-Fäuste (nördlich innen)',
           ja: 'ダブルフィスト (北の内側)',
           cn: '双拳 (上北内)',
           ko: '양 옆 큰 원형 장판 (북쪽 안)',
@@ -833,6 +843,7 @@ Options.Triggers.push({
       outputStrings: {
         combo: {
           en: '${dir1} > ${dir2} > ${dir3}',
+          de: '${dir1} > ${dir2} > ${dir3}',
           ja: '${dir1} > ${dir2} > ${dir3}',
           cn: '${dir1} > ${dir2} > ${dir3}',
           ko: '${dir1} > ${dir2} > ${dir3}',
