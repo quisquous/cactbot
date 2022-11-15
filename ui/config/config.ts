@@ -192,7 +192,7 @@ const kDirectoryToCategory = {
   map: {
     en: 'Treasure Map',
   },
-  deep_dungeon: {
+  deepdungeon: {
     en: 'Deep Dungeon',
   },
 };
