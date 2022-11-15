@@ -31,6 +31,7 @@ synthetic_ids = {
     "TheNavelUnreal": 953,
     "TheWhorleaterUnreal": 972,
     "UltimasBaneUnreal": 1035,
+    "TheMaskedCarnivale": 796,
 }
 
 synthetic_zone_info = {
@@ -97,6 +98,10 @@ synthetic_zone_info = {
         "sizeFactor": 400,
         "weatherRate": 31,
     },
+}
+
+synthetic_content_type = {
+    "MaskedCarnivale": 27,
 }
 
 # Notes: use rawexd here instead of exd to get place ids / territory ids
@@ -328,6 +333,8 @@ def generate_content_type(content_type_map):
         if not name:
             continue
         map[csv_util.clean_name(name)] = int(id)
+    for id, content_type in synthetic_content_type.items():
+        map[id] = content_type
     return map
 
 

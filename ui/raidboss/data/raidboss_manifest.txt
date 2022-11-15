@@ -1,4 +1,5 @@
 00-misc/general.ts
+00-misc/the_masked_carnivale.ts
 00-misc/test.ts
 00-misc/test.txt
 02-arr/alliance/the_world_of_darkness.ts
@@ -413,6 +414,7 @@
 06-ew/hunts/ss_rank.ts
 06-ew/hunts/thavnair.ts
 06-ew/hunts/ultima_thule.ts
+06-ew/map/the_excitatron_6000.ts
 06-ew/trial/barbariccia.ts
 06-ew/trial/barbariccia.txt
 06-ew/trial/barbariccia-ex.ts

@@ -15,6 +15,7 @@ const data = {
   'GrandCompany': 11,
   'Guildhests': 3,
   'Levequests': 10,
+  'MaskedCarnivale': 27,
   'OverallCompletion': 14,
   'PlayerCommendation': 15,
   'Pvp': 6,

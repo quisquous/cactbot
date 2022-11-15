@@ -113,10 +113,8 @@ export class EncounterFinder {
   process(line: string, store: boolean): void {
     // Irrespective of any processing that occurs, we want to store every line of an encounter.
     // This allows us to save a pass when making timelines.
-    if (store && this.currentFight.startTime !== undefined) {
-      this.currentFight.logLines = this.currentFight.logLines ?? [];
-      this.currentFight.logLines?.push(line);
-    }
+    if (store && this.currentFight.startTime !== undefined)
+      (this.currentFight.logLines ??= []).push(line);
 
     const cZ = this.regex.changeZone.exec(line)?.groups;
     if (cZ) {
@@ -179,14 +177,20 @@ export class EncounterFinder {
       const s = regex.exec(line)?.groups;
       if (s) {
         const seal = s.seal ?? 'UNKNOWN';
+        const previouslyStarted = this.currentFight.startTime !== undefined;
         this.onSeal(line, seal, s);
+        if (store && !previouslyStarted && this.currentFight.startTime !== undefined)
+          (this.currentFight.logLines ??= []).push(line);
+        return;
       }
     }
 
     for (const regex of this.unsealRegexes) {
       const u = regex.exec(line)?.groups;
-      if (u)
+      if (u) {
         this.onUnseal(line, u);
+        return;
+      }
     }
 
     // Most dungeons and some older raid content have zone zeals that indicate encounters.
@@ -197,7 +201,10 @@ export class EncounterFinder {
         // TODO: This regex catches faerie healing and could potentially give false positives!
         a = this.regex.mobAttackingPlayer.exec(line);
       if (a?.groups) {
+        const previouslyStarted = this.currentFight.startTime !== undefined;
         this.onStartFight(line, this.currentZone.zoneName, a.groups);
+        if (store && !previouslyStarted && this.currentFight.startTime !== undefined)
+          (this.currentFight.logLines ??= []).push(line);
         return;
       }
     }
