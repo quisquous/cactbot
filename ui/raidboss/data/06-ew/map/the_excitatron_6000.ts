@@ -55,7 +55,9 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: '已生成 惊奇蔓德拉战队, 依次击杀!',
+          en: 'Exciting Mandragoras spawned, kill in order!',
+          ja: 'マンドラゴラ！順番に倒して！',
+          cn: '已生成 惊奇蔓德拉战队, 依次击杀!',
         },
       },
     },
