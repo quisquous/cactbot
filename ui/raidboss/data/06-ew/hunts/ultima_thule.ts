@@ -283,7 +283,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'ja',
       'replaceSync': {
         'Arch-Eta': 'アーチイータ',
-        'Chi': '地の印',
+        'Chi': 'カイ',
         'Fan Ail': 'ファン・アイル',
         'Narrow-rift': 'ナロー＝リフト',
       },
@@ -292,7 +292,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'cn',
       'replaceSync': {
         'Arch-Eta': '伊塔总领',
-        'Chi': 'カイ',
+        'Chi': '希',
         'Fan Ail': '凡·艾尔',
         'Narrow-rift': '狭缝',
       },
@@ -301,7 +301,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'ko',
       'replaceSync': {
         'Arch-Eta': '아치 에타',
-        'Chi': '땅의 인',
+        'Chi': '키',
         'Fan Ail': '판 아일',
         'Narrow-rift': '내로 리프트',
       },
