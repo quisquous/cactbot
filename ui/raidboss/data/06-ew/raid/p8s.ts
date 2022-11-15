@@ -2455,6 +2455,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '${num}',
           de: '${num}',
           fr: '${num}',
+          ja: '${num}番',
           ko: '${num}',
         },
       },
