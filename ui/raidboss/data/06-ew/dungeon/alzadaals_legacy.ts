@@ -87,6 +87,7 @@ const triggerSet: TriggerSet<Data> = {
         safe: {
           en: 'Go ${dir1}',
           de: 'Geh nach ${dir1}',
+          ja: '${dir1}へ',
           ko: '${dir1}쪽으로',
         },
         default: {
@@ -166,6 +167,7 @@ const triggerSet: TriggerSet<Data> = {
         safe: {
           en: 'Go ${dir1} / ${dir2}',
           de: 'Geh nach ${dir1} / ${dir2}',
+          ja: '${dir1}/${dir2}へ',
           ko: '${dir1}/${dir2}쪽으로',
         },
         default: {
