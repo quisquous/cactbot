@@ -208,6 +208,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Under => Back',
+          ja: '下 => 後ろ',
         },
       },
     },
@@ -220,6 +221,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides => Back',
+          ja: '横 => 後ろ',
         },
       },
     },
@@ -232,6 +234,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Under => Front',
+          ja: '下 => 前',
         },
       },
     },
@@ -244,6 +247,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides => Front',
+          ja: '横 => 前',
         },
       },
     },
@@ -271,6 +275,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Arch-Eta': 'アーチイータ',
         'Fan Ail': 'ファン・アイル',
+        'Chi': 'カイ',
       },
     },
     {

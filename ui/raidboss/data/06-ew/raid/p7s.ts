@@ -109,6 +109,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Forbidden Fruit',
           de: 'Frucht des Lebens',
           fr: 'Fruits de la vie',
+          ja: '生命の果実',
         };
 
         // Select the Forbidden Fruits
@@ -147,30 +148,35 @@ const triggerSet: TriggerSet<Data> = {
             en: '${platform1} / ${platform2}',
             de: '${platform1} / ${platform2}',
             fr: '${platform1} / ${platform2}',
+            ja: '${platform1} / ${platform2}',
             ko: '${platform1} / ${platform2}',
           },
           orientation: {
             en: 'Line Bull: ${location}',
             de: 'Bullen-Linie: ${location}',
             fr: 'Taureau Ligne : ${location}',
+            ja: '線付き牛: ${location}',
             ko: '줄 달린 소: ${location}',
           },
           famineOrientation: {
             en: 'Minotaurs without Bird: ${location}',
             de: 'Minotauren ohne Vögel: ${location}',
             fr: 'Minotaure sans oiseau : ${location}',
+            ja: 'ミノがある場所: ${location}',
             ko: '새 없는 곳: ${location}',
           },
           deathOrientation: {
             en: 'Lightning Bull: ${location}',
             de: 'Blitz-Bulle: ${location}',
             fr: 'Taureau éclair : ${location}',
+            ja: '線付いてない牛: ${location}',
             ko: '줄 안달린 소: ${location}',
           },
           warOrientation: {
             en: 'Bird with Minotaurs: ${location}',
             de: 'Vögel mit Minotauren : ${location}',
             fr: 'Oiseau sans Minotaure : ${location}',
+            ja: 'ミノと鳥: ${location}',
             ko: '새 + 미노타우로스: ${location}',
           },
         };
@@ -434,7 +440,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'aoe + bleed',
           de: 'AoE + Blutung',
           fr: 'AoE + Saignement',
-          ja: 'AOE + 出血',
+          ja: '全体攻撃 + 出血',
           ko: '전체 공격 + 도트',
         },
       },
@@ -736,7 +742,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Big AOE, Get Middle',
           de: 'Große AoE, geh in die Mitte',
           fr: 'Grosse AoE, allez au milieu',
-          ja: '強力なAOE、真ん中へ',
+          ja: '強力な全体攻撃、真ん中へ',
           cn: '超大伤害，去中间',
           ko: '아픈 광뎀, 중앙으로',
         },
