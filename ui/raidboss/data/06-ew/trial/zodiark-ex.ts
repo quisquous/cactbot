@@ -391,26 +391,32 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         outsideNorth: {
           en: 'Outside North',
+          de: 'Außen Norden',
           ko: '북쪽 바깥',
         },
         insideNorth: {
           en: 'Inside North',
+          de: 'Innen Norden',
           ko: '북쪽 안',
         },
         outsideWest: {
           en: 'Outside West',
+          de: 'Außen Westen',
           ko: '서쪽 바깥',
         },
         insideWest: {
           en: 'Inside West',
+          de: 'Innen Westen',
           ko: '서쪽 안',
         },
         outsideEast: {
           en: 'Outside East',
+          de: 'Außen Osten',
           ko: '동쪽 바깥',
         },
         insideEast: {
           en: 'Inside East',
+          de: 'Innen Osten',
           ko: '동쪽 안',
         },
         ...paradeigmaLeanOutputStrings,
@@ -881,6 +887,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         combo: {
           en: '${dir1} > ${dir2} > ${dir3}',
+          de: '${dir1} > ${dir2} > ${dir3}',
           ko: '${dir1} > ${dir2} > ${dir3}',
         },
         ...eclipseOutputStrings,
