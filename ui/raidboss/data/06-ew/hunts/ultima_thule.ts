@@ -292,7 +292,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'cn',
       'replaceSync': {
         'Arch-Eta': '伊塔总领',
-        'Chi': '地之印',
+        'Chi': 'カイ',
         'Fan Ail': '凡·艾尔',
         'Narrow-rift': '狭缝',
       },
