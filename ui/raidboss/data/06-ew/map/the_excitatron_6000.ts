@@ -9,7 +9,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 const excitatronOutputStrings = {
   spawn: {
-    en: '${name} spawned!',
+    en: '正在生成 ${name}!',
   },
 } as const;
 
@@ -55,7 +55,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Exciting Mandragoras spawned, kill in order!',
+          en: '已生成 惊奇蔓德拉战队, 依次击杀!',
         },
       },
     },

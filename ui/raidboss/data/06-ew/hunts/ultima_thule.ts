@@ -208,6 +208,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Under => Back',
+          cn: '下方 => 背后',
         },
       },
     },
@@ -220,6 +221,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides => Back',
+          cn: '两侧 => 背后',
         },
       },
     },
@@ -232,6 +234,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Under => Front',
+          cn: '下方 => 正面',
         },
       },
     },
@@ -244,6 +247,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides => Front',
+          cn: '两侧 => 正面',
         },
       },
     },
