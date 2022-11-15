@@ -763,6 +763,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         single: {
           en: 'Go ${dir} (lean ${lean})',
+          de: 'Geh nach ${dir} (nach ${lean} neigen)',
           ja: '${dir}の鳥 (すこし${lean})',
           cn: '去 ${dir} (偏 ${lean})',
           ko: '${dir}쪽으로, (약간 ${lean}쪽으로)',
@@ -816,12 +817,14 @@ const triggerSet: TriggerSet<Data> = {
         },
         adikia1OutsideNorth: {
           en: 'Double fists (outside north)',
+          de: 'Doppel-Fäuste (nördlich außen)',
           ja: 'ダブルフィスト (北の外側)',
           cn: '双拳 (上北外)',
           ko: '양 옆 큰 원형 장판 (북쪽 바깥)',
         },
         adikia1InsideNorth: {
           en: 'Double fists (inside north)',
+          de: 'Doppel-Fäuste (nördlich innen)',
           ja: 'ダブルフィスト (北の内側)',
           cn: '双拳 (上北内)',
           ko: '양 옆 큰 원형 장판 (북쪽 안)',
