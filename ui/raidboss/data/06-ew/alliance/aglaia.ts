@@ -443,6 +443,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Ignore fake stack',
             de: 'Falsches Sammeln ignorieren',
             fr: 'Ignorez le faux marqueur de package',
+            ja: '偽頭割り無視',
             cn: '忽略假点名',
             ko: '가짜 쉐어 무시',
           },

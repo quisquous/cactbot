@@ -227,6 +227,8 @@ const triggerSet: TriggerSet<Data> = {
         joiner: {
           en: ' => ',
           de: ' => ',
+          ja: ' => ',
+          cn: ' => ',
           ko: ' => ',
         },
         unknown: Outputs.unknown,

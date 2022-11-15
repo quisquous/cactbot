@@ -5,6 +5,7 @@ import readline from 'readline';
 import { Namespace } from 'argparse';
 import chalk from 'chalk';
 
+import { logDefinitionsVersions } from '../resources/netlog_defs';
 import { RaidbossData } from '../types/data';
 import { LooseTriggerSet, TimelineTrigger } from '../types/trigger';
 import LineEvent from '../ui/raidboss/emulator/data/network_log_converter/LineEvent';
@@ -18,11 +19,19 @@ import { walkDirSync } from './file_utils';
 import { LogUtilArgParse } from './logtools/arg_parser';
 import { printCollectedFights } from './logtools/encounter_printer';
 import { EncounterCollector } from './logtools/encounter_tools';
+import FFLogs, { FFLogsParsedEntry } from './logtools/fflogs';
 
 const rootDir = 'ui/raidboss/data';
 
 const defaultDriftWarn = 0.2;
 const defaultDriftFail = 1.0;
+
+const maxFieldId = (fields: { [fieldName: string]: number }): number => {
+  return Math.max(...Object.values(fields));
+};
+
+const maxAbilityFieldId = maxFieldId(logDefinitionsVersions.latest.Ability.fields);
+const maxStartsUsingFieldId = maxFieldId(logDefinitionsVersions.latest.StartsUsing.fields);
 
 const findTriggersFile = (shortName: string): string | undefined => {
   // strip extensions if provided.
@@ -38,7 +47,7 @@ const findTriggersFile = (shortName: string): string | undefined => {
 
 const testLineArray = async (
   lines: string[],
-  timeline: string,
+  timelineName: string,
   driftWarn: number,
   driftFail: number,
 ): Promise<void> => {
@@ -46,7 +55,7 @@ const testLineArray = async (
   const lineEvents = lines.map((line) => ParseLine.parse(repo, line)).filter((l) =>
     l !== undefined
   ) as LineEvent[];
-  return await testLineEvents(lineEvents, timeline, driftWarn, driftFail);
+  return await testLineEvents(lineEvents, timelineName, driftWarn, driftFail);
 };
 
 const testLineEvents = async (
@@ -95,67 +104,36 @@ const testLineEvents = async (
 
   testTimeline.ui = ui;
 
-  const startTimestamp = lines[0]?.timestamp ?? 0;
-
-  const lastLogTimestamp = lines[lines.length - 1]?.timestamp ?? 0;
-
-  testTimeline.timebase = startTimestamp;
-  testTimeline._OnUpdateTimer(startTimestamp);
-
-  for (const line of lines) {
-    testTimeline.OnLogLine(line.convertedLine, line.timestamp);
-    const baseTimestamp = testTimeline.timebase || startTimestamp || line.timestamp;
-    const fightNow = (line.timestamp - baseTimestamp) / 1000;
-
-    testTimeline.SyncTo(fightNow, line.timestamp);
-    testTimeline._OnUpdateTimer(line.timestamp);
+  const startTimestamp = lines[0]?.timestamp;
+  if (lines.length === 0 || startTimestamp === undefined) {
+    console.error(`No lines to test`);
+    process.exit(-2);
   }
 
-  const allMissedEvents = testTimeline.events.filter((event) =>
-    // Only include events that did not fire
-    ui.events.find((event2) => event.id === event2.event.id) === undefined &&
-    // Only include events with a time greater than 0, excludes "Start"/"--Reset--"/etc
-    event.time > 0 &&
-    // Only include events that are within the fight's timebase based on start/end lines
-    event.time * 1000 <= lastLogTimestamp - testTimeline.timebase &&
-    // Only include events that have a sync/jump
-    testTimeline.syncEnds.find((sync) => sync.id === event.id)
-  );
+  testTimeline.timebase = startTimestamp;
+
+  for (const line of lines) {
+    // Update timer before the log line so that active syncs are up to date.
+    testTimeline._OnUpdateTimer(line.timestamp);
+    // If this log line matches, it will OnSync and adjust the time as needed.
+    testTimeline.OnLogLine(line.convertedLine, line.timestamp);
+  }
 
   console.log('Timeline:');
 
-  const sortedEvents = [
-    ...ui.events,
-  ].sort((l, r) => l.timestamp - r.timestamp);
-
-  let sortedMissedEvents = [
-    ...allMissedEvents,
-  ].sort((l, r) => l.time - r.time).map((event) => {
-    return {
-      sync: testTimeline.syncEnds.find((sync) => sync.id === event.id),
-      event: event,
-    };
-  });
-
-  for (const firedEvent of sortedEvents) {
-    const missedEvents = sortedMissedEvents.filter((event) =>
-      event.event.lineNumber !== undefined && firedEvent.event.lineNumber !== undefined &&
-      event.event.lineNumber < firedEvent.event.lineNumber
-    );
-    if (missedEvents.length) {
-      sortedMissedEvents = sortedMissedEvents.filter((e) => !missedEvents.includes(e));
-      for (const missedEvent of missedEvents) {
-        const lineNumber = missedEvent.event.lineNumber ?? -1;
-        console.log(
-          chalk.red(`      Missed | %s | %s`),
-          `${lineNumber}`.padStart(4),
-          linesString[lineNumber - 1] ?? '',
-        );
-      }
+  for (const record of ui.records) {
+    const lineNumber = record.event.lineNumber ?? -1;
+    if (record.type === 'missed') {
+      console.log(
+        chalk.redBright(`      Missed | %s | %s`),
+        `${lineNumber}`.padStart(4),
+        linesString[lineNumber - 1] ?? '',
+      );
+      continue;
     }
-    const lineNumber = firedEvent.event.lineNumber ?? -1;
+
     const lineStr = linesString[lineNumber - 1] ?? '';
-    const delta = (firedEvent.timestamp - firedEvent.timebase) / 1000 - firedEvent.event.time;
+    const delta = (record.timestamp - record.timebase) / 1000 - record.event.time;
     const invertedDelta = delta * -1;
     const sign = invertedDelta > 0 ? '+' : ' ';
 
@@ -174,36 +152,27 @@ const testLineEvents = async (
     );
   }
 
-  if (sortedMissedEvents.length) {
-    for (const missedEvent of sortedMissedEvents) {
-      const lineNumber = missedEvent.event.lineNumber ?? -1;
+  if (ui.triggers.length > 0) {
+    console.log('Triggers:');
+
+    for (const trigger of ui.triggers) {
+      const delta = (trigger.timestamp - trigger.timebase) / 1000 - trigger.text.time;
+      const invertedDelta = delta * -1;
+      const sign = invertedDelta > 0 ? '+' : ' ';
       console.log(
-        chalk.red(`      Missed | %s | %s`),
-        `${lineNumber}`.padStart(4),
-        linesString[lineNumber - 1] ?? '',
+        chalk.green(`%s | %s`),
+        `${sign}${invertedDelta.toFixed(3)}`.padStart(12),
+        trigger.trigger.id,
       );
     }
-  }
-
-  console.log('Triggers:');
-
-  for (const trigger of ui.triggers) {
-    const delta = (trigger.timestamp - trigger.timebase) / 1000 - trigger.text.time;
-    const invertedDelta = delta * -1;
-    const sign = invertedDelta > 0 ? '+' : ' ';
-    console.log(
-      chalk.green(`%s | %s`),
-      `${sign}${invertedDelta.toFixed(3)}`.padStart(12),
-      trigger.trigger.id,
-    );
   }
 };
 
 class TestTimelineNamespaceRequired extends Namespace {
   // FFLogs params
-  'report': string | null;
+  'report_id': string | null;
+  'report_fight': number | null;
   'key': string | null;
-  'fight': string | null;
 
   // Network log file params
   'file': string | null;
@@ -233,24 +202,21 @@ const makeCollectorFromPrepass = async (fileName: string, store: boolean) => {
   return collector;
 };
 
-const testTimelineFileFunc = async (args: TestTimelineNamespace): Promise<void> => {
+const testTimelineFileFunc = async (
+  args: TestTimelineNamespace,
+  timelineName: string,
+): Promise<void> => {
   if (typeof args.file !== 'string' || !fs.existsSync(args.file)) {
     console.error('Must pass a valid file with -f');
     return;
   }
 
-  if (typeof args.timeline !== 'string' || findTriggersFile(args.timeline) === undefined) {
-    console.error('Must pass a valid timeline file with -t');
-    return;
-  }
-
   const file = args.file;
-  const timeline = args.timeline;
   const driftWarn = args.drift_warning ?? defaultDriftWarn;
   const driftFail = args.drift_failure ?? defaultDriftFail;
 
   if (typeof args.start === 'string' || typeof args.end === 'string') {
-    await testTimelineFileStartEnd(args, file, timeline);
+    await testTimelineFileStartEnd(args, file, timelineName);
     return;
   }
 
@@ -275,13 +241,13 @@ const testTimelineFileFunc = async (args: TestTimelineNamespace): Promise<void> 
     return;
   }
 
-  return testLineArray(fight.logLines ?? [], timeline, driftWarn, driftFail);
+  return testLineArray(fight.logLines ?? [], timelineName, driftWarn, driftFail);
 };
 
 const testTimelineFileStartEnd = async (
   args: TestTimelineNamespace,
   logFilePath: string,
-  timeline: string,
+  timelineName: string,
 ): Promise<void> => {
   if (typeof args.start !== 'string') {
     console.error(`Invalid start datetime '${args.start ?? 'null'}', aborting.`);
@@ -317,18 +283,86 @@ const testTimelineFileStartEnd = async (
 
   const driftWarn = args.drift_warning ?? defaultDriftWarn;
   const driftFail = args.drift_failure ?? defaultDriftFail;
-  return await testLineEvents(lineEvents, timeline, driftWarn, driftFail);
+  return await testLineEvents(lineEvents, timelineName, driftWarn, driftFail);
 };
 
-const testTimelineReportFunc = (_args: TestTimelineNamespace): Promise<void> => {
-  throw new Error('FFLogs report testing is not implemented yet');
+const convertFFLogsEntryIntoNetworkLog = (entry: FFLogsParsedEntry): string => {
+  // Note: this is a simplified ISO timestamp (i.e. ending in Z, no timezone)
+  // which is not what ACT emits, but is easier to generate here, and works
+  // with the cactbot pipeline, so leaving it as-is rather than generating
+  // a more real line.
+  const timeStr = new Date(entry.timestamp).toISOString();
+  const enemyId = '40000000';
+
+  // Generate fake network log lines.  This generates enough information for a timeline
+  // line to match it, and has blanks for all of the other fields.
+  if (entry.type === 'cast') {
+    return [
+      '21',
+      timeStr,
+      enemyId,
+      entry.combatant,
+      entry.abilityId,
+      entry.abilityName,
+      ...Array<string>(maxAbilityFieldId).fill(''),
+    ].slice(0, maxAbilityFieldId).join('|');
+  } else if (entry.type === 'begincast') {
+    return [
+      '20',
+      timeStr,
+      enemyId,
+      entry.combatant,
+      entry.abilityId,
+      entry.abilityName,
+      ...Array<string>(maxStartsUsingFieldId).fill(''),
+    ].slice(0, maxStartsUsingFieldId).join('|');
+  }
+
+  // If some other type (for some reason), emit a fake debug line.
+  // No timelines will use this, but it might be helpful for debugging.
+  return [
+    '254',
+    timeStr,
+    JSON.stringify(entry),
+    '',
+  ].join('|');
+};
+
+const testTimelineReportFunc = async (
+  args: TestTimelineNamespace,
+  timelineName: string,
+): Promise<void> => {
+  if (typeof args.report_id !== 'string') {
+    console.error(`Invalid report id ${args.report_id ?? 'null'}`);
+    return;
+  }
+  if (typeof args.report_fight !== 'number') {
+    console.error(`Invalid report fight ${args.report_fight ?? 'null'}`);
+    return;
+  }
+  if (typeof args.key !== 'string') {
+    console.error(`Invalid report key ${args.key ?? 'null'}`);
+    return;
+  }
+
+  const entries = await FFLogs.parseReport(args.report_id, args.report_fight, args.key);
+
+  const lines = entries.map(convertFFLogsEntryIntoNetworkLog);
+  const driftWarn = args.drift_warning ?? defaultDriftWarn;
+  const driftFail = args.drift_failure ?? defaultDriftFail;
+  return await testLineArray(lines, timelineName, driftWarn, driftFail);
 };
 
 const testTimelineFunc = async (args: TestTimelineNamespace): Promise<void> => {
+  if (typeof args.timeline !== 'string' || findTriggersFile(args.timeline) === undefined) {
+    console.error('Must pass a valid timeline file with -t');
+    return;
+  }
+
   if (typeof args.file === 'string')
-    return testTimelineFileFunc(args);
-  if (typeof args.report === 'string')
-    return testTimelineReportFunc(args);
+    return testTimelineFileFunc(args, args.timeline);
+  if (typeof args.report_id === 'string')
+    return testTimelineReportFunc(args, args.timeline);
 
   console.error('Must pass either -f or -r');
 };
@@ -389,58 +423,60 @@ class TestTimeline extends Timeline {
     /* noop */
   }
 
-  public override SyncTo(fightNow: number, currentTime: number): void {
-    super.SyncTo(fightNow, currentTime);
-  }
+  private AddRecords(currentTime: number, sync: Sync): void {
+    const ui = this.ui;
+    if (ui === undefined)
+      return;
 
-  // TODO: Can't detect Sync events any other way, maybe OnSync should get the sync as a parameter?
-  public override OnLogLine(line: string, currentTime: number): void {
-    let syncMatch: Sync | undefined = undefined;
-    for (const sync of this.activeSyncs) {
-      if (sync.regex.test(line)) {
-        syncMatch = sync;
-        break;
-      }
-    }
+    const lastRecord = ui.records[ui.records.length - 1];
+    const lastEventIdx = lastRecord?.event.sortKey;
+    const currentEventIdx = sync.event.sortKey;
 
-    // Because TS won't allow the if below to narrow the type, since it's not const
-    const syncMatchTyped = syncMatch;
+    // Push records of any intermediate events that were skipped over.
+    if (lastEventIdx !== undefined && currentEventIdx !== undefined) {
+      // This naturally ignores jumps into the past.
+      for (let idx = lastEventIdx + 1; idx < currentEventIdx; ++idx) {
+        const event = this.events[idx];
+        if (event === undefined)
+          continue;
+        // Skip text events with no sync.
+        if (event.sync === undefined)
+          continue;
 
-    if (
-      syncMatchTyped !== undefined &&
-      this.ui !== undefined
-    ) {
-      const origEvent = this.events.find((e) => e.id === syncMatchTyped.id);
-
-      // Make sure we don't log multiple syncs for the same event ID and timestamp
-      const foundEvent = this.ui?.events.find((uiEvent) => {
-        return uiEvent.event.id === origEvent?.id && uiEvent.timestamp === currentTime;
-      });
-
-      if (foundEvent === undefined && origEvent !== undefined) {
-        const event = {
-          event: origEvent,
-          sync: syncMatchTyped,
+        ui.records.push({
+          event: event,
           timebase: this.timebase,
           timestamp: currentTime,
-        };
-        this.ui?.events.push(event);
+          type: 'missed',
+        });
       }
     }
 
-    super.OnLogLine(line, currentTime);
+    ui.records.push({
+      event: sync.event,
+      timebase: this.timebase,
+      timestamp: currentTime,
+      type: 'sync',
+    });
+  }
+
+  public override SyncTo(fightNow: number, currentTime: number, sync?: Sync): void {
+    if (sync !== undefined)
+      this.AddRecords(currentTime, sync);
+
+    super.SyncTo(fightNow, currentTime, sync);
   }
 }
 
+type TimelineRecord = {
+  event: Event;
+  timestamp: number;
+  timebase: number;
+  type: 'sync' | 'missed';
+};
+
 class TestTimelineUI extends TimelineUI {
-  public events: {
-    event: Event;
-    sync: Sync;
-    timestamp: number;
-    timebase: number;
-    removed?: boolean;
-    expired?: boolean;
-  }[] = [];
+  public records: TimelineRecord[] = [];
 
   public triggers: {
     trigger: Partial<TimelineTrigger<RaidbossData>>;
