@@ -200,6 +200,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Under => Back',
+          ja: '下 => 後ろ',
         },
       },
     },
@@ -212,6 +213,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Sides => Back',
+          ja: '横 => 後ろ',
         },
       },
     },
@@ -224,6 +226,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Under => Front',
+          ja: '下 => 前',
         },
       },
     },
@@ -236,6 +239,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Sides => Front',
+          ja: '横 => 前',
         },
       },
     },
@@ -263,6 +267,7 @@ Options.Triggers.push({
       'replaceSync': {
         'Arch-Eta': 'アーチイータ',
         'Fan Ail': 'ファン・アイル',
+        'Chi': 'カイ',
       },
     },
     {

@@ -45,6 +45,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Exciting Mandragoras spawned, kill in order!',
+          ja: 'マンドラゴラ！順番に倒して！',
         },
       },
     },

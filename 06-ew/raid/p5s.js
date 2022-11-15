@@ -95,6 +95,7 @@ Options.Triggers.push({
         safeCorner: {
           en: '${dir1} Corner (avoid poison)',
           de: '${dir1} Ecke (vermeide das Gift)',
+          ja: '${dir1}の隅へ (毒回避)',
           ko: '${dir1} 구석 (독 피하기)',
         },
       },

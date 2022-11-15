@@ -80,6 +80,7 @@ Options.Triggers.push({
         text: {
           en: 'Knockback onto Blue',
           de: 'Rückstoß auf Blau',
+          ja: '青にノックバック',
           ko: '파란색쪽으로 넉백',
         },
       },
@@ -191,11 +192,13 @@ Options.Triggers.push({
         standOnBlue: {
           en: 'Stand on Blue',
           de: 'Bei Blau stehen',
+          ja: '青へ',
           ko: '파란색쪽으로',
         },
         avoidBoulders: {
           en: 'Stand on Blue (avoid boulders)',
           de: 'Bei Blau stehen (vermeide Steine)',
+          ja: '青へ (岩回避)',
           ko: '파란색쪽으로 (바위 피하기)',
         },
       },
@@ -216,6 +219,7 @@ Options.Triggers.push({
         text: {
           en: 'Knockback onto Blue',
           de: 'Rückstoß zu Blau',
+          ja: '青へノックバック',
           ko: '파란색쪽으로 넉백',
         },
       },
@@ -232,6 +236,7 @@ Options.Triggers.push({
         getBehindOnBlue: {
           en: 'Get Behind on Blue',
           de: 'Geh hinter Blau',
+          ja: 'ボスの後ろの青へ',
           ko: '보스 뒤 파란색쪽으로',
         },
       },
@@ -245,6 +250,7 @@ Options.Triggers.push({
         text: {
           en: 'Stand on Red',
           de: 'Bei Rot stehen',
+          ja: '赤へ',
           ko: '빨간색쪽으로',
         },
       },
@@ -258,6 +264,7 @@ Options.Triggers.push({
         text: {
           en: 'Stand on Right Blue',
           de: 'Steh bei dem rechten Blau',
+          ja: '右の青へ',
           ko: '오른쪽 파란색쪽으로',
         },
       },
@@ -271,6 +278,7 @@ Options.Triggers.push({
         text: {
           en: 'Stand on Left Blue',
           de: 'Steh bei dem linken Blau',
+          ja: '左の青へ',
           ko: '왼쪽 파란색쪽으로',
         },
       },
@@ -302,6 +310,7 @@ Options.Triggers.push({
         text: {
           en: 'Back Left',
           de: 'Nach hinten links',
+          ja: '後ろ左',
           ko: '뒤 왼쪽',
         },
       },
@@ -315,6 +324,7 @@ Options.Triggers.push({
         text: {
           en: 'Back Right',
           de: 'Nach hinten rechts',
+          ja: '後ろ右',
           ko: '뒤 오른쪽',
         },
       },
@@ -347,6 +357,7 @@ Options.Triggers.push({
         text: {
           en: 'Intercards',
           de: 'Interkardinal',
+          ja: '斜め',
           ko: '대각선 쪽으로',
         },
       },
@@ -360,6 +371,7 @@ Options.Triggers.push({
         text: {
           en: 'Follow => Intercards',
           de: 'Folgen => Interkardinal',
+          ja: '近づく => 斜め',
           ko: '따라가기 => 대각선 쪽으로',
         },
       },
@@ -375,6 +387,7 @@ Options.Triggers.push({
           // "Do the mechanic <se.6>"
           en: 'Avoid Crosses from Silkie and Puffs',
           de: 'Weiche den "+" von Silkie und den Puscheln aus',
+          ja: 'ボスとたまの斜め',
           ko: '보스와 구슬의 십자방향 피하기',
         },
       },
@@ -395,6 +408,7 @@ Options.Triggers.push({
         text: {
           en: 'Follow => Under',
           de: 'Folgen => Unter Ihn',
+          ja: '近づく => 下へ',
           ko: '따라가기 => 밑으로',
         },
       },
@@ -428,6 +442,7 @@ Options.Triggers.push({
         text: {
           en: 'Get in big wind circle',
           de: 'Geh in den großen Wind-Kreis',
+          ja: '風ゆかの中へ',
           ko: '큰 바람장판 안으로',
         },
       },
@@ -441,6 +456,7 @@ Options.Triggers.push({
         text: {
           en: 'Outside Inner Ring (1)',
           de: 'Außerhalb des inneren Ringes (1)',
+          ja: 'リングチャージ１',
           ko: '안쪽 고리 밖으로 (1)',
         },
       },
@@ -454,7 +470,8 @@ Options.Triggers.push({
         text: {
           en: 'Outside Middle Ring (2)',
           de: 'Außerhalb des mittleren Ringes (2)',
-          ko: '중간 고리 밖으로 (1)',
+          ja: 'リングチャージ２',
+          ko: '중간 고리 밖으로 (2)',
         },
       },
     },
@@ -467,7 +484,8 @@ Options.Triggers.push({
         text: {
           en: 'Outside Outer Ring (3)',
           de: 'Außerhalb des äußeren Ringes (3)',
-          ko: '바깥쪽 고리 밖으로 (1)',
+          ja: 'リングチャージ３',
+          ko: '바깥쪽 고리 밖으로 (3)',
         },
       },
     },
@@ -487,6 +505,7 @@ Options.Triggers.push({
         text: {
           en: 'Behind Close Mark (1)',
           de: 'Hinter der nächsten Markierung (1)',
+          ja: '1番目',
           ko: '첫번째 선 뒤 (1)',
         },
       },
@@ -500,7 +519,8 @@ Options.Triggers.push({
         text: {
           en: 'Behind Middle Mark (2)',
           de: 'Hinter der mittleren Markierung (2)',
-          ko: '두번째 선 뒤 (1)',
+          ja: '2番目',
+          ko: '두번째 선 뒤 (2)',
         },
       },
     },
@@ -513,7 +533,8 @@ Options.Triggers.push({
         text: {
           en: 'Behind Far Mark (3)',
           de: 'Hinter der entfernten Markierung (3)',
-          ko: '세번째 선 뒤 (1)',
+          ja: '3番目',
+          ko: '세번째 선 뒤 (3)',
         },
       },
     },
@@ -527,6 +548,7 @@ Options.Triggers.push({
         text: {
           en: 'Move Through',
           de: 'Durchlaufen',
+          ja: 'ボスをまたいて移動',
           ko: '보스 통과하기',
         },
       },
@@ -586,6 +608,7 @@ Options.Triggers.push({
         text: {
           en: 'Reversed Slashburn',
           de: 'Umgekehrter Brandschlitzer',
+          ja: 'ゆか反転',
           ko: '장판 반전',
         },
       },

@@ -215,6 +215,7 @@ Options.Triggers.push({
         joiner: {
           en: ' => ',
           de: ' => ',
+          ja: ' => ',
           ko: ' => ',
         },
         unknown: Outputs.unknown,
