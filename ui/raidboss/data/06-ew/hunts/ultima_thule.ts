@@ -11,6 +11,12 @@ export type Data = RaidbossData;
 //   7A7 = About Face
 //   7A8 = Left Face
 //   7A9 = Right Face
+// TODO: Chi unknown tankbuster
+// TODO: Chi Bunker Buster
+// TODO: Chi Hellburner
+// TODO: Chi Bouncing Bomb
+// TODO: Chi Free-fall Bombs
+// TODO: Chi Thermobaric Explosive
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.UltimaThule,
@@ -145,6 +151,101 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '6AC4', source: 'Narrow-rift', capture: false },
       suppressSeconds: 1,
       response: Responses.getOut('info'),
+    },
+    // ---------------- Chi Boss FATE ----------------
+    {
+      id: 'Hunt Chi Assault Carapace (Donut)',
+      // 6561 = 4.7s cast
+      // 6254 = 7.7s cast (during Bunker Buster)
+      type: 'StartsUsing',
+      netRegex: { id: ['6561', '6254'], source: 'Chi', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.getUnder(),
+    },
+    {
+      id: 'Hunt Chi Assault Carapace (Line)',
+      // 6562 = 4.7s cast
+      // 6255 = 7.7s cast (during Bunker Buster)
+      type: 'StartsUsing',
+      netRegex: { id: ['6562', '6255'], source: 'Chi', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.goSides(),
+    },
+    {
+      id: 'Hunt Chi Rear Guns',
+      type: 'StartsUsing',
+      netRegex: { id: '656A', source: 'Chi', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.goFront(),
+    },
+    {
+      id: 'Hunt Chi Fore Arms',
+      type: 'StartsUsing',
+      netRegex: { id: '6567', source: 'Chi', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.getBehind(),
+    },
+    {
+      id: 'Hunt Chi Rear Guns > Fore Arms 2.0',
+      type: 'StartsUsing',
+      netRegex: { id: '656B', source: 'Chi', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.getFrontThenBack(),
+    },
+    {
+      id: 'Hunt Chi Fore Arms > Rear Guns 2.0',
+      type: 'StartsUsing',
+      netRegex: { id: '6568', source: 'Chi', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.getBackThenFront(),
+    },
+    {
+      id: 'Hunt Chi Carapace > Fore Arms 2.0 (Donut)',
+      type: 'StartsUsing',
+      netRegex: { id: '6563', source: 'Chi', capture: false },
+      condition: (data) => data.inCombat,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Under => Back',
+        },
+      },
+    },
+    {
+      id: 'Hunt Chi Carapace > Fore Arms 2.0 (Line)',
+      type: 'StartsUsing',
+      netRegex: { id: '6565', source: 'Chi', capture: false },
+      condition: (data) => data.inCombat,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Sides => Back',
+        },
+      },
+    },
+    {
+      id: 'Hunt Chi Carapace > Rear Guns 2.0 (Donut)',
+      type: 'StartsUsing',
+      netRegex: { id: '6564', source: 'Chi', capture: false },
+      condition: (data) => data.inCombat,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Under => Front',
+        },
+      },
+    },
+    {
+      id: 'Hunt Chi Carapace > Rear Guns 2.0 (Line)',
+      type: 'StartsUsing',
+      netRegex: { id: '6566', source: 'Chi', capture: false },
+      condition: (data) => data.inCombat,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Sides => Front',
+        },
+      },
     },
   ],
   timelineReplace: [
