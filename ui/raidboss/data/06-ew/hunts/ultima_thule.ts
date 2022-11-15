@@ -181,7 +181,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Hunt Chi Fore Arms',
       type: 'StartsUsing',
-      netRegex: { id: '679B', source: 'Chi', capture: false },
+      netRegex: { id: '6567', source: 'Chi', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.getBehind(),
     },
