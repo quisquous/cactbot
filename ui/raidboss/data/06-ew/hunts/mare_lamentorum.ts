@@ -228,6 +228,7 @@ const triggerSet: TriggerSet<Data> = {
           en: ' => ',
           de: ' => ',
           ja: ' => ',
+          cn: ' => ',
           ko: ' => ',
         },
         unknown: Outputs.unknown,

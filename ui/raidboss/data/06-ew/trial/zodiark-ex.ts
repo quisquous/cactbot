@@ -122,6 +122,7 @@ const paradeigmaLeanOutputStrings = {
   dirWithLean: {
     en: '${dir} bird (lean ${lean})',
     ja: '${dir}の鳥 (すこし${lean})',
+    cn: '${dir}鸟 (偏${lean})',
     ko: '${dir}쪽 새, (약간 ${lean}쪽으로)',
   },
   dirN: Outputs.dirN,
@@ -393,31 +394,37 @@ const triggerSet: TriggerSet<Data> = {
         outsideNorth: {
           en: 'Outside North',
           ja: '北の外側',
+          cn: '上 (北) 外',
           ko: '북쪽 바깥',
         },
         insideNorth: {
           en: 'Inside North',
           ja: '北の内側',
+          cn: '上 (北) 内',
           ko: '북쪽 안',
         },
         outsideWest: {
           en: 'Outside West',
           ja: '西の外側',
+          cn: '左 (西) 外',
           ko: '서쪽 바깥',
         },
         insideWest: {
           en: 'Inside West',
           ja: '西の内側',
+          cn: '左 (西) 内',
           ko: '서쪽 안',
         },
         outsideEast: {
           en: 'Outside East',
           ja: '東の外側',
+          cn: '右 (东) 外',
           ko: '동쪽 바깥',
         },
         insideEast: {
           en: 'Inside East',
           ja: '東の内側',
+          cn: '右 (东) 内',
           ko: '동쪽 안',
         },
         ...paradeigmaLeanOutputStrings,
@@ -750,6 +757,7 @@ const triggerSet: TriggerSet<Data> = {
         single: {
           en: 'Go ${dir} (lean ${lean})',
           ja: '${dir}の鳥 (すこし${lean})',
+          cn: '去 ${dir} (偏 ${lean})',
           ko: '${dir}쪽으로, (약간 ${lean}쪽으로)',
         },
         ...paradeigmaLeanOutputStrings,
@@ -802,11 +810,13 @@ const triggerSet: TriggerSet<Data> = {
         adikia1OutsideNorth: {
           en: 'Double fists (outside north)',
           ja: 'ダブルフィスト (北の外側)',
+          cn: '双拳 (上北外)',
           ko: '양 옆 큰 원형 장판 (북쪽 바깥)',
         },
         adikia1InsideNorth: {
           en: 'Double fists (inside north)',
           ja: 'ダブルフィスト (北の内側)',
+          cn: '双拳 (上北内)',
           ko: '양 옆 큰 원형 장판 (북쪽 안)',
         },
         adikia2: {
@@ -892,6 +902,7 @@ const triggerSet: TriggerSet<Data> = {
         combo: {
           en: '${dir1} > ${dir2} > ${dir3}',
           ja: '${dir1} > ${dir2} > ${dir3}',
+          cn: '${dir1} > ${dir2} > ${dir3}',
           ko: '${dir1} > ${dir2} > ${dir3}',
         },
         ...eclipseOutputStrings,
