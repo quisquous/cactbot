@@ -416,6 +416,15 @@ class TestTimeline extends Timeline {
     const lastEventIdx = lastRecord?.event.sortKey;
     const currentEventIdx = sync.event.sortKey;
 
+    // Ignore repeated syncs to the same id that are roughly at the same time.
+    if (lastRecord?.event.sync?.id === sync.id) {
+      const timelineTime = (currentTime - this.timebase) / 1000;
+      const deltaSeconds = timelineTime - sync.event.time;
+      const epsilonSeconds = 0.01;
+      if (deltaSeconds < epsilonSeconds)
+        return;
+    }
+
     // Push records of any intermediate events that were skipped over.
     if (lastEventIdx !== undefined && currentEventIdx !== undefined) {
       // This naturally ignores jumps into the past.
