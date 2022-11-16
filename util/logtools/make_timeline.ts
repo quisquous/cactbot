@@ -22,9 +22,6 @@ import FFLogs from './fflogs';
 
 // TODO: Add support for auto-generating loops.
 
-// TODO: We could consider re-adding `-s` and `-e` flags for manual start and end times,
-// but it would likely be better to just add support to `-lf` for any missing cases.
-
 // TODO: Add support for compiling log lines during the collector pre-pass.
 
 type TimelineEntry = {
@@ -136,6 +133,18 @@ timelineParse.parser.addArgument(['--include_targetable', '-it'], {
   help: 'Set this flag to include "34" log lines when making the timeline',
 });
 
+timelineParse.parser.addArgument(
+  ['-s', '--start'],
+  {
+    type: 'string',
+    help: 'Timestamp of the start, e.g. \'12:34:56.789',
+  },
+);
+timelineParse.parser.addArgument(
+  ['-e', '--end'],
+  { type: 'string', help: 'Timestamp of the end, e.g. \'12:34:56.789' },
+);
+
 const printHelpAndExit = (errString: string): void => {
   console.error(errString);
   timelineParse.parser.printHelp();
@@ -162,6 +171,13 @@ const validateArgs = (args: ExtendedArgs): void => {
       printHelpAndExit('Error: Must specify a report ID.');
     if (typeof args.report_fight !== 'number' || args.report_fight < 0)
       printHelpAndExit('Error: Must specify a report fight index of 0 or greater');
+  }
+
+  // The remaining part of this function is to check for selecting part of the fight.
+  if (typeof args.start === 'string' || typeof args.end === 'string') {
+    if (typeof args.start !== 'string' || typeof args.end !== 'string')
+      printHelpAndExit('Error: must specify both start and end, or use -lf, -lz, or -rf');
+    return;
   }
 
   let numExclusiveArgs = 0;
@@ -570,7 +586,16 @@ const makeTimeline = async () => {
       args,
     );
   }
+
   if (typeof args.file === 'string' && args.file.length > 0) {
+    if (typeof args.start === 'string' && typeof args.end === 'string') {
+      const fight: FightEncInfo = {
+        startTime: new Date(args.start),
+        endTime: new Date(args.end),
+      };
+      assembled = await parseTimelineFromFile(args, args.file, fight);
+    }
+
     const store = typeof args.search_fights === 'number' && args.search_fights > 0;
     const collector = await makeCollectorFromPrepass(args.file, store);
     if (args['search_fights'] === -1) {
