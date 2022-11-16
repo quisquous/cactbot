@@ -1,5 +1,8 @@
 Options.Triggers.push({
   zoneId: ZoneId.TheMaskedCarnivale,
+  zoneLabel: {
+    en: 'The Masked Carnivale',
+  },
   triggers: [
     // ================ Stage 01 Act 1 ================
     // intentionally blank
