@@ -3,6 +3,13 @@
 This is a guide for people who want to write timelines,
 primarily for cactbot.
 
+NOTE: this guide is a good bit out of date:
+
+* test_timeline.ts has different output now
+* Cape Westwind no longer exists
+
+However, it should still give a good idea of the process of making a timeline.
+
 ![import screenshot](images/timelineguide_timeline.png)
 
 cactbot uses the [raidboss module](https://github.com/quisquous/cactbot#raidboss-module)
@@ -131,7 +138,7 @@ hideall "--sync--"
 
 ### Testing
 
-In cactbot, running `npm run test` will run **test/check_timelines.js** in node to verify syntax.
+In cactbot, running `npm run test` will run tests to verify that there are no errors.
 
 ### Shasta Kota Guide
 
@@ -144,13 +151,12 @@ These are guidelines that cactbot tries to follow for timelines.
 
 * add syncs for everything possible
 * always add an Engage! entry, but add syncs in case there's no /countdown
-* if the first boss action is an auto-attack, add a sync to start the timeline asap.
-(Note that sometimes boss auto-attacks are not literally "Attack"!)
+* if the first boss action is an auto-attack, consider adding a sync for
+  the first auto-attack or at least the first "starts using" line
 * include the command line used to generate the timeline in a comment at the top
 * prefer actions for syncs over rp text, but rp text syncs if that's the only option
 * if you do sync a phase with rp text, add a large window sync for an action
-* sync regexes should be short
-* use original names as much as possible
+* use original names for ability text as much as possible
 * loops should use `jump` instead of having previous abilities have large windows
 * liberally use whitespace and comments to make the timeline readable
 * do not put any triggers or tts or alerts in the timeline file itself
@@ -273,12 +279,8 @@ Good guidelines for getting good logs are:
 
 ### Software prerequisites
 
-* [Python 3](https://www.python.org/downloads/release/python-373/)
 * [Node.js](https://nodejs.org/en/)
 * A copy of cactbot's [source code](https://github.com/quisquous/cactbot/archive/main.zip)
-
-You should do a system-wide installation of Python 3 if you can,
-as this will put Python into your Windows PATH so that you can easily run it from the command line.
 
 ### Timeline Skeleton
 
@@ -345,7 +347,7 @@ For example, in this fight, these are the relevant log lines and times:
 You can then make a timeline from those times by running the following command.
 
 ```bash
-python util/make_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934
+ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934
 
 0 "Start"
 2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -441,7 +443,7 @@ python util/make_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934
 (Note that you can also use the `-lf` parameter to list the encounters in the combat log.
 
 ```bash
-python make_timeline.py -f CapeWestwind.log -lf
+ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -lf
 1. 02:03:44.018 02:16:53.632 Cape Westwind
 2. 18:32:52.981 18:36:14.086 Cape Westwind
 3. 18:42:23.614 18:49:22.934 Cape Westwind
@@ -471,20 +473,20 @@ Most of the time, you can't count on adds to have reliable
 timing relative to the main boss, so it's usually better to
 remove them.
 
-The make_timeline.py script has two options to do this.
+The ts-node util/logtools/make_timeline.ts script has two options to do this.
 One is "ignore combatants" and the other is "ignore id".
 Either `-ic "7Th Cohort Optio"` or `-ii 0A 2CD 2CE 194 14`
 will remove all of these abilities.
 We'll go with ids.
 
 Run the command again with this ignore to have a cleaned up version:
-`python util/make_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14`
+`ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14`
 
 At this point, it may also be worth going through and finding other lines to add.
 Usually, these are [added combatant](LogGuide.md#line-03-0x03-addcombatant) lines
 or [game log lines](LogGuide.md#line-00-0x00-logline) for rp text.
 You can look at the time and figure out where they go yourself.
-(Patches welcome to add either of these into **make_timeline.py** automatically.)
+(Patches welcome to add either of these into **make_timeline.ts** automatically.)
 
 The relevant lines here are:
 
@@ -597,7 +599,7 @@ Unfortunately for us, it looks like the boss starts phase 2
 by doing another `Shield Skewer` which it does a lot of in
 phase 1, so it won't be easy to sync to that.
 
-**make_timeline.py** has an option to move the first usage
+**make_timeline.ts** has an option to move the first usage
 of an ability to a particular time.
 As cactbot usually has a window of 30 seconds ahead,
 feel free to generously move phases ahead in time.
@@ -608,7 +610,7 @@ let's adjust the first usage of `Shrapnel Shell`
 (ability id 474) to time=204.3.
 
 Here's the new command line we've built up to:
-`python util/make_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14 -p 474:204.3`
+`ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14 -p 474:204.3`
 
 This gets us the following output for phase 2,
 with manually added blank lines to break out the loops.
@@ -808,7 +810,7 @@ Let's start phase 4 at 600 seconds, so we'll adjust the
 first use of `Magitek Missile` (ability id 478) to be t=610.
 
 Here's the final command line, including this second phase:
-`python util/make_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14 -p 474:204.3 478:610`
+`ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14 -p 474:204.3 478:610`
 
 ```bash
 # manually added in
@@ -1095,8 +1097,7 @@ in the **ui/raidboss/data/timelines** folder, minus the .txt extension.
 (As with `make_timeline`, you can use the `-lf` parameter to list encounters.)
 
 ```bash
-$ python util/test_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.
-934 -t cape_westwind
+$ ts-node util/logtools/test_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -t cape_westwind
 0.000: Matched entry: 2.0 Shield Skewer (+2.000s)
 10.556: Matched entry: 10.6 Shield Skewer (+0.044s)
 18.985: Matched entry: 19.0 Shield Skewer (+0.015s)
@@ -1247,7 +1248,7 @@ The new time will be 595 - 10.7 = 584.3.
 Rerunning the tester (most output omitted)
 
 ```bash
-$ python util/test_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.
+$ ts-node util/logtools/test_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.
 934 -t cape_westwind
 
 431.400: Matched entry: 584.3 --sync-- (+152.900s)
@@ -1270,7 +1271,7 @@ but `Shrapnel Shell` is now in the right spot.
 It's important to test against multiple fight instances to make sure that the timeline is good.
 Here's an example of running against the **CapeWestwind2.log** file.
 
-If you run `python util/test_timeline.py -f CapeWestwind2.log -s 13:21:00.688 -e 13:29:36.976 -t cape_westwind` yourself, you can spot at least two problems.
+If you run `ts-node util/logtools/test_timeline.ts -f CapeWestwind2.log -s 13:21:00.688 -e 13:29:36.976 -t cape_westwind` yourself, you can spot at least two problems.
 
 One minor problem is that this boss is inconsistent:
 
