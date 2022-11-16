@@ -5,20 +5,20 @@ import readline from 'readline';
 import { Namespace } from 'argparse';
 import chalk from 'chalk';
 
-import { logDefinitionsVersions } from '../resources/netlog_defs';
-import { LooseTriggerSet } from '../types/trigger';
-import LineEvent from '../ui/raidboss/emulator/data/network_log_converter/LineEvent';
-import LogRepository from '../ui/raidboss/emulator/data/network_log_converter/LogRepository';
-import ParseLine from '../ui/raidboss/emulator/data/network_log_converter/ParseLine';
-import defaultRaidbossOptions from '../ui/raidboss/raidboss_options';
-import { Timeline, TimelineUI } from '../ui/raidboss/timeline';
-import { Event, Sync } from '../ui/raidboss/timeline_parser';
+import { logDefinitionsVersions } from '../../resources/netlog_defs';
+import { LooseTriggerSet } from '../../types/trigger';
+import LineEvent from '../../ui/raidboss/emulator/data/network_log_converter/LineEvent';
+import LogRepository from '../../ui/raidboss/emulator/data/network_log_converter/LogRepository';
+import ParseLine from '../../ui/raidboss/emulator/data/network_log_converter/ParseLine';
+import defaultRaidbossOptions from '../../ui/raidboss/raidboss_options';
+import { Timeline, TimelineUI } from '../../ui/raidboss/timeline';
+import { Event, Sync } from '../../ui/raidboss/timeline_parser';
+import { walkDirSync } from '../file_utils';
 
-import { walkDirSync } from './file_utils';
-import { LogUtilArgParse } from './logtools/arg_parser';
-import { printCollectedFights } from './logtools/encounter_printer';
-import { EncounterCollector } from './logtools/encounter_tools';
-import FFLogs, { FFLogsParsedEntry } from './logtools/fflogs';
+import { LogUtilArgParse } from './arg_parser';
+import { printCollectedFights } from './encounter_printer';
+import { EncounterCollector } from './encounter_tools';
+import FFLogs, { FFLogsParsedEntry } from './fflogs';
 
 const rootDir = 'ui/raidboss/data';
 
@@ -76,7 +76,7 @@ const testLineEvents = async (
   }
 
   // TODO: this block is very duplicated with a number of other scripts.
-  const importPath = '../' + path.relative(process.cwd(), triggersFile).replace('.ts', '.js');
+  const importPath = `../../${path.relative(process.cwd(), triggersFile).replace('.ts', '.js')}`;
   // TODO: Fix dynamic imports in TypeScript
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const triggerSet = (await import(importPath))?.default as LooseTriggerSet;
