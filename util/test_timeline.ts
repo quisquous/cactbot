@@ -6,14 +6,13 @@ import { Namespace } from 'argparse';
 import chalk from 'chalk';
 
 import { logDefinitionsVersions } from '../resources/netlog_defs';
-import { RaidbossData } from '../types/data';
-import { LooseTriggerSet, TimelineTrigger } from '../types/trigger';
+import { LooseTriggerSet } from '../types/trigger';
 import LineEvent from '../ui/raidboss/emulator/data/network_log_converter/LineEvent';
 import LogRepository from '../ui/raidboss/emulator/data/network_log_converter/LogRepository';
 import ParseLine from '../ui/raidboss/emulator/data/network_log_converter/ParseLine';
 import defaultRaidbossOptions from '../ui/raidboss/raidboss_options';
 import { Timeline, TimelineUI } from '../ui/raidboss/timeline';
-import { Event, Sync, Text } from '../ui/raidboss/timeline_parser';
+import { Event, Sync } from '../ui/raidboss/timeline_parser';
 
 import { walkDirSync } from './file_utils';
 import { LogUtilArgParse } from './logtools/arg_parser';
@@ -150,21 +149,6 @@ const testLineEvents = async (
       `${lineNumber}`.padStart(4),
       lineStr,
     );
-  }
-
-  if (ui.triggers.length > 0) {
-    console.log('Triggers:');
-
-    for (const trigger of ui.triggers) {
-      const delta = (trigger.timestamp - trigger.timebase) / 1000 - trigger.text.time;
-      const invertedDelta = delta * -1;
-      const sign = invertedDelta > 0 ? '+' : ' ';
-      console.log(
-        chalk.green(`%s | %s`),
-        `${sign}${invertedDelta.toFixed(3)}`.padStart(12),
-        trigger.trigger.id,
-      );
-    }
   }
 };
 
@@ -478,14 +462,6 @@ type TimelineRecord = {
 class TestTimelineUI extends TimelineUI {
   public records: TimelineRecord[] = [];
 
-  public triggers: {
-    trigger: Partial<TimelineTrigger<RaidbossData>>;
-    matches: RegExpExecArray;
-    text: Text;
-    timestamp: number;
-    timebase: number;
-  }[] = [];
-
   public fightNow = 0;
 
   public constructor(protected override timeline: TestTimeline) {
@@ -494,27 +470,6 @@ class TestTimelineUI extends TimelineUI {
 
   public override OnSyncTime(fightNow: number, _running: boolean): void {
     this.fightNow = fightNow;
-  }
-
-  public override OnTrigger(
-    trigger: Partial<TimelineTrigger<RaidbossData>>,
-    matches: RegExpExecArray,
-    currentTime: number,
-  ): void {
-    const foundText = this.timeline.texts.find((text) =>
-      text.type === 'trigger' && text.trigger === trigger
-    );
-    if (!foundText) {
-      console.error(chalk.red(`Trigger fired ${trigger.id ?? '???'} with no matched texts entry!`));
-      return;
-    }
-    this.triggers.push({
-      trigger: trigger,
-      text: foundText,
-      matches: matches,
-      timestamp: currentTime,
-      timebase: this.timeline.timebase,
-    });
   }
 }
 
