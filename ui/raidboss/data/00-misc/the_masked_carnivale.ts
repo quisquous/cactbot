@@ -18,6 +18,9 @@ export interface Data extends RaidbossData {
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheMaskedCarnivale,
+  zoneLabel: {
+    en: 'The Masked Carnivale',
+  },
   triggers: [
     // ================ Stage 01 Act 1 ================
     // intentionally blank

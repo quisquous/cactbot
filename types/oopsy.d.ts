@@ -106,6 +106,7 @@ type MistakeMap = { [mistakeId: string]: string };
 
 type SimpleOopsyTriggerSet = {
   zoneId: ZoneIdType | ZoneIdType[];
+  zoneLabel?: LocaleText;
   damageWarn?: MistakeMap;
   damageFail?: MistakeMap;
   gainsEffectWarn?: MistakeMap;
