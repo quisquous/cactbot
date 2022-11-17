@@ -1,4 +1,3 @@
-import Conditions from '../../../../../resources/conditions';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -54,6 +53,9 @@ const triggerSet: TriggerSet<Data> = {
     ZoneId.ThePalaceOfTheDeadFloors181_190,
     ZoneId.ThePalaceOfTheDeadFloors191_200,
   ],
+  zoneLabel: {
+    en: 'The Palace of the Dead (All Floors)',
+  },
 
   triggers: [
     // ---------------- Mimics ----------------
@@ -94,20 +96,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     // ---------------- Floor Notifications ----------------
     {
-      id: 'PotD General Cairn of Return',
-      // resurrects dead players
-      // Cairn of Return activation message: https://xivapi.com/LogMessage/7242?pretty=true
-      // en: The Cairn of Return begins to glow!
-      type: 'SystemLogMessage',
-      netRegex: { id: '1C4A', capture: false },
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Cairn of Return activated',
-        },
-      },
-    },
-    {
       id: 'PotD General Cairn of Passage',
       // portal to transfer between floors
       // Cairn of Passage activation message: https://xivapi.com/LogMessage/7245?pretty=true
@@ -118,63 +106,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Cairn of Passage activated',
-        },
-      },
-    },
-    {
-      id: 'PotD General Accursed Hoard',
-      // Accursed Hoard on this floor message: https://xivapi.com/LogMessage/7272?pretty=true
-      // it seems that this SystemLogMessage isn't sent if it occurs immediately after transference between floors
-      // trigger off of the GameLog message instead
-      // en: You sense the Accursed Hoard calling you...
-      type: 'GameLog',
-      netRegex: { line: 'You sense the Accursed Hoard calling you\.\.\..*?', capture: false },
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Accursed Hoard on this floor',
-        },
-      },
-    },
-    {
-      id: 'PotD General Floor Enchantment',
-      // 440 = Blind (accuracy reduced)
-      // 441 = HP Penalty (maximum HP reduced)
-      // 442 = Damage Down (damage dealt reduced)
-      // 443 = Haste (weaponskill recast, spell recast, and auto-attack delay reduced)
-      // 444 = Amnesia (can't use abilities)
-      // 445 = HP & MP Boost (maximum HP & MP increased)
-      // 446 = Item Penalty (can't use items or pomanders)
-      // 447 = Sprint Penalty (can't use Sprint)
-      // 448 = Knockback Penalty (knockback and draw-in effects for enemies and players disabled)
-      // 449 = Auto-heal Penalty (out-of-combat passive HP regeneration disabled)
-      // TODO: trigger might overlap when multiple enchantments exist on the same floor
-      type: 'GainsEffect',
-      netRegex: { effectId: '44[0-9]' },
-      condition: Conditions.targetIsYou(),
-      infoText: (_data, matches, output) => output.enchantment!({ enchantment: matches.effect }),
-      outputStrings: {
-        enchantment: {
-          en: '${enchantment}',
-        },
-      },
-    },
-    {
-      id: 'PotD General Gloom',
-      // Gloom on this floor message: https://xivapi.com/LogMessage/7240?pretty=true
-      // it seems that this SystemLogMessage isn't ever sent?
-      // possibly related to other SystemLogMessages not being sent if they occur immediately after transference between floors
-      // trigger off of the GameLog message instead
-      // en: The gathering gloom appears to invigorate the floor's denizens.
-      type: 'GameLog',
-      netRegex: {
-        line: 'The gathering gloom appears to invigorate the floor\'s denizens\..*?',
-        capture: false,
-      },
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Gloom',
         },
       },
     },

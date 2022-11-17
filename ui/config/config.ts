@@ -192,6 +192,9 @@ const kDirectoryToCategory = {
   map: {
     en: 'Treasure Map',
   },
+  deepdungeon: {
+    en: 'Deep Dungeon',
+  },
 };
 
 // TODO: maybe we should also sort all the filenames properly too?
