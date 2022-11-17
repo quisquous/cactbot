@@ -19,6 +19,9 @@ const triggerSet: TriggerSet<Data> = {
     ZoneId.Elpis,
     ZoneId.UltimaThule,
   ],
+  zoneLabel: {
+    en: 'SS Rank Hunts',
+  },
   triggers: [
     {
       id: 'Hunt Ker Heliovoid',
