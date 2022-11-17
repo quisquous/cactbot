@@ -23,7 +23,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'PotD 121-130 Deep Palace Skatene Chirp',
-      // untelegraphed PBAoE sleep
+      // untelegraphed PBAoE Sleep
       type: 'StartsUsing',
       netRegex: { id: '18DD', source: 'Deep Palace Skatene', capture: false },
       response: Responses.getOut(),

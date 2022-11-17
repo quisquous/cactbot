@@ -36,6 +36,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'PotD 141-150 Deep Palace Succubus Void Fire IV',
+      // very large AoE
       type: 'StartsUsing',
       netRegex: { id: '1B81', source: 'Deep Palace Succubus' },
       response: Responses.interrupt(),
@@ -49,6 +50,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'PotD 141-150 Onyx Dragon Evil Eye',
+      // gaze, gives Terror, combos with Miasma Breath
       type: 'StartsUsing',
       netRegex: { id: '1B83', source: 'Onyx Dragon', capture: false },
       response: Responses.lookAway(),
@@ -56,6 +58,7 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Floor 150 Boss: Tisiphone ----------------
     {
       id: 'PotD 141-150 Tisiphone Blood Rain',
+      // big roomwide AoE
       type: 'StartsUsing',
       netRegex: { id: '1BF1', source: 'Tisiphone', capture: false },
       response: Responses.bigAoe(),
