@@ -53,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
       // gaze, gives Terror, combos with Miasma Breath
       type: 'StartsUsing',
       netRegex: { id: '1B83', source: 'Onyx Dragon', capture: false },
-      response: Responses.lookAway(),
+      response: Responses.lookAway('alert'),
     },
     // ---------------- Floor 150 Boss: Tisiphone ----------------
     {
@@ -61,7 +61,7 @@ const triggerSet: TriggerSet<Data> = {
       // big roomwide AoE
       type: 'StartsUsing',
       netRegex: { id: '1BF1', source: 'Tisiphone', capture: false },
-      response: Responses.bigAoe(),
+      response: Responses.bigAoe('alert'),
     },
   ],
 };

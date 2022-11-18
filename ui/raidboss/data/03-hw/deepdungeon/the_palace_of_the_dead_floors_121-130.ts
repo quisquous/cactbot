@@ -51,7 +51,7 @@ const triggerSet: TriggerSet<Data> = {
       // Alfard always moves to the center of the room first before casting this
       type: 'StartsUsing',
       netRegex: { id: '1BE5', source: 'Alfard', capture: false },
-      response: Responses.getUnder(),
+      response: Responses.getUnder('alert'),
     },
   ],
 };

@@ -24,7 +24,7 @@ const triggerSet: TriggerSet<Data> = {
       // gaze attack that gives Minimum (1B6)
       type: 'StartsUsing',
       netRegex: { id: '1B7A', source: 'Deep Palace Catoblepas', capture: false },
-      response: Responses.lookAway(),
+      response: Responses.lookAway('alert'),
     },
     // ---------------- Floor 140 Boss: Ah Puch ----------------
     {
@@ -33,7 +33,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'AddedCombatant',
       netRegex: { npcNameId: '5411', capture: false },
       suppressSeconds: 1,
-      response: Responses.killAdds(),
+      response: Responses.killAdds('alert'),
     },
   ],
 };
