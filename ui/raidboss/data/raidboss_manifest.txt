@@ -134,6 +134,7 @@
 04-sb/alliance/ridorana_lighthouse.txt
 04-sb/alliance/royal_city_of_rabanastre.ts
 04-sb/alliance/royal_city_of_rabanastre.txt
+04-sb/deepdungeon/heaven-on-high_general.ts
 04-sb/dungeon/ala_mhigo.ts
 04-sb/dungeon/ala_mhigo.txt
 04-sb/dungeon/bardams_mettle.ts
