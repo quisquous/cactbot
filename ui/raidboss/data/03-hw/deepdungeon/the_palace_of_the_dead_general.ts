@@ -7,29 +7,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 export type Data = RaidbossData;
 
-// pomanders: https://xivapi.com/deepdungeonItem?pretty=true
-const pomanders = [
-  'Safety',
-  'Sight',
-  'Strength',
-  'Steel',
-  'Affluence',
-  'Flight',
-  'Alteration',
-  'Purity',
-  'Fortune',
-  'Witching',
-  'Serenity',
-  'Rage',
-  'Lust',
-  'Intuition',
-  'Raising',
-  'Resolution',
-  'Frailty',
-  'Concealment',
-  'Petrification',
-];
-
 const triggerSet: TriggerSet<Data> = {
   zoneId: [
     ZoneId.ThePalaceOfTheDeadFloors1_10,
@@ -86,11 +63,109 @@ const triggerSet: TriggerSet<Data> = {
       // en: You return the pomander of ${pomander} to the coffer. You cannot carry any more of that item.
       type: 'SystemLogMessage',
       netRegex: { id: '1C36' },
-      infoText: (_data, matches, output) =>
-        output.duplicate!({ pomander: pomanders[parseInt(matches.param1, 16) - 1] }),
+      infoText: (_data, matches, output) => {
+        switch (parseInt(matches.param1, 16)) {
+          case 1:
+            return output.duplicate!({ pomander: output.safety!() });
+          case 2:
+            return output.duplicate!({ pomander: output.sight!() });
+          case 3:
+            return output.duplicate!({ pomander: output.strength!() });
+          case 4:
+            return output.duplicate!({ pomander: output.steel!() });
+          case 5:
+            return output.duplicate!({ pomander: output.affluence!() });
+          case 6:
+            return output.duplicate!({ pomander: output.flight!() });
+          case 7:
+            return output.duplicate!({ pomander: output.alteration!() });
+          case 8:
+            return output.duplicate!({ pomander: output.purity!() });
+          case 9:
+            return output.duplicate!({ pomander: output.fortune!() });
+          case 10:
+            return output.duplicate!({ pomander: output.witching!() });
+          case 11:
+            return output.duplicate!({ pomander: output.serenity!() });
+          case 12:
+            return output.duplicate!({ pomander: output.rage!() });
+          case 13:
+            return output.duplicate!({ pomander: output.lust!() });
+          case 14:
+            return output.duplicate!({ pomander: output.intuition!() });
+          case 15:
+            return output.duplicate!({ pomander: output.raising!() });
+          case 16:
+            return output.duplicate!({ pomander: output.resolution!() });
+          case 17:
+            return output.duplicate!({ pomander: output.frailty!() });
+          case 18:
+            return output.duplicate!({ pomander: output.concealment!() });
+          case 19:
+            return output.duplicate!({ pomander: output.petrification!() });
+        }
+      },
       outputStrings: {
         duplicate: {
           en: '${pomander} duplicate',
+        },
+        // pomanders: https://xivapi.com/deepdungeonItem?pretty=true
+        safety: {
+          en: 'Safety',
+        },
+        sight: {
+          en: 'Sight',
+        },
+        strength: {
+          en: 'Strength',
+        },
+        steel: {
+          en: 'Steel',
+        },
+        affluence: {
+          en: 'Affluence',
+        },
+        flight: {
+          en: 'Flight',
+        },
+        alteration: {
+          en: 'Alteration',
+        },
+        purity: {
+          en: 'Purity',
+        },
+        fortune: {
+          en: 'Fortune',
+        },
+        witching: {
+          en: 'Witching',
+        },
+        serenity: {
+          en: 'Serenity',
+        },
+        rage: {
+          en: 'Rage',
+        },
+        lust: {
+          en: 'Lust',
+        },
+        intuition: {
+          en: 'Intuition',
+        },
+        raising: {
+          en: 'Raising',
+        },
+        resolution: {
+          en: 'Resolution',
+        },
+        frailty: {
+          en: 'Frailty',
+        },
+        concealment: {
+          en: 'Concealment',
+        },
+        petrification: {
+          en: 'Petrification',
         },
       },
     },
