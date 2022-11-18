@@ -1,3 +1,4 @@
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -11,12 +12,8 @@ export type Data = RaidbossData;
 //   7A7 = About Face
 //   7A8 = Left Face
 //   7A9 = Right Face
-// TODO: Chi unknown tankbuster
 // TODO: Chi Bunker Buster
-// TODO: Chi Hellburner
 // TODO: Chi Bouncing Bomb
-// TODO: Chi Free-fall Bombs
-// TODO: Chi Thermobaric Explosive
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.UltimaThule,
@@ -256,6 +253,67 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Seiten => Vor den Boss',
           ja: '横 => 前',
           cn: '两侧 => 正面',
+        },
+      },
+    },
+    {
+      id: 'Hunt Chi Missile Shower',
+      type: 'StartsUsing',
+      netRegex: { id: '6571', source: 'Chi', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Hunt Chi Hellburner',
+      // tankbuster aoe around marked target (primary threat)
+      type: 'StartsUsing',
+      netRegex: { id: '6574', source: 'Chi' },
+      condition: (data) => data.inCombat,
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
+          return output.tankBusterOnYou!();
+
+        if (data.role === 'healer' || data.job === 'BLU')
+          return output.busterOn!({ player: data.ShortName(matches.target) });
+
+        return output.awayFromPlayer!({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        tankBusterOnYou: Outputs.tankBusterOnYou,
+        busterOn: Outputs.tankBusterOnPlayer,
+        awayFromPlayer: {
+          en: 'Away from ${player}',
+          de: 'Weg von ${player}',
+          fr: 'Éloignez-vous de ${player}',
+          ja: '${player}から離れ',
+          cn: '远离 ${player}',
+          ko: '"${player}" 탱버',
+        },
+      },
+    },
+    {
+      id: 'Hunt Chi Thermobaric Explosive',
+      // dual proximity aoes either N/S or E/W targeting the environment (E0000000)
+      // proximity aoe locations (x, y):
+      //   N: (650.00, 15.00)
+      //   S: (650.00, -15.00)
+      //   E: (665.00, 0.00)
+      //   W: (635.00, 0.00)
+      type: 'StartsUsing',
+      netRegex: { id: '656E', source: 'Chi' },
+      condition: (data) => data.inCombat,
+      suppressSeconds: 1,
+      infoText: (_data, matches, output) => {
+        if (Math.abs(parseFloat(matches.x) - 650) < 0.1)
+          return output.eastWest!();
+        return output.northSouth!();
+      },
+      outputStrings: {
+        northSouth: {
+          en: 'Go North / South edge',
+        },
+        eastWest: {
+          en: 'Go East / West edge',
         },
       },
     },
