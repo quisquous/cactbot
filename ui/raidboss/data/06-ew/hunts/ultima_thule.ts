@@ -1,4 +1,3 @@
-import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -269,27 +268,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '6574', source: 'Chi' },
       condition: (data) => data.inCombat,
-      alertText: (data, matches, output) => {
-        if (matches.target === data.me)
-          return output.tankBusterOnYou!();
-
-        if (data.role === 'healer' || data.job === 'BLU')
-          return output.busterOn!({ player: data.ShortName(matches.target) });
-
-        return output.awayFromPlayer!({ player: data.ShortName(matches.target) });
-      },
-      outputStrings: {
-        tankBusterOnYou: Outputs.tankBusterOnYou,
-        busterOn: Outputs.tankBusterOnPlayer,
-        awayFromPlayer: {
-          en: 'Away from ${player}',
-          de: 'Weg von ${player}',
-          fr: 'Éloignez-vous de ${player}',
-          ja: '${player}から離れ',
-          cn: '远离 ${player}',
-          ko: '"${player}" 탱버',
-        },
-      },
+      response: Responses.tankCleave('alert'),
     },
     {
       id: 'Hunt Chi Thermobaric Explosive',
