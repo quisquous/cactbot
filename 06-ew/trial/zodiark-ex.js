@@ -341,6 +341,7 @@ Options.Triggers.push({
         outsideNorth: {
           en: 'Outside North',
           de: 'Außen Norden',
+          fr: 'Nord Extérieur',
           ja: '北の外側',
           cn: '上 (北) 外',
           ko: '북쪽 바깥',
@@ -348,6 +349,7 @@ Options.Triggers.push({
         insideNorth: {
           en: 'Inside North',
           de: 'Innen Norden',
+          fr: 'Nord Intérieur',
           ja: '北の内側',
           cn: '上 (北) 内',
           ko: '북쪽 안',
@@ -355,6 +357,7 @@ Options.Triggers.push({
         outsideWest: {
           en: 'Outside West',
           de: 'Außen Westen',
+          fr: 'Ouest Extérieur',
           ja: '西の外側',
           cn: '左 (西) 外',
           ko: '서쪽 바깥',
@@ -362,6 +365,7 @@ Options.Triggers.push({
         insideWest: {
           en: 'Inside West',
           de: 'Innen Westen',
+          fr: 'Ouest Intérieur',
           ja: '西の内側',
           cn: '左 (西) 内',
           ko: '서쪽 안',
@@ -369,6 +373,7 @@ Options.Triggers.push({
         outsideEast: {
           en: 'Outside East',
           de: 'Außen Osten',
+          fr: 'Est Extérieur',
           ja: '東の外側',
           cn: '右 (东) 外',
           ko: '동쪽 바깥',
@@ -376,6 +381,7 @@ Options.Triggers.push({
         insideEast: {
           en: 'Inside East',
           de: 'Innen Osten',
+          fr: 'Est Intérieur',
           ja: '東の内側',
           cn: '右 (东) 内',
           ko: '동쪽 안',
@@ -395,6 +401,7 @@ Options.Triggers.push({
         text: {
           en: 'Stack x${num}',
           de: 'Sammeln x${num}',
+          fr: 'Package x${num}',
           ja: '頭割り x${num}',
           cn: '${num}次分摊',
           ko: '쉐어 ${num}번',
@@ -454,6 +461,7 @@ Options.Triggers.push({
         northCone: {
           en: 'North Cone',
           de: 'Nördliche Kegel-AoE',
+          fr: 'Cône Nord',
           ja: '北のさんかく',
           cn: '上 (北) 扇形',
           ko: '북쪽 삼각형',
@@ -461,6 +469,7 @@ Options.Triggers.push({
         eastCone: {
           en: 'East Cone',
           de: 'Östliche Kegel-AoE',
+          fr: 'Cône Est',
           ja: '東のさんかく',
           cn: '右 (东) 扇形',
           ko: '동쪽 삼각형',
@@ -468,6 +477,7 @@ Options.Triggers.push({
         westCone: {
           en: 'West Cone',
           de: 'Westliche Kegel-AoE',
+          fr: 'Cône Ouest',
           ja: '西のさんかく',
           cn: '左 (西) 扇形',
           ko: '서쪽 삼각형',
@@ -475,6 +485,7 @@ Options.Triggers.push({
         southCone: {
           en: 'South Cone',
           de: 'Südliche Kegel-AoE',
+          fr: 'Cône Sud',
           ja: '南のさんかく',
           cn: '下 (南) 扇形',
           ko: '남쪽 삼각형',
@@ -535,6 +546,7 @@ Options.Triggers.push({
         text: {
           en: Outputs.killAdds.en + '(back first)',
           de: Outputs.killAdds.de + '(hinten zuerst)',
+          fr: Outputs.killAdds.fr + '(arrière d\'abord)',
           ja: Outputs.killAdds.ja + '(下の雑魚から)',
           cn: Outputs.killAdds.cn + '(先打后方的)',
           ko: Outputs.killAdds.ko + '(아래쪽 먼저)',
@@ -599,6 +611,7 @@ Options.Triggers.push({
         frontsides: {
           en: 'front sides',
           de: 'Vorne Seiten',
+          fr: 'Côtés devant',
           ja: '前の横側',
           cn: '前方两边',
           ko: '앞쪽 양옆',
@@ -606,6 +619,7 @@ Options.Triggers.push({
         backmiddle: {
           en: 'back middle',
           de: 'Hinten Mitte',
+          fr: 'Arrière au centre',
           ja: '後ろの真ん中',
           cn: '后方中间',
           ko: '뒤쪽 중앙',
@@ -613,6 +627,7 @@ Options.Triggers.push({
         frontmiddle: {
           en: 'front middle',
           de: 'Vorne Mitte',
+          fr: 'Devant au centre',
           cn: '前方中间',
           ko: '앞쪽 중앙',
         },
@@ -621,6 +636,7 @@ Options.Triggers.push({
           // Similarly, there's a Algedon knockback call too.
           en: 'sides (for laser)',
           de: 'Seiten (für die Laser)',
+          fr: 'Côtés (pour les lasers)',
           ja: '横側 (レーザー回避)',
           cn: '两边 (躲避激光)',
           ko: '양옆 (레이저 피하기)',
@@ -628,6 +644,7 @@ Options.Triggers.push({
         middle: {
           en: 'middle (for laser)',
           de: 'Mitte (für die Laser)',
+          fr: 'Milieu (pour les lasers)',
           ja: '真ん中 (レーザー回避)',
           cn: '中间 (躲避激光)',
           ko: '중앙 (레이저 피하기)',
@@ -691,6 +708,7 @@ Options.Triggers.push({
         combo: {
           en: 'Go ${first} / ${second}',
           de: 'Geh ${first} / ${second}',
+          fr: 'Allez ${first} / ${second}',
           ja: '${first} / ${second}',
           cn: '去 ${first} / ${second}',
           ko: '${first} / ${second}',
@@ -698,6 +716,7 @@ Options.Triggers.push({
         single: {
           en: 'Go ${dir} (lean ${lean})',
           de: 'Geh nach ${dir} (nach ${lean} neigen)',
+          fr: 'Allez ${dir} (légèrement ${lean})',
           ja: '${dir}の鳥 (すこし${lean})',
           cn: '去 ${dir} (偏 ${lean})',
           ko: '${dir}쪽으로, (약간 ${lean}쪽으로)',
@@ -744,6 +763,7 @@ Options.Triggers.push({
         adikia1: {
           en: 'Double fists (look for pythons)',
           de: 'Doppel-Fäuste (halt Ausschau nach den Pythons)',
+          fr: 'Poings doubles (regardez les pythons)',
           ja: 'ダブルフィスト (ヘビー確認)',
           cn: '双拳 (找蛇)',
           ko: '양 옆 큰 원형 장판 (뱀 위치 확인)',
@@ -751,6 +771,7 @@ Options.Triggers.push({
         adikia1OutsideNorth: {
           en: 'Double fists (outside north)',
           de: 'Doppel-Fäuste (nördlich außen)',
+          fr: 'Poings doubles (nord extérieur)',
           ja: 'ダブルフィスト (北の外側)',
           cn: '双拳 (上北外)',
           ko: '양 옆 큰 원형 장판 (북쪽 바깥)',
@@ -758,6 +779,7 @@ Options.Triggers.push({
         adikia1InsideNorth: {
           en: 'Double fists (inside north)',
           de: 'Doppel-Fäuste (nördlich innen)',
+          fr: 'Poings doubles (nord intérieur)',
           ja: 'ダブルフィスト (北の内側)',
           cn: '双拳 (上北内)',
           ko: '양 옆 큰 원형 장판 (북쪽 안)',
@@ -765,6 +787,7 @@ Options.Triggers.push({
         adikia2: {
           en: 'Double fists',
           de: 'Doppel-Fäuste',
+          fr: 'Poings doubles',
           ja: 'ダブルフィスト',
           cn: '双拳',
           ko: '양 옆 큰 원형 장판',
@@ -780,6 +803,7 @@ Options.Triggers.push({
         text: {
           en: 'Heavy DoT',
           de: 'Starker DoT',
+          fr: 'Gros DoT',
           ja: '痛いDOT',
           cn: '超痛流血AOE',
           ko: '아픈 도트딜',
@@ -844,6 +868,7 @@ Options.Triggers.push({
         combo: {
           en: '${dir1} > ${dir2} > ${dir3}',
           de: '${dir1} > ${dir2} > ${dir3}',
+          fr: '${dir1} > ${dir2} > ${dir3}',
           ja: '${dir1} > ${dir2} > ${dir3}',
           cn: '${dir1} > ${dir2} > ${dir3}',
           ko: '${dir1} > ${dir2} > ${dir3}',
