@@ -61,7 +61,7 @@ const triggerSet: TriggerSet<Data> = {
           cn: '击退到安全区',
           ko: '안전지대로 넉백되기',
         },
-      }
+      },
     },
   ],
 };
