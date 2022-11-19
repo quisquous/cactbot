@@ -49,7 +49,7 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Floor 160 Boss: Todesritter ----------------
     {
       id: 'PotD 151-160 Todesritter Valfodr',
-      // big roomwide AoE
+      // charge with knockback
       type: 'StartsUsing',
       netRegex: { id: '1BF4', source: 'Todesritter' },
       condition: Conditions.targetIsYou(),

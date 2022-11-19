@@ -14,14 +14,14 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Floor 161-169 Mobs ----------------
     {
       id: 'PotD 161-170 Deep Palace Diplocaulus Mucin',
-      // gaze, gives Sleep
+      // gains Stoneskin (practically immune to damage for 7s)
       type: 'StartsUsing',
       netRegex: { id: '1B66', source: 'Deep Palace Diplocaulus' },
       response: Responses.stunOrInterruptIfPossible(),
     },
     {
       id: 'PotD 161-170 Deep Palace Diplocaulus Foregone Gleam',
-      // gaze, gives Blind
+      // front cone gaze
       type: 'StartsUsing',
       netRegex: { id: '1B2D', source: 'Deep Palace Diplocaulus', capture: false },
       response: Responses.lookAway('alert'),

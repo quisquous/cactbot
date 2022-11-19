@@ -31,7 +31,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'PotD 181-190 Deep Palace Garm Dragon\'s Voice',
-      // untelegraphed PBAoE
+      // untelegraphed donut AoE
       type: 'StartsUsing',
       netRegex: { id: '1BA7', source: 'Deep Palace Garm' },
       alertText: (data, matches, output) => {
