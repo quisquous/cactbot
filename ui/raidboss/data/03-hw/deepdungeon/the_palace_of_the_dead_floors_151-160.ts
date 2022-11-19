@@ -1,4 +1,4 @@
-import conditions from '../../../../../resources/conditions';
+import Conditions from '../../../../../resources/conditions';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -52,7 +52,7 @@ const triggerSet: TriggerSet<Data> = {
       // big roomwide AoE
       type: 'StartsUsing',
       netRegex: { id: '1BF4', source: 'Todesritter' },
-      condition: conditions.targetIsYou(),
+      condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
