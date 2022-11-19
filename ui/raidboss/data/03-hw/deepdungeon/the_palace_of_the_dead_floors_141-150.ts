@@ -29,7 +29,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'PotD 141-150 Deep Palace Wraith Scream',
-      // gives Terror
+      // gives Terror (42)
       type: 'StartsUsing',
       netRegex: { id: '190A', source: 'Deep Palace Wraith' },
       response: Responses.stunOrInterruptIfPossible(),
@@ -50,7 +50,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'PotD 141-150 Onyx Dragon Evil Eye',
-      // gaze, gives Terror, combos with Miasma Breath
+      // gaze, gives Terror (42), combos with Miasma Breath (1B82)
       type: 'StartsUsing',
       netRegex: { id: '1B83', source: 'Onyx Dragon', capture: false },
       response: Responses.lookAway('alert'),

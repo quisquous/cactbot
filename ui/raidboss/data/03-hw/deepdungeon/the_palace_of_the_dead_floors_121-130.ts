@@ -47,7 +47,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'PotD 121-130 Alfard Fear Itself',
-      // roomwide donut AoE that gives Terror, need to be inside boss hitbox to avoid
+      // roomwide donut AoE that gives Terror (42), need to be inside boss hitbox to avoid
       // Alfard always moves to the center of the room first before casting this
       type: 'StartsUsing',
       netRegex: { id: '1BE5', source: 'Alfard', capture: false },
