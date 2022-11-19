@@ -17,7 +17,7 @@ const triggerSet: TriggerSet<Data> = {
       // gives Paralyze
       type: 'StartsUsing',
       netRegex: { id: '18F2', source: 'Deep Palace Bhoot' },
-      response: Responses.interrupt(),
+      response: Responses.stunOrInterruptIfPossible(),
     },
     {
       id: 'PotD 141-150 Deep Palace Persona Paralyze III',
@@ -25,21 +25,21 @@ const triggerSet: TriggerSet<Data> = {
       // gives Paralyze
       type: 'StartsUsing',
       netRegex: { id: '18F4', source: 'Deep Palace Persona' },
-      response: Responses.interrupt(),
+      response: Responses.stunOrInterruptIfPossible(),
     },
     {
       id: 'PotD 141-150 Deep Palace Wraith Scream',
       // gives Terror
       type: 'StartsUsing',
       netRegex: { id: '190A', source: 'Deep Palace Wraith' },
-      response: Responses.interrupt(),
+      response: Responses.stunOrInterruptIfPossible(),
     },
     {
       id: 'PotD 141-150 Deep Palace Succubus Void Fire IV',
       // very large AoE
       type: 'StartsUsing',
       netRegex: { id: '1B81', source: 'Deep Palace Succubus' },
-      response: Responses.interrupt(),
+      response: Responses.stunOrInterruptIfPossible(),
     },
     {
       id: 'PotD 141-150 Deep Palace Manticore Ripper Claw',

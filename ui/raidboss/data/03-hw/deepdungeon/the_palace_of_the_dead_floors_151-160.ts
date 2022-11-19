@@ -1,3 +1,4 @@
+import conditions from '../../../../../resources/conditions';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -31,7 +32,7 @@ const triggerSet: TriggerSet<Data> = {
       // gains Ice Spikes (C6), high counterattack damage when hit
       type: 'StartsUsing',
       netRegex: { id: '1B1F', source: 'Deep Palace Devilet' },
-      response: Responses.interrupt(),
+      response: Responses.stunOrInterruptIfPossible(),
     },
     {
       id: 'PotD 151-160 Deep Palace Devilet Ice Spikes Gain',
@@ -50,7 +51,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'PotD 151-160 Todesritter Valfodr',
       // big roomwide AoE
       type: 'StartsUsing',
-      netRegex: { id: '1BF4', source: 'Todesritter', capture: false },
+      netRegex: { id: '1BF4', source: 'Todesritter' },
+      condition: conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

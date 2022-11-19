@@ -70,6 +70,8 @@
 03-hw/deepdungeon/the_palace_of_the_dead_floors_131-140.ts
 03-hw/deepdungeon/the_palace_of_the_dead_floors_141-150.ts
 03-hw/deepdungeon/the_palace_of_the_dead_floors_151-160.ts
+03-hw/deepdungeon/the_palace_of_the_dead_floors_161-170.ts
+03-hw/deepdungeon/the_palace_of_the_dead_floors_171-180.ts
 03-hw/deepdungeon/the_palace_of_the_dead_general.ts
 03-hw/dungeon/aetherochemical_research_facility.ts
 03-hw/dungeon/aetherochemical_research_facility.txt
