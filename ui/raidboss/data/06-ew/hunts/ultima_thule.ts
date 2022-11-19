@@ -207,6 +207,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Unter Ihn => Hinter den Boss',
           ja: '下 => 後ろ',
           cn: '下方 => 背后',
+          ko: '안으로 => 뒤로',
         },
       },
     },
@@ -222,6 +223,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Seiten => Hinter den Boss',
           ja: '横 => 後ろ',
           cn: '两侧 => 背后',
+          ko: '옆으로 => 뒤로',
         },
       },
     },
@@ -237,6 +239,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Unter Ihn => Vor den Boss',
           ja: '下 => 前',
           cn: '下方 => 正面',
+          ko: '안으로 => 앞으로',
         },
       },
     },
@@ -252,6 +255,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Seiten => Vor den Boss',
           ja: '横 => 前',
           cn: '两侧 => 正面',
+          ko: '옆으로 => 앞으로',
         },
       },
     },
@@ -290,9 +294,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         northSouth: {
           en: 'Go North / South edge',
+          ko: '남/북쪽 끝으로',
         },
         eastWest: {
           en: 'Go East / West edge',
+          ko: '동/서쪽 끝으로',
         },
       },
     },
