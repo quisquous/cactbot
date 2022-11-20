@@ -14,7 +14,7 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Floor 161-169 Mobs ----------------
     {
       id: 'PotD 161-170 Deep Palace Diplocaulus Mucin',
-      // gains Stoneskin (practically immune to damage for 7s)
+      // gains Stoneskin (practically immune to damage for 8s)
       type: 'StartsUsing',
       netRegex: { id: '1B66', source: 'Deep Palace Diplocaulus' },
       response: Responses.stunOrInterruptIfPossible(),
