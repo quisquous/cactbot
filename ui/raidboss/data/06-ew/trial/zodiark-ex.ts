@@ -330,24 +330,25 @@ const triggerSet: TriggerSet<Data> = {
         // Paradeigma 5 (2 birds, 2 behemoth, firebar, rotate)
         // Paradeigma 8 (2 birds, 2 behemoths, firebar, portal, rotate)
         if (data.paradeigmaCounter === 5 || data.paradeigmaCounter === 8) {
+          const sigil = data.paradeigmaCounter !== 5 ? lastSigil : undefined;
           // It shouldn't be possible for the sigil to be south for Paradeigma 8, but handle it just in case.
-          const sigil = data.paradeigmaCounter === 5 ? 'west' : lastSigil;
-          if (locs.includes(mapEffectLoc.birdNW) && (sigil === 'west' || sigil === 'north')) {
+          const northwestSafe = sigil === 'west' || sigil === 'north' || sigil === undefined;
+          if (locs.includes(mapEffectLoc.birdNW) && northwestSafe) {
             const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanNE!();
             return output.dirWithLean!({ dir: output.dirNW!(), lean: lean });
-          } else if (
-            locs.includes(mapEffectLoc.birdNE) && (sigil === 'east' || sigil === 'north')
-          ) {
+          }
+          const northeastSafe = sigil === 'east' || sigil === 'north' || sigil === undefined;
+          if (locs.includes(mapEffectLoc.birdNE) && northeastSafe) {
             const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanNW!();
             return output.dirWithLean!({ dir: output.dirNE!(), lean: lean });
-          } else if (
-            locs.includes(mapEffectLoc.birdSW) && (sigil === 'west' || sigil === 'south')
-          ) {
+          }
+          const southwestSafe = sigil === 'south' || sigil === 'west' || sigil === undefined;
+          if (locs.includes(mapEffectLoc.birdSW) && southwestSafe) {
             const lean = isFirebarEastWestSafe ? output.leanNW!() : output.leanSE!();
             return output.dirWithLean!({ dir: output.dirSW!(), lean: lean });
-          } else if (
-            locs.includes(mapEffectLoc.birdSE) && (sigil === 'east' || sigil === 'south')
-          ) {
+          }
+          const southeastSafe = sigil === 'south' || sigil === 'east' || sigil === undefined;
+          if (locs.includes(mapEffectLoc.birdSE) && southeastSafe) {
             const lean = isFirebarEastWestSafe ? output.leanNE!() : output.leanSW!();
             return output.dirWithLean!({ dir: output.dirSE!(), lean: lean });
           }
