@@ -278,6 +278,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Astral Flow',
       type: 'StartsUsing',
       netRegex: { id: ['6662', '6663'], source: 'Zodiark' },
+      // "Firebar Collect" and "Astral Flow" triggers are racy with each other,
+      // and sometimes the firebar appears ~0.5-0.75s later than the astral flow cast.
+      // TODO: this delay is a super hack, and probably we should run this logic inside of
+      // firebar collect immediately when it happens rather than always waiting a second.
+      // But that's a lot of rewriting, so this is probably Good Enough (TM) for now.
+      delaySeconds: (data) => data.paradeigmaCounter === 3 ? 0 : 1,
       alertText: (data, matches, output) => {
         const isClockwise = matches.id === '6662';
         const origLocs = data.paradeigmaCollect.map((x) => x.location);
