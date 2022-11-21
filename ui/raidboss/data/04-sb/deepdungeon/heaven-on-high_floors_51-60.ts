@@ -37,7 +37,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'HoH 51-60 Suikazura Ancient Flare',
       type: 'StartsUsing',
       netRegex: { id: '2E98', source: 'Suikazura', capture: false },
-      response: Responses.aoe('alert'),
+      response: Responses.aoe(),
     },
   ],
 };

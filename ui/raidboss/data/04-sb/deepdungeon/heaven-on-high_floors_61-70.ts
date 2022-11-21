@@ -15,6 +15,12 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     // ---------------- Floor 61-69 Mobs ----------------
     {
+      id: 'HoH 61-70 Heavenly Hashiri-dokoro Atropine Spore',
+      type: 'StartsUsing',
+      netRegex: { id: '307F', source: 'Heavenly Hashiri-dokoro', capture: false },
+      response: Responses.getIn(),
+    },
+    {
       id: 'HoH 61-70 Heavenly Hashiri-dokoro Frond Fatale',
       type: 'StartsUsing',
       netRegex: { id: '3080', source: 'Heavenly Hashiri-dokoro', capture: false },
@@ -61,6 +67,19 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Prenez une zone au sol',
           cn: '进入圈圈',
           ko: '장판 밟기',
+        },
+      },
+    },
+    {
+      id: 'HoH 61-70 Kenko Devour',
+      // immediately after Devour, get out of puddle so not Minimum for follow-up Ululation
+      type: 'Ability',
+      netRegex: { id: '2FAC', source: 'Kenko' },
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Out of Puddle',
         },
       },
     },
