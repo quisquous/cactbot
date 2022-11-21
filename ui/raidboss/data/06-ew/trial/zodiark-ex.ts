@@ -6,9 +6,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: should Paradeigma 6/9 call things like "lean ESE" instead of just
-// "lean SE" (implicit don't get hit by the obvious firebar)?
-
 export interface Data extends RaidbossData {
   activeSigils: { x: number; y: number; typeId: string; npcId: string }[];
   activeFrontSigils: { x: number; y: number; typeId: string; npcId: string }[];
@@ -135,10 +132,18 @@ const paradeigmaLeanOutputStrings = {
   dirNW: Outputs.dirNW,
   // Separate out "lean" here, as people might want to use markers for "dir",
   // but that makes less sense for "lean".
+  leanNNE: Outputs.dirNNE,
   leanNE: Outputs.dirNE,
+  leanENE: Outputs.dirENE,
+  leanESE: Outputs.dirESE,
   leanSE: Outputs.dirSE,
+  leanSSE: Outputs.dirSSE,
+  leanSSW: Outputs.dirSSW,
   leanSW: Outputs.dirSW,
+  leanWSW: Outputs.dirWSW,
+  leanWNW: Outputs.dirWNW,
   leanNW: Outputs.dirNW,
+  leanNNW: Outputs.dirNNW,
 } as const;
 
 const eclipseOutputStrings = {
@@ -365,28 +370,34 @@ const triggerSet: TriggerSet<Data> = {
 
           if (outsideNorthBad) {
             if (sigil === 'west') {
-              const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanSE!();
+              const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanESE!();
               return output.dirWithLean!({ dir: output.dirNW!(), lean: lean });
             } else if (sigil === 'east') {
-              const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanSW!();
+              const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanWSW!();
               return output.dirWithLean!({ dir: output.dirNE!(), lean: lean });
             }
           } else if (outsideSouthBad) {
             if (sigil === 'west') {
-              const lean = isFirebarEastWestSafe ? output.leanNW!() : output.leanNE!();
+              const lean = isFirebarEastWestSafe ? output.leanWNW!() : output.leanNE!();
               return output.dirWithLean!({ dir: output.dirNW!(), lean: lean });
             } else if (sigil === 'east') {
-              const lean = isFirebarEastWestSafe ? output.leanNE!() : output.leanNW!();
+              const lean = isFirebarEastWestSafe ? output.leanENE!() : output.leanNW!();
               return output.dirWithLean!({ dir: output.dirNE!(), lean: lean });
             }
           } else if (outsideWestBad) {
-            const dir = sigil === 'west' ? output.dirNW!() : output.dirNE!();
-            const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanNE!();
-            return output.dirWithLean!({ dir: dir, lean: lean });
+            if (sigil === 'west') {
+              const lean = isFirebarEastWestSafe ? output.leanSSE!() : output.leanNE!();
+              return output.dirWithLean!({ dir: output.dirNW!(), lean: lean });
+            }
+            const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanNNE!();
+            return output.dirWithLean!({ dir: output.dirNE!(), lean: lean });
           } else if (outsideEastBad) {
-            const dir = sigil === 'west' ? output.dirNW!() : output.dirNE!();
-            const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanNW!();
-            return output.dirWithLean!({ dir: dir, lean: lean });
+            if (sigil === 'west') {
+              const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanNNW!();
+              return output.dirWithLean!({ dir: output.dirNW!(), lean: lean });
+            }
+            const lean = isFirebarEastWestSafe ? output.leanSSW!() : output.leanNW!();
+            return output.dirWithLean!({ dir: output.dirNE!(), lean: lean });
           }
         }
       },
