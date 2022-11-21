@@ -6,8 +6,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: The second middle/sides laser after Astral Eclipse should be
-// called only after the first goes off.
 // TODO: should Paradeigma 6/9 call things like "lean ESE" instead of just
 // "lean SE" (implicit don't get hit by the obvious firebar)?
 
@@ -21,6 +19,7 @@ export interface Data extends RaidbossData {
   eclipseExplosionCount: number;
   paradeigmaCollect: NetMatches['MapEffect'][];
   lastSigilDir?: 'north' | 'east' | 'south' | 'west';
+  prevGreenSigil?: 'sides' | 'middle';
 }
 
 export const mapEffectLoc = {
@@ -475,6 +474,38 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'ZodiarkEx Green Laser Second',
+      type: 'Ability',
+      netRegex: { id: sigil.greenBeam, source: 'Arcane Sigil', capture: false },
+      condition: (data) => data.prevGreenSigil !== undefined,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        if (data.prevGreenSigil === 'sides')
+          return output.middle!();
+        if (data.prevGreenSigil === 'middle')
+          return output.sides!();
+      },
+      run: (data) => delete data.prevGreenSigil,
+      outputStrings: {
+        sides: {
+          // Specify "for laser" to disambiguate with the astral eclipse going on at the same time.
+          // Similarly, there's a Algedon knockback call too.
+          en: 'sides (for laser)',
+          de: 'Seiten (für die Laser)',
+          ja: '横側 (レーザー回避)',
+          cn: '两边 (躲避激光)',
+          ko: '양옆 (레이저 피하기)',
+        },
+        middle: {
+          en: 'middle (for laser)',
+          de: 'Mitte (für die Laser)',
+          ja: '真ん中 (レーザー回避)',
+          cn: '中间 (躲避激光)',
+          ko: '중앙 (레이저 피하기)',
+        },
+      },
+    },
+    {
       id: 'ZodiarkEx Blue Cone Tether',
       type: 'Tether',
       netRegex: { id: '00A4', source: 'Zodiark' },
@@ -636,12 +667,21 @@ const triggerSet: TriggerSet<Data> = {
         capture: false,
       },
       delaySeconds: 0.2,
+      durationSeconds: 4,
       suppressSeconds: 0.5,
       alertText: (data, _matches, output) => {
         const activeFrontSigils = data.activeFrontSigils;
         data.activeFrontSigils = [];
-        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.greenBeam)
+
+        // In a sides->middle or middle->sides transition, avoid the 2nd call from coming
+        // up before the first call has gone off.
+        if (data.prevGreenSigil !== undefined && activeFrontSigils[0]?.typeId === sigil.greenBeam)
+          return;
+
+        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.greenBeam) {
+          data.prevGreenSigil = 'sides';
           return output.sides!();
+        }
         if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.redBox)
           return output.south!();
         if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.blueCone)
@@ -649,8 +689,10 @@ const triggerSet: TriggerSet<Data> = {
         if (
           activeFrontSigils.length === 2 && activeFrontSigils[0]?.typeId === sigil.greenBeam &&
           activeFrontSigils[1]?.typeId === sigil.greenBeam
-        )
+        ) {
+          data.prevGreenSigil = 'middle';
           return output.middle!();
+        }
         if (activeFrontSigils.length === 3) {
           for (const sig of activeFrontSigils) {
             // Find the middle sigil
