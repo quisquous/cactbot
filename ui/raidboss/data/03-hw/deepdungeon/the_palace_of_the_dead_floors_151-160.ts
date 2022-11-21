@@ -15,14 +15,14 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Floor 151-159 Mobs ----------------
     {
       id: 'PotD 151-160 Deep Palace Deepeye Hypnotize',
-      // gaze, gives Sleep
+      // gaze, inflicts Sleep
       type: 'StartsUsing',
       netRegex: { id: '1B1B', source: 'Deep Palace Deepeye', capture: false },
       response: Responses.lookAway('alert'),
     },
     {
       id: 'PotD 151-160 Deep Palace Pot Mysterious Light',
-      // gaze, gives Blind
+      // gaze, inflicts Blind
       type: 'StartsUsing',
       netRegex: { id: '1B29', source: 'Deep Palace Pot', capture: false },
       response: Responses.lookAway('alert'),

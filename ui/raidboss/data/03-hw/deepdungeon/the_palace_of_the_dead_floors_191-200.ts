@@ -14,7 +14,7 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Floor 191-199 Mobs ----------------
     {
       id: 'PotD 191-200 Deep Palace Wraith Scream',
-      // gives Terror (42)
+      // inflicts Terror (42)
       // same as Floors 141-150
       type: 'StartsUsing',
       netRegex: { id: '190A', source: 'Deep Palace Wraith' },
@@ -22,7 +22,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'PotD 191-200 Onyx Dragon Evil Eye',
-      // gaze, gives Terror (42), combos with Miasma Breath (1B82)
+      // gaze, inflicts Terror (42), combos with Miasma Breath (1B82)
       // same as Floors 141-150
       type: 'StartsUsing',
       netRegex: { id: '1B83', source: 'Onyx Dragon', capture: false },

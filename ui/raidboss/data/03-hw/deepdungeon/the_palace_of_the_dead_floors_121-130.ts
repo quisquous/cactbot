@@ -31,7 +31,7 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Floor 130 Boss: Alfard ----------------
     {
       id: 'PotD 121-130 Alfard Ball of Fire',
-      // persistent AoE that gives Burns (11C)
+      // persistent AoE that inflicts Burns (11C)
       type: 'NetworkAOEAbility',
       netRegex: { id: '1BE3', source: 'Alfard' },
       condition: Conditions.targetIsYou(),
@@ -39,7 +39,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'PotD 121-130 Alfard Ball of Ice',
-      // persistent AoE that gives Frostbite
+      // persistent AoE that inflicts Frostbite
       type: 'NetworkAOEAbility',
       netRegex: { id: '1BE4', source: 'Alfard' },
       condition: Conditions.targetIsYou(),
@@ -47,7 +47,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'PotD 121-130 Alfard Fear Itself',
-      // roomwide donut AoE that gives Terror (42), need to be inside boss hitbox to avoid
+      // roomwide donut AoE that inflicts Terror (42), need to be inside boss hitbox to avoid
       // Alfard always moves to the center of the room first before casting this
       type: 'StartsUsing',
       netRegex: { id: '1BE5', source: 'Alfard', capture: false },

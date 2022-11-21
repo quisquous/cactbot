@@ -14,7 +14,7 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Floor 141-149 Mobs ----------------
     {
       id: 'PotD 141-150 Deep Palace Bhoot Paralyze III',
-      // gives Paralyze
+      // inflicts Paralyze
       type: 'StartsUsing',
       netRegex: { id: '18F2', source: 'Deep Palace Bhoot' },
       response: Responses.stunOrInterruptIfPossible(),
@@ -22,14 +22,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'PotD 141-150 Deep Palace Persona Paralyze III',
       // same ability name, different mob
-      // gives Paralyze
+      // inflicts Paralyze
       type: 'StartsUsing',
       netRegex: { id: '18F4', source: 'Deep Palace Persona' },
       response: Responses.stunOrInterruptIfPossible(),
     },
     {
       id: 'PotD 141-150 Deep Palace Wraith Scream',
-      // gives Terror (42)
+      // inflicts Terror (42)
       type: 'StartsUsing',
       netRegex: { id: '190A', source: 'Deep Palace Wraith' },
       response: Responses.stunOrInterruptIfPossible(),
@@ -50,7 +50,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'PotD 141-150 Onyx Dragon Evil Eye',
-      // gaze, gives Terror (42), combos with Miasma Breath (1B82)
+      // gaze, inflicts Terror (42), combos with Miasma Breath (1B82)
       type: 'StartsUsing',
       netRegex: { id: '1B83', source: 'Onyx Dragon', capture: false },
       response: Responses.lookAway('alert'),

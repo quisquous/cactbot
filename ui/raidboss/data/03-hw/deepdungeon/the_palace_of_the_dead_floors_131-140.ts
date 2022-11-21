@@ -14,14 +14,14 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Floor 131-139 Mobs ----------------
     {
       id: 'PotD 131-140 Deep Palace Ahriman Level 5 Petrify',
-      // untelegraphed cone AoE that gives Petrify
+      // untelegraphed cone AoE that inflicts Petrify
       type: 'StartsUsing',
       netRegex: { id: '1B77', source: 'Deep Palace Ahriman', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'PotD 131-140 Deep Palace Catoblepas Eye of the Stunted',
-      // gaze attack that gives Minimum (1B6)
+      // gaze attack that inflicts Minimum (1B6)
       type: 'StartsUsing',
       netRegex: { id: '1B7A', source: 'Deep Palace Catoblepas', capture: false },
       response: Responses.lookAway('alert'),
