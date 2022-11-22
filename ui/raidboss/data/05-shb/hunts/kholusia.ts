@@ -118,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '4422', source: 'Forgiven Pedantry', capture: false },
       condition: (data) => data.inCombat,
-      response: Responses.lookAway(),
+      response: Responses.aoe(),
     },
     {
       id: 'Hunt Pedantry The Stake',
