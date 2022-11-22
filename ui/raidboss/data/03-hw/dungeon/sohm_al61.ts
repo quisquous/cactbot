@@ -34,13 +34,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sohm Al Myath Stack',
       type: 'HeadMarker',
-      netRegex: { id: '003E' },
+      netRegex: { id: '0017' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Sohm Al Myath Spread',
       type: 'HeadMarker',
-      netRegex: { id: '008C' },
+      netRegex: { id: '001A' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -63,7 +63,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sohm Al Tioman Meteor',
       type: 'HeadMarker',
-      netRegex: { id: '0007' },
+      netRegex: { id: '000A' },
       condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
