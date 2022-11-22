@@ -4,7 +4,7 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Heaven-on-High Floors 31-40
-// TODO: Heavenly Vanara untelegraphed front cone AoE
+// TODO: Heavenly Vanara unknown untelegraphed front cone AoE
 // TODO: Bhima Ancient Aero III
 
 export type Data = RaidbossData;
