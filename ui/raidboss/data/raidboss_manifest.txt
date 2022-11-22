@@ -16,6 +16,7 @@
 02-arr/dungeon/hullbreaker_isle.ts
 02-arr/dungeon/pharos_sirius.ts
 02-arr/dungeon/snowcloak.ts
+02-arr/dungeon/snowcloak61.ts
 02-arr/dungeon/the_lost_city_of_amdapor.ts
 02-arr/dungeon/the_stone_vigil.ts
 02-arr/dungeon/the_sunken_temple_of_quarn_hard.ts
@@ -84,13 +85,17 @@
 03-hw/dungeon/gubal_library_hard.ts
 03-hw/dungeon/gubal_library_hard.txt
 03-hw/dungeon/sohm_al.ts
+03-hw/dungeon/sohm_al61.ts
 03-hw/dungeon/sohm_al.txt
+03-hw/dungeon/sohm_al61.txt
 03-hw/dungeon/sohm_al_hard.ts
 03-hw/dungeon/sohm_al_hard.txt
 03-hw/dungeon/the_lost_city_of_amdapor_hard.ts
 03-hw/dungeon/the_lost_city_of_amdapor_hard.txt
 03-hw/dungeon/the_vault.ts
+03-hw/dungeon/the_vault61.ts
 03-hw/dungeon/the_vault.txt
+03-hw/dungeon/the_vault61.txt
 03-hw/dungeon/xelphatol.ts
 03-hw/dungeon/xelphatol.txt
 03-hw/pvp/shatter.ts
