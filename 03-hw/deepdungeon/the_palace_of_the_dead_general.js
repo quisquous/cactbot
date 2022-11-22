@@ -43,7 +43,7 @@ Options.Triggers.push({
     },
     {
       id: 'PotD General Mimic Infatuation',
-      // gives Accursed Pox (43F) if not interrupted
+      // inflicts Accursed Pox (43F) if not interrupted
       type: 'StartsUsing',
       netRegex: { id: '18FD', source: 'Mimic' },
       response: Responses.interrupt(),
