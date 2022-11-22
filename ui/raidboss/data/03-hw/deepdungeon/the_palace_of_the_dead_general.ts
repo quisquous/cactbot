@@ -4,6 +4,7 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Triggers applicable to all Palace of the Dead floors.
+// TODO: likely different Mimic npcNameIds for lower floors
 
 export type Data = RaidbossData;
 
@@ -53,7 +54,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'PotD General Mimic Infatuation',
-      // gives Accursed Pox (43F) if not interrupted
+      // inflicts Accursed Pox (43F) if not interrupted
       type: 'StartsUsing',
       netRegex: { id: '18FD', source: 'Mimic' },
       response: Responses.interrupt(),
