@@ -20,6 +20,7 @@ const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheMaskedCarnivale,
   zoneLabel: {
     en: 'The Masked Carnivale',
+    ko: '가면 무투회',
   },
   triggers: [
     // ================ Stage 01 Act 1 ================

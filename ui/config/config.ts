@@ -188,9 +188,15 @@ const kDirectoryToCategory = {
   },
   hunts: {
     en: 'Hunts & FATEs',
+    ko: '마물 & 돌발',
   },
   map: {
     en: 'Treasure Map',
+    ko: '보물 지도',
+  },
+  deepdungeon: {
+    en: 'Deep Dungeon',
+    ko: '딥 던전',
   },
 };
 
