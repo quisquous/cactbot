@@ -101,18 +101,10 @@ const paradeigmaLeanOutputStrings = {
   dirNW: Outputs.dirNW,
   // Separate out "lean" here, as people might want to use markers for "dir",
   // but that makes less sense for "lean".
-  leanNNE: Outputs.dirNNE,
   leanNE: Outputs.dirNE,
-  leanENE: Outputs.dirENE,
-  leanESE: Outputs.dirESE,
   leanSE: Outputs.dirSE,
-  leanSSE: Outputs.dirSSE,
-  leanSSW: Outputs.dirSSW,
   leanSW: Outputs.dirSW,
-  leanWSW: Outputs.dirWSW,
-  leanWNW: Outputs.dirWNW,
   leanNW: Outputs.dirNW,
-  leanNNW: Outputs.dirNNW,
 };
 const eclipseOutputStrings = {
   north: Outputs.north,
@@ -236,12 +228,6 @@ Options.Triggers.push({
       id: 'ZodiarkEx Astral Flow',
       type: 'StartsUsing',
       netRegex: { id: ['6662', '6663'], source: 'Zodiark' },
-      // "Firebar Collect" and "Astral Flow" triggers are racy with each other,
-      // and sometimes the firebar appears ~0.5-0.75s later than the astral flow cast.
-      // TODO: this delay is a super hack, and probably we should run this logic inside of
-      // firebar collect immediately when it happens rather than always waiting a second.
-      // But that's a lot of rewriting, so this is probably Good Enough (TM) for now.
-      delaySeconds: (data) => data.paradeigmaCounter === 3 ? 0 : 1,
       alertText: (data, matches, output) => {
         const isClockwise = matches.id === '6662';
         const origLocs = data.paradeigmaCollect.map((x) => x.location);
@@ -289,25 +275,24 @@ Options.Triggers.push({
         // Paradeigma 5 (2 birds, 2 behemoth, firebar, rotate)
         // Paradeigma 8 (2 birds, 2 behemoths, firebar, portal, rotate)
         if (data.paradeigmaCounter === 5 || data.paradeigmaCounter === 8) {
-          const sigil = data.paradeigmaCounter !== 5 ? lastSigil : undefined;
           // It shouldn't be possible for the sigil to be south for Paradeigma 8, but handle it just in case.
-          const northwestSafe = sigil === 'west' || sigil === 'north' || sigil === undefined;
-          if (locs.includes(mapEffectLoc.birdNW) && northwestSafe) {
+          const sigil = data.paradeigmaCounter === 5 ? 'west' : lastSigil;
+          if (locs.includes(mapEffectLoc.birdNW) && (sigil === 'west' || sigil === 'north')) {
             const lean = isFirebarEastWestSafe ? output.leanSW() : output.leanNE();
             return output.dirWithLean({ dir: output.dirNW(), lean: lean });
-          }
-          const northeastSafe = sigil === 'east' || sigil === 'north' || sigil === undefined;
-          if (locs.includes(mapEffectLoc.birdNE) && northeastSafe) {
+          } else if (
+            locs.includes(mapEffectLoc.birdNE) && (sigil === 'east' || sigil === 'north')
+          ) {
             const lean = isFirebarEastWestSafe ? output.leanSE() : output.leanNW();
             return output.dirWithLean({ dir: output.dirNE(), lean: lean });
-          }
-          const southwestSafe = sigil === 'south' || sigil === 'west' || sigil === undefined;
-          if (locs.includes(mapEffectLoc.birdSW) && southwestSafe) {
+          } else if (
+            locs.includes(mapEffectLoc.birdSW) && (sigil === 'west' || sigil === 'south')
+          ) {
             const lean = isFirebarEastWestSafe ? output.leanNW() : output.leanSE();
             return output.dirWithLean({ dir: output.dirSW(), lean: lean });
-          }
-          const southeastSafe = sigil === 'south' || sigil === 'east' || sigil === undefined;
-          if (locs.includes(mapEffectLoc.birdSE) && southeastSafe) {
+          } else if (
+            locs.includes(mapEffectLoc.birdSE) && (sigil === 'east' || sigil === 'south')
+          ) {
             const lean = isFirebarEastWestSafe ? output.leanNE() : output.leanSW();
             return output.dirWithLean({ dir: output.dirSE(), lean: lean });
           }
@@ -327,34 +312,28 @@ Options.Triggers.push({
             locs.includes(mapEffectLoc.snakesSouthOutsideEast);
           if (outsideNorthBad) {
             if (sigil === 'west') {
-              const lean = isFirebarEastWestSafe ? output.leanSW() : output.leanESE();
+              const lean = isFirebarEastWestSafe ? output.leanSW() : output.leanSE();
               return output.dirWithLean({ dir: output.dirNW(), lean: lean });
             } else if (sigil === 'east') {
-              const lean = isFirebarEastWestSafe ? output.leanSE() : output.leanWSW();
+              const lean = isFirebarEastWestSafe ? output.leanSE() : output.leanSW();
               return output.dirWithLean({ dir: output.dirNE(), lean: lean });
             }
           } else if (outsideSouthBad) {
             if (sigil === 'west') {
-              const lean = isFirebarEastWestSafe ? output.leanWNW() : output.leanNE();
+              const lean = isFirebarEastWestSafe ? output.leanNW() : output.leanNE();
               return output.dirWithLean({ dir: output.dirNW(), lean: lean });
             } else if (sigil === 'east') {
-              const lean = isFirebarEastWestSafe ? output.leanENE() : output.leanNW();
+              const lean = isFirebarEastWestSafe ? output.leanNE() : output.leanNW();
               return output.dirWithLean({ dir: output.dirNE(), lean: lean });
             }
           } else if (outsideWestBad) {
-            if (sigil === 'west') {
-              const lean = isFirebarEastWestSafe ? output.leanSSE() : output.leanNE();
-              return output.dirWithLean({ dir: output.dirNW(), lean: lean });
-            }
-            const lean = isFirebarEastWestSafe ? output.leanSE() : output.leanNNE();
-            return output.dirWithLean({ dir: output.dirNE(), lean: lean });
+            const dir = sigil === 'west' ? output.dirNW() : output.dirNE();
+            const lean = isFirebarEastWestSafe ? output.leanSE() : output.leanNE();
+            return output.dirWithLean({ dir: dir, lean: lean });
           } else if (outsideEastBad) {
-            if (sigil === 'west') {
-              const lean = isFirebarEastWestSafe ? output.leanSW() : output.leanNNW();
-              return output.dirWithLean({ dir: output.dirNW(), lean: lean });
-            }
-            const lean = isFirebarEastWestSafe ? output.leanSSW() : output.leanNW();
-            return output.dirWithLean({ dir: output.dirNE(), lean: lean });
+            const dir = sigil === 'west' ? output.dirNW() : output.dirNE();
+            const lean = isFirebarEastWestSafe ? output.leanSW() : output.leanNW();
+            return output.dirWithLean({ dir: dir, lean: lean });
           }
         }
       },
@@ -439,38 +418,6 @@ Options.Triggers.push({
           if (sig?.npcId === matches.sourceId)
             data.activeSigils.splice(i, 1);
         }
-      },
-    },
-    {
-      id: 'ZodiarkEx Green Laser Second',
-      type: 'Ability',
-      netRegex: { id: sigil.greenBeam, source: 'Arcane Sigil', capture: false },
-      condition: (data) => data.prevGreenSigil !== undefined,
-      suppressSeconds: 1,
-      alertText: (data, _matches, output) => {
-        if (data.prevGreenSigil === 'sides')
-          return output.middle();
-        if (data.prevGreenSigil === 'middle')
-          return output.sides();
-      },
-      run: (data) => delete data.prevGreenSigil,
-      outputStrings: {
-        sides: {
-          // Specify "for laser" to disambiguate with the astral eclipse going on at the same time.
-          // Similarly, there's a Algedon knockback call too.
-          en: 'sides (for laser)',
-          de: 'Seiten (für die Laser)',
-          ja: '横側 (レーザー回避)',
-          cn: '两边 (躲避激光)',
-          ko: '양옆 (레이저 피하기)',
-        },
-        middle: {
-          en: 'middle (for laser)',
-          de: 'Mitte (für die Laser)',
-          ja: '真ん中 (レーザー回避)',
-          cn: '中间 (躲避激光)',
-          ko: '중앙 (레이저 피하기)',
-        },
       },
     },
     {
@@ -629,19 +576,12 @@ Options.Triggers.push({
         capture: false,
       },
       delaySeconds: 0.2,
-      durationSeconds: 4,
       suppressSeconds: 0.5,
       alertText: (data, _matches, output) => {
         const activeFrontSigils = data.activeFrontSigils;
         data.activeFrontSigils = [];
-        // In a sides->middle or middle->sides transition, avoid the 2nd call from coming
-        // up before the first call has gone off.
-        if (data.prevGreenSigil !== undefined && activeFrontSigils[0]?.typeId === sigil.greenBeam)
-          return;
-        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.greenBeam) {
-          data.prevGreenSigil = 'sides';
+        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.greenBeam)
           return output.sides();
-        }
         if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.redBox)
           return output.south();
         if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.blueCone)
@@ -649,10 +589,8 @@ Options.Triggers.push({
         if (
           activeFrontSigils.length === 2 && activeFrontSigils[0]?.typeId === sigil.greenBeam &&
           activeFrontSigils[1]?.typeId === sigil.greenBeam
-        ) {
-          data.prevGreenSigil = 'middle';
+        )
           return output.middle();
-        }
         if (activeFrontSigils.length === 3) {
           for (const sig of activeFrontSigils) {
             // Find the middle sigil
