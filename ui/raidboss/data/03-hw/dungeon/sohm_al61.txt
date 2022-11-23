@@ -1,0 +1,152 @@
+
+# SOHM AL
+
+hideall "--sync--"
+hideall "--Reset--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+### Raskovnik
+# -p ED1:6.2
+
+0 "Start" sync / 00:0839::Greenlinn will be sealed off/ window 0,1
+6.2 "Bloody Caress" sync / 1[56]:[^:]*:Raskovnik:ED1:/ window 6.2,0
+12.3 "--sync--" sync / 1[56]:[^:]*:Raskovnik:ED2:/
+17.9 "Acid Rain" sync / 1[56]:[^:]*:Raskovnik:ED7:/
+26.4 "Phytobeam" sync / 1[56]:[^:]*:Raskovnik:ED5:/
+33.6 "Bloody Caress" sync / 1[56]:[^:]*:Raskovnik:ED1:/ jump 6.2
+39.7 "--sync--" # sync / 1[56]:[^:]*:Raskovnik:ED2:/
+45.3 "Acid Rain" # sync / 1[56]:[^:]*:Raskovnik:ED7:/
+53.9 "Phytobeam" # sync / 1[56]:[^:]*:Raskovnik:ED5:/
+61.1 "Bloody Caress" # sync / 1[56]:[^:]*:Raskovnik:ED1:/
+
+# HP push?
+# Looks like there are two loop groups of skills used repeatly?
+
+# Group 1
+100.0 "--sync--" sync / 14:[^:]*:Raskovnik:1395:/ window 100,0
+103.0 "Sweet Scent" sync / 1[56]:[^:]*:Raskovnik:1395:/ window 103,0
+114.6 "Floral Trap" sync / 1[56]:[^:]*:Raskovnik:1391:/
+119.6 "Flower Devour" sync / 1[56]:[^:]*:Raskovnik:1392:/
+125.4 "Spit" sync / 1[56]:[^:]*:Raskovnik:1393:/
+126.5 "--sync--" sync / 1[56]:[^:]*:Raskovnik:1394:/
+# Inside Loop
+# Raskovnik would use this loop 4 times?
+136.0 "Floral Trap" sync / 1[56]:[^:]*:Raskovnik:1391:/ jump 114.6
+141.0 "Flower Devour" # sync / 1[56]:[^:]*:Raskovnik:1392:/
+146.8 "Spit" # sync / 1[56]:[^:]*:Raskovnik:1393:/
+147.9 "--sync--" # sync / 1[56]:[^:]*:Raskovnik:1394:/
+157.1 "Floral Trap" # sync / 1[56]:[^:]*:Raskovnik:1391:/
+162.1 "Flower Devour" # sync / 1[56]:[^:]*:Raskovnik:1392:/
+167.9 "Spit" # sync / 1[56]:[^:]*:Raskovnik:1393:/
+# Inside Loop
+
+# Loop
+200.0 "--sync--" sync / 14:[^:]*:Raskovnik:1395:/ window 97,0 jump 100.0
+203.0 "Sweet Scent" sync / 1[56]:[^:]*:Raskovnik:1395:/ window 97,0 jump 103.0
+214.8 "Floral Trap" # sync / 1[56]:[^:]*:Raskovnik:1391:/
+219.8 "Flower Devour" # sync / 1[56]:[^:]*:Raskovnik:1392:/
+225.6 "Spit" # sync / 1[56]:[^:]*:Raskovnik:1393:/
+226.7 "--sync--" # sync / 1[56]:[^:]*:Raskovnik:1394:/
+
+# Group 2
+300.0 "--sync--" sync / 14:[^:]*:Raskovnik:ED6:/ window 300,0
+303.0 "Leafstorm" sync / 1[56]:[^:]*:Raskovnik:ED6:/
+308.2 "Bloody Caress" sync / 1[56]:[^:]*:Raskovnik:ED1:/
+314.3 "--sync--" sync / 1[56]:[^:]*:Raskovnik:ED2:/
+319.9 "Acid Rain" sync / 1[56]:[^:]*:Raskovnik:ED7:/
+328.5 "Phytobeam" sync / 1[56]:[^:]*:Raskovnik:ED5:/
+333.7 "Bloody Caress" sync / 1[56]:[^:]*:Raskovnik:ED1:/
+# Loop
+342.8 "Leafstorm" sync / 1[56]:[^:]*:Raskovnik:ED6:/ jump 303.0
+348.0 "Bloody Caress" # sync / 1[56]:[^:]*:Raskovnik:ED1:/
+354.1 "--sync--" # sync / 1[56]:[^:]*:Raskovnik:ED2:/
+359.7 "Acid Rain" # sync / 1[56]:[^:]*:Raskovnik:ED7:/
+368.2 "Phytobeam" # sync / 1[56]:[^:]*:Raskovnik:ED5:/
+373.4 "Bloody Caress" # sync / 1[56]:[^:]*:Raskovnik:ED1:/
+
+# jump back to group 1
+500.0 "--sync--" sync / 14:[^:]*:Raskovnik:1395:/ window 500,0 jump 100.0
+
+
+### Myath
+# -p 1382:1006.1
+# -ic "Chyme Of The Mountain"
+
+1000.0 "Start" sync / 00:0839::The Wound will be sealed off/ window 1000,1
+
+1006.1 "Third Leg Forward" sync / 1[56]:[^:]*:Myath:1382:/
+1011.2 "Overbite" sync / 1[56]:[^:]*:Myath:EDB:/
+1019.3 "Razor Scales" sync / 1[56]:[^:]*:Myath:EDC:/
+1024.5 "Third Leg Forward" sync / 1[56]:[^:]*:Myath:1382:/
+1031.6 "Third Leg Forward" sync / 1[56]:[^:]*:Myath:1382:/
+1036.7 "Overbite" sync / 1[56]:[^:]*:Myath:EDB:/
+# Loop
+1044.8 "Razor Scales" sync / 1[56]:[^:]*:Myath:EDC:/ jump 1019.3
+1050.0 "Third Leg Forward" # sync / 1[56]:[^:]*:Myath:1382:/
+1057.1 "Third Leg Forward" # sync / 1[56]:[^:]*:Myath:1382:/
+1062.2 "Overbite" # sync / 1[56]:[^:]*:Myath:EDB:/
+1070.3 "Razor Scales" # sync / 1[56]:[^:]*:Myath:EDC:/
+1075.5 "Third Leg Forward" # sync / 1[56]:[^:]*:Myath:1382:/
+
+# Myath would use Primordial Roar twice:
+# 1. HP < 90%?
+# 2. HP < 50%? also summon Chyme Of The Mountain
+1200.0 "Primordial Roar" sync / 1[56]:[^:]*:Myath:EE2:/ window 200,0
+1207.1 "Third Leg Forward" sync / 1[56]:[^:]*:Myath:1382:/
+1214.2 "Ensnare" sync / 1[56]:[^:]*:Myath:EDD:/
+1219.2 "Mad Dash" sync / 1[56]:[^:]*:Myath:EE[01]:/
+1221.5 "Ensnare" sync / 1[56]:[^:]*:Myath:EDD:/
+1226.5 "Mad Dash" sync / 1[56]:[^:]*:Myath:EE[01]:/
+1229.0 "Ensnare" sync / 1[56]:[^:]*:Myath:EDD:/
+1236.1 "Mad Dash" sync / 1[56]:[^:]*:Myath:EE[01]:/
+1238.4 "Ensnare" sync / 1[56]:[^:]*:Myath:EDD:/
+1245.4 "Mad Dash" sync / 1[56]:[^:]*:Myath:EE[01]:/
+
+# Jump back to loop
+1249.8 "Third Leg Forward" sync / 1[56]:[^:]*:Myath:1382:/ window 30,5 jump 1006.1
+1254.9 "Overbite" # sync / 1[56]:[^:]*:Myath:EDB:/
+1263.0 "Razor Scales" # sync / 1[56]:[^:]*:Myath:EDC:/
+1268.2 "Third Leg Forward" # sync / 1[56]:[^:]*:Myath:1382:/
+1275.3 "Third Leg Forward" # sync / 1[56]:[^:]*:Myath:1382:/
+1280.4 "Overbite" # sync / 1[56]:[^:]*:Myath:EDB:/
+
+
+### Tioman
+# -p EE3:2006
+# -ic "Comet"
+
+2000.0 "Start" sync / 00:0839::Hess Afah will be sealed off/ window 2000,1
+
+2006.0 "Abyssic Buster" sync / 1[56]:[^:]*:Tioman:EE3:/
+2013.2 "Chaos Blast" sync / 1[56]:[^:]*:Tioman:EE5:/
+2016.5 "--sync--" sync / 1[56]:[^:]*:Tioman:EEB:/
+2020.4 "Abyssic Buster" sync / 1[56]:[^:]*:Tioman:EE3:/
+2030.0 "Comet" sync / 1[56]:[^:]*:Tioman:EE6:/
+2043.7 "Meteor Impact" sync / 1[56]:[^:]*:Tioman:1387:/
+# Loop
+2047.3 "Abyssic Buster" sync / 1[56]:[^:]*:Tioman:EE3:/ jump 2006.0
+2054.5 "Chaos Blast" # sync / 1[56]:[^:]*:Tioman:EE5:/
+2057.8 "--sync--" # sync / 1[56]:[^:]*:Tioman:EEB:/
+2061.7 "Abyssic Buster" # sync / 1[56]:[^:]*:Tioman:EE3:/
+2071.3 "Comet" # sync / 1[56]:[^:]*:Tioman:EE6:/
+2084.9 "Meteor Impact" # sync / 1[56]:[^:]*:Tioman:1387:/
+
+# 00:0044:Tioman:Arrogant insects! Be crushed beneath the weight of my fury!
+2200.0 "Heavensfall" sync / 1[56]:[^:]*:Tioman:EE7:/ window 200,0
+2223.5 "Dark Star" sync / 1[56]:[^:]*:Tioman:EE4:/ window 5,5
+2246.9 "Dark Star" sync / 1[56]:[^:]*:Tioman:EE4:/ window 5,5
+2270.4 "Dark Star" sync / 1[56]:[^:]*:Tioman:EE4:/ window 5,5 jump 2223.5
+2293.8 "Dark Star" sync / 1[56]:[^:]*:Tioman:EE4:/ window 5,5
+2317.3 "Dark Star" sync / 1[56]:[^:]*:Tioman:EE4:/ window 5,5
+# Tioman keeps using Dark Star every 23.5 seconds,
+# increasing Damage Up stacks, maximum is 16.
+
+# Jump back to normal loop
+2300.0 "--sync--" sync / 1[56]:[^:]*:Tioman:366:/ window 100,0
+2305.6 "Abyssic Buster" sync / 1[56]:[^:]*:Tioman:EE3:/ window 101,5 jump 2006.0
+2312.8 "Chaos Blast" # sync / 1[56]:[^:]*:Tioman:EE5:/
+2316.1 "--sync--" # sync / 1[56]:[^:]*:Tioman:EEB:/
+2320.0 "Abyssic Buster" # sync / 1[56]:[^:]*:Tioman:EE3:/
+2329.6 "Comet" # sync / 1[56]:[^:]*:Tioman:EE6:/
+2343.2 "Meteor Impact" # sync / 1[56]:[^:]*:Tioman:1387:/

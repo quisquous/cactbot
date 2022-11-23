@@ -93,6 +93,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Away from water marker',
             de: 'Weg vom Wasser Marker',
             fr: 'Éloignez-vous du marquage eau',
+            ja: 'AOEから離れる',
             cn: '躲开水标记',
             ko: '물징에서 멀리 떨어지기',
           },
@@ -149,6 +150,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Follow Jump => Under',
           de: 'Sprung folgen => Unter den Boss',
+          ja: 'ジャンプ近づく => 下へ',
           cn: '跟随跳跃 => 脚下',
           ko: '점프 따라가기 => 보스 아래로',
         },
@@ -165,6 +167,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away From Jump',
           de: 'Weg vom Sprung',
+          ja: 'ジャンプから離れる',
           cn: '远离跳跃',
           ko: '점프뛴 곳에서 멀리 떨어지기',
         },

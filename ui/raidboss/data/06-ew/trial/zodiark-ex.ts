@@ -6,11 +6,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: The second middle/sides laser after Astral Eclipse should be
-// called only after the first goes off.
-// TODO: should Paradeigma 6/9 call things like "lean ESE" instead of just
-// "lean SE" (implicit don't get hit by the obvious firebar)?
-
 export interface Data extends RaidbossData {
   activeSigils: { x: number; y: number; typeId: string; npcId: string }[];
   activeFrontSigils: { x: number; y: number; typeId: string; npcId: string }[];
@@ -21,6 +16,7 @@ export interface Data extends RaidbossData {
   eclipseExplosionCount: number;
   paradeigmaCollect: NetMatches['MapEffect'][];
   lastSigilDir?: 'north' | 'east' | 'south' | 'west';
+  prevGreenSigil?: 'sides' | 'middle';
 }
 
 export const mapEffectLoc = {
@@ -121,6 +117,8 @@ const fetchCombatantsById = async (id: string[]) => {
 const paradeigmaLeanOutputStrings = {
   dirWithLean: {
     en: '${dir} bird (lean ${lean})',
+    de: '${dir} Vogel (nach ${lean} neigen)',
+    ja: '${dir}の鳥 (すこし${lean})',
     cn: '${dir}鸟 (偏${lean})',
     ko: '${dir}쪽 새, (약간 ${lean}쪽으로)',
   },
@@ -134,10 +132,18 @@ const paradeigmaLeanOutputStrings = {
   dirNW: Outputs.dirNW,
   // Separate out "lean" here, as people might want to use markers for "dir",
   // but that makes less sense for "lean".
+  leanNNE: Outputs.dirNNE,
   leanNE: Outputs.dirNE,
+  leanENE: Outputs.dirENE,
+  leanESE: Outputs.dirESE,
   leanSE: Outputs.dirSE,
+  leanSSE: Outputs.dirSSE,
+  leanSSW: Outputs.dirSSW,
   leanSW: Outputs.dirSW,
+  leanWSW: Outputs.dirWSW,
+  leanWNW: Outputs.dirWNW,
   leanNW: Outputs.dirNW,
+  leanNNW: Outputs.dirNNW,
 } as const;
 
 const eclipseOutputStrings = {
@@ -272,6 +278,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZodiarkEx Astral Flow',
       type: 'StartsUsing',
       netRegex: { id: ['6662', '6663'], source: 'Zodiark' },
+      // "Firebar Collect" and "Astral Flow" triggers are racy with each other,
+      // and sometimes the firebar appears ~0.5-0.75s later than the astral flow cast.
+      // TODO: this delay is a super hack, and probably we should run this logic inside of
+      // firebar collect immediately when it happens rather than always waiting a second.
+      // But that's a lot of rewriting, so this is probably Good Enough (TM) for now.
+      delaySeconds: (data) => data.paradeigmaCounter === 3 ? 0 : 1,
       alertText: (data, matches, output) => {
         const isClockwise = matches.id === '6662';
         const origLocs = data.paradeigmaCollect.map((x) => x.location);
@@ -324,24 +336,25 @@ const triggerSet: TriggerSet<Data> = {
         // Paradeigma 5 (2 birds, 2 behemoth, firebar, rotate)
         // Paradeigma 8 (2 birds, 2 behemoths, firebar, portal, rotate)
         if (data.paradeigmaCounter === 5 || data.paradeigmaCounter === 8) {
+          const sigil = data.paradeigmaCounter !== 5 ? lastSigil : undefined;
           // It shouldn't be possible for the sigil to be south for Paradeigma 8, but handle it just in case.
-          const sigil = data.paradeigmaCounter === 5 ? 'west' : lastSigil;
-          if (locs.includes(mapEffectLoc.birdNW) && (sigil === 'west' || sigil === 'north')) {
+          const northwestSafe = sigil === 'west' || sigil === 'north' || sigil === undefined;
+          if (locs.includes(mapEffectLoc.birdNW) && northwestSafe) {
             const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanNE!();
             return output.dirWithLean!({ dir: output.dirNW!(), lean: lean });
-          } else if (
-            locs.includes(mapEffectLoc.birdNE) && (sigil === 'east' || sigil === 'north')
-          ) {
+          }
+          const northeastSafe = sigil === 'east' || sigil === 'north' || sigil === undefined;
+          if (locs.includes(mapEffectLoc.birdNE) && northeastSafe) {
             const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanNW!();
             return output.dirWithLean!({ dir: output.dirNE!(), lean: lean });
-          } else if (
-            locs.includes(mapEffectLoc.birdSW) && (sigil === 'west' || sigil === 'south')
-          ) {
+          }
+          const southwestSafe = sigil === 'south' || sigil === 'west' || sigil === undefined;
+          if (locs.includes(mapEffectLoc.birdSW) && southwestSafe) {
             const lean = isFirebarEastWestSafe ? output.leanNW!() : output.leanSE!();
             return output.dirWithLean!({ dir: output.dirSW!(), lean: lean });
-          } else if (
-            locs.includes(mapEffectLoc.birdSE) && (sigil === 'east' || sigil === 'south')
-          ) {
+          }
+          const southeastSafe = sigil === 'south' || sigil === 'east' || sigil === undefined;
+          if (locs.includes(mapEffectLoc.birdSE) && southeastSafe) {
             const lean = isFirebarEastWestSafe ? output.leanNE!() : output.leanSW!();
             return output.dirWithLean!({ dir: output.dirSE!(), lean: lean });
           }
@@ -364,59 +377,83 @@ const triggerSet: TriggerSet<Data> = {
 
           if (outsideNorthBad) {
             if (sigil === 'west') {
-              const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanSE!();
+              const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanESE!();
               return output.dirWithLean!({ dir: output.dirNW!(), lean: lean });
             } else if (sigil === 'east') {
-              const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanSW!();
+              const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanWSW!();
               return output.dirWithLean!({ dir: output.dirNE!(), lean: lean });
             }
           } else if (outsideSouthBad) {
             if (sigil === 'west') {
-              const lean = isFirebarEastWestSafe ? output.leanNW!() : output.leanNE!();
+              const lean = isFirebarEastWestSafe ? output.leanWNW!() : output.leanNE!();
               return output.dirWithLean!({ dir: output.dirNW!(), lean: lean });
             } else if (sigil === 'east') {
-              const lean = isFirebarEastWestSafe ? output.leanNE!() : output.leanNW!();
+              const lean = isFirebarEastWestSafe ? output.leanENE!() : output.leanNW!();
               return output.dirWithLean!({ dir: output.dirNE!(), lean: lean });
             }
           } else if (outsideWestBad) {
-            const dir = sigil === 'west' ? output.dirNW!() : output.dirNE!();
-            const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanNE!();
-            return output.dirWithLean!({ dir: dir, lean: lean });
+            if (sigil === 'west') {
+              const lean = isFirebarEastWestSafe ? output.leanSSE!() : output.leanNE!();
+              return output.dirWithLean!({ dir: output.dirNW!(), lean: lean });
+            }
+            const lean = isFirebarEastWestSafe ? output.leanSE!() : output.leanNNE!();
+            return output.dirWithLean!({ dir: output.dirNE!(), lean: lean });
           } else if (outsideEastBad) {
-            const dir = sigil === 'west' ? output.dirNW!() : output.dirNE!();
-            const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanNW!();
-            return output.dirWithLean!({ dir: dir, lean: lean });
+            if (sigil === 'west') {
+              const lean = isFirebarEastWestSafe ? output.leanSW!() : output.leanNNW!();
+              return output.dirWithLean!({ dir: output.dirNW!(), lean: lean });
+            }
+            const lean = isFirebarEastWestSafe ? output.leanSSW!() : output.leanNW!();
+            return output.dirWithLean!({ dir: output.dirNE!(), lean: lean });
           }
         }
       },
       outputStrings: {
         outsideNorth: {
           en: 'Outside North',
+          de: 'Außen Norden',
+          fr: 'Nord Extérieur',
+          ja: '北の外側',
           cn: '上 (北) 外',
           ko: '북쪽 바깥',
         },
         insideNorth: {
           en: 'Inside North',
+          de: 'Innen Norden',
+          fr: 'Nord Intérieur',
+          ja: '北の内側',
           cn: '上 (北) 内',
           ko: '북쪽 안',
         },
         outsideWest: {
           en: 'Outside West',
+          de: 'Außen Westen',
+          fr: 'Ouest Extérieur',
+          ja: '西の外側',
           cn: '左 (西) 外',
           ko: '서쪽 바깥',
         },
         insideWest: {
           en: 'Inside West',
+          de: 'Innen Westen',
+          fr: 'Ouest Intérieur',
+          ja: '西の内側',
           cn: '左 (西) 内',
           ko: '서쪽 안',
         },
         outsideEast: {
           en: 'Outside East',
+          de: 'Außen Osten',
+          fr: 'Est Extérieur',
+          ja: '東の外側',
           cn: '右 (东) 外',
           ko: '동쪽 바깥',
         },
         insideEast: {
           en: 'Inside East',
+          de: 'Innen Osten',
+          fr: 'Est Intérieur',
+          ja: '東の内側',
           cn: '右 (东) 内',
           ko: '동쪽 안',
         },
@@ -435,6 +472,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack x${num}',
           de: 'Sammeln x${num}',
+          fr: 'Package x${num}',
           ja: '頭割り x${num}',
           cn: '${num}次分摊',
           ko: '쉐어 ${num}번',
@@ -451,6 +489,38 @@ const triggerSet: TriggerSet<Data> = {
           if (sig?.npcId === matches.sourceId)
             data.activeSigils.splice(i, 1);
         }
+      },
+    },
+    {
+      id: 'ZodiarkEx Green Laser Second',
+      type: 'Ability',
+      netRegex: { id: sigil.greenBeam, source: 'Arcane Sigil', capture: false },
+      condition: (data) => data.prevGreenSigil !== undefined,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        if (data.prevGreenSigil === 'sides')
+          return output.middle!();
+        if (data.prevGreenSigil === 'middle')
+          return output.sides!();
+      },
+      run: (data) => delete data.prevGreenSigil,
+      outputStrings: {
+        sides: {
+          // Specify "for laser" to disambiguate with the astral eclipse going on at the same time.
+          // Similarly, there's a Algedon knockback call too.
+          en: 'sides (for laser)',
+          de: 'Seiten (für die Laser)',
+          ja: '横側 (レーザー回避)',
+          cn: '两边 (躲避激光)',
+          ko: '양옆 (레이저 피하기)',
+        },
+        middle: {
+          en: 'middle (for laser)',
+          de: 'Mitte (für die Laser)',
+          ja: '真ん中 (レーザー回避)',
+          cn: '中间 (躲避激光)',
+          ko: '중앙 (레이저 피하기)',
+        },
       },
     },
     {
@@ -497,6 +567,7 @@ const triggerSet: TriggerSet<Data> = {
         northCone: {
           en: 'North Cone',
           de: 'Nördliche Kegel-AoE',
+          fr: 'Cône Nord',
           ja: '北のさんかく',
           cn: '上 (北) 扇形',
           ko: '북쪽 삼각형',
@@ -504,6 +575,7 @@ const triggerSet: TriggerSet<Data> = {
         eastCone: {
           en: 'East Cone',
           de: 'Östliche Kegel-AoE',
+          fr: 'Cône Est',
           ja: '東のさんかく',
           cn: '右 (东) 扇形',
           ko: '동쪽 삼각형',
@@ -511,6 +583,7 @@ const triggerSet: TriggerSet<Data> = {
         westCone: {
           en: 'West Cone',
           de: 'Westliche Kegel-AoE',
+          fr: 'Cône Ouest',
           ja: '西のさんかく',
           cn: '左 (西) 扇形',
           ko: '서쪽 삼각형',
@@ -518,6 +591,7 @@ const triggerSet: TriggerSet<Data> = {
         southCone: {
           en: 'South Cone',
           de: 'Südliche Kegel-AoE',
+          fr: 'Cône Sud',
           ja: '南のさんかく',
           cn: '下 (南) 扇形',
           ko: '남쪽 삼각형',
@@ -581,6 +655,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: Outputs.killAdds.en + '(back first)',
           de: Outputs.killAdds.de + '(hinten zuerst)',
+          fr: Outputs.killAdds.fr + '(arrière d\'abord)',
           ja: Outputs.killAdds.ja + '(下の雑魚から)',
           cn: Outputs.killAdds.cn + '(先打后方的)',
           ko: Outputs.killAdds.ko + '(아래쪽 먼저)',
@@ -610,12 +685,21 @@ const triggerSet: TriggerSet<Data> = {
         capture: false,
       },
       delaySeconds: 0.2,
+      durationSeconds: 4,
       suppressSeconds: 0.5,
       alertText: (data, _matches, output) => {
         const activeFrontSigils = data.activeFrontSigils;
         data.activeFrontSigils = [];
-        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.greenBeam)
+
+        // In a sides->middle or middle->sides transition, avoid the 2nd call from coming
+        // up before the first call has gone off.
+        if (data.prevGreenSigil !== undefined && activeFrontSigils[0]?.typeId === sigil.greenBeam)
+          return;
+
+        if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.greenBeam) {
+          data.prevGreenSigil = 'sides';
           return output.sides!();
+        }
         if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.redBox)
           return output.south!();
         if (activeFrontSigils.length === 1 && activeFrontSigils[0]?.typeId === sigil.blueCone)
@@ -623,8 +707,10 @@ const triggerSet: TriggerSet<Data> = {
         if (
           activeFrontSigils.length === 2 && activeFrontSigils[0]?.typeId === sigil.greenBeam &&
           activeFrontSigils[1]?.typeId === sigil.greenBeam
-        )
+        ) {
+          data.prevGreenSigil = 'middle';
           return output.middle!();
+        }
         if (activeFrontSigils.length === 3) {
           for (const sig of activeFrontSigils) {
             // Find the middle sigil
@@ -645,6 +731,7 @@ const triggerSet: TriggerSet<Data> = {
         frontsides: {
           en: 'front sides',
           de: 'Vorne Seiten',
+          fr: 'Côtés devant',
           ja: '前の横側',
           cn: '前方两边',
           ko: '앞쪽 양옆',
@@ -652,6 +739,7 @@ const triggerSet: TriggerSet<Data> = {
         backmiddle: {
           en: 'back middle',
           de: 'Hinten Mitte',
+          fr: 'Arrière au centre',
           ja: '後ろの真ん中',
           cn: '后方中间',
           ko: '뒤쪽 중앙',
@@ -659,6 +747,7 @@ const triggerSet: TriggerSet<Data> = {
         frontmiddle: {
           en: 'front middle',
           de: 'Vorne Mitte',
+          fr: 'Devant au centre',
           cn: '前方中间',
           ko: '앞쪽 중앙',
         },
@@ -667,6 +756,7 @@ const triggerSet: TriggerSet<Data> = {
           // Similarly, there's a Algedon knockback call too.
           en: 'sides (for laser)',
           de: 'Seiten (für die Laser)',
+          fr: 'Côtés (pour les lasers)',
           ja: '横側 (レーザー回避)',
           cn: '两边 (躲避激光)',
           ko: '양옆 (레이저 피하기)',
@@ -674,6 +764,7 @@ const triggerSet: TriggerSet<Data> = {
         middle: {
           en: 'middle (for laser)',
           de: 'Mitte (für die Laser)',
+          fr: 'Milieu (pour les lasers)',
           ja: '真ん中 (レーザー回避)',
           cn: '中间 (躲避激光)',
           ko: '중앙 (레이저 피하기)',
@@ -743,12 +834,16 @@ const triggerSet: TriggerSet<Data> = {
         combo: {
           en: 'Go ${first} / ${second}',
           de: 'Geh ${first} / ${second}',
+          fr: 'Allez ${first} / ${second}',
           ja: '${first} / ${second}',
           cn: '去 ${first} / ${second}',
           ko: '${first} / ${second}',
         },
         single: {
           en: 'Go ${dir} (lean ${lean})',
+          de: 'Geh nach ${dir} (nach ${lean} neigen)',
+          fr: 'Allez ${dir} (légèrement ${lean})',
+          ja: '${dir}の鳥 (すこし${lean})',
           cn: '去 ${dir} (偏 ${lean})',
           ko: '${dir}쪽으로, (약간 ${lean}쪽으로)',
         },
@@ -795,23 +890,31 @@ const triggerSet: TriggerSet<Data> = {
         adikia1: {
           en: 'Double fists (look for pythons)',
           de: 'Doppel-Fäuste (halt Ausschau nach den Pythons)',
+          fr: 'Poings doubles (regardez les pythons)',
           ja: 'ダブルフィスト (ヘビー確認)',
           cn: '双拳 (找蛇)',
           ko: '양 옆 큰 원형 장판 (뱀 위치 확인)',
         },
         adikia1OutsideNorth: {
           en: 'Double fists (outside north)',
+          de: 'Doppel-Fäuste (nördlich außen)',
+          fr: 'Poings doubles (nord extérieur)',
+          ja: 'ダブルフィスト (北の外側)',
           cn: '双拳 (上北外)',
           ko: '양 옆 큰 원형 장판 (북쪽 바깥)',
         },
         adikia1InsideNorth: {
           en: 'Double fists (inside north)',
+          de: 'Doppel-Fäuste (nördlich innen)',
+          fr: 'Poings doubles (nord intérieur)',
+          ja: 'ダブルフィスト (北の内側)',
           cn: '双拳 (上北内)',
           ko: '양 옆 큰 원형 장판 (북쪽 안)',
         },
         adikia2: {
           en: 'Double fists',
           de: 'Doppel-Fäuste',
+          fr: 'Poings doubles',
           ja: 'ダブルフィスト',
           cn: '双拳',
           ko: '양 옆 큰 원형 장판',
@@ -827,6 +930,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Heavy DoT',
           de: 'Starker DoT',
+          fr: 'Gros DoT',
           ja: '痛いDOT',
           cn: '超痛流血AOE',
           ko: '아픈 도트딜',
@@ -891,6 +995,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         combo: {
           en: '${dir1} > ${dir2} > ${dir3}',
+          de: '${dir1} > ${dir2} > ${dir3}',
+          fr: '${dir1} > ${dir2} > ${dir3}',
+          ja: '${dir1} > ${dir2} > ${dir3}',
           cn: '${dir1} > ${dir2} > ${dir3}',
           ko: '${dir1} > ${dir2} > ${dir3}',
         },

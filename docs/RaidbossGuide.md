@@ -12,6 +12,9 @@ import ZoneId from '../path/to/resources/zone_id';
 
 export default {
   zoneId: ZoneId.TheWeaponsRefrainUltimate,
+  zoneLabel: {
+    en: 'The Weapon\'s Refrain (Ultimate)',
+  },
   overrideTimelineFile: false,
   timelineFile: 'filename.txt',
   timeline: `hideall`,
@@ -43,6 +46,10 @@ The set of id names can be found in [zone_id.ts](../resources/zone_id.ts).
 Prefer using this over zoneRegex.
 A trigger set must have one of zoneId or zoneRegex to specify the zone
 (but not both).
+
+**zoneLabel**
+An optional name to use for this trigger set in the configuration interface.
+Overrides the zone name from [zone_info.ts](../resources/zone_info.ts).
 
 **initData**
 A function that can be used to initialize the data this trigger set uses.
