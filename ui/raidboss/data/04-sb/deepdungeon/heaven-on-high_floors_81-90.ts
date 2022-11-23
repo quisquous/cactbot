@@ -15,7 +15,7 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     // ---------------- Floor 81-89 Mobs ----------------
     {
-      id: 'PotD 81-90 Heavenly Mukai-inu Ram\'s Voice',
+      id: 'HoH 81-90 Heavenly Mukai-inu Ram\'s Voice',
       // untelegraphed PBAoE
       type: 'StartsUsing',
       netRegex: { id: '308F', source: 'Heavenly Mukai-inu' },
@@ -32,7 +32,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'PotD 81-90 Heavenly Mukai-inu Dragon\'s Voice',
+      id: 'HoH 81-90 Heavenly Mukai-inu Dragon\'s Voice',
       // untelegraphed donut AoE
       type: 'StartsUsing',
       netRegex: { id: '3090', source: 'Heavenly Mukai-inu' },
@@ -71,12 +71,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'HoH 81-90 Heavenly Ryujin Elbow Drop',
-      // 30A1 = Firewater, 2.2s cast, telegraphed circle AoE
-      // 30A2 = Elbow Drop, 1.7s cast
-      // untelegraphed back cone AoE, used immediately after Firewater if there is someone behind
-      // trigger off of Firewater due to the fast cast for Elbow Drop
+      // untelegraphed back cone AoE, fast cast, used immediately after Firewater if there is someone behind
       type: 'StartsUsing',
-      netRegex: { id: '30A1', source: 'Heavenly Ryujin', capture: false },
+      netRegex: { id: '30A2', source: 'Heavenly Ryujin', capture: false },
       response: Responses.goFront(),
     },
     {
@@ -122,6 +119,16 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '2FB6', source: 'Onra', capture: false },
       response: Responses.bigAoe('alert'),
+    },
+    {
+      id: 'HoH 81-90 Onra Meteor Impact',
+      // large proximity AoE
+      // 2FB3 = Meteor Impact (2.7s), marks location of proximity AoE
+      // 2FB4 = Meteor Impact (5.7s), actual damage cast
+      type: 'StartsUsing',
+      netRegex: { id: '2FB4', source: 'Onra' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 3,
+      response: Responses.aoe(),
     },
   ],
 };
