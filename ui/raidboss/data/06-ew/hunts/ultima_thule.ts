@@ -11,12 +11,8 @@ export type Data = RaidbossData;
 //   7A7 = About Face
 //   7A8 = Left Face
 //   7A9 = Right Face
-// TODO: Chi unknown tankbuster
 // TODO: Chi Bunker Buster
-// TODO: Chi Hellburner
 // TODO: Chi Bouncing Bomb
-// TODO: Chi Free-fall Bombs
-// TODO: Chi Thermobaric Explosive
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.UltimaThule,
@@ -208,7 +204,10 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Under => Back',
+          de: 'Unter Ihn => Hinter den Boss',
+          ja: '下 => 後ろ',
           cn: '下方 => 背后',
+          ko: '안으로 => 뒤로',
         },
       },
     },
@@ -221,7 +220,10 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides => Back',
+          de: 'Seiten => Hinter den Boss',
+          ja: '横 => 後ろ',
           cn: '两侧 => 背后',
+          ko: '옆으로 => 뒤로',
         },
       },
     },
@@ -234,7 +236,10 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Under => Front',
+          de: 'Unter Ihn => Vor den Boss',
+          ja: '下 => 前',
           cn: '下方 => 正面',
+          ko: '안으로 => 앞으로',
         },
       },
     },
@@ -247,7 +252,53 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides => Front',
+          de: 'Seiten => Vor den Boss',
+          ja: '横 => 前',
           cn: '两侧 => 正面',
+          ko: '옆으로 => 앞으로',
+        },
+      },
+    },
+    {
+      id: 'Hunt Chi Missile Shower',
+      type: 'StartsUsing',
+      netRegex: { id: '6571', source: 'Chi', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Hunt Chi Hellburner',
+      // tankbuster aoe around marked target (primary threat)
+      type: 'StartsUsing',
+      netRegex: { id: '6574', source: 'Chi' },
+      condition: (data) => data.inCombat,
+      response: Responses.tankCleave('alert'),
+    },
+    {
+      id: 'Hunt Chi Thermobaric Explosive',
+      // dual proximity aoes either N/S or E/W targeting the environment (E0000000)
+      // proximity aoe locations (x, y):
+      //   N: (650.00, 15.00)
+      //   S: (650.00, -15.00)
+      //   E: (665.00, 0.00)
+      //   W: (635.00, 0.00)
+      type: 'StartsUsing',
+      netRegex: { id: '656E', source: 'Chi' },
+      condition: (data) => data.inCombat,
+      suppressSeconds: 1,
+      infoText: (_data, matches, output) => {
+        if (Math.abs(parseFloat(matches.x) - 650) < 0.1)
+          return output.eastWest!();
+        return output.northSouth!();
+      },
+      outputStrings: {
+        northSouth: {
+          en: 'Go North / South edge',
+          ko: '남/북쪽 끝으로',
+        },
+        eastWest: {
+          en: 'Go East / West edge',
+          ko: '동/서쪽 끝으로',
         },
       },
     },
@@ -255,42 +306,47 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Arch-Eta': 'Erz-Eta',
+        'Chi': 'Chi',
         'Fan Ail': 'Fan Ail',
+        'Narrow-rift': 'Enger Riss',
       },
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Arch-Eta': 'Arch-Êta',
+        'Chi': 'Chi',
         'Fan Ail': 'Fan Ail',
+        'Narrow-rift': 'Rift-étroit',
       },
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Arch-Eta': 'アーチイータ',
+        'Chi': 'カイ',
         'Fan Ail': 'ファン・アイル',
+        'Narrow-rift': 'ナロー＝リフト',
       },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Arch-Eta': '伊塔总领',
+        'Chi': '希',
         'Fan Ail': '凡·艾尔',
+        'Narrow-rift': '狭缝',
       },
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Arch-Eta': '아치 에타',
+        'Chi': '키',
         'Fan Ail': '판 아일',
+        'Narrow-rift': '내로 리프트',
       },
     },
   ],

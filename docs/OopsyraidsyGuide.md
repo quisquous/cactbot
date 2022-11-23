@@ -10,6 +10,9 @@ import ZoneId from '../path/to/resources/zone_id';
 
 export default {
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
+  zoneLabel: {
+    en: 'The Unending Coil of Bahamut (Ultimate)',
+  },
   damageWarn: {
     'UCU Lunar Dynamo': '26BC',
     // ...
@@ -58,6 +61,10 @@ The set of id names can be found in [zone_id.ts](../resources/zone_id.ts).
 Prefer using this over zoneRegex.
 A trigger set must have one of zoneId or zoneRegex to specify the zone
 (but not both).
+
+**zoneLabel**
+An optional name to use for this trigger set in the configuration interface.
+Overrides the zone name from [zone_info.ts](../resources/zone_info.ts).
 
 **zoneRegex**:
 A regular expression that matches against the zone name (coming from ACT).

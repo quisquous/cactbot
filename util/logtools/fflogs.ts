@@ -163,7 +163,7 @@ class FFLogs {
     key: string,
     startTime: number,
     endTime: number,
-    filter = 'source.disposition="enemy" and type="cast"',
+    filter = 'source.disposition="enemy" and (type="cast" or type="begincast")',
     translate = true,
   ): Promise<FFLogsEventEntry[]> => {
     const eventOptionParams = new URLSearchParams({
