@@ -32,6 +32,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Stop attacking ${target}',
+          cn: '停止攻击 ${target}',
         },
       },
     },

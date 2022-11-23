@@ -16,6 +16,7 @@ Options.Triggers.push({
         out: Outputs.out,
         interruptOrOut: {
           en: 'interrupt ${name} or Out',
+          cn: '打断 ${name} 或远离',
         },
       },
     },
@@ -33,6 +34,7 @@ Options.Triggers.push({
         getUnder: Outputs.getUnder,
         interruptOrUnder: {
           en: 'interrupt ${name} or Get Under',
+          cn: '打断 ${name} 或去脚下',
         },
       },
     },
@@ -67,6 +69,7 @@ Options.Triggers.push({
       outputStrings: {
         pushToBoss: {
           en: 'Push ${name} into boss',
+          cn: '将 ${name} 推至BOSS',
         },
       },
     },

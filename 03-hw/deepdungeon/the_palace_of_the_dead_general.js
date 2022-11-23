@@ -23,6 +23,7 @@ Options.Triggers.push({
   ],
   zoneLabel: {
     en: 'The Palace of the Dead (All Floors)',
+    cn: '死者宫殿 (全楼层)',
     ko: '망자의 궁전',
   },
   triggers: [
@@ -37,6 +38,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Mimic spawned!',
+          cn: '已生成 拟态怪!',
           ko: '미믹 등장!',
         },
       },
@@ -100,6 +102,7 @@ Options.Triggers.push({
       outputStrings: {
         duplicate: {
           en: '${pomander} duplicate',
+          cn: '${pomander} 重复',
           ko: '${pomander} 중복',
         },
         // pomanders: https://xivapi.com/deepdungeonItem?pretty=true
@@ -269,6 +272,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Cairn of Passage activated',
+          cn: '转移石冢已启动',
           ko: '전송 석탑 활성화',
         },
       },

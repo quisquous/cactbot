@@ -2,6 +2,7 @@ Options.Triggers.push({
   zoneId: ZoneId.TheMaskedCarnivale,
   zoneLabel: {
     en: 'The Masked Carnivale',
+    cn: '假面狂欢',
     ko: '가면 무투회',
   },
   triggers: [
