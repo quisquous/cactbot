@@ -34,7 +34,7 @@ const triggerSet: TriggerSet<Data> = {
       // gaze, inflicts Confusion
       type: 'StartsUsing',
       netRegex: { id: '2E92', source: 'Gozu', capture: false },
-      response: Responses.lookAway(),
+      response: Responses.lookAway('alert'),
     },
     // {
     //   id: 'HoH 41-50 Gozu The Spin',
