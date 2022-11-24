@@ -396,6 +396,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Sphatika': 'Sphatika',
         'Sugriva': 'Sugriva',
@@ -404,6 +405,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Sphatika': 'Sphatika',
         'Sugriva': 'Sugriva',
@@ -412,6 +414,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Sphatika': 'スパティカ',
         'Sugriva': 'スグリーヴァ',
@@ -420,6 +423,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Sphatika': '颇胝迦',
         'Sugriva': '须羯里婆',
@@ -428,6 +432,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Sphatika': '스파티카',
         'Sugriva': '수그리바',
