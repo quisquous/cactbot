@@ -22,6 +22,7 @@ const triggerSet: TriggerSet<Data> = {
   ],
   zoneLabel: {
     en: 'Heaven-on-High (All Floors)',
+    cn: '天之御柱 (全楼层)',
     ko: '천궁탑',
   },
 
@@ -39,6 +40,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Quivering Coffer spawned!',
+          cn: '已生成 抖动的宝箱!',
           ko: '꿈틀거리는 보물상자 등장!',
         },
       },
@@ -103,6 +105,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         duplicate: {
           en: '${pomander} duplicate',
+          cn: '${pomander} 重复',
           ko: '${pomander} 중복',
         },
         // pomanders: https://xivapi.com/deepdungeonItem?pretty=true
@@ -281,6 +284,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         duplicate: {
           en: '${magicite} duplicate',
+          cn: '${magicite} 重复',
           ko: '${magicite} 중복',
         },
         // magicite: https://xivapi.com/DeepDungeonMagicStone?pretty=true
@@ -330,6 +334,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Beacon of Passage activated',
+          cn: '转移灯笼已启动',
           ko: '전송 등불 활성화',
         },
       },

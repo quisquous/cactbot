@@ -43,6 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Stop attacking ${target}',
+          cn: '停止攻击 ${target}',
         },
       },
     },

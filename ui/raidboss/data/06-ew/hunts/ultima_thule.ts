@@ -105,12 +105,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Narrow-rift Empty Promise Donut',
       type: 'StartsUsing',
       netRegex: { id: '6B60', source: 'Narrow-rift', capture: false },
+      condition: (data) => data.inCombat,
       response: Responses.getIn(),
     },
     {
       id: 'Hunt Narrow-rift Empty Promise Circle',
       type: 'StartsUsing',
       netRegex: { id: '6B5F', source: 'Narrow-rift', capture: false },
+      condition: (data) => data.inCombat,
       response: Responses.getOut(),
     },
     {
@@ -118,6 +120,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // An unknown single-target ability that preceeds Vanishing Ray with no cast bar.
       netRegex: { id: '6AC5', source: 'Narrow-rift', capture: false },
+      condition: (data) => data.inCombat,
       response: Responses.getBehind(),
     },
     {
@@ -125,12 +128,14 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // This is followed by a very short 6AC9 castbar.
       netRegex: { id: '6AC3', source: 'Narrow-rift', capture: false },
+      condition: (data) => data.inCombat,
       response: Responses.getOutThenIn(),
     },
     {
       id: 'Hunt Narrow-rift Empty Refrain In Second',
       type: 'Ability',
       netRegex: { id: '6AC3', source: 'Narrow-rift', capture: false },
+      condition: (data) => data.inCombat,
       suppressSeconds: 1,
       response: Responses.getIn('info'),
     },
@@ -139,12 +144,14 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // This is followed by a very short 6AC7 castbar.
       netRegex: { id: '6AC4', source: 'Narrow-rift', capture: false },
+      condition: (data) => data.inCombat,
       response: Responses.getInThenOut(),
     },
     {
       id: 'Hunt Narrow-rift Empty Refrain Out Second',
       type: 'Ability',
       netRegex: { id: '6AC4', source: 'Narrow-rift', capture: false },
+      condition: (data) => data.inCombat,
       suppressSeconds: 1,
       response: Responses.getOut('info'),
     },
