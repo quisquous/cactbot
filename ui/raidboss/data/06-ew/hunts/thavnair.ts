@@ -3,15 +3,26 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Yilan Bog Bomb (6A61) untelegraphed circle on a random target (can this be called?)
+// TODO: Daivadipa Loyal Flame (6782|6783) identify red first vs blue first
 
 export type Bearing = 'front' | 'back' | 'left' | 'right';
 
 export interface Data extends RaidbossData {
   sphatikaBearing: Bearing[];
 }
+
+// TODO: promote something like this to Conditions?
+const tankBusterOnParty = (data: Data, matches: NetMatches['StartsUsing']) => {
+  if (matches.target === data.me)
+    return true;
+  if (data.role !== 'healer')
+    return false;
+  return data.party.inParty(matches.target);
+};
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.Thavnair,
@@ -306,6 +317,80 @@ const triggerSet: TriggerSet<Data> = {
         left: Outputs.left,
         right: Outputs.right,
       },
+    },
+    // ---------------- Daivadipa Boss FATE ----------------
+    {
+      id: 'Hunt Daivadipa Drumbeat',
+      type: 'StartsUsing',
+      netRegex: { id: '678E', source: 'Daivadipa' },
+      condition: tankBusterOnParty,
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Hunt Daivadipa Infernal Redemption',
+      type: 'StartsUsing',
+      netRegex: { id: '6795', source: 'Daivadipa', capture: false },
+      // condition: (data) => data.inCombat,
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Hunt Daivadipa Leftward Trisula',
+      type: 'StartsUsing',
+      netRegex: { id: '678C', source: 'Daivadipa', capture: false },
+      // condition: (data) => data.inCombat,
+      response: Responses.goRight(),
+    },
+    {
+      id: 'Hunt Daivadipa Rightward Parasu',
+      type: 'StartsUsing',
+      netRegex: { id: '678D', source: 'Daivadipa', capture: false },
+      // condition: (data) => data.inCombat,
+      response: Responses.goLeft(),
+    },
+    {
+      id: 'Hunt Daivadipa Divine Call',
+      type: 'GainsEffect',
+      // combos with other mechanics
+      // limit to how many players are affected per cast
+      // 7A6 Forward March
+      // 7A7 About Face
+      // TODO: Left Face, Right Face not used?
+      netRegex: { effectId: '7A[67]' },
+      condition: Conditions.targetIsYou(),
+      durationSeconds: 11,
+      alertText: (_data, matches, output) => {
+        const effectId = matches.effectId.toUpperCase();
+        if (effectId === '7A6')
+          return output.forward!();
+        if (effectId === '7A7')
+          return output.backward!();
+      },
+      outputStrings: {
+        forward: {
+          en: 'Forward March',
+          de: 'Marchiere Vorwärts',
+          fr: 'Marche avant forcée',
+          ja: '強制移動: 前',
+          cn: '强制移动: 前',
+          ko: '정신 장악: 앞',
+        },
+        backward: {
+          en: 'Backwards March',
+          de: 'Marchiere Rückwärts',
+          fr: 'Marche forcée en arrière',
+          ja: '強制移動: 後ろ',
+          cn: '强制移动: 后',
+          ko: '정신 장악: 뒤',
+        },
+      },
+    },
+    {
+      id: 'Hunt Daivadipa Karmic Flames',
+      type: 'StartsUsing',
+      // proximity AoE from center of arena
+      netRegex: { id: '6793', source: 'Daivadipa', capture: false },
+      // condition: (data) => data.inCombat,
+      response: Responses.getOut(),
     },
   ],
   timelineReplace: [
