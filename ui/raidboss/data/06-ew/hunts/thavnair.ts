@@ -357,7 +357,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: Left Face, Right Face not used?
       netRegex: { effectId: '7A[67]' },
       condition: Conditions.targetIsYou(),
-      durationSeconds: 11,
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
       alertText: (_data, matches, output) => {
         const effectId = matches.effectId.toUpperCase();
         if (effectId === '7A6')
