@@ -17,7 +17,6 @@ Options.Triggers.push({
         interruptOrOut: {
           en: 'interrupt ${name} or Out',
           cn: '打断 ${name} 或远离',
-          ko: '${name} 시전 끊거나 밖으로',
         },
       },
     },
@@ -36,7 +35,6 @@ Options.Triggers.push({
         interruptOrUnder: {
           en: 'interrupt ${name} or Get Under',
           cn: '打断 ${name} 或去脚下',
-          ko: '${name} 시전 끊거나 아래로',
         },
       },
     },
@@ -72,7 +70,6 @@ Options.Triggers.push({
         pushToBoss: {
           en: 'Push ${name} into boss',
           cn: '将 ${name} 推至BOSS',
-          ko: '보스쪽으로 ${name} 밀기',
         },
       },
     },
