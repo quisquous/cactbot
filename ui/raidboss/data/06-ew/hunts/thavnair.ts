@@ -329,28 +329,28 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Daivadipa Cosmic Weave',
       type: 'StartsUsing',
       netRegex: { id: '6791', source: 'Daivadipa', capture: false },
-      // condition: (data) => data.inCombat,
+      condition: (data) => data.inCombat,
       response: Responses.getOut(),
     },
     {
       id: 'Hunt Daivadipa Infernal Redemption',
       type: 'StartsUsing',
       netRegex: { id: '6795', source: 'Daivadipa', capture: false },
-      // condition: (data) => data.inCombat,
+      condition: (data) => data.inCombat,
       response: Responses.aoe(),
     },
     {
       id: 'Hunt Daivadipa Leftward Trisula',
       type: 'StartsUsing',
       netRegex: { id: '678C', source: 'Daivadipa', capture: false },
-      // condition: (data) => data.inCombat,
+      condition: (data) => data.inCombat,
       response: Responses.goRight(),
     },
     {
       id: 'Hunt Daivadipa Rightward Parasu',
       type: 'StartsUsing',
       netRegex: { id: '678D', source: 'Daivadipa', capture: false },
-      // condition: (data) => data.inCombat,
+      condition: (data) => data.inCombat,
       response: Responses.goLeft(),
     },
     {
@@ -397,7 +397,7 @@ const triggerSet: TriggerSet<Data> = {
       // 6782 = Red flames go first
       // 6783 = Blue flames go first
       netRegex: { id: '678[23]', source: 'Daivadipa' },
-      // condition: (data) => data.inCombat,
+      condition: (data) => data.inCombat,
       alertText: (_data, matches, output) => {
         const id = matches.id.toUpperCase();
         if (id === '6782')
@@ -419,14 +419,14 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // proximity AoE from center of arena
       netRegex: { id: '6793', source: 'Daivadipa', capture: false },
-      // condition: (data) => data.inCombat,
+      condition: (data) => data.inCombat,
       response: Responses.getOut(),
     },
     {
       id: 'Hunt Daivadipa Errant Akasa',
       type: 'StartsUsing',
       netRegex: { id: '6792', source: 'Daivadipa', capture: false },
-      // condition: (data) => data.inCombat,
+      condition: (data) => data.inCombat,
       response: Responses.awayFromFront(),
     },
   ],
