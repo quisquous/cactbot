@@ -6,34 +6,14 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '6B65', source: 'Gurangatch', capture: false },
       condition: (data) => data.inCombat,
-      alarmText: (_data, _matches, output) => output.rightThenLeft(),
-      outputStrings: {
-        rightThenLeft: {
-          en: 'Right => Left',
-          de: 'Rechts => Links',
-          fr: 'À droite => À gauche',
-          ja: '右 => 左',
-          cn: '右 => 左',
-          ko: '오른쪽 => 왼쪽',
-        },
-      },
+      response: Responses.goRightThenLeft('alarm'),
     },
     {
       id: 'Hunt Gurangatch Right Hammer Slammer',
       type: 'StartsUsing',
       netRegex: { id: '6B66', source: 'Gurangatch', capture: false },
       condition: (data) => data.inCombat,
-      alarmText: (_data, _matches, output) => output.leftThenRight(),
-      outputStrings: {
-        leftThenRight: {
-          en: 'Left => Right',
-          de: 'Links => Rechts',
-          fr: 'À gauche => À droite',
-          ja: '左 => 右',
-          cn: '左 => 右',
-          ko: '왼쪽 => 오른쪽',
-        },
-      },
+      response: Responses.goLeftThenRight('alarm'),
     },
     {
       id: 'Hunt Gurangatch Bone Shaker',
