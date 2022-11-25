@@ -1,3 +1,11 @@
+// TODO: promote something like this to Conditions?
+const tankBusterOnParty = (data, matches) => {
+  if (matches.target === data.me)
+    return true;
+  if (data.role !== 'healer')
+    return false;
+  return data.party.inParty(matches.target);
+};
 Options.Triggers.push({
   zoneId: ZoneId.Thavnair,
   resetWhenOutOfCombat: false,
@@ -291,10 +299,123 @@ Options.Triggers.push({
         right: Outputs.right,
       },
     },
+    // ---------------- Daivadipa Boss FATE ----------------
+    {
+      id: 'Hunt Daivadipa Drumbeat',
+      type: 'StartsUsing',
+      netRegex: { id: '678E', source: 'Daivadipa' },
+      condition: tankBusterOnParty,
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Hunt Daivadipa Cosmic Weave',
+      type: 'StartsUsing',
+      netRegex: { id: '6791', source: 'Daivadipa', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Hunt Daivadipa Infernal Redemption',
+      type: 'StartsUsing',
+      netRegex: { id: '6795', source: 'Daivadipa', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Hunt Daivadipa Leftward Trisula',
+      type: 'StartsUsing',
+      netRegex: { id: '678C', source: 'Daivadipa', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.goRight(),
+    },
+    {
+      id: 'Hunt Daivadipa Rightward Parasu',
+      type: 'StartsUsing',
+      netRegex: { id: '678D', source: 'Daivadipa', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.goLeft(),
+    },
+    {
+      id: 'Hunt Daivadipa Divine Call',
+      type: 'GainsEffect',
+      // combos with other mechanics
+      // limit to how many players are affected per cast
+      // 7A6 = Forward March
+      // 7A7 = About Face
+      // 7A8 = Left Face
+      // 7A9 = Right Face
+      netRegex: { effectId: '7A[6-9]' },
+      condition: Conditions.targetIsYou(),
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      infoText: (_data, matches, output) => {
+        const effectId = matches.effectId.toUpperCase();
+        if (effectId === '7A6')
+          return output.forward();
+        if (effectId === '7A7')
+          return output.backward();
+        if (effectId === '7A8')
+          return output.left();
+        if (effectId === '7A9')
+          return output.right();
+      },
+      outputStrings: {
+        forward: {
+          en: 'Forward March',
+        },
+        backward: {
+          en: 'Backward March',
+        },
+        left: {
+          en: 'Left March',
+        },
+        right: {
+          en: 'Right March',
+        },
+      },
+    },
+    {
+      id: 'Hunt Daivadipa Loyal Flame',
+      type: 'StartsUsing',
+      // 6782 = Red flames go first
+      // 6783 = Blue flames go first
+      netRegex: { id: '678[23]', source: 'Daivadipa' },
+      condition: (data) => data.inCombat,
+      alertText: (_data, matches, output) => {
+        const id = matches.id.toUpperCase();
+        if (id === '6782')
+          return output.red();
+        if (id === '6783')
+          return output.blue();
+      },
+      outputStrings: {
+        red: {
+          en: 'Blue => Red',
+        },
+        blue: {
+          en: 'Red => Blue',
+        },
+      },
+    },
+    {
+      id: 'Hunt Daivadipa Karmic Flames',
+      type: 'StartsUsing',
+      // proximity AoE from center of arena
+      netRegex: { id: '6793', source: 'Daivadipa', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Hunt Daivadipa Errant Akasa',
+      type: 'StartsUsing',
+      netRegex: { id: '6792', source: 'Daivadipa', capture: false },
+      condition: (data) => data.inCombat,
+      response: Responses.awayFromFront(),
+    },
   ],
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Sphatika': 'Sphatika',
         'Sugriva': 'Sugriva',
@@ -303,6 +424,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Sphatika': 'Sphatika',
         'Sugriva': 'Sugriva',
@@ -311,6 +433,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Sphatika': 'スパティカ',
         'Sugriva': 'スグリーヴァ',
@@ -319,6 +442,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Sphatika': '颇胝迦',
         'Sugriva': '须羯里婆',
@@ -327,6 +451,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Sphatika': '스파티카',
         'Sugriva': '수그리바',
