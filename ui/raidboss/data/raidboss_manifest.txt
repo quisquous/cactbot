@@ -316,6 +316,13 @@
 05-shb/eureka/delubrum_reginae_savage.txt
 05-shb/eureka/zadnor.ts
 05-shb/eureka/zadnor.txt
+05-shb/hunts/amh_araeng.ts
+05-shb/hunts/il_mheg.ts
+05-shb/hunts/kholusia.ts
+05-shb/hunts/lakeland.ts
+05-shb/hunts/ss_rank.ts
+05-shb/hunts/the_raktika_greatwood.ts
+05-shb/hunts/the_tempest.ts
 05-shb/raid/e10n.ts
 05-shb/raid/e10n.txt
 05-shb/raid/e10s.ts
