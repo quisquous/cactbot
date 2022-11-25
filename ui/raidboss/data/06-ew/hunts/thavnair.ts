@@ -7,7 +7,6 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Yilan Bog Bomb (6A61) untelegraphed circle on a random target (can this be called?)
-// TODO: Daivadipa Loyal Flame (6782|6783) identify red first vs blue first
 
 export type Bearing = 'front' | 'back' | 'left' | 'right';
 
@@ -327,6 +326,13 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
     {
+      id: 'Hunt Daivadipa Cosmic Weave',
+      type: 'StartsUsing',
+      netRegex: { id: '6791', source: 'Daivadipa', capture: false },
+      // condition: (data) => data.inCombat,
+      response: Responses.getOut(),
+    },
+    {
       id: 'Hunt Daivadipa Infernal Redemption',
       type: 'StartsUsing',
       netRegex: { id: '6795', source: 'Daivadipa', capture: false },
@@ -352,35 +358,59 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       // combos with other mechanics
       // limit to how many players are affected per cast
-      // 7A6 Forward March
-      // 7A7 About Face
-      // TODO: Left Face, Right Face not used?
-      netRegex: { effectId: '7A[67]' },
+      // 7A6 = Forward March
+      // 7A7 = About Face
+      // 7A8 = Left Face
+      // 7A9 = Right Face
+      netRegex: { effectId: '7A[6-9]' },
       condition: Conditions.targetIsYou(),
       durationSeconds: (_data, matches) => parseFloat(matches.duration),
-      alertText: (_data, matches, output) => {
+      infoText: (_data, matches, output) => {
         const effectId = matches.effectId.toUpperCase();
         if (effectId === '7A6')
           return output.forward!();
         if (effectId === '7A7')
           return output.backward!();
+        if (effectId === '7A8')
+          return output.left!();
+        if (effectId === '7A9')
+          return output.right!();
       },
       outputStrings: {
         forward: {
           en: 'Forward March',
-          de: 'Marchiere Vorwärts',
-          fr: 'Marche avant forcée',
-          ja: '強制移動: 前',
-          cn: '强制移动: 前',
-          ko: '정신 장악: 앞',
         },
         backward: {
-          en: 'Backwards March',
-          de: 'Marchiere Rückwärts',
-          fr: 'Marche forcée en arrière',
-          ja: '強制移動: 後ろ',
-          cn: '强制移动: 后',
-          ko: '정신 장악: 뒤',
+          en: 'Backward March',
+        },
+        left: {
+          en: 'Left March',
+        },
+        right: {
+          en: 'Right March',
+        },
+      },
+    },
+    {
+      id: 'Hunt Daivadipa Loyal Flame',
+      type: 'StartsUsing',
+      // 6782 = Red flames go first
+      // 6783 = Blue flames go first
+      netRegex: { id: '678[23]', source: 'Daivadipa' },
+      // condition: (data) => data.inCombat,
+      alertText: (_data, matches, output) => {
+        const id = matches.id.toUpperCase();
+        if (id === '6782')
+          return output.red!();
+        if (id === '6783')
+          return output.blue!();
+      },
+      outputStrings: {
+        red: {
+          en: 'Blue => Red',
+        },
+        blue: {
+          en: 'Red => Blue',
         },
       },
     },
@@ -391,6 +421,13 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '6793', source: 'Daivadipa', capture: false },
       // condition: (data) => data.inCombat,
       response: Responses.getOut(),
+    },
+    {
+      id: 'Hunt Daivadipa Errant Akasa',
+      type: 'StartsUsing',
+      netRegex: { id: '6792', source: 'Daivadipa', capture: false },
+      // condition: (data) => data.inCombat,
+      response: Responses.awayFromFront(),
     },
   ],
   timelineReplace: [
