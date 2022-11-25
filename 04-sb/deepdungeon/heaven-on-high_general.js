@@ -20,10 +20,12 @@ Options.Triggers.push({
     // ---------------- Quivering Coffers ----------------
     {
       id: 'HoH General Quivering Coffer Spawn',
-      // 7394 = Quivering Coffer
+      // 7392 = Quivering Coffer (floor 1-30 bronze chests, can stun or interrupt)
+      // 7393 = Quivering Coffer (floor 31-60 silver chests, can stun or interrupt)
+      // 7394 = Quivering Coffer (floor 61+ gold chests, can interrupt, immune to stun)
       // TODO: some Quivering Coffers may spawn after transference between floors and get called early before being found
       type: 'AddedCombatant',
-      netRegex: { npcNameId: '7394', capture: false },
+      netRegex: { npcNameId: '739[2-4]', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -35,7 +37,8 @@ Options.Triggers.push({
     },
     {
       id: 'HoH General Quivering Coffer Malice',
-      // gives Accursed Pox (43F) if not interrupted
+      // same id regardless of which "type" of Quivering Coffer
+      // inflicts Accursed Pox (43F) if not interrupted
       type: 'StartsUsing',
       netRegex: { id: '3019', source: 'Quivering Coffer' },
       response: Responses.interrupt(),
