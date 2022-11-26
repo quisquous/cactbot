@@ -147,6 +147,8 @@
 04-sb/alliance/ridorana_lighthouse.txt
 04-sb/alliance/royal_city_of_rabanastre.ts
 04-sb/alliance/royal_city_of_rabanastre.txt
+04-sb/deepdungeon/heaven-on-high_floors_01-10.ts
+04-sb/deepdungeon/heaven-on-high_floors_11-20.ts
 04-sb/deepdungeon/heaven-on-high_floors_21-30.ts
 04-sb/deepdungeon/heaven-on-high_floors_31-40.ts
 04-sb/deepdungeon/heaven-on-high_floors_41-50.ts
