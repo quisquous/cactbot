@@ -27,7 +27,7 @@ const triggerSet: TriggerSet<Data> = {
       // gains Haste and Attack Boost
       type: 'StartsUsing',
       netRegex: { id: '1B94', source: 'Bird of the Deep Palace' },
-      response: Responses.interrupt(),
+      response: Responses.interruptIfPossible(),
     },
     // ---------------- Floor 180 Boss: Dendainsonne ----------------
     // intentionally blank
