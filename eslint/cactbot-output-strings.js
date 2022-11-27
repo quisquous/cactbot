@@ -205,10 +205,7 @@ const ruleModule = {
             },
           });
         }
-        if (
-          t.isIdentifier(node.property) &&
-          stack.outputProperties.includes(node.property.name)
-        ) {
+        if (t.isIdentifier(node.property) && stack.outputProperties.includes(node.property.name)) {
           const args = node.parent.parent.callee.parent.arguments;
           const outputOfTriggerId = stack.outputTemplates ?? {};
           const outputTemplate = outputOfTriggerId?.[node.property.name];
