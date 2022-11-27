@@ -273,8 +273,6 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => data.paradeigmaCollect.push(matches),
     },
     {
-      // https://github.com/quisquous/cactbot/issues/5057
-      /* eslint-disable rulesdir/cactbot-output-strings */
       id: 'ZodiarkEx Astral Flow',
       type: 'StartsUsing',
       netRegex: { id: ['6662', '6663'], source: 'Zodiark' },
@@ -459,8 +457,6 @@ const triggerSet: TriggerSet<Data> = {
         },
         ...paradeigmaLeanOutputStrings,
       },
-      // https://github.com/quisquous/cactbot/issues/5057
-      /* eslint-enable rulesdir/cactbot-output-strings */
     },
     {
       id: 'ZodiarkEx Styx',
@@ -772,8 +768,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // https://github.com/quisquous/cactbot/issues/5057
-      /* eslint-disable rulesdir/cactbot-output-strings */
       id: 'ZodiarkEx Algedon',
       type: 'StartsUsing',
       // 67EC is leaning left, 67ED is leaning right
@@ -849,8 +843,6 @@ const triggerSet: TriggerSet<Data> = {
         },
         ...paradeigmaLeanOutputStrings,
       },
-      // https://github.com/quisquous/cactbot/issues/5057
-      /* eslint-enable rulesdir/cactbot-output-strings */
     },
     {
       id: 'ZodiarkEx Algedon Knockback',
