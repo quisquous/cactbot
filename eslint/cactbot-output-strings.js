@@ -134,17 +134,16 @@ const ruleModule = {
     };
 
     return {
-      'Program > VariableDeclaration  > VariableDeclarator'(node) {
-        if (node.init?.type === 'ObjectExpression') {
-          globalVars.set(node.id.name, getAllKeys(node.init.properties));
-        } else if (
-          node.init?.type === 'TSAsExpression' && node.init?.expression?.type === 'ObjectExpression'
-        ) {
-          /**
-           * const eclipseOutputStrings = { ... } as const;
-           */
-          globalVars.set(node.id.name, getAllKeys(node.init.expression.properties));
-        }
+      'Program > VariableDeclaration > VariableDeclarator > ObjectExpression'(node) {
+        globalVars.set(node.parent.id.name, getAllKeys(node.properties));
+      },
+      'Program > VariableDeclaration > VariableDeclarator > TSAsExpression > ObjectExpression'(
+        node,
+      ) {
+        /**
+         * const eclipseOutputStrings = { ... } as const;
+         */
+        globalVars.set(node.parent.parent.id.name, getAllKeys(node.properties));
       },
       [`Property[key.name=/${textProps.join('|')}/] > :function`](node) {
         const props = getAllKeys(node.parent.parent.properties);
