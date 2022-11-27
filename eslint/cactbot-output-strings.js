@@ -44,7 +44,7 @@ const ruleModule = {
   },
   create: function(context) {
     const globalVars = new Map();
-    const stack = {
+    const triggerStack = {
       outputParam: null,
       outputProperties: [],
       inTriggerFunc: false,
@@ -69,6 +69,8 @@ const ruleModule = {
           }
         } else if (isSpreadElement(prop)) {
           if (t.isIdentifier(prop.argument)) {
+            console.log(globalVars.get(prop.argument.name));
+
             (globalVars.get(prop.argument.name) || [])
               .forEach((name) => propKeys.push(name));
           }
@@ -134,22 +136,31 @@ const ruleModule = {
     };
 
     return {
-      'Program > VariableDeclaration > VariableDeclarator > ObjectExpression'(node) {
-        globalVars.set(node.parent.id.name, getAllKeys(node.properties));
+      'Program > VariableDeclaration  > VariableDeclarator'(node) {
+        if (node.init?.type === 'ObjectExpression') {
+          globalVars.set(node.id.name, getAllKeys(node.init.properties));
+        } else if (
+          node.init?.type === 'TSAsExpression' && node.init?.expression?.type === 'ObjectExpression'
+        ) {
+          /**
+           * const eclipseOutputStrings = { ... } as const;
+           */
+          globalVars.set(node.id.name, getAllKeys(node.init.expression.properties));
+        }
       },
       [`Property[key.name=/${textProps.join('|')}/] > :function`](node) {
         const props = getAllKeys(node.parent.parent.properties);
         if (props.find((prop) => prop === 'outputStrings')) {
-          stack.inTriggerFunc = true;
-          stack.outputParam = node.params[2] && node.params[2].name;
+          triggerStack.inTriggerFunc = true;
+          triggerStack.outputParam = node.params[2] && node.params[2].name;
           const outputValue = node.parent.parent.properties.find((prop) =>
             prop.key && prop.key.name === 'outputStrings'
           ).value;
-          stack.outputTemplates = extractTemplate(outputValue);
-          stack.outputProperties = t.isIdentifier(outputValue)
+          triggerStack.outputTemplates = extractTemplate(outputValue);
+          triggerStack.outputProperties = t.isIdentifier(outputValue)
             ? globalVars.get(outputValue.name) || []
             : getAllKeys(outputValue.properties);
-          stack.triggerID = node.parent.parent.properties.find((prop) =>
+          triggerStack.triggerID = node.parent.parent.properties.find((prop) =>
             prop.key && prop.key.name === 'id'
           )?.value?.value;
           return;
@@ -160,12 +171,12 @@ const ruleModule = {
         });
       },
       [`Property[key.name=/${textProps.join('|')}/] > :function:exit`]() {
-        if (stack.inTriggerFunc) {
-          stack.inTriggerFunc = false;
-          stack.outputParam = null;
-          stack.outputProperties = [];
-          stack.triggerID = null;
-          stack.outputTemplates = {};
+        if (triggerStack.inTriggerFunc) {
+          triggerStack.inTriggerFunc = false;
+          triggerStack.outputParam = null;
+          triggerStack.outputProperties = [];
+          triggerStack.triggerID = null;
+          triggerStack.outputTemplates = {};
         }
       },
 
@@ -179,23 +190,26 @@ const ruleModule = {
         `Property[key.name=/alarmText|alertTex|infoText|tts/] > :function[params.length=3] CallExpression > TSNonNullExpression > MemberExpression`
       ](node) {
         if (
-          node.object.name === stack.outputParam &&
+          node.object.name === triggerStack.outputParam &&
           node.computed === false &&
           t.isIdentifier(node.property) &&
-          !stack.outputProperties.includes(node.property.name)
+          !triggerStack.outputProperties.includes(node.property.name)
         ) {
           context.report({
             node: node,
             messageId: 'notFoundProperty',
             data: {
               prop: node.property.name,
-              outputParam: stack.outputParam,
+              outputParam: triggerStack.outputParam,
             },
           });
         }
-        if (t.isIdentifier(node.property) && stack.outputProperties.includes(node.property.name)) {
+        if (
+          t.isIdentifier(node.property) &&
+          triggerStack.outputProperties.includes(node.property.name)
+        ) {
           const args = node.parent.parent.callee.parent.arguments;
-          const outputOfTriggerId = stack.outputTemplates ?? {};
+          const outputOfTriggerId = triggerStack.outputTemplates ?? {};
           const outputTemplate = outputOfTriggerId?.[node.property.name];
 
           if (args.length === 0) {
