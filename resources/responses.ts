@@ -485,6 +485,19 @@ export const Responses = {
       },
     };
   },
+  stunIfPossible: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
+    // cactbot-builtin-response
+    output.responseOutputStrings = {
+      stun: Outputs.stunTarget,
+    };
+    return {
+      [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
+        const source = getSource(matches);
+        if (data.CanStun())
+          return output.stun?.({ name: source });
+      },
+    };
+  },
   interrupt: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
     // cactbot-builtin-response
     output.responseOutputStrings = {

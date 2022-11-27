@@ -51,7 +51,7 @@ const triggerSet: TriggerSet<Data> = {
       // inflicts Accursed Pox (43F) if not interrupted
       type: 'StartsUsing',
       netRegex: { id: '3019', source: 'Quivering Coffer' },
-      response: Responses.interrupt(),
+      response: Responses.interruptIfPossible(),
     },
     // ---------------- Pomanders and Magicite ----------------
     {
