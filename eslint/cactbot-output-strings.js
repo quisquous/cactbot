@@ -44,9 +44,6 @@ const ruleModule = {
   },
   create: function(context) {
     const globalVars = new Map();
-    /**
-     * trigger stack
-     */
     const stack = {
       outputParam: null,
       outputProperties: [],
