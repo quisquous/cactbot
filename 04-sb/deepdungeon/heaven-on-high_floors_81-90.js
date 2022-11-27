@@ -55,7 +55,7 @@ Options.Triggers.push({
       // AoE on marked target, can interrupt
       type: 'StartsUsing',
       netRegex: { id: '30C9', source: 'Heavenly Shinzei' },
-      response: Responses.interrupt(),
+      response: Responses.interruptIfPossible(),
     },
     {
       id: 'HoH 81-90 Heavenly Ryujin Elbow Drop',

@@ -48,7 +48,7 @@ Options.Triggers.push({
       // inflicts Accursed Pox (43F) if not interrupted
       type: 'StartsUsing',
       netRegex: { id: '18FD', source: 'Mimic' },
-      response: Responses.interrupt(),
+      response: Responses.interruptIfPossible(),
     },
     // ---------------- Pomanders ----------------
     {
