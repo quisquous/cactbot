@@ -69,8 +69,6 @@ const ruleModule = {
           }
         } else if (isSpreadElement(prop)) {
           if (t.isIdentifier(prop.argument)) {
-            console.log(globalVars.get(prop.argument.name));
-
             (globalVars.get(prop.argument.name) || [])
               .forEach((name) => propKeys.push(name));
           }
