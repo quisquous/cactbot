@@ -44,7 +44,10 @@ const ruleModule = {
   },
   create: function(context) {
     const globalVars = new Map();
-    const triggerStack = {
+    /**
+     * trigger stack
+     */
+    const stack = {
       outputParam: null,
       outputProperties: [],
       inTriggerFunc: false,
@@ -149,16 +152,16 @@ const ruleModule = {
       [`Property[key.name=/${textProps.join('|')}/] > :function`](node) {
         const props = getAllKeys(node.parent.parent.properties);
         if (props.find((prop) => prop === 'outputStrings')) {
-          triggerStack.inTriggerFunc = true;
-          triggerStack.outputParam = node.params[2] && node.params[2].name;
+          stack.inTriggerFunc = true;
+          stack.outputParam = node.params[2] && node.params[2].name;
           const outputValue = node.parent.parent.properties.find((prop) =>
             prop.key && prop.key.name === 'outputStrings'
           ).value;
-          triggerStack.outputTemplates = extractTemplate(outputValue);
-          triggerStack.outputProperties = t.isIdentifier(outputValue)
+          stack.outputTemplates = extractTemplate(outputValue);
+          stack.outputProperties = t.isIdentifier(outputValue)
             ? globalVars.get(outputValue.name) || []
             : getAllKeys(outputValue.properties);
-          triggerStack.triggerID = node.parent.parent.properties.find((prop) =>
+          stack.triggerID = node.parent.parent.properties.find((prop) =>
             prop.key && prop.key.name === 'id'
           )?.value?.value;
           return;
@@ -169,12 +172,12 @@ const ruleModule = {
         });
       },
       [`Property[key.name=/${textProps.join('|')}/] > :function:exit`]() {
-        if (triggerStack.inTriggerFunc) {
-          triggerStack.inTriggerFunc = false;
-          triggerStack.outputParam = null;
-          triggerStack.outputProperties = [];
-          triggerStack.triggerID = null;
-          triggerStack.outputTemplates = {};
+        if (stack.inTriggerFunc) {
+          stack.inTriggerFunc = false;
+          stack.outputParam = null;
+          stack.outputProperties = [];
+          stack.triggerID = null;
+          stack.outputTemplates = {};
         }
       },
 
@@ -188,26 +191,26 @@ const ruleModule = {
         `Property[key.name=/alarmText|alertTex|infoText|tts/] > :function[params.length=3] CallExpression > TSNonNullExpression > MemberExpression`
       ](node) {
         if (
-          node.object.name === triggerStack.outputParam &&
+          node.object.name === stack.outputParam &&
           node.computed === false &&
           t.isIdentifier(node.property) &&
-          !triggerStack.outputProperties.includes(node.property.name)
+          !stack.outputProperties.includes(node.property.name)
         ) {
           context.report({
             node: node,
             messageId: 'notFoundProperty',
             data: {
               prop: node.property.name,
-              outputParam: triggerStack.outputParam,
+              outputParam: stack.outputParam,
             },
           });
         }
         if (
           t.isIdentifier(node.property) &&
-          triggerStack.outputProperties.includes(node.property.name)
+          stack.outputProperties.includes(node.property.name)
         ) {
           const args = node.parent.parent.callee.parent.arguments;
-          const outputOfTriggerId = triggerStack.outputTemplates ?? {};
+          const outputOfTriggerId = stack.outputTemplates ?? {};
           const outputTemplate = outputOfTriggerId?.[node.property.name];
 
           if (args.length === 0) {
