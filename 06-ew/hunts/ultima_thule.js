@@ -205,7 +205,7 @@ Options.Triggers.push({
           en: 'Under => Back',
           de: 'Unter Ihn => Hinter den Boss',
           ja: '下 => 後ろ',
-          cn: '下方 => 背后',
+          cn: '脚下 => 背后',
           ko: '안으로 => 뒤로',
         },
       },
@@ -237,7 +237,7 @@ Options.Triggers.push({
           en: 'Under => Front',
           de: 'Unter Ihn => Vor den Boss',
           ja: '下 => 前',
-          cn: '下方 => 正面',
+          cn: '脚下 => 正面',
           ko: '안으로 => 앞으로',
         },
       },
@@ -293,10 +293,12 @@ Options.Triggers.push({
       outputStrings: {
         northSouth: {
           en: 'Go North / South edge',
+          cn: '去南北边缘',
           ko: '남/북쪽 끝으로',
         },
         eastWest: {
           en: 'Go East / West edge',
+          cn: '去东西边缘',
           ko: '동/서쪽 끝으로',
         },
       },
