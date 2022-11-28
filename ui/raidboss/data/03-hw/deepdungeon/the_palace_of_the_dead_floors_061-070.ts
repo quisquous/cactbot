@@ -1,4 +1,4 @@
-// import { Responses } from '../../../../../resources/responses';
+import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -12,7 +12,15 @@ const triggerSet: TriggerSet<Data> = {
 
   triggers: [
     // ---------------- Floor 061-069 Mobs ----------------
+    {
+      id: 'PotD 061-070 Palace Diplocaulus Foregone Gleam',
+      // front cone gaze
+      type: 'StartsUsing',
+      netRegex: { id: '1B2D', source: 'Palace Diplocaulus', capture: false },
+      response: Responses.lookAway('alert'),
+    },
     // ---------------- Floor 070 Boss: Yaquaru ----------------
+    // intentionally blank
   ],
 };
 

@@ -30,7 +30,14 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.interruptIfPossible(),
     },
     // ---------------- Floor 180 Boss: Dendainsonne ----------------
-    // intentionally blank
+    {
+      id: 'PotD 171-180 Dendainsonne Ecliptic Meteor',
+      // 80% max HP damage
+      type: 'StartsUsing',
+      netRegex: { id: '1BFE', source: 'Dendainsonne' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
+      response: Responses.bigAoe('alert'),
+    },
   ],
   timelineReplace: [
     {
