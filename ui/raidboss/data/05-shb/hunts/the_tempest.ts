@@ -96,6 +96,7 @@ const triggerSet: TriggerSet<Data> = {
         stackOnYou: Outputs.stackOnYou,
         avoidStack: {
           en: 'Avoid Stack',
+          de: 'Vermeide Sammeln',
         },
       },
     },

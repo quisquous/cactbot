@@ -379,18 +379,22 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         forward: {
           en: 'Forward March',
+          de: 'Geistlenkung vorwärts',
           cn: '强制移动: 前',
         },
         backward: {
           en: 'Backward March',
+          de: 'Geistlenkung rückwärts',
           cn: '强制移动: 后',
         },
         left: {
           en: 'Left March',
+          de: 'Geistlenkung links',
           cn: '强制移动: 左',
         },
         right: {
           en: 'Right March',
+          de: 'Geistlenkung rechts',
           cn: '强制移动: 右',
         },
       },
@@ -412,10 +416,12 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         red: {
           en: 'Blue => Red',
+          de: 'Blau => Rot',
           cn: '蓝 => 红',
         },
         blue: {
           en: 'Red => Blue',
+          de: 'Rot => Blau',
           cn: '红 => 蓝',
         },
       },

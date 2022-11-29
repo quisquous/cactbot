@@ -28,6 +28,7 @@ const triggerSet: TriggerSet<Data> = {
         out: Outputs.out,
         interruptOrOut: {
           en: 'interrupt ${name} or Out',
+          de: 'Unterbreche ${name} oder Raus',
         },
       },
     },
@@ -45,6 +46,7 @@ const triggerSet: TriggerSet<Data> = {
         getUnder: Outputs.getUnder,
         interruptOrUnder: {
           en: 'interrupt ${name} or Get Under',
+          de: 'Unterbreche ${name} oder unter ihn',
         },
       },
     },

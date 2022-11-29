@@ -77,6 +77,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'In => Sides',
+          de: 'Rein => Seiten',
         },
       },
     },
@@ -89,6 +90,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides => Sides (again)',
+          de: 'Seiten => Seiten (nochmal)',
         },
       },
     },

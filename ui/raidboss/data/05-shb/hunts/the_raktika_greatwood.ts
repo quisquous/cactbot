@@ -43,6 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'GTFO + Look Away',
+          de: 'Schnell raus + weg schauen',
         },
       },
     },
@@ -91,6 +92,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Heal to Full',
+          de: 'Voll heilen',
         },
       },
     },

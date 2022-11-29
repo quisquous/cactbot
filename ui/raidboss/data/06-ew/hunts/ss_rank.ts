@@ -21,6 +21,7 @@ const triggerSet: TriggerSet<Data> = {
   ],
   zoneLabel: {
     en: 'SS Rank Hunts',
+    de: 'SS Jagdziele',
   },
   triggers: [
     {

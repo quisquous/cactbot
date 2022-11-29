@@ -43,6 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid Puddle',
+          de: 'Flächen vermeiden',
         },
       },
     },
@@ -80,6 +81,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Out of Puddle',
+          de: 'Raus aus der Fläche',
         },
       },
     },

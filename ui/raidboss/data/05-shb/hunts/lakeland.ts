@@ -37,6 +37,7 @@ const triggerSet: TriggerSet<Data> = {
           stackOnYou: Outputs.stackOnYou,
           avoidStack: {
             en: 'Avoid Stack',
+            de: 'Vermeide Sammeln',
           },
         };
 
@@ -87,6 +88,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away from Dash',
+          de: 'Weg vom Anstrum',
         },
       },
     },
@@ -99,6 +101,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go Back/Right',
+          de: 'Geh nach Hinten/Rechts',
         },
       },
     },
@@ -118,6 +121,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go Back/Left',
+          de: 'Geh nach Hinten/Links',
         },
       },
     },
