@@ -67,6 +67,53 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Deep Palace Deepeye': 'Katakomben-Glotzauge',
+        'Deep Palace Devilet': 'Katakomben-Eufel',
+        'Deep Palace Pot': 'Katakomben-Manatopf',
+        'Todesritter': 'Todesritter',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Deep Palace Deepeye': 'oculus des profondeurs',
+        'Deep Palace Devilet': 'diablotin des profondeurs',
+        'Deep Palace Pot': 'pot de mana des profondeurs',
+        'Todesritter': 'Todesritter',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Deep Palace Deepeye': 'ディープパレス・ディープアイ',
+        'Deep Palace Devilet': 'ディープパレス・デビレット',
+        'Deep Palace Pot': 'ディープパレス・マナポット',
+        'Todesritter': 'トーリスリッター',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Deep Palace Deepeye': '深宫深瞳',
+        'Deep Palace Devilet': '深宫小恶魔',
+        'Deep Palace Pot': '深宫魔力罐',
+        'Todesritter': '非生骑士',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Deep Palace Deepeye': '깊은 궁전 볼록눈',
+        'Deep Palace Devilet': '깊은 궁전 꼬마악마',
+        'Deep Palace Pot': '깊은 궁전 마나 항아리',
+        'Todesritter': '죽음의 기사',
+      },
+    },
+  ],
 };
 
 export default triggerSet;

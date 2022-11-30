@@ -144,6 +144,48 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getBehind(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Forgiven Pedantry': 'geläutert(?:e|er|es|en) Pedanterie',
+        'Huracan': 'Huracan',
+        'Li\'l Murderer': 'Klein(?:e|er|es|en) Mörder',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Forgiven Pedantry': 'pédanterie pardonnée',
+        'Huracan': 'Huracan',
+        'Li\'l Murderer': 'Traître',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Forgiven Pedantry': 'フォーギヴン・ペダントリー',
+        'Huracan': 'フラカン',
+        'Li\'l Murderer': 'リルマーダー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Forgiven Pedantry': '得到宽恕的炫学',
+        'Huracan': '乌拉坎',
+        'Li\'l Murderer': '小小杀手',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Forgiven Pedantry': '면죄된 현학',
+        'Huracan': '후라칸',
+        'Li\'l Murderer': '작은 살인자',
+      },
+    },
+  ],
 };
 
 export default triggerSet;

@@ -133,6 +133,78 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Heavenly Araragi': 'Himmelssäulen-Araragi',
+        'Heavenly Gozu': 'Himmelssäulen-Gozu',
+        'Heavenly Hitotsume': 'Himmelssäulen-Hitotsume',
+        'Heavenly Koki': 'Himmelssäulen-Koki',
+        'Heavenly Mukai-inu': 'Himmelssäulen-Mukai-Inu',
+        'Heavenly Rakshasa': 'Himmelssäulen-Rakshasa',
+        'Heavenly Ryujin': 'Himmelssäulen-Ryujin',
+        'Heavenly Shinzei': 'Himmelssäulen-Shinzei',
+        'Onra': 'Onra',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Heavenly Araragi': 'araragi des Cieux',
+        'Heavenly Gozu': 'gozu des Cieux',
+        'Heavenly Hitotsume': 'hitotsume des Cieux',
+        'Heavenly Koki': 'kôki des Cieux',
+        'Heavenly Mukai-inu': 'mukai-inu des Cieux',
+        'Heavenly Rakshasa': 'rakshasa des Cieux',
+        'Heavenly Ryujin': 'ryûjin des Cieux',
+        'Heavenly Shinzei': 'shinzei des Cieux',
+        'Onra': 'Onra',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Heavenly Araragi': 'アメノ・アララギ',
+        'Heavenly Gozu': 'アメノ・ゴズ',
+        'Heavenly Hitotsume': 'アメノ・ヒトツメ',
+        'Heavenly Koki': 'アメノ・コウキ',
+        'Heavenly Mukai-inu': 'アメノ・ムカイイヌ',
+        'Heavenly Rakshasa': 'アメノ・ラセツ',
+        'Heavenly Ryujin': 'アメノ・リュウジン',
+        'Heavenly Shinzei': 'アメノ・シンゼイ',
+        'Onra': 'オンラ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Heavenly Araragi': '天之紫衫',
+        'Heavenly Gozu': '天之牛头',
+        'Heavenly Hitotsume': '天之独眼',
+        'Heavenly Koki': '天之钢鬼',
+        'Heavenly Mukai-inu': '天之送狼',
+        'Heavenly Rakshasa': '天之罗刹',
+        'Heavenly Ryujin': '天之龙人',
+        'Heavenly Shinzei': '天之真济',
+        'Onra': '温罗',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Heavenly Araragi': '천궁 산달래',
+        'Heavenly Gozu': '천궁 소머리',
+        'Heavenly Hitotsume': '천궁 외눈박이',
+        'Heavenly Koki': '천궁 코우키',
+        'Heavenly Mukai-inu': '천궁 마중견',
+        'Heavenly Rakshasa': '천궁 나찰',
+        'Heavenly Ryujin': '천궁 용인',
+        'Heavenly Shinzei': '천궁 신제이',
+        'Onra': '온라',
+      },
+    },
+  ],
 };
 
 export default triggerSet;

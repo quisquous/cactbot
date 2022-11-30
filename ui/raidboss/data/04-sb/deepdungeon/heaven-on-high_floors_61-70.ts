@@ -86,6 +86,43 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Heavenly Hashiri-dokoro': 'Himmelssäulen-Hashiri-Dokoro',
+        'Kenko': 'Kenko',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Heavenly Hashiri-dokoro': 'hashidokoro des Cieux',
+        'Kenko': 'Kenko',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Heavenly Hashiri-dokoro': 'アメノ・ハシリドコロ',
+        'Kenko': 'ケンコ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Heavenly Hashiri-dokoro': '天之东莨菪',
+        'Kenko': '犬蛊',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Heavenly Hashiri-dokoro': '천궁 미치광이풀',
+        'Kenko': '켄코',
+      },
+    },
+  ],
 };
 
 export default triggerSet;

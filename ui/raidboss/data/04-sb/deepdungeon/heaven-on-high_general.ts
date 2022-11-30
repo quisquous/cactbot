@@ -338,10 +338,42 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Beacon of Passage activated',
-          en: 'Weglaterne aktiviert',
+          de: 'Weglaterne aktiviert',
           cn: '转移灯笼已启动',
           ko: '전송 등불 활성화',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Quivering Coffer': 'zuckend(?:e|er|es|en) Schnapptruhe',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Quivering Coffer': 'coffre gigotant',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Quivering Coffer': 'うごめく宝箱',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Quivering Coffer': '抖动的宝箱',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Quivering Coffer': '꿈틀거리는 보물상자',
       },
     },
   ],

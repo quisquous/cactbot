@@ -293,6 +293,38 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Mimic': 'Nachahmung',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Mimic': 'Mime',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Mimic': 'ものまね',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Mimic': '模仿',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Mimic': '흉내',
+      },
+    },
+  ],
 };
 
 export default triggerSet;

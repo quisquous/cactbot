@@ -150,6 +150,48 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.goFront(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Nariphon': 'Nariphon',
+        'Nuckelavee': 'Nuckelavee',
+        'Tyger': 'Tyger',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Nariphon': 'Nariphon',
+        'Nuckelavee': 'Nuckelavee',
+        'Tyger': 'Tygre',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Nariphon': 'ナリーポン',
+        'Nuckelavee': 'ナックラヴィー',
+        'Tyger': 'ティガー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Nariphon': '纳里蓬',
+        'Nuckelavee': '纳克拉维',
+        'Tyger': '戾虫',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Nariphon': '나리폰',
+        'Nuckelavee': '너클라비',
+        'Tyger': '티거',
+      },
+    },
+  ],
 };
 
 export default triggerSet;

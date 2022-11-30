@@ -135,6 +135,48 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Grassman': 'Grasmann',
+        'Ixtab': 'Ixtab',
+        'Supay': 'Supay',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Grassman': 'Sasquatch arboricole',
+        'Ixtab': 'Ixtab',
+        'Supay': 'Supay',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Grassman': 'グラスマン',
+        'Ixtab': 'イシュタム',
+        'Supay': 'スペイ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Grassman': '格拉斯曼',
+        'Ixtab': '伊休妲',
+        'Supay': '苏帕伊',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Grassman': '숲원인',
+        'Ixtab': '이슈타브',
+        'Supay': '수파이',
+      },
+    },
+  ],
 };
 
 export default triggerSet;

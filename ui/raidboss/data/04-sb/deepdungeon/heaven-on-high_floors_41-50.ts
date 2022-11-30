@@ -50,6 +50,38 @@ const triggerSet: TriggerSet<Data> = {
     //   },
     // },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Gozu': 'Gozu',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Gozu': 'Gozu',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Gozu': 'ゴズ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Gozu': '牛头',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Gozu': '소머리',
+      },
+    },
+  ],
 };
 
 export default triggerSet;

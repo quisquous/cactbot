@@ -122,6 +122,48 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.lookAway(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Baal': 'Baal',
+        'Gunitt': 'Gunitt',
+        'Rusalka': 'Rusalka',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Baal': 'Baal',
+        'Gunitt': 'Gunitt',
+        'Rusalka': 'Roussalka',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Baal': 'バール',
+        'Gunitt': 'グニット',
+        'Rusalka': 'ルサルカ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Baal': '巴力',
+        'Gunitt': '顾尼图',
+        'Rusalka': '卢莎卡',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Baal': '바알',
+        'Gunitt': '구니트',
+        'Rusalka': '루살카',
+      },
+    },
+  ],
 };
 
 export default triggerSet;

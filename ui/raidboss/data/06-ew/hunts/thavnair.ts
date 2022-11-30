@@ -445,8 +445,8 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
+        'Daivadipa': 'Daivadipa',
         'Sphatika': 'Sphatika',
         'Sugriva': 'Sugriva',
         'Yilan': 'Yilan',
@@ -454,8 +454,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
+        'Daivadipa': 'Daivadipa',
         'Sphatika': 'Sphatika',
         'Sugriva': 'Sugriva',
         'Yilan': 'yilan',
@@ -463,8 +463,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
+        'Daivadipa': 'ダイヴァディーパ',
         'Sphatika': 'スパティカ',
         'Sugriva': 'スグリーヴァ',
         'Yilan': 'ユラン',
@@ -472,8 +472,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
+        'Daivadipa': '明灯天王',
         'Sphatika': '颇胝迦',
         'Sugriva': '须羯里婆',
         'Yilan': '尤兰',
@@ -481,8 +481,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
+        'Daivadipa': '다이바디파',
         'Sphatika': '스파티카',
         'Sugriva': '수그리바',
         'Yilan': '윌란',
