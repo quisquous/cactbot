@@ -43,6 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid Puddle',
+          cn: '躲避圈圈',
         },
       },
     },
@@ -80,6 +81,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Out of Puddle',
+          cn: '离开圈圈',
         },
       },
     },

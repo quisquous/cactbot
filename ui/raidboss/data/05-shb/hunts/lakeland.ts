@@ -37,6 +37,7 @@ const triggerSet: TriggerSet<Data> = {
           stackOnYou: Outputs.stackOnYou,
           avoidStack: {
             en: 'Avoid Stack',
+            cn: '远离分摊',
           },
         };
 
@@ -87,6 +88,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Away from Dash',
+          cn: '躲避冲锋',
         },
       },
     },
@@ -99,6 +101,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go Back/Right',
+          cn: '去背后/右侧',
         },
       },
     },
@@ -118,6 +121,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go Back/Left',
+          cn: '去背后/左侧',
         },
       },
     },

@@ -1131,7 +1131,7 @@ const triggerSet: TriggerSet<Data> = {
         'Absolute Virtue': '绝对的美德',
         'Arsenal Centaur': '兵武半人马',
         'Art': '亚特',
-        'Ball Lightning': '闪电球',
+        'Ball Lightning': '雷球',
         'Arsenal Urolith': '兵武乌洛里石',
         'Ivory Palm': '白手',
         'Orlasrach': '烈焰金枪',

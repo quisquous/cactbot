@@ -36,6 +36,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Stand under a cloud',
+          cn: '站在一朵云下',
         },
       },
     },
