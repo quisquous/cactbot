@@ -38,6 +38,7 @@ const triggerSet: TriggerSet<Data> = {
           avoidStack: {
             en: 'Avoid Stack',
             de: 'Vermeide Sammeln',
+            cn: '远离分摊',
           },
         };
 
@@ -89,6 +90,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away from Dash',
           de: 'Weg vom Anstrum',
+          cn: '躲避冲锋',
         },
       },
     },
@@ -102,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go Back/Right',
           de: 'Geh nach Hinten/Rechts',
+          cn: '去背后/右侧',
         },
       },
     },
@@ -122,6 +125,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go Back/Left',
           de: 'Geh nach Hinten/Links',
+          cn: '去背后/左侧',
         },
       },
     },

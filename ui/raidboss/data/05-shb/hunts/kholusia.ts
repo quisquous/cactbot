@@ -78,6 +78,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'In => Sides',
           de: 'Rein => Seiten',
+          cn: '中间 => 两侧',
         },
       },
     },
@@ -91,6 +92,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Sides => Sides (again)',
           de: 'Seiten => Seiten (nochmal)',
+          cn: '两侧 => 两侧 (重复)',
         },
       },
     },

@@ -37,6 +37,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand under a cloud',
           de: 'Steh unter einer Wolke',
+          cn: '站在一朵云下',
         },
       },
     },

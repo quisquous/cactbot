@@ -29,6 +29,7 @@ const triggerSet: TriggerSet<Data> = {
         interruptOrOut: {
           en: 'interrupt ${name} or Out',
           de: 'Unterbreche ${name} oder Raus',
+          cn: '打断 ${name} 或远离',
         },
       },
     },
@@ -47,6 +48,7 @@ const triggerSet: TriggerSet<Data> = {
         interruptOrUnder: {
           en: 'interrupt ${name} or Get Under',
           de: 'Unterbreche ${name} oder unter ihn',
+          cn: '打断 ${name} 或去脚下',
         },
       },
     },

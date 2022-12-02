@@ -44,6 +44,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Puddle',
           de: 'Flächen vermeiden',
+          cn: '躲避圈圈',
         },
       },
     },
@@ -82,6 +83,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Out of Puddle',
           de: 'Raus aus der Fläche',
+          cn: '离开圈圈',
         },
       },
     },
