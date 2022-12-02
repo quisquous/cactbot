@@ -43,6 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid Puddle',
+          de: 'Flächen vermeiden',
           cn: '躲避圈圈',
         },
       },
@@ -81,8 +82,46 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Out of Puddle',
+          de: 'Raus aus der Fläche',
           cn: '离开圈圈',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Heavenly Hashiri-dokoro': 'Himmelssäulen-Hashiri-Dokoro',
+        'Kenko': 'Kenko',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Heavenly Hashiri-dokoro': 'hashidokoro des Cieux',
+        'Kenko': 'Kenko',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Heavenly Hashiri-dokoro': 'アメノ・ハシリドコロ',
+        'Kenko': 'ケンコ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Heavenly Hashiri-dokoro': '天之东莨菪',
+        'Kenko': '犬蛊',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Heavenly Hashiri-dokoro': '천궁 미치광이풀',
+        'Kenko': '켄코',
       },
     },
   ],

@@ -23,6 +23,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Behind or Look Away',
+          de: 'Geh hinter oder schau weg',
           cn: '去背后或看向其他方向',
         },
       },
@@ -39,6 +40,48 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '2E98', source: 'Suikazura', capture: false },
       response: Responses.aoe(),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Heavenly Gowan': 'Himmelssäulen-Gowan',
+        'Heavenly Naga': 'Himmelssäulen-Naga',
+        'Suikazura': 'Suikazura',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Heavenly Gowan': 'gôwan des Cieux',
+        'Heavenly Naga': 'naga des Cieux',
+        'Suikazura': 'Suikazura',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Heavenly Gowan': 'アメノ・ゴウワン',
+        'Heavenly Naga': 'アメノ・ナーガ',
+        'Suikazura': 'スイカズラ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Heavenly Gowan': '天之铁臂',
+        'Heavenly Naga': '天之那迦',
+        'Suikazura': '忍冬',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Heavenly Gowan': '천궁 힘센팔이',
+        'Heavenly Naga': '천궁 나가',
+        'Suikazura': '인동덩굴',
+      },
     },
   ],
 };

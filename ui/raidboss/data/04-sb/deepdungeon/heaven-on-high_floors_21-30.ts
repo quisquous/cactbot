@@ -36,8 +36,51 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Stand under a cloud',
+          de: 'Steh unter einer Wolke',
           cn: '站在一朵云下',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Heavenly Hatamoto': 'Himmelssäulen-Hatamoto',
+        'Heavenly Onibi': 'Himmelssäulen-Onibi',
+        'Hiruko': 'Hiruko',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Heavenly Hatamoto': 'hatamoto des Cieux',
+        'Heavenly Onibi': 'onibi des Cieux',
+        'Hiruko': 'Hiruko',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Heavenly Hatamoto': 'アメノ・ハタモト',
+        'Heavenly Onibi': 'アメノ・オニビ',
+        'Hiruko': 'ヒルコ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Heavenly Hatamoto': '天之旗本',
+        'Heavenly Onibi': '天之鬼火',
+        'Hiruko': '蛭子',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Heavenly Hatamoto': '천궁 직속 무사',
+        'Heavenly Onibi': '천궁 도깨비불',
+        'Hiruko': '히루코',
       },
     },
   ],
