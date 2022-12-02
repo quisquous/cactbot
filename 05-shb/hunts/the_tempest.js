@@ -84,6 +84,7 @@ Options.Triggers.push({
         stackOnYou: Outputs.stackOnYou,
         avoidStack: {
           en: 'Avoid Stack',
+          cn: '远离分摊',
         },
       },
     },

@@ -67,6 +67,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'In => Sides',
+          cn: '中间 => 两侧',
         },
       },
     },
@@ -79,6 +80,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Sides => Sides (again)',
+          cn: '两侧 => 两侧 (重复)',
         },
       },
     },

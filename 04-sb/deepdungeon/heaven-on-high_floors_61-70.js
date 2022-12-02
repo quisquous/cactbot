@@ -31,6 +31,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Avoid Puddle',
+          cn: '躲避圈圈',
         },
       },
     },
@@ -68,6 +69,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Out of Puddle',
+          cn: '离开圈圈',
         },
       },
     },

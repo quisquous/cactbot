@@ -27,6 +27,7 @@ Options.Triggers.push({
           stackOnYou: Outputs.stackOnYou,
           avoidStack: {
             en: 'Avoid Stack',
+            cn: '远离分摊',
           },
         };
         if (matches.target === data.me)
@@ -76,6 +77,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Away from Dash',
+          cn: '躲避冲锋',
         },
       },
     },
@@ -88,6 +90,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go Back/Right',
+          cn: '去背后/右侧',
         },
       },
     },
@@ -107,6 +110,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go Back/Left',
+          cn: '去背后/左侧',
         },
       },
     },
