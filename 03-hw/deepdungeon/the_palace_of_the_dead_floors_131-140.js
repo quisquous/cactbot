@@ -26,4 +26,41 @@ Options.Triggers.push({
       response: Responses.killAdds('alert'),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Deep Palace Ahriman': 'Katakomben-Ahriman',
+        'Deep Palace Catoblepas': 'Katakomben-Catblepus',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Deep Palace Ahriman': 'ahriman des profondeurs',
+        'Deep Palace Catoblepas': 'catoblépas des profondeurs',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Deep Palace Ahriman': 'ディープパレス・アーリマン',
+        'Deep Palace Catoblepas': 'ディープパレス・カトブレパス',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Deep Palace Ahriman': '深宫冥鬼之眼',
+        'Deep Palace Catoblepas': '深宫卡托布莱帕斯',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Deep Palace Ahriman': '깊은 궁전 아리만',
+        'Deep Palace Catoblepas': '깊은 궁전 카토블레파스',
+      },
+    },
+  ],
 });

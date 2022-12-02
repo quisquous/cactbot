@@ -54,4 +54,66 @@ Options.Triggers.push({
       response: Responses.bigAoe('alert'),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Deep Palace Bhoot': 'Katakomben-Bhut',
+        'Deep Palace Manticore': 'Katakomben-Manticore',
+        'Deep Palace Persona': 'Katakomben-Persona',
+        'Deep Palace Succubus': 'Katakomben-Sukkubus',
+        'Deep Palace Wraith': 'Katakomben-Geist',
+        'Onyx Dragon': 'Onyxdrache',
+        'Tisiphone': 'Tisiphone',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Deep Palace Bhoot': 'bhut des profondeurs',
+        'Deep Palace Manticore': 'manticore des profondeurs',
+        'Deep Palace Persona': 'persona des profondeurs',
+        'Deep Palace Succubus': 'succube des profondeurs',
+        'Deep Palace Wraith': 'spectre des profondeurs',
+        'Onyx Dragon': 'dragon d\'onyx',
+        'Tisiphone': 'Tisiphone',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Deep Palace Bhoot': 'ディープパレス・ブフート',
+        'Deep Palace Manticore': 'ディープパレス・マンティコア',
+        'Deep Palace Persona': 'ディープパレス・ペルソナ',
+        'Deep Palace Succubus': 'ディープパレス・サキュバス',
+        'Deep Palace Wraith': 'ディープパレス・レイス',
+        'Onyx Dragon': 'オニキスドラゴン',
+        'Tisiphone': 'ティーシポネー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Deep Palace Bhoot': '深宫浮灵',
+        'Deep Palace Manticore': '深宫曼提克',
+        'Deep Palace Persona': '深宫假面',
+        'Deep Palace Succubus': '深宫梦魔',
+        'Deep Palace Wraith': '深宫幽灵',
+        'Onyx Dragon': '奥尼克斯龙',
+        'Tisiphone': '提西福涅',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Deep Palace Bhoot': '깊은 궁전 브후트',
+        'Deep Palace Manticore': '깊은 궁전 만티코어',
+        'Deep Palace Persona': '깊은 궁전 페르소나',
+        'Deep Palace Succubus': '깊은 궁전 서큐버스',
+        'Deep Palace Wraith': '깊은 궁전 망령',
+        'Onyx Dragon': '줄마노 드래곤',
+        'Tisiphone': '티시포네',
+      },
+    },
+  ],
 });

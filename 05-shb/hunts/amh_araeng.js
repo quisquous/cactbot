@@ -89,4 +89,46 @@ Options.Triggers.push({
       response: Responses.getOut(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Maliktender': 'Malikkaktor',
+        'Sugaar': 'Sugaar',
+        'Tarchia': 'Tarchia',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Maliktender': 'Malikpampa',
+        'Sugaar': 'Sugaar',
+        'Tarchia': 'Tarchia',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Maliktender': 'マリクテンダー',
+        'Sugaar': 'シュガール',
+        'Tarchia': 'タルキア',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Maliktender': '马利克巨人掌',
+        'Sugaar': '休格尔',
+        'Tarchia': '多智兽',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Maliktender': '말리크텐더',
+        'Sugaar': '슈가르',
+        'Tarchia': '타르키아',
+      },
+    },
+  ],
 });

@@ -57,4 +57,41 @@ Options.Triggers.push({
       response: Responses.knockback(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Sephirot': 'Sephirot',
+        'Storm of Words': 'Wörtersturm',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Sephirot': 'Sephirot',
+        'Storm of Words': 'tempête de mots',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Sephirot': 'セフィロト',
+        'Storm of Words': 'ストーム・オブ・ワード',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Sephirot': '萨菲洛特',
+        'Storm of Words': '言语风暴',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Sephirot': '세피로트',
+        'Storm of Words': '신언의 폭풍',
+      },
+    },
+  ],
 });

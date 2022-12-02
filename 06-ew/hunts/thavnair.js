@@ -361,18 +361,22 @@ Options.Triggers.push({
       outputStrings: {
         forward: {
           en: 'Forward March',
+          de: 'Geistlenkung vorwärts',
           cn: '强制移动: 前',
         },
         backward: {
           en: 'Backward March',
+          de: 'Geistlenkung rückwärts',
           cn: '强制移动: 后',
         },
         left: {
           en: 'Left March',
+          de: 'Geistlenkung links',
           cn: '强制移动: 左',
         },
         right: {
           en: 'Right March',
+          de: 'Geistlenkung rechts',
           cn: '强制移动: 右',
         },
       },
@@ -394,10 +398,12 @@ Options.Triggers.push({
       outputStrings: {
         red: {
           en: 'Blue => Red',
+          de: 'Blau => Rot',
           cn: '蓝 => 红',
         },
         blue: {
           en: 'Red => Blue',
+          de: 'Rot => Blau',
           cn: '红 => 蓝',
         },
       },
@@ -421,8 +427,8 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
+        'Daivadipa': 'Daivadipa',
         'Sphatika': 'Sphatika',
         'Sugriva': 'Sugriva',
         'Yilan': 'Yilan',
@@ -430,8 +436,8 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
+        'Daivadipa': 'Daivadipa',
         'Sphatika': 'Sphatika',
         'Sugriva': 'Sugriva',
         'Yilan': 'yilan',
@@ -439,8 +445,8 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
+        'Daivadipa': 'ダイヴァディーパ',
         'Sphatika': 'スパティカ',
         'Sugriva': 'スグリーヴァ',
         'Yilan': 'ユラン',
@@ -448,8 +454,8 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
+        'Daivadipa': '明灯天王',
         'Sphatika': '颇胝迦',
         'Sugriva': '须羯里婆',
         'Yilan': '尤兰',
@@ -457,8 +463,8 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
+        'Daivadipa': '다이바디파',
         'Sphatika': '스파티카',
         'Sugriva': '수그리바',
         'Yilan': '윌란',

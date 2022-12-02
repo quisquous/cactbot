@@ -27,6 +27,7 @@ Options.Triggers.push({
           stackOnYou: Outputs.stackOnYou,
           avoidStack: {
             en: 'Avoid Stack',
+            de: 'Vermeide Sammeln',
             cn: '远离分摊',
           },
         };
@@ -77,6 +78,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Away from Dash',
+          de: 'Weg vom Anstrum',
           cn: '躲避冲锋',
         },
       },
@@ -90,6 +92,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go Back/Right',
+          de: 'Geh nach Hinten/Rechts',
           cn: '去背后/右侧',
         },
       },
@@ -110,6 +113,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go Back/Left',
+          de: 'Geh nach Hinten/Links',
           cn: '去背后/左侧',
         },
       },
@@ -137,6 +141,48 @@ Options.Triggers.push({
       // Mention this slightly after.
       delaySeconds: 1.5,
       response: Responses.goFront(),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Nariphon': 'Nariphon',
+        'Nuckelavee': 'Nuckelavee',
+        'Tyger': 'Tyger',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Nariphon': 'Nariphon',
+        'Nuckelavee': 'Nuckelavee',
+        'Tyger': 'Tygre',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Nariphon': 'ナリーポン',
+        'Nuckelavee': 'ナックラヴィー',
+        'Tyger': 'ティガー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Nariphon': '纳里蓬',
+        'Nuckelavee': '纳克拉维',
+        'Tyger': '戾虫',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Nariphon': '나리폰',
+        'Nuckelavee': '너클라비',
+        'Tyger': '티거',
+      },
     },
   ],
 });

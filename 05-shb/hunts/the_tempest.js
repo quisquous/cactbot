@@ -84,6 +84,7 @@ Options.Triggers.push({
         stackOnYou: Outputs.stackOnYou,
         avoidStack: {
           en: 'Avoid Stack',
+          de: 'Vermeide Sammeln',
           cn: '远离分摊',
         },
       },
@@ -108,6 +109,48 @@ Options.Triggers.push({
       netRegex: { id: '43D0', source: 'Gunitt', capture: false },
       condition: (data) => data.inCombat,
       response: Responses.lookAway(),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Baal': 'Baal',
+        'Gunitt': 'Gunitt',
+        'Rusalka': 'Rusalka',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Baal': 'Baal',
+        'Gunitt': 'Gunitt',
+        'Rusalka': 'Roussalka',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Baal': 'バール',
+        'Gunitt': 'グニット',
+        'Rusalka': 'ルサルカ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Baal': '巴力',
+        'Gunitt': '顾尼图',
+        'Rusalka': '卢莎卡',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Baal': '바알',
+        'Gunitt': '구니트',
+        'Rusalka': '루살카',
+      },
     },
   ],
 });

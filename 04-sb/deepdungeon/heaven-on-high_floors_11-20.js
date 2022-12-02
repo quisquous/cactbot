@@ -18,4 +18,41 @@ Options.Triggers.push({
       response: Responses.lookAway('alert'),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Beccho': 'Beccho',
+        'Heavenly Otokage': 'Himmelssäulen-Otokage',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Beccho': 'Becchô',
+        'Heavenly Otokage': 'ô-tokage des Cieux',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Beccho': 'ベッチョウ',
+        'Heavenly Otokage': 'アメノ・オオトカゲ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Beccho': '别蝶',
+        'Heavenly Otokage': '天之巨蜥',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Beccho': '벳쵸',
+        'Heavenly Otokage': '천궁 왕도마뱀',
+      },
+    },
+  ],
 });

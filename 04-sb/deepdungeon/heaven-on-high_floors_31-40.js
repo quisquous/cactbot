@@ -24,4 +24,41 @@ Options.Triggers.push({
     //   },
     // },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Bhima': 'Bhima',
+        'Heavenly Dogu': 'Himmelssäulen-Dogu',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Bhima': 'Bhima',
+        'Heavenly Dogu': 'dogû des Cieux',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Bhima': 'ビーマ',
+        'Heavenly Dogu': 'アメノ・ドグウ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Bhima': '怖军',
+        'Heavenly Dogu': '天之土偶',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Bhima': '비마',
+        'Heavenly Dogu': '천궁 토우',
+      },
+    },
+  ],
 });

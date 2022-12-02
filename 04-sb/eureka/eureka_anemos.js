@@ -175,4 +175,78 @@ Options.Triggers.push({
       response: Responses.wakeUp(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity..*?':
+          'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
+        'Caym': 'Caym',
+        'Fafnir': 'Fafnir',
+        'Pazuzu': 'Pazuzu',
+        'Polyphemus': 'Polyphemus',
+        'Sabotender Corrido': 'Sabotender Corrido',
+        'Shadow Wraith': 'Schatten-Geist',
+        'Void Garm': 'Nichts-Garm',
+        'Voidscale': 'Nichtsschuppe',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity.':
+          'Votre personnage est inactif depuis 7 minutes',
+        'Caym': 'Caym',
+        'Fafnir': 'Fafnir',
+        'Pazuzu': 'Pazuzu',
+        'Polyphemus': 'Polyphemus',
+        'Sabotender Corrido': 'pampa corrido',
+        'Shadow Wraith': 'spectre des ombres',
+        'Void Garm': 'garm du néant',
+        'Voidscale': 'vidécailles',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity.': '操作がない状態になってから7分が経過しました。',
+        'Caym': 'カイム',
+        'Fafnir': 'ファヴニル',
+        'Pazuzu': 'パズズ',
+        'Polyphemus': 'ポリュペモス',
+        'Sabotender Corrido': '賞金首：サボテンダー・コリード',
+        'Shadow Wraith': 'シャドウ・レイス',
+        'Void Garm': 'ヴォイドガルム',
+        'Voidscale': 'ヴォイドスケイル',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity.': '已经7分钟没有进行任何操作',
+        'Caym': '盖因',
+        'Fafnir': '法夫纳',
+        'Pazuzu': '帕祖祖',
+        'Polyphemus': '波吕斐摩斯',
+        'Sabotender Corrido': '悬赏魔物：科里多仙人刺',
+        'Shadow Wraith': '暗影幽灵',
+        'Void Garm': '虚无加姆',
+        'Voidscale': '虚无鳞龙',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity..*?': '7분 동안 아무 조작을 하지 않았습니다',
+        'Caym': '카임',
+        'Fafnir': '파프니르',
+        'Pazuzu': '파주주',
+        'Polyphemus': '폴리페모스',
+        'Sabotender Corrido': '현상수배: 사보텐더 코리도',
+        'Shadow Wraith': '그림자 망령',
+        'Void Garm': '보이드 가름',
+        'Voidscale': '보이드비늘',
+      },
+    },
+  ],
 });

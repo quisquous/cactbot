@@ -37,4 +37,56 @@ Options.Triggers.push({
       response: Responses.aoe(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Heavenly Hyoga': 'Himmelssäulen-Hyoga',
+        'Heavenly Ichijama': 'Himmelssäulen-Ichijama',
+        'Heavenly Mammoth': 'Himmelssäulen-Mammut',
+        'Heavenly Tofu': 'Himmelssäulen-Tofu',
+        'Kajigakaka': 'Kajigakaka',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Heavenly Hyoga': 'hyôga des Cieux',
+        'Heavenly Ichijama': 'ichijama des Cieux',
+        'Heavenly Mammoth': 'mammouth des Cieux',
+        'Heavenly Tofu': 'tôfu des Cieux',
+        'Kajigakaka': 'Kajigakaka',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Heavenly Hyoga': 'アメノ・ヒョウガ',
+        'Heavenly Ichijama': 'アメノ・イチジャマ',
+        'Heavenly Mammoth': 'アメノ・マンモス',
+        'Heavenly Tofu': 'アメノ・トウフ',
+        'Kajigakaka': 'カジガカカ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Heavenly Hyoga': '天之冰牙',
+        'Heavenly Ichijama': '天之生邪魔',
+        'Heavenly Mammoth': '天之长毛象',
+        'Heavenly Tofu': '天之豆腐',
+        'Kajigakaka': '锻冶媪',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Heavenly Hyoga': '천궁 효우가',
+        'Heavenly Ichijama': '천궁 생령',
+        'Heavenly Mammoth': '천궁 매머드',
+        'Heavenly Tofu': '천궁 두부',
+        'Kajigakaka': '카지가카카',
+      },
+    },
+  ],
 });

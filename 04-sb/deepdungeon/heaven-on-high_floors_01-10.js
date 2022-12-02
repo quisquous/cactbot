@@ -25,4 +25,46 @@ Options.Triggers.push({
       response: Responses.knockback(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Heavenly Amikiri': 'Himmelssäulen-Amikiri',
+        'Heavenly Uwabami': 'Himmelssäulen-Uwabami',
+        'Mojabune': 'Mojabune',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Heavenly Amikiri': 'Amikiri des Cieux',
+        'Heavenly Uwabami': 'uwabami des Cieux',
+        'Mojabune': 'Môjabune',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Heavenly Amikiri': 'アメノ・アミキリ',
+        'Heavenly Uwabami': 'アメノ・ウワバミ',
+        'Mojabune': 'モウジャブネ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Heavenly Amikiri': '天之切网虾蛄',
+        'Heavenly Uwabami': '天之蟒蛇',
+        'Mojabune': '亡者船',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Heavenly Amikiri': '천궁 아미키리',
+        'Heavenly Uwabami': '천궁 이무기',
+        'Mojabune': '망자의 배',
+      },
+    },
+  ],
 });

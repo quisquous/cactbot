@@ -21,4 +21,43 @@ Options.Triggers.push({
       response: Responses.wakeUp(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity..*?':
+          'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
+        'Skoll': 'Skalli',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity.':
+          'Votre personnage est inactif depuis 7 minutes',
+        'Skoll': 'Sköll',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity.': '操作がない状態になってから7分が経過しました。',
+        'Skoll': 'スコル',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity.': '已经7分钟没有进行任何操作',
+        'Skoll': '斯库尔',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity..*?': '7분 동안 아무 조작을 하지 않았습니다',
+        'Skoll': '스콜',
+      },
+    },
+  ],
 });

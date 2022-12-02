@@ -45,4 +45,48 @@ Options.Triggers.push({
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'missingTranslations': true,
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity..*?':
+          'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
+        'The Diadem': 'Das Diadem',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity.':
+          'Votre personnage est inactif depuis 7 minutes',
+        'The Diadem': 'Le Diadème',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity.': '操作がない状態になってから7分が経過しました。',
+        'The Diadem': 'ディアデム諸島',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity.': '已经7分钟没有进行任何操作',
+        'The Diadem': '云冠群岛',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        '7 minutes have elapsed since your last activity..*?': '7분 동안 아무 조작을 하지 않았습니다',
+        'The Diadem': '디아뎀 제도',
+      },
+    },
+  ],
 });

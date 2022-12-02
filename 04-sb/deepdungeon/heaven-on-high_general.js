@@ -13,6 +13,7 @@ Options.Triggers.push({
   ],
   zoneLabel: {
     en: 'Heaven-on-High (All Floors)',
+    de: 'Himmelssäule (Alle Ebenen)',
     cn: '天之御柱 (全楼层)',
     ko: '천궁탑',
   },
@@ -30,6 +31,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Quivering Coffer spawned!',
+          de: 'zuckende Schnapptruhe ist erschienen',
           cn: '已生成 抖动的宝箱!',
           ko: '꿈틀거리는 보물상자 등장!',
         },
@@ -95,6 +97,7 @@ Options.Triggers.push({
       outputStrings: {
         duplicate: {
           en: '${pomander} duplicate',
+          de: 'Doppelter ${pomander}',
           cn: '${pomander} 重复',
           ko: '${pomander} 중복',
         },
@@ -274,6 +277,7 @@ Options.Triggers.push({
       outputStrings: {
         duplicate: {
           en: '${magicite} duplicate',
+          de: 'Doppelter ${magicite} Stein',
           cn: '${magicite} 重复',
           ko: '${magicite} 중복',
         },
@@ -324,9 +328,42 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Beacon of Passage activated',
+          de: 'Weglaterne aktiviert',
           cn: '转移灯笼已启动',
           ko: '전송 등불 활성화',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Quivering Coffer': 'zuckend(?:e|er|es|en) Schnapptruhe',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Quivering Coffer': 'coffre gigotant',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Quivering Coffer': 'うごめく宝箱',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Quivering Coffer': '抖动的宝箱',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Quivering Coffer': '꿈틀거리는 보물상자',
       },
     },
   ],

@@ -19,4 +19,36 @@ Options.Triggers.push({
     // ---------------- Floor 170 Boss: Yulunggu ----------------
     // intentionally blank
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Deep Palace Diplocaulus': 'Katakomben-Diplocaulus',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Deep Palace Diplocaulus': 'diplocaulus des profondeurs',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Deep Palace Diplocaulus': 'ディープパレス・ディプロカウルス',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Deep Palace Diplocaulus': '深宫笠头螈',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Deep Palace Diplocaulus': '깊은 궁전 디플로카울루스',
+      },
+    },
+  ],
 });

@@ -293,11 +293,13 @@ Options.Triggers.push({
       outputStrings: {
         northSouth: {
           en: 'Go North / South edge',
+          de: 'Geh zur Kante im Norden / Süden',
           cn: '去南北边缘',
           ko: '남/북쪽 끝으로',
         },
         eastWest: {
           en: 'Go East / West edge',
+          de: 'Geh zur Kante im Osten / Westen',
           cn: '去东西边缘',
           ko: '동/서쪽 끝으로',
         },

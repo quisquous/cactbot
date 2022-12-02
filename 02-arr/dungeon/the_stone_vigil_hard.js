@@ -20,4 +20,36 @@ Options.Triggers.push({
       response: Responses.tankBuster(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Gorynich': 'Gorynich',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Gorynich': 'Gorynich',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Gorynich': 'ゴリニチ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Gorynich': '格里尼奇恶龙',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Gorynich': '고리니치',
+      },
+    },
+  ],
 });

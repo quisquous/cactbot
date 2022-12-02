@@ -79,4 +79,46 @@ Options.Triggers.push({
       response: Responses.getOut('alarm'),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Aglaope': 'Aglaope',
+        'O Poorest Pauldia': 'gepeinigt(?:e|er|es|en) Pauldia',
+        'The Mudman': 'Matschklops',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Aglaope': 'Aglaope',
+        'O Poorest Pauldia': 'Pauldia',
+        'The Mudman': 'tas de boue',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Aglaope': 'アグラオペ',
+        'O Poorest Pauldia': 'ポールディア',
+        'The Mudman': '泥人',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Aglaope': '阿格拉俄珀',
+        'O Poorest Pauldia': '保尔迪雅',
+        'The Mudman': '泥人',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Aglaope': '아글라오페',
+        'O Poorest Pauldia': '폴디아',
+        'The Mudman': '진흙인간',
+      },
+    },
+  ],
 });
