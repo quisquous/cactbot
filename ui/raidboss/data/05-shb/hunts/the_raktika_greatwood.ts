@@ -43,6 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'GTFO + Look Away',
+          cn: '快出去 + 看向其他方向',
         },
       },
     },
@@ -91,6 +92,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Heal to Full',
+          cn: '奶满全员',
         },
       },
     },

@@ -23,6 +23,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Behind or Look Away',
+          cn: '去背后或看向其他方向',
         },
       },
     },
