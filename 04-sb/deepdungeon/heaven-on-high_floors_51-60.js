@@ -13,6 +13,7 @@ Options.Triggers.push({
           en: 'Get Behind or Look Away',
           de: 'Geh hinter oder schau weg',
           cn: '去背后或看向其他方向',
+          ko: '보스 뒤로 또는 뒤돌기',
         },
       },
     },
