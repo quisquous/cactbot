@@ -18,6 +18,7 @@ const triggerSet: TriggerSet<Data> = {
     en: 'SS Rank Hunts',
     de: 'SS Jagdziele',
     cn: 'SS 级狩猎怪',
+    ko: 'SS급 마물',
   },
   triggers: [
     {

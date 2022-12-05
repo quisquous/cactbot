@@ -39,6 +39,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Avoid Stack',
             de: 'Vermeide Sammeln',
             cn: '远离分摊',
+            ko: '쉐어징 피하기',
           },
         };
 
@@ -91,6 +92,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Away from Dash',
           de: 'Weg vom Anstrum',
           cn: '躲避冲锋',
+          ko: '돌진한 곳 피하기',
         },
       },
     },
@@ -105,6 +107,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Go Back/Right',
           de: 'Geh nach Hinten/Rechts',
           cn: '去背后/右侧',
+          ko: '뒤/오른쪽으로',
         },
       },
     },
@@ -126,6 +129,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Go Back/Left',
           de: 'Geh nach Hinten/Links',
           cn: '去背后/左侧',
+          ko: '뒤/왼쪽으로',
         },
       },
     },
