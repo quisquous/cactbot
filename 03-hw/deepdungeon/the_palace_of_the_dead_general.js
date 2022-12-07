@@ -31,7 +31,10 @@ Options.Triggers.push({
     // ---------------- Mimics ----------------
     {
       id: 'PotD General Mimic Spawn',
-      // 2566 = Mimic
+      // 2566 = Mimic (appears to be same npcNameId all floors)
+      // floor 1-30 bronze chests, can stun or interrupt
+      // floor 31-40 silver chests, can stun or interrupt
+      // floor 41+ gold chests, can interrupt, immune to stun
       // TODO: some Mimics may spawn after transference between floors and get called early before being found
       type: 'AddedCombatant',
       netRegex: { npcNameId: '2566', capture: false },

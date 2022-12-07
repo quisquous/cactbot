@@ -1,0 +1,15 @@
+Options.Triggers.push({
+  zoneId: ZoneId.ThePalaceOfTheDeadFloors61_70,
+  triggers: [
+    // ---------------- Floor 061-069 Mobs ----------------
+    {
+      id: 'PotD 061-070 Palace Diplocaulus Foregone Gleam',
+      // front cone gaze
+      type: 'StartsUsing',
+      netRegex: { id: '1B2D', source: 'Palace Diplocaulus', capture: false },
+      response: Responses.lookAway('alert'),
+    },
+    // ---------------- Floor 070 Boss: Yaquaru ----------------
+    // intentionally blank
+  ],
+});
