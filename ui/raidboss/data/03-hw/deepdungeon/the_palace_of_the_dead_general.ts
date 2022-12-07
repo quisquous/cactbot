@@ -4,7 +4,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Triggers applicable to all Palace of the Dead floors.
-// TODO: likely different Mimic npcNameIds for lower floors
 
 export type Data = RaidbossData;
 
@@ -42,7 +41,10 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Mimics ----------------
     {
       id: 'PotD General Mimic Spawn',
-      // 2566 = Mimic
+      // 2566 = Mimic (appears to be same npcNameId all floors)
+      // floor 1-30 bronze chests, can stun or interrupt
+      // floor 31-40 silver chests, can stun or interrupt
+      // floor 41+ gold chests, can interrupt, immune to stun
       // TODO: some Mimics may spawn after transference between floors and get called early before being found
       type: 'AddedCombatant',
       netRegex: { npcNameId: '2566', capture: false },

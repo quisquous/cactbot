@@ -30,11 +30,19 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.interruptIfPossible(),
     },
     // ---------------- Floor 180 Boss: Dendainsonne ----------------
-    // intentionally blank
+    {
+      id: 'PotD 171-180 Dendainsonne Ecliptic Meteor',
+      // 80% max HP damage
+      type: 'StartsUsing',
+      netRegex: { id: '1BFE', source: 'Dendainsonne' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
+      response: Responses.bigAoe('alert'),
+    },
   ],
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Bird of the Deep Palace': 'Katakombenvogel',
         'Deep Palace Snowclops': 'Katakomben-Schneezyklop',
@@ -42,6 +50,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Bird of the Deep Palace': 'oiseau des profondeurs',
         'Deep Palace Snowclops': 'chionope des profondeurs',
@@ -49,6 +58,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Bird of the Deep Palace': 'バード・オブ・ディープパレス',
         'Deep Palace Snowclops': 'ディープパレス・スノウクロプス',
@@ -56,6 +66,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Bird of the Deep Palace': '深宫妖鸟',
         'Deep Palace Snowclops': '深宫独眼雪巨人',
@@ -63,6 +74,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Bird of the Deep Palace': '깊은 궁전 새',
         'Deep Palace Snowclops': '깊은 궁전 눈보라 사이클롭스',
