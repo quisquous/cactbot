@@ -2,8 +2,8 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: Namazu Stickywhisker (bonus treasure mob)
-// TODO: Abharamu (bonus treasure mob)
+// TODO: confirm Namazu Stickywhisker npcNameId
+// TODO: confirm Abharamu npcNameId
 // TODO: Canal Crew (bonus treasure mobs)
 // TODO: Airavata
 
@@ -25,9 +25,9 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- random treasure mobs ----------------
     {
       id: 'Hidden Canals of Uznair Namazu Stickywhisker Spawn',
-      // xxxx = Namazu Stickywhisker
+      // 6567 = Namazu Stickywhisker
       type: 'AddedCombatant',
-      netRegex: { npcNameId: '' },
+      netRegex: { npcNameId: '6567' },
       suppressSeconds: 1,
       infoText: (_data, matches, output) => output.spawn!({ name: matches.name }),
       outputStrings: {
@@ -36,9 +36,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Hidden Canals of Uznair Abharamu Spawn',
-      // xxxx = Abharamu
+      // 6568 = Abharamu
       type: 'AddedCombatant',
-      netRegex: { npcNameId: '' },
+      netRegex: { npcNameId: '6568' },
       suppressSeconds: 1,
       infoText: (_data, matches, output) => output.spawn!({ name: matches.name }),
       outputStrings: {
