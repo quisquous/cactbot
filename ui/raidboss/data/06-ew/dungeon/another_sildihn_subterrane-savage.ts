@@ -1699,10 +1699,10 @@ const triggerSet: TriggerSet<Data> = {
       // which should have been positioned to teleport across the laser to bait
       // the final ward away from other players
       //
-      // 1CD Blue (Counterclockwise) Teleporting East
-      // 1CE Orange (Clockwise) Teleporting West
-      // 1D2 Orange (Clockwise) Teleporting East
-      // 1D3 Blue (Counterclockwise) Teleporting West
+      // 1CD Blue (Counterclockwise) Teleporting East (Rotating to North)
+      // 1CE Orange (Clockwise) Teleporting West (Rotating to North)
+      // 1D2 Orange (Clockwise) Teleporting East (Rotating to South)
+      // 1D3 Blue (Counterclockwise) Teleporting West (Rotating to North)
       //
       // There are multiple strategies, so this only describes what you have,
       // from there you can create a personal call of where to go
@@ -1712,43 +1712,27 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, matches, output) => {
         switch (matches.count) {
           case '1CD':
-            return output.blueEast!();
+            return output.blueNorth!();
           case '1CE':
-            return output.orangeWest!();
+            return output.orangeNorth!();
           case '1D2':
-            return output.orangeEast!();
+            return output.orangeSouth!();
           case '1D3':
-            return output.blueWest!();
+            return output.blueSouth!();
         }
       },
       outputStrings: {
-        blueEast: {
-          en: 'Blue Teleporting East',
-          de: 'Blau Teleport nach Osten',
-          fr: 'Téléportation du bleu à l\'Est',
-          ja: '3列',
-          ko: '파란색 동쪽 텔레포트',
+        blueNorth: {
+          en: 'Blue Teleporting North',
         },
-        blueWest: {
-          en: 'Blue Teleporting West',
-          de: 'Blau Teleport nach Westen',
-          fr: 'Téléportation du bleu à l\'Ouest',
-          ja: '4列',
-          ko: '파란색 서쪽 텔레포트',
+        blueSouth: {
+          en: 'Blue Teleporting South',
         },
-        orangeEast: {
-          en: 'Orange Teleporting East',
-          de: 'Orange Teleport nach Osten',
-          fr: 'Téléportation de l\'orange à l\'Est',
-          ja: '2列',
-          ko: '주황색 동쪽 텔레포트',
+        orangeSouth: {
+          en: 'Orange Teleporting South',
         },
-        orangeWest: {
-          en: 'Orange Teleporting West',
-          de: 'Orange Teleport nach Westen',
-          fr: 'Téléportation de l\'orange à l\'Ouest',
-          ja: '1列',
-          ko: '주황색 서쪽 텔레포트',
+        orangeNorth: {
+          en: 'Orange Teleporting North',
         },
       },
     },
