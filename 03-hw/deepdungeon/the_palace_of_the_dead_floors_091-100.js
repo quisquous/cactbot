@@ -20,4 +20,41 @@ Options.Triggers.push({
       response: Responses.killAdds('alert'),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Nybeth Obdilord': 'Nybeth Obdilord',
+        'Palace Wraith': 'Palast-Geist',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Nybeth Obdilord': 'Nybeth Obdilord',
+        'Palace Wraith': 'spectre du palais',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Nybeth Obdilord': '屍術師ニバス',
+        'Palace Wraith': 'パレス・レイス',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Nybeth Obdilord': '死灵术士尼博斯',
+        'Palace Wraith': '地宫幽灵',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Nybeth Obdilord': '시체술사 니버스',
+        'Palace Wraith': '궁전 망령',
+      },
+    },
+  ],
 });

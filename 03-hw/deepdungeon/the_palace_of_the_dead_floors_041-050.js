@@ -61,4 +61,56 @@ Options.Triggers.push({
       response: Responses.lookAway('alert'),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Edda Blackbosom': 'Edda Schwarzherz',
+        'Nightmare Bhoot': 'Albtraum-Bhut',
+        'Nightmare Manticore': 'Albtraum-Manticore',
+        'Nightmare Persona': 'Albtraum-Persona',
+        'Nightmare Wraith': 'Albtraum-Geist',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Edda Blackbosom': 'Edda Cœur-noir',
+        'Nightmare Bhoot': 'bhut du cauchemar',
+        'Nightmare Manticore': 'manticore du cauchemar',
+        'Nightmare Persona': 'persona du cauchemar',
+        'Nightmare Wraith': 'spectre du cauchemar',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Edda Blackbosom': '漆黒のエッダ',
+        'Nightmare Bhoot': 'ナイトメア・ブフート',
+        'Nightmare Manticore': 'ナイトメア・マンティコア',
+        'Nightmare Persona': 'ナイトメア・ペルソナ',
+        'Nightmare Wraith': 'ナイトメア・レイス',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Edda Blackbosom': '漆黑的艾达',
+        'Nightmare Bhoot': '噩梦浮灵',
+        'Nightmare Manticore': '噩梦曼提克',
+        'Nightmare Persona': '噩梦假面',
+        'Nightmare Wraith': '噩梦幽灵',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Edda Blackbosom': '칠흑의 에다',
+        'Nightmare Bhoot': '악몽 브후트',
+        'Nightmare Manticore': '악몽 만티코어',
+        'Nightmare Persona': '악몽 페르소나',
+        'Nightmare Wraith': '악몽 망령',
+      },
+    },
+  ],
 });

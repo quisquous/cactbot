@@ -42,4 +42,46 @@ Options.Triggers.push({
       response: Responses.getUnder('alert'),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Ningishzida': 'Ningishzida',
+        'Palace Minotaur': 'Palast-Minotaurus',
+        'Palace Skatene': 'Palast-Skatene',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Ningishzida': 'Ningishzida',
+        'Palace Minotaur': 'minotaure du palais',
+        'Palace Skatene': 'skate\'ne du palais',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Ningishzida': 'ニンギジッダ',
+        'Palace Minotaur': 'パレス・ミノタウロス',
+        'Palace Skatene': 'パレス・スカネテ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Ningishzida': '宁吉兹济达',
+        'Palace Minotaur': '地宫弥诺陶洛斯',
+        'Palace Skatene': '地宫斯卡尼特',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Ningishzida': '닝기시지다',
+        'Palace Minotaur': '궁전 미노타우로스',
+        'Palace Skatene': '궁전 스카네테',
+      },
+    },
+  ],
 });

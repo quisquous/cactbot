@@ -32,6 +32,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Stop attacking ${target}',
+          de: 'Stoppe Angriffe auf ${target}',
           cn: '停止攻击 ${target}',
           ko: '${target} 공격 중지',
         },
@@ -52,6 +53,53 @@ Options.Triggers.push({
           cn: '击退到安全区',
           ko: '안전지대로 넉백되기',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Palace Deepeye': 'Palast-Glotzauge',
+        'Palace Imp': 'Palast-Imp',
+        'Palace Pot': 'Palast-Manatopf',
+        'The Black Rider': '(?:der|die|das) Schwarz(?:e|er|es|en) Reiter',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Palace Deepeye': 'oculus du palais',
+        'Palace Imp': 'imp du palais',
+        'Palace Pot': 'pot de mana du palais',
+        'The Black Rider': 'cavalier noir',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Palace Deepeye': 'パレス・ディープアイ',
+        'Palace Imp': 'パレス・インプ',
+        'Palace Pot': 'パレス・マナポット',
+        'The Black Rider': 'ブラックライダー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Palace Deepeye': '地宫深瞳',
+        'Palace Imp': '地宫小魔精',
+        'Palace Pot': '地宫魔力罐',
+        'The Black Rider': '深黑骑士',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Palace Deepeye': '궁전 볼록눈',
+        'Palace Imp': '궁전 임프',
+        'Palace Pot': '궁전 마나 항아리',
+        'The Black Rider': '검은 기수',
       },
     },
   ],

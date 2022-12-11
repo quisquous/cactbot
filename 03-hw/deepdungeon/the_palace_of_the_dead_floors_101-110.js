@@ -12,4 +12,36 @@ Options.Triggers.push({
       response: Responses.aoe(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Alicanto': 'Alicanto',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Alicanto': 'Alicanto',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Alicanto': 'アリカント',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Alicanto': '阿利坎托',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Alicanto': '알리칸토',
+      },
+    },
+  ],
 });

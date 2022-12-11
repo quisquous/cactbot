@@ -11,4 +11,36 @@ Options.Triggers.push({
       response: Responses.aoe(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Palace Deathgaze': 'Palast-Thanatos',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Palace Deathgaze': 'mortalis du palais',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Palace Deathgaze': 'パレス・デスゲイズ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Palace Deathgaze': '地宫死亡凝视',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Palace Deathgaze': '궁전 저승파수꾼',
+      },
+    },
+  ],
 });

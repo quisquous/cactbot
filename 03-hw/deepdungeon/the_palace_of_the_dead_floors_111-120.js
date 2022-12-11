@@ -25,4 +25,41 @@ Options.Triggers.push({
       response: Responses.killAdds('alert'),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Deep Palace Salamander': 'Katakomben-Salamander',
+        'Kirtimukha': 'Kirtimukha',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Deep Palace Salamander': 'salamandre des profondeurs',
+        'Kirtimukha': 'Kirtimukha',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Deep Palace Salamander': 'ディープパレス・サラマンダー',
+        'Kirtimukha': 'キールティムカ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Deep Palace Salamander': '深宫蝾螈',
+        'Kirtimukha': '荣光魔花',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Deep Palace Salamander': '깊은 궁전 불도롱뇽',
+        'Kirtimukha': '키르티무카',
+      },
+    },
+  ],
 });

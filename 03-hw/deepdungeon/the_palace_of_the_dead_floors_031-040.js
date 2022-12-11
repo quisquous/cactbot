@@ -19,4 +19,36 @@ Options.Triggers.push({
       response: Responses.killAdds('alert'),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Nightmare Eye': 'Albtraum-Auge',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Nightmare Eye': 'œil du cauchemar',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Nightmare Eye': 'ナイトメア・アイ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Nightmare Eye': '噩梦之眼',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Nightmare Eye': '악몽 눈알',
+      },
+    },
+  ],
 });
