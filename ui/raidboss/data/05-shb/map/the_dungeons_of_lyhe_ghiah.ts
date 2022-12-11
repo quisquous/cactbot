@@ -5,8 +5,8 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: confirm Fuath Trickster npcNameId
 // TODO: confirm The Keeper of the Keys npcNameId
 // TODO: confirm Dungeon Crew npcNameIds
-// TODO: Goliath (golden Talos)
-// TODO: Alichino (golden Calcabrina)
+// TODO: Goliath (final chamber boss, golden Talos)
+// TODO: Alichino (alternate final chamber boss, golden Calcabrina)
 
 const lyheGhiahOutputStrings = {
   spawn: {
@@ -68,7 +68,7 @@ const triggerSet: TriggerSet<Data> = {
     // Accelerate - stack?
     // Wellbore - PBAoE, leaves ground effect?
     // Compress - plus-shaped AoE?
-    // Goliath's Javelin - summoned adds, cast Compress: front line AoE?
+    // Goliath's Javelin - summoned adds, cast Compress - front line AoE?
     // ---------------- alternate final chamber boss: Alichino ----------------
     // Knockout - tankbuster?
     // Heat Gaze (first variant) - front cleave?

@@ -12,6 +12,9 @@ const lyheGhiahOutputStrings = {
     cn: '正在生成 ${name}!',
     ko: '${name} 등장!',
   },
+  adds: {
+    en: 'Adds soon',
+  },
 } as const;
 
 export type Data = RaidbossData;
@@ -93,30 +96,32 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Shifting Oubliettes of Lyhe Ghiah Secret Undine Hydrotaph',
+      // summons Flawless Bubble orbs (cast Hydrofan, large cone AoE)
       type: 'StartsUsing',
       netRegex: { id: '549D', source: 'Secret Undine', capture: false },
       response: Responses.aoe(),
     },
-    // Secret Worm: Brine Breath - tankbuster?
+    // Secret Worm: Brine Breath - tankbuster?*
     // Secret Cladoselache: Pelagic Cleaver - front cone
     // Secret Cladoselache: Tidal Guillotine - PBAoE
-    // Secret Cladoselache: Protolithic Puncture - tankbuster?
+    // Secret Cladoselache: Protolithic Puncture - tankbuster?*
     // Secret Cladoselache: Pelagic Cleaver (variation) - rotating front cone
     // Secret Cladoselache: Aquatic Lance - targeted AoE on random player?
     // Secret Serpent: Douse - AoE on random player, leaves puddle
     // Secret Serpent: Drench - front cone AoE
     // Secret Serpent: Scale Ripple - PBAoE
+    // Secret Serpent: Fang's End - tankbuster?*
     // ---------------- greater summons ----------------
     // Secret Basket: Pollen Corona - PBAoE
     // Secret Basket: Earth Crusher - donut AoE
-    // Secret Basket: Earthquake - roomwide AoE
-    // Secret Basket: Straight Punch - tankbuster?
+    // Secret Basket: Earthquake - roomwide AoE*
+    // Secret Basket: Straight Punch - tankbuster?*
     // Secret Pegasus: Burning Bright - front line AoE
     // Secret Pegasus: Nicker - PBAoE
-    // Secret Pegasus: Cloud Call - summon Thunderhead adds (move around, casts Lightning Bolt PBAoE)
+    // Secret Pegasus: Cloud Call - summon Thunderhead adds (move around, cast Lightning Bolt PBAoE)*
     // Greedy Pixie: Wind Rune - front line AoE
     // Greedy Pixie: Song Rune - AoE on random player
-    // Greedy Pixie: Storm Rune - roomwide AoE, summons adds? (Pixie Double, Secret Morpho)
+    // Greedy Pixie: Storm Rune - roomwide AoE, summons adds? (Pixie Double, Secret Morpho)*
     // Greedy Pixie: Bush Bash - PBAoE?
     // Greedy Pixie: Nature Call - large front cone AoE
     // ---------------- elder summons ----------------
@@ -133,6 +138,15 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.stackMarkerOn(),
     },
     {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Fuath Troublemaker Croaking Chorus',
+      type: 'StartsUsing',
+      netRegex: { id: '54EA', source: 'Fuath Troublemaker', capture: false },
+      infoText: (_data, _matches, output) => output.adds!(),
+      outputStrings: {
+        adds: lyheGhiahOutputStrings.adds,
+      },
+    },
+    {
       id: 'Shifting Oubliettes of Lyhe Ghiah Secret Korrigan Ram',
       type: 'StartsUsing',
       netRegex: { id: '54A9', source: 'Secret Korrigan' },
@@ -144,21 +158,32 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '54AA', source: 'Secret Korrigan', capture: false },
       response: Responses.lookAway('alert'),
     },
-    // Secret Keeper: Buffet - front cone
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Secret Korrigan Saibai Mandragora',
+      type: 'StartsUsing',
+      netRegex: { id: '54AC', source: 'Secret Korrigan', capture: false },
+      infoText: (_data, _matches, output) => output.adds!(),
+      outputStrings: {
+        adds: lyheGhiahOutputStrings.adds,
+      },
+    },
+    // Secret Keeper: Buffet - front cone AoE
     // Secret Keeper: Heavy Scrapline - PBAoE
-    // Secret Keeper: ???  - tankbuster?
-    // Secret Keeper: Inhale  - large front cone + draw in?
-    // Daen Ose The Avaricious: Petrifaction - gaze, look away
-    // Daen Ose The Avaricious: Abyssal Reaper - out
-    // Daen Ose The Avaricious: Petriburst - stack + look away from stack target?
+    // Secret Keeper: ??? - tankbuster?*
+    // Secret Keeper: Inhale - large front cone AoE + draw-in?
+    // ---------------- final summon: Daen Ose The Avaricious ----------------
+    // Daen Ose The Avaricious: Petrifaction - gaze*
+    // Daen Ose The Avaricious: Abyssal Reaper - large PBAoE
+    // Daen Ose The Avaricious: Petriburst - stack + look away from target?*
     // Daen Ose The Avaricious: Void Stream - alternating proteans (Hades Shadow Spread)?
-    // Daen Ose The Avaricious: Sickle Strike - tankbuster
-    // Daen Ose The Avaricious: Petrifaction (variation) - gaze on random target, look away
+    // Daen Ose The Avaricious: Sickle Strike - tankbuster*
+    // Daen Ose The Avaricious: Petrifaction (variation) - gaze on random target*
+    // ---------------- alternate final summon: Daen Ose The Avaricious (Ultros form) ----------------
     // Daen Ose The Avaricious (Ultros form): Megavolt - PBAoE
     // Daen Ose The Avaricious (Ultros form): Waterspout - AoE on random players
     // Daen Ose The Avaricious (Ultros form): Aqua Breath - front cone AoE
-    // Daen Ose The Avaricious (Ultros form): Thunder III - tankbuster?
-    // Daen Ose The Avaricious (Ultros form): Wave of Turmoil - knockback from center with AoEs on outside
+    // Daen Ose The Avaricious (Ultros form): Thunder III - tankbuster?*
+    // Daen Ose The Avaricious (Ultros form): Wave of Turmoil - knockback from center with AoEs on outside*
     // Daen Ose The Avaricious (Ultros form): Falling Water - baited AoE on marked player
   ],
 };

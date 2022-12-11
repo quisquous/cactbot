@@ -3,8 +3,7 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: Canal Flamebeast (final chamber boss)
-// TODO: Canal Thunderbeast (alternate final chamber boss)
+// TODO: Canal Flamebeast (alternate final chamber boss)
 // TODO: Canal Windbeast (alternate final chamber boss)
 
 const uznairOutputStrings = {
@@ -52,12 +51,29 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '2535', source: 'Canal Scorpion' },
       response: Responses.tankBuster(),
     },
-    // ---------------- final chamber boss: Canal Flamebeast ----------------
+    {
+      id: 'Lost Canals of Uznair Canal Wraith Shadow Flare',
+      type: 'StartsUsing',
+      netRegex: { id: '253A', source: 'Canal Wraith', capture: false },
+      response: Responses.aoe(),
+    },
+    // ---------------- final chamber boss: Canal Thunderbeast ----------------
+    {
+      id: 'Lost Canals of Uznair Canal Thunderbeast Sparkstorm',
+      // pulsing AoE on target
+      type: 'StartsUsing',
+      netRegex: { id: '255B', source: 'Canal Thunderbeast' },
+      response: Responses.tankCleave(),
+    },
+    {
+      id: 'Lost Canals of Uznair Canal Thunderbeast Spark',
+      type: 'StartsUsing',
+      netRegex: { id: '255D', source: 'Canal Thunderbeast', capture: false },
+      response: Responses.getIn(),
+    },
+    // ---------------- alternate final chamber boss: Canal Flamebeast ----------------
     // Inferno Blast - wide line AoE on main threat?
     // Incinerating Lahar - pulsing roomwide AoE?
-    // ---------------- alternate final chamber boss: Canal Thunderbeast ----------------
-    // Sparkstorm - pulsing AoE on main threat?
-    // Spark - donut AoE?
     // ---------------- alternate final chamber boss: Canal Windbeast ----------------
     // Twister - front cleave?
     // Crosswind - pulsing AoE with knockback?

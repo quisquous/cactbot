@@ -5,7 +5,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: confirm Namazu Stickywhisker npcNameId
 // TODO: confirm Abharamu npcNameId
 // TODO: Canal Crew (bonus treasure mobs)
-// TODO: Airavata
+// TODO: Airavata (final chamber boss)
 
 const uznairOutputStrings = {
   spawn: {
