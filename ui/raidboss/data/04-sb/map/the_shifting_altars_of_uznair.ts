@@ -4,7 +4,6 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: Altar Dullahan (lesser summon)
 // TODO: Altar Manticore (alternate final summon)
 // TODO: Altar Diresaur (alternate final summon)
 
@@ -20,7 +19,9 @@ const uznairOutputStrings = {
   },
 } as const;
 
-export type Data = RaidbossData;
+export interface Data extends RaidbossData {
+  altarTotem?: boolean;
+}
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheShiftingAltarsOfUznair,
@@ -95,17 +96,35 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'Shifting Altars of Uznair Altar Totem Flames of Fury Collect',
+      // 7586 = Altar Totem
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '7586', capture: false },
+      suppressSeconds: 1,
+      run: (data) => data.altarTotem = true,
+    },
+    {
       id: 'Shifting Altars of Uznair Altar Totem Flames of Fury',
       // 3 baited AoEs that leave persistent flame puddles
-      type: 'StartsUsing',
-      netRegex: { id: '348C', source: 'Altar Totem' },
+      // same headmarker is used by multiple summons for different attacks
+      type: 'HeadMarker',
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text!(),
+      alertText: (data, _matches, output) => {
+        if (data.altarTotem)
+          return output.text!();
+      },
       outputStrings: {
         text: {
           en: 'Bait three puddles',
         },
       },
+    },
+    {
+      id: 'Shifting Altars of Uznair Altar Totem Flames of Fury Cleanup',
+      type: 'WasDefeated',
+      netRegex: { target: 'Altar Totem', capture: false },
+      run: (data) => delete data.altarTotem,
     },
     {
       id: 'Shifting Altars of Uznair Altar Beast Words of Woe',
@@ -138,10 +157,18 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '3431', source: 'Hati', capture: false },
       response: Responses.getOut(),
     },
-    // Altar Dullahan: Iron Justice - front cone AoE
-    // Altar Dullahan: Cloudcover - AoE under random player
-    // Altar Dullahan: Stygian Release - knockback*
-    // Altar Dullahan: Villainous Rebuke - stack, used immediately after Stygian Release*
+    {
+      id: 'Shifting Altars of Uznair Altar Dullahan Stygian Release',
+      type: 'StartsUsing',
+      netRegex: { id: '3402', source: 'Altar Dullahan', capture: false },
+      response: Responses.knockback(),
+    },
+    {
+      id: 'Shifting Altars of Uznair Altar Dullahan Villainous Rebuke',
+      type: 'StartsUsing',
+      netRegex: { id: '3403', source: 'Altar Dullahan' },
+      response: Responses.stackMarkerOn(),
+    },
     // ---------------- greater summons ----------------
     {
       id: 'Shifting Altars of Uznair The Winged Sideslip',
