@@ -97,11 +97,11 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Shifting Altars of Uznair Altar Totem Flames of Fury Collect',
-      // 7586 = Altar Totem
-      type: 'AddedCombatant',
-      netRegex: { npcNameId: '7586', capture: false },
-      suppressSeconds: 1,
-      run: (data) => data.altarTotem = true,
+      // triggers off of the first autoattack from Altar Totem
+      type: 'Ability',
+      netRegex: { id: '366', source: 'Altar Totem', capture: false },
+      preRun: (data) => data.altarTotem = true,
+      suppressSeconds: 999999,
     },
     {
       id: 'Shifting Altars of Uznair Altar Totem Flames of Fury',
@@ -124,7 +124,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Shifting Altars of Uznair Altar Totem Flames of Fury Cleanup',
       type: 'WasDefeated',
       netRegex: { target: 'Altar Totem', capture: false },
-      run: (data) => delete data.altarTotem,
+      preRun: (data) => delete data.altarTotem,
     },
     {
       id: 'Shifting Altars of Uznair Altar Beast Words of Woe',

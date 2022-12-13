@@ -2,9 +2,6 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: confirm Namazu Stickywhisker npcNameId
-// TODO: confirm Abharamu npcNameId
-// TODO: Canal Crew (bonus treasure mobs)
 // TODO: Airavata (final chamber boss)
 
 const uznairOutputStrings = {
@@ -47,8 +44,13 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Hidden Canals of Uznair Canal Crew Spawn',
+      // 6847 = Canal Onion
+      // 6848 = Canal Egg
+      // 6849 = Canal Garlic
+      // 6850 = Canal Tomato
+      // 6851 = Canal Queen
       type: 'AddedCombatant',
-      netRegex: { npcNameId: '', capture: false },
+      netRegex: { npcNameId: ['684[7-9]', '685[01]'], capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
