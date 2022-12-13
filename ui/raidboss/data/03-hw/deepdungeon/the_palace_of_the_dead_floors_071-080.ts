@@ -29,6 +29,43 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.bigAoe('alert'),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Gudanna': 'Gudanna',
+        'Palace Cyclops': 'Palast-Zyklop',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Gudanna': 'Gudanna',
+        'Palace Cyclops': 'cyclope du palais',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Gudanna': 'グアンナ',
+        'Palace Cyclops': 'パレス・サイクロプス',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Gudanna': '古丹纳',
+        'Palace Cyclops': '地宫独眼巨人',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Gudanna': '구단나',
+        'Palace Cyclops': '궁전 사이클롭스',
+      },
+    },
+  ],
 };
 
 export default triggerSet;

@@ -22,6 +22,38 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Floor 070 Boss: Yaquaru ----------------
     // intentionally blank
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Palace Diplocaulus': 'Palast-Diplocaulus',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Palace Diplocaulus': 'diplocaulus du palais',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Palace Diplocaulus': 'パレス・ディプロカウルス',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Palace Diplocaulus': '地宫笠头螈',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Palace Diplocaulus': '궁전 디플로카울루스',
+      },
+    },
+  ],
 };
 
 export default triggerSet;
