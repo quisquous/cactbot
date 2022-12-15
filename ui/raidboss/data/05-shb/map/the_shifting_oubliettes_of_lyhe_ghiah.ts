@@ -101,12 +101,18 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '549D', source: 'Secret Undine', capture: false },
       response: Responses.aoe(),
     },
-    // Secret Worm: Brine Breath - tankbuster?*
-    // Secret Cladoselache: Pelagic Cleaver - front cone
-    // Secret Cladoselache: Tidal Guillotine - PBAoE
-    // Secret Cladoselache: Protolithic Puncture - tankbuster?*
-    // Secret Cladoselache: Pelagic Cleaver (variation) - rotating front cone
-    // Secret Cladoselache: Aquatic Lance - targeted AoE on random player?
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Secret Cladoselache Protolithic Puncture',
+      type: 'StartsUsing',
+      netRegex: { id: '54C7', source: 'Secret Cladoselache' },
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Secret Worm Brine Breath',
+      type: 'StartsUsing',
+      netRegex: { id: '54CE', source: 'Secret Worm' },
+      response: Responses.tankBuster(),
+    },
     // Secret Serpent: Douse - AoE on random player, leaves puddle
     // Secret Serpent: Drench - front cone AoE
     // Secret Serpent: Scale Ripple - PBAoE
