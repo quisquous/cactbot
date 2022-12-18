@@ -4,7 +4,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: confirm Fuath Trickster npcNameId
 // TODO: confirm The Keeper of the Keys npcNameId
-// TODO: confirm Dungeon Crew npcNameIds
 // TODO: Goliath (final chamber boss, golden Talos)
 // TODO: Alichino (alternate final chamber boss, golden Calcabrina)
 
@@ -48,13 +47,13 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Dungeons of Lyhe Ghiah Dungeon Crew Spawn',
-      // 9801 = Secret Onion
-      // 9802 = Secret Egg
-      // 9803 = Secret Garlic
-      // 9804 = Secret Tomato
-      // 9805 = Secret Queen
+      // 8684 = Dungeon Onion
+      // 8685 = Dungeon Egg
+      // 8686 = Dungeon Garlic
+      // 8687 = Dungeon Tomato
+      // 8688 = Dungeon Queen
       type: 'AddedCombatant',
-      netRegex: { npcNameId: '980[1-5]', capture: false },
+      netRegex: { npcNameId: '868[4-8]', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

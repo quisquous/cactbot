@@ -3,7 +3,12 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: summons
+// TODO: Secret Serpent (lesser summon)
+// TODO: Secret Basket (greater summon)
+// TODO: Secret Pegasus (greater summon)
+// TODO: Greedy Pixie (greater summon)
+// TODO: Daen Ose The Avaricious (final summon)
+// TODO: Daen Ose The Avaricious (Ultros form, alternate final summon)
 
 const lyheGhiahOutputStrings = {
   spawn: {
@@ -173,10 +178,12 @@ const triggerSet: TriggerSet<Data> = {
         adds: lyheGhiahOutputStrings.adds,
       },
     },
-    // Secret Keeper: Buffet - front cone AoE
-    // Secret Keeper: Heavy Scrapline - PBAoE
-    // Secret Keeper: ??? - tankbuster?*
-    // Secret Keeper: Inhale - large front cone AoE + draw-in?
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Secret Keeper Heavy Scrapline',
+      type: 'StartsUsing',
+      netRegex: { id: '54B1', source: 'Secret Keeper', capture: false },
+      response: Responses.getOut(),
+    },
     // ---------------- final summon: Daen Ose The Avaricious ----------------
     // Daen Ose The Avaricious: Petrifaction - gaze*
     // Daen Ose The Avaricious: Abyssal Reaper - large PBAoE
