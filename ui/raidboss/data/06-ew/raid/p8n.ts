@@ -182,6 +182,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
           ja: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
           ko: '${dir1} / ${dir2}',
         },
         north: Outputs.north,
@@ -289,6 +290,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
           ja: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
           ko: '${dir1} / ${dir2}',
         },
         outsideNorth: {
@@ -296,6 +298,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Norden raus',
           fr: 'Nord Extérieur',
           ja: '北の外側',
+          cn: '上 (北) 外',
           ko: '북쪽 바깥',
         },
         insideNorth: {
@@ -303,6 +306,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Norden rein',
           fr: 'Nord Intérieur',
           ja: '北の内側',
+          cn: '上 (北) 内',
           ko: '북쪽 안',
         },
         outsideEast: {
@@ -310,6 +314,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Osten raus',
           fr: 'Est Extérieur',
           ja: '東の外側',
+          cn: '右 (东) 外',
           ko: '동쪽 바깥',
         },
         insideEast: {
@@ -317,6 +322,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Osten rein',
           fr: 'Est Intérieur',
           ja: '東の内側',
+          cn: '右 (东) 内',
           ko: '동쪽 안',
         },
         outsideSouth: {
@@ -324,6 +330,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Süden raus',
           fr: 'Sud Extérieur',
           ja: '南の外側',
+          cn: '下 (南) 外',
           ko: '남쪽 바깥',
         },
         insideSouth: {
@@ -331,6 +338,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Süden rein',
           fr: 'Sud Intérieur',
           ja: '南の内側',
+          cn: '下 (南) 内',
           ko: '남쪽 안',
         },
         outsideWest: {
@@ -338,6 +346,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Westen raus',
           fr: 'Ouest Extérieur',
           ja: '西の外側',
+          cn: '左 (西) 外',
           ko: '서쪽 바깥',
         },
         insideWest: {
@@ -345,6 +354,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Westen rein',
           fr: 'Ouest Intérieur',
           ja: '西の内側',
+          cn: '左 (西) 内',
           ko: '서쪽 안',
         },
       },
