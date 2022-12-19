@@ -228,6 +228,30 @@ const triggerSet: TriggerSet<Data> = {
         'Transmission': '寄生',
       },
     },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Hegemone': '赫革摩涅',
+        'Parasitos': '寄生生物',
+      },
+      'replaceText': {
+        'random': '随机',
+        'sides': '两侧',
+        'front': '前方',
+        'back': '后方',
+        'Aetherial Exchange': '以太交换',
+        'Aetheric Polyominoid': '以太多连方',
+        'Choros Ixou': '寄生之舞',
+        'Dark Ashes': '冥灰',
+        'Hemitheos\'s Dark IV': '半神冥暗',
+        'Polyominoid Sigma': '以太多连方Σ',
+        'Polyominous Dark IV': '多连方冥暗',
+        'Reek Havoc': '喷气',
+        'Strophe Ixou': '寄生之旋',
+        'Synergy': '协同',
+        'Transmission': '寄生传染',
+      },
+    },
   ],
 };
 

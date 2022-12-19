@@ -268,6 +268,33 @@ const triggerSet: TriggerSet<Data> = {
         'Stymphalian Strike': 'バードストライク',
       },
     },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Agdistis': '阿格狄斯提斯',
+        'Immature Io': '未成熟的伊娥',
+        'Immature Stymphalide': '未成熟的铁爪怪鸟',
+      },
+      'replaceText': {
+        'left': '左',
+        'right': '右',
+        'lines': '直线',
+        'trianngle': '三角',
+        'Blades of Attis': '阿提斯的叶刃',
+        'Bough of Attis': '阿提斯的巨枝',
+        'Burst': '爆炸',
+        'Forbidden Fruit': '生命之果',
+        'Hemitheos\'s Aero II': '半神烈风',
+        'Hemitheos\'s Aero IV': '半神飙风',
+        'Hemitheos\'s Glare III': '半神闪灼',
+        'Hemitheos\'s Holy': '半神神圣',
+        'Immortal\'s Obol': '不灭者的导枝',
+        'Shadow of Attis': '阿提斯的光露',
+        'Spark of Life': '生命的光芒',
+        'Static Moon': '静电之月',
+        'Stymphalian Strike': '怪鸟强袭',
+      },
+    },
   ],
 };
 
