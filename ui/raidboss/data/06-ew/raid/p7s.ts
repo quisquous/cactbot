@@ -109,8 +109,8 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Forbidden Fruit',
           de: 'Frucht des Lebens',
           fr: 'Fruits de la vie',
-          cn: '生命之果',
           ja: '生命の果実',
+          cn: '生命之果',
         };
 
         // Select the Forbidden Fruits

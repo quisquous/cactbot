@@ -960,6 +960,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Später sammeln (mit ${player})',
             fr: 'Package plus tard (avec ${player})',
             ja: '自分に頭割り (+${player})',
+            cn: '稍后分摊 (与 ${player})',
             ko: '나중에 쉐어 (+ ${player})',
           },
           noDebuff: {
@@ -1248,8 +1249,8 @@ const triggerSet: TriggerSet<Data> = {
         crush: {
           en: 'Crush',
           de: 'Zerquetschen',
-          cn: '碎击',
           ja: 'クラッシュ',
+          cn: '碎击',
         },
         impact: Outputs.knockback,
         north: Outputs.north,
