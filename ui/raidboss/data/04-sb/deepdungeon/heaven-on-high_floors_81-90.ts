@@ -28,6 +28,7 @@ const triggerSet: TriggerSet<Data> = {
         out: Outputs.out,
         interruptOrOut: {
           en: 'Out or interrupt ${name}',
+          cn: '出去或打断 ${name}',
         },
       },
     },
@@ -45,6 +46,7 @@ const triggerSet: TriggerSet<Data> = {
         getUnder: Outputs.getUnder,
         interruptOrUnder: {
           en: 'Get Under or interrupt ${name}',
+          cn: '去脚下或打断 ${name}',
         },
       },
     },
