@@ -265,7 +265,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Condensate Demineralizer .9': '第9大型冷凝器',
         'Hydrate Core': '水合核心',
@@ -273,6 +272,7 @@ Options.Triggers.push({
         'Living Liquid': '有生命活水',
       },
       'replaceText': {
+        '--Liquid Limb spawns--': '--活水之手出现--',
         'Cascade': '瀑泻',
         'Drainage': '排水',
         'Fluid Strike': '流体强袭',

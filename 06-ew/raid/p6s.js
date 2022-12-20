@@ -336,6 +336,7 @@ Options.Triggers.push({
           de: '${dir1} / ${dir2}',
           fr: '${dir1} / ${dir2}',
           ja: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
           ko: '${dir1} / ${dir2}',
         },
         single: {
@@ -343,6 +344,7 @@ Options.Triggers.push({
           de: '${dir1}',
           fr: '${dir1}',
           ja: '${dir1}',
+          cn: '${dir1}',
           ko: '${dir1}',
         },
         poly6: {
@@ -350,6 +352,7 @@ Options.Triggers.push({
           de: '${dir1}: ${dir2} / ${dir3}',
           fr: '${dir1}: ${dir2} / ${dir3}',
           ja: '${dir1}: ${dir2} / ${dir3}',
+          cn: '${dir1}: ${dir2} / ${dir3}',
           ko: '${dir1}: ${dir2} / ${dir3}',
         },
         left: {
@@ -357,6 +360,7 @@ Options.Triggers.push({
           de: 'Links (Flügel-Seite)',
           fr: 'Gauche (Côté aile)',
           ja: '左 (翼)',
+          cn: '左 (翅膀侧)',
           ko: '왼쪽 (날개쪽)',
         },
         right: {
@@ -364,6 +368,7 @@ Options.Triggers.push({
           de: 'Rechts (Schlangen-Seite)',
           fr: 'Droite (Côté serpent)',
           ja: '右 (蛇)',
+          cn: '右 (蛇侧)',
           ko: '오른쪽 (뱀쪽)',
         },
         insideWest: {
@@ -371,6 +376,7 @@ Options.Triggers.push({
           de: 'Westen innen',
           fr: 'Intérieur Ouest',
           ja: '内側 西',
+          cn: '内侧 左 (西)',
           ko: '안 서쪽',
         },
         insideEast: {
@@ -378,6 +384,7 @@ Options.Triggers.push({
           de: 'Osten innen',
           fr: 'Intérieur Est',
           ja: '内側 東',
+          cn: '内侧 右 (东)',
           ko: '안 동쪽',
         },
         outsideWest: {
@@ -385,6 +392,7 @@ Options.Triggers.push({
           de: 'Westen außen',
           fr: 'Extérieur Ouest',
           ja: '外側 西',
+          cn: '外侧 左 (西)',
           ko: '바깥 서쪽',
         },
         outsideEast: {
@@ -392,6 +400,7 @@ Options.Triggers.push({
           de: 'Osten außen',
           fr: 'Extérieur Est',
           ja: '外側 東',
+          cn: '外侧 右 (东)',
           ko: '바깥 동쪽',
         },
         insideNW: {
@@ -399,6 +408,7 @@ Options.Triggers.push({
           de: 'NW innen',
           fr: 'Intérieur NO',
           ja: '内側 北西',
+          cn: '内侧 左上 (西北)',
           ko: '안 북서쪽',
         },
         insideNE: {
@@ -406,6 +416,7 @@ Options.Triggers.push({
           de: 'NO innen',
           fr: 'Intérieur NE',
           ja: '内側 北東',
+          cn: '内侧 右上 (东北)',
           ko: '안 북동쪽',
         },
         insideSE: {
@@ -413,6 +424,7 @@ Options.Triggers.push({
           de: 'SO innen',
           fr: 'Intérieur SE',
           ja: '内側 南東',
+          cn: '内侧 右下 (东南)',
           ko: '안 남동쪽',
         },
         insideSW: {
@@ -420,6 +432,7 @@ Options.Triggers.push({
           de: 'SW innen',
           fr: 'Intérieur SO',
           ja: '内側 南西',
+          cn: '内侧 左下 (西南)',
           ko: '안 남서쪽',
         },
         outsideNNW: {
@@ -427,6 +440,7 @@ Options.Triggers.push({
           de: 'NNW außen',
           fr: 'Extérieur NNO',
           ja: '1列 西の内側',
+          cn: '外侧 上偏左 (北偏西)',
           ko: '바깥 북쪽 왼칸',
         },
         outsideNNE: {
@@ -434,6 +448,7 @@ Options.Triggers.push({
           de: 'NNO außen',
           fr: 'Extérieur NNE',
           ja: '1列 東の内側',
+          cn: '外侧 上偏右 (北偏东)',
           ko: '바깥 북쪽 오른칸',
         },
         outsideSSW: {
@@ -441,6 +456,7 @@ Options.Triggers.push({
           de: 'SSW außen',
           fr: 'Extérieur SSO',
           ja: '4列 西の内側',
+          cn: '外侧 下偏左 (南偏西)',
           ko: '바깥 남쪽 왼칸',
         },
         outsideSSE: {
@@ -448,6 +464,7 @@ Options.Triggers.push({
           de: 'SSO außen',
           fr: 'Extérieur SSE',
           ja: '4列 東の内側',
+          cn: '外侧 下偏右 (南偏东)',
           ko: '바깥 남쪽 오른칸',
         },
         outsideWNW: {
@@ -455,6 +472,7 @@ Options.Triggers.push({
           de: 'WNW außen',
           fr: 'Extérieur ONO',
           ja: '2列 西の外側',
+          cn: '外侧 左偏上 (西偏北)',
           ko: '바깥 서쪽 위칸',
         },
         outsideENE: {
@@ -462,6 +480,7 @@ Options.Triggers.push({
           de: 'ONO außen',
           fr: 'Extérieur ENE',
           ja: '2列 東の外側',
+          cn: '外侧 右偏上 (东偏北)',
           ko: '바깥 동쪽 위칸',
         },
         outsideWSW: {
@@ -469,6 +488,7 @@ Options.Triggers.push({
           de: 'WSW außen',
           fr: 'Extérieur OSO',
           ja: '3列 西の外側',
+          cn: '外侧 左偏下 (西偏南)',
           ko: '바깥 서쪽 아래칸',
         },
         outsideESE: {
@@ -476,6 +496,7 @@ Options.Triggers.push({
           de: 'OSO außen',
           fr: 'Extérieur ESE',
           ja: '3列 東の外側',
+          cn: '外侧 右偏下 (东偏南)',
           ko: '바깥 동쪽 아래칸',
         },
         cornerNW: {
@@ -483,6 +504,7 @@ Options.Triggers.push({
           de: 'NW Ecke',
           fr: 'Coin NO',
           ja: '北西 隅',
+          cn: '左上 (西北) 角',
           ko: '북서쪽 구석',
         },
         cornerNE: {
@@ -490,6 +512,7 @@ Options.Triggers.push({
           de: 'NO Ecke',
           fr: 'Coin NE',
           ja: '北東 隅',
+          cn: '右上 (东北) 角',
           ko: '북동쪽 구석',
         },
         cornerSE: {
@@ -497,6 +520,7 @@ Options.Triggers.push({
           de: 'SO Ecke',
           fr: 'Coin SE',
           ja: '南東 隅',
+          cn: '右下 (东南) 角',
           ko: '남동쪽 구석',
         },
         cornerSW: {
@@ -504,6 +528,7 @@ Options.Triggers.push({
           de: 'SW Ecke',
           fr: 'Coin SO',
           ja: '南西 隅',
+          cn: '左下 (西南) 角',
           ko: '남서쪽 구석',
         },
       },
@@ -557,6 +582,7 @@ Options.Triggers.push({
           de: 'Gehe nach Vorne/Hinten (${tile})',
           fr: 'Allez Devant/Derrière (${tile})',
           ja: '縦へ (${tile})',
+          cn: '去前/后 (${tile})',
           ko: '앞/뒤로 (${tile})',
         },
       },
@@ -577,6 +603,7 @@ Options.Triggers.push({
           de: 'Seiten (${tile})',
           fr: 'Côté (${tile})',
           ja: '横へ (${tile})',
+          cn: '去两侧 (${tile})',
           ko: '옆으로 (${tile})',
         },
       },
@@ -766,6 +793,7 @@ Options.Triggers.push({
           de: '${dir}, ${bait}',
           fr: '${dir}, ${bait}',
           ja: '${dir}, ${bait}',
+          cn: '${dir}, ${bait}',
           ko: '${dir}, ${bait}',
         },
         left: {
@@ -773,7 +801,7 @@ Options.Triggers.push({
           de: 'Links (Flügel-Seite)',
           fr: 'Gauche (Côté Aile)',
           ja: '左 (翼)',
-          cn: '左 (翅膀)',
+          cn: '左 (翅膀侧)',
           ko: '왼쪽 (날개쪽)',
         },
         right: {
@@ -781,7 +809,7 @@ Options.Triggers.push({
           de: 'Rechts (Schlangen-Seite)',
           fr: 'Droite (Côté Serpent)',
           ja: '右 (蛇)',
-          cn: '右 (蛇)',
+          cn: '右 (蛇侧)',
           ko: '오른쪽 (뱀쪽)',
         },
         firstBait: {
@@ -922,7 +950,7 @@ Options.Triggers.push({
           de: 'Links (Flügel-Seite)',
           fr: 'Gauche (Côté Aile)',
           ja: '左 (翼)',
-          cn: '左 (翅膀)',
+          cn: '左 (翅膀侧)',
           ko: '왼쪽 (날개쪽)',
         },
         right: {
@@ -930,7 +958,7 @@ Options.Triggers.push({
           de: 'Rechts (Schlangen-Seite)',
           fr: 'Droite (Côté Serpent)',
           ja: '右 (蛇)',
-          cn: '右 (蛇)',
+          cn: '右 (蛇侧)',
           ko: '오른쪽 (뱀쪽)',
         },
       },
@@ -956,6 +984,7 @@ Options.Triggers.push({
           de: 'Kegel Aoe nach Vorne',
           fr: 'Cleave Avant',
           ja: '口からおくび',
+          cn: '前方扇形',
           ko: '전방 부채꼴 장판',
         },
         backwardCleave: {
@@ -963,6 +992,7 @@ Options.Triggers.push({
           de: 'Kegel Aoe nach Hinten',
           fr: 'Cleave Arrière',
           ja: '尻からおなら',
+          cn: '背后扇形',
           ko: '후방 부채꼴 장판',
         },
       },
@@ -998,6 +1028,7 @@ Options.Triggers.push({
           de: 'Verteilen ${dir1}',
           fr: 'Dispersion ${dir1}',
           ja: '散会 ${dir1}',
+          cn: '分散 ${dir1}',
           ko: '산개 ${dir1}',
         },
         stackSide: {
@@ -1005,6 +1036,7 @@ Options.Triggers.push({
           de: 'Sammeln ${dir1}',
           fr: 'Package ${dir1}',
           ja: '頭割り ${dir1}',
+          cn: '分摊 ${dir1}',
           ko: '쉐어 ${dir1}',
         },
       },
@@ -1102,6 +1134,32 @@ Options.Triggers.push({
         'Synergy': 'シュネルギア',
         'Transmission': '寄生',
         'Unholy Darkness': 'ダークホーリー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Hegemone': '赫革摩涅',
+        'Parasitos': '寄生生物',
+      },
+      'replaceText': {
+        'Aetherial Exchange': '以太交换',
+        'Aetheric Polyominoid': '以太多连方',
+        'Chelic Claw': '爪击',
+        'Choros Ixou': '寄生之舞',
+        'Dark Ashes': '冥灰',
+        'Dark Dome': '暗天顶',
+        'Dark Sphere': '黑暗球',
+        'Exocleaver': '外劈',
+        'Hemitheos\'s Dark IV': '半神冥暗',
+        'Pathogenic Cells': '软体细胞流',
+        'Polyominoid Sigma': '以太多连方Σ',
+        'Polyominous Dark IV': '多连方冥暗',
+        'Reek Havoc': '喷气',
+        'Synergy': '协同',
+        'Transmission': '寄生传染',
+        'Unholy Darkness': '黑暗神圣',
       },
     },
   ],

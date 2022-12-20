@@ -77,6 +77,7 @@ Options.Triggers.push({
           de: 'Frucht des Lebens',
           fr: 'Fruits de la vie',
           ja: '生命の果実',
+          cn: '生命之果',
         };
         // Select the Forbidden Fruits
         const combatantNameFruits = [fruitLocaleNames[data.parserLang] ?? fruitLocaleNames['en']];
@@ -113,6 +114,7 @@ Options.Triggers.push({
             de: '${platform1} / ${platform2}',
             fr: '${platform1} / ${platform2}',
             ja: '${platform1} / ${platform2}',
+            cn: '${platform1} / ${platform2}',
             ko: '${platform1} / ${platform2}',
           },
           orientation: {
@@ -120,6 +122,7 @@ Options.Triggers.push({
             de: 'Bullen-Linie: ${location}',
             fr: 'Taureau Ligne : ${location}',
             ja: '線付き牛: ${location}',
+            cn: '连线牛: ${location}',
             ko: '줄 달린 소: ${location}',
           },
           famineOrientation: {
@@ -127,6 +130,7 @@ Options.Triggers.push({
             de: 'Minotauren ohne Vögel: ${location}',
             fr: 'Minotaure sans oiseau : ${location}',
             ja: 'ミノがある場所: ${location}',
+            cn: '无鸟牛头人: ${location}',
             ko: '새 없는 곳: ${location}',
           },
           deathOrientation: {
@@ -134,6 +138,7 @@ Options.Triggers.push({
             de: 'Blitz-Bulle: ${location}',
             fr: 'Taureau éclair : ${location}',
             ja: '線付いてない牛: ${location}',
+            cn: '钢铁牛: ${location}',
             ko: '줄 안달린 소: ${location}',
           },
           warOrientation: {
@@ -141,6 +146,7 @@ Options.Triggers.push({
             de: 'Vögel mit Minotauren : ${location}',
             fr: 'Oiseau sans Minotaure : ${location}',
             ja: 'ミノと鳥: ${location}',
+            cn: '有鸟牛头人: ${location}',
             ko: '새 + 미노타우로스: ${location}',
           },
         };
@@ -303,6 +309,7 @@ Options.Triggers.push({
           de: 'getrennte Tankbuster',
           fr: 'Séparez des Tankbusters',
           ja: '2人同時タンク強攻撃',
+          cn: '分散死刑',
           ko: '따로맞는 탱버',
         },
       },
@@ -331,6 +338,7 @@ Options.Triggers.push({
           de: 'Bald auf freier Plattform ködern',
           fr: 'Déposez sur une plateforme vide bientôt',
           ja: '果実がない空きの円盤へ移動',
+          cn: '移动到空平台',
           ko: '빈 플랫폼에서 장판 유도 준비',
         },
       },
@@ -348,6 +356,7 @@ Options.Triggers.push({
           de: 'Heiler-Gruppen Plattformen',
           fr: 'Groupes heals sur les plateformes',
           ja: '円盤の内でヒーラーと頭割り',
+          cn: '治疗分组平台',
           ko: '힐러 그룹별로 플랫폼',
         },
       },
@@ -389,6 +398,7 @@ Options.Triggers.push({
           de: 'AoE + Blutung',
           fr: 'AoE + Saignement',
           ja: '全体攻撃 + 出血',
+          cn: 'AOE + 流血',
           ko: '전체 공격 + 도트',
         },
       },
@@ -439,6 +449,7 @@ Options.Triggers.push({
             de: 'Stier-Verbindung (Linien AoE)',
             fr: 'Lien Taureau (AoE en ligne)',
             ja: '牛から直線',
+            cn: '牛连线 (直线AOE)',
             ko: '소 (직선 장판)',
           },
           deathBullTether: {
@@ -446,6 +457,7 @@ Options.Triggers.push({
             de: 'Stier-Verbindung (Linien AoE)',
             fr: 'Lien Taureau (AoE en ligne)',
             ja: '牛から直線',
+            cn: '牛连线 (直线AOE)',
             ko: '소 (직선 장판)',
           },
           warBullTether: {
@@ -453,6 +465,7 @@ Options.Triggers.push({
             de: 'Stier-Verbindung (Linien AoE)',
             fr: 'Lien Taureau (AoE en ligne)',
             ja: '牛から直線',
+            cn: '牛连线 (直线AOE)',
             ko: '소 (직선 장판)',
           },
           minotaurTether: {
@@ -460,6 +473,7 @@ Options.Triggers.push({
             de: 'Minotaurus-Verbindung (Große Kegel-AoE)',
             fr: 'Lien Minotaure (Gros Cleave)',
             ja: 'ミノから扇',
+            cn: '牛头人连线 (大顺劈)',
             ko: '미노타우로스 (부채꼴 장판)',
           },
           famineMinotaurTether: {
@@ -467,6 +481,7 @@ Options.Triggers.push({
             de: 'Überkreuze Minotaurus-Verbindung (Große Kegel-AoE)',
             fr: 'Lien Minotaure en croix (Gros Cleave)',
             ja: 'ミノからの扇を交える',
+            cn: '交叉牛头人连线 (大顺劈)',
             ko: '미노타우로스 선 교차하기 (부채꼴 장판)',
           },
           warMinotaurTether: {
@@ -474,6 +489,7 @@ Options.Triggers.push({
             de: 'Minotaurus-Verbindung (Große Kegel-AoE)',
             fr: 'Lien Minotaure (Gros Cleave)',
             ja: 'ミノから扇',
+            cn: '牛头人连线 (大顺劈)',
             ko: '미노타우로스 (부채꼴 장판)',
           },
           warBirdTether: {
@@ -481,6 +497,7 @@ Options.Triggers.push({
             de: 'Vogel-Verbindung',
             fr: 'Lien Oiseau',
             ja: '鳥から線',
+            cn: '鸟连线',
             ko: '새',
           },
           noTether: {
@@ -488,6 +505,7 @@ Options.Triggers.push({
             de: 'Keine Verbindung, Minotaurus-Verbindung ködern (Mitte)',
             fr: 'Aucun lien, encaissez le cleave du Minotaure (Milieu)',
             ja: '線なし、中央で扇を誘導',
+            cn: '无连线，诱导牛头人顺劈 (中间)',
             ko: '선 없음, 미노타우로스 유도 (중앙)',
           },
           famineNoTether: {
@@ -495,6 +513,7 @@ Options.Triggers.push({
             de: 'Keine Verbindung, Minotaurus-Verbindung ködern',
             fr: 'Aucun lien, encaissez le cleave du Minotaure',
             ja: '線なし、ミノからの扇を誘導',
+            cn: '无连线，诱导牛头人顺劈',
             ko: '선 없음, 미노타우로스 유도',
           },
         };
@@ -635,6 +654,7 @@ Options.Triggers.push({
           de: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
           fr: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
           ja: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
+          cn: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
           ko: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
         },
         spread: Outputs.spread,
@@ -815,6 +835,45 @@ Options.Triggers.push({
         'Static Path': 'スタティックパース',
         'Stymphalian Strike': 'バードストライク',
         'War\'s Harvest': '生命の繁茂【乱】',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Agdistis': '阿格狄斯提斯',
+        'Immature Io': '未成熟的伊娥',
+        'Immature Minotaur': '未成熟的弥诺陶洛斯',
+        'Immature Stymphalide': '未成熟的铁爪怪鸟',
+      },
+      'replaceText': {
+        '--chasing aoe--': '--追踪AOE--',
+        '--eggs--': '--蛋--',
+        'arrow': '箭头',
+        'close': '近',
+        'far': '远',
+        'Blades of Attis': '阿提斯的叶刃',
+        'Bough of Attis': '阿提斯的巨枝',
+        'Bronze Bellows': '突风强袭',
+        'Bullish Slash': '牛魔猛击',
+        'Bullish Swipe': '牛魔横扫',
+        'Condensed Aero II': '集聚烈风',
+        'Dispersed Aero II': '流散烈风',
+        'Forbidden Fruit': '生命之果',
+        'Hemitheos\'s Aero III': '半神暴风',
+        'Hemitheos\'s Aero IV': '半神飙风',
+        'Hemitheos\'s Glare(?! III)': '半神闪耀',
+        'Hemitheos\'s Glare III': '半神闪灼',
+        'Hemitheos\'s Holy(?! III)': '半神神圣',
+        'Hemitheos\'s Holy III': '半神豪圣',
+        'Hemitheos\'s Tornado': '半神龙卷',
+        'Immortal\'s Obol': '不灭者的导枝',
+        'Light of Life': '生命的极光',
+        'Roots of Attis': '阿提斯的根足',
+        'Shadow of Attis': '阿提斯的光露',
+        'Spark of Life': '生命的光芒',
+        'Static Path': '静电之路',
+        'Stymphalian Strike': '怪鸟强袭',
       },
     },
   ],
