@@ -835,6 +835,7 @@ const data: ZoneInfoType = {
     'contentType': 7,
     'exVersion': 0,
     'name': {
+      'cn': '皇都伊修加德保卫战',
       'de': 'Der Schicksalsweg',
       'en': 'The Steps of Faith',
       'fr': 'Le Siège de la sainte Cité d\'Ishgard',
@@ -863,6 +864,7 @@ const data: ZoneInfoType = {
     'contentType': 2,
     'exVersion': 4,
     'name': {
+      'cn': '异界孤城特罗亚宫廷',
       'de': 'Der Schwarze Hof von Troia',
       'en': 'The Fell Court of Troia',
       'fr': 'Le Château de Troïa',
@@ -877,6 +879,7 @@ const data: ZoneInfoType = {
     'contentType': 4,
     'exVersion': 4,
     'name': {
+      'cn': '巴尔巴莉希娅歼灭战',
       'de': 'Prophetie - Barbarizia',
       'en': 'Storm\'s Crown',
       'fr': 'La Toison des tempêtes',
@@ -891,6 +894,7 @@ const data: ZoneInfoType = {
     'contentType': 4,
     'exVersion': 4,
     'name': {
+      'cn': '巴尔巴莉希娅歼殛战',
       'de': 'Eschatos - Barbarizia',
       'en': 'Storm\'s Crown (Extreme)',
       'fr': 'La Toison des tempêtes (extrême)',
@@ -933,6 +937,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '万魔殿 炼净之狱1',
       'de': 'Abyssos - Fünfter Kreis',
       'en': 'Abyssos: The Fifth Circle',
       'fr': 'Le Purgatoire du Pandæmonium - Cages',
@@ -947,6 +952,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '零式万魔殿 炼净之狱1',
       'de': 'Abyssos - Fünfter Kreis (episch)',
       'en': 'Abyssos: The Fifth Circle (Savage)',
       'fr': 'Le Purgatoire du Pandæmonium - Cages (sadique)',
@@ -961,6 +967,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '万魔殿 炼净之狱2',
       'de': 'Abyssos - Sechster Kreis',
       'en': 'Abyssos: The Sixth Circle',
       'fr': 'Le Purgatoire du Pandæmonium - Croisements',
@@ -975,6 +982,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '零式万魔殿 炼净之狱2',
       'de': 'Abyssos - Sechster Kreis (episch)',
       'en': 'Abyssos: The Sixth Circle (Savage)',
       'fr': 'Le Purgatoire du Pandæmonium - Croisements (sadique)',
@@ -989,6 +997,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '万魔殿 炼净之狱3',
       'de': 'Abyssos - Siebter Kreis',
       'en': 'Abyssos: The Seventh Circle',
       'fr': 'Le Purgatoire du Pandæmonium - Racines',
@@ -1003,6 +1012,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '零式万魔殿 炼净之狱3',
       'de': 'Abyssos - Siebter Kreis (episch)',
       'en': 'Abyssos: The Seventh Circle (Savage)',
       'fr': 'Le Purgatoire du Pandæmonium - Racines (sadique)',
@@ -1017,6 +1027,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '万魔殿 炼净之狱4',
       'de': 'Abyssos - Achter Kreis',
       'en': 'Abyssos: The Eighth Circle',
       'fr': 'Le Purgatoire du Pandæmonium - Hérédité',
@@ -1031,6 +1042,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '零式万魔殿 炼净之狱4',
       'de': 'Abyssos - Achter Kreis (episch)',
       'en': 'Abyssos: The Eighth Circle (Savage)',
       'fr': 'Le Purgatoire du Pandæmonium - Hérédité (sadique)',
@@ -1045,6 +1057,7 @@ const data: ZoneInfoType = {
     'contentType': 4,
     'exVersion': 4,
     'name': {
+      'cn': '萨菲洛特幻巧战',
       'de': 'Traumprüfung - Sephirot',
       'en': 'Containment Bay S1T7 (Unreal)',
       'fr': 'Unité de contention S1P7 (irréel)',
@@ -1059,6 +1072,7 @@ const data: ZoneInfoType = {
     'contentType': 7,
     'exVersion': 4,
     'name': {
+      'cn': '失传的力量',
       'de': 'Wo alles seinen Anfang nimmt',
       'en': 'Where Everything Begins',
       'fr': 'Au commencement était Zero',
