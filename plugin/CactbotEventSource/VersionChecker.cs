@@ -116,7 +116,7 @@ namespace Cactbot {
           case "Korean":
             return GameRegion.Korean;
           default:
-            return GameRegion.International;
+            return GameRegion.Chinese;
         }
       } catch (Exception e) {
         logger_.Log(LogLevel.Error, Strings.GetGameRegionException, e.Message);
