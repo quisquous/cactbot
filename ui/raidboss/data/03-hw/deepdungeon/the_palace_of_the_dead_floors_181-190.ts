@@ -25,10 +25,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         out: Outputs.out,
         interruptOrOut: {
-          en: 'interrupt ${name} or Out',
-          de: 'Unterbreche ${name} oder Raus',
-          cn: '打断 ${name} 或远离',
-          ko: '${name} 시전 끊거나 밖으로',
+          en: 'Out or interrupt ${name}',
         },
       },
     },
@@ -45,10 +42,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         getUnder: Outputs.getUnder,
         interruptOrUnder: {
-          en: 'interrupt ${name} or Get Under',
-          de: 'Unterbreche ${name} oder geh Unter ihn',
-          cn: '打断 ${name} 或去脚下',
-          ko: '${name} 시전 끊거나 아래로',
+          en: 'Get Under or interrupt ${name}',
         },
       },
     },
