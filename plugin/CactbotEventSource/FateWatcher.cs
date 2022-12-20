@@ -113,10 +113,11 @@ namespace Cactbot {
     // v6.05h           0x1a7
     // v6.1             0x237
     // v6.11            0x368
+    // v6.15            0x31F
 
     private static readonly CEDirectorOPCodes cedirector_ko = new CEDirectorOPCodes(
       0x30,
-      0x368
+      0x31F
     );
 
     private static readonly CEDirectorOPCodes cedirector_cn = new CEDirectorOPCodes(

@@ -22,6 +22,7 @@ const triggerSet: TriggerSet<Data> = {
   ],
   zoneLabel: {
     en: 'Heaven-on-High (All Floors)',
+    de: 'Himmelssäule (Alle Ebenen)',
     cn: '天之御柱 (全楼层)',
     ko: '천궁탑',
   },
@@ -30,14 +31,17 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Quivering Coffers ----------------
     {
       id: 'HoH General Quivering Coffer Spawn',
-      // 7394 = Quivering Coffer
+      // 7392 = Quivering Coffer (floor 1-30 bronze chests, can stun or interrupt)
+      // 7393 = Quivering Coffer (floor 31-60 silver chests, can stun or interrupt)
+      // 7394 = Quivering Coffer (floor 61+ gold chests, can interrupt, immune to stun)
       // TODO: some Quivering Coffers may spawn after transference between floors and get called early before being found
       type: 'AddedCombatant',
-      netRegex: { npcNameId: '7394', capture: false },
+      netRegex: { npcNameId: '739[2-4]', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Quivering Coffer spawned!',
+          de: 'zuckende Schnapptruhe ist erschienen',
           cn: '已生成 抖动的宝箱!',
           ko: '꿈틀거리는 보물상자 등장!',
         },
@@ -45,10 +49,11 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'HoH General Quivering Coffer Malice',
-      // gives Accursed Pox (43F) if not interrupted
+      // same id regardless of which "type" of Quivering Coffer
+      // inflicts Accursed Pox (43F) if not interrupted
       type: 'StartsUsing',
       netRegex: { id: '3019', source: 'Quivering Coffer' },
-      response: Responses.interrupt(),
+      response: Responses.interruptIfPossible(),
     },
     // ---------------- Pomanders and Magicite ----------------
     {
@@ -102,6 +107,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         duplicate: {
           en: '${pomander} duplicate',
+          de: 'Doppelter ${pomander}',
           cn: '${pomander} 重复',
           ko: '${pomander} 중복',
         },
@@ -281,6 +287,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         duplicate: {
           en: '${magicite} duplicate',
+          de: 'Doppelter ${magicite} Stein',
           cn: '${magicite} 重复',
           ko: '${magicite} 중복',
         },
@@ -331,9 +338,42 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Beacon of Passage activated',
+          de: 'Weglaterne aktiviert',
           cn: '转移灯笼已启动',
           ko: '전송 등불 활성화',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Quivering Coffer': 'zuckend(?:e|er|es|en) Schnapptruhe',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Quivering Coffer': 'coffre gigotant',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Quivering Coffer': 'うごめく宝箱',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Quivering Coffer': '抖动的宝箱',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Quivering Coffer': '꿈틀거리는 보물상자',
       },
     },
   ],

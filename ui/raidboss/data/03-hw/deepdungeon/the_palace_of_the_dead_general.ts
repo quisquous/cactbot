@@ -4,7 +4,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Triggers applicable to all Palace of the Dead floors.
-// TODO: likely different Mimic npcNameIds for lower floors
 
 export type Data = RaidbossData;
 
@@ -33,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
   ],
   zoneLabel: {
     en: 'The Palace of the Dead (All Floors)',
+    de: 'Palast der Toten (Alle Ebenen)',
     cn: '死者宫殿 (全楼层)',
     ko: '망자의 궁전',
   },
@@ -41,7 +41,10 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Mimics ----------------
     {
       id: 'PotD General Mimic Spawn',
-      // 2566 = Mimic
+      // 2566 = Mimic (appears to be same npcNameId all floors)
+      // floor 1-30 bronze chests, can stun or interrupt
+      // floor 31-40 silver chests, can stun or interrupt
+      // floor 41+ gold chests, can interrupt, immune to stun
       // TODO: some Mimics may spawn after transference between floors and get called early before being found
       type: 'AddedCombatant',
       netRegex: { npcNameId: '2566', capture: false },
@@ -49,6 +52,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Mimic spawned!',
+          de: 'Mimik ist erschienen!',
           cn: '已生成 拟态怪!',
           ko: '미믹 등장!',
         },
@@ -59,7 +63,7 @@ const triggerSet: TriggerSet<Data> = {
       // inflicts Accursed Pox (43F) if not interrupted
       type: 'StartsUsing',
       netRegex: { id: '18FD', source: 'Mimic' },
-      response: Responses.interrupt(),
+      response: Responses.interruptIfPossible(),
     },
     // ---------------- Pomanders ----------------
     {
@@ -113,6 +117,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         duplicate: {
           en: '${pomander} duplicate',
+          de: 'Doppelter ${pomander}',
           cn: '${pomander} 重复',
           ko: '${pomander} 중복',
         },
@@ -283,9 +288,42 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Cairn of Passage activated',
+          de: 'Wegleuchte aktiviert',
           cn: '转移石冢已启动',
           ko: '전송 석탑 활성화',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Mimic': 'Nachahmung',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Mimic': 'Mime',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Mimic': 'ものまね',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Mimic': '模仿',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Mimic': '흉내',
       },
     },
   ],

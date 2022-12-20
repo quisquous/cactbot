@@ -23,7 +23,7 @@ export const syncKeys = {
   //   network log lines: 00|timestamp|0839||Something will be sealed off
   //   NetRegexes: ^^00\|[^|]*\|0839\|[^|]*\|Something will be sealed off.*?\|
   seal:
-    `(?<=${parsedLB}|${networkLB}|${netRegexLB}|${paramLB})([^|]*) will be sealed off(?: in (?:[0-9]+ seconds)?)?`,
+    `(?<=${parsedLB}|${networkLB}|${netRegexLB}|${paramLB})([^|:]*) will be sealed off(?: in (?:[0-9]+ seconds)?)?`,
   unseal: 'is no longer sealed',
   engage: 'Engage!',
 };
