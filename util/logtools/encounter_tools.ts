@@ -62,7 +62,7 @@ export class EncounterFinder {
     this.regex = {
       changeZone: NetRegexes.changeZone(),
       cactbotWipe: commonNetRegex.cactbotWipeEcho,
-      win: NetRegexes.network6d({ command: '40000003' }),
+      win: NetRegexes.network6d({ command: '4000000[23]' }),
       wipe: commonNetRegex.wipe,
       commence: NetRegexes.network6d({ command: '4000000[16]' }),
       playerAttackingMob: NetRegexes.ability({ sourceId: '1.{7}', targetId: '4.{7}' }),

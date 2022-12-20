@@ -137,6 +137,14 @@ const ruleModule = {
       'Program > VariableDeclaration > VariableDeclarator > ObjectExpression'(node) {
         globalVars.set(node.parent.id.name, getAllKeys(node.properties));
       },
+      'Program > VariableDeclaration > VariableDeclarator > TSAsExpression > ObjectExpression'(
+        node,
+      ) {
+        /**
+         * const eclipseOutputStrings = { ... } as const;
+         */
+        globalVars.set(node.parent.parent.id.name, getAllKeys(node.properties));
+      },
       [`Property[key.name=/${textProps.join('|')}/] > :function`](node) {
         const props = getAllKeys(node.parent.parent.properties);
         if (props.find((prop) => prop === 'outputStrings')) {

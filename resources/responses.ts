@@ -433,6 +433,8 @@ export const Responses = {
   goLeft: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.left),
   goWest: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.getLeftAndWest),
   goEast: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.getRightAndEast),
+  goLeftThenRight: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.leftThenRight),
+  goRightThenLeft: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.rightThenLeft),
   goFrontBack: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.goFrontBack),
   goSides: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.sides),
   // .killAdds() is used for adds that will always be available
@@ -483,6 +485,19 @@ export const Responses = {
       },
     };
   },
+  stunIfPossible: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
+    // cactbot-builtin-response
+    output.responseOutputStrings = {
+      stun: Outputs.stunTarget,
+    };
+    return {
+      [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
+        const source = getSource(matches);
+        if (data.CanStun())
+          return output.stun?.({ name: source });
+      },
+    };
+  },
   interrupt: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
     // cactbot-builtin-response
     output.responseOutputStrings = {
@@ -492,6 +507,19 @@ export const Responses = {
       [defaultAlertText(sev)]: (_data: Data, matches: TargetedMatches, output: Output) => {
         const source = getSource(matches);
         return output.interrupt?.({ name: source });
+      },
+    };
+  },
+  interruptIfPossible: (sev?: Severity) => (_data: Data, _matches: unknown, output: Output) => {
+    // cactbot-builtin-response
+    output.responseOutputStrings = {
+      interrupt: Outputs.interruptTarget,
+    };
+    return {
+      [defaultAlertText(sev)]: (data: Data, matches: TargetedMatches, output: Output) => {
+        const source = getSource(matches);
+        if (data.CanSilence())
+          return output.interrupt?.({ name: source });
       },
     };
   },

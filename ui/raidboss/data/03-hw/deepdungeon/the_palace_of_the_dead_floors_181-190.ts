@@ -25,7 +25,8 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         out: Outputs.out,
         interruptOrOut: {
-          en: 'interrupt ${name} or Out',
+          en: 'Out or interrupt ${name}',
+          cn: '出去或打断 ${name}',
         },
       },
     },
@@ -42,7 +43,8 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         getUnder: Outputs.getUnder,
         interruptOrUnder: {
-          en: 'interrupt ${name} or Get Under',
+          en: 'Get Under or interrupt ${name}',
+          cn: '去脚下或打断 ${name}',
         },
       },
     },
@@ -77,7 +79,42 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         pushToBoss: {
           en: 'Push ${name} into boss',
+          de: 'Stoß ${name} in den Boss',
+          cn: '将 ${name} 推至BOSS',
+          ko: '보스쪽으로 ${name} 밀기',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Deep Palace Garm': 'Katakomben-Garm',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Deep Palace Garm': 'garm des profondeurs',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Deep Palace Garm': 'ディープパレス・ガルム',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Deep Palace Garm': '深宫加姆',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Deep Palace Garm': '깊은 궁전 가름',
       },
     },
   ],

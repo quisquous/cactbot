@@ -19,6 +19,12 @@ const triggerSet: TriggerSet<Data> = {
     ZoneId.Elpis,
     ZoneId.UltimaThule,
   ],
+  zoneLabel: {
+    en: 'SS Rank Hunts',
+    de: 'SS Jagdziele',
+    cn: 'SS 级狩猎怪',
+    ko: 'SS급 마물',
+  },
   triggers: [
     {
       id: 'Hunt Ker Heliovoid',

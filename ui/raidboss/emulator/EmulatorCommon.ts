@@ -201,6 +201,6 @@ export default class EmulatorCommon {
   static countdownRegexes = LocaleNetRegex.countdownStart;
   static unsealRegexes = LocaleNetRegex.areaUnseal;
   static wipeRegex = commonNetRegex.wipe;
-  static winRegex = NetRegexes.network6d({ command: '40000003' });
+  static winRegex = NetRegexes.network6d({ command: '4000000[23]' });
   static cactbotWipeRegex = NetRegexes.echo({ line: 'cactbot wipe.*?' });
 }

@@ -1631,6 +1631,7 @@ Known types:
 - Fade in: `21:content:4000000F:00:00:00:00` (always paired with barrier up)
 - Barrier up: `21:content:40000011:00:00:00:00` (always comes after fade in)
 - Victory: `21:zone:40000003:00:00:00:00`
+- Victory (variant/criterion): `21:zone:40000002:00:00:00:00`
 
 Note: cactbot uses "fade in" as the wipe trigger,
 but probably should switch to "fade out" after testing.
