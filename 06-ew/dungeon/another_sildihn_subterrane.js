@@ -201,7 +201,7 @@ Options.Triggers.push({
       // use 7751/7752 (Squeaky Clean Left/Right), rather than 7766 (Fresh Puff)
       // Squeaky Clean will change the effects of two puffs after the Fresh Puff cast
       // so it is the easiest method to determine mechanic resolution
-      netRegex: { id: '775[12]', source: 'Silkie' },
+      netRegex: { id: ['7751', '7752'], source: 'Silkie' },
       condition: (data) => data.puffCounter === 1,
       delaySeconds: 9,
       durationSeconds: 8,
