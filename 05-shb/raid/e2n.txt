@@ -32,7 +32,7 @@ hideall "Spell-In-Waiting"
 191.3 "Doomvoid Slicer" sync / 1[56]:[^:]*:Voidwalker:3E3C:/
 206.3 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E4D:/
 
-216.8 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E6E:/ window 30,5
+216.8 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E6E:/ window 50,5
 223.3 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E3E:/
 230.3 "Punishing Ray" sync / 1[56]:[^:]*:Voidwalker:3E47:/
 241.3 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E3E:/
