@@ -251,7 +251,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Shifting Altars of Uznair Altar Airavata Buffet',
-      // uses Spin immediately after (large front cone in direction Buffet target)
+      // uses Spin immediately after (large front cone in direction of Buffet target)
       type: 'StartsUsing',
       netRegex: { id: '343E', source: 'Altar Airavata' },
       response: Responses.knockbackOn(),
