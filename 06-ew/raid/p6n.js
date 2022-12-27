@@ -144,7 +144,7 @@ Options.Triggers.push({
           de: 'Sei gegenüber dem verbundenen, sicheren Platz',
           fr: 'Placez vous sur la zone sûre de l\'élément opposé',
           ja: '線が繋がってる安置へ移動',
-          cn: '去发光方格',
+          cn: '去连线方格对侧安全区',
           ko: '선 연결된 기둥의 안전지대로',
         },
       },
