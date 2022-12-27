@@ -490,7 +490,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Lively Bait': '活饵',
         'Proto-Carbuncle': '原型宝石兽',
@@ -498,7 +497,9 @@ const triggerSet: TriggerSet<Data> = {
       'replaceText': {
         '--towers--': '--塔--',
         'Acidic Slaver': '酸性唾液',
+        'Claw to Tail': '利爪凶尾',
         'Devour': '捕食',
+        'Double Rush': '二连冲',
         'Impact': '践踏冲击',
         'Raging Claw': '暴怒连爪',
         'Raging Tail': '暴怒扫尾',
@@ -510,6 +511,7 @@ const triggerSet: TriggerSet<Data> = {
         'Sonic Shatter': '音碎',
         'Spit': '吐出',
         'Starving Stampede': '穷凶极饿',
+        'Tail to Claw': '凶尾利爪',
         'Topaz Cluster': '黄宝石晶簇',
         'Topaz Ray': '黄宝石射线',
         'Topaz Stones': '黄宝石',
