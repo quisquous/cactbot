@@ -1881,7 +1881,7 @@ Options.Triggers.push({
         if (data.flamesCutCounter === 1) {
           if (matches.count === '1C2')
             data.firstColorCut = 'orange';
-          else if (matches.count === '1C5')
+          else if (matches.count === '1C6')
             data.firstColorCut = 'blue';
         } else if (data.flamesCutCounter === 4) {
           data.firstColorCut = data.firstColorCut === 'orange' ? 'blue' : 'orange';
