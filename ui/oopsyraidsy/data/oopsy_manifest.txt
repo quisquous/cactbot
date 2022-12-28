@@ -144,6 +144,8 @@
 05-shb/ultimate/the_epic_of_alexander.ts
 06-ew/alliance/aglaia.ts
 06-ew/dungeon/alzadaals_legacy.ts
+06-ew/dungeon/another_sildihn_subterrane.ts
+06-ew/dungeon/another_sildihn_subterrane-savage.ts
 06-ew/dungeon/ktisis_hyperboreia.ts
 06-ew/dungeon/smileton.ts
 06-ew/dungeon/stigma_dreamscape.ts
