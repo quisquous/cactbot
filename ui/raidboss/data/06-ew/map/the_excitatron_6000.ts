@@ -4,7 +4,6 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: id for Lucky Face Temper's Flare
 // TODO: all Lucky Sphinx abilities
 
 const excitatronOutputStrings = {
@@ -137,8 +136,12 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
-    // Heart on Fire II (6D54) - aoes under random players
-    // Temper's Flare (6D4E?, 6743?) - roomwide aoe
+    {
+      id: 'Excitatron Temper\'s Flare',
+      type: 'StartsUsing',
+      netRegex: { id: '6D4E', source: 'Lucky Face', capture: false },
+      response: Responses.aoe(),
+    },
     // ---------------- alternate final chamber boss: Lucky Sphinx ----------------
     // Icewind Twister - donut aoe
     // Lightning Bolt - aoes under 4? players
