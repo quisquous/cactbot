@@ -13,10 +13,14 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Shadowcaster Infern Brand 1 and 4 safe location triggers if possible
 // TODO: Shadowcaster adjustments to timeline
 
+const puffWind = 'CE9';
+const puffIce = 'CEA';
+const puffLightning = 'CEB';
+
 export interface Data extends RaidbossData {
   suds?: string;
   puffCounter: number;
-  silkenPuffs: { [id: string]: { effect: string; location: string } };
+  silkenPuffs: { [id: string]: { effect: string; location: string; x: number; y: number } };
   freshPuff2SafeAlert?: string;
   soapCounter: number;
   beaterCounter: number;
@@ -190,8 +194,14 @@ const triggerSet: TriggerSet<Data> = {
         const puffX = Math.floor(puff.PosX);
         const puffY = Math.floor(puff.PosY);
         const puffLoc = dirs[positionTo8Dir(puffX, puffY, silkieCenterX, silkieCenterY)];
-        if (puffLoc !== undefined)
-          data.silkenPuffs[matches.targetId] = { effect: matches.effectId, location: puffLoc };
+        if (puffLoc === undefined)
+          return;
+        data.silkenPuffs[matches.targetId] = {
+          effect: matches.effectId,
+          location: puffLoc,
+          x: puffX,
+          y: puffY,
+        };
       },
     },
     {
@@ -265,12 +275,12 @@ const triggerSet: TriggerSet<Data> = {
         if (matches.id === '7751') { // Squeaky Clean Right - resolve based on SW puff's effect
           if (puffsByLoc.SW === undefined)
             return output.default!();
-          stackDir = puffsByLoc.SW === 'CEA' ? 'SE' : 'N'; // if SW is ice, SE stack (unsafe later); if SW is lightning, N stack (unsafe later)
+          stackDir = puffsByLoc.SW === puffIce ? 'SE' : 'N'; // if SW is ice, SE stack (unsafe later); if SW is lightning, N stack (unsafe later)
           safeDir = stackDir === 'SE' ? 'N' : 'SE'; // safeDir is the one we are not stacking at
         } else if (matches.id === '7752') { // Squeaky Clean Left - resolve based on SE puff's effect
           if (puffsByLoc.SE === undefined)
             return output.default!();
-          stackDir = puffsByLoc.SE === 'CEA' ? 'SW' : 'N'; // if SE is ice, SW stack (unsafe later); if SE is lightning, N stack (unsafe later)
+          stackDir = puffsByLoc.SE === puffIce ? 'SW' : 'N'; // if SE is ice, SW stack (unsafe later); if SE is lightning, N stack (unsafe later)
           safeDir = stackDir === 'SW' ? 'N' : 'SW';
         } else {
           return output.default!();
@@ -509,7 +519,7 @@ const triggerSet: TriggerSet<Data> = {
       durationSeconds: 6,
       alertText: (data, matches, output) => {
         const dirCards = ['N', 'E', 'S', 'W'];
-        let silkieStatus = '';
+        let silkieStatus: 'bossWind' | 'bossIce' | undefined = undefined;
         switch (data.suds) {
           case 'CE1': // Middle Safe
             silkieStatus = 'bossWind';
@@ -518,7 +528,7 @@ const triggerSet: TriggerSet<Data> = {
             silkieStatus = 'bossIce';
             // never CE3 (lightning) for this mechanic
         }
-        if (silkieStatus === '')
+        if (silkieStatus === undefined)
           return output.default!();
 
         const tetheredPuff = data.silkenPuffs[matches.sourceId];
@@ -527,7 +537,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // See Silken Puff Suds Gain trigger for list of Silken Puff effectIds
         // Puff must be either CEA (Ice / blue) or CEB (Lightning / yellow) in this mechanic
-        const puffEffect = tetheredPuff.effect === 'CEA' ? 'Blue' : 'Yellow';
+        const puffEffect = tetheredPuff.effect === puffIce ? 'Blue' : 'Yellow';
         const puffDir = tetheredPuff.location;
         if (puffDir === undefined)
           return output.default!();
@@ -727,44 +737,37 @@ const triggerSet: TriggerSet<Data> = {
         if (Object.keys(data.silkenPuffs).length !== 2)
           return output.default!();
 
-        const puffEffects: string[] = [];
+        // Green and yellow are very hard to differentiate for some colorblind folks,
+        // so give a north/south direction for any green or yellow.
+        let dirStr: string = output.unknown!();
+
         for (const puff of Object.values(data.silkenPuffs)) {
-          if (puff.effect !== undefined)
-            puffEffects.push(puff.effect);
+          if (puff.effect === puffWind || puff.effect === puffLightning) {
+            dirStr = puff.y < silkieCenterY ? output.northPuff!() : output.southPuff!();
+
+            // Wind takes precedence (since it can be with lightning)
+            if (puff.effect === puffWind)
+              break;
+          }
         }
 
-        const [puff0, puff1] = puffEffects.sort(); // sort to simplify switch statement later
-        if (puff0 === undefined || puff1 === undefined)
-          return output.default!();
+        // sort to simplify switch statement later
+        const [puff0, puff1] = Object.values(data.silkenPuffs).map((x) => x.effect).sort();
 
         // See Silken Puff Suds Gain trigger for list of Silken Puff effectIds
-        switch (puff0) {
-          case 'CE9':
-            if (puff1 === 'CEB')
-              return output.windAndLightning!();
-            return output.default!(); // should not ever have double-donut, or donut-ice combo
-          case 'CEA':
-            if (puff1 === 'CEA') {
-              return output.doubleIce!();
-            } else if (puff1 === 'CEB') {
-              return output.iceAndLightning!();
-            }
-            return output.default!();
-          case 'CEB':
-            if (puff1 === 'CEB')
-              return output.doubleLightning!();
-            return output.default!();
-          default:
-            return output.default!();
-        }
+        if (puff0 === puffWind && puff1 === puffLightning)
+          return output.windAndLightning!({ dir: dirStr });
+        if (puff0 === puffIce && puff1 === puffIce)
+          return output.doubleIce!();
+        if (puff0 === puffIce && puff1 === puffLightning)
+          return output.iceAndLightning!({ dir: dirStr });
+        if (puff0 === puffLightning && puff1 === puffLightning)
+          return output.doubleLightning!();
+        return output.default!();
       },
       outputStrings: {
         windAndLightning: {
-          en: 'Under green puff',
-          de: 'Unter grünem Puschel',
-          fr: 'Sous le pompon vert',
-          ja: '緑の下へ',
-          ko: '초록 구슬 밑으로',
+          en: 'Under ${dir} green puff',
         },
         doubleIce: {
           en: 'Intercards, away from puffs',
@@ -774,11 +777,7 @@ const triggerSet: TriggerSet<Data> = {
           ko: '대각선으로, 구슬에서 떨어지기',
         },
         iceAndLightning: {
-          en: 'Sides of yellow puff',
-          de: 'Seitlich der gelben Puscheln',
-          fr: 'Sur le côté des pompons verts',
-          ja: '黄色の横へ',
-          ko: '노란 구슬 옆으로',
+          en: 'Sides of ${dir} yellow puff',
         },
         doubleLightning: {
           en: 'Between puffs',
@@ -794,6 +793,9 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'たまのゆか回避',
           ko: '구슬 장판 피하기',
         },
+        northPuff: Outputs.north,
+        southPuff: Outputs.south,
+        unknown: Outputs.unknown,
       },
     },
     // ---------------- second trash ----------------
