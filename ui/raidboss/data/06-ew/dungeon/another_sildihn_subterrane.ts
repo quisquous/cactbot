@@ -455,13 +455,14 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '7767', source: 'Silkie', capture: false },
       condition: (data) => {
-        ++data.spreeCounter; // increment regardless if condition ultimately returns true or false
-        // skip trigger on 2nd & 3rd Fresh Puff  - those are handled by separate Fresh Puff triggers because safe area can be more nuanced
-        return data.puffCounter !== 2 && data.puffCounter !== 3;
+        ++data.spreeCounter;
+        // skip 2nd and 3rd sprees - those are handled by separate Fresh Puff triggers because safe area can be more nuanced
+        return data.spreeCounter !== 2 && data.spreeCounter !== 3;
       },
       infoText: (data, _matches, output) => {
         switch (data.suds) {
           case 'CE1':
+            // TODO: does spree 4 need an earlier warning to move the boss away from blue puffs?
             return output.getUnder!();
           case 'CE2':
             return output.intercards!();
