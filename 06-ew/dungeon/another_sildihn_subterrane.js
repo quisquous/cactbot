@@ -1,4 +1,3 @@
-// TODO: Gladiator triggers for gold/silver location using OverlayPlugin?
 // TODO: Gladiator adjustments to timeline
 // TODO: Shadowcaster Infern Brand 1 and 4 safe location triggers if possible
 // TODO: Shadowcaster adjustments to timeline
@@ -14,6 +13,11 @@ const positionTo8Dir = (posX, posY, centerX, centerY) => {
   // Dirs: N = 0, NE = 1, ..., NW = 7
   return Math.round(4 - 4 * Math.atan2(relX, relY) / Math.PI) % 8;
 };
+const headingTo4Dir = (heading) => {
+  // Dirs: N = 0, E = 1, S = 2, W = 3
+  return (2 - Math.round(heading * 2 / Math.PI)) % 4;
+};
+const visageMapIdx = (col, row) => row * 4 + col;
 Options.Triggers.push({
   zoneId: ZoneId.AnotherSildihnSubterrane,
   timelineFile: 'another_sildihn_subterrane.txt',
@@ -25,8 +29,8 @@ Options.Triggers.push({
       beaterCounter: 0,
       spreeCounter: 0,
       mightCasts: [],
-      gildedCounter: 0,
-      silveredCounter: 0,
+      myVisage: { gold: 0, silver: 0 },
+      visageMap: {},
       arcaneFontCounter: 0,
       brandEffects: {},
       brandCounter: 0,
@@ -1173,9 +1177,61 @@ Options.Triggers.push({
       run: (data, matches) => {
         const id = matches.effectId;
         if (id === 'CDF')
-          ++data.gildedCounter;
+          data.myVisage.gold = parseInt(matches.count);
         else if (id === 'CE0')
-          ++data.silveredCounter;
+          data.myVisage.silver = parseInt(matches.count);
+      },
+    },
+    {
+      id: 'ASS Golden/Silver Flame Collector',
+      // 766F = Golden Flame
+      // 7670 = Silver Flame
+      type: 'StartsUsing',
+      netRegex: { id: ['766F', '7670'], source: 'Hateful Visage' },
+      run: (data, matches) => {
+        const x = Math.round(parseFloat(matches.x));
+        const y = Math.round(parseFloat(matches.y));
+        // These mobs have two faces, gold fires in the direction the mob is facing
+        // and silver fires in reverse, so the heading needs to be reversed for silver.
+        const isSilver = matches.id === '7670';
+        const heading = (headingTo4Dir(parseFloat(matches.heading)) + (isSilver ? 2 : 0)) % 4;
+        const dir = {
+          north: 0,
+          east: 1,
+          south: 2,
+          west: 3,
+        };
+        const mark = (col, row) => {
+          const visage = data.visageMap[visageMapIdx(col, row)] ??= { gold: 0, silver: 0 };
+          if (isSilver)
+            visage.silver++;
+          else
+            visage.gold++;
+        };
+        // Possible values for positions:
+        // x: [-50, -40, -35, -30, -20]
+        // y: [-286, -276, -271, -266, -256]
+        if (x === -35) {
+          // vertical
+          const row = Math.round((y + 286) / 10);
+          if (heading === dir.west) {
+            mark(0, row);
+            mark(1, row);
+          } else if (heading === dir.east) {
+            mark(2, row);
+            mark(3, row);
+          }
+        } else if (y === -271) {
+          // horizontal
+          const col = Math.round((x + 50) / 10);
+          if (heading === dir.north) {
+            mark(col, 0);
+            mark(col, 1);
+          } else if (heading === dir.south) {
+            mark(col, 2);
+            mark(col, 3);
+          }
+        }
       },
     },
     {
@@ -1184,46 +1240,127 @@ Options.Triggers.push({
       // 7670 = Silver Flame
       type: 'StartsUsing',
       netRegex: { id: ['766F', '7670'], source: 'Hateful Visage', capture: false },
+      delaySeconds: 0.3,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        if (data.gildedCounter > 0) {
-          if (data.silveredCounter > 0)
-            return output.bothFates();
-          return output.gildedFate();
+        // The four inside corners.
+        const uptimeIdx = [5, 6, 9, 10];
+        const target = { gold: data.myVisage.silver, silver: data.myVisage.gold };
+        const targetIsEmpty = target.gold === 0 && target.silver === 0;
+        const squares = targetIsEmpty ? uptimeIdx : [...Array(16).keys()];
+        let locStr = output.unknown();
+        for (const idx of squares) {
+          const visage = data.visageMap[idx] ?? { gold: 0, silver: 0 };
+          if (visage.gold === target.gold && visage.silver === target.silver) {
+            locStr = {
+              0: output.outsideNW(),
+              1: output.outsideNNW(),
+              2: output.outsideNNE(),
+              3: output.outsideNE(),
+              4: output.outsideWNW(),
+              5: output.insideNW(),
+              6: output.insideNE(),
+              7: output.outsideENE(),
+              8: output.outsideWSW(),
+              9: output.insideSW(),
+              10: output.insideSE(),
+              11: output.outsideESE(),
+              12: output.outsideSW(),
+              13: output.outsideSSW(),
+              14: output.outsideSSE(),
+              15: output.outsideSE(),
+            }[idx] ?? output.unknown();
+            break;
+          }
         }
-        if (data.silveredCounter > 0)
-          return output.silveredFate();
-        return output.neitherFate();
+        if (target.silver > 0) {
+          if (target.gold > 0)
+            return output.bothFates({ loc: locStr });
+          return output.gildedFate({ loc: locStr });
+        }
+        if (target.gold > 0)
+          return output.silveredFate({ loc: locStr });
+        return output.neitherFate({ loc: locStr });
       },
+      run: (data) => data.visageMap = {},
       outputStrings: {
         bothFates: {
-          en: 'Get hit by silver and gold',
-          de: 'Von Silber und Gold treffen lassen',
-          fr: 'Faites-vous toucher par l\'argent et l\'or',
-          ja: '金銀 一個ずつ',
-          ko: '은색 + 금색 맞기',
+          en: 'Get hit by silver and gold (${loc})',
+          de: 'Von Silber und Gold treffen lassen (${loc})',
+          fr: 'Faites-vous toucher par l\'argent et l\'or (${loc})',
+          ja: '金銀 一個ずつ (${loc})',
+          ko: '은색 + 금색 맞기 (${loc})', // FIXME
         },
         gildedFate: {
-          en: 'Get hit by two silver',
-          de: 'Von 2 Silber treffen lassen',
-          fr: 'Faites-vous toucher par les deux argent',
-          ja: '銀 二つ',
-          ko: '은색 2개 맞기',
+          en: 'Get hit by two silver (${loc})',
+          de: 'Von 2 Silber treffen lassen (${loc})',
+          fr: 'Faites-vous toucher par les deux argent (${loc})',
+          ja: '銀 二つ (${loc})',
+          ko: '은색 2개 맞기 (${loc})', // FIXME
         },
         silveredFate: {
-          en: 'Get hit by two gold',
-          de: 'Von 2 Gold treffen lassen',
-          fr: 'Faites-vous toucher par les deux or',
-          ja: '金 二つ',
-          ko: '금색 2개 맞기',
+          en: 'Get hit by two gold (${loc})',
+          de: 'Von 2 Gold treffen lassen (${loc})',
+          fr: 'Faites-vous toucher par les deux or (${loc})',
+          ja: '金 二つ (${loc})',
+          ko: '금색 2개 맞기 (${loc})', // FIXME
         },
         neitherFate: {
-          en: 'Avoid silver and gold',
-          de: 'Vermeide Silber und Gold',
-          fr: 'Évitez l\'argent et l\'or',
-          ja: '顔からのビーム全部回避',
-          ko: '은색 금색 피하기',
+          en: 'Avoid lasers (uptime ${loc})',
+          de: 'Vermeide Silber und Gold (${loc})',
+          fr: 'Évitez l\'argent et l\'or (${loc})',
+          ja: '顔からのビーム全部回避 (${loc})',
+          ko: '은색 금색 피하기 (${loc})', // FIXME
         },
+        outsideNW: {
+          en: 'NW Corner',
+        },
+        outsideNNW: {
+          en: 'NNW Outside',
+        },
+        outsideNNE: {
+          en: 'NNE Outside',
+        },
+        outsideNE: {
+          en: 'NE Corner',
+        },
+        outsideWNW: {
+          en: 'WNW Outside',
+        },
+        insideNW: {
+          en: 'NW Inside',
+        },
+        insideNE: {
+          en: 'NE Inside',
+        },
+        outsideENE: {
+          en: 'ENE Outside',
+        },
+        outsideWSW: {
+          en: 'WSW Outside',
+        },
+        insideSW: {
+          en: 'SW Inside',
+        },
+        insideSE: {
+          en: 'SE Inside',
+        },
+        outsideESE: {
+          en: 'ESE Outside',
+        },
+        outsideSW: {
+          en: 'SW Corner',
+        },
+        outsideSSW: {
+          en: 'SSW Outside',
+        },
+        outsideSSE: {
+          en: 'SSE Outside',
+        },
+        outsideSE: {
+          en: 'SE Corner',
+        },
+        unknown: Outputs.unknown,
       },
     },
     {
