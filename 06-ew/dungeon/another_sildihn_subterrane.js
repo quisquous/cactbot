@@ -340,7 +340,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '775E', source: 'Silkie' },
       condition: (data) => data.suds === 'CE2',
-      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 1,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 1.5,
       response: Responses.moveAround(),
     },
     {
