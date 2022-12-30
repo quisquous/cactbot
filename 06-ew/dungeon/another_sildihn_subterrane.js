@@ -1032,17 +1032,19 @@ Options.Triggers.push({
       delaySeconds: 0.1,
       durationSeconds: 10,
       infoText: (data, matches, output) => {
-        if (data.hasLingering)
-          return output.spreadThenSpread();
         const duration = parseFloat(matches.duration);
-        // Check if spread first
-        if (duration < 16) {
+        data.isCurseSpreadFirst = duration < 16;
+        if (data.isCurseSpreadFirst) {
+          if (data.hasLingering)
+            return output.spreadThenBait();
           if (data.me === data.thunderousEchoPlayer)
             return output.spreadThenStackOnYou();
           if (data.thunderousEchoPlayer === undefined)
             return output.spreadThenStack();
           return output.spreadThenStackOn({ player: data.ShortName(data.thunderousEchoPlayer) });
         }
+        if (data.hasLingering)
+          return output.baitThenSpread();
         if (data.me === data.thunderousEchoPlayer)
           return output.stackOnYouThenSpread();
         if (data.thunderousEchoPlayer === undefined)
@@ -1080,11 +1082,11 @@ Options.Triggers.push({
           ja: '散会 => 自分に頭割り',
           ko: '산개 => 나에게 쉐어',
         },
-        spreadThenSpread: {
-          en: 'Spread => Spread',
-          de: 'Verteilen => Sammeln',
-          ja: '自分に連呪、ひとりぼっちでずっと',
-          ko: '산개 => 산개',
+        spreadThenBait: {
+          en: 'Spread => Bait Puddle',
+        },
+        baitThenSpread: {
+          en: 'Bait Puddle => Spread',
         },
       },
     },
@@ -1129,28 +1131,25 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'ASS Echoes of the Fallen Reminder',
-      // CDA Echoes of the Fallen (Spread)
-      type: 'GainsEffect',
-      netRegex: { effectId: 'CDA' },
-      condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
-      response: Responses.spread(),
-    },
-    {
-      id: 'ASS Thunderous Echo Reminder',
-      // CDD Thunderous Echo (Stack)
-      type: 'GainsEffect',
-      netRegex: { effectId: 'CDD' },
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
+      id: 'ASS Curse of the Fallen Reminder',
+      type: 'Ability',
+      // Call this when the ring goes off and it's safe to move in.
+      netRegex: { id: ['7660', '7661', '7662'], source: 'Gladiator of Sil\'dih' },
+      suppressSeconds: 1,
       infoText: (data, matches, output) => {
-        if (data.hasLingering)
+        if (!data.isCurseSpreadFirst)
           return output.spread();
+        if (data.hasLingering)
+          return output.baitPuddle();
         if (matches.target === data.me)
           return output.stackOnYou();
         return output.stackOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
+        // TODO: should this also say "In", e.g. "In + Spread" or "Spread (In)"?
+        baitPuddle: {
+          en: 'Bait Puddle',
+        },
         spread: Outputs.spread,
         stackOnYou: Outputs.stackOnYou,
         stackOn: Outputs.stackOnPlayer,
