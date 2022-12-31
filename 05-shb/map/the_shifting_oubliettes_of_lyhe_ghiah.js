@@ -13,6 +13,9 @@ const lyheGhiahOutputStrings = {
   },
   adds: {
     en: 'Adds soon',
+    de: 'Bald Adds',
+    cn: '小怪即将出现',
+    ko: '곧 쫄 나옴',
   },
 };
 Options.Triggers.push({
@@ -55,6 +58,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Dungeon Crew spawned, kill in order!',
+          ko: '만드라즈 등장, 순서대로 잡기!',
         },
       },
     },

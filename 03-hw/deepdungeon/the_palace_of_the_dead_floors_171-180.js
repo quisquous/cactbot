@@ -29,42 +29,42 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Bird of the Deep Palace': 'Katakombenvogel',
         'Deep Palace Snowclops': 'Katakomben-Schneezyklop',
+        'Dendainsonne': 'Dendainsonne',
       },
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Bird of the Deep Palace': 'oiseau des profondeurs',
         'Deep Palace Snowclops': 'chionope des profondeurs',
+        'Dendainsonne': 'Dendainsonne',
       },
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bird of the Deep Palace': 'バード・オブ・ディープパレス',
         'Deep Palace Snowclops': 'ディープパレス・スノウクロプス',
+        'Dendainsonne': 'デンダインゾネ',
       },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Bird of the Deep Palace': '深宫妖鸟',
         'Deep Palace Snowclops': '深宫独眼雪巨人',
+        'Dendainsonne': '丹代恩索涅',
       },
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bird of the Deep Palace': '깊은 궁전 새',
         'Deep Palace Snowclops': '깊은 궁전 눈보라 사이클롭스',
+        'Dendainsonne': '덴다인존네',
       },
     },
   ],
