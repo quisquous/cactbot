@@ -59,6 +59,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dungeon Crew spawned, kill in order!',
+          ko: '만드라즈 등장, 순서대로 잡기!',
         },
       },
     },

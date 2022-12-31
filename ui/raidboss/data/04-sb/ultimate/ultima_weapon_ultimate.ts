@@ -754,7 +754,7 @@ const triggerSet: TriggerSet<Data> = {
         'Freefire': '유폭',
         'Friction': '바람의 칼날',
         'Geocrush': '대지 붕괴',
-        'Great Whirlwind': '대선풍', // FIXME
+        'Great Whirlwind': '대선풍',
         'Hellfire': '지옥의 화염',
         'Homing Lasers': '유도 레이저',
         'Incinerate': '소각',
