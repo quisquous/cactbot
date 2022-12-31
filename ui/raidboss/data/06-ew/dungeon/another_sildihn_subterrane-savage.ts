@@ -781,6 +781,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         windAndLightning: {
           en: 'Under ${dir} green puff',
+          ko: '${dir} 초록색 구슬 밑으로',
         },
         doubleIce: {
           en: 'Intercards, away from puffs',
@@ -791,6 +792,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         iceAndLightning: {
           en: 'Sides of ${dir} yellow puff',
+          ko: '${dir} 노란색 구슬 옆으로',
         },
         doubleLightning: {
           en: 'Between puffs',
@@ -1161,9 +1163,11 @@ const triggerSet: TriggerSet<Data> = {
         },
         spreadThenBait: {
           en: 'Spread => Bait Puddle',
+          ko: '산개 => 장판 유도',
         },
         baitThenSpread: {
           en: 'Bait Puddle => Spread',
+          ko: '장판 유도 => 산개',
         },
       },
     },
@@ -1226,6 +1230,7 @@ const triggerSet: TriggerSet<Data> = {
         // TODO: should this also say "In", e.g. "In + Spread" or "Spread (In)"?
         baitPuddle: {
           en: 'Bait Puddle',
+          ko: '장판 유도',
         },
         spread: Outputs.spread,
         stackOnYou: Outputs.stackOnYou,
@@ -1369,76 +1374,156 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Von Silber und Gold treffen lassen (${loc})', // FIXME
           fr: 'Faites-vous toucher par l\'argent et l\'or (${loc})', // FIXME
           ja: '金銀 一個ずつ (${loc})', // FIXME
-          ko: '은색 + 금색 맞기 (${loc})', // FIXME
+          ko: '은색 + 금색 맞기 (${loc})',
         },
         gildedFate: {
           en: 'Get hit by two silver (${loc})',
           de: 'Von 2 Silber treffen lassen (${loc})', // FIXME
           fr: 'Faites-vous toucher par les deux argent (${loc})', // FIXME
           ja: '銀 二つ (${loc})', // FIXME
-          ko: '은색 2개 맞기 (${loc})', // FIXME
+          ko: '은색 2개 맞기 (${loc})',
         },
         silveredFate: {
           en: 'Get hit by two gold (${loc})',
           de: 'Von 2 Gold treffen lassen (${loc})', // FIXME
           fr: 'Faites-vous toucher par les deux or (${loc})', // FIXME
           ja: '金 二つ (${loc})', // FIXME
-          ko: '금색 2개 맞기 (${loc})', // FIXME
+          ko: '금색 2개 맞기 (${loc})',
         },
         neitherFate: {
           en: 'Avoid lasers (uptime ${loc})',
           de: 'Vermeide Silber und Gold (${loc})', // FIXME
           fr: 'Évitez l\'argent et l\'or (${loc})', // FIXME
           ja: '顔からのビーム全部回避 (${loc})', // FIXME
-          ko: '은색 금색 피하기 (${loc})', // FIXME
+          ko: '레이저 피하기 (업타임 ${loc})',
         },
         outsideNW: {
           en: 'NW Corner',
+          de: 'NW Ecke',
+          fr: 'Coin NO',
+          ja: '北西 隅',
+          cn: '左上 (西北) 角',
+          ko: '북서쪽 구석',
         },
         outsideNNW: {
           en: 'NNW Outside',
+          de: 'NNW außen',
+          fr: 'Extérieur NNO',
+          ja: '1列 西の内側',
+          cn: '外侧 上偏左 (北偏西)',
+          ko: '바깥 북쪽 왼칸',
         },
         outsideNNE: {
           en: 'NNE Outside',
+          de: 'NNO außen',
+          fr: 'Extérieur NNE',
+          ja: '1列 東の内側',
+          cn: '外侧 上偏右 (北偏东)',
+          ko: '바깥 북쪽 오른칸',
         },
         outsideNE: {
           en: 'NE Corner',
+          de: 'NO Ecke',
+          fr: 'Coin NE',
+          ja: '北東 隅',
+          cn: '右上 (东北) 角',
+          ko: '북동쪽 구석',
         },
         outsideWNW: {
           en: 'WNW Outside',
+          de: 'WNW außen',
+          fr: 'Extérieur ONO',
+          ja: '2列 西の外側',
+          cn: '外侧 左偏上 (西偏北)',
+          ko: '바깥 서쪽 위칸',
         },
         insideNW: {
           en: 'NW Inside',
+          de: 'NW innen',
+          fr: 'Intérieur NO',
+          ja: '内側 北西',
+          cn: '内侧 左上 (西北)',
+          ko: '안 북서쪽',
         },
         insideNE: {
           en: 'NE Inside',
+          de: 'NO innen',
+          fr: 'Intérieur NE',
+          ja: '内側 北東',
+          cn: '内侧 右上 (东北)',
+          ko: '안 북동쪽',
         },
         outsideENE: {
           en: 'ENE Outside',
+          de: 'ONO außen',
+          fr: 'Extérieur ENE',
+          ja: '2列 東の外側',
+          cn: '外侧 右偏上 (东偏北)',
+          ko: '바깥 동쪽 위칸',
         },
         outsideWSW: {
           en: 'WSW Outside',
+          de: 'WSW außen',
+          fr: 'Extérieur OSO',
+          ja: '3列 西の外側',
+          cn: '外侧 左偏下 (西偏南)',
+          ko: '바깥 서쪽 아래칸',
         },
         insideSW: {
           en: 'SW Inside',
+          de: 'SW innen',
+          fr: 'Intérieur SO',
+          ja: '内側 南西',
+          cn: '内侧 左下 (西南)',
+          ko: '안 남서쪽',
         },
         insideSE: {
           en: 'SE Inside',
+          de: 'SO innen',
+          fr: 'Intérieur SE',
+          ja: '内側 南東',
+          cn: '内侧 右下 (东南)',
+          ko: '안 남동쪽',
         },
         outsideESE: {
           en: 'ESE Outside',
+          de: 'OSO außen',
+          fr: 'Extérieur ESE',
+          ja: '3列 東の外側',
+          cn: '外侧 右偏下 (东偏南)',
+          ko: '바깥 동쪽 아래칸',
         },
         outsideSW: {
           en: 'SW Corner',
+          de: 'SW Ecke',
+          fr: 'Coin SO',
+          ja: '南西 隅',
+          cn: '左下 (西南) 角',
+          ko: '남서쪽 구석',
         },
         outsideSSW: {
           en: 'SSW Outside',
+          de: 'SSW außen',
+          fr: 'Extérieur SSO',
+          ja: '4列 西の内側',
+          cn: '外侧 下偏左 (南偏西)',
+          ko: '바깥 남쪽 왼칸',
         },
         outsideSSE: {
           en: 'SSE Outside',
+          de: 'SSO außen',
+          fr: 'Extérieur SSE',
+          ja: '4列 東の内側',
+          cn: '外侧 下偏右 (南偏东)',
+          ko: '바깥 남쪽 오른칸',
         },
         outsideSE: {
           en: 'SE Corner',
+          de: 'SO Ecke',
+          fr: 'Coin SE',
+          ja: '南東 隅',
+          cn: '右下 (东南) 角',
+          ko: '남동쪽 구석',
         },
         unknown: Outputs.unknown,
       },

@@ -27,6 +27,7 @@ const triggerSet: TriggerSet<Data> = {
         interruptOrOut: {
           en: 'Out or interrupt ${name}',
           cn: '出去或打断 ${name}',
+          ko: '밖으로 또는 ${name} 시전 끊기',
         },
       },
     },
@@ -45,6 +46,7 @@ const triggerSet: TriggerSet<Data> = {
         interruptOrUnder: {
           en: 'Get Under or interrupt ${name}',
           cn: '去脚下或打断 ${name}',
+          ko: '밑으로 또는 ${name} 시전 끊기',
         },
       },
     },
