@@ -8,7 +8,7 @@ const lyheGhiahOutputStrings = {
   spawn: {
     en: '${name} spawned!',
     de: '${name} erscheint!',
-    cn: '正在生成 ${name}!',
+    cn: '已生成 ${name}!',
     ko: '${name} 등장!',
   },
   adds: {
@@ -58,6 +58,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Dungeon Crew spawned, kill in order!',
+          cn: '已生成 宝库蔓德拉战队, 依次击杀!',
           ko: '만드라즈 등장, 순서대로 잡기!',
         },
       },
