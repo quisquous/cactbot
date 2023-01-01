@@ -906,15 +906,20 @@ const triggerSet: TriggerSet<Data> = {
         const centerY = -268;
         const isNorth = parseFloat(mirage1.y) < centerY;
         const is1East = parseFloat(mirage1.x) > parseFloat(mirage2.x);
-        const is1Left = isNorth && is1East || !isNorth && !is1East;
+        const isLine1Left = isNorth && is1East || !isNorth && !is1East;
+        const [leftNum, rightNum] = isLine1Left ? [line1, line2] : [line2, line1];
 
-        if (is1Left)
-          return output.text!({ left: line1, right: line2 });
-        return output.text!({ left: line2, right: line1 });
+        // Call out the bigger number first, as it's the direction you'll have to move the most.
+        if (leftNum > rightNum)
+          return output.goLeft!({ left: leftNum, right: rightNum });
+        return output.goRight!({ left: leftNum, right: rightNum });
       },
       outputStrings: {
-        text: {
+        goLeft: {
           en: 'Go ${left} left, ${right} right',
+        },
+        goRight: {
+          en: 'Go ${right} right, ${left} left',
         },
       },
     },
