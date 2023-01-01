@@ -8,7 +8,7 @@ const uznairOutputStrings = {
   spawn: {
     en: '${name} spawned!',
     de: '${name} erscheint!',
-    cn: '正在生成 ${name}!',
+    cn: '已生成 ${name}!',
     ko: '${name} 등장!',
   },
 } as const;
@@ -56,6 +56,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Canal Crew spawned, kill in order!',
+          cn: '已生成 运河蔓德拉战队, 依次击杀!',
           ko: '만드라즈 등장, 순서대로 잡기!',
         },
       },
