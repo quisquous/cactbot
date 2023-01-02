@@ -52,7 +52,7 @@ hideall "--sync--"
 ##############################################################
 ################# Intro
 
-0 "--sync--" sync / 00:0839::electrocution gallery will be sealed off in 15 seconds/ window 10000
+0 "--sync--" sync / 00:0839::The electrocution gallery will be sealed off in 15 seconds/ window 10000
 8 "Hammertime x2"
 21 "Sizzlebeam"
 31 "Sizzlespark"
