@@ -910,16 +910,37 @@ const triggerSet: TriggerSet<Data> = {
         const [leftNum, rightNum] = isLine1Left ? [line1, line2] : [line2, line1];
 
         // Call out the bigger number first, as it's the direction you'll have to move the most.
-        if (leftNum > rightNum)
-          return output.goLeft!({ left: leftNum, right: rightNum });
-        return output.goRight!({ left: leftNum, right: rightNum });
+        if (leftNum === 3 && rightNum === 2)
+          return output.goLeft3Right2!();
+        if (leftNum === 3 && rightNum === 1)
+          return output.goLeft3Right1!();
+        if (leftNum === 2 && rightNum === 1)
+          return output.goLeft2Right1!();
+        if (rightNum === 3 && leftNum === 2)
+          return output.goRight3Left2!();
+        if (rightNum === 3 && leftNum === 1)
+          return output.goRight3Left1!();
+        if (rightNum === 2 && leftNum === 1)
+          return output.goRight2Left1!();
       },
       outputStrings: {
-        goLeft: {
-          en: 'Go ${left} left, ${right} right',
+        goLeft3Right2: {
+          en: 'Go 3 Left 2 Right',
         },
-        goRight: {
-          en: 'Go ${right} right, ${left} left',
+        goLeft3Right1: {
+          en: 'Go 3 Left (on line)',
+        },
+        goLeft2Right1: {
+          en: 'Go 2 Left (on line)',
+        },
+        goRight3Left2: {
+          en: 'Go 3 Right 2 Left',
+        },
+        goRight3Left1: {
+          en: 'Go 3 Right (on line)',
+        },
+        goRight2Left1: {
+          en: 'Go 2 Right (on line)',
         },
       },
     },
