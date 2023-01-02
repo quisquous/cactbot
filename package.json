@@ -91,7 +91,7 @@
     "husky": "^4.2.5",
     "is-ci": "^3.0.1",
     "jsdom-global": "^3.0.2",
-    "json5": "^2.2.0",
+    "json5": "^2.2.2",
     "jszip": "^3.7.1",
     "lint-staged": "^10.0.8",
     "markdown-magic": "^2.5.2",
