@@ -6,6 +6,8 @@
 const puffWind = 'CE9';
 const puffIce = 'CEA';
 const puffLightning = 'CEB';
+const firstInLine = 'BBC';
+const secondInLine = 'BBD';
 const dirs = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 const silkieCenterX = -335;
 const silkieCenterY = -155;
@@ -33,6 +35,7 @@ Options.Triggers.push({
       mightCasts: [],
       myVisage: { gold: 0, silver: 0 },
       visageMap: {},
+      screamOfTheFallen: {},
       arcaneFontCounter: 0,
       brandEffects: {},
       brandCounter: 0,
@@ -1383,36 +1386,85 @@ Options.Triggers.push({
       response: Responses.breakChains(),
     },
     {
-      id: 'ASSS Scream of the Fallen',
+      id: 'ASSS Scream of the Fallen Collect',
       // CDB = Scream of the Fallen (defamation)
       // BBC = First in Line
       // BBD = Second in Line
       // First/Second in Line are only used once all dungeon so we can just trigger off of them
       type: 'GainsEffect',
       netRegex: { effectId: 'BB[CD]' },
-      condition: Conditions.targetIsYou(),
-      infoText: (_data, matches, output) => {
-        const id = matches.effectId;
-        if (id === 'BBD')
-          return output.soakThenSpread();
-        return output.spreadThenSoak();
+      run: (data, matches) => data.screamOfTheFallen[matches.target] = matches.effectId,
+    },
+    {
+      id: 'ASSS Scream of the Fallen',
+      // BBC = First in Line
+      // BBD = Second in Line
+      type: 'GainsEffect',
+      netRegex: { effectId: 'BB[CD]', capture: false },
+      // These debuffs go out very early while running out for chains,
+      // so call as people are dodging into the safe spot.
+      delaySeconds: 8,
+      durationSeconds: 4,
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        const myBuff = data.screamOfTheFallen[data.me];
+        if (myBuff === undefined)
+          return;
+        // Figure out partner, so that you know if the person running out
+        // with you has the same debuff.
+        let partner = output.unknown();
+        for (const [name, id] of Object.entries(data.screamOfTheFallen)) {
+          if (name === data.me)
+            continue;
+          if (id === myBuff) {
+            partner = data.ShortName(name);
+            break;
+          }
+        }
+        if (myBuff === firstInLine)
+          return output.spreadFirst({ player: partner });
+        return output.soakFirst({ player: partner });
       },
       outputStrings: {
-        soakThenSpread: {
-          en: 'Soak first towers => Spread',
-          de: 'Türme zuerst nehmen => verteilen',
-          fr: 'Prenez les tours -> Dispersion',
-          ja: '塔から踏み => 外側',
-          ko: '첫번째 기둥 밟기 => 산개',
+        soakFirst: {
+          en: 'Soak First Towers (with ${player})',
         },
-        spreadThenSoak: {
-          en: 'Spread => Soak second towers',
-          de: 'Verteilen => zweite Türme nehmen',
-          fr: 'Dispersion -> Prenez les tours',
-          ja: '外側 => 塔踏み',
-          ko: '산개 => 두번째 기둥 밟기',
+        spreadFirst: {
+          en: 'Spread First (with ${player})',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'ASSS Scream of the Fallen Towers Second',
+      type: 'Ability',
+      // Triggers off the "Scream of the Fallen" ability from the defamation.
+      netRegex: { id: '77BA', source: 'Gladiator of Sil\'dih' },
+      condition: (data, matches) => {
+        if (data.me !== matches.target)
+          return;
+        return data.screamOfTheFallen[data.me] === firstInLine;
+      },
+      suppressSeconds: 1,
+      infoText: (_data, _matches, output) => output.soakSecond(),
+      outputStrings: {
+        soakSecond: {
+          en: 'Soak Second Towers',
         },
       },
+    },
+    {
+      id: 'ASSS Scream of the Fallen Spread Second',
+      type: 'Ability',
+      // Triggers off the "Explosion" ability from the towers.
+      netRegex: { id: '77AC', source: 'Gladiator of Sil\'dih' },
+      condition: (data, matches) => {
+        if (data.me !== matches.target)
+          return;
+        return data.screamOfTheFallen[data.me] === secondInLine;
+      },
+      suppressSeconds: 1,
+      response: Responses.spread(),
     },
     // ---------------- Shadowcaster Zeless Gah ----------------
     {
