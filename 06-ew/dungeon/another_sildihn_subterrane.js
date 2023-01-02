@@ -837,119 +837,60 @@ Options.Triggers.push({
       id: 'ASS Rush of Might 1',
       // Boss casts 765C (12.2s) and 765B (10.2s), twice
       // Gladiator of Mirage casts 7659, 7658, 765A, these target the environment
-      // North
-      //                East               West
-      //   Line 1: (-34.14, -270.14) (-35.86, -270.14)
-      //   Line 2: (-39.45, -275.45) (-30.55, -275.45)
-      //   Line 3: (-44.75, -280.75) (-25.25, -280.75)
-      // South
-      //                East               West
-      //   Line 1: (-34.14, -271.86) (-35.86, -271.86)
-      //   Line 2: (-39.45, -266.55) (-30.55, -266.55)
-      //   Line 3: (-44.75, -261.25) (-25.25, -261.25)
-      // Center is at (-35, -271)
       type: 'StartsUsing',
-      netRegex: { id: '765C', source: 'Gladiator of Sil\'dih' },
-      delaySeconds: 0.4,
-      promise: async (data, matches) => {
-        if (data.mightCasts.length === 2)
-          data.mightCasts = [];
-        // select the Gladiator with same source id
-        let gladiatorData = null;
-        gladiatorData = await callOverlayHandler({
-          call: 'getCombatants',
-          ids: [parseInt(matches.sourceId, 16)],
-        });
-        // if we could not retrieve combatant data, the
-        // trigger will not work, so just resume promise here
-        if (gladiatorData === null) {
-          console.error(`Gladiator of Sil'dih: null data`);
+      netRegex: { id: ['7658', '7659', '765A'] },
+      infoText: (data, matches, output) => {
+        data.mightCasts.push(matches);
+        const [mirage1, mirage2] = data.mightCasts;
+        if (data.mightCasts.length !== 2 || mirage1 === undefined || mirage2 === undefined)
           return;
-        }
-        if (gladiatorData.combatants.length !== 1) {
-          console.error(`Gladiator of Sil'dih: expected 1, got ${gladiatorData.combatants.length}`);
-          return;
-        }
-        const gladiator = gladiatorData.combatants[0];
-        if (!gladiator)
-          return;
-        data.mightCasts.push(gladiator);
-      },
-      infoText: (data, _matches, output) => {
-        if (data.mightCasts.length !== 2)
-          return;
-        const mirage1 = data.mightCasts[0];
-        const mirage2 = data.mightCasts[1];
-        if (mirage1 === undefined || mirage2 === undefined)
-          throw new UnreachableCode();
-        const x1 = mirage1.PosX;
-        const y1 = mirage1.PosY;
-        const x2 = mirage2.PosX;
-        const y2 = mirage2.PosY;
-        const getLine = (x) => {
-          // Round values to be easier to read:
-          //   1    2    3
-          // [-35, -40, -45]
-          // [-35, -30, -25]
-          const roundX = Math.round(x / 5) * 5;
-          if (roundX === -45 || roundX === -25)
-            return 3;
-          else if (roundX === -40 || roundX === -30)
-            return 2;
-          else if (roundX === -35)
-            return 1;
-          return undefined;
+        data.mightCasts = [];
+        const lineMap = {
+          '7658': 1,
+          '7659': 2,
+          '765A': 3,
         };
-        const line1 = getLine(x1);
-        const line2 = getLine(x2);
-        if (line1 === undefined || line2 === undefined) {
-          console.error(`Rush of Might 1: Failed to determine line from ${x1} or ${x2}`);
-          return;
-        }
-        const line = line1 > line2 ? line1 : line2;
-        // Get card and greatest relative x value
-        let card;
-        const roundY = Math.round(y1 / 3) * 3;
-        // Round values to be easier to read:
-        //          1     2     3
-        // North [-270, -276, -282]
-        // South [-273, -267, -261]
-        if (roundY === -270 || roundY === -276 || roundY === -282) {
-          // Get the x value of farthest north mirage
-          const x = y1 < y2 ? x1 : x2;
-          card = x < -35 ? 'west' : 'east';
-          data.mightDir = 'north';
-        } else if (roundY === -273 || roundY === -267 || roundY === -261) {
-          // Get the x value of farthest south mirage
-          const x = y1 > y2 ? x1 : x2;
-          card = x < -35 ? 'west' : 'east';
-          data.mightDir = 'south';
-        } else {
-          console.error(`Rush of Might 1: Failed to determine card from ${y1}`);
-          return;
-        }
-        // When one is 2 and one is 3 we need to be inside (towards middle)
-        if (line1 === 2 && line2 === 3 || line1 === 3 && line2 === 2)
-          return output.insideLine({ card: output[card]() });
-        return output.outsideLine({ card: output[card](), line: line });
+        const [line1, line2] = [mirage1.id, mirage2.id].map((x) => lineMap[x]);
+        if (line1 === undefined || line2 === undefined)
+          throw new UnreachableCode();
+        const centerY = -268;
+        const isNorth = parseFloat(mirage1.y) < centerY;
+        const is1East = parseFloat(mirage1.x) > parseFloat(mirage2.x);
+        const isLine1Left = isNorth && is1East || !isNorth && !is1East;
+        const [leftNum, rightNum] = isLine1Left ? [line1, line2] : [line2, line1];
+        // Call out the bigger number first, as it's the direction you'll have to move the most.
+        if (leftNum === 3 && rightNum === 2)
+          return output.goLeft3Right2();
+        if (leftNum === 3 && rightNum === 1)
+          return output.goLeft3Right1();
+        if (leftNum === 2 && rightNum === 1)
+          return output.goLeft2Right1();
+        if (rightNum === 3 && leftNum === 2)
+          return output.goRight3Left2();
+        if (rightNum === 3 && leftNum === 1)
+          return output.goRight3Left1();
+        if (rightNum === 2 && leftNum === 1)
+          return output.goRight2Left1();
       },
       outputStrings: {
-        outsideLine: {
-          en: 'Outside ${card}, above line ${line}',
-          de: 'Außerhalb vom ${card}, über der Linie im ${line}',
-          fr: '${card} extérieure, au-dessus de la ligne ${line}',
-          ja: '${card}の外、 ${line}ラインの上',
-          ko: '${card} 바깥, ${line}번 줄 위로',
+        goLeft3Right2: {
+          en: 'Go 3 Left 2 Right',
         },
-        insideLine: {
-          en: 'Inside ${card}, above line 3',
-          de: 'Innerhalb vom ${card}, über der 3. Linie',
-          fr: '${card} intérieure, au-dessus de la ligne 3',
-          ja: '${card}の中, 3ラインの上',
-          ko: '${card} 안, 3번 줄 위로',
+        goLeft3Right1: {
+          en: 'Go 3 Left (on line)',
         },
-        east: Outputs.east,
-        west: Outputs.west,
+        goLeft2Right1: {
+          en: 'Go 2 Left (on line)',
+        },
+        goRight3Left2: {
+          en: 'Go 3 Right 2 Left',
+        },
+        goRight3Left1: {
+          en: 'Go 3 Right (on line)',
+        },
+        goRight2Left1: {
+          en: 'Go 2 Right (on line)',
+        },
       },
     },
     {
@@ -957,22 +898,11 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { id: '765B', source: 'Gladiator of Sil\'dih', capture: false },
       suppressSeconds: 1,
-      infoText: (data, _matches, output) => {
-        if (data.mightDir === undefined)
-          return output.move();
-        return output.text({ dir: output[data.mightDir]() });
-      },
+      infoText: (_data, _matches, output) => output.moveThrough(),
       outputStrings: {
-        text: {
-          en: 'Move ${dir}',
-          de: 'Geh nach ${dir}',
-          fr: 'Allez ${dir}',
-          ja: '${dir}へ',
-          ko: '${dir}으로',
+        moveThrough: {
+          en: 'Move through',
         },
-        north: Outputs.north,
-        south: Outputs.south,
-        move: Outputs.moveAway,
       },
     },
     {
