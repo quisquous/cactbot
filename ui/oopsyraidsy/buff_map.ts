@@ -282,6 +282,11 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
     abilityId: '1D11',
   },
   {
+    id: 'Macrocosmos',
+    type: 'heal',
+    abilityId: '6512',
+  },
+  {
     id: 'Astral Stasis',
     type: 'heal',
     abilityId: '1098',
