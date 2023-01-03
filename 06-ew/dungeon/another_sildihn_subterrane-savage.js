@@ -725,6 +725,7 @@ Options.Triggers.push({
       outputStrings: {
         windAndLightning: {
           en: 'Under ${dir} green puff',
+          de: 'Unter den grünen Puschel im ${dir}',
           ko: '${dir} 초록색 구슬 밑으로',
         },
         doubleIce: {
@@ -736,6 +737,7 @@ Options.Triggers.push({
         },
         iceAndLightning: {
           en: 'Sides of ${dir} yellow puff',
+          de: 'Seitlich des gelben Puschel im ${dir}',
           ko: '${dir} 노란색 구슬 옆으로',
         },
         doubleLightning: {
@@ -871,9 +873,11 @@ Options.Triggers.push({
       outputStrings: {
         goLeft: {
           en: 'Go ${left} left, ${right} right',
+          de: 'Gehe Links ${left}, Rechts ${right}',
         },
         goRight: {
           en: 'Go ${right} right, ${left} left',
+          de: 'Gehe Rechts ${right}, Links ${left}',
         },
       },
     },
@@ -886,6 +890,7 @@ Options.Triggers.push({
       outputStrings: {
         moveThrough: {
           en: 'Move through',
+          de: 'Gehe durch',
         },
       },
     },
@@ -1005,10 +1010,12 @@ Options.Triggers.push({
         },
         spreadThenBait: {
           en: 'Spread => Bait Puddle',
+          de: 'Veretilen => Fläche ködern',
           ko: '산개 => 장판 유도',
         },
         baitThenSpread: {
           en: 'Bait Puddle => Spread',
+          de: 'Fläche ködern => Veretilen',
           ko: '장판 유도 => 산개',
         },
       },
@@ -1072,6 +1079,7 @@ Options.Triggers.push({
         // TODO: should this also say "In", e.g. "In + Spread" or "Spread (In)"?
         baitPuddle: {
           en: 'Bait Puddle',
+          de: 'Fläche ködern',
           ko: '장판 유도',
         },
         spread: Outputs.spread,
@@ -1428,9 +1436,11 @@ Options.Triggers.push({
       outputStrings: {
         soakFirst: {
           en: 'Soak First Towers (with ${player})',
+          de: 'Steh im ersten Turm (mit ${player})',
         },
         spreadFirst: {
           en: 'Spread First (with ${player})',
+          de: 'Zuerst verteilen (mit ${player})',
         },
         unknown: Outputs.unknown,
       },
@@ -1450,6 +1460,7 @@ Options.Triggers.push({
       outputStrings: {
         soakSecond: {
           en: 'Soak Second Towers',
+          de: 'Steh im zweiten Turm',
         },
       },
     },

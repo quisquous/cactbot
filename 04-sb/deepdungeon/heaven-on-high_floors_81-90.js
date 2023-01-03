@@ -16,6 +16,7 @@ Options.Triggers.push({
         out: Outputs.out,
         interruptOrOut: {
           en: 'Out or interrupt ${name}',
+          de: 'Raus oder unterbreche ${name}',
           cn: '出去或打断 ${name}',
           ko: '밖으로 또는 ${name} 시전 끊기',
         },
@@ -35,6 +36,7 @@ Options.Triggers.push({
         getUnder: Outputs.getUnder,
         interruptOrUnder: {
           en: 'Get Under or interrupt ${name}',
+          de: 'Unter oder unterbreche ${name}',
           cn: '去脚下或打断 ${name}',
           ko: '밑으로 또는 ${name} 시전 끊기',
         },

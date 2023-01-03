@@ -54,6 +54,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Altar Assembly spawned, kill in order!',
+          de: 'Altar-Mandragora erscheinen, in Reihenfolge besiegen!',
           cn: '已生成 神殿蔓德拉战队, 依次击杀!',
           ko: '만드라즈 등장, 순서대로 잡기!',
         },
@@ -109,6 +110,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bait three puddles',
+          de: '3 Flächen ködern',
           cn: '诱导三个圈圈',
           ko: '장판 3개 유도',
         },

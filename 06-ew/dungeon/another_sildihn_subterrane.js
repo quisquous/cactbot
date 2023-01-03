@@ -723,6 +723,7 @@ Options.Triggers.push({
       outputStrings: {
         windAndLightning: {
           en: 'Under ${dir} green puff',
+          de: 'Unter den grünen Puschel im ${dir}',
           ko: '${dir} 초록색 구슬 밑으로',
         },
         doubleIce: {
@@ -734,6 +735,7 @@ Options.Triggers.push({
         },
         iceAndLightning: {
           en: 'Sides of ${dir} yellow puff',
+          de: 'Seitlich des gelben Puschel im ${dir}',
           ko: '${dir} 노란색 구슬 옆으로',
         },
         doubleLightning: {
@@ -878,21 +880,27 @@ Options.Triggers.push({
       outputStrings: {
         goLeft3Right2: {
           en: 'Go 3 Left 2 Right',
+          de: 'Gehe Links 3, Rechts 2',
         },
         goLeft3Right1: {
           en: 'Go 3 Left (on line)',
+          de: 'Gehe Links 3 (auf der Linie)',
         },
         goLeft2Right1: {
           en: 'Go 2 Left (on line)',
+          de: 'Gehe Links 2 (auf der Linie)',
         },
         goRight3Left2: {
           en: 'Go 3 Right 2 Left',
+          de: 'Gehe Rechts 3, Links 2',
         },
         goRight3Left1: {
           en: 'Go 3 Right (on line)',
+          de: 'Gehe Rechts 3 (auf der Linie)',
         },
         goRight2Left1: {
           en: 'Go 2 Right (on line)',
+          de: 'Gehe Rechts 2 (auf der Linie)',
         },
       },
     },
@@ -905,6 +913,7 @@ Options.Triggers.push({
       outputStrings: {
         moveThrough: {
           en: 'Move through',
+          de: 'Gehe durch',
         },
       },
     },
@@ -1024,10 +1033,12 @@ Options.Triggers.push({
         },
         spreadThenBait: {
           en: 'Spread => Bait Puddle',
+          de: 'Veretilen => Fläche ködern',
           ko: '산개 => 장판 유도',
         },
         baitThenSpread: {
           en: 'Bait Puddle => Spread',
+          de: 'Fläche ködern => Veretilen',
           ko: '장판 유도 => 산개',
         },
       },
@@ -1091,6 +1102,7 @@ Options.Triggers.push({
         // TODO: should this also say "In", e.g. "In + Spread" or "Spread (In)"?
         baitPuddle: {
           en: 'Bait Puddle',
+          de: 'Fläche ködern',
           ko: '장판 유도',
         },
         spread: Outputs.spread,
@@ -1447,9 +1459,11 @@ Options.Triggers.push({
       outputStrings: {
         soakFirst: {
           en: 'Soak First Towers (with ${player})',
+          de: 'Steh im ersten Turm (mit ${player})',
         },
         spreadFirst: {
           en: 'Spread First (with ${player})',
+          de: 'Zuerst verteilen (mit ${player})',
         },
         unknown: Outputs.unknown,
       },
@@ -1469,6 +1483,7 @@ Options.Triggers.push({
       outputStrings: {
         soakSecond: {
           en: 'Soak Second Towers',
+          de: 'Steh im zweiten Turm',
         },
       },
     },
