@@ -2309,7 +2309,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Great Wyrmsbreath Hraesvelgr Glowing',
       type: 'StartsUsing',
       netRegex: { id: '6D35', source: 'Hraesvelgr', capture: false },
-      condition: (data) => data.role === 'tank',
       run: (data) => data.hraesvelgrGlowing = true,
     },
     {
@@ -2344,7 +2343,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Great Wyrmsbreath Nidhogg Glowing',
       type: 'StartsUsing',
       netRegex: { id: '6D33', source: 'Nidhogg', capture: false },
-      condition: (data) => data.role === 'tank',
       run: (data) => data.nidhoggGlowing = true,
     },
     {
