@@ -2281,72 +2281,68 @@ const triggerSet: TriggerSet<Data> = {
       id: 'DSR Great Wyrmsbreath Hraesvelgr Not Glowing',
       type: 'StartsUsing',
       netRegex: { id: '6D34', source: 'Hraesvelgr', capture: false },
-      alertText: (data, _matches, output) => {
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tanksApart: {
+            en: 'Apart (Hrae buster)',
+            de: 'Auseinander (Hrae-buster)',
+            ja: '離れる (フレスから攻撃)',
+            cn: '分散 (圣龙死刑)',
+            ko: '떨어지기 (흐레스벨그 탱버)',
+          },
+          hraesvelgrTankbuster: {
+            en: 'Hrae Tankbuster',
+            de: 'Hrae Tankbuster',
+            ja: 'フレスから攻撃',
+            cn: '圣龙死刑',
+            ko: '흐레스벨그 탱버',
+          },
+        };
+
         if (data.role === 'tank')
-        return output.tanksApart!();
-      },
-      infoText: (data, _matches, output) => {
-        if (data.role === 'tank' || data.role === 'healer')
-        return output.hraesvelgrTankbuster!();
-      },
-      outputStrings: {
-        tanksApart: {
-          en: 'Apart (Hrae buster)',
-          de: 'Auseinander (Hrae-buster)',
-          ja: '離れる (フレスから攻撃)',
-          cn: '分散 (圣龙死刑)',
-          ko: '떨어지기 (흐레스벨그 탱버)',
-        },
-        hraesvelgrTankbuster: {
-          en: 'Hrae Tankbuster',
-          de: 'Hrae Tankbuster',
-          ja: 'フレスから攻撃',
-          cn: '圣龙死刑',
-          ko: '흐레스벨그 탱버',
-        },
+          return { alertText: output.tanksApart!() };
+        return { infoText: output.hraesvelgrTankbuster!() };
       },
     },
     {
       id: 'DSR Great Wyrmsbreath Hraesvelgr Glowing',
       type: 'StartsUsing',
       netRegex: { id: '6D35', source: 'Hraesvelgr', capture: false },
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       run: (data) => data.hraesvelgrGlowing = true,
     },
     {
       id: 'DSR Great Wyrmsbreath Nidhogg Not Glowing',
       type: 'StartsUsing',
       netRegex: { id: '6D32', source: 'Nidhogg', capture: false },
-      alertText: (data, _matches, output) => {
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tanksApart: {
+            en: 'Apart (Nid buster)',
+            de: 'Auseinander (Nid-buster)',
+            ja: '離れる (ニーズから攻撃)',
+            cn: '分散 (邪龙死刑)',
+            ko: '떨어지기 (니드호그 탱버)',
+          },
+          nidTankbuster: {
+            en: 'Nid Tankbuster',
+            de: 'Nid Tankbuster',
+            ja: 'ニーズから攻撃',
+            cn: '邪龙死刑',
+            ko: '니드호그 탱버',
+          },
+        };
+
         if (data.role === 'tank')
-        return output.tanksApart!();
-      },
-      infoText: (data, _matches, output) => {
-        if (data.role === 'tank' || data.role === 'healer')
-        return output.nidTankbuster!();
-      },
-      outputStrings: {
-        tanksApart: {
-          en: 'Apart (Nid buster)',
-          de: 'Auseinander (Nid-buster)',
-          ja: '離れる (ニーズから攻撃)',
-          cn: '分散 (邪龙死刑)',
-          ko: '떨어지기 (니드호그 탱버)',
-        },
-        nidTankbuster: {
-          en: 'Nid Tankbuster',
-          de: 'Nid Tankbuster',
-          ja: 'ニーズから攻撃',
-          cn: '邪龙死刑',
-          ko: '니드호그 탱버',
-        },
+          return { alertText: output.tanksApart!() };
+        return { infoText: output.nidTankbuster!() };
       },
     },
     {
       id: 'DSR Great Wyrmsbreath Nidhogg Glowing',
       type: 'StartsUsing',
       netRegex: { id: '6D33', source: 'Nidhogg', capture: false },
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
       run: (data) => data.nidhoggGlowing = true,
     },
     {
@@ -2375,7 +2371,7 @@ const triggerSet: TriggerSet<Data> = {
 
         if (!data.hraesvelgrGlowing || !data.nidhoggGlowing)
           return;
-        if (data.role === 'tank' || data.role === 'healer')
+        if (data.role === 'tank')
           return { alertText: output.sharedBuster!() };
         return { infoText: output.sharedBuster!() };
       },
