@@ -51,27 +51,6 @@ export const missedEffectBuffMap: readonly MissableEffect[] = [
     collectSeconds: 2,
   },
   {
-    // BRD
-    id: 'Mage\'s Ballad',
-    type: 'damage',
-    effectId: '8A9',
-    collectSeconds: 45,
-  },
-  {
-    // BRD
-    id: 'Army\'s Paeon',
-    type: 'damage',
-    effectId: '8AA',
-    collectSeconds: 45,
-  },
-  {
-    // BRD
-    id: 'The Wanderer\'s Minuet',
-    type: 'damage',
-    effectId: '8A8',
-    collectSeconds: 45,
-  },
-  {
     // DNC channeled heal
     id: 'Improvisation',
     type: 'heal',
