@@ -456,7 +456,7 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
     // AST
     id: 'Lady of Crowns',
     type: 'heal',
-    abilityId: '',
+    abilityId: '1D15',
   },
   {
     // AST LB3
