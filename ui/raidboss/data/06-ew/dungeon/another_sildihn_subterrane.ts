@@ -782,6 +782,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         windAndLightning: {
           en: 'Under ${dir} green puff',
+          de: 'Unter den grünen Puschel im ${dir}',
           ko: '${dir} 초록색 구슬 밑으로',
         },
         doubleIce: {
@@ -793,6 +794,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         iceAndLightning: {
           en: 'Sides of ${dir} yellow puff',
+          de: 'Seitlich des gelben Puschel im ${dir}',
           ko: '${dir} 노란색 구슬 옆으로',
         },
         doubleLightning: {
@@ -943,21 +945,27 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         goLeft3Right2: {
           en: 'Go 3 Left 2 Right',
+          de: 'Gehe Links 3, Rechts 2',
         },
         goLeft3Right1: {
           en: 'Go 3 Left (on line)',
+          de: 'Gehe Links 3 (auf der Linie)',
         },
         goLeft2Right1: {
           en: 'Go 2 Left (on line)',
+          de: 'Gehe Links 2 (auf der Linie)',
         },
         goRight3Left2: {
           en: 'Go 3 Right 2 Left',
+          de: 'Gehe Rechts 3, Links 2',
         },
         goRight3Left1: {
           en: 'Go 3 Right (on line)',
+          de: 'Gehe Rechts 3 (auf der Linie)',
         },
         goRight2Left1: {
           en: 'Go 2 Right (on line)',
+          de: 'Gehe Rechts 2 (auf der Linie)',
         },
       },
     },
@@ -970,6 +978,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         moveThrough: {
           en: 'Move through',
+          de: 'Gehe durch',
         },
       },
     },
@@ -1091,10 +1100,12 @@ const triggerSet: TriggerSet<Data> = {
         },
         spreadThenBait: {
           en: 'Spread => Bait Puddle',
+          de: 'Veretilen => Fläche ködern',
           ko: '산개 => 장판 유도',
         },
         baitThenSpread: {
           en: 'Bait Puddle => Spread',
+          de: 'Fläche ködern => Veretilen',
           ko: '장판 유도 => 산개',
         },
       },
@@ -1158,6 +1169,7 @@ const triggerSet: TriggerSet<Data> = {
         // TODO: should this also say "In", e.g. "In + Spread" or "Spread (In)"?
         baitPuddle: {
           en: 'Bait Puddle',
+          de: 'Fläche ködern',
           ko: '장판 유도',
         },
         spread: Outputs.spread,
@@ -1299,28 +1311,28 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         bothFates: {
           en: 'Get hit by silver and gold (${loc})',
-          de: 'Von Silber und Gold treffen lassen (${loc})', // FIXME
+          de: 'Von Silber und Gold treffen lassen (${loc})',
           fr: 'Faites-vous toucher par l\'argent et l\'or (${loc})', // FIXME
           ja: '金銀 一個ずつ (${loc})', // FIXME
           ko: '은색 + 금색 맞기 (${loc})',
         },
         gildedFate: {
           en: 'Get hit by two silver (${loc})',
-          de: 'Von 2 Silber treffen lassen (${loc})', // FIXME
+          de: 'Von 2 Silber treffen lassen (${loc})',
           fr: 'Faites-vous toucher par les deux argent (${loc})', // FIXME
           ja: '銀 二つ (${loc})', // FIXME
           ko: '은색 2개 맞기 (${loc})',
         },
         silveredFate: {
           en: 'Get hit by two gold (${loc})',
-          de: 'Von 2 Gold treffen lassen (${loc})', // FIXME
+          de: 'Von 2 Gold treffen lassen (${loc})',
           fr: 'Faites-vous toucher par les deux or (${loc})', // FIXME
           ja: '金 二つ (${loc})', // FIXME
           ko: '금색 2개 맞기 (${loc})',
         },
         neitherFate: {
           en: 'Avoid lasers (uptime ${loc})',
-          de: 'Vermeide Silber und Gold (${loc})', // FIXME
+          de: 'Vermeide Silber und Gold (${loc})',
           fr: 'Évitez l\'argent et l\'or (${loc})', // FIXME
           ja: '顔からのビーム全部回避 (${loc})', // FIXME
           ko: '레이저 피하기 (업타임 ${loc})',
@@ -1524,9 +1536,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         soakFirst: {
           en: 'Soak First Towers (with ${player})',
+          de: 'Steh im ersten Turm (mit ${player})',
         },
         spreadFirst: {
           en: 'Spread First (with ${player})',
+          de: 'Zuerst verteilen (mit ${player})',
         },
         unknown: Outputs.unknown,
       },
@@ -1546,6 +1560,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         soakSecond: {
           en: 'Soak Second Towers',
+          de: 'Steh im zweiten Turm',
         },
       },
     },
