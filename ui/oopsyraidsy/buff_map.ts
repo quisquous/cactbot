@@ -38,7 +38,7 @@ export const missedEffectBuffMap: readonly MissableEffect[] = [
   {
     // PLD
     id: 'Divine Veil',
-    type: 'heal',
+    type: 'mitigation',
     effectId: '2D7',
     ignoreSelf: true,
     collectSeconds: 2,
@@ -109,9 +109,9 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
     abilityId: '4057',
   },
   {
-    // WAR party shield + regen
+    // WAR
     id: 'Shake It Off',
-    type: 'heal',
+    type: 'mitigation',
     abilityId: '1CDC',
   },
   {
@@ -124,7 +124,7 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
   {
     // DNC channeled shield
     id: 'Improvised Finish',
-    type: 'heal',
+    type: 'mitigation',
     abilityId: '64BD',
   },
   {
@@ -303,7 +303,7 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
   {
     // SCH
     id: 'Succor',
-    type: 'heal',
+    type: 'mitigation',
     abilityId: 'BA',
   },
   {
@@ -315,7 +315,7 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
   {
     // SCH
     id: 'Deployment Tactics',
-    type: 'heal',
+    type: 'mitigation',
     abilityId: 'E01',
   },
   {
@@ -333,7 +333,7 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
   {
     // SCH
     id: 'Consolation',
-    type: 'heal',
+    type: 'mitigation',
     abilityId: '40A3',
   },
   {
@@ -458,7 +458,7 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
   {
     // SGE
     id: 'Eukrasian Prognosis',
-    type: 'heal',
+    type: 'mitigation',
     abilityId: '5EE4',
   },
   {
@@ -482,7 +482,7 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
   {
     // SGE
     id: 'Holos',
-    type: 'heal',
+    type: 'mitigation',
     abilityId: '5EF6',
   },
   {
@@ -501,7 +501,7 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
   {
     // BLU
     id: 'Gobskin',
-    type: 'heal',
+    type: 'mitigation',
     abilityId: '4780',
   },
   {
