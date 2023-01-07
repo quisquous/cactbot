@@ -22,7 +22,7 @@ hideall "--sync--"
 
 # This section will be reached either at 56.0, or at the time she is pushed to 90%
 56.0 "--clones appear--" sync / 03:........:Aion Teleos:/  window 56,5
-63.6 "Thunder II/III" sync / 1[56]:[^:]*:Sophia:19(AC|B0):/
+63.6 "Thunder II/III" sync / 1[56]:[^:]*:Sophia:(19AC|19B0):/
 63.6 "--sync--" sync / 1[56]:[^:]*:Aion Teleos:19AB:/ window 30,2.5
 69.7 "Aero III" sync / 1[56]:[^:]*:Sophia:19AE:/
 69.7 "--sync--" sync / 1[56]:[^:]*:Aion Teleos:19AB:/
@@ -36,27 +36,27 @@ hideall "--sync--"
 110.6 "Cloudy Heavens" sync / 1[56]:[^:]*:Sophia:19BE:/ window 110.6
 111.6 "--untargetable--"
 111.6 "--adds spawn--"
-120.9 "Horizontal Kenoma/Vertical Kenoma" sync / 1[56]:[^:]*:The First Demiurge:19B[BC]:/
+120.9 "Horizontal Kenoma/Vertical Kenoma" sync / 1[56]:[^:]*:The First Demiurge:(19BB|19BC):/
 121.9 "Gnostic Spear" sync / 1[56]:[^:]*:The Third Demiurge:19B9:/
 125.9 "Divine Spark" # sync / 1[56]:[^:]*:The Second Demiurge:19B6:/
 129.0 "Ring Of Pain" sync / 1[56]:[^:]*:The Third Demiurge:19BA:/
-135.1 "Horizontal Kenoma/Vertical Kenoma" sync / 1[56]:[^:]*:The First Demiurge:19B[BC]:/
+135.1 "Horizontal Kenoma/Vertical Kenoma" sync / 1[56]:[^:]*:The First Demiurge:(19BB|19BC):/
 147.3 "Gnostic Spear?" sync / 1[56]:[^:]*:The Third Demiurge:19B9:/
-149.2 "Horizontal Kenoma/Vertical Kenoma" sync / 1[56]:[^:]*:The First Demiurge:19B[BC]:/
+149.2 "Horizontal Kenoma/Vertical Kenoma" sync / 1[56]:[^:]*:The First Demiurge:(19BB|19BC):/
 191.6 "Zombification Enrage?"
 
 # There's an introductory block leading into a rotation.
 250.0 "The Scales Of Wisdom" sync / 1[56]:[^:]*:Sophia:1981:/ window 250,5
 267.5 "The Scales Of Wisdom" sync / 1[56]:[^:]*:Sophia:1AE1:/
 272.9 "--targetable--"
-280.8 "Quasar (Snapshot)" sync / 1[56]:[^:]*:Sophia:19(6E|A7):/
+280.8 "Quasar (Snapshot)" sync / 1[56]:[^:]*:Sophia:(196E|19A7):/
 286.8 "Quasar (Meteor Detonate)" sync / 1[56]:[^:]*:Sophia:1A87:/
-291.3 "Aero III/Thunder II/Thunder III" sync / 1[56]:[^:]*:Sophia:19(A[CE]|BC):/ window 41.3,5
+291.3 "Aero III/Thunder II/Thunder III" sync / 1[56]:[^:]*:Sophia:(19AC|19AE|19B0):/ window 41.3,5
 297.1 "Quasar Tethers" sync / 1[56]:[^:]*:Sophia:196E:/
 305.7 "Quasar (Tilt)" sync / 1[56]:[^:]*:Sophia:1A4C:/
 310.7 "Cintamani x2" duration 3 # sync / 1[56]:[^:]*:Sophia:19C5:/
 318.8 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
- 
+
  # Potential landing point if DPS is high. Push seems to be 70%?
 328.3 "Thunder II" sync / 1[56]:[^:]*:Sophia:19B0:/ window 68.8,5
 334.0 "Quasar Tethers" sync / 1[56]:[^:]*:Sophia:19A7:/
@@ -64,13 +64,13 @@ hideall "--sync--"
 341.2 "Onrush" sync / 1[56]:[^:]*:Sophia:19C1:/
 341.8 "Quasar (Tilt)" # sync / 1[56]:[^:]*:Sophia:1A4C:/
 345.4 "--targetable--"
-361.5 "Dischordant Cleansing" # sync / 1[56]:[^:]*:Sophia:19B[35]:/
+361.5 "Dischordant Cleansing" # sync / 1[56]:[^:]*:Sophia:(19B3|19B5):/
 361.5 "Cintamani x2" duration 3 # sync / 1[56]:[^:]*:Sophia:19C5:/
 370.8 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/ window 30,5
 379.0 "--clones appear--" sync / 03:........:Aion Teleos:/  window 60,20
 382.0 "Cintamani x3" duration 6 # sync / 1[56]:[^:]*:Sophia:19C5:/
 393.3 "--sync--" sync / 1[56]:[^:]*:Aion Teleos:19AB:/
-393.3 "Thunder II/III" sync / 1[56]:[^:]*:Sophia:19(AC|B0):/
+393.3 "Thunder II/III" sync / 1[56]:[^:]*:Sophia:(19AC|19B0):/
 399.4 "--sync--" sync / 1[56]:[^:]*:Aion Teleos:19AB:/
 399.4 "Aero III" sync / 1[56]:[^:]*:Sophia:19AE:/ window 30,5
 408.5 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
@@ -96,23 +96,23 @@ hideall "--sync--"
 507.1 "Cintamani x3" duration 6 # sync / 1[56]:[^:]*:Sophia:19C5:/
 518.3 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
 525.4 "Thunder II" sync / 1[56]:[^:]*:Sophia:19B0:/
-535.9 "Dischordant Cleansing" # sync / 1[56]:[^:]*:Sophia:19B[35]:/
+535.9 "Dischordant Cleansing" # sync / 1[56]:[^:]*:Sophia:(19B3|19B5):/
 539.7 "Gnosis" sync / 1[56]:[^:]*:Barbelo:19C2:/ window 30,5
 552.2 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
 567.0 "Quasar Tethers" sync / 1[56]:[^:]*:Sophia:196E:/
-568.3 "Dischordant Cleansing" # sync / 1[56]:[^:]*:Sophia:19B[35]:/
+568.3 "Dischordant Cleansing" # sync / 1[56]:[^:]*:Sophia:(19B3|19B5):/
 575.7 "Quasar (Tilt)" # sync / 1[56]:[^:]*:Sophia:1A4C:/
 581.5 "Cintamani x3" duration 6 # sync / 1[56]:[^:]*:Sophia:19C5:/
 577.5 "--clones appear--" sync / 03:........:Aion Teleos:/  window 60,5
 592.8 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
 599.9 "--sync--" sync / 1[56]:[^:]*:Aion Teleos:19AB:/ window 10,2.5
-599.9 "Thunder II/III" sync / 1[56]:[^:]*:Sophia:19(AC|B0):/
+599.9 "Thunder II/III" sync / 1[56]:[^:]*:Sophia:(19AC|19B0):/
 606.1 "--sync--" sync / 1[56]:[^:]*:Aion Teleos:19AB:/
 606.1 "Aero III" sync / 1[56]:[^:]*:Sophia:19AE:/
-611.9 "Quasar (Snapshot)" sync / 1[56]:[^:]*:Sophia:19(6E|A7):/
+611.9 "Quasar (Snapshot)" sync / 1[56]:[^:]*:Sophia:(196E|19A7):/
 617.9 "Quasar (Meteor Detonate)" sync / 1[56]:[^:]*:Sophia:1A87:/
 624.4 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
-636.6 "Dischordant Cleansing" # sync / 1[56]:[^:]*:Sophia:19B[35]:/
+636.6 "Dischordant Cleansing" # sync / 1[56]:[^:]*:Sophia:(19B3|19B5):/
 639.0 "Execute" sync / 1[56]:[^:]*:Sophia:19AA:/
 
 650.9 "Cintamani x3" duration 6 # sync / 1[56]:[^:]*:Sophia:19C5:/
