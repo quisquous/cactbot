@@ -493,6 +493,15 @@ const lineDocs: LineDocs = {
       ],
     },
   },
+  InCombat: {
+    examples: {
+      'en-US': [
+        '260|2023-01-03T10:17:15.8240000-08:00|0|0|7da9e0cfed11abfe',
+        '260|2023-01-03T17:51:42.9680000-08:00|1|0|ae12d0898d923251',
+        '260|2023-01-03T17:54:50.0680000-08:00|1|1|3ba06c97a4cbbf42',
+      ],
+    },
+  },
 } as const;
 
 type LogGuideOptions = {

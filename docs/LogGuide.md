@@ -169,6 +169,10 @@ This guide was last updated for:
     - [Structure](#structure-30)
     - [Regexes](#regexes-30)
     - [Examples](#examples-30)
+  - [Line 260 (0x104): InCombat](#line-260-0x104-incombat)
+    - [Structure](#structure-31)
+    - [Regexes](#regexes-31)
+    - [Examples](#examples-31)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Data Flow
@@ -2322,20 +2326,20 @@ or their progress has changed.
 
 ```log
 Network Log Line Structure:
-258|[timestamp]|[category]|[?]|[param1]|[param2]|[param3]|[param4]|[param5]|[param6]
+258|[timestamp]|[category]|[?]|[fateId]|[progress]
 
 Parsed Log Line Structure:
-[timestamp] 258 102:[category]:[?]:[param1]:[param2]:[param3]:[param4]:[param5]:[param6]
+[timestamp] 258 102:[category]:[?]:[fateId]:[progress]
 ```
 
 #### Regexes
 
 ```log
 Network Log Line Regex:
-^(?<type>258)\|(?<timestamp>[^|]*)\|(?<category>[^|]*)\|(?:[^|]*\|)(?<param1>[^|]*)\|(?<param2>[^|]*)\|(?<param3>[^|]*)\|(?<param4>[^|]*)\|(?<param5>[^|]*)\|(?<param6>[^|]*)\|
+^(?<type>258)\|(?<timestamp>[^|]*)\|(?<category>[^|]*)\|(?:[^|]*\|)(?<fateId>[^|]*)\|(?<progress>[^|]*)\|
 
 Parsed Log Line Regex:
-(?<timestamp>^.{14}) 258 (?<type>102):(?<category>[^:]*):[^:]*:(?<param1>[^:]*):(?<param2>[^:]*):(?<param3>[^:]*):(?<param4>[^:]*):(?<param5>[^:]*):(?<param6>[^:]*)(?:$|:)
+(?<timestamp>^.{14}) 258 (?<type>102):(?<category>[^:]*):[^:]*:(?<fateId>[^:]*):(?<progress>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -2367,20 +2371,20 @@ but is for Critical Engagements in Bozja.
 
 ```log
 Network Log Line Structure:
-259|[timestamp]|[popTime]|[timeRemaining]|[?]|[numPlayers]|[status]|[?]|[progress]
+259|[timestamp]|[popTime]|[timeRemaining]|[?]|[ceKey]|[numPlayers]|[status]|[?]|[progress]
 
 Parsed Log Line Structure:
-[timestamp] 259 103:[popTime]:[timeRemaining]:[?]:[numPlayers]:[status]:[?]:[progress]
+[timestamp] 259 103:[popTime]:[timeRemaining]:[?]:[ceKey]:[numPlayers]:[status]:[?]:[progress]
 ```
 
 #### Regexes
 
 ```log
 Network Log Line Regex:
-^(?<type>259)\|(?<timestamp>[^|]*)\|(?<popTime>[^|]*)\|(?<timeRemaining>[^|]*)\|(?:[^|]*\|)(?<numPlayers>[^|]*)\|(?<status>[^|]*)\|(?:[^|]*\|)(?<progress>[^|]*)\|
+^(?<type>259)\|(?<timestamp>[^|]*)\|(?<popTime>[^|]*)\|(?<timeRemaining>[^|]*)\|(?:[^|]*\|)(?<ceKey>[^|]*)\|(?<numPlayers>[^|]*)\|(?<status>[^|]*)\|(?:[^|]*\|)(?<progress>[^|]*)\|
 
 Parsed Log Line Regex:
-(?<timestamp>^.{14}) 259 (?<type>103):(?<popTime>[^:]*):(?<timeRemaining>[^:]*):[^:]*:(?<numPlayers>[^:]*):(?<status>[^:]*):[^:]*:(?<progress>[^:]*)(?:$|:)
+(?<timestamp>^.{14}) 259 (?<type>103):(?<popTime>[^:]*):(?<timeRemaining>[^:]*):[^:]*:(?<ceKey>[^:]*):(?<numPlayers>[^:]*):(?<status>[^:]*):[^:]*:(?<progress>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -2398,3 +2402,54 @@ Parsed Log Line Examples:
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END (logLines:type=CEDirector&lang=en-US) -->
+
+<a name="line260"></a>
+
+### Line 260 (0x104): InCombat
+
+This log line tracks in combat state.
+`inGameCombat` is whether FFXIV itself considers you in combat.
+`inACTCombat` is whether ACT considers you in combat,
+which may include other people around you and not yourself
+and also takes your ACT encounter settings into consideration.
+
+OverlayPlugin uses `inACTCombat` to re-split your encounters during import
+based on how they were split when they were originally recorded.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=InCombat&lang=en-US) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+260|[timestamp]|[inACTCombat]|[inGameCombat]
+
+Parsed Log Line Structure:
+[timestamp] 260 104:[inACTCombat]:[inGameCombat]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>260)\|(?<timestamp>[^|]*)\|(?<inACTCombat>[^|]*)\|(?<inGameCombat>[^|]*)\|
+
+Parsed Log Line Regex:
+(?<timestamp>^.{14}) 260 (?<type>104):(?<inACTCombat>[^:]*):(?<inGameCombat>[^:]*)(?:$|:)
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+260|2023-01-03T10:17:15.8240000-08:00|0|0|7da9e0cfed11abfe
+260|2023-01-03T17:51:42.9680000-08:00|1|0|ae12d0898d923251
+260|2023-01-03T17:54:50.0680000-08:00|1|1|3ba06c97a4cbbf42
+
+Parsed Log Line Examples:
+[10:17:15.824] 260 104:0:0
+[17:51:42.968] 260 104:1:0
+[17:54:50.068] 260 104:1:1
+```
+
+<!-- AUTO-GENERATED-CONTENT:END (logLines:type=InCombat&lang=en-US) -->
