@@ -9,7 +9,7 @@ export interface Data extends RaidbossData {
   cloneSpots?: { [id: string]: string };
   scaleSophias?: string[];
   quasarTethers?: string[];
-  isQuadrantSafe: { [id:string]: boolean };
+  isQuadrantSafe: { [id: string]: boolean };
   seenThunder?: boolean;
   clonesActive?: boolean;
   sadTethers?: boolean; // :C
@@ -85,7 +85,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'sophia-ex.txt',
   initData: () => {
     return {
-      isQuadrantSafe: { NW: true, NE: true, SW: true, SE: true, },
+      isQuadrantSafe: { NW: true, NE: true, SW: true, SE: true },
     };
   },
   timelineTriggers: [
@@ -384,7 +384,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => {
         delete data.clonesActive;
         delete data.seenThunder;
-        data.isQuadrantSafe = { NW: true, NE: true, SW: true, SE: true, };
+        data.isQuadrantSafe = { NW: true, NE: true, SW: true, SE: true };
       },
     },
     {
