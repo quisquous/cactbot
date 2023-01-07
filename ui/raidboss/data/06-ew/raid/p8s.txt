@@ -26,7 +26,7 @@ hideall "--sync--"
 
 # Human 1
 39.9 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:7911:/
-40.9 "Scorching Fang/Sun\'s Pinion" sync / 1[56]:[^:]*:Hephaistos:(7912|7913):/
+40.9 "Scorching Fang/Sun's Pinion" sync / 1[56]:[^:]*:Hephaistos:(7912|7913):/
 41.1 "Emergent Octaflare/Emergent Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(7918|7919):/
 48.3 "Flameviper 1" sync / 1[56]:[^:]*:Hephaistos:7945:/
 51.5 "Flameviper 2" sync / 1[56]:[^:]*:Hephaistos:7946:/
@@ -111,7 +111,7 @@ hideall "--sync--"
 381.4 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
 385.9 "Cthonic Vent 3" sync / 1[56]:[^:]*:Suneater:7926:/
 390.6 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:(7910|7911):/
-391.6 "Scorching Fang/Sun\'s Pinion" sync / 1[56]:[^:]*:Hephaistos:(7912|7913):/
+391.6 "Scorching Fang/Sun's Pinion" sync / 1[56]:[^:]*:Hephaistos:(7912|7913):/
 391.8 "Emergent Octaflare/Emergent Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(7918|7919):/
 399.0 "Flameviper 1" sync / 1[56]:[^:]*:Hephaistos:7945:/
 402.2 "Flameviper 2" sync / 1[56]:[^:]*:Hephaistos:7946:/
@@ -226,7 +226,7 @@ hideall "--sync--"
 1381.2 "--sync--" sync / 1[56]:[^:]*:Hephaistos:7108:/
 1385.7 "Cthonic Vent 3" sync / 1[56]:[^:]*:Suneater:7926:/
 1390.4 "Sunforge" sync / 1[56]:[^:]*:Hephaistos:(7910|7911):/
-1391.4 "Scorching Fang/Sun\'s Pinion" sync / 1[56]:[^:]*:Hephaistos:(7912|7913):/
+1391.4 "Scorching Fang/Sun's Pinion" sync / 1[56]:[^:]*:Hephaistos:(7912|7913):/
 1391.6 "Emergent Octaflare/Emergent Tetraflare" sync / 1[56]:[^:]*:Hephaistos:(7918|7919):/
 1398.8 "Flameviper 1" sync / 1[56]:[^:]*:Hephaistos:7945:/
 1402.0 "Flameviper 2" sync / 1[56]:[^:]*:Hephaistos:7946:/
