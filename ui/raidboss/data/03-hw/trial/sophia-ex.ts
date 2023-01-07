@@ -361,12 +361,12 @@ const triggerSet: TriggerSet<Data> = {
         }
       },
       outputStrings: {
-        north: Outputs.dirN,
-        south: Outputs.dirS,
-        northwest: Outputs.dirNW,
-        northeast: Outputs.dirNE,
-        southwest: Outputs.dirSW,
-        southeast: Outputs.dirSE,
+        north: Outputs.north,
+        south: Outputs.south,
+        northwest: Outputs.northwest,
+        northeast: Outputs.northeast,
+        southwest: Outputs.southwest,
+        southeast: Outputs.southeast,
         multiple: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
