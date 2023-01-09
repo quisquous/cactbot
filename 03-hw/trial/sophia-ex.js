@@ -63,6 +63,11 @@ const tiltOutputStrings = {
 Options.Triggers.push({
   zoneId: ZoneId.ContainmentBayP1T6Extreme,
   timelineFile: 'sophia-ex.txt',
+  initData: () => {
+    return {
+      isQuadrantSafe: { NW: true, NE: true, SW: true, SE: true },
+    };
+  },
   timelineTriggers: [
     {
       // Gnosis does in fact have a cast time, but it's only 2.7 seconds.
@@ -259,17 +264,17 @@ Options.Triggers.push({
         const spot = data.cloneSpots?.[matches.sourceId];
         if (!spot)
           throw new UnreachableCode();
+        // Only Thunder 2 is ever used on centerline clones,
+        // so center clones will never affect quadrant safety.
+        if (spot === 'N' || spot === 'S') {
+          return;
+        }
         if (data.seenThunder) {
-          data.aeroClones ??= [];
-          data.aeroClones.push(spot);
-        } else {
-          data.thunderClones ??= [];
-          data.thunderClones.push(spot);
+          data.isQuadrantSafe[spot] = false;
         }
       },
     },
     {
-      // The ability here is Duplicate. The first Duplicate is always used alongside Thunder 2/3.
       id: 'SophiaEX Thunder Seen',
       type: 'StartsUsing',
       netRegex: { id: '19AB', source: 'Aion Teleos', capture: false },
@@ -314,34 +319,30 @@ Options.Triggers.push({
       netRegex: { id: '19AA', source: 'Sophia' },
       durationSeconds: (_data, matches) => parseFloat(matches.castTime),
       alertText: (data, _matches, output) => {
-        if (!data.thunderClones)
-          return;
         const localeCompass = {
-          'N': output.north(),
-          'S': output.south(),
           'NW': output.northwest(),
           'NE': output.northeast(),
           'SW': output.southwest(),
           'SE': output.southeast(),
         };
-        const firstClone = data.thunderClones[0];
-        const secondClone = data.thunderClones[1];
-        if (firstClone && secondClone) {
-          return output.multiple({
-            dir1: localeCompass[firstClone],
-            dir2: localeCompass[secondClone],
-          });
-        } else if (firstClone) {
-          return localeCompass[firstClone];
+        const safeSpots = [];
+        for (const dir of Object.keys(data.isQuadrantSafe)) {
+          if (data.isQuadrantSafe[dir])
+            safeSpots.push(localeCompass[dir]);
         }
+        if (safeSpots.length === 1) {
+          return safeSpots[0];
+        }
+        return output.multiple({
+          dir1: safeSpots[0],
+          dir2: safeSpots[1],
+        });
       },
       outputStrings: {
-        north: Outputs.dirN,
-        south: Outputs.dirS,
-        northwest: Outputs.dirNW,
-        northeast: Outputs.dirNE,
-        southwest: Outputs.dirSW,
-        southeast: Outputs.dirSE,
+        northwest: Outputs.northwest,
+        northeast: Outputs.northeast,
+        southwest: Outputs.southwest,
+        southeast: Outputs.southeast,
         multiple: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
@@ -358,11 +359,9 @@ Options.Triggers.push({
       netRegex: { id: '19AA', source: 'Sophia', capture: false },
       delaySeconds: 5,
       run: (data) => {
-        delete data.aeroClones;
         delete data.clonesActive;
-        delete data.cloneSpots;
-        delete data.thunderClones;
         delete data.seenThunder;
+        data.isQuadrantSafe = { NW: true, NE: true, SW: true, SE: true };
       },
     },
     {
