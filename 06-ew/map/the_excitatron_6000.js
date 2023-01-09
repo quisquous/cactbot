@@ -1,4 +1,4 @@
-// TODO: all Lucky Sphinx abilities
+// TODO: Lucky Sphinx abilities
 const excitatronOutputStrings = {
   spawn: {
     en: '${name} spawned!',
@@ -132,11 +132,29 @@ Options.Triggers.push({
       response: Responses.aoe(),
     },
     // ---------------- alternate final chamber boss: Lucky Sphinx ----------------
-    // Icewind Twister - donut aoe
-    // Lightning Bolt - aoes under 4? players
+    {
+      id: 'Excitatron Icewind Twister',
+      type: 'StartsUsing',
+      netRegex: { id: '6D69', source: 'Lucky Sphinx', capture: false },
+      response: Responses.getIn(),
+    },
+    {
+      id: 'Excitatron Riddle of Frost',
+      // inflicts Freezing Up (9EC) for 3s at end of cast
+      // Freezing Up becomes Deep Freeze (4E6) if not continuously moving until debuff expires
+      type: 'StartsUsing',
+      netRegex: { id: '6D65', source: 'Lucky Sphinx' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 2,
+      durationSeconds: 5,
+      response: Responses.moveAround('alert'),
+    },
+    {
+      id: 'Excitatron Icebomb Burst',
+      type: 'StartsUsing',
+      netRegex: { id: '6D67', source: 'Lucky Sphinx', capture: false },
+      response: Responses.getOut(),
+    },
     // Riddle of Flame - Pyretic on every player
-    // Riddle of Frost - Deep Freeze if not moving, Freezing Up if moving
-    // Icebomb Burst - point-blank aoe on boss + baited aoes on 4? players
     // Gold Thunder - stack donut on 1 player, deals high damge outside center safe-spot
     // Firedrop Blast - aoes under 4? players + aoe marker on 1 player, leaves burns on marked player if other players hit?
     // Superheat - tankbuster
@@ -145,30 +163,35 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Lucky Face': 'Gesicht des Glücks',
       },
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Lucky Face': 'visage chanceux',
       },
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Lucky Face': 'ラッキー・フェイス',
       },
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Lucky Face': '幸运石面',
       },
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Lucky Face': '행운의 얼굴',
       },

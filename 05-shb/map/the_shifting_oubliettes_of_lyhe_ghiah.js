@@ -1,5 +1,3 @@
-// TODO: Secret Serpent (lesser summon)
-// TODO: Secret Basket (greater summon)
 // TODO: Secret Pegasus (greater summon)
 // TODO: Greedy Pixie (greater summon)
 // TODO: Daen Ose The Avaricious (final summon)
@@ -114,15 +112,37 @@ Options.Triggers.push({
       netRegex: { id: '54CE', source: 'Secret Worm' },
       response: Responses.tankBuster(),
     },
-    // Secret Serpent: Douse - AoE on random player, leaves puddle
-    // Secret Serpent: Drench - front cone AoE
-    // Secret Serpent: Scale Ripple - PBAoE
-    // Secret Serpent: Fang's End - tankbuster?*
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Secret Serpent Fang\'s End',
+      type: 'StartsUsing',
+      netRegex: { id: '54C3', source: 'Secret Serpent' },
+      response: Responses.tankBuster(),
+    },
     // ---------------- greater summons ----------------
-    // Secret Basket: Pollen Corona - PBAoE
-    // Secret Basket: Earth Crusher - donut AoE
-    // Secret Basket: Earthquake - roomwide AoE*
-    // Secret Basket: Straight Punch - tankbuster?*
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Secret Basket Pollen Corona',
+      type: 'StartsUsing',
+      netRegex: { id: '54DA', source: 'Secret Basket', capture: false },
+      response: Responses.getIn(),
+    },
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Secret Basket Earth Crusher',
+      type: 'StartsUsing',
+      netRegex: { id: '54DF', source: 'Secret Basket', capture: false },
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Secret Basket Earthquake',
+      type: 'StartsUsing',
+      netRegex: { id: '54E1', source: 'Secret Basket', capture: false },
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Secret Basket Straight Punch',
+      type: 'StartsUsing',
+      netRegex: { id: '54D9', source: 'Secret Basket' },
+      response: Responses.tankBuster(),
+    },
     // Secret Pegasus: Burning Bright - front line AoE
     // Secret Pegasus: Nicker - PBAoE
     // Secret Pegasus: Cloud Call - summon Thunderhead adds (move around, cast Lightning Bolt PBAoE)*
