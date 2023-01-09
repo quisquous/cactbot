@@ -163,37 +163,37 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Lucky Face': 'Gesicht des Glücks',
+        'Lucky Sphinx': 'Sphinx des Glücks',
       },
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Lucky Face': 'visage chanceux',
+        'Lucky Sphinx': 'sphinx chanceux',
       },
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Lucky Face': 'ラッキー・フェイス',
+        'Lucky Sphinx': 'ラッキー・スフィンクス',
       },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Lucky Face': '幸运石面',
+        'Lucky Sphinx': '幸运斯芬克斯',
       },
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Lucky Face': '행운의 얼굴',
+        'Lucky Sphinx': '행운의 스핑크스',
       },
     },
   ],

@@ -76,7 +76,7 @@ Options.Triggers.push({
       'locale': 'cn',
       'missingTranslations': true,
       'replaceSync': {
-        '7 minutes have elapsed since your last activity.': '已经7分钟没有进行任何操作',
+        '7 minutes have elapsed since your last activity..*?': '已经7分钟没有进行任何操作',
         'The Diadem': '云冠群岛',
       },
     },
