@@ -31,8 +31,9 @@ synthetic_ids = {
     "TheNavelUnreal": 953,
     "TheWhorleaterUnreal": 972,
     "UltimasBaneUnreal": 1035,
+    "ContainmentBayS1T7Unreal": 1090,
     "TheMaskedCarnivale": 796,
-    # Dungeons and trials replaced by 6.2 revamp
+    # 6.2 revamp
     "Snowcloak61": 371,
     "SohmAl61": 441,
     "TheAery61": 435,
@@ -40,6 +41,13 @@ synthetic_ids = {
     "TheStepsOfFaith61": 143,
     "TheVault61": 421,
     "ThornmarchHard61": 207,
+    # 6.3 revamp
+    "BaelsarsWall63": 615,
+    "SohrKhai63": 555,
+    "TheAetherochemicalResearchFacility63": 438,
+    "TheAntitower63": 516,
+    "TheGreatGubalLibrary63": 416,
+    "Xelphatol63": 572,
 }
 
 synthetic_zone_info = {
@@ -106,7 +114,22 @@ synthetic_zone_info = {
         "sizeFactor": 400,
         "weatherRate": 31,
     },
-    # Dungeons and trials replaced by 6.2 revamp
+    1090: {
+        "contentType": 4,
+        "exVersion": 4,
+        "name": {
+            "cn": "萨菲洛特幻巧战",
+            "de": "Traumprüfung - Sephirot",
+            "en": "Containment Bay S1T7 (Unreal)",
+            "fr": "Unité de contention S1P7 (irréel)",
+            "ja": "幻魔神セフィロト討滅戦",
+        },
+        "offsetX": 0,
+        "offsetY": 0,
+        "sizeFactor": 400,
+        "weatherRate": 66,
+    },
+    # 6.2 revamp
     143: {
         "contentType": 4,
         "exVersion": 0,
@@ -218,6 +241,103 @@ synthetic_zone_info = {
         "offsetY": 51,
         "sizeFactor": 200,
         "weatherRate": 0,
+    },
+    # 6.3 revamp
+    416: {
+        "contentType": 2,
+        "exVersion": 1,
+        "name": {
+            "cn": "学识宝库迦巴勒幻想图书馆",
+            "de": "Große Gubal-Bibliothek",
+            "en": "The Great Gubal Library",
+            "fr": "La Grande bibliothèque de Gubal",
+            "ja": "禁書回収 グブラ幻想図書館",
+            "ko": "구브라 환상도서관",
+        },
+        "offsetX": 0,
+        "offsetY": 0,
+        "sizeFactor": 200,
+        "weatherRate": 0,
+    },
+    438: {
+        "contentType": 2,
+        "exVersion": 1,
+        "name": {
+            "cn": "血战苍穹魔科学研究所",
+            "de": "Ätherochemisches For<SoftHyphen/>schungs<SoftHyphen/>labor",
+            "en": "The Aetherochemical Research Facility",
+            "fr": "Le Laboratoire de magismologie",
+            "ja": "蒼天聖戦 魔科学研究所",
+            "ko": "마과학 연구소",
+        },
+        "offsetX": -18,
+        "offsetY": 149,
+        "sizeFactor": 200,
+        "weatherRate": 0,
+    },
+    516: {
+        "contentType": 2,
+        "exVersion": 1,
+        "name": {
+            "cn": "星海空间颠倒塔",
+            "de": "Antiturm",
+            "en": "The Antitower",
+            "fr": "L'Antitour",
+            "ja": "星海観測 逆さの塔",
+            "ko": "거꾸로 선 탑",
+        },
+        "offsetX": 0,
+        "offsetY": 0,
+        "sizeFactor": 200,
+        "weatherRate": 0,
+    },
+    555: {
+        "contentType": 2,
+        "exVersion": 1,
+        "name": {
+            "cn": "天龙宫殿忆罪宫",
+            "de": "Sohr Khai",
+            "en": "Sohr Khai",
+            "fr": "Sohr Khai",
+            "ja": "天竜宮殿 ソール・カイ",
+            "ko": "소르 카이",
+        },
+        "offsetX": 370,
+        "offsetY": 0,
+        "sizeFactor": 200,
+        "weatherRate": 0,
+    },
+    572: {
+        "contentType": 2,
+        "exVersion": 1,
+        "name": {
+            "cn": "险峻峡谷塞尔法特尔溪谷",
+            "de": "Xelphatol",
+            "en": "Xelphatol",
+            "fr": "Xelphatol",
+            "ja": "峻厳渓谷 ゼルファトル",
+            "ko": "젤파톨",
+        },
+        "offsetX": -148,
+        "offsetY": 35,
+        "sizeFactor": 200,
+        "weatherRate": 40,
+    },
+    615: {
+        "contentType": 2,
+        "exVersion": 1,
+        "name": {
+            "cn": "坚牢铁壁巴埃萨长城",
+            "de": "Baelsar-Wall",
+            "en": "Baelsar's Wall",
+            "fr": "La Muraille de Baelsar",
+            "ja": "巨大防壁 バエサルの長城",
+            "ko": "바일사르 장성",
+        },
+        "offsetX": 182,
+        "offsetY": 32,
+        "sizeFactor": 200,
+        "weatherRate": 40,
     },
 }
 
