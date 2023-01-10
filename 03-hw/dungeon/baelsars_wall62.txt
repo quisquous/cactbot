@@ -1,0 +1,117 @@
+### BAELSAR'S WALL
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~~~~~~~~~#
+# MAGITEK PREDATOR #
+#~~~~~~~~~~~~~~~~~~#
+
+# -ic Sky Armor Reinforcement
+
+# Timings on this encounter drift up to 2-3 seconds.
+# We're not sure precisely what causes this,
+# but it could be related to how quickly the adds die.
+# When solo, the second Missile is skipped and the timeline just keeps on.
+# We sync on Magitek Ray and hope for the best. It's all bad.
+
+0 "Start" sync / 00:0839::Via Praetoria will be sealed off/ window 0,1
+10.5 "Magitek Claw" sync / 1[56]:[^:]*:Magitek Predator:1CB2:/
+26.8 "Magitek Ray" sync / 1[56]:[^:]*:Magitek Predator:1CB3:/
+34.1 "Magitek Missile" sync / 1[56]:[^:]*:Magitek Predator:1CB4:/
+
+44.4 "Magitek Ray" sync / 1[56]:[^:]*:Magitek Predator:1CB3:/
+54.5 "Magitek Claw" sync / 1[56]:[^:]*:Magitek Predator:1CB2:/ window 5,5
+68.7 "Magitek Missile" sync / 1[56]:[^:]*:Magitek Predator:1CB4:/
+70.8 "Magitek Missile" sync / 1[56]:[^:]*:Magitek Predator:1CB4:/
+
+73.2 "--sync--"   sync / 14:[^:]*:Magitek Predator:1CB3:/ window 10,10
+75.9 "Magitek Ray" sync / 1[56]:[^:]*:Magitek Predator:1CB3:/ jump 44.4
+89.0 "Magitek Claw"
+98.4 "Magitek Missile"
+100.6 "Magitek Missile"
+
+#~~~~~~~~~~~~~~~~#
+# ARMORED WEAPON #
+#~~~~~~~~~~~~~~~~#
+
+# -ii 1CB7 1CBA
+
+1000.0 "Start" sync / 00:0839::The Magitek Installation will be sealed off/ window 1000,5
+1007.1 "Magitek Cannon" sync / 1[56]:[^:]*:Armored Weapon:1CB8:/ window 7.1,5
+1013.2 "Launcher" sync / 1[56]:[^:]*:Armored Weapon:1CBC:/
+1019.4 "Dynamic Sensory Jammer" sync / 1[56]:[^:]*:Armored Weapon:1CB9:/ duration 6
+1033.7 "Diffractive Laser" sync / 1[56]:[^:]*:Armored Weapon:1CBB:/
+
+1039.9 "Distress Beacon?" sync / 1[56]:[^:]*:Armored Weapon:1CBE:/ window 39.9,5 jump 1100
+1039.9 "Magitek Bit?" sync / 1[56]:[^:]*:Armored Weapon:1CBD:/ window 39.9,5 jump 1155.6
+1049.1 "Launcher?"
+1051.8 "Assault Cannon?"
+1053.2 "Magitek Cannon?"
+1054.1 "Diffractive Laser?"
+
+
+1100.0 "Distress Beacon" sync / 1[56]:[^:]*:Armored Weapon:1CBE:/
+1109.2 "Launcher" sync / 1[56]:[^:]*:Armored Weapon:1CBC:/
+1113.3 "Magitek Cannon" sync / 1[56]:[^:]*:Armored Weapon:1CB8:/
+1120.4 "Launcher" sync / 1[56]:[^:]*:Armored Weapon:1CBC:/
+1125.5 "Dynamic Sensory Jammer" sync / 1[56]:[^:]*:Armored Weapon:1CB9:/ duration 6
+1133.3 "Diffractive Laser" sync / 1[56]:[^:]*:Armored Weapon:1CBB:/ window 10,10
+1137.4 "Magitek Cannon" sync / 1[56]:[^:]*:Armored Weapon:1CB8:/
+1144.4 "Launcher" sync / 1[56]:[^:]*:Armored Weapon:1CBC:/
+
+1155.6 "Magitek Bit" sync / 1[56]:[^:]*:Armored Weapon:1CBD:/ window 30,30
+1161.5 "--sync--" sync / 1[56]:[^:]*:Magitek Bit:1CBF:/
+1167.5 "Assault Cannon" sync / 1[56]:[^:]*:Magitek Bit:1CC0:/
+1169.8 "Diffractive Laser" sync / 1[56]:[^:]*:Armored Weapon:1CBB:/ window 10,10
+1175.9 "Launcher" sync / 1[56]:[^:]*:Armored Weapon:1CBC:/
+1181.0 "Dynamic Sensory Jammer" sync / 1[56]:[^:]*:Armored Weapon:1CB9:/ duration 6
+1188.9 "Diffractive Laser" sync / 1[56]:[^:]*:Armored Weapon:1CBB:/
+1193.0 "Magitek Cannon" sync / 1[56]:[^:]*:Armored Weapon:1CB8:/
+1200.0 "Launcher" sync / 1[56]:[^:]*:Armored Weapon:1CBC:/
+
+1211.2 "Distress Beacon" sync / 1[56]:[^:]*:Armored Weapon:1CBE:/ window 30,30 jump 1100
+1220.4 "Launcher"
+1224.5 "Magitek Cannon"
+1231.6 "Launcher"
+1236.7 "Dynamic Sensory Jammer"
+1244.5 "Diffractive Laser"
+
+#~~~~~~~~~~~~~#
+# THE GRIFFIN #
+#~~~~~~~~~~~~~#
+
+
+2000.0 "Start" sync / 00:0839::The Airship Landing will be sealed off/ window 2000,5
+2006.1 "Dull Blade" sync / 1[56]:[^:]*:The Griffin:1CC1:/ window 6.1,5
+2012.2 "Beak Of The Griffin" sync / 1[56]:[^:]*:The Griffin:1CC3:/
+2019.3 "Flash Powder" sync / 1[56]:[^:]*:The Griffin:1CC4:/
+2021.4 "--teleport--" sync / 1[56]:[^:]*:The Griffin:1CC6:/
+2026.9 "Sanguine Blade" sync / 1[56]:[^:]*:The Griffin:1CC5:/
+
+2036.0 "Claw Of The Griffin" sync / 1[56]:[^:]*:The Griffin:1CC2:/ window 36,6
+2046.2 "Gull Dive x7" duration 5.6 # sync / 1[56]:[^:]*:Blade Of The Griffin:1CCB:/
+2053.1 "Lionshead" sync / 1[56]:[^:]*:The Griffin:1CCA:/
+2060.3 "Dull Blade" sync / 1[56]:[^:]*:The Griffin:1CC1:/
+2066.4 "Flash Powder" sync / 1[56]:[^:]*:The Griffin:1CC4:/ window 30,30
+2071.6 "Big Boot" sync / 1[56]:[^:]*:The Griffin:1CC7:/
+2077.7 "Corrosion" sync / 1[56]:[^:]*:Blade Of The Griffin:1CCC:/ window 30,30
+2077.8 "--teleport--" sync / 1[56]:[^:]*:The Griffin:1CC6:/
+2083.3 "Sanguine Blade" sync / 1[56]:[^:]*:The Griffin:1CC5:/
+2088.5 "Dull Blade" sync / 1[56]:[^:]*:The Griffin:1CC1:/
+2095.6 "Restraint Collar" sync / 1[56]:[^:]*:The Griffin:1CC8:/ window 30,30
+2104.7 "Beak Of The Griffin" sync / 1[56]:[^:]*:The Griffin:1CC3:/
+2108.8 "Dull Blade" sync / 1[56]:[^:]*:The Griffin:1CC1:/
+2111.9 "--teleport 1--" # sync / 1[56]:[^:]*:The Griffin:1CC6:/
+2112.7 "--teleport 2--" # sync / 1[56]:[^:]*:The Griffin:1CC6:/
+2118.2 "Sanguine Blade" sync / 1[56]:[^:]*:The Griffin:1CC5:/
+2125.3 "Beak Of The Griffin" sync / 1[56]:[^:]*:The Griffin:1CC3:/
+
+2133.4 "Claw Of The Griffin" sync / 1[56]:[^:]*:The Griffin:1CC2:/ jump 2036.0 window 30,30
+2139.6 "Gull Dive"
+2146.5 "Lionshead"
+2153.7 "Dull Blade"
+2159.8 "Flash Powder"
+2164.9 "Big Boot"
