@@ -70,28 +70,6 @@ namespace Cactbot {
       public string EventName() { return "onPlayerDied"; }
     }
 
-    public class FateEvent : JSEvent {
-      public FateEvent(string eventType, int fateID, int progress) {
-        this.eventType = eventType;
-        this.fateID = fateID;
-        this.progress = progress;
-      }
-      public string EventName() { return "onFateEvent"; }
-      public string eventType;
-      public int fateID;
-      public int progress;
-    }
-
-    public class CEEvent : JSEvent {
-      public CEEvent(string eventType, object data) {
-        this.eventType = eventType;
-        this.data = data;
-      }
-      public string EventName() { return "onCEEvent"; }
-      public string eventType;
-      public object data;
-    }
-
     public class PlayerChangedEvent : JSEvent {
       public PlayerChangedEvent(FFXIVProcess.EntityData e) {
         id = e.id;

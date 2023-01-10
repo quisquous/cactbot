@@ -281,30 +281,6 @@ export interface EventMap {
     };
   }) => void;
 
-  'onFateEvent': (ev: {
-    type: 'onFateEvent';
-    detail: {
-      eventType: 'add' | 'update' | 'remove';
-      fateID: number;
-      progress: number;
-    };
-  }) => void;
-
-  'onCEEvent': (ev: {
-    type: 'onCEEvent';
-    detail: {
-      eventType: 'add' | 'update' | 'remove';
-      data: {
-        popTime: number;
-        timeRemaining: number;
-        ceKey: number;
-        numPlayers: number;
-        status: number;
-        progress: number;
-      };
-    };
-  }) => void;
-
   'onPlayerDied': (ev: {
     type: 'onPlayerDied';
   }) => void;
