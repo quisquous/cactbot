@@ -42,12 +42,12 @@ synthetic_ids = {
     "TheVault61": 421,
     "ThornmarchHard61": 207,
     # 6.3 revamp
-    "BaelsarsWall63": 615,
-    "SohrKhai63": 555,
-    "TheAetherochemicalResearchFacility63": 438,
-    "TheAntitower63": 516,
-    "TheGreatGubalLibrary63": 416,
-    "Xelphatol63": 572,
+    "BaelsarsWall62": 615,
+    "SohrKhai62": 555,
+    "TheAetherochemicalResearchFacility62": 438,
+    "TheAntitower62": 516,
+    "TheGreatGubalLibrary62": 416,
+    "Xelphatol62": 572,
 }
 
 synthetic_zone_info = {
