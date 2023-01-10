@@ -90,8 +90,12 @@
 03-hw/deepdungeon/the_palace_of_the_dead_general.ts
 03-hw/dungeon/aetherochemical_research_facility.ts
 03-hw/dungeon/aetherochemical_research_facility.txt
+03-hw/dungeon/aetherochemical_research_facility62.ts
+03-hw/dungeon/aetherochemical_research_facility62.txt
 03-hw/dungeon/baelsars_wall.ts
 03-hw/dungeon/baelsars_wall.txt
+03-hw/dungeon/baelsars_wall62.ts
+03-hw/dungeon/baelsars_wall62.txt
 03-hw/dungeon/fractal_continuum.ts
 03-hw/dungeon/fractal_continuum.txt
 03-hw/dungeon/gubal_library_hard.ts
@@ -110,6 +114,8 @@
 03-hw/dungeon/the_vault61.txt
 03-hw/dungeon/xelphatol.ts
 03-hw/dungeon/xelphatol.txt
+03-hw/dungeon/xelphatol62.ts
+03-hw/dungeon/xelphatol62.txt
 03-hw/map/the_aquapolis.ts
 03-hw/pvp/shatter.ts
 03-hw/raid/a10n.ts
