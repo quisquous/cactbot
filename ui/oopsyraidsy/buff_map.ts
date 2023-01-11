@@ -173,6 +173,12 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
     abilityId: '64B9',
   },
   {
+    // BRD
+    id: 'Nature\'s Minne',
+    type: 'heal',
+    abilityId: '1CF0',
+  },
+  {
     // SMN (5.x ability, removed in Endwalker)
     id: 'Devotion',
     type: 'damage',
