@@ -1237,6 +1237,16 @@ const data: FisherData = {
       '36684': '佛恩·阿穆',
       '36685': '骇惊威',
       '36686': '萨维奈卡拉墨鱼',
+      '37697': '摩耶灵龟',
+      '37845': '巨剑锯盖鱼',
+      '37846': '潜底弓鳍鱼',
+      '37847': '郁金香蟹',
+      '37848': '巨吻脂鲤',
+      '37849': '暗影帝冠',
+      '37850': '仿制巨骨舌鱼',
+      '37851': '破军尾',
+      '37852': '阿耳戈雄英',
+      '37853': '水中辉星',
     },
     'de': {
       '4776': [
@@ -6258,6 +6268,42 @@ const data: FisherData = {
         'Argonauta Argos',
       ],
       '37853': 'Planetes',
+      '38810': [
+        'Ondo-Alge',
+        'Ondo-Algen',
+      ],
+      '38812': [
+        'Purpur-Dorsch',
+        'Purpur-Dorsche',
+      ],
+      '38814': [
+        'Il Lydha',
+        'Il Lydhas',
+      ],
+      '38830': 'Verzweifler',
+      '38831': 'Finstermooser',
+      '38832': [
+        'Vijuvat-Lippfisch',
+        'Vijuvat-Lippfische',
+      ],
+      '38833': [
+        'Braunschecke',
+        'Braunschecken',
+      ],
+      '38834': [
+        'Frost-Regolithkröte',
+        'Frost-Regolithkröten',
+      ],
+      '38835': 'Auroraschweifer',
+      '38836': [
+        'Antheia Dahlia',
+        'Antheia Dahlias',
+      ],
+      '38935': [
+        'Zingarnele',
+        'Zingarnelen',
+      ],
+      '39240': 'Purinos',
     },
     'en': {
       '4776': [
@@ -9541,7 +9587,7 @@ const data: FisherData = {
         'basilosaurus',
         'basilosaurs',
       ],
-      '36456': 'eblan trout',
+      '36456': 'Eblan trout',
       '36457': [
         'animulus',
         'animuli',
@@ -9776,6 +9822,45 @@ const data: FisherData = {
       ],
       '37852': 'Argonauta argo',
       '37853': 'planetes',
+      '38810': [
+        'strip of Ondo kelp',
+        'strips of Ondo kelp',
+      ],
+      '38812': 'Purpure cod',
+      '38814': [
+        'Il Lydha',
+        'Il Lydhas',
+      ],
+      '38830': [
+        'catastrophizer',
+        'catastrophizers',
+      ],
+      '38831': 'mossgill salmon',
+      '38832': 'vidyutvat wrasse',
+      '38833': [
+        'browned banana eel',
+        'browned banana eels',
+      ],
+      '38834': [
+        'frozen regotoise',
+        'frozen regotoises',
+      ],
+      '38835': [
+        'cosmic haze',
+        'cosmic hazes',
+      ],
+      '38836': [
+        'antheian dahlia',
+        'antheian dahlias',
+      ],
+      '38935': [
+        'jhinga',
+        'jhingas',
+      ],
+      '39240': [
+        'phyllinos',
+        'phyllinoi',
+      ],
     },
     'fr': {
       '4776': [
@@ -13862,8 +13947,8 @@ const data: FisherData = {
         'snooks-épées',
       ],
       '36395': [
-        'poisson-penseur',
-        'poissons-penseurs',
+        'poisson penseur',
+        'poissons penseurs',
       ],
       '36396': [
         'dahlia de mer',
@@ -14135,8 +14220,8 @@ const data: FisherData = {
       '36488': 'mange-étoiles',
       '36489': 'ciseaux-sombres',
       '36491': [
-        'bruit-cosmique',
-        'bruits-cosmiques',
+        'bruit cosmique',
+        'bruits cosmiques',
       ],
       '36492': [
         'silure de verre',
@@ -14278,6 +14363,48 @@ const data: FisherData = {
       ],
       '37852': 'argonauta argo',
       '37853': 'planetes',
+      '38810': [
+        'touffe de varech ondo',
+        'touffes de varech ondo',
+      ],
+      '38812': [
+        'morue purpurine',
+        'morues purpurines',
+      ],
+      '38814': 'Il Lydha',
+      '38830': [
+        'poisson cogiteur',
+        'poissons cogiteurs',
+      ],
+      '38831': [
+        'saumon écailles-de-mousse',
+        'saumons écailles-de-mousse',
+      ],
+      '38832': [
+        'labre vidyutvat',
+        'labres vidyutvat',
+      ],
+      '38833': [
+        'murène banane brune',
+        'murènes banane brunes',
+      ],
+      '38834': [
+        'tortue givrée',
+        'tortues givrées',
+      ],
+      '38835': [
+        'aurore cosmique',
+        'aurores cosmiques',
+      ],
+      '38836': [
+        'anthéa-dahlia',
+        'anthéas-dahlias',
+      ],
+      '38935': [
+        'jhinga',
+        'jhingas',
+      ],
+      '39240': 'phyllinos',
     },
     'ja': {
       '4776': 'マルムケルプ',
@@ -15507,6 +15634,18 @@ const data: FisherData = {
       '37851': '破軍星の欠片',
       '37852': 'アルゴノート・アルゴ',
       '37853': '水面の恒星',
+      '38810': 'オンドケルプ',
+      '38812': 'プルプラコッド',
+      '38814': 'イル・リダ',
+      '38830': '万慮魚',
+      '38831': 'モスグリーンサーモン',
+      '38832': 'ヴィジュヴァト・ラス',
+      '38833': 'ブラウンバナナイール',
+      '38834': 'フローズン・レゴリストータス',
+      '38835': 'コズミック・ヘイズ',
+      '38836': 'アンテイア・ダーリア',
+      '38935': 'ジンガ',
+      '39240': 'ピュッリノス',
     },
     'ko': {
       '4776': '말름미역',
@@ -19182,6 +19321,7 @@ const data: FisherData = {
       27456,
       27457,
       32051,
+      38810,
     ],
     '3304': [
       27419,
@@ -19363,6 +19503,7 @@ const data: FisherData = {
       27511,
       27512,
       28072,
+      38812,
     ],
     '3326': [
       27496,
@@ -19372,6 +19513,7 @@ const data: FisherData = {
       27514,
       27515,
       30439,
+      38814,
     ],
     '3448': [
       28937,
@@ -19610,6 +19752,7 @@ const data: FisherData = {
       36390,
       36395,
       36396,
+      38830,
     ],
     '4053': [
       35604,
@@ -19625,6 +19768,7 @@ const data: FisherData = {
       36403,
       36404,
       36405,
+      38831,
     ],
     '4055': [
       36397,
@@ -19667,12 +19811,14 @@ const data: FisherData = {
       36426,
       36427,
       36663,
+      38935,
     ],
     '4061': [
       35605,
       36420,
       36421,
       36430,
+      38832,
     ],
     '4062': [
       36431,
@@ -19700,6 +19846,7 @@ const data: FisherData = {
       36443,
       36444,
       36446,
+      38833,
     ],
     '4066': [
       36436,
@@ -19751,6 +19898,7 @@ const data: FisherData = {
       36470,
       36473,
       36475,
+      38834,
     ],
     '4073': [
       36476,
@@ -19765,18 +19913,21 @@ const data: FisherData = {
       36477,
       36481,
       36485,
+      39240,
     ],
     '4075': [
       35607,
       36476,
       36477,
       36484,
+      38836,
     ],
     '4076': [
       36487,
       36488,
       36489,
       36491,
+      38835,
     ],
     '4077': [
       36487,
@@ -20141,7 +20292,7 @@ const data: FisherData = {
       '4077': '沼癸辛β',
       '4078': '沼癸辛α',
       '4079': '逡巡泉',
-      '4080': '辞世绝句碑',
+      '4080': '异亚村落',
       '4081': '湖癸辛',
       '4082': '湖丙α',
       '4083': '湖丙β',
@@ -23076,7 +23227,7 @@ const data: FisherData = {
       '36590': 'cuiller céleste',
       '36591': 'éphémère',
       '36592': 'boulette de crevette',
-      '36593': 'tranche de chair de thon',
+      '36593': 'tranche de chair de maquereau',
       '36594': 'ver gris',
       '36595': 'ver chimérique',
       '36596': 'leurre angoissant',
@@ -23708,7 +23859,6 @@ const data: FisherData = {
     '36451': 1,
     '36453': 2,
     '36454': 3,
-    '36456': 2,
     '36457': 1,
     '36458': 2,
     '36459': 2,

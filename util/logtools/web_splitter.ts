@@ -13,15 +13,19 @@ import './splitter.css';
 const pageText = {
   titleText: {
     en: 'Log Splitter and Anonymizer',
+    cn: '日志分割与匿名器',
   },
   fileDropText: {
     en: 'Drop Network log file here',
+    cn: '将网络日志文件拖放到此处',
   },
   anonInput: {
     en: 'Anonymize Log',
+    cn: '对日志进行匿名化处理',
   },
   exportInput: {
     en: 'Export',
+    cn: '导出',
   },
 } as const;
 
@@ -59,24 +63,31 @@ const buildTable = (state: PageState): void => {
   const headers = {
     include: {
       en: 'Include',
+      cn: '包括',
     },
     startDate: {
       en: 'Date',
+      cn: '日期',
     },
     startTime: {
       en: 'Time',
+      cn: '时间',
     },
     duration: {
       en: 'Duration',
+      cn: '持续时间',
     },
     zone: {
       en: 'Zone',
+      cn: '区域',
     },
     encounter: {
       en: 'Encounter',
+      cn: '战斗',
     },
     end: {
       en: 'End',
+      cn: '结束方式',
     },
   } as const;
 

@@ -250,6 +250,7 @@ const triggerSet: TriggerSet<Data> = {
         'Quickthinx Allthoughts': 'Denkfix',
         'Shanoa': 'Schwarz(?:e|er|es|en) Katze',
         'Sturm Doll': 'Sturmpuppe',
+        'The electrocution gallery': 'Platz für Strafezeigen',
       },
       'replaceText': {
         'Big Doll': 'Große Puppe',
@@ -278,11 +279,11 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Bomb': 'bombe',
         'Boomtype Magitek Gobwalker G-VII': 'gobblindé magitek G-VII Lamineur',
-        'electrocution gallery': 'square d\'exécution publique',
         'Padlock': 'cadenas',
         'Quickthinx Allthoughts': 'Quickthinx le Cerveau',
         'Shanoa': 'Chat-noir',
         'Sturm Doll': 'poupée sturm',
+        'The electrocution gallery': 'square d\'exécution publique',
       },
       'replaceText': {
         'Bomb': 'Bombe',
@@ -299,13 +300,13 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Bomb': '爆弾',
         'Boomtype Magitek Gobwalker G-VII': 'VII号ゴブリウォーカーL型',
-        'Electrocution gallery': '公開処刑広場',
         'Frostbite': '凍傷',
         'Padlock': '錠前',
         'Pyretic': 'ヒート',
         'Quickthinx Allthoughts': '万能のクイックシンクス',
         'Shanoa': 'シャノア',
         'Sturm Doll': 'シュツルムドール',
+        'The electrocution gallery': '公開処刑広場',
       },
       'replaceText': {
         'Big Doll': '大きいドール',
@@ -334,13 +335,13 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Bomb': '炸弹',
         'Boomtype Magitek Gobwalker G-VII': '7号哥布林战车L型',
-        'Electrocution gallery': '公开处刑广场',
         'Frostbite': '冻伤',
         'Padlock': '牢门的锁',
         'Pyretic': '热病',
         'Quickthinx Allthoughts': '万事通 奎克辛克斯',
         'Shanoa': '夏诺雅',
         'Sturm Doll': '风暴人偶',
+        'The electrocution gallery': '公开处刑广场',
         'Undying Affection': '声援',
       },
       'replaceText': {
@@ -374,7 +375,7 @@ const triggerSet: TriggerSet<Data> = {
         'Quickthinx Allthoughts': '만능의 퀵싱크스',
         'Shanoa': '샤노아',
         'Sturm Doll': '인형 폭기병',
-        'Electrocution Gallery': '공개처형 광장',
+        'The electrocution gallery': '공개처형 광장',
         'Pyretic': '열병',
       },
       'replaceText': {

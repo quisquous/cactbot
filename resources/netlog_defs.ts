@@ -990,6 +990,20 @@ const latestLogDefinitions = {
     canAnonymize: true,
     firstOptionalField: undefined,
   },
+  InCombat: {
+    type: '260',
+    name: 'InCombat',
+    source: 'OverlayPlugin',
+    messageType: '260',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      inACTCombat: 2,
+      inGameCombat: 3,
+    },
+    canAnonymize: true,
+    firstOptionalField: undefined,
+  },
 } as const;
 
 export const logDefinitionsVersions = {

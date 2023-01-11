@@ -4,14 +4,13 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: id for Lucky Face Temper's Flare
-// TODO: all Lucky Sphinx abilities
+// TODO: Lucky Sphinx abilities
 
 const excitatronOutputStrings = {
   spawn: {
     en: '${name} spawned!',
     de: '${name} erscheint!',
-    cn: '正在生成 ${name}!',
+    cn: '已生成 ${name}!',
     ko: '${name} 등장!',
   },
 } as const;
@@ -137,14 +136,36 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
-    // Heart on Fire II (6D54) - aoes under random players
-    // Temper's Flare (6D4E?, 6743?) - roomwide aoe
+    {
+      id: 'Excitatron Temper\'s Flare',
+      type: 'StartsUsing',
+      netRegex: { id: '6D4E', source: 'Lucky Face', capture: false },
+      response: Responses.aoe(),
+    },
     // ---------------- alternate final chamber boss: Lucky Sphinx ----------------
-    // Icewind Twister - donut aoe
-    // Lightning Bolt - aoes under 4? players
+    {
+      id: 'Excitatron Icewind Twister',
+      type: 'StartsUsing',
+      netRegex: { id: '6D69', source: 'Lucky Sphinx', capture: false },
+      response: Responses.getIn(),
+    },
+    {
+      id: 'Excitatron Riddle of Frost',
+      // inflicts Freezing Up (9EC) for 3s at end of cast
+      // Freezing Up becomes Deep Freeze (4E6) if not continuously moving until debuff expires
+      type: 'StartsUsing',
+      netRegex: { id: '6D65', source: 'Lucky Sphinx' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 2,
+      durationSeconds: 5,
+      response: Responses.moveAround('alert'),
+    },
+    {
+      id: 'Excitatron Icebomb Burst',
+      type: 'StartsUsing',
+      netRegex: { id: '6D67', source: 'Lucky Sphinx', capture: false },
+      response: Responses.getOut(),
+    },
     // Riddle of Flame - Pyretic on every player
-    // Riddle of Frost - Deep Freeze if not moving, Freezing Up if moving
-    // Icebomb Burst - point-blank aoe on boss + baited aoes on 4? players
     // Gold Thunder - stack donut on 1 player, deals high damge outside center safe-spot
     // Firedrop Blast - aoes under 4? players + aoe marker on 1 player, leaves burns on marked player if other players hit?
     // Superheat - tankbuster
@@ -155,30 +176,35 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'de',
       'replaceSync': {
         'Lucky Face': 'Gesicht des Glücks',
+        'Lucky Sphinx': 'Sphinx des Glücks',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
         'Lucky Face': 'visage chanceux',
+        'Lucky Sphinx': 'sphinx chanceux',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
         'Lucky Face': 'ラッキー・フェイス',
+        'Lucky Sphinx': 'ラッキー・スフィンクス',
       },
     },
     {
       'locale': 'cn',
       'replaceSync': {
         'Lucky Face': '幸运石面',
+        'Lucky Sphinx': '幸运斯芬克斯',
       },
     },
     {
       'locale': 'ko',
       'replaceSync': {
         'Lucky Face': '행운의 얼굴',
+        'Lucky Sphinx': '행운의 스핑크스',
       },
     },
   ],

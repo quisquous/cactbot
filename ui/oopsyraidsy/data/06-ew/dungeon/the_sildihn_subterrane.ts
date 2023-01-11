@@ -70,10 +70,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     // Gladiator of Sil'dih
     'Sildihn Gladiator Ring of Might Out 1': '763F', // ring 1 out
     'Sildihn Gladiator Ring of Might Out 2': '7640', // ring 2 out
-    'Sildihn Gladiator Ring of Might Out 3': '7641', // ring 2 out
-    'Sildihn Gladiator Ring of Might In 1': '7642', // ring 2 in
+    'Sildihn Gladiator Ring of Might Out 3': '7641', // ring 3 out
+    'Sildihn Gladiator Ring of Might In 1': '7642', // ring 1 in
     'Sildihn Gladiator Ring of Might In 2': '7643', // ring 2 in
-    'Sildihn Gladiator Ring of Might In 3': '7644', // ring 2 in
+    'Sildihn Gladiator Ring of Might In 3': '7644', // ring 3 in
     'Sildihn Gladiator Rush of Might Front': '763D', // initial 180 cleave in front
     'Sildihn Gladiator Rush of Might Back': '763E', // followup 180 cleave behind
     'Sildihn Gladiator Sculptor\'s Passion': '764A', // front line
@@ -94,7 +94,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Sildihn Shadowcaster Pure Fire': '74A0', // targeted ground circles
     'Sildihn Shadowcaster Cast Shadow 1': '749B', // first hit of Cast Shadow
     'Sildihn Shadowcaster Cast Shadow 2': '749D', // second hit of Cast Shadow
-    'Sildihn Shadowcaster Tresspasser\'s Pyre': '7498', // hitting Infirm Ward lasers
+    'Sildihn Shadowcaster Trespasser\'s Pyre': '7498', // hitting Infirm Ward lasers
 
     // Thorne Knight
     'Sildihn Thorne Magicked Puppet Magic Cannon': '70F7', // blue line aoe
@@ -112,6 +112,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Sildihn Dropsy 2': 'B69', // ceruleum Geryon squares
     'Sildihn Toxicosis': 'C0A', // standing outside arena 1 (C09 is the infinite duration effect)
     'Sildihn Bleeding': 'C06', // standing outside arena 2 (C05 is the infinite duration effect)
+    'Sildihn Burns': 'BFA', // standing outside Shadowcaster arena (BF9 is the infinite duration effect)
   },
   shareFail: {
     'Sildihn Geryon Colossal Strike': '74CF', // tankbuster (probably cleaves?)

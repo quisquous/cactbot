@@ -1932,8 +1932,12 @@ const data: WeatherRateType = {
     ],
   },
   150: {
-    'rates': [],
-    'weathers': [],
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Dimensional Disruption',
+    ],
   },
   151: {
     'rates': [],
