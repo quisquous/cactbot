@@ -14,7 +14,7 @@ hideall "--sync--"
 10.1 "--sync--" sync / 1[56]:[^:]*:Shiva:4DD7:/ window 15,5
 15.1 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:4DD7:/
 27.2 "Redress" sync / 1[56]:[^:]*:Shiva:4F4F:/
-32.4 "Shining Armor" sync / 1[56]:[^:]*:Shiva:4DF1:/
+32.4 "Shining Armor" sync / 1[56]:[^:]*:Shiva:4DF1:/ window 32.4,5
 40.4 "Axe Kick/Scythe Kick" sync / 1[56]:[^:]*:Shiva:4DE[23]:/
 52.5 "Redress" sync / 1[56]:[^:]*:Shiva:4F4E:/
 57.6 "Frost Armor" sync / 1[56]:[^:]*:Shiva:4DF0:/
@@ -27,7 +27,7 @@ hideall "--sync--"
 111.2 "Icicle Impact" sync / 1[56]:[^:]*:Shiva:4E0A:/
 112.3 "Frigid Eruption" # sync / 1[56]:[^:]*:Shiva:4E09:/
 114.3 "Frigid Eruption" # sync / 1[56]:[^:]*:Shiva:4E09:/
-120.1 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:4DD8:/
+120.1 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:4DD8:/ window 120,10
 131.2 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4DD4:/
 143.4 "Driving Frost/Biting Frost" sync / 1[56]:[^:]*:Shiva:4DD[BC]:/
 148.5 "Reflected Frost" sync / 1[56]:[^:]*:Frozen Mirror:4DF[EF]:/
@@ -35,7 +35,7 @@ hideall "--sync--"
 165.7 "Shining Armor" sync / 1[56]:[^:]*:Shiva:4DF1:/
 173.7 "Axe Kick/Scythe Kick" sync / 1[56]:[^:]*:Shiva:4DE[23]:/
 181.9 "--Untargetable--"
-193.2 "Shattered World" sync / 1[56]:[^:]*:Shiva:4DE9:/
+193.2 "Shattered World" sync / 1[56]:[^:]*:Shiva:4DE9:/ window 193.2,15
 
 # Intermission. Fixed length.
 209.4 "Heart Asunder" sync / 1[56]:[^:]*:Mothercrystal:4E12:/
@@ -50,7 +50,7 @@ hideall "--sync--"
 261.2 "Rush" sync / 1[56]:[^:]*:Luminous Aether:4FC8:/
 
 # Post-intermission block
-272.6 "Skyfall" sync / 1[56]:[^:]*:Shiva:4E13:/
+272.6 "Skyfall" sync / 1[56]:[^:]*:Shiva:4E13:/ window 272.6,20
 287.9 "--targetable--"
 306.9 "Holy" sync / 1[56]:[^:]*:Shiva:4DE[CD]:/
 321.4 "Light Rampant" sync / 1[56]:[^:]*:Shiva:4DE8:/

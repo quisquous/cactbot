@@ -73,7 +73,7 @@ export class GNBComponent extends BaseComponent {
         break;
       }
       case kAbility.Bloodfest:
-        if (this.ffxivRegion === 'intl')
+        if (this.ffxivRegion !== 'ko')
           this.bloodfestBox.duration = 120;
         else
           this.bloodfestBox.duration = 90;

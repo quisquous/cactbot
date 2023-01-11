@@ -52,6 +52,7 @@ hideall "--sync--"
 
 
 # Rotation block. 135.6 seconds
+393.3 "--sync--" sync / 14:[^:]*:The Idol Of Darkness:(4E5[46]|4C53):/ window 400,20
 400.0 "Empty Flood" sync / 1[56]:[^:]*:The Idol Of Darkness:(4E5[46]|4C53):/ window 400,20
 410.3 "--targetable--"
 414.4 "Unjoined Aspect" sync / 1[56]:[^:]*:The Idol Of Darkness:4C3B:/

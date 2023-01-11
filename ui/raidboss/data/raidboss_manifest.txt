@@ -90,8 +90,12 @@
 03-hw/deepdungeon/the_palace_of_the_dead_general.ts
 03-hw/dungeon/aetherochemical_research_facility.ts
 03-hw/dungeon/aetherochemical_research_facility.txt
+03-hw/dungeon/aetherochemical_research_facility62.ts
+03-hw/dungeon/aetherochemical_research_facility62.txt
 03-hw/dungeon/baelsars_wall.ts
 03-hw/dungeon/baelsars_wall.txt
+03-hw/dungeon/baelsars_wall62.ts
+03-hw/dungeon/baelsars_wall62.txt
 03-hw/dungeon/fractal_continuum.ts
 03-hw/dungeon/fractal_continuum.txt
 03-hw/dungeon/gubal_library_hard.ts
@@ -110,6 +114,9 @@
 03-hw/dungeon/the_vault61.txt
 03-hw/dungeon/xelphatol.ts
 03-hw/dungeon/xelphatol.txt
+03-hw/dungeon/xelphatol62.ts
+03-hw/dungeon/xelphatol62.txt
+03-hw/map/the_aquapolis.ts
 03-hw/pvp/shatter.ts
 03-hw/raid/a10n.ts
 03-hw/raid/a10n.txt
@@ -205,6 +212,9 @@
 04-sb/eureka/eureka_hydatos.txt
 04-sb/eureka/eureka_pagos.ts
 04-sb/eureka/eureka_pyros.ts
+04-sb/map/the_hidden_canals_of_uznair.ts
+04-sb/map/the_lost_canals_of_uznair.ts
+04-sb/map/the_shifting_altars_of_uznair.ts
 04-sb/raid/o10n.ts
 04-sb/raid/o10n.txt
 04-sb/raid/o10s.ts
@@ -337,6 +347,8 @@
 05-shb/hunts/ss_rank.ts
 05-shb/hunts/the_raktika_greatwood.ts
 05-shb/hunts/the_tempest.ts
+05-shb/map/the_dungeons_of_lyhe_ghiah.ts
+05-shb/map/the_shifting_oubliettes_of_lyhe_ghiah.ts
 05-shb/raid/e10n.ts
 05-shb/raid/e10n.txt
 05-shb/raid/e10s.ts
