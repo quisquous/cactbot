@@ -481,6 +481,8 @@
 06-ew/trial/hydaelyn-ex.txt
 06-ew/trial/sephirot-un.ts
 06-ew/trial/sephirot-un.txt
+06-ew/trial/sophia-un.ts
+06-ew/trial/sophia-un.txt
 06-ew/trial/ultima-un.ts
 06-ew/trial/ultima-un.txt
 06-ew/trial/zodiark.ts
