@@ -130,7 +130,7 @@ export class PLDComponent extends BaseComponent {
           threshold: this.player.gcdSkill * 2 + 1,
           activecolor: 'pld-color-fightorflight.active',
           deactivecolor: 'pld-color-fightorflight',
-        })
+        });
         break;
     }
   }

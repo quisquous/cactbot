@@ -87,7 +87,7 @@ export class SGEComponent extends BaseComponent {
           if (this.ffxivRegion === 'intl')
             this.phlegma.duration = 40 + this.phlegma.value;
           else
-          this.phlegma.duration = 45 + this.phlegma.value;
+            this.phlegma.duration = 45 + this.phlegma.value;
         }
         break;
       case kAbility.Rhizomata:

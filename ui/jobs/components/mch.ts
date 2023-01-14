@@ -25,7 +25,7 @@ export class MCHComponent extends BaseComponent {
   wildFireStacks: HTMLElement[] = [];
   wildFireCounts = 0;
   wildFireActive = false;
-  overheatstack = 0
+  overheatstack = 0;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -93,7 +93,7 @@ export class MCHComponent extends BaseComponent {
     if (jobDetail.overheatActive === true) {
       this.heatGauge.parentNode.classList.add('overheat');
       if (this.ffxivRegion === 'intl')
-        this.heatGauge.innerText = this.overheatstack.toString()
+        this.heatGauge.innerText = this.overheatstack.toString();
       else
         this.heatGauge.innerText = Math.round(jobDetail.overheatMilliseconds / 1000).toString();
     } else {
