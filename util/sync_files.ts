@@ -177,31 +177,31 @@ const zoneReplace: ZoneReplace[] = [
       ' Extreme': ' Unreal',
     },
     id: {
-      '1981': '7D7B', // Scales of Wisdom 1
-      '1983': '7D7D', // --Barbelo Separates-- (unnamed, ignored)
-      '1984': '7D7E', // Unknown (ignored)
-      '1988': '7D82', // Infusion
-      '1989': '7D83', // Unknown (ignored)
-      '196E': '7D68', // Meteor Quasar Snapshot 1
+      '1981': '7D9C', // Scales of Wisdom 1
+      '1983': '7D9D', // --Barbelo Separates-- (unnamed, ignored)
+      '1984': '7D9E', // --Barbelo Rejoins-- (unnamed, ignored)
+      '1988': '7D9F', // Infusion
+      '1989': '7DA0', // Unknown (ignored)
+      '196E': '7D9B', // Meteor Quasar Snapshot 1
       '19A7': '7DA1', // Meteor Quasar Snapshot 2
       '19A8': '7DA2', // Tilt Quasar Orange (ignored)
       '19A9': '7DA3', // Tilt Quasar Blue (ignored)
-      '19AA': '7DA4', // Execute
+      '19AA': '7DA4', // Execute (storage cast)
       '19AB': '7DA5', // Duplicate
       '19AC': '7DA6', // Thunder III
-      '19AD': '7DA7', // Execute (ignored)
+      '19AD': '7DA7', // Execute (Thunder III, ignored)
       '19AE': '7DA8', // Aero III
-      '19AF': '7DA9', // Execute (ignored)
+      '19AF': '7DA9', // Execute (Aero III, ignored)
       '19B0': '7DAA', // Thunder II
-      '19B1': '7DAB', // Execute (ignored)
+      '19B1': '7DAB', // Execute (Thunder II, ignored)
       '19B3': '7DAD', // Dischordant Cleansing 1
       '19B5': '7DAF', // Dischordant Cleansing 2
       '19B6': '7DB0', // Divine Spark
       '19B8': '7DB2', // Gnostic Rant
       '19B9': '7DB3', // Gnostic Spear
       '19BA': '7DB4', // Ring of Pain
-      '19BB': '7DB5', // Horizontal Kenoma
-      '19BC': '7DB6', // Vertical Kenoma
+      '19BB': '7DB5', // Vertical Kenoma
+      '19BC': '7DB6', // Horizontal Kenoma
       '19BE': '7DB8', // Cloudy Heavens
       '19BF': '7DB9', // Light Dew (Execute)
       '19C0': '7DBA', // Light Dew (Onrush)
@@ -214,8 +214,8 @@ const zoneReplace: ZoneReplace[] = [
       '1A87': '7E81', // Meteor Quasar Detonate
       '1ABE': '7EB8', // Unknown (ignored)
       '1ABF': '7EB9', // Unknown (ignored)
-      '1AE0': '7EDA', // Cintamani Enrage
-      '1AE1': '7EDB', // Scales of Wisdom 2
+      '1AE0': '7DC5', // Cintamani Enrage
+      '1AE1': '7DC6', // Scales of Wisdom 2
     },
   },
 ];
