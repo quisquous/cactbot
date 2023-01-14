@@ -58,7 +58,7 @@ hideall "--sync--"
 318.8 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
 
  # Potential landing point if DPS is high. Push seems to be 70%?
-328.3 "Thunder II" sync / 1[56]:[^:]*:Sophia:19B0:/ window 68.8,5
+328.3 "Thunder II" sync / 1[56]:[^:]*:Sophia:19B0:/ window 35.8,5
 334.0 "Quasar Tethers" sync / 1[56]:[^:]*:Sophia:19A7:/
 335.0 "--untargetable--"
 341.2 "Onrush" sync / 1[56]:[^:]*:Sophia:19C1:/
@@ -75,7 +75,7 @@ hideall "--sync--"
 399.4 "Aero III" sync / 1[56]:[^:]*:Sophia:19AE:/ window 30,5
 408.5 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
 419.8 "Light Dew" sync / 1[56]:[^:]*:Barbelo:19BF:/
-420.5 "Execute" sync / 1[56]:[^:]*:Sophia:19AA:/ window 10,10
+420.5 "Execute" sync / 1[56]:[^:]*:Sophia:19AA:/ window 30,30
 
 # Rotation block.
 # Technically it can loop, but unless party DPS is VERY high,
@@ -84,14 +84,14 @@ hideall "--sync--"
 440.7 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
 446.5 "Quasar Tethers" sync / 1[56]:[^:]*:Sophia:196E:/
 455.2 "Quasar (Tilt)" sync / 1[56]:[^:]*:Sophia:1A4C:/
-457.7 "Light Dew" sync / 1[56]:[^:]*:Barbelo:19BF:/ window 30,10
+457.7 "Light Dew" sync / 1[56]:[^:]*:Barbelo:19BF:/ window 30,30
 470.0 "Thunder III" sync / 1[56]:[^:]*:Sophia:19AC:/
 478.3 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
 484.5 "Quasar Tethers" sync / 1[56]:[^:]*:Sophia:19A7:/
 485.5 "--untargetable--"
 493.2 "Quasar (Tilt)" sync / 1[56]:[^:]*:Sophia:1A4C:/
 494.7 "Onrush" sync / 1[56]:[^:]*:Sophia:19C1:/
-495.7 "Light Dew" sync / 1[56]:[^:]*:Barbelo:19C0:/
+495.7 "Light Dew" sync / 1[56]:[^:]*:Barbelo:19C0:/ window 30,30
 499.0 "--targetable--"
 507.1 "Cintamani x3" duration 6 # sync / 1[56]:[^:]*:Sophia:19C5:/
 518.3 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
@@ -113,11 +113,11 @@ hideall "--sync--"
 617.9 "Quasar (Meteor Detonate)" sync / 1[56]:[^:]*:Sophia:1A87:/
 624.4 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
 636.6 "Dischordant Cleansing" # sync / 1[56]:[^:]*:Sophia:(19B3|19B5):/
-639.0 "Execute" sync / 1[56]:[^:]*:Sophia:19AA:/
+639.0 "Execute" sync / 1[56]:[^:]*:Sophia:19AA:/ window 30,30 jump 420.5
 
-650.9 "Cintamani x3" duration 6 # sync / 1[56]:[^:]*:Sophia:19C5:/
-662.3 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
-668.1 "Quasar Tethers" sync / 1[56]:[^:]*:Sophia:196E:/ jump 446.5
+650.9 "Cintamani x3"
+662.3 "Arms Of Wisdom"
+668.1 "Quasar Tethers"
 676.9 "Quasar (Tilt)"
 679.3 "Light Dew"
 691.6 "Thunder III"
