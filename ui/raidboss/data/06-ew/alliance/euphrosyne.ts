@@ -572,7 +572,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Euphrosyne Menphina Winter Halo',
       type: 'StartsUsing',
-      netRegex: { id: '7BC6', source: 'Menphina', capture: false },
+      netRegex: { id: ['7BC6', '7BE8', '7BE9', '7F0E', '7F0F', '7BDB'], source: 'Menphina', capture: false },
       response: Responses.getIn(),
     },
     {

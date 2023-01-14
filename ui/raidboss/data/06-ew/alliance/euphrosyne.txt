@@ -171,7 +171,7 @@ hideall "Season's Passing"
 # -it "Halone"
 # -it "Glacial Spear"
 
-# 7D52 = 0182, ??? cleave, ??? self-targeted, 7D56 self-targeted
+# 7D52 = 0182, ??? cleave, 7D56 self-targeted
 # 7D53 = 0183 headmarker, ??? cleave, 801F self-targeted
 # 7D54 = ??? (0184 probably), east cleave, 8020 self-targeted
 # 7D55 = 0185 headmarker, west cleave, 8021 self-targeted
@@ -310,19 +310,20 @@ hideall "Season's Passing"
 #~~~~~~~~~~#
 
 # -p 7BFA:4013.1 8064:4510
-# -ii 7C04 7BFC 7BF9 7BC9 7BC7 7D35 7BEC 80FA
+# -ii 7C04 7BFC 7BF9 7BC9 7BC7 7D35 7BEC 80FA 7BCD 7BCE 7BD1 7BD2 7BDD 7BDE 7BEA 7BEB
 # -it "Menphina"
 # -it "Ceremonial Pillar"
 
 # https://www.fflogs.com/reports/Fk9pQbRL4THWPCN2#fight=8 (a bunch)
 # https://www.fflogs.com/reports/HMbBWVADJThYk8PF#fight=15 (7BE7)
 # https://www.fflogs.com/reports/WqcLfjPmFyMwD8VJ#fight=8 (7BE5)
+# https://www.fflogs.com/reports/GYXLfr9gq4TWDCkN#fight=7 (7F0C)
+# https://www.fflogs.com/reports/8HtcKyaYXL49zDRF#fight=10 (7BE6)
 
-# TODO: add Midnight Frost to ignore list / add variations to regex
 # Midnight Frost:
 # self cast / damage cast
-# 7BCB 7BCD
-# 7BCC 7BCE
+# 7BCB 7BCD, first phase only
+# 7BCC 7BCE, first phase only
 # 7BCF 7BD1
 # 7BD0 7BD2
 # 7BD7 7BDD
@@ -331,14 +332,12 @@ hideall "Season's Passing"
 # 7BDA 7BDE
 # 7BE4 7BEA
 # 7BE5 7BEA
+# 7BE6 7BEB
 # 7BE7 7BEB
 # 7F0A 7BEA
 # 7F0B 7BEA
+# 7F0C 7BEB
 # 7F0D 7BEB
-
-# missing: https://xivapi.com/search?indexes=action&string=Midnight%20Frost&columns=Name,ID&pretty=true
-# 7BE6
-# 7F0C
 
 4000.0 "--sync--" sync / 00:0839::The Chamber Of Revolutions will be sealed off/ window 0,1
 4013.1 "Blue Moon" sync / 1[56]:[^:]*:Menphina:7BFA:/ window 10000,0
@@ -347,7 +346,7 @@ hideall "Season's Passing"
 4038.0 "First Blush" sync / 1[56]:[^:]*:Menphina:7BBC:/
 
 4040.3 "--middle--" sync / 1[56]:[^:]*:Menphina:7BD3:/
-4048.6 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BCB:/
+4048.6 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BCB|7BCC):/
 4061.2 "Lunar Kiss" sync / 1[56]:[^:]*:Menphina:7BF7:/
 
 4070.0 "--sync--" sync / 1[56]:[^:]*:Menphina:7BF5:/
@@ -366,7 +365,7 @@ hideall "Season's Passing"
 4109.9 "Lovers' Bridge 1" sync / 1[56]:[^:]*:Menphina:7BBD:/
 4112.8 "--middle--" sync / 1[56]:[^:]*:Menphina:7BD3:/
 4116.0 "Lovers' Bridge 2" sync / 1[56]:[^:]*:Menphina:7BBE:/
-4121.0 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BCB:/
+4121.0 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BCB|7BCC):/
 
 # add phase
 4125.8 "--sync--" sync / 1[56]:[^:]*:Menphina:7BD3:/
@@ -383,31 +382,28 @@ hideall "Season's Passing"
 4500.0 "--sync--" sync / 14:[^:]*:Menphina:8064:/ window 500,0
 4510.0 "Rise of the Twin Moons" sync / 1[56]:[^:]*:Menphina:8064:/
 4513.2 "--targetable--"
-4526.6 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BD9:/
+4526.6 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BD7|7BD8|7BD9|7BDA):/
 4526.8 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
-4526.8 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BDE:/
 
 4535.5 "Playful Orbit" sync / 1[56]:[^:]*:Menphina:(7BE2|7BE3):/
-4545.7 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BE4:/
+4545.7 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BCF|7BD0|7BD[789A]|7BE[4567]|7F0[ABCD]):/
 4545.8 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
-4545.8 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BEA:/
 
-4548.8 "--sync--" sync / 1[56]:[^:]*:Menphina:7C06:/
+4548.8 "--sync--" sync / 1[56]:[^:]*:Menphina:(7C06|7C07):/
 4558.9 "Blue Moon" sync / 1[56]:[^:]*:Menphina:7BFB:/
 4566.7 "--sync--" sync / 1[56]:[^:]*:Menphina:7BF3:/
 4573.3 "Keen Moonbeam" sync / 1[56]:[^:]*:Menphina:7BF4:/
-4579.3 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BD9:/
+4579.3 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BD7|7BD8|7BD9|7BDA):/
 4579.4 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
-4579.4 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BDE:/
 
 4586.4 "Cratering Chill" sync / 1[56]:[^:]*:Menphina:7BEE:/
 4593.5 "Winter Solstice" sync / 1[56]:[^:]*:Menphina:7BED:/
 4593.8 "--sync--" sync / 1[56]:[^:]*:Menphina:7BEF:/
 4597.9 "Playful Orbit" sync / 1[56]:[^:]*:Menphina:(7BE2|7BE3):/
-4608.1 "Winter Halo" sync / 1[56]:[^:]*:Menphina:7F0F:/
+4608.1 "Winter Halo" sync / 1[56]:[^:]*:Menphina:(7BE8|7BE9|7F0E|7F0F|7BDB):/
 4608.2 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
 
-4611.2 "--sync--" sync / 1[56]:[^:]*:Menphina:7C07:/
+4611.2 "--sync--" sync / 1[56]:[^:]*:Menphina:(7C06|7C07):/
 4619.3 "Moonset Rays" sync / 1[56]:[^:]*:Menphina:80F9:/
 4628.0 "Love's Light" sync / 1[56]:[^:]*:Menphina:7BC3:/
 4632.7 "Full Bright" sync / 1[56]:[^:]*:Menphina:7BC5:/
@@ -419,41 +415,37 @@ hideall "Season's Passing"
 4651.6 "Silver Mirror 1" #sync / 1[56]:[^:]*:Menphina:7BF6:/
 4653.6 "Silver Mirror 2" #sync / 1[56]:[^:]*:Menphina:7BF6:/
 4655.6 "Silver Mirror 3" #sync / 1[56]:[^:]*:Menphina:7BF6:/
-4661.3 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BD8:/
+4661.3 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BCF|7BD0|7BD[789A]|7BE[4567]|7F0[ABCD]):/
 4661.5 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
-4661.5 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BDD:/
 
 4671.5 "Love's Light" sync / 1[56]:[^:]*:Menphina:7BC2:/
 4676.2 "Full Bright" sync / 1[56]:[^:]*:Menphina:7BC5:/
 4681.4 "Playful Orbit" sync / 1[56]:[^:]*:Menphina:(7BE2|7BE3):/
 4687.4 "First Blush" sync / 1[56]:[^:]*:Menphina:7BBC:/
-4691.5 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BE4:/
+4691.5 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BCF|7BD0|7BD[789A]|7BE[4567]|7F0[ABCD]):/
 4691.7 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
-4691.7 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BEA:/
 
-4694.6 "--sync--" sync / 1[56]:[^:]*:Menphina:7C06:/
+4694.6 "--sync--" sync / 1[56]:[^:]*:Menphina:(7C06|7C07):/
 4702.7 "Moonset Rays" sync / 1[56]:[^:]*:Menphina:80F9:/
 
 4717.4 "Lunar Kiss" sync / 1[56]:[^:]*:Menphina:7BF8:/
 4725.2 "Love's Light" sync / 1[56]:[^:]*:Menphina:7BC3:/
 4729.9 "Full Bright" sync / 1[56]:[^:]*:Menphina:7BC5:/
 4736.7 "Lovers' Bridge 1" sync / 1[56]:[^:]*:Menphina:7BBD:/
-4739.7 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BCF:/
-4739.9 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BD1:/
+4739.7 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BCF|7BD0|7BD[789A]|7BE[4567]|7F0[ABCD]):/
 4742.7 "Lovers' Bridge 2" sync / 1[56]:[^:]*:Menphina:7BBE:/
 
 4748.5 "Blue Moon" sync / 1[56]:[^:]*:Menphina:7BFB:/
 4759.2 "Lunar Kiss" sync / 1[56]:[^:]*:Menphina:7BF8:/
 4765.9 "--sync--" sync / 1[56]:[^:]*:Menphina:7BF3:/
 4772.5 "Keen Moonbeam" sync / 1[56]:[^:]*:Menphina:7BF4:/
-4778.2 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BD7:/
+4778.2 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BCF|7BD0|7BD[789A]|7BE[4567]|7F0[ABCD]):/
 4778.4 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
-4778.4 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:7BDD:/
 
 # loop, probably
 4785.4 "Cratering Chill" sync / 1[56]:[^:]*:Menphina:7BEE:/ window 50,50 jump 4586.4
 4792.5 "Winter Solstice" #sync / 1[56]:[^:]*:Menphina:7BED:/
 4792.8 "--sync--" #sync / 1[56]:[^:]*:Menphina:7BEF:/
 4796.9 "Playful Orbit" sync / 1[56]:[^:]*:Menphina:(7BE2|7BE3):/
-4807.1 "Winter Halo" #sync / 1[56]:[^:]*:Menphina:7F0F:/
+4807.1 "Winter Halo" #sync / 1[56]:[^:]*:Menphina:(7BE8|7BE9|7F0E|7F0F|7BDB):/
 4807.2 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/

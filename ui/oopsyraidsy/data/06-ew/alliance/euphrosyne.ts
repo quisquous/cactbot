@@ -52,13 +52,18 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Eurphosyne Menphina First Blush': '7BBC', // getting hit by the Full Bright moon
     'Euphrosyne Menphina Midnight Frost 1': '7BCD', // 180 cleave
     'Euphrosyne Menphina Midnight Frost 2': '7BDD', // 180 cleave
-    'Euphrosyne Menphina Midnight Frost 3': '7BDE', // 180 cleave
-    'Euphrosyne Menphina Midnight Frost 4': '7BEA', // 180 cleave
+    'Euphrosyne Menphina Midnight Frost 3': '7BD1', // 180 cleave
+    'Euphrosyne Menphina Midnight Frost 4': '7BD2', // 180 cleave
+    'Euphrosyne Menphina Midnight Frost 5': '7BDD', // 180 cleave
+    'Euphrosyne Menphina Midnight Frost 6': '7BDE', // 180 cleave
+    'Euphrosyne Menphina Midnight Frost 7': '7BEA', // 180 cleave
+    'Euphrosyne Menphina Midnight Frost 8': '7BEB', // 180 cleave
     'Euphrosyne Menphina Lover\'s Bridge': '7BBD', // getting hit by Full Bright moon (4x)
     'Euphrosyne Menphina Silver Mirror': '7BF6', // 3x sets of ground aoes on everyone
     'Euphrosyne Menphina Moonset': '7BC9', // 3x large circle jumps
     'Euphrosyne Menphina Winter Halo 1': '7BC7', // donut
     'Euphrosyne Menphina Winter Halo 2': '7BEC', // donut during Playful Orbit
+    'Euphrosyne Menphina Winter Halo 3': '7BDF', // donut in second phase, not in Playful Orbit?
     'Euphrosyne Menphina Ice Sprite Ancient Blizzard': '8066', // long conal during add phase
     'Euphrosyne Menphina Waxing Claw 1': '7BE0', // 180 cleave from dog
     'Euphrosyne Menphina Waxing Claw 2': '7BE1', // 180 cleave from dog
