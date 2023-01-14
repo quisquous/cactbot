@@ -117,6 +117,23 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
+      // No damage if looking towards/away.
+      id: 'Euphrosyne Althyk Spinner\'s Wheel Arcane Attraction',
+      type: 'Ability',
+      // 7A54 = Spinner's Wheel damage for Arcane Attraction
+      // 7A55 = Spinner's Wheel damage for Attraction Reversed
+      netRegex: NetRegexes.ability({ id: ['7A54', '7A55'], ...playerDamageFields }),
+      condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+      mistake: (_data, matches) => {
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
+      },
+    },
+    {
       id: 'Euphrosyne Nymeia Hydrostasis',
       type: 'Ability',
       // 7A3B = 1, 7A3C = 2, 7A3D = 3, 7A3E = 3 renumbered to 1

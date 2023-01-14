@@ -84,75 +84,80 @@ hideall "Season's Passing"
 # NYMEIA & ALTHYK #
 #~~~~~~~~~~~~~~~~~#
 
-# -p 7A38:2014.7
-# -ii 803E 803F 7A35 7A45 7A43 7A40 7A41 7A49
+# -p 7A38:2013.5
+# -ii 803E 803F 7A35 7A45 7A43 7A40 7A41 7A49 7A54 7A55
 
 # 7A4A = Althyk teleporting mid, 7A4B = Nymeia teleporting south; hard to label both
+# This is overall an awkward timeline.  The two bosses can definitely desync by ~1-2s.
 
 2000.0 "--sync--" sync / 00:0839::The Bole will be sealed off/ window 10000,0
-2014.7 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/
-2027.4 "Mythril Greataxe" sync / 1[56]:[^:]*:Althyk:7A46:/
-2042.3 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/ window 10,10
-2053.9 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
+2009.0 "--sync--" sync / 14:[^:]*:Nymeia:7A38:/ window 10,10
+2013.5 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/
+2019.2 "--sync--" sync / 14:[^:]*:Althyk:7A46:/ window 10,10
+2026.2 "Mythril Greataxe" sync / 1[56]:[^:]*:Althyk:7A46:/
+2041.1 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/ window 10,10
+2052.7 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
 
-2080.1 "Axioma" sync / 1[56]:[^:]*:Althyk:7A47:/
-2088.4 "Hydroptosis" sync / 1[56]:[^:]*:Nymeia:7A44:/
-2100.4 "Inexorable Pull" sync / 1[56]:[^:]*:Althyk:7A42:/
-2115.1 "Hydrorythmos" sync / 1[56]:[^:]*:Nymeia:7A3F:/ duration 8
-2126.8 "Mythril Greataxe" sync / 1[56]:[^:]*:Althyk:7A46:/
+2073.9 "--sync--" sync / 14:[^:]*:Althyk:7A47:/ window 10,10
+2078.9 "Axioma" sync / 1[56]:[^:]*:Althyk:7A47:/
+2087.2 "Hydroptosis" sync / 1[56]:[^:]*:Nymeia:7A44:/
+2099.2 "Inexorable Pull" sync / 1[56]:[^:]*:Althyk:7A42:/
+2113.9 "Hydrorythmos" sync / 1[56]:[^:]*:Nymeia:7A3F:/ duration 8
+2125.6 "Mythril Greataxe" sync / 1[56]:[^:]*:Althyk:7A46:/
 
-2139.0 "--middle--" sync / 1[56]:[^:]*:Althyk:7A4A:/
-2145.3 "Hydrostasis" sync / 1[56]:[^:]*:Nymeia:7A3A:/
-2146.3 "Petrai" sync / 1[56]:[^:]*:Althyk:7A48:/
-2162.4 "Hydrostasis 1" sync / 1[56]:[^:]*:Nymeia:7A3B:/
-2165.4 "Hydrostasis 2" sync / 1[56]:[^:]*:Nymeia:7A3C:/
-2168.4 "Hydrostasis 3" sync / 1[56]:[^:]*:Nymeia:7A3D:/
+2137.8 "--middle--" sync / 1[56]:[^:]*:Althyk:7A4A:/
+2144.1 "Hydrostasis" sync / 1[56]:[^:]*:Nymeia:7A3A:/
+2145.1 "Petrai" sync / 1[56]:[^:]*:Althyk:7A48:/
+2161.2 "Hydrostasis 1" sync / 1[56]:[^:]*:Nymeia:7A3B:/
+2164.2 "Hydrostasis 2" sync / 1[56]:[^:]*:Nymeia:7A3C:/
+2167.2 "Hydrostasis 3" sync / 1[56]:[^:]*:Nymeia:7A3D:/
 
-2186.3 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/ window 20,20
-2215.2 "Mythril Greataxe" sync / 1[56]:[^:]*:Althyk:7A46:/
-2219.6 "Hydroptosis" sync / 1[56]:[^:]*:Nymeia:7A44:/
-2236.4 "Petrai" sync / 1[56]:[^:]*:Althyk:7A48:/
+2185.1 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/ window 20,20
+2214.0 "Mythril Greataxe" sync / 1[56]:[^:]*:Althyk:7A46:/
+2218.4 "Hydroptosis" sync / 1[56]:[^:]*:Nymeia:7A44:/
+2235.2 "Petrai" sync / 1[56]:[^:]*:Althyk:7A48:/
 
-2241.4 "--middle--" sync / 1[56]:[^:]*:Althyk:7A4A:/
-2245.1 "Philotes" sync / 1[56]:[^:]*:Althyk:7A36:/
-2248.9 "Hydrostasis" sync / 1[56]:[^:]*:Nymeia:7A3A:/ window 20,20
-2262.2 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
-2263.0 "Hydrostasis 1" sync / 1[56]:[^:]*:Nymeia:7A3E:/
-2266.0 "Hydrostasis 2" sync / 1[56]:[^:]*:Nymeia:7A3B:/
-2269.0 "Hydrostasis 3" sync / 1[56]:[^:]*:Nymeia:7A3C:/
+2240.2 "--middle--" sync / 1[56]:[^:]*:Althyk:7A4A:/
+2243.9 "Philotes" sync / 1[56]:[^:]*:Althyk:(7A35|7A36):/
+2247.7 "Hydrostasis" sync / 1[56]:[^:]*:Nymeia:7A3A:/ window 20,20
+2261.0 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
+2261.8 "Hydrostasis 1" sync / 1[56]:[^:]*:Nymeia:7A3E:/
+2264.8 "Hydrostasis 2" sync / 1[56]:[^:]*:Nymeia:7A3B:/
+2267.8 "Hydrostasis 3" sync / 1[56]:[^:]*:Nymeia:7A3C:/
 
-2290.7 "Axioma" sync / 1[56]:[^:]*:Althyk:7A47:/ window 20,20
-2303.5 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/
-2310.6 "Hydrorythmos" sync / 1[56]:[^:]*:Nymeia:7A3F:/
-2315.0 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
-2323.3 "Philotes" sync / 1[56]:[^:]*:Althyk:7A36:/
-2340.4 "Hydroptosis" sync / 1[56]:[^:]*:Nymeia:7A44:/
-2344.4 "Inexorable Pull" sync / 1[56]:[^:]*:Althyk:7A42:/
-2357.6 "Petrai" sync / 1[56]:[^:]*:Althyk:7A48:/
-2373.6 "Axioma" sync / 1[56]:[^:]*:Althyk:7A47:/
-2386.3 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/
-2389.1 "Mythril Greataxe" sync / 1[56]:[^:]*:Althyk:7A46:/
+2284.5 "--sync--" sync / 14:[^:]*:Althyk:7A47:/ window 20,20
+2289.5 "Axioma" sync / 1[56]:[^:]*:Althyk:7A47:/
+2302.3 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/
+2309.4 "Hydrorythmos" sync / 1[56]:[^:]*:Nymeia:7A3F:/
+2313.8 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
+2322.1 "Philotes" sync / 1[56]:[^:]*:Althyk:7A36:/
+2339.2 "Hydroptosis" sync / 1[56]:[^:]*:Nymeia:7A44:/
+2343.2 "Inexorable Pull" sync / 1[56]:[^:]*:Althyk:7A42:/
+2356.4 "Petrai" sync / 1[56]:[^:]*:Althyk:7A48:/
+2372.4 "Axioma" sync / 1[56]:[^:]*:Althyk:7A47:/
+2385.1 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/
+2387.9 "Mythril Greataxe" sync / 1[56]:[^:]*:Althyk:7A46:/
 
-2391.3 "--middle--" sync / 1[56]:[^:]*:Althyk:7A4A:/
-2394.7 "Philotes" sync / 1[56]:[^:]*:Althyk:7A36:/
-2402.8 "Hydrostasis" sync / 1[56]:[^:]*:Nymeia:7A3A:/ window 20,20
-2414.8 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
-2416.8 "Hydrostasis 1" sync / 1[56]:[^:]*:Nymeia:7A3E:/
-2419.8 "Hydrostasis 2" sync / 1[56]:[^:]*:Nymeia:7A3B:/
-2422.8 "Hydrostasis 3" sync / 1[56]:[^:]*:Nymeia:7A3C:/
+2390.1 "--middle--" sync / 1[56]:[^:]*:Althyk:7A4A:/
+2393.5 "Philotes" sync / 1[56]:[^:]*:Althyk:7A36:/
+2401.6 "Hydrostasis" sync / 1[56]:[^:]*:Nymeia:7A3A:/ window 20,20
+2413.6 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
+2415.6 "Hydrostasis 1" sync / 1[56]:[^:]*:Nymeia:7A3E:/
+2418.6 "Hydrostasis 2" sync / 1[56]:[^:]*:Nymeia:7A3B:/
+2421.6 "Hydrostasis 3" sync / 1[56]:[^:]*:Nymeia:7A3C:/
 
-2443.1 "Axioma" sync / 1[56]:[^:]*:Althyk:7A47:/
-2448.4 "Philotes" sync / 1[56]:[^:]*:Althyk:7A36:/
-2457.1 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/ window 20,20
-2464.2 "Hydrorythmos" sync / 1[56]:[^:]*:Nymeia:7A3F:/
-2468.6 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
-2476.9 "Philotes" sync / 1[56]:[^:]*:Althyk:7A36:/
-2490.0 "Hydroptosis" sync / 1[56]:[^:]*:Nymeia:7A44:/
-2494.0 "Inexorable Pull" sync / 1[56]:[^:]*:Althyk:7A42:/
+2441.9 "Axioma" sync / 1[56]:[^:]*:Althyk:7A47:/
+2447.2 "Philotes" sync / 1[56]:[^:]*:Althyk:7A36:/
+2455.9 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/ window 20,20
+2463.0 "Hydrorythmos" sync / 1[56]:[^:]*:Nymeia:7A3F:/
+2467.4 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
+2475.7 "Philotes" sync / 1[56]:[^:]*:Althyk:7A36:/
+2488.8 "Hydroptosis" sync / 1[56]:[^:]*:Nymeia:7A44:/
+2492.8 "Inexorable Pull" sync / 1[56]:[^:]*:Althyk:7A42:/
 
-2498.1 "--sync--" sync / 1[56]:[^:]*:Althyk:7A4A:/
-2510.5 "--sync--" sync / 14:[^:]*:Althyk:7A4C:/ window 200,200
-2520.5 "Neikos Enrage" sync / 1[56]:[^:]*:Althyk:7A4C:/
+2496.9 "--sync--" sync / 1[56]:[^:]*:Althyk:7A4A:/
+2509.3 "--sync--" sync / 14:[^:]*:Althyk:7A4C:/ window 200,200
+2519.3 "Neikos Enrage" sync / 1[56]:[^:]*:Althyk:7A4C:/
 #2520.5 "Neikos" sync / 1[56]:[^:]*:Nymeia:7A4D:/
 #2520.5 "Neikos" sync / 1[56]:[^:]*:Althyk & Nymeia:7A4E:/
 
