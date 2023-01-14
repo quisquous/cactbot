@@ -15,11 +15,12 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Menphina Waxing Claw 7BE0 vs 7BE1 (surely left vs right)
 // TODO: Menphina Midnight Frost (why are there 24 ability ids)
 
-export type NophicaFacing = 'front' | 'back' | 'left' | 'right';
+export type NophicaMarch = 'front' | 'back' | 'left' | 'right';
 export type HaloneTetra = 'out' | 'in' | 'left' | 'right' | 'unknown';
 
 export interface Data extends RaidbossData {
-  nophicaFacing?: NophicaFacing;
+  nophicaMarch?: NophicaMarch;
+  nophicaHeavensEarthTargets: string[];
   nymeiaHydrostasis: NetMatches['StartsUsing'][];
   haloneTetrapagos: HaloneTetra[];
   haloneSpearsThreeTargets: string[];
@@ -39,6 +40,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'euphrosyne.txt',
   initData: () => {
     return {
+      nophicaHeavensEarthTargets: [],
       nymeiaHydrostasis: [],
       haloneTetrapagos: [],
       haloneSpearsThreeTargets: [],
@@ -58,16 +60,15 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '801A', source: 'Nophica', capture: false },
       alertText: (data, _matches, output) => {
-        if (data.nophicaFacing === undefined)
+        if (data.nophicaMarch === undefined)
           return output.out!();
         return {
           'front': output.outWithForwards!(),
           'back': output.outWithBackwards!(),
           'left': output.outWithLeft!(),
           'right': output.outWithRight!(),
-        }[data.nophicaFacing];
+        }[data.nophicaMarch];
       },
-      run: (data) => delete data.nophicaFacing,
       outputStrings: {
         out: Outputs.out,
         outWithForwards: {
@@ -89,16 +90,15 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '8018', source: 'Nophica', capture: false },
       alertText: (data, _matches, output) => {
-        if (data.nophicaFacing === undefined)
+        if (data.nophicaMarch === undefined)
           return output.in!();
         return {
           'front': output.inWithForwards!(),
           'back': output.inWithBackwards!(),
           'left': output.inWithLeft!(),
           'right': output.inWithRight!(),
-        }[data.nophicaFacing];
+        }[data.nophicaMarch];
       },
-      run: (data) => delete data.nophicaFacing,
       outputStrings: {
         in: Outputs.in,
         inWithForwards: {
@@ -124,17 +124,28 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Euphrosyne Nophica Floral Haze Debuffs',
       type: 'GainsEffect',
-      netRegex: { effectId: 'DD[2-5]', source: 'Nophica' },
+      netRegex: { effectId: 'DD[2-5]' },
       condition: Conditions.targetIsYou(),
+      // Initial Floral Haze is 16s.  The next Floral Haze is 18 or 35s.
+      // Add a delay so that this only applies when it is "close" so that
+      // it will only add to the Giving Land callout it needs to.
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 10,
       run: (data, matches) => {
-        const faceMap: { [effectId: string]: NophicaFacing } = {
+        const faceMap: { [effectId: string]: NophicaMarch } = {
           DD2: 'front',
           DD3: 'back',
           DD4: 'left',
           DD5: 'right',
         } as const;
-        data.nophicaFacing = faceMap[matches.effectId];
+        data.nophicaMarch = faceMap[matches.effectId];
       },
+    },
+    {
+      id: 'Euphrosyne Nophica Floral Haze Cleanup',
+      type: 'LosesEffect',
+      netRegex: { effectId: 'DD[2-5]', capture: false },
+      suppressSeconds: 5,
+      run: (data) => delete data.nophicaMarch,
     },
     {
       id: 'Euphrosyne Nophica Landwaker',
@@ -147,6 +158,35 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '7C16', source: 'Nophica' },
       response: Responses.stackMarkerOn(),
+    },
+    {
+      id: 'Euphrosyne Nophica Heavens\' Earth',
+      type: 'StartsUsing',
+      netRegex: { id: '7C23', source: 'Nophica' },
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
+          return output.tankBusterOnYou!();
+      },
+      run: (data, matches) => data.nophicaHeavensEarthTargets.push(matches.target),
+      outputStrings: {
+        tankBusterOnYou: Outputs.tankBusterOnYou,
+      },
+    },
+    {
+      id: 'Euphrosyne Nophica Heavens\' Earth Not You',
+      type: 'StartsUsing',
+      netRegex: { id: '7C23', source: 'Nophica', capture: false },
+      delaySeconds: 0.3,
+      suppressSeconds: 5,
+      infoText: (data, _matches, output) => {
+        if (data.nophicaHeavensEarthTargets.includes(data.me))
+          return;
+        return output.tankBusters!();
+      },
+      run: (data) => data.nophicaHeavensEarthTargets = [],
+      outputStrings: {
+        tankBusters: Outputs.tankBusters,
+      },
     },
     {
       id: 'Euphrosyne Ktenos Roaring Rumble',
@@ -474,6 +514,25 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'Euphrosyne Halone Thousandfold Thruust',
+      type: 'HeadMarker',
+      netRegex: { id: ['0182', '0183', '0184', '0185'], target: 'Halone' },
+      alertText: (_data, matches, output) => {
+        return {
+          '0182': output.back!(),
+          '0183': output.front!(),
+          '0184': output.left!(),
+          '0185': output.right!(),
+        }[matches.id];
+      },
+      outputStrings: {
+        front: Outputs.front,
+        back: Outputs.back,
+        left: Outputs.left,
+        right: Outputs.right,
+      },
+    },
+    {
       id: 'Euphrosyne Halone Wrath of Halone',
       type: 'StartsUsing',
       netRegex: { id: '7D63', source: 'Halone', capture: false },
@@ -530,6 +589,17 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'Euphrosyne Menphina Love\'s Light x4',
+      type: 'Ability',
+      netRegex: { id: '7BB9', source: 'Menphina', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Go to dark moon',
+        },
+      },
+    },
+    {
       id: 'Euphrosyne Menphina Lunar Kiss',
       type: 'HeadMarker',
       netRegex: { id: '019C' },
@@ -572,7 +642,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Euphrosyne Menphina Winter Halo',
       type: 'StartsUsing',
-      netRegex: { id: ['7BC6', '7BE8', '7BE9', '7F0E', '7F0F', '7BDB'], source: 'Menphina', capture: false },
+      netRegex: {
+        id: ['7BC6', '7BE8', '7BE9', '7F0E', '7F0F', '7BDB'],
+        source: 'Menphina',
+        capture: false,
+      },
       response: Responses.getIn(),
     },
     {

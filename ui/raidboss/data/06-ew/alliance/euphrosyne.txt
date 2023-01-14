@@ -171,11 +171,6 @@ hideall "Season's Passing"
 # -it "Halone"
 # -it "Glacial Spear"
 
-# 7D52 = 0182, ??? cleave, 7D56 self-targeted
-# 7D53 = 0183 headmarker, ??? cleave, 801F self-targeted
-# 7D54 = ??? (0184 probably), east cleave, 8020 self-targeted
-# 7D55 = 0185 headmarker, west cleave, 8021 self-targeted
-
 3000.0 "--sync--" sync / 00:0839::The Barbs will be sealed off/ window 10000,0
 3009.0 "--sync--" sync / 14:[^:]*:Halone:7D79:/
 3013.0 "Rain of Spears x3" sync / 1[56]:[^:]*:Halone:7D79:/ window 10000,0
