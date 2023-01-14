@@ -187,7 +187,7 @@ Options.Triggers.push({
     {
       id: 'SophiaUN Infusion',
       type: 'StartsUsing',
-      netRegex: { id: '7D82', source: 'The First Demiurge' },
+      netRegex: { id: '7D9F', source: 'The First Demiurge' },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.infusionOnYou();
@@ -298,10 +298,10 @@ Options.Triggers.push({
       // During the first post-intermission clones sequence,
       // Barbelo separates and makes one safespot dangerous with Light Dew, the orange laser.
       // Unfortunately Barbelo doesn't have a cast time on Light Dew, so we can't use that.
-      // Instead, we warn the user when Barbelo separates from Sophia, which is 7D7D.
+      // Instead, we warn the user when Barbelo separates from Sophia, which is 7D9D.
       id: 'SophiaUN Light Dew',
       type: 'Ability',
-      netRegex: { id: '7D7D', source: 'Sophia', capture: false },
+      netRegex: { id: '7D9D', source: 'Sophia', capture: false },
       condition: (data) => data.clonesActive,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
