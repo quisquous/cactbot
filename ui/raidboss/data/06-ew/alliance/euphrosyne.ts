@@ -216,10 +216,12 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.awayFromFront(),
     },
     {
-      id: 'Euphrosyne Nymeia Spinner\'s Wheel',
+      id: 'Euphrosyne Nymeia Spinner\'s Wheel Initial',
       type: 'GainsEffect',
       netRegex: { effectId: ['D3B', 'D3C'] },
       condition: Conditions.targetIsYou(),
+      // Reapplied with Time and Tide.
+      suppressSeconds: 5,
       sound: '',
       infoText: (_data, matches, output) => {
         return {
@@ -249,9 +251,10 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'Euphrosyne Nymeia Arcane Fever',
+      id: 'Euphrosyne Nymeia Spinner\'s Wheel',
       type: 'GainsEffect',
       netRegex: { effectId: 'D3B' },
+      condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => {
         // 10 seconds = normal, 20 seconds = sped up (for ~13.4 s)
         const warningTime = 2;
@@ -259,6 +262,8 @@ const triggerSet: TriggerSet<Data> = {
         const realDuration = initialDuration < 15 ? initialDuration : 13.4;
         return realDuration - warningTime;
       },
+      // Reapplied with Time and Tide.
+      suppressSeconds: 5,
       alertText: (_data, matches, output) => {
         return {
           // Arcane Attraction
