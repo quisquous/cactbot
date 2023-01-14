@@ -36,6 +36,7 @@ export type ZoneReplace = {
 
 const zoneReplace: ZoneReplace[] = [
   {
+    // Criterion
     fileMap: {
       'ui/raidboss/data/06-ew/dungeon/another_sildihn_subterrane.ts':
         'ui/raidboss/data/06-ew/dungeon/another_sildihn_subterrane-savage.ts',
@@ -43,23 +44,14 @@ const zoneReplace: ZoneReplace[] = [
         'ui/oopsyraidsy/data/06-ew/dungeon/another_sildihn_subterrane-savage.ts',
       'ui/raidboss/data/06-ew/dungeon/another_sildihn_subterrane.txt':
         'ui/raidboss/data/06-ew/dungeon/another_sildihn_subterrane-savage.txt',
-
-      'ui/raidboss/data/03-hw/trial/sophia-ex.ts': 'ui/raidboss/data/06-ew/trial/sophia-un.ts',
-      'ui/raidboss/data/03-hw/trial/sophia-ex.txt': 'ui/raidboss/data/06-ew/trial/sophia-un.txt',
     },
-    prefix: { 'ASS': 'ASSS', 'SophiaEX': 'SophiaUN' },
+    prefix: { 'ASS': 'ASSS' },
     other: {
       'zoneId: ZoneId.AnotherSildihnSubterrane,': 'zoneId: ZoneId.AnotherSildihnSubterraneSavage,',
       'another_sildihn_subterrane.txt': 'another_sildihn_subterrane-savage.txt',
       '# Another Sil\'dihn Subterrane': '# Another Sil\'dihn Subterrane (Savage)',
-
-      'ZoneId.ContainmentBayP1T6Extreme': 'ZoneId.ContainmentBayP1T6Unreal',
-      'sophia-ex.txt': 'sophia-un.txt',
-      '(Extreme)': '(Unreal)',
-      ' Extreme': ' Unreal',
     },
     id: {
-      // Criterion
       '7490': '76BB',
       '7499': '76BC',
       '749C': '76BD',
@@ -169,8 +161,22 @@ const zoneReplace: ZoneReplace[] = [
       '77AE': '77AE', // sculptor's passion (self-targeted)
       '7491': '7491', // infern brand (self-targeted)
       '74B0': '74B0', // firesteel strike (self-targeted)
-
-      // Sophia
+    },
+  },
+  {
+    // Sophia
+    fileMap: {
+      'ui/raidboss/data/03-hw/trial/sophia-ex.ts': 'ui/raidboss/data/06-ew/trial/sophia-un.ts',
+      'ui/raidboss/data/03-hw/trial/sophia-ex.txt': 'ui/raidboss/data/06-ew/trial/sophia-un.txt',
+    },
+    prefix: { 'SophiaEX': 'SophiaUN' },
+    other: {
+      'ZoneId.ContainmentBayP1T6Extreme': 'ZoneId.ContainmentBayP1T6Unreal',
+      'sophia-ex.txt': 'sophia-un.txt',
+      '(Extreme)': '(Unreal)',
+      ' Extreme': ' Unreal',
+    },
+    id: {
       '1981': '7D7B', // Scales of Wisdom 1
       '1983': '7D7D', // --Barbelo Separates-- (unnamed, ignored)
       '1984': '7D7E', // Unknown (ignored)
