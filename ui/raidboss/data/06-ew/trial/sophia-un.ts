@@ -400,14 +400,14 @@ const triggerSet: TriggerSet<Data> = {
       // 2: (-55.06363, 9.5766)
       // 3: (-55.0637, 3.523648)
       // 4: (54.9907, 3.387837)
-      // 5: (54.98699, 9.5779B3)
+      // 5: (54.98699, 9.576593)
       // 6: (54.9907, -3.50686)
       // 7: (54.99068, -10.14043)
 
       // Because of this, we need only see one entity use a 21 log line and we can find the rest.
       id: 'SophiaUN Quasar Setup',
       type: 'Ability',
-      netRegex: { id: '19A[89]' },
+      netRegex: { id: ['7DA2', '7DA3'] },
       condition: (data) => !data.scaleSophias,
       // We *really* shouldn't have to suppress this...
       suppressSeconds: 5,
