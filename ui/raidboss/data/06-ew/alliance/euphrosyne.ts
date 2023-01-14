@@ -9,6 +9,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Nophica Blueblossoms/Giltblossoms; they get 018E/018F/0190/0191/0192/0193 markers, but how to know colors?
 // TODO: handling Nymeia & Althyk Time and Tide variations if Nymeia dies and Time and Tide doesn't happen.
+// TODO: Nymeia & Althyk Hydrostasis have inconsistent positions? should this be getCombatants??
 // TODO: Halone Thousandfold Thrust / Tetrapagos Thrust directions (including rotation)
 // TODO: Halone Lochos positions
 // TODO: Menphina could use map effects for Love's Light + Full Bright 4x moons
@@ -342,64 +343,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: ['7A3B', '7A3C', '7A3D', '7A3E'], source: 'Nymeia' },
       run: (data, matches) => data.nymeiaHydrostasis.push(matches),
-    },
-    {
-      id: 'Euphrosyne Nymeia Hydrostasis',
-      type: 'StartsUsing',
-      netRegex: { id: ['7A3B', '7A3C', '7A3D', '7A3E'], source: 'Nymeia', capture: false },
-      // First time around is BCD all simultaneous, with 16,19,22s cast times.
-      // Other times are BC instantly and then E ~11s later with a 2s cast time.
-      delaySeconds: 0.5,
-      durationSeconds: 18,
-      suppressSeconds: 20,
-      infoText: (data, _matches, output) => {
-        type HydrostasisDir = 'N' | 'SW' | 'SE';
-
-        const lines = data.nymeiaHydrostasis.sort((a, b) => a.id.localeCompare(b.id));
-        const dirs: HydrostasisDir[] = lines.map((line) => {
-          const centerX = 50;
-          const centerY = -741;
-
-          const x = parseFloat(line.x);
-          const y = parseFloat(line.y);
-          if (y < centerY)
-            return 'N';
-          return x < centerX ? 'SW' : 'SE';
-        });
-
-        const [first, second, third] = dirs;
-        if (first === undefined || second === undefined)
-          return;
-
-        if (third === undefined) {
-          const dirSet = new Set<HydrostasisDir>(['N', 'SW', 'SE']);
-          dirSet.delete(first);
-          dirSet.delete(second);
-          if (dirSet.size !== 1)
-            return;
-          for (const dir of dirSet.keys())
-            dirs.unshift(dir);
-        }
-
-        const [dir1, dir2, dir3] = dirs.map((x) => {
-          return {
-            N: output.dirN!(),
-            SW: output.dirSW!(),
-            SE: output.dirSE!(),
-          }[x] ?? output.unknown!();
-        });
-        return output.knockback!({ dir1: dir1, dir2: dir2, dir3: dir3 });
-      },
-      run: (data) => data.nymeiaHydrostasis = [],
-      outputStrings: {
-        knockback: {
-          en: 'Knockback ${dir1} => ${dir2} => ${dir3}',
-        },
-        dirSW: Outputs.dirSW,
-        dirSE: Outputs.dirSE,
-        dirN: Outputs.dirN,
-        unknown: Outputs.unknown,
-      },
     },
     {
       id: 'Euphrosyne Colossus Rapid Sever',
