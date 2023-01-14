@@ -44,10 +44,8 @@ const zoneReplace: ZoneReplace[] = [
       'ui/raidboss/data/06-ew/dungeon/another_sildihn_subterrane.txt':
         'ui/raidboss/data/06-ew/dungeon/another_sildihn_subterrane-savage.txt',
 
-      'ui/raidboss/data/03-hw/trial/sophia-ex.ts':
-        'ui/raidboss/data/06-ew/trial/sophia-un.ts',
-      'ui/raidboss/data/03-hw/trial/sophia-ex.txt':
-        'ui/raidboss/data/06-ew/trial/sophia-un.txt',
+      'ui/raidboss/data/03-hw/trial/sophia-ex.ts': 'ui/raidboss/data/06-ew/trial/sophia-un.ts',
+      'ui/raidboss/data/03-hw/trial/sophia-ex.txt': 'ui/raidboss/data/06-ew/trial/sophia-un.txt',
     },
     prefix: { 'ASS': 'ASSS', 'SophiaEX': 'SophiaUN' },
     other: {
@@ -58,7 +56,7 @@ const zoneReplace: ZoneReplace[] = [
       'ZoneId.ContainmentBayP1T6Extreme': 'ZoneId.ContainmentBayP1T6Unreal',
       'sophia-ex.txt': 'sophia-un.txt',
       '(Extreme)': '(Unreal)',
-      ' Extreme': ' Unreal'
+      ' Extreme': ' Unreal',
     },
     id: {
       // Criterion
@@ -211,7 +209,7 @@ const zoneReplace: ZoneReplace[] = [
       '1ABE': '7EB8', // Unknown (ignored)
       '1ABF': '7EB9', // Unknown (ignored)
       '1AE0': '7EDA', // Cintamani Enrage
-      '1AE1': '7EDB' // Scales of Wisdom 2
+      '1AE1': '7EDB', // Scales of Wisdom 2
     },
   },
 ];
