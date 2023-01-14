@@ -628,6 +628,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Euphrosyne Menphina Lunar Kiss Not You',
       type: 'HeadMarker',
       netRegex: { id: '019C', capture: false },
+      delaySeconds: 0.3,
+      suppressSeconds: 5,
       infoText: (data, _matches, output) => {
         if (data.menphinaLunarKissTargets.includes(data.me))
           return;
@@ -657,14 +659,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Euphrosyne Menphina Keen Moonbeam',
       type: 'StartsUsing',
-      netRegex: { id: '7BF4', source: 'Halone' },
+      netRegex: { id: '7BF4', source: 'Menphina' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Euphrosyne Menphina Moonset Rays',
       type: 'StartsUsing',
-      netRegex: { id: '7BFA', source: 'Nophica' },
+      netRegex: { id: '80FA', source: 'Menphina' },
       response: Responses.stackMarkerOn(),
     },
   ],
