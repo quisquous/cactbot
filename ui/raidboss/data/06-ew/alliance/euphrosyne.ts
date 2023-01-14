@@ -11,10 +11,29 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: handling Nymeia & Althyk Time and Tide variations if Nymeia dies and Time and Tide doesn't happen.
 // TODO: Nymeia & Althyk Hydrostasis have inconsistent positions? should this be getCombatants??
 // TODO: Halone Lochos positions
-// TODO: Menphina could use map effects for Love's Light + Full Bright 4x moons
-// TODO: Menphina Playful Orbit 7BE2 vs 7BE3 (is this west vs east?)
-// TODO: Menphina Waxing Claw 7BE0 vs 7BE1 (surely left vs right)
-// TODO: Menphina Midnight Frost (why are there 24 ability ids)
+// TODO: Menphina could use map effects for Love's Light + Full Bright 4x moon locations
+
+// TODO: Menphina Midnight Frost + Waxing Claw + Playful Orbit
+// 7BCB Midnight Frost = front cleave (7BCD damage) [first phase only]
+// 7BCC Midnight Frost = back cleave (7BCE damage) [first phase only]
+// 7BCF Midnight Frost = ??? (7BD1 damage)
+// 7BD0 Midnight Frost = ??? (7BD2 damage)
+// 7BD7 Midnight Frost = front cleave (7BDD damage) [dog attached, facing southeast]
+// 7BD8 Midnight Frost = front cleave (7BDD damage) [dog attached, facing south]
+// 7BD9 Midnight Frost = ??? (7BDE damage)
+// 7BDA Midnight Frost = ??? (7BDE damage)
+// 7BE4 Midnight Frost = ??? (7BDA damage)
+// 7BE5 Midnight Frost = ??? (7BDA damage)
+// 7BE6 Midnight Frost = back cleave (7BDB damage) [dog unattached, facing north]
+// 7BE7 Midnight Frost = back cleave (7BDB damage) [dog unattached, facing north]
+// 7F0A Midnight Frost = ??? (7BDA damage)
+// 7F0B Midnight Frost = ??? (7BDA damage)
+// 7F0C Midnight Frost = ??? (7BDB damage)
+// 7F0D Midnight Frost = ??? (7BDB damage)
+// 7BE0 Waxing Claw = right claw [both attached and unattached]
+// 7BE1 Waxing Claw = left claw [both attached and unattached]
+// 7BE2 Playful Orbit = jump NE
+// 7BE3 Playful Orbit = jump NW
 
 export type NophicaMarch = 'front' | 'back' | 'left' | 'right';
 export type HaloneTetra = 'out' | 'in' | 'left' | 'right' | 'unknown';
@@ -539,9 +558,9 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
-      id: 'Euphrosyne Menphina Full Bright',
-      type: 'StartsUsing',
-      netRegex: { id: '7BBB', source: 'Menphina', capture: false },
+      id: 'Euphrosyne Menphina Love\'s Light Single Moon',
+      type: 'Ability',
+      netRegex: { id: ['7BB8', '7BC2'], source: 'Menphina', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -550,15 +569,27 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'Euphrosyne Menphina Love\'s Light x4',
+      id: 'Euphrosyne Menphina Love\'s Light Quadruple Moon',
       type: 'Ability',
-      netRegex: { id: '7BB9', source: 'Menphina', capture: false },
+      netRegex: { id: ['7BB9', '7BC3'], source: 'Menphina', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Go to dark moon',
         },
       },
+    },
+    {
+      id: 'Euphrosyne Menphina Midnight Frost Front Initial',
+      type: 'StartsUsing',
+      netRegex: { id: '7BCC', source: 'Menphina', capture: false },
+      response: Responses.goFront(),
+    },
+    {
+      id: 'Euphrosyne Menphina Midnight Frost Back Initial',
+      type: 'StartsUsing',
+      netRegex: { id: '7BCB', source: 'Menphina', capture: false },
+      response: Responses.getBehind(),
     },
     {
       id: 'Euphrosyne Menphina Lunar Kiss',
@@ -606,7 +637,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Euphrosyne Menphina Winter Halo',
       type: 'StartsUsing',
       netRegex: {
-        id: ['7BC6', '7BE8', '7BE9', '7F0E', '7F0F', '7BDB'],
+        id: ['7BC6', '7BE8', '7BE9', '7F0E', '7F0F', '7BDB', '7BDC'],
         source: 'Menphina',
         capture: false,
       },
