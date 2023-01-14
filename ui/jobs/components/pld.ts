@@ -6,7 +6,7 @@ import { ResourceBox } from '../bars';
 import { ComboTracker } from '../combo_tracker';
 import { kAbility } from '../constants';
 import { PartialFieldMatches } from '../event_emitter';
-import { computeBackgroundColorFrom } from '../utils';
+import { computeBackgroundColorFrom, showDuration } from '../utils';
 
 import { BaseComponent, ComponentInterface } from './base';
 
@@ -98,10 +98,11 @@ export class PLDComponent extends BaseComponent {
 
   override onCombo(skill: string, combo: ComboTracker): void {
     this.comboTimer.duration = 0;
-    if (skill === kAbility.GoringBlade)
+    if (skill === kAbility.GoringBlade && this.ffxivRegion !== 'intl')
       this.goreBox.duration = 21;
     if (combo.isFinalSkill)
-      return;
+      if (skill !== kAbility.GoringBlade || this.ffxivRegion !== 'intl')
+        return;
     if (skill)
       this.comboTimer.duration = this.comboDuration;
   }
@@ -109,27 +110,27 @@ export class PLDComponent extends BaseComponent {
   override onUseAbility(skill: string): void {
     switch (skill) {
       case kAbility.BladeOfValor:
-        this.goreBox.duration = 21;
+        if (this.ffxivRegion !== 'intl')
+          this.goreBox.duration = 21;
+        break;
+      case kAbility.GoringBlade:
+        if (this.ffxivRegion === 'intl')
+          this.goreBox.duration = this.bars.player.getActionCooldown(60000, 'skill');
         break;
       case kAbility.Expiacion:
       case kAbility.SpiritsWithin:
         this.expiacionBox.duration = 30;
         break;
       case kAbility.FightOrFlight:
-        this.fightOrFlightBox.duration = 25;
-        this.fightOrFlightBox.threshold = 1000;
-        this.fightOrFlightBox.fg = computeBackgroundColorFrom(
-          this.fightOrFlightBox,
-          'pld-color-fightorflight.active',
-        );
-        this.tid1 = window.setTimeout(() => {
-          this.fightOrFlightBox.duration = 35;
-          this.fightOrFlightBox.threshold = this.player.gcdSkill * 2 + 1;
-          this.fightOrFlightBox.fg = computeBackgroundColorFrom(
-            this.fightOrFlightBox,
-            'pld-color-fightorflight',
-          );
-        }, 25000);
+        this.tid1 = showDuration({
+          tid: this.tid1,
+          timerbox: this.fightOrFlightBox,
+          duration: this.ffxivRegion === 'intl' ? 20 : 25,
+          cooldown: 60,
+          threshold: this.player.gcdSkill * 2 + 1,
+          activecolor: 'pld-color-fightorflight.active',
+          deactivecolor: 'pld-color-fightorflight',
+        })
         break;
     }
   }
@@ -140,7 +141,7 @@ export class PLDComponent extends BaseComponent {
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     if (id === EffectId.SwordOath)
       this.setAtonement(this.atonementBox, parseInt(matches.count ?? '0'));
-    if (id === EffectId.Requiescat) {
+    if (id === EffectId.Requiescat && this.ffxivRegion !== 'intl') {
       this.stacksContainer.classList.remove('hide');
       this.setRequiescat(parseInt(matches.count ?? '0'));
     }
@@ -149,7 +150,7 @@ export class PLDComponent extends BaseComponent {
   override onYouLoseEffect(id: string): void {
     if (id === EffectId.SwordOath)
       this.setAtonement(this.atonementBox, 0);
-    if (id === EffectId.Requiescat) {
+    if (id === EffectId.Requiescat && this.ffxivRegion !== 'intl') {
       this.setRequiescat(0);
       this.stacksContainer.classList.add('hide');
     }

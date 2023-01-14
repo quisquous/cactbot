@@ -103,7 +103,10 @@ export class WHMComponent extends BaseComponent {
         this.diaBox.duration = 30;
         break;
       case kAbility.Assize:
-        this.assizeBox.duration = 45;
+        if (this.ffxivRegion === 'intl')
+          this.assizeBox.duration = 40;
+        else
+          this.assizeBox.duration = 45;
         break;
       case kAbility.LucidDreaming:
         this.lucidBox.duration = 60;

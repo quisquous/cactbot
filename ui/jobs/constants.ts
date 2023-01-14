@@ -314,6 +314,7 @@ export const kComboActions: string[][] = [
     kAbility.Prominence,
   ],
   [
+    kAbility.Confiteor,
     kAbility.BladeofFaith,
     kAbility.BladeofTruth,
     kAbility.BladeOfValor,
@@ -470,7 +471,6 @@ export const kComboBreakers = [
   kAbility.RiotBlade,
   kAbility.RageOfHalone,
   kAbility.RoyalAuthority,
-  kAbility.GoringBlade,
   kAbility.TotalEclipse,
   kAbility.Prominence,
   kAbility.Confiteor,
@@ -546,6 +546,7 @@ export const kComboBreakers = [
 
 export const kComboBreakersCn = [
   ...kComboBreakers,
+  kAbility.GoringBlade,
 ];
 
 export const kComboBreakersKo = [
