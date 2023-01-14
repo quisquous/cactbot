@@ -187,7 +187,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'SophiaUN Divine Spark',
       type: 'StartsUsing',
       netRegex: { id: '7DB0', source: 'The Second Demiurge', capture: false },
-      response: Responses.lookAway(),
+      response: Responses.lookAwayFromSource(),
     },
     {
       id: 'SophiaUN Gnostic Rant',
