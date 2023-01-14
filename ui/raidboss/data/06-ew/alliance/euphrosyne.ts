@@ -232,7 +232,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Euphrosyne Nymeia Spinner\'s Wheel Initial',
       type: 'GainsEffect',
-      netRegex: { effectId: ['D3B', 'D3C'] },
+      netRegex: { effectId: ['D39', 'D3A', 'D3B', 'D3C'] },
       condition: Conditions.targetIsYou(),
       // Reapplied with Time and Tide.
       suppressSeconds: 5,
@@ -267,7 +267,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Euphrosyne Nymeia Spinner\'s Wheel',
       type: 'GainsEffect',
-      netRegex: { effectId: 'D3B' },
+      netRegex: { effectId: ['D39', 'D3A', 'D3B', 'D3C'] },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => {
         // 10 seconds = normal, 20 seconds = sped up (for ~13.4 s)
