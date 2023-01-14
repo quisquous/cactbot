@@ -10,7 +10,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Nophica Blueblossoms/Giltblossoms; they get 018E/018F/0190/0191/0192/0193 markers, but how to know colors?
 // TODO: handling Nymeia & Althyk Time and Tide variations if Nymeia dies and Time and Tide doesn't happen.
 // TODO: Nymeia & Althyk Hydrostasis have inconsistent positions? should this be getCombatants??
-// TODO: Halone Thousandfold Thrust / Tetrapagos Thrust directions (including rotation)
 // TODO: Halone Lochos positions
 // TODO: Menphina could use map effects for Love's Light + Full Bright 4x moons
 // TODO: Menphina Playful Orbit 7BE2 vs 7BE3 (is this west vs east?)
@@ -368,9 +367,9 @@ const triggerSet: TriggerSet<Data> = {
         const tetra: HaloneTetra | undefined = tetraMap[matches.id];
         data.haloneTetrapagos.push(tetra ?? 'unknown');
       },
-      durationSeconds: 10,
+      durationSeconds: 7.5,
       sound: '',
-      infoText: (data, _matches, output) => {
+      alertText: (data, _matches, output) => {
         if (data.haloneTetrapagos.length !== 4)
           return;
 
@@ -396,7 +395,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: ['7D46', '7D47', '7D48', '7D49'], source: 'Halone' },
       durationSeconds: 7,
       suppressSeconds: 20,
-      alertText: (_data, matches, output) => output[tetraMap[matches.id] ?? 'unknown']!(),
+      infoText: (_data, matches, output) => output[tetraMap[matches.id] ?? 'unknown']!(),
       outputStrings: {
         out: Outputs.out,
         in: Outputs.in,
@@ -415,7 +414,7 @@ const triggerSet: TriggerSet<Data> = {
       // 7D51 = left cleave
       netRegex: { id: ['7D4B', '7D4E', '7D50', '7D51'], source: 'Halone', capture: false },
       durationSeconds: 1.5,
-      alertText: (data, _matches, output) => {
+      infoText: (data, _matches, output) => {
         if (data.haloneTetrapagos.length === 4)
           data.haloneTetrapagos.shift();
         const dir = data.haloneTetrapagos.shift();
