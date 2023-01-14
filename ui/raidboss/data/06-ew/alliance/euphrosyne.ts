@@ -30,8 +30,8 @@ export interface Data extends RaidbossData {
 }
 
 const tetraMap: { [id: string]: HaloneTetra } = {
-  '7D46': 'in',
-  '7D47': 'out',
+  '7D46': 'out',
+  '7D47': 'in',
   '7D48': 'left',
   '7D49': 'right',
 } as const;
@@ -226,7 +226,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Euphrosyne Behemoth Trounce',
       type: 'StartsUsing',
-      netRegex: { id: '7D36', source: 'Euphrosynos Behemoth', capture: false },
+      netRegex: { id: '7D38', source: 'Euphrosynos Behemoth', capture: false },
       response: Responses.awayFromFront(),
     },
     {
