@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -49,6 +50,19 @@ const triggerSet: TriggerSet<Data> = {
     };
   },
   triggers: [
+    {
+      id: 'Euphrosyne Nophica DEBUG',
+      type: 'HeadMarker',
+      netRegex: { id: ['018[EF]', '019[0-3]'] },
+      promise: async (_data, matches) => {
+        const ids = [parseInt(matches.targetId, 16)];
+        const combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        })).combatants;
+        console.log(JSON.stringify(combatantData));
+      },
+    },
     {
       id: 'Euphrosyne Nophica Abundance',
       type: 'StartsUsing',
