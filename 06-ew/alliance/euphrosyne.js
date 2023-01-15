@@ -198,7 +198,7 @@ Options.Triggers.push({
       netRegex: { effectId: ['D39', 'D3A', 'D3B', 'D3C'] },
       condition: Conditions.targetIsYou(),
       // Reapplied with Time and Tide.
-      suppressSeconds: 5,
+      suppressSeconds: 20,
       sound: '',
       infoText: (_data, matches, output) => {
         return {
@@ -236,18 +236,11 @@ Options.Triggers.push({
       type: 'GainsEffect',
       netRegex: { effectId: ['D39', 'D3A', 'D3B', 'D3C'] },
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => {
-        // 10 seconds = normal, 20 seconds = sped up (for ~13.4 s)
-        // TODO: the speed up only happens with an 00DF tether, so collect that and check.
-        const warningTime = 2;
-        const initialDuration = parseFloat(matches.duration);
-        const realDuration = initialDuration < 15 ? initialDuration : 13.4;
-        return realDuration - warningTime;
-      },
-      // Reapplied with Time and Tide.
-      suppressSeconds: 5,
-      alertText: (_data, matches, output) => {
-        return {
+      preRun: (data, matches, output) => {
+        // This is somewhat unusual, but to avoid duplicating output strings,
+        // we are going to store the output here, but it may get called via
+        //
+        data.nymeiaSpinnerOutput = {
           // Arcane Attraction
           'D39': output.lookAway(),
           // Attraction Reversed
@@ -258,6 +251,14 @@ Options.Triggers.push({
           'D3C': output.keepMoving(),
         }[matches.effectId];
       },
+      // 10 seconds first time, 20 seconds other times, possibly sped up (for ~13.4 s)
+      // The Spinner Wheel Tether trigger will take care of speed ups.
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 2,
+      // Reapplied with Time and Tide.
+      suppressSeconds: 5,
+      // This will be cleared if called earlier.
+      alertText: (data) => data.nymeiaSpinnerOutput,
+      run: (data) => delete data.nymeiaSpinnerOutput,
       outputStrings: {
         lookAway: {
           en: 'Look Away from Nymeia',
@@ -270,6 +271,18 @@ Options.Triggers.push({
         stopEverything: Outputs.stopEverything,
         keepMoving: Outputs.moveAround,
       },
+    },
+    {
+      id: 'Euphrosyne Nymeia Spinner\'s Wheel Tether',
+      type: 'Tether',
+      netRegex: { id: '00DF', target: 'Althyk' },
+      condition: (data, matches) => data.me === matches.source,
+      delaySeconds: 11.5,
+      alertText: (data) => data.nymeiaSpinnerOutput,
+      run: (data) => delete data.nymeiaSpinnerOutput,
+      // For simplicity, this trigger uses the stored output from the Spinner's Wheel trigger.
+      // If it calls it early, it will clear it so that the other trigger doesn't use it.
+      outputStrings: {},
     },
     {
       id: 'Euphrosyne Althyk Axioma',
