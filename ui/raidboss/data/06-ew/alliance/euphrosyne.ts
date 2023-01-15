@@ -483,31 +483,7 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
       },
     },
-    {
-      id: 'Euphrosyne Halone Tetrapagos Followup',
-      type: 'StartsUsing',
-      // self-targeted abilities
-      // 7D4B = circle
-      // 7D4E = donut
-      // 7D50 = right cleave
-      // 7D51 = left cleave
-      netRegex: { id: ['7D4B', '7D4E', '7D50', '7D51'], source: 'Halone', capture: false },
-      durationSeconds: 1.5,
-      infoText: (data, _matches, output) => {
-        if (data.haloneTetrapagos.length === 4)
-          data.haloneTetrapagos.shift();
-        const dir = data.haloneTetrapagos.shift();
-        if (dir === undefined)
-          return;
-        return output[dir]!();
-      },
-      outputStrings: {
-        out: Outputs.out,
-        in: Outputs.in,
-        left: Outputs.left,
-        right: Outputs.right,
-      },
-    },
+
     {
       id: 'Euphrosyne Halone Doom Spear',
       type: 'StartsUsing',
