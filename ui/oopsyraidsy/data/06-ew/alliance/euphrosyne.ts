@@ -4,8 +4,6 @@ import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
 
-// TODO: What is Halone Glacial Spear Cheimon rotation?
-
 export type Data = OopsyData;
 
 const triggerSet: OopsyTriggerSet<Data> = {
@@ -48,6 +46,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Euphrosyne Halone Will of the Fury 4': '7D61', // expanding ring
     'Euphrosyne Halone Will of the Fury 5': '7D62', // expanding ring
     'Euphrosyne Halone Glacial Spear Niphas': '7D69', // centered circle on spears
+    'Euphrosyne Halone Glacial Spear Cheimon 1': '7D6C', // initial rotating lines
+    'Euphrosyne Halone Glacial Spear Cheimon 2': '7D6D', // ongoing rotating lines
 
     'Eurphosyne Menphina First Blush': '7BBC', // getting hit by the Full Bright moon
     'Euphrosyne Menphina Midnight Frost 1': '7BCD', // 180 cleave
