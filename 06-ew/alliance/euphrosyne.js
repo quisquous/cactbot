@@ -400,6 +400,13 @@ Options.Triggers.push({
       response: Responses.aoe(),
     },
     {
+      id: 'Euphrosyne Halone Tetrapagos Cleanup',
+      type: 'StartsUsing',
+      // This should be unnecessary, but for safety reset the data each round.
+      netRegex: { id: ['7D45', '7D59'], source: 'Halone', capture: false },
+      run: (data) => data.haloneTetrapagos = [],
+    },
+    {
       id: 'Euphrosyne Halone Tetrapagos Summary',
       type: 'StartsUsing',
       netRegex: { id: ['7D46', '7D47', '7D48', '7D49'], source: 'Halone' },
@@ -440,6 +447,31 @@ Options.Triggers.push({
         left: Outputs.left,
         right: Outputs.right,
         unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'Euphrosyne Halone Tetrapagos Followup',
+      type: 'Ability',
+      // Self-targeted abilities:
+      // 7D4A = donut
+      // 7D4B = circle
+      // 7D4C = right cleave
+      // 7D4D = left cleave
+      netRegex: { id: ['7D4A', '7D4B', '7D4C', '7D4D'], source: 'Halone', capture: false },
+      durationSeconds: 1.5,
+      infoText: (data, _matches, output) => {
+        if (data.haloneTetrapagos.length === 4)
+          data.haloneTetrapagos.shift();
+        const dir = data.haloneTetrapagos.shift();
+        if (dir === undefined)
+          return;
+        return output[dir]();
+      },
+      outputStrings: {
+        out: Outputs.out,
+        in: Outputs.in,
+        left: Outputs.left,
+        right: Outputs.right,
       },
     },
     {
