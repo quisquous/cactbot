@@ -1,6 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
 import Outputs from '../../../../../resources/outputs';
-import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -10,6 +9,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Nophica Blueblossoms/Giltblossoms; they get 018E/018F/0190/0191/0192/0193 markers, but how to know colors?
 // TODO: handling Nymeia & Althyk Time and Tide variations if Nymeia dies and Time and Tide doesn't happen.
 // TODO: Nymeia & Althyk Hydrostasis have inconsistent positions? should this be getCombatants??
+// TODO: handle proper Nymeia Spinner's Wheel speedup, via 00DF Tether to Altyhk
 // TODO: Halone Lochos positions
 // TODO: Menphina could use map effects for Love's Light + Full Bright 4x moon locations
 
@@ -69,19 +69,6 @@ const triggerSet: TriggerSet<Data> = {
     };
   },
   triggers: [
-    {
-      id: 'Euphrosyne Nophica DEBUG',
-      type: 'HeadMarker',
-      netRegex: { id: ['018[EF]', '019[0-3]'] },
-      promise: async (_data, matches) => {
-        const ids = [parseInt(matches.targetId, 16)];
-        const combatantData = (await callOverlayHandler({
-          call: 'getCombatants',
-          ids: ids,
-        })).combatants;
-        console.log(JSON.stringify(combatantData));
-      },
-    },
     {
       id: 'Euphrosyne Nophica Abundance',
       type: 'StartsUsing',
@@ -290,6 +277,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => {
         // 10 seconds = normal, 20 seconds = sped up (for ~13.4 s)
+        // TODO: the speed up only happens with an 00DF tether, so collect that and check.
         const warningTime = 2;
         const initialDuration = parseFloat(matches.duration);
         const realDuration = initialDuration < 15 ? initialDuration : 13.4;
