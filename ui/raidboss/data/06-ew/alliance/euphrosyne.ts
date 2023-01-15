@@ -7,9 +7,9 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Nophica Blueblossoms/Giltblossoms; they get 018E/018F/0190/0191/0192/0193 markers, but how to know colors?
-// TODO: handling Nymeia & Althyk Time and Tide variations if Nymeia dies and Time and Tide doesn't happen.
+//       No map effects, and getCombatants has the combatants, but OverlayPlugin info all the same.
 // TODO: Nymeia & Althyk Hydrostasis have inconsistent positions? should this be getCombatants??
-// TODO: handle proper Nymeia Spinner's Wheel speedup, via 00DF Tether to Altyhk
+// TODO: Halone Cheimon counter-clock is 7D6B, is clock 7D6A??
 // TODO: Halone Lochos positions
 // TODO: Menphina could use map effects for Love's Light + Full Bright 4x moon locations
 
@@ -17,16 +17,16 @@ import { TriggerSet } from '../../../../../types/trigger';
 // 7BCB Midnight Frost = front cleave (7BCD damage) [first phase only]
 // 7BCC Midnight Frost = back cleave (7BCE damage) [first phase only]
 // 7BCF Midnight Frost = ??? (7BD1 damage)
-// 7BD0 Midnight Frost = ??? (7BD2 damage)
+// 7BD0 Midnight Frost = back cleave (7BD2 damage) [dog attached, during 4x Love's Light, facing west]
 // 7BD7 Midnight Frost = front cleave (7BDD damage) [dog attached, facing southeast or north?]
-// 7BD8 Midnight Frost = front cleave (7BDD damage) [dog attached, facing south]
+// 7BD8 Midnight Frost = front cleave (7BDD damage) [dog attached, facing south or northwest?]
 // 7BD9 Midnight Frost = back cleave (7BDE damage) [dog attached, facing south]
-// 7BDA Midnight Frost = back cleave (7BDE damage) [dog attached, facing southeast]
+// 7BDA Midnight Frost = back cleave (7BDE damage) [dog attached, facing southeast or north?]
 // 7BE4 Midnight Frost = ??? (7BDA damage)
 // 7BE5 Midnight Frost = ??? (7BDA damage)
 // 7BE6 Midnight Frost = back cleave (7BDB damage) [dog unattached, facing north]
 // 7BE7 Midnight Frost = back cleave (7BDB damage) [dog unattached, facing north]
-// 7F0A Midnight Frost = ??? (7BDA damage)
+// 7F0A Midnight Frost = front cleave (7BDA damage) [dog unattached, facing north]
 // 7F0B Midnight Frost = ??? (7BDA damage)
 // 7F0C Midnight Frost = back cleave (7BDB damage) [dog unattached, facing south]
 // 7F0D Midnight Frost = back cleave (7BDB damage) [dog unattached, facing south]
@@ -41,6 +41,7 @@ export type HaloneTetra = 'out' | 'in' | 'left' | 'right' | 'unknown';
 export interface Data extends RaidbossData {
   nophicaMarch?: NophicaMarch;
   nophicaHeavensEarthTargets: string[];
+  nymeiaSpinnerOutput?: string;
   nymeiaHydrostasis: NetMatches['StartsUsing'][];
   haloneTetrapagos: HaloneTetra[];
   haloneSpearsThreeTargets: string[];
@@ -249,7 +250,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: ['D39', 'D3A', 'D3B', 'D3C'] },
       condition: Conditions.targetIsYou(),
       // Reapplied with Time and Tide.
-      suppressSeconds: 5,
+      suppressSeconds: 20,
       sound: '',
       infoText: (_data, matches, output) => {
         return {
@@ -287,18 +288,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: ['D39', 'D3A', 'D3B', 'D3C'] },
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => {
-        // 10 seconds = normal, 20 seconds = sped up (for ~13.4 s)
-        // TODO: the speed up only happens with an 00DF tether, so collect that and check.
-        const warningTime = 2;
-        const initialDuration = parseFloat(matches.duration);
-        const realDuration = initialDuration < 15 ? initialDuration : 13.4;
-        return realDuration - warningTime;
-      },
-      // Reapplied with Time and Tide.
-      suppressSeconds: 5,
-      alertText: (_data, matches, output) => {
-        return {
+      preRun: (data, matches, output) => {
+        // This is somewhat unusual, but to avoid duplicating output strings,
+        // we are going to store the output here, but it may get called via
+        //
+        data.nymeiaSpinnerOutput = {
           // Arcane Attraction
           'D39': output.lookAway!(),
           // Attraction Reversed
@@ -309,6 +303,14 @@ const triggerSet: TriggerSet<Data> = {
           'D3C': output.keepMoving!(),
         }[matches.effectId];
       },
+      // 10 seconds first time, 20 seconds other times, possibly sped up (for ~13.4 s)
+      // The Spinner Wheel Tether trigger will take care of speed ups.
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 2,
+      // Reapplied with Time and Tide.
+      suppressSeconds: 5,
+      // This will be cleared if called earlier.
+      alertText: (data) => data.nymeiaSpinnerOutput,
+      run: (data) => delete data.nymeiaSpinnerOutput,
       outputStrings: {
         lookAway: {
           en: 'Look Away from Nymeia',
@@ -321,6 +323,18 @@ const triggerSet: TriggerSet<Data> = {
         stopEverything: Outputs.stopEverything,
         keepMoving: Outputs.moveAround,
       },
+    },
+    {
+      id: 'Euphrosyne Nymeia Spinner\'s Wheel Tether',
+      type: 'Tether',
+      netRegex: { id: '00DF', target: 'Althyk' },
+      condition: (data, matches) => data.me === matches.source,
+      delaySeconds: 11.5,
+      alertText: (data) => data.nymeiaSpinnerOutput,
+      run: (data) => delete data.nymeiaSpinnerOutput,
+      // For simplicity, this trigger uses the stored output from the Spinner's Wheel trigger.
+      // If it calls it early, it will clear it so that the other trigger doesn't use it.
+      outputStrings: {},
     },
     {
       id: 'Euphrosyne Althyk Axioma',
