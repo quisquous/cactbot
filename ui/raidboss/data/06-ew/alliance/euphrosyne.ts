@@ -18,22 +18,22 @@ import { TriggerSet } from '../../../../../types/trigger';
 // 7BCC Midnight Frost = back cleave (7BCE damage) [first phase only]
 // 7BCF Midnight Frost = ??? (7BD1 damage)
 // 7BD0 Midnight Frost = ??? (7BD2 damage)
-// 7BD7 Midnight Frost = front cleave (7BDD damage) [dog attached, facing southeast]
+// 7BD7 Midnight Frost = front cleave (7BDD damage) [dog attached, facing southeast or north?]
 // 7BD8 Midnight Frost = front cleave (7BDD damage) [dog attached, facing south]
-// 7BD9 Midnight Frost = ??? (7BDE damage)
-// 7BDA Midnight Frost = ??? (7BDE damage)
+// 7BD9 Midnight Frost = back cleave (7BDE damage) [dog attached, facing south]
+// 7BDA Midnight Frost = back cleave (7BDE damage) [dog attached, facing southeast]
 // 7BE4 Midnight Frost = ??? (7BDA damage)
 // 7BE5 Midnight Frost = ??? (7BDA damage)
 // 7BE6 Midnight Frost = back cleave (7BDB damage) [dog unattached, facing north]
 // 7BE7 Midnight Frost = back cleave (7BDB damage) [dog unattached, facing north]
 // 7F0A Midnight Frost = ??? (7BDA damage)
 // 7F0B Midnight Frost = ??? (7BDA damage)
-// 7F0C Midnight Frost = ??? (7BDB damage)
-// 7F0D Midnight Frost = ??? (7BDB damage)
+// 7F0C Midnight Frost = back cleave (7BDB damage) [dog unattached, facing south]
+// 7F0D Midnight Frost = back cleave (7BDB damage) [dog unattached, facing south]
 // 7BE0 Waxing Claw = right claw [both attached and unattached]
 // 7BE1 Waxing Claw = left claw [both attached and unattached]
 // 7BE2 Playful Orbit = jump NE
-// 7BE3 Playful Orbit = jump NW
+// 7BE3 Playful Orbit = jump NW / jump SE?
 
 export type NophicaMarch = 'front' | 'back' | 'left' | 'right';
 export type HaloneTetra = 'out' | 'in' | 'left' | 'right' | 'unknown';
@@ -578,7 +578,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Euphrosyne Menphina Blue Moon',
       type: 'StartsUsing',
-      netRegex: { id: '7BFA', source: 'Menphina', capture: false },
+      netRegex: { id: ['7BFA', '7BFB'], source: 'Menphina', capture: false },
       response: Responses.aoe(),
     },
     {
