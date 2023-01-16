@@ -42,7 +42,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubicanteEx Fourfold Flame',
       type: 'StartsUsing',
-      netRegex: { id: '7D03', source: 'Rubicante' },
+      netRegex: { id: '7D03', source: 'Rubicante', capture: false },
       condition: (data) => !data.getFourfold,
       infoText: (_data, _matches, output) => output.group!(),
       run: (data) => data.getFourfold = true,
@@ -167,10 +167,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'RubicanteEx Dualfire',
       type: 'StartsUsing',
       netRegex: { id: '7D2E', source: 'Rubicante' },
-      response: (data, _matches, output) => {
+      alertText: (data, _matches, output) => {
         if (data.role === 'tank')
-          return { alertText: output.tankCleave!() };
-        return { infoText: output.noTank!() };
+          return output.tankCleave!();
+        return output.noTank!();
       },
       outputStrings: {
         tankCleave: {
@@ -222,9 +222,20 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Rubicante': 'ルビカンテ',
         'Flamesent': '業炎妖',
+      },
+      'replaceText': {
+        'Arcane Revelation': '魔法陣展開',
+        'Arch Inferno': '烈風火燕流',
+        'Conflagration':'劫火流',
+        'Hope Abandon Ye': '煉獄招来',
+        'Inferno': '火燕流',
+        'Ninth Circle': '魔陣拡張',
+        'Ordeal of Purgation': '煉獄の朱炎',
+        'Shattering Heat':'炎撃',
       },
     },
   ],
