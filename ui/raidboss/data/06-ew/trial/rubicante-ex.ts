@@ -53,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubicanteEx Twinfold Flame',
       type: 'StartsUsing',
-      netRegex: { id: '7D04', source: 'Rubicante' },
+      netRegex: { id: '7D04', source: 'Rubicante', capture: false },
       condition: (data) => !data.getTwinfold,
       infoText: (_data, _matches, output) => output.stack!(),
       run: (data) => data.getTwinfold = true,
@@ -229,7 +229,6 @@ const triggerSet: TriggerSet<Data> = {
       },
       'replaceText': {
         'Arcane Revelation': '魔法陣展開',
-        'Arch Inferno': '烈風火燕流',
         'Conflagration': '劫火流',
         'Hope Abandon Ye': '煉獄招来',
         'Inferno': '火燕流',
