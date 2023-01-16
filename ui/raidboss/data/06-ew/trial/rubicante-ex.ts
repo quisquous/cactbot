@@ -166,7 +166,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubicanteEx Dualfire',
       type: 'StartsUsing',
-      netRegex: { id: '7D2E', source: 'Rubicante' },
+      netRegex: { id: '7D2E', source: 'Rubicante', capture: false },
       alertText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.tankCleave!();
