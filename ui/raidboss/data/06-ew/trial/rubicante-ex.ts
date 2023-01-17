@@ -318,7 +318,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'RubicanteEx Dualfire Not You',
       type: 'StartsUsing',
-      netRegex: { id: '72DE', source: 'Rubicante', capture: false },
+      netRegex: { id: '7D2E', source: 'Rubicante', capture: false },
       infoText: (data, _matches, output) => {
         if (data.dualfireTargets.includes(data.me))
           return;
