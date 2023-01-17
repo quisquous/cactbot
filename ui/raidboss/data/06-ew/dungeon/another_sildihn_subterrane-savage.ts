@@ -932,18 +932,49 @@ const triggerSet: TriggerSet<Data> = {
         const [leftNum, rightNum] = isLine1Left ? [line1, line2] : [line2, line1];
 
         // Call out the bigger number first, as it's the direction you'll have to move the most.
-        if (leftNum > rightNum)
-          return output.goLeft!({ left: leftNum, right: rightNum });
-        return output.goRight!({ left: leftNum, right: rightNum });
+        if (leftNum === 3 && rightNum === 2)
+          return output.goLeft3Right2!();
+        if (leftNum === 3 && rightNum === 1)
+          return output.goLeft3Right1!();
+        if (leftNum === 2 && rightNum === 1)
+          return output.goLeft2Right1!();
+        if (rightNum === 3 && leftNum === 2)
+          return output.goRight3Left2!();
+        if (rightNum === 3 && leftNum === 1)
+          return output.goRight3Left1!();
+        if (rightNum === 2 && leftNum === 1)
+          return output.goRight2Left1!();
       },
       outputStrings: {
-        goLeft: {
-          en: 'Go ${left} left, ${right} right',
-          de: 'Gehe Links ${left}, Rechts ${right}',
+        goLeft3Right2: {
+          en: 'Go 3 Left 2 Right',
+          de: 'Gehe Links 3, Rechts 2',
+          ko: '왼쪽3 오른쪽2',
         },
-        goRight: {
-          en: 'Go ${right} right, ${left} left',
-          de: 'Gehe Rechts ${right}, Links ${left}',
+        goLeft3Right1: {
+          en: 'Go 3 Left (on line)',
+          de: 'Gehe Links 3 (auf der Linie)',
+          ko: '왼쪽3 (선 위)',
+        },
+        goLeft2Right1: {
+          en: 'Go 2 Left (on line)',
+          de: 'Gehe Links 2 (auf der Linie)',
+          ko: '왼쪽2 (선 위)',
+        },
+        goRight3Left2: {
+          en: 'Go 3 Right 2 Left',
+          de: 'Gehe Rechts 3, Links 2',
+          ko: '오른쪽3 왼쪽2',
+        },
+        goRight3Left1: {
+          en: 'Go 3 Right (on line)',
+          de: 'Gehe Rechts 3 (auf der Linie)',
+          ko: '오른쪽3 (선 위)',
+        },
+        goRight2Left1: {
+          en: 'Go 2 Right (on line)',
+          de: 'Gehe Rechts 2 (auf der Linie)',
+          ko: '오른쪽2 (선 위)',
         },
       },
     },
@@ -957,6 +988,7 @@ const triggerSet: TriggerSet<Data> = {
         moveThrough: {
           en: 'Move through',
           de: 'Gehe durch',
+          ko: '가로지르기',
         },
       },
     },
@@ -1515,10 +1547,12 @@ const triggerSet: TriggerSet<Data> = {
         soakFirst: {
           en: 'Soak First Towers (with ${player})',
           de: 'Steh im ersten Turm (mit ${player})',
+          ko: '첫번째 기둥 밟기 (${player})',
         },
         spreadFirst: {
           en: 'Spread First (with ${player})',
           de: 'Zuerst verteilen (mit ${player})',
+          ko: '산개 먼저 (${player})',
         },
         unknown: Outputs.unknown,
       },
@@ -1539,6 +1573,7 @@ const triggerSet: TriggerSet<Data> = {
         soakSecond: {
           en: 'Soak Second Towers',
           de: 'Steh im zweiten Turm',
+          ko: '두번째 기둥 밟기',
         },
       },
     },
