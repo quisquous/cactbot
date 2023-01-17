@@ -473,6 +473,7 @@
 06-ew/hunts/thavnair.ts
 06-ew/hunts/ultima_thule.ts
 06-ew/map/the_excitatron_6000.ts
+06-ew/map/the_shifting_gymnasion_agonon.ts
 06-ew/trial/barbariccia.ts
 06-ew/trial/barbariccia.txt
 06-ew/trial/barbariccia-ex.ts
