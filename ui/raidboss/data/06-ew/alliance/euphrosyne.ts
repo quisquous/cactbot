@@ -147,7 +147,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Euphrosyne Nophica Matron\'s Harvest',
       type: 'StartsUsing',
-      netRegex: { id: '7C1D', source: 'Nophica', capture: false },
+      netRegex: { id: '7C1[DE]', source: 'Nophica', capture: false },
       response: Responses.aoe(),
     },
     {

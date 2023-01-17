@@ -482,6 +482,8 @@
 06-ew/trial/hydaelyn.txt
 06-ew/trial/hydaelyn-ex.ts
 06-ew/trial/hydaelyn-ex.txt
+06-ew/trial/rubicante-ex.ts
+06-ew/trial/rubicante-ex.txt
 06-ew/trial/sephirot-un.ts
 06-ew/trial/sephirot-un.txt
 06-ew/trial/sophia-un.ts
