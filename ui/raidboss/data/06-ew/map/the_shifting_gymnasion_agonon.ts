@@ -17,7 +17,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: ::final summons::
 // TODO: Narkissos: Rock Hard - ???
 // TODO: Narkissos: Putrid Breath - ???
-// TODO: Narkissos: all abilities
 // TODO: Hippomenes: all abilities
 // TODO: Phaethon: all abilities
 
