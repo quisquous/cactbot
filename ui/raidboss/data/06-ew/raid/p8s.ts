@@ -66,7 +66,10 @@ export interface Data extends RaidbossData {
   myTower?: number;
   flareCounter: number;
   inverseMagics: { [name: string]: boolean };
-  deformationTargets: string[];
+  deformationHit: string[];
+  deformationNotHit: string[];
+  deformationOnMe: boolean;
+  deformationPartner?: string;
 }
 
 const centerX = 100;
@@ -181,7 +184,9 @@ const triggerSet: TriggerSet<Data> = {
       burstCounter: 0,
       flareCounter: 0,
       inverseMagics: {},
-      deformationTargets: [],
+      deformationHit: [],
+      deformationNotHit: [],
+      deformationOnMe: false,
     };
   },
   timelineTriggers: [
@@ -2558,19 +2563,76 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '79D9', source: 'Hephaistos', capture: false },
       response: Responses.spread('alert'),
-      run: (data) => data.deformationTargets = [],
+      run: (data) => {
+        data.deformationHit = [];
+        data.deformationNotHit = [...data.party.partyNames];
+        data.deformationOnMe = false;
+        data.deformationPartner = '';
+      },
+    },
+    {
+      id: 'P8S Orogenic Deformation Collect',
+      type: 'Ability',
+      netRegex: { id: '79DB', source: 'Hephaistos' },
+      run: (data, matches) => {
+        let idx = data.deformationNotHit.indexOf(matches.target);
+        if (idx !== -1)
+          data.deformationNotHit.splice(idx, 1);
+        if (data.me === matches.target) {
+          data.deformationOnMe = true;
+        } else {
+          data.deformationHit.push(matches.target);
+        }
+      },
     },
     {
       id: 'P8S Orogenic Deformation Hit',
       type: 'Ability',
       netRegex: { id: '79DB', source: 'Hephaistos' },
-      preRun: (data, matches) => data.deformationTargets.push(matches.target),
-      infoText: (data, matches, output) => {
-        if (data.me === matches.target)
-          return output.text!();
+      condition: (data, matches) => data.me === matches.target,
+      delaySeconds: 0.5,
+      durationSeconds: 10,
+      infoText: (data, _matches, output) => {
+        let myRole = data.party.isDPS(data.me) ? 'dps' : 'support';
+        let partnerCount = 0;
+        for (const p of data.deformationHit) {
+          let pRole = data.party.isDPS(p) ? 'dps' : 'support';
+          if (pRole === myRole) {
+            partnerCount++;
+            data.deformationPartner = data.ShortName(p);
+          }
+        }
+        if (data.deformationHit.length === 3 && partnerCount !== 1) {
+          // non-standard party comp with multiple possible role partners - show all hit
+          return output.multiple!({
+            player1: data.ShortName(data.deformationHit[0]),
+            player2: data.ShortName(data.deformationHit[1]),
+            player3: data.ShortName(data.deformationHit[2]),
+          });
+        } else if (partnerCount === 1) {
+          return output.partner!({ player: data.deformationPartner });
+        } else {
+          return output.unknown!();
+        }
       },
       outputStrings: {
-        text: {
+        multiple: {
+          en: 'Second Towers (w/ ${player1}, ${player2}, ${player3})',
+          de: 'Zweite Türme (+ ${player1}, ${player2}, ${player3})',
+          fr: 'Secondes tours (+ ${player1}, ${player2}, ${player3})',
+          ja: '2番目で入る (${player1}, ${player2}, ${player3})',
+          cn: '第二轮塔 (+ ${player1}, ${player2}, ${player3})',
+          ko: '두번째 기둥 (+ ${player1}, ${player2}, ${player3})',
+        },
+        partner: {
+          en: 'Second Towers (with ${player})',
+          de: 'Zweite Türme (mit ${player})',
+          fr: 'Secondes tours (avec ${player})',
+          ja: '2番目で入る (+${player})',
+          cn: '第二轮塔 (与 ${player})',
+          ko: '두번째 기둥 (+ ${player})',
+        },
+        unknown: {
           en: 'Second Towers',
           de: 'Zweite Türme',
           fr: 'Secondes tours',
@@ -2585,13 +2647,54 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '79DB', source: 'Hephaistos', capture: false },
       delaySeconds: 0.5,
+      durationSeconds: 5,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
-        if (!data.deformationTargets.includes(data.me))
-          return output.text!();
+        if (!data.deformationOnMe) {
+          let idx = data.deformationNotHit.indexOf(data.me);
+          if (idx !== -1)
+            data.deformationNotHit.splice(idx, 1);
+          let myRole = data.party.isDPS(data.me) ? 'dps' : 'support';
+          let partnerCount = 0;
+          for (const p of data.deformationNotHit) {
+            let pRole = data.party.isDPS(p) ? 'dps' : 'support';
+            if (pRole === myRole) {
+              partnerCount++;
+              data.deformationPartner = data.ShortName(p);
+            }
+          }
+          if (data.deformationNotHit.length === 3 && partnerCount !== 1) {
+            // non-standard party comp with multiple possible role partners - show all not hit
+            return output.multiple!({
+              player1: data.ShortName(data.deformationNotHit[0]),
+              player2: data.ShortName(data.deformationNotHit[1]),
+              player3: data.ShortName(data.deformationNotHit[2]),
+            });
+          } else if (partnerCount === 1) {
+            return output.partner!({ player: data.deformationPartner });
+          } else {
+            return output.unknown!();
+          }
+        }
       },
       outputStrings: {
-        text: {
+        multiple: {
+          en: 'First Towers (w/ ${player1}, ${player2}, ${player3})',
+          de: 'Erste Türme (+ ${player1}, ${player2}, ${player3})',
+          fr: 'Premières tours (+ ${player1}, ${player2}, ${player3})',
+          ja: '先に入る (${player1}, ${player2}, ${player3})',
+          cn: '第一轮塔 (+ ${player1}, ${player2}, ${player3})',
+          ko: '첫번째 기둥 (+ ${player1}, ${player2}, ${player3})',
+        },
+        partner: {
+          en: 'First Towers (with ${player})',
+          de: 'Erste Türme (mit ${player})',
+          fr: 'Premières tours (avec ${player})',
+          ja: '先に入る (+${player})',
+          cn: '第一轮塔 (与 ${player})',
+          ko: '첫번째 기둥 (+ ${player})',
+        },
+        unknown: {
           en: 'First Towers',
           de: 'Erste Türme',
           fr: 'Premières tours',
