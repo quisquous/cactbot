@@ -69,6 +69,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Gymnasiou Mandragorai spawned, kill in order!',
+          ko: '만드라즈 등장, 순서대로 잡기',
         },
       },
     },
@@ -264,6 +265,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Under Verdant Plume',
+          ko: '진녹색 날개 밑으로',
         },
       },
     },
