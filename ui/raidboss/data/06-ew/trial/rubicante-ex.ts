@@ -228,10 +228,13 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => !data.flamespireBrandHasFlare,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       alertText: (data, _matches, output) => {
+        if (data.flamespireBrandStack === data.me)
+          return output.stackOnYou!();
         return output.stackOnPlayer!({ player: data.ShortName(data.flamespireBrandStack) });
       },
       outputStrings: {
         stackOnPlayer: Outputs.stackOnPlayer,
+        stackOnYou: Outputs.stackOnYou,
       },
     },
     {
