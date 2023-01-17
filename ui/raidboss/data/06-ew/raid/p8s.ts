@@ -2611,9 +2611,8 @@ const triggerSet: TriggerSet<Data> = {
           });
         } else if (partnerCount === 1) {
           return output.partner!({ player: data.deformationPartner });
-        } else {
-          return output.unknown!();
         }
+        return output.unknown!();
       },
       outputStrings: {
         multiple: {
@@ -2672,9 +2671,8 @@ const triggerSet: TriggerSet<Data> = {
             });
           } else if (partnerCount === 1) {
             return output.partner!({ player: data.deformationPartner });
-          } else {
-            return output.unknown!();
           }
+          return output.unknown!();
         }
       },
       outputStrings: {
