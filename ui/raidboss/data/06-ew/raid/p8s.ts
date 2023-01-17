@@ -2575,7 +2575,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '79DB', source: 'Hephaistos' },
       run: (data, matches) => {
-        let idx = data.deformationNotHit.indexOf(matches.target);
+        const idx = data.deformationNotHit.indexOf(matches.target);
         if (idx !== -1)
           data.deformationNotHit.splice(idx, 1);
         if (data.me === matches.target) {
@@ -2593,10 +2593,10 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 0.5,
       durationSeconds: 10,
       infoText: (data, _matches, output) => {
-        let myRole = data.party.isDPS(data.me) ? 'dps' : 'support';
+        const myRole = data.party.isDPS(data.me) ? 'dps' : 'support';
         let partnerCount = 0;
         for (const p of data.deformationHit) {
-          let pRole = data.party.isDPS(p) ? 'dps' : 'support';
+          const pRole = data.party.isDPS(p) ? 'dps' : 'support';
           if (pRole === myRole) {
             partnerCount++;
             data.deformationPartner = data.ShortName(p);
@@ -2651,13 +2651,13 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
         if (!data.deformationOnMe) {
-          let idx = data.deformationNotHit.indexOf(data.me);
+          const idx = data.deformationNotHit.indexOf(data.me);
           if (idx !== -1)
             data.deformationNotHit.splice(idx, 1);
-          let myRole = data.party.isDPS(data.me) ? 'dps' : 'support';
+          const myRole = data.party.isDPS(data.me) ? 'dps' : 'support';
           let partnerCount = 0;
           for (const p of data.deformationNotHit) {
-            let pRole = data.party.isDPS(p) ? 'dps' : 'support';
+            const pRole = data.party.isDPS(p) ? 'dps' : 'support';
             if (pRole === myRole) {
               partnerCount++;
               data.deformationPartner = data.ShortName(p);
