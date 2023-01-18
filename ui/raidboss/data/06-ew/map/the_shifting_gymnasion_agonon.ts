@@ -69,6 +69,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Gymnasiou Mandragorai spawned, kill in order!',
+          de: 'Gymnasiou-Mandragorai erscheinen, in Reihenfolge besiegen!',
           ko: '만드라즈 등장, 순서대로 잡기',
         },
       },
@@ -265,6 +266,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Under Verdant Plume',
+          de: 'Geh unter die blaue Feder',
           ko: '진녹색 날개 밑으로',
         },
       },
@@ -465,6 +467,59 @@ const triggerSet: TriggerSet<Data> = {
     // Phaethon: Flare - two? flare markers on random? players
     // Phaethon: Flame Burst - tankbuster
     // Phaethon: Eruption - aoe under random players?
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Gymnasiou Acheloios': 'Gymnasiou-Acheloios',
+        'Gymnasiou Leon': 'Gymnasiou-Leon',
+        'Gymnasiou Mandragoras': 'Gymnasiou-Mandragora',
+        'Gymnasiou Meganereis': 'Gymnasiou-Meganereis',
+        'Gymnasiou Satyros': 'Gymnasiou-Satyros',
+        'Gymnasiou Sphinx': 'Gymnasiou-Sphinx',
+        'Gymnasiou Tigris': 'Gymnasiou-Tigris',
+        'Gymnasiou Triton': 'Gymnasiou-Triton',
+        'Lampas Chrysine': 'Lampas Chrysine',
+        'Lyssa Chrysine': 'Lyssa Chrysine',
+        'Narkissos': 'Narkissos',
+        'Verdant Plume': 'blau(?:e|er|es|en) Feder',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Gymnasiou Acheloios': 'gymnasiou achéloios',
+        'Gymnasiou Leon': 'gymnasiou léon',
+        'Gymnasiou Mandragoras': 'gymnasiou mandragoras',
+        'Gymnasiou Meganereis': 'gymnasiou méganéréis',
+        'Gymnasiou Satyros': 'gymnasiou satyros',
+        'Gymnasiou Sphinx': 'gymnasiou sphinx',
+        'Gymnasiou Tigris': 'gymnasiou tigris',
+        'Gymnasiou Triton': 'gymnasiou triton',
+        'Lampas Chrysine': 'lampas chrysine',
+        'Lyssa Chrysine': 'lyssa chrysine',
+        'Narkissos': 'Narcisse',
+        'Verdant Plume': 'plume vert foncé',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Gymnasiou Acheloios': 'ギュムナシオー・アケローオス',
+        'Gymnasiou Leon': 'ギュムナシオー・レオン',
+        'Gymnasiou Mandragoras': 'ギュムナシオー・マンドラゴラ',
+        'Gymnasiou Meganereis': 'ギュムナシオー・メガネレイス',
+        'Gymnasiou Satyros': 'ギュムナシオー・サテュロス',
+        'Gymnasiou Sphinx': 'ギュムナシオー・スフィンクス',
+        'Gymnasiou Tigris': 'ギュムナシオー・ティグリス',
+        'Gymnasiou Triton': 'ギュムナシオー・トリトン',
+        'Lampas Chrysine': 'クリュシネ・ランパス',
+        'Lyssa Chrysine': 'クリュシネ・リッサ',
+        'Narkissos': 'ナルキッソス',
+        'Verdant Plume': '濃緑の羽根',
+      },
+    },
   ],
 };
 
