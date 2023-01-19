@@ -32,7 +32,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Cagnazzo Antediluvian': '798F', // large circle AoE, boss 3
     'Cagnazzo Hydraulic Ram': '7FB6', // line charge, boss 3
     'Cagnazzo Hydrobomb': '7FB8', // circle AoE, boss 3
-    'Cagnazzo Hydrovent': '79A0', // circle Aoe, boss 3
+    'Cagnazzo Hydrovent': '79A0', // circle AoE, boss 3
     'Cagnazzo Void Miasma': '7FB3', // baited cone AoE, boss 3
     'Cagnazzo Lifescleaver': '7989', // 8x cone AoE, boss 3
   },
@@ -54,10 +54,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
   shareWarn: {
     'Albion Icy Throes': '7A83', // spread circles, boss 2
 
-    'Cagnazzo Neap Tide': '799E', // Spread circles, boss 3
+    'Cagnazzo Neap Tide': '799E', // spread circles, boss 3
   },
   soloWarn: {
-    'Cagnazzo Spring Tide': '799F', // Standard stack marker, boss 3
+    'Cagnazzo Spring Tide': '799F', // standard stack marker, boss 3
   },
 };
 
