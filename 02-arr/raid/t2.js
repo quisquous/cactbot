@@ -35,6 +35,7 @@ Options.Triggers.push({
           fr: 'Pourriture sur ${player}',
           ja: '${player}にアラガンロット',
           cn: '毒点 ${player}',
+          ko: '${player} 알라그 부패',
         },
         rotOnYou: {
           en: 'Rot on YOU',
@@ -42,6 +43,7 @@ Options.Triggers.push({
           fr: 'Pourriture sur VOUS',
           ja: '自分にアラガンロット',
           cn: '毒点名',
+          ko: '알라그 부패 대상자',
         },
       },
     },
@@ -64,6 +66,7 @@ Options.Triggers.push({
           fr: 'Passez la pourriture',
           ja: 'ロットを移す',
           cn: '传毒',
+          ko: '부패 전달하기',
         },
       },
     },

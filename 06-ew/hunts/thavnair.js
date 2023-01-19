@@ -362,24 +362,28 @@ Options.Triggers.push({
         forward: {
           en: 'Forward March',
           de: 'Geistlenkung vorwärts',
+          ja: '強制移動: 前',
           cn: '强制移动: 前',
           ko: '강제이동: 앞',
         },
         backward: {
           en: 'Backward March',
           de: 'Geistlenkung rückwärts',
+          ja: '強制移動: 後ろ',
           cn: '强制移动: 后',
           ko: '강제이동: 뒤',
         },
         left: {
           en: 'Left March',
           de: 'Geistlenkung links',
+          ja: '強制移動: 左',
           cn: '强制移动: 左',
           ko: '강제이동: 왼쪽',
         },
         right: {
           en: 'Right March',
           de: 'Geistlenkung rechts',
+          ja: '強制移動: 右',
           cn: '强制移动: 右',
           ko: '강제이동: 오른쪽',
         },
@@ -403,12 +407,14 @@ Options.Triggers.push({
         red: {
           en: 'Blue => Red',
           de: 'Blau => Rot',
+          ja: '青 => 赤',
           cn: '蓝 => 红',
           ko: '파랑 => 빨강',
         },
         blue: {
           en: 'Red => Blue',
           de: 'Rot => Blau',
+          ja: '赤 => 青',
           cn: '红 => 蓝',
           ko: '빨강 => 파랑',
         },

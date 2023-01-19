@@ -724,6 +724,7 @@ Options.Triggers.push({
         windAndLightning: {
           en: 'Under ${dir} green puff',
           de: 'Unter den grünen Puschel im ${dir}',
+          ja: '緑のたまの下へ: ${dir}',
           ko: '${dir} 초록색 구슬 밑으로',
         },
         doubleIce: {
@@ -736,6 +737,7 @@ Options.Triggers.push({
         iceAndLightning: {
           en: 'Sides of ${dir} yellow puff',
           de: 'Seitlich des gelben Puschel im ${dir}',
+          ja: '緑のたまの横へ: ${dir}',
           ko: '${dir} 노란색 구슬 옆으로',
         },
         doubleLightning: {
@@ -881,26 +883,38 @@ Options.Triggers.push({
         goLeft3Right2: {
           en: 'Go 3 Left 2 Right',
           de: 'Gehe Links 3, Rechts 2',
+          ja: '左: 3, 右: 2',
+          ko: '왼쪽3 오른쪽2',
         },
         goLeft3Right1: {
           en: 'Go 3 Left (on line)',
           de: 'Gehe Links 3 (auf der Linie)',
+          ja: '左: 3 (線の上)',
+          ko: '왼쪽3 (선 위)',
         },
         goLeft2Right1: {
           en: 'Go 2 Left (on line)',
           de: 'Gehe Links 2 (auf der Linie)',
+          ja: '左: 2 (線の上)',
+          ko: '왼쪽2 (선 위)',
         },
         goRight3Left2: {
           en: 'Go 3 Right 2 Left',
           de: 'Gehe Rechts 3, Links 2',
+          ja: '右: 3, 左: 2',
+          ko: '오른쪽3 왼쪽2',
         },
         goRight3Left1: {
           en: 'Go 3 Right (on line)',
           de: 'Gehe Rechts 3 (auf der Linie)',
+          ja: '右: 3 (線の上)',
+          ko: '오른쪽3 (선 위)',
         },
         goRight2Left1: {
           en: 'Go 2 Right (on line)',
           de: 'Gehe Rechts 2 (auf der Linie)',
+          ja: '右: 2 (線の上)',
+          ko: '오른쪽2 (선 위)',
         },
       },
     },
@@ -914,6 +928,8 @@ Options.Triggers.push({
         moveThrough: {
           en: 'Move through',
           de: 'Gehe durch',
+          ja: '移動',
+          ko: '가로지르기',
         },
       },
     },
@@ -1034,11 +1050,13 @@ Options.Triggers.push({
         spreadThenBait: {
           en: 'Spread => Bait Puddle',
           de: 'Veretilen => Fläche ködern',
+          ja: '散会 => AOE誘導',
           ko: '산개 => 장판 유도',
         },
         baitThenSpread: {
           en: 'Bait Puddle => Spread',
           de: 'Fläche ködern => Veretilen',
+          ja: 'AOE誘導 => 散会',
           ko: '장판 유도 => 산개',
         },
       },
@@ -1103,6 +1121,7 @@ Options.Triggers.push({
         baitPuddle: {
           en: 'Bait Puddle',
           de: 'Fläche ködern',
+          ja: 'AOE誘導',
           ko: '장판 유도',
         },
         spread: Outputs.spread,
@@ -1460,10 +1479,14 @@ Options.Triggers.push({
         soakFirst: {
           en: 'Soak First Towers (with ${player})',
           de: 'Steh im ersten Turm (mit ${player})',
+          ja: 'さきに塔を踏み (+${player})',
+          ko: '첫번째 기둥 밟기 (${player})',
         },
         spreadFirst: {
           en: 'Spread First (with ${player})',
           de: 'Zuerst verteilen (mit ${player})',
+          ja: 'さきに散会 (+${player})',
+          ko: '산개 먼저 (${player})',
         },
         unknown: Outputs.unknown,
       },
@@ -1484,6 +1507,8 @@ Options.Triggers.push({
         soakSecond: {
           en: 'Soak Second Towers',
           de: 'Steh im zweiten Turm',
+          ja: '塔を踏み',
+          ko: '두번째 기둥 밟기',
         },
       },
     },

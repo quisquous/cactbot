@@ -122,6 +122,7 @@ Options.Triggers.push({
         text: {
           en: 'Tank Tethers',
           de: 'Tank Verbindungen',
+          ja: 'タンク線取り',
         },
       },
     },
@@ -160,10 +161,12 @@ Options.Triggers.push({
         outFlareThenSpread: {
           en: 'Out+Flare => Spread',
           de: 'Raus+Flare => Verteilen',
+          ja: '外側＋フレア => 散会',
         },
         inStackThenSpread: {
           en: 'In+Stack => Spread',
           de: 'Rein+Sammeln => Verteilen',
+          ja: '内側＋頭割り => 散会',
         },
       },
     },
@@ -293,10 +296,12 @@ Options.Triggers.push({
         tankBusterCleaves: {
           en: 'Tank Buster Cleaves',
           de: 'Tankbuster Cleaves',
+          ja: 'MT・ST同時範囲攻撃',
         },
         avoidTankCleaves: {
           en: 'Avoid Tank Cleaves',
           de: 'Tankbuster Cleaves ausweichen',
+          ja: '範囲攻撃を避けて',
         },
       },
     },
@@ -349,13 +354,14 @@ Options.Triggers.push({
           en: '#${num}',
           de: '#${num}',
           fr: '#${num}',
-          ja: '自分: ${num}番',
+          ja: '${num}番',
           cn: '#${num}',
           ko: '${num}번째',
         },
         numGetTether: {
           en: '#${num} (Get Tether)',
           de: '#${num} (Verbindung nehmen)',
+          ja: '${num}番 (線取りに行く)',
         },
       },
     },
@@ -395,6 +401,7 @@ Options.Triggers.push({
         getTether: {
           en: 'Get Tether',
           de: 'Verbindung nehmen',
+          ja: '線取りに行く',
         },
       },
     },
@@ -418,10 +425,12 @@ Options.Triggers.push({
         cardinals: {
           en: 'Cardinals',
           de: 'Kardinal',
+          ja: '十字回避',
         },
         intercards: {
           en: 'Intercards',
           de: 'Interkardinal',
+          ja: '斜めへ',
         },
       },
     },

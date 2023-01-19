@@ -16,12 +16,14 @@ const agononOutputStrings = {
   spawn: {
     en: '${name} spawned!',
     de: '${name} erscheint!',
+    ja: '${name} 現れる！',
     cn: '已生成 ${name}!',
     ko: '${name} 등장!',
   },
   adds: {
     en: 'Adds soon',
     de: 'Bald Adds',
+    ja: 'まもなくザコ出ます',
     cn: '小怪即将出现',
     ko: '곧 쫄 나옴',
   },
@@ -58,6 +60,8 @@ Options.Triggers.push({
         text: {
           en: 'Gymnasiou Mandragorai spawned, kill in order!',
           de: 'Gymnasiou-Mandragorai erscheinen, in Reihenfolge besiegen!',
+          ja: 'マンドラゴラ！順番に倒して！',
+          ko: '만드라즈 등장, 순서대로 잡기',
         },
       },
     },
@@ -254,6 +258,8 @@ Options.Triggers.push({
         text: {
           en: 'Get Under Verdant Plume',
           de: 'Geh unter die blaue Feder',
+          ja: '濃緑の羽根の下へ',
+          ko: '진녹색 날개 밑으로',
         },
       },
     },
@@ -413,24 +419,28 @@ Options.Triggers.push({
         forward: {
           en: 'March Forward into Safe Spot',
           de: 'marschiere Vorwärts in die sichere Stelle',
+          ja: '強制移動: 前',
           cn: '向前强制移动到安全区',
           ko: '강제 이동 앞',
         },
         backward: {
           en: 'March Backward into Safe Spot',
           de: 'marschiere Rückwärts in die sichere Stelle',
+          ja: '強制移動: 後ろ',
           cn: '向后强制移动到安全区',
           ko: '강제 이동 뒤',
         },
         left: {
           en: 'March Left into Safe Spot',
           de: 'marschiere Links in die sichere Stelle',
+          ja: '強制移動: 左',
           cn: '向左强制移动到安全区',
           ko: '강제 이동 왼쪽',
         },
         right: {
           en: 'March Right into Safe Spot',
           de: 'marschiere Rechts in die sichere Stelle',
+          ja: '強制移動: 右',
           cn: '向右强制移动到安全区',
           ko: '강제 이동 오른쪽',
         },

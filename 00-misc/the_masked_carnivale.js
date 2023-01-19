@@ -850,24 +850,28 @@ Options.Triggers.push({
         forward: {
           en: 'March Forward into Safe Spot',
           de: 'marschiere Vorwärts in die sichere Stelle',
+          ja: '強制移動: 前',
           cn: '向前强制移动到安全区',
           ko: '강제 이동 앞',
         },
         backward: {
           en: 'March Backward into Safe Spot',
           de: 'marschiere Rückwärts in die sichere Stelle',
+          ja: '強制移動: 後ろ',
           cn: '向后强制移动到安全区',
           ko: '강제 이동 뒤',
         },
         left: {
           en: 'March Left into Safe Spot',
           de: 'marschiere Links in die sichere Stelle',
+          ja: '強制移動: 左',
           cn: '向左强制移动到安全区',
           ko: '강제 이동 왼쪽',
         },
         right: {
           en: 'March Right into Safe Spot',
           de: 'marschiere Rechts in die sichere Stelle',
+          ja: '強制移動: 右',
           cn: '向右强制移动到安全区',
           ko: '강제 이동 오른쪽',
         },
