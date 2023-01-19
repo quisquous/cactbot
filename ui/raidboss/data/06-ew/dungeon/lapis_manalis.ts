@@ -201,6 +201,15 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankCleave(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'en',
+      'replaceText': {
+        'Left Slam/Right Slam': 'Left/Right Slam',
+        'Waxing Cycle/Waning Cycle': 'Waxing/Waning Cycle',
+      },
+    },
+  ],
 };
 
 export default triggerSet;
