@@ -786,6 +786,7 @@ const triggerSet: TriggerSet<Data> = {
         windAndLightning: {
           en: 'Under ${dir} green puff',
           de: 'Unter den grünen Puschel im ${dir}',
+          ja: '緑のたまの下へ: ${dir}',
           ko: '${dir} 초록색 구슬 밑으로',
         },
         doubleIce: {
@@ -798,6 +799,7 @@ const triggerSet: TriggerSet<Data> = {
         iceAndLightning: {
           en: 'Sides of ${dir} yellow puff',
           de: 'Seitlich des gelben Puschel im ${dir}',
+          ja: '緑のたまの横へ: ${dir}',
           ko: '${dir} 노란색 구슬 옆으로',
         },
         doubleLightning: {
@@ -940,10 +942,12 @@ const triggerSet: TriggerSet<Data> = {
         goLeft: {
           en: 'Go ${left} left, ${right} right',
           de: 'Gehe Links ${left}, Rechts ${right}',
+          ja: '左: ${left}, 右: ${right}',
         },
         goRight: {
           en: 'Go ${right} right, ${left} left',
           de: 'Gehe Rechts ${right}, Links ${left}',
+          ja: '右: ${right}, 左: ${left}',
         },
       },
     },
@@ -957,6 +961,7 @@ const triggerSet: TriggerSet<Data> = {
         moveThrough: {
           en: 'Move through',
           de: 'Gehe durch',
+          ja: '移動',
         },
       },
     },
@@ -1079,11 +1084,13 @@ const triggerSet: TriggerSet<Data> = {
         spreadThenBait: {
           en: 'Spread => Bait Puddle',
           de: 'Veretilen => Fläche ködern',
+          ja: '散会 => AOE誘導',
           ko: '산개 => 장판 유도',
         },
         baitThenSpread: {
           en: 'Bait Puddle => Spread',
           de: 'Fläche ködern => Veretilen',
+          ja: 'AOE誘導 => 散会',
           ko: '장판 유도 => 산개',
         },
       },
@@ -1148,6 +1155,7 @@ const triggerSet: TriggerSet<Data> = {
         baitPuddle: {
           en: 'Bait Puddle',
           de: 'Fläche ködern',
+          ja: 'AOE誘導',
           ko: '장판 유도',
         },
         spread: Outputs.spread,
@@ -1291,28 +1299,28 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Get hit by silver and gold (${loc})',
           de: 'Von Silber und Gold treffen lassen (${loc})',
           fr: 'Faites-vous toucher par l\'argent et l\'or (${loc})', // FIXME
-          ja: '金銀 一個ずつ (${loc})', // FIXME
+          ja: '金銀 一個ずつ (${loc})',
           ko: '은색 + 금색 맞기 (${loc})',
         },
         gildedFate: {
           en: 'Get hit by two silver (${loc})',
           de: 'Von 2 Silber treffen lassen (${loc})',
           fr: 'Faites-vous toucher par les deux argent (${loc})', // FIXME
-          ja: '銀 二つ (${loc})', // FIXME
+          ja: '銀 二つ (${loc})',
           ko: '은색 2개 맞기 (${loc})',
         },
         silveredFate: {
           en: 'Get hit by two gold (${loc})',
           de: 'Von 2 Gold treffen lassen (${loc})',
           fr: 'Faites-vous toucher par les deux or (${loc})', // FIXME
-          ja: '金 二つ (${loc})', // FIXME
+          ja: '金 二つ (${loc})',
           ko: '금색 2개 맞기 (${loc})',
         },
         neitherFate: {
           en: 'Avoid lasers (uptime ${loc})',
           de: 'Vermeide Silber und Gold (${loc})',
           fr: 'Évitez l\'argent et l\'or (${loc})', // FIXME
-          ja: '顔からのビーム全部回避 (${loc})', // FIXME
+          ja: '顔からのビーム全部回避 (${loc})',
           ko: '레이저 피하기 (업타임 ${loc})',
         },
         outsideNW: {
@@ -1515,10 +1523,12 @@ const triggerSet: TriggerSet<Data> = {
         soakFirst: {
           en: 'Soak First Towers (with ${player})',
           de: 'Steh im ersten Turm (mit ${player})',
+          ja: 'さきに塔を踏み (+${player})',
         },
         spreadFirst: {
           en: 'Spread First (with ${player})',
           de: 'Zuerst verteilen (mit ${player})',
+          ja: 'さきに散会 (+${player})',
         },
         unknown: Outputs.unknown,
       },
@@ -1539,6 +1549,7 @@ const triggerSet: TriggerSet<Data> = {
         soakSecond: {
           en: 'Soak Second Towers',
           de: 'Steh im zweiten Turm',
+          ja: '塔を踏み',
         },
       },
     },
