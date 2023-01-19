@@ -77,6 +77,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Chaos cyclonique sur ${player}',
           ja: '${player}にサイクロニックカオス',
           cn: '连线点${player}',
+          ko: '${player} 휘몰아치는 혼돈',
         },
         cyclonicOnYou: {
           en: 'Cyclonic on YOU',
@@ -84,6 +85,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Chaos cyclonique sur VOUS',
           ja: '自分にサイクロニックカオス',
           cn: '连线点名',
+          ko: '휘몰아치는 혼돈 대상자',
         },
       },
     },

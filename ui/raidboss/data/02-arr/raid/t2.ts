@@ -45,6 +45,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Pourriture sur ${player}',
           ja: '${player}にアラガンロット',
           cn: '毒点 ${player}',
+          ko: '${player} 알라그 부패',
         },
         rotOnYou: {
           en: 'Rot on YOU',
@@ -52,6 +53,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Pourriture sur VOUS',
           ja: '自分にアラガンロット',
           cn: '毒点名',
+          ko: '알라그 부패 대상자',
         },
       },
     },
@@ -74,6 +76,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Passez la pourriture',
           ja: 'ロットを移す',
           cn: '传毒',
+          ko: '부패 전달하기',
         },
       },
     },
