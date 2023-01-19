@@ -1,0 +1,283 @@
+# Lapis Manalis
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~#
+# Albion #
+#~~~~~~~~#
+
+# -ii 7A7D
+
+0.0 "--sync--" sync / 00:0839::The Silvan Throne will be sealed off/ window 0,1
+6.0 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+10.6 "Call of the Mountain" sync / 1[56]:[^:]*:Albion:7A7C:/
+21.6 "Wildlife Crossing 1" sync / 00:0839::A rumbling in the distance draws closer.../ window 30,30 duration 15
+35.6 "Wildlife Crossing 2" sync / 00:0839::More rumbling can be heard in the distance.../ window 30,30 duration 15
+39.2 "Albion's Embrace" sync / 1[56]:[^:]*:Albion:7A85:/
+45.3 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+51.7 "Left/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
+60.3 "Knock on Ice" sync / 1[56]:[^:]*:Albion:7A7E:/
+62.3 "Knock on Ice" sync / 1[56]:[^:]*:Albion:7A7F:/
+68.6 "Icebreaker" sync / 1[56]:[^:]*:Albion:7A81:/
+71.6 "Icy Throes" sync / 1[56]:[^:]*:Albion:7A82:/
+77.8 "Icy Throes" sync / 1[56]:[^:]*:Albion:(800F|7A83):/
+78.2 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+82.8 "Icy Throes" sync / 1[56]:[^:]*:Albion:7FB9:/
+86.8 "Roar of Albion" sync / 1[56]:[^:]*:Albion:7A84:/
+99.9 "Call of the Mountain" sync / 1[56]:[^:]*:Albion:7A7C:/
+105.3 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+110.9 "Wildlife Crossing 1" sync / 00:0839::A rumbling in the distance draws closer.../ window 30,30 duration 15
+112.1 "Left/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
+119.6 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+124.9 "Wildlife Crossing 2" sync / 00:0839::More rumbling can be heard in the distance.../ window 30,30 duration 15
+125.9 "Left/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
+135.1 "Albion's Embrace" sync / 1[56]:[^:]*:Albion:7A85:/
+143.1 "Knock on Ice" sync / 1[56]:[^:]*:Albion:7A7E:/
+145.1 "Knock on Ice" sync / 1[56]:[^:]*:Albion:7A7F:/
+151.2 "Icebreaker" sync / 1[56]:[^:]*:Albion:7A81:/
+154.2 "Icy Throes" sync / 1[56]:[^:]*:Albion:7A82:/
+160.4 "Icy Throes" sync / 1[56]:[^:]*:Albion:(800F|7A83):/
+160.8 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+165.4 "Icy Throes" sync / 1[56]:[^:]*:Albion:7FB9:/
+169.4 "Roar of Albion" sync / 1[56]:[^:]*:Albion:7A84:/ window 30,30 jump 86.8
+182.6 "Call of the Mountain" sync / 1[56]:[^:]*:Albion:7A7C:/
+188.0 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+193.4 "Wildlife Crossing 1" sync / 00:0839::A rumbling in the distance draws closer.../ window 30,30 duration 15
+194.6 "Left/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
+202.2 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+207.2 "Wildlife Crossing 2" sync / 00:0839::More rumbling can be heard in the distance.../ window 30,30 duration 15
+208.3 "Left/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
+217.5 "Albion's Embrace" sync / 1[56]:[^:]*:Albion:7A85:/
+225.5 "Knock on Ice" sync / 1[56]:[^:]*:Albion:7A7E:/
+227.5 "Knock on Ice" sync / 1[56]:[^:]*:Albion:7A7F:/
+233.8 "Icebreaker" sync / 1[56]:[^:]*:Albion:7A81:/
+236.8 "Icy Throes" sync / 1[56]:[^:]*:Albion:7A82:/
+243.0 "Icy Throes" sync / 1[56]:[^:]*:Albion:(800F|7A83):/
+243.4 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+248.1 "Icy Throes" sync / 1[56]:[^:]*:Albion:7FB9:/
+252.1 "Roar of Albion" sync / 1[56]:[^:]*:Albion:7A84:/
+265.3 "Call of the Mountain" sync / 1[56]:[^:]*:Albion:7A7C:/
+
+#~~~~~~~~~~~~~~~#
+# Galatea Magna #
+#~~~~~~~~~~~~~~~#
+
+1000.0 "--sync--" sync / 00:0839::The Forum Messorum will be sealed off/ window 1000,1
+1010.2 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1015.2 "Waxing/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A91|7F6E):/
+1016.8 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F6F:/
+1017.2 "Waxing/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A93|7F70):/
+1021.2 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1028.3 "Soul Scythe" sync / 1[56]:[^:]*:Galatea Magna:7A9A:/
+1031.0 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1037.4 "Soul Nebula" sync / 1[56]:[^:]*:Galatea Magna:7A9E:/
+1049.1 "Scarecrow Chase" sync / 1[56]:[^:]*:Galatea Magna:7A9B:/
+1049.3 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1050.3 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1051.1 "Scarecrow Chase 1" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1052.3 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1053.3 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1054.1 "Scarecrow Chase 2" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1056.0 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1064.1 "Tenebrism" sync / 1[56]:[^:]*:Galatea Magna:7A96:/
+1071.1 "Burst 1" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
+1073.1 "Burst 2" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
+1075.1 "Burst 3" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
+1077.1 "Burst 4" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
+1079.1 "Stony Gaze x4" sync / 1[56]:[^:]*:Galatea Magna:7A99:/
+1086.1 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1091.1 "Waxing/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A91|7F6E):/
+1092.7 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A92:/
+1093.9 "Waxing/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A93|7F70):/
+1095.2 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1103.1 "Soul Scythe" sync / 1[56]:[^:]*:Galatea Magna:7A9A:/
+1111.1 "Soul Nebula" sync / 1[56]:[^:]*:Galatea Magna:7A9E:/
+1122.8 "Scarecrow Chase" sync / 1[56]:[^:]*:Galatea Magna:7A9B:/
+1123.0 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1124.0 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1124.8 "Scarecrow Chase 1" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1126.0 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1127.0 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1127.8 "Scarecrow Chase 2" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1129.0 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1130.0 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1130.8 "Scarecrow Chase 3" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1132.0 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1133.0 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1133.8 "Scarecrow Chase 4" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1135.7 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1140.8 "Tenebrism" sync / 1[56]:[^:]*:Galatea Magna:7A96:/
+1147.8 "Burst 1" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
+1149.8 "Burst 2" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
+1151.8 "Burst 3" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
+1153.8 "Burst 4" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
+1155.8 "Stony Gaze x4" sync / 1[56]:[^:]*:Galatea Magna:7A99:/
+1157.8 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1162.9 "Waxing/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A91|7F6E):/
+1164.5 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A92:/
+1165.6 "Waxing/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A93|7F70):/
+1166.9 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1174.3 "Soul Scythe" sync / 1[56]:[^:]*:Galatea Magna:7A9A:/
+1182.3 "Soul Nebula" sync / 1[56]:[^:]*:Galatea Magna:7A9E:/
+1194.0 "Scarecrow Chase" sync / 1[56]:[^:]*:Galatea Magna:7A9B:/
+1194.2 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1195.2 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1196.0 "Scarecrow Chase 1" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1197.2 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1198.2 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1199.0 "Scarecrow Chase 2" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1200.2 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1201.2 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1202.0 "Scarecrow Chase 3" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1203.3 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1204.3 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1205.1 "Scarecrow Chase 4" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1207.0 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1212.0 "Tenebrism" sync / 1[56]:[^:]*:Galatea Magna:7A96:/
+1219.0 "Burst 1" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
+1221.0 "Burst 2" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
+1223.0 "Burst 3" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
+1225.0 "Burst 4" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
+1227.0 "Stony Gaze x4" #sync / 1[56]:[^:]*:Galatea Magna:7A99:/
+1232.0 "Dark Harvest" sync / 1[56]:[^:]*:Galatea Magna:7A9F:/ # first time tankbuster used?
+1239.1 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1244.1 "Waxing/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A91|7F6E):/
+1245.7 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F6F:/
+1246.1 "Waxing/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A93|7F70):/
+1248.1 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1256.0 "Soul Scythe" sync / 1[56]:[^:]*:Galatea Magna:7A9A:/ window 30,30 jump 1174.3
+1264.0 "Soul Nebula" sync / 1[56]:[^:]*:Galatea Magna:7A9E:/
+1275.7 "Scarecrow Chase" sync / 1[56]:[^:]*:Galatea Magna:7A9B:/
+1275.9 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1276.9 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1277.7 "Scarecrow Chase 1" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1278.9 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1279.9 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1280.7 "Scarecrow Chase 2" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1281.9 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1282.9 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1283.7 "Scarecrow Chase 3" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1284.9 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1285.9 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9D:/
+1286.7 "Scarecrow Chase 4" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
+1288.6 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/
+1293.6 "Tenebrism" sync / 1[56]:[^:]*:Galatea Magna:7A96:/
+
+#~~~~~~~~~~#
+# Cagnazzo #
+#~~~~~~~~~~#
+
+# -p 79A3:2015.6 799C:2102.9 7986:2176.3
+# -ii 7FB7 7FB5
+# -it "Cagnazzo"
+
+2000.0 "--sync--" sync / 00:0839::Deepspine will be sealed off/ window 2000,1
+2015.6 "Stygian Deluge" sync / 1[56]:[^:]*:Cagnazzo:79A3:/
+2025.4 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:798F:/
+2038.0 "Antediluvian" sync / 1[56]:[^:]*:Cagnazzo:7990:/
+2042.0 "Antediluvian" sync / 1[56]:[^:]*:Cagnazzo:7990:/
+2043.3 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7991:/
+2044.3 "Body Slam" sync / 1[56]:[^:]*:Cagnazzo:(7992|7993):/
+2046.0 "Antediluvian" sync / 1[56]:[^:]*:Cagnazzo:7990:/
+2051.1 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2060.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/
+2062.8 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2063.2 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2063.9 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2064.3 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2065.0 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2065.4 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2066.1 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2066.5 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2067.2 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2067.6 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2068.3 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2068.7 "Hydrobomb x2" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2069.4 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7996:/
+2073.5 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2084.6 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7A8F:/
+2085.2 "Hydrofall" sync / 1[56]:[^:]*:Cagnazzo:7A90:/
+2095.9 "Cursed Tide" sync / 1[56]:[^:]*:Cagnazzo:799A:/
+
+2099.5 "--untargetable--"
+2099.5 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2102.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799C:/
+2113.7 "Neap Tide" sync / 1[56]:[^:]*:Cagnazzo:799E:/
+2118.1 "Hydrovent" sync / 1[56]:[^:]*:Cagnazzo:79A0:/
+2124.7 "Spring Tide" sync / 1[56]:[^:]*:Cagnazzo:799F:/
+2134.1 "Hydrovent" sync / 1[56]:[^:]*:Cagnazzo:79A0:/
+2145.1 "Hydrovent" sync / 1[56]:[^:]*:Cagnazzo:79A0:/
+2146.4 "--sync--" sync / 00:0044:Cagnazzo:No more games!/ window 30,30
+2159.1 "Tsunami" sync / 1[56]:[^:]*:Cagnazzo:79A1:/ window 60,60
+
+2163.1 "--targetable--"
+2169.2 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2176.3 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7986:/
+2177.2 "Voidcleaver" sync / 1[56]:[^:]*:Cagnazzo:7987:/
+2186.2 "Void Miasma" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
+2192.2 "Void Miasma" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
+2192.5 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7988:/
+2193.5 "Lifescleaver x8" sync / 1[56]:[^:]*:Cagnazzo:7989:/
+2198.2 "Void Miasma" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
+2202.9 "Void Torrent" sync / 1[56]:[^:]*:Cagnazzo:798E:/
+2210.7 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2220.5 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/
+2222.4 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2222.8 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2223.5 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2223.9 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2224.6 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2225.0 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2225.7 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2226.1 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2226.8 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2227.2 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2227.9 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2228.3 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2229.0 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7996:/
+2233.0 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2244.1 "Stygian Deluge" sync / 1[56]:[^:]*:Cagnazzo:79A3:/
+2255.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:798F:/
+2268.5 "Antediluvian" sync / 1[56]:[^:]*:Cagnazzo:7990:/
+2272.5 "Antediluvian" sync / 1[56]:[^:]*:Cagnazzo:7990:/
+2273.8 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7991:/
+2274.8 "Body Slam" sync / 1[56]:[^:]*:Cagnazzo:(7992|7993):/
+2276.5 "Antediluvian" sync / 1[56]:[^:]*:Cagnazzo:7990:/
+2281.5 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2288.8 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7986:/
+2289.7 "Voidcleaver" sync / 1[56]:[^:]*:Cagnazzo:7987:/
+2298.7 "Void Miasma" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
+2304.7 "Void Miasma" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
+2304.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7988:/
+2305.9 "Lifescleaver x8" sync / 1[56]:[^:]*:Cagnazzo:7989:/
+2310.7 "Void Miasma" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
+2315.3 "Void Torrent" sync / 1[56]:[^:]*:Cagnazzo:798E:/
+2323.1 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2332.8 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/ window 30,30 jump 2220.5
+2334.7 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2335.1 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2335.8 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2336.2 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2336.9 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2337.3 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2338.0 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2338.4 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2339.1 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2339.5 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2340.2 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2340.6 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2341.3 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7996:/
+2345.4 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2356.5 "Stygian Deluge" sync / 1[56]:[^:]*:Cagnazzo:79A3:/
+2368.2 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:798F:/
+2380.8 "Antediluvian" sync / 1[56]:[^:]*:Cagnazzo:7990:/
+2384.8 "Antediluvian" sync / 1[56]:[^:]*:Cagnazzo:7990:/
+2386.1 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7991:/
+2387.1 "Body Slam" sync / 1[56]:[^:]*:Cagnazzo:(7992|7993):/
+2388.9 "Antediluvian" sync / 1[56]:[^:]*:Cagnazzo:7990:/
+2393.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2401.2 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7986:/
+2402.1 "Voidcleaver" sync / 1[56]:[^:]*:Cagnazzo:7987:/

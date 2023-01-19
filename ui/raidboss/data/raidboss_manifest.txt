@@ -447,6 +447,8 @@
 06-ew/dungeon/another_sildihn_subterrane-savage.txt
 06-ew/dungeon/ktisis_hyperboreia.ts
 06-ew/dungeon/ktisis_hyperboreia.txt
+06-ew/dungeon/lapis_manalis.ts
+06-ew/dungeon/lapis_manalis.txt
 06-ew/dungeon/smileton.ts
 06-ew/dungeon/smileton.txt
 06-ew/dungeon/stigma_dreamscape.ts

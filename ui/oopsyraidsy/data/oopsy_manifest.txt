@@ -148,6 +148,7 @@
 06-ew/dungeon/another_sildihn_subterrane.ts
 06-ew/dungeon/another_sildihn_subterrane-savage.ts
 06-ew/dungeon/ktisis_hyperboreia.ts
+06-ew/dungeon/lapis_manalis.ts
 06-ew/dungeon/smileton.ts
 06-ew/dungeon/stigma_dreamscape.ts
 06-ew/dungeon/the_aitiascope.ts
