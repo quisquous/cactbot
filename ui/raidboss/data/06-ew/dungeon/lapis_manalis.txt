@@ -155,46 +155,46 @@ hideall "--sync--"
 2134.1 "Hydrovent" sync / 1[56]:[^:]*:Cagnazzo:79A0:/
 2145.1 "Hydrovent" sync / 1[56]:[^:]*:Cagnazzo:79A0:/
 # probably more Hydrovent spam here until phase end or enrage
-2146.4 "--sync--" sync / 00:0044:Cagnazzo:No more games!/ window 30,30
-2159.1 "Tsunami" sync / 1[56]:[^:]*:Cagnazzo:79A1:/ window 60,60
 
-2500.0 "--targetable--"
-2506.1 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/ window 500,0
-2513.2 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7986:/
-2514.1 "Voidcleaver" sync / 1[56]:[^:]*:Cagnazzo:7987:/
-2523.1 "Void Miasma 1" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
-2529.1 "Void Miasma 2" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
-2529.4 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7988:/
-2530.4 "Lifescleaver x8" sync / 1[56]:[^:]*:Cagnazzo:7989:/
-2535.1 "Void Miasma 3" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
-2539.8 "Void Torrent" sync / 1[56]:[^:]*:Cagnazzo:798E:/
-2547.6 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
-2557.4 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/
-2559.3 "Hydraulic Ram" duration 6 #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2565.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7996:/
-2569.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
-2581.0 "Stygian Deluge" sync / 1[56]:[^:]*:Cagnazzo:79A3:/
-2592.8 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:798F:/
-2605.4 "Antediluvian 1" sync / 1[56]:[^:]*:Cagnazzo:7990:/
-2609.4 "Antediluvian 2" sync / 1[56]:[^:]*:Cagnazzo:7990:/
-2610.7 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7991:/
-2611.7 "Body Slam" sync / 1[56]:[^:]*:Cagnazzo:(7992|7993):/
-2613.4 "Antediluvian 3" sync / 1[56]:[^:]*:Cagnazzo:7990:/
-2618.4 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
-2625.7 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7986:/
-2626.6 "Voidcleaver" sync / 1[56]:[^:]*:Cagnazzo:7987:/
-2635.6 "Void Miasma 1" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
-2641.6 "Void Miasma 2" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
-2641.8 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7988:/
-2642.8 "Lifescleaver x8" sync / 1[56]:[^:]*:Cagnazzo:7989:/
-2647.6 "Void Miasma 3" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
-2652.2 "Void Torrent" sync / 1[56]:[^:]*:Cagnazzo:798E:/
-2660.0 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2500.0 "--sync--" sync / 00:0044:Cagnazzo:No more games!/ window 500,0
+2513.0 "Tsunami" sync / 1[56]:[^:]*:Cagnazzo:79A1:/ window 500,1 # if we miss the chatline sync we'll still resync here
+2516.9 "--targetable--"
+2523.0 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2530.1 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7986:/
+2531.0 "Voidcleaver" sync / 1[56]:[^:]*:Cagnazzo:7987:/
+2540.0 "Void Miasma 1" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
+2546.0 "Void Miasma 2" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
+2546.3 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7988:/
+2547.3 "Lifescleaver x8" sync / 1[56]:[^:]*:Cagnazzo:7989:/
+2552.0 "Void Miasma 3" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
+2556.7 "Void Torrent" sync / 1[56]:[^:]*:Cagnazzo:798E:/
+2564.5 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2574.3 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/
+2576.2 "Hydraulic Ram" duration 6 #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2582.8 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7996:/
+2586.8 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2597.9 "Stygian Deluge" sync / 1[56]:[^:]*:Cagnazzo:79A3:/
+2609.7 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:798F:/
+2622.3 "Antediluvian 1" sync / 1[56]:[^:]*:Cagnazzo:7990:/
+2626.3 "Antediluvian 2" sync / 1[56]:[^:]*:Cagnazzo:7990:/
+2627.6 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7991:/
+2628.6 "Body Slam" sync / 1[56]:[^:]*:Cagnazzo:(7992|7993):/
+2630.3 "Antediluvian 3" sync / 1[56]:[^:]*:Cagnazzo:7990:/
+2635.3 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2642.6 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7986:/
+2643.5 "Voidcleaver" sync / 1[56]:[^:]*:Cagnazzo:7987:/
+2652.5 "Void Miasma 1" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
+2658.5 "Void Miasma 2" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
+2658.7 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7988:/
+2659.7 "Lifescleaver x8" sync / 1[56]:[^:]*:Cagnazzo:7989:/
+2664.5 "Void Miasma 3" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
+2669.1 "Void Torrent" sync / 1[56]:[^:]*:Cagnazzo:798E:/
+2676.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
 
 # loop
-2669.7 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/ window 30,30 jump 2557.4
-2671.6 "Hydraulic Ram" duration 6 #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2678.2 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:7996:/
-2682.3 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:799B:/
-2693.4 "Stygian Deluge" #sync / 1[56]:[^:]*:Cagnazzo:79A3:/
-2705.1 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:798F:/
+2686.6 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/ window 30,30 jump 2561.4
+2688.5 "Hydraulic Ram" duration 6 #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
+2695.1 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:7996:/
+2699.2 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2710.3 "Stygian Deluge" #sync / 1[56]:[^:]*:Cagnazzo:79A3:/
+2722.0 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:798F:/
