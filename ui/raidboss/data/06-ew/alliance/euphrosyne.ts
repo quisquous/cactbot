@@ -95,18 +95,22 @@ const triggerSet: TriggerSet<Data> = {
         outWithForwards: {
           en: 'Forwards March Out',
           de: 'Geisterlenkung Vorwärts Raus',
+          fr: 'Marche forcée avant vers l\'extérieur',
         },
         outWithBackwards: {
           en: 'Backwards March Out',
           de: 'Geisterlenkung Rückwärts Raus',
+          fr: 'Marche forcée arrière vers l\'extérieur'
         },
         outWithLeft: {
           en: 'Left March Out',
           de: 'Geisterlenkung Links Raus',
+          fr: 'Marche forcée gauche vers l\'extérieur',
         },
         outWithRight: {
           en: 'Right March Out',
           de: 'Geisterlenkung Rechts Raus',
+          fr: 'Marche forcée droite vers l\'extérieur',
         },
       },
     },
@@ -129,18 +133,22 @@ const triggerSet: TriggerSet<Data> = {
         inWithForwards: {
           en: 'Forwards March In',
           de: 'Geisterlenkung Vorwärts Rein',
+          fr: 'Marche forcée avant vers l\'intérieur',
         },
         inWithBackwards: {
           en: 'Backwards March In',
           de: 'Geisterlenkung Rückwärts Rein',
+          fr: 'Marche forcée arrière vers l\'intérieur',
         },
         inWithLeft: {
           en: 'Left March In',
           de: 'Geisterlenkung Links Rein',
+          fr: 'Marche forcée gauche vers l\'intérieur',
         },
         inWithRight: {
           en: 'Right March In',
           de: 'Geisterlenkung Rechts Rein',
+          fr: 'Marche forcée droite vers l\'intérieur',
         },
       },
     },
@@ -268,18 +276,22 @@ const triggerSet: TriggerSet<Data> = {
         lookAway: {
           en: '(look away soon)',
           de: '(bald wegschauen)',
+          fr: '(regardez ailleurs bientôt)',
         },
         lookTowards: {
           en: '(look towards soon)',
           de: '(bald hinschauen)',
+          fr: '(regardez devant bientôt)',
         },
         pyretic: {
           en: '(pyretic soon)',
           de: '(bald Pyretisch)',
+          fr: '(Feu bientôt)',
         },
         freeze: {
           en: '(freeze soon)',
           de: '(bald Kühlung)',
+          fr: '(gelée bientôt)',
         },
       },
     },
@@ -315,10 +327,12 @@ const triggerSet: TriggerSet<Data> = {
         lookAway: {
           en: 'Look Away from Nymeia',
           de: 'Schau weg von Nymeia',
+          fr: 'Ne regardez pas Nymeia',
         },
         lookTowards: {
           en: 'Look Towards Nymeia',
           de: 'Schau zu Nymeia',
+          fr: 'Regardez Nymeia',
         },
         stopEverything: Outputs.stopEverything,
         keepMoving: Outputs.moveAround,
@@ -352,6 +366,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Spread (avoid purple)',
           de: 'Verteilen (vermeide den lilanen Riss)',
+          fr: 'Écartez-vous (évitez le violet)',
         },
       },
     },
@@ -364,6 +379,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand in purple fissure',
           de: 'Im lilanen Riss stehen',
+          fr: 'Restez sur une fissure violette',
         },
       },
     },
@@ -434,6 +450,7 @@ const triggerSet: TriggerSet<Data> = {
         knockback: {
           en: 'Knockback ${dir1} => ${dir2} => ${dir3}',
           de: 'Rückstoß ${dir1} => ${dir2} => ${dir3}',
+          fr: 'Poussée ${dir1} => ${dir2} => ${dir3}',
         },
         dirSW: Outputs.dirSW,
         dirSE: Outputs.dirSE,
@@ -487,6 +504,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
           de: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+          fr: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
         },
         out: Outputs.out,
         in: Outputs.in,
@@ -608,6 +626,7 @@ const triggerSet: TriggerSet<Data> = {
         out: {
           en: 'Get Out (avoid ring)',
           de: 'Geh raus (vermeide den Ring)',
+          fr: 'Sortez (évitez l\'anneau)',
         },
       },
     },
@@ -654,6 +673,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Sides of Moon',
           de: 'Geh seitlich des Mondes',
+          fr: 'Côtés de la lune',
         },
       },
     },
@@ -666,6 +686,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to dark moon',
           de: 'Geh zum dunklen Mond',
+          fr: 'Allez sur une lune noire',
         },
       },
     },

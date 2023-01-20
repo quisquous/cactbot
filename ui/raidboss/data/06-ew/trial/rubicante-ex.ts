@@ -168,6 +168,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Tank Tethers',
           de: 'Tank Verbindungen',
+          fr: 'Liens tanks',
           ja: 'タンク線取り',
         },
       },
@@ -207,11 +208,13 @@ const triggerSet: TriggerSet<Data> = {
         outFlareThenSpread: {
           en: 'Out+Flare => Spread',
           de: 'Raus+Flare => Verteilen',
+          fr: 'Extérieur + Brasier -> Dispersion',
           ja: '外側＋フレア => 散会',
         },
         inStackThenSpread: {
           en: 'In+Stack => Spread',
           de: 'Rein+Sammeln => Verteilen',
+          fr: 'Intérieur + Package -> Dispersion',
           ja: '内側＋頭割り => 散会',
         },
       },
@@ -292,6 +295,7 @@ const triggerSet: TriggerSet<Data> = {
         spreadBehind: {
           en: 'Spread behind Boss',
           de: 'Hinter dem Boss verteilen',
+          fr: 'Écartez-vous derrière le boss',
           ja: 'ボスの後ろで散会',
         },
       },
@@ -305,6 +309,7 @@ const triggerSet: TriggerSet<Data> = {
         stackBehind: {
           en: 'Stack behind Boss',
           de: 'Hinter dem Boss sammeln',
+          fr: 'Packez-vous derrière le boss',
           ja: 'ボスの後ろで頭割り',
         },
       },
@@ -342,11 +347,13 @@ const triggerSet: TriggerSet<Data> = {
         tankBusterCleaves: {
           en: 'Tank Buster Cleaves',
           de: 'Tankbuster Cleaves',
+          fr: 'Tankbuster cleaves',
           ja: 'MT・ST同時範囲攻撃',
         },
         avoidTankCleaves: {
           en: 'Avoid Tank Cleaves',
           de: 'Tankbuster Cleaves ausweichen',
+          fr: 'Évitez les cleaves (tankbusters)',
           ja: '範囲攻撃を避けて',
         },
       },
@@ -408,6 +415,7 @@ const triggerSet: TriggerSet<Data> = {
         numGetTether: {
           en: '#${num} (Get Tether)',
           de: '#${num} (Verbindung nehmen)',
+          fr: '#${num} (Prenez le lien)',
           ja: '${num}番 (線取りに行く)',
         },
       },
@@ -448,6 +456,7 @@ const triggerSet: TriggerSet<Data> = {
         getTether: {
           en: 'Get Tether',
           de: 'Verbindung nehmen',
+          fr: 'Prenez le lien',
           ja: '線取りに行く',
         },
       },
@@ -472,11 +481,13 @@ const triggerSet: TriggerSet<Data> = {
         cardinals: {
           en: 'Cardinals',
           de: 'Kardinal',
+          fr: 'Cardinaux',
           ja: '十字回避',
         },
         intercards: {
           en: 'Intercards',
           de: 'Interkardinal',
+          fr: 'Intercardinaux',
           ja: '斜めへ',
         },
       },

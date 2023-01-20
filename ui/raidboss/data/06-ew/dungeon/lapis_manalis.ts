@@ -34,6 +34,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid stampeding animals',
+          fr: 'Évitez les animaux en furie',
         },
       },
     },
