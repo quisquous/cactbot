@@ -82,15 +82,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Lapis Manalis Galatea Magna Waxing Cycle',
       type: 'StartsUsing',
-      netRegex: { id: '7A9[13]', source: 'Galatea Magna', capture: false },
-      suppressSeconds: 1,
+      netRegex: { id: '7A91', source: 'Galatea Magna', capture: false },
       response: Responses.getOutThenIn(),
     },
     {
       id: 'Lapis Manalis Galatea Magna Waning Cycle',
       type: 'StartsUsing',
-      netRegex: { id: ['7F6E', '7F70'], source: 'Galatea Magna', capture: false },
-      suppressSeconds: 1,
+      netRegex: { id: '7F6E', source: 'Galatea Magna', capture: false },
       response: Responses.getInThenOut(),
     },
     {

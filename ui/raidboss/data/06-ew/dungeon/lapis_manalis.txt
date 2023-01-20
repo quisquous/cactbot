@@ -14,51 +14,42 @@ hideall "--sync--"
 0.0 "--sync--" sync / 00:0839::The Silvan Throne will be sealed off/ window 0,1
 6.0 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
 10.6 "Call of the Mountain" sync / 1[56]:[^:]*:Albion:7A7C:/
-21.6 "Wildlife Crossing 1" sync / 00:0839::A rumbling in the distance draws closer.../ window 30,30 duration 15
-35.6 "Wildlife Crossing 2" sync / 00:0839::More rumbling can be heard in the distance.../ window 30,30 duration 15
-39.2 "Albion's Embrace" sync / 1[56]:[^:]*:Albion:7A85:/
-45.3 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
-51.7 "Left Slam/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
-62.3 "Knock on Ice" sync / 1[56]:[^:]*:Albion:7A7F:/
-68.6 "Icebreaker" sync / 1[56]:[^:]*:Albion:7A81:/
-71.6 "--sync--" sync / 1[56]:[^:]*:Albion:7A82:/
-77.8 "Icy Throes" sync / 1[56]:[^:]*:Albion:(800F|7A83):/
-78.2 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
-82.8 "Icy Throes" sync / 1[56]:[^:]*:Albion:7FB9:/
-86.8 "Roar of Albion" sync / 1[56]:[^:]*:Albion:7A84:/
-99.9 "Call of the Mountain" sync / 1[56]:[^:]*:Albion:7A7C:/
-105.3 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
-110.9 "Wildlife Crossing 1" sync / 00:0839::A rumbling in the distance draws closer.../ window 30,30 duration 15
-112.1 "Left Slam/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
-119.6 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
-124.9 "Wildlife Crossing 2" sync / 00:0839::More rumbling can be heard in the distance.../ window 30,30 duration 15
-125.9 "Left Slam/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
-135.1 "Albion's Embrace" sync / 1[56]:[^:]*:Albion:7A85:/
-145.1 "Knock on Ice" sync / 1[56]:[^:]*:Albion:7A7F:/
-151.2 "Icebreaker" sync / 1[56]:[^:]*:Albion:7A81:/
-154.2 "--sync--" sync / 1[56]:[^:]*:Albion:7A82:/
-160.4 "Icy Throes" sync / 1[56]:[^:]*:Albion:(800F|7A83):/
-160.8 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
-165.4 "Icy Throes" sync / 1[56]:[^:]*:Albion:7FB9:/
+12.9 "Wildlife Crossing 1" sync / 00:0839::A rumbling in the distance draws closer.../ window 30,30 duration 15
+26.9 "Wildlife Crossing 2" sync / 00:0839::More rumbling can be heard in the distance.../ window 30,30 duration 15
+41.4 "Albion's Embrace" sync / 1[56]:[^:]*:Albion:7A85:/
+48.4 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+55.1 "Left Slam/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
+65.7 "Knock on Ice" sync / 1[56]:[^:]*:Albion:7A7F:/
+72.0 "Icebreaker" sync / 1[56]:[^:]*:Albion:7A81:/
+75.0 "--sync--" sync / 1[56]:[^:]*:Albion:7A82:/
+81.2 "Icy Throes" sync / 1[56]:[^:]*:Albion:(800F|7A83):/
+81.6 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+86.2 "Icy Throes" sync / 1[56]:[^:]*:Albion:7FB9:/
+90.2 "Roar of Albion" sync / 1[56]:[^:]*:Albion:7A84:/
+103.3 "Call of the Mountain" sync / 1[56]:[^:]*:Albion:7A7C:/
+106.1 "Wildlife Crossing 1" sync / 00:0839::A rumbling in the distance draws closer.../ window 30,30 duration 15
+108.7 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+115.5 "Left Slam/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
+120.0 "Wildlife Crossing 2" sync / 00:0839::More rumbling can be heard in the distance.../ window 30,30 duration 15
+123.9 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+130.8 "Left Slam/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
+141.4 "Albion's Embrace" sync / 1[56]:[^:]*:Albion:7A85:/
+151.5 "Knock on Ice" sync / 1[56]:[^:]*:Albion:7A7F:/
+157.6 "Icebreaker" sync / 1[56]:[^:]*:Albion:7A81:/
+160.6 "--sync--" sync / 1[56]:[^:]*:Albion:7A82:/
+166.8 "Icy Throes" sync / 1[56]:[^:]*:Albion:(800F|7A83):/
+167.2 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
+171.8 "Icy Throes" sync / 1[56]:[^:]*:Albion:7FB9:/
 
 # loop
-169.4 "Roar of Albion" sync / 1[56]:[^:]*:Albion:7A84:/ window 30,30 jump 86.8
-182.6 "Call of the Mountain" #sync / 1[56]:[^:]*:Albion:7A7C:/
-188.0 "--sync--" #sync / 1[56]:[^:]*:Albion:802C:/
-193.4 "Wildlife Crossing 1" #sync / 00:0839::A rumbling in the distance draws closer.../ window 30,30 duration 15
-194.6 "Left Slam/Right Slam" #sync / 1[56]:[^:]*:Albion:(802E|802D):/
-202.2 "--sync--" #sync / 1[56]:[^:]*:Albion:802C:/
-207.2 "Wildlife Crossing 2" #sync / 00:0839::More rumbling can be heard in the distance.../ window 30,30 duration 15
-208.3 "Left Slam/Right Slam" #sync / 1[56]:[^:]*:Albion:(802E|802D):/
-217.5 "Albion's Embrace" #sync / 1[56]:[^:]*:Albion:7A85:/
-227.5 "Knock on Ice" #sync / 1[56]:[^:]*:Albion:7A7F:/
-233.8 "Icebreaker" #sync / 1[56]:[^:]*:Albion:7A81:/
-236.8 "--sync--" #sync / 1[56]:[^:]*:Albion:7A82:/
-243.0 "Icy Throes" #sync / 1[56]:[^:]*:Albion:(800F|7A83):/
-243.4 "--sync--" #sync / 1[56]:[^:]*:Albion:802C:/
-248.1 "Icy Throes" #sync / 1[56]:[^:]*:Albion:7FB9:/
-252.1 "Roar of Albion" #sync / 1[56]:[^:]*:Albion:7A84:/
-265.3 "Call of the Mountain" #sync / 1[56]:[^:]*:Albion:7A7C:/
+175.8 "Roar of Albion" sync / 1[56]:[^:]*:Albion:7A84:/ window 30,30 jump 90.2
+188.9 "Call of the Mountain" #sync / 1[56]:[^:]*:Albion:7A7C:/
+191.7 "Wildlife Crossing 1" #sync / 00:0839::A rumbling in the distance draws closer.../ window 30,30 duration 15
+194.3 "--sync--" #sync / 1[56]:[^:]*:Albion:802C:/
+201.1 "Left Slam/Right Slam" #sync / 1[56]:[^:]*:Albion:(802E|802D):/
+205.6 "Wildlife Crossing 2" #sync / 00:0839::More rumbling can be heard in the distance.../ window 30,30 duration 15
+209.5 "--sync--" #sync / 1[56]:[^:]*:Albion:802C:/
+216.4 "Left Slam/Right Slam" #sync / 1[56]:[^:]*:Albion:(802E|802D):/
 
 #~~~~~~~~~~~~~~~#
 # Galatea Magna #
@@ -134,7 +125,7 @@ hideall "--sync--"
 #~~~~~~~~~~#
 
 # -p 79A3:2015.6 799C:2102.9 7986:2513.2
-# -ii 7FB7 7FB5
+# -ii 7FB7 7FB5 7FB8
 # -it "Cagnazzo"
 
 2000.0 "--sync--" sync / 00:0839::Deepspine will be sealed off/ window 2000,1
@@ -147,18 +138,7 @@ hideall "--sync--"
 2046.0 "Antediluvian 3" sync / 1[56]:[^:]*:Cagnazzo:7990:/
 2051.1 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
 2060.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/
-2062.8 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2063.2 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2063.9 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2064.3 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2065.0 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2065.4 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2066.1 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2066.5 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2067.2 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2067.6 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2068.3 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2068.7 "Hydrobomb x2" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2062.8 "Hydraulic Ram" duration 6 #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
 2069.4 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7996:/
 2073.5 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
 2084.6 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7A8F:/
@@ -179,7 +159,7 @@ hideall "--sync--"
 2159.1 "Tsunami" sync / 1[56]:[^:]*:Cagnazzo:79A1:/ window 60,60
 
 2500.0 "--targetable--"
-2506.1 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2506.1 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/ window 500,0
 2513.2 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7986:/
 2514.1 "Voidcleaver" sync / 1[56]:[^:]*:Cagnazzo:7987:/
 2523.1 "Void Miasma 1" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
@@ -190,18 +170,7 @@ hideall "--sync--"
 2539.8 "Void Torrent" sync / 1[56]:[^:]*:Cagnazzo:798E:/
 2547.6 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
 2557.4 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/
-2559.3 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2559.7 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2560.4 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2560.8 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2561.5 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2561.9 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2562.6 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2563.0 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2563.7 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2564.1 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2564.8 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2565.2 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2559.3 "Hydraulic Ram" duration 6 #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
 2565.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7996:/
 2569.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
 2581.0 "Stygian Deluge" sync / 1[56]:[^:]*:Cagnazzo:79A3:/
@@ -223,28 +192,9 @@ hideall "--sync--"
 2660.0 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
 
 # loop
-2669.7 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/ window 30,30 jump 2220.5
-2671.6 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2672.0 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2672.7 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2673.1 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2673.8 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2674.2 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2674.9 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2675.3 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2676.0 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2676.4 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
-2677.1 "Hydraulic Ram" #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2677.5 "Hydrobomb" #sync / 1[56]:[^:]*:Cagnazzo:7FB8:/
+2669.7 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/ window 30,30 jump 2557.4
+2671.6 "Hydraulic Ram" duration 6 #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
 2678.2 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:7996:/
 2682.3 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:799B:/
 2693.4 "Stygian Deluge" #sync / 1[56]:[^:]*:Cagnazzo:79A3:/
 2705.1 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:798F:/
-2717.7 "Antediluvian 1" #sync / 1[56]:[^:]*:Cagnazzo:7990:/
-2721.7 "Antediluvian 2" #sync / 1[56]:[^:]*:Cagnazzo:7990:/
-2723.0 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:7991:/
-2724.0 "Body Slam" #sync / 1[56]:[^:]*:Cagnazzo:(7992|7993):/
-2725.8 "Antediluvian 3" #sync / 1[56]:[^:]*:Cagnazzo:7990:/
-2730.8 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:799B:/
-2738.1 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:7986:/
-2739.0 "Voidcleaver" #sync / 1[56]:[^:]*:Cagnazzo:7987:/
