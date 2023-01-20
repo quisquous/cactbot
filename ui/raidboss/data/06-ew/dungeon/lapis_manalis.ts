@@ -61,6 +61,7 @@ const triggerSet: TriggerSet<Data> = {
         west: Outputs.west,
         north: Outputs.north,
         south: Outputs.south,
+        unknown: Outputs.unknown,
         middlenorth: {
           en: 'Middle-North',
         },
