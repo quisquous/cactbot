@@ -100,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
         outWithBackwards: {
           en: 'Backwards March Out',
           de: 'Geisterlenkung Rückwärts Raus',
-          fr: 'Marche forcée arrière vers l\'extérieur'
+          fr: 'Marche forcée arrière vers l\'extérieur',
         },
         outWithLeft: {
           en: 'Left March Out',
