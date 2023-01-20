@@ -12,10 +12,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Lapis Albus Griffin Golden Talons': '8013', // front cone AoE, before boss 1
     'Lapis Visitant Bloodguard Void Slash': '7F19', // front cone AoE, before boss 1
 
+    'Lapis Albion Wild Beasts Charge': '7A7D', // damage from charging Wild Beasts, boss 1
     'Lapis Albion Right Slam': '802D', // right cleave, boss 1
     'Lapis Albion Left Slam': '802E', // left cleave, boss 1
     'Lapis Albion Knock on Ice': '7A7F', // circle AoE, boss 1
     'Lapis Albion Icebreaker': '7A81', // jumping circle AoE, boss 1
+    'Lapis Albion Icy Throes': '7FB9', // ground AOEs, boss 1
+    'Lapis Albion Roar of Albion': '7A84', // line-of-sight damage if not hidden behind boulder, boss 1
 
     'Lapis Visitant Vodoriga Terror Eye': '7F1C', // front cone AoE, before boss 2
     'Lapis Galatea Parva Gravity Harp': '7F1A', // circle AoE, before boss 2
@@ -46,6 +49,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Lapis Cagnazzo Body Slam': '7993', // stood inside large knockback circle, boss 3
   },
   gainsEffectWarn: {
+    'Lapis Albion Concussion': 'DC1', // stunned by charging Wild Beasts, boss 1
     'Lapis Cagnazzo Dropsy (wall)': 'C04', // touched arena wall, boss 3
   },
   gainsEffectFail: {
