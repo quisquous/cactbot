@@ -1,3 +1,14 @@
+const albionWildBeastMapEffectFlag = '00020001';
+const albionWildBeastMapEffectLocations = {
+  '21': ['west', 'north'],
+  '22': ['west', 'middlenorth'],
+  '23': ['west', 'middlesouth'],
+  '24': ['west', 'south'],
+  '25': ['east', 'north'],
+  '26': ['east', 'middlenorth'],
+  '27': ['east', 'middlesouth'],
+  '28': ['east', 'south'],
+};
 Options.Triggers.push({
   zoneId: ZoneId.LapisManalis,
   timelineFile: 'lapis_manalis.txt',
@@ -19,13 +30,36 @@ Options.Triggers.push({
     },
     // ---------------- Albion ----------------
     {
-      id: 'Lapis Manalis Albion Call of the Mountain',
-      type: 'Ability',
-      netRegex: { id: '7A7C', source: 'Albion', capture: false },
-      alertText: (_data, _matches, output) => output.text(),
+      id: 'Lapis Albion Wild Beasts',
+      type: 'MapEffect',
+      netRegex: {
+        flags: albionWildBeastMapEffectFlag,
+        location: Object.keys(albionWildBeastMapEffectLocations),
+      },
+      durationSeconds: 8,
+      infoText: (_data, matches, output) => {
+        const beasts = albionWildBeastMapEffectLocations[matches.location];
+        if (beasts === undefined || beasts[0] === undefined || beasts[1] === undefined)
+          return output.text({ dir: output.unknown(), row: output.unknown() });
+        return output.text({
+          dir: output[beasts[0]](),
+          row: output[beasts[1]](),
+        });
+      },
       outputStrings: {
+        east: Outputs.east,
+        west: Outputs.west,
+        north: Outputs.north,
+        south: Outputs.south,
+        unknown: Outputs.unknown,
+        middlenorth: {
+          en: 'Middle-North',
+        },
+        middlesouth: {
+          en: 'Middle-South',
+        },
         text: {
-          en: 'Avoid stampeding animals',
+          en: 'Stampede from ${dir} (${row} Row)',
         },
       },
     },
@@ -46,6 +80,17 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '802E', source: 'Albion', capture: false },
       response: Responses.goRight(),
+    },
+    {
+      id: 'Lapis Manalis Albion Icebreaker',
+      type: 'StartsUsing',
+      netRegex: { source: 'Albion', id: '7A81', capture: false },
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from tethered rock',
+        },
+      },
     },
     {
       id: 'Lapis Manalis Albion Icy Throes',
