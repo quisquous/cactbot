@@ -97,7 +97,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Away from tethered rock'
+          en: 'Away from tethered rock',
         },
       },
     },
