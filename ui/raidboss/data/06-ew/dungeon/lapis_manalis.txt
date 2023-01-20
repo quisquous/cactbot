@@ -192,7 +192,7 @@ hideall "--sync--"
 2676.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
 
 # loop
-2686.6 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/ window 30,30 jump 2561.4
+2686.6 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/ window 30,30 jump 2574.3
 2688.5 "Hydraulic Ram" duration 6 #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
 2695.1 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:7996:/
 2699.2 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:799B:/
