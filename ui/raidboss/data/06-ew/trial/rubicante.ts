@@ -76,7 +76,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rubicante Ordeal of Purgation',
       type: 'StartsUsing',
-      netRegex: { id: ['7CC4','80E8'], source: 'Rubicante', capture: false },
+      netRegex: { id: ['7CC4', '80E8'], source: 'Rubicante', capture: false },
       alertText: (_data, _matches, output) => output.avoid!(),
       outputStrings: {
         avoid: {
@@ -182,6 +182,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Circle of Purgatory': 'Kreis der Läuterung',
         'Rubicante': 'Rubicante',

@@ -102,7 +102,7 @@ hideall "Infernal Slaughter"
 1334.5 "Hope Abandon Ye"
 1343.9 "Arcane Revelation"
 1364.8 "Ordeal of Purgation"
-1372.8 "Fiery Expiation" sync
+1372.8 "Fiery Expiation"
 1389.5 "Ordeal of Purgation"
 1397.5 "Fiery Expiation"
 1406.5 "Inferno (aoe)"
