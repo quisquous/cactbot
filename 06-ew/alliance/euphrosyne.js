@@ -9,6 +9,7 @@ Options.Triggers.push({
   timelineFile: 'euphrosyne.txt',
   initData: () => {
     return {
+      combatantData: [],
       nophicaHeavensEarthTargets: [],
       nymeiaHydrostasis: [],
       haloneTetrapagos: [],
@@ -336,19 +337,34 @@ Options.Triggers.push({
       netRegex: { id: ['7A3B', '7A3C', '7A3D', '7A3E'], source: 'Nymeia', capture: false },
       // First time around is BCD all simultaneous, with 16,19,22s cast times.
       // Other times are BC instantly and then E ~11s later with a 2s cast time.
-      delaySeconds: 0.5,
+      delaySeconds: 1.5,
       durationSeconds: 18,
       suppressSeconds: 20,
+      promise: async (data) => {
+        data.combatantData = [];
+        const ids = data.nymeiaHydrostasis.map((line) => parseInt(line.sourceId, 16));
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        })).combatants;
+      },
       infoText: (data, _matches, output) => {
-        const lines = data.nymeiaHydrostasis.sort((a, b) => a.id.localeCompare(b.id));
-        const dirs = lines.map((line) => {
+        // Sort combatants by cast id.
+        // Note: it's also possible that reverse actor id sort would work.
+        const decIdToCast = {};
+        for (const line of data.nymeiaHydrostasis)
+          decIdToCast[parseInt(line.sourceId, 16)] = line.id;
+        const combatants = data.combatantData.sort((a, b) => {
+          const aCast = decIdToCast[a.ID ?? 0] ?? '';
+          const bCast = decIdToCast[b.ID ?? 0] ?? '';
+          return aCast.localeCompare(bCast);
+        });
+        const dirs = combatants.map((c) => {
           const centerX = 50;
           const centerY = -741;
-          const x = parseFloat(line.x);
-          const y = parseFloat(line.y);
-          if (y < centerY)
+          if (c.PosY < centerY)
             return 'N';
-          return x < centerX ? 'SW' : 'SE';
+          return c.PosX < centerX ? 'SW' : 'SE';
         });
         const [first, second, third] = dirs;
         if (first === undefined || second === undefined)
@@ -369,6 +385,9 @@ Options.Triggers.push({
             SE: output.dirSE(),
           }[x] ?? output.unknown();
         });
+        // Safety, in case something went awry.
+        if (dir1 === dir2 || dir2 === dir3)
+          return;
         return output.knockback({ dir1: dir1, dir2: dir2, dir3: dir3 });
       },
       run: (data) => data.nymeiaHydrostasis = [],
