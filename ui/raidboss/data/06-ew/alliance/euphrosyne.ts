@@ -1,14 +1,15 @@
 import Conditions from '../../../../../resources/conditions';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Nophica Blueblossoms/Giltblossoms; they get 018E/018F/0190/0191/0192/0193 markers, but how to know colors?
 //       No map effects, and getCombatants has the combatants, but OverlayPlugin info all the same.
-// TODO: Nymeia & Althyk Hydrostasis have inconsistent positions? should this be getCombatants??
 // TODO: Halone Cheimon counter-clock is 7D6B, is clock 7D6A??
 // TODO: Halone Lochos positions
 // TODO: Menphina could use map effects for Love's Light + Full Bright 4x moon locations
@@ -22,23 +23,24 @@ import { TriggerSet } from '../../../../../types/trigger';
 // 7BD8 Midnight Frost = front cleave (7BDD damage) [dog attached, facing south or northwest?]
 // 7BD9 Midnight Frost = back cleave (7BDE damage) [dog attached, facing south]
 // 7BDA Midnight Frost = back cleave (7BDE damage) [dog attached, facing southeast or north?]
-// 7BE4 Midnight Frost = ??? (7BDA damage)
+// 7BE4 Midnight Frost = front cleave (7BDA damage) [dog uunattached, facing north]
 // 7BE5 Midnight Frost = ??? (7BDA damage)
 // 7BE6 Midnight Frost = back cleave (7BDB damage) [dog unattached, facing north]
 // 7BE7 Midnight Frost = back cleave (7BDB damage) [dog unattached, facing north]
 // 7F0A Midnight Frost = front cleave (7BDA damage) [dog unattached, facing north]
-// 7F0B Midnight Frost = ??? (7BDA damage)
+// 7F0B Midnight Frost = front cleave (7BDA damage) [dog unattached, facing south]
 // 7F0C Midnight Frost = back cleave (7BDB damage) [dog unattached, facing south]
 // 7F0D Midnight Frost = back cleave (7BDB damage) [dog unattached, facing south]
 // 7BE0 Waxing Claw = right claw [both attached and unattached]
 // 7BE1 Waxing Claw = left claw [both attached and unattached]
 // 7BE2 Playful Orbit = jump NE
-// 7BE3 Playful Orbit = jump NW / jump SE?
+// 7BE3 Playful Orbit = jump NW / jump SE
 
 export type NophicaMarch = 'front' | 'back' | 'left' | 'right';
 export type HaloneTetra = 'out' | 'in' | 'left' | 'right' | 'unknown';
 
 export interface Data extends RaidbossData {
+  combatantData: PluginCombatantState[];
   nophicaMarch?: NophicaMarch;
   nophicaHeavensEarthTargets: string[];
   nymeiaSpinnerOutput?: string;
@@ -61,6 +63,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'euphrosyne.txt',
   initData: () => {
     return {
+      combatantData: [],
       nophicaHeavensEarthTargets: [],
       nymeiaHydrostasis: [],
       haloneTetrapagos: [],
@@ -388,22 +391,38 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: ['7A3B', '7A3C', '7A3D', '7A3E'], source: 'Nymeia', capture: false },
       // First time around is BCD all simultaneous, with 16,19,22s cast times.
       // Other times are BC instantly and then E ~11s later with a 2s cast time.
-      delaySeconds: 0.5,
+      delaySeconds: 1.5,
       durationSeconds: 18,
       suppressSeconds: 20,
+      promise: async (data) => {
+        data.combatantData = [];
+        const ids = data.nymeiaHydrostasis.map((line) => parseInt(line.sourceId, 16));
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        })).combatants;
+      },
       infoText: (data, _matches, output) => {
         type HydrostasisDir = 'N' | 'SW' | 'SE';
 
-        const lines = data.nymeiaHydrostasis.sort((a, b) => a.id.localeCompare(b.id));
-        const dirs: HydrostasisDir[] = lines.map((line) => {
+        // Sort combatants by cast id.
+        // Note: it's also possible that reverse actor id sort would work.
+        const decIdToCast: { [id: string]: string } = {};
+        for (const line of data.nymeiaHydrostasis)
+          decIdToCast[parseInt(line.sourceId, 16)] = line.id;
+        const combatants = data.combatantData.sort((a, b) => {
+          const aCast = decIdToCast[a.ID ?? 0] ?? '';
+          const bCast = decIdToCast[b.ID ?? 0] ?? '';
+          return aCast.localeCompare(bCast);
+        });
+
+        const dirs: HydrostasisDir[] = combatants.map((c) => {
           const centerX = 50;
           const centerY = -741;
 
-          const x = parseFloat(line.x);
-          const y = parseFloat(line.y);
-          if (y < centerY)
+          if (c.PosY < centerY)
             return 'N';
-          return x < centerX ? 'SW' : 'SE';
+          return c.PosX < centerX ? 'SW' : 'SE';
         });
 
         const [first, second, third] = dirs;
@@ -427,6 +446,11 @@ const triggerSet: TriggerSet<Data> = {
             SE: output.dirSE!(),
           }[x] ?? output.unknown!();
         });
+
+        // Safety, in case something went awry.
+        if (dir1 === dir2 || dir2 === dir3)
+          return;
+
         return output.knockback!({ dir1: dir1, dir2: dir2, dir3: dir3 });
       },
       run: (data) => data.nymeiaHydrostasis = [],
