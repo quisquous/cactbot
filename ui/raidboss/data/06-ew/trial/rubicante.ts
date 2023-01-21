@@ -122,7 +122,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rubicante Soulscald',
       type: 'Ability',
       netRegex: { id: '7CE6', source: 'Rubicante', capture: false },
-      // Spinning compass animation is 6 seconds; damage goes out 2.6 seconds later
       delaySeconds: 3,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
