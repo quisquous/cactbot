@@ -3,31 +3,42 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
-import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 /**
-Slots:
-00 = Arena fiery or not
-01 = Inner circle
+Map Effects
+
+Locations/Slots:
+00 = Arena visual
 02 = Middle ring
-03 = Outer ring
-04 = Flamespire brand indicator?
+04 = Flamerake "compass"
+05-0C = Cardinals/intercardinals [N,NE...NW] - *starting* direction of Ordeal of Purgation
 
 00 flags:
 00020001 = Fiery
-00080004 = Not fiery
+00080004 = Clear fiery
+00200010 = Rocky terrain after boss death
 
-01/02/03 flags:
+02 flags:
 00020001 = Arrows rotating CW
 00080004 = Clear CW arrows
 00200010 = Arrows rotating CCW
 00400004 = Clear CCW arrows
 
 04 flags:
-00010001 = cardinals safe?
-00200020 = intercards safe?
+00100010 = starts N/S, cleaves NW/SE
+01000100 = starts N/S, cleaves NW/SE (same as above? needs investigation?)
+00020002 = starts N/S, cleaves E/W
 00080004 = clear indicator
+
+05-0C flags:
+00010004 = initial telegraph - straight line in given direction
+00020004 = initial telegraph - CW jagged line (turns 1 dir CW from starting direction) (only used for Purg 2)
+00800004 = clear telegraph of fire line
+00100004 = fire pulse - straight line in given direction
+00200004 = fire pulse - CW jagged line (turns 1 dir CW from starting direction) (paired with CCW arrows)
+00400004 = fire pulse - CCW jagged line (turns 1 dir CCW from starting direction) (paired with CW arrows)
+
  */
 
 // 7CD4 Ghastly Torch during add phase *is* an aoe but is constant and small, so skipped.
@@ -37,17 +48,8 @@ Slots:
 //  - Flamerake - identify initial direction of line cleave?
 
 export interface Data extends RaidbossData {
-  decOffset?: number;
   dualfireTarget: boolean;
 }
-
-// First headmarker is Shattering Heat (tankbuster on MT)
-const firstHeadmarker = parseInt('0156', 16);
-const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
-  if (typeof data.decOffset === 'undefined')
-    data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
-  return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
-};
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.MountOrdeals,
@@ -59,15 +61,6 @@ const triggerSet: TriggerSet<Data> = {
   },
   triggers: [
     {
-      id: 'Rubicante Headmarker Tracker',
-      type: 'HeadMarker',
-      netRegex: {},
-      condition: (data) => data.decOffset === undefined,
-      run: (data, matches) => {
-        getHeadmarkerId(data, matches);
-      },
-    },
-    {
       id: 'Rubicante Inferno Raidwide',
       type: 'StartsUsing',
       netRegex: { id: '7CEA', source: 'Rubicante', capture: false },
@@ -77,6 +70,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Rubicante Ordeal of Purgation',
       type: 'StartsUsing',
       netRegex: { id: ['7CC4', '80E8'], source: 'Rubicante', capture: false },
+      durationSeconds: 8,
       alertText: (_data, _matches, output) => output.avoid!(),
       outputStrings: {
         avoid: {
@@ -111,7 +105,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '7CDD', source: 'Rubicante', capture: false },
       // Spinning compass animation is 6 seconds; damage goes out 2.6 seconds later
       delaySeconds: 3,
-      infoText: (_data, _matches, output) => output.avoid!(),
+      alertText: (_data, _matches, output) => output.avoid!(),
       outputStrings: {
         avoid: {
           en: 'Avoid line cleave, then in',
@@ -121,21 +115,15 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rubicante Soulscald',
       type: 'Ability',
-      netRegex: { id: '7CE6', source: 'Rubicante', capture: false },
-      delaySeconds: 3,
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Bait protean, then dodge',
-        },
-      },
+      netRegex: { id: '7CE8', source: 'Rubicante Mirage', capture: false },
+      suppressSeconds: 0.5,
+      response: Responses.moveAway('alert'),
     },
     {
       id: 'Rubicante Dualfire Target',
       // These headmarkers come out just before the 7D95 self-targeted cast.
       type: 'HeadMarker',
-      netRegex: {},
-      condition: (data, matches) => getHeadmarkerId(data, matches) === '00E6',
+      netRegex: { id: '00E6' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target) {
           data.dualfireTarget = true;
@@ -185,6 +173,8 @@ const triggerSet: TriggerSet<Data> = {
       'missingTranslations': true,
       'replaceSync': {
         'Circle of Purgatory': 'Kreis der Läuterung',
+        '(?<!Greater )Flamesent': 'Flammengesandt(?:e|er|es|en)',
+        'Greater Flamesent': 'Infernogesandt(?:e|er|es|en)',
         'Rubicante': 'Rubicante',
         'Rubicante Mirage': 'Phantom-Rubicante',
       },
@@ -219,6 +209,8 @@ const triggerSet: TriggerSet<Data> = {
       'missingTranslations': true,
       'replaceSync': {
         'Circle of Purgatory': 'cercle arcanique du Purgatoire',
+        '(?<!Greater )Flamesent': 'flamme démoniaque',
+        'Greater Flamesent': 'flamme démoniaque inexorable',
         'Rubicante': 'Rubicante',
         'Rubicante Mirage': 'spectre de Rubicante',
       },
@@ -251,6 +243,8 @@ const triggerSet: TriggerSet<Data> = {
       'missingTranslations': true,
       'replaceSync': {
         'Circle of Purgatory': '煉獄魔陣',
+        '(?<!Greater )Flamesent': '炎妖',
+        'Greater Flamesent': '業炎妖',
         'Rubicante(?! )': 'ルビカンテ',
         'Rubicante Mirage': 'ルビカンテの幻影',
       },
