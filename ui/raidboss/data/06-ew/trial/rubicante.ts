@@ -25,37 +25,55 @@ Locations/Slots:
 00200010 = Arrows rotating CCW
 00400004 = Clear CCW arrows
 
-04 flags:
-00100010 = starts N/S, cleaves NW/SE
-01000100 = starts N/S, cleaves NW/SE (same as above? needs investigation?)
-00020002 = starts N/S, cleaves E/W
+04 flags:  **WIP**
+00100010 = cleaves NW/SE (vfx starts from NW)
+01000100 = cleaves NW/SE (vfx starts from SE - otherwise same as above)
+00020002 = cleaves E/W (vfx starts from W)
+00800080 = cleaves E/W (vfx starts from E - otherwise same as above)
 00080004 = clear indicator
 
 05-0C flags:
 00010004 = initial telegraph - straight line in given direction
 00020004 = initial telegraph - CW jagged line (turns 1 dir CW from starting direction) (only used for Purg 2)
+00080004 = initial telegraph - CCW jagged line (turns 1 dir CCW from starting direction) (only used for Purg 2)
 00800004 = clear telegraph of fire line
 00100004 = fire pulse - straight line in given direction
 00200004 = fire pulse - CW jagged line (turns 1 dir CW from starting direction) (paired with CCW arrows)
 00400004 = fire pulse - CCW jagged line (turns 1 dir CCW from starting direction) (paired with CW arrows)
-
  */
 
 // 7CD4 Ghastly Torch during add phase *is* an aoe but is constant and small, so skipped.
 
 // TO-DO:
-//  - Rewrite Ordeal of Purgation to use Map Effects and identify directional source of cone/safe area(s)
-//  - Flamerake - identify initial direction of line cleave?
+//  - Flamerake - identify initial orientation of line cleave?
 
 export interface Data extends RaidbossData {
+  purgation: number;
+  purgationLoc?: string;
+  purgationLine?: string;
+  purgationMidRotate?: string;
   dualfireTarget: boolean;
 }
+
+const dirs = ['north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest'];
+const purgationLocations = ['05', '06', '07', '08', '09', '0A', '0B', 'OC'];
+
+const purgationStraightLineFlag = '00010004';
+const purgationCWLineFlag = '00020004';
+const purgationCCWLineFlag = '00080004';
+const purgationLineFlags = [purgationStraightLineFlag, purgationCWLineFlag, purgationCCWLineFlag];
+
+const purgationMidRingLoc = '02';
+const purgationMidRotateCWFlag = '00020001';
+const purgationMidRotateCCWFlag = '00200010';
+const purgationMidRotateFlags = [purgationMidRotateCWFlag, purgationMidRotateCCWFlag];
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.MountOrdeals,
   timelineFile: 'rubicante.txt',
   initData: () => {
     return {
+      purgation: 1,
       dualfireTarget: false,
     };
   },
@@ -67,14 +85,77 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
+      id: 'Rubicante Ordeal of Purgation Line',
+      type: 'MapEffect',
+      netRegex: { flags: purgationLineFlags, location: purgationLocations },
+      run: (data, matches) => {
+        data.purgationLoc = matches.location;
+        data.purgationLine = matches.flags;
+      },
+    },
+    {
+      id: 'Rubicante Ordeal of Purgation Rotate',
+      type: 'MapEffect',
+      netRegex: { flags: purgationMidRotateFlags, location: purgationMidRingLoc },
+      run: (data, matches) => data.purgationMidRotate = matches.flags,
+    },
+    {
       id: 'Rubicante Ordeal of Purgation',
       type: 'StartsUsing',
       netRegex: { id: ['7CC4', '80E8'], source: 'Rubicante', capture: false },
+      delaySeconds: 0.2,
       durationSeconds: 8,
-      alertText: (_data, _matches, output) => output.avoid!(),
+      alertText: (data, _matches, output) => {
+        let idx = data.purgationLoc ? purgationLocations.indexOf(data.purgationLoc) : undefined;
+        if (idx === undefined || idx === -1)
+          return output.avoidCone!();
+
+        // adjust idx for 2nd & 3rd+ purgations based on jagged middle lines or rotation
+        if (data.purgation === 2) {
+          // 2nd purgation - CW/CCW line, no rotation
+          const jaggedLineFlags = purgationLineFlags.slice(1);
+          if (!data.purgationLine || !jaggedLineFlags.includes(data.purgationLine))
+            return output.avoidCone!();
+
+          const modIdx = data.purgationLine === purgationCWLineFlag ? 1 : -1; // +1 if CW line, -1 if CCW line
+          idx = (idx + dirs.length + modIdx) % dirs.length;
+        } else if (data.purgation > 2) {
+          // 3rd+ purgation - straight line, CW/CCW rotation.
+          // CW rotation results in CCW final path, and vice versa.
+          if (
+            !data.purgationMidRotate || !purgationMidRotateFlags.includes(data.purgationMidRotate)
+          )
+            return output.avoidCone!();
+
+          const modIdx = data.purgationMidRotate === purgationMidRotateCCWFlag ? 1 : -1;
+          idx = (idx + dirs.length + modIdx) % dirs.length;
+        }
+
+        const dir = dirs[idx];
+        if (!dir)
+          return output.avoidCone!();
+        return output.avoidConeFrom!({ dir: output[dir]!() });
+      },
+      run: (data) => {
+        data.purgation++;
+        delete data.purgationLoc;
+        delete data.purgationLine;
+        delete data.purgationMidRotate;
+      },
       outputStrings: {
-        avoid: {
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        avoidCone: {
           en: 'Avoid cone',
+        },
+        avoidConeFrom: {
+          en: 'Avoid cone (from ${dir})',
         },
       },
     },
