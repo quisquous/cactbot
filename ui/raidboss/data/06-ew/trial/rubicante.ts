@@ -75,6 +75,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         avoid: {
           en: 'Avoid cone',
+          de: 'Weiche dem Kegel aus',
         },
       },
     },
@@ -109,6 +110,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         avoid: {
           en: 'Avoid line cleave, then in',
+          de: 'Weiche Linien Cleave aus, dann rein',
         },
       },
     },
@@ -175,7 +177,7 @@ const triggerSet: TriggerSet<Data> = {
         'Circle of Purgatory': 'Kreis der Läuterung',
         '(?<!Greater )Flamesent': 'Flammengesandt(?:e|er|es|en)',
         'Greater Flamesent': 'Infernogesandt(?:e|er|es|en)',
-        'Rubicante': 'Rubicante',
+        'Rubicante(?! )': 'Rubicante',
         'Rubicante Mirage': 'Phantom-Rubicante',
       },
       'replaceText': {
@@ -200,6 +202,7 @@ const triggerSet: TriggerSet<Data> = {
         'Radial Flagration': 'Schwelender Reigen',
         'Scalding Fleet': 'Äschernder Schwarm',
         'Shattering Heat': 'Klirrende Hitze',
+        'Soulscald': 'Äschernes Grab',
         'Sweeping Immolation': 'Breite Verbrennung',
         'Total Immolation': 'Totalverbrennung',
       },
@@ -211,7 +214,7 @@ const triggerSet: TriggerSet<Data> = {
         'Circle of Purgatory': 'cercle arcanique du Purgatoire',
         '(?<!Greater )Flamesent': 'flamme démoniaque',
         'Greater Flamesent': 'flamme démoniaque inexorable',
-        'Rubicante': 'Rubicante',
+        'Rubicante(?! )': 'Rubicante',
         'Rubicante Mirage': 'spectre de Rubicante',
       },
       'replaceText': {
@@ -234,6 +237,7 @@ const triggerSet: TriggerSet<Data> = {
         'Radial Flagration': 'Jets enflammés radiaux',
         'Scalding Fleet': 'Calcination terrestre brutale',
         'Shattering Heat': 'Attaque de feu',
+        'Soulscald': 'Calcination terrestre',
         'Sweeping Immolation': 'Vague écarlate',
         'Total Immolation': 'Vague écarlate concentrée',
       },
@@ -268,6 +272,7 @@ const triggerSet: TriggerSet<Data> = {
         'Radial Flagration': '放散火流',
         'Scalding Fleet': '滅土焼尽：迅火',
         'Shattering Heat': '炎撃',
+        'Soulscald': '滅土焼尽',
         'Sweeping Immolation': '赤滅熱波',
         'Total Immolation': '赤滅熱波：重炎',
       },
