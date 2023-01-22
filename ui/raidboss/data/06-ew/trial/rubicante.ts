@@ -55,7 +55,7 @@ export interface Data extends RaidbossData {
   dualfireTarget: boolean;
 }
 
-const dirs = ['north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest'];
+// ordered from N, NE ... NW
 const purgationLocations = ['05', '06', '07', '08', '09', '0A', '0B', 'OC'];
 
 const purgationStraightLineFlag = '00010004';
@@ -106,35 +106,46 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 0.2,
       durationSeconds: 8,
       alertText: (data, _matches, output) => {
+        // keys correspond to order of elements in purgationLocation
+        const outputMap: { [dir: number]: string } = {
+          0: output.north!(),
+          1: output.northeast!(),
+          2: output.east!(),
+          3: output.southeast!(),
+          4: output.south!(),
+          5: output.southwest!(),
+          6: output.west!(),
+          7: output.northwest!(),
+        };
+        const dirUnknown = output.unknown!();
+
         let idx = data.purgationLoc ? purgationLocations.indexOf(data.purgationLoc) : undefined;
         if (idx === undefined || idx === -1)
-          return output.avoidCone!();
+          return output.avoidCone!({ dir: dirUnknown });
 
         // adjust idx for 2nd & 3rd+ purgations based on jagged middle lines or rotation
         if (data.purgation === 2) {
-          // 2nd purgation - CW/CCW line, no rotation
-          const jaggedLineFlags = purgationLineFlags.slice(1);
+          // 2nd purgation - CW/CCW line only, no rotation
+          const jaggedLineFlags = [purgationCWLineFlag, purgationCCWLineFlag];
           if (!data.purgationLine || !jaggedLineFlags.includes(data.purgationLine))
-            return output.avoidCone!();
+            return output.avoidCone!({ dir: dirUnknown });
 
           const modIdx = data.purgationLine === purgationCWLineFlag ? 1 : -1; // +1 if CW line, -1 if CCW line
-          idx = (idx + dirs.length + modIdx) % dirs.length;
+          idx = (idx + purgationLocations.length + modIdx) % purgationLocations.length;
         } else if (data.purgation > 2) {
           // 3rd+ purgation - straight line, CW/CCW rotation.
           // CW rotation results in CCW final path, and vice versa.
           if (
             !data.purgationMidRotate || !purgationMidRotateFlags.includes(data.purgationMidRotate)
           )
-            return output.avoidCone!();
+            return output.avoidCone!({ dir: dirUnknown });
 
           const modIdx = data.purgationMidRotate === purgationMidRotateCCWFlag ? 1 : -1;
-          idx = (idx + dirs.length + modIdx) % dirs.length;
+          idx = (idx + purgationLocations.length + modIdx) % purgationLocations.length;
         }
 
-        const dir = dirs[idx];
-        if (!dir)
-          return output.avoidCone!();
-        return output.avoidConeFrom!({ dir: output[dir]!() });
+        const dir1 = outputMap[idx] ?? dirUnknown;
+        return output.avoidCone!({ dir: dir1 });
       },
       run: (data) => {
         data.purgation++;
@@ -151,10 +162,8 @@ const triggerSet: TriggerSet<Data> = {
         southwest: Outputs.southwest,
         west: Outputs.west,
         northwest: Outputs.northwest,
+        unknown: Outputs.unknown,
         avoidCone: {
-          en: 'Avoid cone',
-        },
-        avoidConeFrom: {
           en: 'Avoid cone (from ${dir})',
         },
       },
