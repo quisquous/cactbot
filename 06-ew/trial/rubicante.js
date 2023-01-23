@@ -1,8 +1,19 @@
+// ordered from N, NE ... NW
+const purgationLocations = ['05', '06', '07', '08', '09', '0A', '0B', 'OC'];
+const purgationStraightLineFlag = '00010004';
+const purgationCWLineFlag = '00020004';
+const purgationCCWLineFlag = '00080004';
+const purgationLineFlags = [purgationStraightLineFlag, purgationCWLineFlag, purgationCCWLineFlag];
+const purgationMidRingLoc = '02';
+const purgationMidRotateCWFlag = '00020001';
+const purgationMidRotateCCWFlag = '00200010';
+const purgationMidRotateFlags = [purgationMidRotateCWFlag, purgationMidRotateCCWFlag];
 Options.Triggers.push({
   zoneId: ZoneId.MountOrdeals,
   timelineFile: 'rubicante.txt',
   initData: () => {
     return {
+      purgation: 1,
       dualfireTarget: false,
     };
   },
@@ -14,15 +25,81 @@ Options.Triggers.push({
       response: Responses.aoe(),
     },
     {
+      id: 'Rubicante Ordeal of Purgation Line',
+      type: 'MapEffect',
+      netRegex: { flags: purgationLineFlags, location: purgationLocations },
+      run: (data, matches) => {
+        data.purgationLoc = matches.location;
+        data.purgationLine = matches.flags;
+      },
+    },
+    {
+      id: 'Rubicante Ordeal of Purgation Rotate',
+      type: 'MapEffect',
+      netRegex: { flags: purgationMidRotateFlags, location: purgationMidRingLoc },
+      run: (data, matches) => data.purgationMidRotate = matches.flags,
+    },
+    {
       id: 'Rubicante Ordeal of Purgation',
       type: 'StartsUsing',
       netRegex: { id: ['7CC4', '80E8'], source: 'Rubicante', capture: false },
+      delaySeconds: 0.2,
       durationSeconds: 8,
-      alertText: (_data, _matches, output) => output.avoid(),
+      alertText: (data, _matches, output) => {
+        // keys correspond to order of elements in purgationLocation
+        const outputMap = {
+          0: output.north(),
+          1: output.northeast(),
+          2: output.east(),
+          3: output.southeast(),
+          4: output.south(),
+          5: output.southwest(),
+          6: output.west(),
+          7: output.northwest(),
+        };
+        const dirUnknown = output.unknown();
+        let idx = data.purgationLoc ? purgationLocations.indexOf(data.purgationLoc) : undefined;
+        if (idx === undefined || idx === -1)
+          return output.avoidCone({ dir: dirUnknown });
+        // adjust idx for 2nd & 3rd+ purgations based on jagged middle lines or rotation
+        if (data.purgation === 2) {
+          // 2nd purgation - CW/CCW line only, no rotation
+          const jaggedLineFlags = [purgationCWLineFlag, purgationCCWLineFlag];
+          if (!data.purgationLine || !jaggedLineFlags.includes(data.purgationLine))
+            return output.avoidCone({ dir: dirUnknown });
+          const modIdx = data.purgationLine === purgationCWLineFlag ? 1 : -1; // +1 if CW line, -1 if CCW line
+          idx = (idx + purgationLocations.length + modIdx) % purgationLocations.length;
+        } else if (data.purgation > 2) {
+          // 3rd+ purgation - straight line, CW/CCW rotation.
+          // CW rotation results in CCW final path, and vice versa.
+          if (
+            !data.purgationMidRotate || !purgationMidRotateFlags.includes(data.purgationMidRotate)
+          )
+            return output.avoidCone({ dir: dirUnknown });
+          const modIdx = data.purgationMidRotate === purgationMidRotateCCWFlag ? 1 : -1;
+          idx = (idx + purgationLocations.length + modIdx) % purgationLocations.length;
+        }
+        const dir1 = outputMap[idx] ?? dirUnknown;
+        return output.avoidCone({ dir: dir1 });
+      },
+      run: (data) => {
+        data.purgation++;
+        delete data.purgationLoc;
+        delete data.purgationLine;
+        delete data.purgationMidRotate;
+      },
       outputStrings: {
-        avoid: {
-          en: 'Avoid cone',
-          de: 'Weiche dem Kegel aus',
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        unknown: Outputs.unknown,
+        avoidCone: {
+          en: 'Avoid cone (from ${dir})',
         },
       },
     },
