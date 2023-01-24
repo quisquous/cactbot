@@ -112,6 +112,7 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheStigmaDreamscape,
   ZoneId.AlzadaalsLegacy,
   ZoneId.TheFellCourtOfTroia,
+  ZoneId.LapisManalis,
 
   // Guildhests
   ZoneId.BasicTrainingEnemyParties,
@@ -133,10 +134,10 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheBowlOfEmbers,
   ZoneId.TheNavel,
   ZoneId.TheHowlingEye,
-  ZoneId.CapeWestwind,
+  ZoneId.CapeWestwind, // changed to solo duty in 6.1
   ZoneId.ThePortaDecumana,
   ZoneId.TheChrysalis,
-  ZoneId.TheStepsOfFaith,
+  ZoneId.TheStepsOfFaith, // changed to solo duty in 6.2
   ZoneId.ARelicRebornTheChimera,
   ZoneId.ARelicRebornTheHydra,
   ZoneId.BattleOnTheBigBridge,
@@ -227,14 +228,17 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheMothercrystal,
   ZoneId.TheFinalDay,
   ZoneId.StormsCrown,
+  ZoneId.MountOrdeals,
 
   // High-end Trials (Endwalker)
   ZoneId.TheMinstrelsBalladZodiarksFall,
   ZoneId.TheMinstrelsBalladHydaelynsCall,
   ZoneId.TheMinstrelsBalladEndsingersAria,
   ZoneId.StormsCrownExtreme,
+  ZoneId.MountOrdealsExtreme,
   ZoneId.UltimasBaneUnreal,
   ZoneId.ContainmentBayS1T7Unreal,
+  ZoneId.ContainmentBayP1T6Unreal,
 
   // Alliance Raids (A Realm Reborn)
   ZoneId.TheLabyrinthOfTheAncients,
@@ -363,6 +367,7 @@ const contentList: (ZoneIdType)[] = [
 
   // Alliance Raids (Endwalker)
   ZoneId.Aglaia,
+  ZoneId.Euphrosyne,
 
   // Normal Raids (Endwalker)
   ZoneId.AsphodelosTheFirstCircle,
@@ -394,6 +399,7 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheWeaponsRefrainUltimate,
   ZoneId.TheEpicOfAlexanderUltimate,
   ZoneId.DragonsongsRepriseUltimate,
+  ZoneId.TheOmegaProtocolUltimate,
 ];
 
 export default contentList;

@@ -192,6 +192,12 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
+    {
+      id: 'Troia Scarmiglione Firedamp',
+      type: 'StartsUsing',
+      netRegex: { source: 'Scarmiglione', id: '7637' },
+      response: Responses.tankCleave(),
+    },
   ],
   timelineReplace: [
     {
