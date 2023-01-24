@@ -331,7 +331,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Allez devant puis prenez les liens',
           ja: '前へ、線取り',
           cn: '去前面; 接线',
-          ko: '앞으로 가서 선 가로채기',
+          ko: '앞으로 가서 선 가져가기',
         },
       },
     },
