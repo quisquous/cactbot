@@ -229,7 +229,7 @@ const processFile = (filename: string, zone: ZoneReplace, inputText: string): st
     }
   }
 
-  const lines = inputText.split('\n');
+  const lines = inputText.split('\r\n');
   const prefixes = Object.entries(zone.prefix);
   const others = Object.entries(zone.other);
   const ids = Object.entries(zone.id);
@@ -248,7 +248,7 @@ const processFile = (filename: string, zone: ZoneReplace, inputText: string): st
     output.push(line);
   }
 
-  return output.join('\n');
+  return output.join('\r\n');
 };
 
 const processAllFiles = async (root: string) => {
