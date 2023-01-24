@@ -42,6 +42,9 @@ Options.Triggers.push({
   initData: () => {
     return {
       combatantData: [],
+      inLine: {},
+      loopBlasterCount: 0,
+      pantoMissileCount: 0,
     };
   },
   triggers: [
@@ -54,6 +57,166 @@ Options.Triggers.push({
       run: (data, matches) => {
         const firstHeadmarker = parseInt(firstMarker, 16);
         getHeadmarkerId(data, matches, firstHeadmarker);
+      },
+    },
+    {
+      id: 'TOP In Line Debuff Collector',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['BBC', 'BBD', 'BBE', 'D7B'] },
+      run: (data, matches) => {
+        const effectToNum = {
+          BBC: 1,
+          BBD: 2,
+          BBE: 3,
+          D7B: 4,
+        };
+        const num = effectToNum[matches.effectId];
+        if (num === undefined)
+          return;
+        data.inLine[matches.target] = num;
+      },
+    },
+    {
+      id: 'TOP In Line Debuff Cleanup',
+      type: 'StartsUsing',
+      // 7B03 = Program Loop
+      // 7B0B = Pantokrator
+      netRegex: { id: ['7B03', '7B0B'], source: 'Omega', capture: false },
+      // Don't clean up when the buff is lost, as that happens after taking a tower.
+      run: (data) => data.inLine = {},
+    },
+    {
+      id: 'TOP In Line Debuff',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['BBC', 'BBD', 'BBE', 'D7B'], capture: false },
+      delaySeconds: 0.5,
+      durationSeconds: 5,
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        const myNum = data.inLine[data.me];
+        if (myNum === undefined)
+          return;
+        let partner = output.unknown();
+        for (const [name, num] of Object.entries(data.inLine)) {
+          if (num === myNum && name !== data.me) {
+            partner = name;
+            break;
+          }
+        }
+        return output.text({ num: myNum, player: data.ShortName(partner) });
+      },
+      outputStrings: {
+        text: {
+          en: '${num} (with ${player})',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'TOP Program Loop First Debuffs',
+      type: 'StartsUsing',
+      // 7B07 = Blaster cast (only one cast, but 4 abilities)
+      netRegex: { id: '7B07', source: 'Omega', capture: false },
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tower: {
+            en: 'Tower 1',
+          },
+          tether: {
+            en: 'Tether 1',
+          },
+          numNoMechanic: {
+            en: '1',
+          },
+        };
+        const myNum = data.inLine[data.me];
+        if (myNum === undefined)
+          return;
+        if (myNum === 1)
+          return { alertText: output.tower() };
+        if (myNum === 3)
+          return { alertText: output.tether() };
+        return { infoText: output.numNoMechanic() };
+      },
+    },
+    {
+      id: 'TOP Program Loop Other Debuffs',
+      type: 'Ability',
+      netRegex: { id: '7B08', source: 'Omega', capture: false },
+      preRun: (data) => data.loopBlasterCount++,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tower: {
+            en: 'Tower ${num}',
+          },
+          tether: {
+            en: 'Tether ${num}',
+          },
+          numNoMechanic: {
+            en: '${num}',
+          },
+        };
+        const mechanicNum = data.loopBlasterCount + 1;
+        if (mechanicNum >= 5)
+          return;
+        const myNum = data.inLine[data.me];
+        if (myNum === undefined)
+          return { infoText: output.numNoMechanic({ num: mechanicNum }) };
+        if (myNum === mechanicNum)
+          return { alertText: output.tower({ num: mechanicNum }) };
+        if (mechanicNum === myNum + 2 || mechanicNum === myNum - 2)
+          return { alertText: output.tether({ num: mechanicNum }) };
+        return { infoText: output.numNoMechanic({ num: mechanicNum }) };
+      },
+    },
+    {
+      id: 'TOP Pantokrator First Debuffs',
+      type: 'StartsUsing',
+      // 7B0D = initial Flame Thrower cast, 7E70 = later ones
+      netRegex: { id: '7B0D', source: 'Omega', capture: false },
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          lineStack: {
+            en: '1',
+          },
+          spread: {
+            en: '1 Out (on YOU)',
+          },
+        };
+        const myNum = data.inLine[data.me];
+        if (myNum === 1)
+          return { alertText: output.spread() };
+        return { infoText: output.lineStack() };
+      },
+    },
+    {
+      id: 'TOP Pantokrator Other Debuffs',
+      type: 'Ability',
+      // 7B0E = Guided Missile Kyrios spread damage
+      netRegex: { id: '7B0E', source: 'Omega', capture: false },
+      preRun: (data) => data.pantoMissileCount++,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          lineStack: {
+            en: '${num}',
+          },
+          spread: {
+            en: '${num} Out (on YOU)',
+          },
+        };
+        const mechanicNum = data.pantoMissileCount + 1;
+        if (mechanicNum >= 5)
+          return;
+        const myNum = data.inLine[data.me];
+        if (myNum === mechanicNum)
+          return { alertText: output.spread({ num: mechanicNum }) };
+        return { infoText: output.lineStack({ num: mechanicNum }) };
       },
     },
   ],
