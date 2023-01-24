@@ -1005,6 +1005,7 @@ const data = {
   'OutOfControl': '965',
   'Overcure': '9C',
   'OverflowDebugger': '684',
+  'Overheated': 'A80',
   'PacketFilterF': '67D',
   'PacketFilterM': '67C',
   'Pain': '955',

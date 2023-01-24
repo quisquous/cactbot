@@ -36,6 +36,7 @@ export type ZoneReplace = {
 
 const zoneReplace: ZoneReplace[] = [
   {
+    // Criterion
     fileMap: {
       'ui/raidboss/data/06-ew/dungeon/another_sildihn_subterrane.ts':
         'ui/raidboss/data/06-ew/dungeon/another_sildihn_subterrane-savage.ts',
@@ -155,11 +156,66 @@ const zoneReplace: ZoneReplace[] = [
       '79E0': '79E1',
       '79F3': '79F4',
 
-      // Unchanged abilities.
+      // Unchanged abilities, Criterion.
       '6854': '6854', // unnamed ability before sculptor's passion
       '77AE': '77AE', // sculptor's passion (self-targeted)
       '7491': '7491', // infern brand (self-targeted)
       '74B0': '74B0', // firesteel strike (self-targeted)
+    },
+  },
+  {
+    // Sophia
+    fileMap: {
+      'ui/raidboss/data/03-hw/trial/sophia-ex.ts': 'ui/raidboss/data/06-ew/trial/sophia-un.ts',
+      'ui/raidboss/data/03-hw/trial/sophia-ex.txt': 'ui/raidboss/data/06-ew/trial/sophia-un.txt',
+    },
+    prefix: { 'SophiaEX': 'SophiaUN' },
+    other: {
+      'ZoneId.ContainmentBayP1T6Extreme': 'ZoneId.ContainmentBayP1T6Unreal',
+      'sophia-ex.txt': 'sophia-un.txt',
+      '(Extreme)': '(Unreal)',
+      ' Extreme': ' Unreal',
+    },
+    id: {
+      '1981': '7D9C', // Scales of Wisdom 1
+      '1983': '7D9D', // --Barbelo Separates-- (unnamed, ignored)
+      '1984': '7D9E', // --Barbelo Rejoins-- (unnamed, ignored)
+      '1988': '7D9F', // Infusion
+      '1989': '7DA0', // Unknown (ignored)
+      '196E': '7D9B', // Meteor Quasar Snapshot 1
+      '19A7': '7DA1', // Meteor Quasar Snapshot 2
+      '19A8': '7DA2', // Tilt Quasar Orange (ignored)
+      '19A9': '7DA3', // Tilt Quasar Blue (ignored)
+      '19AA': '7DA4', // Execute (storage cast)
+      '19AB': '7DA5', // Duplicate
+      '19AC': '7DA6', // Thunder III
+      '19AD': '7DA7', // Execute (Thunder III, ignored)
+      '19AE': '7DA8', // Aero III
+      '19AF': '7DA9', // Execute (Aero III, ignored)
+      '19B0': '7DAA', // Thunder II
+      '19B1': '7DAB', // Execute (Thunder II, ignored)
+      '19B3': '7DAD', // Dischordant Cleansing 1
+      '19B5': '7DAF', // Dischordant Cleansing 2
+      '19B6': '7DB0', // Divine Spark
+      '19B8': '7DB2', // Gnostic Rant
+      '19B9': '7DB3', // Gnostic Spear
+      '19BA': '7DB4', // Ring of Pain
+      '19BB': '7DB5', // Vertical Kenoma
+      '19BC': '7DB6', // Horizontal Kenoma
+      '19BE': '7DB8', // Cloudy Heavens
+      '19BF': '7DB9', // Light Dew (Execute)
+      '19C0': '7DBA', // Light Dew (Onrush)
+      '19C1': '7DBB', // Onrush
+      '19C2': '7DBC', // Gnosis
+      '19C3': '7DBD', // auto-attack
+      '19C4': '7DBE', // Arms of Wisdom
+      '19C5': '7DBF', // Cintamani
+      '1A4C': '7E46', // Quasar (tilt)
+      '1A87': '7E81', // Meteor Quasar Detonate
+      '1ABE': '7EB8', // Unknown (ignored)
+      '1ABF': '7EB9', // Unknown (ignored)
+      '1AE0': '7DC5', // Cintamani Enrage
+      '1AE1': '7DC6', // Scales of Wisdom 2
     },
   },
 ];
@@ -173,7 +229,7 @@ const processFile = (filename: string, zone: ZoneReplace, inputText: string): st
     }
   }
 
-  const lines = inputText.split('\n');
+  const lines = inputText.split('\r\n');
   const prefixes = Object.entries(zone.prefix);
   const others = Object.entries(zone.other);
   const ids = Object.entries(zone.id);
@@ -192,7 +248,7 @@ const processFile = (filename: string, zone: ZoneReplace, inputText: string): st
     output.push(line);
   }
 
-  return output.join('\n');
+  return output.join('\r\n');
 };
 
 const processAllFiles = async (root: string) => {

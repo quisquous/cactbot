@@ -434,6 +434,7 @@ const data = {
   'TheNavelExtreme': 296,
   'TheNavelHard': 293,
   'TheNavelUnreal': 953,
+  'TheOmegaProtocolUltimate': 1122,
   'TheOrbonneMonastery': 826,
   'TheOrphansAndTheBrokenBlade': 715,
   'ThePalaceOfTheDeadFloors101_110': 598,

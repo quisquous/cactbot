@@ -3,6 +3,7 @@ import { Lang } from '../../resources/languages';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import TimerBar from '../../resources/timerbar';
+import TimerBox from '../../resources/timerbox';
 import TimerIcon from '../../resources/timericon';
 import { LocaleNetRegex } from '../../resources/translations';
 import Util from '../../resources/util';
@@ -249,4 +250,24 @@ export const isPvPZone = (zoneId: number): boolean => {
   if (zoneInfo.contentType === ContentType.Pvp || zoneId === ZoneId.WolvesDenPier)
     return true;
   return false;
+};
+
+export const showDuration = (o: {
+  tid: number;
+  timerbox: TimerBox;
+  duration: number;
+  cooldown: number;
+  threshold: number;
+  activecolor: string;
+  deactivecolor: string;
+}): number => {
+  o.timerbox.duration = o.duration;
+  o.timerbox.threshold = o.duration;
+  o.timerbox.fg = computeBackgroundColorFrom(o.timerbox, o.activecolor);
+  o.tid = window.setTimeout(() => {
+    o.timerbox.duration = o.cooldown - o.duration;
+    o.timerbox.threshold = o.threshold;
+    o.timerbox.fg = computeBackgroundColorFrom(o.timerbox, o.deactivecolor);
+  }, o.duration * 1000);
+  return o.tid;
 };

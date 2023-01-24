@@ -1,0 +1,109 @@
+# Rubicante
+
+# -ii 8022 7F6C 7CC8 7CCA 7CCF 7CCD 8024 7CBF 8025 7CD8 7CD1 7CD9 7CBD 7CDB 7CDE 7CE8 7D96 7CC0
+# -it "Rubicante"
+# -p 7CD0:1000 7CD2:2000 
+
+hideall "--Reset--"
+hideall "--sync--"
+hideall "Arcane Revelation"
+hideall "Infernal Slaughter"
+
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+7.0 "--sync--" sync / 14:[^:]*:Rubicante:7CEA:/ window 10,10
+12.0 "Inferno" sync / 1[56]:[^:]*:Rubicante:7CEA:/
+
+# Phase 1 (Purgations & Arch Inferno)
+15.1 "--middle--" sync / 1[56]:[^:]*:Rubicante:7CBC:/
+17.3 "Hope Abandon Ye" sync / 1[56]:[^:]*:Rubicante:7F26:/
+26.7 "Arcane Revelation" sync / 1[56]:[^:]*:Rubicante:7CBE:/
+47.7 "Ordeal of Purgation" sync / 1[56]:[^:]*:Rubicante:7CC4:/ # no spin, straight line
+52.7 "Fiery Expiation" sync / 1[56]:[^:]*:Circle of Purgatory:7CC5:/
+68.9 "Ordeal of Purgation" sync / 1[56]:[^:]*:Rubicante:7CC4:/ # no spin, jagged line
+73.9 "Fiery Expiation" sync / 1[56]:[^:]*:Circle of Purgatory:7CC5:/
+86.9 "Shattering Heat" sync / 1[56]:[^:]*:Rubicante:7CEB:/
+94.1 "--middle--" sync / 1[56]:[^:]*:Rubicante:7CBC:/
+
+102.1 "Arch Inferno" sync / 1[56]:[^:]*:Rubicante:7CC7:/ window 30,30
+102.1 "Inferno Devil" sync / 1[56]:[^:]*:Rubicante:7CC9:/
+105.2 "Infernal Slaughter" sync / 1[56]:[^:]*:Rubicante:7CCE:/
+112.2 "Conflagration" sync / 1[56]:[^:]*:Rubicante:7CCB:/
+115.3 "Infernal Slaughter" sync / 1[56]:[^:]*:Rubicante:7CCE:/
+122.3 "Radial Flagration" sync / 1[56]:[^:]*:Rubicante:7CCC:/
+130.4 "--middle--" sync / 1[56]:[^:]*:Rubicante:7CBC:/
+
+132.8 "Hope Abandon Ye" sync / 1[56]:[^:]*:Rubicante:7F26:/ window 30,30
+142.2 "Arcane Revelation" sync / 1[56]:[^:]*:Rubicante:7CBE:/
+163.1 "Ordeal of Purgation" sync / 1[56]:[^:]*:Rubicante:80E8:/ # middle-disc spin, jagged line (from this point forward)
+171.1 "Fiery Expiation" sync / 1[56]:[^:]*:Circle of Purgatory:7CC5:/
+187.5 "Ordeal of Purgation" sync / 1[56]:[^:]*:Rubicante:80E8:/
+195.5 "Fiery Expiation" sync / 1[56]:[^:]*:Circle of Purgatory:7CC5:/
+201.6 "--untargetable--"
+
+# Adds Phase
+# The adds will intermittently cast various AoEs.
+# All are ground-telegraphed except 7CD4 (Ghastly Torch), a small raid-wide.
+# Because variation in adds deaths can affect casts, only display the first few mechanics.
+1000.0 "--sync--" sync / 1[56]:[^:]*:Rubicante:7CD0:/ window 1000,0
+1011.1 "Ghastly Torch" sync / 1[56]:[^:]*:Greater Flamesent:7CD4:/
+1012.1 "Ghastly Flame" sync / 1[56]:[^:]*:Flamesent:7CD7:/
+1016.2 "Ghastly Wind" sync / 1[56]:[^:]*:Flamesent:7CD6:/
+1017.2 "Ghastly Torch" sync / 1[56]:[^:]*:Greater Flamesent:7CD4:/
+1022.2 "Shattering Heat" sync / 1[56]:[^:]*:Flamesent:7CD5:/
+
+# Phase 2 (Flamerake & Sweeping Immolation)
+1986.4 "--sync--"  sync / 14:[^:]*:Rubicante:7CD2:/ window 1000,0
+1986.4 "--targetable--"
+2000.0 "Blazing Rapture" sync / 1[56]:[^:]*:Rubicante:7CD2:/
+2013.4 "--untargetable--"
+2036.4 "--targetable--"
+2048.5 "Inferno (spread)" sync / 1[56]:[^:]*:Rubicante:7CDA:/
+2062.2 "--sync--" sync / 1[56]:[^:]*:Rubicante:7CDD:/
+2064.6 "Flamerake 1" sync / 1[56]:[^:]*:Rubicante:7CDF:/
+2065.6 "Flamerake 2" sync / 1[56]:[^:]*:Rubicante:7CE0:/
+2066.6 "Flamerake 3" sync / 1[56]:[^:]*:Rubicante:7CE1:/
+2077.0 "--sync--" sync / 1[56]:[^:]*:Rubicante:7CC3:/
+2082.0 "Soulscald" sync / 1[56]:[^:]*:Rubicante:7CE6:/
+2088.1 "Scalding Fleet" #sync / 1[56]:[^:]*:Rubicante Mirage:7CE9:/
+2094.3 "--sync--" sync / 1[56]:[^:]*:Rubicante:8034:/
+2099.3 "Dualfire" sync / 1[56]:[^:]*:Rubicante:7D95:/
+2114.1 "Sweeping Immolation" sync / 1[56]:[^:]*:Rubicante:7CE3:/
+2114.5 "Total Immolation" sync / 1[56]:[^:]*:Rubicante:7CE5:/ window 30,30
+
+# Loop begins
+2127.5 "--middle--" sync / 1[56]:[^:]*:Rubicante:7CBC:/
+2129.7 "Hope Abandon Ye" sync / 1[56]:[^:]*:Rubicante:7F26:/
+2139.1 "Arcane Revelation" sync / 1[56]:[^:]*:Rubicante:7CBE:/
+2160.0 "Ordeal of Purgation" sync / 1[56]:[^:]*:Rubicante:80E8:/
+2168.0 "Fiery Expiation" sync / 1[56]:[^:]*:Circle of Purgatory:7CC5:/
+2184.7 "Ordeal of Purgation" sync / 1[56]:[^:]*:Rubicante:80E8:/
+2192.7 "Fiery Expiation" sync / 1[56]:[^:]*:Circle of Purgatory:7CC5:/
+2201.7 "Inferno (aoe)" sync / 1[56]:[^:]*:Rubicante:7CEA:/
+2207.8 "--middle--" sync / 1[56]:[^:]*:Rubicante:7CBC:/
+2215.8 "Arch Inferno" sync / 1[56]:[^:]*:Rubicante:7CC7:/
+2215.8 "Inferno Devil" sync / 1[56]:[^:]*:Rubicante:7CC9:/
+2218.9 "Infernal Slaughter" sync / 1[56]:[^:]*:Rubicante:7CCE:/
+2225.9 "Conflagration" sync / 1[56]:[^:]*:Rubicante:7CCB:/
+2229.0 "Infernal Slaughter" sync / 1[56]:[^:]*:Rubicante:7CCE:/
+2236.0 "Radial Flagration" sync / 1[56]:[^:]*:Rubicante:7CCC:/
+2257.3 "--sync--" sync / 1[56]:[^:]*:Rubicante:7CDD:/
+2259.5 "Flamerake 1" sync / 1[56]:[^:]*:Rubicante:7CDF:/
+2260.5 "Flamerake 2" sync / 1[56]:[^:]*:Rubicante:7CE0:/
+2261.5 "Flamerake 3" sync / 1[56]:[^:]*:Rubicante:7CE1:/
+2273.5 "Inferno (spread)" sync / 1[56]:[^:]*:Rubicante:7CDA:/
+2281.8 "--sync--" sync / 1[56]:[^:]*:Rubicante:7CC3:/
+2286.8 "Soulscald" sync / 1[56]:[^:]*:Rubicante:7CE6:/
+2292.9 "Scalding Fleet" #sync / 1[56]:[^:]*:Rubicante Mirage:7CE9:/
+2299.1 "--sync--" sync / 1[56]:[^:]*:Rubicante:8034:/
+2304.1 "Dualfire" sync / 1[56]:[^:]*:Rubicante:7D95:/
+2318.9 "Sweeping Immolation" sync / 1[56]:[^:]*:Rubicante:7CE3:/
+2319.3 "Total Immolation" sync / 1[56]:[^:]*:Rubicante:7CE5:/ window 30,10000 jump 1114.5
+# pretty sure this is the end of the loop, but didn't go far enough to see it loop around again
+
+# Fake loop
+2332.3 "--middle--"
+2334.5 "Hope Abandon Ye"
+2343.9 "Arcane Revelation"
+2364.8 "Ordeal of Purgation"
