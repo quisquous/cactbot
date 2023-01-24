@@ -165,6 +165,7 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
         avoidCone: {
           en: 'Avoid cone (from ${dir})',
+          de: 'Weiche dem KEgel aus (von ${dir})',
           ko: '${dir}의 삼각형 장판 피하기',
         },
       },
@@ -264,7 +265,6 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Circle of Purgatory': 'Kreis der Läuterung',
         '(?<!Greater )Flamesent': 'Flammengesandt(?:e|er|es|en)',
