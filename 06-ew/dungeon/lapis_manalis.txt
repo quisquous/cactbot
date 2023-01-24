@@ -15,8 +15,8 @@ hideall "--sync--"
 6.0 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
 10.6 "Call of the Mountain" sync / 1[56]:[^:]*:Albion:7A7C:/
 
-12.9 "Wildlife Crossing 1" sync / 257 101:........:00020001:/ window 30,30 duration 15
-26.9 "Wildlife Crossing 2" sync / 257 101:........:00020001:/ window 30,30 duration 15
+12.9 "Wildlife Crossing 1" sync / 257 101:........:00020001:/ window 5,5 duration 15
+26.9 "Wildlife Crossing 2" sync / 257 101:........:00020001:/ window 5,5 duration 15
 41.4 "Albion's Embrace" sync / 1[56]:[^:]*:Albion:7A85:/
 48.4 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
 55.1 "Left Slam/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
@@ -29,10 +29,10 @@ hideall "--sync--"
 
 90.2 "Roar of Albion" sync / 1[56]:[^:]*:Albion:7A84:/
 103.3 "Call of the Mountain" sync / 1[56]:[^:]*:Albion:7A7C:/
-106.1 "Wildlife Crossing 1" sync / 257 101:........:00020001:/ window 30,30 duration 15
+106.1 "Wildlife Crossing 1" sync / 257 101:........:00020001:/ window 5,5 duration 15
 108.7 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
 115.5 "Left Slam/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
-120.0 "Wildlife Crossing 2" sync / 257 101:........:00020001:/ window 30,30 duration 15
+120.0 "Wildlife Crossing 2" sync / 257 101:........:00020001:/ window 5,5 duration 15
 123.9 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
 130.8 "Left Slam/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
 141.4 "Albion's Embrace" sync / 1[56]:[^:]*:Albion:7A85:/
@@ -46,10 +46,10 @@ hideall "--sync--"
 # loop
 175.8 "Roar of Albion" sync / 1[56]:[^:]*:Albion:7A84:/ window 30,30 jump 90.2
 188.9 "Call of the Mountain" #sync / 1[56]:[^:]*:Albion:7A7C:/
-191.7 "Wildlife Crossing 1" #sync / 257 101:........:00020001:/ window 30,30 duration 15
+191.7 "Wildlife Crossing 1" #sync / 257 101:........:00020001:/ window 5,5 duration 15
 194.3 "--sync--" #sync / 1[56]:[^:]*:Albion:802C:/
 201.1 "Left Slam/Right Slam" #sync / 1[56]:[^:]*:Albion:(802E|802D):/
-205.6 "Wildlife Crossing 2" #sync / 257 101:........:00020001:/ window 30,30 duration 15
+205.6 "Wildlife Crossing 2" #sync / 257 101:........:00020001:/ window 5,5 duration 15
 209.5 "--sync--" #sync / 1[56]:[^:]*:Albion:802C:/
 216.4 "Left Slam/Right Slam" #sync / 1[56]:[^:]*:Albion:(802E|802D):/
 
