@@ -1,6 +1,6 @@
 ### The Omega Protocol
 # -p 7B03:15
-# -ii 7BFD
+# -ii 7BFD 7B0A 7E70 7B0C
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -9,5 +9,35 @@ hideall "--sync--"
 
 0.0 "--sync--" sync /Engage!/ window 0,1
 3.4 "--sync--" sync / 1[56]:[^:]*:Omega:7BFD:/ window 4,1
+
 11.0 "--sync--" sync / 14:[^:]*:Omega:7B03:/ window 20,20
 15.0 "Program Loop" sync / 1[56]:[^:]*:Omega:7B03:/
+21.0 "--sync--" sync / 14:[^:]*:Omega:7B07:/
+29.0 "--sync--" sync / 1[56]:[^:]*:Omega:7B07:/
+29.1 "Storage Violation 1" sync / 1[56]:[^:]*:Omega:7B04:/
+29.1 "Blaster 1" sync / 1[56]:[^:]*:Omega:7B08:/
+38.1 "Storage Violation 2" sync / 1[56]:[^:]*:Omega:7B04:/
+38.1 "Blaster 2" sync / 1[56]:[^:]*:Omega:7B08:/
+47.1 "Storage Violation 3" sync / 1[56]:[^:]*:Omega:7B04:/
+47.1 "Blaster 3" sync / 1[56]:[^:]*:Omega:7B08:/
+56.1 "Storage Violation 4" sync / 1[56]:[^:]*:Omega:7B04:/
+56.1 "Blaster 4" sync / 1[56]:[^:]*:Omega:7B09:/
+
+64.2 "--sync--" sync / 14:[^:]*:Omega:7B0B:/ window 20,20
+69.2 "Pantokrator" sync / 1[56]:[^:]*:Omega:7B0B:/
+75.3 "Flame Thrower" sync / 1[56]:[^:]*:Omega:7B0D:/ duration 25.6
+81.3 "Condensed Wave Cannon Kyrios 1" sync / 1[56]:[^:]*:Omega:7B0F:/
+81.3 "Guided Missile Kyrios 1" sync / 1[56]:[^:]*:Omega:7B0E:/
+87.3 "Condensed Wave Cannon Kyrios 2" sync / 1[56]:[^:]*:Omega:7B0F:/
+87.3 "Guided Missile Kyrios 2" sync / 1[56]:[^:]*:Omega:7B0E:/
+93.3 "Condensed Wave Cannon Kyrios 3" sync / 1[56]:[^:]*:Omega:7B0F:/
+93.3 "Guided Missile Kyrios 3" sync / 1[56]:[^:]*:Omega:7B0E:/
+99.3 "Condensed Wave Cannon Kyrios 4" sync / 1[56]:[^:]*:Omega:7B0F:/
+99.3 "Guided Missile Kyrios 4" sync / 1[56]:[^:]*:Omega:7B0E:/
+
+108.0 "Diffuse Wave Cannon Kyrios x5" duration 8 #sync / 1[56]:[^:]*:Omega:7B10:/
+108.0 "Wave Cannon Kyrios 1" sync / 1[56]:[^:]*:Omega:7B11:/
+116.8 "Wave Cannon Kyrios 2" sync / 1[56]:[^:]*:Omega:7B11:/
+
+122.7 "--sync--" sync / 14:[^:]*:Omega:7AF8:/ window 20,20
+127.7 "Atomic Ray Enrage" sync / 1[56]:[^:]*:Omega:7AF8:/
