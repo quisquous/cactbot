@@ -536,3 +536,5 @@
 06-ew/raid/p8s.txt
 06-ew/ultimate/dragonsongs_reprise_ultimate.ts
 06-ew/ultimate/dragonsongs_reprise_ultimate.txt
+06-ew/ultimate/the_omega_protocol.ts
+06-ew/ultimate/the_omega_protocol.txt
