@@ -273,7 +273,7 @@ Options.Triggers.push({
           en: 'Go Front; Get Tether',
           de: 'Geh nach Vorne; Nimm eine Verbindung',
           cn: '去前面; 接线',
-          ko: '앞으로 가서 선 가로채기',
+          ko: '앞으로 가서 선 가져가기',
         },
       },
     },

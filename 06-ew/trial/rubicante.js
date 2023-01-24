@@ -100,6 +100,7 @@ Options.Triggers.push({
         unknown: Outputs.unknown,
         avoidCone: {
           en: 'Avoid cone (from ${dir})',
+          ko: '${dir}의 삼각형 장판 피하기',
         },
       },
     },
@@ -135,6 +136,7 @@ Options.Triggers.push({
         avoid: {
           en: 'Avoid line cleave, then in',
           de: 'Weiche Linien Cleave aus, dann rein',
+          ko: '직선 장판 피하고, 안으로',
         },
       },
     },
@@ -189,6 +191,7 @@ Options.Triggers.push({
           en: 'Stack behind Boss',
           de: 'Hinter dem Boss sammeln',
           ja: 'ボスの後ろで頭割り',
+          ko: '보스 뒤에서 쉐어',
         },
       },
     },

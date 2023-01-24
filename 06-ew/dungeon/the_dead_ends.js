@@ -42,7 +42,7 @@ Options.Triggers.push({
           fr: 'Guérison sur ${player}',
           ja: '${player} にエスナ',
           cn: '驱散: ${player}',
-          ko: '"${player}" 에스나',
+          ko: '${player} 에스나',
         },
       },
     },

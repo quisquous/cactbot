@@ -55,14 +55,17 @@ Options.Triggers.push({
         middlenorth: {
           en: 'Middle-North',
           de: 'Norden-Mittig',
+          ko: '중앙-북쪽',
         },
         middlesouth: {
           en: 'Middle-South',
           de: 'Süden-Mittig',
+          ko: '중앙-남쪽',
         },
         text: {
           en: 'Stampede from ${dir} (${row} Row)',
           de: 'Stampede von ${dir} (${row} Row)',
+          ko: '${dir}에서 돌진 (${row} 줄)',
         },
       },
     },
@@ -93,6 +96,7 @@ Options.Triggers.push({
         text: {
           en: 'Away from tethered rock',
           de: 'Weg vom verbundenen Felsen',
+          ko: '선 연결된 돌 피하기',
         },
       },
     },
@@ -152,7 +156,7 @@ Options.Triggers.push({
           fr: 'Guérison sur ${player}',
           ja: '${player} にエスナ',
           cn: '驱散: ${player}',
-          ko: '"${player}" 에스나',
+          ko: '${player} 에스나',
         },
       },
     },

@@ -79,7 +79,7 @@ Options.Triggers.push({
           fr: 'Lien vers l\'extérieur',
           ja: '線を外へ向ける',
           cn: '离开人群背对连线',
-          ko: '본진 바깥으로 유도하기',
+          ko: '본진 바깥으로 선 유도하기',
         },
       },
     },

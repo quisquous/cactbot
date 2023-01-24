@@ -315,7 +315,7 @@ Options.Triggers.push({
           fr: 'Éloignez-vous de l\'orbe',
           ja: '玉から離れる',
           cn: '远离球',
-          ko: '구슬 피하기',
+          ko: '구체와 멀리 떨어지기',
         },
       },
     },

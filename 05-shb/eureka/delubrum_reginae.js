@@ -1062,7 +1062,7 @@ Options.Triggers.push({
           fr: 'Guérison sur ${player}',
           ja: 'エスナ: ${player}',
           cn: '解除死亡宣告: ${player}',
-          ko: '"${player}" 에스나',
+          ko: '${player} 에스나',
         },
       },
     },

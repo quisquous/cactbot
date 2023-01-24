@@ -482,7 +482,7 @@ Options.Triggers.push({
             fr: 'Lien Minotaure en croix (Gros Cleave)',
             ja: 'ミノからの扇を交える',
             cn: '交叉牛头人连线 (大顺劈)',
-            ko: '미노타우로스 선 교차하기 (부채꼴 장판)',
+            ko: '미노타우로스 선 교차시키기 (부채꼴 장판)',
           },
           warMinotaurTether: {
             en: 'Minotaur Tether (Big Cleave)',
