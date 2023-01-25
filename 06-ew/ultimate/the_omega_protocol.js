@@ -108,6 +108,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '${num} (with ${player})',
+          de: '${num} (mit ${player})',
         },
         unknown: Outputs.unknown,
       },
@@ -122,12 +123,15 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           tower: {
             en: 'Tower 1',
+            de: 'Turm 1',
           },
           tether: {
             en: 'Tether 1',
+            de: 'Verbindung 1',
           },
           numNoMechanic: {
             en: '1',
+            de: '1',
           },
         };
         const myNum = data.inLine[data.me];
@@ -150,12 +154,15 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           tower: {
             en: 'Tower ${num}',
+            de: 'Turm ${num}',
           },
           tether: {
             en: 'Tether ${num}',
+            de: 'Verbindung ${num}',
           },
           numNoMechanic: {
             en: '${num}',
+            de: '${num}',
           },
         };
         const mechanicNum = data.loopBlasterCount + 1;
@@ -182,9 +189,11 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           lineStack: {
             en: '1',
+            de: '1',
           },
           spread: {
             en: '1 Out (on YOU)',
+            de: '1 Raus (auf Dir)',
           },
         };
         const myNum = data.inLine[data.me];
@@ -205,9 +214,11 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           lineStack: {
             en: '${num}',
+            de: '${num}',
           },
           spread: {
             en: '${num} Out (on YOU)',
+            de: '${num} Raus (auf Dir)',
           },
         };
         const mechanicNum = data.pantoMissileCount + 1;
@@ -217,6 +228,62 @@ Options.Triggers.push({
         if (myNum === mechanicNum)
           return { alertText: output.spread({ num: mechanicNum }) };
         return { infoText: output.lineStack({ num: mechanicNum }) };
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Omega': 'Omega',
+      },
+      'replaceText': {
+        'Atomic Ray': 'Atomstrahlung',
+        'Blaster': 'Blaster',
+        'Condensed Wave Cannon Kyrios': 'Hochleistungswellenkanone P',
+        'Diffuse Wave Cannon Kyrios': 'Streuende Wellenkanone P',
+        'Flame Thrower': 'Flammensturm',
+        'Guided Missile Kyrios': 'Lenkrakete P',
+        'Pantokrator': 'Pantokrator',
+        'Program Loop': 'Programmschleife',
+        'Storage Violation': 'Speicherverletzung S',
+        '(?<! )Wave Cannon Kyrios': 'Wellenkanone P',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Omega': 'Oméga',
+      },
+      'replaceText': {
+        'Atomic Ray': 'Rayon atomique',
+        'Blaster': 'Électrochoc',
+        'Condensed Wave Cannon Kyrios': 'Canon plasma surchargé P',
+        'Diffuse Wave Cannon Kyrios': 'Canon plasma diffuseur P',
+        'Flame Thrower': 'Crache-flammes',
+        'Guided Missile Kyrios': 'Missile guidé P',
+        'Pantokrator': 'Pantokrator',
+        'Program Loop': 'Boucle de programme',
+        'Storage Violation': 'Corruption de données S',
+        '(?<! )Wave Cannon Kyrios': 'Canon plasma P',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Omega': 'オメガ',
+      },
+      'replaceText': {
+        'Atomic Ray': 'アトミックレイ',
+        'Blaster': 'ブラスター',
+        'Condensed Wave Cannon Kyrios': '高出力波動砲P',
+        'Diffuse Wave Cannon Kyrios': '拡散波動砲P',
+        'Flame Thrower': '火炎放射',
+        'Guided Missile Kyrios': '誘導ミサイルP',
+        'Pantokrator': 'パントクラトル',
+        'Program Loop': 'サークルプログラム',
+        'Storage Violation': '記憶汚染除去S',
+        '(?<! )Wave Cannon Kyrios': '波動砲P',
       },
     },
   ],
