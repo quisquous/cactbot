@@ -1,4 +1,3 @@
-import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -21,11 +20,15 @@ export interface Data extends RaidbossData {
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
 export const headmarkers = {
-  // vfx/lockon/eff/r1fz_firechain_01x.avfx through 04x
-  'firechainCircle': '0119',
-  'firechainTriangle': '011A',
-  'firechainSquare': '011B',
-  'firechainX': '011C',
+  // vfx/lockon/eff/lockon5_t0h.avfx
+  'spread': '0017',
+  // vfx/lockon/eff/tank_lockonae_5m_5s_01k1.avfx
+  'buster': '0157',
+  // vfx/lockon/eff/z3oz_firechain_01c.avfx through 04c
+  'firechainCircle': '01A0',
+  'firechainTriangle': '01AB',
+  'firechainSquare': '01AC',
+  'firechainX': '01AD',
 } as const;
 
 export const playstationHeadmarkerIds: readonly string[] = [
@@ -42,21 +45,14 @@ export const playstationMarkerMap: { [id: string]: PlaystationMarker } = {
   [headmarkers.firechainX]: 'cross',
 } as const;
 
-export const firstMarker = 'TODO';
+export const firstMarker = parseInt('0017', 16);
 
 export const getHeadmarkerId = (
   data: Data,
   matches: NetMatches['HeadMarker'],
-  firstDecimalMarker?: number,
 ) => {
-  // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
-  // (This makes the offset 0, and !0 is true.)
-  if (data.decOffset === undefined) {
-    // This must be set the first time this function is called in DSR Headmarker Tracker.
-    if (firstDecimalMarker === undefined)
-      throw new UnreachableCode();
-    data.decOffset = parseInt(matches.id, 16) - firstDecimalMarker;
-  }
+  if (data.decOffset === undefined)
+    data.decOffset = parseInt(matches.id, 16) - firstMarker;
   // The leading zeroes are stripped when converting back to string, so we re-add them here.
   // Fortunately, we don't have to worry about whether or not this is robust,
   // since we know all the IDs that will be present in the encounter.
@@ -81,10 +77,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: {},
       condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
-      run: (data, matches) => {
-        const firstHeadmarker: number = parseInt(firstMarker, 16);
-        getHeadmarkerId(data, matches, firstHeadmarker);
-      },
+      run: (data, matches) => getHeadmarkerId(data, matches),
     },
     {
       id: 'TOP In Line Debuff Collector',
