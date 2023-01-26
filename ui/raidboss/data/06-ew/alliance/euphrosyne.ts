@@ -669,7 +669,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         text: Outputs.stackOnPlayer,
-      }
+      },
     },
     {
       id: 'Euphrosyne Menphina Blue Moon',
