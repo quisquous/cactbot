@@ -4,14 +4,18 @@ const playstationMarkers = ['circle', 'cross', 'triangle', 'square'];
 // we can determine what it is from the first overhead marker we see.
 const headmarkers = {
   // vfx/lockon/eff/lockon5_t0h.avfx
-  'spread': '0017',
+  spread: '0017',
   // vfx/lockon/eff/tank_lockonae_5m_5s_01k1.avfx
-  'buster': '0157',
+  buster: '0157',
   // vfx/lockon/eff/z3oz_firechain_01c.avfx through 04c
-  'firechainCircle': '01A0',
-  'firechainTriangle': '01AB',
-  'firechainSquare': '01AC',
-  'firechainX': '01AD',
+  firechainCircle: '01A0',
+  firechainTriangle: '01A1',
+  firechainSquare: '01A2',
+  firechainX: '01A3',
+  // vfx/lockon/eff/com_share2i.avfx
+  stack: '0064',
+  // vfx/lockon/eff/all_at8s_0v.avfx
+  meteor: '015A',
 };
 const playstationHeadmarkerIds = [
   headmarkers.firechainCircle,
@@ -43,6 +47,9 @@ Options.Triggers.push({
       inLine: {},
       loopBlasterCount: 0,
       pantoMissileCount: 0,
+      solarRayTargets: [],
+      synergyMarker: {},
+      spotlightStacks: [],
     };
   },
   triggers: [
@@ -223,6 +230,214 @@ Options.Triggers.push({
         if (myNum === mechanicNum)
           return { alertText: output.spread({ num: mechanicNum }) };
         return { infoText: output.lineStack({ num: mechanicNum }) };
+      },
+    },
+    {
+      id: 'TOP Diffuse Wave Cannon Kyrios',
+      type: 'HeadMarker',
+      netRegex: {},
+      // We normally call this stuff out for other roles, but tanks often invuln this.
+      condition: (data) => data.role === 'tank',
+      suppressSeconds: 20,
+      alertText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        if (id === headmarkers.spread)
+          return output.tankCleaves();
+      },
+      outputStrings: {
+        tankCleaves: {
+          en: 'Tank Cleaves',
+        },
+      },
+    },
+    {
+      id: 'TOP Wave Cannon Kyrios',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: Conditions.targetIsYou(),
+      infoText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        if (id === headmarkers.spread)
+          return output.laserOnYou();
+      },
+      outputStrings: {
+        laserOnYou: {
+          en: 'Laser on YOU',
+        },
+      },
+    },
+    {
+      id: 'TOP Solar Ray You',
+      type: 'StartsUsing',
+      netRegex: { id: ['7E6A', '7E6B'], source: 'Omega' },
+      preRun: (data, matches) => data.solarRayTargets.push(matches.target),
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tankBusterOnYou: Outputs.tankBusterOnYou,
+          tankBusters: Outputs.tankBusters,
+        };
+        if (matches.target === data.me)
+          return { alertText: output.tankBusterOnYou() };
+        if (data.solarRayTargets.length === 2 && !data.solarRayTargets.includes(data.me))
+          return { infoText: output.tankBusters() };
+      },
+    },
+    {
+      id: 'TOP Mid Remote Glitch',
+      type: 'GainsEffect',
+      // D63 = Mid Glitch
+      // D64 = Remote Glitch
+      netRegex: { effectId: ['D63', 'D64'] },
+      suppressSeconds: 10,
+      run: (data, matches) => data.glitch = matches.effectId === 'D63' ? 'mid' : 'remote',
+    },
+    {
+      id: 'TOP Synergy Marker Collect',
+      type: 'HeadMarker',
+      netRegex: {},
+      run: (data, matches) => {
+        const id = getHeadmarkerId(data, matches);
+        const marker = playstationMarkerMap[id];
+        if (marker === undefined)
+          return;
+        data.synergyMarker[matches.target] = marker;
+      },
+    },
+    {
+      id: 'TOP Synergy Marker',
+      type: 'GainsEffect',
+      // In practice, glitch1 glitch2 marker1 marker2 glitch3 glitch4 etc ordering.
+      netRegex: { effectId: ['D63', 'D64'], capture: false },
+      delaySeconds: 0.5,
+      durationSeconds: 14,
+      suppressSeconds: 10,
+      infoText: (data, _matches, output) => {
+        const glitch = data.glitch
+          ? {
+            mid: output.midGlitch(),
+            remote: output.remoteGlitch(),
+          }[data.glitch]
+          : output.unknown();
+        const myMarker = data.synergyMarker[data.me];
+        // If something has gone awry, at least return something here.
+        if (myMarker === undefined)
+          return glitch;
+        let partner = output.unknown();
+        for (const [name, marker] of Object.entries(data.synergyMarker)) {
+          if (marker === myMarker && name !== data.me) {
+            partner = name;
+            break;
+          }
+        }
+        return {
+          circle: output.circle({ glitch: glitch, player: data.ShortName(partner) }),
+          triangle: output.triangle({ glitch: glitch, player: data.ShortName(partner) }),
+          square: output.square({ glitch: glitch, player: data.ShortName(partner) }),
+          cross: output.cross({ glitch: glitch, player: data.ShortName(partner) }),
+        }[myMarker];
+      },
+      outputStrings: {
+        midGlitch: {
+          en: 'Mid',
+        },
+        remoteGlitch: {
+          en: 'Far',
+        },
+        circle: {
+          en: '${glitch} Circle (with ${player})',
+        },
+        triangle: {
+          en: '${glitch} Triangle (with ${player})',
+        },
+        square: {
+          en: '${glitch} Square (with ${player})',
+        },
+        cross: {
+          en: '${glitch} Cross (with ${player})',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'TOP Spotlight',
+      type: 'HeadMarker',
+      netRegex: {},
+      preRun: (data, matches) => {
+        const id = getHeadmarkerId(data, matches);
+        if (id === headmarkers.stack)
+          data.spotlightStacks.push(matches.target);
+      },
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          midGlitch: {
+            en: 'Mid',
+          },
+          remoteGlitch: {
+            en: 'Far',
+          },
+          stacksOn: {
+            en: '${glitch} Stacks (${player1}, ${player2}',
+          },
+          // TODO: say who your tether partner is to swap??
+          // TODO: tell the tether partner they are tethered to a stack?
+          stackOnYou: {
+            en: 'Stack on You',
+          },
+          unknown: Outputs.unknown,
+        };
+        const glitch = data.glitch
+          ? {
+            mid: output.midGlitch(),
+            remote: output.remoteGlitch(),
+          }[data.glitch]
+          : output.unknown();
+        const [p1, p2] = data.spotlightStacks.sort();
+        if (data.spotlightStacks.length !== 2 || p1 === undefined || p2 === undefined)
+          return;
+        const stacksOn = output.stacksOn({
+          glitch: glitch,
+          player1: data.ShortName(p1),
+          player2: data.ShortName(p2),
+        });
+        if (!data.spotlightStacks.includes(data.me))
+          return { infoText: stacksOn };
+        return {
+          alertText: output.stackOnYou(),
+          infoText: stacksOn,
+        };
+      },
+    },
+    {
+      id: 'TOP Optimized Meteor',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: Conditions.targetIsYou(),
+      alertText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        if (id === headmarkers.meteor)
+          return output.meteorOnYou();
+      },
+      outputStrings: {
+        meteorOnYou: Outputs.meteorOnYou,
+      },
+    },
+    {
+      id: 'TOP Beyond Defense',
+      type: 'Ability',
+      netRegex: { id: '7B28' },
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Don\'t Stack!',
+          de: 'Nicht stacken!',
+          fr: 'Ne vous packez pas !',
+          ja: 'スタックするな！',
+          cn: '分散站位！',
+          ko: '쉐어 맞지 말것',
+        },
       },
     },
   ],
