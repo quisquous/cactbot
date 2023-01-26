@@ -21,7 +21,7 @@ const stackMistake = (
 ): OopsyFunc<Data, NetMatches['Ability'], OopsyMistake | undefined> => {
   return (_data, matches) => {
     const actual = parseFloat(matches.targetCount);
-    if (actual === expected)
+    if (actual === expected || actual === 0)
       return;
     const ability = abilityText ?? matches.ability;
     const text = actual === 1 ? GetSoloMistakeText(ability) : GetShareMistakeText(ability, actual);
