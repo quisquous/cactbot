@@ -661,7 +661,15 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '7D67', source: 'Halone' },
       condition: (data) => !data.haloneIceDartTargets.includes(data.me),
-      response: Responses.stackMarkerOn(),
+      delaySeconds: 0.5,
+      alertText: (data, matches, output) => {
+        if (data.haloneIceDartTargets.includes(data.me))
+          return;
+        return output.text!({ player: matches.target });
+      },
+      outputStrings: {
+        text: Outputs.stackOnPlayer,
+      },
     },
     {
       id: 'Euphrosyne Menphina Blue Moon',
