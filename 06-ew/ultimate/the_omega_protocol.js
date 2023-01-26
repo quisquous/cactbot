@@ -428,7 +428,7 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { id: '7B28' },
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Don\'t Stack!',
@@ -444,6 +444,7 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega': 'Omega',
       },
@@ -462,6 +463,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega': 'Oméga',
       },
@@ -480,6 +482,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega': 'オメガ',
       },
