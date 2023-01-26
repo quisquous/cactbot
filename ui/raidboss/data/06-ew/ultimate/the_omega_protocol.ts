@@ -723,6 +723,41 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'TOP Optical Unit Location',
+      type: 'MapEffect',
+      netRegex: { location: '0[1-8]', flags: '000200001' },
+      // This comes out right with playstation debuffs.
+      // Let players resolve Superliminal Steel/etc first.
+      delaySeconds: 4,
+      durationSeconds: 4,
+      alertText: (_data, matches, output) => {
+        const dir = {
+          '01': output.dirN!(),
+          '02': output.dirNE!(),
+          '03': output.dirE!(),
+          '04': output.dirSE!(),
+          '05': output.dirS!(),
+          '06': output.dirSW!(),
+          '07': output.dirW!(),
+          '08': output.dirNW!(),
+        }[matches.location];
+        return output.text!({ dir: dir });
+      },
+      outputStrings: {
+        text: {
+          en: 'Eye ${dir}',
+        },
+        dirN: Outputs.dirN,
+        dirNE: Outputs.dirNE,
+        dirE: Outputs.dirE,
+        dirSE: Outputs.dirSE,
+        dirS: Outputs.dirS,
+        dirSW: Outputs.dirSW,
+        dirW: Outputs.dirW,
+        dirNW: Outputs.dirNW,
+      },
+    },
+    {
       id: 'TOP Spotlight',
       type: 'HeadMarker',
       netRegex: {},
