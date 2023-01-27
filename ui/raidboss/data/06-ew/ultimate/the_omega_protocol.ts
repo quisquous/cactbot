@@ -725,10 +725,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TOP Optical Unit Location',
       type: 'MapEffect',
-      netRegex: { location: '0[1-8]', flags: '000200001' },
+      netRegex: { location: '0[1-8]', flags: '00020001' },
       // This comes out right with playstation debuffs.
       // Let players resolve Superliminal Steel/etc first.
-      delaySeconds: 4,
+      delaySeconds: 3,
       durationSeconds: 4,
       alertText: (_data, matches, output) => {
         const dir = {
