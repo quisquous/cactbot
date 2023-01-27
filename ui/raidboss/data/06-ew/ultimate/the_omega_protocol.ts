@@ -413,12 +413,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TOP Spotlight',
       type: 'HeadMarker',
       netRegex: {},
-      preRun: (data, matches) => {
-        const id = getHeadmarkerId(data, matches);
-        if (id === headmarkers.stack)
-          data.spotlightStacks.push(matches.target);
-      },
-      response: (data, _matches, output) => {
+      condition: (data, matches) => getHeadmarkerId(data, matches) === headmarkers.stack,
+      response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           midGlitch: {
@@ -435,12 +431,14 @@ const triggerSet: TriggerSet<Data> = {
           },
           // TODO: say who your tether partner is to swap??
           // TODO: tell the tether partner they are tethered to a stack?
-          stackOnYou: {
-            en: 'Stack on You',
-            de: 'Auf DIR sammeln',
-          },
+          stackOnYou: Outputs.stackOnYou,
           unknown: Outputs.unknown,
         };
+
+        data.spotlightStacks.push(matches.target);
+        const [p1, p2] = data.spotlightStacks.sort();
+        if (data.spotlightStacks.length !== 2 || p1 === undefined || p2 === undefined)
+          return;
 
         const glitch = data.glitch
           ? {
@@ -448,10 +446,6 @@ const triggerSet: TriggerSet<Data> = {
             remote: output.remoteGlitch!(),
           }[data.glitch]
           : output.unknown!();
-
-        const [p1, p2] = data.spotlightStacks.sort();
-        if (data.spotlightStacks.length !== 2 || p1 === undefined || p2 === undefined)
-          return;
 
         const stacksOn = output.stacksOn!({
           glitch: glitch,
