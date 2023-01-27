@@ -325,7 +325,8 @@ class TLFuncs {
       const milliseconds = date.getMilliseconds();
       // If milliseconds is under 100, the leading zeroes will be truncated.
       // We don't want that, so we pad it inside the formatter.
-      return `${hours.toString().padStart(2, '0')}:${minutes}:${seconds}.${milliseconds.toString().padStart(3, '0')}`;
+      return `${hours.toString().padStart(2, 
+      '0')}:${minutes}:${seconds}.${milliseconds.toString().padStart(3, '0')}`;
     }
     return 'Unknown_Time';
   }
