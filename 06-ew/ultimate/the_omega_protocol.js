@@ -50,6 +50,10 @@ Options.Triggers.push({
       solarRayTargets: [],
       synergyMarker: {},
       spotlightStacks: [],
+      meteorTargets: [],
+      cannonFodder: {},
+      smellDefamation: [],
+      smellRot: {},
     };
   },
   triggers: [
@@ -419,10 +423,10 @@ Options.Triggers.push({
       id: 'TOP Optimized Meteor',
       type: 'HeadMarker',
       netRegex: {},
-      condition: Conditions.targetIsYou(),
+      condition: (data, matches) => getHeadmarkerId(data, matches) === headmarkers.meteor,
       alertText: (data, matches, output) => {
-        const id = getHeadmarkerId(data, matches);
-        if (id === headmarkers.meteor)
+        data.meteorTargets.push(matches.target);
+        if (data.me === matches.target)
           return output.meteorOnYou();
       },
       outputStrings: {
@@ -433,16 +437,167 @@ Options.Triggers.push({
       id: 'TOP Beyond Defense',
       type: 'Ability',
       netRegex: { id: '7B28' },
-      condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text(),
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          dontStack: {
+            en: 'Don\'t Stack!',
+            de: 'Nicht stacken!',
+            fr: 'Ne vous packez pas !',
+            ja: 'スタックするな！',
+            cn: '分散站位！',
+            ko: '쉐어 맞지 말것',
+          },
+          stack: Outputs.stackMarker,
+        };
+        if (matches.target === data.me)
+          return { alarmText: output.dontStack() };
+        if (!data.meteorTargets.includes(data.me))
+          return { infoText: output.stack() };
+      },
+    },
+    {
+      id: 'TOP Cosmo Memory',
+      type: 'StartsUsing',
+      netRegex: { id: '7B22', source: 'Omega-M', capture: false },
+      response: Responses.aoe(),
+    },
+    {
+      id: 'TOP Sniper Cannon Fodder',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'D61' },
+      preRun: (data, matches) => data.cannonFodder[matches.target] = 'spread',
+      durationSeconds: 15,
+      infoText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.spread();
+      },
       outputStrings: {
-        text: {
-          en: 'Don\'t Stack!',
-          de: 'Nicht stacken!',
-          fr: 'Ne vous packez pas !',
-          ja: 'スタックするな！',
-          cn: '分散站位！',
-          ko: '쉐어 맞지 말것',
+        spread: Outputs.spread,
+      },
+    },
+    {
+      id: 'TOP High-Powered Sniper Cannon Fodder Collect',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'D62' },
+      run: (data, matches) => data.cannonFodder[matches.target] = 'stack',
+    },
+    {
+      id: 'TOP High-Powered Sniper Cannon Fodder',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'D62', capture: false },
+      delaySeconds: 0.5,
+      durationSeconds: 15,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        const myBuff = data.cannonFodder[data.me];
+        if (myBuff === 'spread')
+          return;
+        const partnerBuff = myBuff === 'stack' ? undefined : 'stack';
+        const partners = [];
+        for (const name of data.party.partyNames) {
+          if (name === data.me)
+            continue;
+          if (data.cannonFodder[name] === partnerBuff)
+            partners.push(name);
+        }
+        const [p1, p2] = partners.sort().map((x) => data.ShortName(x));
+        if (myBuff === 'stack')
+          return output.stack({ player1: p1, player2: p2 });
+        return output.unmarkedStack({ player1: p1, player2: p2 });
+      },
+      outputStrings: {
+        stack: {
+          en: 'Stack (w/ ${player1} or ${player2})',
+        },
+        unmarkedStack: {
+          en: 'Unmarked Stack (w/ ${player1} or ${player2})',
+        },
+      },
+    },
+    {
+      id: 'TOP Code Smell Collector',
+      type: 'GainsEffect',
+      // D6C Synchronization Code Smell (stack)
+      // D6D Overflow Code Smell (defamation)
+      // D6E Underflow Code Smell (red)
+      // D6F Performance Code Smell (blue)
+      // D71 Remote Code Smell (far tethers)
+      // DAF Local Code Smell (near tethers)
+      // DC9 Local Regression (near tethers)
+      // DCA Remote Regression (far tethers)
+      // DC4 Critical Synchronization Bug (stack)
+      // DC5 Critical Overflow Bug (defamation)
+      // DC6 Critical Underflow Bug (red)
+      // D65 Critical Performance Bug (blue)
+      netRegex: { effectId: ['D6D', 'D6E', 'D6F'] },
+      run: (data, matches) => {
+        const isDefamation = matches.effectId === 'D6D';
+        const isRed = matches.effectId === 'D6E';
+        const isBlue = matches.effectId === 'D6F';
+        if (isDefamation)
+          data.smellDefamation.push(matches.target);
+        else if (isRed)
+          data.smellRot[matches.target] = 'red';
+        else if (isBlue)
+          data.smellRot[matches.target] = 'blue';
+      },
+    },
+    {
+      id: 'TOP Code Smell Defamation Color',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'D6D', capture: false },
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        let rotColor;
+        if (data.smellDefamation.length !== 2) {
+          console.error(
+            `Defamation: missing person: ${JSON.stringify(data.smellDefamation)}, ${
+              JSON.stringify(data.smellRot)
+            }`,
+          );
+        }
+        for (const target of data.smellDefamation) {
+          const color = data.smellRot[target];
+          if (color === undefined) {
+            console.error(
+              `Defamation: missing color: ${JSON.stringify(data.smellDefamation)}, ${
+                JSON.stringify(data.smellRot)
+              }`,
+            );
+            continue;
+          }
+          if (rotColor === undefined) {
+            rotColor = color;
+            continue;
+          }
+          if (rotColor !== color) {
+            console.error(
+              `Defamation: conflicting color: ${JSON.stringify(data.smellDefamation)}, ${
+                JSON.stringify(data.smellRot)
+              }`,
+            );
+            rotColor = undefined;
+            break;
+          }
+        }
+        data.defamationColor = rotColor;
+        if (rotColor === 'red')
+          return output.red();
+        else if (rotColor === 'blue')
+          return output.blue();
+        return output.unknown();
+      },
+      outputStrings: {
+        red: {
+          en: 'Red Defamation',
+        },
+        blue: {
+          en: 'Blue Defamation',
+        },
+        unknown: {
+          en: '??? Defamation',
         },
       },
     },
