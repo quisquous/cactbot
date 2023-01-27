@@ -1,7 +1,6 @@
 ### The Omega Protocol
-# -p 7B03:15 7B40:206.4
-# -ii 7BFD 7B0A 7E70 7B0C 7B41 7E6B 7B3F 7BFE 7BFF 7B14 7B15 7B16 7B17 7B1C 7B1D 7B1E 7B2B 7B2C 7B39 7B20 7F75 7B36 7B37 7B35 7B43 7B28 7B32 7B23 7B24 7B49 7B4C
-
+# -p 7B03:15 7B40:206.4 7B13:400
+# -ii 7BFD 7B0A 7E70 7B0C 7B41 7E6B 7B3F 7BFE 7BFF 7B14 7B15 7B16 7B17 7B1C 7B1D 7B1E 7B2B 7B2C 7B39 7B20 7F75 7B36 7B37 7B35 7B43 7B28 7B32 7B23 7B24 7B49 7B4C 7C00  7B5F 7B60 7B5A 7B5B 7B6D 7B56 7B57
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -83,7 +82,7 @@ hideall "--sync--"
 347.4 "Laser Shower Enrage" sync / 1[56]:[^:]*:Omega:7B45:/
 
 
-### P3: Final Omega
+### P3: "Final" Omega
 400.0 "--sync--" sync / 1[56]:[^:]*:Omega:7B13:/ window 400,0
 409.3 "--sync--" sync / 1[56]:[^:]*:Omega:7B4A:/
 412.3 "--sync--" sync / 1[56]:[^:]*:Omega:7B4B:/
@@ -93,15 +92,46 @@ hideall "--sync--"
 420.4 "Wave Repeater 4" sync / 1[56]:[^:]*:Omega:7B52:/
 422.4 "Wave Repeater 1" sync / 1[56]:[^:]*:Omega:7B4F:/
 424.5 "Wave Repeater 2" sync / 1[56]:[^:]*:Omega:7B50:/
-426.4 "Colossal Blow" sync / 1[56]:[^:]*:Right Arm Unit:7B4E:/
+426.4 "Colossal Blow" sync / 1[56]:[^:]*:(Left Arm Unit|Right Arm Unit):7B4E:/ window 1,1
 426.6 "Wave Repeater 3" sync / 1[56]:[^:]*:Omega:7B51:/
 # sniper cannon times are a little sloppy and have inconsistent actor names
 427.3 "High-powered Sniper Cannon x2" #sync / 1[56]:[^:]*:Omega:7B54:/
 428.4 "Sniper Cannon x4" #sync / 1[56]:[^:]*:Omega:7B53:/
 428.7 "Wave Repeater 4" sync / 1[56]:[^:]*:Omega:7B52:/
-428.9 "Colossal Blow" sync / 1[56]:[^:]*:Right Arm Unit:7B4E:/
+428.9 "Colossal Blow" sync / 1[56]:[^:]*:(Left Arm Unit|Right Arm Unit):7B4E:/ window 1,1
 
 432.3 "--targetable--"
-434.3 "--sync--" sync / 1[56]:[^:]*:Omega:7C00:/
 436.3 "--sync--" sync / 14:[^:]*:Omega:7B55:/ window 40,40
+
 441.3 "Hello, World" sync / 1[56]:[^:]*:Omega:7B55:/
+# Most of the damage comes in 7B56 Critical Synchronization Bug,
+# and 7B57 Critical Overflow Bug which is 1s after latent defect
+# (and patch, obviously).  There's also a ton of other Latent X
+# abilities here.  All of these are skipped for noise reasons.
+
+455.4 "--sync--" sync / 14:[^:]*:Omega:7B6F:/
+464.4 "Latent Defect 1" sync / 1[56]:[^:]*:Omega:7B6F:/
+# people break both patches here whenever, so don't sync these times
+# this time is roughly when people break the first one.
+466.9 "Patch x2" #sync / 1[56]:[^:]*:Omega:7B63:/
+
+476.4 "--sync--" sync / 14:[^:]*:Omega:7B6F:/
+485.4 "Latent Defect 2" sync / 1[56]:[^:]*:Omega:7B6F:/
+487.9 "Patch x2" #sync / 1[56]:[^:]*:Omega:7B63:/
+
+497.5 "--sync--" sync / 14:[^:]*:Omega:7B6F:/
+506.5 "Latent Defect 3" sync / 1[56]:[^:]*:Omega:7B6F:/
+509.0 "Patch x2" #sync / 1[56]:[^:]*:Omega:7B63:/
+
+518.8 "--sync--" sync / 14:[^:]*:Omega:7B6F:/
+527.5 "Patch" #sync / 1[56]:[^:]*:Omega:7B63:/
+527.8 "Latent Defect 4" sync / 1[56]:[^:]*:Omega:7B6F:/
+533.5 "Patch" #sync / 1[56]:[^:]*:Omega:7B63:/
+
+542.1 "--sync--" sync / 14:[^:]*:Omega:7B64:/ window 30,30
+550.1 "Critical Error" sync / 1[56]:[^:]*:Omega:7B64:/
+
+560.2 "--sync--" sync / 1[56]:[^:]*:Omega:7B46:/
+571.4 "Oversampled Wave Cannon" sync / 1[56]:[^:]*:Omega:7B6C:/
+577.4 "--sync--" sync / 14:[^:]*:Omega:7B48:/ window 50,50
+587.4 "Ion Efflux" sync / 1[56]:[^:]*:Omega:7B48:/
