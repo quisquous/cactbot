@@ -502,7 +502,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
-        'Omega': 'Omega',
+        'Omega(?!-)': 'Omega',
         'Omega-F': 'Omega-W',
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
@@ -536,7 +536,7 @@ const triggerSet: TriggerSet<Data> = {
         'Party Synergy': 'Synergieprogramm PT',
         'Pile Pitch': 'Neigungsstoß',
         'Program Loop': 'Programmschleife',
-        'Sniper Cannon': 'Wellengeschütz „Pfeil”',
+        '(?<! )Sniper Cannon': 'Wellengeschütz „Pfeil”',
         'Solar Ray': 'Sonnenstrahl',
         'Spotlight': 'Scheinwerfer',
         'Storage Violation': 'Speicherverletzung S',
@@ -550,7 +550,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Omega': 'Oméga',
+        'Omega(?!-)': 'Oméga',
         'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',
         'Optical Unit': 'unité optique',
@@ -584,7 +584,7 @@ const triggerSet: TriggerSet<Data> = {
         'Party Synergy': 'Programme synergique PT',
         'Pile Pitch': 'Lancement de pieu',
         'Program Loop': 'Boucle de programme',
-        'Sniper Cannon': 'Canon plasma longue portée',
+        '(?<! )Sniper Cannon': 'Canon plasma longue portée',
         'Solar Ray': 'Rayon solaire',
         'Spotlight': 'Phare',
         'Storage Violation': 'Corruption de données S',
@@ -598,7 +598,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Omega': 'オメガ',
+        'Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
         'Omega-M': 'オメガM',
         'Optical Unit': 'オプチカルユニット',
@@ -632,7 +632,7 @@ const triggerSet: TriggerSet<Data> = {
         'Party Synergy': '連携プログラムPT',
         'Pile Pitch': 'パイルピッチ',
         'Program Loop': 'サークルプログラム',
-        'Sniper Cannon': '狙撃式波動砲',
+        '(?<! )Sniper Cannon': '狙撃式波動砲',
         'Solar Ray': 'ソーラレイ',
         'Spotlight': 'スポットライト',
         'Storage Violation': '記憶汚染除去S',
