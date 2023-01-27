@@ -524,6 +524,7 @@ const triggerSet: TriggerSet<Data> = {
         'Guided Missile Kyrios': 'Lenkrakete P',
         'Hello, World': 'Hallo, Welt!',
         'High-powered Sniper Cannon': 'Wellengeschütz „Pfeil +”',
+        'Laser Shower': 'Laserschauer',
         'Limitless Synergy': 'Synergieprogramm LB',
         'Optical Laser': 'Optischer Laser F',
         'Optimized Bladedance': 'Omega-Schwertertanz',
@@ -548,7 +549,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'Oméga',
         'Omega-F': 'Oméga-F',
@@ -572,6 +572,7 @@ const triggerSet: TriggerSet<Data> = {
         'Guided Missile Kyrios': 'Missile guidé P',
         'Hello, World': 'Bonjour, le monde',
         'High-powered Sniper Cannon': 'Canon plasma longue portée surchargé',
+        'Laser Shower': 'Pluie de lasers',
         'Limitless Synergy': 'Programme synergique LB',
         'Optical Laser': 'Laser optique F',
         'Optimized Bladedance': 'Danse de la lame Oméga',
@@ -596,7 +597,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
@@ -620,6 +620,7 @@ const triggerSet: TriggerSet<Data> = {
         'Guided Missile Kyrios': '誘導ミサイルP',
         'Hello, World': 'ハロー・ワールド',
         'High-powered Sniper Cannon': '狙撃式高出力波動砲',
+        'Laser Shower': 'レーザーシャワー',
         'Limitless Synergy': '連携プログラムLB',
         'Optical Laser': 'オプチカルレーザーF',
         'Optimized Bladedance': 'ブレードダンス・オメガ',
