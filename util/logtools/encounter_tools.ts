@@ -318,11 +318,15 @@ class TLFuncs {
   }
   static timeFromDate(date?: Date): string {
     if (date) {
-      const wholeTime = date.toLocaleTimeString('en-US', { hour12: false });
+      // const wholeTime = date.toLocaleTimeString('en-US', { hour12: false });
+      const hours = date.getHours() % 24;
+      const minutes = date.getMinutes();
+      const seconds = date.getSeconds();
+      const milliseconds = date.getMilliseconds();
       const milliseconds = date.getMilliseconds();
       // If milliseconds is under 100, the leading zeroes will be truncated.
       // We don't want that, so we pad it inside the formatter.
-      return `${wholeTime}.${milliseconds.toString().padStart(3, '0')}`;
+      return `${hours.toString().padStart(2, '0')}:${minutes}:${seconds}.${milliseconds.toString().padStart(3, '0')}`;
     }
     return 'Unknown_Time';
   }
