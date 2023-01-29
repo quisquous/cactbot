@@ -155,6 +155,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${num} (with ${player})',
           de: '${num} (mit ${player})',
+          ko: '${num} (+ ${player})',
         },
         unknown: Outputs.unknown,
       },
@@ -170,14 +171,17 @@ const triggerSet: TriggerSet<Data> = {
           tower: {
             en: 'Tower 1',
             de: 'Turm 1',
+            ko: '기둥 1',
           },
           tether: {
             en: 'Tether 1',
             de: 'Verbindung 1',
+            ko: '선 1',
           },
           numNoMechanic: {
             en: '1',
             de: '1',
+            ko: '1',
           },
         };
 
@@ -202,14 +206,17 @@ const triggerSet: TriggerSet<Data> = {
           tower: {
             en: 'Tower ${num}',
             de: 'Turm ${num}',
+            ko: '기둥 ${num}',
           },
           tether: {
             en: 'Tether ${num}',
             de: 'Verbindung ${num}',
+            ko: '선 ${num}',
           },
           numNoMechanic: {
             en: '${num}',
             de: '${num}',
+            ko: '${num}',
           },
         };
 
@@ -239,10 +246,12 @@ const triggerSet: TriggerSet<Data> = {
           lineStack: {
             en: '1',
             de: '1',
+            ko: '1',
           },
           spread: {
             en: '1 Out (on YOU)',
             de: '1 Raus (auf Dir)',
+            ko: '밖으로 1',
           },
         };
 
@@ -265,10 +274,12 @@ const triggerSet: TriggerSet<Data> = {
           lineStack: {
             en: '${num}',
             de: '${num}',
+            ko: '${num}',
           },
           spread: {
             en: '${num} Out (on YOU)',
             de: '${num} Raus (auf Dir)',
+            ko: '밖으로 ${num}',
           },
         };
 
@@ -297,6 +308,7 @@ const triggerSet: TriggerSet<Data> = {
         tankCleaves: {
           en: 'Tank Cleaves',
           de: 'Tank Cleaves',
+          ko: '광역 탱버',
         },
       },
     },
@@ -314,6 +326,7 @@ const triggerSet: TriggerSet<Data> = {
         laserOnYou: {
           en: 'Laser on YOU',
           de: 'Laser auf DIR',
+          ko: '레이저 대상자',
         },
       },
     },
@@ -397,26 +410,32 @@ const triggerSet: TriggerSet<Data> = {
         midGlitch: {
           en: 'Mid',
           de: 'Mittel',
+          ko: '가까이',
         },
         remoteGlitch: {
           en: 'Far',
           de: 'Fern',
+          ko: '멀리',
         },
         circle: {
           en: '${glitch} Circle (with ${player})',
           de: '${glitch} Kreis (mit ${player})',
+          ko: '${glitch} 동그라미 (+ ${player})',
         },
         triangle: {
           en: '${glitch} Triangle (with ${player})',
           de: '${glitch} Dreieck (mit ${player})',
+          ko: '${glitch} 삼각 (+ ${player})',
         },
         square: {
           en: '${glitch} Square (with ${player})',
           de: '${glitch} Viereck (mit ${player})',
+          ko: '${glitch} 사각 (+ ${player})',
         },
         cross: {
           en: '${glitch} Cross (with ${player})',
           de: '${glitch} Kreuz (mit ${player})',
+          ko: '${glitch} X (+ ${player})',
         },
         unknown: Outputs.unknown,
       },
@@ -432,14 +451,17 @@ const triggerSet: TriggerSet<Data> = {
           midGlitch: {
             en: 'Mid',
             de: 'Mittel',
+            ko: '가까이',
           },
           remoteGlitch: {
             en: 'Far',
             de: 'Fern',
+            ko: '멀리',
           },
           stacksOn: {
-            en: '${glitch} Stacks (${player1}, ${player2}',
-            de: '${glitch} Sammeln (${player1}, ${player2}',
+            en: '${glitch} Stacks (${player1}, ${player2})',
+            de: '${glitch} Sammeln (${player1}, ${player2})',
+            ko: '${glitch} 쉐어 (${player1}, ${player2})',
           },
           // TODO: say who your tether partner is to swap??
           // TODO: tell the tether partner they are tethered to a stack?
@@ -566,10 +588,12 @@ const triggerSet: TriggerSet<Data> = {
         stack: {
           en: 'Stack (w/ ${player1} or ${player2})',
           de: 'Sammeln (mit ${player1} oder ${player2})',
+          ko: '쉐어 (+ ${player1}, ${player2})',
         },
         unmarkedStack: {
           en: 'Unmarked Stack (w/ ${player1} or ${player2})',
           de: 'Nicht markiertes Sammeln (mit ${player1} oder ${player2})',
+          ko: '무징 쉐어 (+ ${player1}, ${player2})',
         },
       },
     },
@@ -655,14 +679,17 @@ const triggerSet: TriggerSet<Data> = {
         red: {
           en: 'Red Defamation',
           de: 'Rote Ehrenstrafe',
+          ko: '빨강 광역',
         },
         blue: {
           en: 'Blue Defamation',
           de: 'Blaue Ehrenstrafe',
+          ko: '파랑 광역',
         },
         unknown: {
           en: '??? Defamation',
           de: '??? Ehrenstrafe',
+          ko: '??? 광역',
         },
       },
     },
