@@ -422,13 +422,13 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Out Out',
         },
         superliminalStrength: {
-          en: 'In In (On M)',
+          en: 'In In on M',
         },
         superliminalBladework: {
-          en: 'On F',
+          en: 'Under F',
         },
         blizzardStrength: {
-          en: 'Donut Sides',
+          en: 'M Sides',
         },
       },
     },
