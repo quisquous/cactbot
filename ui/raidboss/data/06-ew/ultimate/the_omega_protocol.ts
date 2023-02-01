@@ -433,15 +433,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         blizzardBladework: {
           en: 'Out Out',
+          de: 'Raus Raus',
         },
         superliminalStrength: {
           en: 'In In on M',
+          de: 'Rein Rein auf M',
         },
         superliminalBladework: {
           en: 'Under F',
+          de: 'Unter W',
         },
         blizzardStrength: {
           en: 'M Sides',
+          de: 'Seitlich von M',
         },
       },
     },
@@ -820,7 +824,7 @@ const triggerSet: TriggerSet<Data> = {
         'Spotlight': 'Scheinwerfer',
         'Storage Violation': 'Speicherverletzung S',
         'Superliminal Steel': 'Klingenkombo B',
-        'Synthetic Shield': 'Effiziente Klingenführung',
+        'Synthetic Shield': 'Synthetischer Schild', // This is currently a mistranslated in German as 'Effiziente Klingenführung'
         '(?<! )Wave Cannon Kyrios': 'Wellenkanone P',
         'Wave Repeater': 'Schnellfeuer-Wellenkanone',
       },
