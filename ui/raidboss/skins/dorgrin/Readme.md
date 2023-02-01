@@ -27,14 +27,3 @@ These come in purple, orange and red.
 ### Timelines
 
 ![Timelines featuring an active ability](https://imgur.com/XScpnXi)
-
-## Peace Sans Font Installation
-
-If you'd like to use the custom font, just follow these instructions. The stylesheet tries to use it; if it's not available, it'll fallback to default.
-
-1. Go to [https://www.dafont.com/peace_sans.font](https://www.dafont.com/peace_sans.font)
-2. Press `Download`
-3. Open the zip file
-4. Double click on `Peace Sans.otf`
-5. Press `Install` at the top of your screen
-6. If ACT is already running, reload the overlay to see the changes. Otherwise, you're done!
