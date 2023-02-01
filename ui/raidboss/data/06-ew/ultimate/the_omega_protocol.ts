@@ -166,6 +166,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // 7B07 = Blaster cast (only one cast, but 4 abilities)
       netRegex: { id: '7B07', source: 'Omega', capture: false },
+      durationSeconds: (data) => {
+        const myNum = data.inLine[data.me];
+        if (myNum === 1 || myNum === 3)
+          return 7;
+      },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -201,6 +206,14 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '7B08', source: 'Omega', capture: false },
       preRun: (data) => data.loopBlasterCount++,
+      durationSeconds: (data) => {
+        const mechanicNum = data.loopBlasterCount + 1;
+        const myNum = data.inLine[data.me];
+        if (myNum === undefined)
+          return;
+        if (mechanicNum === myNum || mechanicNum === myNum + 2 || mechanicNum === myNum - 2)
+          return 7;
+      },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -591,7 +604,7 @@ const triggerSet: TriggerSet<Data> = {
         if (matches.target === data.me)
           return { alarmText: output.dontStack!() };
         if (!data.meteorTargets.includes(data.me))
-          return { infoText: output.stack!() };
+          return { alertText: output.stack!() };
       },
     },
     {
