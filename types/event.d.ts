@@ -384,7 +384,7 @@ export interface PluginCombatantState {
   PartyType?: number;
   ID?: number;
   OwnerID?: number;
-  WeaponID?: number;
+  WeaponId?: number;
   type?: number;
   Job?: number;
   Level?: number;

@@ -394,12 +394,12 @@ const triggerSet: TriggerSet<Data> = {
         for (const c of data.combatantData) {
           if (c.BNpcID === omegaMNPCId) {
             countM++;
-            if (c.WeaponID === 4)
+            if (c.WeaponId === 4)
               isMIn = true;
           }
           if (c.BNpcID === omegaFNPCId) {
             countF++;
-            if (c.WeaponID === 4)
+            if (c.WeaponId === 4)
               isFIn = true;
           }
         }
