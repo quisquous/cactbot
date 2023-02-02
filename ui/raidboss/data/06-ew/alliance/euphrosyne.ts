@@ -1037,6 +1037,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Euphrosyne Menphina Winter Halo',
       type: 'StartsUsing',
+      // 7BC6 = no dog (7BC7 damage)
+      // 7BDB = dog cleaving right attached (7BDF damage)
+      // 7BDC = ?
+      // 7BE8 = ?
+      // 7BE9 = ?
+      // 7F0E = ?
+      // 7F0F = dog cleaving left unattached (7BEC damage)
       netRegex: {
         id: ['7BC6', '7BE8', '7BE9', '7F0E', '7F0F', '7BDB', '7BDC'],
         source: 'Menphina',
