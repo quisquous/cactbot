@@ -776,6 +776,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'Omega',
         'Omega-F': 'Omega-W',
@@ -831,6 +832,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'Oméga',
         'Omega-F': 'Oméga-F',
@@ -886,6 +888,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
