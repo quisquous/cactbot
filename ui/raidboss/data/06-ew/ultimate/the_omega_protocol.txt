@@ -332,12 +332,11 @@ hideall "--sync--"
 1262.9 "Cosmo Arrow Exaflare 1" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
 1264.9 "Cosmo Arrow Exaflare 2" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
 1266.9 "Cosmo Arrow Exaflare 3" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
-1266.9 "Cosmo Arrow Exaflare 4" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
-1268.9 "Cosmo Arrow Exaflare 5" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
+1268.9 "Cosmo Arrow Exaflare 4" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
 1269.9 "Wave Cannon 1" #sync / 1[56]:[^:]*:Alpha Omega:7BAB:/
-1270.9 "Cosmo Arrow" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
+1270.9 "Cosmo Arrow Exaflare 5" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
 1271.9 "Wave Cannon 2" #sync / 1[56]:[^:]*:Alpha Omega:7BAB:/
-1272.9 "Cosmo Arrow" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
+1272.9 "Cosmo Arrow Exaflare 6" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
 1277.8 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7BA9:/
 1278.2 "Wave Cannon (Wild Charge)" #sync / 1[56]:[^:]*:Alpha Omega:7BAA:/
 1282.3 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
