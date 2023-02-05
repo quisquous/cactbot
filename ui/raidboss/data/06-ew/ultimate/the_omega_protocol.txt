@@ -132,7 +132,7 @@ hideall "--sync--"
 550.1 "Critical Error" sync / 1[56]:[^:]*:Omega:7B64:/
 
 560.2 "--sync--" sync / 1[56]:[^:]*:Omega:7B46:/
-571.4 "Oversampled Wave Cannon" sync / 1[56]:[^:]*:Omega:7B6C:/
+571.4 "Oversampled Wave Cannon" sync / 1[56]:[^:]*:Omega:[7B6B|7B6C]:/
 577.4 "--sync--" sync / 14:[^:]*:Omega:7B48:/ window 50,50
 587.4 "Ion Efflux Enrage" sync / 1[56]:[^:]*:Omega:7B48:/
 
