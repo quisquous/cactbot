@@ -279,7 +279,7 @@ hideall "--sync--"
 
 ### P6: Alpha Omega
 # Blind Faith DPS check passed
-1100.0 "--sync--" sync / 1[56]:[^:]*:Omega-F:7F72:/
+1100.0 "--sync--" sync / 1[56]:[^:]*:Omega-F:7F72:/ window 1100,0
 
 # TODO: Adjust targetable
 1160.0 "--targetable--"
