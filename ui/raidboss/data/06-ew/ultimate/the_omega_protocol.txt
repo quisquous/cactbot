@@ -189,7 +189,7 @@ hideall "--sync--"
 733.9 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B42:/
 740.0 "Run: ****mi* (Delta Version)" sync / 1[56]:[^:]*:Omega-M:7B88:/
 743.0 "--untargetable--"
-747.2 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:7B8C:/
+750.2 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:7B8C:/
 753.2 "Archive Peripheral" sync / 1[56]:[^:]*:Omega:7F76:/
 761.2 "Patch" #sync / 1[56]:[^:]*:Omega-M:7B63:/
 763.2 "Optical Laser" sync / 1[56]:[^:]*:Optical Unit:7B21:/
