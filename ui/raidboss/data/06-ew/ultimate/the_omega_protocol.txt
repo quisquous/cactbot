@@ -222,7 +222,6 @@ hideall "--sync--"
 841.1 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B16:/
 843.8 "Hyper Pulse" sync / 1[56]:[^:]*:Right Arm Unit:7B72:/
 843.9 "Wave Cannon" #sync / 1[56]:[^:]*:Omega:7B74:/
-843.9 "Wave Cannon" #sync / 1[56]:[^:]*:Omega:7B74:/
 845.1 "--sync--" sync / 1[56]:[^:]*:Omega-M:7F30:/
 848.7 "--sync--" sync / 1[56]:[^:]*:Omega:7B15:/
 849.3 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B20:/
