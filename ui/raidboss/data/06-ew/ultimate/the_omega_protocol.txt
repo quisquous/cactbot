@@ -132,7 +132,7 @@ hideall "--sync--"
 550.1 "Critical Error" sync / 1[56]:[^:]*:Omega:7B64:/
 
 560.2 "--sync--" sync / 1[56]:[^:]*:Omega:7B46:/
-571.4 "Oversampled Wave Cannon" sync / 1[56]:[^:]*:Omega:[7B6B|7B6C]:/
+571.4 "Oversampled Wave Cannon" sync / 1[56]:[^:]*:Omega:(7B6B|7B6C):/
 577.4 "--sync--" sync / 14:[^:]*:Omega:7B48:/ window 50,50
 587.4 "Ion Efflux Enrage" sync / 1[56]:[^:]*:Omega:7B48:/
 
@@ -232,7 +232,7 @@ hideall "--sync--"
 852.4 "Discharger" sync / 1[56]:[^:]*:Omega-M:7B2E:/
 856.4 "Storage Violation x5 / Storage Violation x6" sync / 1[56]:[^:]*:Omega:7B0[45]:/
 
-873.7 "Superliminal Steel/Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-M:[7B2A|7B2D]:/
+873.7 "Superliminal Steel/Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-M:(7B2A|7B2D):/
 880.6 "Hello, Near World 1" sync / 1[56]:[^:]*:Omega-F:7B89:/
 880.6 "Hello, Distant World 1" sync / 1[56]:[^:]*:Omega-F:8110:/
 880.6 "Hyper Pulse" sync / 1[56]:[^:]*:Right Arm Unit:7B72:/
