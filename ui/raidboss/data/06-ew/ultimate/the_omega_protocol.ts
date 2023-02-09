@@ -815,9 +815,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: ['D65', 'DC6'] },
       condition: (data, matches) => {
         data.bugRot[matches.target] = matches.effectId === 'D65' ? 'blue' : 'red';
-        return (matches.target === data.me) && data.latentDefectCount != 3;
+        return (matches.target === data.me) && data.latentDefectCount !== 3;
       },
-      delaySeconds: (data, matches) => parseFloat(matches.duration) - (data.latentDefectCount === 0 ? 4 : 7),
+      delaySeconds: (data, matches) => {
+        return parseFloat(matches.duration) - (data.latentDefectCount === 0 ? 4 : 7);
+      },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
