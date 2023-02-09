@@ -1,6 +1,7 @@
 ### The Omega Protocol
 # -p 7B03:15 7B40:206.4 7B13:400 7B47:600 7B7C:700 7F72:1100
-# -ii 7BFD 7B0A 7E70 7B0C 7B41 7E6B 7B3F 7BFE 7BFF 7B14 7B15 7B16 7B17 7B1C 7B1D 7B1E 7B2B 7B2C 7B39 7B20 7F75 7B36 7B37 7B35 7B43 7B28 7B32 7B23 7B24 7B49 7B4C 7C00  7B5F 7B60 7B5A 7B5B 7B6D 7B56 7B57 7AFB 7EF9 7C01 7B8B 7BAE 7E51
+# -ii 7BFD 7B0A 7E70 7B0C 7B41 7E6B 7B3F 7BFE 7BFF 7B14 7B15 7B16 7B17 7B1C 7B1D 7B1E 7B2B 7B2C 7B39 7B20 7F75 7B36 7B37 7B35 7B43 7B28 7B32 7B23 7B24 7B49 7B4C 7C00  7B5F 7B60 7B5A 7B5B 7B6D 7B56 7B57 7AFB 7EF9 7C01 7B8B 7BAE 7E51 7B7D 7B7E 7B80
+# -it "Omega" "Omega-M" "Omega-F"
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -144,36 +145,29 @@ hideall "--sync--"
 607.1 "--targetable--"
 615.2 "--sync--" sync / 1[56]:[^:]*:Omega:7B46:/
 619.0 "--sync--" sync / 1[56]:[^:]*:Omega:5779:/
-621.4 "Wave Cannon" sync / 1[56]:[^:]*:Omega:7B81:/
-622.1 "Wave Cannon 1" #sync / 1[56]:[^:]*:Omega:7B7E:/
-626.7 "Wave Cannon" #sync / 1[56]:[^:]*:Omega:7F16:/
-626.8 "Wave Cannon 2" #sync / 1[56]:[^:]*:Omega:7B80:/
-627.0 "Wave Cannon (Stacks)" sync / 1[56]:[^:]*:Omega:7B7F:/
+621.4 "Wave Cannon A" sync / 1[56]:[^:]*:Omega:7B81:/
+626.7 "Wave Cannon B" sync / 1[56]:[^:]*:Omega:7F16:/
+627.0 "Wave Cannon (stacks)" sync / 1[56]:[^:]*:Omega:7B7F:/
 
 629.1 "--sync--" sync / 1[56]:[^:]*:Omega:5779:/
 629.4 "Wave Repeater 1" sync / 1[56]:[^:]*:Omega:7B4F:/
 631.5 "Wave Repeater 2" sync / 1[56]:[^:]*:Omega:7B50:/
-631.5 "Wave Cannon" sync / 1[56]:[^:]*:Omega:7F16:/
-632.1 "Wave Cannon 1" #sync / 1[56]:[^:]*:Omega:7B7E:/
+631.5 "Wave Cannon A" sync / 1[56]:[^:]*:Omega:7F16:/
 633.5 "Wave Repeater 3" sync / 1[56]:[^:]*:Omega:7B51:/
 635.5 "Wave Repeater 4" sync / 1[56]:[^:]*:Omega:7B52:/
-636.6 "Wave Cannon" #sync / 1[56]:[^:]*:Omega:7B82:/
-636.7 "Wave Cannon 2" #sync / 1[56]:[^:]*:Omega:7B80:/
-636.8 "Wave Cannon (Stacks)" sync / 1[56]:[^:]*:Omega:7B7F:/
+636.6 "Wave Cannon B" sync / 1[56]:[^:]*:Omega:7B82:/
+636.8 "Wave Cannon (stacks)" sync / 1[56]:[^:]*:Omega:7B7F:/
 
 639.0 "--sync--" sync / 1[56]:[^:]*:Omega:5779:/
-641.6 "Wave Cannon" sync / 1[56]:[^:]*:Omega:7B83:/
-642.2 "Wave Cannon 1" #sync / 1[56]:[^:]*:Omega:7B7E:/
+641.6 "Wave Cannon A" sync / 1[56]:[^:]*:Omega:7B83:/
 646.6 "Wave Repeater 1" sync / 1[56]:[^:]*:Omega:7B4F:/
-646.7 "Wave Cannon" #sync / 1[56]:[^:]*:Omega:7B84:/
-646.8 "Wave Cannon 2" #sync / 1[56]:[^:]*:Omega:7B80:/
-646.9 "Wave Cannon (Stacks)" sync / 1[56]:[^:]*:Omega:7B7F:/
+646.7 "Wave Cannon B" sync / 1[56]:[^:]*:Omega:7B84:/
+646.9 "Wave Cannon (stacks)" sync / 1[56]:[^:]*:Omega:7B7F:/
 648.6 "Wave Repeater 2" sync / 1[56]:[^:]*:Omega:7B50:/
 650.6 "Wave Repeater 3" sync / 1[56]:[^:]*:Omega:7B51:/
 652.6 "Wave Repeater 4" sync / 1[56]:[^:]*:Omega:7B52:/
-661.6 "Blue Screen" sync / 1[56]:[^:]*:Omega:7B7B:/
+661.6 "Blue Screen Enrage" sync / 1[56]:[^:]*:Omega:7B7B:/
 661.6 "--untargetable--"
-662.6 "Blue Screen Enrage" sync / 1[56]:[^:]*:Omega:7B7D:/
 
 
 ### P5: Run: Dynamis
