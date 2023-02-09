@@ -787,10 +787,6 @@ const triggerSet: TriggerSet<Data> = {
         else if (myColor)
           return output.colorTower!({ color: myColor });
       },
-      run: (data) => {
-        data.bugRot = {};
-        data.latentDefectCount = data.latentDefectCount + 1;
-      },
       outputStrings: {
         colorTower: {
           en: '${color} Tower Stack',
@@ -807,7 +803,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'TOP Pass Rot',
+      id: 'TOP Rot Collect',
       type: 'GainsEffect',
       // D65 Critical Performance Bug (blue)
       // DC6 Critical Underflow Bug (red)
@@ -817,14 +813,28 @@ const triggerSet: TriggerSet<Data> = {
         data.bugRot[matches.target] = matches.effectId === 'D65' ? 'blue' : 'red';
         return (matches.target === data.me) && data.latentDefectCount !== 3;
       },
-      delaySeconds: (data, matches) => {
-        return parseFloat(matches.duration) - (data.latentDefectCount === 0 ? 4 : 7);
+    },
+    {
+      id: 'TOP Rot Pass/Get',
+      type: 'Ability',
+      netRegex: { id: '7B6F', source: 'Omega', capture: false },
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          passRot: {
+            en: 'Pass Rot',
+          },
+          getRot: {
+            en: 'Get Rot',
+          },
+        };
+        if (data.bugRot[data.me])
+          return { infoText: output.passRot!() };
+        return { alertText: output.passRot!() };
       },
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Pass Rot',
-        },
+      run: (data) => {
+        data.bugRot = {};
+        data.latentDefectCount = data.latentDefectCount + 1;
       },
     },
     {
