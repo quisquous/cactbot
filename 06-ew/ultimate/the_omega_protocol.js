@@ -714,6 +714,7 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'Omega',
         'Omega-F': 'Omega-W',
@@ -769,6 +770,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'Oméga',
         'Omega-F': 'Oméga-F',
@@ -824,6 +826,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
