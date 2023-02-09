@@ -811,7 +811,7 @@ const triggerSet: TriggerSet<Data> = {
           // TODO: should we get all of these player's positions,
           // assuming there's a N/S conga line?
           monitorOnYou: {
-            en: 'Monitor on You',
+            en: 'Monitor (w/${player1}, ${player2})',
           },
           unmarked: {
             en: 'Unmarked',
@@ -821,13 +821,15 @@ const triggerSet: TriggerSet<Data> = {
         if (data.monitorPlayers.length !== 3)
           return;
 
-        // TODO: should we list the other players who aren't you?
-        const players = data.monitorPlayers.map((x) => x.target);
-        if (players.includes(data.me))
-          return { alertText: output.monitorOnYou!() };
+        const players = data.monitorPlayers.map((x) => x.target).sort();
+        data.monitorPlayers = [];
+
+        if (players.includes(data.me)) {
+          const [p1, p2] = players.filter((x) => x !== data.me).map((x) => data.ShortName(x));
+          return { alertText: output.monitorOnYou!({ player1: p1, player2: p2 }) };
+        }
         return { infoText: output.unmarked!() };
       },
-      run: (data) => data.monitorPlayers = [],
     },
     {
       id: 'TOP Wave Cannon Stack Collector',
@@ -857,9 +859,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.waveCannonStacks.length !== 2 || m1 === undefined || m2 === undefined)
           return;
 
-        const p1 = m1.target;
-        const p2 = m2.target;
-
+        const [p1, p2] = [m1.target, m2.target].sort();
         const onYou = p1 === data.me || p2 === data.me;
         if (onYou) {
           const otherPerson = p1 === data.me ? p2 : p1;
