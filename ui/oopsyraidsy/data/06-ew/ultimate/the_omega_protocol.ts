@@ -32,7 +32,13 @@ const stackMistake = (
   };
 };
 
-export type Data = OopsyData;
+export interface Data extends OopsyData {
+  blameId: { [name: string]: string };
+  inLine: { [name: string]: number };
+  towerCount: number;
+  blasterCollect: NetMatches['Ability'][];
+  towerCollect: NetMatches['Ability'][];
+}
 
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.TheOmegaProtocolUltimate,
@@ -75,8 +81,181 @@ const triggerSet: OopsyTriggerSet<Data> = {
   },
   triggers: [
     {
+      id: 'TOP In Line Debuff Collector',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['BBC', 'BBD', 'BBE', 'D7B'] }),
+      run: (data, matches) => {
+        const effectToNum: { [effectId: string]: number } = {
+          BBC: 1,
+          BBD: 2,
+          BBE: 3,
+          D7B: 4,
+        } as const;
+        const num = effectToNum[matches.effectId];
+        if (num === undefined)
+          return;
+
+        (data.inLine ??= {})[matches.target] = num;
+        (data.blameId ??= {})[matches.target] = matches.targetId;
+      },
+    },
+    {
+      id: 'TOP In Line Debuff Cleanup',
+      type: 'StartsUsing',
+      // 7B03 = Program Loop
+      // 7B0B = Pantokrator
+      netRegex: NetRegexes.startsUsing({ id: ['7B03', '7B0B'], source: 'Omega', capture: false }),
+      // Don't clean up when the buff is lost, as that happens after taking a tower.
+      run: (data) => data.inLine = {},
+    },
+    {
+      id: 'TOP Program Loop Counter',
+      type: 'Ability',
+      // 7B0A Blaster and 7B04 Storage Violation can be in either order.
+      netRegex: NetRegexes.ability({ id: ['7B0A', '7B04'], source: 'Omega', capture: false }),
+      suppressSeconds: 2,
+      run: (data) => {
+        data.towerCount = (data.towerCount ??= 0) + 1;
+        data.blasterCollect = [];
+        data.towerCollect = [];
+      },
+    },
+    {
+      id: 'TOP Program Loop Damage Collector',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['7B0A', '7B04'], source: 'Omega' }),
+      run: (data, matches) => {
+        if (matches.id === '7B0A')
+          (data.blasterCollect ??= []).push(matches);
+        else if (matches.id === '7B04')
+          (data.towerCollect ??= []).push(matches);
+      },
+    },
+    {
+      id: 'TOP Program Loop Mistake',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['7B0A', '7B04'], source: 'Omega', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 2,
+      mistake: (data) => {
+        const num = data.towerCount;
+        if (num === undefined || num < 1 || num > 4)
+          return;
+        const mistakes: OopsyMistake[] = [];
+        const players = Object.keys(data.inLine);
+        const towerPlayers = players.filter((p) => data.inLine[p] === num);
+        const blasterPlayers = players.filter((p) =>
+          data.inLine[p] === num + 2 || data.inLine[p] === num - 2
+        );
+
+        // Missing towers
+        const towersTaken = (data.towerCollect ??= []).map((m) => m.target);
+        for (const player of towerPlayers) {
+          if (towersTaken.includes(player))
+            continue;
+          mistakes.push({
+            type: 'fail',
+            blame: player,
+            reportId: data.blameId[player],
+            text: {
+              en: `Missed Tower #${num}`,
+            },
+          });
+        }
+
+        // Did both tower players take the same tower??
+        // Do a reverse because we don't have `findLastIndex` here.
+        const reverseTower = [...data.towerCollect].reverse();
+        const towerSplitIdx = reverseTower.findIndex((x) => x.targetIndex === '0') + 1;
+        const tower1 = [...reverseTower].splice(0, towerSplitIdx);
+        const tower2 = [...reverseTower].splice(towerSplitIdx);
+        for (const tower of [tower1, tower2]) {
+          let playerCount = 0;
+          const taken = tower.map((m) => m.target);
+          for (const player of towerPlayers) {
+            if (taken.includes(player))
+              playerCount++;
+          }
+
+          if (playerCount <= 1)
+            continue;
+
+          // There's only two tower players, so just blame them all.
+          const towerText: LocaleText = {
+            en: `Tower #${num}`,
+          };
+          const text = GetShareMistakeText(towerText, 2);
+          for (const player of towerPlayers) {
+            mistakes.push({
+              type: 'fail',
+              blame: player,
+              reportId: data.blameId[player],
+              text: text,
+            });
+          }
+        }
+
+        for (const player of towersTaken) {
+          if (towerPlayers.includes(player))
+            continue;
+          // It's ok for a lower number to stand in a higher number tower, so ignore this.
+          const playerNum = data.inLine[player];
+          if (playerNum === undefined || playerNum < num)
+            continue;
+          mistakes.push({
+            type: 'fail',
+            blame: player,
+            reportId: data.blameId[player],
+            text: {
+              en: `Tower #${num} as #${playerNum}`,
+            },
+          });
+        }
+
+        const blastersTaken = (data.blasterCollect ??= []).map((m) => m.target);
+        for (const player of blasterPlayers) {
+          if (blastersTaken.includes(player))
+            continue;
+          mistakes.push({
+            type: 'fail',
+            blame: player,
+            reportId: data.blameId[player],
+            text: {
+              en: `Missed Tether #${num}`,
+            },
+          });
+        }
+
+        for (const m of data.blasterCollect ?? []) {
+          const player = m.target;
+          const numTargets = parseInt(m.targetCount);
+          const shouldTakeTether = blasterPlayers.includes(player);
+          if (shouldTakeTether && numTargets === 1)
+            continue;
+
+          // "warn" for "I should be in this" and "fail" for "hit but shouldn't be".
+          const type = shouldTakeTether ? 'warn' : 'fail';
+          const tetherText: LocaleText = {
+            en: `${m.ability} #${num}`,
+          };
+          const text = numTargets > 1 ? GetShareMistakeText(tetherText, numTargets) : tetherText;
+
+          mistakes.push({
+            type: type,
+            blame: player,
+            reportId: data.blameId[player],
+            text: text,
+          });
+        }
+
+        return mistakes;
+      },
+    },
+    {
       id: 'TOP Condensed Wave Cannon Kyrios',
       // Three people *should* be in this stack, so warn if somebody doesn't make it.
+      // TODO: we could try to figure out who is not in this stack for stacks > 1
+      // assuming that people don't switch sides.
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7B0F' }),
       mistake: stackMistake('warn', 3),
