@@ -29,7 +29,9 @@ export interface Data extends RaidbossData {
   cannonFodder: { [name: string]: Cannon };
   smellDefamation: string[];
   smellRot: { [name: string]: RotColor };
+  bugRot: { [name: string]: RotColor };
   defamationColor?: RotColor;
+  latentDefectCount: number;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -95,6 +97,8 @@ const triggerSet: TriggerSet<Data> = {
       cannonFodder: {},
       smellDefamation: [],
       smellRot: {},
+      bugRot: {},
+      latentDefectCount: 0,
     };
   },
   triggers: [
@@ -770,6 +774,69 @@ const triggerSet: TriggerSet<Data> = {
           de: '??? Ehrenstrafe',
           ko: '??? 광역',
         },
+      },
+    },
+    {
+      id: 'TOP Latent Defect Tower',
+      type: 'StartsUsing',
+      netRegex: { id: '7B6F', source: 'Omega', capture: false },
+      infoText: (data, _matches, output) => {
+        const myColor = data.bugRot[data.me];
+        if (data.defamationColor === myColor)
+          return output.colorTowerDefamation!({ color: myColor });
+        else if (myColor)
+          return output.colorTower!({ color: myColor });
+      },
+      run: (data) => {
+        data.bugRot = {};
+        data.latentDefectCount = data.latentDefectCount + 1;
+      },
+      outputStrings: {
+        colorTower: {
+          en: '${color} Tower',
+        },
+        colorTowerDefamation: {
+          en: '${color} Tower /w Defamation',
+        },
+        red: {
+          en: 'Red',
+        },
+        blue: {
+          en: 'Blue',
+        },
+      },
+    },
+    {
+      id: 'TOP Pass Rot',
+      type: 'GainsEffect',
+      // D65 Critical Performance Bug (blue)
+      // DC6 Critical Underflow Bug (red)
+      // Debuffs last 27s
+      netRegex: { effectId: ['D65', 'DC6'] },
+      condition: (data, matches) => {
+        data.bugRot[matches.target] = matches.effectId === 'D65' ? 'blue' : 'red';
+        return (matches.target === data.me) && data.latentDefectCount != 3;
+      },
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - (data.latentDefectCount === 0 ? 4 : 7),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Pass Rot',
+        },
+      },
+    },
+    {
+      id: 'TOP Rot Spread',
+      type: 'GainsEffect',
+      // D6B Latent Performance Defect (from blue)
+      // DC8 Cascading Latent Defect (from red)
+      // Debuffs obtained from soaking a tower, lasts 10 seconds but player must pass rot prior to spread
+      netRegex: { effectId: ['D6B', 'DC8'] },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
+      alertText: (_data, _matches, output) => output.spread!(),
+      outputStrings: {
+        spread: Outputs.spread,
       },
     },
   ],
