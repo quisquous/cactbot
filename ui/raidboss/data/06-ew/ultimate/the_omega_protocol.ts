@@ -793,7 +793,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         colorTower: {
-          en: '${color} Tower',
+          en: '${color} Tower Stack',
         },
         colorTowerDefamation: {
           en: '${color} Tower Defamation',
