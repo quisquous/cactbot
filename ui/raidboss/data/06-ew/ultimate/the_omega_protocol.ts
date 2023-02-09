@@ -796,7 +796,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '${color} Tower',
         },
         colorTowerDefamation: {
-          en: '${color} Tower /w Defamation',
+          en: '${color} Tower Defamation',
         },
         red: {
           en: 'Red',
