@@ -837,7 +837,7 @@ const triggerSet: TriggerSet<Data> = {
         };
         if (data.bugRot[data.me])
           return { infoText: output.passRot!() };
-        return { alertText: output.passRot!() };
+        return { alertText: output.getRot!() };
       },
       run: (data) => {
         data.bugRot = {};
