@@ -847,12 +847,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TOP Rot Spread',
       type: 'GainsEffect',
-      // D6B Latent Performance Defect (from blue)
-      // DC8 Cascading Latent Defect (from red)
-      // Debuffs obtained from soaking a tower, lasts 10 seconds but player must pass rot prior to spread
-      netRegex: { effectId: ['D6B', 'DC8'] },
+      // D65 Critical Performance Bug (blue)
+      // DC6 Critical Underflow Bug (red)
+      // Debuffs last 27s
+      netRegex: { effectId: ['D65', 'DC6'] },
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       alertText: (_data, _matches, output) => output.spread!(),
       outputStrings: {
         spread: Outputs.spread,
