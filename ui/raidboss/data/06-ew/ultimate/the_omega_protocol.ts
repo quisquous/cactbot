@@ -806,7 +806,10 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: (_data, matches) => parseFloat(matches.duration), // Could potentially reduce this?
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        if ((data.patchVulnCount % 2 === 1 && data.regression[data.me] === 'local') || (data.patchVulnCount === 7 && data.regression[data.me] === 'remote'))
+        if (
+          (data.patchVulnCount % 2 === 1 && data.regression[data.me] === 'local') ||
+          (data.patchVulnCount === 7 && data.regression[data.me] === 'remote')
+        )
          return output.breakTether!();
       },
       run: (data) => {
@@ -815,9 +818,9 @@ const triggerSet: TriggerSet<Data> = {
           data.patchVulnCount = 0;
       },
       outputStrings: {
-         breakTether: {
-           en: 'Break Tether',
-         },
+        breakTether: {
+          en: 'Break Tether',
+        },
       },
     },
   ],
