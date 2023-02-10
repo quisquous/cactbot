@@ -1057,7 +1057,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: ['CF3', 'D48'] },
       condition: Conditions.targetIsYou(),
       infoText: (_data, matches, output) => {
-        return matches.effectId === 'D48' ? output.forwardCleave() : output.backwardCleave();
+        return matches.effectId === 'D48' ? output.forwardCleave!() : output.backwardCleave!();
       },
       outputStrings: {
         forwardCleave: {
