@@ -276,7 +276,8 @@ class PullCounter {
         return;
       }
     }
-    if (e.line[0] !== logDefinitions.GameLog.type)
+    const type = e.line[0];
+    if (type !== logDefinitions.GameLog.type && type !== logDefinitions.ActorControl.type)
       return;
     if (this.resetRegex.test(log))
       this.ResetPullCounter();

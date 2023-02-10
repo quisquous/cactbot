@@ -45,7 +45,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Allez dans la boîte',
           ja: '箱に入る',
           cn: '进盒子',
-          ko: '박스에 접근',
+          ko: '상자에 들어가기',
         },
       },
     },
