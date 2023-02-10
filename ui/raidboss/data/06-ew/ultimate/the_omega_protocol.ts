@@ -817,7 +817,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TOP Rot Pass/Get',
       type: 'Ability',
-      netRegex: { id: '7B6F', source: 'Omega', capture: false },
+      // 7B5F Cascading Latent Defect (Red Tower)
+      // 7B60 Latent Performance Defect (Blue Tower)
+      // These casts go off 1 second after Latent Defect and go off regardless if someone soaks it
+      netRegex: { id: ['7B5F', '7B60'], source: 'Omega', capture: false },
+      suppressSeconds: 1,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
