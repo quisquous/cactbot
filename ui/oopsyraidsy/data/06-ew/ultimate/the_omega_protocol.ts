@@ -33,11 +33,11 @@ const stackMistake = (
 };
 
 export interface Data extends OopsyData {
-  blameId: { [name: string]: string };
-  inLine: { [name: string]: number };
-  towerCount: number;
-  blasterCollect: NetMatches['Ability'][];
-  towerCollect: NetMatches['Ability'][];
+  blameId?: { [name: string]: string };
+  inLine?: { [name: string]: number };
+  towerCount?: number;
+  blasterCollect?: NetMatches['Ability'][];
+  towerCollect?: NetMatches['Ability'][];
 }
 
 const triggerSet: OopsyTriggerSet<Data> = {
@@ -145,11 +145,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
         const num = data.towerCount;
         if (num === undefined || num < 1 || num > 4)
           return;
+        const inLine = data.inLine ?? {};
         const mistakes: OopsyMistake[] = [];
-        const players = Object.keys(data.inLine);
-        const towerPlayers = players.filter((p) => data.inLine[p] === num);
+        const players = Object.keys(inLine);
+        const towerPlayers = players.filter((p) => inLine[p] === num);
         const blasterPlayers = players.filter((p) =>
-          data.inLine[p] === num + 2 || data.inLine[p] === num - 2
+          inLine[p] === num + 2 || inLine[p] === num - 2
         );
 
         // Missing towers
@@ -160,7 +161,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           mistakes.push({
             type: 'fail',
             blame: player,
-            reportId: data.blameId[player],
+            reportId: data.blameId?.[player],
             text: {
               en: `Missed Tower #${num}`,
             },
@@ -193,7 +194,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             mistakes.push({
               type: 'fail',
               blame: player,
-              reportId: data.blameId[player],
+              reportId: data.blameId?.[player],
               text: text,
             });
           }
@@ -203,13 +204,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
           if (towerPlayers.includes(player))
             continue;
           // It's ok for a lower number to stand in a higher number tower, so ignore this.
-          const playerNum = data.inLine[player];
+          const playerNum = data.inLine?.[player];
           if (playerNum === undefined || playerNum < num)
             continue;
           mistakes.push({
             type: 'fail',
             blame: player,
-            reportId: data.blameId[player],
+            reportId: data.blameId?.[player],
             text: {
               en: `Tower #${num} as #${playerNum}`,
             },
@@ -223,7 +224,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           mistakes.push({
             type: 'fail',
             blame: player,
-            reportId: data.blameId[player],
+            reportId: data.blameId?.[player],
             text: {
               en: `Missed Tether #${num}`,
             },
@@ -247,7 +248,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           mistakes.push({
             type: type,
             blame: player,
-            reportId: data.blameId[player],
+            reportId: data.blameId?.[player],
             text: text,
           });
         }
