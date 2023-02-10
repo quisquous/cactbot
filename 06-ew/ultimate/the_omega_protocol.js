@@ -54,6 +54,8 @@ Options.Triggers.push({
       cannonFodder: {},
       smellDefamation: [],
       smellRot: {},
+      waveCannonStacks: [],
+      monitorPlayers: [],
     };
   },
   triggers: [
@@ -709,6 +711,97 @@ Options.Triggers.push({
           ko: '??? 광역',
         },
       },
+    },
+    {
+      id: 'TOP Oversampled Wave Cannon East',
+      type: 'StartsUsing',
+      netRegex: { id: '7B6B', source: 'Omega', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'East Monitors',
+        },
+      },
+    },
+    {
+      id: 'TOP Oversampled Wave Cannon West',
+      type: 'StartsUsing',
+      netRegex: { id: '7B6C', source: 'Omega', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'West Monitors',
+        },
+      },
+    },
+    {
+      id: 'TOP Oversampled Wave Cannon Loading',
+      type: 'GainsEffect',
+      // D7C = Oversampled Wave Cannon Loading (facing right)
+      // D7D = Oversampled Wave Cannon Loading (facing left)
+      netRegex: { effectId: ['D7C', 'D7D'] },
+      preRun: (data, matches) => data.monitorPlayers.push(matches),
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          // TODO: should we get all of these player's positions,
+          // assuming there's a N/S conga line?
+          monitorOnYou: {
+            en: 'Monitor (w/${player1}, ${player2})',
+          },
+          unmarked: {
+            en: 'Unmarked',
+          },
+        };
+        if (data.monitorPlayers.length !== 3)
+          return;
+        const players = data.monitorPlayers.map((x) => x.target).sort();
+        data.monitorPlayers = [];
+        if (players.includes(data.me)) {
+          const [p1, p2] = players.filter((x) => x !== data.me).map((x) => data.ShortName(x));
+          return { alertText: output.monitorOnYou({ player1: p1, player2: p2 }) };
+        }
+        return { infoText: output.unmarked() };
+      },
+    },
+    {
+      id: 'TOP Wave Cannon Stack Collector',
+      type: 'Ability',
+      netRegex: { id: '5779', source: 'Omega' },
+      // Store full matches here in case somebody has a N/S priority system
+      // they want to implement themselves in the stack trigger.
+      run: (data, matches) => data.waveCannonStacks.push(matches),
+    },
+    {
+      id: 'TOP Wave Cannon Stack',
+      type: 'Ability',
+      netRegex: { id: '5779', source: 'Omega', capture: false },
+      delaySeconds: 0.3,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          stacks: {
+            en: 'Stacks (${player1}, ${player2})',
+          },
+          stackOnYou: {
+            en: 'Stack on You (w/${player})',
+          },
+        };
+        const [m1, m2] = data.waveCannonStacks;
+        if (data.waveCannonStacks.length !== 2 || m1 === undefined || m2 === undefined)
+          return;
+        const [p1, p2] = [m1.target, m2.target].sort();
+        const onYou = p1 === data.me || p2 === data.me;
+        if (onYou) {
+          const otherPerson = p1 === data.me ? p2 : p1;
+          return { alertText: output.stackOnYou({ player: data.ShortName(otherPerson) }) };
+        }
+        return {
+          infoText: output.stacks({ player1: data.ShortName(p1), player2: data.ShortName(p2) }),
+        };
+      },
+      run: (data, _matches) => data.waveCannonStacks = [],
     },
   ],
   timelineReplace: [
