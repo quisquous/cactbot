@@ -14,6 +14,7 @@ export type PlaystationMarker = typeof playstationMarkers[number];
 export type Glitch = 'mid' | 'remote';
 export type Cannon = 'spread' | 'stack';
 export type RotColor = 'blue' | 'red';
+export type Regression = 'local' | 'remote';
 
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
@@ -30,6 +31,8 @@ export interface Data extends RaidbossData {
   smellDefamation: string[];
   smellRot: { [name: string]: RotColor };
   defamationColor?: RotColor;
+  regression: { [name: string]: Regression };
+  patchVulnCount: number;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -95,6 +98,8 @@ const triggerSet: TriggerSet<Data> = {
       cannonFodder: {},
       smellDefamation: [],
       smellRot: {},
+      regression: {},
+      patchVulnCount: 0,
     };
   },
   triggers: [
@@ -770,6 +775,49 @@ const triggerSet: TriggerSet<Data> = {
           de: '??? Ehrenstrafe',
           ko: '??? 광역',
         },
+      },
+    },
+    {
+      id: 'TOP Regression Collect',
+      type: 'GainsEffect',
+      // DC9 Local Regression (red/green)
+      // DCA Remote Regression (blue)
+      netRegex: { effectId: ['DC9', 'DCA'] },
+      run: (data, matches) => {
+        data.regression[matches.target] = matches.effectId === 'DC9' ? 'local' : 'remote';
+      },
+    },
+    {
+      id: 'TOP Regression Cleanup',
+      type: 'LosesEffect',
+      // DC9 Local Regression (red/green)
+      // DCA Remote Regression (blue)
+      netRegex: { effectId: ['DC9', 'DCA'] },
+      run: (data, matches) => delete data.regression[matches.target],
+    },
+    {
+      id: 'TOP Second Regression Tether Break',
+      type: 'GainsEffect',
+      // DBC Magic Vulnerability Up from Patch, lasts 0.96s
+      // Ideally first patch that breaks is blue, else this will not work
+      // TODO: Clean this up for P5 Tethers?
+      netRegex: { effectId: 'DBC' },
+      preRun: (data) => data.patchVulnCount = data.patchVulnCount + 1,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration), // Could potentially reduce this?
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        if ((data.patchVulnCount % 2 === 1 && data.regression[data.me] === 'local') || (data.patchVulnCount === 7 && data.regression[data.me] === 'remote'))
+         return output.breakTether!();
+      },
+      run: (data) => {
+        // Clear count for later phases
+        if (data.patchVulnCount === 8)
+          data.patchVulnCount = 0;
+      },
+      outputStrings: {
+         breakTether: {
+           en: 'Break Tether',
+         },
       },
     },
   ],
