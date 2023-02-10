@@ -782,10 +782,12 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '7B6F', source: 'Omega', capture: false },
       infoText: (data, _matches, output) => {
         const myColor = data.bugRot[data.me];
+        if (myColor === undefined)
+          return;
         if (data.defamationColor === myColor)
-          return output.colorTowerDefamation!({ color: myColor });
+          return output.colorTowerDefamation!({ color: output[myColor]!() });
         else if (myColor)
-          return output.colorTower!({ color: myColor });
+          return output.colorTower!({ color: output[myColor]!() });
       },
       outputStrings: {
         colorTower: {
