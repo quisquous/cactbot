@@ -810,7 +810,7 @@ const triggerSet: TriggerSet<Data> = {
           (data.patchVulnCount % 2 === 1 && data.regression[data.me] === 'local') ||
           (data.patchVulnCount === 7 && data.regression[data.me] === 'remote')
         )
-         return output.breakTether!();
+          return output.breakTether!();
       },
       run: (data) => {
         // Clear count for later phases
