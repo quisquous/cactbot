@@ -98,18 +98,22 @@ const triggerSet: TriggerSet<Data> = {
         outWithForwards: {
           en: 'Forwards March Out',
           de: 'Geisterlenkung Vorwärts Raus',
+          ko: '강제이동: 앞, 밖으로',
         },
         outWithBackwards: {
           en: 'Backwards March Out',
           de: 'Geisterlenkung Rückwärts Raus',
+          ko: '강제이동: 뒤, 밖으로',
         },
         outWithLeft: {
           en: 'Left March Out',
           de: 'Geisterlenkung Links Raus',
+          ko: '강제이동: 왼쪽, 밖으로',
         },
         outWithRight: {
           en: 'Right March Out',
           de: 'Geisterlenkung Rechts Raus',
+          ko: '강제이동: 오른쪽, 밖으로',
         },
       },
     },
@@ -132,18 +136,22 @@ const triggerSet: TriggerSet<Data> = {
         inWithForwards: {
           en: 'Forwards March In',
           de: 'Geisterlenkung Vorwärts Rein',
+          ko: '강제이동: 앞, 안으로',
         },
         inWithBackwards: {
           en: 'Backwards March In',
           de: 'Geisterlenkung Rückwärts Rein',
+          ko: '강제이동: 뒤, 안으로',
         },
         inWithLeft: {
           en: 'Left March In',
           de: 'Geisterlenkung Links Rein',
+          ko: '강제이동: 왼쪽, 안으로',
         },
         inWithRight: {
           en: 'Right March In',
           de: 'Geisterlenkung Rechts Rein',
+          ko: '강제이동: 오른쪽, 안으로',
         },
       },
     },
@@ -271,18 +279,22 @@ const triggerSet: TriggerSet<Data> = {
         lookAway: {
           en: '(look away soon)',
           de: '(bald wegschauen)',
+          ko: '(곧 뒤돌기)',
         },
         lookTowards: {
           en: '(look towards soon)',
           de: '(bald hinschauen)',
+          ko: '(곧 쳐다보기)',
         },
         pyretic: {
           en: '(pyretic soon)',
           de: '(bald Pyretisch)',
+          ko: '(곧 멈추기)',
         },
         freeze: {
           en: '(freeze soon)',
           de: '(bald Kühlung)',
+          ko: '(곧 움직이기)',
         },
       },
     },
@@ -318,10 +330,12 @@ const triggerSet: TriggerSet<Data> = {
         lookAway: {
           en: 'Look Away from Nymeia',
           de: 'Schau weg von Nymeia',
+          ko: '니메이아에게서 뒤돌기',
         },
         lookTowards: {
           en: 'Look Towards Nymeia',
           de: 'Schau zu Nymeia',
+          ko: '니메이아 쳐다보기',
         },
         stopEverything: Outputs.stopEverything,
         keepMoving: Outputs.moveAround,
@@ -355,6 +369,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Spread (avoid purple)',
           de: 'Verteilen (vermeide den lilanen Riss)',
+          ko: '산개 (보라색 바닥 피하기)',
         },
       },
     },
@@ -367,6 +382,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand in purple fissure',
           de: 'Im lilanen Riss stehen',
+          ko: '보라색 바닥 위로',
         },
       },
     },
@@ -458,6 +474,7 @@ const triggerSet: TriggerSet<Data> = {
         knockback: {
           en: 'Knockback ${dir1} => ${dir2} => ${dir3}',
           de: 'Rückstoß ${dir1} => ${dir2} => ${dir3}',
+          ko: '넉백 ${dir1} => ${dir2} => ${dir3}',
         },
         dirSW: Outputs.dirSW,
         dirSE: Outputs.dirSE,
@@ -511,6 +528,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
           de: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+          ko: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
         },
         out: Outputs.out,
         in: Outputs.in,
@@ -571,7 +589,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Prenez les tours',
           ja: '塔を踏む',
           cn: '踩塔',
-          ko: '장판 하나씩 들어가기',
+          ko: '기둥 들어가기',
         },
       },
     },
@@ -632,6 +650,7 @@ const triggerSet: TriggerSet<Data> = {
         out: {
           en: 'Get Out (avoid ring)',
           de: 'Geh raus (vermeide den Ring)',
+          ko: '밖으로 (고리 장판 피하기)',
         },
       },
     },
@@ -661,7 +680,15 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '7D67', source: 'Halone' },
       condition: (data) => !data.haloneIceDartTargets.includes(data.me),
-      response: Responses.stackMarkerOn(),
+      delaySeconds: 0.5,
+      alertText: (data, matches, output) => {
+        if (data.haloneIceDartTargets.includes(data.me))
+          return;
+        return output.text!({ player: matches.target });
+      },
+      outputStrings: {
+        text: Outputs.stackOnPlayer,
+      },
     },
     {
       id: 'Euphrosyne Menphina Blue Moon',
@@ -678,6 +705,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Sides of Moon',
           de: 'Geh seitlich des Mondes',
+          ko: '달 옆쪽으로',
         },
       },
     },
@@ -690,6 +718,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to dark moon',
           de: 'Geh zum dunklen Mond',
+          ko: '어두운 달 쪽으로',
         },
       },
     },
