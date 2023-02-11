@@ -840,6 +840,17 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'TOP Oversampled Wave Cannon East',
+      type: 'StartsUsing',
+      netRegex: { id: '7B6B', source: 'Omega', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'East Monitors',
+        },
+      },
+    },
+    {
       id: 'TOP Oversampled Wave Cannon West',
       type: 'StartsUsing',
       netRegex: { id: '7B6C', source: 'Omega', capture: false },
