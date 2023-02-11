@@ -11,9 +11,7 @@ import {
 import { LocaleText } from '../../../../../types/trigger';
 import { GetShareMistakeText, GetSoloMistakeText } from '../../../oopsy_common';
 
-// TODO: 7B04 Storage Violation, taking tower but only if you have Looper and wrong number
 // TODO: 7B10 Diffuse Wave Cannon Kyrios being shared if not invulning?
-// TODO: call out who missed their Program Loop tower
 // TODO: call out who was missing in the Condensed Wave Cannon stack
 
 // TODO: we probably could use an oopsy utility library (and Data should be `any` here).
@@ -32,12 +30,140 @@ const stackMistake = (
   };
 };
 
+const translate = (data: Data, text: LocaleText) => {
+  return text[data.options.DisplayLanguage] ?? text['en'];
+};
+
+export const helloEffect = {
+  // Local Regression / "Christmas" red/green tethers
+  redTether: 'DC9',
+  // Remote Regression / blue tethers
+  blueTether: 'DCA',
+  // Critical Synchronization Bug / stack
+  stack: 'DC4',
+  // Critical Overflow Bug / defamation
+  defamation: 'DC5',
+  // Critical Underflow Bug / red rot
+  redRot: 'DC6',
+  // Critical Performance Bug / blue rot
+  blueRot: 'D65',
+} as const;
+
+export const helloAbility = {
+  // Critical Synchronization Bug / stack
+  stack: '7B56',
+  // Critical Overflow Bug / defamation
+  defamation: '7B57',
+  // Cascading Latent Defect / red tower
+  redTower: '7B5F',
+  // Latent Performance Defect
+  blueTower: '7B60',
+} as const;
+
+export type RotColor = 'blue' | 'red';
+
+type LatentDefectMistake = {
+  expected: (keyof typeof helloEffect)[];
+  actual: keyof typeof helloAbility;
+  extra: LocaleText;
+  missing: LocaleText;
+  tookTwo?: LocaleText;
+};
+
+// The extra/missing/tookTwo texts have playerDescription below appended to it,
+// e.g. "Red Tower, no rot (as defamation)" or "Missed Stack (as blue tether)".
+// If this doesn't work for some language translation, please file an issue.
+const defects: LatentDefectMistake[] = [
+  {
+    expected: ['redRot'],
+    actual: 'redTower',
+    extra: {
+      en: 'Red Tower, no rot',
+    },
+    missing: {
+      en: 'Missed Red Tower',
+    },
+  },
+  {
+    expected: ['blueRot'],
+    actual: 'blueTower',
+    extra: {
+      en: 'Blue Tower, no rot',
+    },
+    missing: {
+      en: 'Missed Blue Tower',
+    },
+  },
+  {
+    expected: ['stack', 'blueTether'],
+    actual: 'stack',
+    extra: {
+      en: 'Stack',
+    },
+    missing: {
+      en: 'Missed stack',
+    },
+    tookTwo: {
+      en: 'Stack x2',
+    },
+  },
+  {
+    expected: ['defamation', 'redTether'],
+    actual: 'defamation',
+    extra: {
+      en: 'Defamation',
+    },
+    missing: {
+      en: 'Missed defamation',
+    },
+    tookTwo: {
+      en: 'Defamation x2',
+    },
+  },
+];
+
+// These descriptions are appended directly after text from the defects structure above.
+type HelloEffect = keyof typeof helloEffect;
+const playerDescription: { [key in HelloEffect]: LocaleText } = {
+  // Order is important here.
+  defamation: {
+    en: ' (as defamation)',
+  },
+  stack: {
+    en: ' (as stack)',
+  },
+  redTether: {
+    en: ' (as red tether)',
+  },
+  blueTether: {
+    en: ' (as blue tether)',
+  },
+  // These shouldn't happen.
+  redRot: {
+    en: ' (as red rot)',
+  },
+  blueRot: {
+    en: ' (as blue rot)',
+  },
+} as const;
+
+const unknownDescriptionLocale: LocaleText = {
+  en: ' (as ???)',
+};
+
 export interface Data extends OopsyData {
   blameId?: { [name: string]: string };
   inLine?: { [name: string]: number };
   towerCount?: number;
   blasterCollect?: NetMatches['Ability'][];
   towerCollect?: NetMatches['Ability'][];
+  defamationColor?: RotColor;
+  // Current state of debuffs.
+  helloState?: { [name: string]: Set<string> };
+  // Snapshot at start of Latent Defect cast to avoid debuff removal races.
+  helloStateSnapshot?: { [name: string]: Set<string> };
+  helloCollect?: NetMatches['Ability'][];
+  monitorCollect?: NetMatches['Ability'][];
 }
 
 const triggerSet: OopsyTriggerSet<Data> = {
@@ -71,6 +197,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'TOP Optimized Fire III': '7B2F', // spread during Party Synergy
     'TOP Sniper Cannon': '7B53', // spread during p3 transition
     'TOP Wave Cannon Protean': '7B7E', // p4 initial protean laser
+    'TOP Oversampled Wave Cannon': '7B6D', // p3 monitors
   },
   shareFail: {
     'TOP Guided Missile Kyrios': '7B0E', // spread damage duruing Pantokrator
@@ -276,6 +403,217 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7B54' }),
       mistake: stackMistake('warn', 2),
+    },
+    {
+      id: 'TOP Hello World Collect Gain',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: Object.values(helloEffect) }),
+      run: (data, matches) => {
+        const state = (data.helloState ??= {});
+        const set = (state[matches.target] ??= new Set<string>());
+        set.add(matches.effectId);
+        // TODO: detect unexpected rot passes??
+        // TODO: detect anything gained/active during critical error
+      },
+    },
+    {
+      id: 'TOP Hello World Collect Lose',
+      type: 'LosesEffect',
+      netRegex: NetRegexes.losesEffect({ effectId: Object.values(helloEffect) }),
+      run: (data, matches) => {
+        const state = (data.helloState ??= {});
+        const set = (state[matches.target] ??= new Set<string>());
+        set.delete(matches.effectId);
+      },
+    },
+    {
+      id: 'TOP Latent Defect Snapshot',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B6F' }),
+      run: (data) => {
+        // Take a snapshot of the debuff state when Latent Defect goes off before the abilities.
+        data.helloStateSnapshot = {};
+        for (const [name, set] of Object.entries(data.helloState ?? {}))
+          data.helloStateSnapshot[name] = new Set(set);
+      },
+    },
+    {
+      id: 'TOP Hello World Latent Defect Ability Collect',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: Object.values(helloAbility) }),
+      run: (data, matches) => (data.helloCollect ??= []).push(matches),
+    },
+    {
+      id: 'TOP Hello World Mistakes',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: Object.values(helloAbility), capture: false }),
+      delaySeconds: 0.3,
+      suppressSeconds: 1,
+      // TODO: can use this for testing since oopsy_viewer doesn't support delaySeconds yet.
+      // netRegex: NetRegexes.ability({ id: '7B63' }),
+      mistake: (data) => {
+        const mistakes: OopsyMistake[] = [];
+
+        const collect = [...(data.helloCollect ?? [])];
+        data.helloCollect = [];
+
+        if (collect.length === 0)
+          return;
+
+        const unknownDesc = translate(data, unknownDescriptionLocale);
+
+        const players = Object.keys(data.blameId ?? {});
+
+        // Generate a string description of each player, for mistakes.
+        const playerToDescription: { [name: string]: string } = {};
+        for (const player of players) {
+          const state = data.helloStateSnapshot?.[player];
+          for (const [key, desc] of Object.entries(playerDescription)) {
+            const helloEffectAnon: { [name: string]: string } = helloEffect;
+            const effectId = helloEffectAnon[key];
+            if (effectId !== undefined && state?.has(effectId)) {
+              playerToDescription[player] ??= translate(data, desc);
+              continue;
+            }
+          }
+        }
+
+        for (const defect of defects) {
+          const buffStrs: string[] = defect.expected.map((x) => helloEffect[x]);
+          const [buff1, buff2] = buffStrs;
+
+          const expectedPlayers = players.filter((x) => {
+            const state = data.helloStateSnapshot?.[x];
+            if (state === undefined)
+              return;
+            return buff1 !== undefined && state.has(buff1) ||
+              buff2 !== undefined && state.has(buff2);
+          });
+
+          const actualAbilities = collect.filter((x) => x.id === helloAbility[defect.actual]);
+          const actualPlayers = actualAbilities.map((x) => x.target);
+
+          // Missing a person??
+          for (const player of expectedPlayers) {
+            if (!actualPlayers.includes(player)) {
+              // It's possible somebody could have picked up a rot weirdly and so is "missing".
+              // This doesn't check for the people who "should" have rots, only those that do.
+              // TODO: handle if somebody doesn't stand in a tower AND doesn't pick up rot.
+              // Probably we need to figure out who the expected players based on the very
+              // initial set of debuffs, rather than just looking at the current state of debuffs.
+              const text = translate(data, defect.missing);
+              mistakes.push({
+                type: 'warn',
+                blame: player,
+                reportId: data.blameId?.[player],
+                text: `${text}${playerToDescription[player] ?? unknownDesc}`,
+              });
+            }
+          }
+
+          // Extra person with the wrong debuff??
+          for (const player of actualPlayers) {
+            if (!expectedPlayers.includes(player)) {
+              const text = translate(data, defect.extra);
+              mistakes.push({
+                type: 'warn',
+                blame: player,
+                reportId: data.blameId?.[player],
+                text: `${text}${playerToDescription[player] ?? unknownDesc}`,
+              });
+            }
+          }
+
+          // Is this a stack or defamation?
+          const idealNumberOfPlayers = buffStrs.length;
+          const tookTwo = defect.tookTwo;
+          if (idealNumberOfPlayers !== 2 || tookTwo === undefined)
+            continue;
+
+          // Walk through abilities and make sure everybody took defamation/stack at most once.
+          // (Surely nobody will double tap with stacks, but might as well handle it too.)
+          const abilityCount: { [name: string]: number } = {};
+          for (const ability of actualAbilities) {
+            const player = ability.target;
+            abilityCount[player] ??= 0;
+            abilityCount[player]++;
+
+            // Check for solo defamation/stack while we're here.
+            if (ability.targetCount === '1') {
+              const text = translate(data, GetSoloMistakeText(defect.extra));
+              mistakes.push({
+                type: 'warn',
+                blame: player,
+                reportId: data.blameId?.[player],
+                text: `${text}${playerToDescription[player] ?? unknownDesc}`,
+              });
+            }
+          }
+
+          // Check for double taps.
+          for (const [player, count] of Object.entries(abilityCount)) {
+            if (count !== 2)
+              continue;
+            const text = translate(data, tookTwo);
+            mistakes.push({
+              type: 'warn',
+              blame: player,
+              reportId: data.blameId?.[player],
+              text: `${text}${playerToDescription[player] ?? unknownDesc}`,
+            });
+          }
+        }
+
+        return mistakes;
+      },
+    },
+    {
+      id: 'TOP Critical Underflow Bug',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B5A' }),
+      mistake: stackMistake('warn', 1, {
+        en: 'Red Rot Explosion',
+      }),
+    },
+    {
+      id: 'TOP Critical Performance Bug',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B5B' }),
+      mistake: stackMistake('warn', 1, {
+        en: 'Blue Rot Explosion',
+      }),
+    },
+    {
+      id: 'TOP Oversampled Wave Cannon Collect',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B6D' }),
+      run: (data, matches) => (data.monitorCollect ??= []).push(matches),
+    },
+    {
+      id: 'TOP P3 Oversampled Wave Cannon',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B6D', capture: false }),
+      delaySeconds: 0.3,
+      suppressSeconds: 1,
+      mistake: (data, _matches) => {
+        // TODO: restrict this to p3
+        const players = Object.keys(data.blameId ?? {});
+        const monitorPlayers = (data.monitorCollect ?? []).map((x) => x.target);
+        const missing = players.filter((x) => !monitorPlayers.includes(x));
+        const mistakes: OopsyMistake[] = [];
+        for (const player of missing) {
+          mistakes.push({
+            type: 'warn',
+            name: player,
+            // no reportId/blame here as it's possible that the person missing this monitor
+            // is not at fault.
+            text: {
+              en: 'Not hit by monitor',
+            },
+          });
+        }
+        return mistakes;
+      },
     },
   ],
 };
