@@ -782,6 +782,47 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'TOP Latent Defect Tether Towers',
+      type: 'GainsEffect',
+      // D71 Remote Code Smell (blue)
+      // DAF Local Code Smell(red/green)
+      // Using Code Smell as the regressions come ~8.75s after Latent Defect
+      // Debuffs are 23, 44, 65, and 86s
+      // TODO: Possibly include direction?
+      netRegex: { effectId: ['D71', 'DAF'] },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 8.75,
+      alertText: (data, matches, output) => {
+        const regression = matches.effectId === 'DAF' ? 'local' : 'remote';
+        const defamation = data.defamationColor;
+        if (defamation === undefined)
+          return;
+        if (regression === 'remote')
+          return output.nearTether!({ color: defamation === 'red' ? output['blue']!() : output['red']!() });
+
+        if (parseFloat(matches.duration) < 80)
+          return output.farTether!({ color: output[defamation]!() });
+        return output.finalTowerFar!({ color: defamation === 'red' ? output['blue']!() : output['red']!() });
+      },
+      outputStrings: {
+        nearTether: {
+          en: 'Stack by ${color} Tower',
+        },
+        farTether: {
+          en: 'Get ${color} Defamation',
+        },
+        finalTowerFar: {
+          en: 'Between ${color} Towers'
+        },
+        red: {
+          en: 'Red',
+        },
+        blue: {
+          en: 'Blue',
+        },
+      },
+    },
+    {
       id: 'TOP Regression Collect',
       type: 'GainsEffect',
       // DC9 Local Regression (red/green)
