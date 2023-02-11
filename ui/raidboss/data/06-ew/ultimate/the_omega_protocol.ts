@@ -794,7 +794,7 @@ const triggerSet: TriggerSet<Data> = {
       preRun: (data, matches) => {
         data.regression[matches.target] = matches.effectId === 'DC9' ? 'local' : 'remote';
       },
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6, // 4s remaining
       alertText: (data, _matches, output) => {
         if (
           (data.patchVulnCount % 2 === 1 && data.regression[data.me] === 'local') ||
