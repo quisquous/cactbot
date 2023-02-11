@@ -858,6 +858,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       alertText: (_data, _matches, output) => output.spread!(),
+      run: (data, matches) => delete data.bugRot[matches.target],
       outputStrings: {
         spread: Outputs.spread,
       },
