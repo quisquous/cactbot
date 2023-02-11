@@ -782,7 +782,17 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'TOP Regression Break Tether',
+      id: 'TOP Regression Collect',
+      type: 'GainsEffect',
+      // DC9 Local Regression (red/green)
+      // DCA Remote Regression (blue)
+      netRegex: { effectId: ['DC9', 'DCA'] },
+      run: (data, matches) => {
+        data.regression[matches.target] = matches.effectId === 'DC9' ? 'local' : 'remote';
+      },
+    },
+    {
+      id: 'TOP Second Regression Break Tether',
       type: 'GainsEffect',
       // DC9 Local Regression (red/green)
       // DCA Remote Regression (blue)
@@ -791,10 +801,8 @@ const triggerSet: TriggerSet<Data> = {
       // Will call out if has not broken yet and it is safe to break, if by end
       // of delay and first tether has not broken, it will not call
       netRegex: { effectId: ['DC9', 'DCA'] },
-      preRun: (data, matches) => {
-        data.regression[matches.target] = matches.effectId === 'DC9' ? 'local' : 'remote';
-      },
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6, // 4s remaining
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
       alertText: (data, _matches, output) => {
         if (
           (data.patchVulnCount % 2 === 1 && data.regression[data.me] === 'local') ||
@@ -829,17 +837,6 @@ const triggerSet: TriggerSet<Data> = {
         // Clear count for later phases
         if (data.patchVulnCount === 8)
           data.patchVulnCount = 0;
-      },
-    },
-    {
-      id: 'TOP Oversampled Wave Cannon East',
-      type: 'StartsUsing',
-      netRegex: { id: '7B6B', source: 'Omega', capture: false },
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'East Monitors',
-        },
       },
     },
     {
