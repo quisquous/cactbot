@@ -792,7 +792,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: ['D71', 'DAF'] },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 8.75,
-      alertText: (data, matches, output) => {
+      infoText: (data, matches, output) => {
         const regression = matches.effectId === 'DAF' ? 'local' : 'remote';
         const defamation = data.defamationColor;
         if (defamation === undefined)
