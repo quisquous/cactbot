@@ -799,7 +799,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         if (regression === 'remote') {
           const color = defamation === 'red' ? output['blue']!() : output['red']!();
-          return output.nearTether!({color: color });
+          return output.nearTether!({ color: color });
         }
 
         if (parseFloat(matches.duration) < 80)
@@ -827,7 +827,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'TOP Regression Collect',
+      id: 'TOP P3 Regression Collect',
       type: 'GainsEffect',
       // DC9 Local Regression (red/green)
       // DCA Remote Regression (blue)
@@ -837,7 +837,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'TOP Second Regression Break Tether',
+      id: 'TOP P3 Second Regression Break Tether',
       type: 'GainsEffect',
       // DC9 Local Regression (red/green)
       // DCA Remote Regression (blue)
@@ -862,7 +862,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'TOP Regression Cleanup',
+      id: 'TOP P3 Regression Cleanup',
       type: 'LosesEffect',
       // DC9 Local Regression (red/green)
       // DCA Remote Regression (blue)
