@@ -782,13 +782,30 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'TOP Regression Collect',
+      id: 'TOP Regression Break Tether',
       type: 'GainsEffect',
       // DC9 Local Regression (red/green)
       // DCA Remote Regression (blue)
+      // Debuffs last 10s
+      // Ideally first patch that breaks is blue, else this will not work
+      // Will call out if has not broken yet and it is safe to break, if by end
+      // of delay and first tether has not broken, it will not call
       netRegex: { effectId: ['DC9', 'DCA'] },
-      run: (data, matches) => {
+      preRun: (data, matches) => {
         data.regression[matches.target] = matches.effectId === 'DC9' ? 'local' : 'remote';
+      },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
+      alertText: (data, _matches, output) => {
+        if (
+          (data.patchVulnCount % 2 === 1 && data.regression[data.me] === 'local') ||
+          (data.patchVulnCount === 7 && data.regression[data.me] === 'remote')
+        )
+          return output.breakTether!();
+      },
+      outputStrings: {
+        breakTether: {
+          en: 'Break Tether',
+        },
       },
     },
     {
@@ -800,31 +817,18 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => delete data.regression[matches.target],
     },
     {
-      id: 'TOP Second Regression Tether Break',
+      id: 'TOP Regression Break Counter',
       type: 'GainsEffect',
       // DBC Magic Vulnerability Up from Patch, lasts 0.96s
-      // Ideally first patch that breaks is blue, else this will not work
       // TODO: Clean this up for P5 Tethers?
       netRegex: { effectId: 'DBC' },
       preRun: (data) => data.patchVulnCount = data.patchVulnCount + 1,
-      delaySeconds: (_data, matches) => parseFloat(matches.duration), // Could potentially reduce this?
+      delaySeconds: (_data, matches) => parseFloat(matches.duration),
       suppressSeconds: 1,
-      infoText: (data, _matches, output) => {
-        if (
-          (data.patchVulnCount % 2 === 1 && data.regression[data.me] === 'local') ||
-          (data.patchVulnCount === 7 && data.regression[data.me] === 'remote')
-        )
-          return output.breakTether!();
-      },
       run: (data) => {
         // Clear count for later phases
         if (data.patchVulnCount === 8)
           data.patchVulnCount = 0;
-      },
-      outputStrings: {
-        breakTether: {
-          en: 'Break Tether',
-        },
       },
     },
     {
