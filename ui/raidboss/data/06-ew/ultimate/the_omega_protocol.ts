@@ -615,8 +615,9 @@ const triggerSet: TriggerSet<Data> = {
 
         if (matches.target === data.me)
           return { alarmText: output.dontStack!() };
-        if (!data.meteorTargets.includes(data.me))
-          return { alertText: output.stack!() };
+        // Note: if you are doing uptime meteors then everybody stacks.
+        // If you are not, then you'll need to ignore this as needed.
+        return { infoText: output.stack!() };
       },
     },
     {
