@@ -387,18 +387,22 @@ Options.Triggers.push({
         blizzardBladework: {
           en: 'Out Out',
           de: 'Raus Raus',
+          ko: '밖 밖',
         },
         superliminalStrength: {
           en: 'In In on M',
           de: 'Rein Rein auf M',
+          ko: '안 안 남자',
         },
         superliminalBladework: {
           en: 'Under F',
           de: 'Unter W',
+          ko: '여자 밑',
         },
         blizzardStrength: {
           en: 'M Sides',
           de: 'Seitlich von M',
+          ko: '남자 양옆',
         },
       },
     },
@@ -720,6 +724,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'East Monitors',
+          ko: '오른쪽 모니터',
         },
       },
     },
@@ -731,6 +736,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'West Monitors',
+          ko: '왼쪽 모니터',
         },
       },
     },
@@ -748,9 +754,11 @@ Options.Triggers.push({
           // assuming there's a N/S conga line?
           monitorOnYou: {
             en: 'Monitor (w/${player1}, ${player2})',
+            ko: '모니터 (+ ${player1}, ${player2})',
           },
           unmarked: {
             en: 'Unmarked',
+            ko: '무징',
           },
         };
         if (data.monitorPlayers.length !== 3)
@@ -783,9 +791,11 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           stacks: {
             en: 'Stacks (${player1}, ${player2})',
+            ko: '쉐어징 (${player1}, ${player2})',
           },
           stackOnYou: {
             en: 'Stack on You (w/${player})',
+            ko: '쉐어징 대상자 (+ ${player})',
           },
         };
         const [m1, m2] = data.waveCannonStacks;

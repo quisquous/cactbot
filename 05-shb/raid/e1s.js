@@ -53,6 +53,12 @@ Options.Triggers.push({
           '我柜子动了等下再玩',
           'CG',
         ],
+        ko: [
+          '잠수',
+          ':zzz:',
+          '라희',
+          '저 물좀 떠올게요',
+        ],
       };
       const goofs = goofsByLang[data.displayLang];
       if (!goofs)
