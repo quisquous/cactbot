@@ -157,6 +157,7 @@ export interface Data extends OopsyData {
   towerCount?: number;
   blasterCollect?: NetMatches['Ability'][];
   towerCollect?: NetMatches['Ability'][];
+  beyondDefense?: string[];
   defamationColor?: RotColor;
   // Current state of debuffs.
   helloState?: { [name: string]: Set<string> };
@@ -386,6 +387,34 @@ const triggerSet: OopsyTriggerSet<Data> = {
         }
 
         return mistakes;
+      },
+    },
+    {
+      id: 'TOP Beyond Defense Cleanup',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: '7B28' }),
+      run: (data) => data.beyondDefense = [],
+    },
+    {
+      id: 'TOP Beyond Defense Collect',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B28' }),
+      run: (data, matches) => (data.beyondDefense ??= []).push(matches.target),
+    },
+    {
+      id: 'TOP Pile Pitch Double Tap',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B29' }),
+      condition: (data, matches) => data.beyondDefense?.includes(matches.target),
+      mistake: (_data, matches) => {
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: {
+            en: `${matches.ability} (after Beyond Defense)`,
+          },
+        };
       },
     },
     {
