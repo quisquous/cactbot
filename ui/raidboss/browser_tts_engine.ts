@@ -33,7 +33,7 @@ export default class BrowserTTSEngine {
       // https://bugs.chromium.org/p/chromium/issues/detail?id=334847
       window.speechSynthesis.getVoices();
       window.speechSynthesis.onvoiceschanged = () => this.initializeVoice();
-	} else
+    } else
       console.error('BrowserTTS error: no browser support for window.speechSynthesis');
   }
 
