@@ -21,13 +21,11 @@ import peculiarLightImage from '../../resources/ffxiv/status/peculiar-light.png'
 import physicalImage from '../../resources/ffxiv/status/physical.png';
 import potionImage from '../../resources/ffxiv/status/potion.png';
 import finaleImage from '../../resources/ffxiv/status/radiant-finale.png';
-import searingLight60Image from '../../resources/ffxiv/status/searing-light-6.0.png';
 import searingLightImage from '../../resources/ffxiv/status/searing-light.png';
 import spearImage from '../../resources/ffxiv/status/spear.png';
 import spireImage from '../../resources/ffxiv/status/spire.png';
 import standardFinishImage from '../../resources/ffxiv/status/standard-finish.png';
 import technicalFinishImage from '../../resources/ffxiv/status/technical-finish.png';
-import trickAttackImage from '../../resources/ffxiv/status/trick-attack.png';
 import umbralImage from '../../resources/ffxiv/status/umbral.png';
 import PartyTracker from '../../resources/party';
 import WidgetList from '../../resources/widget_list';
@@ -612,49 +610,20 @@ export class BuffTracker {
     };
 
     // Abilities that are different in Cn region.
-    // const vCn = {
-
-    // };
+    const vCn: { [s: string]: BuffInfo } = {};
 
     // Abilities that are different in Ko region.
-    const vKo = {
-      mug: {
-        cooldownAbility: [kAbility.TrickAttack],
-        mobGainsEffect: EffectId.VulnerabilityUp,
-        mobLosesEffect: EffectId.VulnerabilityUp,
-        useEffectDuration: true,
-        durationSeconds: 15,
-        icon: trickAttackImage,
-        // Magenta.
-        borderColor: '#FC4AE6',
-        sortKey: 1,
-        cooldown: 60,
-      },
-      searingLight: {
-        // FIXME: pet is not considered inParty, so this cannot track it if it misses you.
-        cooldownAbility: [kAbility.SearingLight60],
-        gainEffect: [EffectId.SearingLight],
-        loseEffect: [EffectId.SearingLight],
-        useEffectDuration: true,
-        durationSeconds: 30,
-        partyOnly: true,
-        icon: searingLight60Image,
-        // Pink.
-        borderColor: '#FF4A9D',
-        sortKey: 14,
-        cooldown: 120,
-      },
-    };
+    const vKo: { [s: string]: BuffInfo } = {};
 
     if (this.ffxivRegion === 'ko') {
       for (const [key, entry] of Object.entries(vKo))
         this.buffInfo[key] = entry;
     }
 
-    // if (this.ffxivRegion === 'cn') {
-    //   for (const [key, entry] of Object.entries(vCn))
-    //     this.buffInfo[key] = entry;
-    // }
+    if (this.ffxivRegion === 'cn') {
+      for (const [key, entry] of Object.entries(vCn))
+        this.buffInfo[key] = entry;
+    }
 
     this.gainEffectMap = {};
     this.loseEffectMap = {};
