@@ -29,8 +29,8 @@ export default class BrowserTTSEngine {
   private initializeAttempts = 0;
 
   constructor(private cactbotLang: Lang) {
-	window.speechSynthesis.getVoices();
     if (window.speechSynthesis !== undefined)
+	  window.speechSynthesis.getVoices();
       window.speechSynthesis.onvoiceschanged = () => this.initializeVoice();
     else
       console.error('BrowserTTS error: no browser support for window.speechSynthesis');
