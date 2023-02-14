@@ -827,7 +827,7 @@ const triggerSet: TriggerSet<Data> = {
       // 7B60 Latent Performance Defect (Blue Tower)
       // These casts go off 1 second after Latent Defect and go off regardless if someone soaks it
       netRegex: { id: ['7B5F', '7B60'], source: 'Omega', capture: false },
-      condition: (data) => data.latentDefectCount < 2,
+      condition: (data) => data.latentDefectCount < 3,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
