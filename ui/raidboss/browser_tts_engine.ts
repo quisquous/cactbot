@@ -29,10 +29,15 @@ export default class BrowserTTSEngine {
   private initializeAttempts = 0;
 
   constructor(private cactbotLang: Lang) {
-    this.initializeVoice();
+    if (window.speechSynthesis !== undefined)
+      window.speechSynthesis.onvoiceschanged = () => this.initializeVoice();
+    else
+      console.error('BrowserTTS error: no browser support for window.speechSynthesis');
   }
 
   initializeVoice(): boolean {
+    if (window.speechSynthesis === undefined)
+      return false;
     if (this.speechVoice !== undefined)
       return true;
     if (this.initializeAttempts > 5)
@@ -50,22 +55,16 @@ export default class BrowserTTSEngine {
     };
 
     // figure out what TTS engine type we need
-    if (window.speechSynthesis !== undefined) {
-      window.speechSynthesis.onvoiceschanged = () => {
-        const speechLang = cactbotLangToSpeechLang[this.cactbotLang];
-        const voice = window.speechSynthesis.getVoices().find((voice) => voice.lang === speechLang);
-        if (voice) {
-          this.speechLang = speechLang;
-          this.speechVoice = voice;
-          window.speechSynthesis.onvoiceschanged = null;
-          return true;
-        }
-
-        console.error('BrowserTTS error: could not find voice');
-      };
-    } else {
-      console.error('BrowserTTS error: no browser support for window.speechSynthesis');
+    const speechLang = cactbotLangToSpeechLang[this.cactbotLang];
+    const voice = window.speechSynthesis.getVoices().find((voice) => voice.lang === speechLang);
+    if (voice) {
+      this.speechLang = speechLang;
+      this.speechVoice = voice;
+      window.speechSynthesis.onvoiceschanged = null;
+      return true;
     }
+
+    console.error('BrowserTTS error: could not find voice');
     return false;
   }
 
