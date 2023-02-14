@@ -158,6 +158,7 @@ export interface Data extends OopsyData {
   blasterCollect?: NetMatches['Ability'][];
   towerCollect?: NetMatches['Ability'][];
   beyondDefense?: string[];
+  helloSmell?: NetMatches['GainsEffect'][];
   defamationColor?: RotColor;
   // Current state of debuffs.
   helloState?: { [name: string]: Set<string> };
@@ -432,6 +433,24 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7B54' }),
       mistake: stackMistake('warn', 2),
+    },
+    {
+      id: 'TOP Code Smell Collector',
+      type: 'GainsEffect',
+      // D6C Synchronization Code Smell (stack)
+      // D6D Overflow Code Smell (defamation)
+      // D6E Underflow Code Smell (red)
+      // D6F Performance Code Smell (blue)
+      // D71 Remote Code Smell (far tethers)
+      // DAF Local Code Smell (near tethers)
+      // DC9 Local Regression (near tethers)
+      // DCA Remote Regression (far tethers)
+      // DC4 Critical Synchronization Bug (stack)
+      // DC5 Critical Overflow Bug (defamation)
+      // DC6 Critical Underflow Bug (red)
+      // D65 Critical Performance Bug (blue)
+      netRegex: NetRegexes.gainsEffect({ effectId: ['D6C', 'D6D', 'D6E', 'D6F', 'D71', 'DAF'] }),
+      run: (data, matches) => (data.helloSmell ??= []).push(matches),
     },
     {
       id: 'TOP Hello World Collect Gain',
