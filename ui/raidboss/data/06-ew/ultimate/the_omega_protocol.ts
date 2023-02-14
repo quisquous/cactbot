@@ -14,6 +14,7 @@ export type PlaystationMarker = typeof playstationMarkers[number];
 export type Glitch = 'mid' | 'remote';
 export type Cannon = 'spread' | 'stack';
 export type RotColor = 'blue' | 'red';
+export type Regression = 'local' | 'remote';
 
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
@@ -30,6 +31,8 @@ export interface Data extends RaidbossData {
   smellDefamation: string[];
   smellRot: { [name: string]: RotColor };
   defamationColor?: RotColor;
+  regression: { [name: string]: Regression };
+  patchVulnCount: number;
   waveCannonStacks: NetMatches['Ability'][];
   monitorPlayers: NetMatches['GainsEffect'][];
 }
@@ -97,6 +100,8 @@ const triggerSet: TriggerSet<Data> = {
       cannonFodder: {},
       smellDefamation: [],
       smellRot: {},
+      regression: {},
+      patchVulnCount: 0,
       waveCannonStacks: [],
       monitorPlayers: [],
     };
@@ -779,6 +784,109 @@ const triggerSet: TriggerSet<Data> = {
           de: '??? Ehrenstrafe',
           ko: '??? 광역',
         },
+      },
+    },
+    {
+      id: 'TOP Latent Defect Tether Towers',
+      type: 'GainsEffect',
+      // D71 Remote Code Smell (blue)
+      // DAF Local Code Smell(red/green)
+      // Using Code Smell as the regressions come ~8.75s after Latent Defect
+      // Debuffs are 23, 44, 65, and 86s
+      // TODO: Possibly include direction?
+      netRegex: { effectId: ['D71', 'DAF'] },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 8.75,
+      infoText: (data, matches, output) => {
+        const regression = matches.effectId === 'DAF' ? 'local' : 'remote';
+        const defamation = data.defamationColor;
+        if (defamation === undefined)
+          return;
+        if (regression === 'remote') {
+          const color = defamation === 'red' ? output['blue']!() : output['red']!();
+          return output.nearTether!({ color: color });
+        }
+
+        if (parseFloat(matches.duration) < 80)
+          return output.farTether!({ color: output[defamation]!() });
+
+        const color = defamation === 'red' ? output['blue']!() : output['red']!();
+        return output.finalTowerFar!({ color: color });
+      },
+      outputStrings: {
+        nearTether: {
+          en: 'Stack by ${color} Tower',
+        },
+        farTether: {
+          en: 'Get ${color} Defamation',
+        },
+        finalTowerFar: {
+          en: 'Between ${color} Towers',
+        },
+        red: {
+          en: 'Red',
+        },
+        blue: {
+          en: 'Blue',
+        },
+      },
+    },
+    {
+      id: 'TOP P3 Regression Collect',
+      type: 'GainsEffect',
+      // DC9 Local Regression (red/green)
+      // DCA Remote Regression (blue)
+      netRegex: { effectId: ['DC9', 'DCA'] },
+      run: (data, matches) => {
+        data.regression[matches.target] = matches.effectId === 'DC9' ? 'local' : 'remote';
+      },
+    },
+    {
+      id: 'TOP P3 Second Regression Break Tether',
+      type: 'GainsEffect',
+      // DC9 Local Regression (red/green)
+      // DCA Remote Regression (blue)
+      // Debuffs last 10s
+      // Ideally first patch that breaks is blue, else this will not work
+      // Will call out if has not broken yet and it is safe to break, if by end
+      // of delay and first tether has not broken, it will not call
+      netRegex: { effectId: ['DC9', 'DCA'] },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
+      alertText: (data, _matches, output) => {
+        if (
+          (data.patchVulnCount % 2 === 1 && data.regression[data.me] === 'local') ||
+          (data.patchVulnCount === 7 && data.regression[data.me] === 'remote')
+        )
+          return output.breakTether!();
+      },
+      outputStrings: {
+        breakTether: {
+          en: 'Break Tether',
+        },
+      },
+    },
+    {
+      id: 'TOP P3 Regression Cleanup',
+      type: 'LosesEffect',
+      // DC9 Local Regression (red/green)
+      // DCA Remote Regression (blue)
+      netRegex: { effectId: ['DC9', 'DCA'] },
+      run: (data, matches) => delete data.regression[matches.target],
+    },
+    {
+      id: 'TOP Regression Break Counter',
+      type: 'GainsEffect',
+      // DBC Magic Vulnerability Up from Patch, lasts 0.96s
+      // TODO: Clean this up for P5 Tethers?
+      netRegex: { effectId: 'DBC' },
+      preRun: (data) => data.patchVulnCount = data.patchVulnCount + 1,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration),
+      suppressSeconds: 1,
+      run: (data) => {
+        // Clear count for later phases
+        if (data.patchVulnCount === 8)
+          data.patchVulnCount = 0;
       },
     },
     {
