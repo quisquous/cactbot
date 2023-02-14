@@ -29,9 +29,11 @@ export default class BrowserTTSEngine {
   private initializeAttempts = 0;
 
   constructor(private cactbotLang: Lang) {
-    if (window.speechSynthesis !== undefined)
-	  window.speechSynthesis.getVoices();
-      window.speechSynthesis.onvoiceschanged = () => this.initializeVoice();
+    if (window.speechSynthesis !== undefined) {
+		// https://bugs.chromium.org/p/chromium/issues/detail?id=334847
+		window.speechSynthesis.getVoices();
+		window.speechSynthesis.onvoiceschanged = () => this.initializeVoice();
+	}
     else
       console.error('BrowserTTS error: no browser support for window.speechSynthesis');
   }
@@ -57,7 +59,7 @@ export default class BrowserTTSEngine {
 
     // figure out what TTS engine type we need
     const speechLang = cactbotLangToSpeechLang[this.cactbotLang];
-    const voice = window.speechSynthesis.getVoices().find((voice) => voice.lang.replaceAll('_','-') === speechLang);
+    const voice = window.speechSynthesis.getVoices().find((voice) => voice.lang.replaceAll('_', '-') === speechLang);
     if (voice) {
       this.speechLang = speechLang;
       this.speechVoice = voice;
