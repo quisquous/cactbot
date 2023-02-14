@@ -56,7 +56,7 @@ export default class BrowserTTSEngine {
 
     // figure out what TTS engine type we need
     const speechLang = cactbotLangToSpeechLang[this.cactbotLang];
-    const voice = window.speechSynthesis.getVoices().find((voice) => voice.lang === speechLang);
+    const voice = window.speechSynthesis.getVoices().find((voice) => voice.lang.replaceAll('_','-') === speechLang);
     if (voice) {
       this.speechLang = speechLang;
       this.speechVoice = voice;
