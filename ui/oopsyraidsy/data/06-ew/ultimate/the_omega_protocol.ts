@@ -71,7 +71,7 @@ type LatentDefectMistake = {
 };
 
 // The extra/missing/tookTwo texts have playerDescription below appended to it,
-// e.g. "Red Tower, no rot (as defamation)" or "Missed Stack (as blue tether)".
+// e.g. "Red Tower, no rot (as defamation)" or "Missed Stack (as far tether)".
 // If this doesn't work for some language translation, please file an issue.
 const defects: LatentDefectMistake[] = [
   {
@@ -133,10 +133,10 @@ const playerDescription: { [key in HelloEffect]: LocaleText } = {
     en: ' (as stack)',
   },
   redTether: {
-    en: ' (as red tether)',
+    en: ' (as near tether)',
   },
   blueTether: {
-    en: ' (as blue tether)',
+    en: ' (as far tether)',
   },
   // These shouldn't happen.
   redRot: {
@@ -144,6 +144,22 @@ const playerDescription: { [key in HelloEffect]: LocaleText } = {
   },
   blueRot: {
     en: ' (as blue rot)',
+  },
+} as const;
+
+// Some special case combo descriptions.
+const playerComboDesc = {
+  redDefamation: {
+    en: ' (as red defamation)',
+  },
+  redStack: {
+    en: ' (as red stack)',
+  },
+  blueDefamation: {
+    en: ' (as blue defamation)',
+  },
+  blueStack: {
+    en: ' (as blue stack)',
   },
 } as const;
 
@@ -159,7 +175,9 @@ export interface Data extends OopsyData {
   towerCollect?: NetMatches['Ability'][];
   beyondDefense?: string[];
   helloSmell?: NetMatches['GainsEffect'][];
+  expectedRots?: { [latentDefectCount: number]: { blue: string[]; red: string[] } };
   defamationColor?: RotColor;
+  latentDefectCount?: number;
   // Current state of debuffs.
   helloState?: { [name: string]: Set<string> };
   // Snapshot at start of Latent Defect cast to avoid debuff removal races.
@@ -443,24 +461,53 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // D6F Performance Code Smell (blue)
       // D71 Remote Code Smell (far tethers)
       // DAF Local Code Smell (near tethers)
-      // DC9 Local Regression (near tethers)
-      // DCA Remote Regression (far tethers)
-      // DC4 Critical Synchronization Bug (stack)
-      // DC5 Critical Overflow Bug (defamation)
-      // DC6 Critical Underflow Bug (red)
-      // D65 Critical Performance Bug (blue)
       netRegex: NetRegexes.gainsEffect({ effectId: ['D6C', 'D6D', 'D6E', 'D6F', 'D71', 'DAF'] }),
-      run: (data, matches) => (data.helloSmell ??= []).push(matches),
+      run: (data, matches) => {
+        (data.helloSmell ??= []).push(matches);
+        const emptyExpectedRot = { blue: [], red: [] };
+        if (matches.effectId === 'D6E')
+          ((data.expectedRots ??= {})[0] ??= emptyExpectedRot).red.push(matches.target);
+        else if (matches.effectId === 'D6F')
+          ((data.expectedRots ??= {})[0] ??= emptyExpectedRot).blue.push(matches.target);
+      },
     },
     {
       id: 'TOP Hello World Collect Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: Object.values(helloEffect) }),
-      run: (data, matches) => {
+      mistake: (data, matches) => {
         const state = (data.helloState ??= {});
         const set = (state[matches.target] ??= new Set<string>());
         set.add(matches.effectId);
-        // TODO: detect unexpected rot passes??
+
+        // Detect unexpected rot passes.
+        const isRedRot = matches.effectId === helloEffect.redRot;
+        const isBlueRot = matches.effectId === helloEffect.blueRot;
+        if (!isRedRot && !isBlueRot)
+          return;
+
+        data.latentDefectCount ??= 0;
+        const expected = data.expectedRots?.[data.latentDefectCount] ?? { blue: [], red: [] };
+        if (isRedRot && !expected.red.includes(matches.target)) {
+          return {
+            type: 'warn',
+            blame: matches.target,
+            reportId: matches.targetId,
+            text: {
+              en: 'Unexpected red rot',
+            },
+          };
+        }
+        if (isBlueRot && !expected.blue.includes(matches.target)) {
+          return {
+            type: 'warn',
+            blame: matches.target,
+            reportId: matches.targetId,
+            text: {
+              en: 'Unexpected blue rot',
+            },
+          };
+        }
         // TODO: detect anything gained/active during critical error
       },
     },
@@ -477,12 +524,118 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'TOP Latent Defect Snapshot',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7B6F' }),
+      netRegex: NetRegexes.ability({ id: '7B6F', capture: false }),
       run: (data) => {
+        data.latentDefectCount ??= 0;
+        data.latentDefectCount++;
+
         // Take a snapshot of the debuff state when Latent Defect goes off before the abilities.
         data.helloStateSnapshot = {};
         for (const [name, set] of Object.entries(data.helloState ?? {}))
           data.helloStateSnapshot[name] = new Set(set);
+
+        // Set up expected rot passes for future latent defects if needed.
+        if (data.defamationColor !== undefined)
+          return;
+
+        data.expectedRots ??= {};
+        data.helloSmell ??= [];
+
+        const defamationSmellId = 'D6D';
+        const redSmellId = 'D6E';
+        const blueSmellId = 'D6F';
+        const defamation = data.helloSmell.find((x) => x.effectId === defamationSmellId);
+        const redEffects = data.helloSmell.filter((x) => x.effectId === redSmellId);
+        const blueEffects = data.helloSmell.filter((x) => x.effectId === blueSmellId);
+
+        if (defamation === undefined) {
+          console.error(`Hello World: no defamation: ${JSON.stringify(data.helloSmell)}`);
+          return;
+        }
+
+        if (redEffects.map((x) => x.target).includes(defamation.target))
+          data.defamationColor = 'red';
+        else if (blueEffects.map((x) => x.target).includes(defamation.target))
+          data.defamationColor = 'blue';
+
+        if (data.defamationColor === undefined) {
+          console.error(`Hello World: no defamation color: ${JSON.stringify(data.helloSmell)}`);
+          return;
+        }
+
+        const nearTetherColor = data.defamationColor;
+        const farTetherColor = data.defamationColor === 'red' ? 'blue' : 'red';
+        const nearSmellId = 'DAF';
+        const farSmellId = 'D71';
+
+        // Walk through all smells and add expected rots based on tether timers.
+        for (const smell of data.helloSmell) {
+          // 3 = initial rot/stack/def for defect 1
+          // 23 = tether for defect 1
+          // 44 = tether for defect 2
+          // 65 = tether for defect 3
+          // 86 = tether for defect 4
+          // map to 1 2 3 4
+          const duration = parseInt(smell.duration);
+          const count = 1 + Math.floor(Math.max(duration - 10, 0) / 20);
+          // No rot passes should occur on the 4th latent defect.
+          // In general this is impossible, but deaths can make things weird.
+          if (count === 4)
+            continue;
+          const expectedForCount = data.expectedRots[count] ??= { blue: [], red: [] };
+          if (smell.effectId === nearSmellId)
+            expectedForCount[nearTetherColor].push(smell.target);
+          else if (smell.effectId === farSmellId)
+            expectedForCount[farTetherColor].push(smell.target);
+        }
+      },
+    },
+    {
+      id: 'TOP Latent Defect Missed Rots',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B6F', capture: false }),
+      mistake: (data) => {
+        if (data.latentDefectCount === undefined)
+          return;
+
+        // Check if everybody got their expected rots.
+        // This runs after the count has been incremented in the previous trigger.
+        const prevCount = data.latentDefectCount - 1;
+        const prevExpected = data.expectedRots?.[prevCount];
+        // This should always be defined, but just in case (and for TypeScript)...
+        if (prevExpected === undefined) {
+          console.error(`Missing expected rot: ${prevCount}, ${JSON.stringify(data.expectedRots)}`);
+          return;
+        }
+
+        const mistakes: OopsyMistake[] = [];
+        const rotColors: RotColor[] = ['red', 'blue'];
+        for (const color of rotColors) {
+          for (const player of prevExpected[color]) {
+            const rotToEffect: string = {
+              red: helloEffect.redRot,
+              blue: helloEffect.blueRot,
+            }[color];
+            if (data.helloStateSnapshot?.[player]?.has(rotToEffect))
+              continue;
+            const text: LocaleText = {
+              red: {
+                en: 'Failed to get red rot',
+              },
+              blue: {
+                en: 'Failed to get blue rot',
+              },
+            }[color];
+            mistakes.push({
+              type: 'warn',
+              blame: player,
+              reportId: data.blameId?.[player],
+              text: text,
+            });
+          }
+        }
+
+        return mistakes;
       },
     },
     {
@@ -494,11 +647,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'TOP Hello World Mistakes',
       type: 'Ability',
+      /*
       netRegex: NetRegexes.ability({ id: Object.values(helloAbility), capture: false }),
       delaySeconds: 0.3,
       suppressSeconds: 1,
+      */
       // TODO: can use this for testing since oopsy_viewer doesn't support delaySeconds yet.
-      // netRegex: NetRegexes.ability({ id: '7B63' }),
+      netRegex: NetRegexes.ability({ id: '7B63' }),
       mistake: (data) => {
         const mistakes: OopsyMistake[] = [];
 
@@ -515,9 +670,26 @@ const triggerSet: OopsyTriggerSet<Data> = {
         // Generate a string description of each player, for mistakes.
         const playerToDescription: { [name: string]: string } = {};
         for (const player of players) {
+          const helloEffectAnon: { [name: string]: string } = helloEffect;
           const state = data.helloStateSnapshot?.[player];
+          if (state === undefined)
+            continue;
+
+          // Combo descriptions.
+          if (state.has(helloEffect.redRot)) {
+            if (state.has(helloEffect.defamation))
+              playerToDescription[player] ??= translate(data, playerComboDesc.redDefamation);
+            else if (state.has(helloEffect.stack))
+              playerToDescription[player] ??= translate(data, playerComboDesc.redStack);
+          } else if (state.has(helloEffect.blueRot)) {
+            if (state.has(helloEffect.defamation))
+              playerToDescription[player] ??= translate(data, playerComboDesc.blueDefamation);
+            else if (state.has(helloEffect.stack))
+              playerToDescription[player] ??= translate(data, playerComboDesc.blueStack);
+          }
+
+          // Single effect descriptions.
           for (const [key, desc] of Object.entries(playerDescription)) {
-            const helloEffectAnon: { [name: string]: string } = helloEffect;
             const effectId = helloEffectAnon[key];
             if (effectId !== undefined && state?.has(effectId)) {
               playerToDescription[player] ??= translate(data, desc);
@@ -538,17 +710,25 @@ const triggerSet: OopsyTriggerSet<Data> = {
               buff2 !== undefined && state.has(buff2);
           });
 
+          // Special-case "missed tower" to only include people who "should" have rot,
+          // ignoring who "does" have rot.
+          let missingExpectedPlayers = expectedPlayers;
+
+          const expectedRot = data.expectedRots?.[(data.latentDefectCount ?? -1) - 1];
+
+          if (defect.actual === 'redTower')
+            missingExpectedPlayers = expectedRot?.red ?? missingExpectedPlayers;
+          else if (defect.actual === 'blueTower')
+            missingExpectedPlayers = expectedRot?.blue ?? missingExpectedPlayers;
+
           const actualAbilities = collect.filter((x) => x.id === helloAbility[defect.actual]);
           const actualPlayers = actualAbilities.map((x) => x.target);
 
           // Missing a person??
-          for (const player of expectedPlayers) {
+          for (const player of missingExpectedPlayers) {
             if (!actualPlayers.includes(player)) {
-              // It's possible somebody could have picked up a rot weirdly and so is "missing".
-              // This doesn't check for the people who "should" have rots, only those that do.
-              // TODO: handle if somebody doesn't stand in a tower AND doesn't pick up rot.
-              // Probably we need to figure out who the expected players based on the very
-              // initial set of debuffs, rather than just looking at the current state of debuffs.
+              // For towers, this will call missed if somebody should have rot and be in that
+              // tower, even if they don't have rot.
               const text = translate(data, defect.missing);
               mistakes.push({
                 type: 'warn',
@@ -587,10 +767,27 @@ const triggerSet: OopsyTriggerSet<Data> = {
             abilityCount[player]++;
 
             // Check for solo defamation/stack while we're here.
-            if (ability.targetCount === '1') {
+            const isFinalDefamation = defect.actual === 'defamation' &&
+              data.latentDefectCount === 4;
+            const targetCount = parseInt(ability.targetCount);
+            // Defamation (1-3) and stack always need two people in them.
+            if (targetCount === 1 && !isFinalDefamation) {
               const text = translate(data, GetSoloMistakeText(defect.extra));
               mistakes.push({
                 type: 'warn',
+                blame: player,
+                reportId: data.blameId?.[player],
+                text: `${text}${playerToDescription[player] ?? unknownDesc}`,
+              });
+            } else if (targetCount > 1 && isFinalDefamation) {
+              // Defamation 4 should always have only one person in them.
+              const text = translate(data, GetShareMistakeText(defect.extra, 1));
+              const hasDefamation = data.helloStateSnapshot?.[ability.target]?.has(
+                helloEffect.defamation,
+              );
+              const type = hasDefamation ? 'warn' : 'fail';
+              mistakes.push({
+                type: type,
                 blame: player,
                 reportId: data.blameId?.[player],
                 text: `${text}${playerToDescription[player] ?? unknownDesc}`,
@@ -619,17 +816,35 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'TOP Critical Underflow Bug',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7B5A' }),
-      mistake: stackMistake('warn', 1, {
-        en: 'Red Rot Explosion',
-      }),
+      mistake: (data, matches) => {
+        const targets = parseInt(matches.targetCount);
+        if (targets <= 1)
+          return;
+        const renamedText: LocaleText = {
+          en: 'Red Rot Explosion',
+        };
+        const text = GetShareMistakeText(renamedText, targets);
+        const isRedRot = data.helloStateSnapshot?.[matches.target]?.has(helloEffect.redRot);
+        const type = isRedRot ? 'warn' : 'fail';
+        return { type: type, blame: matches.target, text: text };
+      },
     },
     {
       id: 'TOP Critical Performance Bug',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7B5B' }),
-      mistake: stackMistake('warn', 1, {
-        en: 'Blue Rot Explosion',
-      }),
+      mistake: (data, matches) => {
+        const targets = parseInt(matches.targetCount);
+        if (targets <= 1)
+          return;
+        const renamedText: LocaleText = {
+          en: 'Blue Rot Explosion',
+        };
+        const text = GetShareMistakeText(renamedText, targets);
+        const isBlueRot = data.helloStateSnapshot?.[matches.target]?.has(helloEffect.blueRot);
+        const type = isBlueRot ? 'warn' : 'fail';
+        return { type: type, blame: matches.target, text: text };
+      },
     },
     {
       id: 'TOP Oversampled Wave Cannon Collect',
