@@ -279,5 +279,24 @@ Options.Triggers.push({
         'Venom Squall': '毒液风暴',
       },
     },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Proto-Carbuncle': '프로토 카벙클',
+      },
+      'replaceText': {
+        '(?<!Toxic )Crunch': '짓씹기',
+        'Ruby Glow': '루비의 빛',
+        'Searing Ray': '타오르는 빛줄기',
+        'Sonic Howl': '음속 포효',
+        'Starving Stampede': '굶주림의 광란',
+        'Topaz Cluster': '토파즈 클러스터',
+        'Topaz Stones': '토파즈 스톤',
+        'Toxic Crunch': '독성 짓씹기',
+        'Venom Pool': '독성 물보라',
+        'Venom Rain': '독성 비',
+        'Venom Squall': '독성 소나기',
+      },
+    },
   ],
 });
