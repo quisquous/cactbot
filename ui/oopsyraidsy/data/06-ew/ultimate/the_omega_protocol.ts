@@ -65,8 +65,13 @@ export type RotColor = 'blue' | 'red';
 type LatentDefectMistake = {
   expected: (keyof typeof helloEffect)[];
   actual: keyof typeof helloAbility;
+  // If people take this who have the wrong debuffs.
   extra: LocaleText;
+  // If people should take this but are missing.
   missing: LocaleText;
+  // If the wrong number of people take this.
+  share: LocaleText;
+  // If you take two hits of this (e.g. two defamations).
   tookTwo?: LocaleText;
 };
 
@@ -83,6 +88,9 @@ const defects: LatentDefectMistake[] = [
     missing: {
       en: 'Missed Red Tower',
     },
+    share: {
+      en: 'Red Tower',
+    },
   },
   {
     expected: ['blueRot'],
@@ -93,6 +101,9 @@ const defects: LatentDefectMistake[] = [
     missing: {
       en: 'Missed Blue Tower',
     },
+    share: {
+      en: 'Blue Tower',
+    },
   },
   {
     expected: ['stack', 'blueTether'],
@@ -102,6 +113,9 @@ const defects: LatentDefectMistake[] = [
     },
     missing: {
       en: 'Missed stack',
+    },
+    share: {
+      en: 'Stack',
     },
     tookTwo: {
       en: 'Stack x2',
@@ -115,6 +129,9 @@ const defects: LatentDefectMistake[] = [
     },
     missing: {
       en: 'Missed defamation',
+    },
+    share: {
+      en: 'Defamation',
     },
     tookTwo: {
       en: 'Defamation x2',
@@ -676,12 +693,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
             continue;
 
           // Combo descriptions.
-          if (state.has(helloEffect.redRot)) {
+          if (state.has(helloEffect.redRot) && !state.has(helloEffect.blueRot)) {
             if (state.has(helloEffect.defamation))
               playerToDescription[player] ??= translate(data, playerComboDesc.redDefamation);
             else if (state.has(helloEffect.stack))
               playerToDescription[player] ??= translate(data, playerComboDesc.redStack);
-          } else if (state.has(helloEffect.blueRot)) {
+          } else if (state.has(helloEffect.blueRot) && !state.has(helloEffect.redRot)) {
             if (state.has(helloEffect.defamation))
               playerToDescription[player] ??= translate(data, playerComboDesc.blueDefamation);
             else if (state.has(helloEffect.stack))
@@ -752,11 +769,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             }
           }
 
-          // Is this a stack or defamation?
-          const idealNumberOfPlayers = buffStrs.length;
-          const tookTwo = defect.tookTwo;
-          if (idealNumberOfPlayers !== 2 || tookTwo === undefined)
-            continue;
+          const isTower = defect.actual === 'redTower' || defect.actual === 'blueTower';
 
           // Walk through abilities and make sure everybody took defamation/stack at most once.
           // (Surely nobody will double tap with stacks, but might as well handle it too.)
@@ -771,17 +784,17 @@ const triggerSet: OopsyTriggerSet<Data> = {
               data.latentDefectCount === 4;
             const targetCount = parseInt(ability.targetCount);
             // Defamation (1-3) and stack always need two people in them.
-            if (targetCount === 1 && !isFinalDefamation) {
-              const text = translate(data, GetSoloMistakeText(defect.extra));
+            if (targetCount === 1 && !isFinalDefamation && !isTower) {
+              const text = translate(data, GetSoloMistakeText(defect.share));
               mistakes.push({
                 type: 'warn',
                 blame: player,
                 reportId: data.blameId?.[player],
                 text: `${text}${playerToDescription[player] ?? unknownDesc}`,
               });
-            } else if (targetCount > 1 && isFinalDefamation) {
-              // Defamation 4 should always have only one person in them.
-              const text = translate(data, GetShareMistakeText(defect.extra, 1));
+            } else if (targetCount > 1 && (isFinalDefamation || isTower)) {
+              // Towers and Defamation 4 should always have only one person in them.
+              const text = translate(data, GetShareMistakeText(defect.share, 1));
               const hasDefamation = data.helloStateSnapshot?.[ability.target]?.has(
                 helloEffect.defamation,
               );
@@ -794,6 +807,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
               });
             }
           }
+
+          // Is this a stack or defamation?
+          const idealNumberOfPlayers = buffStrs.length;
+          const tookTwo = defect.tookTwo;
+          if (idealNumberOfPlayers !== 2 || tookTwo === undefined)
+            continue;
 
           // Check for double taps.
           for (const [player, count] of Object.entries(abilityCount)) {
