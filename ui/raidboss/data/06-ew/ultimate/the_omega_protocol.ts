@@ -874,23 +874,21 @@ const triggerSet: TriggerSet<Data> = {
         const defamation = data.defamationColor;
         if (defamation === undefined)
           return;
-        if (regression === 'remote') {
-          const color = defamation === 'red' ? output['blue']!() : output['red']!();
-          return output.nearTether!({ color: color });
-        }
+        const color = defamation === 'red' ? output.blue!() : output.red!();
+        if (regression === 'remote')
+          return output.farTether!({ color: color });
 
         if (parseFloat(matches.duration) < 80)
-          return output.farTether!({ color: output[defamation]!() });
+          return output.nearTether!({ color: color });
 
-        const color = defamation === 'red' ? output['blue']!() : output['red']!();
         return output.finalTowerFar!({ color: color });
       },
       outputStrings: {
-        nearTether: {
+        farTether: {
           en: 'Stack by ${color} Tower',
         },
-        farTether: {
-          en: 'Get ${color} Defamation',
+        nearTether: {
+          en: 'Outside ${color} Towers',
         },
         finalTowerFar: {
           en: 'Between ${color} Towers',
@@ -968,9 +966,11 @@ const triggerSet: TriggerSet<Data> = {
       // DC6 Critical Underflow Bug (red)
       // Debuffs last 27s
       netRegex: { effectId: ['D65', 'DC6'] },
+      // TODO: should we have a "Watch Rot" call if you don't get it?
+      // (with some suppression due to inconsistent rot pickup timings etc)
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
-      alertText: (_data, _matches, output) => output.spread!(),
+      infoText: (_data, _matches, output) => output.spread!(),
       run: (data, matches) => delete data.bugRot[matches.target],
       outputStrings: {
         spread: Outputs.spread,
