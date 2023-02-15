@@ -55,6 +55,8 @@ Options.Triggers.push({
       smellDefamation: [],
       smellRot: {},
       regression: {},
+      bugRot: {},
+      latentDefectCount: 0,
       patchVulnCount: 0,
       waveCannonStacks: [],
       monitorPlayers: [],
@@ -720,6 +722,74 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'TOP Latent Defect Tower',
+      type: 'StartsUsing',
+      netRegex: { id: '7B6F', source: 'Omega', capture: false },
+      infoText: (data, _matches, output) => {
+        const myColor = data.bugRot[data.me];
+        if (myColor === undefined)
+          return;
+        if (data.defamationColor === myColor)
+          return output.colorTowerDefamation({ color: output[myColor]() });
+        else if (myColor)
+          return output.colorTower({ color: output[myColor]() });
+      },
+      outputStrings: {
+        colorTower: {
+          en: '${color} Tower Stack',
+        },
+        colorTowerDefamation: {
+          en: '${color} Tower Defamation',
+        },
+        red: {
+          en: 'Red',
+        },
+        blue: {
+          en: 'Blue',
+        },
+      },
+    },
+    {
+      id: 'TOP Rot Collect',
+      type: 'GainsEffect',
+      // D65 Critical Performance Bug (blue)
+      // DC6 Critical Underflow Bug (red)
+      // Debuffs last 27s
+      netRegex: { effectId: ['D65', 'DC6'] },
+      condition: (data, matches) => {
+        data.bugRot[matches.target] = matches.effectId === 'D65' ? 'blue' : 'red';
+        return (matches.target === data.me) && data.latentDefectCount !== 3;
+      },
+    },
+    {
+      id: 'TOP Rot Pass/Get',
+      type: 'Ability',
+      // 7B5F Cascading Latent Defect (Red Tower)
+      // 7B60 Latent Performance Defect (Blue Tower)
+      // These casts go off 1 second after Latent Defect and go off regardless if someone soaks it
+      netRegex: { id: ['7B5F', '7B60'], source: 'Omega', capture: false },
+      condition: (data) => data.latentDefectCount < 3,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          passRot: {
+            en: 'Pass Rot',
+          },
+          getRot: {
+            en: 'Get Rot',
+          },
+        };
+        if (data.bugRot[data.me])
+          return { infoText: output.passRot() };
+        return { alertText: output.getRot() };
+      },
+      run: (data) => {
+        data.bugRot = {};
+        data.latentDefectCount = data.latentDefectCount + 1;
+      },
+    },
+    {
       id: 'TOP Latent Defect Tether Towers',
       type: 'GainsEffect',
       // D71 Remote Code Smell (blue)
@@ -818,6 +888,21 @@ Options.Triggers.push({
         // Clear count for later phases
         if (data.patchVulnCount === 8)
           data.patchVulnCount = 0;
+      },
+    },
+    {
+      id: 'TOP Rot Spread',
+      type: 'GainsEffect',
+      // D65 Critical Performance Bug (blue)
+      // DC6 Critical Underflow Bug (red)
+      // Debuffs last 27s
+      netRegex: { effectId: ['D65', 'DC6'] },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
+      alertText: (_data, _matches, output) => output.spread(),
+      run: (data, matches) => delete data.bugRot[matches.target],
+      outputStrings: {
+        spread: Outputs.spread,
       },
     },
     {
