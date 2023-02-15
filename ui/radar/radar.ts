@@ -230,6 +230,14 @@ class Radar {
           this.nameToHuntEntry[nameItem.toLowerCase()] = hunt;
       }
     }
+
+    // TODO: Remove this patch after OnPlayerChange is properly called in KO 6.2
+    setTimeout(() => {
+      if (this.playerPos === null && this.lang === 'ko') {
+        // A nonsense position, to inform this is partially broken.
+        this.playerPos = new Point2DWithZ(-999, -999, -999);
+      }
+    }, 1000)
   }
 
   AddMonster(log: string, hunt: HuntEntry, matches: NetMatches['AddedCombatant']) {
