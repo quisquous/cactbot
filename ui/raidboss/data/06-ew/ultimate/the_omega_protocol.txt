@@ -1,6 +1,6 @@
 ### The Omega Protocol
 # -p 7B03:15 7B40:206.4 7B13:400 7B47:600 7B7C:700 7F72:1100
-# -ii 7BFD 7B0A 7E70 7B0C 7B41 7E6B 7B3F 7BFE 7BFF 7B14 7B15 7B16 7B17 7B1C 7B1D 7B1E 7B2B 7B2C 7B39 7B20 7F75 7B36 7B37 7B35 7B43 7B28 7B32 7B23 7B24 7B49 7B4C 7C00  7B5F 7B60 7B5A 7B5B 7B6D 7B56 7B57 7AFB 7EF9 7C01 7B8B 7BAE 7E51 7B7D 7B7E 7B80 7B90 7C02 7E76 7B99
+# -ii 7BFD 7B0A 7E70 7B0C 7B41 7E6B 7B3F 7BFE 7BFF 7B14 7B15 7B16 7B17 7B1C 7B1D 7B1E 7B2B 7B2C 7B39 7B20 7F75 7B36 7B37 7B35 7B43 7B28 7B32 7B23 7B24 7B49 7B4C 7C00  7B5F 7B60 7B5A 7B5B 7B6D 7B56 7B57 7AFB 7EF9 7C01 7B8B 7BAE 7E51 7B7D 7B7E 7B80 7B90 7B74 7C02 7B79 7E76 7B99
 # -it "Omega" "Omega-M" "Omega-F"
 
 hideall "--Reset--"
@@ -200,7 +200,7 @@ hideall "--sync--"
 774.0 "Hyper Pulse" #sync / 1[56]:[^:]*:Right Arm Unit:7B71:/
 782.0 "Patch" #sync / 1[56]:[^:]*:Omega-M:7B63:/
 784.0 "Patch" #sync / 1[56]:[^:]*:Omega-M:7B63:/
-786.4 "Swivel Cannon" sync / 1[56]:[^:]*:Omega:7B94:/
+786.4 "Swivel Cannon" sync / 1[56]:[^:]*:Omega:(7B94|7B95):/
 787.0 "Hello, Distant World 1" sync / 1[56]:[^:]*:Omega-M:8110:/
 787.0 "Hello, Near World 1" sync / 1[56]:[^:]*:Omega-M:7B89:/
 788.0 "Hello, Distant World 2" #sync / 1[56]:[^:]*:Omega-M:8111:/
@@ -209,7 +209,6 @@ hideall "--sync--"
 789.0 "Hello, Near World 3" #sync / 1[56]:[^:]*:Omega-M:7B8A:/
 
 # Sigma Version
-# TODO: Account for patterns
 791.1 "--targetable--"
 805.2 "Solar Ray 1" sync / 1[56]:[^:]*:Omega-M:81AC:/
 808.5 "Solar Ray 2" sync / 1[56]:[^:]*:Omega-M:7B01:/
@@ -223,7 +222,6 @@ hideall "--sync--"
 841.1 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B16:/
 844.0 "Wave Cannon" sync / 1[56]:[^:]*:Omega:7B73:/
 843.8 "Hyper Pulse" sync / 1[56]:[^:]*:Right Arm Unit:7B72:/
-843.9 "Wave Cannon" #sync / 1[56]:[^:]*:Omega:7B74:/
 845.1 "--sync--" sync / 1[56]:[^:]*:Omega-M:7F30:/
 848.7 "--sync--" sync / 1[56]:[^:]*:Omega:7B15:/
 849.3 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B20:/
@@ -243,21 +241,18 @@ hideall "--sync--"
 882.6 "Hello, Distant World 3" #sync / 1[56]:[^:]*:Omega-F:8111:/
 
 # Omega Version
-# TODO: Account for patterns
 885.3 "--targetable--"
 887.3 "--sync--" sync / 1[56]:[^:]*:Omega-M:7C02:/
 894.3 "Solar Ray 1" sync / 1[56]:[^:]*:Omega-M:81AD:/
 897.4 "Solar Ray 2" sync / 1[56]:[^:]*:Omega-M:7B02:/
 904.6 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B43:/
 910.7 "Run: ****mi* (Omega Version)" sync / 1[56]:[^:]*:Omega-M:8015:/
-927.8 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:7B9C:/
-928.8 "Superliminal Steel" sync / 1[56]:[^:]*:Omega-F:7B2A:/
-928.8 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:7B25:/
-928.9 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:7B79:/
-931.9 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:7B77:/
-932.7 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-F:7B2D:/
-932.7 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:7B25:/
-932.8 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:7B79:/
+927.8 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:(7B9C|7B77):/ duration 1.1
+# 928.8 "Superliminal Steel" sync / 1[56]:[^:]*:Omega-F:7B2A:/
+# 928.8 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:7B25:/
+931.9 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:(7B77|7B9C):/ duration 1.1
+# 932.7 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-F:7B2D:/
+# 932.7 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:7B25:/
 935.6 "--untargetable--"
 
 945.4 "Hello, Distant World 1" sync / 1[56]:[^:]*:Omega-F:8110:/
