@@ -119,10 +119,7 @@ export class ASTComponent extends BaseComponent {
         this.combustBox.duration = 30;
         break;
       case kAbility.Combust:
-        if (this.ffxivRegion !== 'ko')
-          this.combustBox.duration = 30;
-        else
-          this.combustBox.duration = 18;
+        this.combustBox.duration = 30;
         break;
       case kAbility.Draw:
         this.drawBox.duration = 30 + this.drawBox.value;

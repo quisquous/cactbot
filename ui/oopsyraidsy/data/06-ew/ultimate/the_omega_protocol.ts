@@ -164,6 +164,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: data.blameId?.[player],
             text: {
               en: `Missed Tower #${num}`,
+              ko: `기둥 #${num} 놓침`,
             },
           });
         }
@@ -188,6 +189,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           // There's only two tower players, so just blame them all.
           const towerText: LocaleText = {
             en: `Tower #${num}`,
+            ko: `기둥 #${num}`,
           };
           const text = GetShareMistakeText(towerText, 2);
           for (const player of towerPlayers) {
@@ -213,6 +215,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: data.blameId?.[player],
             text: {
               en: `Tower #${num} as #${playerNum}`,
+              ko: `기둥 #${num} 들어감 (#${playerNum})`,
             },
           });
         }
@@ -227,6 +230,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: data.blameId?.[player],
             text: {
               en: `Missed Tether #${num}`,
+              ko: `선 #${num} 놓침`,
             },
           });
         }
@@ -242,6 +246,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           const type = shouldTakeTether ? 'warn' : 'fail';
           const tetherText: LocaleText = {
             en: `${m.ability} #${num}`,
+            ko: `${m.ability} #${num}`,
           };
           const text = numTargets > 1 ? GetShareMistakeText(tetherText, numTargets) : tetherText;
 

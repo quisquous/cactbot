@@ -1,7 +1,6 @@
 import { NetParams } from '../types/net_props';
 import { CactbotBaseRegExp, TriggerTypes } from '../types/net_trigger';
 import {
-  backCompatParsedSyncReplace,
   commonReplacement,
   partialCommonTimelineReplacementKeys,
   partialCommonTriggerReplacementKeys,
@@ -244,15 +243,6 @@ export const translateWithReplacements = (
     }
 
     text = text.replace(regex, repl);
-  }
-
-  // Backwards compatibility with older versions.
-  // This does not count as `wasTranslated`.
-  if (replaceKey === 'replaceSync') {
-    for (const [key, repl] of Object.entries(backCompatParsedSyncReplace)) {
-      const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
-      text = text.replace(regex, repl);
-    }
   }
 
   return { text, wasTranslated };

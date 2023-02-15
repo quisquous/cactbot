@@ -73,10 +73,7 @@ export class GNBComponent extends BaseComponent {
         break;
       }
       case kAbility.Bloodfest:
-        if (this.ffxivRegion !== 'ko')
-          this.bloodfestBox.duration = 120;
-        else
-          this.bloodfestBox.duration = 90;
+        this.bloodfestBox.duration = 120;
         break;
       case kAbility.GnashingFang:
         this.gnashingFangBox.duration = this.bars.player.getActionCooldown(30000, 'skill');
