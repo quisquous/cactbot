@@ -874,14 +874,16 @@ const triggerSet: TriggerSet<Data> = {
         const defamation = data.defamationColor;
         if (defamation === undefined)
           return;
-        const color = defamation === 'red' ? output.blue!() : output.red!();
+
+        const defamationTowerColor = defamation === 'red' ? output.red!() : output.blue!();
+        const stackTowerColor = defamation === 'red' ? output.blue!() : output.red!();
         if (regression === 'remote')
-          return output.farTether!({ color: color });
+          return output.farTether!({ color: stackTowerColor });
 
         if (parseFloat(matches.duration) < 80)
-          return output.nearTether!({ color: color });
+          return output.nearTether!({ color: defamationTowerColor });
 
-        return output.finalTowerFar!({ color: color });
+        return output.finalTowerFar!({ color: stackTowerColor });
       },
       outputStrings: {
         farTether: {
