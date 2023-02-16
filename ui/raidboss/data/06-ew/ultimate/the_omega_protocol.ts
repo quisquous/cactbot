@@ -883,7 +883,7 @@ const triggerSet: TriggerSet<Data> = {
         if (parseFloat(matches.duration) < 80)
           return output.nearTether!({ color: defamationTowerColor });
 
-        return output.finalTowerFar!({ color: stackTowerColor });
+        return output.finalTowerNear!({ color: stackTowerColor });
       },
       outputStrings: {
         farTether: {
@@ -892,7 +892,7 @@ const triggerSet: TriggerSet<Data> = {
         nearTether: {
           en: 'Outside ${color} Towers',
         },
-        finalTowerFar: {
+        finalTowerNear: {
           en: 'Between ${color} Towers',
         },
         red: {
