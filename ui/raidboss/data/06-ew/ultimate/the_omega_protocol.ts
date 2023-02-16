@@ -728,7 +728,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: 'D6D', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
-      alertText: (data, _matches, output) => {
+      infoText: (data, _matches, output) => {
         let rotColor: RotColor | undefined;
 
         if (data.smellDefamation.length !== 2) {
@@ -774,19 +774,19 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         red: {
-          en: 'Red Defamation',
-          de: 'Rote Ehrenstrafe',
-          ko: '빨강 광역',
+          en: 'Red is Defamation',
+          de: 'Rote Ehrenstrafe', // FIXME
+          ko: '빨강 광역', // FIXME
         },
         blue: {
-          en: 'Blue Defamation',
-          de: 'Blaue Ehrenstrafe',
-          ko: '파랑 광역',
+          en: 'Blue is Defamation',
+          de: 'Blaue Ehrenstrafe', // FIXME
+          ko: '파랑 광역', // FIXME
         },
         unknown: {
-          en: '??? Defamation',
-          de: '??? Ehrenstrafe',
-          ko: '??? 광역',
+          en: '??? is Defamation',
+          de: '??? Ehrenstrafe', // FIXME
+          ko: '??? 광역', // FIXME
         },
       },
     },
@@ -869,30 +869,30 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: ['D71', 'DAF'] },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 8.75,
-      infoText: (data, matches, output) => {
+      alertText: (data, matches, output) => {
         const regression = matches.effectId === 'DAF' ? 'local' : 'remote';
         const defamation = data.defamationColor;
         if (defamation === undefined)
           return;
-        if (regression === 'remote') {
-          const color = defamation === 'red' ? output['blue']!() : output['red']!();
-          return output.nearTether!({ color: color });
-        }
+
+        const defamationTowerColor = defamation === 'red' ? output.red!() : output.blue!();
+        const stackTowerColor = defamation === 'red' ? output.blue!() : output.red!();
+        if (regression === 'remote')
+          return output.farTether!({ color: stackTowerColor });
 
         if (parseFloat(matches.duration) < 80)
-          return output.farTether!({ color: output[defamation]!() });
+          return output.nearTether!({ color: defamationTowerColor });
 
-        const color = defamation === 'red' ? output['blue']!() : output['red']!();
-        return output.finalTowerFar!({ color: color });
+        return output.finalTowerNear!({ color: stackTowerColor });
       },
       outputStrings: {
-        nearTether: {
+        farTether: {
           en: 'Stack by ${color} Tower',
         },
-        farTether: {
-          en: 'Get ${color} Defamation',
+        nearTether: {
+          en: 'Outside ${color} Towers',
         },
-        finalTowerFar: {
+        finalTowerNear: {
           en: 'Between ${color} Towers',
         },
         red: {
@@ -968,9 +968,11 @@ const triggerSet: TriggerSet<Data> = {
       // DC6 Critical Underflow Bug (red)
       // Debuffs last 27s
       netRegex: { effectId: ['D65', 'DC6'] },
+      // TODO: should we have a "Watch Rot" call if you don't get it?
+      // (with some suppression due to inconsistent rot pickup timings etc)
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
-      alertText: (_data, _matches, output) => output.spread!(),
+      infoText: (_data, _matches, output) => output.spread!(),
       run: (data, matches) => delete data.bugRot[matches.target],
       outputStrings: {
         spread: Outputs.spread,
