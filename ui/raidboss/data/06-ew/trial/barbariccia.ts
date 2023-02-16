@@ -52,6 +52,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Out and Away',
           de: 'Raus und Weg',
+          fr: 'Extérieur et loin',
           ja: '外へ',
           cn: '外侧远离',
           ko: '밖으로',
@@ -67,6 +68,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Wall',
           de: 'Wand',
+          fr: 'Mur',
           ja: '壁へ',
           cn: '去场边',
           ko: '벽으로',
