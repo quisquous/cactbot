@@ -726,6 +726,7 @@ Options.Triggers.push({
         windAndLightning: {
           en: 'Under ${dir} green puff',
           de: 'Unter den grünen Puschel im ${dir}',
+          fr: 'Sous le pompon vert ${dir}',
           ja: '緑のたまの下へ: ${dir}',
           ko: '${dir} 초록색 구슬 밑으로',
         },
@@ -739,6 +740,7 @@ Options.Triggers.push({
         iceAndLightning: {
           en: 'Sides of ${dir} yellow puff',
           de: 'Seitlich des gelben Puschel im ${dir}',
+          fr: 'Côté du pompon jaune ${dir}',
           ja: '緑のたまの横へ: ${dir}',
           ko: '${dir} 노란색 구슬 옆으로',
         },
@@ -885,36 +887,42 @@ Options.Triggers.push({
         goLeft3Right2: {
           en: 'Go 3 Left 2 Right',
           de: 'Gehe Links 3, Rechts 2',
+          fr: '3 à gauche, 2 à droite',
           ja: '左: 3, 右: 2',
           ko: '왼쪽3 오른쪽2',
         },
         goLeft3Right1: {
           en: 'Go 3 Left (on line)',
           de: 'Gehe Links 3 (auf der Linie)',
+          fr: '3 à gauche (sur la ligne)',
           ja: '左: 3 (線の上)',
           ko: '왼쪽3 (선 위)',
         },
         goLeft2Right1: {
           en: 'Go 2 Left (on line)',
           de: 'Gehe Links 2 (auf der Linie)',
+          fr: '2 à gauche (sur la ligne)',
           ja: '左: 2 (線の上)',
           ko: '왼쪽2 (선 위)',
         },
         goRight3Left2: {
           en: 'Go 3 Right 2 Left',
           de: 'Gehe Rechts 3, Links 2',
+          fr: '3 à droite, 2 à gauche',
           ja: '右: 3, 左: 2',
           ko: '오른쪽3 왼쪽2',
         },
         goRight3Left1: {
           en: 'Go 3 Right (on line)',
           de: 'Gehe Rechts 3 (auf der Linie)',
+          fr: '3 à droite (sur la ligne)',
           ja: '右: 3 (線の上)',
           ko: '오른쪽3 (선 위)',
         },
         goRight2Left1: {
           en: 'Go 2 Right (on line)',
           de: 'Gehe Rechts 2 (auf der Linie)',
+          fr: '2 à droite (sur la ligne)',
           ja: '右: 2 (線の上)',
           ko: '오른쪽2 (선 위)',
         },
@@ -930,6 +938,7 @@ Options.Triggers.push({
         moveThrough: {
           en: 'Move through',
           de: 'Gehe durch',
+          fr: 'Allez à travers',
           ja: '移動',
           ko: '가로지르기',
         },
@@ -949,7 +958,7 @@ Options.Triggers.push({
         chargeOn: {
           en: 'Charge on ${player}',
           de: 'Ansturm auf ${player}',
-          fr: 'Charge sur ${player}',
+          fr: 'Ruée sur ${player}',
           ja: '${player}に突進',
           cn: '蓝球点${player}',
           ko: '"${player}" 돌진 대상',
@@ -957,7 +966,7 @@ Options.Triggers.push({
         chargeOnYou: {
           en: 'Charge on YOU',
           de: 'Ansturm auf DIR',
-          fr: 'Charge sur VOUS',
+          fr: 'Ruée sur VOUS',
           ja: '自分に突進',
           cn: '蓝球点名',
           ko: '돌진 대상자',
@@ -1052,12 +1061,14 @@ Options.Triggers.push({
         spreadThenBait: {
           en: 'Spread => Bait Puddle',
           de: 'Veretilen => Fläche ködern',
+          fr: 'Dispersion -> Déposez',
           ja: '散会 => AOE誘導',
           ko: '산개 => 장판 유도',
         },
         baitThenSpread: {
           en: 'Bait Puddle => Spread',
           de: 'Fläche ködern => Veretilen',
+          fr: 'Déposez -> Dispersion',
           ja: 'AOE誘導 => 散会',
           ko: '장판 유도 => 산개',
         },
@@ -1123,6 +1134,7 @@ Options.Triggers.push({
         baitPuddle: {
           en: 'Bait Puddle',
           de: 'Fläche ködern',
+          fr: 'Déposez',
           ja: 'AOE誘導',
           ko: '장판 유도',
         },
@@ -1265,21 +1277,21 @@ Options.Triggers.push({
         gildedFate: {
           en: 'Get hit by two silver (${loc})',
           de: 'Von 2 Silber treffen lassen (${loc})',
-          fr: 'Faites-vous toucher par les deux argent (${loc})',
+          fr: 'Faites-vous toucher par deux argent (${loc})',
           ja: '銀 二つ (${loc})',
           ko: '은색 2개 맞기 (${loc})',
         },
         silveredFate: {
           en: 'Get hit by two gold (${loc})',
           de: 'Von 2 Gold treffen lassen (${loc})',
-          fr: 'Faites-vous toucher par les deux or (${loc})',
+          fr: 'Faites-vous toucher par deux or (${loc})',
           ja: '金 二つ (${loc})',
           ko: '금색 2개 맞기 (${loc})',
         },
         neitherFate: {
           en: 'Avoid lasers (uptime ${loc})',
           de: 'Vermeide Silber und Gold (${loc})',
-          fr: 'Évitez l\'argent et l\'or (${loc})',
+          fr: 'Évitez les lasers (${loc})',
           ja: '顔からのビーム全部回避 (${loc})',
           ko: '레이저 피하기 (업타임 ${loc})',
         },
@@ -1481,12 +1493,14 @@ Options.Triggers.push({
         soakFirst: {
           en: 'Soak First Towers (with ${player})',
           de: 'Steh im ersten Turm (mit ${player})',
+          fr: 'Prenez les tours (avec ${player})',
           ja: 'さきに塔を踏み (+${player})',
           ko: '첫번째 기둥 밟기 (${player})',
         },
         spreadFirst: {
           en: 'Spread First (with ${player})',
           de: 'Zuerst verteilen (mit ${player})',
+          fr: 'Écartez-vous d\'abord (avec ${player})',
           ja: 'さきに散会 (+${player})',
           ko: '산개 먼저 (${player})',
         },
@@ -1509,6 +1523,7 @@ Options.Triggers.push({
         soakSecond: {
           en: 'Soak Second Towers',
           de: 'Steh im zweiten Turm',
+          fr: 'Prenez les 2nd tours',
           ja: '塔を踏み',
           ko: '두번째 기둥 밟기',
         },
