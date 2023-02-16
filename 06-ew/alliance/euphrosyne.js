@@ -44,21 +44,25 @@ Options.Triggers.push({
         outWithForwards: {
           en: 'Forwards March Out',
           de: 'Geisterlenkung Vorwärts Raus',
+          fr: 'Marche forcée avant vers l\'extérieur',
           ko: '강제이동: 앞, 밖으로',
         },
         outWithBackwards: {
           en: 'Backwards March Out',
           de: 'Geisterlenkung Rückwärts Raus',
+          fr: 'Marche forcée arrière vers l\'extérieur',
           ko: '강제이동: 뒤, 밖으로',
         },
         outWithLeft: {
           en: 'Left March Out',
           de: 'Geisterlenkung Links Raus',
+          fr: 'Marche forcée gauche vers l\'extérieur',
           ko: '강제이동: 왼쪽, 밖으로',
         },
         outWithRight: {
           en: 'Right March Out',
           de: 'Geisterlenkung Rechts Raus',
+          fr: 'Marche forcée droite vers l\'extérieur',
           ko: '강제이동: 오른쪽, 밖으로',
         },
       },
@@ -82,21 +86,25 @@ Options.Triggers.push({
         inWithForwards: {
           en: 'Forwards March In',
           de: 'Geisterlenkung Vorwärts Rein',
+          fr: 'Marche forcée avant vers l\'intérieur',
           ko: '강제이동: 앞, 안으로',
         },
         inWithBackwards: {
           en: 'Backwards March In',
           de: 'Geisterlenkung Rückwärts Rein',
+          fr: 'Marche forcée arrière vers l\'intérieur',
           ko: '강제이동: 뒤, 안으로',
         },
         inWithLeft: {
           en: 'Left March In',
           de: 'Geisterlenkung Links Rein',
+          fr: 'Marche forcée gauche vers l\'intérieur',
           ko: '강제이동: 왼쪽, 안으로',
         },
         inWithRight: {
           en: 'Right March In',
           de: 'Geisterlenkung Rechts Rein',
+          fr: 'Marche forcée droite vers l\'intérieur',
           ko: '강제이동: 오른쪽, 안으로',
         },
       },
@@ -225,21 +233,25 @@ Options.Triggers.push({
         lookAway: {
           en: '(look away soon)',
           de: '(bald wegschauen)',
+          fr: '(regardez ailleurs bientôt)',
           ko: '(곧 뒤돌기)',
         },
         lookTowards: {
           en: '(look towards soon)',
           de: '(bald hinschauen)',
+          fr: '(regardez devant bientôt)',
           ko: '(곧 쳐다보기)',
         },
         pyretic: {
           en: '(pyretic soon)',
           de: '(bald Pyretisch)',
+          fr: '(feu bientôt)',
           ko: '(곧 멈추기)',
         },
         freeze: {
           en: '(freeze soon)',
           de: '(bald Kühlung)',
+          fr: '(gel bientôt)',
           ko: '(곧 움직이기)',
         },
       },
@@ -276,11 +288,13 @@ Options.Triggers.push({
         lookAway: {
           en: 'Look Away from Nymeia',
           de: 'Schau weg von Nymeia',
+          fr: 'Ne regardez pas Nymeia',
           ko: '니메이아에게서 뒤돌기',
         },
         lookTowards: {
           en: 'Look Towards Nymeia',
           de: 'Schau zu Nymeia',
+          fr: 'Regardez Nymeia',
           ko: '니메이아 쳐다보기',
         },
         stopEverything: Outputs.stopEverything,
@@ -315,6 +329,7 @@ Options.Triggers.push({
         text: {
           en: 'Spread (avoid purple)',
           de: 'Verteilen (vermeide den lilanen Riss)',
+          fr: 'Écartez-vous (évitez les fissures violettes)',
           ko: '산개 (보라색 바닥 피하기)',
         },
       },
@@ -328,6 +343,7 @@ Options.Triggers.push({
         text: {
           en: 'Stand in purple fissure',
           de: 'Im lilanen Riss stehen',
+          fr: 'Restez sur une fissure violette',
           ko: '보라색 바닥 위로',
         },
       },
@@ -411,6 +427,7 @@ Options.Triggers.push({
         knockback: {
           en: 'Knockback ${dir1} => ${dir2} => ${dir3}',
           de: 'Rückstoß ${dir1} => ${dir2} => ${dir3}',
+          fr: 'Poussée ${dir1} => ${dir2} => ${dir3}',
           ko: '넉백 ${dir1} => ${dir2} => ${dir3}',
         },
         dirSW: Outputs.dirSW,
@@ -462,6 +479,7 @@ Options.Triggers.push({
         text: {
           en: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
           de: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+          fr: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
           ko: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
         },
         out: Outputs.out,
@@ -584,6 +602,7 @@ Options.Triggers.push({
         out: {
           en: 'Get Out (avoid ring)',
           de: 'Geh raus (vermeide den Ring)',
+          fr: 'Sortez (évitez l\'anneau)',
           ko: '밖으로 (고리 장판 피하기)',
         },
       },
@@ -639,6 +658,7 @@ Options.Triggers.push({
         text: {
           en: 'Sides of Moon',
           de: 'Geh seitlich des Mondes',
+          fr: 'Côtés de la lune',
           ko: '달 옆쪽으로',
         },
       },
@@ -652,6 +672,7 @@ Options.Triggers.push({
         text: {
           en: 'Go to dark moon',
           de: 'Geh zum dunklen Mond',
+          fr: 'Allez sur une lune noire',
           ko: '어두운 달 쪽으로',
         },
       },

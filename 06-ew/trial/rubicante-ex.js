@@ -122,6 +122,7 @@ Options.Triggers.push({
         text: {
           en: 'Tank Tethers',
           de: 'Tank Verbindungen',
+          fr: 'Liens tanks',
           ja: 'タンク線取り',
           ko: '탱커가 선 가로채기',
         },
@@ -162,12 +163,14 @@ Options.Triggers.push({
         outFlareThenSpread: {
           en: 'Out+Flare => Spread',
           de: 'Raus+Flare => Verteilen',
+          fr: 'Extérieur + Brasier -> Dispersion',
           ja: '外側＋フレア => 散会',
           ko: '바깥+플레어 => 산개',
         },
         inStackThenSpread: {
           en: 'In+Stack => Spread',
           de: 'Rein+Sammeln => Verteilen',
+          fr: 'Intérieur + Package -> Dispersion',
           ja: '内側＋頭割り => 散会',
           ko: '안+쉐어 => 산개',
         },
@@ -249,6 +252,7 @@ Options.Triggers.push({
         spreadBehind: {
           en: 'Spread behind Boss',
           de: 'Hinter dem Boss verteilen',
+          fr: 'Écartez-vous derrière le boss',
           ja: 'ボスの後ろで散会',
           ko: '보스 뒤에서 산개',
         },
@@ -263,6 +267,7 @@ Options.Triggers.push({
         stackBehind: {
           en: 'Stack behind Boss',
           de: 'Hinter dem Boss sammeln',
+          fr: 'Packez-vous derrière le boss',
           ja: 'ボスの後ろで頭割り',
           ko: '보스 뒤에서 쉐어',
         },
@@ -301,12 +306,14 @@ Options.Triggers.push({
         tankBusterCleaves: {
           en: 'Tank Buster Cleaves',
           de: 'Tankbuster Cleaves',
+          fr: 'Tankbuster cleaves',
           ja: 'MT・ST同時範囲攻撃',
           ko: '광역 탱버',
         },
         avoidTankCleaves: {
           en: 'Avoid Tank Cleaves',
           de: 'Tankbuster Cleaves ausweichen',
+          fr: 'Évitez les cleaves (tankbusters)',
           ja: '範囲攻撃を避けて',
           ko: '광역 탱버 피하기',
         },
@@ -368,6 +375,7 @@ Options.Triggers.push({
         numGetTether: {
           en: '#${num} (Get Tether)',
           de: '#${num} (Verbindung nehmen)',
+          fr: '#${num} (Prenez le lien)',
           ja: '${num}番 (線取りに行く)',
           ko: '${num}번째 (선 가져가기)',
         },
@@ -409,6 +417,7 @@ Options.Triggers.push({
         getTether: {
           en: 'Get Tether',
           de: 'Verbindung nehmen',
+          fr: 'Prenez le lien',
           ja: '線取りに行く',
           ko: '선 가져가기',
         },
@@ -434,12 +443,14 @@ Options.Triggers.push({
         cardinals: {
           en: 'Cardinals',
           de: 'Kardinal',
+          fr: 'Cardinaux',
           ja: '十字回避',
           ko: '십자방향',
         },
         intercards: {
           en: 'Intercards',
           de: 'Interkardinal',
+          fr: 'Intercardinaux',
           ja: '斜めへ',
           ko: '대각선',
         },

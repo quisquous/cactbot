@@ -685,7 +685,7 @@ Options.Triggers.push({
         gorgons: {
           en: '${dir1}/${dir2} Gorgons',
           de: '${dir1}/${dir2} Gorgone',
-          fr: '${dir1}/${dir2} Gorgone',
+          fr: 'Gorgones ${dir1}/${dir2}',
           ja: 'ゴルゴン：${dir1}/${dir2}',
           cn: '蛇: ${dir1}/${dir2}',
           ko: '${dir1}/${dir2} 고르곤',
@@ -1005,7 +1005,7 @@ Options.Triggers.push({
         crushDir: {
           en: 'Away to ${dir}',
           de: 'Weg nach ${dir}',
-          fr: 'Loin de ${dir}',
+          fr: 'Loin vers ${dir}',
           ja: '${dir}が安置 (クラッシュ)',
           cn: '去 ${dir}',
           ko: '${dir}으로 피하기',

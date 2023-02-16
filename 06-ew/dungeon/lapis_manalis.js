@@ -55,16 +55,19 @@ Options.Triggers.push({
         middlenorth: {
           en: 'Middle-North',
           de: 'Norden-Mittig',
+          fr: 'Milieu-Nord',
           ko: '중앙-북쪽',
         },
         middlesouth: {
           en: 'Middle-South',
           de: 'Süden-Mittig',
+          fr: 'Milieu-Sud',
           ko: '중앙-남쪽',
         },
         text: {
           en: 'Stampede from ${dir} (${row} Row)',
           de: 'Stampede von ${dir} (${row} Row)',
+          fr: 'Ruée depuis ${dir} (${row})',
           ko: '${dir}에서 돌진 (${row} 줄)',
         },
       },
