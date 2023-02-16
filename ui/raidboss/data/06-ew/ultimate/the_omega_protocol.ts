@@ -728,7 +728,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: 'D6D', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
-      alertText: (data, _matches, output) => {
+      infoText: (data, _matches, output) => {
         let rotColor: RotColor | undefined;
 
         if (data.smellDefamation.length !== 2) {
@@ -774,19 +774,19 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         red: {
-          en: 'Red Defamation',
-          de: 'Rote Ehrenstrafe',
-          ko: '빨강 광역',
+          en: 'Red is Defamation',
+          de: 'Rote Ehrenstrafe', // FIXME
+          ko: '빨강 광역', // FIXME
         },
         blue: {
-          en: 'Blue Defamation',
-          de: 'Blaue Ehrenstrafe',
-          ko: '파랑 광역',
+          en: 'Blue is Defamation',
+          de: 'Blaue Ehrenstrafe', // FIXME
+          ko: '파랑 광역', // FIXME
         },
         unknown: {
-          en: '??? Defamation',
-          de: '??? Ehrenstrafe',
-          ko: '??? 광역',
+          en: '??? is Defamation',
+          de: '??? Ehrenstrafe', // FIXME
+          ko: '??? 광역', // FIXME
         },
       },
     },
@@ -869,7 +869,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: ['D71', 'DAF'] },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 8.75,
-      infoText: (data, matches, output) => {
+      alertText: (data, matches, output) => {
         const regression = matches.effectId === 'DAF' ? 'local' : 'remote';
         const defamation = data.defamationColor;
         if (defamation === undefined)
