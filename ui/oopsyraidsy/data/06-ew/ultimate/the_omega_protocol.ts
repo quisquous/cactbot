@@ -84,12 +84,15 @@ const defects: LatentDefectMistake[] = [
     actual: 'redTower',
     extra: {
       en: 'Red Tower, no rot',
+      ko: '빨강 장판, 디버프 없음',
     },
     missing: {
       en: 'Missed Red Tower',
+      ko: '빨강 장판 놓침',
     },
     share: {
       en: 'Red Tower',
+      ko: '빨강 장판',
     },
   },
   {
@@ -97,12 +100,15 @@ const defects: LatentDefectMistake[] = [
     actual: 'blueTower',
     extra: {
       en: 'Blue Tower, no rot',
+      ko: '파랑 장판, 디버프 없음',
     },
     missing: {
       en: 'Missed Blue Tower',
+      ko: '파랑 장판 놓침',
     },
     share: {
       en: 'Blue Tower',
+      ko: '파랑 장판',
     },
   },
   {
@@ -110,15 +116,19 @@ const defects: LatentDefectMistake[] = [
     actual: 'stack',
     extra: {
       en: 'Stack',
+      ko: '쉐어',
     },
     missing: {
       en: 'Missed stack',
+      ko: '쉐어 놓침',
     },
     share: {
       en: 'Stack',
+      ko: '쉐어',
     },
     tookTwo: {
       en: 'Stack x2',
+      ko: '쉐어 x2',
     },
   },
   {
@@ -126,15 +136,19 @@ const defects: LatentDefectMistake[] = [
     actual: 'defamation',
     extra: {
       en: 'Defamation',
+      ko: '광역',
     },
     missing: {
       en: 'Missed defamation',
+      ko: '광역 놓침',
     },
     share: {
       en: 'Defamation',
+      ko: '광역',
     },
     tookTwo: {
       en: 'Defamation x2',
+      ko: '광역 x2',
     },
   },
 ];
@@ -145,22 +159,28 @@ const playerDescription: { [key in HelloEffect]: LocaleText } = {
   // Order is important here.
   defamation: {
     en: ' (as defamation)',
+    ko: ' (광역)',
   },
   stack: {
     en: ' (as stack)',
+    ko: ' (쉐어)',
   },
   redTether: {
     en: ' (as near tether)',
+    ko: ' (가까이 선)',
   },
   blueTether: {
     en: ' (as far tether)',
+    ko: ' (멀리 선)',
   },
   // These shouldn't happen.
   redRot: {
     en: ' (as red rot)',
+    ko: ' (빨강 디버프)',
   },
   blueRot: {
     en: ' (as blue rot)',
+    ko: ' (파랑 디버프)',
   },
 } as const;
 
@@ -168,20 +188,25 @@ const playerDescription: { [key in HelloEffect]: LocaleText } = {
 const playerComboDesc = {
   redDefamation: {
     en: ' (as red defamation)',
+    ko: ' (빨강 광역)',
   },
   redStack: {
     en: ' (as red stack)',
+    ko: ' (빨강 쉐어)',
   },
   blueDefamation: {
     en: ' (as blue defamation)',
+    ko: ' (파랑 광역)',
   },
   blueStack: {
     en: ' (as blue stack)',
+    ko: ' (파랑 쉐어)',
   },
 } as const;
 
 const unknownDescriptionLocale: LocaleText = {
   en: ' (as ???)',
+  ko: ' (???)',
 };
 
 export interface Data extends OopsyData {
@@ -449,6 +474,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.targetId,
           text: {
             en: `${matches.ability} (after Beyond Defense)`,
+            ko: `${matches.ability} (방패 연격 S 이후)`,
           },
         };
       },
@@ -512,6 +538,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: matches.targetId,
             text: {
               en: 'Unexpected red rot',
+              ko: '빨강 디버프 잘못 받음',
             },
           };
         }
@@ -522,6 +549,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: matches.targetId,
             text: {
               en: 'Unexpected blue rot',
+              ko: '파랑 디버프 잘못 받음',
             },
           };
         }
@@ -638,9 +666,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
             const text: LocaleText = {
               red: {
                 en: 'Failed to get red rot',
+                ko: '빨강 디버프 못받음',
               },
               blue: {
                 en: 'Failed to get blue rot',
+                ko: '파랑 디버프 못받음',
               },
             }[color];
             mistakes.push({
@@ -841,6 +871,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           return;
         const renamedText: LocaleText = {
           en: 'Red Rot Explosion',
+          ko: '빨강 디버프 폭발',
         };
         const text = GetShareMistakeText(renamedText, targets);
         const isRedRot = data.helloStateSnapshot?.[matches.target]?.has(helloEffect.redRot);
@@ -858,6 +889,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           return;
         const renamedText: LocaleText = {
           en: 'Blue Rot Explosion',
+          ko: '파랑 디버프 폭발',
         };
         const text = GetShareMistakeText(renamedText, targets);
         const isBlueRot = data.helloStateSnapshot?.[matches.target]?.has(helloEffect.blueRot);
@@ -891,6 +923,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             // is not at fault.
             text: {
               en: 'Not hit by monitor',
+              ko: '모니터 안맞음',
             },
           });
         }

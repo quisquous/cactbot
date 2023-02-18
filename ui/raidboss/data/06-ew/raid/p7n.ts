@@ -165,7 +165,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Évitez les ruées en ligne',
           ja: '突進回避',
           cn: '躲避直线冲锋',
-          ko: '선 돌진 피하기',
+          ko: '직선 돌진 피하기',
         },
       },
     },

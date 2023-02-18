@@ -776,17 +776,17 @@ const triggerSet: TriggerSet<Data> = {
         red: {
           en: 'Red is Defamation',
           de: 'Rote Ehrenstrafe', // FIXME
-          ko: '빨강 광역', // FIXME
+          ko: '빨강 광역',
         },
         blue: {
           en: 'Blue is Defamation',
           de: 'Blaue Ehrenstrafe', // FIXME
-          ko: '파랑 광역', // FIXME
+          ko: '파랑 광역',
         },
         unknown: {
           en: '??? is Defamation',
           de: '??? Ehrenstrafe', // FIXME
-          ko: '??? 광역', // FIXME
+          ko: '??? 광역',
         },
       },
     },
@@ -806,15 +806,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         colorTower: {
           en: '${color} Tower Stack',
+          ko: '${color} 장판 쉐어',
         },
         colorTowerDefamation: {
           en: '${color} Tower Defamation',
+          ko: '${color} 장판 광역',
         },
         red: {
           en: 'Red',
+          ko: '빨강',
         },
         blue: {
           en: 'Blue',
+          ko: '파랑',
         },
       },
     },
@@ -844,9 +848,11 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           passRot: {
             en: 'Pass Rot',
+            ko: '디버프 건네기',
           },
           getRot: {
             en: 'Get Rot',
+            ko: '디버프 받기',
           },
         };
         if (data.bugRot[data.me])
@@ -888,18 +894,23 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         farTether: {
           en: 'Stack by ${color} Tower',
+          ko: '${color} 장판 사이에서 쉐어',
         },
         nearTether: {
           en: 'Outside ${color} Towers',
+          ko: '${color} 장판 바깥쪽으로',
         },
         finalTowerNear: {
           en: 'Between ${color} Towers',
+          ko: '${color} 장판 사이로',
         },
         red: {
           en: 'Red',
+          ko: '빨강',
         },
         blue: {
           en: 'Blue',
+          ko: '파랑',
         },
       },
     },
@@ -935,6 +946,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         breakTether: {
           en: 'Break Tether',
+          ko: '선 끊기',
         },
       },
     },
