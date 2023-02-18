@@ -297,6 +297,7 @@ Options.Triggers.push({
         'Living Liquid': '살아있는 액체',
       },
       'replaceText': {
+        '--Liquid Limb spawns--': '--액체 손 등장--',
         'Cascade': '캐스케이드',
         'Drainage': '하수로',
         'Fluid Strike': '유체 강타',

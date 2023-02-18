@@ -128,7 +128,7 @@ Options.Triggers.push({
           fr: 'Positions',
           ja: '8方向散開',
           cn: '八方分散',
-          ko: '정해진 위치로 산개',
+          ko: '8방향 산개',
         },
       },
     },
