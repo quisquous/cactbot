@@ -1116,7 +1116,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
-        'Alpha Omega': 'NONE',
+        'Alpha Omega': 'Alpha-Omega',
         'Cosmo Meteor': 'Kosmosmeteor',
         '(?<!Alpha )Omega(?!-)': 'Omega',
         'Omega-F': 'Omega-W',
