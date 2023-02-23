@@ -494,15 +494,16 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Lively Bait': '팔팔한 먹이',
         'Proto-Carbuncle': '프로토 카벙클',
       },
       'replaceText': {
-        '--towers--': '--기둥--',
+        '--towers--': '--장판--',
         'Acidic Slaver': '산성 군침',
+        'Claw to Tail': '발톱과 꼬리',
         'Devour': '포식',
+        'Double Rush': '이중 돌진',
         'Impact': '충격',
         'Raging Claw': '성난 발톱',
         'Raging Tail': '성난 꼬리',
@@ -514,6 +515,7 @@ Options.Triggers.push({
         'Sonic Shatter': '음속 박살',
         'Spit': '방출',
         'Starving Stampede': '굶주림의 광란',
+        'Tail to Claw': '꼬리와 발톱',
         'Topaz Cluster': '토파즈 클러스터',
         'Topaz Ray': '토파즈 광선',
         'Topaz Stones': '토파즈 스톤',
