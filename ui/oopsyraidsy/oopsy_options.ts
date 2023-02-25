@@ -5,8 +5,6 @@ import { BaseOptions } from '../../types/data';
 import { LooseOopsyTriggerSet } from '../../types/oopsy';
 import { ZoneIdType } from '../../types/trigger';
 
-import { abilityNameMap } from './ability_name_map';
-
 export type DisabledTriggers = { [triggerId: string]: boolean };
 export type TriggerAutoConfig = { enabled: boolean };
 export type PerTriggerAutoConfig = { [triggerId: string]: TriggerAutoConfig };
@@ -18,7 +16,6 @@ type OopsyNonConfigOptions = {
   // TODO: should content_type export what type it is?
   IgnoreContentTypes: number[];
   IgnoreZoneIds: ZoneIdType[];
-  AbilityIdNameMap: { [id: string]: string };
   PerTriggerAutoConfig: PerTriggerAutoConfig;
 };
 
@@ -37,7 +34,6 @@ const defaultOopsyNonConfigOptions: OopsyNonConfigOptions = {
     ZoneId.Zadnor,
   ],
 
-  AbilityIdNameMap: abilityNameMap,
   PerTriggerAutoConfig: {},
 };
 
