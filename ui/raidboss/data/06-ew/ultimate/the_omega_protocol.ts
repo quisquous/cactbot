@@ -127,15 +127,15 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TOP Phase Tracker',
       type: 'StartsUsing',
       // 7B40 = Firewall
-      // 7B42 = Run ****mi* (Sigma Version)
+      // 8014 = Run ****mi* (Sigma Version)
       // 8015 = Run ****mi* (Omega Version)
-      netRegex: { id: ['7B40', '7B42', '8015'], capture: true },
+      netRegex: { id: ['7B40', '8014', '8015'], capture: true },
       run: (data, matches) => {
         switch (matches.id) {
           case '7B40':
             data.phase = 'm/f';
             break;
-          case '7B42':
+          case '8014':
             data.phase = 'sigma-version';
             break;
           case '8015':
@@ -147,13 +147,18 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TOP Phase Ability Tracker',
       type: 'Ability',
+      // 7BFD = attack (Omega)
       // 7B13 = self-cast on omega
       // 7B47 = self-cast on omega
       // 7B7C = self-cast on omega
-      // 7F72 = self-cast on omega
-      netRegex: { id: ['7B13', '7B47', '7B7C', '7F72'], capture: true },
+      // 7F72 = Blind Faith (non-enrage)
+      netRegex: { id: ['7BFD', '7B13', '7B47', '7B7C', '7F72'], capture: true },
+      suppressSeconds: 20, // Ignore multiple delta/omega captures
       run: (data, matches) => {
         switch (matches.id) {
+          case '7BFD':
+            data.phase = 'omega';
+            break;
           case '7B13':
             data.phase = 'final-omega';
             break;
