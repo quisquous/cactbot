@@ -545,11 +545,8 @@ export const kComboBreakersCn = [
 
 export const kComboBreakersKo = [
   ...kComboBreakers,
-  ...kComboBreakersCn,
-  // PLD magic
-  kAbility.HolySpirit,
-  kAbility.HolyCircle,
-  kAbility.Clemency,
+  kAbility.GoringBlade,
+  kAbility.Confiteor,
 ];
 
 // [level][Sub][Div]
