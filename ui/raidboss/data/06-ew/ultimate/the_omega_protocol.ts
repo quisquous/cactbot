@@ -8,6 +8,16 @@ import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
+type Phase =
+  | 'omega'
+  | 'm/f'
+  | 'final-omega'
+  | 'blue-screen'
+  | 'delta-version'
+  | 'sigma-version'
+  | 'omega-version'
+  | 'alpha-omega';
+
 export const playstationMarkers = ['circle', 'cross', 'triangle', 'square'] as const;
 export type PlaystationMarker = typeof playstationMarkers[number];
 
@@ -18,6 +28,7 @@ export type Regression = 'local' | 'remote';
 
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
+  phase: Phase;
   decOffset?: number;
   inLine: { [name: string]: number };
   loopBlasterCount: number;
@@ -92,6 +103,7 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => {
     return {
       combatantData: [],
+      phase: 'omega',
       inLine: {},
       loopBlasterCount: 0,
       pantoMissileCount: 0,
@@ -111,6 +123,56 @@ const triggerSet: TriggerSet<Data> = {
     };
   },
   triggers: [
+    {
+      id: 'TOP Phase Tracker',
+      type: 'StartsUsing',
+      // 7BFD = attack (Omega)
+      // 7B40 = Firewall
+      // 7B42 = Run ****mi* (Sigma Version)
+      // 8015 = Run ****mi* (Omega Version)
+      netRegex: { id: ['7BFD', '7B40', '7B42', '8015'], capture: true },
+      run: (data, matches) => {
+        switch (matches.id) {
+          case '7BFD':
+            data.phase = 'omega';
+            break;
+          case '7B40':
+            data.phase = 'm/f';
+            break;
+          case '7B42':
+            data.phase = 'sigma-version';
+            break;
+          case '8015':
+            data.phase = 'omega-version';
+            break;
+        }
+      },
+    },
+    {
+      id: 'TOP Phase Ability Tracker',
+      type: 'Ability',
+      // 7B13 = self-cast on omega
+      // 7B47 = self-cast on omega
+      // 7B7C = self-cast on omega
+      // 7F72 = self-cast on omega
+      netRegex: { id: ['7B13', '7B47', '7B7C', '7F72'], capture: true },
+      run: (data, matches) => {
+        switch (matches.id) {
+          case '7B13':
+            data.phase = 'final-omega';
+            break;
+          case '7B47':
+            data.phase = 'blue-screen';
+            break;
+          case '7B7C':
+            data.phase = 'delta-version';
+            break;
+          case '7F72':
+            data.phase = 'alpha-omega';
+            break;
+        }
+      },
+    },
     {
       id: 'TOP Headmarker Tracker',
       type: 'HeadMarker',
