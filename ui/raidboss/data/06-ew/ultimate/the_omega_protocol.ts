@@ -126,16 +126,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TOP Phase Tracker',
       type: 'StartsUsing',
-      // 7BFD = attack (Omega)
       // 7B40 = Firewall
       // 7B42 = Run ****mi* (Sigma Version)
       // 8015 = Run ****mi* (Omega Version)
-      netRegex: { id: ['7BFD', '7B40', '7B42', '8015'], capture: true },
+      netRegex: { id: ['7B40', '7B42', '8015'], capture: true },
       run: (data, matches) => {
         switch (matches.id) {
-          case '7BFD':
-            data.phase = 'omega';
-            break;
           case '7B40':
             data.phase = 'm/f';
             break;
