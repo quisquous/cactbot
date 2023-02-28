@@ -1050,6 +1050,35 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P6S Transmission Instant',
+      type: 'GainsEffect',
+      // CF3 Chelomorph (Wing icon - cleave behind player)
+      // D48 Glossomorph (Snake icon - cleave in front of player)
+      netRegex: { effectId: ['CF3', 'D48'] },
+      condition: Conditions.targetIsYou(),
+      infoText: (_data, matches, output) => {
+        return matches.effectId === 'D48' ? output.forwardCleave!() : output.backwardCleave!();
+      },
+      outputStrings: {
+        forwardCleave: {
+          en: 'Front Cleave, for later',
+          de: 'Kegel Aoe nach Vorne, für später',
+          fr: 'Cleave Avant, pour après',
+          ja: '後で口からおくび',
+          cn: '稍后 前方扇形',
+          ko: '곧 전방 부채꼴 장판',
+        },
+        backwardCleave: {
+          en: 'Rear Cleave, for later',
+          de: 'Kegel Aoe nach Hinten, für später',
+          fr: 'Cleave Arrière, pour après',
+          ja: '後で尻からおなら',
+          cn: '稍后 背后扇形',
+          ko: '곧 후방 부채꼴 장판',
+        },
+      },
+    },
+    {
       id: 'P6S Dark Spheres Collect',
       type: 'StartsUsing',
       netRegex: { id: '7880', source: 'Hegemone' },
@@ -1217,6 +1246,37 @@ const triggerSet: TriggerSet<Data> = {
         'Synergy': '协同',
         'Transmission': '寄生传染',
         'Unholy Darkness': '黑暗神圣',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Hegemone': '헤게모네',
+        'Parasitos': '기생생물',
+      },
+      'replaceText': {
+        'Aetherial Exchange': '에테르 변환',
+        'Aetheric Polyominoid': '에테르 폴리오미노',
+        'Aetheronecrosis': '마활세포',
+        'Cachexia': '악액질',
+        'Chelic Claw': '갈퀴',
+        'Choros Ixou': '기생체의 춤',
+        'Dark Ashes': '어둠의 잿더미',
+        'Dark Dome': '어둠의 반구',
+        'Dark Sphere': '어둠의 구체',
+        'Dual Predation': '갑각연체 쌍격',
+        'Exchange Of Agonies': '변환 폭격',
+        'Exocleaver': '외측 살육',
+        'Hemitheos\'s Dark IV': '헤미테오스 다쟈',
+        'Pathogenic Cells': '연체세포류',
+        'Polyominoid Sigma': '에테르 폴리오미노Σ',
+        'Polyominous Dark IV': '다쟈 폴리오미노',
+        '(?<!Dual )Predation': '연체/갑각 공격',
+        'Ptera Ixou': '기생체의 날갯짓',
+        'Reek Havoc': '입김',
+        'Synergy': '협동 공격',
+        'Transmission': '기생',
+        'Unholy Darkness': '다크 홀리',
       },
     },
   ],

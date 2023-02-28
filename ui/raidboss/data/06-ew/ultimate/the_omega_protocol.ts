@@ -14,6 +14,7 @@ export type PlaystationMarker = typeof playstationMarkers[number];
 export type Glitch = 'mid' | 'remote';
 export type Cannon = 'spread' | 'stack';
 export type RotColor = 'blue' | 'red';
+export type Regression = 'local' | 'remote';
 
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
@@ -29,7 +30,13 @@ export interface Data extends RaidbossData {
   cannonFodder: { [name: string]: Cannon };
   smellDefamation: string[];
   smellRot: { [name: string]: RotColor };
+  bugRot: { [name: string]: RotColor };
   defamationColor?: RotColor;
+  regression: { [name: string]: Regression };
+  latentDefectCount: number;
+  patchVulnCount: number;
+  waveCannonStacks: NetMatches['Ability'][];
+  monitorPlayers: NetMatches['GainsEffect'][];
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -95,6 +102,12 @@ const triggerSet: TriggerSet<Data> = {
       cannonFodder: {},
       smellDefamation: [],
       smellRot: {},
+      regression: {},
+      bugRot: {},
+      latentDefectCount: 0,
+      patchVulnCount: 0,
+      waveCannonStacks: [],
+      monitorPlayers: [],
     };
   },
   triggers: [
@@ -434,18 +447,22 @@ const triggerSet: TriggerSet<Data> = {
         blizzardBladework: {
           en: 'Out Out',
           de: 'Raus Raus',
+          ko: '밖 밖',
         },
         superliminalStrength: {
           en: 'In In on M',
           de: 'Rein Rein auf M',
+          ko: '안 안 남자',
         },
         superliminalBladework: {
           en: 'Under F',
           de: 'Unter W',
+          ko: '여자 밑',
         },
         blizzardStrength: {
           en: 'M Sides',
           de: 'Seitlich von M',
+          ko: '남자 양옆',
         },
       },
     },
@@ -607,8 +624,9 @@ const triggerSet: TriggerSet<Data> = {
 
         if (matches.target === data.me)
           return { alarmText: output.dontStack!() };
-        if (!data.meteorTargets.includes(data.me))
-          return { alertText: output.stack!() };
+        // Note: if you are doing uptime meteors then everybody stacks.
+        // If you are not, then you'll need to ignore this as needed.
+        return { infoText: output.stack!() };
       },
     },
     {
@@ -710,7 +728,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: 'D6D', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
-      alertText: (data, _matches, output) => {
+      infoText: (data, _matches, output) => {
         let rotColor: RotColor | undefined;
 
         if (data.smellDefamation.length !== 2) {
@@ -756,21 +774,341 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         red: {
-          en: 'Red Defamation',
-          de: 'Rote Ehrenstrafe',
+          en: 'Red is Defamation',
+          de: 'Rot hat Ehrenstrafe',
           ko: '빨강 광역',
         },
         blue: {
-          en: 'Blue Defamation',
-          de: 'Blaue Ehrenstrafe',
+          en: 'Blue is Defamation',
+          de: 'Blau hat Ehrenstrafe',
           ko: '파랑 광역',
         },
         unknown: {
-          en: '??? Defamation',
+          en: '??? is Defamation',
           de: '??? Ehrenstrafe',
           ko: '??? 광역',
         },
       },
+    },
+    {
+      id: 'TOP Latent Defect Tower',
+      type: 'StartsUsing',
+      netRegex: { id: '7B6F', source: 'Omega', capture: false },
+      infoText: (data, _matches, output) => {
+        const myColor = data.bugRot[data.me];
+        if (myColor === undefined)
+          return;
+        if (data.defamationColor === myColor)
+          return output.colorTowerDefamation!({ color: output[myColor]!() });
+        else if (myColor)
+          return output.colorTower!({ color: output[myColor]!() });
+      },
+      outputStrings: {
+        colorTower: {
+          en: '${color} Tower Stack',
+          de: '${color} Turm versammeln',
+          ko: '${color} 장판 쉐어',
+        },
+        colorTowerDefamation: {
+          en: '${color} Tower Defamation',
+          de: '${color} Turm Ehrenstrafe',
+          ko: '${color} 장판 광역',
+        },
+        red: {
+          en: 'Red',
+          de: 'Rot',
+          ko: '빨강',
+        },
+        blue: {
+          en: 'Blue',
+          de: 'Blau',
+          ko: '파랑',
+        },
+      },
+    },
+    {
+      id: 'TOP Rot Collect',
+      type: 'GainsEffect',
+      // D65 Critical Performance Bug (blue)
+      // DC6 Critical Underflow Bug (red)
+      // Debuffs last 27s
+      netRegex: { effectId: ['D65', 'DC6'] },
+      condition: (data, matches) => {
+        data.bugRot[matches.target] = matches.effectId === 'D65' ? 'blue' : 'red';
+        return (matches.target === data.me) && data.latentDefectCount !== 3;
+      },
+    },
+    {
+      id: 'TOP Rot Pass/Get',
+      type: 'Ability',
+      // 7B5F Cascading Latent Defect (Red Tower)
+      // 7B60 Latent Performance Defect (Blue Tower)
+      // These casts go off 1 second after Latent Defect and go off regardless if someone soaks it
+      netRegex: { id: ['7B5F', '7B60'], source: 'Omega', capture: false },
+      condition: (data) => data.latentDefectCount < 3,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          passRot: {
+            en: 'Pass Rot',
+            de: 'Bug weitergeben',
+            ko: '디버프 건네기',
+          },
+          getRot: {
+            en: 'Get Rot',
+            de: 'Bug nehmen',
+            ko: '디버프 받기',
+          },
+        };
+        if (data.bugRot[data.me])
+          return { infoText: output.passRot!() };
+        return { alertText: output.getRot!() };
+      },
+      run: (data) => {
+        data.bugRot = {};
+        data.latentDefectCount = data.latentDefectCount + 1;
+      },
+    },
+    {
+      id: 'TOP Latent Defect Tether Towers',
+      type: 'GainsEffect',
+      // D71 Remote Code Smell (blue)
+      // DAF Local Code Smell(red/green)
+      // Using Code Smell as the regressions come ~8.75s after Latent Defect
+      // Debuffs are 23, 44, 65, and 86s
+      // TODO: Possibly include direction?
+      netRegex: { effectId: ['D71', 'DAF'] },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 8.75,
+      alertText: (data, matches, output) => {
+        const regression = matches.effectId === 'DAF' ? 'local' : 'remote';
+        const defamation = data.defamationColor;
+        if (defamation === undefined)
+          return;
+
+        const defamationTowerColor = defamation === 'red' ? output.red!() : output.blue!();
+        const stackTowerColor = defamation === 'red' ? output.blue!() : output.red!();
+        if (regression === 'remote')
+          return output.farTether!({ color: stackTowerColor });
+
+        if (parseFloat(matches.duration) < 80)
+          return output.nearTether!({ color: defamationTowerColor });
+
+        return output.finalTowerNear!({ color: stackTowerColor });
+      },
+      outputStrings: {
+        farTether: {
+          en: 'Stack by ${color} Tower',
+          de: 'Beim ${color}en Turm versammeln',
+          ko: '${color} 장판 사이에서 쉐어',
+        },
+        nearTether: {
+          en: 'Outside ${color} Towers',
+          de: 'Auserhalb vom ${color}en Turm',
+          ko: '${color} 장판 바깥쪽으로',
+        },
+        finalTowerNear: {
+          en: 'Between ${color} Towers',
+          de: 'Zwischen den ${color}en Türmen',
+          ko: '${color} 장판 사이로',
+        },
+        red: {
+          en: 'Red',
+          de: 'Rot',
+          ko: '빨강',
+        },
+        blue: {
+          en: 'Blue',
+          de: 'Blau',
+          ko: '파랑',
+        },
+      },
+    },
+    {
+      id: 'TOP P3 Regression Collect',
+      type: 'GainsEffect',
+      // DC9 Local Regression (red/green)
+      // DCA Remote Regression (blue)
+      netRegex: { effectId: ['DC9', 'DCA'] },
+      run: (data, matches) => {
+        data.regression[matches.target] = matches.effectId === 'DC9' ? 'local' : 'remote';
+      },
+    },
+    {
+      id: 'TOP P3 Second Regression Break Tether',
+      type: 'GainsEffect',
+      // DC9 Local Regression (red/green)
+      // DCA Remote Regression (blue)
+      // Debuffs last 10s
+      // Ideally first patch that breaks is blue, else this will not work
+      // Will call out if has not broken yet and it is safe to break, if by end
+      // of delay and first tether has not broken, it will not call
+      netRegex: { effectId: ['DC9', 'DCA'] },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
+      alertText: (data, _matches, output) => {
+        if (
+          (data.patchVulnCount % 2 === 1 && data.regression[data.me] === 'local') ||
+          (data.patchVulnCount === 7 && data.regression[data.me] === 'remote')
+        )
+          return output.breakTether!();
+      },
+      outputStrings: {
+        breakTether: {
+          en: 'Break Tether',
+          de: 'Verbindung brechen',
+          ko: '선 끊기',
+        },
+      },
+    },
+    {
+      id: 'TOP P3 Regression Cleanup',
+      type: 'LosesEffect',
+      // DC9 Local Regression (red/green)
+      // DCA Remote Regression (blue)
+      netRegex: { effectId: ['DC9', 'DCA'] },
+      run: (data, matches) => delete data.regression[matches.target],
+    },
+    {
+      id: 'TOP Regression Break Counter',
+      type: 'GainsEffect',
+      // DBC Magic Vulnerability Up from Patch, lasts 0.96s
+      // TODO: Clean this up for P5 Tethers?
+      netRegex: { effectId: 'DBC' },
+      preRun: (data) => data.patchVulnCount = data.patchVulnCount + 1,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration),
+      suppressSeconds: 1,
+      run: (data) => {
+        // Clear count for later phases
+        if (data.patchVulnCount === 8)
+          data.patchVulnCount = 0;
+      },
+    },
+    {
+      id: 'TOP Rot Spread',
+      type: 'GainsEffect',
+      // D65 Critical Performance Bug (blue)
+      // DC6 Critical Underflow Bug (red)
+      // Debuffs last 27s
+      netRegex: { effectId: ['D65', 'DC6'] },
+      // TODO: should we have a "Watch Rot" call if you don't get it?
+      // (with some suppression due to inconsistent rot pickup timings etc)
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
+      infoText: (_data, _matches, output) => output.spread!(),
+      run: (data, matches) => delete data.bugRot[matches.target],
+      outputStrings: {
+        spread: Outputs.spread,
+      },
+    },
+    {
+      id: 'TOP Oversampled Wave Cannon East',
+      type: 'StartsUsing',
+      netRegex: { id: '7B6B', source: 'Omega', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'East Monitors',
+          de: 'Östliche Bildschirme',
+          ko: '오른쪽 모니터',
+        },
+      },
+    },
+    {
+      id: 'TOP Oversampled Wave Cannon West',
+      type: 'StartsUsing',
+      netRegex: { id: '7B6C', source: 'Omega', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'West Monitors',
+          de: 'Westliche Bildschirme',
+          ko: '왼쪽 모니터',
+        },
+      },
+    },
+    {
+      id: 'TOP Oversampled Wave Cannon Loading',
+      type: 'GainsEffect',
+      // D7C = Oversampled Wave Cannon Loading (facing right)
+      // D7D = Oversampled Wave Cannon Loading (facing left)
+      netRegex: { effectId: ['D7C', 'D7D'] },
+      preRun: (data, matches) => data.monitorPlayers.push(matches),
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          // TODO: should we get all of these player's positions,
+          // assuming there's a N/S conga line?
+          monitorOnYou: {
+            en: 'Monitor (w/${player1}, ${player2})',
+            de: 'Bildschirm (w/${player1}, ${player2})',
+            ko: '모니터 (+ ${player1}, ${player2})',
+          },
+          unmarked: {
+            en: 'Unmarked',
+            de: 'Unmarkiert',
+            ko: '무징',
+          },
+        };
+
+        if (data.monitorPlayers.length !== 3)
+          return;
+
+        const players = data.monitorPlayers.map((x) => x.target).sort();
+        data.monitorPlayers = [];
+
+        if (players.includes(data.me)) {
+          const [p1, p2] = players.filter((x) => x !== data.me).map((x) => data.ShortName(x));
+          return { alertText: output.monitorOnYou!({ player1: p1, player2: p2 }) };
+        }
+        return { infoText: output.unmarked!() };
+      },
+    },
+    {
+      id: 'TOP Wave Cannon Stack Collector',
+      type: 'Ability',
+      netRegex: { id: '5779', source: 'Omega' },
+      // Store full matches here in case somebody has a N/S priority system
+      // they want to implement themselves in the stack trigger.
+      run: (data, matches) => data.waveCannonStacks.push(matches),
+    },
+    {
+      id: 'TOP Wave Cannon Stack',
+      type: 'Ability',
+      netRegex: { id: '5779', source: 'Omega', capture: false },
+      delaySeconds: 0.3,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          stacks: {
+            en: 'Stacks (${player1}, ${player2})',
+            de: 'Sammeln (${player1}, ${player2})',
+            ko: '쉐어징 (${player1}, ${player2})',
+          },
+          stackOnYou: {
+            en: 'Stack on You (w/${player})',
+            de: 'Auf DIR sammeln (w/${player})',
+            ko: '쉐어징 대상자 (+ ${player})',
+          },
+        };
+        const [m1, m2] = data.waveCannonStacks;
+        if (data.waveCannonStacks.length !== 2 || m1 === undefined || m2 === undefined)
+          return;
+
+        const [p1, p2] = [m1.target, m2.target].sort();
+        const onYou = p1 === data.me || p2 === data.me;
+        if (onYou) {
+          const otherPerson = p1 === data.me ? p2 : p1;
+          return { alertText: output.stackOnYou!({ player: data.ShortName(otherPerson) }) };
+        }
+
+        return {
+          infoText: output.stacks!({ player1: data.ShortName(p1), player2: data.ShortName(p2) }),
+        };
+      },
+      run: (data, _matches) => data.waveCannonStacks = [],
     },
   ],
   timelineReplace: [
@@ -778,34 +1116,50 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
-        'Omega(?!-)': 'Omega',
+        'Alpha Omega': 'Alpha-Omega',
+        'Cosmo Meteor': 'Kosmosmeteor',
+        '(?<!Alpha )Omega(?!-)': 'Omega',
         'Omega-F': 'Omega-W',
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
+        'Rear Power Unit': 'hinter(?:e|er|es|en) Antriebseinheit',
         'Right Arm Unit': 'recht(?:e|er|es|en) Arm',
+        'Rocket Punch': 'Raketenschlag',
       },
       'replaceText': {
+        'Archive Peripheral': 'Archiv-Peripherie',
         'Atomic Ray': 'Atomstrahlung',
         'Beyond Defense': 'Schildkombo S',
         'Beyond Strength': 'Schildkombo G',
         'Blaster': 'Blaster',
+        'Blind Faith': 'Blindes Vertrauen',
         'Colossal Blow': 'Kolossaler Hieb',
         'Condensed Wave Cannon Kyrios': 'Hochleistungswellenkanone P',
+        'Cosmo Arrow': 'Kosmospfeil',
+        'Cosmo Dive': 'Kosmossturz',
         'Cosmo Memory': 'Kosmosspeicher',
+        'Cosmo Meteor': 'Kosmosmeteor',
         'Critical Error': 'Schwerer Ausnahmefehler',
+        'Diffuse Wave Cannon(?! Kyrios)': 'Streuende Wellenkanone',
         'Diffuse Wave Cannon Kyrios': 'Streuende Wellenkanone P',
         'Discharger': 'Entlader',
         'Efficient Bladework': 'Effiziente Klingenführung',
+        'Explosion': 'Explosion',
         'Firewall': 'Sicherungssystem',
         'Flame Thrower': 'Flammensturm',
+        'Flash Gale': 'Blitzwind',
         'Guided Missile Kyrios': 'Lenkrakete P',
+        'Hello, Distant World': 'Hallo, Welt: Fern',
+        'Hello, Near World': 'Hallo, Welt: Nah',
         'Hello, World': 'Hallo, Welt!',
         'High-powered Sniper Cannon': 'Wellengeschütz „Pfeil +”',
+        'Hyper Pulse': 'Hyper-Impuls',
         'Ion Efflux': 'Ionenstrom',
         'Laser Shower': 'Laserschauer',
         'Latent Defect': 'Latenter Bug',
         'Left Arm Unit': 'link(?:e|er|es|en) Arm',
         'Limitless Synergy': 'Synergieprogramm LB',
+        'Magic Number': 'Magische Zahl',
         'Optical Laser': 'Optischer Laser F',
         'Optimized Bladedance': 'Omega-Schwertertanz',
         'Optimized Blizzard III': 'Omega-Eisga',
@@ -817,15 +1171,24 @@ const triggerSet: TriggerSet<Data> = {
         'Pantokrator': 'Pantokrator',
         'Party Synergy': 'Synergieprogramm PT',
         'Patch': 'Regression',
+        'Peripheral Synthesis': 'Ausdruck',
         'Pile Pitch': 'Neigungsstoß',
         'Program Loop': 'Programmschleife',
+        'Rear Lasers': 'Hintere Laser',
         'Right Arm Unit': 'recht(?:e|er|es|en) Arm',
+        'Run: \\*\\*\\*\\*mi\\* \\(Delta Version\\)': 'Ausführen: XXXXmiX (Delta)',
+        'Run: \\*\\*\\*\\*mi\\* \\(Omega Version\\)': 'Ausführen: XXXXmiX (Omega)',
+        'Run: \\*\\*\\*\\*mi\\* \\(Sigma Version\\)': 'Ausführen: XXXXmiX (Sigma)',
         '(?<! )Sniper Cannon': 'Wellengeschütz „Pfeil”',
         'Solar Ray': 'Sonnenstrahl',
         'Spotlight': 'Scheinwerfer',
         'Storage Violation': 'Speicherverletzung S',
+        'Subject Simulation F': 'Transformation W',
         'Superliminal Steel': 'Klingenkombo B',
+        'Swivel Cannon': 'Rotierende Wellenkanone',
         'Synthetic Shield': 'Synthetischer Schild', // This is currently a mistranslated in German as 'Effiziente Klingenführung'
+        'Unlimited Wave Cannon': 'Wellenkanone: Grenzwertüberschreitung',
+        '(?<! )Wave Cannon(?! Kyrios)': 'Wellenkanone',
         '(?<! )Wave Cannon Kyrios': 'Wellenkanone P',
         'Wave Repeater': 'Schnellfeuer-Wellenkanone',
       },
@@ -834,34 +1197,50 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Omega(?!-)': 'Oméga',
+        'Alpha Omega': 'Alpha-Oméga',
+        'Cosmo Meteor': 'Cosmométéore',
+        '(?<!Alpha )Omega(?!-)': 'Oméga',
         'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',
         'Optical Unit': 'unité optique',
+        'Rear Power Unit': 'unité arrière',
         'Right Arm Unit': 'unité bras droit',
+        'Rocket Punch': 'Astéropoing',
       },
       'replaceText': {
+        'Archive Peripheral': 'Périphérique d\'archivage',
         'Atomic Ray': 'Rayon atomique',
         'Beyond Defense': 'Combo bouclier S',
         'Beyond Strength': 'Combo bouclier G',
         'Blaster': 'Électrochoc',
+        'Blind Faith': 'Confiance aveugle',
         'Colossal Blow': 'Coup colossal',
         'Condensed Wave Cannon Kyrios': 'Canon plasma surchargé P',
+        'Cosmo Arrow': 'Cosmoflèche',
+        'Cosmo Dive': 'Cosmoplongeon',
         'Cosmo Memory': 'Cosmomémoire',
+        'Cosmo Meteor': 'Cosmométéore',
         'Critical Error': 'Erreur critique',
+        'Diffuse Wave Cannon(?! Kyrios)': 'Canon plasma diffuseur',
         'Diffuse Wave Cannon Kyrios': 'Canon plasma diffuseur P',
         'Discharger': 'Déchargeur',
         'Efficient Bladework': 'Lame active',
+        'Explosion': 'Explosion',
         'Firewall': 'Programme protecteur',
         'Flame Thrower': 'Crache-flammes',
+        'Flash Gale': 'Vent subit',
         'Guided Missile Kyrios': 'Missile guidé P',
+        'Hello, Distant World': 'Bonjour, le monde : distance',
+        'Hello, Near World': 'Bonjour, le monde : proximité',
         'Hello, World': 'Bonjour, le monde',
         'High-powered Sniper Cannon': 'Canon plasma longue portée surchargé',
+        'Hyper Pulse': 'Hyperpulsion',
         'Ion Efflux': 'Fuite d\'ions',
         'Laser Shower': 'Pluie de lasers',
         'Latent Defect': 'Bogue latent',
         'Left Arm Unit': 'unité bras gauche',
         'Limitless Synergy': 'Programme synergique LB',
+        'Magic Number': 'Nombre magique',
         'Optical Laser': 'Laser optique F',
         'Optimized Bladedance': 'Danse de la lame Oméga',
         'Optimized Blizzard III': 'Méga Glace Oméga',
@@ -873,15 +1252,24 @@ const triggerSet: TriggerSet<Data> = {
         'Pantokrator': 'Pantokrator',
         'Party Synergy': 'Programme synergique PT',
         'Patch': 'Bogue intentionnel',
+        'Peripheral Synthesis': 'Impression',
         'Pile Pitch': 'Lancement de pieu',
         'Program Loop': 'Boucle de programme',
+        'Rear Lasers': 'Lasers arrière',
         'Right Arm Unit': 'unité bras droit',
+        'Run: \\*\\*\\*\\*mi\\* \\(Delta Version\\)': 'Exécution : ****mi* Delta',
+        'Run: \\*\\*\\*\\*mi\\* \\(Omega Version\\)': 'Exécution : ****mi* Oméga',
+        'Run: \\*\\*\\*\\*mi\\* \\(Sigma Version\\)': 'Exécution : ****mi* Sigma',
         '(?<! )Sniper Cannon': 'Canon plasma longue portée',
         'Solar Ray': 'Rayon solaire',
         'Spotlight': 'Phare',
         'Storage Violation': 'Corruption de données S',
+        'Subject Simulation F': 'Transformation F',
         'Superliminal Steel': 'Combo lame B',
+        'Swivel Cannon': 'Canon plasma rotatif',
         'Synthetic Shield': 'Bouclier optionnel',
+        'Unlimited Wave Cannon': 'Canon plasma : Dépassement de limites',
+        '(?<! )Wave Cannon(?! Kyrios)': 'Canon plasma',
         '(?<! )Wave Cannon Kyrios': 'Canon plasma P',
         'Wave Repeater': 'Canon plasma automatique',
       },
@@ -890,34 +1278,50 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Omega(?!-)': 'オメガ',
+        'Alpha Omega': 'アルファオメガ',
+        'Cosmo Meteor': 'コスモメテオ',
+        '(?<!Alpha )Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
         'Omega-M': 'オメガM',
         'Optical Unit': 'オプチカルユニット',
+        'Rear Power Unit': 'リアユニット',
         'Right Arm Unit': 'ライトアームユニット',
+        'Rocket Punch': 'ロケットパンチ',
       },
       'replaceText': {
+        'Archive Peripheral': 'アーカイブアーム',
         'Atomic Ray': 'アトミックレイ',
         'Beyond Defense': 'シールドコンボS',
         'Beyond Strength': 'シールドコンボG',
         'Blaster': 'ブラスター',
+        'Blind Faith': 'ブラインド・フェイス',
         'Colossal Blow': 'コロッサスブロー',
         'Condensed Wave Cannon Kyrios': '高出力波動砲P',
+        'Cosmo Arrow': 'コスモアロー',
+        'Cosmo Dive': 'コスモダイブ',
         'Cosmo Memory': 'コスモメモリー',
+        'Cosmo Meteor': 'コスモメテオ',
         'Critical Error': 'クリティカルエラー',
+        'Diffuse Wave Cannon(?! Kyrios)': '拡散波動砲',
         'Diffuse Wave Cannon Kyrios': '拡散波動砲P',
         'Discharger': 'ディスチャージャー',
         'Efficient Bladework': 'ソードアクション',
+        'Explosion': '爆発',
         'Firewall': 'ガードプログラム',
         'Flame Thrower': '火炎放射',
+        'Flash Gale': 'フラッシュウィンド',
         'Guided Missile Kyrios': '誘導ミサイルP',
+        'Hello, Distant World': 'ハロー・ワールド：ファー',
+        'Hello, Near World': 'ハロー・ワールド：ニア',
         'Hello, World': 'ハロー・ワールド',
         'High-powered Sniper Cannon': '狙撃式高出力波動砲',
+        'Hyper Pulse': 'ハイパーパルス',
         'Ion Efflux': 'イオンエフラクス',
         'Laser Shower': 'レーザーシャワー',
         'Latent Defect': 'レイテントバグ',
         'Left Arm Unit': 'レフトアームユニット',
         'Limitless Synergy': '連携プログラムLB',
+        'Magic Number': 'マジックナンバー',
         'Optical Laser': 'オプチカルレーザーF',
         'Optimized Bladedance': 'ブレードダンス・オメガ',
         'Optimized Blizzard III': 'ブリザガ・オメガ',
@@ -929,15 +1333,24 @@ const triggerSet: TriggerSet<Data> = {
         'Pantokrator': 'パントクラトル',
         'Party Synergy': '連携プログラムPT',
         'Patch': 'エンバグ',
+        'Peripheral Synthesis': 'プリントアウト',
         'Pile Pitch': 'パイルピッチ',
         'Program Loop': 'サークルプログラム',
+        'Rear Lasers': 'リアレーザー',
         'Right Arm Unit': 'ライトアームユニット',
+        'Run: \\*\\*\\*\\*mi\\* \\(Delta Version\\)': 'コード：＊＊＊ミ＊【デルタ】',
+        'Run: \\*\\*\\*\\*mi\\* \\(Omega Version\\)': 'コード：＊＊＊ミ＊【オメガ】',
+        'Run: \\*\\*\\*\\*mi\\* \\(Sigma Version\\)': 'コード：＊＊＊ミ＊【シグマ】',
         '(?<! )Sniper Cannon': '狙撃式波動砲',
         'Solar Ray': 'ソーラレイ',
         'Spotlight': 'スポットライト',
         'Storage Violation': '記憶汚染除去S',
+        'Subject Simulation F': 'トランスフォームF',
         'Superliminal Steel': 'ブレードコンボB',
+        'Swivel Cannon': '旋回式波動砲',
         'Synthetic Shield': 'シールドオプション',
+        'Unlimited Wave Cannon': '波動砲：リミッターカット',
+        '(?<! )Wave Cannon(?! Kyrios)': '波動砲',
         '(?<! )Wave Cannon Kyrios': '波動砲P',
         'Wave Repeater': '速射式波動砲',
       },
