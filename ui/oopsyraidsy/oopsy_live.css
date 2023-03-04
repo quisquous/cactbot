@@ -63,6 +63,7 @@
 }
 
 .livelist {
+  flex: 1 0 300px;
   min-width: 300px;
   max-width: var(--live-list-max-width);
   height: 100%;
@@ -136,6 +137,7 @@ div {
 }
 
 .death-report {
+  flex: 0 0 300px;
   width: 300px;
   height: 100%;
   overflow-x: hidden;
@@ -250,6 +252,7 @@ div {
 }
 
 .out-of-combat .icons {
+  flex: 0 1 0px;
   display: flex;
   flex-direction: column;
 }
