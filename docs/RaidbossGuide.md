@@ -80,7 +80,7 @@ The value may be a string or an array of strings,
 or a `function(data)` that returns string or an array of strings,
 or an array contains different kinds of items above.
 
-There is a complete example that uses the **timeline** property in [test.js](../ui/raidboss/data/00-misc/test.js).
+There is a complete example that uses the **timeline** property in [test.ts](../ui/raidboss/data/00-misc/test.ts).
 
 **locale**
 Optional locale to restrict the trigger file to, e.g. 'en', 'ko', 'fr'. If not present, applies to all locales.
