@@ -851,6 +851,7 @@ const data: ZoneInfoType = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
+      'cn': '希拉狄哈水道',
       'de': 'Die Unterstadt von Sil\'dih',
       'en': 'The Sil\'dihn Subterrane',
       'fr': 'Les canalisations sildiennes - Donjon à embranchements',
@@ -913,6 +914,7 @@ const data: ZoneInfoType = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
+      'cn': '异闻希拉狄哈水道',
       'de': 'Die kuriose Unterstadt von Sil\'dih',
       'en': 'Another Sil\'dihn Subterrane',
       'fr': 'Les canalisations sildiennes annexes - Donjon alternatif',
@@ -927,6 +929,7 @@ const data: ZoneInfoType = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
+      'cn': '零式异闻希拉狄哈水道',
       'de': 'Die kuriose Unterstadt von Sil\'dih (episch)',
       'en': 'Another Sil\'dihn Subterrane (Savage)',
       'fr': 'Les canalisations sildiennes annexes - Donjon alternatif (sadique)',
