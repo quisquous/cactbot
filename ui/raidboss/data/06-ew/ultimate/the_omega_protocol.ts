@@ -9,14 +9,14 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 type Phase =
+  | 'p1'
+  | 'p2'
+  | 'p3'
+  | 'p4'
+  | 'delta'
+  | 'sigma'
   | 'omega'
-  | 'm/f'
-  | 'final-omega'
-  | 'blue-screen'
-  | 'delta-version'
-  | 'sigma-version'
-  | 'omega-version'
-  | 'alpha-omega';
+  | 'p6';
 
 export const playstationMarkers = ['circle', 'cross', 'triangle', 'square'] as const;
 export type PlaystationMarker = typeof playstationMarkers[number];
