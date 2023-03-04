@@ -1,4 +1,4 @@
-### P6N: Abyssos: The Sixth Circle (Savage)
+### P6S: Abyssos: The Sixth Circle (Savage)
 # -ii 7865 786A 7870 7871 7872 7873 7875 7879 787D 787E 7885 7886 7888 7889 7890 7892 79EB 79EC 7A18
 
 hideall "--Reset--"
