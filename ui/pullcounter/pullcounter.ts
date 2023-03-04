@@ -325,6 +325,7 @@ class PullCounter {
       }
     } else {
       const id = this.zoneName;
+      this.pullCounts[id] = 0;
       console.log(`resetting pull count of: ${id}`);
       this.ShowElementFor(id);
     }
