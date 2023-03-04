@@ -103,7 +103,7 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => {
     return {
       combatantData: [],
-      phase: 'omega',
+      phase: 'p1',
       inLine: {},
       loopBlasterCount: 0,
       pantoMissileCount: 0,
@@ -133,13 +133,13 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => {
         switch (matches.id) {
           case '7B40':
-            data.phase = 'm/f';
+            data.phase = 'p2';
             break;
           case '8014':
-            data.phase = 'sigma-version';
+            data.phase = 'sigma';
             break;
           case '8015':
-            data.phase = 'omega-version';
+            data.phase = 'omega';
             break;
         }
       },
@@ -157,19 +157,19 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => {
         switch (matches.id) {
           case '7BFD':
-            data.phase = 'omega';
+            data.phase = 'p1';
             break;
           case '7B13':
-            data.phase = 'final-omega';
+            data.phase = 'p3';
             break;
           case '7B47':
-            data.phase = 'blue-screen';
+            data.phase = 'p4';
             break;
           case '7B7C':
-            data.phase = 'delta-version';
+            data.phase = 'delta';
             break;
           case '7F72':
-            data.phase = 'alpha-omega';
+            data.phase = 'p6';
             break;
         }
       },
