@@ -44,6 +44,7 @@ Options.Triggers.push({
   initData: () => {
     return {
       combatantData: [],
+      phase: 'p1',
       inLine: {},
       loopBlasterCount: 0,
       pantoMissileCount: 0,
@@ -63,6 +64,57 @@ Options.Triggers.push({
     };
   },
   triggers: [
+    {
+      id: 'TOP Phase Tracker',
+      type: 'StartsUsing',
+      // 7B40 = Firewall
+      // 8014 = Run ****mi* (Sigma Version)
+      // 8015 = Run ****mi* (Omega Version)
+      netRegex: { id: ['7B40', '8014', '8015'], capture: true },
+      run: (data, matches) => {
+        switch (matches.id) {
+          case '7B40':
+            data.phase = 'p2';
+            break;
+          case '8014':
+            data.phase = 'sigma';
+            break;
+          case '8015':
+            data.phase = 'omega';
+            break;
+        }
+      },
+    },
+    {
+      id: 'TOP Phase Ability Tracker',
+      type: 'Ability',
+      // 7BFD = attack (Omega)
+      // 7B13 = self-cast on omega
+      // 7B47 = self-cast on omega
+      // 7B7C = self-cast on omega
+      // 7F72 = Blind Faith (non-enrage)
+      netRegex: { id: ['7BFD', '7B13', '7B47', '7B7C', '7F72'], capture: true },
+      suppressSeconds: 20,
+      run: (data, matches) => {
+        switch (matches.id) {
+          case '7BFD':
+            data.phase = 'p1';
+            break;
+          case '7B13':
+            data.phase = 'p3';
+            break;
+          case '7B47':
+            data.phase = 'p4';
+            break;
+          case '7B7C':
+            data.phase = 'delta';
+            break;
+          case '7F72':
+            data.phase = 'p6';
+            break;
+        }
+      },
+    },
     {
       id: 'TOP Headmarker Tracker',
       type: 'HeadMarker',
