@@ -1173,6 +1173,27 @@ const triggerSet: TriggerSet<Data> = {
       },
       run: (data, _matches) => data.waveCannonStacks = [],
     },
+    {
+      id: 'TOP Delta Tethers',
+      type: 'GainsEffect',
+      // D70 Local Code Smell
+      // DB0 Remote Code Smell
+      netRegex: { effectId: ['D70', 'DB0'] },
+      condition: Conditions.targetIsYou(),
+      infoText: (_data, matches, output) => {
+        if (matches.effectId === 'D70')
+          return output.nearTether!();
+        return output.farTether!();
+      },
+      outputStrings: {
+        farTether: {
+          en: 'Blue Tether',
+        },
+        nearTether: {
+          en: 'Green Tether',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
