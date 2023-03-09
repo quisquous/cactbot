@@ -1176,8 +1176,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'TOP Delta Tethers',
       type: 'GainsEffect',
-      // D70 Local Code Smell
-      // DB0 Remote Code Smell
+      // D70 Local Code Smell (red/green)
+      // DB0 Remote Code Smell (blue)
       netRegex: { effectId: ['D70', 'DB0'] },
       condition: Conditions.targetIsYou(),
       infoText: (_data, matches, output) => {
