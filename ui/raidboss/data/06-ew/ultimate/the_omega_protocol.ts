@@ -1186,7 +1186,7 @@ const triggerSet: TriggerSet<Data> = {
       // DB0 Remote Code Smell (blue)
       netRegex: { effectId: ['D70', 'DB0'] },
       preRun: (data, matches) => data.deltaTethers[matches.target] = matches.target === 'D70' ? 'green' : 'blue',
-      infoText: (_data, matches, output) => {
+      infoText: (data, matches, output) => {
         if (matches.target !== data.me)
           return;
         if (matches.effectId === 'D70')
