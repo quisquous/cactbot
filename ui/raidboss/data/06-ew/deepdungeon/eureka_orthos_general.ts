@@ -270,20 +270,9 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     // ---------------- Dread Beasts ----------------
-    {
-      id: 'EO General Dread Beast Spawn',
-      // 12322 Lamia Queen
-      // 12323 Meracydian Clone
-      // 12324 Demi-Cochma
-      type: 'AddedCombatant',
-      netRegex: { npcNameId: '1232[234]', capture: false },
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Dread Beast spawned!',
-        },
-      },
-    },
+    // 12322 Lamia Queen
+    // 12323 Meracydian Clone
+    // 12324 Demi-Cochma
     {
       id: 'EO General Lamia Queen Petrifaction',
       // gaze, inflicts Stone Curse (1B5)

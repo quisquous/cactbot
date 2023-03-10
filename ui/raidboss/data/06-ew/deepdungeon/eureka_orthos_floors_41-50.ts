@@ -46,13 +46,13 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'EO 41-50 Orthos Hoarhound Abyssal Cry',
-      // roomwide stun, follow-up one-shot attack on stunned players; can break line-of-sight to avoid
+      // roomwide stun AoE with follow-up one-shot attack on stunned players; can break line-of-sight to avoid
       type: 'StartsUsing',
-      netRegex: { id: '7ED3', source: 'Orthos Hoarhound', capture: false },
-      alertText: (_data, _matches, output) => output.text!(),
+      netRegex: { id: '7ED3', source: 'Orthos Hoarhound' },
+      alertText: (_data, matches, output) => output.text!({ name: matches.source }),
       outputStrings: {
         text: {
-          en: 'Break Line-of-Sight',
+          en: 'Break line-of-sight to ${name}',
         },
       },
     },
@@ -73,13 +73,13 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 41-50 Servomechanical Chimera 14X Songs of Ice and Thunder',
       type: 'StartsUsing',
       netRegex: { id: '7C6B', source: 'Servomechanical Chimera 14X', capture: false },
-      response: Responses.getOutThenIn(),
+      response: Responses.getOutThenIn('alert'),
     },
     {
       id: 'EO 41-50 Servomechanical Chimera 14X Songs of Thunder and Ice',
       type: 'StartsUsing',
       netRegex: { id: '7C6C', source: 'Servomechanical Chimera 14X', capture: false },
-      response: Responses.getInThenOut(),
+      response: Responses.getInThenOut('alert'),
     },
     {
       id: 'EO 41-50 Servomechanical Chimera 14X Tether',
@@ -103,14 +103,14 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '7C6F', source: 'Servomechanical Chimera 14X', capture: false },
       delaySeconds: 2,
-      response: Responses.getOutThenIn(),
+      response: Responses.getOutThenIn('alert'),
     },
     {
       id: 'EO 41-50 Servomechanical Chimera 14X Thunderous Cold',
       type: 'StartsUsing',
       netRegex: { id: '7C70', source: 'Servomechanical Chimera 14X', capture: false },
       delaySeconds: 2,
-      response: Responses.getInThenOut(),
+      response: Responses.getInThenOut('alert'),
     },
     {
       id: 'EO 41-50 Servomechanical Chimera 14X Cacophony',

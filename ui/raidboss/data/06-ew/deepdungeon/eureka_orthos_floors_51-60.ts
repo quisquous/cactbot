@@ -47,13 +47,14 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'EO 51-60 Orthos Rockfin Aqua Spear',
+      // lethal line charge AoE; can break line-of-sight to avoid
       type: 'StartsUsing',
       netRegex: { id: '7EF4', source: 'Orthos Rockfin' },
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text!(),
+      alertText: (_data, matches, output) => output.text!({ name: matches.source }),
       outputStrings: {
         text: {
-          en: 'Break Line-of-Sight',
+          en: 'Break line-of-sight to ${name}',
         },
       },
     },
@@ -64,10 +65,16 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.goFront(),
     },
     {
-      id: 'EO 51-60 Orthos Zaratan Sewer Water',
+      id: 'EO 51-60 Orthos Zaratan Sewer Water Back First',
       type: 'StartsUsing',
       netRegex: { id: '7EEB', source: 'Orthos Zaratan', capture: false },
-      response: Responses.getBackThenFront(),
+      response: Responses.getBackThenFront('alert'),
+    },
+    {
+      id: 'EO 51-60 Orthos Zaratan Sewer Water Front First',
+      type: 'StartsUsing',
+      netRegex: { id: '7EEC', source: 'Orthos Zaratan', capture: false },
+      response: Responses.getFrontThenBack('alert'),
     },
     {
       id: 'EO 51-60 Orthos Stingray Expulsion',
@@ -79,7 +86,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 51-60 Orthos Stingray Electric Whorl',
       type: 'StartsUsing',
       netRegex: { id: '81A2', source: 'Orthos Stingray', capture: false },
-      response: Responses.getUnder(),
+      response: Responses.getUnder('alert'),
     },
     // ---------------- Floor 60 Boss: Servomechanical Minotaur 16 ----------------
     {
@@ -98,7 +105,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 51-60 Servomechanical Minotaur 16 Disorienting Groan',
       type: 'StartsUsing',
       netRegex: { id: '7C84', source: 'Servomechanical Minotaur 16', capture: false },
-      response: Responses.getUnder(),
+      response: Responses.getUnder('alert'),
     },
     {
       id: 'EO 51-60 Servomechanical Minotaur 16 Octuple Swipe Cleanup',
@@ -111,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'EO 51-60 Servomechanical Minotaur 16 Octuple Swipe',
-      type: 'StartsUsing',
+      type: 'Ability',
       netRegex: { id: '7C7B', source: 'Servomechanical Minotaur 16' },
       condition: (data) => !data.calledOctupleSwipes,
       durationSeconds: 10,
@@ -125,23 +132,20 @@ const triggerSet: TriggerSet<Data> = {
         if (data.octupleSwipes.length <= 4)
           return;
 
-        // TODO: remove debug output
-        console.log(`Octuple Swipe headings: ${JSON.stringify(data.octupleSwipes)}`);
-
         data.calledOctupleSwipes = true;
-        if (data.octupleSwipes[0] === 0 && data.octupleSwipes[4] === 0)
+        if (data.octupleSwipes[0] === data.octupleSwipes[4])
           return output.text!({
-            dir1: output.west!(),
-            dir2: output.north!(),
-            dir3: output.west!(),
-            dir4: output.north!(),
+            dir1: output.left!(),
+            dir2: output.front!(),
+            dir3: output.left!(),
+            dir4: output.front!(),
           });
-        if (data.octupleSwipes[3] === 3 && data.octupleSwipes[4] === 3)
+        if (data.octupleSwipes[3] === data.octupleSwipes[4])
           return output.text!({
-            dir1: output.west!(),
-            dir2: output.north!(),
-            dir3: output.north!(),
-            dir4: output.west!(),
+            dir1: output.left!(),
+            dir2: output.front!(),
+            dir3: output.front!(),
+            dir4: output.left!(),
           });
 
         // something went wrong
@@ -149,10 +153,8 @@ const triggerSet: TriggerSet<Data> = {
         return;
       },
       outputStrings: {
-        north: Outputs.north,
-        south: Outputs.south,
-        east: Outputs.east,
-        west: Outputs.west,
+        front: Outputs.front,
+        left: Outputs.left,
 
         text: {
           en: '${dir1} > ${dir2} > ${dir3} > ${dir4}',

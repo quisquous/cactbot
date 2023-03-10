@@ -5,7 +5,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Eureka Orthos Floors 31-40
-// TODO: Phantom Orthoray Atmospheric Displacement PBAoE
 
 export type Data = RaidbossData;
 
@@ -24,7 +23,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 31-40 Orthospider Particle Collision',
       type: 'StartsUsing',
       netRegex: { id: '7F25', source: 'Orthospider', capture: false },
-      response: Responses.getOut(),
+      response: Responses.outOfMelee('alert'),
     },
     {
       id: 'EO 31-40 Orthonaga Cursed Gaze',
@@ -51,6 +50,12 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getBehind(),
     },
     {
+      id: 'EO 31-40 Phantom Orthoray Atmospheric Displacement',
+      type: 'StartsUsing',
+      netRegex: { id: '7EB4', source: 'Phantom Orthoray', capture: false },
+      response: Responses.getOut(),
+    },
+    {
       id: 'EO 31-40 Orthochimera the Ram\'s Voice',
       type: 'StartsUsing',
       netRegex: { id: '7EBB', source: 'Orthochimera', capture: false },
@@ -60,7 +65,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 31-40 Orthochimera the Dragon\'s Voice',
       type: 'StartsUsing',
       netRegex: { id: '7EBC', source: 'Orthochimera', capture: false },
-      response: Responses.getUnder(),
+      response: Responses.getUnder('alert'),
     },
     {
       id: 'EO 31-40 Orthoempuse Kneeling Snath',
@@ -73,7 +78,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EO 31-40 Twintania Clone Twister',
       type: 'StartsUsing',
-      netRegex: { id: '7AEC', source: 'Twintania Clone', capture: false },
+      netRegex: { id: '7AEC', source: 'Twintania Clone' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -87,7 +93,23 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'EO 31-40 Twintania Clone Twisting Dive',
+      id: 'EO 31-40 Twintania Clone Twisting Dive Divebomb',
+      type: 'StartsUsing',
+      netRegex: { id: '7AEF', source: 'Twintania Clone', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'DIVEBOMB',
+          de: 'STURZBOMBE',
+          fr: 'BOMBE PLONGEANTE',
+          ja: 'ダイブボム',
+          cn: '俯冲',
+          ko: '급강하',
+        },
+      },
+    },
+    {
+      id: 'EO 31-40 Twintania Clone Twisting Dive Twisters',
       type: 'Ability',
       netRegex: { id: '7AEF', source: 'Twintania Clone', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
@@ -106,7 +128,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 31-40 Twintania Clone Turbine',
       type: 'StartsUsing',
       netRegex: { id: '7AEB', source: 'Twintania Clone', capture: false },
-      response: Responses.getUnder(),
+      response: Responses.knockback(),
     },
   ],
 };
