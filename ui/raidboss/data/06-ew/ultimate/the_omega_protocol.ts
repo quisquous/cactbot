@@ -8,7 +8,7 @@ import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-type Phase =
+export type Phase =
   | 'p1'
   | 'p2'
   | 'p3'

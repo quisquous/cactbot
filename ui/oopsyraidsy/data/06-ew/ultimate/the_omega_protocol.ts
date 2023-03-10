@@ -9,7 +9,7 @@ import {
   OopsyTriggerSet,
 } from '../../../../../types/oopsy';
 import { LocaleText } from '../../../../../types/trigger';
-import { GetShareMistakeText, GetSoloMistakeText } from '../../../oopsy_common';
+import { GetShareMistakeText, GetSoloMistakeText, playerDamageFields } from '../../../oopsy_common';
 
 // TODO: 7B10 Diffuse Wave Cannon Kyrios being shared if not invulning?
 // TODO: call out who was missing in the Condensed Wave Cannon stack
@@ -30,9 +30,19 @@ const stackMistake = (
   };
 };
 
-const translate = (data: Data, text: LocaleText) => {
+export const translate = (data: Data, text: LocaleText) => {
   return text[data.options.DisplayLanguage] ?? text['en'];
 };
+
+export type Phase =
+  | 'p1'
+  | 'p2'
+  | 'p3'
+  | 'p4'
+  | 'delta'
+  | 'sigma'
+  | 'omega'
+  | 'p6';
 
 export const helloEffect = {
   // Local Regression / "Christmas" red/green tethers
@@ -210,6 +220,7 @@ const unknownDescriptionLocale: LocaleText = {
 };
 
 export interface Data extends OopsyData {
+  phase?: Phase;
   blameId?: { [name: string]: string };
   inLine?: { [name: string]: number };
   towerCount?: number;
@@ -226,6 +237,8 @@ export interface Data extends OopsyData {
   helloStateSnapshot?: { [name: string]: Set<string> };
   helloCollect?: NetMatches['Ability'][];
   monitorCollect?: NetMatches['Ability'][];
+  waveCannonProteanCollect?: NetMatches['Ability'][];
+  waveCannonStackCollect?: NetMatches['Ability'][];
 }
 
 const triggerSet: OopsyTriggerSet<Data> = {
@@ -248,13 +261,15 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'TOP Wave Repeater 3': '7B51', // third ring during p3 transition / p4
     'TOP Wave Repeater 4': '7B52', // outer ring during p3 transition / p4
     'TOP Colossal Blow': '7B4E', // Right/Left Arm Unit big centered circle during p3 transition
-    'TOP Wave Cannon Protean 2': '7B80', // p4 followup protean laser
   },
   damageFail: {
     'TOP Storage Violation Obliteration': '7B06', // failing towers
   },
+  gainsEffectFail: {
+    // C05 is the 9999 duration, and C06 is the 15s bleed tick (for 150k damage).
+    'TOP Bleeding': 'C05', // standing in the middle during p3 intermission
+  },
   shareWarn: {
-    'TOP Blaster': '7B0A', // tether spread during Program Loop
     'TOP Wave Cannon Kyrios': '7B11', // headmarker line lasers after Pantokrator
     'TOP Optimized Fire III': '7B2F', // spread during Party Synergy
     'TOP Sniper Cannon': '7B53', // spread during p3 transition
@@ -273,6 +288,57 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'TOP Pile Pitch': '7B29', // stack after Beyond Defense during Limitless Synergy
   },
   triggers: [
+    {
+      id: 'TOP Phase Tracker',
+      type: 'StartsUsing',
+      // 7B40 = Firewall
+      // 8014 = Run ****mi* (Sigma Version)
+      // 8015 = Run ****mi* (Omega Version)
+      netRegex: NetRegexes.startsUsing({ id: ['7B40', '8014', '8015'], capture: true }),
+      run: (data, matches) => {
+        switch (matches.id) {
+          case '7B40':
+            data.phase = 'p2';
+            break;
+          case '8014':
+            data.phase = 'sigma';
+            break;
+          case '8015':
+            data.phase = 'omega';
+            break;
+        }
+      },
+    },
+    {
+      id: 'TOP Phase Ability Tracker',
+      type: 'Ability',
+      // 7BFD = attack (Omega)
+      // 7B13 = self-cast on omega
+      // 7B47 = self-cast on omega
+      // 7B7C = self-cast on omega
+      // 7F72 = Blind Faith (non-enrage)
+      netRegex: NetRegexes.ability({ id: ['7BFD', '7B13', '7B47', '7B7C', '7F72'], capture: true }),
+      suppressSeconds: 20, // Ignore multiple delta/omega captures
+      run: (data, matches) => {
+        switch (matches.id) {
+          case '7BFD':
+            data.phase = 'p1';
+            break;
+          case '7B13':
+            data.phase = 'p3';
+            break;
+          case '7B47':
+            data.phase = 'p4';
+            break;
+          case '7B7C':
+            data.phase = 'delta';
+            break;
+          case '7F72':
+            data.phase = 'p6';
+            break;
+        }
+      },
+    },
     {
       id: 'TOP In Line Debuff Collector',
       type: 'GainsEffect',
@@ -694,21 +760,16 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'TOP Hello World Mistakes',
       type: 'Ability',
-      /*
-      netRegex: NetRegexes.ability({ id: Object.values(helloAbility), capture: false }),
-      delaySeconds: 0.3,
-      suppressSeconds: 1,
-      */
-      // TODO: can use this for testing since oopsy_viewer doesn't support delaySeconds yet.
+      // Check Hello World mistakes during patch explosions
       netRegex: NetRegexes.ability({ id: '7B63' }),
       mistake: (data) => {
+        if (data.helloCollect === undefined || data.helloCollect.length === 0)
+          return;
+
         const mistakes: OopsyMistake[] = [];
 
-        const collect = [...(data.helloCollect ?? [])];
+        const collect = [...data.helloCollect];
         data.helloCollect = [];
-
-        if (collect.length === 0)
-          return;
 
         const unknownDesc = translate(data, unknownDescriptionLocale);
 
@@ -786,16 +847,19 @@ const triggerSet: OopsyTriggerSet<Data> = {
             }
           }
 
-          // Extra person with the wrong debuff??
-          for (const player of actualPlayers) {
-            if (!expectedPlayers.includes(player)) {
-              const text = translate(data, defect.extra);
-              mistakes.push({
-                type: 'warn',
-                blame: player,
-                reportId: data.blameId?.[player],
-                text: `${text}${playerToDescription[player] ?? unknownDesc}`,
-              });
+          // It's fine to have extra people in the final stack, so ignore this.
+          if (data.latentDefectCount !== 4 || defect.actual !== 'stack') {
+            // Extra person with the wrong debuff??
+            for (const player of actualPlayers) {
+              if (!expectedPlayers.includes(player)) {
+                const text = translate(data, defect.extra);
+                mistakes.push({
+                  type: 'warn',
+                  blame: player,
+                  reportId: data.blameId?.[player],
+                  text: `${text}${playerToDescription[player] ?? unknownDesc}`,
+                });
+              }
             }
           }
 
@@ -824,7 +888,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
               });
             } else if (targetCount > 1 && (isFinalDefamation || isTower)) {
               // Towers and Defamation 4 should always have only one person in them.
-              const text = translate(data, GetShareMistakeText(defect.share, 1));
+              const text = translate(data, GetShareMistakeText(defect.share, targetCount));
               const hasDefamation = data.helloStateSnapshot?.[ability.target]?.has(
                 helloEffect.defamation,
               );
@@ -900,35 +964,216 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'TOP Oversampled Wave Cannon Collect',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7B6D' }),
+      netRegex: NetRegexes.ability({ id: '7B6D', ...playerDamageFields }),
       run: (data, matches) => (data.monitorCollect ??= []).push(matches),
     },
     {
       id: 'TOP P3 Oversampled Wave Cannon',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7B6D', capture: false }),
+      condition: (data) => data.phase === 'p3',
       delaySeconds: 0.3,
       suppressSeconds: 1,
       mistake: (data, _matches) => {
         // TODO: restrict this to p3
         const players = Object.keys(data.blameId ?? {});
-        const monitorPlayers = (data.monitorCollect ?? []).map((x) => x.target);
+        data.monitorCollect ??= [];
+
+        const monitorPlayers = data.monitorCollect.map((x) => x.target);
         const missing = players.filter((x) => !monitorPlayers.includes(x));
         const mistakes: OopsyMistake[] = [];
         for (const player of missing) {
           mistakes.push({
             type: 'warn',
             name: player,
-            // no reportId/blame here as it's possible that the person missing this monitor
-            // is not at fault.
+            // no reportId/blame here as this is usually somebody else's fault
             text: {
               en: 'Not hit by monitor',
               ko: '모니터 안맞음',
             },
           });
         }
+
+        const monitorCount: { [name: string]: number } = {};
+        for (const player of monitorPlayers) {
+          monitorCount[player] ??= 0;
+          monitorCount[player]++;
+        }
+        for (const [player, count] of Object.entries(monitorCount)) {
+          if (count <= 1)
+            continue;
+          mistakes.push({
+            type: 'warn',
+            name: player,
+            // no reportId/blame here as this is usually somebody else's fault
+            text: {
+              en: `Took monitor x${count}`,
+            },
+          });
+        }
+
+        // It is possible in rare cases for there to be more than 8 hits.
+        // Maybe the boss hits everybody on the monitor side and not just two?
+        const numMonitors = data.monitorCollect.filter((x) => x.targetIndex === '0').length;
+        if (numMonitors !== 8) {
+          mistakes.push({
+            type: 'warn',
+            text: {
+              en: `Total monitors: x${numMonitors}`,
+            },
+          });
+        }
+
         return mistakes;
       },
+    },
+    {
+      id: 'TOP Wave Cannon Protean Rename',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B7E', ...playerDamageFields }),
+      mistake: stackMistake('warn', 1, {
+        // Rename this for clarity.
+        en: 'Wave Cannon Protean',
+      }),
+    },
+    {
+      id: 'TOP Wave Cannon Protean Two',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B80', ...playerDamageFields }),
+      mistake: (_data, matches) => {
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          triggerType: 'Damage',
+          text: {
+            en: 'Wave Cannon Repeat Protean',
+          },
+        };
+      },
+    },
+    {
+      id: 'TOP Wave Cannon Protean Collect',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B7E', ...playerDamageFields }),
+      run: (data, matches) => (data.waveCannonProteanCollect ??= []).push(matches),
+    },
+    {
+      id: 'TOP Wave Cannon Protean Analyze',
+      type: 'Ability',
+      // If somebody is dead, people will take more single target proteans.
+      // Just mention this so it's obvious why this person died.
+      netRegex: NetRegexes.ability({ id: '7B7E', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 3,
+      // netRegex: NetRegexes.ability({ id: ['5779', '7B52'], capture: false }),
+      mistake: (data) => {
+        const mistakes: OopsyMistake[] = [];
+        data.waveCannonProteanCollect ??= [];
+        if (data.waveCannonProteanCollect.length === 0)
+          return;
+
+        // Report missing players: this is only possible when somebody is dead,
+        // but report it anyway, so it's obvious that "X is dead, Y took two and died".
+        const cannonPlayers = data.waveCannonProteanCollect.map((x) => x.target);
+        for (const player of Object.keys(data.blameId ?? [])) {
+          if (cannonPlayers.includes(player))
+            continue;
+          mistakes.push({
+            type: 'warn',
+            name: player,
+            text: {
+              en: `Missed Wave Cannon Protean`,
+            },
+          });
+        }
+
+        // Track anybody double tapped with two "single target" proteans.
+        const cannonCount: { [name: string]: number } = {};
+        const clippedAnotherPlayer: { [name: string]: boolean } = {};
+        for (const line of data.waveCannonProteanCollect) {
+          cannonCount[line.target] ??= 0;
+          if (parseInt(line.targetCount) >= 2)
+            clippedAnotherPlayer[line.target] ??= true;
+          cannonCount[line.target]++;
+        }
+
+        for (const [player, count] of Object.entries(cannonCount)) {
+          // If there's a clip, we'll mention it elsewhere,
+          // no need to say "this person took x3 proteans because one person was dead
+          // and two people clipped each other".
+          if (count === 1 || clippedAnotherPlayer[player])
+            continue;
+          mistakes.push({
+            type: 'warn',
+            name: player,
+            text: {
+              en: `Wave Cannon Protean x${count}`,
+            },
+          });
+        }
+
+        return mistakes;
+      },
+      run: (data) => data.waveCannonProteanCollect = [],
+    },
+    {
+      id: 'TOP Wave Cannon Stack Collect',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B7F', ...playerDamageFields }),
+      run: (data, matches) => (data.waveCannonStackCollect ??= []).push(matches),
+    },
+    {
+      id: 'TOP Wave Cannon Stack Analyze',
+      type: 'Ability',
+      // Make sure people aren't in two stacks
+      netRegex: NetRegexes.ability({ id: '7B7F', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 3,
+      // netRegex: NetRegexes.ability({ id: ['5779', '7B52'], capture: false }),
+      mistake: (data) => {
+        const mistakes: OopsyMistake[] = [];
+
+        data.waveCannonStackCollect ??= [];
+        if (data.waveCannonStackCollect.length === 0)
+          return;
+
+        const cannonPlayers = data.waveCannonStackCollect.map((x) => x.target);
+        for (const player of Object.keys(data.blameId ?? [])) {
+          if (cannonPlayers.includes(player))
+            continue;
+          mistakes.push({
+            type: 'warn',
+            blame: player,
+            reportId: data.blameId?.[player],
+            text: {
+              en: `Missed Wave Cannon Stack`,
+            },
+          });
+        }
+
+        const cannonCount: { [name: string]: number } = {};
+        for (const line of data.waveCannonStackCollect ?? []) {
+          cannonCount[line.target] ??= 0;
+          cannonCount[line.target]++;
+        }
+
+        for (const [player, count] of Object.entries(cannonCount)) {
+          if (count <= 1)
+            continue;
+          mistakes.push({
+            type: 'fail',
+            blame: player,
+            reportId: data.blameId?.[player],
+            text: {
+              en: `Wave Cannon Stack x${count}`,
+            },
+          });
+        }
+
+        return mistakes;
+      },
+      run: (data) => data.waveCannonStackCollect = [],
     },
   ],
 };
