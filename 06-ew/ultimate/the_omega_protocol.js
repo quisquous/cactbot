@@ -61,6 +61,7 @@ Options.Triggers.push({
       patchVulnCount: 0,
       waveCannonStacks: [],
       monitorPlayers: [],
+      deltaTethers: {},
     };
   },
   triggers: [
@@ -615,8 +616,11 @@ Options.Triggers.push({
           return { alarmText: output.dontStack() };
         // Note: if you are doing uptime meteors then everybody stacks.
         // If you are not, then you'll need to ignore this as needed.
-        return { infoText: output.stack() };
+        // Note2: For P5 Delta, all remaining blues will stack for pile pitch
+        if (data.deltaTethers[data.me] !== 'green')
+          return { infoText: output.stack() };
       },
+      run: (data) => data.deltaTethers = {},
     },
     {
       id: 'TOP Cosmo Memory',
@@ -1084,6 +1088,31 @@ Options.Triggers.push({
         };
       },
       run: (data, _matches) => data.waveCannonStacks = [],
+    },
+    {
+      id: 'TOP Delta Tethers',
+      type: 'GainsEffect',
+      // D70 Local Code Smell (red/green)
+      // DB0 Remote Code Smell (blue)
+      netRegex: { effectId: ['D70', 'DB0'] },
+      preRun: (data, matches) => {
+        data.deltaTethers[matches.target] = matches.effectId === 'D70' ? 'green' : 'blue';
+      },
+      infoText: (data, matches, output) => {
+        if (matches.target !== data.me)
+          return;
+        if (matches.effectId === 'D70')
+          return output.nearTether();
+        return output.farTether();
+      },
+      outputStrings: {
+        farTether: {
+          en: 'Blue Tether',
+        },
+        nearTether: {
+          en: 'Green Tether',
+        },
+      },
     },
   ],
   timelineReplace: [
