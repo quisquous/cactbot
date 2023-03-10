@@ -1204,6 +1204,44 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'TOP Swivel Cannon',
+      // 7B95 Swivel Cannon Left-ish
+      // 7B94 Swivel Cannon Right-ish
+      // 9.7s cast
+      type: 'StartsUsing',
+      netRegex: { id: ['7B94', '7B95'], source: 'Omega' },
+      durationSeconds: (_data, matches) => parseFloat(matches.castTime),
+      infoText: (_data, matches, output) => {
+        const centerX = 100;
+        const centerY = 100;
+
+        const positionMatchesTo8Dir = (matches: NetMatches['StartsUsing']) => {
+          const x = parseFloat(matches.x) - centerX;
+          const y = parseFloat(matches.y) - centerY;
+
+          // Dirs: N = 0, NE = 1, ..., NW = 7
+          return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+        };
+        const isLeft = matches.id === '7B95';
+        const position = positionMatchesTo8Dir(matches);
+
+        if (position === 0) // North
+          return isLeft ? output.west!() : output.east!();
+        if (position === 2) // East
+          return isLeft ? output.north!() : output.south!();
+        if (position === 4) // South
+          return isLeft ? output.east!() : output.west!();
+        if (position === 6) // West
+          return isLeft ? output.south!() : output.north!();
+      },
+      outputStrings: {
+        north: Outputs.north,
+        south: Outputs.south,
+        east: Outputs.east,
+        west: Outputs.west,
+      },
+    },
   ],
   timelineReplace: [
     {
