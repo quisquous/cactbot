@@ -25,6 +25,7 @@ export type Glitch = 'mid' | 'remote';
 export type Cannon = 'spread' | 'stack';
 export type RotColor = 'blue' | 'red';
 export type Regression = 'local' | 'remote';
+export type TetherColor = 'blue' | 'green';
 
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
@@ -48,6 +49,7 @@ export interface Data extends RaidbossData {
   patchVulnCount: number;
   waveCannonStacks: NetMatches['Ability'][];
   monitorPlayers: NetMatches['GainsEffect'][];
+  deltaTethers: { [name: string]: TetherColor };
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -120,6 +122,7 @@ const triggerSet: TriggerSet<Data> = {
       patchVulnCount: 0,
       waveCannonStacks: [],
       monitorPlayers: [],
+      deltaTethers: {},
     };
   },
   triggers: [
@@ -689,8 +692,11 @@ const triggerSet: TriggerSet<Data> = {
           return { alarmText: output.dontStack!() };
         // Note: if you are doing uptime meteors then everybody stacks.
         // If you are not, then you'll need to ignore this as needed.
-        return { infoText: output.stack!() };
+        // Note2: For P5 Delta, all remaining blues will stack for pile pitch
+        if (data.deltaTethers[data.me] !== 'green')
+          return { infoText: output.stack!() };
       },
+      run: (data) => data.deltaTethers = {},
     },
     {
       id: 'TOP Cosmo Memory',
@@ -1172,6 +1178,31 @@ const triggerSet: TriggerSet<Data> = {
         };
       },
       run: (data, _matches) => data.waveCannonStacks = [],
+    },
+    {
+      id: 'TOP Delta Tethers',
+      type: 'GainsEffect',
+      // D70 Local Code Smell (red/green)
+      // DB0 Remote Code Smell (blue)
+      netRegex: { effectId: ['D70', 'DB0'] },
+      preRun: (data, matches) => {
+        data.deltaTethers[matches.target] = matches.effectId === 'D70' ? 'green' : 'blue';
+      },
+      infoText: (data, matches, output) => {
+        if (matches.target !== data.me)
+          return;
+        if (matches.effectId === 'D70')
+          return output.nearTether!();
+        return output.farTether!();
+      },
+      outputStrings: {
+        farTether: {
+          en: 'Blue Tether',
+        },
+        nearTether: {
+          en: 'Green Tether',
+        },
+      },
     },
   ],
   timelineReplace: [
