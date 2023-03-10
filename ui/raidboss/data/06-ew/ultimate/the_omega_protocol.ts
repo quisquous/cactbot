@@ -1237,8 +1237,8 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         north: Outputs.north,
-        south: Outputs.south,
         east: Outputs.east,
+        south: Outputs.south,
         west: Outputs.west,
       },
     },
