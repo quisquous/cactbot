@@ -19,20 +19,21 @@ const triggerSet: TriggerSet<Data> = {
     // ---------------- Floor 51-59 Mobs ----------------
     {
       id: 'EO 51-60 Orthos Ice Sprite Hypothermal Combustion',
+      // explodes in a letal PBAoE after death
       type: 'StartsUsing',
       netRegex: { id: '7EF0', source: 'Orthos Ice Sprite', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'EO 51-60 Orthos Ymir Gelid Charge',
-      // gains Ice Spikes (C6), lethal counterattack when hit
+      // gains Ice Spikes (C6), lethal counterattack when hit with physical damage
       type: 'StartsUsing',
       netRegex: { id: '819C', source: 'Orthos Ymir' },
       response: Responses.stunIfPossible(),
     },
     {
       id: 'EO 51-60 Orthos Ymir Ice Spikes Gain',
-      // C6 = Ice Spikes, lethal counterattack damage when hit
+      // C6 = Ice Spikes, lethal counterattack damage when hit with physical damage
       type: 'GainsEffect',
       netRegex: { effectId: 'C6', target: 'Orthos Ymir' },
       alertText: (_data, matches, output) => output.text!({ target: matches.target }),
@@ -103,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'EO 51-60 Servomechanical Minotaur 16 Disorienting Groan',
+      // knockback, will push all the way into damage wall if not under boss
       type: 'StartsUsing',
       netRegex: { id: '7C84', source: 'Servomechanical Minotaur 16', capture: false },
       response: Responses.getUnder('alert'),
@@ -133,14 +135,18 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         data.calledOctupleSwipes = true;
+
         if (data.octupleSwipes[0] === data.octupleSwipes[4])
+          // swipe order is Front > Back > Right > Left > Front > Back > Right > Left
           return output.text!({
             dir1: output.left!(),
             dir2: output.front!(),
             dir3: output.left!(),
             dir4: output.front!(),
           });
+
         if (data.octupleSwipes[3] === data.octupleSwipes[4])
+          // swipe order is Front > Back > Right > Left > Left > Right > Back > Front
           return output.text!({
             dir1: output.left!(),
             dir2: output.front!(),

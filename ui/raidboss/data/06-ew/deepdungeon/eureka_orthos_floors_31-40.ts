@@ -17,7 +17,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 31-40 Orthos Mirrorknight Double Hex Eye',
       type: 'StartsUsing',
       netRegex: { id: '7EB5', source: 'Orthos Mirrorknight', capture: false },
-      response: Responses.lookAway(),
+      response: Responses.lookAway('alert'),
     },
     {
       id: 'EO 31-40 Orthospider Particle Collision',

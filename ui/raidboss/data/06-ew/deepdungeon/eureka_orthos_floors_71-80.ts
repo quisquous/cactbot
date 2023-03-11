@@ -65,7 +65,7 @@ const triggerSet: TriggerSet<Data> = {
       // after eating a banana, Sasquatch will do a fast, lethal, multi-roomwide AoE
       type: 'StartsUsing',
       netRegex: { id: '81AB', source: 'Orthos Sasquatch' },
-      alertText: (_data, matches, output) => output.text!({ name: matches.source }),
+      infoText: (_data, matches, output) => output.text!({ name: matches.source }),
       outputStrings: {
         text: {
           en: 'Beware of ${name}',
@@ -95,7 +95,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 71-80 Orthos Flamebeast Blistering Roar',
       // lethal, large, wide line AoE that goes through walls
       type: 'StartsUsing',
-      netRegex: { id: '7F7D', source: 'Orthos Flamebeast', capture: false },
+      netRegex: { id: '81AF', source: 'Orthos Flamebeast', capture: false },
       response: Responses.getBehind(),
     },
     // ---------------- Floor 80 Boss: Proto-Kaliya ----------------
@@ -145,11 +145,11 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'EO 71-80 Proto-Kaliya Nanospore Jet Drone Charges',
+      id: 'EO 71-80 Proto-Kaliya Nanospore Jet Drone Charge',
       // D58 = Positive Charge
       // D59 - Negative Charge
       type: 'GainsEffect',
-      netRegex: { effectId: 'D5[89]' },
+      netRegex: { effectId: 'D5[89]', target: 'Weapons Drone' },
       run: (data, matches) => {
         data.droneCharges ??= {};
         data.droneCharges[parseInt(matches.targetId, 16)] =
@@ -162,6 +162,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '0026', source: 'Weapons Drone' },
       condition: Conditions.targetIsYou(),
       run: (data, matches) => {
+        if (data.charge === undefined) {
+          console.error(`Proto-Kaliya Nanospore Jet: missing player charge`);
+          return;
+        }
+
         if (!data.droneCharges) {
           console.error(`Proto-Kaliya Nanospore Jet: missing drone charges`);
           return;
@@ -175,6 +180,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '7AC2', source: 'Proto-Kaliya', capture: false },
       alertText: (data, _matches, output) => {
+        if (data.pushPull === undefined) {
+          console.error(`Proto-Kaliya Nerve Gas Ring: missing pushPull`);
+          return;
+        }
+
         if (data.pushPull)
           return output.push!();
         return output.pull!();

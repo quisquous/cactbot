@@ -20,6 +20,12 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.goFront(),
     },
     {
+      id: 'EO 61-70 Orthos Palleon Body Press',
+      type: 'StartsUsing',
+      netRegex: { id: '80CF', source: 'Orthos Palleon', capture: false },
+      response: Responses.getOut(),
+    },
+    {
       id: 'EO 61-70 Orthos Gowrow Ripper Claw',
       type: 'StartsUsing',
       netRegex: { id: '80D7', source: 'Orthos Gowrow', capture: false },
@@ -33,14 +39,14 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'EO 61-70 Orthos Drake Smoldering Scales',
-      // gains Blaze Spikes (C5), lethal counterattack when hit
+      // gains Blaze Spikes (C5), lethal counterattack when hit with physical damage
       type: 'StartsUsing',
       netRegex: { id: '80B8', source: 'Orthos Drake' },
       response: Responses.stunIfPossible(),
     },
     {
       id: 'EO 61-70 Orthos Drake Blaze Spikes Gain',
-      // C5 = Blaze Spikes, lethal counterattack damage when hit
+      // C5 = Blaze Spikes, lethal counterattack damage when hit with physical damage
       type: 'GainsEffect',
       netRegex: { effectId: 'C5', target: 'Orthos Drake' },
       alertText: (_data, matches, output) => output.text!({ target: matches.target }),
@@ -57,7 +63,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 61-70 Orthos Falak Electric Cachexia',
       type: 'StartsUsing',
       netRegex: { id: '80D3', source: 'Orthos Falak', capture: false },
-      response: Responses.getUnder('alert'),
+      response: Responses.getIn(),
     },
     {
       id: 'EO 61-70 Orthos Diplocaulus Peculiar Light',
@@ -68,14 +74,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EO 61-70 Orthos Basilisk Stone Gaze',
       type: 'StartsUsing',
-      netRegex: { id: '80C7', source: 'Orthos Diplocaulus', capture: false },
+      netRegex: { id: '80C7', source: 'Orthos Basilisk', capture: false },
       response: Responses.awayFromFront(),
-    },
-    {
-      id: 'EO 61-70 Orthos Palleon Body Press',
-      type: 'StartsUsing',
-      netRegex: { id: '80CF', source: 'Orthos Palleon', capture: false },
-      response: Responses.getOut(),
     },
     // ---------------- Floor 70 Boss: Aeturna ----------------
     {

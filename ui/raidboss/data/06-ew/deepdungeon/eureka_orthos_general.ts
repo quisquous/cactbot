@@ -238,9 +238,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         duplicate: {
           en: '${demiclone} duplicate',
-          de: 'Doppelter ${demiclone} Stein',
-          cn: '${demiclone} 重复',
-          ko: '${demiclone} 중복',
         },
         // demiclones: https://xivapi.com/DeepDungeonDemiclone?pretty=true
         unei: {
