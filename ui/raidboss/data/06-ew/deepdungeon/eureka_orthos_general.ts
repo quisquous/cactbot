@@ -4,7 +4,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Triggers applicable to all Eureka Orthos floors.
-// TODO: Dread Beasts triggers
 
 export type Data = RaidbossData;
 
@@ -267,15 +266,29 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     // ---------------- Dread Beasts ----------------
-    // 12322 Lamia Queen
-    // 12323 Meracydian Clone
-    // 12324 Demi-Cochma
+    // 12322 = Lamia Queen
+    // 12323 = Meracydian Clone
+    // 12324 = Demi-Cochma
     {
       id: 'EO General Lamia Queen Petrifaction',
       // gaze, inflicts Stone Curse (1B5)
       type: 'StartsUsing',
       netRegex: { id: '7FD1', source: 'Lamia Queen', capture: false },
       response: Responses.lookAway('alert'),
+    },
+    {
+      id: 'EO General Meracydian Clone Berserk',
+      // gains Damage Up (1BB)
+      type: 'StartsUsing',
+      netRegex: { id: '7FCB', source: 'Meracydian Clone' },
+      response: Responses.interruptIfPossible(),
+    },
+    {
+      id: 'EO General Meracydian Clone Allagan Meteor',
+      // gaze, inflicts Stone Curse (1B5)
+      type: 'StartsUsing',
+      netRegex: { id: '7FCE', source: 'Meracydian Clone', capture: false },
+      response: Responses.getOut(),
     },
   ],
 };

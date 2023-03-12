@@ -172,6 +172,12 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'EO 51-60 Servomechanical Minotaur 16 Thundercall',
+      type: 'StartsUsing',
+      netRegex: { id: '7C81', source: 'Servomechanical Minotaur 16', capture: false },
+      response: Responses.aoe(),
+    },
   ],
 };
 

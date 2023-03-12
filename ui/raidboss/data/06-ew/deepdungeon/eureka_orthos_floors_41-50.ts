@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -23,7 +24,20 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 41-50 Orthos Acheron Quake',
       type: 'StartsUsing',
       netRegex: { id: '7ED6', source: 'Orthos Acheron' },
-      response: Responses.interruptIfPossible(),
+      alertText: (data, matches, output) => {
+        if (data.CanSilence())
+          return output.interruptOrOut!({ name: matches.source });
+        return output.out!();
+      },
+      outputStrings: {
+        out: Outputs.out,
+        interruptOrOut: {
+          en: 'Out or interrupt ${name}',
+          de: 'Raus oder unterbreche ${name}',
+          cn: '出去或打断 ${name}',
+          ko: '밖으로 또는 ${name} 시전 끊기',
+        },
+      },
     },
     {
       id: 'EO 41-50 Orthos Kelpie Bloody Puddle',
@@ -35,7 +49,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 41-50 Orthos Goobbue Sickly Sneeze',
       // Inhale (819A) draws in, Sickly Sneeze (7ED9) is quick front cone after
       type: 'StartsUsing',
-      netRegex: { id: '819A', source: 'Orthos Goobbue', capture: false },
+      netRegex: { id: '7ED9', source: 'Orthos Goobbue', capture: false },
       response: Responses.getBehind(),
     },
     {
@@ -55,6 +69,14 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Break line-of-sight to ${name}',
         },
       },
+    },
+    {
+      id: 'EO 41-50 Orthos Kukulkan Bombination',
+      // roomwide AoE, gives stacking vulnerability, used out-of-combat
+      // TODO: can detect mobs in other rooms, this might be too spammy
+      type: 'StartsUsing',
+      netRegex: { id: '7ECD', source: 'Orthos Kukulkan', capture: false },
+      response: Responses.getOut('info'),
     },
     // ---------------- Floor 50 Boss: Servomechanical Chimera 14X ----------------
     {

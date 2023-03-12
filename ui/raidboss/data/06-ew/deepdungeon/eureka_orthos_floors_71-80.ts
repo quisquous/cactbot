@@ -61,20 +61,10 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getBehind(),
     },
     {
-      id: 'EO 71-80 Orthos Sasquatch Ripe Banana',
-      // after eating a banana, Sasquatch will do a fast, lethal, multi-roomwide AoE
-      type: 'StartsUsing',
-      netRegex: { id: '81AB', source: 'Orthos Sasquatch' },
-      infoText: (_data, matches, output) => output.text!({ name: matches.source }),
-      outputStrings: {
-        text: {
-          en: 'Beware of ${name}',
-        },
-      },
-    },
-    {
       id: 'EO 71-80 Orthos Sasquatch Chest Thump',
-      // fast, lethal, multi-roomwide AoE; can break line-of-sight to avoid
+      // casts Ripe Banana (81AB) first, then Chest Thump (7FA8) shortly after
+      // fast, lethal, multi-roomwide AoE used out-of combat; can break line-of-sight to avoid
+      // TODO: can detect mobs in other rooms, this might be too spammy
       type: 'StartsUsing',
       netRegex: { id: '7FA8', source: 'Orthos Sasquatch' },
       alertText: (_data, matches, output) => output.text!({ name: matches.source }),
@@ -103,7 +93,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 71-80 Proto-Kaliya Resonance',
       type: 'StartsUsing',
       netRegex: { id: '7ABE', source: 'Proto-Kaliya' },
-      response: Responses.tankCleave('alert'),
+      response: Responses.tankCleave(),
     },
     {
       id: 'EO 71-80 Proto-Kaliya Centralized Nerve Gas',
@@ -113,12 +103,14 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'EO 71-80 Proto-Kaliya Leftward Nerve Gas',
+      // 180° cleave from front-left to back-right
       type: 'StartsUsing',
       netRegex: { id: '7AC0', source: 'Proto-Kaliya', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'EO 71-80 Proto-Kaliya Rightward Nerve Gas',
+      // 180° cleave from front-right to back-left
       type: 'StartsUsing',
       netRegex: { id: '7AC1', source: 'Proto-Kaliya', capture: false },
       response: Responses.goLeft(),
@@ -134,7 +126,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'EO 71-80 Proto-Kaliya Nanospore Jet Player Charge',
+      id: 'EO 71-80 Proto-Kaliya Nanospore Jet Player Charge Collect',
       // D5A = Positive Charge
       // D5B - Negative Charge
       type: 'GainsEffect',
@@ -145,7 +137,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'EO 71-80 Proto-Kaliya Nanospore Jet Drone Charge',
+      id: 'EO 71-80 Proto-Kaliya Nanospore Jet Drone Charge Collect',
       // D58 = Positive Charge
       // D59 - Negative Charge
       type: 'GainsEffect',
@@ -157,7 +149,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'EO 71-80 Proto-Kaliya Nanospore Jet Tether',
+      id: 'EO 71-80 Proto-Kaliya Nanospore Jet Tether Collect',
       type: 'Tether',
       netRegex: { id: '0026', source: 'Weapons Drone' },
       condition: Conditions.targetIsYou(),
