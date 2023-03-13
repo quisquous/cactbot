@@ -1198,9 +1198,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         farTether: {
           en: 'Blue Tether',
+          de: 'Blaue Verbindung',
         },
         nearTether: {
           en: 'Green Tether',
+          de: 'Grüne Verbindung',
         },
       },
     },
@@ -1220,9 +1222,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         awayFromEye: {
           en: 'Away from Eye',
+          de: 'Weg vom Auge',
         },
         towardsEye: {
           en: 'Towards Eye',
+          de: 'Geh zu dem Auge',
         },
       },
     },
@@ -1230,7 +1234,6 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Alpha Omega': 'Alpha-Omega',
         'Cosmo Meteor': 'Kosmosmeteor',

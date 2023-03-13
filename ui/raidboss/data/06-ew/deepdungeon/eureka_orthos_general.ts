@@ -262,6 +262,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Pylon of Passage activated',
+          de: 'Translokator aktiviert',
         },
       },
     },
