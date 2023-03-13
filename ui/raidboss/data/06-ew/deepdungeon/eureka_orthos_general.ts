@@ -105,12 +105,21 @@ const triggerSet: TriggerSet<Data> = {
         // protomanders: https://xivapi.com/deepdungeonItem?pretty=true
         lethargy: {
           en: 'Lethargy',
+          de: 'Trägheit',
+          fr: 'ralentissement',
+          ja: 'スロウガ',
         },
         storms: {
           en: 'Storms',
+          de: 'Schwäche',
+          fr: 'Charybde',
+          ja: 'ミールストーム',
         },
         dread: {
           en: 'Dread',
+          de: 'Macht',
+          fr: 'cuirassé Dreadnaught',
+          ja: 'ドレッドノート化',
         },
         safety: {
           en: 'Safety',
@@ -237,16 +246,34 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         duplicate: {
           en: '${demiclone} duplicate',
+          de: 'Doppelter ${demiclone}',
+          cn: '${demiclone} 重复',
+          ko: '${demiclone} 중복',
         },
         // demiclones: https://xivapi.com/DeepDungeonDemiclone?pretty=true
         unei: {
           en: 'Unei',
+          de: 'Unei',
+          fr: 'Unéi',
+          ja: 'ウネ',
+          cn: '乌内',
+          ko: '우네',
         },
         doga: {
           en: 'Doga',
+          de: 'Doga',
+          fr: 'Doga',
+          ja: 'ドーガ',
+          cn: '多加',
+          ko: '도가',
         },
         onion: {
           en: 'Onion Knight',
+          de: 'Zwiebelritter',
+          fr: 'chevalier Oignon',
+          ja: 'オニオンナイト',
+          cn: '洋葱剑士',
+          ko: '양파 기사',
         },
       },
     },
