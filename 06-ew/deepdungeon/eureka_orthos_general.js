@@ -279,6 +279,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Pylon of Passage activated',
+          de: 'Translokator aktiviert',
         },
       },
     },

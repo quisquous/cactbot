@@ -1108,9 +1108,11 @@ Options.Triggers.push({
       outputStrings: {
         farTether: {
           en: 'Blue Tether',
+          de: 'Blaue Verbindung',
         },
         nearTether: {
           en: 'Green Tether',
+          de: 'Grüne Verbindung',
         },
       },
     },
@@ -1130,9 +1132,11 @@ Options.Triggers.push({
       outputStrings: {
         awayFromEye: {
           en: 'Away from Eye',
+          de: 'Weg vom Auge',
         },
         towardsEye: {
           en: 'Towards Eye',
+          de: 'Geh zu dem Auge',
         },
       },
     },
@@ -1140,7 +1144,6 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Alpha Omega': 'Alpha-Omega',
         'Cosmo Meteor': 'Kosmosmeteor',

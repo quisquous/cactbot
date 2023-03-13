@@ -55,6 +55,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Break line-of-sight to ${name}',
+          de: 'Unterbreche Sichtlinie zu ${name}',
         },
       },
     },

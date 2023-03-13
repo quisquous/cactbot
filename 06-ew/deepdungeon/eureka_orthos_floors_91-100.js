@@ -200,9 +200,11 @@ Options.Triggers.push({
       outputStrings: {
         ice: {
           en: 'Get hit by ice',
+          de: 'Lass dich von Eis treffen',
         },
         fire: {
           en: 'Get hit by fire',
+          de: 'Lass dich von Feuer treffen',
         },
       },
     },

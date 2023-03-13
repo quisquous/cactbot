@@ -66,7 +66,7 @@ Options.Triggers.push({
         },
         text: {
           en: 'Stampede from ${dir} (${row} Row)',
-          de: 'Stampede von ${dir} (${row} Row)',
+          de: 'Stampede von ${dir} (${row} Reihe)',
           fr: 'Ruée depuis ${dir} (${row})',
           ko: '${dir}에서 돌진 (${row} 줄)',
         },
