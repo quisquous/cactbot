@@ -94,14 +94,17 @@ const defects: LatentDefectMistake[] = [
     actual: 'redTower',
     extra: {
       en: 'Red Tower, no rot',
+      de: 'Roter Turm, keine Fäulnis',
       ko: '빨강 장판, 디버프 없음',
     },
     missing: {
       en: 'Missed Red Tower',
+      de: 'Verfehlter roter Turm',
       ko: '빨강 장판 놓침',
     },
     share: {
       en: 'Red Tower',
+      de: 'Roter Turm',
       ko: '빨강 장판',
     },
   },
@@ -110,14 +113,17 @@ const defects: LatentDefectMistake[] = [
     actual: 'blueTower',
     extra: {
       en: 'Blue Tower, no rot',
+      de: 'Blauer Turm, keine Fäulnis',
       ko: '파랑 장판, 디버프 없음',
     },
     missing: {
       en: 'Missed Blue Tower',
+      de: 'Verfehlter blauer Turm',
       ko: '파랑 장판 놓침',
     },
     share: {
       en: 'Blue Tower',
+      de: 'Blauer Turm',
       ko: '파랑 장판',
     },
   },
@@ -126,18 +132,22 @@ const defects: LatentDefectMistake[] = [
     actual: 'stack',
     extra: {
       en: 'Stack',
+      de: 'Sammeln',
       ko: '쉐어',
     },
     missing: {
       en: 'Missed stack',
+      de: 'Verfehltes Sammeln',
       ko: '쉐어 놓침',
     },
     share: {
       en: 'Stack',
+      de: 'Sammeln',
       ko: '쉐어',
     },
     tookTwo: {
       en: 'Stack x2',
+      de: 'Sammeln x2',
       ko: '쉐어 x2',
     },
   },
@@ -146,18 +156,22 @@ const defects: LatentDefectMistake[] = [
     actual: 'defamation',
     extra: {
       en: 'Defamation',
+      de: 'Ehrenstrafe',
       ko: '광역',
     },
     missing: {
       en: 'Missed defamation',
+      de: 'Verfehlte Ehrenstrafe',
       ko: '광역 놓침',
     },
     share: {
       en: 'Defamation',
+      de: 'Ehrenstrafe',
       ko: '광역',
     },
     tookTwo: {
       en: 'Defamation x2',
+      de: 'Ehrenstrafe x2',
       ko: '광역 x2',
     },
   },
@@ -169,27 +183,33 @@ const playerDescription: { [key in HelloEffect]: LocaleText } = {
   // Order is important here.
   defamation: {
     en: ' (as defamation)',
+    de: ' (als Ehrenstrafe)',
     ko: ' (광역)',
   },
   stack: {
     en: ' (as stack)',
+    de: ' (als Sammeln)',
     ko: ' (쉐어)',
   },
   redTether: {
     en: ' (as near tether)',
+    de: ' (als Nah-Verbindung)',
     ko: ' (가까이 선)',
   },
   blueTether: {
     en: ' (as far tether)',
+    de: ' (als Fern-Verbindung)',
     ko: ' (멀리 선)',
   },
   // These shouldn't happen.
   redRot: {
     en: ' (as red rot)',
+    de: ' (als rote Fäulnis)',
     ko: ' (빨강 디버프)',
   },
   blueRot: {
     en: ' (as blue rot)',
+    de: ' (als blaue Fäulnis)',
     ko: ' (파랑 디버프)',
   },
 } as const;
@@ -198,24 +218,29 @@ const playerDescription: { [key in HelloEffect]: LocaleText } = {
 const playerComboDesc = {
   redDefamation: {
     en: ' (as red defamation)',
+    de: ' (als rote Ehrenstrafe)',
     ko: ' (빨강 광역)',
   },
   redStack: {
     en: ' (as red stack)',
+    de: ' (als rotes Sammeln)',
     ko: ' (빨강 쉐어)',
   },
   blueDefamation: {
     en: ' (as blue defamation)',
+    de: ' (als blaue Ehrenstrafe)',
     ko: ' (파랑 광역)',
   },
   blueStack: {
     en: ' (as blue stack)',
+    de: ' (als blaue Sammeln)',
     ko: ' (파랑 쉐어)',
   },
 } as const;
 
 const unknownDescriptionLocale: LocaleText = {
   en: ' (as ???)',
+  de: ' (als ???)',
   ko: ' (???)',
 };
 
@@ -419,6 +444,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: data.blameId?.[player],
             text: {
               en: `Missed Tower #${num}`,
+              de: `Verfehlter Turm #${num}`,
               ko: `기둥 #${num} 놓침`,
             },
           });
@@ -444,6 +470,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           // There's only two tower players, so just blame them all.
           const towerText: LocaleText = {
             en: `Tower #${num}`,
+            de: `Turm #${num}`,
             ko: `기둥 #${num}`,
           };
           const text = GetShareMistakeText(towerText, 2);
@@ -470,6 +497,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: data.blameId?.[player],
             text: {
               en: `Tower #${num} as #${playerNum}`,
+              de: `Turm #${num} als #${playerNum}`,
               ko: `기둥 #${num} 들어감 (#${playerNum})`,
             },
           });
@@ -485,6 +513,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: data.blameId?.[player],
             text: {
               en: `Missed Tether #${num}`,
+              de: `Verfehlte Verbindung #${num}`,
               ko: `선 #${num} 놓침`,
             },
           });
@@ -501,6 +530,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           const type = shouldTakeTether ? 'warn' : 'fail';
           const tetherText: LocaleText = {
             en: `${m.ability} #${num}`,
+            de: `${m.ability} #${num}`,
             ko: `${m.ability} #${num}`,
           };
           const text = numTargets > 1 ? GetShareMistakeText(tetherText, numTargets) : tetherText;
@@ -540,6 +570,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.targetId,
           text: {
             en: `${matches.ability} (after Beyond Defense)`,
+            de: `${matches.ability} (nach Schildkombo S)`,
             ko: `${matches.ability} (방패 연격 S 이후)`,
           },
         };
@@ -604,6 +635,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: matches.targetId,
             text: {
               en: 'Unexpected red rot',
+              de: 'Unerwartete rote Fäulnis',
               ko: '빨강 디버프 잘못 받음',
             },
           };
@@ -615,6 +647,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: matches.targetId,
             text: {
               en: 'Unexpected blue rot',
+              de: 'Unerwartete blaue Fäulnis',
               ko: '파랑 디버프 잘못 받음',
             },
           };
@@ -732,10 +765,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
             const text: LocaleText = {
               red: {
                 en: 'Failed to get red rot',
+                de: 'Rote Fäulnis nicht erhalten',
                 ko: '빨강 디버프 못받음',
               },
               blue: {
                 en: 'Failed to get blue rot',
+                de: 'Blaue Fäulnis nicht erhalten',
                 ko: '파랑 디버프 못받음',
               },
             }[color];
@@ -935,6 +970,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           return;
         const renamedText: LocaleText = {
           en: 'Red Rot Explosion',
+          de: 'Rote Fäulnis Explosion',
           ko: '빨강 디버프 폭발',
         };
         const text = GetShareMistakeText(renamedText, targets);
@@ -953,6 +989,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           return;
         const renamedText: LocaleText = {
           en: 'Blue Rot Explosion',
+          de: 'Blaue Fäulnis Explosion',
           ko: '파랑 디버프 폭발',
         };
         const text = GetShareMistakeText(renamedText, targets);
@@ -989,6 +1026,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             // no reportId/blame here as this is usually somebody else's fault
             text: {
               en: 'Not hit by monitor',
+              de: 'Nicht vom Monitor getroffen',
               ko: '모니터 안맞음',
             },
           });
@@ -1008,6 +1046,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             // no reportId/blame here as this is usually somebody else's fault
             text: {
               en: `Took monitor x${count}`,
+              de: `Monitor x${count} genommen`,
             },
           });
         }
@@ -1020,6 +1059,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             type: 'warn',
             text: {
               en: `Total monitors: x${numMonitors}`,
+              de: `Monitore insgesamt: x${numMonitors}`,
             },
           });
         }
@@ -1034,6 +1074,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       mistake: stackMistake('warn', 1, {
         // Rename this for clarity.
         en: 'Wave Cannon Protean',
+        de: 'Wellenkanone Himmelsrichtung',
       }),
     },
     {
@@ -1048,6 +1089,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           triggerType: 'Damage',
           text: {
             en: 'Wave Cannon Repeat Protean',
+            de: 'Wellenkanone wiederholte Himmelsrichtung',
           },
         };
       },
@@ -1084,6 +1126,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             name: player,
             text: {
               en: `Missed Wave Cannon Protean`,
+              de: `Verfehlte Wellenkanone Himmelsrichtung`,
             },
           });
         }
@@ -1109,6 +1152,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             name: player,
             text: {
               en: `Wave Cannon Protean x${count}`,
+              de: `Wellenkanone Himmelsrichtung x${count}`,
             },
           });
         }
@@ -1148,6 +1192,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: data.blameId?.[player],
             text: {
               en: `Missed Wave Cannon Stack`,
+              de: `Verfehltes Wellenkanone Sammeln`,
             },
           });
         }
@@ -1167,6 +1212,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: data.blameId?.[player],
             text: {
               en: `Wave Cannon Stack x${count}`,
+              de: `Wellenkanone Sammeln x${count}`,
             },
           });
         }
