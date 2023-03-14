@@ -4,8 +4,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Eureka Orthos Floors 81-90
-// TODO: Orthos Hecteyes ?? large AoE
-// TODO: Orthos Specter Ringing Burst large donut AoE
 // TODO: Administrator Interception Sequence order of AoEs to dodge
 // TODO: Administrator Salvo Script safe spot to dodge AoEs
 
@@ -30,10 +28,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'EO 81-90 Orthos Catoblepas Demon Eye',
-      // roomwide AoE, gives 20s stun, used out-of-combat
-      // TODO: can detect mobs in other rooms, this might be too spammy
+      // roomwide AoE, gives 20s stun
+      // 7FFA is the same attack, used out-of-combat
       type: 'StartsUsing',
-      netRegex: { id: '7FF[9A]', source: 'Orthos Catoblepas', capture: false },
+      netRegex: { id: '7FF9', source: 'Orthos Catoblepas', capture: false },
       response: Responses.lookAway('alert'),
     },
     {
@@ -66,12 +64,12 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '8009', source: 'Orthos Specter', capture: false },
       response: Responses.goLeft(),
     },
-    // {
-    //   id: 'EO 81-90 Orthos Specter Ringing Burst',
-    //   type: 'StartsUsing',
-    //   netRegex: { id: '', source: 'Orthos Specter', capture: false },
-    //   response: Responses.getIn(),
-    // },
+    {
+      id: 'EO 81-90 Orthos Specter Ringing Burst',
+      type: 'StartsUsing',
+      netRegex: { id: '8007', source: 'Orthos Specter', capture: false },
+      response: Responses.getIn(),
+    },
     {
       id: 'EO 81-90 Orthos Specter Surrounding Burst',
       type: 'StartsUsing',
