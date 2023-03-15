@@ -8,10 +8,8 @@ import { TriggerSet } from '../../../../../types/trigger';
 // Eureka Orthos Floors 91-100
 // TODO: Orthosystem γ Repelling Cannons PBAoE
 // TODO: Orthosystem γ Ring Cannon donut AoE
-// TODO: Servomechanical Orthochimera Dragon's Breath front-left cleave
-// TODO: Servomechanical Orthochimera Engulfing Ice front-right cleave
-// TODO: Servomechanical Orthochimera Scorpion Sting back cleave
-// TODO: Orthonaught Rotoswipe front cone AoE
+// TODO: Servomechanical Orthochimera The Dragon's Breath front-left cleave
+// TODO: Servomechanical Orthochimera The Scorpion's Sting back cleave
 // TODO: Excalibur Exglacialis safe spots
 
 export interface Data extends RaidbossData {
@@ -92,21 +90,21 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getOut(),
     },
     // {
-    //   id: 'EO 91-100 Servomechanical Orthochimera Dragon\'s Breath',
+    //   id: 'EO 91-100 Servomechanical Orthochimera The Dragon\'s Breath',
     //   // AoE cleave to front and left
     //   type: 'StartsUsing',
     //   netRegex: { id: '', source: 'Servomechanical Orthochimera', capture: false },
-    //   response: Responses.getBehind(),
+    //   response: Responses.goRight(),
     // },
+    {
+      id: 'EO 91-100 Servomechanical Orthochimera Engulfing Ice',
+      // AoE cleave to front and right
+      type: 'StartsUsing',
+      netRegex: { id: '808A', source: 'Servomechanical Orthochimera', capture: false },
+      response: Responses.goLeft(),
+    },
     // {
-    //   id: 'EO 91-100 Servomechanical Orthochimera Engulfing Ice',
-    //   // AoE cleave to front and right
-    //   type: 'StartsUsing',
-    //   netRegex: { id: '', source: 'Servomechanical Orthochimera', capture: false },
-    //   response: Responses.getBehind(),
-    // },
-    // {
-    //   id: 'EO 91-100 Servomechanical Orthochimera Scorpion Sting',
+    //   id: 'EO 91-100 Servomechanical Orthochimera The Scorpion\'s Sting',
     //   // AoE cleave behind
     //   type: 'StartsUsing',
     //   netRegex: { id: '', source: 'Servomechanical Orthochimera', capture: false },
@@ -143,12 +141,12 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '8091', source: 'Orthos Sphinx', capture: false },
       response: Responses.getBehind(),
     },
-    // {
-    //   id: 'EO 91-100 Orthonaught Rotoswipe',
-    //   type: 'StartsUsing',
-    //   netRegex: { id: '', source: 'Orthonaught', capture: false },
-    //   response: Responses.awayFromFront(),
-    // },
+    {
+      id: 'EO 91-100 Orthonaught Rotoswipe',
+      type: 'StartsUsing',
+      netRegex: { id: '807D', source: 'Orthonaught', capture: false },
+      response: Responses.awayFromFront(),
+    },
     {
       id: 'EO 91-100 Orthos Zaghnal Pounce Errant',
       // leap on target player, knocks back other players if hit
