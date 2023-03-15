@@ -55,12 +55,6 @@ Options.Triggers.push({
       response: Responses.getIn(),
     },
     {
-      id: 'EO 61-70 Orthos Diplocaulus Peculiar Light',
-      type: 'StartsUsing',
-      netRegex: { id: '81A3', source: 'Orthos Diplocaulus', capture: false },
-      response: Responses.getOut(),
-    },
-    {
       id: 'EO 61-70 Orthos Basilisk Stone Gaze',
       type: 'StartsUsing',
       netRegex: { id: '80C7', source: 'Orthos Basilisk', capture: false },

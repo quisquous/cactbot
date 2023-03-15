@@ -59,14 +59,6 @@ Options.Triggers.push({
         },
       },
     },
-    {
-      id: 'EO 41-50 Orthos Kukulkan Bombination',
-      // roomwide AoE, gives stacking vulnerability, used out-of-combat
-      // TODO: can detect mobs in other rooms, this might be too spammy
-      type: 'StartsUsing',
-      netRegex: { id: '7ECD', source: 'Orthos Kukulkan', capture: false },
-      response: Responses.getOut('info'),
-    },
     // ---------------- Floor 50 Boss: Servomechanical Chimera 14X ----------------
     {
       id: 'EO 41-50 Servomechanical Chimera 14X Leftbreathed Thunder',

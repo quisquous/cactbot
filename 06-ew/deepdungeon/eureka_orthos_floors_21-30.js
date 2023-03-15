@@ -21,14 +21,6 @@ Options.Triggers.push({
       response: Responses.getOut(),
     },
     {
-      id: 'EO 21-30 Orthos Vouivre Bombination',
-      // roomwide AoE, gives stacking vulnerability, used out-of-combat
-      // TODO: can detect mobs in other rooms, this might be too spammy
-      type: 'StartsUsing',
-      netRegex: { id: '7EA8', source: 'Orthos Vouivre', capture: false },
-      response: Responses.getOut('info'),
-    },
-    {
       id: 'EO 21-30 Orthoshelled Dragon Diamondback',
       type: 'StartsUsing',
       netRegex: { id: '7EAF', source: 'Orthoshelled Dragon' },

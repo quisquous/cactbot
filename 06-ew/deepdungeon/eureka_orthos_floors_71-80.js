@@ -45,21 +45,6 @@ Options.Triggers.push({
       response: Responses.getBehind(),
     },
     {
-      id: 'EO 71-80 Orthos Sasquatch Chest Thump',
-      // casts Ripe Banana (81AB) first, then Chest Thump (7FA8) shortly after
-      // fast, lethal, multi-roomwide AoE used out-of combat; can break line-of-sight to avoid
-      // TODO: can detect mobs in other rooms, this might be too spammy
-      type: 'StartsUsing',
-      netRegex: { id: '7FA8', source: 'Orthos Sasquatch' },
-      alertText: (_data, matches, output) => output.text({ name: matches.source }),
-      outputStrings: {
-        text: {
-          en: 'Break line-of-sight to ${name}',
-          de: 'Unterbreche Sichtlinie zu ${name}',
-        },
-      },
-    },
-    {
       id: 'EO 71-80 Orthos Skatene Chirp',
       // untelegraphed PBAoE sleep; follow-up lethal PBAoE
       type: 'StartsUsing',
@@ -72,6 +57,20 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '81AF', source: 'Orthos Flamebeast', capture: false },
       response: Responses.getBehind(),
+    },
+    {
+      id: 'EO 71-80 Bird of Orthos Eye of the Fierce',
+      // gaze, inflicts Confused (0B) if hit; follows up with lethal AoE on Confused target
+      type: 'StartsUsing',
+      netRegex: { id: '7F9B', source: 'Bird of Orthos', capture: false },
+      response: Responses.lookAway('alert'),
+    },
+    {
+      id: 'EO 71-80 Bird of Orthos Revelation',
+      // lethal AoE, cast on any targets Confused by Eye of the Fierce
+      type: 'StartsUsing',
+      netRegex: { id: '7F9A', source: 'Bird of Orthos' },
+      response: Responses.awayFrom(),
     },
     // ---------------- Floor 80 Boss: Proto-Kaliya ----------------
     {

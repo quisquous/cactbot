@@ -16,10 +16,10 @@ Options.Triggers.push({
     },
     {
       id: 'EO 81-90 Orthos Catoblepas Demon Eye',
-      // roomwide AoE, gives 20s stun, used out-of-combat
-      // TODO: can detect mobs in other rooms, this might be too spammy
+      // roomwide AoE, gives 20s stun
+      // 7FFA is the same attack, used out-of-combat
       type: 'StartsUsing',
-      netRegex: { id: '7FF[9A]', source: 'Orthos Catoblepas', capture: false },
+      netRegex: { id: '7FF9', source: 'Orthos Catoblepas', capture: false },
       response: Responses.lookAway('alert'),
     },
     {
@@ -52,12 +52,12 @@ Options.Triggers.push({
       netRegex: { id: '8009', source: 'Orthos Specter', capture: false },
       response: Responses.goLeft(),
     },
-    // {
-    //   id: 'EO 81-90 Orthos Specter Ringing Burst',
-    //   type: 'StartsUsing',
-    //   netRegex: { id: '', source: 'Orthos Specter', capture: false },
-    //   response: Responses.getIn(),
-    // },
+    {
+      id: 'EO 81-90 Orthos Specter Ringing Burst',
+      type: 'StartsUsing',
+      netRegex: { id: '8007', source: 'Orthos Specter', capture: false },
+      response: Responses.getIn(),
+    },
     {
       id: 'EO 81-90 Orthos Specter Surrounding Burst',
       type: 'StartsUsing',
