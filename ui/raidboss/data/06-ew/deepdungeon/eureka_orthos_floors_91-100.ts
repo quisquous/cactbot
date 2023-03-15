@@ -8,15 +8,9 @@ import { TriggerSet } from '../../../../../types/trigger';
 // Eureka Orthos Floors 91-100
 // TODO: Orthosystem γ Repelling Cannons PBAoE
 // TODO: Orthosystem γ Ring Cannon donut AoE
-// TODO: Servomechanical Orthochimera Dragon's Breath front-left cleave
-// TODO: Servomechanical Orthochimera Engulfing Ice front-right cleave
-// TODO: Servomechanical Orthochimera Scorpion Sting back cleave
-// TODO: Orthonaught Rotoswipe front cone AoE
-// TODO: Excalibur Empty Souls' Caliber
-// TODO: Excalibur Frostforge/Flameforge
-// TODO: Excalibur Frost's Revelation/Flames' Revelation
-// TODO: Excalibur Exglacialis
-// TODO: Excalibur Exflammeus
+// TODO: Servomechanical Orthochimera The Dragon's Breath front-left cleave
+// TODO: Servomechanical Orthochimera The Scorpion's Sting back cleave
+// TODO: Excalibur Exglacialis safe spots
 
 export interface Data extends RaidbossData {
   temperature?: string;
@@ -96,21 +90,21 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getOut(),
     },
     // {
-    //   id: 'EO 91-100 Servomechanical Orthochimera Dragon\'s Breath',
+    //   id: 'EO 91-100 Servomechanical Orthochimera The Dragon\'s Breath',
     //   // AoE cleave to front and left
     //   type: 'StartsUsing',
     //   netRegex: { id: '', source: 'Servomechanical Orthochimera', capture: false },
-    //   response: Responses.getBehind(),
+    //   response: Responses.goRight(),
     // },
+    {
+      id: 'EO 91-100 Servomechanical Orthochimera Engulfing Ice',
+      // AoE cleave to front and right
+      type: 'StartsUsing',
+      netRegex: { id: '808A', source: 'Servomechanical Orthochimera', capture: false },
+      response: Responses.goLeft(),
+    },
     // {
-    //   id: 'EO 91-100 Servomechanical Orthochimera Engulfing Ice',
-    //   // AoE cleave to front and right
-    //   type: 'StartsUsing',
-    //   netRegex: { id: '', source: 'Servomechanical Orthochimera', capture: false },
-    //   response: Responses.getBehind(),
-    // },
-    // {
-    //   id: 'EO 91-100 Servomechanical Orthochimera Scorpion Sting',
+    //   id: 'EO 91-100 Servomechanical Orthochimera The Scorpion\'s Sting',
     //   // AoE cleave behind
     //   type: 'StartsUsing',
     //   netRegex: { id: '', source: 'Servomechanical Orthochimera', capture: false },
@@ -135,19 +129,23 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '8070', source: 'Orthos Mithridates', capture: false },
       response: Responses.getBehind(),
     },
-    // {
-    //   id: 'EO 91-100 Orthonaught Rotoswipe',
-    //   type: 'StartsUsing',
-    //   netRegex: { id: '', source: 'Orthonaught', capture: false },
-    //   response: Responses.awayFromFront(),
-    // },
     {
-      id: 'EO 91-100 Orthos Zaghnal Beastly Roar',
-      // lethal roomwide AoE, used out-of-combat
-      // TODO: can detect mobs in other rooms, this might be too spammy
+      id: 'EO 91-100 Orthos Sphinx Naked Soul',
       type: 'StartsUsing',
-      netRegex: { id: '80A9', source: 'Orthos Zaghnal', capture: false },
-      response: Responses.getOut(),
+      netRegex: { id: '8093', source: 'Orthos Sphinx', capture: false },
+      response: Responses.lookAway('alert'),
+    },
+    {
+      id: 'EO 91-100 Orthos Sphinx Swinge',
+      type: 'StartsUsing',
+      netRegex: { id: '8091', source: 'Orthos Sphinx', capture: false },
+      response: Responses.getBehind(),
+    },
+    {
+      id: 'EO 91-100 Orthonaught Rotoswipe',
+      type: 'StartsUsing',
+      netRegex: { id: '807D', source: 'Orthonaught', capture: false },
+      response: Responses.awayFromFront(),
     },
     {
       id: 'EO 91-100 Orthos Zaghnal Pounce Errant',
@@ -157,26 +155,18 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.awayFrom(),
     },
     {
-      id: 'EO 91-100 Orthos Fitter Unholy',
-      // lethal roomwide AoE, used out-of-combat
-      // TODO: can detect mobs in other rooms, this might be too spammy
-      type: 'StartsUsing',
-      netRegex: { id: '80A3', source: 'Orthos Fitter', capture: false },
-      response: Responses.getOut(),
-    },
-    {
       id: 'EO 91-100 Orthos Fitter Allagan Fear',
       type: 'StartsUsing',
       netRegex: { id: '8080', source: 'Orthos Fitter', capture: false },
       response: Responses.lookAway('alert'),
     },
     // ---------------- Floor 99 Boss: Excalibur ----------------
-    // {
-    //   id: 'EO 91-100 Excalibur Empty Souls\' Caliber',
-    //   type: 'StartsUsing',
-    //   netRegex: { id: '', source: 'Excalibur', capture: false },
-    //   response: Responses.getUnder(),
-    // },
+    {
+      id: 'EO 91-100 Excalibur Empty Souls\' Caliber',
+      type: 'StartsUsing',
+      netRegex: { id: '7A60', source: 'Excalibur', capture: false },
+      response: Responses.getUnder('alert'),
+    },
     {
       id: 'EO 91-100 Excalibur Solid Souls\' Caliber',
       type: 'StartsUsing',
@@ -193,10 +183,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 91-100 Excalibur Paradoxum',
       type: 'StartsUsing',
       netRegex: { id: '7A79', source: 'Excalibur', capture: false },
-      response: Responses.aoe(),
-      run: (data) => {
+      preRun: (data) => {
         delete data.temperature;
       },
+      response: Responses.aoe(),
     },
     {
       id: 'EO 91-100 Excalibur Paradoxum Collect',
@@ -211,8 +201,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'EO 91-100 Excalibur Thermal Divide',
+      // TODO: different ids are probably indicating which side is ice/fire
       type: 'StartsUsing',
-      netRegex: { id: '7A75', source: 'Excalibur', capture: false },
+      netRegex: { id: '7A7[56]', source: 'Excalibur', capture: false },
       alertText: (data, _matches, output) => {
         if (data.temperature === undefined) {
           console.error(`Excalibur Thermal Divide: missing temperature`);
@@ -225,12 +216,58 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         ice: {
-          en: 'Get hit by ice',
+          en: 'Get hit by Ice',
           de: 'Lass dich von Eis treffen',
         },
         fire: {
-          en: 'Get hit by fire',
+          en: 'Get hit by Fire',
           de: 'Lass dich von Feuer treffen',
+        },
+      },
+    },
+    {
+      id: 'EO 91-100 Excalibur Flameforge',
+      type: 'StartsUsing',
+      netRegex: { id: '7A61', source: 'Excalibur', capture: false },
+      alertText: (data, _matches, output) => {
+        if (data.temperature === undefined) {
+          console.error(`Excalibur Flameforge: missing temperature`);
+        }
+
+        if (data.temperature === 'D52')
+          return output.ice!();
+        return output.avoid!();
+      },
+      outputStrings: {
+        ice: {
+          en: 'Get hit by Ice',
+          de: 'Lass dich von Eis treffen',
+        },
+        avoid: {
+          en: 'Avoid line AoEs',
+        },
+      },
+    },
+    {
+      id: 'EO 91-100 Excalibur Frostforge',
+      type: 'StartsUsing',
+      netRegex: { id: '7A62', source: 'Excalibur', capture: false },
+      alertText: (data, _matches, output) => {
+        if (data.temperature === undefined) {
+          console.error(`Excalibur Frostforge: missing temperature`);
+        }
+
+        if (data.temperature === 'D53')
+          return output.fire!();
+        return output.avoid!();
+      },
+      outputStrings: {
+        fire: {
+          en: 'Get hit by Fire',
+          de: 'Lass dich von Feuer treffen',
+        },
+        avoid: {
+          en: 'Avoid line AoEs',
         },
       },
     },
