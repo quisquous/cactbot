@@ -185,10 +185,12 @@ const triggerSet: TriggerSet<Data> = {
         push: {
           en: 'Get pushed into safe spot',
           de: 'Rückstoß in den sicheren Bereich',
+          ko: '안전지대로 밀려나기',
         },
         pull: {
           en: 'Get pulled into safe spot',
           de: 'Werde in den sicheren Bereich gezogen',
+          ko: '안전지대로 당겨지기',
         },
       },
     },

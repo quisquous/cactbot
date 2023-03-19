@@ -1047,6 +1047,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             text: {
               en: `Took monitor x${count}`,
               de: `Monitor x${count} genommen`,
+              ko: `모니터 ${count}개 맞음`,
             },
           });
         }
@@ -1060,6 +1061,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             text: {
               en: `Total monitors: x${numMonitors}`,
               de: `Monitore insgesamt: x${numMonitors}`,
+              ko: `총 모니터 수: x${numMonitors}`,
             },
           });
         }
@@ -1075,6 +1077,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         // Rename this for clarity.
         en: 'Wave Cannon Protean',
         de: 'Wellenkanone Himmelsrichtung',
+        ko: '산개 파동포',
       }),
     },
     {
@@ -1090,6 +1093,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Wave Cannon Repeat Protean',
             de: 'Wellenkanone wiederholte Himmelsrichtung',
+            ko: '산개 파동포 장판',
           },
         };
       },
@@ -1127,6 +1131,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             text: {
               en: `Missed Wave Cannon Protean`,
               de: `Verfehlte Wellenkanone Himmelsrichtung`,
+              ko: `산개 파동포 놓침`,
             },
           });
         }
@@ -1153,6 +1158,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             text: {
               en: `Wave Cannon Protean x${count}`,
               de: `Wellenkanone Himmelsrichtung x${count}`,
+              ko: `산개 파동포 x${count}`,
             },
           });
         }
@@ -1193,6 +1199,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             text: {
               en: `Missed Wave Cannon Stack`,
               de: `Verfehltes Wellenkanone Sammeln`,
+              ko: `쉐어 파동포 놓침`,
             },
           });
         }
@@ -1213,6 +1220,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             text: {
               en: `Wave Cannon Stack x${count}`,
               de: `Wellenkanone Sammeln x${count}`,
+              ko: `쉐어 파동포 x${count}`,
             },
           });
         }

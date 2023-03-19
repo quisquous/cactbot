@@ -218,10 +218,12 @@ const triggerSet: TriggerSet<Data> = {
         ice: {
           en: 'Get hit by Ice',
           de: 'Lass dich von Eis treffen',
+          ko: '얼음 맞기',
         },
         fire: {
           en: 'Get hit by Fire',
           de: 'Lass dich von Feuer treffen',
+          ko: '불 맞기',
         },
       },
     },
@@ -242,9 +244,11 @@ const triggerSet: TriggerSet<Data> = {
         ice: {
           en: 'Get hit by Ice',
           de: 'Lass dich von Eis treffen',
+          ko: '얼음 맞기',
         },
         avoid: {
           en: 'Avoid line AoEs',
+          ko: '칼 피하기',
         },
       },
     },
@@ -265,9 +269,11 @@ const triggerSet: TriggerSet<Data> = {
         fire: {
           en: 'Get hit by Fire',
           de: 'Lass dich von Feuer treffen',
+          ko: '불 맞기',
         },
         avoid: {
           en: 'Avoid line AoEs',
+          ko: '칼 피하기',
         },
       },
     },
