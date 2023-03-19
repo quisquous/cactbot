@@ -68,6 +68,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Break line-of-sight to ${name}',
           de: 'Unterbreche Sichtlinie zu ${name}',
+          ko: '${name}의 시야 밖으로 숨기',
         },
       },
     },
