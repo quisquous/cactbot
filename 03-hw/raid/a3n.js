@@ -289,7 +289,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Condensate Demineralizer .9': '제9대형복수기',
         'Hydrate Core': '액화 핵',

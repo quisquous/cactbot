@@ -440,7 +440,7 @@ Options.Triggers.push({
         'Assault Cannon': '맹공포',
         'Basting Blade': '인형 대검',
         'Big Wave': '큰 파도',
-        'Billowing Bolts': '마법천 법진',
+        'Billowing Bolts': '마력천 법진',
         'Corrosive Fountain': '산액 분출',
         'Corrosive Venom': '산성액 뿌리기',
         'Crewel Slice': '인형 검기',

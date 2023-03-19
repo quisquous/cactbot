@@ -198,10 +198,12 @@ Options.Triggers.push({
         ice: {
           en: 'Get hit by Ice',
           de: 'Lass dich von Eis treffen',
+          ko: '얼음 맞기',
         },
         fire: {
           en: 'Get hit by Fire',
           de: 'Lass dich von Feuer treffen',
+          ko: '불 맞기',
         },
       },
     },
@@ -221,9 +223,11 @@ Options.Triggers.push({
         ice: {
           en: 'Get hit by Ice',
           de: 'Lass dich von Eis treffen',
+          ko: '얼음 맞기',
         },
         avoid: {
           en: 'Avoid line AoEs',
+          ko: '칼 피하기',
         },
       },
     },
@@ -243,9 +247,11 @@ Options.Triggers.push({
         fire: {
           en: 'Get hit by Fire',
           de: 'Lass dich von Feuer treffen',
+          ko: '불 맞기',
         },
         avoid: {
           en: 'Avoid line AoEs',
+          ko: '칼 피하기',
         },
       },
     },

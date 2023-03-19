@@ -15,7 +15,7 @@ Options.Triggers.push({
     en: 'Heaven-on-High (All Floors)',
     de: 'Himmelssäule (Alle Ebenen)',
     cn: '天之御柱 (全楼层)',
-    ko: '천궁탑',
+    ko: '천궁탑 (전체 층)',
   },
   triggers: [
     // ---------------- Quivering Coffers ----------------

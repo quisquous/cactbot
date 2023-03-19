@@ -1109,10 +1109,12 @@ Options.Triggers.push({
         farTether: {
           en: 'Blue Tether',
           de: 'Blaue Verbindung',
+          ko: '파란색 선',
         },
         nearTether: {
           en: 'Green Tether',
           de: 'Grüne Verbindung',
+          ko: '초록색 선',
         },
       },
     },
@@ -1133,10 +1135,12 @@ Options.Triggers.push({
         awayFromEye: {
           en: 'Away from Eye',
           de: 'Weg vom Auge',
+          ko: '눈에서 멀리 떨어지기',
         },
         towardsEye: {
           en: 'Towards Eye',
           de: 'Geh zu dem Auge',
+          ko: '눈 쪽으로',
         },
       },
     },
