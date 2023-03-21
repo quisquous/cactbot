@@ -69,7 +69,7 @@ const triggerSet: TriggerSet<Data> = {
     },
   ],
   timelineReplace: [
-      {
+    {
       'locale': 'ja',
       'replaceSync': {
         'Lesser Orthos Dragon': 'オルト・レッサードラゴン',
