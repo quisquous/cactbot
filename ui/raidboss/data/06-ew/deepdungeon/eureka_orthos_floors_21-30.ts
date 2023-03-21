@@ -77,8 +77,9 @@ const triggerSet: TriggerSet<Data> = {
         'Orthos Vanara': 'オルト・ヴァナラ',
         'Orthoshelled Dragon': 'オルト・カラペスドラゴン',
         'Tiamat Clone': 'ティアマット・クローン',
+      },
     },
-   ],
+  ],
 };
 
 export default triggerSet;
