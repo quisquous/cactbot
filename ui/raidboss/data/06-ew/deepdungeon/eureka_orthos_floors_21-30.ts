@@ -68,6 +68,17 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
+  timelineReplace: [
+      {
+      'locale': 'ja',
+      'replaceSync': {
+        'Lesser Orthos Dragon': 'オルト・レッサードラゴン',
+        'Orthoknight': 'オルト・ナイト',
+        'Orthos Vanara': 'オルト・ヴァナラ',
+        'Orthoshelled Dragon': 'オルト・カラペスドラゴン',
+        'Tiamat Clone': 'ティアマット・クローン',
+    },
+   ],
 };
 
 export default triggerSet;
