@@ -247,10 +247,10 @@ hideall "--sync--"
 897.4 "Solar Ray 2" sync / 1[56]:[^:]*:Omega-M:7B02:/
 904.6 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B43:/
 910.7 "Run: ****mi* (Omega Version)" sync / 1[56]:[^:]*:Omega-M:8015:/
-927.8 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:(7B9C|7B77):/ duration 1.1
+927.8 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:(7B9B|7B9C):/
 # 928.8 "Superliminal Steel" sync / 1[56]:[^:]*:Omega-F:7B2A:/
 # 928.8 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:7B25:/
-931.9 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:(7B77|7B9C):/ duration 1.1
+931.9 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:(7B78|7B77):/
 # 932.7 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-F:7B2D:/
 # 932.7 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:7B25:/
 935.6 "--untargetable--"
