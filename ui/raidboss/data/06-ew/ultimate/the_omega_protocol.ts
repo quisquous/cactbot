@@ -1234,6 +1234,183 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'TOP Omega Safe Spots',
+      // 7B9B Diffuse Wave Cannon (North/South), is followed up with 7B78
+      // 7B9C Diffuse Wave Cannon (East/West), is followed up with 7B77
+      type: 'StartsUsing',
+      netRegex: { id: ['7B9B', '7B9C'], source: 'Omega' },
+      promise: async (data) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+        })).combatants;
+        // Sort highest ID to lowest ID
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) =>
+          (b.ID ?? 0) - (a.ID ?? 0);
+        data.combatantData = data.combatantData.sort(sortCombatants);
+      },
+      alertText: (data, matches, output) => {
+        // The higher id is first set
+        const omegaMNPCId = 15721;
+        const omegaFNPCId = 15722;
+        let isF1In = false;
+        let isM1In = false;
+        let isF2In = false;
+        let isM2In = false;
+        let dir1;
+        let dir2;
+        let distance1;
+        let distance2;
+        const findOmegaF = (combatant: PluginCombatantState) =>
+          combatant.BNpcID === omegaFNPCId;
+        const findOmegaM = (combatant: PluginCombatantState) =>
+          combatant.BNpcID === omegaMNPCId;
+
+        const [f1, f2] = data.combatantData.filter(findOmegaF);
+        const [m1, m2] = data.combatantData.filter(findOmegaM);
+
+        if (f1 === undefined || f2 === undefined || m1 === undefined || m2 === undefined) {
+          console.error(`Omega Safe Spots: missing m/f: ${JSON.stringify(data.combatantData)}`);
+          return;
+        }
+        if (f1.WeaponId === 4)
+          isF1In = true;
+        if (f2.WeaponId === 4)
+          isF2In = true;
+        if (m1.WeaponId === 4)
+          isM1In = true;
+        if (m2.WeaponId === 4)
+          isM2In = true;
+
+        if (isF1In)
+          distance1 = output.close!();
+        else if (isM1In)
+          distance1 = output.mid!();
+        else
+          distance1 = output.far!();
+
+        if (isF2In)
+          distance2 = output.close!();
+        else if (isM2In)
+          distance2 = output.mid!();
+        else
+          distance2 = output.far!();
+
+        // The combatants only spawn in these intercards:
+        // 92.93, 92.93 (NW)      107.07, 92.93 (NE)
+        // 92.93, 107.07 (SW)     107.07, 107.07 (SE)
+        // They will either spawn NW/SE first or NE/SW
+        // Boss cleave tells if it is actually east/west or north/south
+        if (matches.id === '7B9B') {
+          // East or West Safe, look for male side
+          dir1 = m1.PosX === 92.93 ? output.dirW!() : output.dirE!();
+          dir2 = m2.PosY === 92.93 ? output.dirN!() : output.dirS!();
+        } else {
+          // North or South Safe
+           dir1 = m1.PosY === 92.93 ? output.dirN!() : output.dirS!();
+           dir2 = m2.PosX === 92.93 ? output.dirW!() : output.dirE!();
+        }
+        const firstSpot = output.safeSpot!({ distance: distance1, dir: dir1 });
+        const secondSpot = output.safeSpot!({ distance: distance2, dir: dir2 });
+
+        return output.safeSpots!({ first: firstSpot, second: secondSpot });
+      },
+      outputStrings: {
+        safeSpots: {
+          en: '${first} => ${second}',
+        },
+        safeSpot: {
+          en: '${distance} ${dir}',
+        },
+        close: {
+          en: 'Close',
+        },
+        mid: {
+          en: 'Mid',
+        },
+        far: {
+          en: 'Far',
+        },
+        dirN: Outputs.dirN,
+        dirE: Outputs.dirE,
+        dirS: Outputs.dirS,
+        dirW: Outputs.dirW,
+      },
+    },
+    {
+      id: 'TOP Omega Safe Spot 2 Reminder',
+      // 7B9B Diffuse Wave Cannon (North/South), is followed up with 7B78
+      // 7B9C Diffuse Wave Cannon (East/West), is followed up with 7B77
+      type: 'StartsUsing',
+      netRegex: { id: ['7B9B', '7B9C'], source: 'Omega' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime),
+      alertText: (data, matches, output) => {
+        // The lower id is second set
+        const omegaMNPCId = 15721;
+        const omegaFNPCId = 15722;
+        let isFIn = false;
+        let isMIn = false;
+        let dir;
+        let distance;
+        const findOmegaF = (combatant: PluginCombatantState) =>
+          combatant.BNpcID === omegaFNPCId;
+        const findOmegaM = (combatant: PluginCombatantState) =>
+          combatant.BNpcID === omegaMNPCId;
+
+        const f = data.combatantData.filter(findOmegaF).pop();
+        const m = data.combatantData.filter(findOmegaM).pop();
+
+        if (f === undefined || m === undefined) {
+          console.error(`Omega Safe Spot 2 Reminder: missing m/f: ${JSON.stringify(data.combatantData)}`);
+          return;
+        }
+        if (f.WeaponId === 4)
+          isFIn = true;
+        if (m.WeaponId === 4)
+          isMIn = true;
+
+        if (isFIn)
+          distance = output.close!();
+        else if (isMIn)
+          distance = output.mid!();
+        else
+          distance = output.far!();
+
+        // The combatants only spawn in these intercards:
+        // 92.93, 92.93 (NW)      107.07, 92.93 (NE)
+        // 92.93, 107.07 (SW)     107.07, 107.07 (SE)
+        // They will either spawn NW/SE first or NE/SW
+        // Boss cleave tells if it is actually east/west or north/south
+        if (matches.id === '7B9B') {
+          // East or West Safe, look for male side
+          dir = m.PosY === 92.93 ? output.dirN!() : output.dirS!();
+        } else {
+          // North or South Safe
+          dir = m.PosX === 92.93 ? output.dirW!() : output.dirE!();
+        }
+
+        return output.safeSpot!({ distance: distance, dir: dir });
+      },
+      outputStrings: {
+        safeSpot: {
+          en: '${distance} ${dir}',
+        },
+        close: {
+          en: 'Close',
+        },
+        mid: {
+          en: 'Mid',
+        },
+        far: {
+          en: 'Far',
+        },
+        dirN: Outputs.dirN,
+        dirE: Outputs.dirE,
+        dirS: Outputs.dirS,
+        dirW: Outputs.dirW,
+      },
+    },
   ],
   timelineReplace: [
     {
