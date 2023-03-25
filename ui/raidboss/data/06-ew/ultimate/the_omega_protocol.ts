@@ -1251,7 +1251,9 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         const f = data.combatantData.pop();
         if (f === undefined) {
-          console.error(`Sigma Superliminal/Blizzard: missing f: ${JSON.stringify(data.combatantData)}`);
+          console.error(
+            `Sigma Superliminal/Blizzard: missing f: ${JSON.stringify(data.combatantData)}`,
+          );
           return;
         }
         if (f.WeaponId === 4)
