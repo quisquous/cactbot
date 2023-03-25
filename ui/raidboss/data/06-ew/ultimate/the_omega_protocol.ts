@@ -1234,6 +1234,39 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'TOP Sigma Superliminal/Blizzard',
+      // Omega-M casts Superliminal/Blizzard
+      // Track from Discharger (7B2E)
+      type: 'Ability',
+      netRegex: { id: '7B2E', source: 'Omega' },
+      delaySeconds: 6,
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.id, 16)],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        const f = data.combatantData.pop();
+        if (f === undefined) {
+          console.error(`Sigma Superliminal/Blizzard: missing f: ${JSON.stringify(data.combatantData)}`);
+          return;
+        }
+        if (f.WeaponId === 4)
+          return output.superliminalSteel!();
+        return output.optimizedBlizzard!();
+      },
+      outputStrings: {
+        optimizedBlizzard: {
+          en: 'Follow Laser, Move In',
+        },
+        superliminalSteel: {
+          en: 'Wait First',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
