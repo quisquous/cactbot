@@ -1359,7 +1359,7 @@ const triggerSet: TriggerSet<Data> = {
 
         if (f === undefined || m === undefined) {
           console.error(
-            `Omega Safe Spot 2 Reminder: missing m/f: ${JSON.stringify(data.combatantData)}`
+            `Omega Safe Spot 2 Reminder: missing m/f: ${JSON.stringify(data.combatantData)}`,
           );
           return;
         }
