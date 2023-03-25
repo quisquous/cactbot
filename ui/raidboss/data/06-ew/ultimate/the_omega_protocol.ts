@@ -1262,10 +1262,8 @@ const triggerSet: TriggerSet<Data> = {
         let dir2;
         let distance1;
         let distance2;
-        const findOmegaF = (combatant: PluginCombatantState) =>
-          combatant.BNpcID === omegaFNPCId;
-        const findOmegaM = (combatant: PluginCombatantState) =>
-          combatant.BNpcID === omegaMNPCId;
+        const findOmegaF = (combatant: PluginCombatantState) => combatant.BNpcID === omegaFNPCId;
+        const findOmegaM = (combatant: PluginCombatantState) => combatant.BNpcID === omegaMNPCId;
 
         const [f1, f2] = data.combatantData.filter(findOmegaF);
         const [m1, m2] = data.combatantData.filter(findOmegaM);
@@ -1308,8 +1306,8 @@ const triggerSet: TriggerSet<Data> = {
           dir2 = m2.PosY === 92.93 ? output.dirN!() : output.dirS!();
         } else {
           // North or South Safe
-           dir1 = m1.PosY === 92.93 ? output.dirN!() : output.dirS!();
-           dir2 = m2.PosX === 92.93 ? output.dirW!() : output.dirE!();
+          dir1 = m1.PosY === 92.93 ? output.dirN!() : output.dirS!();
+          dir2 = m2.PosX === 92.93 ? output.dirW!() : output.dirE!();
         }
         const firstSpot = output.safeSpot!({ distance: distance1, dir: dir1 });
         const secondSpot = output.safeSpot!({ distance: distance2, dir: dir2 });
@@ -1353,16 +1351,16 @@ const triggerSet: TriggerSet<Data> = {
         let isMIn = false;
         let dir;
         let distance;
-        const findOmegaF = (combatant: PluginCombatantState) =>
-          combatant.BNpcID === omegaFNPCId;
-        const findOmegaM = (combatant: PluginCombatantState) =>
-          combatant.BNpcID === omegaMNPCId;
+        const findOmegaF = (combatant: PluginCombatantState) => combatant.BNpcID === omegaFNPCId;
+        const findOmegaM = (combatant: PluginCombatantState) => combatant.BNpcID === omegaMNPCId;
 
         const f = data.combatantData.filter(findOmegaF).pop();
         const m = data.combatantData.filter(findOmegaM).pop();
 
         if (f === undefined || m === undefined) {
-          console.error(`Omega Safe Spot 2 Reminder: missing m/f: ${JSON.stringify(data.combatantData)}`);
+          console.error(
+            `Omega Safe Spot 2 Reminder: missing m/f: ${JSON.stringify(data.combatantData)}`
+          );
           return;
         }
         if (f.WeaponId === 4)
