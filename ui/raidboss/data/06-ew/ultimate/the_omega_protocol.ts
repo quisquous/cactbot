@@ -1301,13 +1301,18 @@ const triggerSet: TriggerSet<Data> = {
         // They will either spawn NW/SE first or NE/SW
         // Boss cleave tells if it is actually east/west or north/south
         if (matches.id === '7B9B') {
-          // East or West Safe, look for male side
-          dir1 = m1.PosX === 92.93 ? output.dirW!() : output.dirE!();
-          dir2 = m2.PosY === 92.93 ? output.dirN!() : output.dirS!();
+          // East or West Safe
+          // Check for Sword/Shield to know if to go to Male or Female
+          const pos1 = !isM1In ? f1.PosX : m1.PosX;
+          const pos2 = !isM2In ? f2.PosY : m2.PosY;
+          dir1 = pos1 === 92.93 ? output.dirW!() : output.dirE!();
+          dir2 = pos2 === 92.93 ? output.dirN!() : output.dirS!();
         } else {
           // North or South Safe
-          dir1 = m1.PosY === 92.93 ? output.dirN!() : output.dirS!();
-          dir2 = m2.PosX === 92.93 ? output.dirW!() : output.dirE!();
+          const pos1 = !isM1In ? f1.PosY : m1.PosY;
+          const pos2 = !isM2In ? f2.PosX : m2.PosX;
+          dir1 = pos1 === 92.93 ? output.dirN!() : output.dirS!();
+          dir2 = pos2 === 92.93 ? output.dirW!() : output.dirE!();
         }
         const firstSpot = output.safeSpot!({ distance: distance1, dir: dir1 });
         const secondSpot = output.safeSpot!({ distance: distance2, dir: dir2 });
@@ -1382,10 +1387,13 @@ const triggerSet: TriggerSet<Data> = {
         // Boss cleave tells if it is actually east/west or north/south
         if (matches.id === '7B9B') {
           // East or West Safe, look for male side
-          dir = m.PosY === 92.93 ? output.dirN!() : output.dirS!();
+          // Check for Sword/Shield to know if to go to Male or Female
+          const pos = !isMIn ? f.PosY : m.PosY;
+          dir = pos === 92.93 ? output.dirN!() : output.dirS!();
         } else {
           // North or South Safe
-          dir = m.PosX === 92.93 ? output.dirW!() : output.dirE!();
+          const pos = !isMIn ? f.PosX : m.PosX;
+          dir = pos === 92.93 ? output.dirW!() : output.dirE!();
         }
 
         return output.safeSpot!({ distance: distance, dir: dir });
