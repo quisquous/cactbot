@@ -1,4 +1,8 @@
 const playstationMarkers = ['circle', 'cross', 'triangle', 'square'];
+const phaseReset = (data) => {
+  data.monitorPlayers = [];
+  data.trioDebuff = {};
+};
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
@@ -38,6 +42,14 @@ const getHeadmarkerId = (data, matches) => {
   // since we know all the IDs that will be present in the encounter.
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
+const nearDistantOutputStrings = {
+  near: {
+    en: 'Near World',
+  },
+  distant: {
+    en: 'Distant World',
+  },
+};
 Options.Triggers.push({
   zoneId: ZoneId.TheOmegaProtocolUltimate,
   timelineFile: 'the_omega_protocol.txt',
@@ -62,6 +74,7 @@ Options.Triggers.push({
       waveCannonStacks: [],
       monitorPlayers: [],
       deltaTethers: {},
+      trioDebuff: {},
     };
   },
   triggers: [
@@ -73,6 +86,7 @@ Options.Triggers.push({
       // 8015 = Run ****mi* (Omega Version)
       netRegex: { id: ['7B40', '8014', '8015'], capture: true },
       run: (data, matches) => {
+        phaseReset(data);
         switch (matches.id) {
           case '7B40':
             data.phase = 'p2';
@@ -97,6 +111,7 @@ Options.Triggers.push({
       netRegex: { id: ['7BFD', '7B13', '7B47', '7B7C', '7F72'], capture: true },
       suppressSeconds: 20,
       run: (data, matches) => {
+        phaseReset(data);
         switch (matches.id) {
           case '7BFD':
             data.phase = 'p1';
@@ -620,7 +635,6 @@ Options.Triggers.push({
         if (data.deltaTethers[data.me] !== 'green')
           return { infoText: output.stack() };
       },
-      run: (data) => data.deltaTethers = {},
     },
     {
       id: 'TOP Cosmo Memory',
@@ -1141,6 +1155,103 @@ Options.Triggers.push({
           en: 'Towards Eye',
           de: 'Geh zu dem Auge',
           ko: '눈 쪽으로',
+        },
+      },
+    },
+    {
+      id: 'TOP P5 Trio Debuff Collector',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['D72', 'D73'] },
+      run: (data, matches) => {
+        // This is cleaned up on phase change.
+        if (matches.effectId === 'D72')
+          data.trioDebuff[matches.target] = 'near';
+        if (matches.effectId === 'D73')
+          data.trioDebuff[matches.target] = 'distant';
+      },
+    },
+    {
+      id: 'TOP P5 Delta Debuffs',
+      type: 'Ability',
+      // This is on the Oversampled Wave Cannon ability when there is roughly ~13s left on debuffs.
+      netRegex: { id: '7B6D', capture: false },
+      condition: (data) => data.phase === 'delta',
+      durationSeconds: 8,
+      suppressSeconds: 5,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          ...nearDistantOutputStrings,
+          unmarkedBlue: {
+            // Probably near baits, but you never know.
+            en: 'Unmarked Blue',
+          },
+        };
+        const myDebuff = data.trioDebuff[data.me];
+        if (myDebuff === 'near')
+          return { alertText: output.near() };
+        if (myDebuff === 'distant')
+          return { alertText: output.distant() };
+        const myColor = data.deltaTethers[data.me];
+        if (myColor === undefined)
+          return;
+        // TODO: should we call anything out for greens here??
+        if (myColor === 'blue')
+          return { infoText: output.unmarkedBlue() };
+      },
+    },
+    {
+      id: 'TOP P5 Sigma Debuffs',
+      type: 'Ability',
+      // This is on the Storage Violation damage, with roughly ~24s on debuffs.
+      netRegex: { id: '7B04', capture: false },
+      condition: (data) => data.phase === 'sigma',
+      durationSeconds: (data) => data.trioDebuff[data.me] === undefined ? 5 : 16,
+      suppressSeconds: 5,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          ...nearDistantOutputStrings,
+          noDebuff: {
+            en: '(no debuff)',
+          },
+        };
+        const myDebuff = data.trioDebuff[data.me];
+        if (myDebuff === 'near')
+          return { alertText: output.near() };
+        if (myDebuff === 'distant')
+          return { alertText: output.distant() };
+        return { infoText: output.noDebuff() };
+      },
+    },
+    {
+      id: 'TOP P5 Omega Debuffs',
+      // First In Line: ~32s duration, ~12s left after 2nd dodge
+      // Second In Line: ~50s duration, ~15s left after final bounce
+      type: 'GainsEffect',
+      netRegex: { effectId: ['D72', 'D73'] },
+      condition: (data, matches) => data.phase === 'omega' && matches.target === data.me,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) > 40 ? 35 : 20,
+      durationSeconds: 8,
+      alertText: (_data, matches, output) => {
+        if (matches.effectId === 'D72')
+          return output.near();
+        if (matches.effectId === 'D73')
+          return output.distant();
+      },
+      outputStrings: nearDistantOutputStrings,
+    },
+    {
+      id: 'TOP P5 Omega Tether Bait',
+      type: 'GainsEffect',
+      // Quickening Dynamis
+      netRegex: { effectId: 'D74', count: '03' },
+      condition: (data, matches) => data.phase === 'omega' && matches.target === data.me,
+      durationSeconds: 8,
+      alarmText: (_data, _matches, output) => output.baitTethers(),
+      outputStrings: {
+        baitTethers: {
+          en: 'Bait Tethers',
         },
       },
     },
