@@ -169,6 +169,7 @@ Options.Triggers.push({
       id: 'TOP In Line Debuff',
       type: 'GainsEffect',
       netRegex: { effectId: ['BBC', 'BBD', 'BBE', 'D7B'], capture: false },
+      condition: (data) => data.phase === 'p1',
       delaySeconds: 0.5,
       durationSeconds: 5,
       suppressSeconds: 1,
