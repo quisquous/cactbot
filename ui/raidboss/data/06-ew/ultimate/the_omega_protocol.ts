@@ -1526,20 +1526,32 @@ const triggerSet: TriggerSet<Data> = {
           const staffSwordFar2 = output.staffSwordFar!({ dir: dir2 });
           const staffSwordMid1 = output.staffSwordMid!({ dir: dir3 });
           const staffSwordMid2 = output.staffSwordMid!({ dir: dir4 });
-          const staffSwordCombo1 = output.staffSwordCombo!({ farText: staffSwordFar1, midText: staffSwordMid1 });
-          const staffSwordCombo2 = output.staffSwordCombo!({ farText: staffSwordFar2, midText: staffSwordMid2 });
+          const staffSwordCombo1 = output.staffSwordCombo!({
+            farText: staffSwordFar1,
+            midText: staffSwordMid1,
+          });
+          const staffSwordCombo2 = output.staffSwordCombo!({
+            farText: staffSwordFar2,
+            midText: staffSwordMid2,
+          });
           return output.safeSpots!({ first: staffSwordCombo1, second: staffSwordCombo2 });
         } else if (!isM1In && !isF1In) {
           // Output two locations => one location
           const staffSwordFar1 = output.staffSwordFar!({ dir: dir1 });
           const staffSwordMid1 = output.staffSwordMid!({ dir: dir3 });
-          const staffSwordCombo1 = output.staffSwordCombo!({ farText: staffSwordFar1, midText: staffSwordMid1 });
+          const staffSwordCombo1 = output.staffSwordCombo!({
+            farText: staffSwordFar1,
+            midText: staffSwordMid1,
+          });
           return output.safeSpots!({ first: staffSwordCombo1, second: secondSpot });
         } else if (!isM2In && !isF2In) {
           // Output one location => two locations
           const staffSwordFar1 = output.staffSwordFar!({ dir: dir2 });
           const staffSwordMid1 = output.staffSwordMid!({ dir: dir4 });
-          const staffSwordCombo1 = output.staffSwordCombo!({ farText: staffSwordFar1, midText: staffSwordMid1 });
+          const staffSwordCombo1 = output.staffSwordCombo!({
+            farText: staffSwordFar1,
+            midText: staffSwordMid1,
+          });
           return output.safeSpots!({ first: firstSpot, second: staffSwordCombo1 });
         }
 
@@ -1676,7 +1688,7 @@ const triggerSet: TriggerSet<Data> = {
           const staffSwordFar = output.staffSwordFar!({ dir: dir1 });
           const staffSwordMid = output.staffSwordMid!({ dir: dir2 });
           return output.staffSwordCombo!({ farText: staffSwordFar, midText: staffSwordMid });
-       }
+        }
 
         return output.safeSpot!({ distance: distance, dir: dir1 });
       },
