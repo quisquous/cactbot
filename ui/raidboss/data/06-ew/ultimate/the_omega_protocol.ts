@@ -1351,10 +1351,10 @@ const triggerSet: TriggerSet<Data> = {
           const y = combatant.PosY - 100;
           const x = combatant.PosX - 100;
 
-          // During Thordan, knight dives start at the 8 cardinals + numerical
-          // slop on a radius=23 circle.
-          // N = (100, 77), E = (123, 100), S = (100, 123), W = (77, 100)
-          // NE = (116.26, 83.74), SE = (116.26, 116.26), SW = (83.74, 116.26), NW = (83.74, 83.74)
+          // During Sigma, Omega-M teleports to one of the 8 cardinals + numerical
+          // slop on a radius=20 circle.
+          // N = (100, 80), E = (120, 100), S = (100, 120), W = (80, 100)
+          // NE = (114.14, 85.86), SE = (114.14, 114.14), SW = (85.86, 114.14), NW = (85.86, 85.86)
           //
           // Map NW = 0, N = 1, ..., W = 7
 
