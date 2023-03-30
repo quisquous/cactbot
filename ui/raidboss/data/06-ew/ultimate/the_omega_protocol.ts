@@ -1341,7 +1341,9 @@ const triggerSet: TriggerSet<Data> = {
       // Track from Discharger (7B2E)
       type: 'Ability',
       netRegex: { id: '7B2E', source: 'Omega' },
+      condition: (data) => data.phase === 'sigma',
       delaySeconds: 6,
+      suppressSeconds: 1,
       promise: async (data, matches) => {
         data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
