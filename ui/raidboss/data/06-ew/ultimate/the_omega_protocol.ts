@@ -1373,6 +1373,7 @@ const triggerSet: TriggerSet<Data> = {
       // but it is safer to use the Omega Version cast
       type: 'StartsUsing',
       netRegex: { id: '8015', source: 'Omega', capture: false },
+      durationSeconds: 10,
       promise: async (data) => {
         data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
