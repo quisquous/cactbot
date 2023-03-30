@@ -1403,9 +1403,9 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
 
-       if (f.WeaponId === 4)
+        if (f.WeaponId === 4)
           isFIn = true;
-       if (m.WeaponId === 4)
+        if (m.WeaponId === 4)
           isMIn = true;
 
         if (isFIn)
