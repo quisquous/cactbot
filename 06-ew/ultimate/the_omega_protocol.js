@@ -169,6 +169,7 @@ Options.Triggers.push({
       id: 'TOP In Line Debuff',
       type: 'GainsEffect',
       netRegex: { effectId: ['BBC', 'BBD', 'BBE', 'D7B'], capture: false },
+      condition: (data) => data.phase === 'p1',
       delaySeconds: 0.5,
       durationSeconds: 5,
       suppressSeconds: 1,
@@ -669,34 +670,46 @@ Options.Triggers.push({
       delaySeconds: 0.5,
       durationSeconds: 15,
       suppressSeconds: 1,
-      alertText: (data, _matches, output) => {
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          stack: {
+            en: 'Stack (w/ ${player1} or ${player2})',
+            de: 'Sammeln (mit ${player1} oder ${player2})',
+            ko: '쉐어 (+ ${player1}, ${player2})',
+          },
+          unmarkedStack: {
+            en: 'Unmarked Stack (w/ ${player1} or ${player2})',
+            de: 'Nicht markiertes Sammeln (mit ${player1} oder ${player2})',
+            ko: '무징 쉐어 (+ ${player1}, ${player2})',
+          },
+          sameDebuffPartner: {
+            en: '(same debuff as ${player})',
+          },
+          unknown: Outputs.unknown,
+        };
         const myBuff = data.cannonFodder[data.me];
         if (myBuff === 'spread')
           return;
-        const partnerBuff = myBuff === 'stack' ? undefined : 'stack';
-        const partners = [];
-        for (const name of data.party.partyNames) {
+        const oppositeBuff = myBuff === 'stack' ? undefined : 'stack';
+        const opposites = [];
+        let partner = output.unknown();
+        for (const name of data.party?.partyNames ?? []) {
           if (name === data.me)
             continue;
-          if (data.cannonFodder[name] === partnerBuff)
-            partners.push(name);
+          if (data.cannonFodder[name] === myBuff)
+            partner = name;
+          if (data.cannonFodder[name] === oppositeBuff)
+            opposites.push(name);
         }
-        const [p1, p2] = partners.sort().map((x) => data.ShortName(x));
+        const partnerText = output.sameDebuffPartner({ player: data.ShortName(partner) });
+        const [p1, p2] = opposites.sort().map((x) => data.ShortName(x));
         if (myBuff === 'stack')
-          return output.stack({ player1: p1, player2: p2 });
-        return output.unmarkedStack({ player1: p1, player2: p2 });
-      },
-      outputStrings: {
-        stack: {
-          en: 'Stack (w/ ${player1} or ${player2})',
-          de: 'Sammeln (mit ${player1} oder ${player2})',
-          ko: '쉐어 (+ ${player1}, ${player2})',
-        },
-        unmarkedStack: {
-          en: 'Unmarked Stack (w/ ${player1} or ${player2})',
-          de: 'Nicht markiertes Sammeln (mit ${player1} oder ${player2})',
-          ko: '무징 쉐어 (+ ${player1}, ${player2})',
-        },
+          return { alertText: output.stack({ player1: p1, player2: p2 }), infoText: partnerText };
+        return {
+          alertText: output.unmarkedStack({ player1: p1, player2: p2 }),
+          infoText: partnerText,
+        };
       },
     },
     {
