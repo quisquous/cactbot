@@ -1400,7 +1400,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitTethers: {
           en: 'Bait Tethers',
-        }
+        },
       },
     },
   ],
