@@ -13,6 +13,7 @@ import NetRegexes, {
   keysThatRequireTranslation,
 } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
+import PartyTracker from '../../resources/party';
 import Regexes from '../../resources/regexes';
 import {
   builtInResponseStr,
@@ -31,6 +32,34 @@ import {
   ResponseFunc,
   TriggerFunc,
 } from '../../types/trigger';
+import raidbossOptions from '../../ui/raidboss/raidboss_options';
+
+const emptyPartyTracker = new PartyTracker();
+
+const getFakeRaidbossData = (triggerSet?: LooseTriggerSet): RaidbossData => {
+  return {
+    me: '',
+    job: 'NONE',
+    role: 'none',
+    party: emptyPartyTracker,
+    lang: 'en',
+    parserLang: 'en',
+    displayLang: 'en',
+    currentHP: 0,
+    options: raidbossOptions,
+    inCombat: true,
+    ShortName: (x: string | undefined) => x ?? '',
+    StopCombat: (): void => {/* noop */},
+    ParseLocaleFloat: () => 0,
+    CanStun: () => false,
+    CanSilence: () => false,
+    CanSleep: () => false,
+    CanCleanse: () => false,
+    CanFeint: () => false,
+    CanAddle: () => false,
+    ...triggerSet?.initData?.() ?? {},
+  };
+};
 
 const isResponseFunc = (func: unknown): func is ResponseFunc<RaidbossData, Matches> => {
   return typeof func === 'function';
@@ -162,7 +191,7 @@ const testTriggerFile = (file: string) => {
             }
             // Built-in response functions can be safely called once.
             const output = new TestOutputProxy(trigger, {}) as Output;
-            const data = (triggerSet.initData?.() ?? {}) as RaidbossData;
+            const data: RaidbossData = getFakeRaidbossData(triggerSet);
             const triggerFunc: TriggerFunc<RaidbossData, Matches, unknown> = currentTriggerFunction;
 
             const result = triggerFunc(data, {}, output);
@@ -454,7 +483,7 @@ const testTriggerFile = (file: string) => {
           const responseFunc = trigger.response;
           if (isResponseFunc(responseFunc)) {
             // Call the function to get the outputStrings.
-            const data = (triggerSet.initData?.() ?? {}) as RaidbossData;
+            const data = getFakeRaidbossData(triggerSet);
             response = responseFunc(data, {}, output) ?? {};
 
             if (typeof outputStrings !== 'object') {
