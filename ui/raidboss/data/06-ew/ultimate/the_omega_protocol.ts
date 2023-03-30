@@ -14,7 +14,7 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 // TODO: Sigma can we find towers and tell people where north tower is?
 // TODO: Sigma staff/feet call
 // TODO: Omega tell people they must be a monitor (alarm) if they are Second in Line + two Quickening Dynamis
-// TODO: Omega dodge locations (!!!)
+// TODO: Adjust Omega dodge locations
 // TODO: p6 tank lb / healer lb triggers
 // TODO: p6 tank auto warnings
 // TODO: p6 tanks near party far calls
@@ -1364,6 +1364,138 @@ const triggerSet: TriggerSet<Data> = {
         baitTethers: {
           en: 'Bait Tethers',
         },
+      },
+    },
+    {
+      id: 'TOP Omega Pre-Safe Spot',
+      // Adds spawn in their position at start of the encounter
+      // Technically could call this 400ms sooner with AddCombatants,
+      // but it is safer to use the Omega Version cast
+      type: 'StartsUsing',
+      netRegex: { id: '8015', source: 'Omega', capture: false },
+      promise: async (data) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+        })).combatants;
+        // Sort highest ID to lowest ID
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) =>
+          (b.ID ?? 0) - (a.ID ?? 0);
+        data.combatantData = data.combatantData.sort(sortCombatants);
+      },
+      infoText: (data, _matches, output) => {
+        // The higher id is first set
+        const omegaMNPCId = 15721;
+        const omegaFNPCId = 15722;
+        let isFIn = false;
+        let isMIn = false;
+        let northSouthSwordStaffDir;
+        let eastWestSwordStaffDir;
+        let distance;
+        const findOmegaF = (combatant: PluginCombatantState) => combatant.BNpcID === omegaFNPCId;
+        const findOmegaM = (combatant: PluginCombatantState) => combatant.BNpcID === omegaMNPCId;
+
+        const f = data.combatantData.filter(findOmegaF).shift();
+        const m = data.combatantData.filter(findOmegaM).shift();
+
+        if (f === undefined || m === undefined ) {
+          console.error(`Omega Pre-Safe Spots: missing m/f: ${JSON.stringify(data.combatantData)}`);
+          return;
+        }
+
+       if (f.WeaponId === 4)
+          isFIn = true;
+        if (m.WeaponId === 4)
+          isMIn = true;
+
+        if (isFIn)
+          distance = output.close!();
+        else if (isMIn)
+          distance = output.mid!();
+        else
+          distance = output.far!();
+
+        // The combatants only spawn in these intercards:
+        // 92.93, 92.93 (NW)      107.07, 92.93 (NE)
+        // 92.93, 107.07 (SW)     107.07, 107.07 (SE)
+        // They will either spawn NW/SE first or NE/SW
+        // Boss cleave is unknown at this time, so call both sides
+        const pos1 = (!isMIn && isFIn) ? f.PosY : m.PosY;
+        const pos2 = (!isMIn && isFIn) ? f.PosX : m.PosX;
+        const northSouthDir = pos1 === 92.93 ? output.dirN!() : output.dirS!();
+        const eastWestDir = pos2 === 92.93 ? output.dirW!() : output.dirE!();
+
+        // Secondary Spot for Staff + Sword
+        if (!isMIn && !isFIn) {
+          // East/West Safe
+          if (f.PosX === 92.93 && f.PosY === 92.93) {
+            // NW
+            eastWestSwordStaffDir = output.dirNNE!();
+          } else if (f.PosX === 92.93 && f.PosY !== 92.93) {
+            // SW
+            eastWestSwordStaffDir = output.dirSSE!();
+          } else if (f.PosX !== 92.93 && f.PosY === 92.93) {
+            // NE
+            eastWestSwordStaffDir = output.dirNNW!();
+          } else {
+            // SE
+            eastWestSwordStaffDir = output.dirSSW!();
+          }
+          // North/South Safe
+          if (f.PosX === 92.93 && f.PosY === 92.93) {
+            // NW
+            northSouthSwordStaffDir = output.dirWSW!();
+          } else if (f.PosX === 92.93 && f.PosY !== 92.93) {
+            // SW
+            northSouthSwordStaffDir = output.dirWNW!();
+          } else if (f.PosX !== 92.93 && f.PosY === 92.93) {
+            // NE
+            northSouthSwordStaffDir = output.dirESE!();
+          } else {
+            // SE
+            northSouthSwordStaffDir = output.dirENE!();
+          }
+          const staffSwordFar = output.staffSwordFar!({ northSouth: northSouthDir, eastWest: eastWestDir });
+          const staffSwordMid = output.staffSwordMid!({ northSouth: northSouthSwordStaffDir, eastWest: eastWestSwordStaffDir });
+          return output.staffSwordCombo!({ farText: staffSwordFar, midText: staffSwordMid });
+        }
+
+        return output.safeSpot!({ distance: distance, northSouth: northSouthDir, eastWest: eastWestDir });
+      },
+      outputStrings: {
+        safeSpot: {
+          en: '${distance} ${northSouth} or ${eastWest}',
+        },
+        staffSwordCombo: {
+          en: '${farText} / ${midText}',
+        },
+        staffSwordFar: {
+          en: 'Far ${northSouth} or ${eastWest}',
+        },
+        staffSwordMid: {
+          en: 'Mid ${northSouth} or ${eastWest}',
+        },
+        close: {
+          en: 'Close',
+        },
+        mid: {
+          en: 'Mid',
+        },
+        far: {
+          en: 'Far',
+        },
+        dirN: Outputs.dirN,
+        dirE: Outputs.dirE,
+        dirS: Outputs.dirS,
+        dirW: Outputs.dirW,
+        dirNNW: Outputs.dirNNW,
+        dirNNE: Outputs.dirNNE,
+        dirENE: Outputs.dirENE,
+        dirESE: Outputs.dirESE,
+        dirSSE: Outputs.dirSSE,
+        dirSSW: Outputs.dirSSW,
+        dirWSW: Outputs.dirWSW,
+        dirWNW: Outputs.dirWNW,
       },
     },
     {
