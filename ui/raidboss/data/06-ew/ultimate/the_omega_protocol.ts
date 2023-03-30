@@ -1245,7 +1245,7 @@ const triggerSet: TriggerSet<Data> = {
         data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
           call: 'getCombatants',
-          ids: [parseInt(matches.id, 16)],
+          ids: [parseInt(matches.sourceId, 16)],
         })).combatants;
       },
       alertText: (data, _matches, output) => {
