@@ -1398,14 +1398,14 @@ const triggerSet: TriggerSet<Data> = {
         const f = data.combatantData.filter(findOmegaF).shift();
         const m = data.combatantData.filter(findOmegaM).shift();
 
-        if (f === undefined || m === undefined ) {
+        if (f === undefined || m === undefined) {
           console.error(`Omega Pre-Safe Spots: missing m/f: ${JSON.stringify(data.combatantData)}`);
           return;
         }
 
        if (f.WeaponId === 4)
           isFIn = true;
-        if (m.WeaponId === 4)
+       if (m.WeaponId === 4)
           isMIn = true;
 
         if (isFIn)
@@ -1455,12 +1455,22 @@ const triggerSet: TriggerSet<Data> = {
             // SE
             northSouthSwordStaffDir = output.dirENE!();
           }
-          const staffSwordFar = output.staffSwordFar!({ northSouth: northSouthDir, eastWest: eastWestDir });
-          const staffSwordMid = output.staffSwordMid!({ northSouth: northSouthSwordStaffDir, eastWest: eastWestSwordStaffDir });
+          const staffSwordFar = output.staffSwordFar!({
+            northSouth: northSouthDir,
+            eastWest: eastWestDir,
+          });
+          const staffSwordMid = output.staffSwordMid!({
+            northSouth: northSouthSwordStaffDir,
+            eastWest: eastWestSwordStaffDir,
+          });
           return output.staffSwordCombo!({ farText: staffSwordFar, midText: staffSwordMid });
         }
 
-        return output.safeSpot!({ distance: distance, northSouth: northSouthDir, eastWest: eastWestDir });
+        return output.safeSpot!({
+          distance: distance,
+          northSouth: northSouthDir,
+          eastWest: eastWestDir,
+        });
       },
       outputStrings: {
         safeSpot: {
