@@ -1340,7 +1340,7 @@ const triggerSet: TriggerSet<Data> = {
       // Omega-M casts Superliminal/Blizzard
       // Track from Discharger (7B2E)
       type: 'Ability',
-      netRegex: { id: '7B2E', source: 'Omega' },
+      netRegex: { id: '7B2E', source: 'Omega-M' },
       condition: (data) => data.phase === 'sigma',
       delaySeconds: 6,
       suppressSeconds: 1,
