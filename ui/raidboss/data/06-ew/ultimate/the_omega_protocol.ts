@@ -1372,7 +1372,7 @@ const triggerSet: TriggerSet<Data> = {
       // Technically could call this 400ms sooner with AddCombatants,
       // but it is safer to use the Omega Version cast
       type: 'StartsUsing',
-      netRegex: { id: '8015', source: 'Omega', capture: false },
+      netRegex: { id: '8015', source: 'Omega-M', capture: false },
       durationSeconds: 10,
       promise: async (data) => {
         data.combatantData = [];
