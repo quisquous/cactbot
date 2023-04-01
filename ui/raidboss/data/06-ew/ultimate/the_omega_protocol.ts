@@ -1329,7 +1329,7 @@ const triggerSet: TriggerSet<Data> = {
       // Same NPC that casts Sigma Version teleports to card/intercard
       type: 'Ability',
       netRegex: { id: '8014', source: 'Omega-M' },
-      delaySeconds: 6,
+      delaySeconds: 5.5,
       suppressSeconds: 1,
       promise: async (data, matches) => {
         data.combatantData = [];
