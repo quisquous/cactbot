@@ -1402,6 +1402,10 @@ const triggerSet: TriggerSet<Data> = {
       // These NPCs are "seen" at their tower position at end of Towers
       type: 'Ability',
       netRegex: { id: '7B74', source: 'Omega' },
+      condition: (data, matches) => {
+        data.sigmaTowers.push(matches);
+        return data.sigmaTowers.length === 6;
+      },
       delaySeconds: 3,
       promise: async (data, matches) => {
         data.combatantData = [];
