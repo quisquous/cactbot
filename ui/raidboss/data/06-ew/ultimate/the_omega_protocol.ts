@@ -1431,7 +1431,7 @@ const triggerSet: TriggerSet<Data> = {
           3: [117.00, 100.00], // east
           4: [112.02, 112.02], // southeast
           5: [100.00, 117.00], // south
-          6: [89.98,112.02], // southwest
+          6: [89.98, 112.02], // southwest
           7: [100.00, 117.00], // west
         };
         // Only need to look at one of the perpendicular npcs
