@@ -1470,7 +1470,7 @@ const triggerSet: TriggerSet<Data> = {
             towerDir = oppositeMDir;
             break;
           }
-          if (combatant.PosX === towerCheck2[0] && combatant.PosY === towerCheck2[0]) {
+          if (combatant.PosX === towerCheck2[0] && combatant.PosY === towerCheck2[1]) {
             towerDir = data.sigmaMDir;
             break;
           }
