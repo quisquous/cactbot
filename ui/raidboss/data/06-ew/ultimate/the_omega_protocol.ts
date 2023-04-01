@@ -1407,7 +1407,7 @@ const triggerSet: TriggerSet<Data> = {
         return data.sigmaTowers.length === 6;
       },
       delaySeconds: 3,
-      promise: async (data, matches) => {
+      promise: async (data) => {
         data.combatantData = [];
         const ids = data.sigmaTowers.map((m) => parseInt(m.sourceId, 16));
         data.combatantData = (await callOverlayHandler({
