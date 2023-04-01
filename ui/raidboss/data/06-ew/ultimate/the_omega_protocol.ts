@@ -1425,13 +1425,13 @@ const triggerSet: TriggerSet<Data> = {
 
         // Only need to look at the direct coordinate
         const dirToFarTower: { [dir: number]: number[] } = {
-          0: [87.97, 87.98],   // northwest
-          1: [100.00, 83.00],  // north
-          2: [112.02, 87.98],  // northeast
+          0: [87.97, 87.98], // northwest
+          1: [100.00, 83.00], // north
+          2: [112.02, 87.98], // northeast
           3: [117.00, 100.00], // east
           4: [112.02, 112.02], // southeast
           5: [100.00, 117.00], // south
-          6: [89.98,112.02],   // southwest
+          6: [89.98,112.02], // southwest
           7: [100.00, 117.00], // west
         };
         // Only need to look at one of the perpendicular npcs
@@ -1440,11 +1440,11 @@ const triggerSet: TriggerSet<Data> = {
           0: [106.51, 115.71], // northwest
           1: [115.71, 106.51], // north
           2: [106.51, 115.71], // northeast
-          3: [93.49, 115.71],  // east
-          4: [106.51, 84.29],  // southeast
-          5: [115.71, 93.49],  // south
+          3: [93.49, 115.71], // east
+          4: [106.51, 84.29], // southeast
+          5: [115.71, 93.49], // south
           6: [115.71, 106.51], // southwest
-          7: [106.51, 84.29],  // west
+          7: [106.51, 84.29], // west
         };
 
         // If tower not found here, it is opposite side
@@ -1454,7 +1454,9 @@ const triggerSet: TriggerSet<Data> = {
         const towerCheck1 = dirToTower[oppositeMDir];
         const towerCheck2 = dirToTower[data.sigmaMDir];
         if (towerCheck1 === undefined || towerCheck2 === undefined) {
-          console.error(`Sigma Tower: Unable to get matching tower position with Omega-M Location: ${data.sigmaMDir}`);
+          console.error(
+            `Sigma Tower: Unable to get matching tower position with Omega-M Location: ${data.sigmaMDir}`,
+          );
           return;
         }
 
@@ -1474,7 +1476,11 @@ const triggerSet: TriggerSet<Data> = {
           }
         }
         if (towerDir === undefined) {
-          console.error(`Sigma Tower: Unable to find matching tower position among combatants: ${JSON.stringify(data.combatantData)}`);
+          console.error(
+            `Sigma Tower: Unable to find matching tower position among combatants: ${
+              JSON.stringify(data.combatantData)
+            }`,
+          );
           return;
         }
 
@@ -1488,7 +1494,6 @@ const triggerSet: TriggerSet<Data> = {
           6: output.southwest!(),
           7: output.west!(),
         };
-        console.log(`Tower Orientation (3): ${dirs[towerDir]}`);
         return output.towerOrientation!({
           dir: dirs[towerDir] ?? output.unknown!(),
         });
