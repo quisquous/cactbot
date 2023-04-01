@@ -10,7 +10,6 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Delta green tether break calls
 // TODO: Sigma say if you are unmarked / marked with unmarked / double mark pair
-// TODO: Sigma can we find towers and tell people where north tower is?
 // TODO: Sigma staff/feet call
 // TODO: Omega tell people they must be a monitor (alarm) if they are Second in Line + two Quickening Dynamis
 // TODO: Omega dodge locations (!!!)
@@ -64,6 +63,8 @@ export interface Data extends RaidbossData {
   monitorPlayers: NetMatches['GainsEffect'][];
   deltaTethers: { [name: string]: TetherColor };
   trioDebuff: { [name: string]: TrioDebuff };
+  sigmaMDir: number;
+  sigmaTowers: NetMatches['Ability'][];
 }
 
 const phaseReset = (data: Data) => {
@@ -152,6 +153,8 @@ const triggerSet: TriggerSet<Data> = {
       monitorPlayers: [],
       deltaTethers: {},
       trioDebuff: {},
+      sigmaMDir: 0,
+      sigmaTowers: [],
     };
   },
   triggers: [
@@ -1373,6 +1376,7 @@ const triggerSet: TriggerSet<Data> = {
           6: output.southwest!(),
           7: output.west!(),
         };
+        data.sigmaMDir = dir;
         return output.mLocation!({
           dir: dirs[dir] ?? output.unknown!(),
         });
@@ -1389,6 +1393,118 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
         mLocation: {
           en: '${dir} M',
+        },
+      },
+    },
+    {
+      id: 'TOP Sigma Tower Orientation',
+      // Same NPC that casts Wave Cannon will cast Storage Violation
+      // These NPCs are "seen" at their tower position at end of Towers
+      type: 'Ability',
+      netRegex: { id: '7B74', source: 'Omega' },
+      delaySeconds: 3,
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        const ids = data.sigmaTowers.map((m) => parseInt(m.sourceId, 16));
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        })).combatants;
+      },
+      infoText: (data, _matches, output) => {
+        if (data.combatantData.length !== 6)
+          return;
+        // Sort highest ID to lowest ID
+        // Lowest ID Tower is unused during Far
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) =>
+          (b.ID ?? 0) - (a.ID ?? 0);
+        data.combatantData = data.combatantData.sort(sortCombatants);
+        // Drop last combatant if it is far
+        if (data.glitch === 'remote')
+          data.combatantData.pop();
+
+        // Only need to look at the direct coordinate
+        const dirToFarTower: { [dir: number]: number[] } = {
+          0: [87.97, 87.98],   // northwest
+          1: [100.00, 83.00],  // north
+          2: [112.02, 87.98],  // northeast
+          3: [117.00, 100.00], // east
+          4: [112.02, 112.02], // southeast
+          5: [100.00, 117.00], // south
+          6: [89.98,112.02],   // southwest
+          7: [100.00, 117.00], // west
+        };
+        // Only need to look at one of the perpendicular npcs
+        // Since we know the "north" is on same line as M
+        const dirToMidTower: { [dir: number]: number[] } = {
+          0: [106.51, 115.71], // northwest
+          1: [115.71, 106.51], // north
+          2: [106.51, 115.71], // northeast
+          3: [93.49, 115.71],  // east
+          4: [106.51, 84.29],  // southeast
+          5: [115.71, 93.49],  // south
+          6: [115.71, 106.51], // southwest
+          7: [106.51, 84.29],  // west
+        };
+
+        // If tower not found here, it is opposite side
+        // Check both coordinates among all combatants for a match
+        const dirToTower = data.glitch === 'mid' ? dirToMidTower : dirToFarTower;
+        const oppositeMDir = (data.sigmaMDir + 4) % 8;
+        const towerCheck1 = dirToTower[oppositeMDir];
+        const towerCheck2 = dirToTower[data.sigmaMDir];
+        if (towerCheck1 === undefined || towerCheck2 === undefined) {
+          console.error(`Sigma Tower: Unable to get matching tower position with Omega-M Location: ${data.sigmaMDir}`);
+          return;
+        }
+
+        // Find a matching combatant at the tower spot
+        let towerDir;
+        for (let i = 0; i < data.combatantData.length; i++) {
+          const combatant = data.combatantData[i];
+          if (combatant === undefined)
+            break;
+          if (combatant.PosX === towerCheck1[0] && combatant.PosY === towerCheck1[1]) {
+            towerDir = oppositeMDir;
+            break;
+          }
+          if (combatant.PosX === towerCheck2[0] && combatant.PosY === towerCheck2[0]) {
+            towerDir = data.sigmaMDir;
+            break;
+          }
+        }
+        if (towerDir === undefined) {
+          console.error(`Sigma Tower: Unable to find matching tower position among combatants: ${JSON.stringify(data.combatantData)}`);
+          return;
+        }
+
+        const dirs: { [dir: number]: string } = {
+          0: output.northwest!(),
+          1: output.north!(),
+          2: output.northeast!(),
+          3: output.east!(),
+          4: output.southeast!(),
+          5: output.south!(),
+          6: output.southwest!(),
+          7: output.west!(),
+        };
+        console.log(`Tower Orientation (3): ${dirs[towerDir]}`);
+        return output.towerOrientation!({
+          dir: dirs[towerDir] ?? output.unknown!(),
+        });
+      },
+      outputStrings: {
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        unknown: Outputs.unknown,
+        towerOrientation: {
+          en: 'Orient ${dir}',
         },
       },
     },
