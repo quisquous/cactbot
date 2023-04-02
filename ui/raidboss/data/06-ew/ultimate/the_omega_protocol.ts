@@ -1342,7 +1342,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '7B2E', source: 'Omega-M' },
       condition: (data) => data.phase === 'sigma',
-      delaySeconds: 6,
+      delaySeconds: 7,
       suppressSeconds: 1,
       promise: async (data, matches) => {
         data.combatantData = [];
