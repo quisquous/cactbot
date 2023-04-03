@@ -1387,6 +1387,7 @@ const triggerSet: TriggerSet<Data> = {
       // 7B9C Diffuse Wave Cannon (East/West), is followed up with 7B77
       type: 'StartsUsing',
       netRegex: { id: ['7B9B', '7B9C'], source: 'Omega' },
+      durationSeconds: (_data, matches) => parseFloat(matches.castTime),
       promise: async (data) => {
         data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
