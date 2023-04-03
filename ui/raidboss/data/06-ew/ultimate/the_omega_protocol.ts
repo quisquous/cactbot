@@ -1150,6 +1150,7 @@ const triggerSet: TriggerSet<Data> = {
       // D7D = Oversampled Wave Cannon Loading (facing left)
       netRegex: { effectId: ['D7C', 'D7D'] },
       preRun: (data, matches) => data.monitorPlayers.push(matches),
+      delaySeconds: 0.5,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
