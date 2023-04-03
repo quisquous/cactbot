@@ -1351,6 +1351,43 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'TOP Sigma Superliminal/Blizzard',
+      // Omega-M casts Superliminal/Blizzard
+      // Track from Discharger (7B2E)
+      type: 'Ability',
+      netRegex: { id: '7B2E', source: 'Omega-M' },
+      condition: (data) => data.phase === 'sigma',
+      delaySeconds: 6.2,
+      suppressSeconds: 1,
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        const f = data.combatantData.pop();
+        if (f === undefined) {
+          console.error(
+            `Sigma Superliminal/Blizzard: missing f: ${JSON.stringify(data.combatantData)}`,
+          );
+          return;
+        }
+        if (f.WeaponId === 4)
+          return output.superliminalSteel!();
+        return output.optimizedBlizzard!();
+      },
+      outputStrings: {
+        optimizedBlizzard: {
+          en: 'Follow Laser, Move In',
+        },
+        superliminalSteel: {
+          en: 'Wait First',
+        },
+      },
+    },
+    {
       id: 'TOP P5 Omega Debuffs',
       // First In Line: ~32s duration, ~12s left after 2nd dodge
       // Second In Line: ~50s duration, ~15s left after final bounce
