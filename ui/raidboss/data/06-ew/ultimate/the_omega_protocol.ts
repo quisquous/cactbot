@@ -10,7 +10,6 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Delta green tether break calls
 // TODO: Sigma say if you are unmarked / marked with unmarked / double mark pair
-// TODO: Sigma tell people where Omega-M spawns (opposite hands)
 // TODO: Sigma can we find towers and tell people where north tower is?
 // TODO: Sigma staff/feet call
 // TODO: Omega tell people they must be a monitor (alarm) if they are Second in Line + two Quickening Dynamis
@@ -1323,6 +1322,75 @@ const triggerSet: TriggerSet<Data> = {
         // TODO: should we call anything out for greens here??
         if (myColor === 'blue')
           return { infoText: output.unmarkedBlue!() };
+      },
+    },
+    {
+      id: 'TOP Sigma Omega-M Location',
+      // Same NPC that casts Sigma Version teleports to card/intercard
+      type: 'Ability',
+      netRegex: { id: '8014', source: 'Omega-M' },
+      delaySeconds: 5.4,
+      durationSeconds: 26, // Display until Discharger
+      suppressSeconds: 1,
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        const m = data.combatantData.pop();
+        if (m === undefined) {
+          console.error(
+            `Sigma Omega-M Location: missing m: ${JSON.stringify(data.combatantData)}`,
+          );
+          return;
+        }
+        // Calculate combatant position in an all 8 cards/intercards
+        const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
+          // Positions are moved up 100 and right 100
+          const y = combatant.PosY - 100;
+          const x = combatant.PosX - 100;
+
+          // During Sigma, Omega-M teleports to one of the 8 cardinals + numerical
+          // slop on a radius=20 circle.
+          // N = (100, 80), E = (120, 100), S = (100, 120), W = (80, 100)
+          // NE = (114.14, 85.86), SE = (114.14, 114.14), SW = (85.86, 114.14), NW = (85.86, 85.86)
+          //
+          // Map NW = 0, N = 1, ..., W = 7
+
+          return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+        };
+
+        const dir = matchedPositionTo8Dir(m);
+        const dirs: { [dir: number]: string } = {
+          0: output.northwest!(),
+          1: output.north!(),
+          2: output.northeast!(),
+          3: output.east!(),
+          4: output.southeast!(),
+          5: output.south!(),
+          6: output.southwest!(),
+          7: output.west!(),
+        };
+        return output.mLocation!({
+          dir: dirs[dir] ?? output.unknown!(),
+        });
+      },
+      outputStrings: {
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        unknown: Outputs.unknown,
+        mLocation: {
+          en: '${dir} M',
+        },
       },
     },
     {
