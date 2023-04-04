@@ -291,34 +291,20 @@ hideall "--sync--"
 1175.1 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
 1176.0 "Flash Gale 2" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
 
-1182.2 "Cosmo Arrow" sync / 1[56]:[^:]*:Alpha Omega:7BA2:/
-1184.2 "Cosmo Arrow 1" #sync / 1[56]:[^:]*:Alpha Omega:7BA3:/
-1186.2 "Cosmo Arrow 2" #sync / 1[56]:[^:]*:Alpha Omega:7BA3:/
-1186.2 "Cosmo Arrow Exaflare 1" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
-1188.2 "Cosmo Arrow Exaflare 2" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
-1190.2 "Cosmo Arrow Exaflare 3" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
-1192.2 "Cosmo Arrow Exaflare 4" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
-1194.2 "Cosmo Arrow Exaflare 5" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
-1196.2 "Cosmo Arrow Exaflare 6" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
+1182.2 "Cosmo Arrow" sync / 1[56]:[^:]*:Alpha Omega:7BA2:/ duration 14
 1196.9 "Cosmo Dive" sync / 1[56]:[^:]*:Alpha Omega:7BA6:/
-1199.3 "Cosmo Dive Far" #sync / 1[56]:[^:]*:Alpha Omega:7BA8:/
-1199.3 "Cosmo Dive Near x2" #sync / 1[56]:[^:]*:Alpha Omega:7BA7:/
 1206.1 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
 1207.0 "Flash Gale 1" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
 1209.3 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
 1210.2 "Flash Gale 2" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
 
 1215.4 "Unlimited Wave Cannon" sync / 1[56]:[^:]*:Alpha Omega:7BAC:/
-1222.4 "Wave Cannon Exaflare 1" sync / 1[56]:[^:]*:Alpha Omega:7BAD:/ duration 5.7
-1223.4 "Wave Cannon Puddles 1" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
-1223.4 "Wave Cannon Exaflare 2" #sync / 1[56]:[^:]*:Alpha Omega:7BAD:/ duration 5.7
-1224.3 "Wave Cannon Exaflare 3" #sync / 1[56]:[^:]*:Alpha Omega:7BAD:/ duration 5.7
-1225.2 "Wave Cannon Exaflare 4" #sync / 1[56]:[^:]*:Alpha Omega:7BAD:/ duration 5.7
-1225.2 "Wave Cannon Puddles 2" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
-1227.1 "Wave Cannon Puddles 3" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
-1229.0 "Wave Cannon Puddles 4" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
-1230.9 "Wave Cannon Puddles 5" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
-1232.9 "Wave Cannon Puddles 6" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1223.4 "Wave Cannon Puddle 1" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1225.2 "Wave Cannon Puddle 2" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1227.1 "Wave Cannon Puddle 3" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1229.0 "Wave Cannon Puddle 4" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1230.9 "Wave Cannon Puddle 5" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1232.9 "Wave Cannon Puddle 6" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
 1236.0 "Wave Cannon 1" #sync / 1[56]:[^:]*:Alpha Omega:7BAB:/
 1238.0 "Wave Cannon 2" #sync / 1[56]:[^:]*:Alpha Omega:7BAB:/
 1243.9 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7BA9:/
@@ -328,17 +314,9 @@ hideall "--sync--"
 1251.6 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
 1252.5 "Flash Gale 2" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
 
-1258.7 "Cosmo Arrow" sync / 1[56]:[^:]*:Alpha Omega:7BA2:/
-1260.9 "Cosmo Arrow 1" #sync / 1[56]:[^:]*:Alpha Omega:7BA3:/
-1262.9 "Cosmo Arrow 2" #sync / 1[56]:[^:]*:Alpha Omega:7BA3:/
-1262.9 "Cosmo Arrow Exaflare 1" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
-1264.9 "Cosmo Arrow Exaflare 2" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
-1266.9 "Cosmo Arrow Exaflare 3" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
-1268.9 "Cosmo Arrow Exaflare 4" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
+1258.7 "Cosmo Arrow" sync / 1[56]:[^:]*:Alpha Omega:7BA2:/ duration 14
 1269.9 "Wave Cannon 1" #sync / 1[56]:[^:]*:Alpha Omega:7BAB:/
-1270.9 "Cosmo Arrow Exaflare 5" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
 1271.9 "Wave Cannon 2" #sync / 1[56]:[^:]*:Alpha Omega:7BAB:/
-1272.9 "Cosmo Arrow Exaflare 6" #sync / 1[56]:[^:]*:Alpha Omega:7BA4:/
 1277.8 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7BA9:/
 1278.2 "Wave Cannon (Wild Charge)" #sync / 1[56]:[^:]*:Alpha Omega:7BAA:/
 1282.3 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
@@ -347,16 +325,12 @@ hideall "--sync--"
 1286.4 "Flash Gale 2" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
 
 1291.7 "Unlimited Wave Cannon" sync / 1[56]:[^:]*:Alpha Omega:7BAC:/
-1298.7 "Wave Cannon Exaflare 1" #sync / 1[56]:[^:]*:Alpha Omega:7BAD:/ duration 5.7
-1299.7 "Wave Cannon Puddles 1" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
-1299.7 "Wave Cannon Exaflare 2" #sync / 1[56]:[^:]*:Alpha Omega:7BAD:/ duration 5.7
-1300.6 "Wave Cannon Exaflare 3" #sync / 1[56]:[^:]*:Alpha Omega:7BAD:/ duration 5.7
-1301.5 "Wave Cannon Exaflare 4" #sync / 1[56]:[^:]*:Alpha Omega:7BAD:/ duration 5.7
-1301.5 "Wave Cannon Puddles 2" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
-1303.4 "Wave Cannon Puddles 3" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
-1305.3 "Wave Cannon Puddles 4" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
-1307.2 "Wave Cannon Puddles 5" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
-1309.2 "Wave Cannon Puddles 6" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1299.7 "Wave Cannon Puddle 1" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1301.5 "Wave Cannon Puddle 2" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1303.4 "Wave Cannon Puddle 3" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1305.3 "Wave Cannon Puddle 4" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1307.2 "Wave Cannon Puddle 5" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1309.2 "Wave Cannon Puddle 6" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
 1310.0 "Cosmo Dive" sync / 1[56]:[^:]*:Alpha Omega:7BA6:/
 1312.4 "Cosmo Dive Far" #sync / 1[56]:[^:]*:Alpha Omega:7BA8:/
 1312.4 "Cosmo Dive Near x2" #sync / 1[56]:[^:]*:Alpha Omega:7BA7:/
