@@ -77,6 +77,31 @@ Options.Triggers.push({
       trioDebuff: {},
     };
   },
+  timelineTriggers: [
+    {
+      id: 'TOP Flash Gale Tank Auto',
+      regex: /Flash Gale 1/,
+      beforeSeconds: 5.5,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Autos',
+        },
+      },
+    },
+    {
+      id: 'TOP Wave Cannon Protean',
+      regex: /Wave Cannon 1/,
+      beforeSeconds: 6,
+      durationSeconds: 5,
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Protean',
+        },
+      },
+    },
+  ],
   triggers: [
     {
       id: 'TOP Phase Tracker',
@@ -638,7 +663,7 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'TOP Cosmo Memory',
+      id: 'TOP P2 Cosmo Memory',
       type: 'StartsUsing',
       netRegex: { id: '7B22', source: 'Omega-M', capture: false },
       response: Responses.aoe(),
@@ -1714,6 +1739,78 @@ Options.Triggers.push({
         dirSSW: Outputs.dirSSW,
         dirWSW: Outputs.dirWSW,
         dirWNW: Outputs.dirWNW,
+      },
+    },
+    {
+      id: 'TOP P6 Cosmo Memory',
+      type: 'StartsUsing',
+      netRegex: { id: '7BA1', source: 'Alpha Omega', capture: false },
+      condition: (data) => data.role === 'tank',
+      alarmText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'TANK LB!!',
+          de: 'TANK LB!!',
+          fr: 'LB TANK !!',
+          ja: 'タンクLB!!',
+          cn: '坦克LB！！',
+          ko: '탱리밋!!',
+        },
+      },
+    },
+    {
+      id: 'TOP Cosmo Dive',
+      type: 'StartsUsing',
+      netRegex: { id: '7BA6', source: 'Alpha Omega', capture: false },
+      durationSeconds: 5,
+      alertText: (data, _matches, output) => {
+        if (data.role === 'tank')
+          return output.cosmoDiveTank();
+        return output.cosmoDiveParty();
+      },
+      outputStrings: {
+        // Yes, these are also tankbusters, but mit is so tight in this phase
+        // that everybody needs to know that already, and so just call positioning.
+        cosmoDiveTank: {
+          en: 'Tanks Near (party far)',
+        },
+        cosmoDiveParty: {
+          en: 'Party Far (tanks near)',
+        },
+      },
+    },
+    {
+      id: 'TOP Unlimited Wave Cannon',
+      type: 'StartsUsing',
+      netRegex: { id: '7BAC', source: 'Alpha Omega', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Middle',
+        },
+      },
+    },
+    {
+      id: 'TOP Wave Cannon Wild Charge',
+      type: 'StartsUsing',
+      netRegex: { id: '7BA9', source: 'Alpha Omega', capture: false },
+      delaySeconds: 5,
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Line Charge',
+        },
+      },
+    },
+    {
+      id: 'TOP Cosmo Meteor',
+      type: 'StartsUsing',
+      netRegex: { id: '7BB0', source: 'Alpha Omega', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Middle',
+        },
       },
     },
   ],
