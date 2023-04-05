@@ -10,16 +10,12 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Delta green tether break calls
 // TODO: Sigma say if you are unmarked / marked with unmarked / double mark pair
-// TODO: Sigma tell people where Omega-M spawns (opposite hands)
 // TODO: Sigma can we find towers and tell people where north tower is?
 // TODO: Sigma staff/feet call
 // TODO: Omega tell people they must be a monitor (alarm) if they are Second in Line + two Quickening Dynamis
-// TODO: Omega dodge locations (!!!)
-// TODO: p6 tank lb / healer lb triggers
-// TODO: p6 tank auto warnings
-// TODO: p6 tanks near party far calls
+// TODO: Adjust Omega dodge locations
+// TODO: p6 magic number tank lb / healer lb triggers
 // TODO: p6 exasquare "wait" calls
-// TODO: p6 line stack calls
 
 export type Phase =
   | 'p1'
@@ -155,6 +151,31 @@ const triggerSet: TriggerSet<Data> = {
       trioDebuff: {},
     };
   },
+  timelineTriggers: [
+    {
+      id: 'TOP Flash Gale Tank Auto',
+      regex: /Flash Gale 1/,
+      beforeSeconds: 5.5,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Tank Autos',
+        },
+      },
+    },
+    {
+      id: 'TOP Wave Cannon Protean',
+      regex: /Wave Cannon 1/,
+      beforeSeconds: 6,
+      durationSeconds: 5,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Protean',
+        },
+      },
+    },
+  ],
   triggers: [
     {
       id: 'TOP Phase Tracker',
@@ -731,7 +752,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'TOP Cosmo Memory',
+      id: 'TOP P2 Cosmo Memory',
       type: 'StartsUsing',
       netRegex: { id: '7B22', source: 'Omega-M', capture: false },
       response: Responses.aoe(),
@@ -1326,6 +1347,75 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'TOP Sigma Omega-M Location',
+      // Same NPC that casts Sigma Version teleports to card/intercard
+      type: 'Ability',
+      netRegex: { id: '8014', source: 'Omega-M' },
+      delaySeconds: 5.4,
+      durationSeconds: 26, // Display until Discharger
+      suppressSeconds: 1,
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        const m = data.combatantData.pop();
+        if (m === undefined) {
+          console.error(
+            `Sigma Omega-M Location: missing m: ${JSON.stringify(data.combatantData)}`,
+          );
+          return;
+        }
+        // Calculate combatant position in an all 8 cards/intercards
+        const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
+          // Positions are moved up 100 and right 100
+          const y = combatant.PosY - 100;
+          const x = combatant.PosX - 100;
+
+          // During Sigma, Omega-M teleports to one of the 8 cardinals + numerical
+          // slop on a radius=20 circle.
+          // N = (100, 80), E = (120, 100), S = (100, 120), W = (80, 100)
+          // NE = (114.14, 85.86), SE = (114.14, 114.14), SW = (85.86, 114.14), NW = (85.86, 85.86)
+          //
+          // Map NW = 0, N = 1, ..., W = 7
+
+          return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+        };
+
+        const dir = matchedPositionTo8Dir(m);
+        const dirs: { [dir: number]: string } = {
+          0: output.northwest!(),
+          1: output.north!(),
+          2: output.northeast!(),
+          3: output.east!(),
+          4: output.southeast!(),
+          5: output.south!(),
+          6: output.southwest!(),
+          7: output.west!(),
+        };
+        return output.mLocation!({
+          dir: dirs[dir] ?? output.unknown!(),
+        });
+      },
+      outputStrings: {
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        unknown: Outputs.unknown,
+        mLocation: {
+          en: '${dir} M',
+        },
+      },
+    },
+    {
       id: 'TOP P5 Sigma Debuffs',
       type: 'Ability',
       // This is on the Storage Violation damage, with roughly ~24s on debuffs.
@@ -1348,6 +1438,43 @@ const triggerSet: TriggerSet<Data> = {
         if (myDebuff === 'distant')
           return { alertText: output.distant!() };
         return { infoText: output.noDebuff!() };
+      },
+    },
+    {
+      id: 'TOP Sigma Superliminal/Blizzard',
+      // Omega-M casts Superliminal/Blizzard
+      // Track from Discharger (7B2E)
+      type: 'Ability',
+      netRegex: { id: '7B2E', source: 'Omega-M' },
+      condition: (data) => data.phase === 'sigma',
+      delaySeconds: 6.2,
+      suppressSeconds: 1,
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        const f = data.combatantData.pop();
+        if (f === undefined) {
+          console.error(
+            `Sigma Superliminal/Blizzard: missing f: ${JSON.stringify(data.combatantData)}`,
+          );
+          return;
+        }
+        if (f.WeaponId === 4)
+          return output.superliminalSteel!();
+        return output.optimizedBlizzard!();
+      },
+      outputStrings: {
+        optimizedBlizzard: {
+          en: 'Follow Laser, Move In',
+        },
+        superliminalSteel: {
+          en: 'Wait First',
+        },
       },
     },
     {
@@ -1378,6 +1505,441 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitTethers: {
           en: 'Bait Tethers',
+        },
+      },
+    },
+    {
+      id: 'TOP Omega Safe Spots',
+      // 7B9B Diffuse Wave Cannon (North/South), is followed up with 7B78
+      // 7B9C Diffuse Wave Cannon (East/West), is followed up with 7B77
+      type: 'StartsUsing',
+      netRegex: { id: ['7B9B', '7B9C'], source: 'Omega' },
+      durationSeconds: (_data, matches) => parseFloat(matches.castTime),
+      promise: async (data) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+        })).combatants;
+        // Sort highest ID to lowest ID
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) =>
+          (b.ID ?? 0) - (a.ID ?? 0);
+        data.combatantData = data.combatantData.sort(sortCombatants);
+      },
+      alertText: (data, matches, output) => {
+        // The higher id is first set
+        const omegaMNPCId = 15721;
+        const omegaFNPCId = 15722;
+        let isF1In = false;
+        let isM1In = false;
+        let isF2In = false;
+        let isM2In = false;
+        let dir1;
+        let dir2;
+        let dir3;
+        let dir4;
+        let distance1;
+        let distance2;
+        const findOmegaF = (combatant: PluginCombatantState) => combatant.BNpcID === omegaFNPCId;
+        const findOmegaM = (combatant: PluginCombatantState) => combatant.BNpcID === omegaMNPCId;
+
+        const [f1, f2] = data.combatantData.filter(findOmegaF);
+        const [m1, m2] = data.combatantData.filter(findOmegaM);
+
+        if (f1 === undefined || f2 === undefined || m1 === undefined || m2 === undefined) {
+          console.error(`Omega Safe Spots: missing m/f: ${JSON.stringify(data.combatantData)}`);
+          return;
+        }
+        if (f1.WeaponId === 4)
+          isF1In = true;
+        if (f2.WeaponId === 4)
+          isF2In = true;
+        if (m1.WeaponId === 4)
+          isM1In = true;
+        if (m2.WeaponId === 4)
+          isM2In = true;
+
+        if (isF1In)
+          distance1 = output.close!();
+        else if (isM1In)
+          distance1 = output.mid!();
+        else
+          distance1 = output.far!();
+
+        if (isF2In)
+          distance2 = output.close!();
+        else if (isM2In)
+          distance2 = output.mid!();
+        else
+          distance2 = output.far!();
+
+        // The combatants only spawn in these intercards:
+        // 92.93, 92.93 (NW)      107.07, 92.93 (NE)
+        // 92.93, 107.07 (SW)     107.07, 107.07 (SE)
+        // They will either spawn NW/SE first or NE/SW
+        // Boss cleave tells if it is actually east/west or north/south
+        if (matches.id === '7B9B') {
+          // East or West Safe
+          // Check for Sword/Shield to know if to go to Male or Female
+          const pos1 = (!isM1In && isF1In) ? f1.PosX : m1.PosX;
+          const pos2 = (!isM2In && isF2In) ? f2.PosY : m2.PosY;
+          dir1 = pos1 < 100 ? output.dirW!() : output.dirE!();
+          dir2 = pos2 < 100 ? output.dirN!() : output.dirS!();
+        } else {
+          // North or South Safe
+          const pos1 = (!isM1In && isF1In) ? f1.PosY : m1.PosY;
+          const pos2 = (!isM2In && isF2In) ? f2.PosX : m2.PosX;
+          dir1 = pos1 < 100 ? output.dirN!() : output.dirS!();
+          dir2 = pos2 < 100 ? output.dirW!() : output.dirE!();
+        }
+
+        // Secondary Spot for Staff + Sword
+        if (!isM1In && !isF1In) {
+          if (matches.id === '7B9B') {
+            // East/West Safe
+            if (f1.PosX < 100 && f1.PosY < 100) {
+              // NW
+              dir3 = output.dirWSW!();
+            } else if (f1.PosX < 100 && f1.PosY > 100) {
+              // SW
+              dir3 = output.dirWNW!();
+            } else if (f1.PosX > 100 && f1.PosY < 100) {
+              // NE
+              dir3 = output.dirESE!();
+            } else {
+              // SE
+              dir3 = output.dirENE!();
+            }
+          } else {
+            // North/South Safe
+            if (f1.PosX < 100 && f1.PosY < 100) {
+              // NW
+              dir3 = output.dirNNE!();
+            } else if (f1.PosX < 100 && f1.PosY > 100) {
+              // SW
+              dir3 = output.dirSSE!();
+            } else if (f1.PosX > 100 && f1.PosY < 100) {
+              // NE
+              dir3 = output.dirNNW!();
+            } else {
+              // SE
+              dir3 = output.dirSSW!();
+            }
+          }
+        }
+        if (!isM2In && !isF2In) {
+          if (matches.id === '7B9B') {
+            // East/West Safe
+            if (f2.PosX < 100 && f2.PosY < 100) {
+              // NW
+              dir4 = output.dirNNE!();
+            } else if (f2.PosX < 100 && f2.PosY > 100) {
+              // SW
+              dir4 = output.dirSSE!();
+            } else if (f2.PosX > 100 && f2.PosY < 100) {
+              // NE
+              dir4 = output.dirNNW!();
+            } else {
+              // SE
+              dir4 = output.dirSSW!();
+            }
+          } else {
+            // North/South Safe
+            if (f2.PosX < 100 && f2.PosY < 100) {
+              // NW
+              dir4 = output.dirWSW!();
+            } else if (f2.PosX < 100 && f2.PosY > 100) {
+              // SW
+              dir4 = output.dirWNW!();
+            } else if (f2.PosX > 100 && f2.PosY < 100) {
+              // NE
+              dir4 = output.dirESE!();
+            } else {
+              // SE
+              dir4 = output.dirENE!();
+            }
+          }
+        }
+
+        const firstSpot = output.safeSpot!({ distance: distance1, dir: dir1 });
+        const secondSpot = output.safeSpot!({ distance: distance2, dir: dir2 });
+
+        if (!isM1In && !isF1In && !isM2In && !isF2In) {
+          // Output two locations => two locations
+          const staffSwordFar1 = output.staffSwordFar!({ dir: dir1 });
+          const staffSwordFar2 = output.staffSwordFar!({ dir: dir2 });
+          const staffSwordMid1 = output.staffSwordMid!({ dir: dir3 });
+          const staffSwordMid2 = output.staffSwordMid!({ dir: dir4 });
+          const staffSwordCombo1 = output.staffSwordCombo!({
+            farText: staffSwordFar1,
+            midText: staffSwordMid1,
+          });
+          const staffSwordCombo2 = output.staffSwordCombo!({
+            farText: staffSwordFar2,
+            midText: staffSwordMid2,
+          });
+          return output.safeSpots!({ first: staffSwordCombo1, second: staffSwordCombo2 });
+        } else if (!isM1In && !isF1In) {
+          // Output two locations => one location
+          const staffSwordFar1 = output.staffSwordFar!({ dir: dir1 });
+          const staffSwordMid1 = output.staffSwordMid!({ dir: dir3 });
+          const staffSwordCombo1 = output.staffSwordCombo!({
+            farText: staffSwordFar1,
+            midText: staffSwordMid1,
+          });
+          return output.safeSpots!({ first: staffSwordCombo1, second: secondSpot });
+        } else if (!isM2In && !isF2In) {
+          // Output one location => two locations
+          const staffSwordFar1 = output.staffSwordFar!({ dir: dir2 });
+          const staffSwordMid1 = output.staffSwordMid!({ dir: dir4 });
+          const staffSwordCombo1 = output.staffSwordCombo!({
+            farText: staffSwordFar1,
+            midText: staffSwordMid1,
+          });
+          return output.safeSpots!({ first: firstSpot, second: staffSwordCombo1 });
+        }
+
+        return output.safeSpots!({ first: firstSpot, second: secondSpot });
+      },
+      outputStrings: {
+        safeSpots: {
+          en: '${first} => ${second}',
+        },
+        safeSpot: {
+          en: '${distance} ${dir}',
+        },
+        staffSwordCombo: {
+          en: '${farText} / ${midText}',
+        },
+        staffSwordFar: {
+          en: 'Far ${dir}',
+        },
+        staffSwordMid: {
+          en: 'Mid ${dir}',
+        },
+        close: {
+          en: 'Close',
+        },
+        mid: {
+          en: 'Mid',
+        },
+        far: {
+          en: 'Far',
+        },
+        dirN: Outputs.dirN,
+        dirE: Outputs.dirE,
+        dirS: Outputs.dirS,
+        dirW: Outputs.dirW,
+        dirNNW: Outputs.dirNNW,
+        dirNNE: Outputs.dirNNE,
+        dirENE: Outputs.dirENE,
+        dirESE: Outputs.dirESE,
+        dirSSE: Outputs.dirSSE,
+        dirSSW: Outputs.dirSSW,
+        dirWSW: Outputs.dirWSW,
+        dirWNW: Outputs.dirWNW,
+      },
+    },
+    {
+      id: 'TOP Omega Safe Spot 2 Reminder',
+      // 7B9B Diffuse Wave Cannon (North/South), is followed up with 7B78
+      // 7B9C Diffuse Wave Cannon (East/West), is followed up with 7B77
+      type: 'StartsUsing',
+      netRegex: { id: ['7B9B', '7B9C'], source: 'Omega' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime),
+      alertText: (data, matches, output) => {
+        // The lower id is second set
+        const omegaMNPCId = 15721;
+        const omegaFNPCId = 15722;
+        let isFIn = false;
+        let isMIn = false;
+        let dir1;
+        let dir2;
+        let distance;
+        const findOmegaF = (combatant: PluginCombatantState) => combatant.BNpcID === omegaFNPCId;
+        const findOmegaM = (combatant: PluginCombatantState) => combatant.BNpcID === omegaMNPCId;
+
+        const f = data.combatantData.filter(findOmegaF).pop();
+        const m = data.combatantData.filter(findOmegaM).pop();
+
+        if (f === undefined || m === undefined) {
+          console.error(
+            `Omega Safe Spot 2 Reminder: missing m/f: ${JSON.stringify(data.combatantData)}`,
+          );
+          return;
+        }
+        if (f.WeaponId === 4)
+          isFIn = true;
+        if (m.WeaponId === 4)
+          isMIn = true;
+
+        if (isFIn)
+          distance = output.close!();
+        else if (isMIn)
+          distance = output.mid!();
+        else
+          distance = output.far!();
+
+        // The combatants only spawn in these intercards:
+        // 92.93, 92.93 (NW)      107.07, 92.93 (NE)
+        // 92.93, 107.07 (SW)     107.07, 107.07 (SE)
+        // They will either spawn NW/SE first or NE/SW
+        // Boss cleave tells if it is actually east/west or north/south
+        if (matches.id === '7B9B') {
+          // East or West Safe, look for male side
+          // Check for Sword/Shield to know if to go to Male or Female
+          const pos = (!isMIn && isFIn) ? f.PosY : m.PosY;
+          dir1 = pos < 100 ? output.dirN!() : output.dirS!();
+        } else {
+          // North or South Safe
+          const pos = (!isMIn && isFIn) ? f.PosX : m.PosX;
+          dir1 = pos < 100 ? output.dirW!() : output.dirE!();
+        }
+
+        // Secondary Spot for Staff + Sword
+        if (!isMIn && !isFIn) {
+          if (matches.id === '7B9B') {
+            // East/West Safe
+            if (f.PosX < 100 && f.PosY < 100) {
+              // NW
+              dir2 = output.dirNNE!();
+            } else if (f.PosX < 100 && f.PosY > 100) {
+              // SW
+              dir2 = output.dirSSE!();
+            } else if (f.PosX > 100 && f.PosY < 100) {
+              // NE
+              dir2 = output.dirNNW!();
+            } else {
+              // SE
+              dir2 = output.dirSSW!();
+            }
+          } else {
+            // North/South Safe
+            if (f.PosX < 100 && f.PosY < 100) {
+              // NW
+              dir2 = output.dirWSW!();
+            } else if (f.PosX < 100 && f.PosY > 100) {
+              // SW
+              dir2 = output.dirWNW!();
+            } else if (f.PosX > 100 && f.PosY < 100) {
+              // NE
+              dir2 = output.dirESE!();
+            } else {
+              // SE
+              dir2 = output.dirENE!();
+            }
+          }
+          const staffSwordFar = output.staffSwordFar!({ dir: dir1 });
+          const staffSwordMid = output.staffSwordMid!({ dir: dir2 });
+          return output.staffSwordCombo!({ farText: staffSwordFar, midText: staffSwordMid });
+        }
+
+        return output.safeSpot!({ distance: distance, dir: dir1 });
+      },
+      outputStrings: {
+        safeSpot: {
+          en: '${distance} ${dir}',
+        },
+        staffSwordCombo: {
+          en: '${farText} / ${midText}',
+        },
+        staffSwordFar: {
+          en: 'Far ${dir}',
+        },
+        staffSwordMid: {
+          en: 'Mid ${dir}',
+        },
+        close: {
+          en: 'Close',
+        },
+        mid: {
+          en: 'Mid',
+        },
+        far: {
+          en: 'Far',
+        },
+        dirN: Outputs.dirN,
+        dirE: Outputs.dirE,
+        dirS: Outputs.dirS,
+        dirW: Outputs.dirW,
+        dirNNW: Outputs.dirNNW,
+        dirNNE: Outputs.dirNNE,
+        dirENE: Outputs.dirENE,
+        dirESE: Outputs.dirESE,
+        dirSSE: Outputs.dirSSE,
+        dirSSW: Outputs.dirSSW,
+        dirWSW: Outputs.dirWSW,
+        dirWNW: Outputs.dirWNW,
+      },
+    },
+    {
+      id: 'TOP P6 Cosmo Memory',
+      type: 'StartsUsing',
+      netRegex: { id: '7BA1', source: 'Alpha Omega', capture: false },
+      condition: (data) => data.role === 'tank',
+      alarmText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'TANK LB!!',
+          de: 'TANK LB!!',
+          fr: 'LB TANK !!',
+          ja: 'タンクLB!!',
+          cn: '坦克LB！！',
+          ko: '탱리밋!!',
+        },
+      },
+    },
+    {
+      id: 'TOP Cosmo Dive',
+      type: 'StartsUsing',
+      netRegex: { id: '7BA6', source: 'Alpha Omega', capture: false },
+      durationSeconds: 5,
+      alertText: (data, _matches, output) => {
+        if (data.role === 'tank')
+          return output.cosmoDiveTank!();
+        return output.cosmoDiveParty!();
+      },
+      outputStrings: {
+        // Yes, these are also tankbusters, but mit is so tight in this phase
+        // that everybody needs to know that already, and so just call positioning.
+        cosmoDiveTank: {
+          en: 'Tanks Near (party far)',
+        },
+        cosmoDiveParty: {
+          en: 'Party Far (tanks near)',
+        },
+      },
+    },
+    {
+      id: 'TOP Unlimited Wave Cannon',
+      type: 'StartsUsing',
+      netRegex: { id: '7BAC', source: 'Alpha Omega', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Bait Middle',
+        },
+      },
+    },
+    {
+      id: 'TOP Wave Cannon Wild Charge',
+      type: 'StartsUsing',
+      netRegex: { id: '7BA9', source: 'Alpha Omega', capture: false },
+      delaySeconds: 5,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Line Charge',
+        },
+      },
+    },
+    {
+      id: 'TOP Cosmo Meteor',
+      type: 'StartsUsing',
+      netRegex: { id: '7BB0', source: 'Alpha Omega', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Bait Middle',
         },
       },
     },
