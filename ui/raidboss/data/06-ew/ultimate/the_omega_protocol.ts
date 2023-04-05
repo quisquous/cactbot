@@ -1493,7 +1493,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '8015', source: 'Omega-M', capture: false },
       delaySeconds: 3.1,
-      supressSeconds: 1,
+      suppressSeconds: 1,
       promise: async (data) => {
         data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
