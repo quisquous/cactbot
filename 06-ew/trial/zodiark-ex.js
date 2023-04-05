@@ -212,6 +212,7 @@ Options.Triggers.push({
         underQuetz: {
           en: 'Under NW Quetzalcoatl',
           de: 'Unter NW Quetzalcoatl',
+          fr: 'Sous le Quetzalcóatl NO',
           ja: '北東の鳥の下',
           cn: '站在左上 (西北) 鸟',
           ko: '북동쪽 새 밑으로', // This is northeast. Because Korean folks go there.
@@ -456,6 +457,7 @@ Options.Triggers.push({
           // Similarly, there's a Algedon knockback call too.
           en: 'sides (for laser)',
           de: 'Seiten (für die Laser)',
+          fr: 'Côtés (pour les lasers)',
           ja: '横側 (レーザー回避)',
           cn: '两边 (躲避激光)',
           ko: '양옆 (레이저 피하기)',
@@ -463,6 +465,7 @@ Options.Triggers.push({
         middle: {
           en: 'middle (for laser)',
           de: 'Mitte (für die Laser)',
+          fr: 'Milieu (pour les lasers)',
           ja: '真ん中 (レーザー回避)',
           cn: '中间 (躲避激光)',
           ko: '중앙 (레이저 피하기)',
@@ -669,7 +672,7 @@ Options.Triggers.push({
         frontsides: {
           en: 'front sides',
           de: 'Vorne Seiten',
-          fr: 'Côtés devant',
+          fr: 'Devant sur les côtés',
           ja: '前の横側',
           cn: '前方两边',
           ko: '앞쪽 양옆',
@@ -677,7 +680,7 @@ Options.Triggers.push({
         backmiddle: {
           en: 'back middle',
           de: 'Hinten Mitte',
-          fr: 'Arrière au centre',
+          fr: 'Arrière centre',
           ja: '後ろの真ん中',
           cn: '后方中间',
           ko: '뒤쪽 중앙',
@@ -685,7 +688,7 @@ Options.Triggers.push({
         frontmiddle: {
           en: 'front middle',
           de: 'Vorne Mitte',
-          fr: 'Devant au centre',
+          fr: 'Avant centre',
           cn: '前方中间',
           ko: '앞쪽 중앙',
         },
