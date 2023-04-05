@@ -1490,9 +1490,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TOP Omega Pre-Safe Spot',
       // Adds appear at end of the cast, but the AddCombatants line appears around
       // the cast time of Omega Version
-      type: 'StartsUsing',
+      type: 'Ability',
       netRegex: { id: '8015', source: 'Omega-M', capture: false },
-      delaySeconds: 0.5,
+      delaySeconds: 3.1,
+      supressSeconds: 1,
       promise: async (data) => {
         data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
