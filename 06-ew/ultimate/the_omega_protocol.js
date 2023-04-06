@@ -1332,7 +1332,9 @@ Options.Triggers.push({
       // Track from Discharger (7B2E)
       type: 'Ability',
       netRegex: { id: '7B2E', source: 'Omega-M' },
-      condition: (data) => data.phase === 'sigma',
+      // TODO: temporarily disabled as it is returning inconsistent results even with longer delay.
+      // See: https://github.com/quisquous/cactbot/issues/5335
+      condition: (data) => false && data.phase === 'sigma',
       delaySeconds: 6.2,
       suppressSeconds: 1,
       promise: async (data, matches) => {
