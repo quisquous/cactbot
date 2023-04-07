@@ -1545,8 +1545,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TOP Omega Pre-Safe Spot',
-      // Adds appear at end of the cast, but the AddCombatants line appears around
-      // the cast time of Omega Version
+      // The combatants appear around the start of this cast, but the WeaponIds
+      // don't switch until ~2.7s after the ability goes off.
       type: 'Ability',
       netRegex: { id: '8015', source: 'Omega-M', capture: false },
       delaySeconds: 3.1,
@@ -1565,11 +1565,6 @@ const triggerSet: TriggerSet<Data> = {
         // The higher id is first set
         const omegaMNPCId = 15721;
         const omegaFNPCId = 15722;
-        let isFIn = false;
-        let isMIn = false;
-        let northSouthSwordStaffDir;
-        let eastWestSwordStaffDir;
-        let distance;
         const findOmegaF = (combatant: PluginCombatantState) => combatant.BNpcID === omegaFNPCId;
         const findOmegaM = (combatant: PluginCombatantState) => combatant.BNpcID === omegaMNPCId;
 
@@ -1580,19 +1575,9 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`Omega Safe Spots: missing m/f: ${JSON.stringify(data.combatantData)}`);
           return;
         }
-        console.log(`Omega Safe Pre Spots: m/f: (${JSON.stringify(m)}), (${JSON.stringify(f)})); `);
 
-        if (f.WeaponId === 4)
-          isFIn = true;
-        if (m.WeaponId === 4)
-          isMIn = true;
-
-        if (isFIn)
-          distance = output.close!();
-        else if (isMIn)
-          distance = output.mid!();
-        else
-          distance = output.far!();
+        const isFIn = f.WeaponId === 4;
+        const isMIn = m.WeaponId === 4;
 
         // The combatants only spawn in these intercards:
         // 92.93, 92.93 (NW)      107.07, 92.93 (NE)
@@ -1604,56 +1589,35 @@ const triggerSet: TriggerSet<Data> = {
         const northSouthDir = pos1 < 100 ? output.dirN!() : output.dirS!();
         const eastWestDir = pos2 < 100 ? output.dirW!() : output.dirE!();
 
-        // Secondary Spot for Staff + Sword
-        if (!isMIn && !isFIn) {
-          // East/West Safe
-          if (f.PosX < 100 && f.PosY < 100) {
-            // NW
-            eastWestSwordStaffDir = output.dirNNE!();
-          } else if (f.PosX < 100 && f.PosY > 100) {
-            // SW
-            eastWestSwordStaffDir = output.dirSSE!();
-          } else if (f.PosX > 100 && f.PosY < 100) {
-            // NE
-            eastWestSwordStaffDir = output.dirNNW!();
-          } else {
-            // SE
-            eastWestSwordStaffDir = output.dirSSW!();
-          }
-          // North/South Safe
-          if (f.PosX < 100 && f.PosY < 100) {
-            // NW
-            northSouthSwordStaffDir = output.dirWSW!();
-          } else if (f.PosX < 100 && f.PosY > 100) {
-            // SW
-            northSouthSwordStaffDir = output.dirWNW!();
-          } else if (f.PosX > 100 && f.PosY < 100) {
-            // NE
-            northSouthSwordStaffDir = output.dirESE!();
-          } else {
-            // SE
-            northSouthSwordStaffDir = output.dirENE!();
-          }
-          const staffSwordFar = output.staffSwordFar!({
-            northSouth: northSouthDir,
-            eastWest: eastWestDir,
-          });
-          const staffSwordMid = output.staffSwordMid!({
-            northSouth: northSouthSwordStaffDir,
-            eastWest: eastWestSwordStaffDir,
-          });
-          return output.staffSwordCombo!({ farText: staffSwordFar, midText: staffSwordMid });
+        if (isFIn) {
+          if (isMIn)
+            return output.legsShield!({ northSouth: northSouthDir, eastWest: eastWestDir });
+          return output.legsSword!({ northSouth: northSouthDir, eastWest: eastWestDir });
         }
+        if (isMIn)
+          return output.staffShield!({ northSouth: northSouthDir, eastWest: eastWestDir });
 
-        return output.safeSpot!({
-          distance: distance,
+        const staffSwordFar = output.staffSwordFar!({
           northSouth: northSouthDir,
           eastWest: eastWestDir,
         });
+        const eastWestSwordStaffDir = staffSwordMidHelper(true, f.PosX, f.PosY, output);
+        const northSouthSwordStaffDir = staffSwordMidHelper(false, f.PosX, f.PosY, output);
+        const staffSwordMid = output.staffSwordMid!({
+          northSouth: northSouthSwordStaffDir,
+          eastWest: eastWestSwordStaffDir,
+        });
+        return output.staffSwordCombo!({ farText: staffSwordFar, midText: staffSwordMid });
       },
       outputStrings: {
-        safeSpot: {
-          en: '${distance} ${northSouth} or ${eastWest}',
+        legsSword: {
+          en: 'Close ${northSouth} or ${eastWest}',
+        },
+        legsShield: {
+          en: 'Close ${northSouth} or ${eastWest}',
+        },
+        staffShield: {
+          en: 'In ${northSouth} or ${eastWest}',
         },
         staffSwordCombo: {
           en: '${farText} / ${midText}',
@@ -1663,15 +1627,6 @@ const triggerSet: TriggerSet<Data> = {
         },
         staffSwordMid: {
           en: 'Mid ${northSouth} or ${eastWest}',
-        },
-        close: {
-          en: 'Close',
-        },
-        mid: {
-          en: 'Mid',
-        },
-        far: {
-          en: 'Far',
         },
         dirN: Outputs.dirN,
         dirE: Outputs.dirE,
