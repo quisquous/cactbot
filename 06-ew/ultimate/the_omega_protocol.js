@@ -1550,7 +1550,6 @@ Options.Triggers.push({
         // Boss cleave tells if it is actually east/west or north/south
         let dir1;
         let dir2;
-        let rotate;
         if (isFirstEastWest) {
           // East or West Safe
           // Check for Sword/Shield to know if to go to Male or Female
@@ -1558,18 +1557,13 @@ Options.Triggers.push({
           const pos2 = (!isM2In && isF2In) ? f2.PosY : m2.PosY;
           dir1 = pos1 < 100 ? output.dirW() : output.dirE();
           dir2 = pos2 < 100 ? output.dirN() : output.dirS();
-          const isLeftRotation = pos1 < 100 && pos2 < 100 || pos1 > 100 && pos2 > 100;
-          rotate = isLeftRotation ? 'left' : 'right';
         } else {
           // North or South Safe
           const pos1 = (!isM1In && isF1In) ? f1.PosY : m1.PosY;
           const pos2 = (!isM2In && isF2In) ? f2.PosX : m2.PosX;
           dir1 = pos1 < 100 ? output.dirN() : output.dirS();
           dir2 = pos2 < 100 ? output.dirW() : output.dirE();
-          const isRightRotation = pos1 < 100 && pos2 < 100 || pos1 > 100 && pos2 > 100;
-          rotate = isRightRotation ? 'right' : 'left';
         }
-        data.omegaDodgeRotation = rotate;
         let firstSpot;
         if (isF1In) {
           if (isM1In)
@@ -1604,18 +1598,11 @@ Options.Triggers.push({
             });
           }
         }
-        const rotateStr = rotate === 'right' ? output.rotateRight() : output.rotateLeft();
-        return output.safeSpots({ first: firstSpot, rotate: rotateStr, second: secondSpot });
+        return output.safeSpots({ first: firstSpot, second: secondSpot });
       },
       outputStrings: {
         safeSpots: {
-          en: '${first} => ${rotate} => ${second}',
-        },
-        rotateRight: {
-          en: 'Right',
-        },
-        rotateLeft: {
-          en: 'Left',
+          en: '${first} => ${second}',
         },
         // The two legs are split in case somebody wants a "go to M" or "go to F" style call.
         legsSword: {
@@ -1691,41 +1678,31 @@ Options.Triggers.push({
           const pos = (!isMIn && isFIn) ? f.PosY : m.PosY;
           dir1 = pos < 100 ? output.dirN() : output.dirS();
         }
-        const rotateStr = data.omegaDodgeRotation === 'right'
-          ? output.rotateRight()
-          : output.rotateLeft();
         if (isFIn) {
           if (isMIn)
-            return output.legsShield({ rotate: rotateStr, dir: dir1 });
-          return output.legsSword({ rotate: rotateStr, dir: dir1 });
+            return output.legsShield({ dir: dir1 });
+          return output.legsSword({ dir: dir1 });
         }
         if (isMIn)
-          return output.staffShield({ rotate: rotateStr, dir: dir1 });
+          return output.staffShield({ dir: dir1 });
         const staffMidDir1 = staffSwordMidHelper(isSecondEastWest, f.PosX, f.PosY, output);
         return output.staffSwordCombo({
-          rotate: rotateStr,
           farText: output.staffSwordFar({ dir: dir1 }),
           midText: output.staffSwordMid({ dir: staffMidDir1 }),
         });
       },
       outputStrings: {
-        rotateRight: {
-          en: 'Right',
-        },
-        rotateLeft: {
-          en: 'Left',
-        },
         legsSword: {
-          en: '${rotate} => Close ${dir}',
+          en: 'Close ${dir}',
         },
         legsShield: {
-          en: '${rotate} => Close ${dir}',
+          en: 'Close ${dir}',
         },
         staffShield: {
-          en: '${rotate} => Mid ${dir}',
+          en: 'Mid ${dir}',
         },
         staffSwordCombo: {
-          en: '${rotate} => ${farText} / ${midText}',
+          en: '${farText} / ${midText}',
         },
         staffSwordFar: {
           en: 'Far ${dir}',
