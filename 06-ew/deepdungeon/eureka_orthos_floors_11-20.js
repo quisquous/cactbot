@@ -11,4 +11,24 @@ Options.Triggers.push({
     // ---------------- Floor 20 Boss: Cloning Node ----------------
     // intentionally blank
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Orthos Sawtooth': 'Orthos-Sägezahn',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Orthos Sawtooth': 'dentata Orthos',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Orthos Sawtooth': 'オルト・ソウトゥース',
+      },
+    },
+  ],
 });

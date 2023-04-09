@@ -23,4 +23,30 @@ Options.Triggers.push({
       response: Responses.aoe(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Gancanagh': 'Gancanagh',
+        'Orthos Behemoth': 'Orthos-Behemoth',
+        'Orthos Grenade': 'Orthos-Granate',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Gancanagh': 'Gancanagh',
+        'Orthos Behemoth': 'béhémoth Orthos',
+        'Orthos Grenade': 'grenado Orthos',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Gancanagh': 'ガンカナグー',
+        'Orthos Behemoth': 'オルト・ベヒーモス',
+        'Orthos Grenade': 'オルト・グレネード',
+      },
+    },
+  ],
 });

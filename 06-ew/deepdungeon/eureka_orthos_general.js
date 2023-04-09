@@ -309,4 +309,30 @@ Options.Triggers.push({
       response: Responses.getOut(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Lamia Queen': 'Lamia-Königin',
+        'Meracydian Clone': 'meracydisch(?:e|er|es|en) Klon',
+        'Mimic': 'Mimik',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Lamia Queen': 'reine lamia',
+        'Meracydian Clone': 'clone de Méracydien',
+        'Mimic': 'mimic',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Lamia Queen': 'ラミアクィーン',
+        'Meracydian Clone': 'メラシディアン・クローン',
+        'Mimic': 'ミミック',
+      },
+    },
+  ],
 });
