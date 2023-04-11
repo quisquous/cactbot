@@ -5,7 +5,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Eureka Orthos Floors 71-80
-// TODO: Orthos Kargas Winds of Winter untelegraphed AoE, stun or LoS
 
 export interface Data extends RaidbossData {
   charge?: boolean;
@@ -88,6 +87,27 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '7F9A', source: 'Bird of Orthos' },
       response: Responses.awayFrom(),
     },
+    {
+      id: 'EO 71-80 Orthos Kargas Winds of Winter',
+      // lethal large AoE; can stun or break line-of-sight to avoid
+      type: 'StartsUsing',
+      netRegex: { id: '81AA', source: 'Orthos Kargas' },
+      alertText: (data, matches, output) => {
+        if (data.CanStun())
+          return output.stunOrBreakLOS!({ name: matches.source });
+        return output.breakLOS!({ name: matches.source });
+      },
+      outputStrings: {
+        stunOrBreakLOS: {
+          en: 'Stun or Break line-of-sight to ${name}',
+        },
+        breakLOS: {
+          en: 'Break line-of-sight to ${name}',
+          de: 'Unterbreche Sichtlinie zu ${name}',
+          ko: '${name}의 시야 밖으로 숨기',
+        },
+      },
+    },
     // ---------------- Floor 80 Boss: Proto-Kaliya ----------------
     {
       id: 'EO 71-80 Proto-Kaliya Resonance',
@@ -128,7 +148,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EO 71-80 Proto-Kaliya Nanospore Jet Player Charge Collect',
       // D5A = Positive Charge
-      // D5B - Negative Charge
+      // D5B = Negative Charge
       type: 'GainsEffect',
       netRegex: { effectId: 'D5[AB]' },
       condition: Conditions.targetIsYou(),
@@ -139,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EO 71-80 Proto-Kaliya Nanospore Jet Drone Charge Collect',
       // D58 = Positive Charge
-      // D59 - Negative Charge
+      // D59 = Negative Charge
       type: 'GainsEffect',
       netRegex: { effectId: 'D5[89]', target: 'Weapons Drone' },
       run: (data, matches) => {
@@ -198,6 +218,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Bird of Orthos': 'Orthos-Vogel',
         'Orthos Coeurl': 'Orthos-Coeurl',
@@ -213,6 +234,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Bird of Orthos': 'oiseau d\'Eurêka Orthos',
         'Orthos Coeurl': 'coeurl Orthos',
@@ -228,6 +250,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Bird of Orthos': 'バード・オブ・オルト',
         'Orthos Coeurl': 'オルト・クァール',

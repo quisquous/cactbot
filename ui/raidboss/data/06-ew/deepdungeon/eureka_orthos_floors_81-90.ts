@@ -1,13 +1,36 @@
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Eureka Orthos Floors 81-90
-// TODO: Administrator Interception Sequence order of AoEs to dodge
-// TODO: Administrator Salvo Script safe spot to dodge AoEs
 
-export type Data = RaidbossData;
+export type salvoEgg = {
+  location: number;
+  heading: number;
+};
+
+export interface Data extends RaidbossData {
+  interception?: boolean;
+  interceptionSequence?: string[];
+  salvo?: boolean;
+  salvoEggs?: salvoEgg[];
+  near?: number;
+  far?: number;
+}
+
+const interceptionOutputStrings = {
+  egg: {
+    en: 'egg',
+  },
+  cube: {
+    en: 'cubes',
+  },
+  ball: {
+    en: 'ball',
+  },
+};
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EurekaOrthosFloors81_90,
@@ -125,10 +148,210 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '7AE0', source: 'Administrator', capture: false },
       response: Responses.bigAoe(),
     },
+    {
+      id: 'EO 81-90 Administrator Support Systems Cleanup',
+      type: 'StartsUsing',
+      netRegex: { id: '7AD9', source: 'Administrator', capture: false },
+      run: (data) => {
+        delete data.interception;
+        delete data.interceptionSequence;
+        delete data.salvo;
+        delete data.salvoEggs;
+        delete data.near;
+        delete data.far;
+      },
+    },
+    {
+      id: 'EO 81-90 Administrator Interception Sequence Collect',
+      type: 'StartsUsing',
+      netRegex: { id: '7ADA', source: 'Administrator', capture: false },
+      run: (data) => {
+        data.interception = true;
+      },
+    },
+    {
+      id: 'EO 81-90 Administrator Interception Sequence Interceptor α Collect',
+      // HeadMarker ids do not appear to have random offsets in Eureka Orthos
+      // 0186 = first
+      // 0187 = second
+      // 0188 = third
+      type: 'HeadMarker',
+      netRegex: { id: '018[6-8]', target: 'Interceptor α' },
+      run: (data, matches, output) => {
+        const firstHeadmarker = parseInt('0186', 16);
+        const num = parseInt(matches.id, 16) - firstHeadmarker;
+        data.interceptionSequence ??= [];
+        data.interceptionSequence[num] = output.egg!();
+      },
+      outputStrings: interceptionOutputStrings,
+    },
+    {
+      id: 'EO 81-90 Administrator Interception Sequence Interceptor β Collect',
+      // HeadMarker ids do not appear to have random offsets in Eureka Orthos
+      // 0186 = first
+      // 0187 = second
+      // 0188 = third
+      type: 'HeadMarker',
+      netRegex: { id: '018[6-8]', target: 'Interceptor β' },
+      suppressSeconds: 1,
+      run: (data, matches, output) => {
+        const firstHeadmarker = parseInt('0186', 16);
+        const num = parseInt(matches.id, 16) - firstHeadmarker;
+        data.interceptionSequence ??= [];
+        data.interceptionSequence[num] = output.cube!();
+      },
+      outputStrings: interceptionOutputStrings,
+    },
+    {
+      id: 'EO 81-90 Administrator Interception Sequence Interceptor γ Collect',
+      // HeadMarker ids do not appear to have random offsets in Eureka Orthos
+      // 0186 = first
+      // 0187 = second
+      // 0188 = third
+      type: 'HeadMarker',
+      netRegex: { id: '018[6-8]', target: 'Interceptor γ' },
+      run: (data, matches, output) => {
+        const firstHeadmarker = parseInt('0186', 16);
+        const num = parseInt(matches.id, 16) - firstHeadmarker;
+        data.interceptionSequence ??= [];
+        data.interceptionSequence[num] = output.ball!();
+      },
+      outputStrings: interceptionOutputStrings,
+    },
+    {
+      id: 'EO 81-90 Administrator Interception Sequence',
+      // 7ADB = Interceptor α (egg) large cone AoE
+      // 7ADC = Interceptor β (cube) line AoE
+      // 7ADD = Interceptor γ (ball) donut AoE
+      type: 'StartsUsing',
+      netRegex: { id: '7AD[B-D]', capture: false },
+      condition: (data) => (data.interception),
+      durationSeconds: 12,
+      suppressSeconds: 8,
+      infoText: (data, _matches, output) => {
+        if (data.interceptionSequence === undefined || data.interceptionSequence.length < 3) {
+          console.error(`Administrator Interception Sequence: array error`);
+          return;
+        }
+        return output.text!({
+          first: data.interceptionSequence[0],
+          second: data.interceptionSequence[1],
+          third: data.interceptionSequence[2],
+        });
+      },
+      outputStrings: {
+        text: {
+          en: '${first} => ${second} => ${third}',
+          de: '${first} => ${second} => ${third}',
+          fr: '${first} => ${second} => ${third}',
+          ja: '${first} => ${second} => ${third}',
+          cn: '${first} => ${second} => ${third}',
+          ko: '${first} => ${second} => ${third}',
+        },
+      },
+    },
+    {
+      id: 'EO 81-90 Administrator Salvo Script Start Collect',
+      type: 'StartsUsing',
+      netRegex: { id: '7ADF', source: 'Administrator', capture: false },
+      run: (data) => {
+        data.salvo = true;
+      },
+    },
+    {
+      id: 'EO 81-90 Administrator Salvo Script',
+      type: 'StartsUsing',
+      netRegex: { id: '8040', source: 'Interceptor α' },
+      condition: (data) => (data.salvo),
+      durationSeconds: 8,
+      infoText: (data, matches, output) => {
+        // convert heading into 0=N, 1=E, 2=S, 3=W
+        const heading = Math.round(2 - 2 * parseFloat(matches.heading) / Math.PI) % 4;
+
+        // convert (x,y) location into 0=N, 1=E, 2=S, 3=W
+        // center is (-300,-300)
+        const x = parseFloat(matches.x) + 300;
+        const y = parseFloat(matches.y) + 300;
+        const location = Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
+
+        data.salvoEggs ??= [];
+        data.salvoEggs.push({ 'location': location, 'heading': heading });
+
+        if (data.salvoEggs.length < 2)
+          return;
+
+        const egg1 = data.salvoEggs.pop();
+        const egg2 = data.salvoEggs.pop();
+        if (egg1 === undefined || egg2 === undefined) {
+          console.error(`Administrator Salvo Script: eggs undefined`);
+          return;
+        }
+
+        if (
+          Math.abs(egg1.location - egg1.heading) === 2 &&
+          Math.abs(egg2.location - egg2.heading) === 2
+        ) {
+          // both eggs are facing towards the center; safespot is the corner between the eggs
+          // 0=N, 1=NE, 2=E, 3=SE, 4=S, 5=SW, 6=W, 7=NW
+          const safeSpot = Math.abs(egg1.location - egg2.location) === 3
+            ? 7
+            : (egg1.location + egg2.location);
+
+          const safeMap: { [safeSpot: number]: string } = {
+            1: output.between!({ safe: output.northEast!() }),
+            3: output.between!({ safe: output.southEast!() }),
+            5: output.between!({ safe: output.southWest!() }),
+            7: output.between!({ safe: output.northWest!() }),
+          };
+          return safeMap[safeSpot];
+        }
+
+        if (Math.abs(egg1.heading - egg2.heading) === 2) {
+          // both eggs are facing each other; safespot is the corner perpendicular to the heading of the eggs
+          if (Math.abs(egg1.location - egg1.heading) === 2) {
+            // egg1 is adjacent to the safespot, egg2 is opposite the safespot
+            data.near = egg1.location;
+            data.far = (egg2.location + 2) % 4;
+          } else {
+            // egg1 is opposite the safespot, egg2 is adjacent to the safespot
+            data.near = egg2.location;
+            data.far = (egg1.location + 2) % 4;
+          }
+
+          const safeSpot = Math.abs(data.near - data.far) === 3 ? 7 : (data.near + data.far);
+
+          const safeMap: { [safeSpot: number]: string } = {
+            1: output.safe!({ safe: output.northEast!() }),
+            3: output.safe!({ safe: output.southEast!() }),
+            5: output.safe!({ safe: output.southWest!() }),
+            7: output.safe!({ safe: output.northWest!() }),
+          };
+          return safeMap[safeSpot];
+        }
+      },
+      outputStrings: {
+        between: {
+          en: '${safe}, between eggs',
+        },
+        safe: {
+          en: '${safe}',
+          de: '${safe}',
+          fr: '${safe}',
+          ja: '${safe}',
+          cn: '${safe}',
+          ko: '${safe}',
+        },
+        northEast: Outputs.northeast,
+        southEast: Outputs.southeast,
+        southWest: Outputs.southwest,
+        northWest: Outputs.northwest,
+      },
+    },
   ],
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Administrator': 'Administrator',
         'Orthoiron Corse': 'Orthos-Eisenleichnam',
@@ -145,6 +368,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Administrator': 'Administrateur',
         'Orthoiron Corse': 'cors de fer Orthos',
@@ -161,6 +385,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Administrator': 'アドミニストレーター',
         'Orthoiron Corse': 'オルト・アイアンコース',
