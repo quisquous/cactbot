@@ -1421,11 +1421,23 @@ Options.Triggers.push({
       outputStrings: nearDistantOutputStrings,
     },
     {
+      id: 'TOP P5 Omega Tether Detector',
+      type: 'Tether',
+      netRegex: { id: '0059', capture: false },
+      condition: (data) => data.phase === 'omega',
+      suppressSeconds: 30,
+      run: (data) => data.seenOmegaTethers = true,
+    },
+    {
       id: 'TOP P5 Omega Tether Bait',
       type: 'GainsEffect',
       // Quickening Dynamis
       netRegex: { effectId: 'D74', count: '03' },
-      condition: (data, matches) => data.phase === 'omega' && matches.target === data.me,
+      condition: (data, matches) => {
+        if (data.phase !== 'omega' || data.seenOmegaTethers)
+          return false;
+        return matches.target === data.me;
+      },
       durationSeconds: 8,
       alarmText: (_data, _matches, output) => output.baitTethers(),
       outputStrings: {
