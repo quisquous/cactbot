@@ -2851,6 +2851,10 @@ const data: FisherData = {
         'euphotischen Pirarucu',
         'euphotisches Pirarucu',
         'euphotischer Pirarucu',
+        'euphotische Pirarucus',
+        'euphotischen Pirarucus',
+        'euphotisches Pirarucus',
+        'euphotischer Pirarucus',
       ],
       '12804': [
         'Indigobarsch',
@@ -6268,6 +6272,16 @@ const data: FisherData = {
         'Argonauta Argos',
       ],
       '37853': 'Planetes',
+      '38792': 'Platinpferdchen',
+      '38793': 'Clavis-Wächter',
+      '38798': [
+        'Prinzessinnenfisch',
+        'Prinzessinnenfische',
+      ],
+      '38799': [
+        'Pailletten-Pirarucu',
+        'Pailletten-Pirarucus',
+      ],
       '38810': [
         'Ondo-Alge',
         'Ondo-Algen',
@@ -9822,6 +9836,19 @@ const data: FisherData = {
       ],
       '37852': 'Argonauta argo',
       '37853': 'planetes',
+      '38792': [
+        'platinum seahorse',
+        'platinum seahorses',
+      ],
+      '38793': [
+        'clavekeeper',
+        'clavekeepers',
+      ],
+      '38798': [
+        'mirror image',
+        'mirror images',
+      ],
+      '38799': 'spangled pirarucu',
       '38810': [
         'strip of Ondo kelp',
         'strips of Ondo kelp',
@@ -14363,6 +14390,22 @@ const data: FisherData = {
       ],
       '37852': 'argonauta argo',
       '37853': 'planetes',
+      '38792': [
+        'hippocampe platiné',
+        'hippocampes platinés',
+      ],
+      '38793': [
+        'gardienne du Clavis',
+        'gardiennes du Clavis',
+      ],
+      '38798': [
+        'moirure-de-Beaumiroir',
+        'moirures-de-Beaumiroir',
+      ],
+      '38799': [
+        'pirarucu royal',
+        'pirarucus royaux',
+      ],
       '38810': [
         'touffe de varech ondo',
         'touffes de varech ondo',
@@ -15634,6 +15677,10 @@ const data: FisherData = {
       '37851': '破軍星の欠片',
       '37852': 'アルゴノート・アルゴ',
       '37853': '水面の恒星',
+      '38792': 'プラチナホース',
+      '38793': 'クレイヴキーパー',
+      '38798': '手鏡の残像',
+      '38799': 'シークインピラルク',
       '38810': 'オンドケルプ',
       '38812': 'プルプラコッド',
       '38814': 'イル・リダ',
@@ -17255,6 +17302,30 @@ const data: FisherData = {
       '37852': '아르고넛 아르고',
       '37853': '수중항성',
       '38275': '왕성게',
+      '38324': '신선한 외계미역',
+      '38325': '우주 청어',
+      '38326': '혜성 가다랑어',
+      '38327': '비취수정어',
+      '38328': '메탄복',
+      '38329': '개척용 작은 물고기',
+      '38330': '수질 조사용 생체 시료',
+      '38331': '비료용 작은 물고기',
+      '38332': '커피 개선용 구슬말',
+      '38333': '엘리시온산 연체어',
+      '38334': '안전모용 끈적고기',
+      '38335': '사료용 작은 물고기',
+      '38336': '엘리시온산 바닷고기',
+      '38337': '엘리시온산 해조어',
+      '38338': '카렐리언 진골어류',
+      '38339': '유원 구획 괴어',
+      '38340': '추천 갑각류',
+      '38341': '사료용 갑각류',
+      '38342': '보금자리용 산호',
+      '38343': '환경 개선용 물고기',
+      '38344': '용이 좋아하는 경골어',
+      '38345': '솜해조구',
+      '38346': '토양 정화용 약어',
+      '38347': '양치용 해면동물',
     },
   },
   'placefish': {
@@ -19259,6 +19330,7 @@ const data: FisherData = {
       27434,
       28067,
       28189,
+      38792,
     ],
     '3295': [
       27425,
@@ -19322,6 +19394,7 @@ const data: FisherData = {
       27453,
       33240,
       33319,
+      38793,
     ],
     '3303': [
       27446,
@@ -19377,6 +19450,7 @@ const data: FisherData = {
       27475,
       28191,
       30435,
+      38798,
     ],
     '3309': [
       27469,
@@ -19432,6 +19506,7 @@ const data: FisherData = {
       27491,
       28071,
       33243,
+      38799,
     ],
     '3316': [
       27482,
@@ -22654,6 +22729,11 @@ const data: FisherData = {
       '4081': '림네 데카옥토',
       '4082': '림네 트리아 α',
       '4083': '림네 트리아 β',
+      '4191': '엘리시온 농업 구획',
+      '4192': '엘리시온 해양 구획 α',
+      '4193': '엘리시온 해양 구획 β',
+      '4194': '엘리시온 유원 구획 α',
+      '4195': '엘리시온 유원 구획 β',
     },
   },
   'tackle': {
@@ -23053,6 +23133,9 @@ const data: FisherData = {
       '36597': [
         'Sternenstaubköder',
       ],
+      '38808': [
+        'Mowen-Ball',
+      ],
     },
     'en': {
       '2585': 'lugworm',
@@ -23148,6 +23231,7 @@ const data: FisherData = {
       '36595': 'chimera worm',
       '36596': 'panic jig',
       '36597': 'pot of stardust',
+      '38808': 'select bait ball',
     },
     'fr': {
       '2585': 'ver de vase',
@@ -23243,6 +23327,7 @@ const data: FisherData = {
       '36595': 'ver chimérique',
       '36596': 'leurre angoissant',
       '36597': 'cristal de poussière d\'étoile',
+      '38808': 'boulette des merveilles',
     },
     'ja': {
       '2585': 'ラグワーム',
@@ -23338,6 +23423,7 @@ const data: FisherData = {
       '36595': 'キメラワーム',
       '36596': 'パニックジグ',
       '36597': 'スターダスト',
+      '38808': 'モーエンボール',
     },
     'ko': {
       '2585': '갯지렁이',
