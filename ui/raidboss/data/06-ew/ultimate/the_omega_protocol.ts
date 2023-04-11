@@ -1571,7 +1571,7 @@ const triggerSet: TriggerSet<Data> = {
       // don't switch until ~2.7s after the ability goes off.
       type: 'Ability',
       netRegex: { id: '8015', source: 'Omega-M', capture: false },
-      delaySeconds: 3.1,
+      delaySeconds: 4,
       suppressSeconds: 1,
       promise: async (data) => {
         data.combatantData = [];
