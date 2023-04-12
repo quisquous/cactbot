@@ -1,5 +1,6 @@
 import NetRegexes from '../../../../resources/netregexes';
 import outputs from '../../../../resources/outputs';
+import { ConfigValue } from '../../../../resources/user_config';
 import Util from '../../../../resources/util';
 import ZoneId from '../../../../resources/zone_id';
 import { RaidbossData } from '../../../../types/data';
@@ -14,7 +15,10 @@ const strikingDummyNames: LocaleText = {
   ko: '나무인형',
 };
 
+export type ConfigIds = 'testTriggerOutput';
+
 export interface Data extends RaidbossData {
+  triggerSetConfig: { [key in ConfigIds]: ConfigValue };
   delayedDummyTimestampBefore: number;
   delayedDummyTimestampAfter: number;
   pokes: number;
@@ -23,6 +27,19 @@ export interface Data extends RaidbossData {
 const triggerSet: TriggerSet<Data> = {
   id: 'CactbotTest',
   zoneId: ZoneId.MiddleLaNoscea,
+  config: [
+    {
+      id: 'testTriggerOutput',
+      name: {
+        en: 'Output for "/echo cactbot test config"',
+      },
+      type: 'string',
+      default: () => {
+        // Test default function.
+        return 'Unset Option';
+      },
+    },
+  ],
   timelineFile: 'test.txt',
   // timeline here is additions to the timeline.  They can
   // be strings, or arrays of strings, or functions that
@@ -290,10 +307,24 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'Test Config',
+      type: 'GameLog',
+      netRegex: NetRegexes.echo({ line: 'cactbot test config.*?', capture: false }),
+      alertText: (data, _matches, output) => {
+        return output.text!({ value: data.triggerSetConfig.testTriggerOutput.toString() });
+      },
+      outputStrings: {
+        text: {
+          en: 'Config Value: ${value}',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
       locale: 'de',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
         'You bow courteously to the striking dummy':
@@ -322,6 +353,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'fr',
+      missingTranslations: true,
       replaceSync: {
         'cactbot lang': 'cactbot langue',
         'cactbot test response': 'cactbot test de réponse',
@@ -354,6 +386,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'ja',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*は木人に別れの挨拶をした',
         'You bow courteously to the striking dummy': '.*は木人にお辞儀した',
@@ -381,6 +414,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'cn',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*向木人告别',
         'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',
@@ -408,6 +442,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'ko',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
         'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',

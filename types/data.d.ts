@@ -1,5 +1,6 @@
 import { Lang } from '../resources/languages';
 import PartyTracker from '../resources/party';
+import { ConfigValue } from '../resources/user_config';
 
 import { SystemInfo } from './event';
 import { Job, Role } from './job';
@@ -30,6 +31,7 @@ export interface RaidbossData {
   currentHP: number;
   options: BaseOptions;
   inCombat: boolean;
+  triggerSetConfig: { [key: string]: ConfigValue };
   ShortName: (x?: string) => string;
   StopCombat: () => void;
   /** @deprecated Use parseFloat instead */
