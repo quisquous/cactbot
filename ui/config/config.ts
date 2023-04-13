@@ -516,6 +516,9 @@ export class CactbotConfigurator {
       case 'integer':
         this.buildInteger(groupDiv, opt, group, path);
         break;
+      case 'string':
+        this.buildInteger(groupDiv, opt, group, path);
+        break;
       case 'directory':
         this.buildDirectory(groupDiv, opt, group, path);
         break;
@@ -729,6 +732,29 @@ export class CactbotConfigurator {
     const optIdPath = [...path ?? [], opt.id];
     input.value = this.getNumberOption(group, optIdPath, parseInt(opt.default.toString()))
       .toString();
+    const setFunc = () => this.setOption(group, optIdPath, input.value);
+    input.onchange = setFunc;
+    input.oninput = setFunc;
+
+    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(div);
+  }
+
+  buildString(parent: HTMLElement, opt: ConfigEntry, group: string, path?: string[]): void {
+    const div = document.createElement('div');
+    div.classList.add('option-input-container');
+
+    const input = document.createElement('input');
+    input.classList.add('input-string-field');
+    div.appendChild(input);
+
+    const optIdPath = [...path ?? [], opt.id];
+    input.type = 'text';
+    input.value = this.getStringOption(
+      group,
+      optIdPath,
+      opt.default.toString(),
+    ).toString();
     const setFunc = () => this.setOption(group, optIdPath, input.value);
     input.onchange = setFunc;
     input.oninput = setFunc;

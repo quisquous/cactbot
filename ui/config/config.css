@@ -396,6 +396,11 @@ input[type="text"] {
   text-align: left;
 }
 
+input[type="text"].input-string-field {
+  width: min(200px, 100%);
+  text-align: left;
+}
+
 input[type="submit"] {
   padding: 3px;
 }
@@ -403,4 +408,9 @@ input[type="submit"] {
 select {
   padding: 3px;
   width: fit-content;
+}
+
+input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
 }
