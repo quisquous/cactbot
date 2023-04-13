@@ -57,7 +57,7 @@ export type ConfigValue = string | number | boolean;
 export type ConfigEntry = {
   id: string;
   name: LocaleText;
-  type: 'checkbox' | 'select' | 'float' | 'integer' | 'directory' | 'html';
+  type: 'checkbox' | 'select' | 'float' | 'integer' | 'string' | 'directory' | 'html';
   html?: LocaleText;
   default: ConfigValue;
   debug?: boolean;
