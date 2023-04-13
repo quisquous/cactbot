@@ -2,7 +2,7 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
+import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 
 // Eureka Orthos Floors 81-90
 
@@ -20,7 +20,9 @@ export interface Data extends RaidbossData {
   far?: number;
 }
 
-const interceptionOutputStrings = {
+export const firstHeadmarker = parseInt('0186', 16);
+
+const interceptionOutputStrings: { [label: string]: LocaleText } = {
   egg: {
     en: 'egg',
   },
@@ -30,7 +32,7 @@ const interceptionOutputStrings = {
   ball: {
     en: 'ball',
   },
-};
+} as const;
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.EurekaOrthosFloors81_90,
@@ -178,7 +180,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: { id: '018[6-8]', target: 'Interceptor α' },
       run: (data, matches, output) => {
-        const firstHeadmarker = parseInt('0186', 16);
         const num = parseInt(matches.id, 16) - firstHeadmarker;
         data.interceptionSequence ??= [];
         data.interceptionSequence[num] = output.egg!();
@@ -195,7 +196,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '018[6-8]', target: 'Interceptor β' },
       suppressSeconds: 1,
       run: (data, matches, output) => {
-        const firstHeadmarker = parseInt('0186', 16);
         const num = parseInt(matches.id, 16) - firstHeadmarker;
         data.interceptionSequence ??= [];
         data.interceptionSequence[num] = output.cube!();
@@ -211,7 +211,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: { id: '018[6-8]', target: 'Interceptor γ' },
       run: (data, matches, output) => {
-        const firstHeadmarker = parseInt('0186', 16);
         const num = parseInt(matches.id, 16) - firstHeadmarker;
         data.interceptionSequence ??= [];
         data.interceptionSequence[num] = output.ball!();
