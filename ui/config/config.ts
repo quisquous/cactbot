@@ -499,6 +499,32 @@ export class CactbotConfigurator {
     container.appendChild(buttonInput);
   }
 
+  buildConfigEntry(groupDiv: HTMLElement, opt: ConfigEntry, group: string, path?: string[]): void {
+    switch (opt.type) {
+      case 'checkbox':
+        this.buildCheckbox(groupDiv, opt, group, path);
+        break;
+      case 'html':
+        this.buildHtml(groupDiv, opt, group, path);
+        break;
+      case 'select':
+        this.buildSelect(groupDiv, opt, group, path);
+        break;
+      case 'float':
+        this.buildFloat(groupDiv, opt, group, path);
+        break;
+      case 'integer':
+        this.buildInteger(groupDiv, opt, group, path);
+        break;
+      case 'directory':
+        this.buildDirectory(groupDiv, opt, group, path);
+        break;
+      default:
+        console.error('unknown type: ' + JSON.stringify(opt));
+        break;
+    }
+  }
+
   // Top level UI builder, builds everything.
   buildUI(container: HTMLElement, contents: ConfigContents): void {
     for (const group in contents) {
@@ -515,29 +541,7 @@ export class CactbotConfigurator {
         for (const opt of options) {
           if (!this.developerOptions && opt.debugOnly)
             continue;
-          switch (opt.type) {
-            case 'checkbox':
-              this.buildCheckbox(groupDiv, opt, group);
-              break;
-            case 'html':
-              this.buildHtml(groupDiv, opt, group);
-              break;
-            case 'select':
-              this.buildSelect(groupDiv, opt, group);
-              break;
-            case 'float':
-              this.buildFloat(groupDiv, opt, group);
-              break;
-            case 'integer':
-              this.buildInteger(groupDiv, opt, group);
-              break;
-            case 'directory':
-              this.buildDirectory(groupDiv, opt, group);
-              break;
-            default:
-              console.error('unknown type: ' + JSON.stringify(opt));
-              break;
-          }
+          this.buildConfigEntry(groupDiv, opt, group);
         }
 
         const builder = template.buildExtraUI;
@@ -582,7 +586,7 @@ export class CactbotConfigurator {
     return div;
   }
 
-  buildCheckbox(parent: HTMLElement, opt: ConfigEntry, group: string): void {
+  buildCheckbox(parent: HTMLElement, opt: ConfigEntry, group: string, path?: string[]): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
 
@@ -591,16 +595,17 @@ export class CactbotConfigurator {
     input.type = 'checkbox';
 
     const defaultValue = typeof opt.default === 'boolean' ? opt.default : false;
+    const optIdPath = [...path ?? [], opt.id];
     if (typeof opt.default !== 'boolean')
-      console.error(`Invalid non-boolean default: ${group} ${opt.id}`);
-    input.checked = this.getBooleanOption(group, opt.id, defaultValue);
-    input.onchange = () => this.setOption(group, opt.id, input.checked);
+      console.error(`Invalid non-boolean default: ${group} ${optIdPath.join(' ')}`);
+    input.checked = this.getBooleanOption(group, optIdPath, defaultValue);
+    input.onchange = () => this.setOption(group, optIdPath, input.checked);
 
     parent.appendChild(this.buildNameDiv(opt));
     parent.appendChild(div);
   }
 
-  buildHtml(parent: HTMLElement, opt: ConfigEntry, _group: string): void {
+  buildHtml(parent: HTMLElement, opt: ConfigEntry, _group: string, _path?: string[]): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
     if (opt.html)
@@ -610,7 +615,7 @@ export class CactbotConfigurator {
     parent.appendChild(div);
   }
 
-  buildDirectory(parent: HTMLElement, opt: ConfigEntry, group: string): void {
+  buildDirectory(parent: HTMLElement, opt: ConfigEntry, group: string, path?: string[]): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
     div.classList.add('input-dir-container');
@@ -631,7 +636,8 @@ export class CactbotConfigurator {
       else
         label.innerText = this.translate(kDirectoryDefaultText);
     };
-    setLabel(this.getStringOption(group, opt.id, opt.default));
+    const optIdPath = [...path ?? [], opt.id];
+    setLabel(this.getStringOption(group, optIdPath, opt.default));
 
     parent.appendChild(this.buildNameDiv(opt));
     parent.appendChild(div);
@@ -653,7 +659,7 @@ export class CactbotConfigurator {
       if (result !== undefined) {
         const dir = result.data ?? '';
         if (dir !== prevValue)
-          this.setOption(group, opt.id, dir);
+          this.setOption(group, optIdPath, dir);
         setLabel(dir);
       } else {
         console.error('cactbotChooseDirectory returned undefined');
@@ -661,15 +667,16 @@ export class CactbotConfigurator {
     };
   }
 
-  buildSelect(parent: HTMLElement, opt: ConfigEntry, group: string): void {
+  buildSelect(parent: HTMLElement, opt: ConfigEntry, group: string, path?: string[]): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
 
     const input = document.createElement('select');
     div.appendChild(input);
 
-    const defaultValue = this.getOption(group, opt.id, opt.default);
-    input.onchange = () => this.setOption(group, opt.id, input.value);
+    const optIdPath = [...path ?? [], opt.id];
+    const defaultValue = this.getOption(group, optIdPath, opt.default);
+    input.onchange = () => this.setOption(group, optIdPath, input.value);
 
     if (opt.options) {
       const innerOptions = this.translate(opt.options);
@@ -688,7 +695,7 @@ export class CactbotConfigurator {
   }
 
   // FIXME: this could use some data validation if a user inputs non-floats.
-  buildFloat(parent: HTMLElement, opt: ConfigEntry, group: string): void {
+  buildFloat(parent: HTMLElement, opt: ConfigEntry, group: string, path?: string[]): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
 
@@ -696,12 +703,13 @@ export class CactbotConfigurator {
     div.appendChild(input);
     input.type = 'text';
     input.step = 'any';
+    const optIdPath = [...path ?? [], opt.id];
     input.value = this.getNumberOption(
       group,
-      opt.id,
+      optIdPath,
       parseFloat(opt.default.toString()),
     ).toString();
-    const setFunc = () => this.setOption(group, opt.id, input.value);
+    const setFunc = () => this.setOption(group, optIdPath, input.value);
     input.onchange = setFunc;
     input.oninput = setFunc;
 
@@ -710,7 +718,7 @@ export class CactbotConfigurator {
   }
 
   // FIXME: this could use some data validation if a user inputs non-integers.
-  buildInteger(parent: HTMLElement, opt: ConfigEntry, group: string): void {
+  buildInteger(parent: HTMLElement, opt: ConfigEntry, group: string, path?: string[]): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
 
@@ -718,8 +726,10 @@ export class CactbotConfigurator {
     div.appendChild(input);
     input.type = 'text';
     input.step = '1';
-    input.value = this.getNumberOption(group, opt.id, parseInt(opt.default.toString())).toString();
-    const setFunc = () => this.setOption(group, opt.id, input.value);
+    const optIdPath = [...path ?? [], opt.id];
+    input.value = this.getNumberOption(group, optIdPath, parseInt(opt.default.toString()))
+      .toString();
+    const setFunc = () => this.setOption(group, optIdPath, input.value);
     input.onchange = setFunc;
     input.oninput = setFunc;
 
