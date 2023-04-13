@@ -81,6 +81,7 @@ const tiltOutputStrings = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'ContainmentBayP1T6Extreme',
   zoneId: ZoneId.ContainmentBayP1T6Extreme,
   timelineFile: 'sophia-ex.txt',
   initData: () => {

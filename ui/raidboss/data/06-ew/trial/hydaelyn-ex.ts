@@ -60,6 +60,7 @@ const comboOutputStrings = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheMinstrelsBalladHydaelynsCall',
   zoneId: ZoneId.TheMinstrelsBalladHydaelynsCall,
   timelineFile: 'hydaelyn-ex.txt',
   timelineTriggers: [

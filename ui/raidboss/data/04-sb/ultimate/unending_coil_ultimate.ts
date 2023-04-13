@@ -175,6 +175,7 @@ export const findDragonMarks = (
 
 // UCU - The Unending Coil Of Bahamut (Ultimate)
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheUnendingCoilOfBahamutUltimate',
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
   timelineFile: 'unending_coil_ultimate.txt',
   initData: () => {

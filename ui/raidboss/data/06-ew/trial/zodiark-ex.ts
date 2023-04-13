@@ -210,6 +210,7 @@ const eclipseOutput = (idx: number, flags?: string): keyof typeof eclipseOutputS
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheMinstrelsBalladZodiarksFall',
   zoneId: ZoneId.TheMinstrelsBalladZodiarksFall,
   timelineFile: 'zodiark-ex.txt',
   initData: () => ({

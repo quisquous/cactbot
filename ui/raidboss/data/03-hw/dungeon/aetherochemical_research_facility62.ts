@@ -7,6 +7,7 @@ export type Data = RaidbossData;
 
 // Aetherochemical Research Facility
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheAetherochemicalResearchFacility62',
   zoneId: ZoneId.TheAetherochemicalResearchFacility62,
   timelineFile: 'aetherochemical_research_facility62.txt',
   timelineTriggers: [

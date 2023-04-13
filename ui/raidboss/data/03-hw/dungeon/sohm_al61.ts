@@ -8,6 +8,7 @@ export type Data = RaidbossData;
 
 // Sohm Al (normal)
 const triggerSet: TriggerSet<Data> = {
+  id: 'SohmAl61',
   zoneId: ZoneId.SohmAl61,
   timelineFile: 'sohm_al61.txt',
   timelineTriggers: [

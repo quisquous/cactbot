@@ -9,6 +9,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheBurn',
   zoneId: ZoneId.TheBurn,
   timelineFile: 'the_burn.txt',
   triggers: [

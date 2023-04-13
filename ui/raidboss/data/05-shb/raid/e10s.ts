@@ -29,6 +29,7 @@ const directions = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EdensPromiseLitanySavage',
   zoneId: ZoneId.EdensPromiseLitanySavage,
   timelineFile: 'e10s.txt',
   triggers: [

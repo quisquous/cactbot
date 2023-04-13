@@ -7,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EdensPromiseLitany',
   zoneId: ZoneId.EdensPromiseLitany,
   timelineFile: 'e10n.txt',
   timelineTriggers: [

@@ -34,6 +34,7 @@ const bombLocation = (matches: NetMatches['AddedCombatant']) => {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlexanderTheFistOfTheSonSavage',
   zoneId: ZoneId.AlexanderTheFistOfTheSonSavage,
   timelineFile: 'a5s.txt',
   initData: () => {

@@ -7,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'KuganeCastle',
   zoneId: ZoneId.KuganeCastle,
   timelineFile: 'kugane_castle.txt',
   timelineTriggers: [

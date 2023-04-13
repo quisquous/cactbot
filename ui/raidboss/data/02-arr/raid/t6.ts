@@ -13,6 +13,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheSecondCoilOfBahamutTurn1',
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn1,
   timelineFile: 't6.txt',
   triggers: [

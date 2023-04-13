@@ -9,6 +9,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'Paglthan',
   zoneId: ZoneId.Paglthan,
   timelineFile: 'paglthan.txt',
   timelineTriggers: [

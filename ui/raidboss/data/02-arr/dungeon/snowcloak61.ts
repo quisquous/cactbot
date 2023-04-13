@@ -5,6 +5,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'Snowcloak61',
   zoneId: ZoneId.Snowcloak61,
   triggers: [
     {

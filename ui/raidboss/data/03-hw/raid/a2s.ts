@@ -15,6 +15,7 @@ export interface Data extends RaidbossData {
 // for bombs and stuns.
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlexanderTheCuffOfTheFatherSavage',
   zoneId: ZoneId.AlexanderTheCuffOfTheFatherSavage,
   timelineFile: 'a2s.txt',
   timelineTriggers: [

@@ -59,6 +59,7 @@ const tetraMap: { [id: string]: HaloneTetra } = {
 } as const;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'Euphrosyne',
   zoneId: ZoneId.Euphrosyne,
   timelineFile: 'euphrosyne.txt',
   initData: () => {

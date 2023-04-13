@@ -8,6 +8,7 @@ export type Data = RaidbossData;
 // TODO: Sugaar rotating Numbing Noise (46B4) Tail Snap (46B5) + draw-in
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AmhAraeng',
   zoneId: ZoneId.AmhAraeng,
   triggers: [
     {

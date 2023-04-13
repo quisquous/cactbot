@@ -13,6 +13,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AsphodelosTheSecondCircle',
   zoneId: ZoneId.AsphodelosTheSecondCircle,
   timelineFile: 'p2n.txt',
   triggers: [

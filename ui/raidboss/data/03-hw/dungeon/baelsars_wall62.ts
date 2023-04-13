@@ -7,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'BaelsarsWall62',
   zoneId: ZoneId.BaelsarsWall62,
   timelineFile: 'baelsars_wall62.txt',
   timelineTriggers: [

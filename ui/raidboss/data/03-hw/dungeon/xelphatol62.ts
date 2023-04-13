@@ -8,6 +8,7 @@ export type Data = RaidbossData;
 
 // Xelphatol
 const triggerSet: TriggerSet<Data> = {
+  id: 'Xelphatol62',
   zoneId: ZoneId.Xelphatol62,
   timelineFile: 'xelphatol62.txt',
   timelineTriggers: [

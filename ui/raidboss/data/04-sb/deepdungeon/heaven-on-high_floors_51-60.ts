@@ -10,6 +10,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'HeavenOnHighFloors51_60',
   zoneId: ZoneId.HeavenOnHighFloors51_60,
 
   triggers: [

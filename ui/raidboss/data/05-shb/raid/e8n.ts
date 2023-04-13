@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EdensVerseRefulgence',
   zoneId: ZoneId.EdensVerseRefulgence,
   timelineFile: 'e8n.txt',
   timelineTriggers: [

@@ -35,6 +35,7 @@ const swipeOutputStrings = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'ThePuppetsBunker',
   zoneId: ZoneId.ThePuppetsBunker,
   timelineFile: 'the_puppets_bunker.txt',
   triggers: [

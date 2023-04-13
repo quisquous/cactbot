@@ -19,6 +19,7 @@ const lyheGhiahOutputStrings = {
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheDungeonsOfLyheGhiah',
   zoneId: ZoneId.TheDungeonsOfLyheGhiah,
 
   triggers: [

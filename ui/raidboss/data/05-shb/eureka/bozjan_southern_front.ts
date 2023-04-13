@@ -140,6 +140,7 @@ const tankBusterOnParty = (ceName?: string) => (data: Data, matches: NetMatches[
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheBozjanSouthernFront',
   zoneId: ZoneId.TheBozjanSouthernFront,
   timelineFile: 'bozjan_southern_front.txt',
   timeline: [

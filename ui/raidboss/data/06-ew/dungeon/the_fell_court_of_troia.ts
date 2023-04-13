@@ -7,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheFellCourtOfTroia',
   zoneId: ZoneId.TheFellCourtOfTroia,
   timelineFile: 'the_fell_court_of_troia.txt',
   triggers: [

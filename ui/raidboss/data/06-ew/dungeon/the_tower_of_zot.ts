@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheTowerOfZot',
   zoneId: ZoneId.TheTowerOfZot,
   timelineFile: 'the_tower_of_zot.txt',
   initData: () => {

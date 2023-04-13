@@ -11,6 +11,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EdensGateSepultureSavage',
   zoneId: ZoneId.EdensGateSepultureSavage,
   timelineFile: 'e4s.txt',
   timelineTriggers: [

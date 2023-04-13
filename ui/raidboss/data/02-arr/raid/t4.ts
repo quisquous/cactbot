@@ -6,6 +6,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheBindingCoilOfBahamutTurn4',
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn4,
   timelineFile: 't4.txt',
   triggers: [

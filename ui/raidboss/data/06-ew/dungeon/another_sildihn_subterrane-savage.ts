@@ -69,6 +69,7 @@ export const headingTo4Dir = (heading: number) => {
 const visageMapIdx = (col: number, row: number) => row * 4 + col;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AnotherSildihnSubterraneSavage',
   zoneId: ZoneId.AnotherSildihnSubterraneSavage,
   timelineFile: 'another_sildihn_subterrane-savage.txt',
   initData: () => {

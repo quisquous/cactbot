@@ -69,6 +69,7 @@ const purgationMidRotateCCWFlag = '00200010';
 const purgationMidRotateFlags = [purgationMidRotateCWFlag, purgationMidRotateCCWFlag];
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'MountOrdeals',
   zoneId: ZoneId.MountOrdeals,
   timelineFile: 'rubicante.txt',
   initData: () => {

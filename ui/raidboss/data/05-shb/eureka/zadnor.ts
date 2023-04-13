@@ -101,6 +101,7 @@ const tankBusterOnParty = (ceName?: string) => (data: Data, matches: NetMatches[
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'Zadnor',
   zoneId: ZoneId.Zadnor,
   timelineFile: 'zadnor.txt',
   resetWhenOutOfCombat: false,
