@@ -9,7 +9,7 @@ const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.Snowcloak61,
   triggers: [
     {
-      id: 'Snowcloak Lunar Cry',
+      id: 'Snowcloak61 Lunar Cry',
       type: 'StartsUsing',
       netRegex: { id: 'C1F', source: 'Fenrir', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
