@@ -6,7 +6,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Eureka Orthos Floors 91-100
-// TODO: Servomechanical Orthochimera The Dragon's Breath front-left cleave
 // TODO: Excalibur Exglacialis safe spots
 
 export interface Data extends RaidbossData {
@@ -86,19 +85,19 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '809A', source: 'Servomechanical Orthotaur', capture: false },
       response: Responses.getOut(),
     },
-    // {
-    //   id: 'EO 91-100 Servomechanical Orthochimera The Dragon\'s Breath',
-    //   // AoE cleave to front and left
-    //   type: 'StartsUsing',
-    //   netRegex: { id: '', source: 'Servomechanical Orthochimera', capture: false },
-    //   response: Responses.goRight(),
-    // },
     {
       id: 'EO 91-100 Servomechanical Orthochimera Engulfing Ice',
       // AoE cleave to front and right
       type: 'StartsUsing',
       netRegex: { id: '808A', source: 'Servomechanical Orthochimera', capture: false },
       response: Responses.goLeft(),
+    },
+    {
+      id: 'EO 91-100 Servomechanical Orthochimera The Dragon\'s Breath',
+      // AoE cleave to front and left
+      type: 'StartsUsing',
+      netRegex: { id: '808B', source: 'Servomechanical Orthochimera', capture: false },
+      response: Responses.goRight(),
     },
     {
       id: 'EO 91-100 Servomechanical Orthochimera the Scorpion\'s Sting',
