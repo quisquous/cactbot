@@ -303,7 +303,7 @@ const templateOptions: OptionsTemplate = {
       },
       type: 'float',
       default: 4,
-      setterFunc: (options, value) => {
+      setterFunc: (value) => {
         let seconds;
         if (typeof value === 'string')
           seconds = parseFloat(value);
@@ -311,7 +311,7 @@ const templateOptions: OptionsTemplate = {
           seconds = value;
         else
           return;
-        options['TimeToShowDeathReportMs'] = seconds * 1000;
+        return seconds * 1000;
       },
     },
     {
