@@ -16,6 +16,12 @@ Options.Triggers.push({
       condition: Conditions.targetIsYou(),
       response: Responses.knockback(),
     },
+    {
+      id: 'EO 01-10 Orthos Fachan Dread Gaze',
+      type: 'StartsUsing',
+      netRegex: { id: '7E82', source: 'Orthos Fachan', capture: false },
+      response: Responses.awayFromFront(),
+    },
     // ---------------- Floor 10 Boss: Gancanagh ----------------
     {
       id: 'EO 01-10 Gancanagh Mandrastorm',
@@ -27,6 +33,7 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Gancanagh': 'Gancanagh',
         'Orthos Behemoth': 'Orthos-Behemoth',
@@ -35,6 +42,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Gancanagh': 'Gancanagh',
         'Orthos Behemoth': 'béhémoth Orthos',
@@ -43,6 +51,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Gancanagh': 'ガンカナグー',
         'Orthos Behemoth': 'オルト・ベヒーモス',
