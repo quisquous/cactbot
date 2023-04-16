@@ -13,6 +13,7 @@ export interface Data extends RaidbossData {
 
 // Susano Extreme
 const triggerSet: TriggerSet<Data> = {
+  id: 'ThePoolOfTributeExtreme',
   zoneId: ZoneId.ThePoolOfTributeExtreme,
   timelineFile: 'susano-ex.txt',
   timelineTriggers: [

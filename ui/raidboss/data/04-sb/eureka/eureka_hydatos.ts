@@ -15,6 +15,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheForbiddenLandEurekaHydatos',
   zoneId: ZoneId.TheForbiddenLandEurekaHydatos,
   timelineFile: 'eureka_hydatos.txt',
   resetWhenOutOfCombat: false,

@@ -47,6 +47,7 @@ const crossTileFlags = '00020001'; // mapEffect flags for '+' tile effect
 const diagonalTileFlags = '00400020'; // mapEffect flags for 'x' tile effect
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AbyssosTheSixthCircleSavage',
   zoneId: ZoneId.AbyssosTheSixthCircleSavage,
   timelineFile: 'p6s.txt',
   initData: () => {

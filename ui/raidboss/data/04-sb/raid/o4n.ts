@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 
 // O4N - Deltascape 4.0 Normal
 const triggerSet: TriggerSet<Data> = {
+  id: 'DeltascapeV40',
   zoneId: ZoneId.DeltascapeV40,
   timelineFile: 'o4n.txt',
   triggers: [

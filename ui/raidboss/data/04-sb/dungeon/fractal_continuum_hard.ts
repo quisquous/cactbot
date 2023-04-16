@@ -9,6 +9,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheFractalContinuumHard',
   zoneId: ZoneId.TheFractalContinuumHard,
   timelineFile: 'fractal_continuum_hard.txt',
   timelineTriggers: [

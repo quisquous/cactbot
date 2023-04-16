@@ -37,6 +37,7 @@ const positionTo8Dir = (combatant: PluginCombatantState) => {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AbyssosTheEighthCircle',
   zoneId: ZoneId.AbyssosTheEighthCircle,
   timelineFile: 'p8n.txt',
   initData: () => {

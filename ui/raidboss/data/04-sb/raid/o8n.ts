@@ -8,6 +8,7 @@ export type Data = RaidbossData;
 
 // O8N - Sigmascape 4.0 Normal
 const triggerSet: TriggerSet<Data> = {
+  id: 'SigmascapeV40',
   zoneId: ZoneId.SigmascapeV40,
   timelineFile: 'o8n.txt',
   triggers: [

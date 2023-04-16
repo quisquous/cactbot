@@ -92,6 +92,7 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'DelubrumReginaeSavage',
   zoneId: ZoneId.DelubrumReginaeSavage,
   timelineFile: 'delubrum_reginae_savage.txt',
   timelineTriggers: [

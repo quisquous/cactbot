@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheRoyalCityOfRabanastre',
   zoneId: ZoneId.TheRoyalCityOfRabanastre,
   timelineFile: 'royal_city_of_rabanastre.txt',
   triggers: [

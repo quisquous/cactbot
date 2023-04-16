@@ -50,6 +50,7 @@ const comboOutputStrings = {
 
 // Hydaelyn Normal Mode
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheMothercrystal',
   zoneId: ZoneId.TheMothercrystal,
   timelineFile: 'hydaelyn.txt',
   triggers: [

@@ -25,6 +25,7 @@ export interface Data extends RaidbossData {
 // TODO: targetable lines in timeline
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlphascapeV40Savage',
   zoneId: ZoneId.AlphascapeV40Savage,
   timelineFile: 'o12s.txt',
   timelineTriggers: [

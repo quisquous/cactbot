@@ -17,6 +17,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EurekaOrthosFloors91_100',
   zoneId: ZoneId.EurekaOrthosFloors91_100,
 
   triggers: [

@@ -8,23 +8,24 @@ export type Data = RaidbossData;
 
 // Sohm Al (normal)
 const triggerSet: TriggerSet<Data> = {
+  id: 'SohmAl61',
   zoneId: ZoneId.SohmAl61,
   timelineFile: 'sohm_al61.txt',
   timelineTriggers: [
     {
-      id: 'Sohm Al Raskovnik Bloody Caress',
+      id: 'SohmAl61 Raskovnik Bloody Caress',
       regex: /Bloody Caress/,
       beforeSeconds: 4,
       response: Responses.tankBuster('info'),
     },
     {
-      id: 'Sohm Al Myath Third Leg Forward',
+      id: 'SohmAl61 Myath Third Leg Forward',
       regex: /Third Leg Forward/,
       beforeSeconds: 4,
       response: Responses.tankBuster('info'),
     },
     {
-      id: 'Sohm Al Tioman Abyssic Buster',
+      id: 'SohmAl61 Tioman Abyssic Buster',
       regex: /Abyssic Buster/,
       beforeSeconds: 4,
       response: Responses.tankCleave(),
@@ -32,20 +33,20 @@ const triggerSet: TriggerSet<Data> = {
   ],
   triggers: [
     {
-      id: 'Sohm Al Myath Stack',
+      id: 'SohmAl61 Myath Stack',
       type: 'HeadMarker',
       netRegex: { id: '0017' },
       response: Responses.stackMarkerOn(),
     },
     {
-      id: 'Sohm Al Myath Spread',
+      id: 'SohmAl61 Myath Spread',
       type: 'HeadMarker',
       netRegex: { id: '001A' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
-      id: 'Sohm Al Myath Chyme',
+      id: 'SohmAl61 Myath Chyme',
       type: 'AddedCombatant',
       netRegex: { name: 'Chyme Of The Mountain', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
@@ -61,7 +62,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'Sohm Al Tioman Meteor',
+      id: 'SohmAl61 Tioman Meteor',
       type: 'HeadMarker',
       netRegex: { id: '000A' },
       condition: Conditions.targetIsYou(),

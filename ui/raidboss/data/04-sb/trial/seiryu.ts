@@ -11,6 +11,7 @@ export interface Data extends RaidbossData {
 
 // Seiryu Normal
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheWreathOfSnakes',
   zoneId: ZoneId.TheWreathOfSnakes,
   timelineFile: 'seiryu.txt',
   timelineTriggers: [

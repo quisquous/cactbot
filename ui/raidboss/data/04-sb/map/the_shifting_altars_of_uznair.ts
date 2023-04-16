@@ -27,6 +27,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheShiftingAltarsOfUznair',
   zoneId: ZoneId.TheShiftingAltarsOfUznair,
 
   triggers: [

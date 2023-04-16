@@ -40,6 +40,7 @@ const tankBusterOnParty = (data: Data, matches: NetMatches['StartsUsing']) => {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'DelubrumReginae',
   zoneId: ZoneId.DelubrumReginae,
   timelineFile: 'delubrum_reginae.txt',
   triggers: [

@@ -9,6 +9,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'CinderDrift',
   zoneId: ZoneId.CinderDrift,
   timelineFile: 'ruby_weapon.txt',
   timelineTriggers: [

@@ -22,6 +22,7 @@ export interface Data extends RaidbossData {
 // TODO: chakram safe spots lol?
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlexanderTheBurdenOfTheSonSavage',
   zoneId: ZoneId.AlexanderTheBurdenOfTheSonSavage,
   timelineFile: 'a8s.txt',
   initData: () => {

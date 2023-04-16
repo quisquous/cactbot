@@ -30,6 +30,7 @@ const scarletTentacleLocations: { [flags: string]: Intercard } = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlzadaalsLegacy',
   zoneId: ZoneId.AlzadaalsLegacy,
   timelineFile: 'alzadaals_legacy.txt',
   initData: () => {

@@ -159,6 +159,7 @@ const staffSwordMidHelper = (isEastWest: boolean, posX: number, posY: number, ou
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheOmegaProtocolUltimate',
   zoneId: ZoneId.TheOmegaProtocolUltimate,
   timelineFile: 'the_omega_protocol.txt',
   initData: () => {

@@ -349,6 +349,7 @@ const betaInstructions = (idx: number | undefined, output: Output) => {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheEpicOfAlexanderUltimate',
   zoneId: ZoneId.TheEpicOfAlexanderUltimate,
   timelineFile: 'the_epic_of_alexander.txt',
   timelineTriggers: [

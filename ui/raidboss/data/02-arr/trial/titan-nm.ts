@@ -6,6 +6,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheNavel',
   zoneId: ZoneId.TheNavel,
   timelineFile: 'titan-nm.txt',
   timelineTriggers: [

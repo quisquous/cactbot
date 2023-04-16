@@ -158,6 +158,7 @@ export const ventOutput = (unsafeSpots: number[], output: Output) => {
 const arcaneChannelFlags = '00020001'; // mapEffect flags for tower tile effect
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AbyssosTheEighthCircleSavage',
   zoneId: ZoneId.AbyssosTheEighthCircleSavage,
   timelineFile: 'p8s.txt',
   initData: () => {

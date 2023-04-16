@@ -8,6 +8,7 @@ export type Data = RaidbossData;
 
 // Innocence Normal
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheCrownOfTheImmaculate',
   zoneId: ZoneId.TheCrownOfTheImmaculate,
   timelineFile: 'innocence.txt',
   triggers: [

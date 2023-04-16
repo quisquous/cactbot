@@ -9,6 +9,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EurekaOrthosFloors21_30',
   zoneId: ZoneId.EurekaOrthosFloors21_30,
 
   triggers: [

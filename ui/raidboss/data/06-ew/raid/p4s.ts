@@ -124,6 +124,7 @@ const getHeadmarkerId = (
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AsphodelosTheFourthCircleSavage',
   zoneId: ZoneId.AsphodelosTheFourthCircleSavage,
   timelineFile: 'p4s.txt',
   initData: () => {

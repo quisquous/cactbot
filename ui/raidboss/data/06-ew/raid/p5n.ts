@@ -16,6 +16,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AbyssosTheFifthCircle',
   zoneId: ZoneId.AbyssosTheFifthCircle,
   timelineFile: 'p5n.txt',
   initData: () => {

@@ -26,6 +26,7 @@ const sharedOutputStrings = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheCloudDeck',
   zoneId: ZoneId.TheCloudDeck,
   timelineFile: 'diamond_weapon.txt',
   triggers: [

@@ -11,6 +11,7 @@ import ZoneId from '../path/to/resources/zone_id';
 // Other imports here.
 
 export default {
+  id: 'TheWeaponsRefrainUltimate',
   zoneId: ZoneId.TheWeaponsRefrainUltimate,
   zoneLabel: {
     en: 'The Weapon\'s Refrain (Ultimate)',
@@ -39,6 +40,13 @@ export default {
 ```
 
 ### Trigger Set Properties
+
+**id**
+A unique string to identify this trigger set.
+This value should be unique among all trigger sets.
+For cactbot triggers, this should generally match the `ZoneId` itself for consistency.
+If there are multiple zones, then pick a reasonable string,
+e.g. `'EurekaOrthosGeneral'` for the set that applies to all Eureka Orthos floors.
 
 **zoneId**
 A shortened name for the zone to use these triggers in.

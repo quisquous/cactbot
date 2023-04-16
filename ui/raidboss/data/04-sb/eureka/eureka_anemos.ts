@@ -9,6 +9,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheForbiddenLandEurekaAnemos',
   zoneId: ZoneId.TheForbiddenLandEurekaAnemos,
   resetWhenOutOfCombat: false,
   triggers: [

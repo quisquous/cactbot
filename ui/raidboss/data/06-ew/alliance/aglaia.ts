@@ -28,6 +28,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'Aglaia',
   zoneId: ZoneId.Aglaia,
   timelineFile: 'aglaia.txt',
   initData: () => {

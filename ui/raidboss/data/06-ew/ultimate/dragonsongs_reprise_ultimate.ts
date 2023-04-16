@@ -167,6 +167,7 @@ const matchedPositionTo4Dir = (combatant: PluginCombatantState) => {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'DragonsongsRepriseUltimate',
   zoneId: ZoneId.DragonsongsRepriseUltimate,
   timelineFile: 'dragonsongs_reprise_ultimate.txt',
   initData: () => {

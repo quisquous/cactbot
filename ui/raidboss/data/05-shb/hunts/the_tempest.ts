@@ -11,6 +11,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheTempest',
   zoneId: ZoneId.TheTempest,
   triggers: [
     {

@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlexanderTheSoulOfTheCreator',
   zoneId: ZoneId.AlexanderTheSoulOfTheCreator,
   timelineFile: 'a12n.txt',
   timelineTriggers: [

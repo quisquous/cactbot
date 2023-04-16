@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'BardamsMettle',
   zoneId: ZoneId.BardamsMettle,
   timelineFile: 'bardams_mettle.txt',
   timelineTriggers: [

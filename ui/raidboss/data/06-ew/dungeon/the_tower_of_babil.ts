@@ -11,6 +11,7 @@ export interface Data extends RaidbossData {
 
 // TODO: Figure out a clean way to call the Charnel Claw dashes?
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheTowerOfBabil',
   zoneId: ZoneId.TheTowerOfBabil,
   timelineFile: 'the_tower_of_babil.txt',
   triggers: [

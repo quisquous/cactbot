@@ -7,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheGhimlytDark',
   zoneId: ZoneId.TheGhimlytDark,
   timelineFile: 'ghimlyt_dark.txt',
   timelineTriggers: [

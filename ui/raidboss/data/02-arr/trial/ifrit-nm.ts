@@ -6,6 +6,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheBowlOfEmbers',
   zoneId: ZoneId.TheBowlOfEmbers,
   timelineFile: 'ifrit-nm.txt',
   timelineTriggers: [

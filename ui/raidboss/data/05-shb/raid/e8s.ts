@@ -36,6 +36,7 @@ export interface Data extends RaidbossData {
 // TODO: icelit dragonsong callouts?
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EdensVerseRefulgenceSavage',
   zoneId: ZoneId.EdensVerseRefulgenceSavage,
   timelineFile: 'e8s.txt',
   timelineTriggers: [

@@ -7,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheQitanaRavel',
   zoneId: ZoneId.TheQitanaRavel,
   timelineFile: 'qitana_ravel.txt',
   triggers: [

@@ -7,17 +7,18 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'BaelsarsWall62',
   zoneId: ZoneId.BaelsarsWall62,
   timelineFile: 'baelsars_wall62.txt',
   timelineTriggers: [
     {
-      id: 'Baelsar Magitek Cannon',
+      id: 'Baelsar62 Magitek Cannon',
       regex: /Magitek Cannon/,
       beforeSeconds: 4,
       response: Responses.tankBuster(),
     },
     {
-      id: 'Baelsar Dull Blade',
+      id: 'Baelsar62 Dull Blade',
       regex: /Dull Blade/,
       beforeSeconds: 4,
       response: Responses.miniBuster(),
@@ -25,64 +26,64 @@ const triggerSet: TriggerSet<Data> = {
   ],
   triggers: [
     {
-      id: 'Baelsar Magitek Claw',
+      id: 'Baelsar62 Magitek Claw',
       type: 'StartsUsing',
       netRegex: { id: '1CB2', source: 'Magitek Predator' },
       response: Responses.tankBuster(),
     },
     {
-      id: 'Baelsar Magitek Ray',
+      id: 'Baelsar62 Magitek Ray',
       type: 'StartsUsing',
       netRegex: { id: '1CB3', source: 'Magitek Predator', capture: false },
       response: Responses.awayFromFront(),
     },
     {
-      id: 'Baelsar Needle Burst',
+      id: 'Baelsar62 Needle Burst',
       type: 'StartsUsing',
       netRegex: { id: '1DC8', source: 'Magitek Vanguard D-1' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
-      id: 'Baelsar Launcher',
+      id: 'Baelsar62 Launcher',
       type: 'StartsUsing',
       netRegex: { id: '1CBC', source: 'Magitek Predator', capture: false },
       response: Responses.aoe(),
     },
     {
-      id: 'Baelsar Dynamic Sensory Jammer',
+      id: 'Baelsar62 Dynamic Sensory Jammer',
       type: 'GainsEffect',
       netRegex: { effectId: '46C' },
       condition: Conditions.targetIsYou(),
       response: Responses.stopEverything(),
     },
     {
-      id: 'Baelsar Griffin Beak',
+      id: 'Baelsar62 Griffin Beak',
       type: 'StartsUsing',
       netRegex: { id: '1CC3', source: 'The Griffin', capture: false },
       response: Responses.aoe(),
     },
     {
-      id: 'Baelsar Flash Powder',
+      id: 'Baelsar62 Flash Powder',
       type: 'StartsUsing',
       netRegex: { id: '1CC4', source: 'The Griffin' },
       response: Responses.lookAwayFromSource(),
     },
     {
-      id: 'Baelsar Griffin Claw',
+      id: 'Baelsar62 Griffin Claw',
       type: 'StartsUsing',
       netRegex: { id: '1CC2', source: 'The Griffin' },
       response: Responses.tankBuster(),
     },
     {
-      id: 'Baelsar Big Boot',
+      id: 'Baelsar62 Big Boot',
       type: 'HeadMarker',
       netRegex: { id: '1CC4' },
       condition: Conditions.targetIsYou(),
       response: Responses.knockbackOn(),
     },
     {
-      id: 'Baelsar Restraint Collar',
+      id: 'Baelsar62 Restraint Collar',
       type: 'StartsUsing',
       netRegex: { id: '1CC8', source: 'The Griffin' },
       condition: Conditions.targetIsNotYou(),

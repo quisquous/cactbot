@@ -13,6 +13,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'Smileton',
   zoneId: ZoneId.Smileton,
   timelineFile: 'smileton.txt',
   initData: () => {

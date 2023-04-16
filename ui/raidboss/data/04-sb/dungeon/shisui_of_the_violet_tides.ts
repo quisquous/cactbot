@@ -7,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'ShisuiOfTheVioletTides',
   zoneId: ZoneId.ShisuiOfTheVioletTides,
   timelineFile: 'shisui_of_the_violet_tides.txt',
   triggers: [
