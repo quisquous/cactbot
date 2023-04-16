@@ -223,6 +223,7 @@ const dirToOutput = (dir, output) => {
   return dirs[dir];
 };
 Options.Triggers.push({
+  id: 'EdensPromiseEternitySavage',
   zoneId: ZoneId.EdensPromiseEternitySavage,
   timelineFile: 'e12s.txt',
   triggers: [

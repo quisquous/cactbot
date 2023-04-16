@@ -1,5 +1,6 @@
 // TODO: should the post-staff "spread" happen unconditionally prior to marker?
 Options.Triggers.push({
+  id: 'TheAkhAfahAmphitheatreHard',
   zoneId: ZoneId.TheAkhAfahAmphitheatreHard,
   timelineFile: 'shiva-hm.txt',
   timelineTriggers: [

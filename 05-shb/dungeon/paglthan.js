@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'Paglthan',
   zoneId: ZoneId.Paglthan,
   timelineFile: 'paglthan.txt',
   timelineTriggers: [

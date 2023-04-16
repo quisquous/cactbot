@@ -1,5 +1,6 @@
 // Shinryu Normal
 Options.Triggers.push({
+  id: 'TheRoyalMenagerie',
   zoneId: ZoneId.TheRoyalMenagerie,
   timelineFile: 'shinryu.txt',
   triggers: [

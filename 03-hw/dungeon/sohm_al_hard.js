@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'SohmAlHard',
   zoneId: ZoneId.SohmAlHard,
   timelineFile: 'sohm_al_hard.txt',
   timelineTriggers: [

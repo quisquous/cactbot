@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheDarkInside',
   zoneId: ZoneId.TheDarkInside,
   timelineFile: 'zodiark.txt',
   triggers: [

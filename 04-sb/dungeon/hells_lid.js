@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'HellsLid',
   zoneId: ZoneId.HellsLid,
   timelineFile: 'hells_lid.txt',
   timelineTriggers: [

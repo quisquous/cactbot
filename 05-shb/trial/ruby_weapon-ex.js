@@ -1,5 +1,6 @@
 // TODO: ravensflight calls would be nice
 Options.Triggers.push({
+  id: 'CinderDriftExtreme',
   zoneId: ZoneId.CinderDriftExtreme,
   timelineFile: 'ruby_weapon-ex.txt',
   timelineTriggers: [

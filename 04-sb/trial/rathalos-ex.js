@@ -1,6 +1,7 @@
 // Note: no warning for Roar (2CC3, 285D).
 // Rathalos Extreme
 Options.Triggers.push({
+  id: 'TheGreatHuntExtreme',
   zoneId: ZoneId.TheGreatHuntExtreme,
   // Mechanics are random, no timeline is possible.
   hasNoTimeline: true,

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheAitiascope',
   zoneId: ZoneId.TheAitiascope,
   timelineFile: 'the_aitiascope.txt',
   triggers: [

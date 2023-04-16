@@ -5,6 +5,7 @@ const limitCutNumberMap = {
   '0052': 4,
 };
 Options.Triggers.push({
+  id: 'TheStigmaDreamscape',
   zoneId: ZoneId.TheStigmaDreamscape,
   timelineFile: 'stigma_dreamscape.txt',
   initData: () => {

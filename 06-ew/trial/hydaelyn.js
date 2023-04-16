@@ -33,6 +33,7 @@ const comboOutputStrings = {
 };
 // Hydaelyn Normal Mode
 Options.Triggers.push({
+  id: 'TheMothercrystal',
   zoneId: ZoneId.TheMothercrystal,
   timelineFile: 'hydaelyn.txt',
   triggers: [

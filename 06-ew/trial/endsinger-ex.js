@@ -83,6 +83,7 @@ const getStarText = (_data, matches, output) => {
   return;
 };
 Options.Triggers.push({
+  id: 'TheMinstrelsBalladEndsingersAria',
   zoneId: ZoneId.TheMinstrelsBalladEndsingersAria,
   timelineFile: 'endsinger-ex.txt',
   initData: () => {

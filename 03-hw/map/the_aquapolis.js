@@ -7,6 +7,7 @@ const aquapolisOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'TheAquapolis',
   zoneId: ZoneId.TheAquapolis,
   triggers: [
     // ---------------- random treasure mobs ----------------

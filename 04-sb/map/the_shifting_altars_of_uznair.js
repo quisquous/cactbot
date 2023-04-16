@@ -15,6 +15,7 @@ const uznairOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'TheShiftingAltarsOfUznair',
   zoneId: ZoneId.TheShiftingAltarsOfUznair,
   triggers: [
     // ---------------- random treasure mobs ----------------

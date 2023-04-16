@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheBindingCoilOfBahamutTurn1',
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn1,
   initData: () => {
     return {

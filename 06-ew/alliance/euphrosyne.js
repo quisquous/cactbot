@@ -5,6 +5,7 @@ const tetraMap = {
   '7D49': 'right',
 };
 Options.Triggers.push({
+  id: 'Euphrosyne',
   zoneId: ZoneId.Euphrosyne,
   timelineFile: 'euphrosyne.txt',
   initData: () => {

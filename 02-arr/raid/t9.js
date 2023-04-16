@@ -10,6 +10,7 @@ const diveDirections = {
   northwest: Outputs.dirNW,
 };
 Options.Triggers.push({
+  id: 'TheSecondCoilOfBahamutTurn4',
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn4,
   timelineFile: 't9.txt',
   initData: () => {

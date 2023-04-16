@@ -1,5 +1,6 @@
 // O1S - Deltascape 1.0 Savage
 Options.Triggers.push({
+  id: 'DeltascapeV10Savage',
   zoneId: ZoneId.DeltascapeV10Savage,
   timelineFile: 'o1s.txt',
   triggers: [

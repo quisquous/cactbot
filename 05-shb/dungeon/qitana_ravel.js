@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheQitanaRavel',
   zoneId: ZoneId.TheQitanaRavel,
   timelineFile: 'qitana_ravel.txt',
   triggers: [

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'DomaCastle',
   zoneId: ZoneId.DomaCastle,
   timelineFile: 'doma_castle.txt',
   triggers: [

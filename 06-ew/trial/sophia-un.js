@@ -63,6 +63,7 @@ const tiltOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'ContainmentBayP1T6Unreal',
   zoneId: ZoneId.ContainmentBayP1T6Unreal,
   timelineFile: 'sophia-un.txt',
   initData: () => {

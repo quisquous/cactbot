@@ -3,6 +3,7 @@
 // Whispered Incantation + Whispers Manifest
 // Handle Mirrored Incantation + Interments
 Options.Triggers.push({
+  id: 'HuntEWSS',
   zoneId: [
     ZoneId.Labyrinthos,
     ZoneId.Thavnair,

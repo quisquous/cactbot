@@ -1,5 +1,6 @@
 // TODO: Sugaar rotating Numbing Noise (46B4) Tail Snap (46B5) + draw-in
 Options.Triggers.push({
+  id: 'AmhAraeng',
   zoneId: ZoneId.AmhAraeng,
   triggers: [
     {

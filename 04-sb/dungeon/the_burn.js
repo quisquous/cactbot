@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheBurn',
   zoneId: ZoneId.TheBurn,
   timelineFile: 'the_burn.txt',
   triggers: [

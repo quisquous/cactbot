@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'EdensGateInundation',
   zoneId: ZoneId.EdensGateInundation,
   timelineFile: 'e3n.txt',
   triggers: [

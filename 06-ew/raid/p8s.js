@@ -72,6 +72,7 @@ const ventOutput = (unsafeSpots, output) => {
 };
 const arcaneChannelFlags = '00020001'; // mapEffect flags for tower tile effect
 Options.Triggers.push({
+  id: 'AbyssosTheEighthCircleSavage',
   zoneId: ZoneId.AbyssosTheEighthCircleSavage,
   timelineFile: 'p8s.txt',
   initData: () => {

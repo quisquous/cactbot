@@ -20,6 +20,7 @@ const getOrbSafeDir = (data, id, output) => {
   return output.nw();
 };
 Options.Triggers.push({
+  id: 'TheFinalDay',
   zoneId: ZoneId.TheFinalDay,
   timelineFile: 'endsinger.txt',
   initData: () => {

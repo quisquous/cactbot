@@ -1,6 +1,7 @@
 // TODO: handle paintings? <_<
 // O6N - Sigmascape 2.0 Normal
 Options.Triggers.push({
+  id: 'SigmascapeV20',
   zoneId: ZoneId.SigmascapeV20,
   timelineFile: 'o6n.txt',
   triggers: [

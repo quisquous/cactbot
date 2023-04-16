@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'AmdaporKeep',
   zoneId: ZoneId.AmdaporKeep,
   triggers: [
     {

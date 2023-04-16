@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'EurekaOrthosGeneral',
   zoneId: [
     ZoneId.EurekaOrthosFloors1_10,
     ZoneId.EurekaOrthosFloors11_20,

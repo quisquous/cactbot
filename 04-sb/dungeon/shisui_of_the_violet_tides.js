@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'ShisuiOfTheVioletTides',
   zoneId: ZoneId.ShisuiOfTheVioletTides,
   timelineFile: 'shisui_of_the_violet_tides.txt',
   triggers: [

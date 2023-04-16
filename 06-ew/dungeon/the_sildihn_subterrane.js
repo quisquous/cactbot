@@ -61,6 +61,7 @@ const rightDoorNoCeruleum = [
   'launchOrSwing',
 ];
 Options.Triggers.push({
+  id: 'TheSildihnSubterrane',
   zoneId: ZoneId.TheSildihnSubterrane,
   timelineFile: 'the_sildihn_subterrane.txt',
   initData: () => {

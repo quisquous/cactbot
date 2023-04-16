@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'CastrumAbania',
   zoneId: ZoneId.CastrumAbania,
   timelineFile: 'castrum_abania.txt',
   triggers: [

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'EdensGateResurrection',
   zoneId: ZoneId.EdensGateResurrection,
   timelineFile: 'e1n.txt',
   triggers: [

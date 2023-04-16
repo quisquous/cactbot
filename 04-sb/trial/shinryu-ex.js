@@ -1,5 +1,6 @@
 // Shinryu Extreme
 Options.Triggers.push({
+  id: 'TheMinstrelsBalladShinryusDomain',
   zoneId: ZoneId.TheMinstrelsBalladShinryusDomain,
   timelineFile: 'shinryu-ex.txt',
   triggers: [

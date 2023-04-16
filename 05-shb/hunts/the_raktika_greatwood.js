@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheRaktikaGreatwood',
   zoneId: ZoneId.TheRaktikaGreatwood,
   triggers: [
     {

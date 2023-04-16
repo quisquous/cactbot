@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'HolminsterSwitch',
   zoneId: ZoneId.HolminsterSwitch,
   timelineFile: 'holminster_switch.txt',
   triggers: [

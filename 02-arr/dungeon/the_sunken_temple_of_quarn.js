@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheSunkenTempleOfQarn',
   zoneId: ZoneId.TheSunkenTempleOfQarn,
   triggers: [
     {

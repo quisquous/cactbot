@@ -1,5 +1,6 @@
 // Sohm Al (normal)
 Options.Triggers.push({
+  id: 'SohmAl',
   zoneId: ZoneId.SohmAl,
   timelineFile: 'sohm_al.txt',
   timelineTriggers: [

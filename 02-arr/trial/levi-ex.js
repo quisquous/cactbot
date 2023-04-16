@@ -8,6 +8,7 @@
 // positions (+/-7, +/-20) and so more work would need to be done to tell
 // them apart.
 Options.Triggers.push({
+  id: 'TheWhorleaterExtreme',
   zoneId: ZoneId.TheWhorleaterExtreme,
   timelineFile: 'levi-ex.txt',
   initData: () => {

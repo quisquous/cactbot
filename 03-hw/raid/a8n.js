@@ -1,6 +1,7 @@
 // ALEXANDER - THE BURDEN OF THE SON NORMAL
 // A8N
 Options.Triggers.push({
+  id: 'AlexanderTheBurdenOfTheSon',
   zoneId: ZoneId.AlexanderTheBurdenOfTheSon,
   timelineFile: 'a8n.txt',
   timelineTriggers: [

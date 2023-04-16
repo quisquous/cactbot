@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheDrownedCityOfSkalla',
   zoneId: ZoneId.TheDrownedCityOfSkalla,
   timelineFile: 'drowned_city_of_skalla.txt',
   timelineTriggers: [

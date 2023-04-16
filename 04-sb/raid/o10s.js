@@ -6,6 +6,7 @@
 // TODO: stack head markers
 // O10S - Alphascape 2.0 Savage
 Options.Triggers.push({
+  id: 'AlphascapeV20Savage',
   zoneId: ZoneId.AlphascapeV20Savage,
   timelineFile: 'o10s.txt',
   triggers: [

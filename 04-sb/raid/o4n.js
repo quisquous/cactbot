@@ -1,5 +1,6 @@
 // O4N - Deltascape 4.0 Normal
 Options.Triggers.push({
+  id: 'DeltascapeV40',
   zoneId: ZoneId.DeltascapeV40,
   timelineFile: 'o4n.txt',
   triggers: [

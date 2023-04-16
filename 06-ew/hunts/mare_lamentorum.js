@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'MareLamentorum',
   zoneId: ZoneId.MareLamentorum,
   resetWhenOutOfCombat: false,
   initData: () => {

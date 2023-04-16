@@ -1,5 +1,6 @@
 // The Great Gubal Library--Hard
 Options.Triggers.push({
+  id: 'TheGreatGubalLibraryHard',
   zoneId: ZoneId.TheGreatGubalLibraryHard,
   timelineFile: 'gubal_library_hard.txt',
   timelineTriggers: [

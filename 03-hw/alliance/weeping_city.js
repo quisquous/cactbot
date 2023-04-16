@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheWeepingCityOfMhach',
   zoneId: ZoneId.TheWeepingCityOfMhach,
   timelineFile: 'weeping_city.txt',
   timelineTriggers: [

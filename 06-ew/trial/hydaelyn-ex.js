@@ -40,6 +40,7 @@ const comboOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'TheMinstrelsBalladHydaelynsCall',
   zoneId: ZoneId.TheMinstrelsBalladHydaelynsCall,
   timelineFile: 'hydaelyn-ex.txt',
   timelineTriggers: [

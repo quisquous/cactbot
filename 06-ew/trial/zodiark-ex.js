@@ -170,6 +170,7 @@ const eclipseOutput = (idx, flags) => {
   return 'unknown';
 };
 Options.Triggers.push({
+  id: 'TheMinstrelsBalladZodiarksFall',
   zoneId: ZoneId.TheMinstrelsBalladZodiarksFall,
   timelineFile: 'zodiark-ex.txt',
   initData: () => ({

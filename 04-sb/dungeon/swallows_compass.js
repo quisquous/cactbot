@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheSwallowsCompass',
   zoneId: ZoneId.TheSwallowsCompass,
   timelineFile: 'swallows_compass.txt',
   triggers: [

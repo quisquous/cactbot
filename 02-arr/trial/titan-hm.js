@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheNavelHard',
   zoneId: ZoneId.TheNavelHard,
   timelineFile: 'titan-hm.txt',
   timelineTriggers: [

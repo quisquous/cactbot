@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'SaintMociannesArboretumHard',
   zoneId: ZoneId.SaintMociannesArboretumHard,
   timelineFile: 'st_mocianne_hard.txt',
   timelineTriggers: [

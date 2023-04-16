@@ -17,6 +17,7 @@ const getHeadmarkerId = (data, matches) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 Options.Triggers.push({
+  id: 'TheCloudDeckExtreme',
   zoneId: ZoneId.TheCloudDeckExtreme,
   timelineFile: 'diamond_weapon-ex.txt',
   triggers: [

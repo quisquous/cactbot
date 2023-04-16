@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheSirensongSea',
   zoneId: ZoneId.TheSirensongSea,
   timelineFile: 'sirensong_sea.txt',
   timelineTriggers: [

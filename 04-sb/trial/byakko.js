@@ -1,5 +1,6 @@
 // Byakko Normal
 Options.Triggers.push({
+  id: 'TheJadeStoa',
   zoneId: ZoneId.TheJadeStoa,
   timelineFile: 'byakko.txt',
   triggers: [

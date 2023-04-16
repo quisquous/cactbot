@@ -59,6 +59,7 @@ const mathOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'TheRidoranaLighthouse',
   zoneId: ZoneId.TheRidoranaLighthouse,
   timelineFile: 'ridorana_lighthouse.txt',
   timelineTriggers: [

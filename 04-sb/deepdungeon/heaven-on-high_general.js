@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'HeavenOnHighGeneral',
   zoneId: [
     ZoneId.HeavenOnHighFloors1_10,
     ZoneId.HeavenOnHighFloors11_20,

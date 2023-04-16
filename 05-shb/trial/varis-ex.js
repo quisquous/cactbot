@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'MemoriaMiseraExtreme',
   zoneId: ZoneId.MemoriaMiseraExtreme,
   timelineFile: 'varis-ex.txt',
   timelineTriggers: [

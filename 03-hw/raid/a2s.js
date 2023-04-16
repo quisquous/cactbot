@@ -5,6 +5,7 @@
 // There aren't many triggers, so maybe worth just keeping the global callouts
 // for bombs and stuns.
 Options.Triggers.push({
+  id: 'AlexanderTheCuffOfTheFatherSavage',
   zoneId: ZoneId.AlexanderTheCuffOfTheFatherSavage,
   timelineFile: 'a2s.txt',
   timelineTriggers: [

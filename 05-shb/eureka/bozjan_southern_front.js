@@ -116,6 +116,7 @@ const tankBusterOnParty = (ceName) => (data, matches) => {
   return data.party.inParty(matches.target);
 };
 Options.Triggers.push({
+  id: 'TheBozjanSouthernFront',
   zoneId: ZoneId.TheBozjanSouthernFront,
   timelineFile: 'bozjan_southern_front.txt',
   timeline: [

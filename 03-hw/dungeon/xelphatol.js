@@ -1,5 +1,6 @@
 // Xelphatol
 Options.Triggers.push({
+  id: 'Xelphatol',
   zoneId: ZoneId.Xelphatol,
   timelineFile: 'xelphatol.txt',
   timelineTriggers: [

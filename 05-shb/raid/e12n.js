@@ -90,6 +90,7 @@ const primalOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'EdensPromiseEternity',
   zoneId: ZoneId.EdensPromiseEternity,
   timelineFile: 'e12n.txt',
   triggers: [

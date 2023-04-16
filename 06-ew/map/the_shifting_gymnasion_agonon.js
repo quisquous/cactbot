@@ -29,6 +29,7 @@ const agononOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'TheShiftingGymnasionAgonon',
   zoneId: ZoneId.TheShiftingGymnasionAgonon,
   triggers: [
     // ---------------- random treasure mobs ----------------

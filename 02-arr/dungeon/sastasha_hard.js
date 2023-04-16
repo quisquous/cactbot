@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'SastashaHard',
   zoneId: ZoneId.SastashaHard,
   triggers: [
     {

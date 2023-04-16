@@ -19,6 +19,7 @@
 // TODO: callouts for the stack group mirrors?
 // TODO: icelit dragonsong callouts?
 Options.Triggers.push({
+  id: 'EdensVerseRefulgenceSavage',
   zoneId: ZoneId.EdensVerseRefulgenceSavage,
   timelineFile: 'e8s.txt',
   timelineTriggers: [

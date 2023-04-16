@@ -10,6 +10,7 @@
 //   Her Inflorescence Distortion
 //   Her Inflorescence Pillar Impact
 Options.Triggers.push({
+  id: 'TheTowerAtParadigmsBreach',
   zoneId: ZoneId.TheTowerAtParadigmsBreach,
   timelineFile: 'the_tower_at_paradigms_breach.txt',
   triggers: [

@@ -1,5 +1,6 @@
 // O1S - Deltascape 1.0 Normal
 Options.Triggers.push({
+  id: 'DeltascapeV10',
   zoneId: ZoneId.DeltascapeV10,
   timelineFile: 'o1n.txt',
   timelineTriggers: [

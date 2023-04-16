@@ -1,6 +1,7 @@
 // TODO: some sort of warning about extra tank damage during bow phase?
 // TODO: should the post-staff "spread" happen unconditionally prior to marker?
 Options.Triggers.push({
+  id: 'TheAkhAfahAmphitheatreUnreal',
   zoneId: ZoneId.TheAkhAfahAmphitheatreUnreal,
   timelineFile: 'shiva-un.txt',
   timelineTriggers: [

@@ -16,6 +16,7 @@ const bombLocation = (matches) => {
   };
 };
 Options.Triggers.push({
+  id: 'AlexanderTheFistOfTheSonSavage',
   zoneId: ZoneId.AlexanderTheFistOfTheSonSavage,
   timelineFile: 'a5s.txt',
   initData: () => {

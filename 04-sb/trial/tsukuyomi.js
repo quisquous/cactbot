@@ -1,5 +1,6 @@
 // Tsukuyomi Normal
 Options.Triggers.push({
+  id: 'CastrumFluminis',
   zoneId: ZoneId.CastrumFluminis,
   timelineFile: 'tsukuyomi.txt',
   triggers: [

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'Snowcloak',
   zoneId: ZoneId.Snowcloak,
   triggers: [
     {

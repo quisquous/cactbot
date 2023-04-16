@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'EdensVerseIconoclasm',
   zoneId: ZoneId.EdensVerseIconoclasm,
   timelineFile: 'e7n.txt',
   triggers: [

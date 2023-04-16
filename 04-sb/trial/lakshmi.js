@@ -1,5 +1,6 @@
 // Lakshmi Normal
 Options.Triggers.push({
+  id: 'Emanation',
   zoneId: ZoneId.Emanation,
   timelineFile: 'lakshmi.txt',
   triggers: [

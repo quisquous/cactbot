@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheRoyalCityOfRabanastre',
   zoneId: ZoneId.TheRoyalCityOfRabanastre,
   timelineFile: 'royal_city_of_rabanastre.txt',
   triggers: [

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'AbyssosTheSixthCircle',
   zoneId: ZoneId.AbyssosTheSixthCircle,
   timelineFile: 'p6n.txt',
   initData: () => {

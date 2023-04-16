@@ -81,6 +81,7 @@ const staffSwordMidHelper = (isEastWest, posX, posY, output) => {
   return output.dirSSW();
 };
 Options.Triggers.push({
+  id: 'TheOmegaProtocolUltimate',
   zoneId: ZoneId.TheOmegaProtocolUltimate,
   timelineFile: 'the_omega_protocol.txt',
   initData: () => {

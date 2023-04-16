@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'MtGulg',
   zoneId: ZoneId.MtGulg,
   timelineFile: 'mt_gulg.txt',
   triggers: [

@@ -9,6 +9,7 @@
 //  Cerberus
 //  Cloud of Darkness
 Options.Triggers.push({
+  id: 'TheWorldOfDarkness',
   zoneId: ZoneId.TheWorldOfDarkness,
   triggers: [
     {

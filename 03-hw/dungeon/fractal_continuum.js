@@ -1,5 +1,6 @@
 // Fractal Continuum
 Options.Triggers.push({
+  id: 'TheFractalContinuum',
   zoneId: ZoneId.TheFractalContinuum,
   timelineFile: 'fractal_continuum.txt',
   timelineTriggers: [

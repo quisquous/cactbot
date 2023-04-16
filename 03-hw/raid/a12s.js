@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'AlexanderTheSoulOfTheCreatorSavage',
   zoneId: ZoneId.AlexanderTheSoulOfTheCreatorSavage,
   timelineFile: 'a12s.txt',
   initData: () => {

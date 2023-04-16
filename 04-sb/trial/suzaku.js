@@ -1,5 +1,6 @@
 // Suzaku Normal
 Options.Triggers.push({
+  id: 'HellsKier',
   zoneId: ZoneId.HellsKier,
   timelineFile: 'suzaku.txt',
   triggers: [

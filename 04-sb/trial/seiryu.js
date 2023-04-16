@@ -1,5 +1,6 @@
 // Seiryu Normal
 Options.Triggers.push({
+  id: 'TheWreathOfSnakes',
   zoneId: ZoneId.TheWreathOfSnakes,
   timelineFile: 'seiryu.txt',
   timelineTriggers: [

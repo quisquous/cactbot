@@ -17,6 +17,7 @@ const colorMap = {
   },
 };
 Options.Triggers.push({
+  id: 'EdensVerseIconoclasmSavage',
   zoneId: ZoneId.EdensVerseIconoclasmSavage,
   timelineFile: 'e7s.txt',
   triggers: [

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheNavelUnreal',
   zoneId: ZoneId.TheNavelUnreal,
   timelineFile: 'titan-un.txt',
   timelineTriggers: [

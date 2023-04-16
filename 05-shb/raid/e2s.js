@@ -2,6 +2,7 @@
 // better callouts for cycle
 // tank provoke messages when cotank has flare
 Options.Triggers.push({
+  id: 'EdensGateDescentSavage',
   zoneId: ZoneId.EdensGateDescentSavage,
   timelineFile: 'e2s.txt',
   timelineTriggers: [

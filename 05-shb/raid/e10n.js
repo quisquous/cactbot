@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'EdensPromiseLitany',
   zoneId: ZoneId.EdensPromiseLitany,
   timelineFile: 'e10n.txt',
   timelineTriggers: [

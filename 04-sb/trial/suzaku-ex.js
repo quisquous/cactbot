@@ -1,5 +1,6 @@
 // Suzaku Extreme
 Options.Triggers.push({
+  id: 'HellsKierExtreme',
   zoneId: ZoneId.HellsKierExtreme,
   timelineFile: 'suzaku-ex.txt',
   triggers: [

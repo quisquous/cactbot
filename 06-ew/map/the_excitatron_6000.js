@@ -9,6 +9,7 @@ const excitatronOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'TheExcitatron6000',
   zoneId: ZoneId.TheExcitatron6000,
   triggers: [
     // ---------------- random treasure mobs ----------------

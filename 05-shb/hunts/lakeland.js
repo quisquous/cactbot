@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'Lakeland',
   zoneId: ZoneId.Lakeland,
   triggers: [
     {

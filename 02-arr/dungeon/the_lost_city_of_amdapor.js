@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheLostCityOfAmdapor',
   zoneId: ZoneId.TheLostCityOfAmdapor,
   triggers: [
     {

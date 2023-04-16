@@ -6,6 +6,7 @@ const convertCoordinatesToDirection = (x, y) => {
   return y < 100 ? 'NW' : 'SW';
 };
 Options.Triggers.push({
+  id: 'AbyssosTheFifthCircleSavage',
   zoneId: ZoneId.AbyssosTheFifthCircleSavage,
   timelineFile: 'p5s.txt',
   initData: () => {

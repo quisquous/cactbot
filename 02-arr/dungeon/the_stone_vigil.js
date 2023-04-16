@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheStoneVigil',
   zoneId: ZoneId.TheStoneVigil,
   triggers: [
     {

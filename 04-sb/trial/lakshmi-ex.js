@@ -1,5 +1,6 @@
 // Lakshmi Extreme
 Options.Triggers.push({
+  id: 'EmanationExtreme',
   zoneId: ZoneId.EmanationExtreme,
   timelineFile: 'lakshmi-ex.txt',
   timelineTriggers: [

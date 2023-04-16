@@ -19,6 +19,7 @@ const swipeOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'ThePuppetsBunker',
   zoneId: ZoneId.ThePuppetsBunker,
   timelineFile: 'the_puppets_bunker.txt',
   triggers: [

@@ -1,5 +1,6 @@
 // Aetherochemical Research Facility
 Options.Triggers.push({
+  id: 'TheAetherochemicalResearchFacility',
   zoneId: ZoneId.TheAetherochemicalResearchFacility,
   timelineFile: 'aetherochemical_research_facility.txt',
   timelineTriggers: [

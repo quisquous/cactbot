@@ -1,5 +1,6 @@
 // O5S - Sigmascape 1.0 Savage
 Options.Triggers.push({
+  id: 'SigmascapeV10Savage',
   zoneId: ZoneId.SigmascapeV10Savage,
   timelineFile: 'o5s.txt',
   resetWhenOutOfCombat: false,

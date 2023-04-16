@@ -1,5 +1,6 @@
 // Ultima Weapon Ultimate
 Options.Triggers.push({
+  id: 'TheWeaponsRefrainUltimate',
   zoneId: ZoneId.TheWeaponsRefrainUltimate,
   timelineFile: 'ultima_weapon_ultimate.txt',
   timelineTriggers: [

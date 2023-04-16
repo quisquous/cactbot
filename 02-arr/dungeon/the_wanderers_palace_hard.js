@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheWanderersPalaceHard',
   zoneId: ZoneId.TheWanderersPalaceHard,
   triggers: [
     {

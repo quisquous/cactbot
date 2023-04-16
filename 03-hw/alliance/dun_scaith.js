@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'DunScaith',
   zoneId: ZoneId.DunScaith,
   timelineFile: 'dun_scaith.txt',
   timelineTriggers: [

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheTempest',
   zoneId: ZoneId.TheTempest,
   triggers: [
     {

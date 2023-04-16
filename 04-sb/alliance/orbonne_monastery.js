@@ -2,6 +2,7 @@
 // so it should be possible to tell people where to go.
 // This is not true for Mustadio's Maintenance.
 Options.Triggers.push({
+  id: 'TheOrbonneMonastery',
   zoneId: ZoneId.TheOrbonneMonastery,
   timelineFile: 'orbonne_monastery.txt',
   timelineTriggers: [

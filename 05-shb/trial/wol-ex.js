@@ -59,6 +59,7 @@ const quintupleOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'TheSeatOfSacrificeExtreme',
   zoneId: ZoneId.TheSeatOfSacrificeExtreme,
   timelineFile: 'wol-ex.txt',
   timelineTriggers: [

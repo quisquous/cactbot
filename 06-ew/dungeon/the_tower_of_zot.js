@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheTowerOfZot',
   zoneId: ZoneId.TheTowerOfZot,
   timelineFile: 'the_tower_of_zot.txt',
   initData: () => {

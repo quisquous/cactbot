@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'Elpis',
   zoneId: ZoneId.Elpis,
   triggers: [
     {

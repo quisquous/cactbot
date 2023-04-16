@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheBowlOfEmbers',
   zoneId: ZoneId.TheBowlOfEmbers,
   timelineFile: 'ifrit-nm.txt',
   timelineTriggers: [

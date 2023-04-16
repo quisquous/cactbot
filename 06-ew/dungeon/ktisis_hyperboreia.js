@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'KtisisHyperboreia',
   zoneId: ZoneId.KtisisHyperboreia,
   timelineFile: 'ktisis_hyperboreia.txt',
   triggers: [

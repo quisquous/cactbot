@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'EdensVerseFurorSavage',
   zoneId: ZoneId.EdensVerseFurorSavage,
   timelineFile: 'e6s.txt',
   triggers: [

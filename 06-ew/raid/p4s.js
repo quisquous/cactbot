@@ -77,6 +77,7 @@ const getHeadmarkerId = (data, matches, firstDecimalMarker) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 Options.Triggers.push({
+  id: 'AsphodelosTheFourthCircleSavage',
   zoneId: ZoneId.AsphodelosTheFourthCircleSavage,
   timelineFile: 'p4s.txt',
   initData: () => {

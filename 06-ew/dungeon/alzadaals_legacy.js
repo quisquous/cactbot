@@ -14,6 +14,7 @@ const scarletTentacleLocations = {
   '02000004': 'SW',
 };
 Options.Triggers.push({
+  id: 'AlzadaalsLegacy',
   zoneId: ZoneId.AlzadaalsLegacy,
   timelineFile: 'alzadaals_legacy.txt',
   initData: () => {

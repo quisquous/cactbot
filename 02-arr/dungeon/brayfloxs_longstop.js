@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'BrayfloxsLongstop',
   zoneId: ZoneId.BrayfloxsLongstop,
   initData: () => {
     return {

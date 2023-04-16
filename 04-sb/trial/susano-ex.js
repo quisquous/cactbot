@@ -1,5 +1,6 @@
 // Susano Extreme
 Options.Triggers.push({
+  id: 'ThePoolOfTributeExtreme',
   zoneId: ZoneId.ThePoolOfTributeExtreme,
   timelineFile: 'susano-ex.txt',
   timelineTriggers: [

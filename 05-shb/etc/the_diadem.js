@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheDiadem',
   zoneId: ZoneId.TheDiadem,
   resetWhenOutOfCombat: false,
   triggers: [

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'Smileton',
   zoneId: ZoneId.Smileton,
   timelineFile: 'smileton.txt',
   initData: () => {

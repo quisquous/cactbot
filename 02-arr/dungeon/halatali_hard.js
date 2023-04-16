@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'HalataliHard',
   zoneId: ZoneId.HalataliHard,
   triggers: [
     {

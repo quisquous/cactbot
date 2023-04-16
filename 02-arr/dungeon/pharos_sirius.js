@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'PharosSirius',
   zoneId: ZoneId.PharosSirius,
   triggers: [
     {

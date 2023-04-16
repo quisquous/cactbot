@@ -1,5 +1,6 @@
 // O5N - Sigmascape 1.0 Normal
 Options.Triggers.push({
+  id: 'SigmascapeV10',
   zoneId: ZoneId.SigmascapeV10,
   timelineFile: 'o5n.txt',
   resetWhenOutOfCombat: false,

@@ -1,5 +1,6 @@
 // O10N - Alphascape 2.0
 Options.Triggers.push({
+  id: 'AlphascapeV20',
   zoneId: ZoneId.AlphascapeV20,
   timelineFile: 'o10n.txt',
   triggers: [

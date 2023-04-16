@@ -4,6 +4,7 @@
 //   39.95|E0000000||1068E9CB|Potato Chippy|04|19062|||0bd20f2b57d49b17a19caa10e1fb8734
 // TODO: chakram safe spots lol?
 Options.Triggers.push({
+  id: 'AlexanderTheBurdenOfTheSonSavage',
   zoneId: ZoneId.AlexanderTheBurdenOfTheSonSavage,
   timelineFile: 'a8s.txt',
   initData: () => {

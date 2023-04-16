@@ -29,6 +29,7 @@ const fireLightOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'AsphodelosTheFirstCircleSavage',
   zoneId: ZoneId.AsphodelosTheFirstCircleSavage,
   timelineFile: 'p1s.txt',
   timelineTriggers: [

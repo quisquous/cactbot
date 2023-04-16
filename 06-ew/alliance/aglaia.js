@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'Aglaia',
   zoneId: ZoneId.Aglaia,
   timelineFile: 'aglaia.txt',
   initData: () => {

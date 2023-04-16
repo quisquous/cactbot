@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'ContainmentBayS1T7Unreal',
   zoneId: ZoneId.ContainmentBayS1T7Unreal,
   timelineFile: 'sephirot-un.txt',
   initData: () => {

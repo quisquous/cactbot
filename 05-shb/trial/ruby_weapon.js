@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'CinderDrift',
   zoneId: ZoneId.CinderDrift,
   timelineFile: 'ruby_weapon.txt',
   timelineTriggers: [

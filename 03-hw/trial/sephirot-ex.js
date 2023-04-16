@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'ContainmentBayS1T7Extreme',
   zoneId: ZoneId.ContainmentBayS1T7Extreme,
   timelineFile: 'sephirot-ex.txt',
   initData: () => {

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'MalikahsWell',
   zoneId: ZoneId.MalikahsWell,
   timelineFile: 'malikahs_well.txt',
   triggers: [

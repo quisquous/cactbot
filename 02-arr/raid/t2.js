@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheBindingCoilOfBahamutTurn2',
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn2,
   triggers: [
     {

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'MatoyasRelict',
   zoneId: ZoneId.MatoyasRelict,
   timelineFile: 'matoyas_relict.txt',
   triggers: [

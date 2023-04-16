@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'KuganeCastle',
   zoneId: ZoneId.KuganeCastle,
   timelineFile: 'kugane_castle.txt',
   timelineTriggers: [

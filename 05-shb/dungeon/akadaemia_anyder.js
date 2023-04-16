@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'AkadaemiaAnyder',
   zoneId: ZoneId.AkadaemiaAnyder,
   timelineFile: 'akadaemia_anyder.txt',
   timelineTriggers: [

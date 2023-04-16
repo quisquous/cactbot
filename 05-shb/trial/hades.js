@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheDyingGasp',
   zoneId: ZoneId.TheDyingGasp,
   timelineFile: 'hades.txt',
   triggers: [

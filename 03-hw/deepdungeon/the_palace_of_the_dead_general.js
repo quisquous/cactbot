@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'ThePalaceOfTheDeadGeneral',
   zoneId: [
     ZoneId.ThePalaceOfTheDeadFloors1_10,
     ZoneId.ThePalaceOfTheDeadFloors11_20,

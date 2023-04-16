@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheAurumVale',
   zoneId: ZoneId.TheAurumVale,
   triggers: [
     {

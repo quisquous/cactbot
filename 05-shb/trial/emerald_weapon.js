@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'CastrumMarinum',
   zoneId: ZoneId.CastrumMarinum,
   timelineFile: 'emerald_weapon.txt',
   triggers: [

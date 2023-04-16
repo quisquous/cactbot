@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'AsphodelosTheThirdCircle',
   zoneId: ZoneId.AsphodelosTheThirdCircle,
   timelineFile: 'p3n.txt',
   triggers: [

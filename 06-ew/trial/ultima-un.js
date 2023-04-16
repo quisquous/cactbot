@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'UltimasBaneUnreal',
   zoneId: ZoneId.UltimasBaneUnreal,
   timelineFile: 'ultima-un.txt',
   initData: () => {

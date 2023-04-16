@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheHeroesGauntlet',
   zoneId: ZoneId.TheHeroesGauntlet,
   timelineFile: 'heroes_gauntlet.txt',
   triggers: [

@@ -1,5 +1,6 @@
 // Frontlines: Shatter
 Options.Triggers.push({
+  id: 'TheFieldsOfGloryShatter',
   zoneId: ZoneId.TheFieldsOfGloryShatter,
   triggers: [
     {

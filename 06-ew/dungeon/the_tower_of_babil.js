@@ -1,5 +1,6 @@
 // TODO: Figure out a clean way to call the Charnel Claw dashes?
 Options.Triggers.push({
+  id: 'TheTowerOfBabil',
   zoneId: ZoneId.TheTowerOfBabil,
   timelineFile: 'the_tower_of_babil.txt',
   triggers: [

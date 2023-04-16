@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheTwinning',
   zoneId: ZoneId.TheTwinning,
   timelineFile: 'twinning.txt',
   triggers: [

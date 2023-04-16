@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'KuganeOhashi',
   zoneId: ZoneId.KuganeOhashi,
   timelineFile: 'yojimbo.txt',
   triggers: [

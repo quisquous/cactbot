@@ -4,6 +4,7 @@
 // TODO: Tell people where to go for 9S divebombs
 // TODO: Tell people where to go for 9S tethered tank
 Options.Triggers.push({
+  id: 'TheCopiedFactory',
   zoneId: ZoneId.TheCopiedFactory,
   timelineFile: 'the_copied_factory.txt',
   timelineTriggers: [

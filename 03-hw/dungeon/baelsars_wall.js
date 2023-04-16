@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'BaelsarsWall',
   zoneId: ZoneId.BaelsarsWall,
   timelineFile: 'baelsars_wall.txt',
   timelineTriggers: [

@@ -14,6 +14,7 @@ const shouldDieOnLaser = (data) => {
 };
 // O4S - Deltascape 4.0 Savage
 Options.Triggers.push({
+  id: 'DeltascapeV40Savage',
   zoneId: ZoneId.DeltascapeV40Savage,
   timelineFile: 'o4s.txt',
   timelineTriggers: [

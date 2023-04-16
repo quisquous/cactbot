@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheTamTaraDeepcroftHard',
   zoneId: ZoneId.TheTamTaraDeepcroftHard,
   triggers: [
     {

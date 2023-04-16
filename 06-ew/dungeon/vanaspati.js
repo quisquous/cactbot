@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'Vanaspati',
   zoneId: ZoneId.Vanaspati,
   timelineFile: 'vanaspati.txt',
   triggers: [

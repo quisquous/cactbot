@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'ContainmentBayS1T7',
   zoneId: ZoneId.ContainmentBayS1T7,
   triggers: [
     {

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheMaskedCarnivale',
   zoneId: ZoneId.TheMaskedCarnivale,
   zoneLabel: {
     en: 'The Masked Carnivale',

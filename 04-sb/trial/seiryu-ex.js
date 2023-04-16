@@ -1,5 +1,6 @@
 // Seiryu Extreme
 Options.Triggers.push({
+  id: 'TheWreathOfSnakesExtreme',
   zoneId: ZoneId.TheWreathOfSnakesExtreme,
   timelineFile: 'seiryu-ex.txt',
   timelineTriggers: [

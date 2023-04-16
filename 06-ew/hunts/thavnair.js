@@ -7,6 +7,7 @@ const tankBusterOnParty = (data, matches) => {
   return data.party.inParty(matches.target);
 };
 Options.Triggers.push({
+  id: 'Thavnair',
   zoneId: ZoneId.Thavnair,
   resetWhenOutOfCombat: false,
   initData: () => {

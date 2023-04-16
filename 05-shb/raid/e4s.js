@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'EdensGateSepultureSavage',
   zoneId: ZoneId.EdensGateSepultureSavage,
   timelineFile: 'e4s.txt',
   timelineTriggers: [

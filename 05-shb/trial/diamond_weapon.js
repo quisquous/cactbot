@@ -17,6 +17,7 @@ const sharedOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'TheCloudDeck',
   zoneId: ZoneId.TheCloudDeck,
   timelineFile: 'diamond_weapon.txt',
   triggers: [

@@ -1,5 +1,6 @@
 // O2N - Deltascape 2.0 Normal
 Options.Triggers.push({
+  id: 'DeltascapeV20',
   zoneId: ZoneId.DeltascapeV20,
   timelineFile: 'o2n.txt',
   timelineTriggers: [

@@ -1,5 +1,6 @@
 // Byakko Extreme
 Options.Triggers.push({
+  id: 'TheJadeStoaExtreme',
   zoneId: ZoneId.TheJadeStoaExtreme,
   timelineFile: 'byakko-ex.txt',
   triggers: [

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'CapeWestwind',
   zoneId: ZoneId.CapeWestwind,
   timelineFile: 'cape_westwind.txt',
   triggers: [],

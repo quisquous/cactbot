@@ -1,5 +1,6 @@
 // The Vault
 Options.Triggers.push({
+  id: 'TheVault',
   zoneId: ZoneId.TheVault,
   timelineFile: 'the_vault.txt',
   timelineTriggers: [

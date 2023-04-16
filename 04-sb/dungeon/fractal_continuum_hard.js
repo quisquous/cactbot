@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheFractalContinuumHard',
   zoneId: ZoneId.TheFractalContinuumHard,
   timelineFile: 'fractal_continuum_hard.txt',
   timelineTriggers: [

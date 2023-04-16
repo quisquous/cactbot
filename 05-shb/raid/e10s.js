@@ -7,6 +7,7 @@ const directions = {
   west: Outputs.west,
 };
 Options.Triggers.push({
+  id: 'EdensPromiseLitanySavage',
   zoneId: ZoneId.EdensPromiseLitanySavage,
   timelineFile: 'e10s.txt',
   triggers: [

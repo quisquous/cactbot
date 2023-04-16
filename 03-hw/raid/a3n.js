@@ -1,6 +1,7 @@
 // ALEXANDER - THE ARM OF THE FATHER NORMAL
 // A3N
 Options.Triggers.push({
+  id: 'AlexanderTheArmOfTheFather',
   zoneId: ZoneId.AlexanderTheArmOfTheFather,
   timelineFile: 'a3n.txt',
   timelineTriggers: [

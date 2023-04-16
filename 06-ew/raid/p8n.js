@@ -8,6 +8,7 @@ const positionTo8Dir = (combatant) => {
   return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 Options.Triggers.push({
+  id: 'AbyssosTheEighthCircle',
   zoneId: ZoneId.AbyssosTheEighthCircle,
   timelineFile: 'p8n.txt',
   initData: () => {

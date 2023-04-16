@@ -17,6 +17,7 @@ const lyheGhiahOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'TheShiftingOubliettesOfLyheGhiah',
   zoneId: ZoneId.TheShiftingOubliettesOfLyheGhiah,
   triggers: [
     // ---------------- random treasure mobs ----------------

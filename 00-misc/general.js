@@ -3,6 +3,7 @@ const caresAboutTankStuff = (data) => {
 };
 // Triggers for all occasions and zones.
 Options.Triggers.push({
+  id: 'CactbotGeneral',
   zoneId: ZoneId.MatchAll,
   triggers: [
     {

@@ -2,6 +2,7 @@
 // TODO: call out direction for safe spot
 // TODO: fire/ice tethers (0060|0061)
 Options.Triggers.push({
+  id: 'TheMinstrelsBalladHadessElegy',
   zoneId: ZoneId.TheMinstrelsBalladHadessElegy,
   timelineFile: 'hades-ex.txt',
   timelineTriggers: [

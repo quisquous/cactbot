@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'Amaurot',
   zoneId: ZoneId.Amaurot,
   timelineFile: 'amaurot.txt',
   triggers: [

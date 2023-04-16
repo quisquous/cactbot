@@ -1,5 +1,6 @@
 // Titania Normal Mode
 Options.Triggers.push({
+  id: 'TheDancingPlague',
   zoneId: ZoneId.TheDancingPlague,
   timelineFile: 'titania.txt',
   triggers: [

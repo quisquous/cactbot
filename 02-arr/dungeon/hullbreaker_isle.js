@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'HullbreakerIsle',
   zoneId: ZoneId.HullbreakerIsle,
   triggers: [
     {

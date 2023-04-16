@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'BardamsMettle',
   zoneId: ZoneId.BardamsMettle,
   timelineFile: 'bardams_mettle.txt',
   timelineTriggers: [

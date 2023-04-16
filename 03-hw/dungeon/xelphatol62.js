@@ -1,10 +1,11 @@
 // Xelphatol
 Options.Triggers.push({
+  id: 'Xelphatol62',
   zoneId: ZoneId.Xelphatol62,
   timelineFile: 'xelphatol62.txt',
   timelineTriggers: [
     {
-      id: 'Xelphatol Short Burst',
+      id: 'Xelphatol62 Short Burst',
       regex: /Short Burst/,
       beforeSeconds: 4,
       suppressSeconds: 5,
@@ -15,13 +16,13 @@ Options.Triggers.push({
       // but a timeline trigger is easy and consistent.
       // This is *technically* avoidable, but if mishandled can kill melee or unwary healers.
       // (The timing from "cone locked in" to "cone damage snapshots" is 0.70 seconds.)
-      id: 'Xelphatol On Low',
+      id: 'Xelphatol62 On Low',
       regex: /On Low/,
       beforeSeconds: 5,
       response: Responses.tankCleave(),
     },
     {
-      id: 'Xelphatol Ixali Aero Buster',
+      id: 'Xelphatol62 Ixali Aero Buster',
       regex: /Ixali Aero \(buster\)/,
       beforeSeconds: 4,
       response: Responses.tankBuster(),
@@ -29,25 +30,25 @@ Options.Triggers.push({
   ],
   triggers: [
     {
-      id: 'Xelphatol Long Burst',
+      id: 'Xelphatol62 Long Burst',
       type: 'StartsUsing',
       netRegex: { id: '19C8', source: 'Nuzal Hueloc', capture: false },
       response: Responses.aoe(),
     },
     {
-      id: 'Xelphatol Hot Blast',
+      id: 'Xelphatol62 Hot Blast',
       type: 'StartsUsing',
       netRegex: { id: '19CC', source: 'Floating Turret', capture: false },
       response: Responses.getUnder(),
     },
     {
-      id: 'Xelphatol On High',
+      id: 'Xelphatol62 On High',
       type: 'StartsUsing',
       netRegex: { id: '19CF', source: 'Dotoli Ciloc', capture: false },
       response: Responses.knockback(),
     },
     {
-      id: 'Xelphatol Dark Wings',
+      id: 'Xelphatol62 Dark Wings',
       type: 'HeadMarker',
       netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
@@ -64,20 +65,20 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'Xelphatol Ixali Aero AOE',
+      id: 'Xelphatol62 Ixali Aero AOE',
       type: 'StartsUsing',
       netRegex: { id: '19D5', source: 'Tozol Huatotl', capture: false },
       response: Responses.aoe(),
     },
     {
-      id: 'Xelphatol Bill',
+      id: 'Xelphatol62 Bill',
       type: 'HeadMarker',
       netRegex: { id: '0046' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
-      id: 'Xelphatol Hawk',
+      id: 'Xelphatol62 Hawk',
       type: 'HeadMarker',
       netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),

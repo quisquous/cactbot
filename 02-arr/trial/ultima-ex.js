@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheMinstrelsBalladUltimasBane',
   zoneId: ZoneId.TheMinstrelsBalladUltimasBane,
   timelineFile: 'ultima-ex.txt',
   initData: () => {

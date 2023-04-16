@@ -1,16 +1,17 @@
 // The Vault
 Options.Triggers.push({
+  id: 'TheVault61',
   zoneId: ZoneId.TheVault61,
   timelineFile: 'the_vault61.txt',
   timelineTriggers: [
     {
-      id: 'The Vault Heavenly Slash',
+      id: 'TheVault61 Heavenly Slash',
       regex: /Heavenly Slash/,
       beforeSeconds: 3.5,
       response: Responses.tankCleave(),
     },
     {
-      id: 'The Vault Shining Blade',
+      id: 'TheVault61 Shining Blade',
       regex: /Shining Blade/,
       beforeSeconds: 3,
       suppressSeconds: 10,
@@ -27,13 +28,13 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'The Vault Heavy Swing',
+      id: 'TheVault61 Heavy Swing',
       regex: /Heavy Swing/,
       beforeSeconds: 4,
       response: Responses.tankCleave(),
     },
     {
-      id: 'The Vault Altar Candle',
+      id: 'TheVault61 Altar Candle',
       regex: /Altar Candle/,
       beforeSeconds: 5,
       condition: (data) => data.role !== 'dps',
@@ -42,13 +43,13 @@ Options.Triggers.push({
   ],
   triggers: [
     {
-      id: 'The Vault Holiest of Holy',
+      id: 'TheVault61 Holiest of Holy',
       type: 'StartsUsing',
       netRegex: { id: '101E', source: 'Ser Adelphel', capture: false },
       response: Responses.aoe(),
     },
     {
-      id: 'The Vault Holy Shield Bash',
+      id: 'TheVault61 Holy Shield Bash',
       type: 'StartsUsing',
       netRegex: { id: '101F', source: 'Ser Adelphel' },
       condition: (data) => data.role === 'healer',
@@ -67,26 +68,26 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'The Vault Execution',
+      id: 'TheVault61 Execution',
       type: 'HeadMarker',
       netRegex: { id: '0020' },
       response: Responses.awayFrom(),
     },
     {
-      id: 'The Vault Black Nebula',
+      id: 'TheVault61 Black Nebula',
       type: 'StartsUsing',
       netRegex: { id: '1042', source: 'Face Of The Hero' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
-      id: 'The Vault Faith Unmoving',
+      id: 'TheVault61 Faith Unmoving',
       type: 'StartsUsing',
       netRegex: { id: '1027', source: 'Ser Grinnaux', capture: false },
       response: Responses.knockback(),
     },
     {
-      id: 'The Vault Dimensional Torsion',
+      id: 'TheVault61 Dimensional Torsion',
       type: 'Tether',
       netRegex: { id: '0001', source: 'Aetherial Tear' },
       condition: Conditions.targetIsYou(),
@@ -104,13 +105,13 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'The Vault Altar Pyre',
+      id: 'TheVault61 Altar Pyre',
       type: 'StartsUsing',
       netRegex: { id: '1035', source: 'Ser Charibert', capture: false },
       response: Responses.aoe(),
     },
     {
-      id: 'The Vault Holy Chains',
+      id: 'TheVault61 Holy Chains',
       type: 'HeadMarker',
       netRegex: { id: '0061' },
       condition: Conditions.targetIsYou(),
@@ -118,14 +119,14 @@ Options.Triggers.push({
     },
     {
       // This prevents out-of-combat activation for the March trigger during Charibert's spawn-in.
-      id: 'The Vault Knights Activation',
+      id: 'TheVault61 Knights Activation',
       type: 'HeadMarker',
       netRegex: { id: '0061', capture: false },
       condition: (data) => !data.knightsActive,
       run: (data) => data.knightsActive = true,
     },
     {
-      id: 'The Vault Knights March',
+      id: 'TheVault61 Knights March',
       type: 'AddedCombatant',
       netRegex: { name: ['Dawn Knight', 'Dusk Knight'], capture: false },
       condition: (data) => data.knightsActive,

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'HaukkeManorHard',
   zoneId: ZoneId.HaukkeManorHard,
   triggers: [
     {

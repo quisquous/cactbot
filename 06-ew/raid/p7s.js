@@ -35,6 +35,7 @@ const effectIdToOutputStringKey = {
   'D44': 'stack',
 };
 Options.Triggers.push({
+  id: 'AbyssosTheSeventhCircleSavage',
   zoneId: ZoneId.AbyssosTheSeventhCircleSavage,
   timelineFile: 'p7s.txt',
   initData: () => ({

@@ -7,6 +7,7 @@
 // TODO: Chi Bunker Buster
 // TODO: Chi Bouncing Bomb
 Options.Triggers.push({
+  id: 'UltimaThule',
   zoneId: ZoneId.UltimaThule,
   triggers: [
     {

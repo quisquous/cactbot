@@ -9,6 +9,7 @@ const uznairOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'TheLostCanalsOfUznair',
   zoneId: ZoneId.TheLostCanalsOfUznair,
   triggers: [
     // ---------------- random treasure mobs ----------------

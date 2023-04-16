@@ -1,5 +1,6 @@
 // O7N - Sigmascape 3.0 Normal
 Options.Triggers.push({
+  id: 'SigmascapeV30',
   zoneId: ZoneId.SigmascapeV30,
   timelineFile: 'o7n.txt',
   timelineTriggers: [

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheForbiddenLandEurekaPyros',
   zoneId: ZoneId.TheForbiddenLandEurekaPyros,
   resetWhenOutOfCombat: false,
   triggers: [

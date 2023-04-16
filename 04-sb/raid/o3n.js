@@ -1,5 +1,6 @@
 // O3 - Deltascape 3.0 Normal
 Options.Triggers.push({
+  id: 'DeltascapeV30',
   zoneId: ZoneId.DeltascapeV30,
   timelineFile: 'o3n.txt',
   initData: () => {

@@ -76,6 +76,7 @@ const tankBusterOnParty = (ceName) => (data, matches) => {
   return data.party.inParty(matches.target);
 };
 Options.Triggers.push({
+  id: 'Zadnor',
   zoneId: ZoneId.Zadnor,
   timelineFile: 'zadnor.txt',
   resetWhenOutOfCombat: false,

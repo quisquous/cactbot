@@ -1,5 +1,6 @@
 // Susano Normal
 Options.Triggers.push({
+  id: 'ThePoolOfTribute',
   zoneId: ZoneId.ThePoolOfTribute,
   timelineFile: 'susano.txt',
   timelineTriggers: [

@@ -1,5 +1,6 @@
 // Tsukuyomi Extreme
 Options.Triggers.push({
+  id: 'TheMinstrelsBalladTsukuyomisPain',
   zoneId: ZoneId.TheMinstrelsBalladTsukuyomisPain,
   timelineFile: 'tsukuyomi-ex.txt',
   triggers: [

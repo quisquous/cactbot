@@ -1,5 +1,6 @@
 // O8N - Sigmascape 4.0 Normal
 Options.Triggers.push({
+  id: 'SigmascapeV40',
   zoneId: ZoneId.SigmascapeV40,
   timelineFile: 'o8n.txt',
   triggers: [

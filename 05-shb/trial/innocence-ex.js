@@ -1,5 +1,6 @@
 // Innocence Extreme
 Options.Triggers.push({
+  id: 'TheCrownOfTheImmaculateExtreme',
   zoneId: ZoneId.TheCrownOfTheImmaculateExtreme,
   timelineFile: 'innocence-ex.txt',
   triggers: [

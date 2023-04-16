@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheLimitlessBlueExtreme',
   zoneId: ZoneId.TheLimitlessBlueExtreme,
   triggers: [
     {

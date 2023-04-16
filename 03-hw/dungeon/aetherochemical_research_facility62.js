@@ -1,28 +1,29 @@
 // Aetherochemical Research Facility
 Options.Triggers.push({
+  id: 'TheAetherochemicalResearchFacility62',
   zoneId: ZoneId.TheAetherochemicalResearchFacility62,
   timelineFile: 'aetherochemical_research_facility62.txt',
   timelineTriggers: [
     {
-      id: 'Facility Bastardbluss',
+      id: 'Facility62 Bastardbluss',
       regex: /Bastardbluss/,
       beforeSeconds: 4,
       response: Responses.tankBuster(),
     },
     {
-      id: 'Facility Hood Swing',
+      id: 'Facility62 Hood Swing',
       regex: /Hood Swing/,
       beforeSeconds: 4,
       response: Responses.tankBuster(),
     },
     {
-      id: 'Facility Chthonic Hush',
+      id: 'Facility62 Chthonic Hush',
       regex: /Chthonic Hush/,
       beforeSeconds: 4,
       response: Responses.tankCleave(),
     },
     {
-      id: 'Facility Height Of Chaos',
+      id: 'Facility62 Height Of Chaos',
       regex: /Height Of Chaos/,
       beforeSeconds: 4,
       response: Responses.tankCleave(),
@@ -30,13 +31,13 @@ Options.Triggers.push({
   ],
   triggers: [
     {
-      id: 'Facility Petrifaction',
+      id: 'Facility62 Petrifaction',
       type: 'StartsUsing',
       netRegex: { id: '10EB', source: 'Harmachis', capture: false },
       response: Responses.lookAway(),
     },
     {
-      id: 'Facility Inertia Stream',
+      id: 'Facility62 Inertia Stream',
       type: 'Ability',
       netRegex: { id: '10ED', source: 'Harmachis' },
       condition: (data) => {
@@ -46,25 +47,25 @@ Options.Triggers.push({
       response: Responses.stackMarkerOn(),
     },
     {
-      id: 'Facility Dark Orb',
+      id: 'Facility62 Dark Orb',
       type: 'StartsUsing',
       netRegex: { id: '10FC', source: ['Igeyorhm', 'Lahabrea'] },
       response: Responses.tankBuster(),
     },
     {
-      id: 'Facility Shadow Flare',
+      id: 'Facility62 Shadow Flare',
       type: 'StartsUsing',
       netRegex: { id: '1109', source: 'Ascian Prime', capture: false },
       response: Responses.aoe(),
     },
     {
-      id: 'Facility Annihilation',
+      id: 'Facility62 Annihilation',
       type: 'StartsUsing',
       netRegex: { id: '110A', source: 'Ascian Prime', capture: false },
       response: Responses.aoe(),
     },
     {
-      id: 'Facility Universal Manipulation',
+      id: 'Facility62 Universal Manipulation',
       type: 'StartsUsing',
       netRegex: { id: '1105', source: 'Ascian Prime' },
       // The cast is ~10s, but it takes about 2s for correct execution to register
@@ -83,7 +84,7 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'Facility Chaosphere',
+      id: 'Facility62 Chaosphere',
       type: 'AddedCombatant',
       netRegex: { name: 'Chaosphere', capture: false },
       suppressSeconds: 5,

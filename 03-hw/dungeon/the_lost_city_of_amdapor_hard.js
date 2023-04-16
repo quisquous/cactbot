@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheLostCityOfAmdaporHard',
   zoneId: ZoneId.TheLostCityOfAmdaporHard,
   timelineFile: 'the_lost_city_of_amdapor_hard.txt',
   // Temporarily out of combat during Kuribu phases.  @_@;;

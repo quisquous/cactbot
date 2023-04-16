@@ -7,6 +7,7 @@ const strikingDummyNames = {
   ko: '나무인형',
 };
 Options.Triggers.push({
+  id: 'CactbotTest',
   zoneId: ZoneId.MiddleLaNoscea,
   timelineFile: 'test.txt',
   // timeline here is additions to the timeline.  They can

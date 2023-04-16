@@ -119,6 +119,7 @@ const findDragonMarks = (array) => {
 // End copy and paste.
 // UCU - The Unending Coil Of Bahamut (Ultimate)
 Options.Triggers.push({
+  id: 'TheUnendingCoilOfBahamutUltimate',
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
   timelineFile: 'unending_coil_ultimate.txt',
   initData: () => {

@@ -1,5 +1,6 @@
 // Innocence Normal
 Options.Triggers.push({
+  id: 'TheCrownOfTheImmaculate',
   zoneId: ZoneId.TheCrownOfTheImmaculate,
   timelineFile: 'innocence.txt',
   triggers: [

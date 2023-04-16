@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'StormsCrown',
   zoneId: ZoneId.StormsCrown,
   timelineFile: 'barbariccia.txt',
   timelineTriggers: [

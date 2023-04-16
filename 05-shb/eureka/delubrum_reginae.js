@@ -12,6 +12,7 @@ const tankBusterOnParty = (data, matches) => {
   return data.party.inParty(matches.target);
 };
 Options.Triggers.push({
+  id: 'DelubrumReginae',
   zoneId: ZoneId.DelubrumReginae,
   timelineFile: 'delubrum_reginae.txt',
   triggers: [

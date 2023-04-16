@@ -11,6 +11,7 @@ const lyheGhiahOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'TheDungeonsOfLyheGhiah',
   zoneId: ZoneId.TheDungeonsOfLyheGhiah,
   triggers: [
     // ---------------- random treasure mobs ----------------

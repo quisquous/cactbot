@@ -23,6 +23,7 @@ const headingTo4Dir = (heading) => {
 };
 const visageMapIdx = (col, row) => row * 4 + col;
 Options.Triggers.push({
+  id: 'AnotherSildihnSubterraneSavage',
   zoneId: ZoneId.AnotherSildihnSubterraneSavage,
   timelineFile: 'another_sildihn_subterrane-savage.txt',
   initData: () => {

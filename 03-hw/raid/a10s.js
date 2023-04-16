@@ -15,6 +15,7 @@ const chargeOutputStrings = {
   unknown: Outputs.unknown,
 };
 Options.Triggers.push({
+  id: 'AlexanderTheBreathOfTheCreatorSavage',
   zoneId: ZoneId.AlexanderTheBreathOfTheCreatorSavage,
   timelineFile: 'a10s.txt',
   initData: () => {

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheGhimlytDark',
   zoneId: ZoneId.TheGhimlytDark,
   timelineFile: 'ghimlyt_dark.txt',
   timelineTriggers: [

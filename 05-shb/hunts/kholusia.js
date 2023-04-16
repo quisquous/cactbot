@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'Kholusia',
   zoneId: ZoneId.Kholusia,
   triggers: [
     {

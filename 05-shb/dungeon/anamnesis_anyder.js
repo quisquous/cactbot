@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'AnamnesisAnyder',
   zoneId: ZoneId.AnamnesisAnyder,
   timelineFile: 'anamnesis_anyder.txt',
   triggers: [

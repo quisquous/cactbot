@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheSeatOfSacrifice',
   zoneId: ZoneId.TheSeatOfSacrifice,
   timelineFile: 'wol.txt',
   timelineTriggers: [

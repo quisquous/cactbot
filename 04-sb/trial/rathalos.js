@@ -1,5 +1,6 @@
 // Rathalos Extreme
 Options.Triggers.push({
+  id: 'TheGreatHunt',
   zoneId: ZoneId.TheGreatHunt,
   // Mechanics are random, no timeline is possible.
   hasNoTimeline: true,

@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'Labyrinthos',
   zoneId: ZoneId.Labyrinthos,
   triggers: [
     {

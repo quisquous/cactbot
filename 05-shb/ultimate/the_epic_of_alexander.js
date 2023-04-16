@@ -281,6 +281,7 @@ const betaInstructions = (idx, output) => {
   return output.unknown();
 };
 Options.Triggers.push({
+  id: 'TheEpicOfAlexanderUltimate',
   zoneId: ZoneId.TheEpicOfAlexanderUltimate,
   timelineFile: 'the_epic_of_alexander.txt',
   timelineTriggers: [

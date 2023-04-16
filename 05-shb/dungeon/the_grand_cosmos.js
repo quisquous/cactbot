@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheGrandCosmos',
   zoneId: ZoneId.TheGrandCosmos,
   timelineFile: 'the_grand_cosmos.txt',
   triggers: [

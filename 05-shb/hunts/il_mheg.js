@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'IlMheg',
   zoneId: ZoneId.IlMheg,
   triggers: [
     {

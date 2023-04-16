@@ -1,5 +1,6 @@
 // O6S - Sigmascape 2.0 Savage
 Options.Triggers.push({
+  id: 'SigmascapeV20Savage',
   zoneId: ZoneId.SigmascapeV20Savage,
   timelineFile: 'o6s.txt',
   triggers: [

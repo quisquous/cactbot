@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'EdensPromiseUmbra',
   zoneId: ZoneId.EdensPromiseUmbra,
   timelineFile: 'e9n.txt',
   triggers: [

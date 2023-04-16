@@ -10,6 +10,7 @@ const albionWildBeastMapEffectLocations = {
   '28': ['east', 'south'],
 };
 Options.Triggers.push({
+  id: 'LapisManalis',
   zoneId: ZoneId.LapisManalis,
   timelineFile: 'lapis_manalis.txt',
   timelineTriggers: [

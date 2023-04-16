@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'AlexanderTheHeartOfTheCreatorSavage',
   zoneId: ZoneId.AlexanderTheHeartOfTheCreatorSavage,
   timelineFile: 'a11s.txt',
   timelineTriggers: [

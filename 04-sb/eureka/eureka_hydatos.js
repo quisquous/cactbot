@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheForbiddenLandEurekaHydatos',
   zoneId: ZoneId.TheForbiddenLandEurekaHydatos,
   timelineFile: 'eureka_hydatos.txt',
   resetWhenOutOfCombat: false,

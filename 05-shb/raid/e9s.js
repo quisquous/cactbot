@@ -109,6 +109,7 @@ const calculateSummonSafeZone = (boss, clone1, clone2, abilityId) => {
   return safeZone;
 };
 Options.Triggers.push({
+  id: 'EdensPromiseUmbraSavage',
   zoneId: ZoneId.EdensPromiseUmbraSavage,
   timelineFile: 'e9s.txt',
   triggers: [

@@ -9,6 +9,7 @@ const purgationMidRotateCWFlag = '00020001';
 const purgationMidRotateCCWFlag = '00200010';
 const purgationMidRotateFlags = [purgationMidRotateCWFlag, purgationMidRotateCCWFlag];
 Options.Triggers.push({
+  id: 'MountOrdeals',
   zoneId: ZoneId.MountOrdeals,
   timelineFile: 'rubicante.txt',
   initData: () => {

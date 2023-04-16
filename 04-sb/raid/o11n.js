@@ -1,5 +1,6 @@
 // O11N - Alphascape 3.0
 Options.Triggers.push({
+  id: 'AlphascapeV30',
   zoneId: ZoneId.AlphascapeV30,
   timelineFile: 'o11n.txt',
   timelineTriggers: [

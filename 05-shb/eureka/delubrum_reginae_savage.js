@@ -44,6 +44,7 @@ const getHeadmarkerId = (data, matches) => {
   return `000${hexId}`.slice(-4);
 };
 Options.Triggers.push({
+  id: 'DelubrumReginaeSavage',
   zoneId: ZoneId.DelubrumReginaeSavage,
   timelineFile: 'delubrum_reginae_savage.txt',
   timelineTriggers: [

@@ -1,5 +1,6 @@
 // O11S - Alphascape 3.0 Savage
 Options.Triggers.push({
+  id: 'AlphascapeV30Savage',
   zoneId: ZoneId.AlphascapeV30Savage,
   timelineFile: 'o11s.txt',
   triggers: [

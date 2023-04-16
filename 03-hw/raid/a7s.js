@@ -35,6 +35,7 @@
 //     red tether / white prey
 //     green tether / purple prey
 Options.Triggers.push({
+  id: 'AlexanderTheArmOfTheSonSavage',
   zoneId: ZoneId.AlexanderTheArmOfTheSonSavage,
   timelineNeedsFixing: true,
   timelineFile: 'a7s.txt',

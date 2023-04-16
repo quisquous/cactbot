@@ -11,6 +11,7 @@ const sharedOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'CastrumMarinumExtreme',
   zoneId: ZoneId.CastrumMarinumExtreme,
   timelineFile: 'emerald_weapon-ex.txt',
   timelineTriggers: [

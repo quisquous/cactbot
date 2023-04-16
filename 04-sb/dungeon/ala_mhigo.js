@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'AlaMhigo',
   zoneId: ZoneId.AlaMhigo,
   timelineFile: 'ala_mhigo.txt',
   timelineTriggers: [

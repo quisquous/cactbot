@@ -61,6 +61,7 @@ const tiltOutputStrings = {
   },
 };
 Options.Triggers.push({
+  id: 'ContainmentBayP1T6Extreme',
   zoneId: ZoneId.ContainmentBayP1T6Extreme,
   timelineFile: 'sophia-ex.txt',
   initData: () => {

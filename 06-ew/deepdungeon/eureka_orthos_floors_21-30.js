@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'EurekaOrthosFloors21_30',
   zoneId: ZoneId.EurekaOrthosFloors21_30,
   triggers: [
     // ---------------- Floor 21-29 Mobs ----------------

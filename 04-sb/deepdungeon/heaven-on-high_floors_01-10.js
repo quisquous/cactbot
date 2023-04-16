@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'HeavenOnHighFloors1_10',
   zoneId: ZoneId.HeavenOnHighFloors1_10,
   triggers: [
     // ---------------- Floor 01-09 Mobs ----------------

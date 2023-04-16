@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheDeadEnds',
   zoneId: ZoneId.TheDeadEnds,
   timelineFile: 'the_dead_ends.txt',
   triggers: [

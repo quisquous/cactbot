@@ -1,6 +1,7 @@
 // O12S - Alphascape 4.0 Savage
 // TODO: targetable lines in timeline
 Options.Triggers.push({
+  id: 'AlphascapeV40Savage',
   zoneId: ZoneId.AlphascapeV40Savage,
   timelineFile: 'o12s.txt',
   timelineTriggers: [

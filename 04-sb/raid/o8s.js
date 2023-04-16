@@ -67,6 +67,7 @@ const strings = {
 };
 // O8S - Sigmascape 4.0 Savage
 Options.Triggers.push({
+  id: 'SigmascapeV40Savage',
   zoneId: ZoneId.SigmascapeV40Savage,
   timelineFile: 'o8s.txt',
   triggers: [

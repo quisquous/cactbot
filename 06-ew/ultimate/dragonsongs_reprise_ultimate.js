@@ -80,6 +80,7 @@ const matchedPositionTo4Dir = (combatant) => {
   return Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
 };
 Options.Triggers.push({
+  id: 'DragonsongsRepriseUltimate',
   zoneId: ZoneId.DragonsongsRepriseUltimate,
   timelineFile: 'dragonsongs_reprise_ultimate.txt',
   initData: () => {

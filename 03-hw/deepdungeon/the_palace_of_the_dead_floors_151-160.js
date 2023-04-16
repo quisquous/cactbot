@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'ThePalaceOfTheDeadFloors151_160',
   zoneId: ZoneId.ThePalaceOfTheDeadFloors151_160,
   triggers: [
     // ---------------- Floor 151-159 Mobs ----------------

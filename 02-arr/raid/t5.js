@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'TheBindingCoilOfBahamutTurn5',
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn5,
   timelineFile: 't5.txt',
   initData: () => {

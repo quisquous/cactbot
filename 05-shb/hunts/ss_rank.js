@@ -1,4 +1,5 @@
 Options.Triggers.push({
+  id: 'HuntShBSS',
   zoneId: [
     ZoneId.AmhAraeng,
     ZoneId.IlMheg,

@@ -1,5 +1,6 @@
 // Titania Extreme
 Options.Triggers.push({
+  id: 'TheDancingPlagueExtreme',
   zoneId: ZoneId.TheDancingPlagueExtreme,
   timelineFile: 'titania-ex.txt',
   triggers: [
