@@ -64,7 +64,7 @@ export type ConfigEntry = {
   debugOnly?: boolean;
   // For select.
   options?: LocaleObject<{ [selectText: string]: string }>;
-  setterFunc?: (options: BaseOptions, value: SavedConfigEntry) => void;
+  setterFunc?: (value: SavedConfigEntry, options: BaseOptions) => ConfigValue | void;
 };
 
 export type OptionsTemplate = {
@@ -449,7 +449,9 @@ class UserConfig {
       // If this doesn't exist, just set the value directly.
       // Option template ids are identical to field names on Options.
       if (opt.setterFunc) {
-        opt.setterFunc(options, value);
+        const setValue = opt.setterFunc(value, options);
+        if (setValue !== undefined)
+          options[opt.id] = setValue;
       } else if (opt.type === 'integer') {
         if (typeof value === 'number')
           options[opt.id] = Math.floor(value);
