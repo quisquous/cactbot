@@ -38,6 +38,12 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '7EAF', source: 'Orthoshelled Dragon' },
       response: Responses.interruptIfPossible(),
     },
+    {
+      id: 'EO 21-30 Orthos Brobinyak Cold Gaze',
+      type: 'StartsUsing',
+      netRegex: { id: '7EAB', source: 'Orthos Brobinyak', capture: false },
+      response: Responses.awayFromFront(),
+    },
     // ---------------- Floor 30 Boss: Tiamat Clone ----------------
     {
       id: 'EO 21-30 Tiamat Clone Dark Wyrmwing',
@@ -72,6 +78,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Lesser Orthos Dragon': 'nieder(?:e|er|es|en) Orthos-Drache',
         'Orthoknight': 'Orthoritter',
@@ -82,6 +89,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Lesser Orthos Dragon': 'maître aérien mineur Orthos',
         'Orthoknight': 'chevalier Orthos',
@@ -92,6 +100,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Lesser Orthos Dragon': 'オルト・レッサードラゴン',
         'Orthoknight': 'オルト・ナイト',

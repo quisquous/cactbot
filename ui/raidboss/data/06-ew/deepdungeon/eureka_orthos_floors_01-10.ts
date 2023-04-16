@@ -27,6 +27,12 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsYou(),
       response: Responses.knockback(),
     },
+    {
+      id: 'EO 01-10 Orthos Fachan Dread Gaze',
+      type: 'StartsUsing',
+      netRegex: { id: '7E82', source: 'Orthos Fachan', capture: false },
+      response: Responses.awayFromFront(),
+    },
     // ---------------- Floor 10 Boss: Gancanagh ----------------
     {
       id: 'EO 01-10 Gancanagh Mandrastorm',
@@ -38,6 +44,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Gancanagh': 'Gancanagh',
         'Orthos Behemoth': 'Orthos-Behemoth',
@@ -46,6 +53,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Gancanagh': 'Gancanagh',
         'Orthos Behemoth': 'béhémoth Orthos',
@@ -54,6 +62,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Gancanagh': 'ガンカナグー',
         'Orthos Behemoth': 'オルト・ベヒーモス',

@@ -6,10 +6,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // Eureka Orthos Floors 91-100
-// TODO: Orthosystem γ Repelling Cannons PBAoE
-// TODO: Orthosystem γ Ring Cannon donut AoE
-// TODO: Servomechanical Orthochimera The Dragon's Breath front-left cleave
-// TODO: Servomechanical Orthochimera The Scorpion's Sting back cleave
 // TODO: Excalibur Exglacialis safe spots
 
 export interface Data extends RaidbossData {
@@ -47,18 +43,18 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
-    // {
-    //   id: 'EO 91-100 Orthosystem γ Repelling Cannons',
-    //   type: 'StartsUsing',
-    //   netRegex: { id: '', source: 'Orthosystem γ', capture: false },
-    //   response: Responses.getOut(),
-    // },
-    // {
-    //   id: 'EO 91-100 Orthosystem γ Ring Cannon',
-    //   type: 'StartsUsing',
-    //   netRegex: { id: '', source: 'Orthosystem γ', capture: false },
-    //   response: Responses.getIn(),
-    // },
+    {
+      id: 'EO 91-100 Orthosystem γ Repelling Cannons',
+      type: 'StartsUsing',
+      netRegex: { id: '806D', source: 'Orthosystem γ', capture: false },
+      response: Responses.getOut(),
+    },
+    {
+      id: 'EO 91-100 Orthosystem γ Ring Cannon',
+      type: 'StartsUsing',
+      netRegex: { id: '806C', source: 'Orthosystem γ', capture: false },
+      response: Responses.getIn(),
+    },
     {
       id: 'EO 91-100 Orthosystem α Aetherochemical Laser α',
       type: 'StartsUsing',
@@ -90,13 +86,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '809A', source: 'Servomechanical Orthotaur', capture: false },
       response: Responses.getOut(),
     },
-    // {
-    //   id: 'EO 91-100 Servomechanical Orthochimera The Dragon\'s Breath',
-    //   // AoE cleave to front and left
-    //   type: 'StartsUsing',
-    //   netRegex: { id: '', source: 'Servomechanical Orthochimera', capture: false },
-    //   response: Responses.goRight(),
-    // },
     {
       id: 'EO 91-100 Servomechanical Orthochimera Engulfing Ice',
       // AoE cleave to front and right
@@ -104,13 +93,20 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '808A', source: 'Servomechanical Orthochimera', capture: false },
       response: Responses.goLeft(),
     },
-    // {
-    //   id: 'EO 91-100 Servomechanical Orthochimera The Scorpion\'s Sting',
-    //   // AoE cleave behind
-    //   type: 'StartsUsing',
-    //   netRegex: { id: '', source: 'Servomechanical Orthochimera', capture: false },
-    //   response: Responses.goFront(),
-    // },
+    {
+      id: 'EO 91-100 Servomechanical Orthochimera The Dragon\'s Breath',
+      // AoE cleave to front and left
+      type: 'StartsUsing',
+      netRegex: { id: '808B', source: 'Servomechanical Orthochimera', capture: false },
+      response: Responses.goRight(),
+    },
+    {
+      id: 'EO 91-100 Servomechanical Orthochimera the Scorpion\'s Sting',
+      // AoE cleave behind
+      type: 'StartsUsing',
+      netRegex: { id: '808C', source: 'Servomechanical Orthochimera', capture: false },
+      response: Responses.goFront(),
+    },
     {
       id: 'EO 91-100 Servomechanical Orthochimera the Ram\'s Voice',
       type: 'StartsUsing',
