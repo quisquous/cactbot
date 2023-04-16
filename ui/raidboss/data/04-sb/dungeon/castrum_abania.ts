@@ -9,6 +9,7 @@ export interface Data extends RaidbossData {
   calledUseCannon?: boolean;
 }
 const triggerSet: TriggerSet<Data> = {
+  id: 'CastrumAbania',
   zoneId: ZoneId.CastrumAbania,
   timelineFile: 'castrum_abania.txt',
   triggers: [

@@ -13,6 +13,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'KtisisHyperboreia',
   zoneId: ZoneId.KtisisHyperboreia,
   timelineFile: 'ktisis_hyperboreia.txt',
   triggers: [

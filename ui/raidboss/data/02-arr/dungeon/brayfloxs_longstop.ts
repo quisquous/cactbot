@@ -8,6 +8,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'BrayfloxsLongstop',
   zoneId: ZoneId.BrayfloxsLongstop,
   initData: () => {
     return {

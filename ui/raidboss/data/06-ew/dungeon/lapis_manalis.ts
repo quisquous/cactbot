@@ -20,6 +20,7 @@ const albionWildBeastMapEffectLocations: { [idx: string]: string[] } = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'LapisManalis',
   zoneId: ZoneId.LapisManalis,
   timelineFile: 'lapis_manalis.txt',
   timelineTriggers: [

@@ -30,6 +30,7 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheCloudDeckExtreme',
   zoneId: ZoneId.TheCloudDeckExtreme,
   timelineFile: 'diamond_weapon-ex.txt',
   triggers: [

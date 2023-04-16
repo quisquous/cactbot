@@ -571,27 +571,38 @@ export class PopupText {
   }
 
   ProcessDataFiles(files: RaidbossFileData): void {
+    const triggerSetIds = new Set<string>();
+
     this.triggerSets = [];
     for (const [filename, json] of Object.entries(files)) {
       if (!filename.endsWith('.js') && !filename.endsWith('.ts'))
         continue;
 
       if (typeof json !== 'object') {
-        console.log('Unexpected JSON from ' + filename + ', expected an array');
+        console.log(`Unexpected JSON from ${filename}, expected an array`);
         continue;
       }
       if (!json.triggers) {
-        console.log('Unexpected JSON from ' + filename + ', expected a triggers');
+        console.log(`Unexpected JSON from ${filename}, expected a triggers`);
         continue;
       }
       if (typeof json.triggers !== 'object' || !(json.triggers.length >= 0)) {
-        console.log('Unexpected JSON from ' + filename + ', expected triggers to be an array');
+        console.log(`Unexpected JSON from ${filename}, expected triggers to be an array`);
         continue;
       }
       const processedSet = {
         filename: filename,
         ...json,
       };
+      if (processedSet.id) {
+        if (triggerSetIds.has(processedSet.id)) {
+          console.log(
+            `${filename} has duplicate triggerSet id ${processedSet.id}, ignoring triggers`,
+          );
+          continue;
+        }
+        triggerSetIds.add(processedSet.id);
+      }
       this.triggerSets.push(processedSet);
     }
 

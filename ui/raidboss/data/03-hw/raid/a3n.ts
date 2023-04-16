@@ -13,6 +13,7 @@ export interface Data extends RaidbossData {
 // A3N
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlexanderTheArmOfTheFather',
   zoneId: ZoneId.AlexanderTheArmOfTheFather,
   timelineFile: 'a3n.txt',
   timelineTriggers: [

@@ -457,8 +457,8 @@ const addTriggerDetail = (
 // Unfortunately due to poor decisions in the past, PerTriggerOptions has different
 // fields here.  This should be fixed.
 const setOptionsFromOutputValue = (
-  options: BaseOptions | TriggerAutoConfig,
   value: SavedConfigEntry,
+  options: BaseOptions | TriggerAutoConfig,
 ) => {
   if (value === 'default') {
     // Nothing.
@@ -1485,7 +1485,7 @@ const processPerTriggerAutoConfig = (options: RaidbossOptions, savedConfig: Save
   const keys = Object.keys(kTriggerOptions);
   for (const key of keys) {
     const obj = outputObjs[key] = {};
-    setOptionsFromOutputValue(obj, key);
+    setOptionsFromOutputValue(key, obj);
   }
 
   for (const [id, entry] of Object.entries(triggers)) {
@@ -1757,10 +1757,12 @@ const templateOptions: OptionsTemplate = {
       },
       default: 'default',
       debug: true,
-      setterFunc: (options, value) => {
+      setterFunc: (value) => {
+        if (typeof value !== 'string')
+          return;
         if (value === 'default')
           return;
-        options['AlertsLanguage'] = value;
+        return value;
       },
     },
     {
@@ -1832,10 +1834,12 @@ const templateOptions: OptionsTemplate = {
       },
       default: 'default',
       debug: true,
-      setterFunc: (options, value) => {
+      setterFunc: (value) => {
+        if (typeof value !== 'string')
+          return;
         if (value === 'default')
           return;
-        options['TimelineLanguage'] = value;
+        return value;
       },
     },
     {

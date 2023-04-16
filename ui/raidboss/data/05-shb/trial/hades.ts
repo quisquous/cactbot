@@ -12,6 +12,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheDyingGasp',
   zoneId: ZoneId.TheDyingGasp,
   timelineFile: 'hades.txt',
   triggers: [

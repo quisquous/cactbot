@@ -34,6 +34,7 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AsphodelosTheSecondCircleSavage',
   zoneId: ZoneId.AsphodelosTheSecondCircleSavage,
   timelineFile: 'p2s.txt',
   triggers: [

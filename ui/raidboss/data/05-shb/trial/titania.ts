@@ -8,6 +8,7 @@ export type Data = RaidbossData;
 
 // Titania Normal Mode
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheDancingPlague',
   zoneId: ZoneId.TheDancingPlague,
   timelineFile: 'titania.txt',
   triggers: [

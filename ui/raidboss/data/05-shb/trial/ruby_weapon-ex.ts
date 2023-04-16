@@ -18,6 +18,7 @@ export interface Data extends RaidbossData {
 // TODO: ravensflight calls would be nice
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'CinderDriftExtreme',
   zoneId: ZoneId.CinderDriftExtreme,
   timelineFile: 'ruby_weapon-ex.txt',
   timelineTriggers: [

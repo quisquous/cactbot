@@ -16,6 +16,7 @@ export interface Data extends RaidbossData {
 // TODO: should the post-staff "spread" happen unconditionally prior to marker?
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheAkhAfahAmphitheatreExtreme',
   zoneId: ZoneId.TheAkhAfahAmphitheatreExtreme,
   timelineFile: 'shiva-ex.txt',
   initData: () => {

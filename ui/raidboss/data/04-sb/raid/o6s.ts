@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 
 // O6S - Sigmascape 2.0 Savage
 const triggerSet: TriggerSet<Data> = {
+  id: 'SigmascapeV20Savage',
   zoneId: ZoneId.SigmascapeV20Savage,
   timelineFile: 'o6s.txt',
   triggers: [

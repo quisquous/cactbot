@@ -146,6 +146,7 @@ const calculateSummonSafeZone = (
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EdensPromiseUmbraSavage',
   zoneId: ZoneId.EdensPromiseUmbraSavage,
   timelineFile: 'e9s.txt',
   triggers: [

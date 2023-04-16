@@ -12,6 +12,7 @@ export interface Data extends RaidbossData {
 
 // Byakko Extreme
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheJadeStoaExtreme',
   zoneId: ZoneId.TheJadeStoaExtreme,
   timelineFile: 'byakko-ex.txt',
   triggers: [

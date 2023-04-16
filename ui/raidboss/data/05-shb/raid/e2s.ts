@@ -16,6 +16,7 @@ export interface Data extends RaidbossData {
 // tank provoke messages when cotank has flare
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EdensGateDescentSavage',
   zoneId: ZoneId.EdensGateDescentSavage,
   timelineFile: 'e2s.txt',
   timelineTriggers: [

@@ -65,7 +65,7 @@ const isResponseFunc = (func: unknown): func is ResponseFunc<RaidbossData, Match
   return typeof func === 'function';
 };
 
-const testTriggerFile = (file: string) => {
+const testTriggerFile = (file: string, info: TriggerSetInfo) => {
   let contents: string;
   let triggerSet: LooseTriggerSet;
 
@@ -89,6 +89,20 @@ const testTriggerFile = (file: string) => {
 
   // Dummy test so that failures in before show up with better text.
   it('should load properly', () => {/* noop */});
+
+  it('should have a unique set id', () => {
+    const id = triggerSet.id;
+    if (id === undefined) {
+      assert.fail('has an undefined id somehow');
+      return;
+    }
+    const prevFile = info.triggerSetId[id];
+    if (prevFile === undefined) {
+      info.triggerSetId[id] = file;
+      return;
+    }
+    assert.fail(`triggerset id conflict: ${id} already used by ${prevFile}`);
+  });
 
   it('should not use Regexes', () => {
     const regexes = /(?:(?:regex)(?:|Cn|De|Fr|Ko|Ja)\w*\s*:\w*\s*Regexes\.)/g;
@@ -304,6 +318,26 @@ const testTriggerFile = (file: string) => {
         prefix = prefix.slice(0, prefix.lastIndexOf(' ') + 1);
       if (!prefix.endsWith(' '))
         assert.fail(`id prefix '${prefix}' is not a full word, must end in a space`);
+    }
+  });
+
+  it('has globally unique trigger ids', () => {
+    for (const set of [triggerSet.triggers, triggerSet.timelineTriggers]) {
+      if (!set)
+        continue;
+      for (const trigger of set) {
+        // warned elsewhere
+        const id = trigger.id;
+        if (id === undefined)
+          continue;
+
+        const prevFile = info.triggerId[id];
+        if (prevFile === undefined) {
+          info.triggerId[id] = file;
+          continue;
+        }
+        assert.fail(`trigger id conflict: ${id} already used by ${prevFile}`);
+      }
     }
   });
 
@@ -729,10 +763,22 @@ const testTriggerFile = (file: string) => {
   });
 };
 
+type TriggerSetInfo = {
+  // id -> filename map
+  triggerSetId: { [id: string]: string };
+  // id -> filename map
+  triggerId: { [id: string]: string };
+};
+
 const testTriggerFiles = (triggerFiles: string[]): void => {
+  const info: TriggerSetInfo = {
+    triggerSetId: {},
+    triggerId: {},
+  };
   describe('trigger test', () => {
-    for (const file of triggerFiles)
-      describe(`${file}`, () => testTriggerFile(file));
+    for (const file of triggerFiles) {
+      describe(`${file}`, () => testTriggerFile(file, info));
+    }
   });
 };
 

@@ -7,6 +7,7 @@ export type Data = RaidbossData;
 
 // Fractal Continuum
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheFractalContinuum',
   zoneId: ZoneId.TheFractalContinuum,
   timelineFile: 'fractal_continuum.txt',
   timelineTriggers: [

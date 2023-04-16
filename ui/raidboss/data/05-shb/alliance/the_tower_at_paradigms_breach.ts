@@ -34,6 +34,7 @@ export interface Data extends RaidbossData {
 //   Her Inflorescence Pillar Impact
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheTowerAtParadigmsBreach',
   zoneId: ZoneId.TheTowerAtParadigmsBreach,
   timelineFile: 'the_tower_at_paradigms_breach.txt',
   triggers: [

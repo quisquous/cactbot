@@ -50,6 +50,7 @@ export interface Data extends RaidbossData {
 //     green tether / purple prey
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlexanderTheArmOfTheSonSavage',
   zoneId: ZoneId.AlexanderTheArmOfTheSonSavage,
   timelineNeedsFixing: true,
   timelineFile: 'a7s.txt',

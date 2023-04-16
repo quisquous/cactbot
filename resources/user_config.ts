@@ -57,14 +57,22 @@ export type ConfigValue = string | number | boolean;
 export type ConfigEntry = {
   id: string;
   name: LocaleText;
-  type: 'checkbox' | 'select' | 'float' | 'integer' | 'directory' | 'html';
+  type: 'checkbox' | 'select' | 'float' | 'integer' | 'string' | 'directory' | 'html';
   html?: LocaleText;
+  // This must be a valid option even if there is a setterFunc, as `_getOptionLeafHelper`
+  // for the config ui reads from the SavedConfig directly rather than post-setterFunc.
   default: ConfigValue;
   debug?: boolean;
   debugOnly?: boolean;
   // For select.
   options?: LocaleObject<{ [selectText: string]: string }>;
-  setterFunc?: (options: BaseOptions, value: SavedConfigEntry) => void;
+  // An optional function to transform a saved/default value into the final value.
+  // `value` is the saved/default value.  `isDefault` is true if `value` is implicitly the default.
+  setterFunc?: (
+    value: SavedConfigEntry,
+    options: BaseOptions,
+    isDefault: boolean,
+  ) => ConfigValue | void;
 };
 
 export type OptionsTemplate = {
@@ -437,11 +445,14 @@ class UserConfig {
       // Grab the saved value or the default to set in options.
 
       let value: SavedConfigEntry = opt.default;
+      let isDefault = true;
       if (typeof savedConfig === 'object' && !Array.isArray(savedConfig)) {
         if (opt.id in savedConfig) {
           const newValue = savedConfig[opt.id];
-          if (newValue !== undefined)
+          if (newValue !== undefined) {
             value = newValue;
+            isDefault = false;
+          }
         }
       }
 
@@ -449,7 +460,9 @@ class UserConfig {
       // If this doesn't exist, just set the value directly.
       // Option template ids are identical to field names on Options.
       if (opt.setterFunc) {
-        opt.setterFunc(options, value);
+        const setValue = opt.setterFunc(value, options, isDefault);
+        if (setValue !== undefined)
+          options[opt.id] = setValue;
       } else if (opt.type === 'integer') {
         if (typeof value === 'number')
           options[opt.id] = Math.floor(value);

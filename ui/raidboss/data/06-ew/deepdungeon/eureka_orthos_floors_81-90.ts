@@ -35,6 +35,7 @@ const interceptionOutputStrings: { [label: string]: LocaleText } = {
 } as const;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EurekaOrthosFloors81_90',
   zoneId: ZoneId.EurekaOrthosFloors81_90,
 
   triggers: [

@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 
 // The Great Gubal Library--Hard
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheGreatGubalLibraryHard',
   zoneId: ZoneId.TheGreatGubalLibraryHard,
   timelineFile: 'gubal_library_hard.txt',
   timelineTriggers: [

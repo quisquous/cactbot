@@ -6,6 +6,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'DohnMheg',
   zoneId: ZoneId.DohnMheg,
   timelineFile: 'dohn_mheg.txt',
   timelineTriggers: [

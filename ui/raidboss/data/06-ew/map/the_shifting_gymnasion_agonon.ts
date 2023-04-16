@@ -40,6 +40,7 @@ const agononOutputStrings = {
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheShiftingGymnasionAgonon',
   zoneId: ZoneId.TheShiftingGymnasionAgonon,
 
   triggers: [

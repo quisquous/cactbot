@@ -15,6 +15,7 @@ export type Data = RaidbossData;
 // TODO: Chi Bouncing Bomb
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'UltimaThule',
   zoneId: ZoneId.UltimaThule,
   triggers: [
     {

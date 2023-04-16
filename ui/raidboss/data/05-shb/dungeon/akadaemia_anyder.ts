@@ -7,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AkadaemiaAnyder',
   zoneId: ZoneId.AkadaemiaAnyder,
   timelineFile: 'akadaemia_anyder.txt',
   timelineTriggers: [
