@@ -335,7 +335,7 @@ export default {
     en: 'Out of melee',
     de: 'Raus aus Nahkampf',
     fr: 'Sortez de la mêlée',
-    ja: '近接最大レンジ',
+    ja: '近接レンジ離れ',
     cn: '离开近战距离',
     ko: '근접범위 밖으로',
   },
