@@ -1,22 +1,3 @@
-// In your cactbot/user/raidboss.js file, add the line:
-//   Options.cactbotWormholeStrat = true;
-// .. if you want cactbot strat for wormhole.
-//
-// This is more or less the TPS wormhole strat, with
-// some modifications to require less brain.
-//
-// Original TPS strat: https://www.youtube.com/watch?v=ScBsC5sZRwU
-//
-// Changes:
-// There's no "CC" side or "BJ" side, only left side and right side.
-// Start middle, face north, away from alexander.
-// Odds go left, evens go right.  1+4 go to robots, 2+3 go back, 5+6+7+8 go side of robot.
-// From there, do the same thing you normally would for your number in the TPS strat.
-// This means that sometimes 2 is baiting BJ and sometimes 3, so both need to leave room.
-// All cleaves go through the middle (easy to know where to face for evens if you don't surecast).
-// East/West cardinals always safe after chakrams.
-//
-// Diagram: https://ff14.toolboxgaming.space/?id=17050133675751&preview=1
 // TODO: Future network data mining opportunities.
 // These don't show up in the log (yet??):
 // * inception orb tethers (likely some "new combatant" flag, like suzex birbs?)
@@ -283,6 +264,40 @@ const betaInstructions = (idx, output) => {
 Options.Triggers.push({
   id: 'TheEpicOfAlexanderUltimate',
   zoneId: ZoneId.TheEpicOfAlexanderUltimate,
+  config: [
+    {
+      // This is more or less the TPS wormhole strat, with
+      // some modifications to require less brain.
+      //
+      // Original TPS strat: https://www.youtube.com/watch?v=ScBsC5sZRwU
+      //
+      // Changes:
+      // There's no "CC" side or "BJ" side, only left side and right side.
+      // Start middle, face north, away from alexander.
+      // Odds go left, evens go right.  1+4 go to robots, 2+3 go back, 5+6+7+8 go side of robot.
+      // From there, do the same thing you normally would for your number in the TPS strat.
+      // This means that sometimes 2 is baiting BJ and sometimes 3, so both need to leave room.
+      // All cleaves go through the middle (easy to know where to face for evens if you don't surecast).
+      // East/West cardinals always safe after chakrams.
+      //
+      // Diagram: https://ff14.toolboxgaming.space/?id=17050133675751&preview=1
+      id: 'cactbotWormholeStrat',
+      name: {
+        en:
+          'Enable cactbot Wormhole strat: https://ff14.toolboxgaming.space/?id=17050133675751&preview=1',
+        de: 'Alex Ultimate: aktiviere cactbot Wormhole Strategie',
+        fr: 'Alex fatal : activer cactbot pour la strat Wormhole',
+        ja: '絶アレキサンダー討滅戦：cactbot「次元断絶のマーチ」ギミック',
+        cn: '亚历山大绝境战: cactbot灵泉辅助功能',
+        ko: '절 알렉: cactbot 웜홀 공략방식 활성화', // FIXME
+      },
+      type: 'checkbox',
+      default: (options) => {
+        const oldSetting = options['cactbotWormholeStrat'];
+        return typeof oldSetting === 'boolean' ? oldSetting : false;
+      },
+    },
+  ],
   timelineFile: 'the_epic_of_alexander.txt',
   timelineTriggers: [
     {
@@ -1442,7 +1457,7 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { source: 'Alexander Prime', id: '486E', capture: false },
       infoText: (data, _matches, output) => {
-        if (data.options.cactbotWormholeStrat === true)
+        if (data.triggerSetConfig.cactbotWormholeStrat === true)
           return output.baitChakramsWormholeStrat();
         return output.baitChakrams();
       },
@@ -1470,7 +1485,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: {},
       condition: (data, matches) => {
-        if (data.options.cactbotWormholeStrat !== true)
+        if (data.triggerSetConfig.cactbotWormholeStrat !== true)
           return false;
         if (!(/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)))
           return false;
@@ -1578,7 +1593,7 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { source: 'Brute Justice', id: '484A', capture: false },
       condition: (data) => {
-        if (data.options.cactbotWormholeStrat !== true)
+        if (data.triggerSetConfig.cactbotWormholeStrat !== true)
           return false;
         if (data.phase !== 'wormhole')
           return;
