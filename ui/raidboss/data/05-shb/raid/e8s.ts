@@ -1,10 +1,14 @@
 import Conditions from '../../../../../resources/conditions';
 import { Responses } from '../../../../../resources/responses';
+import { ConfigValue } from '../../../../../resources/user_config';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
+export type ConfigIds = 'uptimeKnockbackStrat';
+
 export interface Data extends RaidbossData {
+  triggerSetConfig: { [key in ConfigIds]: ConfigValue };
   firstFrost?: string;
   rushCount?: number;
   akhMornTargets?: string[];
@@ -12,17 +16,6 @@ export interface Data extends RaidbossData {
   wyrmclawNumber?: number;
   wyrmfangNumber?: number;
 }
-
-// In your cactbot/user/raidboss.js file, add the line:
-//   Options.cactbote8sUptimeKnockbackStrat = true;
-// .. if you want cactbot to callout Mirror Mirror 4's double knockback
-// Callout happens during/after boss turns and requires <1.4s reaction time
-// to avoid both Green and Read Mirror knockbacks.
-// Example: https://clips.twitch.tv/CreativeDreamyAsparagusKlappa
-// Group splits into two groups behind boss after the jump.
-// Tanks adjust to where the Red and Green Mirror are located.
-// One tank must be inbetween the party, the other closest to Greem Mirror.
-// Once Green Mirror goes off, the tanks adjust for Red Mirror.
 
 // TODO: figure out *anything* with mirrors and mirror colors
 // TODO: yell at you to take the last tower for Light Rampant if needed
@@ -38,6 +31,32 @@ export interface Data extends RaidbossData {
 const triggerSet: TriggerSet<Data> = {
   id: 'EdensVerseRefulgenceSavage',
   zoneId: ZoneId.EdensVerseRefulgenceSavage,
+  config: [
+    {
+      // If you want cactbot to callout Mirror Mirror 4's double knockback, enable this option.
+      // Callout happens during/after boss turns and requires <1.4s reaction time
+      // to avoid both Green and Read Mirror knockbacks.
+      // Example: https://clips.twitch.tv/CreativeDreamyAsparagusKlappa
+      // Group splits into two groups behind boss after the jump.
+      // Tanks adjust to where the Red and Green Mirror are located.
+      // One tank must be inbetween the party, the other closest to Greem Mirror.
+      // Once Green Mirror goes off, the tanks adjust for Red Mirror.
+      id: 'uptimeKnockbackStrat',
+      name: {
+        en: 'Enable uptime knockback strat',
+        de: 'e8s: aktiviere cactbot Uptime Knockback Strategie', // FIXME
+        fr: 'e8s : activer cactbot pour la strat Uptime Knockback', // FIXME
+        ja: 'エデン零式共鳴編４層：cactbot「ヘヴンリーストライク (ノックバック)」ギミック', // FIXME
+        cn: 'E8S: cactbot击退提示功能', // FIXME
+        ko: '공명 영웅 4층: cactbot 정확한 타이밍 넉백방지 공략 활성화', // FIXME
+      },
+      type: 'checkbox',
+      default: (options) => {
+        const oldSetting = options['cactbote8sUptimeKnockbackStrat'];
+        return typeof oldSetting === 'boolean' ? oldSetting : false;
+      },
+    },
+  ],
   timelineFile: 'e8s.txt',
   timelineTriggers: [
     {
@@ -415,7 +434,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E8S Hallowed Wings Knockback',
       type: 'StartsUsing',
       netRegex: { source: 'Shiva', id: '4D77', capture: false },
-      condition: (data) => data.options.cactbote8sUptimeKnockbackStrat === true,
+      condition: (data) => data.triggerSetConfig.uptimeKnockbackStrat === true,
       // This gives a warning within 1.4 seconds, so you can hit arm's length.
       delaySeconds: 8.6,
       durationSeconds: 1.4,

@@ -48,6 +48,7 @@ const getFakeRaidbossData = (triggerSet?: LooseTriggerSet): RaidbossData => {
     currentHP: 0,
     options: raidbossOptions,
     inCombat: true,
+    triggerSetConfig: {},
     ShortName: (x: string | undefined) => x ?? '',
     StopCombat: (): void => {/* noop */},
     ParseLocaleFloat: () => 0,

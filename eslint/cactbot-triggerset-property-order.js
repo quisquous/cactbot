@@ -30,6 +30,7 @@ module.exports = {
     const raidbossOrderList = [
       'id',
       'zoneId',
+      'config',
       'overrideTimelineFile',
       'timelineFile',
       'timeline',

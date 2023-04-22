@@ -9,6 +9,7 @@ import {
 } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
 import { translateRegex, translateRegexBuildParam } from '../../resources/translations';
+import UserConfig, { ConfigValue } from '../../resources/user_config';
 import Util from '../../resources/util';
 import ZoneId from '../../resources/zone_id';
 import { RaidbossData } from '../../types/data';
@@ -484,6 +485,8 @@ export class PopupText {
   protected job: Job = 'NONE';
   protected role: Role = 'none';
   protected triggerSets: ProcessedTriggerSet[] = [];
+  protected triggerSetsById: { [id: string]: ProcessedTriggerSet } = {};
+  protected triggerSetConfig: { [key: string]: ConfigValue } = {};
   protected zoneName = '';
   protected zoneId = -1;
   protected dataInitializers: {
@@ -571,9 +574,8 @@ export class PopupText {
   }
 
   ProcessDataFiles(files: RaidbossFileData): void {
-    const triggerSetIds = new Set<string>();
-
     this.triggerSets = [];
+    this.triggerSetsById = {};
     for (const [filename, json] of Object.entries(files)) {
       if (!filename.endsWith('.js') && !filename.endsWith('.ts'))
         continue;
@@ -595,13 +597,13 @@ export class PopupText {
         ...json,
       };
       if (processedSet.id) {
-        if (triggerSetIds.has(processedSet.id)) {
+        if (this.triggerSetsById[processedSet.id] !== undefined) {
           console.log(
             `${filename} has duplicate triggerSet id ${processedSet.id}, ignoring triggers`,
           );
           continue;
         }
-        triggerSetIds.add(processedSet.id);
+        this.triggerSetsById[processedSet.id] = processedSet;
       }
       this.triggerSets.push(processedSet);
     }
@@ -626,6 +628,7 @@ export class PopupText {
     this.triggers = [];
     this.netTriggers = [];
     this.dataInitializers = [];
+    this.triggerSetConfig = {};
     let timelineFiles = [];
     let timelines: string[] = [];
     const replacements: TimelineReplacement[] = [];
@@ -711,6 +714,32 @@ export class PopupText {
           console.log('Loading ' + set.filename);
         else
           console.log('Loading user triggers for zone');
+      }
+
+      const loadThisSet = set.id === undefined ? [] : [set.id];
+      for (const id of [...loadThisSet, ...set.loadConfigs ?? []]) {
+        // In case a trigger set id changes and somebody wants to refer to
+        // the old id for a backcompat path in triggers, don't early out.
+        // Also don't print errors here for missing sets or configs, because backcompat
+        // should be able to load from outdated trigger (set) ids without printing errors.
+        const loadSet = this.triggerSetsById[id];
+
+        // Load the raw saved options from TriggerSetConfig and using the templates,
+        // set appropriate defaults as needed.
+        const loadSetConfig = loadSet?.config;
+        if (loadSet !== undefined && loadSetConfig !== undefined) {
+          UserConfig.processOptions(
+            this.options,
+            this.triggerSetConfig,
+            this.options.TriggerSetConfig[id] ?? {},
+            loadSetConfig,
+          );
+        }
+
+        // Also make sure that any keys that don't correspond to config entries are set
+        // so that triggers can use this for back compat.
+        for (const [key, value] of Object.entries(this.options.TriggerSetConfig[id] ?? {}))
+          this.triggerSetConfig[key] ??= value;
       }
 
       const setFilename = set.filename ?? 'Unknown';
@@ -1548,6 +1577,7 @@ export class PopupText {
       currentHP: preserveHP,
       options: this.options,
       inCombat: this.inCombat,
+      triggerSetConfig: this.triggerSetConfig,
       ShortName: this.ShortNamify.bind(this),
       StopCombat: () => this.SetInCombat(false),
       ParseLocaleFloat: parseFloat,
