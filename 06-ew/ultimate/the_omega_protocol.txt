@@ -293,6 +293,8 @@ hideall "--sync--"
 
 1182.2 "Cosmo Arrow" sync / 1[56]:[^:]*:Alpha Omega:7BA2:/ duration 14
 1196.9 "Cosmo Dive" sync / 1[56]:[^:]*:Alpha Omega:7BA6:/
+1199.3 "Cosmo Dive Far" #sync / 1[56]:[^:]*:Alpha Omega:7BA8:/
+1199.3 "Cosmo Dive Near x2" #sync / 1[56]:[^:]*:Alpha Omega:7BA7:/
 1206.1 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
 1207.0 "Flash Gale 1" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
 1209.3 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
