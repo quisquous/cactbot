@@ -2473,6 +2473,9 @@ These lines give more granular information when combatants change their status.
 Please note that this is still polling memory (so timing may be racy)
 and there are some heuristics to not emit too many lines (so data may be imprecise).
 
+For more information,
+see the [class definition](https://github.com/OverlayPlugin/OverlayPlugin/blob/main/OverlayPlugin.Core/MemoryProcessors/Combatant/LineCombatant.cs#L27) in OverlayPlugin.
+
 There are three types of this line:
 
 - Add: emits all initial fields for this combatant
@@ -2535,6 +2538,12 @@ for the current zone for the current game locale.
 Note that `:` characters are not escaped even if the game abilities have a `:` in them.
 It is recommended to use the network log line format to parse these lines for that reason.
 
+These values may also contain special unicode character sequences
+that the game client will replace with placeholder values,
+such as the current player's name.
+CR and LF characters are also escaped and will need to be unescaped.
+See the logs below for an example.
+
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=RSVData&lang=en-US) -->
 
 #### Structure
@@ -2562,13 +2571,13 @@ Parsed Log Line Regex:
 ```log
 Network Log Line Examples:
 262|2023-04-21T23:24:05.8320000-04:00|en|0000001C|_rsv_32789_-1_1_0_1_SE2DC5B04_EE2DC5B04|Run: ****mi* (Omega Version)|34159b6f2093e889
-262|2023-04-21T23:24:06.0110000-04:00|en|0000000C|_rsv_3532_-1_1_0_1_S74CFC3B0_E74CFC3B0|Magic Number|26c2517ceca2839f
 262|2023-04-21T23:24:05.9210000-04:00|en|00000031|_rsv_3448_-1_1_1_0_S74CFC3B0_E74CFC3B0|Burning with dynamis inspired by Omega's passion.|ce9d03bb211d894f
+262|2023-04-21T23:24:06.0630000-04:00|en|00000051|_rsv_35827_-1_1_0_0_S13095D61_E13095D61|Further testing is required.�����,\r���)������ ��, assist me with this evaluation.|38151741aad7fe51
 
 Parsed Log Line Examples:
 [23:24:05.832] 262 106:en:0000001C:_rsv_32789_-1_1_0_1_SE2DC5B04_EE2DC5B04:Run: ****mi* (Omega Version)
-[23:24:06.011] 262 106:en:0000000C:_rsv_3532_-1_1_0_1_S74CFC3B0_E74CFC3B0:Magic Number
 [23:24:05.921] 262 106:en:00000031:_rsv_3448_-1_1_1_0_S74CFC3B0_E74CFC3B0:Burning with dynamis inspired by Omega's passion.
+[23:24:06.063] 262 106:en:00000051:_rsv_35827_-1_1_0_0_S13095D61_E13095D61:Further testing is required.�����,\r���)������ ��, assist me with this evaluation.
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END (logLines:type=RSVData&lang=en-US) -->
