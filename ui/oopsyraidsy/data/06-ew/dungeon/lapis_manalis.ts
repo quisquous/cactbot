@@ -12,7 +12,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Lapis Albus Griffin Golden Talons': '8013', // front cone AoE, before boss 1
     'Lapis Visitant Bloodguard Void Slash': '7F19', // front cone AoE, before boss 1
 
-    'Lapis Albion Wild Beasts Charge': '7A7D', // damage from charging Wild Beasts, boss 1
+    'Lapis Albion Wildlife Crossing': '7A7D', // damage from charging Wild Beasts, boss 1
     'Lapis Albion Right Slam': '802D', // right cleave, boss 1
     'Lapis Albion Left Slam': '802E', // left cleave, boss 1
     'Lapis Albion Knock on Ice': '7A7F', // circle AoE, boss 1
@@ -30,6 +30,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Lapis Galatea Magna Waning Cycle Out': '7F70', // PBAoE, boss 2
     'Lapis Galatea Magna Soul Scythe': '7A9A', // jumping circle AoE, boss 2
 
+    'Lapis Albus Serpent Regorge': '7F1B', // circle AoE before boss 3
     'Lapis Visitant Satana Dark': '7F1D', // circle AoE, before boss 3
 
     'Lapis Cagnazzo Antediluvian': '798F', // large circle AoE, boss 3
@@ -40,9 +41,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Lapis Cagnazzo Lifescleaver': '7989', // 8x cone AoE, boss 3
   },
   damageFail: {
-    'Lapis Albion Wildlife Crossing': '7A7D', // animal stampede, boss 1
-    'Lapis Albion Roar of Albion': '7A84', // hide to avoid roomwide AoE, boss 1
-
     'Lapis Galatea Magna Scarecrow Chase': '7FBF', // cross AoE, boss 2
     'Lapis Galatea Magna Big Burst': '7A98', // failed tower soak, boss 2
 
@@ -56,7 +54,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Lapis Galatea Magna Stony Gaze': 'BBF', // 4x gaze, boss 2
   },
   shareWarn: {
-    'Lapis Albion Icy Throes': '7A83', // spread circles, boss 2
+    'Lapis Albion Icy Throes': '7A83', // spread circles, boss 1
 
     'Lapis Cagnazzo Neap Tide': '799E', // spread circles, boss 3
     'Lapis Cagnazzo Void Torrent': '798E', // tankbuster cleave, boss 3
