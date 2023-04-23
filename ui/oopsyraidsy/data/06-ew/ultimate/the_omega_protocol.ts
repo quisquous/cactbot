@@ -19,6 +19,11 @@ import { GetShareMistakeText, GetSoloMistakeText, playerDamageFields } from '../
 // TODO: red/green tether not getting hit by monitor in delta
 // TODO: headmarker tracking so we can track sigma marked/unmarked being hit by 7B72 Hyper Pulse or 7B74 Wave Cannon
 // TODO: sigma tower tracking
+// TODO: sigma laser hitting somebody with zero stacks
+// TODO: omega monitor not hitting a 2-dynamic 2nd in line person
+// TODO: omega monitor hitting anybody also hit by near world/blaster
+// TODO: 7BA7 / 7BA8 Cosmo Dive
+// TODO: 7BAA Wave Cannon wild charge collect
 
 // TODO: we probably could use an oopsy utility library (and Data should be `any` here).
 const stackMistake = (
@@ -316,6 +321,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'TOP Swivel Cannon 2': '7B95', // left/right beetle haircut during Delta
     'TOP Rear Power Unit Rear Lasers 1': '7B8F', // initial Sigma rotating laser
     'TOP Rear Power Unit Rear Lasers 2': '7B90', // ongoing Sigma rotating laser
+    'TOP Cosmo Arrow 1': '7BA3', // initial exasquare
+    'TOP Cosmo Arrow 2': '7BA4', // ongoing exasquare
   },
   damageFail: {
     'TOP Storage Violation Obliteration': '7B06', // failing towers
@@ -331,6 +338,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'TOP Wave Cannon Protean': '7B7E', // p4 initial protean laser
     'TOP Oversampled Wave Cannon': '7B6D', // p3/p5 monitors
     'TOP Sigma Wave Cannon': '7B74', // headmarker line protean at the start of Sigma
+    'TOP Flash Gale': '7DDF', // p6 tank autos
   },
   shareFail: {
     'TOP Guided Missile Kyrios': '7B0E', // spread damage duruing Pantokrator
@@ -339,10 +347,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'TOP Solar Ray 3': '81AC', // p5 initial tankbuster
     'TOP Solar Ray 4': '7B01', // p5 second tankbuster
     'TOP Beyond Defense': '7B28', // spread with knockback during Limitless Synergy
-    'TOP Hello Distant World Initial': '8110', // the initial large hit on distant world
-    'TOP Hello Distant World Jump': '8111', // the followup two small jumps from distant world
-    'TOP Hello Near World Initial': '7B89', // the initial large hit on near world
-    'TOP Hello Near World Jump': '7B8A', // the followup two small jumps from near world
   },
   soloWarn: {
     'TOP Pile Pitch': '7B29', // stack after Beyond Defense during Limitless Synergy
@@ -1113,7 +1117,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'TOP Wave Cannon Protean Rename',
+      id: 'TOP P4 Wave Cannon Protean Rename',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7B7E', ...playerDamageFields }),
       mistake: stackMistake('warn', 1, {
@@ -1124,7 +1128,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       }),
     },
     {
-      id: 'TOP Wave Cannon Protean Two',
+      id: 'TOP P4 Wave Cannon Protean Two',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7B80', ...playerDamageFields }),
       mistake: (_data, matches) => {
@@ -1142,13 +1146,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'TOP Wave Cannon Protean Collect',
+      id: 'TOP P4 Wave Cannon Protean Collect',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7B7E', ...playerDamageFields }),
       run: (data, matches) => (data.waveCannonProteanCollect ??= []).push(matches),
     },
     {
-      id: 'TOP Wave Cannon Protean Analyze',
+      id: 'TOP P4 Wave Cannon Protean Analyze',
       type: 'Ability',
       // If somebody is dead, people will take more single target proteans.
       // Just mention this so it's obvious why this person died.
@@ -1211,13 +1215,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
       run: (data) => data.waveCannonProteanCollect = [],
     },
     {
-      id: 'TOP Wave Cannon Stack Collect',
+      id: 'TOP P4 Wave Cannon Stack Collect',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7B7F', ...playerDamageFields }),
       run: (data, matches) => (data.waveCannonStackCollect ??= []).push(matches),
     },
     {
-      id: 'TOP Wave Cannon Stack Analyze',
+      id: 'TOP P4 Wave Cannon Stack Analyze',
       type: 'Ability',
       // Make sure people aren't in two stacks
       netRegex: NetRegexes.ability({ id: '7B7F', capture: false }),
@@ -1271,6 +1275,41 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return mistakes;
       },
       run: (data) => data.waveCannonStackCollect = [],
+    },
+    {
+      id: 'TOP P5 Hello World Stacks',
+      type: 'Ability',
+      // This needs to be its own trigger because these are flagged as "instant death" if stacked,
+      // which is not included in "playerDamageFields",
+      netRegex: NetRegexes.ability({ id: ['7B8A', '7B89', '8110', '8111'] }),
+      mistake: stackMistake('fail', 1),
+    },
+    {
+      id: 'TOP P6 Wave Cannon Exaflare Rename',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['7BAD', '7BAE', '7BAF'], ...playerDamageFields }),
+      mistake: (_data, matches) => {
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          triggerType: 'Damage',
+          text: {
+            en: 'Exaflare',
+          },
+        };
+      },
+    },
+    {
+      id: 'TOP P6 Wave Cannon Protean Rename',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7BAB', ...playerDamageFields }),
+      mistake: stackMistake('fail', 1, {
+        // Rename this for clarity.
+        en: 'Wave Cannon Protean',
+        de: 'Wellenkanone Himmelsrichtung',
+        ko: '산개 파동포',
+      }),
     },
   ],
 };
