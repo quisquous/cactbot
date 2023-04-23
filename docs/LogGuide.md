@@ -173,6 +173,14 @@ This guide was last updated for:
     - [Structure](#structure-31)
     - [Regexes](#regexes-31)
     - [Examples](#examples-31)
+  - [Line 261 (0x105): CombatantMemory](#line-261-0x105-combatantmemory)
+    - [Structure](#structure-32)
+    - [Regexes](#regexes-32)
+    - [Examples](#examples-32)
+  - [Line 262 (0x106): RSVData](#line-262-0x106-rsvdata)
+    - [Structure](#structure-33)
+    - [Regexes](#regexes-33)
+    - [Examples](#examples-33)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Data Flow
@@ -2453,3 +2461,114 @@ Parsed Log Line Examples:
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END (logLines:type=InCombat&lang=en-US) -->
+
+<a name="line261"></a>
+
+### Line 261 (0x105): CombatantMemory
+
+OverlayPlugin has a `getCombatants` function which returns the state of combatants in the game.
+However, it is hard to know when it is safe to call this function
+and know that combatants have moved into position (or changed model or changed heading).
+These lines give more granular information when combatants change their status.
+Please note that this is still polling memory (so timing may be racy)
+and there are some heuristics to not emit too many lines (so data may be imprecise).
+
+There are three types of this line:
+
+- Add: emits all initial fields for this combatant
+- Change: emits all fields that have changed
+- Remove: no fields, combatant is being removed
+
+Each line may contain an arbitrary number of field name / value pairs.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=CombatantMemory&lang=en-US) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+261|[timestamp]|[change]|[id]|[key1]|[value1]
+
+Parsed Log Line Structure:
+[timestamp] 261 105:[change]:[id]:[key1]:[value1]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>261)\|(?<timestamp>[^|]*)\|(?<change>[^|]*)\|(?<id>[^|]*)\|
+
+Parsed Log Line Regex:
+(?<timestamp>^.{14}) 261 (?<type>105):(?<change>[^:]*):(?<id>[^:]*)(?:$|:)
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+261|2023-04-20T19:04:39.3810000-07:00|Add|400139C5|Type|2|TargetID|10FFFFFF|Name|Omega|MaxHP|8557964|PosX|100|PosY|90|PosZ|-5.456968E-12|Heading|-4.792213E-05|Radius|12.006|BNpcID|3D5C|CurrentMP|10000|MaxMP|10000|Level|90|BNpcNameID|1E0F|WorldID|65535|CurrentWorldID|65535|NPCTargetID|1084E23D|CastDurationMax|-3.689349E+19|e173dbd66eb7c1fe
+261|2023-04-20T19:04:41.9200000-07:00|Change|400139C5|PosX|100.1179|PosY|95.16841|PosZ|-5.456968E-12|Heading|0.08906358|eac28822c9abcde9
+261|2023-04-20T19:06:46.2900000-07:00|Remove|400139C5|09a3165588ea6b13
+
+Parsed Log Line Examples:
+[19:04:39.381] 261 105:Add:400139C5:Type:2:TargetID:10FFFFFF:Name:Omega:MaxHP:8557964:PosX:100:PosY:90:PosZ:-5.456968E-12:Heading:-4.792213E-05:Radius:12.006:BNpcID:3D5C:CurrentMP:10000:MaxMP:10000:Level:90:BNpcNameID:1E0F:WorldID:65535:CurrentWorldID:65535:NPCTargetID:1084E23D:CastDurationMax:-3.689349E+19
+[19:04:41.920] 261 105:Change:400139C5:PosX:100.1179:PosY:95.16841:PosZ:-5.456968E-12:Heading:0.08906358
+[19:06:46.290] 261 105:Remove:400139C5
+```
+
+<!-- AUTO-GENERATED-CONTENT:END (logLines:type=CombatantMemory&lang=en-US) -->
+
+<a name="line262"></a>
+
+### Line 262 (0x106): RSVData
+
+Square Enix obfuscates (among other things) ability names, status names, and messages
+in current savage and ultimate content in the game data itself.
+This is to prevent data mining.
+However, as these ability names need to be displayed by the game itself
+these ability names are sent as network data upon zoning in.
+
+These lines display the currently obfuscated abilities
+for the current zone for the current game locale.
+
+Note that `:` characters are not escaped even if the game abilities have a `:` in them.
+It is recommended to use the network log line format to parse these lines for that reason.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=RSVData&lang=en-US) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+262|[timestamp]|[locale]|[key]|[value]
+
+Parsed Log Line Structure:
+[timestamp] 262 106:[locale]:[key]:[value]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>262)\|(?<timestamp>[^|]*)\|(?<locale>[^|]*)\|(?<key>[^|]*)\|(?<value>[^|]*)\|
+
+Parsed Log Line Regex:
+(?<timestamp>^.{14}) 262 (?<type>106):(?<locale>[^:]*):(?<key>[^:]*):(?<value>[^:]*)(?:$|:)
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+262|2023-04-21T23:24:05.8320000-04:00|en|0000001C|_rsv_32789_-1_1_0_1_SE2DC5B04_EE2DC5B04|Run: ****mi* (Omega Version)|34159b6f2093e889
+262|2023-04-21T23:24:06.0110000-04:00|en|0000000C|_rsv_3532_-1_1_0_1_S74CFC3B0_E74CFC3B0|Magic Number|26c2517ceca2839f
+262|2023-04-21T23:24:05.9210000-04:00|en|00000031|_rsv_3448_-1_1_1_0_S74CFC3B0_E74CFC3B0|Burning with dynamis inspired by Omega's passion.|ce9d03bb211d894f
+
+Parsed Log Line Examples:
+[23:24:05.832] 262 106:en:0000001C:_rsv_32789_-1_1_0_1_SE2DC5B04_EE2DC5B04:Run: ****mi* (Omega Version)
+[23:24:06.011] 262 106:en:0000000C:_rsv_3532_-1_1_0_1_S74CFC3B0_E74CFC3B0:Magic Number
+[23:24:05.921] 262 106:en:00000031:_rsv_3448_-1_1_1_0_S74CFC3B0_E74CFC3B0:Burning with dynamis inspired by Omega's passion.
+```
+
+<!-- AUTO-GENERATED-CONTENT:END (logLines:type=RSVData&lang=en-US) -->

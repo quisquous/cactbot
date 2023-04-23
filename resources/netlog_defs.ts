@@ -1004,6 +1004,44 @@ const latestLogDefinitions = {
     canAnonymize: true,
     firstOptionalField: undefined,
   },
+  CombatantMemory: {
+    type: '261',
+    name: 'CombatantMemory',
+    source: 'OverlayPlugin',
+    messageType: '261',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      change: 2,
+      id: 3,
+      // from here, pairs of field name/values, e.g.
+      key1: 4,
+      value1: 5,
+      // key2: 6,
+      // value2: 7,
+    },
+    canAnonymize: true,
+    firstOptionalField: 4,
+    playerIds: {
+      3: null,
+    },
+  },
+  RSVData: {
+    type: '262',
+    name: 'RSVData',
+    source: 'OverlayPlugin',
+    messageType: '262',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      locale: 2,
+      // unknown0: 3,
+      key: 3,
+      value: 4,
+    },
+    canAnonymize: true,
+    firstOptionalField: undefined,
+  },
 } as const;
 
 export const logDefinitionsVersions = {
