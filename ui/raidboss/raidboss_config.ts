@@ -1607,9 +1607,10 @@ const processPerZoneTimelineConfig = (options: RaidbossOptions, savedConfig: Sav
 };
 
 const processTriggerSetConfig = (options: RaidbossOptions, savedConfig: SavedConfigEntry) => {
-  // Note: this function is just for setting TriggerSetConfig overrides.
+  // Note: this function is just for providing the raw values for TriggerSetConfig.
   // popuptext handles the loading of triggersets at runtime (maybe this should be merged?)
-  // and so it has to do the work of setting defaults (if overrides are not set).
+  // and so it has to do the work of using this info to set defaults, apply overrides, and
+  // run setter functions via `processOptions`.
   const optionName = 'TriggerSetConfig';
   const outputTriggerSetConfig = options[optionName] ??= {};
   if (typeof savedConfig !== 'object' || Array.isArray(savedConfig))
