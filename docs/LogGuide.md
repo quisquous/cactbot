@@ -2478,7 +2478,7 @@ see the [class definition](https://github.com/OverlayPlugin/OverlayPlugin/blob/m
 
 There are three types of this line:
 
-- Add: emits all initial fields for this combatant
+- Add: emits all initial fields for this combatant that have non-default values
 - Change: emits all fields that have changed
 - Remove: no fields, combatant is being removed
 
