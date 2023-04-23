@@ -2434,7 +2434,7 @@ Options.Triggers.push({
         'Ball of Fire': 'Boule de flammes',
         'Eastern Ewer': 'cruche orientale',
         'Gladiator of Sil\'dih': 'gladiateur sildien',
-        'Hateful Visage': 'Visage de haine',
+        'Hateful Visage': 'Effigie maudite',
         'Infern Brand': 'Étendard sacré',
         'Shadowcaster Zeless Gah': 'Zeless Gah la Flamme ombrée',
         'Sil\'dihn Armor': 'armure maléfique sildien',
