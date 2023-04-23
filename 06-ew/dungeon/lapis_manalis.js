@@ -147,6 +147,12 @@ Options.Triggers.push({
       response: Responses.aoe(),
     },
     {
+      id: 'Lapis Manalis Galatea Soul Scythe',
+      type: 'StartsUsing',
+      netRegex: { id: '7A9A', source: 'Galatea Magna', capture: false },
+      response: Responses.getBehind(),
+    },
+    {
       id: 'Lapis Manalis Galatea Magna Doom',
       // D24 = Doom
       type: 'GainsEffect',
