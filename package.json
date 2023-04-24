@@ -31,7 +31,7 @@
     "stylelintfix": "stylelint --fix resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "markdownlint": "markdownlint . --ignore node_modules --ignore publish --ignore plugin/ThirdParty",
     "test": "mocha",
-    "sync-files": "ts-node util/sync_files.ts && git diff --quiet",
+    "sync-files": "ts-node util/sync_files.ts && git diff --exit-code",
     "lint-staged": "lint-staged",
     "coverage-report": "ts-node util/gen_coverage_report.ts",
     "util": "ts-node util/index.ts",
