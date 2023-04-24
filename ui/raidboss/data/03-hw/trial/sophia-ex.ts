@@ -12,7 +12,7 @@ export interface Data extends RaidbossData {
   isQuadrantSafe: { [id: string]: boolean };
   seenThunder?: boolean;
   clonesActive?: boolean;
-  sadTethers?: boolean; // :C // test fake string
+  sadTethers?: boolean; // :C
 }
 
 const findSafeDir = (data: Data) => {
