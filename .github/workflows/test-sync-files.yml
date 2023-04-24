@@ -1,0 +1,26 @@
+name: Sync Files Test
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'ui/raidboss/**'
+  pull_request:
+    paths:
+      - 'ui/raidboss/**'
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-js-env
+
+      - name: Run Sync Files
+        run: |
+          ts-node .util/sync_files.ts
+
+      - name: Verify Unchanged
+        run: |
+          git diff --exit-code
