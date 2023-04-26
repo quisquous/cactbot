@@ -1,4 +1,4 @@
-import { NetFieldsReverse } from '../types/net_fields';
+import { NetFields, NetFieldsReverse } from '../types/net_fields';
 import { NetParams } from '../types/net_props';
 import { CactbotBaseRegExp } from '../types/net_trigger';
 
@@ -40,7 +40,7 @@ const defaultParams = <
 
 type ParseHelperType<T extends LogDefinitionTypes> =
   & {
-    [field in Extract<keyof NetFieldsReverse[T], string>]?: string;
+    [field in keyof NetFields[T]]?: string | string[];
   }
   & { capture?: boolean };
 
