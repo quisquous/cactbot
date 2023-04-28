@@ -1998,7 +1998,7 @@ const triggerSet: TriggerSet<Data> = {
           console.error(
             `TOP Unlimited Wave Cannon Dodge: missing Wave Cannon: ${
               JSON.stringify(data.combatantData)
-              }`,
+            }`,
           );
           return;
         }
