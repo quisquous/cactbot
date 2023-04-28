@@ -504,7 +504,7 @@ class UserConfig {
         else if (typeof value === 'string')
           output[opt.id] = parseFloat(value);
       } else {
-        options[opt.id] = value;
+        output[opt.id] = value;
       }
     }
   }
