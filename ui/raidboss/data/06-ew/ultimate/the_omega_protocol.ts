@@ -62,6 +62,9 @@ export interface Data extends RaidbossData {
   deltaTethers: { [name: string]: TetherColor };
   trioDebuff: { [name: string]: TrioDebuff };
   seenOmegaTethers?: boolean;
+  waveCannonCount: number;
+  firstWaveCannon?: PluginCombatantState;
+  secondWaveCannon?: PluginCombatantState;
 }
 
 const phaseReset = (data: Data) => {
@@ -184,6 +187,7 @@ const triggerSet: TriggerSet<Data> = {
       monitorPlayers: [],
       deltaTethers: {},
       trioDebuff: {},
+      waveCannonCount: 0,
     };
   },
   timelineTriggers: [
@@ -1952,6 +1956,143 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait Middle',
           ko: '중앙에 장판 유도',
+        },
+      },
+    },
+    {
+      id: 'TOP Unlimited Wave Cannon Dodge',
+      // Invisible NPCs cast Wave Cannon from starting position of the Exaflares
+      // Data from ACT can be innacurate, use OverlayPlugin
+      // These casts go off 2 seconds after each other
+      type: 'StartsUsing',
+      netRegex: { id: '7BAD', source: 'Alpha Omega' },
+      condition: (data) => {
+        data.waveCannonCount = data.waveCannonCount + 1;
+
+        // Cleanup for next Unlimited Wave Cannon
+        const trigger = data.waveCannonCount < 2;
+        if (data.waveCannonCount === 4) {
+          data.waveCannonCount = 0;
+          delete data.firstWaveCannon;
+          delete data.secondWaveCannon;
+        }
+        return trigger;
+      },
+      delaySeconds: 3, // Wait until at least two have gone off
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        })).combatants;
+      },
+      infoText: (data, _matches, output) => {
+        if (data.firstWaveCannon === undefined)
+          data.firstWaveCannon = data.combatantData.pop();
+        else if (data.secondWaveCannon === undefined)
+          data.secondWaveCannon = data.combatantData.pop();
+        else
+          return;
+
+        if (data.firstWaveCannon === undefined || data.secondWaveCannon === undefined) {
+          console.error(`TOP Unlimited Wave Cannon Dodge: missing Wave Cannon: ${JSON.stringify(data.combatantData)}`);
+          return;
+        }
+
+        // Collect Exaflare position
+        const first = [data.firstWaveCannon.PosX - 100, data.firstWaveCannon.PosY - 100];
+        const second = [data.secondWaveCannon.PosX - 100, data.secondWaveCannon.PosY - 100];
+        if (
+          first[0] === undefined || first[1] === undefined ||
+          second[0] === undefined || second[1] === undefined
+        ) {
+          console.error(`TOP Unlimited Wave Cannon Dodge: missing coordinates`);
+          return;
+        }
+
+
+        // Compute atan2 of determinant and dot product to get rotational direction
+        // Note: X and Y are flipped due to Y axis being reversed
+        const getRotation = (x1: number, y1: number, x2: number, y2: number) => {
+          return Math.atan2(y1 * x2 - x1 * y2, y1 * y2 + x1 * x2);
+        };
+
+        // Get rotation of first and second exaflares
+        const rotation = getRotation(first[0], first[1], second[0], second[1]);
+
+        // Get location to dodge to by looking at first exaflare position
+        // Calculate combatant position in an all 8 cards/intercards
+        const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
+          // Positions are moved up 100 and right 100
+          const y = combatant.PosY - 100;
+          const x = combatant.PosX - 100;
+
+          // During Unlimited Wave Cannon, 4 Wave Cannons spawn in order around the map
+          // N = (TBD, TBD), E = (TBD, TBD), S = (TBD, TBD), W = (TBD, TBD)
+          // NE = (TBD, TBD), SE = (TBD, TBD), SW = (TBD, TBD), NW = (TBD, TBD)
+          //
+          // Map NW = 0, N = 1, ..., W = 7
+
+          return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+        };
+
+        const dir = matchedPositionTo8Dir(data.firstWaveCannon);
+        const dirs: { [dir: number]: string } = {
+          0: output.northwest!(),
+          1: output.north!(),
+          2: output.northeast!(),
+          3: output.east!(),
+          4: output.southeast!(),
+          5: output.south!(),
+          6: output.southwest!(),
+          7: output.west!(),
+        };
+
+        const startDir = rotation < 0 ? (dir + 1) % 8 : (dir - 1) % 8;
+        const start = dirs[startDir] ?? output.unknown!();
+
+        if (rotation < 0) {
+          return output.directions!({
+            start: start,
+            rotation: output.clockwise!(),
+          });
+        }
+        if (rotation > 0) {
+          return output.directions!({
+            start: start,
+            rotation: output.counterclock!(),
+          });
+        }
+      },
+      outputStrings: {
+        directions: {
+          en: '${start} => ${rotation}',
+          de: '${start} => ${rotation}',
+          cn: '${start} => ${rotation}',
+          ko: '${start} => ${rotation}',
+        },
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        unknown: Outputs.unknown,
+        clockwise: {
+          en: 'Clockwise',
+          de: 'Im Uhrzeigersinn',
+          ja: '時計回り',
+          cn: '顺时针',
+          ko: '시계방향',
+        },
+        counterclock: {
+          en: 'Counterclockwise',
+          de: 'Gegen den Uhrzeigersinn',
+          ja: '反時計回り',
+          cn: '逆时针',
+          ko: '반시계방향',
         },
       },
     },
