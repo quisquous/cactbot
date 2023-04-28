@@ -1995,7 +1995,11 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         if (data.firstWaveCannon === undefined || data.secondWaveCannon === undefined) {
-          console.error(`TOP Unlimited Wave Cannon Dodge: missing Wave Cannon: ${JSON.stringify(data.combatantData)}`);
+          console.error(
+            `TOP Unlimited Wave Cannon Dodge: missing Wave Cannon: ${
+              JSON.stringify(data.combatantData)
+              }`,
+          );
           return;
         }
 
