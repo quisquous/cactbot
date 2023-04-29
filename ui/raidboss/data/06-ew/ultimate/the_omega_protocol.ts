@@ -119,9 +119,11 @@ export const getHeadmarkerId = (
 const nearDistantOutputStrings: { [label: string]: LocaleText } = {
   near: {
     en: 'Near World',
+    de: 'Hallo Welt: Nah',
   },
   distant: {
     en: 'Distant World',
+    de: 'Hallo Welt: Fern',
   },
 } as const;
 
@@ -195,6 +197,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Tank Autos',
+          de: 'Tank Autos',
           ko: '탱커 평타',
         },
       },
@@ -208,6 +211,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Protean',
+          de: 'Himmelsrichtungen',
           ko: '기본 산개',
         },
       },
@@ -836,6 +840,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           sameDebuffPartner: {
             en: '(same debuff as ${player})',
+            de: '(selber Debuff wie ${player})',
             ko: '(${player}와 같은 디버프)',
           },
           unknown: Outputs.unknown,

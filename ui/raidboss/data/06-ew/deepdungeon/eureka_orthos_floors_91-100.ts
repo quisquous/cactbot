@@ -245,6 +245,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         avoid: {
           en: 'Avoid line AoEs',
+          de: 'Vermeide Linien-AoEs',
           ko: '칼 피하기',
         },
       },
@@ -270,6 +271,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         avoid: {
           en: 'Avoid line AoEs',
+          de: 'Vermeide Linien-AoEs',
           ko: '칼 피하기',
         },
       },

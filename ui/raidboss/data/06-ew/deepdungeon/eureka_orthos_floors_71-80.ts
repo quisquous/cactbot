@@ -101,6 +101,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         stunOrBreakLOS: {
           en: 'Stun or Break line-of-sight to ${name}',
+          de: 'Unterbrechen oder unterbreche die Sichtlinie zu ${name}',
         },
         breakLOS: {
           en: 'Break line-of-sight to ${name}',

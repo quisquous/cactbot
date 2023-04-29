@@ -25,12 +25,15 @@ export const firstHeadmarker = parseInt('0186', 16);
 const interceptionOutputStrings: { [label: string]: LocaleText } = {
   egg: {
     en: 'egg',
+    de: 'Ei',
   },
   cube: {
     en: 'cubes',
+    de: 'Würfel',
   },
   ball: {
     en: 'ball',
+    de: 'Ball',
   },
 } as const;
 
@@ -332,6 +335,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         between: {
           en: '${safe}, between eggs',
+          de: '${safe}, zwichen den Eiern',
         },
         safe: {
           en: '${safe}',

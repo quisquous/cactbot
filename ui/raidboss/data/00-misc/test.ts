@@ -32,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'testTriggerOutput',
       name: {
         en: 'Output for "/echo cactbot test config"',
+        de: 'Ausgabe für "/echo cactbot test config"',
       },
       type: 'string',
       default: () => {
@@ -317,6 +318,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Config Value: ${value}',
+          de: 'Einstellungswert: ${value}',
         },
       },
     },
@@ -324,7 +326,6 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       locale: 'de',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
         'You bow courteously to the striking dummy':
