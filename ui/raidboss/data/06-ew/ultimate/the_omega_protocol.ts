@@ -2053,7 +2053,7 @@ const triggerSet: TriggerSet<Data> = {
         const startDir = rotation < 0 ? (dir - 1) % 8 : (dir + 1) % 8;
         const start = dirs[startDir] ?? output.unknown!();
 
-        if (rotation < 0) {
+        if (rotation > 0) {
           return output.directions!({
             start: start,
             rotation: output.clockwise!(),
