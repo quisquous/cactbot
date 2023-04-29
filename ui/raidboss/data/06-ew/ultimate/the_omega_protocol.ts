@@ -1992,7 +1992,7 @@ const triggerSet: TriggerSet<Data> = {
         }
         const firstWaveCannon = data.combatantData.shift();
         const secondWaveCannon = data.combatantData.shift();
-        
+
         if (firstWaveCannon === undefined || secondWaveCannon === undefined) {
           console.error(
             `TOP Unlimited Wave Cannon Dodge: Failed to retreive combatant Data: ${
@@ -2050,7 +2050,7 @@ const triggerSet: TriggerSet<Data> = {
           7: output.west!(),
         };
 
-        const startDir = rotation < 0 ? (dir + 1) % 8 : (dir - 1) % 8;
+        const startDir = rotation < 0 ? (dir - 1) % 8 : (dir + 1) % 8;
         const start = dirs[startDir] ?? output.unknown!();
 
         if (rotation < 0) {
