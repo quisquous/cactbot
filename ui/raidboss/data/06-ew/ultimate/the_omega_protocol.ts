@@ -2030,8 +2030,8 @@ const triggerSet: TriggerSet<Data> = {
           const x = combatant.PosX - 100;
 
           // During Unlimited Wave Cannon, 4 Wave Cannons spawn in order around the map
-          // N = (TBD, TBD), E = (TBD, TBD), S = (TBD, TBD), W = (TBD, TBD)
-          // NE = (TBD, TBD), SE = (TBD, TBD), SW = (TBD, TBD), NW = (TBD, TBD)
+          // N = (100, 76), E = (124, 100), S = (100, 124), W = (76, 100)
+          // NE = (116.97, 83.03), SE = (116.97, 116.97), SW = (83.03, 116.97), NW = (83.03, 83.03)
           //
           // Map NW = 0, N = 1, ..., W = 7
 
