@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -62,9 +63,7 @@ export interface Data extends RaidbossData {
   deltaTethers: { [name: string]: TetherColor };
   trioDebuff: { [name: string]: TrioDebuff };
   seenOmegaTethers?: boolean;
-  waveCannonCount: number;
-  firstWaveCannon?: PluginCombatantState;
-  secondWaveCannon?: PluginCombatantState;
+  waveCannonFlares: number[];
 }
 
 const phaseReset = (data: Data) => {
@@ -187,7 +186,7 @@ const triggerSet: TriggerSet<Data> = {
       monitorPlayers: [],
       deltaTethers: {},
       trioDebuff: {},
-      waveCannonCount: 0,
+      waveCannonFlares: [],
     };
   },
   timelineTriggers: [
@@ -1966,37 +1965,37 @@ const triggerSet: TriggerSet<Data> = {
       // These casts go off 2 seconds after each other
       type: 'StartsUsing',
       netRegex: { id: '7BAD', source: 'Alpha Omega' },
-      condition: (data) => {
-        data.waveCannonCount = data.waveCannonCount + 1;
+      condition: (data, matches) => {
+        if (data.waveCannonFlares.length === 4)
+          data.waveCannonFlares = [];
+        data.waveCannonFlares.push(parseInt(matches.sourceId, 16));
 
-        // Cleanup for next Unlimited Wave Cannon
-        const trigger = data.waveCannonCount < 2;
-        if (data.waveCannonCount === 4) {
-          data.waveCannonCount = 0;
-          delete data.firstWaveCannon;
-          delete data.secondWaveCannon;
-        }
-        return trigger;
+        return data.waveCannonFlares.length === 2;
       },
-      delaySeconds: 3, // Wait until at least two have gone off
-      promise: async (data, matches) => {
+      promise: async (data) => {
+        if (data.waveCannonFlares[0] === undefined && data.waveCannonFlares[1] === undefined)
+          throw new UnreachableCode();
         data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
           call: 'getCombatants',
-          ids: [parseInt(matches.sourceId, 16)],
+          ids: [...data.waveCannonFlares],
         })).combatants;
       },
       infoText: (data, _matches, output) => {
-        if (data.firstWaveCannon === undefined)
-          data.firstWaveCannon = data.combatantData.pop();
-        else if (data.secondWaveCannon === undefined)
-          data.secondWaveCannon = data.combatantData.pop();
-        else
-          return;
-
-        if (data.firstWaveCannon === undefined || data.secondWaveCannon === undefined) {
+        if (data.combatantData.length !== 2) {
           console.error(
-            `TOP Unlimited Wave Cannon Dodge: missing Wave Cannon: ${
+            `TOP Unlimited Wave Cannon Dodge: Expected 2 Wave Cannons, Got: ${
+              JSON.stringify(data.combatantData)
+            }`,
+          );
+          return;
+        }
+        const firstWaveCannon = data.combatantData.shift();
+        const secondWaveCannon = data.combatantData.shift();
+        
+        if (firstWaveCannon === undefined || secondWaveCannon === undefined) {
+          console.error(
+            `TOP Unlimited Wave Cannon Dodge: Failed to retreive combatant Data: ${
               JSON.stringify(data.combatantData)
             }`,
           );
@@ -2004,8 +2003,8 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         // Collect Exaflare position
-        const first = [data.firstWaveCannon.PosX - 100, data.firstWaveCannon.PosY - 100];
-        const second = [data.secondWaveCannon.PosX - 100, data.secondWaveCannon.PosY - 100];
+        const first = [firstWaveCannon.PosX - 100, firstWaveCannon.PosY - 100];
+        const second = [secondWaveCannon.PosX - 100, secondWaveCannon.PosY - 100];
         if (
           first[0] === undefined || first[1] === undefined ||
           second[0] === undefined || second[1] === undefined
@@ -2013,7 +2012,6 @@ const triggerSet: TriggerSet<Data> = {
           console.error(`TOP Unlimited Wave Cannon Dodge: missing coordinates`);
           return;
         }
-
 
         // Compute atan2 of determinant and dot product to get rotational direction
         // Note: X and Y are flipped due to Y axis being reversed
@@ -2040,7 +2038,7 @@ const triggerSet: TriggerSet<Data> = {
           return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
         };
 
-        const dir = matchedPositionTo8Dir(data.firstWaveCannon);
+        const dir = matchedPositionTo8Dir(firstWaveCannon);
         const dirs: { [dir: number]: string } = {
           0: output.northwest!(),
           1: output.north!(),
