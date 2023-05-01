@@ -32,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'testTriggerOutput',
       name: {
         en: 'Output for "/echo cactbot test config"',
+        ko: '"/echo cactbot 설정 테스트" 출력값',
       },
       type: 'string',
       default: () => {
@@ -442,12 +443,12 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'ko',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
         'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
         'test sync': '테스트 싱크',
         'You burst out laughing at the striking dummy': '.*나무인형을 보고 폭소를 터뜨립니다',
+        'cactbot test config': 'cactbot 설정 테스트',
         'cactbot lang': 'cactbot 언어',
         'cactbot test response': 'cactbot 응답 테스트',
         'cactbot test watch': 'cactbot 탐지 테스트',
