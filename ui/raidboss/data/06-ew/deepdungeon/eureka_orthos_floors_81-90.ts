@@ -25,12 +25,15 @@ export const firstHeadmarker = parseInt('0186', 16);
 const interceptionOutputStrings: { [label: string]: LocaleText } = {
   egg: {
     en: 'egg',
+    ko: '알',
   },
   cube: {
     en: 'cubes',
+    ko: '큐브',
   },
   ball: {
     en: 'ball',
+    ko: '공',
   },
 } as const;
 
@@ -332,6 +335,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         between: {
           en: '${safe}, between eggs',
+          ko: '${safe}, 알 사이',
         },
         safe: {
           en: '${safe}',
@@ -351,9 +355,11 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Administrator': 'Administrator',
+        'Interceptor α': 'Hilfssystem α',
+        'Interceptor β': 'Hilfssystem β',
+        'Interceptor γ': 'Hilfssystem γ',
         'Orthoiron Corse': 'Orthos-Eisenleichnam',
         'Orthos Ahriman': 'Orthos-Ahriman',
         'Orthos Catoblepas': 'Orthos-Catblepus',
@@ -368,9 +374,11 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Administrator': 'Administrateur',
+        'Interceptor α': 'intercepteur α',
+        'Interceptor β': 'intercepteur β',
+        'Interceptor γ': 'intercepteur γ',
         'Orthoiron Corse': 'cors de fer Orthos',
         'Orthos Ahriman': 'ahriman Orthos',
         'Orthos Catoblepas': 'catoblépas Orthos',
@@ -385,9 +393,11 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Administrator': 'アドミニストレーター',
+        'Interceptor α': '要撃システムα',
+        'Interceptor β': '要撃システムβ',
+        'Interceptor γ': '要撃システムγ',
         'Orthoiron Corse': 'オルト・アイアンコース',
         'Orthos Ahriman': 'オルト・アーリマン',
         'Orthos Catoblepas': 'オルト・カトブレパス',
