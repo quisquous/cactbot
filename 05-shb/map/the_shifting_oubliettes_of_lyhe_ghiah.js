@@ -124,13 +124,13 @@ Options.Triggers.push({
       id: 'Shifting Oubliettes of Lyhe Ghiah Secret Basket Pollen Corona',
       type: 'StartsUsing',
       netRegex: { id: '54DA', source: 'Secret Basket', capture: false },
-      response: Responses.getIn(),
+      response: Responses.getOut(),
     },
     {
       id: 'Shifting Oubliettes of Lyhe Ghiah Secret Basket Earth Crusher',
       type: 'StartsUsing',
       netRegex: { id: '54DF', source: 'Secret Basket', capture: false },
-      response: Responses.getOut(),
+      response: Responses.getIn(),
     },
     {
       id: 'Shifting Oubliettes of Lyhe Ghiah Secret Basket Earthquake',
@@ -202,12 +202,48 @@ Options.Triggers.push({
       response: Responses.getOut(),
     },
     // ---------------- final summon: Daen Ose The Avaricious ----------------
-    // Daen Ose The Avaricious: Petrifaction - gaze*
-    // Daen Ose The Avaricious: Abyssal Reaper - large PBAoE
-    // Daen Ose The Avaricious: Petriburst - stack + look away from target?*
-    // Daen Ose The Avaricious: Void Stream - alternating proteans (Hades Shadow Spread)?
-    // Daen Ose The Avaricious: Sickle Strike - tankbuster*
-    // Daen Ose The Avaricious: Petrifaction (variation) - gaze on random target*
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Daen Ose Petrifaction',
+      type: 'StartsUsing',
+      netRegex: { id: '5501', source: 'Daen Ose the Avaricious', capture: false },
+      response: Responses.lookAway(),
+    },
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Daen Ose Abyssal Reaper',
+      type: 'StartsUsing',
+      netRegex: { id: '54FE', source: 'Daen Ose the Avaricious', capture: false },
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Daen Ose Petriburst',
+      type: 'StartsUsing',
+      netRegex: { id: '5500', source: 'Daen Ose the Avaricious' },
+      alertText: (data, matches, output) => {
+        return output.stackOnAndLookAway({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        stackOnAndLookAway: {
+          en: 'Stack on ${player} and look away',
+          de: 'Sammeln bei ${player} und wewg schauen',
+          fr: 'Packez-vous sur ${player} et regardez ailleurs',
+          ja: '${player}に頭割り、見ない',
+          cn: '靠近并背对${player}分摊',
+          ko: '${player} 쉐어, 바라보지않기',
+        },
+      },
+    },
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Daen Ose Sickle Strike',
+      type: 'StartsUsing',
+      netRegex: { id: '54FD', source: 'Daen Ose the Avaricious' },
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Shifting Oubliettes of Lyhe Ghiah Daen Ose Petrifaction Player',
+      type: 'StartsUsing',
+      netRegex: { id: '5502', source: 'Daen Ose the Avaricious' },
+      response: Responses.lookAwayFromTarget(),
+    },
     // ---------------- alternate final summon: Daen Ose The Avaricious (Ultros form) ----------------
     // Daen Ose The Avaricious (Ultros form): Megavolt - PBAoE
     // Daen Ose The Avaricious (Ultros form): Waterspout - AoE on random players
