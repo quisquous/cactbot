@@ -15,7 +15,6 @@ import { LocaleText, Output, TriggerSet } from '../../../../../types/trigger';
 // TODO: Omega tell people they must be a monitor (alarm) if they are Second in Line + two Quickening Dynamis
 // TODO: Adjust Omega dodge locations
 // TODO: p6 magic number tank lb / healer lb triggers
-// TODO: p6 exasquare "wait" calls
 
 export type Phase =
   | 'p1'
@@ -61,6 +60,8 @@ export interface Data extends RaidbossData {
   monitorPlayers: NetMatches['GainsEffect'][];
   deltaTethers: { [name: string]: TetherColor };
   trioDebuff: { [name: string]: TrioDebuff };
+  cosmoArrowIn?: boolean;
+  cosmoArrowCount: number;
   seenOmegaTethers?: boolean;
 }
 
@@ -184,6 +185,7 @@ const triggerSet: TriggerSet<Data> = {
       monitorPlayers: [],
       deltaTethers: {},
       trioDebuff: {},
+      cosmoArrowCount: 0,
     };
   },
   timelineTriggers: [
@@ -1918,6 +1920,80 @@ const triggerSet: TriggerSet<Data> = {
           cn: '坦克LB！！',
           ko: '탱리밋!!',
         },
+      },
+    },
+    {
+      id: 'TOP Cosmo Arrow In/Out',
+      type: 'StartsUsing',
+      // Sometimes cast by Omega, sometimes by Alpha Omega
+      netRegex: { id: '7BA3' },
+      suppressSeconds: 5, // Suppress for second Cosmo Arrow
+      infoText: (data, matches, output) => {
+        data.cosmoArrowCount = 0;
+        const x = parseInt(matches.x);
+        const y = parseInt(matches.y);
+        // Out Locations: (85, 80), (120, 85), (115, 120), (80, 115)
+        // In Locations: (100, 80), (80, 100)
+        // Can loosely check one NPC for if it is an inside location
+        data.cosmoArrowIn = (x === 100 || y === 100) ? true : false;
+        if (data.cosmoArrowIn)
+          return output.inFirst!();
+        return output.outFirst!();
+      },
+      outputStrings: {
+        inFirst: {
+          en: 'In First',
+        },
+        outFirst: {
+          en: 'Out First',
+        },
+      },
+    },
+    {
+      id: 'TOP Cosmo Arrow Dodges',
+      type: 'Ability',
+      netRegex: { id: '7BA4', source: 'Alpha Omega', capture: false },
+      suppressSeconds: 1, // Only capture 1 in the set of casts
+      infoText: (data, _matches, output) => {
+        data.cosmoArrowCount = data.cosmoArrowCount + 1;
+        if (data.cosmoArrowIn === undefined)
+          return;
+
+        if (data.cosmoArrowIn) {
+          switch (data.cosmoArrowCount) {
+            case 1:
+              return output.inWait2!();
+            case 3:
+              return output.outWait2!();
+            case 5:
+              return output.cardinalPosition!();
+            case 6:
+              return output.in!();
+          }
+          // No callout
+          return;
+        }
+
+        switch (data.cosmoArrowCount) {
+          case 1:
+            return output.outWait2!();
+          case 3:
+            return output.in!();
+          case 4:
+            return output.cardinalPosition!();
+          case 5:
+            return output.in!();
+        }
+      },
+      outputStrings: {
+        in: Outputs.in,
+        inWait2: {
+          en: 'In => Wait 2',
+        },
+        outWait2: {
+          en: 'Out => Wait 2',
+        },
+        cardinalPosition: Outputs.moveAway,
       },
     },
     {
