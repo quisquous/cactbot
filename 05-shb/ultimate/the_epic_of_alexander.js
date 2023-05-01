@@ -289,7 +289,7 @@ Options.Triggers.push({
         fr: 'Alex fatal : activer cactbot pour la strat Wormhole',
         ja: '絶アレキサンダー討滅戦：cactbot「次元断絶のマーチ」ギミック',
         cn: '亚历山大绝境战: cactbot灵泉辅助功能',
-        ko: '절 알렉: cactbot 웜홀 공략방식 활성화', // FIXME
+        ko: 'cactbot 웜홀 공략방식 사용: https://ff14.toolboxgaming.space/?id=17050133675751&preview=1',
       },
       type: 'checkbox',
       default: (options) => {

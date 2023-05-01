@@ -67,10 +67,10 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Lesser Orthos Dragon': 'nieder(?:e|er|es|en) Orthos-Drache',
         'Orthoknight': 'Orthoritter',
+        'Orthos Brobinyak': 'Orthos-Brobinyak',
         'Orthos Vanara': 'Orthos-Vanara',
         'Orthoshelled Dragon': 'Orthos-Panzerdrache',
         'Tiamat Clone': 'Tiamat-Klon',
@@ -78,10 +78,10 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Lesser Orthos Dragon': 'maître aérien mineur Orthos',
         'Orthoknight': 'chevalier Orthos',
+        'Orthos Brobinyak': 'brobinyak Orthos',
         'Orthos Vanara': 'vanara Orthos',
         'Orthoshelled Dragon': 'dragon Orthos à carapace',
         'Tiamat Clone': 'clone de Tiamat',
@@ -89,10 +89,10 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Lesser Orthos Dragon': 'オルト・レッサードラゴン',
         'Orthoknight': 'オルト・ナイト',
+        'Orthos Brobinyak': 'オルト・ブロビニャク',
         'Orthos Vanara': 'オルト・ヴァナラ',
         'Orthoshelled Dragon': 'オルト・カラペスドラゴン',
         'Tiamat Clone': 'ティアマット・クローン',

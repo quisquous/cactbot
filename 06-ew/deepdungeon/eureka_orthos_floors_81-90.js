@@ -2,12 +2,15 @@ const firstHeadmarker = parseInt('0186', 16);
 const interceptionOutputStrings = {
   egg: {
     en: 'egg',
+    ko: '알',
   },
   cube: {
     en: 'cubes',
+    ko: '큐브',
   },
   ball: {
     en: 'ball',
+    ko: '공',
   },
 };
 Options.Triggers.push({
@@ -298,6 +301,7 @@ Options.Triggers.push({
       outputStrings: {
         between: {
           en: '${safe}, between eggs',
+          ko: '${safe}, 알 사이',
         },
         safe: {
           en: '${safe}',
@@ -317,9 +321,11 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Administrator': 'Administrator',
+        'Interceptor α': 'Hilfssystem α',
+        'Interceptor β': 'Hilfssystem β',
+        'Interceptor γ': 'Hilfssystem γ',
         'Orthoiron Corse': 'Orthos-Eisenleichnam',
         'Orthos Ahriman': 'Orthos-Ahriman',
         'Orthos Catoblepas': 'Orthos-Catblepus',
@@ -334,9 +340,11 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Administrator': 'Administrateur',
+        'Interceptor α': 'intercepteur α',
+        'Interceptor β': 'intercepteur β',
+        'Interceptor γ': 'intercepteur γ',
         'Orthoiron Corse': 'cors de fer Orthos',
         'Orthos Ahriman': 'ahriman Orthos',
         'Orthos Catoblepas': 'catoblépas Orthos',
@@ -351,9 +359,11 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Administrator': 'アドミニストレーター',
+        'Interceptor α': '要撃システムα',
+        'Interceptor β': '要撃システムβ',
+        'Interceptor γ': '要撃システムγ',
         'Orthoiron Corse': 'オルト・アイアンコース',
         'Orthos Ahriman': 'オルト・アーリマン',
         'Orthos Catoblepas': 'オルト・カトブレパス',
