@@ -1972,6 +1972,7 @@ const triggerSet: TriggerSet<Data> = {
 
         return data.waveCannonFlares.length === 2;
       },
+      delaySeconds: 0.1,
       promise: async (data) => {
         if (data.waveCannonFlares[0] === undefined && data.waveCannonFlares[1] === undefined)
           throw new UnreachableCode();
