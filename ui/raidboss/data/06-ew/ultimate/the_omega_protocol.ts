@@ -60,6 +60,7 @@ export interface Data extends RaidbossData {
   monitorPlayers: NetMatches['GainsEffect'][];
   deltaTethers: { [name: string]: TetherColor };
   trioDebuff: { [name: string]: TrioDebuff };
+  seenOmegaTethers?: boolean;
   cosmoArrowCount: number;
   cosmoArrowIn?: boolean;
   cosmoArrowExaCount: number;
