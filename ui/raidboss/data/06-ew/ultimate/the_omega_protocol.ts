@@ -38,6 +38,7 @@ export type TetherColor = 'blue' | 'green';
 export type TrioDebuff = 'near' | 'distant';
 
 export interface Data extends RaidbossData {
+  triggerSetConfig: { staffSwordDodge: 'mid' | 'far' };
   combatantData: PluginCombatantState[];
   phase: Phase;
   decOffset?: number;
@@ -61,6 +62,7 @@ export interface Data extends RaidbossData {
   monitorPlayers: NetMatches['GainsEffect'][];
   deltaTethers: { [name: string]: TetherColor };
   trioDebuff: { [name: string]: TrioDebuff };
+  omegaDodgeRotation?: 'right' | 'left';
   seenOmegaTethers?: boolean;
 }
 
@@ -161,6 +163,22 @@ const staffSwordMidHelper = (isEastWest: boolean, posX: number, posY: number, ou
 const triggerSet: TriggerSet<Data> = {
   id: 'TheOmegaProtocolUltimate',
   zoneId: ZoneId.TheOmegaProtocolUltimate,
+  config: [
+    {
+      id: 'staffSwordDodge',
+      name: {
+        en: 'Run: Omega Staff Sword Dodge Direction',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Dodge Far (by Omega-M)': 'far',
+          'Dodge Mid (by Omega-F)': 'mid',
+        },
+      },
+      default: 'far',
+    },
+  ],
   timelineFile: 'the_omega_protocol.txt',
   initData: () => {
     return {
@@ -1602,6 +1620,15 @@ const triggerSet: TriggerSet<Data> = {
         const isFIn = f.WeaponId === 4;
         const isMIn = m.WeaponId === 4;
 
+        if (!isFIn && !isMIn && data.triggerSetConfig.staffSwordDodge === 'mid') {
+          const eastWestSwordStaffDir = staffSwordMidHelper(true, f.PosX, f.PosY, output);
+          const northSouthSwordStaffDir = staffSwordMidHelper(false, f.PosX, f.PosY, output);
+          return output.staffSwordMid!({
+            northSouth: northSouthSwordStaffDir,
+            eastWest: eastWestSwordStaffDir,
+          });
+        }
+
         // The combatants only spawn in these intercards:
         // 92.93, 92.93 (NW)      107.07, 92.93 (NE)
         // 92.93, 107.07 (SW)     107.07, 107.07 (SE)
@@ -1620,17 +1647,10 @@ const triggerSet: TriggerSet<Data> = {
         if (isMIn)
           return output.staffShield!({ northSouth: northSouthDir, eastWest: eastWestDir });
 
-        const staffSwordFar = output.staffSwordFar!({
+        return output.staffSwordFar!({
           northSouth: northSouthDir,
           eastWest: eastWestDir,
         });
-        const eastWestSwordStaffDir = staffSwordMidHelper(true, f.PosX, f.PosY, output);
-        const northSouthSwordStaffDir = staffSwordMidHelper(false, f.PosX, f.PosY, output);
-        const staffSwordMid = output.staffSwordMid!({
-          northSouth: northSouthSwordStaffDir,
-          eastWest: eastWestSwordStaffDir,
-        });
-        return output.staffSwordCombo!({ farText: staffSwordFar, midText: staffSwordMid });
       },
       outputStrings: {
         legsSword: {
@@ -1644,10 +1664,6 @@ const triggerSet: TriggerSet<Data> = {
         staffShield: {
           en: 'In ${northSouth} or ${eastWest}',
           ko: '${northSouth}/${eastWest} 중간',
-        },
-        staffSwordCombo: {
-          en: '${farText} / ${midText}',
-          ko: '${farText} / ${midText}',
         },
         staffSwordFar: {
           en: 'Far ${northSouth} or ${eastWest}',
@@ -1700,27 +1716,50 @@ const triggerSet: TriggerSet<Data> = {
         const isFirstEastWest = matches.id === '7B9B';
         const isSecondEastWest = !isFirstEastWest;
 
+        let pos1: number;
+        let pos2: number;
+        if (data.triggerSetConfig.staffSwordDodge === 'far') {
+          if (isFirstEastWest) {
+            // Dodge by Omega-M for everything except sword + legs.
+            pos1 = (!isM1In && isF1In) ? f1.PosX : m1.PosX;
+            pos2 = (!isM2In && isF2In) ? f2.PosY : m2.PosY;
+          } else {
+            pos1 = (!isM1In && isF1In) ? f1.PosY : m1.PosY;
+            pos2 = (!isM2In && isF2In) ? f2.PosX : m2.PosX;
+          }
+        } else {
+          if (isFirstEastWest) {
+            // Dodge by Omega-F for sword and Omega-M for shield.
+            pos1 = !isM1In ? f1.PosX : m1.PosX;
+            pos2 = !isM2In ? f2.PosY : m2.PosY;
+          } else {
+            pos1 = !isM1In ? f1.PosY : m1.PosY;
+            pos2 = !isM2In ? f2.PosX : m2.PosX;
+          }
+        }
+
         // The combatants only spawn in these intercards:
         // 92.93, 92.93 (NW)      107.07, 92.93 (NE)
         // 92.93, 107.07 (SW)     107.07, 107.07 (SE)
         // They will either spawn NW/SE first or NE/SW
         // Boss cleave tells if it is actually east/west or north/south
-        let dir1;
-        let dir2;
+        let dir1: string;
+        let dir2: string;
+        let rotate: NonNullable<typeof data.omegaDodgeRotation>;
+
         if (isFirstEastWest) {
-          // East or West Safe
           // Check for Sword/Shield to know if to go to Male or Female
-          const pos1 = (!isM1In && isF1In) ? f1.PosX : m1.PosX;
-          const pos2 = (!isM2In && isF2In) ? f2.PosY : m2.PosY;
           dir1 = pos1 < 100 ? output.dirW!() : output.dirE!();
           dir2 = pos2 < 100 ? output.dirN!() : output.dirS!();
+          const isLeftRotation = pos1 < 100 && pos2 < 100 || pos1 > 100 && pos2 > 100;
+          rotate = isLeftRotation ? 'left' : 'right';
         } else {
-          // North or South Safe
-          const pos1 = (!isM1In && isF1In) ? f1.PosY : m1.PosY;
-          const pos2 = (!isM2In && isF2In) ? f2.PosX : m2.PosX;
           dir1 = pos1 < 100 ? output.dirN!() : output.dirS!();
           dir2 = pos2 < 100 ? output.dirW!() : output.dirE!();
+          const isRightRotation = pos1 < 100 && pos2 < 100 || pos1 > 100 && pos2 > 100;
+          rotate = isRightRotation ? 'right' : 'left';
         }
+        data.omegaDodgeRotation = rotate;
 
         let firstSpot;
         if (isF1In) {
@@ -1731,12 +1770,11 @@ const triggerSet: TriggerSet<Data> = {
         } else {
           if (isM1In) {
             firstSpot = output.staffShield!({ dir: dir1 });
+          } else if (data.triggerSetConfig.staffSwordDodge === 'far') {
+            firstSpot = output.staffSwordFar!({ dir: dir1 });
           } else {
             const staffMidDir1 = staffSwordMidHelper(isFirstEastWest, f1.PosX, f1.PosY, output);
-            firstSpot = output.staffSwordCombo!({
-              farText: output.staffSwordFar!({ dir: dir1 }),
-              midText: output.staffSwordMid!({ dir: staffMidDir1 }),
-            });
+            firstSpot = output.staffSwordMid!({ dir: staffMidDir1 });
           }
         }
 
@@ -1749,21 +1787,27 @@ const triggerSet: TriggerSet<Data> = {
         } else {
           if (isM2In) {
             secondSpot = output.staffShield!({ dir: dir2 });
+          } else if (data.triggerSetConfig.staffSwordDodge === 'far') {
+            secondSpot = output.staffSwordFar!({ dir: dir2 });
           } else {
             const staffMidDir2 = staffSwordMidHelper(isSecondEastWest, f2.PosX, f2.PosY, output);
-            secondSpot = output.staffSwordCombo!({
-              farText: output.staffSwordFar!({ dir: dir2 }),
-              midText: output.staffSwordMid!({ dir: staffMidDir2 }),
-            });
+            secondSpot = output.staffSwordMid!({ dir: staffMidDir2 });
           }
         }
 
-        return output.safeSpots!({ first: firstSpot, second: secondSpot });
+        const rotateStr = rotate === 'right' ? output.rotateRight!() : output.rotateLeft!();
+        return output.safeSpots!({ first: firstSpot, rotate: rotateStr, second: secondSpot });
       },
       outputStrings: {
         safeSpots: {
-          en: '${first} => ${second}',
-          ko: '${first} => ${second}',
+          en: '${first} => ${rotate} => ${second}',
+          ko: '${first} => ${rotate} => ${second}',
+        },
+        rotateRight: {
+          en: 'Right',
+        },
+        rotateLeft: {
+          en: 'Left',
         },
         // The two legs are split in case somebody wants a "go to M" or "go to F" style call.
         legsSword: {
@@ -1777,10 +1821,6 @@ const triggerSet: TriggerSet<Data> = {
         staffShield: {
           en: 'Mid ${dir}',
           ko: '${dir} 중간',
-        },
-        staffSwordCombo: {
-          en: '${farText} / ${midText}',
-          ko: '${farText} / ${midText}',
         },
         staffSwordFar: {
           en: 'Far ${dir}',
@@ -1832,6 +1872,14 @@ const triggerSet: TriggerSet<Data> = {
         const isMIn = m.WeaponId === 4;
         const isFirstEastWest = matches.id === '7B9B';
         const isSecondEastWest = !isFirstEastWest;
+        const rotateStr = data.omegaDodgeRotation === 'right'
+          ? output.rotateRight!()
+          : output.rotateLeft!();
+
+        if (!isFIn && !isMIn && data.triggerSetConfig.staffSwordDodge === 'mid') {
+          const staffMidDir1 = staffSwordMidHelper(isSecondEastWest, f.PosX, f.PosY, output);
+          return output.staffSwordMid!({ rotate: rotateStr, dir: staffMidDir1 });
+        }
 
         // The combatants only spawn in these intercards:
         // 92.93, 92.93 (NW)      107.07, 92.93 (NE)
@@ -1852,42 +1900,40 @@ const triggerSet: TriggerSet<Data> = {
 
         if (isFIn) {
           if (isMIn)
-            return output.legsShield!({ dir: dir1 });
-          return output.legsSword!({ dir: dir1 });
+            return output.legsShield!({ rotate: rotateStr, dir: dir1 });
+          return output.legsSword!({ rotate: rotateStr, dir: dir1 });
         }
         if (isMIn)
-          return output.staffShield!({ dir: dir1 });
+          return output.staffShield!({ rotate: rotateStr, dir: dir1 });
 
-        const staffMidDir1 = staffSwordMidHelper(isSecondEastWest, f.PosX, f.PosY, output);
-        return output.staffSwordCombo!({
-          farText: output.staffSwordFar!({ dir: dir1 }),
-          midText: output.staffSwordMid!({ dir: staffMidDir1 }),
-        });
+        return output.staffSwordFar!({ rotate: rotateStr, dir: dir1 });
       },
       outputStrings: {
+        rotateRight: {
+          en: 'Right',
+        },
+        rotateLeft: {
+          en: 'Left',
+        },
         legsSword: {
-          en: 'Close ${dir}',
-          ko: '${dir} 가까이',
+          en: '${rotate} => Close ${dir}',
+          ko: '${rotate} => ${dir} 가까이',
         },
         legsShield: {
-          en: 'Close ${dir}',
-          ko: '${dir} 가까이',
+          en: '${rotate} => Close ${dir}',
+          ko: '${rotate} => ${dir} 가까이',
         },
         staffShield: {
-          en: 'Mid ${dir}',
-          ko: '${dir} 중간',
-        },
-        staffSwordCombo: {
-          en: '${farText} / ${midText}',
-          ko: '${farText} / ${midText}',
+          en: '${rotate} => Mid ${dir}',
+          ko: '${rotate} => ${dir} 중간',
         },
         staffSwordFar: {
-          en: 'Far ${dir}',
-          ko: '${dir} 멀리',
+          en: '${rotate} => Far ${dir}',
+          ko: '${rotate} => ${dir} 멀리',
         },
         staffSwordMid: {
-          en: 'Mid ${dir}',
-          ko: '${dir} 중간',
+          en: '${rotate} => Mid ${dir}',
+          ko: '${rotate} => ${dir} 중간',
         },
         dirN: Outputs.dirN,
         dirE: Outputs.dirE,
