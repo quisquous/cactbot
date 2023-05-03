@@ -1991,7 +1991,7 @@ const triggerSet: TriggerSet<Data> = {
             case 3:
               return output.outWait2!();
             case 5:
-              return output.cardinalPosition!();
+              return output.cardinalPositionInt!();
             case 6:
               return output.in!();
           }
@@ -2004,7 +2004,7 @@ const triggerSet: TriggerSet<Data> = {
           case 5:
             return output.in!();
           case 4:
-            return output.cardinalPosition!();
+            return output.cardinalPositionOut!();
         }
       },
       run: (data) => {
@@ -2021,7 +2021,10 @@ const triggerSet: TriggerSet<Data> = {
         outWait2: {
           en: 'Out => Wait 2',
         },
-        cardinalPosition: Outputs.moveAway,
+        cardinalPositionIn: Outputs.moveAway,
+        cardinalPositionOut: {
+          en: 'Cardinal Out',
+        },
       },
     },
     {
