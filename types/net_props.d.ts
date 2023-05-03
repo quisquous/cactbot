@@ -23,7 +23,7 @@ type RepeatingFieldsExtract<
   }[];
 };
 
-type KVPParams<
+type RepeatingFieldsParams<
   type extends LogDefinitionTypes,
   repeatingType extends RepeatingFieldsTypes = type extends RepeatingFieldsTypes ? type : never,
 > = repeatingType extends RepeatingFieldsTypes ? RepeatingFieldsExtract<repeatingType>
@@ -34,8 +34,9 @@ type Params<T extends string> = Partial<
   & { 'timestamp': string; 'capture': boolean }
 >;
 
-type KVPParamsExtract<type extends LogDefinitionTypes> = type extends RepeatingFieldsTypes
-  ? KVPParams<type> & Params<NetProps[type]> :
+type RepeatingFieldsParamsExtract<
+  type extends LogDefinitionTypes,
+> = type extends RepeatingFieldsTypes ? RepeatingFieldsParams<type> & Params<NetProps[type]> :
   never;
 
 export type NetProps = {
@@ -43,5 +44,5 @@ export type NetProps = {
 };
 
 export type NetParams = {
-  [type in keyof NetProps]: KVPParamsExtract<type> | Params<NetProps[type]>;
+  [type in keyof NetProps]: RepeatingFieldsParamsExtract<type> | Params<NetProps[type]>;
 };
