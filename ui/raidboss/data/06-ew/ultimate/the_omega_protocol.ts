@@ -1984,12 +1984,12 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '7BA4', source: 'Alpha Omega', capture: false },
       preRun: (data) => data.cosmoArrowExaCount = data.cosmoArrowExaCount + 1,
-      suppressSeconds: 1, // Only capture 1 in the set of casts
       durationSeconds: (data) => {
         if (data.cosmoArrowExaCount === 3 && data.cosmoArrowIn)
           return 5;
         return 3;
       },
+      suppressSeconds: 1, // Only capture 1 in the set of casts
       infoText: (data, _matches, output) => {
         if (data.cosmoArrowIn) {
           switch (data.cosmoArrowExaCount) {
