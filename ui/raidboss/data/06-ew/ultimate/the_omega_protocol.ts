@@ -1958,23 +1958,27 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'TOP Unlimited Wave Cannon Dodge',
+      id: 'TOP Unlimited Wave Cannon Collect',
       // Invisible NPCs cast Wave Cannon from starting position of the Exaflares
       // Data from ACT can be innacurate, use OverlayPlugin
       // These casts go off 2 seconds after each other
       type: 'StartsUsing',
       netRegex: { id: '7BAD', source: 'Alpha Omega' },
-      condition: (data, matches) => {
-        if (data.waveCannonFlares.length === 4)
-          data.waveCannonFlares = [];
-        data.waveCannonFlares.push(parseInt(matches.sourceId, 16));
-
-        return data.waveCannonFlares.length === 2;
-      },
-      delaySeconds: 0.1,
+      run: (data, matches) => data.waveCannonFlares.push(parseInt(matches.sourceId, 16)),
+    },
+    {
+      id: 'TOP Unlimited Wave Cannon Dodges',
+      type: 'StartsUsing',
+      netRegex: { id: '7BAC', source: 'Alpha Omega', capture: false},
+      delaySeconds: 5,
       promise: async (data) => {
-        if (data.waveCannonFlares[0] === undefined && data.waveCannonFlares[1] === undefined)
-          throw new UnreachableCode();
+        if (data.waveCannonFlares.length < 3) {
+          console.error(
+            `TOP Unlimited Wave Cannon Dodge: Expected at least 2 casts, Got: ${
+              JSON.stringify(data.waveCannonFlares.length)
+            }`,
+          );
+        }
         data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
           call: 'getCombatants',
@@ -1982,9 +1986,9 @@ const triggerSet: TriggerSet<Data> = {
         })).combatants;
       },
       infoText: (data, _matches, output) => {
-        if (data.combatantData.length !== 2) {
+        if (data.combatantData.length < 3) {
           console.error(
-            `TOP Unlimited Wave Cannon Dodge: Expected 2 Wave Cannons, Got: ${
+            `TOP Unlimited Wave Cannon Dodge: Expected at least 2 Wave Cannons, Got: ${
               JSON.stringify(data.combatantData)
             }`,
           );
