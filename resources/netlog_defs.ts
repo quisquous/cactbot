@@ -35,6 +35,12 @@ export type LogDefinition = {
   blankFields?: readonly number[];
   // This field and any field after will be treated as optional when creating capturing regexes.
   firstOptionalField: number | undefined;
+  // These fields are treated as repeatable fields
+  repeatingFields?: {
+    startingIndex: number;
+    label: string;
+    names: readonly string[];
+  };
 };
 export type LogDefinitionMap = { [name: string]: LogDefinition };
 type LogDefinitionVersionMap = { [version: string]: LogDefinitionMap };
@@ -1014,16 +1020,17 @@ const latestLogDefinitions = {
       timestamp: 1,
       change: 2,
       id: 3,
-      // from here, pairs of field name/values, e.g.
-      key1: 4,
-      value1: 5,
-      // key2: 6,
-      // value2: 7,
+      // from here, pairs of field name/values
     },
     canAnonymize: true,
     firstOptionalField: 4,
     playerIds: {
       3: null,
+    },
+    repeatingFields: {
+      startingIndex: 4,
+      label: 'pair',
+      names: ['key', 'value'],
     },
   },
   RSVData: {
@@ -1056,6 +1063,21 @@ export type LogDefinitions = typeof logDefinitionsVersions['latest'];
 export type LogDefinitionTypes = keyof LogDefinitions;
 export type LogDefinitionVersions = keyof typeof logDefinitionsVersions;
 
+type RepeatingFieldsNarrowingType = { readonly repeatingFields: unknown };
+
+export type RepeatingFieldsTypes = keyof {
+  [
+    type in LogDefinitionTypes as LogDefinitions[type] extends RepeatingFieldsNarrowingType ? type
+      : never
+  ]: null;
+};
+
+export type RepeatingFieldsDefintions = {
+  [type in RepeatingFieldsTypes]: LogDefinitions[type] & {
+    readonly repeatingFields: Exclude<LogDefinitions[type]['repeatingFields'], undefined>;
+  };
+};
+
 export type ParseHelperField<
   Type extends LogDefinitionTypes,
   Fields extends NetFieldsReverse[Type],
@@ -1064,6 +1086,8 @@ export type ParseHelperField<
   field: Fields[Field] extends string ? Fields[Field] : never;
   value?: string;
   optional?: boolean;
+  repeating?: boolean;
+  repeatingKeys?: string[];
 };
 
 export type ParseHelperFields<T extends LogDefinitionTypes> = {

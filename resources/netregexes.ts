@@ -7,6 +7,8 @@ import {
   LogDefinitionTypes,
   LogDefinitionVersions,
   ParseHelperFields,
+  RepeatingFieldsDefintions,
+  RepeatingFieldsTypes,
 } from './netlog_defs';
 import Regexes from './regexes';
 
@@ -36,31 +38,84 @@ const defaultParams = <
   T extends LogDefinitionTypes,
   V extends LogDefinitionVersions,
 >(type: T, version: V, include?: string[]): Partial<ParseHelperFields<T>> => {
-  include ??= Object.keys(logDefinitionsVersions[version][type].fields);
-  const params: { [index: number]: { field: string; value?: string; optional: boolean } } = {};
-  const firstOptionalField = logDefinitionsVersions[version][type].firstOptionalField;
+  const logType = logDefinitionsVersions[version][type];
+  if (include === undefined) {
+    include = Object.keys(logType.fields);
+    if ('repeatingFields' in logType) {
+      include.push(logType.repeatingFields.label);
+    }
+  }
 
-  for (const [prop, index] of Object.entries(logDefinitionsVersions[version][type].fields)) {
+  const params: {
+    [index: number]: {
+      field: string;
+      value?: string;
+      optional: boolean;
+      repeating?: boolean;
+      repeatingKeys?: string[];
+    };
+  } = {};
+  const firstOptionalField = logType.firstOptionalField;
+
+  for (const [prop, index] of Object.entries(logType.fields)) {
     if (!include.includes(prop))
       continue;
-    const param: { field: string; value?: string; optional: boolean } = {
+    const param: { field: string; value?: string; optional: boolean; repeating?: boolean } = {
       field: prop,
       optional: firstOptionalField !== undefined && index >= firstOptionalField,
     };
     if (prop === 'type')
-      param.value = logDefinitionsVersions[version][type].type;
+      param.value = logType.type;
 
     params[index] = param;
+  }
+
+  if ('repeatingFields' in logType && include.includes(logType.repeatingFields.label)) {
+    params[logType.repeatingFields.startingIndex] = {
+      field: logType.repeatingFields.label,
+      optional: firstOptionalField !== undefined &&
+        logType.repeatingFields.startingIndex >= firstOptionalField,
+      repeating: true,
+      repeatingKeys: [...logType.repeatingFields.names],
+    };
   }
 
   return params as unknown as Partial<ParseHelperFields<T>>;
 };
 
-type ParseHelperType<T extends LogDefinitionTypes> =
+type RepeatingFieldsMap<
+  TBase extends LogDefinitionTypes,
+  TKey extends RepeatingFieldsTypes = TBase extends RepeatingFieldsTypes ? TBase : never,
+> = {
+  // This syntax is a bit weird to make typescript compiler happy
+  [
+    label in RepeatingFieldsDefintions[TKey]['repeatingFields'][
+      'label'
+    ] as `${RepeatingFieldsDefintions[TKey]['repeatingFields']['label']}`
+  ]?: {
+    [name in RepeatingFieldsDefintions[TKey]['repeatingFields']['names'][number]]:
+      | string
+      | string[];
+  }[];
+};
+
+type RepeatingFieldsMapType<T extends LogDefinitionTypes> = T extends RepeatingFieldsTypes
+  ? RepeatingFieldsMap<T>
+  : Record<string, unknown>;
+
+type BaseParseHelperType<T extends LogDefinitionTypes> =
   & {
     [field in keyof NetFields[T]]?: string | string[];
   }
   & { capture?: boolean };
+
+type RepeatingParseHelperType<T extends LogDefinitionTypes> =
+  & RepeatingFieldsMapType<T>
+  & BaseParseHelperType<T>;
+
+type ParseHelperType<T extends LogDefinitionTypes> =
+  | BaseParseHelperType<T>
+  | RepeatingParseHelperType<T>;
 
 const parseHelper = <T extends LogDefinitionTypes>(
   params: ParseHelperType<T> | undefined,
@@ -136,21 +191,72 @@ const parseHelper = <T extends LogDefinitionTypes>(
     if (typeof value !== 'object')
       throw new Error(`${funcName}: invalid value: ${JSON.stringify(value)}`);
 
-    const fieldName = fields[keyStr]?.field;
-    const fieldValue = fields[keyStr]?.value?.toString() ?? matchDefault;
+    const fieldName = value.field;
+    const defaultFieldValue = value.value?.toString() ?? matchDefault;
+    let fieldValue: string | string[] | Record<string, unknown>[] | undefined = params[fieldName];
 
-    if (fieldName !== undefined) {
-      str += Regexes.maybeCapture(
-        // more accurate type instead of `as` cast
-        // maybe this function needs a refactoring
-        capture,
-        fieldName,
-        params[fieldName],
-        fieldValue,
-      ) +
-        separator;
+    if (fields[keyStr]?.repeating) {
+      if (Array.isArray(fieldValue)) {
+        const repeatingArray: unknown[] = fieldValue;
+        fieldValue = '';
+        let idx = 0;
+        repeatingArray.forEach((rep: unknown) => {
+          if (typeof rep === 'object' && rep !== null && Object.keys(rep).length > 0) {
+            let fieldRegex = '';
+            // Rather than looping over the keys defined on the object,
+            // loop over the base type def's keys. This enforces the correct order.
+            fields[keyStr]?.repeatingKeys?.forEach((key) => {
+              if (!(key in rep)) {
+                // If we don't have a value for this key, insert a placeholder
+                fieldRegex += '\\y{NetField}';
+                return;
+              }
+              // This is an ugly cast. There's probably a better way of narrowing this type but
+              // tsc doesn't like the dozen or so variations I've tried.
+              const val = rep[key as keyof typeof rep] as unknown;
+              if (typeof val !== 'string') {
+                if (!Array.isArray(val))
+                  return;
+                if (val.length < 0)
+                  return;
+                if (val.some((v) => typeof v !== 'string'))
+                  return;
+              }
+              fieldRegex += Regexes.maybeCapture(
+                capture,
+                // First match will come back as the normal key, additional matches will be indexed
+                key + (idx > 0 ? idx.toString() : ''),
+                val,
+                defaultFieldValue,
+              ) +
+                separator;
+            });
+
+            if (fieldRegex.length > 0) {
+              // Prepend a match for any number of fields before matching this one.
+              // TODO: Should we scope this as the following instead?
+              // This would match sets of repeating fields instead of any number of fields.
+              // `(?:\\y{NetField}(${fields[keyStr]?.repeatingKeys?.length}))*`
+              str += `\\y{NetField}*?` + fieldRegex;
+            }
+            ++idx;
+          }
+        });
+      }
     } else {
-      str += fieldValue + separator;
+      if (fieldName !== undefined) {
+        str += Regexes.maybeCapture(
+          // more accurate type instead of `as` cast
+          // maybe this function needs a refactoring
+          capture,
+          fieldName,
+          params[fieldName],
+          defaultFieldValue,
+        ) +
+          separator;
+      } else {
+        str += defaultFieldValue + separator;
+      }
     }
 
     // Stop if we're not capturing and don't care about future fields.
@@ -417,6 +523,15 @@ export default class NetRegexes {
    */
   static ceDirector(params?: NetParams['CEDirector']): CactbotBaseRegExp<'CEDirector'> {
     return buildRegex('CEDirector', params);
+  }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-261-0x105-combatantmemory
+   */
+  static combatantMemory(
+    params?: NetParams['CombatantMemory'],
+  ): CactbotBaseRegExp<'CombatantMemory'> {
+    return buildRegex('CombatantMemory', params);
   }
 }
 
