@@ -1983,15 +1983,20 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TOP Cosmo Arrow Dodges',
       type: 'Ability',
       netRegex: { id: '7BA4', source: 'Alpha Omega', capture: false },
+      preRun: (data) => data.cosmoArrowExaCount = data.cosmoArrowExaCount + 1,
       suppressSeconds: 1, // Only capture 1 in the set of casts
+      durationSeconds: (data) => {
+        if (data.cosmoArrowExaCount === 3 && data.cosmoArrowIn)
+          return 5;
+        return 3;
+      },
       infoText: (data, _matches, output) => {
-        data.cosmoArrowExaCount = data.cosmoArrowExaCount + 1;
         if (data.cosmoArrowIn) {
           switch (data.cosmoArrowExaCount) {
             case 3:
               return output.outWait2!();
             case 5:
-              return output.cardinalPositionInt!();
+              return output.cardinalPositionIn!();
             case 6:
               return output.in!();
           }
