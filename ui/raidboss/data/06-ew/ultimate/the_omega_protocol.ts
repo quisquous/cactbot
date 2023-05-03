@@ -1964,7 +1964,12 @@ const triggerSet: TriggerSet<Data> = {
       // These casts go off 2 seconds after each other
       type: 'StartsUsing',
       netRegex: { id: '7BAD', source: 'Alpha Omega' },
-      run: (data, matches) => data.waveCannonFlares.push(parseInt(matches.sourceId, 16)),
+      run: (data, matches) => {
+        // Cleanup collector if second set
+        if (data.waveCannonFlares.length === 4)
+          data.waveCannonFlares = [];
+        data.waveCannonFlares.push(parseInt(matches.sourceId, 16));
+      },
     },
     {
       id: 'TOP Unlimited Wave Cannon Dodges',
