@@ -22,6 +22,7 @@ export interface Data extends RaidbossData {
   delayedDummyTimestampBefore: number;
   delayedDummyTimestampAfter: number;
   pokes: number;
+  watchingForCast: boolean;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -76,6 +77,7 @@ const triggerSet: TriggerSet<Data> = {
       delayedDummyTimestampBefore: 0,
       delayedDummyTimestampAfter: 0,
       pokes: 0,
+      watchingForCast: false,
     };
   },
   timelineStyles: [
@@ -321,6 +323,33 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'Test Combatant Cast Enable',
+      type: 'GameLog',
+      netRegex: NetRegexes.echo({ line: 'cactbot test combatant cast.*?', capture: false }),
+      run: (data) => {
+        data.watchingForCast = true;
+      },
+    },
+    {
+      id: 'Test Combatant Cast',
+      type: 'CombatantMemory',
+      // Note that the order of entries is important, e.g. `IsCasting1` always appears before `CastBuffID`,
+      // so they must be in that order in the passed in array
+      netRegex: NetRegexes.combatantMemory({
+        pair: [{ key: 'IsCasting1', value: '1' }, { key: 'CastBuffID', value: '.*?' }],
+      }),
+      condition: (data) => data.watchingForCast,
+      infoText: (data, matches, output) => {
+        data.watchingForCast = false;
+        return output.casting!({ id: matches.id, spellId: matches.value1 });
+      },
+      outputStrings: {
+        casting: {
+          en: 'ID ${id} is casting spell ID ${spellId}',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
@@ -443,6 +472,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'ko',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
         'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
