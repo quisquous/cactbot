@@ -2023,7 +2023,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '7BAC', source: 'Alpha Omega', capture: false },
       delaySeconds: 1.5,
       promise: async (data) => {
-        if (data.waveCannonFlares.length < 3) {
+        if (data.waveCannonFlares.length < 2) {
           console.error(
             `TOP Unlimited Wave Cannon Dodge: Expected at least 2 casts, Got: ${
               JSON.stringify(data.waveCannonFlares.length)
@@ -2037,7 +2037,7 @@ const triggerSet: TriggerSet<Data> = {
         })).combatants;
       },
       infoText: (data, _matches, output) => {
-        if (data.combatantData.length < 3) {
+        if (data.combatantData.length < 2) {
           console.error(
             `TOP Unlimited Wave Cannon Dodge: Expected at least 2 Wave Cannons, Got: ${
               JSON.stringify(data.combatantData)
