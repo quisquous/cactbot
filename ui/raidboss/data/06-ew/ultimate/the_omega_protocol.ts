@@ -2000,9 +2000,9 @@ const triggerSet: TriggerSet<Data> = {
           return;
         }
         const firstWaveCannon =
-          data.combatantData.filter(combatant => combatant.ID === data.waveCannonFlares[0])[0];
+          data.combatantData.filter((combatant) => combatant.ID === data.waveCannonFlares[0])[0];
         const secondWaveCannon =
-          data.combatantData.filter(combatant => combatant.ID === data.waveCannonFlares[1])[0];
+          data.combatantData.filter((combatant) => combatant.ID === data.waveCannonFlares[1])[0];
 
         if (firstWaveCannon === undefined || secondWaveCannon === undefined) {
           console.error(
