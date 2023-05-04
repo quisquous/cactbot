@@ -44,28 +44,28 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Gancanagh': 'Gancanagh',
         'Orthos Behemoth': 'Orthos-Behemoth',
+        'Orthos Fachan': 'Orthos-Fachan',
         'Orthos Grenade': 'Orthos-Granate',
       },
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Gancanagh': 'Gancanagh',
         'Orthos Behemoth': 'béhémoth Orthos',
+        'Orthos Fachan': 'fachan Orthos',
         'Orthos Grenade': 'grenado Orthos',
       },
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Gancanagh': 'ガンカナグー',
         'Orthos Behemoth': 'オルト・ベヒーモス',
+        'Orthos Fachan': 'オルト・ファハン',
         'Orthos Grenade': 'オルト・グレネード',
       },
     },
