@@ -1975,7 +1975,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TOP Unlimited Wave Cannon Dodges',
       type: 'StartsUsing',
       netRegex: { id: '7BAC', source: 'Alpha Omega', capture: false },
-      delaySeconds: 5,
+      delaySeconds: 4,
       promise: async (data) => {
         if (data.waveCannonFlares.length < 3) {
           console.error(
@@ -1999,8 +1999,8 @@ const triggerSet: TriggerSet<Data> = {
           );
           return;
         }
-        const firstWaveCannon = data.combatantData.shift();
-        const secondWaveCannon = data.combatantData.shift();
+        const firstWaveCannon = data.combatantData.filter(combatant => combatant.ID === data.waveCannonFlares[0])[0];
+        const secondWaveCannon = data.combatantData.filter(combatant => combatant.ID === data.waveCannonFlares[1])[0];
 
         if (firstWaveCannon === undefined || secondWaveCannon === undefined) {
           console.error(
