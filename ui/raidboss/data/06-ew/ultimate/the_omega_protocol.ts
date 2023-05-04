@@ -2007,7 +2007,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TOP Unlimited Wave Cannon Collect',
       // Invisible NPCs cast Wave Cannon from starting position of the Exaflares
       // Data from ACT can be innacurate, use OverlayPlugin
-      // These casts go off 2 seconds after each other
+      // These casts start 1 second after each other
       type: 'StartsUsing',
       netRegex: { id: '7BAD', source: 'Alpha Omega' },
       run: (data, matches) => {
@@ -2021,7 +2021,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TOP Unlimited Wave Cannon Dodges',
       type: 'StartsUsing',
       netRegex: { id: '7BAC', source: 'Alpha Omega', capture: false },
-      delaySeconds: 4,
+      delaySeconds: 1.5,
       promise: async (data) => {
         if (data.waveCannonFlares.length < 3) {
           console.error(
