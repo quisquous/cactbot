@@ -102,6 +102,7 @@ const triggerSet: TriggerSet<Data> = {
         stunOrBreakLOS: {
           en: 'Stun or Break line-of-sight to ${name}',
           de: 'Unterbrechen oder unterbreche die Sichtlinie zu ${name}',
+          ko: '기절 또는 ${name}의 시야 밖으로 숨기',
         },
         breakLOS: {
           en: 'Break line-of-sight to ${name}',
@@ -220,12 +221,12 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Bird of Orthos': 'Orthos-Vogel',
         'Orthos Coeurl': 'Orthos-Coeurl',
         'Orthos Flamebeast': 'Orthos-Flammenbestie',
         'Orthos Gulo Gulo': 'Orthos-Gulo Gulo',
+        'Orthos Kargas': 'Orthos-Kargas',
         'Orthos Primelephas': 'Orthos-Primelephas',
         'Orthos Skatene': 'Orthos-Skatene',
         'Orthos Thunderbeast': 'Orthos-Donnerbestie',
@@ -236,12 +237,12 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Bird of Orthos': 'oiseau d\'Eurêka Orthos',
         'Orthos Coeurl': 'coeurl Orthos',
         'Orthos Flamebeast': 'bête de feu Orthos',
         'Orthos Gulo Gulo': 'gulo gulo Orthos',
+        'Orthos Kargas': 'kargas Orthos',
         'Orthos Primelephas': 'primelephas Orthos',
         'Orthos Skatene': 'skate\'ne Orthos',
         'Orthos Thunderbeast': 'bête de foudre Orthos',
@@ -252,12 +253,12 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bird of Orthos': 'バード・オブ・オルト',
         'Orthos Coeurl': 'オルト・クァール',
         'Orthos Flamebeast': 'オルト・フレイムビースト',
         'Orthos Gulo Gulo': 'オルト・グログロ',
+        'Orthos Kargas': 'オルト・カルガス',
         'Orthos Primelephas': 'オルト・プリメレファス',
         'Orthos Skatene': 'オルト・スカネテ',
         'Orthos Thunderbeast': 'オルト・サンダービースト',
