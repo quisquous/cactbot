@@ -219,6 +219,8 @@ export type LooseTriggerSet =
       | { [lang in Lang]?: RegExp };
     triggers?: LooseTrigger[];
     timelineTriggers?: LooseTimelineTrigger[];
+    filename?: string;
+    isUserTriggerSet?: boolean;
   };
 
 export interface RaidbossFileData {
