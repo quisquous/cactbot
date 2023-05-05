@@ -170,6 +170,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'staffSwordDodge',
       name: {
         en: 'Run: Omega Staff Sword Dodge Direction',
+        de: 'Renn: Omega Stab Schwert Ausweich-Richtung',
       },
       type: 'select',
       options: {
@@ -1389,6 +1390,7 @@ const triggerSet: TriggerSet<Data> = {
           unmarkedBlue: {
             // Probably near baits, but you never know.
             en: 'Unmarked Blue',
+            de: 'Blau ohne Debuff',
             ko: '디버프 없는 파란색 선',
           },
         };
@@ -1474,6 +1476,7 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
         mLocation: {
           en: '${dir} M',
+          de: '${dir} M',
           ko: '${dir} M',
         },
       },
@@ -1492,6 +1495,7 @@ const triggerSet: TriggerSet<Data> = {
           ...nearDistantOutputStrings,
           noDebuff: {
             en: '(no debuff)',
+            de: '(kein Debuff)',
             ko: '(디버프 없음)',
           },
         };
@@ -1537,10 +1541,12 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         optimizedBlizzard: {
           en: 'Follow Laser, Move In',
+          de: 'Laser folgen, rein gehen',
           ko: '레이저 따라서 안으로',
         },
         superliminalSteel: {
           en: 'Wait First',
+          de: 'Zuerst warten',
           ko: '기다렸다가 이동',
         },
       },
@@ -1585,6 +1591,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitTethers: {
           en: 'Bait Tethers',
+          de: 'Verbindung ködern',
           ko: '선 가져가기',
         },
       },
@@ -1660,22 +1667,27 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         legsSword: {
           en: 'Close ${northSouth} or ${eastWest}',
+          de: 'Nahe ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 가까이',
         },
         legsShield: {
           en: 'Close ${northSouth} or ${eastWest}',
+          de: 'Nahe ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 가까이',
         },
         staffShield: {
           en: 'In ${northSouth} or ${eastWest}',
+          de: 'Rein ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 중간',
         },
         staffSwordFar: {
           en: 'Far ${northSouth} or ${eastWest}',
+          de: 'Entfernt von ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 멀리',
         },
         staffSwordMid: {
           en: 'Mid ${northSouth} or ${eastWest}',
+          de: 'Mittig ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 중간',
         },
         dirN: Outputs.dirN,
@@ -1806,33 +1818,41 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         safeSpots: {
           en: '${first} => ${rotate} => ${second}',
+          de: '${first} => ${rotate} => ${second}',
           ko: '${first} => ${rotate} => ${second}',
         },
         rotateRight: {
           en: 'Right',
+          de: 'Rechts',
         },
         rotateLeft: {
           en: 'Left',
+          de: 'Links',
         },
         // The two legs are split in case somebody wants a "go to M" or "go to F" style call.
         legsSword: {
           en: 'Close ${dir}',
+          de: 'Nahe ${dir}',
           ko: '${dir} 가까이',
         },
         legsShield: {
           en: 'Close ${dir}',
+          de: 'Nahe ${dir}',
           ko: '${dir} 가까이',
         },
         staffShield: {
           en: 'Mid ${dir}',
+          de: 'Mittig ${dir}',
           ko: '${dir} 중간',
         },
         staffSwordFar: {
           en: 'Far ${dir}',
+          de: 'Entfernt von ${dir}',
           ko: '${dir} 멀리',
         },
         staffSwordMid: {
           en: 'Mid ${dir}',
+          de: 'Mittig ${dir}',
           ko: '${dir} 중간',
         },
         dirN: Outputs.dirN,
@@ -1916,28 +1936,35 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         rotateRight: {
           en: 'Right',
+          de: 'Rechts',
         },
         rotateLeft: {
           en: 'Left',
+          de: 'Links',
         },
         legsSword: {
           en: '${rotate} => Close ${dir}',
+          de: '${rotate} => Nahe ${dir}',
           ko: '${rotate} => ${dir} 가까이',
         },
         legsShield: {
           en: '${rotate} => Close ${dir}',
+          de: '${rotate} => Nahe ${dir}',
           ko: '${rotate} => ${dir} 가까이',
         },
         staffShield: {
           en: '${rotate} => Mid ${dir}',
+          de: '${rotate} => Mittig ${dir}',
           ko: '${rotate} => ${dir} 중간',
         },
         staffSwordFar: {
           en: '${rotate} => Far ${dir}',
+          de: '${rotate} => Entfernt ${dir}',
           ko: '${rotate} => ${dir} 멀리',
         },
         staffSwordMid: {
           en: '${rotate} => Mid ${dir}',
+          de: '${rotate} => Mittig ${dir}',
           ko: '${rotate} => ${dir} 중간',
         },
         dirN: Outputs.dirN,
@@ -1986,10 +2013,12 @@ const triggerSet: TriggerSet<Data> = {
         // that everybody needs to know that already, and so just call positioning.
         cosmoDiveTank: {
           en: 'Tanks Near (party far)',
+          de: 'Tanks nahe (Gruppe entfernt)',
           ko: '탱커 가까이 (본대 멀리)',
         },
         cosmoDiveParty: {
           en: 'Party Far (tanks near)',
+          de: 'Gruppe entfernt (Tanks nahe)',
           ko: '본대 멀리 (탱커 가까이)',
         },
       },
@@ -2002,6 +2031,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Middle',
+          de: 'Mitte ködern',
           ko: '중앙에 장판 유도',
         },
       },
@@ -2015,6 +2045,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Line Charge',
+          de: 'Linien Ansturm',
           ko: '직선 쉐어',
         },
       },
@@ -2027,6 +2058,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Middle',
+          de: 'Mitte ködern',
           ko: '중앙에 장판 유도',
         },
       },

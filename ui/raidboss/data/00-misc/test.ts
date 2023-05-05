@@ -336,6 +336,7 @@ const triggerSet: TriggerSet<Data> = {
         'cactbot lang': 'cactbot sprache',
         'cactbot test response': 'cactbot test antwort',
         'cactbot test watch': 'cactbot test beobachten',
+        'cactbot test config': 'cactbot test konfig',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
         'You psych yourself up alongside the striking dummy':
           'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
