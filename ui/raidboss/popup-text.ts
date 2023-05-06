@@ -613,11 +613,12 @@ export class PopupText {
   }
 
   OnChangeZone(e: EventResponses['ChangeZone']): void {
-    if (this.zoneName !== e.zoneName) {
-      this.zoneName = e.zoneName;
-      this.zoneId = e.zoneID;
-      this.ReloadTimelines();
-    }
+    // Note: this must check zone id and not zone name, as there are some zone name collisions.
+    if (this.zoneId === e.zoneID)
+      return;
+    this.zoneName = e.zoneName;
+    this.zoneId = e.zoneID;
+    this.ReloadTimelines();
   }
 
   ReloadTimelines(): void {
