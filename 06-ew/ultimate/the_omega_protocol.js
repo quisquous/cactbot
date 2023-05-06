@@ -1387,8 +1387,8 @@ Options.Triggers.push({
       netRegex: { id: '7B2E', source: 'Omega-M' },
       // TODO: temporarily disabled as it is returning inconsistent results even with longer delay.
       // See: https://github.com/quisquous/cactbot/issues/5335
-      condition: (data) => false && data.phase === 'sigma',
-      delaySeconds: 6.2,
+      condition: (data) => data.phase === 'sigma',
+      delaySeconds: 8,
       suppressSeconds: 1,
       promise: async (data, matches) => {
         data.combatantData = [];
@@ -1410,11 +1410,11 @@ Options.Triggers.push({
         return output.optimizedBlizzard();
       },
       outputStrings: {
-        optimizedBlizzard: {
+        superliminalSteel: {
           en: 'Follow Laser, Move In',
           ko: '레이저 따라서 안으로',
         },
-        superliminalSteel: {
+        optimizedBlizzard: {
           en: 'Wait First',
           ko: '기다렸다가 이동',
         },
@@ -1614,7 +1614,6 @@ Options.Triggers.push({
         let dir2;
         let rotate;
         if (isFirstEastWest) {
-          // Check for Sword/Shield to know if to go to Male or Female
           dir1 = pos1 < 100 ? output.dirW() : output.dirE();
           dir2 = pos2 < 100 ? output.dirN() : output.dirS();
           const isLeftRotation = pos1 < 100 && pos2 < 100 || pos1 > 100 && pos2 > 100;
