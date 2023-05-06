@@ -2021,7 +2021,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TOP Unlimited Wave Cannon Dodges',
       type: 'StartsUsing',
       netRegex: { id: '7BAC', source: 'Alpha Omega', capture: false },
-      delaySeconds: 1.5,
+      delaySeconds: 1.1,
       promise: async (data) => {
         if (data.waveCannonFlares.length < 2) {
           console.error(
