@@ -23,6 +23,7 @@ const triggerSet: TriggerSet<Data> = {
   ],
   zoneLabel: {
     en: 'Eureka Orthos (All Floors)',
+    de: 'Eureka Orthos (Alle Ebenen)',
   },
 
   triggers: [

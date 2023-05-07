@@ -356,10 +356,11 @@ const triggerSet: TriggerSet<Data> = {
       name: {
         en:
           'Enable cactbot Wormhole strat: https://ff14.toolboxgaming.space/?id=17050133675751&preview=1',
-        de: 'Alex Ultimate: aktiviere cactbot Wormhole Strategie', // FIXME
+        de:
+          'Aktiviere Cactbot Wormhole Strategie: https://ff14.toolboxgaming.space/?id=17050133675751&preview=1',
         fr: 'Alex fatal : activer cactbot pour la strat Wormhole', // FIXME
         ja: '絶アレキサンダー討滅戦：cactbot「次元断絶のマーチ」ギミック', // FIXME
-        cn: '亚历山大绝境战: cactbot灵泉辅助功能', // FIXME
+        cn: '启用 cactbot 灵泉策略: https://ff14.toolboxgaming.space/?id=17050133675751&preview=1',
         ko: 'cactbot 웜홀 공략방식 사용: https://ff14.toolboxgaming.space/?id=17050133675751&preview=1',
       },
       type: 'checkbox',
