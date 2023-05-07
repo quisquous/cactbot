@@ -1106,6 +1106,7 @@ const data: ZoneInfoType = {
     'contentType': 4,
     'exVersion': 4,
     'name': {
+      'cn': '卢比坎特歼灭战',
       'de': 'Prophetie - Rubicante',
       'en': 'Mount Ordeals',
       'fr': 'Le Mont du Supplice',
@@ -1120,6 +1121,7 @@ const data: ZoneInfoType = {
     'contentType': 4,
     'exVersion': 4,
     'name': {
+      'cn': '卢比坎特歼殛战',
       'de': 'Eschatos - Rubicante',
       'en': 'Mount Ordeals (Extreme)',
       'fr': 'Le Mont du Supplice (extrême)',
@@ -1134,6 +1136,7 @@ const data: ZoneInfoType = {
     'contentType': 2,
     'exVersion': 4,
     'name': {
+      'cn': '雪山奥窟冥魂石洞',
       'de': 'Lapis Manalis',
       'en': 'Lapis Manalis',
       'fr': 'Lapis Manalis',
@@ -1398,6 +1401,7 @@ const data: ZoneInfoType = {
     'contentType': 6,
     'exVersion': 0,
     'name': {
+      'cn': '机关大殿',
       'de': 'Die Mechanische Menagerie',
       'en': 'The Clockwork Castletown',
       'fr': 'Le Traquenard oriental',
@@ -1412,6 +1416,7 @@ const data: ZoneInfoType = {
     'contentType': 6,
     'exVersion': 0,
     'name': {
+      'cn': '水晶冲突（机关大殿：自定赛）',
       'de': 'Crystalline Conflict: Die Mechanische Menagerie (Schaukampf)',
       'en': 'Crystalline Conflict (Custom Match - The Clockwork Castletown)',
       'fr': 'Crystalline Conflict (partie personnalisée - Le Traquenard oriental)',
@@ -1426,6 +1431,7 @@ const data: ZoneInfoType = {
     'contentType': 5,
     'exVersion': 4,
     'name': {
+      'cn': '喜悦神域欧芙洛绪涅',
       'de': 'Euphrosyne',
       'en': 'Euphrosyne',
       'fr': 'Domaine divin - Euphrosyne',
@@ -1440,6 +1446,7 @@ const data: ZoneInfoType = {
     'contentType': 7,
     'exVersion': 4,
     'name': {
+      'cn': '未料想过的交易',
       'de': 'Der Wert einer Buuds',
       'en': 'An Unforeseen Bargain',
       'fr': 'Pour une bouchée de pain',
@@ -1454,6 +1461,7 @@ const data: ZoneInfoType = {
     'contentType': 4,
     'exVersion': 4,
     'name': {
+      'cn': '索菲娅幻巧战',
       'de': 'Traumprüfung - Sophia',
       'en': 'Containment Bay P1T6 (Unreal)',
       'fr': 'Unité de contention P1P6 (irréel)',
@@ -1482,6 +1490,7 @@ const data: ZoneInfoType = {
     'contentType': 9,
     'exVersion': 4,
     'name': {
+      'cn': '厄尔庇斯育体宝殿',
       'de': 'Gymnasion Agonon',
       'en': 'The Shifting Gymnasion Agonon',
       'fr': 'Elpis Gymnasion',
