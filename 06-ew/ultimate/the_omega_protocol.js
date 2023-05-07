@@ -45,9 +45,11 @@ const getHeadmarkerId = (data, matches) => {
 const nearDistantOutputStrings = {
   near: {
     en: 'Near World',
+    de: 'Hallo Welt: Nah',
   },
   distant: {
     en: 'Distant World',
+    de: 'Hallo Welt: Fern',
   },
 };
 const staffSwordMidHelper = (isEastWest, posX, posY, output) => {
@@ -88,6 +90,7 @@ Options.Triggers.push({
       id: 'staffSwordDodge',
       name: {
         en: 'Run: Omega Staff Sword Dodge Direction',
+        de: 'Renn: Omega Stab Schwert Ausweich-Richtung',
       },
       type: 'select',
       options: {
@@ -133,6 +136,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Tank Autos',
+          de: 'Tank Autos',
           ko: '탱커 평타',
         },
       },
@@ -146,6 +150,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Protean',
+          de: 'Himmelsrichtungen',
           ko: '기본 산개',
         },
       },
@@ -759,6 +764,7 @@ Options.Triggers.push({
           },
           sameDebuffPartner: {
             en: '(same debuff as ${player})',
+            de: '(selber Debuff wie ${player})',
             ko: '(${player}와 같은 디버프)',
           },
           unknown: Outputs.unknown,
@@ -1273,6 +1279,7 @@ Options.Triggers.push({
           unmarkedBlue: {
             // Probably near baits, but you never know.
             en: 'Unmarked Blue',
+            de: 'Blau ohne Debuff',
             ko: '디버프 없는 파란색 선',
           },
         };
@@ -1350,6 +1357,7 @@ Options.Triggers.push({
         unknown: Outputs.unknown,
         mLocation: {
           en: '${dir} M',
+          de: '${dir} M',
           ko: '${dir} M',
         },
       },
@@ -1368,6 +1376,7 @@ Options.Triggers.push({
           ...nearDistantOutputStrings,
           noDebuff: {
             en: '(no debuff)',
+            de: '(kein Debuff)',
             ko: '(디버프 없음)',
           },
         };
@@ -1412,10 +1421,12 @@ Options.Triggers.push({
       outputStrings: {
         superliminalSteel: {
           en: 'Follow Laser, Move In',
+          de: 'Laser folgen, rein gehen',
           ko: '레이저 따라서 안으로',
         },
         optimizedBlizzard: {
           en: 'Wait First',
+          de: 'Zuerst warten',
           ko: '기다렸다가 이동',
         },
       },
@@ -1460,6 +1471,7 @@ Options.Triggers.push({
       outputStrings: {
         baitTethers: {
           en: 'Bait Tethers',
+          de: 'Verbindung ködern',
           ko: '선 가져가기',
         },
       },
@@ -1527,22 +1539,27 @@ Options.Triggers.push({
       outputStrings: {
         legsSword: {
           en: 'Close ${northSouth} or ${eastWest}',
+          de: 'Nahe ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 가까이',
         },
         legsShield: {
           en: 'Close ${northSouth} or ${eastWest}',
+          de: 'Nahe ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 가까이',
         },
         staffShield: {
           en: 'In ${northSouth} or ${eastWest}',
+          de: 'Rein ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 중간',
         },
         staffSwordFar: {
           en: 'Far ${northSouth} or ${eastWest}',
+          de: 'Entfernt von ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 멀리',
         },
         staffSwordMid: {
           en: 'Mid ${northSouth} or ${eastWest}',
+          de: 'Mittig ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 중간',
         },
         dirN: Outputs.dirN,
@@ -1663,33 +1680,41 @@ Options.Triggers.push({
       outputStrings: {
         safeSpots: {
           en: '${first} => ${rotate} => ${second}',
+          de: '${first} => ${rotate} => ${second}',
           ko: '${first} => ${rotate} => ${second}',
         },
         rotateRight: {
           en: 'Right',
+          de: 'Rechts',
         },
         rotateLeft: {
           en: 'Left',
+          de: 'Links',
         },
         // The two legs are split in case somebody wants a "go to M" or "go to F" style call.
         legsSword: {
           en: 'Close ${dir}',
+          de: 'Nahe ${dir}',
           ko: '${dir} 가까이',
         },
         legsShield: {
           en: 'Close ${dir}',
+          de: 'Nahe ${dir}',
           ko: '${dir} 가까이',
         },
         staffShield: {
           en: 'Mid ${dir}',
+          de: 'Mittig ${dir}',
           ko: '${dir} 중간',
         },
         staffSwordFar: {
           en: 'Far ${dir}',
+          de: 'Entfernt von ${dir}',
           ko: '${dir} 멀리',
         },
         staffSwordMid: {
           en: 'Mid ${dir}',
+          de: 'Mittig ${dir}',
           ko: '${dir} 중간',
         },
         dirN: Outputs.dirN,
@@ -1766,28 +1791,35 @@ Options.Triggers.push({
       outputStrings: {
         rotateRight: {
           en: 'Right',
+          de: 'Rechts',
         },
         rotateLeft: {
           en: 'Left',
+          de: 'Links',
         },
         legsSword: {
           en: '${rotate} => Close ${dir}',
+          de: '${rotate} => Nahe ${dir}',
           ko: '${rotate} => ${dir} 가까이',
         },
         legsShield: {
           en: '${rotate} => Close ${dir}',
+          de: '${rotate} => Nahe ${dir}',
           ko: '${rotate} => ${dir} 가까이',
         },
         staffShield: {
           en: '${rotate} => Mid ${dir}',
+          de: '${rotate} => Mittig ${dir}',
           ko: '${rotate} => ${dir} 중간',
         },
         staffSwordFar: {
           en: '${rotate} => Far ${dir}',
+          de: '${rotate} => Entfernt ${dir}',
           ko: '${rotate} => ${dir} 멀리',
         },
         staffSwordMid: {
           en: '${rotate} => Mid ${dir}',
+          de: '${rotate} => Mittig ${dir}',
           ko: '${rotate} => ${dir} 중간',
         },
         dirN: Outputs.dirN,
@@ -1836,10 +1868,12 @@ Options.Triggers.push({
         // that everybody needs to know that already, and so just call positioning.
         cosmoDiveTank: {
           en: 'Tanks Near (party far)',
+          de: 'Tanks nahe (Gruppe entfernt)',
           ko: '탱커 가까이 (본대 멀리)',
         },
         cosmoDiveParty: {
           en: 'Party Far (tanks near)',
+          de: 'Gruppe entfernt (Tanks nahe)',
           ko: '본대 멀리 (탱커 가까이)',
         },
       },
@@ -1852,6 +1886,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bait Middle',
+          de: 'Mitte ködern',
           ko: '중앙에 장판 유도',
         },
       },
@@ -1865,6 +1900,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Line Charge',
+          de: 'Linien Ansturm',
           ko: '직선 쉐어',
         },
       },
@@ -1877,6 +1913,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bait Middle',
+          de: 'Mitte ködern',
           ko: '중앙에 장판 유도',
         },
       },

@@ -2,14 +2,17 @@ const firstHeadmarker = parseInt('0186', 16);
 const interceptionOutputStrings = {
   egg: {
     en: 'egg',
+    de: 'Ei',
     ko: '알',
   },
   cube: {
     en: 'cubes',
+    de: 'Würfel',
     ko: '큐브',
   },
   ball: {
     en: 'ball',
+    de: 'Ball',
     ko: '공',
   },
 };
@@ -301,6 +304,7 @@ Options.Triggers.push({
       outputStrings: {
         between: {
           en: '${safe}, between eggs',
+          de: '${safe}, zwichen den Eiern',
           ko: '${safe}, 알 사이',
         },
         safe: {

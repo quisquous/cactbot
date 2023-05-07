@@ -228,6 +228,7 @@ Options.Triggers.push({
         },
         avoid: {
           en: 'Avoid line AoEs',
+          de: 'Vermeide Linien-AoEs',
           ko: '칼 피하기',
         },
       },
@@ -252,6 +253,7 @@ Options.Triggers.push({
         },
         avoid: {
           en: 'Avoid line AoEs',
+          de: 'Vermeide Linien-AoEs',
           ko: '칼 피하기',
         },
       },

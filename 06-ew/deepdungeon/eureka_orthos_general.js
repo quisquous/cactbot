@@ -14,6 +14,7 @@ Options.Triggers.push({
   ],
   zoneLabel: {
     en: 'Eureka Orthos (All Floors)',
+    de: 'Eureka Orthos (Alle Ebenen)',
   },
   triggers: [
     // ---------------- Mimics ----------------
