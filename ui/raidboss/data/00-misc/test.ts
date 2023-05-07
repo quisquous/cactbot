@@ -334,8 +334,6 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Combatant Cast',
       type: 'CombatantMemory',
-      // Note that the order of entries is important, e.g. `IsCasting1` always appears before `CastBuffID`,
-      // so they must be in that order in the passed in array
       netRegex: NetRegexes.combatantMemory({
         pair: [{ key: 'IsCasting1', value: '1' }, { key: 'CastBuffID', value: '.*?' }],
       }),

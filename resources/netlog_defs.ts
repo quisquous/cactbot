@@ -40,6 +40,7 @@ export type LogDefinition = {
     startingIndex: number;
     label: string;
     names: readonly string[];
+    sortFn?: (L: unknown, R: unknown) => number;
   };
 };
 export type LogDefinitionMap = { [name: string]: LogDefinition };
@@ -1031,6 +1032,25 @@ const latestLogDefinitions = {
       startingIndex: 4,
       label: 'pair',
       names: ['key', 'value'],
+      sortFn: (L: unknown, R: unknown): number => {
+        type SortTypeA = { key: string };
+        type SortTypeB = { key: string };
+        const isSortTypeA = (o: unknown): o is SortTypeA => {
+          if (typeof o !== 'object' || o === null || Object.keys(o).length === 0)
+            return false;
+          return 'key' in o;
+        };
+        const isSortTypeB = (o: unknown): o is SortTypeB => {
+          if (!isSortTypeA(o))
+            return false;
+          return typeof o.key === 'string';
+        };
+        if (!isSortTypeB(L))
+          return 0;
+        if (!isSortTypeB(R))
+          return 0;
+        return L.key.localeCompare(R.key);
+      },
     },
   },
   RSVData: {
@@ -1088,6 +1108,7 @@ export type ParseHelperField<
   optional?: boolean;
   repeating?: boolean;
   repeatingKeys?: string[];
+  sortFn?: (L: unknown, R: unknown) => number;
 };
 
 export type ParseHelperFields<T extends LogDefinitionTypes> = {

@@ -35,6 +35,7 @@ const defaultParams = <
       optional: boolean;
       repeating?: boolean;
       repeatingKeys?: string[];
+      sortFn?: (L: unknown, R: unknown) => number;
     };
   } = {};
   const firstOptionalField = logType.firstOptionalField;
@@ -59,6 +60,7 @@ const defaultParams = <
         logType.repeatingFields.startingIndex >= firstOptionalField,
       repeating: true,
       repeatingKeys: [...logType.repeatingFields.names],
+      sortFn: logType.repeatingFields.sortFn,
     };
   }
 
@@ -199,7 +201,13 @@ const parseHelper = <T extends LogDefinitionTypes>(
 
     if (fields[keyStr]?.repeating) {
       if (Array.isArray(fieldValue)) {
-        const repeatingArray: unknown[] = fieldValue;
+        let repeatingArray: unknown[] = fieldValue;
+
+        const sortFn = fields[keyStr]?.sortFn;
+        // Allow sorting if needed
+        if (sortFn)
+          repeatingArray = repeatingArray.sort(sortFn);
+
         fieldValue = '';
         let idx = 0;
         repeatingArray.forEach((rep: unknown) => {
