@@ -1296,6 +1296,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           triggerType: 'Damage',
           text: {
             en: 'Exaflare',
+            de: 'Exaflare',
           },
         };
       },

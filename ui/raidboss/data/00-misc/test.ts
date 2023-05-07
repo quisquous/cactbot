@@ -32,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'testTriggerOutput',
       name: {
         en: 'Output for "/echo cactbot test config"',
+        de: 'Ausgabe für "/echo cactbot test config"',
         cn: '输出 "/echo cactbot测试配置"',
         ko: '"/echo cactbot 설정 테스트" 출력값',
       },
@@ -319,6 +320,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Config Value: ${value}',
+          de: 'Einstellungswert: ${value}',
           cn: '配置值: ${value}',
         },
       },
@@ -327,7 +329,6 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       locale: 'de',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
         'You bow courteously to the striking dummy':
@@ -337,6 +338,7 @@ const triggerSet: TriggerSet<Data> = {
         'cactbot lang': 'cactbot sprache',
         'cactbot test response': 'cactbot test antwort',
         'cactbot test watch': 'cactbot test beobachten',
+        'cactbot test config': 'cactbot test konfig',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
         'You psych yourself up alongside the striking dummy':
           'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
