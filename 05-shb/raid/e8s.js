@@ -27,7 +27,7 @@ Options.Triggers.push({
         de: 'e8s: aktiviere cactbot Uptime Knockback Strategie',
         fr: 'e8s : activer cactbot pour la strat Uptime Knockback',
         ja: 'エデン零式共鳴編４層：cactbot「ヘヴンリーストライク (ノックバック)」ギミック',
-        cn: 'E8S: cactbot击退提示功能',
+        cn: '启用 cactbot 精确计时防击退策略',
         ko: '정확한 타이밍 넉백방지 공략 사용',
       },
       type: 'checkbox',
