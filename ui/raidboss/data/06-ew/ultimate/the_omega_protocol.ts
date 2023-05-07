@@ -38,7 +38,7 @@ export type TetherColor = 'blue' | 'green';
 export type TrioDebuff = 'near' | 'distant';
 
 export interface Data extends RaidbossData {
-  triggerSetConfig: { staffSwordDodge: 'mid' | 'far' };
+  readonly triggerSetConfig: { staffSwordDodge: 'mid' | 'far' };
   combatantData: PluginCombatantState[];
   phase: Phase;
   decOffset?: number;
@@ -1516,8 +1516,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '7B2E', source: 'Omega-M' },
       // TODO: temporarily disabled as it is returning inconsistent results even with longer delay.
       // See: https://github.com/quisquous/cactbot/issues/5335
-      condition: (data) => false && data.phase === 'sigma',
-      delaySeconds: 6.2,
+      condition: (data) => data.phase === 'sigma',
+      delaySeconds: 8,
       suppressSeconds: 1,
       promise: async (data, matches) => {
         data.combatantData = [];
@@ -1539,12 +1539,12 @@ const triggerSet: TriggerSet<Data> = {
         return output.optimizedBlizzard!();
       },
       outputStrings: {
-        optimizedBlizzard: {
+        superliminalSteel: {
           en: 'Follow Laser, Move In',
           de: 'Laser folgen, rein gehen',
           ko: '레이저 따라서 안으로',
         },
-        superliminalSteel: {
+        optimizedBlizzard: {
           en: 'Wait First',
           de: 'Zuerst warten',
           ko: '기다렸다가 이동',
@@ -1765,7 +1765,6 @@ const triggerSet: TriggerSet<Data> = {
         let rotate: NonNullable<typeof data.omegaDodgeRotation>;
 
         if (isFirstEastWest) {
-          // Check for Sword/Shield to know if to go to Male or Female
           dir1 = pos1 < 100 ? output.dirW!() : output.dirE!();
           dir2 = pos2 < 100 ? output.dirN!() : output.dirS!();
           const isLeftRotation = pos1 < 100 && pos2 < 100 || pos1 > 100 && pos2 > 100;
