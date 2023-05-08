@@ -15,6 +15,7 @@ export interface Data extends RaidbossData {
 
 // Titania Extreme
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheDancingPlagueExtreme',
   zoneId: ZoneId.TheDancingPlagueExtreme,
   timelineFile: 'titania-ex.txt',
   triggers: [

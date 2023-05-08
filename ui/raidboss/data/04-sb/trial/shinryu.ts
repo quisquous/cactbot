@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 
 // Shinryu Normal
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheRoyalMenagerie',
   zoneId: ZoneId.TheRoyalMenagerie,
   timelineFile: 'shinryu.txt',
   triggers: [

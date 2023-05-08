@@ -7,6 +7,7 @@ export type Data = RaidbossData;
 
 // Tsukuyomi Normal
 const triggerSet: TriggerSet<Data> = {
+  id: 'CastrumFluminis',
   zoneId: ZoneId.CastrumFluminis,
   timelineFile: 'tsukuyomi.txt',
   triggers: [

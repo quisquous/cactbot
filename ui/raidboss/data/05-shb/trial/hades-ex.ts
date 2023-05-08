@@ -20,6 +20,7 @@ export interface Data extends RaidbossData {
 // TODO: fire/ice tethers (0060|0061)
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheMinstrelsBalladHadessElegy',
   zoneId: ZoneId.TheMinstrelsBalladHadessElegy,
   timelineFile: 'hades-ex.txt',
   timelineTriggers: [

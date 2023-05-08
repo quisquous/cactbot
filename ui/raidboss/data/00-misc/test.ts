@@ -1,5 +1,6 @@
 import NetRegexes from '../../../../resources/netregexes';
 import outputs from '../../../../resources/outputs';
+import { ConfigValue } from '../../../../resources/user_config';
 import Util from '../../../../resources/util';
 import ZoneId from '../../../../resources/zone_id';
 import { RaidbossData } from '../../../../types/data';
@@ -14,14 +15,34 @@ const strikingDummyNames: LocaleText = {
   ko: '나무인형',
 };
 
+export type ConfigIds = 'testTriggerOutput';
+
 export interface Data extends RaidbossData {
+  triggerSetConfig: { [key in ConfigIds]: ConfigValue };
   delayedDummyTimestampBefore: number;
   delayedDummyTimestampAfter: number;
   pokes: number;
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'CactbotTest',
   zoneId: ZoneId.MiddleLaNoscea,
+  config: [
+    {
+      id: 'testTriggerOutput',
+      name: {
+        en: 'Output for "/echo cactbot test config"',
+        de: 'Ausgabe für "/echo cactbot test config"',
+        cn: '输出 "/echo cactbot测试配置"',
+        ko: '"/echo cactbot 설정 테스트" 출력값',
+      },
+      type: 'string',
+      default: () => {
+        // Test default function.
+        return 'Unset Option';
+      },
+    },
+  ],
   timelineFile: 'test.txt',
   // timeline here is additions to the timeline.  They can
   // be strings, or arrays of strings, or functions that
@@ -289,6 +310,21 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'Test Config',
+      type: 'GameLog',
+      netRegex: NetRegexes.echo({ line: 'cactbot test config.*?', capture: false }),
+      alertText: (data, _matches, output) => {
+        return output.text!({ value: data.triggerSetConfig.testTriggerOutput.toString() });
+      },
+      outputStrings: {
+        text: {
+          en: 'Config Value: ${value}',
+          de: 'Einstellungswert: ${value}',
+          cn: '配置值: ${value}',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
@@ -302,6 +338,7 @@ const triggerSet: TriggerSet<Data> = {
         'cactbot lang': 'cactbot sprache',
         'cactbot test response': 'cactbot test antwort',
         'cactbot test watch': 'cactbot test beobachten',
+        'cactbot test config': 'cactbot test konfig',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
         'You psych yourself up alongside the striking dummy':
           'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
@@ -321,6 +358,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'fr',
+      missingTranslations: true,
       replaceSync: {
         'cactbot lang': 'cactbot langue',
         'cactbot test response': 'cactbot test de réponse',
@@ -353,6 +391,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'ja',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*は木人に別れの挨拶をした',
         'You bow courteously to the striking dummy': '.*は木人にお辞儀した',
@@ -386,6 +425,7 @@ const triggerSet: TriggerSet<Data> = {
         'test sync': 'test sync',
         'You burst out laughing at the striking dummy': '.*看着木人高声大笑',
         'cactbot lang': 'cactbot语言',
+        'cactbot test config': 'cactbot测试配置',
         'cactbot test response': 'cactbot响应测试',
         'cactbot test watch': 'cactbot探测测试',
         'You clap for the striking dummy': '.*向木人送上掌声',
@@ -412,6 +452,7 @@ const triggerSet: TriggerSet<Data> = {
         'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
         'test sync': '테스트 싱크',
         'You burst out laughing at the striking dummy': '.*나무인형을 보고 폭소를 터뜨립니다',
+        'cactbot test config': 'cactbot 설정 테스트',
         'cactbot lang': 'cactbot 언어',
         'cactbot test response': 'cactbot 응답 테스트',
         'cactbot test watch': 'cactbot 탐지 테스트',

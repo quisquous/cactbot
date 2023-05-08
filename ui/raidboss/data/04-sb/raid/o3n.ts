@@ -18,6 +18,7 @@ export interface Data extends RaidbossData {
 
 // O3 - Deltascape 3.0 Normal
 const triggerSet: TriggerSet<Data> = {
+  id: 'DeltascapeV30',
   zoneId: ZoneId.DeltascapeV30,
   timelineFile: 'o3n.txt',
   initData: () => {

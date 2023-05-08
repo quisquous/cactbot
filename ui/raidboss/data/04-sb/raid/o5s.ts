@@ -8,6 +8,7 @@ export type Data = RaidbossData;
 
 // O5S - Sigmascape 1.0 Savage
 const triggerSet: TriggerSet<Data> = {
+  id: 'SigmascapeV10Savage',
   zoneId: ZoneId.SigmascapeV10Savage,
   timelineFile: 'o5s.txt',
   resetWhenOutOfCombat: false,

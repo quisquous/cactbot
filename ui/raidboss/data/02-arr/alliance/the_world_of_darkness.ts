@@ -21,6 +21,7 @@ export interface Data extends RaidbossData {
 //  Cloud of Darkness
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheWorldOfDarkness',
   zoneId: ZoneId.TheWorldOfDarkness,
   triggers: [
     {

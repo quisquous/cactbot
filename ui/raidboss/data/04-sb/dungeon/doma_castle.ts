@@ -9,6 +9,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'DomaCastle',
   zoneId: ZoneId.DomaCastle,
   timelineFile: 'doma_castle.txt',
   triggers: [

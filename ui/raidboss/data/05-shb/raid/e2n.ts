@@ -11,6 +11,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EdensGateDescent',
   zoneId: ZoneId.EdensGateDescent,
   timelineFile: 'e2n.txt',
   timelineTriggers: [

@@ -80,6 +80,7 @@ const mathOutputStrings = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheRidoranaLighthouse',
   zoneId: ZoneId.TheRidoranaLighthouse,
   timelineFile: 'ridorana_lighthouse.txt',
   timelineTriggers: [

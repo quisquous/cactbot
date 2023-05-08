@@ -47,6 +47,7 @@ const fireLightOutputStrings = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AsphodelosTheFirstCircleSavage',
   zoneId: ZoneId.AsphodelosTheFirstCircleSavage,
   timelineFile: 'p1s.txt',
   timelineTriggers: [

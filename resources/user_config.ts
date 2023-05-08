@@ -57,19 +57,37 @@ export type ConfigValue = string | number | boolean;
 export type ConfigEntry = {
   id: string;
   name: LocaleText;
-  type: 'checkbox' | 'select' | 'float' | 'integer' | 'directory' | 'html';
+  type: 'checkbox' | 'select' | 'float' | 'integer' | 'string' | 'directory' | 'html';
   html?: LocaleText;
-  default: ConfigValue;
+  // This must be a valid option even if there is a setterFunc, as `_getOptionLeafHelper`
+  // for the config ui reads from the SavedConfig directly rather than post-setterFunc.
+  default: ConfigValue | ((options: BaseOptions) => ConfigValue);
   debug?: boolean;
   debugOnly?: boolean;
   // For select.
   options?: LocaleObject<{ [selectText: string]: string }>;
-  setterFunc?: (options: BaseOptions, value: SavedConfigEntry) => void;
+  // An optional function to transform a saved/default value into the final value.
+  // `value` is the saved/default value.  `isDefault` is true if `value` is implicitly the default.
+  // The data flow here is `default` -> ui -> `setterFunc` -> final data in one direction only.
+  // `setterFunc` should be used for one setting -> multiple options, or for select option
+  // renaming, or for data cleanup if needed.
+  setterFunc?: (
+    value: SavedConfigEntry,
+    options: BaseOptions,
+    isDefault: boolean,
+  ) => ConfigValue | void | undefined;
 };
+
+export interface NamedConfigEntry<NameUnion> extends Omit<ConfigEntry, 'id'> {
+  id: NameUnion;
+}
 
 export type OptionsTemplate = {
   buildExtraUI?: (base: CactbotConfigurator, container: HTMLElement) => void;
-  processExtraOptions?: (options: BaseOptions, savedConfig: SavedConfigEntry) => void;
+  processExtraOptions?: (
+    options: BaseOptions,
+    savedConfig: SavedConfigEntry,
+  ) => void;
   options: ConfigEntry[];
 };
 
@@ -295,11 +313,22 @@ class UserConfig {
       // processOptions needs to be called whether or not there are
       // any userOptions saved, as it sets up the defaults.
       this.savedConfig = (await readOptions)?.data ?? {};
-      this.processOptions(
-        options,
-        this.savedConfig[overlayName] ?? {},
-        this.optionTemplates[overlayName],
-      );
+
+      const template = this.optionTemplates[overlayName];
+      if (template !== undefined) {
+        const savedConfig = this.savedConfig[overlayName] ?? {};
+        this.processOptions(
+          options,
+          options,
+          savedConfig,
+          template.options,
+        );
+
+        // For things like raidboss that build extra UI, also give them a chance
+        // to handle anything that has been set on that UI.
+        if (template.processExtraOptions)
+          template.processExtraOptions(options, savedConfig);
+      }
 
       // If the overlay has a "Debug" setting, set to true via the config tool,
       // then also print out user files that have been loaded.
@@ -422,26 +451,38 @@ class UserConfig {
     if (head)
       head.appendChild(userCSS);
   }
-  processOptions(options: BaseOptions, savedConfig: SavedConfigEntry, template?: OptionsTemplate) {
+  processOptions(
+    options: BaseOptions,
+    output: { [key: string]: unknown },
+    savedConfig: SavedConfigEntry,
+    templateOptions?: ConfigEntry[],
+  ) {
     // Take options from the template, find them in savedConfig,
     // and apply them to options. This also handles setting
     // defaults for anything in the template, even if it does not
     // exist in savedConfig.
 
     // Not all overlays have option templates.
-    if (!template)
+    if (templateOptions === undefined)
       return;
 
-    const templateOptions = template.options;
     for (const opt of templateOptions) {
       // Grab the saved value or the default to set in options.
 
-      let value: SavedConfigEntry = opt.default;
+      let value: SavedConfigEntry;
+      if (typeof opt.default === 'function')
+        value = opt.default(options);
+      else
+        value = opt.default;
+
+      let isDefault = true;
       if (typeof savedConfig === 'object' && !Array.isArray(savedConfig)) {
         if (opt.id in savedConfig) {
           const newValue = savedConfig[opt.id];
-          if (newValue !== undefined)
+          if (newValue !== undefined) {
             value = newValue;
+            isDefault = false;
+          }
         }
       }
 
@@ -449,26 +490,23 @@ class UserConfig {
       // If this doesn't exist, just set the value directly.
       // Option template ids are identical to field names on Options.
       if (opt.setterFunc) {
-        opt.setterFunc(options, value);
+        const setValue = opt.setterFunc(value, options, isDefault);
+        if (setValue !== undefined)
+          output[opt.id] = setValue;
       } else if (opt.type === 'integer') {
         if (typeof value === 'number')
-          options[opt.id] = Math.floor(value);
+          output[opt.id] = Math.floor(value);
         else if (typeof value === 'string')
-          options[opt.id] = parseInt(value);
+          output[opt.id] = parseInt(value);
       } else if (opt.type === 'float') {
         if (typeof value === 'number')
-          options[opt.id] = value;
+          output[opt.id] = value;
         else if (typeof value === 'string')
-          options[opt.id] = parseFloat(value);
+          output[opt.id] = parseFloat(value);
       } else {
-        options[opt.id] = value;
+        output[opt.id] = value;
       }
     }
-
-    // For things like raidboss that build extra UI, also give them a chance
-    // to handle anything that has been set on that UI.
-    if (template.processExtraOptions)
-      template.processExtraOptions(options, savedConfig);
   }
   addUnlockText(lang: Lang) {
     const unlockText = {

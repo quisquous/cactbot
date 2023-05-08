@@ -303,7 +303,7 @@ const templateOptions: OptionsTemplate = {
       },
       type: 'float',
       default: 4,
-      setterFunc: (options, value) => {
+      setterFunc: (value, options) => {
         let seconds;
         if (typeof value === 'string')
           seconds = parseFloat(value);
@@ -311,6 +311,8 @@ const templateOptions: OptionsTemplate = {
           seconds = value;
         else
           return;
+
+        // Store in a separate variable with a different unit.
         options['TimeToShowDeathReportMs'] = seconds * 1000;
       },
     },

@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheHeroesGauntlet',
   zoneId: ZoneId.TheHeroesGauntlet,
   timelineFile: 'heroes_gauntlet.txt',
   triggers: [

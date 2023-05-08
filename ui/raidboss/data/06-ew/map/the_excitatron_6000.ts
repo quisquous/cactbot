@@ -19,6 +19,7 @@ const excitatronOutputStrings = {
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheExcitatron6000',
   zoneId: ZoneId.TheExcitatron6000,
 
   triggers: [

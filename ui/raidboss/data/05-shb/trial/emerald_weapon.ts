@@ -9,6 +9,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'CastrumMarinum',
   zoneId: ZoneId.CastrumMarinum,
   timelineFile: 'emerald_weapon.txt',
   triggers: [

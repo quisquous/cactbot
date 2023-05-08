@@ -12,6 +12,7 @@ export interface Data extends RaidbossData {
 
 // Seiryu Extreme
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheWreathOfSnakesExtreme',
   zoneId: ZoneId.TheWreathOfSnakesExtreme,
   timelineFile: 'seiryu-ex.txt',
   timelineTriggers: [

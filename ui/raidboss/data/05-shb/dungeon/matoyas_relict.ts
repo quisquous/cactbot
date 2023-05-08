@@ -8,6 +8,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'MatoyasRelict',
   zoneId: ZoneId.MatoyasRelict,
   timelineFile: 'matoyas_relict.txt',
   triggers: [

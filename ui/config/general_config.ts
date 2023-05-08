@@ -98,13 +98,13 @@ UserConfig.registerOptions('general', {
       },
       default: 'default',
       debug: true,
-      setterFunc: (options, value) => {
+      setterFunc: (value) => {
         if (typeof value !== 'string')
           return;
         if (value === 'default')
           return;
         if (isLang(value))
-          options['DisplayLanguage'] = value;
+          return value;
       },
     },
   ],

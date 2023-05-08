@@ -47,7 +47,7 @@ const zoneReplace: ZoneReplace[] = [
     },
     prefix: { 'ASS': 'ASSS' },
     other: {
-      'zoneId: ZoneId.AnotherSildihnSubterrane,': 'zoneId: ZoneId.AnotherSildihnSubterraneSavage,',
+      'AnotherSildihnSubterrane': 'AnotherSildihnSubterraneSavage',
       'another_sildihn_subterrane.txt': 'another_sildihn_subterrane-savage.txt',
       '# Another Sil\'dihn Subterrane': '# Another Sil\'dihn Subterrane (Savage)',
     },
@@ -171,7 +171,7 @@ const zoneReplace: ZoneReplace[] = [
     },
     prefix: { 'SophiaEX': 'SophiaUN' },
     other: {
-      'ZoneId.ContainmentBayP1T6Extreme': 'ZoneId.ContainmentBayP1T6Unreal',
+      'ContainmentBayP1T6Extreme': 'ContainmentBayP1T6Unreal',
       'sophia-ex.txt': 'sophia-un.txt',
       '(Extreme)': '(Unreal)',
       ' Extreme': ' Unreal',

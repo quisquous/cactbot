@@ -8,6 +8,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'HeavenOnHighGeneral',
   zoneId: [
     ZoneId.HeavenOnHighFloors1_10,
     ZoneId.HeavenOnHighFloors11_20,
@@ -24,7 +25,7 @@ const triggerSet: TriggerSet<Data> = {
     en: 'Heaven-on-High (All Floors)',
     de: 'Himmelssäule (Alle Ebenen)',
     cn: '天之御柱 (全楼层)',
-    ko: '천궁탑',
+    ko: '천궁탑 (전체 층)',
   },
 
   triggers: [

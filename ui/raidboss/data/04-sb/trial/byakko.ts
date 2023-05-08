@@ -8,6 +8,7 @@ export type Data = RaidbossData;
 
 // Byakko Normal
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheJadeStoa',
   zoneId: ZoneId.TheJadeStoa,
   timelineFile: 'byakko.txt',
   triggers: [

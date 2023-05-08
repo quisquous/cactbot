@@ -217,8 +217,8 @@ export class PlayerStateTracker {
       worldIdStr !== undefined && jobStr !== undefined
     ) {
       // Generate the party info we would get from OverlayPlugin via logs.
-      const worldId = parseInt(worldIdStr);
-      const job = parseInt(jobStr);
+      const worldId = parseInt(worldIdStr, 16);
+      const job = parseInt(jobStr, 16);
       // Consider everybody in the party for now and we'll figure it out later.
       const inParty = true;
       this.idToPartyInfo[id] = { id, name, worldId, job, inParty };

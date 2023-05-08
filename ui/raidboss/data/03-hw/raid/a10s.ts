@@ -29,6 +29,7 @@ const chargeOutputStrings = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlexanderTheBreathOfTheCreatorSavage',
   zoneId: ZoneId.AlexanderTheBreathOfTheCreatorSavage,
   timelineFile: 'a10s.txt',
   initData: () => {

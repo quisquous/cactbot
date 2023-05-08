@@ -37,6 +37,7 @@ const sharedOutputStrings = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'CastrumMarinumExtreme',
   zoneId: ZoneId.CastrumMarinumExtreme,
   timelineFile: 'emerald_weapon-ex.txt',
   timelineTriggers: [

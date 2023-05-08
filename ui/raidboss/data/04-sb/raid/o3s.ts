@@ -19,6 +19,7 @@ export interface Data extends RaidbossData {
 
 // O3S - Deltascape 3.0 Savage
 const triggerSet: TriggerSet<Data> = {
+  id: 'DeltascapeV30Savage',
   zoneId: ZoneId.DeltascapeV30Savage,
   timelineFile: 'o3s.txt',
   timelineTriggers: [

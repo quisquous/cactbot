@@ -7,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'SaintMociannesArboretumHard',
   zoneId: ZoneId.SaintMociannesArboretumHard,
   timelineFile: 'st_mocianne_hard.txt',
   timelineTriggers: [

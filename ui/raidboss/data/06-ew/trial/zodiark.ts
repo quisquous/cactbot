@@ -13,6 +13,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheDarkInside',
   zoneId: ZoneId.TheDarkInside,
   timelineFile: 'zodiark.txt',
   triggers: [

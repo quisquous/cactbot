@@ -68,6 +68,7 @@ const effectIdToOutputStringKey: { [effectId: string]: PurgationDebuff } = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AbyssosTheSeventhCircleSavage',
   zoneId: ZoneId.AbyssosTheSeventhCircleSavage,
   timelineFile: 'p7s.txt',
   initData: () => ({

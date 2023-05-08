@@ -1,4 +1,5 @@
 import { Lang, NonEnLang } from '../resources/languages';
+import { NamedConfigEntry } from '../resources/user_config';
 import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline_parser';
 
 import { RaidbossData } from './data';
@@ -171,10 +172,15 @@ type RequiredFieldsAsUnion<Type> = {
 }[keyof Type];
 
 export type BaseTriggerSet<Data extends RaidbossData> = {
+  // Unique string for this trigger set.
+  id: string;
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId: ZoneIdType | number[];
   // useful if the zoneId is an array or zone name is otherwise non-descriptive
   zoneLabel?: LocaleText;
+  // trigger set ids to load configs from (this trigger set is loaded implicitly).
+  loadConfigs?: string[];
+  config?: NamedConfigEntry<Extract<keyof Data['triggerSetConfig'], string>>[];
   // If the timeline exists, but needs significant improvements and a rewrite.
   timelineNeedsFixing?: boolean;
   // If no timeline is possible for this zone, e.g. t3.
@@ -213,6 +219,8 @@ export type LooseTriggerSet =
       | { [lang in Lang]?: RegExp };
     triggers?: LooseTrigger[];
     timelineTriggers?: LooseTimelineTrigger[];
+    filename?: string;
+    isUserTriggerSet?: boolean;
   };
 
 export interface RaidbossFileData {

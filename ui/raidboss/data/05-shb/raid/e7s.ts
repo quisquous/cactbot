@@ -35,6 +35,7 @@ const colorMap = {
 } as const;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EdensVerseIconoclasmSavage',
   zoneId: ZoneId.EdensVerseIconoclasmSavage,
   timelineFile: 'e7s.txt',
   triggers: [

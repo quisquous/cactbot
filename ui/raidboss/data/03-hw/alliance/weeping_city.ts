@@ -12,6 +12,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheWeepingCityOfMhach',
   zoneId: ZoneId.TheWeepingCityOfMhach,
   timelineFile: 'weeping_city.txt',
   timelineTriggers: [

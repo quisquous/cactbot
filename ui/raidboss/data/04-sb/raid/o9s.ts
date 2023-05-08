@@ -16,6 +16,7 @@ export interface Data extends RaidbossData {
 
 // O9S - Alphascape 1.0 Savage
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlphascapeV10Savage',
   zoneId: ZoneId.AlphascapeV10Savage,
   timelineFile: 'o9s.txt',
   triggers: [

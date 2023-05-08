@@ -9,6 +9,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'ThePalaceOfTheDeadFloors1_10',
   zoneId: ZoneId.ThePalaceOfTheDeadFloors1_10,
 
   triggers: [

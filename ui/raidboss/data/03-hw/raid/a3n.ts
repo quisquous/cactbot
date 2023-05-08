@@ -13,6 +13,7 @@ export interface Data extends RaidbossData {
 // A3N
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlexanderTheArmOfTheFather',
   zoneId: ZoneId.AlexanderTheArmOfTheFather,
   timelineFile: 'a3n.txt',
   timelineTriggers: [
@@ -303,7 +304,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Condensate Demineralizer .9': '제9대형복수기',
         'Hydrate Core': '액화 핵',
