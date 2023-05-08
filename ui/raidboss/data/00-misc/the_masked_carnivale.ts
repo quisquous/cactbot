@@ -17,6 +17,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheMaskedCarnivale',
   zoneId: ZoneId.TheMaskedCarnivale,
   zoneLabel: {
     en: 'The Masked Carnivale',

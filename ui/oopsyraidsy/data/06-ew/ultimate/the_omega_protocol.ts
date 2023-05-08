@@ -9,10 +9,21 @@ import {
   OopsyTriggerSet,
 } from '../../../../../types/oopsy';
 import { LocaleText } from '../../../../../types/trigger';
-import { GetShareMistakeText, GetSoloMistakeText } from '../../../oopsy_common';
+import { GetShareMistakeText, GetSoloMistakeText, playerDamageFields } from '../../../oopsy_common';
 
 // TODO: 7B10 Diffuse Wave Cannon Kyrios being shared if not invulning?
 // TODO: call out who was missing in the Condensed Wave Cannon stack
+// TODO: taking a hello world tower too late (rot debuff timer > tower debuff timer)
+// TODO: breaking patch too early in p3, but especially delta
+// TODO: beyond defense person getting hit by monitor in delta
+// TODO: red/green tether not getting hit by monitor in delta
+// TODO: headmarker tracking so we can track sigma marked/unmarked being hit by 7B72 Hyper Pulse or 7B74 Wave Cannon
+// TODO: sigma tower tracking
+// TODO: sigma laser hitting somebody with zero stacks
+// TODO: omega monitor not hitting a 2-dynamic 2nd in line person
+// TODO: omega monitor hitting anybody also hit by near world/blaster
+// TODO: 7BA7 / 7BA8 Cosmo Dive
+// TODO: 7BAA Wave Cannon wild charge collect
 
 // TODO: we probably could use an oopsy utility library (and Data should be `any` here).
 const stackMistake = (
@@ -30,9 +41,19 @@ const stackMistake = (
   };
 };
 
-const translate = (data: Data, text: LocaleText) => {
+export const translate = (data: Data, text: LocaleText) => {
   return text[data.options.DisplayLanguage] ?? text['en'];
 };
+
+export type Phase =
+  | 'p1'
+  | 'p2'
+  | 'p3'
+  | 'p4'
+  | 'delta'
+  | 'sigma'
+  | 'omega'
+  | 'p6';
 
 export const helloEffect = {
   // Local Regression / "Christmas" red/green tethers
@@ -84,14 +105,17 @@ const defects: LatentDefectMistake[] = [
     actual: 'redTower',
     extra: {
       en: 'Red Tower, no rot',
+      de: 'Roter Turm, keine Fäulnis',
       ko: '빨강 장판, 디버프 없음',
     },
     missing: {
       en: 'Missed Red Tower',
+      de: 'Verfehlter roter Turm',
       ko: '빨강 장판 놓침',
     },
     share: {
       en: 'Red Tower',
+      de: 'Roter Turm',
       ko: '빨강 장판',
     },
   },
@@ -100,14 +124,17 @@ const defects: LatentDefectMistake[] = [
     actual: 'blueTower',
     extra: {
       en: 'Blue Tower, no rot',
+      de: 'Blauer Turm, keine Fäulnis',
       ko: '파랑 장판, 디버프 없음',
     },
     missing: {
       en: 'Missed Blue Tower',
+      de: 'Verfehlter blauer Turm',
       ko: '파랑 장판 놓침',
     },
     share: {
       en: 'Blue Tower',
+      de: 'Blauer Turm',
       ko: '파랑 장판',
     },
   },
@@ -116,18 +143,22 @@ const defects: LatentDefectMistake[] = [
     actual: 'stack',
     extra: {
       en: 'Stack',
+      de: 'Sammeln',
       ko: '쉐어',
     },
     missing: {
       en: 'Missed stack',
+      de: 'Verfehltes Sammeln',
       ko: '쉐어 놓침',
     },
     share: {
       en: 'Stack',
+      de: 'Sammeln',
       ko: '쉐어',
     },
     tookTwo: {
       en: 'Stack x2',
+      de: 'Sammeln x2',
       ko: '쉐어 x2',
     },
   },
@@ -136,18 +167,22 @@ const defects: LatentDefectMistake[] = [
     actual: 'defamation',
     extra: {
       en: 'Defamation',
+      de: 'Ehrenstrafe',
       ko: '광역',
     },
     missing: {
       en: 'Missed defamation',
+      de: 'Verfehlte Ehrenstrafe',
       ko: '광역 놓침',
     },
     share: {
       en: 'Defamation',
+      de: 'Ehrenstrafe',
       ko: '광역',
     },
     tookTwo: {
       en: 'Defamation x2',
+      de: 'Ehrenstrafe x2',
       ko: '광역 x2',
     },
   },
@@ -159,27 +194,33 @@ const playerDescription: { [key in HelloEffect]: LocaleText } = {
   // Order is important here.
   defamation: {
     en: ' (as defamation)',
+    de: ' (als Ehrenstrafe)',
     ko: ' (광역)',
   },
   stack: {
     en: ' (as stack)',
+    de: ' (als Sammeln)',
     ko: ' (쉐어)',
   },
   redTether: {
     en: ' (as near tether)',
+    de: ' (als Nah-Verbindung)',
     ko: ' (가까이 선)',
   },
   blueTether: {
     en: ' (as far tether)',
+    de: ' (als Fern-Verbindung)',
     ko: ' (멀리 선)',
   },
   // These shouldn't happen.
   redRot: {
     en: ' (as red rot)',
+    de: ' (als rote Fäulnis)',
     ko: ' (빨강 디버프)',
   },
   blueRot: {
     en: ' (as blue rot)',
+    de: ' (als blaue Fäulnis)',
     ko: ' (파랑 디버프)',
   },
 } as const;
@@ -188,28 +229,35 @@ const playerDescription: { [key in HelloEffect]: LocaleText } = {
 const playerComboDesc = {
   redDefamation: {
     en: ' (as red defamation)',
+    de: ' (als rote Ehrenstrafe)',
     ko: ' (빨강 광역)',
   },
   redStack: {
     en: ' (as red stack)',
+    de: ' (als rotes Sammeln)',
     ko: ' (빨강 쉐어)',
   },
   blueDefamation: {
     en: ' (as blue defamation)',
+    de: ' (als blaue Ehrenstrafe)',
     ko: ' (파랑 광역)',
   },
   blueStack: {
     en: ' (as blue stack)',
+    de: ' (als blaue Sammeln)',
     ko: ' (파랑 쉐어)',
   },
 } as const;
 
 const unknownDescriptionLocale: LocaleText = {
   en: ' (as ???)',
+  de: ' (als ???)',
   ko: ' (???)',
 };
 
 export interface Data extends OopsyData {
+  decOffset?: number;
+  phase?: Phase;
   blameId?: { [name: string]: string };
   inLine?: { [name: string]: number };
   towerCount?: number;
@@ -226,7 +274,23 @@ export interface Data extends OopsyData {
   helloStateSnapshot?: { [name: string]: Set<string> };
   helloCollect?: NetMatches['Ability'][];
   monitorCollect?: NetMatches['Ability'][];
+  waveCannonProteanCollect?: NetMatches['Ability'][];
+  waveCannonStackCollect?: NetMatches['Ability'][];
 }
+
+export const firstMarker = parseInt('0017', 16);
+
+export const getHeadmarkerId = (
+  data: Data,
+  matches: NetMatches['HeadMarker'],
+) => {
+  if (data.decOffset === undefined)
+    data.decOffset = parseInt(matches.id, 16) - firstMarker;
+  // The leading zeroes are stripped when converting back to string, so we re-add them here.
+  // Fortunately, we don't have to worry about whether or not this is robust,
+  // since we know all the IDs that will be present in the encounter.
+  return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
+};
 
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.TheOmegaProtocolUltimate,
@@ -238,8 +302,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'TOP Efficient Bladework': '7B26', // Omega-M centered circle during Party Synergy
     'TOP Superliminal Steel 1': '7B3E', // Omega-F hot wing during Party Synergy
     'TOP Superliminal Steel 2': '7B3F', // Omega-F hot wing during Party Synergy
-    'TOP Optimized Blizzard III': '7B2D', // Omega-F cross during Party Synergy
-    'TOP Optical Laser': '7B21', // Optical Unit eye laser during Party Synergy / p5
+    'TOP Superliminal Steel 3': '7B2B', // Omega-F hot wing during Sigma
+    'TOP Superliminal Steel 4': '7B2C', // Omega-F hot wing during Sigma
+    'TOP Optimized Blizzard III': '7B2D', // Omega-F cross during Party Synergy / Sigma
+    'TOP Optical Laser': '7B21', // Optical Unit eye laser during Party Synergy / Delta
     'TOP Optimized Sagittarius Arrow': '7B33', // line aoe during Limitless Synergy
     'TOP Optimized Bladedance 1': '7B36', // Omega-M tankbuster conal (not tether target 7F75) during Limitless Synergy
     'TOP Optimized Bladedance 2': '7B37', // Omega-F tankbuster conal (not tether target 7F75) during Limitless Synergy
@@ -248,18 +314,31 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'TOP Wave Repeater 3': '7B51', // third ring during p3 transition / p4
     'TOP Wave Repeater 4': '7B52', // outer ring during p3 transition / p4
     'TOP Colossal Blow': '7B4E', // Right/Left Arm Unit big centered circle during p3 transition
-    'TOP Wave Cannon Protean 2': '7B80', // p4 followup protean laser
+    'TOP Rocket Punch Explosion': '7AFA', // small rocket arm circles when done correctly
+    'TOP Hyper Pulse 1': '7B70', // initial spinny arm lasers during Delta
+    'TOP Hyper Pulse 2': '7B71', // ongoing spinny arm lasers during Delta
+    'TOP Swivel Cannon 1': '7B94', // left/right beetle haircut during Delta
+    'TOP Swivel Cannon 2': '7B95', // left/right beetle haircut during Delta
+    'TOP Rear Power Unit Rear Lasers 1': '7B8F', // initial Sigma rotating laser
+    'TOP Rear Power Unit Rear Lasers 2': '7B90', // ongoing Sigma rotating laser
+    'TOP Cosmo Arrow 1': '7BA3', // initial exasquare
+    'TOP Cosmo Arrow 2': '7BA4', // ongoing exasquare
   },
   damageFail: {
     'TOP Storage Violation Obliteration': '7B06', // failing towers
   },
+  gainsEffectFail: {
+    // C05 is the 9999 duration, and C06 is the 15s bleed tick (for 150k damage).
+    'TOP Bleeding': 'C05', // standing in the middle during p3 intermission
+  },
   shareWarn: {
-    'TOP Blaster': '7B0A', // tether spread during Program Loop
     'TOP Wave Cannon Kyrios': '7B11', // headmarker line lasers after Pantokrator
     'TOP Optimized Fire III': '7B2F', // spread during Party Synergy
     'TOP Sniper Cannon': '7B53', // spread during p3 transition
     'TOP Wave Cannon Protean': '7B7E', // p4 initial protean laser
-    'TOP Oversampled Wave Cannon': '7B6D', // p3 monitors
+    'TOP Oversampled Wave Cannon': '7B6D', // p3/p5 monitors
+    'TOP Sigma Wave Cannon': '7B74', // headmarker line protean at the start of Sigma
+    'TOP Flash Gale': '7DDF', // p6 tank autos
   },
   shareFail: {
     'TOP Guided Missile Kyrios': '7B0E', // spread damage duruing Pantokrator
@@ -273,6 +352,65 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'TOP Pile Pitch': '7B29', // stack after Beyond Defense during Limitless Synergy
   },
   triggers: [
+    {
+      id: 'TOP Phase Tracker',
+      type: 'StartsUsing',
+      // 7B40 = Firewall
+      // 8014 = Run ****mi* (Sigma Version)
+      // 8015 = Run ****mi* (Omega Version)
+      netRegex: NetRegexes.startsUsing({ id: ['7B40', '8014', '8015'], capture: true }),
+      run: (data, matches) => {
+        switch (matches.id) {
+          case '7B40':
+            data.phase = 'p2';
+            break;
+          case '8014':
+            data.phase = 'sigma';
+            break;
+          case '8015':
+            data.phase = 'omega';
+            break;
+        }
+      },
+    },
+    {
+      id: 'TOP Phase Ability Tracker',
+      type: 'Ability',
+      // 7BFD = attack (Omega)
+      // 7B13 = self-cast on omega
+      // 7B47 = self-cast on omega
+      // 7B7C = self-cast on omega
+      // 7F72 = Blind Faith (non-enrage)
+      netRegex: NetRegexes.ability({ id: ['7BFD', '7B13', '7B47', '7B7C', '7F72'], capture: true }),
+      suppressSeconds: 20, // Ignore multiple delta/omega captures
+      run: (data, matches) => {
+        switch (matches.id) {
+          case '7BFD':
+            data.phase = 'p1';
+            break;
+          case '7B13':
+            data.phase = 'p3';
+            break;
+          case '7B47':
+            data.phase = 'p4';
+            break;
+          case '7B7C':
+            data.phase = 'delta';
+            break;
+          case '7F72':
+            data.phase = 'p6';
+            break;
+        }
+      },
+    },
+    {
+      id: 'TOP Headmarker Tracker',
+      type: 'HeadMarker',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data) => data.decOffset === undefined,
+      // Unconditionally set the first headmarker here so that future triggers are conditional.
+      run: (data, matches) => getHeadmarkerId(data, matches),
+    },
     {
       id: 'TOP In Line Debuff Collector',
       type: 'GainsEffect',
@@ -353,6 +491,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: data.blameId?.[player],
             text: {
               en: `Missed Tower #${num}`,
+              de: `Verfehlter Turm #${num}`,
               ko: `기둥 #${num} 놓침`,
             },
           });
@@ -378,6 +517,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           // There's only two tower players, so just blame them all.
           const towerText: LocaleText = {
             en: `Tower #${num}`,
+            de: `Turm #${num}`,
             ko: `기둥 #${num}`,
           };
           const text = GetShareMistakeText(towerText, 2);
@@ -404,6 +544,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: data.blameId?.[player],
             text: {
               en: `Tower #${num} as #${playerNum}`,
+              de: `Turm #${num} als #${playerNum}`,
               ko: `기둥 #${num} 들어감 (#${playerNum})`,
             },
           });
@@ -419,6 +560,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: data.blameId?.[player],
             text: {
               en: `Missed Tether #${num}`,
+              de: `Verfehlte Verbindung #${num}`,
               ko: `선 #${num} 놓침`,
             },
           });
@@ -435,6 +577,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           const type = shouldTakeTether ? 'warn' : 'fail';
           const tetherText: LocaleText = {
             en: `${m.ability} #${num}`,
+            de: `${m.ability} #${num}`,
             ko: `${m.ability} #${num}`,
           };
           const text = numTargets > 1 ? GetShareMistakeText(tetherText, numTargets) : tetherText;
@@ -452,8 +595,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'TOP Beyond Defense Cleanup',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7B28' }),
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B27' }),
       run: (data) => data.beyondDefense = [],
     },
     {
@@ -474,6 +617,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.targetId,
           text: {
             en: `${matches.ability} (after Beyond Defense)`,
+            de: `${matches.ability} (nach Schildkombo S)`,
             ko: `${matches.ability} (방패 연격 S 이후)`,
           },
         };
@@ -538,6 +682,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: matches.targetId,
             text: {
               en: 'Unexpected red rot',
+              de: 'Unerwartete rote Fäulnis',
               ko: '빨강 디버프 잘못 받음',
             },
           };
@@ -549,6 +694,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             reportId: matches.targetId,
             text: {
               en: 'Unexpected blue rot',
+              de: 'Unerwartete blaue Fäulnis',
               ko: '파랑 디버프 잘못 받음',
             },
           };
@@ -666,10 +812,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
             const text: LocaleText = {
               red: {
                 en: 'Failed to get red rot',
+                de: 'Rote Fäulnis nicht erhalten',
                 ko: '빨강 디버프 못받음',
               },
               blue: {
                 en: 'Failed to get blue rot',
+                de: 'Blaue Fäulnis nicht erhalten',
                 ko: '파랑 디버프 못받음',
               },
             }[color];
@@ -694,21 +842,16 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'TOP Hello World Mistakes',
       type: 'Ability',
-      /*
-      netRegex: NetRegexes.ability({ id: Object.values(helloAbility), capture: false }),
-      delaySeconds: 0.3,
-      suppressSeconds: 1,
-      */
-      // TODO: can use this for testing since oopsy_viewer doesn't support delaySeconds yet.
+      // Check Hello World mistakes during patch explosions
       netRegex: NetRegexes.ability({ id: '7B63' }),
       mistake: (data) => {
+        if (data.helloCollect === undefined || data.helloCollect.length === 0)
+          return;
+
         const mistakes: OopsyMistake[] = [];
 
-        const collect = [...(data.helloCollect ?? [])];
+        const collect = [...data.helloCollect];
         data.helloCollect = [];
-
-        if (collect.length === 0)
-          return;
 
         const unknownDesc = translate(data, unknownDescriptionLocale);
 
@@ -786,16 +929,19 @@ const triggerSet: OopsyTriggerSet<Data> = {
             }
           }
 
-          // Extra person with the wrong debuff??
-          for (const player of actualPlayers) {
-            if (!expectedPlayers.includes(player)) {
-              const text = translate(data, defect.extra);
-              mistakes.push({
-                type: 'warn',
-                blame: player,
-                reportId: data.blameId?.[player],
-                text: `${text}${playerToDescription[player] ?? unknownDesc}`,
-              });
+          // It's fine to have extra people in the final stack, so ignore this.
+          if (data.latentDefectCount !== 4 || defect.actual !== 'stack') {
+            // Extra person with the wrong debuff??
+            for (const player of actualPlayers) {
+              if (!expectedPlayers.includes(player)) {
+                const text = translate(data, defect.extra);
+                mistakes.push({
+                  type: 'warn',
+                  blame: player,
+                  reportId: data.blameId?.[player],
+                  text: `${text}${playerToDescription[player] ?? unknownDesc}`,
+                });
+              }
             }
           }
 
@@ -824,7 +970,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
               });
             } else if (targetCount > 1 && (isFinalDefamation || isTower)) {
               // Towers and Defamation 4 should always have only one person in them.
-              const text = translate(data, GetShareMistakeText(defect.share, 1));
+              const text = translate(data, GetShareMistakeText(defect.share, targetCount));
               const hasDefamation = data.helloStateSnapshot?.[ability.target]?.has(
                 helloEffect.defamation,
               );
@@ -871,6 +1017,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           return;
         const renamedText: LocaleText = {
           en: 'Red Rot Explosion',
+          de: 'Rote Fäulnis Explosion',
           ko: '빨강 디버프 폭발',
         };
         const text = GetShareMistakeText(renamedText, targets);
@@ -889,6 +1036,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           return;
         const renamedText: LocaleText = {
           en: 'Blue Rot Explosion',
+          de: 'Blaue Fäulnis Explosion',
           ko: '파랑 디버프 폭발',
         };
         const text = GetShareMistakeText(renamedText, targets);
@@ -900,35 +1048,269 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'TOP Oversampled Wave Cannon Collect',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7B6D' }),
+      netRegex: NetRegexes.ability({ id: '7B6D', ...playerDamageFields }),
       run: (data, matches) => (data.monitorCollect ??= []).push(matches),
     },
     {
       id: 'TOP P3 Oversampled Wave Cannon',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7B6D', capture: false }),
+      condition: (data) => data.phase === 'p3',
       delaySeconds: 0.3,
       suppressSeconds: 1,
       mistake: (data, _matches) => {
         // TODO: restrict this to p3
         const players = Object.keys(data.blameId ?? {});
-        const monitorPlayers = (data.monitorCollect ?? []).map((x) => x.target);
+        data.monitorCollect ??= [];
+
+        const monitorPlayers = data.monitorCollect.map((x) => x.target);
         const missing = players.filter((x) => !monitorPlayers.includes(x));
         const mistakes: OopsyMistake[] = [];
         for (const player of missing) {
           mistakes.push({
             type: 'warn',
             name: player,
-            // no reportId/blame here as it's possible that the person missing this monitor
-            // is not at fault.
+            // no reportId/blame here as this is usually somebody else's fault
             text: {
               en: 'Not hit by monitor',
+              de: 'Nicht vom Monitor getroffen',
               ko: '모니터 안맞음',
             },
           });
         }
+
+        const monitorCount: { [name: string]: number } = {};
+        for (const player of monitorPlayers) {
+          monitorCount[player] ??= 0;
+          monitorCount[player]++;
+        }
+        for (const [player, count] of Object.entries(monitorCount)) {
+          if (count <= 1)
+            continue;
+          mistakes.push({
+            type: 'warn',
+            name: player,
+            // no reportId/blame here as this is usually somebody else's fault
+            text: {
+              en: `Took monitor x${count}`,
+              de: `Monitor x${count} genommen`,
+              ko: `모니터 ${count}개 맞음`,
+            },
+          });
+        }
+
+        // It is possible in rare cases for there to be more than 8 hits.
+        // Maybe the boss hits everybody on the monitor side and not just two?
+        const numMonitors = data.monitorCollect.filter((x) => x.targetIndex === '0').length;
+        if (numMonitors !== 8) {
+          mistakes.push({
+            type: 'warn',
+            text: {
+              en: `Total monitors: x${numMonitors}`,
+              de: `Monitore insgesamt: x${numMonitors}`,
+              ko: `총 모니터 수: x${numMonitors}`,
+            },
+          });
+        }
+
         return mistakes;
       },
+    },
+    {
+      id: 'TOP P4 Wave Cannon Protean Rename',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B7E', ...playerDamageFields }),
+      mistake: stackMistake('warn', 1, {
+        // Rename this for clarity.
+        en: 'Wave Cannon Protean',
+        de: 'Wellenkanone Himmelsrichtung',
+        ko: '산개 파동포',
+      }),
+    },
+    {
+      id: 'TOP P4 Wave Cannon Protean Two',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B80', ...playerDamageFields }),
+      mistake: (_data, matches) => {
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          triggerType: 'Damage',
+          text: {
+            en: 'Wave Cannon Repeat Protean',
+            de: 'Wellenkanone wiederholte Himmelsrichtung',
+            ko: '산개 파동포 장판',
+          },
+        };
+      },
+    },
+    {
+      id: 'TOP P4 Wave Cannon Protean Collect',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B7E', ...playerDamageFields }),
+      run: (data, matches) => (data.waveCannonProteanCollect ??= []).push(matches),
+    },
+    {
+      id: 'TOP P4 Wave Cannon Protean Analyze',
+      type: 'Ability',
+      // If somebody is dead, people will take more single target proteans.
+      // Just mention this so it's obvious why this person died.
+      netRegex: NetRegexes.ability({ id: '7B7E', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 3,
+      // netRegex: NetRegexes.ability({ id: ['5779', '7B52'], capture: false }),
+      mistake: (data) => {
+        const mistakes: OopsyMistake[] = [];
+        data.waveCannonProteanCollect ??= [];
+        if (data.waveCannonProteanCollect.length === 0)
+          return;
+
+        // Report missing players: this is only possible when somebody is dead,
+        // but report it anyway, so it's obvious that "X is dead, Y took two and died".
+        const cannonPlayers = data.waveCannonProteanCollect.map((x) => x.target);
+        for (const player of Object.keys(data.blameId ?? [])) {
+          if (cannonPlayers.includes(player))
+            continue;
+          mistakes.push({
+            type: 'warn',
+            name: player,
+            text: {
+              en: `Missed Wave Cannon Protean`,
+              de: `Verfehlte Wellenkanone Himmelsrichtung`,
+              ko: `산개 파동포 놓침`,
+            },
+          });
+        }
+
+        // Track anybody double tapped with two "single target" proteans.
+        const cannonCount: { [name: string]: number } = {};
+        const clippedAnotherPlayer: { [name: string]: boolean } = {};
+        for (const line of data.waveCannonProteanCollect) {
+          cannonCount[line.target] ??= 0;
+          if (parseInt(line.targetCount) >= 2)
+            clippedAnotherPlayer[line.target] ??= true;
+          cannonCount[line.target]++;
+        }
+
+        for (const [player, count] of Object.entries(cannonCount)) {
+          // If there's a clip, we'll mention it elsewhere,
+          // no need to say "this person took x3 proteans because one person was dead
+          // and two people clipped each other".
+          if (count === 1 || clippedAnotherPlayer[player])
+            continue;
+          mistakes.push({
+            type: 'warn',
+            name: player,
+            text: {
+              en: `Wave Cannon Protean x${count}`,
+              de: `Wellenkanone Himmelsrichtung x${count}`,
+              ko: `산개 파동포 x${count}`,
+            },
+          });
+        }
+
+        return mistakes;
+      },
+      run: (data) => data.waveCannonProteanCollect = [],
+    },
+    {
+      id: 'TOP P4 Wave Cannon Stack Collect',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7B7F', ...playerDamageFields }),
+      run: (data, matches) => (data.waveCannonStackCollect ??= []).push(matches),
+    },
+    {
+      id: 'TOP P4 Wave Cannon Stack Analyze',
+      type: 'Ability',
+      // Make sure people aren't in two stacks
+      netRegex: NetRegexes.ability({ id: '7B7F', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 3,
+      // netRegex: NetRegexes.ability({ id: ['5779', '7B52'], capture: false }),
+      mistake: (data) => {
+        const mistakes: OopsyMistake[] = [];
+
+        data.waveCannonStackCollect ??= [];
+        if (data.waveCannonStackCollect.length === 0)
+          return;
+
+        const cannonPlayers = data.waveCannonStackCollect.map((x) => x.target);
+        for (const player of Object.keys(data.blameId ?? [])) {
+          if (cannonPlayers.includes(player))
+            continue;
+          mistakes.push({
+            type: 'warn',
+            blame: player,
+            reportId: data.blameId?.[player],
+            text: {
+              en: `Missed Wave Cannon Stack`,
+              de: `Verfehltes Wellenkanone Sammeln`,
+              ko: `쉐어 파동포 놓침`,
+            },
+          });
+        }
+
+        const cannonCount: { [name: string]: number } = {};
+        for (const line of data.waveCannonStackCollect ?? []) {
+          cannonCount[line.target] ??= 0;
+          cannonCount[line.target]++;
+        }
+
+        for (const [player, count] of Object.entries(cannonCount)) {
+          if (count <= 1)
+            continue;
+          mistakes.push({
+            type: 'fail',
+            blame: player,
+            reportId: data.blameId?.[player],
+            text: {
+              en: `Wave Cannon Stack x${count}`,
+              de: `Wellenkanone Sammeln x${count}`,
+              ko: `쉐어 파동포 x${count}`,
+            },
+          });
+        }
+
+        return mistakes;
+      },
+      run: (data) => data.waveCannonStackCollect = [],
+    },
+    {
+      id: 'TOP P5 Hello World Stacks',
+      type: 'Ability',
+      // This needs to be its own trigger because these are flagged as "instant death" if stacked,
+      // which is not included in "playerDamageFields",
+      netRegex: NetRegexes.ability({ id: ['7B8A', '7B89', '8110', '8111'] }),
+      mistake: stackMistake('fail', 1),
+    },
+    {
+      id: 'TOP P6 Wave Cannon Exaflare Rename',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['7BAD', '7BAE', '7BAF'], ...playerDamageFields }),
+      mistake: (_data, matches) => {
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          triggerType: 'Damage',
+          text: {
+            en: 'Exaflare',
+            de: 'Exaflare',
+          },
+        };
+      },
+    },
+    {
+      id: 'TOP P6 Wave Cannon Protean Rename',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '7BAB', ...playerDamageFields }),
+      mistake: stackMistake('fail', 1, {
+        // Rename this for clarity.
+        en: 'Wave Cannon Protean',
+        de: 'Wellenkanone Himmelsrichtung',
+        ko: '산개 파동포',
+      }),
     },
   ],
 };

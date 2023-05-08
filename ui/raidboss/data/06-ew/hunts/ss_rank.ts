@@ -11,6 +11,7 @@ export type Data = RaidbossData;
 // Handle Mirrored Incantation + Interments
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'HuntEWSS',
   zoneId: [
     ZoneId.Labyrinthos,
     ZoneId.Thavnair,

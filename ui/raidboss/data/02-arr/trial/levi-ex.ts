@@ -24,6 +24,7 @@ export interface Data extends RaidbossData {
 // them apart.
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheWhorleaterExtreme',
   zoneId: ZoneId.TheWhorleaterExtreme,
   timelineFile: 'levi-ex.txt',
   initData: () => {

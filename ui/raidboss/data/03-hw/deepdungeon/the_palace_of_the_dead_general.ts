@@ -8,6 +8,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'ThePalaceOfTheDeadGeneral',
   zoneId: [
     ZoneId.ThePalaceOfTheDeadFloors1_10,
     ZoneId.ThePalaceOfTheDeadFloors11_20,
@@ -34,7 +35,7 @@ const triggerSet: TriggerSet<Data> = {
     en: 'The Palace of the Dead (All Floors)',
     de: 'Palast der Toten (Alle Ebenen)',
     cn: '死者宫殿 (全楼层)',
-    ko: '망자의 궁전',
+    ko: '망자의 궁전 (전체 층)',
   },
 
   triggers: [

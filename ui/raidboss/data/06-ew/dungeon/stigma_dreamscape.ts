@@ -19,6 +19,7 @@ const limitCutNumberMap: { [id: string]: number } = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheStigmaDreamscape',
   zoneId: ZoneId.TheStigmaDreamscape,
   timelineFile: 'stigma_dreamscape.txt',
   initData: () => {

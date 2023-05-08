@@ -167,6 +167,7 @@ const matchedPositionTo4Dir = (combatant: PluginCombatantState) => {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'DragonsongsRepriseUltimate',
   zoneId: ZoneId.DragonsongsRepriseUltimate,
   timelineFile: 'dragonsongs_reprise_ultimate.txt',
   initData: () => {
@@ -2900,10 +2901,10 @@ const triggerSet: TriggerSet<Data> = {
         'Haurchefant': 'Haurchefant',
         'Hraesvelgr': 'Hraesvelgr',
         '(?<!Dragon-)King Thordan': 'Thordan',
-        'Left Eye': 'Linkes Drachenauge',
+        'Left Eye': 'link(?:e|er|es|en) Auge',
         'Meteor Circle': 'Meteorsiegel',
         'Nidhogg': 'Nidhogg',
-        'Right Eye': 'Rechtes Drachenauge',
+        'Right Eye': 'recht(?:e|er|es|en) Auge',
         'Ser Adelphel': 'Adelphel',
         'Ser Charibert': 'Charibert',
         'Ser Grinnaux': 'Grinnaux',
@@ -3034,10 +3035,10 @@ const triggerSet: TriggerSet<Data> = {
         'Haurchefant': 'Haurchefant',
         'Hraesvelgr': 'Hraesvelgr',
         '(?<!Dragon-)King Thordan': 'roi Thordan',
-        'Left Eye': 'Œil gauche',
+        'Left Eye': 'Œil gauche de Nidhogg',
         'Meteor Circle': 'sceau du météore',
         'Nidhogg': 'Nidhogg',
-        'Right Eye': 'Œil droit',
+        'Right Eye': 'Œil droit de Nidhogg',
         'Ser Adelphel': 'sire Adelphel',
         'Ser Charibert': 'sire Charibert',
         'Ser Grinnaux': 'sire Grinnaux',

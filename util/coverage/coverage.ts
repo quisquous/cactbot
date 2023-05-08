@@ -150,6 +150,8 @@ const contentTypeToLabel: { [contentType: number]: LocaleText } = {
   },
   [ContentType.VCDungeonFinder]: {
     en: 'V&C',
+    cn: '多变&异闻迷宫',
+    ko: '변형&파생던전',
   },
 } as const;
 

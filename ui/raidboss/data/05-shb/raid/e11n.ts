@@ -88,6 +88,7 @@ const boundOfFaithHolyTetherResponse = (data: Data, _matches: unknown, output: O
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EdensPromiseAnamorphosis',
   zoneId: ZoneId.EdensPromiseAnamorphosis,
   timelineFile: 'e11n.txt',
   triggers: [

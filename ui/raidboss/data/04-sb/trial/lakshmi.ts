@@ -12,6 +12,7 @@ export interface Data extends RaidbossData {
 
 // Lakshmi Normal
 const triggerSet: TriggerSet<Data> = {
+  id: 'Emanation',
   zoneId: ZoneId.Emanation,
   timelineFile: 'lakshmi.txt',
   triggers: [

@@ -45,6 +45,7 @@ const getOrbSafeDir = (data: Data, id: string, output: Output): string | undefin
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheFinalDay',
   zoneId: ZoneId.TheFinalDay,
   timelineFile: 'endsinger.txt',
   initData: () => {

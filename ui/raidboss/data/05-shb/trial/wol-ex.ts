@@ -81,6 +81,7 @@ const quintupleOutputStrings = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheSeatOfSacrificeExtreme',
   zoneId: ZoneId.TheSeatOfSacrificeExtreme,
   timelineFile: 'wol-ex.txt',
   timelineTriggers: [

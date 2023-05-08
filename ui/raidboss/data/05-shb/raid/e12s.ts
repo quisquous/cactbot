@@ -275,6 +275,7 @@ const dirToOutput = (dir: number, output: Output) => {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'EdensPromiseEternitySavage',
   zoneId: ZoneId.EdensPromiseEternitySavage,
   timelineFile: 'e12s.txt',
   triggers: [

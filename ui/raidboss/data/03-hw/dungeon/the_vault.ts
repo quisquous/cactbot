@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 
 // The Vault
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheVault',
   zoneId: ZoneId.TheVault,
   timelineFile: 'the_vault.txt',
   timelineTriggers: [

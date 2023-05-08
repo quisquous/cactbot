@@ -7,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'ContainmentBayS1T7',
   zoneId: ZoneId.ContainmentBayS1T7,
   triggers: [
     {

@@ -85,6 +85,7 @@ const strings = {
 
 // O8S - Sigmascape 4.0 Savage
 const triggerSet: TriggerSet<Data> = {
+  id: 'SigmascapeV40Savage',
   zoneId: ZoneId.SigmascapeV40Savage,
   timelineFile: 'o8s.txt',
   triggers: [

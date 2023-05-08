@@ -8,6 +8,7 @@ export type Data = RaidbossData;
 
 // Suzaku Normal
 const triggerSet: TriggerSet<Data> = {
+  id: 'HellsKier',
   zoneId: ZoneId.HellsKier,
   timelineFile: 'suzaku.txt',
   triggers: [

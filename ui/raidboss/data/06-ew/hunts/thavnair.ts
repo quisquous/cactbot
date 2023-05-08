@@ -24,6 +24,7 @@ const tankBusterOnParty = (data: Data, matches: NetMatches['StartsUsing']) => {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'Thavnair',
   zoneId: ZoneId.Thavnair,
   resetWhenOutOfCombat: false,
   initData: () => {

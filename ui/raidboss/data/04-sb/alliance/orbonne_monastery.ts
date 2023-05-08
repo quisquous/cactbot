@@ -14,6 +14,7 @@ export interface Data extends RaidbossData {
 // This is not true for Mustadio's Maintenance.
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheOrbonneMonastery',
   zoneId: ZoneId.TheOrbonneMonastery,
   timelineFile: 'orbonne_monastery.txt',
   timelineTriggers: [

@@ -12,6 +12,7 @@ export interface Data extends RaidbossData {
 
 // Shinryu Extreme
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheMinstrelsBalladShinryusDomain',
   zoneId: ZoneId.TheMinstrelsBalladShinryusDomain,
   timelineFile: 'shinryu-ex.txt',
   triggers: [

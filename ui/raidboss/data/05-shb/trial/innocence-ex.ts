@@ -13,6 +13,7 @@ export interface Data extends RaidbossData {
 
 // Innocence Extreme
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheCrownOfTheImmaculateExtreme',
   zoneId: ZoneId.TheCrownOfTheImmaculateExtreme,
   timelineFile: 'innocence-ex.txt',
   triggers: [

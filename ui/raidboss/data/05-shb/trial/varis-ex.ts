@@ -11,6 +11,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'MemoriaMiseraExtreme',
   zoneId: ZoneId.MemoriaMiseraExtreme,
   timelineFile: 'varis-ex.txt',
   timelineTriggers: [

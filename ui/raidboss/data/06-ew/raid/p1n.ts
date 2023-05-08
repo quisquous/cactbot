@@ -10,6 +10,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AsphodelosTheFirstCircle',
   zoneId: ZoneId.AsphodelosTheFirstCircle,
   timelineFile: 'p1n.txt',
   triggers: [

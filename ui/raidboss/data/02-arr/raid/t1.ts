@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheBindingCoilOfBahamutTurn1',
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn1,
   initData: () => {
     return {

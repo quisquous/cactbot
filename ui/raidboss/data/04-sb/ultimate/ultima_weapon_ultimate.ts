@@ -14,6 +14,7 @@ export interface Data extends RaidbossData {
 
 // Ultima Weapon Ultimate
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheWeaponsRefrainUltimate',
   zoneId: ZoneId.TheWeaponsRefrainUltimate,
   timelineFile: 'ultima_weapon_ultimate.txt',
   timelineTriggers: [

@@ -502,6 +502,24 @@ const lineDocs: LineDocs = {
       ],
     },
   },
+  CombatantMemory: {
+    examples: {
+      'en-US': [
+        '261|2023-04-20T19:04:39.3810000-07:00|Add|400139C5|Type|2|TargetID|10FFFFFF|Name|Omega|MaxHP|8557964|PosX|100|PosY|90|PosZ|-5.456968E-12|Heading|-4.792213E-05|Radius|12.006|BNpcID|3D5C|CurrentMP|10000|MaxMP|10000|Level|90|BNpcNameID|1E0F|WorldID|65535|CurrentWorldID|65535|NPCTargetID|1084E23D|CastDurationMax|-3.689349E+19|e173dbd66eb7c1fe',
+        '261|2023-04-20T19:04:41.9200000-07:00|Change|400139C5|PosX|100.1179|PosY|95.16841|PosZ|-5.456968E-12|Heading|0.08906358|eac28822c9abcde9',
+        '261|2023-04-20T19:06:46.2900000-07:00|Remove|400139C5|09a3165588ea6b13',
+      ],
+    },
+  },
+  RSVData: {
+    examples: {
+      'en-US': [
+        '262|2023-04-21T23:24:05.8320000-04:00|en|0000001C|_rsv_32789_-1_1_0_1_SE2DC5B04_EE2DC5B04|Run: ****mi* (Omega Version)|34159b6f2093e889',
+        '262|2023-04-21T23:24:05.9210000-04:00|en|00000031|_rsv_3448_-1_1_1_0_S74CFC3B0_E74CFC3B0|Burning with dynamis inspired by Omega\'s passion.|ce9d03bb211d894f',
+        '262|2023-04-21T23:24:06.0630000-04:00|en|00000051|_rsv_35827_-1_1_0_0_S13095D61_E13095D61|Further testing is required.�����,\\r���)������ ��, assist me with this evaluation.|38151741aad7fe51',
+      ],
+    },
+  },
 } as const;
 
 type LogGuideOptions = {

@@ -15,6 +15,7 @@ const aquapolisOutputStrings = {
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheAquapolis',
   zoneId: ZoneId.TheAquapolis,
 
   triggers: [

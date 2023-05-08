@@ -8,6 +8,7 @@ export type Data = RaidbossData;
 
 // Susano Normal
 const triggerSet: TriggerSet<Data> = {
+  id: 'ThePoolOfTribute',
   zoneId: ZoneId.ThePoolOfTribute,
   timelineFile: 'susano.txt',
   timelineTriggers: [

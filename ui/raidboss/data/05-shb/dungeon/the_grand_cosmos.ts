@@ -9,6 +9,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheGrandCosmos',
   zoneId: ZoneId.TheGrandCosmos,
   timelineFile: 'the_grand_cosmos.txt',
   triggers: [

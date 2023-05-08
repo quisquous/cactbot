@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 
 // O11N - Alphascape 3.0
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlphascapeV30',
   zoneId: ZoneId.AlphascapeV30,
   timelineFile: 'o11n.txt',
   timelineTriggers: [

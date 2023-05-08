@@ -27,6 +27,7 @@ export const convertCoordinatesToDirection = (x: number, y: number): IntercardDi
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AbyssosTheFifthCircleSavage',
   zoneId: ZoneId.AbyssosTheFifthCircleSavage,
   timelineFile: 'p5s.txt',
   initData: () => {

@@ -16,6 +16,7 @@ const uznairOutputStrings = {
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheHiddenCanalsOfUznair',
   zoneId: ZoneId.TheHiddenCanalsOfUznair,
 
   triggers: [

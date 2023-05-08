@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'StormsCrown',
   zoneId: ZoneId.StormsCrown,
   timelineFile: 'barbariccia.txt',
   timelineTriggers: [

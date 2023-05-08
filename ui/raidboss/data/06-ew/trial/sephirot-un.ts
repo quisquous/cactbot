@@ -14,6 +14,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'ContainmentBayS1T7Unreal',
   zoneId: ZoneId.ContainmentBayS1T7Unreal,
   timelineFile: 'sephirot-un.txt',
   initData: () => {

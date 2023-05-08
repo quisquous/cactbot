@@ -17,6 +17,7 @@ export interface Data extends RaidbossData {
 // TODO: Tell people where to go for 9S tethered tank
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheCopiedFactory',
   zoneId: ZoneId.TheCopiedFactory,
   timelineFile: 'the_copied_factory.txt',
   timelineTriggers: [

@@ -6,6 +6,7 @@ export type Data = RaidbossData;
 
 // Frontlines: Shatter
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheFieldsOfGloryShatter',
   zoneId: ZoneId.TheFieldsOfGloryShatter,
   triggers: [
     {

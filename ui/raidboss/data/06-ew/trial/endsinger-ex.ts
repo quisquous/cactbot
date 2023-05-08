@@ -143,6 +143,7 @@ const getStarText: TriggerField<
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheMinstrelsBalladEndsingersAria',
   zoneId: ZoneId.TheMinstrelsBalladEndsingersAria,
   timelineFile: 'endsinger-ex.txt',
   initData: () => {

@@ -7,6 +7,7 @@ export type Data = RaidbossData;
 
 // O1S - Deltascape 1.0 Savage
 const triggerSet: TriggerSet<Data> = {
+  id: 'DeltascapeV10Savage',
   zoneId: ZoneId.DeltascapeV10Savage,
   timelineFile: 'o1s.txt',
   triggers: [

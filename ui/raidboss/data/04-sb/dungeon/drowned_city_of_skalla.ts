@@ -7,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheDrownedCityOfSkalla',
   zoneId: ZoneId.TheDrownedCityOfSkalla,
   timelineFile: 'drowned_city_of_skalla.txt',
   timelineTriggers: [

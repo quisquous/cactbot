@@ -10,6 +10,7 @@ export type Data = RaidbossData;
 
 // Rathalos Extreme
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheGreatHuntExtreme',
   zoneId: ZoneId.TheGreatHuntExtreme,
   // Mechanics are random, no timeline is possible.
   hasNoTimeline: true,

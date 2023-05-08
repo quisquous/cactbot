@@ -11,6 +11,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheSwallowsCompass',
   zoneId: ZoneId.TheSwallowsCompass,
   timelineFile: 'swallows_compass.txt',
   triggers: [

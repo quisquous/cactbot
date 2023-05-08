@@ -10,6 +10,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheMinstrelsBalladUltimasBane',
   zoneId: ZoneId.TheMinstrelsBalladUltimasBane,
   timelineFile: 'ultima-ex.txt',
   initData: () => {
