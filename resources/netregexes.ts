@@ -200,14 +200,14 @@ const parseHelper = <T extends LogDefinitionTypes>(
     if (fields[keyStr]?.repeating) {
       if (Array.isArray(fieldValue)) {
         let repeatingArray: unknown[] = fieldValue;
+        const origRepeatingArray = repeatingArray;
 
         const sortFn = fields[keyStr]?.sortFn;
         // Allow sorting if needed
         if (sortFn)
-          repeatingArray = repeatingArray.sort(sortFn);
+          repeatingArray = [...repeatingArray].sort(sortFn);
 
         fieldValue = '';
-        let idx = 0;
         repeatingArray.forEach((rep: unknown) => {
           if (typeof rep === 'object' && rep !== null && Object.keys(rep).length > 0) {
             let fieldRegex = '';
@@ -232,8 +232,8 @@ const parseHelper = <T extends LogDefinitionTypes>(
               }
               fieldRegex += Regexes.maybeCapture(
                 capture,
-                // First match will come back as the normal key, additional matches will be indexed
-                key + (idx > 0 ? idx.toString() : ''),
+                // All capturing groups have their index appended
+                key + origRepeatingArray.indexOf(rep).toString(),
                 val,
                 defaultFieldValue,
               ) +
@@ -247,7 +247,6 @@ const parseHelper = <T extends LogDefinitionTypes>(
               // `(?:\\y{NetField}(${fields[keyStr]?.repeatingKeys?.length}))*`
               str += `\\y{NetField}*?` + fieldRegex;
             }
-            ++idx;
           }
         });
       }
