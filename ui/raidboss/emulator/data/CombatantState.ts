@@ -1,76 +1,85 @@
+import { worldNameToWorld } from '../../../../resources/world_id';
 import { PluginCombatantState } from '../../../../types/event';
 
-import Combatant from './Combatant';
+export default class CombatantState implements PluginCombatantState {
+  CurrentWorldID?: number | undefined;
+  WorldID?: number | undefined;
+  WorldName?: string | undefined;
+  BNpcID?: number | undefined;
+  BNpcNameID?: number | undefined;
+  PartyType?: number | undefined;
+  ID?: number | undefined;
+  OwnerID?: number | undefined;
+  WeaponId?: number | undefined;
+  type?: number | undefined;
+  Job?: number | undefined;
+  Level?: number | undefined;
+  Name?: string | undefined;
+  CurrentHP: number;
+  MaxHP: number;
+  CurrentMP: number;
+  MaxMP: number;
+  PosX: number;
+  PosY: number;
+  PosZ: number;
+  Heading: number;
 
-export default class CombatantState {
-  posX: number;
-  posY: number;
-  posZ: number;
-  heading: number;
   targetable: boolean;
-  hp: number;
-  maxHp: number;
-  mp: number;
-  maxMp: number;
 
   // This is a temporary variable used during CombatantTracker initialization and is `delete`d
   // after the combatant states have been determined to keep memory usage low.
   json?: string;
 
-  constructor(
-    posX: number,
-    posY: number,
-    posZ: number,
-    heading: number,
-    targetable: boolean,
-    hp: number,
-    maxHp: number,
-    mp: number,
-    maxMp: number,
-  ) {
-    this.posX = posX;
-    this.posY = posY;
-    this.posZ = posZ;
-    this.heading = heading;
+  constructor(props: Partial<PluginCombatantState>, targetable: boolean) {
+    Object.assign(this, props);
+
+    // Force these values to something sane in case they're not in `props`
+    this.CurrentHP ??= 0;
+    this.MaxHP ??= 0;
+    this.CurrentMP ??= 0;
+    this.MaxMP ??= 0;
+    this.PosX ??= 0;
+    this.PosY ??= 0;
+    this.PosZ ??= 0;
+    this.Heading ??= 0;
+
     this.targetable = targetable;
-    this.hp = hp;
-    this.maxHp = maxHp;
-    this.mp = mp;
-    this.maxMp = maxMp;
+
+    // Since `json` might get copied from the `props` object
+    // clear it before calculating and re-assigning it
+    delete this.json;
+
     this.json = JSON.stringify(this);
   }
 
   partialClone(props: Partial<CombatantState>): CombatantState {
-    return new CombatantState(
-      props.posX ?? this.posX,
-      props.posY ?? this.posY,
-      props.posZ ?? this.posZ,
-      props.heading ?? this.heading,
-      props.targetable ?? this.targetable,
-      props.hp ?? this.hp,
-      props.maxHp ?? this.maxHp,
-      props.mp ?? this.mp,
-      props.maxMp ?? this.maxMp,
-    );
+    return new CombatantState({ ...this, ...props }, this.targetable);
   }
 
-  toPluginState(combatant: Combatant): PluginCombatantState {
-    return {
-      ID: parseInt(combatant.id, 16),
-      Name: combatant.name,
-      Level: combatant.level,
-      Job: combatant.jobId,
-      PosX: this.posX,
-      PosY: this.posY,
-      PosZ: this.posZ,
-      Heading: this.heading,
-      CurrentHP: this.hp,
-      MaxHP: this.maxHp,
-      CurrentMP: this.mp,
-      MaxMP: this.maxMp,
-      OwnerID: combatant.ownerId,
-      BNpcNameID: combatant.npcNameId,
-      BNpcID: combatant.npcBaseId,
-    };
+  fullClone(): CombatantState {
+    return new CombatantState({ ...this }, this.targetable);
+  }
+
+  setName(name: string): void {
+    // Sometimes network lines arrive after the combatant has been cleared
+    // from memory in the client, so the network line will have a valid ID
+    // but the name will be blank. Since we're tracking the name for the
+    // entire fight and not on a state-by-state basis, we don't want to
+    // blank out a name in this case.
+    // If a combatant actually has a blank name, that's still allowed by
+    // the constructor.
+    if (name === '')
+      return;
+
+    const parts = name.split('(');
+    this.Name = parts[0] ?? '';
+    if (parts.length > 1) {
+      const worldName = parts[1]?.replace(/\)$/, '');
+      if (worldName !== undefined) {
+        const world = worldNameToWorld(worldName);
+        if (world !== undefined)
+          this.WorldID = world.ID;
+      }
+    }
   }
 }

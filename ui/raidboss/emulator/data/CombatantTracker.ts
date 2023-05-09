@@ -1,5 +1,6 @@
 import { Lang } from '../../../../resources/languages';
 import PetNamesByLang from '../../../../resources/pet_names';
+import Util from '../../../../resources/util';
 
 import Combatant from './Combatant';
 import CombatantJobSearch from './CombatantJobSearch';
@@ -61,13 +62,13 @@ export default class CombatantTracker {
     const petNames = PetNamesByLang[this.language];
     this.others = this.others.filter((ID) => {
       if (
-        this.combatants[ID]?.job !== undefined &&
-        this.combatants[ID]?.job !== 'NONE' &&
+        this.combatants[ID]?.nextSignificantState(0).Job !== undefined &&
+        this.combatants[ID]?.nextSignificantState(0).Job !== 0 &&
         ID.startsWith('1')
       ) {
         this.partyMembers.push(ID);
         return false;
-      } else if (petNames.includes(this.combatants[ID]?.name ?? '')) {
+      } else if (petNames.includes(this.combatants[ID]?.nextSignificantState(0).Name ?? '')) {
         this.pets.push(ID);
         return false;
       } else if ((eventTracker[ID] ?? 0) > 0) {
@@ -88,90 +89,69 @@ export default class CombatantTracker {
   }
 
   addCombatantFromSourceLine(line: LineEventSource, extractedState: Partial<CombatantState>): void {
-    const combatant = this.combatants[line.id] ?? this.initCombatant(line.id, line.name);
+    const combatant = this.combatants[line.id] ?? this.initCombatant(line.id);
 
-    if (combatant.states[this.firstTimestamp])
-      return;
+    let initState: CombatantState | undefined = combatant.states[this.firstTimestamp];
 
-    const initState: Partial<CombatantState> = combatant.states[this.firstTimestamp] ?? {};
+    if (!initState) {
+      combatant.states[this.firstTimestamp] = initState = new CombatantState(extractedState, false);
+    }
 
-    initState.posX = initState.posX ?? extractedState.posX;
-    initState.posY = initState.posY ?? extractedState.posY;
-    initState.posZ = initState.posZ ?? extractedState.posZ;
-    initState.heading = initState.heading ?? extractedState.heading;
-    initState.targetable = initState.targetable ?? extractedState.targetable;
-    initState.hp = initState.hp ?? extractedState.hp;
-    initState.maxHp = initState.maxHp ?? extractedState.maxHp;
-    initState.mp = initState.mp ?? extractedState.mp;
-    initState.maxMp = initState.maxMp ?? extractedState.maxMp;
+    combatant.states[this.firstTimestamp] =
+      initState =
+        new CombatantState({ ...extractedState, ...initState }, initState.targetable);
 
     if (isLineEventJobLevel(line)) {
-      combatant.job = this.combatants[line.id]?.job ?? line.job;
-      combatant.level = this.combatants[line.id]?.level ?? line.level;
+      initState.Job ??= Util.jobToJobEnum(line.job);
+      initState.Level ??= line.level;
     }
 
     if (isLineEventAbility(line)) {
-      if (!combatant.job && !line.id.startsWith('4') && line.abilityId !== undefined)
-        combatant.job = CombatantJobSearch.getJob(line.abilityId);
+      if (initState.Job === undefined && !line.id.startsWith('4') && line.abilityId !== undefined) {
+        const foundJob = CombatantJobSearch.getJob(line.abilityId);
+        if (foundJob)
+          initState.Job = Util.jobToJobEnum(foundJob);
+      }
     }
 
     if (isLineEvent0x03(line)) {
       if (line.npcBaseId !== undefined)
-        combatant.npcBaseId = parseInt(line.npcBaseId);
+        initState.BNpcID = parseInt(line.npcBaseId);
       if (line.npcNameId !== undefined)
-        combatant.npcNameId = parseInt(line.npcNameId);
+        initState.BNpcNameID = parseInt(line.npcNameId);
       if (line.ownerId !== undefined)
-        combatant.ownerId = parseInt(line.ownerId);
+        initState.OwnerID = parseInt(line.ownerId);
     }
+
+    if (line.name !== undefined)
+      initState.setName(line.name);
 
     combatant.pushState(
       this.firstTimestamp,
-      new CombatantState(
-        Number(initState.posX),
-        Number(initState.posY),
-        Number(initState.posZ),
-        Number(initState.heading),
-        initState.targetable ?? true,
-        Number(initState.hp),
-        Number(initState.maxHp),
-        Number(initState.mp),
-        Number(initState.maxMp),
-      ),
+      initState.fullClone(),
     );
   }
 
   addCombatantFromTargetLine(line: LineEventTarget, extractedState: Partial<CombatantState>): void {
     const combatant = this.combatants[line.targetId] ??
-      this.initCombatant(line.targetId, line.targetName);
+      this.initCombatant(line.targetId);
 
-    if (combatant.states[this.firstTimestamp])
-      return;
+    let initState: CombatantState | undefined = combatant.states[this.firstTimestamp];
 
-    const initState: Partial<CombatantState> = combatant.states[this.firstTimestamp] ?? {};
+    if (!initState) {
+      combatant.states[this.firstTimestamp] = initState = new CombatantState(extractedState, false);
+    }
 
-    initState.posX = initState.posX ?? extractedState.posX;
-    initState.posY = initState.posY ?? extractedState.posY;
-    initState.posZ = initState.posZ ?? extractedState.posZ;
-    initState.heading = initState.heading ?? extractedState.heading;
-    initState.hp = initState.hp ?? extractedState.hp;
-    initState.maxHp = initState.maxHp ?? extractedState.maxHp;
-    initState.mp = initState.mp ?? extractedState.mp;
-    initState.maxMp = initState.maxMp ?? extractedState.maxMp;
-    initState.targetable = initState.targetable ?? extractedState.targetable ?? true;
+    combatant.states[this.firstTimestamp] =
+      initState =
+        new CombatantState({ ...extractedState, ...initState }, initState.targetable);
+
+    if (line.targetName !== undefined)
+      initState.setName(line.targetName);
 
     combatant.pushState(
       this.firstTimestamp,
-      new CombatantState(
-        Number(initState.posX),
-        Number(initState.posY),
-        Number(initState.posZ),
-        Number(initState.heading),
-        initState.targetable ?? true,
-        Number(initState.hp),
-        Number(initState.maxHp),
-        Number(initState.mp),
-        Number(initState.maxMp),
-      ),
+      initState.fullClone(),
     );
   }
 
@@ -179,23 +159,23 @@ export default class CombatantTracker {
     const state: Partial<CombatantState> = {};
 
     if (line.x !== undefined && !isNaN(line.x))
-      state.posX = line.x;
+      state.PosX = line.x;
     if (line.y !== undefined && !isNaN(line.y))
-      state.posY = line.y;
+      state.PosY = line.y;
     if (line.z !== undefined && !isNaN(line.z))
-      state.posZ = line.z;
+      state.PosZ = line.z;
     if (line.heading !== undefined && !isNaN(line.heading))
-      state.heading = line.heading;
+      state.Heading = line.heading;
     if (line.targetable !== undefined)
       state.targetable = line.targetable;
     if (line.hp !== undefined && !isNaN(line.hp))
-      state.hp = line.hp;
+      state.CurrentHP = line.hp;
     if (line.maxHp !== undefined && !isNaN(line.maxHp))
-      state.maxHp = line.maxHp;
+      state.MaxHP = line.maxHp;
     if (line.mp !== undefined && !isNaN(line.mp))
-      state.mp = line.mp;
+      state.CurrentMP = line.mp;
     if (line.maxMp !== undefined && !isNaN(line.maxMp))
-      state.maxMp = line.maxMp;
+      state.MaxMP = line.maxMp;
 
     if (line.decEvent === 4)
       state.targetable = false;
@@ -207,39 +187,37 @@ export default class CombatantTracker {
     const state: Partial<CombatantState> = {};
 
     if (line.targetX !== undefined && !isNaN(line.targetX))
-      state.posX = line.targetX;
+      state.PosX = line.targetX;
     if (line.targetY !== undefined && !isNaN(line.targetY))
-      state.posY = line.targetY;
+      state.PosY = line.targetY;
     if (line.targetZ !== undefined && !isNaN(line.targetZ))
-      state.posZ = line.targetZ;
+      state.PosZ = line.targetZ;
     if (line.targetHeading !== undefined && !isNaN(line.targetHeading))
-      state.heading = line.targetHeading;
+      state.Heading = line.targetHeading;
     if (line.targetHp !== undefined && !isNaN(line.targetHp))
-      state.hp = line.targetHp;
+      state.CurrentHP = line.targetHp;
     if (line.targetMaxHp !== undefined && !isNaN(line.targetMaxHp))
-      state.maxHp = line.targetMaxHp;
+      state.MaxHP = line.targetMaxHp;
     if (line.targetMp !== undefined && !isNaN(line.targetMp))
-      state.mp = line.targetMp;
+      state.CurrentMP = line.targetMp;
     if (line.targetMaxMp !== undefined && !isNaN(line.targetMaxMp))
-      state.maxMp = line.targetMaxMp;
+      state.MaxMP = line.targetMaxMp;
 
     return state;
   }
 
-  initCombatant(id: string, name: string): Combatant {
+  initCombatant(id: string): Combatant {
     let combatant = this.combatants[id];
     if (combatant === undefined) {
-      combatant = this.combatants[id] = new Combatant(id, name);
+      combatant = this.combatants[id] = new Combatant();
       this.others.push(id);
-    } else if (combatant.name === '') {
-      combatant.setName(name);
     }
     return combatant;
   }
 
   getMainCombatantName(): string {
     if (this.mainCombatantID)
-      return this.combatants[this.mainCombatantID]?.name ?? 'Unknown';
+      return this.combatants[this.mainCombatantID]?.nextSignificantState(0).Name ?? 'Unknown';
     return 'Unknown';
   }
 }

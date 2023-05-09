@@ -1,43 +1,11 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
-import { Job } from '../../../../types/job';
 
 import CombatantState from './CombatantState';
 
 export default class Combatant {
-  id: string;
-  name = '';
-  server = '';
   states: { [timestamp: number]: CombatantState } = {};
   significantStates: number[] = [];
   latestTimestamp = -1;
-  job?: Job;
-  jobId?: number;
-  level?: number;
-  npcBaseId?: number;
-  ownerId?: number;
-  npcNameId?: number;
-
-  constructor(id: string, name: string) {
-    this.id = id;
-    this.setName(name);
-  }
-
-  setName(name: string): void {
-    // Sometimes network lines arrive after the combatant has been cleared
-    // from memory in the client, so the network line will have a valid ID
-    // but the name will be blank. Since we're tracking the name for the
-    // entire fight and not on a state-by-state basis, we don't want to
-    // blank out a name in this case.
-    // If a combatant actually has a blank name, that's still allowed by
-    // the constructor.
-    if (name === '')
-      return;
-
-    const parts = name.split('(');
-    this.name = parts[0] ?? '';
-    if (parts.length > 1)
-      this.server = parts[1]?.replace(/\)$/, '') ?? '';
-  }
 
   hasState(timestamp: number): boolean {
     return this.states[timestamp] !== undefined;
