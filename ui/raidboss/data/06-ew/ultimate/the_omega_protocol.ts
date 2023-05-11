@@ -1940,6 +1940,7 @@ const triggerSet: TriggerSet<Data> = {
       // Sometimes cast by Omega, sometimes by Alpha Omega
       netRegex: { id: '7BA3', capture: false },
       delaySeconds: 0.1,
+      durationSeconds: 7,
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
         data.cosmoArrowExaCount = 1;
