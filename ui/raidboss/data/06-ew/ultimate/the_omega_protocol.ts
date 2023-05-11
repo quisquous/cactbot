@@ -2022,6 +2022,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '7BAC', source: 'Alpha Omega', capture: false },
       delaySeconds: 1.1,
+      durationSeconds: 10.6, // Time until 3rd puddle
       promise: async (data) => {
         if (data.waveCannonFlares.length < 2) {
           console.error(
