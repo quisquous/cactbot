@@ -84,7 +84,7 @@ export class SGEComponent extends BaseComponent {
       case kAbility.Phlegma2:
       case kAbility.Phlegma3:
         if (matches.targetIndex === '0') { // Avoid multiple call in AOE
-          if (this.ffxivVersion >= 6.3)
+          if (this.ffxivVersion >= 630)
             this.phlegma.duration = 40 + this.phlegma.value;
           else
             this.phlegma.duration = 45 + this.phlegma.value;

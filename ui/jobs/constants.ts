@@ -537,13 +537,13 @@ export const kComboBreakers = [
   kAbility.Bladeshower,
 ];
 
-export const kComboBreakers62 = [
+export const kComboBreakers620 = [
   ...kComboBreakers,
   kAbility.GoringBlade,
   kAbility.Confiteor,
 ];
 
-export const kComboBreakers61 = [
+export const kComboBreakers610 = [
   ...kComboBreakers,
 ];
 
