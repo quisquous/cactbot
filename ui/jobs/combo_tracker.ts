@@ -3,8 +3,8 @@ import { EventEmitter } from 'eventemitter3';
 import {
   kComboActions,
   kComboBreakers,
-  kComboBreakers62,
   kComboBreakers61,
+  kComboBreakers62,
   kComboDelay,
 } from './constants';
 import { FfxivVersion } from './jobs';
