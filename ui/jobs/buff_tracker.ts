@@ -32,7 +32,7 @@ import WidgetList from '../../resources/widget_list';
 import { NetMatches } from '../../types/net_matches';
 
 import { kAbility } from './constants';
-import { FfxivRegion } from './jobs';
+import { FfxivVersion } from './jobs';
 import { JobsOptions } from './jobs_options';
 import { makeAuraTimerIcon } from './utils';
 
@@ -278,7 +278,7 @@ export class BuffTracker {
     private leftBuffDiv: WidgetList,
     private rightBuffDiv: WidgetList,
     private partyTracker: PartyTracker,
-    private ffxivRegion: FfxivRegion,
+    private ffxivVersion: FfxivVersion,
   ) {
     this.options = options;
     this.playerName = playerName;
@@ -609,19 +609,19 @@ export class BuffTracker {
       },
     };
 
-    // Abilities that are different in Cn region.
-    const vCn: { [s: string]: BuffInfo } = {};
+    // Abilities that are different in 6.1 version.
+    const v61: { [s: string]: BuffInfo } = {};
 
-    // Abilities that are different in Ko region.
-    const vKo: { [s: string]: BuffInfo } = {};
+    // Abilities that are different in 6.0 version.
+    const v60: { [s: string]: BuffInfo } = {};
 
-    if (this.ffxivRegion === 'ko') {
-      for (const [key, entry] of Object.entries(vKo))
+    if (this.ffxivVersion < 6.2) {
+      for (const [key, entry] of Object.entries(v61))
         this.buffInfo[key] = entry;
     }
 
-    if (this.ffxivRegion === 'cn') {
-      for (const [key, entry] of Object.entries(vCn))
+    if (this.ffxivVersion < 6.1) {
+      for (const [key, entry] of Object.entries(v60))
         this.buffInfo[key] = entry;
     }
 

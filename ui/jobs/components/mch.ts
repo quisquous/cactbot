@@ -92,7 +92,7 @@ export class MCHComponent extends BaseComponent {
     // These two seconds are shown by half adjust, not like others' ceil.
     if (jobDetail.overheatActive === true) {
       this.heatGauge.parentNode.classList.add('overheat');
-      if (this.ffxivRegion !== 'ko')
+      if (this.ffxivVersion >= 6.3)
         this.heatGauge.innerText = this.overheatstack.toString();
       else
         this.heatGauge.innerText = Math.round(jobDetail.overheatMilliseconds / 1000).toString();
@@ -125,7 +125,7 @@ export class MCHComponent extends BaseComponent {
   }
 
   override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
-    if (id === EffectId.Overheated && this.ffxivRegion !== 'ko')
+    if (id === EffectId.Overheated && this.ffxivVersion >= 6.3)
       this.overheatstack = parseInt(matches.count ?? '0');
   }
   override onMobGainsEffectFromYou(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
