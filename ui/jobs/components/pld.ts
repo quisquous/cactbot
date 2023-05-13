@@ -55,7 +55,7 @@ export class PLDComponent extends BaseComponent {
     const requiescatContainer = document.createElement('div');
     requiescatContainer.id = 'pld-stacks-requiescat';
     this.stacksContainer.appendChild(requiescatContainer);
-    if (this.ffxivRegion === 'intl') {
+    if (this.ffxivRegion !== 'ko') {
       for (let i = 0; i < 4; ++i) {
         const d = document.createElement('div');
         requiescatContainer.appendChild(d);
@@ -104,12 +104,13 @@ export class PLDComponent extends BaseComponent {
   }
 
   override onCombo(skill: string, combo: ComboTracker): void {
+    if (skill === kAbility.GoringBlade && this.ffxivRegion !== 'ko')
+      return;
     this.comboTimer.duration = 0;
-    if (skill === kAbility.GoringBlade && this.ffxivRegion !== 'intl')
+    if (skill === kAbility.GoringBlade)
       this.goreBox.duration = 21;
     if (combo.isFinalSkill)
-      if (skill !== kAbility.GoringBlade || this.ffxivRegion !== 'intl')
-        return;
+      return;
     if (skill)
       this.comboTimer.duration = this.comboDuration;
   }
@@ -117,11 +118,11 @@ export class PLDComponent extends BaseComponent {
   override onUseAbility(skill: string): void {
     switch (skill) {
       case kAbility.BladeOfValor:
-        if (this.ffxivRegion !== 'intl')
+        if (this.ffxivRegion === 'ko')
           this.goreBox.duration = 21;
         break;
       case kAbility.GoringBlade:
-        if (this.ffxivRegion === 'intl')
+        if (this.ffxivRegion !== 'ko')
           this.goreBox.duration = this.bars.player.getActionCooldown(60000, 'skill');
         break;
       case kAbility.Expiacion:
@@ -132,7 +133,7 @@ export class PLDComponent extends BaseComponent {
         this.tid1 = showDuration({
           tid: this.tid1,
           timerbox: this.fightOrFlightBox,
-          duration: this.ffxivRegion === 'intl' ? 20 : 25,
+          duration: this.ffxivRegion !== 'ko' ? 20 : 25,
           cooldown: 60,
           threshold: this.player.gcdSkill * 2 + 1,
           activecolor: 'pld-color-fightorflight.active',
