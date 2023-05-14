@@ -241,7 +241,12 @@ Options.Triggers.push({
           return;
         if (!data.inCombat)
           return;
-        return output.text({ dir1: dir1, dir2: dir2, dir3: dir3, dir4: dir4 });
+        return output.text({
+          dir1: output[dir1](),
+          dir2: output[dir2](),
+          dir3: output[dir3](),
+          dir4: output[dir4](),
+        });
       },
       tts: null,
       outputStrings: {
