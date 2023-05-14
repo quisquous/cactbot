@@ -6,7 +6,7 @@ import { Bars } from '../bars';
 import { BuffTracker } from '../buff_tracker';
 import { kWellFedContentTypes } from '../constants';
 import { JobsEventEmitter } from '../event_emitter';
-import { FfxivRegion } from '../jobs';
+import { FfxivVersion } from '../jobs';
 import { JobsOptions } from '../jobs_options';
 import { Player } from '../player';
 import { doesJobNeedMPBar, isPvPZone, RegexesHolder } from '../utils';
@@ -89,7 +89,7 @@ export class ComponentManager {
   ee: JobsEventEmitter;
   options: JobsOptions;
   partyTracker: PartyTracker;
-  ffxivRegion: FfxivRegion;
+  ffxivVersion: FfxivVersion;
   player: Player;
   regexes?: RegexesHolder;
   component?: BaseComponent;
@@ -113,7 +113,7 @@ export class ComponentManager {
     this.options = o.options;
     this.partyTracker = o.partyTracker;
     this.player = o.player;
-    this.ffxivRegion = o.ffxivRegion;
+    this.ffxivVersion = o.ffxivVersion;
 
     this.shouldShow = {};
     this.contentType = undefined;
@@ -129,7 +129,7 @@ export class ComponentManager {
   }
 
   getJobComponents(job: Job): BaseComponent {
-    // if (this.o.ffxivRegion === 'cn/ko') {
+    // if (this.o.ffxivVersion < ???) {
     //   if (job === 'XXX')
     //     return new XXXOldComponent(this.o);
     // }
@@ -238,7 +238,7 @@ export class ComponentManager {
           this.bars.o.leftBuffsList,
           this.bars.o.rightBuffsList,
           this.partyTracker,
-          this.ffxivRegion,
+          this.ffxivVersion,
         );
       }
     });
