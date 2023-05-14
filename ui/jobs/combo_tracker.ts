@@ -115,10 +115,10 @@ export class ComboTracker extends EventEmitter<{ combo: ComboCallback }> {
 
   static setup(ffxivVersion: FfxivVersion, player: Player): ComboTracker {
     let breakers;
-    if (ffxivVersion < 630)
-      breakers = kComboBreakers620;
-    else if (ffxivVersion < 620)
+    if (ffxivVersion < 620)
       breakers = kComboBreakers610;
+    else if (ffxivVersion < 630)
+      breakers = kComboBreakers620;
     else
       breakers = kComboBreakers;
 
