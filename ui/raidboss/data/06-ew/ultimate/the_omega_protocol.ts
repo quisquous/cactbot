@@ -15,7 +15,6 @@ import { LocaleText, Output, TriggerSet } from '../../../../../types/trigger';
 // TODO: Omega tell people they must be a monitor (alarm) if they are Second in Line + two Quickening Dynamis
 // TODO: Adjust Omega dodge locations
 // TODO: p6 magic number tank lb / healer lb triggers
-// TODO: p6 exasquare "wait" calls
 
 export type Phase =
   | 'p1'
@@ -64,6 +63,9 @@ export interface Data extends RaidbossData {
   trioDebuff: { [name: string]: TrioDebuff };
   omegaDodgeRotation?: 'right' | 'left';
   seenOmegaTethers?: boolean;
+  cosmoArrowCount: number;
+  cosmoArrowIn?: boolean;
+  cosmoArrowExaCount: number;
 }
 
 const phaseReset = (data: Data) => {
@@ -205,6 +207,8 @@ const triggerSet: TriggerSet<Data> = {
       monitorPlayers: [],
       deltaTethers: {},
       trioDebuff: {},
+      cosmoArrowCount: 0,
+      cosmoArrowExaCount: 0,
     };
   },
   timelineTriggers: [
@@ -1994,6 +1998,115 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'タンクLB!!',
           cn: '坦克LB！！',
           ko: '탱리밋!!',
+        },
+      },
+    },
+    {
+      id: 'TOP Cosmo Arrow In/Out Collect',
+      type: 'StartsUsing',
+      // Sometimes cast by Omega, sometimes by Alpha Omega
+      netRegex: { id: '7BA3', capture: false },
+      run: (data) => {
+        // This will overcount but get reset after
+        data.cosmoArrowCount = data.cosmoArrowCount + 1;
+      },
+    },
+    {
+      id: 'TOP Cosmo Arrow In/Out First',
+      type: 'StartsUsing',
+      // Sometimes cast by Omega, sometimes by Alpha Omega
+      netRegex: { id: '7BA3', capture: false },
+      delaySeconds: 0.1,
+      durationSeconds: 7,
+      suppressSeconds: 5,
+      infoText: (data, _matches, output) => {
+        data.cosmoArrowExaCount = 1;
+        if (data.cosmoArrowCount === 2) {
+          data.cosmoArrowIn = true;
+          return output.inFirst!();
+        }
+        data.cosmoArrowIn = false;
+        return output.outFirst!();
+      },
+      outputStrings: {
+        inFirst: {
+          en: 'In First',
+        },
+        outFirst: {
+          en: 'Out First',
+        },
+      },
+    },
+    {
+      id: 'TOP Cosmo Arrow In/Out Wait',
+      type: 'Ability',
+      // Sometimes cast by Omega, sometimes by Alpha Omega
+      netRegex: { id: '7BA3', capture: false },
+      suppressSeconds: 5,
+      infoText: (data, _matches, output) => {
+        if (data.cosmoArrowIn)
+          return output.inWait2!();
+        return output.outWait2!();
+      },
+      outputStrings: {
+        inWait2: {
+          en: 'In => Wait 2',
+        },
+        outWait2: {
+          en: 'Out => Wait 2',
+        },
+      },
+    },
+    {
+      id: 'TOP Cosmo Arrow Dodges',
+      type: 'Ability',
+      netRegex: { id: '7BA4', source: 'Alpha Omega', capture: false },
+      preRun: (data) => data.cosmoArrowExaCount = data.cosmoArrowExaCount + 1,
+      durationSeconds: (data) => {
+        if (data.cosmoArrowExaCount === 3 && data.cosmoArrowIn)
+          return 5;
+        return 3;
+      },
+      suppressSeconds: 1, // Only capture 1 in the set of casts
+      infoText: (data, _matches, output) => {
+        if (data.cosmoArrowIn) {
+          switch (data.cosmoArrowExaCount) {
+            case 3:
+              return output.outWait2!();
+            case 5:
+              return output.SidesIn!();
+            case 6:
+              return output.in!();
+          }
+          // No callout
+          return;
+        }
+
+        switch (data.cosmoArrowExaCount) {
+          case 3:
+          case 5:
+            return output.in!();
+          case 4:
+            return output.SidesOut!();
+        }
+      },
+      run: (data) => {
+        if (data.cosmoArrowExaCount === 7) {
+          data.cosmoArrowExaCount = 0;
+          data.cosmoArrowCount = 0;
+        }
+      },
+      outputStrings: {
+        in: Outputs.in,
+        inWait2: {
+          en: 'In => Wait 2',
+        },
+        outWait2: {
+          en: 'Out => Wait 2',
+        },
+        SidesIn: Outputs.moveAway,
+        SidesOut: {
+          en: 'Sides + Out',
         },
       },
     },
