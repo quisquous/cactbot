@@ -66,39 +66,52 @@ const defaultParams = <
 
   return params as unknown as Partial<ParseHelperFields<T>>;
 };
+
 type RepeatingFieldsMap<
   TBase extends LogDefinitionTypes,
   TKey extends RepeatingFieldsTypes = TBase extends RepeatingFieldsTypes ? TBase : never,
 > = {
-  // This syntax is a bit weird to make typescript compiler happy
-  [
-    label in RepeatingFieldsDefintions[TKey]['repeatingFields'][
-      'label'
-    ] as `${RepeatingFieldsDefintions[TKey]['repeatingFields']['label']}`
-  ]?: {
-    [name in RepeatingFieldsDefintions[TKey]['repeatingFields']['names'][number]]:
-      | string
-      | string[];
-  }[];
-};
+  [name in RepeatingFieldsDefintions[TKey]['repeatingFields']['names'][number]]:
+    | string
+    | string[];
+}[];
 
-type RepeatingFieldsMapType<T extends LogDefinitionTypes> = T extends RepeatingFieldsTypes
-  ? RepeatingFieldsMap<T>
-  : Record<string, unknown>;
+type RepeatingFieldsMapTypeCheck<
+  TBase extends LogDefinitionTypes,
+  F extends keyof NetFields[TBase],
+  TKey extends RepeatingFieldsTypes = TBase extends RepeatingFieldsTypes ? TBase : never,
+> = F extends RepeatingFieldsDefintions[TKey]['repeatingFields']['label']
+  ? RepeatingFieldsMap<TKey> :
+  never;
 
-type BaseParseHelperType<T extends LogDefinitionTypes> =
+type RepeatingFieldsMapType<
+  T extends LogDefinitionTypes,
+  F extends keyof NetFields[T],
+> = T extends RepeatingFieldsTypes ? RepeatingFieldsMapTypeCheck<T, F>
+  : never;
+
+type ParseHelperType<T extends LogDefinitionTypes> =
   & {
-    [field in keyof NetFields[T]]?: string | string[];
+    [field in keyof NetFields[T]]?: string | string[] | RepeatingFieldsMapType<T, field>;
   }
   & { capture?: boolean };
 
-type RepeatingParseHelperType<T extends LogDefinitionTypes> =
-  & RepeatingFieldsMapType<T>
-  & BaseParseHelperType<T>;
-
-type ParseHelperType<T extends LogDefinitionTypes> =
-  | BaseParseHelperType<T>
-  | RepeatingParseHelperType<T>;
+const isRepeatingField = <
+  T extends LogDefinitionTypes,
+>(
+  repeating: boolean | undefined,
+  value: string | string[] | RepeatingFieldsMap<T> | undefined,
+): value is RepeatingFieldsMap<T> => {
+  if (repeating !== true)
+    return false;
+  if (!Array.isArray(value))
+    return false;
+  for (const e of value) {
+    if (typeof e !== 'object')
+      return false;
+  }
+  return true;
+};
 
 const parseHelper = <T extends LogDefinitionTypes>(
   params: ParseHelperType<T> | undefined,
@@ -197,67 +210,68 @@ const parseHelper = <T extends LogDefinitionTypes>(
       ? matchWithColonsDefault
       : matchDefault;
     const defaultFieldValue = parseField.value?.toString() ?? fieldDefault;
-    let fieldValue: string | string[] | Record<string, unknown>[] | undefined = params[fieldName];
+    const fieldValue = params[fieldName];
 
-    if (fields[keyStr]?.repeating) {
-      if (Array.isArray(fieldValue)) {
-        let repeatingArray: unknown[] = fieldValue;
-        const origRepeatingArray = repeatingArray;
+    if (isRepeatingField(fields[keyStr]?.repeating, fieldValue)) {
+      let repeatingArray: RepeatingFieldsMap<T> = fieldValue;
+      const origRepeatingArray = repeatingArray;
 
-        const sortFn = fields[keyStr]?.sortFn;
-        // Allow sorting if needed
-        if (sortFn)
-          repeatingArray = [...repeatingArray].sort(sortFn);
+      const sortFn = fields[keyStr]?.sortFn;
+      // Allow sorting if needed
+      if (sortFn)
+        repeatingArray = [...repeatingArray].sort(sortFn);
 
-        fieldValue = '';
-        repeatingArray.forEach((rep: unknown) => {
-          if (typeof rep === 'object' && rep !== null && Object.keys(rep).length > 0) {
-            let fieldRegex = '';
-            // Rather than looping over the keys defined on the object,
-            // loop over the base type def's keys. This enforces the correct order.
-            fields[keyStr]?.repeatingKeys?.forEach((key) => {
-              fieldRegex += separator;
-              if (!(key in rep)) {
-                // If we don't have a value for this key, insert a placeholder
-                fieldRegex += Regexes.maybeCapture(
-                  capture,
-                  // All capturing groups have their index appended
-                  key + origRepeatingArray.indexOf(rep).toString(),
-                  defaultFieldValue,
-                  defaultFieldValue,
-                );
-                return;
-              }
-              // This is an ugly cast. There's probably a better way of narrowing this type but
-              // tsc doesn't like the dozen or so variations I've tried.
-              const val = rep[key as keyof typeof rep] as unknown;
-              if (typeof val !== 'string') {
-                if (!Array.isArray(val))
-                  return;
-                if (val.length < 0)
-                  return;
-                if (val.some((v) => typeof v !== 'string'))
-                  return;
-              }
+      repeatingArray.forEach((rep) => {
+        if (typeof rep === 'object' && rep !== null && Object.keys(rep).length > 0) {
+          let fieldRegex = '';
+          // Rather than looping over the keys defined on the object,
+          // loop over the base type def's keys. This enforces the correct order.
+          fields[keyStr]?.repeatingKeys?.forEach((key) => {
+            fieldRegex += separator;
+            if (!(key in rep)) {
+              // If we don't have a value for this key, insert a placeholder
               fieldRegex += Regexes.maybeCapture(
                 capture,
                 // All capturing groups have their index appended
                 key + origRepeatingArray.indexOf(rep).toString(),
-                val,
+                defaultFieldValue,
                 defaultFieldValue,
               );
-            });
-
-            if (fieldRegex.length > 0) {
-              // Prepend a match for any number of fields before matching this one.
-              // TODO: Should we scope this as the following instead?
-              // This would match sets of repeating fields instead of any number of fields.
-              // `(?:(?:${matchDefault}${separator}){${fields[keyStr]?.repeatingKeys?.length}))*`
-              str += `(?:${matchDefault}${separator})*?${fieldRegex.slice(1)}`;
+              return;
             }
+            // This is an ugly cast. There's probably a better way of narrowing this type but
+            // tsc doesn't like the dozen or so variations I've tried.
+            const val = rep[key as keyof typeof rep];
+            if (typeof val !== 'string') {
+              if (!Array.isArray(val))
+                return;
+              if (val.length < 0)
+                return;
+              if (val.some((v) => typeof v !== 'string'))
+                return;
+            }
+            fieldRegex += Regexes.maybeCapture(
+              capture,
+              // All capturing groups have their index appended
+              key + origRepeatingArray.indexOf(rep).toString(),
+              val,
+              defaultFieldValue,
+            );
+          });
+
+          if (fieldRegex.length > 0) {
+            // Prepend a match for any number of fields before matching this one.
+            // TODO: Should we scope this as the following instead?
+            // This would match sets of repeating fields instead of any number of fields.
+            // `(?:(?:${matchDefault}${separator}){${fields[keyStr]?.repeatingKeys?.length}))*`
+            str += `(?:${matchDefault}${separator})*?${fieldRegex.slice(1)}`;
           }
-        });
-      }
+        }
+      });
+    } else if (fields[keyStr]?.repeating) {
+      // If this is a repeating field but the actual value is empty or otherwise invalid,
+      // don't process further. We can't use `continue` in the above block because that
+      // would skip the early-out break at the end of the loop.
     } else {
       if (fieldName !== undefined) {
         str += Regexes.maybeCapture(
