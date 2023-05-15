@@ -1022,7 +1022,6 @@ const latestLogDefinitions = {
       change: 2,
       id: 3,
       // from here, pairs of field name/values
-      pair: 4,
     },
     canAnonymize: true,
     firstOptionalField: 4,

@@ -15,7 +15,7 @@ type RepeatingFieldsExtract<
   [
     label in RepeatingFieldsDefintions[TKey]['repeatingFields'][
       'label'
-    ] as `${RepeatingFieldsDefintions[TKey]['repeatingFields']['label']}`
+    ]
   ]?: {
     [name in RepeatingFieldsDefintions[TKey]['repeatingFields']['names'][number]]:
       | string
