@@ -1048,10 +1048,14 @@ const latestLogDefinitions = {
             return false;
           return typeof o.key === 'string';
         };
-        if (!isSortTypeB(left))
+        if (!isSortTypeB(left)) {
+          console.warn('Invalid argument passed to sortFn:', left);
           return 0;
-        if (!isSortTypeB(right))
+        }
+        if (!isSortTypeB(right)) {
+          console.warn('Invalid argument passed to sortFn:', right);
           return 0;
+        }
         return left.key.localeCompare(right.key);
       },
     },
