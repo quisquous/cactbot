@@ -1997,7 +1997,7 @@ const triggerSet: TriggerSet<Data> = {
             case 3:
               return output.outWait2!();
             case 5:
-              return output.cardinalPositionIn!();
+              return output.SidesIn!();
             case 6:
               return output.in!();
           }
@@ -2010,7 +2010,7 @@ const triggerSet: TriggerSet<Data> = {
           case 5:
             return output.in!();
           case 4:
-            return output.cardinalPositionOut!();
+            return output.SidesOut!();
         }
       },
       run: (data) => {
@@ -2027,9 +2027,9 @@ const triggerSet: TriggerSet<Data> = {
         outWait2: {
           en: 'Out => Wait 2',
         },
-        cardinalPositionIn: Outputs.moveAway,
-        cardinalPositionOut: {
-          en: 'Cardinal Out',
+        SidesIn: Outputs.moveAway,
+        SidesOut: {
+          en: 'Sides + Out',
         },
       },
     },
