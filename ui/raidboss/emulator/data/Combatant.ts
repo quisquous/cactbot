@@ -3,19 +3,18 @@ import { UnreachableCode } from '../../../../resources/not_reached';
 import CombatantState from './CombatantState';
 
 export default class Combatant {
+  tempStates?: { [timestamp: number]: Partial<CombatantState> } = {};
   states: { [timestamp: number]: CombatantState } = {};
   significantStates: number[] = [];
-  latestTimestamp = -1;
 
   hasState(timestamp: number): boolean {
     return this.states[timestamp] !== undefined;
   }
 
   pushState(timestamp: number, state: CombatantState): void {
-    this.states[timestamp] = state;
-    this.latestTimestamp = timestamp;
-    if (!this.significantStates.includes(timestamp))
-      this.significantStates.push(timestamp);
+    if (!this.tempStates)
+      throw new Error('Invalid Combatant state');
+    this.tempStates[timestamp] = state;
   }
 
   nextSignificantState(timestamp: number): CombatantState {
@@ -43,50 +42,15 @@ export default class Combatant {
   }
 
   pushPartialState(timestamp: number, props: Partial<CombatantState>): void {
-    if (this.states[timestamp] === undefined) {
-      // Clone the last state before this timestamp
-      let stateTimestamp = this.significantStates[0] ?? timestamp;
-      // It's faster to start at the last timestamp and work our way backwards
-      // since realistically timestamp skew is only a couple ms at most
-      // Additionally, because cloning a 3000+ element array a few thousand times is slow,
-      // don't for-in over a reverse of the array
-      for (let i = this.significantStates.length - 1; i >= 0; --i) {
-        const ts = this.significantStates[i] ?? 0;
-        if (ts <= timestamp) {
-          stateTimestamp = ts;
-          break;
-        }
-      }
-
-      if (stateTimestamp === undefined)
-        throw new UnreachableCode();
-      const state = this.states[stateTimestamp];
-      if (!state)
-        throw new UnreachableCode();
-      this.states[timestamp] = state.partialClone(props);
+    if (!this.tempStates)
+      throw new Error('Invalid Combatant state');
+    if (this.tempStates[timestamp] === undefined) {
+      this.tempStates[timestamp] = props;
     } else {
-      const state = this.states[timestamp];
+      const state = this.tempStates[timestamp];
       if (!state)
         throw new UnreachableCode();
-      this.states[timestamp] = state.partialClone(props);
-    }
-    this.latestTimestamp = Math.max(this.latestTimestamp, timestamp);
-
-    const lastSignificantStateTimestamp = this.significantStates[this.significantStates.length - 1];
-    if (!lastSignificantStateTimestamp)
-      throw new UnreachableCode();
-    const oldState = this.states[lastSignificantStateTimestamp];
-    const newState = this.states[timestamp];
-    if (!oldState || !newState)
-      throw new UnreachableCode();
-
-    if (
-      lastSignificantStateTimestamp !== timestamp &&
-      oldState.json &&
-      oldState.json !== newState.json
-    ) {
-      delete oldState.json;
-      this.significantStates.push(timestamp);
+      this.tempStates[timestamp] = { ...state, ...props };
     }
   }
 
@@ -114,11 +78,43 @@ export default class Combatant {
   }
 
   finalize(): void {
-    for (const state of Object.values(this.states))
-      delete state.json;
+    if (!this.tempStates)
+      throw new Error('Invalid Combatant state');
+    const stateEntries = Object.entries(this.tempStates)
+      .sort((left, right) => left[0].localeCompare(right[0]));
+    if (stateEntries.length < 1)
+      return;
+    const lastState = {
+      key: parseInt(stateEntries[0]?.[0] ?? '0'),
+      state: new CombatantState(
+        stateEntries[0]?.[1] ?? {},
+        stateEntries[0]?.[1]?.targetable ?? false,
+      ),
+      json: JSON.stringify(stateEntries[0]?.[1]),
+    };
 
-    if (!this.significantStates.includes(this.latestTimestamp))
-      this.significantStates.push(this.latestTimestamp);
+    this.states[lastState.key] = lastState.state;
+    this.significantStates.push(lastState.key);
+
+    for (const state of stateEntries.slice(1)) {
+      const curKey = parseInt(state[0] ?? '0');
+      let curState = lastState.state.partialClone(state[1]);
+      const curJson = JSON.stringify(curState);
+
+      if (curJson !== lastState.json) {
+        this.significantStates.push(curKey);
+        lastState.key = curKey;
+        lastState.state = curState;
+        lastState.json = curJson;
+      } else {
+        // Re-use state to reduce memory usage
+        curState = lastState.state;
+      }
+
+      this.states[curKey] = curState;
+    }
+
+    delete this.tempStates;
   }
 
   // Should only be called when `index` is valid.

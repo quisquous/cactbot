@@ -26,10 +26,6 @@ export default class CombatantState implements PluginCombatantState {
 
   targetable: boolean;
 
-  // This is a temporary variable used during CombatantTracker initialization and is `delete`d
-  // after the combatant states have been determined to keep memory usage low.
-  json?: string;
-
   constructor(props: Partial<PluginCombatantState>, targetable: boolean) {
     Object.assign(this, props);
 
@@ -44,12 +40,6 @@ export default class CombatantState implements PluginCombatantState {
     this.Heading ??= 0;
 
     this.targetable = targetable;
-
-    // Since `json` might get copied from the `props` object
-    // clear it before calculating and re-assigning it
-    delete this.json;
-
-    this.json = JSON.stringify(this);
   }
 
   partialClone(props: Partial<CombatantState>): CombatantState {

@@ -58,6 +58,10 @@ export default class CombatantTracker {
       }
     }
 
+    // Finalize combatants, cleaning up state information
+    for (const combatant of Object.values(this.combatants))
+      combatant.finalize();
+
     // Figure out party/enemy/other status
     const petNames = PetNamesByLang[this.language];
     this.others = this.others.filter((ID) => {
@@ -82,10 +86,6 @@ export default class CombatantTracker {
     this.mainCombatantID = this.enemies.sort((l, r) => {
       return (eventTracker[r] ?? 0) - (eventTracker[l] ?? 0);
     })[0];
-
-    // Finalize combatants, cleaning up state information
-    for (const combatant of Object.values(this.combatants))
-      combatant.finalize();
   }
 
   addCombatantFromSourceLine(line: LineEventSource, extractedState: Partial<CombatantState>): void {
@@ -158,6 +158,8 @@ export default class CombatantTracker {
   extractStateFromLine(line: LineEventSource): Partial<CombatantState> {
     const state: Partial<CombatantState> = {};
 
+    if (line.id !== undefined)
+      state.ID = parseInt(line.id, 16);
     if (line.x !== undefined && !isNaN(line.x))
       state.PosX = line.x;
     if (line.y !== undefined && !isNaN(line.y))
@@ -186,6 +188,8 @@ export default class CombatantTracker {
   extractStateFromTargetLine(line: LineEventTarget): Partial<CombatantState> {
     const state: Partial<CombatantState> = {};
 
+    if (line.targetId !== undefined)
+      state.ID = parseInt(line.targetId, 16);
     if (line.targetX !== undefined && !isNaN(line.targetX))
       state.PosX = line.targetX;
     if (line.targetY !== undefined && !isNaN(line.targetY))
