@@ -68,7 +68,7 @@ export default class CombatantState implements PluginCombatantState {
       if (worldName !== undefined) {
         const world = worldNameToWorld(worldName);
         if (world !== undefined)
-          this.WorldID = world.ID;
+          this.WorldID = world.id;
       }
     }
   }
