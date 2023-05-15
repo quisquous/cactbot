@@ -7,7 +7,7 @@ import logDefinitions, {
   LogDefinitionTypes,
   LogDefinitionVersions,
   ParseHelperFields,
-  RepeatingFieldsDefintions,
+  RepeatingFieldsDefinitions,
   RepeatingFieldsTypes,
 } from './netlog_defs';
 
@@ -71,7 +71,7 @@ type RepeatingFieldsMap<
   TBase extends LogDefinitionTypes,
   TKey extends RepeatingFieldsTypes = TBase extends RepeatingFieldsTypes ? TBase : never,
 > = {
-  [name in RepeatingFieldsDefintions[TKey]['repeatingFields']['names'][number]]:
+  [name in RepeatingFieldsDefinitions[TKey]['repeatingFields']['names'][number]]:
     | string
     | string[];
 }[];
@@ -80,7 +80,7 @@ type RepeatingFieldsMapTypeCheck<
   TBase extends LogDefinitionTypes,
   F extends keyof NetFields[TBase],
   TKey extends RepeatingFieldsTypes = TBase extends RepeatingFieldsTypes ? TBase : never,
-> = F extends RepeatingFieldsDefintions[TKey]['repeatingFields']['label']
+> = F extends RepeatingFieldsDefinitions[TKey]['repeatingFields']['label']
   ? RepeatingFieldsMap<TKey> :
   never;
 

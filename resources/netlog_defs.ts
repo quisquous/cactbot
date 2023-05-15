@@ -1092,7 +1092,7 @@ export type RepeatingFieldsTypes = keyof {
   ]: null;
 };
 
-export type RepeatingFieldsDefintions = {
+export type RepeatingFieldsDefinitions = {
   [type in RepeatingFieldsTypes]: LogDefinitions[type] & {
     readonly repeatingFields: Exclude<LogDefinitions[type]['repeatingFields'], undefined>;
   };

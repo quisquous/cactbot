@@ -1,6 +1,6 @@
 import {
   LogDefinitionTypes,
-  RepeatingFieldsDefintions,
+  RepeatingFieldsDefinitions,
   RepeatingFieldsTypes,
 } from '../resources/netlog_defs';
 
@@ -13,11 +13,11 @@ type RepeatingFieldsExtract<
 > = {
   // This syntax is a bit weird to make typescript compiler happy
   [
-    label in RepeatingFieldsDefintions[TKey]['repeatingFields'][
+    label in RepeatingFieldsDefinitions[TKey]['repeatingFields'][
       'label'
     ]
   ]?: {
-    [name in RepeatingFieldsDefintions[TKey]['repeatingFields']['names'][number]]:
+    [name in RepeatingFieldsDefinitions[TKey]['repeatingFields']['names'][number]]:
       | string
       | string[];
   }[];
