@@ -53,7 +53,7 @@ const defaultParams = <
       optional: boolean;
       repeating?: boolean;
       repeatingKeys?: string[];
-      sortFn?: (L: unknown, R: unknown) => number;
+      sortFn?: (left: unknown, right: unknown) => number;
     };
   } = {};
   const firstOptionalField = logType.firstOptionalField;

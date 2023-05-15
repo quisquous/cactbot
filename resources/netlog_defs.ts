@@ -40,7 +40,10 @@ export type LogDefinition = {
     startingIndex: number;
     label: string;
     names: readonly string[];
-    sortFn?: (L: unknown, R: unknown) => number;
+    // Keys passed to `sortFn` are user-supplied in the case of user triggers
+    // As such, validation of those keys falls to the sorting function itself
+    // so `left` and `right` types are left `unknown`
+    sortFn?: (left: unknown, right: unknown) => number;
   };
 };
 export type LogDefinitionMap = { [name: string]: LogDefinition };
@@ -1032,7 +1035,7 @@ const latestLogDefinitions = {
       startingIndex: 4,
       label: 'pair',
       names: ['key', 'value'],
-      sortFn: (L: unknown, R: unknown): number => {
+      sortFn: (left: unknown, right: unknown): number => {
         type SortTypeA = { key: string };
         type SortTypeB = { key: string };
         const isSortTypeA = (o: unknown): o is SortTypeA => {
@@ -1045,11 +1048,11 @@ const latestLogDefinitions = {
             return false;
           return typeof o.key === 'string';
         };
-        if (!isSortTypeB(L))
+        if (!isSortTypeB(left))
           return 0;
-        if (!isSortTypeB(R))
+        if (!isSortTypeB(right))
           return 0;
-        return L.key.localeCompare(R.key);
+        return left.key.localeCompare(right.key);
       },
     },
   },
@@ -1108,7 +1111,7 @@ export type ParseHelperField<
   optional?: boolean;
   repeating?: boolean;
   repeatingKeys?: string[];
-  sortFn?: (L: unknown, R: unknown) => number;
+  sortFn?: (left: unknown, right: unknown) => number;
 };
 
 export type ParseHelperFields<T extends LogDefinitionTypes> = {
