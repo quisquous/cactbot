@@ -2019,9 +2019,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TOP Unlimited Wave Cannon Dodges',
+      // As low as 1.2s delay works consistently on low latency, but 1.5s works for more players
       type: 'StartsUsing',
       netRegex: { id: '7BAC', source: 'Alpha Omega', capture: false },
-      delaySeconds: 1.2,
+      delaySeconds: 1.5,
       durationSeconds: 10.6, // Time until 3rd puddle
       promise: async (data) => {
         if (data.waveCannonFlares.length < 2) {
