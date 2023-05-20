@@ -769,7 +769,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
-      netRegex: { source: 'Thunderwing', id: '26C7' },
+      netRegex: { source: 'Thunderwing', id: '26C7', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 5,
       alarmText: (data, _matches, output) => {
@@ -1506,7 +1506,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         const naelDirOutput = positionTo8DirOutput(
           data.combatantData[0].PosX,
-          data.combatantData[0].PosY
+          data.combatantData[0].PosY,
         );
         return output.naelPosition!({ dir: output[naelDirOutput]!() });
       },
@@ -1833,7 +1833,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         return output.grandOctet!({
           startDir: output[partyStartDir]!(),
-          path: output[rotationPath]!()
+          path: output[rotationPath]!(),
         });
       },
       outputStrings: {
