@@ -576,6 +576,7 @@ export class PopupText {
   ProcessDataFiles(files: RaidbossFileData): void {
     this.triggerSets = [];
     this.triggerSetsById = {};
+
     for (const [filename, json] of Object.entries(files)) {
       if (!filename.endsWith('.js') && !filename.endsWith('.ts'))
         continue;
@@ -596,28 +597,36 @@ export class PopupText {
         filename: filename,
         ...json,
       };
-      if (processedSet.id) {
-        if (this.triggerSetsById[processedSet.id] !== undefined) {
-          console.log(
-            `${filename} has duplicate triggerSet id ${processedSet.id}, ignoring triggers`,
-          );
-          continue;
-        }
-        this.triggerSetsById[processedSet.id] = processedSet;
-      }
       this.triggerSets.push(processedSet);
     }
 
     // User triggers must come last so that they override built-in files.
     this.triggerSets.push(...this.options.Triggers);
+
+    // Eliminate any trigger sets with duplicate ids and record a lookup by id.
+    this.triggerSets = this.triggerSets.filter((triggerSet) => {
+      if (triggerSet.id === undefined)
+        return true;
+      if (this.triggerSetsById[triggerSet.id] !== undefined) {
+        console.log(
+          `${
+            triggerSet.filename ?? '???'
+          } has duplicate triggerSet id ${triggerSet.id}, ignoring triggers`,
+        );
+        return false;
+      }
+      this.triggerSetsById[triggerSet.id] = triggerSet;
+      return true;
+    });
   }
 
   OnChangeZone(e: EventResponses['ChangeZone']): void {
-    if (this.zoneName !== e.zoneName) {
-      this.zoneName = e.zoneName;
-      this.zoneId = e.zoneID;
-      this.ReloadTimelines();
-    }
+    // Note: this must check zone id and not zone name, as there are some zone name collisions.
+    if (this.zoneId === e.zoneID)
+      return;
+    this.zoneName = e.zoneName;
+    this.zoneId = e.zoneID;
+    this.ReloadTimelines();
   }
 
   ReloadTimelines(): void {
@@ -710,8 +719,10 @@ export class PopupText {
       }
 
       if (this.options.Debug) {
-        if (set.filename)
-          console.log('Loading ' + set.filename);
+        if (set.id !== undefined)
+          console.log(`Loading id ${set.id}`);
+        else if (set.filename !== undefined)
+          console.log(`Loading ${set.filename}`);
         else
           console.log('Loading user triggers for zone');
       }

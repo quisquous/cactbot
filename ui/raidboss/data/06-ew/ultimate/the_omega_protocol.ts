@@ -15,7 +15,6 @@ import { LocaleText, Output, TriggerSet } from '../../../../../types/trigger';
 // TODO: Omega tell people they must be a monitor (alarm) if they are Second in Line + two Quickening Dynamis
 // TODO: Adjust Omega dodge locations
 // TODO: p6 magic number tank lb / healer lb triggers
-// TODO: p6 exasquare "wait" calls
 
 export type Phase =
   | 'p1'
@@ -38,7 +37,7 @@ export type TetherColor = 'blue' | 'green';
 export type TrioDebuff = 'near' | 'distant';
 
 export interface Data extends RaidbossData {
-  triggerSetConfig: { staffSwordDodge: 'mid' | 'far' };
+  readonly triggerSetConfig: { staffSwordDodge: 'mid' | 'far' };
   combatantData: PluginCombatantState[];
   phase: Phase;
   decOffset?: number;
@@ -64,6 +63,9 @@ export interface Data extends RaidbossData {
   trioDebuff: { [name: string]: TrioDebuff };
   omegaDodgeRotation?: 'right' | 'left';
   seenOmegaTethers?: boolean;
+  cosmoArrowCount: number;
+  cosmoArrowIn?: boolean;
+  cosmoArrowExaCount: number;
   waveCannonFlares: number[];
 }
 
@@ -122,9 +124,11 @@ export const getHeadmarkerId = (
 const nearDistantOutputStrings: { [label: string]: LocaleText } = {
   near: {
     en: 'Near World',
+    de: 'Hallo Welt: Nah',
   },
   distant: {
     en: 'Distant World',
+    de: 'Hallo Welt: Fern',
   },
 } as const;
 
@@ -169,6 +173,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'staffSwordDodge',
       name: {
         en: 'Run: Omega Staff Sword Dodge Direction',
+        de: 'Renn: Omega Stab Schwert Ausweich-Richtung',
       },
       type: 'select',
       options: {
@@ -203,6 +208,8 @@ const triggerSet: TriggerSet<Data> = {
       monitorPlayers: [],
       deltaTethers: {},
       trioDebuff: {},
+      cosmoArrowCount: 0,
+      cosmoArrowExaCount: 0,
       waveCannonFlares: [],
     };
   },
@@ -215,6 +222,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Tank Autos',
+          de: 'Tank Autos',
           ko: '탱커 평타',
         },
       },
@@ -228,6 +236,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Protean',
+          de: 'Himmelsrichtungen',
           ko: '기본 산개',
         },
       },
@@ -856,6 +865,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           sameDebuffPartner: {
             en: '(same debuff as ${player})',
+            de: '(selber Debuff wie ${player})',
             ko: '(${player}와 같은 디버프)',
           },
           unknown: Outputs.unknown,
@@ -1386,6 +1396,7 @@ const triggerSet: TriggerSet<Data> = {
           unmarkedBlue: {
             // Probably near baits, but you never know.
             en: 'Unmarked Blue',
+            de: 'Blau ohne Debuff',
             ko: '디버프 없는 파란색 선',
           },
         };
@@ -1471,6 +1482,7 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
         mLocation: {
           en: '${dir} M',
+          de: '${dir} M',
           ko: '${dir} M',
         },
       },
@@ -1489,6 +1501,7 @@ const triggerSet: TriggerSet<Data> = {
           ...nearDistantOutputStrings,
           noDebuff: {
             en: '(no debuff)',
+            de: '(kein Debuff)',
             ko: '(디버프 없음)',
           },
         };
@@ -1509,8 +1522,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '7B2E', source: 'Omega-M' },
       // TODO: temporarily disabled as it is returning inconsistent results even with longer delay.
       // See: https://github.com/quisquous/cactbot/issues/5335
-      condition: (data) => false && data.phase === 'sigma',
-      delaySeconds: 6.2,
+      condition: (data) => data.phase === 'sigma',
+      delaySeconds: 8,
       suppressSeconds: 1,
       promise: async (data, matches) => {
         data.combatantData = [];
@@ -1532,12 +1545,14 @@ const triggerSet: TriggerSet<Data> = {
         return output.optimizedBlizzard!();
       },
       outputStrings: {
-        optimizedBlizzard: {
+        superliminalSteel: {
           en: 'Follow Laser, Move In',
+          de: 'Laser folgen, rein gehen',
           ko: '레이저 따라서 안으로',
         },
-        superliminalSteel: {
+        optimizedBlizzard: {
           en: 'Wait First',
+          de: 'Zuerst warten',
           ko: '기다렸다가 이동',
         },
       },
@@ -1582,6 +1597,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitTethers: {
           en: 'Bait Tethers',
+          de: 'Verbindung ködern',
           ko: '선 가져가기',
         },
       },
@@ -1657,22 +1673,27 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         legsSword: {
           en: 'Close ${northSouth} or ${eastWest}',
+          de: 'Nahe ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 가까이',
         },
         legsShield: {
           en: 'Close ${northSouth} or ${eastWest}',
+          de: 'Nahe ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 가까이',
         },
         staffShield: {
           en: 'In ${northSouth} or ${eastWest}',
+          de: 'Rein ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 중간',
         },
         staffSwordFar: {
           en: 'Far ${northSouth} or ${eastWest}',
+          de: 'Entfernt von ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 멀리',
         },
         staffSwordMid: {
           en: 'Mid ${northSouth} or ${eastWest}',
+          de: 'Mittig ${northSouth} oder ${eastWest}',
           ko: '${northSouth}/${eastWest} 중간',
         },
         dirN: Outputs.dirN,
@@ -1750,7 +1771,6 @@ const triggerSet: TriggerSet<Data> = {
         let rotate: NonNullable<typeof data.omegaDodgeRotation>;
 
         if (isFirstEastWest) {
-          // Check for Sword/Shield to know if to go to Male or Female
           dir1 = pos1 < 100 ? output.dirW!() : output.dirE!();
           dir2 = pos2 < 100 ? output.dirN!() : output.dirS!();
           const isLeftRotation = pos1 < 100 && pos2 < 100 || pos1 > 100 && pos2 > 100;
@@ -1803,33 +1823,41 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         safeSpots: {
           en: '${first} => ${rotate} => ${second}',
+          de: '${first} => ${rotate} => ${second}',
           ko: '${first} => ${rotate} => ${second}',
         },
         rotateRight: {
           en: 'Right',
+          de: 'Rechts',
         },
         rotateLeft: {
           en: 'Left',
+          de: 'Links',
         },
         // The two legs are split in case somebody wants a "go to M" or "go to F" style call.
         legsSword: {
           en: 'Close ${dir}',
+          de: 'Nahe ${dir}',
           ko: '${dir} 가까이',
         },
         legsShield: {
           en: 'Close ${dir}',
+          de: 'Nahe ${dir}',
           ko: '${dir} 가까이',
         },
         staffShield: {
           en: 'Mid ${dir}',
+          de: 'Mittig ${dir}',
           ko: '${dir} 중간',
         },
         staffSwordFar: {
           en: 'Far ${dir}',
+          de: 'Entfernt von ${dir}',
           ko: '${dir} 멀리',
         },
         staffSwordMid: {
           en: 'Mid ${dir}',
+          de: 'Mittig ${dir}',
           ko: '${dir} 중간',
         },
         dirN: Outputs.dirN,
@@ -1913,28 +1941,35 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         rotateRight: {
           en: 'Right',
+          de: 'Rechts',
         },
         rotateLeft: {
           en: 'Left',
+          de: 'Links',
         },
         legsSword: {
           en: '${rotate} => Close ${dir}',
+          de: '${rotate} => Nahe ${dir}',
           ko: '${rotate} => ${dir} 가까이',
         },
         legsShield: {
           en: '${rotate} => Close ${dir}',
+          de: '${rotate} => Nahe ${dir}',
           ko: '${rotate} => ${dir} 가까이',
         },
         staffShield: {
           en: '${rotate} => Mid ${dir}',
+          de: '${rotate} => Mittig ${dir}',
           ko: '${rotate} => ${dir} 중간',
         },
         staffSwordFar: {
           en: '${rotate} => Far ${dir}',
+          de: '${rotate} => Entfernt ${dir}',
           ko: '${rotate} => ${dir} 멀리',
         },
         staffSwordMid: {
           en: '${rotate} => Mid ${dir}',
+          de: '${rotate} => Mittig ${dir}',
           ko: '${rotate} => ${dir} 중간',
         },
         dirN: Outputs.dirN,
@@ -1969,6 +2004,115 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'TOP Cosmo Arrow In/Out Collect',
+      type: 'StartsUsing',
+      // Sometimes cast by Omega, sometimes by Alpha Omega
+      netRegex: { id: '7BA3', capture: false },
+      run: (data) => {
+        // This will overcount but get reset after
+        data.cosmoArrowCount = data.cosmoArrowCount + 1;
+      },
+    },
+    {
+      id: 'TOP Cosmo Arrow In/Out First',
+      type: 'StartsUsing',
+      // Sometimes cast by Omega, sometimes by Alpha Omega
+      netRegex: { id: '7BA3', capture: false },
+      delaySeconds: 0.1,
+      durationSeconds: 7,
+      suppressSeconds: 5,
+      infoText: (data, _matches, output) => {
+        data.cosmoArrowExaCount = 1;
+        if (data.cosmoArrowCount === 2) {
+          data.cosmoArrowIn = true;
+          return output.inFirst!();
+        }
+        data.cosmoArrowIn = false;
+        return output.outFirst!();
+      },
+      outputStrings: {
+        inFirst: {
+          en: 'In First',
+        },
+        outFirst: {
+          en: 'Out First',
+        },
+      },
+    },
+    {
+      id: 'TOP Cosmo Arrow In/Out Wait',
+      type: 'Ability',
+      // Sometimes cast by Omega, sometimes by Alpha Omega
+      netRegex: { id: '7BA3', capture: false },
+      suppressSeconds: 5,
+      infoText: (data, _matches, output) => {
+        if (data.cosmoArrowIn)
+          return output.inWait2!();
+        return output.outWait2!();
+      },
+      outputStrings: {
+        inWait2: {
+          en: 'In => Wait 2',
+        },
+        outWait2: {
+          en: 'Out => Wait 2',
+        },
+      },
+    },
+    {
+      id: 'TOP Cosmo Arrow Dodges',
+      type: 'Ability',
+      netRegex: { id: '7BA4', source: 'Alpha Omega', capture: false },
+      preRun: (data) => data.cosmoArrowExaCount = data.cosmoArrowExaCount + 1,
+      durationSeconds: (data) => {
+        if (data.cosmoArrowExaCount === 3 && data.cosmoArrowIn)
+          return 5;
+        return 3;
+      },
+      suppressSeconds: 1, // Only capture 1 in the set of casts
+      infoText: (data, _matches, output) => {
+        if (data.cosmoArrowIn) {
+          switch (data.cosmoArrowExaCount) {
+            case 3:
+              return output.outWait2!();
+            case 5:
+              return output.SidesIn!();
+            case 6:
+              return output.in!();
+          }
+          // No callout
+          return;
+        }
+
+        switch (data.cosmoArrowExaCount) {
+          case 3:
+          case 5:
+            return output.in!();
+          case 4:
+            return output.SidesOut!();
+        }
+      },
+      run: (data) => {
+        if (data.cosmoArrowExaCount === 7) {
+          data.cosmoArrowExaCount = 0;
+          data.cosmoArrowCount = 0;
+        }
+      },
+      outputStrings: {
+        in: Outputs.in,
+        inWait2: {
+          en: 'In => Wait 2',
+        },
+        outWait2: {
+          en: 'Out => Wait 2',
+        },
+        SidesIn: Outputs.moveAway,
+        SidesOut: {
+          en: 'Sides + Out',
+        },
+      },
+    },
+    {
       id: 'TOP Cosmo Dive',
       type: 'StartsUsing',
       netRegex: { id: '7BA6', source: 'Alpha Omega', capture: false },
@@ -1983,10 +2127,12 @@ const triggerSet: TriggerSet<Data> = {
         // that everybody needs to know that already, and so just call positioning.
         cosmoDiveTank: {
           en: 'Tanks Near (party far)',
+          de: 'Tanks nahe (Gruppe entfernt)',
           ko: '탱커 가까이 (본대 멀리)',
         },
         cosmoDiveParty: {
           en: 'Party Far (tanks near)',
+          de: 'Gruppe entfernt (Tanks nahe)',
           ko: '본대 멀리 (탱커 가까이)',
         },
       },
@@ -1999,6 +2145,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Middle',
+          de: 'Mitte ködern',
           ko: '중앙에 장판 유도',
         },
       },
@@ -2166,6 +2313,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Line Charge',
+          de: 'Linien Ansturm',
           ko: '직선 쉐어',
         },
       },
@@ -2178,6 +2326,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait Middle',
+          de: 'Mitte ködern',
           ko: '중앙에 장판 유도',
         },
       },
