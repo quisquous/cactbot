@@ -368,7 +368,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Death Sentence',
       type: 'StartsUsing',
-      netRegex: { id: '26A9', source: 'Twintania', capture: false },
+      netRegex: { id: '26A9', source: 'Twintania' },
       response: Responses.tankBusterSwap(),
     },
     {
@@ -1504,7 +1504,10 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         if (!data.combatantData[0])
           return;
-        const naelDirOutput = positionTo8DirOutput(data.combatantData[0].PosX, data.combatantData[0].PosY);
+        const naelDirOutput = positionTo8DirOutput(
+          data.combatantData[0].PosX,
+          data.combatantData[0].PosY
+        );
         return output.naelPosition!({ dir: output[naelDirOutput]!() });
       },
       outputStrings: {
@@ -1828,7 +1831,10 @@ const triggerSet: TriggerSet<Data> = {
 
         if (!partyStartDir || !rotationPath)
           return;
-        return output.grandOctet!({ startDir: output[partyStartDir]!(), path: output[rotationPath]!() });
+        return output.grandOctet!({
+          startDir: output[partyStartDir]!(),
+          path: output[rotationPath]!()
+        });
       },
       outputStrings: {
         grandOctet: {
