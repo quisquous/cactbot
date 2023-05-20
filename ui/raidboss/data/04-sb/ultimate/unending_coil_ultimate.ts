@@ -1491,7 +1491,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '26E3', source: 'Bahamut Prime', capture: false },
       condition: (data) => data.trio === 'blackfire',
-      delaySeconds: 3.3,
+      delaySeconds: 3.5,
       promise: async (data) => {
         if (!data.trioSourceIds.nael)
           return;
