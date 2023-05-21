@@ -1,11 +1,14 @@
 import Conditions from '../../../../../resources/conditions';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
-  mainTank?: string;
+  flameTarget?: string;
+  tetherBuddy?: string;
+  infiniteElement?: 'fire' | 'ice';
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -17,19 +20,11 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZurvanEX Metal Cutter',
       regex: /Metal Cutter/,
       beforeSeconds: 4,
-      suppressSeconds: 5,
+      suppressSeconds: 10,
       response: Responses.tankCleave(),
     }
   ],
   triggers: [
-    {
-      id: 'ZurvanEX Main Tank',
-      type: 'Ability',
-      netRegex: { id: '368', source: 'Zurvan' },
-      // We make this conditional to avoid constant noise in the raid emulator.
-      condition: (data, matches) => data.mainTank !== matches.target,
-      run: (data, matches) => data.mainTank = matches.target,
-    },
     {
       id: 'ZurvanEX Wave Cannon Avoid',
       type: 'HeadMarker',
@@ -54,7 +49,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ZurvanEX Wave Cannon Stack',
       type: 'StartsUsing',
-      netRegex: { id: '1C712', source: 'Zurvan' },
+      netRegex: { id: '1C72', source: 'Zurvan' },
       condition: Conditions.targetIsNotYou(), // The target is stunned during this mechanic
       response: Responses.stackMarkerOn(),
     },
@@ -82,19 +77,38 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZurvanEX Demonic Dive',
       type: 'HeadMarker',
       netRegex: { id: '003E' },
-      response: Responses.stackMarkerOn(),
+      delaySeconds: 0.5,
+      alertText: (data, matches, output) => {
+        if (data?.flameTarget === data.me)
+          return;
+        if (data.flameTarget === undefined)
+          return output.unknownStackTarget!();
+        return output.stackOn!({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        unknownStackTarget: Outputs.stackMarker,
+        stackOn: Outputs.stackOnPlayer,
+      }
     },
     {
-      id: 'ZurvanEX Cool Flame',
+      id: 'ZurvanEX Cool Flame Call',
       type: 'HeadMarker',
       netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.demonicSpread!(),
+      run: (data, matches) => data.flameTarget ??= matches.target,
       outputStrings: {
         demonicSpread: {
           en: 'Spread -- Don\'t stack!',
         }
-      }
+      },
+    },
+    {
+      id: 'ZurvanEX Cool Flame Cleanup',
+      type: 'HeadMarker',
+      netRegex: { id: '0017', capture: false },
+      delaySeconds: 10,
+      run: (data) => delete data.flameTarget,
     },
     {
       id: 'ZurvanEX Biting Halberd',
@@ -135,12 +149,13 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZurvanEX Tyrfing',
       type: 'StartsUsing',
       netRegex: { id: '1C6D', source: 'Zurvan' },
-      response: Responses.tankBuster(),
+      response: Responses.tankCleave(), // Tyrfing doesn't cleave, but the Fire III follow-up does
     },
     {
       id: 'ZurvanEX Southern Cross Stack',
       type: 'StartsUsing',
       netRegex: { id: '1C5C', source: 'Zurvan', capture: false },
+      suppressSeconds: 1,
       alarmText: (_data, _matches, output) => output.baitSouthernCross!(),
       outputStrings: {
         baitSouthernCross: {
@@ -154,6 +169,64 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '1C5D', source: 'Zurvan', capture: false },
       response: Responses.moveAway(),
     },
+    {
+      id: 'ZurvanEX Infinite Tethers',
+      type: 'Tether',
+      netRegex: { id: ['0005', '0008'] },
+      condition: (data, matches) => [matches.source, matches.target].includes(data.me),
+      preRun: (data, matches) => {
+        const buddy = data.me === matches.source ? matches.target : matches.source;
+        data.tetherBuddy ??= buddy;
+      },
+      alertText: (data, _matches, output) => output.tetherBuddy!({ buddy: data.tetherBuddy }),
+      outputStrings: {
+        tetherBuddy: {
+          en: 'Tethered with ${buddy}',
+        },
+      },
+    },
+    {
+      // 477 is Infinite Fire, 478 is Infinite Ice
+      id: 'ZurvanEX Infinite Debuffs',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['477', '478'] },
+      condition: Conditions.targetIsYou(),
+      preRun: (data, matches) => {
+        const element = matches.effectId === '477' ? 'fire' : 'ice';
+        data.infiniteElement ??= element;
+      },
+      delaySeconds: 2, // Don't overlap the tether buddy call
+      infoText: (data, _matches, output) => output.infiniteDebuff!({ element: data.infiniteElement }),
+      outputStrings: {
+        infiniteDebuff: {
+          en: '${element} on you',
+        },
+      },
+    },
+    {
+      id: 'ZurvanEX Broken Seal',
+      type: 'StartsUsing',
+      netRegex: { id: '1DC7', source: 'Zurvan', capture: false },
+      alertText: (data, _matches, output) => {
+        const element = data.infiniteElement;
+        const buddy = data.tetherBuddy;
+        return output.sealTowers!({ element: element, buddy: buddy });
+      },
+      outputStrings: {
+        sealTowers: {
+          en: '${element} towers with ${buddy}',
+        },
+      },
+    },
+    {
+      id: 'ZurvanEX Seal Cleanup',
+      type: 'Ability',
+      netRegex: { id: '1DC7', source: 'Zurvan', capture: false },
+      run: (data) => {
+        delete data.tetherBuddy;
+        delete data.infiniteElement;
+      }
+    }
   ],
 };
 
