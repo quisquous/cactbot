@@ -49,6 +49,8 @@ export interface Data extends RaidbossData {
   haloneSpearsThreeTargets: string[];
   haloneIceDartTargets: string[];
   menphinaLunarKissTargets: string[];
+  menphinaWaxingClaw?: 'right' | 'left';
+  menphinaDogId?: string;
 }
 
 const tetraMap: { [id: string]: HaloneTetra } = {
@@ -766,16 +768,80 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'Euphrosyne Menphina Midnight Frost Front Initial',
+      id: 'Euphrosyne Menphina Midnight Frost Back No Claw',
       type: 'StartsUsing',
-      netRegex: { id: '7BCC', source: 'Menphina', capture: false },
+      // 7BCC Midnight Frost = back cleave (7BCE damage) [no dog, first phase only]
+      // 7BD0 Midnight Frost = back cleave (7BD2 damage) [dog attached, during 4x Love's Light]
+      netRegex: { id: ['7BCC', '7BD0'], source: 'Menphina', capture: false },
       response: Responses.goFront(),
     },
     {
-      id: 'Euphrosyne Menphina Midnight Frost Back Initial',
+      id: 'Euphrosyne Menphina Midnight Frost Front No Claw',
       type: 'StartsUsing',
-      netRegex: { id: '7BCB', source: 'Menphina', capture: false },
+      // 7BCB Midnight Frost = front cleave (7BCD damage) [no dog, first phase only]
+      // 7BCF Midnight Frost = front cleave (7BD1 damage) [dog attached, during 4x Love's Light]
+      netRegex: { id: ['7BCB', '7BCF'], source: 'Menphina', capture: false },
       response: Responses.getBehind(),
+    },
+    {
+      id: 'Euphrosyne Menphina Waxing Claw',
+      type: 'StartsUsing',
+      netRegex: { id: ['7BE0', '7BE1'], source: 'Menphina' },
+      run: (data, matches) => {
+        // This is true regardless of whether the dog is attached or not.
+        if (matches.id === '7BE0')
+          data.menphinaWaxingClaw = 'right';
+        else if (matches.id === '7BE1')
+          data.menphinaWaxingClaw = 'left';
+        data.menphinaDogId = matches.sourceId;
+      },
+    },
+    {
+      id: 'Euphrosyne Menphina Waxing Claw Cleanup',
+      type: 'StartsUsing',
+      netRegex: { id: ['7BE0', '7BE1'], source: 'Menphina', capture: false },
+      delaySeconds: 10,
+      run: (data) => delete data.menphinaWaxingClaw,
+    },
+    {
+      id: 'Euphrosyne Menphina Midnight Frost Attached',
+      type: 'StartsUsing',
+      // 7BD7 Midnight Frost = front cleave (7BDD damage) [dog attached]
+      // 7BD8 Midnight Frost = front cleave (7BDD damage) [dog attached]
+      // 7BD9 Midnight Frost = back cleave (7BDE damage) [dog attached]
+      // 7BDA Midnight Frost = back cleave (7BDE damage) [dog attached]
+      // This ability seems possibly player targeted for initial facing, so use relative dirs.
+      netRegex: { id: ['7BD7', '7BD8', '7BD9', '7BDA'], source: 'Menphina' },
+      // These two abilities come out at the same time.  It seems that Waxing Claw always comes
+      // after, but trying not to make assumptions here.
+      delaySeconds: 0.3,
+      alertText: (data, matches, output) => {
+        // If claw is somehow undefined, don't print anything.
+        const claw = data.menphinaWaxingClaw;
+        const isFrontCleave = matches.id === '7BD7' || matches.id === '7BD8';
+        if (isFrontCleave && claw === 'right')
+          return output.backLeft!();
+        if (isFrontCleave && claw === 'left')
+          return output.backRight!();
+        if (!isFrontCleave && claw === 'right')
+          return output.frontLeft!();
+        if (!isFrontCleave && claw === 'left')
+          return output.frontRight!();
+      },
+      outputStrings: {
+        frontLeft: {
+          en: 'Front Left',
+        },
+        frontRight: {
+          en: 'Front Right',
+        },
+        backLeft: {
+          en: 'Back Left',
+        },
+        backRight: {
+          en: 'Back Right',
+        },
+      },
     },
     {
       id: 'Euphrosyne Menphina Lunar Kiss',
@@ -822,6 +888,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Euphrosyne Menphina Winter Halo',
       type: 'StartsUsing',
+      // 7BC6 = no dog (7BC7 damage)
+      // 7BDB = dog cleaving right attached (7BDF damage)
+      // 7BDC = ? (probably dog cleaving left attached?)
+      // 7BE8 = dog cleaving right unattached (7BEC damage)
+      // 7BE9 = dog cleaving left unattached (7BEC damage)
+      // 7F0E = ? (probably dog cleaving right unattached?)
+      // 7F0F = dog cleaving left unattached (7BEC damage)
       netRegex: {
         id: ['7BC6', '7BE8', '7BE9', '7F0E', '7F0F', '7BDB', '7BDC'],
         source: 'Menphina',
