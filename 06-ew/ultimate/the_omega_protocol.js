@@ -125,6 +125,9 @@ Options.Triggers.push({
       monitorPlayers: [],
       deltaTethers: {},
       trioDebuff: {},
+      cosmoArrowCount: 0,
+      cosmoArrowExaCount: 0,
+      waveCannonFlares: [],
     };
   },
   timelineTriggers: [
@@ -1854,6 +1857,114 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'TOP Cosmo Arrow In/Out Collect',
+      type: 'StartsUsing',
+      // Sometimes cast by Omega, sometimes by Alpha Omega
+      netRegex: { id: '7BA3', capture: false },
+      run: (data) => {
+        // This will overcount but get reset after
+        data.cosmoArrowCount = data.cosmoArrowCount + 1;
+      },
+    },
+    {
+      id: 'TOP Cosmo Arrow In/Out First',
+      type: 'StartsUsing',
+      // Sometimes cast by Omega, sometimes by Alpha Omega
+      netRegex: { id: '7BA3', capture: false },
+      delaySeconds: 0.1,
+      durationSeconds: 7,
+      suppressSeconds: 5,
+      infoText: (data, _matches, output) => {
+        data.cosmoArrowExaCount = 1;
+        if (data.cosmoArrowCount === 2) {
+          data.cosmoArrowIn = true;
+          return output.inFirst();
+        }
+        data.cosmoArrowIn = false;
+        return output.outFirst();
+      },
+      outputStrings: {
+        inFirst: {
+          en: 'In First',
+        },
+        outFirst: {
+          en: 'Out First',
+        },
+      },
+    },
+    {
+      id: 'TOP Cosmo Arrow In/Out Wait',
+      type: 'Ability',
+      // Sometimes cast by Omega, sometimes by Alpha Omega
+      netRegex: { id: '7BA3', capture: false },
+      suppressSeconds: 5,
+      infoText: (data, _matches, output) => {
+        if (data.cosmoArrowIn)
+          return output.inWait2();
+        return output.outWait2();
+      },
+      outputStrings: {
+        inWait2: {
+          en: 'In => Wait 2',
+        },
+        outWait2: {
+          en: 'Out => Wait 2',
+        },
+      },
+    },
+    {
+      id: 'TOP Cosmo Arrow Dodges',
+      type: 'Ability',
+      netRegex: { id: '7BA4', source: 'Alpha Omega', capture: false },
+      preRun: (data) => data.cosmoArrowExaCount = data.cosmoArrowExaCount + 1,
+      durationSeconds: (data) => {
+        if (data.cosmoArrowExaCount === 3 && data.cosmoArrowIn)
+          return 5;
+        return 3;
+      },
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        if (data.cosmoArrowIn) {
+          switch (data.cosmoArrowExaCount) {
+            case 3:
+              return output.outWait2();
+            case 5:
+              return output.SidesIn();
+            case 6:
+              return output.in();
+          }
+          // No callout
+          return;
+        }
+        switch (data.cosmoArrowExaCount) {
+          case 3:
+          case 5:
+            return output.in();
+          case 4:
+            return output.SidesOut();
+        }
+      },
+      run: (data) => {
+        if (data.cosmoArrowExaCount === 7) {
+          data.cosmoArrowExaCount = 0;
+          data.cosmoArrowCount = 0;
+        }
+      },
+      outputStrings: {
+        in: Outputs.in,
+        inWait2: {
+          en: 'In => Wait 2',
+        },
+        outWait2: {
+          en: 'Out => Wait 2',
+        },
+        SidesIn: Outputs.moveAway,
+        SidesOut: {
+          en: 'Sides + Out',
+        },
+      },
+    },
+    {
       id: 'TOP Cosmo Dive',
       type: 'StartsUsing',
       netRegex: { id: '7BA6', source: 'Alpha Omega', capture: false },
@@ -1888,6 +1999,151 @@ Options.Triggers.push({
           en: 'Bait Middle',
           de: 'Mitte ködern',
           ko: '중앙에 장판 유도',
+        },
+      },
+    },
+    {
+      id: 'TOP Unlimited Wave Cannon Collect',
+      // Invisible NPCs cast Wave Cannon from starting position of the Exaflares
+      // Data from ACT can be innacurate, use OverlayPlugin
+      // These casts start 1 second after each other
+      type: 'StartsUsing',
+      netRegex: { id: '7BAD', source: 'Alpha Omega' },
+      run: (data, matches) => {
+        // Cleanup collector if second set
+        if (data.waveCannonFlares.length === 4)
+          data.waveCannonFlares = [];
+        data.waveCannonFlares.push(parseInt(matches.sourceId, 16));
+      },
+    },
+    {
+      id: 'TOP Unlimited Wave Cannon Dodges',
+      // As low as 1.2s delay works consistently on low latency, but 1.5s works for more players
+      type: 'StartsUsing',
+      netRegex: { id: '7BAC', source: 'Alpha Omega', capture: false },
+      delaySeconds: 1.5,
+      durationSeconds: 10.6,
+      promise: async (data) => {
+        if (data.waveCannonFlares.length < 2) {
+          console.error(
+            `TOP Unlimited Wave Cannon Dodge: Expected at least 2 casts, Got: ${
+              JSON.stringify(data.waveCannonFlares.length)
+            }`,
+          );
+        }
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [...data.waveCannonFlares],
+        })).combatants;
+      },
+      infoText: (data, _matches, output) => {
+        if (data.combatantData.length < 2) {
+          console.error(
+            `TOP Unlimited Wave Cannon Dodge: Expected at least 2 Wave Cannons, Got: ${
+              JSON.stringify(data.combatantData)
+            }`,
+          );
+          return;
+        }
+        const firstWaveCannon = data.combatantData.filter((combatant) =>
+          combatant.ID === data.waveCannonFlares[0]
+        )[0];
+        const secondWaveCannon =
+          data.combatantData.filter((combatant) => combatant.ID === data.waveCannonFlares[1])[0];
+        if (firstWaveCannon === undefined || secondWaveCannon === undefined) {
+          console.error(
+            `TOP Unlimited Wave Cannon Dodge: Failed to retreive combatant Data: ${
+              JSON.stringify(data.combatantData)
+            }`,
+          );
+          return;
+        }
+        // Collect Exaflare position
+        const first = [firstWaveCannon.PosX - 100, firstWaveCannon.PosY - 100];
+        const second = [secondWaveCannon.PosX - 100, secondWaveCannon.PosY - 100];
+        if (
+          first[0] === undefined || first[1] === undefined ||
+          second[0] === undefined || second[1] === undefined
+        ) {
+          console.error(`TOP Unlimited Wave Cannon Dodge: missing coordinates`);
+          return;
+        }
+        // Compute atan2 of determinant and dot product to get rotational direction
+        // Note: X and Y are flipped due to Y axis being reversed
+        const getRotation = (x1, y1, x2, y2) => {
+          return Math.atan2(y1 * x2 - x1 * y2, y1 * y2 + x1 * x2);
+        };
+        // Get rotation of first and second exaflares
+        const rotation = getRotation(first[0], first[1], second[0], second[1]);
+        // Get location to dodge to by looking at first exaflare position
+        // Calculate combatant position in an all 8 cards/intercards
+        const matchedPositionTo8Dir = (combatant) => {
+          // Positions are moved up 100 and right 100
+          const y = combatant.PosY - 100;
+          const x = combatant.PosX - 100;
+          // During Unlimited Wave Cannon, 4 Wave Cannons spawn in order around the map
+          // N = (100, 76), E = (124, 100), S = (100, 124), W = (76, 100)
+          // NE = (116.97, 83.03), SE = (116.97, 116.97), SW = (83.03, 116.97), NW = (83.03, 83.03)
+          //
+          // Map NW = 0, N = 1, ..., W = 7
+          return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+        };
+        const dir = matchedPositionTo8Dir(firstWaveCannon);
+        const dirs = {
+          0: output.northwest(),
+          1: output.north(),
+          2: output.northeast(),
+          3: output.east(),
+          4: output.southeast(),
+          5: output.south(),
+          6: output.southwest(),
+          7: output.west(),
+        };
+        const startDir = rotation < 0 ? (dir - 1) % 8 : (dir + 1) % 8;
+        const start = dirs[startDir] ?? output.unknown();
+        if (rotation < 0) {
+          return output.directions({
+            start: start,
+            rotation: output.clockwise(),
+          });
+        }
+        if (rotation > 0) {
+          return output.directions({
+            start: start,
+            rotation: output.counterclock(),
+          });
+        }
+      },
+      outputStrings: {
+        directions: {
+          en: '${start} => ${rotation}',
+          de: '${start} => ${rotation}',
+          cn: '${start} => ${rotation}',
+          ko: '${start} => ${rotation}',
+        },
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        unknown: Outputs.unknown,
+        clockwise: {
+          en: 'Clockwise',
+          de: 'Im Uhrzeigersinn',
+          ja: '時計回り',
+          cn: '顺时针',
+          ko: '시계방향',
+        },
+        counterclock: {
+          en: 'Counterclockwise',
+          de: 'Gegen den Uhrzeigersinn',
+          ja: '反時計回り',
+          cn: '逆时针',
+          ko: '반시계방향',
         },
       },
     },
