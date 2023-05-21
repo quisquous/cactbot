@@ -1656,9 +1656,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '26E1', source: 'Bahamut Prime', capture: false },
       condition: (data) => data.trio === 'heavensfall',
       promise: async (data) => {
-        if (data.trioSourceIds.nael === undefined ||
+        if (
+          data.trioSourceIds.nael === undefined ||
           data.trioSourceIds.twin === undefined ||
-          data.trioSourceIds.bahamut === undefined)
+          data.trioSourceIds.bahamut === undefined
+        )
           return;
         data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
@@ -1781,8 +1783,10 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '26E7', source: 'Bahamut Prime', capture: false },
       delaySeconds: 4.8,
       promise: async (data) => {
-        if (data.trioSourceIds.nael === undefined ||
-          data.trioSourceIds.bahamut === undefined)
+        if (
+          data.trioSourceIds.nael === undefined ||
+          data.trioSourceIds.bahamut === undefined
+        )
           return;
         data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
