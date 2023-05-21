@@ -51,13 +51,13 @@ const resetTrio = (data: Data, trio: string) => {
   data.megaStack = [];
 };
 
-const dirs = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', 'dirNW'];
+const dirNumToName = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', 'dirNW'];
 const dirCardinals = ['dirN', 'dirE', 'dirS', 'dirW'];
 
 export const positionTo8DirOutput = (x: number, y: number) => {
   // N = 0, NE = 1, ..., NW = 7
   const i = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
-  return dirs[i] ?? 'unknown';
+  return dirNumToName[i] ?? 'unknown';
 };
 
 export const isClockwise = (start: number, compare: number) => {
@@ -252,6 +252,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UCU Plummet',
       regex: /Plummet/,
       beforeSeconds: 3,
+      suppressSeconds: 10,
       response: Responses.tankCleave(),
     },
     {
@@ -778,8 +779,10 @@ const triggerSet: TriggerSet<Data> = {
       },
       infoText: (data, _matches, output) => {
         if (!data.thunderOnYou) {
-          const thunderPlayers = data.thunderDebuffs.map((p) => data.ShortName(p)).join(', ');
-          return output.thunderOnOthers!({ players: thunderPlayers });
+          const thunderPlayers = data.thunderDebuffs.map((p) => data.ShortName(p));
+          const thunder1 = thunderPlayers[0] ?? '???';
+          const thunder2 = thunderPlayers[1] ?? '???';
+          return output.thunderOnOthers!({ player1: thunder1, player2: thunder2 });
         }
       },
       run: (data) => {
@@ -796,7 +799,7 @@ const triggerSet: TriggerSet<Data> = {
           ko: '나에게 번개',
         },
         thunderOnOthers: {
-          en: 'Thunder on ${players}',
+          en: 'Thunder on ${player1}, ${player2}',
         },
       },
     },
@@ -1104,7 +1107,7 @@ const triggerSet: TriggerSet<Data> = {
         if (!result)
           return;
         data.naelMarks = result.marks.map((i) => {
-          return dirs[i] ?? 'unknown';
+          return dirNumToName[i] ?? 'unknown';
         });
         data.wideThirdDive = result.wideThirdDive;
         data.unsafeThirdMark = result.unsafeThirdMark;
@@ -1446,7 +1449,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         dive: {
-          en: 'Diving from ${dir}',
+          en: '${dir} Dive',
         },
         dirN: Outputs.dirN,
         dirNE: Outputs.dirNE,
@@ -1493,7 +1496,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.trio === 'blackfire',
       delaySeconds: 3.5,
       promise: async (data) => {
-        if (!data.trioSourceIds.nael)
+        if (data.trioSourceIds.nael === undefined)
           return;
         data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
@@ -1502,7 +1505,7 @@ const triggerSet: TriggerSet<Data> = {
         })).combatants;
       },
       alertText: (data, _matches, output) => {
-        if (!data.combatantData[0])
+        if (data.combatantData[0] === undefined)
           return;
         const naelDirOutput = positionTo8DirOutput(
           data.combatantData[0].PosX,
@@ -1653,7 +1656,9 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '26E1', source: 'Bahamut Prime', capture: false },
       condition: (data) => data.trio === 'heavensfall',
       promise: async (data) => {
-        if (!data.trioSourceIds.nael || !data.trioSourceIds.twin || !data.trioSourceIds.bahamut)
+        if (data.trioSourceIds.nael === undefined ||
+          data.trioSourceIds.twin === undefined ||
+          data.trioSourceIds.bahamut === undefined)
           return;
         data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
@@ -1664,10 +1669,9 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         // Bosses line up adjacent to one another, but don't necessarily have discrete directional positions (based on 8Dir scale).
         // But we can calculate their position as an angle (relative to circular arena): 0 = N, 90 = E, 180 = S, 270 = W, etc.
-        // Set initial angles to -1 to avoid issues with nullish checks, as 0 is a valid angle and a nullish value.
-        let naelAngle = -1;
-        let bahamutAngle = -1;
-        let twinAngle = -1;
+        let naelAngle;
+        let bahamutAngle;
+        let twinAngle;
         let naelPos = 'unknown';
         for (const mob of data.combatantData) {
           const mobAngle = (Math.round(180 - 180 * Math.atan2(mob.PosX, mob.PosY) / Math.PI) % 360);
@@ -1679,6 +1683,8 @@ const triggerSet: TriggerSet<Data> = {
           else if (mob.ID === data.trioSourceIds.twin)
             twinAngle = mobAngle;
         }
+        if (naelAngle === undefined || bahamutAngle === undefined || twinAngle === undefined)
+          return;
         if (naelAngle >= 0 && bahamutAngle >= 0 && twinAngle >= 0) {
           if (isClockwise(naelAngle, bahamutAngle))
             naelPos = isClockwise(naelAngle, twinAngle) ? 'left' : 'middle';
@@ -1689,7 +1695,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         naelPosition: {
-          en: 'Nael is ${dir}',
+          en: '${dir} Nael',
         },
         left: Outputs.left,
         middle: Outputs.middle,
@@ -1775,7 +1781,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '26E7', source: 'Bahamut Prime', capture: false },
       delaySeconds: 4.8,
       promise: async (data) => {
-        if (!data.trioSourceIds.nael || !data.trioSourceIds.bahamut)
+        if (data.trioSourceIds.nael === undefined ||
+          data.trioSourceIds.bahamut === undefined)
           return;
         data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
@@ -1795,7 +1802,7 @@ const triggerSet: TriggerSet<Data> = {
             bahaDirIdx = mobDirIdx;
         }
 
-        if (!naelDirIdx || !bahaDirIdx)
+        if (naelDirIdx === undefined || bahaDirIdx === undefined)
           return;
 
         // If Bahamut spaws on a cardinal, the party goes opposite and rotates counter-clockwise; if intercardinal, clockwise.
@@ -1804,8 +1811,8 @@ const triggerSet: TriggerSet<Data> = {
         let rotationIdxModifier; // this is used to modify the party starting spot in directions[] if Nael is opposite Bahamut
         let rotationPath;
 
-        const bahaDirStr = dirs[bahaDirIdx];
-        if (!bahaDirStr)
+        const bahaDirStr = dirNumToName[bahaDirIdx];
+        if (bahaDirStr === undefined)
           return;
         if (dirCardinals.includes(bahaDirStr)) {
           rotationIdxModifier = -1;
@@ -1827,9 +1834,9 @@ const triggerSet: TriggerSet<Data> = {
             partyStartIdx = 0;
           }
         }
-        const partyStartDir = dirs[partyStartIdx] ?? 'unknown';
+        const partyStartDir = dirNumToName[partyStartIdx] ?? 'unknown';
 
-        if (!partyStartDir || !rotationPath)
+        if (partyStartDir === undefined || rotationPath === undefined)
           return;
         return output.grandOctet!({
           startDir: output[partyStartDir]!(),
