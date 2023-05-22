@@ -298,7 +298,7 @@ export const Directions = {
     north = 0,
   ): DirectionOutput => {
     const heading = parseFloat(combatant.heading);
-    const dirNum = hdgTo8DirNum(heading);
+    const dirNum = hdgTo8DirNum(heading, north);
     return outputFrom8DirNum(dirNum);
   },
 };
