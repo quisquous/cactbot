@@ -355,7 +355,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Derrière le pompon et le groupe',
           ja: 'たまの一番後ろへ',
           cn: '站在球和队友后',
-          ko: '구슬 맨 뒤로',
+          ko: '구슬 뒤로',
         },
         getBehindPuffs: {
           en: 'Behind puffs and party (East/West)',
@@ -363,7 +363,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Derrière les pompons et le groupe (Est/Ouest)',
           ja: 'たまの一番後ろへ (東西)',
           cn: '站在球和队友后 (东/西)',
-          ko: '구슬 맨 뒤로 (동/서)',
+          ko: '구슬 뒤로 (동/서)',
         },
         getBehindParty: {
           en: 'Behind party',
