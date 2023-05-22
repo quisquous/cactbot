@@ -1609,6 +1609,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '8015', source: 'Omega-M', capture: false },
       delaySeconds: 4,
+      durationSeconds: 5.5,
       suppressSeconds: 1,
       promise: async (data) => {
         data.combatantData = [];
@@ -1829,10 +1830,12 @@ const triggerSet: TriggerSet<Data> = {
         rotateRight: {
           en: 'Right',
           de: 'Rechts',
+          ko: '오른쪽',
         },
         rotateLeft: {
           en: 'Left',
           de: 'Links',
+          ko: '왼쪽',
         },
         // The two legs are split in case somebody wants a "go to M" or "go to F" style call.
         legsSword: {
@@ -1942,10 +1945,12 @@ const triggerSet: TriggerSet<Data> = {
         rotateRight: {
           en: 'Right',
           de: 'Rechts',
+          ko: '오른쪽',
         },
         rotateLeft: {
           en: 'Left',
           de: 'Links',
+          ko: '왼쪽',
         },
         legsSword: {
           en: '${rotate} => Close ${dir}',
@@ -2033,9 +2038,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         inFirst: {
           en: 'In First',
+          ko: '안 먼저',
         },
         outFirst: {
           en: 'Out First',
+          ko: '밖 먼저',
         },
       },
     },
@@ -2053,9 +2060,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         inWait2: {
           en: 'In => Wait 2',
+          ko: '안 => 대기 2번',
         },
         outWait2: {
           en: 'Out => Wait 2',
+          ko: '밖 => 대기 2번',
         },
       },
     },
@@ -2102,13 +2111,16 @@ const triggerSet: TriggerSet<Data> = {
         in: Outputs.in,
         inWait2: {
           en: 'In => Wait 2',
+          ko: '안 => 대기 2번',
         },
         outWait2: {
           en: 'Out => Wait 2',
+          ko: '밖 => 대기 2번',
         },
         SidesIn: Outputs.moveAway,
         SidesOut: {
           en: 'Sides + Out',
+          ko: '옆 + 밖으로',
         },
       },
     },
