@@ -220,21 +220,21 @@ export default class CombatantTracker {
   }
 
   getMainCombatantName(): string {
-    const defualtName = 'Unknown';
+    const defaultName = 'Unknown';
     if (this.mainCombatantID) {
       // This gets called when persisting to indexedDB, after it has been returned from the worker
       // As such, prototypes aren't applied to combatants
       // so we can't use the shortcut for `nextSignificantState(0)`
       const combatantObject = this.combatants[this.mainCombatantID];
       if (!combatantObject)
-        return defualtName;
+        return defaultName;
 
       const state = Object.values(combatantObject.states)[0];
       if (!state)
-        return defualtName;
+        return defaultName;
 
       return state.Name ?? 'Unknown';
     }
-    return defualtName;
+    return defaultName;
   }
 }
