@@ -1609,6 +1609,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '8015', source: 'Omega-M', capture: false },
       delaySeconds: 4,
+      durationSeconds: 5.5,
       suppressSeconds: 1,
       promise: async (data) => {
         data.combatantData = [];
