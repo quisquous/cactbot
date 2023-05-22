@@ -227,7 +227,7 @@ export const output8Dir: DirectionOutput[] = [
   'dirS',
   'dirSW',
   'dirW',
-  'dirNW'
+  'dirNW',
 ];
 export const outputCardinalDir: DirectionOutput[] = ['dirN', 'dirE', 'dirS', 'dirW'];
 export const outputIntercardDir: DirectionOutput[] = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
