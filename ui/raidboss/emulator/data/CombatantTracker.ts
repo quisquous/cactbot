@@ -233,7 +233,7 @@ export default class CombatantTracker {
       if (!state)
         return defaultName;
 
-      return state.Name ?? 'Unknown';
+      return state.Name ?? defaultName;
     }
     return defaultName;
   }
