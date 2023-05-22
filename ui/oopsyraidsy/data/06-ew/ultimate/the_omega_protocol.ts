@@ -1298,6 +1298,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Exaflare',
             de: 'Exaflare',
+            ko: '엑사플레어',
           },
         };
       },
