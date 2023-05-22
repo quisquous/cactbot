@@ -1,4 +1,8 @@
-import { OverlayHandlerRequests, OverlayHandlerResponseTypes, PluginCombatantState } from '../types/event';
+import {
+  OverlayHandlerRequests,
+  OverlayHandlerResponseTypes,
+  PluginCombatantState,
+} from '../types/event';
 import { Job, Role } from '../types/job';
 import { NetMatches } from '../types/net_matches';
 
@@ -215,7 +219,16 @@ export type DirectionLabel =
   | 'NNW'
   | '???';
 
-export const output8Dir: DirectionOutput[] = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', 'dirNW'];
+export const output8Dir: DirectionOutput[] = [
+  'dirN',
+  'dirNE',
+  'dirE',
+  'dirSE',
+  'dirS',
+  'dirSW',
+  'dirW',
+  'dirNW'
+];
 export const outputCardinalDir: DirectionOutput[] = ['dirN', 'dirE', 'dirS', 'dirW'];
 export const outputIntercardDir: DirectionOutput[] = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
 export const label8Dir: DirectionLabel[] = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
