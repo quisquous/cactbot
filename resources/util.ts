@@ -1,5 +1,6 @@
-import { OverlayHandlerRequests, OverlayHandlerResponseTypes } from '../types/event';
+import { OverlayHandlerRequests, OverlayHandlerResponseTypes, PluginCombatantState } from '../types/event';
 import { Job, Role } from '../types/job';
+import { NetMatches } from '../types/net_matches';
 
 import { callOverlayHandler } from './overlay_plugin_api';
 
@@ -174,6 +175,132 @@ const watchCombatant: WatchCombatantFunc = (params, func) => {
     return watchCombatantOverride(params, func);
 
   return defaultWatchCombatant(params, func);
+};
+
+export type DirectionOutput =
+  | 'dirN'
+  | 'dirNNE'
+  | 'dirNE'
+  | 'dirENE'
+  | 'dirE'
+  | 'dirESE'
+  | 'dirSE'
+  | 'dirSSE'
+  | 'dirS'
+  | 'dirSSW'
+  | 'dirSW'
+  | 'dirWSW'
+  | 'dirW'
+  | 'dirWNW'
+  | 'dirNW'
+  | 'dirNNW'
+  | 'unknown';
+
+export type DirectionLabel =
+  | 'N'
+  | 'NNE'
+  | 'NE'
+  | 'ENE'
+  | 'E'
+  | 'ESE'
+  | 'SE'
+  | 'SSE'
+  | 'S'
+  | 'SSW'
+  | 'SW'
+  | 'WSW'
+  | 'W'
+  | 'WNW'
+  | 'NW'
+  | 'NNW'
+  | '???';
+
+export const output8Dir: DirectionOutput[] = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', 'dirNW'];
+export const outputCardinalDir: DirectionOutput[] = ['dirN', 'dirE', 'dirS', 'dirW'];
+export const outputIntercardDir: DirectionOutput[] = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
+export const label8Dir: DirectionLabel[] = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+export const labelCardinalDir: DirectionLabel[] = ['N', 'E', 'S', 'W'];
+export const labelIntercardDir: DirectionLabel[] = ['NE', 'SE', 'SW', 'NW'];
+
+const xyTo8DirNum = (x: number, y: number, centerX = 0, centerY = 0, north = 0): number => {
+  // By default, N = 0, NE = 1, ..., NW = 7
+  // If north = 7, e.g., NE = 0, E = 1, ... N = 7.
+  x = x - centerX;
+  y = y - centerY;
+  return Math.round((north + 4) - 4 * Math.atan2(x, y) / Math.PI) % 8;
+};
+
+const hdgTo8DirNum = (heading: number, north = 0): number => {
+  // By default, N = 0, NE = 1, ..., NW = 7
+  // If northValue = 7, e.g., NE = 0, E = 1, ... N = 7.
+  return Math.round((north + 4) - 4 * heading / Math.PI) % 8;
+};
+
+const outputFrom8DirNum = (dirNum: number): DirectionOutput => {
+  return output8Dir[dirNum] ?? 'unknown';
+};
+
+export const Directions = {
+  xyTo8DirNum: xyTo8DirNum,
+  hdgTo8DirNum: hdgTo8DirNum,
+  outputFrom8DirNum: outputFrom8DirNum,
+  combatantStatePosTo8Dir: (
+    combatant: PluginCombatantState,
+    centerX = 0,
+    centerY = 0,
+    north = 0,
+  ): number => {
+    return xyTo8DirNum(combatant.PosX, combatant.PosY, centerX, centerY, north);
+  },
+  combatantStatePosTo8DirOutput: (
+    combatant: PluginCombatantState,
+    centerX = 0,
+    centerY = 0,
+    north = 0,
+  ): DirectionOutput => {
+    const dirNum = xyTo8DirNum(combatant.PosX, combatant.PosY, centerX, centerY, north);
+    return outputFrom8DirNum(dirNum);
+  },
+  combatantStateHdgTo8Dir: (combatant: PluginCombatantState, north = 0): number => {
+    return hdgTo8DirNum(combatant.Heading, north);
+  },
+  combatantStateHdgTo8DirOutput: (combatant: PluginCombatantState, north = 0): DirectionOutput => {
+    const dirNum = hdgTo8DirNum(combatant.Heading, north);
+    return outputFrom8DirNum(dirNum);
+  },
+  addedCombatantPosTo8Dir: (
+    combatant: NetMatches['AddedCombatant'],
+    centerX = 0,
+    centerY = 0,
+    north = 0,
+  ): number => {
+    const x = parseFloat(combatant.x);
+    const y = parseFloat(combatant.y);
+    return xyTo8DirNum(x, y, centerX, centerY, north);
+  },
+  addedCombatantPosTo8DirOutput: (
+    combatant: NetMatches['AddedCombatant'],
+    centerX = 0,
+    centerY = 0,
+    north = 0,
+  ): DirectionOutput => {
+    const x = parseFloat(combatant.x);
+    const y = parseFloat(combatant.y);
+    const dirNum = xyTo8DirNum(x, y, centerX, centerY, north);
+    return outputFrom8DirNum(dirNum);
+  },
+  addedCombatantHdgTo8Dir: (combatant: NetMatches['AddedCombatant'], north = 0): number => {
+    const heading = parseFloat(combatant.heading);
+    return hdgTo8DirNum(heading, north);
+  },
+  addedCombatantHdgTo8DirOutput: (
+    combatant: NetMatches['AddedCombatant'],
+    north = 0,
+  ): DirectionOutput => {
+    const heading = parseFloat(combatant.heading);
+    const dirNum = hdgTo8DirNum(heading);
+    return outputFrom8DirNum(dirNum);
+  },
 };
 
 const Util = {
