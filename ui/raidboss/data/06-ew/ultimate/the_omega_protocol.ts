@@ -728,9 +728,10 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { location: '0[1-8]', flags: '00020001' },
       // This comes out right with playstation debuffs.
       // Let players resolve Superliminal Steel/etc first.
-      delaySeconds: 3,
+      delaySeconds: 5,
       durationSeconds: 4,
-      alertText: (_data, matches, output) => {
+      suppressSeconds: 99999,
+      infoText: (_data, matches, output) => {
         const dir = {
           '01': output.dirN!(),
           '02': output.dirNE!(),
