@@ -358,11 +358,13 @@ hideall "--sync--"
 1357.0 "Cosmo Meteor Enrage" sync / 1[56]:[^:]*:Cosmo Meteor:7BB5:/
 
 # Tank 1 and Healer 1 Brilliant Dynamis Checks
+1361.7 "--sync--" sync / 14:[^:]*:Alpha Omega:7BB6:/ window 5,5
 1366.7 "Magic Number" sync / 1[56]:[^:]*:Alpha Omega:7BB6:/
 
 # Tank 2 and Healer 2 Brilliant Dynamis Checks
+1377.8 "--sync--" sync / 14:[^:]*:Alpha Omega:7BB6:/ window 5,5
 1382.8 "Magic Number" sync / 1[56]:[^:]*:Alpha Omega:7BB6:/
 
 1391.9 "--sync--" sync / 14:[^:]*:Alpha Omega:7BA0:/ window 50,50
-1407.9 "Run: ****mi* Enrage" sync / 1[56]:[^:]*:Alpha Omega:7BA0:/
-# Note: Cast says 16s per fflogs, but real cast seems to be about 32s
+# The cast bar and logs say "16 seconds" but it appears to be ~30s in practice.
+1421.9 "Run: ****mi* Enrage" sync / 1[56]:[^:]*:Alpha Omega:7BA0:/
