@@ -227,10 +227,10 @@ export type DirectionOutputIntercard =
   | 'dirNW'
   | 'unknown';
 
-export type DirectionOutput16Map = { [key in DirectionOutput16]: OutputStrings }
-export type DirectionOutput8Map = { [key in DirectionOutput8]: OutputStrings }
-export type DirectionOutputCardinalMap = { [key in DirectionOutputCardinal]: OutputStrings }
-export type DirectionOutputIntercardMap = { [key in DirectionOutputIntercard]: OutputStrings }
+export type DirectionOutput16Map = { [key in DirectionOutput16]: OutputStrings };
+export type DirectionOutput8Map = { [key in DirectionOutput8]: OutputStrings };
+export type DirectionOutputCardinalMap = { [key in DirectionOutputCardinal]: OutputStrings };
+export type DirectionOutputIntercardMap = { [key in DirectionOutputIntercard]: OutputStrings };
 
 export const output8Dir: DirectionOutput8[] = [
   'dirN',
