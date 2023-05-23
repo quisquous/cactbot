@@ -469,7 +469,6 @@ export const kComboBreakers = [
   kAbility.TotalEclipse,
   kAbility.Prominence,
   kAbility.ShieldBash,
-  kAbility.Atonement,
   // WAR
   kAbility.HeavySwing,
   kAbility.Maim,
@@ -539,14 +538,16 @@ export const kComboBreakers = [
   kAbility.Bladeshower,
 ];
 
-export const kComboBreakers620 = [
+export const kComboBreakers630 = [
   ...kComboBreakers,
-  kAbility.GoringBlade,
-  kAbility.Confiteor,
+  kAbility.Atonement,
+
 ];
 
-export const kComboBreakers610 = [
-  ...kComboBreakers,
+export const kComboBreakers620 = [
+  ...kComboBreakers630,
+  kAbility.GoringBlade,
+  kAbility.Confiteor,
 ];
 
 // [level][Sub][Div]

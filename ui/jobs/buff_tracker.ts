@@ -609,19 +609,19 @@ export class BuffTracker {
       },
     };
 
-    // Abilities that are different in 6.1 version.
-    const v610: { [s: string]: BuffInfo } = {};
-
     // Abilities that are different in 6.0 version.
     const v600: { [s: string]: BuffInfo } = {};
 
-    if (this.ffxivVersion < 620) {
-      for (const [key, entry] of Object.entries(v610))
-        this.buffInfo[key] = entry;
-    }
+    // Abilities that are different in 6.1 version.
+    const v610: { [s: string]: BuffInfo } = {};
 
     if (this.ffxivVersion < 610) {
       for (const [key, entry] of Object.entries(v600))
+        this.buffInfo[key] = entry;
+    }
+
+    if (this.ffxivVersion < 620) {
+      for (const [key, entry] of Object.entries(v610))
         this.buffInfo[key] = entry;
     }
 
