@@ -5,7 +5,9 @@ import {
 } from '../types/event';
 import { Job, Role } from '../types/job';
 import { NetMatches } from '../types/net_matches';
+import { OutputStrings } from '../types/trigger';
 
+import Outputs from './outputs';
 import { callOverlayHandler } from './overlay_plugin_api';
 
 // TODO: it'd be nice to not repeat job names, but at least Record enforces that all are set.
@@ -181,7 +183,7 @@ const watchCombatant: WatchCombatantFunc = (params, func) => {
   return defaultWatchCombatant(params, func);
 };
 
-export type DirectionOutput =
+export type DirectionOutput16 =
   | 'dirN'
   | 'dirNNE'
   | 'dirNE'
@@ -200,26 +202,37 @@ export type DirectionOutput =
   | 'dirNNW'
   | 'unknown';
 
-export type DirectionLabel =
-  | 'N'
-  | 'NNE'
-  | 'NE'
-  | 'ENE'
-  | 'E'
-  | 'ESE'
-  | 'SE'
-  | 'SSE'
-  | 'S'
-  | 'SSW'
-  | 'SW'
-  | 'WSW'
-  | 'W'
-  | 'WNW'
-  | 'NW'
-  | 'NNW'
-  | '???';
+export type DirectionOutput8 =
+  | 'dirN'
+  | 'dirNE'
+  | 'dirE'
+  | 'dirSE'
+  | 'dirS'
+  | 'dirSW'
+  | 'dirW'
+  | 'dirNW'
+  | 'unknown';
 
-export const output8Dir: DirectionOutput[] = [
+export type DirectionOutputCardinal =
+  | 'dirN'
+  | 'dirE'
+  | 'dirS'
+  | 'dirW'
+  | 'unknown';
+
+export type DirectionOutputIntercard =
+  | 'dirNE'
+  | 'dirSE'
+  | 'dirSW'
+  | 'dirNW'
+  | 'unknown';
+
+export type DirectionOutput16Map = { [key in DirectionOutput16]: OutputStrings }
+export type DirectionOutput8Map = { [key in DirectionOutput8]: OutputStrings }
+export type DirectionOutputCardinalMap = { [key in DirectionOutputCardinal]: OutputStrings }
+export type DirectionOutputIntercardMap = { [key in DirectionOutputIntercard]: OutputStrings }
+
+export const output8Dir: DirectionOutput8[] = [
   'dirN',
   'dirNE',
   'dirE',
@@ -229,89 +242,133 @@ export const output8Dir: DirectionOutput[] = [
   'dirW',
   'dirNW',
 ];
-export const outputCardinalDir: DirectionOutput[] = ['dirN', 'dirE', 'dirS', 'dirW'];
-export const outputIntercardDir: DirectionOutput[] = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
-export const label8Dir: DirectionLabel[] = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-export const labelCardinalDir: DirectionLabel[] = ['N', 'E', 'S', 'W'];
-export const labelIntercardDir: DirectionLabel[] = ['NE', 'SE', 'SW', 'NW'];
+export const outputCardinalDir: DirectionOutputCardinal[] = ['dirN', 'dirE', 'dirS', 'dirW'];
+export const outputIntercardDir: DirectionOutputIntercard[] = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
 
-const xyTo8DirNum = (x: number, y: number, centerX = 0, centerY = 0, north = 0): number => {
-  // By default, N = 0, NE = 1, ..., NW = 7
-  // If north = 7, e.g., NE = 0, E = 1, ... N = 7.
+const outputStrings16Dir: DirectionOutput16Map = {
+  dirN: Outputs.dirN,
+  dirNNE: Outputs.dirNNE,
+  dirNE: Outputs.dirNE,
+  dirENE: Outputs.dirENE,
+  dirE: Outputs.dirE,
+  dirESE: Outputs.dirESE,
+  dirSE: Outputs.dirSE,
+  dirSSE: Outputs.dirSSE,
+  dirS: Outputs.dirS,
+  dirSSW: Outputs.dirSSW,
+  dirSW: Outputs.dirSW,
+  dirWSW: Outputs.dirWSW,
+  dirW: Outputs.dirW,
+  dirWNW: Outputs.dirWNW,
+  dirNW: Outputs.dirNW,
+  dirNNW: Outputs.dirNNW,
+  unknown: Outputs.unknown,
+};
+
+const outputStrings8Dir: DirectionOutput8Map = {
+  dirN: Outputs.dirN,
+  dirNE: Outputs.dirNE,
+  dirE: Outputs.dirE,
+  dirSE: Outputs.dirSE,
+  dirS: Outputs.dirS,
+  dirSW: Outputs.dirSW,
+  dirW: Outputs.dirW,
+  dirNW: Outputs.dirNW,
+  unknown: Outputs.unknown,
+};
+
+const outputStringsCardinalDir: DirectionOutputCardinalMap = {
+  dirN: Outputs.dirN,
+  dirE: Outputs.dirE,
+  dirS: Outputs.dirS,
+  dirW: Outputs.dirW,
+  unknown: Outputs.unknown,
+};
+
+const outputStringsIntercardDir: DirectionOutputIntercardMap = {
+  dirNE: Outputs.dirNE,
+  dirSE: Outputs.dirSE,
+  dirSW: Outputs.dirSW,
+  dirNW: Outputs.dirNW,
+  unknown: Outputs.unknown,
+};
+
+// TODO: Accept 'north' as a function input and adjust output accordingly.
+// E.g. Math.round((north + 4) - 4 * Math.atan2(x, y) / Math.PI) % 8;
+// Will need to adjust the output arrays as well though.
+
+const xyTo8DirNum = (x: number, y: number, centerX: number, centerY: number): number => {
+  // N = 0, NE = 1, ..., NW = 7
   x = x - centerX;
   y = y - centerY;
-  return Math.round((north + 4) - 4 * Math.atan2(x, y) / Math.PI) % 8;
+  return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
-const hdgTo8DirNum = (heading: number, north = 0): number => {
-  // By default, N = 0, NE = 1, ..., NW = 7
-  // If northValue = 7, e.g., NE = 0, E = 1, ... N = 7.
-  return Math.round((north + 4) - 4 * heading / Math.PI) % 8;
+const hdgTo8DirNum = (heading: number): number => {
+  // N = 0, NE = 1, ..., NW = 7
+  return Math.round(4 - 4 * heading / Math.PI) % 8;
 };
 
-const outputFrom8DirNum = (dirNum: number): DirectionOutput => {
+const outputFrom8DirNum = (dirNum: number): DirectionOutput8 => {
   return output8Dir[dirNum] ?? 'unknown';
 };
 
 export const Directions = {
+  outputStrings16Dir: outputStrings16Dir,
+  outputStrings8Dir: outputStrings8Dir,
+  outputStringsCardinalDir: outputStringsCardinalDir,
+  outputStringsIntercardDir: outputStringsIntercardDir,
   xyTo8DirNum: xyTo8DirNum,
   hdgTo8DirNum: hdgTo8DirNum,
   outputFrom8DirNum: outputFrom8DirNum,
   combatantStatePosTo8Dir: (
     combatant: PluginCombatantState,
-    centerX = 0,
-    centerY = 0,
-    north = 0,
+    centerX: number,
+    centerY: number,
   ): number => {
-    return xyTo8DirNum(combatant.PosX, combatant.PosY, centerX, centerY, north);
+    return xyTo8DirNum(combatant.PosX, combatant.PosY, centerX, centerY);
   },
   combatantStatePosTo8DirOutput: (
     combatant: PluginCombatantState,
-    centerX = 0,
-    centerY = 0,
-    north = 0,
-  ): DirectionOutput => {
-    const dirNum = xyTo8DirNum(combatant.PosX, combatant.PosY, centerX, centerY, north);
+    centerX: number,
+    centerY: number,
+  ): DirectionOutput8 => {
+    const dirNum = xyTo8DirNum(combatant.PosX, combatant.PosY, centerX, centerY);
     return outputFrom8DirNum(dirNum);
   },
-  combatantStateHdgTo8Dir: (combatant: PluginCombatantState, north = 0): number => {
-    return hdgTo8DirNum(combatant.Heading, north);
+  combatantStateHdgTo8Dir: (combatant: PluginCombatantState): number => {
+    return hdgTo8DirNum(combatant.Heading);
   },
-  combatantStateHdgTo8DirOutput: (combatant: PluginCombatantState, north = 0): DirectionOutput => {
-    const dirNum = hdgTo8DirNum(combatant.Heading, north);
+  combatantStateHdgTo8DirOutput: (combatant: PluginCombatantState): DirectionOutput8 => {
+    const dirNum = hdgTo8DirNum(combatant.Heading);
     return outputFrom8DirNum(dirNum);
   },
   addedCombatantPosTo8Dir: (
     combatant: NetMatches['AddedCombatant'],
-    centerX = 0,
-    centerY = 0,
-    north = 0,
+    centerX: number,
+    centerY: number,
   ): number => {
     const x = parseFloat(combatant.x);
     const y = parseFloat(combatant.y);
-    return xyTo8DirNum(x, y, centerX, centerY, north);
+    return xyTo8DirNum(x, y, centerX, centerY);
   },
   addedCombatantPosTo8DirOutput: (
     combatant: NetMatches['AddedCombatant'],
-    centerX = 0,
-    centerY = 0,
-    north = 0,
-  ): DirectionOutput => {
+    centerX: number,
+    centerY: number,
+  ): DirectionOutput8 => {
     const x = parseFloat(combatant.x);
     const y = parseFloat(combatant.y);
-    const dirNum = xyTo8DirNum(x, y, centerX, centerY, north);
+    const dirNum = xyTo8DirNum(x, y, centerX, centerY);
     return outputFrom8DirNum(dirNum);
   },
-  addedCombatantHdgTo8Dir: (combatant: NetMatches['AddedCombatant'], north = 0): number => {
+  addedCombatantHdgTo8Dir: (combatant: NetMatches['AddedCombatant']): number => {
     const heading = parseFloat(combatant.heading);
-    return hdgTo8DirNum(heading, north);
+    return hdgTo8DirNum(heading);
   },
-  addedCombatantHdgTo8DirOutput: (
-    combatant: NetMatches['AddedCombatant'],
-    north = 0,
-  ): DirectionOutput => {
+  addedCombatantHdgTo8DirOutput: (combatant: NetMatches['AddedCombatant']): DirectionOutput8 => {
     const heading = parseFloat(combatant.heading);
-    const dirNum = hdgTo8DirNum(heading, north);
+    const dirNum = hdgTo8DirNum(heading);
     return outputFrom8DirNum(dirNum);
   },
 };
