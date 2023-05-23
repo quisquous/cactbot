@@ -541,7 +541,6 @@ export const kComboBreakers = [
 export const kComboBreakers630 = [
   ...kComboBreakers,
   kAbility.Atonement,
-
 ];
 
 export const kComboBreakers620 = [
