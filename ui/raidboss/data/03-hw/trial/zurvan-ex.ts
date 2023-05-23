@@ -22,7 +22,7 @@ const triggerSet: TriggerSet<Data> = {
       beforeSeconds: 4,
       suppressSeconds: 10,
       response: Responses.tankCleave(),
-    }
+    },
   ],
   triggers: [
     {
@@ -43,8 +43,8 @@ const triggerSet: TriggerSet<Data> = {
         },
         avoidWaveCannon: {
           en: 'Away from ${target} -- Wave Cannon',
-        }
-      }
+        },
+      },
     },
     {
       id: 'ZurvanEX Wave Cannon Stack',
@@ -88,7 +88,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         unknownStackTarget: Outputs.stackMarker,
         stackOn: Outputs.stackOnPlayer,
-      }
+      },
     },
     {
       id: 'ZurvanEX Cool Flame Call',
@@ -100,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         demonicSpread: {
           en: 'Spread -- Don\'t stack!',
-        }
+        },
       },
     },
     {
@@ -196,7 +196,8 @@ const triggerSet: TriggerSet<Data> = {
         data.infiniteElement ??= element;
       },
       delaySeconds: 2, // Don't overlap the tether buddy call
-      infoText: (data, _matches, output) => output.infiniteDebuff!({ element: data.infiniteElement }),
+      infoText: (data, _matches, output) =>
+        output.infiniteDebuff!({ element: data.infiniteElement }),
       outputStrings: {
         infiniteDebuff: {
           en: '${element} on you',
@@ -225,8 +226,8 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => {
         delete data.tetherBuddy;
         delete data.infiniteElement;
-      }
-    }
+      },
+    },
   ],
 };
 

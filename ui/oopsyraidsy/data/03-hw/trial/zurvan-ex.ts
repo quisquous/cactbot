@@ -2,7 +2,6 @@ import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
-
 const triggerSet: OopsyTriggerSet<OopsyData> = {
   zoneId: ZoneId.ContainmentBayZ1T9Extreme,
   damageWarn: {
