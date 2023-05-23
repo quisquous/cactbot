@@ -9,22 +9,32 @@ export interface Data extends RaidbossData {
   flameTarget?: string;
   tetherBuddy?: string;
   infiniteElement?: 'fire' | 'ice';
+  isPhaseOne: boolean;
 }
 
 const triggerSet: TriggerSet<Data> = {
   id: 'ContainmentBayZ1T9Extreme,',
   zoneId: ZoneId.ContainmentBayZ1T9Extreme,
   timelineFile: 'zurvan-ex.txt',
+  initData: () => {
+    return { isPhaseOne: true };
+  },
   timelineTriggers: [
     {
       id: 'ZurvanEX Metal Cutter',
       regex: /Metal Cutter/,
       beforeSeconds: 4,
-      suppressSeconds: 10,
+      suppressSeconds: (data) => data.isPhaseOne === true ? 10 : 16,
       response: Responses.tankCleave(),
     },
   ],
   triggers: [
+    {
+      id: 'ZurvanEX Phase Tracker',
+      type: 'Ability',
+      netRegex: { id: '1C50', source: 'Zurvan', capture: false },
+      run: (data) => data.isPhaseOne = false,
+    },
     {
       id: 'ZurvanEX Wave Cannon Avoid',
       type: 'HeadMarker',
