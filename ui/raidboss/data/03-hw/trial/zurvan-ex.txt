@@ -221,6 +221,6 @@ hideall "--sync--"
 
 # Enrage at 12 minutes
 1989.7 "--sync--" sync / 14:[^:]*:Zurvan:1E59:/ window 2000,100
-1998.8 "Flame Halberd" sync / 1[56]:[^:]*:Zurvan:1E59:/
+1998.8 "Flame Halberd Enrage" sync / 1[56]:[^:]*:Zurvan:1E59:/
 1998.8 "--untargetable--"
-2000.0 "Flame Halberd" sync / 1[56]:[^:]*:Zurvan:1E58:/
+2000.0 "--sync--" sync / 1[56]:[^:]*:Zurvan:1E58:/
