@@ -135,7 +135,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'GolbezEx Void Meteor',
       type: 'StartsUsing',
-      netRegex: { id: '84AD', source: 'Golbez', capture: false },
+      netRegex: { id: '84AD', source: 'Golbez', capture: true },
       response: Responses.tankBuster(),
     },
     {
