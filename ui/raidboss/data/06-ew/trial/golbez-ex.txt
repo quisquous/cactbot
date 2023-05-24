@@ -261,12 +261,11 @@ hideall "--sync--"
 
 # timeline rolling
 
-1284.1 "Terrastorm"
-1290.2 "Arctic Assault"
-1291.2 "Arctic Assault"
-1293.2 "Void Blizzard III"
-1293.2 "Terrastorm"
-1300.3 "Binding Cold"
+1284.1 "Dragon's Descent"
+1286.5 "Explosion"
+1287.2 "Double Meteor"
+1288.8 "Cauterize"
+1310.5 "Azdaja's Shadow"
 
 # Mini-phase 3, exaflares -> pairs -> role stacks or light parties -> in then spread
 
@@ -296,12 +295,11 @@ hideall "--sync--"
 
 # timeline rolling
 
-1484.1 "Terrastorm"
-1490.2 "Arctic Assault"
-1491.2 "Arctic Assault"
-1493.2 "Void Blizzard III"
-1493.2 "Terrastorm"
-1500.3 "Binding Cold"
+1484.1 "Dragon's Descent"
+1486.5 "Explosion"
+1487.2 "Double Meteor"
+1488.8 "Cauterize"
+1510.5 "Azdaja's Shadow"
 
 # knockback phase
 
