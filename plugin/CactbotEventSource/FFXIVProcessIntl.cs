@@ -638,17 +638,17 @@ namespace Cactbot {
 
     [StructLayout(LayoutKind.Explicit)]
     public struct ScholarJobMemory {
-      [FieldOffset(0x02)]
+      [FieldOffset(0x01)]
       public byte aetherflowStacks;
 
-      [FieldOffset(0x03)]
+      [FieldOffset(0x02)]
       public byte fairyGauge;
 
-      [FieldOffset(0x04)]
+      [FieldOffset(0x03)]
       public ushort fairyMilliseconds; // Seraph time left ms.
 
-      [FieldOffset(0x06)]
-      public byte fairyStatus; // Varies depending on which fairy was summoned, during Seraph/Dissipation: 6 - Eos, 7 - Selene, else 0.
+      [FieldOffset(0x05)]
+      public byte fairyStatus; // Seraph: 6, else 0.
     };
 
 
