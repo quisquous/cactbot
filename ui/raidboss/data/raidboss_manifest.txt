@@ -160,6 +160,8 @@
 03-hw/trial/sephirot-ex.txt
 03-hw/trial/sophia-ex.ts
 03-hw/trial/sophia-ex.txt
+03-hw/trial/zurvan-ex.ts
+03-hw/trial/zurvan-ex.txt
 04-sb/alliance/orbonne_monastery.ts
 04-sb/alliance/orbonne_monastery.txt
 04-sb/alliance/ridorana_lighthouse.ts
