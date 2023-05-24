@@ -6,7 +6,7 @@ export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
   id: 'TheVoidcastDaisExtreme',
-  zoneId: ZoneId.TheVoidcastDais,
+  zoneId: ZoneId.TheVoidcastDaisExtreme,
   timelineFile: 'golbez-ex.txt',
   triggers: [],
 };
