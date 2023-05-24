@@ -1,0 +1,6 @@
+### P9S: Anabaseios: The Ninth Circle (Savage)
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0

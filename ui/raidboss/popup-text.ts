@@ -42,22 +42,24 @@ import { TimelineLoader } from './timeline';
 import { TimelineReplacement } from './timeline_parser';
 
 const isRaidbossLooseTimelineTrigger = (
-  trigger: LooseTrigger,
+  trigger: ProcessedTrigger,
 ): trigger is ProcessedTimelineTrigger => {
   return 'isTimelineTrigger' in trigger;
 };
 
 export const isNetRegexTrigger = (
-  trigger?: LooseTrigger,
-): trigger is Partial<GeneralNetRegexTrigger<RaidbossData, 'None'>> => {
+  trigger?: ProcessedTrigger,
+): trigger is GeneralNetRegexTrigger<RaidbossData, 'None'> & ProcessedTrigger => {
   if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'netRegex' in trigger;
   return false;
 };
 
+type PartialExcept<Orig, K extends keyof Orig> = Partial<Omit<Orig, K>> & Pick<Orig, K>;
+type RegexProcessedTrigger = PartialExcept<RegexTrigger<RaidbossData> & ProcessedTrigger, 'regex'>;
 export const isRegexTrigger = (
-  trigger?: LooseTrigger,
-): trigger is Partial<RegexTrigger<RaidbossData>> => {
+  trigger?: ProcessedTrigger,
+): trigger is RegexProcessedTrigger => {
   if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'regex' in trigger;
   return false;
@@ -772,14 +774,8 @@ export class PopupText {
           trigger.filename = setFilename;
           const id = trigger.id ?? `${setFilename} trigger[${index}]`;
 
-          if (!isRegexTrigger(trigger) && !isNetRegexTrigger(trigger)) {
-            console.error(`Trigger ${id}: has no regex property specified`);
-            continue;
-          }
-
           this.ProcessTrigger(trigger);
-
-          let found = false;
+          orderedTriggers.push(trigger);
 
           const triggerObject: { [key: string]: unknown } = trigger;
 
@@ -792,13 +788,9 @@ export class PopupText {
             const localeRegex = triggerObject[regexParserLang];
             if (localeRegex instanceof RegExp) {
               trigger.localRegex = Regexes.parse(localeRegex);
-              orderedTriggers.push(trigger);
-              found = true;
-            } else if (defaultRegex) {
+            } else {
               const trans = translateRegex(defaultRegex, this.parserLang, set.timelineReplace);
               trigger.localRegex = Regexes.parse(trans);
-              orderedTriggers.push(trigger);
-              found = true;
             }
           }
 
@@ -812,34 +804,30 @@ export class PopupText {
             if (localeNetRegex instanceof RegExp) {
               // localized regex don't need to handle net-regex auto build
               trigger.localNetRegex = Regexes.parse(localeNetRegex);
-              orderedTriggers.push(trigger);
-              found = true;
             } else if (defaultNetRegex !== undefined) {
               // simple netRegex trigger, need to build netRegex and translate
               if (defaultNetRegex instanceof RegExp) {
                 const trans = translateRegex(defaultNetRegex, this.parserLang, set.timelineReplace);
                 trigger.localNetRegex = Regexes.parse(trans);
-                orderedTriggers.push(trigger);
-                found = true;
+              } else if (trigger.type === undefined) {
+                console.error(`Trigger ${id}: without type property needs RegExp as netRegex`);
               } else {
-                if (trigger.type === undefined) {
-                  console.error(`Trigger ${id}: without type property need RegExp as netRegex`);
-                  continue;
-                }
-
                 const re = buildNetRegexForTrigger(
                   trigger.type,
                   translateRegexBuildParam(defaultNetRegex, this.parserLang, set.timelineReplace),
                 );
                 trigger.localNetRegex = Regexes.parse(re);
-                orderedTriggers.push(trigger);
-                found = true;
               }
             }
           }
 
-          if (!found) {
-            console.error(`Trigger ${id}: missing regex and netRegex`);
+          if (
+            trigger.localRegex === undefined && trigger.localNetRegex === undefined &&
+            !('disabled' in trigger)
+          ) {
+            // All triggers are added for consistency reasons in overriding/disabling, however
+            // show an error if for some reason we haven't been able to build a regex.
+            console.error(`Trigger ${id}: missing regex and netRegex; trigger will be ignored`);
           }
         }
       }
@@ -888,8 +876,8 @@ export class PopupText {
     const filterEnabled = (trigger: LooseTrigger) => !('disabled' in trigger && trigger.disabled);
     const allTriggers = orderedTriggers.asList().filter(filterEnabled);
 
-    this.triggers = allTriggers.filter(isRegexTrigger);
-    this.netTriggers = allTriggers.filter(isNetRegexTrigger);
+    this.triggers = allTriggers.filter((x) => x.localRegex !== undefined);
+    this.netTriggers = allTriggers.filter((x) => x.localNetRegex !== undefined);
     const timelineTriggers = allTriggers.filter(isRaidbossLooseTimelineTrigger);
 
     this.Reset();
@@ -1252,7 +1240,7 @@ export class PopupText {
     const delay = 'delaySeconds' in triggerHelper.trigger
       ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds)
       : 0;
-    if (delay === undefined || delay === null || delay <= 0 || typeof delay !== 'number')
+    if (delay === undefined || delay === null || typeof delay !== 'number' || delay <= 0)
       return;
 
     const triggerID = this.currentTriggerID++;

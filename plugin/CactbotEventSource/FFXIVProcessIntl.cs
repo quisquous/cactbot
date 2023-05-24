@@ -8,7 +8,7 @@ using RainbowMage.OverlayPlugin;
 
 namespace Cactbot {
   public class FFXIVProcessIntl : FFXIVProcess {
-    // Last updated for FFXIV 6.3
+    // Last updated for FFXIV 6.4
 
     [StructLayout(LayoutKind.Explicit)]
     public unsafe struct EntityMemory {
@@ -44,7 +44,7 @@ namespace Cactbot {
       [FieldOffset(0x1C4)]
       public CharacterDetails charDetails;
 
-      [FieldOffset(0x1AEB)]
+      [FieldOffset(0x1ED)]
       public byte shieldPercentage;
     }
 
@@ -72,10 +72,10 @@ namespace Cactbot {
       [FieldOffset(0x16)]
       public short max_cp;
 
-      [FieldOffset(0x1C)]
+      [FieldOffset(0x1E)]
       public EntityJob job;
 
-      [FieldOffset(0x1D)]
+      [FieldOffset(0x1F)]
       public byte level;
     }
     public FFXIVProcessIntl(ILogger logger) : base(logger) { }

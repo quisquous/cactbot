@@ -69,6 +69,7 @@ export const kAbility = {
   BladeofFaith: '6494',
   BladeofTruth: '6495',
   BladeOfValor: '6496',
+  Atonement: '404C',
   // WAR
   HeavySwing: '1F',
   Maim: '25',
@@ -537,14 +538,13 @@ export const kComboBreakers = [
   kAbility.Bladeshower,
 ];
 
-export const kComboBreakersCn = [
+export const kComboBreakers630 = [
   ...kComboBreakers,
-  kAbility.GoringBlade,
-  kAbility.Confiteor,
+  kAbility.Atonement,
 ];
 
-export const kComboBreakersKo = [
-  ...kComboBreakers,
+export const kComboBreakers620 = [
+  ...kComboBreakers630,
   kAbility.GoringBlade,
   kAbility.Confiteor,
 ];

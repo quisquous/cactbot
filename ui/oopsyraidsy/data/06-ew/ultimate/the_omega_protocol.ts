@@ -321,6 +321,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'TOP Swivel Cannon 2': '7B95', // left/right beetle haircut during Delta
     'TOP Rear Power Unit Rear Lasers 1': '7B8F', // initial Sigma rotating laser
     'TOP Rear Power Unit Rear Lasers 2': '7B90', // ongoing Sigma rotating laser
+    'TOP Diffuse Wave Cannon': '7B79', // front/back or side cleaves during Omega dodges
     'TOP Cosmo Arrow 1': '7BA3', // initial exasquare
     'TOP Cosmo Arrow 2': '7BA4', // ongoing exasquare
   },
@@ -1297,6 +1298,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           text: {
             en: 'Exaflare',
             de: 'Exaflare',
+            ko: '엑사플레어',
           },
         };
       },

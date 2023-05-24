@@ -3,11 +3,11 @@ import { EventEmitter } from 'eventemitter3';
 import {
   kComboActions,
   kComboBreakers,
-  kComboBreakersCn,
-  kComboBreakersKo,
+  kComboBreakers620,
+  kComboBreakers630,
   kComboDelay,
 } from './constants';
-import { FfxivRegion } from './jobs';
+import { FfxivVersion } from './jobs';
 import { Player } from './player';
 
 type StartMap = {
@@ -113,12 +113,12 @@ export class ComboTracker extends EventEmitter<{ combo: ComboCallback }> {
     this.StateTransition(id);
   }
 
-  static setup(ffxivRegion: FfxivRegion, player: Player): ComboTracker {
+  static setup(ffxivVersion: FfxivVersion, player: Player): ComboTracker {
     let breakers;
-    if (ffxivRegion === 'ko')
-      breakers = kComboBreakersKo;
-    else if (ffxivRegion === 'cn')
-      breakers = kComboBreakersCn;
+    if (ffxivVersion < 630)
+      breakers = kComboBreakers620;
+    else if (ffxivVersion < 640)
+      breakers = kComboBreakers630;
     else
       breakers = kComboBreakers;
 

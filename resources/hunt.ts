@@ -1285,7 +1285,7 @@ const data: HuntMap = {
       'cn': '俄菲翁尼厄斯',
       'de': 'Ophioneus',
       'en': 'Ophioneus',
-      'fr': 'Ophion',
+      'fr': 'Ophioneus',
       'ja': 'オピオネウス',
       'ko': '오피오네우스',
     },
@@ -1576,6 +1576,18 @@ const data: HuntMap = {
       'ko': '기계병정 슬립킨크스',
     },
     'rank': 'A',
+  },
+  'Sphatika': {
+    'id': '10618',
+    'name': {
+      'cn': '颇胝迦',
+      'de': 'Sphatika',
+      'en': 'Sphatika',
+      'fr': 'Sphatika',
+      'ja': 'スパティカ',
+      'ko': '스파티카',
+    },
+    'rank': 'S',
   },
   'Squonk': {
     'id': '4358',
@@ -2080,18 +2092,6 @@ const data: HuntMap = {
       'ko': '페탈로두스',
     },
     'rank': 'A',
-  },
-  'sphatika': {
-    'id': '10618',
-    'name': {
-      'cn': '颇胝迦',
-      'de': 'Sphatika',
-      'en': 'sphatika',
-      'fr': 'Sphatika',
-      'ja': 'スパティカ',
-      'ko': '스파티카',
-    },
-    'rank': 'S',
   },
   'stench blossom': {
     'id': '4373',
