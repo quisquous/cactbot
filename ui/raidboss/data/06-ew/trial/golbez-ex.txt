@@ -213,13 +213,13 @@ hideall "--sync--"
 1035.2 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
 1040.3 "Gale Sphere" sync / 1[56]:[^:]*:Golbez:844D:/
 1051.0 "--sync--" sync / 1[56]:[^:]*:Golbez:844E:/
-1053.3 "Void Tornado/Aero III" sync / 1[56]:[^:]*:Golbez:845[CD]:/
+1053.3 "Void Tornado/Void Aero III" sync / 1[56]:[^:]*:Golbez:845[CD]:/
 1053.5 "Gale Sphere 1" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 1056.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
 1057.0 "Gale Sphere 2" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 1060.4 "Gale Sphere 3" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 1063.8 "Gale Sphere 4" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-1065.0 "Void Aero III/Tornado" sync / 1[56]:[^:]*:Golbez:845[CD]:/
+1065.0 "Void Aero III/Void Tornado" sync / 1[56]:[^:]*:Golbez:845[CD]:/
 1069.1 "Phases of the Blade (cast)" sync / 1[56]:[^:]*:Golbez:86DB:/
 1071.0 "Phases of the Blade (front)" sync / 1[56]:[^:]*:Golbez:86DD:/
 1072.7 "Phases of the Blade (back)" sync / 1[56]:[^:]*:Golbez:86F2:/
@@ -247,7 +247,7 @@ hideall "--sync--"
 1230.4 "Abyssal Quasar" sync / 1[56]:[^:]*:Golbez:84AB:/
 1231.3 "Lingering Spark (cast)" sync / 1[56]:[^:]*:Golbez:8468:/
 1235.4 "Lingering Spark (explode)" sync / 1[56]:[^:]*:Golbez:846A:/
-1240.4 "Eventide Fall/Triad" sync / 1[56]:[^:]*:Golbez:848[05]:/
+1240.4 "Eventide Fall/Eventide Triad" sync / 1[56]:[^:]*:Golbez:848[05]:/
 
 1251.4 "Phases of the Shadow (cast)" sync / 1[56]:[^:]*:Golbez:86E7:/
 1253.2 "Rising Beacon (record)" sync / 1[56]:[^:]*:Shadow Dragon:848D:/
@@ -277,7 +277,7 @@ hideall "--sync--"
 1430.4 "Abyssal Quasar" sync / 1[56]:[^:]*:Golbez:84AB:/
 1431.3 "Lingering Spark (cast)" sync / 1[56]:[^:]*:Golbez:8468:/
 1435.4 "Lingering Spark (explode)" sync / 1[56]:[^:]*:Golbez:846A:/
-1240.4 "Eventide Fall/Triad" sync / 1[56]:[^:]*:Golbez:848[05]:/
+1240.4 "Eventide Fall/Eventide Triad" sync / 1[56]:[^:]*:Golbez:848[05]:/
 
 1451.4 "Phases of the Shadow (cast)" sync / 1[56]:[^:]*:Golbez:86E7:/
 1453.2 "Rising Ring (record)" sync / 1[56]:[^:]*:Shadow Dragon:848E:/
@@ -312,13 +312,13 @@ hideall "--sync--"
 1640.2 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
 1645.3 "Gale Sphere" sync / 1[56]:[^:]*:Golbez:844D:/
 1656.0 "--sync--" sync / 1[56]:[^:]*:Golbez:844E:/
-1658.3 "Void Tornado/Aero III" sync / 1[56]:[^:]*:Golbez:845[CD]:/
+1658.3 "Void Tornado/Void Aero III" sync / 1[56]:[^:]*:Golbez:845[CD]:/
 1658.5 "Gale Sphere 1" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 1661.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
 1662.0 "Gale Sphere 2" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 1665.4 "Gale Sphere 3" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 1668.8 "Gale Sphere 4" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-1670.0 "Void Aero III/Tornado" sync / 1[56]:[^:]*:Golbez:845[CD]:/
+1670.0 "Void Aero III/Void Tornado" sync / 1[56]:[^:]*:Golbez:845[CD]:/
 1674.1 "Phases of the Blade (cast)" sync / 1[56]:[^:]*:Golbez:86DB:/
 1676.0 "Phases of the Blade (front)" sync / 1[56]:[^:]*:Golbez:86DD:/
 1677.7 "Phases of the Blade (back)" sync / 1[56]:[^:]*:Golbez:86F2:/

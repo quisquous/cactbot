@@ -220,6 +220,16 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'en',
+      'replaceText': {
+        'Eventide Fall/Eventide Triad': 'Eventide Fall/Triad',
+        'Void Tornado/Void Aero III': 'Void Tornado/Aero III',
+        'Void Aero III/Void Tornado': 'Void Aero III/Tornado',
+      },
+    },
+  ],
 };
 
 export default triggerSet;
