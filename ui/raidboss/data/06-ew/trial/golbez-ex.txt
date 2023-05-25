@@ -201,10 +201,10 @@ hideall "--sync--"
 
 1000.0 "Burning/Immolating Shade"
 1007.8 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
-1012.9 "Terrastorm" sync / 1[56]:[^:]*:Golbez:8464:/
+1012.9 "Terrastorm (cast)" sync / 1[56]:[^:]*:Golbez:8464:/
 1019.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
 1022.0 "Void Blizzard III" sync / 1[56]:[^:]*:Golbez:8462:/
-1022.0 "Terrastorm" sync / 1[56]:[^:]*:Golbez:8466:/
+1022.0 "Terrastorm (hit)" sync / 1[56]:[^:]*:Golbez:8466:/
 1029.1 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
 
 # gale sphere + light parties or pairs mechanic
@@ -245,10 +245,11 @@ hideall "--sync--"
 1218.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
 1224.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
 1230.4 "Abyssal Quasar" sync / 1[56]:[^:]*:Golbez:84AB:/
-1235.4 "Eventide Fall?" sync / 1[56]:[^:]*:Golbez:8485:/
-1240.4 "Eventide Triad?" sync / 1[56]:[^:]*:Golbez:8480:/
+1231.3 "Lingering Spark (cast)" sync / 1[56]:[^:]*:Golbez:8468:/
+1235.4 "Lingering Spark (explode)" sync / 1[56]:[^:]*:Golbez:846A:/
+1240.4 "Eventide Fall/Triad" sync / 1[56]:[^:]*:Golbez:848[05]:/
 
-1251.4 "Phases of the Shadow (cast)" sync / 1[56]:[^:]*:Golbez:86E7:/ window 15,15
+1251.4 "Phases of the Shadow (cast)" sync / 1[56]:[^:]*:Golbez:86E7:/
 1253.2 "Rising Beacon (record)" sync / 1[56]:[^:]*:Shadow Dragon:848D:/
 1253.2 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E9:/
 1254.9 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
@@ -274,8 +275,9 @@ hideall "--sync--"
 1418.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
 1424.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
 1430.4 "Abyssal Quasar" sync / 1[56]:[^:]*:Golbez:84AB:/
-1435.4 "Eventide Fall?" sync / 1[56]:[^:]*:Golbez:8485:/
-1440.4 "Eventide Triad?" sync / 1[56]:[^:]*:Golbez:8480:/
+1431.3 "Lingering Spark (cast)" sync / 1[56]:[^:]*:Golbez:8468:/
+1435.4 "Lingering Spark (explode)" sync / 1[56]:[^:]*:Golbez:846A:/
+1240.4 "Eventide Fall/Triad" sync / 1[56]:[^:]*:Golbez:848[05]:/
 
 1451.4 "Phases of the Shadow (cast)" sync / 1[56]:[^:]*:Golbez:86E7:/
 1453.2 "Rising Ring (record)" sync / 1[56]:[^:]*:Shadow Dragon:848E:/
