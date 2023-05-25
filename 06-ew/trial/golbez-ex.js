@@ -193,4 +193,14 @@ Options.Triggers.push({
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'en',
+      'replaceText': {
+        'Eventide Fall/Eventide Triad': 'Eventide Fall/Triad',
+        'Void Tornado/Void Aero III': 'Void Tornado/Aero III',
+        'Void Aero III/Void Tornado': 'Void Aero III/Tornado',
+      },
+    },
+  ],
 });
