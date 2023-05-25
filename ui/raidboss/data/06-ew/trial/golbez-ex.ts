@@ -167,7 +167,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.rolePositions!(),
       outputStrings: {
         rolePositions: {
-          en: 'role positions',
+          en: 'Role positions',
           de: 'Rollenposition',
           fr: 'Positions par rôle',
           ja: 'ロール特定位置へ',
