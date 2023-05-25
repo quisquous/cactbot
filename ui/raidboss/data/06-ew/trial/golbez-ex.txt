@@ -72,7 +72,8 @@ hideall "--sync--"
 222.5 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E9:/
 224.2 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
 225.4 "Rising Beacon (out)" sync / 1[56]:[^:]*:Golbez:86EC:/
-228.1 "Immolating Shade (light parties)" sync / 1[56]:[^:]*:Golbez:8496:/ jump 400.0
+228.1 "Immolating Shade (light parties)" sync / 1[56]:[^:]*:Golbez:8496:/
+228.7 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/ jump 400.0
 
 # repeated to keep the timeline rolling until jump
 
@@ -95,7 +96,8 @@ hideall "--sync--"
 322.5 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E9:/
 324.2 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
 325.4 "Rising Ring (under)" sync / 1[56]:[^:]*:Golbez:86ED:/
-328.1 "Burning Shade (spread)" sync / 1[56]:[^:]*:Golbez:8494:/ jump 400.0
+328.1 "Burning Shade (spread)" sync / 1[56]:[^:]*:Golbez:8494:/
+328.7 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/ jump 400.0
 
 # repeated to keep the timeline rolling until jump
 
