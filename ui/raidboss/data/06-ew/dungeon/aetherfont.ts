@@ -69,7 +69,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'aoe + Get Middle'
+          en: 'aoe + Get Middle',
         },
       },
     },
@@ -82,14 +82,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Aetherfont Arkas Lightning Claw',
       type: 'StartsUsing',
-      netRegex: { id: '8798', source: 'Lyngbakr' },
+      netRegex: { id: '8798', source: 'Arkas' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Aetherfont Arkas Electrify',
       type: 'Ability',
       // 8256 is the damage ability for Lightning Claw, which is followed by a centered aoe.
-      netRegex: { id: '8256', source: 'Lyngbakr', capture: false },
+      netRegex: { id: '8256', source: 'Arkas', capture: false },
       suppressSeconds: 5,
       response: Responses.getOut(),
     },
@@ -107,7 +107,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Stand Between Platforms'
+          en: 'Stand Between Platforms',
         },
       },
     },
@@ -119,10 +119,21 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.spread(),
     },
     {
+      id: 'Aetherfont Octomammoth Tidal Breath',
+      type: 'StartsUsing',
+      netRegex: { id: '824A', source: 'Octomammoth', capture: false },
+      response: Responses.getBehind(),
+    },
+    {
       id: 'Aetherfont Octomammoth Breathstroke',
       type: 'StartsUsing',
       netRegex: { id: '86F7', source: 'Octomammoth', capture: false },
-      response: Responses.getBehind(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Get Behind (Avoid Tentacles)',
+        },
+      },
     },
   ],
 };
