@@ -1,5 +1,5 @@
 ### The Voidcast Dais (Extreme)
-# -ii 84B5 84B7 849E 84A8 84AA 8481 86B2
+# -ii 84B5 84B7 849E 84A8 84AA 8481 86B2 8461
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -24,7 +24,6 @@ hideall "--sync--"
 71.2 "Gale Sphere 1" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 73.6 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
 74.6 "Gale Sphere 2" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-74.6 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:8461:/
 77.9 "Gale Sphere 3" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 81.5 "Gale Sphere 4" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 86.7 "Phases of the Blade (cast)" sync / 1[56]:[^:]*:Golbez:86DB:/
@@ -120,18 +119,18 @@ hideall "--sync--"
 
 # repeated for timeline rolling
 
-442.0 "Flames of Eventide"
-445.1 "Flames of Eventide"
-448.2 "Flames of Eventide"
+442.0 "Flames of Eventide 1"
+445.1 "Flames of Eventide 2"
+448.2 "Flames of Eventide 3"
 455.3 "Void Stardust (preview)"
 461.4 "Void Stardust"
 
 # Mini-phase 2, exaflares -> pairs -> role stacks or light parties -> out then light parties
 
 500.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/
-505.2 "Flames of Eventide" sync / 1[56]:[^:]*:Golbez:847B:/
-508.3 "Flames of Eventide" sync / 1[56]:[^:]*:Golbez:847B:/
-511.4 "Flames of Eventide" sync / 1[56]:[^:]*:Golbez:847B:/
+505.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
+508.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
+511.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
 513.4 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
 518.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
 524.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
@@ -165,9 +164,9 @@ hideall "--sync--"
 # Mini-phase 2, exaflares -> pairs -> role stacks or light parties -> in then spread
 
 700.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8479:/
-705.2 "Flames of Eventide" sync / 1[56]:[^:]*:Golbez:847B:/
-708.3 "Flames of Eventide" sync / 1[56]:[^:]*:Golbez:847B:/
-711.4 "Flames of Eventide" sync / 1[56]:[^:]*:Golbez:847B:/
+705.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
+708.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
+711.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
 713.4 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
 718.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
 724.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
@@ -204,7 +203,6 @@ hideall "--sync--"
 1007.8 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
 1012.9 "Terrastorm" sync / 1[56]:[^:]*:Golbez:8464:/
 1019.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
-1020.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:8461:/
 1022.0 "Void Blizzard III" sync / 1[56]:[^:]*:Golbez:8462:/
 1022.0 "Terrastorm" sync / 1[56]:[^:]*:Golbez:8466:/
 1029.1 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
@@ -219,7 +217,6 @@ hideall "--sync--"
 1053.5 "Gale Sphere 1" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 1056.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
 1057.0 "Gale Sphere 2" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-1057.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:8461:/
 1060.4 "Gale Sphere 3" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 1063.8 "Gale Sphere 4" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 1065.0 "Void Aero III/Tornado" sync / 1[56]:[^:]*:Golbez:845[CD]:/
@@ -232,18 +229,18 @@ hideall "--sync--"
 
 # repeated for timeline rolling
 
-1103.4 "Flames of Eventide"
-1106.5 "Flames of Eventide"
-1109.6 "Flames of Eventide"
+1103.4 "Flames of Eventide 1"
+1106.5 "Flames of Eventide 2"
+1109.6 "Flames of Eventide 3"
 1116.7 "Void Stardust (preview)"
 1122.8 "Void Stardust"
 
 # Mini-phase 3, exaflares -> pairs -> role stacks or light parties -> out then light parties
 
 1200.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/
-1205.2 "Flames of Eventide" sync / 1[56]:[^:]*:Golbez:847B:/
-1208.3 "Flames of Eventide" sync / 1[56]:[^:]*:Golbez:847B:/
-1211.4 "Flames of Eventide" sync / 1[56]:[^:]*:Golbez:847B:/
+1205.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
+1208.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
+1211.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
 1213.4 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
 1218.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
 1224.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
@@ -270,9 +267,9 @@ hideall "--sync--"
 # Mini-phase 3, exaflares -> pairs -> role stacks or light parties -> in then spread
 
 1400.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8479:/
-1405.2 "Flames of Eventide" sync / 1[56]:[^:]*:Golbez:847B:/
-1408.3 "Flames of Eventide" sync / 1[56]:[^:]*:Golbez:847B:/
-1411.4 "Flames of Eventide" sync / 1[56]:[^:]*:Golbez:847B:/
+1405.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
+1408.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
+1411.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
 1413.4 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
 1418.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
 1424.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
@@ -317,7 +314,6 @@ hideall "--sync--"
 1658.5 "Gale Sphere 1" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 1661.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
 1662.0 "Gale Sphere 2" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-1662.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:8461:/
 1665.4 "Gale Sphere 3" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 1668.8 "Gale Sphere 4" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
 1670.0 "Void Aero III/Tornado" sync / 1[56]:[^:]*:Golbez:845[CD]:/
