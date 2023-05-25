@@ -39,9 +39,9 @@ export const missedEffectBuffMap: readonly MissableEffect[] = [
     // PLD
     id: 'Divine Veil',
     type: 'mitigation',
-    // TODO: DD4 is 6.4, remove 2D7 once everything is on 6.4
+    // TODO: 552 is 6.4, remove 2D7 once everything is on 6.4
     // TODO: veil now applies to the paladin in ... 6.3?
-    effectId: ['2D7', 'DD4'],
+    effectId: ['2D7', '552'],
     ignoreSelf: true,
     collectSeconds: 2,
   },
