@@ -89,8 +89,9 @@ Options.Triggers.push({
     },
     {
       id: 'GolbezEx Lingering Spark Move',
-      type: 'Ability',
-      netRegex: { id: '8468', source: 'Golbez', capture: false },
+      type: 'StartsUsing',
+      netRegex: { id: '846A', source: 'Golbez', capture: false },
+      suppressSeconds: 3,
       response: Responses.moveAway(),
     },
     {
