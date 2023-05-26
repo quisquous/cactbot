@@ -223,7 +223,8 @@ const zoneReplace: ZoneReplace[] = [
     fileMap: {
       'ui/raidboss/data/03-hw/trial/zurvan-ex.ts': 'ui/raidboss/data/06-ew/trial/zurvan-un.ts',
       'ui/raidboss/data/03-hw/trial/zurvan-ex.txt': 'ui/raidboss/data/06-ew/trial/zurvan-un.txt',
-      'ui/oopsyraidsy/data/03-hw/trial/zurvan-ex.ts': 'ui/oopsyraidsy/data/03-hw/trial/zurvan-un.ts',
+      'ui/oopsyraidsy/data/03-hw/trial/zurvan-ex.ts':
+        'ui/oopsyraidsy/data/06-ew/trial/zurvan-un.ts',
     },
     prefix: { 'ZurvanEX': 'ZurvanUN' },
     other: {
