@@ -92,7 +92,7 @@ export class WHMComponent extends BaseComponent {
         this.diaBox.duration = 30;
         break;
       case kAbility.Assize:
-        if (this.ffxivRegion === 'intl')
+        if (this.ffxivVersion >= 630)
           this.assizeBox.duration = 40;
         else
           this.assizeBox.duration = 45;

@@ -322,6 +322,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Config Value: ${value}',
           de: 'Einstellungswert: ${value}',
           cn: '配置值: ${value}',
+          ko: '설정값: ${value}',
         },
       },
     },

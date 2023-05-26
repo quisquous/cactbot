@@ -11,9 +11,9 @@ hideall "--sync--"
 10.1 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
 20.0 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7855:/
 23.8 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
-30.9 "Choros Ixou 1 (sides)" sync / 1[56]:[^:]*:Hegemone:7858:/
-41.0 "Choros Ixou 2 (front/back)" sync / 1[56]:[^:]*:Hegemone:7857:/
-51.1 "Choros Ixou 3 (random)" sync / 1[56]:[^:]*:Hegemone:(7857|7858):/
+30.9 "Choros Ixou 1" sync / 1[56]:[^:]*:Hegemone:(7857|7858):/
+41.0 "Choros Ixou 2" sync / 1[56]:[^:]*:Hegemone:(7857|7858):/
+51.1 "Choros Ixou 3" sync / 1[56]:[^:]*:Hegemone:(7857|7858):/
 62.6 "Hemitheos's Dark IV" sync / 1[56]:[^:]*:Hegemone:784E:/ window 65,10
 74.3 "Transmission 1" sync / 1[56]:[^:]*:Hegemone:784F:/
 84.0 "Transmission 2" sync / 1[56]:[^:]*:Hegemone:784F:/
@@ -23,7 +23,7 @@ hideall "--sync--"
 121.8 "Aetheric Polyominoid" sync / 1[56]:[^:]*:Hegemone:7853:/
 121.8 "--sync--" sync / 1[56]:[^:]*:Hegemone:7854:/
 127.5 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
-134.7 "Choros Ixou (random)" sync / 1[56]:[^:]*:Hegemone:(7857|7858):/
+134.7 "Choros Ixou" sync / 1[56]:[^:]*:Hegemone:(7857|7858):/
 135.9 "Polyominous Dark IV" sync / 1[56]:[^:]*:Hegemone:7855:/
 141.3 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
 149.1 "Strophe Ixou x8" sync / 1[56]:[^:]*:Hegemone:7A11:/

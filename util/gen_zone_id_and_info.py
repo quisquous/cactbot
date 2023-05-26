@@ -32,6 +32,7 @@ synthetic_ids = {
     "TheWhorleaterUnreal": 972,
     "UltimasBaneUnreal": 1035,
     "ContainmentBayS1T7Unreal": 1090,
+    "ContainmentBayP1T6Unreal": 1121,
     "TheMaskedCarnivale": 796,
     # 6.2 revamp
     "Snowcloak61": 371,
@@ -48,6 +49,12 @@ synthetic_ids = {
     "TheAntitower62": 516,
     "TheGreatGubalLibrary62": 416,
     "Xelphatol62": 572,
+    # 6.4 revamp
+    "AlaMhigo63": 689,
+    "BardamsMettle63": 623,
+    "CastrumAbania63": 661,
+    "DomaCastle63": 660,
+    "TheSirensongSea63": 626,
 }
 
 synthetic_zone_info = {
@@ -128,6 +135,21 @@ synthetic_zone_info = {
         "offsetY": 0,
         "sizeFactor": 400,
         "weatherRate": 66,
+    },
+    1121: {
+        "contentType": 4,
+        "exVersion": 4,
+        "name": {
+            "cn": "索菲娅幻巧战",
+            "de": "Traumprüfung - Sophia",
+            "en": "Containment Bay P1T6 (Unreal)",
+            "fr": "Unité de contention P1P6 (irréel)",
+            "ja": "幻女神ソフィア討滅戦",
+        },
+        "offsetX": 0,
+        "offsetY": 0,
+        "sizeFactor": 400,
+        "weatherRate": 69,
     },
     # 6.2 revamp
     143: {
@@ -420,6 +442,10 @@ def generate_name_data(territory_map, cfc_map, place_name_map):
     cfc_names = set()
     collision_names = set()
 
+    synthetic_id_to_name = {}
+    for name, id in synthetic_ids.items():
+        synthetic_id_to_name[id] = name
+
     # Build territory name to cfc id map.  Collisions have value None.
     territory_to_cfc = {}
     for cfc_id, cfc in cfc_map.items():
@@ -497,14 +523,20 @@ def generate_name_data(territory_map, cfc_map, place_name_map):
 
         territory_to_cfc_map[territory_id] = cfc_id_for_name
 
-        map[name_key] = int(territory_id)
+        # If this matches with a synthetic id, add it under the modified name.
+        territory_id_num = int(territory_id)
+        if territory_id_num in synthetic_id_to_name:
+            map[synthetic_id_to_name[territory_id_num]] = territory_id_num
+        else:
+            map[name_key] = int(territory_id)
 
     for name, id in known_ids.items():
         if not name in map:
             raise Exception("Missing known item", name)
 
+    # These should have been added already above if we found them, but add any extra if not.
     for name, id in synthetic_ids.items():
-        if name in map:
+        if name in map and map[name] != id:
             raise Exception("Conflicting synthetic item", name)
         map[name] = id
 

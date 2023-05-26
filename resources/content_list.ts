@@ -113,6 +113,7 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.AlzadaalsLegacy,
   ZoneId.TheFellCourtOfTroia,
   ZoneId.LapisManalis,
+  ZoneId.TheAetherfont,
 
   // Guildhests
   ZoneId.BasicTrainingEnemyParties,
@@ -229,6 +230,7 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheFinalDay,
   ZoneId.StormsCrown,
   ZoneId.MountOrdeals,
+  ZoneId.TheVoidcastDais,
 
   // High-end Trials (Endwalker)
   ZoneId.TheMinstrelsBalladZodiarksFall,
@@ -236,9 +238,11 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheMinstrelsBalladEndsingersAria,
   ZoneId.StormsCrownExtreme,
   ZoneId.MountOrdealsExtreme,
+  ZoneId.TheVoidcastDaisExtreme,
   ZoneId.UltimasBaneUnreal,
   ZoneId.ContainmentBayS1T7Unreal,
   ZoneId.ContainmentBayP1T6Unreal,
+  ZoneId.ContainmentBayZ1T9Unreal,
 
   // Alliance Raids (A Realm Reborn)
   ZoneId.TheLabyrinthOfTheAncients,
@@ -378,6 +382,10 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.AbyssosTheSixthCircle,
   ZoneId.AbyssosTheSeventhCircle,
   ZoneId.AbyssosTheEighthCircle,
+  ZoneId.AnabaseiosTheNinthCircle,
+  ZoneId.AnabaseiosTheTenthCircle,
+  ZoneId.AnabaseiosTheEleventhCircle,
+  ZoneId.AnabaseiosTheTwelfthCircle,
 
   // Savage Raids (Endwalker)
   ZoneId.AsphodelosTheFirstCircleSavage,
@@ -388,6 +396,10 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.AbyssosTheSixthCircleSavage,
   ZoneId.AbyssosTheSeventhCircleSavage,
   ZoneId.AbyssosTheEighthCircleSavage,
+  ZoneId.AnabaseiosTheNinthCircleSavage,
+  ZoneId.AnabaseiosTheTenthCircleSavage,
+  ZoneId.AnabaseiosTheEleventhCircleSavage,
+  ZoneId.AnabaseiosTheTwelfthCircleSavage,
 
   // Variant & Criterion Dungeons
   ZoneId.TheSildihnSubterrane,

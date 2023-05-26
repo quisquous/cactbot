@@ -58,12 +58,12 @@ export default class RaidEmulatorOverlayApiHook {
         const idNum = parseInt(id, 16);
         // nextSignificantState is a bit inefficient but given that this isn't run every tick
         // we can afford to be a bit inefficient for readability's sake
-        const combatantState = combatant.nextSignificantState(timestamp).toPluginState(combatant);
+        const combatantState = combatant.nextSignificantState(timestamp).fullClone();
         if (!hasIds && !hasNames)
           combatants.push(combatantState);
         else if (hasIds && ids.includes(idNum))
           combatants.push(combatantState);
-        else if (hasNames && names.includes(combatant.name))
+        else if (hasNames && names.includes(combatantState.Name ?? 'never'))
           combatants.push(combatantState);
       }
       res({
