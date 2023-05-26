@@ -15,7 +15,7 @@ hideall "--sync--"
 # -p 823A:111.3
 
 100.0 "--sync--" sync / 00:0839::The Landfast Floe will be sealed off/ window 100000,0
-116.3 "--sync--" sync / 14:[^:]*:Lyngbakr:823A:/ window 20,10
+106.3 "--sync--" sync / 14:[^:]*:Lyngbakr:823A:/ window 10,10
 111.3 "Upsweep" sync / 1[56]:[^:]*:Lyngbakr:823A:/
 121.7 "Tidal Breath" sync / 1[56]:[^:]*:Lyngbakr:8240:/
 131.8 "Body Slam" sync / 1[56]:[^:]*:Lyngbakr:8237:/
