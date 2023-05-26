@@ -39,7 +39,9 @@ export const missedEffectBuffMap: readonly MissableEffect[] = [
     // PLD
     id: 'Divine Veil',
     type: 'mitigation',
-    effectId: '2D7',
+    // TODO: 552 is 6.4, remove 2D7 once everything is on 6.4
+    // TODO: veil now applies to the paladin in ... 6.3?
+    effectId: ['2D7', '552'],
     ignoreSelf: true,
     collectSeconds: 2,
   },
@@ -118,8 +120,11 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
     // DNC
     id: 'Technical Finish',
     type: 'damage',
-    // 3F44 is the correct Quadruple Technical Finish, others are Dinky Technical Finish.
-    abilityId: ['3F41', '3F42', '3F43', '3F44'],
+    // 81C2 is the correct Quadruple Technical Finish, others are Dinky Technical Finish.
+    // TODO: pre-6.4, these were the abilityIds, but there's no backwards compat support here
+    // See: https://github.com/quisquous/cactbot/issues/5415
+    // abilityId: ['3F41', '3F42', '3F43', '3F44'],
+    abilityId: ['81BF', '81C0', '81C1', '81C2'],
   },
   {
     // DNC channeled shield
@@ -188,7 +193,8 @@ export const missedAbilityBuffMap: readonly MissableAbility[] = [
     // SMN
     id: 'Searing Light',
     type: 'damage',
-    abilityId: '64F2',
+    // TODO: 64C9 is 6.4, remove 64F2 once everything is on 6.4
+    abilityId: ['64F2', '64C9'],
   },
   {
     // RPR
