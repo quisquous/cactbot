@@ -61,7 +61,7 @@ hideall "--sync--"
 206.1 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:8579:/
 211.2 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:8579:/
 
-221.3 "Soar" sync / 1[56]:[^:]*:Zurvan:1E09:/ window 30,30
+221.3 "Soar" sync / 1[56]:[^:]*:Zurvan:857E:/ window 30,30
 221.4 "--untargetable--"
 230.4 "Flaming Halberd" sync / 1[56]:[^:]*:Zurvan:855D:/
 235.5 "Demonic Dive" sync / 1[56]:[^:]*:Zurvan:855E:/
@@ -74,7 +74,7 @@ hideall "--sync--"
 268.0 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:8579:/
 273.1 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:8579:/
 
-283.1 "Soar" sync / 1[56]:[^:]*:Zurvan:1E09:/ window 30,30
+283.1 "Soar" sync / 1[56]:[^:]*:Zurvan:857E:/ window 30,30
 283.2 "--untargetable--"
 292.2 "Flaming Halberd" sync / 1[56]:[^:]*:Zurvan:855D:/
 297.3 "Demonic Dive" sync / 1[56]:[^:]*:Zurvan:855E:/
@@ -86,7 +86,7 @@ hideall "--sync--"
 324.7 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:8579:/
 329.8 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:8579:/
 
-339.8 "Soar" sync / 1[56]:[^:]*:Zurvan:1E09:/ window 30,30 jump 221.3
+339.8 "Soar" sync / 1[56]:[^:]*:Zurvan:857E:/ window 30,30 jump 221.3
 339.8 "Twin Spirit"
 339.9 "--untargetable--"
 348.9 "Flaming Halberd"
@@ -158,7 +158,7 @@ hideall "--sync--"
 1133.2 "Broken Seal" sync / 1[56]:[^:]*:Zurvan:857D:/
 1147.9 "Biting Halberd/Ciclicle/Tail End" sync / 1[56]:[^:]*:Zurvan:(8562|8564|8563):/
 1154.0 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:8579:/
-1164.1 "Soar" sync / 1[56]:[^:]*:Zurvan:1E09:/ window 100,20
+1164.1 "Soar" sync / 1[56]:[^:]*:Zurvan:857E:/ window 100,20
 1164.2 "--untargetable--"
 1173.2 "Flaming Halberd" sync / 1[56]:[^:]*:Zurvan:855D:/
 1178.3 "Demonic Dive" sync / 1[56]:[^:]*:Zurvan:855E:/
@@ -186,7 +186,7 @@ hideall "--sync--"
 1313.4 "Broken Seal" sync / 1[56]:[^:]*:Zurvan:857D:/
 1328.6 "Biting Halberd/Ciclicle/Tail End" sync / 1[56]:[^:]*:Zurvan:(8562|8564|8563):/
 1334.8 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:8579:/
-1344.8 "Soar" sync / 1[56]:[^:]*:Zurvan:1E09:/ window 100,20
+1344.8 "Soar" sync / 1[56]:[^:]*:Zurvan:857E:/ window 100,20
 1344.9 "--untargetable--"
 1353.9 "Flaming Halberd" sync / 1[56]:[^:]*:Zurvan:855D:/
 1359.0 "Demonic Dive" sync / 1[56]:[^:]*:Zurvan:855E:/
@@ -217,7 +217,7 @@ hideall "--sync--"
 1496.3 "Broken Seal" sync / 1[56]:[^:]*:Zurvan:857D:/
 1511.5 "Biting Halberd/Ciclicle/Tail End" sync / 1[56]:[^:]*:Zurvan:(8562|8564|8563):/
 1517.7 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:8579:/
-1527.7 "Soar" sync / 1[56]:[^:]*:Zurvan:1E09:/
+1527.7 "Soar" sync / 1[56]:[^:]*:Zurvan:857E:/
 1527.8 "--untargetable--"
 
 

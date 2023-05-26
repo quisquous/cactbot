@@ -22,7 +22,7 @@ const triggerSet: OopsyTriggerSet<OopsyData> = {
     'ZurvanUN North Star 2': '859E', // Tower failure during Broken Seal, phase 5
   },
   damageFail: {
-    'ZurvanUN Meracydian Meteor': '1C63',
+    'ZurvanUN Meracydian Meteor': '856C',
   },
   gainsEffectWarn: {
     'ZurvanUN Frostbite': '11D', // Southern Cross puddles, phase 3 onward

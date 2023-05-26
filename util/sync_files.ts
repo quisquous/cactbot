@@ -268,6 +268,7 @@ const zoneReplace: ZoneReplace[] = [
       '1C72': '857B', // Wave Cannon (stack)
       '1C73': '857C', // Wave Cannon (avoid)
       '1DC7': '857D', // Broken Seal
+      '1E09': '857E', // Soar
       '1E31': '856A', // Hard Thrust (ignored)
       '1E32': '856B', // Berserk (ignored)
       '1E35': '856E', // Meracydian Fire
