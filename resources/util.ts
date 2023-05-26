@@ -377,7 +377,7 @@ export const Directions = {
   xyTo8DirOutput: (x: number, y: number, centerX: number, centerY: number): DirectionOutput8 => {
     const dirNum = xyTo8DirNum(x, y, centerX, centerY);
     return outputFrom8DirNum(dirNum);
-  }
+  },
 };
 
 const Util = {
