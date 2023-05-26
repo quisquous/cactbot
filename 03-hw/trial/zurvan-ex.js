@@ -36,9 +36,11 @@ Options.Triggers.push({
       outputStrings: {
         waveCannonTarget: {
           en: 'Wave Cannon on YOU',
+          de: 'Wellenkanone auf DIR',
         },
         avoidWaveCannon: {
           en: 'Away from ${target} -- Wave Cannon',
+          de: 'Weg von ${target} -- Wellenkanone',
         },
       },
     },
@@ -58,6 +60,7 @@ Options.Triggers.push({
       outputStrings: {
         demonClawYou: {
           en: 'Knockback from boss on YOU',
+          de: 'Rückstoß vom Boss auf DIR',
         },
       },
     },
@@ -96,6 +99,7 @@ Options.Triggers.push({
       outputStrings: {
         demonicSpread: {
           en: 'Spread -- Don\'t stack!',
+          de: 'Verteilen -- Nicht aufeinander!',
         },
       },
     },
@@ -132,6 +136,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Stay outside hitbox',
+          de: 'Auserhalb der Hitbox stehen',
         },
       },
     },
@@ -156,6 +161,7 @@ Options.Triggers.push({
       outputStrings: {
         baitSouthernCross: {
           en: 'Bait Ice Puddles',
+          de: 'Eisflächen ködern',
         },
       },
     },
@@ -178,6 +184,7 @@ Options.Triggers.push({
       outputStrings: {
         tetherBuddy: {
           en: 'Tethered with ${buddy}',
+          de: 'Mit ${buddy} verbunden',
         },
       },
     },
@@ -197,6 +204,7 @@ Options.Triggers.push({
       outputStrings: {
         infiniteDebuff: {
           en: '${element} on you',
+          de: '${element} auf dir',
         },
       },
     },
@@ -212,6 +220,7 @@ Options.Triggers.push({
       outputStrings: {
         sealTowers: {
           en: '${element} towers with ${buddy}',
+          de: '${element} Türme mit ${buddy}',
         },
       },
     },
@@ -222,6 +231,109 @@ Options.Triggers.push({
       run: (data) => {
         delete data.tetherBuddy;
         delete data.infiniteElement;
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Execrated Wile': 'verflucht(?:e|er|es|en) List',
+        'Zurvan': 'Zurvan',
+      },
+      'replaceText': {
+        '\\(circles\\)': '(Kreise)',
+        '\\(explosion\\)': '(Explosion)',
+        '\\(puddle\\)': '(Fläche)',
+        '\\(snapshot\\)': '(Speichern)',
+        '\\(avoid\\)': '(Vermeiden)',
+        '\\(stack\\)': '(Sammeln)',
+        'Ahura Mazda': 'Ahura Mazda',
+        'Biting Halberd': 'Beißende Hellebarde',
+        'Broken Seal': 'Endloses Siegel',
+        'Ciclicle': 'Cyclotit',
+        'Cool Flame': 'Kühle Flamme',
+        'Demonic Dive': 'Dämonenschwung',
+        'Fire III': 'Feuga',
+        'Flaming Halberd': 'Flammenhellebarde',
+        'Flare Star': 'Flare-Stern',
+        'Ice and Fire': 'Eis und Feuer',
+        'Infinite Fire': 'Endloses Feuer',
+        'Infinite Ice': 'Endloses Eis',
+        'Metal Cutter': 'Metallschneider',
+        'Sarva': 'Sarva',
+        'Soar': 'Auffliegen',
+        'Southern Cross': 'Kreuz des Südens',
+        'Tail End': 'Schweifspitze',
+        'The Demon\'s Claw': 'Klaue des Dämonen',
+        'Twin Spirit': 'Zwiegeist',
+        'Tyrfing': 'Tyrfing',
+        'Wave Cannon': 'Wellenkanone',
+        'the Purge': 'Läuterung',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Execrated Wile': 'ruse honnie',
+        'Zurvan': 'Zurvan',
+      },
+      'replaceText': {
+        'Ahura Mazda': 'Ahura Mazda',
+        'Biting Halberd': 'Hallebarde mordante',
+        'Broken Seal': 'Marque brisée',
+        'Ciclicle': 'Cyclictite',
+        'Cool Flame': 'Flamme froide',
+        'Demonic Dive': 'Plongeon du démon',
+        'Fire III': 'Méga Feu',
+        'Flaming Halberd': 'Hallebarde de flammes',
+        'Flare Star': 'Astre flamboyant',
+        'Ice and Fire': 'Glace et feu',
+        'Infinite Fire': 'Feu infini',
+        'Infinite Ice': 'Glace infinie',
+        'Metal Cutter': 'Métaillade',
+        'Sarva': 'Sarva',
+        'Soar': 'Ascension',
+        'Southern Cross': 'Croix du sud',
+        'Tail End': 'Pointe de queue',
+        'The Demon\'s Claw': 'Griffe du démon',
+        'Twin Spirit': 'Double spirituel',
+        'Tyrfing': 'Tyrfing',
+        'Wave Cannon': 'Canon plasma',
+        'the Purge': 'Purge',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Execrated Wile': 'テンパード・ワイル',
+        'Zurvan': 'ズルワーン',
+      },
+      'replaceText': {
+        'Ahura Mazda': 'アフラ・マズダー',
+        'Biting Halberd': 'バイティングハルバード',
+        'Broken Seal': '氷炎の紋',
+        'Ciclicle': 'シクリクル',
+        'Cool Flame': 'クールフレイム',
+        'Demonic Dive': 'デモンダイブ',
+        'Fire III': 'ファイガ',
+        'Flaming Halberd': 'フレイムハルバード',
+        'Flare Star': 'フレアスター',
+        'Ice and Fire': 'アイス・アンド・ファイア',
+        'Infinite Fire': '炎の刻印',
+        'Infinite Ice': '氷の刻印',
+        'Metal Cutter': 'メタルカッター',
+        'Sarva': '変異',
+        'Soar': '飛翔',
+        'Southern Cross': 'サザンクロス',
+        'Tail End': 'テイルエンド',
+        'The Demon\'s Claw': 'デモンクロー',
+        'Twin Spirit': 'ツインスピリット',
+        'Tyrfing': 'ティルフィング',
+        'Wave Cannon': '波動砲',
+        'the Purge': 'パージ',
       },
     },
   ],

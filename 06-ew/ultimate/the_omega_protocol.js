@@ -653,6 +653,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Eye ${dir}',
+          de: 'Auge ${dir}',
         },
         dirN: Outputs.dirN,
         dirNE: Outputs.dirNE,
@@ -1927,10 +1928,12 @@ Options.Triggers.push({
       outputStrings: {
         inFirst: {
           en: 'In First',
+          de: 'Zuerst rein',
           ko: '안 먼저',
         },
         outFirst: {
           en: 'Out First',
+          de: 'Zuerst raus',
           ko: '밖 먼저',
         },
       },
@@ -1949,10 +1952,12 @@ Options.Triggers.push({
       outputStrings: {
         inWait2: {
           en: 'In => Wait 2',
+          de: 'Rein => Warte 2',
           ko: '안 => 대기 2번',
         },
         outWait2: {
           en: 'Out => Wait 2',
+          de: 'Raus => Warte 2',
           ko: '밖 => 대기 2번',
         },
       },
@@ -1999,15 +2004,18 @@ Options.Triggers.push({
         in: Outputs.in,
         inWait2: {
           en: 'In => Wait 2',
+          de: 'Rein => Warte 2',
           ko: '안 => 대기 2번',
         },
         outWait2: {
           en: 'Out => Wait 2',
+          de: 'Raus => Warte 2',
           ko: '밖 => 대기 2번',
         },
         SidesIn: Outputs.moveAway,
         SidesOut: {
           en: 'Sides + Out',
+          de: 'Seien + Raus',
           ko: '옆 + 밖으로',
         },
       },
