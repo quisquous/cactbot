@@ -231,7 +231,7 @@ const zoneReplace: ZoneReplace[] = [
       'zurvan-ex.txt': 'zurvan-un.txt',
       '(Extreme)': '(Unreal)',
       ' Extreme': ' Unreal',
-      'Sarva': 'Eidos'
+      'Sarva': 'Eidos',
     },
     id: {
       '1E3F': '857F', // Metal Cutter
@@ -276,7 +276,7 @@ const zoneReplace: ZoneReplace[] = [
       '1E59': '8592', // Flame Halberd Enrage 2
       '1E64': '859D', // The South Star (ignored)
       '1E65': '859E', // The North Star (ignored)
-    }
+    },
   },
 ];
 
