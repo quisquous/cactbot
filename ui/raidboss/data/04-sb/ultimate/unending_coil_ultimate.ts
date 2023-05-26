@@ -3,7 +3,7 @@ import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
-import Util from '../../../../../resources/util';
+import Util, { Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
@@ -51,14 +51,8 @@ const resetTrio = (data: Data, trio: string) => {
   data.megaStack = [];
 };
 
-const dirNumToName = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', 'dirNW'];
-const dirCardinals = ['dirN', 'dirE', 'dirS', 'dirW'];
-
-export const positionTo8DirOutput = (x: number, y: number) => {
-  // N = 0, NE = 1, ..., NW = 7
-  const i = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
-  return dirNumToName[i] ?? 'unknown';
-};
+const centerX = 0;
+const centerY = 0;
 
 export const isClockwise = (start: number, compare: number) => {
   // assumes both start and compare are 0-360.
@@ -1095,8 +1089,7 @@ const triggerSet: TriggerSet<Data> = {
         const y = parseFloat(matches.y);
         // Positions are the 8 cardinals + numerical slop on a radius=24 circle.
         // N = (0, -24), E = (24, 0), S = (0, 24), W = (-24, 0)
-        // Map N = 0, NE = 1, ..., NW = 7
-        const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+        const dir = Directions.xyTo8DirNum(x, y, centerX, centerY);
 
         data.naelDragons[dir] = 1;
 
@@ -1107,7 +1100,7 @@ const triggerSet: TriggerSet<Data> = {
         if (!result)
           return;
         data.naelMarks = result.marks.map((i) => {
-          return dirNumToName[i] ?? 'unknown';
+          return Directions.output8Dir[i] ?? 'unknown';
         });
         data.wideThirdDive = result.wideThirdDive;
         data.unsafeThirdMark = result.unsafeThirdMark;
@@ -1157,15 +1150,7 @@ const triggerSet: TriggerSet<Data> = {
           cn: '标记: ${dive1}, ${dive2}, ${dive3} (大)',
           ko: '징: ${dive1}, ${dive2}, ${dive3} (넓음)',
         },
-        dirN: Outputs.dirN,
-        dirNE: Outputs.dirNE,
-        dirE: Outputs.dirE,
-        dirSE: Outputs.dirSE,
-        dirS: Outputs.dirS,
-        dirSW: Outputs.dirSW,
-        dirW: Outputs.dirW,
-        dirNW: Outputs.dirNW,
-        unknown: Outputs.unknown,
+        ...Directions.outputStrings8Dir,
       },
     },
     {
@@ -1176,7 +1161,7 @@ const triggerSet: TriggerSet<Data> = {
       alarmText: (data, matches, output) => {
         if (matches.target !== data.me)
           return;
-        const dir = data.naelMarks?.[data.naelDiveMarkerCount] ?? 'unknownDir';
+        const dir = data.naelMarks?.[data.naelDiveMarkerCount] ?? 'unknown';
         return output.text!({ dir: output[dir]!() });
       },
       outputStrings: {
@@ -1188,15 +1173,7 @@ const triggerSet: TriggerSet<Data> = {
           cn: '带着点名去${dir}',
           ko: '${dir}으로 이동',
         },
-        dirN: Outputs.dirN,
-        dirNE: Outputs.dirNE,
-        dirE: Outputs.dirE,
-        dirSE: Outputs.dirSE,
-        dirS: Outputs.dirS,
-        dirSW: Outputs.dirSW,
-        dirW: Outputs.dirW,
-        dirNW: Outputs.dirNW,
-        unknownDir: Outputs.unknown,
+        ...Directions.outputStrings8Dir,
       },
     },
     {
@@ -1444,22 +1421,16 @@ const triggerSet: TriggerSet<Data> = {
         // Bosses jump, and dive placement is locked once Bahamut starts casting.
         // Position data is always updated by now, so need to rely on combatant data from OP.
         // Bahamut will always be on an exact cardinal/intercardinal (w/Nael & Twin on either side)
-        const diveDir = positionTo8DirOutput(parseFloat(matches.x), parseFloat(matches.y));
+        const x = parseFloat(matches.x);
+        const y = parseFloat(matches.y);
+        const diveDir = Directions.xyTo8DirOutput(x, y, centerX, centerY);
         return output.dive!({ dir: output[diveDir]!() });
       },
       outputStrings: {
         dive: {
           en: '${dir} Dive',
         },
-        dirN: Outputs.dirN,
-        dirNE: Outputs.dirNE,
-        dirE: Outputs.dirE,
-        dirSE: Outputs.dirSE,
-        dirS: Outputs.dirS,
-        dirSW: Outputs.dirSW,
-        dirW: Outputs.dirW,
-        dirNW: Outputs.dirNW,
-        unknown: Outputs.unknown,
+        ...Directions.outputStrings8Dir,
       },
     },
     // Collect sourceIds for Nael, Twin & Bahamut when they dive during Quickmarch
@@ -1507,25 +1478,15 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         if (data.combatantData[0] === undefined)
           return;
-        const naelDirOutput = positionTo8DirOutput(
-          data.combatantData[0].PosX,
-          data.combatantData[0].PosY,
-        );
+        const nael = data.combatantData[0];
+        const naelDirOutput = Directions.combatantStatePosTo8DirOutput(nael, centerX, centerY);
         return output.naelPosition!({ dir: output[naelDirOutput]!() });
       },
       outputStrings: {
         naelPosition: {
           en: 'Nael is ${dir}',
         },
-        dirN: Outputs.dirN,
-        dirNE: Outputs.dirNE,
-        dirE: Outputs.dirE,
-        dirSE: Outputs.dirSE,
-        dirS: Outputs.dirS,
-        dirSW: Outputs.dirSW,
-        dirW: Outputs.dirW,
-        dirNW: Outputs.dirNW,
-        unknown: Outputs.unknown,
+        ...Directions.outputStrings8Dir,
       },
     },
     {
@@ -1656,13 +1617,13 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '26E1', source: 'Bahamut Prime', capture: false },
       condition: (data) => data.trio === 'heavensfall',
       promise: async (data) => {
+        data.combatantData = [];
         if (
           data.trioSourceIds.nael === undefined ||
           data.trioSourceIds.twin === undefined ||
           data.trioSourceIds.bahamut === undefined
         )
           return;
-        data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
           call: 'getCombatants',
           ids: [data.trioSourceIds.nael, data.trioSourceIds.bahamut, data.trioSourceIds.twin],
@@ -1783,12 +1744,12 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '26E7', source: 'Bahamut Prime', capture: false },
       delaySeconds: 4.8,
       promise: async (data) => {
+        data.combatantData = [];
         if (
           data.trioSourceIds.nael === undefined ||
           data.trioSourceIds.bahamut === undefined
         )
           return;
-        data.combatantData = [];
         data.combatantData = (await callOverlayHandler({
           call: 'getCombatants',
           ids: [data.trioSourceIds.nael, data.trioSourceIds.bahamut],
@@ -1799,7 +1760,7 @@ const triggerSet: TriggerSet<Data> = {
         let bahaDirIdx;
 
         for (const mob of data.combatantData) {
-          const mobDirIdx = Math.round(4 - 4 * Math.atan2(mob.PosX, mob.PosY) / Math.PI) % 8;
+          const mobDirIdx = Directions.combatantStatePosTo8Dir(mob, centerX, centerY);
           if (mob.ID === data.trioSourceIds.nael)
             naelDirIdx = mobDirIdx;
           else if (mob.ID === data.trioSourceIds.bahamut)
@@ -1815,10 +1776,11 @@ const triggerSet: TriggerSet<Data> = {
         let rotationIdxModifier; // this is used to modify the party starting spot in directions[] if Nael is opposite Bahamut
         let rotationPath;
 
-        const bahaDirStr = dirNumToName[bahaDirIdx];
-        if (bahaDirStr === undefined)
+        const bahaOutputStr = Directions.output8Dir[bahaDirIdx];
+        const cardinalDirs: string[] = Directions.outputCardinalDir;
+        if (bahaOutputStr === undefined)
           return;
-        if (dirCardinals.includes(bahaDirStr)) {
+        if (cardinalDirs.includes(bahaOutputStr)) {
           rotationIdxModifier = -1;
           rotationPath = 'counterclockwise';
         } else {
@@ -1838,7 +1800,7 @@ const triggerSet: TriggerSet<Data> = {
             partyStartIdx = 0;
           }
         }
-        const partyStartDir = dirNumToName[partyStartIdx] ?? 'unknown';
+        const partyStartDir = Directions.output8Dir[partyStartIdx] ?? 'unknown';
 
         if (partyStartDir === undefined || rotationPath === undefined)
           return;
@@ -1853,15 +1815,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,
-        dirN: Outputs.dirN,
-        dirNE: Outputs.dirNE,
-        dirE: Outputs.dirE,
-        dirSE: Outputs.dirSE,
-        dirS: Outputs.dirS,
-        dirSW: Outputs.dirSW,
-        dirW: Outputs.dirW,
-        dirNW: Outputs.dirNW,
-        unknown: Outputs.unknown,
+        ...Directions.outputStrings8Dir,
       },
     },
 

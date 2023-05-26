@@ -227,12 +227,12 @@ export type DirectionOutputIntercard =
   | 'dirNW'
   | 'unknown';
 
-export type DirectionOutput16Map = { [key in DirectionOutput16]: OutputStrings };
-export type DirectionOutput8Map = { [key in DirectionOutput8]: OutputStrings };
-export type DirectionOutputCardinalMap = { [key in DirectionOutputCardinal]: OutputStrings };
-export type DirectionOutputIntercardMap = { [key in DirectionOutputIntercard]: OutputStrings };
+export type DirectionOutput16Map = { [outputString: string]: OutputStrings };
+export type DirectionOutput8Map = { [outputString: string]: OutputStrings };
+export type DirectionOutputCardinalMap = { [outputString: string]: OutputStrings };
+export type DirectionOutputIntercardMap = { [outputString: string]: OutputStrings };
 
-export const output8Dir: DirectionOutput8[] = [
+const output8Dir: DirectionOutput8[] = [
   'dirN',
   'dirNE',
   'dirE',
@@ -242,8 +242,8 @@ export const output8Dir: DirectionOutput8[] = [
   'dirW',
   'dirNW',
 ];
-export const outputCardinalDir: DirectionOutputCardinal[] = ['dirN', 'dirE', 'dirS', 'dirW'];
-export const outputIntercardDir: DirectionOutputIntercard[] = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
+const outputCardinalDir: DirectionOutputCardinal[] = ['dirN', 'dirE', 'dirS', 'dirW'];
+const outputIntercardDir: DirectionOutputIntercard[] = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
 
 const outputStrings16Dir: DirectionOutput16Map = {
   dirN: Outputs.dirN,
@@ -314,6 +314,9 @@ const outputFrom8DirNum = (dirNum: number): DirectionOutput8 => {
 };
 
 export const Directions = {
+  output8Dir: output8Dir,
+  outputCardinalDir: outputCardinalDir,
+  outputIntercardDir: outputIntercardDir,
   outputStrings16Dir: outputStrings16Dir,
   outputStrings8Dir: outputStrings8Dir,
   outputStringsCardinalDir: outputStringsCardinalDir,
@@ -371,6 +374,10 @@ export const Directions = {
     const dirNum = hdgTo8DirNum(heading);
     return outputFrom8DirNum(dirNum);
   },
+  xyTo8DirOutput: (x: number, y: number, centerX: number, centerY: number): DirectionOutput8 => {
+    const dirNum = xyTo8DirNum(x, y, centerX, centerY);
+    return outputFrom8DirNum(dirNum);
+  }
 };
 
 const Util = {
