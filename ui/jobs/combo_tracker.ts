@@ -3,8 +3,8 @@ import { EventEmitter } from 'eventemitter3';
 import {
   kComboActions,
   kComboBreakers,
-  kComboBreakers610,
   kComboBreakers620,
+  kComboBreakers630,
   kComboDelay,
 } from './constants';
 import { FfxivVersion } from './jobs';
@@ -115,10 +115,10 @@ export class ComboTracker extends EventEmitter<{ combo: ComboCallback }> {
 
   static setup(ffxivVersion: FfxivVersion, player: Player): ComboTracker {
     let breakers;
-    if (ffxivVersion < 620)
-      breakers = kComboBreakers610;
-    else if (ffxivVersion < 630)
+    if (ffxivVersion < 630)
       breakers = kComboBreakers620;
+    else if (ffxivVersion < 640)
+      breakers = kComboBreakers630;
     else
       breakers = kComboBreakers;
 

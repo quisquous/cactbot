@@ -27,8 +27,9 @@ import { Responses as _Responses } from './responses';
 const Responses = _Responses;
 import _Outputs from './outputs';
 const Outputs = _Outputs;
-import _Util from './util';
+import _Util, { Directions as _Directions } from './util';
 const Util = _Util;
+const Directions = _Directions;
 import _ZoneId from './zone_id';
 const ZoneId = _ZoneId;
 import _ZoneInfo from './zone_info';
@@ -43,6 +44,7 @@ console.assert(Regexes);
 console.assert(Responses);
 console.assert(Outputs);
 console.assert(Util);
+console.assert(Directions);
 console.assert(ZoneId);
 console.assert(ZoneInfo);
 

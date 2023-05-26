@@ -66,6 +66,7 @@ export interface Data extends RaidbossData {
   cosmoArrowCount: number;
   cosmoArrowIn?: boolean;
   cosmoArrowExaCount: number;
+  waveCannonFlares: number[];
 }
 
 const phaseReset = (data: Data) => {
@@ -209,6 +210,7 @@ const triggerSet: TriggerSet<Data> = {
       trioDebuff: {},
       cosmoArrowCount: 0,
       cosmoArrowExaCount: 0,
+      waveCannonFlares: [],
     };
   },
   timelineTriggers: [
@@ -718,6 +720,42 @@ const triggerSet: TriggerSet<Data> = {
           ko: '${glitch} X (+ ${player})',
         },
         unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'TOP Optical Unit Location',
+      type: 'MapEffect',
+      netRegex: { location: '0[1-8]', flags: '00020001' },
+      // This comes out right with playstation debuffs.
+      // Let players resolve Superliminal Steel/etc first.
+      delaySeconds: 5,
+      durationSeconds: 4,
+      suppressSeconds: 99999,
+      infoText: (_data, matches, output) => {
+        const dir = {
+          '01': output.dirN!(),
+          '02': output.dirNE!(),
+          '03': output.dirE!(),
+          '04': output.dirSE!(),
+          '05': output.dirS!(),
+          '06': output.dirSW!(),
+          '07': output.dirW!(),
+          '08': output.dirNW!(),
+        }[matches.location];
+        return output.text!({ dir: dir });
+      },
+      outputStrings: {
+        text: {
+          en: 'Eye ${dir}',
+        },
+        dirN: Outputs.dirN,
+        dirNE: Outputs.dirNE,
+        dirE: Outputs.dirE,
+        dirSE: Outputs.dirSE,
+        dirS: Outputs.dirS,
+        dirSW: Outputs.dirSW,
+        dirW: Outputs.dirW,
+        dirNW: Outputs.dirNW,
       },
     },
     {
@@ -1607,6 +1645,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '8015', source: 'Omega-M', capture: false },
       delaySeconds: 4,
+      durationSeconds: 5.5,
       suppressSeconds: 1,
       promise: async (data) => {
         data.combatantData = [];
@@ -1827,10 +1866,12 @@ const triggerSet: TriggerSet<Data> = {
         rotateRight: {
           en: 'Right',
           de: 'Rechts',
+          ko: '오른쪽',
         },
         rotateLeft: {
           en: 'Left',
           de: 'Links',
+          ko: '왼쪽',
         },
         // The two legs are split in case somebody wants a "go to M" or "go to F" style call.
         legsSword: {
@@ -1940,10 +1981,12 @@ const triggerSet: TriggerSet<Data> = {
         rotateRight: {
           en: 'Right',
           de: 'Rechts',
+          ko: '오른쪽',
         },
         rotateLeft: {
           en: 'Left',
           de: 'Links',
+          ko: '왼쪽',
         },
         legsSword: {
           en: '${rotate} => Close ${dir}',
@@ -2031,9 +2074,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         inFirst: {
           en: 'In First',
+          ko: '안 먼저',
         },
         outFirst: {
           en: 'Out First',
+          ko: '밖 먼저',
         },
       },
     },
@@ -2051,9 +2096,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         inWait2: {
           en: 'In => Wait 2',
+          ko: '안 => 대기 2번',
         },
         outWait2: {
           en: 'Out => Wait 2',
+          ko: '밖 => 대기 2번',
         },
       },
     },
@@ -2100,13 +2147,16 @@ const triggerSet: TriggerSet<Data> = {
         in: Outputs.in,
         inWait2: {
           en: 'In => Wait 2',
+          ko: '안 => 대기 2번',
         },
         outWait2: {
           en: 'Out => Wait 2',
+          ko: '밖 => 대기 2번',
         },
         SidesIn: Outputs.moveAway,
         SidesOut: {
           en: 'Sides + Out',
+          ko: '옆 + 밖으로',
         },
       },
     },
@@ -2145,6 +2195,160 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Bait Middle',
           de: 'Mitte ködern',
           ko: '중앙에 장판 유도',
+        },
+      },
+    },
+    {
+      id: 'TOP Unlimited Wave Cannon Collect',
+      // Invisible NPCs cast Wave Cannon from starting position of the Exaflares
+      // Data from ACT can be innacurate, use OverlayPlugin
+      // These casts start 1 second after each other
+      type: 'StartsUsing',
+      netRegex: { id: '7BAD', source: 'Alpha Omega' },
+      run: (data, matches) => {
+        // Cleanup collector if second set
+        if (data.waveCannonFlares.length === 4)
+          data.waveCannonFlares = [];
+        data.waveCannonFlares.push(parseInt(matches.sourceId, 16));
+      },
+    },
+    {
+      id: 'TOP Unlimited Wave Cannon Dodges',
+      // As low as 1.2s delay works consistently on low latency, but 1.5s works for more players
+      type: 'StartsUsing',
+      netRegex: { id: '7BAC', source: 'Alpha Omega', capture: false },
+      delaySeconds: 1.5,
+      durationSeconds: 10.6, // Time until 3rd puddle
+      promise: async (data) => {
+        if (data.waveCannonFlares.length < 2) {
+          console.error(
+            `TOP Unlimited Wave Cannon Dodge: Expected at least 2 casts, Got: ${
+              JSON.stringify(data.waveCannonFlares.length)
+            }`,
+          );
+        }
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [...data.waveCannonFlares],
+        })).combatants;
+      },
+      infoText: (data, _matches, output) => {
+        if (data.combatantData.length < 2) {
+          console.error(
+            `TOP Unlimited Wave Cannon Dodge: Expected at least 2 Wave Cannons, Got: ${
+              JSON.stringify(data.combatantData)
+            }`,
+          );
+          return;
+        }
+        const firstWaveCannon =
+          data.combatantData.filter((combatant) => combatant.ID === data.waveCannonFlares[0])[0];
+        const secondWaveCannon =
+          data.combatantData.filter((combatant) => combatant.ID === data.waveCannonFlares[1])[0];
+
+        if (firstWaveCannon === undefined || secondWaveCannon === undefined) {
+          console.error(
+            `TOP Unlimited Wave Cannon Dodge: Failed to retreive combatant Data: ${
+              JSON.stringify(data.combatantData)
+            }`,
+          );
+          return;
+        }
+
+        // Collect Exaflare position
+        const first = [firstWaveCannon.PosX - 100, firstWaveCannon.PosY - 100];
+        const second = [secondWaveCannon.PosX - 100, secondWaveCannon.PosY - 100];
+        if (
+          first[0] === undefined || first[1] === undefined ||
+          second[0] === undefined || second[1] === undefined
+        ) {
+          console.error(`TOP Unlimited Wave Cannon Dodge: missing coordinates`);
+          return;
+        }
+
+        // Compute atan2 of determinant and dot product to get rotational direction
+        // Note: X and Y are flipped due to Y axis being reversed
+        const getRotation = (x1: number, y1: number, x2: number, y2: number) => {
+          return Math.atan2(y1 * x2 - x1 * y2, y1 * y2 + x1 * x2);
+        };
+
+        // Get rotation of first and second exaflares
+        const rotation = getRotation(first[0], first[1], second[0], second[1]);
+
+        // Get location to dodge to by looking at first exaflare position
+        // Calculate combatant position in an all 8 cards/intercards
+        const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
+          // Positions are moved up 100 and right 100
+          const y = combatant.PosY - 100;
+          const x = combatant.PosX - 100;
+
+          // During Unlimited Wave Cannon, 4 Wave Cannons spawn in order around the map
+          // N = (100, 76), E = (124, 100), S = (100, 124), W = (76, 100)
+          // NE = (116.97, 83.03), SE = (116.97, 116.97), SW = (83.03, 116.97), NW = (83.03, 83.03)
+          //
+          // Map NW = 0, N = 1, ..., W = 7
+
+          return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+        };
+
+        const dir = matchedPositionTo8Dir(firstWaveCannon);
+        const dirs: { [dir: number]: string } = {
+          0: output.northwest!(),
+          1: output.north!(),
+          2: output.northeast!(),
+          3: output.east!(),
+          4: output.southeast!(),
+          5: output.south!(),
+          6: output.southwest!(),
+          7: output.west!(),
+        };
+
+        const startDir = rotation < 0 ? (dir - 1) % 8 : (dir + 1) % 8;
+        const start = dirs[startDir] ?? output.unknown!();
+
+        if (rotation < 0) {
+          return output.directions!({
+            start: start,
+            rotation: output.clockwise!(),
+          });
+        }
+        if (rotation > 0) {
+          return output.directions!({
+            start: start,
+            rotation: output.counterclock!(),
+          });
+        }
+      },
+      outputStrings: {
+        directions: {
+          en: '${start} => ${rotation}',
+          de: '${start} => ${rotation}',
+          cn: '${start} => ${rotation}',
+          ko: '${start} => ${rotation}',
+        },
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        unknown: Outputs.unknown,
+        clockwise: {
+          en: 'Clockwise',
+          de: 'Im Uhrzeigersinn',
+          ja: '時計回り',
+          cn: '顺时针',
+          ko: '시계방향',
+        },
+        counterclock: {
+          en: 'Counterclockwise',
+          de: 'Gegen den Uhrzeigersinn',
+          ja: '反時計回り',
+          cn: '逆时针',
+          ko: '반시계방향',
         },
       },
     },

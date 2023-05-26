@@ -93,6 +93,7 @@ const ignoredCombatants = PetData['en'].concat([
   'Crystal Exarch',
   'Mikoto',
   'Liturgic Bell',
+  'Zero',
 ]);
 
 const timelineParse = new LogUtilArgParse();

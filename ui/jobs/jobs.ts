@@ -21,10 +21,10 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   // (Battle system changes will be merged in major update for CN/KO)
   // (e.g. intl 6.38 job changes are merged in cn patch 6.3)
   const ffxivlanguageToVersion: Record<Lang, FfxivVersion> = {
-    'en': 638,
-    'de': 638,
-    'fr': 638,
-    'ja': 638,
+    'en': 640,
+    'de': 640,
+    'fr': 640,
+    'ja': 640,
     'cn': 630,
     'ko': 625,
   };
