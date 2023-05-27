@@ -227,11 +227,6 @@ export type DirectionOutputIntercard =
   | 'dirNW'
   | 'unknown';
 
-export type DirectionOutput16Map = { [outputString: string]: OutputStrings };
-export type DirectionOutput8Map = { [outputString: string]: OutputStrings };
-export type DirectionOutputCardinalMap = { [outputString: string]: OutputStrings };
-export type DirectionOutputIntercardMap = { [outputString: string]: OutputStrings };
-
 const output8Dir: DirectionOutput8[] = [
   'dirN',
   'dirNE',
@@ -245,7 +240,7 @@ const output8Dir: DirectionOutput8[] = [
 const outputCardinalDir: DirectionOutputCardinal[] = ['dirN', 'dirE', 'dirS', 'dirW'];
 const outputIntercardDir: DirectionOutputIntercard[] = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
 
-const outputStrings16Dir: DirectionOutput16Map = {
+const outputStrings16Dir: { [outputString: string]: OutputStrings } = {
   dirN: Outputs.dirN,
   dirNNE: Outputs.dirNNE,
   dirNE: Outputs.dirNE,
@@ -265,7 +260,7 @@ const outputStrings16Dir: DirectionOutput16Map = {
   unknown: Outputs.unknown,
 };
 
-const outputStrings8Dir: DirectionOutput8Map = {
+const outputStrings8Dir: { [outputString: string]: OutputStrings } = {
   dirN: Outputs.dirN,
   dirNE: Outputs.dirNE,
   dirE: Outputs.dirE,
@@ -277,7 +272,7 @@ const outputStrings8Dir: DirectionOutput8Map = {
   unknown: Outputs.unknown,
 };
 
-const outputStringsCardinalDir: DirectionOutputCardinalMap = {
+const outputStringsCardinalDir: { [outputString: string]: OutputStrings } = {
   dirN: Outputs.dirN,
   dirE: Outputs.dirE,
   dirS: Outputs.dirS,
@@ -285,7 +280,7 @@ const outputStringsCardinalDir: DirectionOutputCardinalMap = {
   unknown: Outputs.unknown,
 };
 
-const outputStringsIntercardDir: DirectionOutputIntercardMap = {
+const outputStringsIntercardDir: { [outputString: string]: OutputStrings } = {
   dirNE: Outputs.dirNE,
   dirSE: Outputs.dirSE,
   dirSW: Outputs.dirSW,
