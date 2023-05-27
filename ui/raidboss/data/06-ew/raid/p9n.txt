@@ -1,6 +1,8 @@
 ### P9N: Anabaseios: The Ninth Circle
 #
 # List of all ability IDs seen at the bottom of the file
+#
+# -ii 811C 8115 8127 8140
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -9,66 +11,45 @@ hideall "--sync--"
 
 0.0 "--sync--" sync /Engage!/ window 0,1
 7.0 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/ window 10,10
-10.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
 18.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:8116:/
 18.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:8117:/
-20.3 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
 
 
 
 # Mage Phase 1
 26.4 "Ravening (Mage)" sync / 1[56]:[^:]*:Kokytos:8118:/
-35.5 "--sync--" sync / 1[56]:[^:]*:Kokytos:811C:/
-38.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:811C:/
 41.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
 48.4 "Fire III" sync / 1[56]:[^:]*:Kokytos:814E:/
 51.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8122:/
-55.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:811C:/
 56.3 "Fire III" sync / 1[56]:[^:]*:Kokytos:8120:/
-58.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:811C:/
-62.0 "--sync--" sync / 1[56]:[^:]*:Kokytos:811C:/
 68.1 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:814F:/
 71.4 "--sync--" sync / 1[56]:[^:]*:Kokytos:8123:/
-74.3 "--sync--" sync / 1[56]:[^:]*:Kokytos:811C:/
 76.0 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:8121:/
 82.6 "Dualspell" sync / 1[56]:[^:]*:Kokytos:811D:/
 85.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:812[23]:/
 90.3 "Fire III" sync / 1[56]:[^:]*:Kokytos:(8120|811E):/
 90.3 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(811F|8121):/
-90.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:811C:/
 99.8 "Global Spell" sync / 1[56]:[^:]*:Kokytos:8141:/
 100.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8142:/
 103.0 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8124:/
-107.0 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
-110.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
 
 
 
 # Fighter phase 1
 115.2 "Ravening (Fighter)" sync / 1[56]:[^:]*:Kokytos:8119:/
-124.3 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
-127.4 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
-130.5 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
 136.6 "Archaic Rockbreaker" sync / 1[56]:[^:]*:Kokytos:8128:/
 138.2 "Shockwave" sync / 1[56]:[^:]*:Kokytos:8129:/
-140.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
-144.0 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
 145.1 "Archaic Rockbreaker 1" sync / 1[56]:[^:]*:Kokytos:812A:/
-147.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
 150.1 "Archaic Rockbreaker 2" sync / 1[56]:[^:]*:Kokytos:812A:/
 156.7 "Archaic Demolish" sync / 1[56]:[^:]*:Kokytos:812F:/
 157.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8130:/
 163.8 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:8116:/
 164.2 "--sync--" sync / 1[56]:[^:]*:Kokytos:8117:/
 170.9 "Ascendant Fist" sync / 1[56]:[^:]*:Kokytos:8131:/
-173.0 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
-176.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
 183.2 "Front Combination/Rear Combination" sync / 1[56]:[^:]*:Kokytos:814[8A]:/
 183.4 "Outside Roundhouse" sync / 1[56]:[^:]*:Kokytos:812C:/
 186.4 "Swinging Kick" sync / 1[56]:[^:]*:Kokytos:812[DE]:/
 190.5 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8125:/
-194.5 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
-197.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
 198.8 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
 
 
@@ -81,8 +62,6 @@ hideall "--sync--"
 229.0 "Beastly Bile" sync / 1[56]:[^:]*:Kokytos:813D:/
 231.0 "--sync--" sync / 1[56]:[^:]*:Kokytos:813E:/
 238.1 "Pulverizing Pounce" sync / 1[56]:[^:]*:Kokytos:813F:/
-240.2 "--sync--" sync / 1[56]:[^:]*:Kokytos:8140:/
-243.3 "--sync--" sync / 1[56]:[^:]*:Kokytos:8140:/
 253.4 "Gluttonous Rampage" sync / 1[56]:[^:]*:Kokytos:8139:/
 253.6 "Ravenous Bite 1" #sync / 1[56]:[^:]*:Kokytos:813A:/
 255.7 "Ravenous Bite 2" #sync / 1[56]:[^:]*:Kokytos:813A:/
@@ -97,15 +76,11 @@ hideall "--sync--"
 285.9 "Burst" sync / 1[56]:[^:]*:Comet:8136:/
 286.0 "Pulverizing Pounce" sync / 1[56]:[^:]*:Kokytos:813F:/
 288.8 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8126:/
-296.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
-299.2 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
 
 
 
 # Mage phase 2
 304.3 "Ravening (Mage)" sync / 1[56]:[^:]*:Kokytos:8118:/
-313.4 "--sync--" sync / 1[56]:[^:]*:Kokytos:811C:/
-316.5 "--sync--" sync / 1[56]:[^:]*:Kokytos:811C:/
 318.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
 325.2 "Iceflame Summoning" sync / 1[56]:[^:]*:Kokytos:86E1:/
 330.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:812[23]:/
@@ -115,54 +90,39 @@ hideall "--sync--"
 336.1 "Explosion" sync / 1[56]:[^:]*:Fire Sphere:86E[23]:/
 340.7 "Iceflame Summoning" sync / 1[56]:[^:]*:Kokytos:86E1:/
 345.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:812[23]:/
-347.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:811C:/
 351.6 "--sync--" sync / 1[56]:[^:]*:Ice Sphere:872[9A]:/
 351.6 "--sync--" sync / 1[56]:[^:]*:Fire Sphere:872[78]:/
 351.6 "Sphere Shatter" sync / 1[56]:[^:]*:Ice Sphere:86E[45]:/
 351.6 "Explosion" sync / 1[56]:[^:]*:Fire Sphere:86E[23]:/
 356.0 "Dualspell" sync / 1[56]:[^:]*:Kokytos:811D:/
 359.3 "--sync--" sync / 1[56]:[^:]*:Kokytos:812[23]:/
-361.2 "--sync--" sync / 1[56]:[^:]*:Kokytos:811C:/
 363.8 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(811F|8121):/
 363.8 "Fire III" sync / 1[56]:[^:]*:Kokytos:(811E|8120):/
-364.4 "--sync--" sync / 1[56]:[^:]*:Kokytos:811C:/
 370.5 "Global Spell" sync / 1[56]:[^:]*:Kokytos:8141:/
 371.4 "Global Spell" sync / 1[56]:[^:]*:Kokytos:8142:/
 372.7 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8124:/
-376.8 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
-379.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
 
 
 
 # Fighter phase 2
 385.0 "Ravening (Fighter)" sync / 1[56]:[^:]*:Kokytos:8119:/
-395.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
 403.2 "Archaic Rockbreaker" sync / 1[56]:[^:]*:Kokytos:8128:/
 404.8 "Shockwave" sync / 1[56]:[^:]*:Kokytos:8129:/
-407.5 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
-410.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
 411.7 "Archaic Rockbreaker 1" sync / 1[56]:[^:]*:Kokytos:812A:/
-413.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
 416.7 "Archaic Rockbreaker 2" sync / 1[56]:[^:]*:Kokytos:812A:/
 421.8 "Front Combination/Rear Combination" sync / 1[56]:[^:]*:Kokytos:814[79]:/
 422.0 "Inside Roundhouse" sync / 1[56]:[^:]*:Kokytos:812B:/
 425.0 "Swinging Kick" sync / 1[56]:[^:]*:Kokytos:812[DE]:/
 433.1 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:8116:/
 433.5 "--sync--" sync / 1[56]:[^:]*:Kokytos:8117:/
-435.2 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
-438.3 "--sync--" sync / 1[56]:[^:]*:Kokytos:8127:/
 445.4 "Ascendant Fist" sync / 1[56]:[^:]*:Kokytos:8131:/
 447.5 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8125:/
-451.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
-454.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
 457.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
 
 
 
 # Behemoth phase 2
 462.5 "Ravening (Behemoth)" sync / 1[56]:[^:]*:Kokytos:811A:/
-472.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:8140:/
-476.0 "--sync--" sync / 1[56]:[^:]*:Kokytos:8140:/
 486.1 "Comet" sync / 1[56]:[^:]*:Kokytos:8134:/
 487.1 "--sync--" sync / 1[56]:[^:]*:Comet:8135:/
 495.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:813B:/
@@ -173,15 +133,12 @@ hideall "--sync--"
 503.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:813E:/
 503.1 "Burst" sync / 1[56]:[^:]*:Comet:8136:/
 510.3 "Pulverizing Pounce" sync / 1[56]:[^:]*:Kokytos:813F:/
-513.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:8140:/
 523.7 "Gluttonous Rampage" sync / 1[56]:[^:]*:Kokytos:8139:/
 523.9 "Ravenous Bite 1" #sync / 1[56]:[^:]*:Kokytos:813A:/
 526.1 "Ravenous Bite 2" #sync / 1[56]:[^:]*:Kokytos:813A:/
 528.1 "Touchdown" sync / 1[56]:[^:]*:Kokytos:8137:/
 528.5 "--sync--" sync / 1[56]:[^:]*:Kokytos:8146:/
 531.3 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8126:/
-538.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
-541.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/
 
 
 
