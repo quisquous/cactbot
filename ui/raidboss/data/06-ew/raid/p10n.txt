@@ -3,13 +3,13 @@
 # -ii 825E 825F 8261 8263 8277 8279 825B 825C 8266 8269 8271 8273 8274 826B 826C 826D 826E 86B5 86B6 86B7 86B8
 #
 # Ignored Ids:
-# 825[EF] - 'Bury' action/damage from Pand\u00e6moniac Pillars
+# 825[EF] - 'Bury' action/damage from Pandaemoniac Pillars
 # 8261      'Imprisonment' extra
 # 8263      'Cannonspawn' extra
-# 8277      'Pand\u00e6monic Meldown' extra
+# 8277      'Pandaemonic Meldown' extra
 # 8279      'Soul Grasp' extra
 # 825[BC]   'Entangling Web' extra
-# 8266      'Pand\u00e6monic Ray' extra
+# 8266      'Pandaemonic Ray' extra
 # 8269      'Touchdown' extra
 # 8271      'Parted Plumes' blades
 # 827[34]   'Wicked Step' individual towers
