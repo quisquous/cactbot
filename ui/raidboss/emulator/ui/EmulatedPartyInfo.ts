@@ -192,8 +192,8 @@ export default class EmulatedPartyInfo extends EventBus {
       const b = enc.combatantTracker?.combatants[r];
       if (!a || !b)
         return 0;
-      const aJob = Util.jobEnumToJob(a.nextSignificantState(0).Job ?? 0);
-      const bJob = Util.jobEnumToJob(b.nextSignificantState(0).Job ?? 0);
+      const aJob = Util.jobEnumToJob(a.nextState(0).Job ?? 0);
+      const bJob = Util.jobEnumToJob(b.nextState(0).Job ?? 0);
       if (!isJobOrder(aJob) || !isJobOrder(bJob))
         return 0;
       return EmulatedPartyInfo.jobOrder.indexOf(aJob) - EmulatedPartyInfo.jobOrder.indexOf(bJob);
@@ -209,7 +209,7 @@ export default class EmulatedPartyInfo extends EventBus {
       const perspective = encounter.perspectives[id];
       if (!bar || !combatant || !perspective)
         throw new UnreachableCode();
-      const firstState = combatant.nextSignificantState(0);
+      const firstState = combatant.nextState(0);
       this.displayedParty[id] = obj;
       this.$partyInfo.append(obj.$rootElem);
       this.$triggerInfo.append(obj.$triggerElem);
@@ -255,7 +255,7 @@ export default class EmulatedPartyInfo extends EventBus {
       return;
 
     const combatant = this.emulator.currentEncounter?.encounter.combatantTracker?.combatants[id];
-    if (!combatant?.nextSignificantState(0).Job)
+    if (!combatant?.nextState(0).Job)
       return;
 
     const display = this.displayedParty[id];
@@ -329,7 +329,7 @@ export default class EmulatedPartyInfo extends EventBus {
     const combatant = encounter.encounter.combatantTracker?.combatants[id];
     if (!combatant)
       throw new UnreachableCode();
-    const firstState = combatant.nextSignificantState(0);
+    const firstState = combatant.nextState(0);
     ret.$rootElem.classList.add((Util.jobEnumToJob(firstState.Job ?? 0) || '').toLowerCase());
     this.tooltips.push(new Tooltip(ret.$rootElem, 'left', firstState.Name ?? ''));
     $name.innerHTML = firstState.Name ?? '';

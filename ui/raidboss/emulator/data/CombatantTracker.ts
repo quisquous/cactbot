@@ -66,13 +66,13 @@ export default class CombatantTracker {
     const petNames = PetNamesByLang[this.language];
     this.others = this.others.filter((ID) => {
       if (
-        this.combatants[ID]?.nextSignificantState(0).Job !== undefined &&
-        this.combatants[ID]?.nextSignificantState(0).Job !== 0 &&
+        this.combatants[ID]?.nextState(0).Job !== undefined &&
+        this.combatants[ID]?.nextState(0).Job !== 0 &&
         ID.startsWith('1')
       ) {
         this.partyMembers.push(ID);
         return false;
-      } else if (petNames.includes(this.combatants[ID]?.nextSignificantState(0).Name ?? '')) {
+      } else if (petNames.includes(this.combatants[ID]?.nextState(0).Name ?? '')) {
         this.pets.push(ID);
         return false;
       } else if ((eventTracker[ID] ?? 0) > 0) {
@@ -91,15 +91,16 @@ export default class CombatantTracker {
   addCombatantFromSourceLine(line: LineEventSource, extractedState: Partial<CombatantState>): void {
     const combatant = this.combatants[line.id] ?? this.initCombatant(line.id);
 
-    let initState: CombatantState | undefined = combatant.states[this.firstTimestamp];
+    let initState: Partial<CombatantState> | undefined = combatant.getTempState(
+      this.firstTimestamp,
+    );
 
-    if (!initState) {
-      combatant.states[this.firstTimestamp] = initState = new CombatantState(extractedState, false);
-    }
+    const newState = new CombatantState(extractedState, initState?.targetable ?? false);
 
-    combatant.states[this.firstTimestamp] =
-      initState =
-        new CombatantState({ ...extractedState, ...initState }, initState.targetable);
+    if (line.name !== undefined)
+      newState.setName(line.name);
+
+    initState = combatant.pushPartialState(this.firstTimestamp, newState);
 
     if (isLineEventJobLevel(line)) {
       initState.Job ??= Util.jobToJobEnum(line.job);
@@ -122,37 +123,22 @@ export default class CombatantTracker {
       if (line.ownerId !== undefined)
         initState.OwnerID = parseInt(line.ownerId);
     }
-
-    if (line.name !== undefined)
-      initState.setName(line.name);
-
-    combatant.pushState(
-      this.firstTimestamp,
-      initState.fullClone(),
-    );
   }
 
   addCombatantFromTargetLine(line: LineEventTarget, extractedState: Partial<CombatantState>): void {
     const combatant = this.combatants[line.targetId] ??
       this.initCombatant(line.targetId);
 
-    let initState: CombatantState | undefined = combatant.states[this.firstTimestamp];
+    let initState: Partial<CombatantState> | undefined = combatant.getTempState(
+      this.firstTimestamp,
+    );
 
-    if (!initState) {
-      combatant.states[this.firstTimestamp] = initState = new CombatantState(extractedState, false);
-    }
-
-    combatant.states[this.firstTimestamp] =
-      initState =
-        new CombatantState({ ...extractedState, ...initState }, initState.targetable);
+    const newState = new CombatantState(extractedState, initState?.targetable ?? false);
 
     if (line.targetName !== undefined)
-      initState.setName(line.targetName);
+      newState.setName(line.targetName);
 
-    combatant.pushState(
-      this.firstTimestamp,
-      initState.fullClone(),
-    );
+    initState = combatant.pushPartialState(this.firstTimestamp, newState);
   }
 
   extractStateFromLine(line: LineEventSource): Partial<CombatantState> {
@@ -224,16 +210,15 @@ export default class CombatantTracker {
     if (this.mainCombatantID) {
       // This gets called when persisting to indexedDB, after it has been returned from the worker
       // As such, prototypes aren't applied to combatants
-      // so we can't use the shortcut for `nextSignificantState(0)`
+      // Re-apply the prototype if needed
       const combatantObject = this.combatants[this.mainCombatantID];
       if (!combatantObject)
         return defaultName;
 
-      const state = Object.values(combatantObject.states)[0];
-      if (!state)
-        return defaultName;
+      if (Object.getPrototypeOf(combatantObject) !== Combatant.prototype)
+        Object.setPrototypeOf(combatantObject, Combatant.prototype);
 
-      return state.Name ?? defaultName;
+      return combatantObject.firstState.Name ?? defaultName;
     }
     return defaultName;
   }

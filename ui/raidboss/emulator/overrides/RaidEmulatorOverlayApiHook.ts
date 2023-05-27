@@ -48,8 +48,8 @@ export default class RaidEmulatorOverlayApiHook {
 
       for (const [id, combatant] of Object.entries(tracker.combatants)) {
         // If this combatant didn't exist at this point, skip them
-        const firstStateStamp = combatant.significantStates[0];
-        const lastStateStamp = combatant.significantStates.slice(-1)[0];
+        const firstStateStamp = combatant.firstStateTimestamp;
+        const lastStateStamp = combatant.lastStateTimestamp;
         if (!firstStateStamp || !lastStateStamp)
           continue;
         if (firstStateStamp > timestamp || lastStateStamp < timestamp)
@@ -58,7 +58,7 @@ export default class RaidEmulatorOverlayApiHook {
         const idNum = parseInt(id, 16);
         // nextSignificantState is a bit inefficient but given that this isn't run every tick
         // we can afford to be a bit inefficient for readability's sake
-        const combatantState = combatant.nextSignificantState(timestamp).fullClone();
+        const combatantState = combatant.nextState(timestamp).fullClone();
         if (!hasIds && !hasNames)
           combatants.push(combatantState);
         else if (hasIds && ids.includes(idNum))
