@@ -38,7 +38,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P10N Silkspit Others',
       type: 'HeadMarker',
-      netRegex: { id: '01CE' },
+      netRegex: { id: '01CE', capture: false },
       delaySeconds: 0.2,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
