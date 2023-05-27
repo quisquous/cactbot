@@ -16,7 +16,7 @@
 # 826[B-E]  Supplemental AoE damage from 'Harrowing Hell'
 # 86B[5-8]  Supplemental AoE damage from 'Harrowing Hell'
 
-# Note: The boss's name has a Unicode character (\u00e6)  which is causing syncs to fail.
+# Note: The boss's name has a Unicode character (æ)  which is causing syncs to fail.
 # The character is manually escaped in the syncs with the correct codepoint (U+00E6).
 # Entry names use "ae" as separate characters to ensure proper UI display.
 
