@@ -18,11 +18,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P9N Fire Sphere Explosion (Small)': '86E2',
   },
   shareWarn: {
-    'P9N Pulverizing Pounce': '813F',
-  },
-  soloWarn: {
     'P9N Fire III, large': '8120',
     'P9N Fire III, small': '811E',
+  },
+  soloWarn: {
+    'P9N Pulverizing Pounce': '813F',
   },
 };
 
