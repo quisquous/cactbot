@@ -8,6 +8,9 @@ import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO:
+// - Combine Terrastorm 2 and Arctic Assault callout spots?
+
 const arcticAssaultQuadrants = {
   '00': 'ne',
   '01': 'nw',
@@ -22,6 +25,7 @@ const arcticAssaultQuadrants = {
 type ArcticAssaultSlots = keyof typeof arcticAssaultQuadrants;
 
 export interface Data extends RaidbossData {
+  galeSphereShadows: ('n' | 'e' | 's' | 'w')[];
   galeSphereCasts: {
     x: number;
     y: number;
@@ -75,16 +79,24 @@ const triggerSet: TriggerSet<Data> = {
     return {
       terrastormCount: 0,
       terrastormCombatantDirs: [],
+      galeSphereShadows: [],
       galeSphereCasts: [],
       arcticAssaultMapEffects: [],
     };
   },
   timelineTriggers: [
     {
-      id: 'GolbezEx Flames of Eventide',
+      id: 'GolbezEx Flames of Eventide 1',
       regex: /Flames of Eventide 1/,
       beforeSeconds: 5,
-      response: Responses.tankBusterSwap(),
+      response: Responses.tankCleave(),
+    },
+    {
+      id: 'GolbezEx Flames of Eventide Swap',
+      regex: /Flames of Eventide 1/,
+      beforeSeconds: 0,
+      condition: (data) => data.role === 'tank',
+      alarmText: Outputs.tankSwap,
     },
   ],
   triggers: [
@@ -198,6 +210,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'GolbezEx Abyssal Quasar',
       type: 'StartsUsing',
       netRegex: { id: '84AB', source: 'Golbez', capture: false },
+      suppressSeconds: 3,
       alertText: (_data, _matches, output) => output.partnerStack!(),
       outputStrings: {
         partnerStack: {
@@ -230,6 +243,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'GolbezEx Eventide Fall',
       type: 'StartsUsing',
       netRegex: { id: '8485', source: 'Golbez', capture: false },
+      suppressSeconds: 3,
       alertText: (_data, _matches, output) => output.healerGroups!(),
       outputStrings: {
         healerGroups: Outputs.healerGroups,
@@ -239,6 +253,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'GolbezEx Void Tornado',
       type: 'StartsUsing',
       netRegex: { id: '845D', source: 'Golbez', capture: false },
+      suppressSeconds: 3,
       alertText: (_data, _matches, output) => output.healerGroups!(),
       outputStrings: {
         healerGroups: Outputs.healerGroups,
@@ -248,6 +263,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'GolbezEx Void Aero III',
       type: 'StartsUsing',
       netRegex: { id: '845C', source: 'Golbez', capture: false },
+      suppressSeconds: 3,
       alertText: (_data, _matches, output) => output.partnerStack!(),
       outputStrings: {
         partnerStack: {
@@ -264,6 +280,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'GolbezEx Void Blizzard III',
       type: 'StartsUsing',
       netRegex: { id: '8462', source: 'Golbez', capture: false },
+      suppressSeconds: 3,
       alertText: (_data, _matches, output) => output.healerGroups!(),
       outputStrings: {
         healerGroups: Outputs.healerGroups,
@@ -288,30 +305,30 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'GolbezEx Gale Sphere Directions',
-      type: 'StartsUsing',
-      netRegex: { id: '845[89AB]', source: 'Gale Sphere', capture: false },
-      condition: (data) => data.galeSphereCasts.length === 16,
-      infoText: (data, _matches, output) => {
-        const order: (GaleDirections)[] = [];
+      type: 'Ability',
+      netRegex: { id: '84(?:4F|50|51|52)', source: 'Golbez\'s Shadow', capture: true },
+      infoText: (data, matches, output) => {
+        switch (matches.id) {
+          case '844F':
+            data.galeSphereShadows.push('n');
+            break;
+          case '8450':
+            data.galeSphereShadows.push('e');
+            break;
+          case '8451':
+            data.galeSphereShadows.push('w');
+            break;
+          case '8452':
+            data.galeSphereShadows.push('s');
+            break;
+        }
 
-        data.galeSphereCasts.forEach((sphere) => {
-          let dir: GaleDirections;
-          // x = 115.0 for north, 85.0 for south, etc
-          if (sphere.x > 113)
-            dir = 'e';
-          else if (sphere.y > 113)
-            dir = 's';
-          else if (sphere.x < 87)
-            dir = 'w';
-          // (sphere.y < 87)
-          else
-            dir = 'n';
+        if (data.galeSphereShadows.length < 4)
+          return;
 
-          if (!order.includes(dir))
-            order.push(dir);
-        });
+        const [dir1, dir2, dir3, dir4] = data.galeSphereShadows;
 
-        const [dir1, dir2, dir3, dir4] = order;
+        data.galeSphereShadows = [];
 
         return output.clones!({
           dir1: dir1 ?? 'unknown',
@@ -378,9 +395,9 @@ const triggerSet: TriggerSet<Data> = {
           // All of these coordinates are 0.50 higher. To avoid floating point issues
           // we're just using the floor'd coordinates.
           const possibleSpots: { [coord: number]: GaleSafeSpots[] } = {
-            112: ['n', 'w'],
+            112: ['s', 'e'],
             102: ['middle'],
-            87: ['s', 'e'],
+            87: ['n', 'w'],
           };
 
           for (const sphere of spheres) {
