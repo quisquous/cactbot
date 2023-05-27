@@ -12,7 +12,6 @@ export interface Data extends OopsyData {
 
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.AnabaseiosTheTenthCircle,
-
   damageWarn: {
     'P10N Parted Plumes Blade': '8271', // rotating blade AoE
     'P10N Pandaemoniac Ray': '8266', // half-room AoE
