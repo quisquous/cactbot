@@ -218,6 +218,68 @@ const zoneReplace: ZoneReplace[] = [
       '1AE1': '7DC6', // Scales of Wisdom 2
     },
   },
+  {
+    // Zurvan
+    fileMap: {
+      'ui/raidboss/data/03-hw/trial/zurvan-ex.ts': 'ui/raidboss/data/06-ew/trial/zurvan-un.ts',
+      'ui/raidboss/data/03-hw/trial/zurvan-ex.txt': 'ui/raidboss/data/06-ew/trial/zurvan-un.txt',
+      'ui/oopsyraidsy/data/03-hw/trial/zurvan-ex.ts':
+        'ui/oopsyraidsy/data/06-ew/trial/zurvan-un.ts',
+    },
+    prefix: { 'ZurvanEX': 'ZurvanUN' },
+    other: {
+      'ContainmentBayZ1T9Extreme': 'ContainmentBayZ1T9Unreal',
+      'zurvan-ex.txt': 'zurvan-un.txt',
+      '(Extreme)': '(Unreal)',
+      ' Extreme': ' Unreal',
+      'Sarva': 'Eidos',
+    },
+    id: {
+      '1E3F': '857F', // Metal Cutter
+      '1C4E': '8557', // Flare Star puddles appear
+      '1C4F': '8558', // Flare Star puddles resolve
+      '1C50': '8559', // The Purge
+      '1C51': '855A', // Sarva/Eidos 1
+      '1C52': '855B', // Twin Spirit 1 (ignored)
+      '1C53': '855C', // Twin Spirit 2 (ignored)
+      '1C54': '855D', // Flaming Halberd
+      '1C55': '855E', // Demonic Dive
+      '1C56': '855F', // Cool Flame
+      '1C57': '8560', // Sarva/Eidos 2
+      '1C58': '8561', // Ice And Fire
+      '1C59': '8562', // Biting Halberd
+      '1C5A': '8563', // Tail End
+      '1C5B': '8564', // Ciclicle
+      '1C5C': '8565', // Southern Cross Snapshot
+      '1C5D': '8566', // Southern Cross Resolve
+      '1C5E': '8657', // Untranslated intermission cast
+      '1C5F': '8568', // Sarva/Eidos 3
+      '1C60': '8569', // Ahura Mazda
+      '1C63': '856C', // Meracydian Meteor (ignored)
+      '1C64': '856D', // Comet (ignored)
+      '1C67': '8570', // Infinite Fire
+      '1C68': '8571', // Infinite Ice
+      '1C6B': '8572', // The South Star (ignored)
+      '1C6C': '8573', // The North Star (ignored)
+      '1C6D': '8576', // Tyrfing (cast)
+      '1C6E': '8577', // Tyrfing (resolve, ignored)
+      '1C6F': '8578', // Fire III
+      '1C70': '8579', // Metal Cutter
+      '1C71': '857A', // The Demon's Claw
+      '1C72': '857B', // Wave Cannon (stack)
+      '1C73': '857C', // Wave Cannon (avoid)
+      '1DC7': '857D', // Broken Seal
+      '1E09': '857E', // Soar
+      '1E31': '856A', // Hard Thrust (ignored)
+      '1E32': '856B', // Berserk (ignored)
+      '1E35': '856E', // Meracydian Fire
+      '1E36': '856F', // Meracydian Fear
+      '1E58': '8591', // Flame Halberd Enrage 1
+      '1E59': '8592', // Flame Halberd Enrage 2
+      '1E64': '859D', // The South Star (ignored)
+      '1E65': '859E', // The North Star (ignored)
+    },
+  },
 ];
 
 const processFile = (filename: string, zone: ZoneReplace, inputText: string): string => {
