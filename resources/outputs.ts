@@ -463,6 +463,22 @@ export default {
     cn: '中间',
     ko: '중앙',
   },
+  clockwise: {
+    en: 'Clockwise',
+    de: 'Im Uhrzeigersinn',
+    fr: 'Sens horaire',
+    ja: '時針回り',
+    cn: '顺时针',
+    ko: '시계방향',
+  },
+  counterclockwise: {
+    en: 'Counter-clock',
+    de: 'Gegen den Uhrzeigersinn',
+    fr: 'Anti-horaire',
+    ja: '逆時針回り',
+    cn: '逆时针',
+    ko: '반시계방향',
+  },
   // killAdds is used for adds that will always be available
   killAdds: {
     en: 'Kill adds',

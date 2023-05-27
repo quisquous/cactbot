@@ -227,12 +227,7 @@ export type DirectionOutputIntercard =
   | 'dirNW'
   | 'unknown';
 
-export type DirectionOutput16Map = { [key in DirectionOutput16]: OutputStrings };
-export type DirectionOutput8Map = { [key in DirectionOutput8]: OutputStrings };
-export type DirectionOutputCardinalMap = { [key in DirectionOutputCardinal]: OutputStrings };
-export type DirectionOutputIntercardMap = { [key in DirectionOutputIntercard]: OutputStrings };
-
-export const output8Dir: DirectionOutput8[] = [
+const output8Dir: DirectionOutput8[] = [
   'dirN',
   'dirNE',
   'dirE',
@@ -242,10 +237,10 @@ export const output8Dir: DirectionOutput8[] = [
   'dirW',
   'dirNW',
 ];
-export const outputCardinalDir: DirectionOutputCardinal[] = ['dirN', 'dirE', 'dirS', 'dirW'];
-export const outputIntercardDir: DirectionOutputIntercard[] = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
+const outputCardinalDir: DirectionOutputCardinal[] = ['dirN', 'dirE', 'dirS', 'dirW'];
+const outputIntercardDir: DirectionOutputIntercard[] = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
 
-const outputStrings16Dir: DirectionOutput16Map = {
+const outputStrings16Dir: { [outputString: string]: OutputStrings } = {
   dirN: Outputs.dirN,
   dirNNE: Outputs.dirNNE,
   dirNE: Outputs.dirNE,
@@ -265,7 +260,7 @@ const outputStrings16Dir: DirectionOutput16Map = {
   unknown: Outputs.unknown,
 };
 
-const outputStrings8Dir: DirectionOutput8Map = {
+const outputStrings8Dir: { [outputString: string]: OutputStrings } = {
   dirN: Outputs.dirN,
   dirNE: Outputs.dirNE,
   dirE: Outputs.dirE,
@@ -277,7 +272,7 @@ const outputStrings8Dir: DirectionOutput8Map = {
   unknown: Outputs.unknown,
 };
 
-const outputStringsCardinalDir: DirectionOutputCardinalMap = {
+const outputStringsCardinalDir: { [outputString: string]: OutputStrings } = {
   dirN: Outputs.dirN,
   dirE: Outputs.dirE,
   dirS: Outputs.dirS,
@@ -285,7 +280,7 @@ const outputStringsCardinalDir: DirectionOutputCardinalMap = {
   unknown: Outputs.unknown,
 };
 
-const outputStringsIntercardDir: DirectionOutputIntercardMap = {
+const outputStringsIntercardDir: { [outputString: string]: OutputStrings } = {
   dirNE: Outputs.dirNE,
   dirSE: Outputs.dirSE,
   dirSW: Outputs.dirSW,
@@ -314,6 +309,9 @@ const outputFrom8DirNum = (dirNum: number): DirectionOutput8 => {
 };
 
 export const Directions = {
+  output8Dir: output8Dir,
+  outputCardinalDir: outputCardinalDir,
+  outputIntercardDir: outputIntercardDir,
   outputStrings16Dir: outputStrings16Dir,
   outputStrings8Dir: outputStrings8Dir,
   outputStringsCardinalDir: outputStringsCardinalDir,
@@ -369,6 +367,10 @@ export const Directions = {
   addedCombatantHdgTo8DirOutput: (combatant: NetMatches['AddedCombatant']): DirectionOutput8 => {
     const heading = parseFloat(combatant.heading);
     const dirNum = hdgTo8DirNum(heading);
+    return outputFrom8DirNum(dirNum);
+  },
+  xyTo8DirOutput: (x: number, y: number, centerX: number, centerY: number): DirectionOutput8 => {
+    const dirNum = xyTo8DirNum(x, y, centerX, centerY);
     return outputFrom8DirNum(dirNum);
   },
 };
