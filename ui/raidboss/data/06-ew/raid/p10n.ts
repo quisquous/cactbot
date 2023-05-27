@@ -102,7 +102,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P10N Soul Grasp',
       type: 'StartsUsing',
-      netRegex: { id: '8278', source: bossNameUnicode, capture: false },
+      netRegex: { id: '8278', source: bossNameUnicode },
       response: Responses.sharedTankBuster(),
     },
     {
