@@ -96,7 +96,10 @@ const triggerSet: TriggerSet<Data> = {
       regex: /Flames of Eventide 1/,
       beforeSeconds: 0,
       condition: (data) => data.role === 'tank',
-      alarmText: Outputs.tankSwap,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: Outputs.tankSwap,
+      },
     },
   ],
   triggers: [
