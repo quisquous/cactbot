@@ -435,6 +435,11 @@ class TestTimeline extends Timeline {
         // Skip text events with no sync.
         if (event.sync === undefined)
           continue;
+        // Skip events when jumping
+        if (
+          lastRecord?.event.sync?.jump !== undefined && lastRecord?.event.sync?.jump >= event.time
+        )
+          continue;
 
         ui.records.push({
           event: event,
