@@ -3,6 +3,8 @@ import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
+// TODO: Replace Unmitigated Explosion by detecting/blaming whomever did not soak a pillar.
+
 export interface Data extends OopsyData {
   bindingSoulPlayers?: string[];
   concentratedPoisonPlayers?: string[];
@@ -13,6 +15,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
 
   damageWarn: {
     'P10N Parted Plumes Blade': '8271', // rotating blade AoE
+    'P10N Pandaemoniac Ray': '8266', // half-room AoE
   },
   damageFail: {
     'P10N Unmitigated Explosion': '8260', // unsoaked pillar
@@ -83,13 +86,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'P10N Soul Grasp Non-Tank',
+      id: 'P10N Soul Grasp',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '8279' }),
       condition: (data, matches) => !data.party.isTank(matches.target),
       mistake: (_data, matches) => {
         return {
-          type: 'fail',
+          type: 'warn',
           blame: matches.target,
           reportId: matches.targetId,
           text: matches.ability,
@@ -97,7 +100,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'P10N Wicked Step Non-Tank',
+      id: 'P10N Wicked Step',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '827[34]' }),
       condition: (data, matches) => !data.party.isTank(matches.target),
