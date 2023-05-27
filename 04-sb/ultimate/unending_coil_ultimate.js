@@ -3,6 +3,18 @@ const resetTrio = (data, trio) => {
   data.shakers = [];
   data.megaStack = [];
 };
+const centerX = 0;
+const centerY = 0;
+const isClockwise = (start, compare) => {
+  // assumes both start and compare are 0-360.
+  // returns false if start = compare
+  let isCW = false;
+  if (compare > start)
+    isCW = compare - start <= 180;
+  else if (compare < start)
+    isCW = start - compare >= 180;
+  return isCW;
+};
 // Begin copy and paste from dragon_test.js.
 const modDistance = (mark, dragon) => {
   const oneWay = (dragon - mark + 8) % 8;
@@ -130,6 +142,8 @@ Options.Triggers.push({
       currentPhase: 2,
       fireDebuff: false,
       iceDebuff: false,
+      thunderDebuffs: [],
+      thunderOnYou: false,
       naelFireballCount: 0,
       fireballs: {
         1: [],
@@ -143,6 +157,8 @@ Options.Triggers.push({
       wideThirdDive: false,
       unsafeThirdMark: false,
       naelDiveMarkerCount: 0,
+      trioSourceIds: {},
+      combatantData: [],
       shakers: [],
       megaStack: [],
       octetMarker: [],
@@ -161,6 +177,20 @@ Options.Triggers.push({
       // mitigation on the other, so just always play this for both tanks.
       suppressSeconds: 1,
       response: Responses.tankBuster(),
+    },
+    {
+      id: 'UCU Plummet',
+      regex: /Plummet/,
+      beforeSeconds: 3,
+      suppressSeconds: 10,
+      response: Responses.tankCleave(),
+    },
+    {
+      id: 'UCU Flare Breath',
+      regex: /Flare Breath/,
+      beforeSeconds: 4,
+      suppressSeconds: 10,
+      response: Responses.tankCleave(),
     },
   ],
   triggers: [
@@ -268,18 +298,8 @@ Options.Triggers.push({
     {
       id: 'UCU Death Sentence',
       type: 'StartsUsing',
-      netRegex: { id: '26A9', source: 'Twintania', capture: false },
-      alertText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Death Sentence',
-          de: 'Todesurteil',
-          fr: 'Peine de mort',
-          ja: 'デスセンテンス',
-          cn: '死刑',
-          ko: '사형 선고',
-        },
-      },
+      netRegex: { id: '26A9', source: 'Twintania' },
+      response: Responses.tankBusterSwap(),
     },
     {
       id: 'UCU Hatch Collect',
@@ -664,21 +684,50 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'UCU Nael Thunder Collect',
+      type: 'Ability',
+      netRegex: { source: 'Thunderwing', id: '26C7' },
+      run: (data, matches) => {
+        data.thunderDebuffs.push(matches.target);
+        if (data.me === matches.target)
+          data.thunderOnYou = true;
+      },
+    },
+    {
       id: 'UCU Nael Thunderstruck',
       type: 'Ability',
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
-      netRegex: { source: 'Thunderwing', id: '26C7' },
-      condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text(),
+      netRegex: { source: 'Thunderwing', id: '26C7', capture: false },
+      delaySeconds: 0.5,
+      suppressSeconds: 5,
+      alarmText: (data, _matches, output) => {
+        if (data.thunderOnYou)
+          return output.thunderOnYou();
+      },
+      infoText: (data, _matches, output) => {
+        if (!data.thunderOnYou) {
+          const thunderPlayers = data.thunderDebuffs.map((p) => data.ShortName(p));
+          const thunder1 = thunderPlayers[0] ?? '???';
+          const thunder2 = thunderPlayers[1] ?? '???';
+          return output.thunderOnOthers({ player1: thunder1, player2: thunder2 });
+        }
+      },
+      run: (data) => {
+        data.thunderDebuffs = [];
+        data.thunderOnYou = false;
+      },
       outputStrings: {
-        text: {
+        thunderOnYou: {
           en: 'Thunder on YOU',
           de: 'Blitz auf DIR',
           fr: 'Foudre sur VOUS',
           ja: '自分にサンダー',
           cn: '雷点名',
           ko: '나에게 번개',
+        },
+        thunderOnOthers: {
+          en: 'Thunder on ${player1}, ${player2}',
         },
       },
     },
@@ -967,17 +1016,15 @@ Options.Triggers.push({
         const y = parseFloat(matches.y);
         // Positions are the 8 cardinals + numerical slop on a radius=24 circle.
         // N = (0, -24), E = (24, 0), S = (0, 24), W = (-24, 0)
-        // Map N = 0, NE = 1, ..., NW = 7
-        const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+        const dir = Directions.xyTo8DirNum(x, y, centerX, centerY);
         data.naelDragons[dir] = 1;
         if (Object.keys(data.seenDragon).length !== 5)
           return;
         const result = findDragonMarks(data.naelDragons);
         if (!result)
           return;
-        const dirNames = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', 'dirNW'];
         data.naelMarks = result.marks.map((i) => {
-          return dirNames[i] ?? 'unknown';
+          return Directions.output8Dir[i] ?? 'unknown';
         });
         data.wideThirdDive = result.wideThirdDive;
         data.unsafeThirdMark = result.unsafeThirdMark;
@@ -1027,15 +1074,7 @@ Options.Triggers.push({
           cn: '标记: ${dive1}, ${dive2}, ${dive3} (大)',
           ko: '징: ${dive1}, ${dive2}, ${dive3} (넓음)',
         },
-        dirN: Outputs.dirN,
-        dirNE: Outputs.dirNE,
-        dirE: Outputs.dirE,
-        dirSE: Outputs.dirSE,
-        dirS: Outputs.dirS,
-        dirSW: Outputs.dirSW,
-        dirW: Outputs.dirW,
-        dirNW: Outputs.dirNW,
-        unknown: Outputs.unknown,
+        ...Directions.outputStrings8Dir,
       },
     },
     {
@@ -1046,7 +1085,7 @@ Options.Triggers.push({
       alarmText: (data, matches, output) => {
         if (matches.target !== data.me)
           return;
-        const dir = data.naelMarks?.[data.naelDiveMarkerCount] ?? 'unknownDir';
+        const dir = data.naelMarks?.[data.naelDiveMarkerCount] ?? 'unknown';
         return output.text({ dir: output[dir]() });
       },
       outputStrings: {
@@ -1058,15 +1097,7 @@ Options.Triggers.push({
           cn: '带着点名去${dir}',
           ko: '${dir}으로 이동',
         },
-        dirN: Outputs.dirN,
-        dirNE: Outputs.dirNE,
-        dirE: Outputs.dirE,
-        dirSE: Outputs.dirSE,
-        dirS: Outputs.dirS,
-        dirSW: Outputs.dirSW,
-        dirW: Outputs.dirW,
-        dirNW: Outputs.dirNW,
-        unknownDir: Outputs.unknown,
+        ...Directions.outputStrings8Dir,
       },
     },
     {
@@ -1098,6 +1129,7 @@ Options.Triggers.push({
       condition: (data) => !data.trio,
       run: (data) => data.naelDiveMarkerCount++,
     },
+    // --- Bahamut Prime ---
     {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
       id: 'UCU Octet Marker Tracking',
@@ -1276,6 +1308,13 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'UCU Bahamut Flatten',
+      type: 'StartsUsing',
+      netRegex: { id: '26D5', source: 'Bahamut Prime' },
+      condition: Conditions.caresAboutPhysical(),
+      response: Responses.tankBuster(),
+    },
+    {
       id: 'UCU Bahamut Gigaflare',
       type: 'StartsUsing',
       netRegex: { id: '26D6', source: 'Bahamut Prime', capture: false },
@@ -1289,6 +1328,83 @@ Options.Triggers.push({
           cn: '十亿核爆',
           ko: '기가플레어',
         },
+      },
+    },
+    {
+      id: 'UCU Quickmarch Dive Dir',
+      type: 'StartsUsing',
+      netRegex: { id: '26E1', source: 'Bahamut Prime' },
+      condition: (data) => data.trio === 'quickmarch',
+      alertText: (_data, matches, output) => {
+        // Bosses jump, and dive placement is locked once Bahamut starts casting.
+        // Position data is always updated by now, so need to rely on combatant data from OP.
+        // Bahamut will always be on an exact cardinal/intercardinal (w/Nael & Twin on either side)
+        const x = parseFloat(matches.x);
+        const y = parseFloat(matches.y);
+        const diveDir = Directions.xyTo8DirOutput(x, y, centerX, centerY);
+        return output.dive({ dir: output[diveDir]() });
+      },
+      outputStrings: {
+        dive: {
+          en: '${dir} Dive',
+        },
+        ...Directions.outputStrings8Dir,
+      },
+    },
+    // Collect sourceIds for Nael, Twin & Bahamut when they dive during Quickmarch
+    // Will use these ids later to get combatant data from Overlay Plugin
+    {
+      id: 'UCU P3 Nael Collect',
+      type: 'StartsUsing',
+      netRegex: { id: '26C3', source: 'Nael deus Darnus' },
+      condition: (data) => data.trio === 'quickmarch',
+      run: (data, matches) => data.trioSourceIds.nael = parseInt(matches.sourceId, 16),
+    },
+    {
+      id: 'UCU P3 Bahamut Collect',
+      type: 'StartsUsing',
+      netRegex: { id: '26E1', source: 'Bahamut Prime' },
+      condition: (data) => data.trio === 'quickmarch',
+      run: (data, matches) => data.trioSourceIds.bahamut = parseInt(matches.sourceId, 16),
+    },
+    {
+      id: 'UCU P3 Twintania Collect',
+      type: 'StartsUsing',
+      netRegex: { id: '26B2', source: 'Twintania' },
+      condition: (data) => data.trio === 'quickmarch',
+      run: (data, matches) => data.trioSourceIds.twin = parseInt(matches.sourceId, 16),
+    },
+    // For Blackfire:
+    // After bosses jump, there's no clear log line we can trigger off of to find Nael's position
+    // until it's effectively too late.  The best way to do this seems to be to fire the trigger
+    // with a delay when Bahamut uses Blackfire Trio before all 3 bosses jump.
+    {
+      id: 'UCU Blackfire Party Dir',
+      type: 'Ability',
+      netRegex: { id: '26E3', source: 'Bahamut Prime', capture: false },
+      condition: (data) => data.trio === 'blackfire',
+      delaySeconds: 3.5,
+      promise: async (data) => {
+        if (data.trioSourceIds.nael === undefined)
+          return;
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [data.trioSourceIds.nael],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        if (data.combatantData[0] === undefined)
+          return;
+        const nael = data.combatantData[0];
+        const naelDirOutput = Directions.combatantStatePosTo8DirOutput(nael, centerX, centerY);
+        return output.naelPosition({ dir: output[naelDirOutput]() });
+      },
+      outputStrings: {
+        naelPosition: {
+          en: 'Nael is ${dir}',
+        },
+        ...Directions.outputStrings8Dir,
       },
     },
     {
@@ -1407,6 +1523,62 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'UCU Heavensfall Nael Spot',
+      type: 'StartsUsing',
+      // Grab position data once Bahamut begins casting Megaflare Dive
+      netRegex: { id: '26E1', source: 'Bahamut Prime', capture: false },
+      condition: (data) => data.trio === 'heavensfall',
+      promise: async (data) => {
+        data.combatantData = [];
+        if (
+          data.trioSourceIds.nael === undefined ||
+          data.trioSourceIds.twin === undefined ||
+          data.trioSourceIds.bahamut === undefined
+        )
+          return;
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [data.trioSourceIds.nael, data.trioSourceIds.bahamut, data.trioSourceIds.twin],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        // Bosses line up adjacent to one another, but don't necessarily have discrete directional positions (based on 8Dir scale).
+        // But we can calculate their position as an angle (relative to circular arena): 0 = N, 90 = E, 180 = S, 270 = W, etc.
+        let naelAngle;
+        let bahamutAngle;
+        let twinAngle;
+        let naelPos = 'unknown';
+        for (const mob of data.combatantData) {
+          const mobAngle = (Math.round(180 - 180 * Math.atan2(mob.PosX, mob.PosY) / Math.PI) % 360);
+          // As OP does not return combatants in the order, they were passed, match based on sourceId.
+          if (mob.ID === data.trioSourceIds.nael)
+            naelAngle = mobAngle;
+          else if (mob.ID === data.trioSourceIds.bahamut)
+            bahamutAngle = mobAngle;
+          else if (mob.ID === data.trioSourceIds.twin)
+            twinAngle = mobAngle;
+        }
+        if (naelAngle === undefined || bahamutAngle === undefined || twinAngle === undefined)
+          return;
+        if (naelAngle >= 0 && bahamutAngle >= 0 && twinAngle >= 0) {
+          if (isClockwise(naelAngle, bahamutAngle))
+            naelPos = isClockwise(naelAngle, twinAngle) ? 'left' : 'middle';
+          else
+            naelPos = isClockwise(naelAngle, twinAngle) ? 'middle' : 'right';
+        }
+        return output.naelPosition({ dir: output[naelPos]() });
+      },
+      outputStrings: {
+        naelPosition: {
+          en: '${dir} Nael',
+        },
+        left: Outputs.left,
+        middle: Outputs.middle,
+        right: Outputs.right,
+        unknown: Outputs.unknown,
+      },
+    },
+    {
       id: 'UCU Earthshaker Me',
       type: 'HeadMarker',
       netRegex: { id: '0028' },
@@ -1473,6 +1645,86 @@ Options.Triggers.push({
         },
       },
     },
+    // For Grand Octet:
+    // After bosses and dragons start spawning, there's no clear log line we can trigger off of to find bosses' position
+    // until it's effectively too late.  The best way to do this seems to be to fire the trigger
+    // with a delay when Bahamut uses Grand Octet before all 3 bosses jump.
+    {
+      id: 'UCU Grand Octet Run & Rotate',
+      type: 'Ability',
+      // Grab mob position data after dragons/bosses are positioned
+      netRegex: { id: '26E7', source: 'Bahamut Prime', capture: false },
+      delaySeconds: 4.8,
+      promise: async (data) => {
+        data.combatantData = [];
+        if (
+          data.trioSourceIds.nael === undefined ||
+          data.trioSourceIds.bahamut === undefined
+        )
+          return;
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [data.trioSourceIds.nael, data.trioSourceIds.bahamut],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        let naelDirIdx;
+        let bahaDirIdx;
+        for (const mob of data.combatantData) {
+          const mobDirIdx = Directions.combatantStatePosTo8Dir(mob, centerX, centerY);
+          if (mob.ID === data.trioSourceIds.nael)
+            naelDirIdx = mobDirIdx;
+          else if (mob.ID === data.trioSourceIds.bahamut)
+            bahaDirIdx = mobDirIdx;
+        }
+        if (naelDirIdx === undefined || bahaDirIdx === undefined)
+          return;
+        // If Bahamut spaws on a cardinal, the party goes opposite and rotates counter-clockwise; if intercardinal, clockwise.
+        // If Nael is directly opposite Bahamut, the party instead starts one directional position over (same as the rotation direction)
+        // http://clees.me/guides/ucob/
+        let rotationIdxModifier; // this is used to modify the party starting spot in directions[] if Nael is opposite Bahamut
+        let rotationPath;
+        const bahaOutputStr = Directions.output8Dir[bahaDirIdx];
+        const cardinalDirs = Directions.outputCardinalDir;
+        if (bahaOutputStr === undefined)
+          return;
+        if (cardinalDirs.includes(bahaOutputStr)) {
+          rotationIdxModifier = -1;
+          rotationPath = 'counterclockwise';
+        } else {
+          rotationIdxModifier = 1;
+          rotationPath = 'clockwise';
+        }
+        // start by going directly opposite Bahamut
+        let partyStartIdx = bahaDirIdx >= 4 ? bahaDirIdx - 4 : bahaDirIdx + 4;
+        // If Nael is there, instead go +1/-1 direction (depending on the rotation direction)
+        if (naelDirIdx === partyStartIdx) {
+          partyStartIdx += rotationIdxModifier;
+          // if this pushes partyStartIdx beyond the array boundary, wrap around
+          if (partyStartIdx === -1) {
+            partyStartIdx = 7;
+          } else if (partyStartIdx === 8) {
+            partyStartIdx = 0;
+          }
+        }
+        const partyStartDir = Directions.output8Dir[partyStartIdx] ?? 'unknown';
+        if (partyStartDir === undefined || rotationPath === undefined)
+          return;
+        return output.grandOctet({
+          startDir: output[partyStartDir](),
+          path: output[rotationPath](),
+        });
+      },
+      outputStrings: {
+        grandOctet: {
+          en: 'Bait dash, go ${startDir}, rotate ${path}',
+        },
+        clockwise: Outputs.clockwise,
+        counterclockwise: Outputs.counterclockwise,
+        ...Directions.outputStrings8Dir,
+      },
+    },
+    // --- Golden Bahamut ---
     {
       id: 'UCU Morn Afah',
       type: 'StartsUsing',
@@ -1545,6 +1797,7 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': 'Prim-Bahamut',
         'Fang of Light': 'Lichtklaue',
@@ -1646,6 +1899,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
         'Blazing path, lead me to iron rule':
@@ -1752,6 +2006,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': 'バハムート・プライム',
         'Fang of Light': 'ライトファング',
@@ -1845,6 +2100,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': '至尊巴哈姆特',
         'Fang of Light': '光牙',
@@ -1937,6 +2193,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': '바하무트 프라임',
         'Fang of Light': '빛의 송곳니',
