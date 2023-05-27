@@ -1,76 +1,6 @@
 ### P9N: Anabaseios: The Ninth Circle
-
-# Ability IDs that appear in this instance:
-# UMFB = Unaspected, Mage, Fighter, Behemoth
-# "Unaspected" being the state the boss is in before the first Ravening, and between Disgorge and Ravening
 #
-# Ability ID   | UMFB | Description
-# Kokytos:8115 | U    | Auto-attack (unaspected)
-# Kokytos:8116 | U F  | Gluttony's Augur - cast bar
-# Kokytos:8117 | U F  | Gluttony's Augur - damage
-# Kokytos:8118 | U  B | Ravening - move to mage phase
-# Kokytos:8119 |  M   | Ravening - move to fighter phase
-# Kokytos:811A |   F  | Ravening - move to Behemoth phase
-# Kokytos:811C |  M   | Auto-attack (magical, mage)
-# Kokytos:811D |  M   | Dualspell
-# Kokytos:811E |  M   | Fire III (small, static)
-# Kokytos:811F |  M   | Blizzard III (large, static)
-# Kokytos:8120 |  M   | Fire III (large, growing)
-# Kokytos:8121 |  M   | Blizzard III (small, shrinking)
-# Kokytos:8122 |  M   | Fire VFX flash
-# Kokytos:8123 |  M   | Ice VFX flash
-# Kokytos:8124 |  M   | Disgorge (end of mage phase)
-# Kokytos:8125 |   F  | Disgorge (end of fighter phase)
-# Kokytos:8126 |    B | Disgorge (end of Behemoth phase)
-# Kokytos:8127 |   F  | Auto-attack (physical, fighter)
-# Kokytos:8128 |   F  | Archaic Rockbreaker (cast)
-# Kokytos:8129 |   F  | Shockwave
-# Kokytos:812A |   F  | Archaic Rockbreaker (AoE explosion)
-# Kokytos:812B |   F  | Inside Roundhouse
-# Kokytos:812C |   F  | Outside Roundhouse
-# Kokytos:812D |   F  | Swinging Kick (Front Combination)
-# Kokytos:812E |   F  | Swinging Kick (Rear Combination)
-# Kokytos:812F |   F  | Archaic Demolish (cast)
-# Kokytos:8130 |   F  | Archaic Demolish (damage)
-# Kokytos:8131 |   F  | Ascendant Fist
-# Kokytos:8132 |    B | Charybdis (cast, self-targeted)
-# Kokytos:8133 |    B | Charybdis (damage, targets 4 players)
-# Kokytos:8134 |    B | Comet
-# Kokytos:8135 |    B | Comet Impact
-#   Comet:8136 |      | Burst
-# Kokytos:8137 |    B | Touchdown
-# Kokytos:8138 |    B | Beastly Roar
-# Kokytos:8139 |    B | Gluttonous Rampage
-# Kokytos:813A |    B | Ravenous Bite (tankbuster)
-# Kokytos:813B |    B | Ecliptic Meteor
-# Kokytos:813C |    B | Ecliptic Meteor
-# Kokytos:813D |    B | Beastly Bile (cast)
-# Kokytos:813E |    B | Beastly Bile (damage)
-# Kokytos:813F |    B | Pulverizing Pounce
-# Kokytos:8140 |    B | Auto-attack (physical, behemoth)
-# Kokytos:8141 |  M   | Global Spell (cast)
-# Kokytos:8142 |  M   | Global Spell (damage)
-#   Comet:8143 |      | Burst
-# Kokytos:8144 | UM   | ???
-# Kokytos:8146 |    B | ???
-# Kokytos:8147 |   F  | Front Combination (second phase)
-# Kokytos:8148 |   F  | Front Combination (first phase)
-# Kokytos:8149 |   F  | Rear Combination (second phase)
-# Kokytos:814A |   F  | Rear Combination (first phase)
-# Kokytos:814E |  M   | Fire III - Cast
-# Kokytos:814F |  M   | Blizzard III - Cast
-# Kokytos:8188 |    B | Ecliptic Meteor
-# Kokytos:86E1 |  M   | Iceflame Summoning
-#
-# Ice Sphere:86E4 | Sphere Shatter (small)
-# Ice Sphere:86E5 | Sphere Shatter (large)
-# Ice Sphere:872A | Large omen
-# Ice Sphere:8729 | Small omen
-#
-# Fire Sphere:86E2 | Explosion (small)
-# Fire Sphere:86E3 | Explosion (large)
-# Fire Sphere:8727 | Small omen
-# Fire Sphere:8728 | Large omen
+# List of all ability IDs seen at the bottom of the file
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -257,3 +187,75 @@ hideall "--sync--"
 
 # Mage phase 3
 549.8 "Ravening (Mage)" sync / 1[56]:[^:]*:Kokytos:8118:/
+
+# Ability IDs that appear in this instance:
+# UMFB = Unaspected, Mage, Fighter, Behemoth
+# "Unaspected" being the state the boss is in before the first Ravening, and between Disgorge and Ravening
+#
+# Ability ID   | UMFB | Description
+# Kokytos:8115 | U    | Auto-attack (unaspected)
+# Kokytos:8116 | U F  | Gluttony's Augur - cast bar
+# Kokytos:8117 | U F  | Gluttony's Augur - damage
+# Kokytos:8118 | U  B | Ravening - move to mage phase
+# Kokytos:8119 |  M   | Ravening - move to fighter phase
+# Kokytos:811A |   F  | Ravening - move to Behemoth phase
+# Kokytos:811C |  M   | Auto-attack (magical, mage)
+# Kokytos:811D |  M   | Dualspell
+# Kokytos:811E |  M   | Fire III (small, static)
+# Kokytos:811F |  M   | Blizzard III (large, static)
+# Kokytos:8120 |  M   | Fire III (large, growing)
+# Kokytos:8121 |  M   | Blizzard III (small, shrinking)
+# Kokytos:8122 |  M   | Fire VFX flash
+# Kokytos:8123 |  M   | Ice VFX flash
+# Kokytos:8124 |  M   | Disgorge (end of mage phase)
+# Kokytos:8125 |   F  | Disgorge (end of fighter phase)
+# Kokytos:8126 |    B | Disgorge (end of Behemoth phase)
+# Kokytos:8127 |   F  | Auto-attack (physical, fighter)
+# Kokytos:8128 |   F  | Archaic Rockbreaker (cast)
+# Kokytos:8129 |   F  | Shockwave
+# Kokytos:812A |   F  | Archaic Rockbreaker (AoE explosion)
+# Kokytos:812B |   F  | Inside Roundhouse
+# Kokytos:812C |   F  | Outside Roundhouse
+# Kokytos:812D |   F  | Swinging Kick (Front Combination)
+# Kokytos:812E |   F  | Swinging Kick (Rear Combination)
+# Kokytos:812F |   F  | Archaic Demolish (cast)
+# Kokytos:8130 |   F  | Archaic Demolish (damage)
+# Kokytos:8131 |   F  | Ascendant Fist
+# Kokytos:8132 |    B | Charybdis (cast, self-targeted)
+# Kokytos:8133 |    B | Charybdis (damage, targets 4 players)
+# Kokytos:8134 |    B | Comet
+# Kokytos:8135 |    B | Comet Impact
+#   Comet:8136 |      | Burst
+# Kokytos:8137 |    B | Touchdown
+# Kokytos:8138 |    B | Beastly Roar
+# Kokytos:8139 |    B | Gluttonous Rampage
+# Kokytos:813A |    B | Ravenous Bite (tankbuster)
+# Kokytos:813B |    B | Ecliptic Meteor
+# Kokytos:813C |    B | Ecliptic Meteor
+# Kokytos:813D |    B | Beastly Bile (cast)
+# Kokytos:813E |    B | Beastly Bile (damage)
+# Kokytos:813F |    B | Pulverizing Pounce
+# Kokytos:8140 |    B | Auto-attack (physical, behemoth)
+# Kokytos:8141 |  M   | Global Spell (cast)
+# Kokytos:8142 |  M   | Global Spell (damage)
+#   Comet:8143 |      | Burst
+# Kokytos:8144 | UM   | ???
+# Kokytos:8146 |    B | ???
+# Kokytos:8147 |   F  | Front Combination (second phase)
+# Kokytos:8148 |   F  | Front Combination (first phase)
+# Kokytos:8149 |   F  | Rear Combination (second phase)
+# Kokytos:814A |   F  | Rear Combination (first phase)
+# Kokytos:814E |  M   | Fire III - Cast
+# Kokytos:814F |  M   | Blizzard III - Cast
+# Kokytos:8188 |    B | Ecliptic Meteor
+# Kokytos:86E1 |  M   | Iceflame Summoning
+#
+# Ice Sphere:86E4 | Sphere Shatter (small)
+# Ice Sphere:86E5 | Sphere Shatter (large)
+# Ice Sphere:872A | Large omen
+# Ice Sphere:8729 | Small omen
+#
+# Fire Sphere:86E2 | Explosion (small)
+# Fire Sphere:86E3 | Explosion (large)
+# Fire Sphere:8727 | Small omen
+# Fire Sphere:8728 | Large omen
