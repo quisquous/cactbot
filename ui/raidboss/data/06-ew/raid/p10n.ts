@@ -96,8 +96,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P10N Pandaemoniac Meltdown',
       type: 'StartsUsing',
-      netRegex: { id: '8276', source: bossNameUnicode, capture: false },
-      response: Responses.stackMarker(),
+      netRegex: { id: '87A2', source: bossNameUnicode },
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'P10N Soul Grasp',
