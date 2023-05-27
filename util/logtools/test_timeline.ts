@@ -437,7 +437,7 @@ class TestTimeline extends Timeline {
           continue;
         // Skip events when jumping
         if (
-          lastRecord?.event.sync?.jump !== undefined && lastRecord?.event.sync?.jump >= event.time
+          lastRecord?.event.sync?.jump !== undefined && lastRecord?.event.sync?.jump > event.time
         )
           continue;
 
