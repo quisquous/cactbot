@@ -78,7 +78,7 @@ Options.Triggers.push({
     },
     {
       id: 'P10N Pandaemoniac Meltdown',
-      type: 'StartsUsing',
+      type: 'Ability',
       netRegex: { id: '87A2', source: bossNameUnicode },
       response: Responses.stackMarkerOn(),
     },
