@@ -71,6 +71,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'aoe + Get Middle',
           de: 'AoE + Geh in die Mitte',
+          ko: '전체공격 + 중앙으로',
         },
       },
     },
@@ -110,6 +111,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand Between Platforms',
           de: 'Steh zwischen den Platformen',
+          ko: '플랫폼 사이로',
         },
       },
     },
@@ -135,6 +137,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Behind (Avoid Tentacles)',
           de: 'Geh nach Hinten (Vermeide Tentakel)',
+          ko: '보스 뒤로 (촉수 피하기)',
         },
       },
     },
