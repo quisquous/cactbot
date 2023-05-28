@@ -635,6 +635,14 @@ export default {
     cn: '远离连线 (${player})',
     ko: '상대와 떨어지기 (${player})',
   },
+  getTowers: {
+    en: 'Get Towers',
+    de: 'Türme nehmen',
+    fr: 'Allez dans les tours',
+    ja: '塔を踏む',
+    cn: '踩塔',
+    ko: '기둥 들어가기',
+  },
   unknown: {
     en: '???',
     de: '???',

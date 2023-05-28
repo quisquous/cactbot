@@ -593,6 +593,7 @@ export const Responses = {
     };
   },
   wakeUp: (sev?: Severity) => staticResponse(defaultAlarmText(sev), Outputs.wakeUp),
+  getTowers: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.getTowers),
 } as const;
 
 // Don't give `Responses` a type in its declaration so that it can be treated as more strict

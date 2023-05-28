@@ -5,7 +5,7 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
-  silkspitOnYou: boolean;
+  silkspitPlayers: string[];
 }
 
 const bossNameUnicode = 'Pand\u00e6monium';
@@ -16,38 +16,37 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'p10n.txt',
   initData: () => {
     return {
-      silkspitOnYou: false,
+      silkspitPlayers: [],
     };
   },
   triggers: [
     {
-      id: 'P10N Silkspit You',
+      id: 'P10N Silkspit Collect',
       type: 'HeadMarker',
       netRegex: { id: '01CE' },
-      condition: (data, matches) => data.me === matches.target,
-      alertText: (data, _matches, output) => {
-        data.silkspitOnYou = true;
-        return output.text!();
-      },
-      outputStrings: {
-        text: {
-          en: 'Away from party and posts',
-        },
-      },
+      run: (data, matches) => data.silkspitPlayers.push(matches.target),
     },
     {
-      id: 'P10N Silkspit Others',
+      id: 'P10N Silkspit',
       type: 'HeadMarker',
       netRegex: { id: '01CE', capture: false },
-      delaySeconds: 0.2,
-      suppressSeconds: 1,
-      infoText: (data, _matches, output) => {
-        if (data.silkspitOnYou === false)
-          return output.text!();
+      delaySeconds: 0.5,
+      suppressSeconds: 0.5,
+      alertText: (data, _matches, output) => {
+        if (data.silkspitPlayers.includes(data.me))
+          return output.onYou!();
       },
+      infoText: (data, _matches, output) => {
+        if (!data.silkspitPlayers.includes(data.me))
+          return output.onOthers!();
+      },
+      run: (data) => data.silkspitPlayers = [],
       outputStrings: {
-        text: {
-          en: 'Away from marked players',
+        onYou: {
+          en: 'Spread (avoid posts)',
+        },
+        onOthers: {
+          en: 'Avoid marked players',
         },
       },
     },
@@ -56,12 +55,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '825D', source: bossNameUnicode, capture: false },
       durationSeconds: 5,
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Soak towers',
-        },
-      },
+      response: Responses.getTowers(),
     },
     {
       id: 'P10N Imprisonment',
@@ -126,7 +120,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Cross bridge / off center platform',
+          en: 'Side platform(s)',
         },
       },
     },
@@ -162,38 +156,6 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Avoid towers',
         },
       },
-    },
-  ],
-  timelineReplace: [
-    {
-      'locale': 'de',
-      'missingTranslations': true,
-      'replaceSync': {},
-      'replaceText': {},
-    },
-    {
-      'locale': 'fr',
-      'missingTranslations': true,
-      'replaceSync': {},
-      'replaceText': {},
-    },
-    {
-      'locale': 'ja',
-      'missingTranslations': true,
-      'replaceSync': {},
-      'replaceText': {},
-    },
-    {
-      'locale': 'cn',
-      'missingTranslations': true,
-      'replaceSync': {},
-      'replaceText': {},
-    },
-    {
-      'locale': 'ko',
-      'missingTranslations': true,
-      'replaceSync': {},
-      'replaceText': {},
     },
   ],
 };

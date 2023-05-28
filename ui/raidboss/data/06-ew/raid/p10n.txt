@@ -27,6 +27,7 @@ hideall "--sync--"
 
 0.0 "--sync--" sync /Engage!/ window 0,1
 2.5 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:827A:/
+7.9 "--sync--" sync / 14:[^:]*::Pand\u00e6monium:8259:/ window 15,15
 10.9 "Silkspit (marked)" sync / 1[56]:[^:]*:Pand\u00e6monium:8259:/
 23.0 "Silkspit (resolves)" sync / 1[56]:[^:]*:Pand\u00e6monium:825A:/
 35.4 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/
@@ -40,13 +41,13 @@ hideall "--sync--"
 101.3 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:8721:/
 114.7 "Silkspit (marked)" sync / 1[56]:[^:]*:Pand\u00e6monium:8259:/
 126.7 "Silkspit (resolves)" sync / 1[56]:[^:]*:Pand\u00e6monium:825A:/
-140.4 "Pandaemoniac Ray East/West" sync / 1[56]:[^:]*:Pand\u00e6monium:826[57]:/
+140.4 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:826[57]:/
 150.6 "Parted Plumes" sync / 1[56]:[^:]*:Pand\u00e6monium:8270:/ duration 11
 165.2 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:87A2:/
 170.5 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8276:/
 179.7 "Soul Grasp" sync / 1[56]:[^:]*:Pand\u00e6monium:8278:/
 191.0 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:8721:/
-210.5 "Pandaemoniac Ray East/West" sync / 1[56]:[^:]*:Pand\u00e6monium:826[57]:/
+210.5 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:826[57]:/
 224.6 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8268:/
 233.8 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:827B:/
 245.7 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/
@@ -67,7 +68,7 @@ hideall "--sync--"
 385.8 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8276:/
 392.0 "Silkspit (marked)" sync / 1[56]:[^:]*:Pand\u00e6monium:8259:/
 404.0 "Silkspit (resolves)" sync / 1[56]:[^:]*:Pand\u00e6monium:825A:/
-417.7 "Pandaemoniac Ray East/West" sync / 1[56]:[^:]*:Pand\u00e6monium:826[57]:/
+417.7 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:826[57]:/
 423.8 "Parted Plumes" sync / 1[56]:[^:]*:Pand\u00e6monium:8270:/ duration 11
 442.4 "Soul Grasp" sync / 1[56]:[^:]*:Pand\u00e6monium:8278:/
 457.6 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:827B:/

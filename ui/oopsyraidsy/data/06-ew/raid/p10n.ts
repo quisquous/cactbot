@@ -5,10 +5,7 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
 // TODO: Replace Unmitigated Explosion by detecting/blaming whomever did not soak a pillar.
 
-export interface Data extends OopsyData {
-  bindingSoulPlayers?: string[];
-  concentratedPoisonPlayers?: string[];
-}
+export type Data = OopsyData;
 
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.AnabaseiosTheTenthCircle,
@@ -22,66 +19,40 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P10N Cannonspawn': '8264', // donut AoE from jails
   },
   gainsEffectWarn: {
-    'P10N Parted Plumes Puddle': 'C05', // Bleeding debuff from standing in center puddle
+    'P10N Parted Plumes Puddle': 'C05', // bleed from standing in center puddle
+    'P10N Concentrated Poison': 'E6C', // stacking bleed from standing in poison pools
   },
   soloWarn: {
     'P10N Pandaemoniac Meltdown': '8277', // line stack
   },
   triggers: [
     {
-      // Stacking debuff that auto-increments and upon reaching 5 stacks is fatal.
-      id: 'P10N Binding Soul Share Gain',
+      // Stacking debuff from being tethered when Silkspit resolves
+      // Auto-increments, and is fatal upon reaching 5 stacks
+      // But it appears under some circumstances, the debuff is removed/can be removed earlier
+      id: 'P10N Binding Soul Share Initial',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'DDB' }),
-      mistake: (data, matches) => {
-        data.bindingSoulPlayers ??= [];
-        if (!data.bindingSoulPlayers.includes(matches.target)) {
-          data.bindingSoulPlayers.push(matches.target);
-          return {
-            type: 'fail',
-            blame: matches.target,
-            reportId: matches.targetId,
-            text: matches.effect,
-          };
-        }
+      netRegex: NetRegexes.gainsEffect({ effectId: 'DDB', count: '01' }),
+      mistake: (_data, matches) => {
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.effect,
+        };
       },
     },
     {
-      id: 'P10N Binding Soul Share Loss',
-      type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: 'DDB' }),
-      run: (data, matches) => {
-        data.bindingSoulPlayers = (data.bindingSoulPlayers ??= []).filter((p) =>
-          p !== matches.target
-        );
-      },
-    },
-    {
-      // Stacking debuff that auto-increments as you remain in the poison.
-      id: 'P10N Concentrated Poison Gain',
+      id: 'P10N Binding Soul Share Fatal',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'E6C' }),
-      mistake: (data, matches) => {
-        data.concentratedPoisonPlayers ??= [];
-        if (!data.concentratedPoisonPlayers.includes(matches.target)) {
-          data.concentratedPoisonPlayers.push(matches.target);
-          return {
-            type: 'fail',
-            blame: matches.target,
-            reportId: matches.targetId,
-            text: matches.effect,
-          };
-        }
-      },
-    },
-    {
-      id: 'P10N Concentrated Poison Loss',
-      type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: 'E6C' }),
-      run: (data, matches) => {
-        data.concentratedPoisonPlayers = (data.concentratedPoisonPlayers ??= []).filter((p) =>
-          p !== matches.target
-        );
+      netRegex: NetRegexes.gainsEffect({ effectId: 'DDB', count: '05' }),
+      mistake: (_data, matches) => {
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.effect,
+        };
       },
     },
     {
