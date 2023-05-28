@@ -87,7 +87,7 @@ Options.Triggers.push({
           fr: 'Positions par rôle',
           ja: 'ロール特定位置へ',
           cn: '去指定位置',
-          ko: '1단리밋 산개위치로',
+          ko: '직업군별 위치로',
         },
         limitBreak2: {
           en: 'healer stacks',

@@ -654,6 +654,7 @@ Options.Triggers.push({
         text: {
           en: 'Eye ${dir}',
           de: 'Auge ${dir}',
+          ko: '눈 ${dir}',
         },
         dirN: Outputs.dirN,
         dirNE: Outputs.dirNE,
