@@ -794,6 +794,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         thunderOnOthers: {
           en: 'Thunder on ${player1}, ${player2}',
+          ko: '번개 ${player1}, ${player2}',
         },
       },
     },
@@ -1429,6 +1430,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         dive: {
           en: '${dir} Dive',
+          ko: '${dir} 다이브',
         },
         ...Directions.outputStrings8Dir,
       },
@@ -1485,6 +1487,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         naelPosition: {
           en: 'Nael is ${dir}',
+          ko: '넬 ${dir}',
         },
         ...Directions.outputStrings8Dir,
       },
@@ -1659,6 +1662,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         naelPosition: {
           en: '${dir} Nael',
+          ko: '넬 ${dir}',
         },
         left: Outputs.left,
         middle: Outputs.middle,
@@ -1812,6 +1816,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         grandOctet: {
           en: 'Bait dash, go ${startDir}, rotate ${path}',
+          ko: '돌진 유도, ${startDir}쪽으로, ${path}',
         },
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,
@@ -2288,7 +2293,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': '바하무트 프라임',
         'Fang of Light': '빛의 송곳니',
