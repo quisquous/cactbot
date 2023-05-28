@@ -2,7 +2,6 @@ import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
-// TODO: standing in the bad during add phase
 // TODO: technically Shockwave (82CF) the dash before Palladion cleaves, but this seems tough to avoid
 
 export type Data = OopsyData;
@@ -26,6 +25,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
   },
   damageFail: {
     'P12N Sample': '82C0', // platform falling from Unnatural Enchainment
+  },
+  gainsEffectWarn: {
+    // C05 is the infinite effect, C06 is the 15s effect
+    'P12N Bleeding': 'C05', // standing in the bad hexagon during add phase
   },
   shareWarn: {
     'P12N Anthropos White Flame': '82CA', // tethered line cleave from Paradeigma adds
