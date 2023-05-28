@@ -53,14 +53,21 @@ hideall "--sync--"
 
 # Add Phase
 256.4 "--adds targetable--"
-266.7 "Palladion" sync / 1[56]:[^:]*:Athena:82CD:/
+266.7 "--sync--" sync / 1[56]:[^:]*:Athena:82CD:/ window 30,30
 266.9 "Palladion 1" sync / 1[56]:[^:]*:Athena:82CE:/
 268.5 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82D4:/
 270.1 "Palladion 2" sync / 1[56]:[^:]*:Athena:82CE:/
 273.1 "Palladion 3" sync / 1[56]:[^:]*:Athena:82CE:/
 274.1 "Clear Cut" sync / 1[56]:[^:]*:Anthropos:82D3:/
 276.2 "Palladion 4" sync / 1[56]:[^:]*:Athena:82CE:/
-# ???
+279.2 "Palladion 5" sync / 1[56]:[^:]*:Athena:82CE:/
+281.0 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82D4:/
+282.3 "Palladion 6" sync / 1[56]:[^:]*:Athena:82CE:/
+285.3 "Palladion 7" sync / 1[56]:[^:]*:Athena:82CE:/
+287.4 "Clear Cut" sync / 1[56]:[^:]*:Anthropos:82D3:/
+288.4 "Palladion 8" sync / 1[56]:[^:]*:Athena:82CE:/
+293.4 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82D4:/
+# ??? this is ~90% on the enrage
 
 # Final Phase
 500.0 "--sync--" sync / 14:[^:]*:Athena:82D1:/ window 500,0
