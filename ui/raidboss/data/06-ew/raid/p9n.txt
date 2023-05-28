@@ -19,12 +19,12 @@ hideall "--sync--"
 # Mage Phase 1
 26.4 "Ravening (Mage)" sync / 1[56]:[^:]*:Kokytos:8118:/
 41.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
-48.4 "Fire III" sync / 1[56]:[^:]*:Kokytos:814E:/
+48.4 "Fire III (cast)" sync / 1[56]:[^:]*:Kokytos:814E:/
 51.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8122:/
-56.3 "Fire III" sync / 1[56]:[^:]*:Kokytos:8120:/
-68.1 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:814F:/
+56.3 "Fire III (resolve)" sync / 1[56]:[^:]*:Kokytos:8120:/
+68.1 "Blizzard III (cast)" sync / 1[56]:[^:]*:Kokytos:814F:/
 71.4 "--sync--" sync / 1[56]:[^:]*:Kokytos:8123:/
-76.0 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:8121:/
+76.0 "Blizzard III (resolve)" sync / 1[56]:[^:]*:Kokytos:8121:/
 82.6 "Dualspell" sync / 1[56]:[^:]*:Kokytos:811D:/
 85.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:812[23]:/
 90.3 "Fire III" sync / 1[56]:[^:]*:Kokytos:(8120|811E):/
