@@ -2,7 +2,10 @@
 #
 # List of all ability IDs seen at the bottom of the file
 #
+# Autos
 # -ii 811C 8115 8127 8140
+# Cast resolutions
+# -ii 8117 8130 8142 813E
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -12,7 +15,6 @@ hideall "--sync--"
 0.0 "--sync--" sync /Engage!/ window 0,1
 7.0 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/ window 10,10
 18.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:8116:/
-18.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:8117:/
 
 
 
@@ -30,7 +32,6 @@ hideall "--sync--"
 90.3 "Fire III" sync / 1[56]:[^:]*:Kokytos:(8120|811E):/
 90.3 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(811F|8121):/
 99.8 "Global Spell" sync / 1[56]:[^:]*:Kokytos:8141:/
-100.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8142:/
 103.0 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8124:/
 
 
@@ -42,9 +43,7 @@ hideall "--sync--"
 145.1 "Archaic Rockbreaker 1" sync / 1[56]:[^:]*:Kokytos:812A:/
 150.1 "Archaic Rockbreaker 2" sync / 1[56]:[^:]*:Kokytos:812A:/
 156.7 "Archaic Demolish" sync / 1[56]:[^:]*:Kokytos:812F:/
-157.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8130:/
 163.8 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:8116:/
-164.2 "--sync--" sync / 1[56]:[^:]*:Kokytos:8117:/
 170.9 "Ascendant Fist" sync / 1[56]:[^:]*:Kokytos:8131:/
 183.2 "Front Combination/Rear Combination" sync / 1[56]:[^:]*:Kokytos:814[8A]:/
 183.4 "Outside Roundhouse" sync / 1[56]:[^:]*:Kokytos:812C:/
@@ -60,7 +59,6 @@ hideall "--sync--"
 221.8 "--sync--" sync / 1[56]:[^:]*:Kokytos:8133:/
 226.9 "Beastly Roar" sync / 1[56]:[^:]*:Kokytos:8138:/
 229.0 "Beastly Bile" sync / 1[56]:[^:]*:Kokytos:813D:/
-231.0 "--sync--" sync / 1[56]:[^:]*:Kokytos:813E:/
 238.1 "Pulverizing Pounce" sync / 1[56]:[^:]*:Kokytos:813F:/
 253.4 "Gluttonous Rampage" sync / 1[56]:[^:]*:Kokytos:8139:/
 253.6 "Ravenous Bite 1" #sync / 1[56]:[^:]*:Kokytos:813A:/
@@ -99,7 +97,6 @@ hideall "--sync--"
 363.8 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(811F|8121):/
 363.8 "Fire III" sync / 1[56]:[^:]*:Kokytos:(811E|8120):/
 370.5 "Global Spell" sync / 1[56]:[^:]*:Kokytos:8141:/
-371.4 "Global Spell" sync / 1[56]:[^:]*:Kokytos:8142:/
 372.7 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8124:/
 
 
@@ -114,7 +111,6 @@ hideall "--sync--"
 422.0 "Inside Roundhouse" sync / 1[56]:[^:]*:Kokytos:812B:/
 425.0 "Swinging Kick" sync / 1[56]:[^:]*:Kokytos:812[DE]:/
 433.1 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:8116:/
-433.5 "--sync--" sync / 1[56]:[^:]*:Kokytos:8117:/
 445.4 "Ascendant Fist" sync / 1[56]:[^:]*:Kokytos:8131:/
 447.5 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8125:/
 457.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
@@ -130,7 +126,6 @@ hideall "--sync--"
 497.1 "Ecliptic Meteor" sync / 1[56]:[^:]*:Kokytos:8188:/
 497.2 "--sync--" sync / 1[56]:[^:]*:Comet:8143:/
 501.2 "Beastly Bile" sync / 1[56]:[^:]*:Kokytos:813D:/
-503.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:813E:/
 503.1 "Burst" sync / 1[56]:[^:]*:Comet:8136:/
 510.3 "Pulverizing Pounce" sync / 1[56]:[^:]*:Kokytos:813F:/
 523.7 "Gluttonous Rampage" sync / 1[56]:[^:]*:Kokytos:8139:/
