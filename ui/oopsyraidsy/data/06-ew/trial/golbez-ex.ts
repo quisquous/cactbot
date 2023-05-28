@@ -8,6 +8,8 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 // TODO: somebody taking two Eventide Fall 86B4 or Eventide Triad 86B2
 // TODO: somebody taking two Immolating Shade 8496
 // TODO: somebody taking two Void Tornado 845D
+// TODO: figuring out who missed a tower
+// TODO: being in a tower with a flare marker
 
 export type Data = OopsyData;
 
@@ -27,9 +29,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
   },
   damageFail: {
     'GolbezEx Void Stardust': '84AA', // exaflares (will kill somebody during Abyssal Quasar after)
+    'GoblezEx Massive Explosion': '84A0', // failing towers
   },
   shareWarn: {
     'GolbezEx Void Comet': '84B0', // mini tank busters
+    'GoblezEx Cauterize': '84A2', // wide line aoe on healer with knockback during Double Meteor
   },
   shareFail: {
     'GolbezEx Void Meteor': '84B1', // large tank busters
