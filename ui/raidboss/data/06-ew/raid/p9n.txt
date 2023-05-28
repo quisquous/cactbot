@@ -107,8 +107,8 @@ hideall "--sync--"
 404.8 "Shockwave" sync / 1[56]:[^:]*:Kokytos:8129:/
 411.7 "Archaic Rockbreaker 1" sync / 1[56]:[^:]*:Kokytos:812A:/
 416.7 "Archaic Rockbreaker 2" sync / 1[56]:[^:]*:Kokytos:812A:/
-421.8 "Front Combination/Rear Combination" sync / 1[56]:[^:]*:Kokytos:814[79]:/
-422.0 "Inside Roundhouse" sync / 1[56]:[^:]*:Kokytos:812B:/
+421.8 "Front Combination/Rear Combination" sync / 1[56]:[^:]*:Kokytos:814[789A]:/
+422.0 "Inside Roundhouse/Outside Roundhouse" sync / 1[56]:[^:]*:Kokytos:812[BC]:/
 425.0 "Swinging Kick" sync / 1[56]:[^:]*:Kokytos:812[DE]:/
 433.1 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:8116:/
 445.4 "Ascendant Fist" sync / 1[56]:[^:]*:Kokytos:8131:/
@@ -137,8 +137,12 @@ hideall "--sync--"
 
 
 
-# Mage phase 3
-549.8 "Ravening (Mage)" sync / 1[56]:[^:]*:Kokytos:8118:/
+# Mage phase 3, loops back to mage phase 2
+549.8 "Ravening (Mage)" sync / 1[56]:[^:]*:Kokytos:8118:/ window 50,50 jump 304.3
+570.7 "Iceflame Summoning" #sync / 1[56]:[^:]*:Kokytos:86E1:/
+581.6 "Sphere Shatter" #sync / 1[56]:[^:]*:Ice Sphere:86E[45]:/
+581.6 "Explosion" #sync / 1[56]:[^:]*:Fire Sphere:86E[23]:/
+586.2 "Iceflame Summoning" #sync / 1[56]:[^:]*:Kokytos:86E1:/
 
 # Ability IDs that appear in this instance:
 # UMFB = Unaspected, Mage, Fighter, Behemoth

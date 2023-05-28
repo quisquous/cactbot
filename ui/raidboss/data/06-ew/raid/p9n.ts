@@ -168,6 +168,7 @@ const triggerSet: TriggerSet<Data> = {
       locale: 'en',
       replaceText: {
         'Front Combination/Rear Combination': 'Front/Rear Combination',
+        'Inside Roundhouse/Outside Roundhouse': 'Inside/Outside Roundhouse',
       },
     },
   ],
