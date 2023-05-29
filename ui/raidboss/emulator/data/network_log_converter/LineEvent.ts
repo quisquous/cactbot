@@ -4,6 +4,7 @@ import SFuncs from '../../../../../resources/stringhandlers';
 import { Job } from '../../../../../types/job';
 
 import { LineEvent0x03 } from './LineEvent0x03';
+import { LineEvent0x105 } from './LineEvent0x105';
 import LogRepository from './LogRepository';
 
 const fields = {
@@ -148,4 +149,8 @@ export const isLineEventAbility = (line: LineEvent): line is LineEventAbility =>
 
 export const isLineEvent0x03 = (line: LineEvent): line is LineEvent0x03 => {
   return line.decEvent === 3;
+};
+
+export const isLineEvent0x105 = (event: LineEvent): event is LineEvent0x105 => {
+  return event.decEvent === 261;
 };

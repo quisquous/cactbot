@@ -7,6 +7,7 @@ import CombatantJobSearch from './CombatantJobSearch';
 import CombatantState from './CombatantState';
 import LineEvent, {
   isLineEvent0x03,
+  isLineEvent0x105,
   isLineEventAbility,
   isLineEventJobLevel,
   isLineEventSource,
@@ -14,6 +15,7 @@ import LineEvent, {
   LineEventSource,
   LineEventTarget,
 } from './network_log_converter/LineEvent';
+import { LineEvent0x105 } from './network_log_converter/LineEvent0x105';
 
 export default class CombatantTracker {
   language: Lang;
@@ -56,6 +58,13 @@ export default class CombatantTracker {
         ++eventTracker[line.targetId];
         this.combatants[line.targetId]?.pushPartialState(line.timestamp, state);
       }
+
+      if (isLineEvent0x105(line)) {
+        this.addCombatantFromCombatantMemoryLine(line);
+        eventTracker[line.idHex] = eventTracker[line.idHex] ?? 0;
+        ++eventTracker[line.idHex];
+        this.combatants[line.idHex]?.pushPartialState(line.timestamp, line.state);
+      }
     }
 
     // Finalize combatants, cleaning up state information
@@ -86,6 +95,12 @@ export default class CombatantTracker {
     this.mainCombatantID = this.enemies.sort((l, r) => {
       return (eventTracker[r] ?? 0) - (eventTracker[l] ?? 0);
     })[0];
+  }
+
+  addCombatantFromCombatantMemoryLine(line: LineEvent0x105): void {
+    const combatant = this.combatants[line.id] ?? this.initCombatant(line.idHex);
+
+    combatant.pushPartialState(this.firstTimestamp, line.state);
   }
 
   addCombatantFromSourceLine(line: LineEventSource, extractedState: Partial<CombatantState>): void {
