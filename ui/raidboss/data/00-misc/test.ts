@@ -344,7 +344,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.watchingForCast,
       infoText: (data, matches, output) => {
         data.watchingForCast = false;
-        return output.casting!({ id: matches.id, spellId: matches.value1 });
+        return output.casting!({ id: matches.id, spellId: matches.pairCastBuffID });
       },
       outputStrings: {
         casting: {

@@ -1,3 +1,4 @@
+import { PluginCombatantState } from '../types/event';
 import { NetFieldsReverse } from '../types/net_fields';
 
 export type LogDefinition = {
@@ -40,14 +41,60 @@ export type LogDefinition = {
     startingIndex: number;
     label: string;
     names: readonly string[];
-    // Keys passed to `sortFn` are user-supplied in the case of user triggers
-    // As such, validation of those keys falls to the sorting function itself
-    // so `left` and `right` types are left `unknown`
-    sortFn?: (left: unknown, right: unknown) => number;
+    sortKeys?: boolean;
+    primaryKey: string;
+    possibleKeys: readonly string[];
   };
 };
 export type LogDefinitionMap = { [name: string]: LogDefinition };
 type LogDefinitionVersionMap = { [version: string]: LogDefinitionMap };
+
+// TODO: Maybe bring in a helper library that can compile-time extract these keys instead?
+const combatantMemoryKeys: readonly (Extract<keyof PluginCombatantState, string>)[] = [
+  'CurrentWorldID',
+  'WorldID',
+  'WorldName',
+  'BNpcID',
+  'BNpcNameID',
+  'PartyType',
+  'ID',
+  'OwnerID',
+  'WeaponId',
+  'Type',
+  'Job',
+  'Level',
+  'Name',
+  'CurrentHP',
+  'MaxHP',
+  'CurrentMP',
+  'MaxMP',
+  'PosX',
+  'PosY',
+  'PosZ',
+  'Heading',
+  'MonsterType',
+  'Status',
+  'ModelStatus',
+  'AggressionStatus',
+  'TargetID',
+  'IsTargetable',
+  'Radius',
+  'Distance',
+  'EffectiveDistance',
+  'NPCTargetID',
+  'CurrentGP',
+  'MaxGP',
+  'CurrentCP',
+  'MaxCP',
+  'PCTargetID',
+  'IsCasting1',
+  'IsCasting2',
+  'CastBuffID',
+  'CastTargetID',
+  'CastDurationCurrent',
+  'CastDurationMax',
+  'TransformationId',
+] as const;
 
 const latestLogDefinitions = {
   GameLog: {
@@ -1027,7 +1074,7 @@ const latestLogDefinitions = {
       // from here, pairs of field name/values
     },
     canAnonymize: true,
-    firstOptionalField: 4,
+    firstOptionalField: 5,
     playerIds: {
       3: null,
     },
@@ -1035,29 +1082,9 @@ const latestLogDefinitions = {
       startingIndex: 4,
       label: 'pair',
       names: ['key', 'value'],
-      sortFn: (left: unknown, right: unknown): number => {
-        type SortTypeA = { key: string };
-        type SortTypeB = { key: string };
-        const isSortTypeA = (o: unknown): o is SortTypeA => {
-          if (typeof o !== 'object' || o === null || Object.keys(o).length === 0)
-            return false;
-          return 'key' in o;
-        };
-        const isSortTypeB = (o: unknown): o is SortTypeB => {
-          if (!isSortTypeA(o))
-            return false;
-          return typeof o.key === 'string';
-        };
-        if (!isSortTypeB(left)) {
-          console.warn('Invalid argument passed to sortFn:', left);
-          return 0;
-        }
-        if (!isSortTypeB(right)) {
-          console.warn('Invalid argument passed to sortFn:', right);
-          return 0;
-        }
-        return left.key.localeCompare(right.key);
-      },
+      sortKeys: true,
+      primaryKey: 'key',
+      possibleKeys: combatantMemoryKeys,
     },
   },
   RSVData: {
@@ -1115,7 +1142,9 @@ export type ParseHelperField<
   optional?: boolean;
   repeating?: boolean;
   repeatingKeys?: string[];
-  sortFn?: (left: unknown, right: unknown) => number;
+  sortKeys?: boolean;
+  primaryKey?: string;
+  possibleKeys?: string[];
 };
 
 export type ParseHelperFields<T extends LogDefinitionTypes> = {
