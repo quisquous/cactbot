@@ -189,6 +189,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZurvanEX Southern Cross Move',
       type: 'StartsUsing',
       netRegex: { id: '1C5D', source: 'Zurvan', capture: false },
+      suppressSeconds: 5,
       response: Responses.moveAway(),
     },
     {
