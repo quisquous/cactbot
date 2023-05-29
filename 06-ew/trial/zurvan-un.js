@@ -177,6 +177,7 @@ Options.Triggers.push({
       id: 'ZurvanUN Southern Cross Move',
       type: 'StartsUsing',
       netRegex: { id: '8566', source: 'Zurvan', capture: false },
+      suppressSeconds: 5,
       response: Responses.moveAway(),
     },
     {
