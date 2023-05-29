@@ -162,6 +162,26 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '8136', source: 'Comet', capture: false },
       response: Responses.moveAway(),
     },
+    {
+      id: 'P9N Gluttonous Rampage',
+      type: 'HeadMarker',
+      netRegex: { id: '013A', capture: true },
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.tankbusterOnYouStretchTethers!();
+
+        if (data.role === 'healer' || data.job === 'BLU')
+          return output.tankbusterOn!({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        tankbusterOnYouStretchTethers: {
+          en: 'Tankbuster on YOU -- stretch tether',
+        },
+        tankbusterOn: {
+          en: 'Tankbuster on ${player}',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
