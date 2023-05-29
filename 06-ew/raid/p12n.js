@@ -16,9 +16,11 @@ const wingOutputStrings = {
   // mean your left or the boss's left or that you've left off reading this.
   leftFlank: {
     en: 'Left Flank',
+    de: 'Linke Flanke',
   },
   rightFlank: {
     en: 'Right Flank',
+    de: 'Rechte Flanke',
   },
 };
 Options.Triggers.push({
@@ -66,6 +68,7 @@ Options.Triggers.push({
         right: Outputs.right,
         text: {
           en: '${first} => ${second} => ${third}',
+          de: '${first} => ${second} => ${third}',
         },
       },
     },
@@ -140,15 +143,19 @@ Options.Triggers.push({
       outputStrings: {
         superchain1: {
           en: 'Follow Donut',
+          de: 'Donut folgen',
         },
         superchain2: {
           en: 'Short Donut => Long Donut',
+          de: 'Kurzer Donut => Langer Donut',
         },
         superchain3: {
           en: 'Follow Donut (avoid cleave)',
+          de: 'Donut folgen (Cleave ausweichen)',
         },
         superchain4: {
           en: 'Avoid Spheres',
+          de: 'Spheren vermeiden',
         },
       },
     },
@@ -166,6 +173,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Avoid Chained Platforms',
+          de: 'Vermeide angekettete Platformen',
         },
       },
     },
@@ -182,6 +190,93 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '82D6', source: 'Athena' },
       response: Responses.stackMarkerOn(),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Anthropos': 'Anthropos',
+        'Athena': 'Athena',
+        'Thymou Idea': 'Thymos',
+      },
+      'replaceText': {
+        '\\(spread\\)': '(Verteilen)',
+        '\\(stack\\)': '(Sammeln)',
+        'Clear Cut': 'Klarer Schnitt',
+        'Dialogos': 'Dialogos',
+        'Glaukopis': 'Glaukopis',
+        'On the Soul': 'Auf der Seele',
+        'Palladion': 'Palladion',
+        'Paradeigma': 'Paradigma',
+        'Parthenos': 'Parthenos',
+        'Ray of Light': 'Lichtstrahl',
+        'Sample': 'Vielfraß',
+        'Superchain Burst': 'Superkette - Ausbruch',
+        'Superchain Coil': 'Superkette - Kreis',
+        'Superchain Theory': 'Superkette - Theorie',
+        'Theos\'s Ultima': 'Theos Ultima',
+        'Trinity of Souls': 'Dreifaltigkeit der Seelen',
+        'Ultima Blade': 'Ultima-Klinge',
+        'Unnatural Enchainment': 'Seelenfessel',
+        'White Flame': 'Weißes Feuer',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Anthropos': 'anthropos',
+        'Athena': 'Athéna',
+        'Thymou Idea': 'thymou idea',
+      },
+      'replaceText': {
+        'Clear Cut': 'Tranchage balayant',
+        'Dialogos': 'Dialogos',
+        'Glaukopis': 'Glaukopis',
+        'On the Soul': 'Sur les âmes',
+        'Palladion': 'Palladion',
+        'Paradeigma': 'Paradeigma',
+        'Parthenos': 'Parthénon',
+        'Ray of Light': 'Onde de lumière',
+        'Sample': 'Voracité',
+        'Superchain Burst': 'Salve des superchaînes',
+        'Superchain Coil': 'Cercle des superchaînes',
+        'Superchain Theory': 'Théorie des superchaînes',
+        'Theos\'s Ultima': 'Ultima de théos',
+        'Trinity of Souls': 'Âmes trinité',
+        'Ultima Blade': 'Lames Ultima',
+        'Unnatural Enchainment': 'Enchaînement d\'âmes',
+        'White Flame': 'Feu blanc',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Anthropos': 'アンスロポス',
+        'Athena': 'アテナ',
+        'Thymou Idea': 'テューモス・イデア',
+      },
+      'replaceText': {
+        'Clear Cut': '斬り払い',
+        'Dialogos': 'ディアロゴス',
+        'Glaukopis': 'グラウコピス',
+        'On the Soul': 'オン・ザ・ソウル',
+        'Palladion': 'パラディオン',
+        'Paradeigma': 'パラデイグマ',
+        'Parthenos': 'パルテノン',
+        'Ray of Light': '光波',
+        'Sample': '貪食',
+        'Superchain Burst': 'スーパーチェイン・バースト',
+        'Superchain Coil': 'スーパーチェイン・サークル',
+        'Superchain Theory': 'スーパーチェイン・セオリー',
+        'Theos\'s Ultima': 'テオス・アルテマ',
+        'Trinity of Souls': 'トリニティ・ソウル',
+        'Ultima Blade': 'アルテマブレイド',
+        'Unnatural Enchainment': '魂の鎖',
+        'White Flame': '白火',
+      },
     },
   ],
 });

@@ -728,6 +728,7 @@ Options.Triggers.push({
         },
         thunderOnOthers: {
           en: 'Thunder on ${player1}, ${player2}',
+          de: 'Blitz auf ${player1}, ${player2}',
           ko: '번개 ${player1}, ${player2}',
         },
       },
@@ -1348,6 +1349,7 @@ Options.Triggers.push({
       outputStrings: {
         dive: {
           en: '${dir} Dive',
+          de: '${dir} Sturzbombe',
           ko: '${dir} 다이브',
         },
         ...Directions.outputStrings8Dir,
@@ -1405,6 +1407,7 @@ Options.Triggers.push({
       outputStrings: {
         naelPosition: {
           en: 'Nael is ${dir}',
+          de: 'Nael ist im ${dir}',
           ko: '넬 ${dir}',
         },
         ...Directions.outputStrings8Dir,
@@ -1574,6 +1577,7 @@ Options.Triggers.push({
       outputStrings: {
         naelPosition: {
           en: '${dir} Nael',
+          de: '${dir} Nael',
           ko: '넬 ${dir}',
         },
         left: Outputs.left,
@@ -1722,6 +1726,7 @@ Options.Triggers.push({
       outputStrings: {
         grandOctet: {
           en: 'Bait dash, go ${startDir}, rotate ${path}',
+          de: 'Ansturm ködern, gehe nach ${startDir}, rotiere ${path}',
           ko: '돌진 유도, ${startDir}쪽으로, ${path}',
         },
         clockwise: Outputs.clockwise,
@@ -1802,7 +1807,6 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': 'Prim-Bahamut',
         'Fang of Light': 'Lichtklaue',

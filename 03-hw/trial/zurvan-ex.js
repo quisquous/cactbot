@@ -225,9 +225,11 @@ Options.Triggers.push({
         },
         fire: {
           en: 'Fire',
+          de: 'Feuer',
         },
         ice: {
           en: 'Ice',
+          de: 'Eis',
         },
         unknown: Outputs.unknown,
       },
@@ -253,9 +255,11 @@ Options.Triggers.push({
         },
         fire: {
           en: 'Fire',
+          de: 'Feuer',
         },
         ice: {
           en: 'Ice',
+          de: 'Eis',
         },
         unknown: Outputs.unknown,
       },

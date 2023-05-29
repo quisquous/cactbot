@@ -33,9 +33,11 @@ Options.Triggers.push({
       outputStrings: {
         onYou: {
           en: 'Spread (avoid posts)',
+          de: 'Verteilen (vermeide Stäbe)',
         },
         onOthers: {
           en: 'Avoid marked players',
+          de: 'Vermeide markierte Spieler',
         },
       },
     },
@@ -55,6 +57,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Avoid jails',
+          de: 'Gefängnisen vermeiden',
         },
       },
     },
@@ -67,6 +70,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Under jails',
+          de: 'Geh unter ein Gefängnis',
         },
       },
     },
@@ -110,6 +114,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Side platform(s)',
+          de: 'Seite-Platform(en)',
         },
       },
     },
@@ -140,10 +145,83 @@ Options.Triggers.push({
       outputStrings: {
         soak: {
           en: 'Soak tower',
+          de: 'Türme nehmen',
         },
         avoid: {
           en: 'Avoid towers',
+          de: 'Türme vermeiden',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
+      },
+      'replaceText': {
+        '\\(marked\\)': '(Markiert)',
+        '\\(resolves\\)': '(Effekt)',
+        '\\(knockback\\)': '(Rückstoß)',
+        'Cannonspawn': 'Kanonenbrut',
+        'Entangling Web': 'Großnetz',
+        'Harrowing Hell': 'Höllenpein der Tiefe',
+        'Imprisonment': 'Einkerkerung',
+        'Pandaemoniac Meltdown': 'Pandaemonischer Kollaps',
+        'Pandaemoniac Pillars': 'Pandaemonische Säule',
+        'Pandaemoniac Ray': 'Pandaemonischer Strahl',
+        'Parted Plumes': 'Teilungsstrahl',
+        'Silkspit': 'Spucknetz',
+        'Soul Grasp': 'Seelengreifer',
+        'Touchdown': 'Himmelssturz',
+        'Ultima': 'Ultima',
+        'Wicked Step': 'Übler Schritt',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
+      },
+      'replaceText': {
+        'Cannonspawn': 'Croissance de canon',
+        'Entangling Web': 'Grande toile',
+        'Harrowing Hell': 'Assaut sismique',
+        'Imprisonment': 'Emprisonnement',
+        'Pandaemoniac Meltdown': 'Fusion pandaemoniaque',
+        'Pandaemoniac Pillars': 'Piliers pandaemoniaques',
+        'Pandaemoniac Ray': 'Rayon pandaemoniaque',
+        'Parted Plumes': 'Plumes fendantes',
+        'Silkspit': 'Crachat de toile',
+        'Soul Grasp': 'Saisie d\'âme',
+        'Touchdown': 'Atterrissage',
+        'Ultima': 'Ultima',
+        'Wicked Step': 'Pattes effilées',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Pand\\\\u00e6monium': 'パンデモニウム',
+      },
+      'replaceText': {
+        'Cannonspawn': 'キャノンスポーン',
+        'Entangling Web': 'グランドウェブ',
+        'Harrowing Hell': '魔殿の震撃',
+        'Imprisonment': 'インプリズメント',
+        'Pandaemoniac Meltdown': 'パンデモニックメルトン',
+        'Pandaemoniac Pillars': 'パンデモニックピラー',
+        'Pandaemoniac Ray': 'パンデモニックレイ',
+        'Parted Plumes': 'ディバイドプルーム',
+        'Silkspit': 'スピットウェブ',
+        'Soul Grasp': 'ソウルグラスプ',
+        'Touchdown': 'タッチダウン',
+        'Ultima': 'アルテマ',
+        'Wicked Step': '尖脚',
       },
     },
   ],
