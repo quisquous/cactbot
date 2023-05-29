@@ -256,7 +256,7 @@ const zoneReplace: ZoneReplace[] = [
       '1C5F': '8568', // Sarva/Eidos 3
       '1C60': '8569', // Ahura Mazda
       '1C63': '856C', // Meracydian Meteor (ignored)
-      '1C64': '856D', // Comet (ignored)
+      '1C64': '856D', // Comet (fire puddles)
       '1C67': '8570', // Infinite Fire
       '1C68': '8571', // Infinite Ice
       '1C6B': '8572', // The South Star (ignored)
