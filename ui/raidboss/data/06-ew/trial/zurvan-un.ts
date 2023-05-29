@@ -242,9 +242,11 @@ const triggerSet: TriggerSet<Data> = {
         },
         fire: {
           en: 'Fire',
+          de: 'Feuer',
         },
         ice: {
           en: 'Ice',
+          de: 'Eis',
         },
         unknown: Outputs.unknown,
       },
@@ -270,9 +272,11 @@ const triggerSet: TriggerSet<Data> = {
         },
         fire: {
           en: 'Fire',
+          de: 'Feuer',
         },
         ice: {
           en: 'Ice',
+          de: 'Eis',
         },
         unknown: Outputs.unknown,
       },
