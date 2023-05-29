@@ -170,7 +170,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
-        'Pand\\\\u00e6monium': 'Pand\u00e6monium',
+        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
       },
       'replaceText': {
         '\\(marked\\)': '(Markiert)',
@@ -195,7 +195,7 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Pand\\\\u00e6monium': 'Pand\u00e6monium',
+        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
       },
       'replaceText': {
         'Cannonspawn': 'Croissance de canon',
