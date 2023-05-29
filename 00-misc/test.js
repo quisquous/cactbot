@@ -60,6 +60,7 @@ Options.Triggers.push({
       delayedDummyTimestampBefore: 0,
       delayedDummyTimestampAfter: 0,
       pokes: 0,
+      watchingForCast: false,
     };
   },
   timelineStyles: [
@@ -308,10 +309,36 @@ Options.Triggers.push({
         },
       },
     },
+    {
+      id: 'Test Combatant Cast Enable',
+      type: 'GameLog',
+      netRegex: NetRegexes.echo({ line: 'cactbot test combatant cast.*?', capture: false }),
+      run: (data) => {
+        data.watchingForCast = true;
+      },
+    },
+    {
+      id: 'Test Combatant Cast',
+      type: 'CombatantMemory',
+      netRegex: NetRegexes.combatantMemory({
+        pair: [{ key: 'IsCasting1', value: '1' }, { key: 'CastBuffID', value: '.*?' }],
+      }),
+      condition: (data) => data.watchingForCast,
+      infoText: (data, matches, output) => {
+        data.watchingForCast = false;
+        return output.casting({ id: matches.id, spellId: matches.pairCastBuffID });
+      },
+      outputStrings: {
+        casting: {
+          en: 'ID ${id} is casting spell ID ${spellId}',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
       locale: 'de',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
         'You bow courteously to the striking dummy':
@@ -402,6 +429,7 @@ Options.Triggers.push({
     },
     {
       locale: 'cn',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*向木人告别',
         'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',
@@ -430,6 +458,7 @@ Options.Triggers.push({
     },
     {
       locale: 'ko',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
         'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
