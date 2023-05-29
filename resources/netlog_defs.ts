@@ -1,3 +1,4 @@
+import { PluginCombatantState } from '../types/event';
 import { NetFieldsReverse } from '../types/net_fields';
 
 export type LogDefinition = {
@@ -35,9 +36,65 @@ export type LogDefinition = {
   blankFields?: readonly number[];
   // This field and any field after will be treated as optional when creating capturing regexes.
   firstOptionalField: number | undefined;
+  // These fields are treated as repeatable fields
+  repeatingFields?: {
+    startingIndex: number;
+    label: string;
+    names: readonly string[];
+    sortKeys?: boolean;
+    primaryKey: string;
+    possibleKeys: readonly string[];
+  };
 };
 export type LogDefinitionMap = { [name: string]: LogDefinition };
 type LogDefinitionVersionMap = { [version: string]: LogDefinitionMap };
+
+// TODO: Maybe bring in a helper library that can compile-time extract these keys instead?
+const combatantMemoryKeys: readonly (Extract<keyof PluginCombatantState, string>)[] = [
+  'CurrentWorldID',
+  'WorldID',
+  'WorldName',
+  'BNpcID',
+  'BNpcNameID',
+  'PartyType',
+  'ID',
+  'OwnerID',
+  'WeaponId',
+  'Type',
+  'Job',
+  'Level',
+  'Name',
+  'CurrentHP',
+  'MaxHP',
+  'CurrentMP',
+  'MaxMP',
+  'PosX',
+  'PosY',
+  'PosZ',
+  'Heading',
+  'MonsterType',
+  'Status',
+  'ModelStatus',
+  'AggressionStatus',
+  'TargetID',
+  'IsTargetable',
+  'Radius',
+  'Distance',
+  'EffectiveDistance',
+  'NPCTargetID',
+  'CurrentGP',
+  'MaxGP',
+  'CurrentCP',
+  'MaxCP',
+  'PCTargetID',
+  'IsCasting1',
+  'IsCasting2',
+  'CastBuffID',
+  'CastTargetID',
+  'CastDurationCurrent',
+  'CastDurationMax',
+  'TransformationId',
+] as const;
 
 const latestLogDefinitions = {
   GameLog: {
@@ -1014,16 +1071,20 @@ const latestLogDefinitions = {
       timestamp: 1,
       change: 2,
       id: 3,
-      // from here, pairs of field name/values, e.g.
-      key1: 4,
-      value1: 5,
-      // key2: 6,
-      // value2: 7,
+      // from here, pairs of field name/values
     },
     canAnonymize: true,
-    firstOptionalField: 4,
+    firstOptionalField: 5,
     playerIds: {
       3: null,
+    },
+    repeatingFields: {
+      startingIndex: 4,
+      label: 'pair',
+      names: ['key', 'value'],
+      sortKeys: true,
+      primaryKey: 'key',
+      possibleKeys: combatantMemoryKeys,
     },
   },
   RSVData: {
@@ -1056,6 +1117,21 @@ export type LogDefinitions = typeof logDefinitionsVersions['latest'];
 export type LogDefinitionTypes = keyof LogDefinitions;
 export type LogDefinitionVersions = keyof typeof logDefinitionsVersions;
 
+type RepeatingFieldsNarrowingType = { readonly repeatingFields: unknown };
+
+export type RepeatingFieldsTypes = keyof {
+  [
+    type in LogDefinitionTypes as LogDefinitions[type] extends RepeatingFieldsNarrowingType ? type
+      : never
+  ]: null;
+};
+
+export type RepeatingFieldsDefinitions = {
+  [type in RepeatingFieldsTypes]: LogDefinitions[type] & {
+    readonly repeatingFields: Exclude<LogDefinitions[type]['repeatingFields'], undefined>;
+  };
+};
+
 export type ParseHelperField<
   Type extends LogDefinitionTypes,
   Fields extends NetFieldsReverse[Type],
@@ -1064,6 +1140,11 @@ export type ParseHelperField<
   field: Fields[Field] extends string ? Fields[Field] : never;
   value?: string;
   optional?: boolean;
+  repeating?: boolean;
+  repeatingKeys?: string[];
+  sortKeys?: boolean;
+  primaryKey?: string;
+  possibleKeys?: string[];
 };
 
 export type ParseHelperFields<T extends LogDefinitionTypes> = {

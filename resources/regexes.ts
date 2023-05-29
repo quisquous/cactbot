@@ -7,7 +7,10 @@ import logDefinitions, {
   LogDefinitionTypes,
   LogDefinitionVersions,
   ParseHelperFields,
+  RepeatingFieldsDefinitions,
+  RepeatingFieldsTypes,
 } from './netlog_defs';
+import { UnreachableCode } from './not_reached';
 
 const separator = ':';
 const matchDefault = '[^:]*';
@@ -18,31 +21,105 @@ const defaultParams = <
   T extends LogDefinitionTypes,
   V extends LogDefinitionVersions,
 >(type: T, version: V, include?: string[]): Partial<ParseHelperFields<T>> => {
-  include ??= Object.keys(logDefinitionsVersions[version][type].fields);
-  const params: { [index: number]: { field: string; value?: string; optional: boolean } } = {};
-  const firstOptionalField = logDefinitionsVersions[version][type].firstOptionalField;
+  const logType = logDefinitionsVersions[version][type];
+  if (include === undefined) {
+    include = Object.keys(logType.fields);
+    if ('repeatingFields' in logType) {
+      include.push(logType.repeatingFields.label);
+    }
+  }
 
-  for (const [prop, index] of Object.entries(logDefinitionsVersions[version][type].fields)) {
+  const params: {
+    [index: number]: {
+      field: string;
+      value?: string;
+      optional: boolean;
+      repeating?: boolean;
+      repeatingKeys?: string[];
+      sortKeys?: boolean;
+      primaryKey?: string;
+      possibleKeys?: string[];
+    };
+  } = {};
+  const firstOptionalField = logType.firstOptionalField;
+
+  for (const [prop, index] of Object.entries(logType.fields)) {
     if (!include.includes(prop))
       continue;
-    const param: { field: string; value?: string; optional: boolean } = {
+    const param: { field: string; value?: string; optional: boolean; repeating?: boolean } = {
       field: prop,
       optional: firstOptionalField !== undefined && index >= firstOptionalField,
     };
     if (prop === 'type')
-      param.value = logDefinitionsVersions[version][type].type;
+      param.value = logType.type;
 
     params[index] = param;
   }
 
-  return params as unknown as Partial<ParseHelperFields<T>>;
+  if ('repeatingFields' in logType && include.includes(logType.repeatingFields.label)) {
+    params[logType.repeatingFields.startingIndex] = {
+      field: logType.repeatingFields.label,
+      optional: firstOptionalField !== undefined &&
+        logType.repeatingFields.startingIndex >= firstOptionalField,
+      repeating: true,
+      repeatingKeys: [...logType.repeatingFields.names],
+      sortKeys: logType.repeatingFields.sortKeys,
+      primaryKey: logType.repeatingFields.primaryKey,
+      possibleKeys: [...logType.repeatingFields.possibleKeys],
+    };
+  }
+
+  return params as Partial<ParseHelperFields<T>>;
 };
+
+type RepeatingFieldsMap<
+  TBase extends LogDefinitionTypes,
+  TKey extends RepeatingFieldsTypes = TBase extends RepeatingFieldsTypes ? TBase : never,
+> = {
+  [name in RepeatingFieldsDefinitions[TKey]['repeatingFields']['names'][number]]:
+    | string
+    | string[];
+}[];
+
+type RepeatingFieldsMapTypeCheck<
+  TBase extends LogDefinitionTypes,
+  F extends keyof NetFields[TBase],
+  TKey extends RepeatingFieldsTypes = TBase extends RepeatingFieldsTypes ? TBase : never,
+> = F extends RepeatingFieldsDefinitions[TKey]['repeatingFields']['label']
+  ? RepeatingFieldsMap<TKey> :
+  never;
+
+type RepeatingFieldsMapType<
+  T extends LogDefinitionTypes,
+  F extends keyof NetFields[T],
+> = T extends RepeatingFieldsTypes ? RepeatingFieldsMapTypeCheck<T, F>
+  : never;
 
 type ParseHelperType<T extends LogDefinitionTypes> =
   & {
-    [field in keyof NetFields[T]]?: string | string[];
+    [field in keyof NetFields[T]]?: string | string[] | RepeatingFieldsMapType<T, field>;
   }
   & { capture?: boolean };
+
+const isRepeatingField = <
+  T extends LogDefinitionTypes,
+>(
+  repeating: boolean | undefined,
+  value: string | string[] | RepeatingFieldsMap<T> | undefined,
+): value is RepeatingFieldsMap<T> => {
+  if (repeating !== true)
+    return false;
+  // Allow excluding the field to match for extraction
+  if (value === undefined)
+    return true;
+  if (!Array.isArray(value))
+    return false;
+  for (const e of value) {
+    if (typeof e !== 'object')
+      return false;
+  }
+  return true;
+};
 
 const parseHelper = <T extends LogDefinitionTypes>(
   params: ParseHelperType<T> | undefined,
@@ -114,7 +191,10 @@ const parseHelper = <T extends LogDefinitionTypes>(
 
   let lastKey = 1;
   for (const keyStr in fields) {
-    const fieldName = fields[keyStr]?.field;
+    const parseField = fields[keyStr];
+    if (parseField === undefined)
+      continue;
+    const fieldName = parseField.field;
 
     // Regex handles these manually above in the `str` initialization.
     if (fieldName === 'timestamp' || fieldName === 'type')
@@ -131,26 +211,118 @@ const parseHelper = <T extends LogDefinitionTypes>(
 
     str += separator;
 
-    const value = fields[keyStr];
-    if (typeof value !== 'object')
-      throw new Error(`${defKey}: invalid value: ${JSON.stringify(value)}`);
+    if (typeof parseField !== 'object')
+      throw new Error(`${defKey}: invalid value: ${JSON.stringify(parseField)}`);
 
     const fieldDefault = fieldName !== undefined && fieldsWithPotentialColons.includes(fieldName)
       ? matchWithColonsDefault
       : matchDefault;
-    const fieldValue = fields[keyStr]?.value?.toString() ?? fieldDefault;
+    const defaultFieldValue = parseField.value?.toString() ?? fieldDefault;
+    const fieldValue = params[fieldName];
 
-    if (fieldName !== undefined) {
-      str += Regexes.maybeCapture(
-        // more accurate type instead of `as` cast
-        // maybe this function needs a refactoring
-        capture,
-        fieldName,
-        params[fieldName],
-        fieldValue,
-      );
+    if (isRepeatingField(fields[keyStr]?.repeating, fieldValue)) {
+      const repeatingFieldsSeparator = '(?:$|:)';
+      let repeatingArray: RepeatingFieldsMap<T> | undefined = fieldValue;
+
+      const sortKeys = fields[keyStr]?.sortKeys;
+      const primaryKey = fields[keyStr]?.primaryKey;
+      const possibleKeys = fields[keyStr]?.possibleKeys;
+
+      // primaryKey is required if this is a repeating field per typedef in netlog_defs.ts
+      // Same with possibleKeys
+      if (primaryKey === undefined || possibleKeys === undefined)
+        throw new UnreachableCode();
+
+      // Allow sorting if needed
+      if (sortKeys) {
+        // Also sort our valid keys list
+        possibleKeys.sort((left, right) => left.toLowerCase().localeCompare(right.toLowerCase()));
+        if (repeatingArray !== undefined) {
+          repeatingArray = [...repeatingArray].sort(
+            (left: Record<string, unknown>, right: Record<string, unknown>): number => {
+              // We check the validity of left/right because they're user-supplied
+              if (typeof left !== 'object' || left[primaryKey] === undefined) {
+                console.warn('Invalid argument passed to trigger:', left);
+                return 0;
+              }
+              const leftValue = left[primaryKey];
+              if (typeof leftValue !== 'string' || !possibleKeys?.includes(leftValue)) {
+                console.warn('Invalid argument passed to trigger:', left);
+                return 0;
+              }
+              if (typeof right !== 'object' || right[primaryKey] === undefined) {
+                console.warn('Invalid argument passed to trigger:', right);
+                return 0;
+              }
+              const rightValue = right[primaryKey];
+              if (typeof rightValue !== 'string' || !possibleKeys?.includes(rightValue)) {
+                console.warn('Invalid argument passed to trigger:', right);
+                return 0;
+              }
+              return leftValue.toLowerCase().localeCompare(rightValue.toLowerCase());
+            },
+          );
+        }
+      }
+
+      const anonReps: { [name: string]: string | string[] }[] | undefined = repeatingArray;
+      // Loop over our possible keys
+      // Build a regex that can match any possible key with required values substituted in
+      possibleKeys.forEach((possibleKey) => {
+        const rep = anonReps?.find((rep) => primaryKey in rep && rep[primaryKey] === possibleKey);
+
+        let fieldRegex = '';
+        // Rather than looping over the keys defined on the object,
+        // loop over the base type def's keys. This enforces the correct order.
+        fields[keyStr]?.repeatingKeys?.forEach((key) => {
+          let val = rep?.[key];
+          if (rep === undefined || !(key in rep)) {
+            // If we don't have a value for this key
+            // insert a placeholder, unless it's the primary key
+            if (key === primaryKey)
+              val = possibleKey;
+            else
+              val = matchDefault;
+          }
+          if (typeof val !== 'string') {
+            if (!Array.isArray(val))
+              val = matchDefault;
+            else if (val.length < 1)
+              val = matchDefault;
+            else if (val.some((v) => typeof v !== 'string'))
+              val = matchDefault;
+          }
+          fieldRegex += Regexes.maybeCapture(
+            key === primaryKey ? false : capture,
+            // All capturing groups are `fieldName` + `possibleKey`, e.g. `pairIsCasting1`
+            fieldName + possibleKey,
+            val,
+            defaultFieldValue,
+          ) +
+            repeatingFieldsSeparator;
+        });
+
+        if (fieldRegex.length > 0) {
+          str += '(?:' + fieldRegex + ')' + (rep !== undefined ? '' : '?');
+        }
+      });
+    } else if (fields[keyStr]?.repeating) {
+      // If this is a repeating field but the actual value is empty or otherwise invalid,
+      // don't process further. We can't use `continue` in the above block because that
+      // would skip the early-out break at the end of the loop.
     } else {
-      str += fieldValue;
+      if (fieldName !== undefined) {
+        str += Regexes.maybeCapture(
+          // more accurate type instead of `as` cast
+          // maybe this function needs a refactoring
+          capture,
+          fieldName,
+          fieldValue,
+          defaultFieldValue,
+        );
+      } else {
+        str += fieldValue;
+      }
     }
 
     // Stop if we're not capturing and don't care about future fields.
@@ -395,6 +567,15 @@ export default class Regexes {
    */
   static mapEffect(params?: NetParams['MapEffect']): CactbotBaseRegExp<'MapEffect'> {
     return buildRegex('MapEffect', params);
+  }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-261-0x105-combatantmemory
+   */
+  static combatantMemory(
+    params?: NetParams['CombatantMemory'],
+  ): CactbotBaseRegExp<'CombatantMemory'> {
+    return buildRegex('CombatantMemory', params);
   }
 
   /**
