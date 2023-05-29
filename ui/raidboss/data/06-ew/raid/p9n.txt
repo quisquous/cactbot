@@ -14,7 +14,7 @@ hideall "--sync--"
 
 0.0 "--sync--" sync /Engage!/ window 0,1
 7.0 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/ window 10,10
-18.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:8116:/
+18.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:8116:/ window 15,15
 
 
 
