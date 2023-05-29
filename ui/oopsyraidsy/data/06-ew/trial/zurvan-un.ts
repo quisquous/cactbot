@@ -17,7 +17,7 @@ const triggerSet: OopsyTriggerSet<OopsyData> = {
     'ZurvanUN Souther Cross': '8566', // Ice puddle explosion, phase 3 onward
     'ZurvanUN South Star 1': '8572', // Tower failure during Broken Seal, phase 5
     'ZurvanUN North Star 1': '8573', // Tower failure during Broken Seal, phase 5
-    'ZurvanUN Meracydian Fire': '856E', // Flame puddle AoEs, add intermission
+    'ZurvanUN Comet': '856D', // Flame puddle AoEs, add intermission
     'ZurvanUN South Star 2': '859D', // Tower failure during Broken Seal, phase 5
     'ZurvanUN North Star 2': '859E', // Tower failure during Broken Seal, phase 5
   },
