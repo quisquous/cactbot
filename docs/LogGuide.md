@@ -2550,20 +2550,20 @@ See the logs below for an example.
 
 ```log
 Network Log Line Structure:
-262|[timestamp]|[locale]|[key]|[value]
+262|[timestamp]|[locale]|[?]|[key]|[value]
 
 Parsed Log Line Structure:
-[timestamp] 262 106:[locale]:[key]:[value]
+[timestamp] 262 106:[locale]:[?]:[key]:[value]
 ```
 
 #### Regexes
 
 ```log
 Network Log Line Regex:
-^(?<type>262)\|(?<timestamp>[^|]*)\|(?<locale>[^|]*)\|(?<key>[^|]*)\|(?<value>[^|]*)\|
+^(?<type>262)\|(?<timestamp>[^|]*)\|(?<locale>[^|]*)\|(?:[^|]*\|)(?<key>[^|]*)\|(?<value>[^|]*)\|
 
 Parsed Log Line Regex:
-(?<timestamp>^.{14}) 262 (?<type>106):(?<locale>[^:]*):(?<key>[^:]*):(?<value>[^:]*)(?:$|:)
+(?<timestamp>^.{14}) 262 (?<type>106):(?<locale>[^:]*):[^:]*:(?<key>[^:]*):(?<value>[^:]*)(?:$|:)
 ```
 
 #### Examples
