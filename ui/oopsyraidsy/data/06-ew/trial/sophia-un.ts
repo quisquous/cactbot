@@ -10,7 +10,7 @@ import { playerDamageFields } from '../../../oopsy_common';
 // TODO: failing Discordant Cleansing
 
 const triggerSet: OopsyTriggerSet<OopsyData> = {
-  zoneId: ZoneId.ContainmentBayS1T7Extreme,
+  zoneId: ZoneId.ContainmentBayP1T6Unreal,
   damageWarn: {
     'SophiaEx Thunder II': '7DAA', // untelegraphed front cleave
     'SophiaEx Aero III': '7DA8', // "get out"
@@ -22,7 +22,8 @@ const triggerSet: OopsyTriggerSet<OopsyData> = {
     'SophiaEx The Third Demiurge Ring of Pain': '7DB4', // circle that leaves a frost puddle
     'SophiaEx The Third Demiurge Gnostic Spear': '7DB3', // 270 degree untelegraphed cleave
     'SophiaEx Onrush': '7DBB', // dash
-    'SophiaEx Barbelo Light Dew': '7DB9', // line laser from Barbelo head
+    'SophiaEx Barbelo Light Dew Execute': '7DB9', // line laser from Barbelo head during Execuute
+    'SophiaEx Barbelo Light Dew Onrush': '7DBA', // line laser from Barbelo head during Onrush
   },
   damageFail: {
     'SophiaEx The First Demiurge Revengeance': '7DB7', // hitting Vertical/Horizontal Kenoma
