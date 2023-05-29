@@ -415,7 +415,6 @@ describe('netregex tests', () => {
     // TODO: regexCaptureTest doesn't handle the repeating fields well,
     // so don't run it for this test
     const matches = lines[0].match(NetRegexes.combatantMemory())?.groups;
-    console.log(matches);
     assert.equal(matches?.pairBNpcID, '3F5A');
     assert.equal(matches?.pairBNpcNameID, '304E');
     assert.equal(matches?.pairCastTargetID, 'E0000000');
