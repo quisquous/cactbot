@@ -188,7 +188,9 @@ Options.Triggers.push({
         const buddy = data.me === matches.source ? matches.target : matches.source;
         data.tetherBuddy ??= buddy;
       },
-      alertText: (data, _matches, output) => output.tetherBuddy({ buddy: data.tetherBuddy }),
+      alertText: (data, _matches, output) => {
+        return output.tetherBuddy({ buddy: data.ShortName(data.tetherBuddy) });
+      },
       outputStrings: {
         tetherBuddy: {
           en: 'Tethered with ${buddy}',
@@ -208,14 +210,27 @@ Options.Triggers.push({
         data.infiniteElement ??= element;
       },
       delaySeconds: 2,
-      infoText: (data, _matches, output) =>
-        output.infiniteDebuff({ element: data.infiniteElement }),
+      infoText: (data, _matches, output) => {
+        let element = output.unknown();
+        if (data.infiniteElement === 'fire')
+          element = output.fire();
+        if (data.infiniteElement === 'ice')
+          element = output.ice();
+        return output.infiniteDebuff({ element: element });
+      },
       outputStrings: {
         infiniteDebuff: {
           en: '${element} on you',
           de: '${element} auf dir',
           ko: '${element}',
         },
+        fire: {
+          en: 'Fire',
+        },
+        ice: {
+          en: 'Ice',
+        },
+        unknown: Outputs.unknown,
       },
     },
     {
@@ -223,9 +238,13 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '857D', source: 'Zurvan', capture: false },
       alertText: (data, _matches, output) => {
-        const element = data.infiniteElement;
+        let element = output.unknown();
+        if (data.infiniteElement === 'fire')
+          element = output.fire();
+        if (data.infiniteElement === 'ice')
+          element = output.ice();
         const buddy = data.tetherBuddy;
-        return output.sealTowers({ element: element, buddy: buddy });
+        return output.sealTowers({ element: element, buddy: data.ShortName(buddy) });
       },
       outputStrings: {
         sealTowers: {
@@ -233,6 +252,13 @@ Options.Triggers.push({
           de: '${element} Türme mit ${buddy}',
           ko: '${element} 기둥 +${buddy}',
         },
+        fire: {
+          en: 'Fire',
+        },
+        ice: {
+          en: 'Ice',
+        },
+        unknown: Outputs.unknown,
       },
     },
     {
