@@ -28,6 +28,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Line Cleave -> In',
+          de: 'Linien AoE -> Rein',
         },
       },
     },
@@ -56,6 +57,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get in light puddle',
+          de: 'Geh in die Licht-Fläche',
         },
       },
     },
@@ -68,6 +70,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get in dark puddle',
+          de: 'Geh in die Dunkel-Fläche',
         },
       },
     },
@@ -79,6 +82,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait puddles x2',
+          de: 'Köder Fläche x2',
         },
       },
     },
@@ -90,6 +94,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback -> get in',
+          de: 'Rückstoß -> geh rein',
         },
       },
     },
@@ -101,6 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback -> stay out',
+          de: 'Rückstoß -> bleib außen',
         },
       },
     },
@@ -142,9 +148,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         avoidCleave: {
           en: 'Cleaving ${target} -> get in',
+          de: 'Cleave auf ${target} -> geh Rein',
         },
         cleaveOnYou: {
           en: 'Cleave on YOU -> stay in',
+          de: 'Cleave auf DIR -> bleib drin',
         },
       },
     },
@@ -156,6 +164,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Stack on ${target} -> get out',
+          de: 'Auf ${target} Sammeln -> geh raus',
         },
       },
     },
@@ -180,7 +189,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Line Cleave -> In on dark adds',
+          de: 'Linien AoE -> Rein auf dunkle Adds',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      locale: 'de',
+      replaceSync: {
+        'Themis': 'xyz',
+      },
+      replaceText: {
+        'xyz': 'xyz',
       },
     },
   ],

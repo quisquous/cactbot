@@ -99,6 +99,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Behind and Under',
+          de: 'Geh nach Hinten und Unter den Boss',
         },
       },
     },
@@ -110,6 +111,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go Front and Under',
+          de: 'Geh nach Vorne und Unter den Boss',
         },
       },
     },
@@ -137,6 +139,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go Front and Out',
+          de: 'Geh nach Vorne und Raus',
         },
       },
     },
@@ -176,9 +179,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tankbusterOnYouStretchTethers: {
           en: 'Tankbuster on YOU -- stretch tether',
+          de: 'Tankbuster auf DIR -- Verbindung strecken',
         },
         tankbusterOn: {
           en: 'Tankbuster on ${player}',
+          de: 'Tankbuster auf ${player}',
         },
       },
     },
@@ -189,6 +194,15 @@ const triggerSet: TriggerSet<Data> = {
       replaceText: {
         'Front Combination/Rear Combination': 'Front/Rear Combination',
         'Inside Roundhouse/Outside Roundhouse': 'Inside/Outside Roundhouse',
+      },
+    },
+    {
+      locale: 'de',
+      replaceSync: {
+        'Comet': 'a',
+        'Kokytos': 'a',
+        'Fire Sphere': 'a',
+        'Ice Sphere': 'a',
       },
     },
   ],
