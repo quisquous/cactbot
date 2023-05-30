@@ -1,6 +1,149 @@
 ### P11N: Anabaseios: The Eleventh Circle
 
+# -ii 81B3 81B4 81B8 81C5 81C6 81D9 81DC 81E4 81E5 81F8 81F9 8790 8791 87CE 87CF
+
+# 81B3 Divisive Ruling
+# 81B4 Divisive Ruling
+# 81B8 Ripples of Gloom
+# 81C5 Katakrisis
+# 81C6 Katakrisis
+# 81D9 Ripples of Gloom
+# 81DC Styx
+# 81E4 Dike
+# 81E5 Dike
+# 81F8 Dismissal Ruling
+# 81F9 Dismissal Ruling
+# 8790 Katakrisis
+# 8791 Katakrisis
+# 87CE Upheld Ruling
+# 87CF Upheld Ruling
+
+
 hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+7.4 "--sync--" sync / 14:[^:]*:Themis:81E2:/ window 7.4,10
+12.1 "Eunomia" sync / 1[56]:[^:]*:Themis:81E2:/
+
+# Divisive Ruling Intro
+16.2 "--center--" sync / 1[56]:[^:]*:Themis:8235:/
+25.5 "Divisive Ruling (in)" sync / 1[56]:[^:]*:Themis:81B5:/
+28.2 "Ripples of Gloom" sync / 1[56]:[^:]*:Themis:(81B7|81B8):/
+37.8 "Divisive Ruling (out)" sync / 1[56]:[^:]*:Themis:81B5:/
+40.4 "Divine Ruination" sync / 1[56]:[^:]*:Themis:81B6:/
+50.1 "Divisive Ruling (random)" sync / 1[56]:[^:]*:Themis:81B5:/
+52.7 "Divine Ruination/Ripples of Gloom" sync / 1[56]:[^:]*:Themis:(81B6|81B7|81B8):/
+60.9 "Eunomia" sync / 1[56]:[^:]*:Themis:81E2:/
+
+# Dark and Light Intro
+67.0 "--center--" sync / 1[56]:[^:]*:Themis:8235:/ window 30,30
+73.1 "Dark and Light" sync / 1[56]:[^:]*:Themis:81C3:/
+80.2 "Sigils of Discord" sync / 1[56]:[^:]*:Themis:81C4:/ window 80.2,15
+90.3 "Dineis (cast)" sync / 1[56]:[^:]*:Themis:8725:/
+94.3 "Dineis (puddle 1)" #sync / 1[56]:[^:]*:Themis:8726:/
+96.3 "Dineis (puddle 2)" #sync / 1[56]:[^:]*:Themis:8726:/
+100.3 "Emissary's Will" sync / 1[56]:[^:]*:Themis:81C7:/
+112.4 "Dismissal Ruling (dynamo)" sync / 1[56]:[^:]*:Themis:81FB:/
+116.0 "Outer Dark" sync / 1[56]:[^:]*:Themis:86F4:/
+123.1 "Dismissal Ruling (chariot)" sync / 1[56]:[^:]*:Themis:81FA:/
+126.7 "Inner Light" sync / 1[56]:[^:]*:Themis:86F3:/
+132.8 "Dike" sync / 1[56]:[^:]*:Themis:81E3:/
+
+# Upheld Ruling Intro
+138.0 "--center--" sync / 1[56]:[^:]*:Themis:8235:/
+144.1 "Dark and Light" sync / 1[56]:[^:]*:Themis:81C3:/
+151.2 "Sigils of Discord" sync / 1[56]:[^:]*:Themis:81C4:/
+164.3 "Dismissal Ruling (random)" sync / 1[56]:[^:]*:Themis:(81FA|81FB):/
+167.9 "Inner Light/Outer Dark" sync / 1[56]:[^:]*:Themis:(86F3|86F4):/
+174.0 "Emissary's Will" sync / 1[56]:[^:]*:Themis:81C7:/
+186.4 "Upheld Ruling (cleave -> dynamo)" sync / 1[56]:[^:]*:Themis:81BA:/ window 186.4,10
+193.0 "Dark Perimeter" sync / 1[56]:[^:]*:Themis:81BE:/
+201.0 "Upheld Ruling (stack -> chariot)" sync / 1[56]:[^:]*:Themis:81B9:/
+206.7 "Lightburst" sync / 1[56]:[^:]*:Themis:81BD:/
+216.3 "Styx x5" sync / 1[56]:[^:]*:Themis:81DB:/ window 216.3,10 duration 5
+
+# Combine it all to this point
+228.0 "--center--" sync / 1[56]:[^:]*:Themis:8235:/ window 30,30
+235.3 "Dark and Light" sync / 1[56]:[^:]*:Themis:81C3:/
+242.4 "Sigils of Discord" sync / 1[56]:[^:]*:Themis:81C4:/
+256.5 "Divisive Ruling (in/out)" sync / 1[56]:[^:]*:Themis:81B5:/
+259.1 "Divine Ruination/Ripples of Gloom" sync / 1[56]:[^:]*:Themis:(81B6|81B7|81B8):/
+271.3 "Dismissal Ruling (random)" sync / 1[56]:[^:]*:Themis:(81FA|81FB):/
+274.9 "Inner Light/Outer Dark" sync / 1[56]:[^:]*:Themis:(86F3|86F4):/
+281.0 "Emissary's Will" sync / 1[56]:[^:]*:Themis:81C7:/
+290.1 "Dike" sync / 1[56]:[^:]*:Themis:81E3:/
+297.3 "--center--" sync / 1[56]:[^:]*:Themis:8235:/ window 30,30
+302.3 "Dineis (cast)" sync / 1[56]:[^:]*:Themis:8725:/
+306.3 "Dineis (puddle 1)" #sync / 1[56]:[^:]*:Themis:8726:/
+308.3 "Dineis (puddle 2)" #sync / 1[56]:[^:]*:Themis:8726:/
+311.7 "Divisive Ruling (in/out)" sync / 1[56]:[^:]*:Themis:81B5:/
+314.3 "Divine Ruination/Ripples of Gloom" sync / 1[56]:[^:]*:Themis:(81B6|81B7|81B8):/
+322.7 "Upheld Ruling (random)" sync / 1[56]:[^:]*:Themis:(81B9|81BA):/
+329.3 "Dark Perimeter/Lightburst" sync / 1[56]:[^:]*:Themis:(81BE|81BD):/
+336.9 "Eunomia" sync / 1[56]:[^:]*:Themis:81E2:/
+346.1 "Shadowed Messengers" sync / 1[56]:[^:]*:Themis:81D4:/
+
+# Camera-spinny Adds
+356.8 "--center--" sync / 1[56]:[^:]*:Themis:8235:/ window 15,15
+357.6 "Divisive Ruling" sync / 1[56]:[^:]*:Illusory Themis:81D7:/
+360.7 "Divine Ruination" sync / 1[56]:[^:]*:Illusory Themis:81D8:/
+360.7 "Ripples of Gloom" sync / 1[56]:[^:]*:Illusory Themis:(81D9|81DA):/
+361.8 "--sync--" sync / 1[56]:[^:]*:Themis:81E0:/ window 361.8,10  # Blinding Light cast
+367.0 "Blinding Light" sync / 1[56]:[^:]*:Themis:81E1:/
+372.0 "Dismissal Ruling (random)" sync / 1[56]:[^:]*:Themis:(81FA|81FB):/
+375.6 "Inner Light/Outer Dark" sync / 1[56]:[^:]*:Themis:(86F3|86F4):/
+380.7 "Styx x5" sync / 1[56]:[^:]*:Themis:81DB:/ duration 5
+
+# Loop until death (208.2)
+391.4 "--center--" sync / 1[56]:[^:]*:Themis:8235:/ window 15,15
+396.4 "Dineis (cast)" sync / 1[56]:[^:]*:Themis:8725:/
+400.4 "Dineis (puddle 1)" #sync / 1[56]:[^:]*:Themis:8726:/
+402.4 "Dineis (puddle 2)" #sync / 1[56]:[^:]*:Themis:8726:/
+406.0 "Divisive Ruling (in/out)" sync / 1[56]:[^:]*:Themis:81B5:/
+408.6 "Divine Ruination/Ripples of Gloom" sync / 1[56]:[^:]*:Themis:(81B6|81B7|81B8):/
+417.3 "Upheld Ruling (random)" sync / 1[56]:[^:]*:Themis:(81B9|81BA):/
+423.0 "Dark Perimeter/Lightburst" sync / 1[56]:[^:]*:Themis:(81BE|81BD):/
+431.6 "Eunomia" sync / 1[56]:[^:]*:Themis:81E2:/
+436.8 "--center--" sync / 1[56]:[^:]*:Themis:8235:/ window 30,30
+444.0 "Dark and Light" sync / 1[56]:[^:]*:Themis:81C3:/
+451.1 "Sigils of Discord" sync / 1[56]:[^:]*:Themis:81C4:/
+465.1 "Divisive Ruling (in/out)" sync / 1[56]:[^:]*:Themis:81B5:/
+467.7 "Divine Ruination/Ripples of Gloom" sync / 1[56]:[^:]*:Themis:(81B6|81B7|81B8):/
+479.9 "Dismissal Ruling (random)" sync / 1[56]:[^:]*:Themis:(81FA|81FB):/
+483.5 "Inner Light/Outer Dark" sync / 1[56]:[^:]*:Themis:(86F3|86F4):/
+489.6 "Emissary's Will" sync / 1[56]:[^:]*:Themis:81C7:/
+498.7 "Dike" sync / 1[56]:[^:]*:Themis:81E3:/
+505.9 "--center--" sync / 1[56]:[^:]*:Themis:8235:/ window 30,30
+510.9 "Dineis (cast)" sync / 1[56]:[^:]*:Themis:8725:/
+514.9 "Dineis" #sync / 1[56]:[^:]*:Themis:8726:/
+516.9 "Dineis" #sync / 1[56]:[^:]*:Themis:8726:/
+520.3 "Divisive Ruling (in/out)" sync / 1[56]:[^:]*:Themis:81B5:/
+522.9 "Divine Ruination/Ripples of Gloom" sync / 1[56]:[^:]*:Themis:(81B6|81B7|81B8):/
+531.5 "Upheld Ruling (random)" sync / 1[56]:[^:]*:Themis:(81B9|81BA):/
+537.2 "Dark Perimeter/Lightburst" sync / 1[56]:[^:]*:Themis:(81BE|81BD):/
+545.6 "Eunomia" sync / 1[56]:[^:]*:Themis:81E2:/
+554.7 "Shadowed Messengers" sync / 1[56]:[^:]*:Themis:81D4:/
+565.4 "--center--" sync / 1[56]:[^:]*:Themis:8235:/
+566.1 "Divisive Ruling" sync / 1[56]:[^:]*:Illusory Themis:81D7:/
+569.2 "Divine Ruination" sync / 1[56]:[^:]*:Illusory Themis:81D8:/
+569.2 "Ripples of Gloom" sync / 1[56]:[^:]*:Illusory Themis:(81D9|81DA):/
+570.3 "--sync--" sync / 1[56]:[^:]*:Themis:81E0:/ # Blinding Light cast
+575.5 "Blinding Light" sync / 1[56]:[^:]*:Themis:81E1:/
+580.5 "Dismissal Ruling (random)" sync / 1[56]:[^:]*:Themis:(81FA|81FB):/
+584.1 "Inner Light/Outer Dark" sync / 1[56]:[^:]*:Themis:(86F3|86F4):/
+589.2 "Styx x5" sync / 1[56]:[^:]*:Themis:81DB:/ duration 5
+
+
+599.6 "--center--" sync / 1[56]:[^:]*:Themis:8235:/ jump 391.4 window 30,30
+604.6 "Dineis (cast)"
+608.6 "Dineis (puddle 1)"
+610.6 "Dineis (puddle 2)"
+614.2 "Divisive Ruling (in/out)"
+616.8 "Divine Ruination/Ripples of Gloom"
+625.5 "Upheld Ruling (random)"
+631.2 "Dark Perimeter/Lightburst"
+639.8 "Eunomia"
