@@ -3,6 +3,7 @@ import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
+import Outputs from '../../../../../resources/outputs';
 
 export interface Data extends RaidbossData {
   busterTargets?: string[];
@@ -119,22 +120,15 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 0.5,
       suppressSeconds: 10,
       infoText: (data, _matches, output) => {
-        const target1 = data.busterTargets?.[0] || '???';
-        const target2 = data.busterTargets?.[1] || '???';
-        return output.text!({ target1: target1, target2: target2 });
+        if (data.busterTargets?.includes(data.me))
+          return output.busterOnYou!();
+        return output.busterOthers!();
       },
-      outputStrings: {
-        text: {
-          en: 'Tank buster: ${target1}, ${target2}',
-        },
-      },
-    },
-    {
-      id: 'P11N Dike Cleanup',
-      type: 'HeadMarker',
-      netRegex: { id: '00DA', capture: false },
-      delaySeconds: 10,
       run: (data) => delete data.busterTargets,
+      outputStrings: {
+        busterOnYou: Outputs.tankBusterOnYou,
+        busterOthers: Outputs.tankBusters,
+      },
     },
     {
       id: 'P11N Upheld Ruling Dynamo',
