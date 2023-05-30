@@ -28,6 +28,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Line Cleave -> In',
+          de: 'Linien AoE -> Rein',
         },
       },
     },
@@ -56,6 +57,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get in light puddle',
+          de: 'Geh in die Licht-Fläche',
         },
       },
     },
@@ -68,6 +70,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get in dark puddle',
+          de: 'Geh in die Dunkel-Fläche',
         },
       },
     },
@@ -79,6 +82,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Bait puddles x2',
+          de: 'Köder Fläche x2',
         },
       },
     },
@@ -90,6 +94,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback -> get in',
+          de: 'Rückstoß -> geh rein',
         },
       },
     },
@@ -101,6 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback -> stay out',
+          de: 'Rückstoß -> bleib außen',
         },
       },
     },
@@ -142,9 +148,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         avoidCleave: {
           en: 'Cleaving ${target} -> get in',
+          de: 'Cleave auf ${target} -> geh Rein',
         },
         cleaveOnYou: {
           en: 'Cleave on YOU -> stay in',
+          de: 'Cleave auf DIR -> bleib drin',
         },
       },
     },
@@ -156,6 +164,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Stack on ${target} -> get out',
+          de: 'Auf ${target} Sammeln -> geh raus',
         },
       },
     },
@@ -180,7 +189,101 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Line Cleave -> In on dark adds',
+          de: 'Linien AoE -> Rein auf dunkle Adds',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Illusory Themis': 'Phantom-Themis',
+        '(?<!(-| ))Themis': 'Themis',
+      },
+      'replaceText': {
+        '\\(random\\)': '(Zufall)',
+        '\\(cast\\)': '(Ausführen)',
+        '\\(puddle': '(Fläche',
+        '\\(in/out\\)': '(rein/raus)',
+        'dynamo\\)': 'Donut)',
+        'chariot\\)': 'AoE-Fläche)',
+        '\\(cleave': '(Cleave',
+        '\\(stack': '(Sammeln',
+        'Blinding Light': 'Blendendes Licht',
+        'Dark Perimeter': 'Dunkler Kreis',
+        'Dark and Light': 'Licht-Dunkel-Schlichtung',
+        'Dike': 'Dike',
+        'Dineis': 'Dine',
+        'Dismissal Ruling': 'Verweisungsbeschluss',
+        'Divine Ruination': 'Lichtbombe',
+        'Divisive Ruling': 'Auflösungsbeschluss',
+        'Emissary\'s Will': 'Schlichtung',
+        'Eunomia': 'Eunomia',
+        'Inner Light': 'Gleißendes Inneres',
+        'Lightburst': 'Lichtstoß',
+        'Outer Dark': 'Dunkles Äußeres',
+        'Ripples of Gloom': 'Wellen der Betrübung',
+        'Shadowed Messengers': 'Boten des Schattens',
+        'Sigils of Discord': 'Siegel der Uneinigkeit',
+        'Styx': 'Styx',
+        'Upheld Ruling': 'Erhebungsbeschluss',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Illusory Themis': 'spectre de Thémis',
+        '(?<! )Themis': 'Thémis',
+      },
+      'replaceText': {
+        'Blinding Light': 'Lumière aveuglante',
+        'Dark Perimeter': 'Cercle ténébreux',
+        'Dark and Light': 'Médiation Lumière-Ténèbres',
+        'Dike': 'Diké',
+        'Dineis': 'Diné',
+        'Dismissal Ruling': 'Rejet et décision',
+        'Divine Ruination': 'Explosion sacrée',
+        'Divisive Ruling': 'Partage et décision',
+        'Emissary\'s Will': 'Médiation',
+        'Eunomia': 'Eunomia',
+        'Inner Light': 'Chatoiement interne',
+        'Lightburst': 'Éclat de lumière',
+        'Outer Dark': 'Obscurité externe',
+        'Ripples of Gloom': 'Onde des ténèbres',
+        'Shadowed Messengers': 'Fantasmagorie des préceptes',
+        'Sigils of Discord': 'Pentacles de dissonance',
+        'Styx': 'Styx',
+        'Upheld Ruling': 'Maintien et décision',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Illusory Themis': 'テミスの幻影',
+        '(?<! )Themis': 'テミス',
+      },
+      'replaceText': {
+        'Blinding Light': '光弾',
+        'Dark Perimeter': 'ダークサークル',
+        'Dark and Light': '光と闇の調停',
+        'Dike': 'ディケー',
+        'Dineis': 'ディーネ',
+        'Dismissal Ruling': 'ディスミサル＆ルーリング',
+        'Divine Ruination': '光爆',
+        'Divisive Ruling': 'ディバイド＆ルーリング',
+        'Emissary\'s Will': '調停',
+        'Eunomia': 'エウノミアー',
+        'Inner Light': 'インナーグレア',
+        'Lightburst': 'ライトバースト',
+        'Outer Dark': 'アウターダーク',
+        'Ripples of Gloom': '闇の衝撃',
+        'Shadowed Messengers': '戒律の幻奏',
+        'Sigils of Discord': '不和の判紋',
+        'Styx': 'ステュクス',
+        'Upheld Ruling': 'アップヘルド＆ルーリング',
       },
     },
   ],
