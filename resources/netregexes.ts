@@ -35,6 +35,12 @@ const keysThatRequireTranslationAsConst = [
 export const keysThatRequireTranslation: readonly string[] = keysThatRequireTranslationAsConst;
 export type KeysThatRequireTranslation = typeof keysThatRequireTranslationAsConst[number];
 
+export const gameLogCodes = {
+  echo: '0038',
+  dialog: '0044',
+  message: '0839',
+} as const;
+
 const defaultParams = <
   T extends LogDefinitionTypes,
   V extends LogDefinitionVersions,
@@ -474,7 +480,7 @@ export default class NetRegexes {
       ['type', 'timestamp', 'code', 'name', 'line', 'capture'],
     );
 
-    return NetRegexes.gameLog({ ...params, code: '0038' });
+    return NetRegexes.gameLog({ ...params, code: gameLogCodes.echo });
   }
 
   /**
@@ -489,7 +495,7 @@ export default class NetRegexes {
       ['type', 'timestamp', 'code', 'name', 'line', 'capture'],
     );
 
-    return NetRegexes.gameLog({ ...params, code: '0044' });
+    return NetRegexes.gameLog({ ...params, code: gameLogCodes.dialog });
   }
 
   /**
@@ -504,7 +510,7 @@ export default class NetRegexes {
       ['type', 'timestamp', 'code', 'name', 'line', 'capture'],
     );
 
-    return NetRegexes.gameLog({ ...params, code: '0839' });
+    return NetRegexes.gameLog({ ...params, code: gameLogCodes.message });
   }
 
   /**

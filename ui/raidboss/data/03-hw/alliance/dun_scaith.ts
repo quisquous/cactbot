@@ -1,5 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
+import { gameLogCodes } from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -456,7 +456,11 @@ const triggerSet: TriggerSet<Data> = {
       // However, the RP text seems to be the only indicator.
       id: 'Dun Scaith Shadow Links',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'Shadows gather on the floor.*?', capture: false }),
+      netRegex: {
+        line: 'Shadows gather on the floor.*?',
+        code: gameLogCodes.message,
+        capture: false,
+      },
       suppressSeconds: 5,
       response: Responses.stopMoving(),
     },

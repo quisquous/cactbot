@@ -1,4 +1,4 @@
-import NetRegexes from '../../../../../resources/netregexes';
+import { gameLogCodes } from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -27,7 +27,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T8 Landmine Start',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'Landmines have been scattered.*?', capture: false }),
+      netRegex: {
+        line: 'Landmines have been scattered.*?',
+        code: gameLogCodes.message,
+        capture: false,
+      },
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.landmines = {},
       outputStrings: {

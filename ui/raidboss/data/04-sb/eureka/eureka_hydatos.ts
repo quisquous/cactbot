@@ -1,4 +1,4 @@
-import NetRegexes from '../../../../../resources/netregexes';
+import NetRegexes, { gameLogCodes } from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -92,13 +92,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Seal',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: '.* will be sealed off.*?', capture: false }),
+      netRegex: { line: '.* will be sealed off.*?', code: gameLogCodes.message, capture: false },
       run: (data) => data.sealed = true,
     },
     {
       id: 'BA Clear Data',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: '.*is no longer sealed.*?', capture: false }),
+      netRegex: { line: '.*is no longer sealed.*?', code: gameLogCodes.message, capture: false },
       run: (data) => {
         delete data.side;
         delete data.mythcall;
@@ -250,7 +250,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Owain Fire Element',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: '[^:]*:Munderg, turn flesh to ash.*?', capture: false }),
+      netRegex: {
+        line: '[^:]*:Munderg, turn flesh to ash.*?',
+        code: gameLogCodes.dialog,
+        capture: false,
+      },
       condition: (data) => data.side === 'east',
       alertText: (_data, _matches, output) => output.getToIce!(),
       infoText: (_data, _matches, output) => output.switchMagia!(),
@@ -276,7 +280,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Owain Ice Element',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: '[^:]*:Munderg, turn blood to ice.*?', capture: false }),
+      netRegex: {
+        line: '[^:]*:Munderg, turn blood to ice.*?',
+        code: gameLogCodes.dialog,
+        capture: false,
+      },
       condition: (data) => data.side === 'east',
       alertText: (_data, _matches, output) => output.getToFire!(),
       infoText: (_data, _matches, output) => output.switchMagia!(),
