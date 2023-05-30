@@ -1302,6 +1302,7 @@ class RaidbossConfigurator {
       return Regexes.parse(
         buildNetRegexForTrigger(
           trig.type,
+          trig.gameLogType,
           translateRegexBuildParam(regex, lang, set.timelineReplace),
         ),
       );

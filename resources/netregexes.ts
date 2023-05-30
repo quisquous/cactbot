@@ -1,6 +1,7 @@
 import { NetFields, NetFieldsReverse } from '../types/net_fields';
 import { NetParams } from '../types/net_props';
 import { CactbotBaseRegExp } from '../types/net_trigger';
+import { GameLogType } from '../types/trigger';
 
 import {
   logDefinitionsVersions,
@@ -34,6 +35,12 @@ const keysThatRequireTranslationAsConst = [
 ] as const;
 export const keysThatRequireTranslation: readonly string[] = keysThatRequireTranslationAsConst;
 export type KeysThatRequireTranslation = typeof keysThatRequireTranslationAsConst[number];
+
+const gameLogCodes = {
+  echo: '0038',
+  dialog: '0044',
+  message: '0839',
+} as const;
 
 const defaultParams = <
   T extends LogDefinitionTypes,
@@ -474,7 +481,7 @@ export default class NetRegexes {
       ['type', 'timestamp', 'code', 'name', 'line', 'capture'],
     );
 
-    return NetRegexes.gameLog({ ...params, code: '0038' });
+    return NetRegexes.gameLog({ ...params, code: gameLogCodes.echo });
   }
 
   /**
@@ -489,7 +496,7 @@ export default class NetRegexes {
       ['type', 'timestamp', 'code', 'name', 'line', 'capture'],
     );
 
-    return NetRegexes.gameLog({ ...params, code: '0044' });
+    return NetRegexes.gameLog({ ...params, code: gameLogCodes.dialog });
   }
 
   /**
@@ -504,7 +511,7 @@ export default class NetRegexes {
       ['type', 'timestamp', 'code', 'name', 'line', 'capture'],
     );
 
-    return NetRegexes.gameLog({ ...params, code: '0839' });
+    return NetRegexes.gameLog({ ...params, code: gameLogCodes.message });
   }
 
   /**
@@ -606,13 +613,37 @@ export const commonNetRegex = {
   userWipeEcho: NetRegexes.echo({ line: 'end' }),
 } as const;
 
+export const buildNetRegexForGameLogTrigger = (
+  gameLogType: GameLogType,
+  params: NetParams['GameLog'],
+): CactbotBaseRegExp<'GameLog'> => {
+  if (params.code !== undefined)
+    console.error(
+      `Building ${gameLogType} NetRegex, and overwriting code ${JSON.stringify(params.code)}.`,
+    );
+
+  const codeMap: Record<GameLogType, string> = {
+    Echo: gameLogCodes.echo,
+    Dialog: gameLogCodes.dialog,
+    Message: gameLogCodes.message,
+  } as const;
+  params.code = codeMap[gameLogType];
+
+  return NetRegexes.gameLog(params);
+};
+
 export const buildNetRegexForTrigger = <T extends keyof NetParams>(
   type: T,
+  gameLogType?: GameLogType,
   params?: NetParams[T],
 ): CactbotBaseRegExp<T> => {
   if (type === 'Ability')
     // ts can't narrow T to `Ability` here, need casting.
     return NetRegexes.ability(params) as CactbotBaseRegExp<T>;
 
-  return buildRegex<T>(type, params);
+  if (type !== 'GameLog' || gameLogType === undefined)
+    return buildRegex<T>(type, params);
+
+  // same as above, ts can't narrow the return value even though it knows type/T.
+  return buildNetRegexForGameLogTrigger(gameLogType, params ?? {}) as CactbotBaseRegExp<T>;
 };

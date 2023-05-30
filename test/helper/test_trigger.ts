@@ -235,7 +235,11 @@ const testTriggerFile = (file: string, info: TriggerSetInfo) => {
             continue;
           }
           // TODO: we can check it from keys of `currentNetRegex`.
-          netRegexRegex = buildNetRegexForTrigger(currentTrigger.type, currentNetRegex);
+          netRegexRegex = buildNetRegexForTrigger(
+            currentTrigger.type,
+            currentTrigger.gameLogType,
+            currentNetRegex,
+          );
         }
 
         const capture = new RegExp(`(?:${netRegexRegex.toString()})?`).exec('');

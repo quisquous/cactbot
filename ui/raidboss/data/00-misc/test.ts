@@ -236,8 +236,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Lang',
       type: 'GameLog',
+      gameLogType: 'Echo',
       // In game: /echo cactbot lang
-      netRegex: NetRegexes.echo({ line: 'cactbot lang.*?', capture: false }),
+      netRegex: { line: 'cactbot lang.*?', capture: false },
       infoText: (data, _matches, output) => output.text!({ lang: data.parserLang }),
       outputStrings: {
         text: {
@@ -253,7 +254,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Response',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
+      gameLogType: 'Echo',
+      netRegex: { line: 'cactbot test response.*?', capture: false },
       response: (_data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -273,7 +275,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Watch',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
+      gameLogType: 'Echo',
+      netRegex: { line: 'cactbot test watch.*?', capture: false },
       promise: (data) =>
         Util.watchCombatant({
           names: [
@@ -315,7 +318,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Config',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test config.*?', capture: false }),
+      gameLogType: 'Echo',
+      netRegex: { line: 'cactbot test config.*?', capture: false },
       alertText: (data, _matches, output) => {
         return output.text!({ value: data.triggerSetConfig.testTriggerOutput.toString() });
       },
@@ -331,7 +335,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Combatant Cast Enable',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test combatant cast.*?', capture: false }),
+      gameLogType: 'Echo',
+      netRegex: { line: 'cactbot test combatant cast.*?', capture: false },
       run: (data) => {
         data.watchingForCast = true;
       },

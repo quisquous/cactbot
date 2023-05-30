@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -123,7 +122,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sildihn Geryon Seal Left Mechs',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'The Silt Pump will be sealed off.*?', capture: false }),
+      gameLogType: 'Message',
+      netRegex: { line: 'The Silt Pump will be sealed off.*?', capture: false },
       // May be overwritten by Runaway Sludge below.
       run: (data) => data.catapultMechs = leftDoorYesPump,
     },
@@ -151,10 +151,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sildihn Geryon Seal Right Mechs',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      gameLogType: 'Message',
+      netRegex: {
         line: 'The Settling Basin will be sealed off.*?',
         capture: false,
-      }),
+      },
       // May be overwritten by Suddenly Sewage below.
       run: (data) => data.catapultMechs = rightDoorNoCeruleum,
     },

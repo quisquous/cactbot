@@ -92,13 +92,15 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Seal',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: '.* will be sealed off.*?', capture: false }),
+      gameLogType: 'Message',
+      netRegex: { line: '.* will be sealed off.*?', capture: false },
       run: (data) => data.sealed = true,
     },
     {
       id: 'BA Clear Data',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: '.*is no longer sealed.*?', capture: false }),
+      gameLogType: 'Message',
+      netRegex: { line: '.*is no longer sealed.*?', capture: false },
       run: (data) => {
         delete data.side;
         delete data.mythcall;
@@ -247,7 +249,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Owain Fire Element',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: '[^:]*:Munderg, turn flesh to ash.*?', capture: false }),
+      gameLogType: 'Dialog',
+      netRegex: { line: '[^:]*:Munderg, turn flesh to ash.*?', capture: false },
       condition: (data) => data.side === 'east',
       alertText: (_data, _matches, output) => output.getToIce!(),
       infoText: (_data, _matches, output) => output.switchMagia!(),
@@ -273,7 +276,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Owain Ice Element',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: '[^:]*:Munderg, turn blood to ice.*?', capture: false }),
+      gameLogType: 'Dialog',
+      netRegex: { line: '[^:]*:Munderg, turn blood to ice.*?', capture: false },
       condition: (data) => data.side === 'east',
       alertText: (_data, _matches, output) => output.getToFire!(),
       infoText: (_data, _matches, output) => output.switchMagia!(),

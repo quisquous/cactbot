@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -84,16 +83,18 @@ const triggerSet: TriggerSet<Data> = {
       // only when that boss is in progress.
       id: 'Weeping City HeadMarker Arachne',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      gameLogType: 'Message',
+      netRegex: {
         line: 'The Queen\'s Room will be sealed off.*?',
         capture: false,
-      }),
+      },
       run: (data) => data.arachneStarted = true,
     },
     {
       id: 'Weeping City HeadMarker Ozma',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'The Gloriole will be sealed off.*?', capture: false }),
+      gameLogType: 'Message',
+      netRegex: { line: 'The Gloriole will be sealed off.*?', capture: false },
       run: (data) => {
         data.arachneStarted = false;
         data.ozmaStarted = true;
@@ -102,10 +103,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Weeping City HeadMarker Calofisteri',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      gameLogType: 'Message',
+      netRegex: {
         line: 'The Tomb Of The Nullstone will be sealed off.*?',
         capture: false,
-      }),
+      },
       run: (data) => {
         data.ozmaStarted = false;
         data.calStarted = true;

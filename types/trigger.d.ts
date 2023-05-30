@@ -112,9 +112,14 @@ export type BaseTrigger<
   Type extends TriggerTypes,
 > = Omit<BaseNetTrigger<Data, Type>, 'type' | 'netRegex'>;
 
+export type GameLogType = 'Echo' | 'Dialog' | 'Message';
+export type TriggerGameLogType<Type extends TriggerTypes> = Type extends 'GameLog' ? GameLogType
+  : undefined;
+
 type BaseNetTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
   id: string;
   type: Type;
+  gameLogType?: TriggerGameLogType<Type>;
   netRegex: NetParams[Type] | CactbotBaseRegExp<Type>;
   disabled?: boolean;
   condition?: TriggerField<Data, NetMatches[Type], boolean | undefined>;
