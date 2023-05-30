@@ -204,6 +204,13 @@ const triggerSet: TriggerSet<Data> = {
         'Fire Sphere': 'a',
         'Ice Sphere': 'a',
       },
+      replaceText: {
+        '\\(Behemoth\\)': '(Behemot)',
+        '\\(Fighter\\)': '(Kämpfer)',
+        '\\(Mage\\)': '(Magier)',
+        '\\(cast\\)': '(Ausführen)',
+        '\\(resolve\\)': '(Auflösen)',
+      },
     },
   ],
 };
