@@ -8,6 +8,8 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   decOffset?: number;
   lastDualspellId?: string;
+  limitCutNumber?: number;
+  seenChimericSuccession?: boolean;
 }
 
 const dualspells = {
@@ -15,13 +17,41 @@ const dualspells = {
   thunderIce: '8155',
 };
 
-// TODO: determine first headmarker id
-const firstHeadmarker = parseInt('0000', 16);
+const headmarkers = {
+  // vfx/lockon/eff/tank_lockonae_0m_5s_01t.avfx
+  dualityOfDeath: '01D4',
+  // vfx/lockon/eff/m0361trg_a1t.avfx (through m0361trg_a8t)
+  limitCut1: '004F',
+  limitCut2: '0050',
+  limitCut3: '0051',
+  limitCut4: '0052',
+  limitCut5: '0053',
+  limitCut6: '0054',
+  limitCut7: '0055',
+  limitCut8: '0056',
+  // vfx/lockon/eff/r1fz_skywl_s9x.avfx
+  defamation: '014A',
+  // vfx/lockon/eff/n5r9_lockon_bht_c0g.avfx
+  cometMarker: '01B3',
+} as const;
+
+const limitCutMarkers: readonly string[] = [
+  headmarkers.limitCut1,
+  headmarkers.limitCut2,
+  headmarkers.limitCut3,
+  headmarkers.limitCut4,
+  headmarkers.limitCut5,
+  headmarkers.limitCut6,
+  headmarkers.limitCut7,
+  headmarkers.limitCut8,
+] as const;
+
+const firstHeadmarker = parseInt(headmarkers.dualityOfDeath, 16);
 
 const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
   // (This makes the offset 0, and !0 is true.)
-  if (typeof data.decOffset === 'undefined')
+  if (data.decOffset === undefined)
     data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
   // The leading zeroes are stripped when converting back to string, so we re-add them here.
   // Fortunately, we don't have to worry about whether or not this is robust,
@@ -179,6 +209,76 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         healerGroups: Outputs.healerGroups,
       },
+    },
+    {
+      id: 'P9S Limit Cut',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => {
+        return data.me === matches.target &&
+          limitCutMarkers.includes(getHeadmarkerId(data, matches));
+      },
+      preRun: (data, matches) => {
+        const correctedMatch = getHeadmarkerId(data, matches);
+        const limitCutNumberMap: { [id: string]: number } = {
+          '004F': 1,
+          '0050': 2,
+          '0051': 3,
+          '0052': 4,
+          '0053': 5,
+          '0054': 6,
+          '0055': 7,
+          '0056': 8,
+        };
+        data.limitCutNumber = limitCutNumberMap[correctedMatch];
+      },
+      durationSeconds: (data) => data.seenChimericSuccession ? 20 : 30,
+      infoText: (data, _matches, output) => {
+        return output.text!({ num: data.limitCutNumber ?? output.unknown!() });
+      },
+      outputStrings: {
+        text: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'P9S Defamation',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => {
+        return data.me === matches.target &&
+          getHeadmarkerId(data, matches) === headmarkers.defamation;
+      },
+      alarmText: (_data, _matches, output) => output.defamation!(),
+      outputStrings: {
+        defamation: {
+          en: 'Defamation on YOU',
+          de: 'Ehrenstrafe aud DIR',
+          fr: 'Diffamation sur VOUS',
+          ja: '名誉罰',
+          cn: '大圈点名',
+          ko: '명예형: 보스 밑에서 나 홀로!!!',
+        },
+      },
+    },
+    {
+      id: 'P9S Charybdis',
+      type: 'StartsUsing',
+      netRegex: { id: '8170', source: 'Kokytos', capture: false },
+      response: Responses.goMiddle(),
+    },
+    {
+      id: 'P9S Chimeric Succession',
+      type: 'StartsUsing',
+      netRegex: { id: '81BB', source: 'Kokytos', capture: false },
+      run: (data) => data.seenChimericSuccession = true,
     },
   ],
   timelineReplace: [

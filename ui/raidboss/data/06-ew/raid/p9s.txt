@@ -1,6 +1,48 @@
 ### P9S: Anabaseios: The Ninth Circle (Savage)
 
+# -p 814C:12.2
+# -ii 814B 814D 8150 815D 816E
+
+# 814B unaspected auto
+# 8150 mage auto
+# 815D fighter auto
+# 814D Gluttony's Augur damage
+# 816E Archaic Demolish damage
+
 hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+7.2 "--sync--" sync / 14:[^:]*:Kokytos:814C:/ window 10,10
+12.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
+19.6 "--middle--" sync / 1[56]:[^:]*:Kokytos:8144:/
+
+# Mage 1
+25.3 "Ravening (Mage 1)" sync / 1[56]:[^:]*:Kokytos:8118:/
+32.0 "Soul Surge" sync / 1[56]:[^:]*:Kokytos:811B:/
+47.0 "Duality of Death" sync / 1[56]:[^:]*:Kokytos:8151:/
+47.9 "Aero IV/Fire IV #1" #sync / 1[56]:[^:]*:Kokytos:(8152|8153):/
+50.2 "Aero IV/Fire IV #2" #sync / 1[56]:[^:]*:Kokytos:(8152|8153):/
+
+60.4 "Dualspell (Fire/Ice)" sync / 1[56]:[^:]*:Kokytos:8154:/
+63.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123):/
+68.1 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
+68.1 "Pile Pyre" sync / 1[56]:[^:]*:Kokytos:(8156|8158):/
+
+73.4 "Dualspell (Thunder/Ice)" sync / 1[56]:[^:]*:Kokytos:8155:/
+76.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8123|815C):/
+81.1 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
+81.1 "Thunder III" sync / 1[56]:[^:]*:Kokytos:(815A|815B):/
+
+86.4 "Dualspell (Fire/Ice)" sync / 1[56]:[^:]*:Kokytos:8154:/
+89.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123):/
+94.1 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
+94.1 "Pile Pyre" sync / 1[56]:[^:]*:Kokytos:(8156|8158):/
+
+101.8 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8124:/
+
+# Fighter 1
+114.2 "Ravening (Fighter 1)" sync / 1[56]:[^:]*:Kokytos:8119:/ window 40,40
+120.9 "Soul Surge" sync / 1[56]:[^:]*:Kokytos:811B:/
