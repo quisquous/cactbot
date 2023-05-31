@@ -379,6 +379,7 @@ const triggerSet: TriggerSet<Data> = {
         in: Outputs.in,
         outAndFront: {
           en: 'Out + Front',
+          fr: 'Extérieur + Devant',
           cn: '远离 => 去面前',
         },
         outAndBack: {
