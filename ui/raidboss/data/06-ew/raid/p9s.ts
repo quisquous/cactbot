@@ -115,6 +115,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Partners + Donut',
+          cn: '双人分摊 + 月环',
         },
       },
     },
@@ -128,6 +129,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Protean + Donut',
+          cn: '八方分散 + 月环',
         },
       },
     },
@@ -144,6 +146,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         fireIceOut: {
           en: 'Out + Partners',
+          cn: '远离 + 双人分摊',
         },
         out: Outputs.out,
       },
@@ -163,9 +166,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         fireIceIn: {
           en: 'In + Partners',
+          cn: '靠近 + 双人分摊',
         },
         thunderIceIn: {
           en: 'In + Protean',
+          cn: '靠近 + 八方分散',
         },
         in: Outputs.in,
       },
@@ -183,6 +188,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         thunderIceOut: {
           en: 'Out + Protean',
+          cn: '远离 + 八方分散',
         },
         out: Outputs.out,
       },
@@ -201,6 +207,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback into Wall',
+          cn: '向墙边击退',
         },
       },
     },
@@ -286,6 +293,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Out => Back',
+          cn: '远离 => 去背后',
         },
       },
     },
@@ -298,6 +306,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'In => Back',
+          cn: '靠近 => 去背后',
         },
       },
     },
@@ -310,6 +319,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Out => Front',
+          cn: '远离 => 去面前',
         },
       },
     },
@@ -322,6 +332,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'In => Front',
+          cn: '靠近 => 去面前',
         },
       },
     },
@@ -357,15 +368,19 @@ const triggerSet: TriggerSet<Data> = {
         in: Outputs.in,
         outAndFront: {
           en: 'Out + Front',
+          cn: '远离 => 去面前',
         },
         outAndBack: {
           en: 'Out + Back',
+          cn: '远离 => 去背后',
         },
         inAndFront: {
           en: 'In + Front',
+          cn: '靠近 => 去面前',
         },
         inAndBack: {
           en: 'In + Back',
+          cn: '靠近 => 去背后',
         },
       },
     },
