@@ -116,6 +116,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Partners + Donut',
           fr: 'Partenaires + Donut',
+          cn: '双人分摊 + 月环',
         },
       },
     },
@@ -130,6 +131,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Protean + Donut',
           fr: 'Positions + Donut',
+          cn: '八方分散 + 月环',
         },
       },
     },
@@ -147,6 +149,7 @@ const triggerSet: TriggerSet<Data> = {
         fireIceOut: {
           en: 'Out + Partners',
           fr: 'Extérieur + Partenaires',
+          cn: '远离 + 双人分摊',
         },
         out: Outputs.out,
       },
@@ -167,10 +170,12 @@ const triggerSet: TriggerSet<Data> = {
         fireIceIn: {
           en: 'In + Partners',
           fr: 'Intérieur + Partenaires',
+          cn: '靠近 + 双人分摊',
         },
         thunderIceIn: {
           en: 'In + Protean',
           fr: 'Intérieur + Positions',
+          cn: '靠近 + 八方分散',
         },
         in: Outputs.in,
       },
@@ -189,6 +194,7 @@ const triggerSet: TriggerSet<Data> = {
         thunderIceOut: {
           en: 'Out + Protean',
           fr: 'Extérieur + Positions',
+          cn: '远离 + 八方分散',
         },
         out: Outputs.out,
       },
@@ -208,6 +214,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback into Wall',
           fr: 'Poussée sur un mur',
+          cn: '向墙边击退',
         },
       },
     },
@@ -294,6 +301,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Out => Back',
           fr: 'Extérieur => Derrière',
+          cn: '远离 => 去背后',
         },
       },
     },
@@ -307,6 +315,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'In => Back',
           fr: 'Intérieur => Derrière',
+          cn: '靠近 => 去背后',
         },
       },
     },
@@ -320,6 +329,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Out => Front',
           fr: 'Extérieur => Devant',
+          cn: '远离 => 去面前',
         },
       },
     },
@@ -333,6 +343,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'In => Front',
           fr: 'Intérieur => Devant',
+          cn: '靠近 => 去面前',
         },
       },
     },
@@ -369,18 +380,22 @@ const triggerSet: TriggerSet<Data> = {
         outAndFront: {
           en: 'Out + Front',
           fr: 'Extérieur + Devant',
+          cn: '远离 => 去面前',
         },
         outAndBack: {
           en: 'Out + Back',
           fr: 'Extérieur + Derrière',
+          cn: '远离 => 去背后',
         },
         inAndFront: {
           en: 'In + Front',
           fr: 'Intérieur + Devant',
+          cn: '靠近 => 去面前',
         },
         inAndBack: {
           en: 'In + Back',
           fr: 'Intérieur + Derrière',
+          cn: '靠近 => 去背后',
         },
       },
     },
