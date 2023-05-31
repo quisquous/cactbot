@@ -11,7 +11,6 @@ export interface Data extends RaidbossData {
   dividingWingsStacks: string[];
   dividingWingsEntangling: string[];
   meltdownSpreads: string[];
-  silkSpitCount: number;
 }
 
 const bossNameUnicode = 'Pand\u00e6monium';
@@ -47,7 +46,6 @@ const triggerSet: TriggerSet<Data> = {
       dividingWingsStacks: [],
       dividingWingsEntangling: [],
       meltdownSpreads: [],
-      silkSpitCount: 0,
     };
   },
   triggers: [
@@ -211,14 +209,10 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getTowers('info'),
     },
     {
-      id: 'P10S Silkspit 1',
+      id: 'P10S Silkspit',
       type: 'StartsUsing',
       netRegex: { id: '827C', source: bossNameUnicode, capture: false },
-      preRun: (data) => data.silkSpitCount++,
-      infoText: (data, _matches, output) => {
-        if (data.silkSpitCount === 1)
-          return output.text!();
-      },
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Spread for Webs',
