@@ -167,6 +167,9 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
         zoneName: enc.encounterZoneName,
         zoneID: parseInt(enc.encounterZoneId, 16),
       });
+
+      // Always reset when changing encounters
+      this.Reset();
     });
   }
 
