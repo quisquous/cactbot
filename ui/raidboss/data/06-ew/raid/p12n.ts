@@ -27,10 +27,12 @@ const wingOutputStrings = {
   leftFlank: {
     en: 'Left Flank',
     de: 'Linke Flanke',
+    fr: 'Flanc gauche',
   },
   rightFlank: {
     en: 'Right Flank',
     de: 'Rechte Flanke',
+    fr: 'Flanc droit',
   },
 } as const;
 
@@ -88,6 +90,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${first} => ${second} => ${third}',
           de: '${first} => ${second} => ${third}',
+          fr: '${first} => ${second} => ${third}',
         },
       },
     },
@@ -164,18 +167,22 @@ const triggerSet: TriggerSet<Data> = {
         superchain1: {
           en: 'Follow Donut',
           de: 'Donut folgen',
+          fr: 'Suivez le donut',
         },
         superchain2: {
           en: 'Short Donut => Long Donut',
           de: 'Kurzer Donut => Langer Donut',
+          fr: 'Petit donut => Long donut',
         },
         superchain3: {
           en: 'Follow Donut (avoid cleave)',
           de: 'Donut folgen (Cleave ausweichen)',
+          fr: 'Suivez le donut (évitez le cleave)',
         },
         superchain4: {
           en: 'Avoid Spheres',
           de: 'Spheren vermeiden',
+          fr: 'Évitez les sphères',
         },
       },
     },
@@ -194,6 +201,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid Chained Platforms',
           de: 'Vermeide angekettete Platformen',
+          fr: 'Évitez les plateformes enchaînées',
         },
       },
     },

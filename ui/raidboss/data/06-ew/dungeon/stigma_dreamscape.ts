@@ -309,6 +309,12 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'Dreamscape Atomic Ray',
+      type: 'StartsUsing',
+      netRegex: { id: '6436', source: 'Stigma-4', capture: false },
+      response: Responses.bleedAoe(),
+    },
   ],
   timelineReplace: [
     {

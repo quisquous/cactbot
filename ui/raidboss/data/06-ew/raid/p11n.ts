@@ -18,7 +18,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P11N Eunomia',
       type: 'StartsUsing',
       netRegex: { id: '81E2', source: 'Themis', capture: false },
-      response: Responses.aoe(),
+      response: Responses.bleedAoe(),
     },
     {
       id: 'P11N Divisive Ruling In',
@@ -58,6 +58,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get in light puddle',
           de: 'Geh in die Licht-Fläche',
+          fr: 'Allez dans la flaque de lumière',
         },
       },
     },
@@ -71,6 +72,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get in dark puddle',
           de: 'Geh in die Dunkel-Fläche',
+          fr: 'Allez dans la flaque sombre',
         },
       },
     },
@@ -83,6 +85,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait puddles x2',
           de: 'Köder Fläche x2',
+          fr: 'Déposez les flaques x2',
         },
       },
     },
@@ -95,6 +98,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback -> get in',
           de: 'Rückstoß -> geh rein',
+          fr: 'Poussée -> intérieur',
         },
       },
     },
@@ -107,6 +111,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback -> stay out',
           de: 'Rückstoß -> bleib außen',
+          fr: 'Pousée -> restez à l\'extérieur',
         },
       },
     },
@@ -149,10 +154,12 @@ const triggerSet: TriggerSet<Data> = {
         avoidCleave: {
           en: 'Cleaving ${target} -> get in',
           de: 'Cleave auf ${target} -> geh Rein',
+          fr: 'Cleave sur ${target} -> intérieur',
         },
         cleaveOnYou: {
           en: 'Cleave on YOU -> stay in',
           de: 'Cleave auf DIR -> bleib drin',
+          fr: 'Cleave sur VOUS -> restez à l\'intérieur',
         },
       },
     },
@@ -165,6 +172,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack on ${target} -> get out',
           de: 'Auf ${target} Sammeln -> geh raus',
+          fr: 'Package sur ${target} -> extérieur',
         },
       },
     },
@@ -190,6 +198,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Line Cleave -> In on dark adds',
           de: 'Linien AoE -> Rein auf dunkle Adds',
+          fr: 'Cleave en logne -> sur les adds sombres',
         },
       },
     },
