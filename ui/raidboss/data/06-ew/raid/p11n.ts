@@ -18,7 +18,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P11N Eunomia',
       type: 'StartsUsing',
       netRegex: { id: '81E2', source: 'Themis', capture: false },
-      response: Responses.aoe(),
+      response: Responses.bleedAoe(),
     },
     {
       id: 'P11N Divisive Ruling In',

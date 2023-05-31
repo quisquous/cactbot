@@ -445,17 +445,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P7S Spark of Life',
       type: 'StartsUsing',
       netRegex: { id: '7839', source: 'Agdistis', capture: false },
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'aoe + bleed',
-          de: 'AoE + Blutung',
-          fr: 'AoE + Saignement',
-          ja: '全体攻撃 + 出血',
-          cn: 'AOE + 流血',
-          ko: '전체 공격 + 도트',
-        },
-      },
+      response: Responses.bleedAoe(),
     },
     {
       id: 'P7S Inviolate Bonds',
