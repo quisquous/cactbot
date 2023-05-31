@@ -11,6 +11,7 @@ import { Output, OutputStrings, TriggerSet } from '../../../../../types/trigger'
 // Interstellar - Test the timing more. Seems OK but the delaySeconds timing might be too tight depending on latency?
 // Add phase triggers
 // Final phase triggers
+// Telomania - 4x small AoE followed by big AoE + bleed
 
 export interface Data extends RaidbossData {
   storedStars: { [name: string]: PluginCombatantState };

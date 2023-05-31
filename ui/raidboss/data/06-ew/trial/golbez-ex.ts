@@ -131,7 +131,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'GolbezEx Binding Cold',
       type: 'StartsUsing',
       netRegex: { id: '84B3', source: 'Golbez', capture: false },
-      response: Responses.aoe(),
+      response: Responses.bleedAoe(),
     },
     {
       id: 'GolbezEx Void Meteor',

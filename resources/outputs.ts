@@ -37,6 +37,14 @@ export default {
     cn: '大AoE伤害！',
     ko: '강한 전체 공격!',
   },
+  bleedAoe: {
+    en: 'AoE + Bleed',
+    de: 'AoE + Blutung',
+    fr: 'AoE + Saignement',
+    ja: '全体攻撃 + 出血',
+    cn: 'AOE + 流血',
+    ko: '전체 공격 + 도트',
+  },
   tankBuster: {
     en: 'Tank Buster',
     de: 'Tank buster',

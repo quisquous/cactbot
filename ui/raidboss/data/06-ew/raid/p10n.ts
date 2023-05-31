@@ -45,10 +45,12 @@ const triggerSet: TriggerSet<Data> = {
         onYou: {
           en: 'Spread (avoid posts)',
           de: 'Verteilen (vermeide Stäbe)',
+          fr: 'Écartez-vous',
         },
         onOthers: {
           en: 'Avoid marked players',
           de: 'Vermeide markierte Spieler',
+          fr: 'Évitez les joueurs marqués',
         },
       },
     },
@@ -69,6 +71,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid jails',
           de: 'Gefängnisen vermeiden',
+          fr: 'Évitez les pièges',
         },
       },
     },
@@ -82,6 +85,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Under jails',
           de: 'Geh unter ein Gefängnis',
+          fr: 'Sous les pièges',
         },
       },
     },
@@ -89,7 +93,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P10N Ultima',
       type: 'StartsUsing',
       netRegex: { id: '827B', source: bossNameUnicode, capture: false },
-      response: Responses.aoe(),
+      response: Responses.bleedAoe(),
     },
     {
       id: 'P10N Pandaemoniac Meltdown',
@@ -157,10 +161,12 @@ const triggerSet: TriggerSet<Data> = {
         soak: {
           en: 'Soak tower',
           de: 'Türme nehmen',
+          fr: 'Prenez une tour',
         },
         avoid: {
           en: 'Avoid towers',
           de: 'Türme vermeiden',
+          fr: 'Évitez les tours',
         },
       },
     },
