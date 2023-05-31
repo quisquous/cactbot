@@ -122,17 +122,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Troia Scarmiglione Cursed Echo',
       type: 'StartsUsing',
       netRegex: { source: 'Scarmiglione', id: '7631', capture: false },
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'aoe + bleed',
-          de: 'AoE + Blutung',
-          fr: 'AoE + Saignement',
-          ja: 'AoE + 出血',
-          cn: 'AOE + 流血',
-          ko: '전체 공격 + 도트',
-        },
-      },
+      response: Responses.bleedAoe(),
     },
     {
       id: 'Troia Scarmiglione Rotten Rampage',
