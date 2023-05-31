@@ -210,6 +210,12 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getTowers('info'),
     },
     {
+      id: 'P10S Pandaemoniac Turrets',
+      type: 'StartsUsing',
+      netRegex: { id: '87AF', source: bossNameUnicode, capture: false },
+      response: Responses.getTowers('info'),
+    },
+    {
       id: 'P10S Silkspit',
       type: 'StartsUsing',
       netRegex: { id: '827C', source: bossNameUnicode, capture: false },
@@ -253,6 +259,14 @@ const triggerSet: TriggerSet<Data> = {
           cn: '直线分摊',
           ko: '직선 쉐어',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      locale: 'en',
+      replaceText: {
+        'Pandaemon\'s Holy/Circles of Pandaemonium': 'Holy/Circles',
       },
     },
   ],
