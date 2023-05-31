@@ -20,7 +20,7 @@ export class LineEvent0x17 extends LineEvent implements LineEventSource, LineEve
 
     this.id = parts[fields.sourceId]?.toUpperCase() ?? '';
     this.name = parts[fields.name] ?? '';
-    this.abilityId = parseInt(parts[fields.id]?.toUpperCase() ?? '');
+    this.abilityId = parseInt(parts[fields.id]?.toUpperCase() ?? '', 16);
     this.abilityName = parts[fields.name] ?? '';
     this.reason = parts[fields.reason] ?? '';
   }
