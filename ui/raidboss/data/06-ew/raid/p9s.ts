@@ -5,10 +5,13 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: handle Two Minds
+
 export interface Data extends RaidbossData {
   decOffset?: number;
   lastDualspellId?: string;
   limitCutNumber?: number;
+  combination?: 'front' | 'rear';
   seenChimericSuccession?: boolean;
 }
 
@@ -273,6 +276,98 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '8170', source: 'Kokytos', capture: false },
       response: Responses.goMiddle(),
+    },
+    {
+      id: 'P9S Front Inside Combination',
+      type: 'StartsUsing',
+      netRegex: { id: '8167', source: 'Kokytos', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      run: (data) => data.combination = 'front',
+      outputStrings: {
+        text: {
+          en: 'Out => Back',
+        },
+      },
+    },
+    {
+      id: 'P9S Front Outside Combination',
+      type: 'StartsUsing',
+      netRegex: { id: '8168', source: 'Kokytos', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      run: (data) => data.combination = 'front',
+      outputStrings: {
+        text: {
+          en: 'In => Back',
+        },
+      },
+    },
+    {
+      id: 'P9S Rear Inside Roundhouse',
+      type: 'StartsUsing',
+      netRegex: { id: '8169', source: 'Kokytos', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      run: (data) => data.combination = 'rear',
+      outputStrings: {
+        text: {
+          en: 'Out => Front',
+        },
+      },
+    },
+    {
+      id: 'P9S Rear Outside Roundhouse',
+      type: 'StartsUsing',
+      netRegex: { id: '816A', source: 'Kokytos', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      run: (data) => data.combination = 'rear',
+      outputStrings: {
+        text: {
+          en: 'In => Front',
+        },
+      },
+    },
+    {
+      id: 'P9S Roundhouse Followup',
+      type: 'Ability',
+      netRegex: { id: ['8238', '8239'], source: 'Kokytos' },
+      suppressSeconds: 15,
+      alertText: (data, matches, output) => {
+        const isInsideRoundhouse = matches.id === '8238';
+        const isOutsideRoundhouse = matches.id === '8239';
+
+        if (data.combination === 'front') {
+          if (isOutsideRoundhouse)
+            return output.outAndBack!();
+          if (isInsideRoundhouse)
+            return output.inAndBack!();
+        }
+        if (data.combination === 'rear') {
+          if (isOutsideRoundhouse)
+            return output.outAndFront!();
+          if (isInsideRoundhouse)
+            return output.inAndFront!();
+        }
+
+        if (isOutsideRoundhouse)
+          return output.out!();
+        if (isInsideRoundhouse)
+          return output.in!();
+      },
+      outputStrings: {
+        out: Outputs.out,
+        in: Outputs.in,
+        outAndFront: {
+          en: 'Out + Front',
+        },
+        outAndBack: {
+          en: 'Out + Back',
+        },
+        inAndFront: {
+          en: 'In + Front',
+        },
+        inAndBack: {
+          en: 'In + Back',
+        },
+      },
     },
     {
       id: 'P9S Chimeric Succession',
