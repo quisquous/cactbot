@@ -47,6 +47,7 @@ Options.Triggers.push({
         text: {
           en: 'Get in light puddle',
           de: 'Geh in die Licht-Fläche',
+          fr: 'Allez dans la flaque de lumière',
         },
       },
     },
@@ -60,6 +61,7 @@ Options.Triggers.push({
         text: {
           en: 'Get in dark puddle',
           de: 'Geh in die Dunkel-Fläche',
+          fr: 'Allez dans la flaque sombre',
         },
       },
     },
@@ -72,6 +74,7 @@ Options.Triggers.push({
         text: {
           en: 'Bait puddles x2',
           de: 'Köder Fläche x2',
+          fr: 'Déposez les flaques x2',
         },
       },
     },
@@ -84,6 +87,7 @@ Options.Triggers.push({
         text: {
           en: 'Knockback -> get in',
           de: 'Rückstoß -> geh rein',
+          fr: 'Poussée -> intérieur',
         },
       },
     },
@@ -96,6 +100,7 @@ Options.Triggers.push({
         text: {
           en: 'Knockback -> stay out',
           de: 'Rückstoß -> bleib außen',
+          fr: 'Pousée -> restez à l\'extérieur',
         },
       },
     },
@@ -138,10 +143,12 @@ Options.Triggers.push({
         avoidCleave: {
           en: 'Cleaving ${target} -> get in',
           de: 'Cleave auf ${target} -> geh Rein',
+          fr: 'Cleave sur ${target} -> intérieur',
         },
         cleaveOnYou: {
           en: 'Cleave on YOU -> stay in',
           de: 'Cleave auf DIR -> bleib drin',
+          fr: 'Cleave sur VOUS -> restez à l\'intérieur',
         },
       },
     },
@@ -154,6 +161,7 @@ Options.Triggers.push({
         text: {
           en: 'Stack on ${target} -> get out',
           de: 'Auf ${target} Sammeln -> geh raus',
+          fr: 'Package sur ${target} -> extérieur',
         },
       },
     },
@@ -179,6 +187,7 @@ Options.Triggers.push({
         text: {
           en: 'Line Cleave -> In on dark adds',
           de: 'Linien AoE -> Rein auf dunkle Adds',
+          fr: 'Cleave en logne -> sur les adds sombres',
         },
       },
     },

@@ -38,10 +38,12 @@ Options.Triggers.push({
         soak: {
           en: 'Soak tower',
           de: 'Türme nehmen',
+          fr: 'Prenez une tour',
         },
         avoid: {
           en: 'Avoid towers',
           de: 'Türme vermeiden',
+          fr: 'Évitez les tours',
         },
       },
     },

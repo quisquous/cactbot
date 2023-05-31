@@ -92,6 +92,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Partners + Donut',
+          fr: 'Partenaires + Donut',
         },
       },
     },
@@ -105,6 +106,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Protean + Donut',
+          fr: 'Positions + Donut',
         },
       },
     },
@@ -121,6 +123,7 @@ Options.Triggers.push({
       outputStrings: {
         fireIceOut: {
           en: 'Out + Partners',
+          fr: 'Extérieur + Partenaires',
         },
         out: Outputs.out,
       },
@@ -140,9 +143,11 @@ Options.Triggers.push({
       outputStrings: {
         fireIceIn: {
           en: 'In + Partners',
+          fr: 'Intérieur + Partenaires',
         },
         thunderIceIn: {
           en: 'In + Protean',
+          fr: 'Intérieur + Positions',
         },
         in: Outputs.in,
       },
@@ -160,6 +165,7 @@ Options.Triggers.push({
       outputStrings: {
         thunderIceOut: {
           en: 'Out + Protean',
+          fr: 'Extérieur + Positions',
         },
         out: Outputs.out,
       },
@@ -178,6 +184,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Knockback into Wall',
+          fr: 'Poussée sur un mur',
         },
       },
     },
@@ -263,6 +270,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Out => Back',
+          fr: 'Extérieur => Derrière',
         },
       },
     },
@@ -275,6 +283,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'In => Back',
+          fr: 'Intérieur => Derrière',
         },
       },
     },
@@ -287,6 +296,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Out => Front',
+          fr: 'Extérieur => Devant',
         },
       },
     },
@@ -299,6 +309,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'In => Front',
+          fr: 'Intérieur => Devant',
         },
       },
     },
@@ -332,15 +343,19 @@ Options.Triggers.push({
         in: Outputs.in,
         outAndFront: {
           en: 'Out + Front',
+          fr: 'Extérieur + Devant',
         },
         outAndBack: {
           en: 'Out + Back',
+          fr: 'Extérieur + Derrière',
         },
         inAndFront: {
           en: 'In + Front',
+          fr: 'Intérieur + Devant',
         },
         inAndBack: {
           en: 'In + Back',
+          fr: 'Intérieur + Derrière',
         },
       },
     },
