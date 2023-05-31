@@ -115,6 +115,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Partners + Donut',
+          fr: 'Partenaires + Donut',
         },
       },
     },
@@ -128,6 +129,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Protean + Donut',
+          fr: 'Positions + Donut',
         },
       },
     },
@@ -144,6 +146,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         fireIceOut: {
           en: 'Out + Partners',
+          fr: 'Extérieur + Partenaires',
         },
         out: Outputs.out,
       },
@@ -163,9 +166,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         fireIceIn: {
           en: 'In + Partners',
+          fr: 'Intérieur + Partenaires',
         },
         thunderIceIn: {
           en: 'In + Protean',
+          fr: 'Intérieur + Positions',
         },
         in: Outputs.in,
       },
@@ -183,6 +188,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         thunderIceOut: {
           en: 'Out + Protean',
+          fr: 'Extérieur + Positions',
         },
         out: Outputs.out,
       },
@@ -201,6 +207,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback into Wall',
+          fr: 'Poussée sur un mur',
         },
       },
     },
@@ -286,6 +293,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Out => Back',
+          fr: 'Extérieur => Derrière',
         },
       },
     },
@@ -298,6 +306,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'In => Back',
+          fr: 'Intérieur => Derrière',
         },
       },
     },
@@ -310,6 +319,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Out => Front',
+          fr: 'Extérieur => Devant',
         },
       },
     },
@@ -322,6 +332,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'In => Front',
+          fr: 'Intérieur => Devant',
         },
       },
     },
@@ -357,15 +368,19 @@ const triggerSet: TriggerSet<Data> = {
         in: Outputs.in,
         outAndFront: {
           en: 'Out + Front',
+          fr: 'Extérieur + Devant',
         },
         outAndBack: {
           en: 'Out + Back',
+          fr: 'Extérieur + Derrière',
         },
         inAndFront: {
           en: 'In + Front',
+          fr: 'Intérieur + Devant',
         },
         inAndBack: {
           en: 'In + Back',
+          fr: 'Intérieur + Derrière',
         },
       },
     },

@@ -51,11 +51,13 @@ const triggerSet: TriggerSet<Data> = {
         waveCannonTarget: {
           en: 'Wave Cannon on YOU',
           de: 'Wellenkanone auf DIR',
+          fr: 'Tir de canon sur VOUS',
           ko: '파동포 대상자',
         },
         avoidWaveCannon: {
           en: 'Away from ${target} -- Wave Cannon',
           de: 'Weg von ${target} -- Wellenkanone',
+          fr: 'Évitez ${target} -- Tir de canon',
           ko: '${target} 피하기 -- 파동포',
         },
       },
@@ -77,6 +79,7 @@ const triggerSet: TriggerSet<Data> = {
         demonClawYou: {
           en: 'Knockback from boss on YOU',
           de: 'Rückstoß vom Boss auf DIR',
+          fr: 'Poussée depuis le boss sur VOUS',
           ko: '넉백공격 대상자',
         },
       },
@@ -117,6 +120,7 @@ const triggerSet: TriggerSet<Data> = {
         demonicSpread: {
           en: 'Spread -- Don\'t stack!',
           de: 'Verteilen -- Nicht aufeinander!',
+          fr: 'Écartez-vous -- Ne vous packez pas !',
           ko: '산개 -- 쉐어맞으면 안됨!',
         },
       },
@@ -155,6 +159,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stay outside hitbox',
           de: 'Auserhalb der Hitbox stehen',
+          fr: 'Restez en dehors de la Hitbox',
           ko: '히트박스 밖으로',
         },
       },
@@ -181,6 +186,7 @@ const triggerSet: TriggerSet<Data> = {
         baitSouthernCross: {
           en: 'Bait Ice Puddles',
           de: 'Eisflächen ködern',
+          fr: 'Déposez les flaques de glace',
           ko: '얼음장판 유도',
         },
       },
@@ -208,6 +214,7 @@ const triggerSet: TriggerSet<Data> = {
         tetherBuddy: {
           en: 'Tethered with ${buddy}',
           de: 'Mit ${buddy} verbunden',
+          fr: 'Lié à ${buddy}',
           ko: '선 연결 ${buddy}',
         },
       },
@@ -235,15 +242,18 @@ const triggerSet: TriggerSet<Data> = {
         infiniteDebuff: {
           en: '${element} on you',
           de: '${element} auf dir',
+          fr: '${element} sur vous',
           ko: '${element}',
         },
         fire: {
           en: 'Fire',
           de: 'Feuer',
+          fr: 'Feu',
         },
         ice: {
           en: 'Ice',
           de: 'Eis',
+          fr: 'Glace',
         },
         unknown: Outputs.unknown,
       },
@@ -265,15 +275,18 @@ const triggerSet: TriggerSet<Data> = {
         sealTowers: {
           en: '${element} towers with ${buddy}',
           de: '${element} Türme mit ${buddy}',
+          fr: 'Tour ${element} avec ${buddy}',
           ko: '${element} 기둥 +${buddy}',
         },
         fire: {
           en: 'Fire',
           de: 'Feuer',
+          fr: 'Feu',
         },
         ice: {
           en: 'Ice',
           de: 'Eis',
+          fr: 'Glace',
         },
         unknown: Outputs.unknown,
       },
