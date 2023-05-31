@@ -163,20 +163,20 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P10S Dividing Wings Stacks',
       type: 'HeadMarker',
       netRegex: {},
-      condition: (data, matches) => {
-        if (getHeadmarkerId(data, matches) !== headmarkers.webShare)
-          return false;
-        if (data.dividingWingsTethers.includes(data.me))
-          return false;
-        if (data.dividingWingsStacks.includes(data.me))
-          return false;
-        if (data.dividingWingsEntangling.includes(data.me))
-          return false;
-        return true;
-      },
+      condition: (data, matches) => getHeadmarkerId(data, matches) === headmarkers.webShare,
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text!(),
+      infoText: (data, _matches, output) => {
+        // Need to check these conditions after the delay as they are ordered:
+        // tethers, stack(s), (optional) entangling.
+        if (data.dividingWingsTethers.includes(data.me))
+          return;
+        if (data.dividingWingsStacks.includes(data.me))
+          return;
+        if (data.dividingWingsEntangling.includes(data.me))
+          return;
+        return output.text!();
+      },
       outputStrings: {
         text: {
           en: 'Stack',
@@ -195,10 +195,11 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       // This will happen for non-dividing entangling web headmarkers,
       // but will get cleaned up in time for the next dividing wings.
-      run: (data, matches) => data.dividingWingsStacks.push(matches.target),
+      run: (data, matches) => data.dividingWingsEntangling.push(matches.target),
       outputStrings: {
         text: {
-          en: 'Overlap Webs on Posts',
+          // TODO: should we say "on posts" or "on back wall" based on count?
+          en: 'Overlap Webs',
         },
       },
     },
@@ -216,24 +217,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Spread for Webs',
-        },
-      },
-    },
-    {
-      id: 'P10S SilkSpit Spread',
-      type: 'HeadMarker',
-      netRegex: {},
-      condition: (data, matches) => {
-        if (data.me !== matches.target)
-          return false;
-        return getHeadmarkerId(data, matches) === headmarkers.webSpread;
-      },
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Spread (avoid posts)',
-          de: 'Verteilen (vermeide Stäbe)',
-          fr: 'Écartez-vous',
         },
       },
     },
