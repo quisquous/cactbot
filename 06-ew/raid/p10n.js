@@ -82,7 +82,7 @@ Options.Triggers.push({
       id: 'P10N Ultima',
       type: 'StartsUsing',
       netRegex: { id: '827B', source: bossNameUnicode, capture: false },
-      response: Responses.aoe(),
+      response: Responses.bleedAoe(),
     },
     {
       id: 'P10N Pandaemoniac Meltdown',

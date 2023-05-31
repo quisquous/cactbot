@@ -118,17 +118,7 @@ Options.Triggers.push({
       regex: /Resentment/,
       beforeSeconds: 5,
       condition: (data) => data.phase === 'nidhogg',
-      infoText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'aoe + dot',
-          de: 'AoE + DoT',
-          fr: 'AoE + dot',
-          ja: 'AoE + DoT',
-          cn: 'AOE + dot',
-          ko: '전체공격 + 도트뎀',
-        },
-      },
+      response: Responses.bleedAoe(),
     },
     {
       id: 'DSR Mortal Vow',

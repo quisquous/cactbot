@@ -417,17 +417,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '47CC', source: 'Ascian Prime\'s Shade', capture: false },
       delaySeconds: 12,
-      infoText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'aoe + bleed',
-          de: 'AoE + Blutung',
-          fr: 'AoE + saignement',
-          ja: 'AoE + DoT',
-          cn: 'AOE + 流血',
-          ko: '전체 공격 + 도트',
-        },
-      },
+      response: Responses.bleedAoe(),
     },
     {
       id: 'HadesEx Height Of Chaos',
@@ -672,17 +662,7 @@ Options.Triggers.push({
       // After tanks take tower damage
       delaySeconds: 2,
       suppressSeconds: 2,
-      infoText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'aoe + bleed',
-          de: 'AoE + Blutung',
-          fr: 'AoE + saignement',
-          ja: 'AoE + DoT',
-          cn: 'AOE + 流血',
-          ko: '전체 공격 + 도트',
-        },
-      },
+      response: Responses.bleedAoe(),
     },
     {
       id: 'HadesEx Enrage Gigantomachy',

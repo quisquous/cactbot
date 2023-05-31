@@ -36,6 +36,7 @@ Options.Triggers.push({
     },
     {
       id: 'RubicanteEx Inferno Spread',
+      // also applies a 15s bleed to each player
       type: 'StartsUsing',
       netRegex: { id: '7D0F', source: 'Rubicante', capture: false },
       response: Responses.spread(),

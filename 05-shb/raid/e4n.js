@@ -13,17 +13,7 @@ Options.Triggers.push({
       id: 'E4N Earthen Fury',
       type: 'StartsUsing',
       netRegex: { id: '40F8', source: 'Titan', capture: false },
-      infoText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'aoe + dot',
-          de: 'AoE + DoT',
-          fr: 'AoE + dot',
-          ja: 'AoE + DoT',
-          cn: 'AOE + dot',
-          ko: '전체공격 + 도트뎀',
-        },
-      },
+      response: Responses.bleedAoe(),
     },
     {
       id: 'E4N Stonecrusher',

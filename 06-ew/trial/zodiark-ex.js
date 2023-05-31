@@ -856,17 +856,7 @@ Options.Triggers.push({
       id: 'ZodiarkEx Phobos',
       type: 'StartsUsing',
       netRegex: { id: '67F0', source: 'Zodiark', capture: false },
-      alertText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Heavy DoT',
-          de: 'Starker DoT',
-          fr: 'Gros DoT',
-          ja: '痛いDOT',
-          cn: '超痛流血AOE',
-          ko: '아픈 도트딜',
-        },
-      },
+      response: Responses.bleedAoe('alert'),
     },
     {
       id: 'ZodiarkEx Astral Eclipse Cleanup',

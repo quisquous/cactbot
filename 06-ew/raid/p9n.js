@@ -13,17 +13,7 @@ Options.Triggers.push({
       id: 'P9N Global Spell',
       type: 'StartsUsing',
       netRegex: { id: '8141', source: 'Kokytos', capture: false },
-      infoText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'aoe + bleed',
-          de: 'AoE + Blutung',
-          fr: 'AoE + saignement',
-          ja: 'AoE + DoT',
-          cn: 'AOE + 流血',
-          ko: '전체 공격 + 도트',
-        },
-      },
+      response: Responses.bleedAoe(),
     },
     {
       id: 'P9N Ascendant Fist',

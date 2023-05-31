@@ -27,7 +27,7 @@ Options.Triggers.push({
       id: 'Alzadaal Big Wave',
       type: 'StartsUsing',
       netRegex: { id: '6F60', source: 'Ambujam', capture: false },
-      response: Responses.aoe(),
+      response: Responses.bleedAoe(),
     },
     {
       id: 'Alzadaal Tentacle Dig Collect',

@@ -1548,17 +1548,7 @@ Options.Triggers.push({
       id: 'P8S Aioniopyr',
       type: 'StartsUsing',
       netRegex: { id: '79DF', source: 'Hephaistos', capture: false },
-      infoText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'aoe + bleed',
-          de: 'AoE + Blutung',
-          fr: 'AoE + Saignement',
-          ja: 'AOE + 出血',
-          cn: 'AOE + 流血',
-          ko: '전체 공격 + 도트',
-        },
-      },
+      response: Responses.bleedAoe(),
     },
     {
       id: 'P8S Tyrant\'s Unholy Darkness',

@@ -478,17 +478,7 @@ Options.Triggers.push({
       id: 'ASS Total Wash',
       type: 'StartsUsing',
       netRegex: { id: '7750', source: 'Silkie', capture: false },
-      infoText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'aoe + bleed',
-          de: 'AoE + Blutung',
-          fr: 'AoE + Saignement',
-          ja: '全体攻撃 + 出血',
-          cn: 'AOE + 流血',
-          ko: '전체 공격 + 도트',
-        },
-      },
+      response: Responses.bleedAoe(),
     },
     {
       id: 'ASS Fresh Puff 2 Bait',
@@ -804,17 +794,7 @@ Options.Triggers.push({
       id: 'ASS Infernal Pain',
       type: 'StartsUsing',
       netRegex: { id: '7969', source: 'Sil\'dihn Dullahan', capture: false },
-      infoText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'aoe + bleed',
-          de: 'AoE + Blutung',
-          fr: 'AoE + Saignement',
-          ja: '全体攻撃 + 出血',
-          cn: 'AOE + 流血',
-          ko: '전체 공격 + 도트',
-        },
-      },
+      response: Responses.bleedAoe(),
     },
     {
       id: 'ASS Blighted Gloom',
