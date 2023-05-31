@@ -5,15 +5,17 @@ import { UnreachableCode } from '../resources/not_reached';
 
 import { default as generateEffectIds } from './gen_effect_id';
 import { default as generatePetNames } from './gen_pet_names';
+import { default as generateWorldIds } from './gen_world_ids';
 
 import { ActionChoiceType } from '.';
 
-const genKeys = ['effect_id', 'pet_names'] as const;
+const genKeys = ['effect_id', 'pet_names', 'world_id'] as const;
 type GenKeysType = typeof genKeys[number];
 
 const dataFilesMap: { [filename in GenKeysType]: () => Promise<void> } = {
   'effect_id': generateEffectIds,
   'pet_names': generatePetNames,
+  'world_id': generateWorldIds,
 } as const;
 
 type GenerateDataFilesNamespaceInterface = {

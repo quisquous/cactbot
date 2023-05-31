@@ -14,32 +14,32 @@ export class SCHComponent extends BaseComponent {
 
   constructor(o: ComponentInterface) {
     super(o);
-  this.aetherflowStackBox = this.bars.addResourceBox({
-    classList: ['sch-color-aetherflow'],
-  });
+    this.aetherflowStackBox = this.bars.addResourceBox({
+      classList: ['sch-color-aetherflow'],
+    });
 
-  this.fairyGaugeBox = this.bars.addResourceBox({
-    classList: ['sch-color-fairygauge'],
-  });
+    this.fairyGaugeBox = this.bars.addResourceBox({
+      classList: ['sch-color-fairygauge'],
+    });
 
-  this.bioBox = this.bars.addProcBox({
-    id: 'sch-procs-bio',
-    fgColor: 'sch-color-bio',
-    notifyWhenExpired: true,
-  });
+    this.bioBox = this.bars.addProcBox({
+      id: 'sch-procs-bio',
+      fgColor: 'sch-color-bio',
+      notifyWhenExpired: true,
+    });
 
-  this.aetherflowBox = this.bars.addProcBox({
-    id: 'sch-procs-aetherflow',
-    fgColor: 'sch-color-aetherflow',
-  });
+    this.aetherflowBox = this.bars.addProcBox({
+      id: 'sch-procs-aetherflow',
+      fgColor: 'sch-color-aetherflow',
+    });
 
-  this.lucidBox = this.bars.addProcBox({
-    id: 'sch-procs-luciddreaming',
-    fgColor: 'sch-color-lucid',
-  });
+    this.lucidBox = this.bars.addProcBox({
+      id: 'sch-procs-luciddreaming',
+      fgColor: 'sch-color-lucid',
+    });
 
-  this.reset();
-}
+    this.reset();
+  }
 
   override onJobDetailUpdate(jobDetail: JobDetail['SCH']): void {
     const aetherflow = jobDetail.aetherflowStacks;
@@ -86,7 +86,7 @@ export class SCHComponent extends BaseComponent {
     }
   }
 
-  override onStatChange({ gcdSpell }:{ gcdSpell: number }): void {
+  override onStatChange({ gcdSpell }: { gcdSpell: number }): void {
     this.bioBox.valuescale = gcdSpell;
     this.bioBox.threshold = gcdSpell + 1;
     this.aetherflowBox.valuescale = gcdSpell;

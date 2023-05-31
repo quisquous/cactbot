@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -10,13 +9,14 @@ export interface Data extends RaidbossData {
 
 // O11S - Alphascape 3.0 Savage
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlphascapeV30Savage',
   zoneId: ZoneId.AlphascapeV30Savage,
   timelineFile: 'o11s.txt',
   triggers: [
     {
       id: 'O11S Mustard Bomb',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '326D', source: 'Omega' }),
+      netRegex: { id: '326D', source: 'Omega' },
       response: Responses.tankBuster('alarm'),
     },
     {
@@ -30,14 +30,14 @@ const triggerSet: TriggerSet<Data> = {
       // will at least say left/right for the second.
       id: 'O11S Cannon Cleanup',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '326[24]', source: 'Omega', capture: false }),
+      netRegex: { id: '326[24]', source: 'Omega', capture: false },
       delaySeconds: 15,
       run: (data) => delete data.lastWasStarboard,
     },
     {
       id: 'O11S Starboard Cannon 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '326[23]', source: 'Omega', capture: false }),
+      netRegex: { id: '326[23]', source: 'Omega', capture: false },
       condition: (data) => data.lastWasStarboard === undefined,
       response: Responses.goLeft(),
       run: (data) => data.lastWasStarboard = true,
@@ -45,7 +45,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O11S Larboard Cannon 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '326[45]', source: 'Omega', capture: false }),
+      netRegex: { id: '326[45]', source: 'Omega', capture: false },
       condition: (data) => data.lastWasStarboard === undefined,
       response: Responses.goRight(),
       run: (data) => data.lastWasStarboard = false,
@@ -53,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O11S Starboard Cannon 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3263', source: 'Omega', capture: false }),
+      netRegex: { id: '3263', source: 'Omega', capture: false },
       condition: (data) => data.lastWasStarboard !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastWasStarboard)
@@ -83,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O11S Larboard Cannon 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3265', source: 'Omega', capture: false }),
+      netRegex: { id: '3265', source: 'Omega', capture: false },
       condition: (data) => data.lastWasStarboard !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastWasStarboard)
@@ -113,7 +113,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O11S Starboard Surge 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
+      netRegex: { id: '3266', source: 'Omega', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -129,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O11S Larboard Surge 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
+      netRegex: { id: '3268', source: 'Omega', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -145,7 +145,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O11S Starboard Surge 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
+      netRegex: { id: '3266', source: 'Omega', capture: false },
       delaySeconds: 4,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -162,7 +162,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O11S Larboard Surge 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
+      netRegex: { id: '3268', source: 'Omega', capture: false },
       delaySeconds: 4,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

@@ -1,9 +1,7 @@
-import chai from 'chai';
+import { assert } from 'chai';
 
 import Regexes from '../../resources/regexes';
 import regexCaptureTest, { RegexUtilParams } from '../helper/regex_util';
-
-const { assert } = chai;
 
 describe('regex tests', () => {
   it('startsUsing', () => {
@@ -418,5 +416,36 @@ describe('regex tests', () => {
     assert.equal(matches?.param0, 'FF5FDA02');
     assert.equal(matches?.param1, 'E1B');
     assert.equal(matches?.param2, '00');
+  });
+  it('combatantMemory', () => {
+    const lines = [
+      '[21:37:40.191] 261 105:Add:4000893F:BNpcID:1E850B:BNpcNameID:B480EE:CurrentMP:-1619658497:CurrentWorldID:31711:Heading:0.0000:IsCasting1:238:IsCasting2:128:Job:17:Level:225:MaxMP:888877114:ModelStatus:2304:Name:Exit:NPCTargetID:3F9236F0:PCTargetID:3667F474:PosX:100.0000:PosY:89.0000:Radius:0.5000:TransformationId:-29056:Type:7:WeaponId:220:WorldID:63589',
+      '[21:44:27.068] 261 105:Change:10001234:CurrentMP:9400',
+      '[21:37:40.191] 261 105:Remove:40007F1E',
+    ] as const;
+    // TODO: regexCaptureTest doesn't handle the repeating fields well,
+    // so don't run it for this test
+    const matches = lines[0].match(Regexes.combatantMemory())?.groups;
+    assert.equal(matches?.pairBNpcID, '1E850B');
+    assert.equal(matches?.pairBNpcNameID, 'B480EE');
+    assert.equal(matches?.pairCurrentMP, '-1619658497');
+    assert.equal(matches?.pairCurrentWorldID, '31711');
+    assert.equal(matches?.pairHeading, '0.0000');
+    assert.equal(matches?.pairIsCasting1, '238');
+    assert.equal(matches?.pairIsCasting2, '128');
+    assert.equal(matches?.pairJob, '17');
+    assert.equal(matches?.pairLevel, '225');
+    assert.equal(matches?.pairMaxMP, '888877114');
+    assert.equal(matches?.pairModelStatus, '2304');
+    assert.equal(matches?.pairName, 'Exit');
+    assert.equal(matches?.pairNPCTargetID, '3F9236F0');
+    assert.equal(matches?.pairPCTargetID, '3667F474');
+    assert.equal(matches?.pairPosX, '100.0000');
+    assert.equal(matches?.pairPosY, '89.0000');
+    assert.equal(matches?.pairRadius, '0.5000');
+    assert.equal(matches?.pairTransformationId, '-29056');
+    assert.equal(matches?.pairType, '7');
+    assert.equal(matches?.pairWeaponId, '220');
+    assert.equal(matches?.pairWorldID, '63589');
   });
 });

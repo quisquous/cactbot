@@ -1,0 +1,114 @@
+### P12N: Anabaseios: The Twelfth Circle
+# -ii 8679 82CA 82CC 87A1 82CF 82D0 8314
+# -p 82D9:12 -p 82D1:500
+# -it Athena
+# -it Anthropos
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+# Phase 1
+0.0 "--sync--" sync /Engage!/ window 0,1
+7.0 "--sync--" sync / 14:[^:]*:Athena:82D9:/ window 20,20
+12.0 "On the Soul" sync / 1[56]:[^:]*:Athena:82D9:/
+29.1 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:82C[12]:/
+31.8 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:82C[34]:/
+34.4 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:82C[56]:/
+43.7 "Paradeigma" sync / 1[56]:[^:]*:Athena:82C7:/
+47.9 "--sync--" sync / 1[56]:[^:]*:Thymou Idea:8314:/
+57.1 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82C8:/
+57.1 "White Flame" sync / 1[56]:[^:]*:Anthropos:82C9:/
+70.8 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:82C[12]:/
+73.5 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:82C[34]:/
+76.1 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:82C[56]:/
+84.3 "On the Soul" sync / 1[56]:[^:]*:Athena:82D9:/
+92.5 "Glaukopis" sync / 1[56]:[^:]*:Athena:82D5:/
+104.6 "Superchain Theory" sync / 1[56]:[^:]*:Athena:82BC:/
+119.8 "Superchain Coil" sync / 1[56]:[^:]*:Athena:82BE:/
+119.8 "Superchain Burst" sync / 1[56]:[^:]*:Athena:82BD:/
+130.8 "Superchain Theory" sync / 1[56]:[^:]*:Athena:82BC:/
+144.0 "Superchain Coil 1" sync / 1[56]:[^:]*:Athena:82BE:/
+147.0 "Superchain Coil 2" sync / 1[56]:[^:]*:Athena:82BE:/
+155.0 "Parthenos" sync / 1[56]:[^:]*:Athena:82D8:/
+162.7 "On the Soul" sync / 1[56]:[^:]*:Athena:82D9:/
+169.9 "--sync--" sync / 1[56]:[^:]*:Athena:8315:/
+178.5 "Unnatural Enchainment" sync / 1[56]:[^:]*:Athena:82BF:/
+179.6 "Sample" sync / 1[56]:[^:]*:Athena:82C0:/
+186.6 "Paradeigma" sync / 1[56]:[^:]*:Athena:82C7:/
+190.8 "--sync--" sync / 1[56]:[^:]*:Thymou Idea:8314:/
+196.8 "--sync--" sync / 1[56]:[^:]*:Athena:8315:/
+200.0 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82C8:/
+200.0 "White Flame" sync / 1[56]:[^:]*:Anthropos:82C9:/
+205.1 "Unnatural Enchainment" sync / 1[56]:[^:]*:Athena:82BF:/
+206.2 "Sample" sync / 1[56]:[^:]*:Athena:82C0:/
+221.2 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:82C[12]:/
+223.9 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:82C[34]:/
+226.5 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:82C[56]:/
+234.7 "On the Soul" sync / 1[56]:[^:]*:Athena:82D9:/
+241.8 "--sync--" sync / 1[56]:[^:]*:Athena:8315:/
+246.4 "Ultima Blade" sync / 1[56]:[^:]*:Athena:82CB:/
+256.4 "--untargetable--"
+
+# Add Phase
+256.4 "--adds targetable--"
+266.7 "--sync--" sync / 1[56]:[^:]*:Athena:82CD:/ window 30,30
+266.9 "Palladion 1" sync / 1[56]:[^:]*:Athena:82CE:/
+268.5 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82D4:/
+270.1 "Palladion 2" sync / 1[56]:[^:]*:Athena:82CE:/
+273.1 "Palladion 3" sync / 1[56]:[^:]*:Athena:82CE:/
+274.1 "Clear Cut" sync / 1[56]:[^:]*:Anthropos:82D3:/
+276.2 "Palladion 4" sync / 1[56]:[^:]*:Athena:82CE:/
+279.2 "Palladion 5" sync / 1[56]:[^:]*:Athena:82CE:/
+281.0 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82D4:/
+282.3 "Palladion 6" sync / 1[56]:[^:]*:Athena:82CE:/
+285.3 "Palladion 7" sync / 1[56]:[^:]*:Athena:82CE:/
+287.4 "Clear Cut" sync / 1[56]:[^:]*:Anthropos:82D3:/
+288.4 "Palladion 8" sync / 1[56]:[^:]*:Athena:82CE:/
+293.4 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82D4:/
+# ??? this is ~90% on the enrage
+
+# Final Phase
+500.0 "--sync--" sync / 14:[^:]*:Athena:82D1:/ window 500,0
+505.8 "Palladion" sync / 1[56]:[^:]*:Athena:82D1:/
+510.8 "--sync--" sync / 14:[^:]*:Athena:82D2:/
+517.8 "Theos's Ultima" sync / 1[56]:[^:]*:Athena:82D2:/ window 20,20
+525.8 "--targetable--"
+
+537.4 "Superchain Theory" sync / 1[56]:[^:]*:Athena:82BC:/
+550.5 "Superchain Burst" sync / 1[56]:[^:]*:Athena:82BD:/
+554.6 "Parthenos" sync / 1[56]:[^:]*:Athena:82D8:/
+555.5 "Superchain Burst" sync / 1[56]:[^:]*:Athena:82BD:/
+560.5 "Superchain Coil" sync / 1[56]:[^:]*:Athena:82BE:/
+560.5 "Superchain Burst" sync / 1[56]:[^:]*:Athena:82BD:/
+569.3 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:82C[12]:/
+572.0 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:82C[34]:/
+574.6 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:82C[56]:/
+582.8 "Dialogos (stack)" sync / 1[56]:[^:]*:Athena:82D6:/
+587.8 "Dialogos (spread)" sync / 1[56]:[^:]*:Athena:82D7:/
+596.5 "Glaukopis" sync / 1[56]:[^:]*:Athena:82D5:/
+606.6 "Paradeigma" sync / 1[56]:[^:]*:Athena:82C7:/
+614.7 "Superchain Theory" sync / 1[56]:[^:]*:Athena:82BC:/
+628.7 "Superchain Burst" sync / 1[56]:[^:]*:Athena:82BD:/
+628.7 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82C8:/
+628.7 "White Flame" sync / 1[56]:[^:]*:Anthropos:82C9:/
+631.6 "Unnatural Enchainment" sync / 1[56]:[^:]*:Athena:82BF:/
+632.7 "Sample" sync / 1[56]:[^:]*:Athena:82C0:/
+643.7 "Parthenos" sync / 1[56]:[^:]*:Athena:82D8:/
+651.4 "On the Soul" sync / 1[56]:[^:]*:Athena:82D9:/
+661.6 "Paradeigma" sync / 1[56]:[^:]*:Athena:82C7:/
+669.8 "Dialogos (stack)" sync / 1[56]:[^:]*:Athena:82D6:/
+674.8 "Dialogos (spread)" sync / 1[56]:[^:]*:Athena:82D7:/
+678.8 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82C8:/
+678.8 "White Flame" sync / 1[56]:[^:]*:Anthropos:82C9:/
+683.4 "Glaukopis" sync / 1[56]:[^:]*:Athena:82D5:/
+691.5 "On the Soul" sync / 1[56]:[^:]*:Athena:82D9:/
+
+# TODO: probably a loop, have seen up to Paradeigma at 606.6/767.3
+703.7 "Superchain Theory" sync / 1[56]:[^:]*:Athena:82BC:/ window 30,30 jump 537.4
+716.8 "Superchain Burst" #sync / 1[56]:[^:]*:Athena:82BD:/
+720.9 "Parthenos" #sync / 1[56]:[^:]*:Athena:82D8:/
+721.8 "Superchain Burst" #sync / 1[56]:[^:]*:Athena:82BD:/
+726.8 "Superchain Coil" #sync / 1[56]:[^:]*:Athena:82BE:/
+726.8 "Superchain Burst" #sync / 1[56]:[^:]*:Athena:82BD:/

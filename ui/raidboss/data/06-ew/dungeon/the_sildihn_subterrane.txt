@@ -1,0 +1,966 @@
+# The Sil'dihn Subterrane
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+### Geryon the Steer (left door, 1st boss)
+# -p 74CF:1010.6 74D2:2019.7
+# -ii 7A1C 74D3
+
+1000.0 "--sync--" sync / 00:0839::The Silt Pump will be sealed off/ window 100000,0
+1005.6 "--sync--" sync / 14:[^:]*:Geryon the Steer:74CF:/
+1010.6 "Colossal Strike" sync / 1[56]:[^:]*:Geryon the Steer:74CF:/
+
+# -> yes pump
+1019.7 "--sync--" sync / 14:[^:]*:Geryon the Steer:74C7:/ window 20,20 jump 1219.7
+1024.7 "Exploding Catapult?" #sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+
+# -> no pump
+1014.7 "--sync--" sync / 14:[^:]*:Geryon the Steer:74D2:/ window 20,20 jump 2014.7
+1019.7 "Subterranean Shudder" #sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+
+
+# Geryon the Steer (left door, 1st boss, yes pump)
+1219.7 "--sync--" sync / 14:[^:]*:Geryon the Steer:74C7:/
+1224.7 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+1241.5 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+1246.1 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+1256.3 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+1261.7 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+1265.7 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+
+1272.8 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+1283.9 "Runaway Runoff" sync / 1[56]:[^:]*:Geryon the Steer:74D7:/
+1288.3 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+1292.7 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+1295.8 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+1304.0 "Colossal Launch" sync / 1[56]:[^:]*:Geryon the Steer:74C8:/
+1309.2 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+1310.6 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+1316.5 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+1327.6 "Colossal Charge" sync / 1[56]:[^:]*:Geryon the Steer:74C[CD]:/
+1333.0 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+1338.0 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+1347.4 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+1355.5 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+1364.4 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+1365.8 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C[9A]:/
+1367.6 "Gigantomill 1" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+1369.4 "Gigantomill 2" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+1371.2 "Gigantomill 3" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+1373.0 "Gigantomill 4" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+1382.7 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+
+1389.8 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+1400.9 "Runaway Runoff" sync / 1[56]:[^:]*:Geryon the Steer:74D7:/
+1405.5 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+1410.1 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+1413.2 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+1421.5 "Colossal Launch / Colossal Swing" sync / 1[56]:[^:]*:Geryon the Steer:(74C8|74D1):/ # only seen Launch
+1428.1 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+1434.9 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+1445.3 "Colossal Strike" sync / 1[56]:[^:]*:Geryon the Steer:74CF:/
+1449.4 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+1456.7 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+1467.8 "Colossal Charge" sync / 1[56]:[^:]*:Geryon the Steer:74C[CD]:/
+1473.2 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+1478.2 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+1487.6 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+1495.7 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+1504.6 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+1506.0 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C[9A]:/
+1507.8 "Gigantomill 1" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+1509.6 "Gigantomill 2" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+1511.4 "Gigantomill 3" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+1513.2 "Gigantomill 4" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+1522.9 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+
+1530.0 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/ window 80,80 jump 1389.8
+1541.1 "Runaway Runoff" #sync / 1[56]:[^:]*:Geryon the Steer:74D7:/
+1545.7 "Explosion" #sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+1550.3 "Exploding Catapult" #sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+1553.4 "--sync--" #sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+1561.7 "Colossal Launch" #sync / 1[56]:[^:]*:Geryon the Steer:74C8:/
+1568.3 "Explosion" #sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+
+
+# Geryon the Steer (left door, 1st boss, no pump)
+2014.7 "--sync--" sync / 14:[^:]*:Geryon the Steer:74D2:/
+2019.7 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+2025.8 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+2026.8 "Runaway Sludge" sync / 1[56]:[^:]*:Geryon the Steer:74D6:/
+2033.1 "Shockwave" sync / 1[56]:[^:]*:Geryon the Steer:74CE:/
+2042.3 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+2059.0 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+2063.6 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+2073.8 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+2079.2 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+2083.2 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+2086.3 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+2094.5 "Colossal Launch" sync / 1[56]:[^:]*:Geryon the Steer:74C8:/
+2101.2 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+
+2104.8 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+2106.9 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+2111.9 "Runaway Sludge" sync / 1[56]:[^:]*:Geryon the Steer:74D6:/
+2117.1 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C[9A]:/
+2118.9 "Gigantomill 1" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+2120.7 "Gigantomill 2" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+2122.5 "Gigantomill 3" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+2124.3 "Gigantomill 4" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+2129.0 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+2136.3 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+2147.4 "Colossal Charge" sync / 1[56]:[^:]*:Geryon the Steer:74C[CD]:/
+2152.8 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+2157.8 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+2167.2 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+2173.3 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+2174.3 "Runaway Sludge" sync / 1[56]:[^:]*:Geryon the Steer:74D6:/
+2180.6 "Shockwave" sync / 1[56]:[^:]*:Geryon the Steer:74CE:/
+2190.7 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+2193.8 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+2202.0 "Colossal Launch / Colossal Swing" sync / 1[56]:[^:]*:Geryon the Steer:(74C8|74D1):/
+2208.7 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+2215.3 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+2225.7 "Colossal Strike" sync / 1[56]:[^:]*:Geryon the Steer:74CF:/
+
+2235.8 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/ window 40,40 jump 2104.8
+2237.9 "--sync--" #sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+2242.9 "Runaway Sludge" #sync / 1[56]:[^:]*:Geryon the Steer:74D6:/
+2248.1 "--sync--" #sync / 1[56]:[^:]*:Geryon the Steer:74C[9A]:/
+2249.9 "Gigantomill 1" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+2251.7 "Gigantomill 2" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+2253.5 "Gigantomill 3" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+2255.3 "Gigantomill 4" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+
+
+### Geryon the Steer (middle door, 1st boss)
+# -p 74CF:3010 74D9:3276.2 74DA:4078.2
+# -ii 7A1C 74D3
+
+3000.0 "--sync--" sync / 00:0839::The Sifting Site will be sealed off/ window 100000,0
+3005.0 "--sync--" sync / 14:[^:]*:Geryon the Steer:74CF:/
+3010.0 "Colossal Strike" sync / 1[56]:[^:]*:Geryon the Steer:74CF:/
+3019.1 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+3035.8 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+3040.4 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+3050.6 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+3056.0 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+
+3060.0 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+3067.1 "Exploding Catapult" #sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+
+# -> left handle
+3062.1 "--sync--" sync / 257 101:80038CA1:00020001:09:/ window 70,70 jump 3262.1
+3076.2 "Intake?" #sync / 1[56]:[^:]*:Geryon the Steer:74D9:/
+
+# -> right handle
+3062.1 "--sync--" sync / 257 101:80038CA1:20000004:0A:/ window 70,70 jump 4062.1
+3078.2 "Rolling Boulder?" #sync / 1[56]:[^:]*:Geryon the Steer:74DA:/
+
+# TODO: fix the test_timeline utilities (python doesn't handle this, typescript is broken)
+3076.2 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74D9:/ window 70,70 jump 3276.2
+3078.2 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74DA:/ window 70,70 jump 4078.2
+
+# Geryon the Steer (middle door, 1st boss, left handle)
+3260.0 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+3262.1 "--sync--" sync / 257 101:80038CA1:00020001:09:/
+3267.1 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+3276.2 "Intake" sync / 1[56]:[^:]*:Geryon the Steer:74D9:/ window 300,10
+3280.6 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+3285.2 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+3288.3 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+3296.5 "Colossal Launch" sync / 1[56]:[^:]*:Geryon the Steer:74C8:/
+3303.2 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+3306.8 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+3314.9 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+3323.9 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+3325.3 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C[9A]:/
+3327.1 "Gigantomill 1" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+3328.9 "Gigantomill 2" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+3330.7 "Gigantomill 3" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+3332.5 "Gigantomill 4" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+3336.2 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+3343.5 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+3354.6 "Colossal Charge" sync / 1[56]:[^:]*:Geryon the Steer:74C[CD]:/
+3360.0 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+3365.0 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+
+3374.4 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+3381.5 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+3390.6 "Intake" sync / 1[56]:[^:]*:Geryon the Steer:74D9:/
+3395.0 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+3399.6 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+3402.7 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+3410.8 "Colossal Launch / Colossal Swing" sync / 1[56]:[^:]*:Geryon the Steer:(74C8|74D1):/ # only seen Launch
+3417.5 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+3424.3 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+3433.7 "Colossal Strike" sync / 1[56]:[^:]*:Geryon the Steer:74CF:/
+3442.8 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+3450.9 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+3459.6 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+3461.0 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C[9A]:/
+3462.8 "Gigantomill 1" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+3464.6 "Gigantomill 2" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+3466.4 "Gigantomill 3" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+3468.2 "Gigantomill 4" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+3471.9 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+3479.2 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+3490.3 "Colossal Charge" sync / 1[56]:[^:]*:Geryon the Steer:74C[CD]:/
+3495.7 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+3500.7 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+
+3510.1 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/ window 80,80 jump 3374.4
+3517.2 "Exploding Catapult" #sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+3526.3 "Intake" #sync / 1[56]:[^:]*:Geryon the Steer:74D9:/
+3530.7 "Explosion" #sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+3535.3 "Exploding Catapult" #sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+
+
+# Geryon the Steer (middle door, 1st boss, right handle)
+4060.0 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+4067.1 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+4078.2 "Rolling Boulder" #sync / 1[56]:[^:]*:Geryon the Steer:74DA:/
+4081.7 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+4086.1 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+4089.2 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+4097.3 "Colossal Launch" sync / 1[56]:[^:]*:Geryon the Steer:74C8:/
+4102.5 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+4103.9 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+4109.8 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+4120.9 "Colossal Charge" sync / 1[56]:[^:]*:Geryon the Steer:74C[CD]:/
+4126.3 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+4131.3 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+4140.7 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+4148.8 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+4157.6 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+4159.0 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C[9A]:/
+4160.8 "Gigantomill 1" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+4162.6 "Gigantomill 2" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+4164.4 "Gigantomill 3 " #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+4166.2 "Gigantomill 4" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+
+4174.9 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+4182.0 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+4193.1 "Rolling Boulder" #sync / 1[56]:[^:]*:Geryon the Steer:74DA:/
+4196.6 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+4201.1 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+4204.2 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+4212.3 "Colossal Launch / Colossal Swing" sync / 1[56]:[^:]*:Geryon the Steer:(74C8|74D1):/ # only seen Swing
+4218.0 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+4224.7 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+4234.1 "Colossal Strike" sync / 1[56]:[^:]*:Geryon the Steer:74CF:/
+4238.2 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+4245.5 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+4256.6 "Colossal Charge" sync / 1[56]:[^:]*:Geryon the Steer:74C[CD]:/
+4262.0 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+4267.0 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+4276.4 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+4284.5 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+4293.4 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+4294.8 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C[9A]:/
+4296.6 "Gigantomill 1" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+4298.4 "Gigantomill 2" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+4300.2 "Gigantomill 3" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+4302.0 "Gigantomill 4" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+
+4310.7 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/ window 70,70 jump 4174.9
+4317.8 "Exploding Catapult" #sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+4328.9 "Rolling Boulder" #sync / 1[56]:[^:]*:Geryon the Steer:74DA:/
+4332.4 "Explosion" #sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+4336.9 "Exploding Catapult" #sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+
+
+### Geryon the Steer (right door, 1st boss)
+# -p 74CF:5010
+# -ii 7A1C 74D3
+
+5000.0 "--sync--" sync / 00:0839::The Settling Basin will be sealed off/ window 100000,0
+5005.0 "--sync--" sync / 14:[^:]*:Geryon the Steer:74CF:/
+5010.0 "Colossal Strike" sync / 1[56]:[^:]*:Geryon the Steer:74CF:/
+
+5020.1 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+5030.2 "Suddenly Sewage 1" #sync / 1[56]:[^:]*:Geryon the Steer:74D8:/
+5032.2 "Suddenly Sewage 2" #sync / 1[56]:[^:]*:Geryon the Steer:74D8:/
+
+# We could probably jump from MapEffect lines here to each branch
+# But for simplicity, just use the "jump to middle" before Gigantomill
+# to differentiate the timelines.
+5023.2 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/ window 30,30 jump 6023.2
+
+# Geryon the Steer (right door, 1st boss, ceruleum leak)
+5020.1 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+5030.2 "Suddenly Sewage 1" #sync / 1[56]:[^:]*:Geryon the Steer:74D8:/
+5032.2 "Suddenly Sewage 2" #sync / 1[56]:[^:]*:Geryon the Steer:74D8:/
+5040.2 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+5056.9 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+5061.5 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+5071.7 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+5077.1 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+5081.1 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+5084.2 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+5092.4 "Colossal Launch" sync / 1[56]:[^:]*:Geryon the Steer:74C8:/
+5099.1 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+5102.7 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+5110.8 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+5119.7 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+5121.1 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C[9A]:/
+5122.9 "Gigantomill 1" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+5124.7 "Gigantomill 2" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+5126.5 "Gigantomill 3" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+5128.3 "Gigantomill 4" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+5132.0 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+5139.3 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+5150.4 "Colossal Charge" sync / 1[56]:[^:]*:Geryon the Steer:74C[CD]:/
+5155.8 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+5160.8 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+
+5170.2 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+5174.3 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+5180.3 "Suddenly Sewage 1" #sync / 1[56]:[^:]*:Geryon the Steer:74D8:/
+5181.7 "Colossal Swing" sync / 1[56]:[^:]*:Geryon the Steer:74D1:/
+5182.3 "Suddenly Sewage 2" #sync / 1[56]:[^:]*:Geryon the Steer:74D8:/
+5190.9 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+5194.0 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+5202.4 "Colossal Launch / Colossal Swing" sync / 1[56]:[^:]*:Geryon the Steer:(74C8|74D1):/
+5209.1 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+5215.8 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+5225.2 "Colossal Strike" sync / 1[56]:[^:]*:Geryon the Steer:74CF:/
+5234.3 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+5242.4 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+5251.3 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+5252.7 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C[9A]:/
+5254.5 "Gigantomill 1" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+5256.3 "Gigantomill 2" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+5258.1 "Gigantomill 3" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+5259.9 "Gigantomill 4" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+5263.6 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+5270.9 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+5282.0 "Colossal Charge" sync / 1[56]:[^:]*:Geryon the Steer:74C[CD]:/
+5287.4 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+5292.4 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+
+5301.8 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/ window 70,70 jump 5370.2
+5305.9 "--sync--" #sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+5311.9 "Suddenly Sewage 1" #sync / 1[56]:[^:]*:Geryon the Steer:74D8:/
+5313.3 "Colossal Swing" #sync / 1[56]:[^:]*:Geryon the Steer:74D1:/
+5313.9 "Suddenly Sewage 2" #sync / 1[56]:[^:]*:Geryon the Steer:74D8:/
+5322.5 "Exploding Catapult" #sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+
+
+# Geryon the Steer (right door, 1st boss, no ceruleum leak)
+6020.1 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+6023.2 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+6033.6 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C[9A]:/
+6035.4 "Gigantomill 1" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+6037.2 "Gigantomill 2" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+6039.0 "Gigantomill 3" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+6040.8 "Gigantomill 4" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+6049.5 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+6066.2 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+6070.8 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+6081.0 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+6086.4 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+6090.4 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+6093.5 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+6101.6 "Colossal Launch" sync / 1[56]:[^:]*:Geryon the Steer:74C8:/
+6108.3 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+6108.9 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+6116.2 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+6127.3 "Colossal Charge" sync / 1[56]:[^:]*:Geryon the Steer:74C[CD]:/
+6132.7 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+6137.7 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+
+6147.1 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/
+6150.2 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+6160.5 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C[9A]:/
+6162.3 "Gigantomill 1" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+6164.1 "Gigantomill 2" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+6165.9 "Gigantomill 3" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+6167.7 "Gigantomill 4" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+6176.4 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+6179.5 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+6187.7 "Colossal Launch / Colossal Swing" sync / 1[56]:[^:]*:Geryon the Steer:(74C8|74D1):/
+6194.4 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+6201.0 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+6210.4 "Colossal Strike" sync / 1[56]:[^:]*:Geryon the Steer:74CF:/
+6214.5 "--sync--" sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+6221.8 "Exploding Catapult" sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+6232.9 "Colossal Charge" sync / 1[56]:[^:]*:Geryon the Steer:74C[CD]:/
+6238.3 "Explosion" sync / 1[56]:[^:]*:Powder Keg:74D[45]:/
+6243.3 "Colossal Slam" sync / 1[56]:[^:]*:Geryon the Steer:74D0:/
+
+6252.7 "Subterranean Shudder" sync / 1[56]:[^:]*:Geryon the Steer:74D2:/ window 70,70 jump 6147.1
+6255.8 "--sync--" #sync / 1[56]:[^:]*:Geryon the Steer:74C6:/
+6266.1 "--sync--" #sync / 1[56]:[^:]*:Geryon the Steer:74C[9A]:/
+6267.9 "Gigantomill 1" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+6269.7 "Gigantomill 2" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+6271.5 "Gigantomill 3" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+6273.3 "Gigantomill 4" #sync / 1[56]:[^:]*:Geryon the Steer:74CB:/
+6282.0 "Exploding Catapult" #sync / 1[56]:[^:]*:Geryon the Steer:74C7:/
+
+
+### Silkie (left door, 2nd boss)
+# -p 772C:7014.3
+# -ii 772F 7730 7731 7732 7733 7734 7743 7749 7741 7746 774B 774C 77C0
+
+7000.0 "--sync--" sync / 00:0839::The Forgotten Forecourt will be sealed off/ window 100000,0
+7009.3 "--sync--" sync / 14:[^:]*:Silkie:772C:/ window 10,10
+7014.3 "Total Wash" sync / 1[56]:[^:]*:Silkie:772C:/
+7022.0 "Squeaky Left/Squeaky Right" sync / 1[56]:[^:]*:Silkie:(772E|772D):/
+7040.9 "Carpet Beater" sync / 1[56]:[^:]*:Silkie:772B:/
+7051.6 "Squeaky Left/Squeaky Right" sync / 1[56]:[^:]*:Silkie:(772E|772D):/
+7069.6 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:7736:/
+7076.7 "Soap's Up" sync / 1[56]:[^:]*:Silkie:7737:/
+7077.7 "Chilling Duster" sync / 1[56]:[^:]*:Silkie:7738:/
+7086.8 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:7735:/
+7093.9 "Soap's Up" sync / 1[56]:[^:]*:Silkie:7737:/
+7094.9 "Bracing Duster" sync / 1[56]:[^:]*:Silkie:7739:/
+7104.0 "Bracing Suds / Chilling Suds" sync / 1[56]:[^:]*:Silkie:(7735|7736):/
+7112.8 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:773A:/
+7116.2 "Bracing Duster / Chilling Duster" sync / 1[56]:[^:]*:Silkie:(773B|773C):/
+7128.3 "Spot Remover" sync / 1[56]:[^:]*:Silkie:7742:/
+7137.4 "Dust Bluster" sync / 1[56]:[^:]*:Silkie:7744:/
+7148.5 "Total Wash" sync / 1[56]:[^:]*:Silkie:772C:/
+
+# TODO: depending on which branch you take, the middle
+# section of Silkie between Total Wash and Fresh Puff
+# (although possibly the second Fresh Puff) is different.
+# We could try to keep track of this and have a different
+# timeline, but it's less than a minute, happens once,
+# and is fairly obvious.  There's also triggers for
+# some of it, so maybe Good Enough (TM).
+
+# Bridge 01
+#7148.5 "Total Wash" sync / 1[56]:[^:]*:Silkie:772C:/
+#7158.6 "Eastern Ewers" sync / 1[56]:[^:]*:Silkie:7747:/
+#7162.7 "Brim Over" sync / 1[56]:[^:]*:Eastern Ewer:7748:/
+#7164.7 "Rinse" duration 19.7 #sync / 1[56]:[^:]*:Eastern Ewer:7749:/
+#7165.7 "Brim Over" sync / 1[56]:[^:]*:Eastern Ewer:7748:/
+#7168.7 "Brim Over" sync / 1[56]:[^:]*:Eastern Ewer:7748:/
+#7171.7 "Brim Over" sync / 1[56]:[^:]*:Eastern Ewer:7748:/
+#7172.7 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:7736:/
+#7174.7 "Brim Over" sync / 1[56]:[^:]*:Eastern Ewer:7748:/
+#7179.8 "Soap's Up" sync / 1[56]:[^:]*:Silkie:7737:/
+#7180.8 "Chilling Duster" sync / 1[56]:[^:]*:Silkie:7738:/
+#7191.0 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:773D:/
+
+# Bridge 02
+#7148.5 "Total Wash" sync / 1[56]:[^:]*:Silkie:772C:/
+#7159.6 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:7735:/
+#7166.3 "Spot Remover" sync / 1[56]:[^:]*:Silkie:7742:/
+#7178.4 "Wash Out" sync / 1[56]:[^:]*:Silkie:7745:/
+#7186.4 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:773A:/
+#7190.0 "Bracing Duster" sync / 1[56]:[^:]*:Silkie:773C:/
+#7200.9 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:773D:/
+
+# Bridge 03
+#7148.5 "Total Wash" sync / 1[56]:[^:]*:Silkie:772C:/
+#7164.6 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:773D:/
+#7177.7 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:7735:/
+#7178.7 "Deep Clean" sync / 1[56]:[^:]*:Silken Puff:774E:/
+#7186.9 "Soap's Up" sync / 1[56]:[^:]*:Silkie:7737:/
+#7187.9 "Bracing Duster" sync / 1[56]:[^:]*:Silkie:7739:/
+#7197.0 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:773D:/
+
+# Bridge 04
+#7148.5 "Total Wash" sync / 1[56]:[^:]*:Silkie:772C:/
+#7158.6 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:773D:/
+#7164.8 "Puff and Tumble" sync / 1[56]:[^:]*:Silken Puff:774A:/ duration 11.4
+#7173.1 "Bracing Suds" sync / 1[56]:[^:]*:Silkie:7735:/
+#7182.1 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:773A:/
+#7185.5 "Bracing Duster" sync / 1[56]:[^:]*:Silkie:773C:/
+#7196.3 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:773D:/
+
+# Puffs
+# Note: this is timed to the longest of all bridge sections
+7196.9 "--sync--" sync / 14:[^:]*:Silkie:773D:/ window 20,100
+7200.9 "Fresh Puff" sync / 1[56]:[^:]*:Silkie:773D:/
+7210.3 "Chilling Suds" sync / 1[56]:[^:]*:Silkie:7736:/
+7217.0 "Squeaky Left/Squeaky Right" sync / 1[56]:[^:]*:Silkie:(772E|772D):/
+7233.9 "Soaping Spree" sync / 1[56]:[^:]*:Silkie:773E:/
+7234.9 "Chilling Duster" sync / 1[56]:[^:]*:Silken Puff:773F:/
+7245.0 "Total Wash" sync / 1[56]:[^:]*:Silkie:772C:/
+7256.2 "Bracing Suds / Chilling Suds" sync / 1[56]:[^:]*:Silkie:(7735|7736):/
+7264.0 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:773A:/
+7267.6 "Bracing Duster / Chilling Duster" sync / 1[56]:[^:]*:Silkie:(773B|773C):/
+
+7278.8 "Squeaky Left/Squeaky Right" sync / 1[56]:[^:]*:Silkie:(772E|772D):/
+7298.7 "Carpet Beater" sync / 1[56]:[^:]*:Silkie:772B:/
+7306.4 "Spot Remover" sync / 1[56]:[^:]*:Silkie:7742:/
+7315.5 "Dust Bluster" sync / 1[56]:[^:]*:Silkie:7744:/
+7326.6 "Total Wash" sync / 1[56]:[^:]*:Silkie:772C:/
+7337.7 "Bracing Suds / Chilling Suds" sync / 1[56]:[^:]*:Silkie:(7735|7736):/
+7345.4 "Slippery Soap" sync / 1[56]:[^:]*:Silkie:773A:/
+7348.8 "Bracing Duster / Chilling Duster" sync / 1[56]:[^:]*:Silkie:(773B|773C):/
+
+7359.9 "Squeaky Left/Squeaky Right" sync / 1[56]:[^:]*:Silkie:(772E|772D):/ window 20,20 jump 7278.8
+7379.8 "Carpet Beater" #sync / 1[56]:[^:]*:Silkie:772B:/
+7387.5 "Spot Remover" #sync / 1[56]:[^:]*:Silkie:7742:/
+7396.6 "Dust Bluster" #sync / 1[56]:[^:]*:Silkie:7744:/
+7407.7 "Total Wash" #sync / 1[56]:[^:]*:Silkie:772C:/
+7418.8 "Bracing Suds / Chilling Suds" #sync / 1[56]:[^:]*:Silkie:(7735|7736):/
+7426.5 "Slippery Soap" #sync / 1[56]:[^:]*:Silkie:773A:/
+7429.9 "Bracing Duster / Chilling Duster" #sync / 1[56]:[^:]*:Silkie:(773B|773C):/
+
+
+### Gladiator of Sil'dih
+# -p 7656:8012
+# -ii 764E 763A 763B 763C 764D 7654 7655
+
+8000.0 "--sync--" sync / 00:0839::The Cornice Of Favor will be sealed off/ window 100000,0
+8007.0 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7656:/ window 20,20
+8012.0 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7656:/
+8019.2 "--middle--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
+8031.4 "Ring of Might (out)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:(763F|7640|7641):/
+8031.4 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77BF:/
+8033.4 "Ring of Might (in)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:(7642|7643|7644):/
+8044.6 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:764A:/
+8050.8 "--middle--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
+8063.6 "Ring of Might (out)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:(763F|7640|7641):/
+8063.6 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77BF:/
+8065.6 "Ring of Might (in)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:(7642|7643|7644):/
+8078.8 "Flash of Steel?" sync / 1[56]:[^:]*:Gladiator of Sil'dih:764C:/
+
+# Bridge 08
+#8065.6 "Ring of Might (in)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7644:/
+#8078.8 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:764C:/
+#8080.9 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:79F6:/
+#8084.9 "Biting Wind" sync / 1[56]:[^:]*:Gladiator of Sil'dih:79F6:/
+#8088.5 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
+#8102.8 "Shattering Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:764B:/
+#8111.1 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7657:/
+#8116.1 "Mighty Smite" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7657:/
+
+# Bridge 09
+#8065.6 "Ring of Might (in)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7644:/
+#8078.8 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:764F:/
+#8081.9 "--sync--" sync / 14:[^:]*:Antique Boulder:7650:/
+#8088.9 "Landing 1" sync / 1[56]:[^:]*:Antique Boulder:7650:/
+#8092.9 "Landing 2" sync / 1[56]:[^:]*:Antique Boulder:7650:/
+#8096.0 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
+#8096.9 "Landing 3" sync / 1[56]:[^:]*:Antique Boulder:7650:/
+#8100.9 "Landing 4" sync / 1[56]:[^:]*:Antique Boulder:7650:/
+#8110.7 "Shattering Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:764B:/
+#8117.0 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7657:/
+#8122.0 "Mighty Smite" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7657:/
+
+# Bridge 10
+#8065.6 "Ring of Might (in)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7644:/
+#8073.8 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7651:/
+#8076.8 "Hateful Visage 1" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7651:/
+#8089.0 "Golden Flame 1" sync / 1[56]:[^:]*:Hateful Visage:7652:/
+#8095.0 "Hateful Visage 2" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7651:/
+#8107.2 "Golden Flame 2" sync / 1[56]:[^:]*:Hateful Visage:7652:/
+#8107.2 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:764A:/
+#8114.5 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7657:/
+#8119.5 "Mighty Smite" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7657:/
+
+# Bridge 11
+#8065.6 "Ring of Might (in)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7644:/
+#8073.8 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7651:/
+#8076.8 "Hateful Visage" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7651:/
+#8089.0 "Silver Flame" sync / 1[56]:[^:]*:Hateful Visage:7653:/ duration 7.7
+#8094.0 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:764A:/
+#8107.1 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7656:/
+#8114.4 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7657:/
+#8118.4 "Mighty Smite" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7657:/
+
+8117.0 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7657:/ window 120,20
+8122.0 "Mighty Smite" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7657:/
+8128.1 "--corner--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
+8141.3 "Rush of Might (near)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:763D:/
+8143.3 "Rush of Might (far)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:763E:/
+8152.0 "Wrath of Ruin" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7645:/
+8164.2 "Rack and Ruin 1" sync / 1[56]:[^:]*:Regret:7646:/
+8165.2 "Sculptor's Passion" sync / 1[56]:[^:]*:Gladiator of Sil'dih:764A:/
+8167.2 "Rack and Ruin 2" sync / 1[56]:[^:]*:Regret:7646:/
+8167.3 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
+8180.5 "Rush of Might (near)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:763D:/
+8182.5 "Rush of Might (far)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:763E:/
+
+8198.2 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7656:/
+8206.3 "Sundered Remains" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7648:/
+8214.4 "--middle--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
+8218.4 "Sundered Remains (mid)" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7649:/
+8226.9 "Ring of Might (out)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:(763F|7640|7641):/
+8226.9 "--sync--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:77BF:/
+8228.9 "Ring of Might (in)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:(7642|7643|7644):/
+8240.1 "Mighty Smite" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7657:/
+8253.2 "Wrath of Ruin" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7645:/
+8259.3 "--corner--" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
+8265.3 "Rack and Ruin 1" sync / 1[56]:[^:]*:Regret:7646:/
+8268.3 "Rack and Ruin 2" sync / 1[56]:[^:]*:Regret:7646:/
+8272.4 "Rush of Might (near)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:763D:/
+8274.4 "Rush of Might (far)" sync / 1[56]:[^:]*:Gladiator of Sil'dih:763E:/
+
+8291.1 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7656:/ window 70,70 jump 8198.2
+8299.2 "Sundered Remains" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7648:/
+8307.3 "--middle--" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7639:/
+8311.3 "Sundered Remains (mid)" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:7649:/
+8319.8 "Ring of Might (out)" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:(763F|7640|7641):/
+8319.8 "--sync--" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:77BF:/
+8321.8 "Ring of Might (in)" #sync / 1[56]:[^:]*:Gladiator of Sil'dih:(7642|7643|7644):/
+
+### Shadowcaster Zeless Gah
+# -p 74AE:9015.6
+# -ii 7498 7497 74
+
+9000.0 "--sync--" sync / 00:0839::Eternal Ease will be sealed off/ window 100000,0
+9010.6 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74AE:/ window 20,20
+9015.6 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+
+# -> Path 05
+9019.7 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74A2:/ window 20,20 jump 10019.7
+9023.7 "Infern Gale?" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A2:/
+
+# -> Path 06
+9023.8 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:7491:/ window 20,20 jump 11023.8
+9027.8 "Infern Brand?" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+
+# -> Path 07
+9019.7 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74A7:/ window 20,20 jump 12019.7
+9023.7 "Infern Well?" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A7:/
+
+### Path 05
+# Note: this could be combined with Path 07 with knockback/draw-in replacements
+10000.0 "--sync--" sync / 00:0839::Eternal Ease will be sealed off/
+10010.6 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74AE:/ window 20,20
+10015.6 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+10019.7 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74A2:/
+10023.7 "Infern Gale" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A2:/
+10024.5 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+10030.1 "--knockback--" sync / 1[56]:[^:]*:Infern Brand:74A3:/
+# 4 static fireballs
+10041.0 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+10052.3 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+10060.2 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AC:/
+# 4 fireballs with teleporters
+10068.3 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+10077.5 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7492:/
+10082.0 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+10085.6 "Infern Gale" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A2:/
+10086.4 "--sync--" sync / 1[56]:[^:]*:Infern Brand:7495:/
+10092.0 "--knockback--" sync / 1[56]:[^:]*:Infern Brand:74A3:/
+# 4 staggered lasers
+10102.9 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+10111.1 "Infern Ward" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7496:/
+10111.9 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+10120.3 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749F:/
+10124.1 "Pure Fire" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A0:/
+10126.5 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
+10133.6 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749A:/
+10134.3 "Cast Shadow 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749B:/
+10136.3 "Cast Shadow 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749D:/
+
+10141.9 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+# 2 static + 2 rotating fireballs
+10154.1 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+10166.3 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7493:/
+10170.8 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+10175.6 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AC:/
+# 4 vertical/horizontal lasers
+10187.7 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+10190.9 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
+10196.1 "Infern Ward" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7496:/
+10196.9 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+10203.3 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749F:/
+10207.1 "Pure Fire" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A0:/
+10213.5 "Infern Gale" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A2:/
+10214.3 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+10217.7 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
+10219.9 "--knockback--" sync / 1[56]:[^:]*:Infern Brand:74A3:/
+10224.8 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749A:/
+10225.5 "Cast Shadow 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749B:/
+10227.5 "Cast Shadow 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749D:/
+
+10233.2 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+# 4 fireballs with teleporters + knockback
+10245.4 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+10252.5 "Infern Gale" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A2:/
+10253.3 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+10258.8 "--knockback--" sync / 1[56]:[^:]*:Infern Brand:74A3:/
+10260.6 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7492:/
+10265.1 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+10269.9 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AC:/
+# 2 static + 2 rotating fireballs
+10278.0 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+10290.2 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7493:/
+10294.7 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+
+10299.3 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+# 4 vertical/horizontal lasers
+10311.5 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+10314.7 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
+10320.1 "Infern Ward" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7496:/
+10320.9 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+10327.2 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749F:/
+10331.0 "Pure Fire" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A0:/
+10337.4 "Infern Gale" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A2:/
+10338.2 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+10341.6 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
+10343.8 "--knockback--" sync / 1[56]:[^:]*:Infern Brand:74A3:/
+10348.6 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749A:/
+10349.3 "Cast Shadow 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749B:/
+10351.3 "Cast Shadow 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749D:/
+
+10357.0 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/ window 30,30 jump 10233.2
+10369.2 "Infern Brand" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+10376.3 "Infern Gale" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A2:/
+10377.1 "--sync--" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+
+### Path 06
+11000.0 "--sync--" sync / 00:0839::Eternal Ease will be sealed off/
+11010.6 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74AE:/ window 20,20
+11015.6 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+# 2 static portals
+11023.8 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:7491:/
+11027.8 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+11039.1 "Blazing Benifice" sync / 1[56]:[^:]*:Arcane Font:74A5:/
+11047.0 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AC:/
+# 4 static fireballs
+11055.1 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+11066.5 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+# 3 portals with teleporters
+11078.4 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+11087.6 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7492:/
+11092.1 "Blazing Benifice" sync / 1[56]:[^:]*:Arcane Font:74A5:/
+
+11097.7 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+# 4 fireballs with teleporters
+11105.9 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+11115.1 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7492:/
+11119.6 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+# 4 staggered lasers
+11128.3 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+11136.4 "Infern Ward" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7496:/
+11137.2 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+11145.5 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749F:/
+11149.3 "Pure Fire" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A0:/
+# 4 static fireballs
+11157.7 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+11169.0 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+# 3 portals with teleporters
+11177.8 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7492:/
+11182.3 "Blazing Benifice" sync / 1[56]:[^:]*:Arcane Font:74A5:/
+11189.0 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AC:/
+11193.2 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
+11200.3 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749A:/
+11201.0 "Cast Shadow 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749B:/
+11203.0 "Cast Shadow 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749D:/
+# 4 vertical/horizontal lasers
+11213.7 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+11225.9 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+11229.1 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
+11234.4 "Infern Ward" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7496:/
+11235.2 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+11241.6 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749F:/
+11245.4 "Pure Fire" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A0:/
+11249.6 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749A:/
+11250.3 "Cast Shadow 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749B:/
+11252.3 "Cast Shadow 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749D:/
+
+11258.0 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+# 2 static portals + 4 fireballs with teleporters
+11270.2 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+11281.5 "Blazing Benifice" sync / 1[56]:[^:]*:Arcane Font:74A5:/
+11282.3 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7492:/
+11286.8 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+11293.5 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AC:/
+# 4 static fireballs
+11301.6 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+11312.9 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+# 3 portals with teleporters
+11321.7 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7492:/
+11326.2 "Blazing Benifice" sync / 1[56]:[^:]*:Arcane Font:74A5:/
+
+11332.8 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+11345.0 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+11348.2 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
+11353.4 "Infern Ward" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7496:/
+11354.2 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+11360.5 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749F:/
+11364.3 "Pure Fire" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A0:/
+11368.4 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749A:/
+11369.1 "Cast Shadow 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749B:/
+11371.1 "Cast Shadow 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749D:/
+
+11376.7 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/ window 30,30 jump 11258
+# 2 static portals + 4 fireballs with teleporters
+11388.9 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+11400.2 "Blazing Benifice" sync / 1[56]:[^:]*:Arcane Font:74A5:/
+11401.0 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7492:/
+11405.5 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+11412.2 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AC:/
+
+
+### Path 07
+# Note: this could be combined with Path 05 with knockback/draw-in replacements
+12000.0 "--sync--" sync / 00:0839::Eternal Ease will be sealed off/
+12010.6 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74AE:/ window 20,20
+12015.6 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+12019.7 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74A7:/
+12023.7 "Infern Well" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A7:/
+12024.6 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+12032.2 "--sync--" sync / 1[56]:[^:]*:Infern Brand:74A8:/
+12033.7 "--draw in--" sync / 1[56]:[^:]*:Infern Brand:74AA:/
+# 4 static fireballs
+12043.1 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+12054.5 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+12062.5 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AC:/
+# 4 fireballs with teleporters
+12070.6 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+12079.8 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7492:/
+12084.3 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+12087.9 "Infern Well" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A7:/
+12088.7 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+12096.2 "--sync--" sync / 1[56]:[^:]*:Infern Brand:74A8:/
+12097.7 "--draw in--" sync / 1[56]:[^:]*:Infern Brand:74AA:/
+# 4 staggered lasers
+12107.1 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+12115.2 "Infern Ward" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7496:/
+12116.0 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+12124.4 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749F:/
+12128.2 "Pure Fire" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A0:/
+12130.6 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
+12137.8 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749A:/
+12138.5 "Cast Shadow 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749B:/
+12140.5 "Cast Shadow 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749D:/
+
+12146.1 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+# 2 static + 2 rotating fireballs
+12158.3 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+12170.5 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7493:/
+12175.0 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+12179.7 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AC:/
+# 4 vertical/horizontal lasers
+12191.9 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+12195.0 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
+12200.4 "Infern Ward" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7496:/
+12201.2 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+12207.5 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749F:/
+12211.3 "Pure Fire" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A0:/
+12217.7 "Infern Well" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A7:/
+12218.5 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+12223.9 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
+12226.1 "--sync--" sync / 1[56]:[^:]*:Infern Brand:74A8:/
+12227.6 "--draw in--" sync / 1[56]:[^:]*:Infern Brand:74AA:/
+12231.1 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749A:/
+12231.8 "Cast Shadow 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749B:/
+12233.8 "Cast Shadow 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749D:/
+
+12239.4 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+# 4 fireballs with teleporters + draw in
+12251.6 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+12258.7 "Infern Well" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A7:/
+12259.5 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+12267.1 "--sync--" sync / 1[56]:[^:]*:Infern Brand:74A8:/
+12268.6 "--draw in--" sync / 1[56]:[^:]*:Infern Brand:74AA:/
+12268.9 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7492:/
+12273.4 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+12278.2 "Firesteel Fracture" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AC:/
+# 2 static + 2 rotating fireballs
+12286.3 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+12298.5 "Cryptic Portal" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7493:/
+12303.0 "Burn" sync / 1[56]:[^:]*:Ball of Fire:748F:/
+
+12307.6 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/
+# 4 vertical/horizontal lasers
+12319.8 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+12322.9 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
+12328.1 "Infern Ward" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7496:/
+12328.9 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+12335.2 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749F:/
+12339.0 "Pure Fire" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A0:/
+12345.4 "Infern Well" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A7:/
+12346.2 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+12351.6 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74BE:/
+12353.8 "--sync--" sync / 1[56]:[^:]*:Infern Brand:74A8:/
+12355.3 "Infern Well" sync / 1[56]:[^:]*:Infern Brand:74AA:/
+12358.8 "--sync--" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749A:/
+12359.5 "Cast Shadow 1" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749B:/
+12361.5 "Cast Shadow 2" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:749D:/
+
+12367.1 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AE:/ window 30,30 jump 12239.4
+# 4 fireballs with teleporters + draw in
+12379.3 "Infern Brand" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
+12386.4 "Infern Well" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74A7:/
+12387.2 "--sync--" #sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7495:/
+
+
+### Thorne Knight
+# -p 70EB:13016.8
+# -ii 70F9 70FA 7100 7101 70FE 70FF
+
+# Note: Slashburn is 70EF, 70F0, 70F1, 70F2
+# It's possible that 70EF/7102 are "normal" and 70F0/70F1 are reversed.
+
+13000.0 "--sync--" sync / 00:0839::Cold Arms' Quietus will be sealed off/ window 100000,0
+13011.8 "--sync--" sync / 14:[^:]*:Thorne Knight:70EB:/
+13016.8 "Cogwheel" sync / 1[56]:[^:]*:Thorne Knight:70EB:/
+13030.3 "Spring to Life" sync / 1[56]:[^:]*:Thorne Knight:(70ED|70EE):/
+13031.1 "--sync--" sync / 1[56]:[^:]*:Magicked Puppet:7126:/
+13034.1 "Magic Cannon" sync / 1[56]:[^:]*:Magicked Puppet:70F7:/
+13034.7 "Amalj'aa Artillery" sync / 1[56]:[^:]*:Amalj'aa Artillery Carriage:70F8:/
+13037.1 "--sync--" sync / 1[56]:[^:]*:Magicked Puppet:7127:/
+13052.5 "Blistering Blow" sync / 1[56]:[^:]*:Thorne Knight:70EA:/
+13064.6 "Spring to Life" sync / 1[56]:[^:]*:Thorne Knight:(70ED|70EE):/
+13065.4 "--sync--" sync / 1[56]:[^:]*:Magicked Puppet:7126:/
+13068.4 "Magic Cannon" sync / 1[56]:[^:]*:Magicked Puppet:70F7:/
+13069.1 "Amalj'aa Artillery" sync / 1[56]:[^:]*:Amalj'aa Artillery Carriage:70F8:/
+13071.5 "--sync--" sync / 1[56]:[^:]*:Magicked Puppet:7127:/
+13075.1 "Fore Honor" sync / 1[56]:[^:]*:Thorne Knight:70EC:/
+13090.8 "Slashburn" sync / 1[56]:[^:]*:Thorne Knight:(70EF|70F0|70F1|7102):/
+13103.5 "--sync--" sync / 1[56]:[^:]*:Thorne Knight:70F5:/
+
+13105.0 "Signal Flare 1" #sync / 1[56]:[^:]*:Thorne Knight:70FB:/
+13106.6 "Signal Flare 2" #sync / 1[56]:[^:]*:Thorne Knight:70FB:/
+13108.2 "Signal Flare 3" #sync / 1[56]:[^:]*:Thorne Knight:70FB:/
+13114.1 "Blistering Blow" sync / 1[56]:[^:]*:Thorne Knight:70EA:/
+13131.1 "Slashburn" sync / 1[56]:[^:]*:Thorne Knight:(70EF|70F0|70F1|7102):/
+13142.7 "Blaze of Glory" sync / 1[56]:[^:]*:Thorne Knight:70F4:/
+13152.6 "Spring to Life" sync / 1[56]:[^:]*:Thorne Knight:(70ED|70EE):/
+13153.4 "--sync--" sync / 1[56]:[^:]*:Magicked Puppet:7126:/
+13156.3 "Magic Cannon" sync / 1[56]:[^:]*:Magicked Puppet:70F7:/
+13157.0 "Amalj'aa Artillery" sync / 1[56]:[^:]*:Amalj'aa Artillery Carriage:70F8:/
+13157.0 "Explosion" sync / 1[56]:[^:]*:Ball of Fire:70FD:/
+13159.4 "--sync--" sync / 1[56]:[^:]*:Magicked Puppet:7127:/
+13169.2 "Slashburn" sync / 1[56]:[^:]*:Thorne Knight:(70EF|70F0|70F1|7102):/
+13178.7 "Blaze of Glory" sync / 1[56]:[^:]*:Thorne Knight:70F4:/
+13193.1 "Explosion" sync / 1[56]:[^:]*:Ball of Fire:70FD:/
+13193.1 "Slashburn" sync / 1[56]:[^:]*:Thorne Knight:(70EF|70F0|70F1|7102):/
+13205.7 "--sync--" sync / 1[56]:[^:]*:Thorne Knight:70F5:/
+13207.3 "Signal Flare 1" #sync / 1[56]:[^:]*:Thorne Knight:70FB:/
+13208.9 "Signal Flare 2" #sync / 1[56]:[^:]*:Thorne Knight:70FB:/
+13210.4 "Signal Flare 3" #sync / 1[56]:[^:]*:Thorne Knight:70FB:/
+13214.3 "Fore Honor" sync / 1[56]:[^:]*:Thorne Knight:70EC:/
+
+13221.4 "Cogwheel" sync / 1[56]:[^:]*:Thorne Knight:70EB:/
+13234.1 "Blaze of Glory" sync / 1[56]:[^:]*:Thorne Knight:70F4:/
+13244.1 "Spring to Life" sync / 1[56]:[^:]*:Thorne Knight:(70ED|70EE):/
+13244.9 "--sync--" sync / 1[56]:[^:]*:Magicked Puppet:7126:/
+13247.9 "Magic Cannon" sync / 1[56]:[^:]*:Magicked Puppet:70F7:/
+13248.5 "Amalj'aa Artillery" sync / 1[56]:[^:]*:Amalj'aa Artillery Carriage:70F8:/
+13248.5 "Explosion" sync / 1[56]:[^:]*:Ball of Fire:70FD:/
+13250.9 "--sync--" sync / 1[56]:[^:]*:Magicked Puppet:7127:/
+
+13253.2 "Cogwheel" sync / 1[56]:[^:]*:Thorne Knight:70EB:/
+13265.8 "Blaze of Glory" sync / 1[56]:[^:]*:Thorne Knight:70F4:/
+13280.3 "Slashburn" sync / 1[56]:[^:]*:Thorne Knight:(70EF|70F0|70F1|7102):/
+13280.3 "Explosion" sync / 1[56]:[^:]*:Ball of Fire:70FD:/
+13293.0 "--sync--" sync / 1[56]:[^:]*:Thorne Knight:70F5:/
+13294.6 "Signal Flare 1" #sync / 1[56]:[^:]*:Thorne Knight:70FB:/
+13296.2 "Signal Flare 2" #sync / 1[56]:[^:]*:Thorne Knight:70FB:/
+13297.7 "Signal Flare 3" #sync / 1[56]:[^:]*:Thorne Knight:70FB:/
+13301.6 "Fore Honor" sync / 1[56]:[^:]*:Thorne Knight:70EC:/
+
+13308.8 "Cogwheel" sync / 1[56]:[^:]*:Thorne Knight:70EB:/ window 40,40 jump 13221.4
+13321.5 "Blaze of Glory" #sync / 1[56]:[^:]*:Thorne Knight:70F4:/
+13331.5 "Spring to Life" #sync / 1[56]:[^:]*:Thorne Knight:(70ED|70EE):/
+13332.3 "--sync--" #sync / 1[56]:[^:]*:Magicked Puppet:7126:/
+13335.3 "Magic Cannon" #sync / 1[56]:[^:]*:Magicked Puppet:70F7:/
+13335.9 "Amalj'aa Artillery" #sync / 1[56]:[^:]*:Amalj'aa Artillery Carriage:70F8:/
+13335.9 "Explosion" #sync / 1[56]:[^:]*:Ball of Fire:70FD:/
+13338.3 "--sync--" #sync / 1[56]:[^:]*:Magicked Puppet:7127:/

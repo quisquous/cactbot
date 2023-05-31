@@ -11,29 +11,29 @@ import { Player } from './player';
 import '../../resources/defaults.css';
 import './jobs.css';
 
-export type FfxivRegion = 'intl' | 'cn' | 'ko';
+export type FfxivVersion = number;
 
 UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   const options = { ...defaultOptions };
 
-  // Because Korean regions are still on older version of FF14,
-  // set this value to whether or not we should treat this as 5.x or 6.x.
-  // This affects things like entire jobs (smn) or combo durations.
-
-  const ffxivlanguageToRegion: Record<Lang, FfxivRegion> = {
-    'en': 'intl',
-    'de': 'intl',
-    'fr': 'intl',
-    'ja': 'intl',
-    'cn': 'cn',
-    'ko': 'ko',
+  // Because CN and KO regions play an older version of FF14,
+  // set the game version here to change the behavior on older version.
+  // (Battle system changes will be merged in major update for CN/KO)
+  // (e.g. intl 6.38 job changes are merged in cn patch 6.3)
+  const ffxivlanguageToVersion: Record<Lang, FfxivVersion> = {
+    'en': 640,
+    'de': 640,
+    'fr': 640,
+    'ja': 640,
+    'cn': 630,
+    'ko': 625,
   };
-  const ffxivRegion = ffxivlanguageToRegion[options.ParserLanguage];
+  const ffxivVersion = ffxivlanguageToVersion[options.ParserLanguage];
 
   const emitter = new JobsEventEmitter();
   const partyTracker = new PartyTracker();
-  const player = new Player(emitter, partyTracker, ffxivRegion);
+  const player = new Player(emitter, partyTracker, ffxivVersion);
   const bars = new Bars(options, { emitter, player });
 
-  new ComponentManager({ bars, emitter, options, partyTracker, player, ffxivRegion });
+  new ComponentManager({ bars, emitter, options, partyTracker, player, ffxivVersion });
 });

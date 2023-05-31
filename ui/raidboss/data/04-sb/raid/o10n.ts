@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -11,6 +10,7 @@ export interface Data extends RaidbossData {
 
 // O10N - Alphascape 2.0
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlphascapeV20',
   zoneId: ZoneId.AlphascapeV20,
   timelineFile: 'o10n.txt',
   triggers: [
@@ -21,14 +21,14 @@ const triggerSet: TriggerSet<Data> = {
       // 31C8 + 31CB = 31D0 (vert + vert = +)
       id: 'O10N Spin Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '31C[78]', source: 'Midgardsormr', capture: false }),
+      netRegex: { id: '31C[78]', source: 'Midgardsormr', capture: false },
       delaySeconds: 10,
       run: (data) => delete data.lastSpinWasHorizontal,
     },
     {
       id: 'O10N Horizontal Spin 1',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '31C7', source: 'Midgardsormr', capture: false }),
+      netRegex: { id: '31C7', source: 'Midgardsormr', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.lastSpinWasHorizontal = true,
       outputStrings: {
@@ -45,7 +45,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O10N Vertical Spin 1',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '31C8', source: 'Midgardsormr', capture: false }),
+      netRegex: { id: '31C8', source: 'Midgardsormr', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.lastSpinWasHorizontal = false,
       outputStrings: {
@@ -62,7 +62,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O10N Horizontal Spin 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '31C9', source: 'Midgardsormr', capture: false }),
+      netRegex: { id: '31C9', source: 'Midgardsormr', capture: false },
       condition: (data) => data.lastSpinWasHorizontal !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastSpinWasHorizontal)
@@ -93,7 +93,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O10N Vertical Spin 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '31CB', source: 'Midgardsormr', capture: false }),
+      netRegex: { id: '31CB', source: 'Midgardsormr', capture: false },
       condition: (data) => data.lastSpinWasHorizontal !== undefined,
       alertText: (data, _matches, output) => {
         if (data.lastSpinWasHorizontal)
@@ -123,7 +123,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O10N Earth Shaker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },
@@ -131,21 +131,21 @@ const triggerSet: TriggerSet<Data> = {
       id: 'O10N Akh Morn',
       type: 'HeadMarker',
       // This corresponds with 316C ability cast (for initial hit).
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'O10N Thunderstorm',
       type: 'HeadMarker',
       // This corresponds with the 31D2 ability cast.
-      netRegex: NetRegexes.headMarker({ id: '00A0' }),
+      netRegex: { id: '00A0' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'O10N Dry Ice',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0043' }),
+      netRegex: { id: '0043' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -161,13 +161,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O10N Tail End',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '31C5', source: 'Midgardsormr' }),
+      netRegex: { id: '31C5', source: 'Midgardsormr' },
       response: Responses.tankBuster(),
     },
     {
       id: 'O10N Rime Wreath',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '33EF', source: 'Ancient Dragon', capture: false }),
+      netRegex: { id: '33EF', source: 'Ancient Dragon', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -176,7 +176,7 @@ const triggerSet: TriggerSet<Data> = {
       // Damage starts hitting ~2s after this ability.
       // Assuming that it locks in on cast and not on starts casting.
       // Technically this is only on DPS, but it's not targeted, so just tell everybody.
-      netRegex: NetRegexes.ability({ id: '3622', source: 'Midgardsormr', capture: false }),
+      netRegex: { id: '3622', source: 'Midgardsormr', capture: false },
       response: Responses.moveAway(),
     },
   ],

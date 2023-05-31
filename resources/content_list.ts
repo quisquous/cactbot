@@ -7,6 +7,10 @@ import ZoneId from './zone_id';
 //
 // These are not things that cactbot necessarily supports, but things that it
 // theoretically could be supporting in the future with raidboss and oopsy.
+//
+// Miscellaneous things like maps, hunts, carnivale, pvp, eureka
+// should not be added here yet.
+// See: https://github.com/quisquous/cactbot/issues/5069
 
 const contentList: (ZoneIdType)[] = [
   // General (cactbot custom zone id)
@@ -107,6 +111,9 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.Smileton,
   ZoneId.TheStigmaDreamscape,
   ZoneId.AlzadaalsLegacy,
+  ZoneId.TheFellCourtOfTroia,
+  ZoneId.LapisManalis,
+  ZoneId.TheAetherfont,
 
   // Guildhests
   ZoneId.BasicTrainingEnemyParties,
@@ -128,10 +135,10 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheBowlOfEmbers,
   ZoneId.TheNavel,
   ZoneId.TheHowlingEye,
-  ZoneId.CapeWestwind,
+  ZoneId.CapeWestwind, // changed to solo duty in 6.1
   ZoneId.ThePortaDecumana,
   ZoneId.TheChrysalis,
-  ZoneId.TheStepsOfFaith,
+  ZoneId.TheStepsOfFaith, // changed to solo duty in 6.2
   ZoneId.ARelicRebornTheChimera,
   ZoneId.ARelicRebornTheHydra,
   ZoneId.BattleOnTheBigBridge,
@@ -221,12 +228,21 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheDarkInside,
   ZoneId.TheMothercrystal,
   ZoneId.TheFinalDay,
+  ZoneId.StormsCrown,
+  ZoneId.MountOrdeals,
+  ZoneId.TheVoidcastDais,
 
   // High-end Trials (Endwalker)
   ZoneId.TheMinstrelsBalladZodiarksFall,
   ZoneId.TheMinstrelsBalladHydaelynsCall,
   ZoneId.TheMinstrelsBalladEndsingersAria,
+  ZoneId.StormsCrownExtreme,
+  ZoneId.MountOrdealsExtreme,
+  ZoneId.TheVoidcastDaisExtreme,
   ZoneId.UltimasBaneUnreal,
+  ZoneId.ContainmentBayS1T7Unreal,
+  ZoneId.ContainmentBayP1T6Unreal,
+  ZoneId.ContainmentBayZ1T9Unreal,
 
   // Alliance Raids (A Realm Reborn)
   ZoneId.TheLabyrinthOfTheAncients,
@@ -355,24 +371,47 @@ const contentList: (ZoneIdType)[] = [
 
   // Alliance Raids (Endwalker)
   ZoneId.Aglaia,
+  ZoneId.Euphrosyne,
 
   // Normal Raids (Endwalker)
   ZoneId.AsphodelosTheFirstCircle,
   ZoneId.AsphodelosTheSecondCircle,
   ZoneId.AsphodelosTheThirdCircle,
   ZoneId.AsphodelosTheFourthCircle,
+  ZoneId.AbyssosTheFifthCircle,
+  ZoneId.AbyssosTheSixthCircle,
+  ZoneId.AbyssosTheSeventhCircle,
+  ZoneId.AbyssosTheEighthCircle,
+  ZoneId.AnabaseiosTheNinthCircle,
+  ZoneId.AnabaseiosTheTenthCircle,
+  ZoneId.AnabaseiosTheEleventhCircle,
+  ZoneId.AnabaseiosTheTwelfthCircle,
 
   // Savage Raids (Endwalker)
   ZoneId.AsphodelosTheFirstCircleSavage,
   ZoneId.AsphodelosTheSecondCircleSavage,
   ZoneId.AsphodelosTheThirdCircleSavage,
   ZoneId.AsphodelosTheFourthCircleSavage,
+  ZoneId.AbyssosTheFifthCircleSavage,
+  ZoneId.AbyssosTheSixthCircleSavage,
+  ZoneId.AbyssosTheSeventhCircleSavage,
+  ZoneId.AbyssosTheEighthCircleSavage,
+  ZoneId.AnabaseiosTheNinthCircleSavage,
+  ZoneId.AnabaseiosTheTenthCircleSavage,
+  ZoneId.AnabaseiosTheEleventhCircleSavage,
+  ZoneId.AnabaseiosTheTwelfthCircleSavage,
+
+  // Variant & Criterion Dungeons
+  ZoneId.TheSildihnSubterrane,
+  ZoneId.AnotherSildihnSubterrane,
+  ZoneId.AnotherSildihnSubterraneSavage,
 
   // Ultimate Raids
   ZoneId.TheUnendingCoilOfBahamutUltimate,
   ZoneId.TheWeaponsRefrainUltimate,
   ZoneId.TheEpicOfAlexanderUltimate,
   ZoneId.DragonsongsRepriseUltimate,
+  ZoneId.TheOmegaProtocolUltimate,
 ];
 
 export default contentList;

@@ -33,7 +33,7 @@ hideall "--sync--"
 95.7 "Chesed" sync / 1[56]:[^:]*:Sephirot:1567:/ window 20,20
 
 97.9 "Triple Trial" sync / 1[56]:[^:]*:Sephirot:1566:/
-101.9 "Ein Sof" sync / 1[56]:[^:]*:Sephirot:156E:/
+101.9 "Ein Sof (4 puddles)" sync / 1[56]:[^:]*:Sephirot:156E:/
 106.0 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
 114.6 "Fiendish Rage 1" sync / 1[56]:[^:]*:Sephirot:156D:/
 118.3 "Fiendish Rage 2" sync / 1[56]:[^:]*:Sephirot:156D:/
@@ -41,7 +41,7 @@ hideall "--sync--"
 129.6 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
 135.7 "Chesed" sync / 1[56]:[^:]*:Sephirot:1567:/ window 20,20
 137.9 "Triple Trial" sync / 1[56]:[^:]*:Sephirot:1566:/
-144.0 "Ein Sof" sync / 1[56]:[^:]*:Sephirot:156E:/
+144.0 "Ein Sof (1 puddle)" sync / 1[56]:[^:]*:Sephirot:156E:/
 147.2 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
 157.6 "Ratzon" # sync / 1[56]:[^:]*:Sephirot:156B:/
 161.8 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
@@ -49,7 +49,7 @@ hideall "--sync--"
 172.0 "Chesed" sync / 1[56]:[^:]*:Sephirot:1567:/ window 20,20 jump 95.7
 
 174.2 "Triple Trial"
-178.2 "Ein Sof"
+178.2 "Ein Sof (4 puddles)"
 182.3 "Tiferet"
 190.9 "Fiendish Rage 1"
 194.6 "Fiendish Rage 2"

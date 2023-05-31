@@ -6,18 +6,18 @@
         "url": "https://github.com/EQAditu/AdvancedCombatTracker/releases/download/3.4.6.267/ACTv3.zip",
         "dest": "plugin/ThirdParty/ACT",
         "strip": 0,
-        "hash": ["sha256", "adf13a38d0938ce90f8e674f8365b227d933b91636ddf72b26c85702f6e3b808"],
+        "hash": ["sha256", "b97b92b82e29a532611ca5319061df54516fd71b691c1c507ba69da5b3985fad"],
     },
     "FFXIV_ACT": {
         "url": "https://github.com/ravahn/FFXIV_ACT_Plugin/raw/master/Releases/FFXIV_ACT_Plugin_SDK_2.0.6.1.zip",
         "dest": "plugin/ThirdParty/FFXIV_ACT",
         "strip": 0,
-        "hash": ["sha256", "55eed8660848273b285e2f128a65e6822f086c885942be69691baf5c530a7cd6"],
+        "hash": ["sha256", "ed98fa01ec2c7ed2ac843fa8ea2eec1d66f86fad4c6864de4d73d5cfbf163dce"],
     },
     "OverlayPlugin": {
         "url": "https://github.com/ngld/OverlayPlugin/releases/download/v0.18.2/OverlayPlugin-0.18.2.zip",
         "dest": "plugin/ThirdParty/OverlayPlugin",
         "strip": 1,
-        "hash": ["sha256", "aa07446ecd85d36834de7b28e79eccea53b5577759c2da0e8b8358a2c2bed0a5"],
+        "hash": ["sha256", "26efb161179d92806f42c39cb8b4f8b91ed5ddc4a2bf764301abc847f5974bfc"],
     },
 }

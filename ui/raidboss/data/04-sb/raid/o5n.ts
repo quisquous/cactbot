@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -9,6 +8,7 @@ export type Data = RaidbossData;
 
 // O5N - Sigmascape 1.0 Normal
 const triggerSet: TriggerSet<Data> = {
+  id: 'SigmascapeV10',
   zoneId: ZoneId.SigmascapeV10,
   timelineFile: 'o5n.txt',
   resetWhenOutOfCombat: false,
@@ -16,37 +16,37 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O5N Stop Combat',
       type: 'RemovedCombatant',
-      netRegex: NetRegexes.removingCombatant({ name: 'Phantom Train', capture: false }),
+      netRegex: { name: 'Phantom Train', capture: false },
       run: (data) => data.StopCombat(),
     },
     {
       id: 'O5N Acid Rain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Phantom Train', id: '28BB', capture: false }),
+      netRegex: { source: 'Phantom Train', id: '28BB', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'O5N Doom Strike',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Phantom Train', id: '28A3' }),
+      netRegex: { source: 'Phantom Train', id: '28A3' },
       response: Responses.tankBuster(),
     },
     {
       id: 'O5N Head On',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28A4', source: 'Phantom Train', capture: false }),
+      netRegex: { id: '28A4', source: 'Phantom Train', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'O5N Diabolic Headlamp',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '28A6', source: 'Phantom Train', capture: false }),
+      netRegex: { id: '28A6', source: 'Phantom Train', capture: false },
       response: Responses.stackMiddle(),
     },
     {
       id: 'O5N Ghost Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -62,7 +62,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O5N Diabolic Light',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -79,14 +79,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O5N Diabolic Wind',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0046' }),
+      netRegex: { id: '0046' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'O5N Throttle',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '3AA' }),
+      netRegex: { effectId: '3AA' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

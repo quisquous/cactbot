@@ -9,7 +9,8 @@ export default class StubbedPopupText extends PopupText {
   constructor(
     options: RaidbossOptions,
     timelineLoader: TimelineLoader,
-    raidbossFileData: RaidbossFileData) {
+    raidbossFileData: RaidbossFileData,
+  ) {
     super(options, timelineLoader, raidbossFileData);
   }
 

@@ -3,9 +3,10 @@ import { addRemotePlayerSelectUI } from '../../resources/player_override';
 import UserConfig from '../../resources/user_config';
 
 import raidbossFileData from './data/raidboss_manifest.txt';
+import { HTMLTimelineUI } from './html_timeline_ui';
 import { PopupText, PopupTextGenerator } from './popup-text';
 import defaultOptions from './raidboss_options';
-import { TimelineController, TimelineLoader, TimelineUI } from './timeline';
+import { TimelineController, TimelineLoader } from './timeline';
 
 import '../../resources/timerbar';
 import './raidboss_config';
@@ -82,7 +83,7 @@ UserConfig.getUserConfigLocation('raidboss', defaultOptions, () => {
   if (!options.TimelineEnabled)
     container.classList.add('hide-timeline');
 
-  const timelineUI = new TimelineUI(options);
+  const timelineUI = new HTMLTimelineUI(options);
   const timelineController = new TimelineController(options, timelineUI, raidbossFileData);
   const timelineLoader = new TimelineLoader(timelineController);
   const popupText = new PopupText(options, timelineLoader, raidbossFileData);

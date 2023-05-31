@@ -1,9 +1,10 @@
 import { isLang, Lang } from '../../resources/languages';
+import { buildNetRegexForTrigger } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
 import Regexes from '../../resources/regexes';
 import { triggerOutputFunctions } from '../../resources/responses';
-import { translateRegex } from '../../resources/translations';
+import { translateRegex, translateRegexBuildParam } from '../../resources/translations';
 import UserConfig, {
   ConfigValue,
   OptionsTemplate,
@@ -39,6 +40,7 @@ const kOptionKeys = {
   duration: 'Duration',
   beforeSeconds: 'BeforeSeconds',
   outputStrings: 'OutputStrings',
+  triggerSetConfig: 'TriggerSetConfig',
 } as const;
 
 type TriggerSoundOption = {
@@ -456,8 +458,8 @@ const addTriggerDetail = (
 // Unfortunately due to poor decisions in the past, PerTriggerOptions has different
 // fields here.  This should be fixed.
 const setOptionsFromOutputValue = (
-  options: BaseOptions | TriggerAutoConfig,
   value: SavedConfigEntry,
+  options: BaseOptions | TriggerAutoConfig,
 ) => {
   if (value === 'default') {
     // Nothing.
@@ -586,6 +588,24 @@ class RaidbossConfigurator {
       }
 
       triggerContainer.appendChild(headerDiv);
+
+      // TODO: print a warning if config exists without triggerset id??
+      if (
+        info.triggerSet.id !== undefined && info.triggerSet.config !== undefined &&
+        info.triggerSet.config.length > 0
+      ) {
+        const triggerSetConfig = document.createElement('div');
+        triggerSetConfig.classList.add('overlay-options');
+        triggerContainer.appendChild(triggerSetConfig);
+        for (const opt of info.triggerSet.config) {
+          if (!this.base.developerOptions && opt.debugOnly)
+            continue;
+          this.base.buildConfigEntry(userOptions, triggerSetConfig, opt, 'raidboss', [
+            kOptionKeys.triggerSetConfig,
+            info.triggerSet.id,
+          ]);
+        }
+      }
 
       // Timeline editing is tied to a single, specific zoneId per file for now.
       // We could add more indirection (via fileKey?) and look up zoneId -> fileKey[]
@@ -1083,7 +1103,7 @@ class RaidbossConfigurator {
     matches: Matches,
     output: Output,
   ): RaidbossTriggerOutput {
-    const result = (typeof f === 'function') ? f(data, matches, output) : f;
+    const result = typeof f === 'function' ? f(data, matches, output) : f;
     if (result !== Object(result))
       return result;
     if (typeof result !== 'object' || result === null)
@@ -1115,6 +1135,7 @@ class RaidbossConfigurator {
       currentHP: 1000,
       options: this.base.configOptions,
       inCombat: true,
+      triggerSetConfig: {},
       ShortName: (x?: string) => x ?? '???',
       StopCombat: () => {/* noop */},
       ParseLocaleFloat: parseFloat,
@@ -1260,18 +1281,37 @@ class RaidbossConfigurator {
     // Should we show them in the parser language instead?
     const lang = this.base.lang;
 
-    const getRegex = (baseField: 'regex' | 'netRegex') => {
-      const regex = trig[baseField];
+    const getRegex = () => {
+      const regex = trig.regex;
       if (regex === undefined)
         return;
       return Regexes.parse(translateRegex(regex, lang, set.timelineReplace));
     };
 
+    const getNetRegex = () => {
+      const regex = trig.netRegex;
+      if (regex === undefined)
+        return;
+
+      if (regex instanceof RegExp)
+        return Regexes.parse(translateRegex(regex, lang, set.timelineReplace));
+
+      if (trig.type === undefined)
+        return;
+
+      return Regexes.parse(
+        buildNetRegexForTrigger(
+          trig.type,
+          translateRegexBuildParam(regex, lang, set.timelineReplace),
+        ),
+      );
+    };
+
     if (trig.isTimelineTrigger) {
-      trig.timelineRegex = getRegex('regex');
+      trig.timelineRegex = getRegex();
     } else {
-      trig.triggerRegex = getRegex('regex');
-      trig.triggerNetRegex = getRegex('netRegex');
+      trig.triggerRegex = getRegex();
+      trig.triggerNetRegex = getNetRegex();
     }
 
     return trig;
@@ -1407,7 +1447,7 @@ const flattenTimeline = (
   const lastIndex = Math.max(filename.lastIndexOf('/'), filename.lastIndexOf('\\'));
   // If lastIndex === -1, truncate name to the empty string.
   // if lastIndex > -1, truncate name after the final slash.
-  const dir = filename.substring(0, lastIndex + 1);
+  const dir = filename.slice(0, Math.max(0, lastIndex + 1));
 
   const timelineFile = `${dir}${set.timelineFile}`;
   delete set.timelineFile;
@@ -1425,7 +1465,7 @@ const flattenTimeline = (
 const userFileHandler: UserFileCallback = (
   name: string,
   files: { [filename: string]: string },
-  baseOptions: (BaseOptions & Partial<RaidbossOptions>),
+  baseOptions: BaseOptions & Partial<RaidbossOptions>,
   basePath: string,
 ) => {
   // TODO: Rewrite user_config to be templated on option type so that this function knows
@@ -1465,7 +1505,7 @@ const processPerTriggerAutoConfig = (options: RaidbossOptions, savedConfig: Save
   const keys = Object.keys(kTriggerOptions);
   for (const key of keys) {
     const obj = outputObjs[key] = {};
-    setOptionsFromOutputValue(obj, key);
+    setOptionsFromOutputValue(key, obj);
   }
 
   for (const [id, entry] of Object.entries(triggers)) {
@@ -1566,6 +1606,36 @@ const processPerZoneTimelineConfig = (options: RaidbossOptions, savedConfig: Sav
   }
 };
 
+const processTriggerSetConfig = (options: RaidbossOptions, savedConfig: SavedConfigEntry) => {
+  // Note: this function is just for providing the raw values for TriggerSetConfig.
+  // popuptext handles the loading of triggersets at runtime (maybe this should be merged?)
+  // and so it has to do the work of using this info to set defaults, apply overrides, and
+  // run setter functions via `processOptions`.
+  const optionName = 'TriggerSetConfig';
+  const outputTriggerSetConfig = options[optionName] ??= {};
+  if (typeof savedConfig !== 'object' || Array.isArray(savedConfig))
+    return;
+
+  // raidboss > TriggerSetConfig > [triggerSetId] > [key] > [leaf ConfigValue]
+  const triggerSetConfig = savedConfig[kOptionKeys.triggerSetConfig];
+  if (
+    triggerSetConfig === undefined || typeof triggerSetConfig !== 'object' ||
+    Array.isArray(triggerSetConfig)
+  )
+    return;
+
+  for (const [triggerSetId, configDict] of Object.entries(triggerSetConfig)) {
+    if (typeof configDict !== 'object' || Array.isArray(configDict))
+      continue;
+
+    for (const [key, value] of Object.entries(configDict)) {
+      if (typeof value !== 'boolean' && typeof value !== 'string' && typeof value !== 'number')
+        continue;
+      (outputTriggerSetConfig[triggerSetId] ??= {})[key] = value;
+    }
+  }
+};
+
 const templateOptions: OptionsTemplate = {
   buildExtraUI: (base, container) => {
     const builder = new RaidbossConfigurator(base);
@@ -1581,6 +1651,7 @@ const templateOptions: OptionsTemplate = {
 
     processPerTriggerAutoConfig(options, savedConfig);
     processPerZoneTimelineConfig(options, savedConfig);
+    processTriggerSetConfig(options, savedConfig);
   },
   options: [
     {
@@ -1737,10 +1808,12 @@ const templateOptions: OptionsTemplate = {
       },
       default: 'default',
       debug: true,
-      setterFunc: (options, value) => {
+      setterFunc: (value) => {
+        if (typeof value !== 'string')
+          return;
         if (value === 'default')
           return;
-        options['AlertsLanguage'] = value;
+        return value;
       },
     },
     {
@@ -1812,10 +1885,12 @@ const templateOptions: OptionsTemplate = {
       },
       default: 'default',
       debug: true,
-      setterFunc: (options, value) => {
+      setterFunc: (value) => {
+        if (typeof value !== 'string')
+          return;
         if (value === 'default')
           return;
-        options['TimelineLanguage'] = value;
+        return value;
       },
     },
     {
@@ -1833,26 +1908,38 @@ const templateOptions: OptionsTemplate = {
         en: {
           'Default': 'default',
           'lippe': 'lippe',
+          'jwidea': 'jwidea',
+          'dorgrin': 'dorgrin',
         },
         de: {
           'Default': 'default',
           'lippe': 'lippe',
+          'jwidea': 'jwidea',
+          'dorgrin': 'dorgrin',
         },
         fr: {
           'Défaut': 'default',
           'lippe': 'lippe',
+          'jwidea': 'jwidea',
+          'dorgrin': 'dorgrin',
         },
         ja: {
           '初期設定': 'default',
           'lippe': 'lippe',
+          'jwidea': 'jwidea',
+          'dorgrin': 'dorgrin',
         },
         cn: {
           '默认': 'default',
           'lippe': 'lippe',
+          'jwidea': 'jwidea',
+          'dorgrin': 'dorgrin',
         },
         ko: {
           '기본': 'default',
           'lippe': 'lippe',
+          'jwidea': 'jwidea',
+          'dorgrin': 'dorgrin',
         },
       },
       default: 'default',
@@ -2168,34 +2255,6 @@ const templateOptions: OptionsTemplate = {
       },
       type: 'float',
       default: 0.75,
-    },
-    {
-      id: 'cactbotWormholeStrat',
-      // TODO: maybe need some way to group these kinds of
-      // options if we end up having a lot?
-      name: {
-        en: 'Alex Ultimate: enable cactbot Wormhole strat',
-        de: 'Alex Ultimate: aktiviere cactbot Wormhole Strategie',
-        fr: 'Alex fatal : activer cactbot pour la strat Wormhole',
-        ja: '絶アレキサンダー討滅戦：cactbot「次元断絶のマーチ」ギミック',
-        cn: '亚历山大绝境战: cactbot灵泉辅助功能',
-        ko: '절 알렉: cactbot 웜홀 공략방식 활성화',
-      },
-      type: 'checkbox',
-      default: false,
-    },
-    {
-      id: 'cactbote8sUptimeKnockbackStrat',
-      name: {
-        en: 'e8s: enable cactbot Uptime Knockback strat',
-        de: 'e8s: aktiviere cactbot Uptime Knockback Strategie',
-        fr: 'e8s : activer cactbot pour la strat Uptime Knockback',
-        ja: 'エデン零式共鳴編４層：cactbot「ヘヴンリーストライク (ノックバック)」ギミック',
-        cn: 'E8S: cactbot击退提示功能',
-        ko: '공명 영웅 4층: cactbot 정확한 타이밍 넉백방지 공략 활성화',
-      },
-      type: 'checkbox',
-      default: false,
     },
   ],
 };

@@ -259,13 +259,7 @@ export class Bars {
     return textDiv as ResourceBox;
   }
 
-  addProcBox({
-    id,
-    fgColor,
-    threshold,
-    scale,
-    notifyWhenExpired,
-  }: {
+  addProcBox({ id, fgColor, threshold, scale, notifyWhenExpired }: {
     id?: string;
     fgColor?: string;
     threshold?: number;
@@ -306,10 +300,7 @@ export class Bars {
     return timerBox;
   }
 
-  addTimerBar({
-    id,
-    fgColor,
-  }: {
+  addTimerBar({ id, fgColor }: {
     id: string;
     fgColor: string;
   }): TimerBar {
@@ -332,11 +323,7 @@ export class Bars {
     return timer;
   }
 
-  addResourceBar({
-    id,
-    fgColor,
-    maxvalue,
-  }: {
+  addResourceBar({ id, fgColor, maxvalue }: {
     id: string;
     fgColor: string;
     maxvalue: number;

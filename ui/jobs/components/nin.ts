@@ -95,14 +95,14 @@ export class NINComponent extends BaseComponent {
         this.trickAttack.threshold = 1000;
         this.trickAttack.fg = computeBackgroundColorFrom(
           this.trickAttack,
-          'nin-color-trickattack.active'
+          'nin-color-trickattack.active',
         );
         this.tid1 = window.setTimeout(() => {
           this.trickAttack.duration = 45;
           this.trickAttack.threshold = this.player.gcdSkill * 4;
           this.trickAttack.fg = computeBackgroundColorFrom(
             this.trickAttack,
-            'nin-color-trickattack'
+            'nin-color-trickattack',
           );
         }, 15000);
         break;
@@ -154,7 +154,7 @@ export class NINComponent extends BaseComponent {
     this.trickAttack.threshold = this.player.gcdSkill * 4;
     this.trickAttack.fg = computeBackgroundColorFrom(
       this.trickAttack,
-      'nin-color-trickattack'
+      'nin-color-trickattack',
     );
     this.hutonBox.duration = 0;
     this.comboTimer.duration = 0;

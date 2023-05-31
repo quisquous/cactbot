@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -51,6 +50,7 @@ export interface Data extends RaidbossData {
 //     green tether / purple prey
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlexanderTheArmOfTheSonSavage',
   zoneId: ZoneId.AlexanderTheArmOfTheSonSavage,
   timelineNeedsFixing: true,
   timelineFile: 'a7s.txt',
@@ -64,13 +64,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S Phase Counter',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Shanoa', capture: false }),
+      netRegex: { name: 'Shanoa', capture: false },
       run: (data) => data.phase++,
     },
     {
       id: 'A7S Sizzlebeam',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0018' }),
+      netRegex: { id: '0018' },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.sizzlebeamOnYou!();
@@ -101,13 +101,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S Sizzlespark',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Quickthinx Allthoughts', id: '16F8', capture: false }),
+      netRegex: { source: 'Quickthinx Allthoughts', id: '16F8', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'A7S Bomb Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ source: 'Bomb', id: '001F' }),
+      netRegex: { source: 'Bomb', id: '001F' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -124,7 +124,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S Jail Prey',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0029' }),
+      netRegex: { id: '0029' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -143,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Tether',
       // This does not include the initial tether, unfortunately.
       // This is another case of "added combatant with initial tether".
-      netRegex: NetRegexes.tether({ source: 'Boomtype Magitek Gobwalker G-VII', id: '0011' }),
+      netRegex: { source: 'Boomtype Magitek Gobwalker G-VII', id: '0011' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
@@ -161,14 +161,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S Kugelblitz',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Sturm Doll', id: '16FE' }),
+      netRegex: { source: 'Sturm Doll', id: '16FE' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
       id: 'A7S Zoomdoom Clear',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Quickthinx Allthoughts', id: '16F4', capture: false }),
+      netRegex: { source: 'Quickthinx Allthoughts', id: '16F4', capture: false },
       run: (data) => {
         data.grabbed = [];
         delete data.stickyloom;
@@ -177,19 +177,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S Gobbie Grab',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Quickthinx Allthoughts', id: '15C0' }),
+      netRegex: { source: 'Quickthinx Allthoughts', id: '15C0' },
       run: (data, matches) => data.grabbed.push(matches.target),
     },
     {
       id: 'A7S Stickyloom',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Boomtype Magitek Gobwalker G-VII', id: '16F2' }),
+      netRegex: { source: 'Boomtype Magitek Gobwalker G-VII', id: '16F2' },
       run: (data, matches) => data.stickyloom = matches.target,
     },
     {
       id: 'A7S Padlock',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Padlock', capture: false }),
+      netRegex: { name: 'Padlock', capture: false },
       condition: (data) => {
         // If you're not in a jail, kill the padlock.
         return !data.grabbed.includes(data.me) && data.stickyloom !== data.me;
@@ -209,7 +209,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S True Heart',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Shanoa', id: '15EC', capture: false }),
+      netRegex: { source: 'Shanoa', id: '15EC', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -225,7 +225,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'A7S Searing Wind',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '178' }),
+      netRegex: { effectId: '178' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -251,6 +251,7 @@ const triggerSet: TriggerSet<Data> = {
         'Quickthinx Allthoughts': 'Denkfix',
         'Shanoa': 'Schwarz(?:e|er|es|en) Katze',
         'Sturm Doll': 'Sturmpuppe',
+        'The electrocution gallery': 'Platz für Strafezeigen',
       },
       'replaceText': {
         'Big Doll': 'Große Puppe',
@@ -279,11 +280,11 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Bomb': 'bombe',
         'Boomtype Magitek Gobwalker G-VII': 'gobblindé magitek G-VII Lamineur',
-        'electrocution gallery': 'square d\'exécution publique',
         'Padlock': 'cadenas',
         'Quickthinx Allthoughts': 'Quickthinx le Cerveau',
         'Shanoa': 'Chat-noir',
         'Sturm Doll': 'poupée sturm',
+        'The electrocution gallery': 'square d\'exécution publique',
       },
       'replaceText': {
         'Bomb': 'Bombe',
@@ -300,13 +301,13 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Bomb': '爆弾',
         'Boomtype Magitek Gobwalker G-VII': 'VII号ゴブリウォーカーL型',
-        'Electrocution gallery': '公開処刑広場',
         'Frostbite': '凍傷',
         'Padlock': '錠前',
         'Pyretic': 'ヒート',
         'Quickthinx Allthoughts': '万能のクイックシンクス',
         'Shanoa': 'シャノア',
         'Sturm Doll': 'シュツルムドール',
+        'The electrocution gallery': '公開処刑広場',
       },
       'replaceText': {
         'Big Doll': '大きいドール',
@@ -335,13 +336,13 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Bomb': '炸弹',
         'Boomtype Magitek Gobwalker G-VII': '7号哥布林战车L型',
-        'Electrocution gallery': '公开处刑广场',
         'Frostbite': '冻伤',
         'Padlock': '牢门的锁',
         'Pyretic': '热病',
         'Quickthinx Allthoughts': '万事通 奎克辛克斯',
         'Shanoa': '夏诺雅',
         'Sturm Doll': '风暴人偶',
+        'The electrocution gallery': '公开处刑广场',
         'Undying Affection': '声援',
       },
       'replaceText': {
@@ -375,7 +376,7 @@ const triggerSet: TriggerSet<Data> = {
         'Quickthinx Allthoughts': '만능의 퀵싱크스',
         'Shanoa': '샤노아',
         'Sturm Doll': '인형 폭기병',
-        'Electrocution Gallery': '공개처형 광장',
+        'The electrocution gallery': '공개처형 광장',
         'Pyretic': '열병',
       },
       'replaceText': {

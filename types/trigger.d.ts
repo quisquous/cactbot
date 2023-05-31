@@ -1,9 +1,11 @@
 import { Lang, NonEnLang } from '../resources/languages';
-import { NetAnyMatches, NetMatches } from '../types/net_matches';
+import { NamedConfigEntry } from '../resources/user_config';
 import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline_parser';
 
 import { RaidbossData } from './data';
-import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
+import { NetAnyMatches, NetMatches } from './net_matches';
+import { NetParams } from './net_props';
+import type { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
 
 // TargetedMatches can be used for generic functions in responses or conditions
 // that use matches from any number of Regex or NetRegex functions.
@@ -80,7 +82,7 @@ export type ResponseFunc<Data extends RaidbossData, MatchType extends NetAnyMatc
   data: Data,
   matches: MatchType,
   output: Output,
-) => (ResponseOutput<Data, MatchType> | ResponseFunc<Data, MatchType>);
+) => ResponseOutput<Data, MatchType> | ResponseFunc<Data, MatchType>;
 
 export type ResponseField<Data extends RaidbossData, MatchType extends NetAnyMatches> =
   | ResponseFunc<Data, MatchType>
@@ -105,8 +107,15 @@ export type TriggerField<Data extends RaidbossData, MatchType extends NetAnyMatc
 // This trigger type is what we expect cactbot triggers to be written as,
 // in other words `id` is not technically required for triggers but for
 // built-in triggers it is.
-export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
+export type BaseTrigger<
+  Data extends RaidbossData,
+  Type extends TriggerTypes,
+> = Omit<BaseNetTrigger<Data, Type>, 'type' | 'netRegex'>;
+
+type BaseNetTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
   id: string;
+  type: Type;
+  netRegex: NetParams[Type] | CactbotBaseRegExp<Type>;
   disabled?: boolean;
   condition?: TriggerField<Data, NetMatches[Type], boolean | undefined>;
   preRun?: TriggerField<Data, NetMatches[Type], void>;
@@ -127,18 +136,13 @@ export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = 
   outputStrings?: OutputStrings;
 };
 
-type PartialNetRegexTrigger<T extends TriggerTypes> = {
-  type?: T;
-  netRegex: CactbotBaseRegExp<T>;
-};
-
 export type NetRegexTrigger<Data extends RaidbossData> = TriggerTypes extends infer T
-  ? T extends TriggerTypes ? (BaseTrigger<Data, T> & PartialNetRegexTrigger<T>) : never
+  ? T extends TriggerTypes ? BaseNetTrigger<Data, T>
+  : never
   : never;
 
 export type GeneralNetRegexTrigger<Data extends RaidbossData, T extends TriggerTypes> =
-  & BaseTrigger<Data, T>
-  & PartialNetRegexTrigger<T>;
+  BaseNetTrigger<Data, T>;
 
 type PartialRegexTrigger = {
   regex: RegExp;
@@ -159,8 +163,6 @@ export type TimelineField = string | TimelineFunc | undefined | TimelineField[];
 
 export type DataInitializeFunc<Data extends RaidbossData> = () => Omit<Data, keyof RaidbossData>;
 
-export type DisabledTrigger = { id: string; disabled: true };
-
 // This helper takes all of the properties in Type and checks to see if they can be assigned to a
 // blank object, and if so excludes them from the returned union. The `-?` syntax removes the
 // optional modifier from the attribute which prevents `undefined` from being included in the union
@@ -170,8 +172,15 @@ type RequiredFieldsAsUnion<Type> = {
 }[keyof Type];
 
 export type BaseTriggerSet<Data extends RaidbossData> = {
+  // Unique string for this trigger set.
+  id: string;
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId: ZoneIdType | number[];
+  // useful if the zoneId is an array or zone name is otherwise non-descriptive
+  zoneLabel?: LocaleText;
+  // trigger set ids to load configs from (this trigger set is loaded implicitly).
+  loadConfigs?: string[];
+  config?: NamedConfigEntry<Extract<keyof Data['triggerSetConfig'], string>>[];
   // If the timeline exists, but needs significant improvements and a rewrite.
   timelineNeedsFixing?: boolean;
   // If no timeline is possible for this zone, e.g. t3.
@@ -180,18 +189,18 @@ export type BaseTriggerSet<Data extends RaidbossData> = {
   overrideTimelineFile?: boolean;
   timelineFile?: string;
   timeline?: TimelineField;
-  triggers?: (NetRegexTrigger<Data> | DisabledTrigger)[];
-  timelineTriggers?: (TimelineTrigger<Data> | DisabledTrigger)[];
+  triggers?: NetRegexTrigger<Data>[];
+  timelineTriggers?: TimelineTrigger<Data>[];
   timelineReplace?: TimelineReplacement[];
   timelineStyles?: TimelineStyle[];
 };
 
 // If Data contains required properties that are not on RaidbossData, require initData
-export type TriggerSet<Data extends RaidbossData> =
+export type TriggerSet<Data extends RaidbossData = RaidbossData> =
   & BaseTriggerSet<Data>
   & (RequiredFieldsAsUnion<Data> extends RequiredFieldsAsUnion<RaidbossData> ? {
-    initData?: DataInitializeFunc<Data>;
-  }
+      initData?: DataInitializeFunc<Data>;
+    }
     : {
       initData: DataInitializeFunc<Data>;
     });
@@ -199,14 +208,10 @@ export type TriggerSet<Data extends RaidbossData> =
 // Less strict type for user triggers + built-in triggers, including deprecated fields.
 export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
 
-export type LooseTrigger = Partial<
-  & BaseTrigger<RaidbossData, 'None'>
-  & PartialRegexTrigger
-  & PartialNetRegexTrigger<'None'>
->;
+export type LooseTrigger = Partial<BaseNetTrigger<RaidbossData, 'None'> & PartialRegexTrigger>;
 
 export type LooseTriggerSet =
-  & Exclude<Partial<TriggerSet<RaidbossData>>, 'triggers' | 'timelineTriggers'>
+  & Omit<Partial<TriggerSet>, 'triggers' | 'timelineTriggers'>
   & {
     /** @deprecated Use zoneId instead */
     zoneRegex?:
@@ -214,6 +219,8 @@ export type LooseTriggerSet =
       | { [lang in Lang]?: RegExp };
     triggers?: LooseTrigger[];
     timelineTriggers?: LooseTimelineTrigger[];
+    filename?: string;
+    isUserTriggerSet?: boolean;
   };
 
 export interface RaidbossFileData {

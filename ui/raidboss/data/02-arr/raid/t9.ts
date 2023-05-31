@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
@@ -31,6 +30,7 @@ const diveDirections = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheSecondCoilOfBahamutTurn4',
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn4,
   timelineFile: 't9.txt',
   initData: () => {
@@ -85,7 +85,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Raven Blight You',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
+      netRegex: { effectId: '1CA' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       durationSeconds: 5,
@@ -97,14 +97,14 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Bile de rapace sur VOUS',
           ja: '自分に凶鳥毒気',
           cn: '毒气点名',
-          ko: '5초후 디버프 폭발',
+          ko: '흉조의 독 대상자',
         },
       },
     },
     {
       id: 'T9 Raven Blight Not You',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
+      netRegex: { effectId: '1CA' },
       condition: Conditions.targetIsNotYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       durationSeconds: 5,
@@ -116,28 +116,28 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Bile de rapace sur ${player}',
           ja: '${player}に凶鳥毒気',
           cn: '毒气点${player}',
-          ko: '광역폭발 디버프 ${player}',
+          ko: '${player} 흉조의 독',
         },
       },
     },
     {
       id: 'T9 Meteor',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000[7A9]' }),
+      netRegex: { id: '000[7A9]' },
       condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
       id: 'T9 Meteor Stream',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0008' }),
+      netRegex: { id: '0008' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'T9 Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '000F' }),
+      netRegex: { id: '000F' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.thermoOnYou!();
@@ -160,7 +160,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'T9 Phase 2',
       type: 'Ability',
       // Ravensclaw
-      netRegex: NetRegexes.ability({ id: '7D5', source: 'Nael Deus Darnus' }),
+      netRegex: { id: '7D5', source: 'Nael Deus Darnus' },
       condition: (data) => !data.beganMonitoringHp,
       preRun: (data) => data.beganMonitoringHp = true,
       promise: (_data, matches) =>
@@ -176,7 +176,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Earthshock',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7F5', source: 'Dalamud Spawn', capture: false }),
+      netRegex: { id: '7F5', source: 'Dalamud Spawn', capture: false },
       condition: (data) => data.CanSilence(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -193,7 +193,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Heavensfall',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
+      netRegex: { id: '83B', source: 'Nael Deus Darnus', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -209,7 +209,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Garotte Twist Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1CE' }),
+      netRegex: { effectId: '1CE' },
       condition: (data, matches) => data.me === matches.target && !data.garotte,
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.garotte = true,
@@ -227,7 +227,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Ghost Death',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7FA', source: 'The Ghost Of Meracydia', capture: false }),
+      netRegex: { id: '7FA', source: 'The Ghost Of Meracydia', capture: false },
       condition: (data) => data.garotte,
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -244,14 +244,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Garotte Twist Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '1CE' }),
+      netRegex: { effectId: '1CE' },
       condition: (data, matches) => data.me === matches.target && data.garotte,
       run: (data) => delete data.garotte,
     },
     {
       id: 'T9 Final Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      netRegex: { id: '7E6', source: 'Nael Deus Darnus', capture: false },
       condition: (data) => !data.seenFinalPhase,
       sound: 'Long',
       run: (data) => data.seenFinalPhase = true,
@@ -259,7 +259,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Dragon Locations',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ name: ['Firehorn', 'Iceclaw', 'Thunderwing'] }),
+      netRegex: { name: ['Firehorn', 'Iceclaw', 'Thunderwing'] },
       run: (data, matches) => {
         // Lowercase all of the names here for case insensitive matching.
         const allNames = {
@@ -295,7 +295,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Final Phase Reset',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      netRegex: { id: '7E6', source: 'Nael Deus Darnus', capture: false },
       run: (data) => {
         data.tetherCount = 0;
         data.naelDiveMarkerCount = 0;
@@ -338,7 +338,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Dragon Marks',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      netRegex: { id: '7E6', source: 'Nael Deus Darnus', capture: false },
       durationSeconds: 12,
       infoText: (data, _matches, output) =>
         output.marks!({
@@ -360,7 +360,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0005', source: 'Firehorn' }),
+      netRegex: { id: '0005', source: 'Firehorn' },
       preRun: (data) => {
         data.tetherCount++;
       },
@@ -388,6 +388,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Feu extérieur (sur VOUS)',
           ja: 'ファイヤ、外に (自分)',
           cn: '火球单吃点名',
+          ko: '불 대상자 밖으로',
         },
         fireInOnYou: {
           en: 'Fire In (on YOU)',
@@ -395,6 +396,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Feu intérieur (sur VOUS)',
           ja: 'ファイヤ、頭割り (自分)',
           cn: '火球集合点名',
+          ko: '불 대상자 같이맞기',
         },
         fireOutOn: {
           en: 'Fire Out (on ${player})',
@@ -402,6 +404,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Feu extérieur (sur ${player})',
           ja: 'ファイヤ、外に (${player})',
           cn: '火球单吃点${player}',
+          ko: '${player} 불 밖으로',
         },
         fireInOn: {
           en: 'Fire In (on ${player})',
@@ -409,13 +412,14 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Feu intérieur (sur ${player})',
           ja: 'ファイヤ、頭割り (${player})',
           cn: '火球集合点${player}',
+          ko: '${player} 불 같이맞기',
         },
       },
     },
     {
       id: 'T9 Thunder',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Thunderwing', id: '7FD' }),
+      netRegex: { source: 'Thunderwing', id: '7FD' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -432,11 +436,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Dragon Safe Zone',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014', capture: false }),
+      netRegex: { id: '0014', capture: false },
       delaySeconds: 3,
       durationSeconds: 6,
       suppressSeconds: 20,
-      infoText: (data, _matches, output) => output.safeZone!({ dir: output[data.safeZone ?? 'unknown']!() }),
+      infoText: (data, _matches, output) =>
+        output.safeZone!({ dir: output[data.safeZone ?? 'unknown']!() }),
       outputStrings: {
         ...diveDirections,
         safeZone: {
@@ -452,7 +457,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T9 Dragon Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014' }),
+      netRegex: { id: '0014' },
       condition: Conditions.targetIsYou(),
       alarmText: (data, matches, output) => {
         data.naelDiveMarkerCount ??= 0;

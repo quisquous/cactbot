@@ -1932,24 +1932,76 @@ const data: WeatherRateType = {
     ],
   },
   150: {
-    'rates': [],
-    'weathers': [],
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Dimensional Disruption',
+    ],
   },
   151: {
-    'rates': [],
-    'weathers': [],
+    'rates': [
+      50,
+      65,
+      80,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Rain',
+      'Thunderstorms',
+    ],
   },
   152: {
-    'rates': [],
-    'weathers': [],
+    'rates': [
+      50,
+      65,
+      80,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Rain',
+      'Showers',
+    ],
   },
   153: {
-    'rates': [],
-    'weathers': [],
+    'rates': [
+      40,
+      55,
+      70,
+      90,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Wind',
+      'Thunder',
+    ],
   },
   154: {
-    'rates': [],
-    'weathers': [],
+    'rates': [
+      50,
+      65,
+      80,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Rain',
+      'Showers',
+    ],
   },
   155: {
     'rates': [],

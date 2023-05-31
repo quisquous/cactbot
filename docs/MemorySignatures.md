@@ -159,6 +159,10 @@ and select **Find out what writes to this address**.
 This will ask you to attach the debugger, say yes.
 A new window will pop up.
 
+(If your game has crashed at this point,
+ensure "Try to prevent detection of the debugger"
+is checked under Edit > Settings > Debugger Options!)
+
 Go back to FFXIV, and modify the beast gauge.
 In this case, we'll hit infuriate to go from 30 to 80.
 

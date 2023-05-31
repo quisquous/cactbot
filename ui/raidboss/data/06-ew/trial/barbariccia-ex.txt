@@ -1,40 +1,40 @@
 ### Barbariccia Extreme
-### Barbariccia Extreme
 #
-# -ii 7413 7415 7581 7577 7578 7585 7586 7587 7588 7589 758B 7594 7598 75A1 75A0
+# -ii 7413 7415 7581 7577 7578 7585 7586 7587 7588 7589 758B 7594 7598 75A1 75A0 758E 758F 758A 7589 7596 75AB 7592 7582 7593 7590 759C 7382
 
 hideall "--Reset--"
 hideall "--sync--"
+hideall "Brush with Death"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
 0.0 "--sync--" sync /Engage!/ window 0,1
-10.4 "--sync--" sync / 14:[^:]*:Barbariccia:7570:/ window 11,10
+10.1 "--sync--" sync / 14:[^:]*:Barbariccia:7570:/ window 11,10
 15.1 "Void Aero IV" sync / 1[56]:[^:]*:Barbariccia:7570:/
 22.3 "Raging Storm" sync / 1[56]:[^:]*:Barbariccia:7572:/
 
 # Pattern 1a, linked with pattern 2a through 757A+7575 and 757A+757B
 # 6? Possible Spell Ids
-31.7 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/
-32.7 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7574|757A):/
-34.8 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7575|757B):/
+31.7 "--sync--" sync / 1[56]:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/
+32.7 "Savage Barbery (line/donut)" sync / 1[56]:[^:]*:Barbariccia:(7574|757A):/
+34.8 "Savage Barbery (out)" sync / 1[56]:[^:]*:Barbariccia:(7575|757B):/
 35.8 "Brush with Death" sync / 1[56]:[^:]*:Barbariccia:75A4:/
 
 # Pattern 1b, linked with Pattern 2b through 757C+757D and 757E+757F and also independently by 75A6 and 75A7
-44.9 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757C|757E):/
+44.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:(757C|757E):/
 46.9 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757D|757F):/
 49.1 "Hair Spray/Deadly Twist" sync / 1[56]:[^:]*:Barbariccia:(75A6|75A7):/
 
 51.0 "Raging Storm" sync / 1[56]:[^:]*:Barbariccia:7572:/
 
 # Pattern 2a
-60.4 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/
-61.4 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(757A|7574):/
-63.5 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(757B|7575):/
-
+60.4 "--sync--" sync / 1[56]:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/
+61.4 "Savage Barbery (donut/line)" sync / 1[56]:[^:]*:Barbariccia:(757A|7574):/
+63.5 "Savage Barbery (out)" sync / 1[56]:[^:]*:Barbariccia:(757B|7575):/
 64.5 "Brush with Death" sync / 1[56]:[^:]*:Barbariccia:75A4:/
 
 # Pattern 2b
-73.6 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757E|757C):/
+73.6 "--sync--" sync / 1[56]:[^:]*:Barbariccia:(757E|757C):/
 75.6 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757F|757D):/
 77.9 "Deadly Twist/Hair Spray" sync / 1[56]:[^:]*:Barbariccia:(75A7|75A6):/
 
@@ -44,125 +44,99 @@ hideall "--sync--"
 
 # Teasing Tangles 1
 107.2 "Teasing Tangles" sync / 1[56]:[^:]*:Barbariccia:75A9:/
-107.8 "Tangle" sync / 1[56]:[^:]*:Barbariccia:75AB:/
 108.0 "Fetters" sync / 1[56]:[^:]*:Barbariccia:75B0:/
 109.5 "--sync--" sync / 1[56]:[^:]*:Barbariccia:75AC:/
 110.3 "Brush with Death" sync / 1[56]:[^:]*:Barbariccia:75A3:/
-118.7 "Secret Breeze" sync / 1[56]:[^:]*:Barbariccia:7580:/
 119.1 "Upbraid" sync / 1[56]:[^:]*:Barbariccia:75A8:/
-119.6 "Secret Breeze 1" #sync / 1[56]:[^:]*:Barbariccia:7415:/
-121.6 "Secret Breeze 2" #sync / 1[56]:[^:]*:Barbariccia:7581:/
+119.6 "Secret Breeze (ground)" #sync / 1[56]:[^:]*:Barbariccia:7415:/
+121.6 "Secret Breeze (protean)" #sync / 1[56]:[^:]*:Barbariccia:7581:/
 130.7 "Void Aero IV" sync / 1[56]:[^:]*:Barbariccia:7570:/
 137.9 "Raging Storm" sync / 1[56]:[^:]*:Barbariccia:7572:/
 
-# Tansition 1 - First Curling Iron
-146.3 "Curling Iron" sync / 1[56]:[^:]*:Barbariccia:75B2:/
+# Transition 1 - First Curling Iron
+146.3 "--sync--" sync / 1[56]:[^:]*:Barbariccia:75B2:/
 152.0 "Voidstrom" duration 2 #sync / 1[56]:[^:]*:Barbariccia:7577:/
 154.5 "Curling Iron" sync / 1[56]:[^:]*:Barbariccia:75B3:/
-156.9 "Catabasis" sync / 1[56]:[^:]*:Barbariccia:75B4:/
+156.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:75B4:/
 160.6 "--untargetable--"
-163.7 "Catabasis" sync / 1[56]:[^:]*:Barbariccia:7488:/
+163.7 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7488:/
 171.7 "Catabasis" sync / 1[56]:[^:]*:Barbariccia:7576:/
 
 ### Phase 2
 171.8 "--targetable--"
-175.9 "Brutal Rush 1" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-177.7 "Brutal Rush 2" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-179.4 "Brutal Rush 3" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-181.2 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/ duration 2.3
-182.8 "Boulder Break" sync / 1[56]:[^:]*:Barbariccia:7382:/
-188.0 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
+175.9 "Brutal Rush 1" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+177.7 "Brutal Rush 2" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+179.4 "Brutal Rush 3" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+181.2 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/
 190.1 "Winding Gale" sync / 1[56]:[^:]*:Barbariccia:7486:/
 190.9 "Boulder Break" sync / 1[56]:[^:]*:Barbariccia:7383:/
 192.7 "Brush with Death" sync / 1[56]:[^:]*:Barbariccia:75A5:/
-195.8 "Boulder" sync / 1[56]:[^:]*:Barbariccia:759C:/
-195.8 "Winding Gale" sync / 1[56]:[^:]*:Barbariccia:758A:/
-196.2 "Winding Gale" sync / 1[56]:[^:]*:Barbariccia:7589:/
-197.7 "Winding Gale" sync / 1[56]:[^:]*:Barbariccia:758A:/
-198.2 "Winding Gale" sync / 1[56]:[^:]*:Barbariccia:7589:/
 203.8 "Brittle Boulder" sync / 1[56]:[^:]*:Barbariccia:759E:/
 204.6 "Winding Gale" sync / 1[56]:[^:]*:Barbariccia:7486:/
 204.8 "Boulder" sync / 1[56]:[^:]*:Barbariccia:759D:/
-207.6 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758E:/
-208.4 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758C:/
-210.2 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758F:/
-210.9 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758D:/
+208.4 "Tornado Chain (out)" sync / 1[56]:[^:]*:Barbariccia:758C:/
+210.9 "Tornado Chain (in)" sync / 1[56]:[^:]*:Barbariccia:758D:/
 212.0 "Upbraid" sync / 1[56]:[^:]*:Barbariccia:75A8:/
-214.9 "Brutal Rush 1" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-216.5 "Brutal Rush 2" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-218.3 "Brutal Rush 3" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-219.9 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/ duration 2.3
-221.5 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
+214.9 "Brutal Rush 1" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+216.5 "Brutal Rush 2" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+218.3 "Brutal Rush 3" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+219.9 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/
 222.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7597:/
 225.2 "Knuckle Drum" duration 7.5 #sync / 1[56]:[^:]*:Barbariccia:7598:/
 232.7 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7599:/
 234.8 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7595:/
-238.5 "Brutal Rush 1" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-240.1 "Brutal Rush 2" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-240.5 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
-241.7 "Brutal Rush 3" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-242.5 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
-243.3 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/ duration 2.3
-244.5 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
-244.9 "Bold Boulder" sync / 1[56]:[^:]*:Barbariccia:759A:/
-246.5 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
+238.5 "Brutal Rush 1" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+240.1 "Brutal Rush 2" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+241.7 "Brutal Rush 3" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+243.3 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/
+244.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:759A:/
 250.1 "Impact" sync / 1[56]:[^:]*:Barbariccia:759F:/
 252.9 "Bold Boulder" sync / 1[56]:[^:]*:Barbariccia:759B:/
 253.3 "Trample" sync / 1[56]:[^:]*:Barbariccia:75A2:/
-256.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
-259.1 "Brutal Rush 1" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-260.7 "Brutal Rush 2" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-262.3 "Brutal Rush 3" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-264.0 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/ duration 2.3
-265.6 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
+259.1 "Brutal Rush 1" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+260.7 "Brutal Rush 2" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+262.3 "Brutal Rush 3" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+264.0 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/
 
 # Teasing Tangles 2
 266.7 "Teasing Tangles" sync / 1[56]:[^:]*:Barbariccia:75AA:/
 267.5 "Fetters" sync / 1[56]:[^:]*:Barbariccia:75B0:/
-267.7 "Tangle" sync / 1[56]:[^:]*:Barbariccia:75AB:/
-269.0 "--sync--" sync / 1[56]:[^:]*:Barbariccia:75AC:/
 269.0 "--sync--" sync / 1[56]:[^:]*:Barbariccia:75AC:/
 270.8 "Blustery Ruler" sync / 1[56]:[^:]*:Barbariccia:7591:/
-271.6 "Blustery Ruler" sync / 1[56]:[^:]*:Barbariccia:7590:/
-274.4 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7593:/
 278.0 "Brush with Death" sync / 1[56]:[^:]*:Barbariccia:75A5:/
 279.1 "Dry Blows" duration 8.2 #sync / 1[56]:[^:]*:Barbariccia:7594:/
-283.6 "Tousle" sync / 1[56]:[^:]*:Stiff Breeze:7592:/
-285.0 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758E:/
-285.7 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758C:/
-287.4 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758F:/
-288.1 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758D:/
+285.7 "Tornado Chain (out)" sync / 1[56]:[^:]*:Barbariccia:758C:/
+288.1 "Tornado Chain (in)" sync / 1[56]:[^:]*:Barbariccia:758D:/
 290.0 "Upbraid" sync / 1[56]:[^:]*:Barbariccia:75A8:/
 291.0 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7597:/
 293.3 "Knuckle Drum" duration 7.5 #sync / 1[56]:[^:]*:Barbariccia:7598:/
 300.8 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7599:/
-302.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
 
 # Transition 2
-304.2 "Iron Out" sync / 1[56]:[^:]*:Barbariccia:75B5:/
+304.2 "--sync--" sync / 1[56]:[^:]*:Barbariccia:75B5:/
 309.4 "Voidstrom" duration 2 #sync / 1[56]:[^:]*:Barbariccia:7577:/
 312.4 "Iron Out" sync / 1[56]:[^:]*:Barbariccia:7455:/
 318.5 "Raging Storm" sync / 1[56]:[^:]*:Barbariccia:7572:/
 
-# Playtation 1
+# Playstation 1
 325.6 "Entanglement" sync / 1[56]:[^:]*:Barbariccia:75AD:/
 326.4 "Fetters" sync / 1[56]:[^:]*:Barbariccia:75B0:/
 327.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:75AF:/
-335.1 "Secret Breeze" sync / 1[56]:[^:]*:Barbariccia:7580:/
-336.1 "Secret Breeze 1" #sync / 1[56]:[^:]*:Barbariccia:7415:/
-338.2 "Secret Breeze 2" #sync / 1[56]:[^:]*:Barbariccia:7581:/
+335.1 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7580:/
+336.1 "Secret Breeze (ground)" #sync / 1[56]:[^:]*:Barbariccia:7415:/
+338.2 "Secret Breeze (protean)" #sync / 1[56]:[^:]*:Barbariccia:7581:/
 
 # Pattern 3a, linked with pattern 4a through 757A+7575 and 757A+757B
-347.4 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/
-348.4 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7574|757A):/
-350.5 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7575|757B):/
+347.4 "--sync--" sync / 1[56]:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/
+348.4 "Savage Barbery (line/donut)" sync / 1[56]:[^:]*:Barbariccia:(7574|757A):/
+350.5 "Savage Barbery (out)" sync / 1[56]:[^:]*:Barbariccia:(7575|757B):/
 
 351.5 "Brush with Death" sync / 1[56]:[^:]*:Barbariccia:75A4:/
 
 # Pattern 3b, linked with Pattern 4b through 757C+757D and 757E+757F and also independently by 75A6 and 75A7
-360.6 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757C|757E):/
+360.6 "--sync--" sync / 1[56]:[^:]*:Barbariccia:(757C|757E):/
 362.6 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757D|757F):/
-364.9 "Deadly Twist/Hair Spray" sync / 1[56]:[^:]*:Barbariccia:(75A7/75A6):/
+364.9 "Deadly Twist/Hair Spray" sync / 1[56]:[^:]*:Barbariccia:(75A7|75A6):/
 
 373.8 "Void Aero IV" sync / 1[56]:[^:]*:Barbariccia:7570:/
 380.9 "Void Aero III" sync / 1[56]:[^:]*:Barbariccia:7571:/
@@ -171,18 +145,17 @@ hideall "--sync--"
 # Playstation 2
 395.2 "Entanglement" sync / 1[56]:[^:]*:Barbariccia:75AD:/
 396.0 "Fetters" sync / 1[56]:[^:]*:Barbariccia:75B0:/
-396.0 "Fetters" sync / 1[56]:[^:]*:Barbariccia:75B0:/
 397.5 "--sync--" sync / 1[56]:[^:]*:Barbariccia:75AF:/
 400.4 "Brush with Death" sync / 1[56]:[^:]*:Barbariccia:75A3:/
 409.2 "Upbraid" sync / 1[56]:[^:]*:Barbariccia:75A8:/
 
 # Pattern 4a
-416.7 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/
-417.7 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(757A|7574):/
-419.8 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(757B|7575):/
+416.7 "--sync--" sync / 1[56]:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/
+417.7 "Savage Barbery (donut/line)" sync / 1[56]:[^:]*:Barbariccia:(757A|7574):/
+419.8 "Savage Barbery (out)" sync / 1[56]:[^:]*:Barbariccia:(757B|7575):/
 
 # Pattern 4b
-426.8 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757C|757E):/
+426.8 "--sync--" sync / 1[56]:[^:]*:Barbariccia:(757C|757E):/
 428.8 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757D|757F):/
 430.7 "Hair Spray/Deadly Twist" sync / 1[56]:[^:]*:Barbariccia:(75A6|75A7):/
 
@@ -190,75 +163,50 @@ hideall "--sync--"
 447.1 "Raging Storm" sync / 1[56]:[^:]*:Barbariccia:7572:/
 
 # Transition 3 - Second Curling Iron
-455.4 "Curling Iron" sync / 1[56]:[^:]*:Barbariccia:75B2:/
+455.4 "--sync--" sync / 1[56]:[^:]*:Barbariccia:75B2:/
 460.7 "Voidstrom" duration 2 #sync / 1[56]:[^:]*:Barbariccia:7577:/
 463.7 "Curling Iron" sync / 1[56]:[^:]*:Barbariccia:75B3:/
 
-468.8 "Brutal Rush 1" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-470.6 "Brutal Rush 2" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-472.3 "Brutal Rush 3" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-474.1 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/ duration 2.3
-475.7 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
+468.8 "Brutal Rush 1" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+470.6 "Brutal Rush 2" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+472.3 "Brutal Rush 3" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+474.1 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/
 477.1 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7597:/
 479.4 "Knuckle Drum" duration 7.5 #sync / 1[56]:[^:]*:Barbariccia:7598:/
 486.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7599:/
 489.0 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7595:/
-494.7 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
-495.2 "Boulder" sync / 1[56]:[^:]*:Barbariccia:759C:/
-496.7 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
-498.7 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
-500.5 "Brutal Rush 1" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-500.7 "Blow Away" sync / 1[56]:[^:]*:Barbariccia:7596:/
-502.1 "Brutal Rush 2" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
+500.5 "Brutal Rush 1" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+502.1 "Brutal Rush 2" #sync / 1[56]:[^:]*:Barbariccia:7583:/
 503.1 "Brittle Boulder" sync / 1[56]:[^:]*:Barbariccia:759E:/
-503.7 "Brutal Rush 3" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
+503.7 "Brutal Rush 3" #sync / 1[56]:[^:]*:Barbariccia:7583:/
 504.1 "Boulder" sync / 1[56]:[^:]*:Barbariccia:759D:/
-505.4 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/ duration 2.3
-507.0 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
+505.4 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/
 509.2 "Brush with Death" sync / 1[56]:[^:]*:Barbariccia:75A5:/
-512.3 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758E:/
-513.1 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758C:/
-514.9 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758F:/
-515.6 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758D:/
+513.1 "Tornado Chain (out)" sync / 1[56]:[^:]*:Barbariccia:758C:/
+515.6 "Tornado Chain (in)" sync / 1[56]:[^:]*:Barbariccia:758D:/
 518.5 "Impact" sync / 1[56]:[^:]*:Barbariccia:759F:/
 521.0 "Hair Spray" sync / 1[56]:[^:]*:Barbariccia:75A6:/
-522.8 "Brutal Rush 1" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-524.4 "Brutal Rush 2" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-526.2 "Brutal Rush 3" sync / 1[56]:[^:]*:Barbariccia:7583:/ duration 2.3
-527.9 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/ duration 2.3
-529.5 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
-530.2 "Brutal Gust 4" sync / 1[56]:[^:]*:Barbariccia:7585:/
+522.8 "Brutal Rush 1" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+524.4 "Brutal Rush 2" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+526.2 "Brutal Rush 3" #sync / 1[56]:[^:]*:Barbariccia:7583:/
+527.9 "Brutal Rush 4" sync / 1[56]:[^:]*:Barbariccia:7584:/
 530.6 "Blustery Ruler" sync / 1[56]:[^:]*:Barbariccia:7591:/
-531.1 "Blustery Ruler" sync / 1[56]:[^:]*:Barbariccia:7590:/
-534.2 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7593:/
-537.8 "Boulder Break" sync / 1[56]:[^:]*:Barbariccia:7382:/
 538.9 "Dry Blows" duration 8.2 #sync / 1[56]:[^:]*:Barbariccia:7594:/
-542.8 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758E:/
-543.6 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758C:/
-545.4 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758F:/
-545.7 "Tousle" sync / 1[56]:[^:]*:Stiff Breeze:7592:/
-546.2 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758D:/
+543.6 "Tornado Chain (out)" sync / 1[56]:[^:]*:Barbariccia:758C:/
+546.2 "Tornado Chain (in)" sync / 1[56]:[^:]*:Barbariccia:758D:/
 548.8 "Boulder Break" sync / 1[56]:[^:]*:Barbariccia:7383:/
 554.2 "Winding Gale" sync / 1[56]:[^:]*:Barbariccia:7486:/
-556.8 "Bold Boulder" sync / 1[56]:[^:]*:Barbariccia:759A:/
-560.0 "Winding Gale" sync / 1[56]:[^:]*:Barbariccia:758A:/
-560.4 "Winding Gale" sync / 1[56]:[^:]*:Barbariccia:7589:/
-561.9 "Winding Gale" sync / 1[56]:[^:]*:Barbariccia:758A:/
-561.9 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758C:/
-562.0 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758E:/
-562.4 "Winding Gale" sync / 1[56]:[^:]*:Barbariccia:7589:/
-564.4 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758D:/
-564.7 "Tornado Chain" sync / 1[56]:[^:]*:Barbariccia:758F:/
+561.9 "Tornado Chain (out)" sync / 1[56]:[^:]*:Barbariccia:758C:/
+564.4 "Tornado Chain (in)" sync / 1[56]:[^:]*:Barbariccia:758D:/
 569.2 "Winding Gale" sync / 1[56]:[^:]*:Barbariccia:7486:/
 572.0 "Trample" sync / 1[56]:[^:]*:Barbariccia:75A2:/
 572.9 "Bold Boulder" sync / 1[56]:[^:]*:Barbariccia:759B:/
-575.6 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7582:/
 576.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7597:/
 579.2 "Knuckle Drum" duration 7.5 #sync / 1[56]:[^:]*:Barbariccia:7598:/
 586.7 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7599:/
 
 # Transition 4
-589.0 "Iron Out" sync / 1[56]:[^:]*:Barbariccia:75B5:/
+589.0 "--sync--" sync / 1[56]:[^:]*:Barbariccia:75B5:/
 594.2 "Voidstrom" duration 2 #sync / 1[56]:[^:]*:Barbariccia:7577:/
 597.2 "Iron Out" sync / 1[56]:[^:]*:Barbariccia:7455:/
 603.3 "Raging Storm" sync / 1[56]:[^:]*:Barbariccia:7572:/
@@ -267,22 +215,24 @@ hideall "--sync--"
 610.4 "Entanglement" sync / 1[56]:[^:]*:Barbariccia:75AD:/
 611.2 "Fetters" sync / 1[56]:[^:]*:Barbariccia:75B0:/
 612.7 "--sync--" sync / 1[56]:[^:]*:Barbariccia:75AF:/
-619.9 "Secret Breeze" sync / 1[56]:[^:]*:Barbariccia:7580:/
-620.9 "Secret Breeze 1" #sync / 1[56]:[^:]*:Barbariccia:7415:/
-622.9 "Secret Breeze 2" #sync / 1[56]:[^:]*:Barbariccia:7581:/
+619.9 "--sync--" sync / 1[56]:[^:]*:Barbariccia:7580:/
+620.9 "Secret Breeze (ground)" #sync / 1[56]:[^:]*:Barbariccia:7415:/
+622.9 "Secret Breeze (protean)" #sync / 1[56]:[^:]*:Barbariccia:7581:/
 
 # Pattern 5a
-628.2 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/
-629.2 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7574|757A):/
-631.3 "Savage Barbery" sync / 1[56]:[^:]*:Barbariccia:(7575|757B):/
+628.2 "--sync--" sync / 1[56]:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/
+629.2 "Savage Barbery (line/donut)" sync / 1[56]:[^:]*:Barbariccia:(7574|757A):/
+631.3 "Savage Barbery (out)" sync / 1[56]:[^:]*:Barbariccia:(7575|757B):/
 
 632.3 "Brush with Death" sync / 1[56]:[^:]*:Barbariccia:75A4:/
 
 # Pattern 5b
-641.4 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757C|757E):/
+641.4 "--sync--" sync / 1[56]:[^:]*:Barbariccia:(757C|757E):/
 643.4 "Hair Raid" sync / 1[56]:[^:]*:Barbariccia:(757D|757E):/
 645.7 "Hair Spray/Deadly Twist" sync / 1[56]:[^:]*:Barbariccia:(75A6|75A7):/
 
 654.6 "Void Aero IV" sync / 1[56]:[^:]*:Barbariccia:7570:/
 656.7 "Raging Storm" sync / 1[56]:[^:]*:Barbariccia:7572:/
+
+660.0 "--sync--" sync / 14:[^:]*:Barbariccia:75BE:/ window 700,10
 669.0 "Maelstrom (enrage)" sync / 1[56]:[^:]*:Barbariccia:75BE:/

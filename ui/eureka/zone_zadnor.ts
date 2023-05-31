@@ -358,7 +358,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 24.1,
       y: 37.4,
-      fateID: 1717,
+      fateId: 1717,
     },
     partsandparcel: {
       label: {
@@ -380,7 +380,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 22.8,
       y: 34.2,
-      fateID: 1718,
+      fateId: 1718,
     },
     animmoraldilemma: {
       label: {
@@ -403,7 +403,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 22.7,
       y: 34.2,
-      fateID: 1719,
+      fateId: 1719,
     },
     deadlydivination: {
       label: {
@@ -424,7 +424,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 24.8,
       y: 31.4,
-      fateID: 1720,
+      fateId: 1720,
     },
     awrenchinthereconnaissanceeffort: {
       label: {
@@ -445,7 +445,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 29.4,
       y: 35.4,
-      fateID: 1721,
+      fateId: 1721,
     },
     anotherpilotepisode: {
       label: {
@@ -467,7 +467,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 28.0,
       y: 29.2,
-      fateID: 1722,
+      fateId: 1722,
     },
     breakingtheice: {
       label: {
@@ -488,7 +488,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 24.8,
       y: 31.1,
-      fateID: 1723,
+      fateId: 1723,
     },
     meetthepuppetmaster: {
       label: {
@@ -510,7 +510,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 24.1,
       y: 37.4,
-      fateID: 1724,
+      fateId: 1724,
     },
     challengeaccepted: {
       label: {
@@ -532,7 +532,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 7.2,
       y: 28.8,
-      fateID: 1725,
+      fateId: 1725,
     },
     thubantheterrible: {
       label: {
@@ -553,7 +553,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 8.6,
       y: 34.4,
-      fateID: 1726,
+      fateId: 1726,
     },
     anendtoatrocities: {
       label: {
@@ -576,7 +576,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 4.9,
       y: 25.3,
-      fateID: 1727,
+      fateId: 1727,
     },
     ajustpursuit: {
       label: {
@@ -598,7 +598,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 11.6,
       y: 27.6,
-      fateID: 1728,
+      fateId: 1728,
     },
     tankingup: {
       label: {
@@ -620,7 +620,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 8.1,
       y: 24.0,
-      fateID: 1729,
+      fateId: 1729,
     },
     supersolderrising: {
       label: {
@@ -642,7 +642,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 8.1,
       y: 24.0,
-      fateID: 1730,
+      fateId: 1730,
     },
     dementedmentor: {
       label: {
@@ -664,7 +664,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 7.2,
       y: 28.8,
-      fateID: 1731,
+      fateId: 1731,
     },
     severthestrings: {
       label: {
@@ -686,7 +686,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 11.6,
       y: 27.6,
-      fateID: 1732,
+      fateId: 1732,
     },
     thebeastsareback: {
       label: {
@@ -708,7 +708,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 25.4,
       y: 14.3,
-      fateID: 1733,
+      fateId: 1733,
     },
     stillonlycountsasone: {
       label: {
@@ -729,7 +729,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 14.5,
       y: 10.4,
-      fateID: 1734,
+      fateId: 1734,
     },
     seeqandyouwillfind: {
       label: {
@@ -751,7 +751,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 20.3,
       y: 16.5,
-      fateID: 1735,
+      fateId: 1735,
     },
     meanspirited: {
       label: {
@@ -773,7 +773,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 25.4,
       y: 14.3,
-      fateID: 1736,
+      fateId: 1736,
     },
     arelicunleashed: {
       label: {
@@ -795,7 +795,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 25.4,
       y: 14.3,
-      fateID: 1737,
+      fateId: 1737,
     },
     whenmagesrage: {
       label: {
@@ -816,7 +816,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 20.3,
       y: 16.5,
-      fateID: 1738,
+      fateId: 1738,
     },
     hypertunedhavoc: {
       label: {
@@ -839,7 +839,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 16.6,
       y: 16.8,
-      fateID: 1739,
+      fateId: 1739,
     },
     attackofthesupersoldiers: {
       label: {
@@ -862,7 +862,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 16.6,
       y: 16.8,
-      fateID: 1740,
+      fateId: 1740,
     },
     thestudentbecalmsthemaster: {
       label: {
@@ -884,7 +884,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 14.5,
       y: 10.4,
-      fateID: 1741,
+      fateId: 1741,
     },
     attackofthemachines: {
       label: {
@@ -905,7 +905,7 @@ export const zoneInfoZadnor: EurekaZoneInfo = {
       },
       x: 12.1,
       y: 13.6,
-      fateID: 1742,
+      fateId: 1742,
     },
     dalriada: {
       label: {

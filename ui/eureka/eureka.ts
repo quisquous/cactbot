@@ -62,7 +62,7 @@ type NMInfo = {
   respawnTimeMsTracker?: number;
 
   // Eureka
-  fateID?: number;
+  fateId?: number;
   trackerName?: LocaleText;
   weather?: string;
   time?: string;
@@ -221,8 +221,13 @@ class EurekaTracker {
   private zoneId?: ZoneIdType;
   private zoneInfo?: EurekaZoneInfo;
   private updateTimesHandle?: number;
-  private fateQueue: EventResponses['onFateEvent'][] = [];
-  private CEQueue: EventResponses['onCEEvent'][] = [];
+
+  private fateQueue: NetMatches['FateDirector'][] = [];
+  private ceQueue: NetMatches['CEDirector'][] = [];
+  private activeFates: Set<number> = new Set();
+  private activeCEs: Set<number> = new Set();
+  private fateRegex = NetRegexes.fateDirector();
+  private ceRegex = NetRegexes.ceDirector();
 
   private playerElement?: HTMLElement;
   private fairyRegex?: CactbotBaseRegExp<'AddedCombatant'>;
@@ -266,7 +271,7 @@ class EurekaTracker {
 
     const scale = sizeFactor / 100;
     const val = (coord + offset) * scale;
-    return ((41 / scale) * ((val + 1024) / 2048)) + 1;
+    return 41 / scale * ((val + 1024) / 2048) + 1;
   }
 
   EntityToMapX(x: number) {
@@ -466,7 +471,7 @@ class EurekaTracker {
     let respawnTimeMs = 120 * 60 * 1000;
     if (nm.respawnMinutes)
       respawnTimeMs = nm.respawnMinutes * 60 * 1000;
-    return respawnTimeMs + (+new Date());
+    return respawnTimeMs + +new Date();
   }
 
   DebugPrint(str: string) {
@@ -546,14 +551,14 @@ class EurekaTracker {
 
   ProcessFateQueue() {
     for (const fate of this.fateQueue)
-      this.OnFate(fate);
+      this.OnFateLine(fate);
     this.fateQueue = [];
   }
 
   ProcessCEQueue() {
-    for (const ce of this.CEQueue)
-      this.OnCE(ce);
-    this.CEQueue = [];
+    for (const ce of this.ceQueue)
+      this.OnCELine(ce);
+    this.ceQueue = [];
   }
 
   UpdateTimes() {
@@ -754,7 +759,7 @@ class EurekaTracker {
         throw new UnreachableCode();
       const nm = trackerToNM[name.toLowerCase()];
       if (nm)
-        nm.respawnTimeMsTracker = (parseFloat(time) * 60 * 1000) + (+new Date());
+        nm.respawnTimeMsTracker = parseFloat(time) * 60 * 1000 + +new Date();
       else
         console.error(`Invalid NM Import: ${name}`);
     }
@@ -797,39 +802,53 @@ class EurekaTracker {
       const fairy = this.fairyRegex.exec(log)?.groups;
       if (fairy)
         this.AddFairy(fairy);
+    } else if (type === logDefinitions.FateDirector.type) {
+      this.OnFateLine(this.fateRegex.exec(log)?.groups);
+    } else if (type === logDefinitions.CEDirector.type) {
+      this.OnCELine(this.ceRegex.exec(log)?.groups);
     }
   }
 
-  OnFate(e: EventResponses['onFateEvent']) {
+  OnFateLine(matches?: NetMatches['FateDirector']) {
+    if (matches === undefined)
+      return;
+
     // Upon entering Eureka we usually receive the fate info before
     // this.zoneInfo is loaded, so lets store the events until we're
     // able to process them.
     if (!this.zoneInfo) {
-      this.fateQueue.push(e);
+      this.fateQueue.push(matches);
       return;
     }
 
-    switch (e.detail.eventType) {
-      case 'add':
+    const fateId = parseInt(matches.fateId, 16);
+    switch (matches.category) {
+      case 'Add':
         for (const nm of Object.values(this.nms)) {
-          if (e.detail.fateID === nm.fateID) {
+          if (fateId === nm.fateId) {
+            this.activeFates.add(fateId);
             this.OnFatePop(nm);
             return;
           }
         }
         break;
-      case 'remove':
+      case 'Remove':
         for (const nm of Object.values(this.nms)) {
-          if (e.detail.fateID === nm.fateID) {
+          if (fateId === nm.fateId) {
+            this.activeFates.delete(fateId);
             this.OnFateKill(nm);
             return;
           }
         }
         break;
-      case 'update':
+      case 'Update':
         for (const nm of Object.values(this.nms)) {
-          if (e.detail.fateID === nm.fateID) {
-            this.OnFateUpdate(nm, e.detail.progress);
+          if (fateId === nm.fateId) {
+            if (!this.activeFates.has(fateId)) {
+              this.OnFatePop(nm);
+              this.activeFates.add(fateId);
+            }
+            this.OnFateUpdate(nm, parseInt(matches.progress, 16));
             return;
           }
         }
@@ -837,32 +856,34 @@ class EurekaTracker {
     }
   }
 
-  OnCE(e: EventResponses['onCEEvent']) {
+  OnCELine(matches?: NetMatches['CEDirector']) {
+    if (matches === undefined)
+      return;
+
     // Upon entering Eureka we usually receive the CE info before
     // this.zoneInfo is loaded, so lets store the events until we're
     // able to process them.
-    // TODO: don't make pop noises for CEs that have already started.
-
     if (!this.zoneInfo) {
-      this.CEQueue.push(e);
+      this.ceQueue.push(matches);
       return;
     }
 
-    const nm = Object.values(this.nms).find((nm) => e.detail.data.ceKey === nm.ceKey);
+    const ceKey = parseInt(matches.ceKey, 16);
+    const nm = Object.values(this.nms).find((nm) => ceKey === nm.ceKey);
     if (!nm)
       return;
 
-    switch (e.detail.eventType) {
-      case 'add':
-        this.OnFatePop(nm);
-        break;
-      case 'remove':
+    if (this.activeCEs.has(ceKey)) {
+      if (parseInt(matches.status) === 0) {
+        this.activeCEs.delete(ceKey);
         this.OnFateKill(nm);
-        break;
-      case 'update':
-        if (e.detail.data.status === 3)
-          this.OnFateUpdate(nm, e.detail.data.progress);
-        break;
+      } else {
+        this.OnFateUpdate(nm, parseInt(matches.progress, 16));
+      }
+    } else {
+      // TODO: don't make pop noises for CEs that have already started.
+      this.activeCEs.add(ceKey);
+      this.OnFatePop(nm);
     }
   }
 
@@ -967,11 +988,5 @@ UserConfig.getUserConfigLocation('eureka', defaultOptions, () => {
   });
   addOverlayListener('LogLine', (e) => {
     tracker.OnNetLog(e);
-  });
-  addOverlayListener('onFateEvent', (e) => {
-    tracker.OnFate(e);
-  });
-  addOverlayListener('onCEEvent', (e) => {
-    tracker.OnCE(e);
   });
 });

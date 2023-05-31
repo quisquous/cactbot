@@ -1,0 +1,394 @@
+### The Voidcast Dais (Extreme)
+# -ii 84B5 84B7 849E 84A8 84AA 8481 86B2 8461
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+0.0 "--sync--" sync /Engage!/ window 0,1
+# Exclude the first auto since it's delayed wildly depending on tank movement
+9.4 "--sync--" sync / 14:[^:]*:Golbez:8464:/ window 15,15
+12.4 "Terrastorm (cast)" sync / 1[56]:[^:]*:Golbez:8464:/
+21.5 "Terrastorm (hit)" sync / 1[56]:[^:]*:Golbez:8466:/
+22.5 "Lingering Spark (snapshot)" sync / 1[56]:[^:]*:Golbez:8468:/
+26.6 "Lingering Spark (explode)" sync / 1[56]:[^:]*:Golbez:846A:/
+31.8 "Phases of the Blade (cast)" sync / 1[56]:[^:]*:Golbez:86DB:/
+33.6 "Phases of the Blade (front)" sync / 1[56]:[^:]*:Golbez:86DD:/
+35.3 "Phases of the Blade (back)" sync / 1[56]:[^:]*:Golbez:86F2:/
+44.6 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+
+52.8 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+57.9 "Gale Sphere" sync / 1[56]:[^:]*:Golbez:844D:/
+68.6 "--sync--" sync / 1[56]:[^:]*:Golbez:844E:/
+71.2 "Gale Sphere 1" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
+73.6 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
+74.6 "Gale Sphere 2" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
+77.9 "Gale Sphere 3" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
+81.5 "Gale Sphere 4" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
+86.7 "Phases of the Blade (cast)" sync / 1[56]:[^:]*:Golbez:86DB:/
+88.6 "Phases of the Blade (front)" sync / 1[56]:[^:]*:Golbez:86DD:/
+90.3 "Phases of the Blade (back)" sync / 1[56]:[^:]*:Golbez:86F2:/
+99.7 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+
+107.8 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84AD:/
+107.9 "Void Comet x4" duration 3 #sync / 1[56]:[^:]*:Golbez:84B0:/
+111.9 "Void Meteor (big)" sync / 1[56]:[^:]*:Golbez:84B1:/
+
+119.0 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+126.3 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:86FF:/
+136.4 "--sync--" sync / 1[56]:[^:]*:Shadow Dragon:8472:/
+136.4 "Black Fang (big)" sync / 1[56]:[^:]*:Golbez:8471:/
+140.3 "Black Fang (small) x5" sync / 1[56]:[^:]*:Golbez:871A:/
+143.1 "Black Fang (big)" sync / 1[56]:[^:]*:Golbez:8474:/
+
+# After this point, there's two possible sets of mechanics for each mini-phase
+# 8478 = type 1
+#   If buster is next, this leads to out + light parties, after exaflares if this is the 2nd/3rd iteration
+# 8479 = type 2
+#   If buster is next, this leads to in -> spread, after exaflares if this is the 2nd/3rd iteration
+
+
+144.4 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
+159.5 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/ jump 200.0
+159.5 "--sync--" sync / 1[56]:[^:]*:Golbez:8479:/ jump 300.0
+164.7 "Flames of Eventide 1"
+167.8 "Flames of Eventide 2"
+170.9 "Flames of Eventide 3"
+
+# Mini-phase 1, in then spread, or out then light parties
+
+# out -> light parties variation
+
+200.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/
+205.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
+208.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
+211.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
+213.4 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+
+220.7 "Phases of the Shadow (cast)" sync / 1[56]:[^:]*:Golbez:86E7:/
+222.5 "Rising Beacon (record)" sync / 1[56]:[^:]*:Shadow Dragon:848D:/
+222.5 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E9:/
+224.2 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
+225.4 "Rising Beacon (out)" sync / 1[56]:[^:]*:Golbez:86EC:/
+228.1 "Immolating Shade (light parties)" sync / 1[56]:[^:]*:Golbez:8496:/
+228.7 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/ jump 400.0
+
+# repeated to keep the timeline rolling until jump
+
+239.1 "Dragon's Descent"
+241.5 "Explosion"
+242.2 "Double Meteor"
+243.8 "Cauterize"
+265.5 "Azdaja's Shadow"
+
+# in -> spread variation
+
+300.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8479:/
+305.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
+308.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
+311.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
+313.4 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+
+320.7 "Phases of the Shadow (cast)" sync / 1[56]:[^:]*:Golbez:86E7:/
+322.5 "Rising Ring (record)" sync / 1[56]:[^:]*:Shadow Dragon:848E:/
+322.5 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E9:/
+324.2 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
+325.4 "Rising Ring (under)" sync / 1[56]:[^:]*:Golbez:86ED:/
+328.1 "Burning Shade (spread)" sync / 1[56]:[^:]*:Golbez:8494:/
+328.7 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/ jump 400.0
+
+# repeated to keep the timeline rolling until jump
+
+339.1 "Dragon's Descent"
+341.5 "Explosion"
+342.2 "Double Meteor"
+343.8 "Cauterize"
+365.5 "Azdaja's Shadow"
+
+# knockback phase
+
+400.0 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+410.4 "Dragon's Descent" sync / 1[56]:[^:]*:Shadow Dragon:8498:/
+412.8 "Explosion" sync / 1[56]:[^:]*:Golbez:849D:/
+413.5 "Double Meteor" sync / 1[56]:[^:]*:Golbez:878C:/
+415.1 "Cauterize" sync / 1[56]:[^:]*:Shadow Dragon:84A2:/
+418.7 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
+436.8 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/ jump 500.0
+436.8 "--sync--" sync / 1[56]:[^:]*:Golbez:8479:/ jump 700.0
+
+# repeated for timeline rolling
+
+442.0 "Flames of Eventide 1"
+445.1 "Flames of Eventide 2"
+448.2 "Flames of Eventide 3"
+455.3 "Void Stardust (preview)"
+461.4 "Void Stardust"
+
+# Mini-phase 2, exaflares -> pairs -> role stacks or light parties -> out then light parties
+
+500.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/
+505.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
+508.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
+511.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
+513.4 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+518.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
+524.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
+530.4 "Abyssal Quasar" sync / 1[56]:[^:]*:Golbez:84AB:/
+535.4 "Eventide Fall?" sync / 1[56]:[^:]*:Golbez:8485:/
+540.4 "Eventide Triad?" sync / 1[56]:[^:]*:Golbez:8480:/
+548.5 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+
+556.6 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84AD:/
+556.7 "Void Comet x4" duration 3 #sync / 1[56]:[^:]*:Golbez:84B0:/
+560.7 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84B1:/
+
+562.7 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+570.0 "Phases of the Shadow (cast)" sync / 1[56]:[^:]*:Golbez:86E7:/
+571.8 "Rising Beacon (record)" sync / 1[56]:[^:]*:Shadow Dragon:848D:/
+571.8 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E9:/
+573.5 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
+574.7 "Rising Beacon (out)" sync / 1[56]:[^:]*:Golbez:86EC:/
+576.8 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
+577.2 "Immolating Shade (light parties)" sync / 1[56]:[^:]*:Golbez:8496:/ jump 1000.0
+
+# timeline rolling
+
+584.1 "Terrastorm"
+590.2 "Arctic Assault"
+591.2 "Arctic Assault"
+593.2 "Void Blizzard III"
+593.2 "Terrastorm"
+600.3 "Binding Cold"
+
+# Mini-phase 2, exaflares -> pairs -> role stacks or light parties -> in then spread
+
+700.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8479:/
+705.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
+708.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
+711.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
+713.4 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+718.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
+724.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
+730.4 "Abyssal Quasar" sync / 1[56]:[^:]*:Golbez:84AB:/
+735.4 "Eventide Fall?" sync / 1[56]:[^:]*:Golbez:8485:/
+740.4 "Eventide Triad?" sync / 1[56]:[^:]*:Golbez:8480:/
+748.5 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+
+756.6 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84AD:/
+756.7 "Void Comet x4" duration 3 #sync / 1[56]:[^:]*:Golbez:84B0:/
+760.7 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84B1:/
+
+762.7 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+770.0 "Phases of the Shadow (cast)" sync / 1[56]:[^:]*:Golbez:86E7:/
+771.8 "Rising Ring (record)" sync / 1[56]:[^:]*:Shadow Dragon:848E:/
+771.8 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E9:/
+773.5 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
+774.7 "Rising Ring (under)" sync / 1[56]:[^:]*:Golbez:86ED:/
+776.8 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
+777.2 "Burning Shade (spread)" sync / 1[56]:[^:]*:Golbez:8494:/ jump 1000.0
+
+# timeline rolling
+
+784.1 "Terrastorm"
+790.2 "Arctic Assault"
+791.2 "Arctic Assault"
+793.2 "Void Blizzard III"
+793.2 "Terrastorm"
+800.3 "Binding Cold"
+
+# terrastorm + light parties
+
+1000.0 "Burning/Immolating Shade"
+1007.8 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+1012.9 "Terrastorm (cast)" sync / 1[56]:[^:]*:Golbez:8464:/
+1019.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
+1022.0 "Void Blizzard III" sync / 1[56]:[^:]*:Golbez:8462:/
+1022.0 "Terrastorm (hit)" sync / 1[56]:[^:]*:Golbez:8466:/
+1029.1 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+
+# gale sphere + light parties or pairs mechanic
+# tornado = lp, aero = pairs
+
+1035.2 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+1040.3 "Gale Sphere" sync / 1[56]:[^:]*:Golbez:844D:/
+1051.0 "--sync--" sync / 1[56]:[^:]*:Golbez:844E:/
+1053.3 "Void Tornado/Void Aero III" sync / 1[56]:[^:]*:Golbez:845[CD]:/
+1053.5 "Gale Sphere 1" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
+1056.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
+1057.0 "Gale Sphere 2" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
+1060.4 "Gale Sphere 3" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
+1063.8 "Gale Sphere 4" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
+1065.0 "Void Aero III/Void Tornado" sync / 1[56]:[^:]*:Golbez:845[CD]:/
+1069.1 "Phases of the Blade (cast)" sync / 1[56]:[^:]*:Golbez:86DB:/
+1071.0 "Phases of the Blade (front)" sync / 1[56]:[^:]*:Golbez:86DD:/
+1072.7 "Phases of the Blade (back)" sync / 1[56]:[^:]*:Golbez:86F2:/
+1082.1 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+1098.2 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/ jump 1200.0
+1098.2 "--sync--" sync / 1[56]:[^:]*:Golbez:8479:/ jump 1400.0
+
+# repeated for timeline rolling
+
+1103.4 "Flames of Eventide 1"
+1106.5 "Flames of Eventide 2"
+1109.6 "Flames of Eventide 3"
+1116.7 "Void Stardust (preview)"
+1122.8 "Void Stardust"
+
+# Mini-phase 3, exaflares -> pairs -> role stacks or light parties -> out then light parties
+
+1200.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/
+1205.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
+1208.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
+1211.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
+1213.4 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+1218.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
+1224.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
+1230.4 "Abyssal Quasar" sync / 1[56]:[^:]*:Golbez:84AB:/
+1231.3 "Lingering Spark (cast)" sync / 1[56]:[^:]*:Golbez:8468:/
+1235.4 "Lingering Spark (explode)" sync / 1[56]:[^:]*:Golbez:846A:/
+1240.4 "Eventide Fall/Eventide Triad" sync / 1[56]:[^:]*:Golbez:848[05]:/
+
+1251.4 "Phases of the Shadow (cast)" sync / 1[56]:[^:]*:Golbez:86E7:/
+1253.2 "Rising Beacon (record)" sync / 1[56]:[^:]*:Shadow Dragon:848D:/
+1253.2 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E9:/
+1254.9 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
+1256.1 "Rising Beacon (out)" sync / 1[56]:[^:]*:Golbez:86EC:/
+1258.2 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
+1258.6 "Immolating Shade (light parties)" sync / 1[56]:[^:]*:Golbez:8496:/ jump 1600.0
+
+# timeline rolling
+
+1284.1 "Dragon's Descent"
+1286.5 "Explosion"
+1287.2 "Double Meteor"
+1288.8 "Cauterize"
+1310.5 "Azdaja's Shadow"
+
+# Mini-phase 3, exaflares -> pairs -> role stacks or light parties -> in then spread
+
+1400.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8479:/
+1405.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
+1408.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
+1411.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
+1413.4 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+1418.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
+1424.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
+1430.4 "Abyssal Quasar" sync / 1[56]:[^:]*:Golbez:84AB:/
+1431.3 "Lingering Spark (cast)" sync / 1[56]:[^:]*:Golbez:8468:/
+1435.4 "Lingering Spark (explode)" sync / 1[56]:[^:]*:Golbez:846A:/
+1240.4 "Eventide Fall/Eventide Triad" sync / 1[56]:[^:]*:Golbez:848[05]:/
+
+1451.4 "Phases of the Shadow (cast)" sync / 1[56]:[^:]*:Golbez:86E7:/
+1453.2 "Rising Ring (record)" sync / 1[56]:[^:]*:Shadow Dragon:848E:/
+1453.2 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E9:/
+1454.9 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
+1456.1 "Rising Ring (under)" sync / 1[56]:[^:]*:Golbez:86ED:/
+1458.2 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
+1458.6 "Burning Shade (spread)" sync / 1[56]:[^:]*:Golbez:8494:/ jump 1600.0
+
+# timeline rolling
+
+1484.1 "Dragon's Descent"
+1486.5 "Explosion"
+1487.2 "Double Meteor"
+1488.8 "Cauterize"
+1510.5 "Azdaja's Shadow"
+
+# knockback phase
+
+1600.0 "Burning/Immolating Shade"
+1600.4 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+1610.8 "Dragon's Descent" sync / 1[56]:[^:]*:Shadow Dragon:8498:/
+1613.2 "Explosion" sync / 1[56]:[^:]*:Golbez:849D:/
+1613.9 "Double Meteor" sync / 1[56]:[^:]*:Golbez:878C:/
+1615.5 "Cauterize" sync / 1[56]:[^:]*:Shadow Dragon:84A2:/
+
+1618.9 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
+1629.0 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84AD:/
+1629.1 "Void Comet x4" duration 3 #sync / 1[56]:[^:]*:Golbez:84B0:/
+1633.1 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84B1:/
+
+1640.2 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+1645.3 "Gale Sphere" sync / 1[56]:[^:]*:Golbez:844D:/
+1656.0 "--sync--" sync / 1[56]:[^:]*:Golbez:844E:/
+1658.3 "Void Tornado/Void Aero III" sync / 1[56]:[^:]*:Golbez:845[CD]:/
+1658.5 "Gale Sphere 1" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
+1661.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
+1662.0 "Gale Sphere 2" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
+1665.4 "Gale Sphere 3" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
+1668.8 "Gale Sphere 4" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
+1670.0 "Void Aero III/Void Tornado" sync / 1[56]:[^:]*:Golbez:845[CD]:/
+1674.1 "Phases of the Blade (cast)" sync / 1[56]:[^:]*:Golbez:86DB:/
+1676.0 "Phases of the Blade (front)" sync / 1[56]:[^:]*:Golbez:86DD:/
+1677.7 "Phases of the Blade (back)" sync / 1[56]:[^:]*:Golbez:86F2:/
+1687.1 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+1703.6 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/ jump 1800.0
+1703.6 "--sync--" sync / 1[56]:[^:]*:Golbez:8479:/ jump 1900.0
+
+# Mini-phase 4, in then spread, or out then light parties
+
+# out -> light parties variation
+
+1800.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/
+1805.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
+1808.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
+1811.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
+1813.4 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+
+1820.7 "Phases of the Shadow (cast)" sync / 1[56]:[^:]*:Golbez:86E7:/
+1822.5 "Rising Beacon (record)" sync / 1[56]:[^:]*:Shadow Dragon:848D:/
+1822.5 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E9:/
+1824.2 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
+1825.4 "Rising Beacon (out)" sync / 1[56]:[^:]*:Golbez:86EC:/
+1828.1 "Immolating Shade (light parties)" sync / 1[56]:[^:]*:Golbez:8496:/ jump 2000.0
+
+# repeated to keep the timeline rolling until jump
+
+1838.0 "Binding Cold"
+1851.2 "Binding Cold"
+1859.3 "Void Meteor"
+1859.4 "Void Comet x4"
+1863.4 "Void Meteor"
+
+# in -> spread variation
+
+1900.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8479:/
+1905.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
+1908.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
+1911.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
+1913.4 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+
+1920.7 "Phases of the Shadow (cast)" sync / 1[56]:[^:]*:Golbez:86E7:/
+1922.5 "Rising Ring (record)" sync / 1[56]:[^:]*:Shadow Dragon:848E:/
+1922.5 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E9:/
+1924.2 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
+1925.4 "Rising Ring (under)" sync / 1[56]:[^:]*:Golbez:86ED:/
+1928.1 "Burning Shade (spread)" sync / 1[56]:[^:]*:Golbez:8494:/ jump 2000.0
+
+# repeated to keep the timeline rolling until jump
+
+1938.0 "Binding Cold"
+1951.2 "Binding Cold"
+1959.3 "Void Meteor"
+1959.4 "Void Comet x4"
+1963.4 "Void Meteor"
+
+2000.0 "Burning/Immolating Shade"
+2009.3 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+2022.5 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+
+# last buster
+
+2030.6 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84AD:/
+2030.7 "Void Comet x4" duration 3 #sync / 1[56]:[^:]*:Golbez:84B0:/
+2034.7 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84B1:/
+
+# enrage
+
+2038.7 "--jump--" sync / 1[56]:[^:]*:Golbez:84B8:/
+2046.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:84B9:/
+2055.1 "--sync--" sync / 1[56]:[^:]*:Shadow Dragon:84BB:/
+2055.2 "Black Fang (big)" sync / 1[56]:[^:]*:Golbez:84BA:/
+2059.1 "Black Fang (small) x5" sync / 1[56]:[^:]*:Golbez:871B:/
+2061.9 "Black Fang (Enrage)" sync / 1[56]:[^:]*:Golbez:84BC:/

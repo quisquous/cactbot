@@ -144,7 +144,7 @@ export type EnmityTargetCombatant = {
   MonsterType: number;
   Status: number;
   ModelStatus: number;
-  AggressionStatus;
+  AggressionStatus: number;
   TargetID: number;
   IsTargetable: boolean;
 
@@ -281,30 +281,6 @@ export interface EventMap {
     };
   }) => void;
 
-  'onFateEvent': (ev: {
-    type: 'onFateEvent';
-    detail: {
-      eventType: 'add' | 'update' | 'remove';
-      fateID: number;
-      progress: number;
-    };
-  }) => void;
-
-  'onCEEvent': (ev: {
-    type: 'onCEEvent';
-    detail: {
-      eventType: 'add' | 'update' | 'remove';
-      data: {
-        popTime: number;
-        timeRemaining: number;
-        ceKey: number;
-        numPlayers: number;
-        status: number;
-        progress: number;
-      };
-    };
-  }) => void;
-
   'onPlayerDied': (ev: {
     type: 'onPlayerDied';
   }) => void;
@@ -408,7 +384,8 @@ export interface PluginCombatantState {
   PartyType?: number;
   ID?: number;
   OwnerID?: number;
-  type?: number;
+  WeaponId?: number;
+  Type?: number;
   Job?: number;
   Level?: number;
   Name?: string;
@@ -420,6 +397,29 @@ export interface PluginCombatantState {
   PosY: number;
   PosZ: number;
   Heading: number;
+
+  MonsterType?: number;
+  Status?: number;
+  ModelStatus?: number;
+  AggressionStatus?: number;
+  TargetID?: number;
+  IsTargetable?: boolean;
+  Radius?: number;
+  Distance?: string;
+  EffectiveDistance?: string;
+  NPCTargetID?: number;
+  CurrentGP?: number;
+  MaxGP?: number;
+  CurrentCP?: number;
+  MaxCP?: number;
+  PCTargetID?: number;
+  IsCasting1?: number;
+  IsCasting2?: number;
+  CastBuffID?: number;
+  CastTargetID?: number;
+  CastDurationCurrent?: number;
+  CastDurationMax?: number;
+  TransformationId?: number;
 }
 
 type BroadcastHandler = (msg: {
@@ -477,11 +477,11 @@ type CactbotSaveDataHandler = (msg: {
 type CactbotLoadDataHandler = (msg: {
   call: 'cactbotLoadData';
   overlay: string;
-}) => ({ data: SavedConfig } | undefined);
+}) => { data: SavedConfig } | undefined;
 
 type CactbotChooseDirectoryHandler = (msg: {
   call: 'cactbotChooseDirectory';
-}) => ({ data: string } | undefined);
+}) => { data: string } | undefined;
 
 export type OverlayHandlerAll = {
   'broadcast': BroadcastHandler;

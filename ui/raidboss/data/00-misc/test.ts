@@ -1,5 +1,6 @@
 import NetRegexes from '../../../../resources/netregexes';
 import outputs from '../../../../resources/outputs';
+import { ConfigValue } from '../../../../resources/user_config';
 import Util from '../../../../resources/util';
 import ZoneId from '../../../../resources/zone_id';
 import { RaidbossData } from '../../../../types/data';
@@ -14,14 +15,35 @@ const strikingDummyNames: LocaleText = {
   ko: '나무인형',
 };
 
+export type ConfigIds = 'testTriggerOutput';
+
 export interface Data extends RaidbossData {
+  triggerSetConfig: { [key in ConfigIds]: ConfigValue };
   delayedDummyTimestampBefore: number;
   delayedDummyTimestampAfter: number;
   pokes: number;
+  watchingForCast: boolean;
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'CactbotTest',
   zoneId: ZoneId.MiddleLaNoscea,
+  config: [
+    {
+      id: 'testTriggerOutput',
+      name: {
+        en: 'Output for "/echo cactbot test config"',
+        de: 'Ausgabe für "/echo cactbot test config"',
+        cn: '输出 "/echo cactbot测试配置"',
+        ko: '"/echo cactbot 설정 테스트" 출력값',
+      },
+      type: 'string',
+      default: () => {
+        // Test default function.
+        return 'Unset Option';
+      },
+    },
+  ],
   timelineFile: 'test.txt',
   // timeline here is additions to the timeline.  They can
   // be strings, or arrays of strings, or functions that
@@ -57,6 +79,7 @@ const triggerSet: TriggerSet<Data> = {
       delayedDummyTimestampBefore: 0,
       delayedDummyTimestampAfter: 0,
       pokes: 0,
+      watchingForCast: false,
     };
   },
   timelineStyles: [
@@ -102,13 +125,12 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 10,
       promise: (data) => {
         data.delayedDummyTimestampBefore = Date.now();
-        const p = new Promise<void>((res) => {
+        return new Promise<void>((res) => {
           window.setTimeout(() => {
             data.delayedDummyTimestampAfter = Date.now();
             res();
           }, 3000);
         });
-        return p;
       },
       infoText: (data, _matches, output) => {
         const elapsed = data.delayedDummyTimestampAfter - data.delayedDummyTimestampBefore;
@@ -130,7 +152,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Poke',
       type: 'GameLog',
-      netRegex: NetRegexes.gameNameLog({ line: 'You poke the striking dummy.*?', capture: false }),
+      netRegex: { line: 'You poke the striking dummy.*?', capture: false },
       preRun: (data) => ++data.pokes,
       infoText: (data, _matches, output) => output.poke!({ numPokes: data.pokes }),
       outputStrings: {
@@ -147,7 +169,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Psych',
       type: 'GameLog',
-      netRegex: NetRegexes.gameNameLog({ line: 'You psych yourself up alongside the striking dummy.*?', capture: false }),
+      netRegex: { line: 'You psych yourself up alongside the striking dummy.*?', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       tts: {
         en: 'psych',
@@ -171,7 +193,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Laugh',
       type: 'GameLog',
-      netRegex: NetRegexes.gameNameLog({ line: 'You burst out laughing at the striking dummy.*?', capture: false }),
+      netRegex: { line: 'You burst out laughing at the striking dummy.*?', capture: false },
       suppressSeconds: 5,
       alarmText: (_data, _matches, output) => output.text!(),
       tts: {
@@ -196,7 +218,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Clap',
       type: 'GameLog',
-      netRegex: NetRegexes.gameNameLog({ line: 'You clap for the striking dummy.*?', capture: false }),
+      netRegex: { line: 'You clap for the striking dummy.*?', capture: false },
       sound: '../../resources/sounds/freesound/power_up.webm',
       soundVolume: 0.3,
       tts: (_data, _matches, output) => output.text!(),
@@ -290,20 +312,65 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'Test Config',
+      type: 'GameLog',
+      netRegex: NetRegexes.echo({ line: 'cactbot test config.*?', capture: false }),
+      alertText: (data, _matches, output) => {
+        return output.text!({ value: data.triggerSetConfig.testTriggerOutput.toString() });
+      },
+      outputStrings: {
+        text: {
+          en: 'Config Value: ${value}',
+          de: 'Einstellungswert: ${value}',
+          cn: '配置值: ${value}',
+          ko: '설정값: ${value}',
+        },
+      },
+    },
+    {
+      id: 'Test Combatant Cast Enable',
+      type: 'GameLog',
+      netRegex: NetRegexes.echo({ line: 'cactbot test combatant cast.*?', capture: false }),
+      run: (data) => {
+        data.watchingForCast = true;
+      },
+    },
+    {
+      id: 'Test Combatant Cast',
+      type: 'CombatantMemory',
+      netRegex: NetRegexes.combatantMemory({
+        pair: [{ key: 'IsCasting1', value: '1' }, { key: 'CastBuffID', value: '.*?' }],
+      }),
+      condition: (data) => data.watchingForCast,
+      infoText: (data, matches, output) => {
+        data.watchingForCast = false;
+        return output.casting!({ id: matches.id, spellId: matches.pairCastBuffID });
+      },
+      outputStrings: {
+        casting: {
+          en: 'ID ${id} is casting spell ID ${spellId}',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
       locale: 'de',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
-        'You bow courteously to the striking dummy': 'Du verbeugst dich hochachtungsvoll vor der Trainingspuppe',
+        'You bow courteously to the striking dummy':
+          'Du verbeugst dich hochachtungsvoll vor der Trainingspuppe',
         'test sync': 'test sync',
         'You burst out laughing at the striking dummy': 'Du lachst herzlich mit der Trainingspuppe',
         'cactbot lang': 'cactbot sprache',
         'cactbot test response': 'cactbot test antwort',
         'cactbot test watch': 'cactbot test beobachten',
+        'cactbot test config': 'cactbot test konfig',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
-        'You psych yourself up alongside the striking dummy': 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
+        'You psych yourself up alongside the striking dummy':
+          'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
         'You poke the striking dummy': 'Du stupst die Trainingspuppe an',
       },
       replaceText: {
@@ -320,16 +387,22 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'fr',
+      missingTranslations: true,
       replaceSync: {
         'cactbot lang': 'cactbot langue',
         'cactbot test response': 'cactbot test de réponse',
         'cactbot test watch': 'cactbot test d\'observation',
-        'You bid farewell to the striking dummy': 'Vous faites vos adieux au mannequin d\'entraînement',
-        'You bow courteously to the striking dummy': 'Vous vous inclinez devant le mannequin d\'entraînement',
-        'You burst out laughing at the striking dummy': 'Vous vous esclaffez devant le mannequin d\'entraînement',
+        'You bid farewell to the striking dummy':
+          'Vous faites vos adieux au mannequin d\'entraînement',
+        'You bow courteously to the striking dummy':
+          'Vous vous inclinez devant le mannequin d\'entraînement',
+        'You burst out laughing at the striking dummy':
+          'Vous vous esclaffez devant le mannequin d\'entraînement',
         'You clap for the striking dummy': 'Vous applaudissez le mannequin d\'entraînement',
-        'You poke the striking dummy': 'Vous touchez légèrement le mannequin d\'entraînement du doigt',
-        'You psych yourself up alongside the striking dummy': 'Vous vous motivez devant le mannequin d\'entraînement',
+        'You poke the striking dummy':
+          'Vous touchez légèrement le mannequin d\'entraînement du doigt',
+        'You psych yourself up alongside the striking dummy':
+          'Vous vous motivez devant le mannequin d\'entraînement',
         'test sync': 'test sync',
       },
       replaceText: {
@@ -347,6 +420,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'ja',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*は木人に別れの挨拶をした',
         'You bow courteously to the striking dummy': '.*は木人にお辞儀した',
@@ -374,12 +448,14 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'cn',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*向木人告别',
         'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',
         'test sync': 'test sync',
         'You burst out laughing at the striking dummy': '.*看着木人高声大笑',
         'cactbot lang': 'cactbot语言',
+        'cactbot test config': 'cactbot测试配置',
         'cactbot test response': 'cactbot响应测试',
         'cactbot test watch': 'cactbot探测测试',
         'You clap for the striking dummy': '.*向木人送上掌声',
@@ -401,11 +477,13 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'ko',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
         'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
         'test sync': '테스트 싱크',
         'You burst out laughing at the striking dummy': '.*나무인형을 보고 폭소를 터뜨립니다',
+        'cactbot test config': 'cactbot 설정 테스트',
         'cactbot lang': 'cactbot 언어',
         'cactbot test response': 'cactbot 응답 테스트',
         'cactbot test watch': 'cactbot 탐지 테스트',

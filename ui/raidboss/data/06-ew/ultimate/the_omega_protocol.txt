@@ -1,0 +1,370 @@
+### The Omega Protocol
+# -p 7B03:15 7B40:206.4 7B13:400 7B47:600 7B7C:700 7F72:1100
+# -ii 7BFD 7B0A 7E70 7B0C 7B41 7E6B 7B3F 7BFE 7BFF 7B14 7B15 7B16 7B17 7B1C 7B1D 7B1E 7B2B 7B2C 7B39 7B20 7F75 7B36 7B37 7B35 7B43 7B28 7B32 7B23 7B24 7B49 7B4C 7C00  7B5F 7B60 7B5A 7B5B 7B6D 7B56 7B57 7AFB 7EF9 7C01 7B8B 7BAE 7E51 7B7D 7B7E 7B80 7B90 7B74 7C02 7B79 7E76 7B99
+# -it "Omega" "Omega-M" "Omega-F"
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+### P1: Beetle
+0.0 "--sync--" sync /Engage!/ window 0,1
+3.4 "--sync--" sync / 1[56]:[^:]*:Omega:7BFD:/ window 4,1
+
+11.0 "--sync--" sync / 14:[^:]*:Omega:7B03:/ window 20,20
+15.0 "Program Loop" sync / 1[56]:[^:]*:Omega:7B03:/
+21.0 "--sync--" sync / 14:[^:]*:Omega:7B07:/
+29.0 "--sync--" sync / 1[56]:[^:]*:Omega:7B07:/
+29.1 "Storage Violation 1" sync / 1[56]:[^:]*:Omega:7B04:/
+29.1 "Blaster 1" sync / 1[56]:[^:]*:Omega:7B08:/
+38.1 "Storage Violation 2" sync / 1[56]:[^:]*:Omega:7B04:/
+38.1 "Blaster 2" sync / 1[56]:[^:]*:Omega:7B08:/
+47.1 "Storage Violation 3" sync / 1[56]:[^:]*:Omega:7B04:/
+47.1 "Blaster 3" sync / 1[56]:[^:]*:Omega:7B08:/
+56.1 "Storage Violation 4" sync / 1[56]:[^:]*:Omega:7B04:/
+56.1 "Blaster 4" sync / 1[56]:[^:]*:Omega:7B09:/
+
+64.2 "--sync--" sync / 14:[^:]*:Omega:7B0B:/ window 20,20
+69.2 "Pantokrator" sync / 1[56]:[^:]*:Omega:7B0B:/
+75.3 "Flame Thrower" sync / 1[56]:[^:]*:Omega:7B0D:/ duration 25.6
+81.3 "Condensed Wave Cannon Kyrios 1" sync / 1[56]:[^:]*:Omega:7B0F:/
+81.3 "Guided Missile Kyrios 1" sync / 1[56]:[^:]*:Omega:7B0E:/
+87.3 "Condensed Wave Cannon Kyrios 2" sync / 1[56]:[^:]*:Omega:7B0F:/
+87.3 "Guided Missile Kyrios 2" sync / 1[56]:[^:]*:Omega:7B0E:/
+93.3 "Condensed Wave Cannon Kyrios 3" sync / 1[56]:[^:]*:Omega:7B0F:/
+93.3 "Guided Missile Kyrios 3" sync / 1[56]:[^:]*:Omega:7B0E:/
+99.3 "Condensed Wave Cannon Kyrios 4" sync / 1[56]:[^:]*:Omega:7B0F:/
+99.3 "Guided Missile Kyrios 4" sync / 1[56]:[^:]*:Omega:7B0E:/
+
+108.0 "Diffuse Wave Cannon Kyrios x5" duration 8 #sync / 1[56]:[^:]*:Omega:7B10:/
+108.0 "Wave Cannon Kyrios 1" sync / 1[56]:[^:]*:Omega:7B11:/
+116.8 "Wave Cannon Kyrios 2" sync / 1[56]:[^:]*:Omega:7B11:/
+
+122.7 "--sync--" sync / 14:[^:]*:Omega:7AF8:/ window 20,20
+127.7 "Atomic Ray Enrage" sync / 1[56]:[^:]*:Omega:7AF8:/
+
+
+### P2: M/F
+200.0 "--sync--" sync / 257 101:........:00020001:0A:/ window 200,0
+202.3 "--targetable--"
+203.4 "--sync--" sync / 14:[^:]*:Omega:7B40:/ window 210,5 # extra sync due to map effect sync
+206.4 "Firewall" sync / 1[56]:[^:]*:Omega:7B40:/
+214.5 "Solar Ray" sync / 1[56]:[^:]*:Omega:7E6A:/
+
+# Party Synergy
+230.9 "Party Synergy" sync / 1[56]:[^:]*:Omega:7B3E:/ window 20,20
+233.9 "--untargetable--"
+240.5 "--sync--" sync / 1[56]:[^:]*:Omega:7B1B:/
+241.3 "Superliminal Steel/Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-F:(7B2A|7B2D):/
+241.3 "Efficient Bladework/Beyond Strength" sync / 1[56]:[^:]*:Omega-M:(7B25|7B26):/
+247.7 "Optimized Fire III" sync / 1[56]:[^:]*:Omega:7B2F:/
+248.0 "Optical Laser" sync / 1[56]:[^:]*:Optical Unit:7B21:/
+250.8 "--sync--" sync / 1[56]:[^:]*:Omega:7B1F:/
+254.9 "Discharger" sync / 1[56]:[^:]*:Omega:7B2E:/
+259.1 "Spotlight x2" sync / 1[56]:[^:]*:Omega-M:7B30:/
+259.1 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:7B26:/
+
+# Limitless Synergy
+262.1 "--targetable--"
+272.2 "Synthetic Shield" sync / 1[56]:[^:]*:Omega:7E71:/
+282.4 "Limitless Synergy" sync / 1[56]:[^:]*:Omega:7B38:/ window 20,20
+285.5 "--sync--" sync / 1[56]:[^:]*:Omega:7B42:/
+287.4 "Optimized Passage of Arms" sync / 1[56]:[^:]*:Omega:7B44:/
+288.6 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:7E71:/
+295.6 "Optimized Bladedance x2" sync / 1[56]:[^:]*:Omega-M:7B34:/
+295.7 "Optimized Sagittarius Arrow" sync / 1[56]:[^:]*:Omega-M:7B33:/
+306.7 "Beyond Defense" sync / 1[56]:[^:]*:Omega-M:7B27:/
+309.7 "Optimized Meteor" sync / 1[56]:[^:]*:Omega-F:7B31:/
+310.0 "Pile Pitch" sync / 1[56]:[^:]*:Omega-M:7B29:/
+318.8 "Cosmo Memory" sync / 1[56]:[^:]*:Omega-M:7B22:/
+
+# 60 second cast, starting at same time of Passage of Arms
+347.4 "Laser Shower Enrage" sync / 1[56]:[^:]*:Omega:7B45:/
+
+
+### P3: "Final" Omega
+400.0 "--sync--" sync / 1[56]:[^:]*:Omega:7B13:/ window 400,0
+409.3 "--sync--" sync / 1[56]:[^:]*:Omega:7B4A:/
+412.3 "--sync--" sync / 1[56]:[^:]*:Omega:7B4B:/
+414.3 "Wave Repeater 1" sync / 1[56]:[^:]*:Omega:7B4F:/
+416.4 "Wave Repeater 2" sync / 1[56]:[^:]*:Omega:7B50:/
+418.4 "Wave Repeater 3" sync / 1[56]:[^:]*:Omega:7B51:/
+420.4 "Wave Repeater 4" sync / 1[56]:[^:]*:Omega:7B52:/
+422.4 "Wave Repeater 1" sync / 1[56]:[^:]*:Omega:7B4F:/
+424.5 "Wave Repeater 2" sync / 1[56]:[^:]*:Omega:7B50:/
+426.4 "Colossal Blow" sync / 1[56]:[^:]*:(Left Arm Unit|Right Arm Unit):7B4E:/ window 1,1
+426.6 "Wave Repeater 3" sync / 1[56]:[^:]*:Omega:7B51:/
+# sniper cannon times are a little sloppy and have inconsistent actor names
+427.3 "High-powered Sniper Cannon x2" #sync / 1[56]:[^:]*:Omega:7B54:/
+428.4 "Sniper Cannon x4" #sync / 1[56]:[^:]*:Omega:7B53:/
+428.7 "Wave Repeater 4" sync / 1[56]:[^:]*:Omega:7B52:/
+428.9 "Colossal Blow" sync / 1[56]:[^:]*:(Left Arm Unit|Right Arm Unit):7B4E:/ window 1,1
+
+432.3 "--targetable--"
+436.3 "--sync--" sync / 14:[^:]*:Omega:7B55:/ window 40,40
+
+441.3 "Hello, World" sync / 1[56]:[^:]*:Omega:7B55:/
+# Most of the damage comes in 7B56 Critical Synchronization Bug,
+# and 7B57 Critical Overflow Bug which is 1s after latent defect
+# (and patch, obviously).  There's also a ton of other Latent X
+# abilities here.  All of these are skipped for noise reasons.
+
+455.4 "--sync--" sync / 14:[^:]*:Omega:7B6F:/
+464.4 "Latent Defect 1" sync / 1[56]:[^:]*:Omega:7B6F:/
+# people break both patches here whenever, so don't sync these times
+# this time is roughly when people break the first one.
+466.9 "Patch x2" #sync / 1[56]:[^:]*:Omega:7B63:/
+
+476.4 "--sync--" sync / 14:[^:]*:Omega:7B6F:/
+485.4 "Latent Defect 2" sync / 1[56]:[^:]*:Omega:7B6F:/
+487.9 "Patch x2" #sync / 1[56]:[^:]*:Omega:7B63:/
+
+497.5 "--sync--" sync / 14:[^:]*:Omega:7B6F:/
+506.5 "Latent Defect 3" sync / 1[56]:[^:]*:Omega:7B6F:/
+509.0 "Patch x2" #sync / 1[56]:[^:]*:Omega:7B63:/
+
+518.8 "--sync--" sync / 14:[^:]*:Omega:7B6F:/
+527.5 "Patch" #sync / 1[56]:[^:]*:Omega:7B63:/
+527.8 "Latent Defect 4" sync / 1[56]:[^:]*:Omega:7B6F:/
+533.5 "Patch" #sync / 1[56]:[^:]*:Omega:7B63:/
+
+542.1 "--sync--" sync / 14:[^:]*:Omega:7B64:/ window 30,30
+550.1 "Critical Error" sync / 1[56]:[^:]*:Omega:7B64:/
+
+560.2 "--sync--" sync / 1[56]:[^:]*:Omega:7B46:/
+571.4 "Oversampled Wave Cannon" sync / 1[56]:[^:]*:Omega:(7B6B|7B6C):/
+577.4 "--sync--" sync / 14:[^:]*:Omega:7B48:/ window 50,50
+587.4 "Ion Efflux Enrage" sync / 1[56]:[^:]*:Omega:7B48:/
+
+
+### P4: Blue Screen
+600.0 "--sync--" sync / 1[56]:[^:]*:Omega:7B47:/ window 600,0
+600.0 "--untargetable--"
+607.1 "--sync--" sync / 1[56]:[^:]*:Omega:7B7A:/
+607.1 "--targetable--"
+615.2 "--sync--" sync / 1[56]:[^:]*:Omega:7B46:/
+619.0 "--sync--" sync / 1[56]:[^:]*:Omega:5779:/
+621.4 "Wave Cannon A" sync / 1[56]:[^:]*:Omega:7B81:/
+626.7 "Wave Cannon B" sync / 1[56]:[^:]*:Omega:7F16:/
+627.0 "Wave Cannon (stacks)" sync / 1[56]:[^:]*:Omega:7B7F:/
+
+629.1 "--sync--" sync / 1[56]:[^:]*:Omega:5779:/
+629.4 "Wave Repeater 1" sync / 1[56]:[^:]*:Omega:7B4F:/
+631.5 "Wave Repeater 2" sync / 1[56]:[^:]*:Omega:7B50:/
+631.5 "Wave Cannon A" sync / 1[56]:[^:]*:Omega:7F16:/
+633.5 "Wave Repeater 3" sync / 1[56]:[^:]*:Omega:7B51:/
+635.5 "Wave Repeater 4" sync / 1[56]:[^:]*:Omega:7B52:/
+636.6 "Wave Cannon B" sync / 1[56]:[^:]*:Omega:7B82:/
+636.8 "Wave Cannon (stacks)" sync / 1[56]:[^:]*:Omega:7B7F:/
+
+639.0 "--sync--" sync / 1[56]:[^:]*:Omega:5779:/
+641.6 "Wave Cannon A" sync / 1[56]:[^:]*:Omega:7B83:/
+646.6 "Wave Repeater 1" sync / 1[56]:[^:]*:Omega:7B4F:/
+646.7 "Wave Cannon B" sync / 1[56]:[^:]*:Omega:7B84:/
+646.9 "Wave Cannon (stacks)" sync / 1[56]:[^:]*:Omega:7B7F:/
+648.6 "Wave Repeater 2" sync / 1[56]:[^:]*:Omega:7B50:/
+650.6 "Wave Repeater 3" sync / 1[56]:[^:]*:Omega:7B51:/
+652.6 "Wave Repeater 4" sync / 1[56]:[^:]*:Omega:7B52:/
+661.6 "Blue Screen Enrage" sync / 1[56]:[^:]*:Omega:7B7B:/
+661.6 "--untargetable--"
+
+
+### P5: Run: Dynamis
+# Blue Screen DPS check passed
+700.0 "--sync--" sync / 1[56]:[^:]*:Omega:7B7C:/ window 700,0
+706.0 "--sync--" sync / 1[56]:[^:]*:Omega-F:7B86:/
+706.0 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B85:/
+
+# Delta Version
+715.6 "--targetable--"
+723.6 "Solar Ray 1" sync / 1[56]:[^:]*:Omega-M:81AC:/
+726.8 "Solar Ray 2" sync / 1[56]:[^:]*:Omega-M:7B01:/
+733.9 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B42:/
+740.0 "Run: ****mi* (Delta Version)" sync / 1[56]:[^:]*:Omega-M:7B88:/
+743.0 "--untargetable--"
+750.2 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:7B8C:/
+753.2 "Archive Peripheral" sync / 1[56]:[^:]*:Omega:7F76:/
+761.2 "Patch" #sync / 1[56]:[^:]*:Omega-M:7B63:/
+763.2 "Optical Laser" sync / 1[56]:[^:]*:Optical Unit:7B21:/
+764.9 "Patch" #sync / 1[56]:[^:]*:Omega-M:7B63:/
+766.4 "Explosion" sync / 1[56]:[^:]*:Rocket Punch:7AFA:/
+768.5 "Beyond Defense" sync / 1[56]:[^:]*:Omega-M:7B27:/
+771.1 "Hyper Pulse" sync / 1[56]:[^:]*:Right Arm Unit:7B70:/
+771.8 "Hyper Pulse" #sync / 1[56]:[^:]*:Right Arm Unit:7B71:/
+772.4 "Hyper Pulse" #sync / 1[56]:[^:]*:Right Arm Unit:7B71:/
+773.0 "Hyper Pulse" #sync / 1[56]:[^:]*:Right Arm Unit:7B71:/
+773.6 "Hyper Pulse" #sync / 1[56]:[^:]*:Right Arm Unit:7B71:/
+773.6 "Oversampled Wave Cannon" sync / 1[56]:[^:]*:Omega:7B6D:/
+774.0 "Pile Pitch" sync / 1[56]:[^:]*:Omega-M:7B29:/
+774.0 "Hyper Pulse" #sync / 1[56]:[^:]*:Right Arm Unit:7B71:/
+782.0 "Patch" #sync / 1[56]:[^:]*:Omega-M:7B63:/
+784.0 "Patch" #sync / 1[56]:[^:]*:Omega-M:7B63:/
+786.4 "Swivel Cannon" sync / 1[56]:[^:]*:Omega:(7B94|7B95):/
+787.0 "Hello, Distant World 1" sync / 1[56]:[^:]*:Omega-M:8110:/
+787.0 "Hello, Near World 1" sync / 1[56]:[^:]*:Omega-M:7B89:/
+788.0 "Hello, Distant World 2" #sync / 1[56]:[^:]*:Omega-M:8111:/
+788.0 "Hello, Near World 2" #sync / 1[56]:[^:]*:Omega-M:7B8A:/
+789.0 "Hello, Distant World 3" #sync / 1[56]:[^:]*:Omega-M:8111:/
+789.0 "Hello, Near World 3" #sync / 1[56]:[^:]*:Omega-M:7B8A:/
+
+# Sigma Version
+791.1 "--targetable--"
+805.2 "Solar Ray 1" sync / 1[56]:[^:]*:Omega-M:81AC:/
+808.5 "Solar Ray 2" sync / 1[56]:[^:]*:Omega-M:7B01:/
+815.6 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B42:/
+821.7 "Run: ****mi* (Sigma Version)" sync / 1[56]:[^:]*:Omega-M:8014:/
+824.7 "--untargetable--"
+
+839.0 "Subject Simulation F" sync / 1[56]:[^:]*:Omega-M:7F2F:/
+840.4 "Program Loop" sync / 1[56]:[^:]*:Omega:7B98:/
+840.0 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B14:/
+841.1 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B16:/
+844.0 "Wave Cannon" sync / 1[56]:[^:]*:Omega:7B73:/
+843.8 "Hyper Pulse" sync / 1[56]:[^:]*:Right Arm Unit:7B72:/
+845.1 "--sync--" sync / 1[56]:[^:]*:Omega-M:7F30:/
+848.7 "--sync--" sync / 1[56]:[^:]*:Omega:7B15:/
+849.3 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B20:/
+851.3 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B43:/
+
+852.4 "Discharger" sync / 1[56]:[^:]*:Omega-M:7B2E:/
+856.4 "Storage Violation x5 / Storage Violation x6" sync / 1[56]:[^:]*:Omega:7B0[45]:/
+
+870.6 "Rear Lasers x14" sync / 1[56]:[^:]*:Rear Power Unit:7B8F:/ duration 7.8
+873.7 "Superliminal Steel/Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-M:(7B2A|7B2D):/
+880.6 "Hello, Near World 1" sync / 1[56]:[^:]*:Omega-F:7B89:/
+880.6 "Hello, Distant World 1" sync / 1[56]:[^:]*:Omega-F:8110:/
+880.6 "Hyper Pulse" sync / 1[56]:[^:]*:Right Arm Unit:7B72:/
+881.6 "Hello, Near World 2" #sync / 1[56]:[^:]*:Omega-F:7B8A:/
+881.6 "Hello, Distant World 2" #sync / 1[56]:[^:]*:Omega-F:8111:/
+882.6 "Hello, Near World 3" #sync / 1[56]:[^:]*:Omega-F:7B8A:/
+882.6 "Hello, Distant World 3" #sync / 1[56]:[^:]*:Omega-F:8111:/
+
+# Omega Version
+885.3 "--targetable--"
+887.3 "--sync--" sync / 1[56]:[^:]*:Omega-M:7C02:/
+894.3 "Solar Ray 1" sync / 1[56]:[^:]*:Omega-M:81AD:/
+897.4 "Solar Ray 2" sync / 1[56]:[^:]*:Omega-M:7B02:/
+904.6 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B43:/
+910.7 "Run: ****mi* (Omega Version)" sync / 1[56]:[^:]*:Omega-M:8015:/
+927.8 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:(7B9B|7B9C):/
+# 928.8 "Superliminal Steel" sync / 1[56]:[^:]*:Omega-F:7B2A:/
+# 928.8 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:7B25:/
+931.9 "Diffuse Wave Cannon" sync / 1[56]:[^:]*:Omega:(7B78|7B77):/
+# 932.7 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-F:7B2D:/
+# 932.7 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:7B25:/
+935.6 "--untargetable--"
+
+945.4 "Hello, Distant World 1" sync / 1[56]:[^:]*:Omega-F:8110:/
+945.4 "Hello, Near World 1" sync / 1[56]:[^:]*:Omega-F:7B89:/
+945.8 "Oversampled Wave Cannon" sync / 1[56]:[^:]*:Omega:7B6D:/
+946.4 "Hello, Distant World 2" #sync / 1[56]:[^:]*:Omega-F:8111:/
+946.4 "Hello, Near World 2" #sync / 1[56]:[^:]*:Omega-F:7B8A:/
+947.4 "Hello, Distant World 3" #sync / 1[56]:[^:]*:Omega-F:8111:/
+947.4 "Hello, Near World 3" #sync / 1[56]:[^:]*:Omega-F:7B8A:/
+
+961.6 "Blaster x2" sync / 1[56]:[^:]*:Omega-F:7E75:/
+963.4 "Hello, Distant World 1" sync / 1[56]:[^:]*:Omega-F:8110:/
+963.4 "Hello, Near World 1" sync / 1[56]:[^:]*:Omega-F:7B89:/
+964.4 "Hello, Distant World 2" #sync / 1[56]:[^:]*:Omega-F:8111:/
+964.4 "Hello, Near World 2" #sync / 1[56]:[^:]*:Omega-F:7B8A:/
+965.4 "Hello, Distant World 3" #sync / 1[56]:[^:]*:Omega-F:8111:/
+965.4 "Hello, Near World 3" #sync / 1[56]:[^:]*:Omega-F:7B8A:/
+
+967.7 "--targetable--"
+976.8 "Solar Ray 1" sync / 1[56]:[^:]*:Omega-M:81AD:/
+979.9 "Solar Ray 2" sync / 1[56]:[^:]*:Omega-M:7B02:/
+988.2 "--sync--" sync / 1[56]:[^:]*:Omega-M:7B43:/
+998.5 "Blind Faith" sync / 1[56]:[^:]*:Omega-M:7B87:/
+999.7 "Blind Faith Enrage" sync / 1[56]:[^:]*:Omega-F:7F73:/
+
+
+### P6: Alpha Omega
+# Blind Faith DPS check passed
+1100.0 "--sync--" sync / 1[56]:[^:]*:Omega-F:7F72:/ window 1100,0
+
+1154.7 "--targetable--"
+# LB3 Check
+1167.8 "Cosmo Memory" sync / 1[56]:[^:]*:Alpha Omega:7BA1:/
+1171.9 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
+1172.8 "Flash Gale 1" sync / 1[56]:[^:]*:Omega-F:7DDF:/
+1175.1 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
+1176.0 "Flash Gale 2" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
+
+1182.2 "Cosmo Arrow" sync / 1[56]:[^:]*:Alpha Omega:7BA2:/ duration 14
+1196.9 "Cosmo Dive" sync / 1[56]:[^:]*:Alpha Omega:7BA6:/
+1199.3 "Cosmo Dive Far" #sync / 1[56]:[^:]*:Alpha Omega:7BA8:/
+1199.3 "Cosmo Dive Near x2" #sync / 1[56]:[^:]*:Alpha Omega:7BA7:/
+1206.1 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
+1207.0 "Flash Gale 1" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
+1209.3 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
+1210.2 "Flash Gale 2" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
+
+1215.4 "Unlimited Wave Cannon" sync / 1[56]:[^:]*:Alpha Omega:7BAC:/
+1223.4 "Wave Cannon Puddle 1" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1225.2 "Wave Cannon Puddle 2" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1227.1 "Wave Cannon Puddle 3" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1229.0 "Wave Cannon Puddle 4" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1230.9 "Wave Cannon Puddle 5" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1232.9 "Wave Cannon Puddle 6" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1236.0 "Wave Cannon 1" #sync / 1[56]:[^:]*:Alpha Omega:7BAB:/
+1238.0 "Wave Cannon 2" #sync / 1[56]:[^:]*:Alpha Omega:7BAB:/
+1243.9 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7BA9:/
+1244.3 "Wave Cannon (Wild Charge)" #sync / 1[56]:[^:]*:Alpha Omega:7BAA:/
+1248.4 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
+1249.3 "Flash Gale 1" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
+1251.6 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
+1252.5 "Flash Gale 2" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
+
+1258.7 "Cosmo Arrow" sync / 1[56]:[^:]*:Alpha Omega:7BA2:/ duration 14
+1269.9 "Wave Cannon 1" #sync / 1[56]:[^:]*:Alpha Omega:7BAB:/
+1271.9 "Wave Cannon 2" #sync / 1[56]:[^:]*:Alpha Omega:7BAB:/
+1277.8 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7BA9:/
+1278.2 "Wave Cannon (Wild Charge)" #sync / 1[56]:[^:]*:Alpha Omega:7BAA:/
+1282.3 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
+1283.2 "Flash Gale 1" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
+1285.5 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
+1286.4 "Flash Gale 2" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
+
+1291.7 "Unlimited Wave Cannon" sync / 1[56]:[^:]*:Alpha Omega:7BAC:/
+1299.7 "Wave Cannon Puddle 1" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1301.5 "Wave Cannon Puddle 2" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1303.4 "Wave Cannon Puddle 3" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1305.3 "Wave Cannon Puddle 4" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1307.2 "Wave Cannon Puddle 5" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1309.2 "Wave Cannon Puddle 6" #sync / 1[56]:[^:]*:Alpha Omega:7BAF:/
+1310.0 "Cosmo Dive" sync / 1[56]:[^:]*:Alpha Omega:7BA6:/
+1312.4 "Cosmo Dive Far" #sync / 1[56]:[^:]*:Alpha Omega:7BA8:/
+1312.4 "Cosmo Dive Near x2" #sync / 1[56]:[^:]*:Alpha Omega:7BA7:/
+1319.2 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
+1320.1 "Flash Gale 1" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
+1322.4 "--sync--" sync / 1[56]:[^:]*:Alpha Omega:7C03:/
+1323.2 "Flash Gale 2" sync / 1[56]:[^:]*:Alpha Omega:7DDF:/
+
+# Range/Caster Brilliant Dynamis Checks
+1331.6 "Cosmo Meteor" sync / 1[56]:[^:]*:Alpha Omega:7BB0:/
+1335.6 "Cosmo Meteor Baits" sync / 1[56]:[^:]*:Alpha Omega:7BB2:/
+
+1336.7 "Cosmo Meteor 1 x4" #sync / 1[56]:[^:]*:Alpha Omega:7FBB:/
+1337.7 "Cosmo Meteor 2 x4" #sync / 1[56]:[^:]*:Alpha Omega:7FBB:/
+# TODO: Adjust targetable
+1339.3 "--adds targetable--"
+1342.7 "Cosmo Meteor 1 x4" #sync / 1[56]:[^:]*:Alpha Omega:7FBB:/
+1343.7 "Cosmo Meteor 2 x4" #sync / 1[56]:[^:]*:Alpha Omega:7FBB:/
+
+1354.7 "Cosmo Meteor Stack" sync / 1[56]:[^:]*:Alpha Omega:7BB3:/
+1354.7 "Cosmo Meteor Flare x3" sync / 1[56]:[^:]*:Alpha Omega:7BB4:/
+1355.7 "Cosmo Meteor" sync / 1[56]:[^:]*:Alpha Omega:7BB1:/
+1357.0 "Cosmo Meteor Enrage" sync / 1[56]:[^:]*:Cosmo Meteor:7BB5:/
+
+# Tank 1 and Healer 1 Brilliant Dynamis Checks
+1361.7 "--sync--" sync / 14:[^:]*:Alpha Omega:7BB6:/ window 5,5
+1366.7 "Magic Number" sync / 1[56]:[^:]*:Alpha Omega:7BB6:/
+
+# Tank 2 and Healer 2 Brilliant Dynamis Checks
+1377.8 "--sync--" sync / 14:[^:]*:Alpha Omega:7BB6:/ window 5,5
+1382.8 "Magic Number" sync / 1[56]:[^:]*:Alpha Omega:7BB6:/
+
+1391.9 "--sync--" sync / 14:[^:]*:Alpha Omega:7BA0:/ window 50,50
+# The cast bar and logs say "16 seconds" but it appears to be ~30s in practice.
+1421.9 "Run: ****mi* Enrage" sync / 1[56]:[^:]*:Alpha Omega:7BA0:/

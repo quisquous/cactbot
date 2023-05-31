@@ -1,8 +1,6 @@
-import chai from 'chai';
+import { assert } from 'chai';
 
 import { cleanName } from '../../util/csv_util';
-
-const { assert } = chai;
 
 describe('util/csv_util tests', () => {
   it('cleanName', () => {

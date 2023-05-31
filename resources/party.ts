@@ -132,7 +132,7 @@ export default class PartyTracker {
 
   // see: otherTank, but for healers.
   otherHealer(name: string): string | undefined {
-    const names = this.roleToPartyNames_['healer'];
+    const names = this.healerNames;
     if (names.length !== 2)
       return;
     if (names[0] === name)

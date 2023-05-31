@@ -4,6 +4,7 @@ import SFuncs from '../../../../../resources/stringhandlers';
 import { Job } from '../../../../../types/job';
 
 import { LineEvent0x03 } from './LineEvent0x03';
+import { LineEvent0x105 } from './LineEvent0x105';
 import LogRepository from './LogRepository';
 
 const fields = {
@@ -15,8 +16,10 @@ const unknownLogMessagePrefix = 'Unknown';
 
 const logMessagePrefix: { [type: string]: string } = {};
 const logDefsGeneric: LogDefinitionMap = logDefinitions;
-for (const def of Object.values(logDefsGeneric))
-  logMessagePrefix[def.type] = def.messageType;
+for (const def of Object.values(logDefsGeneric)) {
+  if (def.messageType !== undefined)
+    logMessagePrefix[def.type] = def.messageType;
+}
 
 /**
  * Generic class to track an FFXIV log line
@@ -42,11 +45,12 @@ export default class LineEvent {
     this.timestamp = new Date(timestampString).getTime();
     this.checksum = parts.slice(-1)[0] ?? '';
     repo.updateTimestamp(this.timestamp);
-    this.convertedLine = this.prefix() + (parts.slice(2, -1).join(':')).replace('|', ':');
+    this.convertedLine = this.prefix() + parts.slice(2, -1).join(':').replace('|', ':');
   }
 
   prefix(): string {
     const timeString = DTFuncs.timeToTimeString(this.timestamp, this.tzOffsetMillis, true);
+    // TODO: should raidemulator not convert lines that don't come from the ffxiv plugin?
     const logMessageName = logMessagePrefix[this.decEventStr] ?? unknownLogMessagePrefix;
     return `[${timeString}] ${logMessageName} ${this.hexEvent}:`;
   }
@@ -65,17 +69,17 @@ export default class LineEvent {
 
     damage = SFuncs.zeroPad(damage, 8);
     const parts = [
-      damage.substr(0, 2),
-      damage.substr(2, 2),
-      damage.substr(4, 2),
-      damage.substr(6, 2),
+      damage.slice(0, 2),
+      damage.slice(2, 4),
+      damage.slice(4, 6),
+      damage.slice(6, 8),
     ] as const;
 
     if (!LineEvent.isDamageBig(damage))
       return parseInt(parts.slice(0, 2).reverse().join(''), 16);
 
     return parseInt(
-      (parts[3] + parts[0]) +
+      parts[3] + parts[0] +
         (parseInt(parts[1], 16) - parseInt(parts[3], 16)).toString(16),
       16,
     );
@@ -145,4 +149,8 @@ export const isLineEventAbility = (line: LineEvent): line is LineEventAbility =>
 
 export const isLineEvent0x03 = (line: LineEvent): line is LineEvent0x03 => {
   return line.decEvent === 3;
+};
+
+export const isLineEvent0x105 = (event: LineEvent): event is LineEvent0x105 => {
+  return event.decEvent === 261;
 };

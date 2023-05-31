@@ -1,3 +1,41 @@
+timer-bar::part(timerbar-root) {
+  border: none;
+}
+
+timer-bar::part(timerbar-bg) {
+  height: 5px !important;
+  border-radius: 1px;
+  background-color: #312008 !important;
+  border: 1px solid #aa6e03 !important;
+  box-shadow: 0 0 8px 0 #aa6e03;
+  opacity: 1;
+  z-index: 0;
+}
+
+timer-bar::part(timerbar-fg) {
+  height: 5px !important;
+  top: 0;
+  left: 0;
+  background-color: rgba(255 255 255 / 100%) !important;
+  box-shadow: 0 0 2px 0 rgba(255 255 255 / 100%) !important;
+  text-align: center;
+  margin: 1px;
+  z-index: 1;
+  opacity: 1;
+}
+
+timer-bar::part(text) {
+  text-shadow:
+    0 0 3px #aa6e03,
+    0 1px 3px #aa6e03,
+    0 -1px 3px #aa6e03;
+}
+
+timer-bar::part(text-container) {
+  top: 0;
+  z-index: 2;
+}
+
 #timeline {
   position: absolute;
   z-index: 0;
@@ -9,38 +47,38 @@
 }
 
 .info-text {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(255 255 255 / 100%);
   text-shadow:
-    -1px 0 rgb(117, 153, 87),
-    0 -1px rgb(117, 153, 87),
-    1px 0 rgb(117, 153, 87),
-    0 1px rgb(117, 153, 87),
-    0 0 10px rgb(117, 153, 87);
+    -1px 0 rgb(117 153 87),
+    0 -1px rgb(117 153 87),
+    1px 0 rgb(117 153 87),
+    0 1px rgb(117 153 87),
+    0 0 10px rgb(117 153 87);
   font-size: 140%;
   will-change: transform;
 }
 
 .alert-text {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(255 255 255 / 100%);
   text-shadow:
-    -1px 0 rgb(170, 110, 3),
-    0 -1px rgb(170, 110, 3),
-    1px 0 rgb(170, 110, 3),
-    0 1px rgb(170, 110, 3),
-    0 0 10px rgb(170, 110, 3);
+    -1px 0 rgb(170 110 3),
+    0 -1px rgb(170 110 3),
+    1px 0 rgb(170 110 3),
+    0 1px rgb(170 110 3),
+    0 0 10px rgb(170 110 3);
   font-size: 170%;
   will-change: transform;
   text-transform: uppercase;
 }
 
 .alarm-text {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(255 255 255 / 100%);
   text-shadow:
-    -1px 0 rgb(247, 120, 120),
-    0 -1px rgb(247, 120, 120),
-    1px 0 rgb(247, 120, 120),
-    0 1px rgb(247, 120, 120),
-    0 0 10px rgb(247, 120, 120);
+    -1px 0 rgb(247 120 120),
+    0 -1px rgb(247 120 120),
+    1px 0 rgb(247 120 120),
+    0 1px rgb(247 120 120),
+    0 0 10px rgb(247 120 120);
   font-size: 230%;
   will-change: transform;
   text-transform: uppercase;

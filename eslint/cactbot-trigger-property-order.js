@@ -77,7 +77,7 @@ module.exports = {
       'run',
     ];
     const optionModule = context.options[0] ? context.options[0].module : undefined;
-    if (!optionModule || (optionModule !== 'oopsyraidsy' && optionModule !== 'raidboss'))
+    if (!optionModule || optionModule !== 'oopsyraidsy' && optionModule !== 'raidboss')
       return;
     const orderList = optionModule === 'oopsyraidsy' ? oopsyraidsyOrderList : raidbossOrderList;
     return {

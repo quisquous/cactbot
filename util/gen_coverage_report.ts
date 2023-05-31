@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 import contentList from '../resources/content_list';
+import ContentType from '../resources/content_type';
 import ZoneId from '../resources/zone_id';
 import ZoneInfo from '../resources/zone_info';
 import { LooseOopsyTriggerSet } from '../types/oopsy';
@@ -226,9 +227,15 @@ const buildTotals = (coverage: Coverage) => {
       byContentType: {},
       overall: { ...emptyTotal },
     };
-    const contentType = zoneInfo.contentType;
-    if (contentType === undefined)
+    const origContentType = zoneInfo.contentType;
+    if (origContentType === undefined)
       continue;
+    // Until we get more V&C dungeons (if ever), lump them in with "dungeons".
+    const contentTypeRemap: { [type: number]: number } = {
+      [ContentType.VCDungeonFinder]: ContentType.Dungeons,
+    };
+    const contentType = contentTypeRemap[origContentType] ?? origContentType;
+
     const accum = versionInfo.byContentType[contentType] ?? { ...emptyTotal };
 
     accum.total++;

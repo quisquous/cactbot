@@ -10,7 +10,7 @@ import { NetFields } from '../../types/net_fields';
 
 import { ComboCallback, ComboTracker } from './combo_tracker';
 import { JobsEventEmitter, PartialFieldMatches } from './event_emitter';
-import { FfxivRegion } from './jobs';
+import { FfxivVersion } from './jobs';
 import { calcGCDFromStat, normalizeLogLine } from './utils';
 
 export type Stats = Omit<
@@ -156,7 +156,7 @@ export class Player extends PlayerBase {
   constructor(
     jobsEmitter: JobsEventEmitter,
     partyTracker: PartyTracker,
-    private ffxivRegion: FfxivRegion,
+    private ffxivVersion: FfxivVersion,
   ) {
     super();
     this.ee = new EventEmitter();
@@ -164,7 +164,7 @@ export class Player extends PlayerBase {
     this.partyTracker = partyTracker;
 
     // setup combo tracker
-    this.combo = ComboTracker.setup(this.ffxivRegion, this);
+    this.combo = ComboTracker.setup(this.ffxivVersion, this);
 
     // setup event emitter
     this.jobsEmitter.on('player', (ev) => this.processPlayerChangedEvent(ev));

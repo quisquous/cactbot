@@ -36,7 +36,7 @@ const processAbilityLine = (splitLine: string[]) => {
   }
 
   const amount = UnscrambleDamage(damage);
-  const lowByte = `00${flags}`.substr(-2);
+  const lowByte = `00${flags}`.slice(-2);
 
   return {
     amount: amount,
@@ -132,7 +132,7 @@ export class DeathReport {
     const deltaMs = timestamp - base;
     const prefix = deltaMs < 0 ? '-' : '';
     const deltaTotalSeconds = Math.round(Math.abs(deltaMs) / 1000);
-    const deltaSeconds = `00${deltaTotalSeconds % 60}`.substr(-2);
+    const deltaSeconds = `00${deltaTotalSeconds % 60}`.slice(-2);
     const deltaMinutes = Math.floor(deltaTotalSeconds / 60);
     return `${prefix}${deltaMinutes}:${deltaSeconds}`;
   }

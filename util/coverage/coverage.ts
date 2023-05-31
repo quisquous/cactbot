@@ -148,6 +148,11 @@ const contentTypeToLabel: { [contentType: number]: LocaleText } = {
     cn: '行会令',
     ko: '길드작전',
   },
+  [ContentType.VCDungeonFinder]: {
+    en: 'V&C',
+    cn: '多变&异闻迷宫',
+    ko: '변형&파생던전',
+  },
 } as const;
 
 const contentTypeLabelOrder = [

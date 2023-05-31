@@ -75,7 +75,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return !data.hasHeadwind?.[matches.target] && !data.hasPrimordial?.[matches.target];
       },
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
       },
     },
     {
@@ -88,7 +93,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return !data.hasHeadwind?.[matches.target] && !data.hasPrimordial?.[matches.target];
       },
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
       },
     },
   ],
