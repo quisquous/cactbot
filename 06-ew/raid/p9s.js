@@ -69,7 +69,7 @@ Options.Triggers.push({
     {
       id: 'P9S Duality of Death',
       type: 'StartsUsing',
-      netRegex: { id: '814C', source: 'Kokytos', capture: false },
+      netRegex: { id: '8151', source: 'Kokytos', capture: false },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -167,7 +167,7 @@ Options.Triggers.push({
     {
       id: 'P9S Ascendant Fist',
       type: 'StartsUsing',
-      netRegex: { id: '815F', source: 'Kokytos' },
+      netRegex: { id: '816F', source: 'Kokytos' },
       response: Responses.tankBusterSwap(),
     },
     {
@@ -184,7 +184,7 @@ Options.Triggers.push({
     {
       id: 'P9S Archaic Demolish',
       type: 'StartsUsing',
-      netRegex: { id: '815F', source: 'Kokytos', capture: false },
+      netRegex: { id: '816D', source: 'Kokytos', capture: false },
       alertText: (_data, _matches, output) => output.healerGroups(),
       outputStrings: {
         healerGroups: Outputs.healerGroups,
