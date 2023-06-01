@@ -443,6 +443,13 @@ const triggerSet: TriggerSet<Data> = {
         'Pandaemon\'s Holy/Circles of Pandaemonium': 'Holy/Circles',
       },
     },
+    {
+      locale: 'ja',
+      missingTranslations: true,
+      replaceSync: {
+        bossNameUnicode: 'パンデモニウム',
+      },
+    },
   ],
 };
 

@@ -415,6 +415,13 @@ const triggerSet: TriggerSet<Data> = {
         'Inside Roundhouse/Outside Roundhouse': 'Inside/Outside Roundhouse',
       },
     },
+    {
+      locale: 'ja',
+      missingTranslations: true,
+      replaceSync: {
+        'Kokytos': 'コキュートス',
+      },
+    },
   ],
 };
 
