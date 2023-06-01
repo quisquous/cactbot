@@ -10,4 +10,26 @@ Options.Triggers.push({
       response: Responses.bleedAoe(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Themis': 'Themis',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Themis': 'Thémis',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Themis': 'テミス',
+      },
+    },
+  ],
 });

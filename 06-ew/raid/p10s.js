@@ -110,6 +110,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Point Tether Away',
+          de: 'Zeige Verbindung weg',
         },
       },
     },
@@ -123,6 +124,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Break Tethers',
+          de: 'Verbindung brechen',
         },
       },
     },
@@ -161,6 +163,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Stack',
+          de: 'Sammeln',
         },
       },
     },
@@ -181,6 +184,7 @@ Options.Triggers.push({
         text: {
           // TODO: should we say "on posts" or "on back wall" based on count?
           en: 'Overlap Webs',
+          de: 'Netze überlappen',
         },
       },
     },
@@ -204,6 +208,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Spread for Webs',
+          de: 'Für Netze verteilen',
         },
       },
     },
@@ -283,9 +288,11 @@ Options.Triggers.push({
       outputStrings: {
         spreadThenPartners: {
           en: '(spread => partners, for later)',
+          de: '(Verteilen => Partner, für später)',
         },
         partnersThenSpread: {
           en: '(partners => spread, for later)',
+          de: '(Partner => Verteilen, für später)',
         },
       },
     },
@@ -311,9 +318,11 @@ Options.Triggers.push({
       outputStrings: {
         spreadThenStack: {
           en: '(spread => role stack, for later)',
+          de: '(Verteilen => Rollengruppe, für später)',
         },
         stackThenSpread: {
           en: '(role stack => spread, for later)',
+          de: '(Rollengruppe => Verteilen, für später)',
         },
       },
     },
@@ -334,9 +343,11 @@ Options.Triggers.push({
       outputStrings: {
         spreadThenStack: {
           en: 'Spread => Role Stack',
+          de: 'Verteilen => Rollengruppe',
         },
         spreadThenPartners: {
           en: 'Spread => Partners',
+          de: 'Verteilen => Partner',
         },
       },
     },
@@ -355,9 +366,11 @@ Options.Triggers.push({
       outputStrings: {
         partnersThenStack: {
           en: 'Partners => Role Stack',
+          de: 'Partner => Rollengruppe',
         },
         partnersThenSpread: {
           en: 'Partners => Spread',
+          de: 'Partner => Verteilen',
         },
       },
     },
@@ -376,9 +389,11 @@ Options.Triggers.push({
       outputStrings: {
         stackThenPartners: {
           en: 'Role Stack => Partners',
+          de: 'Rollengruppe => Partner',
         },
         stackThenSpread: {
           en: 'Role Stack => Spread',
+          de: 'Rollengruppe => Verteilen',
         },
       },
     },
@@ -404,18 +419,111 @@ Options.Triggers.push({
         spread: Outputs.spread,
         partners: {
           en: 'Partners',
+          de: 'Partner',
         },
         stack: {
           en: 'Role Stack',
+          de: 'Rollengruppe',
         },
       },
     },
   ],
   timelineReplace: [
     {
-      locale: 'en',
-      replaceText: {
+      'locale': 'en',
+      'replaceText': {
         'Pandaemon\'s Holy/Circles of Pandaemonium': 'Holy/Circles',
+      },
+    },
+    {
+      'locale': 'de',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Arcane Sphere': 'arkan(?:e|er|es|en) Sphäre',
+        'Pand\\\\u00e6moniac Pillar': 'pand\\u00e6monisch(?:e|er|es|en) Turm',
+        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
+      },
+      'replaceText': {
+        '\\(cast\\)': '(Wirken)',
+        '\\(cone\\)': '(Kegel-AoE)',
+        '\\(knockback\\)': '(Rückstoß)',
+        '\\(share\\)': '(Teilen)',
+        'Bury': 'Impakt',
+        'Circles of Pandaemonium': 'Pandaemonischer Ring',
+        'Dividing Wings': 'Teilungsstrahl',
+        'Entangling Web': 'Großnetz',
+        'Harrowing Hell': 'Höllenpein der Tiefe',
+        'Jade Passage': 'Jadeweg',
+        'Pandaemoniac Meltdown': 'Pandaemonischer Kollaps',
+        'Pandaemoniac Pillars': 'Pandaemonische Säule',
+        'Pandaemoniac Ray': 'Pandaemonischer Strahl',
+        'Pandaemon\'s Holy': 'Pandaemonisches Sanctus',
+        'Parted Plumes': 'Teilungsstrahl',
+        'Peal of Condemnation': 'Verdammungsschub',
+        'Peal of Damnation': 'Kanone der Verdammnis',
+        'Silkspit': 'Spucknetz',
+        'Soul Grasp': 'Seelengreifer',
+        'Touchdown': 'Himmelssturz',
+        'Ultima': 'Ultima',
+        'Wicked Step': 'Übler Schritt',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Arcane Sphere': 'sphère arcanique',
+        'Pand\\\\u00e6moniac Pillar': 'pilier pand\\u00e6moniaque',
+        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
+      },
+      'replaceText': {
+        'Bury': 'Impact',
+        'Circles of Pandaemonium': 'Anneau pandaemoniaque',
+        'Dividing Wings': 'Ailes fendantes',
+        'Entangling Web': 'Grande toile',
+        'Harrowing Hell': 'Assaut sismique',
+        'Jade Passage': 'Sentier de Jade',
+        'Pandaemoniac Meltdown': 'Fusion pandaemoniaque',
+        'Pandaemoniac Pillars': 'Piliers pandaemoniaques',
+        'Pandaemoniac Ray': 'Rayon pandaemoniaque',
+        'Pandaemon\'s Holy': 'Miracle pandaemoniaque',
+        'Parted Plumes': 'Plumes fendantes',
+        'Peal of Condemnation': 'Électrochoc condamnant',
+        'Peal of Damnation': 'Électrochoc damnant',
+        'Silkspit': 'Crachat de toile',
+        'Soul Grasp': 'Saisie d\'âme',
+        'Touchdown': 'Atterrissage',
+        'Ultima': 'Ultima',
+        'Wicked Step': 'Pattes effilées',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Arcane Sphere': '立体魔法陣',
+        'Pand\\\\u00e6moniac Pillar': '万魔殿の塔',
+        'Pand\\\\u00e6monium': 'パンデモニウム',
+      },
+      'replaceText': {
+        'Bury': '衝撃',
+        'Circles of Pandaemonium': 'パンデモニックリング',
+        'Dividing Wings': 'ディバイドウィング',
+        'Entangling Web': 'グランドウェブ',
+        'Harrowing Hell': '魔殿の震撃',
+        'Jade Passage': 'ロード・オブ・ジェイド',
+        'Pandaemoniac Meltdown': 'パンデモニックメルトン',
+        'Pandaemoniac Pillars': 'パンデモニックピラー',
+        'Pandaemoniac Ray': 'パンデモニックレイ',
+        'Pandaemon\'s Holy': 'パンデモニックホーリー',
+        'Parted Plumes': 'ディバイドプルーム',
+        'Peal of Condemnation': 'コンデムブラスター',
+        'Peal of Damnation': 'ダムドブラスター',
+        'Silkspit': 'スピットウェブ',
+        'Soul Grasp': 'ソウルグラスプ',
+        'Touchdown': 'タッチダウン',
+        'Ultima': 'アルテマ',
+        'Wicked Step': '尖脚',
       },
     },
   ],
