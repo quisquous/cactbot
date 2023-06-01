@@ -63,7 +63,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P10S Ultima',
       type: 'StartsUsing',
       netRegex: { id: '82A5', source: bossNameUnicode, capture: false },
-      response: Responses.aoe(),
+      response: Responses.bleedAoe(),
     },
     {
       id: 'P10S Soul Grasp',
