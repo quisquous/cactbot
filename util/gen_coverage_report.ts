@@ -10,6 +10,7 @@ import { LooseTriggerSet } from '../types/trigger';
 import { oopsyTriggerSetFields } from '../ui/oopsyraidsy/oopsy_fields';
 
 import { Coverage, CoverageEntry, CoverageTotals } from './coverage/coverage.d';
+import findManifestFiles from './manifest';
 
 // Paths are relative to current file.
 // We can't import the manifest directly from util/ because that's webpack magic,
@@ -25,12 +26,6 @@ const emptyCoverage = (): CoverageEntry => {
     },
     timeline: {},
   };
-};
-
-const readManifest = (filename: string) => {
-  const contents = fs.readFileSync(filename);
-  const lines = contents.toString().split(/[\r\n]+/);
-  return lines;
 };
 
 const processRaidbossFile = (
@@ -68,7 +63,7 @@ const processRaidbossFile = (
 };
 
 const processRaidbossCoverage = async (manifest: string, coverage: Coverage) => {
-  const manifestLines = readManifest(manifest);
+  const manifestLines = findManifestFiles(manifest);
   const dataDir = path.dirname(manifest);
   for (const line of manifestLines) {
     if (!line.endsWith('.js') && !line.endsWith('.ts'))
@@ -139,7 +134,7 @@ const processOopsyFile = (
 };
 
 const processOopsyCoverage = async (manifest: string, coverage: Coverage) => {
-  const manifestLines = readManifest(manifest);
+  const manifestLines = findManifestFiles(manifest);
   const dataDir = path.dirname(manifest);
   for (const line of manifestLines) {
     if (!line.endsWith('.js') && !line.endsWith('.ts'))
