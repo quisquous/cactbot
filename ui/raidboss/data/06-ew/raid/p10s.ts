@@ -269,8 +269,8 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // Daemonic Bonds starts casting
-      // Then all of the Daemonic Bonds DDE (spread) effects go out
+      // Daemoniac Bonds starts casting
+      // Then all of the Daemoniac Bonds DDE (spread) effects go out
       // Then 4x DDF or 2x E70 effects go out.
       id: 'P10S Pandaemoniac Bonds Cleanup',
       type: 'StartsUsing',
@@ -281,7 +281,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P10S Daemonic Bonds Timer',
+      id: 'P10S Daemoniac Bonds Timer',
       type: 'GainsEffect',
       netRegex: { effectId: 'DDE' },
       condition: (data) => data.daemonicBondsTime === undefined,
@@ -295,7 +295,7 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 5,
       infoText: (data, matches, output) => {
         if (data.daemonicBondsTime === undefined) {
-          console.error(`Daemonic Bonds: ${matches.effectId} effect before DDE?`);
+          console.error(`Daemoniac Bonds: ${matches.effectId} effect before DDE?`);
           return;
         }
 
@@ -327,7 +327,7 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 5,
       infoText: (data, matches, output) => {
         if (data.daemonicBondsTime === undefined) {
-          console.error(`Daemonic Bonds: ${matches.effectId} effect before DDE?`);
+          console.error(`Daemoniac Bonds: ${matches.effectId} effect before DDE?`);
           return;
         }
 
@@ -352,7 +352,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P10S Daemonic Bonds First',
+      id: 'P10S Daemoniac Bonds First',
       type: 'GainsEffect',
       netRegex: { effectId: 'DDE' },
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
@@ -423,9 +423,9 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P10S Daemonic Bonds Followup',
+      id: 'P10S Daemoniac Bonds Followup',
       type: 'Ability',
-      // 82A2 = Daemonic Bonds (spread)
+      // 82A2 = Daemoniac Bonds (spread)
       // 82A3 = Dueodaemoniac Bonds (partners)
       // 87AE = TetraDaemoniac Bonds (4 person stacks)
       netRegex: { id: ['82A2', '82A3', '87AE'], source: bossNameUnicode, capture: false },

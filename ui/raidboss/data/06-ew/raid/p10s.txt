@@ -51,8 +51,8 @@ hideall "--sync--"
 131.9 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:829D:/
 
 144.2 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:828D:/
-145.8 "Daemonic Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
-148.8 "Daemonic Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+145.8 "Daemoniac Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+148.8 "Daemoniac Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
 
 159.8 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:82A5:/
 168.9 "Soul Grasp x4" sync / 1[56]:[^:]*:Pand\u00e6monium:829F:/ duration 5.7
@@ -65,8 +65,8 @@ hideall "--sync--"
 215.1 "Peal of Condemnation 3" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:8288:/
 219.7 "Peal of Condemnation 4" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:8288:/
 
-223.9 "Daemonic Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
-226.9 "Daemonic Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+223.9 "Daemoniac Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+226.9 "Daemoniac Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
 233.8 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:(8289|828B):/
 237.6 "Jade Passage" sync / 1[56]:[^:]*:Arcane Sphere:828C:/
 
@@ -86,9 +86,9 @@ hideall "--sync--"
 323.1 "Pandaemon's Holy/Circles of Pandaemonium" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A6|82A7):/
 323.2 "Peal of Damnation" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:87B0:/
 
-329.9 "Daemonic Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+329.9 "Daemoniac Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
 330.6 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:(8289|828B):/
-333.9 "Daemonic Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+333.9 "Daemoniac Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
 
 334.3 "Jade Passage" #sync / 1[56]:[^:]*:Arcane Sphere:828C:/
 338.6 "Dividing Wings" sync / 1[56]:[^:]*:Pand\u00e6monium:8297:/
@@ -121,8 +121,8 @@ hideall "--sync--"
 450.1 "Harrowing Hell 8" sync / 1[56]:[^:]*:Pand\u00e6monium:86BC:/
 454.0 "Harrowing Hell (knockback)" sync / 1[56]:[^:]*:Pand\u00e6monium:8294:/
 
-459.3 "Daemonic Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
-462.3 "Daemonic Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+459.3 "Daemoniac Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+462.3 "Daemoniac Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
 
 480.5 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:82A5:/
 490.6 "Soul Grasp x4" sync / 1[56]:[^:]*:Pand\u00e6monium:829F:/ duration 5.7
