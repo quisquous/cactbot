@@ -67,7 +67,7 @@ hideall "--sync--"
 
 223.9 "Daemonic Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
 226.9 "Daemonic Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
-233.8 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:828B:/
+233.8 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:(8289|828B):/
 237.6 "Jade Passage" sync / 1[56]:[^:]*:Arcane Sphere:828C:/
 
 249.3 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:82A5:/
@@ -87,7 +87,7 @@ hideall "--sync--"
 323.2 "Peal of Damnation" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:87B0:/
 
 329.9 "Daemonic Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
-330.6 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:828B:/
+330.6 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:(8289|828B):/
 333.9 "Daemonic Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
 
 334.3 "Jade Passage" #sync / 1[56]:[^:]*:Arcane Sphere:828C:/
@@ -134,7 +134,7 @@ hideall "--sync--"
 
 543.8 "Parted Plumes" sync / 1[56]:[^:]*:Pand\u00e6monium:8295:/ duration 10
 
-555.9 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:828B:/
+555.9 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:(8289|828B):/
 
 559.7 "Jade Passage" sync / 1[56]:[^:]*:Arcane Sphere:828C:/
 563.0 "Pandaemon's Holy/Circles of Pandaemonium" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A6|82A7):/
