@@ -191,6 +191,12 @@ Options.Triggers.push({
       response: Responses.getTowers('info'),
     },
     {
+      id: 'P10S Pandaemoniac Turrets',
+      type: 'StartsUsing',
+      netRegex: { id: '87AF', source: bossNameUnicode, capture: false },
+      response: Responses.getTowers('info'),
+    },
+    {
       id: 'P10S Silkspit',
       type: 'StartsUsing',
       netRegex: { id: '827C', source: bossNameUnicode, capture: false },
@@ -402,6 +408,14 @@ Options.Triggers.push({
         stack: {
           en: 'Role Stack',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      locale: 'en',
+      replaceText: {
+        'Pandaemon\'s Holy/Circles of Pandaemonium': 'Holy/Circles',
       },
     },
   ],
