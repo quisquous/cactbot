@@ -46,17 +46,17 @@ hideall "--sync--"
 60.4 "Dualspell (Fire/Ice)" sync / 1[56]:[^:]*:Kokytos:8154:/
 63.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123):/
 68.1 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
-68.1 "Pile Pyre" #sync / 1[56]:[^:]*:Kokytos:(8156|8158):/
+68.1 "Pile Pyre" sync / 1[56]:[^:]*:Kokytos:(8156|8158):/
 
 73.4 "Dualspell (Thunder/Ice)" sync / 1[56]:[^:]*:Kokytos:8155:/
 76.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8123|815C):/
 81.1 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
-81.1 "Thunder III" #sync / 1[56]:[^:]*:Kokytos:(815A|815B):/
+81.1 "Thunder III" sync / 1[56]:[^:]*:Kokytos:(815A|815B):/
 
 86.4 "Dualspell (Fire/Ice)" sync / 1[56]:[^:]*:Kokytos:8154:/
 89.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123):/
 94.1 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
-94.1 "Pile Pyre" #sync / 1[56]:[^:]*:Kokytos:(8156|8158):/
+94.1 "Pile Pyre" sync / 1[56]:[^:]*:Kokytos:(8156|8158):/
 
 101.8 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8124:/
 
@@ -114,13 +114,13 @@ hideall "--sync--"
 255.4 "Firemeld #4" sync / 1[56]:[^:]*:Kokytos:8180:/
 255.8 "Icemeld #4" sync / 1[56]:[^:]*:Kokytos's Echo:8192:/
 256.5 "Shock #4" sync / 1[56]:[^:]*:Kokytos:8181:/
-256.5 "--middle--" #sync / 1[56]:[^:]*:Kokytos:8144:/
+256.5 "--middle--" sync / 1[56]:[^:]*:Kokytos:8144:/
 
 258.1 "--targetable--"
 262.2 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
 265.1 "Two Minds" sync / 1[56]:[^:]*:Kokytos:(8184|8185):/
 266.2 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
-266.2 "Pile Pyre/Thunder III" #sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
+266.2 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
 272.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
 
 276.3 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8236:/
@@ -164,7 +164,7 @@ hideall "--sync--"
 418.5 "Archaic Rockbreaker #2" sync / 1[56]:[^:]*:Kokytos:8161:/
 
 420.9 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
-420.9 "Pile Pyre/Thunder III" #sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
+420.9 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
 426.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
 
 # Limit Cut 2
@@ -182,7 +182,7 @@ hideall "--sync--"
 467.4 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
 470.3 "Two Minds" sync / 1[56]:[^:]*:Kokytos:(8184|8185):/
 471.4 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
-471.4 "Pile Pyre/Thunder III" #sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
+471.4 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
 
 472.4 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8236:/
 
@@ -194,13 +194,13 @@ hideall "--sync--"
 500.3 "Dualspell" sync / 1[56]:[^:]*:Kokytos:(8154|8155):/
 503.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
 508.2 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
-508.2 "Pile Pyre/Thunder III" #sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
+508.2 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
 513.5 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
 
 520.6 "Dualspell" sync / 1[56]:[^:]*:Kokytos:(8154|8155):/
 523.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
 528.5 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
-528.5 "Pile Pyre/Thunder III" #sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
+528.5 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
 
 534.8 "Duality of Death" sync / 1[56]:[^:]*:Kokytos:8151:/
 535.7 "Aero IV/Fire IV #1" #sync / 1[56]:[^:]*:Kokytos:(8152|8153):/
@@ -209,7 +209,7 @@ hideall "--sync--"
 544.0 "Dualspell" sync / 1[56]:[^:]*:Kokytos:(8154|8155):/
 547.3 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
 551.9 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
-551.9 "Pile Pyre/Thunder III" #sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
+551.9 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
 557.1 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
 
 564.7 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8124:/
