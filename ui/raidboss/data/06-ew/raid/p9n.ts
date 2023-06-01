@@ -202,7 +202,7 @@ const triggerSet: TriggerSet<Data> = {
         '\\(Behemoth\\)': '(Behemot)',
         '\\(Fighter\\)': '(Kämpfer)',
         '\\(Mage\\)': '(Magier)',
-        '\\(cast\\)': '(Ausführen)',
+        '\\(cast\\)': '(Wirken)',
         '\\(resolve\\)': '(Auflösen)',
         'Archaic Demolish': 'Altes Demolieren',
         'Archaic Rockbreaker': 'Alte Erdspaltung',
