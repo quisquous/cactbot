@@ -350,6 +350,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         casting: {
           en: 'ID ${id} is casting spell ID ${spellId}',
+          de: 'ID ${id} wirkt Zauber ID ${spellId}',
         },
       },
     },

@@ -115,6 +115,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Partners + Donut',
+          de: 'Partner + Donut',
           fr: 'Partenaires + Donut',
           cn: '双人分摊 + 月环',
         },
@@ -130,6 +131,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Protean + Donut',
+          de: 'Himmelsrichtungen + Donut',
           fr: 'Positions + Donut',
           cn: '八方分散 + 月环',
         },
@@ -148,6 +150,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         fireIceOut: {
           en: 'Out + Partners',
+          de: 'Raus + Partner',
           fr: 'Extérieur + Partenaires',
           cn: '远离 + 双人分摊',
         },
@@ -169,11 +172,13 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         fireIceIn: {
           en: 'In + Partners',
+          de: 'Rein + Partner',
           fr: 'Intérieur + Partenaires',
           cn: '靠近 + 双人分摊',
         },
         thunderIceIn: {
           en: 'In + Protean',
+          de: 'Rein + Himmelsrichtungen',
           fr: 'Intérieur + Positions',
           cn: '靠近 + 八方分散',
         },
@@ -193,6 +198,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         thunderIceOut: {
           en: 'Out + Protean',
+          de: 'Raus + Himmelsrichtungen',
           fr: 'Extérieur + Positions',
           cn: '远离 + 八方分散',
         },
@@ -213,6 +219,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback into Wall',
+          de: 'Rückstoß in die Wand',
           fr: 'Poussée sur un mur',
           cn: '向墙边击退',
         },
@@ -300,6 +307,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Out => Back',
+          de: 'Raus => Hinten',
           fr: 'Extérieur => Derrière',
           cn: '远离 => 去背后',
         },
@@ -314,6 +322,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'In => Back',
+          de: 'Rein => Hinten',
           fr: 'Intérieur => Derrière',
           cn: '靠近 => 去背后',
         },
@@ -328,6 +337,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Out => Front',
+          de: 'Raus => Vorne',
           fr: 'Extérieur => Devant',
           cn: '远离 => 去面前',
         },
@@ -342,6 +352,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'In => Front',
+          de: 'Rein => Vorne',
           fr: 'Intérieur => Devant',
           cn: '靠近 => 去面前',
         },
@@ -379,21 +390,25 @@ const triggerSet: TriggerSet<Data> = {
         in: Outputs.in,
         outAndFront: {
           en: 'Out + Front',
+          de: 'Raus + Vorne',
           fr: 'Extérieur + Devant',
           cn: '远离 => 去面前',
         },
         outAndBack: {
           en: 'Out + Back',
+          de: 'Raus + Hinten',
           fr: 'Extérieur + Derrière',
           cn: '远离 => 去背后',
         },
         inAndFront: {
           en: 'In + Front',
+          de: 'Rein + Vorne',
           fr: 'Intérieur + Devant',
           cn: '靠近 => 去面前',
         },
         inAndBack: {
           en: 'In + Back',
+          de: 'Rein + Hinten',
           fr: 'Intérieur + Derrière',
           cn: '靠近 => 去背后',
         },
@@ -408,11 +423,92 @@ const triggerSet: TriggerSet<Data> = {
   ],
   timelineReplace: [
     {
-      locale: 'en',
-      replaceText: {
+      'locale': 'en',
+      'replaceText': {
         'Aero IV/Fire IV': 'Aero/Fire IV',
         'Front Combination/Rear Combination': 'Front/Rear Combination',
         'Inside Roundhouse/Outside Roundhouse': 'Inside/Outside Roundhouse',
+      },
+    },
+    {
+      'locale': 'de',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Kokytos': 'Kokytos',
+      },
+      'replaceText': {
+        '\\(Fighter': '(Kämpfer',
+        '\\(Mage': '(Magier',
+        'Aero IV': 'Windka',
+        'Blizzard III': 'Eisga',
+        'Disgorge': 'Seelenwende',
+        'Duality of Death': 'Dualer Tod',
+        'Dualspell': 'Doppelspruch',
+        'Fire(?! )': 'Feuer',
+        'Fire IV': 'Feuka',
+        'Front Combination': 'Trittfolge vor',
+        'Gluttony\'s Augur': 'Omen der Fresssucht',
+        'Ice': 'Eis',
+        'Inside Roundhouse': 'Rundumtritt innen',
+        'Outside Roundhouse': 'Rundumtritt außen',
+        'Pile Pyre': 'Flammenhaufen',
+        'Ravening': 'Seelenfresser',
+        'Rear Combination': 'Trittfolge zurück',
+        'Soul Surge': 'Seelenschub',
+        'Thunder III': 'Blitzga',
+        'Thunder(?! )': 'Blitz',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Kokytos': 'Kokytos',
+      },
+      'replaceText': {
+        'Aero IV': 'Giga Vent',
+        'Blizzard III': 'Méga Glace',
+        'Disgorge': 'Renvoi d\'âme',
+        'Duality of Death': 'Mort double',
+        'Dualspell': 'Double sort',
+        'Fire(?! )': 'Feu',
+        'Fire IV': 'Giga Feu',
+        'Front Combination': 'Coups de pied pivotants avant en série',
+        'Gluttony\'s Augur': 'Augure de gloutonnerie',
+        'Inside Roundhouse': 'Coup de pied pivotant intérieur',
+        'Outside Roundhouse': 'Coup de pied pivotant extérieur',
+        'Pile Pyre': 'Flammes empilées',
+        'Ravening': 'Dévoration d\'âme',
+        'Rear Combination': 'Coups de pied pivotants arrière en série',
+        'Soul Surge': 'Déferlante d\'âme',
+        'Thunder III': 'Méga Foudre',
+        'Thunder(?! )': 'Foudre',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Kokytos': 'コキュートス',
+      },
+      'replaceText': {
+        'Aero IV': 'エアロジャ',
+        'Blizzard III': 'ブリザガ',
+        'Disgorge': 'ソウルリバース',
+        'Duality of Death': 'デストゥワイス',
+        'Dualspell': 'ダブルスペル',
+        'Fire(?! )': 'ファイア',
+        'Fire IV': 'ファイジャ',
+        'Front Combination': '前方連転脚',
+        'Gluttony\'s Augur': 'グラトニーズアーガー',
+        'Inside Roundhouse': '内転脚',
+        'Outside Roundhouse': '外転脚',
+        'Pile Pyre': 'パイリングフレイム',
+        'Ravening': '魂喰らい',
+        'Rear Combination': '後方連転脚',
+        'Soul Surge': 'ソウルサージ',
+        'Thunder III': 'サンダガ',
+        'Thunder(?! )': 'サンダー',
       },
     },
   ],
