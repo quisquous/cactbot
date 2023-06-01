@@ -428,6 +428,8 @@ const triggerSet: TriggerSet<Data> = {
         'Aero IV/Fire IV': 'Aero/Fire IV',
         'Front Combination/Rear Combination': 'Front/Rear Combination',
         'Inside Roundhouse/Outside Roundhouse': 'Inside/Outside Roundhouse',
+        'Outside Roundhouse/Inside Roundhouse': 'Outside/Inside Roundhouse',
+        'Front Firestrikes/Rear Firestrikes': 'Front/Rear Firestrikes',
       },
     },
     {
