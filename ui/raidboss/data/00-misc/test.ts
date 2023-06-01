@@ -350,6 +350,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         casting: {
           en: 'ID ${id} is casting spell ID ${spellId}',
+          de: 'ID ${id} wirkt Zauber ID ${spellId}',
         },
       },
     },
@@ -357,7 +358,6 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       locale: 'de',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
         'You bow courteously to the striking dummy':
