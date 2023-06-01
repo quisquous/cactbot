@@ -236,5 +236,173 @@ Options.Triggers.push({
         },
       },
     },
+    {
+      // Daemonic Bonds starts casting
+      // Then all of the Daemonic Bonds DDE (spread) effects go out
+      // Then 4x DDF or 2x E70 effects go out.
+      id: 'P10S Pandaemoniac Bonds Cleanup',
+      type: 'StartsUsing',
+      netRegex: { id: '82A1', source: bossNameUnicode, capture: false },
+      run: (data) => {
+        delete data.daemonicBondsTime;
+        delete data.bondsSecondMechanic;
+      },
+    },
+    {
+      id: 'P10S Daemonic Bonds Timer',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'DDE' },
+      condition: (data) => data.daemonicBondsTime === undefined,
+      run: (data, matches) => data.daemonicBondsTime = parseFloat(matches.duration),
+    },
+    {
+      id: 'P10S Dueodaemoniac Bonds Future',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'DDF' },
+      durationSeconds: 5,
+      suppressSeconds: 5,
+      infoText: (data, matches, output) => {
+        if (data.daemonicBondsTime === undefined) {
+          console.error(`Daemonic Bonds: ${matches.effectId} effect before DDE?`);
+          return;
+        }
+        const duration = parseFloat(matches.duration);
+        if (duration > data.daemonicBondsTime) {
+          data.bondsSecondMechanic = 'partners';
+          return output.spreadThenPartners();
+        }
+        data.bondsSecondMechanic = 'spread';
+        return output.partnersThenSpread();
+      },
+      outputStrings: {
+        spreadThenPartners: {
+          en: '(spread => partners, for later)',
+        },
+        partnersThenSpread: {
+          en: '(partners => spread, for later)',
+        },
+      },
+    },
+    {
+      id: 'P10S TetraDaemoniac Bonds Future',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'E70' },
+      durationSeconds: 5,
+      suppressSeconds: 5,
+      infoText: (data, matches, output) => {
+        if (data.daemonicBondsTime === undefined) {
+          console.error(`Daemonic Bonds: ${matches.effectId} effect before DDE?`);
+          return;
+        }
+        const duration = parseFloat(matches.duration);
+        if (duration > data.daemonicBondsTime) {
+          data.bondsSecondMechanic = 'stack';
+          return output.spreadThenStack();
+        }
+        data.bondsSecondMechanic = 'spread';
+        return output.stackThenSpread();
+      },
+      outputStrings: {
+        spreadThenStack: {
+          en: '(spread => role stack, for later)',
+        },
+        stackThenSpread: {
+          en: '(role stack => spread, for later)',
+        },
+      },
+    },
+    {
+      id: 'P10S Daemonic Bonds First',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'DDE' },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      suppressSeconds: 5,
+      alertText: (data, _matches, output) => {
+        // If this is undefined, then this is the second mechanic and will be called out elsewhere.
+        // We can't make this a `condition` as this is not known until after some delay.
+        if (data.bondsSecondMechanic === 'stack')
+          return output.spreadThenStack();
+        if (data.bondsSecondMechanic === 'partners')
+          return output.spreadThenPartners();
+      },
+      outputStrings: {
+        spreadThenStack: {
+          en: 'Spread => Role Stack',
+        },
+        spreadThenPartners: {
+          en: 'Spread => Partners',
+        },
+      },
+    },
+    {
+      id: 'P10S Dueodaemoniac Bonds First',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'DDF' },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      suppressSeconds: 5,
+      alertText: (data, _matches, output) => {
+        if (data.bondsSecondMechanic === 'stack')
+          return output.partnersThenStack();
+        if (data.bondsSecondMechanic === 'spread')
+          return output.partnersThenSpread();
+      },
+      outputStrings: {
+        partnersThenStack: {
+          en: 'Partners => Role Stack',
+        },
+        partnersThenSpread: {
+          en: 'Partners => Spread',
+        },
+      },
+    },
+    {
+      id: 'P10S TetraDaemoniac Bonds First',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'E70' },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      suppressSeconds: 5,
+      alertText: (data, _matches, output) => {
+        if (data.bondsSecondMechanic === 'partners')
+          return output.stackThenPartners();
+        if (data.bondsSecondMechanic === 'spread')
+          return output.stackThenSpread();
+      },
+      outputStrings: {
+        stackThenPartners: {
+          en: 'Role Stack => Partners',
+        },
+        stackThenSpread: {
+          en: 'Role Stack => Spread',
+        },
+      },
+    },
+    {
+      id: 'P10S Daemonic Bonds Followup',
+      type: 'Ability',
+      // 82A2 = Daemonic Bonds (spread)
+      // 82A3 = Dueodaemoniac Bonds (partners)
+      // 87AE = TetraDaemoniac Bonds (4 person stacks)
+      netRegex: { id: ['82A2', '82A3', '87AE'], source: bossNameUnicode, capture: false },
+      condition: (data) => data.bondsSecondMechanic !== undefined,
+      suppressSeconds: 5,
+      infoText: (data, _matches, output) => {
+        if (data.bondsSecondMechanic === 'spread')
+          return output.spread();
+        if (data.bondsSecondMechanic === 'partners')
+          return output.partners();
+        if (data.bondsSecondMechanic === 'stack')
+          return output.stack();
+      },
+      run: (data) => delete data.bondsSecondMechanic,
+      outputStrings: {
+        spread: Outputs.spread,
+        partners: {
+          en: 'Partners',
+        },
+        stack: {
+          en: 'Role Stack',
+        },
+      },
+    },
   ],
 });
