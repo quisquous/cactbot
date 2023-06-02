@@ -100,6 +100,12 @@ Options.Triggers.push({
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'Inevitable Law/Inevitable Sentence': 'Inevitable Law/Sentence',
+      },
+    },
+    {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
