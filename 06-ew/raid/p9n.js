@@ -232,7 +232,7 @@ Options.Triggers.push({
         'Comet': 'Comète',
         'Fire Sphere': 'Sphère de feu',
         'Ice Sphere': 'sphère gelée',
-        'Kokytos': 'Kokytos',
+        'Kokytos': 'Cocyte',
       },
       'replaceText': {
         'Archaic Demolish': 'Démolition archaïque',
