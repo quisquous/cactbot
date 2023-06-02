@@ -492,7 +492,7 @@ const triggerSet: TriggerSet<Data> = {
       'missingTranslations': true,
       'replaceSync': {
         'Comet': 'Comète',
-        'Kokytos(?!\')': 'Kokytos',
+        'Kokytos(?!\')': 'Cocyte',
         'Kokytos\'s Echo': 'spectre de Cocyte',
       },
       'replaceText': {
