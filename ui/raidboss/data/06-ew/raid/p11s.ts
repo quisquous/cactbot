@@ -142,7 +142,7 @@ const triggerSet: TriggerSet<Data> = {
         'Divisive Ruling': 'Auflösungsbeschluss',
         'Emissary\'s Will': 'Schlichtung',
         'Eunomia': 'Eunomia',
-        'Explosion': 'Explosion',
+        '(?<!Magie)Explosion': 'Explosion',
         'Heart of Judgment': 'Urteilsschlag',
         'Inevitable Law': 'Langer Arm des Rechts',
         'Inevitable Sentence': 'Langer Arm der Strafe',
