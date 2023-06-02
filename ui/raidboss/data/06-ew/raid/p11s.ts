@@ -23,7 +23,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Protean => Stacks',
+          en: 'Protean => Healer Stacks',
         },
       },
     },
@@ -45,7 +45,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Party In => Out + Stacks',
+          en: 'Party In => Out + Healer Stacks',
         },
       },
     },
@@ -67,7 +67,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Sides => Stacks + Out',
+          en: 'Sides => Healer Stacks + Out',
         },
       },
     },
@@ -89,7 +89,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Knockback => Stacks + Out',
+          en: 'Knockback => Healer Stacks + Out',
         },
       },
     },
