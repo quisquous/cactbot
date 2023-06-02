@@ -125,7 +125,7 @@ const triggerSet: TriggerSet<Data> = {
       'missingTranslations': true,
       'replaceSync': {
         'Arcane Cylinder': 'arkan(?:e|er|es|en) Zylinder',
-        'Arcane Sphere': 'arkan(?:e|er|es|en) Sphäre',
+        'Arcane Sphere': 'arkan(?:e|er|es|en) Körper',
         'Illusory Themis': 'Phantom-Themis',
         '(?<! )Themis': 'Themis',
       },
