@@ -106,6 +106,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Healer Stacks + Out',
+          de: 'Heiler Gruppen + Raus',
         },
       },
     },
@@ -117,6 +118,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Partners + In',
+          de: 'Partner + Rein',
         },
       },
     },
@@ -152,6 +154,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go to Dark Portals',
+          de: 'Geh zu einem Dunkel-Portal',
         },
       },
     },
@@ -163,6 +166,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go to Light Portals',
+          de: 'Geh zu einem Licht-Portal',
         },
       },
     },
@@ -174,6 +178,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Rotate to Dark Orbs',
+          de: 'Rotiere zu den dunklen Orbs',
         },
       },
     },
@@ -185,6 +190,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Rotate to Light Orbs',
+          de: 'Rotiere zu den licht Orbs',
         },
       },
     },
@@ -232,21 +238,27 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           lightNear: {
             en: 'Light Near w/${player}',
+            de: 'Licht Nahe w/${player}',
           },
           lightFar: {
             en: 'Light Far w/${player}',
+            de: 'Licht Entfernt w/${player}',
           },
           darkNear: {
             en: 'Dark Near w/${player}',
+            de: 'Dunkel Nahe w/${player}',
           },
           darkFar: {
             en: 'Dark Far w/${player}',
+            de: 'Dunkel Entfernt w/${player}',
           },
           otherNear: {
             en: 'Other Near: ${player1}, ${player2}',
+            de: 'Anderes Nahe: ${player1}, ${player2}',
           },
           otherFar: {
             en: 'Other Far: ${player1}, ${player2}',
+            de: 'Anderes Entfernt: ${player1}, ${player2}',
           },
         };
 
