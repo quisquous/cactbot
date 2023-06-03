@@ -3,12 +3,22 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-export type Data = RaidbossData;
-
+export interface Data extends RaidbossData {
+  lightDarkDebuff: { [name: string]: 'light' | 'dark' };
+  lightDarkBuddy: { [name: string]: string };
+  lightDarkTether: { [name: string]: 'near' | 'far' };
+}
 const triggerSet: TriggerSet<Data> = {
   id: 'AnabaseiosTheEleventhCircleSavage',
   zoneId: ZoneId.AnabaseiosTheEleventhCircleSavage,
   timelineFile: 'p11s.txt',
+  initData: () => {
+    return {
+      lightDarkDebuff: {},
+      lightDarkBuddy: {},
+      lightDarkTether: {},
+    };
+  },
   triggers: [
     {
       id: 'P11S Eunomia',
@@ -89,6 +99,28 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P11S Divisive Overruling Light Shadowed Messengers',
+      type: 'StartsUsing',
+      netRegex: { id: '87B3', source: 'Themis', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Healer Stacks + Out',
+        },
+      },
+    },
+    {
+      id: 'P11S Divisive Overruling Dark Shadowed Messengers',
+      type: 'StartsUsing',
+      netRegex: { id: '87B4', source: 'Themis', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Partners + In',
+        },
+      },
+    },
+    {
       id: 'P11S Dismissal Overruling Light',
       type: 'StartsUsing',
       netRegex: { id: '8784', source: 'Themis', capture: false },
@@ -110,6 +142,154 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Knockback => In + Partners',
           de: 'Rückstoß => Rein + Partner',
         },
+      },
+    },
+    {
+      id: 'P11S Arcane Revelation Light Portals',
+      type: 'StartsUsing',
+      netRegex: { id: '820D', source: 'Themis', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Go to Dark Portals',
+        },
+      },
+    },
+    {
+      id: 'P11S Arcane Revelation Dark Portals',
+      type: 'StartsUsing',
+      netRegex: { id: '820E', source: 'Themis', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Go to Light Portals',
+        },
+      },
+    },
+    {
+      id: 'P11S Arcane Revelation Light Orbs',
+      type: 'StartsUsing',
+      netRegex: { id: '820F', source: 'Themis', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Rotate to Dark Orbs',
+        },
+      },
+    },
+    {
+      id: 'P11S Arcane Revelation Dark Orbs',
+      type: 'StartsUsing',
+      netRegex: { id: '8210', source: 'Themis', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Rotate to Light Orbs',
+        },
+      },
+    },
+    {
+      id: 'P11S Dark and Light Buff Collect',
+      type: 'GainsEffect',
+      // DE1 = Light's Accord
+      // DE2 = Dark's Accord
+      // DE3 = Light's Discord
+      // DE4 = Dark's Discord
+      netRegex: { effectId: ['DE1', 'DE2', 'DE3', 'DE4'] },
+      run: (data, matches) => {
+        const isLight = matches.effectId === 'DE1' || matches.effectId === 'DE3';
+        data.lightDarkDebuff[matches.target] = isLight ? 'light' : 'dark';
+      },
+    },
+    {
+      id: 'P11S Dark and Light Tether Collect',
+      type: 'Tether',
+      // 00EC = light far tether (correct)
+      // 00ED = light far tether (too close)
+      // 00EE = dark far tether (correct)
+      // 00EF = dark far tether (too close)
+      // 00F0 = near tether (correct)
+      // 00F1 = near tether (too far)
+      netRegex: { id: ['00EC', '00ED', '00EE', '00EF', '00F0', '00F1'] },
+      run: (data, matches) => {
+        const isNear = matches.id === '00F0' || matches.id === '00F1';
+        const nearFarStr = isNear ? 'near' : 'far';
+        data.lightDarkTether[matches.source] = data.lightDarkTether[matches.target] = nearFarStr;
+
+        data.lightDarkBuddy[matches.source] = matches.target;
+        data.lightDarkBuddy[matches.target] = matches.source;
+      },
+    },
+    {
+      id: 'P11S Dark and Light Tether Callout',
+      type: 'Tether',
+      netRegex: { id: ['00EC', '00ED', '00EE', '00EF', '00F0', '00F1'], capture: false },
+      delaySeconds: 0.5,
+      durationSeconds: 6,
+      suppressSeconds: 9999,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          lightNear: {
+            en: 'Light Near w/${player}',
+          },
+          lightFar: {
+            en: 'Light Far w/${player}',
+          },
+          darkNear: {
+            en: 'Dark Near w/${player}',
+          },
+          darkFar: {
+            en: 'Dark Far w/${player}',
+          },
+          otherNear: {
+            en: 'Other Near: ${player1}, ${player2}',
+          },
+          otherFar: {
+            en: 'Other Far: ${player1}, ${player2}',
+          },
+        };
+
+        const myColor = data.lightDarkDebuff[data.me];
+        const myBuddy = data.lightDarkBuddy[data.me];
+        const myLength = data.lightDarkTether[data.me];
+
+        if (myColor === undefined || myBuddy === undefined || myLength === undefined) {
+          console.log(`Dark and Light: missing data for ${data.me}`);
+          console.log(`Dark and Light: lightDarkDebuff: ${JSON.stringify(data.lightDarkDebuff)}`);
+          console.log(`Dark and Light: lightDarkBuddy: ${JSON.stringify(data.lightDarkBuddy)}`);
+          console.log(`Dark and Light: lightDarkTether: ${JSON.stringify(data.lightDarkTether)}`);
+          return;
+        }
+
+        const myBuddyShort = data.ShortName(myBuddy);
+
+        let alertText: string;
+        if (myLength === 'near') {
+          if (myColor === 'light')
+            alertText = output.lightNear!({ player: myBuddyShort });
+          else
+            alertText = output.darkNear!({ player: myBuddyShort });
+        } else {
+          if (myColor === 'light')
+            alertText = output.lightFar!({ player: myBuddyShort });
+          else
+            alertText = output.darkFar!({ player: myBuddyShort });
+        }
+
+        let infoText: string | undefined = undefined;
+
+        const playerNames = Object.keys(data.lightDarkTether);
+        const sameLength = playerNames.filter((x) => data.lightDarkTether[x] === myLength);
+        const others = sameLength.filter((x) => x !== data.me && x !== myBuddy).sort();
+        const [player1, player2] = others.map((x) => data.ShortName(x));
+        if (player1 !== undefined && player2 !== undefined) {
+          if (myLength === 'near')
+            infoText = output.otherNear!({ player1: player1, player2: player2 });
+          else
+            infoText = output.otherFar!({ player1: player1, player2: player2 });
+        }
+        return { alertText: alertText, infoText: infoText };
       },
     },
   ],
