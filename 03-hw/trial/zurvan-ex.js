@@ -1,5 +1,5 @@
 Options.Triggers.push({
-  id: 'ContainmentBayZ1T9Extreme,',
+  id: 'ContainmentBayZ1T9Extreme',
   zoneId: ZoneId.ContainmentBayZ1T9Extreme,
   timelineFile: 'zurvan-ex.txt',
   initData: () => {
@@ -48,17 +48,37 @@ Options.Triggers.push({
     },
     {
       id: 'ZurvanEX Wave Cannon Stack',
+      // Zurvan targets himself with this attack
       type: 'StartsUsing',
-      netRegex: { id: '1C72', source: 'Zurvan' },
-      condition: Conditions.targetIsNotYou(),
-      response: Responses.stackMarkerOn(),
+      netRegex: { id: '1C72', source: 'Zurvan', capture: false },
+      alertText: (data, _matches, output) => {
+        if (data?.waveTarget === data.me)
+          // The target is stunned during this mechanic
+          return;
+        if (data.waveTarget === undefined)
+          return output.unknownStackTarget();
+        return output.stackOn({ player: data.ShortName(data.waveTarget) });
+      },
+      outputStrings: {
+        unknownStackTarget: Outputs.stackMarker,
+        stackOn: Outputs.stackOnPlayer,
+      },
+    },
+    {
+      id: 'ZurvanEX Wave Cannon Stack Cleanup',
+      type: 'Ability',
+      netRegex: { id: '1C72', source: 'Zurvan', capture: false },
+      run: (data) => delete data.waveTarget,
     },
     {
       id: 'ZurvanEX Demon Claw',
       type: 'StartsUsing',
       netRegex: { id: '1C71', source: 'Zurvan' },
-      condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.demonClawYou(),
+      preRun: (data, matches) => data.waveTarget ??= matches.target,
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
+          return output.demonClawYou();
+      },
       outputStrings: {
         demonClawYou: {
           en: 'Knockback from boss on YOU',
@@ -79,16 +99,16 @@ Options.Triggers.push({
       id: 'ZurvanEX Demonic Dive',
       type: 'HeadMarker',
       netRegex: { id: '003E' },
-      delaySeconds: 0.5,
+      delaySeconds: 1,
       alertText: (data, matches, output) => {
         if (data?.flameTarget === data.me)
           return;
-        if (data.flameTarget === undefined)
-          return output.unknownStackTarget();
+        if (matches.target === data.me)
+          return output.stackYou();
         return output.stackOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
-        unknownStackTarget: Outputs.stackMarker,
+        stackYou: Outputs.stackOnYou,
         stackOn: Outputs.stackOnPlayer,
       },
     },
@@ -97,8 +117,8 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
+      preRun: (data, matches) => data.flameTarget ??= matches.target,
       alertText: (_data, _matches, output) => output.demonicSpread(),
-      run: (data, matches) => data.flameTarget ??= matches.target,
       outputStrings: {
         demonicSpread: {
           en: 'Spread -- Don\'t stack!',
@@ -109,9 +129,8 @@ Options.Triggers.push({
     },
     {
       id: 'ZurvanEX Cool Flame Cleanup',
-      type: 'HeadMarker',
-      netRegex: { id: '0017', capture: false },
-      delaySeconds: 10,
+      type: 'Ability',
+      netRegex: { id: '1C56', source: 'Zurvan', capture: false },
       run: (data) => delete data.flameTarget,
     },
     {

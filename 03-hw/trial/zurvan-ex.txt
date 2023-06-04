@@ -1,8 +1,9 @@
 # Containment Bay Z1-T9 (Extreme)
 # Zurvan Extreme
 
-# -ic
+# -ic "Execrated Wile" "Execrated Will" "Execrated Wit"
 # -ii 1C52 1C53 1C6B 1C6C 1C6E 1E64 1E65
+# -it Zurvan
 
 # 1C52: Twin Spirit
 # 1C53: Twin Spirit
