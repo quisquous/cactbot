@@ -4,8 +4,9 @@
 # Containment Bay Z1-T9 (Unreal)
 # Zurvan Unreal
 
-# -ic
+# -ic "Execrated Wile" "Execrated Will" "Execrated Wit"
 # -ii 855B 855C 8572 8573 8577 859D 859E
+# -it Zurvan
 
 # 855B: Twin Spirit
 # 855C: Twin Spirit
@@ -127,7 +128,7 @@ hideall "--sync--"
 # Intermission push at <69%
 # This ability is untranslated, so we ensure it doesn't cause issues in non-JP timelines.
 # 鬼神：履行技スタート：演出アクション：極
-500.0 "--sync--" sync / 1[56]:[^:]*:Zurvan:8657:/ window 500,10
+500.0 "--sync--" sync / 1[56]:[^:]*:Zurvan:8567:/ window 500,10
 
 # Intermission gauge increases will vary depnding on how fast mobs die and in what order.
 # There's no good way to figure out the gauge timing here,

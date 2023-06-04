@@ -13,10 +13,11 @@ export interface Data extends RaidbossData {
   tetherBuddy?: string;
   infiniteElement?: 'fire' | 'ice';
   isPhaseOne: boolean;
+  waveTarget?: string;
 }
 
 const triggerSet: TriggerSet<Data> = {
-  id: 'ContainmentBayZ1T9Unreal,',
+  id: 'ContainmentBayZ1T9Unreal',
   zoneId: ZoneId.ContainmentBayZ1T9Unreal,
   timelineFile: 'zurvan-un.txt',
   initData: () => {
@@ -65,17 +66,37 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'ZurvanUN Wave Cannon Stack',
+      // Zurvan targets himself with this attack
       type: 'StartsUsing',
-      netRegex: { id: '857B', source: 'Zurvan' },
-      condition: Conditions.targetIsNotYou(), // The target is stunned during this mechanic
-      response: Responses.stackMarkerOn(),
+      netRegex: { id: '857B', source: 'Zurvan', capture: false },
+      alertText: (data, _matches, output) => {
+        if (data?.waveTarget === data.me)
+          // The target is stunned during this mechanic
+          return;
+        if (data.waveTarget === undefined)
+          return output.unknownStackTarget!();
+        return output.stackOn!({ player: data.ShortName(data.waveTarget) });
+      },
+      outputStrings: {
+        unknownStackTarget: Outputs.stackMarker,
+        stackOn: Outputs.stackOnPlayer,
+      },
+    },
+    {
+      id: 'ZurvanUN Wave Cannon Stack Cleanup',
+      type: 'Ability',
+      netRegex: { id: '857B', source: 'Zurvan', capture: false },
+      run: (data) => delete data.waveTarget,
     },
     {
       id: 'ZurvanUN Demon Claw',
       type: 'StartsUsing',
       netRegex: { id: '857A', source: 'Zurvan' },
-      condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.demonClawYou!(),
+      preRun: (data, matches) => data.waveTarget ??= matches.target,
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
+          return output.demonClawYou!();
+      },
       outputStrings: {
         demonClawYou: {
           en: 'Knockback from boss on YOU',
@@ -96,16 +117,16 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZurvanUN Demonic Dive',
       type: 'HeadMarker',
       netRegex: { id: '003E' },
-      delaySeconds: 0.5,
+      delaySeconds: 1,
       alertText: (data, matches, output) => {
         if (data?.flameTarget === data.me)
           return;
-        if (data.flameTarget === undefined)
-          return output.unknownStackTarget!();
+        if (matches.target === data.me)
+          return output.stackYou!();
         return output.stackOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
-        unknownStackTarget: Outputs.stackMarker,
+        stackYou: Outputs.stackOnYou,
         stackOn: Outputs.stackOnPlayer,
       },
     },
@@ -114,8 +135,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
+      preRun: (data, matches) => data.flameTarget ??= matches.target,
       alertText: (_data, _matches, output) => output.demonicSpread!(),
-      run: (data, matches) => data.flameTarget ??= matches.target,
       outputStrings: {
         demonicSpread: {
           en: 'Spread -- Don\'t stack!',
@@ -126,9 +147,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'ZurvanUN Cool Flame Cleanup',
-      type: 'HeadMarker',
-      netRegex: { id: '0017', capture: false },
-      delaySeconds: 10,
+      type: 'Ability',
+      netRegex: { id: '855F', source: 'Zurvan', capture: false },
       run: (data) => delete data.flameTarget,
     },
     {
