@@ -7,12 +7,19 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 const wings = {
+  // vfx/lockon/eff/m0829_cst19_9s_c0v.avfx
   topLeft: '01A5', // 82C2 cast and damage
+  // vfx/lockon/eff/m0829_cst20_9s_c0v.avfx
   topRight: '01A6', // 82C1 cast and damage
+  // vfx/lockon/eff/m0829_cst21_6s_c0v.avfx
   middleLeft: '01A7', // 82C4 damage
+  // vfx/lockon/eff/m0829_cst22_6s_c0v.avfx
   middleRight: '01A8', // 82C3 damage
+  // vfx/lockon/eff/m0829_cst22_6s_c0v.avfx
   bottomLeft: '01B1', // 82C6 damage
+  // vfx/lockon/eff/m0829_cst23_3s_c0v.avfx
   bottomRight: '01B2', // 82C5 damage
+  // vfx/lockon/eff/m0829_cst24_3s_c0v.avfx
 } as const;
 
 const wingIds = Object.values(wings);

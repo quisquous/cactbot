@@ -124,21 +124,21 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Wing Collect',
       type: 'HeadMarker',
       netRegex: {},
-      delaySeconds: (data) => data.decOffset === undefined ? 1 : 0,
-      durationSeconds: 7,
-      infoText: (data, matches, output) => {
+      condition: (data, matches) => {
         const id = getHeadmarkerId(data, matches);
-        console.log(id);
         if (!wingIds.includes(id))
-          return;
-
-        console.log(`${id}: ${JSON.stringify(data.wingCollect)}`);
+          return false;
         data.wingCollect.push(id);
-        if (data.wingCollect.length !== 3)
+        return true;
+      },
+      delaySeconds: (data) => data.decOffset === undefined ? 1 : 0,
+      durationSeconds: (data) => data.wingCollect.length === 3 ? 7 : 2,
+      infoText: (data, _matches, output) => {
+        if (data.wingCollect.length !== 3 && data.wingCollect.length !== 2)
           return;
 
         const [first, second, third] = data.wingCollect;
-        if (first === undefined || second === undefined || third === undefined)
+        if (first === undefined || second === undefined)
           return;
 
         const isFirstLeft = first === wings.topLeftFirst || first === wings.bottomLeftFirst;
@@ -148,21 +148,26 @@ const triggerSet: TriggerSet<Data> = {
         const firstStr = isFirstLeft ? output.right!() : output.left!();
 
         const isFirstTop = first === wings.topLeftFirst || first === wings.topRightFirst;
+        let secondCall: 'swap' | 'stay';
+        let thirdCall: 'swap' | 'stay';
         if (isFirstTop) {
-          const secondCall = isFirstLeft === isSecondLeft ? 'stay' : 'swap';
-          const thirdCall = isSecondLeft === isThirdLeft ? 'stay' : 'swap';
-          data.wingCalls = [secondCall, thirdCall];
-          return output.text!({
-            first: firstStr,
-            second: output[secondCall]!(),
-            third: output[thirdCall]!(),
-          });
+          secondCall = isFirstLeft === isSecondLeft ? 'stay' : 'swap';
+          thirdCall = isSecondLeft === isThirdLeft ? 'stay' : 'swap';
+        } else {
+          secondCall = isFirstLeft === isSecondLeft ? 'swap' : 'stay';
+          thirdCall = isSecondLeft === isThirdLeft ? 'swap' : 'stay';
         }
 
-        const secondCall = isFirstLeft === isSecondLeft ? 'swap' : 'stay';
-        const thirdCall = isSecondLeft === isThirdLeft ? 'swap' : 'stay';
         data.wingCalls = [secondCall, thirdCall];
-        return output.text!({
+
+        // This is the second call only.
+        if (third === undefined) {
+          if (secondCall === 'stay')
+            return output.secondWingCallStay!();
+          return output.secondWingCallSwap!();
+        }
+
+        return output.allThreeWings!({
           first: firstStr,
           second: output[secondCall]!(),
           third: output[thirdCall]!(),
@@ -177,7 +182,13 @@ const triggerSet: TriggerSet<Data> = {
         stay: {
           en: 'Stay',
         },
-        text: {
+        secondWingCallStay: {
+          en: '(stay)',
+        },
+        secondWingCallSwap: {
+          en: '(swap)',
+        },
+        allThreeWings: {
           en: '${first} => ${second} => ${third}',
           de: '${first} => ${second} => ${third}',
           fr: '${first} => ${second} => ${third}',
