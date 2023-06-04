@@ -125,6 +125,7 @@ Options.Triggers.push({
         text: {
           en: 'Break Tethers',
           de: 'Verbindung brechen',
+          fr: 'Cassez les liens',
         },
       },
     },
@@ -164,6 +165,7 @@ Options.Triggers.push({
         text: {
           en: 'Stack',
           de: 'Sammeln',
+          fr: 'Package',
         },
       },
     },
@@ -185,6 +187,7 @@ Options.Triggers.push({
           // TODO: should we say "on posts" or "on back wall" based on count?
           en: 'Overlap Webs',
           de: 'Netze überlappen',
+          fr: 'Superposez les toiles',
         },
       },
     },
@@ -209,6 +212,7 @@ Options.Triggers.push({
         text: {
           en: 'Spread for Webs',
           de: 'Für Netze verteilen',
+          fr: 'Écartez-vous pour les toiles',
         },
       },
     },
@@ -289,10 +293,12 @@ Options.Triggers.push({
         spreadThenPartners: {
           en: '(spread => partners, for later)',
           de: '(Verteilen => Partner, für später)',
+          fr: '(Écartez-vous => Partenaires, pour après)',
         },
         partnersThenSpread: {
           en: '(partners => spread, for later)',
           de: '(Partner => Verteilen, für später)',
+          fr: '(Partenaires => Écartez-vous, pour après)',
         },
       },
     },
@@ -319,10 +325,12 @@ Options.Triggers.push({
         spreadThenStack: {
           en: '(spread => role stack, for later)',
           de: '(Verteilen => Rollengruppe, für später)',
+          fr: '(Écartez-vous => Package par rôle, pour après)',
         },
         stackThenSpread: {
           en: '(role stack => spread, for later)',
           de: '(Rollengruppe => Verteilen, für später)',
+          fr: '(Package par rôle => Écartez-vous, pour après)',
         },
       },
     },
@@ -344,10 +352,12 @@ Options.Triggers.push({
         spreadThenStack: {
           en: 'Spread => Role Stack',
           de: 'Verteilen => Rollengruppe',
+          fr: 'Écartez-vous => Package par rôle',
         },
         spreadThenPartners: {
           en: 'Spread => Partners',
           de: 'Verteilen => Partner',
+          fr: 'Écartez-vous => Partenaires',
         },
       },
     },
@@ -367,10 +377,12 @@ Options.Triggers.push({
         partnersThenStack: {
           en: 'Partners => Role Stack',
           de: 'Partner => Rollengruppe',
+          fr: 'Partenaires => Package par rôle',
         },
         partnersThenSpread: {
           en: 'Partners => Spread',
           de: 'Partner => Verteilen',
+          fr: 'Partenaires => Écartez-vous',
         },
       },
     },
@@ -390,10 +402,12 @@ Options.Triggers.push({
         stackThenPartners: {
           en: 'Role Stack => Partners',
           de: 'Rollengruppe => Partner',
+          fr: 'Package par rôle => Partenaires',
         },
         stackThenSpread: {
           en: 'Role Stack => Spread',
           de: 'Rollengruppe => Verteilen',
+          fr: 'Package par rôle => Écartez-vous',
         },
       },
     },
@@ -420,10 +434,12 @@ Options.Triggers.push({
         partners: {
           en: 'Partners',
           de: 'Partner',
+          fr: 'Partenaires',
         },
         stack: {
           en: 'Role Stack',
           de: 'Rollengruppe',
+          fr: 'Package par rôle',
         },
       },
     },

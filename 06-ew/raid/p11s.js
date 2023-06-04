@@ -25,6 +25,7 @@ Options.Triggers.push({
         text: {
           en: 'Protean => Healer Stacks',
           de: 'Himmelsrichtungen => Heiler Gruppen',
+          fr: 'Positions => Package sur les heals',
         },
       },
     },
@@ -37,6 +38,7 @@ Options.Triggers.push({
         text: {
           en: 'Protean => Partners',
           de: 'Himmelsrichtungen => Partner',
+          fr: 'Positions => Partenaires',
         },
       },
     },
@@ -49,6 +51,7 @@ Options.Triggers.push({
         text: {
           en: 'Party In => Out + Healer Stacks',
           de: 'Party Rein => Raus + Heiler Gruppen',
+          fr: 'Intérieur => Extérieur + package sur les heals',
         },
       },
     },
@@ -61,6 +64,7 @@ Options.Triggers.push({
         text: {
           en: 'Party Out => In + Partners',
           de: 'Party Raus => Rein + Partner',
+          fr: 'Extérieur => Intérieur + package sur les heals',
         },
       },
     },
@@ -73,6 +77,7 @@ Options.Triggers.push({
         text: {
           en: 'Sides => Healer Stacks + Out',
           de: 'Seiten => Heiler Gruppen + Raus',
+          fr: 'Côtés => Extérieur + Package sur les heals',
         },
       },
     },
@@ -85,6 +90,7 @@ Options.Triggers.push({
         text: {
           en: 'Sides => In + Partners',
           de: 'Seiten => Rein + Partner',
+          fr: 'Côtés => Intérieur + Package sur les heals',
         },
       },
     },
@@ -97,6 +103,7 @@ Options.Triggers.push({
         text: {
           en: 'Healer Stacks + Out',
           de: 'Heiler Gruppen + Raus',
+          fr: 'Extérieur + Package sur les heals',
         },
       },
     },
@@ -109,6 +116,7 @@ Options.Triggers.push({
         text: {
           en: 'Partners + In',
           de: 'Partner + Rein',
+          fr: 'Partenaires + Intérieur',
         },
       },
     },
@@ -121,6 +129,7 @@ Options.Triggers.push({
         text: {
           en: 'Knockback => Healer Stacks + Out',
           de: 'Rückstoß => Heiler Gruppen + Raus',
+          fr: 'Poussée => Extérieur + Package sur les heals',
         },
       },
     },
@@ -133,6 +142,7 @@ Options.Triggers.push({
         text: {
           en: 'Knockback => In + Partners',
           de: 'Rückstoß => Rein + Partner',
+          fr: 'Poussée => Intérieur + Partenaires',
         },
       },
     },
@@ -145,6 +155,7 @@ Options.Triggers.push({
         text: {
           en: 'Go to Dark Portals',
           de: 'Geh zu einem Dunkel-Portal',
+          fr: 'Allez vers les portails sombres',
         },
       },
     },
@@ -157,6 +168,7 @@ Options.Triggers.push({
         text: {
           en: 'Go to Light Portals',
           de: 'Geh zu einem Licht-Portal',
+          fr: 'Allez sur les portails de lumière',
         },
       },
     },
@@ -169,6 +181,7 @@ Options.Triggers.push({
         text: {
           en: 'Rotate to Dark Orbs',
           de: 'Rotiere zu den dunklen Orbs',
+          fr: 'Tournez vers les orbes sombres',
         },
       },
     },
@@ -181,6 +194,7 @@ Options.Triggers.push({
         text: {
           en: 'Rotate to Light Orbs',
           de: 'Rotiere zu den licht Orbs',
+          fr: 'Tournez ves les orbes de lumière',
         },
       },
     },
@@ -228,26 +242,32 @@ Options.Triggers.push({
           lightNear: {
             en: 'Light Near w/${player}',
             de: 'Licht Nahe w/${player}',
+            fr: 'Lumière proche avec ${player}',
           },
           lightFar: {
             en: 'Light Far w/${player}',
             de: 'Licht Entfernt w/${player}',
+            fr: 'Lumière éloignée avec ${player}',
           },
           darkNear: {
             en: 'Dark Near w/${player}',
             de: 'Dunkel Nahe w/${player}',
+            fr: 'Sombre proche avec ${player}',
           },
           darkFar: {
             en: 'Dark Far w/${player}',
             de: 'Dunkel Entfernt w/${player}',
+            fr: 'Sombre éloigné avec ${player}',
           },
           otherNear: {
             en: 'Other Near: ${player1}, ${player2}',
             de: 'Anderes Nahe: ${player1}, ${player2}',
+            fr: 'Autre proche : ${player1}, ${player2}',
           },
           otherFar: {
             en: 'Other Far: ${player1}, ${player2}',
             de: 'Anderes Entfernt: ${player1}, ${player2}',
+            fr: 'Autre éloigné : ${player1}, ${player2}',
           },
         };
         const myColor = data.lightDarkDebuff[data.me];
