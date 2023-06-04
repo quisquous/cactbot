@@ -122,11 +122,11 @@ const triggerSet: TriggerSet<Data> = {
         if (data?.flameTarget === data.me)
           return;
         if (matches.target === data.me)
-          return output.stackTarget!();
+          return output.stackYou!();
         return output.stackOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
-        stackTarget: Outputs.stackMarker,
+        stackYou: Outputs.stackOnYou,
         stackOn: Outputs.stackOnPlayer,
       },
     },
