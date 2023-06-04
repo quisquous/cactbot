@@ -209,6 +209,36 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'P12S Peridialogos',
+      type: 'StartsUsing',
+      netRegex: { id: '82FF', source: 'Athena', capture: false },
+      alertText: (data, _matches, output) =>
+        data.role === 'tank' ? output.tanksInPartyOut!() : output.partyOutTanksIn!(),
+      outputStrings: {
+        partyOutTanksIn: {
+          en: 'Party Out (Tanks In)',
+        },
+        tanksInPartyOut: {
+          en: 'Tanks In (Party Out)',
+        },
+      },
+    },
+    {
+      id: 'P12S Apodialogos',
+      type: 'StartsUsing',
+      netRegex: { id: '82FE', source: 'Athena', capture: false },
+      alertText: (data, _matches, output) =>
+        data.role === 'tank' ? output.tanksInPartyOut!() : output.partyInTanksOut!(),
+      outputStrings: {
+        partyInTanksOut: {
+          en: 'Party In (Tanks Out)',
+        },
+        tanksInPartyOut: {
+          en: 'Tanks Out (Party In)',
+        },
+      },
+    },
   ],
 };
 
