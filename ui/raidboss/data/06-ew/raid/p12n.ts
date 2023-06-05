@@ -35,11 +35,13 @@ const wingOutputStrings = {
     en: 'Left Flank',
     de: 'Linke Flanke',
     fr: 'Flanc gauche',
+    ko: '왼쪽',
   },
   rightFlank: {
     en: 'Right Flank',
     de: 'Rechte Flanke',
     fr: 'Flanc droit',
+    ko: '오른쪽',
   },
 } as const;
 
@@ -175,21 +177,25 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Follow Donut',
           de: 'Donut folgen',
           fr: 'Suivez le donut',
+          ko: '도넛 따라가기',
         },
         superchain2: {
           en: 'Short Donut => Long Donut',
           de: 'Kurzer Donut => Langer Donut',
           fr: 'Petit donut => Long donut',
+          ko: '짧은 도넛 => 긴 도넛',
         },
         superchain3: {
           en: 'Follow Donut (avoid cleave)',
           de: 'Donut folgen (Cleave ausweichen)',
           fr: 'Suivez le donut (évitez le cleave)',
+          ko: '도넛 따라가기 (광역기 피하기)',
         },
         superchain4: {
           en: 'Avoid Spheres',
           de: 'Spheren vermeiden',
           fr: 'Évitez les sphères',
+          ko: '구체 피하기',
         },
       },
     },
@@ -209,6 +215,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Avoid Chained Platforms',
           de: 'Vermeide angekettete Platformen',
           fr: 'Évitez les plateformes enchaînées',
+          ko: '연결된 플랫폼 피하기',
         },
       },
     },
