@@ -100,6 +100,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '${first} => ${second} => ${third}',
           de: '${first} => ${second} => ${third}',
           fr: '${first} => ${second} => ${third}',
+          ko: '${first} => ${second} => ${third}',
         },
       },
     },
