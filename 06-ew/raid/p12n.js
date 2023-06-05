@@ -81,6 +81,7 @@ Options.Triggers.push({
           en: '${first} => ${second} => ${third}',
           de: '${first} => ${second} => ${third}',
           fr: '${first} => ${second} => ${third}',
+          ko: '${first} => ${second} => ${third}',
         },
       },
     },

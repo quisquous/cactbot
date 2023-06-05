@@ -165,7 +165,7 @@ Options.Triggers.push({
           fr: 'Déposez les zones au sol à l\'extérieur',
           ja: '散開',
           cn: '散开',
-          ko: '산개',
+          ko: '바깥쪽에 장판 놓기',
         },
       },
     },

@@ -245,10 +245,12 @@ Options.Triggers.push({
         fire: {
           en: 'Fire',
           de: 'Feuer',
+          ko: '불',
         },
         ice: {
           en: 'Ice',
           de: 'Eis',
+          ko: '얼음',
         },
         unknown: Outputs.unknown,
       },
@@ -275,10 +277,12 @@ Options.Triggers.push({
         fire: {
           en: 'Fire',
           de: 'Feuer',
+          ko: '불',
         },
         ice: {
           en: 'Ice',
           de: 'Eis',
+          ko: '얼음',
         },
         unknown: Outputs.unknown,
       },

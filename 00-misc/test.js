@@ -332,6 +332,7 @@ Options.Triggers.push({
         casting: {
           en: 'ID ${id} is casting spell ID ${spellId}',
           de: 'ID ${id} wirkt Zauber ID ${spellId}',
+          ko: 'ID ${id}: 스킬 ID ${spellId}를 시전하는 중',
         },
       },
     },
