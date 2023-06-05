@@ -178,15 +178,19 @@ const triggerSet: TriggerSet<Data> = {
         right: Outputs.right,
         swap: {
           en: 'Swap',
+          de: 'Wechseln',
         },
         stay: {
           en: 'Stay',
+          de: 'bleib Stehen',
         },
         secondWingCallStay: {
           en: '(stay)',
+          de: '(bleib Stehen)',
         },
         secondWingCallSwap: {
           en: '(swap)',
+          de: '(Wechseln)',
         },
         allThreeWings: {
           en: '${first} => ${second} => ${third}',
@@ -214,9 +218,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         swap: {
           en: 'Swap',
+          de: 'Wechseln',
         },
         stay: {
           en: 'Stay',
+          de: 'bleib Stehen',
         },
       },
     },
@@ -229,9 +235,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         partyOutTanksIn: {
           en: 'Party Out (Tanks In)',
+          de: 'Gruppe Raus (Tanks Rein)',
         },
         tanksInPartyOut: {
           en: 'Tanks In (Party Out)',
+          de: 'Gruppe Rein (Tanks Raus)',
         },
       },
     },
@@ -244,10 +252,35 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         partyInTanksOut: {
           en: 'Party In (Tanks Out)',
+          de: 'Gruppe Rein (Tanks Raus)',
         },
         tanksInPartyOut: {
           en: 'Tanks Out (Party In)',
+          de: 'Tanks Raus (Gruppe Rein)',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Athena': 'Athena',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Athena': 'Athéna',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Athena': 'アテナ',
       },
     },
   ],
