@@ -161,7 +161,7 @@ hideall "--sync--"
 # Illusory Themis:821A Divisive Ruling (light?) clone self-targeted cast during Messengers/Letter
 # Illusory Themis:821B Divisive Ruling (dark?) clone self-targeted cast during Messengers/Letter
 # Illusory Themis:821C Divisive Ruling damage from initial clone lines during Messengers/Letter
-# Illusory Themis:821D Divisive Ruling light line expansion clone line during Messengers/Letter
+# Illusory Themis:821D Divine Ruination light line expansion clone line during Messengers/Letter
 # Illusory Themis:821E Ripples of Gloom large line (one side) dark clone during Messengers/Letter
 # Illusory Themis:821F Ripples of Gloom large line (other side) dark clone during Messengers/Letter
 # Illusory Themis:87D0 Upheld Ruling clone self-targeted cast during Messengers/Letter
