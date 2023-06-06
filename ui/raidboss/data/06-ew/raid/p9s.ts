@@ -270,6 +270,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       // Ball of Levin combatants are added ~0.3 seconds after Kokytos finishes using Levinstrike Summoning
       // and ~1.7 before Kokytos begins using Scrambled Succession (which is when limit cut markers appear)
+      // These combatants are added in their actual positions, so no need to check OP for combatant data.
       id: 'P9S Limit Cut Levin Orb Collect',
       type: 'AddedCombatant',
       // There are multiple invsible combatants that share this name, but the ones that receive HeadMarkers
