@@ -134,7 +134,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P7N Spark Of Life',
       type: 'StartsUsing',
       netRegex: { id: '780B', source: 'Agdistis', capture: false },
-      response: Responses.aoe(),
+      response: Responses.bleedAoe(),
     },
     {
       id: 'P7N Static Moon',

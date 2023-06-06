@@ -8,9 +8,9 @@ for folks who want to write ACT triggers for ff14.
 
 This guide was last updated for:
 
-- [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 6.2
-- [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) Patch 2.6.6.7
-- [OverlayPlugin](https://github.com/OverlayPlugin/OverlayPlugin/releases) Patch 0.19.5
+- [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 6.4
+- [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) Patch 2.6.8.9
+- [OverlayPlugin](https://github.com/OverlayPlugin/OverlayPlugin/releases) Patch 0.19.20
 
 ## TOC
 
@@ -2550,20 +2550,20 @@ See the logs below for an example.
 
 ```log
 Network Log Line Structure:
-262|[timestamp]|[locale]|[key]|[value]
+262|[timestamp]|[locale]|[?]|[key]|[value]
 
 Parsed Log Line Structure:
-[timestamp] 262 106:[locale]:[key]:[value]
+[timestamp] 262 106:[locale]:[?]:[key]:[value]
 ```
 
 #### Regexes
 
 ```log
 Network Log Line Regex:
-^(?<type>262)\|(?<timestamp>[^|]*)\|(?<locale>[^|]*)\|(?<key>[^|]*)\|(?<value>[^|]*)\|
+^(?<type>262)\|(?<timestamp>[^|]*)\|(?<locale>[^|]*)\|(?:[^|]*\|)(?<key>[^|]*)\|(?<value>[^|]*)\|
 
 Parsed Log Line Regex:
-(?<timestamp>^.{14}) 262 (?<type>106):(?<locale>[^:]*):(?<key>[^:]*):(?<value>[^:]*)(?:$|:)
+(?<timestamp>^.{14}) 262 (?<type>106):(?<locale>[^:]*):[^:]*:(?<key>[^:]*):(?<value>[^:]*)(?:$|:)
 ```
 
 #### Examples

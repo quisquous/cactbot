@@ -406,4 +406,32 @@ describe('netregex tests', () => {
     assert.equal(matches?.param1, 'E1B');
     assert.equal(matches?.param2, '00');
   });
+  it('combatantMemory', () => {
+    const lines = [
+      '261|2023-05-26T21:37:40.5600000-04:00|Add|40008953|BNpcID|3F5A|BNpcNameID|304E|CastTargetID|E0000000|CurrentMP|10000|CurrentWorldID|65535|Heading|-3.1416|Level|90|MaxHP|69200|MaxMP|10000|ModelStatus|18432|Name|Golbez\'s Shadow|NPCTargetID|E0000000|PosX|100.0000|PosY|100.0000|PosZ|0.0300|Radius|7.5000|Type|2|WorldID|65535|9d9028a8e087e4c3',
+      '261|2023-05-26T21:39:41.2920000-04:00|Change|10001234|CurrentMP|2400|Heading|-2.3613|2f5ff0a91385050a',
+      '261|2023-05-26T21:39:42.7380000-04:00|Remove|40008AA0|f4b30f181245b5da',
+    ] as const;
+    // TODO: regexCaptureTest doesn't handle the repeating fields well,
+    // so don't run it for this test
+    const matches = lines[0].match(NetRegexes.combatantMemory())?.groups;
+    assert.equal(matches?.pairBNpcID, '3F5A');
+    assert.equal(matches?.pairBNpcNameID, '304E');
+    assert.equal(matches?.pairCastTargetID, 'E0000000');
+    assert.equal(matches?.pairCurrentMP, '10000');
+    assert.equal(matches?.pairCurrentWorldID, '65535');
+    assert.equal(matches?.pairHeading, '-3.1416');
+    assert.equal(matches?.pairLevel, '90');
+    assert.equal(matches?.pairMaxHP, '69200');
+    assert.equal(matches?.pairMaxMP, '10000');
+    assert.equal(matches?.pairModelStatus, '18432');
+    assert.equal(matches?.pairName, 'Golbez\'s Shadow');
+    assert.equal(matches?.pairNPCTargetID, 'E0000000');
+    assert.equal(matches?.pairPosX, '100.0000');
+    assert.equal(matches?.pairPosY, '100.0000');
+    assert.equal(matches?.pairPosZ, '0.0300');
+    assert.equal(matches?.pairRadius, '7.5000');
+    assert.equal(matches?.pairType, '2');
+    assert.equal(matches?.pairWorldID, '65535');
+  });
 });

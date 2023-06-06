@@ -168,6 +168,8 @@ const zoneReplace: ZoneReplace[] = [
     fileMap: {
       'ui/raidboss/data/03-hw/trial/sophia-ex.ts': 'ui/raidboss/data/06-ew/trial/sophia-un.ts',
       'ui/raidboss/data/03-hw/trial/sophia-ex.txt': 'ui/raidboss/data/06-ew/trial/sophia-un.txt',
+      'ui/oopsyraidsy/data/03-hw/trial/sophia-ex.ts':
+        'ui/oopsyraidsy/data/06-ew/trial/sophia-un.ts',
     },
     prefix: { 'SophiaEX': 'SophiaUN' },
     other: {
@@ -189,11 +191,11 @@ const zoneReplace: ZoneReplace[] = [
       '19AA': '7DA4', // Execute (storage cast)
       '19AB': '7DA5', // Duplicate
       '19AC': '7DA6', // Thunder III
-      '19AD': '7DA7', // Execute (Thunder III, ignored)
+      '19AD': '7DA7', // Execute (Thunder III)
       '19AE': '7DA8', // Aero III
-      '19AF': '7DA9', // Execute (Aero III, ignored)
+      '19AF': '7DA9', // Execute (Aero III)
       '19B0': '7DAA', // Thunder II
-      '19B1': '7DAB', // Execute (Thunder II, ignored)
+      '19B1': '7DAB', // Execute (Thunder II)
       '19B3': '7DAD', // Dischordant Cleansing 1
       '19B5': '7DAF', // Dischordant Cleansing 2
       '19B6': '7DB0', // Divine Spark
@@ -202,6 +204,7 @@ const zoneReplace: ZoneReplace[] = [
       '19BA': '7DB4', // Ring of Pain
       '19BB': '7DB5', // Vertical Kenoma
       '19BC': '7DB6', // Horizontal Kenoma
+      '19BD': '7DB7', // Revengeance
       '19BE': '7DB8', // Cloudy Heavens
       '19BF': '7DB9', // Light Dew (Execute)
       '19C0': '7DBA', // Light Dew (Onrush)
@@ -252,11 +255,11 @@ const zoneReplace: ZoneReplace[] = [
       '1C5B': '8564', // Ciclicle
       '1C5C': '8565', // Southern Cross Snapshot
       '1C5D': '8566', // Southern Cross Resolve
-      '1C5E': '8657', // Untranslated intermission cast
+      '1C5E': '8567', // Untranslated intermission cast
       '1C5F': '8568', // Sarva/Eidos 3
       '1C60': '8569', // Ahura Mazda
       '1C63': '856C', // Meracydian Meteor (ignored)
-      '1C64': '856D', // Comet (ignored)
+      '1C64': '856D', // Comet (fire puddles)
       '1C67': '8570', // Infinite Fire
       '1C68': '8571', // Infinite Ice
       '1C6B': '8572', // The South Star (ignored)

@@ -435,6 +435,14 @@ class TestTimeline extends Timeline {
         // Skip text events with no sync.
         if (event.sync === undefined)
           continue;
+        // Skip events when jumping
+        // TODO: Instead of marking the destination as `missed',
+        // maybe add some new record type `jump'?
+        // https://github.com/quisquous/cactbot/pull/5435#issuecomment-1565543064
+        if (
+          lastRecord?.event.sync?.jump !== undefined && lastRecord?.event.sync?.jump > event.time
+        )
+          continue;
 
         ui.records.push({
           event: event,

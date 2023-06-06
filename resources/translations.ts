@@ -272,7 +272,7 @@ export const translateRegexBuildParam = <T extends TriggerTypes>(
   replaceLang: Lang,
   replacements?: TimelineReplacement[],
 ): NetParams[T] => {
-  type AnonymousParams = { [name: string]: string | string[] | boolean | undefined };
+  type AnonymousParams = { [name: string]: string | string[] | boolean | undefined | unknown[] };
   const anonParams: AnonymousParams = params;
   for (const key of keysThatRequireTranslation) {
     const value = anonParams[key];
@@ -293,6 +293,8 @@ export const translateRegexBuildParam = <T extends TriggerTypes>(
       ).text;
     } else {
       anonParams[key] = value.map((x) => {
+        if (typeof x !== 'string')
+          return x;
         return translateWithReplacements(x, 'replaceSync', replaceLang, replacements).text;
       });
     }

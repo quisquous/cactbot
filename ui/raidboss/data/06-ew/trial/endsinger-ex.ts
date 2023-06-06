@@ -14,6 +14,8 @@ import {
   TriggerSet,
 } from '../../../../../types/trigger';
 
+// TODO: Telomania - 4x small AoE followed by big AoE + bleed
+
 export type Mechanic = 'aoe' | 'donut' | 'safeN' | 'safeE' | 'safeS' | 'safeW' | 'unknown';
 
 const echoesOutputStrings = {
