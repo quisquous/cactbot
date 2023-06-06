@@ -279,13 +279,6 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => {
         // (0 = N, 1 = NE ... 7 = NW)
         const orb8Dir = Directions.addedCombatantPosTo8Dir(matches, centerX, centerY);
-
-        // Orbs should always spawn on cardinals
-        const expectedOrb8Dirs = [0, 2, 4, 6];
-        if (!expectedOrb8Dirs.includes(orb8Dir)) {
-          console.error('Unexpected orb location');
-          return;
-        }
         data.levinOrbs[matches.id] = { dir: orb8Dir };
       },
     },
@@ -328,6 +321,7 @@ const triggerSet: TriggerSet<Data> = {
         let firstOrb8Dir;
         let secondOrb8Dir;
         // Orb order is limit cut headmarkers 1 > 3 > 5 > 7
+        // 1 is always adjacent to 3, 3 is always adjacent to 5, and so on.
         for (const combatant in data.levinOrbs) {
           switch (data.levinOrbs[combatant]?.order) {
             case 1:
@@ -345,14 +339,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         const firstOrbDir = output[firstOrb8DirStr]!();
 
-        const cardinalDirs = [0, 2, 4, 6];
-        const firstOrbIdx = cardinalDirs.indexOf(firstOrb8Dir);
-        const secondOrbIdx = cardinalDirs.indexOf(secondOrb8Dir);
-
-        if (firstOrbIdx === -1 || secondOrbIdx === -1)
-          return;
-
-        const rotationDir = (secondOrbIdx - firstOrbIdx + 4) % 4 === 1
+        const rotationDir = (secondOrb8Dir - firstOrb8Dir + 8) % 8 === 2
           ? output.clockwise!()
           : output.counterclock!();
 
@@ -366,7 +353,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         clockwise: Outputs.clockwise,
         counterclock: Outputs.counterclockwise,
-        ...Directions.outputStringsCardinalDir,
+        ...Directions.outputStrings8Dir,
       },
     },
     {
