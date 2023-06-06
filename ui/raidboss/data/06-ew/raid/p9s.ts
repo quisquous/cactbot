@@ -379,16 +379,6 @@ const triggerSet: TriggerSet<Data> = {
       },
       preRun: (data, matches) => {
         const correctedMatch = getHeadmarkerId(data, matches);
-        const limitCutNumberMap: { [id: string]: number } = {
-          '004F': 1,
-          '0050': 2,
-          '0051': 3,
-          '0052': 4,
-          '0053': 5,
-          '0054': 6,
-          '0055': 7,
-          '0056': 8,
-        };
         data.limitCutNumber = limitCutNumberMap[correctedMatch];
       },
       durationSeconds: (data) => data.seenChimericSuccession ? 20 : 30,
