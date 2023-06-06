@@ -233,6 +233,33 @@ Options.Triggers.push({
         },
       },
     },
+    {
+      id: 'P12S Geocentrism Vertical',
+      type: 'StartsUsing',
+      netRegex: { id: '8329', source: 'Pallas Athena', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: 'Vertical',
+      },
+    },
+    {
+      id: 'P12S Geocentrism Circle',
+      type: 'StartsUsing',
+      netRegex: { id: '832A', source: 'Pallas Athena', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: 'Inny Spinny',
+      },
+    },
+    {
+      id: 'P12S Geocentrism Horizontal',
+      type: 'StartsUsing',
+      netRegex: { id: '832B', source: 'Pallas Athena', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: 'Horizontal',
+      },
+    },
   ],
   timelineReplace: [
     {
