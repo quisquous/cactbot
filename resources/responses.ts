@@ -323,6 +323,7 @@ export const Responses = {
   miniBuster: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.miniBuster),
   aoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.aoe),
   bigAoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.bigAoe),
+  bleedAoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.bleedAoe),
   spread: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.spread),
   // for stack marker situations.
   stackMarker: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.stackMarker),
@@ -593,6 +594,7 @@ export const Responses = {
     };
   },
   wakeUp: (sev?: Severity) => staticResponse(defaultAlarmText(sev), Outputs.wakeUp),
+  getTowers: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.getTowers),
 } as const;
 
 // Don't give `Responses` a type in its declaration so that it can be treated as more strict

@@ -30,7 +30,7 @@ Slots:
 00080004 = clear indicator
  */
 
-// 7D09 Ghastly Torch during add phase *is* an aoe but is constant and small, so skipped.
+// 7D09 Ghastly Torch during add phase *is* an aoe + bleed but is constant and small, so skipped.
 
 export interface Data extends RaidbossData {
   decOffset?: number;
@@ -82,6 +82,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'RubicanteEx Inferno Spread',
+      // also applies a 15s bleed to each player
       type: 'StartsUsing',
       netRegex: { id: '7D0F', source: 'Rubicante', capture: false },
       response: Responses.spread(),

@@ -84,11 +84,11 @@ Just like **damageWarn** and **damageFail**, but triggered when hit by an effect
 
 **shareWarn** and **shareFail**:
 Just like **damageWarn** and **damageFail**,
-triggered when multiple players share damage which should only be on one player.
+triggered when multiple players share damage which should only be on one player (e.g. spread AoE).
 
 **soloWarn** and **soloFail**:
 The opposite of **shareWarn** and **shareFail**
-in that they are trigger when something should be taken alone but hits multiple people.
+in that they are triggered when something that should be shared hits only one person (e.g. stack markers).
 
 **triggers**:
 An array of triggers in the trigger set.

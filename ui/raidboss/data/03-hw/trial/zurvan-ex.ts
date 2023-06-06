@@ -10,10 +10,11 @@ export interface Data extends RaidbossData {
   tetherBuddy?: string;
   infiniteElement?: 'fire' | 'ice';
   isPhaseOne: boolean;
+  waveTarget?: string;
 }
 
 const triggerSet: TriggerSet<Data> = {
-  id: 'ContainmentBayZ1T9Extreme,',
+  id: 'ContainmentBayZ1T9Extreme',
   zoneId: ZoneId.ContainmentBayZ1T9Extreme,
   timelineFile: 'zurvan-ex.txt',
   initData: () => {
@@ -50,28 +51,54 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         waveCannonTarget: {
           en: 'Wave Cannon on YOU',
+          de: 'Wellenkanone auf DIR',
+          ko: '파동포 대상자',
         },
         avoidWaveCannon: {
           en: 'Away from ${target} -- Wave Cannon',
+          de: 'Weg von ${target} -- Wellenkanone',
+          ko: '${target} 피하기 -- 파동포',
         },
       },
     },
     {
       id: 'ZurvanEX Wave Cannon Stack',
+      // Zurvan targets himself with this attack
       type: 'StartsUsing',
-      netRegex: { id: '1C72', source: 'Zurvan' },
-      condition: Conditions.targetIsNotYou(), // The target is stunned during this mechanic
-      response: Responses.stackMarkerOn(),
+      netRegex: { id: '1C72', source: 'Zurvan', capture: false },
+      alertText: (data, _matches, output) => {
+        if (data?.waveTarget === data.me)
+          // The target is stunned during this mechanic
+          return;
+        if (data.waveTarget === undefined)
+          return output.unknownStackTarget!();
+        return output.stackOn!({ player: data.ShortName(data.waveTarget) });
+      },
+      outputStrings: {
+        unknownStackTarget: Outputs.stackMarker,
+        stackOn: Outputs.stackOnPlayer,
+      },
+    },
+    {
+      id: 'ZurvanEX Wave Cannon Stack Cleanup',
+      type: 'Ability',
+      netRegex: { id: '1C72', source: 'Zurvan', capture: false },
+      run: (data) => delete data.waveTarget,
     },
     {
       id: 'ZurvanEX Demon Claw',
       type: 'StartsUsing',
       netRegex: { id: '1C71', source: 'Zurvan' },
-      condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.demonClawYou!(),
+      preRun: (data, matches) => data.waveTarget ??= matches.target,
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
+          return output.demonClawYou!();
+      },
       outputStrings: {
         demonClawYou: {
           en: 'Knockback from boss on YOU',
+          de: 'Rückstoß vom Boss auf DIR',
+          ko: '넉백공격 대상자',
         },
       },
     },
@@ -87,16 +114,16 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZurvanEX Demonic Dive',
       type: 'HeadMarker',
       netRegex: { id: '003E' },
-      delaySeconds: 0.5,
+      delaySeconds: 1,
       alertText: (data, matches, output) => {
         if (data?.flameTarget === data.me)
           return;
-        if (data.flameTarget === undefined)
-          return output.unknownStackTarget!();
+        if (matches.target === data.me)
+          return output.stackYou!();
         return output.stackOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
-        unknownStackTarget: Outputs.stackMarker,
+        stackYou: Outputs.stackOnYou,
         stackOn: Outputs.stackOnPlayer,
       },
     },
@@ -105,19 +132,20 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
+      preRun: (data, matches) => data.flameTarget ??= matches.target,
       alertText: (_data, _matches, output) => output.demonicSpread!(),
-      run: (data, matches) => data.flameTarget ??= matches.target,
       outputStrings: {
         demonicSpread: {
           en: 'Spread -- Don\'t stack!',
+          de: 'Verteilen -- Nicht aufeinander!',
+          ko: '산개 -- 쉐어맞으면 안됨!',
         },
       },
     },
     {
       id: 'ZurvanEX Cool Flame Cleanup',
-      type: 'HeadMarker',
-      netRegex: { id: '0017', capture: false },
-      delaySeconds: 10,
+      type: 'Ability',
+      netRegex: { id: '1C56', source: 'Zurvan', capture: false },
       run: (data) => delete data.flameTarget,
     },
     {
@@ -146,6 +174,8 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Stay outside hitbox',
+          de: 'Auserhalb der Hitbox stehen',
+          ko: '히트박스 밖으로',
         },
       },
     },
@@ -170,6 +200,8 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitSouthernCross: {
           en: 'Bait Ice Puddles',
+          de: 'Eisflächen ködern',
+          ko: '얼음장판 유도',
         },
       },
     },
@@ -177,6 +209,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZurvanEX Southern Cross Move',
       type: 'StartsUsing',
       netRegex: { id: '1C5D', source: 'Zurvan', capture: false },
+      suppressSeconds: 5,
       response: Responses.moveAway(),
     },
     {
@@ -188,10 +221,14 @@ const triggerSet: TriggerSet<Data> = {
         const buddy = data.me === matches.source ? matches.target : matches.source;
         data.tetherBuddy ??= buddy;
       },
-      alertText: (data, _matches, output) => output.tetherBuddy!({ buddy: data.tetherBuddy }),
+      alertText: (data, _matches, output) => {
+        return output.tetherBuddy!({ buddy: data.ShortName(data.tetherBuddy) });
+      },
       outputStrings: {
         tetherBuddy: {
           en: 'Tethered with ${buddy}',
+          de: 'Mit ${buddy} verbunden',
+          ko: '선 연결 ${buddy}',
         },
       },
     },
@@ -206,12 +243,31 @@ const triggerSet: TriggerSet<Data> = {
         data.infiniteElement ??= element;
       },
       delaySeconds: 2, // Don't overlap the tether buddy call
-      infoText: (data, _matches, output) =>
-        output.infiniteDebuff!({ element: data.infiniteElement }),
+      infoText: (data, _matches, output) => {
+        let element = output.unknown!();
+        if (data.infiniteElement === 'fire')
+          element = output.fire!();
+        if (data.infiniteElement === 'ice')
+          element = output.ice!();
+        return output.infiniteDebuff!({ element: element });
+      },
       outputStrings: {
         infiniteDebuff: {
           en: '${element} on you',
+          de: '${element} auf dir',
+          ko: '${element}',
         },
+        fire: {
+          en: 'Fire',
+          de: 'Feuer',
+          ko: '불',
+        },
+        ice: {
+          en: 'Ice',
+          de: 'Eis',
+          ko: '얼음',
+        },
+        unknown: Outputs.unknown,
       },
     },
     {
@@ -219,14 +275,31 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '1DC7', source: 'Zurvan', capture: false },
       alertText: (data, _matches, output) => {
-        const element = data.infiniteElement;
+        let element = output.unknown!();
+        if (data.infiniteElement === 'fire')
+          element = output.fire!();
+        if (data.infiniteElement === 'ice')
+          element = output.ice!();
         const buddy = data.tetherBuddy;
-        return output.sealTowers!({ element: element, buddy: buddy });
+        return output.sealTowers!({ element: element, buddy: data.ShortName(buddy) });
       },
       outputStrings: {
         sealTowers: {
           en: '${element} towers with ${buddy}',
+          de: '${element} Türme mit ${buddy}',
+          ko: '${element} 기둥 +${buddy}',
         },
+        fire: {
+          en: 'Fire',
+          de: 'Feuer',
+          ko: '불',
+        },
+        ice: {
+          en: 'Ice',
+          de: 'Eis',
+          ko: '얼음',
+        },
+        unknown: Outputs.unknown,
       },
     },
     {
@@ -236,6 +309,147 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => {
         delete data.tetherBuddy;
         delete data.infiniteElement;
+      },
+    },
+  ],
+
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Execrated Wile': 'verflucht(?:e|er|es|en) List',
+        'Zurvan': 'Zurvan',
+      },
+      'replaceText': {
+        '\\(circles\\)': '(Kreise)',
+        '\\(explosion\\)': '(Explosion)',
+        '\\(puddle\\)': '(Fläche)',
+        '\\(snapshot\\)': '(Speichern)',
+        '\\(avoid\\)': '(Vermeiden)',
+        '\\(stack\\)': '(Sammeln)',
+        'Ahura Mazda': 'Ahura Mazda',
+        'Biting Halberd': 'Beißende Hellebarde',
+        'Broken Seal': 'Endloses Siegel',
+        'Ciclicle': 'Cyclotit',
+        'Cool Flame': 'Kühle Flamme',
+        'Demonic Dive': 'Dämonenschwung',
+        'Fire III': 'Feuga',
+        'Flaming Halberd': 'Flammenhellebarde',
+        'Flare Star': 'Flare-Stern',
+        'Ice and Fire': 'Eis und Feuer',
+        'Infinite Fire': 'Endloses Feuer',
+        'Infinite Ice': 'Endloses Eis',
+        'Metal Cutter': 'Metallschneider',
+        'Sarva': 'Sarva',
+        'Soar': 'Auffliegen',
+        'Southern Cross': 'Kreuz des Südens',
+        'Tail End': 'Schweifspitze',
+        'The Demon\'s Claw': 'Klaue des Dämonen',
+        'Twin Spirit': 'Zwiegeist',
+        'Tyrfing': 'Tyrfing',
+        'Wave Cannon': 'Wellenkanone',
+        'the Purge': 'Läuterung',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Execrated Wile': 'ruse honnie',
+        'Zurvan': 'Zurvan',
+      },
+      'replaceText': {
+        'Ahura Mazda': 'Ahura Mazda',
+        'Biting Halberd': 'Hallebarde mordante',
+        'Broken Seal': 'Marque brisée',
+        'Ciclicle': 'Cyclictite',
+        'Cool Flame': 'Flamme froide',
+        'Demonic Dive': 'Plongeon du démon',
+        'Fire III': 'Méga Feu',
+        'Flaming Halberd': 'Hallebarde de flammes',
+        'Flare Star': 'Astre flamboyant',
+        'Ice and Fire': 'Glace et feu',
+        'Infinite Fire': 'Feu infini',
+        'Infinite Ice': 'Glace infinie',
+        'Metal Cutter': 'Métaillade',
+        'Sarva': 'Sarva',
+        'Soar': 'Ascension',
+        'Southern Cross': 'Croix du sud',
+        'Tail End': 'Pointe de queue',
+        'The Demon\'s Claw': 'Griffe du démon',
+        'Twin Spirit': 'Double spirituel',
+        'Tyrfing': 'Tyrfing',
+        'Wave Cannon': 'Canon plasma',
+        'the Purge': 'Purge',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Execrated Wile': 'テンパード・ワイル',
+        'Zurvan': 'ズルワーン',
+      },
+      'replaceText': {
+        'Ahura Mazda': 'アフラ・マズダー',
+        'Biting Halberd': 'バイティングハルバード',
+        'Broken Seal': '氷炎の紋',
+        'Ciclicle': 'シクリクル',
+        'Cool Flame': 'クールフレイム',
+        'Demonic Dive': 'デモンダイブ',
+        'Fire III': 'ファイガ',
+        'Flaming Halberd': 'フレイムハルバード',
+        'Flare Star': 'フレアスター',
+        'Ice and Fire': 'アイス・アンド・ファイア',
+        'Infinite Fire': '炎の刻印',
+        'Infinite Ice': '氷の刻印',
+        'Metal Cutter': 'メタルカッター',
+        'Sarva': '変異',
+        'Soar': '飛翔',
+        'Southern Cross': 'サザンクロス',
+        'Tail End': 'テイルエンド',
+        'The Demon\'s Claw': 'デモンクロー',
+        'Twin Spirit': 'ツインスピリット',
+        'Tyrfing': 'ティルフィング',
+        'Wave Cannon': '波動砲',
+        'the Purge': 'パージ',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Execrated Wile': '책략의 신도',
+        'Zurvan': '주르반',
+      },
+      'replaceText': {
+        '\\(circles\\)': '(원)',
+        '\\(explosion\\)': '(폭발)',
+        '\\(puddle\\)': '(장판)',
+        '\\(snapshot\\)': '(유도)',
+        '\\(avoid\\)': '(피하기)',
+        '\\(stack\\)': '(쉐어)',
+        'Ahura Mazda': '아후라 마즈다',
+        'Biting Halberd': '매서운 얼음창',
+        'Broken Seal': '얼음불 문장',
+        'Ciclicle': '얼음 선풍',
+        'Cool Flame': '서늘한 불덩이',
+        'Demonic Dive': '귀신강하',
+        'Fire III': '파이가',
+        'Flaming Halberd': '화염창',
+        'Flare Star': '타오르는 별',
+        'Ice and Fire': '얼음과 불',
+        'Infinite Fire': '불의 각인',
+        'Infinite Ice': '얼음의 각인',
+        'Metal Cutter': '금속 절단',
+        'Sarva': '변이',
+        'Soar': '비상',
+        'Southern Cross': '남십자성',
+        'Tail End': '꼬리 쓸기',
+        'The Demon\'s Claw': '귀신의 발톱',
+        'Twin Spirit': '쌍둥이 영혼',
+        'Tyrfing': '티르핑',
+        'Wave Cannon': '파동포',
+        'the Purge': '숙청',
       },
     },
   ],

@@ -37,6 +37,14 @@ export default {
     cn: '大AoE伤害！',
     ko: '강한 전체 공격!',
   },
+  bleedAoe: {
+    en: 'AoE + Bleed',
+    de: 'AoE + Blutung',
+    fr: 'AoE + Saignement',
+    ja: '全体攻撃 + 出血',
+    cn: 'AOE + 流血',
+    ko: '전체 공격 + 도트',
+  },
   tankBuster: {
     en: 'Tank Buster',
     de: 'Tank buster',
@@ -463,6 +471,22 @@ export default {
     cn: '中间',
     ko: '중앙',
   },
+  clockwise: {
+    en: 'Clockwise',
+    de: 'Im Uhrzeigersinn',
+    fr: 'Sens horaire',
+    ja: '時針回り',
+    cn: '顺时针',
+    ko: '시계방향',
+  },
+  counterclockwise: {
+    en: 'Counter-clock',
+    de: 'Gegen den Uhrzeigersinn',
+    fr: 'Anti-horaire',
+    ja: '逆時針回り',
+    cn: '逆时针',
+    ko: '반시계방향',
+  },
   // killAdds is used for adds that will always be available
   killAdds: {
     en: 'Kill adds',
@@ -634,6 +658,14 @@ export default {
     ja: ' (${player})から離れる',
     cn: '远离连线 (${player})',
     ko: '상대와 떨어지기 (${player})',
+  },
+  getTowers: {
+    en: 'Get Towers',
+    de: 'Türme nehmen',
+    fr: 'Allez dans les tours',
+    ja: '塔を踏む',
+    cn: '踩塔',
+    ko: '기둥 들어가기',
   },
   unknown: {
     en: '???',

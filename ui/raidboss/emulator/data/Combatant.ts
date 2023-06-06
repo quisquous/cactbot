@@ -3,55 +3,79 @@ import { UnreachableCode } from '../../../../resources/not_reached';
 import CombatantState from './CombatantState';
 
 export default class Combatant {
-  tempStates?: { [timestamp: number]: Partial<CombatantState> } = {};
-  states: { [timestamp: number]: CombatantState } = {};
-  significantStates: number[] = [];
+  private tempStates?: { [timestamp: number]: Partial<CombatantState> } = {};
+  private states: { [timestamp: number]: CombatantState } = {};
+  // State indexes are stored both in forward and reverse sequence
+  // This prevents having to clone the array and reverse it every frame of playback,
+  // or alternatively to have to loop through the array in reverse to find the target
+  // timestamp. A slight increase in memory usage of 2-3kb to make the code
+  // more readable.
+  private stateIndexes: number[] = [];
+  private reverseStateIndexes: number[] = [];
+
+  public get firstStateTimestamp(): number {
+    const firstIndex = this.stateIndexes[0];
+    if (firstIndex === undefined)
+      throw new UnreachableCode();
+    return firstIndex;
+  }
+
+  public get lastStateTimestamp(): number {
+    const lastIndex = this.stateIndexes.slice(-1)[0];
+    if (lastIndex === undefined)
+      throw new UnreachableCode();
+    return lastIndex;
+  }
+
+  public get firstState(): CombatantState {
+    const firstStateIndex = this.firstStateTimestamp;
+    return this.getState(firstStateIndex);
+  }
+
+  public setState(state: CombatantState, timestamp: number): CombatantState {
+    return this.states[timestamp] = state;
+  }
 
   hasState(timestamp: number): boolean {
     return this.states[timestamp] !== undefined;
   }
 
-  pushState(timestamp: number, state: CombatantState): void {
-    if (!this.tempStates)
-      throw new Error('Invalid Combatant state');
-    this.tempStates[timestamp] = state;
+  nextState(timestamp: number): CombatantState {
+    // If timestamp is a state already, return it
+    if (this.stateIndexes.includes(timestamp))
+      return this.getState(timestamp);
+
+    // Shortcut out if this timestamp is before the first or after the last timestamp
+    if (timestamp < this.firstStateTimestamp)
+      return this.getState(this.firstStateTimestamp);
+    else if (timestamp > this.lastStateTimestamp)
+      return this.getState(this.lastStateTimestamp);
+
+    const stateTimestamp = this.stateIndexes.find((ts) => ts > timestamp);
+
+    if (stateTimestamp === undefined)
+      throw new UnreachableCode();
+
+    return this.getState(stateTimestamp);
   }
 
-  nextSignificantState(timestamp: number): CombatantState {
-    // Shortcut out if this is significant or if there's no higher significant state
-    const index = this.significantStates.indexOf(timestamp);
-    const lastSignificantStateIndex = this.significantStates.length - 1;
-    // If timestamp is a significant state already, and it's not the last one, return the next
-    if (index >= 0 && index < lastSignificantStateIndex)
-      return this.getStateByIndex(index + 1);
-    // If timestamp is the last significant state or the timestamp is past the last significant
-    // state, return the last significant state
-    else if (
-      index === lastSignificantStateIndex ||
-      timestamp > (this.significantStates[lastSignificantStateIndex] ?? 0)
-    )
-      return this.getStateByIndex(lastSignificantStateIndex);
+  previousState(timestamp: number): CombatantState {
+    // If timestamp is a state already, return it
+    if (this.stateIndexes.includes(timestamp))
+      return this.getState(timestamp);
 
-    for (let i = 0; i < this.significantStates.length; ++i) {
-      const stateIndex = this.significantStates[i];
-      if (stateIndex && stateIndex > timestamp)
-        return this.getStateByIndex(i);
-    }
+    // Shortcut out if this timestamp is before the first or after the last timestamp
+    if (timestamp < this.firstStateTimestamp)
+      return this.getState(this.firstStateTimestamp);
+    else if (timestamp > this.lastStateTimestamp)
+      return this.getState(this.lastStateTimestamp);
 
-    return this.getStateByIndex(this.significantStates.length - 1);
-  }
+    const stateTimestamp = this.reverseStateIndexes.find((ts) => ts < timestamp);
 
-  pushPartialState(timestamp: number, props: Partial<CombatantState>): void {
-    if (!this.tempStates)
-      throw new Error('Invalid Combatant state');
-    if (this.tempStates[timestamp] === undefined) {
-      this.tempStates[timestamp] = props;
-    } else {
-      const state = this.tempStates[timestamp];
-      if (!state)
-        throw new UnreachableCode();
-      this.tempStates[timestamp] = { ...state, ...props };
-    }
+    if (stateTimestamp === undefined)
+      throw new UnreachableCode();
+
+    return this.getState(stateTimestamp);
   }
 
   getState(timestamp: number): CombatantState {
@@ -59,22 +83,26 @@ export default class Combatant {
     if (stateByTimestamp)
       return stateByTimestamp;
 
-    const initialTimestamp = this.significantStates[0];
-    if (initialTimestamp === undefined)
+    return this.previousState(timestamp);
+  }
+
+  getTempState(timestamp: number): Partial<CombatantState> | undefined {
+    if (!this.tempStates)
+      throw new Error('Invalid Combatant state');
+    return this.tempStates[timestamp];
+  }
+
+  pushPartialState(timestamp: number, props: Partial<CombatantState>): Partial<CombatantState> {
+    if (!this.tempStates)
+      throw new Error('Invalid Combatant state');
+
+    if (this.tempStates[timestamp] === undefined)
+      return this.tempStates[timestamp] = props;
+
+    const state = this.tempStates[timestamp];
+    if (!state)
       throw new UnreachableCode();
-    if (timestamp < initialTimestamp)
-      return this.getStateByIndex(0);
-
-    let i = 0;
-    for (; i < this.significantStates.length; ++i) {
-      const prevTimestamp = this.significantStates[i];
-      if (prevTimestamp === undefined)
-        throw new UnreachableCode();
-      if (prevTimestamp > timestamp)
-        return this.getStateByIndex(i - 1);
-    }
-
-    return this.getStateByIndex(i - 1);
+    return this.tempStates[timestamp] = { ...state, ...props };
   }
 
   finalize(): void {
@@ -94,7 +122,7 @@ export default class Combatant {
     };
 
     this.states[lastState.key] = lastState.state;
-    this.significantStates.push(lastState.key);
+    this.stateIndexes.push(lastState.key);
 
     for (const state of stateEntries.slice(1)) {
       const curKey = parseInt(state[0] ?? '0');
@@ -102,29 +130,18 @@ export default class Combatant {
       const curJson = JSON.stringify(curState);
 
       if (curJson !== lastState.json) {
-        this.significantStates.push(curKey);
-        lastState.key = curKey;
         lastState.state = curState;
-        lastState.json = curJson;
       } else {
         // Re-use state to reduce memory usage
         curState = lastState.state;
       }
 
       this.states[curKey] = curState;
+      this.stateIndexes.push(curKey);
     }
 
-    delete this.tempStates;
-  }
+    this.reverseStateIndexes = [...this.stateIndexes].reverse();
 
-  // Should only be called when `index` is valid.
-  private getStateByIndex(index: number): CombatantState {
-    const stateIndex = this.significantStates[index];
-    if (stateIndex === undefined)
-      throw new UnreachableCode();
-    const state = this.states[stateIndex];
-    if (state === undefined)
-      throw new UnreachableCode();
-    return state;
+    delete this.tempStates;
   }
 }

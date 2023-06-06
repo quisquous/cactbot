@@ -385,7 +385,7 @@ export interface PluginCombatantState {
   ID?: number;
   OwnerID?: number;
   WeaponId?: number;
-  type?: number;
+  Type?: number;
   Job?: number;
   Level?: number;
   Name?: string;
@@ -397,6 +397,29 @@ export interface PluginCombatantState {
   PosY: number;
   PosZ: number;
   Heading: number;
+
+  MonsterType?: number;
+  Status?: number;
+  ModelStatus?: number;
+  AggressionStatus?: number;
+  TargetID?: number;
+  IsTargetable?: boolean;
+  Radius?: number;
+  Distance?: string;
+  EffectiveDistance?: string;
+  NPCTargetID?: number;
+  CurrentGP?: number;
+  MaxGP?: number;
+  CurrentCP?: number;
+  MaxCP?: number;
+  PCTargetID?: number;
+  IsCasting1?: number;
+  IsCasting2?: number;
+  CastBuffID?: number;
+  CastTargetID?: number;
+  CastDurationCurrent?: number;
+  CastDurationMax?: number;
+  TransformationId?: number;
 }
 
 type BroadcastHandler = (msg: {

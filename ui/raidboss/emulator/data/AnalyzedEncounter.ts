@@ -54,7 +54,7 @@ export default class AnalyzedEncounter extends EventBus {
           const partyMember = this.encounter?.combatantTracker?.combatants[id];
           if (!partyMember)
             throw new UnreachableCode();
-          const initState = partyMember.nextSignificantState(0);
+          const initState = partyMember.nextState(0);
           return {
             id: id,
             worldId: 0,
@@ -139,7 +139,7 @@ export default class AnalyzedEncounter extends EventBus {
     if (!partyMember)
       return;
 
-    const initState = partyMember?.nextSignificantState(0);
+    const initState = partyMember?.nextState(0);
 
     if (initState.Job === 0) {
       this.perspectives[id] = {
