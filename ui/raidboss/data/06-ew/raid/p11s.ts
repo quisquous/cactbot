@@ -324,6 +324,28 @@ const triggerSet: TriggerSet<Data> = {
         return { alertText: alertText, infoText: infoText };
       },
     },
+    {
+      id: 'P11S Twofold Revelation Light',
+      type: 'StartsUsing',
+      netRegex: { id: '8211', source: 'Themis', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Go to Dark Orb + Dark Portals',
+        },
+      },
+    },
+    {
+      id: 'P11S Twofold Revelation Dark',
+      type: 'StartsUsing',
+      netRegex: { id: '8212', source: 'Themis', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Go to Light Orb + Light Portals',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
