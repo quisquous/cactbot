@@ -1476,6 +1476,7 @@ const data: ZoneInfoType = {
     'contentType': 28,
     'exVersion': 4,
     'name': {
+      'cn': '欧米茄绝境验证战',
       'de': 'Omega (fatal)',
       'en': 'The Omega Protocol (Ultimate)',
       'fr': 'Le Protocole Oméga (fatal)',
