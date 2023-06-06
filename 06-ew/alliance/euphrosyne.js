@@ -764,21 +764,25 @@ Options.Triggers.push({
         frontLeft: {
           en: 'Front Left',
           de: 'Vorne Links',
+          cn: '左前',
           ko: '앞 왼쪽',
         },
         frontRight: {
           en: 'Front Right',
           de: 'Vorne Rechts',
+          cn: '右前',
           ko: '앞 오른쪽',
         },
         backLeft: {
           en: 'Back Left',
           de: 'Hinten Links',
+          cn: '左后',
           ko: '뒤 왼쪽',
         },
         backRight: {
           en: 'Back Right',
           de: 'Hinten Rechts',
+          cn: '右后',
           ko: '뒤 오른쪽',
         },
       },

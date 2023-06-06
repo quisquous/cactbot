@@ -332,6 +332,7 @@ Options.Triggers.push({
         casting: {
           en: 'ID ${id} is casting spell ID ${spellId}',
           de: 'ID ${id} wirkt Zauber ID ${spellId}',
+          cn: 'ID ${id} 正在施法 ID ${spellId}',
           ko: 'ID ${id}: 스킬 ID ${spellId}를 시전하는 중',
         },
       },
@@ -431,13 +432,13 @@ Options.Triggers.push({
     },
     {
       locale: 'cn',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*向木人告别',
         'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',
         'test sync': 'test sync',
         'You burst out laughing at the striking dummy': '.*看着木人高声大笑',
         'cactbot lang': 'cactbot语言',
+        'cactbot test combatant cast': 'cactbot测试战斗员施法',
         'cactbot test config': 'cactbot测试配置',
         'cactbot test response': 'cactbot响应测试',
         'cactbot test watch': 'cactbot探测测试',
