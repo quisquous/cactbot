@@ -29,6 +29,23 @@ const limitCutMarkers = [
   headmarkers.limitCut7,
   headmarkers.limitCut8,
 ];
+const limitCutNumberMap = {
+  '004F': 1,
+  '0050': 2,
+  '0051': 3,
+  '0052': 4,
+  '0053': 5,
+  '0054': 6,
+  '0055': 7,
+  '0056': 8,
+};
+const limitCutPlayerActive = [
+  // These ordered nested arrays contain the limit cut headmarkers for [ dash order, tower soak order ]
+  [2, 6],
+  [4, 8],
+  [6, 2],
+  [8, 4],
+];
 const firstHeadmarker = parseInt(headmarkers.dualityOfDeath, 16);
 const getHeadmarkerId = (data, matches) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
@@ -40,10 +57,18 @@ const getHeadmarkerId = (data, matches) => {
   // since we know all the IDs that will be present in the encounter.
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
+const centerX = 100;
+const centerY = 100;
 Options.Triggers.push({
   id: 'AnabaseiosTheNinthCircleSavage',
   zoneId: ZoneId.AnabaseiosTheNinthCircleSavage,
   timelineFile: 'p9s.txt',
+  initData: () => {
+    return {
+      levinOrbs: {},
+      limitCutDash: 0,
+    };
+  },
   triggers: [
     {
       id: 'P9S Headmarker Tracker',
@@ -212,7 +237,92 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'P9S Limit Cut',
+      // Ball of Levin combatants are added ~0.3 seconds after Kokytos finishes using Levinstrike Summoning
+      // and ~1.7 before Kokytos begins using Scrambled Succession (which is when limit cut markers appear)
+      // These combatants are added in their actual positions, so no need to check OP for combatant data.
+      id: 'P9S Limit Cut Levin Orb Collect',
+      type: 'AddedCombatant',
+      // There are multiple invsible combatants that share this name, but the ones that receive HeadMarkers
+      // in limit cut (the ones we care about) are distinguishable because their level attribute is set to 90.
+      netRegex: { name: 'Ball of Levin', level: '5A' },
+      run: (data, matches) => {
+        // (0 = N, 1 = NE ... 7 = NW)
+        const orb8Dir = Directions.addedCombatantPosTo8Dir(matches, centerX, centerY);
+        data.levinOrbs[matches.id] = { dir: orb8Dir };
+      },
+    },
+    {
+      id: 'P9S Limit Cut Levin Orb Order Collect',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => {
+        return limitCutMarkers.includes(getHeadmarkerId(data, matches)) &&
+          Object.keys(data.levinOrbs).includes(matches.targetId);
+      },
+      run: (data, matches) => {
+        const correctedMatch = getHeadmarkerId(data, matches);
+        const orbLimitCutNumber = limitCutNumberMap[correctedMatch];
+        // Levin orbs should always receive a odd-numbered limit cut headmarker
+        const expectedOrbLimitCutNumbers = [1, 3, 5, 7];
+        if (
+          orbLimitCutNumber === undefined || !expectedOrbLimitCutNumbers.includes(orbLimitCutNumber)
+        ) {
+          console.error('Invalid limit cut headmarker on orb');
+          return;
+        }
+        const orbData = data.levinOrbs[matches.targetId] ?? {};
+        if (typeof orbData.dir === 'undefined') {
+          console.error('Limit cut headmarker on unknown orb');
+          return;
+        }
+        orbData.order = orbLimitCutNumber;
+        data.levinOrbs[matches.targetId] = orbData;
+      },
+    },
+    {
+      id: 'P9S Limit Cut Levin Orb Start and Rotation',
+      type: 'StartsUsing',
+      netRegex: { id: '817D', source: 'Kokytos', capture: false },
+      delaySeconds: 1.5,
+      infoText: (data, _matches, output) => {
+        let firstOrb8Dir;
+        let secondOrb8Dir;
+        // Orb order is limit cut headmarkers 1 > 3 > 5 > 7
+        // 1 is always adjacent to 3, 3 is always adjacent to 5, and so on.
+        for (const combatant in data.levinOrbs) {
+          switch (data.levinOrbs[combatant]?.order) {
+            case 1:
+              firstOrb8Dir = data.levinOrbs[combatant]?.dir;
+              break;
+            case 3:
+              secondOrb8Dir = data.levinOrbs[combatant]?.dir;
+              break;
+          }
+        }
+        if (firstOrb8Dir === undefined || secondOrb8Dir === undefined)
+          return;
+        const firstOrb8DirStr = Directions.outputFrom8DirNum(firstOrb8Dir);
+        if (firstOrb8DirStr === undefined)
+          return;
+        const firstOrbDir = output[firstOrb8DirStr]();
+        const rotationDir = (secondOrb8Dir - firstOrb8Dir + 8) % 8 === 2
+          ? output.clockwise()
+          : output.counterclock();
+        if (firstOrbDir !== undefined && rotationDir !== undefined)
+          return output.text({ dir: firstOrbDir, rotation: rotationDir });
+        return;
+      },
+      outputStrings: {
+        text: {
+          en: 'First Orb ${dir} => ${rotation}',
+        },
+        clockwise: Outputs.clockwise,
+        counterclock: Outputs.counterclockwise,
+        ...Directions.outputStrings8Dir,
+      },
+    },
+    {
+      id: 'P9S Limit Cut Player Dash Order',
       type: 'HeadMarker',
       netRegex: {},
       condition: (data, matches) => {
@@ -221,16 +331,6 @@ Options.Triggers.push({
       },
       preRun: (data, matches) => {
         const correctedMatch = getHeadmarkerId(data, matches);
-        const limitCutNumberMap = {
-          '004F': 1,
-          '0050': 2,
-          '0051': 3,
-          '0052': 4,
-          '0053': 5,
-          '0054': 6,
-          '0055': 7,
-          '0056': 8,
-        };
         data.limitCutNumber = limitCutNumberMap[correctedMatch];
       },
       durationSeconds: (data) => data.seenChimericSuccession ? 20 : 30,
@@ -247,6 +347,70 @@ Options.Triggers.push({
           ko: '${num}',
         },
         unknown: Outputs.unknown,
+      },
+    },
+    {
+      // When Kokytos uses 'Scrambled Succession' (817D), there is ~4.0s. until the first tower appears (8181)
+      // and about ~5.0s until he dashes and uses Firemeld (8180) on the #2 limit cut player.  Because these abilities
+      // have very short (or no) cast times, we can base the first combo trigger on the use of Scrambled Succession, and
+      // base subsequent combo triggers on the prior use of Firemeld (which is ~4.6s before the next tower spawns)
+      id: 'P9S Limit Cut First Dash/Tower Combo',
+      type: 'Ability',
+      netRegex: { id: '817D', source: 'Kokytos', capture: false },
+      condition: (data) => data.limitCutDash === 0,
+      alertText: (data, _matches, output) => {
+        const activePlayers = limitCutPlayerActive[data.limitCutDash];
+        if (activePlayers === undefined)
+          return;
+        const [dashPlayer, soakPlayer] = activePlayers;
+        if (dashPlayer === undefined || soakPlayer === undefined)
+          return;
+        if (data.limitCutNumber === dashPlayer)
+          return output.dash();
+        else if (data.limitCutNumber === soakPlayer)
+          return output.soak();
+        return;
+      },
+      outputStrings: {
+        dash: {
+          en: 'Bait dash',
+        },
+        soak: {
+          en: 'Soak tower',
+        },
+      },
+    },
+    {
+      id: 'P9S Limit Cut Combo Tracker',
+      type: 'Ability',
+      netRegex: { id: '8180', source: 'Kokytos', capture: false },
+      run: (data) => data.limitCutDash++,
+    },
+    {
+      id: 'P9S Limit Cut Later Dash/Tower Combo',
+      type: 'Ability',
+      netRegex: { id: '8180', source: 'Kokytos', capture: false },
+      condition: (data) => data.limitCutDash > 0 && data.limitCutDash < 4,
+      alertText: (data, _matches, output) => {
+        const activePlayers = limitCutPlayerActive[data.limitCutDash];
+        if (activePlayers === undefined)
+          return;
+        const [dashPlayer, soakPlayer] = activePlayers;
+        if (dashPlayer === undefined || soakPlayer === undefined)
+          return;
+        if (data.limitCutNumber === dashPlayer)
+          return output.dash();
+        else if (data.limitCutNumber === soakPlayer)
+          return output.soak();
+        return;
+      },
+      outputStrings: {
+        dash: {
+          en: 'Bait dash',
+        },
+        soak: {
+          en: 'Soak tower',
+        },
       },
     },
     {
