@@ -1,14 +1,14 @@
 ### P9S: Anabaseios: The Ninth Circle (Savage)
 
-# -p 814C:12.2
-# -ii 814B 814D 8150 815D 816E 815E 8165 8166 820B 820C 8222 8223 817F 8171 8173 817A 8176 8188 8189 8143 8187
+# -p 814D:12.6
+# -ii 814B 814C 8150 815D 816D 815E 8165 8166 820B 820C 8222 8223 817F 8171 8172 8179 8176 8188 8189 8143 8186
 # -it "Kokytos"
 
 # 814B unaspected auto
 # 8150 mage auto
 # 815D fighter auto
-# 814D Gluttony's Augur damage
-# 816E Archaic Demolish damage
+# 814C Gluttony's Augur (cast)
+# 816D Archaic Demolish (cast)
 # 815E Uplift (raise walls)
 # 8165 Inside Roundhouse (telegraph)
 # 8166 Outside Roundhouse (telegraph)
@@ -18,13 +18,13 @@
 # 8223 Swinging Kick (damage from dodge fail)
 # 817F Shock (ball hitting wall)
 # 8171 Charybdis (tornado spawn)
-# 8173 Comet Impact (damage)
-# 817A Thunderbolt (damage)
+# 8172 Comet (cast)
+# 8179 Thunderbolt (cast)
 # 8176 Ecliptic Meteor (damage on boulder)
 # 8188 Ecliptic Meteor (damage on player if LoS fail)
 # 8189 beast auto
 # 8143 Burst (boulder hit by meteor exploding)
-# 8187 Beastly Fury (damage)
+# 8186 Beastly Fury (cast)
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -33,7 +33,7 @@ hideall "--sync--"
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 7.2 "--sync--" sync / 14:[^:]*:Kokytos:814C:/ window 10,10
-12.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
+12.6 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814D:/
 19.6 "--middle--" sync / 1[56]:[^:]*:Kokytos:8144:/
 
 # Mage 1
@@ -74,9 +74,9 @@ hideall "--sync--"
 158.7 "Swinging Kick" sync / 1[56]:[^:]*:Kokytos:(816B|816C):/
 161.7 "Archaic Rockbreaker #2" sync / 1[56]:[^:]*:Kokytos:8161:/
 162.4 "Outside Roundhouse/Inside Roundhouse" sync / 1[56]:[^:]*:Kokytos:(8239|8238):/
-168.7 "Archaic Demolish" sync / 1[56]:[^:]*:Kokytos:816D:/
+170.0 "Archaic Demolish" sync / 1[56]:[^:]*:Kokytos:816E:/
 
-175.8 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
+176.4 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814D:/
 187.1 "Ascendant Fist" sync / 1[56]:[^:]*:Kokytos:816F:/
 
 194.5 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8125:/
@@ -121,7 +121,7 @@ hideall "--sync--"
 265.1 "Two Minds" sync / 1[56]:[^:]*:Kokytos:(8184|8185):/
 266.2 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
 266.2 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
-272.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
+272.6 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814D:/
 
 276.3 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8236:/
 
@@ -130,20 +130,20 @@ hideall "--sync--"
 289.1 "Ravening (Beast)" sync / 1[56]:[^:]*:Kokytos:811A:/
 297.0 "Soul Surge" sync / 1[56]:[^:]*:Kokytos:811B:/
 302.6 "Charybdis" sync / 1[56]:[^:]*:Kokytos:8170:/
-309.7 "Comet" sync / 1[56]:[^:]*:Kokytos:8172:/
+310.7 "Comet Impact" sync / 1[56]:[^:]*:Comet:8173:/
 
 318.7 "Beastly Bile (cast)" sync / 1[56]:[^:]*:Kokytos:8177:/
-323.8 "Thunderbolt #1" sync / 1[56]:[^:]*:Kokytos:8179:/
+324.8 "Thunderbolt #1" sync / 1[56]:[^:]*:Kokytos:817A:/
 325.7 "Beastly Bile #1" sync / 1[56]:[^:]*:Kokytos:8178:/
 
-329.9 "Thunderbolt #2" sync / 1[56]:[^:]*:Kokytos:8179:/
+330.9 "Thunderbolt #2" sync / 1[56]:[^:]*:Kokytos:817A:/
 331.7 "Beastly Bile #2" sync / 1[56]:[^:]*:Kokytos:8178:/
 
 332.5 "Burst #1" sync / 1[56]:[^:]*:Comet:8174:/
 338.5 "Burst #2" sync / 1[56]:[^:]*:Comet:8174:/
 341.3 "Ecliptic Meteor" sync / 1[56]:[^:]*:Kokytos:8175:/
 349.4 "Burst #3" sync / 1[56]:[^:]*:Comet:8174:/
-355.0 "Beastly Fury" sync / 1[56]:[^:]*:Kokytos:8186:/
+355.9 "Beastly Fury" sync / 1[56]:[^:]*:Kokytos:8187:/
 
 357.2 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8126:/
 
@@ -165,7 +165,7 @@ hideall "--sync--"
 
 420.9 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
 420.9 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
-426.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
+426.5 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814D:/
 
 # Limit Cut 2
 438.6 "Chimeric Succession" sync / 1[56]:[^:]*:Kokytos:81BB:/
@@ -195,7 +195,7 @@ hideall "--sync--"
 503.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
 508.2 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
 508.2 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
-513.5 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
+513.9 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814D:/
 
 520.6 "Dualspell" sync / 1[56]:[^:]*:Kokytos:(8154|8155):/
 523.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
@@ -210,7 +210,7 @@ hideall "--sync--"
 547.3 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
 551.9 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
 551.9 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
-557.1 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
+557.7 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814D:/
 
 564.7 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8124:/
 
