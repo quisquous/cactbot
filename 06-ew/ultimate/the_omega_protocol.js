@@ -2157,7 +2157,7 @@ Options.Triggers.push({
           6: output.southwest(),
           7: output.west(),
         };
-        const startDir = rotation < 0 ? (dir - 1) % 8 : (dir + 1) % 8;
+        const startDir = rotation < 0 ? (dir - 1 + 8) % 8 : (dir + 1) % 8;
         const start = dirs[startDir] ?? output.unknown();
         if (rotation < 0) {
           return output.directions({
