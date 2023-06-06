@@ -125,12 +125,12 @@ const nearDistantOutputStrings: { [label: string]: LocaleText } = {
   near: {
     en: 'Near World',
     de: 'Hallo Welt: Nah',
-    cn: 'Near World', // FIXME
+    cn: '近处世界',
   },
   distant: {
     en: 'Distant World',
     de: 'Hallo Welt: Fern',
-    cn: 'Distant World', // FIXME
+    cn: '远处世界',
   },
 } as const;
 
@@ -2753,7 +2753,7 @@ const triggerSet: TriggerSet<Data> = {
         'Beyond Defense': '盾连击S',
         'Beyond Strength': '盾连击G',
         'Blaster': '冲击波',
-        'Blind Faith': 'Blind Faith', // FIXME
+        'Blind Faith': '盲信',
         'Colossal Blow': '巨能爆散',
         'Condensed Wave Cannon Kyrios': '大功率波动炮P',
         'Cosmo Arrow': 'Cosmo Arrow', // FIXME
@@ -2770,10 +2770,10 @@ const triggerSet: TriggerSet<Data> = {
         'Flame Thrower': '火炎放射',
         'Flash Gale': '闪光风',
         'Guided Missile Kyrios': '跟踪导弹P',
-        'Hello, Distant World': 'Hello, Distant World', // FIXME
-        'Hello, Near World': 'Hello, Near World', // FIXME
+        'Hello, Distant World': '你好，远处世界',
+        'Hello, Near World': '你好，近处世界',
         'Hello, World': '你好，世界',
-        'High-powered Sniper Cannon': 'High-powered Sniper Cannon”', // FIXME
+        'High-powered Sniper Cannon': '狙击式大功率波动炮”',
         'Hyper Pulse': '超能脉冲',
         'Ion Efflux': '离子流出',
         'Laser Shower': '激光骤雨',
@@ -2800,18 +2800,18 @@ const triggerSet: TriggerSet<Data> = {
         'Run: \\*\\*\\*\\*mi\\* \\(Delta Version\\)': 'Run: ****mi*(Delta Version)', // FIXME
         'Run: \\*\\*\\*\\*mi\\* \\(Omega Version\\)': 'Run: ****mi*(Omega Version)', // FIXME
         'Run: \\*\\*\\*\\*mi\\* \\(Sigma Version\\)': 'Run: ****mi*(Sigma Version)', // FIXME
-        '(?<! )Sniper Cannon': 'Sniper Cannon”', // FIXME
+        '(?<! )Sniper Cannon': '狙击式波动炮”',
         'Solar Ray': '太阳射线',
         'Spotlight': '聚光灯',
         'Storage Violation': '清除记忆污染S',
         'Subject Simulation F': '变形F',
         'Superliminal Steel': '剑连击B',
-        'Swivel Cannon': 'Swivel Cannon', // FIXME
+        'Swivel Cannon': '回旋式波动炮',
         'Synthetic Shield': '合成盾',
         'Unlimited Wave Cannon': 'Unlimited Wave Cannon', // FIXME
         '(?<! )Wave Cannon(?! Kyrios)': '波动炮',
         '(?<! )Wave Cannon Kyrios': '波动炮P',
-        'Wave Repeater': 'Wave Repeater', // FIXME
+        'Wave Repeater': '速射式波动炮',
       },
     },
   ],
