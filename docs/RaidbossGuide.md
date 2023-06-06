@@ -371,6 +371,9 @@ they can return {en: 'Get Out', fr: 'something french'} instead.
 Fields can also return a function that return a localized object as well.
 If the current locale does not exist in the object, the 'en' result will be returned.
 
+If multiple triggers match the same log line,
+they will be executed sequentially based on their order in the relevant zone file.
+
 Trigger elements are evaluated in this order, and must be listed in this order:
 
 - id
