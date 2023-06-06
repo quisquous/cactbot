@@ -101,7 +101,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Soak tower',
           de: 'Türme nehmen',
           fr: 'Prenez une tour',
-          cn: '踩踏击飞',
+          cn: '踩塔击飞',
         },
         avoid: {
           en: 'Avoid towers',
