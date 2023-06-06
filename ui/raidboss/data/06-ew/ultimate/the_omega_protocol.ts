@@ -2737,8 +2737,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'cn',
       'replaceSync': {
-        'Alpha Omega': 'Alpha Omega', // FIXME
-        'Cosmo Meteor': 'Cosmo Meteor', // FIXME
+        'Alpha Omega': '阿尔法欧米茄',
+        'Cosmo Meteor': '宇宙流星',
         '(?<!Alpha )Omega(?!-)': '欧米茄',
         'Omega-F': '欧米茄F',
         'Omega-M': '欧米茄M',
@@ -2756,10 +2756,10 @@ const triggerSet: TriggerSet<Data> = {
         'Blind Faith': '盲信',
         'Colossal Blow': '巨能爆散',
         'Condensed Wave Cannon Kyrios': '大功率波动炮P',
-        'Cosmo Arrow': 'Cosmo Arrow', // FIXME
-        'Cosmo Dive': 'Cosmo Dive', // FIXME
+        'Cosmo Arrow': '宇宙天箭',
+        'Cosmo Dive': '宇宙龙炎',
         'Cosmo Memory': '宇宙记忆',
-        'Cosmo Meteor': 'Cosmo Meteor', // FIXME
+        'Cosmo Meteor': '宇宙流星',
         'Critical Error': '严重错误',
         'Diffuse Wave Cannon(?! Kyrios)': '扩散波动炮',
         'Diffuse Wave Cannon Kyrios': '扩散波动炮P',
@@ -2779,8 +2779,8 @@ const triggerSet: TriggerSet<Data> = {
         'Laser Shower': '激光骤雨',
         'Latent Defect': '潜在错误',
         'Left Arm Unit': '左臂组',
-        'Limitless Synergy': 'Limitless Synergy', // FIXME
-        'Magic Number': 'Magic Number', // FIXME
+        'Limitless Synergy': '协作程序LB',
+        'Magic Number': '魔数',
         'Optical Laser': '光学射线F',
         'Optimized Bladedance': '欧米茄刀光剑舞',
         'Optimized Blizzard III': '欧米茄冰封',
@@ -2790,16 +2790,16 @@ const triggerSet: TriggerSet<Data> = {
         'Optimized Sagittarius Arrow': '欧米茄射手天箭',
         'Oversampled Wave Cannon': '探测式波动炮',
         'Pantokrator': '全能之主',
-        'Party Synergy': 'Party Synergy', // FIXME
+        'Party Synergy': '协作程序PT',
         'Patch': '补丁',
         'Peripheral Synthesis': '生成外设',
         'Pile Pitch': '能量投射',
         'Program Loop': '循环程序',
         'Rear Lasers': '背环激光',
         'Right Arm Unit': '右臂组',
-        'Run: \\*\\*\\*\\*mi\\* \\(Delta Version\\)': 'Run: ****mi*(Delta Version)', // FIXME
-        'Run: \\*\\*\\*\\*mi\\* \\(Omega Version\\)': 'Run: ****mi*(Omega Version)', // FIXME
-        'Run: \\*\\*\\*\\*mi\\* \\(Sigma Version\\)': 'Run: ****mi*(Sigma Version)', // FIXME
+        'Run: \\*\\*\\*\\*mi\\* \\(Delta Version\\)': '代码：＊能＊（德尔塔）',
+        'Run: \\*\\*\\*\\*mi\\* \\(Omega Version\\)': '代码：＊能＊（欧米茄）',
+        'Run: \\*\\*\\*\\*mi\\* \\(Sigma Version\\)': '代码：＊能＊（西格玛）',
         '(?<! )Sniper Cannon': '狙击式波动炮”',
         'Solar Ray': '太阳射线',
         'Spotlight': '聚光灯',
@@ -2808,7 +2808,7 @@ const triggerSet: TriggerSet<Data> = {
         'Superliminal Steel': '剑连击B',
         'Swivel Cannon': '回旋式波动炮',
         'Synthetic Shield': '合成盾',
-        'Unlimited Wave Cannon': 'Unlimited Wave Cannon', // FIXME
+        'Unlimited Wave Cannon': '波动炮：限制解除',
         '(?<! )Wave Cannon(?! Kyrios)': '波动炮',
         '(?<! )Wave Cannon Kyrios': '波动炮P',
         'Wave Repeater': '速射式波动炮',
