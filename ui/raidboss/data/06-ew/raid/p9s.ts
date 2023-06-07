@@ -596,6 +596,28 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '81BB', source: 'Kokytos', capture: false },
       run: (data) => data.seenChimericSuccession = true,
     },
+    {
+      id: 'P9S Front Firestrikes',
+      type: 'StartsUsing',
+      netRegex: { id: '878E', source: 'Kokytos', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Charge => Stay',
+        },
+      },
+    },
+    {
+      id: 'P9S Rear Firestrikes',
+      type: 'StartsUsing',
+      netRegex: { id: '878F', source: 'Kokytos', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Charge => Run Through',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
