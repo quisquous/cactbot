@@ -1,6 +1,6 @@
 const dualspells = {
-  fireIce: '8154',
-  thunderIce: '8155',
+  fireIce: ['8154', '8184'],
+  thunderIce: ['8155', '8185'],
 };
 const headmarkers = {
   // vfx/lockon/eff/tank_lockonae_0m_5s_01t.avfx
@@ -144,7 +144,9 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { id: '8122', source: 'Kokytos', capture: false },
       alertText: (data, _matches, output) => {
-        if (data.lastDualspellId === dualspells.fireIce)
+        if (data.lastDualspellId === undefined)
+          return output.out();
+        if (dualspells.fireIce.includes(data.lastDualspellId))
           return output.fireIceOut();
         return output.out();
       },
@@ -164,9 +166,11 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { id: '8123', source: 'Kokytos', capture: false },
       alertText: (data, _matches, output) => {
-        if (data.lastDualspellId === dualspells.fireIce)
+        if (data.lastDualspellId === undefined)
+          return output.in();
+        if (dualspells.fireIce.includes(data.lastDualspellId))
           return output.fireIceIn();
-        if (data.lastDualspellId === dualspells.thunderIce)
+        if (dualspells.thunderIce.includes(data.lastDualspellId))
           return output.thunderIceIn();
         return output.in();
       },
@@ -192,7 +196,9 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { id: '815C', source: 'Kokytos', capture: false },
       alertText: (data, _matches, output) => {
-        if (data.lastDualspellId === dualspells.thunderIce)
+        if (data.lastDualspellId === undefined)
+          return output.out();
+        if (dualspells.thunderIce.includes(data.lastDualspellId))
           return output.thunderIceOut();
         return output.out();
       },
