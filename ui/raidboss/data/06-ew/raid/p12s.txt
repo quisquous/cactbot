@@ -224,6 +224,8 @@ hideall "--sync--"
 # Athena:82E8 Trinity of Souls, top right first wing cast and damage
 # Athena:82E9 Trinity of Souls, middle right second wing (bottom up) damage
 # Athena:82EA Trinity of Souls, middle left second wing (bottom up) damage
+# Athena:82EB Trinity of Souls, top right third wing damage
+# Athena:82EC Trinity of Souls, top left third wing damage
 # Thymou Idea:8314, untargeted unnamed ability, White Flame add positioning?
 # Anthropos:82EF White Flame, self-targeted ability
 # Anthropos:82F0 White Flame, damage
@@ -282,7 +284,8 @@ hideall "--sync--"
 # Pallas Athena:87A0 Ultima, self-targeted (Gaiochos, comes slightly after 86F6 damage?)
 # Pallas Athena:831A Palladian Grasp, self-targeted 1
 # Pallas Athena:831B Palladian Grasp, self-targeted 2
-# Pallas Athena:831D Palladian Grasp, damage
+# Pallas Athena:831C Palladian Grasp, damage west side
+# Pallas Athena:831D Palladian Grasp, damage east side
 # Pallas Athena:834D unknown unnamed, probably Gaiaochos effect
 # Pallas Athena:8326 Gaiaochos, cast and damage
 # Pallas Athena:879F Gaiaochos, self-targeted (comes slightly after 8326 damage?)
@@ -332,4 +335,5 @@ hideall "--sync--"
 # Pallas Athena:8792 Caloric Theory, cast and damage for initial wind donut
 # Pallas Athena:833C Entropic Excess, cast and ground targeted circles
 # Pallas Athena:8339 Unmitigated Explosion, caloric theory failure
+# Hemitheos:8348 Ultima Blow, tether laser damage during Gaiaochos 2
 # Pallas Athena:8349 Ignorabimus, enrage cast and damage
