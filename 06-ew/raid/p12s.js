@@ -302,6 +302,18 @@ Options.Triggers.push({
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceSync': {
+        'Astral Glow/Umbral Glow': 'Astral/Umbral Glow',
+        'Astral Advance/Umbral Advance': 'Astral/Umbral Advance',
+        'Superchain Coil/Superchain Burst': 'Superchain Coil/Burst',
+        'Apodialogos/Peridialogos': 'Apodia/Peridia',
+        'Theos\'s Saltire/Theos\'s Cross': 'Saltire/Cross',
+        'Astral Impact/Umbral Impact': 'Astral/Umbral Impact',
+        'Astral Advent/Umbral Advent': 'Astral/Umbral Advent',
+      },
+    },
+    {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
