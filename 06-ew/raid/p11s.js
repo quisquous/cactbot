@@ -326,6 +326,7 @@ Options.Triggers.push({
         text: {
           en: 'Go to Dark Orb + Dark Portals',
           de: 'Geh zum dunklen Orb + dunkle Portale',
+          fr: 'Allez vers l\'orbe sombre + Portail sombre',
         },
       },
     },
@@ -338,6 +339,7 @@ Options.Triggers.push({
         text: {
           en: 'Go to Light Orb + Light Portals',
           de: 'Geh zum hellen Orb + helle Portale',
+          fr: 'Allez vers l\'orbe de lumière + Portail de lumière',
         },
       },
     },

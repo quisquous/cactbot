@@ -322,6 +322,7 @@ Options.Triggers.push({
         text: {
           en: 'First Orb ${dir} => ${rotation}',
           de: 'Erster Orb ${dir} => ${rotation}',
+          fr: 'Premier orbe ${dir} => ${rotation}',
         },
         clockwise: Outputs.clockwise,
         counterclock: Outputs.counterclockwise,
@@ -382,10 +383,12 @@ Options.Triggers.push({
         dash: {
           en: 'Bait dash',
           de: 'Sprung ködern',
+          fr: 'Encaissez le saut',
         },
         soak: {
           en: 'Soak tower',
           de: 'Im Turm stehen',
+          fr: 'Prenez votre tour',
         },
       },
     },
@@ -417,10 +420,12 @@ Options.Triggers.push({
         dash: {
           en: 'Bait dash',
           de: 'Sprung ködern',
+          fr: 'Encaissez le saut',
         },
         soak: {
           en: 'Soak tower',
           de: 'Im Turm stehen',
+          fr: 'Prenez votre tour',
         },
       },
     },
@@ -579,6 +584,7 @@ Options.Triggers.push({
         text: {
           en: 'Charge => Stay',
           de: 'Sprung => Stehen bleiben',
+          fr: 'Saut => Restez',
         },
       },
     },
@@ -591,6 +597,7 @@ Options.Triggers.push({
         text: {
           en: 'Charge => Run Through',
           de: 'Sprung => Geh durch den Boss',
+          fr: 'Saut => Traversez le boss',
         },
       },
     },

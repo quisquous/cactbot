@@ -164,18 +164,22 @@ Options.Triggers.push({
         swap: {
           en: 'Swap',
           de: 'Wechseln',
+          fr: 'Swap',
         },
         stay: {
           en: 'Stay',
           de: 'bleib Stehen',
+          fr: 'Restez',
         },
         secondWingCallStay: {
           en: '(stay)',
           de: '(bleib Stehen)',
+          fr: '(restez)',
         },
         secondWingCallSwap: {
           en: '(swap)',
           de: '(Wechseln)',
+          fr: '(swap)',
         },
         allThreeWings: {
           en: '${first} => ${second} => ${third}',
@@ -204,10 +208,12 @@ Options.Triggers.push({
         swap: {
           en: 'Swap',
           de: 'Wechseln',
+          fr: 'Swap',
         },
         stay: {
           en: 'Stay',
           de: 'bleib Stehen',
+          fr: 'Restez',
         },
       },
     },
@@ -221,10 +227,12 @@ Options.Triggers.push({
         partyOutTanksIn: {
           en: 'Party Out (Tanks In)',
           de: 'Gruppe Raus (Tanks Rein)',
+          fr: 'Équipe à l\'extérieur (Tanks à l\'intérieur)',
         },
         tanksInPartyOut: {
           en: 'Tanks In (Party Out)',
           de: 'Gruppe Rein (Tanks Raus)',
+          fr: 'Tanks à l\'intérieur (Équipe à l\'extérieur',
         },
       },
     },
@@ -238,10 +246,12 @@ Options.Triggers.push({
         partyInTanksOut: {
           en: 'Party In (Tanks Out)',
           de: 'Gruppe Rein (Tanks Raus)',
+          fr: 'Équipe à l\'intérieur (Tanks à l\'extérieur)',
         },
         tanksInPartyOut: {
           en: 'Tanks Out (Party In)',
           de: 'Tanks Raus (Gruppe Rein)',
+          fr: 'Tanks à l\'extérieur (Équipe à l\'intérieur',
         },
       },
     },
