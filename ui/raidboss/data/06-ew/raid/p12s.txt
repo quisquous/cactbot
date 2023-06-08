@@ -2,6 +2,7 @@
 
 hideall "--Reset--"
 hideall "--sync--"
+hideall "Dialogos"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
@@ -40,6 +41,7 @@ hideall "--sync--"
 160.1 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:(82E9|82EA):/
 162.7 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC|82E5|82E6):/
 171.1 "Apo/Peridialogos" sync / 1[56]:[^:]*:Athena:830[01]:/
+# Upon further review, this is just the party stack going off. Probably snapshots the damage earlier alongside Apo/Dia? Keeping it present but hidden just in case.
 172.1 "Dialogos" sync / 1[56]:[^:]*:Athena:8302:/
 178.8 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
 190.0 "--sync--" sync / 1[56]:[^:]*:Athena:8315:/
