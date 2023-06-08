@@ -111,10 +111,10 @@ hideall "--sync--"
 1133.4 "Palladian Ray" sync / 1[56]:[^:]*:Pallas Athena:8324:/
 1143.8 "Ultima" sync / 1[56]:[^:]*:Pallas Athena:8682:/
 1153.0 "Crush Helm" sync / 1[56]:[^:]*:Pallas Athena:8317:/
-1153.8 "Crush Helm 1" sync / 1[56]:[^:]*:Pallas Athena:8318:/ window 0.5,0.5
-1154.9 "Crush Helm 2" sync / 1[56]:[^:]*:Pallas Athena:8318:/ window 0.5,0.5
-1156.0 "Crush Helm 3" sync / 1[56]:[^:]*:Pallas Athena:8318:/ window 0.5,0.5
-1157.1 "Crush Helm 4" sync / 1[56]:[^:]*:Pallas Athena:8318:/ window 0.5,0.5
+1153.8 "Crush Helm 1" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1154.9 "Crush Helm 2" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1156.0 "Crush Helm 3" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1157.1 "Crush Helm 4" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
 1159.2 "Crush Helm Buster" sync / 1[56]:[^:]*:Pallas Athena:8319:/
 1173.2 "Caloric Theory" sync / 1[56]:[^:]*:Pallas Athena:8338:/
 1185.9 "Pyre Pulse" sync / 1[56]:[^:]*:Pallas Athena:833A:/
