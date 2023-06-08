@@ -343,6 +343,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to Dark Orb + Dark Portals',
           de: 'Geh zum dunklen Orb + dunkle Portale',
+          fr: 'Allez vers l\'orbe sombre + Portail sombre',
         },
       },
     },
@@ -355,6 +356,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to Light Orb + Light Portals',
           de: 'Geh zum hellen Orb + helle Portale',
+          fr: 'Allez vers l\'orbe de lumière + Portail de lumière',
         },
       },
     },
