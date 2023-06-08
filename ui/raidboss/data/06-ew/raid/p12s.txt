@@ -36,9 +36,9 @@ hideall "--sync--"
 143.5 "Astral/Umbral Glow" sync / 1[56]:[^:]*:Athena:830[CD]:/ window 3,0.5
 145.2 "Theos's Holy" sync / 1[56]:[^:]*:Athena:8306:/ window 3,0
 146.4 "Astral/Umbral Advance" sync / 1[56]:[^:]*:Anthropos:830[FE]:/ window 3,0.5
-157.4 "Trinity of Souls" sync / 1[56]:[^:]*:Athena:82E[1-9A-C]:/
-160.1 "Trinity of Souls" sync / 1[56]:[^:]*:Athena:82E[1-9A-C]:/
-162.7 "Trinity of Souls" sync / 1[56]:[^:]*:Athena:82E[1-9A-C]:/
+157.4 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:(82E7|82E8|82E1|82E2):/
+160.1 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:(82E9|82EA):/
+162.7 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC|82E5|82E6):/
 171.1 "Apo/Peridialogos" sync / 1[56]:[^:]*:Athena:830[01]:/
 172.1 "Dialogos" sync / 1[56]:[^:]*:Athena:8302:/
 178.8 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
