@@ -10,10 +10,11 @@ export interface Data extends RaidbossData {
   tetherBuddy?: string;
   infiniteElement?: 'fire' | 'ice';
   isPhaseOne: boolean;
+  waveTarget?: string;
 }
 
 const triggerSet: TriggerSet<Data> = {
-  id: 'ContainmentBayZ1T9Extreme,',
+  id: 'ContainmentBayZ1T9Extreme',
   zoneId: ZoneId.ContainmentBayZ1T9Extreme,
   timelineFile: 'zurvan-ex.txt',
   initData: () => {
@@ -51,32 +52,55 @@ const triggerSet: TriggerSet<Data> = {
         waveCannonTarget: {
           en: 'Wave Cannon on YOU',
           de: 'Wellenkanone auf DIR',
+          cn: '波动炮点名',
           ko: '파동포 대상자',
         },
         avoidWaveCannon: {
           en: 'Away from ${target} -- Wave Cannon',
           de: 'Weg von ${target} -- Wellenkanone',
+          cn: '远离 ${target} -- 波动炮',
           ko: '${target} 피하기 -- 파동포',
         },
       },
     },
     {
       id: 'ZurvanEX Wave Cannon Stack',
+      // Zurvan targets himself with this attack
       type: 'StartsUsing',
-      netRegex: { id: '1C72', source: 'Zurvan' },
-      condition: Conditions.targetIsNotYou(), // The target is stunned during this mechanic
-      response: Responses.stackMarkerOn(),
+      netRegex: { id: '1C72', source: 'Zurvan', capture: false },
+      alertText: (data, _matches, output) => {
+        if (data?.waveTarget === data.me)
+          // The target is stunned during this mechanic
+          return;
+        if (data.waveTarget === undefined)
+          return output.unknownStackTarget!();
+        return output.stackOn!({ player: data.ShortName(data.waveTarget) });
+      },
+      outputStrings: {
+        unknownStackTarget: Outputs.stackMarker,
+        stackOn: Outputs.stackOnPlayer,
+      },
+    },
+    {
+      id: 'ZurvanEX Wave Cannon Stack Cleanup',
+      type: 'Ability',
+      netRegex: { id: '1C72', source: 'Zurvan', capture: false },
+      run: (data) => delete data.waveTarget,
     },
     {
       id: 'ZurvanEX Demon Claw',
       type: 'StartsUsing',
       netRegex: { id: '1C71', source: 'Zurvan' },
-      condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.demonClawYou!(),
+      preRun: (data, matches) => data.waveTarget ??= matches.target,
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
+          return output.demonClawYou!();
+      },
       outputStrings: {
         demonClawYou: {
           en: 'Knockback from boss on YOU',
           de: 'Rückstoß vom Boss auf DIR',
+          cn: 'BOSS击退点名',
           ko: '넉백공격 대상자',
         },
       },
@@ -93,16 +117,16 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZurvanEX Demonic Dive',
       type: 'HeadMarker',
       netRegex: { id: '003E' },
-      delaySeconds: 0.5,
+      delaySeconds: 1,
       alertText: (data, matches, output) => {
         if (data?.flameTarget === data.me)
           return;
-        if (data.flameTarget === undefined)
-          return output.unknownStackTarget!();
+        if (matches.target === data.me)
+          return output.stackYou!();
         return output.stackOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
-        unknownStackTarget: Outputs.stackMarker,
+        stackYou: Outputs.stackOnYou,
         stackOn: Outputs.stackOnPlayer,
       },
     },
@@ -111,21 +135,21 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
+      preRun: (data, matches) => data.flameTarget ??= matches.target,
       alertText: (_data, _matches, output) => output.demonicSpread!(),
-      run: (data, matches) => data.flameTarget ??= matches.target,
       outputStrings: {
         demonicSpread: {
           en: 'Spread -- Don\'t stack!',
           de: 'Verteilen -- Nicht aufeinander!',
+          cn: '分散 -- 不要集合!',
           ko: '산개 -- 쉐어맞으면 안됨!',
         },
       },
     },
     {
       id: 'ZurvanEX Cool Flame Cleanup',
-      type: 'HeadMarker',
-      netRegex: { id: '0017', capture: false },
-      delaySeconds: 10,
+      type: 'Ability',
+      netRegex: { id: '1C56', source: 'Zurvan', capture: false },
       run: (data) => delete data.flameTarget,
     },
     {
@@ -155,6 +179,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stay outside hitbox',
           de: 'Auserhalb der Hitbox stehen',
+          cn: '站在判定圈外',
           ko: '히트박스 밖으로',
         },
       },
@@ -181,6 +206,7 @@ const triggerSet: TriggerSet<Data> = {
         baitSouthernCross: {
           en: 'Bait Ice Puddles',
           de: 'Eisflächen ködern',
+          cn: '诱导冰圈',
           ko: '얼음장판 유도',
         },
       },
@@ -208,6 +234,7 @@ const triggerSet: TriggerSet<Data> = {
         tetherBuddy: {
           en: 'Tethered with ${buddy}',
           de: 'Mit ${buddy} verbunden',
+          cn: '与 ${buddy} 连线',
           ko: '선 연결 ${buddy}',
         },
       },
@@ -235,15 +262,20 @@ const triggerSet: TriggerSet<Data> = {
         infiniteDebuff: {
           en: '${element} on you',
           de: '${element} auf dir',
+          cn: '${element} 点名',
           ko: '${element}',
         },
         fire: {
           en: 'Fire',
           de: 'Feuer',
+          cn: '火',
+          ko: '불',
         },
         ice: {
           en: 'Ice',
           de: 'Eis',
+          cn: '冰',
+          ko: '얼음',
         },
         unknown: Outputs.unknown,
       },
@@ -265,15 +297,20 @@ const triggerSet: TriggerSet<Data> = {
         sealTowers: {
           en: '${element} towers with ${buddy}',
           de: '${element} Türme mit ${buddy}',
+          cn: '与${buddy}踩${element}塔',
           ko: '${element} 기둥 +${buddy}',
         },
         fire: {
           en: 'Fire',
           de: 'Feuer',
+          cn: '火',
+          ko: '불',
         },
         ice: {
           en: 'Ice',
           de: 'Eis',
+          cn: '冰',
+          ko: '얼음',
         },
         unknown: Outputs.unknown,
       },
@@ -389,6 +426,43 @@ const triggerSet: TriggerSet<Data> = {
         'Tyrfing': 'ティルフィング',
         'Wave Cannon': '波動砲',
         'the Purge': 'パージ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Execrated Wile': '狡诈信徒',
+        'Zurvan': '祖尔宛',
+      },
+      'replaceText': {
+        '\\(circles\\)': '(圆)',
+        '\\(explosion\\)': '(爆炸)',
+        '\\(puddle\\)': '(圈)',
+        '\\(snapshot\\)': '(快照)',
+        '\\(avoid\\)': '(躲避)',
+        '\\(stack\\)': '(集合)',
+        'Ahura Mazda': '阿胡拉·马兹达',
+        'Biting Halberd': '刺骨冰戟',
+        'Broken Seal': '冰炎之纹',
+        'Ciclicle': '旋冰射线',
+        'Cool Flame': '冷炎',
+        'Demonic Dive': '鬼神冲',
+        'Fire III': '爆炎',
+        'Flaming Halberd': '焚身炎戟',
+        'Flare Star': '耀星',
+        'Ice and Fire': '冰与火',
+        'Infinite Fire': '炎之刻印',
+        'Infinite Ice': '冰之刻印',
+        'Metal Cutter': '金属利刃',
+        'Sarva': '变异',
+        'Soar': '飞翔',
+        'Southern Cross': '南十字星',
+        'Tail End': '煞尾',
+        'The Demon\'s Claw': '鬼神之爪',
+        'Twin Spirit': '多重灵身',
+        'Tyrfing': '提尔锋',
+        'Wave Cannon': '波动炮',
+        'the Purge': '肃清',
       },
     },
     {

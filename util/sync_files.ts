@@ -255,7 +255,7 @@ const zoneReplace: ZoneReplace[] = [
       '1C5B': '8564', // Ciclicle
       '1C5C': '8565', // Southern Cross Snapshot
       '1C5D': '8566', // Southern Cross Resolve
-      '1C5E': '8657', // Untranslated intermission cast
+      '1C5E': '8567', // Untranslated intermission cast
       '1C5F': '8568', // Sarva/Eidos 3
       '1C60': '8569', // Ahura Mazda
       '1C63': '856C', // Meracydian Meteor (ignored)

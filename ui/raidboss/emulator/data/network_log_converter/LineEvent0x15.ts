@@ -51,7 +51,7 @@ export class LineEvent0x15 extends LineEvent implements LESource, LETarget, LEAb
     const fieldOffset = this.flags === '3F' ? 2 : 0;
 
     this.damage = LineEvent.calculateDamage(parts[fields.damage + fieldOffset] ?? '');
-    this.abilityId = parseInt(parts[fields.id]?.toUpperCase() ?? '');
+    this.abilityId = parseInt(parts[fields.id]?.toUpperCase() ?? '', 16);
     this.abilityName = parts[fields.ability] ?? '';
     this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
     this.targetName = parts[fields.target] ?? '';
