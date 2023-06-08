@@ -125,9 +125,9 @@ hideall "--sync--"
 1226.8 "Ultima" sync / 1[56]:[^:]*:Pallas Athena:8682:/
 1241.0 "Pangenesis" sync / 1[56]:[^:]*:Pallas Athena:833F:/
 1249.1 "Pantheos" sync / 1[56]:[^:]*:Pallas Athena:8342:/
-1254.9 "Astral/Umbral Advent" sync / 1[56]:[^:]*:Hemitheos:834[34]:/ window 1.5,1.5
-1260.0 "Astral/Umbral Advent" sync / 1[56]:[^:]*:Hemitheos:834[34]:/ window 1.5,1.5
-1265.0 "Astral/Umbral Advent" sync / 1[56]:[^:]*:Hemitheos:834[34]:/ window 1.5,1.5
+1254.9 "Astral/Umbral Advent" sync / 1[56]:[^:]*:Hemitheos:834[34]:/
+1260.0 "Astral/Umbral Advent" sync / 1[56]:[^:]*:Hemitheos:834[34]:/
+1265.0 "Astral/Umbral Advent" sync / 1[56]:[^:]*:Hemitheos:834[34]:/
 1277.4 "Factor In" sync / 1[56]:[^:]*:Forbidden Factor:8347:/
 1280.5 "Palladian Grasp" sync / 1[56]:[^:]*:Pallas Athena:831[CD]:/
 1283.7 "Palladian Grasp" sync / 1[56]:[^:]*:Pallas Athena:831[CD]:/
