@@ -20,6 +20,7 @@ Options.Triggers.push({
       id: 'P11S Jury Overruling Light',
       type: 'StartsUsing',
       netRegex: { id: '81E6', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -33,6 +34,7 @@ Options.Triggers.push({
       id: 'P11S Jury Overruling Dark',
       type: 'StartsUsing',
       netRegex: { id: '81E7', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -46,6 +48,7 @@ Options.Triggers.push({
       id: 'P11S Upheld Overruling Light',
       type: 'StartsUsing',
       netRegex: { id: '87D3', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -59,6 +62,7 @@ Options.Triggers.push({
       id: 'P11S Upheld Overruling Dark',
       type: 'StartsUsing',
       netRegex: { id: '87D4', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -72,6 +76,7 @@ Options.Triggers.push({
       id: 'P11S Divisive Overruling Light',
       type: 'StartsUsing',
       netRegex: { id: '81EC', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -85,6 +90,7 @@ Options.Triggers.push({
       id: 'P11S Divisive Overruling Dark',
       type: 'StartsUsing',
       netRegex: { id: '81ED', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -98,6 +104,7 @@ Options.Triggers.push({
       id: 'P11S Divisive Overruling Light Shadowed Messengers',
       type: 'StartsUsing',
       netRegex: { id: '87B3', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -111,6 +118,7 @@ Options.Triggers.push({
       id: 'P11S Divisive Overruling Dark Shadowed Messengers',
       type: 'StartsUsing',
       netRegex: { id: '87B4', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -124,6 +132,7 @@ Options.Triggers.push({
       id: 'P11S Dismissal Overruling Light',
       type: 'StartsUsing',
       netRegex: { id: '8784', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -137,6 +146,7 @@ Options.Triggers.push({
       id: 'P11S Dismissal Overruling Dark',
       type: 'StartsUsing',
       netRegex: { id: '8785', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -305,6 +315,28 @@ Options.Triggers.push({
             infoText = output.otherFar({ player1: player1, player2: player2 });
         }
         return { alertText: alertText, infoText: infoText };
+      },
+    },
+    {
+      id: 'P11S Twofold Revelation Light',
+      type: 'StartsUsing',
+      netRegex: { id: '8211', source: 'Themis', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go to Dark Orb + Dark Portals',
+        },
+      },
+    },
+    {
+      id: 'P11S Twofold Revelation Dark',
+      type: 'StartsUsing',
+      netRegex: { id: '8212', source: 'Themis', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go to Light Orb + Light Portals',
+        },
       },
     },
   ],
