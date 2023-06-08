@@ -39,6 +39,17 @@ const headmarkers = {
   // vfx/lockon/eff/m0376trg_fire3_a0p.avfx
   chains: '0061',
 };
+const limitCutMap = {
+  [headmarkers.limitCut1]: 1,
+  [headmarkers.limitCut2]: 2,
+  [headmarkers.limitCut3]: 3,
+  [headmarkers.limitCut4]: 4,
+  [headmarkers.limitCut5]: 5,
+  [headmarkers.limitCut6]: 6,
+  [headmarkers.limitCut7]: 7,
+  [headmarkers.limitCut8]: 8,
+};
+const limitCutIds = Object.keys(limitCutMap);
 const wingIds = Object.values(wings);
 const getHeadmarkerId = (data, matches) => {
   if (data.decOffset === undefined) {
@@ -84,6 +95,7 @@ Options.Triggers.push({
         data.expectedFirstHeadmarker = first;
       },
     },
+    // --------------------- Phase 1 ------------------------
     {
       id: 'P12S First Wing',
       type: 'StartsUsing',
@@ -233,6 +245,33 @@ Options.Triggers.push({
         },
       },
     },
+    {
+      id: 'P12S Limit Cut',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: Conditions.targetIsYou(),
+      durationSeconds: 20,
+      alertText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        if (!limitCutIds.includes(id))
+          return;
+        const num = limitCutMap[id];
+        if (num === undefined)
+          return;
+        return output.text({ num: num });
+      },
+      outputStrings: {
+        text: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
+      },
+    },
+    // --------------------- Phase 2 ------------------------
     {
       id: 'P12S Geocentrism Vertical',
       type: 'StartsUsing',
