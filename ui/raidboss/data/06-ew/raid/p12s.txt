@@ -4,3 +4,169 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+# P1 Athena
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+1.0 "--sync--" sync / 03:[^:]*:Hemitheos:00:5A:0{4}:00::12383:/ window 10,3 jump 1000.5 # Sync to P2 immediately through AddCombatant.
+11.1 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/ window 20,20
+21.2 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
+24.3 "--sync--" sync / 1[56]:[^:]*:Athena:8315:/
+36.7 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:(82E7|82E8):/
+37.5 "White Flame" sync / 1[56]:[^:]*:Anthropos:82F0:/
+39.3 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:(82E9|82EA):/
+41.9 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC):/
+42.6 "White Flame" sync / 1[56]:[^:]*:Anthropos:82F0:/
+57.3 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
+65.0 "Engravement of Souls" sync / 1[56]:[^:]*:Athena:8305:/
+74.8 "Searing Radiance/Shadowsear" sync / 1[56]:[^:]*:Anthropos:82F[12]:/ window 3,0.5
+75.8 "Astral Glow/Umbral Glow" sync / 1[56]:[^:]*:Athena:830[CD]:/ window 3,0.5
+78.8 "Astral Advance/Umbral Advance" sync / 1[56]:[^:]*:Anthropos:830[EF]:/ window 3,0.5
+81.8 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82EE:/
+88.8 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
+97.0 "Glaukopis" sync / 1[56]:[^:]*:Athena:82FC:/
+100.0 "Glaukopis" sync / 1[56]:[^:]*:Athena:82FD:/
+116.1 "Superchain Theory I" sync / 1[56]:[^:]*:Athena:82DA:/
+123.2 "Engravement of Souls" sync / 1[56]:[^:]*:Athena:8305:/
+128.2 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/ window 3,0.5
+134.3 "Polarized Ray" sync / 1[56]:[^:]*:Athena:8307:/
+135.2 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/ window 3,0.5
+135.5 "Astral Impact/Umbral Impact" sync / 1[56]:[^:]*:Athena:830[89]:/ window 3,0.5
+140.2 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/ window 3,0.5
+142.2 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/ window 1,0.5
+143.5 "Astral Glow/Umbral Glow" sync / 1[56]:[^:]*:Athena:830[CD]:/ window 3,0.5
+145.2 "Theos's Holy" sync / 1[56]:[^:]*:Athena:8306:/ window 3,0
+146.4 "Astral Advance/Umbral Advance" sync / 1[56]:[^:]*:Anthropos:830[FE]:/ window 3,0.5
+157.4 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:(82E7|82E8|82E1|82E2):/
+160.1 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:(82E9|82EA):/
+162.7 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC|82E5|82E6):/
+171.1 "Apodialogos/Peridialogos" sync / 1[56]:[^:]*:Athena:830[01]:/
+172.1 "Dialogos" sync / 1[56]:[^:]*:Athena:8302:/
+178.8 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
+190.0 "--sync--" sync / 1[56]:[^:]*:Athena:8315:/
+195.3 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
+202.4 "Engravement of Souls" sync / 1[56]:[^:]*:Athena:8305:/
+212.5 "Shock" sync / 1[56]:[^:]*:Athena:8312:/
+213.7 "Searing Radiance/Shadowsear" sync / 1[56]:[^:]*:Anthropos:82F[12]:/ window 3,0.5
+220.5 "Theos's Saltire/Theos's Cross" sync / 1[56]:[^:]*:Athena:830[AB]:/ window 3,0.5
+220.8 "Astral Glow/Umbral Glow" sync / 1[56]:[^:]*:Athena:830[CD]:/ window 3,0.5
+221.6 "White Flame" #sync / 1[56]:[^:]*:Anthropos:82F0:/
+223.8 "Astral Advance/Umbral Advance" sync / 1[56]:[^:]*:Anthropos:830[EF]:/ window 3,0.5
+229.8 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
+242.1 "Glaukopis" sync / 1[56]:[^:]*:Athena:82FC:/
+245.2 "Glaukopis" sync / 1[56]:[^:]*:Athena:82FD:/
+254.3 "--sync--" sync / 1[56]:[^:]*:Athena:8315:/
+259.9 "--sync--" sync / 1[56]:[^:]*:Athena:82F3:/
+267.3 "Ultima Blade" sync / 1[56]:[^:]*:Athena:82F4:/
+280.0 "--untargetable--"
+# Laser/Cleave order is random here so we can only really timeline the Palladion dashes.
+290.6 "Palladion 1" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+293.7 "Palladion 2" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+296.8 "Palladion 3" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+299.9 "Palladion 4" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+303.0 "Palladion 5" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+306.1 "Palladion 6" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+309.2 "Palladion 7" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+312.4 "Palladion 8" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+317.5 "--sync--" sync / 1[56]:[^:]*:Athena:82F8:/
+321.5 "Palladion (Floor Drop)" sync / 1[56]:[^:]*:Athena:82F9:/ window 20,20
+324.4 "--targetable--"
+333.2 "Theos's Ultima" sync / 1[56]:[^:]*:Athena:82FA:/
+352.6 "Superchain Theory IIA" sync / 1[56]:[^:]*:Athena:86FA:/
+365.7 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:(82E7|82E8|82E1|82E2):/
+368.3 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:(82E9|82EA):/
+370.7 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC|82E5|82E6):/
+374.0 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/ window 1.5,3
+380.2 "Apodialogos/Peridialogos" sync / 1[56]:[^:]*:Athena:830[01]:/
+381.2 "Dialogos" sync / 1[56]:[^:]*:Athena:8302:/
+387.9 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
+395.1 "--sync--" sync / 1[56]:[^:]*:Athena:8315:/
+402.5 "Superchain Theory IIB" sync / 1[56]:[^:]*:Athena:86FB:/
+408.6 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
+415.6 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/ window 3,0.5
+418.6 "Parthenos" sync / 1[56]:[^:]*:Athena:8303:/
+422.5 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/ window 3,0.5
+424.9 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82EE:/
+431.5 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/ window 3,0.5
+434.3 "Unnatural Enchainment" sync / 1[56]:[^:]*:Athena:82DF:/
+442.4 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
+450.5 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
+459.0 "--untargetable--" sync / 14:[^:]*:Athena:8556:/
+466.0 "Theos's Ultima (enrage)" sync / 1[56]:[^:]*:Athena:8556:/
+
+# P2 Pallas Athena -p 8682:1012.1 -ii 831A 831B 879F 832C 87A0 8334 8325 8323 833D 8792 833E 86FD 831F 8683 8320 8322 8340 8328
+1007.1 "--sync--" sync / 14:[^:]*:Pallas Athena:8682:/ window 1100,10
+1012.1 "Ultima" sync / 1[56]:[^:]*:Pallas Athena:8682:/
+1024.5 "Palladian Grasp" sync / 1[56]:[^:]*:Pallas Athena:831[CD]:/
+1027.7 "Palladian Grasp" sync / 1[56]:[^:]*:Pallas Athena:831[CD]:/
+1040.8 "Gaiaochos" sync / 1[56]:[^:]*:Pallas Athena:8326:/
+1051.9 "Summon Darkness" sync / 1[56]:[^:]*:Pallas Athena:832F:/
+1063.8 "Ultima Ray" sync / 1[56]:[^:]*:Hemitheos:8330:/
+1065.1 "Missing Link" sync / 1[56]:[^:]*:Pallas Athena:8586:/
+1074.1 "Demi Parhelion" sync / 1[56]:[^:]*:Pallas Athena:8327:/
+1084.2 "Geocentrism" sync / 1[56]:[^:]*:Pallas Athena:832[AB9]:/
+1085.2 "Divine Excoriation" sync / 1[56]:[^:]*:Pallas Athena:832E:/
+1094.4 "Ultima" sync / 1[56]:[^:]*:Pallas Athena:86F6:/
+1108.6 "The Classical Concepts" sync / 1[56]:[^:]*:Pallas Athena:8331:/
+1130.0 "Implode" #sync / 1[56]:[^:]*:Concept of (Earth|Water|Fire):8333:/
+1133.4 "Palladian Ray" sync / 1[56]:[^:]*:Pallas Athena:8324:/
+1143.8 "Ultima" sync / 1[56]:[^:]*:Pallas Athena:8682:/
+1153.0 "Crush Helm" sync / 1[56]:[^:]*:Pallas Athena:8317:/
+1153.8 "Crush Helm 1" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1154.9 "Crush Helm 2" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1156.0 "Crush Helm 3" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1157.1 "Crush Helm 4" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1159.2 "Crush Helm Buster" sync / 1[56]:[^:]*:Pallas Athena:8319:/
+1173.2 "Caloric Theory" sync / 1[56]:[^:]*:Pallas Athena:8338:/
+1185.9 "Pyre Pulse" sync / 1[56]:[^:]*:Pallas Athena:833A:/
+1197.1 "Dynamic Atmosphere" sync / 1[56]:[^:]*:Pallas Athena:833B:/
+1197.3 "Pyre Pulse" sync / 1[56]:[^:]*:Pallas Athena:833A:/
+1207.6 "Ekpyrosis" sync / 1[56]:[^:]*:Pallas Athena:831E:/
+1215.4 "Ekpyrosis" sync / 1[56]:[^:]*:Pallas Athena:8(321|683):/
+1226.8 "Ultima" sync / 1[56]:[^:]*:Pallas Athena:8682:/
+1241.0 "Pangenesis" sync / 1[56]:[^:]*:Pallas Athena:833F:/
+1249.1 "Pantheos" sync / 1[56]:[^:]*:Pallas Athena:8342:/
+1254.9 "Astral Advent/Umbral Advent" sync / 1[56]:[^:]*:Hemitheos:834[34]:/
+1260.0 "Astral Advent/Umbral Advent" sync / 1[56]:[^:]*:Hemitheos:834[34]:/
+1265.0 "Astral Advent/Umbral Advent" sync / 1[56]:[^:]*:Hemitheos:834[34]:/
+1277.4 "Factor In" sync / 1[56]:[^:]*:Forbidden Factor:8347:/
+1280.5 "Palladian Grasp" sync / 1[56]:[^:]*:Pallas Athena:831[CD]:/
+1283.7 "Palladian Grasp" sync / 1[56]:[^:]*:Pallas Athena:831[CD]:/
+1296.8 "The Classical Concepts" sync / 1[56]:[^:]*:Pallas Athena:8331:/
+1313.9 "Panta Rhei" sync / 1[56]:[^:]*:Pallas Athena:8336:/
+1314.7 "--sync--" sync / 1[56]:[^:]*:Concept of (Earth|Water|Fire):8337:/
+1322.7 "Palladian Ray" sync / 1[56]:[^:]*:Pallas Athena:8324:/
+1325.2 "Implode" sync / 1[56]:[^:]*:Concept of (Earth|Water|Fire):8333:/
+1333.1 "Ultima" sync / 1[56]:[^:]*:Pallas Athena:8682:/
+1342.2 "Crush Helm" sync / 1[56]:[^:]*:Pallas Athena:8317:/
+1343.0 "Crush Helm 1" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1344.1 "Crush Helm 2" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1345.2 "Crush Helm 3" #sync / 1[56]:[^:]*:Pallas Athena:8318:
+1346.3 "Crush Helm 4" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1348.4 "Crush Helm Buster" sync / 1[56]:[^:]*:Pallas Athena:8319:/
+1362.5 "Caloric Theory" sync / 1[56]:[^:]*:Pallas Athena:8338:/
+1369.3 "Entropic Excess 1" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1372.3 "Entropic Excess 2" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1375.3 "Entropic Excess 3" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1378.3 "Entropic Excess 4" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1381.3 "Entropic Excess 5" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1384.3 "Entropic Excess 6" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1387.3 "Entropic Excess 7" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1390.3 "Entropic Excess 8" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1390.3 "Dynamic Atmosphere" sync / 1[56]:[^:]*:Pallas Athena:833B:/
+1392.6 "Ekpyrosis" sync / 1[56]:[^:]*:Pallas Athena:831E:/
+1400.4 "Ekpyrosis" sync / 1[56]:[^:]*:Pallas Athena:8(321|683):/
+1411.7 "Ultima" sync / 1[56]:[^:]*:Pallas Athena:8682:/
+1425.9 "Gaiaochos" sync / 1[56]:[^:]*:Pallas Athena:8326:/
+1437.0 "Summon Darkness" sync / 1[56]:[^:]*:Pallas Athena:832F:/
+1443.1 "Demi Parhelion" sync / 1[56]:[^:]*:Pallas Athena:8327:/
+1453.2 "Geocentrism" sync / 1[56]:[^:]*:Pallas Athena:832[AB9]:/
+1453.8 "Ultima Ray" sync / 1[56]:[^:]*:Hemitheos:8330:/
+1454.0 "Missing Link" sync / 1[56]:[^:]*:Pallas Athena:8586:/
+1457.1 "Divine Excoriation" sync / 1[56]:[^:]*:Pallas Athena:832E:/
+1465.2 "Summon Darkness" sync / 1[56]:[^:]*:Pallas Athena:832F:/
+1476.2 "Ultima Blow" #sync / 1[56]:[^:]*:Hemitheos:8348:/
+1480.4 "Ultima" sync / 1[56]:[^:]*:Pallas Athena:86F6:/
+1490.1 "Ultima Blow" #sync / 1[56]:[^:]*:Hemitheos:8348:/
+1494.6 "Ultima" sync / 1[56]:[^:]*:Pallas Athena:86F6:/
+1508.4 "--sync--" sync / 14:[^:]*:Pallas Athena:8349:/
+1523.4 "Ignorabimus" sync / 1[56]:[^:]*:Pallas Athena:8349:/
