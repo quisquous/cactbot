@@ -462,6 +462,20 @@ Options.Triggers.push({
         },
       },
     },
+    {
+      id: 'P10S Pandaemoniac Ray',
+      type: 'StartsUsing',
+      netRegex: { id: ['8289', '828B'], source: bossNameUnicode },
+      infoText: (_data, matches, output) => {
+        // Half-room cleave west (8289) or east (828B)
+        const safeOutput = matches.id === '8289' ? 'east' : 'west';
+        return output[safeOutput]();
+      },
+      outputStrings: {
+        east: Outputs.getRightAndEast,
+        west: Outputs.getLeftAndWest,
+      },
+    },
   ],
   timelineReplace: [
     {
