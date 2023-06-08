@@ -72,9 +72,9 @@ hideall "--sync--"
 324.4 "--targetable--"
 333.2 "Theos's Ultima" sync / 1[56]:[^:]*:Athena:82FA:/
 352.6 "Superchain Theory IIA" sync / 1[56]:[^:]*:Athena:86FA:/
-365.7 "Trinity of Souls" sync / 1[56]:[^:]*:Athena:82E[1-9A-C]:/ window 1.5,0.5
-368.3 "Trinity of Souls" sync / 1[56]:[^:]*:Athena:82E[1-9A-C]:/ window 1.5,0.5
-370.7 "Trinity of Souls" sync / 1[56]:[^:]*:Athena:82E[1-9A-C]:/ window 1.5,0.5
+365.7 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:(82E7|82E8|82E1|82E2):/
+368.3 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:(82E9|82EA):/
+370.7 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC|82E5|82E6):/
 374.0 "Superchain Coil/Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/ window 1.5,3
 380.2 "Apo/Peridialogos" sync / 1[56]:[^:]*:Athena:830[01]:/
 381.2 "Dialogos" sync / 1[56]:[^:]*:Athena:8302:/
