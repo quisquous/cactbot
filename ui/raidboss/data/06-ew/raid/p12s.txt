@@ -11,10 +11,10 @@ hideall "--sync--"
 11.1 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/ window 20,20
 21.2 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
 24.3 "--sync--" sync / 1[56]:[^:]*:Athena:8315:/
-36.7 "Trinity of Souls" sync / 1[56]:[^:]*:Athena:82E[1-9A-C]:/ window 1.5,0.5
+36.7 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:(82E7|82E8):/
 37.5 "White Flame" sync / 1[56]:[^:]*:Anthropos:82F0:/
-39.3 "Trinity of Souls" sync / 1[56]:[^:]*:Athena:82E[1-9A-C]:/ window 1.5,0.5
-41.9 "Trinity of Souls" sync / 1[56]:[^:]*:Athena:82E[1-9A-C]:/ window 1.5,0.5
+39.3 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:(82E9|82EA):/
+41.9 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC):/
 42.6 "White Flame" sync / 1[56]:[^:]*:Anthropos:82F0:/
 57.3 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
 65.0 "Engravement of Souls" sync / 1[56]:[^:]*:Athena:8305:/
