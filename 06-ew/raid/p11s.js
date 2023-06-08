@@ -325,6 +325,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go to Dark Orb + Dark Portals',
+          de: 'Geh zum dunklen Orb + dunkle Portale',
         },
       },
     },
@@ -336,6 +337,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go to Light Orb + Light Portals',
+          de: 'Geh zum hellen Orb + helle Portale',
         },
       },
     },
