@@ -67,8 +67,8 @@ hideall "--sync--"
 306.1 "Palladion 6" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
 309.2 "Palladion 7" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
 312.4 "Palladion 8" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
-317.5 "--sync--" sync / 1[56]:[^:]*:Athena:82F8:/ window 1.5,0.5
-321.5 "Palladion Floor Drop" sync / 1[56]:[^:]*:Athena:82F9:/ window 1.5,0.5
+317.5 "--sync--" sync / 1[56]:[^:]*:Athena:82F8:/
+321.5 "Palladion (Floor Drop)" sync / 1[56]:[^:]*:Athena:82F9:/
 324.4 "--targetable--"
 333.2 "Theos's Ultima" sync / 1[56]:[^:]*:Athena:82FA:/
 352.6 "Superchain Theory IIA" sync / 1[56]:[^:]*:Athena:86FA:/
