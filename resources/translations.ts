@@ -195,8 +195,9 @@ export const translateWithReplacements = (
   replaceLang: Lang,
   replacements?: TimelineReplacement[],
 ): { text: string; wasTranslated: boolean } => {
-  if (text === '')
-    return { text: '', wasTranslated: true };
+  // Special cases for empty and "not empty".
+  if (text === '' || text === '[^:]+' || text === '[^|]+')
+    return { text: text, wasTranslated: true };
 
   // All regex replacements are always global.
   const isGlobal = replaceKey === 'replaceSync';
