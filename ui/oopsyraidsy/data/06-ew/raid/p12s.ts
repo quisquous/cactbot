@@ -13,15 +13,19 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 // TODO: non-tanks in Apodialogos 8300 / Peridialogos 8301
 // TODO: missing Shock 8312 when you should be in that tower?
 // TODO: something with Palladion 82F6 / Shockwave 82F7?
+// TODO: standing in the hexagon during add phase?
 
 // TODO: not breaking chains (before Missing Link??)
 // TODO: >2 people in Pyre Pulse 833A or Superchain Emission 82DE
 // TODO: taking wrong Pangenesis towers
 // TODO: not merging with the right people in Pangenesis
+// TODO: people still having unstable factor and causing Ex-Factor failure
 // TODO: which people were missing from Pangenesis towers that should have been there?
 // TODO: taking Factor In 8347 slime damage with the wrong debuff
 // TODO: taking too many Factor In 8347 slime tethers
 // TODO: not having a buddy block the Ultima Blow 8348 laser
+// TODO: moving too far before final Caloric 1 stacks
+// TODO: exploding due to too many Caloric stacks
 
 export type Data = OopsyData;
 
@@ -45,6 +49,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P12S Theos\'s Cross': '830A', // cross ground explosion
     'P12S Theos\'s Saltire': '830B', // rotated cross ground explosion
     'P12S Clear Cut': '82FB', // 3/4 pizza ground aoe instead of White Flame
+    'P12S Palladion Floor Drop': '82F9', // floor drop after "add phase"
     'P12S Parthenos': '8303', // forward line aoe during Superchain Theory IIB
 
     'P12S Ultima Ray': '8330', // laser during Gaiaochos
@@ -54,7 +59,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P12S Entropic Excess': '833C', // ground circles during Caloric Theory 2
   },
   damageFail: {
-    'P12S Sample': '82E0',
+    'P12S Sample': '82E0', // platform being eaten by Unnatural Enchainment
+  },
+  gainsEffectWarn: {
+    'P12S Bleeding': 'B87', // standing in a Palladion puddle
   },
   shareWarn: {
     'P12S White Flame': '82F0', // add lasers (two closest)
