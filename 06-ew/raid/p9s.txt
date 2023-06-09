@@ -1,30 +1,8 @@
 ### P9S: Anabaseios: The Ninth Circle (Savage)
 
 # -p 814C:12.2
-# -ii 814B 814D 8150 815D 816E 815E 8165 8166 820B 820C 8222 8223 817F 8171 8173 817A 8176 8188 8189 8143 8187
+# -ii 814B 814D 8150 815D 816E 815E 8165 8166 820B 820C 8222 8223 817F 8171 8173 817A 8176 8188 8189 8143 8187 818B
 # -it "Kokytos"
-
-# 814B unaspected auto
-# 8150 mage auto
-# 815D fighter auto
-# 814D Gluttony's Augur damage
-# 816E Archaic Demolish damage
-# 815E Uplift (raise walls)
-# 8165 Inside Roundhouse (telegraph)
-# 8166 Outside Roundhouse (telegraph)
-# 820B unknown (mutually exclusive with 820C)
-# 820C unknown (mutually exclusive with 820B)
-# 8222 Swinging Kick (damage from dodge fail)
-# 8223 Swinging Kick (damage from dodge fail)
-# 817F Shock (ball hitting wall)
-# 8171 Charybdis (tornado spawn)
-# 8173 Comet Impact (damage)
-# 817A Thunderbolt (damage)
-# 8176 Ecliptic Meteor (damage on boulder)
-# 8188 Ecliptic Meteor (damage on player if LoS fail)
-# 8189 beast auto
-# 8143 Burst (boulder hit by meteor exploding)
-# 8187 Beastly Fury (damage)
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -67,7 +45,7 @@ hideall "--sync--"
 
 146.4 "Archaic Rockbreaker (cast)" sync / 1[56]:[^:]*:Kokytos:815F:/
 148.0 "Shockwave" sync / 1[56]:[^:]*:Kokytos:8160:/
-149.3 "Archaic Rockbreaker (resolve)" sync / 1[56]:[^:]*:Kokytos:8162:/
+149.3 "Archaic Rockbreaker (stacks)" sync / 1[56]:[^:]*:Kokytos:8162:/
 155.5 "Front Combination/Rear Combination" sync / 1[56]:[^:]*:Kokytos:(8167|8168|8169|816A):/
 155.8 "Archaic Rockbreaker #1" sync / 1[56]:[^:]*:Kokytos:8161:/
 156.3 "Inside Roundhouse/Outside Roundhouse" sync / 1[56]:[^:]*:Kokytos:(8238|8239):/
@@ -157,7 +135,7 @@ hideall "--sync--"
 
 402.9 "Archaic Rockbreaker (cast)" sync / 1[56]:[^:]*:Kokytos:815F:/
 404.5 "Shockwave" sync / 1[56]:[^:]*:Kokytos:8160:/
-405.8 "Archaic Rockbreaker (resolve)" sync / 1[56]:[^:]*:Kokytos:8162:/
+405.8 "Archaic Rockbreaker (stacks)" sync / 1[56]:[^:]*:Kokytos:8162:/
 412.5 "Archaic Rockbreaker #1" sync / 1[56]:[^:]*:Kokytos:8161:/
 413.2 "Dualspell" sync / 1[56]:[^:]*:Kokytos:(8154|8155):/
 416.5 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
@@ -219,5 +197,97 @@ hideall "--sync--"
 578.5 "Ravening (Final)" sync / 1[56]:[^:]*:Kokytos:817B:/
 585.1 "Soul Surge" sync / 1[56]:[^:]*:Kokytos:811B:/
 
-597.7 "Disintegration (cast)" sync / 1[56]:[^:]*:Kokytos:818A:/
-598.1 "Disintegration (enrage)" sync / 1[56]:[^:]*:Kokytos:818B:/
+597.7 "Disintegration (enrage)" sync / 1[56]:[^:]*:Kokytos:818A:/
+
+
+# Abilities
+#
+# Ball of Levin:817F Shock, Levinstrike orb explosion
+# Comet:8143 Burst, self-targeted ability for targeted comet during Ecliptic Meteor
+# Comet:8173 Comet Impact, cast and proximity damage during Charybdis
+# Comet:8174 Burst, cast and damage for full meteor circle explosion
+# Kokytos:8118 Ravening, self-targeted cast for turning into Mage
+# Kokytos:8119 Ravening, self-targeted cast for turning into Fighter
+# Kokytos:811A Ravening, self-targeted cast for turning into Beast
+# Kokytos:811B Soul Surge, raidwide damage after all Ravening
+# Kokytos:8122 unknown_8122, self-targeted ability Fire symbol
+# Kokytos:8123 unknown_8123, self-targeted ability Ice symbol
+# Kokytos:8124 Disgorge, self-targeted ability after Mage phase
+# Kokytos:8125 Disgorge, self-targeted ability after Fighter phase
+# Kokytos:8126 Disgorge, self-targeted ability after Beast phase
+# Kokytos:8144 unknown_8144, repositioning middle self-targeted ability
+# Kokytos:814B unknown_814b, unaspected auto damage
+# Kokytos:814C Gluttony's Augur, self-targeted cast ability
+# Kokytos:814D Gluttony's Augur, raidwide damage
+# Kokytos:8150 unknown_8150, mage auto damage
+# Kokytos:8151 Duality of Death, self-targeted cast tankbuster
+# Kokytos:8152 Fire IV, damage on MT during Duality of Death
+# Kokytos:8153 Aero IV, damage on OT during Duality of Death
+# Kokytos:8154 Dualspell, self-targeted cast Fire and Ice spell
+# Kokytos:8155 Dualspell, self-targeted cast Thunder and Ice spell
+# Kokytos:8156 Pile Pyre, normal fire partner stack damage
+# Kokytos:8157 Blizzard III, normal ice donut damage
+# Kokytos:8158 Pile Pyre, empowered fire partner stack damage
+# Kokytos:8159 Blizzard III, empowered ice donut damage
+# Kokytos:815A Thunder III, empowered thunder protean damage
+# Kokytos:815B Thunder III, normal thunder protean damage
+# Kokytos:815C unknown_815c, self-targeted ability Thunder icon
+# Kokytos:815D unknown_815d, fighter auto damage
+# Kokytos:815E Uplift, ground aoe damage raising walls
+# Kokytos:815F Archaic Rockbreaker, purple knockback circle damage
+# Kokytos:8160 Shockwave, knockback damage into walls
+# Kokytos:8161 Archaic Rockbreaker, cast and damage for fuse explosions
+# Kokytos:8162 Archaic Rockbreaker, partner stack damage after Shockwave
+# Kokytos:8165 Inside Roundhouse, telegraph ability
+# Kokytos:8166 Outside Roundhouse, telegraph ability
+# Kokytos:8167 Front Combination, self-targeted cast for Front+Inside combo
+# Kokytos:8168 Front Combination, self-targeted cast for Front+Outside combo
+# Kokytos:8169 Rear Combination, self-targeted cast for Rear+Inside combo
+# Kokytos:816A Rear Combination, self-targeted cast for Rear+Outside combo
+# Kokytos:816B Swinging Kick, self-targeted ability paired with 8222
+# Kokytos:816C Swinging Kick, self-targeted ability paired with 8223
+# Kokytos:816D Archaic Demolish, self-targeted cast
+# Kokytos:816E Archaic Demolish, healer stack damage
+# Kokytos:816F Ascendant Fist, tank-targeted cast and tankbuster damage
+# Kokytos:8170 Charybdis, self-targeted cast ability
+# Kokytos:8171 Charybdis, cast and damage for initial tornado circles
+# Kokytos:8172 Comet, cast and self-targeted comet summoning before 8173
+# Kokytos:8175 Ecliptic Meteor, self-targeted cast of LOS meteor damage
+# Kokytos:8176 Ecliptic Meteor, self-targeted ability paired with 8188 (probably)
+# Kokytos:8177 Beastly Bile, self-targeted cast of poison stack damage
+# Kokytos:8178 Beastly Bile, shared damage with comet
+# Kokytos:8179 Thunderbolt, self-targeted cast of proteans during meteors
+# Kokytos:817A Thunderbolt, protean lightning damage from 8179
+# Kokytos:817B Ravening, self-targeted cast for turning into Chimera
+# Kokytos:817C Levinstrike Summoning, self-targeted cast for this mechanic
+# Kokytos:817D Scrambled Succession, self-targeted cast during which limit cut dots appear
+# Kokytos:817E unknown_817e, unknown ability during Levinstrike Summoning (repositioning?)
+# Kokytos:8180 Firemeld, spread damage in limit cut order
+# Kokytos:8181 Shock, tower damage
+# Kokytos:8182 Shock, raidwide damage if 8181 hits no target
+# Kokytos:8184 Two Minds, self-targeted cast Fire and Ice spell
+# Kokytos:8185 Two Minds, self-targeted cast Thunder and Ice spell
+# Kokytos:8186 Beastly Fury, self-targeted cast for 8187 raidwide
+# Kokytos:8187 Beastly Fury, raidwide damage
+# Kokytos:8188 Ecliptic Meteor, damage for not LOS-ing meteor (on other meteors, boss, players)
+# Kokytos:8189 unknown_8189, beast auto damage
+# Kokytos:818A Disintegration, self-targeted cast for enrage
+# Kokytos:818B Disintegration, raidwide enrage damage
+# Kokytos:81BB Chimeric Succession, self-targeted cast starting this mechanic
+# Kokytos:820B unknown_820b, unknown self-targeted cast mutually exclusive with 820C
+# Kokytos:820C unknown_820c, unknown self-targeted cast exclusive with 820B
+# Kokytos:8222 Swinging Kick, cast and damage from front combination dodge
+# Kokytos:8223 Swinging Kick, cast and damage from rear combination dodge
+# Kokytos:8236 Disgorge, self-targeted ability after Chimera phase
+# Kokytos:8238 Inside Roundhouse, cast and damage for "get out"
+# Kokytos:8239 Outside Roundhouse, cast and damage for "get in"
+# Kokytos:878E Front Firestrikes, self-targeted cast
+# Kokytos:878F Rear Firestrikes, self-targeted cast
+# Kokytos:8793 Pyremeld, Front Firestrikes charge damage
+# Kokytos:8794 Pyremeld, Rear Firestrikes charge damage
+# Kokytos:8795 Swinging Kick, cast and damage for Front Firestrikes Kick
+# Kokytos:8796 Swinging Kick, cast and damage for Rear Firestrikes Kick
+# Kokytos's Echo:8183 Icemeld, first defamation damage during Levinstrike/Succession
+# Kokytos's Echo:8190 Icemeld, second defamation damage during Levinstrike/Succession
+# Kokytos's Echo:8191 Icemeld, third defamation damage during Levinstrike/Succession
+# Kokytos's Echo:8192 Icemeld, fourth defamation damage during Levinstrike/Succession
