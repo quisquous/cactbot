@@ -6,7 +6,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 ### Phase 1: Athena
-# -ii 8677 8314 8350 82F0 8308 8309
+# -ii 8677 8314 8350 82F0 8308 8309 8331
 # -p 8304:11.1
 # -it "Athena"
 
@@ -112,7 +112,7 @@ hideall "--sync--"
 
 ### Phase 2: Pallas Athena
 # -p 8682:1012.1
-# -ii 8678 831C 831D 879F 832C 87A0 8334 8325 8323 833D 8792 833E 86FD 831F 8683 8320 8322 8340 8328 834D 86F5 8337 8339
+# -ii 8678 831C 831D 879F 832C 87A0 8334 8325 8323 833D 8792 833E 86FD 831F 8683 8320 8322 8340 8328 834D 86F5 8337 8339 8341
 
 1007.1 "--sync--" sync / 14:[^:]*:Pallas Athena:8682:/ window 1100,10
 1012.1 "Ultima 1" sync / 1[56]:[^:]*:Pallas Athena:8682:/
@@ -240,6 +240,7 @@ hideall "--sync--"
 # Athena:830D Astral Glow, placing a dark tower damage
 # Anthropos:830E Umbral Advance, taking a light tower damage
 # Anthropos:830F Astral Advance, taking a dark tower damage
+# Anthropos:8331 Unmitigated Explosion, wipe damage for failing towers
 # Anthropos:82EE Ray of Light, laser damage
 # Athena:82FC Glaukopis, tankbuster cast and damage first hit
 # Athena:82FD Glaukopis, tankbuster damage second hit
@@ -316,6 +317,7 @@ hideall "--sync--"
 # Pallas Athena:86FD Pyre Pulse, self-targeted ability for 833A
 # Pallas Athena:833A Pyre Pulse, 2 person stack damage for fires
 # Pallas Athena:833B Dynamic Atmosphere, wind donut explosion damage
+# Pallas Athena:8339 Unmitigated Explosion, wipe damage for failing to do Caloric Theory right
 # Pallas Athena:831E Ekpyrosis, cast and self-targeted for exaflare mechanic
 # Pallas Athena:831F Ekpyrosis, cast and damage for initial exaflare circles
 # Pallas Athena:8683 Ekpyrosis, cast and damage for proximity damage
@@ -326,6 +328,7 @@ hideall "--sync--"
 # Hemitheos:8343 Umbral Advent, tower
 # Hemitheos:8344 Astral Advent, tower
 # Pallas Athena:8340 Biochemical Factor, two people merging?
+# Pallas Athena:8341 Ex-factor, wipe damage for failing to cleanse Unstable Factor
 # Forbidden Factor:8347 Factor In, slime damage
 # Pallas Athena:8336 Panta Rhei, cast and self-targeted "swap places" mechanic
 # Concept of Fire:8337 Panta Rhei, untargeted "swap places" ability
