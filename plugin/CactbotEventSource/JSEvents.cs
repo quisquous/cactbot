@@ -75,7 +75,7 @@ namespace Cactbot {
         id = e.id;
         level = e.level;
         name = e.name;
-        job = e.job.ToString();
+        job = e.job.ToString().ToUpper();
         currentHP = e.hp;
         maxHP = e.max_hp;
         currentMP = e.mp;
