@@ -96,19 +96,22 @@ Options.Triggers.push({
     {
       id: 'BA West Side',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
+      // The two sides are far enough apart that even though you see the autos
+      // from the opposite boss, you don't see the player target (which is blank).
+      // This considers you on the west side if Art autos somebody, and the name isn't blank.
+      netRegex: { id: '3956', source: 'Art', target: '[^:]+', capture: false },
       suppressSeconds: 1000,
       run: (data) => data.side = 'west',
     },
     {
       id: 'BA East Side',
       type: 'Ability',
-      netRegex: NetRegexes.ability({
+      netRegex: {
         id: '3957',
         source: 'Owain',
         target: '[^:]+',
         capture: false,
-      }),
+      },
       suppressSeconds: 1000,
       run: (data) => data.side = 'east',
     },

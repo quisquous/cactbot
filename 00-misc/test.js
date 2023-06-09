@@ -320,9 +320,9 @@ Options.Triggers.push({
     {
       id: 'Test Combatant Cast',
       type: 'CombatantMemory',
-      netRegex: NetRegexes.combatantMemory({
+      netRegex: {
         pair: [{ key: 'IsCasting1', value: '1' }, { key: 'CastBuffID', value: '.*?' }],
-      }),
+      },
       condition: (data) => data.watchingForCast,
       infoText: (data, matches, output) => {
         data.watchingForCast = false;

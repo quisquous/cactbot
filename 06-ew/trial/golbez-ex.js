@@ -22,7 +22,7 @@ Options.Triggers.push({
     {
       id: 'GolbezEx Terrastorm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '8466', source: 'Golbez', capture: true }),
+      netRegex: { id: '8466', source: 'Golbez', capture: true },
       delaySeconds: 0.5,
       promise: async (data, matches) => {
         const meteorData = await callOverlayHandler({
