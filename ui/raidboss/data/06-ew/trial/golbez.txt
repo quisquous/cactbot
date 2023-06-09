@@ -1,6 +1,6 @@
 ### The Voidcast Dais
 #
-# -ii 844B 8460 84AE 84AF 8469 8719 86CF 8473 849B 878B 84B6 84A7 84A9 8483 86B3 8484
+# -ii 844B 8463 8460 84AE 84AF 8469 8719 86CF 8473 849B 878B 84B6 84A7 84A9 8483 86B3 8484
 # -it "Golbez"
 # -ic "Gale Sphere" "Shadow Dragon" "Golbez's Shadow"
 
