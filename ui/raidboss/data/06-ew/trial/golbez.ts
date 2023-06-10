@@ -1,3 +1,4 @@
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import { DirectionOutputCardinal, Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
@@ -94,16 +95,17 @@ const triggerSet: TriggerSet<Data> = {
         data.galeSphereShadows = [];
 
         return output.clones!({
-          dir1: output[dir1]!() ?? '??',
-          dir2: output[dir2]!() ?? '??',
-          dir3: output[dir3]!() ?? '??',
-          dir4: output[dir4]!() ?? '??',
+          dir1: output[dir1]!() ?? output.unknown!(),
+          dir2: output[dir2]!() ?? output.unknown!(),
+          dir3: output[dir3]!() ?? output.unknown!(),
+          dir4: output[dir4]!() ?? output.unknown!(),
         });
       },
       outputStrings: {
         clones: {
           en: 'Clones: ${dir1}->${dir2}->${dir3}->${dir4}',
         },
+        unknown: Outputs.unknown,
         ...Directions.outputStringsCardinalDir,
       },
     },
