@@ -714,7 +714,10 @@ const testTriggerFile = (file: string, info: TriggerSetInfo) => {
             ).wasTranslated;
           };
 
-          const checkIfFieldHasTranslation = (field: string | string[], fieldName: string) => {
+          const checkIfFieldHasTranslation = (
+            field: string | readonly string[],
+            fieldName: string,
+          ) => {
             if (typeof field === 'string') {
               assert.isTrue(
                 textHasTranslation(field),
@@ -731,7 +734,9 @@ const testTriggerFile = (file: string, info: TriggerSetInfo) => {
           };
 
           for (const key of keysThatRequireTranslation) {
-            type AnonymousParams = { [name: string]: string | string[] | boolean | undefined };
+            type AnonymousParams = {
+              [name: string]: string | readonly string[] | boolean | undefined;
+            };
             const anonTriggerFields: AnonymousParams = trigger.netRegex;
             const value = anonTriggerFields[key];
             if (value !== undefined && typeof value !== 'boolean')
