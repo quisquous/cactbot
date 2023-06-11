@@ -302,6 +302,10 @@ Options.Triggers.push({
         const myBuddy = data.lightDarkBuddy[data.me];
         const myLength = data.lightDarkTether[data.me];
         if (myColor === undefined || myBuddy === undefined || myLength === undefined) {
+          // Heuristic for "is this a synthetic execution".
+          // TODO: maybe we need a field on data for this?
+          if (Object.keys(data.lightDarkDebuff).length === 0)
+            return;
           console.log(`Dark and Light: missing data for ${data.me}`);
           console.log(`Dark and Light: lightDarkDebuff: ${JSON.stringify(data.lightDarkDebuff)}`);
           console.log(`Dark and Light: lightDarkBuddy: ${JSON.stringify(data.lightDarkBuddy)}`);
