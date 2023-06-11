@@ -56,10 +56,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P12S Demi Parhelion': '832C', // fire damage during Geocentrism
     'P12S Implode': '8333', // ground circles during Classical Concepts
     'P12S Palladian Ray Ongoing': '8325', // avoidable followup proteans
+    'P12S Ekpyrosis Exaflare': '8320', // exaflares
     'P12S Entropic Excess': '833C', // ground circles during Caloric Theory 2
   },
   damageFail: {
     'P12S Sample': '82E0', // platform being eaten by Unnatural Enchainment
+
+    'P12S Tilted Balance': '8335', // failing tether distance during Classical Concepts
   },
   gainsEffectWarn: {
     'P12S Bleeding': 'B87', // standing in a Palladion puddle
@@ -83,6 +86,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P12S Palladian Grasp 1': '831C', // west half cleave
     'P12S Palladian Grasp 2': '831D', // east half cleave
     'P12S Dynamic Atmosphere': '833B', // wind explosion
+    'P12S Caloric Theory 2': '8792', // initial Caloric Theory 2 wind spread
   },
   soloFail: {
     'P12S Superchain Emission': '82DE', // partner 2x stack

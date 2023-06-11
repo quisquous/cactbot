@@ -6,7 +6,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 ### Phase 1: Athena
-# -ii 8677 8314 8350 82F0 8308 8309 8331
+# -ii 8677 8314 8350 82F0 8308 8309 8331 8313
 # -p 8304:11.1
 # -it "Athena"
 
@@ -112,7 +112,7 @@ hideall "--sync--"
 
 ### Phase 2: Pallas Athena
 # -p 8682:1012.1
-# -ii 8678 831C 831D 879F 832C 87A0 8334 8325 8323 833D 8792 833E 86FD 831F 8683 8320 8322 8340 8328 834D 86F5 8337 8339 8341
+# -ii 8678 831C 831D 879F 832C 87A0 8334 8325 8323 833D 8792 833E 86FD 831F 8683 8320 8322 8340 8328 834D 86F5 8337 8339 8341 8332 8335
 
 1007.1 "--sync--" sync / 14:[^:]*:Pallas Athena:8682:/ window 1100,10
 1012.1 "Ultima 1" sync / 1[56]:[^:]*:Pallas Athena:8682:/
@@ -259,6 +259,7 @@ hideall "--sync--"
 # Athena:8301 Peridialogos, tank damage
 # Athena:8302 Dialogos, shared party damage
 # Athena:8312 Shock, unaspected tower damage
+# Athena:8313 Electrify, raidwide failure damage for not taking an 8312 tower
 # Athena:82DF Unnatural Enchainment, cast and self-targeted prior to Sample
 # Athena:82E0 Sample, damage from platforms breaking
 # Athena:830A Theos's Cross, cast and damage from cross ground aoe
@@ -275,6 +276,7 @@ hideall "--sync--"
 # Athena:86FB Superchain Theory IIB, cast and self-targeted
 # Athena:8303 Parthenos, line aoe damage
 # Athena:8556 Theos's Ultima, cast and damage for enrage
+# Athena:834C unnamed ability transition to phase 2 (targetable in ~61.3s after this)
 #
 ## Phase 2
 #
@@ -306,6 +308,8 @@ hideall "--sync--"
 # Concept of Fire:8333 Implode, ground circle (triangle? square?)
 # Concept of Earth:8333 Implode, ground circle (triangle? square?)
 # Concept of Water:8333 Implode, ground circle (icosahedron)
+# Pallas Athena:8332 Fusion Burst, failing shape tethers and having shapes combine
+# Pallas Athena:8335 Tilted Balance, damage for failed tether distance
 # Pallas Athena:8323 Palladian Ray, self-targeted ability, protean sword drop
 # Pallas Athena:8324 Palladian Ray, damage, first protean hit
 # Pallas Athena:8325 Palladian Ray, damage, avoidable followup proteans
