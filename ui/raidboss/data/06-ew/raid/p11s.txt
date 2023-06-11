@@ -22,7 +22,7 @@ hideall "--sync--"
 79.9 "Divisive Overruling" sync / 1[56]:[^:]*:Themis:(81EC|81ED):/
 84.5 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
 
-93.7 "Styx x4" sync / 1[56]:[^:]*:Themis:8217:/ duration 4.4
+93.7 "Styx x5" sync / 1[56]:[^:]*:Themis:8217:/ duration 4.4
 
 105.2 "--middle--" sync / 1[56]:[^:]*:Themis:867F:/
 113.3 "Arcane Revelation" sync / 1[56]:[^:]*:Themis:(820D|820E):/
@@ -42,7 +42,7 @@ hideall "--sync--"
 189.2 "Jury Overruling" sync / 1[56]:[^:]*:Themis:(81E6|81E7):/
 195.2 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
 
-203.3 "Styx x5" sync / 1[56]:[^:]*:Themis:8217:/ duration 5.5
+203.3 "Styx x6" sync / 1[56]:[^:]*:Themis:8217:/ duration 5.5
 
 220.9 "Lightstream (cast)" sync / 1[56]:[^:]*:Themis:8203:/
 230.6 "--sync--" sync / 1[56]:[^:]*:Themis:867F:/
@@ -65,7 +65,7 @@ hideall "--sync--"
 346.1 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
 353.2 "Emissary's Will" sync / 1[56]:[^:]*:Themis:8202:/
 
-361.4 "Styx x6" sync / 1[56]:[^:]*:Themis:8217:/ duration 6.6
+361.4 "Styx x7" sync / 1[56]:[^:]*:Themis:8217:/ duration 6.6
 
 380.2 "Dike 1" sync / 1[56]:[^:]*:Themis:822D:/
 383.3 "Dike 2" sync / 1[56]:[^:]*:Themis:822E:/
@@ -100,7 +100,7 @@ hideall "--sync--"
 547.4 "Dismissal Overruling" sync / 1[56]:[^:]*:Themis:(8784|8785):/
 553.0 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
 
-561.6 "Styx x7" sync / 1[56]:[^:]*:Themis:8217:/ duration 7.7
+561.6 "Styx x8" sync / 1[56]:[^:]*:Themis:8217:/ duration 7.7
 
 580.4 "Lightstream (cast)" sync / 1[56]:[^:]*:Themis:8203:/
 589.5 "--sync--" sync / 1[56]:[^:]*:Themis:867F:/
