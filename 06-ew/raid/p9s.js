@@ -615,8 +615,8 @@ Options.Triggers.push({
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
+        'Ball of Levin': 'Elektrosphäre',
         'Comet': 'Komet',
         'Kokytos(?!\')': 'Kokytos',
         'Kokytos\'s Echo': 'Phantom-Kokytos',
@@ -676,6 +676,7 @@ Options.Triggers.push({
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
+        'Ball of Levin': 'orbe de foudre',
         'Comet': 'Comète',
         'Kokytos(?!\')': 'Cocyte',
         'Kokytos\'s Echo': 'spectre de Cocyte',
@@ -727,6 +728,7 @@ Options.Triggers.push({
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
+        'Ball of Levin': '雷球',
         'Comet': 'コメット',
         'Kokytos(?!\')': 'コキュートス',
         'Kokytos\'s Echo': 'コキュートスの幻影',
