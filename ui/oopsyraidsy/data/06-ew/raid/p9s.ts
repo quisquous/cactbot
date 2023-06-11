@@ -14,6 +14,7 @@ export type Data = OopsyData;
 // TODO: better info about whose defamation hit other people (i.e. limit cut # if applicable)
 // TODO: better info about whose Firemeld spread hit others (i.e. limit cut #)
 // TODO: taking a tower with vuln
+// TODO: taking two Pile Pyre / Thunder III (if people are dead)
 
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.AnabaseiosTheNinthCircleSavage,
