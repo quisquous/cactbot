@@ -564,25 +564,25 @@ Options.Triggers.push({
         blizzardBladework: {
           en: 'Out Out',
           de: 'Raus Raus',
-          cn: '出 出',
+          cn: '远离男女',
           ko: '밖 밖',
         },
         superliminalStrength: {
           en: 'In In on M',
           de: 'Rein Rein auf M',
-          cn: '进 进 M',
+          cn: '靠近男人',
           ko: '안 안 M',
         },
         superliminalBladework: {
           en: 'Under F',
           de: 'Unter W',
-          cn: 'F 下',
+          cn: '靠近女人',
           ko: 'F 밑',
         },
         blizzardStrength: {
           en: 'M Sides',
           de: 'Seitlich von M',
-          cn: 'M 侧',
+          cn: '男人两侧',
           ko: 'M 양옆',
         },
       },
@@ -1144,7 +1144,7 @@ Options.Triggers.push({
         breakTether: {
           en: 'Break Tether',
           de: 'Verbindung brechen',
-          cn: '破坏线',
+          cn: '扯断连线',
           ko: '선 끊기',
         },
       },
@@ -1464,7 +1464,7 @@ Options.Triggers.push({
         mLocation: {
           en: '${dir} M',
           de: '${dir} M',
-          cn: '${dir} M',
+          cn: '${dir} 男人',
           ko: '${dir} M',
         },
       },
@@ -1582,7 +1582,7 @@ Options.Triggers.push({
         baitTethers: {
           en: 'Bait Tethers',
           de: 'Verbindung ködern',
-          cn: '诱导线',
+          cn: '接线',
           ko: '선 가져가기',
         },
       },
@@ -2134,13 +2134,13 @@ Options.Triggers.push({
         cosmoDiveTank: {
           en: 'Tanks Near (party far)',
           de: 'Tanks nahe (Gruppe entfernt)',
-          cn: '坦克近 (团队远)',
+          cn: '坦克靠近 (人群远离)',
           ko: '탱커 가까이 (본대 멀리)',
         },
         cosmoDiveParty: {
           en: 'Party Far (tanks near)',
           de: 'Gruppe entfernt (Tanks nahe)',
-          cn: '团队远 (坦克近)',
+          cn: '人群远离 (坦克靠近)',
           ko: '본대 멀리 (탱커 가까이)',
         },
       },
