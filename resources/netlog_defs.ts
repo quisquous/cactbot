@@ -838,6 +838,7 @@ const latestLogDefinitions = {
     },
     canAnonymize: true,
     firstOptionalField: undefined,
+    lastInclude: true,
   },
   SystemLogMessage: {
     type: '41',
