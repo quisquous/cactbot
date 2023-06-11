@@ -276,7 +276,7 @@ hideall "--sync--"
 # Athena:86FB Superchain Theory IIB, cast and self-targeted
 # Athena:8303 Parthenos, line aoe damage
 # Athena:8556 Theos's Ultima, cast and damage for enrage
-# Atehna:834C unnamed ability transition to phase 2 (targetable in ~61.3s after this)
+# Athena:834C unnamed ability transition to phase 2 (targetable in ~61.3s after this)
 #
 ## Phase 2
 #
