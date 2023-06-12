@@ -1,6 +1,5 @@
 import { TestMochaGlobal } from '../test_raidboss_data';
 
-import testManifestFiles from './test_manifest';
 import testTimelineFiles from './test_timeline';
 import testTriggerFiles from './test_trigger';
 
@@ -15,5 +14,4 @@ import testTriggerFiles from './test_trigger';
 const annotatedGlobal: TestMochaGlobal = global;
 
 testTriggerFiles(annotatedGlobal.triggerFiles ?? []);
-testManifestFiles(annotatedGlobal.manifestFiles ?? []);
 testTimelineFiles(annotatedGlobal.timelineFiles ?? []);

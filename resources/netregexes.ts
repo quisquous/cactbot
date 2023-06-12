@@ -115,7 +115,7 @@ type RepeatingFieldsMapType<
 
 type ParseHelperType<T extends LogDefinitionTypes> =
   & {
-    [field in keyof NetFields[T]]?: string | string[] | RepeatingFieldsMapType<T, field>;
+    [field in keyof NetFields[T]]?: string | readonly string[] | RepeatingFieldsMapType<T, field>;
   }
   & { capture?: boolean };
 
@@ -123,7 +123,7 @@ const isRepeatingField = <
   T extends LogDefinitionTypes,
 >(
   repeating: boolean | undefined,
-  value: string | string[] | RepeatingFieldsMap<T> | undefined,
+  value: string | readonly string[] | RepeatingFieldsMap<T> | undefined,
 ): value is RepeatingFieldsMap<T> => {
   if (repeating !== true)
     return false;

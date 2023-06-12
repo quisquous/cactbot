@@ -30,12 +30,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P11S Jury Overruling Light',
       type: 'StartsUsing',
       netRegex: { id: '81E6', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Protean => Healer Stacks',
           de: 'Himmelsrichtungen => Heiler Gruppen',
           fr: 'Positions => Package sur les heals',
+          cn: '八方分散 => 治疗分摊',
         },
       },
     },
@@ -43,12 +45,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P11S Jury Overruling Dark',
       type: 'StartsUsing',
       netRegex: { id: '81E7', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Protean => Partners',
           de: 'Himmelsrichtungen => Partner',
           fr: 'Positions => Partenaires',
+          cn: '八方分散 => 两人分摊',
         },
       },
     },
@@ -56,12 +60,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P11S Upheld Overruling Light',
       type: 'StartsUsing',
       netRegex: { id: '87D3', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Party In => Out + Healer Stacks',
           de: 'Party Rein => Raus + Heiler Gruppen',
           fr: 'Intérieur => Extérieur + package sur les heals',
+          cn: '场中集合 => 场边 + 治疗分摊',
         },
       },
     },
@@ -69,12 +75,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P11S Upheld Overruling Dark',
       type: 'StartsUsing',
       netRegex: { id: '87D4', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Party Out => In + Partners',
           de: 'Party Raus => Rein + Partner',
           fr: 'Extérieur => Intérieur + package sur les heals',
+          cn: '场外 => 场中 + 两人分摊',
         },
       },
     },
@@ -82,12 +90,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P11S Divisive Overruling Light',
       type: 'StartsUsing',
       netRegex: { id: '81EC', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Sides => Healer Stacks + Out',
           de: 'Seiten => Heiler Gruppen + Raus',
           fr: 'Côtés => Extérieur + Package sur les heals',
+          cn: '两侧 => 治疗分摊 + 场外',
         },
       },
     },
@@ -95,12 +105,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P11S Divisive Overruling Dark',
       type: 'StartsUsing',
       netRegex: { id: '81ED', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Sides => In + Partners',
           de: 'Seiten => Rein + Partner',
           fr: 'Côtés => Intérieur + Package sur les heals',
+          cn: '两侧 => 两人分摊 + 场内',
         },
       },
     },
@@ -108,12 +120,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P11S Divisive Overruling Light Shadowed Messengers',
       type: 'StartsUsing',
       netRegex: { id: '87B3', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Healer Stacks + Out',
           de: 'Heiler Gruppen + Raus',
           fr: 'Extérieur + Package sur les heals',
+          cn: '治疗分摊 + 场外',
         },
       },
     },
@@ -121,12 +135,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P11S Divisive Overruling Dark Shadowed Messengers',
       type: 'StartsUsing',
       netRegex: { id: '87B4', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Partners + In',
           de: 'Partner + Rein',
           fr: 'Partenaires + Intérieur',
+          cn: '两人分摊 + 场内',
         },
       },
     },
@@ -134,12 +150,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P11S Dismissal Overruling Light',
       type: 'StartsUsing',
       netRegex: { id: '8784', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Knockback => Healer Stacks + Out',
           de: 'Rückstoß => Heiler Gruppen + Raus',
           fr: 'Poussée => Extérieur + Package sur les heals',
+          cn: '击退 => 治疗分摊 + 场外',
         },
       },
     },
@@ -147,12 +165,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P11S Dismissal Overruling Dark',
       type: 'StartsUsing',
       netRegex: { id: '8785', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Knockback => In + Partners',
           de: 'Rückstoß => Rein + Partner',
           fr: 'Poussée => Intérieur + Partenaires',
+          cn: '击退 => 两人分摊 + 场内',
         },
       },
     },
@@ -166,6 +186,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Go to Dark Portals',
           de: 'Geh zu einem Dunkel-Portal',
           fr: 'Allez vers les portails sombres',
+          cn: '去暗门前',
         },
       },
     },
@@ -179,6 +200,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Go to Light Portals',
           de: 'Geh zu einem Licht-Portal',
           fr: 'Allez sur les portails de lumière',
+          cn: '去光门前',
         },
       },
     },
@@ -192,6 +214,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Rotate to Dark Orbs',
           de: 'Rotiere zu den dunklen Orbs',
           fr: 'Tournez vers les orbes sombres',
+          cn: '暗球侧安全',
         },
       },
     },
@@ -205,6 +228,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Rotate to Light Orbs',
           de: 'Rotiere zu den licht Orbs',
           fr: 'Tournez ves les orbes de lumière',
+          cn: '光球侧安全',
         },
       },
     },
@@ -254,21 +278,25 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Light Near w/${player}',
             de: 'Licht Nahe w/${player}',
             fr: 'Lumière proche avec ${player}',
+            cn: '光靠近 => ${player}',
           },
           lightFar: {
             en: 'Light Far w/${player}',
             de: 'Licht Entfernt w/${player}',
             fr: 'Lumière éloignée avec ${player}',
+            cn: '光远离 => ${player}',
           },
           darkNear: {
             en: 'Dark Near w/${player}',
             de: 'Dunkel Nahe w/${player}',
             fr: 'Sombre proche avec ${player}',
+            cn: '暗靠近 => ${player}',
           },
           darkFar: {
             en: 'Dark Far w/${player}',
             de: 'Dunkel Entfernt w/${player}',
             fr: 'Sombre éloigné avec ${player}',
+            cn: '暗远离 => ${player}',
           },
           otherNear: {
             en: 'Other Near: ${player1}, ${player2}',
@@ -287,6 +315,10 @@ const triggerSet: TriggerSet<Data> = {
         const myLength = data.lightDarkTether[data.me];
 
         if (myColor === undefined || myBuddy === undefined || myLength === undefined) {
+          // Heuristic for "is this a synthetic execution".
+          // TODO: maybe we need a field on data for this?
+          if (Object.keys(data.lightDarkDebuff).length === 0)
+            return;
           console.log(`Dark and Light: missing data for ${data.me}`);
           console.log(`Dark and Light: lightDarkDebuff: ${JSON.stringify(data.lightDarkDebuff)}`);
           console.log(`Dark and Light: lightDarkBuddy: ${JSON.stringify(data.lightDarkBuddy)}`);
@@ -322,6 +354,34 @@ const triggerSet: TriggerSet<Data> = {
             infoText = output.otherFar!({ player1: player1, player2: player2 });
         }
         return { alertText: alertText, infoText: infoText };
+      },
+    },
+    {
+      id: 'P11S Twofold Revelation Light',
+      type: 'StartsUsing',
+      netRegex: { id: '8211', source: 'Themis', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Go to Dark Orb + Dark Portals',
+          de: 'Geh zum dunklen Orb + dunkle Portale',
+          fr: 'Allez vers l\'orbe sombre + Portail sombre',
+          cn: '去暗球 + 暗门',
+        },
+      },
+    },
+    {
+      id: 'P11S Twofold Revelation Dark',
+      type: 'StartsUsing',
+      netRegex: { id: '8212', source: 'Themis', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Go to Light Orb + Light Portals',
+          de: 'Geh zum hellen Orb + helle Portale',
+          fr: 'Allez vers l\'orbe de lumière + Portail de lumière',
+          cn: '去光球 + 光门',
+        },
       },
     },
   ],

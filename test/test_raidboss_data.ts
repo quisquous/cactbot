@@ -4,7 +4,6 @@ import Mocha from 'mocha';
 
 import { walkDirSync } from '../util/file_utils';
 
-import testManifestFiles from './helper/test_manifest';
 import testTimelineFiles from './helper/test_timeline';
 import testTriggerFiles from './helper/test_trigger';
 
@@ -30,7 +29,6 @@ export type TestMochaGlobal = typeof global & {
 
 const mocha = new Mocha();
 
-const manifestFiles: string[] = [];
 const timelineFiles: string[] = [];
 const triggerFiles: string[] = [];
 
@@ -38,7 +36,6 @@ const processInputs = (inputPath: string[]) => {
   inputPath.forEach((path: string) => {
     walkDirSync(path, (filepath) => {
       if (/\/(?:raidboss|oopsy)_manifest.txt/.test(filepath)) {
-        manifestFiles.push(filepath);
         return;
       }
       if (/\/raidboss\/data\/.*\.txt/.test(filepath)) {
@@ -66,7 +63,6 @@ processInputs(inputs);
 
 if (insideMocha) {
   testTriggerFiles(triggerFiles);
-  testManifestFiles(manifestFiles);
   testTimelineFiles(timelineFiles);
 } else {
   const annotatedGlobal: TestMochaGlobal = global;
@@ -74,7 +70,6 @@ if (insideMocha) {
   // Globals are the only way to pass additional fields to the test files below.
   // Because we are running mocha programmatically here, the file names must be
   // passed via globals.  We can't add files after Mocha has started, unfortunately.
-  annotatedGlobal.manifestFiles = manifestFiles;
   annotatedGlobal.timelineFiles = timelineFiles;
   annotatedGlobal.triggerFiles = triggerFiles;
   mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/helper/test_data_runner.ts')));

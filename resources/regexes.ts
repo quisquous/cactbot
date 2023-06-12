@@ -97,7 +97,7 @@ type RepeatingFieldsMapType<
 
 type ParseHelperType<T extends LogDefinitionTypes> =
   & {
-    [field in keyof NetFields[T]]?: string | string[] | RepeatingFieldsMapType<T, field>;
+    [field in keyof NetFields[T]]?: string | readonly string[] | RepeatingFieldsMapType<T, field>;
   }
   & { capture?: boolean };
 
@@ -105,7 +105,7 @@ const isRepeatingField = <
   T extends LogDefinitionTypes,
 >(
   repeating: boolean | undefined,
-  value: string | string[] | RepeatingFieldsMap<T> | undefined,
+  value: string | readonly string[] | RepeatingFieldsMap<T> | undefined,
 ): value is RepeatingFieldsMap<T> => {
   if (repeating !== true)
     return false;
@@ -584,7 +584,7 @@ export default class Regexes {
   static maybeCapture(
     capture: boolean,
     name: string,
-    value: string | string[] | undefined,
+    value: string | readonly string[] | undefined,
     defaultValue?: string,
   ): string {
     if (value === undefined)
@@ -614,24 +614,25 @@ export default class Regexes {
    * args may be strings or RegExp, although any additional markers to RegExp
    * like /insensitive/i are dropped.
    */
-  static anyOf(...args: (string | string[] | RegExp)[]): string {
-    const anyOfArray = (array: (string | RegExp)[]): string => {
+  static anyOf(...args: (string | readonly string[] | RegExp)[]): string {
+    const anyOfArray = (array: readonly (string | RegExp)[]): string => {
       const [elem] = array;
       if (elem !== undefined && array.length === 1)
         return `${elem instanceof RegExp ? elem.source : elem}`;
       return `(?:${array.map((elem) => elem instanceof RegExp ? elem.source : elem).join('|')})`;
     };
-    let array: (string | RegExp)[] = [];
+    let array: readonly (string | RegExp)[] = [];
+    const [firstArg] = args;
     if (args.length === 1) {
-      if (Array.isArray(args[0]))
-        array = args[0];
-      else if (args[0] !== undefined)
-        array = [args[0]];
+      if (typeof firstArg === 'string' || firstArg instanceof RegExp)
+        array = [firstArg];
+      else if (Array.isArray(firstArg))
+        array = firstArg;
       else
         array = [];
     } else {
       // TODO: more accurate type instead of `as` cast
-      array = args as string[];
+      array = args as readonly string[];
     }
     return anyOfArray(array);
   }
