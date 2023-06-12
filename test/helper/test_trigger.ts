@@ -643,7 +643,10 @@ const testTriggerFile = (file: string, info: TriggerSetInfo) => {
 
           for (const key of keys) {
             for (const param of outputStringsParams[key] ?? []) {
-              if (!Regexes.parse(`\\b${param}\\s*:`).exec(funcStr)) {
+              if (
+                (!Regexes.parse(`\\b${param}\\s*:`).exec(funcStr)) &&
+                (!Regexes.parse(`\\b${param.split('.')[0] ?? ''}\\s*:`).exec(funcStr))
+              ) {
                 assert.fail(
                   `'${id}' does not define param '${param}' for outputStrings entry '${key}'`,
                 );

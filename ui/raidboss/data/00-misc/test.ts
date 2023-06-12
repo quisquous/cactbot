@@ -362,10 +362,28 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    {
+      id: 'Test OutputStrings',
+      type: 'GameLog',
+      netRegex: NetRegexes.echo({ line: 'cactbot test outputStrings', capture: false }),
+      infoText: (data, _matches, output) => {
+        const obj = {
+          ...data,
+          toString: () => data.me,
+        };
+        return output.text!({ customData: obj });
+      },
+      outputStrings: {
+        text: {
+          en: 'data = ${customData}, data.job = ${customData.job}',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
       locale: 'de',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
         'You bow courteously to the striking dummy':
@@ -483,6 +501,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'cn',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*向木人告别',
         'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',

@@ -382,17 +382,55 @@ class TriggerOutputProxy {
     }
 
     return value.replace(/\${\s*([^}\s]+)\s*}/g, (_fullMatch: string, key: string) => {
-      if (params !== undefined && key in params) {
-        const str = params[key];
-        switch (typeof str) {
-          case 'string':
-            return str;
-          case 'number':
-            return str.toString();
+      if (params !== undefined) {
+        let prop: string | undefined = undefined;
+
+        if (!(key in params) && key.includes('.')) {
+          const parts = key.split('.');
+          key = parts[0] ?? '';
+          prop = parts[1];
         }
-        console.error(`Trigger ${id} has non-string param value ${key}.`);
-        return this.unknownValue;
+
+        if (key in params) {
+          const val = params[key];
+          switch (typeof val) {
+            case 'string':
+              return val;
+            case 'number':
+              return val.toString();
+            case 'object':
+              if (val !== null) {
+                const looseVal = val as { [outputName: string]: unknown };
+                if (prop !== undefined) {
+                  if (!(prop in looseVal)) {
+                    console.error(
+                      `Trigger ${id} is referencing non-existant object property ${key}.${prop}.`,
+                    );
+                    return this.unknownValue;
+                  }
+                  const retVal = looseVal[prop];
+                  switch (typeof retVal) {
+                    case 'string':
+                      return retVal;
+                    case 'number':
+                      return retVal.toString();
+                    case 'object':
+                      if (retVal !== null) {
+                        return retVal.toString();
+                      }
+                      console.error(`Trigger ${id} has null object value ${key}.${prop}.`);
+                      return this.unknownValue;
+                  }
+                }
+                return val.toString();
+              }
+              break;
+          }
+          console.error(`Trigger ${id} has non-string param value ${key}.`);
+          return this.unknownValue;
+        }
       }
+
       console.error(`Trigger ${id} can't replace ${key} in ${JSON.stringify(template)}.`);
       return this.unknownValue;
     });
