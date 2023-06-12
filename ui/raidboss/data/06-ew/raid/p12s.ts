@@ -602,7 +602,9 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '8329', source: 'Pallas Athena', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
-        text: 'Vertical',
+        text: {
+          en: 'Vertical',
+        },
       },
     },
     {
@@ -611,7 +613,9 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '832A', source: 'Pallas Athena', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
-        text: 'Inny Spinny',
+        text: {
+          en: 'Inny Spinny',
+        },
       },
     },
     {
@@ -620,7 +624,9 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '832B', source: 'Pallas Athena', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
-        text: 'Horizontal',
+        text: {
+          en: 'Horizontal',
+        },
       },
     },
   ],
