@@ -423,6 +423,7 @@ export class TimelineParser {
       '^::\\y{AbilityCode}:$',
       '^\\.\\*$',
       '^ 1\\[56\\]:\\[\\^:\\]\\*:\\[\\^:\\]\\*:',
+      '^( ?260)? 104:',
     ].map((x) => Regexes.parse(x));
   }
 

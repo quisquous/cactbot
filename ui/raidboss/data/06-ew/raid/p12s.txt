@@ -4,3 +4,343 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+### Phase 1: Athena
+# -ii 8677 8314 8350 82F0 8308 8309 8331 8313
+# -p 8304:11.1
+# -it "Athena"
+
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+1.0 "--sync--" sync / 03:[^:]*:Hemitheos:00:5A:0{4}:00::12383:/ window 10,3 jump 1000.5 # Sync to P2 immediately through AddCombatant.
+11.1 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/ window 20,20
+21.2 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
+24.3 "--middle--" sync / 1[56]:[^:]*:Athena:8315:/
+36.7 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:(82E7|82E8):/
+36.7 "White Flame" sync / 1[56]:[^:]*:Anthropos:82EF:/
+39.3 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:(82E9|82EA):/
+41.7 "White Flame" sync / 1[56]:[^:]*:Anthropos:82EF:/
+41.9 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC):/
+
+57.3 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
+65.0 "Engravement of Souls" sync / 1[56]:[^:]*:Athena:8305:/
+74.8 "Searing Radiance/Shadowsear" sync / 1[56]:[^:]*:Anthropos:82F[12]:/
+75.8 "Astral Glow/Umbral Glow" sync / 1[56]:[^:]*:Athena:830[CD]:/
+78.8 "Astral Advance/Umbral Advance" sync / 1[56]:[^:]*:Anthropos:830[EF]:/
+81.8 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82EE:/
+
+88.8 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
+97.0 "Glaukopis 1" sync / 1[56]:[^:]*:Athena:82FC:/
+100.0 "Glaukopis 2" sync / 1[56]:[^:]*:Athena:82FD:/
+
+116.1 "Superchain Theory I" sync / 1[56]:[^:]*:Athena:82DA:/
+123.2 "Engravement of Souls" sync / 1[56]:[^:]*:Athena:8305:/
+128.2 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
+134.3 "Polarized Ray" sync / 1[56]:[^:]*:Athena:8307:/
+135.2 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
+135.5 "Astral Impact/Umbral Impact" sync / 1[56]:[^:]*:Athena:830[89]:/
+140.2 "Superchain Coil/Superchain Burst" #sync / 1[56]:[^:]*:Athena:82D[BC]:/
+142.2 "Superchain Coil/Superchain Burst" #sync / 1[56]:[^:]*:Athena:82D[BC]:/
+143.5 "Astral Glow/Umbral Glow" sync / 1[56]:[^:]*:Athena:830[CD]:/
+145.2 "Theos's Holy" sync / 1[56]:[^:]*:Athena:8306:/
+146.4 "Astral Advance/Umbral Advance" sync / 1[56]:[^:]*:Anthropos:830[FE]:/
+
+157.4 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:(82E7|82E8|82E1|82E2):/
+160.1 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:(82E9|82EA):/
+162.7 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC|82E5|82E6):/
+
+171.1 "Apodialogos/Peridialogos" sync / 1[56]:[^:]*:Athena:830[01]:/
+172.1 "Dialogos" sync / 1[56]:[^:]*:Athena:8302:/
+178.8 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
+190.0 "--middle--" sync / 1[56]:[^:]*:Athena:8315:/
+195.3 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
+202.4 "Engravement of Souls" sync / 1[56]:[^:]*:Athena:8305:/
+212.5 "Shock" sync / 1[56]:[^:]*:Athena:8312:/
+213.6 "Sample" sync / 1[56]:[^:]*:Athena:82E0:/
+213.7 "Searing Radiance/Shadowsear" sync / 1[56]:[^:]*:Anthropos:82F[12]:/
+220.5 "Theos's Saltire/Theos's Cross" sync / 1[56]:[^:]*:Athena:830[AB]:/
+220.7 "White Flame" sync / 1[56]:[^:]*:Anthropos:82EF:/
+220.8 "Astral Glow/Umbral Glow" sync / 1[56]:[^:]*:Athena:830[CD]:/
+223.8 "Astral Advance/Umbral Advance" sync / 1[56]:[^:]*:Anthropos:830[EF]:/
+
+229.8 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
+242.1 "Glaukopis 1" sync / 1[56]:[^:]*:Athena:82FC:/
+245.2 "Glaukopis 2" sync / 1[56]:[^:]*:Athena:82FD:/
+254.3 "--middle--" sync / 1[56]:[^:]*:Athena:8315:/
+259.9 "--sync--" sync / 1[56]:[^:]*:Athena:82F3:/
+267.3 "Ultima Blade" sync / 1[56]:[^:]*:Athena:82F4:/
+280.0 "--untargetable--"
+
+# Laser/Cleave order is random here so we can only really timeline the Palladion dashes.
+290.6 "Palladion 1" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+293.7 "Palladion 2" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+296.8 "Palladion 3" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+299.9 "Palladion 4" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+303.0 "Palladion 5" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+306.1 "Palladion 6" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+309.2 "Palladion 7" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+312.4 "Palladion 8" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
+317.5 "--sync--" sync / 1[56]:[^:]*:Athena:82F8:/
+321.5 "Palladion (Floor Drop)" sync / 1[56]:[^:]*:Athena:82F9:/ window 20,20
+
+324.4 "--targetable--"
+333.2 "Theos's Ultima" sync / 1[56]:[^:]*:Athena:82FA:/
+352.6 "Superchain Theory IIA" sync / 1[56]:[^:]*:Athena:86FA:/
+365.7 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:(82E7|82E8|82E1|82E2):/
+368.3 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:(82E9|82EA):/
+370.7 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC|82E5|82E6):/
+374.0 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
+
+380.2 "Apodialogos/Peridialogos" sync / 1[56]:[^:]*:Athena:830[01]:/
+381.2 "Dialogos" sync / 1[56]:[^:]*:Athena:8302:/
+387.9 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
+395.1 "--middle--" sync / 1[56]:[^:]*:Athena:8315:/
+402.5 "Superchain Theory IIB" sync / 1[56]:[^:]*:Athena:86FB:/
+408.6 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
+415.6 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
+418.6 "Parthenos" sync / 1[56]:[^:]*:Athena:8303:/
+422.5 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
+424.9 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82EE:/
+431.5 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
+
+434.3 "Unnatural Enchainment" sync / 1[56]:[^:]*:Athena:82DF:/
+435.4 "Sample" sync / 1[56]:[^:]*:Athena:82E0:/
+442.4 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
+450.5 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
+459.0 "--untargetable--" sync / 14:[^:]*:Athena:8556:/
+466.0 "Theos's Ultima (enrage)" sync / 1[56]:[^:]*:Athena:8556:/
+
+
+### Phase 2: Pallas Athena
+# -p 8682:1012.1
+# -ii 8678 831C 831D 879F 832C 87A0 8334 8325 8323 833D 8792 833E 86FD 831F 8683 8320 8322 8340 8328 834D 86F5 8337 8339 8341 8332 8335
+
+1007.1 "--sync--" sync / 14:[^:]*:Pallas Athena:8682:/ window 1100,10
+1012.1 "Ultima 1" sync / 1[56]:[^:]*:Pallas Athena:8682:/
+1024.2 "Palladian Grasp 1" sync / 1[56]:[^:]*:Pallas Athena:831A:/
+1027.4 "Palladian Grasp 2" sync / 1[56]:[^:]*:Pallas Athena:831B:/
+1040.8 "Gaiaochos 1" sync / 1[56]:[^:]*:Pallas Athena:8326:/
+1051.9 "Summon Darkness" sync / 1[56]:[^:]*:Pallas Athena:832F:/
+1063.8 "Ultima Ray" sync / 1[56]:[^:]*:Hemitheos:8330:/
+
+1065.1 "Missing Link" sync / 1[56]:[^:]*:Pallas Athena:8586:/
+1074.1 "Demi Parhelion" sync / 1[56]:[^:]*:Pallas Athena:8327:/
+1084.2 "Geocentrism" sync / 1[56]:[^:]*:Pallas Athena:832[AB9]:/
+1085.2 "Divine Excoriation" sync / 1[56]:[^:]*:Pallas Athena:832E:/
+
+1094.4 "Ultima 2" sync / 1[56]:[^:]*:Pallas Athena:86F6:/
+1108.6 "The Classical Concepts 1" sync / 1[56]:[^:]*:Pallas Athena:8331:/
+1130.0 "Implode" sync / 1[56]:[^:]*:Concept of Water:8333:/
+1133.4 "Palladian Ray" sync / 1[56]:[^:]*:Pallas Athena:8324:/ duration 4
+
+1143.8 "Ultima 3" sync / 1[56]:[^:]*:Pallas Athena:8682:/
+1153.0 "--sync--" sync / 1[56]:[^:]*:Pallas Athena:8317:/
+1153.8 "Crush Helm 1" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1154.9 "Crush Helm 2" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1156.0 "Crush Helm 3" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1157.1 "Crush Helm 4" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1159.2 "Crush Helm Buster" sync / 1[56]:[^:]*:Pallas Athena:8319:/
+
+1173.2 "Caloric Theory 1" sync / 1[56]:[^:]*:Pallas Athena:8338:/
+1185.9 "Pyre Pulse 1" sync / 1[56]:[^:]*:Pallas Athena:833A:/
+1197.3 "Pyre Pulse 2" sync / 1[56]:[^:]*:Pallas Athena:833A:/
+1197.3 "Dynamic Atmosphere" sync / 1[56]:[^:]*:Pallas Athena:833B:/
+
+1207.6 "Ekpyrosis (cast)" sync / 1[56]:[^:]*:Pallas Athena:831E:/
+1215.4 "Ekpyrosis (proximity)" sync / 1[56]:[^:]*:Pallas Athena:8683:/
+1218.5 "Ekpyrosis (spread)" sync / 1[56]:[^:]*:Pallas Athena:8322:/
+
+1226.8 "Ultima 4" sync / 1[56]:[^:]*:Pallas Athena:8682:/
+1241.0 "Pangenesis" sync / 1[56]:[^:]*:Pallas Athena:833F:/
+
+1254.9 "Astral Advent/Umbral Advent 1" sync / 1[56]:[^:]*:Hemitheos:834[34]:/
+1260.0 "Astral Advent/Umbral Advent 2" sync / 1[56]:[^:]*:Hemitheos:834[34]:/
+1265.0 "Astral Advent/Umbral Advent 3" sync / 1[56]:[^:]*:Hemitheos:834[34]:/
+1277.4 "Factor In" sync / 1[56]:[^:]*:Forbidden Factor:8347:/
+1280.4 "Palladian Grasp 1" sync / 1[56]:[^:]*:Pallas Athena:831A:/
+1283.6 "Palladian Grasp 2" sync / 1[56]:[^:]*:Pallas Athena:831B:/
+
+1296.8 "The Classical Concepts 2" sync / 1[56]:[^:]*:Pallas Athena:8331:/
+1313.9 "Panta Rhei" sync / 1[56]:[^:]*:Pallas Athena:8336:/
+1322.7 "Palladian Ray" sync / 1[56]:[^:]*:Pallas Athena:8324:/ duration 4
+1325.2 "Implode" sync / 1[56]:[^:]*:Concept of Water:8333:/
+
+1333.1 "Ultima 5" sync / 1[56]:[^:]*:Pallas Athena:8682:/
+1342.2 "--sync--" sync / 1[56]:[^:]*:Pallas Athena:8317:/
+1343.0 "Crush Helm 1" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1344.1 "Crush Helm 2" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1345.2 "Crush Helm 3" #sync / 1[56]:[^:]*:Pallas Athena:8318:
+1346.3 "Crush Helm 4" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1348.4 "Crush Helm Buster" sync / 1[56]:[^:]*:Pallas Athena:8319:/
+
+1362.5 "Caloric Theory 2" sync / 1[56]:[^:]*:Pallas Athena:8338:/
+1369.3 "Entropic Excess 1" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1372.3 "Entropic Excess 2" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1375.3 "Entropic Excess 3" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1378.3 "Entropic Excess 4" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1381.3 "Entropic Excess 5" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1384.3 "Entropic Excess 6" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1387.3 "Entropic Excess 7" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1390.3 "Entropic Excess 8" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
+1390.3 "Dynamic Atmosphere" sync / 1[56]:[^:]*:Pallas Athena:833B:/
+
+1392.6 "Ekpyrosis (cast)" sync / 1[56]:[^:]*:Pallas Athena:831E:/
+1400.4 "Ekpyrosis (proximity)" sync / 1[56]:[^:]*:Pallas Athena:8683:/
+1403.5 "Ekpyrosis (spread)" sync / 1[56]:[^:]*:Pallas Athena:8322:/
+
+1411.7 "Ultima 6" sync / 1[56]:[^:]*:Pallas Athena:8682:/
+1425.9 "Gaiaochos 2" sync / 1[56]:[^:]*:Pallas Athena:8326:/
+1437.0 "Summon Darkness" sync / 1[56]:[^:]*:Pallas Athena:832F:/
+1443.1 "Demi Parhelion" sync / 1[56]:[^:]*:Pallas Athena:8327:/
+1453.2 "Geocentrism" sync / 1[56]:[^:]*:Pallas Athena:832[AB9]:/
+1453.8 "Ultima Ray" sync / 1[56]:[^:]*:Hemitheos:8330:/
+1454.0 "Missing Link" sync / 1[56]:[^:]*:Pallas Athena:8586:/
+1457.1 "Divine Excoriation" sync / 1[56]:[^:]*:Pallas Athena:832E:/
+
+1465.2 "Summon Darkness" sync / 1[56]:[^:]*:Pallas Athena:832F:/
+1476.2 "Ultima Blow" #sync / 1[56]:[^:]*:Hemitheos:8348:/
+1480.4 "Ultima 7" sync / 1[56]:[^:]*:Pallas Athena:86F6:/
+1490.1 "Ultima Blow" #sync / 1[56]:[^:]*:Hemitheos:8348:/
+1494.6 "Ultima 8" sync / 1[56]:[^:]*:Pallas Athena:86F6:/
+
+1508.4 "--sync--" sync / 14:[^:]*:Pallas Athena:8349:/ window 30,30
+1523.4 "Ignorabimus" sync / 1[56]:[^:]*:Pallas Athena:8349:/
+
+
+### Ability Chart
+#
+## Phase 1
+#
+# Athena:8677 auto
+# Athena:8304 On the Soul, cast and damage
+# Athena:82ED Paradeigma, cast and self-targeted
+# Athena:8315 unknown unnamed ability (recentering?)
+# Athena:82E1 Trinity of Souls, top right first wing cast and damage
+# Athena:82E2 Trinity of Souls, top left first wing cast and damage
+# Athena:82E3 Trinity of Souls, middle right second wing (top down) damage
+# Athena:82E4 Trinity of Souls, middle left second wing (top down) damage
+# Athena:82E5 Trinity of Souls, bottom right third wing damage
+# Athena:82E6 Trinity of Souls, bottom left third wing damage
+# Athena:82E7 Trinity of Souls, bottom right first wing cast and damage
+# Athena:82E8 Trinity of Souls, top right first wing cast and damage
+# Athena:82E9 Trinity of Souls, middle right second wing (bottom up) damage
+# Athena:82EA Trinity of Souls, middle left second wing (bottom up) damage
+# Athena:82EB Trinity of Souls, top right third wing damage
+# Athena:82EC Trinity of Souls, top left third wing damage
+# Thymou Idea:8314, untargeted unnamed ability, White Flame add positioning?
+# Anthropos:82EF White Flame, self-targeted ability
+# Anthropos:82F0 White Flame, damage
+# Athena:82ED Paradeigma, cast and self-targeted ability
+# Epithymias Idea :8314 (yes a space in name??), unnamed untargeted tether add positioning
+# Logou Idea:8314, unnamed untargeted Ray add positioning
+# Athena:8305 Engravement of Souls, cast and self-targeted ability for debuffs
+# Athena:8350 Polarized Glow, self-targeted ability
+# Anthropos:82F1 Searing Radiance, light tether damage
+# Anthropos:82F2 Shadowsear, dark tether damage
+# Athena:830C Umbral Glow, placing a light tower damage
+# Athena:830D Astral Glow, placing a dark tower damage
+# Anthropos:830E Umbral Advance, taking a light tower damage
+# Anthropos:830F Astral Advance, taking a dark tower damage
+# Anthropos:8331 Unmitigated Explosion, wipe damage for failing towers
+# Anthropos:82EE Ray of Light, laser damage
+# Athena:82FC Glaukopis, tankbuster cast and damage first hit
+# Athena:82FD Glaukopis, tankbuster damage second hit
+# Athena:82DA Superchain Theory I, cast and self-targeted ability
+# Athena:82DE Superchain Emission, 2x stack damage
+# Athnea:82DF Superchain Radiation, protean damage
+# Athena:82DB Superchain Burst, "get out" sphere damage
+# Athena:82DC Superchain Coil, "get in" donut damage
+# Athena:8307 Polarized Ray, self-targeted ability (before 8308/8309)
+# Athena:8308 Umbral Impact, light laser damage
+# Athena:8309 Astral Impact, dark laser damage
+# Athena:8306 Theos's Holy, spread damage
+# Athena:82FE Apodialogos, cast and self-targeted
+# Athena:82FF Peridialogos, cast and self-targeted
+# Athnea:8300 Apodialogos, tank damage
+# Athena:8301 Peridialogos, tank damage
+# Athena:8302 Dialogos, shared party damage
+# Athena:8312 Shock, unaspected tower damage
+# Athena:8313 Electrify, raidwide failure damage for not taking an 8312 tower
+# Athena:82DF Unnatural Enchainment, cast and self-targeted prior to Sample
+# Athena:82E0 Sample, damage from platforms breaking
+# Athena:830A Theos's Cross, cast and damage from cross ground aoe
+# Athena:830B Theos's Saltire, cast and damage from rotated cross ground aoe
+# Athena:82F3 Ultima Blade, self-targeted prior to real aoe
+# Athena:82F4 Ultima Blade, aoe damage
+# Athena:82F6 Palladion, circle damage
+# Athena:82F7 Shockwave, proximity charge damage
+# Anthropos:82FB Clear Cut, ground aoe damage from middle circle (White Flame alternative)
+# Athena:82F8 Palladion, self-targeted after all Palladion damage is done
+# Athena:82F9 Palladion, damage from breaking ground
+# Athena:82FA Theos's Ultima, cast and damage
+# Athena:86FA Superchain Theory IIA, cast and self-targeted
+# Athena:86FB Superchain Theory IIB, cast and self-targeted
+# Athena:8303 Parthenos, line aoe damage
+# Athena:8556 Theos's Ultima, cast and damage for enrage
+# Athena:834C unnamed ability transition to phase 2 (targetable in ~61.3s after this)
+#
+## Phase 2
+#
+# Pallas Athena:8678 auto (initial)
+# Pallas Athena:86F5 auto (Gaiochos)
+# Pallas Athena:8682 Ultima, cast and damage
+# Pallas Athena:86F6 Ultima, cast and damage (Gaiochos)
+# Pallas Athena:87A0 Ultima, self-targeted (Gaiochos, comes slightly after 86F6 damage?)
+# Pallas Athena:831A Palladian Grasp, self-targeted 1
+# Pallas Athena:831B Palladian Grasp, self-targeted 2
+# Pallas Athena:831C Palladian Grasp, damage west side
+# Pallas Athena:831D Palladian Grasp, damage east side
+# Pallas Athena:834D unknown unnamed, probably Gaiaochos effect
+# Pallas Athena:8326 Gaiaochos, cast and damage
+# Pallas Athena:879F Gaiaochos, self-targeted (comes slightly after 8326 damage?)
+# Pallas Athena:832F Summon Darkness, creates 1 or 3 Hemitheos adds
+# Hemitheos:8330 Ultima Ray, cast and damage laser from adds
+# Pallas Atena:8586 Missing Link, ability with no target ~after chains break
+# Pallas Athena:8327 Demi Parhelion, cast and self-targeted
+# Pallas Athena:8328 Demi Parhelion, cast and damage for 9x circles
+# Pallas Athena:8329 Geocentrism, cast and self-targeted, vertical version
+# Pallas Athena:832A Geocentrism, cast and self-targeted, circle version
+# Pallas Athena:832B Geocentrism, cast and self-targeted, horizontal version
+# Pallas Athena:832C Demi Parhelion, fire damage during Geocentrism
+# Pallas Athena:832E Divine Excoriation, spread damage during Demi Parhelion/Geocentrism
+# Pallas Athena:8331 The Classical Concepts, cast and damage
+# Concept of Fire:8334 Aspect Effect, untargeted ability, maybe tethering?
+# Concept of Earth:8334 Aspect Effect, untargeted ability, maybe tethering?
+# Concept of Fire:8333 Implode, ground circle (triangle? square?)
+# Concept of Earth:8333 Implode, ground circle (triangle? square?)
+# Concept of Water:8333 Implode, ground circle (icosahedron)
+# Pallas Athena:8332 Fusion Burst, failing shape tethers and having shapes combine
+# Pallas Athena:8335 Tilted Balance, damage for failed tether distance
+# Pallas Athena:8323 Palladian Ray, self-targeted ability, protean sword drop
+# Pallas Athena:8324 Palladian Ray, damage, first protean hit
+# Pallas Athena:8325 Palladian Ray, damage, avoidable followup proteans
+# Pallas Athena:8317 Crush Helm, cast and self-targeted buster
+# Pallas Athena:8318 Crush Helm, first four damage hits on tanks (non-cleaving)
+# Pallas Athena:8319 Crush Helm, final damage hit on tank (non-cleaving)
+# Pallas Athena:8338 Caloric Theory, cast and damage
+# Pallas Athena:833D Caloric Theory, self-targeted only for Caloric Theory 1
+# Pallas Athena:86FD Pyre Pulse, self-targeted ability for 833A
+# Pallas Athena:833A Pyre Pulse, 2 person stack damage for fires
+# Pallas Athena:833B Dynamic Atmosphere, wind donut explosion damage
+# Pallas Athena:8339 Unmitigated Explosion, wipe damage for failing to do Caloric Theory right
+# Pallas Athena:831E Ekpyrosis, cast and self-targeted for exaflare mechanic
+# Pallas Athena:831F Ekpyrosis, cast and damage for initial exaflare circles
+# Pallas Athena:8683 Ekpyrosis, cast and damage for proximity damage
+# Pallas Athena:8320 Ekpyrosis, damage for ongoing exaflare circles
+# Pallas Athena:8322 Ekpyrosis, spread damage during exaflares
+# Pallas Athena:833F Pangenesis, cast and damage
+# Pallas Athena:8342 Pantheos, cast and self-targeted ability
+# Hemitheos:8343 Umbral Advent, tower
+# Hemitheos:8344 Astral Advent, tower
+# Pallas Athena:8340 Biochemical Factor, two people merging?
+# Pallas Athena:8341 Ex-factor, wipe damage for failing to cleanse Unstable Factor
+# Forbidden Factor:8347 Factor In, slime damage
+# Pallas Athena:8336 Panta Rhei, cast and self-targeted "swap places" mechanic
+# Concept of Fire:8337 Panta Rhei, untargeted "swap places" ability
+# Concept of Earth:8337 Panta Rhei, untargeted "swap places" ability
+# Concept of Water:8337 Panta Rhei, untargeted "swap places" ability
+# Pallas Athena:833E Caloric Theory, cast and damage on initial spread person
+# Pallas Athena:8792 Caloric Theory, cast and damage for initial wind donut
+# Pallas Athena:833C Entropic Excess, cast and ground targeted circles
+# Pallas Athena:8339 Unmitigated Explosion, caloric theory failure
+# Hemitheos:8348 Ultima Blow, tether laser damage during Gaiaochos 2
+# Pallas Athena:8349 Ignorabimus, enrage cast and damage

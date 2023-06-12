@@ -339,9 +339,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Combatant Cast',
       type: 'CombatantMemory',
-      netRegex: NetRegexes.combatantMemory({
+      netRegex: {
         pair: [{ key: 'IsCasting1', value: '1' }, { key: 'CastBuffID', value: '.*?' }],
-      }),
+      },
       condition: (data) => data.watchingForCast,
       infoText: (data, matches, output) => {
         data.watchingForCast = false;
@@ -360,7 +360,6 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       locale: 'de',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
         'You bow courteously to the striking dummy':
@@ -371,6 +370,7 @@ const triggerSet: TriggerSet<Data> = {
         'cactbot test response': 'cactbot test antwort',
         'cactbot test watch': 'cactbot test beobachten',
         'cactbot test config': 'cactbot test konfig',
+        'cactbot test combatant cast': 'cactbot test gegner wirken',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
         'You psych yourself up alongside the striking dummy':
           'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
