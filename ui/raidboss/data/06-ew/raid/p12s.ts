@@ -97,8 +97,7 @@ const limitCutMap: { [id: string]: number } = {
 
 const limitCutIds: readonly string[] = Object.keys(limitCutMap);
 const wingIds: readonly string[] = Object.values(wings);
-// TODO: make it possible for this to be readonly
-const superchainNpcBaseIds: string[] = Object.values(superchainNpcBaseIdMap);
+const superchainNpcBaseIds: readonly string[] = Object.values(superchainNpcBaseIdMap);
 
 const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   if (data.decOffset === undefined) {

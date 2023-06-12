@@ -273,7 +273,9 @@ export const translateRegexBuildParam = <T extends TriggerTypes>(
   replaceLang: Lang,
   replacements?: TimelineReplacement[],
 ): NetParams[T] => {
-  type AnonymousParams = { [name: string]: string | string[] | boolean | undefined | unknown[] };
+  type AnonymousParams = {
+    [name: string]: string | readonly string[] | boolean | undefined | unknown[];
+  };
   const anonParams: AnonymousParams = params;
   for (const key of keysThatRequireTranslation) {
     const value = anonParams[key];

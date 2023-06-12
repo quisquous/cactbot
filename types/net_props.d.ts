@@ -30,7 +30,7 @@ type RepeatingFieldsParams<
   : never;
 
 type Params<T extends string> = Partial<
-  & Record<Exclude<T, 'timestamp' | 'capture'>, string | string[]>
+  & Record<Exclude<T, 'timestamp' | 'capture'>, string | readonly string[]>
   & { 'timestamp': string; 'capture': boolean }
 >;
 
