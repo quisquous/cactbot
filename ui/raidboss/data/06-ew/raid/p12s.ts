@@ -508,7 +508,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { npcNameId: superchainNpcNameId, npcBaseId: superchainNpcBaseIds, capture: false },
       condition: (data) => data.phase === 'superchain1' && data.superchainCollect.length === 7,
       // TODO: should we base this off of the first coil/burst instead?
-      delaySeconds: 7.2,
+      // 7.2 seconds is the time until the second mechanic finishes, so call early.
+      delaySeconds: 6.2,
       alertText: (data, _matches, output) => {
         // Sort ascending.
         const collect = data.superchainCollect.slice(3, 7).sort((a, b) =>
@@ -569,7 +570,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { npcNameId: superchainNpcNameId, npcBaseId: superchainNpcBaseIds, capture: false },
       condition: (data) => data.phase === 'superchain1' && data.superchainCollect.length === 10,
       // TODO: should we base this off of the first coil/burst instead?
-      delaySeconds: 10.6,
+      // 10.6 seconds is the time until the second mechanic finishes, so call early.
+      delaySeconds: 9.1,
       alertText: (data, _matches, output) => {
         // Sort ascending.
         const collect = data.superchainCollect.slice(7, 10).sort((a, b) =>
