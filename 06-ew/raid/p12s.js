@@ -1,3 +1,14 @@
+// TODO: north / south laser add call for first Paradeigma
+// TODO: second paradeigma tether/tower debuff?
+// TODO: laser add call (inner west / inner east?) for second Paradeigma
+// TODO: glaukopis tank swap call
+// TODO: glaukopis tank swap after 2nd hit (if different person took both)
+// TODO: tether/tower/saltire/cross debuffs for third Paradeigma (and partners for towers?)
+// TODO: light/dark tower call for third Paradeigma (+ taking towers, baiting adds, etc)
+// TODO: add phase dash calls?? (maybe this is overkill)
+// TODO: Superchain 2A
+// TODO: Superchain 2B
+// TODO: final Sample safe spot
 const wings = {
   // vfx/lockon/eff/m0829_cst19_9s_c0v.avfx
   topLeftFirst: '01A5',
@@ -67,19 +78,30 @@ Options.Triggers.push({
   timelineFile: 'p12s.txt',
   initData: () => {
     return {
-      phase: 'door',
+      isDoorBoss: true,
       wingCollect: [],
       wingCalls: [],
+      whiteFlameCounter: 0,
     };
   },
   triggers: [
     {
-      id: 'P12S Phase Tracker',
+      id: 'P12S Phase Tracker 1',
+      type: 'Ability',
+      // 82F3 = Palladion
+      netRegex: { id: '82F3', source: 'Athena', capture: false },
+      run: (data) => {
+        data.phase = 'palladion';
+        data.whiteFlameCounter = 0;
+      },
+    },
+    {
+      id: 'P12S Phase Tracker 2',
       type: 'StartsUsing',
-      // Ultima cast
+      // 8682 = Ultima cast
       netRegex: { id: '8682', source: 'Pallas Athena', capture: false },
       run: (data) => {
-        data.phase = 'final';
+        data.isDoorBoss = false;
         data.expectedFirstHeadmarker = headmarkers.palladianGrasp;
       },
     },
@@ -96,6 +118,12 @@ Options.Triggers.push({
       },
     },
     // --------------------- Phase 1 ------------------------
+    {
+      id: 'P12S On the Soul',
+      type: 'StartsUsing',
+      netRegex: { id: '8304', source: 'Athena', capture: false },
+      response: Responses.aoe(),
+    },
     {
       id: 'P12S First Wing',
       type: 'StartsUsing',
@@ -268,6 +296,7 @@ Options.Triggers.push({
         const num = limitCutMap[id];
         if (num === undefined)
           return;
+        data.limitCutNumber = num;
         return output.text({ num: num });
       },
       outputStrings: {
@@ -279,6 +308,73 @@ Options.Triggers.push({
           cn: '${num}',
           ko: '${num}',
         },
+      },
+    },
+    {
+      id: 'P12S Palladion White Flame Initial',
+      type: 'StartsUsing',
+      // 82F5 = Palladion cast
+      netRegex: { id: '82F5', source: 'Athena', capture: false },
+      // Don't collide with number callout.
+      delaySeconds: 2,
+      durationSeconds: 4,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          baitLaser: {
+            en: 'Bait Laser',
+          },
+          firstWhiteFlame: {
+            en: '(5 and 7 bait)',
+          },
+        };
+        const infoText = output.firstWhiteFlame();
+        if (data.limitCutNumber === 5 || data.limitCutNumber === 7)
+          return { alert: output.baitLaser(), infoText: infoText };
+        return { infoText: infoText };
+      },
+    },
+    {
+      id: 'P12S Palladion White Flame Followup',
+      type: 'Ability',
+      netRegex: { id: '82EF', source: 'Anthropos', capture: false },
+      condition: (data) => data.phase === 'palladion',
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          baitLaser: {
+            en: 'Bait Laser',
+          },
+          secondWhiteFlame: {
+            en: '(6 and 8 bait)',
+          },
+          thirdWhiteFlame: {
+            en: '(1 and 3 bait)',
+          },
+          fourthWhiteFlame: {
+            en: '(2 and 4 bait)',
+          },
+        };
+        data.whiteFlameCounter++;
+        const baitLaser = output.baitLaser();
+        if (data.whiteFlameCounter === 1) {
+          const infoText = output.secondWhiteFlame();
+          if (data.limitCutNumber === 6 || data.limitCutNumber === 8)
+            return { alertText: baitLaser, infoText: infoText };
+          return { infoText: infoText };
+        }
+        if (data.whiteFlameCounter === 2) {
+          const infoText = output.thirdWhiteFlame();
+          if (data.limitCutNumber === 1 || data.limitCutNumber === 3)
+            return { alertText: baitLaser, infoText: infoText };
+          return { infoText: infoText };
+        }
+        if (data.whiteFlameCounter === 3) {
+          const infoText = output.fourthWhiteFlame();
+          if (data.limitCutNumber === 2 || data.limitCutNumber === 4)
+            return { alertText: baitLaser, infoText: infoText };
+          return { infoText: infoText };
+        }
       },
     },
     // --------------------- Phase 2 ------------------------
