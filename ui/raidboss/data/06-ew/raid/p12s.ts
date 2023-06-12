@@ -1,6 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
+import { Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
@@ -14,9 +15,19 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: tether/tower/saltire/cross debuffs for third Paradeigma (and partners for towers?)
 // TODO: light/dark tower call for third Paradeigma (+ taking towers, baiting adds, etc)
 // TODO: add phase dash calls?? (maybe this is overkill)
+// TODO: Superchain 1 debuff triggers (maybe combine with existing triggers?)
 // TODO: Superchain 2A
 // TODO: Superchain 2B
 // TODO: final Sample safe spot
+
+const centerX = 100;
+const centerY = 100;
+
+const distSqr = (a: NetMatches['AddedCombatant'], b: NetMatches['AddedCombatant']): number => {
+  const dX = parseFloat(a.x) - parseFloat(b.x);
+  const dY = parseFloat(a.y) - parseFloat(b.y);
+  return dX * dX + dY * dY;
+};
 
 const wings = {
   // vfx/lockon/eff/m0829_cst19_9s_c0v.avfx
@@ -39,6 +50,16 @@ const wings = {
   bottomLeftThird: '01B1', // 82E6 damage
   // vfx/lockon/eff/m0829_cst23_3s_c0v.avfx
   bottomRightThird: '01B2', // 82E5 damage
+} as const;
+
+type SuperchainMechanic = 'destination' | 'out' | 'in' | 'protean' | 'partners';
+const superchainNpcNameId = '12377';
+const superchainNpcBaseIdMap: Record<SuperchainMechanic, string> = {
+  destination: '16176',
+  out: '16177',
+  in: '16178',
+  protean: '16179',
+  partners: '16180',
 } as const;
 
 const headmarkers = {
@@ -76,6 +97,8 @@ const limitCutMap: { [id: string]: number } = {
 
 const limitCutIds: readonly string[] = Object.keys(limitCutMap);
 const wingIds: readonly string[] = Object.values(wings);
+// TODO: make it possible for this to be readonly
+const superchainNpcBaseIds: string[] = Object.values(superchainNpcBaseIdMap);
 
 const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   if (data.decOffset === undefined) {
@@ -92,9 +115,11 @@ export interface Data extends RaidbossData {
   decOffset?: number;
   expectedFirstHeadmarker?: string;
   isDoorBoss: boolean;
-  phase?: 'palladion';
+  phase?: 'superchain1' | 'palladion' | 'superchain2a' | 'superchain2b';
   wingCollect: string[];
   wingCalls: ('swap' | 'stay')[];
+  superchainCollect: NetMatches['AddedCombatant'][];
+  superchain1FirstDest?: NetMatches['AddedCombatant'];
   limitCutNumber?: number;
   whiteFlameCounter: number;
 }
@@ -108,18 +133,26 @@ const triggerSet: TriggerSet<Data> = {
       isDoorBoss: true,
       wingCollect: [],
       wingCalls: [],
+      superchainCollect: [],
       whiteFlameCounter: 0,
     };
   },
   triggers: [
     {
       id: 'P12S Phase Tracker 1',
-      type: 'Ability',
-      // 82F3 = Palladion
-      netRegex: { id: '82F3', source: 'Athena', capture: false },
-      run: (data) => {
-        data.phase = 'palladion';
+      type: 'StartsUsing',
+      netRegex: { id: ['82DA', '82F5', '86FA', '86FB'], source: 'Athena' },
+      run: (data, matches) => {
         data.whiteFlameCounter = 0;
+        data.superchainCollect = [];
+
+        const phaseMap: { [id: string]: Data['phase'] } = {
+          '82DA': 'superchain1',
+          '82F5': 'palladion',
+          '86FA': 'superchain2a',
+          '86FB': 'superchain2b',
+        } as const;
+        data.phase = phaseMap[matches.id];
       },
     },
     {
@@ -412,6 +445,155 @@ const triggerSet: TriggerSet<Data> = {
             return { alertText: baitLaser, infoText: infoText };
           return { infoText: infoText };
         }
+      },
+    },
+    {
+      id: 'P12S Superchain Theory Collect',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: superchainNpcNameId, npcBaseId: superchainNpcBaseIds },
+      // Note: do not modify or clear this in any trigger but phase reset.
+      run: (data, matches) => data.superchainCollect.push(matches),
+    },
+    {
+      id: 'P12S Superchain Theory I First Mechanic',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: superchainNpcNameId, npcBaseId: superchainNpcBaseIds, capture: false },
+      condition: (data) => data.phase === 'superchain1' && data.superchainCollect.length === 3,
+      alertText: (data, _matches, output) => {
+        const ids = data.superchainCollect.slice(0, 3).map((x) => x.npcBaseId).sort();
+        const [destMatches] = data.superchainCollect.filter((x) =>
+          x.npcBaseId === superchainNpcBaseIdMap.destination
+        );
+
+        // Based on id sorting (see: superchainNpcBaseIdMap), they will always be in this order.
+        const [, inOut, proteanPartner] = ids;
+        if (destMatches === undefined || inOut === undefined || proteanPartner === undefined)
+          return;
+
+        // TODO: technically this is just intercardinals and we don't need all outputs here.
+        // Do we need another helper for this?
+        const dirStr = Directions.addedCombatantPosTo8DirOutput(destMatches, centerX, centerY);
+        const dir = output[dirStr]!();
+        data.superchain1FirstDest = destMatches;
+
+        if (inOut === superchainNpcBaseIdMap.in) {
+          if (proteanPartner === superchainNpcBaseIdMap.protean)
+            return output.inAndProtean!({ dir: dir });
+          return output.inAndPartners!({ dir: dir });
+        }
+
+        if (proteanPartner === superchainNpcBaseIdMap.protean)
+          return output.outAndProtean!({ dir: dir });
+        return output.outAndPartners!({ dir: dir });
+      },
+      outputStrings: {
+        inAndProtean: {
+          en: 'In + Protean (${dir})',
+        },
+        inAndPartners: {
+          en: 'In + Partners (${dir})',
+        },
+        outAndProtean: {
+          en: 'Out + Protean (${dir})',
+        },
+        outAndPartners: {
+          en: 'Out + Partners (${dir})',
+        },
+        ...Directions.outputStrings8Dir,
+      },
+    },
+    {
+      id: 'P12S Superchain Theory I Second Mechanic',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: superchainNpcNameId, npcBaseId: superchainNpcBaseIds, capture: false },
+      condition: (data) => data.phase === 'superchain1' && data.superchainCollect.length === 7,
+      // TODO: should we base this off of the first coil/burst instead?
+      // 7.2 seconds is the time until the second mechanic finishes, so call early.
+      delaySeconds: 6.2,
+      alertText: (data, _matches, output) => {
+        // Sort ascending.
+        const collect = data.superchainCollect.slice(3, 7).sort((a, b) =>
+          parseInt(a.npcBaseId) - parseInt(b.npcBaseId)
+        );
+
+        const firstMechDest = data.superchain1FirstDest;
+        if (firstMechDest === undefined)
+          return;
+        const [dest1, dest2, donut, sphere] = collect;
+        if (
+          dest1 === undefined || dest2 === undefined || donut === undefined || sphere === undefined
+        )
+          return;
+
+        // TODO: it'd sure be nice if we had more info about what is tethered to what
+        // as part of AddedCombatant, but for now we can heuristic our way out of this.
+        const expectedDistanceSqr = 561.3101;
+        const dest1Donut = Math.abs(distSqr(dest1, donut) - expectedDistanceSqr);
+        const dest2Donut = Math.abs(distSqr(dest2, donut) - expectedDistanceSqr);
+        const dest1Sphere = Math.abs(distSqr(dest1, sphere) - expectedDistanceSqr);
+        const dest2Sphere = Math.abs(distSqr(dest2, sphere) - expectedDistanceSqr);
+
+        let donutDest;
+        // Extra checks just in case??
+        if (dest1Donut < dest1Sphere && dest2Donut > dest2Sphere)
+          donutDest = dest1;
+        else if (dest1Donut > dest1Sphere && dest2Donut < dest2Sphere)
+          donutDest = dest2;
+
+        if (donutDest === undefined)
+          return;
+
+        const prevDir = Directions.addedCombatantPosTo8Dir(firstMechDest, centerX, centerY);
+        const thisDir = Directions.addedCombatantPosTo8Dir(donutDest, centerX, centerY);
+
+        const rotation = (thisDir - prevDir + 8) % 8;
+        if (rotation === 2)
+          return output.leftClockwise!();
+        if (rotation === 6)
+          return output.rightCounterclockwise!();
+      },
+      outputStrings: {
+        // This is left and right facing the boss.
+        // TODO: this should probably also say your debuff,
+        // e.g. "Left (Dark Laser)" or "Right (Light Tower)" or something?
+        leftClockwise: {
+          en: 'Left (CW)',
+        },
+        rightCounterclockwise: {
+          en: 'Right (CCW)',
+        },
+      },
+    },
+    {
+      id: 'P12S Superchain Theory I Third Mechanic',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: superchainNpcNameId, npcBaseId: superchainNpcBaseIds, capture: false },
+      condition: (data) => data.phase === 'superchain1' && data.superchainCollect.length === 10,
+      // TODO: should we base this off of the first coil/burst instead?
+      // 10.6 seconds is the time until the second mechanic finishes, so call early.
+      delaySeconds: 9.1,
+      alertText: (data, _matches, output) => {
+        // Sort ascending.
+        const collect = data.superchainCollect.slice(7, 10).sort((a, b) =>
+          parseInt(a.npcBaseId) - parseInt(b.npcBaseId)
+        );
+
+        // Based on id sorting (see: superchainNpcBaseIdMap), they will always be in this order.
+        const [dest, donut, sphere] = collect;
+        if (dest === undefined || donut === undefined || sphere === undefined)
+          return;
+
+        const donutDistSqr = distSqr(donut, dest);
+        const sphereDistSqr = distSqr(sphere, dest);
+        if (donutDistSqr > sphereDistSqr)
+          return output.inThenOut!();
+        return output.outThenIn!();
+      },
+      outputStrings: {
+        // TODO: this should also say to spread / place tower / take tower
+        // TODO: maybe we need separate calls for these ^ after initial donut/sphere goes off?
+        inThenOut: Outputs.inThenOut,
+        outThenIn: Outputs.outThenIn,
       },
     },
     // --------------------- Phase 2 ------------------------
