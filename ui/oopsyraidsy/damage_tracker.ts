@@ -37,7 +37,6 @@ import {
   kShiftFlagValues,
   playerDamageFields,
   playerTargetFields,
-  ShortNamify,
   Translate,
   UnscrambleDamage,
 } from './oopsy_common';
@@ -166,7 +165,7 @@ export class DamageTracker {
           return true;
         return false;
       },
-      ShortName: (name?: string) => ShortNamify(name, this.options.PlayerNicks),
+      ShortName: (name?: string) => Util.shortName(name, this.options.PlayerNicks),
       IsPlayerId: IsPlayerId,
       DamageFromMatches: (matches: NetMatches['Ability']) => UnscrambleDamage(matches?.damage),
       options: this.options,

@@ -59,6 +59,7 @@ const getFakeRaidbossData = (triggerSet?: LooseTriggerSet): RaidbossData => {
     CanCleanse: () => false,
     CanFeint: () => false,
     CanAddle: () => false,
+    partyMemberParam: (_name) => undefined,
     ...triggerSet?.initData?.() ?? {},
   };
 };
@@ -643,10 +644,16 @@ const testTriggerFile = (file: string, info: TriggerSetInfo) => {
 
           for (const key of keys) {
             for (const param of outputStringsParams[key] ?? []) {
-              if (
-                (!Regexes.parse(`\\b${param}\\s*:`).exec(funcStr)) &&
-                (!Regexes.parse(`\\b${param.split('.')[0] ?? ''}\\s*:`).exec(funcStr))
-              ) {
+              // Only allow one level of prop specification, e.g. `obj.key`
+              // Do not allow `obj.key.subkey`
+              const paramParts = param.split('.');
+              if (paramParts.length > 2) {
+                assert.fail(
+                  `'${id}' specifies an object key ('${param}') with too many parts`,
+                );
+              }
+              const trimmedParam = paramParts[0] ?? param;
+              if (!Regexes.parse(`\\b${trimmedParam}\\s*:`).exec(funcStr)) {
                 assert.fail(
                   `'${id}' does not define param '${param}' for outputStrings entry '${key}'`,
                 );

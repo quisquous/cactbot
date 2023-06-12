@@ -1259,6 +1259,7 @@ class RaidbossConfigurator {
       CanCleanse: () => false,
       CanFeint: () => false,
       CanAddle: () => false,
+      partyMemberParam: (_name) => undefined,
       parserLang: this.base.lang,
       displayLang: this.base.lang,
     };
@@ -2132,6 +2133,22 @@ const templateOptions: OptionsTemplate = {
       },
       type: 'checkbox',
       default: true,
+    },
+    {
+      id: 'DefaultPlayerLabel',
+      name: {
+        en: 'Default Player Label',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Short Name (Tini)': 'shortName',
+          'Role (Tank)': 'role',
+          'Job (WAR)': 'job',
+          'Full Name (Tini Poutini)': 'name',
+        },
+      },
+      default: 'shortName',
     },
     {
       id: 'ShowTimerBarsAtSeconds',

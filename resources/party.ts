@@ -1,5 +1,6 @@
 import { Party } from '../types/event';
 import { Job, Role } from '../types/job';
+import { OutputStringsParamObject } from '../types/trigger';
 
 import Util from './util';
 
@@ -13,6 +14,21 @@ const emptyRoleToPartyNames = () => {
     none: [],
   };
 };
+
+export type BasePartyMemberParamObject = {
+  role: string;
+  job: Job;
+  id: string;
+  name: string;
+  shortName: string;
+};
+
+export type PartyMemberParamObjectKeys = keyof BasePartyMemberParamObject;
+
+export interface PartyMemberParamObject
+  extends OutputStringsParamObject, BasePartyMemberParamObject {
+  toString: () => string;
+}
 
 export default class PartyTracker {
   details: Party[] = [];
@@ -154,5 +170,37 @@ export default class PartyTracker {
 
   nameFromId(id: string): string | undefined {
     return this.idToName_[id];
+  }
+
+  paramObjectFromName(
+    name: string,
+    defaultValue: keyof PartyMemberParamObject,
+    playerNicks: { [name: string]: string },
+  ): PartyMemberParamObject | undefined {
+    const partyMember = this.details.find((member) => member.name === name);
+    if (!partyMember)
+      return;
+
+    const jobName = Util.jobEnumToJob(partyMember.job);
+    const role = Util.jobToRole(jobName);
+    const ret: PartyMemberParamObject = {
+      id: partyMember.id,
+      job: jobName,
+      role: role,
+      name: name,
+      shortName: Util.shortName(name, playerNicks),
+    };
+
+    // Need to assign this afterwards so it can reference `ret`
+    ret.toString = () => {
+      const retVal = ret[defaultValue];
+      if (typeof retVal === 'string')
+        return retVal;
+      if (typeof retVal === 'number')
+        return retVal.toString();
+      return name;
+    };
+
+    return ret;
   }
 }

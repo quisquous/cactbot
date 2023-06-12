@@ -1,4 +1,5 @@
 import { Lang } from '../../resources/languages';
+import { PartyMemberParamObjectKeys } from '../../resources/party';
 import UserConfig, { ConfigValue } from '../../resources/user_config';
 import { BaseOptions, RaidbossData } from '../../types/data';
 import { Matches } from '../../types/net_matches';
@@ -97,6 +98,7 @@ const defaultRaidbossConfigOptions = {
   TimelineLanguage: undefined as (Lang | undefined),
   TimelineEnabled: true,
   AlertsEnabled: true,
+  DefaultPlayerLabel: undefined as (PartyMemberParamObjectKeys | undefined),
   ShowTimerBarsAtSeconds: 30,
   KeepExpiredTimerBarsForSeconds: 0.7,
   BarExpiresSoonSeconds: 6,

@@ -387,6 +387,10 @@ class TriggerOutputProxy {
 
         if (!(key in params) && key.includes('.')) {
           const parts = key.split('.');
+          // Only a warning here (for user triggers), but mocha tests will error out for this case
+          // If the user specifices extra parts, just ignore them
+          if (parts.length > 2)
+            console.warn(`Trigger ${id} has extra path parts for object parameter ${key}.`);
           key = parts[0] ?? '';
           prop = parts[1];
         }
@@ -398,33 +402,38 @@ class TriggerOutputProxy {
               return val;
             case 'number':
               return val.toString();
-            case 'object':
-              if (val !== null) {
-                const looseVal = val as { [outputName: string]: unknown };
-                if (prop !== undefined) {
-                  if (!(prop in looseVal)) {
-                    console.error(
-                      `Trigger ${id} is referencing non-existant object property ${key}.${prop}.`,
-                    );
-                    return this.unknownValue;
-                  }
-                  const retVal = looseVal[prop];
-                  switch (typeof retVal) {
-                    case 'string':
-                      return retVal;
-                    case 'number':
-                      return retVal.toString();
-                    case 'object':
-                      if (retVal !== null) {
-                        return retVal.toString();
-                      }
-                      console.error(`Trigger ${id} has null object value ${key}.${prop}.`);
-                      return this.unknownValue;
-                  }
-                }
+            case 'object': {
+              if (val === null)
+                break;
+              if (prop === undefined)
+                break;
+
+              // `val` is always type `object` here, because the narrowing parent type is `unknown`
+              // It also doesn't make sense to `as` cast here to `OutputStringsParamObject`,
+              // because this property is user-supplied and would need to be checked regardless
+              const looseVal = val as { [outputName: string]: unknown };
+              if (!(prop in looseVal)) {
+                console.error(
+                  `Trigger ${id} is referencing non-existant object property ${key}.${prop}.`,
+                );
+                return this.unknownValue;
+              }
+              const retVal = looseVal[prop];
+
+              if (
+                typeof retVal !== 'string' &&
+                typeof retVal !== 'number' &&
+                typeof retVal !== 'object'
+              ) {
                 return val.toString();
               }
-              break;
+
+              if (retVal === null) {
+                console.error(`Trigger ${id} has null object value ${key}.${prop}.`);
+                return this.unknownValue;
+              }
+              return retVal.toString();
+            }
           }
           console.error(`Trigger ${id} has non-string param value ${key}.`);
           return this.unknownValue;
@@ -994,21 +1003,7 @@ export class PopupText {
   }
 
   ShortNamify(name?: string): string {
-    // TODO: make this unique among the party in case of first name collisions.
-    // TODO: probably this should be a general cactbot utility.
-    if (typeof name !== 'string') {
-      if (typeof name !== 'undefined')
-        console.error('called ShortNamify with non-string');
-      return '???';
-    }
-
-    const nick = this.options.PlayerNicks[name];
-
-    if (nick)
-      return nick;
-
-    const idx = name.indexOf(' ');
-    return idx < 0 ? name : name.slice(0, idx);
+    return Util.shortName(name, this.options.PlayerNicks);
   }
 
   Reset(): void {
@@ -1638,7 +1633,7 @@ export class PopupText {
       options: this.options,
       inCombat: this.inCombat,
       triggerSetConfig: this.triggerSetConfig,
-      ShortName: this.ShortNamify.bind(this),
+      ShortName: (name?: string) => Util.shortName(name, this.options.PlayerNicks),
       StopCombat: () => this.SetInCombat(false),
       ParseLocaleFloat: parseFloat,
       CanStun: () => Util.canStun(this.job),
@@ -1647,6 +1642,12 @@ export class PopupText {
       CanCleanse: () => Util.canCleanse(this.job),
       CanFeint: () => Util.canFeint(this.job),
       CanAddle: () => Util.canAddle(this.job),
+      partyMemberParam: (name) =>
+        this.partyTracker.paramObjectFromName(
+          name,
+          this.options.DefaultPlayerLabel ?? 'shortName',
+          this.options.PlayerNicks,
+        ),
     };
 
     let triggerData = {};

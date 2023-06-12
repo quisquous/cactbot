@@ -89,23 +89,6 @@ Examples:
 
 /* eslint-enable */
 
-export const ShortNamify = (
-  name: string | undefined,
-  playerNicks: { [name: string]: string },
-): string => {
-  // TODO: make this unique among the party in case of first name collisions.
-  // TODO: probably this should be a general cactbot utility.
-  if (!name)
-    return '???';
-
-  const nick = playerNicks[name];
-  if (nick)
-    return nick;
-
-  const idx = name.indexOf(' ');
-  return idx < 0 ? name : name.slice(0, idx);
-};
-
 export const Translate = (lang: Lang, obj?: LocaleText | string): string | undefined => {
   if (typeof obj !== 'object')
     return obj;
