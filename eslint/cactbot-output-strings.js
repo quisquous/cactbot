@@ -249,11 +249,7 @@ const ruleModule = {
                   });
                 }
                 const trimmedKey = keyParts[0];
-                if (
-                  !t.isIdentifier(args[0]) &&
-                  !keysInParams.includes(trimmedKey) &&
-                  !keysInParams.includes(trimmedKey.split('.')[0])
-                ) {
+                if (!t.isIdentifier(args[0]) && !keysInParams.includes(trimmedKey)) {
                   context.report({
                     node,
                     messageId: 'missingTemplateValue',
