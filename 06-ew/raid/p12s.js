@@ -78,7 +78,6 @@ const limitCutMap = {
 };
 const limitCutIds = Object.keys(limitCutMap);
 const wingIds = Object.values(wings);
-// TODO: make it possible for this to be readonly
 const superchainNpcBaseIds = Object.values(superchainNpcBaseIdMap);
 const getHeadmarkerId = (data, matches) => {
   if (data.decOffset === undefined) {
