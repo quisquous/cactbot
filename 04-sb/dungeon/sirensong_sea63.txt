@@ -1,0 +1,107 @@
+### The Sirensong Sea
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+### Lugat
+# -p 1F56:18.5
+# -ii 1F5A
+
+0.0 "Start" sync / 00:0839::Spae Rock will be sealed off/ window 0,1
+18.5 "Amorphous Applause" sync / 1[56]:[^:]*:Lugat:1F56:/
+29.6 "Hydroball" sync / 1[56]:[^:]*:Lugat:1F57:/
+
+41.4 "Sea Swallows All" sync / 1[56]:[^:]*:Lugat:1F58:/
+47.1 "Concussive Oscillation" sync / 1[56]:[^:]*:Lugat:1F5B:/
+54.0 "Amorphous Applause" sync / 1[56]:[^:]*:Lugat:1F56:/
+70.2 "Amorphous Applause" sync / 1[56]:[^:]*:Lugat:1F56:/
+80.0 "Overtow" sync / 1[56]:[^:]*:Lugat:1F59:/
+87.3 "Hydroball" sync / 1[56]:[^:]*:Lugat:1F57:/
+94.5 "Amorphous Applause" sync / 1[56]:[^:]*:Lugat:1F56:/
+110.7 "Amorphous Applause" sync / 1[56]:[^:]*:Lugat:1F56:/
+
+120.2 "Sea Swallows All" sync / 1[56]:[^:]*:Lugat:1F58:/ window 30,30 jump 41.4
+125.9 "Concussive Oscillation" #sync / 1[56]:[^:]*:Lugat:1F5B:/
+132.8 "Amorphous Applause" #sync / 1[56]:[^:]*:Lugat:1F56:/
+149.0 "Amorphous Applause" #sync / 1[56]:[^:]*:Lugat:1F56:/
+158.8 "Overtow" #sync / 1[56]:[^:]*:Lugat:1F59:/
+166.1 "Hydroball" #sync / 1[56]:[^:]*:Lugat:1F57:/
+173.3 "Amorphous Applause" #sync / 1[56]:[^:]*:Lugat:1F56:/
+189.5 "Amorphous Applause" #sync / 1[56]:[^:]*:Lugat:1F56:/
+
+
+### The Governor
+# -p 1F5E:1017.5
+# -ii 1F5D
+
+1000.0 "Start" sync / 00:0839::Warden's Delight will be sealed off/ window 1000,5
+1017.5 "Shadowflow" sync / 1[56]:[^:]*:The Governor:1F5E:/
+1018.0 "--sync--" sync / 1[56]:[^:]*:The Governor:1F5F:/
+1034.6 "Bloodburst" sync / 1[56]:[^:]*:The Governor:1F5C:/
+
+1042.8 "Enter Night" sync / 1[56]:[^:]*:The Governor:1F60:/ window 10,10
+# Enter Night can take 12-17 seconds.  There is added delay when the mechanic
+# is failed due to Shadowstrike (1F5D) attacks.
+1055.9 "--sync--" sync / 14:[^:]*:The Governor:1F5C:/ window 10,10
+1059.9 "Bloodburst" sync / 1[56]:[^:]*:The Governor:1F5C:/
+# There is potential delay before Shadow Split due to the boss moving to the middle.
+1065.0 "--sync--" sync / 14:[^:]*:The Governor:1F61:/ window 10,10
+1068.0 "Shadow Split" sync / 1[56]:[^:]*:The Governor:1F61:/
+1076.2 "Shadowflow" sync / 1[56]:[^:]*:The Governor:1F5E:/
+1076.7 "--sync--" sync / 1[56]:[^:]*:The Governor:1F5F:/
+1077.1 "Shadowflow" sync / 1[56]:[^:]*:The Groveller:1F62:/
+1093.4 "Bloodburst" sync / 1[56]:[^:]*:The Governor:1F5C:/
+
+1102.6 "Enter Night" sync / 1[56]:[^:]*:The Governor:1F60:/ window 30,30 jump 1042.8
+1115.7 "--sync--" #sync / 14:[^:]*:The Governor:1F5C:/ window 10,10
+1119.7 "Bloodburst" #sync / 1[56]:[^:]*:The Governor:1F5C:/
+1124.8 "--sync--" #sync / 14:[^:]*:The Governor:1F61:/ window 10,10
+1127.8 "Shadow Split" #sync / 1[56]:[^:]*:The Governor:1F61:/
+1136.0 "Shadowflow" #sync / 1[56]:[^:]*:The Governor:1F5E:/
+1136.5 "--sync--" #sync / 1[56]:[^:]*:The Governor:1F5F:/
+1136.9 "Shadowflow" #sync / 1[56]:[^:]*:The Groveller:1F62:/
+1153.2 "Bloodburst" #sync / 1[56]:[^:]*:The Governor:1F5C:/
+
+
+### Lorelei
+# -p 1F69:2011.5
+# -ii 1F63
+
+2000.0 "Start" sync / 00:0839::Glowering Krautz will be sealed off/ window 2000,5
+2011.5 "Virgin Tears" sync / 1[56]:[^:]*:Lorelei:1F69:/
+2024.7 "Morbid Advance/Morbid Retreat" sync / 1[56]:[^:]*:Lorelei:1F6[56]:/
+2033.9 "Head Butt" sync / 1[56]:[^:]*:Lorelei:1F64:/
+
+2041.1 "Virgin Tears" sync / 1[56]:[^:]*:Lorelei:1F69:/
+2054.2 "Morbid Advance/Morbid Retreat" sync / 1[56]:[^:]*:Lorelei:1F6[56]:/
+2062.3 "Somber Melody" sync / 1[56]:[^:]*:Lorelei:1F67:/
+2066.0 "Head Butt" sync / 1[56]:[^:]*:Lorelei:1F64:/
+
+2072.2 "Virgin Tears" sync / 1[56]:[^:]*:Lorelei:1F69:/
+2085.4 "Morbid Advance/Morbid Retreat" sync / 1[56]:[^:]*:Lorelei:1F6[56]:/
+2094.6 "Head Butt" sync / 1[56]:[^:]*:Lorelei:1F64:/
+
+2102.8 "Virgin Tears" sync / 1[56]:[^:]*:Lorelei:1F69:/ window 10,10
+2116.5 "Morbid Advance/Morbid Retreat" sync / 1[56]:[^:]*:Lorelei:1F6[56]:/
+2123.7 "Void Water III" sync / 1[56]:[^:]*:Lorelei:1F68:/
+2129.8 "Somber Melody" sync / 1[56]:[^:]*:Lorelei:1F67:/
+2135.0 "Head Butt" sync / 1[56]:[^:]*:Lorelei:1F64:/
+2143.6 "Void Water III" sync / 1[56]:[^:]*:Lorelei:1F68:/
+
+# the first 2x void water section above has a slightly different timing
+# on advance/retreat (0.5s longer?) so extend this out one more loop.
+2155.9 "Virgin Tears" sync / 1[56]:[^:]*:Lorelei:1F69:/ window 10,10
+2169.1 "Morbid Advance/Morbid Retreat" sync / 1[56]:[^:]*:Lorelei:1F6[56]:/
+2176.4 "Void Water III" sync / 1[56]:[^:]*:Lorelei:1F68:/
+2182.5 "Somber Melody" sync / 1[56]:[^:]*:Lorelei:1F67:/
+2187.7 "Head Butt" sync / 1[56]:[^:]*:Lorelei:1F64:/
+2196.3 "Void Water III" sync / 1[56]:[^:]*:Lorelei:1F68:/
+
+2208.5 "Virgin Tears" sync / 1[56]:[^:]*:Lorelei:1F69:/ window 30,30 jump 2155.9
+2221.7 "Morbid Advance/Morbid Retreat" #sync / 1[56]:[^:]*:Lorelei:1F6[56]:/
+2229.0 "Void Water III" #sync / 1[56]:[^:]*:Lorelei:1F68:/
+2235.1 "Somber Melody" #sync / 1[56]:[^:]*:Lorelei:1F67:/
+2240.3 "Head Butt" #sync / 1[56]:[^:]*:Lorelei:1F64:/
+2248.9 "Void Water III" #sync / 1[56]:[^:]*:Lorelei:1F68:/
