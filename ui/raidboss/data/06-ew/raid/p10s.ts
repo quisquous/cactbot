@@ -11,7 +11,6 @@ export interface Data extends RaidbossData {
   decOffset?: number;
   combatantData: PluginCombatantState[];
   dividingWingsTethers: string[];
-  dividingWingsMyTetherDir?: string;
   dividingWingsStacks: string[];
   dividingWingsEntangling: string[];
   meltdownSpreads: string[];
@@ -135,7 +134,6 @@ const triggerSet: TriggerSet<Data> = {
       preRun: (data, matches) => data.dividingWingsTethers.push(matches.target),
       promise: async (data, matches) => {
         if (data.me === matches.target) {
-          data.dividingWingsMyTetherDir = '';
           data.combatantData = [];
           const wingId = parseInt(matches.sourceId, 16);
           if (wingId === undefined)
@@ -144,20 +142,19 @@ const triggerSet: TriggerSet<Data> = {
             call: 'getCombatants',
             ids: [wingId],
           })).combatants;
-          const x = data.combatantData[0]?.PosX;
-          if (x === undefined)
-            return;
-          data.dividingWingsMyTetherDir = x > 100 ? 'right' : 'left';
         }
       },
       alarmText: (data, matches, output) => {
         if (data.me === matches.target) {
+          const x = data.combatantData[0]?.PosX;
+          if (x === undefined)
+            return output.default!();
           let wingSide;
           let wingDir;
-          if (data.dividingWingsMyTetherDir === 'right') {
+          if (x > 100) {
             wingSide = output.right!();
             wingDir = output.east!();
-          } else if (data.dividingWingsMyTetherDir === 'left') {
+          } else if (x < 100) {
             wingSide = output.left!();
             wingDir = output.west!();
           }
