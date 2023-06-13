@@ -388,7 +388,7 @@ class TriggerOutputProxy {
         if (!(key in params) && key.includes('.')) {
           const parts = key.split('.');
           // Only a warning here (for user triggers), but mocha tests will error out for this case
-          // If the user specifices extra parts, just ignore them
+          // If the user specifies extra parts, just ignore them
           if (parts.length > 2)
             console.warn(`Trigger ${id} has extra path parts for object parameter ${key}.`);
           key = parts[0] ?? '';
