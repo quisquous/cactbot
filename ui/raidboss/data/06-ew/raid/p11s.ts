@@ -1,3 +1,4 @@
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -7,6 +8,8 @@ export interface Data extends RaidbossData {
   lightDarkDebuff: { [name: string]: 'light' | 'dark' };
   lightDarkBuddy: { [name: string]: string };
   lightDarkTether: { [name: string]: 'near' | 'far' };
+  cylinderValue?: number;
+  numCylinders?: number;
 }
 const triggerSet: TriggerSet<Data> = {
   id: 'AnabaseiosTheEleventhCircleSavage',
@@ -404,6 +407,56 @@ const triggerSet: TriggerSet<Data> = {
           cn: '去光球 + 光门',
           ko: '빛 구슬 + 빛 문',
         },
+      },
+    },
+    {
+      id: 'P11S Lightstream Collect',
+      type: 'HeadMarker',
+      // 00E6 = orange clockwise rotation
+      // 00E7 = blue counterclockwise rotation
+      netRegex: { id: '00E[67]', target: 'Arcane Cylinder' },
+      run: (data, matches) => {
+        // Create a 3 digit binary value, Orange = 0, Blue = 1.
+        // e.g. BBO = 110 = 6
+        data.cylinderValue ??= 0;
+        data.numCylinders ??= 0;
+        data.cylinderValue *= 2;
+        if (matches.id === '00E7')
+          data.cylinderValue += 1;
+        data.numCylinders++;
+      },
+    },
+    {
+      id: 'P11S Lightstream',
+      type: 'HeadMarker',
+      netRegex: { id: '00E[67]', target: 'Arcane Cylinder', capture: false },
+      condition: (data) => data.numCylinders === 3,
+      alertText: (data, _matches, output) => {
+        if (!data.cylinderValue || !(data.cylinderValue >= 0) || data.cylinderValue > 7)
+          return;
+        const outputs: { [cylinderValue: number]: string | undefined } = {
+          0b000: undefined,
+          0b001: output.northwest!(),
+          0b010: output.east!(),
+          0b011: output.northeast!(),
+          0b100: output.southwest!(),
+          0b101: output.west!(),
+          0b110: output.southeast!(),
+          0b111: undefined,
+        };
+        return outputs[data.cylinderValue];
+      },
+      run: (data) => {
+        delete data.cylinderValue;
+        delete data.numCylinders;
+      },
+      outputStrings: {
+        east: Outputs.east,
+        northeast: Outputs.northeast,
+        northwest: Outputs.northwest,
+        southeast: Outputs.southeast,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
       },
     },
   ],
