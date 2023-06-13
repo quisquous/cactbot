@@ -1,6 +1,9 @@
 # Turn 10
 # -ii B5A B5C B60 B66 B68 B64 B59 B58 B65 B61 B57 -p B5D:200 B5E:500
 
+# Note: Use zone seal message instead of 0x104 line to start timeline
+# as there are pre-boss adds to start the encounter.
+
 hideall "--Reset--"
 hideall "--sync--"
 

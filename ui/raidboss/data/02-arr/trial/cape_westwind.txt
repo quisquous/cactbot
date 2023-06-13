@@ -1,6 +1,8 @@
 ### Cape Westwind
 # -ii 0A 2CD 2CE 194 14 -p 474:204 478:610
 
+# Trial removed in Patch 6.1
+
 hideall "--Reset--"
 hideall "--sync--"
 

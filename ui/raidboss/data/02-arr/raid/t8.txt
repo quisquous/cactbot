@@ -4,6 +4,9 @@
 # Note: sadly there's nothing in the logs about towers and so
 # there's no way to really include them here.
 
+# Note: Use zone seal message instead of 0x104 line to start timeline
+# as there are pre-boss adds to start the encounter.
+
 hideall "--Reset--"
 hideall "--sync--"
 

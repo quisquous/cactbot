@@ -1,6 +1,9 @@
 ### Turn 11
 # -ii B70 B6A B75 B74 B80 B7C -p B6F:200 B78:600 B7A:1208
 
+# Note: Use zone seal message instead of 0x104 line to start timeline
+# as there are pre-boss adds to start the encounter.
+
 hideall "--Reset--"
 hideall "--sync--"
 
