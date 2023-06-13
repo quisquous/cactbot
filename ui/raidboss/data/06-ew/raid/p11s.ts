@@ -376,7 +376,7 @@ const triggerSet: TriggerSet<Data> = {
             alertText = output.darkFar!({ player: myBuddyShort, role: myBuddyRole });
         }
 
-       let infoText: string | undefined = undefined;
+        let infoText: string | undefined = undefined;
 
         const playerNames = Object.keys(data.lightDarkTether);
         const sameLength = playerNames.filter((x) => data.lightDarkTether[x] === myLength);
