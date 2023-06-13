@@ -311,7 +311,7 @@ const triggerSet: TriggerSet<Data> = {
             ko: '어둠 가까이 +${player} (${role})',
           },
           darkFar: {
-            en: 'Dark Far w/${player}',
+            en: 'Dark Far w/${player} (${role})',
             de: 'Dunkel Entfernt w/${player} (${role})',
             fr: 'Sombre éloigné avec ${player} (${role})',
             cn: '暗远离 => ${player} (${role})',
@@ -376,7 +376,7 @@ const triggerSet: TriggerSet<Data> = {
             alertText = output.darkFar!({ player: myBuddyShort, role: myBuddyRole });
         }
 
-        let infoText: string | undefined = undefined;
+       let infoText: string | undefined = undefined;
 
         const playerNames = Object.keys(data.lightDarkTether);
         const sameLength = playerNames.filter((x) => data.lightDarkTether[x] === myLength);
