@@ -198,7 +198,7 @@ export default class PartyTracker {
         return retVal;
       if (typeof retVal === 'number')
         return retVal.toString();
-      return shortName;
+      return ret.shortName;
     };
 
     return ret;
