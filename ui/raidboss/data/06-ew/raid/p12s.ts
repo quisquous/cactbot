@@ -16,7 +16,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: light/dark tower call for third Paradeigma (+ taking towers, baiting adds, etc)
 // TODO: add phase dash calls?? (maybe this is overkill)
 // TODO: Superchain 1 debuff triggers (maybe combine with existing triggers?)
-// TODO: Superchain 2A
 // TODO: Superchain 2B
 // TODO: final Sample safe spot
 
@@ -121,6 +120,9 @@ export interface Data extends RaidbossData {
   superchain1FirstDest?: NetMatches['AddedCombatant'];
   limitCutNumber?: number;
   whiteFlameCounter: number;
+  superchain2aFirstDir?: 'north' | 'south';
+  superchain2aSecondDir?: 'north' | 'south';
+  superchain2aSecondMech?: 'protean' | 'partners';
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -191,12 +193,67 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         data.wingCollect = [];
         data.wingCalls = [];
-        const isLeft = matches.id === '82E8' || matches.id === '82E2';
-        return isLeft ? output.right!() : output.left!();
+        const isLeftAttack = matches.id === '82E8' || matches.id === '82E2';
+
+        // Normal wings.
+        const firstDir = data.superchain2aFirstDir;
+        const secondDir = data.superchain2aSecondDir;
+        if (data.phase !== 'superchain2a' || firstDir === undefined || secondDir === undefined)
+          return isLeftAttack ? output.right!() : output.left!();
+
+        if (isLeftAttack) {
+          if (firstDir === 'north') {
+            if (secondDir === 'north')
+              return output.superchain2aRightNorthNorth!();
+            return output.superchain2aRightNorthSouth!();
+          }
+          if (secondDir === 'north')
+            return output.superchain2aRightSouthNorth!();
+          return output.superchain2aRightSouthSouth!();
+        }
+
+        if (firstDir === 'north') {
+          if (secondDir === 'north')
+            return output.superchain2aLeftNorthNorth!();
+          return output.superchain2aLeftNorthSouth!();
+        }
+        if (secondDir === 'north')
+          return output.superchain2aLeftSouthNorth!();
+        return output.superchain2aLeftSouthSouth!();
       },
       outputStrings: {
         left: Outputs.left,
         right: Outputs.right,
+        // This could *also* say partners, but it's always partners and that feels like
+        // too much information.  The "after" call could be in an info text or something,
+        // but the wings are also calling out info text too.  This is a compromise.
+        // Sorry also for spelling this out so explicitly, but I suspect some people
+        // might want different left/right calls based on North/South boss facing
+        // and it's nice to have a "go through" or "go back" description too.
+        superchain2aLeftNorthNorth: {
+          en: 'North + Her Left (then back North)',
+        },
+        superchain2aLeftNorthSouth: {
+          en: 'North + Her Left (then go South)',
+        },
+        superchain2aLeftSouthNorth: {
+          en: 'South + Left (then go North)',
+        },
+        superchain2aLeftSouthSouth: {
+          en: 'South + Left (then back South)',
+        },
+        superchain2aRightNorthNorth: {
+          en: 'North + Her Right (then back North)',
+        },
+        superchain2aRightNorthSouth: {
+          en: 'North + Her Right (then go South)',
+        },
+        superchain2aRightSouthNorth: {
+          en: 'South + Right (then go North)',
+        },
+        superchain2aRightSouthSouth: {
+          en: 'South + Right (then back South)',
+        },
       },
     },
     {
@@ -295,13 +352,52 @@ const triggerSet: TriggerSet<Data> = {
         source: 'Athena',
         capture: false,
       },
+      // These are exactly 3 apart, so give them some room to disappear and not stack up.
+      durationSeconds: 2.5,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
         const call = data.wingCalls.shift();
-        if (call === 'swap')
-          return output.swap!();
-        if (call === 'stay')
+        if (call === undefined)
+          return;
+
+        // Check if a normal wing call, not during Superchain IIA.
+        const firstDir = data.superchain2aFirstDir;
+        const secondDir = data.superchain2aSecondDir;
+        const secondMech = data.superchain2aSecondMech;
+        if (
+          data.phase !== 'superchain2a' || firstDir === undefined || secondDir === undefined ||
+          secondMech === undefined
+        ) {
+          if (call === 'swap')
+            return output.swap!();
           return output.stay!();
+        }
+
+        // Second wing call (when middle) during Superchain IIA.
+        const isSecondWing = data.wingCalls.length === 1;
+        const finalDir = secondDir === 'north' ? output.north!() : output.south!();
+        if (isSecondWing) {
+          const isReturnBack = firstDir === secondDir;
+          if (call === 'swap') {
+            if (isReturnBack)
+              return output.superchain2aSwapMidBack!({ dir: finalDir });
+            return output.superchain2aSwapMidGo!({ dir: finalDir });
+          }
+          if (isReturnBack)
+            return output.superchain2aStayMidBack!({ dir: finalDir });
+          return output.superchain2aStayMidGo!({ dir: finalDir });
+        }
+
+        // Third wing call (when at final destination).
+        const isProtean = secondMech === 'protean';
+        if (call === 'swap') {
+          if (isProtean)
+            return output.superchain2aSwapProtean!({ dir: finalDir });
+          return output.superchain2aSwapPartners!({ dir: finalDir });
+        }
+        if (isProtean)
+          return output.superchain2aStayProtean!({ dir: finalDir });
+        return output.superchain2aStayPartners!({ dir: finalDir });
       },
       outputStrings: {
         swap: {
@@ -315,6 +411,57 @@ const triggerSet: TriggerSet<Data> = {
           de: 'bleib Stehen',
           fr: 'Restez',
           ko: '가만히',
+        },
+        superchain2aSwapMidBack: {
+          en: 'Swap + Mid => Back ${dir}',
+        },
+        superchain2aSwapMidGo: {
+          en: 'Swap + Mid => Go ${dir}',
+        },
+        superchain2aStayMidBack: {
+          en: 'Stay + Mid => Back ${dir}',
+        },
+        superchain2aStayMidGo: {
+          en: 'Stay + Mid => Go ${dir}',
+        },
+        superchain2aSwapProtean: {
+          en: 'Swap => Protean + ${dir}',
+        },
+        superchain2aStayProtean: {
+          en: 'Stay => Protean + ${dir}',
+        },
+        superchain2aSwapPartners: {
+          en: 'Swap => Partners + ${dir}',
+        },
+        superchain2aStayPartners: {
+          en: 'Stay => Partners + ${dir}',
+        },
+        north: Outputs.north,
+        south: Outputs.south,
+      },
+    },
+    {
+      id: 'P12S Wing Followup Third Wing Superchain IIA',
+      type: 'Ability',
+      netRegex: { id: ['82E5', '82E6', '82EB', '82EC'], source: 'Athena', capture: false },
+      condition: (data) => data.phase === 'superchain2a',
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        const secondMech = data.superchain2aSecondMech;
+        if (secondMech === undefined)
+          return;
+
+        // No direction needed here, because if you're not already here you're not going to make it.
+        if (secondMech === 'protean')
+          return output.protean!();
+        return output.partners!();
+      },
+      outputStrings: {
+        protean: {
+          en: 'Protean',
+        },
+        partners: {
+          en: 'Partners',
         },
       },
     },
@@ -616,6 +763,90 @@ const triggerSet: TriggerSet<Data> = {
         // TODO: maybe we need separate calls for these ^ after initial donut/sphere goes off?
         inThenOut: Outputs.inThenOut,
         outThenIn: Outputs.outThenIn,
+      },
+    },
+    {
+      id: 'P12S Superchain Theory IIa ',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: superchainNpcNameId, npcBaseId: superchainNpcBaseIds, capture: false },
+      condition: (data) => data.phase === 'superchain2a' && data.superchainCollect.length === 10,
+      run: (data) => {
+        // Sort ascending.
+        const collect = data.superchainCollect.sort((a, b) =>
+          parseInt(a.npcBaseId) - parseInt(b.npcBaseId)
+        );
+
+        // Based on id sorting (see: superchainNpcBaseIdMap), they will always be in this order.
+        const [
+          dest1,
+          dest2,
+          dest3,
+          /* out1 */,
+          /* out2 */,
+          /* out3 */,
+          /* out4 */,
+          /* in1 */,
+          mech1,
+          mech2,
+        ] = collect;
+        if (
+          dest1 === undefined || dest2 === undefined || dest3 === undefined ||
+          mech1 === undefined || mech2 === undefined
+        )
+          return;
+
+        // These are all at x = 100, y = 100 +/- 10
+        const [destNorth, /* destMid */, destSouth] = [dest1, dest2, dest3].sort((a, b) =>
+          parseFloat(a.y) - parseFloat(b.y)
+        );
+        if (destNorth === undefined || destSouth === undefined)
+          return;
+
+        const mech1NorthDist = distSqr(mech1, destNorth);
+        const mech2NorthDist = distSqr(mech2, destNorth);
+        const mech1SouthDist = distSqr(mech1, destSouth);
+        const mech2SouthDist = distSqr(mech2, destSouth);
+
+        // Distance between mechanic and destination determines which goes off when.
+        // ~81 distance for first mechanic, ~1190 for second mechanic
+        // ~440, ~480 for comparing with wrong destination.
+        const firstDistance = 100;
+        const secondDistance = 1000;
+
+        let secondMech: NetMatches['AddedCombatant'] | undefined;
+        let firstDir: 'north' | 'south' | undefined;
+        let secondDir: 'north' | 'south' | undefined;
+
+        if (mech1NorthDist < firstDistance || mech2NorthDist < firstDistance)
+          firstDir = 'north';
+        else if (mech1SouthDist < firstDistance || mech2SouthDist < firstDistance)
+          firstDir = 'south';
+
+        if (mech1NorthDist > secondDistance) {
+          secondDir = 'north';
+          secondMech = mech1;
+        } else if (mech1SouthDist > secondDistance) {
+          secondDir = 'south';
+          secondMech = mech1;
+        } else if (mech2NorthDist > secondDistance) {
+          secondDir = 'north';
+          secondMech = mech2;
+        } else if (mech2SouthDist > secondDistance) {
+          secondDir = 'south';
+          secondMech = mech2;
+        }
+
+        if (secondMech === undefined || firstDir === undefined || secondDir === undefined) {
+          const distances = [mech1NorthDist, mech1SouthDist, mech2NorthDist, mech2SouthDist];
+          console.error(`Superchain2a: bad distances: ${JSON.stringify(distances)}`);
+          return;
+        }
+
+        // To avoid trigger overload, we'll combine these calls with the wings calls.
+        const isSecondMechProtean = secondMech.npcBaseId === superchainNpcBaseIdMap.protean;
+        data.superchain2aFirstDir = firstDir;
+        data.superchain2aSecondDir = secondDir;
+        data.superchain2aSecondMech = isSecondMechProtean ? 'protean' : 'partners';
       },
     },
     // --------------------- Phase 2 ------------------------
