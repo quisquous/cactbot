@@ -17,6 +17,7 @@ Options.Triggers.push({
         text: {
           en: 'Avoid meteor',
           de: 'Vermeide Meteor',
+          cn: '远离陨石',
           ko: '메테오 피하기',
         },
       },
@@ -54,6 +55,7 @@ Options.Triggers.push({
         text: {
           en: 'Get behind, then out',
           de: 'Geh hinter, dann raus',
+          cn: '去背后 => 远离',
           ko: '보스 뒤로 => 밖으로',
         },
       },
@@ -94,6 +96,7 @@ Options.Triggers.push({
         clones: {
           en: 'Clones: ${dir1}->${dir2}->${dir3}->${dir4}',
           de: 'Klone: ${dir1}->${dir2}->${dir3}->${dir4}',
+          cn: '分身：${dir1}->${dir2}->${dir3}->${dir4}',
           ko: '분신: ${dir1}->${dir2}->${dir3}->${dir4}',
         },
         unknown: Outputs.unknown,
@@ -118,6 +121,7 @@ Options.Triggers.push({
         text: {
           en: 'Out first => stack w/ ${player}',
           de: 'Zuerst Raus => Sammeln mit ${player}',
+          cn: '远离 => 与 ${player} 分摊',
           ko: '밖으로 => ${player} 쉐어',
         },
       },
