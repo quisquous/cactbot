@@ -217,26 +217,31 @@ Options.Triggers.push({
           en: 'Swap',
           de: 'Wechseln',
           fr: 'Swap',
+          ko: '이동',
         },
         stay: {
           en: 'Stay',
           de: 'bleib Stehen',
           fr: 'Restez',
+          ko: '가만히',
         },
         secondWingCallStay: {
           en: '(stay)',
           de: '(bleib Stehen)',
           fr: '(restez)',
+          ko: '(가만히)',
         },
         secondWingCallSwap: {
           en: '(swap)',
           de: '(Wechseln)',
           fr: '(swap)',
+          ko: '(이동)',
         },
         allThreeWings: {
           en: '${first} => ${second} => ${third}',
           de: '${first} => ${second} => ${third}',
           fr: '${first} => ${second} => ${third}',
+          ko: '${first} => ${second} => ${third}',
         },
       },
     },
@@ -261,11 +266,13 @@ Options.Triggers.push({
           en: 'Swap',
           de: 'Wechseln',
           fr: 'Swap',
+          ko: '이동',
         },
         stay: {
           en: 'Stay',
           de: 'bleib Stehen',
           fr: 'Restez',
+          ko: '가만히',
         },
       },
     },
@@ -280,11 +287,13 @@ Options.Triggers.push({
           en: 'Party Out (Tanks In)',
           de: 'Gruppe Raus (Tanks Rein)',
           fr: 'Équipe à l\'extérieur (Tanks à l\'intérieur)',
+          ko: '본대 밖 (탱커 안)',
         },
         tanksInPartyOut: {
           en: 'Tanks In (Party Out)',
           de: 'Gruppe Rein (Tanks Raus)',
           fr: 'Tanks à l\'intérieur (Équipe à l\'extérieur',
+          ko: '탱커 안 (본대 밖)',
         },
       },
     },
@@ -299,11 +308,13 @@ Options.Triggers.push({
           en: 'Party In (Tanks Out)',
           de: 'Gruppe Rein (Tanks Raus)',
           fr: 'Équipe à l\'intérieur (Tanks à l\'extérieur)',
+          ko: '본대 안 (탱커 밖)',
         },
         tanksInPartyOut: {
           en: 'Tanks Out (Party In)',
           de: 'Tanks Raus (Gruppe Rein)',
           fr: 'Tanks à l\'extérieur (Équipe à l\'intérieur',
+          ko: '탱커 밖 (본대 안)',
         },
       },
     },
@@ -347,9 +358,11 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           baitLaser: {
             en: 'Bait Laser',
+            ko: '레이저 유도',
           },
           firstWhiteFlame: {
             en: '(5 and 7 bait)',
+            ko: '(5, 7 레이저)',
           },
         };
         const infoText = output.firstWhiteFlame();
@@ -368,15 +381,19 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           baitLaser: {
             en: 'Bait Laser',
+            ko: '레이저 유도',
           },
           secondWhiteFlame: {
             en: '(6 and 8 bait)',
+            ko: '(6, 8 레이저)',
           },
           thirdWhiteFlame: {
             en: '(1 and 3 bait)',
+            ko: '(1, 3 레이저)',
           },
           fourthWhiteFlame: {
             en: '(2 and 4 bait)',
+            ko: '(2, 4 레이저)',
           },
         };
         data.whiteFlameCounter++;
@@ -439,15 +456,19 @@ Options.Triggers.push({
       outputStrings: {
         inAndProtean: {
           en: 'In + Protean (${dir})',
+          ko: '안 + 8방향 산개 (${dir})',
         },
         inAndPartners: {
           en: 'In + Partners (${dir})',
+          ko: '안 + 파트너 (${dir})',
         },
         outAndProtean: {
           en: 'Out + Protean (${dir})',
+          ko: '밖 + 8방향 산개 (${dir})',
         },
         outAndPartners: {
           en: 'Out + Partners (${dir})',
+          ko: '밖 + 8방향 산개 (${dir})',
         },
         ...Directions.outputStrings8Dir,
       },
@@ -502,9 +523,11 @@ Options.Triggers.push({
         // e.g. "Left (Dark Laser)" or "Right (Light Tower)" or something?
         leftClockwise: {
           en: 'Left (CW)',
+          ko: '왼쪽 (시계방향)',
         },
         rightCounterclockwise: {
           en: 'Right (CCW)',
+          ko: '오른쪽 (반시계방향)',
         },
       },
     },
