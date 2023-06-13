@@ -28,6 +28,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid meteor',
           de: 'Vermeide Meteor',
+          ko: '메테오 피하기',
         },
       },
     },
@@ -64,6 +65,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get behind, then out',
           de: 'Geh hinter, dann raus',
+          ko: '보스 뒤로 => 밖으로',
         },
       },
     },
@@ -107,6 +109,7 @@ const triggerSet: TriggerSet<Data> = {
         clones: {
           en: 'Clones: ${dir1}->${dir2}->${dir3}->${dir4}',
           de: 'Klone: ${dir1}->${dir2}->${dir3}->${dir4}',
+          ko: '분신: ${dir1}->${dir2}->${dir3}->${dir4}',
         },
         unknown: Outputs.unknown,
         ...Directions.outputStringsCardinalDir,
@@ -130,6 +133,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Out first => stack w/ ${player}',
           de: 'Zuerst Raus => Sammeln mit ${player}',
+          ko: '밖으로 => ${player} 쉐어',
         },
       },
     },
