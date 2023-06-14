@@ -6,16 +6,20 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: handle Two Minds
+// TODO: something for Charybdis??
 
 export interface Data extends RaidbossData {
   decOffset?: number;
+  dualityBuster: string[];
   lastDualspellId?: string;
   limitCutNumber?: number;
   combination?: 'front' | 'rear';
   seenChimericSuccession?: boolean;
   levinOrbs: {
-    [combatantId: string]: { [property: string]: number };
+    [combatantId: string]: {
+      order?: number;
+      dir?: number;
+    };
   };
   limitCutDash: number;
 }
@@ -73,6 +77,14 @@ const limitCutPlayerActive: number[][] = [
   [8, 4],
 ];
 
+// Time between headmarker and defamation for Chimeric Succession.
+const chimericLimitCutTime: { [id: number]: number } = {
+  1: 10,
+  2: 13,
+  3: 16,
+  4: 19,
+} as const;
+
 const firstHeadmarker = parseInt(headmarkers.dualityOfDeath, 16);
 
 const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
@@ -95,6 +107,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'p9s.txt',
   initData: () => {
     return {
+      dualityBuster: [],
       levinOrbs: {},
       limitCutDash: 0,
     };
@@ -105,6 +118,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: {},
       condition: (data) => data.decOffset === undefined,
+      suppressSeconds: 99999,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => getHeadmarkerId(data, matches),
     },
@@ -122,21 +136,32 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
+      id: 'P9S Duality of Death Collect',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => getHeadmarkerId(data, matches) === headmarkers.dualityOfDeath,
+      run: (data, matches) => data.dualityBuster.push(matches.target),
+    },
+    {
       id: 'P9S Duality of Death',
       type: 'StartsUsing',
       netRegex: { id: '8151', source: 'Kokytos', capture: false },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
+          tankBusterOnYou: Outputs.tankBusterOnYou,
           tankSwap: Outputs.tankSwap,
           tankBusters: Outputs.tankBusters,
         };
 
-        // TODO: track headmarkers?
-        if (data.role === 'tank')
+        if (data.dualityBuster.includes(data.me)) {
+          if (data.role !== 'tank' && data.job !== 'BLU')
+            return { alarmText: output.tankBusterOnYou!() };
           return { alertText: output.tankSwap!() };
+        }
         return { infoText: output.tankBusters!() };
       },
+      run: (data) => data.dualityBuster = [],
     },
     {
       id: 'P9S Dualspell Fire/Ice',
@@ -373,7 +398,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P9S Limit Cut Player Dash Order',
+      id: 'P9S Limit Cut Player Number',
       type: 'HeadMarker',
       netRegex: {},
       condition: (data, matches) => {
@@ -398,6 +423,36 @@ const triggerSet: TriggerSet<Data> = {
           ko: '${num}',
         },
         unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'P9S Chimeric Limit Cut Defamation',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => {
+        return data.seenChimericSuccession && data.me === matches.target &&
+          data.limitCutNumber !== undefined &&
+          limitCutMarkers.includes(getHeadmarkerId(data, matches));
+      },
+      delaySeconds: (data) => {
+        if (data.limitCutNumber === undefined)
+          return 0;
+        const time = chimericLimitCutTime[data.limitCutNumber];
+        if (time === undefined)
+          return 0;
+        // 6 seconds ahead of time
+        return time - 6;
+      },
+      alertText: (_data, _matches, output) => output.defamation!(),
+      outputStrings: {
+        defamation: {
+          en: 'Defamation on YOU',
+          de: 'Ehrenstrafe aud DIR',
+          fr: 'Diffamation sur VOUS',
+          ja: '名誉罰',
+          cn: '大圈点名',
+          ko: '광역징 대상자',
+        },
       },
     },
     {
