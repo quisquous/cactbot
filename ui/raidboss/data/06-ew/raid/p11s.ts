@@ -15,12 +15,13 @@ export interface Data extends RaidbossData {
 }
 
 const headmarkers = {
-  // P11N uses, and the P11S VFX looks like, 0x00DA for Dike, but using that value gives negative results for the Arcane Cylinder headmarkers
-  // 0x01DB derived by using the P11N Styx 0x0131 headmarker and calculating backwards for Dike
-  // 0x01DB is used in DRS Trinity Seeker for Earthshaker markers, which look and behave nothing like Dike
+  // vfx/lockon/eff/tank_lockon04_7sk1.avfx
   dike: '01DB', // tankbuster
+  // vfx/lockon/eff/com_share4a1.avfx
   styx: '0131', // multi-hit stack, currently unused
+  // vfx/lockon/eff/m0515_turning_right01c.avfx
   orangeCW: '009C', // orange clockwise rotation
+  // vfx/lockon/eff/m0515_turning_left01c.avfx
   blueCCW: '009D', // blue counterclockwise rotation
 } as const;
 
