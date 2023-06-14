@@ -50,6 +50,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: {},
       condition: (data) => data.decOffset === undefined,
+      suppressSeconds: 99999,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => getHeadmarkerId(data, matches),
     },
