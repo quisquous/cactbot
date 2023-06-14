@@ -46,6 +46,13 @@ const limitCutPlayerActive = [
   [6, 2],
   [8, 4],
 ];
+// Time between headmarker and defamation for Chimeric Succession.
+const chimericLimitCutTime = {
+  1: 10,
+  2: 13,
+  3: 16,
+  4: 19,
+};
 const firstHeadmarker = parseInt(headmarkers.dualityOfDeath, 16);
 const getHeadmarkerId = (data, matches) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
@@ -65,6 +72,7 @@ Options.Triggers.push({
   timelineFile: 'p9s.txt',
   initData: () => {
     return {
+      dualityBuster: [],
       levinOrbs: {},
       limitCutDash: 0,
     };
@@ -75,6 +83,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: {},
       condition: (data) => data.decOffset === undefined,
+      suppressSeconds: 99999,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => getHeadmarkerId(data, matches),
     },
@@ -92,20 +101,31 @@ Options.Triggers.push({
       response: Responses.aoe(),
     },
     {
+      id: 'P9S Duality of Death Collect',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => getHeadmarkerId(data, matches) === headmarkers.dualityOfDeath,
+      run: (data, matches) => data.dualityBuster.push(matches.target),
+    },
+    {
       id: 'P9S Duality of Death',
       type: 'StartsUsing',
       netRegex: { id: '8151', source: 'Kokytos', capture: false },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
+          tankBusterOnYou: Outputs.tankBusterOnYou,
           tankSwap: Outputs.tankSwap,
           tankBusters: Outputs.tankBusters,
         };
-        // TODO: track headmarkers?
-        if (data.role === 'tank')
+        if (data.dualityBuster.includes(data.me)) {
+          if (data.role !== 'tank' && data.job !== 'BLU')
+            return { alarmText: output.tankBusterOnYou() };
           return { alertText: output.tankSwap() };
+        }
         return { infoText: output.tankBusters() };
       },
+      run: (data) => data.dualityBuster = [],
     },
     {
       id: 'P9S Dualspell Fire/Ice',
@@ -338,7 +358,7 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'P9S Limit Cut Player Dash Order',
+      id: 'P9S Limit Cut Player Number',
       type: 'HeadMarker',
       netRegex: {},
       condition: (data, matches) => {
@@ -363,6 +383,36 @@ Options.Triggers.push({
           ko: '${num}',
         },
         unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'P9S Chimeric Limit Cut Defamation',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => {
+        return data.seenChimericSuccession && data.me === matches.target &&
+          data.limitCutNumber !== undefined &&
+          limitCutMarkers.includes(getHeadmarkerId(data, matches));
+      },
+      delaySeconds: (data) => {
+        if (data.limitCutNumber === undefined)
+          return 0;
+        const time = chimericLimitCutTime[data.limitCutNumber];
+        if (time === undefined)
+          return 0;
+        // 6 seconds ahead of time
+        return time - 6;
+      },
+      alertText: (_data, _matches, output) => output.defamation(),
+      outputStrings: {
+        defamation: {
+          en: 'Defamation on YOU',
+          de: 'Ehrenstrafe aud DIR',
+          fr: 'Diffamation sur VOUS',
+          ja: '名誉罰',
+          cn: '大圈点名',
+          ko: '광역징 대상자',
+        },
       },
     },
     {
