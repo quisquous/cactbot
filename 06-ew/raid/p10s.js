@@ -17,6 +17,24 @@ const getHeadmarkerId = (data, matches) => {
     data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
+const bondsOffsetSeconds = (data) => {
+  const fallbackDelay = 5;
+  return {
+    // t=145.8, call right after laser before running out to platforms
+    1: 13,
+    // t=223.9, call after 4th turret goes off
+    2: 5,
+    // t=329.9, call as donut/circle towers go off before ray
+    3: 7,
+    // t=459.3, call as harrowing hell knockback starts
+    4: 9,
+  }[data.daemonicBondsCounter] ?? fallbackDelay;
+};
+// Helper function to call out the Daemonic Bonds spread/stack/partner ability.
+const bondsDelaySeconds = (data, matches) => {
+  return parseFloat(matches.duration) - bondsOffsetSeconds(data);
+};
+const bondsDurationSeconds = (data) => Math.max(bondsOffsetSeconds(data) - 3, 3);
 Options.Triggers.push({
   id: 'AnabaseiosTheTenthCircleSavage',
   zoneId: ZoneId.AnabaseiosTheTenthCircleSavage,
@@ -28,6 +46,7 @@ Options.Triggers.push({
       dividingWingsStacks: [],
       dividingWingsEntangling: [],
       meltdownSpreads: [],
+      daemonicBondsCounter: 0,
     };
   },
   triggers: [
@@ -244,13 +263,13 @@ Options.Triggers.push({
       id: 'P10S Pandaemoniac Pillars',
       type: 'StartsUsing',
       netRegex: { id: '8280', source: bossNameUnicode, capture: false },
-      response: Responses.getTowers('info'),
+      response: Responses.getTowers('alert'),
     },
     {
       id: 'P10S Pandaemoniac Turrets',
       type: 'StartsUsing',
       netRegex: { id: '87AF', source: bossNameUnicode, capture: false },
-      response: Responses.getTowers('info'),
+      response: Responses.getTowers('alert'),
     },
     {
       id: 'P10S Silkspit',
@@ -273,7 +292,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: {},
       condition: (data, matches) => getHeadmarkerId(data, matches) === headmarkers.spread,
-      alertText: (data, matches, output) => {
+      alarmText: (data, matches, output) => {
         data.meltdownSpreads.push(matches.target);
         if (data.me === matches.target)
           return output.spread();
@@ -286,7 +305,7 @@ Options.Triggers.push({
       id: 'P10S Pandaemoniac Meltdown Stack',
       type: 'StartsUsing',
       netRegex: { id: '829D', source: bossNameUnicode, capture: false },
-      infoText: (data, _matches, output) => {
+      alertText: (data, _matches, output) => {
         if (!data.meltdownSpreads.includes(data.me))
           return output.text();
       },
@@ -319,13 +338,16 @@ Options.Triggers.push({
       type: 'GainsEffect',
       netRegex: { effectId: 'DDE' },
       condition: (data) => data.daemonicBondsTime === undefined,
-      run: (data, matches) => data.daemonicBondsTime = parseFloat(matches.duration),
+      run: (data, matches) => {
+        data.daemonicBondsTime = parseFloat(matches.duration);
+        data.daemonicBondsCounter++;
+      },
     },
     {
       id: 'P10S Dueodaemoniac Bonds Future',
       type: 'GainsEffect',
       netRegex: { effectId: 'DDF' },
-      durationSeconds: 5,
+      durationSeconds: 7,
       suppressSeconds: 5,
       infoText: (data, matches, output) => {
         if (data.daemonicBondsTime === undefined) {
@@ -361,7 +383,7 @@ Options.Triggers.push({
       id: 'P10S TetraDaemoniac Bonds Future',
       type: 'GainsEffect',
       netRegex: { effectId: 'E70' },
-      durationSeconds: 5,
+      durationSeconds: 7,
       suppressSeconds: 5,
       infoText: (data, matches, output) => {
         if (data.daemonicBondsTime === undefined) {
@@ -397,7 +419,8 @@ Options.Triggers.push({
       id: 'P10S Daemoniac Bonds First',
       type: 'GainsEffect',
       netRegex: { effectId: 'DDE' },
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      delaySeconds: bondsDelaySeconds,
+      durationSeconds: bondsDurationSeconds,
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {
         // If this is undefined, then this is the second mechanic and will be called out elsewhere.
@@ -428,22 +451,11 @@ Options.Triggers.push({
       id: 'P10S Dueodaemoniac Bonds First',
       type: 'GainsEffect',
       netRegex: { effectId: 'DDF' },
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      delaySeconds: bondsDelaySeconds,
+      durationSeconds: bondsDurationSeconds,
       suppressSeconds: 5,
-      alertText: (data, _matches, output) => {
-        if (data.bondsSecondMechanic === 'stack')
-          return output.partnersThenStack();
-        if (data.bondsSecondMechanic === 'spread')
-          return output.partnersThenSpread();
-      },
+      alertText: (_data, _matches, output) => output.partnersThenSpread(),
       outputStrings: {
-        partnersThenStack: {
-          en: 'Partners => Role Stack',
-          de: 'Partner => Rollengruppe',
-          fr: 'Partenaires => Package par rôle',
-          cn: '分摊  => 四四分摊',
-          ko: '파트너 => 직업군별 쉐어',
-        },
         partnersThenSpread: {
           en: 'Partners => Spread',
           de: 'Partner => Verteilen',
@@ -457,22 +469,11 @@ Options.Triggers.push({
       id: 'P10S TetraDaemoniac Bonds First',
       type: 'GainsEffect',
       netRegex: { effectId: 'E70' },
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      delaySeconds: bondsDelaySeconds,
+      durationSeconds: bondsDurationSeconds,
       suppressSeconds: 5,
-      alertText: (data, _matches, output) => {
-        if (data.bondsSecondMechanic === 'partners')
-          return output.stackThenPartners();
-        if (data.bondsSecondMechanic === 'spread')
-          return output.stackThenSpread();
-      },
+      alertText: (_data, _matches, output) => output.stackThenSpread(),
       outputStrings: {
-        stackThenPartners: {
-          en: 'Role Stack => Partners',
-          de: 'Rollengruppe => Partner',
-          fr: 'Package par rôle => Partenaires',
-          cn: '四四分摊 => 分摊',
-          ko: '직업군별 쉐어 => 파트너',
-        },
         stackThenSpread: {
           en: 'Role Stack => Spread',
           de: 'Rollengruppe => Verteilen',
