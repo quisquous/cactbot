@@ -166,6 +166,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tetherside: {
           en: 'Point ${side}/${dir} Tether Away',
+          de: 'Zeige ${side}/${dir} Verbindung weg',
         },
         default: {
           en: 'Point Tether Away',
