@@ -278,32 +278,32 @@ Options.Triggers.push({
         // cactbot-builtin-response
         output.responseOutputStrings = {
           lightNear: {
-            en: 'Light Near w/${player}',
-            de: 'Licht Nahe w/${player}',
-            fr: 'Lumière proche avec ${player}',
-            cn: '光靠近 => ${player}',
-            ko: '빛 가까이 +${player}',
+            en: 'Light Near w/${player} (${role})',
+            de: 'Licht Nahe w/${player} (${role})',
+            fr: 'Lumière proche avec ${player} (${role})',
+            cn: '光靠近 => ${player} (${role})',
+            ko: '빛 가까이 +${player} (${role})',
           },
           lightFar: {
-            en: 'Light Far w/${player}',
-            de: 'Licht Entfernt w/${player}',
-            fr: 'Lumière éloignée avec ${player}',
-            cn: '光远离 => ${player}',
-            ko: '빛 멀리 +${player}',
+            en: 'Light Far w/${player} (${role})',
+            de: 'Licht Entfernt w/${player} (${role})',
+            fr: 'Lumière éloignée avec ${player} (${role})',
+            cn: '光远离 => ${player} (${role})',
+            ko: '빛 멀리 +${player} (${role})',
           },
           darkNear: {
-            en: 'Dark Near w/${player}',
-            de: 'Dunkel Nahe w/${player}',
-            fr: 'Sombre proche avec ${player}',
-            cn: '暗靠近 => ${player}',
-            ko: '어둠 가까이 +${player}',
+            en: 'Dark Near w/${player} (${role})',
+            de: 'Dunkel Nahe w/${player} (${role})',
+            fr: 'Sombre proche avec ${player} (${role})',
+            cn: '暗靠近 => ${player} (${role})',
+            ko: '어둠 가까이 +${player} (${role})',
           },
           darkFar: {
-            en: 'Dark Far w/${player}',
-            de: 'Dunkel Entfernt w/${player}',
-            fr: 'Sombre éloigné avec ${player}',
-            cn: '暗远离 => ${player}',
-            ko: '어둠 멀리 +${player}',
+            en: 'Dark Far w/${player} (${role})',
+            de: 'Dunkel Entfernt w/${player} (${role})',
+            fr: 'Sombre éloigné avec ${player} (${role})',
+            cn: '暗远离 => ${player} (${role})',
+            ko: '어둠 멀리 +${player} (${role})',
           },
           otherNear: {
             en: 'Other Near: ${player1}, ${player2}',
@@ -317,6 +317,10 @@ Options.Triggers.push({
             fr: 'Autre éloigné : ${player1}, ${player2}',
             ko: '다른 멀리: ${player1}, ${player2}',
           },
+          tank: Outputs.tank,
+          healer: Outputs.healer,
+          dps: Outputs.dps,
+          unknown: Outputs.unknown,
         };
         const myColor = data.lightDarkDebuff[data.me];
         const myBuddy = data.lightDarkBuddy[data.me];
@@ -332,18 +336,27 @@ Options.Triggers.push({
           console.log(`Dark and Light: lightDarkTether: ${JSON.stringify(data.lightDarkTether)}`);
           return;
         }
+        let myBuddyRole;
+        if (data.party.isDPS(myBuddy))
+          myBuddyRole = output.dps();
+        else if (data.party.isTank(myBuddy))
+          myBuddyRole = output.tank();
+        else if (data.party.isHealer(myBuddy))
+          myBuddyRole = output.healer();
+        else
+          myBuddyRole = output.unknown();
         const myBuddyShort = data.ShortName(myBuddy);
         let alertText;
         if (myLength === 'near') {
           if (myColor === 'light')
-            alertText = output.lightNear({ player: myBuddyShort });
+            alertText = output.lightNear({ player: myBuddyShort, role: myBuddyRole });
           else
-            alertText = output.darkNear({ player: myBuddyShort });
+            alertText = output.darkNear({ player: myBuddyShort, role: myBuddyRole });
         } else {
           if (myColor === 'light')
-            alertText = output.lightFar({ player: myBuddyShort });
+            alertText = output.lightFar({ player: myBuddyShort, role: myBuddyRole });
           else
-            alertText = output.darkFar({ player: myBuddyShort });
+            alertText = output.darkFar({ player: myBuddyShort, role: myBuddyRole });
         }
         let infoText = undefined;
         const playerNames = Object.keys(data.lightDarkTether);
