@@ -1,12 +1,15 @@
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   decOffset?: number;
+  combatantData: PluginCombatantState[];
   dividingWingsTethers: string[];
   dividingWingsStacks: string[];
   dividingWingsEntangling: string[];
@@ -44,6 +47,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'p10s.txt',
   initData: () => {
     return {
+      combatantData: [],
       dividingWingsTethers: [],
       dividingWingsStacks: [],
       dividingWingsEntangling: [],
@@ -127,19 +131,53 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P10S Dividing Wings Tether',
       type: 'Tether',
       netRegex: { id: '00F2', source: bossNameUnicode },
+      preRun: (data, matches) => data.dividingWingsTethers.push(matches.target),
+      promise: async (data, matches) => {
+        if (data.me === matches.target) {
+          data.combatantData = [];
+          const wingId = parseInt(matches.sourceId, 16);
+          if (wingId === undefined)
+            return;
+          data.combatantData = (await callOverlayHandler({
+            call: 'getCombatants',
+            ids: [wingId],
+          })).combatants;
+        }
+      },
       alarmText: (data, matches, output) => {
-        data.dividingWingsTethers.push(matches.target);
-        if (data.me === matches.target)
-          return output.text!();
+        if (data.me === matches.target) {
+          const x = data.combatantData[0]?.PosX;
+          if (x === undefined)
+            return output.default!();
+          let wingSide;
+          let wingDir;
+          if (x > 100) {
+            wingSide = output.right!();
+            wingDir = output.east!();
+          } else if (x < 100) {
+            wingSide = output.left!();
+            wingDir = output.west!();
+          }
+          if (wingSide !== undefined && wingDir !== undefined)
+            return output.tetherside!({ side: wingSide, dir: wingDir });
+          return output.default!();
+        }
       },
       outputStrings: {
-        text: {
+        tetherside: {
+          en: 'Point ${side}/${dir} Tether Away',
+        },
+        default: {
           en: 'Point Tether Away',
           de: 'Zeige Verbindung weg',
           fr: 'Orientez le lien à l\'extérieur',
           cn: '向外引导',
           ko: '선을 바깥쪽으로',
         },
+        right: Outputs.right,
+        left: Outputs.left,
+        east: Outputs.east,
+        west: Outputs.west,
       },
     },
     {
