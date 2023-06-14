@@ -45,7 +45,7 @@ const triggerSet: TriggerSet<Data> = {
         onYou: {
           en: 'Spread (avoid posts)',
           de: 'Verteilen (vermeide Stäbe)',
-          fr: 'Écartez-vous',
+          fr: 'Écartez-vous (évitez les poteaux)',
           cn: '分散（远离柱子）',
           ko: '산개 (기둥 피하기)',
         },
@@ -138,6 +138,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Side platform(s)',
           de: 'Seite-Platform(en)',
+          fr: 'Plateforme(s) latérale(s)',
           cn: '去侧边平台',
           ko: '옆 플랫폼으로',
         },

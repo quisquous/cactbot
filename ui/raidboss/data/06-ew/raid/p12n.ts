@@ -187,7 +187,7 @@ const triggerSet: TriggerSet<Data> = {
         superchain2: {
           en: 'Short Donut => Long Donut',
           de: 'Kurzer Donut => Langer Donut',
-          fr: 'Petit donut => Long donut',
+          fr: 'Donut court => Donut long',
           cn: '短月环 => 长月环',
           ko: '짧은 도넛 => 긴 도넛',
         },
