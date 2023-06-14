@@ -162,6 +162,7 @@ Options.Triggers.push({
         tetherside: {
           en: 'Point ${side}/${dir} Tether Away',
           de: 'Zeige ${side}/${dir} Verbindung weg',
+          fr: 'Orientez le lien à l\'extérieur - ${side}/${dir}',
         },
         default: {
           en: 'Point Tether Away',

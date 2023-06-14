@@ -359,11 +359,13 @@ Options.Triggers.push({
           baitLaser: {
             en: 'Bait Laser',
             de: 'Laser Ködern',
+            fr: 'Bait le laser',
             ko: '레이저 유도',
           },
           firstWhiteFlame: {
             en: '(5 and 7 bait)',
             de: '(5 und 7 ködern)',
+            fr: '(5 et 7 bait)',
             ko: '(5, 7 레이저)',
           },
         };
@@ -384,21 +386,25 @@ Options.Triggers.push({
           baitLaser: {
             en: 'Bait Laser',
             de: 'Laser Ködern',
+            fr: 'Bait le laser',
             ko: '레이저 유도',
           },
           secondWhiteFlame: {
             en: '(6 and 8 bait)',
             de: '(6 und 8 ködern)',
+            fr: '(6 et 8 bait)',
             ko: '(6, 8 레이저)',
           },
           thirdWhiteFlame: {
             en: '(1 and 3 bait)',
             de: '(1 und 3 ködern)',
+            fr: '(1 et 3 bait)',
             ko: '(1, 3 레이저)',
           },
           fourthWhiteFlame: {
             en: '(2 and 4 bait)',
             de: '(2 und 6 ködern)',
+            fr: '(2 et 4 bait)',
             ko: '(2, 4 레이저)',
           },
         };
@@ -463,21 +469,25 @@ Options.Triggers.push({
         inAndProtean: {
           en: 'In + Protean (${dir})',
           de: 'Rein + Himmelsrichtungen (${dir})',
+          fr: 'Intérieur + Position (${dir})',
           ko: '안 + 8방향 산개 (${dir})',
         },
         inAndPartners: {
           en: 'In + Partners (${dir})',
           de: 'Rein + Partner (${dir})',
+          fr: 'Intérieur + Partenaire (${dir})',
           ko: '안 + 파트너 (${dir})',
         },
         outAndProtean: {
           en: 'Out + Protean (${dir})',
           de: 'Raus + Himmelsrichtungen (${dir})',
+          fr: 'Extérieur + Position (${dir})',
           ko: '밖 + 8방향 산개 (${dir})',
         },
         outAndPartners: {
           en: 'Out + Partners (${dir})',
           de: 'Raus + Partner (${dir})',
+          fr: 'Extérieur + Partenaire (${dir})',
           ko: '밖 + 8방향 산개 (${dir})',
         },
         ...Directions.outputStrings8Dir,
@@ -534,11 +544,13 @@ Options.Triggers.push({
         leftClockwise: {
           en: 'Left (CW)',
           de: 'Links (im Uhrzeigersinn)',
+          fr: 'Gauche (horaire)',
           ko: '왼쪽 (시계방향)',
         },
         rightCounterclockwise: {
           en: 'Right (CCW)',
           de: 'Rechts (gegen Uhrzeigersinn)',
+          fr: 'Droite (Anti-horaire)',
           ko: '오른쪽 (반시계방향)',
         },
       },
@@ -583,6 +595,7 @@ Options.Triggers.push({
         text: {
           en: 'Vertical',
           de: 'Vertikal',
+          fr: 'Vertical',
         },
       },
     },
@@ -595,6 +608,7 @@ Options.Triggers.push({
         text: {
           en: 'Inny Spinny',
           de: 'Innerer Kreis',
+          fr: 'Cercle intérieur',
         },
       },
     },
@@ -607,6 +621,7 @@ Options.Triggers.push({
         text: {
           en: 'Horizontal',
           de: 'Horizontal',
+          fr: 'Horizontal',
         },
       },
     },
