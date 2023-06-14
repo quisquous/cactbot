@@ -2,15 +2,36 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
+  decOffset?: number;
   lightDarkDebuff: { [name: string]: 'light' | 'dark' };
   lightDarkBuddy: { [name: string]: string };
   lightDarkTether: { [name: string]: 'near' | 'far' };
   cylinderValue?: number;
   numCylinders?: number;
 }
+
+const headmarkers = {
+  // P11N uses, and the P11S VFX looks like, 0x00DA for Dike, but using that value gives negative results for the Arcane Cylinder headmarkers
+  // 0x01DB derived by using the P11N Styx 0x0131 headmarker and calculating backwards for Dike
+  // 0x01DB is used in DRS Trinity Seeker for Earthshaker markers, which look and behave nothing like Dike
+  dike: '01DB', // tankbuster
+  styx: '0131', // multi-hit stack, currently unused
+  orangeCW: '009C', // orange clockwise rotation
+  blueCCW: '009D', // blue counterclockwise rotation
+} as const;
+
+const firstHeadmarker = parseInt(headmarkers.dike, 16);
+
+const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
+  if (data.decOffset === undefined)
+    data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
+  return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
+};
+
 const triggerSet: TriggerSet<Data> = {
   id: 'AnabaseiosTheEleventhCircleSavage',
   zoneId: ZoneId.AnabaseiosTheEleventhCircleSavage,
@@ -23,6 +44,14 @@ const triggerSet: TriggerSet<Data> = {
     };
   },
   triggers: [
+    {
+      id: 'P11S Headmarker Tracker',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data) => data.decOffset === undefined,
+      // Unconditionally set the first headmarker here so that future triggers are conditional.
+      run: (data, matches) => getHeadmarkerId(data, matches),
+    },
     {
       id: 'P11S Eunomia',
       type: 'StartsUsing',
@@ -412,16 +441,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P11S Lightstream Collect',
       type: 'HeadMarker',
-      // 00E6 = orange clockwise rotation
-      // 00E7 = blue counterclockwise rotation
-      netRegex: { id: '00E[67]', target: 'Arcane Cylinder' },
+      netRegex: { target: 'Arcane Cylinder' },
+      condition: (data, matches) => {
+        const id = getHeadmarkerId(data, matches);
+        return (id === headmarkers.orangeCW || id === headmarkers.blueCCW);
+      },
       run: (data, matches) => {
+        const id = getHeadmarkerId(data, matches);
         // Create a 3 digit binary value, Orange = 0, Blue = 1.
         // e.g. BBO = 110 = 6
         data.cylinderValue ??= 0;
         data.numCylinders ??= 0;
         data.cylinderValue *= 2;
-        if (matches.id === '00E7')
+        if (id === headmarkers.blueCCW)
           data.cylinderValue += 1;
         data.numCylinders++;
       },
@@ -429,8 +461,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P11S Lightstream',
       type: 'HeadMarker',
-      netRegex: { id: '00E[67]', target: 'Arcane Cylinder', capture: false },
-      condition: (data) => data.numCylinders === 3,
+      netRegex: { target: 'Arcane Cylinder' },
+      condition: (data, matches) => {
+        const id = getHeadmarkerId(data, matches);
+        return (data.numCylinders === 3 &&
+          (id === headmarkers.orangeCW || id === headmarkers.blueCCW));
+      },
       alertText: (data, _matches, output) => {
         if (!data.cylinderValue || !(data.cylinderValue >= 0) || data.cylinderValue > 7)
           return;
