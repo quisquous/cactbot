@@ -605,7 +605,7 @@ const triggerSet: TriggerSet<Data> = {
         rightCounterclockwise: {
           en: 'Right (CCW)',
           de: 'Rechts (gegen Uhrzeigersinn)',
-          fr: 'Droite (Anti-horaire),
+          fr: 'Droite (Anti-horaire)',
           ko: '오른쪽 (반시계방향)',
         },
       },
