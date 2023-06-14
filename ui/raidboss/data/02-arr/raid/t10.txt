@@ -11,7 +11,6 @@ hideall "--sync--"
 
 # Initial Phase: Tankbuster, Charge, Repeat
 0.0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
 0.0 "--sync--" sync / 00:0839::The Alpha Concourse will be sealed off/ window 5,5
 8.0 "Crackle Hiss" sync / 1[56]:[^:]*:Imdugud:B55:/
 16.0 "Critical Rip" sync / 1[56]:[^:]*:Imdugud:B56:/
