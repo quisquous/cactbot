@@ -13,8 +13,6 @@ export interface Data extends RaidbossData {
   dualityBuster: string[];
   lastDualspellId?: string;
   limitCutNumber?: number;
-  lc1DashPlayer?: number;
-  lc1SoakPlayer?: number;
   combination?: 'front' | 'rear';
   seenChimericSuccession?: boolean;
   levinOrbs: {
@@ -467,17 +465,15 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '817D', source: 'Kokytos', capture: false },
       condition: (data) => data.limitCutDash === 0,
       alertText: (data, _matches, output) => {
-        delete data.lc1DashPlayer;
-        delete data.lc1SoakPlayer;
         const activePlayers = limitCutPlayerActive[data.limitCutDash];
         if (activePlayers === undefined)
           return;
-        [data.lc1DashPlayer, data.lc1SoakPlayer] = activePlayers;
-        if (data.lc1DashPlayer === undefined || data.lc1SoakPlayer === undefined)
+        const [dashPlayer, soakPlayer] = activePlayers;
+        if (dashPlayer === undefined || soakPlayer === undefined)
           return;
-        if (data.limitCutNumber === data.lc1DashPlayer)
+        if (data.limitCutNumber === dashPlayer)
           return output.dash!();
-        else if (data.limitCutNumber === data.lc1SoakPlayer)
+        else if (data.limitCutNumber === soakPlayer)
           return output.soak!();
         return;
       },
@@ -507,24 +503,17 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '8180', source: 'Kokytos', capture: false },
       condition: (data) => data.limitCutDash > 0 && data.limitCutDash < 4,
-      preRun: (data) => {
-        const activePlayers = limitCutPlayerActive[data.limitCutDash];
-        if (activePlayers === undefined)
-          return;
-        [data.lc1DashPlayer, data.lc1SoakPlayer] = activePlayers;
-      },
       delaySeconds: (data) => {
         // delay 'soak tower' call by 1 second to prevent confusion due to ability timing
-        if (data.lc1SoakPlayer !== undefined && data.limitCutNumber === data.lc1SoakPlayer)
-          return 1;
-        return 0;
+        return limitCutPlayerActive[data.limitCutDash]?.[1] === data.limitCutNumber ? 1 : 0;
       },
       alertText: (data, _matches, output) => {
-        if (data.lc1DashPlayer === undefined || data.lc1SoakPlayer === undefined)
+        const [dashPlayer, soakPlayer] = limitCutPlayerActive[data.limitCutDash] ?? [];
+        if (dashPlayer === undefined || soakPlayer === undefined)
           return;
-        if (data.limitCutNumber === data.lc1DashPlayer)
+        if (data.limitCutNumber === dashPlayer)
           return output.dash!();
-        else if (data.limitCutNumber === data.lc1SoakPlayer)
+        else if (data.limitCutNumber === soakPlayer)
           return output.soak!();
         return;
       },
