@@ -463,11 +463,12 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { id: '8180', source: 'Kokytos', capture: false },
       condition: (data) => data.limitCutDash > 0 && data.limitCutDash < 4,
+      delaySeconds: (data) => {
+        // delay 'soak tower' call by 1 second to prevent confusion due to ability timing
+        return limitCutPlayerActive[data.limitCutDash]?.[1] === data.limitCutNumber ? 1 : 0;
+      },
       alertText: (data, _matches, output) => {
-        const activePlayers = limitCutPlayerActive[data.limitCutDash];
-        if (activePlayers === undefined)
-          return;
-        const [dashPlayer, soakPlayer] = activePlayers;
+        const [dashPlayer, soakPlayer] = limitCutPlayerActive[data.limitCutDash] ?? [];
         if (dashPlayer === undefined || soakPlayer === undefined)
           return;
         if (data.limitCutNumber === dashPlayer)
