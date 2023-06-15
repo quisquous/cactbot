@@ -163,6 +163,7 @@ Options.Triggers.push({
           en: 'Point ${side}/${dir} Tether Away',
           de: 'Zeige ${side}/${dir} Verbindung weg',
           fr: 'Orientez le lien à l\'extérieur - ${side}/${dir}',
+          cn: '向 ${side}/${dir} 外侧引导',
         },
         default: {
           en: 'Point Tether Away',
