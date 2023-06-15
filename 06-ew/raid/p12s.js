@@ -637,7 +637,7 @@ Options.Triggers.push({
       condition: (data) => data.phase === 'superchain1' && data.superchainCollect.length === 7,
       // TODO: should we base this off of the first coil/burst instead?
       // 7.2 seconds is the time until the second mechanic finishes, so call early.
-      delaySeconds: 6.2,
+      delaySeconds: 4.5,
       alertText: (data, _matches, output) => {
         // Sort ascending.
         const collect = data.superchainCollect.slice(3, 7).sort((a, b) =>
