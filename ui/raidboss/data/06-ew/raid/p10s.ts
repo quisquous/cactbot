@@ -361,6 +361,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => {
         delete data.daemonicBondsTime;
         delete data.bondsSecondMechanic;
+        data.daemonicBondsCounter++;
       },
     },
     {
@@ -368,10 +369,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'DDE' },
       condition: (data) => data.daemonicBondsTime === undefined,
-      run: (data, matches) => {
-        data.daemonicBondsTime = parseFloat(matches.duration);
-        data.daemonicBondsCounter++;
-      },
+      run: (data, matches) => data.daemonicBondsTime = parseFloat(matches.duration),
     },
     {
       id: 'P10S Dueodaemoniac Bonds Future',
@@ -488,7 +486,11 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: bondsDelaySeconds,
       durationSeconds: bondsDurationSeconds,
       suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.partnersThenSpread!(),
+      alertText: (data, _matches, output) => {
+        // If this is undefined, then this is the second mechanic and will be called out elsewhere.
+        if (data.bondsSecondMechanic === 'spread')
+          return output.partnersThenSpread!();
+      },
       outputStrings: {
         partnersThenSpread: {
           en: 'Partners => Spread',
@@ -506,7 +508,11 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: bondsDelaySeconds,
       durationSeconds: bondsDurationSeconds,
       suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.stackThenSpread!(),
+      alertText: (data, _matches, output) => {
+        // If this is undefined, then this is the second mechanic and will be called out elsewhere.
+        if (data.bondsSecondMechanic === 'spread')
+          return output.stackThenSpread!();
+      },
       outputStrings: {
         stackThenSpread: {
           en: 'Role Stack => Spread',
