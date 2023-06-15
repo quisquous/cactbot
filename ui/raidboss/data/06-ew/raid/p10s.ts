@@ -567,6 +567,19 @@ const triggerSet: TriggerSet<Data> = {
         west: Outputs.getLeftAndWest,
       },
     },
+    {
+      id: 'P10S Jade Passage',
+      type: 'StartsUsing',
+      netRegex: { id: '828C', capture: false },
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Lasers',
+          cn: '注意躲避激光',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
