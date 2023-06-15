@@ -1,3 +1,19 @@
+const headmarkers = {
+  // vfx/lockon/eff/tank_lockon04_7sk1.avfx
+  dike: '01DB',
+  // vfx/lockon/eff/com_share4a1.avfx
+  styx: '0131',
+  // vfx/lockon/eff/m0515_turning_right01c.avfx
+  orangeCW: '009C',
+  // vfx/lockon/eff/m0515_turning_left01c.avfx
+  blueCCW: '009D', // blue counterclockwise rotation
+};
+const firstHeadmarker = parseInt(headmarkers.dike, 16);
+const getHeadmarkerId = (data, matches) => {
+  if (data.decOffset === undefined)
+    data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
+  return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
+};
 Options.Triggers.push({
   id: 'AnabaseiosTheEleventhCircleSavage',
   zoneId: ZoneId.AnabaseiosTheEleventhCircleSavage,
@@ -10,6 +26,15 @@ Options.Triggers.push({
     };
   },
   triggers: [
+    {
+      id: 'P11S Headmarker Tracker',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data) => data.decOffset === undefined,
+      suppressSeconds: 99999,
+      // Unconditionally set the first headmarker here so that future triggers are conditional.
+      run: (data, matches) => getHeadmarkerId(data, matches),
+    },
     {
       id: 'P11S Eunomia',
       type: 'StartsUsing',
@@ -400,6 +425,63 @@ Options.Triggers.push({
           cn: '去光球 + 光门',
           ko: '빛 구슬 + 빛 문',
         },
+      },
+    },
+    {
+      id: 'P11S Lightstream Collect',
+      type: 'HeadMarker',
+      netRegex: { target: 'Arcane Cylinder' },
+      condition: (data, matches) => {
+        const id = getHeadmarkerId(data, matches);
+        return (id === headmarkers.orangeCW || id === headmarkers.blueCCW);
+      },
+      run: (data, matches) => {
+        const id = getHeadmarkerId(data, matches);
+        // Create a 3 digit binary value, Orange = 0, Blue = 1.
+        // e.g. BBO = 110 = 6
+        data.cylinderValue ??= 0;
+        data.numCylinders ??= 0;
+        data.cylinderValue *= 2;
+        if (id === headmarkers.blueCCW)
+          data.cylinderValue += 1;
+        data.numCylinders++;
+      },
+    },
+    {
+      id: 'P11S Lightstream',
+      type: 'HeadMarker',
+      netRegex: { target: 'Arcane Cylinder' },
+      condition: (data, matches) => {
+        const id = getHeadmarkerId(data, matches);
+        return (data.numCylinders === 3 &&
+          (id === headmarkers.orangeCW || id === headmarkers.blueCCW));
+      },
+      alertText: (data, _matches, output) => {
+        if (!data.cylinderValue || !(data.cylinderValue >= 0) || data.cylinderValue > 7)
+          return;
+        const outputs = {
+          0b000: undefined,
+          0b001: output.northwest(),
+          0b010: output.east(),
+          0b011: output.northeast(),
+          0b100: output.southwest(),
+          0b101: output.west(),
+          0b110: output.southeast(),
+          0b111: undefined,
+        };
+        return outputs[data.cylinderValue];
+      },
+      run: (data) => {
+        delete data.cylinderValue;
+        delete data.numCylinders;
+      },
+      outputStrings: {
+        east: Outputs.east,
+        northeast: Outputs.northeast,
+        northwest: Outputs.northwest,
+        southeast: Outputs.southeast,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
       },
     },
   ],
