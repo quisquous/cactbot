@@ -10,8 +10,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Phase 1: introduction to towers
 0.0 "Start"
 0.0 "--sync--" sync / 00:0839::The central bow will be sealed off/ window 10,10
