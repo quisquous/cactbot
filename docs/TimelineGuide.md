@@ -261,7 +261,7 @@ This is pretty straightforward and only requires one person to test, so is a goo
 
 Note that the Cape Westwind trial was removed in Patch 6.1,
 and the timeline has since been removed from cactbot.  
-However, you can view the original timeline here: [sample-timeline.txt](sample-timeline.txt).
+However, you can view the original timeline [here](https://github.com/quisquous/cactbot/blob/aa38bdf8f2551a504e1d3f595cd266d3baa193f2/ui/raidboss/data/02-arr/trial/cape_westwind.txt).
 
 ### Run the fight a few times
 
