@@ -575,14 +575,37 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P10S Jade Passage',
-      type: 'StartsUsing',
-      netRegex: { id: '828C', capture: false },
+      // Track addition of Arcane Sphere combatants
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '12356' },
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text!(),
+      infoText: (_data, matches, output) => {
+        const y = parseInt(matches.y);
+        const safeSpot: { [y: number]: string } = {
+          86: output.boxes!(),
+          88: output.lines!(),
+          90: output.boxes!(),
+          92: output.lines!(),
+          94: output.boxes!(),
+          96: output.lines!(),
+          98: output.boxes!(),
+          100: output.lines!(),
+          102: output.boxes!(),
+          104: output.lines!(),
+          106: output.boxes!(),
+          108: output.lines!(),
+          110: output.boxes!(),
+          112: output.lines!(),
+          114: output.boxes!(),
+        };
+        return safeSpot[y];
+      },
       outputStrings: {
-        text: {
-          en: 'Avoid Lasers',
-          cn: '注意躲避激光',
+        lines: {
+          en: 'Lines',
+        },
+        boxes: {
+          en: 'Boxes',
         },
       },
     },
