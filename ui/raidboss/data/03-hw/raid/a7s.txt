@@ -4,6 +4,8 @@
 # Last Updated: 5/19/2016
 
 # Revised in http://github.com/quisquous/cactbot to use InCombat lines
+# TODO:  Fix this up to conform to cactbot style guidelines
+# TODO:  Look at whether jails are MapEffect lines?
 
 #############################################################
 ########CUSTOMIZE your timeline. Remove the hashtag from
