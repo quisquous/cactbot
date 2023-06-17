@@ -20,6 +20,7 @@ Options.Triggers.push({
   timelineFile: 'p11s.txt',
   initData: () => {
     return {
+      upheldTethers: [],
       lightDarkDebuff: {},
       lightDarkBuddy: {},
       lightDarkTether: {},
@@ -34,6 +35,26 @@ Options.Triggers.push({
       suppressSeconds: 99999,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => getHeadmarkerId(data, matches),
+    },
+    {
+      id: 'P11S Phase Tracker',
+      type: 'StartsUsing',
+      netRegex: { id: ['8219', '81FE', '87D2'], source: 'Themis' },
+      run: (data, matches) => {
+        data.upheldTethers = [];
+        const phaseMap = {
+          '8219': 'messengers',
+          '81FE': 'darkLight',
+          '87D2': 'letter',
+        };
+        data.phase = phaseMap[matches.id];
+      },
+    },
+    {
+      id: 'P11S Upheld Tether Collector',
+      type: 'Tether',
+      netRegex: { id: '00F9' },
+      run: (data, matches) => data.upheldTethers.push(matches),
     },
     {
       id: 'P11S Eunomia',
@@ -58,6 +79,19 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'P11S Jury Overruling Light Followup',
+      type: 'Ability',
+      netRegex: { id: '81E8', capture: false },
+      durationSeconds: 4,
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Healer Stacks',
+        },
+      },
+    },
+    {
       id: 'P11S Jury Overruling Dark',
       type: 'StartsUsing',
       netRegex: { id: '81E7', source: 'Themis', capture: false },
@@ -74,11 +108,25 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'P11S Jury Overruling Dark Followup',
+      type: 'Ability',
+      netRegex: { id: '81E9', capture: false },
+      durationSeconds: 4,
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Partners',
+        },
+      },
+    },
+    {
       id: 'P11S Upheld Overruling Light',
       type: 'StartsUsing',
       netRegex: { id: '87D3', source: 'Themis', capture: false },
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
+      run: (data) => data.upheldTethers = [],
       outputStrings: {
         text: {
           en: 'Party In => Out + Healer Stacks',
@@ -90,20 +138,115 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'P11S Upheld Overruling Light Followup',
+      type: 'Ability',
+      netRegex: { id: '81F2', capture: false },
+      durationSeconds: 4,
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out + Healer Stacks',
+        },
+      },
+    },
+    {
       id: 'P11S Upheld Overruling Dark',
       type: 'StartsUsing',
       netRegex: { id: '87D4', source: 'Themis', capture: false },
       durationSeconds: 6,
-      alertText: (_data, _matches, output) => output.text(),
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          upheldOnYou: {
+            en: 'You In (party out) => In + Partners',
+          },
+          upheldOnPlayer: {
+            en: 'Party Out (${player} in)=> In + Partners',
+          },
+          upheldNotOnYou: {
+            en: 'Party Out => In + Partners',
+            de: 'Party Raus => Rein + Partner',
+            fr: 'Extérieur => Intérieur + Partenaire',
+            cn: '场外 => 场中 + 两人分摊',
+            ko: '본대 밖으로 => 안으로 + 파트너',
+          },
+        };
+        const [tether] = data.upheldTethers;
+        if (tether === undefined || data.upheldTethers.length !== 1)
+          return { alertText: output.upheldNotOnYou() };
+        if (tether.target === data.me)
+          return { alarmText: output.upheldOnYou() };
+        return { alertText: output.upheldOnPlayer({ player: data.ShortName(tether.target) }) };
+      },
+      run: (data) => data.upheldTethers = [],
+    },
+    {
+      id: 'P11S Upheld Overruling Dark Followup',
+      type: 'Ability',
+      netRegex: { id: '81F3', capture: false },
+      durationSeconds: 4,
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Party Out => In + Partners',
-          de: 'Party Raus => Rein + Partner',
-          fr: 'Extérieur => Intérieur + Partenaire',
-          cn: '场外 => 场中 + 两人分摊',
-          ko: '본대 밖으로 => 안으로 + 파트너',
+          en: 'In + Partners',
         },
       },
+    },
+    {
+      id: 'P11S Upheld Ruling Tether',
+      type: 'StartsUsing',
+      // Two adds tether players; the light add casts 87D0, the dark casts 87D1.
+      // There's also a WeaponId 27/28 change too, but we don't need it.
+      netRegex: { id: '87D1' },
+      // Wait until after the Inevitable Law/Sentence during messengers.
+      delaySeconds: (data) => data.phase === 'messengers' ? 5.7 : 0,
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tankTether: {
+            en: 'Away from Party',
+          },
+          partyStackPlayerOut: {
+            en: 'Party Stack (${player} out)',
+          },
+          // If we're not sure who the tether is on.
+          partyStack: {
+            en: 'Party Stack',
+          },
+        };
+        const sourceId = matches.sourceId;
+        const [tether] = data.upheldTethers.filter((x) => x.sourceId === sourceId);
+        if (tether === undefined || data.upheldTethers.length !== 2)
+          return { alertText: output.partyStack() };
+        if (tether.target === data.me)
+          return { alarmText: output.tankTether() };
+        return {
+          alertText: output.partyStackPlayerOut({ player: data.ShortName(tether.target) }),
+        };
+      },
+      run: (data) => data.upheldTethers = [],
+    },
+    {
+      id: 'P11S Upheld Ruling Dark Followup',
+      type: 'Ability',
+      netRegex: { id: '8221', capture: false },
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get in Donut',
+        },
+      },
+    },
+    {
+      id: 'P11S Dark Perimeter Followup',
+      type: 'Ability',
+      netRegex: { id: '8225', capture: false },
+      condition: (data) => data.phase === 'letter',
+      suppressSeconds: 5,
+      response: Responses.getTowers('alert'),
     },
     {
       id: 'P11S Divisive Overruling Light',
@@ -111,6 +254,7 @@ Options.Triggers.push({
       netRegex: { id: '81EC', source: 'Themis', capture: false },
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
+      run: (data) => data.divisiveColor = 'light',
       outputStrings: {
         text: {
           en: 'Sides => Healer Stacks + Out',
@@ -127,6 +271,7 @@ Options.Triggers.push({
       netRegex: { id: '81ED', source: 'Themis', capture: false },
       durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
+      run: (data) => data.divisiveColor = 'dark',
       outputStrings: {
         text: {
           en: 'Sides => In + Partners',
@@ -138,10 +283,32 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'P11S Divisive Overruling Dark Followup',
+      type: 'Ability',
+      netRegex: { id: '81EE', capture: false },
+      durationSeconds: 4,
+      suppressSeconds: 5,
+      infoText: (data, _matches, output) => {
+        if (data.divisiveColor === 'dark')
+          return output.dark();
+        if (data.divisiveColor === 'light')
+          return output.light();
+      },
+      run: (data) => delete data.divisiveColor,
+      outputStrings: {
+        light: {
+          en: 'Healer Stacks + Out',
+        },
+        dark: {
+          en: 'In + Partners',
+        },
+      },
+    },
+    {
       id: 'P11S Divisive Overruling Light Shadowed Messengers',
       type: 'StartsUsing',
       netRegex: { id: '87B3', source: 'Themis', capture: false },
-      durationSeconds: 6,
+      durationSeconds: 8,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -157,7 +324,7 @@ Options.Triggers.push({
       id: 'P11S Divisive Overruling Dark Shadowed Messengers',
       type: 'StartsUsing',
       netRegex: { id: '87B4', source: 'Themis', capture: false },
-      durationSeconds: 6,
+      durationSeconds: 8,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -186,6 +353,19 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'P11S Dismissal Overruling Light Followup',
+      type: 'Ability',
+      netRegex: { id: '8784', capture: false },
+      durationSeconds: 4,
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Healer Stacks + Out',
+        },
+      },
+    },
+    {
       id: 'P11S Dismissal Overruling Dark',
       type: 'StartsUsing',
       netRegex: { id: '8785', source: 'Themis', capture: false },
@@ -198,6 +378,19 @@ Options.Triggers.push({
           fr: 'Poussée => Intérieur + Partenaires',
           cn: '击退 => 两人分摊 + 场内',
           ko: '넉백 => 안으로 + 파트너',
+        },
+      },
+    },
+    {
+      id: 'P11S Dismissal Overruling Dark Followup',
+      type: 'Ability',
+      netRegex: { id: '8785', capture: false },
+      durationSeconds: 4,
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'In + Partners',
         },
       },
     },
@@ -235,6 +428,7 @@ Options.Triggers.push({
       id: 'P11S Arcane Revelation Light Orbs',
       type: 'StartsUsing',
       netRegex: { id: '820F', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -250,6 +444,7 @@ Options.Triggers.push({
       id: 'P11S Arcane Revelation Dark Orbs',
       type: 'StartsUsing',
       netRegex: { id: '8210', source: 'Themis', capture: false },
+      durationSeconds: 6,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
