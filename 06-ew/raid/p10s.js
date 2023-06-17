@@ -543,14 +543,20 @@ Options.Triggers.push({
     },
     {
       id: 'P10S Jade Passage',
-      type: 'StartsUsing',
-      netRegex: { id: '828C', capture: false },
+      // Track addition of Arcane Sphere combatants
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '12356' },
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, matches, output) => {
+        const y = parseInt(matches.y);
+        return (Math.floor(y / 2) % 2 === 1) ? output.boxes() : output.lines();
+      },
       outputStrings: {
-        text: {
-          en: 'Avoid Lasers',
-          cn: '注意躲避激光',
+        lines: {
+          en: 'On Lines (Avoid Lasers)',
+        },
+        boxes: {
+          en: 'Inside Boxes (Avoid Lasers)',
         },
       },
     },
