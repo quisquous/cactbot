@@ -581,31 +581,14 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 5,
       infoText: (_data, matches, output) => {
         const y = parseInt(matches.y);
-        const safeSpot: { [y: number]: string } = {
-          86: output.boxes!(),
-          88: output.lines!(),
-          90: output.boxes!(),
-          92: output.lines!(),
-          94: output.boxes!(),
-          96: output.lines!(),
-          98: output.boxes!(),
-          100: output.lines!(),
-          102: output.boxes!(),
-          104: output.lines!(),
-          106: output.boxes!(),
-          108: output.lines!(),
-          110: output.boxes!(),
-          112: output.lines!(),
-          114: output.boxes!(),
-        };
-        return safeSpot[y];
+        return (Math.floor(y / 2) % 2 === 1) ? output.boxes!() : output.lines!();
       },
       outputStrings: {
         lines: {
-          en: 'Lines',
+          en: 'On Lines (Avoid Lasers)',
         },
         boxes: {
-          en: 'Boxes',
+          en: 'Inside Boxes (Avoid Lasers)',
         },
       },
     },
