@@ -8,10 +8,8 @@ hideall "--sync--"
 hideall "Yata-No-Kagami"
 hideall "Yasakani-No-Magatama"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Phase 1
-0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 8.5 "Assail" sync / 1[56]:[^:]*:Susano:201C:/ window 10,0
 19.6 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:201D:/
 32.8 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:201F:/
