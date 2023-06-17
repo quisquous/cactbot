@@ -7,8 +7,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Faust
 # -p E3C:1006 -ii E3E
 1000.0 "--sync--" sync / 00:0839::Machinery Bay 44 will be sealed off/ window 1000,0

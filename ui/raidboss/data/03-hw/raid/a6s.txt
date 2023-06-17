@@ -6,9 +6,6 @@
 
 hideall "Ballistic Missile"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
-
 ### Blaster
 0.0 "--sync--" sync / 00:0839::Machinery Bay 67 will be sealed off/ window 1,0
 7.0 "Brute Force" sync / 1[56]:[^:]*:Blaster:15F2:/ window 10,10

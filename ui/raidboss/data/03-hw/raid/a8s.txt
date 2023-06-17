@@ -1,4 +1,4 @@
-### A12S
+### A8S
 # Alexander - The Burden of the Son (Savage)
 # https://dtguilds.enjin.com/a8sguide
 # -p 162A:6.7 163B:313.5 1657:603 167C:800 166E:1257.1
@@ -8,8 +8,6 @@ hideall "--Reset--"
 hideall "--sync--"
 hideall "Magicked Mark"
 hideall "Brute Force"
-
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 ### Phase 1: Onslaughter: Execution and Legislation
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1

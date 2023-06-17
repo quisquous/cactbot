@@ -7,8 +7,6 @@
 hideall "Guzzle"
 hideall "Relaxant"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Hummel and Friends
 1000.0 "--sync--" sync / 00:0839::The Clevering will be sealed off/ window 1000,0
 1009.8 "Kaltstrahl x1" sync / 1[56]:[^:]*:Faust:16CC:/ window 10,5

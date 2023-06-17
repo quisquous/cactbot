@@ -7,8 +7,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 # Initial Phase: Tankbuster, Charge, Repeat
 0.0 "Start"
 0.0 "--sync--" sync / 00:0839::The Alpha Concourse will be sealed off/ window 5,5
