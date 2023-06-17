@@ -19,14 +19,14 @@ export type TimelineStyle = {
 };
 
 export type Event = {
-  id: number;
+  id: string;
   time: number;
   name: string;
   text: string;
   activeTime?: number;
   lineNumber?: number;
   duration?: number;
-  sortKey?: number;
+  sortKey: number;
   isDur?: boolean;
   style?: { [key: string]: string };
   sync?: Sync;
@@ -48,6 +48,9 @@ export type Sync = {
   lineNumber: number;
   event: Event;
   jump?: number;
+  // TODO: could consider "maybe" jumps here to say "Ability?".
+  // TODO: also it'd be nice to be able to `forcejump` with out a `sync //`
+  jumpType?: 'force' | 'normal';
 };
 
 type ParsedPopupText = {
@@ -81,6 +84,7 @@ export class TimelineParser {
   public texts: Text[];
   public syncStarts: Sync[];
   public syncEnds: Sync[];
+  public forceJumps: Sync[];
   public errors: Error[];
 
   constructor(
@@ -105,6 +109,8 @@ export class TimelineParser {
     this.syncStarts = [];
     // Sorted by sync.end time.
     this.syncEnds = [];
+    // Sorted by event occurrence time.
+    this.forceJumps = [];
     // Sorted by line.
     this.errors = [];
 
@@ -117,12 +123,13 @@ export class TimelineParser {
     let uniqueId = 0;
     for (const event of this.timelineConfig.Add ?? []) {
       this.events.push({
-        id: ++uniqueId,
+        id: `${++uniqueId}`,
         time: event.time,
         name: event.text,
         text: event.text,
         duration: event.duration,
         activeTime: 0,
+        sortKey: 0,
       });
     }
 
@@ -142,7 +149,8 @@ export class TimelineParser {
       commentLine: /#.*$/,
       durationCommand: /(?:[^#]*?\s)?(?<text>duration\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(\s.*)?$/,
       ignore: /^hideall\s+\"(?<id>[^"]+)\"(?:\s*#.*)?$/,
-      jumpCommand: /(?:[^#]*?\s)?(?<text>jump\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
+      jumpCommand:
+        /(?:[^#]*?\s)?(?<text>(?<command>(?:force|)jump)\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
       line: /^(?<text>(?<time>[0-9]+(?:\.[0-9]+)?)\s+"(?<name>.*?)")(\s+(.*))?/,
       popupText:
         /^(?<type>info|alert|alarm)text\s+\"(?<id>[^"]+)\"\s+before\s+(?<beforeSeconds>-?[0-9]+(?:\.[0-9]+)?)(?:\s+\"(?<text>[^"]+)\")?$/,
@@ -241,7 +249,7 @@ export class TimelineParser {
 
       const seconds = parseFloat(parsedLine.time);
       const e: Event = {
-        id: ++uniqueid,
+        id: `${++uniqueid}`,
         time: seconds,
         // The original ability name in the timeline.  Used for hideall, infotext, etc.
         name: parsedLine.name,
@@ -249,6 +257,7 @@ export class TimelineParser {
         text: this.GetReplacedText(parsedLine.name),
         activeTime: 0,
         lineNumber: lineNumber,
+        sortKey: 0,
       };
       if (line) {
         let commandMatch = regexes.durationCommand.exec(line);
@@ -295,14 +304,20 @@ export class TimelineParser {
             argMatch = regexes.jumpCommand.exec(syncCommand.args);
             if (argMatch && argMatch['groups']) {
               const jumpCommand = argMatch['groups'];
-              if (!jumpCommand.text || !jumpCommand.seconds)
+              if (jumpCommand.text === undefined || jumpCommand.seconds === undefined)
                 throw new UnreachableCode();
               line = line.replace(jumpCommand.text, '').trim();
               sync.jump = parseFloat(jumpCommand.seconds);
+              if (jumpCommand.command === 'forcejump')
+                sync.jumpType = 'force';
+              else
+                sync.jumpType = 'normal';
             }
           }
           this.syncStarts.push(sync);
           this.syncEnds.push(sync);
+          if (sync.jumpType === 'force')
+            this.forceJumps.push(sync);
         }
       }
       // If there's text left that isn't a comment then we didn't parse that text so report it.
@@ -360,6 +375,9 @@ export class TimelineParser {
         const autoConfig = trigger.id && this.perTriggerAutoConfig[trigger.id] || {};
         const beforeSeconds = autoConfig['BeforeSeconds'] ?? trigger.beforeSeconds;
 
+        // TODO: also put these before any forcejump as well; this will solve
+        // having to care about this at runtime.
+        // e.g. if the beforeSeconds would put the text prior to the jump destination
         this.texts.push({
           type: 'trigger',
           time: e.time - (beforeSeconds || 0),
@@ -379,7 +397,7 @@ export class TimelineParser {
     // Then assign a sortKey to each event so that we can maintain that order.
     this.events.sort((a, b) => {
       if (a.time === b.time)
-        return a.id - b.id;
+        return parseInt(a.id) - parseInt(b.id);
       return a.time - b.time;
     });
     this.events.forEach((event, idx) => event.sortKey = idx);
@@ -392,6 +410,9 @@ export class TimelineParser {
     });
     this.syncEnds.sort((a, b) => {
       return a.end - b.end;
+    });
+    this.forceJumps.sort((a, b) => {
+      return a.time - b.time;
     });
   }
 

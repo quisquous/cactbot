@@ -76,6 +76,8 @@ Every timeline entry begins with the ability time and the ability name.
 
 `Number "String" sync /Regex/ (window Number,Number) (jump Number) (duration Number)`
 
+`Number "String" sync /Regex/ (window Number,Number) (forcejump Number) (duration Number)`
+
 The parentheses here indicate optionality and are not literal parentheses.
 
 Number can be an integer, e.g. `34`, or a float, e.g. `84.381`.
@@ -109,6 +111,18 @@ If you jump to time 0, the timeline will stop playback.
 This is usually used for phase pushes and loops.
 There does not need to be a timeline entry for the time you jump to,
 although it is very common to have one.
+
+`forcejump Number` tells the timeline playback that there will always be a jump here
+regardless of whether the sync is encountered.
+This is intended for loops that will always be taken in an encounter.
+When this is used, no "lookahead" loop unrolling is needed,
+and the timeline will use the `forcejump` destination to list events in the future,
+because it knows that it will always jump there.
+If this line syncs prior to time passing it by,
+it will behave exactly like a normal `jump`.
+If the time passes this line,
+then it will jump as if it had synced exactly on time.
+This is not handled specially in `test_timeline`, which expects the sync to be correct.
 
 ### Commands
 
