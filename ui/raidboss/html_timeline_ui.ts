@@ -1,4 +1,5 @@
 import { Lang, langToLocale } from '../../resources/languages';
+import { UnreachableCode } from '../../resources/not_reached';
 import TimerBar from '../../resources/timerbar';
 import { LooseTimelineTrigger } from '../../types/trigger';
 
@@ -72,6 +73,12 @@ const computeBackgroundFrom = (element: HTMLElement, classList: string): string 
   return color;
 };
 
+export type ActiveBar = {
+  bar: TimerBar;
+  soonTimeout?: number;
+  expireTimeout?: number;
+};
+
 export class HTMLTimelineUI extends TimelineUI {
   private init = false;
   private lang: Lang;
@@ -81,8 +88,7 @@ export class HTMLTimelineUI extends TimelineUI {
   private barExpiresSoonColor: string | null = null;
   private timerlist: HTMLElement | null = null;
 
-  private activeBars: { [activebar: string]: TimerBar } = {};
-  private expireTimers: { [expireTimer: string]: number } = {};
+  private activeBars: { [activebar: string]: ActiveBar } = {};
 
   private debugElement: HTMLElement | null = null;
   private debugFightTimer: TimerBar | null = null;
@@ -120,7 +126,6 @@ export class HTMLTimelineUI extends TimelineUI {
     }
 
     this.activeBars = {};
-    this.expireTimers = {};
   }
 
   protected override AddDebugInstructions(): void {
@@ -167,6 +172,7 @@ export class HTMLTimelineUI extends TimelineUI {
       if (this.debugElement)
         this.debugElement.innerHTML = '';
       this.debugFightTimer = null;
+      // TODO: clear all timeouts?
       this.activeBars = {};
     }
   }
@@ -186,60 +192,56 @@ export class HTMLTimelineUI extends TimelineUI {
     if (e.style)
       bar.applyStyles(e.style);
 
+    // Adding a timer with the same id immediately removes the previous.
+    const activeBar = this.activeBars[e.id];
+    if (activeBar) {
+      const parentDiv = activeBar.bar.parentNode;
+      parentDiv?.parentNode?.removeChild(parentDiv);
+      if (activeBar.expireTimeout !== undefined) {
+        window.clearTimeout(activeBar.expireTimeout);
+        activeBar.expireTimeout = undefined;
+      }
+    }
+
+    let soonTimeout: number | undefined = undefined;
     if (!channeling && e.time - fightNow > this.options.BarExpiresSoonSeconds) {
       bar.fg = this.barColor;
-      window.setTimeout(
-        this.OnTimerExpiresSoon.bind(this, e.id),
+      soonTimeout = window.setTimeout(
+        () => bar.fg = this.barExpiresSoonColor,
         (e.time - fightNow - this.options.BarExpiresSoonSeconds) * 1000,
       );
     } else {
       bar.fg = this.barExpiresSoonColor;
     }
 
-    // Adding a timer with the same id immediately removes the previous.
-    const activeBar = this.activeBars[e.id];
-    if (activeBar) {
-      const div = activeBar.parentNode;
-      div?.parentNode?.removeChild(div);
-    }
-
     if (e.sortKey)
       div.style.order = e.sortKey.toString();
-    div.id = e.id.toString();
     this.timerlist?.appendChild(div);
-    this.activeBars[e.id] = bar;
-    if (e.id in this.expireTimers) {
-      window.clearTimeout(this.expireTimers[e.id]);
-      delete this.expireTimers[e.id];
-    }
-  }
-
-  public override OnTimerExpiresSoon(id: number): void {
-    const bar = this.activeBars[id];
-    if (bar)
-      bar.fg = this.barExpiresSoonColor;
+    this.activeBars[e.id] = {
+      bar: bar,
+      soonTimeout: soonTimeout,
+    };
   }
 
   public override OnRemoveTimer(e: Event, expired: boolean, force = false): void {
+    const activeBar = this.activeBars[e.id];
+    if (!activeBar)
+      return;
+
+    if (activeBar.expireTimeout !== undefined)
+      window.clearTimeout(activeBar.expireTimeout);
+
     if (!force && expired && this.options.KeepExpiredTimerBarsForSeconds) {
-      this.expireTimers[e.id] = window.setTimeout(
-        this.OnRemoveTimer.bind(this, e, false),
+      activeBar.expireTimeout = window.setTimeout(
+        () => this.OnRemoveTimer(e, false),
         this.options.KeepExpiredTimerBarsForSeconds * 1000,
       );
       return;
-    } else if (e.id in this.expireTimers) {
-      window.clearTimeout(this.expireTimers[e.id]);
-      delete this.expireTimers[e.id];
     }
 
-    const bar = this.activeBars[e.id];
-    if (!bar)
-      return;
-
-    const div = bar.parentNode;
-    const element = document.getElementById(e.id.toString());
-    if (!element)
-      return;
+    const div = activeBar.bar.parentNode;
+    if (!(div instanceof HTMLElement))
+      throw new UnreachableCode();
 
     const removeBar = () => {
       div?.parentNode?.removeChild(div);
@@ -247,10 +249,10 @@ export class HTMLTimelineUI extends TimelineUI {
     };
 
     if (!force)
-      element.classList.add('animate-timer-bar-removed');
-    if (window.getComputedStyle(element).animationName !== 'none') {
+      div.classList.add('animate-timer-bar-removed');
+    if (window.getComputedStyle(div).animationName !== 'none') {
       // Wait for animation to finish
-      element.addEventListener('animationend', removeBar);
+      div.addEventListener('animationend', removeBar);
     } else {
       removeBar();
     }
