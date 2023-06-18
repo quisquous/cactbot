@@ -191,27 +191,35 @@ Options.Triggers.push({
         // and it's nice to have a "go through" or "go back" description too.
         superchain2aLeftNorthNorth: {
           en: 'North + Her Left (then back North)',
+          de: 'Norden + Links von Ihr (dannach Norden)',
         },
         superchain2aLeftNorthSouth: {
           en: 'North + Her Left (then go South)',
+          de: 'Norden + Links von Ihr (dannach Süden)',
         },
         superchain2aLeftSouthNorth: {
           en: 'South + Left (then go North)',
+          de: 'Süden + Links (dannach Norden)',
         },
         superchain2aLeftSouthSouth: {
           en: 'South + Left (then back South)',
+          de: 'Süden + Links (dannach Süden)',
         },
         superchain2aRightNorthNorth: {
           en: 'North + Her Right (then back North)',
+          de: 'Norden + Rechts von Ihr (dannach Norden)',
         },
         superchain2aRightNorthSouth: {
           en: 'North + Her Right (then go South)',
+          de: 'Norden + Rechts von Ihr (dannach Süden)',
         },
         superchain2aRightSouthNorth: {
           en: 'South + Right (then go North)',
+          de: 'Süden + Rechts (dannach Norden)',
         },
         superchain2aRightSouthSouth: {
           en: 'South + Right (then back South)',
+          de: 'Süden + Rechts (dannach Süden)',
         },
       },
     },
@@ -363,27 +371,35 @@ Options.Triggers.push({
         },
         superchain2aSwapMidBack: {
           en: 'Swap + Mid => Back ${dir}',
+          de: 'Wechseln + Mitte => Zurück nach ${dir}',
         },
         superchain2aSwapMidGo: {
           en: 'Swap + Mid => Go ${dir}',
+          de: 'Wechseln + Mitte => Geh nach ${dir}',
         },
         superchain2aStayMidBack: {
           en: 'Stay + Mid => Back ${dir}',
+          de: 'Bleib stehen + Mitte => Zurück nach ${dir}',
         },
         superchain2aStayMidGo: {
           en: 'Stay + Mid => Go ${dir}',
+          de: 'Bleib stehen + Mitte => Geh nach ${dir}',
         },
         superchain2aSwapProtean: {
           en: 'Swap => Protean + ${dir}',
+          de: 'Wechseln => Himmelsrichtungen + ${dir}',
         },
         superchain2aStayProtean: {
           en: 'Stay => Protean + ${dir}',
+          de: 'Bleib stehen => Himmelsrichtungen + ${dir}',
         },
         superchain2aSwapPartners: {
           en: 'Swap => Partners + ${dir}',
+          de: 'Wechseln => Partner + ${dir}',
         },
         superchain2aStayPartners: {
           en: 'Stay => Partners + ${dir}',
+          de: 'Bleib stehen => Partner + ${dir}',
         },
         north: Outputs.north,
         south: Outputs.south,
@@ -407,9 +423,11 @@ Options.Triggers.push({
       outputStrings: {
         protean: {
           en: 'Protean',
+          de: 'Himmelsrichtungen',
         },
         partners: {
           en: 'Partners',
+          de: 'Partner',
         },
       },
     },

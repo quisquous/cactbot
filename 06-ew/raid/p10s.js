@@ -554,10 +554,12 @@ Options.Triggers.push({
       outputStrings: {
         lines: {
           en: 'On Lines (Avoid Lasers)',
+          de: 'Auf die Linien (vermeide Laser)',
           cn: '站在线上（躲避激光）',
         },
         boxes: {
           en: 'Inside Boxes (Avoid Lasers)',
+          de: 'In den Boxen (vermeide Laser)',
           cn: '站在盒子里（躲避激光）',
         },
       },

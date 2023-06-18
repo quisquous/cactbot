@@ -88,6 +88,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Healer Stacks',
+          de: 'Heiler Gruppen',
         },
       },
     },
@@ -117,6 +118,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Partners',
+          de: 'Partner',
         },
       },
     },
@@ -147,6 +149,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Out + Healer Stacks',
+          de: 'Raus + Heiler Gruppen',
         },
       },
     },
@@ -160,9 +163,11 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           upheldOnYou: {
             en: 'You In (party out) => In + Partners',
+            de: 'Du rein (Gruppe raus) => Rein + Partner',
           },
           upheldOnPlayer: {
             en: 'Party Out (${player} in)=> In + Partners',
+            de: 'Gruppe raus (${player} rein)=> Rein + Partner',
           },
           upheldNotOnYou: {
             en: 'Party Out => In + Partners',
@@ -191,6 +196,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'In + Partners',
+          de: 'Rein + Partner',
         },
       },
     },
@@ -207,13 +213,16 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           tankTether: {
             en: 'Away from Party',
+            de: 'Weg von der Gruppe',
           },
           partyStackPlayerOut: {
             en: 'Party Stack (${player} out)',
+            de: 'Mit der Gruppe sammeln (${player} raus)',
           },
           // If we're not sure who the tether is on.
           partyStack: {
             en: 'Party Stack',
+            de: 'In der Gruppe sammeln',
           },
         };
         const sourceId = matches.sourceId;
@@ -237,6 +246,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Get in Donut',
+          de: 'Geh in den Donut',
         },
       },
     },
@@ -298,9 +308,11 @@ Options.Triggers.push({
       outputStrings: {
         light: {
           en: 'Healer Stacks + Out',
+          de: 'Heiler Gruppen + Raus',
         },
         dark: {
           en: 'In + Partners',
+          de: 'Rein + Partner',
         },
       },
     },
@@ -362,6 +374,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Healer Stacks + Out',
+          de: 'Heiler Gruppen + Raus',
         },
       },
     },
@@ -391,6 +404,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'In + Partners',
+          de: 'Rein + Partner',
         },
       },
     },
