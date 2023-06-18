@@ -586,9 +586,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         lines: {
           en: 'On Lines (Avoid Lasers)',
+          cn: '站在线上（躲避激光）',
         },
         boxes: {
           en: 'Inside Boxes (Avoid Lasers)',
+          cn: '站在盒子里（躲避激光）',
         },
       },
     },
