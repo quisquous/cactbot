@@ -3,7 +3,9 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+# Use autos instead of InCombat lines to start timelines for door & final boss
+# as timeline resets out of combat.
+
 4 "--sync--" sync / 1[56]:[^:]*:Kefka:28C2:/ window 5,0
 13 "Mana Charge" sync / 1[56]:[^:]*:Kefka:28D1:/ window 20,20 # drift 0.476
 19 "Flagrant Fire" #sync / 1[56]:[^:]*:Kefka:28CE:/ # drift 0.215
