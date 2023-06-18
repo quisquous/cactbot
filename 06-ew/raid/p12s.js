@@ -526,7 +526,7 @@ Options.Triggers.push({
         };
         const infoText = output.firstWhiteFlame();
         if (data.limitCutNumber === 5 || data.limitCutNumber === 7)
-          return { alert: output.baitLaser(), infoText: infoText };
+          return { alertText: output.baitLaser(), infoText: infoText };
         return { infoText: infoText };
       },
     },
