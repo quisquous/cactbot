@@ -61,6 +61,24 @@ const superchainNpcBaseIdMap: Record<SuperchainMechanic, string> = {
   partners: '16180',
 } as const;
 
+const engravementIdMap = {
+  lightTilt: 'DF8',
+  darkTilt: 'DF9',
+  lightTower: 'DFB',
+  darkTower: 'DFC',
+  lightBeam: 'DFD',
+  darkBeam: 'DFE',
+  crossMarked: 'DFF',
+  xMarked: 'E00',
+};
+const engravementLabelMap = Object.fromEntries(
+  Object.entries(engravementIdMap).map(([k, v]) => [v, k]),
+);
+const engravementBeamIds = [engravementIdMap.lightBeam, engravementIdMap.darkBeam];
+const engravementTowerIds = [engravementIdMap.lightTower, engravementIdMap.darkTower];
+const engravementTiltIds = [engravementIdMap.lightTilt, engravementIdMap.darkTilt];
+const engravement3TheosSoulIds = [engravementIdMap.crossMarked, engravementIdMap.xMarked];
+
 const headmarkers = {
   ...wings,
   // vfx/lockon/eff/tank_laser_5sec_lockon_c0a1.avfx
@@ -114,6 +132,10 @@ export interface Data extends RaidbossData {
   expectedFirstHeadmarker?: string;
   isDoorBoss: boolean;
   phase?: 'superchain1' | 'palladion' | 'superchain2a' | 'superchain2b';
+  engravementCounter: number;
+  engravement1Towers: string[];
+  engravement3TowerType?: string;
+  engravement3TowerPlayers: string[];
   wingCollect: string[];
   wingCalls: ('swap' | 'stay')[];
   superchainCollect: NetMatches['AddedCombatant'][];
@@ -132,6 +154,9 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => {
     return {
       isDoorBoss: true,
+      engravementCounter: 0,
+      engravement1Towers: [],
+      engravement3TowerPlayers: [],
       wingCollect: [],
       wingCalls: [],
       superchainCollect: [],
@@ -462,6 +487,326 @@ const triggerSet: TriggerSet<Data> = {
         },
         partners: {
           en: 'Partners',
+        },
+      },
+    },
+    {
+      id: 'P12S Engravement of Souls Tracker',
+      type: 'Ability',
+      netRegex: { id: '8305', source: 'Athena', capture: false },
+      run: (data) => ++data.engravementCounter,
+    },
+    // In Engravement 1, 2 players receive lightTower and 2 players receive darkTower.
+    // When debuffs expire and towers drop, their debuff changes to lightTilt or darkTilt (same as tower color).
+    // At the same time the towers drop, the 4 tethered players receive lightTilt or darkTilt depending on their tether color.
+    {
+      id: 'P12S Engravement 1 Tower Drop',
+      type: 'GainsEffect',
+      netRegex: { effectId: engravementTowerIds },
+      condition: (data) => data.engravementCounter === 1,
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      alertText: (data, matches, output) => {
+        data.engravement1Towers.push(matches.target);
+        if (data.me === matches.target) {
+          if (matches.effectId === engravementIdMap.lightTower)
+            return output.lightTower!();
+          return output.darkTower!();
+        }
+      },
+      outputStrings: {
+        lightTower: {
+          en: 'Drop light tower',
+        },
+        darkTower: {
+          en: 'Drop dark tower',
+        },
+      },
+    },
+    {
+      id: 'P12S Engravement 1 Tower Soak',
+      type: 'GainsEffect',
+      netRegex: { effectId: engravementTiltIds },
+      condition: (data, matches) => data.engravementCounter === 1 && data.me === matches.target,
+      suppressSeconds: 5, // avoid second (incorrect) alert when debuff switches from soaking tower
+      alertText: (data, matches, output) => {
+        if (data.engravement1Towers.indexOf(data.me) === -1) {
+          // Did not drop a tower, so needs to soak one.
+          if (matches.effectId === engravementIdMap.lightTilt)
+            return output.lightTilt!();
+          return output.darkTilt!();
+        }
+      },
+      outputStrings: {
+        lightTilt: {
+          en: 'Soak dark tower',
+        },
+        darkTilt: {
+          en: 'Soak light tower',
+        },
+      },
+    },
+    // In Engravement 2 (Superchain 1), all supports or all DPS will receive lightTilt and darkTilt (2 each). All 4 also receive Heavensflame Soul.
+    // The other role group will receive lightTower, darkTower, lightBeam, and darkBeam.
+    // To resolve the Beams during the 2nd orb, lightBeam needs to stack with darkTower and both darkTilts, and vice versa.
+    // Following the third orb, the lightTower and darkTower will drop their towers, and the darkBeam and lightBeam (respectively) will soak them.
+    // The four Heavensflame players all simultaneously need to spread.
+    // Note: When a lightTilt player soaks a dark beam, their debuff will change to darkTilt, and vice versa.
+    // Additionally, once the beams detonate, the lightBeam debuff disappears and is replaced with lightTilt (same with dark).
+    // So we only use the initial debuff to resolve the mechanic, and use a long suppress to avoid conflicting information.
+    {
+      id: 'P12S Engravement 2 Beam Soak',
+      type: 'GainsEffect',
+      netRegex: { effectId: Object.values(engravementIdMap) },
+      condition: (data, matches) => data.engravementCounter === 2 && data.me === matches.target,
+      delaySeconds: 5, // wait until first orb resolves so as not to confuse
+      durationSeconds: 7, // keep active until beams go off
+      suppressSeconds: 30,
+      response: (_data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          lightBeam: {
+            en: 'Light Beam (stack with Dark group)',
+          },
+          darkBeam: {
+            en: 'Dark Beam (stack with Light group)',
+          },
+          lightTower: {
+            en: 'Light Tower (stack with light group)',
+          },
+          darkTower: {
+            en: 'Dark Tower (stack with dark group)',
+          },
+          lightTilt: {
+            en: 'Stack (light group) - spread later',
+          },
+          darkTilt: {
+            en: 'Stack (dark group) - spread later',
+          },
+        };
+
+        const engraveLabel = engravementLabelMap[matches.effectId];
+        if (engraveLabel === undefined)
+          return;
+        const engraveOutputStr = output[engraveLabel]!();
+        if (engraveOutputStr === undefined)
+          return;
+        if (engravementBeamIds.indexOf(matches.effectId) !== -1)
+          return { alarmText: engraveOutputStr };
+        return { alertText: engraveOutputStr };
+      },
+    },
+    // darkTower/lightTower are 20s, but lightBeam/darkBeam are shorter and swap to lightTilt/darkTilt before the mechanic resolves.
+    // So use a fixed delay rather than one based on matches.duration.
+    {
+      id: 'P12S Engravement 2 Tower Drop/Soak Reminder',
+      type: 'GainsEffect',
+      netRegex: { effectId: [...engravementTowerIds, ...engravementBeamIds] },
+      condition: (data, matches) => data.engravementCounter === 2 && data.me === matches.target,
+      delaySeconds: 16,
+      alertText: (_data, matches, output) => {
+        const engraveLabel = engravementLabelMap[matches.effectId];
+        if (engraveLabel === undefined)
+          return;
+        const engraveOutputStr = output[engraveLabel]!();
+        if (engraveOutputStr === undefined)
+          return;
+        return engraveOutputStr;
+      },
+      outputStrings: {
+        lightBeam: {
+          en: 'Soak Dark Tower',
+        },
+        darkBeam: {
+          en: 'Soak Light Tower',
+        },
+        lightTower: {
+          en: 'Drop Light Tower',
+        },
+        darkTower: {
+          en: 'Drop Dark Tower',
+        },
+      },
+    },
+    {
+      id: 'P12S Engravement 2 Heavensflame Soul',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'DFA' },
+      condition: (data, matches) => data.engravementCounter === 2 && data.me === matches.target,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
+      response: Responses.spread(),
+    },
+    // In Engravement 3 (Paradeigma 3), 2 support players will both receive either lightTower or darkTower.
+    // The other 2 support players receive a '+'/Cross (DFF) or 'x'/Saltire (E00) debuff.
+    // Because of platform separation, the '+' and 'x' players must soak the far north/south towers,
+    // while the lightTower or darkTower players must soak the middle towers (so they can then drop their towers for DPS to soak).
+    // Two DPS receive light tethers and two receive dark tethers, which result in them receiving lightTilt or darkTilt when tethers resolve.
+    // If the support players receive lightTower, the darkTilt DPS must soak those towers, or vice versa.
+    // While the towers are being dropped & soaked by 2 DPS, the '+' and 'x' supports and the other 2 DPS must bait the adds line cleaves.
+    {
+      id: 'P12S Engravement 3 Theos Initial',
+      type: 'GainsEffect',
+      netRegex: { effectId: engravement3TheosSoulIds },
+      condition: (data, matches) => data.engravementCounter === 3 && data.me === matches.target,
+      alertText: (_data, matches, output) => {
+        const mark = matches.effectId === engravementIdMap.crossMarked ? '+' : 'x';
+        return output.theosDebuff!({ mark: mark });
+      },
+      outputStrings: {
+        theosDebuff: {
+          en: '${mark} on You',
+        },
+      },
+    },
+    {
+      id: 'P12S Engravement 3 Theos Drop AoE',
+      type: 'GainsEffect',
+      netRegex: { effectId: engravement3TheosSoulIds },
+      condition: (data, matches) => data.engravementCounter === 3 && data.me === matches.target,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
+      alertText: (_data, matches, output) => {
+        const mark = matches.effectId === engravementIdMap.crossMarked ? '+' : 'x';
+        return output.dropBait!({ mark: mark });
+      },
+      outputStrings: {
+        dropBait: {
+          en: 'Drop baited ${mark} AoE',
+        },
+      },
+    },
+    {
+      id: 'P12S Engravement 3 Theos Bait Adds',
+      type: 'GainsEffect',
+      netRegex: { effectId: engravement3TheosSoulIds },
+      condition: (data, matches) => data.engravementCounter === 3 && data.me === matches.target,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration),
+      alertText: (_data, _matches, output) => output.baitCleave!(),
+      outputStrings: {
+        baitCleave: {
+          en: 'Bait add line cleave',
+        },
+      },
+    },
+    {
+      id: 'P12S Engravement 3 Towers Collect',
+      type: 'GainsEffect',
+      netRegex: { effectId: engravementTowerIds },
+      condition: (data) => data.engravementCounter === 3,
+      run: (data, matches) => {
+        data.engravement3TowerPlayers.push(matches.target);
+        data.engravement3TowerType = engravementLabelMap[matches.effectId];
+      },
+    },
+    {
+      id: 'P12S Engravement 3 Towers Initial',
+      type: 'GainsEffect',
+      netRegex: { effectId: engravementTowerIds, capture: false },
+      condition: (data) => data.engravementCounter === 3,
+      delaySeconds: 0.3,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          towerOnYou: {
+            en: '${color} Tower on You (w/ ${partner})',
+          },
+          towerLater: {
+            en: '${color} Towers later',
+          },
+          light: {
+            en: 'Light',
+          },
+          dark: {
+            en: 'Dark',
+          },
+          unknown: Outputs.unknown,
+        };
+        const towerOnYou = data.engravement3TowerPlayers.indexOf(data.me) !== -1;
+        let towerColor = output.unknown!();
+        if (data.engravement3TowerType !== undefined)
+          towerColor = data.engravement3TowerType === 'lightTower'
+            ? output.light!()
+            : output.dark!();
+        let partner;
+        if (towerOnYou) {
+          partner = data.ShortName(data.engravement3TowerPlayers.find((name) =>
+            name !== data.me
+          )) ?? output.unknown!();
+          return { alertText: output.towerOnYou!({ color: towerColor, partner: partner }) };
+        } else if (data.party.isDPS(data.me)) {
+          // DPS want to know tower color to know if they are soaking or baiting add cleaves later
+          return { infoText: output.towerLater!({ color: towerColor }) };
+        }
+      },
+    },
+    {
+      id: 'P12S Engravement 3 Towers Drop',
+      type: 'GainsEffect',
+      netRegex: { effectId: engravementTowerIds },
+      condition: (data, matches) => data.engravementCounter === 3 && data.me === matches.target,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      alertText: (data, _matches, output) => {
+        let towerColor = output.unknown!();
+        if (data.engravement3TowerType !== undefined)
+          towerColor = data.engravement3TowerType === 'lightTower'
+            ? output.light!()
+            : output.dark!();
+        return output.dropTower!({ color: towerColor });
+      },
+      outputStrings: {
+        dropTower: {
+          en: 'Drop ${color} Tower',
+        },
+        light: {
+          en: 'Light',
+        },
+        dark: {
+          en: 'Dark',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'P12S Engravement 3 Soak Tower/Bait Adds',
+      type: 'GainsEffect',
+      netRegex: { effectId: engravementTiltIds },
+      condition: (data, matches) => data.engravementCounter === 3 && data.me === matches.target,
+      suppressSeconds: 15, // avoid second (incorrect) alert when debuff switches from soaking tower
+      alertText: (data, matches, output) => {
+        // lightTower/darkTower support players receive lightTilt/darkTilt once dropping their tower
+        // so exclude them from receiving this alert
+        if (data.engravement3TowerPlayers.indexOf(data.me) !== -1)
+          return;
+
+        const soakMap: { [key: string]: string } = {
+          lightTower: 'darkTilt',
+          darkTower: 'lightTilt',
+        };
+        const myEffect = engravementLabelMap[matches.effectId];
+        if (myEffect === undefined || data.engravement3TowerType === undefined)
+          return;
+        const soakers = soakMap[data.engravement3TowerType];
+        if (soakers === undefined)
+          return;
+
+        const towerColor = data.engravement3TowerType === 'lightTower'
+          ? output.light!()
+          : output.dark!();
+        if (myEffect === soakers)
+          return output.soakTower!({ color: towerColor });
+        return output.baitCleaves!();
+      },
+      outputStrings: {
+        soakTower: {
+          en: 'Soak ${color} Tower',
+        },
+        baitCleaves: {
+          en: 'Bait line cleaves',
+        },
+        light: {
+          en: 'Light',
+        },
+        dark: {
+          en: 'Dark',
         },
       },
     },
