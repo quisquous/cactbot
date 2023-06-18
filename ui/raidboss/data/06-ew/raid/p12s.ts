@@ -232,27 +232,35 @@ const triggerSet: TriggerSet<Data> = {
         // and it's nice to have a "go through" or "go back" description too.
         superchain2aLeftNorthNorth: {
           en: 'North + Her Left (then back North)',
+          cn: '北 + Boss左侧 (稍后 回到北)',
         },
         superchain2aLeftNorthSouth: {
           en: 'North + Her Left (then go South)',
+          cn: '北 + Boss左侧 (稍后 去南)',
         },
         superchain2aLeftSouthNorth: {
           en: 'South + Left (then go North)',
+          cn: '南 + 左 (稍后 去北)',
         },
         superchain2aLeftSouthSouth: {
           en: 'South + Left (then back South)',
+          cn: '南 + 左 (稍后 回到南)',
         },
         superchain2aRightNorthNorth: {
           en: 'North + Her Right (then back North)',
+          cn: '北 + Boss右侧 (稍后 回到北)',
         },
         superchain2aRightNorthSouth: {
           en: 'North + Her Right (then go South)',
+          cn: '北 + Boss右侧 (稍后 去南)',
         },
         superchain2aRightSouthNorth: {
           en: 'South + Right (then go North)',
+          cn: '南 + 右 (稍后 去北)',
         },
         superchain2aRightSouthSouth: {
           en: 'South + Right (then back South)',
+          cn: '南 + 右 (稍后 回到南)',
         },
       },
     },
@@ -316,30 +324,35 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Swap',
           de: 'Wechseln',
           fr: 'Swap',
+          cn: '穿',
           ko: '이동',
         },
         stay: {
           en: 'Stay',
           de: 'bleib Stehen',
           fr: 'Restez',
+          cn: '停',
           ko: '가만히',
         },
         secondWingCallStay: {
           en: '(stay)',
           de: '(bleib Stehen)',
           fr: '(restez)',
+          cn: '(停)',
           ko: '(가만히)',
         },
         secondWingCallSwap: {
           en: '(swap)',
           de: '(Wechseln)',
           fr: '(swap)',
+          cn: '(穿)',
           ko: '(이동)',
         },
         allThreeWings: {
           en: '${first} => ${second} => ${third}',
           de: '${first} => ${second} => ${third}',
           fr: '${first} => ${second} => ${third}',
+          cn: '${first} => ${second} => ${third}',
           ko: '${first} => ${second} => ${third}',
         },
       },
@@ -404,37 +417,47 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Swap',
           de: 'Wechseln',
           fr: 'Swap',
+          cn: '穿',
           ko: '이동',
         },
         stay: {
           en: 'Stay',
           de: 'bleib Stehen',
           fr: 'Restez',
+          cn: '停',
           ko: '가만히',
         },
         superchain2aSwapMidBack: {
           en: 'Swap + Mid => Back ${dir}',
+          cn: '穿 + 去中间 => 回到 ${dir}',
         },
         superchain2aSwapMidGo: {
           en: 'Swap + Mid => Go ${dir}',
+          cn: '穿 + 去中间 => 去 ${dir}',
         },
         superchain2aStayMidBack: {
           en: 'Stay + Mid => Back ${dir}',
+          cn: '停 + 去中间 => 回到 ${dir}',
         },
         superchain2aStayMidGo: {
           en: 'Stay + Mid => Go ${dir}',
+          cn: '停 + 去中间 => 去 ${dir}',
         },
         superchain2aSwapProtean: {
           en: 'Swap => Protean + ${dir}',
+          cn: '穿 => 八方分散 + ${dir}',
         },
         superchain2aStayProtean: {
           en: 'Stay => Protean + ${dir}',
+          cn: '停 => 八方分散 + ${dir}',
         },
         superchain2aSwapPartners: {
           en: 'Swap => Partners + ${dir}',
+          cn: '穿 => 双人分摊 + ${dir}',
         },
         superchain2aStayPartners: {
           en: 'Stay => Partners + ${dir}',
+          cn: '停 => 双人分摊 + ${dir}',
         },
         north: Outputs.north,
         south: Outputs.south,
@@ -459,9 +482,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         protean: {
           en: 'Protean',
+          cn: '八方分散',
         },
         partners: {
           en: 'Partners',
+          cn: '双人分摊',
         },
       },
     },
@@ -476,12 +501,14 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Party Out (Tanks In)',
           de: 'Gruppe Raus (Tanks Rein)',
           fr: 'Équipe à l\'extérieur (Tanks à l\'intérieur)',
+          cn: '小队出 (T进)',
           ko: '본대 밖 (탱커 안)',
         },
         tanksInPartyOut: {
           en: 'Tanks In (Party Out)',
           de: 'Gruppe Rein (Tanks Raus)',
           fr: 'Tanks à l\'intérieur (Équipe à l\'extérieur',
+          cn: 'T进 (小队出)',
           ko: '탱커 안 (본대 밖)',
         },
       },
@@ -497,12 +524,14 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Party In (Tanks Out)',
           de: 'Gruppe Rein (Tanks Raus)',
           fr: 'Équipe à l\'intérieur (Tanks à l\'extérieur)',
+          cn: '小队进 (T出)',
           ko: '본대 안 (탱커 밖)',
         },
         tanksInPartyOut: {
           en: 'Tanks Out (Party In)',
           de: 'Tanks Raus (Gruppe Rein)',
           fr: 'Tanks à l\'extérieur (Équipe à l\'intérieur',
+          cn: 'T出 (小队进)',
           ko: '탱커 밖 (본대 안)',
         },
       },
@@ -549,18 +578,20 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Bait Laser',
             de: 'Laser Ködern',
             fr: 'Bait le laser',
+            cn: '引导激光',
             ko: '레이저 유도',
           },
           firstWhiteFlame: {
             en: '(5 and 7 bait)',
             de: '(5 und 7 ködern)',
             fr: '(5 et 7 bait)',
+            cn: '(5 和 7 引导)',
             ko: '(5, 7 레이저)',
           },
         };
         const infoText = output.firstWhiteFlame!();
         if (data.limitCutNumber === 5 || data.limitCutNumber === 7)
-          return { alert: output.baitLaser!(), infoText: infoText };
+          return { alertText: output.baitLaser!(), infoText: infoText };
         return { infoText: infoText };
       },
     },
@@ -576,24 +607,28 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Bait Laser',
             de: 'Laser Ködern',
             fr: 'Bait le laser',
+            cn: '引导激光',
             ko: '레이저 유도',
           },
           secondWhiteFlame: {
             en: '(6 and 8 bait)',
             de: '(6 und 8 ködern)',
             fr: '(6 et 8 bait)',
+            cn: '(6 和 8 引导)',
             ko: '(6, 8 레이저)',
           },
           thirdWhiteFlame: {
             en: '(1 and 3 bait)',
             de: '(1 und 3 ködern)',
             fr: '(1 et 3 bait)',
+            cn: '(1 和 3 引导)',
             ko: '(1, 3 레이저)',
           },
           fourthWhiteFlame: {
             en: '(2 and 4 bait)',
             de: '(2 und 6 ködern)',
             fr: '(2 et 4 bait)',
+            cn: '(2 和 4 引导)',
             ko: '(2, 4 레이저)',
           },
         };
@@ -666,24 +701,28 @@ const triggerSet: TriggerSet<Data> = {
           en: 'In + Protean (${dir})',
           de: 'Rein + Himmelsrichtungen (${dir})',
           fr: 'Intérieur + Position (${dir})',
+          cn: '靠近 + 八方分散 (${dir})',
           ko: '안 + 8방향 산개 (${dir})',
         },
         inAndPartners: {
           en: 'In + Partners (${dir})',
           de: 'Rein + Partner (${dir})',
           fr: 'Intérieur + Partenaire (${dir})',
+          cn: '靠近 + 双人分摊 (${dir})',
           ko: '안 + 파트너 (${dir})',
         },
         outAndProtean: {
           en: 'Out + Protean (${dir})',
           de: 'Raus + Himmelsrichtungen (${dir})',
           fr: 'Extérieur + Position (${dir})',
+          cn: '远离 + 八方分散 (${dir})',
           ko: '밖 + 8방향 산개 (${dir})',
         },
         outAndPartners: {
           en: 'Out + Partners (${dir})',
           de: 'Raus + Partner (${dir})',
           fr: 'Extérieur + Partenaire (${dir})',
+          cn: '远离 + 双人分摊 (${dir})',
           ko: '밖 + 8방향 산개 (${dir})',
         },
         ...Directions.outputStrings8Dir,
@@ -747,12 +786,14 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Left (CW)',
           de: 'Links (im Uhrzeigersinn)',
           fr: 'Gauche (horaire)',
+          cn: '左左左 (顺时针)',
           ko: '왼쪽 (시계방향)',
         },
         rightCounterclockwise: {
           en: 'Right (CCW)',
           de: 'Rechts (gegen Uhrzeigersinn)',
           fr: 'Droite (Anti-horaire)',
+          cn: '右右右 (逆时针)',
           ko: '오른쪽 (반시계방향)',
         },
       },
