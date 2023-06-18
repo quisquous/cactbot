@@ -61,23 +61,24 @@ const superchainNpcBaseIdMap: Record<SuperchainMechanic, string> = {
   partners: '16180',
 } as const;
 
-const engravementIdMap = {
-  lightTilt: 'DF8',
-  darkTilt: 'DF9',
-  lightTower: 'DFB',
-  darkTower: 'DFC',
-  lightBeam: 'DFD',
-  darkBeam: 'DFE',
-  crossMarked: 'DFF',
-  xMarked: 'E00',
-};
-const engravementLabelMap = Object.fromEntries(
-  Object.entries(engravementIdMap).map(([k, v]) => [v, k]),
-);
-const engravementBeamIds = [engravementIdMap.lightBeam, engravementIdMap.darkBeam];
-const engravementTowerIds = [engravementIdMap.lightTower, engravementIdMap.darkTower];
-const engravementTiltIds = [engravementIdMap.lightTilt, engravementIdMap.darkTilt];
-const engravement3TheosSoulIds = [engravementIdMap.crossMarked, engravementIdMap.xMarked];
+const engravementLabelMapAsConst = {
+  DF8: 'lightTilt',
+  DF9: 'darkTilt',
+  DFB: 'lightTower',
+  DFC: 'darkTower',
+  DFD: 'lightBeam',
+  DFE: 'darkBeam',
+  DFF: 'crossMarked',
+  E00: 'xMarked',
+} as const;
+type EngravementLabel = typeof engravementLabelMapAsConst[keyof typeof engravementLabelMapAsConst];
+const engravementLabelMap: { [effectId: string]: EngravementLabel } = engravementLabelMapAsConst;
+type EngravementIdMap = Record<EngravementLabel, string>;
+const engravementIdMap: EngravementIdMap = Object.fromEntries(Object.entries(engravementLabelMap).map(([k, v]) => [v, k])) as EngravementIdMap;
+const engravementBeamIds: readonly string[] = [engravementIdMap.lightBeam, engravementIdMap.darkBeam];
+const engravementTowerIds: readonly string[] = [engravementIdMap.lightTower, engravementIdMap.darkTower];
+const engravementTiltIds: readonly string[] = [engravementIdMap.lightTilt, engravementIdMap.darkTilt];
+const engravement3TheosSoulIds: readonly string[] = [engravementIdMap.crossMarked, engravementIdMap.xMarked];
 
 const headmarkers = {
   ...wings,
@@ -134,7 +135,7 @@ export interface Data extends RaidbossData {
   phase?: 'superchain1' | 'palladion' | 'superchain2a' | 'superchain2b';
   engravementCounter: number;
   engravement1Towers: string[];
-  engravement3TowerType?: string;
+  engravement3TowerType?: 'lightTower' | 'darkTower';
   engravement3TowerPlayers: string[];
   wingCollect: string[];
   wingCalls: ('swap' | 'stay')[];
@@ -529,7 +530,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => data.engravementCounter === 1 && data.me === matches.target,
       suppressSeconds: 5, // avoid second (incorrect) alert when debuff switches from soaking tower
       alertText: (data, matches, output) => {
-        if (data.engravement1Towers.indexOf(data.me) === -1) {
+        if (!data.engravement1Towers.includes(data.me)) {
           // Did not drop a tower, so needs to soak one.
           if (matches.effectId === engravementIdMap.lightTilt)
             return output.lightTilt!();
@@ -558,7 +559,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P12S Engravement 2 Beam Soak',
       type: 'GainsEffect',
-      netRegex: { effectId: Object.values(engravementIdMap) },
+      netRegex: { effectId: [...engravementBeamIds, ...engravementTowerIds, ...engravementTiltIds] },
       condition: (data, matches) => data.engravementCounter === 2 && data.me === matches.target,
       delaySeconds: 5, // wait until first orb resolves so as not to confuse
       durationSeconds: 7, // keep active until beams go off
@@ -567,38 +568,36 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           lightBeam: {
-            en: 'Light Beam (stack with Dark group)',
+            en: 'Light Beam (Stack w/Dark)',
           },
           darkBeam: {
-            en: 'Dark Beam (stack with Light group)',
+            en: 'Dark Beam (Stack w/Light)',
           },
           lightTower: {
-            en: 'Light Tower (stack with light group)',
+            en: 'Light Tower',
           },
           darkTower: {
-            en: 'Dark Tower (stack with dark group)',
+            en: 'Dark Tower',
           },
           lightTilt: {
-            en: 'Stack (light group) - spread later',
+            en: 'Light Group => spread later',
           },
           darkTilt: {
-            en: 'Stack (dark group) - spread later',
+            en: 'Dark Group => spread later',
           },
         };
 
         const engraveLabel = engravementLabelMap[matches.effectId];
         if (engraveLabel === undefined)
           return;
-        const engraveOutputStr = output[engraveLabel]!();
-        if (engraveOutputStr === undefined)
-          return;
-        if (engravementBeamIds.indexOf(matches.effectId) !== -1)
-          return { alarmText: engraveOutputStr };
-        return { alertText: engraveOutputStr };
+        if (engravementBeamIds.includes(matches.effectId))
+          return { alarmText: output[engraveLabel]!() };
+        return { alertText: output[engraveLabel]!() };
       },
     },
     // darkTower/lightTower are 20s, but lightBeam/darkBeam are shorter and swap to lightTilt/darkTilt before the mechanic resolves.
     // So use a fixed delay rather than one based on effect duration.
+    // TODO: Add additional logic/different outputs if oopsies happen?  (E.g. soak player hit by tower drop -> debuff change, backup soak by spread player, etc.)
     {
       id: 'P12S Engravement 2 Tower Drop/Soak Reminder',
       type: 'GainsEffect',
@@ -609,10 +608,7 @@ const triggerSet: TriggerSet<Data> = {
         const engraveLabel = engravementLabelMap[matches.effectId];
         if (engraveLabel === undefined)
           return;
-        const engraveOutputStr = output[engraveLabel]!();
-        if (engraveOutputStr === undefined)
-          return;
-        return engraveOutputStr;
+        return output[engraveLabel]!();
       },
       outputStrings: {
         lightBeam: {
@@ -650,12 +646,17 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: engravement3TheosSoulIds },
       condition: (data, matches) => data.engravementCounter === 3 && data.me === matches.target,
       alertText: (_data, matches, output) => {
-        const mark = matches.effectId === engravementIdMap.crossMarked ? '+' : 'x';
-        return output.theosDebuff!({ mark: mark });
+        const engraveLabel = engravementLabelMap[matches.effectId];
+        if (engraveLabel === undefined)
+          return;
+        return output[engraveLabel]!();
       },
       outputStrings: {
-        theosDebuff: {
-          en: '${mark} on You',
+        crossMarked: {
+          en: '\'+\' AoE on You',
+        },
+        xMarked: {
+          en: '\'x\' AoE on You',
         },
       },
     },
@@ -666,12 +667,17 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => data.engravementCounter === 3 && data.me === matches.target,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
       alertText: (_data, matches, output) => {
-        const mark = matches.effectId === engravementIdMap.crossMarked ? '+' : 'x';
-        return output.dropBait!({ mark: mark });
+        const engraveLabel = engravementLabelMap[matches.effectId];
+        if (engraveLabel === undefined)
+          return;
+        return output[engraveLabel]!();
       },
       outputStrings: {
-        dropBait: {
-          en: 'Drop baited ${mark} AoE',
+        crossMarked: {
+          en: 'Drop \'+\' AoE',
+        },
+        xMarked: {
+          en: 'Drop \'x\' AoE',
         },
       },
     },
@@ -695,7 +701,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.engravementCounter === 3,
       run: (data, matches) => {
         data.engravement3TowerPlayers.push(matches.target);
-        data.engravement3TowerType = engravementLabelMap[matches.effectId];
+        data.engravement3TowerType = matches.id === engravementIdMap.lightTower ? 'lightTower' : 'darkTower';
       },
     },
     {
@@ -722,7 +728,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           unknown: Outputs.unknown,
         };
-        const towerOnYou = data.engravement3TowerPlayers.indexOf(data.me) !== -1;
+        const towerOnYou = data.engravement3TowerPlayers.includes(data.me);
         let towerColor = output.unknown!();
         if (data.engravement3TowerType !== undefined)
           towerColor = data.engravement3TowerType === 'lightTower'
@@ -776,24 +782,21 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         // lightTower/darkTower support players receive lightTilt/darkTilt once dropping their tower
         // so exclude them from receiving this alert
-        if (data.engravement3TowerPlayers.indexOf(data.me) !== -1)
+        if (data.engravement3TowerPlayers.includes(data.me))
           return;
 
-        const soakMap: { [key: string]: string } = {
+        const soakMap = {
           lightTower: 'darkTilt',
           darkTower: 'lightTilt',
-        };
+        } as const;
         const myEffect = engravementLabelMap[matches.effectId];
         if (myEffect === undefined || data.engravement3TowerType === undefined)
           return;
-        const soakers = soakMap[data.engravement3TowerType];
-        if (soakers === undefined)
-          return;
-
+        const soakTiltType = soakMap[data.engravement3TowerType];
         const towerColor = data.engravement3TowerType === 'lightTower'
           ? output.light!()
           : output.dark!();
-        if (myEffect === soakers)
+        if (myEffect === soakTiltType)
           return output.soakTower!({ color: towerColor });
         return output.baitCleaves!();
       },
