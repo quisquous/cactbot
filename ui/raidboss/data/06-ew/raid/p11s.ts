@@ -115,6 +115,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Healer Stacks',
+          de: 'Heiler Gruppen',
         },
       },
     },
@@ -144,6 +145,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Partners',
+          de: 'Partner',
         },
       },
     },
@@ -174,6 +176,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Out + Healer Stacks',
+          de: 'Raus + Heiler Gruppen',
         },
       },
     },
@@ -187,9 +190,11 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           upheldOnYou: {
             en: 'You In (party out) => In + Partners',
+            de: 'Du rein (Gruppe raus) => Rein + Partner',
           },
           upheldOnPlayer: {
             en: 'Party Out (${player} in)=> In + Partners',
+            de: 'Gruppe raus (${player} rein)=> Rein + Partner',
           },
           upheldNotOnYou: {
             en: 'Party Out => In + Partners',
@@ -221,6 +226,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'In + Partners',
+          de: 'Rein + Partner',
         },
       },
     },
@@ -237,13 +243,16 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           tankTether: {
             en: 'Away from Party',
+            de: 'Weg von der Gruppe',
           },
           partyStackPlayerOut: {
             en: 'Party Stack (${player} out)',
+            de: 'Mit der Gruppe sammeln (${player} raus)',
           },
           // If we're not sure who the tether is on.
           partyStack: {
             en: 'Party Stack',
+            de: 'In der Gruppe sammeln',
           },
         };
 
@@ -269,6 +278,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get in Donut',
+          de: 'Geh in den Donut',
         },
       },
     },
@@ -330,9 +340,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         light: {
           en: 'Healer Stacks + Out',
+          de: 'Heiler Gruppen + Raus',
         },
         dark: {
           en: 'In + Partners',
+          de: 'Rein + Partner',
         },
       },
     },
@@ -394,6 +406,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Healer Stacks + Out',
+          de: 'Heiler Gruppen + Raus',
         },
       },
     },
@@ -423,6 +436,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'In + Partners',
+          de: 'Rein + Partner',
         },
       },
     },
