@@ -496,7 +496,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '8305', source: 'Athena', capture: false },
       run: (data) => ++data.engravementCounter,
     },
-    // In Engravement 1, 2 players receive lightTower and 2 players receive darkTower.
+    // In Engravement 1 (Paradeigma 2), 2 players receive lightTower and 2 players receive darkTower.
     // When debuffs expire and towers drop, their debuff changes to lightTilt or darkTilt (same as tower color).
     // At the same time the towers drop, the 4 tethered players receive lightTilt or darkTilt depending on their tether color.
     {
@@ -545,14 +545,16 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
-    // In Engravement 2 (Superchain 1), all supports or all DPS will receive lightTilt and darkTilt (2 each). All 4 also receive Heavensflame Soul.
+    // In Engravement 2 (Superchain 1), all supports or  DPS will receive lightTilt and darkTilt (2 each). 
+    // All 4 also receive Heavensflame Soul.
     // The other role group will receive lightTower, darkTower, lightBeam, and darkBeam.
     // To resolve the Beams during the 2nd orb, lightBeam needs to stack with darkTower and both darkTilts, and vice versa.
-    // Following the third orb, the lightTower and darkTower will drop their towers, and the darkBeam and lightBeam (respectively) will soak them.
-    // The four Heavensflame players all simultaneously need to spread.
-    // Note: When a lightTilt player soaks a dark beam, their debuff will change to darkTilt, and vice versa.
-    // Additionally, once the beams detonate, the lightBeam debuff disappears and is replaced with lightTilt (same with dark).
-    // So we only use the initial debuff to resolve the mechanic, and use a long suppress to avoid conflicting information.
+    // After the 3rd orb, lightTower and darkTower will drop their towers, and  darkBeam and lightBeam (respectively) will soak them.
+    // The four Heavensflame players all simultaneously need to spread to drop their AoEs.
+    // Debuffs do change based on mechanic resolution, which can complicate things:
+    // - When a lightTilt player soaks a dark beam, their debuff will change to darkTilt, and vice versa.
+    // - Once the beams detonate, the lightBeam debuff disappears and is replaced with lightTilt (same with dark).
+    // So only use the initial debuff to resolve the mechanic, and use a long suppress to avoid incorrect later alerts.
     {
       id: 'P12S Engravement 2 Beam Soak',
       type: 'GainsEffect',
@@ -596,7 +598,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     // darkTower/lightTower are 20s, but lightBeam/darkBeam are shorter and swap to lightTilt/darkTilt before the mechanic resolves.
-    // So use a fixed delay rather than one based on matches.duration.
+    // So use a fixed delay rather than one based on effect duration.
     {
       id: 'P12S Engravement 2 Tower Drop/Soak Reminder',
       type: 'GainsEffect',
@@ -637,11 +639,11 @@ const triggerSet: TriggerSet<Data> = {
     },
     // In Engravement 3 (Paradeigma 3), 2 support players will both receive either lightTower or darkTower.
     // The other 2 support players receive a '+'/Cross (DFF) or 'x'/Saltire (E00) debuff.
-    // Because of platform separation, the '+' and 'x' players must soak the far north/south towers,
+    // Because of platform separation during the mechanic, the '+' and 'x' players must soak the far north/south towers,
     // while the lightTower or darkTower players must soak the middle towers (so they can then drop their towers for DPS to soak).
-    // Two DPS receive light tethers and two receive dark tethers, which result in them receiving lightTilt or darkTilt when tethers resolve.
+    // All DPS receive tethers (2 light, 2 dark), and they receive corresponding lightTilt/darkTilt when tethers resolve.
     // If the support players receive lightTower, the darkTilt DPS must soak those towers, or vice versa.
-    // While the towers are being dropped & soaked by 2 DPS, the '+' and 'x' supports and the other 2 DPS must bait the adds line cleaves.
+    // While the light & dark towers are being soaked, the '+' and 'x' supports and  other 2 DPS must bait the adds' line cleaves.
     {
       id: 'P12S Engravement 3 Theos Initial',
       type: 'GainsEffect',
