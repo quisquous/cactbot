@@ -545,7 +545,7 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
-    // In Engravement 2 (Superchain 1), all supports or  DPS will receive lightTilt and darkTilt (2 each). 
+    // In Engravement 2 (Superchain 1), all supports or  DPS will receive lightTilt and darkTilt (2 each).
     // All 4 also receive Heavensflame Soul.
     // The other role group will receive lightTower, darkTower, lightBeam, and darkBeam.
     // To resolve the Beams during the 2nd orb, lightBeam needs to stack with darkTower and both darkTilts, and vice versa.
