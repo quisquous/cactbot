@@ -232,34 +232,42 @@ const triggerSet: TriggerSet<Data> = {
         // and it's nice to have a "go through" or "go back" description too.
         superchain2aLeftNorthNorth: {
           en: 'North + Her Left (then back North)',
+          de: 'Norden + Links von Ihr (dannach Norden)',
           cn: '北 + Boss左侧 (稍后 回到北)',
         },
         superchain2aLeftNorthSouth: {
           en: 'North + Her Left (then go South)',
+          de: 'Norden + Links von Ihr (dannach Süden)',
           cn: '北 + Boss左侧 (稍后 去南)',
         },
         superchain2aLeftSouthNorth: {
           en: 'South + Left (then go North)',
+          de: 'Süden + Links (dannach Norden)',
           cn: '南 + 左 (稍后 去北)',
         },
         superchain2aLeftSouthSouth: {
           en: 'South + Left (then back South)',
+          de: 'Süden + Links (dannach Süden)',
           cn: '南 + 左 (稍后 回到南)',
         },
         superchain2aRightNorthNorth: {
           en: 'North + Her Right (then back North)',
+          de: 'Norden + Rechts von Ihr (dannach Norden)',
           cn: '北 + Boss右侧 (稍后 回到北)',
         },
         superchain2aRightNorthSouth: {
           en: 'North + Her Right (then go South)',
+          de: 'Norden + Rechts von Ihr (dannach Süden)',
           cn: '北 + Boss右侧 (稍后 去南)',
         },
         superchain2aRightSouthNorth: {
           en: 'South + Right (then go North)',
+          de: 'Süden + Rechts (dannach Norden)',
           cn: '南 + 右 (稍后 去北)',
         },
         superchain2aRightSouthSouth: {
           en: 'South + Right (then back South)',
+          de: 'Süden + Rechts (dannach Süden)',
           cn: '南 + 右 (稍后 回到南)',
         },
       },
@@ -429,34 +437,42 @@ const triggerSet: TriggerSet<Data> = {
         },
         superchain2aSwapMidBack: {
           en: 'Swap + Mid => Back ${dir}',
+          de: 'Wechseln + Mitte => Zurück nach ${dir}',
           cn: '穿 + 去中间 => 回到 ${dir}',
         },
         superchain2aSwapMidGo: {
           en: 'Swap + Mid => Go ${dir}',
+          de: 'Wechseln + Mitte => Geh nach ${dir}',
           cn: '穿 + 去中间 => 去 ${dir}',
         },
         superchain2aStayMidBack: {
           en: 'Stay + Mid => Back ${dir}',
+          de: 'Bleib stehen + Mitte => Zurück nach ${dir}',
           cn: '停 + 去中间 => 回到 ${dir}',
         },
         superchain2aStayMidGo: {
           en: 'Stay + Mid => Go ${dir}',
+          de: 'Bleib stehen + Mitte => Geh nach ${dir}',
           cn: '停 + 去中间 => 去 ${dir}',
         },
         superchain2aSwapProtean: {
           en: 'Swap => Protean + ${dir}',
+          de: 'Wechseln => Himmelsrichtungen + ${dir}',
           cn: '穿 => 八方分散 + ${dir}',
         },
         superchain2aStayProtean: {
           en: 'Stay => Protean + ${dir}',
+          de: 'Bleib stehen => Himmelsrichtungen + ${dir}',
           cn: '停 => 八方分散 + ${dir}',
         },
         superchain2aSwapPartners: {
           en: 'Swap => Partners + ${dir}',
+          de: 'Wechseln => Partner + ${dir}',
           cn: '穿 => 双人分摊 + ${dir}',
         },
         superchain2aStayPartners: {
           en: 'Stay => Partners + ${dir}',
+          de: 'Bleib stehen => Partner + ${dir}',
           cn: '停 => 双人分摊 + ${dir}',
         },
         north: Outputs.north,
@@ -482,10 +498,12 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         protean: {
           en: 'Protean',
+          de: 'Himmelsrichtungen',
           cn: '八方分散',
         },
         partners: {
           en: 'Partners',
+          de: 'Partner',
           cn: '双人分摊',
         },
       },
