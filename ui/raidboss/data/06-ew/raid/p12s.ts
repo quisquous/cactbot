@@ -581,6 +581,7 @@ const triggerSet: TriggerSet<Data> = {
     // darkTower/lightTower are 20s, but lightBeam/darkBeam are shorter and swap to lightTilt/darkTilt before the mechanic resolves.
     // So use a fixed delay rather than one based on effect duration.
     // TODO: Add additional logic/different outputs if oopsies happen?  (E.g. soak player hit by tower drop -> debuff change, backup soak by spread player, etc.)
+    // TODO: Combine this with the second part (in/out) of Superchain I Third Mechanic?
     {
       id: 'P12S Engravement 2 Tower Drop/Soak Reminder',
       type: 'GainsEffect',
@@ -1131,15 +1132,31 @@ const triggerSet: TriggerSet<Data> = {
 
         const donutDistSqr = distSqr(donut, dest);
         const sphereDistSqr = distSqr(sphere, dest);
-        if (donutDistSqr > sphereDistSqr)
-          return output.inThenOut!();
-        return output.outThenIn!();
+        const moveOrder = donutDistSqr > sphereDistSqr ? output.inThenOut!() : output.outThenIn!();
+        const engrave = output[data.engravement2MyLabel ?? 'unknown']!();
+        return output.combined!({ move: moveOrder, engrave: engrave });
       },
       outputStrings: {
-        // TODO: this should also say to spread / place tower / take tower
-        // TODO: maybe we need separate calls for these ^ after initial donut/sphere goes off?
+        combined: {
+          en: '${move} => ${engrave}',
+        },
         inThenOut: Outputs.inThenOut,
         outThenIn: Outputs.outThenIn,
+        lightBeam: {
+          en: 'Soak Dark Tower',
+        },
+        darkBeam: {
+          en: 'Soak Light Tower',
+        },
+        lightTower: {
+          en: 'Drop Light Tower',
+        },
+        darkTower: {
+          en: 'Drop Dark Tower',
+        },
+        lightTilt: Outputs.spread,
+        darkTilt: Outputs.spread,
+        unknown: Outputs.unknown,
       },
     },
     {
