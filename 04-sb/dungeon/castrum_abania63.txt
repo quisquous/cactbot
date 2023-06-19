@@ -1,8 +1,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Magna Roader
 # -p 1F14:9.4
 # -ii 1F17 1F18 2090 1F19 2085

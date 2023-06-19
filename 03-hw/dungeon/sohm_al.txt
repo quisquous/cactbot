@@ -4,8 +4,6 @@
 hideall "--sync--"
 hideall "--Reset--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Raskovnik
 # -p ED1:6.2
 
@@ -75,7 +73,7 @@ hideall "--Reset--"
 
 1000.0 "Start" sync / 00:0839::The Wound will be sealed off/ window 1000,1
 
-1006.1 "Third Leg Forward" sync / 1[56]:[^:]*:Myath:1382:/
+1006.1 "Third Leg Forward" sync / 1[56]:[^:]*:Myath:1382:/ window 6.1,5
 1011.2 "Overbite" sync / 1[56]:[^:]*:Myath:EDB:/
 1019.3 "Razor Scales" sync / 1[56]:[^:]*:Myath:EDC:/
 1024.5 "Third Leg Forward" sync / 1[56]:[^:]*:Myath:1382:/
@@ -118,7 +116,7 @@ hideall "--Reset--"
 
 2000.0 "Start" sync / 00:0839::Hess Afah will be sealed off/ window 2000,1
 
-2006.0 "Abyssic Buster" sync / 1[56]:[^:]*:Tioman:EE3:/
+2006.0 "Abyssic Buster" sync / 1[56]:[^:]*:Tioman:EE3:/ window 6,6
 2013.2 "Chaos Blast" sync / 1[56]:[^:]*:Tioman:EE5:/
 2016.5 "--sync--" sync / 1[56]:[^:]*:Tioman:EEB:/
 2020.4 "Abyssic Buster" sync / 1[56]:[^:]*:Tioman:EE3:/

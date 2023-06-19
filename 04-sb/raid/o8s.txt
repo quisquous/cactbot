@@ -3,8 +3,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::The limit gauge resets!/ window 10000 jump 0
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+# Use autos instead of InCombat lines to start timelines for door & final boss
+# as timeline resets out of combat.
 
 4 "--sync--" sync / 1[56]:[^:]*:Kefka:28C2:/ window 5,0
 13 "Mana Charge" sync / 1[56]:[^:]*:Kefka:28D1:/ window 20,20 # drift 0.476

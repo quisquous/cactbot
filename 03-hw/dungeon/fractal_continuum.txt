@@ -1,9 +1,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
-
 ###Phantom Ray
 #-ii F7D -p F7F:100
 
@@ -51,8 +48,7 @@ hideall "--sync--"
 
 ###Minotaur
 1000.0 "--sync--" sync / 00:0839::The high-level incubation bay will be sealed off/ window 1999,5
-1003.4 "--sync--" sync / 1[56]:[^:]*:Minotaur:366:/ window 3.4,0
-1008.8 "11-Tonze Swipe" sync / 1[56]:[^:]*:Minotaur:F81:/
+1008.8 "11-Tonze Swipe" sync / 1[56]:[^:]*:Minotaur:F81:/ window 9,9
 1019.0 "111-Tonze Swing" sync / 1[56]:[^:]*:Minotaur:F82:/ window 20,20
 1028.2 "Disorienting Groan" sync / 1[56]:[^:]*:Minotaur:F84:/
 1029.4 "Zoom In x3" sync / 1[56]:[^:]*:Minotaur:F86:/ duration 3.7
@@ -96,8 +92,7 @@ hideall "--sync--"
 # Phase length is the same regardless of added abilities.
 
 2000 "--sync--" sync / 00:0839::The reality augmentation bay will be sealed off/ window 2000,0
-2003.0 "--sync--" sync / 1[56]:[^:]*:The Curator:368:/ window 3,2
-2006.2 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/
+2006.2 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/ window 7,7
 2011.4 "Unholy" sync / 1[56]:[^:]*:The Curator:F8A:/
 2020.6 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/
 2028.8 "Aetherochemical Explosive" sync / 1[56]:[^:]*:The Curator:F8B:/ window 15,15

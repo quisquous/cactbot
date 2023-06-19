@@ -4,12 +4,9 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Phase 1: Megaflare Warmup
 0.0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
-1.0 "--sync--" sync / 1[56]:[^:]*:Bahamut Prime:BAC:/ window 2,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 7.0 "Flare Breath" sync / 1[56]:[^:]*:Bahamut Prime:BAD:/ window 7,10
 15.1 "Megaflare" sync / 1[56]:[^:]*:Bahamut Prime:BAF:/ window 80,80
 18.8 "MF Spread" #sync / 1[56]:[^:]*:Bahamut Prime:BB0:/

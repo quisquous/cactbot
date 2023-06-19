@@ -6,14 +6,11 @@ hideall "--sync--"
 hideall "Summon"
 hideall "Scorched Pinion"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Phase 1: Blackfire/Whitefire
 0.0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
-2.5 "--sync--" sync / 1[56]:[^:]*:Phoenix:368:/ window 3,0
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 9.0 "Bennu Add"
-18.0 "Revelation" sync / 1[56]:[^:]*:Phoenix:B87:/
+18.0 "Revelation" sync / 1[56]:[^:]*:Phoenix:B87:/ window 18,10
 32.1 "Blackfire" sync / 1[56]:[^:]*:Phoenix:B8C:/
 42.1 "--sync--" sync / 1[56]:[^:]*:Phoenix:B8F:/
 43.6 "Whitefire" sync / 1[56]:[^:]*:Phoenix:B90:/

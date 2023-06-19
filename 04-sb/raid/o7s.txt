@@ -2,9 +2,7 @@
 
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
-0 "Start" sync / 00:0044:[^:]*:WEAPON SYSTEMS ONLINE/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 11 "Magitek Ray" sync / 1[56]:[^:]*:Guardian:2788:/ window 11,10
 21 "Arm And Hammer" sync / 1[56]:[^:]*:Guardian:2789:/
 31 "Atomic Ray" sync / 1[56]:[^:]*:Guardian:278D:/

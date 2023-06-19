@@ -10,13 +10,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
-
 ### Phase 1: Jiggly
-0.0 "--sync--" sync /:Engage!/ window 0,1
-0.0 "--sync--" sync / 00:0839::Condensate Demineralizer .9 will be sealed off/ window 10000,10000
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 7.0 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:EF3:/
 17.2 "Protean Wave" sync / 1[56]:[^:]*:Living Liquid:EF5:/
 18.8 "Protean Wave" sync / 1[56]:[^:]*:Living Liquid:EF6:/

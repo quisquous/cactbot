@@ -29,10 +29,8 @@
 hideall "--sync--"
 hideall "--Reset--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 # Phase 1: Literally Just Autos (100% -> 95%)
-0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 2.0 "--sync--" sync / 1[56]:[^:]*:Shiva:99A:/ window 10,10
 
 # jump to staff

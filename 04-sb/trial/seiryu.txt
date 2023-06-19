@@ -6,12 +6,9 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Phase 1
-0.0 "--sync--" sync /:Engage!/ window 0,1
-8.7 "--sync--" sync / 14:[^:]*:Seiryu:37FE:/ window 10,10
-12.7 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37FE:/
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+12.7 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37FE:/ window 13,10
 24.8 "Infirm Soul" sync / 1[56]:[^:]*:Seiryu:37FD:/
 33.1 "--sync--" sync / 1[56]:[^:]*:Seiryu:37D5:/
 39.8 "Onmyo Sigil / Serpent-Eye Sigil" sync / 1[56]:[^:]*:Seiryu:3A0[78]:/

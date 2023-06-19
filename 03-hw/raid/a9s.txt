@@ -6,8 +6,6 @@ hideall "--rocks fall--"
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Faust Z
 # -p 1A2B:1006.5
 1000.0	"--sync--"	sync / 00:0839::The Cranial Plate will be sealed off/ window 10000

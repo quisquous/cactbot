@@ -3,6 +3,7 @@
 # https://dtguilds.enjin.com/a2sguide
 # -ii 13CE FCE FD7 FCF FD1 FD3 FD0 FD9 FCD
 
+
 # Note: because these are many mobs and this is FFXIV and also this is Heavensward,
 # this is all a bit imprecise.  Explosions seem to be +/- 1 second but roughly 15
 # from when the bomb appears.  Mobs of the same type are not always synced up.
@@ -11,11 +12,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 # Wave 1 (pull)
-0.0 "--sync--" sync / 00:0839::Hangar 12 will be sealed off in 15 seconds/ window 10000
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 0.0 "Soldier x2 (NW)"
 
 

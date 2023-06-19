@@ -1,15 +1,12 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 #~~~~~~~~~~~~~~~~~~~#
 # Regula van Hydrus #
 #~~~~~~~~~~~~~~~~~~~#
 
 # -ii 10E1
 0.0 "--sync--" sync / 00:0839::Analysis and Proving will be sealed off/
-2.9 "--sync--" sync / 1[56]:[^:]*:Regula van Hydrus:366:/
 6.3 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/ window 6.3,5
 
 13.4 "Judgment" sync / 1[56]:[^:]*:Regula van Hydrus:10DD:/ window 13.4,2.5
@@ -119,8 +116,7 @@ hideall "--sync--"
 1000.0 "--sync--" sync / 00:0839::Evaluation and Authentication will be sealed off/ window 1000,5
 
 # Cobra is immediate
-1001.4 "--sync--" sync / 1[56]:[^:]*:Harmachis:366:/ window 2,2
-1008.6 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:10E8:/
+1008.6 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:10E8:/ window 9,9
 1011.7 "Steel Scales" sync / 1[56]:[^:]*:Harmachis:10EA:/
 1014.8 "Hood Swing" sync / 1[56]:[^:]*:Harmachis:10E9:/
 1019.0 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:138F:/

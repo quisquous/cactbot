@@ -1,14 +1,14 @@
 # Turn 10
 # -ii B5A B5C B60 B66 B68 B64 B59 B58 B65 B61 B57 -p B5D:200 B5E:500
 
+# Note: Use zone seal message instead of 0x104 line to start timeline
+# as there are pre-boss adds to start the encounter.
+
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 # Initial Phase: Tankbuster, Charge, Repeat
 0.0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
 0.0 "--sync--" sync / 00:0839::The Alpha Concourse will be sealed off/ window 5,5
 8.0 "Crackle Hiss" sync / 1[56]:[^:]*:Imdugud:B55:/
 16.0 "Critical Rip" sync / 1[56]:[^:]*:Imdugud:B56:/

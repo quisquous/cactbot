@@ -1,8 +1,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Magitek Rearguard 
 # -ii 209F 20A0
 0 "Start" sync / 00:0839::The Third Armory will be sealed off/

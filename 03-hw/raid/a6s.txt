@@ -6,9 +6,6 @@
 
 hideall "Ballistic Missile"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
-
 ### Blaster
 0.0 "--sync--" sync / 00:0839::Machinery Bay 67 will be sealed off/ window 1,0
 7.0 "Brute Force" sync / 1[56]:[^:]*:Blaster:15F2:/ window 10,10
@@ -110,8 +107,7 @@ hideall "Ballistic Missile"
 
 ### Swindler
 2000.0 "--sync--" sync / 00:0839::Machinery Bay 69 will be sealed off/ window 2000,0
-2007.0 "--sync--" sync / 1[56]:[^:]*:Swindler:160C:/ window 7,3
-2021.2 "Height" sync / 1[56]:[^:]*:Swindler:160D:/
+2021.2 "Height" sync / 1[56]:[^:]*:Swindler:160D:/ window 22,7
 2021.2 "Enumeration" sync / 1[56]:[^:]*:Swindler:160F:/
 2029.3 "Bio-Arithmeticks" sync / 1[56]:[^:]*:Swindler:1610:/
 
@@ -156,7 +152,6 @@ hideall "Ballistic Missile"
 
 ### Vortexer
 3000.0 "--sync--" sync / 00:0839::Machinery Bay 70 will be sealed off/ window 3000,0
-3002.0 "--sync--" sync / 1[56]:[^:]*:Vortexer:1618:/ window 2,1
 3006.7 "Brute Force" sync / 1[56]:[^:]*:Vortexer:1619:/ window 10,10
 3016.8 "Elemental Jammer" sync / 1[56]:[^:]*:Vortexer:161B:/
 3022.0 "Ballistic Missile" sync / 1[56]:[^:]*:Vortexer:1622:/

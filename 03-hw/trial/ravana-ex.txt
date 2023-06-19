@@ -4,15 +4,12 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 # During all phases, any attacks will increase Ravana's Bloodlust meter.
 # The relationship between increases and damage done is not fully understood.
 # The meter also increases passively during all phases except the opening block.
 # Any displayed phase lengths are the maximum that could occur with no "extra" Bloodlust.
 
-0.0 "--sync--" sync /:Engage!/ window 0,1
-1.2 "--sync--" sync / 1[56]:[^:]*:Ravana:13E4:/ window 1.2,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 7.1 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/ window 7.1,10
 11.9 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
 16.0 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/

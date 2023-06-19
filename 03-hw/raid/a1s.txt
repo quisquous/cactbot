@@ -1,11 +1,11 @@
 ### A1S
 # Alexander - The Fist of the Father (Savage)
 
+# Note: Use zone seal message instead of 0x104 line to start timeline
+# as there are pre-boss adds to start the encounter.
+
 hideall "--Reset--"
 hideall "--sync--"
-
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
 
 ### Faust
 # -p E3C:1006 -ii E3E

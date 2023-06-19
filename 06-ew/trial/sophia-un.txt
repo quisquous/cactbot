@@ -15,10 +15,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
-0.0 "--sync--" sync /:Engage!/ window 0,1
-1.8 "--sync--" sync / 1[56]:[^:]*:Sophia:7DBD:/ window 1.8,2
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 12.0 "Thunder II" sync / 1[56]:[^:]*:Sophia:7DAA:/ window 12,5
 22.4 "Gnosis" sync / 1[56]:[^:]*:Barbelo:7DBC:/
 41.4 "Arms Of Wisdom?" sync / 1[56]:[^:]*:Sophia:7DBE:/ # May be skipped depending on DPS

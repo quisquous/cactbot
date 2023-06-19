@@ -10,10 +10,8 @@ hideall "Yasakani-No-Magatama"
 # Used for triggers.
 hideall "--knockback cloud--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Phase 1 ###
-0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 9.1 "Assail" sync / 1[56]:[^:]*:Susano:202C:/ window 10,10
 12.3 "Churn" sync / 1[56]:[^:]*:Susano:203E:/
 36.4 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/

@@ -10,12 +10,9 @@ hideall "Answer On High"
 # redundant with Highest Stakes
 hideall "Clutch"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Phase 1
-0.0 "--sync--" sync /:Engage!/ window 0,1
-7.4 "--sync--" sync / 14:[^:]*:Byakko:2A2F:/ window 10,10
-11.4 "Storm Pulse" sync / 1[56]:[^:]*:Byakko:2A2F:/
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+11.4 "Storm Pulse" sync / 1[56]:[^:]*:Byakko:2A2F:/ window 12,5
 17.6 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:2A2D:/
 28.7 "State Of Shock" sync / 1[56]:[^:]*:Byakko:27E0:/
 29.8 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/

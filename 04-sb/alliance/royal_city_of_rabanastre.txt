@@ -5,8 +5,6 @@ hideall "--Reset--"
 hideall "--sync--"
 hideall "--start--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Mateus, The Corrupt
 # -p 2633:27.6 2641:500
 # -ii 2638 2639 2634 263E 2714 273E 263F 2646 2642

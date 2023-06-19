@@ -7,10 +7,8 @@ hideall "--Reset--"
 hideall "--sync--"
 hideall "Alluring Arm"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Adds
-0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 4.0 "Vril" sync / 1[56]:[^:]*:Dreaming Kshatriya:2146:/ window 10,10
 12.1 "Tail Slap" sync / 1[56]:[^:]*:Dreaming Kshatriya:258C:/
 16.0 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/

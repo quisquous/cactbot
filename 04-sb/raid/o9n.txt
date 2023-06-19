@@ -8,10 +8,9 @@ hideall "--sync--"
 
 # Start branch
 0.0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
-1.5 "--sync--" sync / 1[56]:[^:]*:Chaos:314E:/ window 2,0
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 # This buster at slightly different times depending on the window.
-15.0 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:314F:/
+15.0 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:314F:/ window 15,10
 25.7 "Long/Lat Implosion?" sync / 1[56]:[^:]*:Chaos:315[12]:/ window 30,10 jump 1025.7
 28.0 "Damning Edict?" sync / 1[56]:[^:]*:Chaos:3150:/ window 30,10 jump 2028.0
 

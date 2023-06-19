@@ -6,7 +6,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+# Use autos/chatlog instead of InCombat lines to start timelines for door & final boss
+# as timeline resets out of combat.
 
 0.0 "Start" sync / 00:0044:[^:]*:I am the Omega/ window 1,0
 2.4 "--sync--" sync / 1[56]:[^:]*:Omega-M:337D:/ window 2.4,0.5 # first auto

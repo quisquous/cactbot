@@ -1,8 +1,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Amikiri
 # -p 1F72:4.5 1F73:100
 # -ii 1F74 1F78 1F77

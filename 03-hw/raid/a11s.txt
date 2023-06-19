@@ -1,4 +1,4 @@
-### A12S
+### A11S
 # Alexander - The Heart of the Creator (Savage)
 # https://docs.google.com/document/d/1z7VC-k2UzkLMsfWhWR9C5Z4dUlTZPPR0w2mNswTCnU4/edit
 # https://www.reddit.com/r/ffxiv/comments/5743rk/question_pillars_and_final_phase_of_a11s/d8p39zj/
@@ -10,11 +10,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
-0.0 "--sync--" sync /:Engage!/ window 0,1
-0.0 "--sync--" sync / 00:0839::The Main Generators will be sealed off in 15 seconds/ window 10,10
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 6.2 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A7[A9]:/ window 7,5
 9.2 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
 

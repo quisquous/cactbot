@@ -4,8 +4,6 @@
 hideall "--sync--"
 hideall "--Reset--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 #~~~~~~~~~~~~~~~~~~#
 # THE LEIGHTONWARD #
 #~~~~~~~~~~~~~~~~~~#
@@ -65,7 +63,6 @@ hideall "--Reset--"
 # -ii 1C3F
 
 2000.0 "--sync--" sync / 00:0839::The Lava Tube will be sealed off/ window 2000,1
-2001.2 "--sync--" sync / 1[56]:[^:]*:Lava Scorpion:366:/ window 1.2,2
 2012.0 "Molten Silk (Front)" sync / 1[56]:[^:]*:Lava Scorpion:1C43:/ window 12,5
 2022.2 "Flying Press" sync / 1[56]:[^:]*:Lava Scorpion:1C3E:/
 2038.4 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
