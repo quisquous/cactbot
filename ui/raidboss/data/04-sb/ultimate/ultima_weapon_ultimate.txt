@@ -1,14 +1,13 @@
 # Ultima Weapon Ultimate
 ## http://clees.me/guides/uwu/
+# -ii 2B51 2B59 2B58 2Bb5 2B46 2B44 2B64 2B6E 2B77 2B6A 2B98 2B89 2B83 2B91 2DB8 2B75 2C20 2C21 2C1F 2CD4 2CD5 2B80 
+# -p 2B5F:300 2CFD:600 2CF5:800 2B87:1004
 
 hideall "--sync--"
 hideall "--Reset--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Phase 1: Garuda ###
-0.0 "--sync--" sync /:Engage!/ window 0,1
-0 "--sync--" sync / 00:0044:[^:]*:Heehee HAHA hahaha HEEHEE haha HEEEEEE/ window 0,20
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 9 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/ window 10,5 # drift 0.293
 12 "Mistral Song" sync / 1[56]:[^:]*:Garuda:2B42:/ # drift -0.456
 18 "Great Whirlwind" sync / 1[56]:[^:]*:Garuda:2B41:/
@@ -271,5 +270,3 @@ hideall "--Reset--"
 # FIXME: this waits until 100% aether, so likely needs to be shifted later for natural push.
 # +3 seconds for each further one.  Maybe not worth including.
 #1625.0 "Citadel Siege" sync / 1[56]:[^:]*:Garuda:2B92:/ window 100,50
-
-#$ python util/make_timeline.py --ignore-id 2B51 2B59 2B58 2Bb5 2B46 2B44 2B64 2B6E 2B77 2B6A 2B98 2B89 2B83 2B91 2DB8 2B75 2C20 2C21 2C1F 2CD4 2CD5 2B80 --phase 2B5F:300 2CFD:600 2CF5:800 2B87:1004

@@ -4,12 +4,9 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 # Phase 1
-0.0 "--sync--" sync /:Engage!/ window 0,1
-2.5 "--sync--" sync / 1[56]:[^:]*:Seiryu:366:/ window 3,0
-12.5 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+12.5 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/ window 13,5
 #18.5 "Serpent Ascending" sync / 1[56]:[^:]*:Seiryu:37DC:/ # towers later, but nothing here
 20.5 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
 27.0 "Kuji-kiri" sync / 1[56]:[^:]*:Seiryu:37E1:/
