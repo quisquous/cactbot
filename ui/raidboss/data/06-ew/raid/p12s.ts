@@ -8,14 +8,10 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: north / south laser add call for first Paradeigma
-// TODO: second paradeigma tether/tower debuff?
 // TODO: laser add call (inner west / inner east?) for second Paradeigma
 // TODO: glaukopis tank swap call
 // TODO: glaukopis tank swap after 2nd hit (if different person took both)
-// TODO: tether/tower/saltire/cross debuffs for third Paradeigma (and partners for towers?)
-// TODO: light/dark tower call for third Paradeigma (+ taking towers, baiting adds, etc)
 // TODO: add phase dash calls?? (maybe this is overkill)
-// TODO: Superchain 1 debuff triggers (maybe combine with existing triggers?)
 // TODO: Superchain 2B
 // TODO: final Sample safe spot
 
