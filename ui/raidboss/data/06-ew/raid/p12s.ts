@@ -74,11 +74,34 @@ const engravementLabelMapAsConst = {
 type EngravementLabel = typeof engravementLabelMapAsConst[keyof typeof engravementLabelMapAsConst];
 const engravementLabelMap: { [effectId: string]: EngravementLabel } = engravementLabelMapAsConst;
 type EngravementIdMap = Record<EngravementLabel, string>;
-const engravementIdMap: EngravementIdMap = Object.fromEntries(Object.entries(engravementLabelMap).map(([k, v]) => [v, k])) as EngravementIdMap;
-const engravementBeamIds: readonly string[] = [engravementIdMap.lightBeam, engravementIdMap.darkBeam];
-const engravementTowerIds: readonly string[] = [engravementIdMap.lightTower, engravementIdMap.darkTower];
-const engravementTiltIds: readonly string[] = [engravementIdMap.lightTilt, engravementIdMap.darkTilt];
-const engravement3TheosSoulIds: readonly string[] = [engravementIdMap.crossMarked, engravementIdMap.xMarked];
+const engravementIdMap: EngravementIdMap = Object.fromEntries(
+  Object.entries(engravementLabelMap).map(([k, v]) => [v, k]),
+) as EngravementIdMap;
+
+const engravementBeamIds: readonly string[] = [
+  engravementIdMap.lightBeam,
+  engravementIdMap.darkBeam,
+];
+const engravementTowerIds: readonly string[] = [
+  engravementIdMap.lightTower,
+  engravementIdMap.darkTower,
+];
+const engravementTiltIds: readonly string[] = [
+  engravementIdMap.lightTilt,
+  engravementIdMap.darkTilt,
+];
+const engravement3TheosSoulIds: readonly string[] = [
+  engravementIdMap.crossMarked,
+  engravementIdMap.xMarked,
+];
+
+type AnthroposTether = 'light' | 'dark';
+const anthroposTetherMap: { [id: string]: AnthroposTether } = {
+  '00E9': 'light', // needs stretching
+  '00EA': 'dark', // needs stretching
+  '00FA': 'light', // adequately stretched
+  '00FB': 'dark', // adequately stretched
+};
 
 const headmarkers = {
   ...wings,
@@ -138,6 +161,9 @@ export interface Data extends RaidbossData {
   engravement2MyLabel?: EngravementLabel;
   engravement3TowerType?: 'lightTower' | 'darkTower';
   engravement3TowerPlayers: string[];
+  engravement3TetherPlayers: { [name: string]: AnthroposTether };
+  engravement3DarkTethersSide?: 'east' | 'west';
+  engravement3LightTethersSide?: 'east' | 'west';
   wingCollect: string[];
   wingCalls: ('swap' | 'stay')[];
   superchainCollect: NetMatches['AddedCombatant'][];
@@ -159,6 +185,7 @@ const triggerSet: TriggerSet<Data> = {
       engravementCounter: 0,
       engravement1Towers: [],
       engravement3TowerPlayers: [],
+      engravement3TetherPlayers: {},
       wingCollect: [],
       wingCalls: [],
       superchainCollect: [],
@@ -560,7 +587,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P12S Engravement 2 Debuff', // Add Spread Reminder
       type: 'GainsEffect',
-      netRegex: { effectId: [...engravementBeamIds, ...engravementTowerIds, ...engravementTiltIds] },
+      netRegex: {
+        effectId: [...engravementBeamIds, ...engravementTowerIds, ...engravementTiltIds],
+      },
       condition: (data, matches) => data.engravementCounter === 2 && data.me === matches.target,
       suppressSeconds: 30,
       run: (data, matches) => data.engravement2MyLabel = engravementLabelMap[matches.effectId],
@@ -570,7 +599,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'DFA' },
       condition: (data, matches) => data.engravementCounter === 2 && data.me === matches.target,
-      delaySeconds: 6, // display a reminder as the player is moving into the second orb stack groups
+      delaySeconds: 6.5, // display a reminder as the player is moving into the second orb stack groups
       infoText: (_data, _matches, output) => output.spreadLater!(),
       outputStrings: {
         spreadLater: {
@@ -615,7 +644,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: 'DFA' },
       condition: (data, matches) => data.engravementCounter === 2 && data.me === matches.target,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
-      response: Responses.spread(),
+      response: Responses.spread('alert'),
     },
     // In Engravement 3 (Paradeigma 3), 2 support players will both receive either lightTower or darkTower.
     // The other 2 support players receive a '+'/Cross (DFF) or 'x'/Saltire (E00) debuff.
@@ -674,7 +703,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.baitCleave!(),
       outputStrings: {
         baitCleave: {
-          en: 'Bait add line cleave',
+          en: 'Bait line cleave',
         },
       },
     },
@@ -685,74 +714,145 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.engravementCounter === 3,
       run: (data, matches) => {
         data.engravement3TowerPlayers.push(matches.target);
-        data.engravement3TowerType = matches.id === engravementIdMap.lightTower ? 'lightTower' : 'darkTower';
+        data.engravement3TowerType = matches.effectId === engravementIdMap.lightTower
+          ? 'lightTower'
+          : 'darkTower';
+      },
+    },
+    {
+      id: 'P12S Engravement 3 Paradeigma Adds Collect',
+      type: 'StartsUsing',
+      netRegex: { id: ['82F1', '82F2'], source: 'Anthropos' },
+      condition: (data) => data.engravementCounter === 3,
+      run: (data, matches) => {
+        // 82F1 = Searing Radiance (used on light tethers)
+        // 82F2 = Shadowsear (used on dark tethers)
+        // If the Anthroposes (Anthropi?) casting 82F1 are east, e.g.,
+        // the tethered players will be west when the mechanic resolves.
+        const tetherPlayerSide = parseFloat(matches.x) > 100 ? 'west' : 'east';
+        if (matches.id === '82F1')
+          data.engravement3LightTethersSide = tetherPlayerSide;
+        else
+          data.engravement3DarkTethersSide = tetherPlayerSide;
       },
     },
     {
       id: 'P12S Engravement 3 Towers Initial',
       type: 'GainsEffect',
-      netRegex: { effectId: engravementTowerIds, capture: false },
-      condition: (data) => data.engravementCounter === 3,
-      delaySeconds: 0.3,
-      suppressSeconds: 1,
-      response: (data, _matches, output) => {
-        // cactbot-builtin-response
-        output.responseOutputStrings = {
-          towerOnYou: {
-            en: '${color} Tower on You (w/ ${partner})',
-          },
-          towerLater: {
-            en: '${color} Towers later',
-          },
-          light: {
-            en: 'Light',
-          },
-          dark: {
-            en: 'Dark',
-          },
-          unknown: Outputs.unknown,
-        };
-        const towerOnYou = data.engravement3TowerPlayers.includes(data.me);
-        let towerColor = output.unknown!();
-        if (data.engravement3TowerType !== undefined)
-          towerColor = data.engravement3TowerType === 'lightTower'
-            ? output.light!()
-            : output.dark!();
-        let partner;
-        if (towerOnYou) {
-          partner = data.ShortName(data.engravement3TowerPlayers.find((name) =>
-            name !== data.me
-          )) ?? output.unknown!();
-          return { alertText: output.towerOnYou!({ color: towerColor, partner: partner }) };
-        } else if (data.party.isDPS(data.me)) {
-          // DPS want to know tower color to know if they are soaking or baiting add cleaves later
-          return { infoText: output.towerLater!({ color: towerColor }) };
-        }
-      },
-    },
-    {
-      id: 'P12S Engravement 3 Towers Drop',
-      type: 'GainsEffect',
       netRegex: { effectId: engravementTowerIds },
       condition: (data, matches) => data.engravementCounter === 3 && data.me === matches.target,
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      delaySeconds: 0.3,
       alertText: (data, _matches, output) => {
         let towerColor = output.unknown!();
         if (data.engravement3TowerType !== undefined)
           towerColor = data.engravement3TowerType === 'lightTower'
             ? output.light!()
             : output.dark!();
-        return output.dropTower!({ color: towerColor });
+        const partner =
+          data.ShortName(data.engravement3TowerPlayers.find((name) => name !== data.me)) ??
+            output.unknown!();
+        return output.towerOnYou!({ color: towerColor, partner: partner });
       },
       outputStrings: {
-        dropTower: {
-          en: 'Drop ${color} Tower',
+        towerOnYou: {
+          en: '${color} Tower on You (w/ ${partner})',
         },
         light: {
           en: 'Light',
         },
         dark: {
           en: 'Dark',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'P12S Engravement 3 Paradeigma Tethers Collect',
+      type: 'Tether',
+      // Because tethers can spawn unstretched or already satisfied, we need to catch all 4 states
+      netRegex: { id: Object.keys(anthroposTetherMap), source: 'Anthropos' },
+      condition: (data) => data.engravementCounter === 3,
+      run: (data, matches) => {
+        const tetherType = anthroposTetherMap[matches.id];
+        if (tetherType === undefined)
+          return;
+        data.engravement3TetherPlayers[matches.target] = tetherType;
+      },
+    },
+    {
+      id: 'P12S Engravement 3 Paradeigma Early Tower Color',
+      type: 'Tether',
+      // Because tethers can spawn unstretched or already satisfied, we need to trigger on all 4 states
+      netRegex: { id: Object.keys(anthroposTetherMap), source: 'Anthropos' },
+      condition: (data, matches) => data.engravementCounter === 3 && data.me === matches.target,
+      suppressSeconds: 10,
+      infoText: (data, _matches, output) => {
+        let towerColor = output.unknown!();
+        if (data.engravement3TowerType !== undefined)
+          towerColor = data.engravement3TowerType === 'lightTower'
+            ? output.light!()
+            : output.dark!();
+        return output.towersLater!({ color: towerColor });
+      },
+      outputStrings: {
+        towersLater: {
+          en: '${color} towers (later)',
+        },
+        light: {
+          en: 'Light',
+        },
+        dark: {
+          en: 'Dark',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    // If player starts with darkTower/lightTower, they will start east or west to soak the inside towers.
+    // Use their relative position at the time 8312 (Shock) is used (the initial tower soak) to determine where they should drop their tower.
+    {
+      id: 'P12S Engravement 3 Towers Drop Location',
+      type: 'Ability',
+      netRegex: { id: '8312', source: 'Athena' },
+      condition: (data, matches) =>
+        data.engravementCounter === 3 && data.me === matches.target &&
+        data.engravement3TowerPlayers.includes(data.me),
+      alertText: (data, matches, output) => {
+        let towerColor = output.unknown!();
+        if (data.engravement3TowerType !== undefined)
+          towerColor = data.engravement3TowerType === 'lightTower'
+            ? output.light!()
+            : output.dark!();
+
+        const mySide = parseFloat(matches.x) > 100 ? 'east' : 'west';
+        let towerSpot;
+        if (data.engravement3TowerType === 'lightTower') {
+          towerSpot = mySide === data.engravement3LightTethersSide
+            ? output.corner!()
+            : output.platform!();
+          return output.dropTower!({ color: towerColor, spot: towerSpot });
+        } else if (data.engravement3TowerType === 'darkTower') {
+          towerSpot = mySide === data.engravement3DarkTethersSide
+            ? output.corner!()
+            : output.platform!();
+          return output.dropTower!({ color: towerColor, spot: towerSpot });
+        }
+        return output.dropTower!({ color: towerColor, spot: output.unknown!() });
+      },
+      outputStrings: {
+        dropTower: {
+          en: 'Drop ${color} Tower (${spot})',
+        },
+        light: {
+          en: 'Light',
+        },
+        dark: {
+          en: 'Dark',
+        },
+        platform: {
+          en: 'Platform',
+        },
+        corner: {
+          en: 'Inside Corner',
         },
         unknown: Outputs.unknown,
       },
@@ -789,7 +889,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Soak ${color} Tower',
         },
         baitCleaves: {
-          en: 'Bait line cleaves',
+          en: 'Bait line cleave',
         },
         light: {
           en: 'Light',
@@ -1031,7 +1131,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: should we base this off of the first coil/burst instead?
       // 7.2 seconds is the time until the second mechanic finishes, so call early.
       delaySeconds: 4.5,
-      durationSeconds: 9, // keep active until right before 2nd orb resolves
+      durationSeconds: 8, // keep active until right before 2nd orb resolves
       alertText: (data, _matches, output) => {
         // Sort ascending.
         const collect = data.superchainCollect.slice(3, 7).sort((a, b) =>
@@ -1080,15 +1180,15 @@ const triggerSet: TriggerSet<Data> = {
         // This is left and right facing the boss.
         leftClockwise: {
           en: 'Left (CW) => ${engrave}',
-          de: 'Links (im Uhrzeigersinn)',
-          fr: 'Gauche (horaire)',
-          ko: '왼쪽 (시계방향)',
+          de: 'Links (im Uhrzeigersinn) => ${engrave}',
+          fr: 'Gauche (horaire) => ${engrave}',
+          ko: '왼쪽 (시계방향) => ${engrave}',
         },
         rightCounterclockwise: {
           en: 'Right (CCW) => ${engrave}',
-          de: 'Rechts (gegen Uhrzeigersinn)',
-          fr: 'Droite (Anti-horaire)',
-          ko: '오른쪽 (반시계방향)',
+          de: 'Rechts (gegen Uhrzeigersinn) => ${engrave}',
+          fr: 'Droite (Anti-horaire) => ${engrave}',
+          ko: '오른쪽 (반시계방향) => ${engrave}',
         },
         lightBeam: {
           en: 'Light Beam (Stack w/Dark)',
@@ -1119,6 +1219,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: should we base this off of the first coil/burst instead?
       // 10.6 seconds is the time until the second mechanic finishes, so call early.
       delaySeconds: 9.1,
+      durationSeconds: 5.5,
       alertText: (data, _matches, output) => {
         // Sort ascending.
         const collect = data.superchainCollect.slice(7, 10).sort((a, b) =>
