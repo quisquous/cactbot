@@ -135,6 +135,7 @@ export interface Data extends RaidbossData {
   phase?: 'superchain1' | 'palladion' | 'superchain2a' | 'superchain2b';
   engravementCounter: number;
   engravement1Towers: string[];
+  engravement2MyLabel?: EngravementLabel;
   engravement3TowerType?: 'lightTower' | 'darkTower';
   engravement3TowerPlayers: string[];
   wingCollect: string[];
@@ -557,42 +558,24 @@ const triggerSet: TriggerSet<Data> = {
     // - Once the beams detonate, the lightBeam debuff disappears and is replaced with lightTilt (same with dark).
     // So only use the initial debuff to resolve the mechanic, and use a long suppress to avoid incorrect later alerts.
     {
-      id: 'P12S Engravement 2 Beam Soak',
+      id: 'P12S Engravement 2 Debuff', // Add Spread Reminder
       type: 'GainsEffect',
       netRegex: { effectId: [...engravementBeamIds, ...engravementTowerIds, ...engravementTiltIds] },
       condition: (data, matches) => data.engravementCounter === 2 && data.me === matches.target,
-      delaySeconds: 5, // wait until first orb resolves so as not to confuse
-      durationSeconds: 7, // keep active until beams go off
       suppressSeconds: 30,
-      response: (_data, matches, output) => {
-        // cactbot-builtin-response
-        output.responseOutputStrings = {
-          lightBeam: {
-            en: 'Light Beam (Stack w/Dark)',
-          },
-          darkBeam: {
-            en: 'Dark Beam (Stack w/Light)',
-          },
-          lightTower: {
-            en: 'Light Tower',
-          },
-          darkTower: {
-            en: 'Dark Tower',
-          },
-          lightTilt: {
-            en: 'Light Group => spread later',
-          },
-          darkTilt: {
-            en: 'Dark Group => spread later',
-          },
-        };
-
-        const engraveLabel = engravementLabelMap[matches.effectId];
-        if (engraveLabel === undefined)
-          return;
-        if (engravementBeamIds.includes(matches.effectId))
-          return { alarmText: output[engraveLabel]!() };
-        return { alertText: output[engraveLabel]!() };
+      run: (data, matches) => data.engravement2MyLabel = engravementLabelMap[matches.effectId],
+    },
+    {
+      id: 'P12S Engravement 2 Heavensflame Soul Early',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'DFA' },
+      condition: (data, matches) => data.engravementCounter === 2 && data.me === matches.target,
+      delaySeconds: 6, // display a reminder as the player is moving into the second orb stack groups
+      infoText: (_data, _matches, output) => output.spreadLater!(),
+      outputStrings: {
+        spreadLater: {
+          en: '(spread later)',
+        },
       },
     },
     // darkTower/lightTower are 20s, but lightBeam/darkBeam are shorter and swap to lightTilt/darkTilt before the mechanic resolves.
@@ -1047,6 +1030,7 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: should we base this off of the first coil/burst instead?
       // 7.2 seconds is the time until the second mechanic finishes, so call early.
       delaySeconds: 4.5,
+      durationSeconds: 9, // keep active until right before 2nd orb resolves
       alertText: (data, _matches, output) => {
         // Sort ascending.
         const collect = data.superchainCollect.slice(3, 7).sort((a, b) =>
@@ -1083,28 +1067,47 @@ const triggerSet: TriggerSet<Data> = {
         const prevDir = Directions.addedCombatantPosTo8Dir(firstMechDest, centerX, centerY);
         const thisDir = Directions.addedCombatantPosTo8Dir(donutDest, centerX, centerY);
 
+        const engrave = output[data.engravement2MyLabel ?? 'unknown']!();
+
         const rotation = (thisDir - prevDir + 8) % 8;
         if (rotation === 2)
-          return output.leftClockwise!();
+          return output.leftClockwise!({ engrave: engrave });
         if (rotation === 6)
-          return output.rightCounterclockwise!();
+          return output.rightCounterclockwise!({ engrave: engrave });
       },
       outputStrings: {
         // This is left and right facing the boss.
-        // TODO: this should probably also say your debuff,
-        // e.g. "Left (Dark Laser)" or "Right (Light Tower)" or something?
         leftClockwise: {
-          en: 'Left (CW)',
+          en: 'Left (CW) => ${engrave}',
           de: 'Links (im Uhrzeigersinn)',
           fr: 'Gauche (horaire)',
           ko: '왼쪽 (시계방향)',
         },
         rightCounterclockwise: {
-          en: 'Right (CCW)',
+          en: 'Right (CCW) => ${engrave}',
           de: 'Rechts (gegen Uhrzeigersinn)',
           fr: 'Droite (Anti-horaire)',
           ko: '오른쪽 (반시계방향)',
         },
+        lightBeam: {
+          en: 'Light Beam (Stack w/Dark)',
+        },
+        darkBeam: {
+          en: 'Dark Beam (Stack w/Light)',
+        },
+        lightTower: {
+          en: 'Light Tower',
+        },
+        darkTower: {
+          en: 'Dark Tower',
+        },
+        lightTilt: {
+          en: 'Light Group',
+        },
+        darkTilt: {
+          en: 'Dark Group',
+        },
+        unknown: Outputs.unknown,
       },
     },
     {
