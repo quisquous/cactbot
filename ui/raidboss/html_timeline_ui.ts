@@ -197,9 +197,15 @@ export class HTMLTimelineUI extends TimelineUI {
     if (activeBar) {
       const parentDiv = activeBar.bar.parentNode;
       parentDiv?.parentNode?.removeChild(parentDiv);
+      // Expiry timeout must be cleared so that it will not remove this new bar.
       if (activeBar.expireTimeout !== undefined) {
         window.clearTimeout(activeBar.expireTimeout);
         activeBar.expireTimeout = undefined;
+      }
+      // Soon timeout is just an optimization to remove, as it's unnecessary.
+      if (activeBar.soonTimeout !== undefined) {
+        window.clearTimeout(activeBar.soonTimeout);
+        activeBar.soonTimeout = undefined;
       }
     }
 
