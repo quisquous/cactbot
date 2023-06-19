@@ -24,6 +24,7 @@ Options.Triggers.push({
       lightDarkDebuff: {},
       lightDarkBuddy: {},
       lightDarkTether: {},
+      cylinderCollect: [],
     };
   },
   triggers: [
@@ -642,32 +643,28 @@ Options.Triggers.push({
       netRegex: { target: 'Arcane Cylinder' },
       condition: (data, matches) => {
         const id = getHeadmarkerId(data, matches);
-        return (id === headmarkers.orangeCW || id === headmarkers.blueCCW);
-      },
-      run: (data, matches) => {
-        const id = getHeadmarkerId(data, matches);
-        // Create a 3 digit binary value, Orange = 0, Blue = 1.
-        // e.g. BBO = 110 = 6
-        data.cylinderValue ??= 0;
-        data.numCylinders ??= 0;
-        data.cylinderValue *= 2;
-        if (id === headmarkers.blueCCW)
-          data.cylinderValue += 1;
-        data.numCylinders++;
-      },
-    },
-    {
-      id: 'P11S Lightstream',
-      type: 'HeadMarker',
-      netRegex: { target: 'Arcane Cylinder' },
-      condition: (data, matches) => {
-        const id = getHeadmarkerId(data, matches);
-        return (data.numCylinders === 3 &&
-          (id === headmarkers.orangeCW || id === headmarkers.blueCCW));
+        if (id !== headmarkers.orangeCW && id !== headmarkers.blueCCW)
+          return false;
+        data.cylinderCollect.push(matches);
+        return data.cylinderCollect.length === 3;
       },
       alertText: (data, _matches, output) => {
-        if (!data.cylinderValue || !(data.cylinderValue >= 0) || data.cylinderValue > 7)
-          return;
+        let cylinderValue = 0;
+        // targetId is in hex, but that's still lexicographically sorted so no need to parseInt.
+        const sortedCylinders = data.cylinderCollect.sort((a, b) => {
+          return a.targetId.localeCompare(b.targetId);
+        });
+        const markers = sortedCylinders.map((x) => x.id);
+        // Once sorted by id, the lasers will always be in NW, S, NE order.
+        // Create a 3 digit binary value, Orange = 0, Blue = 1.
+        // e.g. BBO = 110 = 6
+        for (const marker of markers) {
+          cylinderValue *= 2;
+          if (marker === headmarkers.blueCCW)
+            cylinderValue += 1;
+        }
+        // The safe spot is the one just CW of two reds or just CCW of two blues.
+        // There's always two of one color and one of the other.
         const outputs = {
           0b000: undefined,
           0b001: output.northwest(),
@@ -678,12 +675,9 @@ Options.Triggers.push({
           0b110: output.southeast(),
           0b111: undefined,
         };
-        return outputs[data.cylinderValue];
+        return outputs[cylinderValue];
       },
-      run: (data) => {
-        delete data.cylinderValue;
-        delete data.numCylinders;
-      },
+      run: (data) => data.cylinderCollect = [],
       outputStrings: {
         east: Outputs.east,
         northeast: Outputs.northeast,
