@@ -3,8 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Serial-jointed Command Model
 # -ic 2P -p 48B2:108.5 -ii 4B31 48B3 48B4 48B7 48B6 48CB 48CC 48BA 4B32 48FA 48BC 48BD 48BE 48BF 48C0 48C1 48C2 48C9
 

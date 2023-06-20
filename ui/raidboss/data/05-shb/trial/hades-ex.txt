@@ -5,13 +5,9 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
-
 ### Phase 1
 0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
-2.5 "--sync--" sync / 1[56]:[^:]*:Hades:368:/ window 3,0
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 10.7 "Ancient Double" sync / 1[56]:[^:]*:Hades:47A5:/ window 11,0
 19.8 "Shadow Spread" sync / 1[56]:[^:]*:Hades:47A9:/
 22.8 "Shadow Spread" sync / 1[56]:[^:]*:Hades:47AA:/

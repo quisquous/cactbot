@@ -3,8 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Mudman
 # -p 547F:1011
 # -ii 368 5481 5487 548E 548F 5490 5492

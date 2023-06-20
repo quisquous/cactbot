@@ -3,8 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### 813P-Operated Aegis Unit
 # -p 508D:112.8 -ii 5074 5075 5076 5091 5092 5081 5099 507E 5090 51BC
 

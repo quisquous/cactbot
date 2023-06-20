@@ -3,8 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Unknown
 # -p 4B69:1013.5 4E4B:1313
 # -ii 4B78 4B6D 4B6F
