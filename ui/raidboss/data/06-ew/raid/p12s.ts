@@ -99,6 +99,11 @@ const anthroposTetherMap: { [id: string]: AnthroposTether } = {
   '00FB': 'dark', // adequately stretched
 };
 
+const tetherAbilityToTowerMap: { [id: string]: EngravementLabel } = {
+  '82F1': 'lightTower',
+  '82F2': 'darkTower',
+};
+
 const headmarkers = {
   ...wings,
   // vfx/lockon/eff/tank_laser_5sec_lockon_c0a1.avfx
@@ -158,8 +163,7 @@ export interface Data extends RaidbossData {
   engravement3TowerType?: 'lightTower' | 'darkTower';
   engravement3TowerPlayers: string[];
   engravement3TetherPlayers: { [name: string]: AnthroposTether };
-  engravement3DarkTethersSide?: 'east' | 'west';
-  engravement3LightTethersSide?: 'east' | 'west';
+  engravement3TethersSide?: 'east' | 'west';
   wingCollect: string[];
   wingCalls: ('swap' | 'stay')[];
   superchainCollect: NetMatches['AddedCombatant'][];
@@ -613,7 +617,7 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
-    // In Engravement 2 (Superchain 1), all supports or  DPS will receive lightTilt and darkTilt (2 each).
+    // In Engravement 2 (Superchain 1), all supports or DPS will receive lightTilt and darkTilt (2 each).
     // All 4 also receive Heavensflame Soul.
     // The other role group will receive lightTower, darkTower, lightBeam, and darkBeam.
     // To resolve the Beams during the 2nd orb, lightBeam needs to stack with darkTower and both darkTilts, and vice versa.
@@ -624,7 +628,7 @@ const triggerSet: TriggerSet<Data> = {
     // - Once the beams detonate, the lightBeam debuff disappears and is replaced with lightTilt (same with dark).
     // So only use the initial debuff to resolve the mechanic, and use a long suppress to avoid incorrect later alerts.
     {
-      id: 'P12S Engravement 2 Debuff', // Add Spread Reminder
+      id: 'P12S Engravement 2 Debuff',
       type: 'GainsEffect',
       netRegex: {
         effectId: [...engravementBeamIds, ...engravementTowerIds, ...engravementTiltIds],
@@ -766,13 +770,11 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => {
         // 82F1 = Searing Radiance (used on light tethers)
         // 82F2 = Shadowsear (used on dark tethers)
-        // If the Anthroposes (Anthropi?) casting 82F1 are east, e.g.,
-        // the tethered players will be west when the mechanic resolves.
+        // If the Anthroposes (Anthropi?) casting 82F1 are east, e.g., the tethered players will be west when the mechanic resolves.
+        // lightTower/darkTower is applied ~1.1s before these abilities.
         const tetherPlayerSide = parseFloat(matches.x) > 100 ? 'west' : 'east';
-        if (matches.id === '82F1')
-          data.engravement3LightTethersSide = tetherPlayerSide;
-        else
-          data.engravement3DarkTethersSide = tetherPlayerSide;
+        if (tetherAbilityToTowerMap[matches.id] === data.engravement3TowerType)
+          data.engravement3TethersSide = tetherPlayerSide;
       },
     },
     {
@@ -862,20 +864,14 @@ const triggerSet: TriggerSet<Data> = {
             ? output.light!()
             : output.dark!();
 
+        if (data.engravement3TethersSide === undefined)
+          return output.dropTower!({ color: towerColor, spot: output.unknown!() });
+
         const mySide = parseFloat(matches.x) > 100 ? 'east' : 'west';
-        let towerSpot;
-        if (data.engravement3TowerType === 'lightTower') {
-          towerSpot = mySide === data.engravement3LightTethersSide
-            ? output.corner!()
-            : output.platform!();
-          return output.dropTower!({ color: towerColor, spot: towerSpot });
-        } else if (data.engravement3TowerType === 'darkTower') {
-          towerSpot = mySide === data.engravement3DarkTethersSide
-            ? output.corner!()
-            : output.platform!();
-          return output.dropTower!({ color: towerColor, spot: towerSpot });
-        }
-        return output.dropTower!({ color: towerColor, spot: output.unknown!() });
+        const towerSpot = mySide === data.engravement3TethersSide
+          ? output.corner!()
+          : output.platform!();
+        return output.dropTower!({ color: towerColor, spot: towerSpot });
       },
       outputStrings: {
         dropTower: {
