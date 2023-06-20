@@ -694,7 +694,7 @@ const triggerSet: TriggerSet<Data> = {
         const sortedCylinders = data.cylinderCollect.sort((a, b) => {
           return a.targetId.localeCompare(b.targetId);
         });
-        const markers = sortedCylinders.map((x) => x.id);
+        const markers = sortedCylinders.map((m) => getHeadmarkerId(data, m));
 
         // Once sorted by id, the lasers will always be in NW, S, NE order.
         // Create a 3 digit binary value, Orange = 0, Blue = 1.
