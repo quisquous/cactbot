@@ -3,8 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Knave of Hearts
 # -p 5EB5:1012
 # -ii 5CEC 5CED 5CEE 5CEF 5EA5 5EA6 5CF9 5EB4 5EAF

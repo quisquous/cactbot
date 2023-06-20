@@ -3,9 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
-
 ### Greater Armadillo
 # -ii 3CEA 3CE8 -p 3CE5:115
 100.0 "--sync--" sync / 00:0839::Terminus will be sealed off/ window 100,0
