@@ -192,6 +192,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Zeige ${side}/${dir} Verbindung weg',
           fr: 'Orientez le lien à l\'extérieur - ${side}/${dir}',
           cn: '向 ${side}/${dir} 外侧引导',
+          ko: '선을 ${side}/${dir}으로',
         },
         default: {
           en: 'Point Tether Away',
@@ -581,18 +582,20 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 5,
       infoText: (_data, matches, output) => {
         const y = parseInt(matches.y);
-        return (Math.floor(y / 2) % 2 === 1) ? output.boxes!() : output.lines!();
+        return (Math.floor(y / 2) % 2 === 1) ? output.lines!() : output.boxes!();
       },
       outputStrings: {
         lines: {
           en: 'On Lines (Avoid Lasers)',
           de: 'Auf die Linien (vermeide Laser)',
           cn: '站在线上（躲避激光）',
+          ko: '경계선 위 (레이저 피하기)',
         },
         boxes: {
           en: 'Inside Boxes (Avoid Lasers)',
           de: 'In den Boxen (vermeide Laser)',
           cn: '站在盒子里（躲避激光）',
+          ko: '네모칸 안 (레이저 피하기)',
         },
       },
     },
