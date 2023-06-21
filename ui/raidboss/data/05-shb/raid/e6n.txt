@@ -9,8 +9,8 @@ hideall "--sync--"
 
 # Garuda solo
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-13.5 "Ferostorm" # sync / 1[56]:[^:]*:Garuda:4BD[DEF]:/ window 14,7
-20.6 "Superstorm" sync / 1[56]:[^:]*:Garuda:4BD7:/ window 20,30
+13.5 "Ferostorm" # sync / 1[56]:[^:]*:Garuda:4BD[DEF]:/
+20.6 "Superstorm" sync / 1[56]:[^:]*:Garuda:4BD7:/ window 21,30
 31.4 "Air Bump" sync / 1[56]:[^:]*:Garuda:4BD1:/
 36.8 "Thorns" sync / 1[56]:[^:]*:Garuda:4BDA:/
 48.0 "Downburst" sync / 1[56]:[^:]*:Garuda:4BDB:/ window 30,30

@@ -11,7 +11,7 @@ hideall "--sync--"
 # This is maybe like +/- 1-2 seconds?
 
 100.0 "--sync--" sync / 00:0839::Ichthyology will be sealed off/ window 100,0
-110.5 "Protolithic Puncture" sync / 1[56]:[^:]*:Cladoselache:3E04:/ window 11,8
+110.5 "Protolithic Puncture" sync / 1[56]:[^:]*:Cladoselache:3E04:/ window 111,8
 119.5 "Tidal Guillotine" sync / 1[56]:[^:]*:Cladoselache:3E08:/
 128.7 "--2x targetable--" sync / 22:........:Doliodus:........:Doliodus:01/
 129.7 "--1x targetable--" sync / 22:........:Cladoselache:........:Cladoselache:00/

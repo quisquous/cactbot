@@ -8,12 +8,8 @@ hideall "Earthen Armor"
 hideall "Earthen Gauntlets"
 hideall "Earthen Wheels"
 
-# Use autos/chatlog instead of InCombat lines to start timelines for door boss
-# as timeline resets out of combat.
-
 ### Warmup
-0.0 "Start" sync / 00:0044:[^:]*:From the heart of a mountain, I rise/ window 1,1
-2.5 "--sync--" sync / 1[56]:[^:]*:Titan:413D:/ window 3,0
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 11.0 "--sync--" sync / 14:[^:]*:Titan:4116:/ window 11,5
 16.0 "Stonecrusher 1" sync / 1[56]:[^:]*:Titan:4116:/
 19.1 "Stonecrusher 2" #sync / 1[56]:[^:]*:Titan:4143:/
