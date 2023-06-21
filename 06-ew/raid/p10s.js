@@ -550,7 +550,7 @@ Options.Triggers.push({
       suppressSeconds: 5,
       infoText: (_data, matches, output) => {
         const y = parseInt(matches.y);
-        return (Math.floor(y / 2) % 2 === 1) ? output.boxes() : output.lines();
+        return (Math.floor(y / 2) % 2 === 1) ? output.lines() : output.boxes();
       },
       outputStrings: {
         lines: {
