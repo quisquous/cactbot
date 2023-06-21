@@ -58,10 +58,6 @@ export class TimelineUI {
     /* noop */
   }
 
-  public OnTimerExpiresSoon(_id: number): void {
-    /* noop */
-  }
-
   public OnRemoveTimer(_e: Event, _expired: boolean, _force = false): void {
     /* noop */
   }
