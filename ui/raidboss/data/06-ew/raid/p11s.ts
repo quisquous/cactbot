@@ -116,6 +116,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Healer Stacks',
           de: 'Heiler Gruppen',
+          cn: '双奶分摊',
           ko: '힐러 그룹 쉐어',
         },
       },
@@ -147,6 +148,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Partners',
           de: 'Partner',
+          cn: '两人分摊',
           ko: '파트너',
         },
       },
@@ -179,6 +181,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Out + Healer Stacks',
           de: 'Raus + Heiler Gruppen',
+          cn: '场外 + 双奶分摊',
           ko: '밖으로 + 힐러 그룹 쉐어',
         },
       },
@@ -194,11 +197,13 @@ const triggerSet: TriggerSet<Data> = {
           upheldOnYou: {
             en: 'You In (party out) => In + Partners',
             de: 'Du rein (Gruppe raus) => Rein + Partner',
+            cn: '引导月环 => 场中 + 两人分摊',
             ko: '안으로 (본대 밖) => 안으로 + 파트너',
           },
           upheldOnPlayer: {
             en: 'Party Out (${player} in)=> In + Partners',
             de: 'Gruppe raus (${player} rein)=> Rein + Partner',
+            cn: '场外 （${player} 引导） => 场中 + 两人分摊',
             ko: '본대 밖으로 (${player} 안) => 안으로 + 파트너',
           },
           upheldNotOnYou: {
@@ -232,6 +237,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'In + Partners',
           de: 'Rein + Partner',
+          cn: '场中 + 两人分摊',
           ko: '안으로 + 파트너',
         },
       },
@@ -250,17 +256,20 @@ const triggerSet: TriggerSet<Data> = {
           tankTether: {
             en: 'Away from Party',
             de: 'Weg von der Gruppe',
+            cn: '远离放月环',
             ko: '본대와 멀어지기',
           },
           partyStackPlayerOut: {
             en: 'Party Stack (${player} out)',
             de: 'Mit der Gruppe sammeln (${player} raus)',
+            cn: '集合 （${player} 放月环）',
             ko: '쉐어 (${player} 밖)',
           },
           // If we're not sure who the tether is on.
           partyStack: {
             en: 'Party Stack',
             de: 'In der Gruppe sammeln',
+            cn: '分摊',
             ko: '쉐어',
           },
         };
@@ -288,6 +297,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get in Donut',
           de: 'Geh in den Donut',
+          cn: '进入月环',
           ko: '도넛 안으로',
         },
       },
@@ -351,11 +361,13 @@ const triggerSet: TriggerSet<Data> = {
         light: {
           en: 'Healer Stacks + Out',
           de: 'Heiler Gruppen + Raus',
+          cn: '双奶分摊 + 场外',
           ko: '힐러 그룹 쉐어 + 밖으로',
         },
         dark: {
           en: 'In + Partners',
           de: 'Rein + Partner',
+          cn: '场中 + 两人分摊',
           ko: '안으로 + 파트너',
         },
       },
@@ -419,6 +431,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Healer Stacks + Out',
           de: 'Heiler Gruppen + Raus',
+          cn: '双奶分摊 + 场外',
           ko: '힐러 그룹 쉐어 + 밖으로',
         },
       },
@@ -450,6 +463,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'In + Partners',
           de: 'Rein + Partner',
+          cn: '场中 + 两人分摊',
           ko: '안으로 + 파트너',
         },
       },
@@ -590,12 +604,14 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Other Near: ${player1}, ${player2}',
             de: 'Anderes Nahe: ${player1}, ${player2}',
             fr: 'Autre proche : ${player1}, ${player2}',
+            cn: '靠近 : ${player1}, ${player2}',
             ko: '다른 가까이: ${player1}, ${player2}',
           },
           otherFar: {
             en: 'Other Far: ${player1}, ${player2}',
             de: 'Anderes Entfernt: ${player1}, ${player2}',
             fr: 'Autre éloigné : ${player1}, ${player2}',
+            cn: '远离 : ${player1}, ${player2}',
             ko: '다른 멀리: ${player1}, ${player2}',
           },
           tank: Outputs.tank,
