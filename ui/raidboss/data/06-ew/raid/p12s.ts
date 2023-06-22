@@ -166,7 +166,7 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 };
 
 export interface Data extends RaidbossData {
-  readonly triggerSetConfig: { engravement1DropTower: 'sharp' | 'tilt' | 'tower' };
+  readonly triggerSetConfig: { engravement1DropTower: 'quadrant' | 'clockwise' | 'tower' };
   decOffset?: number;
   expectedFirstHeadmarker?: string;
   isDoorBoss: boolean;
@@ -216,8 +216,8 @@ const triggerSet: TriggerSet<Data> = {
           'No strategy: just call tower color': 'tower',
         },
         cn: {
-          '垂直拉线 (Game8)': 'sharp',
-          '对角拉线': 'tilt',
+          '垂直拉线 (Game8)': 'quadrant',
+          '对角拉线': 'clockwise',
           '仅提示塔颜色': 'tower',
         },
       },
@@ -674,7 +674,7 @@ const triggerSet: TriggerSet<Data> = {
 
         const color = matches.id === '82F1' ? 'dark' : 'light';
 
-        if (data.triggerSetConfig.engravement1DropTower === 'sharp') {
+        if (data.triggerSetConfig.engravement1DropTower === 'quadrant') {
           if (x < 80 && y < 100) { // x = 75 && y = 97
             data.engravement1BeamsPosMap.set('NE', color);
           } else if (x < 100 && y < 80) { // x = 97 && y = 75
@@ -692,7 +692,7 @@ const triggerSet: TriggerSet<Data> = {
           } else if (x < 80 && y > 100) { // x = 75 && y = 103
             data.engravement1BeamsPosMap.set('SE', color);
           }
-        } else if (data.triggerSetConfig.engravement1DropTower === 'tilt') {
+        } else if (data.triggerSetConfig.engravement1DropTower === 'clockwise') {
           if (x < 80 && y < 100) { // x = 75 && y = 97
             data.engravement1BeamsPosMap.set('SE', color);
           } else if (x < 100 && y < 80) { // x = 97 && y = 75
