@@ -104,7 +104,7 @@ const tetherAbilityToTowerMap: { [id: string]: EngravementLabel } = {
 
 type Paradeigma2SafeLane = 'east' | 'west';
 const paradeigma2SafeLanes: { [x: number]: Paradeigma2SafeLane[] } = {
-  // PosX of one add: [inside, outside] safe lanes:
+  // PosX of single add: [inside, outside] safe lanes,
   85: ['west', 'east'],
   95: ['east', 'west'],
   105: ['west', 'east'],
@@ -1287,7 +1287,7 @@ const triggerSet: TriggerSet<Data> = {
           cleaveSwap: Outputs.tankSwap,
           avoidTankCleave: Outputs.avoidTankCleave,
         };
-        // Mmultiple players can be hit by the line cleave AoE,
+        // Multiple players can be hit by the line cleave AoE,
         // but we only care about the intended target for the Followup trigger
         data.glaukopisFirstHit = matches.target;
 
@@ -1301,7 +1301,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     // Since multiple players could be hit by the 2nd cleave (whoopsie!), we need to check
-    // if *any* of the targets of the 2nd cleave were the original target of the 1st cleave.
+    // if *any* of the targets of the 2nd cleave were the original cast target (MT) of the 1st cleave.
     // If so, we'll assume the original target is using invuln, and no need to swap after the 2nd.
     {
       id: 'P12S Glaukopis Second Cleave Collect',
