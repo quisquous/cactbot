@@ -762,7 +762,7 @@ const triggerSet: TriggerSet<Data> = {
                 data.engravement1LightBeamsPos.push(output.southeast!());
               else if (key === 'SW')
                 data.engravement1LightBeamsPos.push(output.southwest!());
-            } else if (matches.effectId === engravementIdMap.lightTower && value === 'dark') {
+            } else if (matches.effectId === engravementIdMap.darkTower && value === 'dark') {
               if (key === 'NE')
                 data.engravement1DarkBeamsPos.push(output.northeast!());
               else if (key === 'NW')
