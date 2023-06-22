@@ -1015,7 +1015,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Pangenesis Collect',
       type: 'GainsEffect',
       netRegex: { effectId: pangenesisEffectIds },
-      condition: (data) => !data.pangenesisDebuffsCalled,
+      condition: (data) => !data.pangenesisDebuffsCalled && !data.isDoorBoss,
       run: (data, matches) => {
         const id = matches.effectId;
         if (id === pangenesisEffects.darkTilt) {
@@ -1096,7 +1096,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Pangenesis Tilt Gain',
       type: 'GainsEffect',
       netRegex: { effectId: [pangenesisEffects.lightTilt, pangenesisEffects.darkTilt] },
-      condition: Conditions.targetIsYou(),
+      condition: (data, matches) => matches.target === data.me && !data.isDoorBoss,
       run: (data, matches) => {
         const color = matches.effectId === pangenesisEffects.lightTilt ? 'light' : 'dark';
         data.pangenesisCurrentColor = color;
@@ -1106,7 +1106,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Pangenesis Tilt Lose',
       type: 'LosesEffect',
       netRegex: { effectId: [pangenesisEffects.lightTilt, pangenesisEffects.darkTilt] },
-      condition: Conditions.targetIsYou(),
+      condition: (data, matches) => matches.target === data.me && !data.isDoorBoss,
       run: (data) => data.pangenesisCurrentColor = undefined,
     },
     {
@@ -1114,7 +1114,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // 8343 = Umbral Advent (light tower), 8344 = Astral Advent (dark tower)
       netRegex: { id: ['8343', '8344'] },
-      condition: Conditions.targetIsYou(),
+      condition: (data, matches) => matches.target === data.me && !data.isDoorBoss,
       run: (data, matches) => {
         const color = matches.id === '8343' ? 'light' : 'dark';
         data.lastPangenesisTowerColor = color;
@@ -1126,6 +1126,7 @@ const triggerSet: TriggerSet<Data> = {
       // 8343 = Umbral Advent (light tower), 8344 = Astral Advent (dark tower)
       // There's always 1-2 of each, so just watch one.
       netRegex: { id: '8343', capture: false },
+      condition: (data) => !data.isDoorBoss,
       preRun: (data) => data.pangenesisTowerCount++,
       suppressSeconds: 3,
       alarmText: (data, _matches, output) => {
@@ -1145,8 +1146,11 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Pangenesis Tower Call',
       type: 'GainsEffect',
       netRegex: { effectId: pangenesisEffects.lightTilt, capture: false },
-      condition: (data) =>
-        data.lastPangenesisTowerColor !== undefined && data.pangenesisTowerCount !== 3,
+      condition: (data) => {
+        if (data.isDoorBoss)
+          return false;
+        return data.lastPangenesisTowerColor !== undefined && data.pangenesisTowerCount !== 3;
+      },
       delaySeconds: 0.5,
       suppressSeconds: 3,
       response: (data, _matches, output) => {
