@@ -114,6 +114,13 @@ const limitCutMap = {
 const limitCutIds = Object.keys(limitCutMap);
 const wingIds = Object.values(wings);
 const superchainNpcBaseIds = Object.values(superchainNpcBaseIdMap);
+const pangenesisEffects = {
+  stableSystem: 'E22',
+  unstableFactor: 'E09',
+  lightTilt: 'DF8',
+  darkTilt: 'DF9',
+};
+const pangenesisEffectIds = Object.values(pangenesisEffects);
 const getHeadmarkerId = (data, matches) => {
   if (data.decOffset === undefined) {
     if (data.expectedFirstHeadmarker === undefined) {
@@ -139,6 +146,8 @@ Options.Triggers.push({
       wingCalls: [],
       superchainCollect: [],
       whiteFlameCounter: 0,
+      pangenesisRole: {},
+      pangenesisTowerCount: 0,
     };
   },
   triggers: [
@@ -1361,6 +1370,173 @@ Options.Triggers.push({
           fr: 'Horizontal',
           ko: '가로',
         },
+      },
+    },
+    {
+      id: 'P12S Pangenesis Collect',
+      type: 'GainsEffect',
+      netRegex: { effectId: pangenesisEffectIds },
+      condition: (data) => !data.pangenesisDebuffsCalled && !data.isDoorBoss,
+      run: (data, matches) => {
+        const id = matches.effectId;
+        if (id === pangenesisEffects.darkTilt) {
+          const duration = parseFloat(matches.duration);
+          // 16 = short, 20 = long
+          data.pangenesisRole[matches.target] = duration > 18 ? 'longDark' : 'shortDark';
+        } else if (id === pangenesisEffects.lightTilt) {
+          const duration = parseFloat(matches.duration);
+          // 16 = short, 20 = long
+          data.pangenesisRole[matches.target] = duration > 18 ? 'longLight' : 'shortLight';
+        } else if (id === pangenesisEffects.unstableFactor) {
+          if (matches.count === '01')
+            data.pangenesisRole[matches.target] = 'one';
+        } else if (id === pangenesisEffects.stableSystem) {
+          // Ordered: Unstable Factor / Stable System / Umbral Tilt (light) / Astral Tilt (dark)
+          // ...and applied per person in that order.  Don't overwrite roles here.
+          data.pangenesisRole[matches.target] ??= 'not';
+        }
+      },
+    },
+    {
+      id: 'P12S Pangenesis Initial',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'E22', capture: false },
+      delaySeconds: 0.5,
+      durationSeconds: (data) => {
+        // There's ~13 seconds until the first tower and ~18 until the second tower.
+        const myRole = data.pangenesisRole[data.me];
+        return myRole === 'not' || myRole === 'longDark' || myRole === 'longLight' ? 17 : 12;
+      },
+      suppressSeconds: 999999,
+      alertText: (data, _matches, output) => {
+        const myRole = data.pangenesisRole[data.me];
+        if (myRole === undefined)
+          return;
+        if (myRole === 'shortLight')
+          return output.shortLight();
+        if (myRole === 'longLight')
+          return output.longLight();
+        if (myRole === 'shortDark')
+          return output.shortDark();
+        if (myRole === 'longDark')
+          return output.longDark();
+        const myBuddy = Object.keys(data.pangenesisRole).find((x) => {
+          return data.pangenesisRole[x] === myRole && x !== data.me;
+        });
+        const player = myBuddy === undefined ? output.unknown() : data.ShortName(myBuddy);
+        if (myRole === 'not')
+          return output.nothing({ player: player });
+        return output.one({ player: player });
+      },
+      run: (data) => data.pangenesisDebuffsCalled = true,
+      outputStrings: {
+        nothing: {
+          en: 'Nothing (w/${player})',
+        },
+        one: {
+          en: 'One (w/${player})',
+        },
+        shortLight: {
+          en: 'Short Light (get first dark)',
+        },
+        longLight: {
+          en: 'Long Light (get second dark)',
+        },
+        shortDark: {
+          en: 'Short Dark (get first light)',
+        },
+        longDark: {
+          en: 'Long Dark (get second light)',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'P12S Pangenesis Tilt Gain',
+      type: 'GainsEffect',
+      netRegex: { effectId: [pangenesisEffects.lightTilt, pangenesisEffects.darkTilt] },
+      condition: (data, matches) => matches.target === data.me && !data.isDoorBoss,
+      run: (data, matches) => {
+        const color = matches.effectId === pangenesisEffects.lightTilt ? 'light' : 'dark';
+        data.pangenesisCurrentColor = color;
+      },
+    },
+    {
+      id: 'P12S Pangenesis Tilt Lose',
+      type: 'LosesEffect',
+      netRegex: { effectId: [pangenesisEffects.lightTilt, pangenesisEffects.darkTilt] },
+      condition: (data, matches) => matches.target === data.me && !data.isDoorBoss,
+      run: (data) => data.pangenesisCurrentColor = undefined,
+    },
+    {
+      id: 'P12S Pangenesis Tower',
+      type: 'Ability',
+      // 8343 = Umbral Advent (light tower), 8344 = Astral Advent (dark tower)
+      netRegex: { id: ['8343', '8344'] },
+      condition: (data, matches) => matches.target === data.me && !data.isDoorBoss,
+      run: (data, matches) => {
+        const color = matches.id === '8343' ? 'light' : 'dark';
+        data.lastPangenesisTowerColor = color;
+      },
+    },
+    {
+      id: 'P12S Pangenesis Slime Reminder',
+      type: 'Ability',
+      // 8343 = Umbral Advent (light tower), 8344 = Astral Advent (dark tower)
+      // There's always 1-2 of each, so just watch one.
+      netRegex: { id: '8343', capture: false },
+      condition: (data) => !data.isDoorBoss,
+      preRun: (data) => data.pangenesisTowerCount++,
+      suppressSeconds: 3,
+      alarmText: (data, _matches, output) => {
+        if (data.pangenesisTowerCount !== 3)
+          return;
+        if (data.pangenesisRole[data.me] !== 'not')
+          return;
+        return output.slimeTethers();
+      },
+      outputStrings: {
+        slimeTethers: {
+          en: 'Get Slime Tethers',
+        },
+      },
+    },
+    {
+      id: 'P12S Pangenesis Tower Call',
+      type: 'GainsEffect',
+      netRegex: { effectId: pangenesisEffects.lightTilt, capture: false },
+      condition: (data) => {
+        if (data.isDoorBoss)
+          return false;
+        return data.lastPangenesisTowerColor !== undefined && data.pangenesisTowerCount !== 3;
+      },
+      delaySeconds: 0.5,
+      suppressSeconds: 3,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          // TODO: with more tracking we could even tell you who you're supposed
+          // to be with so that you could yell something on comms to fix mistakes.
+          lightTower: {
+            en: 'Light Tower',
+          },
+          darkTower: {
+            en: 'Dark Tower',
+          },
+        };
+        let tower;
+        if (data.pangenesisCurrentColor === 'light')
+          tower = 'dark';
+        else if (data.pangenesisCurrentColor === 'dark')
+          tower = 'light';
+        else
+          tower = data.lastPangenesisTowerColor;
+        if (tower === undefined)
+          return;
+        // TODO: should we also say "Dark Tower (again)" or "Dark Tower (switch)" for emphasis?
+        const severity = tower === data.lastPangenesisTowerColor ? 'infoText' : 'alertText';
+        const text = tower === 'light' ? output.lightTower() : output.darkTower();
+        return { [severity]: text };
       },
     },
   ],
