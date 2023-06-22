@@ -638,30 +638,177 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '8305', source: 'Athena', capture: false },
       run: (data) => ++data.engravementCounter,
     },
-    // In Engravement 1 (Paradeigma 2), 2 players receive lightTower and 2 players receive darkTower.
+    // In Engravement 1 (Paradeigma 2), 2 players receive lightTower and 2 players receive darkTower,
+    // 2 players need to guide the light beam and 2 players need to guide the dark beam.
+    // The operator of the beam extends the beam directly from the outside. The beam is attenuated until the jagged line disappears.
+    // The people in the tower find the people who have the opposite attribute to the debuff and put them in four places.
+    // At NE NW SE SW as a # shape. The position of outside Anthropos is fixed by two situation.
+    // {[97, 75], [125, 97], [103, 125], [75, 103]} and {[103, 75], [125, 103], [97, 125], [75, 97]}. The Anthropos will cast
+    // 'Searing Radiance' for light beam and 'Shadowsear' for dark beam. We use those as a trigger for Tower players place
+    // the Tower.
     // When debuffs expire and towers drop, their debuff changes to lightTilt or darkTilt (same as tower color).
     // At the same time the towers drop, the 4 tethered players receive lightTilt or darkTilt depending on their tether color.
+    //
     {
-      id: 'P12S Engravement 1 Tower Drop',
-      type: 'GainsEffect',
-      netRegex: { effectId: engravementTowerIds },
+      id: 'P12S Engravement 1 Drop Tower Pos Tracker',
+      type: 'StartsUsing',
+      netRegex: { id: ['82F[12]'], source: 'Anthropos' },
       condition: (data) => data.engravementCounter === 1,
-      durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        const ids = parseInt(matches.sourceId, 16);
+        if (ids === undefined)
+          return;
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [ids],
+        })).combatants;
+      },
+      run: (data, matches) => {
+        const x = data.combatantData[0]?.PosX;
+        if (x === undefined)
+          return;
+        const y = data.combatantData[0]?.PosY;
+        if (y === undefined)
+          return;
+
+        const color = matches.id === '82F1' ? 'dark' : 'light';
+
+        if (data.triggerSetConfig.engravement1DropTower === 'sharp') {
+          if (x < 80 && y < 100) { // x = 75 && y = 97
+            data.engravement1BeamsPosMap.set('NE', color);
+          } else if (x < 100 && y < 80) { // x = 97 && y = 75
+            data.engravement1BeamsPosMap.set('SW', color);
+          } else if (x > 100 && y < 80) { // x = 103 && y = 75
+            data.engravement1BeamsPosMap.set('SE', color);
+          } else if (x > 120 && y < 100) { // x = 125 && y = 97
+            data.engravement1BeamsPosMap.set('NW', color);
+          } else if (x > 120 && y > 100) { // x = 125 && y = 103
+            data.engravement1BeamsPosMap.set('SW', color);
+          } else if (x > 100 && y > 120) { // x = 103 && y = 125
+            data.engravement1BeamsPosMap.set('NE', color);
+          } else if (x < 100 && y > 120) { // x = 97 && y = 125
+            data.engravement1BeamsPosMap.set('NW', color);
+          } else if (x < 80 && y > 100) { // x = 75 && y = 103
+            data.engravement1BeamsPosMap.set('SE', color);
+          }
+        } else if (data.triggerSetConfig.engravement1DropTower === 'tilt') {
+          if (x < 80 && y < 100) { // x = 75 && y = 97
+            data.engravement1BeamsPosMap.set('SE', color);
+          } else if (x < 100 && y < 80) { // x = 97 && y = 75
+            data.engravement1BeamsPosMap.set('SE', color);
+          } else if (x > 100 && y < 80) { // x = 103 && y = 75
+            data.engravement1BeamsPosMap.set('SW', color);
+          } else if (x > 120 && y < 100) { // x = 125 && y = 97
+            data.engravement1BeamsPosMap.set('SW', color);
+          } else if (x > 120 && y > 100) { // x = 125 && y = 103
+            data.engravement1BeamsPosMap.set('NW', color);
+          } else if (x > 100 && y > 120) { // x = 103 && y = 125
+            data.engravement1BeamsPosMap.set('NW', color);
+          } else if (x < 100 && y > 120) { // x = 97 && y = 125
+            data.engravement1BeamsPosMap.set('NE', color);
+          } else if (x < 80 && y > 100) { // x = 75 && y = 103
+            data.engravement1BeamsPosMap.set('NE', color);
+          }
+        }
+      },
+    },
+    {
+      id: 'P12S Engravement 1 Beam',
+      type: 'StartsUsing',
+      netRegex: { id: ['82F[12]'], source: 'Anthropos' },
+      condition: (data) => data.engravementCounter === 1,
       alertText: (data, matches, output) => {
-        data.engravement1Towers.push(matches.target);
         if (data.me === matches.target) {
-          if (matches.effectId === engravementIdMap.lightTower)
-            return output.lightTower!();
-          return output.darkTower!();
+          if (matches.id === '82F1')
+            return output.lightBeam!();
+          return output.darkBeam!();
         }
       },
       outputStrings: {
+        lightBeam: {
+          en: 'light beam',
+          cn: '引导光激光',
+        },
+        darkBeam: {
+          en: 'dark beam',
+          cn: '引导暗激光',
+        },
+      },
+    },
+    {
+      id: 'P12S Engravement 1 Tower Drop',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['DFB', 'DFC'] },
+      condition: (data) => data.engravementCounter === 1,
+      delaySeconds: 1, // Make sure Drop Tower Pos Tracker is done
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target) {
+          // if Only notify tower color
+          if (data.triggerSetConfig.engravement1DropTower === 'tower') {
+            if (matches.effectId === 'DFB')
+              return output.lightTower!();
+            return output.darkTower!();
+          }
+          data.engravement1DarkBeamsPos = [];
+          data.engravement1LightBeamsPos = [];
+          data.engravement1BeamsPosMap.forEach((value: string, key: string) => {
+            if (matches.effectId === 'DFB' && value === 'light') {
+              if (key === 'NE')
+                data.engravement1LightBeamsPos.push(output.northeast!());
+              else if (key === 'NW')
+                data.engravement1LightBeamsPos.push(output.northwest!());
+              else if (key === 'SE')
+                data.engravement1LightBeamsPos.push(output.southeast!());
+              else if (key === 'SW')
+                data.engravement1LightBeamsPos.push(output.southwest!());
+            } else if (matches.effectId === 'DFC' && value === 'dark') {
+              if (key === 'NE')
+                data.engravement1DarkBeamsPos.push(output.northeast!());
+              else if (key === 'NW')
+                data.engravement1DarkBeamsPos.push(output.northwest!());
+              else if (key === 'SE')
+                data.engravement1DarkBeamsPos.push(output.southeast!());
+              else if (key === 'SW')
+                data.engravement1DarkBeamsPos.push(output.southwest!());
+            }
+          });
+
+          // if light tower
+          if (matches.effectId === 'DFB') {
+            return output.lightTowerSide!({
+              pos1: data.engravement1LightBeamsPos[0],
+              pos2: data.engravement1LightBeamsPos[1],
+            });
+          }
+
+          return output.darkTowerSide!({
+            pos1: data.engravement1DarkBeamsPos[0],
+            pos2: data.engravement1DarkBeamsPos[1],
+          });
+        }
+      },
+      outputStrings: {
+        lightTowerSide: {
+          en: 'Drop light tower ${pos1}/${pos2}',
+          cn: '去 ${pos1}/${pos2} 放光塔',
+        },
+        darkTowerSide: {
+          en: 'Drop dark tower at ${pos1}/${pos2}',
+          cn: '去 ${pos1}/${pos2} 放暗塔',
+        },
         lightTower: {
           en: 'Drop light tower',
+          cn: '放光塔',
         },
         darkTower: {
           en: 'Drop dark tower',
+          cn: '放暗塔',
         },
+        northeast: Outputs.dirNE,
+        northwest: Outputs.dirNW,
+        southeast: Outputs.dirSE,
+        southwest: Outputs.dirSW,
       },
     },
     {
@@ -1002,185 +1149,6 @@ const triggerSet: TriggerSet<Data> = {
         dark: {
           en: 'Dark',
         },
-      },
-    },
-    {
-      id: 'P12S Engravement of Souls Tracker',
-      type: 'Ability',
-      netRegex: { id: '8305', source: 'Athena', capture: false },
-      run: (data) => ++data.engravementCounter,
-    },
-    // In Engravement 1 (Paradeigma 2), 2 players receive lightTower and 2 players receive darkTower,
-    // 2 players need to guide the light beam and 2 players need to guide the dark beam.
-    // The operator of the beam extends the beam directly from the outside. The beam is attenuated until the jagged line disappears.
-    // The people in the tower find the people who have the opposite attribute to the debuff and put them in four places.
-    // At NE NW SE SW as a # shape. The position of outside Anthropos is fixed by two situation.
-    // {[97, 75], [125, 97], [103, 125], [75, 103]} and {[103, 75], [125, 103], [97, 125], [75, 97]}. The Anthropos will cast
-    // 'Searing Radiance' for light beam and 'Shadowsear' for dark beam. We use those as a trigger for Tower players place
-    // the Tower.
-    // When debuffs expire and towers drop, their debuff changes to lightTilt or darkTilt (same as tower color).
-    // At the same time the towers drop, the 4 tethered players receive lightTilt or darkTilt depending on their tether color.
-    //
-    {
-      id: 'P12S Engravement 1 Drop Tower Pos Tracker',
-      type: 'StartsUsing',
-      netRegex: { id: ['82F[12]'], source: 'Anthropos' },
-      condition: (data) => data.engravementCounter === 1,
-      promise: async (data, matches) => {
-        data.combatantData = [];
-        const ids = parseInt(matches.sourceId, 16);
-        if (ids === undefined)
-          return;
-        data.combatantData = (await callOverlayHandler({
-          call: 'getCombatants',
-          ids: [ids],
-        })).combatants;
-      },
-      run: (data, matches) => {
-        const x = data.combatantData[0]?.PosX;
-        if (x === undefined)
-          return;
-        const y = data.combatantData[0]?.PosY;
-        if (y === undefined)
-          return;
-
-        const color = matches.id === '82F1' ? 'dark' : 'light';
-
-        if (data.triggerSetConfig.engravement1DropTower === 'sharp') {
-          if (x < 80 && y < 100) { // x = 75 && y = 97
-            data.engravement1BeamsPosMap.set('NE', color);
-          } else if (x < 100 && y < 80) { // x = 97 && y = 75
-            data.engravement1BeamsPosMap.set('SW', color);
-          } else if (x > 100 && y < 80) { // x = 103 && y = 75
-            data.engravement1BeamsPosMap.set('SE', color);
-          } else if (x > 120 && y < 100) { // x = 125 && y = 97
-            data.engravement1BeamsPosMap.set('NW', color);
-          } else if (x > 120 && y > 100) { // x = 125 && y = 103
-            data.engravement1BeamsPosMap.set('SW', color);
-          } else if (x > 100 && y > 120) { // x = 103 && y = 125
-            data.engravement1BeamsPosMap.set('NE', color);
-          } else if (x < 100 && y > 120) { // x = 97 && y = 125
-            data.engravement1BeamsPosMap.set('NW', color);
-          } else if (x < 80 && y > 100) { // x = 75 && y = 103
-            data.engravement1BeamsPosMap.set('SE', color);
-          }
-        } else if (data.triggerSetConfig.engravement1DropTower === 'tilt') {
-          if (x < 80 && y < 100) { // x = 75 && y = 97
-            data.engravement1BeamsPosMap.set('SE', color);
-          } else if (x < 100 && y < 80) { // x = 97 && y = 75
-            data.engravement1BeamsPosMap.set('SE', color);
-          } else if (x > 100 && y < 80) { // x = 103 && y = 75
-            data.engravement1BeamsPosMap.set('SW', color);
-          } else if (x > 120 && y < 100) { // x = 125 && y = 97
-            data.engravement1BeamsPosMap.set('SW', color);
-          } else if (x > 120 && y > 100) { // x = 125 && y = 103
-            data.engravement1BeamsPosMap.set('NW', color);
-          } else if (x > 100 && y > 120) { // x = 103 && y = 125
-            data.engravement1BeamsPosMap.set('NW', color);
-          } else if (x < 100 && y > 120) { // x = 97 && y = 125
-            data.engravement1BeamsPosMap.set('NE', color);
-          } else if (x < 80 && y > 100) { // x = 75 && y = 103
-            data.engravement1BeamsPosMap.set('NE', color);
-          }
-        }
-      },
-    },
-    {
-      id: 'P12S Engravement 1 Beam',
-      type: 'StartsUsing',
-      netRegex: { id: ['82F[12]'], source: 'Anthropos' },
-      condition: (data) => data.engravementCounter === 1,
-      alertText: (data, matches, output) => {
-        if (data.me === matches.target) {
-          if (matches.id === '82F1')
-            return output.lightBeam!();
-          return output.darkBeam!();
-        }
-      },
-      outputStrings: {
-        lightBeam: {
-          en: 'light beam',
-          cn: '引导光激光',
-        },
-        darkBeam: {
-          en: 'dark beam',
-          cn: '引导暗激光',
-        },
-      },
-    },
-    {
-      id: 'P12S Engravement 1 Tower Drop Notifier',
-      type: 'GainsEffect',
-      netRegex: { effectId: ['DFB', 'DFC'] },
-      condition: (data) => data.engravementCounter === 1,
-      delaySeconds: 1, // Make sure Drop Tower Pos Tracker is done
-      alertText: (data, matches, output) => {
-        if (data.me === matches.target) {
-          // if Only notify tower color
-          if (data.triggerSetConfig.engravement1DropTower === 'tower') {
-            if (matches.effectId === 'DFB')
-              return output.lightTower!();
-            return output.darkTower!();
-          }
-          data.engravement1DarkBeamsPos = [];
-          data.engravement1LightBeamsPos = [];
-          data.engravement1BeamsPosMap.forEach((value: string, key: string) => {
-            if (matches.effectId === 'DFB' && value === 'light') {
-              if (key === 'NE')
-                data.engravement1LightBeamsPos.push(output.northeast!());
-              else if (key === 'NW')
-                data.engravement1LightBeamsPos.push(output.northwest!());
-              else if (key === 'SE')
-                data.engravement1LightBeamsPos.push(output.southeast!());
-              else if (key === 'SW')
-                data.engravement1LightBeamsPos.push(output.southwest!());
-            } else if (matches.effectId === 'DFC' && value === 'dark') {
-              if (key === 'NE')
-                data.engravement1DarkBeamsPos.push(output.northeast!());
-              else if (key === 'NW')
-                data.engravement1DarkBeamsPos.push(output.northwest!());
-              else if (key === 'SE')
-                data.engravement1DarkBeamsPos.push(output.southeast!());
-              else if (key === 'SW')
-                data.engravement1DarkBeamsPos.push(output.southwest!());
-            }
-          });
-
-          // if light tower
-          if (matches.effectId === 'DFB') {
-            return output.lightTowerSide!({
-              pos1: data.engravement1LightBeamsPos[0],
-              pos2: data.engravement1LightBeamsPos[1],
-            });
-          }
-
-          return output.darkTowerSide!({
-            pos1: data.engravement1DarkBeamsPos[0],
-            pos2: data.engravement1DarkBeamsPos[1],
-          });
-        }
-      },
-      outputStrings: {
-        lightTowerSide: {
-          en: 'Drop light tower ${pos1}/${pos2}',
-          cn: '去 ${pos1}/${pos2} 放光塔',
-        },
-        darkTowerSide: {
-          en: 'Drop dark tower at ${pos1}/${pos2}',
-          cn: '去 ${pos1}/${pos2} 放暗塔',
-        },
-        lightTower: {
-          en: 'Drop light tower',
-          cn: '放光塔',
-        },
-        darkTower: {
-          en: 'Drop dark tower',
-          cn: '放暗塔',
-        },
-        northeast: Outputs.dirNE,
-        northwest: Outputs.dirNW,
-        southeast: Outputs.dirSE,
-        southwest: Outputs.dirSW,
       },
     },
     {
