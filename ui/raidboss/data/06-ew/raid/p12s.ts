@@ -2056,6 +2056,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Anthropos': 'Anthropos',
         '(?<! )Athena': 'Athena',
