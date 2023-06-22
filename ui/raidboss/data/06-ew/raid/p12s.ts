@@ -211,9 +211,9 @@ const triggerSet: TriggerSet<Data> = {
       type: 'select',
       options: {
         en: {
-          'Vertical Beam (Game8)': 'sharp',
-          'Tilt Beam': 'tilt',
-          'Only tower color': 'tower',
+          'Tether direct across + nearest quadrant tower (Game8)': 'quadrant',
+          'Clockwise tower from tether': 'clockwise',
+          'No strategy: just call tower color': 'tower',
         },
         cn: {
           '垂直拉线 (Game8)': 'sharp',
