@@ -739,21 +739,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P12S Engravement 1 Tower Drop',
       type: 'GainsEffect',
-      netRegex: { effectId: ['DFB', 'DFC'] },
+      netRegex: { effectId: engravementTowerIds },
       condition: (data) => data.engravementCounter === 1,
       delaySeconds: 1, // Make sure Drop Tower Pos Tracker is done
       alertText: (data, matches, output) => {
         if (data.me === matches.target) {
           // if Only notify tower color
           if (data.triggerSetConfig.engravement1DropTower === 'tower') {
-            if (matches.effectId === 'DFB')
+            if (matches.effectId === engravementIdMap.lightTower)
               return output.lightTower!();
             return output.darkTower!();
           }
           data.engravement1DarkBeamsPos = [];
           data.engravement1LightBeamsPos = [];
           data.engravement1BeamsPosMap.forEach((value: string, key: string) => {
-            if (matches.effectId === 'DFB' && value === 'light') {
+            if (matches.effectId === engravementIdMap.lightTower && value === 'light') {
               if (key === 'NE')
                 data.engravement1LightBeamsPos.push(output.northeast!());
               else if (key === 'NW')
@@ -762,7 +762,7 @@ const triggerSet: TriggerSet<Data> = {
                 data.engravement1LightBeamsPos.push(output.southeast!());
               else if (key === 'SW')
                 data.engravement1LightBeamsPos.push(output.southwest!());
-            } else if (matches.effectId === 'DFC' && value === 'dark') {
+            } else if (matches.effectId === engravementIdMap.lightTower && value === 'dark') {
               if (key === 'NE')
                 data.engravement1DarkBeamsPos.push(output.northeast!());
               else if (key === 'NW')
@@ -775,7 +775,7 @@ const triggerSet: TriggerSet<Data> = {
           });
 
           // if light tower
-          if (matches.effectId === 'DFB') {
+          if (matches.effectId === engravementIdMap.lightTower) {
             return output.lightTowerSide!({
               pos1: data.engravement1LightBeamsPos[0],
               pos2: data.engravement1LightBeamsPos[1],
