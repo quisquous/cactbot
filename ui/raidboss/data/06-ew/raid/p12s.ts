@@ -102,15 +102,6 @@ const tetherAbilityToTowerMap: { [id: string]: EngravementLabel } = {
   '82F2': 'darkTower',
 };
 
-type Paradeigma2SafeLane = 'east' | 'west';
-const paradeigma2SafeLanes: { [x: number]: Paradeigma2SafeLane[] } = {
-  // PosX of single add: [inside, outside] safe lanes,
-  85: ['west', 'east'],
-  95: ['east', 'west'],
-  105: ['west', 'east'],
-  115: ['east', 'west'],
-};
-
 const headmarkers = {
   ...wings,
   // vfx/lockon/eff/tank_laser_5sec_lockon_c0a1.avfx
@@ -357,26 +348,36 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Ray of Light',
       type: 'StartsUsing',
       netRegex: { id: '82EE', source: 'Anthropos' },
-      delaySeconds: 0.7, // cast time: 4.7s; small delay to avoid collision with Engrave 1 Tower Soak
       suppressSeconds: 1,
-      alertText: (_data, matches, output) => {
+      alertText: (data, matches, output) => {
         const x = Math.round(parseFloat(matches.x));
         if (x === undefined)
           return output.avoid!();
-        const [inside, outside] = paradeigma2SafeLanes[x] ?? [];
-        if (inside === undefined || outside === undefined)
+
+        let safeLanes;
+        if (data.paradeigmaCounter === 2) {
+          if (x < 90)
+            safeLanes = 'insideWestOutsideEast';
+          else if (x > 110)
+            safeLanes = 'insideEastOutsideWest';
+          else
+            safeLanes = x < 100 ? 'insideEastOutsideWest' : 'insideWestOutsideEast';
+        }
+
+        if (safeLanes === undefined)
           return output.avoid!(); // will fire during Ray 2 (SC IIB)
-        return output.combined!({ inside: output[inside]!(), outside: output[outside]!() });
+        return output[safeLanes]!();
       },
       outputStrings: {
-        combined: {
-          en: 'Inside ${inside} / Outside ${outside}',
+        insideWestOutsideEast: {
+          en: 'Inside West / Outside East',
+        },
+        insideEastOutsideWest: {
+          en: 'Inside East / Outside West',
         },
         avoid: {
           en: 'Avoid Line Cleaves',
         },
-        east: Outputs.east,
-        west: Outputs.west,
       },
     },
     {
@@ -1294,7 +1295,7 @@ const triggerSet: TriggerSet<Data> = {
           return { alertText: output.cleaveOnYou!() };
         if (data.role === 'tank')
           return { alertText: output.cleaveSwap!() };
-        if (data.job === 'BLU')
+        if (data.role === 'healer' || data.job === 'BLU')
           return { alertText: output.cleaveNoTarget!() };
         return { infoText: output.avoidTankCleave!() };
       },
