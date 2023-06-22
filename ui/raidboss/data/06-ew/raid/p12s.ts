@@ -674,7 +674,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         lightTowerSide: {
-          en: 'Drop light tower at ${pos1}/${pos2}',
+          en: 'Drop light tower ${pos1}/${pos2}',
           cn: '去 ${pos1}/${pos2} 放光塔',
         },
         darkTowerSide: {
