@@ -1316,13 +1316,11 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Glaukopis Second Cleave Swap',
       type: 'Ability',
       netRegex: { id: '82FD', source: 'Athena', capture: false },
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       delaySeconds: 0.1,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
-        if (
-          data.me === data.glaukopisFirstHit && !data.glaukopisSecondHitSame &&
-        (data.role === 'tank' || data.job === 'BLU') // if a non-tank/BLU got hit by the 1st cleave, it was an accident and no swap reminder needed
-        )
+        if (data.me === data.glaukopisFirstHit && !data.glaukopisSecondHitSame)
           return output.tankSwap!();
       },
       run: (data) => {
