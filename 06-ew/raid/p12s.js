@@ -572,9 +572,11 @@ Options.Triggers.push({
       outputStrings: {
         lightTilt: {
           en: 'Soak dark tower',
+          cn: '踩暗塔',
         },
         darkTilt: {
           en: 'Soak light tower',
+          cn: '踩光塔',
         },
       },
     },
@@ -608,6 +610,7 @@ Options.Triggers.push({
       outputStrings: {
         spreadLater: {
           en: '(spread later)',
+          cn: '（稍后分散）',
         },
       },
     },
@@ -630,15 +633,19 @@ Options.Triggers.push({
       outputStrings: {
         lightBeam: {
           en: 'Soak Dark Tower',
+          cn: '踩暗塔',
         },
         darkBeam: {
           en: 'Soak Light Tower',
+          cn: '踩光塔',
         },
         lightTower: {
           en: 'Drop Light Tower',
+          cn: '放光塔',
         },
         darkTower: {
           en: 'Drop Dark Tower',
+          cn: '放暗塔',
         },
       },
     },
@@ -671,9 +678,11 @@ Options.Triggers.push({
       outputStrings: {
         crossMarked: {
           en: '\'+\' AoE on You',
+          cn: '十 点名',
         },
         xMarked: {
           en: '\'x\' AoE on You',
+          cn: '\'x\' 点名',
         },
       },
     },
@@ -692,9 +701,11 @@ Options.Triggers.push({
       outputStrings: {
         crossMarked: {
           en: 'Drop \'+\' AoE',
+          cn: '放置 十 点名',
         },
         xMarked: {
           en: 'Drop \'x\' AoE',
+          cn: '放置 \'x\' 点名',
         },
       },
     },
@@ -759,12 +770,15 @@ Options.Triggers.push({
       outputStrings: {
         towerOnYou: {
           en: '${color} Tower on You (w/ ${partner})',
+          cn: '${color} 塔点名 (+ ${partner})',
         },
         light: {
           en: 'Light',
+          cn: '光',
         },
         dark: {
           en: 'Dark',
+          cn: '暗',
         },
         unknown: Outputs.unknown,
       },
@@ -800,12 +814,15 @@ Options.Triggers.push({
       outputStrings: {
         towersLater: {
           en: '${color} towers (later)',
+          cn: '稍后 ${color} 塔',
         },
         light: {
           en: 'Light',
+          cn: '光',
         },
         dark: {
           en: 'Dark',
+          cn: '暗',
         },
         unknown: Outputs.unknown,
       },
@@ -836,18 +853,23 @@ Options.Triggers.push({
       outputStrings: {
         dropTower: {
           en: 'Drop ${color} Tower (${spot})',
+          cn: '在 ${spot} 放 ${color} 塔',
         },
         light: {
           en: 'Light',
+          cn: '光',
         },
         dark: {
           en: 'Dark',
+          cn: '暗',
         },
         platform: {
           en: 'Platform',
+          cn: '平台内',
         },
         corner: {
           en: 'Inside Corner',
+          cn: '平台交叉处',
         },
         unknown: Outputs.unknown,
       },
@@ -881,15 +903,19 @@ Options.Triggers.push({
       outputStrings: {
         soakTower: {
           en: 'Soak ${color} Tower',
+          cn: '踩 ${color} 塔',
         },
         baitCleaves: {
           en: 'Bait line cleave',
+          cn: '引导射线',
         },
         light: {
           en: 'Light',
+          cn: '光',
         },
         dark: {
           en: 'Dark',
+          cn: '暗',
         },
       },
     },
@@ -1188,21 +1214,27 @@ Options.Triggers.push({
         },
         lightBeam: {
           en: 'Light Beam (Stack w/Dark)',
+          cn: '光激光（与暗分摊）',
         },
         darkBeam: {
           en: 'Dark Beam (Stack w/Light)',
+          cn: '暗激光（与光分摊）',
         },
         lightTower: {
           en: 'Light Tower',
+          cn: '光塔点名',
         },
         darkTower: {
           en: 'Dark Tower',
+          cn: '暗塔点名',
         },
         lightTilt: {
           en: 'Light Group',
+          cn: '光分摊组',
         },
         darkTilt: {
           en: 'Dark Group',
+          cn: '暗分摊组',
         },
         unknown: Outputs.unknown,
       },
@@ -1239,15 +1271,19 @@ Options.Triggers.push({
         outThenIn: Outputs.outThenIn,
         lightBeam: {
           en: 'Soak Dark Tower',
+          cn: '踩暗塔',
         },
         darkBeam: {
           en: 'Soak Light Tower',
+          cn: '踩光塔',
         },
         lightTower: {
           en: 'Drop Light Tower',
+          cn: '放光塔',
         },
         darkTower: {
           en: 'Drop Dark Tower',
+          cn: '放暗塔',
         },
         lightTilt: Outputs.spread,
         darkTilt: Outputs.spread,
@@ -1340,6 +1376,7 @@ Options.Triggers.push({
           en: 'Vertical',
           de: 'Vertikal',
           fr: 'Vertical',
+          cn: '垂直',
           ko: '세로',
         },
       },
@@ -1354,6 +1391,7 @@ Options.Triggers.push({
           en: 'Inny Spinny',
           de: 'Innerer Kreis',
           fr: 'Cercle intérieur',
+          cn: '月环',
           ko: '가운데 원',
         },
       },
@@ -1368,6 +1406,7 @@ Options.Triggers.push({
           en: 'Horizontal',
           de: 'Horizontal',
           fr: 'Horizontal',
+          cn: '水平',
           ko: '가로',
         },
       },
