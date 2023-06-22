@@ -356,9 +356,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P12S Ray of Light',
       type: 'StartsUsing',
-      // cast time: 4.7s; appears to be vfx corresponding to transition from orb to clone
       netRegex: { id: '82EE', source: 'Anthropos' },
-      delaySeconds: 0.7, // small delay to avoid collision with Engrave1 Tower Soak
+      delaySeconds: 0.7, // cast time: 4.7s; small delay to avoid collision with Engrave 1 Tower Soak
       suppressSeconds: 1,
       alertText: (_data, matches, output) => {
         const x = Math.round(parseFloat(matches.x));
