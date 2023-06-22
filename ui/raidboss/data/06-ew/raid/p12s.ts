@@ -205,7 +205,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'engravement1DropTower',
       name: {
-        en: 'Paradeigma: Engravement of Souls Tower strategy',
+        en: 'Paradeigma 2 Tower Strategy',
         cn: '第一次拉线踩塔方法',
       },
       type: 'select',
