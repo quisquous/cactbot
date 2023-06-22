@@ -674,6 +674,9 @@ const triggerSet: TriggerSet<Data> = {
 
         const color = matches.id === '82F1' ? 'dark' : 'light';
 
+        console.log(data.triggerSetConfig.engravement1DropTower);
+        console.log(data.combatantData);
+
         if (data.triggerSetConfig.engravement1DropTower === 'sharp') {
           if (x < 80 && y < 100) { // x = 75 && y = 97
             data.engravement1BeamsPosMap.set('NE', color);
@@ -741,8 +744,10 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: engravementTowerIds },
       condition: (data) => data.engravementCounter === 1,
-      delaySeconds: 1, // Make sure Drop Tower Pos Tracker is done
+      delaySeconds: 0.1, // Make sure Drop Tower Pos Tracker is done
+      durationSeconds: (_data, matches) => parseFloat(matches.duration) - 1,
       alertText: (data, matches, output) => {
+        data.engravement1Towers.push(matches.target);
         if (data.me === matches.target) {
           // if Only notify tower color
           if (data.triggerSetConfig.engravement1DropTower === 'tower') {
