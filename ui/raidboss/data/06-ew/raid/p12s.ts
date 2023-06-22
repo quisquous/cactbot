@@ -674,9 +674,6 @@ const triggerSet: TriggerSet<Data> = {
 
         const color = matches.id === '82F1' ? 'dark' : 'light';
 
-        console.log(data.triggerSetConfig.engravement1DropTower);
-        console.log(data.combatantData);
-
         if (data.triggerSetConfig.engravement1DropTower === 'sharp') {
           if (x < 80 && y < 100) { // x = 75 && y = 97
             data.engravement1BeamsPosMap.set('NE', color);
