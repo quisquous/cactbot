@@ -681,18 +681,10 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Drop dark tower at ${pos1}/${pos2}',
           cn: '去 ${pos1}/${pos2} 放暗塔',
         },
-        lightTower: {
-          en: 'Drop light tower',
-          cn: '放光塔',
-        },
-        darkTower: {
-          en: 'Drop dark tower',
-          cn: '放暗塔',
-        },
-        northeast: Outputs.northeast,
-        northwest: Outputs.northwest,
-        southeast: Outputs.southeast,
-        southwest: Outputs.southwest,
+        northeast: Outputs.dirNE,
+        northwest: Outputs.dirNW,
+        southeast: Outputs.dirSE,
+        southwest: Outputs.dirSW,
       },
     },
     {
