@@ -1283,9 +1283,9 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           cleaveOnYou: Outputs.tankCleaveOnYou,
-          cleaveNoTarget: Outputs.tankCleave,
+          tankBusterCleaves: Outputs.tankBusterCleaves,
           cleaveSwap: Outputs.tankSwap,
-          avoidTankCleave: Outputs.avoidTankCleave,
+          avoidTankCleaves: Outputs.avoidTankCleaves,
         };
         // Multiple players can be hit by the line cleave AoE,
         // but we only care about the intended target for the Followup trigger
@@ -1296,8 +1296,8 @@ const triggerSet: TriggerSet<Data> = {
         if (data.role === 'tank')
           return { alertText: output.cleaveSwap!() };
         if (data.role === 'healer' || data.job === 'BLU')
-          return { alertText: output.cleaveNoTarget!() };
-        return { infoText: output.avoidTankCleave!() };
+          return { alertText: output.tankBusterCleaves!() };
+        return { infoText: output.avoidTankCleaves!() };
       },
     },
     // Since multiple players could be hit by the 2nd cleave (whoopsie!), we need to check
