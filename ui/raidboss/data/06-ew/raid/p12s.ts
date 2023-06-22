@@ -560,46 +560,24 @@ const triggerSet: TriggerSet<Data> = {
         if (y === undefined)
           return;
 
-        if (x === 75 && y === 97) {
-          if (matches.id === '82F1')
-            data.engravement1BeamsPosMap.set('NE', 'dark');
-          else
-            data.engravement1BeamsPosMap.set('NE', 'light');
-        } else if (x === 97 && y === 75) {
-          if (matches.id === '82F1')
-            data.engravement1BeamsPosMap.set('SW', 'dark');
-          else
-            data.engravement1BeamsPosMap.set('SW', 'light');
-        } else if (x === 103 && y === 75) {
-          if (matches.id === '82F1')
-            data.engravement1BeamsPosMap.set('SE', 'dark');
-          else
-            data.engravement1BeamsPosMap.set('SE', 'light');
-        } else if (x === 125 && y === 97) {
-          if (matches.id === '82F1')
-            data.engravement1BeamsPosMap.set('NW', 'dark');
-          else
-            data.engravement1BeamsPosMap.set('NW', 'light');
-        } else if (x === 125 && y === 103) {
-          if (matches.id === '82F1')
-            data.engravement1BeamsPosMap.set('SW', 'dark');
-          else
-            data.engravement1BeamsPosMap.set('SW', 'light');
-        } else if (x === 103 && y === 125) {
-          if (matches.id === '82F1')
-            data.engravement1BeamsPosMap.set('NE', 'dark');
-          else
-            data.engravement1BeamsPosMap.set('NE', 'light');
-        } else if (x === 97 && y === 125) {
-          if (matches.id === '82F1')
-            data.engravement1BeamsPosMap.set('NW', 'dark');
-          else
-            data.engravement1BeamsPosMap.set('NW', 'light');
-        } else if (x === 75 && y === 103) {
-          if (matches.id === '82F1')
-            data.engravement1BeamsPosMap.set('SE', 'dark');
-          else
-            data.engravement1BeamsPosMap.set('SE', 'light');
+        const color = matches.id === '82F1' ? 'dark' : 'light';
+
+        if (x < 80 && y < 100) {
+          data.engravement1BeamsPosMap.set('NE', color);
+        } else if (x < 100 && y < 80) {
+          data.engravement1BeamsPosMap.set('SW', color);
+        } else if (x > 100 && y < 80) {
+          data.engravement1BeamsPosMap.set('SE', color);
+        } else if (x > 120 && y < 100) {
+          data.engravement1BeamsPosMap.set('NW', color);
+        } else if (x > 120 && y > 100) {
+          data.engravement1BeamsPosMap.set('SW', color);
+        } else if (x > 100 && y > 120) {
+          data.engravement1BeamsPosMap.set('NE', color);
+        } else if (x < 100 && y > 120) {
+          data.engravement1BeamsPosMap.set('NW', color);
+        } else if (x < 80 && y > 100) {
+          data.engravement1BeamsPosMap.set('SE', color);
         }
       },
     },
