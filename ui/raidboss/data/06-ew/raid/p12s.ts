@@ -112,6 +112,7 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 };
 
 export interface Data extends RaidbossData {
+  readonly triggerSetConfig: { engravement1DropTower: 'sharp' | 'tilt' | 'tower' };
   decOffset?: number;
   expectedFirstHeadmarker?: string;
   isDoorBoss: boolean;
@@ -135,6 +136,29 @@ export interface Data extends RaidbossData {
 const triggerSet: TriggerSet<Data> = {
   id: 'AnabaseiosTheTwelfthCircleSavage',
   zoneId: ZoneId.AnabaseiosTheTwelfthCircleSavage,
+  config: [
+    {
+      id: 'engravement1DropTower',
+      name: {
+        en: 'Paradeigma: Engravement of Souls Tower strategy',
+        cn: '第一次拉线踩塔方法',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Vertical Beam (Game8)': 'sharp',
+          'Tilt Beam': 'tilt',
+          'Only tower color': 'tower',
+        },
+        cn: {
+          '垂直拉线 (Game8)': 'sharp',
+          '对角拉线': 'tilt',
+          '仅提示塔颜色': 'tower',
+        },
+      },
+      default: 'sharp',
+    },
+  ],
   timelineFile: 'p12s.txt',
   initData: () => {
     return {
@@ -562,22 +586,42 @@ const triggerSet: TriggerSet<Data> = {
 
         const color = matches.id === '82F1' ? 'dark' : 'light';
 
-        if (x < 80 && y < 100) {
-          data.engravement1BeamsPosMap.set('NE', color);
-        } else if (x < 100 && y < 80) {
-          data.engravement1BeamsPosMap.set('SW', color);
-        } else if (x > 100 && y < 80) {
-          data.engravement1BeamsPosMap.set('SE', color);
-        } else if (x > 120 && y < 100) {
-          data.engravement1BeamsPosMap.set('NW', color);
-        } else if (x > 120 && y > 100) {
-          data.engravement1BeamsPosMap.set('SW', color);
-        } else if (x > 100 && y > 120) {
-          data.engravement1BeamsPosMap.set('NE', color);
-        } else if (x < 100 && y > 120) {
-          data.engravement1BeamsPosMap.set('NW', color);
-        } else if (x < 80 && y > 100) {
-          data.engravement1BeamsPosMap.set('SE', color);
+        if (data.triggerSetConfig.engravement1DropTower === 'sharp') {
+          if (x < 80 && y < 100) { // x = 75 && y = 97
+            data.engravement1BeamsPosMap.set('NE', color);
+          } else if (x < 100 && y < 80) { // x = 97 && y = 75
+            data.engravement1BeamsPosMap.set('SW', color);
+          } else if (x > 100 && y < 80) { // x = 103 && y = 75
+            data.engravement1BeamsPosMap.set('SE', color);
+          } else if (x > 120 && y < 100) { // x = 125 && y = 97
+            data.engravement1BeamsPosMap.set('NW', color);
+          } else if (x > 120 && y > 100) { // x = 125 && y = 103
+            data.engravement1BeamsPosMap.set('SW', color);
+          } else if (x > 100 && y > 120) { // x = 103 && y = 125
+            data.engravement1BeamsPosMap.set('NE', color);
+          } else if (x < 100 && y > 120) { // x = 97 && y = 125
+            data.engravement1BeamsPosMap.set('NW', color);
+          } else if (x < 80 && y > 100) { // x = 75 && y = 103
+            data.engravement1BeamsPosMap.set('SE', color);
+          }
+        } else if (data.triggerSetConfig.engravement1DropTower === 'tilt') {
+          if (x < 80 && y < 100) { // x = 75 && y = 97
+            data.engravement1BeamsPosMap.set('SE', color);
+          } else if (x < 100 && y < 80) { // x = 97 && y = 75
+            data.engravement1BeamsPosMap.set('SE', color);
+          } else if (x > 100 && y < 80) { // x = 103 && y = 75
+            data.engravement1BeamsPosMap.set('SW', color);
+          } else if (x > 120 && y < 100) { // x = 125 && y = 97
+            data.engravement1BeamsPosMap.set('SW', color);
+          } else if (x > 120 && y > 100) { // x = 125 && y = 103
+            data.engravement1BeamsPosMap.set('NW', color);
+          } else if (x > 100 && y > 120) { // x = 103 && y = 125
+            data.engravement1BeamsPosMap.set('NW', color);
+          } else if (x < 100 && y > 120) { // x = 97 && y = 125
+            data.engravement1BeamsPosMap.set('NE', color);
+          } else if (x < 80 && y > 100) { // x = 75 && y = 103
+            data.engravement1BeamsPosMap.set('NE', color);
+          }
         }
       },
     },
@@ -611,9 +655,15 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.engravementCounter === 1,
       delaySeconds: 1, // Make sure Drop Tower Pos Tracker is done
       alertText: (data, matches, output) => {
-        data.engravement1DarkBeamsPos = [];
-        data.engravement1LightBeamsPos = [];
         if (data.me === matches.target) {
+          // if Only notify tower color
+          if (data.triggerSetConfig.engravement1DropTower === 'tower') {
+            if (matches.effectId === 'DFB')
+              return output.lightTower!();
+            return output.darkTower!();
+          }
+          data.engravement1DarkBeamsPos = [];
+          data.engravement1LightBeamsPos = [];
           data.engravement1BeamsPosMap.forEach((value: string, key: string) => {
             if (matches.effectId === 'DFB' && value === 'light') {
               if (key === 'NE')
@@ -658,6 +708,14 @@ const triggerSet: TriggerSet<Data> = {
         darkTowerSide: {
           en: 'Drop dark tower at ${pos1}/${pos2}',
           cn: '去 ${pos1}/${pos2} 放暗塔',
+        },
+        lightTower: {
+          en: 'Drop light tower',
+          cn: '放光塔',
+        },
+        darkTower: {
+          en: 'Drop dark tower',
+          cn: '放暗塔',
         },
         northeast: Outputs.dirNE,
         northwest: Outputs.dirNW,
