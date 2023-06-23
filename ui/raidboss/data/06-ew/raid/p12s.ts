@@ -9,10 +9,6 @@ import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: north / south laser add call for first Paradeigma
-// TODO: laser add call (inner west / inner east?) for second Paradeigma
-// TODO: glaukopis tank swap call
-// TODO: glaukopis tank swap after 2nd hit (if different person took both)
 // TODO: add phase dash calls?? (maybe this is overkill)
 // TODO: Superchain 2B
 // TODO: final Sample safe spot
@@ -172,6 +168,9 @@ export interface Data extends RaidbossData {
   isDoorBoss: boolean;
   phase?: 'superchain1' | 'palladion' | 'superchain2a' | 'superchain2b';
   combatantData: PluginCombatantState[];
+  paradeigmaCounter: number;
+  glaukopisFirstHit?: string;
+  glaukopisSecondHitSame: boolean;
   engravementCounter: number;
   engravement1BeamsPosMap: Map<string, string>;
   engravement1TetherIds: number[];
@@ -231,6 +230,8 @@ const triggerSet: TriggerSet<Data> = {
     return {
       isDoorBoss: true,
       combatantData: [],
+      paradeigmaCounter: 0,
+      glaukopisSecondHitSame: false,
       engravementCounter: 0,
       engravement1BeamsPosMap: new Map(),
       engravement1TetherIds: [],
@@ -294,6 +295,90 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '8304', source: 'Athena', capture: false },
       response: Responses.aoe(),
+    },
+    {
+      id: 'P12S Paradeigma Counter',
+      type: 'StartsUsing',
+      netRegex: { id: '82ED', source: 'Athena', capture: false },
+      run: (data) => data.paradeigmaCounter++,
+    },
+    {
+      id: 'P12S Paradeigma 1 Clones',
+      type: 'Ability',
+      // 8314 appears to transform the orbs ("Ideas") into clones once in position
+      netRegex: { id: '8314', source: 'Thymou Idea' },
+      condition: (data) => data.paradeigmaCounter === 1,
+      delaySeconds: 0.5, // need a small delay to let position data catch up
+      suppressSeconds: 10, // we only need y-pos of one add, and don't refire on the 2nd set of orbs
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        const id = parseInt(matches.sourceId, 16);
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [id],
+        })).combatants;
+      },
+      infoText: (data, _matches, output) => {
+        if (data.combatantData.length === 0)
+          return output.clones!({ dir: output.unknown!() });
+        const y = data.combatantData[0]?.PosY;
+        if (y === undefined)
+          return output.clones!({ dir: output.unknown!() });
+        const cloneSide = y > centerY ? 'south' : 'north';
+        return output.clones!({ dir: output[cloneSide]!() });
+      },
+      outputStrings: {
+        clones: {
+          en: 'Clones ${dir}',
+        },
+        north: Outputs.north,
+        south: Outputs.south,
+        unknown: Outputs.unknown,
+      },
+    },
+    // In Ray 1 (Paradeigma2), two adds always spawn north in pairs with PosX of [85, 105] or [95, 115].
+    // Each cleaves 1/4th of the arena. So given one PosX, we can determine the inside/outside safe lanes.
+
+    // TODO: In Ray 2 (SC IIB), the adds have the same cleave width but spawn at [87, 103] or [97, 113].
+    // So "inside east", e.g., is a bit inaccurate.  Because of mech timing, there also isn't time to cross
+    // the arena.  So realistically, this should be combined with SC IIB triggers to indicate whether
+    //  the player needs to move inside or outside to avoid the cleave that will intersect the 2nd orb.
+    // For now, though, display a reminder to avoid the cleaves.
+    {
+      id: 'P12S Ray of Light',
+      type: 'StartsUsing',
+      netRegex: { id: '82EE', source: 'Anthropos' },
+      suppressSeconds: 1,
+      alertText: (data, matches, output) => {
+        const x = Math.round(parseFloat(matches.x));
+        if (x === undefined)
+          return output.avoid!();
+
+        let safeLanes;
+        if (data.paradeigmaCounter === 2) {
+          if (x < 90)
+            safeLanes = 'insideWestOutsideEast';
+          else if (x > 110)
+            safeLanes = 'insideEastOutsideWest';
+          else
+            safeLanes = x < 100 ? 'insideEastOutsideWest' : 'insideWestOutsideEast';
+        }
+
+        if (safeLanes === undefined)
+          return output.avoid!(); // will fire during Ray 2 (SC IIB)
+        return output[safeLanes]!();
+      },
+      outputStrings: {
+        insideWestOutsideEast: {
+          en: 'Inside West / Outside East',
+        },
+        insideEastOutsideWest: {
+          en: 'Inside East / Outside West',
+        },
+        avoid: {
+          en: 'Avoid Line Cleaves',
+        },
+      },
     },
     {
       id: 'P12S First Wing',
@@ -1190,6 +1275,63 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P12S Glaukopis First Cleave',
+      type: 'StartsUsing',
+      netRegex: { id: '82FC', source: 'Athena' },
+      response: (data, matches, output) => {
+        // don't use Responses.tankCleave(); we want to tell the non-targeted tank to swap
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          cleaveOnYou: Outputs.tankCleaveOnYou,
+          tankBusterCleaves: Outputs.tankBusterCleaves,
+          cleaveSwap: Outputs.tankSwap,
+          avoidTankCleaves: Outputs.avoidTankCleaves,
+        };
+        // Multiple players can be hit by the line cleave AoE,
+        // but we only care about the intended target for the Followup trigger
+        data.glaukopisFirstHit = matches.target;
+
+        if (data.me === matches.target)
+          return { alertText: output.cleaveOnYou!() };
+        if (data.role === 'tank')
+          return { alertText: output.cleaveSwap!() };
+        if (data.role === 'healer' || data.job === 'BLU')
+          return { alertText: output.tankBusterCleaves!() };
+        return { infoText: output.avoidTankCleaves!() };
+      },
+    },
+    // Since multiple players could be hit by the 2nd cleave (whoopsie!), we need to check
+    // if *any* of the targets of the 2nd cleave were the original cast target (MT) of the 1st cleave.
+    // If so, we'll assume the original target is using invuln, and no need to swap after the 2nd.
+    {
+      id: 'P12S Glaukopis Second Cleave Collect',
+      type: 'Ability',
+      netRegex: { id: '82FD', source: 'Athena' },
+      run: (data, matches) => {
+        if (matches.target === data.glaukopisFirstHit)
+          data.glaukopisSecondHitSame = true;
+      },
+    },
+    {
+      id: 'P12S Glaukopis Second Cleave Swap',
+      type: 'Ability',
+      netRegex: { id: '82FD', source: 'Athena', capture: false },
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
+      delaySeconds: 0.1,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        if (data.me === data.glaukopisFirstHit && !data.glaukopisSecondHitSame)
+          return output.tankSwap!();
+      },
+      run: (data) => {
+        delete data.glaukopisFirstHit;
+        data.glaukopisSecondHitSame = false;
+      },
+      outputStrings: {
+        tankSwap: Outputs.tankSwap,
+      },
+    },
+    {
       id: 'P12S Peridialogos',
       type: 'StartsUsing',
       netRegex: { id: '82FF', source: 'Athena', capture: false },
@@ -1660,6 +1802,15 @@ const triggerSet: TriggerSet<Data> = {
         data.superchain2aSecondMech = isSecondMechProtean ? 'protean' : 'partners';
       },
     },
+    // TODO: Combine with future SC IIB trigger?  Happens immediately after 1st orb (donut)
+    // and before 2nd orb (protean/partners). Also, rather than calling "sides", it should probably
+    // call the specific side where the 2nd orb is.
+    {
+      id: 'P12S Parthenos',
+      type: 'StartsUsing',
+      netRegex: { id: '8303', source: 'Athena', capture: false },
+      response: Responses.goSides(),
+    },
     // --------------------- Phase 2 ------------------------
     {
       id: 'P12S Geocentrism Vertical',
@@ -1905,6 +2056,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Anthropos': 'Anthropos',
         '(?<! )Athena': 'Athena',

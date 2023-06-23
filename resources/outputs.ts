@@ -94,12 +94,28 @@ export default {
     cn: '顺劈',
     ko: '광역 탱버',
   },
+  tankBusterCleaves: {
+    en: 'Tank Buster Cleaves',
+    de: 'Tankbuster Cleaves',
+    fr: 'Tankbuster cleaves',
+    ja: 'MT・ST同時範囲攻撃',
+    cn: '双T扇形死刑',
+    ko: '광역 탱버',
+  },
   avoidTankCleave: {
     en: 'Avoid tank cleave',
     de: 'Tank Cleave ausweichen',
     fr: 'Évitez le tank cleave',
     ja: 'タンク範囲攻撃を避ける',
     cn: '远离顺劈',
+    ko: '광역 탱버 피하기',
+  },
+  avoidTankCleaves: {
+    en: 'Avoid Tank Cleaves',
+    de: 'Tankbuster Cleaves ausweichen',
+    fr: 'Évitez les cleaves (tankbusters)',
+    ja: '範囲攻撃を避けて',
+    cn: '躲避双T扇形死刑',
     ko: '광역 탱버 피하기',
   },
   tankCleaveOnYou: {
