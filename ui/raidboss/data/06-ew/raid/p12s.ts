@@ -223,7 +223,7 @@ const triggerSet: TriggerSet<Data> = {
           '仅提示塔颜色': 'tower',
         },
       },
-      default: 'quadrant',
+      default: 'tower',
     },
   ],
   timelineFile: 'p12s.txt',
