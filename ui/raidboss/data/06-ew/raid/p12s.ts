@@ -1545,8 +1545,10 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 0.5,
       durationSeconds: (data) => {
         // There's ~13 seconds until the first tower and ~18 until the second tower.
+        // Some strats have 'not' take the first tower or the second tower,
+        // so to avoid noisy alerts only extend duration for the long tilts.
         const myRole = data.pangenesisRole[data.me];
-        return myRole === 'not' || myRole === 'longDark' || myRole === 'longLight' ? 17 : 12;
+        return myRole === 'longDark' || myRole === 'longLight' ? 17 : 12;
       },
       suppressSeconds: 999999,
       alertText: (data, _matches, output) => {
@@ -1666,6 +1668,12 @@ const triggerSet: TriggerSet<Data> = {
           darkTower: {
             en: 'Dark Tower',
           },
+          lightTowerSwitch: {
+            en: 'Light Tower (switch)',
+          },
+          darkTowerSwitch: {
+            en: 'Dark Tower (switch)',
+          },
         };
 
         let tower: typeof data.pangenesisCurrentColor;
@@ -1679,10 +1687,13 @@ const triggerSet: TriggerSet<Data> = {
         if (tower === undefined)
           return;
 
-        // TODO: should we also say "Dark Tower (again)" or "Dark Tower (switch)" for emphasis?
-        const severity = tower === data.lastPangenesisTowerColor ? 'infoText' : 'alertText';
-        const text = tower === 'light' ? output.lightTower!() : output.darkTower!();
-        return { [severity]: text };
+        const isSameTower = tower === data.lastPangenesisTowerColor;
+        if (isSameTower)
+          return { infoText: tower === 'light' ? output.lightTower!() : output.darkTower!() };
+
+        if (tower === 'light')
+          return { alertText: output.lightTowerSwitch!() };
+        return { alertText: output.darkTowerSwitch!() };
       },
     },
   ],
