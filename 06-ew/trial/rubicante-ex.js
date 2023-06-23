@@ -310,22 +310,8 @@ Options.Triggers.push({
       },
       run: (data) => data.dualfireTargets = [],
       outputStrings: {
-        tankBusterCleaves: {
-          en: 'Tank Buster Cleaves',
-          de: 'Tankbuster Cleaves',
-          fr: 'Tankbuster cleaves',
-          ja: 'MT・ST同時範囲攻撃',
-          cn: '双T扇形死刑',
-          ko: '광역 탱버',
-        },
-        avoidTankCleaves: {
-          en: 'Avoid Tank Cleaves',
-          de: 'Tankbuster Cleaves ausweichen',
-          fr: 'Évitez les cleaves (tankbusters)',
-          ja: '範囲攻撃を避けて',
-          cn: '躲避双T扇形死刑',
-          ko: '광역 탱버 피하기',
-        },
+        tankBusterCleaves: Outputs.tankBusterCleaves,
+        avoidTankCleaves: Outputs.avoidTankCleaves,
       },
     },
     {
