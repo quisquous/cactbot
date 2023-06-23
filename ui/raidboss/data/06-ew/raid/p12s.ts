@@ -704,21 +704,15 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         data.engravement1Towers.push(matches.target);
 
-        for (let index = 0; index < data.combatantData.length; index++) {
-          const x = data.combatantData[index]?.PosX;
-          if (x === undefined)
-            return;
-          const y = data.combatantData[index]?.PosY;
-          if (y === undefined)
+        for (const combatant of data.combatantData) {
+          const x = combatant.PosX;
+          const y = combatant.PosY;
+
+          const combatantId = combatant.ID;
+          if (combatantId === undefined)
             return;
 
-          const ids = data.combatantData[index]?.ID;
-          if (ids === undefined)
-            return;
-
-          const tempColor = data.engravement1TetherPlayers[ids.toString(16).toUpperCase()];
-          if (tempColor === undefined)
-            return;
+          const tempColor = data.engravement1TetherPlayers[combatantId.toString(16).toUpperCase()];
 
           const color = tempColor === 'light' ? 'dark' : 'light';
 
