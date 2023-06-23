@@ -221,7 +221,7 @@ const triggerSet: TriggerSet<Data> = {
           '仅提示塔颜色': 'tower',
         },
       },
-      default: 'sharp',
+      default: 'quadrant',
     },
   ],
   timelineFile: 'p12s.txt',
@@ -651,8 +651,8 @@ const triggerSet: TriggerSet<Data> = {
     //
     {
       id: 'P12S Engravement 1 Drop Tower Pos Tracker',
-      type: 'StartsUsing',
-      netRegex: { id: ['82F[12]'], source: 'Anthropos' },
+      type: 'Tether',
+      netRegex: { id: Object.keys(anthroposTetherMap), source: 'Anthropos' },
       condition: (data) => data.engravementCounter === 1,
       promise: async (data, matches) => {
         data.combatantData = [];
@@ -672,7 +672,11 @@ const triggerSet: TriggerSet<Data> = {
         if (y === undefined)
           return;
 
-        const color = matches.id === '82F1' ? 'dark' : 'light';
+        const tetherType = anthroposTetherMap[matches.id];
+        if (tetherType === undefined)
+          return;
+
+        const color = tetherType === 'light' ? 'dark' : 'light';
 
         if (data.triggerSetConfig.engravement1DropTower === 'quadrant') {
           if (x < 80 && y < 100) { // x = 75 && y = 97
@@ -741,8 +745,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: engravementTowerIds },
       condition: (data) => data.engravementCounter === 1,
-      delaySeconds: 0.1, // Make sure Drop Tower Pos Tracker is done
-      durationSeconds: (_data, matches) => parseFloat(matches.duration) - 1,
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
       alertText: (data, matches, output) => {
         data.engravement1Towers.push(matches.target);
         if (data.me === matches.target) {
