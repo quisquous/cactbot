@@ -720,7 +720,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P12S Engravement 1 Beam',
       type: 'StartsUsing',
-      netRegex: { id: ['82F[12]'], source: 'Anthropos' },
+      netRegex: { id: Object.keys(tetherAbilityToTowerMap), source: 'Anthropos' },
       condition: (data) => data.engravementCounter === 1,
       alertText: (data, matches, output) => {
         if (data.me === matches.target) {
