@@ -174,6 +174,8 @@ export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
   engravementCounter: number;
   engravement1BeamsPosMap: Map<string, string>;
+  engravement1TetherIds: number[];
+  engravement1TetherPlayers: { [name: string]: AnthroposTether };
   engravement1LightBeamsPos: string[];
   engravement1DarkBeamsPos: string[];
   engravement1Towers: string[];
@@ -231,6 +233,8 @@ const triggerSet: TriggerSet<Data> = {
       combatantData: [],
       engravementCounter: 0,
       engravement1BeamsPosMap: new Map(),
+      engravement1TetherIds: [],
+      engravement1TetherPlayers: {},
       engravement1LightBeamsPos: [],
       engravement1DarkBeamsPos: [],
       engravement1Towers: [],
@@ -650,71 +654,15 @@ const triggerSet: TriggerSet<Data> = {
     // At the same time the towers drop, the 4 tethered players receive lightTilt or darkTilt depending on their tether color.
     //
     {
-      id: 'P12S Engravement 1 Drop Tower Pos Tracker',
+      id: 'P12S Engravement 1 Tether Tracker',
       type: 'Tether',
       netRegex: { id: Object.keys(anthroposTetherMap), source: 'Anthropos' },
-      condition: (data) => data.engravementCounter === 1,
-      promise: async (data, matches) => {
-        data.combatantData = [];
-        const ids = parseInt(matches.sourceId, 16);
-        if (ids === undefined)
-          return;
-        data.combatantData = (await callOverlayHandler({
-          call: 'getCombatants',
-          ids: [ids],
-        })).combatants;
-      },
       run: (data, matches) => {
-        const x = data.combatantData[0]?.PosX;
-        if (x === undefined)
-          return;
-        const y = data.combatantData[0]?.PosY;
-        if (y === undefined)
-          return;
-
         const tetherType = anthroposTetherMap[matches.id];
         if (tetherType === undefined)
           return;
-
-        const color = tetherType === 'light' ? 'dark' : 'light';
-
-        if (data.triggerSetConfig.engravement1DropTower === 'quadrant') {
-          if (x < 80 && y < 100) { // x = 75 && y = 97
-            data.engravement1BeamsPosMap.set('NE', color);
-          } else if (x < 100 && y < 80) { // x = 97 && y = 75
-            data.engravement1BeamsPosMap.set('SW', color);
-          } else if (x > 100 && y < 80) { // x = 103 && y = 75
-            data.engravement1BeamsPosMap.set('SE', color);
-          } else if (x > 120 && y < 100) { // x = 125 && y = 97
-            data.engravement1BeamsPosMap.set('NW', color);
-          } else if (x > 120 && y > 100) { // x = 125 && y = 103
-            data.engravement1BeamsPosMap.set('SW', color);
-          } else if (x > 100 && y > 120) { // x = 103 && y = 125
-            data.engravement1BeamsPosMap.set('NE', color);
-          } else if (x < 100 && y > 120) { // x = 97 && y = 125
-            data.engravement1BeamsPosMap.set('NW', color);
-          } else if (x < 80 && y > 100) { // x = 75 && y = 103
-            data.engravement1BeamsPosMap.set('SE', color);
-          }
-        } else if (data.triggerSetConfig.engravement1DropTower === 'clockwise') {
-          if (x < 80 && y < 100) { // x = 75 && y = 97
-            data.engravement1BeamsPosMap.set('SE', color);
-          } else if (x < 100 && y < 80) { // x = 97 && y = 75
-            data.engravement1BeamsPosMap.set('SE', color);
-          } else if (x > 100 && y < 80) { // x = 103 && y = 75
-            data.engravement1BeamsPosMap.set('SW', color);
-          } else if (x > 120 && y < 100) { // x = 125 && y = 97
-            data.engravement1BeamsPosMap.set('SW', color);
-          } else if (x > 120 && y > 100) { // x = 125 && y = 103
-            data.engravement1BeamsPosMap.set('NW', color);
-          } else if (x > 100 && y > 120) { // x = 103 && y = 125
-            data.engravement1BeamsPosMap.set('NW', color);
-          } else if (x < 100 && y > 120) { // x = 97 && y = 125
-            data.engravement1BeamsPosMap.set('NE', color);
-          } else if (x < 80 && y > 100) { // x = 75 && y = 103
-            data.engravement1BeamsPosMap.set('NE', color);
-          }
-        }
+        data.engravement1TetherPlayers[matches.sourceId] = tetherType;
+        data.engravement1TetherIds.push(parseInt(matches.sourceId, 16));
       },
     },
     {
@@ -746,8 +694,73 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: engravementTowerIds },
       condition: (data) => data.engravementCounter === 1,
       durationSeconds: (_data, matches) => parseFloat(matches.duration),
+      promise: async (data) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: data.engravement1TetherIds,
+        })).combatants;
+      },
       alertText: (data, matches, output) => {
         data.engravement1Towers.push(matches.target);
+
+        for (let index = 0; index < data.engravement1TetherIds.length; index++) {
+          const x = data.combatantData[index]?.PosX;
+          if (x === undefined)
+            return;
+          const y = data.combatantData[index]?.PosY;
+          if (y === undefined)
+            return;
+
+          const ids = data.engravement1TetherIds[index];
+          if (ids === undefined)
+            return;
+
+          const tempColor = data.engravement1TetherPlayers[ids.toString(16).toUpperCase()];
+          if (tempColor === undefined)
+            return;
+
+          const color = tempColor === 'light' ? 'dark' : 'light';
+
+          if (data.triggerSetConfig.engravement1DropTower === 'quadrant') {
+            if (x < 80 && y < 100) { // x = 75 && y = 97
+              data.engravement1BeamsPosMap.set('NE', color);
+            } else if (x < 100 && y < 80) { // x = 97 && y = 75
+              data.engravement1BeamsPosMap.set('SW', color);
+            } else if (x > 100 && y < 80) { // x = 103 && y = 75
+              data.engravement1BeamsPosMap.set('SE', color);
+            } else if (x > 120 && y < 100) { // x = 125 && y = 97
+              data.engravement1BeamsPosMap.set('NW', color);
+            } else if (x > 120 && y > 100) { // x = 125 && y = 103
+              data.engravement1BeamsPosMap.set('SW', color);
+            } else if (x > 100 && y > 120) { // x = 103 && y = 125
+              data.engravement1BeamsPosMap.set('NE', color);
+            } else if (x < 100 && y > 120) { // x = 97 && y = 125
+              data.engravement1BeamsPosMap.set('NW', color);
+            } else if (x < 80 && y > 100) { // x = 75 && y = 103
+              data.engravement1BeamsPosMap.set('SE', color);
+            }
+          } else if (data.triggerSetConfig.engravement1DropTower === 'clockwise') {
+            if (x < 80 && y < 100) { // x = 75 && y = 97
+              data.engravement1BeamsPosMap.set('SE', color);
+            } else if (x < 100 && y < 80) { // x = 97 && y = 75
+              data.engravement1BeamsPosMap.set('SE', color);
+            } else if (x > 100 && y < 80) { // x = 103 && y = 75
+              data.engravement1BeamsPosMap.set('SW', color);
+            } else if (x > 120 && y < 100) { // x = 125 && y = 97
+              data.engravement1BeamsPosMap.set('SW', color);
+            } else if (x > 120 && y > 100) { // x = 125 && y = 103
+              data.engravement1BeamsPosMap.set('NW', color);
+            } else if (x > 100 && y > 120) { // x = 103 && y = 125
+              data.engravement1BeamsPosMap.set('NW', color);
+            } else if (x < 100 && y > 120) { // x = 97 && y = 125
+              data.engravement1BeamsPosMap.set('NE', color);
+            } else if (x < 80 && y > 100) { // x = 75 && y = 103
+              data.engravement1BeamsPosMap.set('NE', color);
+            }
+          }
+        }
+
         if (data.me === matches.target) {
           // if Only notify tower color
           if (data.triggerSetConfig.engravement1DropTower === 'tower') {
