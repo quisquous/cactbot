@@ -75,6 +75,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Hexadrone Bit': 'Hexadrohnen-Modul',
         'Hypertuned Grynewaht': 'hyperisiert(?:e|er|es|en) Grynewaht',
@@ -105,6 +106,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Hexadrone Bit': 'module d\'hexadrone',
         'Hypertuned Grynewaht': 'Grynewaht hyper-renforcé',
@@ -163,6 +165,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Hexadrone Bit': '魔导六轮装甲浮游炮',
         'Hypertuned Grynewaht': '强化格林瓦特',
@@ -193,6 +196,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Hexadrone Bit': '헥사롤러 비트',
         'Hypertuned Grynewaht': '강화된 그륀바트',
