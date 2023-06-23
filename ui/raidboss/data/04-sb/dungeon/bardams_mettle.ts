@@ -54,7 +54,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       // Both Bardam and Yol use the 0017 head marker.
       // If we're in the Yol encounter, we're obviously not fighting Bardam.
-      // trigger of Yol's first auto in case of chat lines being turned off
+      // trigger off Yol's first auto in case of chat lines being turned off
       id: 'Bardam\'s Mettle Dead Bardam',
       type: 'Ability',
       netRegex: { id: '367', source: 'Yol', capture: false },
