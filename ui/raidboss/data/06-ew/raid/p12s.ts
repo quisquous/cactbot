@@ -13,6 +13,20 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: Superchain 2B
 // TODO: final Sample safe spot
 
+// TODO: palladian grasp tankbusters (which are often invulned)
+// TODO: crush helm tankbusters??? (+esuna calls for non-invulning tanks??)
+// TODO: gaiochos group up for chains / break chains calls
+//       (also maybe delay the second horizontal/vertical call until after break chains)
+// TODO: summon darkness tether break locations
+// TODO: more aoe calls for caloric, classical, gaiaochos (big?)
+// TODO: basic caloric headmarkers (e.g. beacons, initial fire spread)
+// TODO: other caloric buff calls (if there's any universal strat, e.g. wind spreads)
+// TODO: classical shape headmarker + pyramid/cube call
+// TODO: bait proteans / move calls for classical 1 and 2
+
+// TODO: add triggerset ui for playstation order + classical location
+// TODO: detect(?!) hex strat for caloric2 and tell people who to go to??
+
 const centerX = 100;
 const centerY = 100;
 
@@ -106,7 +120,6 @@ const headmarkers = {
   ...wings,
   // vfx/lockon/eff/tank_laser_5sec_lockon_c0a1.avfx
   glaukopis: '01D7',
-
   // vfx/lockon/eff/sph_lockon2_num01_s8p.avfx (through sph_lockon2_num04_s8p)
   limitCut1: '0150',
   limitCut2: '0151',
@@ -122,6 +135,22 @@ const headmarkers = {
   palladianGrasp: '01D4',
   // vfx/lockon/eff/m0376trg_fire3_a0p.avfx
   chains: '0061',
+  // vfx/lockon/eff/lockon3_t0h.avfx
+  geocentrismSpread: '0016',
+  // vfx/lockon/eff/lockon_en_01v.avfx
+  playstationCircle: '016F',
+  // vfx/lockon/eff/lockon_sitasankaku_01v.avfx
+  playstationTriangle: '0170',
+  // vfx/lockon/eff/lockon_sikaku_01v.avfx
+  playstationSquare: '0171',
+  // vfx/lockon/eff/lockon_batu_01v.avfx
+  playstationCross: '0172',
+  // vfx/lockon/eff/m0124trg_a4c.avfx
+  caloric1Beacon: '0193',
+  // vfx/lockon/eff/lockon8_line_1v.avfx
+  caloric2InitialFire: '01D6',
+  // vfx/lockon/eff/d1014trg_8s_0v.avfx
+  caloric2Wind: '01D5',
 } as const;
 
 const limitCutMap: { [id: string]: number } = {
