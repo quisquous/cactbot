@@ -704,7 +704,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         data.engravement1Towers.push(matches.target);
 
-        for (let index = 0; index < data.engravement1TetherIds.length; index++) {
+        for (let index = 0; index < data.combatantData.length; index++) {
           const x = data.combatantData[index]?.PosX;
           if (x === undefined)
             return;
@@ -712,7 +712,7 @@ const triggerSet: TriggerSet<Data> = {
           if (y === undefined)
             return;
 
-          const ids = data.engravement1TetherIds[index];
+          const ids = data.combatantData[index]?.ID;
           if (ids === undefined)
             return;
 
