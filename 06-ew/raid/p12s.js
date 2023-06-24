@@ -164,6 +164,7 @@ Options.Triggers.push({
       name: {
         en: 'Paradeigma 2 Tower Strategy',
         cn: '第一次拉线踩塔方法',
+        ko: 'Paradeigma 2 기둥 공략',
       },
       type: 'select',
       options: {
@@ -176,6 +177,11 @@ Options.Triggers.push({
           '垂直拉线 (Game8)': 'quadrant',
           '对角拉线': 'clockwise',
           '仅提示塔颜色': 'tower',
+        },
+        ko: {
+          '반대편 + 가까운 사분면의 기둥 (Game8)': 'quadrant',
+          '선 연결된 곳의 시계방향': 'clockwise',
+          '공략 없음: 그냥 타워 색만 알림': 'tower',
         },
       },
       default: 'tower',
@@ -285,6 +291,7 @@ Options.Triggers.push({
       outputStrings: {
         clones: {
           en: 'Clones ${dir}',
+          ko: '분신 ${dir}',
         },
         north: Outputs.north,
         south: Outputs.south,
@@ -324,14 +331,17 @@ Options.Triggers.push({
         insideWestOutsideEast: {
           en: 'Inside West / Outside East',
           cn: '内西 / 外东',
+          ko: '서쪽 안 / 동쪽 바깥',
         },
         insideEastOutsideWest: {
           en: 'Inside East / Outside West',
           cn: '内东 / 外西',
+          ko: '동쪽 안 / 서쪽 바깥',
         },
         avoid: {
           en: 'Avoid Line Cleaves',
           cn: '远离场边激光',
+          ko: '직선 장판 피하기',
         },
       },
     },
@@ -707,10 +717,12 @@ Options.Triggers.push({
         lightBeam: {
           en: 'light beam',
           cn: '引导光激光',
+          ko: '빛 선',
         },
         darkBeam: {
           en: 'dark beam',
           cn: '引导暗激光',
+          ko: '어둠 선',
         },
       },
     },
@@ -822,18 +834,22 @@ Options.Triggers.push({
         lightTowerSide: {
           en: 'Drop light tower ${pos1}/${pos2}',
           cn: '去 ${pos1}/${pos2} 放光塔',
+          ko: '빛 기둥 ${pos1}/${pos2}에 놓기',
         },
         darkTowerSide: {
           en: 'Drop dark tower at ${pos1}/${pos2}',
           cn: '去 ${pos1}/${pos2} 放暗塔',
+          ko: '어둠 기둥 ${pos1}/${pos2}에 놓기',
         },
         lightTower: {
           en: 'Drop light tower',
           cn: '放光塔',
+          ko: '빛 기둥 놓기',
         },
         darkTower: {
           en: 'Drop dark tower',
           cn: '放暗塔',
+          ko: '어둠 기둥 놓기',
         },
         northeast: Outputs.dirNE,
         northwest: Outputs.dirNW,
@@ -859,10 +875,12 @@ Options.Triggers.push({
         lightTilt: {
           en: 'Soak dark tower',
           cn: '踩暗塔',
+          ko: '어둠 기둥 들어가기',
         },
         darkTilt: {
           en: 'Soak light tower',
           cn: '踩光塔',
+          ko: '빛 기둥 들어가기',
         },
       },
     },
@@ -897,6 +915,7 @@ Options.Triggers.push({
         spreadLater: {
           en: '(spread later)',
           cn: '（稍后分散）',
+          ko: '(나중에 산개)',
         },
       },
     },
@@ -920,18 +939,22 @@ Options.Triggers.push({
         lightBeam: {
           en: 'Soak Dark Tower',
           cn: '踩暗塔',
+          ko: '어둠 기둥 들어가기',
         },
         darkBeam: {
           en: 'Soak Light Tower',
           cn: '踩光塔',
+          ko: '빛 기둥 들어가기',
         },
         lightTower: {
           en: 'Drop Light Tower',
           cn: '放光塔',
+          ko: '빛 기둥 놓기',
         },
         darkTower: {
           en: 'Drop Dark Tower',
           cn: '放暗塔',
+          ko: '어둠 기둥 놓기',
         },
       },
     },
@@ -965,10 +988,12 @@ Options.Triggers.push({
         crossMarked: {
           en: '\'+\' AoE on You',
           cn: '十 点名',
+          ko: '\'+\' 장판 대상자',
         },
         xMarked: {
           en: '\'x\' AoE on You',
           cn: '\'x\' 点名',
+          ko: '\'x\' 장판 대상자',
         },
       },
     },
@@ -988,10 +1013,12 @@ Options.Triggers.push({
         crossMarked: {
           en: 'Drop \'+\' AoE',
           cn: '放置 十 点名',
+          ko: '\'+\' 장판 놓기',
         },
         xMarked: {
           en: 'Drop \'x\' AoE',
           cn: '放置 \'x\' 点名',
+          ko: '\'x\' 장판 놓기',
         },
       },
     },
@@ -1005,6 +1032,7 @@ Options.Triggers.push({
       outputStrings: {
         baitCleave: {
           en: 'Bait line cleave',
+          ko: '레이저 유도',
         },
       },
     },
@@ -1057,14 +1085,17 @@ Options.Triggers.push({
         towerOnYou: {
           en: '${color} Tower on You (w/ ${partner})',
           cn: '${color} 塔点名 (+ ${partner})',
+          ko: '${color} 기둥 대상자 (+ ${partner})',
         },
         light: {
           en: 'Light',
           cn: '光',
+          ko: '빛',
         },
         dark: {
           en: 'Dark',
           cn: '暗',
+          ko: '어둠',
         },
         unknown: Outputs.unknown,
       },
@@ -1101,14 +1132,17 @@ Options.Triggers.push({
         towersLater: {
           en: '${color} towers (later)',
           cn: '稍后 ${color} 塔',
+          ko: '${color} 기둥 (나중에)',
         },
         light: {
           en: 'Light',
           cn: '光',
+          ko: '빛',
         },
         dark: {
           en: 'Dark',
           cn: '暗',
+          ko: '어둠',
         },
         unknown: Outputs.unknown,
       },
@@ -1140,22 +1174,27 @@ Options.Triggers.push({
         dropTower: {
           en: 'Drop ${color} Tower (${spot})',
           cn: '在 ${spot} 放 ${color} 塔',
+          ko: '${color} 기둥 놓기 (${spot})',
         },
         light: {
           en: 'Light',
           cn: '光',
+          ko: '빛',
         },
         dark: {
           en: 'Dark',
           cn: '暗',
+          ko: '어둠',
         },
         platform: {
           en: 'Platform',
           cn: '平台内',
+          ko: '플랫폼 내부',
         },
         corner: {
           en: 'Inside Corner',
           cn: '平台交叉处',
+          ko: '플랫폼 교차지점',
         },
         unknown: Outputs.unknown,
       },
@@ -1190,18 +1229,22 @@ Options.Triggers.push({
         soakTower: {
           en: 'Soak ${color} Tower',
           cn: '踩 ${color} 塔',
+          ko: '${color} 기둥 들어가기',
         },
         baitCleaves: {
           en: 'Bait line cleave',
           cn: '引导射线',
+          ko: '레이저 유도',
         },
         light: {
           en: 'Light',
           cn: '光',
+          ko: '빛',
         },
         dark: {
           en: 'Dark',
           cn: '暗',
+          ko: '어둠',
         },
       },
     },
@@ -1557,26 +1600,32 @@ Options.Triggers.push({
         lightBeam: {
           en: 'Light Beam (Stack w/Dark)',
           cn: '光激光（与暗分摊）',
+          ko: '빛 레이저 (어둠 쉐어)',
         },
         darkBeam: {
           en: 'Dark Beam (Stack w/Light)',
           cn: '暗激光（与光分摊）',
+          ko: '어둠 레이저 (빛 쉐어),',
         },
         lightTower: {
           en: 'Light Tower',
           cn: '光塔点名',
+          ko: '빛 기둥',
         },
         darkTower: {
           en: 'Dark Tower',
           cn: '暗塔点名',
+          ko: '어둠 기둥',
         },
         lightTilt: {
           en: 'Light Group',
           cn: '光分摊组',
+          ko: '빛 쉐어',
         },
         darkTilt: {
           en: 'Dark Group',
           cn: '暗分摊组',
+          ko: '어둠 쉐어',
         },
         unknown: Outputs.unknown,
       },
@@ -1608,24 +1657,29 @@ Options.Triggers.push({
       outputStrings: {
         combined: {
           en: '${move} => ${engrave}',
+          ko: '${move} => ${engrave}',
         },
         inThenOut: Outputs.inThenOut,
         outThenIn: Outputs.outThenIn,
         lightBeam: {
           en: 'Soak Dark Tower',
           cn: '踩暗塔',
+          ko: '어둠 기둥 들어가기',
         },
         darkBeam: {
           en: 'Soak Light Tower',
           cn: '踩光塔',
+          ko: '빛 기둥 들어가기',
         },
         lightTower: {
           en: 'Drop Light Tower',
           cn: '放光塔',
+          ko: '빛 기둥 놓기',
         },
         darkTower: {
           en: 'Drop Dark Tower',
           cn: '放暗塔',
+          ko: '어둠 기둥 놓기',
         },
         lightTilt: Outputs.spread,
         darkTilt: Outputs.spread,
@@ -1824,21 +1878,27 @@ Options.Triggers.push({
       outputStrings: {
         nothing: {
           en: 'Nothing (w/${player})',
+          ko: '디버프 없음 (+ ${player})',
         },
         one: {
           en: 'One (w/${player})',
+          ko: '1번 (+ ${player})',
         },
         shortLight: {
           en: 'Short Light (get first dark)',
+          ko: '짧은 빛 (첫 어둠 대상)',
         },
         longLight: {
           en: 'Long Light (get second dark)',
+          ko: '긴 빛 (두번째 어둠 대상)',
         },
         shortDark: {
           en: 'Short Dark (get first light)',
+          ko: '짧은 어둠 (첫 빛 대상)',
         },
         longDark: {
           en: 'Long Dark (get second light)',
+          ko: '긴 어둠 (두번째 빛 대상)',
         },
         unknown: Outputs.unknown,
       },
@@ -1890,6 +1950,7 @@ Options.Triggers.push({
       outputStrings: {
         slimeTethers: {
           en: 'Get Slime Tethers',
+          ko: '슬라임 선 가져가기',
         },
       },
     },
@@ -1911,15 +1972,19 @@ Options.Triggers.push({
           // to be with so that you could yell something on comms to fix mistakes.
           lightTower: {
             en: 'Light Tower',
+            ko: '빛 기둥',
           },
           darkTower: {
             en: 'Dark Tower',
+            ko: '어둠 기둥',
           },
           lightTowerSwitch: {
             en: 'Light Tower (switch)',
+            ko: '빛 기둥 (교체)',
           },
           darkTowerSwitch: {
             en: 'Dark Tower (switch)',
+            ko: '어둠 기둥 (교체)',
           },
         };
         let tower;
