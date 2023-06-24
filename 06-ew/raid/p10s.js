@@ -556,12 +556,14 @@ Options.Triggers.push({
         lines: {
           en: 'On Lines (Avoid Lasers)',
           de: 'Auf die Linien (vermeide Laser)',
+          fr: 'Sur les lignes (évitez les lasers)',
           cn: '站在线上（躲避激光）',
           ko: '경계선 위 (레이저 피하기)',
         },
         boxes: {
           en: 'Inside Boxes (Avoid Lasers)',
           de: 'In den Boxen (vermeide Laser)',
+          fr: 'Dans les carrés (évitez les lasers)',
           cn: '站在盒子里（躲避激光）',
           ko: '네모칸 안 (레이저 피하기)',
         },
