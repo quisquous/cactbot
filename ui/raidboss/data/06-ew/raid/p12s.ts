@@ -407,14 +407,17 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         insideWestOutsideEast: {
           en: 'Inside West / Outside East',
+          cn: '内西 / 外东',
           ko: '서쪽 안 / 동쪽 바깥',
         },
         insideEastOutsideWest: {
           en: 'Inside East / Outside West',
+          cn: '内东 / 外西',
           ko: '동쪽 안 / 서쪽 바깥',
         },
         avoid: {
           en: 'Avoid Line Cleaves',
+          cn: '远离场边激光',
           ko: '직선 장판 피하기',
         },
       },
