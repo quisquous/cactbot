@@ -323,12 +323,15 @@ Options.Triggers.push({
       outputStrings: {
         insideWestOutsideEast: {
           en: 'Inside West / Outside East',
+          cn: '内西 / 外东',
         },
         insideEastOutsideWest: {
           en: 'Inside East / Outside West',
+          cn: '内东 / 外西',
         },
         avoid: {
           en: 'Avoid Line Cleaves',
+          cn: '远离场边激光',
         },
       },
     },
