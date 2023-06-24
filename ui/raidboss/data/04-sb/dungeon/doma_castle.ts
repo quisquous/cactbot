@@ -12,6 +12,15 @@ const triggerSet: TriggerSet<Data> = {
   id: 'DomaCastle',
   zoneId: ZoneId.DomaCastle,
   timelineFile: 'doma_castle.txt',
+  timelineTriggers: [
+    {
+      id: 'Doma Castle Magitek Rearguard Cermet Pile',
+      // untelegraphed, instant tank cleave
+      regex: /Cermet Pile/,
+      beforeSeconds: 4,
+      response: Responses.tankCleave(),
+    },
+  ],
   triggers: [
     {
       id: 'Doma Castle Magitek Hexadrone 2-Tonze Magitek Missile',
