@@ -2,6 +2,22 @@ Options.Triggers.push({
   id: 'CastrumAbania',
   zoneId: ZoneId.CastrumAbania,
   timelineFile: 'castrum_abania.txt',
+  timelineTriggers: [
+    {
+      id: 'CastrumAbania Magna Roader Wheel',
+      // no cast, untelegraphed tankbuster
+      regex: /Wheel/,
+      beforeSeconds: 4,
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'CastrumAbania Subject Number XXIV Sparking Current',
+      // no cast, line AoEs on each player
+      regex: /Sparking Current/,
+      beforeSeconds: 4,
+      response: Responses.spread(),
+    },
+  ],
   triggers: [
     {
       id: 'CastrumAbania Magna Roader Fire III',
@@ -27,6 +43,7 @@ Options.Triggers.push({
       // There's two cannons, so only say something when the first one is targetable.
       condition: (data) => !data.calledUseCannon,
       delaySeconds: 6,
+      suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       run: (data) => data.calledUseCannon = true,
       outputStrings: {
@@ -40,53 +57,38 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'CastrumAbania Number XXIV Stab',
+      id: 'CastrumAbania Subject Number XXIV Elemental Overload',
       type: 'StartsUsing',
-      netRegex: { source: 'Number XXIV', id: '1F1B' },
-      response: Responses.tankBuster(),
+      netRegex: { source: 'Subject Number XXIV', id: '82A[89A-D]', capture: false },
+      response: Responses.aoe(),
     },
     {
-      id: 'CastrumAbania Number XXIV Barrier Shift Fire',
-      type: 'StartsUsing',
-      netRegex: { source: 'Number XXIV', id: '1F21', capture: false },
-      alertText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Get Fire Buff',
-          de: 'Nimm Feuer Buff',
-          fr: 'Prenez le buff de Feu',
-          cn: '去火BUFF',
-          ko: '화염 속성 버프 얻기',
-        },
-      },
+      id: 'CastrumAbania Subject Number XXIV Fire II',
+      type: 'HeadMarker',
+      netRegex: { id: '00A1' },
+      response: Responses.stackMarkerOn(),
     },
     {
-      id: 'CastrumAbania Number XXIV Barrier Shift Ice',
-      type: 'StartsUsing',
-      netRegex: { source: 'Number XXIV', id: '1F22', capture: false },
-      alertText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Get Ice Buff',
-          de: 'Nimm Eis Buff',
-          fr: 'Prenez le buff de Glace',
-          cn: '去冰BUFF',
-          ko: '빙결 속성 버프 얻기',
-        },
-      },
+      id: 'CastrumAbania Subject Number XXIV Blizzard II',
+      type: 'HeadMarker',
+      netRegex: { id: '0178' },
+      condition: Conditions.targetIsYou(),
+      response: Responses.spread(),
     },
     {
-      id: 'CastrumAbania Number XXIV Barrier Shift Lightning',
+      id: 'CastrumAbania Subject Number XXIV Thunder II',
       type: 'StartsUsing',
-      netRegex: { source: 'Number XXIV', id: '1F23', capture: false },
-      alertText: (_data, _matches, output) => output.text(),
+      netRegex: { source: 'Subject Number XXIV', id: '82B8', capture: false },
+      suppressSeconds: 1,
+      infoText: (_data, _matches, output) => output.getTowers(),
       outputStrings: {
-        text: {
-          en: 'Get Lightning Buff',
-          de: 'Nimm Blitz Buff',
-          fr: 'Prenez le buff d\'Éclair',
-          cn: '去雷BUFF',
-          ko: '뇌격 속성 버프 얻기',
+        getTowers: {
+          en: 'Get Towers',
+          de: 'Türme nehmen',
+          fr: 'Prenez les tours',
+          ja: '塔を踏む',
+          cn: '踩塔',
+          ko: '장판 하나씩 들어가기',
         },
       },
     },
@@ -130,11 +132,11 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Inferno': 'Inferno',
         'Magna Roader': 'Magna Rotula',
         'Mark XLIII Mini Cannon': 'Kleingeschütz Xliii',
-        'Number XXIV': 'Nummer XXIV',
         'Project Aegis': 'Projekt Aegis',
         'Terrestrial Weaponry': 'Bodenwaffenentwicklung',
         'The Assessment Grounds': 'Evaluationsgelände',
@@ -158,11 +160,11 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Inferno': 'Inferno',
         'Magna Roader': 'magna rouleur magitek',
         'Mark XLIII Mini Cannon': 'Mortier Type Xliii',
-        'Number XXIV': 'Numéro XXIV',
         'Project Aegis': 'Projet Aegis',
         'Terrestrial Weaponry': 'Armement terrestre',
         'The Assessment Grounds': 'Terrain d\'évaluation',
@@ -191,7 +193,6 @@ Options.Triggers.push({
         'Inferno': 'インフェルノ',
         'Magna Roader': '魔導マグナローダー',
         'Mark XLIII Mini Cannon': 'Xliii式小臼砲',
-        'Number XXIV': 'ナンバーXXIV',
         'Project Aegis': '強化実験房',
         'Terrestrial Weaponry': '陸戦兵器開発房',
         'The Assessment Grounds': '性能試験場',
@@ -213,11 +214,11 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Inferno': '炼狱炎魔',
         'Magna Roader': '魔导机车大魔',
         'Mark XLIII Mini Cannon': '43式小迫击炮',
-        'Number XXIV': '024号',
         'Project Aegis': '强化实验室',
         'Terrestrial Weaponry': '陆战兵器开发室',
         'The Assessment Grounds': '性能试验场',
@@ -241,11 +242,11 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Inferno': '인페르노',
         'Magna Roader': '마도 마그나로더',
         'Mark XLIII Mini Cannon': 'Xliii식 소형 박격포',
-        'Number XXIV': 'XXIV호',
         'Project Aegis': '강화실험실',
         'Terrestrial Weaponry': '지상 병기 개발실',
         'The Assessment Grounds': '성능 시험장',
